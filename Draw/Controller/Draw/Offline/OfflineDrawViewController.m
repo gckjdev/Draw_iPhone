@@ -729,6 +729,43 @@
         [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
                                                         image:drawView.createImage
                                                      delegate:self];
+        
+        if (self.contest) {
+            
+            // ask gamy later, why here use dialog style to decide logic
+            if (self.currentDialog.style == CommonDialogStyleSingleButton) {
+                [self quit];
+                return;
+            }
+            
+            //draw another opus for contest
+            ContestController *contestController =  [self superContestController];
+            [self.navigationController popToViewController:contestController
+                                                  animated:NO];
+            [contestController enterDrawControllerWithContest:self.contest
+                                                     animated:NO];
+            return;
+        }
+        //if come from feed detail controller
+        if (_startController != nil) {
+            [self.navigationController popToViewController:_startController animated:NO];
+            SelectHotWordController *sc = nil;
+            if ([_targetUid length] == 0) {
+                sc = [[[SelectHotWordController alloc] init] autorelease];
+            }else{
+                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
+            }
+            sc.superController = self.startController;
+            [_startController.navigationController pushViewController:sc animated:NO];
+        }else{
+            //if come from home controller
+            if ([_targetUid length] == 0) {
+                [HomeController startOfflineDrawFrom:self];
+            }else{
+                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
+            }
+        }
+        
     }
 }
 
@@ -739,7 +776,7 @@
         // Save Image Locally
         [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
                                                         image:drawView.createImage
-                                                     delegate:nil];
+                                                     delegate:self];
         [self quit];
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
@@ -757,46 +794,12 @@
         [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
     }
     
-    if (self.contest) {
-        
-        // ask gamy later, why here use dialog style to decide logic
-        if (self.currentDialog.style == CommonDialogStyleSingleButton) {
-            [self quit];
-            return;
+    if (succ){
+        if (self.draft) {
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            self.draft = nil;
         }
-        
-        //draw another opus for contest
-        ContestController *contestController =  [self superContestController];
-        [self.navigationController popToViewController:contestController
-                                              animated:NO];
-        [contestController enterDrawControllerWithContest:self.contest
-                                                 animated:NO];
-        return;
-    }
-    //if come from feed detail controller
-    if (_startController != nil) {
-        [self.navigationController popToViewController:_startController animated:NO];
-        SelectHotWordController *sc = nil;
-        if ([_targetUid length] == 0) {
-            sc = [[[SelectHotWordController alloc] init] autorelease];
-        }else{
-            sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
-        }
-        sc.superController = self.startController;
-        [_startController.navigationController pushViewController:sc animated:NO];
-    }else{
-        //if come from home controller
-        if ([_targetUid length] == 0) {
-            [HomeController startOfflineDrawFrom:self];
-        }else{
-            [HomeController startOfflineDrawFrom:self uid:self.targetUid];
-        }
-    }
-    
-    if (self.draft) {
-        [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-        self.draft = nil;
-    }
+    }    
 }
 
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
@@ -882,10 +885,10 @@
         [dialog showInView:self.view];
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-        if (self.draft) {
-            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-            self.draft = nil;
-        }
+//        if (self.draft) {
+//            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+//            self.draft = nil;
+//        }
         
         // share weibo after submit opus success
         [self shareToWeibo];
