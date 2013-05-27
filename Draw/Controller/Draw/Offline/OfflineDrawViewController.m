@@ -729,7 +729,6 @@
         [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
                                                         image:drawView.createImage
                                                      delegate:self];
-
     }
 }
 
