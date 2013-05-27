@@ -8,6 +8,7 @@
 
 #import "DreamAvatarApp.h"
 #import "LearnDrawManager.h"
+#import "IAPProductService.h"
 
 @implementation DreamAvatarApp
 
@@ -72,5 +73,10 @@
 - (NSString*)iapResourceFileName
 {
     return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDreamAvatarIngotTestDataFile];
 }
 @end

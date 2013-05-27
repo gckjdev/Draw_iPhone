@@ -7,6 +7,7 @@
 //
 
 #import "DreamLockscreenApp.h"
+#import "IAPProductService.h"
 
 @implementation DreamLockscreenApp
 
@@ -77,6 +78,11 @@
 - (NSString*)iapResourceFileName
 {
     return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDreamLockscreenIngotTestDataFile];
 }
 
 @end

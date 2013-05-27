@@ -8,6 +8,7 @@
 
 #import "PhotoDrawFreeApp.h"
 #import "PhotoDrawHomeController.h"
+#import "IAPProductService.h"
 
 @implementation PhotoDrawFreeApp
 
@@ -75,7 +76,10 @@
 
 
 
-
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createPhotoDrawFreeIngotTestDataFile];
+}
 
 
 @end
