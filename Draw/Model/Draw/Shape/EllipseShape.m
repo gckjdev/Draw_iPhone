@@ -23,9 +23,9 @@
             CGContextFillEllipseInRect(context, self.rect);
         }
         
-        CGContextSetLineWidth(context, 2);
-        CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
-        CGContextStrokeRect(context, self.rect);
+//        CGContextSetLineWidth(context, 2);
+//        CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
+//        CGContextStrokeRect(context, self.rect);
 
         
         CGContextRestoreGState(context);

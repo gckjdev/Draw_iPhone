@@ -750,7 +750,7 @@
             if (_startController == nil) {
                 _startController = [LittleGeeHomeController defaultInstance];
             }
-            [self.navigationController popToViewController:_startController animated:NO];
+
             SelectHotWordController *sc = nil;
             if ([_targetUid length] == 0) {
                 sc = [[[SelectHotWordController alloc] init] autorelease];
@@ -758,6 +758,8 @@
                 sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
             }
             sc.superController = self.startController;
+            
+            [self.navigationController popToViewController:_startController animated:NO];
             [_startController.navigationController pushViewController:sc animated:NO];
         }else{
             //if come from home controller

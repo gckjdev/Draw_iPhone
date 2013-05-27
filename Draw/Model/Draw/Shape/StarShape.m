@@ -83,9 +83,9 @@
             CGContextSetFillColorWithColor(context, self.color.CGColor);
             CGContextFillPath(context);
         }
-        CGContextSetLineWidth(context, 2);
-        CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
-        CGContextStrokeRect(context, rect);
+//        CGContextSetLineWidth(context, 2);
+//        CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
+//        CGContextStrokeRect(context, rect);
         CGContextRestoreGState(context);
     }
 }
