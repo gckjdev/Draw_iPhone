@@ -95,7 +95,7 @@
     [self.draftsBoxButton setTitle:NSLS(@"kDraftsBox") forState:UIControlStateNormal];
     
     if (isLittleGeeAPP()) {
-        [self didSelecCustomWord:@""];
+        [self didSelectWord:[Word cusWordWithText:@""]];
     }
 }
 
