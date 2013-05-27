@@ -61,7 +61,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
 
 + (NSString *)IAPProductFileNameWithoutSuffix
 {
-    return [[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]];
+    return [[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp iapResourceFileName]];
 }
 
 + (NSString *)IAPProductFileName
