@@ -239,7 +239,7 @@
                                                         cancelButtonTitle:NSLS(@"kCancel")
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:
-                                                                NSLS(@"kPayViaZhiFuBaoWeb"),
+//                                                                NSLS(@"kPayViaZhiFuBaoWeb"),
                                                                 NSLS(@"kPayViaZhiFuBao"),
                                                                 NSLS(@"kPayViaAppleAccount"),
                                                                 nil];
@@ -267,6 +267,17 @@
         switch (buttonIndex) {
             case 0:
                 // pay via zhifubao
+                [bself alipayForOrder:order];
+                break;
+                
+            case 1:
+                // pay via apple account
+                [bself applePayForProduct:product];
+                break;
+
+                /*
+            case 0:
+                // pay via zhifubao
                 [bself alipayWebPaymentForOrder:order];
                 break;
                 
@@ -279,6 +290,7 @@
                 // pay via apple account
                 [bself applePayForProduct:product];
                 break;
+                 */
                 
             default:
                 break;
@@ -299,7 +311,8 @@
 {
     NSString* url = [NSString stringWithFormat:[ConfigManager getAlipayWebUrl],
                      [order.productName encodedURLParameterString], order.amount];
-    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:@"使用支付宝网页充值"];
+    NSString* title = [NSString stringWithFormat:@"充值 - %@", order.productName];
+    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title];
     [self.navigationController pushViewController:vc animated:YES];
     [vc release];
 }

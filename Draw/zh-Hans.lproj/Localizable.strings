@@ -1228,7 +1228,8 @@
 "kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
 "kSelectPaymentWay" = "选择购买方式";
-"kPayViaZhiFuBao" = "使用支付宝客户端购买";
+//"kPayViaZhiFuBao" = "使用支付宝客户端购买";
+"kPayViaZhiFuBao" = "使用支付宝购买";
 "kPayViaZhiFuBaoWeb" = "使用支付宝网页购买";
 "kPayViaAppleAccount" = "使用Apple账户购买";
 

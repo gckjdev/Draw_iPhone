@@ -996,24 +996,30 @@
             }
         }else{
             PPDebug(@"<saveDraft> create core data draft");
-            UserManager *userManager = [UserManager defaultManager];
-            self.draft = [pManager createDraft:image
-                                      drawData:[self newDrawDataSnapshot]
-                                     targetUid:_targetUid
-                                     contestId:self.contest.contestId
-                                        userId:[userManager userId]
-                                      nickName:[userManager nickName]
-                                          word:_word
-                                      language:languageType
-                                       bgImage:_bgImage
-                                   bgImageName:_bgImageName];
-            
-            
-            if (self.draft) {
-                result = YES;
-            }else{
+            NSData* data = [self newDrawDataSnapshot];
+            if ([data length] == 0){
                 result = NO;
             }
+            else{
+                UserManager *userManager = [UserManager defaultManager];
+                self.draft = [pManager createDraft:image
+                                          drawData:data
+                                         targetUid:_targetUid
+                                         contestId:self.contest.contestId
+                                            userId:[userManager userId]
+                                          nickName:[userManager nickName]
+                                              word:_word
+                                          language:languageType
+                                           bgImage:_bgImage
+                                       bgImageName:_bgImageName];
+
+                if (self.draft) {
+                    result = YES;
+                }else{
+                    result = NO;
+                }
+            }
+                        
         }
         if (showResult) {
             NSString *message = result ? NSLS(@"kSaveSucc") :  NSLS(@"kSaveFail");

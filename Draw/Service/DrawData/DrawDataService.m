@@ -218,6 +218,13 @@ static DrawDataService* _defaultDrawDataService = nil;
                                 size:size
                         isCompressed:isCompressed];
     
+    if ([drawData length] == 0){
+        if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
+            [viewController didCreateDraw:ERROR_MEMORY];
+        }        
+        return;
+    }
+    
     NSData *imageData = nil;
     if (image) {
         imageData = [image data];
