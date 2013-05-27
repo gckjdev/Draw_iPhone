@@ -970,6 +970,14 @@
     if (targetType == TypeGraffiti || targetType == TypePhoto) {
         return;
     }
+    
+    BOOL isBlank = ([drawView.drawActionList count] == 0);
+    if (isBlank && targetType != TypePhoto) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDraftMessage") style:CommonDialogStyleSingleButton delegate:nil];
+        [dialog showInView:self.view];
+        return;
+    }
+    
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
     _isNewDraft = YES;
 
