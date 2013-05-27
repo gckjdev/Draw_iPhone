@@ -45,6 +45,7 @@
 #import "TopPlayerView.h"
 #import "ViewUserDetail.h"
 #import "ContestManager.h"
+#import "DrawAppDelegate.h"
 
 #define POP_OPTION_SHEET_TAG    120130511
 #define DRAW_OPTION_SHEET_TAG   220130511
@@ -358,10 +359,14 @@ int getPopOptionCount()
     }
     [_drawOptionSheet removeAllActions];
     [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeDrawTo") image:[imgManager drawToBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
-    [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeBegin") image:[imgManager beginBtnBackgroundImage]];
+    
     if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+        [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
+        [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeBegin") image:[imgManager beginBtnBackgroundImage]];
         [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeContest") image:[imgManager contestBtnBackgroundImage]];
+    } else {
+        [self.drawOptionSheet addButtonWithTitle:NSLS(@"kLittleGeeBegin") image:[imgManager beginBtnBackgroundImage]];
+        [self.drawOptionSheet addButtonWithTitle:NSLS(@"kDraft") image:[imgManager draftBtnBackgroundImage]];
     }
 
 }
@@ -409,6 +414,20 @@ int getPopOptionCount()
 }
 
 #pragma mark - custom action sheet delegate
+
+- (DrawOptionIndex)fixDrawOptionIndex:(DrawOptionIndex)index
+{
+    if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
+        if (index == DrawOptionIndexBegin) {
+            return DrawOptionIndexDraft;
+        }
+        if (index == DrawOptionIndexDraft) {
+            return DrawOptionIndexBegin;
+        }
+    }
+    return index;
+}
+
 - (void)customActionSheet:(CustomActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (![self isRegistered] && !(actionSheet.tag == DRAW_OPTION_SHEET_TAG && buttonIndex == DrawOptionIndexBegin)) {
@@ -416,7 +435,7 @@ int getPopOptionCount()
         return;
     }
     if (actionSheet.tag == DRAW_OPTION_SHEET_TAG) {
-        switch (buttonIndex) {
+        switch ([self fixDrawOptionIndex:buttonIndex]) {
             case DrawOptionIndexDrawTo: {
                 FriendController* vc = [[[FriendController alloc] initWithDelegate:self] autorelease];
                 [self.navigationController pushViewController:vc animated:YES];
@@ -430,7 +449,7 @@ int getPopOptionCount()
                 [share release];
             } break;
             case DrawOptionIndexBegin: {
-                [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:self startController:self targetUid:nil];
+                [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:self startController:self targetUid:nil];
             } break;
             case DrawOptionIndexContest: {
                 [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:1 delegate:self];
@@ -896,7 +915,7 @@ int getPopOptionCount()
 - (void)friendController:(FriendController *)controller
          didSelectFriend:(MyFriend *)aFriend
 {
-    [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:self startController:self targetUid:aFriend.friendUserId];
+    [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:self startController:self targetUid:aFriend.friendUserId];
 }
 
 - (void)viewDidUnload {
@@ -1044,6 +1063,14 @@ int getPopOptionCount()
     return [[[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650) backgroundColor:[UIColor clearColor] textColor:OPAQUE_COLOR(37, 161, 126)] autorelease];
 }
 
-
++ (LittleGeeHomeController*)defaultInstance
+{
+    DrawAppDelegate* app = (DrawAppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.homeController == nil){
+        app.homeController = [[[LittleGeeHomeController alloc] init] autorelease];
+    }
+    
+    return (LittleGeeHomeController*)app.homeController;
+}
 
 @end
