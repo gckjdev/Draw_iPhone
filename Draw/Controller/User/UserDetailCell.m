@@ -113,12 +113,24 @@
     
     [self.customBackgroundControl addTarget:self action:@selector(clickCustomBackground:) forControlEvents:UIControlEventTouchUpInside];
     
-//    [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden)];
-//    [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
-    
 
-    if (self.blackListBtn.hidden) {
+    
+    [self.exploreBbsPostBtn setTitle:NSLS(@"kViewPost") forState:UIControlStateNormal];
+    
+    if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
+        [self.exploreBbsPostBtn setHidden:YES];
+    }
+    
+    [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden && self.exploreBbsPostBtn.hidden)];
+    [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
+    
+    if (self.blackListBtn.hidden && !self.exploreBbsPostBtn.hidden) {
         [self.exploreBbsPostBtn setCenter:CGPointMake(self.bounds.size.width/2, self.exploreBbsPostBtn.center.y)];
+    }
+    
+    if (!self.blackListBtn.hidden && self.exploreBbsPostBtn.hidden) {
+        [self.blackListBtn setCenter:CGPointMake(self.bounds.size.width/2, self.exploreBbsPostBtn.center.y)];
+        [self.superBlackBtn setCenter:self.exploreBbsPostBtn.center];
     }
     
     [self adaptSNSButton];

@@ -322,6 +322,24 @@ int getPopOptionCount()
     
 }
 
+#define BUTTON_FONT_EN (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:12])
+- (void)initTabButtons
+{
+    [super initTabButtons];
+    if (![LocaleUtils isChinese]) {
+        NSArray* tabList = [_tabManager tabList];
+        NSInteger index = 0;
+        NSInteger start = 0;
+        NSInteger end = [tabList count] - 1;
+        for(TableTab *tab in tabList){
+            UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
+            //font
+            [button.titleLabel setFont:BUTTON_FONT_EN];
+            index++;
+        }
+    }
+}
+
 //#define TAB_BTN_FONT_SIZE (ISIPAD?24:12)
 //- (void)initTabButtons
 //{

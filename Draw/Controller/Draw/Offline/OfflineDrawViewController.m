@@ -746,7 +746,10 @@
             return;
         }
         //if come from feed detail controller
-        if (_startController != nil) {
+        if (_startController != nil || isLittleGeeAPP()) {
+            if (_startController == nil) {
+                _startController = [LittleGeeHomeController defaultInstance];
+            }
             [self.navigationController popToViewController:_startController animated:NO];
             SelectHotWordController *sc = nil;
             if ([_targetUid length] == 0) {
