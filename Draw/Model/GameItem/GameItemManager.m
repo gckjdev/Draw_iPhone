@@ -47,12 +47,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 
 + (NSString *)shopItemsFileNameWithoutSuffix
 {
-    return [[SHOP_ITEMS_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]];
+    return [[SHOP_ITEMS_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp iapResourceFileName]];
 }
 
 + (NSString *)shopItemsFileName
 {
-    return [[[[SHOP_ITEMS_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]] stringByAppendingString:@"."] stringByAppendingString:[self shopItemsFileType]];
+    return [[[[SHOP_ITEMS_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp iapResourceFileName]] stringByAppendingString:@"."] stringByAppendingString:[self shopItemsFileType]];
 }
 
 + (NSString *)shopItemsFileBundlePath
