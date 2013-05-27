@@ -66,36 +66,36 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
 + (void)createTestDataFile
 {
-//    [GameApp createIAPTestDataFile];
+    [GameApp createIAPTestDataFile];
     
-    if (isLittleGeeAPP()){
-        [self createLittlegeeIngotTestDataFile];
-    }
-    else if (isDrawApp()) {
-        [self createDrawIngotTestDataFile];
-    }else if (isZhajinhuaApp()){
-        [self createZJHCoinTestDataFile];
-    }else if(isDiceApp()){
-        [self createDiceCoinTestDataFile];
-    }else if (isLearnDrawApp()){
-        [self createLearnDrawIngotTestDataFile];
-    }else if(isPureDrawApp()){
-        [self createPureDrawIngotTestDataFile];
-    }else if(isPureDrawFreeApp()){
-        [self createPureDrawFreeIngotTestDataFile];
-    }else if(isPhotoDrawApp()){
-        [self createPhotoDrawIngotTestDataFile];
-    }else if(isPhotoDrawFreeApp()){
-        [self createPhotoDrawFreeIngotTestDataFile];
-    }else if(isDreamAvatarApp()) {
-        [self createDreamAvatarIngotTestDataFile];
-    }else if(isDreamAvatarFreeApp()) {
-        [self createDreamAvatarFreeIngotTestDataFile];
-    }else if(isDreamLockscreenApp()) {
-        [self createDreamLockscreenIngotTestDataFile];
-    }else if(isDreamLockscreenFreeApp()) {
-        [self createDreamLockscreenFreeIngotTestDataFile];
-    }
+//    if (isLittleGeeAPP()){
+//        [self createLittlegeeIngotTestDataFile];
+//    }
+//    else if (isDrawApp()) {
+//        [self createDrawIngotTestDataFile];
+//    }else if (isZhajinhuaApp()){
+//        [self createZJHCoinTestDataFile];
+//    }else if(isDiceApp()){
+//        [self createDiceCoinTestDataFile];
+//    }else if (isLearnDrawApp()){
+//        [self createLearnDrawIngotTestDataFile];
+//    }else if(isPureDrawApp()){
+//        [self createPureDrawIngotTestDataFile];
+//    }else if(isPureDrawFreeApp()){
+//        [self createPureDrawFreeIngotTestDataFile];
+//    }else if(isPhotoDrawApp()){
+//        [self createPhotoDrawIngotTestDataFile];
+//    }else if(isPhotoDrawFreeApp()){
+//        [self createPhotoDrawFreeIngotTestDataFile];
+//    }else if(isDreamAvatarApp()) {
+//        [self createDreamAvatarIngotTestDataFile];
+//    }else if(isDreamAvatarFreeApp()) {
+//        [self createDreamAvatarFreeIngotTestDataFile];
+//    }else if(isDreamLockscreenApp()) {
+//        [self createDreamLockscreenIngotTestDataFile];
+//    }else if(isDreamLockscreenFreeApp()) {
+//        [self createDreamLockscreenFreeIngotTestDataFile];
+//    }
 }
 
 #define DRAW_INGOT_18_TAOBAO_URL @"http://a.m.taobao.com/i17800225785.htm?v=0&mz_key=0"

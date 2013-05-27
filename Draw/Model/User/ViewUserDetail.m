@@ -453,7 +453,7 @@
 - (void)didClickDrawToButton:(PPTableViewController*)viewController
 {
     if (isLittleGeeAPP()) {
-        [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:viewController startController:viewController targetUid:[self getUserId]];
+        [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
     } else {
         SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
         vc.superController = viewController;

@@ -7,6 +7,7 @@
 //
 
 #import "DreamLockscreenFreeApp.h"
+#import "IAPProductService.h"
 
 @implementation DreamLockscreenFreeApp
 
@@ -61,6 +62,11 @@
 - (BOOL)disableEnglishGuess
 {
     return NO;
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDreamLockscreenFreeIngotTestDataFile];
 }
 
 @end

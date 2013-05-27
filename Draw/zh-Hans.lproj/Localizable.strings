@@ -362,7 +362,7 @@
 /*the new words below without Japanese*/
 
 "kSaveSucc" = "保存成功！在作品页面可以查看保存的草稿";
-
+"kSaveFail" = "保存失败";
 "kNetworkErrorTitle" = "网络连接失效";
 "kNetworkErrorMessage" = "无法访问互联网，请检查手机是否正确连接到网络或者WIFI。";
 //4月23新增
@@ -670,6 +670,7 @@
 "kCommentFail" = "评论失败";
 "kBlankDrawTitle" = "空白的画";
 "kBlankDrawMessage" = "不能提交空白的画，至少得画个几笔的";
+"kBlankDraftMessage" = "不能保存空白的画，至少得画个几笔的";
 
 "kChat" = "聊天";
 "kFriend" = "好友";

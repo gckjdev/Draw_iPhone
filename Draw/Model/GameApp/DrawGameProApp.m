@@ -9,6 +9,7 @@
 #import "DrawGameProApp.h"
 #import "MobClickUtils.h"
 #import "HomeController.h"
+#import "IAPProductService.h"
 
 @implementation DrawGameProApp
 
@@ -113,5 +114,9 @@
 - (BOOL)disableEnglishGuess
 {
     return NO;
+}
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDrawIngotTestDataFile];
 }
 @end

@@ -58,8 +58,8 @@ static dispatch_once_t onceToken;
 
 + (NSString*)configFileName
 {
-    PPDebug(@"filename:%@", [GameApp gameId]);
-    return [NSString stringWithFormat:@"default_config_%@.pb", [GameApp gameId]];
+    PPDebug(@"filename:%@", [GameApp iapResourceFileName]);
+    return [NSString stringWithFormat:@"default_config_%@.pb", [GameApp iapResourceFileName]];
 }
 
 - (PBConfig*)defaultConfig

@@ -350,6 +350,7 @@
 /*the new words below without Japanese*/
 
 "kSaveSucc" = "Save draft sucessfully!";
+"kSaveFail" = "Fail to save";
 "kNetworkErrorTitle" = "Connection Error";
 "kNetworkErrorMessage" = "Network connection error. Please check the network settings.";
 
@@ -660,6 +661,7 @@
 
 "kBlankDrawTitle" = "Blank Drawing";
 "kBlankDrawMessage" = "You can't submit a blank drawing.";
+"kBlankDraftMessage" = "Cannot save a blank draft";
 
 "kChat" = "Chat";
 "kFriend" = "Friend";
@@ -1237,7 +1239,7 @@
 
 "kHim" = "him";
 "kHer" = "her";
-"kDetailDrawTo" = "Draw sth.";
+"kDetailDrawTo" = "Gift";
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
@@ -1667,7 +1669,7 @@
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
-"kLittleGeeDrawTo" = "Draw To";
+"kLittleGeeDrawTo" = "Gift";
 "kLittleGeeBegin" = "Draw";
 "kLittleGeeContest" = "Contest";
 "kLittleGee" = "LITTLEGEE";
@@ -1676,7 +1678,7 @@
 "kIllegalTitle" = "Illegal Title!";
 "kDefaultDrawWord" = "MyPaint";
 "kNoRunningContest" = "No contest is running!";
-"kPainter" = "Painter";
+"kPainter" = "Painters";
 "kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";
 "kLittleGeeSNSSubject" = "Share Paints";
 "kLittleGeeAppLink" = "";

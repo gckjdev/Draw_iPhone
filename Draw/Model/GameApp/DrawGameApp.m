@@ -14,6 +14,7 @@
 #import "HomeController.h"
 #import "WordManager.h"
 #import "DrawBgManager.h"
+#import "IAPProductService.h"
 
 @implementation DrawGameApp
 
@@ -532,6 +533,11 @@
 - (NSString*)iapResourceFileName
 {
     return [self appId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDrawIngotTestDataFile];
 }
 
 @end
