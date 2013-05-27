@@ -160,6 +160,8 @@
 - (BOOL)forceChineseOpus;
 - (BOOL)disableEnglishGuess;
 
+- (NSString*)iapResourceFileName;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

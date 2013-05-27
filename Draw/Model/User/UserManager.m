@@ -1372,6 +1372,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         return [manager saveImage:image forKey:BBS_BG_IMAGE_KEY];
     }
     
+    return NO;
 }
 
 - (BOOL)resetBbsBackground

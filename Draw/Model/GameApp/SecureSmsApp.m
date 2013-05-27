@@ -70,4 +70,10 @@
     return @"alipaysecuresms.gckj";
 }
 
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+
 @end

@@ -45,6 +45,9 @@
     return @"alipaycalltrack.gckj";
 }
 
-
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
 
 @end

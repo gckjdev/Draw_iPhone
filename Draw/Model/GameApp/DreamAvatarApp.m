@@ -69,4 +69,8 @@
     return @"96ZJ2j3gze+vLwTA1n";
 }
 
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
 @end

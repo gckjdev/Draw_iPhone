@@ -74,4 +74,9 @@
     return NO;
 }
 
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
 @end

@@ -220,7 +220,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     
     if ([drawData length] == 0){
         if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
-            [viewController didCreateDraw:ERROR_MEMORY];
+            [viewController didCreateDraw:ERROR_MEMORY];  
         }        
         return;
     }

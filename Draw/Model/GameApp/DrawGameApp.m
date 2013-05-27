@@ -529,4 +529,9 @@
     return NO;
 }
 
+- (NSString*)iapResourceFileName
+{
+    return [self appId];
+}
+
 @end

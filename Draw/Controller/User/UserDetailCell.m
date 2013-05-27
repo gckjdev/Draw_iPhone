@@ -116,10 +116,10 @@
 //    [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden)];
 //    [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
     
-    // rem by Benson for submission
-//    if (self.superBlackBtn.hidden) {
-//        [self.exploreBbsPostBtn setCenter:CGPointMake(self.bounds.size.width/2, self.exploreBbsPostBtn.center.y)];
-//    }
+
+    if (self.blackListBtn.hidden) {
+        [self.exploreBbsPostBtn setCenter:CGPointMake(self.bounds.size.width/2, self.exploreBbsPostBtn.center.y)];
+    }
     
     [self adaptSNSButton];
 }
