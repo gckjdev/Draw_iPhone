@@ -31,6 +31,7 @@
 #import "MWPhoto.h"
 #import "BBSPostListController.h"
 #import "BBSService.h"
+#import "GameApp.h"
 
 @interface ViewUserDetail () {
 
@@ -381,7 +382,12 @@
             [button.downLabel setText:NSLS(@"kDetailFollower")];
         }break;
         case UserDetailActionDrawTo: {
-            [button.downLabel setText:[NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr]];
+            NSString *title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
+            if (isSecureSmsAPP()) {
+                title = NSLS(@"kGraffiti");
+            }
+            
+            [button.downLabel setText:title];
         } break;
         case UserDetailActionFollow: {
             BOOL hasFollow = [MyFriend hasFollow:[self relation]];
@@ -454,7 +460,17 @@
 {
     if (isLittleGeeAPP()) {
         [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
-    } else {
+    } else if (isSecureSmsAPP()) {
+        PBGameUser* pbUser = [self getUser];
+        MyFriend* targetFriend = [MyFriend friendWithFid:[self getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender?@"m":@"f" level:pbUser.level];
+        MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
+        ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
+        [viewController.navigationController pushViewController:controller
+                                                       animated:YES];
+        [controller clickGraffitiButton:nil];
+        [controller release];
+    }
+    else {
         SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
         vc.superController = viewController;
         [viewController.navigationController pushViewController:vc animated:YES];
