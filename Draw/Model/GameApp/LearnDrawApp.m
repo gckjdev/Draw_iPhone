@@ -121,10 +121,10 @@
     return nil;
 }
 
-- (NSString *)alipayCallBackScheme
-{
-    return @"alipaylearndraw.gckj";
-}
+//- (NSString *)alipayCallBackScheme
+//{
+//    return @"alipaylearndraw.gckj";
+//}
 
 //ContentGameAppProtocol
 - (int)sellContentType
