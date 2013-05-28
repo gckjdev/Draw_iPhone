@@ -16,6 +16,8 @@
 #import "StatisticManager.h"
 #import "ChatListController.h"
 #import "SecureSmsUserSettingController.h"
+#import "UserManager.h"
+#import "UIViewUtils.h"
 
 @interface SecureSmsHomeController ()
 
@@ -136,6 +138,11 @@
 - (void)showInputView
 {
     if (_type == PureChatTypeSecureSms) {
+        
+        if ([[UserManager defaultManager] isPasswordEmpty]) {
+            return;
+        }
+        
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         NSArray *subViewList = keyWindow.subviews;
         for(UIView *subView in subViewList) {
@@ -144,6 +151,8 @@
             }
         }
         InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:self];
+        dialog.cancelButton.hidden = YES;
+        [dialog.okButton updateCenterX:dialog.okButton.superview.frame.size.width/2];
         [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
         [dialog showInView:keyWindow];
     }
@@ -152,7 +161,10 @@
 #pragma mark - InputDialogDelegate methods
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
 {
-    
+    PPDebug(@"didClickOk:targetText:");
+    if (NO == [[UserManager defaultManager] isPasswordCorrect:targetText]) {
+        [self performSelector:@selector(showInputView) withObject:nil afterDelay:0.6];
+    }
 }
 
 @end

@@ -36,6 +36,11 @@
     return YES;
 }
 
+- (BOOL)canSubmitDraw
+{
+    return YES;
+}
+
 - (PPViewController *)homeController
 {
     return [[[SecureSmsHomeController alloc] initWithType:PureChatTypeCallTrack] autorelease];

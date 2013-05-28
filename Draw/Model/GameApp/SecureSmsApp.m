@@ -47,6 +47,11 @@
     return YES;
 }
 
+- (BOOL)canSubmitDraw
+{
+    return YES;
+}
+
 - (PPViewController *)homeController
 {
     if (_homeController == nil) {
