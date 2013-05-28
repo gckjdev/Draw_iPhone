@@ -268,7 +268,7 @@
 
 - (BOOL)isTitlelegal
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(isSubjectValid:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(isSubjectValid:)] && [self canEditSubject]) {
         return [_delegate isSubjectValid:self.subjectText];
     }
     return YES;

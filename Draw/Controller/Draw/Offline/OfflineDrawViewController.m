@@ -721,11 +721,11 @@
     }
     else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
     {
-        [self showInputAlertView];
+        [self showInputAlertViewWithSubject:YES];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
-        self.currentDialog = dialog;
-        // Save Image Locally        
+//        self.currentDialog = dialog;
+        // Save Image Locally
         [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
                                                         image:drawView.createImage
                                                      delegate:self];
@@ -733,7 +733,7 @@
         if (self.contest) {
             
             // ask gamy later, why here use dialog style to decide logic
-            if (self.currentDialog.style == CommonDialogStyleSingleButton) {
+            if (dialog.style == CommonDialogStyleSingleButton) {
                 [self quit];
                 return;
             }
@@ -1177,7 +1177,7 @@
 
     NSString *text = self.opusDesc;
     
-    if ([self.word.text length] == 0 && [self.inputAlert hasSubjectText]) {
+    if ([self.inputAlert hasSubjectText]) {
         [self.word setText:self.inputAlert.subjectText];
     }
     
@@ -1212,13 +1212,13 @@
     self.opusDesc = self.inputAlert.contentText;
 }
 
-- (void)showInputAlertView
+- (void)showInputAlertViewWithSubject:(BOOL)hasSubject
 {
     if (self.inputAlert == nil) {
         if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
             BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
 
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:hasSubject];
             self.inputAlert.delegate = self;
             PPDebug(@"you are playing little in chinese , so show subject");
             
@@ -1274,7 +1274,7 @@
                 return;
             }
         }
-        [self showInputAlertView];
+        [self showInputAlertViewWithSubject:NO];
     }
 }
 
