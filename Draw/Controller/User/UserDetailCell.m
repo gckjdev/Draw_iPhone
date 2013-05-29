@@ -196,9 +196,6 @@
 
 + (float)getCellHeight
 {
-    if (isSecureSmsAPP() || isCallTrackAPP()) {
-        return ([DeviceDetection isIPAD]?1024:460);
-    }
     return ([DeviceDetection isIPAD]?1469:706);
 }
 

@@ -30,6 +30,7 @@
 #import "CanvasRect.h"
 #import "StringUtil.h"
 
+
 @interface ChatDetailController ()
 {
     MessageStat *_messageStat;
@@ -144,6 +145,7 @@
     PPRelease(_messageStat);
     PPRelease(_messageList);
     PPRelease(_photoDrawSheet);
+    PPRelease(_locateButton);
     [super dealloc];
 }
 
@@ -226,6 +228,7 @@
     [self setInputTextBackgroundImage:nil];
     [self setRefreshButton:nil];
     [self setMessageList:nil];
+    [self setLocateButton:nil];
     [super viewDidUnload];
 }
 
@@ -387,6 +390,13 @@
 //    [inputTextView resignFirstResponder];
 }
 
+- (IBAction)clickLocateButton:(id)sender {
+    UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES latitude:0 longitude:0 messageType:MessageTypeLocationRequest];
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 - (IBAction)clickPhotoButton:(id)sender {
     self.photoDrawSheet = [PhotoDrawSheet createSheetWithSuperController:self];
     _photoDrawSheet.delegate = self;
@@ -530,6 +540,35 @@
     
     [[ChatService defaultService] sendMessage:message delegate:self];
     [self.messageList addObject:message];
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
+}
+
+- (void)sendLocationMessageWithlocation:(double)latitude
+                              longitude:(double)longitude
+                            messageType:(MessageType)messageType
+{
+    [self loadNewMessage:NO];
+    
+    PPMessage *message = nil;
+    
+    if (messageType == MessageTypeLocationResponse) {
+        message = [[[LocationReplyMessage alloc] init] autorelease];
+        [message setText:NSLS(@"kReplyLocationMessage")];
+        [(LocationReplyMessage*)message setLatitude:latitude];
+        [(LocationReplyMessage*)message setLongitude:longitude];
+    } else {
+        message = [[[LocationAskMessage alloc] init] autorelease];
+        [message setText:NSLS(@"kAskLocationMessage")];
+        [(LocationAskMessage*)message setLatitude:latitude];
+        [(LocationAskMessage*)message setLongitude:longitude];
+    }
+    
+    [self constructMessage:message];
+    [message setMessageType:messageType];
+    [[ChatService defaultService] sendMessage:message delegate:self];
+    [self.messageList addObject:message];
+
     [self.dataTableView reloadData];
     [self tableViewScrollToBottom];
 }
@@ -695,8 +734,38 @@
         case MessageTypeText:
             [self showActionOptionsForMessage:message];
             break;
+        case MessageTypeLocationRequest:
+        case MessageTypeLocationResponse:
+            [self showLocation:message];
+            break;
         default:
             break;
+    }
+}
+
+- (void)showLocation:(PPMessage *)message
+{
+    if (message.messageType == MessageTypeLocationRequest
+        || message.messageType == MessageTypeLocationResponse) {
+        
+        BOOL isMe = (message.sourceType == SourceTypeSend);
+        double latitude;
+        double longitude;
+        if (message.messageType == MessageTypeLocationRequest) {
+            latitude = [(LocationReplyMessage*)message latitude];
+            longitude = [(LocationReplyMessage*)message longitude];
+        } else {
+            latitude = [(LocationReplyMessage*)message latitude];
+            longitude = [(LocationReplyMessage*)message longitude];
+        }
+        
+        UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeShow
+                                                                                     isMe:isMe
+                                                                                 latitude:latitude
+                                                                                longitude:longitude
+                                                                              messageType:message.messageType];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
 }
 
@@ -913,6 +982,15 @@
     [self presentModalViewController:odc animated:YES];
     //[self.navigationController pushViewController:odc animated:YES];
     [odc release];
+}
+
+
+#pragma mark - UserLocationControllerDelegate
+- (void)didClickSendLocation:(double)latitude
+                   longitude:(double)longitude
+                 messageType:(MessageType)messageType
+{
+    [self sendLocationMessageWithlocation:latitude longitude:longitude messageType:(MessageType)messageType];
 }
 
 @end

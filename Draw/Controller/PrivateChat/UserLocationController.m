@@ -15,7 +15,7 @@
 @property (retain, nonatomic) CLLocationManager *locationManager;
 @property (retain, nonatomic) CLLocation *userLocation;
 @property (assign, nonatomic) UserLocationType type;
-@property (assign, nonatomic) int messageType;
+@property (assign, nonatomic) MessageType messageType;
 @property (retain, nonatomic) NSString *reqMessageId;
 @property (assign, nonatomic) BOOL hasGetLocation;
 @property (assign, nonatomic) BOOL isMe;
@@ -61,7 +61,7 @@
               isMe:(BOOL)isMe
           latitude:(double)latitude
          longitude:(double)longitude
-       messageType:(int)messageType
+       messageType:(MessageType)messageType
 {
     self = [super init];
     if (self) {
@@ -77,15 +77,21 @@
     return self;
 }
 
+//MessageTypeLocationRequest
+//MessageTypeLocationResponse
+
+//MessageTypeAskLocation
+//MessageTypeReplyLocation
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     NSString *title = nil;
     if (_type == LocationTypeFind) {
-        if (_messageType == MessageTypeAskLocation) {
+        if (_messageType == MessageTypeLocationRequest) {
             title = NSLS(@"kAskLocationTitle");
-        } else if (_messageType  == MessageTypeReplyLocation) {
+        } else if (_messageType  == MessageTypeLocationResponse) {
             title = NSLS(@"kReplyLocationTitle");
         }
     } else {
@@ -153,9 +159,9 @@
 - (void)showSendTips
 {
     NSString *alertString = nil;
-    if(_messageType == MessageTypeAskLocation){
+    if(_messageType == MessageTypeLocationRequest){
         alertString = NSLS(@"kAskLocationAlert");
-    } else if (_messageType == MessageTypeReplyLocation){
+    } else if (_messageType == MessageTypeLocationResponse){
         alertString = NSLS(@"kReplyLocationAlert");
     }
     

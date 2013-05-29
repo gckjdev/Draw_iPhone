@@ -33,10 +33,12 @@
 @property (retain, nonatomic) IBOutlet UITextView *inputTextView;
 @property (retain, nonatomic) IBOutlet UIImageView *inputTextBackgroundImage;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
+@property (retain, nonatomic) IBOutlet UIButton *locateButton;
 @property (assign, nonatomic) id<ChatDetailControllerDelegate> delegate;
 - (IBAction)clickRefresh:(id)sender;
 - (IBAction)clickPhotoButton:(id)sender;
 - (IBAction)clickGraffitiButton:(id)sender; 
+- (IBAction)clickLocateButton:(id)sender;
 - (void)loadNewMessage:(BOOL)showActivity;
 - (id)initWithMessageStat:(MessageStat *)messageStat;
 - (NSString *)fid;

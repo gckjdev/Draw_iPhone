@@ -382,9 +382,14 @@
             [button.downLabel setText:NSLS(@"kDetailFollower")];
         }break;
         case UserDetailActionDrawTo: {
-            NSString *title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
+            NSString *title = nil;
+            
             if (isSecureSmsAPP()) {
                 title = NSLS(@"kGraffiti");
+            } else if (isCallTrackAPP()) {
+                title = NSLS(@"kGetLocationTitle");
+            } else {
+                title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
             }
             
             [button.downLabel setText:title];
@@ -447,28 +452,24 @@
 }
 - (void)didClickChatButton:(PPTableViewController*)viewController
 {
-    PBGameUser* pbUser = [self getUser];
-    MyFriend* targetFriend = [MyFriend friendWithFid:[self getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender?@"m":@"f" level:pbUser.level];
-    MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
-    ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
+    ChatDetailController *controller = [self createChatDetailController];
     [viewController.navigationController pushViewController:controller
-                                         animated:YES];
-    [controller release];
-    
+                                         animated:YES];    
 }
+
 - (void)didClickDrawToButton:(PPTableViewController*)viewController
 {
     if (isLittleGeeAPP()) {
         [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
     } else if (isSecureSmsAPP()) {
-        PBGameUser* pbUser = [self getUser];
-        MyFriend* targetFriend = [MyFriend friendWithFid:[self getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender?@"m":@"f" level:pbUser.level];
-        MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
-        ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:stat];
+        ChatDetailController *controller = [self createChatDetailController];
         [viewController.navigationController pushViewController:controller
                                                        animated:YES];
         [controller clickGraffitiButton:nil];
-        [controller release];
+    } else if (isCallTrackAPP()) {
+        ChatDetailController *controller = [self createChatDetailController];
+        [viewController.navigationController pushViewController:controller
+                                                       animated:YES];
     }
     else {
         SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
@@ -477,6 +478,15 @@
     }
     
     
+}
+
+- (ChatDetailController *)createChatDetailController
+{
+    PBGameUser* pbUser = [self getUser];
+    MyFriend* targetFriend = [MyFriend friendWithFid:[self getUserId] nickName:pbUser.nickName avatar:pbUser.avatar gender:pbUser.gender?@"m":@"f" level:pbUser.level];
+    MessageStat *stat = [MessageStat messageStatWithFriend:targetFriend];
+    ChatDetailController *controller = [[[ChatDetailController alloc] initWithMessageStat:stat] autorelease];
+    return controller;
 }
 
 #pragma mark - friendService delegate
