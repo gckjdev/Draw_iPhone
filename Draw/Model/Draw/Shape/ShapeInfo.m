@@ -277,7 +277,43 @@
 @end
 
 
+@interface ImageShapeInfo()
+{
+    CGPathRef _path;
+}
+@end
+
 @implementation ImageShapeInfo
+
+- (void)setType:(ShapeType)type
+{
+    _type = type;
+    //TODO create path
+    
+}
+
+- (void)drawInContext:(CGContextRef)context
+{
+    CGContextSaveGState(context);
+    
+    if (_path != NULL) {
+        //TODO translate && scale the path according to the rect.
+        
+        
+        //fill it!
+        [self.color.color setFill];
+        CGContextAddPath(context, _path);
+        CGContextFillPath(context);
+    }
+    
+    CGContextRestoreGState(context);
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+    CGPathRelease(_path);
+}
 
 
 @end
