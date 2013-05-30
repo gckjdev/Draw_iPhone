@@ -183,7 +183,6 @@
             [_noContestTipLabel setHidden:NO];
             [self.pageControl setNumberOfPages:0];
         }
-        [[ContestManager defaultManager] updateHasReadContestList:contestList];
         [[StatisticManager defaultManager] setNewContestCount:0];
     }else{
 
