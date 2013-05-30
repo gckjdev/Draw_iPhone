@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_GameBasic_2eproto__INCLUDED
 #define PROTOBUF_C_GameBasic_2eproto__INCLUDED
 
-#include "google/protobuf-c/protobuf-c.h"
+#include "protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -168,6 +168,12 @@ struct  _Game__PBGameUser
   int32_t fancount;
   protobuf_c_boolean has_followcount;
   int32_t followcount;
+  protobuf_c_boolean has_longitude;
+  float longitude;
+  protobuf_c_boolean has_latitude;
+  float latitude;
+  protobuf_c_boolean has_isjailbroken;
+  protobuf_c_boolean isjailbroken;
   protobuf_c_boolean has_openinfotype;
   Game__PBOpenInfoType openinfotype;
   protobuf_c_boolean has_opuscoverflowtype;
@@ -176,7 +182,7 @@ struct  _Game__PBGameUser
 };
 #define GAME__PBGAME_USER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbgame_user__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL }
+    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL }
 
 
 struct  _Game__PBGameSession
@@ -261,10 +267,16 @@ struct  _Game__PBDrawAction
   protobuf_c_boolean has_bettercolor;
   int32_t bettercolor;
   Game__PBDrawBg *drawbg;
+  protobuf_c_boolean has_shadowoffsetx;
+  float shadowoffsetx;
+  protobuf_c_boolean has_shadowoffsety;
+  float shadowoffsety;
+  protobuf_c_boolean has_shadowcolor;
+  int32_t shadowcolor;
 };
 #define GAME__PBDRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_action__descriptor) \
-    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,0, NULL }
+    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBMessage
