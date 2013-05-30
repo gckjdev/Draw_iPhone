@@ -30,7 +30,6 @@ void updateStartPoints(CGPoint *points, BOOL reverse){
         P[8] = TSLP(-cosf(R1), sinf(R1));
         
         //内五边形的点
-        
         P[1] = TSLP1(cosf(R3), sinf(R3));
         P[3] = TSLP1(cosf(R1), -sinf(R1));
         P[5] = TSLP1(0, -1);
@@ -79,7 +78,6 @@ void updateStartPoints(CGPoint *points, BOOL reverse){
             }else{
                 CGContextAddLineToPoint(context, P1[i].x, P1[i].y);
             }
-            
         }
         
         CGContextClosePath(context);

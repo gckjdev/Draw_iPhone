@@ -147,9 +147,9 @@ message PBDrawAction {
   
   // shape information
   optional int32 shapeType = 6;
-  repeated float rectComponent = 7;             //startX, startY, endX, endY 
+  repeated float rectComponent = 7;             //startX, startY, endX, endY
   
-  // for no compressed points, add 2012-03-04
+  // for no compressed points, add 2013-03-04
   repeated float pointsX = 11;
   repeated float pointsY = 12;
   
@@ -157,6 +157,13 @@ message PBDrawAction {
   optional int32 betterColor = 13;
 
   optional PBDrawBg drawBg = 14; //
+  
+  //shadow offset, add by Gamy 2013-5-30
+  optional float shadowOffsetX = 15;
+  optional float shadowOffsetY = 16;
+  optional int32 shadowColor   = 17;
+
+  
 
 }
 

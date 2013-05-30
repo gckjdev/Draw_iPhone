@@ -3,12 +3,13 @@
 #ifndef PROTOBUF_C_Draw_2eproto__INCLUDED
 #define PROTOBUF_C_Draw_2eproto__INCLUDED
 
-#include "google/protobuf-c/protobuf-c.h"
+#include "protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
 #include "GameBasic.pb-c.h"
 #include "GameConstants.pb-c.h"
+#include "Sing.pb-c.h"
 
 typedef struct _Game__PBDraw Game__PBDraw;
 typedef struct _Game__PBFeedTimes Game__PBFeedTimes;
@@ -159,14 +160,17 @@ struct  _Game__PBFeed
   char *opuscreatoravatar;
   char *opusword;
   char *opusimage;
+  char *opusthumbimage;
+  char *dataurl;
   char *contestid;
   protobuf_c_boolean has_contestscore;
   double contestscore;
   Game__PBLearnDraw *learndraw;
+  Game__PBSing *sing;
 };
 #define GAME__PBFEED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbfeed__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, NULL, NULL }
 
 
 struct  _Game__PBPoint
