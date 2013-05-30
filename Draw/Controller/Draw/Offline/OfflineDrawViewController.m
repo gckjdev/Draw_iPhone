@@ -1273,8 +1273,11 @@
                 [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
                 return;
             }
+            [self showInputAlertViewWithSubject:NO];
+        } else {
+            [self showInputAlertViewWithSubject:YES];
         }
-        [self showInputAlertViewWithSubject:NO];
+        
     }
 }
 

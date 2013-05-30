@@ -26,11 +26,6 @@ static ContestManager *_staticContestManager;
 {
     self = [super init];
     if (self) {
-        NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-        _oldContestIdList = [[userDefault objectForKey:OLD_CONTEST_LIST] retain];
-        if (_oldContestIdList) {
-            _oldContestIdList  = [[NSMutableSet alloc] init];
-        }
     }
     return self;
 }
@@ -54,19 +49,11 @@ static ContestManager *_staticContestManager;
 {
     int result = 0;
     for (Contest* contest in contestList) {
-        if (![_oldContestIdList containsObject:contest.contestId]) {
+        if (![contest joined]) {
             result++;
         }
     }
     return result;
 }
-- (void)updateHasReadContestList:(NSArray*)contestList
-{
-    for (Contest* contest in contestList) {
-        [_oldContestIdList addObject:contest.contestId];
-    }
-    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setObject:_oldContestIdList forKey:OLD_CONTEST_LIST];
-    [userDefault synchronize];
-}
+
 @end
