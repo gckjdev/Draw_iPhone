@@ -29,7 +29,7 @@
 #import "ReplayView.h"
 #import "CanvasRect.h"
 #import "StringUtil.h"
-
+#import "MKBlockActionSheet.h"
 
 @interface ChatDetailController ()
 {
@@ -391,7 +391,7 @@
 }
 
 - (IBAction)clickLocateButton:(id)sender {
-    UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES latitude:0 longitude:0 messageType:MessageTypeLocationRequest];
+    UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES latitude:0 longitude:0 messageType:MessageTypeLocationRequest reqMessageId:nil];
     controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
@@ -544,34 +544,52 @@
     [self tableViewScrollToBottom];
 }
 
-- (void)sendLocationMessageWithlocation:(double)latitude
-                              longitude:(double)longitude
-                            messageType:(MessageType)messageType
+
+- (void)sendAskLocationMessage:(double)latitude
+                     longitude:(double)longitude
 {
     [self loadNewMessage:NO];
     
-    PPMessage *message = nil;
+    LocationAskMessage *message = [[[LocationAskMessage alloc] init] autorelease];
+    [message setText:NSLS(@"kAskLocationMessage")];
+    [message setLatitude:latitude];
+    [message setLongitude:longitude];
+    [message setMessageType:MessageTypeLocationRequest];
+    [self constructMessage:message];
+    [[ChatService defaultService] sendMessage:message delegate:self];
+    [self.messageList addObject:message];
     
-    if (messageType == MessageTypeLocationResponse) {
-        message = [[[LocationReplyMessage alloc] init] autorelease];
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
+}
+
+- (void)sendReplyLocationMessage:(double)latitude
+                       longitude:(double)longitude
+                    reqMessageId:(NSString *)reqMessageId
+                     replyResult:(NSInteger)replyResult
+{
+    [self loadNewMessage:NO];    
+    LocationReplyMessage *message = [[[LocationReplyMessage alloc] init] autorelease];
+    [message setMessageType:MessageTypeLocationResponse];
+    [message setReqMessageId:reqMessageId];
+    [message setReplyResult:replyResult];
+    
+    if (replyResult == ACCEPT_ASK_LOCATION) {
         [message setText:NSLS(@"kReplyLocationMessage")];
         [(LocationReplyMessage*)message setLatitude:latitude];
         [(LocationReplyMessage*)message setLongitude:longitude];
     } else {
-        message = [[[LocationAskMessage alloc] init] autorelease];
-        [message setText:NSLS(@"kAskLocationMessage")];
-        [(LocationAskMessage*)message setLatitude:latitude];
-        [(LocationAskMessage*)message setLongitude:longitude];
+        [message setText:NSLS(@"kRejectLocationMessage")];
     }
     
     [self constructMessage:message];
-    [message setMessageType:messageType];
     [[ChatService defaultService] sendMessage:message delegate:self];
     [self.messageList addObject:message];
-
+    
     [self.dataTableView reloadData];
     [self tableViewScrollToBottom];
 }
+
 
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
@@ -642,6 +660,9 @@
 #define ACTION_SHEET_TAG_TEXT 201211021
 #define ACTION_SHEET_TAG_DRAW 201211022
 #define ACTION_SHEET_TAG_IMAGE 201211023
+#define ACTION_SHEET_TAG_LOCATION_REQUEST    201211024
+#define ACTION_SHEET_TAG_LOCATION_RESPONSE   201211025
+
 
 - (void)resetASIndexesOfMessage:(PPMessage *)message
 {
@@ -735,12 +756,53 @@
             [self showActionOptionsForMessage:message];
             break;
         case MessageTypeLocationRequest:
+        {
+            if (message.sourceType == SourceTypeSend) {
+                [self showLocation:message];
+            } else {
+                [self showHandleAskLocatioActions:message];
+            }
+            break;
+        }
         case MessageTypeLocationResponse:
             [self showLocation:message];
             break;
         default:
             break;
     }
+}
+
+- (void)showHandleAskLocatioActions:(PPMessage *)message
+{
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOpusOperation") delegate:nil cancelButtonTitle:NSLS(@"kCancel")  destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kReplyLocation"), NSLS(@"kRejectLocation"),NSLS(@"kShowLocation"),nil];
+    
+    __block typeof (self) bself = self;
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex) {
+            case 0:
+            {
+                UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES latitude:0 longitude:0 messageType:MessageTypeLocationResponse reqMessageId:message.messageId];
+                controller.delegate = bself;
+                [self.navigationController pushViewController:controller animated:YES];
+                [controller release];
+                break;
+            }
+            case 1:
+            {
+                [bself sendReplyLocationMessage:0 longitude:0 reqMessageId:message.messageId replyResult:REJECT_ASK_LOCATION];
+                break;
+            }
+            case 2:
+            {
+                [bself showLocation:message];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    [sheet showInView:self.view];
+    [sheet release];
 }
 
 - (void)showLocation:(PPMessage *)message
@@ -755,6 +817,10 @@
             latitude = [(LocationReplyMessage*)message latitude];
             longitude = [(LocationReplyMessage*)message longitude];
         } else {
+            if ([(LocationReplyMessage*)message replyResult] == REJECT_ASK_LOCATION)
+            {
+                return;
+            }
             latitude = [(LocationReplyMessage*)message latitude];
             longitude = [(LocationReplyMessage*)message longitude];
         }
@@ -763,7 +829,7 @@
                                                                                      isMe:isMe
                                                                                  latitude:latitude
                                                                                 longitude:longitude
-                                                                              messageType:message.messageType];
+                                                                              messageType:message.messageType reqMessageId:nil];
         [self.navigationController pushViewController:controller animated:YES];
         [controller release];
     }
@@ -989,8 +1055,13 @@
 - (void)didClickSendLocation:(double)latitude
                    longitude:(double)longitude
                  messageType:(MessageType)messageType
+                reqMessageId:(NSString *)reqMessageId
 {
-    [self sendLocationMessageWithlocation:latitude longitude:longitude messageType:(MessageType)messageType];
+    if (messageType == MessageTypeLocationRequest) {
+        [self sendAskLocationMessage:latitude longitude:longitude];
+    } else {
+        [self sendReplyLocationMessage:latitude longitude:longitude reqMessageId:reqMessageId replyResult:ACCEPT_ASK_LOCATION];
+    }
 }
 
 @end

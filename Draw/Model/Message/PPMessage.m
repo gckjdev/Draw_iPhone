@@ -324,6 +324,16 @@
     }
     return self;
 }
+
+- (PBMessage *)toPBMessage
+{
+    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+    [super updatePBMessageBuilder:builder];
+    [builder setLatitude:self.latitude];
+    [builder setLongitude:self.longitude];
+    return [builder build];
+}
+
 //- (void)encodeWithCoder:(NSCoder *)aCoder
 //{
 //    [super encodeWithCoder:aCoder];
@@ -368,6 +378,18 @@
     }
     return self;
 }
+
+- (PBMessage *)toPBMessage
+{
+    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+    [super updatePBMessageBuilder:builder];
+    [builder setLatitude:self.latitude];
+    [builder setLongitude:self.longitude];
+    [builder setReplyResult:self.replyResult];
+    [builder setReqMessageId:self.reqMessageId];
+    return [builder build];
+}
+
 //- (void)encodeWithCoder:(NSCoder *)aCoder
 //{
 //    [super encodeWithCoder:aCoder];

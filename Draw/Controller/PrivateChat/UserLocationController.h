@@ -21,7 +21,8 @@ typedef enum {
 @optional
 - (void)didClickSendLocation:(double)latitude
                    longitude:(double)longitude
-                 messageType:(MessageType)messageType;
+                 messageType:(MessageType)messageType
+                reqMessageId:(NSString *)reqMessageId;
 @end
 
 @interface UserLocationController : PPViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate>
@@ -34,6 +35,7 @@ typedef enum {
               isMe:(BOOL)isMe
           latitude:(double)latitude
          longitude:(double)longitude
-       messageType:(MessageType)messageType;
+       messageType:(MessageType)messageType
+      reqMessageId:(NSString *)reqMessageId;
 
 @end
