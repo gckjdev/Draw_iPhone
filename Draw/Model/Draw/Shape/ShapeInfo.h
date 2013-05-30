@@ -17,6 +17,21 @@ typedef enum{
     ShapeTypeEllipse,
     ShapeTypeTriangle,
     ShapeTypeStar,
+    ShapeTypeRectRound,
+    
+    ShapeTypeEmptyStart = 500,
+    ShapeTypeEmptyRectangle = 501,
+    ShapeTypeEmptyEllipse,
+    ShapeTypeEmptyTriangle,
+    ShapeTypeEmptyStar,
+    ShapeTypeEmptyRoundRect,
+    
+
+    ShapeTypeImageStart = 1000,
+    
+    ShapeTypeImageEnd = 1999,
+    
+    
 }ShapeType;
 
 //@class PBShapeInfo;
@@ -62,6 +77,7 @@ typedef enum{
 
 
 @interface ImageShapeInfo : ShapeInfo
+
 
 @end
 
