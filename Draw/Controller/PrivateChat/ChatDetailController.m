@@ -40,6 +40,7 @@
     NSInteger _asIndexDelete;
     NSInteger _asIndexReplay;
     NSInteger _asIndexLookLarge;
+    NSInteger _asIndexShowLocation;
     NSInteger _asIndexCopy;
     NSInteger _asIndexResend;
 //    BOOL _noData;
@@ -670,6 +671,7 @@
     _asIndexCopy = -1;
     _asIndexReplay = -1;
     _asIndexLookLarge = -1;
+    _asIndexShowLocation = -1;
     _asIndexResend = -1;
     NSInteger start = 0;
     _asIndexDelete = start++;
@@ -679,6 +681,12 @@
         _asIndexCopy = start++;
     }else if(message.messageType == MessageTypeImage){
         _asIndexLookLarge = start ++;
+    }else if(message.messageType == MessageTypeLocationRequest){
+        _asIndexShowLocation = start ++;
+    }else if(message.messageType == MessageTypeLocationResponse){
+        if ([(LocationReplyMessage *)message replyResult] == ACCEPT_ASK_LOCATION) {
+            _asIndexShowLocation = start ++;
+        }
     }
     if (message.status == MessageStatusFail) {
         _asIndexResend = start++;
@@ -774,7 +782,7 @@
 
 - (void)showHandleAskLocatioActions:(PPMessage *)message
 {
-    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOpusOperation") delegate:nil cancelButtonTitle:NSLS(@"kCancel")  destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kReplyLocation"), NSLS(@"kRejectLocation"),NSLS(@"kShowLocation"),nil];
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOpusOperation") delegate:nil cancelButtonTitle:NSLS(@"kCancel")  destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kReplyLocation"), NSLS(@"kRejectLocation"),NSLS(@"kShowOtherLocation"),nil];
     
     __block typeof (self) bself = self;
     [sheet setActionBlock:^(NSInteger buttonIndex){
@@ -857,30 +865,63 @@
             tag = ACTION_SHEET_TAG_IMAGE;
             otherOperation = NSLS(@"kLookLargeImage");
             break;
+        case MessageTypeLocationRequest:
+            tag = ACTION_SHEET_TAG_LOCATION_REQUEST;
+            otherOperation = NSLS(@"kShowLocation");
+            break;
+        case MessageTypeLocationResponse:
+        {
+            tag = ACTION_SHEET_TAG_LOCATION_REQUEST;
+            if ([(LocationReplyMessage *)message replyResult] == ACCEPT_ASK_LOCATION) {
+                otherOperation = NSLS(@"kShowLocation");
+            } else {
+                otherOperation = nil;
+            }
+            break;
+        }
         default:
             _showingActionSheet = NO;
             return;
     }
     [self resetASIndexesOfMessage:message];
     UIActionSheet *actionSheet = nil;
+    
     if (message.status == MessageStatusFail) {
-        actionSheet=  [[UIActionSheet alloc]
-                       initWithTitle:NSLS(@"kOpusOperation")
-                       delegate:self
-                       cancelButtonTitle:NSLS(@"kCancel")
-                       destructiveButtonTitle:NSLS(@"kDelete")
-                       otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
+        if (otherOperation) {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
+        } else {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:NSLS(@"kResend"), nil];
+        }
         [actionSheet setDestructiveButtonIndex:_asIndexResend];
-        
     }else
     {
-        actionSheet=  [[UIActionSheet alloc]
-                       initWithTitle:NSLS(@"kOpusOperation")
-                       delegate:self
-                       cancelButtonTitle:NSLS(@"kCancel")
-                       destructiveButtonTitle:NSLS(@"kDelete")
-                       otherButtonTitles:otherOperation, nil];
+        if (otherOperation) {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:otherOperation, nil];
+        } else {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:nil];
+        }
     }
+
     [actionSheet showInView:self.view];
     actionSheet.tag = tag;
     [actionSheet release];
@@ -934,6 +975,9 @@
         [self enterReplayController:(DrawMessage *)_selectedMessage];
     }else if(_asIndexLookLarge == buttonIndex && _selectedMessage.messageType == MessageTypeImage){
         [self enterLargeImage:_selectedMessage];
+    }else if(_asIndexShowLocation == buttonIndex &&
+             (_selectedMessage.messageType == MessageTypeLocationRequest || _selectedMessage.messageType == MessageTypeLocationResponse)){
+        [self showLocation:_selectedMessage];
     }else if(_asIndexResend == buttonIndex){
         [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
         [_selectedMessage setCreateDate:[NSDate date]];

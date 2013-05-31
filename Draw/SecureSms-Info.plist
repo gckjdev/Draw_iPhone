@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>PhotoDraw_57.png</string>
-		<string>PhotoDraw_114.png</string>
-		<string>PhotoDraw_50.png</string>
-		<string>PhotoDraw_72.png</string>
+		<string>SecureSms_57.png</string>
+		<string>SecureSms_114.png</string>
+		<string>SecureSms_50.png</string>
+		<string>SecureSms_72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.qqnpipi.securesms</string>
@@ -57,7 +57,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UILaunchImageFile</key>
-	<string>PhotoDrawDefault</string>
+	<string>SecureSmsDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>

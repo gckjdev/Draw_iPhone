@@ -978,6 +978,8 @@
 
 "kReplyLocation" = "Reply";
 "kRejectLocation" = "Reject";
+"kShowOtherLocation" = "Display";
+
 "kShowLocation" = "Display";
 
 "kGetLocationFail" = "Unable to locate, can not send location request.";
@@ -1330,7 +1332,11 @@
 
 //secure sms
 "kRegister" = "Register";
-
+"kSecureSmsChat" = "CHAT";
+"kSecureSmsLocate" = "LOCATE";
+"kSecureSmsFirends" = "FRIENDS";
+"kSecureSmsMe" = "ME";
+"kSecureSmsSupport" = "SUPPORT";
 
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";

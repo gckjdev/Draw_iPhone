@@ -469,7 +469,8 @@
     } else if (isCallTrackAPP()) {
         ChatDetailController *controller = [self createChatDetailController];
         [viewController.navigationController pushViewController:controller
-                                                       animated:YES];
+                                                       animated:NO];
+        [controller clickLocateButton:nil];
     }
     else {
         SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];

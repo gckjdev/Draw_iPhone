@@ -18,10 +18,12 @@
 #import "SecureSmsUserSettingController.h"
 #import "UserManager.h"
 #import "UIViewUtils.h"
+#import "AdService.h"
 
 @interface SecureSmsHomeController ()
 
 @property (assign, nonatomic) PureChatType type;
+@property (retain, nonatomic) UIView  *adView;
 
 @end
 
@@ -34,6 +36,7 @@
 }
 
 - (void)dealloc {
+    [_adView release];
     [_chatButton release];
     [_friendsButton release];
     [_meButton release];
@@ -42,6 +45,8 @@
 }
 
 - (void)viewDidUnload {
+    [[AdService defaultService] clearAdView:_adView];
+    [self setAdView:nil];
     [self setChatButton:nil];
     [self setFriendsButton:nil];
     [self setMeButton:nil];
@@ -61,16 +66,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIEdgeInsets imageEdgeInsets; 
+    UIEdgeInsets titleEdgeInsets;
+    if ([DeviceDetection isIPAD]) {
+        imageEdgeInsets = UIEdgeInsetsMake(0, 24, 0, 0);
+        titleEdgeInsets = UIEdgeInsetsMake(0, 46, 0, 0);
+    } else {
+       imageEdgeInsets = UIEdgeInsetsMake(7, 13, 8, 188);
+       titleEdgeInsets = UIEdgeInsetsMake(0, -18, 0, 0);
+    }
+    
+    [self.chatButton setImageEdgeInsets:imageEdgeInsets];
+    [self.meButton setImageEdgeInsets:imageEdgeInsets];
+    
+    [self.chatButton setTitleEdgeInsets:titleEdgeInsets];
+    [self.meButton setTitleEdgeInsets:titleEdgeInsets];
     
     if (_type == PureChatTypeSecureSms) {
+        [self.chatButton setImage:[UIImage imageNamed:@"secure_sms_chat@2x.png"] forState:UIControlStateNormal];
         [self.chatButton setTitle:NSLS(@"kSecureSmsChat") forState:UIControlStateNormal];
+        [self.meButton setImage:[UIImage imageNamed:@"secure_sms_me2@2x.png"] forState:UIControlStateNormal];
     } else {
+        [self.chatButton setImage:[UIImage imageNamed:@"secure_sms_locate@2x.png"] forState:UIControlStateNormal];
         [self.chatButton setTitle:NSLS(@"kSecureSmsLocate") forState:UIControlStateNormal];
+        [self.meButton setImage:[UIImage imageNamed:@"secure_sms_me1@2x.png"] forState:UIControlStateNormal];
     }
-
     [self.friendsButton setTitle:NSLS(@"kSecureSmsFirends") forState:UIControlStateNormal];
     [self.meButton setTitle:NSLS(@"kSecureSmsMe") forState:UIControlStateNormal];
     [self.supportButton setTitle:NSLS(@"kSecureSmsSupport") forState:UIControlStateNormal];
+    
+    self.adView = [[AdService defaultService] createAdInView:self
+                                                       frame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 70, 320, 50)
+                                                   iPadFrame:CGRectMake((768-320)/2, 914, 320, 50)
+                                                     useLmAd:NO];
     
     [self showInputView];
 }

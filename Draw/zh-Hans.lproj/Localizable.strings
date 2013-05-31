@@ -1005,7 +1005,9 @@
 
 "kReplyLocation" = "回复定位请求";
 "kRejectLocation" = "拒绝定位请求";
-"kShowLocation" = "显示对方位置";
+"kShowOtherLocation" = "显示对方位置";
+
+"kShowLocation" = "显示位置";
 
 "kGetLocationFail" = "暂时无法定位,不能发送定位请求。";
 "kAskLocationAlert" = "确定发送定位请求，并且发送你的位置吗？";
@@ -1329,6 +1331,11 @@
 
 //secure sms
 "kRegister" = "注册";
+"kSecureSmsChat" = "聊天";
+"kSecureSmsLocate" = "定位";
+"kSecureSmsFirends" = "好友";
+"kSecureSmsMe" = "我";
+"kSecureSmsSupport" = "反馈";
 
 "kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接猜中答案吗?";
 "kQuitDirectly" = "直接退出";
