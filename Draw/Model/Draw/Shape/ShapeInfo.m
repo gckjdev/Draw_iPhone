@@ -16,6 +16,7 @@
 #import "EllipseShape.h"
 #import "StarShape.h"
 #import "ShareImageManager.h"
+#import "RoundRectShape.h"
 
 @interface ShapeInfo()
 {
@@ -26,6 +27,8 @@
 @end
 
 @implementation ShapeInfo
+@synthesize type = _type;
+
 
 - (void)dealloc
 {
@@ -46,7 +49,8 @@
             break;
 
         case ShapeTypeRectangle:
-            shapeInfo = [[RectangleShape alloc] init];
+//            shapeInfo = [[RectangleShape alloc] init];
+            shapeInfo = [[RoundRectShape alloc] init];
             break;
 
         case ShapeTypeEllipse:
@@ -276,6 +280,7 @@
 
 @end
 
+#import "PocketSVG.h"
 
 @interface ImageShapeInfo()
 {
@@ -285,11 +290,34 @@
 
 @implementation ImageShapeInfo
 
+#define SVG_SIZE CGSizeMake(100,100)
+
+- (NSString *)nameForType:(ShapeType)type
+{
+    return [NSString stringWithFormat:@"%d",type];
+}
+
+- (void)createCGPath
+{
+    NSString *name = [self nameForType:self.type];
+    if (name == NULL) {
+        return;
+    }
+    PocketSVG *svg = [[PocketSVG alloc] initFromSVGFileNamed:name];
+    if (_path != NULL) {
+        CGPathRelease(_path); _path = NULL;
+    }
+    _path = svg.bezier.CGPath;
+    CGPathRetain(_path);
+    PPRelease(svg);
+}
+
 - (void)setType:(ShapeType)type
 {
-    _type = type;
-    //TODO create path
-    
+    if (_type != type) {
+        _type = type;
+        [self createCGPath];
+    }
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -297,10 +325,23 @@
     CGContextSaveGState(context);
     
     if (_path != NULL) {
-        //TODO translate && scale the path according to the rect.
+        //translate && scale the path according to the rect.
         
+        CGRect rect = [self rect];
+        CGSize pathSzie = SVG_SIZE;
         
-        //fill it!
+        CGFloat xScale = CGRectGetWidth(rect) / pathSzie.width;
+        CGFloat yScale = CGRectGetHeight(rect) / pathSzie.height;
+        
+        CGFloat tx = CGRectGetMidX(rect);
+        CGFloat ty = CGRectGetMidY(rect);
+        
+        CGContextTranslateCTM(context, tx, ty);
+        CGContextScaleCTM(context, xScale, yScale);
+
+        
+        //fill it with color!
+        
         [self.color.color setFill];
         CGContextAddPath(context, _path);
         CGContextFillPath(context);

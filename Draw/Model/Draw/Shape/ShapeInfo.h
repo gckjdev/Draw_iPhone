@@ -40,7 +40,7 @@ typedef enum{
 
 @interface ShapeInfo : NSObject
 {
-    
+    ShapeType _type;
 }
 @property(nonatomic, assign)CGPoint startPoint;
 @property(nonatomic, assign)CGPoint endPoint;
