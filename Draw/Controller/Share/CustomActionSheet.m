@@ -15,6 +15,8 @@
 
 #define DEFAULT_COLUMN 3
 #define ACTION_BTN_TAG_OFFSET   20121226
+#define BADGE_BTN_TAG    20130530
+#define ACTION_VIEW_TAG_OFFSET  120130530
 #define DEFAULT_WIDTH   280
 #define DEFAULT_ROWHEIHT 80
 #define ACTION_IMAGE_OFFSET 20130509
@@ -230,17 +232,20 @@
             }
             
             int badgeCount = [self badgeCountForIndex:i];
+            UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.3, actionViewWidth*0.3)] autorelease];
+            badge.hidden = YES;
+            badge.titleLabel.textAlignment = UITextAlignmentCenter;
+            badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/6];
+            [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [badge setUserInteractionEnabled:NO];
+            [badge setBackgroundImage:[UIImage imageNamed:@"common_home_badge.png"] forState:UIControlStateNormal];
+            [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
+            badge.tag = BADGE_BTN_TAG;
+            [actionView addSubview:badge];
             if (badgeCount > 0) {
-                UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.3, actionViewWidth*0.3)] autorelease];
-                badge.titleLabel.textAlignment = UITextAlignmentCenter;
-                badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/6];
-                [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [badge setUserInteractionEnabled:NO];
-                [badge setBackgroundImage:[UIImage imageNamed:@"common_home_badge.png"] forState:UIControlStateNormal];
-                [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
-                [actionView addSubview:badge];
+                [badge setHidden:NO];
             }
-
+            actionView.tag = ACTION_VIEW_TAG_OFFSET + i;
             [showView addSubview:actionView];
         }
         
@@ -422,6 +427,17 @@
         self.badgeCountDict = [[[NSMutableDictionary alloc] init] autorelease];
     }
     [self.badgeCountDict setObject:@(count) forKey:title];
+    
+    if ([self isVisable]) {
+        UIView* actionView = [self.popView.customView viewWithTag:ACTION_VIEW_TAG_OFFSET + index];
+        UIButton* badge = (UIButton*)[actionView viewWithTag:BADGE_BTN_TAG];
+        [badge setTitle:[NSString stringWithFormat:@"%d", count] forState:UIControlStateNormal];
+        if (count > 0) {
+            badge.hidden = NO;
+        } else {
+            badge.hidden = YES;
+        }
+    }
     
 }
 - (int)badgeCountForIndex:(int)index
