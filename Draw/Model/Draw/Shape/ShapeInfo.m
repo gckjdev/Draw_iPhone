@@ -51,7 +51,7 @@
 
         case ShapeTypeRectangle:
         case ShapeTypeEmptyRectangle:
-            shapeInfo = [[RectangleShape alloc] init];
+            shapeInfo = [[RoundRectShape alloc] init];
             break;
 
         case ShapeTypeEllipse:
@@ -86,7 +86,6 @@
     [shapeInfo setPenType:penType];
     [shapeInfo setWidth:with];
     [shapeInfo setColor:color];
-    
     
     return [shapeInfo autorelease];
 }
@@ -269,6 +268,7 @@
     if (type > ShapeTypeEmptyStart && type < ShapeTypeEmptyEnd) {
         _stroke = YES;
     }
+    _stroke = YES;
 }
 
 - (BOOL)isStroke
