@@ -167,17 +167,19 @@
     self = [super init];
     if (self) {
         self.type = action->type;
-        if (1 || action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {
+        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {
             
-            const static CGFloat VALUE = 17;
-            CGSize offset = CGSizeRand(VALUE, VALUE);
-            if (offset.width > VALUE/2) {
-                offset.width -= VALUE;
-            }
-            if (offset.height > VALUE/2) {
-                offset.height -= VALUE;
-            }
-            self.shadow = [Shadow shadowWithDrawColor:[DrawColor rankColor] offset:offset blur:rand() % 9];
+//            const static CGFloat VALUE = 17;
+//            CGSize offset = CGSizeRand(VALUE, VALUE);
+//            if (offset.width > VALUE/2) {
+//                offset.width -= VALUE;
+//            }
+//            if (offset.height > VALUE/2) {
+//                offset.height -= VALUE;
+//            }
+//            self.shadow = [Shadow shadowWithDrawColor:[DrawColor rankColor] offset:offset blur:rand() % 9];
+            
+            self.shadow = [Shadow shadowWithIntColor:action->shadowcolor offset:CGSizeMake(action->shadowoffsetx, action->shadowoffsety) blur:action->shadowblur];
         }
     }
     return self;
