@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface ContestManager : NSObject {
-    NSMutableSet* _oldContestIdList;
 }
 
 + (ContestManager *)defaultManager;
 - (NSArray *)parseContestList:(NSArray *)jsonArray;
 
 - (int)calNewContestCount:(NSArray*)contestList;
-
+- (void)updateHasReadContestList:(NSArray*)contestList;
 @end
