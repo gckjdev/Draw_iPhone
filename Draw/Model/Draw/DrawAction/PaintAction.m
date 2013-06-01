@@ -42,12 +42,22 @@
 - (void)dealloc
 {
     PPRelease(_paint);
+    
     [super dealloc];
 }
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
-    return [self.paint drawInContext:context inRect:rect];
+    if (self.shadow) {
+        CGContextSaveGState(context);
+        [self.shadow updateContext:context];
+        CGRect rect = [self.paint drawInContext:context inRect:rect];
+        CGContextRestoreGState(context);
+        [self.shadow spanRect:&rect];
+        return rect;
+    }else{
+        return [self.paint drawInContext:context inRect:rect];
+    }
 }
 
 - (CGRect)redrawRectInRect:(CGRect)rect

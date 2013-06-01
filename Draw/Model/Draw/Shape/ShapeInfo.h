@@ -17,14 +17,16 @@ typedef enum{
     ShapeTypeEllipse,
     ShapeTypeTriangle,
     ShapeTypeStar,
-    ShapeTypeRectRound,
+    ShapeTypeRoundRect,
     
     ShapeTypeEmptyStart = 500,
-    ShapeTypeEmptyRectangle = 501,
+    ShapeTypeEmptyBeeline = 501,
+    ShapeTypeEmptyRectangle,
     ShapeTypeEmptyEllipse,
     ShapeTypeEmptyTriangle,
     ShapeTypeEmptyStar,
     ShapeTypeEmptyRoundRect,
+    ShapeTypeEmptyEnd,
     
 
     ShapeTypeImageStart = 1000,
@@ -70,8 +72,11 @@ typedef enum{
 
 
 @interface BasicShapeInfo : ShapeInfo
+{
+    BOOL _stroke;
+}
 
-@property(nonatomic, assign) BOOL stroke; //YES for stroke, NO for fill
+- (BOOL)isStroke;
 
 @end
 

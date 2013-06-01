@@ -24,7 +24,7 @@
         points[0] = self.startPoint;
         points[1] = self.endPoint;
         
-        if (self.stroke) {
+        if (_stroke) {
             static float len[2] = {0};
             len[0] = len[1] = self.width;
             CGContextSetLineDash(context, 0, len, 2);

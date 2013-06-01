@@ -40,14 +40,24 @@
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
+ 
+    CGRect returnRect;
     CGContextSaveGState(context);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
-    
-    [self.shape drawInContext:context];
-    
+
+    if (self.shadow) {
+        [self.shadow updateContext:context];
+        [self.shape drawInContext:context];
+        returnRect = self.shape.redrawRect;
+        [self.shadow spanRect:&returnRect];
+    }else{
+        [self.shape drawInContext:context];
+        returnRect = self.shape.redrawRect;
+    }
     CGContextRestoreGState(context);
-    return self.shape.redrawRect;
+    return returnRect;
+    
 }
 
 - (CGRect)redrawRectInRect:(CGRect)rect

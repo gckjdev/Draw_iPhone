@@ -40,10 +40,42 @@ CGFloat P[8][2]= {
 //- (CALayer *)la
 
 
+
+
+#define MIN_SIZE 20
+
 - (void)drawInContext:(CGContextRef)context
 {
     
-    CGRect rrect = [self rect];//CGRectMake(210.0, 90.0, 60.0, 60.0);
+    CGRect rrect = [self rect];
+
+
+    BOOL drawEllipse = NO;
+    
+    CGFloat width = CGRectGetWidth(rrect); CGFloat height = CGRectGetHeight(rrect);
+    CGFloat r = MIN(width, height);
+    if (r <= MIN_SIZE || (r < self.width * 2 && self.isStroke)) {
+        drawEllipse = YES;
+    }
+    
+    if (drawEllipse) {
+        CGContextSaveGState(context);
+        
+        if(self.isStroke){
+            CGContextSetLineWidth(context, self.width);
+            CGContextSetLineJoin(context, kCGLineJoinRound);
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGContextStrokeEllipseInRect(context, rrect);
+        }else{
+            CGContextSetFillColorWithColor(context, self.color.CGColor);
+            CGContextFillEllipseInRect(context, rrect);
+        }
+
+        CGContextRestoreGState(context);
+        return;
+
+    }
+
 	CGFloat radius = RADIUS;
     
 	// NOTE: At this point you may want to verify that your radius is no more than half
@@ -84,7 +116,7 @@ CGFloat P[8][2]= {
 
     CGContextSaveGState(context);
 
-    if(self.stroke){
+    if(self.isStroke){
         CGContextSetLineWidth(context, self.width);
         CGContextSetLineJoin(context, kCGLineJoinRound);
         CGContextSetStrokeColorWithColor(context, self.color.CGColor);        

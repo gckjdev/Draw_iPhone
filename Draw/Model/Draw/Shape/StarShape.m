@@ -82,7 +82,7 @@ void updateStartPoints(CGPoint *points, BOOL reverse){
         
         CGContextClosePath(context);
         
-        if (self.stroke) {
+        if (self.isStroke) {
             CGContextSetLineWidth(context, self.width);
             CGContextSetLineJoin(context, kCGLineJoinMiter);
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);

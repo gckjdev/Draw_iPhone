@@ -45,33 +45,49 @@
     ShapeInfo *shapeInfo = nil;
     switch (type) {
         case ShapeTypeBeeline:
+        case ShapeTypeEmptyBeeline:
             shapeInfo = [[BeelineShape alloc] init];
             break;
 
         case ShapeTypeRectangle:
-//            shapeInfo = [[RectangleShape alloc] init];
-            shapeInfo = [[RoundRectShape alloc] init];
+        case ShapeTypeEmptyRectangle:
+            shapeInfo = [[RectangleShape alloc] init];
             break;
 
         case ShapeTypeEllipse:
+        case ShapeTypeEmptyEllipse:
             shapeInfo = [[EllipseShape alloc] init];
             break;
 
         case ShapeTypeTriangle:
+        case ShapeTypeEmptyTriangle:
             shapeInfo = [[TriangleShape alloc] init];
             break;
 
         case ShapeTypeStar:
+        case ShapeTypeEmptyStar:
             shapeInfo = [[StarShape alloc] init];
             break;
 
+        case ShapeTypeRoundRect:
+        case ShapeTypeEmptyRoundRect:
+            shapeInfo = [[RoundRectShape alloc] init];
+            break;            
+            
         default:
             break;
     }
+    
+    if (shapeInfo == nil && type > ShapeTypeImageStart) {
+        shapeInfo = [[ImageShapeInfo alloc] init];
+    }
+    
     [shapeInfo setType:type];
     [shapeInfo setPenType:penType];
     [shapeInfo setWidth:with];
     [shapeInfo setColor:color];
+    
+    
     return [shapeInfo autorelease];
 }
 
@@ -241,15 +257,29 @@
 {
     self = [super init];
     if (self) {
-        self.stroke = NO;
+        _stroke = NO;
     }
     return self;
+}
+
+
+- (void)setType:(ShapeType)type
+{
+    _type = type;
+    if (type > ShapeTypeEmptyStart && type < ShapeTypeEmptyEnd) {
+        _stroke = YES;
+    }
+}
+
+- (BOOL)isStroke
+{
+    return _stroke;
 }
 
 #define MIN_DISTANCE1 MAX(8,self.width+2)
 - (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
 {
-    if (self.stroke) {
+    if (_stroke) {
         BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE1) && (ABS(p1.y - p2.y) <= MIN_DISTANCE1);
         return flag;
     }
@@ -260,7 +290,7 @@
 - (CGRect)rect
 {
     CGRect r;
-    if (self.stroke) {
+    if (_stroke) {
         CGRect rect = [super rect];
         if (self.type != ShapeTypeBeeline && ![self point1:self.startPoint equalToPoint:self.endPoint]) {
             rect.origin.x += self.width/2;
