@@ -100,7 +100,7 @@
                                                    iPadFrame:CGRectMake((768-320)/2, 914, 320, 50)
                                                      useLmAd:NO];
     
-    [self showInputView];
+    [self showInputView:nil];
 }
 
 - (BOOL)isRegistered
@@ -163,7 +163,7 @@
 }
 
 
-- (void)showInputView
+- (void)showInputView:(NSString *)placeholder
 {
     if (_type == PureChatTypeSecureSms) {
         
@@ -178,10 +178,16 @@
                 return;
             }
         }
+        
+        NSString *customPlaceholder = placeholder;
+        if (customPlaceholder == nil) {
+            customPlaceholder = NSLS(@"kEnterPassword");
+        }
+        
         InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:self];
         dialog.cancelButton.hidden = YES;
         [dialog.okButton updateCenterX:dialog.okButton.superview.frame.size.width/2];
-        [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+        [dialog.targetTextField setPlaceholder:customPlaceholder];
         [dialog showInView:keyWindow];
     }
 }
@@ -191,7 +197,7 @@
 {
     PPDebug(@"didClickOk:targetText:");
     if (NO == [[UserManager defaultManager] isPasswordCorrect:targetText]) {
-        [self performSelector:@selector(showInputView) withObject:nil afterDelay:0.6];
+        [self performSelector:@selector(showInputView:) withObject:NSLS(@"kEnterCorrectPassword") afterDelay:0.6];
     }
 }
 

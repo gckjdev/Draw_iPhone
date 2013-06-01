@@ -28,6 +28,6 @@ typedef enum
 - (IBAction)clickMeButton:(id)sender;
 - (IBAction)clickSupportButton:(id)sender;
 
-- (void)showInputView;
+- (void)showInputView:(NSString *)placeholder;
 
 @end

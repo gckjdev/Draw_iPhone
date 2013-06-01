@@ -1336,6 +1336,7 @@
 "kSecureSmsFirends" = "好友";
 "kSecureSmsMe" = "我";
 "kSecureSmsSupport" = "反馈";
+"kEnterCorrectPassword" = "请输入正确的密码";
 
 "kQuitGameWithPaidForAnswer" = "觉得太难猜？你想花%d个金币直接猜中答案吗?";
 "kQuitDirectly" = "直接退出";

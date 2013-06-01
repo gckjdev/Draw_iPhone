@@ -1337,7 +1337,7 @@
 "kSecureSmsFirends" = "FRIENDS";
 "kSecureSmsMe" = "ME";
 "kSecureSmsSupport" = "SUPPORT";
-
+"kEnterCorrectPassword" = "Please enter the correct password";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO";

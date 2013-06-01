@@ -1319,6 +1319,7 @@
 "kSecureSmsFirends" = "好友";
 "kSecureSmsMe" = "我";
 "kSecureSmsSupport" = "反饋";
+"kEnterCorrectPassword" = "請輸入正確的密碼";
 
 "kQuitGameWithPaidForAnswer" = "覺得太難猜？你想花%d個金幣直接要答案嗎?";
 "kQuitDirectly" = "直接退出";

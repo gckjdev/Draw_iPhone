@@ -62,12 +62,12 @@
 
 - (void)HandleWithDidFinishLaunching
 {
-    [(SecureSmsHomeController *)[self homeController] showInputView];
+    [(SecureSmsHomeController *)[self homeController] showInputView:nil];
 }
 
 - (void)HandleWithDidBecomeActive
 {
-    [(SecureSmsHomeController *)[self homeController] showInputView];
+    [(SecureSmsHomeController *)[self homeController] showInputView:nil];
 }
 
 - (NSString *)alipayCallBackScheme
