@@ -152,6 +152,12 @@
     self = [super init];
     if (self) {
         self.type = action.type;
+        if ([action hasShadowOffsetX] && [action hasShadowColor]) {
+            self.shadow = [Shadow shadowWithIntColor:action.shadowColor
+                                              offset:CGSizeMake(action.shadowOffsetX,
+                                                                action.shadowOffsetY)
+                                                blur:action.shadowBlur];
+        }
     }
     return self;
 }
@@ -161,6 +167,9 @@
     self = [super init];
     if (self) {
         self.type = action->type;
+        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {
+            self.shadow = [Shadow shadowWithIntColor:action->shadowcolor offset:CGSizeMake(action->shadowoffsetx, action->shadowoffsety) blur:action->shadowblur];
+        }
     }
     return self;
 }
@@ -559,20 +568,21 @@
     PPRelease(_color);
     [super dealloc];
 }
-
-+ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset
++ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur
 {
     Shadow *shadow = [[Shadow alloc] init];
     [shadow setOffset:offset];
     shadow.color = [DrawColor colorWithBetterCompressColor:color];
+    shadow.blur = blur;    
     return [shadow autorelease];
 }
 
-+ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset
++ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur
 {
     Shadow *shadow = [[Shadow alloc] init];
     [shadow setOffset:offset];
     shadow.color = [DrawColor colorWithColor:color];
+    shadow.blur = blur;
     return [shadow autorelease];
 }
 

@@ -4185,6 +4185,7 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 @property Float32 shadowOffsetX;
 @property Float32 shadowOffsetY;
 @property int32_t shadowColor;
+@property Float32 shadowBlur;
 @end
 
 @implementation PBDrawAction
@@ -4263,6 +4264,13 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
   hasShadowColor_ = !!value;
 }
 @synthesize shadowColor;
+- (BOOL) hasShadowBlur {
+  return !!hasShadowBlur_;
+}
+- (void) setHasShadowBlur:(BOOL) value {
+  hasShadowBlur_ = !!value;
+}
+@synthesize shadowBlur;
 - (void) dealloc {
   self.mutablePointsList = nil;
   self.mutableRectComponentList = nil;
@@ -4283,6 +4291,7 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
     self.shadowOffsetX = 0;
     self.shadowOffsetY = 0;
     self.shadowColor = 0;
+    self.shadowBlur = 0;
   }
   return self;
 }
@@ -4384,6 +4393,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasShadowColor) {
     [output writeInt32:17 value:self.shadowColor];
   }
+  if (self.hasShadowBlur) {
+    [output writeFloat:18 value:self.shadowBlur];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -4452,6 +4464,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasShadowColor) {
     size += computeInt32Size(17, self.shadowColor);
+  }
+  if (self.hasShadowBlur) {
+    size += computeFloatSize(18, self.shadowBlur);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4582,6 +4597,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasShadowColor) {
     [self setShadowColor:other.shadowColor];
   }
+  if (other.hasShadowBlur) {
+    [self setShadowBlur:other.shadowBlur];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4667,6 +4685,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 136: {
         [self setShadowColor:[input readInt32]];
+        break;
+      }
+      case 149: {
+        [self setShadowBlur:[input readFloat]];
         break;
       }
     }
@@ -4968,6 +4990,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearShadowColor {
   result.hasShadowColor = NO;
   result.shadowColor = 0;
+  return self;
+}
+- (BOOL) hasShadowBlur {
+  return result.hasShadowBlur;
+}
+- (Float32) shadowBlur {
+  return result.shadowBlur;
+}
+- (PBDrawAction_Builder*) setShadowBlur:(Float32) value {
+  result.hasShadowBlur = YES;
+  result.shadowBlur = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShadowBlur {
+  result.hasShadowBlur = NO;
+  result.shadowBlur = 0;
   return self;
 }
 @end
