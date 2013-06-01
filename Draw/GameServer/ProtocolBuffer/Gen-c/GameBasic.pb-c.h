@@ -273,10 +273,12 @@ struct  _Game__PBDrawAction
   float shadowoffsety;
   protobuf_c_boolean has_shadowcolor;
   int32_t shadowcolor;
+  protobuf_c_boolean has_shadowblur;
+  float shadowblur;
 };
 #define GAME__PBDRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_action__descriptor) \
-    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0 }
+    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBMessage

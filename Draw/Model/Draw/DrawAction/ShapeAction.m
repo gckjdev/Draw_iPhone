@@ -125,6 +125,7 @@
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
     [builder setType:DrawActionTypeShape];
     [self.shape updatePBDrawActionBuilder:builder];
+    [self.shadow updatePBDrawActionBuilder:builder];
     return [builder build];
 }
 
@@ -132,6 +133,7 @@
 {
     pbDrawActionC->type = DrawActionTypeShape;
     [self.shape updatePBDrawActionC:pbDrawActionC];
+    [self.shadow updatePBDrawActionC:pbDrawActionC];
     return;
     
 //    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];

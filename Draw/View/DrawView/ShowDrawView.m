@@ -349,6 +349,7 @@
         if (self.tempAction == nil) {
             Paint *paint = [Paint paintWithWidth:currentPaint.width color:currentPaint.color penType:currentPaint.penType pointList:nil];
             self.tempAction = [PaintAction paintActionWithPaint:paint];
+            self.tempAction.shadow = [_currentAction shadow];
         }
         NSInteger i = [self.tempAction pointCount];
         for (; i <= _playingPointIndex; ++ i) {

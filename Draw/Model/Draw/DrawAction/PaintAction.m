@@ -51,10 +51,10 @@
     if (self.shadow) {
         CGContextSaveGState(context);
         [self.shadow updateContext:context];
-        CGRect rect = [self.paint drawInContext:context inRect:rect];
+        CGRect rect1 = [self.paint drawInContext:context inRect:rect];
         CGContextRestoreGState(context);
-        [self.shadow spanRect:&rect];
-        return rect;
+        [self.shadow spanRect:&rect1];
+        return rect1;
     }else{
         return [self.paint drawInContext:context inRect:rect];
     }
@@ -119,6 +119,8 @@
         NSMutableArray *pointList = nil;
         NSInteger count = [action.pointsXList count];
         if (count > 0) {
+            //new version draw data
+            
             pointList = [NSMutableArray arrayWithCapacity:count];
             for (NSInteger i = 0; i < count; ++ i) {
                 CGFloat x = [[action.pointsXList objectAtIndex:i] floatValue];
@@ -128,6 +130,7 @@
                 [pointList addObject:node];
                 [node release];
             }
+            
         }else{
             //old point data paser
             count = [action.pointsList count];
@@ -249,6 +252,7 @@
     PBDrawAction_Builder *builder = [[PBDrawAction_Builder alloc] init];
     [builder setType:DrawActionTypePaint];
     [self.paint updatePBDrawActionBuilder:builder];
+    [self.shadow updatePBDrawActionBuilder:builder];
     PBDrawAction* pbDrawAction = [builder build];
     [builder release];
     return pbDrawAction;
@@ -258,6 +262,7 @@
 {
     pbDrawActionC->type = DrawActionTypePaint;
     [self.paint updatePBDrawActionC:pbDrawActionC];
+    [self.shadow updatePBDrawActionC:pbDrawActionC];
     return;
 }
 

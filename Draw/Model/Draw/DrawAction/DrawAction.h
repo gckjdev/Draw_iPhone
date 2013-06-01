@@ -114,8 +114,11 @@ typedef enum {
 @property(nonatomic, assign)CGFloat blur;
 
 
-+ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset;
-+ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset;
++ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur;
++ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur;
 - (void)updateContext:(CGContextRef)context;
 - (void)spanRect:(CGRect *)rect;
+- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
+- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
+
 @end

@@ -152,6 +152,12 @@
     self = [super init];
     if (self) {
         self.type = action.type;
+        if ([action hasShadowOffsetX] && [action hasShadowColor]) {
+            self.shadow = [Shadow shadowWithIntColor:action.shadowColor
+                                              offset:CGSizeMake(action.shadowOffsetX,
+                                                                action.shadowOffsetY)
+                                                blur:action.shadowBlur];
+        }
     }
     return self;
 }
@@ -161,6 +167,20 @@
     self = [super init];
     if (self) {
         self.type = action->type;
+        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {
+            
+//            const static CGFloat VALUE = 17;
+//            CGSize offset = CGSizeRand(VALUE, VALUE);
+//            if (offset.width > VALUE/2) {
+//                offset.width -= VALUE;
+//            }
+//            if (offset.height > VALUE/2) {
+//                offset.height -= VALUE;
+//            }
+//            self.shadow = [Shadow shadowWithDrawColor:[DrawColor rankColor] offset:offset blur:rand() % 9];
+            
+            self.shadow = [Shadow shadowWithIntColor:action->shadowcolor offset:CGSizeMake(action->shadowoffsetx, action->shadowoffsety) blur:action->shadowblur];
+        }
     }
     return self;
 }
@@ -559,20 +579,21 @@
     PPRelease(_color);
     [super dealloc];
 }
-
-+ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset
++ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur
 {
     Shadow *shadow = [[Shadow alloc] init];
     [shadow setOffset:offset];
     shadow.color = [DrawColor colorWithBetterCompressColor:color];
+    shadow.blur = blur;    
     return [shadow autorelease];
 }
 
-+ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset
++ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur
 {
     Shadow *shadow = [[Shadow alloc] init];
     [shadow setOffset:offset];
     shadow.color = [DrawColor colorWithColor:color];
+    shadow.blur = blur;
     return [shadow autorelease];
 }
 
@@ -587,6 +608,31 @@
     rect->origin.y -= ABS(self.offset.height);
     rect->size.width += 2 * ABS(self.offset.width);
     rect->size.height += 2 * ABS(self.offset.height);
+}
+
+- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    pbDrawActionC->shadowoffsetx = self.offset.width;
+    pbDrawActionC->has_shadowoffsetx = 1;
+    
+    pbDrawActionC->shadowoffsety = self.offset.height;
+    pbDrawActionC->has_shadowoffsety = 1;
+    
+    if (self.color) {
+        pbDrawActionC->has_shadowcolor = 1;
+        pbDrawActionC->shadowcolor = [self.color toBetterCompressColor];
+    }
+    pbDrawActionC->shadowblur = self.blur;
+    pbDrawActionC->has_shadowblur = 1;
+    
+}
+
+- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
+{
+    [builder setShadowOffsetX:self.offset.width];
+    [builder setShadowOffsetY:self.offset.height];
+    [builder setShadowBlur:self.blur];
+    [builder setShadowColor:[self.color toBetterCompressColor]];
 }
 
 @end
