@@ -493,3 +493,7 @@ void CGSizeToPBSizeC(CGSize size, Game__PBSize* pbSizeC)
     pbSizeC->width = size.width;
 }
 
+CGSize CGSizeRand(NSUInteger maxWidth, NSUInteger maxHeight)
+{
+    return CGSizeMake(rand()%maxWidth, rand()%maxHeight);
+}
