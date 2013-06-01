@@ -2208,7 +2208,7 @@ const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor =
   (ProtobufCMessageInit) game__pbdraw_bg__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[14] =
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[15] =
 {
   {
     "type",
@@ -2378,6 +2378,18 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[14]
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "shadowBlur",
+    18,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_shadowblur),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, shadowblur),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   9,   /* field[9] = betterColor */
@@ -2388,6 +2400,7 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   7,   /* field[7] = pointsX */
   8,   /* field[8] = pointsY */
   6,   /* field[6] = rectComponent */
+  14,   /* field[14] = shadowBlur */
   13,   /* field[13] = shadowColor */
   11,   /* field[11] = shadowOffsetX */
   12,   /* field[12] = shadowOffsetY */
@@ -2399,7 +2412,7 @@ static const ProtobufCIntRange game__pbdraw_action__number_ranges[2 + 1] =
 {
   { 1, 0 },
   { 11, 7 },
-  { 0, 14 }
+  { 0, 15 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -2409,7 +2422,7 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  14,
+  15,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
   2,  game__pbdraw_action__number_ranges,
