@@ -8,11 +8,13 @@
 
 #import "SingApp.h"
 #import "SingController.h"
+#import "SingImageManager.h"
+#import "SongSelectController.h"
 
 @implementation SingApp
 
 - (PPViewController *)homeController{
-    return [[[SingController alloc] init] autorelease];
+    return [[[SongSelectController alloc] init] autorelease];
 }
 
 - (NSString*)umengId{
@@ -131,6 +133,10 @@
 
 - (BOOL)disableAd{
     return NO;
+}
+
+- (NSString *)getInputDialogXibName{
+    return @"SingInputDialog";
 }
 
 @end

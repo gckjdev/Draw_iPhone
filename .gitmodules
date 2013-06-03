@@ -1,0 +1,3 @@
+[submodule "Buri"]
+	path = Buri
+	url = https://github.com/gideondk/Buri.git

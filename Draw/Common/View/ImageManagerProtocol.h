@@ -10,7 +10,7 @@
 @class UIImage;
 
 @protocol ImageManagerProtocol <NSObject>
-@required
+@optional
 
 - (UIImage*)commonDialogBgImage;
 - (UIImage*)commonDialogLeftBtnImage;

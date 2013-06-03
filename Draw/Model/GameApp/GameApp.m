@@ -121,6 +121,11 @@ BOOL isZhajinhuaApp()
     return ([[GameApp gameId] isEqualToString:ZHAJINHUA_GAME_ID]);
 }
 
+BOOL isSingApp()
+{
+    return ([[GameApp gameId] isEqualToString:SING_GAME_ID]);
+}
+
 extern BOOL isSimpleDrawApp()
 {
     return (isLearnDrawApp() ||

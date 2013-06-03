@@ -17,6 +17,10 @@ message PBSong{
   repeated int32 tag = 20;            // 标签，用于分类
 }
 
+message PBSongList{
+  repeated PBSong songs = 1;
+}
+
 message PBSing {
   optional PBSong song = 1;
 

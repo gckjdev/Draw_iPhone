@@ -46,6 +46,8 @@
 @class PBSize;
 @class PBSize_Builder;
 @class PBSong;
+@class PBSongList;
+@class PBSongList_Builder;
 @class PBSong_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
@@ -147,6 +149,55 @@
 - (PBSong_Builder*) addTag:(int32_t) value;
 - (PBSong_Builder*) addAllTag:(NSArray*) values;
 - (PBSong_Builder*) clearTagList;
+@end
+
+@interface PBSongList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableSongsList;
+}
+- (NSArray*) songsList;
+- (PBSong*) songsAtIndex:(int32_t) index;
+
++ (PBSongList*) defaultInstance;
+- (PBSongList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSongList_Builder*) builder;
++ (PBSongList_Builder*) builder;
++ (PBSongList_Builder*) builderWithPrototype:(PBSongList*) prototype;
+
++ (PBSongList*) parseFromData:(NSData*) data;
++ (PBSongList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongList*) parseFromInputStream:(NSInputStream*) input;
++ (PBSongList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSongList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSongList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSongList* result;
+}
+
+- (PBSongList*) defaultInstance;
+
+- (PBSongList_Builder*) clear;
+- (PBSongList_Builder*) clone;
+
+- (PBSongList*) build;
+- (PBSongList*) buildPartial;
+
+- (PBSongList_Builder*) mergeFrom:(PBSongList*) other;
+- (PBSongList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) songsList;
+- (PBSong*) songsAtIndex:(int32_t) index;
+- (PBSongList_Builder*) replaceSongsAtIndex:(int32_t) index with:(PBSong*) value;
+- (PBSongList_Builder*) addSongs:(PBSong*) value;
+- (PBSongList_Builder*) addAllSongs:(NSArray*) values;
+- (PBSongList_Builder*) clearSongsList;
 @end
 
 @interface PBSing : PBGeneratedMessage {
