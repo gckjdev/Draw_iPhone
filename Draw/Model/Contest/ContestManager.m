@@ -33,8 +33,8 @@ static ContestManager *_staticContestManager;
     if (self) {
         NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
         self.oldContestIdList = [userDefault objectForKey:OLD_CONTEST_LIST];
-        if (!_oldContestIdList) {
-            _oldContestIdList  = [[NSMutableArray alloc] init];
+        if (_oldContestIdList == nil) {
+            self.oldContestIdList  = [[[NSMutableArray alloc] init] autorelease];
         }
     }
     return self;
