@@ -8,6 +8,6 @@
 
 #import "CommonTabController.h"
 
-@interface CommonSearchImageController : CommonTabController
+@interface CommonSearchImageController : PPTableViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

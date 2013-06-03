@@ -115,6 +115,7 @@ static int popOptionListWithoutFreeCoinsEn[] = {
 @property (retain, nonatomic) IBOutlet UIButton *drawOptionBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *bigPen;
 
+- (IBAction)clickTest:(id)sender;
 
 @end
 
@@ -1086,6 +1087,13 @@ int getPopOptionCount()
     }
     
     return (LittleGeeHomeController*)app.homeController;
+}
+
+- (IBAction)clickTest:(id)sender
+{
+    Class class = NSClassFromString(@"CommonSearchImageController");
+    UIViewController* vc = [[[class alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
