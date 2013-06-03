@@ -14,6 +14,7 @@
 #import "HomeController.h"
 #import "WordManager.h"
 #import "DrawBgManager.h"
+#import "IAPProductService.h"
 
 @implementation DrawGameApp
 
@@ -441,6 +442,11 @@
     [DrawBgManager defaultManager];
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
@@ -513,6 +519,25 @@
 - (NSArray *)homeTabTitleList
 {
     return nil;
+}
+
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self appId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDrawIngotTestDataFile];
 }
 
 @end

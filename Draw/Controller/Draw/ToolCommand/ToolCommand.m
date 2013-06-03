@@ -149,11 +149,19 @@
 
 
 ToolCommandManager *_staticToolCommandManager = nil;
+
+NSUInteger _ManagerVersion = 1;
+
 @implementation ToolCommandManager
+
+- (NSUInteger)createVersion
+{
+    return ++_ManagerVersion;
+}
 
 - (void)dealloc
 {
-    [self removeAllCommand];
+    [commandList removeAllObjects];
     PPRelease(commandList);
     [super dealloc];
 }
@@ -192,9 +200,11 @@ ToolCommandManager *_staticToolCommandManager = nil;
     }
     return nil;
 }
-- (void)removeAllCommand
+- (void)removeAllCommand:(NSUInteger)version
 {
-    [commandList removeAllObjects];
+    if (self.version == version) {
+        [commandList removeAllObjects];        
+    }
 }
 
 - (void)hideAllPopTipViews

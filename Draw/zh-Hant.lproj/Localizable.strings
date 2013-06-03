@@ -371,6 +371,7 @@
 
 
 "kSaveSucc" = "保存成功！在作品頁面可以查看以往保存的草稿。";
+"kSaveFail" = "保存失敗";
 "kNetworkErrorTitle" = "網絡連接失效";
 "kNetworkErrorMessage" = "無法訪問互聯網，請檢查手機是否正確連接到網絡或者WIFI。";
 //4月23新增
@@ -666,7 +667,9 @@
 
 "kCommentFail" = "評論失敗";
 
-"kBlankDrawMessage" = "不能提交空白的畫哦，至少得畫幾筆吧？";
+"kBlankDrawTitle" = "空白的畫";
+"kBlankDrawMessage" = "不能提交空白的畫，至少得畫個幾筆的";
+"kBlankDraftMessage" = "不能保存空白的畫，至少得畫個幾筆的";
 
 "kChat" = "聊天";
 "kFriend" = "好友";
@@ -1002,7 +1005,9 @@
 
 "kReplyLocation" = "回复定位請求";
 "kRejectLocation" = "拒絕定位請求";
-"kShowLocation" = "顯示對方位置";
+"kShowOtherLocation" = "顯示對方位置";
+
+"kShowLocation" = "顯示位置";
 
 "kGetLocationFail" = "暫時無法定位,不能發送定位請求。";
 "kAskLocationAlert" = "確定發送定位請求，並且發送你的位置嗎？";
@@ -1211,7 +1216,8 @@
 "kQuitTaoBaoTips" = "確定退出淘寶？";
 
 "kSelectPaymentWay" = "選擇購買方式";
-"kPayViaZhiFuBao" = "使用支付寶購買";
+"kPayViaZhiFuBao" = "使用支付寶客戶端購買";
+"kPayViaZhiFuBaoWeb" = "使用支付寶網頁購買";
 "kPayViaAppleAccount" = "使用Apple賬戶購買";
 
 "kEditOpusDesc" = "編輯作品描述";
@@ -1308,6 +1314,12 @@
 
 //secure sms
 "kRegister" = "註冊";
+"kSecureSmsChat" = "聊天";
+"kSecureSmsLocate" = "定位";
+"kSecureSmsFirends" = "好友";
+"kSecureSmsMe" = "我";
+"kSecureSmsSupport" = "反饋";
+"kEnterCorrectPassword" = "請輸入正確的密碼";
 
 "kQuitGameWithPaidForAnswer" = "覺得太難猜？你想花%d個金幣直接要答案嗎?";
 "kQuitDirectly" = "直接退出";
@@ -1658,7 +1670,7 @@
 "kNoSupportViewFan" = "暫不支持查看其他用戶的關注";
 
 "kContentRepeatedError" = "請不要發重復的帖子。";
-
+"kNoPost" = "還沒有發過帖子";
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";
@@ -1682,4 +1694,5 @@
 "kLittleGeeAppLink" = "";
 "kOnlyChineseTitleAllowed" = "作品標題只允許中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品標題只允許英文單詞！";
+"kViewPost" = "查看帖子";
 /*********************小吉画画国际化字符串结束 ************************/

@@ -234,7 +234,15 @@
 
 - (void)showBuyActionSheetWithIndex:(NSIndexPath *)indexPath
 {
-    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kPayViaZhiFuBao"), NSLS(@"kPayViaAppleAccount"),nil];
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kSelectPaymentWay")
+                                                                 delegate:nil
+                                                        cancelButtonTitle:NSLS(@"kCancel")
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:
+//                                                                NSLS(@"kPayViaZhiFuBaoWeb"),
+                                                                NSLS(@"kPayViaZhiFuBao"),
+                                                                NSLS(@"kPayViaAppleAccount"),
+                                                                nil];
     [sheet showInView:self.view];
     
     __block typeof (self)bself = self;
@@ -266,6 +274,23 @@
                 // pay via apple account
                 [bself applePayForProduct:product];
                 break;
+
+                /*
+            case 0:
+                // pay via zhifubao
+                [bself alipayWebPaymentForOrder:order];
+                break;
+                
+            case 1:
+                // pay via zhifubao
+                [bself alipayForOrder:order];
+                break;
+
+            case 2:
+                // pay via apple account
+                [bself applePayForProduct:product];
+                break;
+                 */
                 
             default:
                 break;
@@ -280,6 +305,16 @@
     [AliPayManager payWithOrder:order
                       appScheme:[GameApp alipayCallBackScheme]
                   rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]];
+}
+
+- (void)alipayWebPaymentForOrder:(AlixPayOrder *)order
+{
+    NSString* url = [NSString stringWithFormat:[ConfigManager getAlipayWebUrl],
+                     [order.productName encodedURLParameterString], order.amount];
+    NSString* title = [NSString stringWithFormat:@"充值 - %@", order.productName];
+    TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (void)applePayForProduct:(PBIAPProduct *)product

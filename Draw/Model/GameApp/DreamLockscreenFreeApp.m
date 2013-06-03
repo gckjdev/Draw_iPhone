@@ -7,6 +7,7 @@
 //
 
 #import "DreamLockscreenFreeApp.h"
+#import "IAPProductService.h"
 
 @implementation DreamLockscreenFreeApp
 
@@ -54,5 +55,18 @@
     return @"alipaydreamlockscreenfree.gckj";
 }
 
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDreamLockscreenFreeIngotTestDataFile];
+}
 
 @end

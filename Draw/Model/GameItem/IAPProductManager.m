@@ -61,12 +61,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductManager);
 
 + (NSString *)IAPProductFileNameWithoutSuffix
 {
-    return [[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]];
+    return [[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp iapResourceFileName]];
 }
 
 + (NSString *)IAPProductFileName
 {
-    return [[[[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp gameId]] stringByAppendingString:@"."] stringByAppendingString:[self IAPProductFileType]];
+    // change file name by Benson 2013-05-27 for littlegee and draw
+    return [[[[IAP_PRODUCT_FILE_WITHOUT_SUFFIX stringByAppendingString:@"_"] stringByAppendingString:[GameApp iapResourceFileName]] stringByAppendingString:@"."] stringByAppendingString:[self IAPProductFileType]];
 }
 
 + (NSString *)IAPProductFileBundlePath

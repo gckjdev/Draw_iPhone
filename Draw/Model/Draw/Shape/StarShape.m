@@ -8,7 +8,45 @@
 
 #import "StarShape.h"
 
+#define T  0.3819660112501
+#define TSLP(x,y) CGPointMake((x)+1,1-(y)) //外五边形的坐标转换
+#define TSLP1(x,y) CGPointMake((x*T)+1,1-(y*T)) //内五边形的坐标转换
+
+#define P_LEN 10
+CGPoint P[P_LEN];
+BOOL hasInitPoints = NO;
+
+void updateStartPoints(CGPoint *points, BOOL reverse){
+    
+    if (!hasInitPoints) {
+        //外五边形的点
+        static const float R1 = 0.1 * M_PI;
+        static const float R3 = 0.3 * M_PI;
+        
+        P[0] = TSLP(0, 1);
+        P[2] = TSLP(cosf(R1), sinf(R1));
+        P[4] = TSLP(cosf(R3), -sinf(R3));
+        P[6] = TSLP(-cosf(R3), -sinf(R3));
+        P[8] = TSLP(-cosf(R1), sinf(R1));
+        
+        //内五边形的点
+        P[1] = TSLP1(cosf(R3), sinf(R3));
+        P[3] = TSLP1(cosf(R1), -sinf(R1));
+        P[5] = TSLP1(0, -1);
+        P[7] = TSLP1(-cosf(R1), -sinf(R1));
+        P[9] = TSLP1(-cosf(R3), sinf(R3));
+        hasInitPoints = YES;
+    }
+    for(int i = 0; i < P_LEN; ++ i){
+        points[i].x = P[i].x;
+        points[i].y = reverse ? (2 - P[i].y) : P[i].y;
+    }
+}
+
+
 @implementation StarShape
+
+
 - (void)drawInContext:(CGContextRef)context
 {
     if (context != NULL) {
@@ -19,33 +57,40 @@
         
         CGRect rect = [self rect];
         
-        CGFloat xRatio = 0.5 * (1 - tanf(0.2 * M_PI));
-        CGFloat yRatio = 0.5 * (1 - tanf(0.1 * M_PI));
         
         CGFloat minX = CGRectGetMinX(rect);
         CGFloat minY = CGRectGetMinY(rect);
         
-        CGFloat maxX = CGRectGetMaxX(rect);
-        CGFloat maxY = CGRectGetMaxY(rect);
+        
         CGFloat width = CGRectGetWidth(rect);
         CGFloat height = CGRectGetHeight(rect);
-        
-        if (self.startPoint.y > self.endPoint.y /*&& ![self point1:self.startPoint equalToPoint:self.endPoint]*/) {
-            CGContextMoveToPoint(context, minX, maxY - yRatio * height);
-            CGContextAddLineToPoint(context, maxX, maxY - yRatio * height);
-            CGContextAddLineToPoint(context, minX + xRatio * width, minY);
-            CGContextAddLineToPoint(context, minX + width / 2, maxY);
-            CGContextAddLineToPoint(context, maxX - xRatio * width, minY);
-        }else{
-            CGContextMoveToPoint(context, minX, minY + yRatio * height);
-            CGContextAddLineToPoint(context, maxX, minY + yRatio * height);
-            CGContextAddLineToPoint(context, minX + xRatio * width, maxY);
-            CGContextAddLineToPoint(context, minX + width / 2, minY);
-            CGContextAddLineToPoint(context, maxX - xRatio * width, maxY);
-        }
-        CGContextClosePath(context);
-        CGContextFillPath(context);
 
+        CGPoint P1[P_LEN];
+        updateStartPoints(P1, (self.startPoint.y > self.endPoint.y));
+        
+        for (int i = 0; i < P_LEN; ++ i) {
+
+            P1[i].x = P1[i].x * width/2 + minX;
+            P1[i].y = P1[i].y * height/2 + minY;
+            
+            if (i == 0) {
+                CGContextMoveToPoint(context, P1[i].x, P1[i].y);
+            }else{
+                CGContextAddLineToPoint(context, P1[i].x, P1[i].y);
+            }
+        }
+        
+        CGContextClosePath(context);
+        
+        if (self.isStroke) {
+            CGContextSetLineWidth(context, self.width);
+            CGContextSetLineJoin(context, kCGLineJoinMiter);
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGContextStrokePath(context);
+        }else{
+            CGContextSetFillColorWithColor(context, self.color.CGColor);
+            CGContextFillPath(context);
+        }
         CGContextRestoreGState(context);
     }
 }

@@ -66,6 +66,11 @@
     
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     NSString* root = @"/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
@@ -116,10 +121,10 @@
     return nil;
 }
 
-- (NSString *)alipayCallBackScheme
-{
-    return @"alipaylearndraw.gckj";
-}
+//- (NSString *)alipayCallBackScheme
+//{
+//    return @"alipaylearndraw.gckj";
+//}
 
 //ContentGameAppProtocol
 - (int)sellContentType
@@ -143,6 +148,20 @@
             NSLS(@"kLearnDrawCharater"),
             NSLS(@"kLearnDrawScenery"),
             NSLS(@"kLearnDrawOther"), nil];
+}
+
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
 }
 
 @end

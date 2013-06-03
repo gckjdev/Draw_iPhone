@@ -4182,6 +4182,10 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 @property (retain) NSMutableArray* mutablePointsYList;
 @property int32_t betterColor;
 @property (retain) PBDrawBg* drawBg;
+@property Float32 shadowOffsetX;
+@property Float32 shadowOffsetY;
+@property int32_t shadowColor;
+@property Float32 shadowBlur;
 @end
 
 @implementation PBDrawAction
@@ -4239,6 +4243,34 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
   hasDrawBg_ = !!value;
 }
 @synthesize drawBg;
+- (BOOL) hasShadowOffsetX {
+  return !!hasShadowOffsetX_;
+}
+- (void) setHasShadowOffsetX:(BOOL) value {
+  hasShadowOffsetX_ = !!value;
+}
+@synthesize shadowOffsetX;
+- (BOOL) hasShadowOffsetY {
+  return !!hasShadowOffsetY_;
+}
+- (void) setHasShadowOffsetY:(BOOL) value {
+  hasShadowOffsetY_ = !!value;
+}
+@synthesize shadowOffsetY;
+- (BOOL) hasShadowColor {
+  return !!hasShadowColor_;
+}
+- (void) setHasShadowColor:(BOOL) value {
+  hasShadowColor_ = !!value;
+}
+@synthesize shadowColor;
+- (BOOL) hasShadowBlur {
+  return !!hasShadowBlur_;
+}
+- (void) setHasShadowBlur:(BOOL) value {
+  hasShadowBlur_ = !!value;
+}
+@synthesize shadowBlur;
 - (void) dealloc {
   self.mutablePointsList = nil;
   self.mutableRectComponentList = nil;
@@ -4256,6 +4288,10 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
     self.shapeType = 0;
     self.betterColor = 0;
     self.drawBg = [PBDrawBg defaultInstance];
+    self.shadowOffsetX = 0;
+    self.shadowOffsetY = 0;
+    self.shadowColor = 0;
+    self.shadowBlur = 0;
   }
   return self;
 }
@@ -4348,6 +4384,18 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasDrawBg) {
     [output writeMessage:14 value:self.drawBg];
   }
+  if (self.hasShadowOffsetX) {
+    [output writeFloat:15 value:self.shadowOffsetX];
+  }
+  if (self.hasShadowOffsetY) {
+    [output writeFloat:16 value:self.shadowOffsetY];
+  }
+  if (self.hasShadowColor) {
+    [output writeInt32:17 value:self.shadowColor];
+  }
+  if (self.hasShadowBlur) {
+    [output writeFloat:18 value:self.shadowBlur];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -4407,6 +4455,18 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasDrawBg) {
     size += computeMessageSize(14, self.drawBg);
+  }
+  if (self.hasShadowOffsetX) {
+    size += computeFloatSize(15, self.shadowOffsetX);
+  }
+  if (self.hasShadowOffsetY) {
+    size += computeFloatSize(16, self.shadowOffsetY);
+  }
+  if (self.hasShadowColor) {
+    size += computeInt32Size(17, self.shadowColor);
+  }
+  if (self.hasShadowBlur) {
+    size += computeFloatSize(18, self.shadowBlur);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4528,6 +4588,18 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasDrawBg) {
     [self mergeDrawBg:other.drawBg];
   }
+  if (other.hasShadowOffsetX) {
+    [self setShadowOffsetX:other.shadowOffsetX];
+  }
+  if (other.hasShadowOffsetY) {
+    [self setShadowOffsetY:other.shadowOffsetY];
+  }
+  if (other.hasShadowColor) {
+    [self setShadowColor:other.shadowColor];
+  }
+  if (other.hasShadowBlur) {
+    [self setShadowBlur:other.shadowBlur];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4601,6 +4673,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDrawBg:[subBuilder buildPartial]];
+        break;
+      }
+      case 125: {
+        [self setShadowOffsetX:[input readFloat]];
+        break;
+      }
+      case 133: {
+        [self setShadowOffsetY:[input readFloat]];
+        break;
+      }
+      case 136: {
+        [self setShadowColor:[input readInt32]];
+        break;
+      }
+      case 149: {
+        [self setShadowBlur:[input readFloat]];
         break;
       }
     }
@@ -4854,6 +4942,70 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearDrawBg {
   result.hasDrawBg = NO;
   result.drawBg = [PBDrawBg defaultInstance];
+  return self;
+}
+- (BOOL) hasShadowOffsetX {
+  return result.hasShadowOffsetX;
+}
+- (Float32) shadowOffsetX {
+  return result.shadowOffsetX;
+}
+- (PBDrawAction_Builder*) setShadowOffsetX:(Float32) value {
+  result.hasShadowOffsetX = YES;
+  result.shadowOffsetX = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShadowOffsetX {
+  result.hasShadowOffsetX = NO;
+  result.shadowOffsetX = 0;
+  return self;
+}
+- (BOOL) hasShadowOffsetY {
+  return result.hasShadowOffsetY;
+}
+- (Float32) shadowOffsetY {
+  return result.shadowOffsetY;
+}
+- (PBDrawAction_Builder*) setShadowOffsetY:(Float32) value {
+  result.hasShadowOffsetY = YES;
+  result.shadowOffsetY = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShadowOffsetY {
+  result.hasShadowOffsetY = NO;
+  result.shadowOffsetY = 0;
+  return self;
+}
+- (BOOL) hasShadowColor {
+  return result.hasShadowColor;
+}
+- (int32_t) shadowColor {
+  return result.shadowColor;
+}
+- (PBDrawAction_Builder*) setShadowColor:(int32_t) value {
+  result.hasShadowColor = YES;
+  result.shadowColor = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShadowColor {
+  result.hasShadowColor = NO;
+  result.shadowColor = 0;
+  return self;
+}
+- (BOOL) hasShadowBlur {
+  return result.hasShadowBlur;
+}
+- (Float32) shadowBlur {
+  return result.shadowBlur;
+}
+- (PBDrawAction_Builder*) setShadowBlur:(Float32) value {
+  result.hasShadowBlur = YES;
+  result.shadowBlur = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShadowBlur {
+  result.hasShadowBlur = NO;
+  result.shadowBlur = 0;
   return self;
 }
 @end

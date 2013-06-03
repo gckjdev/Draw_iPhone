@@ -440,6 +440,11 @@
 
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     
@@ -489,6 +494,20 @@
 - (NSString*)appLinkUmengKey
 {
     return nil;
+}
+
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
 }
 
 @end

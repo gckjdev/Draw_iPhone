@@ -425,5 +425,9 @@
     }
 }
 
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index
+{
+    return NSLS(@"kNoPost");
+}
 
 @end

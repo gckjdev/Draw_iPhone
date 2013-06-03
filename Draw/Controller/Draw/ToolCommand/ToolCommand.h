@@ -54,6 +54,11 @@
     
 }
 
+//@property(nonatomic, assign)BOOL canRemoveAllCommand;
+@property(nonatomic, assign)NSUInteger version;
+
+- (NSUInteger)createVersion;
+
 - (id)init;
 
 + (id)defaultManager;
@@ -61,7 +66,7 @@
 - (void)registerCommand:(ToolCommand *)command;
 - (void)unregisterCommand:(ToolCommand *)command;
 - (ToolCommand *)commandForControl:(UIControl *)control;
-- (void)removeAllCommand;
+- (void)removeAllCommand:(NSUInteger)version;
 - (void)hideAllPopTipViews;
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command;
 

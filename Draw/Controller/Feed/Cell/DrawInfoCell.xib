@@ -171,6 +171,7 @@
 				<reference key="NSNextKeyView" ref="765286161"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="765286161"/>
+				<string key="IBUIReuseIdentifier">DrawInfoCell</string>
 				<real value="241" key="IBUIRowHeight"/>
 			</object>
 		</array>
@@ -311,7 +312,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">unloadbg@2x.png</string>
-			<string key="NS.object.0">{16, 16}</string>
+			<string key="NS.object.0">{175, 170}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

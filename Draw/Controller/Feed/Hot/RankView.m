@@ -168,7 +168,7 @@
     feed.drawData = nil;
     feed.pbDrawData = nil;
     
-    if (feed.showAnswer) {
+    if (feed.showAnswer && !([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType)) {
         NSString *answer = [NSString stringWithFormat:@" %@",feed.wordText];
         [self.title setText:answer];        
     }else{
@@ -206,7 +206,7 @@
 - (void)updateViewInfoForUserOpus
 {
     self.title.frame = self.author.frame;
-    if (self.feed.showAnswer) {
+    if (self.feed.showAnswer && !([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType)) {
         [self.title setText:self.feed.wordText];
     }
     self.author.hidden = YES;

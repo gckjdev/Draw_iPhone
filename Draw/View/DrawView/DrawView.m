@@ -290,20 +290,15 @@
 {
 //    [self printOSInfoWithTag:@"<Revoke> Before"];
     
-//    NSUInteger count = [self.drawActionList count];
-//    NSUInteger index = [osManager closestIndexWithActionIndex:count];
-//    Offscreen *os = [osManager offScreenForActionIndex:index];
-//    [os clear];
+    NSUInteger count = [self.drawActionList count];
+    NSUInteger index = [osManager closestIndexWithActionIndex:count];
+    Offscreen *os = [osManager offScreenForActionIndex:index];
+    [os clear];
 //    [osManager removeContentAfterIndex:count];
-//    for (; index < count; ++ index) {
-//        DrawAction *action = [self.drawActionList objectAtIndex:index];
-//        [os drawAction:action clear:NO];
-//    }
-    
-    //new implementation
-    
-    [osManager undo];
-    
+    for (; index < count; ++ index) {
+        DrawAction *action = [self.drawActionList objectAtIndex:index];
+        [os drawAction:action clear:NO];
+    }
     [self setNeedsDisplay];
 
     [self synBGColor];

@@ -14,9 +14,20 @@
     if (context != NULL) {
         CGContextSaveGState(context);
         
-        CGContextSetFillColorWithColor(context, self.color.CGColor);
-        CGContextFillEllipseInRect(context, self.rect);
-                
+        if (_stroke) {
+            CGContextSetLineWidth(context, self.width);            
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGContextStrokeEllipseInRect(context, self.rect);
+        }else{
+            CGContextSetFillColorWithColor(context, self.color.CGColor);
+            CGContextFillEllipseInRect(context, self.rect);
+        }
+        
+//        CGContextSetLineWidth(context, 2);
+//        CGContextSetStrokeColorWithColor(context, [UIColor yellowColor].CGColor);
+//        CGContextStrokeRect(context, self.rect);
+
+        
         CGContextRestoreGState(context);
     }
 }

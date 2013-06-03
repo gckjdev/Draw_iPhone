@@ -109,4 +109,4 @@ PBSize *CGSizeToPBSize(CGSize size);
 void CGSizeToPBSizeC(CGSize size, Game__PBSize* pbSizeC);
 CGSize CGSizeFromPBSizeC(Game__PBSize *size);
 CGRect CGRectFromCGSize(CGSize size);
-
+CGSize CGSizeRand(NSUInteger maxWidth, NSUInteger maxHeight);

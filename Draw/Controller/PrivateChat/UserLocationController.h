@@ -9,6 +9,7 @@
 #import "PPViewController.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "PPMessage.h"
 
 typedef enum {
     LocationTypeFind,
@@ -20,7 +21,8 @@ typedef enum {
 @optional
 - (void)didClickSendLocation:(double)latitude
                    longitude:(double)longitude
-                 messageType:(int)messageType;
+                 messageType:(MessageType)messageType
+                reqMessageId:(NSString *)reqMessageId;
 @end
 
 @interface UserLocationController : PPViewController<CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate>
@@ -33,6 +35,7 @@ typedef enum {
               isMe:(BOOL)isMe
           latitude:(double)latitude
          longitude:(double)longitude
-       messageType:(int)messageType;
+       messageType:(MessageType)messageType
+      reqMessageId:(NSString *)reqMessageId;
 
 @end

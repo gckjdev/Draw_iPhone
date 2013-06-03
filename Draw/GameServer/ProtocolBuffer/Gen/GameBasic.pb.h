@@ -1068,18 +1068,26 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasWidth_:1;
+  BOOL hasShadowOffsetX_:1;
+  BOOL hasShadowOffsetY_:1;
+  BOOL hasShadowBlur_:1;
   BOOL hasType_:1;
   BOOL hasColor_:1;
   BOOL hasPenType_:1;
   BOOL hasShapeType_:1;
   BOOL hasBetterColor_:1;
+  BOOL hasShadowColor_:1;
   BOOL hasDrawBg_:1;
   Float32 width;
+  Float32 shadowOffsetX;
+  Float32 shadowOffsetY;
+  Float32 shadowBlur;
   int32_t type;
   int32_t color;
   int32_t penType;
   int32_t shapeType;
   int32_t betterColor;
+  int32_t shadowColor;
   PBDrawBg* drawBg;
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointsXList;
@@ -1094,6 +1102,10 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasShapeType;
 - (BOOL) hasBetterColor;
 - (BOOL) hasDrawBg;
+- (BOOL) hasShadowOffsetX;
+- (BOOL) hasShadowOffsetY;
+- (BOOL) hasShadowColor;
+- (BOOL) hasShadowBlur;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
@@ -1101,6 +1113,10 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly) int32_t shapeType;
 @property (readonly) int32_t betterColor;
 @property (readonly, retain) PBDrawBg* drawBg;
+@property (readonly) Float32 shadowOffsetX;
+@property (readonly) Float32 shadowOffsetY;
+@property (readonly) int32_t shadowColor;
+@property (readonly) Float32 shadowBlur;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) rectComponentList;
@@ -1208,6 +1224,26 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBDrawAction_Builder*) setDrawBgBuilder:(PBDrawBg_Builder*) builderForValue;
 - (PBDrawAction_Builder*) mergeDrawBg:(PBDrawBg*) value;
 - (PBDrawAction_Builder*) clearDrawBg;
+
+- (BOOL) hasShadowOffsetX;
+- (Float32) shadowOffsetX;
+- (PBDrawAction_Builder*) setShadowOffsetX:(Float32) value;
+- (PBDrawAction_Builder*) clearShadowOffsetX;
+
+- (BOOL) hasShadowOffsetY;
+- (Float32) shadowOffsetY;
+- (PBDrawAction_Builder*) setShadowOffsetY:(Float32) value;
+- (PBDrawAction_Builder*) clearShadowOffsetY;
+
+- (BOOL) hasShadowColor;
+- (int32_t) shadowColor;
+- (PBDrawAction_Builder*) setShadowColor:(int32_t) value;
+- (PBDrawAction_Builder*) clearShadowColor;
+
+- (BOOL) hasShadowBlur;
+- (Float32) shadowBlur;
+- (PBDrawAction_Builder*) setShadowBlur:(Float32) value;
+- (PBDrawAction_Builder*) clearShadowBlur;
 @end
 
 @interface PBMessage : PBGeneratedMessage {

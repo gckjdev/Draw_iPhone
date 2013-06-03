@@ -15,7 +15,7 @@
 @property (retain, nonatomic) CLLocationManager *locationManager;
 @property (retain, nonatomic) CLLocation *userLocation;
 @property (assign, nonatomic) UserLocationType type;
-@property (assign, nonatomic) int messageType;
+@property (assign, nonatomic) MessageType messageType;
 @property (retain, nonatomic) NSString *reqMessageId;
 @property (assign, nonatomic) BOOL hasGetLocation;
 @property (assign, nonatomic) BOOL isMe;
@@ -61,7 +61,8 @@
               isMe:(BOOL)isMe
           latitude:(double)latitude
          longitude:(double)longitude
-       messageType:(int)messageType
+       messageType:(MessageType)messageType
+      reqMessageId:(NSString *)reqMessageId
 {
     self = [super init];
     if (self) {
@@ -72,10 +73,14 @@
             self.userLocation = [[[CLLocation alloc] initWithLatitude:latitude longitude:longitude] autorelease];
         } else {
             self.messageType = messageType;
+            if (messageType == MessageTypeLocationResponse) {
+                self.reqMessageId = reqMessageId;
+            }
         }
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -83,9 +88,9 @@
     
     NSString *title = nil;
     if (_type == LocationTypeFind) {
-        if (_messageType == MessageTypeAskLocation) {
+        if (_messageType == MessageTypeLocationRequest) {
             title = NSLS(@"kAskLocationTitle");
-        } else if (_messageType  == MessageTypeReplyLocation) {
+        } else if (_messageType  == MessageTypeLocationResponse) {
             title = NSLS(@"kReplyLocationTitle");
         }
     } else {
@@ -153,9 +158,9 @@
 - (void)showSendTips
 {
     NSString *alertString = nil;
-    if(_messageType == MessageTypeAskLocation){
+    if(_messageType == MessageTypeLocationRequest){
         alertString = NSLS(@"kAskLocationAlert");
-    } else if (_messageType == MessageTypeReplyLocation){
+    } else if (_messageType == MessageTypeLocationResponse){
         alertString = NSLS(@"kReplyLocationAlert");
     }
     
@@ -183,7 +188,7 @@
         if (hasGetLocation == NO) {
             hasGetLocation = YES;
             
-            [self performSelector:@selector(showSendTips) withObject:nil afterDelay:1.5f];
+            [self performSelector:@selector(showSendTips) withObject:nil afterDelay:0.5];
         }
     }
 }
@@ -234,11 +239,15 @@
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)theAlertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if (self == nil) {
+        return;
+    }
+    
     if (buttonIndex == 0) {
         return;
     } else {
-        if ([_delegate respondsToSelector:@selector(didClickSendLocation:longitude:messageType:)]) {
-            [_delegate didClickSendLocation:_userLocation.coordinate.latitude longitude:_userLocation.coordinate.longitude messageType:_messageType];
+        if ([_delegate respondsToSelector:@selector(didClickSendLocation:longitude:messageType:reqMessageId:)]) {
+            [_delegate didClickSendLocation:_userLocation.coordinate.latitude longitude:_userLocation.coordinate.longitude messageType:_messageType reqMessageId:_reqMessageId];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }

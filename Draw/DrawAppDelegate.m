@@ -78,10 +78,15 @@ NSString* GlobalGetServerURL()
 {
 //    return @"http://58.215.160.100:8002/api/i?";
     
-    return [ConfigManager getAPIServerURL];
 //    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.5:8000/api/i?";
+    
+#ifdef DEBUG
 //    return @"http://192.168.1.198:8000/api/i?";
+#endif
+    
+    return [ConfigManager getAPIServerURL];
+    
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -424,7 +429,7 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] start];
     
-    
+    [GameApp HandleWithDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

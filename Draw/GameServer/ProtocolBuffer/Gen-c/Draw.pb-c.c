@@ -1308,7 +1308,7 @@ const ProtobufCMessageDescriptor game__pblearn_draw__descriptor =
   (ProtobufCMessageInit) game__pblearn_draw__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[38] =
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
 {
   {
     "feedId",
@@ -1731,6 +1731,30 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[38] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "opusThumbImage",
+    83,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, opusthumbimage),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "dataUrl",
+    84,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, dataurl),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "contestId",
     91,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -1766,6 +1790,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[38] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "sing",
+    101,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, sing),
+    &game__pbsing__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
@@ -1773,10 +1809,11 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   22,   /* field[22] = comment */
   23,   /* field[23] = commentInfo */
   27,   /* field[27] = commentTimes */
-  35,   /* field[35] = contestId */
-  36,   /* field[36] = contestScore */
+  37,   /* field[37] = contestId */
+  38,   /* field[38] = contestScore */
   25,   /* field[25] = correctTimes */
   3,   /* field[3] = createDate */
+  36,   /* field[36] = dataUrl */
   5,   /* field[5] = deviceName */
   4,   /* field[4] = deviceType */
   11,   /* field[11] = drawData */
@@ -1789,7 +1826,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   20,   /* field[20] = guessWords */
   14,   /* field[14] = historyScore */
   18,   /* field[18] = isCorrect */
-  37,   /* field[37] = learnDraw */
+  39,   /* field[39] = learnDraw */
   24,   /* field[24] = matchTimes */
   7,   /* field[7] = nickName */
   32,   /* field[32] = opusCreatorAvatar */
@@ -1800,9 +1837,11 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   17,   /* field[17] = opusId */
   34,   /* field[34] = opusImage */
   21,   /* field[21] = opusStatus */
+  35,   /* field[35] = opusThumbImage */
   33,   /* field[33] = opusWord */
   19,   /* field[19] = score */
   10,   /* field[10] = signature */
+  40,   /* field[40] = sing */
   12,   /* field[12] = targetUserId */
   13,   /* field[13] = targetUserNickName */
   1,   /* field[1] = userId */
@@ -1817,9 +1856,9 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[10 + 1] =
   { 61, 24 },
   { 71, 29 },
   { 81, 33 },
-  { 91, 35 },
-  { 100, 37 },
-  { 0, 38 }
+  { 91, 37 },
+  { 100, 39 },
+  { 0, 41 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -1829,7 +1868,7 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  38,
+  41,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
   10,  game__pbfeed__number_ranges,

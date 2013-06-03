@@ -218,6 +218,13 @@ static DrawDataService* _defaultDrawDataService = nil;
                                 size:size
                         isCompressed:isCompressed];
     
+    if ([drawData length] == 0){
+        if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
+            [viewController didCreateDraw:ERROR_MEMORY];  
+        }        
+        return;
+    }
+    
     NSData *imageData = nil;
     if (image) {
         imageData = [image data];
@@ -307,23 +314,29 @@ static DrawDataService* _defaultDrawDataService = nil;
 {
     if ([pbDrawData length] == 0){
         PPDebug(@"<savePaintWithPBDraw>data is nil.");
-        return;        
+        if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+            [delegate didSaveOpus:NO];
+        }
+        return;
     }
     else if (image == nil){
         PPDebug(@"<savePaintWithPBDraw>image is nil.");
+        if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+            [delegate didSaveOpus:NO];
+        }
         return;
     }
     
-    dispatch_async(workingQueue, ^{
+//    dispatch_async(workingQueue, ^{
         BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
                                                                    pbDrawData:pbDrawData
                                                                          feed:feed];
-        dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
                 [delegate didSaveOpus:result];
             }
-        });
-    });
+//        });
+//    });
 }
 
 
@@ -333,21 +346,27 @@ static DrawDataService* _defaultDrawDataService = nil;
 {
     if ([pbDraw.drawDataList count] == 0) {
         PPDebug(@"<savePaintWithPBDraw>:actionList has no object");
+        if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+            [delegate didSaveOpus:NO];
+        }
         return;
     }else if(image == nil){
         PPDebug(@"<savePaintWithPBDraw>image is nil.");
+        if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
+            [delegate didSaveOpus:NO];
+        }        
         return;
     }
     
-    dispatch_async(workingQueue, ^{
+//    dispatch_async(workingQueue, ^{
         BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
                                                                    pbDraw:pbDraw];
-        dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
             if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
                 [delegate didSaveOpus:result];
             }
-        });
-    });
+//        });
+//    });
 }
 
 

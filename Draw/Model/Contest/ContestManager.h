@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface ContestManager : NSObject {
-    NSMutableSet* _oldContestIdList;
 }
 
 + (ContestManager *)defaultManager;
@@ -17,5 +16,4 @@
 
 - (int)calNewContestCount:(NSArray*)contestList;
 - (void)updateHasReadContestList:(NSArray*)contestList;
-
 @end

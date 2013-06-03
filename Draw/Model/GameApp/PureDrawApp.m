@@ -8,6 +8,7 @@
 
 #import "PureDrawApp.h"
 #import "PureDrawHomeController.h"
+#import "IAPProductService.h"
 
 @implementation PureDrawApp
 
@@ -81,9 +82,19 @@
     [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (NSString*)domodWallId
 {
     return @"96ZJ2rhAze+vLwTA1k";
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createPureDrawIngotTestDataFile];
 }
 
 @end

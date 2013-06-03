@@ -9,6 +9,7 @@
 #import "CallTrackApp.h"
 #import "SecureSmsHomeController.h"
 
+
 @implementation CallTrackApp
 
 - (NSString*)appId
@@ -35,6 +36,11 @@
     return YES;
 }
 
+- (BOOL)canSubmitDraw
+{
+    return YES;
+}
+
 - (PPViewController *)homeController
 {
     return [[[SecureSmsHomeController alloc] initWithType:PureChatTypeCallTrack] autorelease];
@@ -45,6 +51,9 @@
     return @"alipaycalltrack.gckj";
 }
 
-
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
 
 @end

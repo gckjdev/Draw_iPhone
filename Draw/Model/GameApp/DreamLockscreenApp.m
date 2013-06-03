@@ -7,6 +7,7 @@
 //
 
 #import "DreamLockscreenApp.h"
+#import "IAPProductService.h"
 
 @implementation DreamLockscreenApp
 
@@ -63,6 +64,25 @@
 - (NSString*)domodWallId
 {
     return @"96ZJ2j3gze+vLwTA1n";
+}
+
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDreamLockscreenIngotTestDataFile];
 }
 
 @end

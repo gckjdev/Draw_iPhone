@@ -8,6 +8,7 @@
 
 #import "PhotoDrawFreeApp.h"
 #import "PhotoDrawHomeController.h"
+#import "IAPProductService.h"
 
 @implementation PhotoDrawFreeApp
 
@@ -63,6 +64,11 @@
     
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (NSString*)domodWallId
 {
     return @"96ZJ2rhAze+vLwTA1k";
@@ -70,7 +76,10 @@
 
 
 
-
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createPhotoDrawFreeIngotTestDataFile];
+}
 
 
 @end

@@ -61,6 +61,11 @@ static FeedService *_staticFeedService = nil;
     LanguageType lang = UnknowType;
     lang = [[UserManager defaultManager] getLanguageType];
     
+    //little gee force chinese opus --kira
+    if ([GameApp forceChineseOpus]) {
+        lang = ChineseType;
+    }
+    
     dispatch_queue_t getFeedListQueue = [self getQueue:GET_FEEDLIST_QUEUE];
     if (getFeedListQueue == NULL) {
         getFeedListQueue = workingQueue;
@@ -823,6 +828,15 @@ static FeedService *_staticFeedService = nil;
               actionType:ACTION_TYPE_RECOMMEND_OPUS
               actionName:@""
              resultBlock:resultBlock];    
+}
+
+- (void)unRecommendOpus:(NSString *)opusId
+          resultBlock:(FeedActionResultBlock)resultBlock
+{
+    [self actionSaveOpus:opusId
+              actionType:ACTION_TYPE_UNRECOMMEND_OPUS
+              actionName:@""
+             resultBlock:resultBlock];
 }
 
 #define UPDATE_OPUS_QUEUE @"UPDATE_OPUS_QUEUE"

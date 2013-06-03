@@ -40,11 +40,11 @@
     [view initView];
     view.superController = controller;
     [view showInView:controller.view];
+    [[BulletinService defaultService] readAllBulletins];
 }
 
 - (IBAction)clickClose:(id)sender
 {
-    [[BulletinService defaultService] readAllBulletins];
     [self disappear];
 }
 

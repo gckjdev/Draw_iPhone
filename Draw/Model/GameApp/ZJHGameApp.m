@@ -14,6 +14,7 @@
 #import "ZJHGameJumpHandler.h"
 #import "ZJHHomeViewController.H"
 #import "CommonHelpManager.h"
+#import "IAPProductService.h"
 
 @implementation ZJHGameApp
 
@@ -440,6 +441,11 @@
     [[CommonHelpManager defaultManager] unzipHelpFiles];
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
@@ -488,4 +494,22 @@
     return nil;
 }
 
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createZJHCoinTestDataFile];
+}
 @end

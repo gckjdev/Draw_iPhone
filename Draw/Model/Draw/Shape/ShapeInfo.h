@@ -17,6 +17,23 @@ typedef enum{
     ShapeTypeEllipse,
     ShapeTypeTriangle,
     ShapeTypeStar,
+    ShapeTypeRoundRect,
+    
+    ShapeTypeEmptyStart = 500,
+    ShapeTypeEmptyBeeline = 501,
+    ShapeTypeEmptyRectangle,
+    ShapeTypeEmptyEllipse,
+    ShapeTypeEmptyTriangle,
+    ShapeTypeEmptyStar,
+    ShapeTypeEmptyRoundRect,
+    ShapeTypeEmptyEnd,
+    
+
+    ShapeTypeImageStart = 1000,
+    
+    ShapeTypeImageEnd = 1999,
+    
+    
 }ShapeType;
 
 //@class PBShapeInfo;
@@ -25,7 +42,7 @@ typedef enum{
 
 @interface ShapeInfo : NSObject
 {
-    
+    ShapeType _type;
 }
 @property(nonatomic, assign)CGPoint startPoint;
 @property(nonatomic, assign)CGPoint endPoint;
@@ -50,3 +67,22 @@ typedef enum{
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
 @end
+
+
+
+
+@interface BasicShapeInfo : ShapeInfo
+{
+    BOOL _stroke;
+}
+
+- (BOOL)isStroke;
+
+@end
+
+
+@interface ImageShapeInfo : ShapeInfo
+
+
+@end
+

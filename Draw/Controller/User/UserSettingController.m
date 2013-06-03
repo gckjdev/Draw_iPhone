@@ -25,7 +25,7 @@
 #import "StringUtil.h"
 #import "GameNetworkConstants.h"
 #import "AdService.h"
-#import "CustomDiceSettingViewController.h"
+//#import "CustomDiceSettingViewController.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSCommonService.h"
 #import "PPSNSConstants.h"
@@ -170,7 +170,7 @@ enum {
     rowOfVolumeSetting = 1;
     rowOfMusicSettings = 2;
     //rowOfChatVoice = 3;
-    rowsInSectionSound = 2;//isDrawApp()?3:2;//TODO:hide background music in dice, fix it later
+    rowsInSectionSound = isLittleGeeAPP()?1:2;//isDrawApp()?3:2;//TODO:hide background music in dice, fix it later
     
     rowsInSectionAccount = ROW_ACCOUNT_COUNT;
 }
@@ -716,8 +716,12 @@ enum {
             [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
             [dialog showInView:self.view];
         } else if (row == rowOfCustomDice){
-            CustomDiceSettingViewController* controller = [[[CustomDiceSettingViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
+            Class class = NSClassFromString(@"CustomDiceSettingViewController");
+            if (class && [class isSubclassOfClass:[UIViewController class]]) {
+                UIViewController* controller = [[[class alloc] init] autorelease];
+                [self.navigationController pushViewController:controller animated:YES];
+            }
+            
         } else if (row == rowOfLocation) {
             [self askUpdateLocation];
             

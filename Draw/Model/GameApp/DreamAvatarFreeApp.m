@@ -7,6 +7,7 @@
 //
 
 #import "DreamAvatarFreeApp.h"
+#import "IAPProductService.h"
 
 @implementation DreamAvatarFreeApp
 
@@ -37,6 +38,11 @@
 - (NSString *)alipayCallBackScheme
 {
     return @"alipaydreamavatarfree.gckj";
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDreamAvatarFreeIngotTestDataFile];
 }
 
 @end

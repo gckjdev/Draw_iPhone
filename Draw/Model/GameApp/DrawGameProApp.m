@@ -9,6 +9,7 @@
 #import "DrawGameProApp.h"
 #import "MobClickUtils.h"
 #import "HomeController.h"
+#import "IAPProductService.h"
 
 @implementation DrawGameProApp
 
@@ -77,6 +78,11 @@
     
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     
@@ -99,5 +105,18 @@
 - (NSString*)appLinkUmengKey
 {
     return @"DRAW_APP_LINK";
+}
+
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDrawIngotTestDataFile];
 }
 @end

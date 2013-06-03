@@ -117,6 +117,7 @@
 
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
+@property (retain, nonatomic) CommonDialog* currentDialog;
 
 //@property (assign, nonatomic) CGRect canvasRect;
 
@@ -207,6 +208,7 @@
     PPRelease(_opusDesc);
     PPRelease(_bgImage);
     PPRelease(_bgImageName);
+    PPRelease(_currentDialog);
     [super dealloc];
 }
 
@@ -719,18 +721,18 @@
     }
     else if(dialog.tag == DIALOG_TAG_COMMIT_AS_NORMAL_OPUS)
     {
-        [self showInputAlertView];
+        [self showInputAlertViewWithSubject:YES];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
-        
-        
-        // Save Image Locally        
+//        self.currentDialog = dialog;
+        // Save Image Locally
         [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
                                                         image:drawView.createImage
                                                      delegate:self];
-
+        
         if (self.contest) {
             
+            // ask gamy later, why here use dialog style to decide logic
             if (dialog.style == CommonDialogStyleSingleButton) {
                 [self quit];
                 return;
@@ -738,42 +740,32 @@
             
             //draw another opus for contest
             ContestController *contestController =  [self superContestController];
-            [self.navigationController popToViewController:contestController 
+            [self.navigationController popToViewController:contestController
                                                   animated:NO];
-            [contestController enterDrawControllerWithContest:self.contest 
+            [contestController enterDrawControllerWithContest:self.contest
                                                      animated:NO];
             return;
         }
         //if come from feed detail controller
-        if (isLittleGeeAPP()) {
-            _startController = (_startController == nil)?[HomeController defaultInstance]:_startController;
+        if (_startController != nil) {
             [self.navigationController popToViewController:_startController animated:NO];
-            [OfflineDrawViewController startDraw:[Word wordWithText:@"" level:0] fromController:_startController startController:_startController targetUid:_targetUid];
-        } else {
-            if (_startController != nil) {
-                [self.navigationController popToViewController:_startController animated:NO];
-                SelectHotWordController *sc = nil;
-                if ([_targetUid length] == 0) {
-                    sc = [[[SelectHotWordController alloc] init] autorelease];
-                }else{
-                    sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
-                }
-                sc.superController = self.startController;
-                [_startController.navigationController pushViewController:sc animated:NO];
+            SelectHotWordController *sc = nil;
+            if ([_targetUid length] == 0) {
+                sc = [[[SelectHotWordController alloc] init] autorelease];
             }else{
-                //if come from home controller
-                if ([_targetUid length] == 0) {
-                    [HomeController startOfflineDrawFrom:self];
-                }else{
-                    [HomeController startOfflineDrawFrom:self uid:self.targetUid];
-                }
+                sc = [[[SelectHotWordController alloc] initWithTargetUid:self.targetUid] autorelease];
+            }
+            sc.superController = self.startController;
+            [_startController.navigationController pushViewController:sc animated:NO];
+        }else{
+            //if come from home controller
+            if ([_targetUid length] == 0) {
+                [HomeController startOfflineDrawFrom:self];
+            }else{
+                [HomeController startOfflineDrawFrom:self uid:self.targetUid];
             }
         }
         
-        if (self.draft) {
-            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-            self.draft = nil;
-        }
     }
 }
 
@@ -801,6 +793,13 @@
     }else{
         [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
     }
+    
+    if (succ){
+        if (self.draft) {
+            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+            self.draft = nil;
+        }
+    }    
 }
 
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
@@ -886,10 +885,10 @@
         [dialog showInView:self.view];
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-        if (self.draft) {
-            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-            self.draft = nil;
-        }
+//        if (self.draft) {
+//            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+//            self.draft = nil;
+//        }
         
         // share weibo after submit opus success
         [self shareToWeibo];
@@ -970,6 +969,14 @@
     if (targetType == TypeGraffiti || targetType == TypePhoto) {
         return;
     }
+    
+    BOOL isBlank = ([drawView.drawActionList count] == 0);
+    if (isBlank && targetType != TypePhoto) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDraftMessage") style:CommonDialogStyleSingleButton delegate:nil];
+        [dialog showInView:self.view];
+        return;
+    }
+    
     PPDebug(@"<OfflineDrawViewController> start to save draft. show result = %d",showResult);
     _isNewDraft = YES;
 
@@ -981,53 +988,45 @@
     @try {
         MyPaintManager *pManager = [MyPaintManager defaultManager];
         if (self.draft) {
-            result = YES;
             PPDebug(@"<saveDraft> save draft");
-            [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
-            [self.draft setOpusDesc:self.opusDesc];
-//            result = [pManager updateDraft:self.draft
-//                                     image:image
-//                      pbNoCompressDrawData:[self drawDataSnapshot]];
-            
             NSData* data = [self newDrawDataSnapshot];
             if ([data length] == 0){
                 result = NO;
             }
             else{
+                result = YES;
+                [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
+                [self.draft setOpusDesc:self.opusDesc];
                 result = [pManager updateDraft:self.draft
                                          image:image
                                       drawData:data];
             }
         }else{
             PPDebug(@"<saveDraft> create core data draft");
-            UserManager *userManager = [UserManager defaultManager];
-//            self.draft = [pManager createDraft:image
-//                          pbNoCompressDrawData:[self drawDataSnapshot]
-//                                     targetUid:_targetUid
-//                                     contestId:self.contest.contestId
-//                                        userId:[userManager userId]
-//                                      nickName:[userManager nickName]
-//                                          word:_word
-//                                      language:languageType
-//                                       bgImage:_bgImage];
-
-            self.draft = [pManager createDraft:image
-                                      drawData:[self newDrawDataSnapshot]
-                                     targetUid:_targetUid
-                                     contestId:self.contest.contestId
-                                        userId:[userManager userId]
-                                      nickName:[userManager nickName]
-                                          word:_word
-                                      language:languageType
-                                       bgImage:_bgImage
-                                   bgImageName:_bgImageName];
-            
-            
-            if (self.draft) {
-                result = YES;
-            }else{
+            NSData* data = [self newDrawDataSnapshot];
+            if ([data length] == 0){
                 result = NO;
             }
+            else{
+                UserManager *userManager = [UserManager defaultManager];
+                self.draft = [pManager createDraft:image
+                                          drawData:data
+                                         targetUid:_targetUid
+                                         contestId:self.contest.contestId
+                                            userId:[userManager userId]
+                                          nickName:[userManager nickName]
+                                              word:_word
+                                          language:languageType
+                                           bgImage:_bgImage
+                                       bgImageName:_bgImageName];
+
+                if (self.draft) {
+                    result = YES;
+                }else{
+                    result = NO;
+                }
+            }
+                        
         }
         if (showResult) {
             NSString *message = result ? NSLS(@"kSaveSucc") :  NSLS(@"kSaveFail");
@@ -1178,11 +1177,21 @@
 
     NSString *text = self.opusDesc;
     
-    if ([self.word.text length] == 0 && [self.inputAlert hasSubjectText]) {
+    if ([self.inputAlert hasSubjectText]) {
         [self.word setText:self.inputAlert.subjectText];
     }
     
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
+    
+    if ([GameApp forceChineseOpus]) {
+        languageType = ChineseType;
+        
+        if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
+            self.word = [Word cusWordWithText:@"画"];
+            PPDebug(@"You are playing little gee in english, so auto create title");
+        }
+    }
+    
     
     [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
@@ -1203,14 +1212,15 @@
     self.opusDesc = self.inputAlert.contentText;
 }
 
-- (void)showInputAlertView
+- (void)showInputAlertViewWithSubject:(BOOL)hasSubject
 {
     if (self.inputAlert == nil) {
-        if (isLittleGeeAPP()) {
+        if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
             BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
 
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:YES];
+            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:hasSubject];
             self.inputAlert.delegate = self;
+            PPDebug(@"you are playing little in chinese , so show subject");
             
         } else {
             self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
@@ -1263,8 +1273,11 @@
                 [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
                 return;
             }
+            [self showInputAlertViewWithSubject:NO];
+        } else {
+            [self showInputAlertViewWithSubject:YES];
         }
-        [self showInputAlertView];
+        
     }
 }
 
@@ -1331,24 +1344,27 @@
         PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
         [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
         [[[ToolCommandManager defaultManager] inputAlertView] adjustWithKeyBoardRect:keyboardRect];
-        
     }
 }
 
 #pragma mark - input alert view delegate
 - (BOOL)isSubjectValid:(NSString *)subjectText
 {
-    if (isLittleGeeAPP()) {
-        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
-            if (!NSStringIsValidChinese(subjectText)) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-                return NO;
-            }
-        } else if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-            if(!NSStringISValidEnglish(subjectText)) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyEnglishTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-                return NO;
-            }
+    if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
+//        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
+//            if (!NSStringIsValidChinese(subjectText)) {
+//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+//                return NO;
+//            }
+//        } else if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
+//            if(!NSStringISValidEnglish(subjectText)) {
+//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyEnglishTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+//                return NO;
+//            }
+//        }
+        if (!NSStringIsValidChinese(subjectText)) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
+            return NO;
         }
     }
     return YES;

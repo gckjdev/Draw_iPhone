@@ -146,6 +146,8 @@
 
 - (void)HandleWithDidFinishLaunching;
 
+- (void)HandleWithDidBecomeActive;
+
 - (void)createConfigData;
 
 - (BOOL)showPaintCategory;
@@ -154,6 +156,13 @@
 
 - (NSString*)appItuneLink;
 - (NSString*)appLinkUmengKey;
+
+- (BOOL)forceChineseOpus;
+- (BOOL)disableEnglishGuess;
+
+- (NSString*)iapResourceFileName;
+
+- (void)createIAPTestDataFile;
 
 @end
 

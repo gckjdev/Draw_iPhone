@@ -350,6 +350,7 @@
 /*the new words below without Japanese*/
 
 "kSaveSucc" = "Save draft sucessfully!";
+"kSaveFail" = "Fail to save";
 "kNetworkErrorTitle" = "Connection Error";
 "kNetworkErrorMessage" = "Network connection error. Please check the network settings.";
 
@@ -660,6 +661,7 @@
 
 "kBlankDrawTitle" = "Blank Drawing";
 "kBlankDrawMessage" = "You can't submit a blank drawing.";
+"kBlankDraftMessage" = "Cannot save a blank draft";
 
 "kChat" = "Chat";
 "kFriend" = "Friend";
@@ -976,6 +978,8 @@
 
 "kReplyLocation" = "Reply";
 "kRejectLocation" = "Reject";
+"kShowOtherLocation" = "Display";
+
 "kShowLocation" = "Display";
 
 "kGetLocationFail" = "Unable to locate, can not send location request.";
@@ -1232,11 +1236,12 @@
 
 "kSelectPaymentWay" = "Select payment method";
 "kPayViaZhiFuBao" = "Alipay";
+"kPayViaZhiFuBaoWeb" = "Alipay Web";
 "kPayViaAppleAccount" = "Apple iTunes Account";
 
 "kHim" = "him";
 "kHer" = "her";
-"kDetailDrawTo" = "Draw sth.";
+"kDetailDrawTo" = "Gift";
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
@@ -1327,8 +1332,12 @@
 
 //secure sms
 "kRegister" = "Register";
-
-
+"kSecureSmsChat" = "CHAT";
+"kSecureSmsLocate" = "LOCATE";
+"kSecureSmsFirends" = "FRIENDS";
+"kSecureSmsMe" = "ME";
+"kSecureSmsSupport" = "SUPPORT";
+"kEnterCorrectPassword" = "Please enter the correct password";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO";
@@ -1661,12 +1670,12 @@
 "kRestore" = "Restore";
 
 "kContentRepeatedError" = "Can't send repeated content.";
-
+"kNoPost" = "No Post";
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
-"kLittleGeeDrawTo" = "Draw To";
+"kLittleGeeDrawTo" = "Gift";
 "kLittleGeeBegin" = "Draw";
 "kLittleGeeContest" = "Contest";
 "kLittleGee" = "LITTLEGEE";
@@ -1675,10 +1684,11 @@
 "kIllegalTitle" = "Illegal Title!";
 "kDefaultDrawWord" = "MyPaint";
 "kNoRunningContest" = "No contest is running!";
-"kPainter" = "Painter";
+"kPainter" = "Painters";
 "kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";
 "kLittleGeeSNSSubject" = "Share Paints";
 "kLittleGeeAppLink" = "";
 "kOnlyChineseTitleAllowed" = "Only chinese title is allowed, please check your title!";
 "kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
+"kViewPost" = "View Post";
 /*********************小吉画画国际化字符串结束 ************************/

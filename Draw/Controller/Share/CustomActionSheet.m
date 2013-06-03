@@ -15,6 +15,8 @@
 
 #define DEFAULT_COLUMN 3
 #define ACTION_BTN_TAG_OFFSET   20121226
+#define BADGE_BTN_TAG    20130530
+#define ACTION_VIEW_TAG_OFFSET  120130530
 #define DEFAULT_WIDTH   280
 #define DEFAULT_ROWHEIHT 80
 #define ACTION_IMAGE_OFFSET 20130509
@@ -83,6 +85,13 @@
         [self addButtonWithTitle:[NSString stringWithInt:(ACTION_IMAGE_OFFSET+self.buttonTitles.count)] image:image];
     }
     return self.buttonTitles.count;
+}
+
+- (void)removeAllActions
+{
+    [self.buttonTitles removeAllObjects];
+    [self.buttonImagesDict removeAllObjects];
+    [self.badgeCountDict removeAllObjects];
 }
 
 - (void)setImage:(UIImage*)image forTitle:(NSString*)title
@@ -223,17 +232,20 @@
             }
             
             int badgeCount = [self badgeCountForIndex:i];
+            UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.3, actionViewWidth*0.3)] autorelease];
+            badge.hidden = YES;
+            badge.titleLabel.textAlignment = UITextAlignmentCenter;
+            badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/6];
+            [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [badge setUserInteractionEnabled:NO];
+            [badge setBackgroundImage:[UIImage imageNamed:@"common_home_badge.png"] forState:UIControlStateNormal];
+            [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
+            badge.tag = BADGE_BTN_TAG;
+            [actionView addSubview:badge];
             if (badgeCount > 0) {
-                UIButton *badge = [[[UIButton alloc] initWithFrame:CGRectMake(actionViewWidth*0.6, 0, actionViewWidth*0.3, actionViewWidth*0.3)] autorelease];
-                badge.titleLabel.textAlignment = UITextAlignmentCenter;
-                badge.titleLabel.font = [UIFont systemFontOfSize:actionViewWidth/6];
-                [badge setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [badge setUserInteractionEnabled:NO];
-                [badge setBackgroundImage:[UIImage imageNamed:@"common_home_badge.png"] forState:UIControlStateNormal];
-                [badge setTitle:[NSString stringWithFormat:@"%d", badgeCount] forState:UIControlStateNormal];
-                [actionView addSubview:badge];
+                [badge setHidden:NO];
             }
-
+            actionView.tag = ACTION_VIEW_TAG_OFFSET + i;
             [showView addSubview:actionView];
         }
         
@@ -278,19 +290,20 @@
             itemSize:(CGSize)size
           
 {
-    if (_menu == nil) {
-        NSMutableArray* itemArray = [[[NSMutableArray alloc] init] autorelease];
-        for (NSString* title in self.buttonTitles) {
-            UIImage* image = (UIImage*)[self.buttonImagesDict objectForKey:title];
-            HGQuadCurveMenuItem* item = [[[HGQuadCurveMenuItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) image:image highlightedImage:image contentImage:nil highlightedContentImage:nil title:title titleFont:[UIFont boldSystemFontOfSize:(ISIPAD?24:12)]] autorelease];
-            [itemArray addObject:item];
-        }
-        self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height+size.height) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
-        _menu.delegate = self;
-        [view addSubview:_menu];
+    if (_menu != nil) {
+        [_menu removeFromSuperview];
     }
+    NSMutableArray* itemArray = [[[NSMutableArray alloc] init] autorelease];
+    for (NSString* title in self.buttonTitles) {
+        UIImage* image = (UIImage*)[self.buttonImagesDict objectForKey:title];
+        HGQuadCurveMenuItem* item = [[[HGQuadCurveMenuItem alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) image:image highlightedImage:image contentImage:nil highlightedContentImage:nil title:title titleFont:[UIFont boldSystemFontOfSize:(ISIPAD?24:12)]] autorelease];
+        [itemArray addObject:item];
+    }
+    self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height*0.8) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
+    _menu.delegate = self;
+//    [view addSubview:_menu];
     
-    [view insertSubview:_menu aboveSubview:onView];
+    [view insertSubview:_menu belowSubview:onView];
     [self.menu expandItems];
     self.isVisable = YES;
     
@@ -407,13 +420,24 @@
              forIndex:(int)index
 {
     NSString* title = [self buttonTitleAtIndex:index];
-    if (title == nil) {
+    if (title == nil || count < 0) {
         return;
     }
     if (_badgeCountDict == nil) {
         self.badgeCountDict = [[[NSMutableDictionary alloc] init] autorelease];
     }
     [self.badgeCountDict setObject:@(count) forKey:title];
+    
+    if ([self isVisable]) {
+        UIView* actionView = [self.popView.customView viewWithTag:ACTION_VIEW_TAG_OFFSET + index];
+        UIButton* badge = (UIButton*)[actionView viewWithTag:BADGE_BTN_TAG];
+        [badge setTitle:[NSString stringWithFormat:@"%d", count] forState:UIControlStateNormal];
+        if (count > 0) {
+            badge.hidden = NO;
+        } else {
+            badge.hidden = YES;
+        }
+    }
     
 }
 - (int)badgeCountForIndex:(int)index

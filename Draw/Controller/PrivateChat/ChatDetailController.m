@@ -29,6 +29,7 @@
 #import "ReplayView.h"
 #import "CanvasRect.h"
 #import "StringUtil.h"
+#import "MKBlockActionSheet.h"
 
 @interface ChatDetailController ()
 {
@@ -39,6 +40,7 @@
     NSInteger _asIndexDelete;
     NSInteger _asIndexReplay;
     NSInteger _asIndexLookLarge;
+    NSInteger _asIndexShowLocation;
     NSInteger _asIndexCopy;
     NSInteger _asIndexResend;
 //    BOOL _noData;
@@ -144,6 +146,7 @@
     PPRelease(_messageStat);
     PPRelease(_messageList);
     PPRelease(_photoDrawSheet);
+    PPRelease(_locateButton);
     [super dealloc];
 }
 
@@ -226,6 +229,7 @@
     [self setInputTextBackgroundImage:nil];
     [self setRefreshButton:nil];
     [self setMessageList:nil];
+    [self setLocateButton:nil];
     [super viewDidUnload];
 }
 
@@ -387,6 +391,13 @@
 //    [inputTextView resignFirstResponder];
 }
 
+- (IBAction)clickLocateButton:(id)sender {
+    UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES latitude:0 longitude:0 messageType:MessageTypeLocationRequest reqMessageId:nil];
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
 - (IBAction)clickPhotoButton:(id)sender {
     self.photoDrawSheet = [PhotoDrawSheet createSheetWithSuperController:self];
     _photoDrawSheet.delegate = self;
@@ -534,6 +545,53 @@
     [self tableViewScrollToBottom];
 }
 
+
+- (void)sendAskLocationMessage:(double)latitude
+                     longitude:(double)longitude
+{
+    [self loadNewMessage:NO];
+    
+    LocationAskMessage *message = [[[LocationAskMessage alloc] init] autorelease];
+    [message setText:NSLS(@"kAskLocationMessage")];
+    [message setLatitude:latitude];
+    [message setLongitude:longitude];
+    [message setMessageType:MessageTypeLocationRequest];
+    [self constructMessage:message];
+    [[ChatService defaultService] sendMessage:message delegate:self];
+    [self.messageList addObject:message];
+    
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
+}
+
+- (void)sendReplyLocationMessage:(double)latitude
+                       longitude:(double)longitude
+                    reqMessageId:(NSString *)reqMessageId
+                     replyResult:(NSInteger)replyResult
+{
+    [self loadNewMessage:NO];    
+    LocationReplyMessage *message = [[[LocationReplyMessage alloc] init] autorelease];
+    [message setMessageType:MessageTypeLocationResponse];
+    [message setReqMessageId:reqMessageId];
+    [message setReplyResult:replyResult];
+    
+    if (replyResult == ACCEPT_ASK_LOCATION) {
+        [message setText:NSLS(@"kReplyLocationMessage")];
+        [(LocationReplyMessage*)message setLatitude:latitude];
+        [(LocationReplyMessage*)message setLongitude:longitude];
+    } else {
+        [message setText:NSLS(@"kRejectLocationMessage")];
+    }
+    
+    [self constructMessage:message];
+    [[ChatService defaultService] sendMessage:message delegate:self];
+    [self.messageList addObject:message];
+    
+    [self.dataTableView reloadData];
+    [self tableViewScrollToBottom];
+}
+
+
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
 {
@@ -603,6 +661,9 @@
 #define ACTION_SHEET_TAG_TEXT 201211021
 #define ACTION_SHEET_TAG_DRAW 201211022
 #define ACTION_SHEET_TAG_IMAGE 201211023
+#define ACTION_SHEET_TAG_LOCATION_REQUEST    201211024
+#define ACTION_SHEET_TAG_LOCATION_RESPONSE   201211025
+
 
 - (void)resetASIndexesOfMessage:(PPMessage *)message
 {
@@ -610,6 +671,7 @@
     _asIndexCopy = -1;
     _asIndexReplay = -1;
     _asIndexLookLarge = -1;
+    _asIndexShowLocation = -1;
     _asIndexResend = -1;
     NSInteger start = 0;
     _asIndexDelete = start++;
@@ -619,6 +681,12 @@
         _asIndexCopy = start++;
     }else if(message.messageType == MessageTypeImage){
         _asIndexLookLarge = start ++;
+    }else if(message.messageType == MessageTypeLocationRequest){
+        _asIndexShowLocation = start ++;
+    }else if(message.messageType == MessageTypeLocationResponse){
+        if ([(LocationReplyMessage *)message replyResult] == ACCEPT_ASK_LOCATION) {
+            _asIndexShowLocation = start ++;
+        }
     }
     if (message.status == MessageStatusFail) {
         _asIndexResend = start++;
@@ -695,8 +763,83 @@
         case MessageTypeText:
             [self showActionOptionsForMessage:message];
             break;
+        case MessageTypeLocationRequest:
+        {
+            if (message.sourceType == SourceTypeSend) {
+                [self showLocation:message];
+            } else {
+                [self showHandleAskLocatioActions:message];
+            }
+            break;
+        }
+        case MessageTypeLocationResponse:
+            [self showLocation:message];
+            break;
         default:
             break;
+    }
+}
+
+- (void)showHandleAskLocatioActions:(PPMessage *)message
+{
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOpusOperation") delegate:nil cancelButtonTitle:NSLS(@"kCancel")  destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kReplyLocation"), NSLS(@"kRejectLocation"),NSLS(@"kShowOtherLocation"),nil];
+    
+    __block typeof (self) bself = self;
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        switch (buttonIndex) {
+            case 0:
+            {
+                UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeFind isMe:YES latitude:0 longitude:0 messageType:MessageTypeLocationResponse reqMessageId:message.messageId];
+                controller.delegate = bself;
+                [self.navigationController pushViewController:controller animated:YES];
+                [controller release];
+                break;
+            }
+            case 1:
+            {
+                [bself sendReplyLocationMessage:0 longitude:0 reqMessageId:message.messageId replyResult:REJECT_ASK_LOCATION];
+                break;
+            }
+            case 2:
+            {
+                [bself showLocation:message];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    [sheet showInView:self.view];
+    [sheet release];
+}
+
+- (void)showLocation:(PPMessage *)message
+{
+    if (message.messageType == MessageTypeLocationRequest
+        || message.messageType == MessageTypeLocationResponse) {
+        
+        BOOL isMe = (message.sourceType == SourceTypeSend);
+        double latitude;
+        double longitude;
+        if (message.messageType == MessageTypeLocationRequest) {
+            latitude = [(LocationReplyMessage*)message latitude];
+            longitude = [(LocationReplyMessage*)message longitude];
+        } else {
+            if ([(LocationReplyMessage*)message replyResult] == REJECT_ASK_LOCATION)
+            {
+                return;
+            }
+            latitude = [(LocationReplyMessage*)message latitude];
+            longitude = [(LocationReplyMessage*)message longitude];
+        }
+        
+        UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeShow
+                                                                                     isMe:isMe
+                                                                                 latitude:latitude
+                                                                                longitude:longitude
+                                                                              messageType:message.messageType reqMessageId:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
 }
 
@@ -722,30 +865,63 @@
             tag = ACTION_SHEET_TAG_IMAGE;
             otherOperation = NSLS(@"kLookLargeImage");
             break;
+        case MessageTypeLocationRequest:
+            tag = ACTION_SHEET_TAG_LOCATION_REQUEST;
+            otherOperation = NSLS(@"kShowLocation");
+            break;
+        case MessageTypeLocationResponse:
+        {
+            tag = ACTION_SHEET_TAG_LOCATION_REQUEST;
+            if ([(LocationReplyMessage *)message replyResult] == ACCEPT_ASK_LOCATION) {
+                otherOperation = NSLS(@"kShowLocation");
+            } else {
+                otherOperation = nil;
+            }
+            break;
+        }
         default:
             _showingActionSheet = NO;
             return;
     }
     [self resetASIndexesOfMessage:message];
     UIActionSheet *actionSheet = nil;
+    
     if (message.status == MessageStatusFail) {
-        actionSheet=  [[UIActionSheet alloc]
-                       initWithTitle:NSLS(@"kOpusOperation")
-                       delegate:self
-                       cancelButtonTitle:NSLS(@"kCancel")
-                       destructiveButtonTitle:NSLS(@"kDelete")
-                       otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
+        if (otherOperation) {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:otherOperation, NSLS(@"kResend"), nil];
+        } else {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:NSLS(@"kResend"), nil];
+        }
         [actionSheet setDestructiveButtonIndex:_asIndexResend];
-        
     }else
     {
-        actionSheet=  [[UIActionSheet alloc]
-                       initWithTitle:NSLS(@"kOpusOperation")
-                       delegate:self
-                       cancelButtonTitle:NSLS(@"kCancel")
-                       destructiveButtonTitle:NSLS(@"kDelete")
-                       otherButtonTitles:otherOperation, nil];
+        if (otherOperation) {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:otherOperation, nil];
+        } else {
+            actionSheet=  [[UIActionSheet alloc]
+                           initWithTitle:NSLS(@"kOpusOperation")
+                           delegate:self
+                           cancelButtonTitle:NSLS(@"kCancel")
+                           destructiveButtonTitle:NSLS(@"kDelete")
+                           otherButtonTitles:nil];
+        }
     }
+
     [actionSheet showInView:self.view];
     actionSheet.tag = tag;
     [actionSheet release];
@@ -799,6 +975,9 @@
         [self enterReplayController:(DrawMessage *)_selectedMessage];
     }else if(_asIndexLookLarge == buttonIndex && _selectedMessage.messageType == MessageTypeImage){
         [self enterLargeImage:_selectedMessage];
+    }else if(_asIndexShowLocation == buttonIndex &&
+             (_selectedMessage.messageType == MessageTypeLocationRequest || _selectedMessage.messageType == MessageTypeLocationResponse)){
+        [self showLocation:_selectedMessage];
     }else if(_asIndexResend == buttonIndex){
         [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
         [_selectedMessage setCreateDate:[NSDate date]];
@@ -913,6 +1092,20 @@
     [self presentModalViewController:odc animated:YES];
     //[self.navigationController pushViewController:odc animated:YES];
     [odc release];
+}
+
+
+#pragma mark - UserLocationControllerDelegate
+- (void)didClickSendLocation:(double)latitude
+                   longitude:(double)longitude
+                 messageType:(MessageType)messageType
+                reqMessageId:(NSString *)reqMessageId
+{
+    if (messageType == MessageTypeLocationRequest) {
+        [self sendAskLocationMessage:latitude longitude:longitude];
+    } else {
+        [self sendReplyLocationMessage:latitude longitude:longitude reqMessageId:reqMessageId replyResult:ACCEPT_ASK_LOCATION];
+    }
 }
 
 @end

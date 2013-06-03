@@ -198,6 +198,7 @@ static ChatService *_chatService = nil;
                 text = laMessage.text;
                 replyResult = laMessage.replyResult;
                 hasLocation = (replyResult == ACCEPT_ASK_LOCATION);
+                reqMessageId = laMessage.reqMessageId;
                 break;
             }
             case MessageTypeImage:

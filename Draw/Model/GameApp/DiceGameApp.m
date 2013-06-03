@@ -16,6 +16,7 @@
 #import "DiceGameJumpHandler.h"
 #import "DiceHomeController.h"
 #import "CommonHelpManager.h"
+#import "IAPProductService.h"
 
 @implementation DiceGameApp
 
@@ -451,6 +452,11 @@
     [[CommonHelpManager defaultManager] unzipHelpFiles];
 }
 
+- (void)HandleWithDidBecomeActive
+{
+    
+}
+
 - (void)createConfigData
 {
     NSString* root = @"/Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Config/";
@@ -497,6 +503,25 @@
 - (NSString*)appLinkUmengKey
 {
     return nil;
+}
+
+- (BOOL)forceChineseOpus
+{
+    return NO;
+}
+- (BOOL)disableEnglishGuess
+{
+    return NO;
+}
+
+- (NSString*)iapResourceFileName
+{
+    return [self gameId];
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createDiceCoinTestDataFile];
 }
 
 @end

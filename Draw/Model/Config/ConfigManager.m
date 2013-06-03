@@ -288,9 +288,9 @@
 
 + (BOOL)wallEnabled
 {
-#ifdef DEBUG
-    return YES;
-#endif
+//#ifdef DEBUG
+//    return YES;
+//#endif
     
     if ([ConfigManager isInReviewVersion] == NO && 
         ([LocaleUtils isChina] == YES || 
@@ -628,7 +628,8 @@
     // version 1 : support alpha
     // version 2 : support pens, new data compress //never release
     // version 3 : support shape, draw bg, scale, new  data compress
-    return 3;
+    // version 4 : support shadow, gradient, input text, svg image shape, selector
+    return 4;
 }
 
 
@@ -908,6 +909,11 @@
 + (NSString *)getAlipaySeller
 {
     return [MobClickUtils getStringValueByKey:@"ALI_PAY_SELLER" defaultValue:ALIPAY_SELLER];
+}
+
++ (NSString *)getAlipayWebUrl
+{
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http://192.168.1.198:9879/webpay?name=%@&amount=%@"];
 }
 
 + (NSString *)getAlipayRSAPrivateKey

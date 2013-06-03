@@ -412,6 +412,7 @@
                                           password:[targetText encodeMD5Base64:PASSWORD_KEY]
                                     viewController:self];
 }
+
 - (void)didClickCancel:(InputDialog *)dialog
 {
     

@@ -93,6 +93,10 @@
     self.myWordsLabel.text = NSLS(@"kMyWords");
 
     [self.draftsBoxButton setTitle:NSLS(@"kDraftsBox") forState:UIControlStateNormal];
+    
+    if (isLittleGeeAPP()) {
+        [self didSelectWord:[Word cusWordWithText:@""]];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -55,6 +55,15 @@ typedef enum
     ///////////////
     BasicShape = 1300,
     
+    //add by Gamy 2013-5-30
+    BasicEmptyShape = 1301,
+
+    ImageShape1 = 1321,
+    ImageShape2 = 1322,
+    ImageShape3 = 1323,
+    ImageShape4 = 1324,
+    ImageShape5 = 1325,
+    
     CanvasRectStart = 1400,         
     CanvasRectiPhoneDefault,            // 300 * 300
     CanvasRectiPadDefault,              // 700 * 700

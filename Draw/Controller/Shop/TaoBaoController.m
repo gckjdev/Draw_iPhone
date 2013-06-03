@@ -35,11 +35,14 @@
     
     self.titleLabel.text = self.customTitle;
     
-    if (_url) {
-        NSURL *url = [NSURL URLWithString:_url];
+    NSURL *url = [NSURL URLWithString:_url];
+    if (url != nil) {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.taoBaoWebView loadRequest:request];
         [self showActivityWithText:NSLS(@"kLoading")];
+    }
+    else{
+        [UIUtils alert:NSLS(@"无法打开网页")];
     }
 }
 
