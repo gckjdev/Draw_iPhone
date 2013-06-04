@@ -524,4 +524,9 @@
     [IAPProductService createDiceCoinTestDataFile];
 }
 
+- (BOOL)showLocateButton
+{
+    return NO;
+}
+
 @end

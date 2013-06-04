@@ -164,6 +164,8 @@
 
 - (void)createIAPTestDataFile;
 
+- (BOOL)showLocateButton;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

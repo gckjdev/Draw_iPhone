@@ -30,6 +30,7 @@
 #import "CanvasRect.h"
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
+#import "GameApp.h"
 
 @interface ChatDetailController ()
 {
@@ -208,6 +209,28 @@
 //    }];
 }
 
+//235 - 68 
+
+#define RECT_INPUT_TEXT_VIEW        ([DeviceDetection isIPAD] ? CGRectMake(167, 20, 579, 50) : CGRectMake(75, 8, 232, 30))
+#define RECT_INPUT_TEXT_BACKGROUND   ([DeviceDetection isIPAD] ? CGRectMake(158, 11, 461, 68) : CGRectMake(69, 5, 245, 36))
+
+- (void)updateLocateButton
+{
+    if ([GameApp showLocateButton] == NO) {
+        self.locateButton.hidden = YES;
+        self.inputTextView.frame = RECT_INPUT_TEXT_VIEW;
+        self.inputTextBackgroundImage.frame = RECT_INPUT_TEXT_BACKGROUND;
+    } else {
+        MyFriend *friend = [MyFriend friendWithFid:_messageStat.friendId
+                                          nickName:_messageStat.friendNickName
+                                            avatar:_messageStat.friendAvatar
+                                            gender:_messageStat.friendGenderString
+                                             level:1];
+        if (friend.relation != RelationTypeFriend){
+            self.locateButton.enabled = NO;
+        }
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -218,6 +241,7 @@
     [self loadNewMessage:YES];
     self.unReloadDataWhenViewDidAppear = YES;
     
+    [self updateLocateButton];
 }
 
 

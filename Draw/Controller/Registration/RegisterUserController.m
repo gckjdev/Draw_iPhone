@@ -28,6 +28,7 @@
 #import "GameSNSService.h"
 #import "AnalyticsManager.h"
 #import "GameApp.h"
+#import "UIViewUtils.h"
 
 @implementation RegisterUserController
 @synthesize backgroundImageView;
@@ -60,6 +61,15 @@
 
 #pragma mark - View lifecycle
 
+#define TAG_EMAIL_TEXTFIELD             2013060401
+#define TAG_PASSWORD_TEXTFIELD          2013060402
+#define TAG_PASSOWRD_AGAIN_TEXTFIELD    2013060403
+
+
+#define Y_EMAIL             ([DeviceDetection isIPAD] ? 126 : 54 )
+#define Y_PAASWORD          ([DeviceDetection isIPAD] ? 206 : 94 )
+#define Y_PASSWORD_AGAIN    ([DeviceDetection isIPAD] ? 286 : 134 )
+
 - (void)viewDidLoad
 {
 //    int i = rand() % 100;
@@ -76,6 +86,33 @@
     self.userIdTextField.placeholder = NSLS(@"kEnterEmail");
     [self.userIdTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
     userIdTextField.delegate = self;
+    userIdTextField.tag = TAG_EMAIL_TEXTFIELD;
+    
+    self.passwordTextField.placeholder = NSLS(@"kEnterPassword");
+    [self.passwordTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
+    _passwordTextField.delegate = self;
+    _passwordAgainTextField.tag = TAG_PASSWORD_TEXTFIELD;
+    
+    self.passwordAgainTextField.placeholder = NSLS(@"kEnterPasswordAgain");
+    [self.passwordAgainTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
+    _passwordAgainTextField.delegate = self;
+    _passwordAgainTextField.tag = TAG_PASSOWRD_AGAIN_TEXTFIELD;
+    
+    if (isSecureSmsAPP()) {
+        self.passwordTextField.hidden = NO;
+        self.passwordAgainTextField.hidden = NO;
+        [self.submitButton updateOriginY:Y_EMAIL];
+        [self.userIdTextField updateOriginY:Y_EMAIL];
+        [self.passwordTextField updateOriginY:Y_PAASWORD];
+        [self.passwordAgainTextField updateOriginY:Y_PASSWORD_AGAIN];
+    } else {
+        if ([DeviceDetection isIPAD]) {
+        
+        }
+        self.passwordTextField.hidden = YES;
+        self.passwordAgainTextField.hidden = YES;
+    }
+
     
     [self.submitButton setTitle:NSLS(@"kStartGame") forState:UIControlStateNormal];
     [self.submitButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] 
@@ -137,6 +174,8 @@
     [self setInviteLabel:nil];
     [self setRemoteDrawArray:nil];
     [self setBackgroundImageView:nil];
+    [self setPasswordTextField:nil];
+    [self setPasswordAgainTextField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -193,6 +232,21 @@
         return NO;        
     }
     
+    
+    if (isSecureSmsAPP()) {
+        if ([_passwordTextField.text length] == 0){
+            [UIUtils alert:NSLS(@"kEnterPassword")];
+            [_passwordTextField becomeFirstResponder];
+            return NO;
+        }
+        
+        if ([_passwordAgainTextField.text isEqualToString:_passwordTextField.text] == NO){
+            [UIUtils alert:NSLS(@"kTwoPasswordsNotMatch")];
+            [_passwordAgainTextField becomeFirstResponder];
+            return NO;
+        }
+    }
+    
 //    if ([loginPasswordTextField.text length] == 0){
 //        [UIUtils alert:@"密码不能为空"];
 //        [loginPasswordTextField becomeFirstResponder];
@@ -215,7 +269,7 @@
     }    
     
     [self.view endEditing:YES];    
-    [[UserService defaultService] registerUser:userId password:@"" viewController:self];    
+    [[UserService defaultService] registerUser:userId password:_passwordTextField.text viewController:self];
 }
 
 - (void)snsLogin:(PPSNSType)snsType
@@ -291,6 +345,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    
     [self clickSubmit:textField];
     return NO;
 }
@@ -316,6 +371,8 @@
     PPRelease(remoteDrawArray);
     PPRelease(inviteLabel);
     PPRelease(backgroundImageView);
+    [_passwordTextField release];
+    [_passwordAgainTextField release];
     [super dealloc];
 }
 

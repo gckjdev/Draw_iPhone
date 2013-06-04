@@ -34,6 +34,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *sinaButton;
 @property (retain, nonatomic) IBOutlet UIButton *qqButton;
 @property (retain, nonatomic) IBOutlet UILabel *inviteLabel;
+@property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (retain, nonatomic) IBOutlet UITextField *passwordAgainTextField;
+
 @property (retain, nonatomic) NSArray *remoteDrawArray;
 
 

@@ -510,4 +510,9 @@
     return [self gameId];
 }
 
+- (BOOL)showLocateButton
+{
+    return NO;
+}
+
 @end
