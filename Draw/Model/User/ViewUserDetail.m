@@ -388,6 +388,10 @@
                 title = NSLS(@"kGraffiti");
             } else if (isCallTrackAPP()) {
                 title = NSLS(@"kGetLocationTitle");
+                if ([self relation] != RelationTypeFriend) {
+                    button.enabled = NO;
+                }
+                
             } else {
                 title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
             }

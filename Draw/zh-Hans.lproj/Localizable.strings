@@ -367,11 +367,12 @@
 "kNetworkErrorMessage" = "无法访问互联网，请检查手机是否正确连接到网络或者WIFI。";
 //4月23新增
 "kEnterPassword" = "请输入密码";
+"kEnterPasswordAgain" = "请再次输入密码";
 "kPsdNotMatch" = "密码错误";
 "kEmailNotFound" = "E-mail地址尚未注册";
 "kLoginFailure" = "登录失败，请稍后再试";
 "kLoginUser" = "正在登录...";
-
+"kTwoPasswordsNotMatch" = "两次输入的密码不一致";
 
 "kSaveOpusOK" = "作品已成功保存";
 "kSaveOpusFail" = "作品保存失败";
@@ -993,25 +994,25 @@
 "kSummaryOfSendItem_Me" = "回复我的表态: %@";
 "kSummaryOfComment_Me" = "回复我的评论: %@";
 
-"kAskLocationTitle" = "定位请求";
-"kReplyLocationTitle" = "回复请求";
+"kAskLocationTitle" = "定位請求";
+"kReplyLocationTitle" = "回復請求";
 "kShowMyLocationTitle" = "我的位置";
-"kShowFriendLocationTitle" = "对方位置";
-"kGetingLocation" = "正在获取当前位置...";
+"kShowFriendLocationTitle" = "對方位置";
+"kGetingLocation" = "正在獲取當前位置...";
 
-"kAskLocationMessage" = "这是我的位置，让我看看你在哪个位置？";
-"kReplyLocationMessage" = "回复了定位请求";
-"kRejectLocationMessage" = "拒绝了定位请求";
+"kAskLocationMessage" = "發起定位請求";
+"kReplyLocationMessage" = "回复定位請求";
+"kRejectLocationMessage" = "拒絕定位請求";
 
-"kReplyLocation" = "回复定位请求";
-"kRejectLocation" = "拒绝定位请求";
-"kShowOtherLocation" = "显示对方位置";
+"kReplyLocation" = "回復請求";
+"kRejectLocation" = "拒絕請求";
+"kShowOtherLocation" = "顯示位置";
 
-"kShowLocation" = "显示位置";
+"kShowLocation" = "顯示位置";
 
-"kGetLocationFail" = "暂时无法定位,不能发送定位请求。";
-"kAskLocationAlert" = "确定发送定位请求，并且发送你的位置吗？";
-"kReplyLocationAlert" = "确定回复定位请求，并且发送你的位置吗?";
+"kGetLocationFail" = "暫時無法定位,不能發送定位請求";
+"kAskLocationAlert" = "確定發送定位請求？";
+"kReplyLocationAlert" = "確定回复定位請求?";
 
 
 "kContestPassed" = "已结束(%d)";
@@ -1334,7 +1335,7 @@
 "kSecureSmsChat" = "聊天";
 "kSecureSmsLocate" = "定位";
 "kSecureSmsFirends" = "好友";
-"kSecureSmsMe" = "我";
+"kSecureSmsMe" = "设置";
 "kSecureSmsSupport" = "反馈";
 "kEnterCorrectPassword" = "请输入正确的密码";
 

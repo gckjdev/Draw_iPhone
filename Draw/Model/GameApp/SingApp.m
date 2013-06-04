@@ -144,4 +144,9 @@
     return @"SingInputDialog";
 }
 
+- (BOOL)showLocateButton
+{
+    return NO;
+}
+
 @end

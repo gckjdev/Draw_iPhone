@@ -119,4 +119,10 @@
 {
     [IAPProductService createDrawIngotTestDataFile];
 }
+
+- (BOOL)showLocateButton
+{
+    return NO;
+}
+
 @end
