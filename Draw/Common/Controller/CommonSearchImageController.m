@@ -14,7 +14,6 @@
 
 @interface CommonSearchImageController () {
     ImageSearch* _imageSearcher;
-    int count;
 }
 
 @end
@@ -41,19 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(test) userInfo:nil repeats:YES];
 
-    count = 0;
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)test {
-    self.dataList = [GoogleCustomSearchService searchImageBytext:@"狗" imageSize:CGSizeMake(0, 0) imageType:nil];
-    count ++;
-    PPDebug(@"---------%d",count);
-    //    self.dataList = [_imageSearcher searchImageBySize:CGSizeMake(0, 0) searchText:searchBar.text location:nil searchSite:nil startPage:0 maxResult:100];
-    [self.dataTableView reloadData];
-}
 
 - (void)didReceiveMemoryWarning
 {
