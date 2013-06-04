@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "ImageSearch.h"
 #import "ImageSearchResult.h"
+#import "GoogleCustomSearchService.h"
 
 @interface CommonSearchImageController () {
     ImageSearch* _imageSearcher;
@@ -39,8 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -78,7 +81,7 @@
         UIImageView* imageView = (UIImageView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
         if (self.dataList.count > IMAGE_PER_LINE*indexPath.row+i) {
             ImageSearchResult* result = (ImageSearchResult*)[self.dataList objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
-            PPDebug(@"get search result %@", result.url);
+            PPDebug(@"get search result %@", result);
             [imageView setImageWithURL:[NSURL URLWithString:result.url]];
         }
         
@@ -94,8 +97,10 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+//    self.dataList = [GoogleCustomSearchService searchImageBytext:searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil];
     self.dataList = [_imageSearcher searchImageBySize:CGSizeMake(0, 0) searchText:searchBar.text location:nil searchSite:nil startPage:0 maxResult:100];
     [self.dataTableView reloadData];
+    [searchBar resignFirstResponder];
 }
 
 

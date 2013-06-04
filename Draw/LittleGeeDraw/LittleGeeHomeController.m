@@ -115,7 +115,7 @@ static int popOptionListWithoutFreeCoinsEn[] = {
 @property (retain, nonatomic) IBOutlet UIButton *drawOptionBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *bigPen;
 
-- (IBAction)clickTest:(id)sender;
+
 
 @end
 
