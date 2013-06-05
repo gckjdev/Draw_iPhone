@@ -8,6 +8,7 @@
 #import "Dice.pb.h"
 #import "ZhaJinHua.pb.h"
 #import "Bbs.pb.h"
+#import "Opus.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
@@ -79,6 +80,14 @@
 @class OpenDiceRequest_Builder;
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
+@class PBActionComment;
+@class PBActionComment_Builder;
+@class PBActionFlower;
+@class PBActionFlower_Builder;
+@class PBActionGuess;
+@class PBActionGuess_Builder;
+@class PBActionTimes;
+@class PBActionTimes_Builder;
 @class PBApp;
 @class PBApp_Builder;
 @class PBBBSAction;
@@ -169,6 +178,10 @@
 @class PBNoCompressDrawAction_Builder;
 @class PBNoCompressDrawData;
 @class PBNoCompressDrawData_Builder;
+@class PBOpus;
+@class PBOpusAction;
+@class PBOpusAction_Builder;
+@class PBOpus_Builder;
 @class PBPoint;
 @class PBPoint_Builder;
 @class PBPoker;
@@ -181,14 +194,16 @@
 @class PBSNSUser_Builder;
 @class PBSettingInfo;
 @class PBSettingInfo_Builder;
-@class PBSing;
-@class PBSing_Builder;
+@class PBSingOpus;
+@class PBSingOpus_Builder;
 @class PBSize;
 @class PBSize_Builder;
 @class PBSong;
 @class PBSongList;
 @class PBSongList_Builder;
 @class PBSong_Builder;
+@class PBTimeline;
+@class PBTimeline_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserDice;
@@ -4437,6 +4452,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasTotalCount_:1;
   BOOL hasVersion_:1;
   BOOL hasUserRelation_:1;
+  BOOL hasOpus_:1;
   BOOL hasUser_:1;
   BOOL hasWall_:1;
   BOOL hasBbsDrawData_:1;
@@ -4444,6 +4460,7 @@ BOOL BetTypeIsValidValue(BetType value);
   int32_t totalCount;
   int32_t version;
   int32_t userRelation;
+  PBOpus* opus;
   PBGameUser* user;
   PBWall* wall;
   PBBBSDraw* bbsDrawData;
@@ -4466,6 +4483,7 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasWall;
 - (BOOL) hasUser;
 - (BOOL) hasUserRelation;
+- (BOOL) hasOpus;
 @property (readonly) int32_t resultCode;
 @property (readonly) int32_t totalCount;
 @property (readonly) int32_t version;
@@ -4473,6 +4491,7 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly, retain) PBWall* wall;
 @property (readonly, retain) PBGameUser* user;
 @property (readonly) int32_t userRelation;
+@property (readonly, retain) PBOpus* opus;
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
 - (NSArray*) messageList;
@@ -4647,5 +4666,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) addIdList:(NSString*) value;
 - (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearIdListList;
+
+- (BOOL) hasOpus;
+- (PBOpus*) opus;
+- (DataQueryResponse_Builder*) setOpus:(PBOpus*) value;
+- (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
+- (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value;
+- (DataQueryResponse_Builder*) clearOpus;
 @end
 

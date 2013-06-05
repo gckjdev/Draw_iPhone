@@ -46,11 +46,6 @@
     return YES;
 }
 
-- (NSString *)alipayCallBackScheme
-{
-    return @"alipaylearndraw.gckj";
-}
-
 - (PPViewController *)homeController
 {
     return [[[LearnDrawHomeController alloc] init] autorelease];

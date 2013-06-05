@@ -3,19 +3,26 @@
 #ifndef PROTOBUF_C_Sing_2eproto__INCLUDED
 #define PROTOBUF_C_Sing_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#import "protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
-#include "GameBasic.pb-c.h"
-#include "GameConstants.pb-c.h"
 
 typedef struct _Game__PBSong Game__PBSong;
-typedef struct _Game__PBSing Game__PBSing;
+typedef struct _Game__PBSongList Game__PBSongList;
+typedef struct _Game__PBSingOpus Game__PBSingOpus;
 
 
 /* --- enums --- */
 
+typedef enum _Game__PBVoiceType {
+  GAME__PBVOICE_TYPE__VoiceTypeOrigin = 0,
+  GAME__PBVOICE_TYPE__VoiceTypeTomCat = 1,
+  GAME__PBVOICE_TYPE__VoiceTypeDuck = 2,
+  GAME__PBVOICE_TYPE__VoiceTypeMale = 3,
+  GAME__PBVOICE_TYPE__VoiceTypeChild = 4,
+  GAME__PBVOICE_TYPE__VoiceTypeFemale = 5
+} Game__PBVoiceType;
 
 /* --- messages --- */
 
@@ -34,19 +41,30 @@ struct  _Game__PBSong
     , NULL, NULL, NULL, NULL, 0,NULL }
 
 
-struct  _Game__PBSing
+struct  _Game__PBSongList
+{
+  ProtobufCMessage base;
+  size_t n_songs;
+  Game__PBSong **songs;
+};
+#define GAME__PBSONG_LIST__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbsong_list__descriptor) \
+    , 0,NULL }
+
+
+struct  _Game__PBSingOpus
 {
   ProtobufCMessage base;
   Game__PBSong *song;
   protobuf_c_boolean has_voicetype;
-  int32_t voicetype;
+  Game__PBVoiceType voicetype;
   protobuf_c_boolean has_duration;
   float duration;
   protobuf_c_boolean has_pitch;
   float pitch;
 };
-#define GAME__PBSING__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbsing__descriptor) \
+#define GAME__PBSING_OPUS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbsing_opus__descriptor) \
     , NULL, 0,0, 0,1, 0,1 }
 
 
@@ -69,32 +87,54 @@ Game__PBSong *
 void   game__pbsong__free_unpacked
                      (Game__PBSong *message,
                       ProtobufCAllocator *allocator);
-/* Game__PBSing methods */
-void   game__pbsing__init
-                     (Game__PBSing         *message);
-size_t game__pbsing__get_packed_size
-                     (const Game__PBSing   *message);
-size_t game__pbsing__pack
-                     (const Game__PBSing   *message,
+/* Game__PBSongList methods */
+void   game__pbsong_list__init
+                     (Game__PBSongList         *message);
+size_t game__pbsong_list__get_packed_size
+                     (const Game__PBSongList   *message);
+size_t game__pbsong_list__pack
+                     (const Game__PBSongList   *message,
                       uint8_t             *out);
-size_t game__pbsing__pack_to_buffer
-                     (const Game__PBSing   *message,
+size_t game__pbsong_list__pack_to_buffer
+                     (const Game__PBSongList   *message,
                       ProtobufCBuffer     *buffer);
-Game__PBSing *
-       game__pbsing__unpack
+Game__PBSongList *
+       game__pbsong_list__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   game__pbsing__free_unpacked
-                     (Game__PBSing *message,
+void   game__pbsong_list__free_unpacked
+                     (Game__PBSongList *message,
+                      ProtobufCAllocator *allocator);
+/* Game__PBSingOpus methods */
+void   game__pbsing_opus__init
+                     (Game__PBSingOpus         *message);
+size_t game__pbsing_opus__get_packed_size
+                     (const Game__PBSingOpus   *message);
+size_t game__pbsing_opus__pack
+                     (const Game__PBSingOpus   *message,
+                      uint8_t             *out);
+size_t game__pbsing_opus__pack_to_buffer
+                     (const Game__PBSingOpus   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBSingOpus *
+       game__pbsing_opus__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbsing_opus__free_unpacked
+                     (Game__PBSingOpus *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
 typedef void (*Game__PBSong_Closure)
                  (const Game__PBSong *message,
                   void *closure_data);
-typedef void (*Game__PBSing_Closure)
-                 (const Game__PBSing *message,
+typedef void (*Game__PBSongList_Closure)
+                 (const Game__PBSongList *message,
+                  void *closure_data);
+typedef void (*Game__PBSingOpus_Closure)
+                 (const Game__PBSingOpus *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -102,8 +142,10 @@ typedef void (*Game__PBSing_Closure)
 
 /* --- descriptors --- */
 
+extern const ProtobufCEnumDescriptor    game__pbvoice_type__descriptor;
 extern const ProtobufCMessageDescriptor game__pbsong__descriptor;
-extern const ProtobufCMessageDescriptor game__pbsing__descriptor;
+extern const ProtobufCMessageDescriptor game__pbsong_list__descriptor;
+extern const ProtobufCMessageDescriptor game__pbsing_opus__descriptor;
 
 PROTOBUF_C_END_DECLS
 

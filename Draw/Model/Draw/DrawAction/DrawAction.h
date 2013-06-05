@@ -16,11 +16,15 @@
 
 typedef enum {
     
-    DrawActionTypePaint,//0
-    DrawActionTypeClean,//1
-    DrawActionTypeShape,//2
-    DrawActionTypeChangeBack, //change bg with color//3
-    DrawActionTypeChangeBGImage, //change bg with pb draw bg//4
+    DrawActionTypePaint,            //Paint Action 0
+    DrawActionTypeClean,            //Clean Action 1 //new version without it
+    DrawActionTypeShape,            //Shape Action 2
+    DrawActionTypeChangeBack,       //Change bg with color 3
+    DrawActionTypeChangeBGImage,    //Change bg with pb draw bg 4
+
+    DrawActionTypeSelectionStart,   //Selection start 5
+    DrawActionTypeSelectionEnd,     //Selection end 6
+    
 } DrawActionType;
 
 //#define BACK_GROUND_WIDTH 5000
