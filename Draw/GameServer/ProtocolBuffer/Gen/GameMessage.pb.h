@@ -179,6 +179,8 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBSettingInfo;
+@class PBSettingInfo_Builder;
 @class PBSing;
 @class PBSing_Builder;
 @class PBSize;

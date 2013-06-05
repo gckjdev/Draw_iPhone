@@ -38,6 +38,8 @@
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
+@class PBSettingInfo;
+@class PBSettingInfo_Builder;
 @class PBSize;
 @class PBSize_Builder;
 @class PBUserBasicInfo;
@@ -1065,6 +1067,63 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBDrawBg_Builder*) clearShowStyle;
 @end
 
+@interface PBSettingInfo : PBGeneratedMessage {
+@private
+  BOOL hasTag_:1;
+  BOOL hasClipType_:1;
+  int32_t tag;
+  int32_t clipType;
+}
+- (BOOL) hasTag;
+- (BOOL) hasClipType;
+@property (readonly) int32_t tag;
+@property (readonly) int32_t clipType;
+
++ (PBSettingInfo*) defaultInstance;
+- (PBSettingInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSettingInfo_Builder*) builder;
++ (PBSettingInfo_Builder*) builder;
++ (PBSettingInfo_Builder*) builderWithPrototype:(PBSettingInfo*) prototype;
+
++ (PBSettingInfo*) parseFromData:(NSData*) data;
++ (PBSettingInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSettingInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBSettingInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSettingInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSettingInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSettingInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSettingInfo* result;
+}
+
+- (PBSettingInfo*) defaultInstance;
+
+- (PBSettingInfo_Builder*) clear;
+- (PBSettingInfo_Builder*) clone;
+
+- (PBSettingInfo*) build;
+- (PBSettingInfo*) buildPartial;
+
+- (PBSettingInfo_Builder*) mergeFrom:(PBSettingInfo*) other;
+- (PBSettingInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSettingInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasTag;
+- (int32_t) tag;
+- (PBSettingInfo_Builder*) setTag:(int32_t) value;
+- (PBSettingInfo_Builder*) clearTag;
+
+- (BOOL) hasClipType;
+- (int32_t) clipType;
+- (PBSettingInfo_Builder*) setClipType:(int32_t) value;
+- (PBSettingInfo_Builder*) clearClipType;
+@end
+
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasWidth_:1;
@@ -1078,6 +1137,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   BOOL hasBetterColor_:1;
   BOOL hasShadowColor_:1;
   BOOL hasDrawBg_:1;
+  BOOL hasSettingInfo_:1;
   Float32 width;
   Float32 shadowOffsetX;
   Float32 shadowOffsetY;
@@ -1089,6 +1149,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   int32_t betterColor;
   int32_t shadowColor;
   PBDrawBg* drawBg;
+  PBSettingInfo* settingInfo;
   NSMutableArray* mutableRectComponentList;
   NSMutableArray* mutablePointsXList;
   NSMutableArray* mutablePointsYList;
@@ -1106,6 +1167,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasShadowOffsetY;
 - (BOOL) hasShadowColor;
 - (BOOL) hasShadowBlur;
+- (BOOL) hasSettingInfo;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
@@ -1117,6 +1179,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly) Float32 shadowOffsetY;
 @property (readonly) int32_t shadowColor;
 @property (readonly) Float32 shadowBlur;
+@property (readonly, retain) PBSettingInfo* settingInfo;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) rectComponentList;
@@ -1244,6 +1307,13 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (Float32) shadowBlur;
 - (PBDrawAction_Builder*) setShadowBlur:(Float32) value;
 - (PBDrawAction_Builder*) clearShadowBlur;
+
+- (BOOL) hasSettingInfo;
+- (PBSettingInfo*) settingInfo;
+- (PBDrawAction_Builder*) setSettingInfo:(PBSettingInfo*) value;
+- (PBDrawAction_Builder*) setSettingInfoBuilder:(PBSettingInfo_Builder*) builderForValue;
+- (PBDrawAction_Builder*) mergeSettingInfo:(PBSettingInfo*) value;
+- (PBDrawAction_Builder*) clearSettingInfo;
 @end
 
 @interface PBMessage : PBGeneratedMessage {

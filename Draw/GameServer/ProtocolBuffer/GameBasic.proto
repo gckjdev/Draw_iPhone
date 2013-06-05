@@ -129,6 +129,10 @@ message PBDrawBg
     optional int32 showStyle = 4 [default=0]; // 0 for show in center, 1 for show in pattern
 }
 
+message PBSettingInfo {
+    required int32 tag = 1; //the id of the setting info
+    optional int32 clipType = 2; //1: Rect, 2: Circle, 3: Multiple Edge Shape 4: Path
+}
 
 // internal usage, to store draw data
 message PBDrawAction {
@@ -163,7 +167,8 @@ message PBDrawAction {
   optional float shadowOffsetY = 16;
   optional int32 shadowColor   = 17;
   optional float shadowBlur    = 18;
-  
+ 
+  optional PBSettingInfo settingInfo = 20;
 
 }
 
