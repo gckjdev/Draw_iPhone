@@ -1341,6 +1341,7 @@
 "kSecureSmsMe" = "SETTINGS";
 "kSecureSmsSupport" = "SUPPORT";
 "kEnterCorrectPassword" = "Enter correct password";
+"kSecureSmsLocateTitle" = "Locate";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO";

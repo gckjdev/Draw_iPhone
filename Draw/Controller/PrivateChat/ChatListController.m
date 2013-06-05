@@ -22,6 +22,7 @@
 #import "PPMessageManager.h"
 #import "UserManager.h"
 #import "CommonUserInfoView.h"
+#import "GameApp.h"
 
 @interface ChatListController ()
 
@@ -89,7 +90,12 @@
     [self initListWithLocalData];    
     
     [addChatButton setTitle:NSLS(@"kAddChat") forState:UIControlStateNormal];
-    [self.titleLabel setText:NSLS(@"kChatListTitle")];
+    if (isCallTrackAPP()) {
+        [self.titleLabel setText:NSLS(@"kSecureSmsLocateTitle")];
+    } else {
+        [self.titleLabel setText:NSLS(@"kChatListTitle")];
+    }
+
     
     TableTab *tab = [self currentTab];    
     [self clickTab:tab.tabID];
