@@ -35,12 +35,12 @@
 
 - (BOOL)disableAd
 {
-    return NO;
+    return NO;  
 }
 
 - (NSString*)umengId
 {
-    return DREAM_AVATAR_UMENG_ID;
+    return @"51aed40756240b1b90001c78";
 }
 
 - (BOOL)hasBGOffscreen{
