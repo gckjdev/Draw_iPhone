@@ -1,10 +1,6 @@
 �l,http://58.215.160.100:8080/icon/ad_limei.png
 enkNameLi Mei%
-zh-HanskName力美 推荐应用�l,http://58.215.160.100:8080/icon/ad_youmi.png
-enkNameYou Mi%
-zh-HanskName有米 推荐应用�s-http://58.215.160.100:8080/icon/ad_renren.png
-enkNameRen Ren Ader%
-zh-HanskName人人 推荐应用��
+zh-HanskName力美 推荐应用��
 �
 
 zh-Hans	诈金花	诈金花

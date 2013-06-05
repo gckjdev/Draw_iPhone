@@ -424,7 +424,8 @@ typedef enum{
 - (void)didClickRankView:(RankView *)rankView
 {
 
-    if (!isLearnDrawApp() || ![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
+    if ((!isLearnDrawApp() && !isDreamAvatarApp() && !isDreamLockscreenApp())
+         || ![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
         [self showFeed:rankView.feed];
     }else{
         MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc]

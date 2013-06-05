@@ -24,7 +24,7 @@
 
 #define DEVICE_INFO_SEPERATOR   @"_"
 
-#define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
+//#define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
 
 @implementation GameNetworkRequest
 
@@ -3419,9 +3419,6 @@
                           progressDelegate:progressDelegate];
     
 }
-
-
-
 
 
 

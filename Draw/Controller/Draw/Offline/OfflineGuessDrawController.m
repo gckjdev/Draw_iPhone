@@ -844,7 +844,7 @@
         }];
         [dialog.backButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
     } else {
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self clickOkBlock:^{
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
             [cp quitGameDirectly];
         } clickCancelBlock:^{
             //

@@ -135,6 +135,7 @@
 }
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
+    _delegate = nil;
     PPRelease(titleLabel);
     PPRelease(inputTextView);
     PPRelease(inputBackgroundView);
