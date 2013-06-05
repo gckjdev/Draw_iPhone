@@ -13,10 +13,16 @@
 #import "InputDialog.h"
 #import "ChangeAvatar.h"
 #import "Sing.pb.h"
+#import "OpusService.h"
 
-@interface SingController : PPViewController <AVAudioRecorderDelegate, InputDialogDelegate, ChangeAvatarDelegate>
+@interface SingController : PPViewController <AVAudioRecorderDelegate,InputDialogDelegate, ChangeAvatarDelegate, OpusServiceDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *originButton;
+@property (retain, nonatomic) IBOutlet UIButton *tomCatButton;
+@property (retain, nonatomic) IBOutlet UIButton *duckButton;
+@property (retain, nonatomic) IBOutlet UIButton *maleButton;
+@property (retain, nonatomic) IBOutlet UIButton *childButton;
+@property (retain, nonatomic) IBOutlet UIButton *femaleButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tagButton;
 @property (retain, nonatomic) IBOutlet UILabel *songNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *songAuthorLabel;
@@ -26,13 +32,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *playImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *pauseImageView;
 @property (retain, nonatomic) IBOutlet UIButton *rerecordButton;
-@property (retain, nonatomic) IBOutlet UIImageView *rerecordButtonBg;
 @property (retain, nonatomic) IBOutlet UIButton *addTimeButton;
-@property (retain, nonatomic) IBOutlet UIImageView *addTimeButtonBg;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
-@property (retain, nonatomic) IBOutlet UIImageView *saveButtonBg;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
-@property (retain, nonatomic) IBOutlet UIImageView *submitButtonBg;
 
 - (id)initWithSong:(PBSong *)song;
 

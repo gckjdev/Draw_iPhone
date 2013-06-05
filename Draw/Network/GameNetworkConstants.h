@@ -128,8 +128,8 @@
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"
 #define METHOD_GET_OUPS_TIMES @"got"
 
-//for Sing
-#define METHOD_SUBMIT_SING @"sbms"
+//for opus
+#define METHOD_SUBMIT_OPUS @"smo"
 
 
 //contest
@@ -282,7 +282,9 @@
 #define PARA_APPID @"app"
 #define PARA_GAME_ID @"gid"
 #define PARA_DRAW_DATA @"dd"
-#define PARA_SING_DATA @"sgd"
+#define PARA_OPUS_META_DATA @"omd"
+#define PARA_OPUS_IMAGE_DATA @"oid"
+#define PARA_OPUS_DATA @"od"
 
 #define PARA_DRAW_IMAGE @"photo"
 #define PARA_FEED_ID @"fid"

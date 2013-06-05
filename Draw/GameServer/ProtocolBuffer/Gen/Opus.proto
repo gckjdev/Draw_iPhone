@@ -1,0 +1,140 @@
+
+import "GameBasic.proto";
+import "GameConstants.proto";
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "SingProtos";
+
+message PBSong{
+  required string songId = 1;       // 歌曲Id
+  required string name = 2;         // 歌曲名称
+
+  optional string author = 3;       // 作者
+  optional string lyric = 4;        // 歌词
+
+  repeated int32 tag = 20;            // 标签，用于分类
+}
+
+message PBSongList{
+  repeated PBSong songs = 1;
+}
+
+message PBSingOpus {
+  optional PBSong song = 1;
+
+
+  // 声音变声器参数控制
+  optional int32 voiceType = 2;
+
+  optional float duration = 3[default = 1];
+  optional float pitch = 4[default = 1];
+}
+
+message PBDrawOpus {
+  // TODO add size here
+}
+
+enum PBOpusType{
+
+	UNKNOWN = 0;
+	DRAW = 1;
+	GUESS = 2;
+	COMMENT = 3;
+	REPOST = 4;                         // useless at this moment
+    DRAW_TO_USER = 5;
+	FLOWER = 6;                         // align with ItemTypeFlower
+	TOMATO = 7;                         // align with ItemTypeTomato
+    ONLY_COMMENT = 8;                   // TODO check what it is
+    DRAW_CONTEST = 9;
+    
+    SING = 1000;
+    SING_TO_USER = 1001;
+    SING_CONTEST = 1002;
+}
+
+message PBOpus {
+
+  required string opusId = 1;                   // 作品Id
+  optional PBOpusType type = 2;                 // 作品类型
+  optional string name = 3;                     // 作品名称
+  optional string desc = 4;                     // 作品描述
+  optional string image = 5;                    // 作品图片
+  optional string thumbImage = 6;               // 作品缩略图
+  optional string dataUrl = 9;                  // 作品数据远程URL
+  
+  optional int32 createDate = 15;               // 作品创建时间
+  optional int32 status = 20;                   // 作品状态，0表示正常，1表示已删除。
+
+  // 创建来源信息，如来自哪些设备、应用
+  optional int32  deviceType = 25;               // deviceType : (1:iPhone/iPod Touch, 2:iPad, 3:Android Phone)
+  optional string deviceName = 26;               // 设备名称，如 iPhone4, New iPad, iPhone5, 三星Galaxy 等等
+  optional string appId = 28;                    // 来自哪个应用创作的
+
+  optional PBGameUser author = 35;              // 作者基本信息
+
+  optional PBGameUser targetUser = 41;          // 作品是给谁的
+  optional string contestId = 42;               // 参与的比赛的Id
+
+  repeated PBActionTimes actionTimes = 45;      // 作品操作统计信息
+
+  optional PBDrawOpus draw = 101;                // 画画特有信息
+  optional PBSingOpus sing = 102;                // 唱歌特有信息
+}
+
+//message PBSourceAction{
+//
+//    required string actionId = 1;                   // 如果source是作品，传opusId
+//    required PBUserBasicInfo userInfo = 2;          // 用户基本信息
+//    required int32 type = 3;                      
+//    optional string briefComment = 4;
+//}
+
+
+message PBOpusAction{
+    required string actionId = 1;
+    optional int32 actionType = 2;                  //3 comment, 2, guess, 6 flower
+    
+    
+    optional string opusId = 5;                     // 评论的作品的Id
+    optional PBUserBasicInfo userInfo = 6;          // 评论人的信息
+//    optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
+
+    optional int32 createDate = 11;                 // 评论的创建时间
+
+    optional PBOpusAction sourceAction = 15;        // 原评论的内容
+
+
+    //content
+    optional PBActionComment commentAction = 51;    // 评论
+    optional PBActionFlower flowerAction = 52;      // 鲜花
+    optional PBActionGuess guessAction = 53;        // 猜
+}
+
+message PBActionComment{
+    optional string content = 1;                    // 评论内容
+}
+
+message PBActionFlower{
+    required int32 type = 1 ;                       // 1 for current flower
+}
+
+message PBActionGuess{
+    repeated string words = 1;                      // 猜过的词
+    optional bool correct = 2;                      // 是否猜中？
+}
+
+
+message PBActionTimes{
+    required int32  type  = 1;                      // 操作类型
+    optional string name  = 2;                      // 名字
+    optional int32  value = 3[default=0];           // 
+}
+
+message PBTimeline
+{
+    optional PBOpus opus = 1;                       
+    optional PBOpusAction action = 2;               //only guess action
+}
+
