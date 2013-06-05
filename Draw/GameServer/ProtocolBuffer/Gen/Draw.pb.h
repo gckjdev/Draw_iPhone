@@ -78,8 +78,10 @@
 @class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBSingOpus;
-@class PBSingOpus_Builder;
+@class PBSettingInfo;
+@class PBSettingInfo_Builder;
+@class PBSing;
+@class PBSing_Builder;
 @class PBSize;
 @class PBSize_Builder;
 @class PBSong;
@@ -514,16 +516,16 @@
   BOOL hasScore_:1;
   BOOL hasMatchTimes_:1;
   BOOL hasCorrectTimes_:1;
-  BOOL hasCommentTimes_:1;
   BOOL hasGuessTimes_:1;
+  BOOL hasCommentTimes_:1;
   BOOL hasContestId_:1;
-  BOOL hasDataUrl_:1;
   BOOL hasOpusCreatorUserId_:1;
   BOOL hasOpusCreatorNickName_:1;
   BOOL hasOpusCreatorAvatar_:1;
   BOOL hasOpusWord_:1;
   BOOL hasOpusImage_:1;
   BOOL hasOpusThumbImage_:1;
+  BOOL hasDataUrl_:1;
   BOOL hasComment_:1;
   BOOL hasOpusId_:1;
   BOOL hasDrawDataUrl_:1;
@@ -538,6 +540,7 @@
   BOOL hasUserId_:1;
   BOOL hasFeedId_:1;
   BOOL hasLearnDraw_:1;
+  BOOL hasSing_:1;
   BOOL hasCommentInfo_:1;
   BOOL hasDrawData_:1;
   BOOL isCorrect_:1;
@@ -552,16 +555,16 @@
   int32_t score;
   int32_t matchTimes;
   int32_t correctTimes;
-  int32_t commentTimes;
   int32_t guessTimes;
+  int32_t commentTimes;
   NSString* contestId;
-  NSString* dataUrl;
   NSString* opusCreatorUserId;
   NSString* opusCreatorNickName;
   NSString* opusCreatorAvatar;
   NSString* opusWord;
   NSString* opusImage;
   NSString* opusThumbImage;
+  NSString* dataUrl;
   NSString* comment;
   NSString* opusId;
   NSString* drawDataUrl;
@@ -576,6 +579,7 @@
   NSString* userId;
   NSString* feedId;
   PBLearnDraw* learnDraw;
+  PBSing* sing;
   PBCommentInfo* commentInfo;
   PBDraw* drawData;
   NSMutableArray* mutableGuessWordsList;
@@ -619,6 +623,7 @@
 - (BOOL) hasContestId;
 - (BOOL) hasContestScore;
 - (BOOL) hasLearnDraw;
+- (BOOL) hasSing;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -657,6 +662,7 @@
 @property (readonly, retain) NSString* contestId;
 @property (readonly) Float64 contestScore;
 @property (readonly, retain) PBLearnDraw* learnDraw;
+@property (readonly, retain) PBSing* sing;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 - (NSArray*) feedTimesList;
@@ -905,6 +911,13 @@
 - (PBFeed_Builder*) setLearnDrawBuilder:(PBLearnDraw_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeLearnDraw:(PBLearnDraw*) value;
 - (PBFeed_Builder*) clearLearnDraw;
+
+- (BOOL) hasSing;
+- (PBSing*) sing;
+- (PBFeed_Builder*) setSing:(PBSing*) value;
+- (PBFeed_Builder*) setSingBuilder:(PBSing_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeSing:(PBSing*) value;
+- (PBFeed_Builder*) clearSing;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

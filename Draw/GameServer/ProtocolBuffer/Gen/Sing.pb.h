@@ -2,23 +2,65 @@
 
 #import "ProtocolBuffers.h"
 
-@class PBSingOpus;
-@class PBSingOpus_Builder;
+#import "GameBasic.pb.h"
+#import "GameConstants.pb.h"
+
+@class PBApp;
+@class PBApp_Builder;
+@class PBDrawAction;
+@class PBDrawAction_Builder;
+@class PBDrawBg;
+@class PBDrawBg_Builder;
+@class PBGameItem;
+@class PBGameItemList;
+@class PBGameItemList_Builder;
+@class PBGameItem_Builder;
+@class PBGameSession;
+@class PBGameSessionChanged;
+@class PBGameSessionChanged_Builder;
+@class PBGameSession_Builder;
+@class PBGameUser;
+@class PBGameUser_Builder;
+@class PBIAPProduct;
+@class PBIAPProductList;
+@class PBIAPProductList_Builder;
+@class PBIAPProductPrice;
+@class PBIAPProductPrice_Builder;
+@class PBIAPProduct_Builder;
+@class PBItemPriceInfo;
+@class PBItemPriceInfo_Builder;
+@class PBKeyValue;
+@class PBKeyValue_Builder;
+@class PBLocalizeString;
+@class PBLocalizeString_Builder;
+@class PBMessage;
+@class PBMessageStat;
+@class PBMessageStat_Builder;
+@class PBMessage_Builder;
+@class PBPromotionInfo;
+@class PBPromotionInfo_Builder;
+@class PBSNSUser;
+@class PBSNSUser_Builder;
+@class PBSettingInfo;
+@class PBSettingInfo_Builder;
+@class PBSing;
+@class PBSing_Builder;
+@class PBSize;
+@class PBSize_Builder;
 @class PBSong;
 @class PBSongList;
 @class PBSongList_Builder;
 @class PBSong_Builder;
-typedef enum {
-  PBVoiceTypeVoiceTypeOrigin = 0,
-  PBVoiceTypeVoiceTypeTomCat = 1,
-  PBVoiceTypeVoiceTypeDuck = 2,
-  PBVoiceTypeVoiceTypeMale = 3,
-  PBVoiceTypeVoiceTypeChild = 4,
-  PBVoiceTypeVoiceTypeFemale = 5,
-} PBVoiceType;
-
-BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
-
+@class PBUserBasicInfo;
+@class PBUserBasicInfo_Builder;
+@class PBUserItem;
+@class PBUserItemList;
+@class PBUserItemList_Builder;
+@class PBUserItem_Builder;
+@class PBUserLevel;
+@class PBUserLevel_Builder;
+@class PBUserResult;
+@class PBUserResult_Builder;
 
 @interface SingRoot : NSObject {
 }
@@ -160,80 +202,80 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (PBSongList_Builder*) clearSongsList;
 @end
 
-@interface PBSingOpus : PBGeneratedMessage {
+@interface PBSing : PBGeneratedMessage {
 @private
   BOOL hasDuration_:1;
   BOOL hasPitch_:1;
-  BOOL hasSong_:1;
   BOOL hasVoiceType_:1;
+  BOOL hasSong_:1;
   Float32 duration;
   Float32 pitch;
+  int32_t voiceType;
   PBSong* song;
-  PBVoiceType voiceType;
 }
 - (BOOL) hasSong;
 - (BOOL) hasVoiceType;
 - (BOOL) hasDuration;
 - (BOOL) hasPitch;
 @property (readonly, retain) PBSong* song;
-@property (readonly) PBVoiceType voiceType;
+@property (readonly) int32_t voiceType;
 @property (readonly) Float32 duration;
 @property (readonly) Float32 pitch;
 
-+ (PBSingOpus*) defaultInstance;
-- (PBSingOpus*) defaultInstance;
++ (PBSing*) defaultInstance;
+- (PBSing*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBSingOpus_Builder*) builder;
-+ (PBSingOpus_Builder*) builder;
-+ (PBSingOpus_Builder*) builderWithPrototype:(PBSingOpus*) prototype;
+- (PBSing_Builder*) builder;
++ (PBSing_Builder*) builder;
++ (PBSing_Builder*) builderWithPrototype:(PBSing*) prototype;
 
-+ (PBSingOpus*) parseFromData:(NSData*) data;
-+ (PBSingOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBSingOpus*) parseFromInputStream:(NSInputStream*) input;
-+ (PBSingOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBSingOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBSingOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSing*) parseFromData:(NSData*) data;
++ (PBSing*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSing*) parseFromInputStream:(NSInputStream*) input;
++ (PBSing*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSing*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSing*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBSingOpus_Builder : PBGeneratedMessage_Builder {
+@interface PBSing_Builder : PBGeneratedMessage_Builder {
 @private
-  PBSingOpus* result;
+  PBSing* result;
 }
 
-- (PBSingOpus*) defaultInstance;
+- (PBSing*) defaultInstance;
 
-- (PBSingOpus_Builder*) clear;
-- (PBSingOpus_Builder*) clone;
+- (PBSing_Builder*) clear;
+- (PBSing_Builder*) clone;
 
-- (PBSingOpus*) build;
-- (PBSingOpus*) buildPartial;
+- (PBSing*) build;
+- (PBSing*) buildPartial;
 
-- (PBSingOpus_Builder*) mergeFrom:(PBSingOpus*) other;
-- (PBSingOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBSingOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBSing_Builder*) mergeFrom:(PBSing*) other;
+- (PBSing_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSing_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasSong;
 - (PBSong*) song;
-- (PBSingOpus_Builder*) setSong:(PBSong*) value;
-- (PBSingOpus_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue;
-- (PBSingOpus_Builder*) mergeSong:(PBSong*) value;
-- (PBSingOpus_Builder*) clearSong;
+- (PBSing_Builder*) setSong:(PBSong*) value;
+- (PBSing_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue;
+- (PBSing_Builder*) mergeSong:(PBSong*) value;
+- (PBSing_Builder*) clearSong;
 
 - (BOOL) hasVoiceType;
-- (PBVoiceType) voiceType;
-- (PBSingOpus_Builder*) setVoiceType:(PBVoiceType) value;
-- (PBSingOpus_Builder*) clearVoiceType;
+- (int32_t) voiceType;
+- (PBSing_Builder*) setVoiceType:(int32_t) value;
+- (PBSing_Builder*) clearVoiceType;
 
 - (BOOL) hasDuration;
 - (Float32) duration;
-- (PBSingOpus_Builder*) setDuration:(Float32) value;
-- (PBSingOpus_Builder*) clearDuration;
+- (PBSing_Builder*) setDuration:(Float32) value;
+- (PBSing_Builder*) clearDuration;
 
 - (BOOL) hasPitch;
 - (Float32) pitch;
-- (PBSingOpus_Builder*) setPitch:(Float32) value;
-- (PBSingOpus_Builder*) clearPitch;
+- (PBSing_Builder*) setPitch:(Float32) value;
+- (PBSing_Builder*) clearPitch;
 @end
 
