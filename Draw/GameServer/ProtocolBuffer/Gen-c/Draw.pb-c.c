@@ -1308,7 +1308,7 @@ const ProtobufCMessageDescriptor game__pblearn_draw__descriptor =
   (ProtobufCMessageInit) game__pblearn_draw__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[40] =
 {
   {
     "feedId",
@@ -1790,18 +1790,6 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
-  {
-    "sing",
-    101,
-    PROTOBUF_C_LABEL_OPTIONAL,
-    PROTOBUF_C_TYPE_MESSAGE,
-    0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBFeed, sing),
-    &game__pbsing__descriptor,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
 };
 static const unsigned game__pbfeed__field_indices_by_name[] = {
   2,   /* field[2] = actionType */
@@ -1841,7 +1829,6 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   33,   /* field[33] = opusWord */
   19,   /* field[19] = score */
   10,   /* field[10] = signature */
-  40,   /* field[40] = sing */
   12,   /* field[12] = targetUserId */
   13,   /* field[13] = targetUserNickName */
   1,   /* field[1] = userId */
@@ -1858,7 +1845,7 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[10 + 1] =
   { 81, 33 },
   { 91, 37 },
   { 100, 39 },
-  { 0, 41 }
+  { 0, 40 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -1868,7 +1855,7 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  41,
+  40,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
   10,  game__pbfeed__number_ranges,

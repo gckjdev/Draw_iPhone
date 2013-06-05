@@ -1702,7 +1702,6 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property (retain) NSString* contestId;
 @property Float64 contestScore;
 @property (retain) PBLearnDraw* learnDraw;
-@property (retain) PBSing* sing;
 @end
 
 @implementation PBFeed
@@ -1990,13 +1989,6 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasLearnDraw_ = !!value;
 }
 @synthesize learnDraw;
-- (BOOL) hasSing {
-  return !!hasSing_;
-}
-- (void) setHasSing:(BOOL) value {
-  hasSing_ = !!value;
-}
-@synthesize sing;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2024,7 +2016,6 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.dataUrl = nil;
   self.contestId = nil;
   self.learnDraw = nil;
-  self.sing = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2067,7 +2058,6 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
     self.contestId = @"";
     self.contestScore = 0;
     self.learnDraw = [PBLearnDraw defaultInstance];
-    self.sing = [PBSing defaultInstance];
   }
   return self;
 }
@@ -2127,11 +2117,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     if (!self.learnDraw.isInitialized) {
-      return NO;
-    }
-  }
-  if (self.hasSing) {
-    if (!self.sing.isInitialized) {
       return NO;
     }
   }
@@ -2257,9 +2242,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     [output writeMessage:100 value:self.learnDraw];
-  }
-  if (self.hasSing) {
-    [output writeMessage:101 value:self.sing];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2394,9 +2376,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     size += computeMessageSize(100, self.learnDraw);
-  }
-  if (self.hasSing) {
-    size += computeMessageSize(101, self.sing);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2599,9 +2578,6 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasLearnDraw) {
     [self mergeLearnDraw:other.learnDraw];
   }
-  if (other.hasSing) {
-    [self mergeSing:other.sing];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2798,15 +2774,6 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setLearnDraw:[subBuilder buildPartial]];
-        break;
-      }
-      case 810: {
-        PBSing_Builder* subBuilder = [PBSing builder];
-        if (self.hasSing) {
-          [subBuilder mergeFrom:self.sing];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSing:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3520,36 +3487,6 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearLearnDraw {
   result.hasLearnDraw = NO;
   result.learnDraw = [PBLearnDraw defaultInstance];
-  return self;
-}
-- (BOOL) hasSing {
-  return result.hasSing;
-}
-- (PBSing*) sing {
-  return result.sing;
-}
-- (PBFeed_Builder*) setSing:(PBSing*) value {
-  result.hasSing = YES;
-  result.sing = value;
-  return self;
-}
-- (PBFeed_Builder*) setSingBuilder:(PBSing_Builder*) builderForValue {
-  return [self setSing:[builderForValue build]];
-}
-- (PBFeed_Builder*) mergeSing:(PBSing*) value {
-  if (result.hasSing &&
-      result.sing != [PBSing defaultInstance]) {
-    result.sing =
-      [[[PBSing builderWithPrototype:result.sing] mergeFrom:value] buildPartial];
-  } else {
-    result.sing = value;
-  }
-  result.hasSing = YES;
-  return self;
-}
-- (PBFeed_Builder*) clearSing {
-  result.hasSing = NO;
-  result.sing = [PBSing defaultInstance];
   return self;
 }
 @end

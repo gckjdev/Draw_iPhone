@@ -133,7 +133,8 @@ static ChatService *_chatService = nil;
            delegate:(id<ChatServiceDelegate>)delegate
 {
     [message retain];
-    dispatch_async(workingQueue, ^{            
+//    [delegate retain];
+    dispatch_async(workingQueue, ^{
         
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *friendId = message.friendId;
@@ -155,8 +156,8 @@ static ChatService *_chatService = nil;
         NSString *reqMessageId = nil;
         
         //image 
-        NSString *imageUrl = nil;
-        NSString *thumbImageUrl = nil;
+        __block NSString *imageUrl = nil;
+        __block NSString *thumbImageUrl = nil;
         
         switch (type) {
             case MessageTypeText:
@@ -233,32 +234,30 @@ static ChatService *_chatService = nil;
                                                          reqMessageId:reqMessageId
                                                           replyResult:replyResult];
         
-        if (output.resultCode == ERROR_SUCCESS){
-            NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-            message.messageId = messageId;
-            
-            NSInteger timeValue = [[output.jsonDataDict objectForKey:PARA_CREATE_DATE] intValue];
-            if (timeValue != 0) {
-                message.createDate = [NSDate dateWithTimeIntervalSince1970:timeValue];
-                PPDebug(@"return date = %@", message.createDate);
-            }
-            
-            if (type == MessageTypeImage) {
-                imageUrl = [output.jsonDataDict objectForKey:PARA_IMAGE];
-                thumbImageUrl = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-            }
-            
-            message.status = MessageStatusSent;
-            PPDebug(@"<ChatService>sendMessage success");
-        }else {
-            
-            message.status = MessageStatusFail;
-            PPDebug(@"<ChatService>sendMessage failed");
-        }
-
         dispatch_async(dispatch_get_main_queue(), ^{
-            [message release];
-            
+            if (output.resultCode == ERROR_SUCCESS){
+                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                message.messageId = messageId;
+                
+                NSInteger timeValue = [[output.jsonDataDict objectForKey:PARA_CREATE_DATE] intValue];
+                if (timeValue != 0) {
+                    message.createDate = [NSDate dateWithTimeIntervalSince1970:timeValue];
+                    PPDebug(@"return date = %@", message.createDate);
+                }
+                
+                if (type == MessageTypeImage) {
+                    imageUrl = [output.jsonDataDict objectForKey:PARA_IMAGE];
+                    thumbImageUrl = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
+                }
+                
+                message.status = MessageStatusSent;
+                PPDebug(@"<ChatService>sendMessage success");
+            }else {
+                
+                message.status = MessageStatusFail;
+                PPDebug(@"<ChatService>sendMessage failed");
+            }
+
             if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
                 if (type == MessageTypeImage) {
                     ImageMessage *imageMessage = (ImageMessage *)message;
@@ -272,7 +271,10 @@ static ChatService *_chatService = nil;
                     [delegate didSendMessage:message resultCode:output.resultCode];
                 }
             }
-        }); 
+            
+            [message release];
+//            [delegate release];
+        });
     });
 }
 

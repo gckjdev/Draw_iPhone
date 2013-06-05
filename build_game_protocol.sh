@@ -16,3 +16,5 @@ echo build Objective-C codes
 
 ./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Sing.proto
 
+./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Opus.proto
+

@@ -18,6 +18,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [DiceRoot registerAllExtensions:registry];
     [ZhaJinHuaRoot registerAllExtensions:registry];
     [BbsRoot registerAllExtensions:registry];
+    [OpusRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -17685,6 +17686,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBGameUser* user;
 @property int32_t userRelation;
 @property (retain) NSMutableArray* mutableIdListList;
+@property (retain) PBOpus* opus;
 @end
 
 @implementation DataQueryResponse
@@ -17749,6 +17751,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @synthesize userRelation;
 @synthesize mutableIdListList;
+- (BOOL) hasOpus {
+  return !!hasOpus_;
+}
+- (void) setHasOpus:(BOOL) value {
+  hasOpus_ = !!value;
+}
+@synthesize opus;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17764,6 +17773,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.wall = nil;
   self.user = nil;
   self.mutableIdListList = nil;
+  self.opus = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17775,6 +17785,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.wall = [PBWall defaultInstance];
     self.user = [PBGameUser defaultInstance];
     self.userRelation = 0;
+    self.opus = [PBOpus defaultInstance];
   }
   return self;
 }
@@ -17936,6 +17947,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasOpus) {
+    if (!self.opus.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -17992,6 +18008,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (NSString* element in self.mutableIdListList) {
     [output writeString:90 value:element];
+  }
+  if (self.hasOpus) {
+    [output writeMessage:100 value:self.opus];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18060,6 +18079,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableIdListList.count;
+  }
+  if (self.hasOpus) {
+    size += computeMessageSize(100, self.opus);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18223,6 +18245,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableIdListList addObjectsFromArray:other.mutableIdListList];
   }
+  if (other.hasOpus) {
+    [self mergeOpus:other.opus];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18349,6 +18374,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 722: {
         [self addIdList:[input readString]];
+        break;
+      }
+      case 802: {
+        PBOpus_Builder* subBuilder = [PBOpus builder];
+        if (self.hasOpus) {
+          [subBuilder mergeFrom:self.opus];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setOpus:[subBuilder buildPartial]];
         break;
       }
     }
@@ -18827,6 +18861,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 }
 - (DataQueryResponse_Builder*) clearIdListList {
   result.mutableIdListList = nil;
+  return self;
+}
+- (BOOL) hasOpus {
+  return result.hasOpus;
+}
+- (PBOpus*) opus {
+  return result.opus;
+}
+- (DataQueryResponse_Builder*) setOpus:(PBOpus*) value {
+  result.hasOpus = YES;
+  result.opus = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
+  return [self setOpus:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value {
+  if (result.hasOpus &&
+      result.opus != [PBOpus defaultInstance]) {
+    result.opus =
+      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
+  } else {
+    result.opus = value;
+  }
+  result.hasOpus = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearOpus {
+  result.hasOpus = NO;
+  result.opus = [PBOpus defaultInstance];
   return self;
 }
 @end

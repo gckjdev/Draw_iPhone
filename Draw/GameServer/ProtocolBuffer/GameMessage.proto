@@ -5,7 +5,7 @@ import "Draw.proto";
 import "Dice.proto";
 import "ZhaJinHua.proto";
 import "BBS.proto";
-
+import "Opus.proto";
 
 package game;
 
@@ -463,6 +463,7 @@ message GameMessage {
   
   optional int32 timeStamp = 1010;          // 时间戳
   optional string mac = 1011;               // mac=Base64(MD5(messageId+timeStamp+shareKey))
+  
 }
 
 message DataQueryResponse {
@@ -497,5 +498,7 @@ message DataQueryResponse {
   optional int32 userRelation = 86;             // 用户和用户之间的关系
 
   repeated string idList = 90;              //for learn draw
+  
+  optional PBOpus opus = 100;
   
 }

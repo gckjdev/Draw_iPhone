@@ -307,6 +307,49 @@ void   game__pbdraw_bg__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbdraw_bg__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   game__pbsetting_info__init
+                     (Game__PBSettingInfo         *message)
+{
+  static Game__PBSettingInfo init_value = GAME__PBSETTING_INFO__INIT;
+  *message = init_value;
+}
+size_t game__pbsetting_info__get_packed_size
+                     (const Game__PBSettingInfo *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsetting_info__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbsetting_info__pack
+                     (const Game__PBSettingInfo *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsetting_info__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbsetting_info__pack_to_buffer
+                     (const Game__PBSettingInfo *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsetting_info__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBSettingInfo *
+       game__pbsetting_info__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBSettingInfo *)
+     protobuf_c_message_unpack (&game__pbsetting_info__descriptor,
+                                allocator, len, data);
+}
+void   game__pbsetting_info__free_unpacked
+                     (Game__PBSettingInfo *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsetting_info__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbdraw_action__init
                      (Game__PBDrawAction         *message)
 {
@@ -2208,7 +2251,58 @@ const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor =
   (ProtobufCMessageInit) game__pbdraw_bg__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[15] =
+static const ProtobufCFieldDescriptor game__pbsetting_info__field_descriptors[2] =
+{
+  {
+    "tag",
+    1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSettingInfo, tag),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "clipType",
+    2,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBSettingInfo, has_cliptype),
+    PROTOBUF_C_OFFSETOF(Game__PBSettingInfo, cliptype),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbsetting_info__field_indices_by_name[] = {
+  1,   /* field[1] = clipType */
+  0,   /* field[0] = tag */
+};
+static const ProtobufCIntRange game__pbsetting_info__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor game__pbsetting_info__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBSettingInfo",
+  "PBSettingInfo",
+  "Game__PBSettingInfo",
+  "game",
+  sizeof(Game__PBSettingInfo),
+  2,
+  game__pbsetting_info__field_descriptors,
+  game__pbsetting_info__field_indices_by_name,
+  1,  game__pbsetting_info__number_ranges,
+  (ProtobufCMessageInit) game__pbsetting_info__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[16] =
 {
   {
     "type",
@@ -2390,6 +2484,18 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[15]
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "settingInfo",
+    20,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, settinginfo),
+    &game__pbsetting_info__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   9,   /* field[9] = betterColor */
@@ -2400,6 +2506,7 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   7,   /* field[7] = pointsX */
   8,   /* field[8] = pointsY */
   6,   /* field[6] = rectComponent */
+  15,   /* field[15] = settingInfo */
   14,   /* field[14] = shadowBlur */
   13,   /* field[13] = shadowColor */
   11,   /* field[11] = shadowOffsetX */
@@ -2408,11 +2515,12 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   0,   /* field[0] = type */
   2,   /* field[2] = width */
 };
-static const ProtobufCIntRange game__pbdraw_action__number_ranges[2 + 1] =
+static const ProtobufCIntRange game__pbdraw_action__number_ranges[3 + 1] =
 {
   { 1, 0 },
   { 11, 7 },
-  { 0, 15 }
+  { 20, 15 },
+  { 0, 16 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -2422,10 +2530,10 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  15,
+  16,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
-  2,  game__pbdraw_action__number_ranges,
+  3,  game__pbdraw_action__number_ranges,
   (ProtobufCMessageInit) game__pbdraw_action__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
