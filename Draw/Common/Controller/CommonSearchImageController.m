@@ -10,7 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "ImageSearch.h"
 #import "ImageSearchResult.h"
-#import "GoogleCustomSearchService.h"
+
 
 @interface CommonSearchImageController () {
     ImageSearch* _imageSearcher;
@@ -19,6 +19,12 @@
 @end
 
 @implementation CommonSearchImageController
+
+- (void)dealloc
+{
+    [_searchBar release];
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,9 +84,11 @@
         }
     }
     for (int i = 0; i < IMAGE_PER_LINE; i ++) {
+        NSArray* list = [self tabDataList];
         UIImageView* imageView = (UIImageView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
-        if (self.dataList.count > IMAGE_PER_LINE*indexPath.row+i) {
-            ImageSearchResult* result = (ImageSearchResult*)[self.dataList objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
+        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
+            
+            ImageSearchResult* result = (ImageSearchResult*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
             PPDebug(@"get search result %@", result);
             [imageView setImageWithURL:[NSURL URLWithString:result.url]];
         }
@@ -92,16 +100,46 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataList.count;
+    return [[self tabDataList] count]/IMAGE_PER_LINE +1;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-//    self.dataList = [GoogleCustomSearchService searchImageBytext:searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil];
-    self.dataList = [_imageSearcher searchImageBySize:CGSizeMake(0, 0) searchText:searchBar.text location:nil searchSite:nil startPage:0 maxResult:100];
+    [[GoogleCustomSearchService defaultService] searchImageBytext:searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:0 delegate:self];
+//    self.dataList = [_imageSearcher searchImageBySize:CGSizeMake(0, 0) searchText:searchBar.text location:nil searchSite:nil startPage:0 maxResult:100];
     [self.dataTableView reloadData];
     [searchBar resignFirstResponder];
 }
 
+#pragma mark tab controller delegate
+
+- (NSInteger)tabCount
+{
+    return 1;
+}
+- (NSInteger)currentTabIndex
+{
+    return _defaultTabIndex;
+}
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 8;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    return index;
+}
+
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:[[self currentTab] offset] delegate:self];
+}
+
+- (void)didSearchImageResultList:(NSMutableArray *)array
+{
+    if (array.count > 0) {
+        [self finishLoadDataForTabID:[self currentTab].tabID resultList:array];
+    }
+}
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import "CommonTabController.h"
+#import "GoogleCustomSearchService.h"
 
-@interface CommonSearchImageController : PPTableViewController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CommonSearchImageController : CommonTabController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, GoogleCustomSearchServiceDelegate>
+
+@property (retain, nonatomic) IBOutlet UISearchBar* searchBar;
 
 @end
