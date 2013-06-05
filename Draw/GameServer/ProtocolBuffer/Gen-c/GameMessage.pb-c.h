@@ -13,6 +13,7 @@ PROTOBUF_C_BEGIN_DECLS
 #include "Dice.pb-c.h"
 #include "ZhaJinHua.pb-c.h"
 #include "BBS.pb-c.h"
+#include "Opus.pb-c.h"
 
 typedef struct _Game__GetRoomsRequest Game__GetRoomsRequest;
 typedef struct _Game__GetRoomsResponse Game__GetRoomsResponse;
@@ -910,10 +911,11 @@ struct  _Game__DataQueryResponse
   int32_t userrelation;
   size_t n_idlist;
   char **idlist;
+  Game__PBOpus *opus;
 };
 #define GAME__DATA_QUERY_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__data_query_response__descriptor) \
-    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,0, 0,NULL }
+    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,0, 0,NULL, NULL }
 
 
 /* Game__GetRoomsRequest methods */
