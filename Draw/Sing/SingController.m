@@ -10,11 +10,12 @@
 
 #import "SingController.h"
 #import "StringUtil.h"
-#import "DiracFxAudioPlayer.h"
+#import "DiracAudioPlayer.h"
 #import "FileUtil.h"
 #import "UIViewUtils.h"
-#import "SingService.h"
 #import "SongManager.h"
+#import "SingOpus.h"
+#import "MKBlockAlertView.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -33,14 +34,14 @@ enum{
     NSTimeInterval _recordTimerInterval;
     
     int _state;
-    CGFloat _duration;
-    CGFloat _pitch;
+//    CGFloat _duration;
+//    CGFloat _pitch;
 }
-@property (retain, nonatomic) PBSong *song;
-@property (retain, nonatomic) NSURL *recordURL;
-@property (retain, nonatomic) NSURL *playURL;
+@property (retain, nonatomic) SingOpus *singOpus;
+@property (copy, nonatomic) NSURL *recordURL;
+@property (copy, nonatomic) NSURL *playURL;
 @property (retain, nonatomic) AVAudioRecorder *recorder;
-@property (retain, nonatomic) DiracFxAudioPlayer *player;
+@property (retain, nonatomic) DiracAudioPlayer *player;
 @property (retain, nonatomic) UIButton *selectedButton;
 @property (copy, nonatomic) NSString *desc;
 @property (copy, nonatomic) UIImage *image;
@@ -55,11 +56,12 @@ enum{
     [_image release];
     [_desc release];
     [_selectedButton release];
-    [_song release];
+    [_singOpus release];
     [_recordURL release];
     [_recorder release];
     [_player release];
     [_playURL release];
+    
     [_micImageView release];
     [_timeLabel release];
     [_playImageView release];
@@ -68,24 +70,57 @@ enum{
     [_addTimeButton release];
     [_saveButton release];
     [_submitButton release];
-    [_rerecordButtonBg release];
-    [_addTimeButtonBg release];
-    [_saveButtonBg release];
-    [_submitButtonBg release];
     [_songNameLabel release];
     [_songAuthorLabel release];
     [_lyricTextView release];
     [_originButton release];
     [_tagButton release];
+    [_tomCatButton release];
+    [_maleButton release];
+    [_duckButton release];
+    [_femaleButton release];
+    [_childButton release];
     [super dealloc];
 }
 
 - (id)initWithSong:(PBSong *)song{
     if (self = [super init]) {
-        self.song = song;
+        self.singOpus = [Opus opusWithType:OpusTypeSing];
+        [_singOpus setAim:PBOpusAimSing];
+        [_singOpus setSong:song];
+        [_singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
+        [_singOpus setDuration:1];
+        [_singOpus setPitch:1];
     }
     
     return self;
+}
+
+- (void)initSelectedButton{
+    switch (_singOpus.pbOpusBuilder.singOpus.voiceType) {
+        case PBVoiceTypeVoiceTypeOrigin:
+            self.selectedButton = _originButton;
+            break;
+            
+        case PBVoiceTypeVoiceTypeTomCat:
+            self.selectedButton = _tomCatButton;
+            break;
+        case PBVoiceTypeVoiceTypeDuck:
+            self.selectedButton = _duckButton;
+            break;
+        case PBVoiceTypeVoiceTypeMale:
+            self.selectedButton = _maleButton;
+            break;
+        case PBVoiceTypeVoiceTypeChild:
+            self.selectedButton = _childButton;
+            break;
+        case PBVoiceTypeVoiceTypeFemale:
+            self.selectedButton = _femaleButton;
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)viewDidLoad
@@ -93,14 +128,14 @@ enum{
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    self.selectedButton = _originButton;
+    [self initSelectedButton];
     
-    _duration = 1;
-    _pitch = 1;
+//    _duration = _singOpus.pbOpusBuilder.singOpus.duration;
+//    _pitch = _singOpus.pbOpusBuilder.singOpus.pitch;
     
-    self.songNameLabel.text = _song.name;
-    self.songAuthorLabel.text = _song.author;
-    self.lyricTextView.text = _song.lyric;
+    self.songNameLabel.text = _singOpus.pbOpus.singOpus.song.name;
+    self.songAuthorLabel.text = _singOpus.pbOpus.singOpus.song.author;
+    self.lyricTextView.text = _singOpus.pbOpus.singOpus.song.lyric;
     
     _recordLimitTime = 30;
     _recordTimerInterval = 0.5;
@@ -108,9 +143,6 @@ enum{
     self.recordURL = [FileUtil fileURLInAppDocument:@"record.m4a"];
     
     [self prepareToRecord:_recordURL];
-    
-    [_player changeDuration:1];
-    [_player changePitch:1];
     
     [self setState:StateReadyRecord];
 }
@@ -128,15 +160,16 @@ enum{
     [self setAddTimeButton:nil];
     [self setSaveButton:nil];
     [self setSubmitButton:nil];
-    [self setRerecordButtonBg:nil];
-    [self setAddTimeButtonBg:nil];
-    [self setSaveButtonBg:nil];
-    [self setSubmitButtonBg:nil];
     [self setSongNameLabel:nil];
     [self setSongAuthorLabel:nil];
     [self setLyricTextView:nil];
     [self setOriginButton:nil];
     [self setTagButton:nil];
+    [self setTomCatButton:nil];
+    [self setDuckButton:nil];
+    [self setMaleButton:nil];
+    [self setFemaleButton:nil];
+    [self setChildButton:nil];
     [super viewDidUnload];
 }
 
@@ -181,9 +214,20 @@ enum{
 }
 
 - (IBAction)clickRerecordButton:(id)sender {
-    [self reset];
-    [self prepareToRecord:_recordURL];
-    [self setState:StateReadyRecord];
+
+    __block typeof(self) bself = self;
+    
+    MKBlockAlertView *v = [[[MKBlockAlertView alloc] initWithTitle:NSLS(@"kGifTips") message:NSLS(@"kRerecordWarnning") delegate:nil cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kComfirm"), nil] autorelease];
+    
+    [v show];
+    
+    [v setActionBlock:^(NSInteger buttonIndex){
+        if (buttonIndex == 1) {
+            [bself reset];
+            [bself prepareToRecord:bself.recordURL];
+            [bself setState:StateReadyRecord];
+        }
+    }];
 }
 
 
@@ -229,7 +273,7 @@ enum{
 - (void)prepareToPlay:(NSURL*)url{
     
     NSError *error = nil;
-    self.player = [[[DiracFxAudioPlayer alloc] initWithContentsOfURL:url channels:1 error:&error] autorelease];		// LE only supports 1 channel!
+    self.player = [[[DiracAudioPlayer alloc] initWithContentsOfURL:url channels:1 error:&error] autorelease];		// LE only supports 1 channel!
     [_player prepareToPlay];
 
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient error:nil];
@@ -238,8 +282,10 @@ enum{
 }
 
 - (void)play{
-    [_player changeDuration:_duration];
-    [_player changePitch:_pitch];
+    float duration = _singOpus.pbOpusBuilder.singOpus.duration;
+    float pitch = _singOpus.pbOpusBuilder.singOpus.pitch;
+    [_player changeDuration:duration];
+    [_player changePitch:pitch];
     
     [_player play];
 
@@ -362,17 +408,9 @@ enum{
     self.pauseImageView.hidden = YES;
     
     self.rerecordButton.hidden = YES;
-    self.rerecordButtonBg.hidden = YES;
-
     self.addTimeButton.hidden = NO;
-    self.addTimeButtonBg.hidden = NO;
-
     self.saveButton.hidden = YES;
-    self.saveButtonBg.hidden = YES;
-
     self.submitButton.hidden = YES;
-    self.submitButtonBg.hidden = YES;
-
 }
 
 - (void)uiRecording{
@@ -382,17 +420,9 @@ enum{
     self.pauseImageView.hidden = YES;
     
     self.rerecordButton.hidden = YES;
-    self.rerecordButtonBg.hidden = YES;
-
     self.addTimeButton.hidden = YES;
-    self.addTimeButtonBg.hidden = YES;
-
     self.saveButton.hidden = YES;
-    self.saveButtonBg.hidden = YES;
-
     self.submitButton.hidden = YES;
-    self.submitButtonBg.hidden = YES;
-
 }
 
 - (void)uiReadyPlay{
@@ -402,17 +432,9 @@ enum{
     self.pauseImageView.hidden = YES;
     
     self.rerecordButton.hidden = NO;
-    self.rerecordButtonBg.hidden = NO;
-
     self.addTimeButton.hidden = NO;
-    self.addTimeButtonBg.hidden = NO;
-
     self.saveButton.hidden = NO;
-    self.saveButtonBg.hidden = NO;
-
     self.submitButton.hidden = NO;
-    self.submitButtonBg.hidden = NO;
-
 }
 
 - (void)uiPlaying{
@@ -422,16 +444,9 @@ enum{
     self.pauseImageView.hidden = NO;
     
     self.rerecordButton.hidden = YES;
-    self.rerecordButtonBg.hidden = YES;
-    
     self.addTimeButton.hidden = YES;
-    self.addTimeButtonBg.hidden = YES;
-    
     self.saveButton.hidden = YES;
-    self.saveButtonBg.hidden = YES;
-    
     self.submitButton.hidden = YES;
-    self.submitButtonBg.hidden = YES;
 }
 
 - (void)updateUITime:(int)time{
@@ -453,8 +468,11 @@ enum{
 }
 
 - (void)changeDuration:(CGFloat)duration pitch:(CGFloat)pitch{
-    _duration = duration;
-    _pitch = pitch;
+    [_singOpus setDuration:duration];
+    [_singOpus setPitch:pitch];
+    
+//    _duration = duration;
+//    _pitch = pitch;
     
     if ([_player playing]) {
         [_player changeDuration:duration];
@@ -523,13 +541,20 @@ enum{
 }
 
 - (IBAction)clickBackButton:(id)sender {
-    [timer invalidate];
-    self.timer = nil;
+
+    if ([_recorder isRecording]) {
+        [self stopRecord];
+    }
+    
+    if ([_player playing]) {
+        [self pausePlay];
+    }
     
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
+    
     NSString *path = _recordURL.path;
     PPDebug(@"path is %@", path);
     
@@ -538,20 +563,20 @@ enum{
         return;
     }
     
-    [[SingService defaultService] submitFeed:1
-                                        word:nil
-                                        desc:nil
-                                    toUserId:nil
-                                  toUserNick:nil
-                                   contestId:nil
-                                        song:nil
-                                    singData:singData
-                                   imageData:nil
-                                   voiceType:1
-                                    duration:1
-                                       pitch:1
-                            progressDelegate:self];
+    [[OpusService defaultService] submitOpus:_singOpus
+                                       image:_image
+                                    opusData:singData
+                            progressDelegate:nil
+                                    delegate:self];
 }
 
+- (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus{
+    
+    if (resultCode == ERROR_SUCCESS) {
+        [self popupMessage:@"成功" title:nil];
+    }else{
+        [self popupMessage:@"失败" title:nil];
+    }
+}
 
 @end

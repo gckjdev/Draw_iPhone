@@ -630,19 +630,12 @@
 
 
 
-+ (CommonNetworkOutput*)submitFeed:(NSString *)baseURL
-                              type:(int)type
-                              word:(NSString *)word
-                              desc:(NSString *)desc
++ (CommonNetworkOutput*)submitOpus:(NSString *)baseURL
+                             appId:(NSString *)appId
                             userId:(NSString *)userId
-                         targetUid:(NSString *)targetUid
-                         contestId:(NSString *)contestId
-                            songId:(NSString *)songId
-                          singData:(NSData *)singData
+                      opusMetaData:(NSData *)opusMetaData
                          imageData:(NSData *)imageData
-                         voiceType:(int)voiceType
-                          duration:(float)duration
-                             pitch:(float)pitch
+                          opusData:(NSData *)opusData
                   progressDelegate:(id)progressDelegate;
 
 

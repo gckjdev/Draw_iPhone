@@ -6388,7 +6388,7 @@ const ProtobufCMessageDescriptor game__game_message__descriptor =
   (ProtobufCMessageInit) game__game_message__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__data_query_response__field_descriptors[18] =
+static const ProtobufCFieldDescriptor game__data_query_response__field_descriptors[19] =
 {
   {
     "resultCode",
@@ -6606,6 +6606,18 @@ static const ProtobufCFieldDescriptor game__data_query_response__field_descripto
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "opus",
+    100,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_MESSAGE,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__DataQueryResponse, opus),
+    &game__pbopus__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__data_query_response__field_indices_by_name[] = {
   9,   /* field[9] = bbsAction */
@@ -6619,6 +6631,7 @@ static const unsigned game__data_query_response__field_indices_by_name[] = {
   17,   /* field[17] = idList */
   4,   /* field[4] = message */
   5,   /* field[5] = messageStat */
+  18,   /* field[18] = opus */
   0,   /* field[0] = resultCode */
   1,   /* field[1] = totalCount */
   15,   /* field[15] = user */
@@ -6627,7 +6640,7 @@ static const unsigned game__data_query_response__field_indices_by_name[] = {
   14,   /* field[14] = wall */
   13,   /* field[13] = wallList */
 };
-static const ProtobufCIntRange game__data_query_response__number_ranges[8 + 1] =
+static const ProtobufCIntRange game__data_query_response__number_ranges[9 + 1] =
 {
   { 1, 0 },
   { 21, 3 },
@@ -6637,7 +6650,8 @@ static const ProtobufCIntRange game__data_query_response__number_ranges[8 + 1] =
   { 80, 13 },
   { 85, 15 },
   { 90, 17 },
-  { 0, 18 }
+  { 100, 18 },
+  { 0, 19 }
 };
 const ProtobufCMessageDescriptor game__data_query_response__descriptor =
 {
@@ -6647,10 +6661,10 @@ const ProtobufCMessageDescriptor game__data_query_response__descriptor =
   "Game__DataQueryResponse",
   "game",
   sizeof(Game__DataQueryResponse),
-  18,
+  19,
   game__data_query_response__field_descriptors,
   game__data_query_response__field_indices_by_name,
-  8,  game__data_query_response__number_ranges,
+  9,  game__data_query_response__number_ranges,
   (ProtobufCMessageInit) game__data_query_response__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

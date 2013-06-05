@@ -144,6 +144,10 @@
     return @"SingInputDialog";
 }
 
+- (NSString *)iapResourceFileName{
+    return @"";
+}
+
 - (BOOL)showLocateButton
 {
     return NO;

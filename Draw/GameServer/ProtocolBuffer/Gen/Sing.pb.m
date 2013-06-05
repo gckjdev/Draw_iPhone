@@ -12,8 +12,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
   if (self == [SingRoot class]) {
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
-    [GameBasicRoot registerAllExtensions:registry];
-    [GameConstantsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -21,6 +19,19 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL PBVoiceTypeIsValidValue(PBVoiceType value) {
+  switch (value) {
+    case PBVoiceTypeVoiceTypeOrigin:
+    case PBVoiceTypeVoiceTypeTomCat:
+    case PBVoiceTypeVoiceTypeDuck:
+    case PBVoiceTypeVoiceTypeMale:
+    case PBVoiceTypeVoiceTypeChild:
+    case PBVoiceTypeVoiceTypeFemale:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBSong ()
 @property (retain) NSString* songId;
 @property (retain) NSString* name;
@@ -585,14 +596,14 @@ static PBSongList* defaultPBSongListInstance = nil;
 }
 @end
 
-@interface PBSing ()
+@interface PBSingOpus ()
 @property (retain) PBSong* song;
-@property int32_t voiceType;
+@property PBVoiceType voiceType;
 @property Float32 duration;
 @property Float32 pitch;
 @end
 
-@implementation PBSing
+@implementation PBSingOpus
 
 - (BOOL) hasSong {
   return !!hasSong_;
@@ -629,23 +640,23 @@ static PBSongList* defaultPBSongListInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.song = [PBSong defaultInstance];
-    self.voiceType = 0;
+    self.voiceType = PBVoiceTypeVoiceTypeOrigin;
     self.duration = 1;
     self.pitch = 1;
   }
   return self;
 }
-static PBSing* defaultPBSingInstance = nil;
+static PBSingOpus* defaultPBSingOpusInstance = nil;
 + (void) initialize {
-  if (self == [PBSing class]) {
-    defaultPBSingInstance = [[PBSing alloc] init];
+  if (self == [PBSingOpus class]) {
+    defaultPBSingOpusInstance = [[PBSingOpus alloc] init];
   }
 }
-+ (PBSing*) defaultInstance {
-  return defaultPBSingInstance;
++ (PBSingOpus*) defaultInstance {
+  return defaultPBSingOpusInstance;
 }
-- (PBSing*) defaultInstance {
-  return defaultPBSingInstance;
+- (PBSingOpus*) defaultInstance {
+  return defaultPBSingOpusInstance;
 }
 - (BOOL) isInitialized {
   if (self.hasSong) {
@@ -660,7 +671,7 @@ static PBSing* defaultPBSingInstance = nil;
     [output writeMessage:1 value:self.song];
   }
   if (self.hasVoiceType) {
-    [output writeInt32:2 value:self.voiceType];
+    [output writeEnum:2 value:self.voiceType];
   }
   if (self.hasDuration) {
     [output writeFloat:3 value:self.duration];
@@ -681,7 +692,7 @@ static PBSing* defaultPBSingInstance = nil;
     size += computeMessageSize(1, self.song);
   }
   if (self.hasVoiceType) {
-    size += computeInt32Size(2, self.voiceType);
+    size += computeEnumSize(2, self.voiceType);
   }
   if (self.hasDuration) {
     size += computeFloatSize(3, self.duration);
@@ -693,40 +704,40 @@ static PBSing* defaultPBSingInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-+ (PBSing*) parseFromData:(NSData*) data {
-  return (PBSing*)[[[PBSing builder] mergeFromData:data] build];
++ (PBSingOpus*) parseFromData:(NSData*) data {
+  return (PBSingOpus*)[[[PBSingOpus builder] mergeFromData:data] build];
 }
-+ (PBSing*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSing*)[[[PBSing builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBSingOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSingOpus*)[[[PBSingOpus builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (PBSing*) parseFromInputStream:(NSInputStream*) input {
-  return (PBSing*)[[[PBSing builder] mergeFromInputStream:input] build];
++ (PBSingOpus*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSingOpus*)[[[PBSingOpus builder] mergeFromInputStream:input] build];
 }
-+ (PBSing*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSing*)[[[PBSing builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBSingOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSingOpus*)[[[PBSingOpus builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBSing*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBSing*)[[[PBSing builder] mergeFromCodedInputStream:input] build];
++ (PBSingOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSingOpus*)[[[PBSingOpus builder] mergeFromCodedInputStream:input] build];
 }
-+ (PBSing*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSing*)[[[PBSing builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBSingOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSingOpus*)[[[PBSingOpus builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBSing_Builder*) builder {
-  return [[[PBSing_Builder alloc] init] autorelease];
++ (PBSingOpus_Builder*) builder {
+  return [[[PBSingOpus_Builder alloc] init] autorelease];
 }
-+ (PBSing_Builder*) builderWithPrototype:(PBSing*) prototype {
-  return [[PBSing builder] mergeFrom:prototype];
++ (PBSingOpus_Builder*) builderWithPrototype:(PBSingOpus*) prototype {
+  return [[PBSingOpus builder] mergeFrom:prototype];
 }
-- (PBSing_Builder*) builder {
-  return [PBSing builder];
+- (PBSingOpus_Builder*) builder {
+  return [PBSingOpus builder];
 }
 @end
 
-@interface PBSing_Builder()
-@property (retain) PBSing* result;
+@interface PBSingOpus_Builder()
+@property (retain) PBSingOpus* result;
 @end
 
-@implementation PBSing_Builder
+@implementation PBSingOpus_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -734,34 +745,34 @@ static PBSing* defaultPBSingInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[PBSing alloc] init] autorelease];
+    self.result = [[[PBSingOpus alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (PBSing_Builder*) clear {
-  self.result = [[[PBSing alloc] init] autorelease];
+- (PBSingOpus_Builder*) clear {
+  self.result = [[[PBSingOpus alloc] init] autorelease];
   return self;
 }
-- (PBSing_Builder*) clone {
-  return [PBSing builderWithPrototype:result];
+- (PBSingOpus_Builder*) clone {
+  return [PBSingOpus builderWithPrototype:result];
 }
-- (PBSing*) defaultInstance {
-  return [PBSing defaultInstance];
+- (PBSingOpus*) defaultInstance {
+  return [PBSingOpus defaultInstance];
 }
-- (PBSing*) build {
+- (PBSingOpus*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (PBSing*) buildPartial {
-  PBSing* returnMe = [[result retain] autorelease];
+- (PBSingOpus*) buildPartial {
+  PBSingOpus* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (PBSing_Builder*) mergeFrom:(PBSing*) other {
-  if (other == [PBSing defaultInstance]) {
+- (PBSingOpus_Builder*) mergeFrom:(PBSingOpus*) other {
+  if (other == [PBSingOpus defaultInstance]) {
     return self;
   }
   if (other.hasSong) {
@@ -779,10 +790,10 @@ static PBSing* defaultPBSingInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (PBSing_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBSingOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (PBSing_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBSingOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -807,7 +818,12 @@ static PBSing* defaultPBSingInstance = nil;
         break;
       }
       case 16: {
-        [self setVoiceType:[input readInt32]];
+        int32_t value = [input readEnum];
+        if (PBVoiceTypeIsValidValue(value)) {
+          [self setVoiceType:value];
+        } else {
+          [unknownFields mergeVarintField:2 value:value];
+        }
         break;
       }
       case 29: {
@@ -827,15 +843,15 @@ static PBSing* defaultPBSingInstance = nil;
 - (PBSong*) song {
   return result.song;
 }
-- (PBSing_Builder*) setSong:(PBSong*) value {
+- (PBSingOpus_Builder*) setSong:(PBSong*) value {
   result.hasSong = YES;
   result.song = value;
   return self;
 }
-- (PBSing_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue {
+- (PBSingOpus_Builder*) setSongBuilder:(PBSong_Builder*) builderForValue {
   return [self setSong:[builderForValue build]];
 }
-- (PBSing_Builder*) mergeSong:(PBSong*) value {
+- (PBSingOpus_Builder*) mergeSong:(PBSong*) value {
   if (result.hasSong &&
       result.song != [PBSong defaultInstance]) {
     result.song =
@@ -846,7 +862,7 @@ static PBSing* defaultPBSingInstance = nil;
   result.hasSong = YES;
   return self;
 }
-- (PBSing_Builder*) clearSong {
+- (PBSingOpus_Builder*) clearSong {
   result.hasSong = NO;
   result.song = [PBSong defaultInstance];
   return self;
@@ -854,17 +870,17 @@ static PBSing* defaultPBSingInstance = nil;
 - (BOOL) hasVoiceType {
   return result.hasVoiceType;
 }
-- (int32_t) voiceType {
+- (PBVoiceType) voiceType {
   return result.voiceType;
 }
-- (PBSing_Builder*) setVoiceType:(int32_t) value {
+- (PBSingOpus_Builder*) setVoiceType:(PBVoiceType) value {
   result.hasVoiceType = YES;
   result.voiceType = value;
   return self;
 }
-- (PBSing_Builder*) clearVoiceType {
+- (PBSingOpus_Builder*) clearVoiceType {
   result.hasVoiceType = NO;
-  result.voiceType = 0;
+  result.voiceType = PBVoiceTypeVoiceTypeOrigin;
   return self;
 }
 - (BOOL) hasDuration {
@@ -873,12 +889,12 @@ static PBSing* defaultPBSingInstance = nil;
 - (Float32) duration {
   return result.duration;
 }
-- (PBSing_Builder*) setDuration:(Float32) value {
+- (PBSingOpus_Builder*) setDuration:(Float32) value {
   result.hasDuration = YES;
   result.duration = value;
   return self;
 }
-- (PBSing_Builder*) clearDuration {
+- (PBSingOpus_Builder*) clearDuration {
   result.hasDuration = NO;
   result.duration = 1;
   return self;
@@ -889,12 +905,12 @@ static PBSing* defaultPBSingInstance = nil;
 - (Float32) pitch {
   return result.pitch;
 }
-- (PBSing_Builder*) setPitch:(Float32) value {
+- (PBSingOpus_Builder*) setPitch:(Float32) value {
   result.hasPitch = YES;
   result.pitch = value;
   return self;
 }
-- (PBSing_Builder*) clearPitch {
+- (PBSingOpus_Builder*) clearPitch {
   result.hasPitch = NO;
   result.pitch = 1;
   return self;
