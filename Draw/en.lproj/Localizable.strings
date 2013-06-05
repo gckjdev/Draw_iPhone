@@ -1692,3 +1692,13 @@
 "kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
 "kViewPost" = "View Post";
 /*********************小吉画画国际化字符串结束 ************************/
+
+
+
+/*********************你唱我猜国际化字符串开始 ************************/
+"kRerecordWarnning" = "Did you want to discard the previous recored voice and re-record?";
+
+/*********************你唱我猜国际化字符串结束 ************************/
+
+
+

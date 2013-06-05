@@ -144,4 +144,8 @@
     return @"SingInputDialog";
 }
 
+- (NSString *)iapResourceFileName{
+    return @"";
+}
+
 @end
