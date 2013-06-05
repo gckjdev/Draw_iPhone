@@ -622,7 +622,6 @@
 
 #pragma mark - Common Dialog Delegate
 #define SHOP_DIALOG_TAG 20120406
-#define QUIT_DIALOG_TAG 20120613
 #define ESCAPE_DEDUT_COIN 1
 #define ITEM_TAG_OFFSET 20120728
 
@@ -640,30 +639,6 @@
     }
 }
 
-- (void)clickOk:(CommonDialog *)dialog
-{
-    switch (dialog.tag) {
-//        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
-//        } break;
-//        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item flower] infoInView:self];
-//        } break;
-//        case (ItemTypeTips + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item tips] infoInView:self];
-//        } break;
-        case QUIT_DIALOG_TAG:
-        default:
-            //if have no words, don't send the action.
-            [self quitGameDirectly];
-            break;
-    }
-
-}
-- (void)clickBack:(CommonDialog *)dialog
-{
-    
-}
 
 #pragma mark - Actions
 

@@ -1289,7 +1289,7 @@ static const protobuf_c_boolean game__pbgame_user__is_playing__default_value = 1
 static const protobuf_c_boolean game__pbgame_user__is_taken_over__default_value = 0;
 static const int32_t game__pbgame_user__guess_word_language__default_value = 1;
 static const Game__PBOpenInfoType game__pbgame_user__open_info_type__default_value = GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND;
-static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[37] =
+static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[40] =
 {
   {
     "userId",
@@ -1700,6 +1700,42 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[37] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "longitude",
+    84,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_longitude),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, longitude),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "latitude",
+    85,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_latitude),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, latitude),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "isJailBroken",
+    86,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_isjailbroken),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, isjailbroken),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "openInfoType",
     91,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -1758,18 +1794,21 @@ static const unsigned game__pbgame_user__field_indices_by_name[] = {
   3,   /* field[3] = gender */
   16,   /* field[16] = guessWordLanguage */
   25,   /* field[25] = ingotBalance */
+  36,   /* field[36] = isJailBroken */
   9,   /* field[9] = isPlaying */
   10,   /* field[10] = isTakenOver */
   26,   /* field[26] = items */
   20,   /* field[20] = language */
+  35,   /* field[35] = latitude */
   21,   /* field[21] = level */
   5,   /* field[5] = location */
+  34,   /* field[34] = longitude */
   1,   /* field[1] = nickName */
-  34,   /* field[34] = openInfoType */
-  35,   /* field[35] = opusCoverflowType */
+  37,   /* field[37] = openInfoType */
+  38,   /* field[38] = opusCoverflowType */
   13,   /* field[13] = password */
   8,   /* field[8] = seatId */
-  36,   /* field[36] = signature */
+  39,   /* field[39] = signature */
   4,   /* field[4] = snsUsers */
   0,   /* field[0] = userId */
   6,   /* field[6] = userLevel */
@@ -1785,9 +1824,9 @@ static const ProtobufCIntRange game__pbgame_user__number_ranges[10 + 1] =
   { 61, 26 },
   { 71, 27 },
   { 81, 31 },
-  { 91, 34 },
-  { 100, 36 },
-  { 0, 37 }
+  { 91, 37 },
+  { 100, 39 },
+  { 0, 40 }
 };
 const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
 {
@@ -1797,7 +1836,7 @@ const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
   "Game__PBGameUser",
   "game",
   sizeof(Game__PBGameUser),
-  37,
+  40,
   game__pbgame_user__field_descriptors,
   game__pbgame_user__field_indices_by_name,
   10,  game__pbgame_user__number_ranges,
@@ -2169,7 +2208,7 @@ const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor =
   (ProtobufCMessageInit) game__pbdraw_bg__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[11] =
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[15] =
 {
   {
     "type",
@@ -2303,6 +2342,54 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[11]
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "shadowOffsetX",
+    15,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_shadowoffsetx),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, shadowoffsetx),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "shadowOffsetY",
+    16,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_shadowoffsety),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, shadowoffsety),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "shadowColor",
+    17,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_shadowcolor),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, shadowcolor),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "shadowBlur",
+    18,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_shadowblur),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, shadowblur),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   9,   /* field[9] = betterColor */
@@ -2313,6 +2400,10 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   7,   /* field[7] = pointsX */
   8,   /* field[8] = pointsY */
   6,   /* field[6] = rectComponent */
+  14,   /* field[14] = shadowBlur */
+  13,   /* field[13] = shadowColor */
+  11,   /* field[11] = shadowOffsetX */
+  12,   /* field[12] = shadowOffsetY */
   5,   /* field[5] = shapeType */
   0,   /* field[0] = type */
   2,   /* field[2] = width */
@@ -2321,7 +2412,7 @@ static const ProtobufCIntRange game__pbdraw_action__number_ranges[2 + 1] =
 {
   { 1, 0 },
   { 11, 7 },
-  { 0, 11 }
+  { 0, 15 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -2331,7 +2422,7 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  11,
+  15,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
   2,  game__pbdraw_action__number_ranges,

@@ -14,7 +14,7 @@
     if (context != NULL) {
         CGContextSaveGState(context);
         
-        if (self.stroke) {
+        if (_stroke) {
             CGContextSetLineWidth(context, self.width);            
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);
             CGContextStrokeEllipseInRect(context, self.rect);

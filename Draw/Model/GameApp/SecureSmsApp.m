@@ -47,6 +47,11 @@
     return YES;
 }
 
+- (BOOL)canSubmitDraw
+{
+    return YES;
+}
+
 - (PPViewController *)homeController
 {
     if (_homeController == nil) {
@@ -57,12 +62,12 @@
 
 - (void)HandleWithDidFinishLaunching
 {
-    [(SecureSmsHomeController *)[self homeController] showInputView];
+    [(SecureSmsHomeController *)[self homeController] showInputView:nil];
 }
 
 - (void)HandleWithDidBecomeActive
 {
-    [(SecureSmsHomeController *)[self homeController] showInputView];
+    [(SecureSmsHomeController *)[self homeController] showInputView:nil];
 }
 
 - (NSString *)alipayCallBackScheme
@@ -75,5 +80,9 @@
     return [self gameId];
 }
 
+- (BOOL)showLocateButton
+{
+    return NO;
+}
 
 @end

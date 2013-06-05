@@ -103,6 +103,17 @@
     [self.bgView setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
 }
 
+- (void)initBasicView:(NSString *)title{
+    float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
+    
+    [self setDialogTitle:title];
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.okButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+    self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
+}
+
 - (void)initView:(NSString*)title
 {
     float fontSize = [DeviceDetection isIPAD] ? 40 : 20;
@@ -117,7 +128,6 @@
     self.titleLabel.titleLabel.font = [UIFont boldSystemFontOfSize:fontSize];
     self.titleLabel.titleLabel.adjustsFontSizeToFitWidth = YES;
     self.titleLabel.titleLabel.lineBreakMode = UILineBreakModeTailTruncation;
-
 }
 
 - (void)initWithTheme:(CommonInputDialogTheme)theme title:(NSString*)title
@@ -185,9 +195,11 @@
 {
 
     InputDialog* view =  (InputDialog*)[self createInfoViewByXibName:[GameApp getInputDialogXibName]];
-    
-    //init the button
-    [view initView:title];
+    if (isSingApp()) {
+        [view initBasicView:title];
+    }else{
+        [view initView:title];
+    }
     view.delegate = delegate;
     view.tag = 0;
     return view;

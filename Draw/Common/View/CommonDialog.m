@@ -295,12 +295,10 @@
     if (_clickOkBlock != nil) {
         _clickOkBlock();
         self.clickOkBlock = nil;
-    }
-    [self disappear];
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
+    } else if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
         [_delegate clickOk:self];
     }
+    [self disappear];
 }
 
 - (IBAction)clickBack:(id)sender
@@ -308,12 +306,12 @@
     if (_clickBackBlock != nil) {
         _clickBackBlock();
         self.clickBackBlock = nil;
+    } else if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
+        [_delegate clickBack:self];
     }
     [self disappear];
     
-    if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
-        [_delegate clickBack:self];
-    }
+    
 
 }
 

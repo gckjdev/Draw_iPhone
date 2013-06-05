@@ -8,19 +8,32 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "RecordAndPlayControl.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "PPViewController.h"
+#import "InputDialog.h"
+#import "ChangeAvatar.h"
+#import "Sing.pb.h"
 
-@interface SingController : PPViewController <AVAudioRecorderDelegate, RecordAndPlayDelegate,
-    MPMediaPickerControllerDelegate>
-@property (retain, nonatomic) IBOutlet UISlider *progressSlider;
+@interface SingController : PPViewController <AVAudioRecorderDelegate, InputDialogDelegate, ChangeAvatarDelegate>
 
-@property (retain, nonatomic) IBOutlet UIView *RecordAndPlayHolderView;
+@property (retain, nonatomic) IBOutlet UIButton *originButton;
+@property (retain, nonatomic) IBOutlet UIImageView *tagButton;
+@property (retain, nonatomic) IBOutlet UILabel *songNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *songAuthorLabel;
+@property (retain, nonatomic) IBOutlet UITextView *lyricTextView;
+@property (retain, nonatomic) IBOutlet UIImageView *micImageView;
+@property (retain, nonatomic) IBOutlet UILabel *timeLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *playImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *pauseImageView;
+@property (retain, nonatomic) IBOutlet UIButton *rerecordButton;
+@property (retain, nonatomic) IBOutlet UIImageView *rerecordButtonBg;
+@property (retain, nonatomic) IBOutlet UIButton *addTimeButton;
+@property (retain, nonatomic) IBOutlet UIImageView *addTimeButtonBg;
+@property (retain, nonatomic) IBOutlet UIButton *saveButton;
+@property (retain, nonatomic) IBOutlet UIImageView *saveButtonBg;
+@property (retain, nonatomic) IBOutlet UIButton *submitButton;
+@property (retain, nonatomic) IBOutlet UIImageView *submitButtonBg;
 
-@property (retain, nonatomic) IBOutlet UISlider *durationSlider;
-@property (retain, nonatomic) IBOutlet UISlider *pitchSlider;
-@property (retain, nonatomic) IBOutlet UILabel *durationLabel;
-@property (retain, nonatomic) IBOutlet UILabel *pitchLabel;
+- (id)initWithSong:(PBSong *)song;
 
 @end

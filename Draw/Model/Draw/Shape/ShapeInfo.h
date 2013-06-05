@@ -17,6 +17,23 @@ typedef enum{
     ShapeTypeEllipse,
     ShapeTypeTriangle,
     ShapeTypeStar,
+    ShapeTypeRoundRect,
+    
+    ShapeTypeEmptyStart = 500,
+    ShapeTypeEmptyBeeline = 501,
+    ShapeTypeEmptyRectangle,
+    ShapeTypeEmptyEllipse,
+    ShapeTypeEmptyTriangle,
+    ShapeTypeEmptyStar,
+    ShapeTypeEmptyRoundRect,
+    ShapeTypeEmptyEnd,
+    
+
+    ShapeTypeImageStart = 1000,
+    
+    ShapeTypeImageEnd = 1999,
+    
+    
 }ShapeType;
 
 //@class PBShapeInfo;
@@ -25,7 +42,7 @@ typedef enum{
 
 @interface ShapeInfo : NSObject
 {
-    
+    ShapeType _type;
 }
 @property(nonatomic, assign)CGPoint startPoint;
 @property(nonatomic, assign)CGPoint endPoint;
@@ -55,13 +72,17 @@ typedef enum{
 
 
 @interface BasicShapeInfo : ShapeInfo
+{
+    BOOL _stroke;
+}
 
-@property(nonatomic, assign) BOOL stroke; //YES for stroke, NO for fill
+- (BOOL)isStroke;
 
 @end
 
 
 @interface ImageShapeInfo : ShapeInfo
+
 
 @end
 

@@ -628,7 +628,8 @@
     // version 1 : support alpha
     // version 2 : support pens, new data compress //never release
     // version 3 : support shape, draw bg, scale, new  data compress
-    return 3;
+    // version 4 : support shadow, gradient, input text, svg image shape, selector
+    return 4;
 }
 
 

@@ -23,5 +23,6 @@
 
 - (IBAction)clickBackButton:(id)sender;
 - (IBAction)clickAvatar:(id)sender;
+- (IBAction)clickSaveButton:(id)sender ;
 
 @end

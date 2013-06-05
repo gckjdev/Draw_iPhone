@@ -57,9 +57,9 @@ typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
 
 + (InputDialog *)dialogWith:(NSString *)title 
                    delegate:(id<InputDialogDelegate>)delegate;
-+ (InputDialog *)dialogWith:(NSString *)title 
-                   delegate:(id<InputDialogDelegate>)delegate 
-                      theme:(CommonInputDialogTheme)theme;
+//+ (InputDialog *)dialogWith:(NSString *)title 
+//                   delegate:(id<InputDialogDelegate>)delegate 
+//                      theme:(CommonInputDialogTheme)theme;
 + (InputDialog *)dialogWith:(NSString *)title
                     clickOK:(InputDialogSelectionBlock)clickOk
                 clickCancel:(InputDialogSelectionBlock)clickCancel;

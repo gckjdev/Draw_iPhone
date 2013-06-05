@@ -356,6 +356,7 @@
 
 //4月23新增
 "kEnterPassword" = "Please enter password";
+"kEnterPasswordAgain" = "Please enter password again";
 "kPsdNotMatch" = "Incorrect password";
 "kEmailNotFound" = "Email not found";
 "kLoginFailure" = "Login failed, please login later";
@@ -363,6 +364,8 @@
 "kSaveOpusOK" = "Drawing Saved";
 "kSaveOpusFail" = "Saving opus fail";
 "kDeleteAll" = "Delete All";
+"kTwoPasswordsNotMatch" = "The two passwords do not match";
+
 
 //4.27 add by Gamy
 "kBuyColorDialogTitle" = "Buy Color";
@@ -969,20 +972,22 @@
 "kAskLocationTitle" = "Location Request";
 "kReplyLocationTitle" = "Reply Request";
 "kShowMyLocationTitle" = "My Location";
-"kShowFriendLocationTitle" = "Location of friend";
-"kGettingLocation" = "Getting current location ...";
+"kShowFriendLocationTitle" = "Friend's Location";
+"kGettingLocation" = "Locating ...";
 
-"kAskLocationMessage" = "This is my location, let me see you where?";
+"kAskLocationMessage" = "Request location";
 "kReplyLocationMessage" = "Reply location request";
 "kRejectLocationMessage" = "Reject location request";
 
-"kReplyLocation" = "Reply";
-"kRejectLocation" = "Reject";
-"kShowLocation" = "Display";
+"kReplyLocation" = "Reply Request";
+"kRejectLocation" = "Reject Request";
+"kShowOtherLocation" = "View Location";
 
-"kGetLocationFail" = "Unable to locate, can not send location request.";
-"kAskLocationAlert" = "Send location requests, and send your location?";
-"kReplyLocationAlert" = "Reply location request, and send your location?";
+"kShowLocation" = "View Location";
+
+"kGetLocationFail" = "Failt to get your current location";
+"kAskLocationAlert" = "Request his/her location now?";
+"kReplyLocationAlert" = "Reply with your current location?";
 
 
 "kContestPassed" = "Passed(%d)";
@@ -1330,8 +1335,12 @@
 
 //secure sms
 "kRegister" = "Register";
-
-
+"kSecureSmsChat" = "CHAT";
+"kSecureSmsLocate" = "LOCATE";
+"kSecureSmsFirends" = "FRIENDS";
+"kSecureSmsMe" = "SETTINGS";
+"kSecureSmsSupport" = "SUPPORT";
+"kEnterCorrectPassword" = "Enter correct password";
 
 "kQuitGameWithPaidForAnswer" = "Do you want to buy the answer for %d coins?";
 "kQuitDirectly" = "NO";

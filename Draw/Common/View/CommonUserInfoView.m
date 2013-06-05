@@ -323,6 +323,12 @@
                             canChat:canChat];
         return;
     }
+    if (isSecureSmsAPP() || isCallTrackAPP()) {
+        [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName] inViewController:superController];
+        return;
+    }
+    
+    
     [CommonUserInfoView showFriend:afriend
                         infoInView:superController
                         needUpdate:needUpdate];

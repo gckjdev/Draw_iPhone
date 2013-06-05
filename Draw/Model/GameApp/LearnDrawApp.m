@@ -116,10 +116,10 @@
     return nil;
 }
 
-- (NSString *)alipayCallBackScheme
-{
-    return @"alipaylearndraw.gckj";
-}
+//- (NSString *)alipayCallBackScheme
+//{
+//    return @"alipaylearndraw.gckj";
+//}
 
 //ContentGameAppProtocol
 - (int)sellContentType
@@ -157,6 +157,11 @@
 - (NSString*)iapResourceFileName
 {
     return [self gameId];
+}
+
+- (BOOL)showLocateButton
+{
+    return NO;
 }
 
 @end

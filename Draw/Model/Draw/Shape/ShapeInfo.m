@@ -16,6 +16,7 @@
 #import "EllipseShape.h"
 #import "StarShape.h"
 #import "ShareImageManager.h"
+#import "RoundRectShape.h"
 
 @interface ShapeInfo()
 {
@@ -26,6 +27,8 @@
 @end
 
 @implementation ShapeInfo
+@synthesize type = _type;
+
 
 - (void)dealloc
 {
@@ -42,32 +45,48 @@
     ShapeInfo *shapeInfo = nil;
     switch (type) {
         case ShapeTypeBeeline:
+        case ShapeTypeEmptyBeeline:
             shapeInfo = [[BeelineShape alloc] init];
             break;
 
         case ShapeTypeRectangle:
+        case ShapeTypeEmptyRectangle:
             shapeInfo = [[RectangleShape alloc] init];
             break;
 
         case ShapeTypeEllipse:
+        case ShapeTypeEmptyEllipse:
             shapeInfo = [[EllipseShape alloc] init];
             break;
 
         case ShapeTypeTriangle:
+        case ShapeTypeEmptyTriangle:
             shapeInfo = [[TriangleShape alloc] init];
             break;
 
         case ShapeTypeStar:
+        case ShapeTypeEmptyStar:
             shapeInfo = [[StarShape alloc] init];
             break;
 
+        case ShapeTypeRoundRect:
+        case ShapeTypeEmptyRoundRect:
+            shapeInfo = [[RoundRectShape alloc] init];
+            break;            
+            
         default:
             break;
     }
+    
+    if (shapeInfo == nil && type > ShapeTypeImageStart) {
+        shapeInfo = [[ImageShapeInfo alloc] init];
+    }
+    
     [shapeInfo setType:type];
     [shapeInfo setPenType:penType];
     [shapeInfo setWidth:with];
     [shapeInfo setColor:color];
+    
     return [shapeInfo autorelease];
 }
 
@@ -237,15 +256,30 @@
 {
     self = [super init];
     if (self) {
-        self.stroke = NO;
+        _stroke = NO;
     }
     return self;
+}
+
+
+- (void)setType:(ShapeType)type
+{
+    _type = type;
+    if (type > ShapeTypeEmptyStart && type < ShapeTypeEmptyEnd) {
+        _stroke = YES;
+    }
+//    _stroke = YES;
+}
+
+- (BOOL)isStroke
+{
+    return _stroke;
 }
 
 #define MIN_DISTANCE1 MAX(8,self.width+2)
 - (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
 {
-    if (self.stroke) {
+    if (_stroke) {
         BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE1) && (ABS(p1.y - p2.y) <= MIN_DISTANCE1);
         return flag;
     }
@@ -256,7 +290,7 @@
 - (CGRect)rect
 {
     CGRect r;
-    if (self.stroke) {
+    if (_stroke) {
         CGRect rect = [super rect];
         if (self.type != ShapeTypeBeeline && ![self point1:self.startPoint equalToPoint:self.endPoint]) {
             rect.origin.x += self.width/2;
@@ -276,8 +310,81 @@
 
 @end
 
+#import "PocketSVG.h"
+
+@interface ImageShapeInfo()
+{
+    CGPathRef _path;
+}
+@end
 
 @implementation ImageShapeInfo
+
+#define SVG_SIZE CGSizeMake(100,100)
+
+- (NSString *)nameForType:(ShapeType)type
+{
+    return [NSString stringWithFormat:@"%d",type];
+}
+
+- (void)createCGPath
+{
+    NSString *name = [self nameForType:self.type];
+    if (name == NULL) {
+        return;
+    }
+    PocketSVG *svg = [[PocketSVG alloc] initFromSVGFileNamed:name];
+    if (_path != NULL) {
+        CGPathRelease(_path); _path = NULL;
+    }
+    _path = svg.bezier.CGPath;
+    CGPathRetain(_path);
+    PPRelease(svg);
+}
+
+- (void)setType:(ShapeType)type
+{
+    if (_type != type) {
+        _type = type;
+        [self createCGPath];
+    }
+}
+
+- (void)drawInContext:(CGContextRef)context
+{
+    CGContextSaveGState(context);
+    
+    if (_path != NULL) {
+        //translate && scale the path according to the rect.
+        
+        CGRect rect = [self rect];
+        CGSize pathSzie = SVG_SIZE;
+        
+        CGFloat xScale = CGRectGetWidth(rect) / pathSzie.width;
+        CGFloat yScale = CGRectGetHeight(rect) / pathSzie.height;
+        
+        CGFloat tx = CGRectGetMidX(rect);
+        CGFloat ty = CGRectGetMidY(rect);
+        
+        CGContextTranslateCTM(context, tx, ty);
+        CGContextScaleCTM(context, xScale, yScale);
+
+        
+        //fill it with color!
+        
+        [self.color.color setFill];
+        CGContextAddPath(context, _path);
+        CGContextFillPath(context);
+    }
+    
+    CGContextRestoreGState(context);
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+    CGPathRelease(_path);
+}
 
 
 @end

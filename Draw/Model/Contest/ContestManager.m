@@ -3,13 +3,18 @@
 //  Draw
 //
 //  Created by  on 12-9-17.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012骞�__MyCompanyName__. All rights reserved.
 //
 
 #import "ContestManager.h"
 #import "Contest.h"
 
 #define OLD_CONTEST_LIST @"old_contest_list"
+
+@interface ContestManager ()
+@property (retain, nonatomic) NSMutableArray* oldContestIdList;
+
+@end
 
 static ContestManager *_staticContestManager;
 @implementation ContestManager
@@ -27,9 +32,9 @@ static ContestManager *_staticContestManager;
     self = [super init];
     if (self) {
         NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-        _oldContestIdList = [[userDefault objectForKey:OLD_CONTEST_LIST] retain];
-        if (_oldContestIdList) {
-            _oldContestIdList  = [[NSMutableSet alloc] init];
+        self.oldContestIdList = [userDefault objectForKey:OLD_CONTEST_LIST];
+        if (_oldContestIdList == nil) {
+            self.oldContestIdList  = [[[NSMutableArray alloc] init] autorelease];
         }
     }
     return self;
@@ -42,9 +47,9 @@ static ContestManager *_staticContestManager;
         for (NSDictionary *dict in jsonArray) {
             if ([dict isKindOfClass:[NSDictionary class]]) {
                 Contest *contest = [Contest contestWithDict:dict];
-                [list addObject:contest];                
+                [list addObject:contest];
             }
-        }        
+        }
         return list;
     }
     return nil;
@@ -54,7 +59,7 @@ static ContestManager *_staticContestManager;
 {
     int result = 0;
     for (Contest* contest in contestList) {
-        if (![_oldContestIdList containsObject:contest.contestId]) {
+        if (![self.oldContestIdList containsObject:contest.contestId]) {
             result++;
         }
     }
@@ -63,10 +68,10 @@ static ContestManager *_staticContestManager;
 - (void)updateHasReadContestList:(NSArray*)contestList
 {
     for (Contest* contest in contestList) {
-        [_oldContestIdList addObject:contest.contestId];
+        [self.oldContestIdList addObject:contest.contestId];
     }
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
-    [userDefault setObject:_oldContestIdList forKey:OLD_CONTEST_LIST];
+    [userDefault setObject:self.oldContestIdList forKey:OLD_CONTEST_LIST];
     [userDefault synchronize];
 }
 @end

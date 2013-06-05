@@ -387,12 +387,7 @@
 #pragma mark - Button action
 
 - (IBAction)clickBackButton:(id)sender {
-//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定退出游戏吗？确定退出游戏吗？确定退出游戏吗？" style:CommonDialogStyleDoubleButton delegate:nil theme:CommonDialogThemeStarry
-//                            ];
-//    [dialog setClickOkBlock:^{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    [dialog showInView:self.view];
+
     [_gameService quitGame];
     [self.navigationController popViewControllerAnimated:YES];
 }

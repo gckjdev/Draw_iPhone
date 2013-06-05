@@ -171,6 +171,7 @@ extern BOOL isDreamLockscreenFreeApp();
 extern BOOL isLittleGeeAPP();
 extern BOOL isSecureSmsAPP();
 extern BOOL isCallTrackAPP();
+extern BOOL isSingApp();
 
 extern GameAppType gameAppType();
 

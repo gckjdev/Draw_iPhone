@@ -36,6 +36,11 @@
     return YES;
 }
 
+- (BOOL)canSubmitDraw
+{
+    return YES;
+}
+
 - (PPViewController *)homeController
 {
     return [[[SecureSmsHomeController alloc] initWithType:PureChatTypeCallTrack] autorelease];
@@ -49,6 +54,11 @@
 - (NSString*)iapResourceFileName
 {
     return [self gameId];
+}
+
+- (BOOL)showLocateButton
+{
+    return YES;
 }
 
 @end

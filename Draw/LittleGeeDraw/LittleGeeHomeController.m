@@ -107,8 +107,6 @@ static int popOptionListWithoutFreeCoinsEn[] = {
 
 @interface LittleGeeHomeController () {
     BOOL _isJoiningContest;
-    BOOL _firstLoadBulletin;
-    BOOL _hasLoadStatistic;
 }
 
 @property (nonatomic, retain) HomeBottomMenuPanel *homeBottomMenuPanel;
@@ -116,6 +114,7 @@ static int popOptionListWithoutFreeCoinsEn[] = {
 @property (nonatomic, retain) CustomActionSheet* drawOptionSheet;
 @property (retain, nonatomic) IBOutlet UIButton *drawOptionBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *bigPen;
+
 
 
 @end
@@ -250,6 +249,7 @@ int getPopOptionCount()
     [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:[self indexForPopOption:PopOptionNotice]];
     if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
         [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:[self indexForPopOption:PopOptionBbs]];
+        [_optionSheet setBadgeCount:[[StatisticManager defaultManager] newContestCount] forIndex:[self indexForPopOption:PopOptionContest]];
     }
     
     [_optionSheet showInView:self.view onView:menu
@@ -309,15 +309,16 @@ int getPopOptionCount()
     [self.titleLabel setText:NSLS(@"kLittleGee")];
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-        _firstLoadBulletin = YES;
         [self updateAllBadge];
-//        if ([[UserManager defaultManager] hasUser]) {
-//            [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
-//        }
         
     }];
     [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [self registerNetworkDisconnectedNotification];
+    
+    if ([[UserManager defaultManager] hasUser]) {
+        //first enter game, show side bar
+        [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
+    }
     // Do any additional setup after loading the view from its nib.
     
 }
@@ -493,9 +494,8 @@ int getPopOptionCount()
                 [us release];
             } break;
             case PopOptionNotice: {
-                HomeMenuView* menu = [self.homeBottomMenuPanel getMenuViewWithType:HomeMenuTypeLittleGeeOptions];
-                [menu updateBadge:[[StatisticManager defaultManager] bbsActionCount]];//badge count = bbscount+bulletincount
                 [BulletinView showBulletinInController:self];
+                [self updateAllBadge];
             } break;
             case PopOptionBbs: {
 //                [[StatisticManager defaultManager] setBbsActionCount:0];
@@ -976,22 +976,22 @@ int getPopOptionCount()
     int optionCount;
     if ([[UserManager defaultManager] getLanguageType] != ChineseType) {
         optionCount = manager.bulletinCount;
+        [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:[self indexForPopOption:PopOptionNotice]];
     } else {
-        optionCount = manager.bbsActionCount + manager.bulletinCount;
+        optionCount = manager.bbsActionCount + manager.bulletinCount + manager.newContestCount;
+        [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bulletinCount] forIndex:[self indexForPopOption:PopOptionNotice]];
+        [_optionSheet setBadgeCount:[[StatisticManager defaultManager] bbsActionCount] forIndex:[self indexForPopOption:PopOptionBbs]];
+        [_optionSheet setBadgeCount:[[StatisticManager defaultManager] newContestCount] forIndex:[self indexForPopOption:PopOptionContest]];
     }
     
     [self updateBadgeWithType:HomeMenuTypeLittleGeeOptions badge:optionCount];
 //    [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
-    if (_hasLoadStatistic && _firstLoadBulletin && [[UserManager defaultManager] hasUser]) {
-        //first enter game, show side bar
-        [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
-        _firstLoadBulletin = NO;
-    }
+    
 }
 
 - (void)didSyncStatisticWithResultCode:(int)resultCode
 {
-    _hasLoadStatistic = YES;
+//    _hasLoadStatistic = YES;
     if (resultCode == 0) {
         [self updateAllBadge];
     }
@@ -1087,6 +1087,13 @@ int getPopOptionCount()
     }
     
     return (LittleGeeHomeController*)app.homeController;
+}
+
+- (IBAction)clickTest:(id)sender
+{
+    Class class = NSClassFromString(@"CommonSearchImageController");
+    UIViewController* vc = [[[class alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

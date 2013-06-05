@@ -40,14 +40,26 @@
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
+ 
+    CGRect returnRect;
     CGContextSaveGState(context);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
-    
-    [self.shape drawInContext:context];
-    
+
+    if (self.shadow) {
+        CGContextBeginTransparencyLayer(context, NULL);
+        [self.shadow updateContext:context];
+        [self.shape drawInContext:context];
+        returnRect = self.shape.redrawRect;
+        [self.shadow spanRect:&returnRect];
+        CGContextEndTransparencyLayer(context);
+    }else{
+        [self.shape drawInContext:context];
+        returnRect = self.shape.redrawRect;
+    }
     CGContextRestoreGState(context);
-    return self.shape.redrawRect;
+    return returnRect;
+    
 }
 
 - (CGRect)redrawRectInRect:(CGRect)rect
@@ -115,6 +127,7 @@
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
     [builder setType:DrawActionTypeShape];
     [self.shape updatePBDrawActionBuilder:builder];
+    [self.shadow updatePBDrawActionBuilder:builder];
     return [builder build];
 }
 
@@ -122,6 +135,7 @@
 {
     pbDrawActionC->type = DrawActionTypeShape;
     [self.shape updatePBDrawActionC:pbDrawActionC];
+    [self.shadow updatePBDrawActionC:pbDrawActionC];
     return;
     
 //    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];

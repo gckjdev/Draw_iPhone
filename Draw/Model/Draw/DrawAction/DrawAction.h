@@ -12,6 +12,7 @@
 #import "Draw.pb-c.h"
 
 @class Word;
+@class Shadow;
 
 typedef enum {
     
@@ -31,6 +32,8 @@ typedef enum {
 
 @property(nonatomic, assign)DrawActionType type;
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
+@property(nonatomic, retain)Shadow *shadow;
+
 //@property(nonatomic, assign)CGSize canvasSize;
 
 - (void)setCanvasSize:(CGSize)canvasSize;
@@ -99,5 +102,23 @@ typedef enum {
 @interface PBNoCompressDrawAction (Ext)
 
 - (DrawColor *)drawColor;
+
+@end
+
+
+
+@interface Shadow : NSObject
+
+@property(nonatomic, retain)DrawColor *color;
+@property(nonatomic, assign)CGSize offset;
+@property(nonatomic, assign)CGFloat blur;
+
+
++ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur;
++ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur;
+- (void)updateContext:(CGContextRef)context;
+- (void)spanRect:(CGRect *)rect;
+- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
+- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
 
 @end

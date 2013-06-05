@@ -14,114 +14,129 @@
 #import "FileUtil.h"
 #import "UIViewUtils.h"
 #import "SingService.h"
+#import "SongManager.h"
+
+#define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
+#define WHITE_COLOR [UIColor whiteColor]
+
+enum{
+    StateReadyRecord = 0,
+    StateRecording = 1,
+    StateReadyPlay = 2,
+    StatePlaying = 3
+};
 
 @interface SingController (){
     int _recordLimitTime;
     NSTimeInterval _recordDuration;
     NSTimeInterval _playTimerInterval;
     NSTimeInterval _recordTimerInterval;
-
-    UIButton *_selectedButton;
     
-    BOOL mUseVarispeed;
+    int _state;
+    CGFloat _duration;
+    CGFloat _pitch;
 }
+@property (retain, nonatomic) PBSong *song;
 @property (retain, nonatomic) NSURL *recordURL;
 @property (retain, nonatomic) NSURL *playURL;
 @property (retain, nonatomic) AVAudioRecorder *recorder;
 @property (retain, nonatomic) DiracFxAudioPlayer *player;
-@property (retain, nonatomic) RecordAndPlayControl *control;
+@property (retain, nonatomic) UIButton *selectedButton;
+@property (copy, nonatomic) NSString *desc;
+@property (copy, nonatomic) UIImage *image;
+@property (retain, nonatomic) ChangeAvatar *picker;
 
 @end
 
 @implementation SingController
 
 - (void)dealloc{
-    [_control release];
+    [_picker release];
+    [_image release];
+    [_desc release];
+    [_selectedButton release];
+    [_song release];
     [_recordURL release];
     [_recorder release];
     [_player release];
-    [_RecordAndPlayHolderView release];
-    [_durationSlider release];
-    [_pitchSlider release];
-    [_durationLabel release];
-    [_pitchLabel release];
-    [_progressSlider release];
     [_playURL release];
+    [_micImageView release];
+    [_timeLabel release];
+    [_playImageView release];
+    [_pauseImageView release];
+    [_rerecordButton release];
+    [_addTimeButton release];
+    [_saveButton release];
+    [_submitButton release];
+    [_rerecordButtonBg release];
+    [_addTimeButtonBg release];
+    [_saveButtonBg release];
+    [_submitButtonBg release];
+    [_songNameLabel release];
+    [_songAuthorLabel release];
+    [_lyricTextView release];
+    [_originButton release];
+    [_tagButton release];
     [super dealloc];
+}
+
+- (id)initWithSong:(PBSong *)song{
+    if (self = [super init]) {
+        self.song = song;
+    }
+    
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+    self.selectedButton = _originButton;
+    
+    _duration = 1;
+    _pitch = 1;
+    
+    self.songNameLabel.text = _song.name;
+    self.songAuthorLabel.text = _song.author;
+    self.lyricTextView.text = _song.lyric;
+    
     _recordLimitTime = 30;
-    _recordTimerInterval = 1;
+    _recordTimerInterval = 0.5;
     _playTimerInterval = 0.1;
     self.recordURL = [FileUtil fileURLInAppDocument:@"record.m4a"];
     
     [self prepareToRecord:_recordURL];
     
-    self.control = [[[RecordAndPlayControl alloc] init] autorelease];
-    _control.delegate = self;
-    [self updateControl:StateReadyRecord];
+    [_player changeDuration:1];
+    [_player changePitch:1];
     
-    [self setDuration:1];
-    [self setPitch:1];
-    
-    self.progressSlider.value = 0;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-//    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-
+    [self setState:StateReadyRecord];
 }
 
 - (BOOL)shouldAutorotate{
     return NO;
 }
 
-- (void)updateControl:(StateRecordAndPlay)state{
-    
-    [_control setState:state];
-    [_control showInView:_RecordAndPlayHolderView];
-    
-    switch (state) {
-        case StateReadyRecord:
-            [_control updateViewWithInfo:[NSDictionary dictionaryWithObject:@(_recordLimitTime) forKey:@(KeyRecordLimited)]];
-            break;
-            
-        case StateRecording:
-            [_control updateViewWithInfo:[NSDictionary dictionaryWithObjectsAndKeys:@(_recordLimitTime), @(KeyRecordLeftTime), nil]];
-            break;
-            
-        case StateReadyPaly:            
-        case StatePlaying:
-            _recordDuration = _player.fileDuration;
-            [_control updateViewWithInfo:[NSDictionary dictionaryWithObjectsAndKeys:@(_recordDuration), @(KeyRecordDuration), nil]];
-
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)updateFileDuration{
-    _recordDuration = _player.fileDuration;
-    [_control updateViewWithInfo:[NSDictionary dictionaryWithObjectsAndKeys:@(_recordDuration), @(KeyRecordDuration), nil]];
-}
-
 - (void)viewDidUnload {
-
-    [self setRecordAndPlayHolderView:nil];
-    [self setDurationSlider:nil];
-    [self setPitchSlider:nil];
-    [self setDurationLabel:nil];
-    [self setPitchLabel:nil];
-    [self setProgressSlider:nil];
+    [self setMicImageView:nil];
+    [self setTimeLabel:nil];
+    [self setPlayImageView:nil];
+    [self setPauseImageView:nil];
+    [self setRerecordButton:nil];
+    [self setAddTimeButton:nil];
+    [self setSaveButton:nil];
+    [self setSubmitButton:nil];
+    [self setRerecordButtonBg:nil];
+    [self setAddTimeButtonBg:nil];
+    [self setSaveButtonBg:nil];
+    [self setSubmitButtonBg:nil];
+    [self setSongNameLabel:nil];
+    [self setSongAuthorLabel:nil];
+    [self setLyricTextView:nil];
+    [self setOriginButton:nil];
+    [self setTagButton:nil];
     [super viewDidUnload];
 }
 
@@ -131,48 +146,32 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)timeout{
-//    PPDebug(@"_recorder.recording = %@", _recorder.recording ? @"YES": @"NO");
-//    PPDebug(@"_recorder.currentTime = %d", _recorder.currentTime);
+- (void)setSelectedButton:(UIButton *)selectedButton{
     
-    if (_recorder.recording && _recorder.currentTime != 0) {
+    [_selectedButton setTitleColor:GREEN_COLOR forState:UIControlStateNormal];
+    [_selectedButton release];
+    
+    _selectedButton = [selectedButton retain];
+    [_selectedButton setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
+    
+    [self.tagButton updateCenterX:_selectedButton.center.x];
+}
+
+- (void)timeout{
+    if (_recorder.recording) {
+        PPDebug(@"record currentTime = %f", _recorder.currentTime);
         _recordDuration = _recorder.currentTime;
-        NSLog(@"_recordDuration = %f", _recordDuration);
-        NSTimeInterval leftTime =  _recordLimitTime - _recordDuration;
-        [_control updateViewWithInfo:[NSDictionary dictionaryWithObjectsAndKeys:@(leftTime), @(KeyRecordLeftTime), nil]];
+        NSTimeInterval leftTime =  _recordLimitTime -  _recordDuration;
+        [self updateUITime:leftTime];
     }
     
     if ([_player playing]) {
-        self.progressSlider.value = _player.currentTime / _player.fileDuration;
+        NSTimeInterval leftTime = _player.fileDuration - _player.currentTime + 0.5;
+        PPDebug(@"play leftTime = %f", leftTime);
+        [self updateUITime:(leftTime)];
     }
 }
 
-- (void)didClickControl:(RecordAndPlayControl *)control{
-    switch (control.state) {
-        case StateReadyRecord:
-            [self updateControl:StateRecording];
-            [self record];
-            break;
-            
-        case StateRecording:
-            [self updateControl:StateReadyPaly];
-            [self stopRecord];
-            break;
-            
-        case StateReadyPaly:
-            [self updateControl:StatePlaying];
-            [self play];
-            break;
-            
-        case StatePlaying:
-            [self updateControl:StateReadyPaly];
-            [self pausePlay];
-            break;
-            
-        default:
-            break;
-    }
-}
 
 - (void)reset{
     _recorder.delegate = nil;
@@ -183,20 +182,10 @@
 
 - (IBAction)clickRerecordButton:(id)sender {
     [self reset];
-    [self updateControl:StateReadyRecord];
-
     [self prepareToRecord:_recordURL];
+    [self setState:StateReadyRecord];
 }
 
-- (IBAction)clickIPodButton:(id)sender {
-    MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes: MPMediaTypeMusic];
-	
-	[picker setDelegate: self];
-	[picker setAllowsPickingMultipleItems: NO];
-	picker.prompt = @"Choose song";
-	[self presentModalViewController: picker animated: YES];
-	[picker release];
-}
 
 - (void)prepareToRecord:(NSURL *)url{
         
@@ -225,7 +214,6 @@
     
     // start timer
     self.timer = [NSTimer scheduledTimerWithTimeInterval:_recordTimerInterval target:self selector:@selector(timeout) userInfo:nil repeats:YES];
-    _recordDuration = 0;
 }
 
 - (void)stopRecord{
@@ -250,6 +238,9 @@
 }
 
 - (void)play{
+    [_player changeDuration:_duration];
+    [_player changePitch:_pitch];
+    
     [_player play];
 
     // start timer
@@ -282,174 +273,260 @@
     // prepare to play
     self.playURL = _recordURL;
     [self prepareToPlay:_playURL];
-    [self updateControl:StateReadyPaly];
-    [self performSelector:@selector(updateFileDuration) withObject:nil afterDelay:0.8];
+    
+    [self setState:StateReadyPlay];
 }
 
 - (void)diracPlayerDidFinishPlaying:(DiracAudioPlayerBase *)player successfully:(BOOL)flag{
     
     NSLog(@"diracPlayerDidFinishPlaying : %@", flag ? @"YES" : @"NO");
 
-    _progressSlider.value = 1.0;
     
     // kill timer
     [timer invalidate];
     self.timer = nil;
     
-    [self updateControl:StateReadyPaly];
-
     // prepare to play
     [self prepareToPlay:_playURL];
-}
-
-- (IBAction)clickMaleButton:(id)sender {
-    _selectedButton.selected = NO;
-    _selectedButton = (UIButton *)sender;
-    _selectedButton.selected = YES;
     
-    [self setDuration:1.0];
-    
-    float pitch = 1.f/1.2;
-    [self setPitch:pitch];
+    [self updateUITime:(_recordDuration+0.5)];
+    [self setState:StateReadyPlay];
 }
-
-- (IBAction)clickTomCatButton:(id)sender {
-    _selectedButton.selected = NO;
-    _selectedButton = (UIButton *)sender;
-    _selectedButton.selected = YES;
-    
-    float duration = 0.5;
-    [self setDuration:duration];
-
-    float pitch = 1.f/duration;
-    [self setPitch:pitch];
-}
-
-- (IBAction)clickFemaleButton:(id)sender {
-    
-    _selectedButton.selected = NO;
-    _selectedButton = (UIButton *)sender;
-    _selectedButton.selected = YES;
-    
-    [self setDuration:1.0];
-    
-    float pitch = 1.f/0.8;
-    [self setPitch:pitch];
-}
-
-- (IBAction)clickOriginButton:(id)sender {
-    _selectedButton.selected = NO;
-    _selectedButton = (UIButton *)sender;
-    _selectedButton.selected = YES;
-    
-    [self setDuration:1.0];
-    [self setPitch:1.0];
-}
-
-
--(IBAction)uiDurationSliderMoved:(UISlider *)sender;
-{
-    [self setDuration:sender.value];
-
-	if (mUseVarispeed) {
-		float pitch = 1.f/sender.value;
-        [self setPitch:pitch];
-	}
-}
-// ---------------------------------------------------------------------------------------------------------------------------------------------
-
--(IBAction)uiPitchSliderMoved:(UISlider *)sender;
-{
-    float pitch= powf(2.f, (int)sender.value / 12.f);
-	[self setPitch:pitch];
-}
-
--(IBAction)uiVarispeedSwitchTapped:(UISwitch *)sender;
-{
-	if (sender.on) {
-		mUseVarispeed = YES;
-		_pitchSlider.enabled=NO;
-        
-		float pitch = 1.f/_durationSlider.value;
-        [self setPitch:pitch];
-
-	} else {
-		mUseVarispeed = NO;
-		_pitchSlider.enabled=YES;
-	}
-}
-
-- (void)setPitch:(float)pitch{
-    [_player changePitch:pitch];
-    _pitchLabel.text = [NSString stringWithFormat:@"%0.1f", pitch];
-    _pitchSlider.value = (int)12.f*log2f(pitch);
-}
-
-- (void)setDuration:(float)duration{
-    [_player changeDuration:duration];
-    _durationLabel.text = [NSString stringWithFormat:@"%0.1f", duration];
-    _durationSlider.value = duration;
-}
-
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------
-
-- (void) mediaPicker:(MPMediaPickerController *)mediaPicker
-   didPickMediaItems:(MPMediaItemCollection *)collection
-{
-    [self reset];
-
-    MPMediaItem *mediaItem = [collection.items objectAtIndex:0];
-	self.playURL = [mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
-        
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-	[self prepareToPlay:_playURL];
-    [self updateControl:StateReadyPaly];
-    [self performSelector:@selector(updateFileDuration) withObject:nil afterDelay:0.8];
-
-    _progressSlider.value = 0;    
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------
 
 - (void) mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------
-- (IBAction)progressSliderValueChanged:(id)sender {
-    if ([_recorder isRecording]) {
-        return;
+
+
+- (IBAction)clickControlButton:(id)sender {
+    switch (_state) {
+        case StateReadyRecord:
+            [self updateUITime:_recordLimitTime];
+            [self setState:StateRecording];
+            [self record];
+            break;
+            
+        case StateRecording:
+            [self updateUITime:(_recordDuration+0.5)];
+            [self setState:StateReadyPlay];
+            [self stopRecord];
+            break;
+            
+        case StateReadyPlay:
+            [self setState:StatePlaying];
+            [self play];
+            break;
+            
+        case StatePlaying:
+            [self setState:StateReadyPlay];
+            [self pausePlay];
+            break;
+            
+        default:
+            break;
     }
     
-    float persent = ((UISlider *)sender).value;
-    float currentTime = persent * _player.fileDuration;
+}
+
+- (void)setState:(int)state{
+    _state = state;
     
-    NSLog(@"persent is : %f", persent);
-    NSLog(@"current time is : %f", currentTime);
-    NSLog(@"fileDuration is : %f", _player.fileDuration);
-    
-    float delta = persent - 1.0;
-    if (ABS(delta) < 0.00001) {
-        [self updateControl:StateReadyPaly];
-        [_player setCurrentTime:0];
-        return;
-    }else{
-        [_player setCurrentTime:(persent * _player.fileDuration)];
-    }
-    
-    if (_control.state == StatePlaying) {
-        [self play];
+    switch (state) {
+        case StateReadyRecord:
+            [self uiReadyRecord];
+            break;
+            
+        case StateRecording:
+            [self uiRecording];
+            break;
+            
+        case StateReadyPlay:
+            [self uiReadyPlay];
+            break;
+            
+        case StatePlaying:
+            [self uiPlaying];
+            break;
+            
+        default:
+            break;
     }
 }
 
-- (IBAction)progressSliderTouchDown:(id)sender {
-    if ([_recorder isRecording]) {
+- (void)uiReadyRecord{
+    self.micImageView.hidden = NO;
+    self.timeLabel.hidden = YES;
+    self.playImageView.hidden = YES;
+    self.pauseImageView.hidden = YES;
+    
+    self.rerecordButton.hidden = YES;
+    self.rerecordButtonBg.hidden = YES;
+
+    self.addTimeButton.hidden = NO;
+    self.addTimeButtonBg.hidden = NO;
+
+    self.saveButton.hidden = YES;
+    self.saveButtonBg.hidden = YES;
+
+    self.submitButton.hidden = YES;
+    self.submitButtonBg.hidden = YES;
+
+}
+
+- (void)uiRecording{
+    self.micImageView.hidden = YES;
+    self.timeLabel.hidden = NO;
+    self.playImageView.hidden = YES;
+    self.pauseImageView.hidden = YES;
+    
+    self.rerecordButton.hidden = YES;
+    self.rerecordButtonBg.hidden = YES;
+
+    self.addTimeButton.hidden = YES;
+    self.addTimeButtonBg.hidden = YES;
+
+    self.saveButton.hidden = YES;
+    self.saveButtonBg.hidden = YES;
+
+    self.submitButton.hidden = YES;
+    self.submitButtonBg.hidden = YES;
+
+}
+
+- (void)uiReadyPlay{
+    self.micImageView.hidden = YES;
+    self.timeLabel.hidden = NO;
+    self.playImageView.hidden = NO;
+    self.pauseImageView.hidden = YES;
+    
+    self.rerecordButton.hidden = NO;
+    self.rerecordButtonBg.hidden = NO;
+
+    self.addTimeButton.hidden = NO;
+    self.addTimeButtonBg.hidden = NO;
+
+    self.saveButton.hidden = NO;
+    self.saveButtonBg.hidden = NO;
+
+    self.submitButton.hidden = NO;
+    self.submitButtonBg.hidden = NO;
+
+}
+
+- (void)uiPlaying{
+    self.micImageView.hidden = YES;
+    self.timeLabel.hidden = NO;
+    self.playImageView.hidden = YES;
+    self.pauseImageView.hidden = NO;
+    
+    self.rerecordButton.hidden = YES;
+    self.rerecordButtonBg.hidden = YES;
+    
+    self.addTimeButton.hidden = YES;
+    self.addTimeButtonBg.hidden = YES;
+    
+    self.saveButton.hidden = YES;
+    self.saveButtonBg.hidden = YES;
+    
+    self.submitButton.hidden = YES;
+    self.submitButtonBg.hidden = YES;
+}
+
+- (void)updateUITime:(int)time{
+
+    if (time < 0 || time > 999) {
         return;
     }
-    [self pausePlay];
+    
+    int min = time / 60;
+    int sec = time % 60;
+    
+    self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d", min, sec];
+
+//    if (time < 99) {
+//        self.timeLabel.text = [NSString stringWithFormat:@"%02d", time];
+//    }else{
+//        self.timeLabel.text = [NSString stringWithFormat:@"%03d", time];
+//    }
+}
+
+- (void)changeDuration:(CGFloat)duration pitch:(CGFloat)pitch{
+    _duration = duration;
+    _pitch = pitch;
+    
+    if ([_player playing]) {
+        [_player changeDuration:duration];
+        [_player changePitch:pitch];
+    }
+}
+
+- (IBAction)clickOriginButton:(id)sender {
+    self.selectedButton = (UIButton *)sender;
+    [self changeDuration:1 pitch:1];
+}
+
+- (IBAction)clickTomCatButton:(id)sender {
+    self.selectedButton = (UIButton *)sender;
+    [self changeDuration:0.5 pitch:1.f/0.5];
+}
+
+- (IBAction)clickDuckButton:(id)sender {
+    self.selectedButton = (UIButton *)sender;
+
+}
+
+- (IBAction)clickMaleButton:(id)sender {
+    self.selectedButton = (UIButton *)sender;
+
+    [self changeDuration:1 pitch:1.2];
+
+}
+
+- (IBAction)clickChildButton:(id)sender {
+    self.selectedButton = (UIButton *)sender;
+
+}
+
+- (IBAction)clickFemaleButton:(id)sender {
+    self.selectedButton = (UIButton *)sender;
+    [self changeDuration:1 pitch:0.8];
+}
+
+- (IBAction)clickDescButton:(id)sender {
+    InputDialog *dialog = [InputDialog dialogWith:@"kInputDesc" delegate:self];
+    [self.view addSubview:dialog];
+}
+
+- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText{
+    
+    self.desc = targetText;
+    [dialog removeFromSuperview];
+}
+
+- (void)didClickCancel:(InputDialog *)dialog{
+    
+    [dialog removeFromSuperview];
+}
+
+- (IBAction)clickImageButton:(id)sender {
+    if (_picker == nil) {
+        self.picker = [[[ChangeAvatar alloc] init] autorelease];
+    }
+    
+    [_picker showSelectionView:self];
+}
+
+- (void)didImageSelected:(UIImage*)image{
+    self.image = image;
+}
+
+- (IBAction)clickBackButton:(id)sender {
+    [timer invalidate];
+    self.timer = nil;
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {

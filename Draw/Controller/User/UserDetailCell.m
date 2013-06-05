@@ -25,6 +25,7 @@
 #import "UIImageView+WebCache.h"
 #import "CustomInfoView.h"
 #import "UIViewUtils.h"
+#import "GameApp.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -134,6 +135,8 @@
     }
     
     [self adaptSNSButton];
+    
+    [self handleInSecureSmsApp];
 }
 
 
@@ -224,13 +227,35 @@
     cell.carousel = [FeedCarousel createFeedCarousel];
     cell.carousel.delegate = cell;
     cell.carousel.center = CAROUSEL_CENTER;
+    cell.carousel.tag = 400;
     [cell addSubview:cell.carousel];
     [cell.carousel startScrolling];
     [cell.carousel enabaleWrap:YES];
     [cell.carousel showActivity];
     
     
+    
     return cell;
+}
+
+#define TAG_WILL_HIDE   400
+- (void)handleInSecureSmsApp
+{
+    if (isSecureSmsAPP() || isCallTrackAPP()) {
+        NSArray *contentSubViewList = self.contentView.subviews;
+        for (UIView *subView in contentSubViewList) {
+            if (subView.tag == TAG_WILL_HIDE){
+                subView.hidden = YES;
+            }
+        }
+        
+        NSArray *subViewList = self.subviews;
+        for (UIView *subView in subViewList) {
+            if (subView.tag == TAG_WILL_HIDE){
+                subView.hidden = YES;
+            }
+        }
+    }
 }
 
 /*

@@ -512,4 +512,10 @@
 {
     [IAPProductService createZJHCoinTestDataFile];
 }
+
+- (BOOL)showLocateButton
+{
+    return NO;
+}
+
 @end

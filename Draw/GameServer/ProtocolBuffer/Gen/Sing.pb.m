@@ -384,6 +384,207 @@ static PBSong* defaultPBSongInstance = nil;
 }
 @end
 
+@interface PBSongList ()
+@property (retain) NSMutableArray* mutableSongsList;
+@end
+
+@implementation PBSongList
+
+@synthesize mutableSongsList;
+- (void) dealloc {
+  self.mutableSongsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBSongList* defaultPBSongListInstance = nil;
++ (void) initialize {
+  if (self == [PBSongList class]) {
+    defaultPBSongListInstance = [[PBSongList alloc] init];
+  }
+}
++ (PBSongList*) defaultInstance {
+  return defaultPBSongListInstance;
+}
+- (PBSongList*) defaultInstance {
+  return defaultPBSongListInstance;
+}
+- (NSArray*) songsList {
+  return mutableSongsList;
+}
+- (PBSong*) songsAtIndex:(int32_t) index {
+  id value = [mutableSongsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBSong* element in self.songsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBSong* element in self.songsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBSong* element in self.songsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBSongList*) parseFromData:(NSData*) data {
+  return (PBSongList*)[[[PBSongList builder] mergeFromData:data] build];
+}
++ (PBSongList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSongList*)[[[PBSongList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBSongList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSongList*)[[[PBSongList builder] mergeFromInputStream:input] build];
+}
++ (PBSongList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSongList*)[[[PBSongList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSongList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSongList*)[[[PBSongList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBSongList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSongList*)[[[PBSongList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSongList_Builder*) builder {
+  return [[[PBSongList_Builder alloc] init] autorelease];
+}
++ (PBSongList_Builder*) builderWithPrototype:(PBSongList*) prototype {
+  return [[PBSongList builder] mergeFrom:prototype];
+}
+- (PBSongList_Builder*) builder {
+  return [PBSongList builder];
+}
+@end
+
+@interface PBSongList_Builder()
+@property (retain) PBSongList* result;
+@end
+
+@implementation PBSongList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBSongList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBSongList_Builder*) clear {
+  self.result = [[[PBSongList alloc] init] autorelease];
+  return self;
+}
+- (PBSongList_Builder*) clone {
+  return [PBSongList builderWithPrototype:result];
+}
+- (PBSongList*) defaultInstance {
+  return [PBSongList defaultInstance];
+}
+- (PBSongList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBSongList*) buildPartial {
+  PBSongList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBSongList_Builder*) mergeFrom:(PBSongList*) other {
+  if (other == [PBSongList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableSongsList.count > 0) {
+    if (result.mutableSongsList == nil) {
+      result.mutableSongsList = [NSMutableArray array];
+    }
+    [result.mutableSongsList addObjectsFromArray:other.mutableSongsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBSongList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBSongList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBSong_Builder* subBuilder = [PBSong builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSongs:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) songsList {
+  if (result.mutableSongsList == nil) { return [NSArray array]; }
+  return result.mutableSongsList;
+}
+- (PBSong*) songsAtIndex:(int32_t) index {
+  return [result songsAtIndex:index];
+}
+- (PBSongList_Builder*) replaceSongsAtIndex:(int32_t) index with:(PBSong*) value {
+  [result.mutableSongsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBSongList_Builder*) addAllSongs:(NSArray*) values {
+  if (result.mutableSongsList == nil) {
+    result.mutableSongsList = [NSMutableArray array];
+  }
+  [result.mutableSongsList addObjectsFromArray:values];
+  return self;
+}
+- (PBSongList_Builder*) clearSongsList {
+  result.mutableSongsList = nil;
+  return self;
+}
+- (PBSongList_Builder*) addSongs:(PBSong*) value {
+  if (result.mutableSongsList == nil) {
+    result.mutableSongsList = [NSMutableArray array];
+  }
+  [result.mutableSongsList addObject:value];
+  return self;
+}
+@end
+
 @interface PBSing ()
 @property (retain) PBSong* song;
 @property int32_t voiceType;
