@@ -390,8 +390,9 @@
                 title = NSLS(@"kGetLocationTitle");
                 if ([self relation] != RelationTypeFriend) {
                     button.enabled = NO;
+                } else {
+                    button.enabled = YES;
                 }
-                
             } else {
                 title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
             }

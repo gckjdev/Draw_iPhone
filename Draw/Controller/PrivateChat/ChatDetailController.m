@@ -221,14 +221,25 @@
         self.inputTextView.frame = RECT_INPUT_TEXT_VIEW;
         self.inputTextBackgroundImage.frame = RECT_INPUT_TEXT_BACKGROUND;
     } else {
-        MyFriend *friend = [MyFriend friendWithFid:_messageStat.friendId
-                                          nickName:_messageStat.friendNickName
-                                            avatar:_messageStat.friendAvatar
-                                            gender:_messageStat.friendGenderString
-                                             level:1];
-        if (friend.relation != RelationTypeFriend){
-            self.locateButton.enabled = NO;
-        }
+//        MyFriend *friend = [MyFriend friendWithFid:_messageStat.friendId
+//                                          nickName:_messageStat.friendNickName
+//                                            avatar:_messageStat.friendAvatar
+//                                            gender:_messageStat.friendGenderString
+//                                             level:1];
+//        if (friend.relation != RelationTypeFriend){
+//            self.locateButton.enabled = NO;
+//        }
+        
+        [[UserService defaultService] getUserInfo:_messageStat.friendId resultBlock:^(int resultCode, PBGameUser *user, int relation) {
+            if (resultCode == 0){
+                
+                if (relation == RelationTypeFriend) {
+                     self.locateButton.enabled = YES;
+                } else {
+                     self.locateButton.enabled = NO;
+                }
+            }
+        }];
     }
 }
 
