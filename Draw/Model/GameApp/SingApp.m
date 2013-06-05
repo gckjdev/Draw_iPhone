@@ -148,4 +148,9 @@
     return @"";
 }
 
+- (BOOL)showLocateButton
+{
+    return NO;
+}
+
 @end

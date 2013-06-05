@@ -50,8 +50,10 @@
 {
     if (self.shadow) {
         CGContextSaveGState(context);
+        CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
         CGRect rect1 = [self.paint drawInContext:context inRect:rect];
+        CGContextEndTransparencyLayer(context);
         CGContextRestoreGState(context);
         [self.shadow spanRect:&rect1];
         return rect1;

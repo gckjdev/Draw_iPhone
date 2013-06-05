@@ -163,7 +163,7 @@
 }
 
 
-- (void)showInputView:(NSString *)placeholder
+- (void)showInputView:(NSString *)title
 {
     if (_type == PureChatTypeSecureSms) {
         
@@ -179,15 +179,15 @@
             }
         }
         
-        NSString *customPlaceholder = placeholder;
-        if (customPlaceholder == nil) {
-            customPlaceholder = NSLS(@"kEnterPassword");
+        NSString *customTitle = title;
+        if (customTitle == nil) {
+            customTitle = NSLS(@"kUserLogin");
         }
         
-        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:self];
+        InputDialog *dialog = [InputDialog dialogWith:customTitle delegate:self];
         dialog.cancelButton.hidden = YES;
         [dialog.okButton updateCenterX:dialog.okButton.superview.frame.size.width/2];
-        [dialog.targetTextField setPlaceholder:customPlaceholder];
+        [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
         [dialog showInView:keyWindow];
     }
 }
@@ -197,7 +197,7 @@
 {
     PPDebug(@"didClickOk:targetText:");
     if (NO == [[UserManager defaultManager] isPasswordCorrect:targetText]) {
-        [self performSelector:@selector(showInputView:) withObject:NSLS(@"kEnterCorrectPassword") afterDelay:0.6];
+        [self performSelector:@selector(showInputView:) withObject:NSLS(@"kPsdNotMatch") afterDelay:0.6];
     }
 }
 

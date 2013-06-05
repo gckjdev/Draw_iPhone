@@ -168,8 +168,8 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     if (self.image) {
         CTMContext(context, rect);        
         if (self.drawBg.showStyle == ShowStyleCenter) {
-            CGRect imageRect = [self imageRectWithSize:self.image.size canvasRect:rect];
-            CGContextDrawImage(context, imageRect, self.image.CGImage);
+//            CGRect imageRect = [self imageRectWithSize:self.image.size canvasRect:rect];
+            CGContextDrawImage(context, rect, self.image.CGImage);
         }else if(self.drawBg.showStyle == ShowStylePattern){
             [self.image drawAsPatternInRect:rect];
             CGContextDrawTiledImage(context, rect, self.image.CGImage);

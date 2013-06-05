@@ -47,10 +47,12 @@
     CGContextSetLineJoin(context, kCGLineJoinRound);
 
     if (self.shadow) {
+        CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
         [self.shape drawInContext:context];
         returnRect = self.shape.redrawRect;
         [self.shadow spanRect:&returnRect];
+        CGContextEndTransparencyLayer(context);
     }else{
         [self.shape drawInContext:context];
         returnRect = self.shape.redrawRect;

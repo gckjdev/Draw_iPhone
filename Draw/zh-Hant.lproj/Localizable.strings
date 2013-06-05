@@ -376,11 +376,12 @@
 "kNetworkErrorMessage" = "無法訪問互聯網，請檢查手機是否正確連接到網絡或者WIFI。";
 //4月23新增
 "kEnterPassword" = "請輸入密碼";
+"kEnterPasswordAgain" = "請再次輸入密碼";
 "kPsdNotMatch" = "密碼錯誤";
 "kEmailNotFound" = "E-mail地址尚未註冊";
 "kLoginFailure" = "登錄失敗，請稍後再試";
 "kLoginUser" = "正在登錄...";
-
+"kTwoPasswordsNotMatch" = "兩次輸入的密碼不一致";
 
 "kSaveOpusOK" = "作品已成功保存";
 "kSaveOpusFail" = "作品保存失敗";
@@ -1317,7 +1318,7 @@
 "kSecureSmsChat" = "聊天";
 "kSecureSmsLocate" = "定位";
 "kSecureSmsFirends" = "好友";
-"kSecureSmsMe" = "我";
+"kSecureSmsMe" = "設置";
 "kSecureSmsSupport" = "反饋";
 "kEnterCorrectPassword" = "請輸入正確的密碼";
 
