@@ -34,6 +34,7 @@ typedef enum {
 
 
 @property(nonatomic, assign)DrawActionType type;
+@property(nonatomic, assign)NSInteger clipTag;
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
 @property(nonatomic, retain)Shadow *shadow;
 

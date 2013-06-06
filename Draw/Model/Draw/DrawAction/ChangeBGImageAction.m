@@ -89,6 +89,7 @@
 {
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
     [builder setType:DrawActionTypeChangeBGImage];
+    [builder setClipTag:self.clipTag];
     if (self.drawBg) {
         [builder setDrawBg:self.drawBg];
     }
@@ -98,6 +99,8 @@
 
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
+    
+    [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypeChangeBGImage;
     if (self.drawBg) {
 //        [builder setDrawBg:self.drawBg];
