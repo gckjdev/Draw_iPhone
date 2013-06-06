@@ -21,6 +21,8 @@
 
 + (id)defaultService;
 
+- (Opus*)createDraftOpus;
+
 - (void)submitOpus:(Opus*)opusMeta
              image:(UIImage *)image
           opusData:(NSData *)opusData
