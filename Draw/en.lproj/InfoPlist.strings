@@ -4,7 +4,7 @@
 
 //"CFBundleDisplayName" = "Awesome Draw";
 
-//"CFBundleDisplayName" = "Draw Lively";
+"CFBundleDisplayName" = "Draw Lively";
 
 //"CFBundleDisplayName" = "Learn Draw";
 
@@ -18,6 +18,6 @@
 
 //"CFBundleDisplayName" = "littlegee";
 
-"CFBundleDisplayName" = "Call Track";
+//"CFBundleDisplayName" = "Call Track";
 
 //"CFBundleDisplayName" = "Private SMS";

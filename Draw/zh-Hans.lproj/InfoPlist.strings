@@ -4,7 +4,7 @@
 
 //"CFBundleDisplayName" = "爱画画";
 
-//"CFBundleDisplayName" = "猜猜画画";
+"CFBundleDisplayName" = "猜猜画画";
 
 //"CFBundleDisplayName" = "大话骰";
 
@@ -18,6 +18,6 @@
 
 //"CFBundleDisplayName" = "小吉画画";
 
-"CFBundleDisplayName" = "好友定位";
+//"CFBundleDisplayName" = "好友定位";
 
 //"CFBundleDisplayName" = "密语";
