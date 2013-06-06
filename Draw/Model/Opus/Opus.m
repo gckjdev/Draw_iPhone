@@ -30,8 +30,8 @@
 
 - (void)dealloc
 {
-    [_opusKey release];
-    [_pbOpusBuilder release];
+    PPRelease(_opusKey);
+    PPRelease(_pbOpusBuilder);
     [super dealloc];
 }
 
@@ -106,16 +106,19 @@
 
 + (NSDictionary *)buriProperties{
     return @{
-             BURI_KEY: @"opusKey",
+             BURI_KEY: @"opusKey",      // make sure it's in Opus.h
              };
 }
+
+#define ENCODE_OPUS_DATA        @"opusData"
+#define ENCODE_OPUS_KEY         @"opusKey"
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	if ((self = [super init])) {
     
-		NSData *data = [decoder decodeObjectForKey:@"opusData"];
-        NSString *key = [decoder decodeObjectForKey:@"opusKey"];
+		NSData *data = [decoder decodeObjectForKey:ENCODE_OPUS_DATA];
+        NSString *key = [decoder decodeObjectForKey:ENCODE_OPUS_KEY];
 
         self.opusKey = key;
         self.pbOpusBuilder = [PBOpus builderWithPrototype:[PBOpus parseFromData:data]];
@@ -126,8 +129,16 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:[self opusKey] forKey:@"opusKey"];
-    [encoder encodeObject:[[self pbOpus] data] forKey:@"opusData"];
+    NSString* key = [self opusKey];
+    NSData* data  = [[self pbOpus] data];
+    
+    if (key != nil){
+        [encoder encodeObject:key forKey:ENCODE_OPUS_KEY];
+    }
+    
+    if (data != nil){
+        [encoder encodeObject:[[self pbOpus] data] forKey:ENCODE_OPUS_DATA];
+    }
 }
 
 @end
