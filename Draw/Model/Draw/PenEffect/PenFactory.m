@@ -8,13 +8,18 @@
 
 #import "PenFactory.h"
 #import "SmoothQuadCurvePen.h"
+#import "PolygenPen.h"
 
 @implementation PenFactory
 
 + (id<PenEffectProtocol>)getPen:(ItemType)penType
 {
-//    PPDebug(@"Create New Pen");    
-    return [[[SmoothQuadCurvePen alloc] init] autorelease];
+//    PPDebug(@"Create New Pen");
+    if (penType == PolygonPen) {
+        return [[[PolygenPen alloc] init] autorelease];
+    }else{
+        return [[[SmoothQuadCurvePen alloc] init] autorelease];
+    }
 }
 
 

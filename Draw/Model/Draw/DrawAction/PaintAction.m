@@ -253,6 +253,7 @@
 {
     PBDrawAction_Builder *builder = [[PBDrawAction_Builder alloc] init];
     [builder setType:DrawActionTypePaint];
+    [builder setClipTag:self.clipTag];    
     [self.paint updatePBDrawActionBuilder:builder];
     [self.shadow updatePBDrawActionBuilder:builder];
     PBDrawAction* pbDrawAction = [builder build];
@@ -262,6 +263,7 @@
 
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
+    [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypePaint;
     [self.paint updatePBDrawActionC:pbDrawActionC];
     [self.shadow updatePBDrawActionC:pbDrawActionC];
