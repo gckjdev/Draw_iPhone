@@ -53,8 +53,6 @@
 @class PBRewardWall_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
-@class PBSettingInfo;
-@class PBSettingInfo_Builder;
 @class PBSize;
 @class PBSize_Builder;
 @class PBUserBasicInfo;

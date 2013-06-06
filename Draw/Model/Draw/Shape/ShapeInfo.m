@@ -33,6 +33,8 @@
 - (void)dealloc
 {
     PPRelease(_color);
+//    CGPathRelease(_path);
+    PPCGPathRelease(_path);
     [super dealloc];
 }
 
@@ -246,6 +248,11 @@
     }
 }
 
+- (CGPathRef)path
+{
+    return _path;
+}
+
 @end
 
 
@@ -314,7 +321,7 @@
 
 @interface ImageShapeInfo()
 {
-    CGPathRef _path;
+
 }
 @end
 
@@ -383,8 +390,11 @@
 - (void)dealloc
 {
     [super dealloc];
-    CGPathRelease(_path);
 }
 
+- (CGPathRef)path
+{
+    return NULL;
+}
 
 @end

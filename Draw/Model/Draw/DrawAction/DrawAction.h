@@ -22,8 +22,7 @@ typedef enum {
     DrawActionTypeChangeBack,       //Change bg with color 3
     DrawActionTypeChangeBGImage,    //Change bg with pb draw bg 4
 
-    DrawActionTypeSelectionStart,   //Selection start 5
-    DrawActionTypeSelectionEnd,     //Selection end 6
+    DrawActionTypeClip,             //Clip 5
     
 } DrawActionType;
 

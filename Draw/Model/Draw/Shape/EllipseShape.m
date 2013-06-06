@@ -9,6 +9,17 @@
 #import "EllipseShape.h"
 
 @implementation EllipseShape
+
+
+- (CGPathRef)path
+{
+    if (_path == NULL) {
+        _path = CGPathCreateWithEllipseInRect(self.rect, NULL);
+    }
+    return _path;
+}
+
+
 - (void)drawInContext:(CGContextRef)context
 {
     if (context != NULL) {

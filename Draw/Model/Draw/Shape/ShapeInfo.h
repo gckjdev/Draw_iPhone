@@ -43,6 +43,7 @@ typedef enum{
 @interface ShapeInfo : NSObject
 {
     ShapeType _type;
+    CGPathRef _path;
 }
 @property(nonatomic, assign)CGPoint startPoint;
 @property(nonatomic, assign)CGPoint endPoint;
@@ -65,6 +66,8 @@ typedef enum{
 - (CGRect)redrawRect;
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
+
+- (CGPathRef)path;
 
 @end
 

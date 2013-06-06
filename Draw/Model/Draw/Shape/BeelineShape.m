@@ -11,6 +11,17 @@
 @implementation BeelineShape
 
 
+- (CGPathRef)path
+{
+    if (_path == NULL) {
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathMoveToPoint(path, NULL, self.startPoint.x, self.startPoint.y);
+        CGPathAddLineToPoint(path, NULL, self.endPoint.x, self.endPoint.y);
+        _path = path;
+    }
+    return _path;
+}
+
 - (void)drawInContext:(CGContextRef)context
 {
     if (context != NULL) {
@@ -24,13 +35,7 @@
         points[0] = self.startPoint;
         points[1] = self.endPoint;
         
-        if (_stroke) {
-            static float len[2] = {0};
-            len[0] = len[1] = self.width;
-            CGContextSetLineDash(context, 0, len, 2);
-//            CGContextSetLineJoin(context, kCGLineJoinMiter);
-            CGContextSetLineCap(context, kCGLineCapButt);
-        }
+
         CGContextStrokeLineSegments(context, points, 2);
         CGContextRestoreGState(context);
     }
