@@ -11,11 +11,14 @@
 #import "ImageSearch.h"
 #import "ImageSearchResult.h"
 #import "GoogleCustomSearchNetworkConstants.h"
+#import "CommonSearchImageFilterView.h"
 
 @interface CommonSearchImageController () {
     ImageSearch* _imageSearcher;
     ImageSearchResult* _currentResult;
 }
+
+@property (retain, nonatomic) NSDictionary* filter;
 
 @end
 
@@ -23,6 +26,7 @@
 
 - (void)dealloc
 {
+    [_filter release];
     [_searchBar release];
     [super dealloc];
 }
@@ -114,7 +118,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [[GoogleCustomSearchService defaultService] searchImageBytext:searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:0 delegate:self];
+    [[GoogleCustomSearchService defaultService] searchImageBytext:searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:0 paramDict:self.filter delegate:self];
 //    self.dataList = [_imageSearcher searchImageBySize:CGSizeMake(0, 0) searchText:searchBar.text location:nil searchSite:nil startPage:0 maxResult:100];
     [self.dataTableView reloadData];
     [searchBar resignFirstResponder];
@@ -141,7 +145,10 @@
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-    [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:[[self currentTab] offset] delegate:self];
+    if (self.searchBar.text && self.searchBar.text.length > 0) {
+        [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:[[self currentTab] offset] paramDict:self.filter delegate:self];
+    }
+
 }
 
 - (void)didSearchImageResultList:(NSMutableArray *)array resultCode:(NSInteger)resultCode
@@ -179,6 +186,21 @@
     [browser release];
     [nc release];
     
+}
+
+- (IBAction)clickFilter:(id)sender
+{
+    if (!_filter) {
+        self.filter = [[[NSMutableDictionary alloc] init] autorelease];
+    }
+    CommonSearchImageFilterView* view = [CommonSearchImageFilterView createViewWithFilter:_filter delegate:self];
+    [view showInView:self.view];
+}
+
+- (void)didConfirmFilter:(NSDictionary *)filter
+{
+    self.filter = filter;
+    [self reloadTableViewDataSource];
 }
 
 
