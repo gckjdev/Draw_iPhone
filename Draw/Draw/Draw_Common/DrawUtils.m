@@ -502,3 +502,12 @@ CGSize CGSizeRand(NSUInteger maxWidth, NSUInteger maxHeight)
 {
     return CGSizeMake(rand()%maxWidth, rand()%maxHeight);
 }
+
+void CGRectEnlarge(CGRect *rect, CGFloat xLength, CGFloat yLength)//enlarge and hode the center
+{
+    rect->origin.x -= xLength;
+    rect->origin.y -= yLength;
+    
+    rect->size.width += 2 * xLength;
+    rect->size.height += 2 * yLength;
+}

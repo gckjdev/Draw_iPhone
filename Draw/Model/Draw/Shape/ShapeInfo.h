@@ -44,6 +44,8 @@ typedef enum{
 {
     ShapeType _type;
     CGPathRef _path;
+    CGRect _redrawRect;
+    BOOL _stroke;    
 }
 @property(nonatomic, assign)CGPoint startPoint;
 @property(nonatomic, assign)CGPoint endPoint;
@@ -68,7 +70,7 @@ typedef enum{
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
 - (CGPathRef)path;
-
+- (BOOL)isStroke;
 @end
 
 
@@ -76,10 +78,10 @@ typedef enum{
 
 @interface BasicShapeInfo : ShapeInfo
 {
-    BOOL _stroke;
+   
 }
 
-- (BOOL)isStroke;
+
 
 @end
 
