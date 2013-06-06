@@ -77,7 +77,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
                 [[OpusManager defaultManager] saveOpus:newOpus];
                 
                 // delete current draft opus
-                [[OpusManager defaultManager] deleteOpus:opusMeta];
+                [[OpusManager defaultManager] deleteOpus:[opusMeta opusKey]];
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {
