@@ -82,7 +82,7 @@
         case DrawActionTypeClean:
             return [[[CleanAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
         case DrawActionTypeShape:
-            return [[[CleanAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
+            return [[[ShapeAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
         case DrawActionTypePaint:
             if (action->width >= BACK_GROUND_WIDTH / 10) {
                 return [[[ChangeBackAction alloc] initWithPBNoCompressDrawActionC:action] autorelease];
@@ -103,7 +103,7 @@
         case DrawActionTypeClean:
             return [[[CleanAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
         case DrawActionTypeShape:
-            return [[[CleanAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
+            return [[[ShapeAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
         case DrawActionTypePaint:
             if (action.width >= BACK_GROUND_WIDTH / 10) {
                 return [[[ChangeBackAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
