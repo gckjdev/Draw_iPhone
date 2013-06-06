@@ -638,5 +638,16 @@
                           opusData:(NSData *)opusData
                   progressDelegate:(id)progressDelegate;
 
++ (CommonNetworkOutput*)favorGalleryPicture:(NSString *)baseURL
+                                      appId:(NSString *)appId
+                                     userId:(NSString *)userId
+                                        url:(NSString *)url
+                                       name:(NSString *)name
+                                   tagArray:(NSString *)tagArrayString;
+
++ (CommonNetworkOutput*)getGalleryImage:(NSString *)baseURL
+                                  appId:(NSString *)appId
+                                 userId:(NSString *)userId
+                               tagArray:(NSString *)tagArrayString;
 
 @end
