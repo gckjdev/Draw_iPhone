@@ -29,7 +29,9 @@ typedef enum
     Quill,
     DottedLinePen,
     SmoothPen,
+    PolygonPen,
     PenCount,
+    
     
     Eraser = 1100,
     PaletteItem = 1101,

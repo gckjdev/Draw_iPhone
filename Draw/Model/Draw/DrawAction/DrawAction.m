@@ -152,6 +152,7 @@
     self = [super init];
     if (self) {
         self.type = action.type;
+        self.clipTag = (action.hasClipTag ? action.clipTag : 0);
         if ([action hasShadowOffsetX] && [action hasShadowColor]) {
             self.shadow = [Shadow shadowWithIntColor:action.shadowColor
                                               offset:CGSizeMake(action.shadowOffsetX,
@@ -167,18 +168,9 @@
     self = [super init];
     if (self) {
         self.type = action->type;
-        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {
-            
-//            const static CGFloat VALUE = 17;
-//            CGSize offset = CGSizeRand(VALUE, VALUE);
-//            if (offset.width > VALUE/2) {
-//                offset.width -= VALUE;
-//            }
-//            if (offset.height > VALUE/2) {
-//                offset.height -= VALUE;
-//            }
-//            self.shadow = [Shadow shadowWithDrawColor:[DrawColor rankColor] offset:offset blur:rand() % 9];
-            
+        self.clipTag = action->has_cliptag ? action->cliptag : 0;
+        
+        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {            
             self.shadow = [Shadow shadowWithIntColor:action->shadowcolor offset:CGSizeMake(action->shadowoffsetx, action->shadowoffsety) blur:action->shadowblur];
         }
     }
@@ -192,7 +184,10 @@
 
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
-    return;
+    if (self.clipTag != 0) {
+        pbDrawActionC->cliptag = self.clipTag;
+        pbDrawActionC->has_cliptag = YES;
+    }
 }
 
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect

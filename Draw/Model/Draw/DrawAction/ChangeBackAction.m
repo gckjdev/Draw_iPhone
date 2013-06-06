@@ -106,6 +106,7 @@
 {
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
     [builder setType:DrawActionTypeChangeBack];
+    [builder setClipTag:self.clipTag];
     [builder setWidth:BACK_GROUND_WIDTH];
     [builder addPointsX:0];
     [builder addPointsX:0];
@@ -117,6 +118,7 @@
 
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
+    [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypeChangeBack;
 
     pbDrawActionC->width = BACK_GROUND_WIDTH;

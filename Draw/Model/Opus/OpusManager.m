@@ -40,11 +40,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusManager);
 
 - (void)saveOpus:(Opus*)opus
 {
+    PPDebug(@"SAVE LOCAL OPUS=%@", [opus description]);
     [BuriBucket([opus class]) storeObject:opus];
 }
 
 - (void)deleteOpus:(NSString *)opusKey{
 
+    PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusKey);
     Class class = [Opus classForOpusKey:opusKey];
     [BuriBucket(class) deleteObjectForKey:opusKey];
 }

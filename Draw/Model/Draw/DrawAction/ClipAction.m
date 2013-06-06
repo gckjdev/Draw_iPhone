@@ -32,15 +32,66 @@
     [super dealloc];
 }
 
+
+- (void)updatePaintWithDrawActionC:(Game__PBDrawAction *)action
+{
+    NSMutableArray *pointList = nil;
+    NSInteger count =  action->n_points;
+    
+    if (count > 0) {
+        pointList = [NSMutableArray arrayWithCapacity:count];
+        for (NSInteger i = 0; i < count; ++ i) {
+            Game__PBPoint* point = action->points[i];
+            if (point != NULL){
+                PointNode *node = [[PointNode alloc] initPointWithX:point->x Y:point->y];
+                [pointList addObject:node];
+                [node release];
+            }
+        }
+    }
+    ItemType penType;
+    if (action->cliptype == ClipTypePolygon) {
+        penType = PolygonPen;
+    }else{
+        penType = action->pentype;
+    }
+    self.paint = [Paint paintWithWidth:1
+                                 color:[DrawColor blackColor]
+                               penType:penType
+                             pointList:pointList];
+}
+
+
+- (void)updateShapeWithDrawActionC:(Game__PBDrawAction *)action
+{
+    ShapeType shapeType;
+    if (action->cliptype == ClipTypeEllipse) {
+        shapeType = ShapeTypeEmptyEllipse;
+    }else if(action->cliptype == ClipTypeRectangle){
+        shapeType = ShapeTypeEmptyRectangle;
+    }
+    self.shape = [ShapeInfo shapeWithType:shapeType
+                                  penType:Pencil
+                                    width:1
+                                    color:[DrawColor blackColor]];
+    
+    [self.shape setPointsWithPointComponentC:action->rectcomponent listCount:action->n_rectcomponent];
+}
+
+
+- (void)commonInit
+{
+    _hasUnClipContext = YES;
+    _hasClipContext = NO;
+    self.type = DrawActionTypeClip;
+}
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super initWithPBDrawAction:action];
     if (self) {
-        self.clipTag = (action.hasClipTag ? action.clipTag : 0);
         self.clipType = action.clipType;
-
-        _hasUnClipContext = YES;
-        _hasClipContext = NO;
+        [self commonInit];
     }
     return self;
 }
@@ -49,25 +100,84 @@
 {
     self = [super initWithPBDrawActionC:action];
     if (self) {
-        self.clipTag = action->has_cliptag ? action->cliptag : 0;
+        [self commonInit];
         self.clipType = action->cliptype;
+        switch (self.clipType) {
+            case ClipTypeEllipse:
+            case ClipTypeRectangle:
+
+                break;
+            case ClipTypePolygon:
+            case ClipTypeSmoothPath:
+                [self updatePaintWithDrawActionC:action];
+                break;
+                
+            default:
+                break;
+        }
         
-        _hasUnClipContext = YES;
-        _hasClipContext = NO;
     }
     return self;
 }
+
+- (id)initWithShape:(ShapeInfo *)shape
+{
+    self = [super init];
+    if (self) {
+        self.shape = shape;
+        if (shape.type == ShapeTypeEllipse) {
+            self.clipType = ClipTypeEllipse;
+        }else if(shape.type == ShapeTypeRectangle){
+            self.clipType = ClipTypeRectangle;
+        }else{
+            self.shape = nil;
+        }
+    }
+    return self;
+}
+
+- (id)initWithPaint:(Paint *)paint
+{
+    self = [super init];
+    if (self) {
+        self.paint = paint;
+        if (paint.penType == PolygonPen) {
+            self.clipType = ClipTypePolygon;
+        }else{
+            self.clipType = ClipTypeSmoothPath;
+        }
+    }
+    return self;
+}
+
++ (id)clipActionWithShape:(ShapeInfo *)shape
+{
+    return [[[ClipAction alloc] initWithShape:shape] autorelease];
+}
++ (id)clipActionWithPaint:(Paint *)paint
+{
+    return [[[ClipAction alloc] initWithPaint:paint] autorelease];
+}
+
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
     CGRect retRrect;
+    
+    static CGFloat lengths[] = {3,3};
+    
+    CGContextSetLineDash(context, 0, lengths, 2);
+    
     if (self.paint) {
        retRrect = [self.paint drawInContext:context inRect:rect];
     }else{
         [self.shape drawInContext:context];
         retRrect = self.shape.redrawRect;
     }
+    
+    CGContextRestoreGState(context);
+    
     return retRrect;
 }
 
@@ -85,12 +195,16 @@
     if (self.paint) {
         path = self.paint.path;
     }else{
-//        path = self.shape.path;
+        path = self.shape.path;
     }
     CGContextSaveGState(context);
     CGContextAddPath(context, path);
+    CGContextClosePath(context);
     CGContextClip(context);
 }
+
+
+
 
 - (void)unClipContext:(CGContextRef)context
 {
@@ -125,9 +239,12 @@
 
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
+    [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypeClip;
     pbDrawActionC->cliptag = self.clipTag;
     pbDrawActionC->cliptype = self.clipType;
+    pbDrawActionC->has_cliptag = YES;
+    pbDrawActionC->has_cliptype = YES;
 
     if (self.paint) {
         [self.paint updatePBDrawActionC:pbDrawActionC];
@@ -137,6 +254,17 @@
     }
     
     return;
+}
+
+
+- (void)addPoint:(CGPoint)point inRect:(CGRect)rect
+{
+    [super addPoint:point inRect:rect];
+    if (self.paint) {
+       [self.paint addPoint:point inRect:rect];
+    }else if(self.shape){
+        self.shape.endPoint = point;
+    }
 }
 
 @end
