@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA411810176066F500DA72D0"
-               BuildableName = "Draw copy.app"
+               BuildableName = "AskPs.app"
                BlueprintName = "AskPs"
                ReferencedContainer = "container:Draw.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA411810176066F500DA72D0"
-            BuildableName = "Draw copy.app"
+            BuildableName = "AskPs.app"
             BlueprintName = "AskPs"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA411810176066F500DA72D0"
-            BuildableName = "Draw copy.app"
+            BuildableName = "AskPs.app"
             BlueprintName = "AskPs"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EA411810176066F500DA72D0"
-            BuildableName = "Draw copy.app"
+            BuildableName = "AskPs.app"
             BlueprintName = "AskPs"
             ReferencedContainer = "container:Draw.xcodeproj">
          </BuildableReference>
