@@ -35,4 +35,5 @@ message PBSingOpus {
 
   optional float duration = 3[default = 1];
   optional float pitch = 4[default = 1];
+  optional float formant = 5[default = 1];
 }

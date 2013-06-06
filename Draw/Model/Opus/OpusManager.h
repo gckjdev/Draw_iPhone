@@ -15,10 +15,10 @@
 
 + (id)defaultManager;
 
-- (Opus*)opusWithOpusId:(NSString *)opusId;
+- (id)opusWithOpusKey:(NSString *)opusKey;
 
 - (void)saveOpus:(Opus*)opus;
-- (void)deleteOpus:(NSString*)opusId;
+- (void)deleteOpus:(NSString *)opusKey;
 
 // TODO compare with MyPaintManager
 

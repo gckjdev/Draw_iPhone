@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "BuriBucket.h"
 
+#define BuriBucket(x) ([[BuriManager  defaultManager] bucketWithObjectClass:[x class]])
+
 @interface BuriManager : NSObject
 
 @property (retain, nonatomic) Buri *db;
 
 + (id)defaultManager;
-- (BuriBucket *)createBucketWithObjectClass:(Class)class;
+- (BuriBucket *)bucketWithObjectClass:(Class)aClass;
 
 @end

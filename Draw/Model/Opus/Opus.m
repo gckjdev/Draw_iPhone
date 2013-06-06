@@ -20,7 +20,9 @@
 - (id)init{
     if (self = [super init]) {
         self.pbOpusBuilder = [[[PBOpus_Builder alloc] init] autorelease];
-        [self.pbOpusBuilder setOpusId:[NSString GetUUID]];
+//        [self.pbOpusBuilder setOpusId:[NSString GetUUID]];
+        [self.pbOpusBuilder setOpusId:@"2"];
+        self.opusKey = [self opusKeyWithOpusId:_pbOpusBuilder.opusId];
     }
     
     return self;
@@ -28,6 +30,7 @@
 
 - (void)dealloc
 {
+    [_opusKey release];
     [_pbOpusBuilder release];
     [super dealloc];
 }
@@ -75,21 +78,46 @@
 }
 
 - (PBOpus *)pbOpus{
-    return [_pbOpusBuilder build];
+    PBOpus *opus = [_pbOpusBuilder build];
+    self.pbOpusBuilder = [PBOpus builderWithPrototype:opus];
+    
+    return opus;
+}
+
+
+- (NSString *)opusKeyWithOpusId:(NSString *)opusId
+{
+    NSString *className = NSStringFromClass([self class]);
+    NSString *key = [NSString stringWithFormat:@"%@_%@",className, opusId];
+    return key;
+}
+
++ (Class)classForOpusKey:(NSString *)opusKey {
+    NSRange range = [opusKey rangeOfString:@"_"];
+    if (range.location == NSNotFound) {
+        return nil;
+    }
+    
+    NSString *className = [opusKey substringToIndex:range.location];
+    Class class = NSClassFromString(className);
+    
+    return class;
 }
 
 + (NSDictionary *)buriProperties{
     return @{
-        BURI_KEY: @"opusId",
-    };
+             BURI_KEY: @"opusKey",
+             };
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	if ((self = [super init])) {
-        NSString *opusId = [decoder decodeObjectForKey:@"opusId"];
+    
 		NSData *data = [decoder decodeObjectForKey:@"opusData"];
-        
+        NSString *key = [decoder decodeObjectForKey:@"opusKey"];
+
+        self.opusKey = key;
         self.pbOpusBuilder = [PBOpus builderWithPrototype:[PBOpus parseFromData:data]];
 	}
     
@@ -98,9 +126,9 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:[_pbOpusBuilder opusId] forKey:@"opusId"];
-    [encoder encodeObject:[[_pbOpusBuilder build] data] forKey:@"opusData"];
+    [encoder encodeObject:[self opusKey] forKey:@"opusKey"];
+    [encoder encodeObject:[[self pbOpus] data] forKey:@"opusData"];
 }
 
-
 @end
+

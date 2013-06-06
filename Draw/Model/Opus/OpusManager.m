@@ -11,7 +11,6 @@
 #import "BuriManager.h"
 
 @interface OpusManager()
-@property (retain, nonatomic) BuriBucket *bucket;
 
 @end
 
@@ -20,32 +19,34 @@
 SYNTHESIZE_SINGLETON_FOR_CLASS(OpusManager);
 
 - (void)dealloc{
-    [_bucket release];
     [super dealloc];
 }
 
 - (id)init{
     if (self = [super init]) {
-        self.bucket = [[BuriManager defaultManager] createBucketWithObjectClass:[Opus class]];
     }
     
     return self;
 }
 
-- (Opus*)opusWithOpusId:(NSString *)opusId{
+
+- (id)opusWithOpusKey:(NSString *)opusKey{
+
+    Class class = [Opus classForOpusKey:opusKey];
+    Opus *opus = [BuriBucket(class) fetchObjectForKey:opusKey];
     
-    Opus *opus = [_bucket fetchObjectForKey:opusId];
     return opus;
 }
 
 - (void)saveOpus:(Opus*)opus
 {
-    [_bucket storeObject:opus];
+    [BuriBucket([opus class]) storeObject:opus];
 }
 
-- (void)deleteOpus:(NSString*)opusId{
-    
-    [_bucket deleteObjectForKey:opusId];
+- (void)deleteOpus:(NSString *)opusKey{
+
+    Class class = [Opus classForOpusKey:opusKey];
+    [BuriBucket(class) deleteObjectForKey:opusKey];
 }
 
 @end

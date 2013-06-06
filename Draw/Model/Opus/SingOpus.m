@@ -35,4 +35,10 @@
     [self.pbOpusBuilder setSingOpus:[builder build]];
 }
 
+- (void)setFormant:(float)formant{
+    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.singOpus];
+    [builder setFormant:formant];
+    [self.pbOpusBuilder setSingOpus:[builder build]];
+}
+
 @end

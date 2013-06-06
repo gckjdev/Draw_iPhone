@@ -601,6 +601,7 @@ static PBSongList* defaultPBSongListInstance = nil;
 @property PBVoiceType voiceType;
 @property Float32 duration;
 @property Float32 pitch;
+@property Float32 formant;
 @end
 
 @implementation PBSingOpus
@@ -633,6 +634,13 @@ static PBSongList* defaultPBSongListInstance = nil;
   hasPitch_ = !!value;
 }
 @synthesize pitch;
+- (BOOL) hasFormant {
+  return !!hasFormant_;
+}
+- (void) setHasFormant:(BOOL) value {
+  hasFormant_ = !!value;
+}
+@synthesize formant;
 - (void) dealloc {
   self.song = nil;
   [super dealloc];
@@ -643,6 +651,7 @@ static PBSongList* defaultPBSongListInstance = nil;
     self.voiceType = PBVoiceTypeVoiceTypeOrigin;
     self.duration = 1;
     self.pitch = 1;
+    self.formant = 1;
   }
   return self;
 }
@@ -679,6 +688,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   if (self.hasPitch) {
     [output writeFloat:4 value:self.pitch];
   }
+  if (self.hasFormant) {
+    [output writeFloat:5 value:self.formant];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -699,6 +711,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   }
   if (self.hasPitch) {
     size += computeFloatSize(4, self.pitch);
+  }
+  if (self.hasFormant) {
+    size += computeFloatSize(5, self.formant);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -787,6 +802,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   if (other.hasPitch) {
     [self setPitch:other.pitch];
   }
+  if (other.hasFormant) {
+    [self setFormant:other.formant];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -832,6 +850,10 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
       }
       case 37: {
         [self setPitch:[input readFloat]];
+        break;
+      }
+      case 45: {
+        [self setFormant:[input readFloat]];
         break;
       }
     }
@@ -913,6 +935,22 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
 - (PBSingOpus_Builder*) clearPitch {
   result.hasPitch = NO;
   result.pitch = 1;
+  return self;
+}
+- (BOOL) hasFormant {
+  return result.hasFormant;
+}
+- (Float32) formant {
+  return result.formant;
+}
+- (PBSingOpus_Builder*) setFormant:(Float32) value {
+  result.hasFormant = YES;
+  result.formant = value;
+  return self;
+}
+- (PBSingOpus_Builder*) clearFormant {
+  result.hasFormant = NO;
+  result.formant = 1;
   return self;
 }
 @end

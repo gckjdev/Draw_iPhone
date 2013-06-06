@@ -69,8 +69,10 @@
     [self.dataTableView reloadData];
 }
 
-
-
-
+- (IBAction)clickDraftButton:(id)sender {
+    SingOpus *opus = [[OpusManager defaultManager] opusWithOpusKey:@"SingOpus_2"];
+    SingController *vc = [[[SingController alloc] initWithOpus:opus] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

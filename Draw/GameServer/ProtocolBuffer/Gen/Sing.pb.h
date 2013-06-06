@@ -164,10 +164,12 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 @private
   BOOL hasDuration_:1;
   BOOL hasPitch_:1;
+  BOOL hasFormant_:1;
   BOOL hasSong_:1;
   BOOL hasVoiceType_:1;
   Float32 duration;
   Float32 pitch;
+  Float32 formant;
   PBSong* song;
   PBVoiceType voiceType;
 }
@@ -175,10 +177,12 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (BOOL) hasVoiceType;
 - (BOOL) hasDuration;
 - (BOOL) hasPitch;
+- (BOOL) hasFormant;
 @property (readonly, retain) PBSong* song;
 @property (readonly) PBVoiceType voiceType;
 @property (readonly) Float32 duration;
 @property (readonly) Float32 pitch;
+@property (readonly) Float32 formant;
 
 + (PBSingOpus*) defaultInstance;
 - (PBSingOpus*) defaultInstance;
@@ -235,5 +239,10 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (Float32) pitch;
 - (PBSingOpus_Builder*) setPitch:(Float32) value;
 - (PBSingOpus_Builder*) clearPitch;
+
+- (BOOL) hasFormant;
+- (Float32) formant;
+- (PBSingOpus_Builder*) setFormant:(Float32) value;
+- (PBSingOpus_Builder*) clearFormant;
 @end
 

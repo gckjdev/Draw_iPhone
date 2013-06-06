@@ -30,4 +30,5 @@ AUTO_CREATE_VIEW_BY_XIB(SongCell);
     [_nameLabel release];
     [super dealloc];
 }
+
 @end

@@ -14,6 +14,7 @@
 #import "ChangeAvatar.h"
 #import "Sing.pb.h"
 #import "OpusService.h"
+#import "SingOpus.h"
 
 @interface SingController : PPViewController <AVAudioRecorderDelegate,InputDialogDelegate, ChangeAvatarDelegate, OpusServiceDelegate>
 
@@ -37,5 +38,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 
 - (id)initWithSong:(PBSong *)song;
+- (id)initWithOpus:(SingOpus *)opus;
 
 @end

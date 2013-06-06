@@ -15,6 +15,7 @@
 
 @interface BuriManager()
 
+
 @end
 
 @implementation BuriManager
@@ -36,11 +37,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BuriManager);
     return self;
 }
 
-- (BuriBucket *)createBucketWithObjectClass:(Class)class{
-    
-    BuriBucket *bucket = [[[BuriBucket alloc] initWithDB:_db andObjectClass:class] autorelease];
-    return bucket;
+- (BuriBucket *)bucketWithObjectClass:(Class)aClass{
+    return [[[BuriBucket alloc] initWithDB:_db andObjectClass:aClass] autorelease];
 }
+
 
 
 @end

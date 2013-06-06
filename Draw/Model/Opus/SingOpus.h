@@ -14,5 +14,6 @@
 - (void)setVoiceType:(PBVoiceType)voiceType;
 - (void)setDuration:(float)duration;
 - (void)setPitch:(float)pitch;
+- (void)setFormant:(float)formant;
 
 @end
