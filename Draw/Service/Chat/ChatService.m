@@ -133,7 +133,7 @@ static ChatService *_chatService = nil;
            delegate:(id<ChatServiceDelegate>)delegate
 {
     [message retain];
-    [delegate retain];
+//    [delegate retain];
     dispatch_async(workingQueue, ^{
         
         NSString *userId = [[UserManager defaultManager] userId];
@@ -273,8 +273,8 @@ static ChatService *_chatService = nil;
             }
             
             [message release];
-            [delegate release];
-        }); 
+//            [delegate release];
+        });
     });
 }
 

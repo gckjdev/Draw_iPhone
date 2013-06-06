@@ -213,7 +213,7 @@
 //235 - 68 
 
 #define RECT_INPUT_TEXT_VIEW        ([DeviceDetection isIPAD] ? CGRectMake(167, 20, 579, 50) : CGRectMake(75, 8, 232, 30))
-#define RECT_INPUT_TEXT_BACKGROUND   ([DeviceDetection isIPAD] ? CGRectMake(158, 11, 461, 68) : CGRectMake(69, 5, 245, 36))
+#define RECT_INPUT_TEXT_BACKGROUND   ([DeviceDetection isIPAD] ? CGRectMake(158, 11, 597, 68) : CGRectMake(69, 5, 245, 36))
 
 - (void)updateLocateButton
 {

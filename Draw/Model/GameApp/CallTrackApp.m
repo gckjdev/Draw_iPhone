@@ -29,7 +29,7 @@
 
 - (NSString*)umengId
 {
-    return DREAM_AVATAR_UMENG_ID;
+    return @"51aed32d56240b1b94001a1f";
 }
 
 - (BOOL)hasBGOffscreen{
