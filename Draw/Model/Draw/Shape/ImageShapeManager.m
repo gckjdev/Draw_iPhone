@@ -16,7 +16,7 @@
 #define IsImageShapeType(type, value) ((value >= ImageShapeTypeStart(type)) && (value <= ImageShapeTypeEnd(type)))
 
 
-NSMutableDictionary *_imageShapeDict;
+NSMutableDictionary *_bezierPathDict;
 
 @implementation ImageShapeManager
 
@@ -57,32 +57,36 @@ NSMutableDictionary *_imageShapeDict;
 + (ImageShapeInfo *)imageShapeWithType:(ShapeType)type
 {
     
-    if (_imageShapeDict == nil) {
-        _imageShapeDict = [[NSMutableDictionary alloc] init];
+    if (_bezierPathDict == nil) {
+        _bezierPathDict = [[NSMutableDictionary alloc] init];
     }
     NSString *key = [NSString stringWithFormat:@"%d",type];
-    ImageShapeInfo *shape = [_imageShapeDict objectForKey:key];
-    if (shape) {
-        return shape;
-    }
-    NSString *name = [ImageShapeManager svgFileNameWithType:type];
-    NSString *filePath = [ImageShapeManager fullPathWithSvgFileName:name];
-    if ([filePath length] != 0) {
-        CGPathRef  path = [PocketSVG bezierPathWithSVGFilePath:filePath].CGPath;
-        if (path != NULL) {
-            ImageShapeInfo *shapeInfo = [[[ImageShapeInfo alloc] initWithCGPath:path] autorelease];
-            [_imageShapeDict setObject:shapeInfo forKey:key];
-            shapeInfo.type = type;
-            return shapeInfo;
-            
+    UIBezierPath *bPath = [_bezierPathDict objectForKey:key];
+    if (bPath == nil) {
+        NSString *name = [ImageShapeManager svgFileNameWithType:type];
+        NSString *filePath = [ImageShapeManager fullPathWithSvgFileName:name];
+        
+        if ([filePath length] != 0) {
+            bPath = [PocketSVG bezierPathWithSVGFileNamed:name];
+            if (bPath) {
+                [_bezierPathDict setObject:bPath forKey:key];
+            }
         }
     }
+    if (bPath != nil) {
+        ImageShapeInfo *shapeInfo = [[[ImageShapeInfo alloc] initWithCGPath:bPath.CGPath] autorelease];
+        shapeInfo.type = type;
+        return shapeInfo;
+        
+    }
+
+
     return nil;
 }
 
 + (void)cleanCache
 {
-    [_imageShapeDict removeAllObjects];
+    [_bezierPathDict removeAllObjects];
 }
 
 @end

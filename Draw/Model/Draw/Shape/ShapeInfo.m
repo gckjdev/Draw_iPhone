@@ -34,7 +34,6 @@
 - (void)dealloc
 {
     PPRelease(_color);
-//    CGPathRelease(_path);
     PPCGPathRelease(_path);
     [super dealloc];
 }
@@ -44,11 +43,29 @@
     return _stroke;
 }
 
+
 + (id)shapeWithType:(ShapeType)type
             penType:(ItemType)penType
               width:(CGFloat)with
               color:(DrawColor *)color
 {
+    /*
+    if (type == ShapeTypeBeeline) {
+        type = ShapeTypeImageSignStart + 1;
+    }
+    if (type == ShapeTypeEllipse) {
+        type = ShapeTypeImageAnimalStart + 7;
+    }
+    
+    if (type == ShapeTypeRectangle) {
+        type = ShapeTypeImageStuffStart + 4;
+    }
+    
+    if (type == ShapeTypeTriangle) {
+        type = ShapeTypeImageNatureStart + 8;
+    }
+     */
+    
     ShapeInfo *shapeInfo = nil;
     switch (type) {
         case ShapeTypeBeeline:
@@ -86,14 +103,14 @@
     }
     
     if (shapeInfo == nil && type > ShapeTypeImageStart) {
-        shapeInfo = [[ImageShapeInfo alloc] init];
+        shapeInfo = [[ImageShapeManager imageShapeWithType:type] retain];
+    }else{    
+        [shapeInfo setWidth:with];
     }
-    
     [shapeInfo setType:type];
     [shapeInfo setPenType:penType];
-    [shapeInfo setWidth:with];
     [shapeInfo setColor:color];
-    
+
     return [shapeInfo autorelease];
 }
 
@@ -321,7 +338,7 @@
 
 @end
 
-#import "PocketSVG.h"
+
 
 @interface ImageShapeInfo()
 {
@@ -337,28 +354,24 @@
     self = [super init];
     if (self) {
         _path = CGPathRetain(path);
+        self.width = 2;
+        self.color = [DrawColor blackColor];
     }
     return self;
 }
-
-+ (id)shapeWithType:(ShapeType)type
-            penType:(ItemType)penType
-              width:(CGFloat)with
-              color:(DrawColor *)color
-{
-    ShapeInfo *shape = [ImageShapeInfo shapeImageForShapeType:type];
-    shape.type = type;
-    return shape;
-}
-
 #define SVG_IMAGE_SIZE 64
 
 
 - (void)updateRedrawRectWithWidth:(CGFloat)width
 {
-    _redrawRect = CGPathGetBoundingBox(_path);
-    CGRectEnlarge(&_redrawRect, width, width);
-
+    if (CGRectEqualToRect(CGRectZero, _redrawRect)) {
+        _redrawRect = self.rect;
+    }else{
+        _redrawRect = CGRectUnion(_redrawRect, [self rect]);
+    }
+    if (0 != width) {
+        CGRectEnlarge(&_redrawRect, width, width);
+    }
 }
 
 - (void)drawInContext:(CGContextRef)context
@@ -377,11 +390,11 @@
         CGFloat ty = CGRectGetMinY(rect)/ sy;
         
         if (self.startPoint.x > self.endPoint.x) {
-            sy = - sy;
+            sx = - sx;
         }
         
         if (self.startPoint.y > self.endPoint.y) {
-            sx = - sx;
+            sy = - sy;
         }
 
         CGContextScaleCTM(context, sx, sy);
@@ -397,12 +410,13 @@
         CGContextAddPath(context, _path);
         if (_stroke) {
             CGContextSetLineWidth(context, self.width);
-            [self.color.color setStroke];
+            CGContextSetStrokeColorWithColor(context, self.color.CGColor);
             [self updateRedrawRectWithWidth:self.width];
         }else{
-            [self.color.color setFill];
+            CGContextSetFillColorWithColor(context, self.color.CGColor);
             CGContextFillPath(context);
-            _redrawRect = CGPathGetBoundingBox(_path);
+//            _redrawRect = CGPathGetBoundingBox(_path);
+            [self updateRedrawRectWithWidth:0];
         }
     }
     
@@ -412,7 +426,6 @@
 
 - (void)dealloc
 {
-    PPCGPathRelease(_path);
     [super dealloc];
 }
 
