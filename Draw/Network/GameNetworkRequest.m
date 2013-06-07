@@ -3394,5 +3394,103 @@
                           progressDelegate:progressDelegate];
 }
 
++ (CommonNetworkOutput*)favorGalleryPicture:(NSString *)baseURL
+                                      appId:(NSString *)appId
+                                     userId:(NSString *)userId
+                                        url:(NSString *)url
+                                       name:(NSString *)name
+                                   tagArray:(NSString *)tagArrayString
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_FAVOR_GALLERY_PIC];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_GALLERY_PIC_NAME value:name];
+        str = [str stringByAddQueryParameter:PARA_GALLERY_PIC_URL value:url];
+        str = [str stringByAddQueryParameter:PARA_GALLERY_PIC_TAG value:tagArrayString];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)getGalleryImage:(NSString *)baseURL
+                                  appId:(NSString *)appId
+                                 userId:(NSString *)userId
+                               tagArray:(NSString *)tagArrayString
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_GALLERY_PIC];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_GALLERY_PIC_TAG value:tagArrayString];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)updateGalleryPicture:(NSString *)baseURL
+                                       appId:(NSString *)appId
+                                      userId:(NSString *)userId
+                                         url:(NSString *)url
+                                        name:(NSString *)name
+                                    tagArray:(NSString *)tagArrayString
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_GALLERY_PIC];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_GALLERY_PIC_NAME value:name];
+        str = [str stringByAddQueryParameter:PARA_GALLERY_PIC_URL value:url];
+        str = [str stringByAddQueryParameter:PARA_GALLERY_PIC_TAG value:tagArrayString];
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+}
+
 
 @end

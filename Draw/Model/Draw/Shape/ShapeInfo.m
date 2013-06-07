@@ -21,7 +21,7 @@
 @interface ShapeInfo()
 {
 //    CGPoint _lastEndPoint;
-    CGRect _redrawRect;
+
 }
 
 @end
@@ -38,6 +38,10 @@
     [super dealloc];
 }
 
+- (BOOL)isStroke
+{
+    return _stroke;
+}
 
 + (id)shapeWithType:(ShapeType)type
             penType:(ItemType)penType
@@ -278,10 +282,7 @@
 //    _stroke = YES;
 }
 
-- (BOOL)isStroke
-{
-    return _stroke;
-}
+
 
 #define MIN_DISTANCE1 MAX(8,self.width+2)
 - (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
@@ -327,7 +328,7 @@
 
 @implementation ImageShapeInfo
 
-#define SVG_SIZE CGSizeMake(100,100)
+
 
 - (NSString *)nameForType:(ShapeType)type
 {
@@ -357,6 +358,16 @@
     }
 }
 
+#define SVG_IMAGE_SIZE 64
+
+
+- (void)updateRedrawRectWithWidth:(CGFloat)width
+{
+    _redrawRect = CGPathGetBoundingBox(_path);
+    CGRectEnlarge(&_redrawRect, width, width);
+
+}
+
 - (void)drawInContext:(CGContextRef)context
 {
     CGContextSaveGState(context);
@@ -365,26 +376,45 @@
         //translate && scale the path according to the rect.
         
         CGRect rect = [self rect];
-        CGSize pathSzie = SVG_SIZE;
-        
-        CGFloat xScale = CGRectGetWidth(rect) / pathSzie.width;
-        CGFloat yScale = CGRectGetHeight(rect) / pathSzie.height;
-        
-        CGFloat tx = CGRectGetMidX(rect);
-        CGFloat ty = CGRectGetMidY(rect);
-        
-        CGContextTranslateCTM(context, tx, ty);
-        CGContextScaleCTM(context, xScale, yScale);
 
+        CGFloat sx = CGRectGetWidth(rect) / SVG_IMAGE_SIZE;
+        CGFloat sy = CGRectGetHeight(rect) / SVG_IMAGE_SIZE;
         
-        //fill it with color!
+        CGFloat tx = CGRectGetMinX(rect) / sx;
+        CGFloat ty = CGRectGetMinY(rect)/ sy;
         
-        [self.color.color setFill];
+        if (self.startPoint.x > self.endPoint.x) {
+            sy = - sy;
+        }
+        
+        if (self.startPoint.y > self.endPoint.y) {
+            sx = - sx;
+        }
+
+        CGContextScaleCTM(context, sx, sy);
+        if (sy < 0) {
+            ty = -(ty + SVG_IMAGE_SIZE);
+        }
+        if (sx < 0) {
+            tx = -(tx + SVG_IMAGE_SIZE);
+        }
+        CGContextTranslateCTM(context, tx, ty);
+        
+        
         CGContextAddPath(context, _path);
-        CGContextFillPath(context);
+        if (_stroke) {
+            CGContextSetLineWidth(context, self.width);
+            [self.color.color setStroke];
+            [self updateRedrawRectWithWidth:self.width];
+        }else{
+            [self.color.color setFill];
+            CGContextFillPath(context);
+            _redrawRect = CGPathGetBoundingBox(_path);
+        }
     }
     
     CGContextRestoreGState(context);
+
 }
 
 - (void)dealloc
@@ -394,7 +424,15 @@
 
 - (CGPathRef)path
 {
-    return NULL;
+    return _path;
+}
+
+- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    
+    [super updatePBDrawActionC:pbDrawActionC];
+    pbDrawActionC->width = 2;
+    pbDrawActionC->has_width = 1;
 }
 
 @end
