@@ -78,11 +78,6 @@
     CGRect frame = view.frame;
     frame.origin = CGPointMake(x, y);
     view.frame = frame;
-//    if (line == 1) {
-//        view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin + UIViewAutoresizingFlexibleLeftMargin;
-//    }else{
-//        view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin + UIViewAutoresizingFlexibleLeftMargin;
-//    }
     
     return view;
 }
@@ -91,7 +86,6 @@
 {
     int *list = getMainMenuTypeList();
 
-//    list = getZJHMainMenuTypeList();
     _pageCount = 0;
     _menuCount = 0;
     NSInteger index = 0;
@@ -124,7 +118,7 @@
 
     [self updatePageButton];
     [self performSelector:@selector(animatePageButtons) withObject:nil afterDelay:1];
-    if (isDrawApp()) {
+    if (isDrawApp() || isSingApp()) {
         [[self viewWithTag:1234] removeFromSuperview];
     }
 }

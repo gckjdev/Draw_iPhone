@@ -137,7 +137,8 @@ typedef enum {
     GameAppTypeDreamAvatarFree = 11,
     GameAppTypeDreamLockscreen = 12,
     GameAppTypeDreamLockscreenFree = 13,
-    GameAppTypeLittleGee = 14
+    GameAppTypeLittleGee = 14,
+    GameAppTypeSing = 15,
 }GameAppType;
 
 

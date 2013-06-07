@@ -17,7 +17,6 @@ typedef enum _OpusType{
 
 @interface Opus : NSObject <BuriSupport>
 
-@property (nonatomic, copy) NSString *opusKey;
 @property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
 
 + (id)opusWithType:(OpusType)type;
@@ -29,8 +28,6 @@ typedef enum _OpusType{
 - (void)setTargetUser:(PBGameUser *)user;
 
 - (PBOpus *)pbOpus;
-
-+ (Class)classForOpusKey:(NSString *)opusKey;
 
 @end
 

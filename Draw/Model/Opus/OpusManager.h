@@ -13,13 +13,11 @@
 
 @interface OpusManager : NSObject
 
-+ (id)defaultManager;
++ (id)singOpusManager;
 
-- (id)opusWithOpusKey:(NSString *)opusKey;
-
+- (id)opusWithOpusId:(NSString *)opusId;
 - (void)saveOpus:(Opus*)opus;
-- (void)deleteOpus:(NSString *)opusKey;
+- (void)deleteOpus:(NSString *)opusId;
 
-// TODO compare with MyPaintManager
 
 @end

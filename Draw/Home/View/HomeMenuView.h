@@ -61,9 +61,22 @@ typedef enum{
     HomeMenuTypeDiceHelp,
     HomeMenuTypeDiceShop,
     HomeMenuTypeDiceFreeCoins,
-    
-    // Dice bottom menu
     HomeMenuTypeDiceMore,
+    
+    // sing main menu
+    HomeMenuTypeSing,
+    HomeMenuTypeGuessSing,
+    HomeMenuTypeSingTop,
+    HomeMenuTypeSingBBS,
+    HomeMenuTypeSingShop,
+    HomeMenuTypeSingFreeCoins,
+    
+    // sing bottom menu
+    HomeMenuTypeSingTimeline,
+    HomeMenuTypeSingDraft,
+    HomeMenuTypeSingFriend,
+    HomeMenuTypeSingChat,
+    HomeMenuTypeSingSetting,
     
     //Learn Draw Bottom Menu
     HomeMenuTypeLearnDrawDraw,
@@ -125,14 +138,14 @@ typedef enum{
 
 
 
-int *getDrawMainMenuTypeList();
-int *getZJHMainMenuTypeList();
-int *getDiceMainMenuTypeList();
+//int *getDrawMainMenuTypeList();
+//int *getZJHMainMenuTypeList();
+//int *getDiceMainMenuTypeList();
 
-int *getZJHBottomMenuTypeList();
-int *getDrawBottomMenuTypeList();
-int *getDiceBottomMenuTypeList();
-int *getLearnDrawBottomMenuTypeList();
+//int *getZJHBottomMenuTypeList();
+//int *getDrawBottomMenuTypeList();
+//int *getDiceBottomMenuTypeList();
+//int *getLearnDrawBottomMenuTypeList();
 
 
 int *getBottomMenuTypeList();

@@ -16,6 +16,7 @@
 #import "SongManager.h"
 #import "OpusManager.h"
 #import "MKBlockAlertView.h"
+#import "UIButton+WebCache.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -79,6 +80,9 @@ enum{
     [_duckButton release];
     [_femaleButton release];
     [_childButton release];
+    [_opusMainView release];
+    [_opusReview release];
+    [_opusImageButton release];
     [super dealloc];
 }
 
@@ -142,6 +146,7 @@ enum{
     NSString *name = _singOpus.pbOpus.singOpus.song.name;
     NSString *author = _singOpus.pbOpus.singOpus.song.author;
     NSString *lyric = _singOpus.pbOpus.singOpus.song.lyric;
+    NSString *image = _singOpus.pbOpus.image;
     
     self.songNameLabel.text = name;
     self.songAuthorLabel.text = author;
@@ -150,6 +155,9 @@ enum{
     _recordLimitTime = 30;
     _recordTimerInterval = 0.5;
     _playTimerInterval = 0.1;
+    
+    NSURL *url = [NSURL URLWithString:image];
+    [_opusImageButton setImageWithURL:url placeholderImage:nil];
     
 //    NSString *recordPath = [NSString stringWithFormat:@"%@.m4a", _singOpus.pbOpus.opusId];
     self.recordURL = [FileUtil fileURLInAppDocument:@"record.m4a"];
@@ -161,8 +169,10 @@ enum{
     }else{
         [self prepareToPlay];
         [self setState:StateReadyPlay];
+        [self performSelector:@selector(setFileDuration) withObject:nil afterDelay:0.2];
     }
-
+    
+    [self showMainView];
 }
 
 - (BOOL)shouldAutorotate{
@@ -188,6 +198,9 @@ enum{
     [self setMaleButton:nil];
     [self setFemaleButton:nil];
     [self setChildButton:nil];
+    [self setOpusMainView:nil];
+    [self setOpusReview:nil];
+    [self setOpusImageButton:nil];
     [super viewDidUnload];
 }
 
@@ -213,14 +226,14 @@ enum{
         PPDebug(@"record currentTime = %f", _recorder.currentTime);
         _recordDuration = _recorder.currentTime;
         NSTimeInterval leftTime =  _recordLimitTime -  _recordDuration;
-        [self updateUITime:leftTime];
+        [self updateUITime:@(leftTime)];
     }
     
     if ([_player playing]) {
         NSTimeInterval leftTime = _player.fileDuration - _player.currentTime;
         PPDebug(@"play currentTime = %f", _player.currentTime);
         PPDebug(@"play leftTime = %f", leftTime);
-        [self updateUITime:(leftTime)];
+        [self updateUITime:@(leftTime)];
     }
 }
 
@@ -236,7 +249,7 @@ enum{
 
     __block typeof(self) bself = self;
     
-    MKBlockAlertView *v = [[[MKBlockAlertView alloc] initWithTitle:NSLS(@"kGifTips") message:NSLS(@"kRerecordWarnning") delegate:nil cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kComfirm"), nil] autorelease];
+    MKBlockAlertView *v = [[[MKBlockAlertView alloc] initWithTitle:NSLS(@"kGifTips") message:NSLS(@"kRerecordWarnning") delegate:nil cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOk"), nil] autorelease];
     
     [v show];
     
@@ -251,7 +264,7 @@ enum{
 
 
 - (void)prepareToRecord{
-        
+    
     // Define the recorder setting
     NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
     
@@ -338,7 +351,13 @@ enum{
     // prepare to play
     [self prepareToPlay];
     [self setState:StateReadyPlay];
-    [self performSelector:@selector(updateUITime:) withObject:@(_player.fileDuration) afterDelay:1];
+    
+    
+    [self performSelector:@selector(setFileDuration) withObject:nil afterDelay:0.2];
+}
+
+- (void)setFileDuration{
+    [self updateUITime:@(_player.fileDuration)];
 }
 
 - (void)diracPlayerDidFinishPlaying:(DiracAudioPlayerBase *)player successfully:(BOOL)flag{
@@ -352,7 +371,7 @@ enum{
     
     // prepare to play
     
-    [self updateUITime:_player.fileDuration];
+    [self updateUITime:@(_player.fileDuration)];
     [self prepareToPlay];
     [self setState:StateReadyPlay];
 }
@@ -428,7 +447,7 @@ enum{
     self.saveButton.hidden = YES;
     self.submitButton.hidden = YES;
     
-    [self updateUITime:_recordLimitTime];
+    [self updateUITime:@(_recordLimitTime)];
 }
 
 - (void)uiRecording{
@@ -442,7 +461,7 @@ enum{
     self.saveButton.hidden = YES;
     self.submitButton.hidden = YES;
     
-    [self updateUITime:_recordLimitTime];
+    [self updateUITime:@(_recordLimitTime)];
 }
 
 - (void)uiReadyPlay{
@@ -469,14 +488,14 @@ enum{
     self.submitButton.hidden = YES;
 }
 
-- (void)updateUITime:(int)time{
+- (void)updateUITime:(NSNumber *)time{
 
-    if (time < 0 || time > 999) {
+    if (time.intValue < 0 || time.intValue > 999) {
         return;
     }
     
-    int min = time / 60;
-    int sec = time % 60;
+    int min = time.intValue / 60;
+    int sec = time.intValue % 60;
     
     self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d", min, sec];
 }
@@ -501,8 +520,7 @@ enum{
             break;
             
         case PBVoiceTypeVoiceTypeMale:
-            [self changeDuration:1 pitch:1.2 formant:1];
-
+            [self changeDuration:1 pitch:0.8 formant:0.5];
             break;
             
         case PBVoiceTypeVoiceTypeChild:
@@ -511,7 +529,7 @@ enum{
             break;
             
         case PBVoiceTypeVoiceTypeFemale:
-            [self changeDuration:1 pitch:0.8 formant:1];
+            [self changeDuration:1 pitch:1.2 formant:1];
             break;
             
         default:
@@ -586,7 +604,11 @@ enum{
 }
 
 - (void)didImageSelected:(UIImage*)image{
-    self.image = image;
+//    self.image = image;
+    
+    [_opusImageButton setImage:image forState:UIControlStateNormal];
+    _opusImageButton.
+//    [_opusImageView setImageWithURL:url placeholderImage:nil];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -630,6 +652,26 @@ enum{
     }else{
         [self popupMessage:@"失败" title:nil];
     }
+}
+
+- (IBAction)clickReviewButton:(id)sender {
+    
+    [self showReView];
+    
+}
+
+- (IBAction)clickOpusImageButton:(id)sender {
+    [self showMainView];
+}
+
+- (void)showMainView{
+    self.opusMainView.hidden = NO;
+    self.opusReview.hidden = YES;
+}
+
+- (void)showReView{
+    self.opusMainView.hidden = YES;
+    self.opusReview.hidden = NO;
 }
 
 @end
