@@ -77,11 +77,6 @@
     return IMAGE_HEIGHT;
 }
 #pragma mark tab controller delegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -110,11 +105,6 @@
     }
     
     return cell;
-}
-
-- (void)didClickResultImage:(id)sender
-{
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
