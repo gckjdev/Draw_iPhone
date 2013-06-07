@@ -15,6 +15,7 @@
               name:(NSString*)name
             tagSet:(NSSet*)tagSet
        resultBlock:(void(^)(int resultCode))resultBlock;
-- (void)getImageWithTagSet:(NSSet*)tagSet;
+- (void)getGalleryImageWithTagSet:(NSSet*)tagSet
+                      resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock;
 
 @end

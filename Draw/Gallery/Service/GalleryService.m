@@ -13,13 +13,20 @@
 #import "ConfigManager.h"
 #import "UserManager+DiceUserManager.h"
 
+
+#define TAG_SEP @"^"
+
 @implementation GalleryService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 
 - (NSString*)tagArrayStringBySet:(NSSet*)tagSet
 {
-    return nil;
+    NSString* str = @"";
+    for (NSString* tag in tagSet) {
+        str = [NSString stringWithFormat:@"%@%@%@",str, TAG_SEP, tag];
+    }
+    return str;
 }
 
 - (void)favorImage:(NSString*)url

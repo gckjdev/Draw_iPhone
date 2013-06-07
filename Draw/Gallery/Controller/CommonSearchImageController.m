@@ -17,6 +17,7 @@
 #import "GalleryManager.h"
 #import "CommonMessageCenter.h"
 #import "GalleryService.h"
+#import "GalleryController.h"
 
 @interface CommonSearchImageController () {
     ImageSearch* _imageSearcher;
@@ -236,6 +237,12 @@ enum {
     [view showInView:self.view];
 }
 
+- (IBAction)clickGallery:(id)sender
+{
+    GalleryController* vc = [[[GalleryController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)didConfirmFilter:(NSDictionary *)filter
 {
     self.filter = filter;
@@ -245,7 +252,9 @@ enum {
 #pragma mark - GalleryPictureInfoEditView delegate
 - (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
 {
-    [[GalleryService defaultService] favorImage:url name:name tagSet:tagSet];
+    [[GalleryService defaultService] favorImage:url name:name tagSet:tagSet resultBlock:^(int resultCode) {
+        PPDebug(@"<didEditPictureInfo> favor image %@ with tag <%@>succ !", url, [tagSet description]);
+    }];
 }
 
 

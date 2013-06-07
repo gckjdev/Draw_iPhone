@@ -148,7 +148,14 @@
 #define PARA_TOMATO_TIMES @"tt"
 #define PARA_SAVE_TIMES @"st"
 
+//for gallery
+#define METHOD_FAVOR_GALLERY_PIC    @"fgp"
+#define METHOD_UPDATE_GALLERY_PIC   @"ugp"
+#define METHOD_GET_GALLERY_PIC      @"ggp"
 
+#define PARA_GALLERY_PIC_NAME       @"gpn"
+#define PARA_GALLERY_PIC_URL        @"gpu"
+#define PARA_GALLERY_PIC_TAG        @"gpt"
 
 
 #define ACTION_TYPE_GUESS    2

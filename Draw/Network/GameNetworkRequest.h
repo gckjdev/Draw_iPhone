@@ -650,4 +650,11 @@
                                  userId:(NSString *)userId
                                tagArray:(NSString *)tagArrayString;
 
++ (CommonNetworkOutput*)updateGalleryPicture:(NSString *)baseURL
+                                       appId:(NSString *)appId
+                                      userId:(NSString *)userId
+                                         url:(NSString *)url
+                                        name:(NSString *)name
+                                    tagArray:(NSString *)tagArrayString;
+
 @end
