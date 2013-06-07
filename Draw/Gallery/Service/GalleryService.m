@@ -12,6 +12,9 @@
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
 #import "UserManager+DiceUserManager.h"
+#import "GameMessage.pb.h"
+
+#define TAG_SEP @"^"
 
 @implementation GalleryService
 
@@ -19,7 +22,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 
 - (NSString*)tagArrayStringBySet:(NSSet*)tagSet
 {
-    return nil;
+    NSString* str = @"";
+    for (NSString* tag in tagSet) {
+        str = [NSString stringWithFormat:@"%@%@%@",str, TAG_SEP, tag];
+    }
+    return str;
 }
 
 - (void)favorImage:(NSString*)url
@@ -68,8 +75,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
         //                opusId, actionName, output.resultCode);
         
+        NSInteger resultCode = output.resultCode;
+        NSArray *list = nil;
+        @try {
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            list = response.idListList;
+        }
+        @catch (NSException *exception) {
+            resultCode = ERROR_CLIENT_PARSE_DATA;
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            EXECUTE_BLOCK(resultBlock, output.resultCode, nil);
+            EXECUTE_BLOCK(resultBlock, output.resultCode, list);
         });
     });
 }

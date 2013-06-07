@@ -148,7 +148,12 @@
 #define PARA_TOMATO_TIMES @"tt"
 #define PARA_SAVE_TIMES @"st"
 
+//for gallery
+#define METHOD_ADD_USER_PHOTO    @"aup"
+#define METHOD_UPDATE_USER_PHOTO   @"uup"
+#define METHOD_GET_USER_PHOTO     @"gup"
 
+#define PARA_USER_PHOTO_TAGS        @"upt"
 
 
 #define ACTION_TYPE_GUESS    2

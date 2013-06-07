@@ -35,6 +35,9 @@
 + (PBAppReward*)oldDiceAppWithRewardAmount:(int)rewardAmount
                             rewardCurrency:(PBGameCurrency)rewardCurrency;
 
++ (PBAppReward*)xiaojiDrawAppWithRewardAmount:(int)rewardAmount
+                               rewardCurrency:(PBGameCurrency)rewardCurrency;
+
 + (PBRewardWall*)limeiWall;
 + (PBRewardWall*)wanpuWall;
 + (PBRewardWall*)youmiWall;

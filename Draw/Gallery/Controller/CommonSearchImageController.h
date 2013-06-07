@@ -18,5 +18,5 @@
 @property (retain, nonatomic) IBOutlet UISearchBar* searchBar;
 
 - (IBAction)clickFilter:(id)sender;
-
+- (IBAction)clickGallery:(id)sender;
 @end

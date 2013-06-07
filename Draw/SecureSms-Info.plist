@@ -24,14 +24,14 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>5.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>com.orange.draw</string>
+			<string>com.qqnpipi.securesms</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>alipaysecuresms.gckj</string>
@@ -39,7 +39,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>5.0</string>
 	<key>CFChannelId</key>
 	<string>App Store</string>
 	<key>CFConfigVersion</key>

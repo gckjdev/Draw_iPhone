@@ -264,6 +264,20 @@ static dispatch_once_t onceToken;
 }
 
 
++ (PBAppReward*)xiaojiDrawAppWithRewardAmount:(int)rewardAmount
+                         rewardCurrency:(PBGameCurrency)rewardCurrency{
+    PBAppReward* app = [GameConfigDataManager createAppReward:@"小吉画画"
+                                                           nameEn:@"Littlegee Draw"
+                                                           descCn:@"专业的绘画工具"
+                                                           descEn:@"Professional draw application"
+                                                            appId:LITTLE_GEE_APP_ID
+                                                       appLogoURL:@"http://58.215.160.100:8080/icon/xiaojidraw_114.png"
+                                                     rewardAmount:rewardAmount
+                                                   rewardCurrency:rewardCurrency];
+    
+    return app;
+}
+
 
 + (PBAppReward*)zjhAppWithRewardAmount:(int)rewardAmount
                         rewardCurrency:(PBGameCurrency)rewardCurrency{

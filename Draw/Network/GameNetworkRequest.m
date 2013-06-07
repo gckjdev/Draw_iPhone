@@ -3394,14 +3394,36 @@
                           progressDelegate:progressDelegate];
 }
 
-+ (CommonNetworkOutput*)favorGalleryPicture:(NSString *)baseURL
-                                      appId:(NSString *)appId
-                                     userId:(NSString *)userId
-                                        url:(NSString *)url
-                                       name:(NSString *)name
-                                   tagArray:(NSString *)tagArrayString
++ (CommonNetworkOutput*)addUserPhoto:(NSString *)baseURL
+                               appId:(NSString *)appId
+                              userId:(NSString *)userId
+                                data:(NSData*)data
 {
-    return nil;
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_ADD_USER_PHOTO];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendPostRequest:baseURL
+                                        data:data
+                         constructURLHandler:constructURLHandler
+                             responseHandler:responseHandler
+                                outputFormat:FORMAT_JSON
+                                      output:output];
 }
 
 + (CommonNetworkOutput*)getGalleryImage:(NSString *)baseURL
@@ -3409,7 +3431,59 @@
                                  userId:(NSString *)userId
                                tagArray:(NSString *)tagArrayString
 {
-    return nil;
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_USER_PHOTO];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_USER_PHOTO_TAGS value:tagArrayString];
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
+                                  output:output];
+}
+
++ (CommonNetworkOutput*)updateGalleryPicture:(NSString *)baseURL
+                                       appId:(NSString *)appId
+                                      userId:(NSString *)userId
+                                        data:(NSData*)data;
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_USER_PHOTO];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendPostRequest:baseURL
+                                        data:data
+                         constructURLHandler:constructURLHandler
+                             responseHandler:responseHandler
+                                outputFormat:FORMAT_JSON
+                                      output:output];
 }
 
 
