@@ -4,10 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AskPs.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
 		<key>CallTrack.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>17</integer>
+		</dict>
+		<key>CallTrack.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
 		</dict>
 		<key>Dice.xcscheme_^#shared#^_</key>
 		<dict>
@@ -86,6 +96,11 @@
 			<key>orderHint</key>
 			<integer>16</integer>
 		</dict>
+		<key>Sing.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
 		<key>Zhajinhua.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -140,6 +155,11 @@
 			<true/>
 		</dict>
 		<key>CAB5C6FF16994F0200A4CE3B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA411810176066F500DA72D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
