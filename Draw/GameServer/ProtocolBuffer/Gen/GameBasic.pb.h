@@ -1067,6 +1067,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 
 @interface PBDrawAction : PBGeneratedMessage {
 @private
+  BOOL hasShapeStroke_:1;
   BOOL hasWidth_:1;
   BOOL hasShadowBlur_:1;
   BOOL hasShadowOffsetY_:1;
@@ -1080,6 +1081,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   BOOL hasColor_:1;
   BOOL hasType_:1;
   BOOL hasDrawBg_:1;
+  BOOL shapeStroke_:1;
   Float32 width;
   Float32 shadowBlur;
   Float32 shadowOffsetY;
@@ -1104,6 +1106,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasColor;
 - (BOOL) hasPenType;
 - (BOOL) hasShapeType;
+- (BOOL) hasShapeStroke;
 - (BOOL) hasBetterColor;
 - (BOOL) hasDrawBg;
 - (BOOL) hasShadowOffsetX;
@@ -1117,6 +1120,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly) int32_t color;
 @property (readonly) int32_t penType;
 @property (readonly) int32_t shapeType;
+- (BOOL) shapeStroke;
 @property (readonly) int32_t betterColor;
 @property (readonly, retain) PBDrawBg* drawBg;
 @property (readonly) Float32 shadowOffsetX;
@@ -1206,6 +1210,11 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBDrawAction_Builder*) addRectComponent:(Float32) value;
 - (PBDrawAction_Builder*) addAllRectComponent:(NSArray*) values;
 - (PBDrawAction_Builder*) clearRectComponentList;
+
+- (BOOL) hasShapeStroke;
+- (BOOL) shapeStroke;
+- (PBDrawAction_Builder*) setShapeStroke:(BOOL) value;
+- (PBDrawAction_Builder*) clearShapeStroke;
 
 - (NSArray*) pointsXList;
 - (Float32) pointsXAtIndex:(int32_t) index;
