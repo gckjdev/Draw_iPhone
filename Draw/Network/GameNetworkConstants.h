@@ -149,13 +149,11 @@
 #define PARA_SAVE_TIMES @"st"
 
 //for gallery
-#define METHOD_FAVOR_GALLERY_PIC    @"fgp"
-#define METHOD_UPDATE_GALLERY_PIC   @"ugp"
-#define METHOD_GET_GALLERY_PIC      @"ggp"
+#define METHOD_ADD_USER_PHOTO    @"aup"
+#define METHOD_UPDATE_USER_PHOTO   @"uup"
+#define METHOD_GET_USER_PHOTO     @"gup"
 
-#define PARA_GALLERY_PIC_NAME       @"gpn"
-#define PARA_GALLERY_PIC_URL        @"gpu"
-#define PARA_GALLERY_PIC_TAG        @"gpt"
+#define PARA_USER_PHOTO_TAGS        @"upt"
 
 
 #define ACTION_TYPE_GUESS    2
