@@ -50,6 +50,10 @@
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBImageShapeGroup;
+@class PBImageShapeGroupMeta;
+@class PBImageShapeGroupMeta_Builder;
+@class PBImageShapeGroup_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
@@ -1444,6 +1448,123 @@
 - (PBDrawBgMeta_Builder*) addDrawBgGroup:(PBDrawBgGroup*) value;
 - (PBDrawBgMeta_Builder*) addAllDrawBgGroup:(NSArray*) values;
 - (PBDrawBgMeta_Builder*) clearDrawBgGroupList;
+@end
+
+@interface PBImageShapeGroup : PBGeneratedMessage {
+@private
+  BOOL hasGroupId_:1;
+  BOOL hasGroupName_:1;
+  int32_t groupId;
+  NSString* groupName;
+  NSMutableArray* mutableShapeTypeList;
+  int32_t shapeTypeMemoizedSerializedSize;
+}
+- (BOOL) hasGroupId;
+- (BOOL) hasGroupName;
+@property (readonly) int32_t groupId;
+@property (readonly, retain) NSString* groupName;
+- (NSArray*) shapeTypeList;
+- (int32_t) shapeTypeAtIndex:(int32_t) index;
+
++ (PBImageShapeGroup*) defaultInstance;
+- (PBImageShapeGroup*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBImageShapeGroup_Builder*) builder;
++ (PBImageShapeGroup_Builder*) builder;
++ (PBImageShapeGroup_Builder*) builderWithPrototype:(PBImageShapeGroup*) prototype;
+
++ (PBImageShapeGroup*) parseFromData:(NSData*) data;
++ (PBImageShapeGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBImageShapeGroup*) parseFromInputStream:(NSInputStream*) input;
++ (PBImageShapeGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBImageShapeGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBImageShapeGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBImageShapeGroup_Builder : PBGeneratedMessage_Builder {
+@private
+  PBImageShapeGroup* result;
+}
+
+- (PBImageShapeGroup*) defaultInstance;
+
+- (PBImageShapeGroup_Builder*) clear;
+- (PBImageShapeGroup_Builder*) clone;
+
+- (PBImageShapeGroup*) build;
+- (PBImageShapeGroup*) buildPartial;
+
+- (PBImageShapeGroup_Builder*) mergeFrom:(PBImageShapeGroup*) other;
+- (PBImageShapeGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBImageShapeGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasGroupId;
+- (int32_t) groupId;
+- (PBImageShapeGroup_Builder*) setGroupId:(int32_t) value;
+- (PBImageShapeGroup_Builder*) clearGroupId;
+
+- (BOOL) hasGroupName;
+- (NSString*) groupName;
+- (PBImageShapeGroup_Builder*) setGroupName:(NSString*) value;
+- (PBImageShapeGroup_Builder*) clearGroupName;
+
+- (NSArray*) shapeTypeList;
+- (int32_t) shapeTypeAtIndex:(int32_t) index;
+- (PBImageShapeGroup_Builder*) replaceShapeTypeAtIndex:(int32_t) index with:(int32_t) value;
+- (PBImageShapeGroup_Builder*) addShapeType:(int32_t) value;
+- (PBImageShapeGroup_Builder*) addAllShapeType:(NSArray*) values;
+- (PBImageShapeGroup_Builder*) clearShapeTypeList;
+@end
+
+@interface PBImageShapeGroupMeta : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableImageShapeGroupList;
+}
+- (NSArray*) imageShapeGroupList;
+- (PBImageShapeGroup*) imageShapeGroupAtIndex:(int32_t) index;
+
++ (PBImageShapeGroupMeta*) defaultInstance;
+- (PBImageShapeGroupMeta*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBImageShapeGroupMeta_Builder*) builder;
++ (PBImageShapeGroupMeta_Builder*) builder;
++ (PBImageShapeGroupMeta_Builder*) builderWithPrototype:(PBImageShapeGroupMeta*) prototype;
+
++ (PBImageShapeGroupMeta*) parseFromData:(NSData*) data;
++ (PBImageShapeGroupMeta*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBImageShapeGroupMeta*) parseFromInputStream:(NSInputStream*) input;
++ (PBImageShapeGroupMeta*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBImageShapeGroupMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBImageShapeGroupMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBImageShapeGroupMeta_Builder : PBGeneratedMessage_Builder {
+@private
+  PBImageShapeGroupMeta* result;
+}
+
+- (PBImageShapeGroupMeta*) defaultInstance;
+
+- (PBImageShapeGroupMeta_Builder*) clear;
+- (PBImageShapeGroupMeta_Builder*) clone;
+
+- (PBImageShapeGroupMeta*) build;
+- (PBImageShapeGroupMeta*) buildPartial;
+
+- (PBImageShapeGroupMeta_Builder*) mergeFrom:(PBImageShapeGroupMeta*) other;
+- (PBImageShapeGroupMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBImageShapeGroupMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) imageShapeGroupList;
+- (PBImageShapeGroup*) imageShapeGroupAtIndex:(int32_t) index;
+- (PBImageShapeGroupMeta_Builder*) replaceImageShapeGroupAtIndex:(int32_t) index with:(PBImageShapeGroup*) value;
+- (PBImageShapeGroupMeta_Builder*) addImageShapeGroup:(PBImageShapeGroup*) value;
+- (PBImageShapeGroupMeta_Builder*) addAllImageShapeGroup:(NSArray*) values;
+- (PBImageShapeGroupMeta_Builder*) clearImageShapeGroupList;
 @end
 
 @interface PBHotWord : PBGeneratedMessage {

@@ -207,6 +207,18 @@ message PBDrawBgMeta
     repeated PBDrawBgGroup drawBgGroup = 1;
 }
 
+message PBImageShapeGroup
+{
+    required int32 groupId = 1;
+    optional string groupName = 2;
+    repeated int32 shapeType = 3 [packed=true];
+}
+
+message PBImageShapeGroupMeta
+{
+    repeated PBImageShapeGroup imageShapeGroup = 1;
+}
+
 message PBHotWord
 {
   required string wordId = 1;

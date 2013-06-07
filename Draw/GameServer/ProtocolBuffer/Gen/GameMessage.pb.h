@@ -158,6 +158,10 @@
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBImageShapeGroup;
+@class PBImageShapeGroupMeta;
+@class PBImageShapeGroupMeta_Builder;
+@class PBImageShapeGroup_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
