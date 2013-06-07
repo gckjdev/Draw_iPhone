@@ -307,7 +307,7 @@
     if (_stroke) {
         CGRect rect = [super rect];
         if (self.type != ShapeTypeBeeline && ![self point1:self.startPoint equalToPoint:self.endPoint]) {
-            CGRectEnlarge(rect, - self.width / 2, - self.width / 2);
+            CGRectEnlarge(&rect, - self.width / 2, - self.width / 2);
         }
         r = rect;
     }else{
