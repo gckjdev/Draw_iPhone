@@ -17,6 +17,7 @@
 #import "StarShape.h"
 #import "ShareImageManager.h"
 #import "RoundRectShape.h"
+#import "ImageShapeManager.h"
 
 @interface ShapeInfo()
 {
@@ -28,7 +29,7 @@
 
 @implementation ShapeInfo
 @synthesize type = _type;
-
+@synthesize stroke = _stroke;
 
 - (void)dealloc
 {
@@ -199,6 +200,7 @@
     [builder setBetterColor:[self.color toBetterCompressColor]];
     [builder setPenType:self.penType];
     [builder setShapeType:self.type];
+    [builder setShapeStroke:_stroke];
     [builder addAllRectComponent:self.rectComponent];
     [builder setWidth:self.width];
 }
@@ -213,6 +215,10 @@
     
     pbDrawActionC->shapetype = self.type;
     pbDrawActionC->has_shapetype = 1;
+    if (_stroke) {
+        pbDrawActionC->shapestroke = 1;
+        pbDrawActionC->has_shapestroke = 1;        
+    }
     
     const int LEN_RECT = 4;
     if ([self.rectComponent count] >= LEN_RECT){
@@ -301,10 +307,7 @@
     if (_stroke) {
         CGRect rect = [super rect];
         if (self.type != ShapeTypeBeeline && ![self point1:self.startPoint equalToPoint:self.endPoint]) {
-            rect.origin.x += self.width/2;
-            rect.origin.y += self.width/2;
-            rect.size.width -= self.width;
-            rect.size.height -= self.width;            
+            CGRectEnlarge(rect, - self.width / 2, - self.width / 2);
         }
         r = rect;
     }else{
@@ -329,33 +332,23 @@
 @implementation ImageShapeInfo
 
 
-
-- (NSString *)nameForType:(ShapeType)type
+- (id)initWithCGPath:(CGPathRef)path
 {
-    return [NSString stringWithFormat:@"%d",type];
+    self = [super init];
+    if (self) {
+        _path = CGPathRetain(path);
+    }
+    return self;
 }
 
-- (void)createCGPath
++ (id)shapeWithType:(ShapeType)type
+            penType:(ItemType)penType
+              width:(CGFloat)with
+              color:(DrawColor *)color
 {
-    NSString *name = [self nameForType:self.type];
-    if (name == NULL) {
-        return;
-    }
-    PocketSVG *svg = [[PocketSVG alloc] initFromSVGFileNamed:name];
-    if (_path != NULL) {
-        CGPathRelease(_path); _path = NULL;
-    }
-    _path = svg.bezier.CGPath;
-    CGPathRetain(_path);
-    PPRelease(svg);
-}
-
-- (void)setType:(ShapeType)type
-{
-    if (_type != type) {
-        _type = type;
-        [self createCGPath];
-    }
+    ShapeInfo *shape = [ImageShapeInfo shapeImageForShapeType:type];
+    shape.type = type;
+    return shape;
 }
 
 #define SVG_IMAGE_SIZE 64
@@ -419,6 +412,7 @@
 
 - (void)dealloc
 {
+    PPCGPathRelease(_path);
     [super dealloc];
 }
 

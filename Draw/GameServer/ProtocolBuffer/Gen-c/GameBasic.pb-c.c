@@ -2208,7 +2208,7 @@ const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor =
   (ProtobufCMessageInit) game__pbdraw_bg__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[17] =
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[18] =
 {
   {
     "type",
@@ -2289,6 +2289,18 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[17]
     PROTOBUF_C_TYPE_FLOAT,
     PROTOBUF_C_OFFSETOF(Game__PBDrawAction, n_rectcomponent),
     PROTOBUF_C_OFFSETOF(Game__PBDrawAction, rectcomponent),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "shapeStroke",
+    8,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_BOOL,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_shapestroke),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, shapestroke),
     NULL,
     NULL,
     0,            /* packed */
@@ -2416,20 +2428,21 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[17]
   },
 };
 static const unsigned game__pbdraw_action__field_indices_by_name[] = {
-  9,   /* field[9] = betterColor */
-  15,   /* field[15] = clipTag */
-  16,   /* field[16] = clipType */
+  10,   /* field[10] = betterColor */
+  16,   /* field[16] = clipTag */
+  17,   /* field[17] = clipType */
   3,   /* field[3] = color */
-  10,   /* field[10] = drawBg */
+  11,   /* field[11] = drawBg */
   4,   /* field[4] = penType */
   1,   /* field[1] = points */
-  7,   /* field[7] = pointsX */
-  8,   /* field[8] = pointsY */
+  8,   /* field[8] = pointsX */
+  9,   /* field[9] = pointsY */
   6,   /* field[6] = rectComponent */
-  14,   /* field[14] = shadowBlur */
-  13,   /* field[13] = shadowColor */
-  11,   /* field[11] = shadowOffsetX */
-  12,   /* field[12] = shadowOffsetY */
+  15,   /* field[15] = shadowBlur */
+  14,   /* field[14] = shadowColor */
+  12,   /* field[12] = shadowOffsetX */
+  13,   /* field[13] = shadowOffsetY */
+  7,   /* field[7] = shapeStroke */
   5,   /* field[5] = shapeType */
   0,   /* field[0] = type */
   2,   /* field[2] = width */
@@ -2437,9 +2450,9 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
 static const ProtobufCIntRange game__pbdraw_action__number_ranges[3 + 1] =
 {
   { 1, 0 },
-  { 11, 7 },
-  { 20, 15 },
-  { 0, 17 }
+  { 11, 8 },
+  { 20, 16 },
+  { 0, 18 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -2449,7 +2462,7 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  17,
+  18,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
   3,  game__pbdraw_action__number_ranges,

@@ -4178,6 +4178,7 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 @property int32_t penType;
 @property int32_t shapeType;
 @property (retain) NSMutableArray* mutableRectComponentList;
+@property BOOL shapeStroke;
 @property (retain) NSMutableArray* mutablePointsXList;
 @property (retain) NSMutableArray* mutablePointsYList;
 @property int32_t betterColor;
@@ -4229,6 +4230,18 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 }
 @synthesize shapeType;
 @synthesize mutableRectComponentList;
+- (BOOL) hasShapeStroke {
+  return !!hasShapeStroke_;
+}
+- (void) setHasShapeStroke:(BOOL) value {
+  hasShapeStroke_ = !!value;
+}
+- (BOOL) shapeStroke {
+  return !!shapeStroke_;
+}
+- (void) setShapeStroke:(BOOL) value {
+  shapeStroke_ = !!value;
+}
 @synthesize mutablePointsXList;
 @synthesize mutablePointsYList;
 - (BOOL) hasBetterColor {
@@ -4302,6 +4315,7 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
     self.color = 0;
     self.penType = 0;
     self.shapeType = 0;
+    self.shapeStroke = NO;
     self.betterColor = 0;
     self.drawBg = [PBDrawBg defaultInstance];
     self.shadowOffsetX = 0;
@@ -4390,6 +4404,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   for (NSNumber* value in self.mutableRectComponentList) {
     [output writeFloat:7 value:[value floatValue]];
   }
+  if (self.hasShapeStroke) {
+    [output writeBool:8 value:self.shapeStroke];
+  }
   for (NSNumber* value in self.mutablePointsXList) {
     [output writeFloat:11 value:[value floatValue]];
   }
@@ -4461,6 +4478,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     dataSize = 4 * self.mutableRectComponentList.count;
     size += dataSize;
     size += 1 * self.mutableRectComponentList.count;
+  }
+  if (self.hasShapeStroke) {
+    size += computeBoolSize(8, self.shapeStroke);
   }
   {
     int32_t dataSize = 0;
@@ -4600,6 +4620,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     }
     [result.mutableRectComponentList addObjectsFromArray:other.mutableRectComponentList];
   }
+  if (other.hasShapeStroke) {
+    [self setShapeStroke:other.shapeStroke];
+  }
   if (other.mutablePointsXList.count > 0) {
     if (result.mutablePointsXList == nil) {
       result.mutablePointsXList = [NSMutableArray array];
@@ -4688,6 +4711,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 61: {
         [self addRectComponent:[input readFloat]];
+        break;
+      }
+      case 64: {
+        [self setShapeStroke:[input readBool]];
         break;
       }
       case 93: {
@@ -4878,6 +4905,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 }
 - (PBDrawAction_Builder*) clearRectComponentList {
   result.mutableRectComponentList = nil;
+  return self;
+}
+- (BOOL) hasShapeStroke {
+  return result.hasShapeStroke;
+}
+- (BOOL) shapeStroke {
+  return result.shapeStroke;
+}
+- (PBDrawAction_Builder*) setShapeStroke:(BOOL) value {
+  result.hasShapeStroke = YES;
+  result.shapeStroke = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShapeStroke {
+  result.hasShapeStroke = NO;
+  result.shapeStroke = NO;
   return self;
 }
 - (NSArray*) pointsXList {

@@ -260,6 +260,8 @@ struct  _Game__PBDrawAction
   int32_t shapetype;
   size_t n_rectcomponent;
   float *rectcomponent;
+  protobuf_c_boolean has_shapestroke;
+  protobuf_c_boolean shapestroke;
   size_t n_pointsx;
   float *pointsx;
   size_t n_pointsy;
@@ -282,7 +284,7 @@ struct  _Game__PBDrawAction
 };
 #define GAME__PBDRAW_ACTION__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_action__descriptor) \
-    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0 }
+    , 0, 0,NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, 0,0, 0,NULL, 0,NULL, 0,0, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0 }
 
 
 struct  _Game__PBMessage

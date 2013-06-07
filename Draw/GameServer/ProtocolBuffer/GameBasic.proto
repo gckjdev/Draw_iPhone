@@ -148,6 +148,7 @@ message PBDrawAction {
   // shape information
   optional int32 shapeType = 6;
   repeated float rectComponent = 7;             //startX, startY, endX, endY
+  optional bool shapeStroke = 8;
   
   // for no compressed points, add 2013-03-04
   repeated float pointsX = 11;
