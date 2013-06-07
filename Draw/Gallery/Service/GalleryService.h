@@ -11,11 +11,17 @@
 @interface GalleryService : CommonService
 
 + (GalleryService*)defaultService;
-- (void)favorImage:(NSString*)url
-              name:(NSString*)name
-            tagSet:(NSSet*)tagSet
-       resultBlock:(void(^)(int resultCode))resultBlock;
-- (void)getGalleryImageWithTagSet:(NSSet*)tagSet
-                      resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock;
-
+- (void)addUserPhoto:(NSString*)photoUrl
+                name:(NSString*)name
+              tagSet:(NSSet*)tagSet
+         resultBlock:(void(^)(int resultCode))resultBlock;
+- (void)getUserPhotoWithTagSet:(NSSet*)tagSet
+                   resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock;
+- (void)updateUserPhoto:(NSString*)photoId
+               photoUrl:(NSString*)photoUrl
+                   name:(NSString*)name
+                 tagSet:(NSSet*)tagSet
+            resultBlock:(void(^)(int resultCode))resultBlock;
+- (void)deleteUserPhoto:(NSString*)photoId
+            resultBlock:(void(^)(int resultCode))resultBlock;
 @end
