@@ -7,7 +7,10 @@
 //
 
 #import "CommonTabController.h"
+#import "MWPhotoBrowser.h"
+#import "GalleryPictureInfoEditView.h"
 
-@interface GalleryController : CommonTabController
+
+@interface GalleryController : CommonTabController <UITableViewDataSource, UITableViewDelegate, MWPhotoBrowserDelegate, GalleryPictureInfoEditViewDelegate>
 
 @end

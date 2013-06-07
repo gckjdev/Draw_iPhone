@@ -645,7 +645,9 @@
 + (CommonNetworkOutput*)getUserPhoto:(NSString *)baseURL
                                appId:(NSString *)appId
                               userId:(NSString *)userId
-                            tagArray:(NSString *)tagArrayString;
+                            tagArray:(NSString *)tagArrayString
+                              offset:(int)offset
+                               limit:(int)limit;
 + (CommonNetworkOutput*)updateUserPhoto:(NSString *)baseURL
                                   appId:(NSString *)appId
                                  userId:(NSString *)userId

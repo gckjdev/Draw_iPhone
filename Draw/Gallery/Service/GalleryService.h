@@ -16,6 +16,8 @@
               tagSet:(NSSet*)tagSet
          resultBlock:(void(^)(int resultCode))resultBlock;
 - (void)getUserPhotoWithTagSet:(NSSet*)tagSet
+                        offset:(int)offset
+                         limit:(int)limit
                    resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock;
 - (void)updateUserPhoto:(NSString*)photoId
                photoUrl:(NSString*)photoUrl

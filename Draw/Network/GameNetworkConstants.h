@@ -155,7 +155,7 @@
 #define METHOD_DELETE_USER_PHOTO   @"dup"
 
 #define PARA_USER_PHOTO_TAGS        @"upt"
-
+#define PARA_PHOTO_ID               @"pi"
 
 #define ACTION_TYPE_GUESS    2
 #define ACTION_TYPE_COMMENT  3

@@ -23,6 +23,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 - (NSString*)tagArrayStringBySet:(NSSet*)tagSet
 {
     NSString* str = @"";
+    
+    return @"tag1^tag2^tag3"
     for (NSString* tag in tagSet) {
         str = [NSString stringWithFormat:@"%@%@%@",str, TAG_SEP, tag];
     }
@@ -68,6 +70,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 }
 
 - (void)getUserPhotoWithTagSet:(NSSet*)tagSet
+                        offset:(int)offset
+                         limit:(int)limit
                    resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock
 {
     PPDebug(@"<getUserPhotoWithTagSet> get image with tag %@", [tagSet description]);
@@ -80,7 +84,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         CommonNetworkOutput* output = [GameNetworkRequest getUserPhoto:TRAFFIC_SERVER_URL
                                                                  appId:appId
                                                                 userId:userId
-                                                              tagArray:tagArrayString];
+                                                              tagArray:tagArrayString
+                                                                offset:offset
+                                                                 limit:limit];
         
         //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
         //                opusId, actionName, output.resultCode);
