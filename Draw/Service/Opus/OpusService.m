@@ -19,13 +19,22 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 
+- (Opus*)createDraftOpus
+{
+    return nil;
+}
+
 - (void)submitOpus:(Opus*)opusMeta
              image:(UIImage *)image
           opusData:(NSData *)opusData
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate{
     
-    if ([opusData length] == 0){
+    if ([opusData length] == 0 || opusMeta == nil){
+        
+        if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]){
+            [delegate didSubmitOpus:ERROR_CLIENT_REQUEST_NULL opus:nil];
+        }
         return;
     }
     
@@ -46,6 +55,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
                 pbOpus = [response opus];
+                
+                // TODO
+                
             }
             @catch (NSException *exception) {
                 PPDebug(@"<%s> catch exception =%@", __FUNCTION__, [exception description]);
@@ -58,6 +70,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
+            if (resultCode == 0 && pbOpus != nil){
+                
+                // save opus as normal opus locally
+                Opus* newOpus = [Opus opusWithPBOpus:pbOpus];
+                [[OpusManager defaultManager] saveOpus:newOpus];
+                
+                // delete current draft opus
+                [[OpusManager defaultManager] deleteOpus:[opusMeta opusKey]];
+            }
+            
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {
                 Opus *opus = [Opus opusWithPBOpus:pbOpus];
                 [delegate didSubmitOpus:resultCode opus:opus];

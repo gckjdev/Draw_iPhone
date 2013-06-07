@@ -96,6 +96,8 @@ NSObject<GameAppProtocol>* getGameApp()
     }
     else if ([bundleId isEqualToString:SING_APP_BUNDLE_ID]) {
         currentApp = appWithName(@"SingApp");
+    } else if ([bundleId isEqualToString:ASK_PS_BUNDLE_ID]) {
+        currentApp = appWithName(@"AskPsApp");
     }
     
     else{
@@ -124,6 +126,11 @@ BOOL isZhajinhuaApp()
 BOOL isSingApp()
 {
     return ([[GameApp gameId] isEqualToString:SING_GAME_ID]);
+}
+
+BOOL isAskPsApp()
+{
+    return ([[GameApp gameId] isEqualToString:ASK_PS_GAME_ID]);
 }
 
 extern BOOL isSimpleDrawApp()

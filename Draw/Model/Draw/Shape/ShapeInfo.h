@@ -31,7 +31,26 @@ typedef enum{
 
     ShapeTypeImageStart = 1000,
     
-    ShapeTypeImageEnd = 1999,
+    ShapeTypeImageAnimalStart = 1000,
+    ShapeTypeImageAnimalEnd = 1099,
+    
+    ShapeTypeImageNatureStart = 1100,
+    ShapeTypeImageNatureEnd = 1199,
+    
+    ShapeTypeImagePlantStart = 1200,
+    ShapeTypeImagePlantEnd = 1299,
+    
+    ShapeTypeImageSignStart = 1300,
+    ShapeTypeImageSignEnd = 1399,
+    
+    ShapeTypeImageStuffStart = 1400,
+    ShapeTypeImageStuffEnd = 1499,
+
+    ShapeTypeImageShapeStart = 1500,
+    ShapeTypeImageShapeEnd = 1599,
+
+    
+    ShapeTypeImageEnd = 9999,
     
     
 }ShapeType;
@@ -43,6 +62,9 @@ typedef enum{
 @interface ShapeInfo : NSObject
 {
     ShapeType _type;
+    CGPathRef _path;
+    CGRect _redrawRect;
+    BOOL _stroke;    
 }
 @property(nonatomic, assign)CGPoint startPoint;
 @property(nonatomic, assign)CGPoint endPoint;
@@ -50,6 +72,7 @@ typedef enum{
 @property(nonatomic, assign)ItemType penType;
 @property(nonatomic, assign)ShapeType type;
 @property(nonatomic, assign)CGFloat width;
+@property(nonatomic, assign, getter = isStroke)BOOL stroke;
 
 @property(nonatomic, retain)DrawColor *color;
 
@@ -66,6 +89,8 @@ typedef enum{
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
+- (CGPathRef)path;
+//- (BOOL)isStroke;
 @end
 
 
@@ -73,16 +98,17 @@ typedef enum{
 
 @interface BasicShapeInfo : ShapeInfo
 {
-    BOOL _stroke;
+   
 }
 
-- (BOOL)isStroke;
+
 
 @end
 
 
 @interface ImageShapeInfo : ShapeInfo
 
+- (id)initWithCGPath:(CGPathRef)path;
 
 @end
 

@@ -540,8 +540,10 @@ enum{
                 PPDebug(@"<test2> complete 2");
             }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
                 [BalanceNotEnoughAlertView showInController:bself];
+                [bself.feed decreaseLocalFlowerTimes];
             }else if (resultCode == ERROR_NETWORK){
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
+                [bself.feed decreaseLocalFlowerTimes];
             }
         }];
     }

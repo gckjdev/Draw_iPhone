@@ -4170,224 +4170,6 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 }
 @end
 
-@interface PBSettingInfo ()
-@property int32_t tag;
-@property int32_t clipType;
-@end
-
-@implementation PBSettingInfo
-
-- (BOOL) hasTag {
-  return !!hasTag_;
-}
-- (void) setHasTag:(BOOL) value {
-  hasTag_ = !!value;
-}
-@synthesize tag;
-- (BOOL) hasClipType {
-  return !!hasClipType_;
-}
-- (void) setHasClipType:(BOOL) value {
-  hasClipType_ = !!value;
-}
-@synthesize clipType;
-- (void) dealloc {
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.tag = 0;
-    self.clipType = 0;
-  }
-  return self;
-}
-static PBSettingInfo* defaultPBSettingInfoInstance = nil;
-+ (void) initialize {
-  if (self == [PBSettingInfo class]) {
-    defaultPBSettingInfoInstance = [[PBSettingInfo alloc] init];
-  }
-}
-+ (PBSettingInfo*) defaultInstance {
-  return defaultPBSettingInfoInstance;
-}
-- (PBSettingInfo*) defaultInstance {
-  return defaultPBSettingInfoInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasTag) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasTag) {
-    [output writeInt32:1 value:self.tag];
-  }
-  if (self.hasClipType) {
-    [output writeInt32:2 value:self.clipType];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasTag) {
-    size += computeInt32Size(1, self.tag);
-  }
-  if (self.hasClipType) {
-    size += computeInt32Size(2, self.clipType);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBSettingInfo*) parseFromData:(NSData*) data {
-  return (PBSettingInfo*)[[[PBSettingInfo builder] mergeFromData:data] build];
-}
-+ (PBSettingInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSettingInfo*)[[[PBSettingInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBSettingInfo*) parseFromInputStream:(NSInputStream*) input {
-  return (PBSettingInfo*)[[[PBSettingInfo builder] mergeFromInputStream:input] build];
-}
-+ (PBSettingInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSettingInfo*)[[[PBSettingInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBSettingInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBSettingInfo*)[[[PBSettingInfo builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBSettingInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSettingInfo*)[[[PBSettingInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBSettingInfo_Builder*) builder {
-  return [[[PBSettingInfo_Builder alloc] init] autorelease];
-}
-+ (PBSettingInfo_Builder*) builderWithPrototype:(PBSettingInfo*) prototype {
-  return [[PBSettingInfo builder] mergeFrom:prototype];
-}
-- (PBSettingInfo_Builder*) builder {
-  return [PBSettingInfo builder];
-}
-@end
-
-@interface PBSettingInfo_Builder()
-@property (retain) PBSettingInfo* result;
-@end
-
-@implementation PBSettingInfo_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBSettingInfo alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBSettingInfo_Builder*) clear {
-  self.result = [[[PBSettingInfo alloc] init] autorelease];
-  return self;
-}
-- (PBSettingInfo_Builder*) clone {
-  return [PBSettingInfo builderWithPrototype:result];
-}
-- (PBSettingInfo*) defaultInstance {
-  return [PBSettingInfo defaultInstance];
-}
-- (PBSettingInfo*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBSettingInfo*) buildPartial {
-  PBSettingInfo* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBSettingInfo_Builder*) mergeFrom:(PBSettingInfo*) other {
-  if (other == [PBSettingInfo defaultInstance]) {
-    return self;
-  }
-  if (other.hasTag) {
-    [self setTag:other.tag];
-  }
-  if (other.hasClipType) {
-    [self setClipType:other.clipType];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBSettingInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBSettingInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 8: {
-        [self setTag:[input readInt32]];
-        break;
-      }
-      case 16: {
-        [self setClipType:[input readInt32]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasTag {
-  return result.hasTag;
-}
-- (int32_t) tag {
-  return result.tag;
-}
-- (PBSettingInfo_Builder*) setTag:(int32_t) value {
-  result.hasTag = YES;
-  result.tag = value;
-  return self;
-}
-- (PBSettingInfo_Builder*) clearTag {
-  result.hasTag = NO;
-  result.tag = 0;
-  return self;
-}
-- (BOOL) hasClipType {
-  return result.hasClipType;
-}
-- (int32_t) clipType {
-  return result.clipType;
-}
-- (PBSettingInfo_Builder*) setClipType:(int32_t) value {
-  result.hasClipType = YES;
-  result.clipType = value;
-  return self;
-}
-- (PBSettingInfo_Builder*) clearClipType {
-  result.hasClipType = NO;
-  result.clipType = 0;
-  return self;
-}
-@end
-
 @interface PBDrawAction ()
 @property int32_t type;
 @property (retain) NSMutableArray* mutablePointsList;
@@ -4396,6 +4178,7 @@ static PBSettingInfo* defaultPBSettingInfoInstance = nil;
 @property int32_t penType;
 @property int32_t shapeType;
 @property (retain) NSMutableArray* mutableRectComponentList;
+@property BOOL shapeStroke;
 @property (retain) NSMutableArray* mutablePointsXList;
 @property (retain) NSMutableArray* mutablePointsYList;
 @property int32_t betterColor;
@@ -4404,7 +4187,8 @@ static PBSettingInfo* defaultPBSettingInfoInstance = nil;
 @property Float32 shadowOffsetY;
 @property int32_t shadowColor;
 @property Float32 shadowBlur;
-@property (retain) PBSettingInfo* settingInfo;
+@property int32_t clipTag;
+@property int32_t clipType;
 @end
 
 @implementation PBDrawAction
@@ -4446,6 +4230,18 @@ static PBSettingInfo* defaultPBSettingInfoInstance = nil;
 }
 @synthesize shapeType;
 @synthesize mutableRectComponentList;
+- (BOOL) hasShapeStroke {
+  return !!hasShapeStroke_;
+}
+- (void) setHasShapeStroke:(BOOL) value {
+  hasShapeStroke_ = !!value;
+}
+- (BOOL) shapeStroke {
+  return !!shapeStroke_;
+}
+- (void) setShapeStroke:(BOOL) value {
+  shapeStroke_ = !!value;
+}
 @synthesize mutablePointsXList;
 @synthesize mutablePointsYList;
 - (BOOL) hasBetterColor {
@@ -4490,20 +4286,26 @@ static PBSettingInfo* defaultPBSettingInfoInstance = nil;
   hasShadowBlur_ = !!value;
 }
 @synthesize shadowBlur;
-- (BOOL) hasSettingInfo {
-  return !!hasSettingInfo_;
+- (BOOL) hasClipTag {
+  return !!hasClipTag_;
 }
-- (void) setHasSettingInfo:(BOOL) value {
-  hasSettingInfo_ = !!value;
+- (void) setHasClipTag:(BOOL) value {
+  hasClipTag_ = !!value;
 }
-@synthesize settingInfo;
+@synthesize clipTag;
+- (BOOL) hasClipType {
+  return !!hasClipType_;
+}
+- (void) setHasClipType:(BOOL) value {
+  hasClipType_ = !!value;
+}
+@synthesize clipType;
 - (void) dealloc {
   self.mutablePointsList = nil;
   self.mutableRectComponentList = nil;
   self.mutablePointsXList = nil;
   self.mutablePointsYList = nil;
   self.drawBg = nil;
-  self.settingInfo = nil;
   [super dealloc];
 }
 - (id) init {
@@ -4513,13 +4315,15 @@ static PBSettingInfo* defaultPBSettingInfoInstance = nil;
     self.color = 0;
     self.penType = 0;
     self.shapeType = 0;
+    self.shapeStroke = NO;
     self.betterColor = 0;
     self.drawBg = [PBDrawBg defaultInstance];
     self.shadowOffsetX = 0;
     self.shadowOffsetY = 0;
     self.shadowColor = 0;
     self.shadowBlur = 0;
-    self.settingInfo = [PBSettingInfo defaultInstance];
+    self.clipTag = 0;
+    self.clipType = 0;
   }
   return self;
 }
@@ -4572,11 +4376,6 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       return NO;
     }
   }
-  if (self.hasSettingInfo) {
-    if (!self.settingInfo.isInitialized) {
-      return NO;
-    }
-  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -4605,6 +4404,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   for (NSNumber* value in self.mutableRectComponentList) {
     [output writeFloat:7 value:[value floatValue]];
   }
+  if (self.hasShapeStroke) {
+    [output writeBool:8 value:self.shapeStroke];
+  }
   for (NSNumber* value in self.mutablePointsXList) {
     [output writeFloat:11 value:[value floatValue]];
   }
@@ -4629,8 +4431,11 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasShadowBlur) {
     [output writeFloat:18 value:self.shadowBlur];
   }
-  if (self.hasSettingInfo) {
-    [output writeMessage:20 value:self.settingInfo];
+  if (self.hasClipTag) {
+    [output writeInt32:20 value:self.clipTag];
+  }
+  if (self.hasClipType) {
+    [output writeInt32:21 value:self.clipType];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4674,6 +4479,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     size += dataSize;
     size += 1 * self.mutableRectComponentList.count;
   }
+  if (self.hasShapeStroke) {
+    size += computeBoolSize(8, self.shapeStroke);
+  }
   {
     int32_t dataSize = 0;
     dataSize = 4 * self.mutablePointsXList.count;
@@ -4704,8 +4512,11 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasShadowBlur) {
     size += computeFloatSize(18, self.shadowBlur);
   }
-  if (self.hasSettingInfo) {
-    size += computeMessageSize(20, self.settingInfo);
+  if (self.hasClipTag) {
+    size += computeInt32Size(20, self.clipTag);
+  }
+  if (self.hasClipType) {
+    size += computeInt32Size(21, self.clipType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4809,6 +4620,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     }
     [result.mutableRectComponentList addObjectsFromArray:other.mutableRectComponentList];
   }
+  if (other.hasShapeStroke) {
+    [self setShapeStroke:other.shapeStroke];
+  }
   if (other.mutablePointsXList.count > 0) {
     if (result.mutablePointsXList == nil) {
       result.mutablePointsXList = [NSMutableArray array];
@@ -4839,8 +4653,11 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasShadowBlur) {
     [self setShadowBlur:other.shadowBlur];
   }
-  if (other.hasSettingInfo) {
-    [self mergeSettingInfo:other.settingInfo];
+  if (other.hasClipTag) {
+    [self setClipTag:other.clipTag];
+  }
+  if (other.hasClipType) {
+    [self setClipType:other.clipType];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4896,6 +4713,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
         [self addRectComponent:[input readFloat]];
         break;
       }
+      case 64: {
+        [self setShapeStroke:[input readBool]];
+        break;
+      }
       case 93: {
         [self addPointsX:[input readFloat]];
         break;
@@ -4933,13 +4754,12 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
         [self setShadowBlur:[input readFloat]];
         break;
       }
-      case 162: {
-        PBSettingInfo_Builder* subBuilder = [PBSettingInfo builder];
-        if (self.hasSettingInfo) {
-          [subBuilder mergeFrom:self.settingInfo];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSettingInfo:[subBuilder buildPartial]];
+      case 160: {
+        [self setClipTag:[input readInt32]];
+        break;
+      }
+      case 168: {
+        [self setClipType:[input readInt32]];
         break;
       }
     }
@@ -5085,6 +4905,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 }
 - (PBDrawAction_Builder*) clearRectComponentList {
   result.mutableRectComponentList = nil;
+  return self;
+}
+- (BOOL) hasShapeStroke {
+  return result.hasShapeStroke;
+}
+- (BOOL) shapeStroke {
+  return result.shapeStroke;
+}
+- (PBDrawAction_Builder*) setShapeStroke:(BOOL) value {
+  result.hasShapeStroke = YES;
+  result.shapeStroke = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearShapeStroke {
+  result.hasShapeStroke = NO;
+  result.shapeStroke = NO;
   return self;
 }
 - (NSArray*) pointsXList {
@@ -5259,34 +5095,36 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   result.shadowBlur = 0;
   return self;
 }
-- (BOOL) hasSettingInfo {
-  return result.hasSettingInfo;
+- (BOOL) hasClipTag {
+  return result.hasClipTag;
 }
-- (PBSettingInfo*) settingInfo {
-  return result.settingInfo;
+- (int32_t) clipTag {
+  return result.clipTag;
 }
-- (PBDrawAction_Builder*) setSettingInfo:(PBSettingInfo*) value {
-  result.hasSettingInfo = YES;
-  result.settingInfo = value;
+- (PBDrawAction_Builder*) setClipTag:(int32_t) value {
+  result.hasClipTag = YES;
+  result.clipTag = value;
   return self;
 }
-- (PBDrawAction_Builder*) setSettingInfoBuilder:(PBSettingInfo_Builder*) builderForValue {
-  return [self setSettingInfo:[builderForValue build]];
-}
-- (PBDrawAction_Builder*) mergeSettingInfo:(PBSettingInfo*) value {
-  if (result.hasSettingInfo &&
-      result.settingInfo != [PBSettingInfo defaultInstance]) {
-    result.settingInfo =
-      [[[PBSettingInfo builderWithPrototype:result.settingInfo] mergeFrom:value] buildPartial];
-  } else {
-    result.settingInfo = value;
-  }
-  result.hasSettingInfo = YES;
+- (PBDrawAction_Builder*) clearClipTag {
+  result.hasClipTag = NO;
+  result.clipTag = 0;
   return self;
 }
-- (PBDrawAction_Builder*) clearSettingInfo {
-  result.hasSettingInfo = NO;
-  result.settingInfo = [PBSettingInfo defaultInstance];
+- (BOOL) hasClipType {
+  return result.hasClipType;
+}
+- (int32_t) clipType {
+  return result.clipType;
+}
+- (PBDrawAction_Builder*) setClipType:(int32_t) value {
+  result.hasClipType = YES;
+  result.clipType = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearClipType {
+  result.hasClipType = NO;
+  result.clipType = 0;
   return self;
 }
 @end

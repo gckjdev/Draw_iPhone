@@ -638,5 +638,23 @@
                           opusData:(NSData *)opusData
                   progressDelegate:(id)progressDelegate;
 
++ (CommonNetworkOutput*)addUserPhoto:(NSString *)baseURL
+                               appId:(NSString *)appId
+                              userId:(NSString *)userId
+                                data:(NSData*)data;
++ (CommonNetworkOutput*)getUserPhoto:(NSString *)baseURL
+                               appId:(NSString *)appId
+                              userId:(NSString *)userId
+                            tagArray:(NSString *)tagArrayString
+                              offset:(int)offset
+                               limit:(int)limit;
++ (CommonNetworkOutput*)updateUserPhoto:(NSString *)baseURL
+                                  appId:(NSString *)appId
+                                 userId:(NSString *)userId
+                                   data:(NSData*)data;
++ (CommonNetworkOutput*)deleteUserPhoto:(NSString *)baseURL
+                                  appId:(NSString *)appId
+                                 userId:(NSString *)userId
+                                photoId:(NSString *)photoId;
 
 @end

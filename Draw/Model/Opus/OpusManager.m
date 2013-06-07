@@ -57,10 +57,12 @@ static OpusManager* globalSingOpusManager;
         return;
     }
     
+    PPDebug(@"SAVE LOCAL OPUS=%@", [opus description]);
     [BuriBucket(_aClass) storeObject:opus];
 }
 
 - (void)deleteOpus:(NSString *)opusId{
+    PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusId);
     [BuriBucket(_aClass) deleteObjectForKey:opusId];
 }
 

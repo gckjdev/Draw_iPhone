@@ -30,6 +30,7 @@
 #define CALL_TRACK_APP_BUNDLE_ID            @"com.qqnpipi.calltrack"
 #define SECURE_SMS_APP_BUNDLE_ID            @"com.qqnpipi.securesms"
 #define SING_APP_BUNDLE_ID                  @"com.orange.sing"
+#define ASK_PS_BUNDLE_ID                    @"com.orange.askps"
 
 // App ID
 #define DRAW_APP_ID                     @"513819630"
@@ -52,6 +53,7 @@
 #define CALL_TRACK_APP_ID               @"427457714"
 #define SECURE_SMS_APP_ID               @"427737140"
 #define SING_APP_ID                     @"xxxxxxxxx"
+#define ASK_PS_APP_ID                   @"012345678" //to be change
 
 // game ID
 #define DRAW_GAME_ID                    @"Draw"
@@ -71,6 +73,7 @@
 #define CALL_TRACK_GAME_ID              @"CallTrack"
 #define SECURE_SMS_GAME_ID              @"SecureSms"
 #define SING_GAME_ID                    @"Sing"
+#define ASK_PS_GAME_ID                  @"AskPs"
 
 // Umeng ID
 #define DRAW_UMENG_ID                   @"4f83980852701565c500003a"
@@ -173,6 +176,7 @@ extern BOOL isLittleGeeAPP();
 extern BOOL isSecureSmsAPP();
 extern BOOL isCallTrackAPP();
 extern BOOL isSingApp();
+extern BOOL isAskPsApp();
 
 extern GameAppType gameAppType();
 

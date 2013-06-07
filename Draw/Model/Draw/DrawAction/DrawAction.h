@@ -22,8 +22,7 @@ typedef enum {
     DrawActionTypeChangeBack,       //Change bg with color 3
     DrawActionTypeChangeBGImage,    //Change bg with pb draw bg 4
 
-    DrawActionTypeSelectionStart,   //Selection start 5
-    DrawActionTypeSelectionEnd,     //Selection end 6
+    DrawActionTypeClip,             //Clip 5
     
 } DrawActionType;
 
@@ -35,6 +34,7 @@ typedef enum {
 
 
 @property(nonatomic, assign)DrawActionType type;
+@property(nonatomic, assign)NSInteger clipTag;
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
 @property(nonatomic, retain)Shadow *shadow;
 

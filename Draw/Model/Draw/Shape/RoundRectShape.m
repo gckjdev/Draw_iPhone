@@ -20,6 +20,16 @@
 @implementation RoundRectShape
 
 
+- (CGPathRef)path
+{
+    if (_path == NULL) {
+        UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:self.rect cornerRadius:RADIUS];
+        _path = bp.CGPath;
+        CGPathRetain(_path);
+    }
+    return _path;
+}
+
 - (void)drawInContext:(CGContextRef)context
 {
     
