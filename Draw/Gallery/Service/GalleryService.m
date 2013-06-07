@@ -24,7 +24,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 {
     NSString* str = @"";
     
-    return @"tag1^tag2^tag3"
+    return @"tag1^tag2^tag3";
     for (NSString* tag in tagSet) {
         str = [NSString stringWithFormat:@"%@%@%@",str, TAG_SEP, tag];
     }
@@ -40,7 +40,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];
-    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
+//    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
     PBUserPhoto_Builder* builder = [PBUserPhoto builder];
     
@@ -95,7 +95,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         NSArray *list = nil;
         @try {
             PBUserPhotoList *response = [PBUserPhotoList parseFromData:output.responseData];
-            resultCode = [response resultCode];
+//            resultCode = [response resultCode];
             list = response.photoListList;
         }
         @catch (NSException *exception) {
@@ -118,7 +118,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];
-    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
+//    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
     PBUserPhoto_Builder* builder = [PBUserPhoto builder];
     
