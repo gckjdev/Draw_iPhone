@@ -239,5 +239,8 @@ GameAppType gameAppType()
     if ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]) {
         return GameAppTypeLittleGee;
     }
+    if ([[GameApp appId] isEqualToString:SING_APP_ID]) {
+        return GameAppTypeSing;
+    }
     return GameAppTypeUnknow;
 }

@@ -11,28 +11,29 @@
 #import "SingOpus.h"
 
 @interface Opus()
+@property (copy, nonatomic) NSString *opusKey;
 
 @end
 
 
 @implementation Opus
 
+- (void)dealloc
+{
+    [_opusKey release];
+    [_pbOpusBuilder release];
+    [super dealloc];
+}
+
 - (id)init{
     if (self = [super init]) {
         self.pbOpusBuilder = [[[PBOpus_Builder alloc] init] autorelease];
 //        [self.pbOpusBuilder setOpusId:[NSString GetUUID]];
         [self.pbOpusBuilder setOpusId:@"2"];
-        self.opusKey = [self opusKeyWithOpusId:_pbOpusBuilder.opusId];
+        self.opusKey = _pbOpusBuilder.opusId;
     }
     
     return self;
-}
-
-- (void)dealloc
-{
-    PPRelease(_opusKey);
-    PPRelease(_pbOpusBuilder);
-    [super dealloc];
 }
 
 + (id)opusWithType:(OpusType)type{
@@ -52,6 +53,7 @@
 + (id)opusWithPBOpus:(PBOpus *)pbOpus{
     Opus *opus = [[[Opus alloc] init] autorelease];
     opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
+    opus.opusKey = opus.pbOpusBuilder.opusId;
     return opus;
 }
 
@@ -80,47 +82,28 @@
 - (PBOpus *)pbOpus{
     PBOpus *opus = [_pbOpusBuilder build];
     self.pbOpusBuilder = [PBOpus builderWithPrototype:opus];
-    
+
     return opus;
-}
-
-
-- (NSString *)opusKeyWithOpusId:(NSString *)opusId
-{
-    NSString *className = NSStringFromClass([self class]);
-    NSString *key = [NSString stringWithFormat:@"%@_%@",className, opusId];
-    return key;
-}
-
-+ (Class)classForOpusKey:(NSString *)opusKey {
-    NSRange range = [opusKey rangeOfString:@"_"];
-    if (range.location == NSNotFound) {
-        return nil;
-    }
-    
-    NSString *className = [opusKey substringToIndex:range.location];
-    Class class = NSClassFromString(className);
-    
-    return class;
-}
-
-+ (NSDictionary *)buriProperties{
-    return @{
-             BURI_KEY: @"opusKey",      // make sure it's in Opus.h
-             };
 }
 
 #define ENCODE_OPUS_DATA        @"opusData"
 #define ENCODE_OPUS_KEY         @"opusKey"
 
++ (NSDictionary *)buriProperties{
+    return @{
+             BURI_KEY: ENCODE_OPUS_KEY, // make sure it's in Opus.h
+             };
+}
+
+
+
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	if ((self = [super init])) {
-    
+        NSString *opusKey = [decoder decodeObjectForKey:ENCODE_OPUS_KEY];
 		NSData *data = [decoder decodeObjectForKey:ENCODE_OPUS_DATA];
-        NSString *key = [decoder decodeObjectForKey:ENCODE_OPUS_KEY];
-
-        self.opusKey = key;
+        
+        self.opusKey = opusKey;
         self.pbOpusBuilder = [PBOpus builderWithPrototype:[PBOpus parseFromData:data]];
 	}
     
@@ -129,16 +112,8 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    NSString* key = [self opusKey];
-    NSData* data  = [[self pbOpus] data];
-    
-    if (key != nil){
-        [encoder encodeObject:key forKey:ENCODE_OPUS_KEY];
-    }
-    
-    if (data != nil){
-        [encoder encodeObject:[[self pbOpus] data] forKey:ENCODE_OPUS_DATA];
-    }
+    [encoder encodeObject:_opusKey forKey:ENCODE_OPUS_KEY];
+    [encoder encodeObject:[[self pbOpus] data] forKey:ENCODE_OPUS_DATA];
 }
 
 @end

@@ -138,7 +138,7 @@
 
 - (void)updateView
 {
-    if (isDrawApp() || isLittleGeeAPP()) {
+    if (isDrawApp() || isLittleGeeAPP() || isSingApp()) {
         [[self bgImageView] removeFromSuperview];
     }
     

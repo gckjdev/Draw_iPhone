@@ -9,12 +9,12 @@
 #import "SingApp.h"
 #import "SingController.h"
 #import "SingImageManager.h"
-#import "SongSelectController.h"
+#import "SingHomeController.h"
 
 @implementation SingApp
 
 - (PPViewController *)homeController{
-    return [[[SongSelectController alloc] init] autorelease];
+    return [[[SingHomeController alloc] init] autorelease];
 }
 
 - (NSString*)umengId{
@@ -151,6 +151,21 @@
 - (BOOL)showLocateButton
 {
     return NO;
+}
+
+- (NSString*)homeHeaderViewId
+{
+    return @"SingHomeHeaderPanel";
+}
+
+- (NSString*)getBackgroundMusicName
+{
+    return @"";
+}
+
+- (UIColor *)homeMenuColor
+{
+    return [UIColor whiteColor];
 }
 
 @end

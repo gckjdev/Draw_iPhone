@@ -7,48 +7,63 @@
 //
 
 #import "OpusManager.h"
-#import "SynthesizeSingleton.h"
 #import "BuriManager.h"
+#import "SingOpus.h"
+
+static OpusManager* globalSingOpusManager;
 
 @interface OpusManager()
+@property (assign, nonatomic) Class aClass;
 
 @end
 
 @implementation OpusManager
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(OpusManager);
-
 - (void)dealloc{
     [super dealloc];
 }
 
-- (id)init{
++ (id)singOpusManager{
+    
+    static dispatch_once_t singOpusManagerOnceToken;
+    dispatch_once(&singOpusManagerOnceToken, ^{
+        if (globalSingOpusManager == nil){
+            globalSingOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class]];
+        }
+    });
+    
+    return globalSingOpusManager;
+}
+
+- (id)initWithClass:(Class)class{
     if (self = [super init]) {
+        self.aClass = class;
     }
     
     return self;
 }
 
 
-- (id)opusWithOpusKey:(NSString *)opusKey{
+- (id)opusWithOpusId:(NSString *)opusId{
 
-    Class class = [Opus classForOpusKey:opusKey];
-    Opus *opus = [BuriBucket(class) fetchObjectForKey:opusKey];
-    
+    Opus *opus = [BuriBucket(_aClass) fetchObjectForKey:opusId];
     return opus;
 }
 
 - (void)saveOpus:(Opus*)opus
 {
+    if ([opus class] != _aClass) {
+        PPDebug(@"ERROR: the object type you are trying to store, should be of the %@ class", NSStringFromClass(_aClass));
+        return;
+    }
+    
     PPDebug(@"SAVE LOCAL OPUS=%@", [opus description]);
-    [BuriBucket([opus class]) storeObject:opus];
+    [BuriBucket(_aClass) storeObject:opus];
 }
 
-- (void)deleteOpus:(NSString *)opusKey{
-
-    PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusKey);
-    Class class = [Opus classForOpusKey:opusKey];
-    [BuriBucket(class) deleteObjectForKey:opusKey];
+- (void)deleteOpus:(NSString *)opusId{
+    PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusId);
+    [BuriBucket(_aClass) deleteObjectForKey:opusId];
 }
 
 @end

@@ -143,6 +143,17 @@
         case HomeMenuTypeDiceMore:
             return NSLS(@"kHomeMenuTypeDrawMore");
             
+        case HomeMenuTypeSing:
+            return NSLS(@"kSing");
+        case HomeMenuTypeGuessSing:
+            return NSLS(@"kGuessSing");
+        case HomeMenuTypeSingTop:
+            return NSLS(@"kSingTop");
+        case HomeMenuTypeSingBBS:
+            return NSLS(@"kBBS");
+        case HomeMenuTypeSingShop:
+            return NSLS(@"kShop");
+        case HomeMenuTypeSingFreeCoins:                        return NSLS(@"kFreeCoins");
         default:
         return nil;
     }
@@ -322,6 +333,32 @@
         case HomeMenuTypeLittleGeeFeed:
             return [imageManager drawHomeTimeline];
             
+            
+        case HomeMenuTypeSing:
+            return [imageManager drawHomeDraw];
+        case HomeMenuTypeGuessSing:
+            return [imageManager drawHomeDraw];
+        case HomeMenuTypeSingTop:
+            return [imageManager drawHomeDraw];
+        case HomeMenuTypeSingBBS:
+            return [imageManager drawHomeDraw];
+        case HomeMenuTypeSingShop:
+            return [imageManager drawHomeDraw];
+        case HomeMenuTypeSingFreeCoins:
+            return [imageManager drawHomeDraw];
+            
+            
+        case HomeMenuTypeSingTimeline:
+            return [imageManager drawHomeMessage];
+        case HomeMenuTypeSingDraft:
+            return [imageManager drawHomeMessage];
+        case HomeMenuTypeSingFriend:
+            return [imageManager drawHomeMessage];
+        case HomeMenuTypeSingChat:
+            return [imageManager drawHomeMessage];
+        case HomeMenuTypeSingSetting:
+            return [imageManager drawHomeMessage];
+
         default:
             return nil;
     }
@@ -535,9 +572,56 @@ int *getDiceMainMenuTypeListWithoutFreeCoins()
     return list;
 }
 
+
+
+int *getSingMainMenuTypeListWithFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeSing,
+        HomeMenuTypeGuessSing,
+        HomeMenuTypeSingTop,
+        HomeMenuTypeSingBBS,
+        HomeMenuTypeSingShop,
+        HomeMenuTypeSingFreeCoins,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getSingMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeSing,
+        HomeMenuTypeGuessSing,
+        HomeMenuTypeSingTop,
+        HomeMenuTypeSingBBS,
+        HomeMenuTypeSingShop,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+
 int *getDiceMainMenuTypeList()
 {
     return ([ConfigManager freeCoinsEnabled] ? getDiceMainMenuTypeListWithFreeCoins() : getDiceMainMenuTypeListWithoutFreeCoins());
+}
+
+int *getSingMainMenuTypeList(){
+    return ([ConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
+}
+
+int *getSingBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeSingTimeline,
+        HomeMenuTypeSingDraft,
+        HomeMenuTypeSingFriend,
+        HomeMenuTypeSingChat,
+        HomeMenuTypeSingSetting,
+        HomeMenuTypeEnd
+    };
+    return list;
 }
 
 int *getDiceBottomMenuTypeList()
@@ -662,6 +746,10 @@ BOOL isMainMenuButton(HomeMenuType type)
     if (typeInList(type, getZJHMainMenuTypeList())) {
         return YES;
     }
+    if (typeInList(type, getSingMainMenuTypeList())) {
+        return YES;
+    }
+
     return NO;
 }
 
@@ -681,9 +769,12 @@ int *getBottomMenuTypeList()
         return getDreamLockscreenBottomMenuTypeList();
     }else if (isLittleGeeAPP()) {
         return getLittleGeeBottomMenuTypeList();
+    }else if (isSingApp()){
+        return getSingBottomMenuTypeList();
     }
     return NULL;
 }
+
 int *getMainMenuTypeList()
 {
     if (gameAppType() == GameAppTypeDraw) {
@@ -692,6 +783,8 @@ int *getMainMenuTypeList()
         return getZJHMainMenuTypeList();
     }else if(gameAppType() == GameAppTypeDice){
         return getDiceMainMenuTypeList();
+    }else if(gameAppType() == GameAppTypeSing){
+        return getSingMainMenuTypeList();
     }
     return NULL;
 }

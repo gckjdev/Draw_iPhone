@@ -88,6 +88,7 @@
 {
 //    [picker dismissModalViewControllerAnimated:YES];
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+
     if (image != nil){
         if (_superViewController &&  [_superViewController respondsToSelector:@selector(didImageSelected:)])
             
@@ -103,7 +104,6 @@
             }
             
             [_superViewController didImageSelected:image];
-            
     }
     if (_selectImageBlock != NULL) {
         EXECUTE_BLOCK(_selectImageBlock, image);
