@@ -247,7 +247,7 @@ enum {
 
 - (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
 {
-    [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet resultBlock:^(int resultCode) {
+    [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto *photo) {
         PPDebug(@"<didEditPictureInfo> favor image %@ ,name = %@ with tag <%@>succ !", url, name,[tagSet description]);
     }];
     

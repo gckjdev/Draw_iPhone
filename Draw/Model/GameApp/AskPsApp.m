@@ -7,6 +7,7 @@
 //
 
 #import "AskPsApp.h"
+#import "AskPsHomeController.h"
 
 @implementation AskPsApp
 
@@ -28,6 +29,11 @@
 - (BOOL)disableAd
 {
     return NO;
+}
+
+- (PPViewController *)homeController;
+{
+    return [[[AskPsHomeController alloc] init] autorelease];
 }
 
 @end
