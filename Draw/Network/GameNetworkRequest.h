@@ -642,19 +642,24 @@
                                appId:(NSString *)appId
                               userId:(NSString *)userId
                                 data:(NSData*)data;
+
 + (CommonNetworkOutput*)getUserPhoto:(NSString *)baseURL
                                appId:(NSString *)appId
                               userId:(NSString *)userId
                             tagArray:(NSString *)tagArrayString
+                               usage:(int)usage
                               offset:(int)offset
                                limit:(int)limit;
+
 + (CommonNetworkOutput*)updateUserPhoto:(NSString *)baseURL
                                   appId:(NSString *)appId
                                  userId:(NSString *)userId
                                    data:(NSData*)data;
+
 + (CommonNetworkOutput*)deleteUserPhoto:(NSString *)baseURL
                                   appId:(NSString *)appId
                                  userId:(NSString *)userId
-                                photoId:(NSString *)photoId;
+                            userPhotoId:(NSString *)userPhotoId
+                                  usage:(int)usage;
 
 @end

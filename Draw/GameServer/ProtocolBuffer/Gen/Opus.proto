@@ -38,18 +38,18 @@ message PBDrawOpus {
 
 //求PS信息
 message PBAskPs {
-	repeated string requirement = 1;			//要求列表
-    
-    optional int32 awardCoinsPerUser  = 30;
-    optional int32 awardCoinsMaxTotal = 31;
-    optional int32 awardIngotBestUser = 32;
+	repeated string requirement = 1;                //要求列表，文字描述
 
-    optional string awardBestUserId   = 50;
+    optional int32 awardCoinsPerUser  = 30;         //每PS作品奖励
+    optional int32 awardCoinsMaxTotal = 31;         //PS奖励限额
+    optional int32 awardIngotBestUser = 32;         //最佳PS奖励
+
+    optional string awardBestUserId   = 50;         //最佳作品用户
 }
 
 //求PS作品
 message PBAskPsOpus {
-    required string askPsId = 1;                // 求PS的ID
+    required string askPsId = 1;                    // 关联的求PS的ID
 }
 
 enum PBOpusType{
@@ -69,8 +69,8 @@ enum PBOpusType{
     SING_TO_USER = 1001;
     SING_CONTEST = 1002;
     
-    ASK_PS = 1500;
-    ASK_PS_OPUS = 1501;
+    ASK_PS = 1500;                      // 求PS作品
+    ASK_PS_OPUS = 1501;                 // 求PS的PS作品
 }
 
 message PBOpus {

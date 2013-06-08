@@ -6,6 +6,7 @@ import "Dice.proto";
 import "ZhaJinHua.proto";
 import "BBS.proto";
 import "Opus.proto";
+import "Photo.proto";
 
 package game;
 
@@ -492,6 +493,9 @@ message DataQueryResponse {
   // for wall
   repeated PBWall wallList = 80;
   optional PBWall wall = 81;
+  
+  optional PBUserPhoto userPhoto = 82;
+  repeated PBUserPhoto userPhotoList = 83;
   
   
   optional PBGameUser user = 85;

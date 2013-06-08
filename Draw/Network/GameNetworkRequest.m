@@ -3422,7 +3422,7 @@
                                         data:data
                          constructURLHandler:constructURLHandler
                              responseHandler:responseHandler
-                                outputFormat:FORMAT_JSON
+                                outputFormat:FORMAT_PB
                                       output:output];
 }
 
@@ -3430,6 +3430,7 @@
                                appId:(NSString *)appId
                               userId:(NSString *)userId
                             tagArray:(NSString *)tagArrayString
+                               usage:(int)usage
                               offset:(int)offset
                                limit:(int)limit
 {
@@ -3446,6 +3447,7 @@
         str = [str stringByAddQueryParameter:PARA_USER_PHOTO_TAGS value:tagArrayString];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_USAGE intValue:usage];
         return str;
     };
     
@@ -3486,14 +3488,16 @@
                                         data:data
                          constructURLHandler:constructURLHandler
                              responseHandler:responseHandler
-                                outputFormat:FORMAT_JSON
+                                outputFormat:FORMAT_PB
                                       output:output];
 }
 
 + (CommonNetworkOutput*)deleteUserPhoto:(NSString *)baseURL
                                   appId:(NSString *)appId
                                  userId:(NSString *)userId
-                                photoId:(NSString *)photoId
+                            userPhotoId:(NSString *)userPhotoId
+                                  usage:(int)usage
+
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -3505,7 +3509,9 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_DELETE_USER_PHOTO];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_PHOTO_ID value:photoId];
+        str = [str stringByAddQueryParameter:PARA_USER_PHOTO_ID value:userPhotoId];
+        str = [str stringByAddQueryParameter:PARA_USAGE intValue:usage];
+        
         return str;
     };
     

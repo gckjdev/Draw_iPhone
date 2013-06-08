@@ -34,6 +34,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 - (void)addUserPhoto:(NSString*)photoUrl
                 name:(NSString*)name
               tagSet:(NSSet*)tagSet
+               usage:(PBPhotoUsage)usage
          resultBlock:(void(^)(int resultCode))resultBlock
 {
     PPDebug(@"<addUserPhoto> favor image %@ with name %@ ,tag %@", photoUrl, name, [tagSet description]);
@@ -51,6 +52,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     for (NSString* tag in tagSet) {
         [builder addTags:tag];
     }
+    [builder setUsage:usage];
     
     PBUserPhoto* photo = [builder build];
     
@@ -70,6 +72,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 }
 
 - (void)getUserPhotoWithTagSet:(NSSet*)tagSet
+                         usage:(PBPhotoUsage)usage
                         offset:(int)offset
                          limit:(int)limit
                    resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock
@@ -85,6 +88,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
                                                                  appId:appId
                                                                 userId:userId
                                                               tagArray:tagArrayString
+                                                                 usage:usage
                                                                 offset:offset
                                                                  limit:limit];
         
@@ -148,10 +152,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     });
 }
 
-- (void)deleteUserPhoto:(NSString*)photoId
+- (void)deleteUserPhoto:(NSString*)userPhotoId
+                  usage:(PBPhotoUsage)usage
             resultBlock:(void(^)(int resultCode))resultBlock
 {
-    PPDebug(@"<deleteUserPhoto> photoId = %@", photoId);
+    PPDebug(@"<deleteUserPhoto> userPhotoId = %@", userPhotoId);
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];
@@ -160,7 +165,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         CommonNetworkOutput* output = [GameNetworkRequest deleteUserPhoto:TRAFFIC_SERVER_URL
                                                                     appId:appId
                                                                    userId:userId
-                                                                  photoId:photoId];
+                                                              userPhotoId:userPhotoId
+                                                                    usage:usage];
         
         //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
         //                opusId, actionName, output.resultCode);

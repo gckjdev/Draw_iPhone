@@ -36,8 +36,6 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
-@class PBPhoto;
-@class PBPhoto_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
@@ -58,6 +56,15 @@
 @class PBUserPhoto_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
+typedef enum {
+  PBPhotoUsageBegin = 0,
+  PBPhotoUsageForDraw = 1,
+  PBPhotoUsageForPs = 2,
+  PBPhotoUsageEnd = 3,
+} PBPhotoUsage;
+
+BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value);
+
 
 @interface PhotoRoot : NSObject {
 }
@@ -65,125 +72,38 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
-@interface PBPhoto : PBGeneratedMessage {
-@private
-  BOOL hasCreateDate_:1;
-  BOOL hasPhotoId_:1;
-  BOOL hasUrl_:1;
-  BOOL hasName_:1;
-  int32_t createDate;
-  NSString* photoId;
-  NSString* url;
-  NSString* name;
-  NSMutableArray* mutableTagsList;
-  NSMutableArray* mutableKeywordsList;
-}
-- (BOOL) hasPhotoId;
-- (BOOL) hasUrl;
-- (BOOL) hasName;
-- (BOOL) hasCreateDate;
-@property (readonly, retain) NSString* photoId;
-@property (readonly, retain) NSString* url;
-@property (readonly, retain) NSString* name;
-@property (readonly) int32_t createDate;
-- (NSArray*) tagsList;
-- (NSString*) tagsAtIndex:(int32_t) index;
-- (NSArray*) keywordsList;
-- (NSString*) keywordsAtIndex:(int32_t) index;
-
-+ (PBPhoto*) defaultInstance;
-- (PBPhoto*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBPhoto_Builder*) builder;
-+ (PBPhoto_Builder*) builder;
-+ (PBPhoto_Builder*) builderWithPrototype:(PBPhoto*) prototype;
-
-+ (PBPhoto*) parseFromData:(NSData*) data;
-+ (PBPhoto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBPhoto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBPhoto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBPhoto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBPhoto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBPhoto_Builder : PBGeneratedMessage_Builder {
-@private
-  PBPhoto* result;
-}
-
-- (PBPhoto*) defaultInstance;
-
-- (PBPhoto_Builder*) clear;
-- (PBPhoto_Builder*) clone;
-
-- (PBPhoto*) build;
-- (PBPhoto*) buildPartial;
-
-- (PBPhoto_Builder*) mergeFrom:(PBPhoto*) other;
-- (PBPhoto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBPhoto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasPhotoId;
-- (NSString*) photoId;
-- (PBPhoto_Builder*) setPhotoId:(NSString*) value;
-- (PBPhoto_Builder*) clearPhotoId;
-
-- (BOOL) hasUrl;
-- (NSString*) url;
-- (PBPhoto_Builder*) setUrl:(NSString*) value;
-- (PBPhoto_Builder*) clearUrl;
-
-- (BOOL) hasName;
-- (NSString*) name;
-- (PBPhoto_Builder*) setName:(NSString*) value;
-- (PBPhoto_Builder*) clearName;
-
-- (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBPhoto_Builder*) setCreateDate:(int32_t) value;
-- (PBPhoto_Builder*) clearCreateDate;
-
-- (NSArray*) tagsList;
-- (NSString*) tagsAtIndex:(int32_t) index;
-- (PBPhoto_Builder*) replaceTagsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBPhoto_Builder*) addTags:(NSString*) value;
-- (PBPhoto_Builder*) addAllTags:(NSArray*) values;
-- (PBPhoto_Builder*) clearTagsList;
-
-- (NSArray*) keywordsList;
-- (NSString*) keywordsAtIndex:(int32_t) index;
-- (PBPhoto_Builder*) replaceKeywordsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBPhoto_Builder*) addKeywords:(NSString*) value;
-- (PBPhoto_Builder*) addAllKeywords:(NSArray*) values;
-- (PBPhoto_Builder*) clearKeywordsList;
-@end
-
 @interface PBUserPhoto : PBGeneratedMessage {
 @private
   BOOL hasCreateDate_:1;
+  BOOL hasUsage_:1;
   BOOL hasUserId_:1;
   BOOL hasPhotoId_:1;
+  BOOL hasUserPhotoId_:1;
   BOOL hasUrl_:1;
   BOOL hasName_:1;
   int32_t createDate;
+  int32_t usage;
   NSString* userId;
   NSString* photoId;
+  NSString* userPhotoId;
   NSString* url;
   NSString* name;
   NSMutableArray* mutableTagsList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasPhotoId;
+- (BOOL) hasUserPhotoId;
 - (BOOL) hasUrl;
 - (BOOL) hasName;
 - (BOOL) hasCreateDate;
+- (BOOL) hasUsage;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* photoId;
+@property (readonly, retain) NSString* userPhotoId;
 @property (readonly, retain) NSString* url;
 @property (readonly, retain) NSString* name;
 @property (readonly) int32_t createDate;
+@property (readonly) int32_t usage;
 - (NSArray*) tagsList;
 - (NSString*) tagsAtIndex:(int32_t) index;
 
@@ -231,6 +151,11 @@
 - (PBUserPhoto_Builder*) setPhotoId:(NSString*) value;
 - (PBUserPhoto_Builder*) clearPhotoId;
 
+- (BOOL) hasUserPhotoId;
+- (NSString*) userPhotoId;
+- (PBUserPhoto_Builder*) setUserPhotoId:(NSString*) value;
+- (PBUserPhoto_Builder*) clearUserPhotoId;
+
 - (BOOL) hasUrl;
 - (NSString*) url;
 - (PBUserPhoto_Builder*) setUrl:(NSString*) value;
@@ -252,6 +177,11 @@
 - (PBUserPhoto_Builder*) addTags:(NSString*) value;
 - (PBUserPhoto_Builder*) addAllTags:(NSArray*) values;
 - (PBUserPhoto_Builder*) clearTagsList;
+
+- (BOOL) hasUsage;
+- (int32_t) usage;
+- (PBUserPhoto_Builder*) setUsage:(int32_t) value;
+- (PBUserPhoto_Builder*) clearUsage;
 @end
 
 @interface PBUserPhotoList : PBGeneratedMessage {

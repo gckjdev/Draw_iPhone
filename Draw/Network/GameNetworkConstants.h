@@ -149,13 +149,14 @@
 #define PARA_SAVE_TIMES @"st"
 
 //for gallery
-#define METHOD_ADD_USER_PHOTO    @"aup"
+#define METHOD_ADD_USER_PHOTO    @"addUserPhoto"
 #define METHOD_UPDATE_USER_PHOTO   @"uup"
-#define METHOD_GET_USER_PHOTO_LIST     @"gupl"
-#define METHOD_DELETE_USER_PHOTO   @"dup"
+#define METHOD_GET_USER_PHOTO_LIST     @"getUserPhoto"
+#define METHOD_DELETE_USER_PHOTO   @"deleteUserPhoto"
 
-#define PARA_USER_PHOTO_TAGS        @"upt"
-#define PARA_PHOTO_ID               @"pi"
+#define PARA_USER_PHOTO_TAGS             @"tag"
+#define PARA_USER_PHOTO_ID               @"userPhotoId"
+#define PARA_USAGE                       @"usage"
 
 #define ACTION_TYPE_GUESS    2
 #define ACTION_TYPE_COMMENT  3
