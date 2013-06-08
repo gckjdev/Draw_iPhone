@@ -224,6 +224,7 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     [_nameTextField release];
     [_titleLabel release];
     [_inputNameLabel release];
+    RELEASE_BLOCK(_resultBlock);
     [super dealloc];
 }
 @end
