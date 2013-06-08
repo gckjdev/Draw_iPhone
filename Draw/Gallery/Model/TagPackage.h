@@ -10,8 +10,10 @@
 
 @interface TagPackage : NSObject
 
-@property (assign, nonatomic) int tagLimit;
-@property (retain, nonatomic) NSArray* tagArray;
-@property (assign, nonatomic) NSString* tagPackageName;
+@property (retain, nonatomic, readonly) NSMutableArray* tagArray;
+@property (retain, nonatomic, readonly) NSString* tagPackageName;
+
+- (id)initWithString:(NSString*)str;
++ (NSArray*)createPackageArrayFromString:(NSString*)str;
 
 @end

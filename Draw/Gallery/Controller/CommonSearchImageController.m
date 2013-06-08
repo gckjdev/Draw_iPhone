@@ -175,7 +175,9 @@
 
 - (void)saveSearchResult:(ImageSearchResult*)searchResult
 {
-    PhotoEditView* view = [PhotoEditView createViewWithTagPackageArray:nil tagArray:nil imageUrl:searchResult.url delegate:self];
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil editName:YES resultBlock:^(NSString *name, NSSet *tagSet) {
+        [self didEditPictureInfo:tagSet name:name imageUrl:searchResult.url];
+    }];
     [view showInView:self.view];
 }
 
@@ -243,17 +245,16 @@ enum {
     [self reloadTableViewDataSource];
 }
 
-#pragma mark - PhotoEditView delegate
 - (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
 {
-//    [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet resultBlock:^(int resultCode) {
-//        PPDebug(@"<didEditPictureInfo> favor image %@ with tag <%@>succ !", url, [tagSet description]);
-//    }];
-//    
+    [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet resultBlock:^(int resultCode) {
+        PPDebug(@"<didEditPictureInfo> favor image %@ ,name = %@ with tag <%@>succ !", url, name,[tagSet description]);
+    }];
+    
     //for create test data
     PBUserPhotoList_Builder* listBuilder;
     StorageManager* manage = [[StorageManager alloc] initWithStoreType:StorageTypeTemp directoryName:@"testPhoto"];
-    NSData* data = [manage dataForKey:@"test"];
+    NSData* data = [manage dataForKey:@"test2"];
     if (data) {
         PBUserPhotoList* list = [PBUserPhotoList parseFromData:data];
         listBuilder = [PBUserPhotoList builderWithPrototype:list];
@@ -262,9 +263,10 @@ enum {
     }
     PBUserPhoto_Builder* builder = [PBUserPhoto builder];
     [builder setUrl:url];
-    [builder setName:@"name"];
-    [builder addTags:@"tag1"];
-    [builder addTags:@"tag2"];
+    [builder setName:name];
+    for (NSString* str in [tagSet allObjects]) {
+        [builder addTags:str];
+    }
     [builder setCreateDate:time(0)];
     PBUserPhoto* photo = [builder build];
     
@@ -272,7 +274,7 @@ enum {
     [listBuilder setUserId:[[UserManager defaultManager] userId]];
     PBUserPhotoList* aList = [listBuilder build];
     NSData* newData = [aList data];
-    [manage saveData:newData forKey:@"test"];
+    [manage saveData:newData forKey:@"test2"];
     PPDebug(@"<test> write image %@ succ!",url);
     
 //    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
