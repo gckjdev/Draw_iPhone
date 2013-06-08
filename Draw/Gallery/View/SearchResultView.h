@@ -22,4 +22,5 @@
 @property (assign, nonatomic) id<SearchResultViewDelegate>delegate;
 
 - (void)updateWithResult:(ImageSearchResult*)result;
+- (void)updateWithUrl:(NSString*)url;
 @end

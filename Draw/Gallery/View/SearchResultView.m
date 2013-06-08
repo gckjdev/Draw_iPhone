@@ -39,6 +39,10 @@
     self.searchResult = result;
     [self.imageView setImageWithURL:[NSURL URLWithString:result.url]];
 }
+- (void)updateWithUrl:(NSString*)url
+{
+    [self.imageView setImageWithURL:[NSURL URLWithString:url]];
+}
 
 
 - (void)didClickImage:(id)sender
