@@ -13,6 +13,7 @@
 #import "ConfigManager.h"
 #import "UserManager+DiceUserManager.h"
 #import "Photo.pb.h"
+#import "GameMessage.pb.h"
 
 #define TAG_SEP @"^"
 
@@ -90,22 +91,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
                                                               tagArray:tagArrayString
                                                                  usage:usage
                                                                 offset:offset
-                                                                 limit:limit];
-        
-        //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
-        //                opusId, actionName, output.resultCode);
+                                                                 limit:limit];        
         
         NSInteger resultCode = output.resultCode;
         NSArray *list = nil;
+        
         @try {
-            PBUserPhotoList *response = [PBUserPhotoList parseFromData:output.responseData];
-//            resultCode = [response resultCode];
-            list = response.photoListList;
+            if (resultCode == 0 && output.responseData != nil){
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                if (response.resultCode == 0){
+                    list = [response userPhotoListList];
+                }
+                else{
+                    resultCode = response.resultCode;
+                }
+            }
         }
         @catch (NSException *exception) {
+            PPDebug(@"<%s>exception = %@", __FUNCTION__, [exception debugDescription]);
             resultCode = ERROR_CLIENT_PARSE_DATA;
         }
-        
+        @finally {
+            
+        }
+
         dispatch_async(dispatch_get_main_queue(), ^{
             EXECUTE_BLOCK(resultBlock, output.resultCode, list);
         });
