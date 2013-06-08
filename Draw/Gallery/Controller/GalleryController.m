@@ -20,7 +20,7 @@
     
 }
 
-@property (retain, nonatomic) NSMutableSet* tagSet;
+@property (retain, nonatomic) NSSet* tagSet;
 
 @end
 
@@ -122,7 +122,7 @@
 - (void)loadTestData
 {
     StorageManager* manage = [[StorageManager alloc] initWithStoreType:StorageTypeTemp directoryName:@"testPhoto"];
-    NSData* data = [manage dataForKey:@"test"];
+    NSData* data = [manage dataForKey:@"test2"];
     if (data) {
         PBUserPhotoList* list = [PBUserPhotoList parseFromData:data];
         
@@ -133,7 +133,7 @@
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     
-    [[GalleryService defaultService] getUserPhotoWithTagSet:nil offset:[self currentTab].offset limit:15 resultBlock:^(int resultCode, NSArray *resultArray) {
+    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:PBPhotoUsageForPs offset:[self currentTab].tabID limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self loadTestData];
     }];
     
@@ -201,16 +201,43 @@ enum {
 
 - (void)deletePhoto:(PBUserPhoto*)photo
 {
-    [[GalleryService defaultService] deleteUserPhoto:photo.photoId resultBlock:^(int resultCode) {
+    [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId usage:PBPhotoUsageForPs resultBlock:^(int resultCode) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
     }];
 }
 
 - (void)editPhoto:(PBUserPhoto*)photo
 {
-    
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo editName:YES resultBlock:^(NSString *name, NSSet *tagSet) {
+        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:tagSet resultBlock:^(int resultCode, PBUserPhoto* photo) {
+            PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.photoId, name, [tagSet description]);
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
+        }];
+    }];
+    [view showInView:self.view];
 }
 
+
+- (IBAction)clickFilterUserPhoto:(id)sender
+{
+    PBUserPhoto* tempPhoto = nil;
+    if (self.tagSet) {
+        PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+        for (NSString* tag in self.tagSet) {
+            [builder addTags:tag];
+        }
+        [builder setUserId:@""];
+        [builder setPhotoId:@""];
+        tempPhoto = [builder build];
+    }
+    
+    __block GalleryController* cp = self;
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto editName:NO resultBlock:^(NSString *name, NSSet *tagSet) {
+        cp.tagSet = tagSet;
+        [cp reloadTableViewDataSource];
+    }];
+    [view showInView:self.view];
+}
 
 //#pragma mark - PhotoEditView delegate
 //- (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url

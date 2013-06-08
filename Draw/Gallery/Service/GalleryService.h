@@ -7,6 +7,7 @@
 //
 
 #import "CommonService.h"
+#import "Photo.pb.h"
 
 @interface GalleryService : CommonService
 
@@ -14,16 +15,22 @@
 - (void)addUserPhoto:(NSString*)photoUrl
                 name:(NSString*)name
               tagSet:(NSSet*)tagSet
-         resultBlock:(void(^)(int resultCode))resultBlock;
+               usage:(PBPhotoUsage)usage
+         resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock;
+
 - (void)getUserPhotoWithTagSet:(NSSet*)tagSet
+                         usage:(PBPhotoUsage)usage
                         offset:(int)offset
                          limit:(int)limit
                    resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock;
+
 - (void)updateUserPhoto:(NSString*)photoId
                photoUrl:(NSString*)photoUrl
                    name:(NSString*)name
                  tagSet:(NSSet*)tagSet
-            resultBlock:(void(^)(int resultCode))resultBlock;
-- (void)deleteUserPhoto:(NSString*)photoId
+            resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock;
+
+- (void)deleteUserPhoto:(NSString*)userPhotoId
+                  usage:(PBPhotoUsage)usage
             resultBlock:(void(^)(int resultCode))resultBlock;
 @end

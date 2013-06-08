@@ -20,437 +20,26 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-@interface PBPhoto ()
-@property (retain) NSString* photoId;
-@property (retain) NSString* url;
-@property (retain) NSString* name;
-@property int32_t createDate;
-@property (retain) NSMutableArray* mutableTagsList;
-@property (retain) NSMutableArray* mutableKeywordsList;
-@end
-
-@implementation PBPhoto
-
-- (BOOL) hasPhotoId {
-  return !!hasPhotoId_;
-}
-- (void) setHasPhotoId:(BOOL) value {
-  hasPhotoId_ = !!value;
-}
-@synthesize photoId;
-- (BOOL) hasUrl {
-  return !!hasUrl_;
-}
-- (void) setHasUrl:(BOOL) value {
-  hasUrl_ = !!value;
-}
-@synthesize url;
-- (BOOL) hasName {
-  return !!hasName_;
-}
-- (void) setHasName:(BOOL) value {
-  hasName_ = !!value;
-}
-@synthesize name;
-- (BOOL) hasCreateDate {
-  return !!hasCreateDate_;
-}
-- (void) setHasCreateDate:(BOOL) value {
-  hasCreateDate_ = !!value;
-}
-@synthesize createDate;
-@synthesize mutableTagsList;
-@synthesize mutableKeywordsList;
-- (void) dealloc {
-  self.photoId = nil;
-  self.url = nil;
-  self.name = nil;
-  self.mutableTagsList = nil;
-  self.mutableKeywordsList = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.photoId = @"";
-    self.url = @"";
-    self.name = @"";
-    self.createDate = 0;
-  }
-  return self;
-}
-static PBPhoto* defaultPBPhotoInstance = nil;
-+ (void) initialize {
-  if (self == [PBPhoto class]) {
-    defaultPBPhotoInstance = [[PBPhoto alloc] init];
+BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value) {
+  switch (value) {
+    case PBPhotoUsageBegin:
+    case PBPhotoUsageForDraw:
+    case PBPhotoUsageForPs:
+    case PBPhotoUsageEnd:
+      return YES;
+    default:
+      return NO;
   }
 }
-+ (PBPhoto*) defaultInstance {
-  return defaultPBPhotoInstance;
-}
-- (PBPhoto*) defaultInstance {
-  return defaultPBPhotoInstance;
-}
-- (NSArray*) tagsList {
-  return mutableTagsList;
-}
-- (NSString*) tagsAtIndex:(int32_t) index {
-  id value = [mutableTagsList objectAtIndex:index];
-  return value;
-}
-- (NSArray*) keywordsList {
-  return mutableKeywordsList;
-}
-- (NSString*) keywordsAtIndex:(int32_t) index {
-  id value = [mutableKeywordsList objectAtIndex:index];
-  return value;
-}
-- (BOOL) isInitialized {
-  if (!self.hasPhotoId) {
-    return NO;
-  }
-  if (!self.hasUrl) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasPhotoId) {
-    [output writeString:1 value:self.photoId];
-  }
-  if (self.hasUrl) {
-    [output writeString:2 value:self.url];
-  }
-  if (self.hasName) {
-    [output writeString:3 value:self.name];
-  }
-  if (self.hasCreateDate) {
-    [output writeInt32:4 value:self.createDate];
-  }
-  for (NSString* element in self.mutableTagsList) {
-    [output writeString:5 value:element];
-  }
-  for (NSString* element in self.mutableKeywordsList) {
-    [output writeString:6 value:element];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasPhotoId) {
-    size += computeStringSize(1, self.photoId);
-  }
-  if (self.hasUrl) {
-    size += computeStringSize(2, self.url);
-  }
-  if (self.hasName) {
-    size += computeStringSize(3, self.name);
-  }
-  if (self.hasCreateDate) {
-    size += computeInt32Size(4, self.createDate);
-  }
-  {
-    int32_t dataSize = 0;
-    for (NSString* element in self.mutableTagsList) {
-      dataSize += computeStringSizeNoTag(element);
-    }
-    size += dataSize;
-    size += 1 * self.mutableTagsList.count;
-  }
-  {
-    int32_t dataSize = 0;
-    for (NSString* element in self.mutableKeywordsList) {
-      dataSize += computeStringSizeNoTag(element);
-    }
-    size += dataSize;
-    size += 1 * self.mutableKeywordsList.count;
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBPhoto*) parseFromData:(NSData*) data {
-  return (PBPhoto*)[[[PBPhoto builder] mergeFromData:data] build];
-}
-+ (PBPhoto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBPhoto*)[[[PBPhoto builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBPhoto*) parseFromInputStream:(NSInputStream*) input {
-  return (PBPhoto*)[[[PBPhoto builder] mergeFromInputStream:input] build];
-}
-+ (PBPhoto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBPhoto*)[[[PBPhoto builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBPhoto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBPhoto*)[[[PBPhoto builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBPhoto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBPhoto*)[[[PBPhoto builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBPhoto_Builder*) builder {
-  return [[[PBPhoto_Builder alloc] init] autorelease];
-}
-+ (PBPhoto_Builder*) builderWithPrototype:(PBPhoto*) prototype {
-  return [[PBPhoto builder] mergeFrom:prototype];
-}
-- (PBPhoto_Builder*) builder {
-  return [PBPhoto builder];
-}
-@end
-
-@interface PBPhoto_Builder()
-@property (retain) PBPhoto* result;
-@end
-
-@implementation PBPhoto_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBPhoto alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBPhoto_Builder*) clear {
-  self.result = [[[PBPhoto alloc] init] autorelease];
-  return self;
-}
-- (PBPhoto_Builder*) clone {
-  return [PBPhoto builderWithPrototype:result];
-}
-- (PBPhoto*) defaultInstance {
-  return [PBPhoto defaultInstance];
-}
-- (PBPhoto*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBPhoto*) buildPartial {
-  PBPhoto* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBPhoto_Builder*) mergeFrom:(PBPhoto*) other {
-  if (other == [PBPhoto defaultInstance]) {
-    return self;
-  }
-  if (other.hasPhotoId) {
-    [self setPhotoId:other.photoId];
-  }
-  if (other.hasUrl) {
-    [self setUrl:other.url];
-  }
-  if (other.hasName) {
-    [self setName:other.name];
-  }
-  if (other.hasCreateDate) {
-    [self setCreateDate:other.createDate];
-  }
-  if (other.mutableTagsList.count > 0) {
-    if (result.mutableTagsList == nil) {
-      result.mutableTagsList = [NSMutableArray array];
-    }
-    [result.mutableTagsList addObjectsFromArray:other.mutableTagsList];
-  }
-  if (other.mutableKeywordsList.count > 0) {
-    if (result.mutableKeywordsList == nil) {
-      result.mutableKeywordsList = [NSMutableArray array];
-    }
-    [result.mutableKeywordsList addObjectsFromArray:other.mutableKeywordsList];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBPhoto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBPhoto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        [self setPhotoId:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setUrl:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setName:[input readString]];
-        break;
-      }
-      case 32: {
-        [self setCreateDate:[input readInt32]];
-        break;
-      }
-      case 42: {
-        [self addTags:[input readString]];
-        break;
-      }
-      case 50: {
-        [self addKeywords:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasPhotoId {
-  return result.hasPhotoId;
-}
-- (NSString*) photoId {
-  return result.photoId;
-}
-- (PBPhoto_Builder*) setPhotoId:(NSString*) value {
-  result.hasPhotoId = YES;
-  result.photoId = value;
-  return self;
-}
-- (PBPhoto_Builder*) clearPhotoId {
-  result.hasPhotoId = NO;
-  result.photoId = @"";
-  return self;
-}
-- (BOOL) hasUrl {
-  return result.hasUrl;
-}
-- (NSString*) url {
-  return result.url;
-}
-- (PBPhoto_Builder*) setUrl:(NSString*) value {
-  result.hasUrl = YES;
-  result.url = value;
-  return self;
-}
-- (PBPhoto_Builder*) clearUrl {
-  result.hasUrl = NO;
-  result.url = @"";
-  return self;
-}
-- (BOOL) hasName {
-  return result.hasName;
-}
-- (NSString*) name {
-  return result.name;
-}
-- (PBPhoto_Builder*) setName:(NSString*) value {
-  result.hasName = YES;
-  result.name = value;
-  return self;
-}
-- (PBPhoto_Builder*) clearName {
-  result.hasName = NO;
-  result.name = @"";
-  return self;
-}
-- (BOOL) hasCreateDate {
-  return result.hasCreateDate;
-}
-- (int32_t) createDate {
-  return result.createDate;
-}
-- (PBPhoto_Builder*) setCreateDate:(int32_t) value {
-  result.hasCreateDate = YES;
-  result.createDate = value;
-  return self;
-}
-- (PBPhoto_Builder*) clearCreateDate {
-  result.hasCreateDate = NO;
-  result.createDate = 0;
-  return self;
-}
-- (NSArray*) tagsList {
-  if (result.mutableTagsList == nil) {
-    return [NSArray array];
-  }
-  return result.mutableTagsList;
-}
-- (NSString*) tagsAtIndex:(int32_t) index {
-  return [result tagsAtIndex:index];
-}
-- (PBPhoto_Builder*) replaceTagsAtIndex:(int32_t) index with:(NSString*) value {
-  [result.mutableTagsList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBPhoto_Builder*) addTags:(NSString*) value {
-  if (result.mutableTagsList == nil) {
-    result.mutableTagsList = [NSMutableArray array];
-  }
-  [result.mutableTagsList addObject:value];
-  return self;
-}
-- (PBPhoto_Builder*) addAllTags:(NSArray*) values {
-  if (result.mutableTagsList == nil) {
-    result.mutableTagsList = [NSMutableArray array];
-  }
-  [result.mutableTagsList addObjectsFromArray:values];
-  return self;
-}
-- (PBPhoto_Builder*) clearTagsList {
-  result.mutableTagsList = nil;
-  return self;
-}
-- (NSArray*) keywordsList {
-  if (result.mutableKeywordsList == nil) {
-    return [NSArray array];
-  }
-  return result.mutableKeywordsList;
-}
-- (NSString*) keywordsAtIndex:(int32_t) index {
-  return [result keywordsAtIndex:index];
-}
-- (PBPhoto_Builder*) replaceKeywordsAtIndex:(int32_t) index with:(NSString*) value {
-  [result.mutableKeywordsList replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBPhoto_Builder*) addKeywords:(NSString*) value {
-  if (result.mutableKeywordsList == nil) {
-    result.mutableKeywordsList = [NSMutableArray array];
-  }
-  [result.mutableKeywordsList addObject:value];
-  return self;
-}
-- (PBPhoto_Builder*) addAllKeywords:(NSArray*) values {
-  if (result.mutableKeywordsList == nil) {
-    result.mutableKeywordsList = [NSMutableArray array];
-  }
-  [result.mutableKeywordsList addObjectsFromArray:values];
-  return self;
-}
-- (PBPhoto_Builder*) clearKeywordsList {
-  result.mutableKeywordsList = nil;
-  return self;
-}
-@end
-
 @interface PBUserPhoto ()
 @property (retain) NSString* userId;
 @property (retain) NSString* photoId;
+@property (retain) NSString* userPhotoId;
 @property (retain) NSString* url;
 @property (retain) NSString* name;
 @property int32_t createDate;
 @property (retain) NSMutableArray* mutableTagsList;
+@property int32_t usage;
 @end
 
 @implementation PBUserPhoto
@@ -469,6 +58,13 @@ static PBPhoto* defaultPBPhotoInstance = nil;
   hasPhotoId_ = !!value;
 }
 @synthesize photoId;
+- (BOOL) hasUserPhotoId {
+  return !!hasUserPhotoId_;
+}
+- (void) setHasUserPhotoId:(BOOL) value {
+  hasUserPhotoId_ = !!value;
+}
+@synthesize userPhotoId;
 - (BOOL) hasUrl {
   return !!hasUrl_;
 }
@@ -491,9 +87,17 @@ static PBPhoto* defaultPBPhotoInstance = nil;
 }
 @synthesize createDate;
 @synthesize mutableTagsList;
+- (BOOL) hasUsage {
+  return !!hasUsage_;
+}
+- (void) setHasUsage:(BOOL) value {
+  hasUsage_ = !!value;
+}
+@synthesize usage;
 - (void) dealloc {
   self.userId = nil;
   self.photoId = nil;
+  self.userPhotoId = nil;
   self.url = nil;
   self.name = nil;
   self.mutableTagsList = nil;
@@ -503,9 +107,11 @@ static PBPhoto* defaultPBPhotoInstance = nil;
   if ((self = [super init])) {
     self.userId = @"";
     self.photoId = @"";
+    self.userPhotoId = @"";
     self.url = @"";
     self.name = @"";
     self.createDate = 0;
+    self.usage = 0;
   }
   return self;
 }
@@ -541,17 +147,23 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
   if (self.hasPhotoId) {
     [output writeString:2 value:self.photoId];
   }
+  if (self.hasUserPhotoId) {
+    [output writeString:3 value:self.userPhotoId];
+  }
   if (self.hasUrl) {
-    [output writeString:3 value:self.url];
+    [output writeString:4 value:self.url];
   }
   if (self.hasName) {
-    [output writeString:4 value:self.name];
+    [output writeString:5 value:self.name];
   }
   if (self.hasCreateDate) {
-    [output writeInt32:5 value:self.createDate];
+    [output writeInt32:6 value:self.createDate];
   }
   for (NSString* element in self.mutableTagsList) {
-    [output writeString:6 value:element];
+    [output writeString:7 value:element];
+  }
+  if (self.hasUsage) {
+    [output writeInt32:8 value:self.usage];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -568,14 +180,17 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
   if (self.hasPhotoId) {
     size += computeStringSize(2, self.photoId);
   }
+  if (self.hasUserPhotoId) {
+    size += computeStringSize(3, self.userPhotoId);
+  }
   if (self.hasUrl) {
-    size += computeStringSize(3, self.url);
+    size += computeStringSize(4, self.url);
   }
   if (self.hasName) {
-    size += computeStringSize(4, self.name);
+    size += computeStringSize(5, self.name);
   }
   if (self.hasCreateDate) {
-    size += computeInt32Size(5, self.createDate);
+    size += computeInt32Size(6, self.createDate);
   }
   {
     int32_t dataSize = 0;
@@ -584,6 +199,9 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
     }
     size += dataSize;
     size += 1 * self.mutableTagsList.count;
+  }
+  if (self.hasUsage) {
+    size += computeInt32Size(8, self.usage);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -666,6 +284,9 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
   if (other.hasPhotoId) {
     [self setPhotoId:other.photoId];
   }
+  if (other.hasUserPhotoId) {
+    [self setUserPhotoId:other.userPhotoId];
+  }
   if (other.hasUrl) {
     [self setUrl:other.url];
   }
@@ -680,6 +301,9 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
       result.mutableTagsList = [NSMutableArray array];
     }
     [result.mutableTagsList addObjectsFromArray:other.mutableTagsList];
+  }
+  if (other.hasUsage) {
+    [self setUsage:other.usage];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -711,19 +335,27 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
         break;
       }
       case 26: {
-        [self setUrl:[input readString]];
+        [self setUserPhotoId:[input readString]];
         break;
       }
       case 34: {
+        [self setUrl:[input readString]];
+        break;
+      }
+      case 42: {
         [self setName:[input readString]];
         break;
       }
-      case 40: {
+      case 48: {
         [self setCreateDate:[input readInt32]];
         break;
       }
-      case 50: {
+      case 58: {
         [self addTags:[input readString]];
+        break;
+      }
+      case 64: {
+        [self setUsage:[input readInt32]];
         break;
       }
     }
@@ -759,6 +391,22 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
 - (PBUserPhoto_Builder*) clearPhotoId {
   result.hasPhotoId = NO;
   result.photoId = @"";
+  return self;
+}
+- (BOOL) hasUserPhotoId {
+  return result.hasUserPhotoId;
+}
+- (NSString*) userPhotoId {
+  return result.userPhotoId;
+}
+- (PBUserPhoto_Builder*) setUserPhotoId:(NSString*) value {
+  result.hasUserPhotoId = YES;
+  result.userPhotoId = value;
+  return self;
+}
+- (PBUserPhoto_Builder*) clearUserPhotoId {
+  result.hasUserPhotoId = NO;
+  result.userPhotoId = @"";
   return self;
 }
 - (BOOL) hasUrl {
@@ -838,6 +486,22 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
 }
 - (PBUserPhoto_Builder*) clearTagsList {
   result.mutableTagsList = nil;
+  return self;
+}
+- (BOOL) hasUsage {
+  return result.hasUsage;
+}
+- (int32_t) usage {
+  return result.usage;
+}
+- (PBUserPhoto_Builder*) setUsage:(int32_t) value {
+  result.hasUsage = YES;
+  result.usage = value;
+  return self;
+}
+- (PBUserPhoto_Builder*) clearUsage {
+  result.hasUsage = NO;
+  result.usage = 0;
   return self;
 }
 @end

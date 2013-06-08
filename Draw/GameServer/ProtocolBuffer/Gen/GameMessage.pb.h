@@ -9,6 +9,7 @@
 #import "ZhaJinHua.pb.h"
 #import "Bbs.pb.h"
 #import "Opus.pb.h"
+#import "Photo.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
@@ -216,6 +217,10 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
+@class PBUserPhoto;
+@class PBUserPhotoList;
+@class PBUserPhotoList_Builder;
+@class PBUserPhoto_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBWall;
@@ -4456,6 +4461,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasUserRelation_:1;
   BOOL hasOpus_:1;
   BOOL hasUser_:1;
+  BOOL hasUserPhoto_:1;
   BOOL hasWall_:1;
   BOOL hasBbsDrawData_:1;
   int32_t resultCode;
@@ -4464,16 +4470,18 @@ BOOL BetTypeIsValidValue(BetType value);
   int32_t userRelation;
   PBOpus* opus;
   PBGameUser* user;
+  PBUserPhoto* userPhoto;
   PBWall* wall;
   PBBBSDraw* bbsDrawData;
   NSMutableArray* mutableIdListList;
-  NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsActionList;
-  NSMutableArray* mutableBbsBoardList;
+  NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsPrivilegeListList;
   NSMutableArray* mutableBbsUserListList;
   NSMutableArray* mutableWallListList;
+  NSMutableArray* mutableBbsBoardList;
   NSMutableArray* mutableFeedList;
+  NSMutableArray* mutableUserPhotoListList;
   NSMutableArray* mutableMessageStatList;
   NSMutableArray* mutableMessageList;
   NSMutableArray* mutableDrawDataList;
@@ -4483,6 +4491,7 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasVersion;
 - (BOOL) hasBbsDrawData;
 - (BOOL) hasWall;
+- (BOOL) hasUserPhoto;
 - (BOOL) hasUser;
 - (BOOL) hasUserRelation;
 - (BOOL) hasOpus;
@@ -4491,6 +4500,7 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly) int32_t version;
 @property (readonly, retain) PBBBSDraw* bbsDrawData;
 @property (readonly, retain) PBWall* wall;
+@property (readonly, retain) PBUserPhoto* userPhoto;
 @property (readonly, retain) PBGameUser* user;
 @property (readonly) int32_t userRelation;
 @property (readonly, retain) PBOpus* opus;
@@ -4514,6 +4524,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
 - (NSArray*) wallListList;
 - (PBWall*) wallListAtIndex:(int32_t) index;
+- (NSArray*) userPhotoListList;
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index;
 - (NSArray*) idListList;
 - (NSString*) idListAtIndex:(int32_t) index;
 
@@ -4649,6 +4661,20 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setWallBuilder:(PBWall_Builder*) builderForValue;
 - (DataQueryResponse_Builder*) mergeWall:(PBWall*) value;
 - (DataQueryResponse_Builder*) clearWall;
+
+- (BOOL) hasUserPhoto;
+- (PBUserPhoto*) userPhoto;
+- (DataQueryResponse_Builder*) setUserPhoto:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) setUserPhotoBuilder:(PBUserPhoto_Builder*) builderForValue;
+- (DataQueryResponse_Builder*) mergeUserPhoto:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) clearUserPhoto;
+
+- (NSArray*) userPhotoListList;
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceUserPhotoListAtIndex:(int32_t) index with:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) addUserPhotoList:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) addAllUserPhotoList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearUserPhotoListList;
 
 - (BOOL) hasUser;
 - (PBGameUser*) user;

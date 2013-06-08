@@ -19,6 +19,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [ZhaJinHuaRoot registerAllExtensions:registry];
     [BbsRoot registerAllExtensions:registry];
     [OpusRoot registerAllExtensions:registry];
+    [PhotoRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -17683,6 +17684,8 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBbsUserListList;
 @property (retain) NSMutableArray* mutableWallListList;
 @property (retain) PBWall* wall;
+@property (retain) PBUserPhoto* userPhoto;
+@property (retain) NSMutableArray* mutableUserPhotoListList;
 @property (retain) PBGameUser* user;
 @property int32_t userRelation;
 @property (retain) NSMutableArray* mutableIdListList;
@@ -17736,6 +17739,14 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasWall_ = !!value;
 }
 @synthesize wall;
+- (BOOL) hasUserPhoto {
+  return !!hasUserPhoto_;
+}
+- (void) setHasUserPhoto:(BOOL) value {
+  hasUserPhoto_ = !!value;
+}
+@synthesize userPhoto;
+@synthesize mutableUserPhotoListList;
 - (BOOL) hasUser {
   return !!hasUser_;
 }
@@ -17771,6 +17782,8 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBbsUserListList = nil;
   self.mutableWallListList = nil;
   self.wall = nil;
+  self.userPhoto = nil;
+  self.mutableUserPhotoListList = nil;
   self.user = nil;
   self.mutableIdListList = nil;
   self.opus = nil;
@@ -17783,6 +17796,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.version = 0;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
     self.wall = [PBWall defaultInstance];
+    self.userPhoto = [PBUserPhoto defaultInstance];
     self.user = [PBGameUser defaultInstance];
     self.userRelation = 0;
     self.opus = [PBOpus defaultInstance];
@@ -17871,6 +17885,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableWallListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) userPhotoListList {
+  return mutableUserPhotoListList;
+}
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index {
+  id value = [mutableUserPhotoListList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) idListList {
   return mutableIdListList;
 }
@@ -17942,6 +17963,16 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasUserPhoto) {
+    if (!self.userPhoto.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBUserPhoto* element in self.userPhotoListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   if (self.hasUser) {
     if (!self.user.isInitialized) {
       return NO;
@@ -17999,6 +18030,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasWall) {
     [output writeMessage:81 value:self.wall];
+  }
+  if (self.hasUserPhoto) {
+    [output writeMessage:82 value:self.userPhoto];
+  }
+  for (PBUserPhoto* element in self.userPhotoListList) {
+    [output writeMessage:83 value:element];
   }
   if (self.hasUser) {
     [output writeMessage:85 value:self.user];
@@ -18065,6 +18102,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasWall) {
     size += computeMessageSize(81, self.wall);
+  }
+  if (self.hasUserPhoto) {
+    size += computeMessageSize(82, self.userPhoto);
+  }
+  for (PBUserPhoto* element in self.userPhotoListList) {
+    size += computeMessageSize(83, element);
   }
   if (self.hasUser) {
     size += computeMessageSize(85, self.user);
@@ -18233,6 +18276,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasWall) {
     [self mergeWall:other.wall];
   }
+  if (other.hasUserPhoto) {
+    [self mergeUserPhoto:other.userPhoto];
+  }
+  if (other.mutableUserPhotoListList.count > 0) {
+    if (result.mutableUserPhotoListList == nil) {
+      result.mutableUserPhotoListList = [NSMutableArray array];
+    }
+    [result.mutableUserPhotoListList addObjectsFromArray:other.mutableUserPhotoListList];
+  }
   if (other.hasUser) {
     [self mergeUser:other.user];
   }
@@ -18357,6 +18409,21 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setWall:[subBuilder buildPartial]];
+        break;
+      }
+      case 658: {
+        PBUserPhoto_Builder* subBuilder = [PBUserPhoto builder];
+        if (self.hasUserPhoto) {
+          [subBuilder mergeFrom:self.userPhoto];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUserPhoto:[subBuilder buildPartial]];
+        break;
+      }
+      case 666: {
+        PBUserPhoto_Builder* subBuilder = [PBUserPhoto builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUserPhotoList:[subBuilder buildPartial]];
         break;
       }
       case 682: {
@@ -18784,6 +18851,65 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 - (DataQueryResponse_Builder*) clearWall {
   result.hasWall = NO;
   result.wall = [PBWall defaultInstance];
+  return self;
+}
+- (BOOL) hasUserPhoto {
+  return result.hasUserPhoto;
+}
+- (PBUserPhoto*) userPhoto {
+  return result.userPhoto;
+}
+- (DataQueryResponse_Builder*) setUserPhoto:(PBUserPhoto*) value {
+  result.hasUserPhoto = YES;
+  result.userPhoto = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setUserPhotoBuilder:(PBUserPhoto_Builder*) builderForValue {
+  return [self setUserPhoto:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeUserPhoto:(PBUserPhoto*) value {
+  if (result.hasUserPhoto &&
+      result.userPhoto != [PBUserPhoto defaultInstance]) {
+    result.userPhoto =
+      [[[PBUserPhoto builderWithPrototype:result.userPhoto] mergeFrom:value] buildPartial];
+  } else {
+    result.userPhoto = value;
+  }
+  result.hasUserPhoto = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUserPhoto {
+  result.hasUserPhoto = NO;
+  result.userPhoto = [PBUserPhoto defaultInstance];
+  return self;
+}
+- (NSArray*) userPhotoListList {
+  if (result.mutableUserPhotoListList == nil) { return [NSArray array]; }
+  return result.mutableUserPhotoListList;
+}
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index {
+  return [result userPhotoListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceUserPhotoListAtIndex:(int32_t) index with:(PBUserPhoto*) value {
+  [result.mutableUserPhotoListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllUserPhotoList:(NSArray*) values {
+  if (result.mutableUserPhotoListList == nil) {
+    result.mutableUserPhotoListList = [NSMutableArray array];
+  }
+  [result.mutableUserPhotoListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUserPhotoListList {
+  result.mutableUserPhotoListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addUserPhotoList:(PBUserPhoto*) value {
+  if (result.mutableUserPhotoListList == nil) {
+    result.mutableUserPhotoListList = [NSMutableArray array];
+  }
+  [result.mutableUserPhotoListList addObject:value];
   return self;
 }
 - (BOOL) hasUser {

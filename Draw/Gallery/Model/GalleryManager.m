@@ -33,7 +33,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryManager)
 
 - (void)favorSearchResult:(ImageSearchResult*)searchResult finishBlock:(void(^)(void))block
 {
-    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:@"gallery"] autorelease];
+//    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:@"gallery"] autorelease];
     
     PPDebug(@"save image %@", searchResult.url);
     

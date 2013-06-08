@@ -13,7 +13,7 @@
 #import "CommonSearchImageFilterView.h"
 #import "PhotoEditView.h"
 
-@interface CommonSearchImageController : CommonTabController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, GoogleCustomSearchServiceDelegate, MWPhotoBrowserDelegate, SearchResultViewDelegate, CommonSearchImageFilterViewDelegate, PhotoEditViewDelegate>
+@interface CommonSearchImageController : CommonTabController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, GoogleCustomSearchServiceDelegate, MWPhotoBrowserDelegate, SearchResultViewDelegate, CommonSearchImageFilterViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UISearchBar* searchBar;
 

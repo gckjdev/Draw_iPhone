@@ -13,8 +13,9 @@
 #import "ConfigManager.h"
 #import "UserManager+DiceUserManager.h"
 #import "Photo.pb.h"
+#import "GameMessage.pb.h"
 
-#define TAG_SEP @"^"
+#define TAG_SEP @"$"
 
 @implementation GalleryService
 
@@ -34,7 +35,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 - (void)addUserPhoto:(NSString*)photoUrl
                 name:(NSString*)name
               tagSet:(NSSet*)tagSet
-         resultBlock:(void(^)(int resultCode))resultBlock
+               usage:(PBPhotoUsage)usage
+         resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock
 {
     PPDebug(@"<addUserPhoto> favor image %@ with name %@ ,tag %@", photoUrl, name, [tagSet description]);
     
@@ -51,25 +53,36 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     for (NSString* tag in tagSet) {
         [builder addTags:tag];
     }
+    [builder setUsage:usage];
     
     PBUserPhoto* photo = [builder build];
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest addUserPhoto:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest addUserPhoto:SERVER_URL
                                                                  appId:appId
                                                                 userId:userId
                                                                   data:[photo data]];
         
 //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
 //                opusId, actionName, output.resultCode);
-        
+        NSInteger resultCode = output.resultCode;
+        PBUserPhoto *photo = nil;
+        @try {
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            photo = response.userPhoto;
+        }
+        @catch (NSException *exception) {
+            resultCode = ERROR_CLIENT_PARSE_DATA;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            EXECUTE_BLOCK(resultBlock, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode, photo);
         });
     });
 }
 
 - (void)getUserPhotoWithTagSet:(NSSet*)tagSet
+                         usage:(PBPhotoUsage)usage
                         offset:(int)offset
                          limit:(int)limit
                    resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock
@@ -81,10 +94,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getUserPhoto:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest getUserPhoto:SERVER_URL
                                                                  appId:appId
                                                                 userId:userId
                                                               tagArray:tagArrayString
+                                                                 usage:usage
                                                                 offset:offset
                                                                  limit:limit];
         
@@ -94,9 +108,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         NSInteger resultCode = output.resultCode;
         NSArray *list = nil;
         @try {
-            PBUserPhotoList *response = [PBUserPhotoList parseFromData:output.responseData];
-//            resultCode = [response resultCode];
-            list = response.photoListList;
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            list = response.userPhotoListList;
         }
         @catch (NSException *exception) {
             resultCode = ERROR_CLIENT_PARSE_DATA;
@@ -112,7 +126,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
                photoUrl:(NSString*)photoUrl
                    name:(NSString*)name
                  tagSet:(NSSet*)tagSet
-            resultBlock:(void(^)(int resultCode))resultBlock
+            resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock
 {
     PPDebug(@"<updateUserPhoto> photoId = %@,  url = %@ with name %@ ,tag %@", photoId, photoUrl, name, [tagSet description]);
     
@@ -134,33 +148,44 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     PBUserPhoto* photo = [builder build];
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest updateUserPhoto:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest addUserPhoto:SERVER_URL
                                                                     appId:appId
                                                                    userId:userId
                                                                      data:[photo data]];
         
         //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
         //                opusId, actionName, output.resultCode);
-        
+        NSInteger resultCode = output.resultCode;
+        PBUserPhoto *photo = nil;
+        @try {
+            DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+            resultCode = [response resultCode];
+            photo = response.userPhoto;
+        }
+        @catch (NSException *exception) {
+            resultCode = ERROR_CLIENT_PARSE_DATA;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            EXECUTE_BLOCK(resultBlock, output.resultCode);
+            EXECUTE_BLOCK(resultBlock, output.resultCode, photo);
         });
     });
 }
 
-- (void)deleteUserPhoto:(NSString*)photoId
+- (void)deleteUserPhoto:(NSString*)userPhotoId
+                  usage:(PBPhotoUsage)usage
             resultBlock:(void(^)(int resultCode))resultBlock
 {
-    PPDebug(@"<deleteUserPhoto> photoId = %@", photoId);
+    PPDebug(@"<deleteUserPhoto> userPhotoId = %@", userPhotoId);
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest deleteUserPhoto:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest deleteUserPhoto:SERVER_URL
                                                                     appId:appId
                                                                    userId:userId
-                                                                  photoId:photoId];
+                                                              userPhotoId:userPhotoId
+                                                                    usage:usage];
         
         //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
         //                opusId, actionName, output.resultCode);
