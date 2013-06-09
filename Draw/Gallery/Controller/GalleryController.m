@@ -134,7 +134,8 @@
 {
     
     [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:PBPhotoUsageForPs offset:[self currentTab].tabID limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
-        [self loadTestData];
+        [self finishLoadDataForTabID:[self currentTab].tabID resultList:resultArray];
+//        [self loadTestData];
     }];
     
 }
@@ -228,6 +229,7 @@ enum {
         }
         [builder setUserId:@""];
         [builder setPhotoId:@""];
+        [builder setUserPhotoId:@""];
         tempPhoto = [builder build];
     }
     

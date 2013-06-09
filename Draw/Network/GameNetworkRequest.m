@@ -3401,6 +3401,8 @@
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
+    PPDebug(@"upload data len = %d", [data length]);
+    
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
         
         // set input parameters
@@ -3409,6 +3411,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_ADD_USER_PHOTO];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];
 
         return str;
     };
@@ -3448,6 +3451,7 @@
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
         str = [str stringByAddQueryParameter:PARA_USAGE intValue:usage];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];
         return str;
     };
     
@@ -3477,6 +3481,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_USER_PHOTO];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];
         return str;
     };
     

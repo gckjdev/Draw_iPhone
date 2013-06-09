@@ -11,7 +11,7 @@
 #import "ImageSearch.h"
 #import "ImageSearchResult.h"
 #import "GoogleCustomSearchNetworkConstants.h"
-#import "CommonSearchImageFilterView.h"
+#import "SearchView.h"
 #import "MKBlockActionSheet.h"
 #import "GalleryPicture.h"
 #import "GalleryManager.h"
@@ -229,7 +229,11 @@ enum {
     if (!_filter) {
         self.filter = [[[NSMutableDictionary alloc] init] autorelease];
     }
-    CommonSearchImageFilterView* view = [CommonSearchImageFilterView createViewWithFilter:_filter delegate:self];
+    SearchView* view = [SearchView createViewWithPreTextArray:[NSArray arrayWithObjects:@"cat", @"dog", nil] options:self.filter handler:^(NSString *searchText, NSDictionary *options) {
+        self.filter = options;
+        self.searchBar.text = searchText;
+        [self reloadTableViewDataSource];
+    }];
     [view showInView:self.view];
 }
 
@@ -248,7 +252,13 @@ enum {
 - (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
 {
     [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto *photo) {
-        PPDebug(@"<didEditPictureInfo> favor image %@ ,name = %@ with tag <%@>succ !", url, name,[tagSet description]);
+        if (resultCode == 0) {
+            PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tagsList description]);
+            
+        } else {
+            PPDebug(@"<didEditPictureInfo> err! code = %d", resultCode);
+        }
+        
     }];
     
     //for create test data

@@ -66,17 +66,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
 //                opusId, actionName, output.resultCode);
         NSInteger resultCode = output.resultCode;
-        PBUserPhoto *photo = nil;
+        PBUserPhoto *resultPhoto = nil;
         @try {
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
-            photo = response.userPhoto;
+            resultPhoto = response.userPhoto;
         }
         @catch (NSException *exception) {
             resultCode = ERROR_CLIENT_PARSE_DATA;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            EXECUTE_BLOCK(resultBlock, output.resultCode, photo);
+            EXECUTE_BLOCK(resultBlock, resultCode, resultPhoto);
         });
     });
 }
@@ -117,7 +117,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            EXECUTE_BLOCK(resultBlock, output.resultCode, list);
+            EXECUTE_BLOCK(resultBlock, resultCode, list);
         });
     });
 }
@@ -156,17 +156,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         //        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
         //                opusId, actionName, output.resultCode);
         NSInteger resultCode = output.resultCode;
-        PBUserPhoto *photo = nil;
+        PBUserPhoto *resultPhoto = nil;
         @try {
             DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
             resultCode = [response resultCode];
-            photo = response.userPhoto;
+            resultPhoto = response.userPhoto;
         }
         @catch (NSException *exception) {
             resultCode = ERROR_CLIENT_PARSE_DATA;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            EXECUTE_BLOCK(resultBlock, output.resultCode, photo);
+            EXECUTE_BLOCK(resultBlock, resultCode, resultPhoto);
         });
     });
 }
