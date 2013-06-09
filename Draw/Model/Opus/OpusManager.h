@@ -14,6 +14,7 @@
 @interface OpusManager : NSObject
 
 + (id)singOpusManager;
++ (id)drawOpusManager;
 
 - (id)opusWithOpusId:(NSString *)opusId;
 - (void)saveOpus:(Opus*)opus;

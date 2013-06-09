@@ -8,9 +8,10 @@
 
 #import "PPNetworkRequest.h"
 
-#define SERVER_URL                  (GlobalGetServerURL())
+#define SERVER_URL                          (GlobalGetServerURL())
+#define API_SERVER_URL                      SERVER_URL
 #define TRAFFIC_SERVER_URL                  (GlobalGetTrafficServerURL())
-#define BOARD_SERVER_URL                  (GlobalGetBoardServerURL())
+#define BOARD_SERVER_URL                    (GlobalGetBoardServerURL())
 //#define APP_ID                      @"Game"
 
 #define STRING_SEPERATOR @"$"

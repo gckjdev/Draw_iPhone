@@ -4475,15 +4475,16 @@ BOOL BetTypeIsValidValue(BetType value);
   PBBBSDraw* bbsDrawData;
   NSMutableArray* mutableIdListList;
   NSMutableArray* mutableBbsActionList;
-  NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsPrivilegeListList;
   NSMutableArray* mutableBbsUserListList;
   NSMutableArray* mutableWallListList;
+  NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsBoardList;
-  NSMutableArray* mutableFeedList;
   NSMutableArray* mutableUserPhotoListList;
+  NSMutableArray* mutableFeedList;
   NSMutableArray* mutableMessageStatList;
   NSMutableArray* mutableMessageList;
+  NSMutableArray* mutableOpusListList;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasResultCode;
@@ -4526,6 +4527,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBWall*) wallListAtIndex:(int32_t) index;
 - (NSArray*) userPhotoListList;
 - (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index;
+- (NSArray*) opusListList;
+- (PBOpus*) opusListAtIndex:(int32_t) index;
 - (NSArray*) idListList;
 - (NSString*) idListAtIndex:(int32_t) index;
 
@@ -4688,18 +4691,25 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setUserRelation:(int32_t) value;
 - (DataQueryResponse_Builder*) clearUserRelation;
 
-- (NSArray*) idListList;
-- (NSString*) idListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value;
-- (DataQueryResponse_Builder*) addIdList:(NSString*) value;
-- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearIdListList;
-
 - (BOOL) hasOpus;
 - (PBOpus*) opus;
 - (DataQueryResponse_Builder*) setOpus:(PBOpus*) value;
 - (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
 - (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value;
 - (DataQueryResponse_Builder*) clearOpus;
+
+- (NSArray*) opusListList;
+- (PBOpus*) opusListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceOpusListAtIndex:(int32_t) index with:(PBOpus*) value;
+- (DataQueryResponse_Builder*) addOpusList:(PBOpus*) value;
+- (DataQueryResponse_Builder*) addAllOpusList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearOpusListList;
+
+- (NSArray*) idListList;
+- (NSString*) idListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value;
+- (DataQueryResponse_Builder*) addIdList:(NSString*) value;
+- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearIdListList;
 @end
 

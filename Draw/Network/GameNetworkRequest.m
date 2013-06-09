@@ -26,6 +26,16 @@
 
 //#define DRAW_GAME_ID_FOR_LEVEL  @"Game" // add by Benson, Draw&Guess App ID is Game
 
+@implementation GameNetworkOutput
+
+- (void)dealloc
+{
+    PPRelease(_pbResponse);
+    [super dealloc];
+}
+
+@end
+
 @implementation GameNetworkRequest
 
 + (CommonNetworkOutput*)registerUserByEmail:(NSString*)baseURL
@@ -3343,6 +3353,7 @@
                             outputFormat:format
                                   output:output];
 }
+
 
 + (CommonNetworkOutput*)submitOpus:(NSString *)baseURL
                              appId:(NSString *)appId
