@@ -86,6 +86,25 @@
     return opus;
 }
 
+- (NSData *)data
+{    
+    NSData* data = nil;
+    @try {
+        PBOpus* pbOpus = [self pbOpus];
+        if (pbOpus == nil)
+            return nil;
+        
+        data = [pbOpus data];
+    }
+    @catch (NSException *exception) {
+        PPDebug(@"create data but catch exception=%@", [exception debugDescription]);
+    }
+    @finally {
+    }
+    
+    return data;
+}
+
 #define ENCODE_OPUS_DATA        @"opusData"
 #define ENCODE_OPUS_KEY         @"opusKey"
 

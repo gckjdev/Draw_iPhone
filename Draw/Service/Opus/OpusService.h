@@ -26,6 +26,7 @@
 - (void)submitOpus:(Opus*)opusMeta
              image:(UIImage *)image
           opusData:(NSData *)opusData
+       opusManager:(OpusManager*)opusManager
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate;
 

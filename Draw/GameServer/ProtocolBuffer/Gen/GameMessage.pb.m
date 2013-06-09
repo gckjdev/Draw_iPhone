@@ -17688,8 +17688,9 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableUserPhotoListList;
 @property (retain) PBGameUser* user;
 @property int32_t userRelation;
-@property (retain) NSMutableArray* mutableIdListList;
 @property (retain) PBOpus* opus;
+@property (retain) NSMutableArray* mutableOpusListList;
+@property (retain) NSMutableArray* mutableIdListList;
 @end
 
 @implementation DataQueryResponse
@@ -17761,7 +17762,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUserRelation_ = !!value;
 }
 @synthesize userRelation;
-@synthesize mutableIdListList;
 - (BOOL) hasOpus {
   return !!hasOpus_;
 }
@@ -17769,6 +17769,8 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasOpus_ = !!value;
 }
 @synthesize opus;
+@synthesize mutableOpusListList;
+@synthesize mutableIdListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17785,8 +17787,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.userPhoto = nil;
   self.mutableUserPhotoListList = nil;
   self.user = nil;
-  self.mutableIdListList = nil;
   self.opus = nil;
+  self.mutableOpusListList = nil;
+  self.mutableIdListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17892,6 +17895,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableUserPhotoListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) opusListList {
+  return mutableOpusListList;
+}
+- (PBOpus*) opusListAtIndex:(int32_t) index {
+  id value = [mutableOpusListList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) idListList {
   return mutableIdListList;
 }
@@ -17983,6 +17993,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  for (PBOpus* element in self.opusListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18043,11 +18058,14 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasUserRelation) {
     [output writeInt32:86 value:self.userRelation];
   }
+  if (self.hasOpus) {
+    [output writeMessage:87 value:self.opus];
+  }
+  for (PBOpus* element in self.opusListList) {
+    [output writeMessage:88 value:element];
+  }
   for (NSString* element in self.mutableIdListList) {
     [output writeString:90 value:element];
-  }
-  if (self.hasOpus) {
-    [output writeMessage:100 value:self.opus];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18115,6 +18133,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasUserRelation) {
     size += computeInt32Size(86, self.userRelation);
   }
+  if (self.hasOpus) {
+    size += computeMessageSize(87, self.opus);
+  }
+  for (PBOpus* element in self.opusListList) {
+    size += computeMessageSize(88, element);
+  }
   {
     int32_t dataSize = 0;
     for (NSString* element in self.mutableIdListList) {
@@ -18122,9 +18146,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableIdListList.count;
-  }
-  if (self.hasOpus) {
-    size += computeMessageSize(100, self.opus);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18291,14 +18312,20 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasUserRelation) {
     [self setUserRelation:other.userRelation];
   }
+  if (other.hasOpus) {
+    [self mergeOpus:other.opus];
+  }
+  if (other.mutableOpusListList.count > 0) {
+    if (result.mutableOpusListList == nil) {
+      result.mutableOpusListList = [NSMutableArray array];
+    }
+    [result.mutableOpusListList addObjectsFromArray:other.mutableOpusListList];
+  }
   if (other.mutableIdListList.count > 0) {
     if (result.mutableIdListList == nil) {
       result.mutableIdListList = [NSMutableArray array];
     }
     [result.mutableIdListList addObjectsFromArray:other.mutableIdListList];
-  }
-  if (other.hasOpus) {
-    [self mergeOpus:other.opus];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18439,17 +18466,23 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         [self setUserRelation:[input readInt32]];
         break;
       }
-      case 722: {
-        [self addIdList:[input readString]];
-        break;
-      }
-      case 802: {
+      case 698: {
         PBOpus_Builder* subBuilder = [PBOpus builder];
         if (self.hasOpus) {
           [subBuilder mergeFrom:self.opus];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOpus:[subBuilder buildPartial]];
+        break;
+      }
+      case 706: {
+        PBOpus_Builder* subBuilder = [PBOpus builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addOpusList:[subBuilder buildPartial]];
+        break;
+      }
+      case 722: {
+        [self addIdList:[input readString]];
         break;
       }
     }
@@ -18958,6 +18991,65 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   result.userRelation = 0;
   return self;
 }
+- (BOOL) hasOpus {
+  return result.hasOpus;
+}
+- (PBOpus*) opus {
+  return result.opus;
+}
+- (DataQueryResponse_Builder*) setOpus:(PBOpus*) value {
+  result.hasOpus = YES;
+  result.opus = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
+  return [self setOpus:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value {
+  if (result.hasOpus &&
+      result.opus != [PBOpus defaultInstance]) {
+    result.opus =
+      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
+  } else {
+    result.opus = value;
+  }
+  result.hasOpus = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearOpus {
+  result.hasOpus = NO;
+  result.opus = [PBOpus defaultInstance];
+  return self;
+}
+- (NSArray*) opusListList {
+  if (result.mutableOpusListList == nil) { return [NSArray array]; }
+  return result.mutableOpusListList;
+}
+- (PBOpus*) opusListAtIndex:(int32_t) index {
+  return [result opusListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceOpusListAtIndex:(int32_t) index with:(PBOpus*) value {
+  [result.mutableOpusListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllOpusList:(NSArray*) values {
+  if (result.mutableOpusListList == nil) {
+    result.mutableOpusListList = [NSMutableArray array];
+  }
+  [result.mutableOpusListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearOpusListList {
+  result.mutableOpusListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addOpusList:(PBOpus*) value {
+  if (result.mutableOpusListList == nil) {
+    result.mutableOpusListList = [NSMutableArray array];
+  }
+  [result.mutableOpusListList addObject:value];
+  return self;
+}
 - (NSArray*) idListList {
   if (result.mutableIdListList == nil) {
     return [NSArray array];
@@ -18987,36 +19079,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 }
 - (DataQueryResponse_Builder*) clearIdListList {
   result.mutableIdListList = nil;
-  return self;
-}
-- (BOOL) hasOpus {
-  return result.hasOpus;
-}
-- (PBOpus*) opus {
-  return result.opus;
-}
-- (DataQueryResponse_Builder*) setOpus:(PBOpus*) value {
-  result.hasOpus = YES;
-  result.opus = value;
-  return self;
-}
-- (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
-  return [self setOpus:[builderForValue build]];
-}
-- (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value {
-  if (result.hasOpus &&
-      result.opus != [PBOpus defaultInstance]) {
-    result.opus =
-      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
-  } else {
-    result.opus = value;
-  }
-  result.hasOpus = YES;
-  return self;
-}
-- (DataQueryResponse_Builder*) clearOpus {
-  result.hasOpus = NO;
-  result.opus = [PBOpus defaultInstance];
   return self;
 }
 @end

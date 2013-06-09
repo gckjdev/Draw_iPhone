@@ -28,6 +28,7 @@ typedef enum _OpusType{
 - (void)setTargetUser:(PBGameUser *)user;
 
 - (PBOpus *)pbOpus;
+- (NSData *)data;
 
 @end
 
