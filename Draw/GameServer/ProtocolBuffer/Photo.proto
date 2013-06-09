@@ -4,7 +4,7 @@ import "GameBasic.proto";
 package game;
 
 option java_package = "com.orange.network.game.protocol.model";
-option java_outer_classname = "GalleryProtos";
+option java_outer_classname = "PhotoProtos";
 
 enum PBPhotoUsage{
     BEGIN = 0;
