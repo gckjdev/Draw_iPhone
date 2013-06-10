@@ -24,10 +24,11 @@
                          limit:(int)limit
                    resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock;
 
-- (void)updateUserPhoto:(NSString*)photoId
+- (void)updateUserPhoto:(NSString*)userPhotoId
                photoUrl:(NSString*)photoUrl
                    name:(NSString*)name
                  tagSet:(NSSet*)tagSet
+                  usage:(PBPhotoUsage)usage
             resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock;
 
 - (void)deleteUserPhoto:(NSString*)userPhotoId

@@ -15,7 +15,7 @@
 #import "Photo.pb.h"
 #import "GameMessage.pb.h"
 
-#define TAG_SEP @"$"
+#define TAG_SEP @"$$$"
 
 @implementation GalleryService
 
@@ -25,9 +25,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 {
     NSString* str = @"";
     
-    return @"tag1^tag2^tag3";
+//    return @"tag1^tag2^tag3";
     for (NSString* tag in tagSet) {
-        str = [NSString stringWithFormat:@"%@%@%@",str, TAG_SEP, tag];
+        if (str.length == 0) {
+            str = tag;
+        } else {
+            str = [NSString stringWithFormat:@"%@%@%@",str, TAG_SEP, tag];
+        }
+        
     }
     return str;
 }
@@ -130,13 +135,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     });
 }
 
-- (void)updateUserPhoto:(NSString*)photoId
+- (void)updateUserPhoto:(NSString*)userPhotoId
                photoUrl:(NSString*)photoUrl
                    name:(NSString*)name
                  tagSet:(NSSet*)tagSet
+                  usage:(PBPhotoUsage)usage
             resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock
 {
-    PPDebug(@"<updateUserPhoto> photoId = %@,  url = %@ with name %@ ,tag %@", photoId, photoUrl, name, [tagSet description]);
+    PPDebug(@"<updateUserPhoto> userPhotoId = %@,  url = %@ with name %@ ,tag %@", userPhotoId, photoUrl, name, [tagSet description]);
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];
@@ -147,7 +153,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     [builder setName:name];
     [builder setUrl:photoUrl];
     [builder setUserId:userId];
-    [builder setPhotoId:photoId];
+    [builder setUserPhotoId:userPhotoId];
+    [builder setUsage:usage];
     [builder setCreateDate:time(0)];
     for (NSString* tag in tagSet) {
         [builder addTags:tag];

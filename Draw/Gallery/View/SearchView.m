@@ -50,9 +50,9 @@ AUTO_CREATE_VIEW_BY_XIB(SearchView)
     return _autoCompleter;
 }
 
-+ (SearchView*)createViewWithPreTextArray:(NSArray*)array
-                                  options:(NSDictionary*)options
-                                  handler:(SearchHandler)handler
++ (SearchView*)createViewWithDefaultKeywords:(NSArray*)array
+                                     options:(NSDictionary*)options
+                                     handler:(SearchHandler)handler
 {
     SearchView* view = [self createView];
     view.searchHandler = handler;
