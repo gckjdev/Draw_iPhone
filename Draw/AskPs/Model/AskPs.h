@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Opus.h"
 
-@class Opus;
-
-@interface AskPs : Opus
+@interface AskPs:Opus
 
 - (void)setRequirements:(NSArray *)requirements;
 - (void)setAwardCoinsPerUser:(int)awardCoinsPerUser;
