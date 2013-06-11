@@ -8,6 +8,7 @@
 
 #import "CommonOpusInfoCell.h"
 #import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "TimeUtils.h"
 
 @interface CommonOpusInfoCell()
@@ -42,15 +43,23 @@
     
     __block typeof(self) bself  = self;
 
-//    [[SDWebImageManager sharedManager] downloadWithURL:thumbURL delegate:nil options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
-//        bself.opus
-//    }];
+    UIImage *defaultImage = nil;
     
-    [self.opusImageButton setImageWithURL:url placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-//        [bself.opusImageButton setImageWithURL:url placeholderImage:image];
-    } failure:^(NSError *error) {
-//        [bself.opusImageButton setImageWithURL:url placeholderImage:nil];
-    }];
+    UIImageView *thumbImageView = nil;
+    if (thumbUrl != nil) {
+        thumbImageView = [[[UIImageView alloc] initWithFrame:self.opusImageButton.bounds] autorelease];
+        thumbImageView.userInteractionEnabled = NO;
+        [self.opusImageButton addSubview:thumbImageView];
+        [thumbImageView setImageWithURL:thumbUrl placeholderImage:defaultImage];
+    }
+
+    if (url != nil) {
+        [self.opusImageButton setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
+            [thumbImageView removeFromSuperview];
+        } failure:^(NSError *error) {
+            [thumbImageView removeFromSuperview];
+        }];
+    }
     
     [self.opusImageButton addTarget:self action:@selector(clickOpusImageButton:) forControlEvents:UIControlEventTouchUpInside];
     
