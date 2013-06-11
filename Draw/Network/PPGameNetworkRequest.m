@@ -9,8 +9,31 @@
 #import "PPGameNetworkRequest.h"
 #import "PPNetworkConstants.h"
 #import "StringUtil.h"
+#import "UserManager.h"
 
 @implementation PPGameNetworkRequest
+
+
++ (NSString*)addDefaultParameters:(NSString*)str parameters:(NSDictionary*)para
+{
+    // userId
+    if ([para objectForKey:PARA_USERID] == nil){
+        NSString* userId = [UserManager userId];
+        if ([userId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        }
+    }
+    
+    // appId
+    if ([para objectForKey:PARA_APPID] == nil){
+        str = [str stringByAddQueryParameter:PARA_APPID value:[GameApp appId]];
+    }
+    
+    // gameId
+    if ([para objectForKey:PARA_GAME_ID] == nil){
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
+    }
+}
 
 //when returnPB is YES, the returnArray has no sence.
 + (GameNetworkOutput*)sendGetRequestWithBaseURL:(NSString*)baseURL
@@ -27,6 +50,7 @@
         
         NSString* str = [NSString stringWithString:baseURL];
         str = [str stringByAddQueryParameter:METHOD value:method];
+        str = [self addDefaultParameters:str parameters:parameters];
         for (NSString *key in [parameters allKeys]) {
             NSString *value = [parameters objectForKey:key];
             str = [str stringByAddQueryParameter:key value:value];
@@ -94,6 +118,7 @@
         
         NSString* str = [NSString stringWithString:baseURL];
         str = [str stringByAddQueryParameter:METHOD value:method];
+        str = [self addDefaultParameters:str parameters:parameters];        
         for (NSString *key in [parameters allKeys]) {
             NSString *value = [parameters objectForKey:key];
             str = [str stringByAddQueryParameter:key value:value];
@@ -165,6 +190,7 @@
         
         NSString* str = [NSString stringWithString:baseURL];
         str = [str stringByAddQueryParameter:METHOD value:method];
+        str = [self addDefaultParameters:str parameters:parameters];        
         for (NSString *key in [parameters allKeys]) {
             NSString *value = [parameters objectForKey:key];
             str = [str stringByAddQueryParameter:key value:value];
