@@ -168,4 +168,9 @@
     return [UIColor whiteColor];
 }
 
+- (NSString *)popupMessageDialogBackgroundImage
+{
+    return @"common_dialog_bg@2x.png";
+}
+
 @end
