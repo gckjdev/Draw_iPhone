@@ -10,19 +10,19 @@
 #import "Opus.pb.h"
 #import "BuriSerialization.h"
 
-typedef enum _OpusType{
-    OpusTypeDraw = 1,
-    OpusTypeSing = 2
-}OpusType;
+typedef enum _OpusCategory{
+    OpusCategoryDraw = 1,
+    OpusCategorySing = 2
+}OpusCategory;
 
 @interface Opus : NSObject <BuriSupport>
 
 @property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
 
-+ (id)opusWithType:(OpusType)type;
++ (id)opusWithCategory:(OpusCategory)category;
 + (id)opusWithPBOpus:(PBOpus *)pbOpus;
 
-- (void)setAim:(PBOpusAim)aim;
+- (void)setType:(PBOpusType)type;
 - (void)setName:(NSString *)name;  
 - (void)setDesc:(NSString *)desc;
 - (void)setTargetUser:(PBGameUser *)user;

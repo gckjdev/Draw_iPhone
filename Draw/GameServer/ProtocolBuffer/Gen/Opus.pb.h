@@ -80,24 +80,24 @@
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
-  PBOpusAimUnknown = 0,
-  PBOpusAimDraw = 1,
-  PBOpusAimGuess = 2,
-  PBOpusAimComment = 3,
-  PBOpusAimRepost = 4,
-  PBOpusAimDrawToUser = 5,
-  PBOpusAimFlower = 6,
-  PBOpusAimTomato = 7,
-  PBOpusAimOnlyComment = 8,
-  PBOpusAimDrawContest = 9,
-  PBOpusAimSing = 1000,
-  PBOpusAimSingToUser = 1001,
-  PBOpusAimSingContest = 1002,
-  PBOpusAimAskPs = 1500,
-  PBOpusAimAskPsOpus = 1501,
-} PBOpusAim;
+  PBOpusTypeUnknown = 0,
+  PBOpusTypeDraw = 1,
+  PBOpusTypeGuess = 2,
+  PBOpusTypeComment = 3,
+  PBOpusTypeRepost = 4,
+  PBOpusTypeDrawToUser = 5,
+  PBOpusTypeFlower = 6,
+  PBOpusTypeTomato = 7,
+  PBOpusTypeOnlyComment = 8,
+  PBOpusTypeDrawContest = 9,
+  PBOpusTypeSing = 1000,
+  PBOpusTypeSingToUser = 1001,
+  PBOpusTypeSingContest = 1002,
+  PBOpusTypeAskPs = 1500,
+  PBOpusTypeAskPsOpus = 1501,
+} PBOpusType;
 
-BOOL PBOpusAimIsValidValue(PBOpusAim value);
+BOOL PBOpusTypeIsValidValue(PBOpusType value);
 
 
 @interface OpusRoot : NSObject {
@@ -298,7 +298,7 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
   BOOL hasSing_:1;
   BOOL hasAskPs_:1;
   BOOL hasAskPsOpus_:1;
-  BOOL hasAim_:1;
+  BOOL hasType_:1;
   int32_t deviceType;
   int32_t status;
   int32_t createDate;
@@ -317,11 +317,11 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
   PBSingOpus* sing;
   PBAskPs* askPs;
   PBAskPsOpus* askPsOpus;
-  PBOpusAim aim;
+  PBOpusType type;
   NSMutableArray* mutableActionTimesList;
 }
 - (BOOL) hasOpusId;
-- (BOOL) hasAim;
+- (BOOL) hasType;
 - (BOOL) hasName;
 - (BOOL) hasDesc;
 - (BOOL) hasImage;
@@ -340,7 +340,7 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
 - (BOOL) hasAskPs;
 - (BOOL) hasAskPsOpus;
 @property (readonly, retain) NSString* opusId;
-@property (readonly) PBOpusAim aim;
+@property (readonly) PBOpusType type;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
 @property (readonly, retain) NSString* image;
@@ -400,10 +400,10 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
 - (PBOpus_Builder*) setOpusId:(NSString*) value;
 - (PBOpus_Builder*) clearOpusId;
 
-- (BOOL) hasAim;
-- (PBOpusAim) aim;
-- (PBOpus_Builder*) setAim:(PBOpusAim) value;
-- (PBOpus_Builder*) clearAim;
+- (BOOL) hasType;
+- (PBOpusType) type;
+- (PBOpus_Builder*) setType:(PBOpusType) value;
+- (PBOpus_Builder*) clearType;
 
 - (BOOL) hasName;
 - (NSString*) name;

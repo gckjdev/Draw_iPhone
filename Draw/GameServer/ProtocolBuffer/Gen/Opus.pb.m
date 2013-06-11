@@ -21,23 +21,23 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-BOOL PBOpusAimIsValidValue(PBOpusAim value) {
+BOOL PBOpusTypeIsValidValue(PBOpusType value) {
   switch (value) {
-    case PBOpusAimUnknown:
-    case PBOpusAimDraw:
-    case PBOpusAimGuess:
-    case PBOpusAimComment:
-    case PBOpusAimRepost:
-    case PBOpusAimDrawToUser:
-    case PBOpusAimFlower:
-    case PBOpusAimTomato:
-    case PBOpusAimOnlyComment:
-    case PBOpusAimDrawContest:
-    case PBOpusAimSing:
-    case PBOpusAimSingToUser:
-    case PBOpusAimSingContest:
-    case PBOpusAimAskPs:
-    case PBOpusAimAskPsOpus:
+    case PBOpusTypeUnknown:
+    case PBOpusTypeDraw:
+    case PBOpusTypeGuess:
+    case PBOpusTypeComment:
+    case PBOpusTypeRepost:
+    case PBOpusTypeDrawToUser:
+    case PBOpusTypeFlower:
+    case PBOpusTypeTomato:
+    case PBOpusTypeOnlyComment:
+    case PBOpusTypeDrawContest:
+    case PBOpusTypeSing:
+    case PBOpusTypeSingToUser:
+    case PBOpusTypeSingContest:
+    case PBOpusTypeAskPs:
+    case PBOpusTypeAskPsOpus:
       return YES;
     default:
       return NO;
@@ -719,7 +719,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 
 @interface PBOpus ()
 @property (retain) NSString* opusId;
-@property PBOpusAim aim;
+@property PBOpusType type;
 @property (retain) NSString* name;
 @property (retain) NSString* desc;
 @property (retain) NSString* image;
@@ -749,13 +749,13 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   hasOpusId_ = !!value;
 }
 @synthesize opusId;
-- (BOOL) hasAim {
-  return !!hasAim_;
+- (BOOL) hasType {
+  return !!hasType_;
 }
-- (void) setHasAim:(BOOL) value {
-  hasAim_ = !!value;
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
 }
-@synthesize aim;
+@synthesize type;
 - (BOOL) hasName {
   return !!hasName_;
 }
@@ -898,7 +898,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.opusId = @"";
-    self.aim = PBOpusAimUnknown;
+    self.type = PBOpusTypeUnknown;
     self.name = @"";
     self.desc = @"";
     self.image = @"";
@@ -973,8 +973,8 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasOpusId) {
     [output writeString:1 value:self.opusId];
   }
-  if (self.hasAim) {
-    [output writeEnum:2 value:self.aim];
+  if (self.hasType) {
+    [output writeEnum:2 value:self.type];
   }
   if (self.hasName) {
     [output writeString:3 value:self.name];
@@ -1042,8 +1042,8 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasOpusId) {
     size += computeStringSize(1, self.opusId);
   }
-  if (self.hasAim) {
-    size += computeEnumSize(2, self.aim);
+  if (self.hasType) {
+    size += computeEnumSize(2, self.type);
   }
   if (self.hasName) {
     size += computeStringSize(3, self.name);
@@ -1177,8 +1177,8 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
   }
-  if (other.hasAim) {
-    [self setAim:other.aim];
+  if (other.hasType) {
+    [self setType:other.type];
   }
   if (other.hasName) {
     [self setName:other.name];
@@ -1264,8 +1264,8 @@ static PBOpus* defaultPBOpusInstance = nil;
       }
       case 16: {
         int32_t value = [input readEnum];
-        if (PBOpusAimIsValidValue(value)) {
-          [self setAim:value];
+        if (PBOpusTypeIsValidValue(value)) {
+          [self setType:value];
         } else {
           [unknownFields mergeVarintField:2 value:value];
         }
@@ -1394,20 +1394,20 @@ static PBOpus* defaultPBOpusInstance = nil;
   result.opusId = @"";
   return self;
 }
-- (BOOL) hasAim {
-  return result.hasAim;
+- (BOOL) hasType {
+  return result.hasType;
 }
-- (PBOpusAim) aim {
-  return result.aim;
+- (PBOpusType) type {
+  return result.type;
 }
-- (PBOpus_Builder*) setAim:(PBOpusAim) value {
-  result.hasAim = YES;
-  result.aim = value;
+- (PBOpus_Builder*) setType:(PBOpusType) value {
+  result.hasType = YES;
+  result.type = value;
   return self;
 }
-- (PBOpus_Builder*) clearAim {
-  result.hasAim = NO;
-  result.aim = PBOpusAimUnknown;
+- (PBOpus_Builder*) clearType {
+  result.hasType = NO;
+  result.type = PBOpusTypeUnknown;
   return self;
 }
 - (BOOL) hasName {
