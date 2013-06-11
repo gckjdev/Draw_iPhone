@@ -23,7 +23,7 @@
 
 - (NSString*)umengId
 {
-    return DRAW_UMENG_ID;
+    return @"51b69e3b56240b6eec041d7c";
 }
 
 - (BOOL)disableAd
