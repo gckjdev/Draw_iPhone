@@ -8,8 +8,11 @@
 
 #import "AskPsController.h"
 #import "AnimationManager.h"
+#import "Opus.pb.h"
+#import "AskPs.h"
 
 @interface AskPsController ()
+@property (retain, nonatomic) AskPs *askPs;
 @property (retain, nonatomic) ChangeAvatar *imagePicker;
 @property (retain, nonatomic) NSMutableSet *requirementSet;
 @end
@@ -50,7 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.contentHolderView.contentSize = CGRectMake(_contentHolderView.frame.origin.x, _contentHolderView.frame.origin.y, _contentHolderView.frame.size.width, _contentHolderView.frame.size.height + 1);
+    //self.contentHolderView.contentSize = CGRectMake(_contentHolderView.frame.origin.x, _contentHolderView.frame.origin.y, _contentHolderView.frame.size.width, _contentHolderView.frame.size.height + 1);
 }
 
 - (IBAction)clickPictureButton:(id)sende{
