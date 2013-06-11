@@ -23,6 +23,7 @@
 
 - (void)setCellInfo:(DrawFeed *)feed;
 + (NSString*)getCellIdentifier;
+
 @end
 
 

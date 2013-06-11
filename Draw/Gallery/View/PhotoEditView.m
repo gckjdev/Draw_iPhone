@@ -100,9 +100,9 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     NSError* err;
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
     NSString* tagsFileStr = [NSString stringWithContentsOfFile:@"/gitdata/Draw_iPhone/Draw/Gallery/photo_tags.txt" encoding:enc error:&err];
-    
     self.tagPackageArray = [TagPackage createPackageArrayFromString:tagsFileStr];
     [self.tagTable reloadData];
+    
 }
 
 
@@ -193,6 +193,11 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 //    }
     EXECUTE_BLOCK(_resultBlock, self.nameTextField.text, self.tagSet);
     self.resultBlock = nil;
+    [self disappear];
+}
+
+- (IBAction)clickCancel:(id)sender
+{
     [self disappear];
 }
 

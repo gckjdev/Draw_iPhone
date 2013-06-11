@@ -69,7 +69,9 @@ enum{
     [_saveButton release];
     [_submitButton release];
     [_songNameLabel release];
-    [_songAuthorLabel release];
+    [_songNameLabel1 release];
+    [_songAuthorLabel1 release];
+    [_songAuthorLabel1 release];
     [_lyricTextView release];
     [_originButton release];
     [_tagButton release];
@@ -108,7 +110,7 @@ enum{
 }
 
 - (void)initSelectedButton{
-    switch (_singOpus.pbOpus.singOpus.voiceType) {
+    switch (_singOpus.pbOpus.sing.voiceType) {
         case PBVoiceTypeVoiceTypeOrigin:
             self.selectedButton = _originButton;
             break;
@@ -141,13 +143,15 @@ enum{
     // Do any additional setup after loading the view from its nib.
     [self initSelectedButton];
     
-    NSString *name = _singOpus.pbOpus.singOpus.song.name;
-    NSString *author = _singOpus.pbOpus.singOpus.song.author;
-    NSString *lyric = _singOpus.pbOpus.singOpus.song.lyric;
+    NSString *name = _singOpus.pbOpus.sing.song.name;
+    NSString *author = _singOpus.pbOpus.sing.song.author;
+    NSString *lyric = _singOpus.pbOpus.sing.song.lyric;
     NSString *image = _singOpus.pbOpus.image;
     
     self.songNameLabel.text = name;
     self.songAuthorLabel.text = author;
+    self.songNameLabel1.text = name;
+    self.songAuthorLabel1.text = author;
     self.lyricTextView.text = lyric;
     
     _recordLimitTime = 30;
@@ -187,7 +191,9 @@ enum{
     [self setSaveButton:nil];
     [self setSubmitButton:nil];
     [self setSongNameLabel:nil];
+    [self setSongNameLabel1:nil];
     [self setSongAuthorLabel:nil];
+    [self setSongAuthorLabel1:nil];
     [self setLyricTextView:nil];
     [self setOriginButton:nil];
     [self setTagButton:nil];
@@ -269,6 +275,10 @@ enum{
     [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
     [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
     [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    [recordSetting setValue:[NSNumber numberWithInt: AVAudioQualityHigh] forKey:AVSampleRateConverterAudioQualityKey];
+    [recordSetting setValue:[NSNumber numberWithInt: AVAudioQualityMin] forKey:AVEncoderAudioQualityKey];
+
+    
     
     // Initiate and prepare the recorder
     // For demo purpose, we skip the error handling. In real app, don’t forget to include proper error handling.
@@ -276,7 +286,7 @@ enum{
     [_recorder prepareToRecord];
 
     // Setup audio session
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
     // start recording
@@ -312,8 +322,8 @@ enum{
 }
 
 - (void)play{
-    float duration = _singOpus.pbOpus.singOpus.duration;
-    float pitch = _singOpus.pbOpus.singOpus.pitch;
+    float duration = _singOpus.pbOpus.sing.duration;
+    float pitch = _singOpus.pbOpus.sing.pitch;
     [_player changeDuration:duration];
     [_player changePitch:pitch];
     
@@ -443,7 +453,8 @@ enum{
     self.rerecordButton.hidden = YES;
     self.addTimeButton.hidden = NO;
     self.saveButton.hidden = YES;
-    self.submitButton.hidden = YES;
+    self.submitButton.hidden = NO;
+    self.submitButton.enabled = NO;
     
     [self updateUITime:@(_recordLimitTime)];
 }
@@ -458,6 +469,7 @@ enum{
     self.addTimeButton.hidden = YES;
     self.saveButton.hidden = YES;
     self.submitButton.hidden = YES;
+    self.submitButton.enabled = YES;
     
     [self updateUITime:@(_recordLimitTime)];
 }
@@ -484,6 +496,7 @@ enum{
     self.addTimeButton.hidden = YES;
     self.saveButton.hidden = YES;
     self.submitButton.hidden = YES;
+    self.submitButton.enabled = YES;
 }
 
 - (void)updateUITime:(NSNumber *)time{
@@ -638,6 +651,7 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
+                                 opusManager:[OpusManager singOpusManager]
                             progressDelegate:nil
                                     delegate:self];
 }

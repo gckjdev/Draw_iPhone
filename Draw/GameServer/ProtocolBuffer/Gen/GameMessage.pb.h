@@ -91,6 +91,10 @@
 @class PBActionTimes_Builder;
 @class PBApp;
 @class PBApp_Builder;
+@class PBAskPs;
+@class PBAskPsOpus;
+@class PBAskPsOpus_Builder;
+@class PBAskPs_Builder;
 @class PBBBSAction;
 @class PBBBSActionSource;
 @class PBBBSActionSource_Builder;
@@ -130,6 +134,8 @@
 @class PBDrawBgMeta;
 @class PBDrawBgMeta_Builder;
 @class PBDrawBg_Builder;
+@class PBDrawOpus;
+@class PBDrawOpus_Builder;
 @class PBDraw_Builder;
 @class PBFeed;
 @class PBFeedTimes;

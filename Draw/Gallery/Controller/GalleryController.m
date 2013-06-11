@@ -133,7 +133,7 @@
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     
-    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:PBPhotoUsageForPs offset:[self currentTab].tabID limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
+    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:PBPhotoUsageForPs offset:[self currentTab].offset limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self finishLoadDataForTabID:[self currentTab].tabID resultList:resultArray];
 //        [self loadTestData];
     }];
@@ -203,16 +203,27 @@ enum {
 - (void)deletePhoto:(PBUserPhoto*)photo
 {
     [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId usage:PBPhotoUsageForPs resultBlock:^(int resultCode) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
+        if (resultCode == 0) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
+            [self reloadTableViewDataSource];
+        } else {
+            PPDebug(@"<deletePhoto> err code = %d", resultCode);
+        }
+     
     }];
 }
 
 - (void)editPhoto:(PBUserPhoto*)photo
 {
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo editName:YES resultBlock:^(NSString *name, NSSet *tagSet) {
-        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:tagSet resultBlock:^(int resultCode, PBUserPhoto* photo) {
-            PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.photoId, name, [tagSet description]);
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
+        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto* photo) {
+            if (resultCode == 0) {
+                PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, name, [tagSet description]);
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
+                [self reloadTableViewDataSource];
+            } else {
+                PPDebug(@"<deletePhoto> err code = %d", resultCode);
+            }
         }];
     }];
     [view showInView:self.view];
@@ -227,9 +238,10 @@ enum {
         for (NSString* tag in self.tagSet) {
             [builder addTags:tag];
         }
-        [builder setUserId:@""];
-        [builder setPhotoId:@""];
-        [builder setUserPhotoId:@""];
+        [builder setUserId:@"tempId"];
+        [builder setPhotoId:@"tempId"];
+        [builder setUserPhotoId:@"tempId"];
+        [builder setUrl:@""];
         tempPhoto = [builder build];
     }
     

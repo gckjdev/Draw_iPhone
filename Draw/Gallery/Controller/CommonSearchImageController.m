@@ -29,6 +29,7 @@
 }
 
 @property (retain, nonatomic) NSDictionary* filter;
+@property (retain, nonatomic) NSArray* keywords;
 
 @end
 
@@ -38,6 +39,7 @@
 {
     [_filter release];
     [_searchBar release];
+    [_keywords release];
     [super dealloc];
 }
 
@@ -61,7 +63,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self clickFilter:nil];
+    
+    NSError* err;
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+    NSString* fileStr = [NSString stringWithContentsOfFile:@"/gitdata/Draw_iPhone/Draw/Gallery/keywords.txt" encoding:enc error:&err];
+    self.keywords = [fileStr componentsSeparatedByString:@"$"];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -73,7 +80,7 @@
 }
 
 #define IMAGE_PER_LINE 3
-#define IMAGE_HEIGHT  80
+#define IMAGE_HEIGHT  110
 #define RESULT_IMAGE_TAG_OFFSET 20130601
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,7 +110,9 @@
             ImageSearchResult* result = (ImageSearchResult*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
             PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
             [resultView updateWithResult:result];
-            
+            resultView.hidden = NO;
+        } else {
+            resultView.hidden = YES;
         }
         
     }
@@ -187,6 +196,7 @@
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+
     if (_currentResult) {
         return [MWPhoto photoWithURL:[NSURL URLWithString:_currentResult.url]];
     }
@@ -229,7 +239,7 @@ enum {
     if (!_filter) {
         self.filter = [[[NSMutableDictionary alloc] init] autorelease];
     }
-    SearchView* view = [SearchView createViewWithPreTextArray:[NSArray arrayWithObjects:@"cat", @"dog", nil] options:self.filter handler:^(NSString *searchText, NSDictionary *options) {
+    SearchView* view = [SearchView createViewWithDefaultKeywords:self.keywords options:self.filter handler:^(NSString *searchText, NSDictionary *options) {
         self.filter = options;
         self.searchBar.text = searchText;
         [self reloadTableViewDataSource];

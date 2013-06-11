@@ -21,5 +21,5 @@ typedef void(^PhotoEditResultBLock)(NSString* name, NSSet* tagSet);
                           resultBlock:(PhotoEditResultBLock)resultBlock;
 
 - (IBAction)clickConfirm:(id)sender;
-
+- (IBAction)clickCancel:(id)sender;
 @end
