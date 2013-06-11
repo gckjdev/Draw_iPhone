@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DrawGameApp.h"
+#import "GameApp.h"
 
-@interface AskPsApp : DrawGameApp
+@interface AskPsApp : NSObject <GameAppProtocol>
 
 @end
