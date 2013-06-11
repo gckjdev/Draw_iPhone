@@ -55,7 +55,7 @@ message PBAskPsOpus {
     required string askPsId = 1;                    // 关联的求PS的ID
 }
 
-enum PBOpusAim{
+enum PBOpusType{
 
 	UNKNOWN = 0;
 	DRAW = 1;
@@ -79,7 +79,7 @@ enum PBOpusAim{
 message PBOpus {
 
   required string opusId = 1;                   // 作品Id
-  optional PBOpusAim aim = 2;                   // 作品类型
+  optional PBOpusType type = 2;                 // 作品类型
   optional string name = 3;                     // 作品名称
   optional string desc = 4;                     // 作品描述
   optional string image = 5;                    // 作品图片

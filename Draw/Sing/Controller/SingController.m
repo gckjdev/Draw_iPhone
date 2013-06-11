@@ -88,8 +88,8 @@ enum{
 
 - (id)initWithSong:(PBSong *)song{
     if (self = [super init]) {
-        self.singOpus = [Opus opusWithType:OpusTypeSing];
-        [_singOpus setAim:PBOpusAimSing];
+        self.singOpus = [Opus opusWithCategory:OpusCategorySing];
+        [_singOpus setType:PBOpusTypeSing];
         [_singOpus setSong:song];
         [_singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
         [_singOpus setDuration:1];
@@ -365,7 +365,7 @@ enum{
 }
 
 - (void)setFileDuration{
-    [self updateUITime:@(_player.fileDuration)];
+    [self updateUITime:@(_player.fileDuration + 0.5)];
 }
 
 - (void)diracPlayerDidFinishPlaying:(DiracAudioPlayerBase *)player successfully:(BOOL)flag{

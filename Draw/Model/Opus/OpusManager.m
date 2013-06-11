@@ -85,7 +85,7 @@ static OpusManager* globalDrawOpusManager;
     
     [builder setOpusId:@"2"];
 
-    [builder setAim:PBOpusAimDrawToUser];
+    [builder setType:PBOpusTypeSingToUser];
     [builder setName:@"我的作品"];
     [builder setDesc:@"详细描述"];
     [builder setThumbImage:@"http://pic.rouding.com/uploadfile/201202/19/50223649544.jpg"];

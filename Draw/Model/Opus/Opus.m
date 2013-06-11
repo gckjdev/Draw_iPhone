@@ -36,10 +36,10 @@
     return self;
 }
 
-+ (id)opusWithType:(OpusType)type{
++ (id)opusWithCategory:(OpusCategory)category{
     Opus *opus = nil;
-    switch (type) {
-        case OpusTypeSing:
+    switch (category) {
+        case OpusCategorySing:
             opus = [[[SingOpus alloc] init] autorelease];
             break;
             
@@ -57,8 +57,8 @@
     return opus;
 }
 
-- (void)setAim:(PBOpusAim)aim{
-    [_pbOpusBuilder setAim:aim];
+- (void)setType:(PBOpusType)type{
+    [_pbOpusBuilder setType:type];
 }
 
 - (void)setName:(NSString *)name{
@@ -73,9 +73,9 @@
     [self setTargetUser:user];
     
     if (user == nil) {
-        [_pbOpusBuilder setAim:PBOpusAimSing];
+        [_pbOpusBuilder setType:PBOpusTypeSing];
     }else{
-        [_pbOpusBuilder setAim:PBOpusAimSingToUser];
+        [_pbOpusBuilder setType:PBOpusTypeSingToUser];
     }
 }
 
