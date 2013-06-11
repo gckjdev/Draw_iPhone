@@ -179,6 +179,91 @@ static DrawDataService* _defaultDrawDataService = nil;
 }
 
 
+- (void)newCreateOfflineDraw:(NSMutableArray*)drawActionList
+                    image:(UIImage *)image
+                 drawWord:(Word*)drawWord
+                 language:(LanguageType)language
+                targetUid:(NSString *)targetUid
+                contestId:(NSString *)contestId
+                     desc:(NSString *)desc
+                     size:(CGSize)size
+                 delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
+{
+    
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* nick = [[UserManager defaultManager] nickName];
+    NSString* gender = [[UserManager defaultManager] gender];
+    NSString* avatar = [[UserManager defaultManager] avatarURL];
+    NSString* appId = [ConfigManager appId];
+    NSString* signature = [[UserManager defaultManager] signature];
+    
+    //    PBDraw *draw = [self buildPBDraw:userId
+    //                                nick:nick
+    //                              avatar:avatar
+    //                      drawActionList:drawActionList
+    //                            drawWord:drawWord
+    //                            language:language
+    //                                size:size
+    //                        isCompressed:NO];
+    
+    BOOL isCompressed = NO;
+    
+    NSData *drawData = [DrawAction buildPBDrawData:userId
+                                              nick:nick
+                                            avatar:avatar
+                                    drawActionList:drawActionList
+                                          drawWord:drawWord
+                                          language:language
+                                              size:size
+                                      isCompressed:isCompressed];
+    
+    if ([drawData length] == 0){
+        if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
+            [viewController didCreateDraw:ERROR_MEMORY];
+        }
+        return;
+    }
+    
+    NSData *imageData = nil;
+    if (image) {
+        imageData = [image data];
+    }
+    
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest createOpus:TRAFFIC_SERVER_URL
+                                                               appId:appId
+                                                              userId:userId
+                                                                nick:nick
+                                                              avatar:avatar
+                                                           signature:signature
+                                                              gender:gender
+                                                              wordId:drawWord.wordId
+                                                                word:drawWord.text
+                                                            wordType:drawWord.wordType
+                                                               level:drawWord.level
+                                                               score:drawWord.score
+                                                                lang:language
+                                                                data:drawData
+                                                           imageData:imageData
+                                                           targetUid:targetUid
+                                                           contestId:contestId
+                                                                desc:desc
+                                                        isCompressed:isCompressed
+                                                    progressDelegate:viewController];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
+                [viewController didCreateDraw: output.resultCode];
+            }
+        });
+        NSString *actionId = [output.jsonDataDict objectForKey:PARA_FEED_ID];
+        if ([actionId length] != 0) {
+            //store the draw action.
+            
+        }
+    });
+}
+
 
 - (void)createOfflineDraw:(NSMutableArray*)drawActionList
                     image:(UIImage *)image

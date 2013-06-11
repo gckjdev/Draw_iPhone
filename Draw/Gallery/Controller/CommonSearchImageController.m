@@ -11,13 +11,17 @@
 #import "ImageSearch.h"
 #import "ImageSearchResult.h"
 #import "GoogleCustomSearchNetworkConstants.h"
-#import "CommonSearchImageFilterView.h"
+#import "SearchView.h"
 #import "MKBlockActionSheet.h"
 #import "GalleryPicture.h"
 #import "GalleryManager.h"
 #import "CommonMessageCenter.h"
 #import "GalleryService.h"
 #import "GalleryController.h"
+#import "Photo.pb.h"
+
+#import "StorageManager.h"
+#import "UserManager.h"
 
 @interface CommonSearchImageController () {
     ImageSearch* _imageSearcher;
@@ -25,6 +29,7 @@
 }
 
 @property (retain, nonatomic) NSDictionary* filter;
+@property (retain, nonatomic) NSArray* keywords;
 
 @end
 
@@ -34,6 +39,7 @@
 {
     [_filter release];
     [_searchBar release];
+    [_keywords release];
     [super dealloc];
 }
 
@@ -57,7 +63,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self clickFilter:nil];
+    
+    NSError* err;
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
+    NSString* fileStr = [NSString stringWithContentsOfFile:@"/gitdata/Draw_iPhone/Draw/Gallery/keywords.txt" encoding:enc error:&err];
+    self.keywords = [fileStr componentsSeparatedByString:@"$"];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -69,7 +80,7 @@
 }
 
 #define IMAGE_PER_LINE 3
-#define IMAGE_HEIGHT  80
+#define IMAGE_HEIGHT  110
 #define RESULT_IMAGE_TAG_OFFSET 20130601
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +110,9 @@
             ImageSearchResult* result = (ImageSearchResult*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
             PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
             [resultView updateWithResult:result];
-            
+            resultView.hidden = NO;
+        } else {
+            resultView.hidden = YES;
         }
         
     }
@@ -171,7 +184,9 @@
 
 - (void)saveSearchResult:(ImageSearchResult*)searchResult
 {
-    GalleryPictureInfoEditView* view = [GalleryPictureInfoEditView createViewWithTagPackageArray:nil tagArray:nil imageUrl:searchResult.url delegate:self];
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil editName:YES resultBlock:^(NSString *name, NSSet *tagSet) {
+        [self didEditPictureInfo:tagSet name:name imageUrl:searchResult.url];
+    }];
     [view showInView:self.view];
 }
 
@@ -181,6 +196,7 @@
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+
     if (_currentResult) {
         return [MWPhoto photoWithURL:[NSURL URLWithString:_currentResult.url]];
     }
@@ -223,7 +239,11 @@ enum {
     if (!_filter) {
         self.filter = [[[NSMutableDictionary alloc] init] autorelease];
     }
-    CommonSearchImageFilterView* view = [CommonSearchImageFilterView createViewWithFilter:_filter delegate:self];
+    SearchView* view = [SearchView createViewWithDefaultKeywords:self.keywords options:self.filter handler:^(NSString *searchText, NSDictionary *options) {
+        self.filter = options;
+        self.searchBar.text = searchText;
+        [self reloadTableViewDataSource];
+    }];
     [view showInView:self.view];
 }
 
@@ -239,12 +259,47 @@ enum {
     [self reloadTableViewDataSource];
 }
 
-#pragma mark - GalleryPictureInfoEditView delegate
 - (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
 {
-    [[GalleryService defaultService] favorImage:url name:name tagSet:tagSet resultBlock:^(int resultCode) {
-        PPDebug(@"<didEditPictureInfo> favor image %@ with tag <%@>succ !", url, [tagSet description]);
+    [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto *photo) {
+        if (resultCode == 0) {
+            PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tagsList description]);
+            
+        } else {
+            PPDebug(@"<didEditPictureInfo> err! code = %d", resultCode);
+        }
+        
     }];
+    
+    //for create test data
+    PBUserPhotoList_Builder* listBuilder;
+    StorageManager* manage = [[StorageManager alloc] initWithStoreType:StorageTypeTemp directoryName:@"testPhoto"];
+    NSData* data = [manage dataForKey:@"test2"];
+    if (data) {
+        PBUserPhotoList* list = [PBUserPhotoList parseFromData:data];
+        listBuilder = [PBUserPhotoList builderWithPrototype:list];
+    } else {
+        listBuilder = [PBUserPhotoList builder];
+    }
+    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+    [builder setUrl:url];
+    [builder setName:name];
+    for (NSString* str in [tagSet allObjects]) {
+        [builder addTags:str];
+    }
+    [builder setCreateDate:time(0)];
+    PBUserPhoto* photo = [builder build];
+    
+    [listBuilder addPhotoList:photo];
+    [listBuilder setUserId:[[UserManager defaultManager] userId]];
+    PBUserPhotoList* aList = [listBuilder build];
+    NSData* newData = [aList data];
+    [manage saveData:newData forKey:@"test2"];
+    PPDebug(@"<test> write image %@ succ!",url);
+    
+//    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+
+
 }
 
 

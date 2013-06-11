@@ -20,7 +20,7 @@
 - (IBAction)clickFilterBtn:(id)sender;
 - (IBAction)clickConfirmBtn:(id)sender;
 
-+ (CommonSearchImageFilterView*)createViewWithFilter:(NSDictionary*)filter
++ (CommonSearchImageFilterView*)createViewWithFilter:(NSMutableDictionary*)filter
                                             delegate:(id<CommonSearchImageFilterViewDelegate>)delegate;
 
 @end

@@ -8,9 +8,9 @@
 
 #import "CommonTabController.h"
 #import "MWPhotoBrowser.h"
-#import "GalleryPictureInfoEditView.h"
+#import "PhotoEditView.h"
+#import "UserPhotoView.h"
 
-
-@interface GalleryController : CommonTabController <UITableViewDataSource, UITableViewDelegate, MWPhotoBrowserDelegate, GalleryPictureInfoEditViewDelegate>
-
+@interface GalleryController : CommonTabController <UITableViewDataSource, UITableViewDelegate, MWPhotoBrowserDelegate, UserPhotoViewDelegate>
+- (IBAction)clickFilterUserPhoto:(id)sender;
 @end

@@ -9,6 +9,7 @@
 #import "ZhaJinHua.pb.h"
 #import "Bbs.pb.h"
 #import "Opus.pb.h"
+#import "Photo.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
@@ -158,6 +159,10 @@
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBImageShapeGroup;
+@class PBImageShapeGroupMeta;
+@class PBImageShapeGroupMeta_Builder;
+@class PBImageShapeGroup_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
@@ -212,6 +217,10 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
+@class PBUserPhoto;
+@class PBUserPhotoList;
+@class PBUserPhotoList_Builder;
+@class PBUserPhoto_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBWall;
@@ -4452,6 +4461,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasUserRelation_:1;
   BOOL hasOpus_:1;
   BOOL hasUser_:1;
+  BOOL hasUserPhoto_:1;
   BOOL hasWall_:1;
   BOOL hasBbsDrawData_:1;
   int32_t resultCode;
@@ -4460,18 +4470,21 @@ BOOL BetTypeIsValidValue(BetType value);
   int32_t userRelation;
   PBOpus* opus;
   PBGameUser* user;
+  PBUserPhoto* userPhoto;
   PBWall* wall;
   PBBBSDraw* bbsDrawData;
   NSMutableArray* mutableIdListList;
-  NSMutableArray* mutableBbsPostList;
   NSMutableArray* mutableBbsActionList;
-  NSMutableArray* mutableBbsBoardList;
   NSMutableArray* mutableBbsPrivilegeListList;
   NSMutableArray* mutableBbsUserListList;
   NSMutableArray* mutableWallListList;
+  NSMutableArray* mutableBbsPostList;
+  NSMutableArray* mutableBbsBoardList;
+  NSMutableArray* mutableUserPhotoListList;
   NSMutableArray* mutableFeedList;
   NSMutableArray* mutableMessageStatList;
   NSMutableArray* mutableMessageList;
+  NSMutableArray* mutableOpusListList;
   NSMutableArray* mutableDrawDataList;
 }
 - (BOOL) hasResultCode;
@@ -4479,6 +4492,7 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasVersion;
 - (BOOL) hasBbsDrawData;
 - (BOOL) hasWall;
+- (BOOL) hasUserPhoto;
 - (BOOL) hasUser;
 - (BOOL) hasUserRelation;
 - (BOOL) hasOpus;
@@ -4487,6 +4501,7 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly) int32_t version;
 @property (readonly, retain) PBBBSDraw* bbsDrawData;
 @property (readonly, retain) PBWall* wall;
+@property (readonly, retain) PBUserPhoto* userPhoto;
 @property (readonly, retain) PBGameUser* user;
 @property (readonly) int32_t userRelation;
 @property (readonly, retain) PBOpus* opus;
@@ -4510,6 +4525,10 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBBBSUser*) bbsUserListAtIndex:(int32_t) index;
 - (NSArray*) wallListList;
 - (PBWall*) wallListAtIndex:(int32_t) index;
+- (NSArray*) userPhotoListList;
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index;
+- (NSArray*) opusListList;
+- (PBOpus*) opusListAtIndex:(int32_t) index;
 - (NSArray*) idListList;
 - (NSString*) idListAtIndex:(int32_t) index;
 
@@ -4646,6 +4665,20 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) mergeWall:(PBWall*) value;
 - (DataQueryResponse_Builder*) clearWall;
 
+- (BOOL) hasUserPhoto;
+- (PBUserPhoto*) userPhoto;
+- (DataQueryResponse_Builder*) setUserPhoto:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) setUserPhotoBuilder:(PBUserPhoto_Builder*) builderForValue;
+- (DataQueryResponse_Builder*) mergeUserPhoto:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) clearUserPhoto;
+
+- (NSArray*) userPhotoListList;
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceUserPhotoListAtIndex:(int32_t) index with:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) addUserPhotoList:(PBUserPhoto*) value;
+- (DataQueryResponse_Builder*) addAllUserPhotoList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearUserPhotoListList;
+
 - (BOOL) hasUser;
 - (PBGameUser*) user;
 - (DataQueryResponse_Builder*) setUser:(PBGameUser*) value;
@@ -4658,18 +4691,25 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) setUserRelation:(int32_t) value;
 - (DataQueryResponse_Builder*) clearUserRelation;
 
-- (NSArray*) idListList;
-- (NSString*) idListAtIndex:(int32_t) index;
-- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value;
-- (DataQueryResponse_Builder*) addIdList:(NSString*) value;
-- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
-- (DataQueryResponse_Builder*) clearIdListList;
-
 - (BOOL) hasOpus;
 - (PBOpus*) opus;
 - (DataQueryResponse_Builder*) setOpus:(PBOpus*) value;
 - (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
 - (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value;
 - (DataQueryResponse_Builder*) clearOpus;
+
+- (NSArray*) opusListList;
+- (PBOpus*) opusListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceOpusListAtIndex:(int32_t) index with:(PBOpus*) value;
+- (DataQueryResponse_Builder*) addOpusList:(PBOpus*) value;
+- (DataQueryResponse_Builder*) addAllOpusList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearOpusListList;
+
+- (NSArray*) idListList;
+- (NSString*) idListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceIdListAtIndex:(int32_t) index with:(NSString*) value;
+- (DataQueryResponse_Builder*) addIdList:(NSString*) value;
+- (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearIdListList;
 @end
 

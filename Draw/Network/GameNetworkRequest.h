@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "GameConstants.pb.h"
 #import "GameBasic.pb.h"
+#import "GameMessage.pb.h"
 #import "AlixPayOrder.h"
+#import "PPNetworkRequest.h"
+#import "PPGameNetworkRequest.h"
 
-@class CommonNetworkOutput;
+
 
 @interface GameNetworkRequest : NSObject
 
@@ -642,19 +645,24 @@
                                appId:(NSString *)appId
                               userId:(NSString *)userId
                                 data:(NSData*)data;
+
 + (CommonNetworkOutput*)getUserPhoto:(NSString *)baseURL
                                appId:(NSString *)appId
                               userId:(NSString *)userId
                             tagArray:(NSString *)tagArrayString
+                               usage:(int)usage
                               offset:(int)offset
                                limit:(int)limit;
+
 + (CommonNetworkOutput*)updateUserPhoto:(NSString *)baseURL
                                   appId:(NSString *)appId
                                  userId:(NSString *)userId
                                    data:(NSData*)data;
+
 + (CommonNetworkOutput*)deleteUserPhoto:(NSString *)baseURL
                                   appId:(NSString *)appId
                                  userId:(NSString *)userId
-                                photoId:(NSString *)photoId;
+                            userPhotoId:(NSString *)userPhotoId
+                                  usage:(int)usage;
 
 @end

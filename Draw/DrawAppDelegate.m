@@ -76,12 +76,12 @@
 
 NSString* GlobalGetServerURL()
 {
-    
+    return @"http://192.167.1.101:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
     
 //    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.5:8000/api/i?";
-    
+
 #ifdef DEBUG
 //    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
 //    NSString* str = [def objectForKey:@"api_server"];
@@ -106,8 +106,8 @@ NSString* GlobalGetTrafficServerURL()
 //        return [NSString stringWithFormat:@"http://%@/api/i?",str];
 //    }
 #endif
-//    return @"http://58.215.184.18:8188/api/i?";
 #ifdef DEBUG
+//    return @"http://58.215.184.18:8888/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
 #endif
     

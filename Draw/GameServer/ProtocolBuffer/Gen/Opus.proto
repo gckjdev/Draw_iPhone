@@ -39,6 +39,22 @@ message PBDrawOpus {
   // TODO add size here
 }
 
+//求PS信息
+message PBAskPs {
+	repeated string requirement = 1;                //要求列表，文字描述
+
+    optional int32 awardCoinsPerUser  = 30;         //每PS作品奖励
+    optional int32 awardCoinsMaxTotal = 31;         //PS奖励限额
+    optional int32 awardIngotBestUser = 32;         //最佳PS奖励
+
+    optional string awardBestUserId   = 50;         //最佳作品用户
+}
+
+//求PS作品
+message PBAskPsOpus {
+    required string askPsId = 1;                    // 关联的求PS的ID
+}
+
 enum PBOpusAim{
 
 	UNKNOWN = 0;
@@ -55,6 +71,9 @@ enum PBOpusAim{
     SING = 1000;
     SING_TO_USER = 1001;
     SING_CONTEST = 1002;
+    
+    ASK_PS = 1500;                      // 求PS作品
+    ASK_PS_OPUS = 1501;                 // 求PS的PS作品
 }
 
 message PBOpus {
@@ -84,6 +103,8 @@ message PBOpus {
 
   optional PBDrawOpus draw = 101;                // 画画特有信息
   optional PBSingOpus sing = 102;                // 唱歌特有信息
+  optional PBAskPs    askPs = 103;               // 求PS
+  optional PBAskPsOpus askPsOpus = 104;          // 求PS作品
 }
 
 //message PBSourceAction{

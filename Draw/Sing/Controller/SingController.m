@@ -648,6 +648,7 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
+                                 opusManager:[OpusManager singOpusManager]
                             progressDelegate:nil
                                     delegate:self];
 }

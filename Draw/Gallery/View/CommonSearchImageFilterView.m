@@ -97,7 +97,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
 {
     CommonSearchImageFilterView* view = [self createView];
     view.delegate = delegate;
-    view.filter = filter;
+    view.filter = [[[NSMutableDictionary alloc] initWithDictionary:filter]  autorelease];
     for (NSString* key in [filter allKeys]) {
         [view initViewWithKey:key filter:filter];
     }

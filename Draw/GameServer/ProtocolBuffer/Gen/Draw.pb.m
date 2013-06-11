@@ -5867,6 +5867,501 @@ static PBDrawBgMeta* defaultPBDrawBgMetaInstance = nil;
 }
 @end
 
+@interface PBImageShapeGroup ()
+@property int32_t groupId;
+@property (retain) NSString* groupName;
+@property (retain) NSMutableArray* mutableShapeTypeList;
+@end
+
+@implementation PBImageShapeGroup
+
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
+}
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
+}
+@synthesize groupId;
+- (BOOL) hasGroupName {
+  return !!hasGroupName_;
+}
+- (void) setHasGroupName:(BOOL) value {
+  hasGroupName_ = !!value;
+}
+@synthesize groupName;
+@synthesize mutableShapeTypeList;
+- (void) dealloc {
+  self.groupName = nil;
+  self.mutableShapeTypeList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.groupId = 0;
+    self.groupName = @"";
+  }
+  return self;
+}
+static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
++ (void) initialize {
+  if (self == [PBImageShapeGroup class]) {
+    defaultPBImageShapeGroupInstance = [[PBImageShapeGroup alloc] init];
+  }
+}
++ (PBImageShapeGroup*) defaultInstance {
+  return defaultPBImageShapeGroupInstance;
+}
+- (PBImageShapeGroup*) defaultInstance {
+  return defaultPBImageShapeGroupInstance;
+}
+- (NSArray*) shapeTypeList {
+  return mutableShapeTypeList;
+}
+- (int32_t) shapeTypeAtIndex:(int32_t) index {
+  id value = [mutableShapeTypeList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  if (!self.hasGroupId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGroupId) {
+    [output writeInt32:1 value:self.groupId];
+  }
+  if (self.hasGroupName) {
+    [output writeString:2 value:self.groupName];
+  }
+  if (self.mutableShapeTypeList.count > 0) {
+    [output writeRawVarint32:26];
+    [output writeRawVarint32:shapeTypeMemoizedSerializedSize];
+  }
+  for (NSNumber* value in self.mutableShapeTypeList) {
+    [output writeInt32NoTag:[value intValue]];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGroupId) {
+    size += computeInt32Size(1, self.groupId);
+  }
+  if (self.hasGroupName) {
+    size += computeStringSize(2, self.groupName);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableShapeTypeList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    if (self.mutableShapeTypeList.count > 0) {
+      size += 1;
+      size += computeInt32SizeNoTag(dataSize);
+    }
+    shapeTypeMemoizedSerializedSize = dataSize;
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBImageShapeGroup*) parseFromData:(NSData*) data {
+  return (PBImageShapeGroup*)[[[PBImageShapeGroup builder] mergeFromData:data] build];
+}
++ (PBImageShapeGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBImageShapeGroup*)[[[PBImageShapeGroup builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBImageShapeGroup*) parseFromInputStream:(NSInputStream*) input {
+  return (PBImageShapeGroup*)[[[PBImageShapeGroup builder] mergeFromInputStream:input] build];
+}
++ (PBImageShapeGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBImageShapeGroup*)[[[PBImageShapeGroup builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBImageShapeGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBImageShapeGroup*)[[[PBImageShapeGroup builder] mergeFromCodedInputStream:input] build];
+}
++ (PBImageShapeGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBImageShapeGroup*)[[[PBImageShapeGroup builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBImageShapeGroup_Builder*) builder {
+  return [[[PBImageShapeGroup_Builder alloc] init] autorelease];
+}
++ (PBImageShapeGroup_Builder*) builderWithPrototype:(PBImageShapeGroup*) prototype {
+  return [[PBImageShapeGroup builder] mergeFrom:prototype];
+}
+- (PBImageShapeGroup_Builder*) builder {
+  return [PBImageShapeGroup builder];
+}
+@end
+
+@interface PBImageShapeGroup_Builder()
+@property (retain) PBImageShapeGroup* result;
+@end
+
+@implementation PBImageShapeGroup_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBImageShapeGroup alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBImageShapeGroup_Builder*) clear {
+  self.result = [[[PBImageShapeGroup alloc] init] autorelease];
+  return self;
+}
+- (PBImageShapeGroup_Builder*) clone {
+  return [PBImageShapeGroup builderWithPrototype:result];
+}
+- (PBImageShapeGroup*) defaultInstance {
+  return [PBImageShapeGroup defaultInstance];
+}
+- (PBImageShapeGroup*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBImageShapeGroup*) buildPartial {
+  PBImageShapeGroup* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBImageShapeGroup_Builder*) mergeFrom:(PBImageShapeGroup*) other {
+  if (other == [PBImageShapeGroup defaultInstance]) {
+    return self;
+  }
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
+  }
+  if (other.hasGroupName) {
+    [self setGroupName:other.groupName];
+  }
+  if (other.mutableShapeTypeList.count > 0) {
+    if (result.mutableShapeTypeList == nil) {
+      result.mutableShapeTypeList = [NSMutableArray array];
+    }
+    [result.mutableShapeTypeList addObjectsFromArray:other.mutableShapeTypeList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBImageShapeGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBImageShapeGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setGroupId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setGroupName:[input readString]];
+        break;
+      }
+      case 26: {
+        int32_t length = [input readRawVarint32];
+        int32_t limit = [input pushLimit:length];
+        while (input.bytesUntilLimit > 0) {
+          [self addShapeType:[input readInt32]];
+        }
+        [input popLimit:limit];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
+}
+- (int32_t) groupId {
+  return result.groupId;
+}
+- (PBImageShapeGroup_Builder*) setGroupId:(int32_t) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
+  return self;
+}
+- (PBImageShapeGroup_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = 0;
+  return self;
+}
+- (BOOL) hasGroupName {
+  return result.hasGroupName;
+}
+- (NSString*) groupName {
+  return result.groupName;
+}
+- (PBImageShapeGroup_Builder*) setGroupName:(NSString*) value {
+  result.hasGroupName = YES;
+  result.groupName = value;
+  return self;
+}
+- (PBImageShapeGroup_Builder*) clearGroupName {
+  result.hasGroupName = NO;
+  result.groupName = @"";
+  return self;
+}
+- (NSArray*) shapeTypeList {
+  if (result.mutableShapeTypeList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableShapeTypeList;
+}
+- (int32_t) shapeTypeAtIndex:(int32_t) index {
+  return [result shapeTypeAtIndex:index];
+}
+- (PBImageShapeGroup_Builder*) replaceShapeTypeAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableShapeTypeList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBImageShapeGroup_Builder*) addShapeType:(int32_t) value {
+  if (result.mutableShapeTypeList == nil) {
+    result.mutableShapeTypeList = [NSMutableArray array];
+  }
+  [result.mutableShapeTypeList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBImageShapeGroup_Builder*) addAllShapeType:(NSArray*) values {
+  if (result.mutableShapeTypeList == nil) {
+    result.mutableShapeTypeList = [NSMutableArray array];
+  }
+  [result.mutableShapeTypeList addObjectsFromArray:values];
+  return self;
+}
+- (PBImageShapeGroup_Builder*) clearShapeTypeList {
+  result.mutableShapeTypeList = nil;
+  return self;
+}
+@end
+
+@interface PBImageShapeGroupMeta ()
+@property (retain) NSMutableArray* mutableImageShapeGroupList;
+@end
+
+@implementation PBImageShapeGroupMeta
+
+@synthesize mutableImageShapeGroupList;
+- (void) dealloc {
+  self.mutableImageShapeGroupList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBImageShapeGroupMeta* defaultPBImageShapeGroupMetaInstance = nil;
++ (void) initialize {
+  if (self == [PBImageShapeGroupMeta class]) {
+    defaultPBImageShapeGroupMetaInstance = [[PBImageShapeGroupMeta alloc] init];
+  }
+}
++ (PBImageShapeGroupMeta*) defaultInstance {
+  return defaultPBImageShapeGroupMetaInstance;
+}
+- (PBImageShapeGroupMeta*) defaultInstance {
+  return defaultPBImageShapeGroupMetaInstance;
+}
+- (NSArray*) imageShapeGroupList {
+  return mutableImageShapeGroupList;
+}
+- (PBImageShapeGroup*) imageShapeGroupAtIndex:(int32_t) index {
+  id value = [mutableImageShapeGroupList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBImageShapeGroup* element in self.imageShapeGroupList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBImageShapeGroup* element in self.imageShapeGroupList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBImageShapeGroup* element in self.imageShapeGroupList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBImageShapeGroupMeta*) parseFromData:(NSData*) data {
+  return (PBImageShapeGroupMeta*)[[[PBImageShapeGroupMeta builder] mergeFromData:data] build];
+}
++ (PBImageShapeGroupMeta*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBImageShapeGroupMeta*)[[[PBImageShapeGroupMeta builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBImageShapeGroupMeta*) parseFromInputStream:(NSInputStream*) input {
+  return (PBImageShapeGroupMeta*)[[[PBImageShapeGroupMeta builder] mergeFromInputStream:input] build];
+}
++ (PBImageShapeGroupMeta*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBImageShapeGroupMeta*)[[[PBImageShapeGroupMeta builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBImageShapeGroupMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBImageShapeGroupMeta*)[[[PBImageShapeGroupMeta builder] mergeFromCodedInputStream:input] build];
+}
++ (PBImageShapeGroupMeta*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBImageShapeGroupMeta*)[[[PBImageShapeGroupMeta builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBImageShapeGroupMeta_Builder*) builder {
+  return [[[PBImageShapeGroupMeta_Builder alloc] init] autorelease];
+}
++ (PBImageShapeGroupMeta_Builder*) builderWithPrototype:(PBImageShapeGroupMeta*) prototype {
+  return [[PBImageShapeGroupMeta builder] mergeFrom:prototype];
+}
+- (PBImageShapeGroupMeta_Builder*) builder {
+  return [PBImageShapeGroupMeta builder];
+}
+@end
+
+@interface PBImageShapeGroupMeta_Builder()
+@property (retain) PBImageShapeGroupMeta* result;
+@end
+
+@implementation PBImageShapeGroupMeta_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBImageShapeGroupMeta alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBImageShapeGroupMeta_Builder*) clear {
+  self.result = [[[PBImageShapeGroupMeta alloc] init] autorelease];
+  return self;
+}
+- (PBImageShapeGroupMeta_Builder*) clone {
+  return [PBImageShapeGroupMeta builderWithPrototype:result];
+}
+- (PBImageShapeGroupMeta*) defaultInstance {
+  return [PBImageShapeGroupMeta defaultInstance];
+}
+- (PBImageShapeGroupMeta*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBImageShapeGroupMeta*) buildPartial {
+  PBImageShapeGroupMeta* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBImageShapeGroupMeta_Builder*) mergeFrom:(PBImageShapeGroupMeta*) other {
+  if (other == [PBImageShapeGroupMeta defaultInstance]) {
+    return self;
+  }
+  if (other.mutableImageShapeGroupList.count > 0) {
+    if (result.mutableImageShapeGroupList == nil) {
+      result.mutableImageShapeGroupList = [NSMutableArray array];
+    }
+    [result.mutableImageShapeGroupList addObjectsFromArray:other.mutableImageShapeGroupList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBImageShapeGroupMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBImageShapeGroupMeta_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBImageShapeGroup_Builder* subBuilder = [PBImageShapeGroup builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addImageShapeGroup:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) imageShapeGroupList {
+  if (result.mutableImageShapeGroupList == nil) { return [NSArray array]; }
+  return result.mutableImageShapeGroupList;
+}
+- (PBImageShapeGroup*) imageShapeGroupAtIndex:(int32_t) index {
+  return [result imageShapeGroupAtIndex:index];
+}
+- (PBImageShapeGroupMeta_Builder*) replaceImageShapeGroupAtIndex:(int32_t) index with:(PBImageShapeGroup*) value {
+  [result.mutableImageShapeGroupList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBImageShapeGroupMeta_Builder*) addAllImageShapeGroup:(NSArray*) values {
+  if (result.mutableImageShapeGroupList == nil) {
+    result.mutableImageShapeGroupList = [NSMutableArray array];
+  }
+  [result.mutableImageShapeGroupList addObjectsFromArray:values];
+  return self;
+}
+- (PBImageShapeGroupMeta_Builder*) clearImageShapeGroupList {
+  result.mutableImageShapeGroupList = nil;
+  return self;
+}
+- (PBImageShapeGroupMeta_Builder*) addImageShapeGroup:(PBImageShapeGroup*) value {
+  if (result.mutableImageShapeGroupList == nil) {
+    result.mutableImageShapeGroupList = [NSMutableArray array];
+  }
+  [result.mutableImageShapeGroupList addObject:value];
+  return self;
+}
+@end
+
 @interface PBHotWord ()
 @property (retain) NSString* wordId;
 @property (retain) NSString* word;

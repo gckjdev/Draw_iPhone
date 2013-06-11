@@ -18,7 +18,7 @@
 }
 
 - (NSString*)umengId{
-    return @"xxxxxxx";
+    return @"51b698e556240b357101820c";
 }
 
 - (void)createConfigData{

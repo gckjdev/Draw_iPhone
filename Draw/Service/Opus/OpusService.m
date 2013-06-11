@@ -14,6 +14,7 @@
 #import "GameMessage.pb.h"
 #import "UIImageExt.h"
 #import "SynthesizeSingleton.h"
+#import "PPGameNetworkRequest.h"
 
 @implementation OpusService
 
@@ -27,11 +28,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 - (void)submitOpus:(Opus*)opusMeta
              image:(UIImage *)image
           opusData:(NSData *)opusData
+       opusManager:(OpusManager*)opusManager
   progressDelegate:(id)progressDelegate
-          delegate:(id<OpusServiceDelegate>)delegate{
-    
+          delegate:(id<OpusServiceDelegate>)delegate
+
+{    
     if ([opusData length] == 0 || opusMeta == nil){
-        
         if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]){
             [delegate didSubmitOpus:ERROR_CLIENT_REQUEST_NULL opus:nil];
         }
@@ -40,49 +42,53 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput *output = [GameNetworkRequest submitOpus:TRAFFIC_SERVER_URL
-                                                               appId:[ConfigManager appId]
-                                                              userId:[[UserManager defaultManager] userId]
-                                                        opusMetaData:[[opusMeta pbOpus] data]
-                                                           imageData:[image data]
-                                                            opusData:opusData
-                                                    progressDelegate:progressDelegate];
+        NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
+                               PARA_APPID : [ConfigManager appId],
+                               };
         
-        NSInteger resultCode = output.resultCode;
+        NSDictionary *imageDataDict = nil;
+        if (image != nil){
+            imageDataDict = @{PARA_OPUS_IMAGE_DATA : [image data]};
+        }
+        
+        NSMutableDictionary *postDataDict = [NSMutableDictionary dictionary];
+        NSData* opusMetaData = [opusMeta data];
+        if (opusMetaData) {
+            [postDataDict setObject:opusMetaData forKey:PARA_OPUS_META_DATA];
+        }
+        
+        if (opusData) {
+            [postDataDict setObject:opusData forKey:PARA_OPUS_DATA];
+        }
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerUploadAndResponsePB:METHOD_SUBMIT_OPUS
+                                                                                   parameters:para
+                                                                                imageDataDict:imageDataDict
+                                                                                 postDataDict:postDataDict
+                                                                             progressDelegate:progressDelegate];
+
+        
+        
         PBOpus *pbOpus = nil;
-        if (resultCode == ERROR_SUCCESS){
-            @try{
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                pbOpus = [response opus];
-                
-                // TODO
-                
-            }
-            @catch (NSException *exception) {
-                PPDebug(@"<%s> catch exception =%@", __FUNCTION__, [exception description]);
-                resultCode = ERROR_CLIENT_PARSE_DATA;
-            }
-            @finally {
-                
-            }
+        if (output.resultCode == ERROR_SUCCESS){
+            pbOpus = output.pbResponse.opus;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
-            if (resultCode == 0 && pbOpus != nil){
+            if (output.resultCode == ERROR_SUCCESS && pbOpus != nil){
                 
                 // save opus as normal opus locally
                 Opus* newOpus = [Opus opusWithPBOpus:pbOpus];
-                [[OpusManager defaultManager] saveOpus:newOpus];
+                [opusManager saveOpus:newOpus];
                 
                 // delete current draft opus
-                [[OpusManager defaultManager] deleteOpus:[opusMeta opusKey]];
+                // [opusManager deleteOpus:[opusMeta opusKey]];
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {
                 Opus *opus = [Opus opusWithPBOpus:pbOpus];
-                [delegate didSubmitOpus:resultCode opus:opus];
+                [delegate didSubmitOpus:output.resultCode opus:opus];
             }
         });
     });

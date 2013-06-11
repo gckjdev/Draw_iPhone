@@ -19,6 +19,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [ZhaJinHuaRoot registerAllExtensions:registry];
     [BbsRoot registerAllExtensions:registry];
     [OpusRoot registerAllExtensions:registry];
+    [PhotoRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -17683,10 +17684,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableBbsUserListList;
 @property (retain) NSMutableArray* mutableWallListList;
 @property (retain) PBWall* wall;
+@property (retain) PBUserPhoto* userPhoto;
+@property (retain) NSMutableArray* mutableUserPhotoListList;
 @property (retain) PBGameUser* user;
 @property int32_t userRelation;
-@property (retain) NSMutableArray* mutableIdListList;
 @property (retain) PBOpus* opus;
+@property (retain) NSMutableArray* mutableOpusListList;
+@property (retain) NSMutableArray* mutableIdListList;
 @end
 
 @implementation DataQueryResponse
@@ -17736,6 +17740,14 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasWall_ = !!value;
 }
 @synthesize wall;
+- (BOOL) hasUserPhoto {
+  return !!hasUserPhoto_;
+}
+- (void) setHasUserPhoto:(BOOL) value {
+  hasUserPhoto_ = !!value;
+}
+@synthesize userPhoto;
+@synthesize mutableUserPhotoListList;
 - (BOOL) hasUser {
   return !!hasUser_;
 }
@@ -17750,7 +17762,6 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasUserRelation_ = !!value;
 }
 @synthesize userRelation;
-@synthesize mutableIdListList;
 - (BOOL) hasOpus {
   return !!hasOpus_;
 }
@@ -17758,6 +17769,8 @@ static GameMessage* defaultGameMessageInstance = nil;
   hasOpus_ = !!value;
 }
 @synthesize opus;
+@synthesize mutableOpusListList;
+@synthesize mutableIdListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17771,9 +17784,12 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableBbsUserListList = nil;
   self.mutableWallListList = nil;
   self.wall = nil;
+  self.userPhoto = nil;
+  self.mutableUserPhotoListList = nil;
   self.user = nil;
-  self.mutableIdListList = nil;
   self.opus = nil;
+  self.mutableOpusListList = nil;
+  self.mutableIdListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17783,6 +17799,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.version = 0;
     self.bbsDrawData = [PBBBSDraw defaultInstance];
     self.wall = [PBWall defaultInstance];
+    self.userPhoto = [PBUserPhoto defaultInstance];
     self.user = [PBGameUser defaultInstance];
     self.userRelation = 0;
     self.opus = [PBOpus defaultInstance];
@@ -17871,6 +17888,20 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableWallListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) userPhotoListList {
+  return mutableUserPhotoListList;
+}
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index {
+  id value = [mutableUserPhotoListList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) opusListList {
+  return mutableOpusListList;
+}
+- (PBOpus*) opusListAtIndex:(int32_t) index {
+  id value = [mutableOpusListList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) idListList {
   return mutableIdListList;
 }
@@ -17942,6 +17973,16 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasUserPhoto) {
+    if (!self.userPhoto.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBUserPhoto* element in self.userPhotoListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   if (self.hasUser) {
     if (!self.user.isInitialized) {
       return NO;
@@ -17949,6 +17990,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   if (self.hasOpus) {
     if (!self.opus.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBOpus* element in self.opusListList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -18000,17 +18046,26 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasWall) {
     [output writeMessage:81 value:self.wall];
   }
+  if (self.hasUserPhoto) {
+    [output writeMessage:82 value:self.userPhoto];
+  }
+  for (PBUserPhoto* element in self.userPhotoListList) {
+    [output writeMessage:83 value:element];
+  }
   if (self.hasUser) {
     [output writeMessage:85 value:self.user];
   }
   if (self.hasUserRelation) {
     [output writeInt32:86 value:self.userRelation];
   }
+  if (self.hasOpus) {
+    [output writeMessage:87 value:self.opus];
+  }
+  for (PBOpus* element in self.opusListList) {
+    [output writeMessage:88 value:element];
+  }
   for (NSString* element in self.mutableIdListList) {
     [output writeString:90 value:element];
-  }
-  if (self.hasOpus) {
-    [output writeMessage:100 value:self.opus];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18066,11 +18121,23 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (self.hasWall) {
     size += computeMessageSize(81, self.wall);
   }
+  if (self.hasUserPhoto) {
+    size += computeMessageSize(82, self.userPhoto);
+  }
+  for (PBUserPhoto* element in self.userPhotoListList) {
+    size += computeMessageSize(83, element);
+  }
   if (self.hasUser) {
     size += computeMessageSize(85, self.user);
   }
   if (self.hasUserRelation) {
     size += computeInt32Size(86, self.userRelation);
+  }
+  if (self.hasOpus) {
+    size += computeMessageSize(87, self.opus);
+  }
+  for (PBOpus* element in self.opusListList) {
+    size += computeMessageSize(88, element);
   }
   {
     int32_t dataSize = 0;
@@ -18079,9 +18146,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableIdListList.count;
-  }
-  if (self.hasOpus) {
-    size += computeMessageSize(100, self.opus);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18233,20 +18297,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   if (other.hasWall) {
     [self mergeWall:other.wall];
   }
+  if (other.hasUserPhoto) {
+    [self mergeUserPhoto:other.userPhoto];
+  }
+  if (other.mutableUserPhotoListList.count > 0) {
+    if (result.mutableUserPhotoListList == nil) {
+      result.mutableUserPhotoListList = [NSMutableArray array];
+    }
+    [result.mutableUserPhotoListList addObjectsFromArray:other.mutableUserPhotoListList];
+  }
   if (other.hasUser) {
     [self mergeUser:other.user];
   }
   if (other.hasUserRelation) {
     [self setUserRelation:other.userRelation];
   }
+  if (other.hasOpus) {
+    [self mergeOpus:other.opus];
+  }
+  if (other.mutableOpusListList.count > 0) {
+    if (result.mutableOpusListList == nil) {
+      result.mutableOpusListList = [NSMutableArray array];
+    }
+    [result.mutableOpusListList addObjectsFromArray:other.mutableOpusListList];
+  }
   if (other.mutableIdListList.count > 0) {
     if (result.mutableIdListList == nil) {
       result.mutableIdListList = [NSMutableArray array];
     }
     [result.mutableIdListList addObjectsFromArray:other.mutableIdListList];
-  }
-  if (other.hasOpus) {
-    [self mergeOpus:other.opus];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -18359,6 +18438,21 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         [self setWall:[subBuilder buildPartial]];
         break;
       }
+      case 658: {
+        PBUserPhoto_Builder* subBuilder = [PBUserPhoto builder];
+        if (self.hasUserPhoto) {
+          [subBuilder mergeFrom:self.userPhoto];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUserPhoto:[subBuilder buildPartial]];
+        break;
+      }
+      case 666: {
+        PBUserPhoto_Builder* subBuilder = [PBUserPhoto builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUserPhotoList:[subBuilder buildPartial]];
+        break;
+      }
       case 682: {
         PBGameUser_Builder* subBuilder = [PBGameUser builder];
         if (self.hasUser) {
@@ -18372,17 +18466,23 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         [self setUserRelation:[input readInt32]];
         break;
       }
-      case 722: {
-        [self addIdList:[input readString]];
-        break;
-      }
-      case 802: {
+      case 698: {
         PBOpus_Builder* subBuilder = [PBOpus builder];
         if (self.hasOpus) {
           [subBuilder mergeFrom:self.opus];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOpus:[subBuilder buildPartial]];
+        break;
+      }
+      case 706: {
+        PBOpus_Builder* subBuilder = [PBOpus builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addOpusList:[subBuilder buildPartial]];
+        break;
+      }
+      case 722: {
+        [self addIdList:[input readString]];
         break;
       }
     }
@@ -18786,6 +18886,65 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   result.wall = [PBWall defaultInstance];
   return self;
 }
+- (BOOL) hasUserPhoto {
+  return result.hasUserPhoto;
+}
+- (PBUserPhoto*) userPhoto {
+  return result.userPhoto;
+}
+- (DataQueryResponse_Builder*) setUserPhoto:(PBUserPhoto*) value {
+  result.hasUserPhoto = YES;
+  result.userPhoto = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setUserPhotoBuilder:(PBUserPhoto_Builder*) builderForValue {
+  return [self setUserPhoto:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeUserPhoto:(PBUserPhoto*) value {
+  if (result.hasUserPhoto &&
+      result.userPhoto != [PBUserPhoto defaultInstance]) {
+    result.userPhoto =
+      [[[PBUserPhoto builderWithPrototype:result.userPhoto] mergeFrom:value] buildPartial];
+  } else {
+    result.userPhoto = value;
+  }
+  result.hasUserPhoto = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUserPhoto {
+  result.hasUserPhoto = NO;
+  result.userPhoto = [PBUserPhoto defaultInstance];
+  return self;
+}
+- (NSArray*) userPhotoListList {
+  if (result.mutableUserPhotoListList == nil) { return [NSArray array]; }
+  return result.mutableUserPhotoListList;
+}
+- (PBUserPhoto*) userPhotoListAtIndex:(int32_t) index {
+  return [result userPhotoListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceUserPhotoListAtIndex:(int32_t) index with:(PBUserPhoto*) value {
+  [result.mutableUserPhotoListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllUserPhotoList:(NSArray*) values {
+  if (result.mutableUserPhotoListList == nil) {
+    result.mutableUserPhotoListList = [NSMutableArray array];
+  }
+  [result.mutableUserPhotoListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearUserPhotoListList {
+  result.mutableUserPhotoListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addUserPhotoList:(PBUserPhoto*) value {
+  if (result.mutableUserPhotoListList == nil) {
+    result.mutableUserPhotoListList = [NSMutableArray array];
+  }
+  [result.mutableUserPhotoListList addObject:value];
+  return self;
+}
 - (BOOL) hasUser {
   return result.hasUser;
 }
@@ -18832,6 +18991,65 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   result.userRelation = 0;
   return self;
 }
+- (BOOL) hasOpus {
+  return result.hasOpus;
+}
+- (PBOpus*) opus {
+  return result.opus;
+}
+- (DataQueryResponse_Builder*) setOpus:(PBOpus*) value {
+  result.hasOpus = YES;
+  result.opus = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
+  return [self setOpus:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value {
+  if (result.hasOpus &&
+      result.opus != [PBOpus defaultInstance]) {
+    result.opus =
+      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
+  } else {
+    result.opus = value;
+  }
+  result.hasOpus = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearOpus {
+  result.hasOpus = NO;
+  result.opus = [PBOpus defaultInstance];
+  return self;
+}
+- (NSArray*) opusListList {
+  if (result.mutableOpusListList == nil) { return [NSArray array]; }
+  return result.mutableOpusListList;
+}
+- (PBOpus*) opusListAtIndex:(int32_t) index {
+  return [result opusListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceOpusListAtIndex:(int32_t) index with:(PBOpus*) value {
+  [result.mutableOpusListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllOpusList:(NSArray*) values {
+  if (result.mutableOpusListList == nil) {
+    result.mutableOpusListList = [NSMutableArray array];
+  }
+  [result.mutableOpusListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearOpusListList {
+  result.mutableOpusListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addOpusList:(PBOpus*) value {
+  if (result.mutableOpusListList == nil) {
+    result.mutableOpusListList = [NSMutableArray array];
+  }
+  [result.mutableOpusListList addObject:value];
+  return self;
+}
 - (NSArray*) idListList {
   if (result.mutableIdListList == nil) {
     return [NSArray array];
@@ -18861,36 +19079,6 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 }
 - (DataQueryResponse_Builder*) clearIdListList {
   result.mutableIdListList = nil;
-  return self;
-}
-- (BOOL) hasOpus {
-  return result.hasOpus;
-}
-- (PBOpus*) opus {
-  return result.opus;
-}
-- (DataQueryResponse_Builder*) setOpus:(PBOpus*) value {
-  result.hasOpus = YES;
-  result.opus = value;
-  return self;
-}
-- (DataQueryResponse_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
-  return [self setOpus:[builderForValue build]];
-}
-- (DataQueryResponse_Builder*) mergeOpus:(PBOpus*) value {
-  if (result.hasOpus &&
-      result.opus != [PBOpus defaultInstance]) {
-    result.opus =
-      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
-  } else {
-    result.opus = value;
-  }
-  result.hasOpus = YES;
-  return self;
-}
-- (DataQueryResponse_Builder*) clearOpus {
-  result.hasOpus = NO;
-  result.opus = [PBOpus defaultInstance];
   return self;
 }
 @end

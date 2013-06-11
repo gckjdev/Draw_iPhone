@@ -6,6 +6,7 @@ import "Dice.proto";
 import "ZhaJinHua.proto";
 import "BBS.proto";
 import "Opus.proto";
+import "Photo.proto";
 
 package game;
 
@@ -493,12 +494,16 @@ message DataQueryResponse {
   repeated PBWall wallList = 80;
   optional PBWall wall = 81;
   
+  optional PBUserPhoto userPhoto = 82;
+  repeated PBUserPhoto userPhotoList = 83;
   
   optional PBGameUser user = 85;
   optional int32 userRelation = 86;             // 用户和用户之间的关系
 
+  optional PBOpus opus = 87;                // 返回作品
+  repeated PBOpus opusList = 88;            // 返回作品列表
+
   repeated string idList = 90;              //for learn draw
-  
-  optional PBOpus opus = 100;
+
   
 }
