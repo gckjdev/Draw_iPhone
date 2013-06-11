@@ -7,9 +7,12 @@
 //
 
 #import "AskPsController.h"
-
+#import "AnimationManager.h"
+#import "Opus.pb.h"
+#import "AskPs.h"
 
 @interface AskPsController ()
+@property (retain, nonatomic) AskPs *askPs;
 @property (retain, nonatomic) ChangeAvatar *imagePicker;
 @property (retain, nonatomic) NSMutableSet *requirementSet;
 @end
@@ -21,12 +24,20 @@
     [_imagePicker release];
     [_requirementSet release];
     [_descTextField release];
+    [_contentHolderView release];
+    [_coinsPerUserTextField release];
+    [_coinsMaxTotalTextField release];
+    [_ingotBestUser release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setPictureButton:nil];
     [self setDescTextField:nil];
+    [self setContentHolderView:nil];
+    [self setCoinsPerUserTextField:nil];
+    [self setCoinsMaxTotalTextField:nil];
+    [self setIngotBestUser:nil];
     [super viewDidUnload];
 }
 
@@ -42,7 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    //self.contentHolderView.contentSize = CGRectMake(_contentHolderView.frame.origin.x, _contentHolderView.frame.origin.y, _contentHolderView.frame.size.width, _contentHolderView.frame.size.height + 1);
 }
 
 - (IBAction)clickPictureButton:(id)sende{
@@ -106,6 +117,33 @@ enum {
     }
     
     PPDebug(@"list:%@", [_requirementSet allObjects]);
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (textField == self.descTextField) {
+        [self.contentHolderView updateOriginY:-150];
+    } else {
+        [self.contentHolderView updateOriginY:-150];
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    
+    [UIView commitAnimations];
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    [self.contentHolderView updateOriginY:41];
+    [UIView commitAnimations];
+    return YES;
 }
 
 @end
