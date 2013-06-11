@@ -45,11 +45,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
 {
     PPDebug(@"<addUserPhoto> favor image %@ with name %@ ,tag %@", photoUrl, name, [tagSet description]);
     
-    NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+//    NSString* userId = [[UserManager defaultManager] userId];
+//    NSString* appId = [ConfigManager appId];
     
-    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
-    
+    PBUserPhoto_Builder* builder = [PBUserPhoto builder];    
     [builder setName:name];
     [builder setUrl:photoUrl];
     [builder setUserId:userId];
