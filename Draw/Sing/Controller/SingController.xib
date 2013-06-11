@@ -454,7 +454,7 @@
 							<object class="IBUIButton" id="906642860">
 								<reference key="NSNextResponder" ref="422045288"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{44, 16}, {19, 19}}</string>
+								<string key="NSFrame">{{39.5, 10.5}, {30, 30}}</string>
 								<reference key="NSSuperview" ref="422045288"/>
 								<reference key="NSNextKeyView" ref="391994037"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1165,13 +1165,13 @@
 							<reference ref="984298503"/>
 							<reference ref="528541850"/>
 							<reference ref="339904624"/>
-							<reference ref="323652342"/>
 							<reference ref="667819724"/>
 							<reference ref="93503442"/>
 							<reference ref="422045288"/>
 							<reference ref="986388386"/>
 							<reference ref="338718009"/>
 							<reference ref="607270365"/>
+							<reference ref="323652342"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1368,8 +1368,11 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="105.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="105.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="108.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="108.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="110.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="3" key="110.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1414,24 +1417,24 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="add_time@2x.png">{16, 16}</string>
-			<string key="desc@2x.png">{16, 16}</string>
-			<string key="holder@2x.png">{16, 16}</string>
-			<string key="image@2x.png">{16, 16}</string>
-			<string key="lyric@2x.png">{16, 16}</string>
-			<string key="mic@2x.png">{16, 16}</string>
-			<string key="pause@2x.png">{16, 16}</string>
-			<string key="play@2x.png">{16, 16}</string>
-			<string key="record@2x.png">{16, 16}</string>
-			<string key="rerecord@2x.png">{16, 16}</string>
-			<string key="review@2x.png">{16, 16}</string>
-			<string key="save@2x.png">{16, 16}</string>
-			<string key="shadow@2x.png">{16, 16}</string>
-			<string key="sing_back@2x.png">{16, 16}</string>
-			<string key="sing_bg@2x.jpg">{16, 16}</string>
-			<string key="submit_sing@2x.png">{16, 16}</string>
-			<string key="tag@2x.png">{16, 16}</string>
-			<string key="up@2x.png">{16, 16}</string>
+			<string key="add_time@2x.png">{117, 117}</string>
+			<string key="desc@2x.png">{63, 63}</string>
+			<string key="holder@2x.png">{550, 81}</string>
+			<string key="image@2x.png">{63, 63}</string>
+			<string key="lyric@2x.png">{626, 637}</string>
+			<string key="mic@2x.png">{186, 220}</string>
+			<string key="pause@2x.png">{28, 27}</string>
+			<string key="play@2x.png">{28, 27}</string>
+			<string key="record@2x.png">{186, 220}</string>
+			<string key="rerecord@2x.png">{117, 117}</string>
+			<string key="review@2x.png">{60, 60}</string>
+			<string key="save@2x.png">{117, 117}</string>
+			<string key="shadow@2x.png">{626, 637}</string>
+			<string key="sing_back@2x.png">{73, 69}</string>
+			<string key="sing_bg@2x.jpg">{640, 960}</string>
+			<string key="submit_sing@2x.png">{117, 117}</string>
+			<string key="tag@2x.png">{87, 94}</string>
+			<string key="up@2x.png">{640, 90}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

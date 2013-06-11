@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "GameApp.h"
+#import "DrawGameApp.h"
 
-@interface SingApp : NSObject<GameAppProtocol>
+@interface SingApp : DrawGameApp<GameAppProtocol>
 
 @end

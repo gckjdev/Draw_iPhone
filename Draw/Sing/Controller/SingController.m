@@ -110,7 +110,7 @@ enum{
 }
 
 - (void)initSelectedButton{
-    switch (_singOpus.pbOpus.singOpus.voiceType) {
+    switch (_singOpus.pbOpus.sing.voiceType) {
         case PBVoiceTypeVoiceTypeOrigin:
             self.selectedButton = _originButton;
             break;
@@ -143,9 +143,9 @@ enum{
     // Do any additional setup after loading the view from its nib.
     [self initSelectedButton];
     
-    NSString *name = _singOpus.pbOpus.singOpus.song.name;
-    NSString *author = _singOpus.pbOpus.singOpus.song.author;
-    NSString *lyric = _singOpus.pbOpus.singOpus.song.lyric;
+    NSString *name = _singOpus.pbOpus.sing.song.name;
+    NSString *author = _singOpus.pbOpus.sing.song.author;
+    NSString *lyric = _singOpus.pbOpus.sing.song.lyric;
     NSString *image = _singOpus.pbOpus.image;
     
     self.songNameLabel.text = name;
@@ -322,8 +322,8 @@ enum{
 }
 
 - (void)play{
-    float duration = _singOpus.pbOpus.singOpus.duration;
-    float pitch = _singOpus.pbOpus.singOpus.pitch;
+    float duration = _singOpus.pbOpus.sing.duration;
+    float pitch = _singOpus.pbOpus.sing.pitch;
     [_player changeDuration:duration];
     [_player changePitch:pitch];
     
@@ -453,7 +453,8 @@ enum{
     self.rerecordButton.hidden = YES;
     self.addTimeButton.hidden = NO;
     self.saveButton.hidden = YES;
-    self.submitButton.hidden = YES;
+    self.submitButton.hidden = NO;
+    self.submitButton.enabled = NO;
     
     [self updateUITime:@(_recordLimitTime)];
 }
@@ -468,6 +469,7 @@ enum{
     self.addTimeButton.hidden = YES;
     self.saveButton.hidden = YES;
     self.submitButton.hidden = YES;
+    self.submitButton.enabled = YES;
     
     [self updateUITime:@(_recordLimitTime)];
 }
@@ -494,6 +496,7 @@ enum{
     self.addTimeButton.hidden = YES;
     self.saveButton.hidden = YES;
     self.submitButton.hidden = YES;
+    self.submitButton.enabled = YES;
 }
 
 - (void)updateUITime:(NSNumber *)time{
