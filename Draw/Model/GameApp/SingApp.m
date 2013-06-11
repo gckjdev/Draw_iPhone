@@ -10,6 +10,7 @@
 #import "SingController.h"
 #import "SingImageManager.h"
 #import "SingHomeController.h"
+#import "ShareImageManager.h"
 
 @implementation SingApp
 
@@ -171,6 +172,21 @@
 - (NSString *)popupMessageDialogBackgroundImage
 {
     return @"common_dialog_bg@2x.png";
+}
+
+- (UIColor*)popupMessageDialogFontColor
+{
+    return [UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1];;
+}
+
+- (id<ImageManagerProtocol>)getImageManager
+{
+    return [ShareImageManager defaultManager];
+}
+
+- (NSString*)background
+{
+    return DRAW_BACKGROUND;
 }
 
 @end

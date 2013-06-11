@@ -88,7 +88,8 @@ static OpusManager* globalDrawOpusManager;
     [builder setAim:PBOpusAimDrawToUser];
     [builder setName:@"我的作品"];
     [builder setDesc:@"详细描述"];
-    [builder setImage:@"http://a.hiphotos.baidu.com/album/h%3D800%3Bcrop%3D0%2C0%2C1280%2C800/sign=8e0bdd9afcfaaf519be38cbfbc6ff79c/b90e7bec54e736d16f3ef9b49a504fc2d5626958.jpg"];
+    [builder setThumbImage:@"http://pic.rouding.com/uploadfile/201202/19/50223649544.jpg"];
+    [builder setImage:@"http://www.lockonfiles.com/modules/Downloads/imageuploads/Su-34%20x2048.jpg"];
     [builder setCreateDate:[[NSDate date] timeIntervalSince1970]];
     [builder setStatus:0];
     
