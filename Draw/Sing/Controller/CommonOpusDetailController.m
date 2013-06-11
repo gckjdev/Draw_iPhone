@@ -29,9 +29,9 @@ enum{
 - (void)dealloc {
     [_titleLabel release];
     [_pbOpus release];
-    [_userInfoCell release];
-    [_opusInfoCell release];
-    [_actionHeader release];
+//    [_userInfoCell release];
+//    [_opusInfoCell release];
+//    [_actionHeader release];
     [super dealloc];
 }
 
@@ -123,10 +123,10 @@ enum{
 }
 
 - (UIView *)headerForAction{
-    CommonActionHeader *header = [self.dataTableView dequeueReusableHeaderFooterViewWithIdentifier:[[_actionHeader class] getHeaderIdentifier]];
+    CommonActionHeader *header = [self.dataTableView dequeueReusableHeaderFooterViewWithIdentifier:[[_actionHeaderClass class] getHeaderIdentifier]];
     
     if (header == nil) {
-        header = [[_actionHeader class] createHeader:self];
+        header = [[_actionHeaderClass class] createHeader:self];
     }
     
     // TODO: set info for header here.
@@ -136,10 +136,10 @@ enum{
 
 - (UITableViewCell *)cellForUserInfo{
     
-    CommonUserInfoCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:[[_userInfoCell class] getCellIdentifier]];
+    CommonUserInfoCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:[[_userInfoCellClass class] getCellIdentifier]];
 
     if (cell == nil) {
-        cell = [[_userInfoCell class] createCell:self];
+        cell = [[_userInfoCellClass class] createCell:self];
     }
     
     [cell setUserInfo:_pbOpus.author];
@@ -148,10 +148,10 @@ enum{
 }
 
 - (UITableViewCell *)cellForOpusInfo{
-    CommonOpusInfoCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:[[_opusInfoCell class] getCellIdentifier]];
+    CommonOpusInfoCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:[[_opusInfoCellClass class] getCellIdentifier]];
     
     if (cell == nil) {
-        cell = [[_opusInfoCell class] createCell:self];
+        cell = [[_opusInfoCellClass class] createCell:self];
     }
     
     [cell setOpusInfo:_pbOpus];
@@ -164,15 +164,15 @@ enum{
 }
 
 - (CGFloat)heightForActionHeader{
-    return [[_actionHeader class] getHeaderHeight];
+    return [[_actionHeaderClass class] getHeaderHeight];
 }
 
 - (CGFloat)heightForUserInfoCell{
-    return [[_userInfoCell class] getCellHeight];
+    return [[_userInfoCellClass class] getCellHeight];
 }
 
 - (CGFloat)heightForOpusInfoCell{
-    return [[_opusInfoCell class] getCellHeightWithOpus:_pbOpus];
+    return [[_opusInfoCellClass class] getCellHeightWithOpus:_pbOpus];
 }
 
 - (CGFloat)heightForCommentInfoCellAtRow:(int)row{

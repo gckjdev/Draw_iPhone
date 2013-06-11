@@ -41,10 +41,15 @@
     NSURL *url = [NSURL URLWithString:opus.image];
     
     __block typeof(self) bself  = self;
-    [self.opusImageButton setImageWithURL:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-        [bself.opusImageButton setImageWithURL:url placeholderImage:image];
+
+//    [[SDWebImageManager sharedManager] downloadWithURL:thumbURL delegate:nil options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
+//        bself.opus
+//    }];
+    
+    [self.opusImageButton setImageWithURL:url placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+//        [bself.opusImageButton setImageWithURL:url placeholderImage:image];
     } failure:^(NSError *error) {
-        [bself.opusImageButton setImageWithURL:url placeholderImage:nil];
+//        [bself.opusImageButton setImageWithURL:url placeholderImage:nil];
     }];
     
     [self.opusImageButton addTarget:self action:@selector(clickOpusImageButton:) forControlEvents:UIControlEventTouchUpInside];

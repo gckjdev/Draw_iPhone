@@ -19,6 +19,7 @@
 
 @interface CommonOpusInfoCell : PPTableViewCell
 
+
 @property (retain, nonatomic) IBOutlet UIButton *opusImageButton;
 @property (retain, nonatomic) IBOutlet UILabel *createTimeLabel;
 @property (retain, nonatomic) IBOutlet UIButton *targetUserButton;

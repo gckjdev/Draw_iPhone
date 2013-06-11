@@ -89,8 +89,6 @@ static OpusManager* globalDrawOpusManager;
     [builder setName:@"我的作品"];
     [builder setDesc:@"详细描述"];
     [builder setImage:@"http://a.hiphotos.baidu.com/album/h%3D800%3Bcrop%3D0%2C0%2C1280%2C800/sign=8e0bdd9afcfaaf519be38cbfbc6ff79c/b90e7bec54e736d16f3ef9b49a504fc2d5626958.jpg"];
-    [builder setThumbImage:nil];
-    [builder setDataUrl:nil];
     [builder setCreateDate:[[NSDate date] timeIntervalSince1970]];
     [builder setStatus:0];
     
@@ -102,12 +100,11 @@ static OpusManager* globalDrawOpusManager;
     [authorBuilder setGender:YES];
     [authorBuilder setSignature:@"这是我的个人签名"];
     [builder setAuthor:[authorBuilder build]];
+    
     PBGameUser_Builder *toUserBuilder = [[[PBGameUser_Builder alloc] init] autorelease];
     [toUserBuilder setUserId:@"xxx"];
     [toUserBuilder setNickName:@"甘米"];
-    
-    [builder setTargetUser:[authorBuilder build]];
-  
+    [builder setTargetUser:[toUserBuilder build]];
     
     return [builder build];
 }

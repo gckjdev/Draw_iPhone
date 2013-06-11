@@ -15,9 +15,9 @@
 @interface CommonOpusDetailController : PPTableViewController
 
 @property (retain, nonatomic) PBOpus *pbOpus;
-@property (retain, nonatomic) CommonUserInfoCell *userInfoCell;
-@property (retain, nonatomic) CommonOpusInfoCell *opusInfoCell;
-@property (retain, nonatomic) CommonActionHeader *actionHeader;
+@property (assign, nonatomic) Class userInfoCellClass;
+@property (assign, nonatomic) Class opusInfoCellClass;
+@property (assign, nonatomic) Class actionHeaderClass;
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 

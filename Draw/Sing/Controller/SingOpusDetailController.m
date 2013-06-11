@@ -19,9 +19,9 @@
 
 - (id)init{
     if (self = [super init]) {
-//        self.pbOpus = [OpusManager createTestOpus];
-        self.userInfoCell = [SingUserInfoCell createCell:nil];
-        self.opusInfoCell = [SingOpusInfoCell createCell:nil];
+        self.pbOpus = [OpusManager createTestOpus];
+        self.userInfoCellClass = [SingUserInfoCell class];
+        self.opusInfoCellClass = [SingOpusInfoCell class];
     }
     
     return self;
