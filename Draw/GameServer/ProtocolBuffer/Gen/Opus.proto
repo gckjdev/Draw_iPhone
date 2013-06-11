@@ -7,6 +7,8 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "SingProtos";
 
+
+
 message PBSong{
   required string songId = 1;       // 歌曲Id
   required string name = 2;         // 歌曲名称
@@ -30,13 +32,14 @@ message PBSingOpus {
 
   optional float duration = 3[default = 1];
   optional float pitch = 4[default = 1];
+  optional float formant = 5[default = 1];
 }
 
 message PBDrawOpus {
   // TODO add size here
 }
 
-enum PBOpusType{
+enum PBOpusAim{
 
 	UNKNOWN = 0;
 	DRAW = 1;
@@ -57,7 +60,7 @@ enum PBOpusType{
 message PBOpus {
 
   required string opusId = 1;                   // 作品Id
-  optional PBOpusType type = 2;                 // 作品类型
+  optional PBOpusAim aim = 2;                   // 作品类型
   optional string name = 3;                     // 作品名称
   optional string desc = 4;                     // 作品描述
   optional string image = 5;                    // 作品图片

@@ -69,7 +69,9 @@ enum{
     [_saveButton release];
     [_submitButton release];
     [_songNameLabel release];
-    [_songAuthorLabel release];
+    [_songNameLabel1 release];
+    [_songAuthorLabel1 release];
+    [_songAuthorLabel1 release];
     [_lyricTextView release];
     [_originButton release];
     [_tagButton release];
@@ -148,6 +150,8 @@ enum{
     
     self.songNameLabel.text = name;
     self.songAuthorLabel.text = author;
+    self.songNameLabel1.text = name;
+    self.songAuthorLabel1.text = author;
     self.lyricTextView.text = lyric;
     
     _recordLimitTime = 30;
@@ -187,7 +191,9 @@ enum{
     [self setSaveButton:nil];
     [self setSubmitButton:nil];
     [self setSongNameLabel:nil];
+    [self setSongNameLabel1:nil];
     [self setSongAuthorLabel:nil];
+    [self setSongAuthorLabel1:nil];
     [self setLyricTextView:nil];
     [self setOriginButton:nil];
     [self setTagButton:nil];
@@ -269,6 +275,10 @@ enum{
     [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
     [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
     [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
+    [recordSetting setValue:[NSNumber numberWithInt: AVAudioQualityHigh] forKey:AVSampleRateConverterAudioQualityKey];
+    [recordSetting setValue:[NSNumber numberWithInt: AVAudioQualityMin] forKey:AVEncoderAudioQualityKey];
+
+    
     
     // Initiate and prepare the recorder
     // For demo purpose, we skip the error handling. In real app, don’t forget to include proper error handling.
@@ -276,7 +286,7 @@ enum{
     [_recorder prepareToRecord];
 
     // Setup audio session
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
     [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
     // start recording

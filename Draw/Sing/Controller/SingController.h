@@ -26,7 +26,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *femaleButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tagButton;
 @property (retain, nonatomic) IBOutlet UILabel *songNameLabel;
+@property (retain, nonatomic) IBOutlet UILabel *songNameLabel1;
 @property (retain, nonatomic) IBOutlet UILabel *songAuthorLabel;
+@property (retain, nonatomic) IBOutlet UILabel *songAuthorLabel1;
 @property (retain, nonatomic) IBOutlet UITextView *lyricTextView;
 @property (retain, nonatomic) IBOutlet UIImageView *micImageView;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;

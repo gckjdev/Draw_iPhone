@@ -305,6 +305,7 @@ enum{
             return 0;
     }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return (section == SectionCommentInfo) ? [CommentHeaderView getHeight] : 0;

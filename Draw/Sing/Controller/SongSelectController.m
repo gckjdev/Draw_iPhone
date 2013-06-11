@@ -72,15 +72,22 @@
 }
 
 - (IBAction)clickDraftButton:(id)sender {
-    SingOpus *opus = [[OpusManager singOpusManager] opusWithOpusId:@"2"];
-    SingController *vc = [[[SingController alloc] initWithOpus:opus] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
+//    SingOpus *opus = [[OpusManager singOpusManager] opusWithOpusId:@"2"];
+//    SingController *vc = [[[SingController alloc] initWithOpus:opus] autorelease];
+//    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)clickCategoryButton:(id)sender {
+    PPDebug(@"category");
 }
 
 - (void)viewDidUnload {
     [self setTitleLabel:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end
