@@ -17,22 +17,24 @@
 + (NSString*)addDefaultParameters:(NSString*)str parameters:(NSDictionary*)para
 {
     // userId
-    if ([para objectForKey:PARA_USERID] == nil){
-        NSString* userId = [UserManager userId];
+    if (para == nil || [para objectForKey:PARA_USERID] == nil){
+        NSString* userId = [[UserManager defaultManager] userId];
         if ([userId length] > 0){
             str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         }
     }
     
     // appId
-    if ([para objectForKey:PARA_APPID] == nil){
+    if (para == nil || [para objectForKey:PARA_APPID] == nil){
         str = [str stringByAddQueryParameter:PARA_APPID value:[GameApp appId]];
     }
     
     // gameId
-    if ([para objectForKey:PARA_GAME_ID] == nil){
+    if (para == nil || [para objectForKey:PARA_GAME_ID] == nil){
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
     }
+    
+    return str;
 }
 
 //when returnPB is YES, the returnArray has no sence.
