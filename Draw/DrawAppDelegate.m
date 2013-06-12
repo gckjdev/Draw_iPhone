@@ -74,6 +74,10 @@
 #import "SKProductService.h"
 #import "ShareController.h"
 
+
+#import "ImageShapeManager.h"
+
+
 NSString* GlobalGetServerURL()
 {
 
@@ -248,7 +252,8 @@ NSString* GlobalGetBoardServerURL()
 
 #ifdef DEBUG
 //    [DrawBgManager createTestData:0];
-    [GameConfigDataManager createTestConfigData];
+//    [GameConfigDataManager createTestConfigData];
+    [ImageShapeManager createMetaFile];
 //    [GameItemService createDrawTestDataFile];
 #endif
 

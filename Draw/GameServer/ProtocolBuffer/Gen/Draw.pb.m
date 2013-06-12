@@ -5869,8 +5869,9 @@ static PBDrawBgMeta* defaultPBDrawBgMetaInstance = nil;
 
 @interface PBImageShapeGroup ()
 @property int32_t groupId;
-@property (retain) NSString* groupName;
+@property (retain) NSMutableArray* mutableGroupNameList;
 @property (retain) NSMutableArray* mutableShapeTypeList;
+@property (retain) NSString* fileNamePrefix;
 @end
 
 @implementation PBImageShapeGroup
@@ -5882,23 +5883,25 @@ static PBDrawBgMeta* defaultPBDrawBgMetaInstance = nil;
   hasGroupId_ = !!value;
 }
 @synthesize groupId;
-- (BOOL) hasGroupName {
-  return !!hasGroupName_;
-}
-- (void) setHasGroupName:(BOOL) value {
-  hasGroupName_ = !!value;
-}
-@synthesize groupName;
+@synthesize mutableGroupNameList;
 @synthesize mutableShapeTypeList;
+- (BOOL) hasFileNamePrefix {
+  return !!hasFileNamePrefix_;
+}
+- (void) setHasFileNamePrefix:(BOOL) value {
+  hasFileNamePrefix_ = !!value;
+}
+@synthesize fileNamePrefix;
 - (void) dealloc {
-  self.groupName = nil;
+  self.mutableGroupNameList = nil;
   self.mutableShapeTypeList = nil;
+  self.fileNamePrefix = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.groupId = 0;
-    self.groupName = @"";
+    self.fileNamePrefix = @"";
   }
   return self;
 }
@@ -5914,6 +5917,13 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
 - (PBImageShapeGroup*) defaultInstance {
   return defaultPBImageShapeGroupInstance;
 }
+- (NSArray*) groupNameList {
+  return mutableGroupNameList;
+}
+- (PBLocalizeString*) groupNameAtIndex:(int32_t) index {
+  id value = [mutableGroupNameList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) shapeTypeList {
   return mutableShapeTypeList;
 }
@@ -5925,14 +5935,19 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
   if (!self.hasGroupId) {
     return NO;
   }
+  for (PBLocalizeString* element in self.groupNameList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasGroupId) {
     [output writeInt32:1 value:self.groupId];
   }
-  if (self.hasGroupName) {
-    [output writeString:2 value:self.groupName];
+  for (PBLocalizeString* element in self.groupNameList) {
+    [output writeMessage:2 value:element];
   }
   if (self.mutableShapeTypeList.count > 0) {
     [output writeRawVarint32:26];
@@ -5940,6 +5955,9 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
   }
   for (NSNumber* value in self.mutableShapeTypeList) {
     [output writeInt32NoTag:[value intValue]];
+  }
+  if (self.hasFileNamePrefix) {
+    [output writeString:4 value:self.fileNamePrefix];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5953,8 +5971,8 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
   if (self.hasGroupId) {
     size += computeInt32Size(1, self.groupId);
   }
-  if (self.hasGroupName) {
-    size += computeStringSize(2, self.groupName);
+  for (PBLocalizeString* element in self.groupNameList) {
+    size += computeMessageSize(2, element);
   }
   {
     int32_t dataSize = 0;
@@ -5967,6 +5985,9 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
       size += computeInt32SizeNoTag(dataSize);
     }
     shapeTypeMemoizedSerializedSize = dataSize;
+  }
+  if (self.hasFileNamePrefix) {
+    size += computeStringSize(4, self.fileNamePrefix);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6046,14 +6067,20 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
   if (other.hasGroupId) {
     [self setGroupId:other.groupId];
   }
-  if (other.hasGroupName) {
-    [self setGroupName:other.groupName];
+  if (other.mutableGroupNameList.count > 0) {
+    if (result.mutableGroupNameList == nil) {
+      result.mutableGroupNameList = [NSMutableArray array];
+    }
+    [result.mutableGroupNameList addObjectsFromArray:other.mutableGroupNameList];
   }
   if (other.mutableShapeTypeList.count > 0) {
     if (result.mutableShapeTypeList == nil) {
       result.mutableShapeTypeList = [NSMutableArray array];
     }
     [result.mutableShapeTypeList addObjectsFromArray:other.mutableShapeTypeList];
+  }
+  if (other.hasFileNamePrefix) {
+    [self setFileNamePrefix:other.fileNamePrefix];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -6081,7 +6108,9 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
         break;
       }
       case 18: {
-        [self setGroupName:[input readString]];
+        PBLocalizeString_Builder* subBuilder = [PBLocalizeString builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addGroupName:[subBuilder buildPartial]];
         break;
       }
       case 26: {
@@ -6091,6 +6120,10 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
           [self addShapeType:[input readInt32]];
         }
         [input popLimit:limit];
+        break;
+      }
+      case 34: {
+        [self setFileNamePrefix:[input readString]];
         break;
       }
     }
@@ -6112,20 +6145,33 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
   result.groupId = 0;
   return self;
 }
-- (BOOL) hasGroupName {
-  return result.hasGroupName;
+- (NSArray*) groupNameList {
+  if (result.mutableGroupNameList == nil) { return [NSArray array]; }
+  return result.mutableGroupNameList;
 }
-- (NSString*) groupName {
-  return result.groupName;
+- (PBLocalizeString*) groupNameAtIndex:(int32_t) index {
+  return [result groupNameAtIndex:index];
 }
-- (PBImageShapeGroup_Builder*) setGroupName:(NSString*) value {
-  result.hasGroupName = YES;
-  result.groupName = value;
+- (PBImageShapeGroup_Builder*) replaceGroupNameAtIndex:(int32_t) index with:(PBLocalizeString*) value {
+  [result.mutableGroupNameList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBImageShapeGroup_Builder*) clearGroupName {
-  result.hasGroupName = NO;
-  result.groupName = @"";
+- (PBImageShapeGroup_Builder*) addAllGroupName:(NSArray*) values {
+  if (result.mutableGroupNameList == nil) {
+    result.mutableGroupNameList = [NSMutableArray array];
+  }
+  [result.mutableGroupNameList addObjectsFromArray:values];
+  return self;
+}
+- (PBImageShapeGroup_Builder*) clearGroupNameList {
+  result.mutableGroupNameList = nil;
+  return self;
+}
+- (PBImageShapeGroup_Builder*) addGroupName:(PBLocalizeString*) value {
+  if (result.mutableGroupNameList == nil) {
+    result.mutableGroupNameList = [NSMutableArray array];
+  }
+  [result.mutableGroupNameList addObject:value];
   return self;
 }
 - (NSArray*) shapeTypeList {
@@ -6157,6 +6203,22 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
 }
 - (PBImageShapeGroup_Builder*) clearShapeTypeList {
   result.mutableShapeTypeList = nil;
+  return self;
+}
+- (BOOL) hasFileNamePrefix {
+  return result.hasFileNamePrefix;
+}
+- (NSString*) fileNamePrefix {
+  return result.fileNamePrefix;
+}
+- (PBImageShapeGroup_Builder*) setFileNamePrefix:(NSString*) value {
+  result.hasFileNamePrefix = YES;
+  result.fileNamePrefix = value;
+  return self;
+}
+- (PBImageShapeGroup_Builder*) clearFileNamePrefix {
+  result.hasFileNamePrefix = NO;
+  result.fileNamePrefix = @"";
   return self;
 }
 @end
