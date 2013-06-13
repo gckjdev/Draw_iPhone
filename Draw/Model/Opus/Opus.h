@@ -12,7 +12,9 @@
 
 typedef enum _OpusCategory{
     OpusCategoryDraw = 1,
-    OpusCategorySing = 2
+    OpusCategorySing = 2,
+    OpusCategoryAskPs = 3,
+    OpusCategoryAskPsOpus = 4
 }OpusCategory;
 
 @interface Opus : NSObject <BuriSupport>

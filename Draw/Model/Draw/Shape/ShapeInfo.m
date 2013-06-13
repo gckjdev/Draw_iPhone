@@ -103,7 +103,7 @@
     }
     
     if (shapeInfo == nil && type > ShapeTypeImageStart) {
-        shapeInfo = [[ImageShapeManager imageShapeWithType:type] retain];
+        shapeInfo = [[[ImageShapeManager defaultManager] imageShapeWithType:type] retain];
     }else{    
         [shapeInfo setWidth:with];
     }

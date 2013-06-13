@@ -82,7 +82,7 @@ NSString* GlobalGetServerURL()
 {
 
 #ifdef DEBUG
-    return @"http://192.167.1.108:8000/api/i?";
+//    return @"http://192.167.1.101:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 
 //    return @"http://58.215.160.100:8020/api/i?";
@@ -254,6 +254,7 @@ NSString* GlobalGetBoardServerURL()
 //    [DrawBgManager createTestData:0];
 //    [GameConfigDataManager createTestConfigData];
 //    [ImageShapeManager createMetaFile];
+//    [ImageShapeManager loadMetaFile];
 //    [GameItemService createDrawTestDataFile];
 #endif
 
