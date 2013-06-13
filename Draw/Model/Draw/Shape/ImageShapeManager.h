@@ -13,8 +13,10 @@
 @interface ImageShapeManager : NSObject
 
 - (ImageShapeInfo *)imageShapeWithType:(ShapeType)type;
+- (UIBezierPath *)pathWithType:(ShapeType)type;
 - (void)cleanCache;
-
+- (NSArray *)imageShapeGroupList;
++ (id)defaultManager;
 
 #pragma mark- Test Method
 
