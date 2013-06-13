@@ -9,6 +9,7 @@
 #import "Opus.h"
 #import "StringUtil.h"
 #import "SingOpus.h"
+#import "AskPs.h"
 
 @interface Opus()
 @property (copy, nonatomic) NSString *opusKey;
@@ -42,7 +43,9 @@
         case OpusCategorySing:
             opus = [[[SingOpus alloc] init] autorelease];
             break;
-            
+        case OpusCategoryAskPs:
+            opus = [[[AskPs alloc] init] autorelease];
+            break;
         default:
             break;
     }
