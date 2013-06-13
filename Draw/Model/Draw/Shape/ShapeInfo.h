@@ -31,23 +31,24 @@ typedef enum{
 
     ShapeTypeImageStart = 1000,
     
-    ShapeTypeImageAnimalStart = 1000,
-    ShapeTypeImageAnimalEnd = 1099,
-    
-    ShapeTypeImageNatureStart = 1100,
-    ShapeTypeImageNatureEnd = 1199,
-    
-    ShapeTypeImagePlantStart = 1200,
-    ShapeTypeImagePlantEnd = 1299,
-    
-    ShapeTypeImageSignStart = 1300,
-    ShapeTypeImageSignEnd = 1399,
-    
-    ShapeTypeImageStuffStart = 1400,
-    ShapeTypeImageStuffEnd = 1499,
+    ShapeTypeImageNatureStart = 1000,
+    ShapeTypeImageNatureEnd = 1099,
 
-    ShapeTypeImageShapeStart = 1500,
-    ShapeTypeImageShapeEnd = 1599,
+    ShapeTypeImageAnimalStart = 1100,
+    ShapeTypeImageAnimalEnd = 1199,
+    
+    ShapeTypeImageShapeStart = 1200,
+    ShapeTypeImageShapeEnd = 1299,
+    
+    ShapeTypeImageStuffStart = 1300,
+    ShapeTypeImageStuffEnd = 1399,
+
+    ShapeTypeImageSignStart = 1400,
+    ShapeTypeImageSignEnd = 1499,
+    
+    ShapeTypeImagePlantStart = 1500,
+    ShapeTypeImagePlantEnd = 1599,
+
 
     
     ShapeTypeImageEnd = 9999,
