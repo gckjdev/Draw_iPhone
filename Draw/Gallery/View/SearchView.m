@@ -57,14 +57,14 @@ AUTO_CREATE_VIEW_BY_XIB(SearchView)
     SearchView* view = [self createView];
     view.searchHandler = handler;
     [view initViewWithPreTextArray:array];
-    view.options = [[[NSMutableDictionary alloc] initWithDictionary:nil] autorelease];
+    view.options = [[[NSMutableDictionary alloc] initWithDictionary:options] autorelease];
     [view.searchTextField addTarget:view.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
     view.searchTextField.delegate = view;
     return view;
 }
 
 #define PRE_TEXT_BTN_OFFSET 120130609
-#define MAX_PRE_TEXT_BTN    6
+#define MAX_PRE_TEXT_BTN    9
 
 - (void)initViewWithPreTextArray:(NSArray*)array
 {
@@ -72,8 +72,9 @@ AUTO_CREATE_VIEW_BY_XIB(SearchView)
          ; i ++) {
         UIButton* btn = (UIButton*)[self viewWithTag:(PRE_TEXT_BTN_OFFSET+i)];
         if (i < array.count) {
-            btn.hidden = NO;
-            [btn setTitle:[array objectAtIndex:i] forState:UIControlStateNormal];
+            NSString* title = [array objectAtIndex:i];
+            [btn setTitle:title forState:UIControlStateNormal];
+            btn.hidden = !(title.length > 0);
         } else {
             btn.hidden = YES;
         }
@@ -130,6 +131,12 @@ AUTO_CREATE_VIEW_BY_XIB(SearchView)
         return YES;
     }
     return NO;
+}
+
+- (IBAction)clickCancelBtn:(id)sender
+{
+    [self.searchTextField resignFirstResponder];
+    [self disappear];
 }
 
 /*

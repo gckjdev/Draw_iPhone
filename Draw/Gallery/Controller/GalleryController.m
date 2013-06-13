@@ -54,8 +54,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#define IMAGE_PER_LINE 3
-#define IMAGE_HEIGHT  (ISIPAD?256:110)
+#define IMAGE_PER_LINE 2
+#define IMAGE_HEIGHT  (ISIPAD?384:160)
 #define RESULT_IMAGE_TAG_OFFSET 9999
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
