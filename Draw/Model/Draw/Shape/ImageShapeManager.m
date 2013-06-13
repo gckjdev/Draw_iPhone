@@ -11,25 +11,116 @@
 #import "Draw.pb.h"
 #import "ItemType.h"
 #import "ShapeGroup.h"
+#import "PPSmartUpdateData.h"
+#import "ConfigManager.h"
 
-NSMutableDictionary *_bezierPathDict;
+
+#define IMAGE_SHAPE_ZIP_NAME @"image_shape.zip"
+#define IMAGE_SHAPE_META_FILE @"meta.pb"
+#define SUFFIX @".svg"
+
+
+@interface ImageShapeManager()
+{
+    NSMutableDictionary *_bezierPathDict;
+    PPSmartUpdateData *_smartData;
+    NSArray *_imageShapeGroupList;
+    
+}
+@end
+
+
 
 @implementation ImageShapeManager
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
-#define TYPE_MOD_VALUE 100
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+        _smartData = [[PPSmartUpdateData alloc] initWithName:IMAGE_SHAPE_ZIP_NAME
+                                                        type:SMART_UPDATE_DATA_TYPE_ZIP
+                                                  bundlePath:IMAGE_SHAPE_ZIP_NAME
+                                             initDataVersion:[ConfigManager currentImageShapeVersion]];
+        
+        [self updateImageShapeList];
+        
+        __block ImageShapeManager *pt = self;
+        
+        [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+            if (!isAlreadyExisted) {
+                [pt updateImageShapeList];
+            }
+            PPDebug(@"checkUpdateAndDownload successfully");
+        } failureBlock:^(NSError *error) {
+            PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+        }];
+        
+    }
+    return self;
+}
 
+- (void)dealloc
+{
+    PPRelease(_smartData);
+    PPRelease(_imageShapeGroupList);
+    PPRelease(_bezierPathDict);
+    [super dealloc];
+}
+
+- (void)updateImageShapeList
+{
+    if (_imageShapeGroupList) {
+        PPRelease(_imageShapeGroupList);
+    }
+    NSString *filePath = [[_smartData currentDataPath] stringByAppendingPathComponent:IMAGE_SHAPE_META_FILE];
+    @try {
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        if (data) {
+            _imageShapeGroupList = [[[PBImageShapeGroupMeta parseFromData:data] imageShapeGroupList] retain];
+        }
+    }
+    @catch (NSException *exception) {
+        _imageShapeGroupList = nil;
+        PPDebug(@"<updateImageShapeList>Fail to parse draw bg data");
+    }
+}
+
+
+
+
+- (NSString *)baseDir
+{
+    return [_smartData currentDataPath];
+}
+
+- (NSArray *)imageShapeGroupList
+{
+    return _imageShapeGroupList;
+}
 
 - (NSString *)fullPathWithShapeType:(ShapeType)type
 {
-    NSString *name = [NSString stringWithFormat:@"%d",type];
-    //TODO construct full path;
-    return name;
+    NSString *name = [NSString stringWithFormat:@"%d%@",type,SUFFIX];
+    NSString *filePath = [[self baseDir] stringByAppendingPathComponent:name];
+    return filePath;
 }
 
 - (ImageShapeInfo *)imageShapeWithType:(ShapeType)type
 {
-    
+    UIBezierPath *bPath = [self pathWithType:type];
+    if (bPath) {
+        ImageShapeInfo *shapeInfo = [[[ImageShapeInfo alloc] initWithCGPath:bPath.CGPath] autorelease];
+        shapeInfo.type = type;
+        return shapeInfo;
+    }
+    return nil;
+}
+
+- (UIBezierPath *)pathWithType:(ShapeType)type
+{
     if (_bezierPathDict == nil) {
         _bezierPathDict = [[NSMutableDictionary alloc] init];
     }
@@ -44,24 +135,17 @@ NSMutableDictionary *_bezierPathDict;
             }
         }
     }
-    if (bPath != nil) {
-        ImageShapeInfo *shapeInfo = [[[ImageShapeInfo alloc] initWithCGPath:bPath.CGPath] autorelease];
-        shapeInfo.type = type;
-        return shapeInfo;
-        
-    }
-
-
-    return nil;
+    return bPath;
 }
 
 - (void)cleanCache
 {
     [_bezierPathDict removeAllObjects];
+    PPRelease(_bezierPathDict);
 }
 
 
-//////////
+//////////  TEST CODE //////////
 
 
 + (void)printShapeGroup:(PBImageShapeGroup *)group

@@ -15,6 +15,7 @@
 #import "WordManager.h"
 #import "DrawBgManager.h"
 #import "IAPProductService.h"
+#import "ImageShapeManager.h"
 
 @implementation DrawGameApp
 
@@ -440,6 +441,8 @@
 {
     [WordManager defaultManager];
     [DrawBgManager defaultManager];
+    [ImageShapeManager defaultManager];
+    
 }
 
 - (void)HandleWithDidBecomeActive

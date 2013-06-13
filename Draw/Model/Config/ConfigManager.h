@@ -221,6 +221,7 @@ typedef enum{
 + (BOOL)showBetViewEnabled;
 
 + (NSString *)currentDrawBgVersion;
++ (NSString *)currentImageShapeVersion;
 
 + (BOOL)isEnableLimeiWall;
 + (BOOL)isEnableWanpuWall;
