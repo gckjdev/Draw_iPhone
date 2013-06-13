@@ -1357,9 +1357,16 @@
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
-
-
-
+/*********************** 求ps *************************/
+"kRequirementPerfec" = "Perfec";
+"kRequirementCute" = "Cute";
+"kRequirementUglify" = "Uglify";
+"kRequirementNotUglify" = "Don't Uglify";
+"kRequirementFree" = "Free";
+"kRequirementChangeBackground" = "Change Background";
+"kRequirementMakeFunny" = "Make Funny";
+"kRequirementDomineering" = "Domineering";
+/*********************** 求ps结束 *************************/
 
 
 /*********************** 大话骰子国际化字符串开始 *************************/
