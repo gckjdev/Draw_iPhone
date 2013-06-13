@@ -21,6 +21,25 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
+BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value) {
+  switch (value) {
+    case PBOpusCategoryTypeDrawCategory:
+    case PBOpusCategoryTypeSingCategory:
+    case PBOpusCategoryTypeAskPsCategory:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBLanguageIsValidValue(PBLanguage value) {
+  switch (value) {
+    case PBLanguageChinese:
+    case PBLanguageEnglish:
+      return YES;
+    default:
+      return NO;
+  }
+}
 BOOL PBOpusTypeIsValidValue(PBOpusType value) {
   switch (value) {
     case PBOpusTypeUnknown:
@@ -725,6 +744,8 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 @property (retain) NSString* image;
 @property (retain) NSString* thumbImage;
 @property (retain) NSString* dataUrl;
+@property PBLanguage language;
+@property PBOpusCategoryType category;
 @property int32_t createDate;
 @property int32_t status;
 @property int32_t deviceType;
@@ -791,6 +812,20 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   hasDataUrl_ = !!value;
 }
 @synthesize dataUrl;
+- (BOOL) hasLanguage {
+  return !!hasLanguage_;
+}
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
+}
+@synthesize language;
+- (BOOL) hasCategory {
+  return !!hasCategory_;
+}
+- (void) setHasCategory:(BOOL) value {
+  hasCategory_ = !!value;
+}
+@synthesize category;
 - (BOOL) hasCreateDate {
   return !!hasCreateDate_;
 }
@@ -904,6 +939,8 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
     self.image = @"";
     self.thumbImage = @"";
     self.dataUrl = @"";
+    self.language = PBLanguageChinese;
+    self.category = PBOpusCategoryTypeDrawCategory;
     self.createDate = 0;
     self.status = 0;
     self.deviceType = 0;
@@ -991,6 +1028,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasDataUrl) {
     [output writeString:9 value:self.dataUrl];
   }
+  if (self.hasLanguage) {
+    [output writeEnum:10 value:self.language];
+  }
+  if (self.hasCategory) {
+    [output writeEnum:11 value:self.category];
+  }
   if (self.hasCreateDate) {
     [output writeInt32:15 value:self.createDate];
   }
@@ -1059,6 +1102,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasDataUrl) {
     size += computeStringSize(9, self.dataUrl);
+  }
+  if (self.hasLanguage) {
+    size += computeEnumSize(10, self.language);
+  }
+  if (self.hasCategory) {
+    size += computeEnumSize(11, self.category);
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(15, self.createDate);
@@ -1195,6 +1244,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (other.hasDataUrl) {
     [self setDataUrl:other.dataUrl];
   }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
+  if (other.hasCategory) {
+    [self setCategory:other.category];
+  }
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
@@ -1289,6 +1344,24 @@ static PBOpus* defaultPBOpusInstance = nil;
       }
       case 74: {
         [self setDataUrl:[input readString]];
+        break;
+      }
+      case 80: {
+        int32_t value = [input readEnum];
+        if (PBLanguageIsValidValue(value)) {
+          [self setLanguage:value];
+        } else {
+          [unknownFields mergeVarintField:10 value:value];
+        }
+        break;
+      }
+      case 88: {
+        int32_t value = [input readEnum];
+        if (PBOpusCategoryTypeIsValidValue(value)) {
+          [self setCategory:value];
+        } else {
+          [unknownFields mergeVarintField:11 value:value];
+        }
         break;
       }
       case 120: {
@@ -1488,6 +1561,38 @@ static PBOpus* defaultPBOpusInstance = nil;
 - (PBOpus_Builder*) clearDataUrl {
   result.hasDataUrl = NO;
   result.dataUrl = @"";
+  return self;
+}
+- (BOOL) hasLanguage {
+  return result.hasLanguage;
+}
+- (PBLanguage) language {
+  return result.language;
+}
+- (PBOpus_Builder*) setLanguage:(PBLanguage) value {
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
+}
+- (PBOpus_Builder*) clearLanguage {
+  result.hasLanguage = NO;
+  result.language = PBLanguageChinese;
+  return self;
+}
+- (BOOL) hasCategory {
+  return result.hasCategory;
+}
+- (PBOpusCategoryType) category {
+  return result.category;
+}
+- (PBOpus_Builder*) setCategory:(PBOpusCategoryType) value {
+  result.hasCategory = YES;
+  result.category = value;
+  return self;
+}
+- (PBOpus_Builder*) clearCategory {
+  result.hasCategory = NO;
+  result.category = PBOpusCategoryTypeDrawCategory;
   return self;
 }
 - (BOOL) hasCreateDate {
