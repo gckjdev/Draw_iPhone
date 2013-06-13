@@ -15,7 +15,7 @@
 
 @interface CommonSearchImageController : CommonTabController <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, GoogleCustomSearchServiceDelegate, MWPhotoBrowserDelegate, SearchResultViewDelegate, CommonSearchImageFilterViewDelegate>
 
-@property (retain, nonatomic) IBOutlet UISearchBar* searchBar;
+//@property (retain, nonatomic) IBOutlet UISearchBar* searchBar;
 
 - (IBAction)clickFilter:(id)sender;
 - (IBAction)clickGallery:(id)sender;

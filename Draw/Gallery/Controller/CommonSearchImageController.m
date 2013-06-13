@@ -30,6 +30,7 @@
 
 @property (retain, nonatomic) NSDictionary* filter;
 @property (retain, nonatomic) NSArray* keywords;
+@property (retain, nonatomic) NSString* searchText;
 
 @end
 
@@ -38,8 +39,9 @@
 - (void)dealloc
 {
     [_filter release];
-    [_searchBar release];
+//    [_searchBar release];
     [_keywords release];
+    [_searchText release];
     [super dealloc];
 }
 
@@ -63,12 +65,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self clickFilter:nil];
+    
     
     NSError* err;
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
     NSString* fileStr = [NSString stringWithContentsOfFile:@"/gitdata/Draw_iPhone/Draw/Gallery/keywords.txt" encoding:enc error:&err];
     self.keywords = [fileStr componentsSeparatedByString:@"$"];
+    
+    [self clickFilter:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -80,7 +84,7 @@
 }
 
 #define IMAGE_PER_LINE 3
-#define IMAGE_HEIGHT  110
+#define IMAGE_HEIGHT  (ISIPAD?233:110)
 #define RESULT_IMAGE_TAG_OFFSET 20130601
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +103,7 @@
             resultView.tag = RESULT_IMAGE_TAG_OFFSET + i;
             resultView.delegate = self;
             
-            [cell addSubview:resultView];
+            [cell.contentView addSubview:resultView];
         }
     }
     for (int i = 0; i < IMAGE_PER_LINE; i ++) {
@@ -154,8 +158,8 @@
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-    if (self.searchBar.text && self.searchBar.text.length > 0) {
-        [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchBar.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:[[self currentTab] offset] paramDict:self.filter delegate:self];
+    if (self.searchText && self.searchText.length > 0) {
+        [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchText imageSize:CGSizeMake(0, 0) imageType:nil startPage:[[self currentTab] offset] paramDict:self.filter delegate:self];
     }
 
 }
@@ -239,10 +243,13 @@ enum {
     if (!_filter) {
         self.filter = [[[NSMutableDictionary alloc] init] autorelease];
     }
+    __block CommonSearchImageController* cp = self;
     SearchView* view = [SearchView createViewWithDefaultKeywords:self.keywords options:self.filter handler:^(NSString *searchText, NSDictionary *options) {
-        self.filter = options;
-        self.searchBar.text = searchText;
-        [self reloadTableViewDataSource];
+        if (searchText && searchText.length > 0) {
+            cp.filter = options;
+            cp.searchText = searchText;
+            [cp reloadTableViewDataSource];
+        }
     }];
     [view showInView:self.view];
 }

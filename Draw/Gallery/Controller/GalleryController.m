@@ -55,21 +55,23 @@
 }
 
 #define IMAGE_PER_LINE 3
-#define IMAGE_HEIGHT  110
+#define IMAGE_HEIGHT  (ISIPAD?256:110)
 #define RESULT_IMAGE_TAG_OFFSET 9999
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
         for (int i = 0; i < IMAGE_PER_LINE; i ++) {
             UserPhotoView* photoView = [UserPhotoView createViewWithPhoto:nil delegate:self];
             
             photoView.tag = RESULT_IMAGE_TAG_OFFSET + i;
 //            resultView.delegate = self;
             
-            [cell addSubview:photoView];
-            [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, cell.bounds.size.height)];
+            [cell.contentView addSubview:photoView];
+            [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)];
+            PPDebug(@"dataTableView width = %.2f, photo width = %.2f",self.dataTableView.frame.size.width, photoView.frame.size.width);
         }
     }
     for (int i = 0; i < IMAGE_PER_LINE; i ++) {
