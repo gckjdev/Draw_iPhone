@@ -46,11 +46,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     PPDebug(@"<addUserPhoto> favor image %@ with name %@ ,tag %@", photoUrl, name, [tagSet description]);
     
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
-//    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
+//    NSString* appId = [ConfigManager appId];
     
-    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
-    
+    PBUserPhoto_Builder* builder = [PBUserPhoto builder];    
     [builder setName:name];
     [builder setUrl:photoUrl];
     [builder setUserId:userId];
@@ -63,13 +61,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     PBUserPhoto* photo = [builder build];
     
     dispatch_async(workingQueue, ^{
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerPostAndResponsePB:METHOD_ADD_USER_PHOTO
+                                                                          parameters:nil
+                                                                            postData:[photo data]];
+        
+        NSInteger resultCode = output.resultCode;
+        PBUserPhoto *resultPhoto = nil;
+        if (resultCode == ERROR_SUCCESS){
+            resultPhoto = output.pbResponse.userPhoto;
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(resultBlock, resultCode, resultPhoto);
+        });
+        
+        /*
         CommonNetworkOutput* output = [GameNetworkRequest addUserPhoto:SERVER_URL
                                                                  appId:appId
                                                                 userId:userId
                                                                   data:[photo data]];
         
-//        PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d",
-//                opusId, actionName, output.resultCode);
         NSInteger resultCode = output.resultCode;
         PBUserPhoto *resultPhoto = nil;
         @try {
@@ -83,6 +95,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         dispatch_async(dispatch_get_main_queue(), ^{
             EXECUTE_BLOCK(resultBlock, resultCode, resultPhoto);
         });
+         */
     });
 }
 

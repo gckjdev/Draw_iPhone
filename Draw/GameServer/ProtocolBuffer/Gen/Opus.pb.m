@@ -21,34 +21,731 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-BOOL PBOpusAimIsValidValue(PBOpusAim value) {
+BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value) {
   switch (value) {
-    case PBOpusAimUnknown:
-    case PBOpusAimDraw:
-    case PBOpusAimGuess:
-    case PBOpusAimComment:
-    case PBOpusAimRepost:
-    case PBOpusAimDrawToUser:
-    case PBOpusAimFlower:
-    case PBOpusAimTomato:
-    case PBOpusAimOnlyComment:
-    case PBOpusAimDrawContest:
-    case PBOpusAimSing:
-    case PBOpusAimSingToUser:
-    case PBOpusAimSingContest:
+    case PBOpusCategoryTypeDrawCategory:
+    case PBOpusCategoryTypeSingCategory:
+    case PBOpusCategoryTypeAskPsCategory:
       return YES;
     default:
       return NO;
   }
 }
+BOOL PBLanguageIsValidValue(PBLanguage value) {
+  switch (value) {
+    case PBLanguageChinese:
+    case PBLanguageEnglish:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBOpusTypeIsValidValue(PBOpusType value) {
+  switch (value) {
+    case PBOpusTypeUnknown:
+    case PBOpusTypeDraw:
+    case PBOpusTypeGuess:
+    case PBOpusTypeComment:
+    case PBOpusTypeRepost:
+    case PBOpusTypeDrawToUser:
+    case PBOpusTypeFlower:
+    case PBOpusTypeTomato:
+    case PBOpusTypeOnlyComment:
+    case PBOpusTypeDrawContest:
+    case PBOpusTypeSing:
+    case PBOpusTypeSingToUser:
+    case PBOpusTypeSingContest:
+    case PBOpusTypeAskPs:
+    case PBOpusTypeAskPsOpus:
+      return YES;
+    default:
+      return NO;
+  }
+}
+@interface PBDrawOpus ()
+@end
+
+@implementation PBDrawOpus
+
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBDrawOpus* defaultPBDrawOpusInstance = nil;
++ (void) initialize {
+  if (self == [PBDrawOpus class]) {
+    defaultPBDrawOpusInstance = [[PBDrawOpus alloc] init];
+  }
+}
++ (PBDrawOpus*) defaultInstance {
+  return defaultPBDrawOpusInstance;
+}
+- (PBDrawOpus*) defaultInstance {
+  return defaultPBDrawOpusInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBDrawOpus*) parseFromData:(NSData*) data {
+  return (PBDrawOpus*)[[[PBDrawOpus builder] mergeFromData:data] build];
+}
++ (PBDrawOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawOpus*)[[[PBDrawOpus builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawOpus*) parseFromInputStream:(NSInputStream*) input {
+  return (PBDrawOpus*)[[[PBDrawOpus builder] mergeFromInputStream:input] build];
+}
++ (PBDrawOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawOpus*)[[[PBDrawOpus builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBDrawOpus*)[[[PBDrawOpus builder] mergeFromCodedInputStream:input] build];
+}
++ (PBDrawOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBDrawOpus*)[[[PBDrawOpus builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBDrawOpus_Builder*) builder {
+  return [[[PBDrawOpus_Builder alloc] init] autorelease];
+}
++ (PBDrawOpus_Builder*) builderWithPrototype:(PBDrawOpus*) prototype {
+  return [[PBDrawOpus builder] mergeFrom:prototype];
+}
+- (PBDrawOpus_Builder*) builder {
+  return [PBDrawOpus builder];
+}
+@end
+
+@interface PBDrawOpus_Builder()
+@property (retain) PBDrawOpus* result;
+@end
+
+@implementation PBDrawOpus_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBDrawOpus alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBDrawOpus_Builder*) clear {
+  self.result = [[[PBDrawOpus alloc] init] autorelease];
+  return self;
+}
+- (PBDrawOpus_Builder*) clone {
+  return [PBDrawOpus builderWithPrototype:result];
+}
+- (PBDrawOpus*) defaultInstance {
+  return [PBDrawOpus defaultInstance];
+}
+- (PBDrawOpus*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBDrawOpus*) buildPartial {
+  PBDrawOpus* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBDrawOpus_Builder*) mergeFrom:(PBDrawOpus*) other {
+  if (other == [PBDrawOpus defaultInstance]) {
+    return self;
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBDrawOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBDrawOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+    }
+  }
+}
+@end
+
+@interface PBAskPs ()
+@property (retain) NSMutableArray* mutableRequirementList;
+@property int32_t awardCoinsPerUser;
+@property int32_t awardCoinsMaxTotal;
+@property int32_t awardIngotBestUser;
+@property (retain) NSString* awardBestUserId;
+@end
+
+@implementation PBAskPs
+
+@synthesize mutableRequirementList;
+- (BOOL) hasAwardCoinsPerUser {
+  return !!hasAwardCoinsPerUser_;
+}
+- (void) setHasAwardCoinsPerUser:(BOOL) value {
+  hasAwardCoinsPerUser_ = !!value;
+}
+@synthesize awardCoinsPerUser;
+- (BOOL) hasAwardCoinsMaxTotal {
+  return !!hasAwardCoinsMaxTotal_;
+}
+- (void) setHasAwardCoinsMaxTotal:(BOOL) value {
+  hasAwardCoinsMaxTotal_ = !!value;
+}
+@synthesize awardCoinsMaxTotal;
+- (BOOL) hasAwardIngotBestUser {
+  return !!hasAwardIngotBestUser_;
+}
+- (void) setHasAwardIngotBestUser:(BOOL) value {
+  hasAwardIngotBestUser_ = !!value;
+}
+@synthesize awardIngotBestUser;
+- (BOOL) hasAwardBestUserId {
+  return !!hasAwardBestUserId_;
+}
+- (void) setHasAwardBestUserId:(BOOL) value {
+  hasAwardBestUserId_ = !!value;
+}
+@synthesize awardBestUserId;
+- (void) dealloc {
+  self.mutableRequirementList = nil;
+  self.awardBestUserId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.awardCoinsPerUser = 0;
+    self.awardCoinsMaxTotal = 0;
+    self.awardIngotBestUser = 0;
+    self.awardBestUserId = @"";
+  }
+  return self;
+}
+static PBAskPs* defaultPBAskPsInstance = nil;
++ (void) initialize {
+  if (self == [PBAskPs class]) {
+    defaultPBAskPsInstance = [[PBAskPs alloc] init];
+  }
+}
++ (PBAskPs*) defaultInstance {
+  return defaultPBAskPsInstance;
+}
+- (PBAskPs*) defaultInstance {
+  return defaultPBAskPsInstance;
+}
+- (NSArray*) requirementList {
+  return mutableRequirementList;
+}
+- (NSString*) requirementAtIndex:(int32_t) index {
+  id value = [mutableRequirementList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (NSString* element in self.mutableRequirementList) {
+    [output writeString:1 value:element];
+  }
+  if (self.hasAwardCoinsPerUser) {
+    [output writeInt32:30 value:self.awardCoinsPerUser];
+  }
+  if (self.hasAwardCoinsMaxTotal) {
+    [output writeInt32:31 value:self.awardCoinsMaxTotal];
+  }
+  if (self.hasAwardIngotBestUser) {
+    [output writeInt32:32 value:self.awardIngotBestUser];
+  }
+  if (self.hasAwardBestUserId) {
+    [output writeString:50 value:self.awardBestUserId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableRequirementList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableRequirementList.count;
+  }
+  if (self.hasAwardCoinsPerUser) {
+    size += computeInt32Size(30, self.awardCoinsPerUser);
+  }
+  if (self.hasAwardCoinsMaxTotal) {
+    size += computeInt32Size(31, self.awardCoinsMaxTotal);
+  }
+  if (self.hasAwardIngotBestUser) {
+    size += computeInt32Size(32, self.awardIngotBestUser);
+  }
+  if (self.hasAwardBestUserId) {
+    size += computeStringSize(50, self.awardBestUserId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBAskPs*) parseFromData:(NSData*) data {
+  return (PBAskPs*)[[[PBAskPs builder] mergeFromData:data] build];
+}
++ (PBAskPs*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAskPs*)[[[PBAskPs builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBAskPs*) parseFromInputStream:(NSInputStream*) input {
+  return (PBAskPs*)[[[PBAskPs builder] mergeFromInputStream:input] build];
+}
++ (PBAskPs*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAskPs*)[[[PBAskPs builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBAskPs*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBAskPs*)[[[PBAskPs builder] mergeFromCodedInputStream:input] build];
+}
++ (PBAskPs*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAskPs*)[[[PBAskPs builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBAskPs_Builder*) builder {
+  return [[[PBAskPs_Builder alloc] init] autorelease];
+}
++ (PBAskPs_Builder*) builderWithPrototype:(PBAskPs*) prototype {
+  return [[PBAskPs builder] mergeFrom:prototype];
+}
+- (PBAskPs_Builder*) builder {
+  return [PBAskPs builder];
+}
+@end
+
+@interface PBAskPs_Builder()
+@property (retain) PBAskPs* result;
+@end
+
+@implementation PBAskPs_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBAskPs alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBAskPs_Builder*) clear {
+  self.result = [[[PBAskPs alloc] init] autorelease];
+  return self;
+}
+- (PBAskPs_Builder*) clone {
+  return [PBAskPs builderWithPrototype:result];
+}
+- (PBAskPs*) defaultInstance {
+  return [PBAskPs defaultInstance];
+}
+- (PBAskPs*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBAskPs*) buildPartial {
+  PBAskPs* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBAskPs_Builder*) mergeFrom:(PBAskPs*) other {
+  if (other == [PBAskPs defaultInstance]) {
+    return self;
+  }
+  if (other.mutableRequirementList.count > 0) {
+    if (result.mutableRequirementList == nil) {
+      result.mutableRequirementList = [NSMutableArray array];
+    }
+    [result.mutableRequirementList addObjectsFromArray:other.mutableRequirementList];
+  }
+  if (other.hasAwardCoinsPerUser) {
+    [self setAwardCoinsPerUser:other.awardCoinsPerUser];
+  }
+  if (other.hasAwardCoinsMaxTotal) {
+    [self setAwardCoinsMaxTotal:other.awardCoinsMaxTotal];
+  }
+  if (other.hasAwardIngotBestUser) {
+    [self setAwardIngotBestUser:other.awardIngotBestUser];
+  }
+  if (other.hasAwardBestUserId) {
+    [self setAwardBestUserId:other.awardBestUserId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBAskPs_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBAskPs_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self addRequirement:[input readString]];
+        break;
+      }
+      case 240: {
+        [self setAwardCoinsPerUser:[input readInt32]];
+        break;
+      }
+      case 248: {
+        [self setAwardCoinsMaxTotal:[input readInt32]];
+        break;
+      }
+      case 256: {
+        [self setAwardIngotBestUser:[input readInt32]];
+        break;
+      }
+      case 402: {
+        [self setAwardBestUserId:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) requirementList {
+  if (result.mutableRequirementList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableRequirementList;
+}
+- (NSString*) requirementAtIndex:(int32_t) index {
+  return [result requirementAtIndex:index];
+}
+- (PBAskPs_Builder*) replaceRequirementAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableRequirementList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBAskPs_Builder*) addRequirement:(NSString*) value {
+  if (result.mutableRequirementList == nil) {
+    result.mutableRequirementList = [NSMutableArray array];
+  }
+  [result.mutableRequirementList addObject:value];
+  return self;
+}
+- (PBAskPs_Builder*) addAllRequirement:(NSArray*) values {
+  if (result.mutableRequirementList == nil) {
+    result.mutableRequirementList = [NSMutableArray array];
+  }
+  [result.mutableRequirementList addObjectsFromArray:values];
+  return self;
+}
+- (PBAskPs_Builder*) clearRequirementList {
+  result.mutableRequirementList = nil;
+  return self;
+}
+- (BOOL) hasAwardCoinsPerUser {
+  return result.hasAwardCoinsPerUser;
+}
+- (int32_t) awardCoinsPerUser {
+  return result.awardCoinsPerUser;
+}
+- (PBAskPs_Builder*) setAwardCoinsPerUser:(int32_t) value {
+  result.hasAwardCoinsPerUser = YES;
+  result.awardCoinsPerUser = value;
+  return self;
+}
+- (PBAskPs_Builder*) clearAwardCoinsPerUser {
+  result.hasAwardCoinsPerUser = NO;
+  result.awardCoinsPerUser = 0;
+  return self;
+}
+- (BOOL) hasAwardCoinsMaxTotal {
+  return result.hasAwardCoinsMaxTotal;
+}
+- (int32_t) awardCoinsMaxTotal {
+  return result.awardCoinsMaxTotal;
+}
+- (PBAskPs_Builder*) setAwardCoinsMaxTotal:(int32_t) value {
+  result.hasAwardCoinsMaxTotal = YES;
+  result.awardCoinsMaxTotal = value;
+  return self;
+}
+- (PBAskPs_Builder*) clearAwardCoinsMaxTotal {
+  result.hasAwardCoinsMaxTotal = NO;
+  result.awardCoinsMaxTotal = 0;
+  return self;
+}
+- (BOOL) hasAwardIngotBestUser {
+  return result.hasAwardIngotBestUser;
+}
+- (int32_t) awardIngotBestUser {
+  return result.awardIngotBestUser;
+}
+- (PBAskPs_Builder*) setAwardIngotBestUser:(int32_t) value {
+  result.hasAwardIngotBestUser = YES;
+  result.awardIngotBestUser = value;
+  return self;
+}
+- (PBAskPs_Builder*) clearAwardIngotBestUser {
+  result.hasAwardIngotBestUser = NO;
+  result.awardIngotBestUser = 0;
+  return self;
+}
+- (BOOL) hasAwardBestUserId {
+  return result.hasAwardBestUserId;
+}
+- (NSString*) awardBestUserId {
+  return result.awardBestUserId;
+}
+- (PBAskPs_Builder*) setAwardBestUserId:(NSString*) value {
+  result.hasAwardBestUserId = YES;
+  result.awardBestUserId = value;
+  return self;
+}
+- (PBAskPs_Builder*) clearAwardBestUserId {
+  result.hasAwardBestUserId = NO;
+  result.awardBestUserId = @"";
+  return self;
+}
+@end
+
+@interface PBAskPsOpus ()
+@property (retain) NSString* askPsId;
+@end
+
+@implementation PBAskPsOpus
+
+- (BOOL) hasAskPsId {
+  return !!hasAskPsId_;
+}
+- (void) setHasAskPsId:(BOOL) value {
+  hasAskPsId_ = !!value;
+}
+@synthesize askPsId;
+- (void) dealloc {
+  self.askPsId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.askPsId = @"";
+  }
+  return self;
+}
+static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
++ (void) initialize {
+  if (self == [PBAskPsOpus class]) {
+    defaultPBAskPsOpusInstance = [[PBAskPsOpus alloc] init];
+  }
+}
++ (PBAskPsOpus*) defaultInstance {
+  return defaultPBAskPsOpusInstance;
+}
+- (PBAskPsOpus*) defaultInstance {
+  return defaultPBAskPsOpusInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasAskPsId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasAskPsId) {
+    [output writeString:1 value:self.askPsId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasAskPsId) {
+    size += computeStringSize(1, self.askPsId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBAskPsOpus*) parseFromData:(NSData*) data {
+  return (PBAskPsOpus*)[[[PBAskPsOpus builder] mergeFromData:data] build];
+}
++ (PBAskPsOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAskPsOpus*)[[[PBAskPsOpus builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBAskPsOpus*) parseFromInputStream:(NSInputStream*) input {
+  return (PBAskPsOpus*)[[[PBAskPsOpus builder] mergeFromInputStream:input] build];
+}
++ (PBAskPsOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAskPsOpus*)[[[PBAskPsOpus builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBAskPsOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBAskPsOpus*)[[[PBAskPsOpus builder] mergeFromCodedInputStream:input] build];
+}
++ (PBAskPsOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBAskPsOpus*)[[[PBAskPsOpus builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBAskPsOpus_Builder*) builder {
+  return [[[PBAskPsOpus_Builder alloc] init] autorelease];
+}
++ (PBAskPsOpus_Builder*) builderWithPrototype:(PBAskPsOpus*) prototype {
+  return [[PBAskPsOpus builder] mergeFrom:prototype];
+}
+- (PBAskPsOpus_Builder*) builder {
+  return [PBAskPsOpus builder];
+}
+@end
+
+@interface PBAskPsOpus_Builder()
+@property (retain) PBAskPsOpus* result;
+@end
+
+@implementation PBAskPsOpus_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBAskPsOpus alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBAskPsOpus_Builder*) clear {
+  self.result = [[[PBAskPsOpus alloc] init] autorelease];
+  return self;
+}
+- (PBAskPsOpus_Builder*) clone {
+  return [PBAskPsOpus builderWithPrototype:result];
+}
+- (PBAskPsOpus*) defaultInstance {
+  return [PBAskPsOpus defaultInstance];
+}
+- (PBAskPsOpus*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBAskPsOpus*) buildPartial {
+  PBAskPsOpus* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBAskPsOpus_Builder*) mergeFrom:(PBAskPsOpus*) other {
+  if (other == [PBAskPsOpus defaultInstance]) {
+    return self;
+  }
+  if (other.hasAskPsId) {
+    [self setAskPsId:other.askPsId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBAskPsOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBAskPsOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setAskPsId:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasAskPsId {
+  return result.hasAskPsId;
+}
+- (NSString*) askPsId {
+  return result.askPsId;
+}
+- (PBAskPsOpus_Builder*) setAskPsId:(NSString*) value {
+  result.hasAskPsId = YES;
+  result.askPsId = value;
+  return self;
+}
+- (PBAskPsOpus_Builder*) clearAskPsId {
+  result.hasAskPsId = NO;
+  result.askPsId = @"";
+  return self;
+}
+@end
+
 @interface PBOpus ()
 @property (retain) NSString* opusId;
-@property PBOpusAim aim;
+@property PBOpusType type;
 @property (retain) NSString* name;
 @property (retain) NSString* desc;
 @property (retain) NSString* image;
 @property (retain) NSString* thumbImage;
 @property (retain) NSString* dataUrl;
+@property PBLanguage language;
+@property PBOpusCategoryType category;
 @property int32_t createDate;
 @property int32_t status;
 @property int32_t deviceType;
@@ -58,7 +755,10 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value) {
 @property (retain) PBGameUser* targetUser;
 @property (retain) NSString* contestId;
 @property (retain) NSMutableArray* mutableActionTimesList;
-@property (retain) PBSingOpus* singOpus;
+@property (retain) PBDrawOpus* draw;
+@property (retain) PBSingOpus* sing;
+@property (retain) PBAskPs* askPs;
+@property (retain) PBAskPsOpus* askPsOpus;
 @end
 
 @implementation PBOpus
@@ -70,13 +770,13 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value) {
   hasOpusId_ = !!value;
 }
 @synthesize opusId;
-- (BOOL) hasAim {
-  return !!hasAim_;
+- (BOOL) hasType {
+  return !!hasType_;
 }
-- (void) setHasAim:(BOOL) value {
-  hasAim_ = !!value;
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
 }
-@synthesize aim;
+@synthesize type;
 - (BOOL) hasName {
   return !!hasName_;
 }
@@ -112,6 +812,20 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value) {
   hasDataUrl_ = !!value;
 }
 @synthesize dataUrl;
+- (BOOL) hasLanguage {
+  return !!hasLanguage_;
+}
+- (void) setHasLanguage:(BOOL) value {
+  hasLanguage_ = !!value;
+}
+@synthesize language;
+- (BOOL) hasCategory {
+  return !!hasCategory_;
+}
+- (void) setHasCategory:(BOOL) value {
+  hasCategory_ = !!value;
+}
+@synthesize category;
 - (BOOL) hasCreateDate {
   return !!hasCreateDate_;
 }
@@ -169,13 +883,34 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value) {
 }
 @synthesize contestId;
 @synthesize mutableActionTimesList;
-- (BOOL) hasSingOpus {
-  return !!hasSingOpus_;
+- (BOOL) hasDraw {
+  return !!hasDraw_;
 }
-- (void) setHasSingOpus:(BOOL) value {
-  hasSingOpus_ = !!value;
+- (void) setHasDraw:(BOOL) value {
+  hasDraw_ = !!value;
 }
-@synthesize singOpus;
+@synthesize draw;
+- (BOOL) hasSing {
+  return !!hasSing_;
+}
+- (void) setHasSing:(BOOL) value {
+  hasSing_ = !!value;
+}
+@synthesize sing;
+- (BOOL) hasAskPs {
+  return !!hasAskPs_;
+}
+- (void) setHasAskPs:(BOOL) value {
+  hasAskPs_ = !!value;
+}
+@synthesize askPs;
+- (BOOL) hasAskPsOpus {
+  return !!hasAskPsOpus_;
+}
+- (void) setHasAskPsOpus:(BOOL) value {
+  hasAskPsOpus_ = !!value;
+}
+@synthesize askPsOpus;
 - (void) dealloc {
   self.opusId = nil;
   self.name = nil;
@@ -189,18 +924,23 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value) {
   self.targetUser = nil;
   self.contestId = nil;
   self.mutableActionTimesList = nil;
-  self.singOpus = nil;
+  self.draw = nil;
+  self.sing = nil;
+  self.askPs = nil;
+  self.askPsOpus = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.opusId = @"";
-    self.aim = PBOpusAimUnknown;
+    self.type = PBOpusTypeUnknown;
     self.name = @"";
     self.desc = @"";
     self.image = @"";
     self.thumbImage = @"";
     self.dataUrl = @"";
+    self.language = PBLanguageChinese;
+    self.category = PBOpusCategoryTypeDrawCategory;
     self.createDate = 0;
     self.status = 0;
     self.deviceType = 0;
@@ -209,7 +949,10 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value) {
     self.author = [PBGameUser defaultInstance];
     self.targetUser = [PBGameUser defaultInstance];
     self.contestId = @"";
-    self.singOpus = [PBSingOpus defaultInstance];
+    self.draw = [PBDrawOpus defaultInstance];
+    self.sing = [PBSingOpus defaultInstance];
+    self.askPs = [PBAskPs defaultInstance];
+    self.askPsOpus = [PBAskPsOpus defaultInstance];
   }
   return self;
 }
@@ -251,8 +994,13 @@ static PBOpus* defaultPBOpusInstance = nil;
       return NO;
     }
   }
-  if (self.hasSingOpus) {
-    if (!self.singOpus.isInitialized) {
+  if (self.hasSing) {
+    if (!self.sing.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasAskPsOpus) {
+    if (!self.askPsOpus.isInitialized) {
       return NO;
     }
   }
@@ -262,8 +1010,8 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasOpusId) {
     [output writeString:1 value:self.opusId];
   }
-  if (self.hasAim) {
-    [output writeEnum:2 value:self.aim];
+  if (self.hasType) {
+    [output writeEnum:2 value:self.type];
   }
   if (self.hasName) {
     [output writeString:3 value:self.name];
@@ -279,6 +1027,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasDataUrl) {
     [output writeString:9 value:self.dataUrl];
+  }
+  if (self.hasLanguage) {
+    [output writeEnum:10 value:self.language];
+  }
+  if (self.hasCategory) {
+    [output writeEnum:11 value:self.category];
   }
   if (self.hasCreateDate) {
     [output writeInt32:15 value:self.createDate];
@@ -307,8 +1061,17 @@ static PBOpus* defaultPBOpusInstance = nil;
   for (PBActionTimes* element in self.actionTimesList) {
     [output writeMessage:45 value:element];
   }
-  if (self.hasSingOpus) {
-    [output writeMessage:102 value:self.singOpus];
+  if (self.hasDraw) {
+    [output writeMessage:101 value:self.draw];
+  }
+  if (self.hasSing) {
+    [output writeMessage:102 value:self.sing];
+  }
+  if (self.hasAskPs) {
+    [output writeMessage:103 value:self.askPs];
+  }
+  if (self.hasAskPsOpus) {
+    [output writeMessage:104 value:self.askPsOpus];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -322,8 +1085,8 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasOpusId) {
     size += computeStringSize(1, self.opusId);
   }
-  if (self.hasAim) {
-    size += computeEnumSize(2, self.aim);
+  if (self.hasType) {
+    size += computeEnumSize(2, self.type);
   }
   if (self.hasName) {
     size += computeStringSize(3, self.name);
@@ -339,6 +1102,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasDataUrl) {
     size += computeStringSize(9, self.dataUrl);
+  }
+  if (self.hasLanguage) {
+    size += computeEnumSize(10, self.language);
+  }
+  if (self.hasCategory) {
+    size += computeEnumSize(11, self.category);
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(15, self.createDate);
@@ -367,8 +1136,17 @@ static PBOpus* defaultPBOpusInstance = nil;
   for (PBActionTimes* element in self.actionTimesList) {
     size += computeMessageSize(45, element);
   }
-  if (self.hasSingOpus) {
-    size += computeMessageSize(102, self.singOpus);
+  if (self.hasDraw) {
+    size += computeMessageSize(101, self.draw);
+  }
+  if (self.hasSing) {
+    size += computeMessageSize(102, self.sing);
+  }
+  if (self.hasAskPs) {
+    size += computeMessageSize(103, self.askPs);
+  }
+  if (self.hasAskPsOpus) {
+    size += computeMessageSize(104, self.askPsOpus);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -448,8 +1226,8 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
   }
-  if (other.hasAim) {
-    [self setAim:other.aim];
+  if (other.hasType) {
+    [self setType:other.type];
   }
   if (other.hasName) {
     [self setName:other.name];
@@ -465,6 +1243,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (other.hasDataUrl) {
     [self setDataUrl:other.dataUrl];
+  }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
+  if (other.hasCategory) {
+    [self setCategory:other.category];
   }
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
@@ -496,8 +1280,17 @@ static PBOpus* defaultPBOpusInstance = nil;
     }
     [result.mutableActionTimesList addObjectsFromArray:other.mutableActionTimesList];
   }
-  if (other.hasSingOpus) {
-    [self mergeSingOpus:other.singOpus];
+  if (other.hasDraw) {
+    [self mergeDraw:other.draw];
+  }
+  if (other.hasSing) {
+    [self mergeSing:other.sing];
+  }
+  if (other.hasAskPs) {
+    [self mergeAskPs:other.askPs];
+  }
+  if (other.hasAskPsOpus) {
+    [self mergeAskPsOpus:other.askPsOpus];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -526,8 +1319,8 @@ static PBOpus* defaultPBOpusInstance = nil;
       }
       case 16: {
         int32_t value = [input readEnum];
-        if (PBOpusAimIsValidValue(value)) {
-          [self setAim:value];
+        if (PBOpusTypeIsValidValue(value)) {
+          [self setType:value];
         } else {
           [unknownFields mergeVarintField:2 value:value];
         }
@@ -551,6 +1344,24 @@ static PBOpus* defaultPBOpusInstance = nil;
       }
       case 74: {
         [self setDataUrl:[input readString]];
+        break;
+      }
+      case 80: {
+        int32_t value = [input readEnum];
+        if (PBLanguageIsValidValue(value)) {
+          [self setLanguage:value];
+        } else {
+          [unknownFields mergeVarintField:10 value:value];
+        }
+        break;
+      }
+      case 88: {
+        int32_t value = [input readEnum];
+        if (PBOpusCategoryTypeIsValidValue(value)) {
+          [self setCategory:value];
+        } else {
+          [unknownFields mergeVarintField:11 value:value];
+        }
         break;
       }
       case 120: {
@@ -601,13 +1412,40 @@ static PBOpus* defaultPBOpusInstance = nil;
         [self addActionTimes:[subBuilder buildPartial]];
         break;
       }
-      case 818: {
-        PBSingOpus_Builder* subBuilder = [PBSingOpus builder];
-        if (self.hasSingOpus) {
-          [subBuilder mergeFrom:self.singOpus];
+      case 810: {
+        PBDrawOpus_Builder* subBuilder = [PBDrawOpus builder];
+        if (self.hasDraw) {
+          [subBuilder mergeFrom:self.draw];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSingOpus:[subBuilder buildPartial]];
+        [self setDraw:[subBuilder buildPartial]];
+        break;
+      }
+      case 818: {
+        PBSingOpus_Builder* subBuilder = [PBSingOpus builder];
+        if (self.hasSing) {
+          [subBuilder mergeFrom:self.sing];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSing:[subBuilder buildPartial]];
+        break;
+      }
+      case 826: {
+        PBAskPs_Builder* subBuilder = [PBAskPs builder];
+        if (self.hasAskPs) {
+          [subBuilder mergeFrom:self.askPs];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setAskPs:[subBuilder buildPartial]];
+        break;
+      }
+      case 834: {
+        PBAskPsOpus_Builder* subBuilder = [PBAskPsOpus builder];
+        if (self.hasAskPsOpus) {
+          [subBuilder mergeFrom:self.askPsOpus];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setAskPsOpus:[subBuilder buildPartial]];
         break;
       }
     }
@@ -629,20 +1467,20 @@ static PBOpus* defaultPBOpusInstance = nil;
   result.opusId = @"";
   return self;
 }
-- (BOOL) hasAim {
-  return result.hasAim;
+- (BOOL) hasType {
+  return result.hasType;
 }
-- (PBOpusAim) aim {
-  return result.aim;
+- (PBOpusType) type {
+  return result.type;
 }
-- (PBOpus_Builder*) setAim:(PBOpusAim) value {
-  result.hasAim = YES;
-  result.aim = value;
+- (PBOpus_Builder*) setType:(PBOpusType) value {
+  result.hasType = YES;
+  result.type = value;
   return self;
 }
-- (PBOpus_Builder*) clearAim {
-  result.hasAim = NO;
-  result.aim = PBOpusAimUnknown;
+- (PBOpus_Builder*) clearType {
+  result.hasType = NO;
+  result.type = PBOpusTypeUnknown;
   return self;
 }
 - (BOOL) hasName {
@@ -723,6 +1561,38 @@ static PBOpus* defaultPBOpusInstance = nil;
 - (PBOpus_Builder*) clearDataUrl {
   result.hasDataUrl = NO;
   result.dataUrl = @"";
+  return self;
+}
+- (BOOL) hasLanguage {
+  return result.hasLanguage;
+}
+- (PBLanguage) language {
+  return result.language;
+}
+- (PBOpus_Builder*) setLanguage:(PBLanguage) value {
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
+}
+- (PBOpus_Builder*) clearLanguage {
+  result.hasLanguage = NO;
+  result.language = PBLanguageChinese;
+  return self;
+}
+- (BOOL) hasCategory {
+  return result.hasCategory;
+}
+- (PBOpusCategoryType) category {
+  return result.category;
+}
+- (PBOpus_Builder*) setCategory:(PBOpusCategoryType) value {
+  result.hasCategory = YES;
+  result.category = value;
+  return self;
+}
+- (PBOpus_Builder*) clearCategory {
+  result.hasCategory = NO;
+  result.category = PBOpusCategoryTypeDrawCategory;
   return self;
 }
 - (BOOL) hasCreateDate {
@@ -910,34 +1780,124 @@ static PBOpus* defaultPBOpusInstance = nil;
   [result.mutableActionTimesList addObject:value];
   return self;
 }
-- (BOOL) hasSingOpus {
-  return result.hasSingOpus;
+- (BOOL) hasDraw {
+  return result.hasDraw;
 }
-- (PBSingOpus*) singOpus {
-  return result.singOpus;
+- (PBDrawOpus*) draw {
+  return result.draw;
 }
-- (PBOpus_Builder*) setSingOpus:(PBSingOpus*) value {
-  result.hasSingOpus = YES;
-  result.singOpus = value;
+- (PBOpus_Builder*) setDraw:(PBDrawOpus*) value {
+  result.hasDraw = YES;
+  result.draw = value;
   return self;
 }
-- (PBOpus_Builder*) setSingOpusBuilder:(PBSingOpus_Builder*) builderForValue {
-  return [self setSingOpus:[builderForValue build]];
+- (PBOpus_Builder*) setDrawBuilder:(PBDrawOpus_Builder*) builderForValue {
+  return [self setDraw:[builderForValue build]];
 }
-- (PBOpus_Builder*) mergeSingOpus:(PBSingOpus*) value {
-  if (result.hasSingOpus &&
-      result.singOpus != [PBSingOpus defaultInstance]) {
-    result.singOpus =
-      [[[PBSingOpus builderWithPrototype:result.singOpus] mergeFrom:value] buildPartial];
+- (PBOpus_Builder*) mergeDraw:(PBDrawOpus*) value {
+  if (result.hasDraw &&
+      result.draw != [PBDrawOpus defaultInstance]) {
+    result.draw =
+      [[[PBDrawOpus builderWithPrototype:result.draw] mergeFrom:value] buildPartial];
   } else {
-    result.singOpus = value;
+    result.draw = value;
   }
-  result.hasSingOpus = YES;
+  result.hasDraw = YES;
   return self;
 }
-- (PBOpus_Builder*) clearSingOpus {
-  result.hasSingOpus = NO;
-  result.singOpus = [PBSingOpus defaultInstance];
+- (PBOpus_Builder*) clearDraw {
+  result.hasDraw = NO;
+  result.draw = [PBDrawOpus defaultInstance];
+  return self;
+}
+- (BOOL) hasSing {
+  return result.hasSing;
+}
+- (PBSingOpus*) sing {
+  return result.sing;
+}
+- (PBOpus_Builder*) setSing:(PBSingOpus*) value {
+  result.hasSing = YES;
+  result.sing = value;
+  return self;
+}
+- (PBOpus_Builder*) setSingBuilder:(PBSingOpus_Builder*) builderForValue {
+  return [self setSing:[builderForValue build]];
+}
+- (PBOpus_Builder*) mergeSing:(PBSingOpus*) value {
+  if (result.hasSing &&
+      result.sing != [PBSingOpus defaultInstance]) {
+    result.sing =
+      [[[PBSingOpus builderWithPrototype:result.sing] mergeFrom:value] buildPartial];
+  } else {
+    result.sing = value;
+  }
+  result.hasSing = YES;
+  return self;
+}
+- (PBOpus_Builder*) clearSing {
+  result.hasSing = NO;
+  result.sing = [PBSingOpus defaultInstance];
+  return self;
+}
+- (BOOL) hasAskPs {
+  return result.hasAskPs;
+}
+- (PBAskPs*) askPs {
+  return result.askPs;
+}
+- (PBOpus_Builder*) setAskPs:(PBAskPs*) value {
+  result.hasAskPs = YES;
+  result.askPs = value;
+  return self;
+}
+- (PBOpus_Builder*) setAskPsBuilder:(PBAskPs_Builder*) builderForValue {
+  return [self setAskPs:[builderForValue build]];
+}
+- (PBOpus_Builder*) mergeAskPs:(PBAskPs*) value {
+  if (result.hasAskPs &&
+      result.askPs != [PBAskPs defaultInstance]) {
+    result.askPs =
+      [[[PBAskPs builderWithPrototype:result.askPs] mergeFrom:value] buildPartial];
+  } else {
+    result.askPs = value;
+  }
+  result.hasAskPs = YES;
+  return self;
+}
+- (PBOpus_Builder*) clearAskPs {
+  result.hasAskPs = NO;
+  result.askPs = [PBAskPs defaultInstance];
+  return self;
+}
+- (BOOL) hasAskPsOpus {
+  return result.hasAskPsOpus;
+}
+- (PBAskPsOpus*) askPsOpus {
+  return result.askPsOpus;
+}
+- (PBOpus_Builder*) setAskPsOpus:(PBAskPsOpus*) value {
+  result.hasAskPsOpus = YES;
+  result.askPsOpus = value;
+  return self;
+}
+- (PBOpus_Builder*) setAskPsOpusBuilder:(PBAskPsOpus_Builder*) builderForValue {
+  return [self setAskPsOpus:[builderForValue build]];
+}
+- (PBOpus_Builder*) mergeAskPsOpus:(PBAskPsOpus*) value {
+  if (result.hasAskPsOpus &&
+      result.askPsOpus != [PBAskPsOpus defaultInstance]) {
+    result.askPsOpus =
+      [[[PBAskPsOpus builderWithPrototype:result.askPsOpus] mergeFrom:value] buildPartial];
+  } else {
+    result.askPsOpus = value;
+  }
+  result.hasAskPsOpus = YES;
+  return self;
+}
+- (PBOpus_Builder*) clearAskPsOpus {
+  result.hasAskPsOpus = NO;
+  result.askPsOpus = [PBAskPsOpus defaultInstance];
   return self;
 }
 @end

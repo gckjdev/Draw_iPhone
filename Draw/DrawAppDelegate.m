@@ -74,15 +74,20 @@
 #import "SKProductService.h"
 #import "ShareController.h"
 
+
+#import "ImageShapeManager.h"
+
+
 NSString* GlobalGetServerURL()
 {
+
+#ifdef DEBUG
 //    return @"http://192.167.1.101:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
-    
+
 //    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.5:8000/api/i?";
 
-#ifdef DEBUG
 //    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
 //    NSString* str = [def objectForKey:@"api_server"];
 //    if (str && str.length > 5) {
@@ -247,7 +252,8 @@ NSString* GlobalGetBoardServerURL()
 
 #ifdef DEBUG
 //    [DrawBgManager createTestData:0];
-    [GameConfigDataManager createTestConfigData];
+//    [GameConfigDataManager createTestConfigData];
+//    [ImageShapeManager createMetaFile];
 //    [GameItemService createDrawTestDataFile];
 #endif
 

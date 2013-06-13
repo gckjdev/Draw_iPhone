@@ -7,6 +7,8 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "SingProtos";
 
+
+
 message PBSong{
   required string songId = 1;       // 歌曲Id
   required string name = 2;         // 歌曲名称
@@ -30,6 +32,7 @@ message PBSingOpus {
 
   optional float duration = 3[default = 1];
   optional float pitch = 4[default = 1];
+  optional float formant = 5[default = 1];
 }
 
 message PBDrawOpus {
@@ -50,6 +53,12 @@ message PBAskPs {
 //求PS作品
 message PBAskPsOpus {
     required string askPsId = 1;                    // 关联的求PS的ID
+}
+
+enum PBOpusCategoryType{
+    DRAW = 0;
+    SING = 1;
+    ASK_PS = 2;
 }
 
 enum PBOpusType{
@@ -73,6 +82,11 @@ enum PBOpusType{
     ASK_PS_OPUS = 1501;                 // 求PS的PS作品
 }
 
+message PBLanguage{
+    CHINESE = 1;
+    ENGLISH = 2;
+}
+
 message PBOpus {
 
   required string opusId = 1;                   // 作品Id
@@ -82,6 +96,8 @@ message PBOpus {
   optional string image = 5;                    // 作品图片
   optional string thumbImage = 6;               // 作品缩略图
   optional string dataUrl = 9;                  // 作品数据远程URL
+  optional PBLanguage language = 10;            // 作品语言
+  optional PBOpusCategoryType = 11;             // 作品大分类
   
   optional int32 createDate = 15;               // 作品创建时间
   optional int32 status = 20;                   // 作品状态，0表示正常，1表示已删除。

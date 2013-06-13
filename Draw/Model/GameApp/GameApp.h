@@ -53,7 +53,8 @@
 #define CALL_TRACK_APP_ID               @"427457714"
 #define SECURE_SMS_APP_ID               @"427737140"
 #define SING_APP_ID                     @"xxxxxxxxx"
-#define ASK_PS_APP_ID                   @"012345678" //to be change
+#define ASK_PS_APP_ID                   @"660561093" //to be change
+
 
 // game ID
 #define DRAW_GAME_ID                    @"Draw"

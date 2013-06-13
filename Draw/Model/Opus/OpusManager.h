@@ -20,5 +20,6 @@
 - (void)saveOpus:(Opus*)opus;
 - (void)deleteOpus:(NSString *)opusId;
 
++ (PBOpus *)createTestOpus;
 
 @end

@@ -7,7 +7,66 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "OpusProtos";
 
-enum PBOpusAim{
+
+
+//message PBSong{
+//  required string songId = 1;       // 歌曲Id
+//  required string name = 2;         // 歌曲名称
+//
+//  optional string author = 3;       // 作者
+//  optional string lyric = 4;        // 歌词
+//
+//  repeated int32 tag = 20;            // 标签，用于分类
+//}
+//
+//message PBSongList{
+//  repeated PBSong songs = 1;
+//}
+//
+//message PBSingOpus {
+//  optional PBSong song = 1;
+//
+//
+//  // 声音变声器参数控制
+//  optional int32 voiceType = 2;
+//
+//  optional float duration = 3[default = 1];
+//  optional float pitch = 4[default = 1];
+//  optional float formant = 5[default = 1];
+//}
+
+message PBDrawOpus {
+  // TODO add size here
+}
+
+//求PS信息
+message PBAskPs {
+	repeated string requirement = 1;                //要求列表，文字描述
+
+    optional int32 awardCoinsPerUser  = 30;         //每PS作品奖励
+    optional int32 awardCoinsMaxTotal = 31;         //PS奖励限额
+    optional int32 awardIngotBestUser = 32;         //最佳PS奖励
+
+    optional string awardBestUserId   = 50;         //最佳作品用户
+}
+
+//求PS作品
+message PBAskPsOpus {
+    required string askPsId = 1;                    // 关联的求PS的ID
+}
+
+enum PBOpusCategoryType{
+    DRAW_CATEGORY = 0;
+    SING_CATEGORY = 1;
+    ASK_PS_CATEGORY = 2;
+}
+
+enum PBLanguage{
+    CHINESE = 1;
+    ENGLISH = 2;
+}
+
+enum PBOpusType{
 
 	UNKNOWN = 0;
 	DRAW = 1;
@@ -23,18 +82,24 @@ enum PBOpusAim{
     SING = 1000;
     SING_TO_USER = 1001;
     SING_CONTEST = 1002;
+    
+    ASK_PS = 1500;                      // 求PS作品
+    ASK_PS_OPUS = 1501;                 // 求PS的PS作品
 }
 
 message PBOpus {
 
   required string opusId = 1;                   // 作品Id
-  optional PBOpusAim aim = 2;                   // 作品目的
+  optional PBOpusType type = 2;                 // 作品类型
   optional string name = 3;                     // 作品名称
   optional string desc = 4;                     // 作品描述
   optional string image = 5;                    // 作品图片
   optional string thumbImage = 6;               // 作品缩略图
   optional string dataUrl = 9;                  // 作品数据远程URL
   
+  optional PBLanguage language = 10;            // 作品语言
+  optional PBOpusCategoryType category = 11;    // 作品大分类
+
   optional int32 createDate = 15;               // 作品创建时间
   optional int32 status = 20;                   // 作品状态，0表示正常，1表示已删除。
 
@@ -50,7 +115,10 @@ message PBOpus {
 
   repeated PBActionTimes actionTimes = 45;      // 作品操作统计信息
 
-  optional PBSingOpus singOpus = 102;           // 唱歌特有信息
+  optional PBDrawOpus draw = 101;                // 画画特有信息
+  optional PBSingOpus sing = 102;                // 唱歌特有信息
+  optional PBAskPs    askPs = 103;               // 求PS
+  optional PBAskPsOpus askPsOpus = 104;          // 求PS作品
 }
 
 //message PBSourceAction{

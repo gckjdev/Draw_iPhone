@@ -15,10 +15,16 @@
 @class PBActionTimes_Builder;
 @class PBApp;
 @class PBApp_Builder;
+@class PBAskPs;
+@class PBAskPsOpus;
+@class PBAskPsOpus_Builder;
+@class PBAskPs_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;
 @class PBDrawBg_Builder;
+@class PBDrawOpus;
+@class PBDrawOpus_Builder;
 @class PBGameItem;
 @class PBGameItemList;
 @class PBGameItemList_Builder;
@@ -74,28 +80,217 @@
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
-  PBOpusAimUnknown = 0,
-  PBOpusAimDraw = 1,
-  PBOpusAimGuess = 2,
-  PBOpusAimComment = 3,
-  PBOpusAimRepost = 4,
-  PBOpusAimDrawToUser = 5,
-  PBOpusAimFlower = 6,
-  PBOpusAimTomato = 7,
-  PBOpusAimOnlyComment = 8,
-  PBOpusAimDrawContest = 9,
-  PBOpusAimSing = 1000,
-  PBOpusAimSingToUser = 1001,
-  PBOpusAimSingContest = 1002,
-} PBOpusAim;
+  PBOpusCategoryTypeDrawCategory = 0,
+  PBOpusCategoryTypeSingCategory = 1,
+  PBOpusCategoryTypeAskPsCategory = 2,
+} PBOpusCategoryType;
 
-BOOL PBOpusAimIsValidValue(PBOpusAim value);
+BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value);
+
+typedef enum {
+  PBLanguageChinese = 1,
+  PBLanguageEnglish = 2,
+} PBLanguage;
+
+BOOL PBLanguageIsValidValue(PBLanguage value);
+
+typedef enum {
+  PBOpusTypeUnknown = 0,
+  PBOpusTypeDraw = 1,
+  PBOpusTypeGuess = 2,
+  PBOpusTypeComment = 3,
+  PBOpusTypeRepost = 4,
+  PBOpusTypeDrawToUser = 5,
+  PBOpusTypeFlower = 6,
+  PBOpusTypeTomato = 7,
+  PBOpusTypeOnlyComment = 8,
+  PBOpusTypeDrawContest = 9,
+  PBOpusTypeSing = 1000,
+  PBOpusTypeSingToUser = 1001,
+  PBOpusTypeSingContest = 1002,
+  PBOpusTypeAskPs = 1500,
+  PBOpusTypeAskPsOpus = 1501,
+} PBOpusType;
+
+BOOL PBOpusTypeIsValidValue(PBOpusType value);
 
 
 @interface OpusRoot : NSObject {
 }
 + (PBExtensionRegistry*) extensionRegistry;
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
+@end
+
+@interface PBDrawOpus : PBGeneratedMessage {
+@private
+}
+
++ (PBDrawOpus*) defaultInstance;
+- (PBDrawOpus*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBDrawOpus_Builder*) builder;
++ (PBDrawOpus_Builder*) builder;
++ (PBDrawOpus_Builder*) builderWithPrototype:(PBDrawOpus*) prototype;
+
++ (PBDrawOpus*) parseFromData:(NSData*) data;
++ (PBDrawOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawOpus*) parseFromInputStream:(NSInputStream*) input;
++ (PBDrawOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDrawOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBDrawOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBDrawOpus_Builder : PBGeneratedMessage_Builder {
+@private
+  PBDrawOpus* result;
+}
+
+- (PBDrawOpus*) defaultInstance;
+
+- (PBDrawOpus_Builder*) clear;
+- (PBDrawOpus_Builder*) clone;
+
+- (PBDrawOpus*) build;
+- (PBDrawOpus*) buildPartial;
+
+- (PBDrawOpus_Builder*) mergeFrom:(PBDrawOpus*) other;
+- (PBDrawOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBDrawOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBAskPs : PBGeneratedMessage {
+@private
+  BOOL hasAwardCoinsPerUser_:1;
+  BOOL hasAwardCoinsMaxTotal_:1;
+  BOOL hasAwardIngotBestUser_:1;
+  BOOL hasAwardBestUserId_:1;
+  int32_t awardCoinsPerUser;
+  int32_t awardCoinsMaxTotal;
+  int32_t awardIngotBestUser;
+  NSString* awardBestUserId;
+  NSMutableArray* mutableRequirementList;
+}
+- (BOOL) hasAwardCoinsPerUser;
+- (BOOL) hasAwardCoinsMaxTotal;
+- (BOOL) hasAwardIngotBestUser;
+- (BOOL) hasAwardBestUserId;
+@property (readonly) int32_t awardCoinsPerUser;
+@property (readonly) int32_t awardCoinsMaxTotal;
+@property (readonly) int32_t awardIngotBestUser;
+@property (readonly, retain) NSString* awardBestUserId;
+- (NSArray*) requirementList;
+- (NSString*) requirementAtIndex:(int32_t) index;
+
++ (PBAskPs*) defaultInstance;
+- (PBAskPs*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBAskPs_Builder*) builder;
++ (PBAskPs_Builder*) builder;
++ (PBAskPs_Builder*) builderWithPrototype:(PBAskPs*) prototype;
+
++ (PBAskPs*) parseFromData:(NSData*) data;
++ (PBAskPs*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAskPs*) parseFromInputStream:(NSInputStream*) input;
++ (PBAskPs*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAskPs*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBAskPs*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBAskPs_Builder : PBGeneratedMessage_Builder {
+@private
+  PBAskPs* result;
+}
+
+- (PBAskPs*) defaultInstance;
+
+- (PBAskPs_Builder*) clear;
+- (PBAskPs_Builder*) clone;
+
+- (PBAskPs*) build;
+- (PBAskPs*) buildPartial;
+
+- (PBAskPs_Builder*) mergeFrom:(PBAskPs*) other;
+- (PBAskPs_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBAskPs_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) requirementList;
+- (NSString*) requirementAtIndex:(int32_t) index;
+- (PBAskPs_Builder*) replaceRequirementAtIndex:(int32_t) index with:(NSString*) value;
+- (PBAskPs_Builder*) addRequirement:(NSString*) value;
+- (PBAskPs_Builder*) addAllRequirement:(NSArray*) values;
+- (PBAskPs_Builder*) clearRequirementList;
+
+- (BOOL) hasAwardCoinsPerUser;
+- (int32_t) awardCoinsPerUser;
+- (PBAskPs_Builder*) setAwardCoinsPerUser:(int32_t) value;
+- (PBAskPs_Builder*) clearAwardCoinsPerUser;
+
+- (BOOL) hasAwardCoinsMaxTotal;
+- (int32_t) awardCoinsMaxTotal;
+- (PBAskPs_Builder*) setAwardCoinsMaxTotal:(int32_t) value;
+- (PBAskPs_Builder*) clearAwardCoinsMaxTotal;
+
+- (BOOL) hasAwardIngotBestUser;
+- (int32_t) awardIngotBestUser;
+- (PBAskPs_Builder*) setAwardIngotBestUser:(int32_t) value;
+- (PBAskPs_Builder*) clearAwardIngotBestUser;
+
+- (BOOL) hasAwardBestUserId;
+- (NSString*) awardBestUserId;
+- (PBAskPs_Builder*) setAwardBestUserId:(NSString*) value;
+- (PBAskPs_Builder*) clearAwardBestUserId;
+@end
+
+@interface PBAskPsOpus : PBGeneratedMessage {
+@private
+  BOOL hasAskPsId_:1;
+  NSString* askPsId;
+}
+- (BOOL) hasAskPsId;
+@property (readonly, retain) NSString* askPsId;
+
++ (PBAskPsOpus*) defaultInstance;
+- (PBAskPsOpus*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBAskPsOpus_Builder*) builder;
++ (PBAskPsOpus_Builder*) builder;
++ (PBAskPsOpus_Builder*) builderWithPrototype:(PBAskPsOpus*) prototype;
+
++ (PBAskPsOpus*) parseFromData:(NSData*) data;
++ (PBAskPsOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAskPsOpus*) parseFromInputStream:(NSInputStream*) input;
++ (PBAskPsOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBAskPsOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBAskPsOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBAskPsOpus_Builder : PBGeneratedMessage_Builder {
+@private
+  PBAskPsOpus* result;
+}
+
+- (PBAskPsOpus*) defaultInstance;
+
+- (PBAskPsOpus_Builder*) clear;
+- (PBAskPsOpus_Builder*) clone;
+
+- (PBAskPsOpus*) build;
+- (PBAskPsOpus*) buildPartial;
+
+- (PBAskPsOpus_Builder*) mergeFrom:(PBAskPsOpus*) other;
+- (PBAskPsOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBAskPsOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasAskPsId;
+- (NSString*) askPsId;
+- (PBAskPsOpus_Builder*) setAskPsId:(NSString*) value;
+- (PBAskPsOpus_Builder*) clearAskPsId;
 @end
 
 @interface PBOpus : PBGeneratedMessage {
@@ -114,8 +309,13 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
   BOOL hasOpusId_:1;
   BOOL hasAuthor_:1;
   BOOL hasTargetUser_:1;
-  BOOL hasSingOpus_:1;
-  BOOL hasAim_:1;
+  BOOL hasDraw_:1;
+  BOOL hasSing_:1;
+  BOOL hasAskPs_:1;
+  BOOL hasAskPsOpus_:1;
+  BOOL hasLanguage_:1;
+  BOOL hasCategory_:1;
+  BOOL hasType_:1;
   int32_t deviceType;
   int32_t status;
   int32_t createDate;
@@ -130,17 +330,24 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
   NSString* opusId;
   PBGameUser* author;
   PBGameUser* targetUser;
-  PBSingOpus* singOpus;
-  PBOpusAim aim;
+  PBDrawOpus* draw;
+  PBSingOpus* sing;
+  PBAskPs* askPs;
+  PBAskPsOpus* askPsOpus;
+  PBLanguage language;
+  PBOpusCategoryType category;
+  PBOpusType type;
   NSMutableArray* mutableActionTimesList;
 }
 - (BOOL) hasOpusId;
-- (BOOL) hasAim;
+- (BOOL) hasType;
 - (BOOL) hasName;
 - (BOOL) hasDesc;
 - (BOOL) hasImage;
 - (BOOL) hasThumbImage;
 - (BOOL) hasDataUrl;
+- (BOOL) hasLanguage;
+- (BOOL) hasCategory;
 - (BOOL) hasCreateDate;
 - (BOOL) hasStatus;
 - (BOOL) hasDeviceType;
@@ -149,14 +356,19 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
 - (BOOL) hasAuthor;
 - (BOOL) hasTargetUser;
 - (BOOL) hasContestId;
-- (BOOL) hasSingOpus;
+- (BOOL) hasDraw;
+- (BOOL) hasSing;
+- (BOOL) hasAskPs;
+- (BOOL) hasAskPsOpus;
 @property (readonly, retain) NSString* opusId;
-@property (readonly) PBOpusAim aim;
+@property (readonly) PBOpusType type;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
 @property (readonly, retain) NSString* dataUrl;
+@property (readonly) PBLanguage language;
+@property (readonly) PBOpusCategoryType category;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t status;
 @property (readonly) int32_t deviceType;
@@ -165,7 +377,10 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
 @property (readonly, retain) PBGameUser* author;
 @property (readonly, retain) PBGameUser* targetUser;
 @property (readonly, retain) NSString* contestId;
-@property (readonly, retain) PBSingOpus* singOpus;
+@property (readonly, retain) PBDrawOpus* draw;
+@property (readonly, retain) PBSingOpus* sing;
+@property (readonly, retain) PBAskPs* askPs;
+@property (readonly, retain) PBAskPsOpus* askPsOpus;
 - (NSArray*) actionTimesList;
 - (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
 
@@ -208,10 +423,10 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
 - (PBOpus_Builder*) setOpusId:(NSString*) value;
 - (PBOpus_Builder*) clearOpusId;
 
-- (BOOL) hasAim;
-- (PBOpusAim) aim;
-- (PBOpus_Builder*) setAim:(PBOpusAim) value;
-- (PBOpus_Builder*) clearAim;
+- (BOOL) hasType;
+- (PBOpusType) type;
+- (PBOpus_Builder*) setType:(PBOpusType) value;
+- (PBOpus_Builder*) clearType;
 
 - (BOOL) hasName;
 - (NSString*) name;
@@ -237,6 +452,16 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
 - (NSString*) dataUrl;
 - (PBOpus_Builder*) setDataUrl:(NSString*) value;
 - (PBOpus_Builder*) clearDataUrl;
+
+- (BOOL) hasLanguage;
+- (PBLanguage) language;
+- (PBOpus_Builder*) setLanguage:(PBLanguage) value;
+- (PBOpus_Builder*) clearLanguage;
+
+- (BOOL) hasCategory;
+- (PBOpusCategoryType) category;
+- (PBOpus_Builder*) setCategory:(PBOpusCategoryType) value;
+- (PBOpus_Builder*) clearCategory;
 
 - (BOOL) hasCreateDate;
 - (int32_t) createDate;
@@ -289,12 +514,33 @@ BOOL PBOpusAimIsValidValue(PBOpusAim value);
 - (PBOpus_Builder*) addAllActionTimes:(NSArray*) values;
 - (PBOpus_Builder*) clearActionTimesList;
 
-- (BOOL) hasSingOpus;
-- (PBSingOpus*) singOpus;
-- (PBOpus_Builder*) setSingOpus:(PBSingOpus*) value;
-- (PBOpus_Builder*) setSingOpusBuilder:(PBSingOpus_Builder*) builderForValue;
-- (PBOpus_Builder*) mergeSingOpus:(PBSingOpus*) value;
-- (PBOpus_Builder*) clearSingOpus;
+- (BOOL) hasDraw;
+- (PBDrawOpus*) draw;
+- (PBOpus_Builder*) setDraw:(PBDrawOpus*) value;
+- (PBOpus_Builder*) setDrawBuilder:(PBDrawOpus_Builder*) builderForValue;
+- (PBOpus_Builder*) mergeDraw:(PBDrawOpus*) value;
+- (PBOpus_Builder*) clearDraw;
+
+- (BOOL) hasSing;
+- (PBSingOpus*) sing;
+- (PBOpus_Builder*) setSing:(PBSingOpus*) value;
+- (PBOpus_Builder*) setSingBuilder:(PBSingOpus_Builder*) builderForValue;
+- (PBOpus_Builder*) mergeSing:(PBSingOpus*) value;
+- (PBOpus_Builder*) clearSing;
+
+- (BOOL) hasAskPs;
+- (PBAskPs*) askPs;
+- (PBOpus_Builder*) setAskPs:(PBAskPs*) value;
+- (PBOpus_Builder*) setAskPsBuilder:(PBAskPs_Builder*) builderForValue;
+- (PBOpus_Builder*) mergeAskPs:(PBAskPs*) value;
+- (PBOpus_Builder*) clearAskPs;
+
+- (BOOL) hasAskPsOpus;
+- (PBAskPsOpus*) askPsOpus;
+- (PBOpus_Builder*) setAskPsOpus:(PBAskPsOpus*) value;
+- (PBOpus_Builder*) setAskPsOpusBuilder:(PBAskPsOpus_Builder*) builderForValue;
+- (PBOpus_Builder*) mergeAskPsOpus:(PBAskPsOpus*) value;
+- (PBOpus_Builder*) clearAskPsOpus;
 @end
 
 @interface PBOpusAction : PBGeneratedMessage {

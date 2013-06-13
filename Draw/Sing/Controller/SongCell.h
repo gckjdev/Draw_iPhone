@@ -12,7 +12,7 @@
 @interface SongCell : PPTableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *authorLabel;
-@property (retain, nonatomic) IBOutlet UILabel *costCoinLabel;
+//@property (retain, nonatomic) IBOutlet UILabel *costCoinLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 
