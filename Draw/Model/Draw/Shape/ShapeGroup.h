@@ -33,7 +33,7 @@
 + (NSArray *)localizeNameListWithENName:(NSString *)en CNName:(NSString *)cn;
 
 - (ShapeType *)shapeTypeList;
-- (NSString *)shapeFileNamePrefix;
+//- (NSString *)shapeFileNamePrefix;
 - (NSArray *)shapeNameList;
 - (ItemType)groupId;
 

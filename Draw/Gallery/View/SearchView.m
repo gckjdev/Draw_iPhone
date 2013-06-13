@@ -59,6 +59,7 @@ AUTO_CREATE_VIEW_BY_XIB(SearchView)
     [view initViewWithPreTextArray:array];
     view.options = [[[NSMutableDictionary alloc] initWithDictionary:nil] autorelease];
     [view.searchTextField addTarget:view.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+    view.searchTextField.delegate = view;
     return view;
 }
 
@@ -120,6 +121,15 @@ AUTO_CREATE_VIEW_BY_XIB(SearchView)
 {
     [self.options removeAllObjects];
     [self.options setDictionary:filter];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField.text.length > 0) {
+        [self clickSearch:nil];
+        return YES;
+    }
+    return NO;
 }
 
 /*

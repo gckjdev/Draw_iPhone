@@ -12,7 +12,7 @@
 
 typedef void(^SearchHandler)(NSString* searchText, NSDictionary* options);
 
-@interface SearchView : CommonInfoView <CommonSearchImageFilterViewDelegate>
+@interface SearchView : CommonInfoView <CommonSearchImageFilterViewDelegate, UITextFieldDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *searchTextField;
 @property (copy, nonatomic) SearchHandler searchHandler;
 

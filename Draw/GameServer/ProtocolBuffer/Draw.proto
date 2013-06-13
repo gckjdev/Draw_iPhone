@@ -212,7 +212,7 @@ message PBImageShapeGroup
     required int32 groupId = 1;
     repeated PBLocalizeString groupName = 2;
     repeated int32 shapeType = 3 [packed=true];
-    optional string fileNamePrefix = 4;
+//    optional string fileNamePrefix = 4;
 }
 
 message PBImageShapeGroupMeta

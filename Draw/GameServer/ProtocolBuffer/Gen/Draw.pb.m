@@ -5871,7 +5871,6 @@ static PBDrawBgMeta* defaultPBDrawBgMetaInstance = nil;
 @property int32_t groupId;
 @property (retain) NSMutableArray* mutableGroupNameList;
 @property (retain) NSMutableArray* mutableShapeTypeList;
-@property (retain) NSString* fileNamePrefix;
 @end
 
 @implementation PBImageShapeGroup
@@ -5885,23 +5884,14 @@ static PBDrawBgMeta* defaultPBDrawBgMetaInstance = nil;
 @synthesize groupId;
 @synthesize mutableGroupNameList;
 @synthesize mutableShapeTypeList;
-- (BOOL) hasFileNamePrefix {
-  return !!hasFileNamePrefix_;
-}
-- (void) setHasFileNamePrefix:(BOOL) value {
-  hasFileNamePrefix_ = !!value;
-}
-@synthesize fileNamePrefix;
 - (void) dealloc {
   self.mutableGroupNameList = nil;
   self.mutableShapeTypeList = nil;
-  self.fileNamePrefix = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
     self.groupId = 0;
-    self.fileNamePrefix = @"";
   }
   return self;
 }
@@ -5956,9 +5946,6 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
   for (NSNumber* value in self.mutableShapeTypeList) {
     [output writeInt32NoTag:[value intValue]];
   }
-  if (self.hasFileNamePrefix) {
-    [output writeString:4 value:self.fileNamePrefix];
-  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -5985,9 +5972,6 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
       size += computeInt32SizeNoTag(dataSize);
     }
     shapeTypeMemoizedSerializedSize = dataSize;
-  }
-  if (self.hasFileNamePrefix) {
-    size += computeStringSize(4, self.fileNamePrefix);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -6079,9 +6063,6 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
     }
     [result.mutableShapeTypeList addObjectsFromArray:other.mutableShapeTypeList];
   }
-  if (other.hasFileNamePrefix) {
-    [self setFileNamePrefix:other.fileNamePrefix];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -6120,10 +6101,6 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
           [self addShapeType:[input readInt32]];
         }
         [input popLimit:limit];
-        break;
-      }
-      case 34: {
-        [self setFileNamePrefix:[input readString]];
         break;
       }
     }
@@ -6203,22 +6180,6 @@ static PBImageShapeGroup* defaultPBImageShapeGroupInstance = nil;
 }
 - (PBImageShapeGroup_Builder*) clearShapeTypeList {
   result.mutableShapeTypeList = nil;
-  return self;
-}
-- (BOOL) hasFileNamePrefix {
-  return result.hasFileNamePrefix;
-}
-- (NSString*) fileNamePrefix {
-  return result.fileNamePrefix;
-}
-- (PBImageShapeGroup_Builder*) setFileNamePrefix:(NSString*) value {
-  result.hasFileNamePrefix = YES;
-  result.fileNamePrefix = value;
-  return self;
-}
-- (PBImageShapeGroup_Builder*) clearFileNamePrefix {
-  result.hasFileNamePrefix = NO;
-  result.fileNamePrefix = @"";
   return self;
 }
 @end
