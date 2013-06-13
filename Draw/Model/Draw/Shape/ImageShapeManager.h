@@ -15,4 +15,9 @@
 + (void)cleanCache;
 //+ ()
 
+
+#pragma mark- Test Method
+
++ (void)createMetaFile;
+
 @end
