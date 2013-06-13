@@ -62,6 +62,7 @@
     UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+        [cell setAutoresizingMask:UIViewAutoresizingNone];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         for (int i = 0; i < IMAGE_PER_LINE; i ++) {
             UserPhotoView* photoView = [UserPhotoView createViewWithPhoto:nil delegate:self];
