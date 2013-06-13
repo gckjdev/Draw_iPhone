@@ -9,6 +9,7 @@
 #import "SearchResultView.h"
 #import "UIImageView+WebCache.h"
 #import "ImageSearchResult.h"
+#import "ShareImageManager.h"
 
 @interface SearchResultView ()
 
@@ -37,11 +38,34 @@
 - (void)updateWithResult:(ImageSearchResult*)result
 {
     self.searchResult = result;
-    [self.imageView setImageWithURL:[NSURL URLWithString:result.url]];
+    [self updateWithUrl:result.url];
 }
+
 - (void)updateWithUrl:(NSString*)url
 {
-    [self.imageView setImageWithURL:[NSURL URLWithString:url]];
+    UIImage *defaultImage = nil;
+    
+    //        if(feed.largeImage){
+    //            defaultImage = feed.largeImage;
+    //        }
+    //        else{
+    defaultImage = [[ShareImageManager defaultManager] unloadBg];
+    //        }
+    [self.imageView setImageWithURL:[NSURL URLWithString:url]
+                   placeholderImage:defaultImage
+                            success:^(UIImage *image, BOOL cached) {
+                                if (!cached) {
+                                    self.imageView.alpha = 0;
+                                }
+                                
+                                [UIView animateWithDuration:1 animations:^{
+                                    self.imageView.alpha = 1.0;
+                                }];
+                                //            feed.largeImage = image;
+                                [self.imageView setImage:image];
+                            } failure:^(NSError *error) {
+                                self.imageView.alpha = 1;
+                            }];
 }
 
 

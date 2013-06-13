@@ -15,6 +15,7 @@
 
 + (id)singOpusManager;
 + (id)drawOpusManager;
++ (id)askPsManager;
 
 - (id)opusWithOpusId:(NSString *)opusId;
 - (void)saveOpus:(Opus*)opus;

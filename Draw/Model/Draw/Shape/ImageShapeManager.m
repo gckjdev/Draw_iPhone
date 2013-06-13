@@ -11,225 +11,213 @@
 #import "Draw.pb.h"
 #import "ItemType.h"
 #import "ShapeGroup.h"
+#import "PPSmartUpdateData.h"
+#import "ConfigManager.h"
 
-NSMutableDictionary *_bezierPathDict;
+
+#define IMAGE_SHAPE_ZIP_NAME @"image_shape.zip"
+#define IMAGE_SHAPE_META_FILE @"meta.pb"
+#define SUFFIX @".svg"
+
+
+@interface ImageShapeManager()
+{
+    NSMutableDictionary *_bezierPathDict;
+    PPSmartUpdateData *_smartData;
+    NSArray *_imageShapeGroupList;
+    
+}
+@end
+
+
 
 @implementation ImageShapeManager
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
-#define TYPE_MOD_VALUE 100
-
-+ (NSString *)svgFileNameWithType:(ShapeType)type
+- (id)init
 {
-    NSInteger index = type % TYPE_MOD_VALUE;
-    NSString *typeName = nil;
-    if (IsImageShapeType(Animal, type)) {
-        typeName = @"animal";
-    }else if(IsImageShapeType(Nature, type)){
-        typeName = @"nature";
-    }else if(IsImageShapeType(Plant, type)){
-        typeName = @"plant";
-    }else if(IsImageShapeType(Sign, type)){
-        typeName = @"sign";
-    }else if(IsImageShapeType(Stuff, type)){
-        typeName = @"stuff";
-    }else if(IsImageShapeType(Shape, type)){
-        typeName = @"shape";
-    }else{
-        return nil;
+    self = [super init];
+    if (self) {
+        
+        _smartData = [[PPSmartUpdateData alloc] initWithName:IMAGE_SHAPE_ZIP_NAME
+                                                        type:SMART_UPDATE_DATA_TYPE_ZIP
+                                                  bundlePath:IMAGE_SHAPE_ZIP_NAME
+                                             initDataVersion:[ConfigManager currentImageShapeVersion]];
+        
+        [self updateImageShapeList];
+        
+        __block ImageShapeManager *pt = self;
+        
+        [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+            if (!isAlreadyExisted) {
+                [pt updateImageShapeList];
+            }
+            PPDebug(@"checkUpdateAndDownload successfully");
+        } failureBlock:^(NSError *error) {
+            PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+        }];
+        
     }
-    return [NSString stringWithFormat:@"%@_%d",typeName, index];
+    return self;
 }
 
-+ (NSString *)fullPathWithSvgFileName:(NSString *)fileName
+- (void)dealloc
 {
-    if ([fileName length] == 0) {
-        return nil;
-    }
-    //TODO construct the full path
-    return fileName;
+    PPRelease(_smartData);
+    PPRelease(_imageShapeGroupList);
+    PPRelease(_bezierPathDict);
+    [super dealloc];
 }
 
-+ (ImageShapeInfo *)imageShapeWithType:(ShapeType)type
+- (void)updateImageShapeList
 {
-    
+    if (_imageShapeGroupList) {
+        PPRelease(_imageShapeGroupList);
+    }
+    NSString *filePath = [[_smartData currentDataPath] stringByAppendingPathComponent:IMAGE_SHAPE_META_FILE];
+    @try {
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        if (data) {
+            _imageShapeGroupList = [[[PBImageShapeGroupMeta parseFromData:data] imageShapeGroupList] retain];
+        }
+    }
+    @catch (NSException *exception) {
+        _imageShapeGroupList = nil;
+        PPDebug(@"<updateImageShapeList>Fail to parse draw bg data");
+    }
+}
+
+
+
+
+- (NSString *)baseDir
+{
+    return [_smartData currentDataPath];
+}
+
+- (NSArray *)imageShapeGroupList
+{
+    return _imageShapeGroupList;
+}
+
+- (NSString *)fullPathWithShapeType:(ShapeType)type
+{
+    NSString *name = [NSString stringWithFormat:@"%d%@",type,SUFFIX];
+    NSString *filePath = [[self baseDir] stringByAppendingPathComponent:name];
+    return filePath;
+}
+
+- (ImageShapeInfo *)imageShapeWithType:(ShapeType)type
+{
+    UIBezierPath *bPath = [self pathWithType:type];
+    if (bPath) {
+        ImageShapeInfo *shapeInfo = [[[ImageShapeInfo alloc] initWithCGPath:bPath.CGPath] autorelease];
+        shapeInfo.type = type;
+        return shapeInfo;
+    }
+    return nil;
+}
+
+- (UIBezierPath *)pathWithType:(ShapeType)type
+{
     if (_bezierPathDict == nil) {
         _bezierPathDict = [[NSMutableDictionary alloc] init];
     }
     NSString *key = [NSString stringWithFormat:@"%d",type];
     UIBezierPath *bPath = [_bezierPathDict objectForKey:key];
     if (bPath == nil) {
-        NSString *name = [ImageShapeManager svgFileNameWithType:type];
-        NSString *filePath = [ImageShapeManager fullPathWithSvgFileName:name];
-        
+        NSString *filePath = [self fullPathWithShapeType:type];
         if ([filePath length] != 0) {
-            bPath = [PocketSVG bezierPathWithSVGFileNamed:name];
+            bPath = [PocketSVG bezierPathWithSVGFilePath:filePath];
             if (bPath) {
                 [_bezierPathDict setObject:bPath forKey:key];
             }
         }
     }
-    if (bPath != nil) {
-        ImageShapeInfo *shapeInfo = [[[ImageShapeInfo alloc] initWithCGPath:bPath.CGPath] autorelease];
-        shapeInfo.type = type;
-        return shapeInfo;
-        
-    }
-
-
-    return nil;
+    return bPath;
 }
 
-+ (void)cleanCache
+- (void)cleanCache
 {
     [_bezierPathDict removeAllObjects];
+    PPRelease(_bezierPathDict);
 }
 
 
-//////////
+//////////  TEST CODE //////////
 
 
-+ (NSArray *)createArrayWithName:(NSString *)name range:(NSRange)range
++ (void)printShapeGroup:(PBImageShapeGroup *)group
 {
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = range.location; i < range.location + range.length; ++ i) {
-        NSString *str = [NSString stringWithFormat:@"%@_%d", name, i];
-        [array addObject:str];
+    PPDebug(@"===PRINT GROUP START===");
+    //group id
+    PPDebug(@"GROUP ID = %d;\n", group.groupId);
+    
+    //name
+    PPDebug(@"LOCALE NAME LIST = [");
+    for (PBLocalizeString *lString in group.groupNameList) {
+        PPDebug(@"%@ = %@",lString.languageCode,lString.localizedText);
     }
-    return array;
-}
-
-//#define CAN(name,loc) [ImageShapeManager createArrayWithName:name range:NSMakeRange(loc, 6)]
-//
-//+ (NSArray *)nameListForGroup:(ItemType)gid
-//{
-//    switch (gid) {
-//        case ImageShapeAnimal0:
-//            return CAN(@"animal", 0);
-//        case ImageShapeAnimal1:
-//            return CAN(@"animal", 6);
-//            
-//        case ImageShapeNature0:
-//            return CAN(@"nature", 0);
-//        case ImageShapeNature1:
-//            return CAN(@"nature", 6);
-//            
-//        case ImageShapeShape0:
-//            return CAN(@"shape", 0);
-//        case ImageShapeShape1:
-//            return CAN(@"shape", 6);
-//            
-//        case ImageShapeSign0:
-//            return CAN(@"sign", 0);
-//        case ImageShapeSign1:
-//            return CAN(@"sign", 6);
-//
-//        case ImageShapeStuff0:
-//            return CAN(@"stuff", 0);
-//        case ImageShapeStuff1:
-//            return CAN(@"stuff", 6);
-//            
-//        case ImageShapePlant0:
-//            return CAN(@"plant", 0);
-//        case ImageShapePlant1:
-//            return CAN(@"plant", 6);
-//        case ImageShapePlant2:
-//            return CAN(@"plant", 12);
-//            
-//            
-//        default:
-//            return nil;
-//    }
-//    
-//}
-
-
-//+ (ShapeType *)shapeTypeListForGroup:(ItemType)gid
-//{
-//    switch (gid) {
-//            
-//        case ImageShapeAnimal0:
-//            GetShapeTypeList(Animal, 0);
-//        case ImageShapeAnimal1:
-//            GetShapeTypeList(Animal, 6);
-//            
-//        case ImageShapeNature0:
-//            GetShapeTypeList(Nature, 0);
-//        case ImageShapeNature1:
-//            GetShapeTypeList(Nature, 6);
-//            
-//        case ImageShapeShape0:
-//            GetShapeTypeList(Shape, 0);
-//        case ImageShapeShape1:
-//            GetShapeTypeList(Shape, 6);
-//            
-//        case ImageShapeSign0:
-//            GetShapeTypeList(Shape, 0);
-//        case ImageShapeSign1:
-//            GetShapeTypeList(Shape, 6);
-//            
-//        case ImageShapeStuff0:
-//            GetShapeTypeList(Shape, 0);
-//        case ImageShapeStuff1:
-//            GetShapeTypeList(Shape, 6);
-//            
-//        case ImageShapePlant0:
-//            GetShapeTypeList(Plant, 0);
-//        case ImageShapePlant1:
-//            GetShapeTypeList(Plant, 6); 
-//        case ImageShapePlant2:
-//            GetShapeTypeList(Plant, 12);
-//            
-//        default:
-//            return nil;
-//    }
-//}
-
-
-
-+ (PBImageShapeGroup *)createGroupWithGroupId:(ItemType)gid
-                                         name:(NSString *)name
-                                        count:(NSInteger)count
-{
+    PPDebug(@"];\n");
     
+    //type list
+//    PPDebug(@"");
+    NSString *string = @"";
+    for (NSNumber *type in group.shapeTypeList) {
+        if ([string length] > 0) {
+            string = [NSString stringWithFormat:@"%@, %d",string, type.integerValue];
+        }else{
+            string = [NSString stringWithFormat:@"%d",type.integerValue];
+        }
 
+    }
+    PPDebug(@"TYPE LIST = [%@];\n",string);
+
+    PPDebug(@"===PRINT GROUP STOP ===\n");
     
-//    PBImageShapeGroup_Builder *builder = [[PBImageShapeGroup_Builder alloc] init];
-//    
-//    [builder setGroupId:gid];
-//    [builder setGroupName:name];
-//    
-//    return [builder build];
 }
-
 
 #define BUILD_GROUP(group)  [builder addImageShapeGroup:[[[[group##Group alloc] init] autorelease] toPBShapeGroup]];
+#define PRINT_GROUP(group) [ImageShapeManager printShapeGroup:group]
+
+
++ (void)loadMetaFile
+{
+    NSData *data = [NSData dataWithContentsOfFile:@"/Users/qqn_pipi/tool/shape_group_meta.pb"];
+    PBImageShapeGroupMeta *meta = [PBImageShapeGroupMeta parseFromData:data];
+    
+    for (PBImageShapeGroup *group in meta.imageShapeGroupList) {
+        PRINT_GROUP(group);
+    }
+    
+}
 
 + (void)createMetaFile
 {
     PBImageShapeGroupMeta_Builder *builder = [[[PBImageShapeGroupMeta_Builder alloc] init] autorelease];
     
-    BUILD_GROUP(Animal0)
-    BUILD_GROUP(Animal1)
-    
     BUILD_GROUP(Nature0)
     BUILD_GROUP(Nature1)
+
+    BUILD_GROUP(Animal0)
+    BUILD_GROUP(Animal1)
     
     BUILD_GROUP(Shape0)
     BUILD_GROUP(Shape1)
     
-    BUILD_GROUP(Sign0)
-    BUILD_GROUP(Sign1)
-    
     BUILD_GROUP(Stuff0)
     BUILD_GROUP(Stuff1)
+
+    BUILD_GROUP(Sign0)
+    BUILD_GROUP(Sign1)
     
     BUILD_GROUP(Plant0)
     BUILD_GROUP(Plant1)
     BUILD_GROUP(Plant2)
     
-    NSData *data = [[builder autorelease] data];
-    [data writeToFile:@"/Users/qqn_pipi/tool/shape.txt" atomically:YES];
+    NSData *data = [[builder build] data];
+    [data writeToFile:@"/Users/qqn_pipi/tool/shape_group_meta.pb" atomically:YES];
 }
 
 @end

@@ -254,6 +254,7 @@ NSString* GlobalGetBoardServerURL()
 //    [DrawBgManager createTestData:0];
 //    [GameConfigDataManager createTestConfigData];
 //    [ImageShapeManager createMetaFile];
+//    [ImageShapeManager loadMetaFile];
 //    [GameItemService createDrawTestDataFile];
 #endif
 

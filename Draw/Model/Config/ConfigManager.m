@@ -823,6 +823,11 @@
     return @"1.1";
 }
 
++ (NSString *)currentImageShapeVersion
+{
+    return @"0.1";
+}
+
 + (BOOL)isEnableLimeiWall
 {
     return [MobClickUtils getBoolValueByKey:@"ENABLE_LIMEI_WALL" defaultValue:YES];
