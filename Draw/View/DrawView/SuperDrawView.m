@@ -11,6 +11,9 @@
 #import "DrawView.h"
 #import "UIViewUtils.h"
 #import "UIImageExt.h"
+#import "PenFactory.h"
+#import "ImageManagerProtocol.h"
+#import "SmoothQuadCurvePen.h"
 
 #define DEFALT_MIN_SCALE 1
 #define DEFALT_MAX_SCALE 10
@@ -108,10 +111,29 @@
 //    }
 //}
 
+#define SPAN_RECT_MIN_WIDTH 20
+
 - (void)updateLastAction:(DrawAction *)action show:(BOOL)show
 {
     CGRect rect = [osManager updateLastAction:action];
     if (show) {
+        /* Don't Remove this code!! By Gamy, Optimize draw speed. 
+            2013-6-14
+         
+        if ([action isKindOfClass:[PaintAction class]]) {
+            PaintAction *paintAction = (PaintAction *)action;
+            NSUInteger count = [[paintAction paint] pointCount];
+            if (count > 2) {
+                id<PenEffectProtocol> pen = [PenFactory getPen:Pencil];
+                NSArray *list = [paintAction.paint.pointNodeList subarrayWithRange:NSMakeRange(count - 3, 3)];
+                [pen constructPath:list inRect:self.bounds];
+                rect = CGPathGetBoundingBox([pen penPath]);
+                CGFloat w = MAX(paintAction.paint.width, SPAN_RECT_MIN_WIDTH);
+                CGRectEnlarge(&rect, w * 4, w * 4);
+            }
+        }
+         */ 
+
         [self setNeedsDisplayInRect:rect];
     }
 }
