@@ -53,6 +53,7 @@
                                          penType:self.drawView.penType
                                            width:self.drawView.lineWidth
                                            color:self.drawView.lineColor];
+                [shape setStroke:self.drawView.strokeShape];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
                 shape.startPoint = shape.endPoint = point;
                 [self.drawView drawDrawAction:action show:YES];

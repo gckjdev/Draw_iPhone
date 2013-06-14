@@ -628,7 +628,7 @@
     // version 1 : support alpha
     // version 2 : support pens, new data compress //never release
     // version 3 : support shape, draw bg, scale, new  data compress
-    // version 4 : support shadow, gradient, input text, svg image shape, selector
+    // version 4 : support shadow,  svg image shape, selector, gradient, input text,
     return 4;
 }
 
@@ -918,7 +918,11 @@
 
 + (NSString *)getAlipayWebUrl
 {    
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http://192.168.1.198:9879/api/pay?"];
+#ifdef DEBUG
+//    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http:/127.0.0.1:9879/api/pay?"];
+#endif
+
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http:/www.you100.me:9879/api/pay?"];
 }
 
 + (NSString *)getAlipayRSAPrivateKey

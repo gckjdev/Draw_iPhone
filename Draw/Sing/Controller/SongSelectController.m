@@ -11,10 +11,14 @@
 #import "SongCell.h"
 #import "SingController.h"
 #import "OpusManager.h"
+#import "SongCategoryView.h"
 
-@interface SongSelectController()
+@interface SongSelectController(){
+    BOOL _isCategoryViewShow;
+}
 
 @property (retain, nonatomic) NSArray *songs;
+@property (retain, nonatomic) SongCategoryView *categoryView;
 
 @end
 
@@ -24,6 +28,7 @@
 - (void)dealloc {
     [_songs release];
     [_titleLabel release];
+    [_categoryView release];
     [super dealloc];
 }
 
@@ -78,7 +83,19 @@
 }
 
 - (IBAction)clickCategoryButton:(id)sender {
-    PPDebug(@"category");
+    if (_categoryView == nil) {
+        self.categoryView = [SongCategoryView createCategoryView];
+        _categoryView.delegate = self;
+        _isCategoryViewShow = NO;
+    }
+    
+    if (_isCategoryViewShow) {
+        [_categoryView dismiss];
+        _isCategoryViewShow = NO;
+    }else{
+        [_categoryView showInView:self.view];
+        _isCategoryViewShow = YES;
+    }
 }
 
 - (void)viewDidUnload {
@@ -88,6 +105,18 @@
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)didClickBgButton{
+    [_categoryView dismiss];
+    _isCategoryViewShow = NO;
+}
+
+- (void)didSelectTag:(int)tagId{
+    [_categoryView dismiss];
+    _isCategoryViewShow = NO;
+    
+    PPDebug(@"click tag: %d", tagId);
 }
 
 @end

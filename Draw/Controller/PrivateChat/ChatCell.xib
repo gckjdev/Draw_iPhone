@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">11G63</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1138.51</string>
-		<string key="IBDocument.HIToolboxVersion">569.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -106,7 +106,7 @@
 								<string key="NSFrame">{{70, 7}, {200, 20}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="272422140"/>
+								<reference key="NSNextKeyView" ref="351739848"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="921756659">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -165,6 +165,7 @@
 								<string key="NSFrame">{{0, 70}, {300, 1}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC43MTc2NDcwNTg4IDAuNzE3NjQ3MDU4OCAwLjcxNzY0NzA1ODgAA</bytes>
@@ -177,7 +178,7 @@
 								<string key="NSFrame">{{269.5, 5.5}, {23, 23}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="252803361"/>
+								<reference key="NSNextKeyView" ref="272422140"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -191,7 +192,7 @@
 								<string key="NSFrame">{{271, 7}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="288792617"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="351739848"/>
+								<reference key="NSNextKeyView" ref="252803361"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -263,6 +264,7 @@
 				<reference key="IBUIBackgroundColor" ref="685771839"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="288792617"/>
+				<string key="IBUIReuseIdentifier">ChatCell</string>
 				<real value="82" key="IBUIRowHeight"/>
 			</object>
 		</array>
