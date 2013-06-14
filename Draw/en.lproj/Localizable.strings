@@ -1711,5 +1711,16 @@
 
 /*********************你唱我猜国际化字符串结束 ************************/
 
-
+/*********************图库国际化字符串开始 ************************/
+"kShow" = "Show";
+"kKeywords" = "Keywords:";
+"kGallery" = "Gallery";
+"kImageSearch" = "Search Image";
+"kDeletePhotoSucc" = "Delete photo successfully!";
+"kEditPhotoSucc" = "Photo updated!";
+"kAddUserPhotoSucc" = "Photo saved!";
+"kEditPhoto" = "Edit Photo";
+"kName" = "Name";
+"kOperations" = "Operations";
+/*********************图库国际化字符串结束 ************************/
 

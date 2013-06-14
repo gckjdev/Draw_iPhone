@@ -19,6 +19,7 @@
 #import "GalleryService.h"
 #import "GalleryController.h"
 #import "Photo.pb.h"
+#import "PPSmartUpdateData.h"
 
 #import "StorageManager.h"
 #import "UserManager.h"
@@ -31,6 +32,7 @@
 @property (retain, nonatomic) NSDictionary* filter;
 @property (retain, nonatomic) NSArray* keywords;
 @property (retain, nonatomic) NSString* searchText;
+@property (retain, nonatomic) PPSmartUpdateData* smartData;
 
 @end
 
@@ -42,6 +44,7 @@
 //    [_searchBar release];
     [_keywords release];
     [_searchText release];
+    [_smartData release];
     [super dealloc];
 }
 
@@ -65,15 +68,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self updateKeywords];
+    // Do any additional setup after loading the view from its nib.
+}
+
+#define KEYWORD_FILE  @"keywords.txt"
+#define BUNDLE_FILE     @"keywords.txt"
+#define INIT_VER    @"1.0"
+- (void)updateKeywords
+{
+    self.smartData = [[[PPSmartUpdateData alloc] initWithName:KEYWORD_FILE type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:BUNDLE_FILE initDataVersion:INIT_VER] autorelease];
     
-    
+    [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
+        PPDebug(@"checkUpdateAndDownload successfully");
+        [self loadKeywords];
+    } failureBlock:^(NSError *error) {
+        PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
+        [self loadKeywords];
+    }];
+}
+
+- (void)loadKeywords
+{
     NSError* err;
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-    NSString* fileStr = [NSString stringWithContentsOfFile:@"/gitdata/Draw_iPhone/Draw/Gallery/keywords.txt" encoding:enc error:&err];
+    NSString* fileStr = [NSString stringWithContentsOfFile:_smartData.dataFilePath encoding:enc error:&err];
     self.keywords = [fileStr componentsSeparatedByString:@"$"];
-    
     [self clickFilter:nil];
-    // Do any additional setup after loading the view from its nib.
 }
 
 
@@ -215,7 +236,7 @@ enum {
 #pragma mark - SearchResultView delegate
 - (void)didClickSearchResult:(ImageSearchResult *)searchResult
 {
-    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kShareAction") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kSave"), nil];
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOperations") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kSave"), nil];
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     __block CommonSearchImageController* cp = self;
@@ -271,6 +292,7 @@ enum {
     [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto *photo) {
         if (resultCode == 0) {
             PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tagsList description]);
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAddUserPhotoSucc") delayTime:1.5];
             
         } else {
             PPDebug(@"<didEditPictureInfo> err! code = %d", resultCode);
