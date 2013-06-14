@@ -33,12 +33,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
           delegate:(id<OpusServiceDelegate>)delegate
 
 {    
-    if ([opusData length] == 0 || opusMeta == nil){
-        if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]){
-            [delegate didSubmitOpus:ERROR_CLIENT_REQUEST_NULL opus:nil];
-        }
-        return;
-    }
+//    if ([opusData length] == 0 || opusMeta == nil){
+//        if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]){
+//            [delegate didSubmitOpus:ERROR_CLIENT_REQUEST_NULL opus:nil];
+//        }
+//        return;
+//    }
     
     dispatch_async(workingQueue, ^{
         

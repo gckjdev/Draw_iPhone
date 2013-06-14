@@ -10,10 +10,12 @@
 #import "AnimationManager.h"
 #import "Opus.pb.h"
 #import "AskPs.h"
+#import "OpusService.h"
 
 @interface AskPsController ()
 @property (retain, nonatomic) AskPs *askPs;
 @property (retain, nonatomic) ChangeAvatar *imagePicker;
+@property (retain, nonatomic) UIImage *pendingImage;
 @property (retain, nonatomic) NSMutableSet *requirementSet;
 @end
 
@@ -22,12 +24,13 @@
 - (void)dealloc {
     [_pictureButton release];
     [_imagePicker release];
+    [_pendingImage release];
     [_requirementSet release];
     [_descTextField release];
     [_contentHolderView release];
     [_coinsPerUserTextField release];
     [_coinsMaxTotalTextField release];
-    [_ingotBestUser release];
+    [_ingotBestUserTextField release];
     [super dealloc];
 }
 
@@ -37,7 +40,7 @@
     [self setContentHolderView:nil];
     [self setCoinsPerUserTextField:nil];
     [self setCoinsMaxTotalTextField:nil];
-    [self setIngotBestUser:nil];
+    [self setIngotBestUserTextField:nil];
     [super viewDidUnload];
 }
 
@@ -53,7 +56,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.contentHolderView.contentSize = CGRectMake(_contentHolderView.frame.origin.x, _contentHolderView.frame.origin.y, _contentHolderView.frame.size.width, _contentHolderView.frame.size.height + 1);
+    [self.contentHolderView updateHeight:400];
+    self.contentHolderView.contentSize = CGSizeMake(320, 531);
+    [self updateButtonsTitle];
 }
 
 - (IBAction)clickPictureButton:(id)sende{
@@ -66,6 +71,7 @@
 #pragma mark - ChangeAvatarDelegate
 - (void)didImageSelected:(UIImage*)image
 {
+    self.pendingImage = image;
     [self.pictureButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
     [self.pictureButton setImage:image forState:UIControlStateNormal];
 }
@@ -78,7 +84,7 @@ enum {
     TagFree,
     TagChangeBackground,
     TagMakeFunny,
-    TagDomineering 
+    TagDomineering
 };
 
 - (NSString *)requirementForTag:(NSUInteger)tag
@@ -105,6 +111,14 @@ enum {
     }
 }
 
+- (void)updateButtonsTitle
+{
+    for (NSUInteger tag = TagPerfect; tag <= TagDomineering; tag ++) {
+        UIButton *button = (UIButton *)[self.contentHolderView viewWithTag:tag];
+        [button setTitle:[self requirementForTag:tag] forState:UIControlStateNormal];
+    }
+}
+
 - (IBAction)clickRequirementButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
@@ -119,30 +133,52 @@ enum {
     PPDebug(@"list:%@", [_requirementSet allObjects]);
 }
 
+- (IBAction)touchDownBackground:(id)sender {
+    [_descTextField resignFirstResponder];
+    [_coinsPerUserTextField resignFirstResponder];
+    [_coinsMaxTotalTextField resignFirstResponder];
+    [_ingotBestUserTextField resignFirstResponder];
+}
+
+- (IBAction)clickSubmitButton:(id)sender {
+    int coinsPerUse = [_coinsPerUserTextField.text integerValue];
+    int coinsMaxTotal = [_coinsMaxTotalTextField.text integerValue];
+    int ingotBestUser = [_ingotBestUserTextField.text integerValue];
+    self.askPs = [Opus opusWithCategory:OpusCategoryAskPs];
+    [_askPs setRequirements:[_requirementSet allObjects]];
+    [_askPs setType:PBOpusTypeAskPs];
+    [_askPs setDesc:_descTextField.text];
+    [_askPs setAwardCoinsPerUser:coinsPerUse];
+    [_askPs setAwardCoinsMaxTotal:coinsMaxTotal];
+    [_askPs setAwardIngotBestUser:ingotBestUser];
+    [[OpusService defaultService] submitOpus:_askPs
+                                       image:_pendingImage
+                                    opusData:nil
+                                 opusManager:[OpusManager askPsManager]
+                            progressDelegate:nil
+                                    delegate:self];
+}
+
+#pragma mark  - OpusServiceDelegate
+- (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus
+{
+    
+}
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField == self.descTextField) {
-        [self.contentHolderView updateOriginY:-150];
+        [self.contentHolderView setContentOffset:CGPointMake(0,160) animated:YES];
     } else {
-        [self.contentHolderView updateOriginY:-150];
+        [self.contentHolderView setContentOffset:CGPointMake(0,270) animated:YES];
     }
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    
-    [UIView commitAnimations];
     return YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    [self.contentHolderView updateOriginY:41];
-    [UIView commitAnimations];
     return YES;
 }
 

@@ -1232,8 +1232,8 @@
 "kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
 
 "kSelectPaymentWay" = "选择购买方式";
-//"kPayViaZhiFuBao" = "使用支付宝客户端购买";
-"kPayViaZhiFuBao" = "使用支付宝购买";
+"kPayViaZhiFuBao" = "使用支付宝客户端购买";
+//"kPayViaZhiFuBao" = "使用支付宝购买";
 "kPayViaZhiFuBaoWeb" = "使用支付宝网页购买";
 "kPayViaAppleAccount" = "使用Apple账户购买";
 
@@ -1354,10 +1354,16 @@
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
-
-
-
-
+/*********************** 求ps *************************/
+"kRequirementPerfec" = "P美美的";
+"kRequirementCute" = "P可爱点";
+"kRequirementUglify" = "求恶搞";
+"kRequirementNotUglify" = "不要恶搞";
+"kRequirementFree" = "自由发挥";
+"kRequirementChangeBackground" = "换个背景";
+"kRequirementMakeFunny" = "P搞笑点";
+"kRequirementDomineering" = "P霸气点";
+/*********************** 求ps结束 *************************/
 
 
 /*********************** 大话骰子国际化字符串开始 *************************/

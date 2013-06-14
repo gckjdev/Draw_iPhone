@@ -74,6 +74,10 @@
 #import "SKProductService.h"
 #import "ShareController.h"
 
+
+#import "ImageShapeManager.h"
+
+
 NSString* GlobalGetServerURL()
 {
 
@@ -108,7 +112,7 @@ NSString* GlobalGetTrafficServerURL()
 //    }
 #endif
 #ifdef DEBUG
-//    return @"http://58.215.184.18:8888/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
 #endif
     
@@ -248,7 +252,9 @@ NSString* GlobalGetBoardServerURL()
 
 #ifdef DEBUG
 //    [DrawBgManager createTestData:0];
-    [GameConfigDataManager createTestConfigData];
+//    [GameConfigDataManager createTestConfigData];
+//    [ImageShapeManager createMetaFile];
+//    [ImageShapeManager loadMetaFile];
 //    [GameItemService createDrawTestDataFile];
 #endif
 

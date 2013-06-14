@@ -1459,16 +1459,15 @@
 @interface PBImageShapeGroup : PBGeneratedMessage {
 @private
   BOOL hasGroupId_:1;
-  BOOL hasGroupName_:1;
   int32_t groupId;
-  NSString* groupName;
   NSMutableArray* mutableShapeTypeList;
   int32_t shapeTypeMemoizedSerializedSize;
+  NSMutableArray* mutableGroupNameList;
 }
 - (BOOL) hasGroupId;
-- (BOOL) hasGroupName;
 @property (readonly) int32_t groupId;
-@property (readonly, retain) NSString* groupName;
+- (NSArray*) groupNameList;
+- (PBLocalizeString*) groupNameAtIndex:(int32_t) index;
 - (NSArray*) shapeTypeList;
 - (int32_t) shapeTypeAtIndex:(int32_t) index;
 
@@ -1511,10 +1510,12 @@
 - (PBImageShapeGroup_Builder*) setGroupId:(int32_t) value;
 - (PBImageShapeGroup_Builder*) clearGroupId;
 
-- (BOOL) hasGroupName;
-- (NSString*) groupName;
-- (PBImageShapeGroup_Builder*) setGroupName:(NSString*) value;
-- (PBImageShapeGroup_Builder*) clearGroupName;
+- (NSArray*) groupNameList;
+- (PBLocalizeString*) groupNameAtIndex:(int32_t) index;
+- (PBImageShapeGroup_Builder*) replaceGroupNameAtIndex:(int32_t) index with:(PBLocalizeString*) value;
+- (PBImageShapeGroup_Builder*) addGroupName:(PBLocalizeString*) value;
+- (PBImageShapeGroup_Builder*) addAllGroupName:(NSArray*) values;
+- (PBImageShapeGroup_Builder*) clearGroupNameList;
 
 - (NSArray*) shapeTypeList;
 - (int32_t) shapeTypeAtIndex:(int32_t) index;

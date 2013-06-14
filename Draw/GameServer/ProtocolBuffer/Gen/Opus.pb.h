@@ -86,6 +86,21 @@
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
+  PBOpusCategoryTypeDrawCategory = 0,
+  PBOpusCategoryTypeSingCategory = 1,
+  PBOpusCategoryTypeAskPsCategory = 2,
+} PBOpusCategoryType;
+
+BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value);
+
+typedef enum {
+  PBLanguageChinese = 1,
+  PBLanguageEnglish = 2,
+} PBLanguage;
+
+BOOL PBLanguageIsValidValue(PBLanguage value);
+
+typedef enum {
   PBOpusTypeUnknown = 0,
   PBOpusTypeDraw = 1,
   PBOpusTypeGuess = 2,
@@ -304,6 +319,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value);
   BOOL hasSing_:1;
   BOOL hasAskPs_:1;
   BOOL hasAskPsOpus_:1;
+  BOOL hasLanguage_:1;
+  BOOL hasCategory_:1;
   BOOL hasType_:1;
   int32_t deviceType;
   int32_t status;
@@ -323,6 +340,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value);
   PBSingOpus* sing;
   PBAskPs* askPs;
   PBAskPsOpus* askPsOpus;
+  PBLanguage language;
+  PBOpusCategoryType category;
   PBOpusType type;
   NSMutableArray* mutableActionTimesList;
 }
@@ -333,6 +352,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value);
 - (BOOL) hasImage;
 - (BOOL) hasThumbImage;
 - (BOOL) hasDataUrl;
+- (BOOL) hasLanguage;
+- (BOOL) hasCategory;
 - (BOOL) hasCreateDate;
 - (BOOL) hasStatus;
 - (BOOL) hasDeviceType;
@@ -352,6 +373,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value);
 @property (readonly, retain) NSString* image;
 @property (readonly, retain) NSString* thumbImage;
 @property (readonly, retain) NSString* dataUrl;
+@property (readonly) PBLanguage language;
+@property (readonly) PBOpusCategoryType category;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t status;
 @property (readonly) int32_t deviceType;
@@ -435,6 +458,16 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value);
 - (NSString*) dataUrl;
 - (PBOpus_Builder*) setDataUrl:(NSString*) value;
 - (PBOpus_Builder*) clearDataUrl;
+
+- (BOOL) hasLanguage;
+- (PBLanguage) language;
+- (PBOpus_Builder*) setLanguage:(PBLanguage) value;
+- (PBOpus_Builder*) clearLanguage;
+
+- (BOOL) hasCategory;
+- (PBOpusCategoryType) category;
+- (PBOpus_Builder*) setCategory:(PBOpusCategoryType) value;
+- (PBOpus_Builder*) clearCategory;
 
 - (BOOL) hasCreateDate;
 - (int32_t) createDate;

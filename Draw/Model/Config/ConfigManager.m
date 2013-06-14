@@ -823,6 +823,11 @@
     return @"1.1";
 }
 
++ (NSString *)currentImageShapeVersion
+{
+    return @"0.1";
+}
+
 + (BOOL)isEnableLimeiWall
 {
     return [MobClickUtils getBoolValueByKey:@"ENABLE_LIMEI_WALL" defaultValue:YES];
@@ -912,8 +917,8 @@
 }
 
 + (NSString *)getAlipayWebUrl
-{
-    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http://192.168.1.198:9879/webpay?name=%@&amount=%@"];
+{    
+    return [MobClickUtils getStringValueByKey:@"ALI_PAY_WEB_URL" defaultValue:@"http://192.168.1.198:9879/api/pay?"];
 }
 
 + (NSString *)getAlipayRSAPrivateKey

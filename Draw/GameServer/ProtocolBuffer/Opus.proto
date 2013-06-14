@@ -5,7 +5,7 @@ import "Sing.proto";
 package game;
 
 option java_package = "com.orange.network.game.protocol.model";
-option java_outer_classname = "Opus";
+option java_outer_classname = "OpusProtos";
 
 
 
@@ -55,6 +55,17 @@ message PBAskPsOpus {
     required string askPsId = 1;                    // 关联的求PS的ID
 }
 
+enum PBOpusCategoryType{
+    DRAW_CATEGORY = 0;
+    SING_CATEGORY = 1;
+    ASK_PS_CATEGORY = 2;
+}
+
+enum PBLanguage{
+    CHINESE = 1;
+    ENGLISH = 2;
+}
+
 enum PBOpusType{
 
 	UNKNOWN = 0;
@@ -86,6 +97,9 @@ message PBOpus {
   optional string thumbImage = 6;               // 作品缩略图
   optional string dataUrl = 9;                  // 作品数据远程URL
   
+  optional PBLanguage language = 10;            // 作品语言
+  optional PBOpusCategoryType category = 11;    // 作品大分类
+
   optional int32 createDate = 15;               // 作品创建时间
   optional int32 status = 20;                   // 作品状态，0表示正常，1表示已删除。
 

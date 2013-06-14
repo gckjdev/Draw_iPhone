@@ -1337,10 +1337,16 @@
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
-
-
-
-
+/*********************** 求ps *************************/
+"kRequirementPerfec" = "P美美的";
+"kRequirementCute" = "P可愛點";
+"kRequirementUglify" = "求惡搞";
+"kRequirementNotUglify" = "不要惡搞";
+"kRequirementFree" = "自由發揮";
+"kRequirementChangeBackground" = "換個背景";
+"kRequirementMakeFunny" = "P搞笑點";
+"kRequirementDomineering" = "P霸氣點";
+/*********************** 求ps结束 *************************/
 
 
 /*********************** 大话骰子国际化字符串开始 *************************/

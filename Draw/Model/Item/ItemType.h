@@ -59,12 +59,27 @@ typedef enum
     
     //add by Gamy 2013-5-30
     BasicEmptyShape = 1301,
+    
+    //add by Gamy 2013-6-7
+    ImageShapeNature0 = 1310,
+    ImageShapeNature1 = 1311,
 
-    ImageShape1 = 1321,
-    ImageShape2 = 1322,
-    ImageShape3 = 1323,
-    ImageShape4 = 1324,
-    ImageShape5 = 1325,
+    ImageShapeAnimal0 = 1320,
+    ImageShapeAnimal1 = 1321,
+    
+    ImageShapeShape0 = 1330,
+    ImageShapeShape1 = 1331,
+
+    ImageShapeStuff0 = 1340,
+    ImageShapeStuff1 = 1341,
+
+    ImageShapeSign0 = 1350,
+    ImageShapeSign1 = 1351,
+    
+    ImageShapePlant0 = 1360,
+    ImageShapePlant1 = 1361,
+    ImageShapePlant2 = 1362,
+        
     
     CanvasRectStart = 1400,         
     CanvasRectiPhoneDefault,            // 300 * 300

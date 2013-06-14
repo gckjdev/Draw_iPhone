@@ -10,9 +10,11 @@
 #import "BuriManager.h"
 #import "SingOpus.h"
 #import "DrawOpus.h"
+#import "AskPs.h"
 
 static OpusManager* globalSingOpusManager;
 static OpusManager* globalDrawOpusManager;
+static OpusManager* globalAskPsManager;
 
 @interface OpusManager()
 @property (assign, nonatomic) Class aClass;
@@ -47,6 +49,18 @@ static OpusManager* globalDrawOpusManager;
     });
     
     return globalSingOpusManager;
+}
+
++ (id)askPsManager{
+    
+    static dispatch_once_t askPsManagerOnceToken;
+    dispatch_once(&askPsManagerOnceToken, ^{
+        if (globalAskPsManager == nil){
+            globalAskPsManager = [[OpusManager alloc] initWithClass:[AskPs class]];
+        }
+    });
+    
+    return globalAskPsManager;
 }
 
 - (id)initWithClass:(Class)class{
