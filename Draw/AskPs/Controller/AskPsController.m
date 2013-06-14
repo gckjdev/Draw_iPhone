@@ -31,6 +31,7 @@
     [_coinsPerUserTextField release];
     [_coinsMaxTotalTextField release];
     [_ingotBestUserTextField release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -41,6 +42,7 @@
     [self setCoinsPerUserTextField:nil];
     [self setCoinsMaxTotalTextField:nil];
     [self setIngotBestUserTextField:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 
@@ -162,7 +164,9 @@ enum {
 #pragma mark  - OpusServiceDelegate
 - (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus
 {
-    
+    if (resultCode == ERROR_SUCCESS) {
+        
+    }
 }
 
 #pragma mark - UITextFieldDelegate

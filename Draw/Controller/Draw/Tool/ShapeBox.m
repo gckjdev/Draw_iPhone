@@ -194,6 +194,9 @@ BOOL staticStroke = NO;
 
 - (IBAction)changeDrawStyle:(id)sender {
     [self setStroke:![self isStroke]];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didChangeDrawStyle:)]) {
+        [self.delegate shapeBox:self didChangeDrawStyle:[self isStroke]];
+    }
 }
 @end
 

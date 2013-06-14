@@ -72,11 +72,12 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-#define KEYWORD_FILE  @"keywords.txt"
-#define BUNDLE_FILE     @"keywords.txt"
+#define KEYWORD_FILE  ([LocaleUtils isChinese]?@"keywords.txt":@"keywords_en.txt")
+#define BUNDLE_FILE     ([LocaleUtils isChinese]?@"keywords.txt":@"keywords_en.txt")
 #define INIT_VER    @"1.0"
 - (void)updateKeywords
 {
+    
     self.smartData = [[[PPSmartUpdateData alloc] initWithName:KEYWORD_FILE type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:BUNDLE_FILE initDataVersion:INIT_VER] autorelease];
     
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
