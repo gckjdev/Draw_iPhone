@@ -137,6 +137,15 @@
 #endif
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    __block typeof(self) bself = self;
+    [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
+        [bself updateBalance];
+    }];
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidUnload {
     [self setCountLabel:nil];
     [self setTaobaoLinkView:nil];
@@ -280,7 +289,7 @@
 //                /*
             case 0:
                 // pay via zhifubao
-                [bself alipayWebPaymentForOrder:order taobaoUrl:product.taobaoUrl];
+                [bself alipayWebPaymentForOrder:order product:product];
                 break;
                 
             case 1:
@@ -311,7 +320,7 @@
     
 }
 
-- (void)alipayWebPaymentForOrder:(AlixPayOrder *)order taobaoUrl:(NSString*)taobaoUrl
+- (void)alipayWebPaymentForOrder:(AlixPayOrder *)order product:(PBIAPProduct*)product
 {
     NSString* url = [ConfigManager getAlipayWebUrl];
     url = [url stringByAddQueryParameter:METHOD value:@"charge"];
@@ -319,8 +328,10 @@
     url = [url stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
     url = [url stringByAddQueryParameter:PARA_AMOUNT value:order.amount];
     url = [url stringByAddQueryParameter:PARA_DESC value:order.productName];
-    url = [url stringByAddQueryParameter:PARA_URL value:taobaoUrl];
+    url = [url stringByAddQueryParameter:PARA_URL value:product.taobaoUrl];
     url = [url stringByAddQueryParameter:PARA_USERID value:[[UserManager defaultManager] userId]];
+    url = [url stringByAddQueryParameter:PARA_TYPE intValue:product.type];
+    url = [url stringByAddQueryParameter:PARA_COUNT intValue:product.count];
     
 //    NSString* url = [NSString stringWithFormat:[ConfigManager getAlipayWebUrl],
 //                     [order.productName encodedURLParameterString], order.amount];

@@ -41,7 +41,7 @@
     NSURL *thumbUrl =[NSURL URLWithString:opus.thumbImage];
     NSURL *url = [NSURL URLWithString:opus.image];
     
-    __block typeof(self) bself  = self;
+//    __block typeof(self) bself  = self;
 
     UIImage *defaultImage = nil;
     

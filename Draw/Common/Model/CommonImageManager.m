@@ -115,4 +115,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CommonImageManager)
     return [UIImage imageNamed:@"super_face_cry.png"];
 }
 
+- (UIImage*)photoTagTitleBackground
+{
+    return [UIImage imageNamed:@"photo_tag_title_bg.png"];
+}
+- (UIImage*)photoTagUnselectedBackground
+{
+    return [UIImage imageNamed:@"photo_tag_unselect.png"];
+}
+- (UIImage*)photoTagSelectedBackground
+{
+    return [UIImage imageNamed:@"photo_tag_select.png"];
+}
+
 @end

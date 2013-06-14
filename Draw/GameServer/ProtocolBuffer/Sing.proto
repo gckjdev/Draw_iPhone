@@ -4,6 +4,32 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "SingProtos";
 
+
+message PBSongTag{
+    required int32 tagId = 1;
+    required string tagName = 2;
+}
+
+// 分类文件格式
+// 每个分类之间用^^分隔
+// <categoryId>##<name>##<tags>
+//  tags之间使用$$分隔
+
+message PBSongCategory{
+    required int32 categoryId = 1;
+    required string name = 2;
+    repeated PBSongTag songTags = 3;
+}
+
+message PBSongCategoryList{
+    repeated PBSongCategory categorys = 1;
+}
+
+// 歌曲文件格式
+// 歌曲之间用^^分隔
+// <songId>##<name>##<author>##<lyric url>##<tagNames>
+// tagNames之间用$$分隔
+
 message PBSong{
   required string songId = 1;       // 歌曲Id
   required string name = 2;         // 歌曲名称
@@ -11,7 +37,7 @@ message PBSong{
   optional string author = 3;       // 作者
   optional string lyric = 4;        // 歌词
 
-  repeated int32 tag = 20;          // 标签，用于分类
+  repeated int32 tagId = 20;          // 标签，用于分类
 }
 
 message PBSongList{

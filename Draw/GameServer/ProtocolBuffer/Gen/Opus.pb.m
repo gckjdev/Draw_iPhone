@@ -1905,8 +1905,8 @@ static PBOpus* defaultPBOpusInstance = nil;
 @interface PBOpusAction ()
 @property (retain) NSString* actionId;
 @property int32_t actionType;
-@property (retain) NSString* opusId;
 @property (retain) PBUserBasicInfo* userInfo;
+@property (retain) PBOpus* opus;
 @property int32_t createDate;
 @property (retain) PBOpusAction* sourceAction;
 @property (retain) PBActionComment* commentAction;
@@ -1930,13 +1930,6 @@ static PBOpus* defaultPBOpusInstance = nil;
   hasActionType_ = !!value;
 }
 @synthesize actionType;
-- (BOOL) hasOpusId {
-  return !!hasOpusId_;
-}
-- (void) setHasOpusId:(BOOL) value {
-  hasOpusId_ = !!value;
-}
-@synthesize opusId;
 - (BOOL) hasUserInfo {
   return !!hasUserInfo_;
 }
@@ -1944,6 +1937,13 @@ static PBOpus* defaultPBOpusInstance = nil;
   hasUserInfo_ = !!value;
 }
 @synthesize userInfo;
+- (BOOL) hasOpus {
+  return !!hasOpus_;
+}
+- (void) setHasOpus:(BOOL) value {
+  hasOpus_ = !!value;
+}
+@synthesize opus;
 - (BOOL) hasCreateDate {
   return !!hasCreateDate_;
 }
@@ -1981,8 +1981,8 @@ static PBOpus* defaultPBOpusInstance = nil;
 @synthesize guessAction;
 - (void) dealloc {
   self.actionId = nil;
-  self.opusId = nil;
   self.userInfo = nil;
+  self.opus = nil;
   self.sourceAction = nil;
   self.commentAction = nil;
   self.flowerAction = nil;
@@ -1993,8 +1993,8 @@ static PBOpus* defaultPBOpusInstance = nil;
   if ((self = [super init])) {
     self.actionId = @"";
     self.actionType = 0;
-    self.opusId = @"";
     self.userInfo = [PBUserBasicInfo defaultInstance];
+    self.opus = [PBOpus defaultInstance];
     self.createDate = 0;
     self.sourceAction = [PBOpusAction defaultInstance];
     self.commentAction = [PBActionComment defaultInstance];
@@ -2024,6 +2024,11 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
       return NO;
     }
   }
+  if (self.hasOpus) {
+    if (!self.opus.isInitialized) {
+      return NO;
+    }
+  }
   if (self.hasSourceAction) {
     if (!self.sourceAction.isInitialized) {
       return NO;
@@ -2043,11 +2048,11 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   if (self.hasActionType) {
     [output writeInt32:2 value:self.actionType];
   }
-  if (self.hasOpusId) {
-    [output writeString:5 value:self.opusId];
-  }
   if (self.hasUserInfo) {
     [output writeMessage:6 value:self.userInfo];
+  }
+  if (self.hasOpus) {
+    [output writeMessage:7 value:self.opus];
   }
   if (self.hasCreateDate) {
     [output writeInt32:11 value:self.createDate];
@@ -2079,11 +2084,11 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   if (self.hasActionType) {
     size += computeInt32Size(2, self.actionType);
   }
-  if (self.hasOpusId) {
-    size += computeStringSize(5, self.opusId);
-  }
   if (self.hasUserInfo) {
     size += computeMessageSize(6, self.userInfo);
+  }
+  if (self.hasOpus) {
+    size += computeMessageSize(7, self.opus);
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(11, self.createDate);
@@ -2181,11 +2186,11 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   if (other.hasActionType) {
     [self setActionType:other.actionType];
   }
-  if (other.hasOpusId) {
-    [self setOpusId:other.opusId];
-  }
   if (other.hasUserInfo) {
     [self mergeUserInfo:other.userInfo];
+  }
+  if (other.hasOpus) {
+    [self mergeOpus:other.opus];
   }
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
@@ -2231,10 +2236,6 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
         [self setActionType:[input readInt32]];
         break;
       }
-      case 42: {
-        [self setOpusId:[input readString]];
-        break;
-      }
       case 50: {
         PBUserBasicInfo_Builder* subBuilder = [PBUserBasicInfo builder];
         if (self.hasUserInfo) {
@@ -2242,6 +2243,15 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUserInfo:[subBuilder buildPartial]];
+        break;
+      }
+      case 58: {
+        PBOpus_Builder* subBuilder = [PBOpus builder];
+        if (self.hasOpus) {
+          [subBuilder mergeFrom:self.opus];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setOpus:[subBuilder buildPartial]];
         break;
       }
       case 88: {
@@ -2319,22 +2329,6 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
   result.actionType = 0;
   return self;
 }
-- (BOOL) hasOpusId {
-  return result.hasOpusId;
-}
-- (NSString*) opusId {
-  return result.opusId;
-}
-- (PBOpusAction_Builder*) setOpusId:(NSString*) value {
-  result.hasOpusId = YES;
-  result.opusId = value;
-  return self;
-}
-- (PBOpusAction_Builder*) clearOpusId {
-  result.hasOpusId = NO;
-  result.opusId = @"";
-  return self;
-}
 - (BOOL) hasUserInfo {
   return result.hasUserInfo;
 }
@@ -2363,6 +2357,36 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
 - (PBOpusAction_Builder*) clearUserInfo {
   result.hasUserInfo = NO;
   result.userInfo = [PBUserBasicInfo defaultInstance];
+  return self;
+}
+- (BOOL) hasOpus {
+  return result.hasOpus;
+}
+- (PBOpus*) opus {
+  return result.opus;
+}
+- (PBOpusAction_Builder*) setOpus:(PBOpus*) value {
+  result.hasOpus = YES;
+  result.opus = value;
+  return self;
+}
+- (PBOpusAction_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue {
+  return [self setOpus:[builderForValue build]];
+}
+- (PBOpusAction_Builder*) mergeOpus:(PBOpus*) value {
+  if (result.hasOpus &&
+      result.opus != [PBOpus defaultInstance]) {
+    result.opus =
+      [[[PBOpus builderWithPrototype:result.opus] mergeFrom:value] buildPartial];
+  } else {
+    result.opus = value;
+  }
+  result.hasOpus = YES;
+  return self;
+}
+- (PBOpusAction_Builder*) clearOpus {
+  result.hasOpus = NO;
+  result.opus = [PBOpus defaultInstance];
   return self;
 }
 - (BOOL) hasCreateDate {

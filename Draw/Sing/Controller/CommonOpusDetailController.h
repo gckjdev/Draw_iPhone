@@ -24,6 +24,7 @@
 // if you want to do something before back, overwrite "clickBack:" please, and  remenber to call "[super clickBack:sender] in your overwrite method"
 
 // Overwrite these methods below in your sub-class.
+- (void)clickOnAuthor:(PBGameUser *)author;
 - (void)clickOnOpus:(PBOpus *)opus;
 - (void)clickOnTargetUser:(PBGameUser *)user;
 - (void)clickAction:(id)sender;

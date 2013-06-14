@@ -10,6 +10,9 @@
 #import "AutoCreateViewByXib.h"
 #import "Photo.pb.h"
 #import "TagPackage.h"
+#import "PhotoTagManager.h"
+#import "CommonImageManager.h"
+#import "EditTagCell.h"
 
 @interface PhotoEditView ()
 
@@ -89,18 +92,17 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 
 - (void)initView:(BOOL)editName
 {
+    [self.confirmBtn setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+    [self.cancelBtn setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     if (!editName) {
         [self.nameTextField setHidden:YES];
         [self.inputNameLabel setHidden:YES];
         [self.titleLabel setText:NSLS(@"kSetTag")];
-        [self.tagTable setFrame:CGRectMake(self.tagTable.frame.origin.x, self.titleLabel.frame.origin.y, self.tagTable.frame.size.width, (self.tagTable.frame.size.height+ self.titleLabel.frame.size.height))];
+        [self.tagTable setFrame:CGRectMake(self.tagTable.frame.origin.x, self.inputNameLabel.frame.origin.y, self.tagTable.frame.size.width, (self.tagTable.frame.size.height+ self.titleLabel.frame.size.height))];
+        [self.confirmBtn setTitle:NSLS(@"kFilter") forState:UIControlStateNormal];
     }
-    
-    
-    NSError* err;
-    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-    NSString* tagsFileStr = [NSString stringWithContentsOfFile:@"/gitdata/Draw_iPhone/Draw/Gallery/photo_tags.txt" encoding:enc error:&err];
-    self.tagPackageArray = [TagPackage createPackageArrayFromString:tagsFileStr];
+
+    self.tagPackageArray = [[PhotoTagManager defaultManager] tagPackageArray];
     [self.tagTable reloadData];
     
 }
@@ -112,14 +114,12 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 #define SEPX    10
 #define SEPY    5
 
-#define ITEM_PER_LINE   4
-#define LINE_PER_CELL   2
-
-#define CELL_HEIGHT   100
+#define ITEM_PER_LINE   3
+#define LINE_PER_CELL   3
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CELL_HEIGHT;
+    return [EditTagCell getCellHeight];
 }
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -130,32 +130,33 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    EditTagCell* cell = [tableView dequeueReusableCellWithIdentifier:[EditTagCell getCellIdentifier]];
     if (cell == nil) {
-        cell = [[UITableViewCell  alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        float itemWidth = tableView.frame.size.width/ITEM_PER_LINE - SEPX;
-        float itemHeight = CELL_HEIGHT/LINE_PER_CELL-SEPY;
+        cell = [EditTagCell createCell:nil];
+//        float itemWidth = tableView.frame.size.width/ITEM_PER_LINE - SEPX;
+//        float itemHeight = CELL_HEIGHT/LINE_PER_CELL-SEPY;
+//        
+//        UILabel* titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(SEPX*1.5 + itemWidth, SEPY/2, itemWidth, itemHeight)] autorelease];
+//        
+//        titleLabel.tag = TITLE_TAG;
         
-        UILabel* titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(SEPX/2, SEPY/2, itemWidth, itemHeight)] autorelease];
-        titleLabel.tag = TITLE_TAG;
-        
-        for (int i = 0; i <( LINE_PER_CELL*(ITEM_PER_LINE-1)); i ++) {
-            float orgX = (tableView.frame.size.width/ITEM_PER_LINE)*(i%(ITEM_PER_LINE-1)+1)+SEPX/2;
-            float orgY = (i/(ITEM_PER_LINE-1))*(CELL_HEIGHT/LINE_PER_CELL)+SEPY/2;
-            UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(orgX, orgY, itemWidth, itemHeight)] autorelease];
-            btn.tag = TAG_BTN_OFFSET + i;
-            
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-            [btn setBackgroundColor:[UIColor whiteColor]];
-            [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
-            [btn addTarget:self action:@selector(clickTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        for (int i = 0; i <((LINE_PER_CELL-1)*ITEM_PER_LINE); i ++) {
+//            float orgX = (tableView.frame.size.width/ITEM_PER_LINE)*(i%ITEM_PER_LINE)+SEPX/2;
+//            float orgY = (i/ITEM_PER_LINE + 1)*(CELL_HEIGHT/LINE_PER_CELL)+SEPY/2;
+//            UIButton* btn = [[[UIButton alloc] initWithFrame:CGRectMake(orgX, orgY, itemWidth, itemHeight)] autorelease];
+//            btn.tag = TAG_BTN_OFFSET + i;
+//            
+//            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//            [btn setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+//            [btn setBackgroundColor:[UIColor whiteColor]];
+//            [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
+//            [btn addTarget:self action:@selector(clickTagBtn:) forControlEvents:UIControlEventTouchUpInside];
 //            PPDebug(@"add tag btn, tag = %d, btn frame = (%.2f, %.2f, %.2f%.2f)",btn.tag, btn.frame.origin.x, btn.frame.origin.y, btn.frame.size.width, btn.frame.size.height);
-            
-            [cell addSubview:btn];
-        }
-        
-        [cell addSubview:titleLabel];
+//            
+//            [cell addSubview:btn];
+//        }
+//        
+//        [cell addSubview:titleLabel];
         
     }
     
@@ -165,11 +166,11 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     return cell;
 }
 
-- (void)updateCell:(UITableViewCell*)cell
+- (void)updateCell:(EditTagCell*)cell
      forTagPackage:(TagPackage*)package
 {
-    UILabel* titleLabel = (UILabel*)[cell viewWithTag:TITLE_TAG];
-    [titleLabel setText:package.tagPackageName];
+    UIButton* titleLabel = (UIButton*)[cell viewWithTag:TITLE_TAG];
+    [titleLabel setTitle:package.tagPackageName forState:UIControlStateNormal];
     
     for (int i = 0; i < package.tagArray.count; i ++) {
         NSString* photoTag = [package.tagArray objectAtIndex:i];
@@ -178,6 +179,7 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
         if ([self.tagSet containsObject:photoTag]) {
             [btn setSelected:YES];
         }
+        [btn addTarget:self action:@selector(clickTagBtn:) forControlEvents:UIControlEventTouchUpInside];
 //        if (!btn) {
 //            PPDebug(@"find btn err");
 //        }
@@ -230,6 +232,8 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     [_titleLabel release];
     [_inputNameLabel release];
     RELEASE_BLOCK(_resultBlock);
+    [_confirmBtn release];
+    [_cancelBtn release];
     [super dealloc];
 }
 @end

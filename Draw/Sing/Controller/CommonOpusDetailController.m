@@ -122,6 +122,12 @@ enum{
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == SectionUserInfo) {
+        [self clickOnAuthor:_pbOpus.author];
+    }
+}
+
 - (UIView *)headerForAction{
     CommonActionHeader *header = [self.dataTableView dequeueReusableHeaderFooterViewWithIdentifier:[[_actionHeaderClass class] getHeaderIdentifier]];
     
@@ -143,7 +149,8 @@ enum{
     }
     
     [cell setUserInfo:_pbOpus.author];
-    
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+
     return cell;
 }
 
@@ -189,6 +196,9 @@ enum{
 
 - (void)didClickActionButton:(UIButton *)sender{
     [self clickAction:sender];
+}
+
+- (void)clickOnAuthor:(PBGameUser *)author{
 }
 
 - (void)clickOnOpus:(PBOpus *)opus{
