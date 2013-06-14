@@ -239,7 +239,7 @@
                                                         cancelButtonTitle:NSLS(@"kCancel")
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:
-//                                                                NSLS(@"kPayViaZhiFuBaoWeb"),
+                                                                NSLS(@"kPayViaZhiFuBaoWeb"),
                                                                 NSLS(@"kPayViaZhiFuBao"),
                                                                 NSLS(@"kPayViaAppleAccount"),
                                                                 nil];
@@ -265,6 +265,7 @@
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         switch (buttonIndex) {
+                /*
             case 0:
                 // pay via zhifubao
                 [bself alipayForOrder:order];
@@ -274,11 +275,12 @@
                 // pay via apple account
                 [bself applePayForProduct:product];
                 break;
+                 */
 
-                /*
+//                /*
             case 0:
                 // pay via zhifubao
-                [bself alipayWebPaymentForOrder:order];
+                [bself alipayWebPaymentForOrder:order taobaoUrl:product.taobaoUrl];
                 break;
                 
             case 1:
@@ -290,7 +292,7 @@
                 // pay via apple account
                 [bself applePayForProduct:product];
                 break;
-                 */
+//                 */
                 
             default:
                 break;
@@ -305,12 +307,23 @@
     [AliPayManager payWithOrder:order
                       appScheme:[GameApp alipayCallBackScheme]
                   rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]];
+    
+    
 }
 
-- (void)alipayWebPaymentForOrder:(AlixPayOrder *)order
+- (void)alipayWebPaymentForOrder:(AlixPayOrder *)order taobaoUrl:(NSString*)taobaoUrl
 {
-    NSString* url = [NSString stringWithFormat:[ConfigManager getAlipayWebUrl],
-                     [order.productName encodedURLParameterString], order.amount];
+    NSString* url = [ConfigManager getAlipayWebUrl];
+    url = [url stringByAddQueryParameter:METHOD value:@"charge"];
+    url = [url stringByAddQueryParameter:PARA_APPID value:[GameApp appId]];
+    url = [url stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
+    url = [url stringByAddQueryParameter:PARA_AMOUNT value:order.amount];
+    url = [url stringByAddQueryParameter:PARA_DESC value:order.productName];
+    url = [url stringByAddQueryParameter:PARA_URL value:taobaoUrl];
+    url = [url stringByAddQueryParameter:PARA_USERID value:[[UserManager defaultManager] userId]];
+    
+//    NSString* url = [NSString stringWithFormat:[ConfigManager getAlipayWebUrl],
+//                     [order.productName encodedURLParameterString], order.amount];
     NSString* title = [NSString stringWithFormat:@"充值 - %@", order.productName];
     TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title];
     [self.navigationController pushViewController:vc animated:YES];
