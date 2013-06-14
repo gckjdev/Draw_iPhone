@@ -52,6 +52,7 @@ typedef enum{
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, assign) ItemType penType;
 @property(nonatomic, assign) ShapeType shapeType;
+@property(nonatomic, assign) BOOL strokeShape;
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;

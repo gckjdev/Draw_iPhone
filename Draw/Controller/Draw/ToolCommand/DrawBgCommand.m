@@ -10,7 +10,7 @@
 
 @interface DrawBgCommand()
 {
-    
+     
 }
 
 @property(nonatomic, retain)DrawBgBox *box;

@@ -411,6 +411,7 @@
         if (_stroke) {
             CGContextSetLineWidth(context, self.width);
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);
+            CGContextStrokePath(context);
             [self updateRedrawRectWithWidth:self.width];
         }else{
             CGContextSetFillColorWithColor(context, self.color.CGColor);
@@ -440,6 +441,10 @@
     [super updatePBDrawActionC:pbDrawActionC];
     pbDrawActionC->width = 2;
     pbDrawActionC->has_width = 1;
+    if (_stroke) {
+        pbDrawActionC->shapestroke = _stroke;
+        pbDrawActionC->has_shapestroke = 1;        
+    }
 }
 
 @end

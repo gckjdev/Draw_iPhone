@@ -5,8 +5,14 @@
 @class PBSingOpus;
 @class PBSingOpus_Builder;
 @class PBSong;
+@class PBSongCategory;
+@class PBSongCategoryList;
+@class PBSongCategoryList_Builder;
+@class PBSongCategory_Builder;
 @class PBSongList;
 @class PBSongList_Builder;
+@class PBSongTag;
+@class PBSongTag_Builder;
 @class PBSong_Builder;
 typedef enum {
   PBVoiceTypeVoiceTypeOrigin = 0,
@@ -26,6 +32,179 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
+@interface PBSongTag : PBGeneratedMessage {
+@private
+  BOOL hasTagId_:1;
+  BOOL hasTagName_:1;
+  int32_t tagId;
+  NSString* tagName;
+}
+- (BOOL) hasTagId;
+- (BOOL) hasTagName;
+@property (readonly) int32_t tagId;
+@property (readonly, retain) NSString* tagName;
+
++ (PBSongTag*) defaultInstance;
+- (PBSongTag*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSongTag_Builder*) builder;
++ (PBSongTag_Builder*) builder;
++ (PBSongTag_Builder*) builderWithPrototype:(PBSongTag*) prototype;
+
++ (PBSongTag*) parseFromData:(NSData*) data;
++ (PBSongTag*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongTag*) parseFromInputStream:(NSInputStream*) input;
++ (PBSongTag*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongTag*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSongTag*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSongTag_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSongTag* result;
+}
+
+- (PBSongTag*) defaultInstance;
+
+- (PBSongTag_Builder*) clear;
+- (PBSongTag_Builder*) clone;
+
+- (PBSongTag*) build;
+- (PBSongTag*) buildPartial;
+
+- (PBSongTag_Builder*) mergeFrom:(PBSongTag*) other;
+- (PBSongTag_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongTag_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasTagId;
+- (int32_t) tagId;
+- (PBSongTag_Builder*) setTagId:(int32_t) value;
+- (PBSongTag_Builder*) clearTagId;
+
+- (BOOL) hasTagName;
+- (NSString*) tagName;
+- (PBSongTag_Builder*) setTagName:(NSString*) value;
+- (PBSongTag_Builder*) clearTagName;
+@end
+
+@interface PBSongCategory : PBGeneratedMessage {
+@private
+  BOOL hasCategoryId_:1;
+  BOOL hasName_:1;
+  int32_t categoryId;
+  NSString* name;
+  NSMutableArray* mutableSongTagsList;
+}
+- (BOOL) hasCategoryId;
+- (BOOL) hasName;
+@property (readonly) int32_t categoryId;
+@property (readonly, retain) NSString* name;
+- (NSArray*) songTagsList;
+- (PBSongTag*) songTagsAtIndex:(int32_t) index;
+
++ (PBSongCategory*) defaultInstance;
+- (PBSongCategory*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSongCategory_Builder*) builder;
++ (PBSongCategory_Builder*) builder;
++ (PBSongCategory_Builder*) builderWithPrototype:(PBSongCategory*) prototype;
+
++ (PBSongCategory*) parseFromData:(NSData*) data;
++ (PBSongCategory*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongCategory*) parseFromInputStream:(NSInputStream*) input;
++ (PBSongCategory*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongCategory*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSongCategory*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSongCategory_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSongCategory* result;
+}
+
+- (PBSongCategory*) defaultInstance;
+
+- (PBSongCategory_Builder*) clear;
+- (PBSongCategory_Builder*) clone;
+
+- (PBSongCategory*) build;
+- (PBSongCategory*) buildPartial;
+
+- (PBSongCategory_Builder*) mergeFrom:(PBSongCategory*) other;
+- (PBSongCategory_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongCategory_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasCategoryId;
+- (int32_t) categoryId;
+- (PBSongCategory_Builder*) setCategoryId:(int32_t) value;
+- (PBSongCategory_Builder*) clearCategoryId;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBSongCategory_Builder*) setName:(NSString*) value;
+- (PBSongCategory_Builder*) clearName;
+
+- (NSArray*) songTagsList;
+- (PBSongTag*) songTagsAtIndex:(int32_t) index;
+- (PBSongCategory_Builder*) replaceSongTagsAtIndex:(int32_t) index with:(PBSongTag*) value;
+- (PBSongCategory_Builder*) addSongTags:(PBSongTag*) value;
+- (PBSongCategory_Builder*) addAllSongTags:(NSArray*) values;
+- (PBSongCategory_Builder*) clearSongTagsList;
+@end
+
+@interface PBSongCategoryList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableCategorysList;
+}
+- (NSArray*) categorysList;
+- (PBSongCategory*) categorysAtIndex:(int32_t) index;
+
++ (PBSongCategoryList*) defaultInstance;
+- (PBSongCategoryList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSongCategoryList_Builder*) builder;
++ (PBSongCategoryList_Builder*) builder;
++ (PBSongCategoryList_Builder*) builderWithPrototype:(PBSongCategoryList*) prototype;
+
++ (PBSongCategoryList*) parseFromData:(NSData*) data;
++ (PBSongCategoryList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongCategoryList*) parseFromInputStream:(NSInputStream*) input;
++ (PBSongCategoryList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSongCategoryList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSongCategoryList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSongCategoryList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSongCategoryList* result;
+}
+
+- (PBSongCategoryList*) defaultInstance;
+
+- (PBSongCategoryList_Builder*) clear;
+- (PBSongCategoryList_Builder*) clone;
+
+- (PBSongCategoryList*) build;
+- (PBSongCategoryList*) buildPartial;
+
+- (PBSongCategoryList_Builder*) mergeFrom:(PBSongCategoryList*) other;
+- (PBSongCategoryList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSongCategoryList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) categorysList;
+- (PBSongCategory*) categorysAtIndex:(int32_t) index;
+- (PBSongCategoryList_Builder*) replaceCategorysAtIndex:(int32_t) index with:(PBSongCategory*) value;
+- (PBSongCategoryList_Builder*) addCategorys:(PBSongCategory*) value;
+- (PBSongCategoryList_Builder*) addAllCategorys:(NSArray*) values;
+- (PBSongCategoryList_Builder*) clearCategorysList;
+@end
+
 @interface PBSong : PBGeneratedMessage {
 @private
   BOOL hasSongId_:1;
@@ -36,7 +215,7 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
   NSString* name;
   NSString* author;
   NSString* lyric;
-  NSMutableArray* mutableTagList;
+  NSMutableArray* mutableTagIdList;
 }
 - (BOOL) hasSongId;
 - (BOOL) hasName;
@@ -46,8 +225,8 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* author;
 @property (readonly, retain) NSString* lyric;
-- (NSArray*) tagList;
-- (int32_t) tagAtIndex:(int32_t) index;
+- (NSArray*) tagIdList;
+- (int32_t) tagIdAtIndex:(int32_t) index;
 
 + (PBSong*) defaultInstance;
 - (PBSong*) defaultInstance;
@@ -103,12 +282,12 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (PBSong_Builder*) setLyric:(NSString*) value;
 - (PBSong_Builder*) clearLyric;
 
-- (NSArray*) tagList;
-- (int32_t) tagAtIndex:(int32_t) index;
-- (PBSong_Builder*) replaceTagAtIndex:(int32_t) index with:(int32_t) value;
-- (PBSong_Builder*) addTag:(int32_t) value;
-- (PBSong_Builder*) addAllTag:(NSArray*) values;
-- (PBSong_Builder*) clearTagList;
+- (NSArray*) tagIdList;
+- (int32_t) tagIdAtIndex:(int32_t) index;
+- (PBSong_Builder*) replaceTagIdAtIndex:(int32_t) index with:(int32_t) value;
+- (PBSong_Builder*) addTagId:(int32_t) value;
+- (PBSong_Builder*) addAllTagId:(NSArray*) values;
+- (PBSong_Builder*) clearTagIdList;
 @end
 
 @interface PBSongList : PBGeneratedMessage {
