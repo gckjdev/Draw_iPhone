@@ -18,6 +18,7 @@
 @property (retain, nonatomic) IBOutlet UITextField *coinsPerUserTextField;
 @property (retain, nonatomic) IBOutlet UITextField *coinsMaxTotalTextField;
 @property (retain, nonatomic) IBOutlet UITextField *ingotBestUserTextField;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (IBAction)clickRequirementButton:(id)sender;
 

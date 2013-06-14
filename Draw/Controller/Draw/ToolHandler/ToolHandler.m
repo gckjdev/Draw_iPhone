@@ -116,6 +116,11 @@
     self.drawView.penType = self.penType;
     [self changePenColor:self.penColor];
 }
+- (void)changeShapeStroke:(BOOL)isStroke
+{
+    [self.drawView setStrokeShape:isStroke];
+}
+
 - (void)changeDesc:(NSString *)desc
 {
     PPDebug(@"<ChangeDesc> desc = %@", desc);

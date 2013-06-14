@@ -55,6 +55,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeWidth:(CGFloat)width;
 - (void)changeAlpha:(CGFloat)alpha;
 - (void)changeShape:(ShapeType)shape isStroke:(BOOL)isStroke;
+- (void)changeShapeStroke:(BOOL)isStroke;
 - (void)changeDesc:(NSString *)desc;
 - (void)changeDrawToFriend:(MyFriend *)aFriend;
 - (void)usePaintBucket;

@@ -50,6 +50,9 @@ didSelectedShape:(ShapeType)shape
         isStroke:(BOOL)isStroke
          groudId:(ItemType)groupId;
 
+- (void)shapeBox:(ShapeBox *)shapeBox
+didChangeDrawStyle:(BOOL)stroke;
+
 @end
 
 @protocol ShapeGroupCellDelegate <NSObject>
