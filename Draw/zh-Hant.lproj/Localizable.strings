@@ -1713,14 +1713,16 @@
 /*********************你唱我猜國際化字符串結束 ************************/
 
 /*********************图库国际化字符串开始 ************************/
-"kShow" = "查看大图";
-"kKeywords" = "关键字:";
-"kGallery" = "图库";
-"kImageSearch" = "搜索图片";
-"kDeletePhotoSucc" = "成功删除图片!";
-"kEditPhotoSucc" = "成功更新图片信息!";
-"kAddUserPhotoSucc" = "成功保存图片!";
-"kEditPhoto" = "编辑图片信息";
+"kShow" = "查看大圖";
+"kKeywords" = "關鍵字:";
+"kGallery" = "圖庫";
+"kImageSearch" = "搜索圖片";
+"kDeletePhotoSucc" = "成功刪除圖片!";
+"kEditPhotoSucc" = "成功更新圖片信息!";
+"kAddUserPhotoSucc" = "成功保存圖片!";
+"kEditPhoto" = "編輯圖片信息";
 "kName" = "名字";
 "kOperations" = "操作";
+"kSetTag" = "設置標籤";
+"kFilter" = "篩選";
 /*********************图库国际化字符串结束 ************************/
