@@ -72,11 +72,12 @@
 
 - (void)shapeBox:(ShapeBox *)shapeBox
 didSelectedShape:(ShapeType)shape
+        isStroke:(BOOL)isStroke
          groudId:(ItemType)groupId
 {
     if ([self canUseItem:groupId] || YES) {
         [self becomeActive];
-        [self.toolHandler changeShape:shape];
+        [self.toolHandler changeShape:shape isStroke:isStroke];
 
         [shapeBox dismiss];
         self.box = nil;

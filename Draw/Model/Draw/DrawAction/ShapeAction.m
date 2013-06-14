@@ -77,6 +77,7 @@
                                       penType:action->pentype
                                         width:action->width
                                         color:nil];
+        self.shape.stroke = action->has_shapestroke ? action->shapestroke : NO;
         [self.shape setPointsWithPointComponentC:action->rectcomponent listCount:action->n_rectcomponent];
         if (action->has_bettercolor) {
             self.shape.color = [DrawColor colorWithBetterCompressColor:action->bettercolor];

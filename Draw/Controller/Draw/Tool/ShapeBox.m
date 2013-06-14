@@ -79,11 +79,16 @@
 }
 - (IBAction)clickCloseButton:(id)sender;
 
+- (IBAction)changeDrawStyle:(id)sender;
+
+@property (retain, nonatomic) IBOutlet UIButton *drawStyleButton;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) NSArray *dataList;
 @property (retain, nonatomic) CustomInfoView *infoView;
 
 @end
+
+BOOL staticStroke = NO;
 
 @implementation ShapeBox
 
@@ -94,6 +99,8 @@
     self.infoView = nil;
 }
 
+
+
 + (id)shapeBoxWithDelegate:(id<ShapeBoxDelegate>)delegate
 {
     ShapeBox *box = [UIView createViewWithXibIdentifier:@"ShapeBox"];
@@ -103,7 +110,7 @@
     box.tableView.dataSource = box;
     [box setBackgroundColor:[UIColor clearColor]];
     [box.tableView setBackgroundColor:[UIColor clearColor]];
-    
+    [box setStroke:staticStroke];
     return box;
 }
 
@@ -127,10 +134,21 @@
     [self.tableView reloadData];
 }
 
+- (void)setStroke:(BOOL)stroke
+{
+    [self.drawStyleButton setSelected:stroke];
+    staticStroke = stroke;
+}
+- (BOOL)isStroke
+{
+    return staticStroke;
+}
+
 - (void)dealloc {
     PPRelease(_infoView);
     PPRelease(_tableView);
     PPRelease(_dataList);
+    [_drawStyleButton release];
     [super dealloc];
 }
 
@@ -164,14 +182,18 @@
 
 - (void)shapeGroupCell:(ShapeGroupCell *)cell didSelectedShape:(ShapeType)shape
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didSelectedShape:groudId:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didSelectedShape:isStroke:groudId:)]){
         PBImageShapeGroup *group = [self groupOfIndexPath:cell.indexPath];
         
-        [self.delegate shapeBox:self didSelectedShape:shape groudId:group.groupId];
+        [self.delegate shapeBox:self didSelectedShape:shape isStroke:[self isStroke] groudId:group.groupId];
     }
 }
 - (IBAction)clickCloseButton:(id)sender {
     [self dismiss];
+}
+
+- (IBAction)changeDrawStyle:(id)sender {
+    [self setStroke:![self isStroke]];
 }
 @end
 

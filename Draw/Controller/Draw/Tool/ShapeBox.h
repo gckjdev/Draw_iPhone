@@ -47,6 +47,7 @@
 
 - (void)shapeBox:(ShapeBox *)shapeBox
 didSelectedShape:(ShapeType)shape
+        isStroke:(BOOL)isStroke
          groudId:(ItemType)groupId;
 
 @end
@@ -65,6 +66,10 @@ didSelectedShape:(ShapeType)shape
 - (void)dismiss;
 - (void)showInView:(UIView *)view;
 - (void)reloadView;
+
+// Draw Style
+- (void)setStroke:(BOOL)stroke;
+- (BOOL)isStroke;
 @end
 
 

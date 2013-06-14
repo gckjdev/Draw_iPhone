@@ -108,10 +108,11 @@
         self.drawView.lineColor = color;
     }
 }
-- (void)changeShape:(ShapeType)shape
+- (void)changeShape:(ShapeType)shape isStroke:(BOOL)isStroke
 {
     [self enterShapeMode];
     [self.drawView setShapeType:shape];
+    [self.drawView setStrokeShape:isStroke];
     self.drawView.penType = self.penType;
     [self changePenColor:self.penColor];
 }
