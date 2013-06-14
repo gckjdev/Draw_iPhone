@@ -207,19 +207,29 @@
     }
 }
 
+#define BUTTON_TAG_START 1
+#define BUTTON_TAG_END 6
+
 + (id)createCell:(id)delegate
 {
     ShapeGroupCell *cell = [UIView createViewWithXibIdentifier:@"ShapeBox" ofViewIndex:1];
     cell.delegate = delegate;
-    for (UIButton *button in cell.subviews) {
-        if ([button isKindOfClass:[UIButton class]]) {
-            if (button.tag > 0 && button.tag < 7) {
-                [button setBackgroundColor:[UIColor clearColor]];
-                [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-                [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
-            }
-        }
+    for (NSInteger i = BUTTON_TAG_START; i <= BUTTON_TAG_END; ++ i) {
+        UIButton *button = (id)[cell viewWithTag:i];
+        [button setBackgroundColor:[UIColor clearColor]];
+        [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
+        
     }
+//    for (UIButton *button in cell.subviews) {
+//        if ([button isKindOfClass:[UIButton class]]) {
+//            if (button.tag > 0 && button.tag < 7) {
+//                [button setBackgroundColor:[UIColor clearColor]];
+//                [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+//                [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
+//            }
+//        }
+//    }
     return cell;
 }
 

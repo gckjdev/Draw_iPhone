@@ -74,7 +74,7 @@
 didSelectedShape:(ShapeType)shape
          groudId:(ItemType)groupId
 {
-    if ([self canUseItem:groupId]) {
+    if ([self canUseItem:groupId] || YES) {
         [self becomeActive];
         [self.toolHandler changeShape:shape];
 
