@@ -83,8 +83,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#define IMAGE_PER_LINE 3
-#define IMAGE_HEIGHT  (ISIPAD?233:110)
+#define IMAGE_PER_LINE 2
+#define IMAGE_HEIGHT  (ISIPAD?384:160)
 #define RESULT_IMAGE_TAG_OFFSET 20130601
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +126,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self tabDataList] count]/IMAGE_PER_LINE +1;
+    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar

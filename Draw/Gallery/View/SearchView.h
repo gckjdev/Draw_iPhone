@@ -19,6 +19,7 @@ typedef void(^SearchHandler)(NSString* searchText, NSDictionary* options);
 - (IBAction)clickSearch:(id)sender;
 - (IBAction)clickOptions:(id)sender;
 - (IBAction)clickPreTextBtn:(id)sender;
+- (IBAction)clickCancelBtn:(id)sender;
 
 + (SearchView*)createViewWithDefaultKeywords:(NSArray*)array
                                      options:(NSDictionary*)options
