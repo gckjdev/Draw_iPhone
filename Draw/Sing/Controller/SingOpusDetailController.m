@@ -40,6 +40,11 @@
 }
 
 // Overwrite these methods below in your sub-class.
+
+- (void)clickOnAuthor:(PBGameUser *)author{
+    PPDebug(@"click author");
+}
+
 - (void)clickOnOpus:(PBOpus *)opus{
     PPDebug(@"click opus");
 }

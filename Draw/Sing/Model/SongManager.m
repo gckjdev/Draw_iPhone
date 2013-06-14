@@ -99,7 +99,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     NSMutableArray *songs = [NSMutableArray arrayWithCapacity:count];
     for (NSString *key in [_songsDic allKeys]) {
         PBSong *song = [_songsDic objectForKey:key];
-        if ([song.tagList containsObject:@(tag)]) {
+        if ([song.tagIdList containsObject:@(tag)]) {
             [songs addObject:song];
         }
     }
@@ -177,7 +177,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     [builder setName:name];
     [builder setAuthor:author];
     [builder setLyric:lyric];
-    [builder addAllTag:tag];
+    [builder addAllTagId:tag];
     return [builder build];
 }
 

@@ -12,7 +12,7 @@
 #define DESC_LABEL_ORIGIN_Y 297
 #define DESC_LABEL_WIDTH 306
 #define DESC_LABEL_FONT [UIFont systemFontOfSize:12]
-
+#define SPACE 30
 
 @implementation SingOpusInfoCell
 
@@ -28,7 +28,7 @@
         return DESC_LABEL_ORIGIN_Y;
     }else{
         CGSize size = [desc sizeWithFont:DESC_LABEL_FONT constrainedToSize:CGSizeMake(DESC_LABEL_WIDTH, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
-        return DESC_LABEL_ORIGIN_Y + size.height;
+        return DESC_LABEL_ORIGIN_Y + size.height + SPACE;
     }
 }
 
@@ -36,7 +36,7 @@
     
     NSString *desc = opus.desc;
     CGSize size = [desc sizeWithFont:DESC_LABEL_FONT constrainedToSize:CGSizeMake(DESC_LABEL_WIDTH, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
-    [self.opusDescTextView updateHeight:size.height];
+    [self.opusDescTextView updateHeight:(size.height + SPACE)];
     
     [super setOpusInfo:opus];
 }

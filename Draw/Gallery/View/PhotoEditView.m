@@ -10,6 +10,7 @@
 #import "AutoCreateViewByXib.h"
 #import "Photo.pb.h"
 #import "TagPackage.h"
+#import "PhotoTagManager.h"
 
 @interface PhotoEditView ()
 
@@ -95,12 +96,8 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
         [self.titleLabel setText:NSLS(@"kSetTag")];
         [self.tagTable setFrame:CGRectMake(self.tagTable.frame.origin.x, self.titleLabel.frame.origin.y, self.tagTable.frame.size.width, (self.tagTable.frame.size.height+ self.titleLabel.frame.size.height))];
     }
-    
-    
-    NSError* err;
-    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
-    NSString* tagsFileStr = [NSString stringWithContentsOfFile:@"/gitdata/Draw_iPhone/Draw/Gallery/photo_tags.txt" encoding:enc error:&err];
-    self.tagPackageArray = [TagPackage createPackageArrayFromString:tagsFileStr];
+
+    self.tagPackageArray = [[PhotoTagManager defaultManager] tagPackageArray];
     [self.tagTable reloadData];
     
 }
