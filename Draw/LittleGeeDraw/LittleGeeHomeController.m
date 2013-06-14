@@ -310,17 +310,21 @@ int getPopOptionCount()
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
         [self updateAllBadge];
-        
+        [self firstShowOptions];
     }];
     [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [self registerNetworkDisconnectedNotification];
-    
-    if ([[UserManager defaultManager] hasUser]) {
-        //first enter game, show side bar
-        [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
-    }
     // Do any additional setup after loading the view from its nib.
     
+}
+
+- (void)firstShowOptions
+{
+    if ([[UserManager defaultManager] hasUser]) {
+        //first enter game, show side bar
+        
+        [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
+    }
 }
 
 #define BUTTON_FONT_EN (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:12])
