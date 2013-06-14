@@ -32,7 +32,6 @@ didSelectedDrawBg:(PBDrawBg *)drawBg
 @interface DrawBgBox : UIView<UITableViewDataSource, UITableViewDelegate, DrawBgCellDelegate>
 
 @property(nonatomic, assign) id<DrawBgBoxDelegate> delegate;
-- (void)updateViewsWithSelectedBgId:(NSString *)bgId;
 
 + (id)drawBgBoxWithDelegate:(id<DrawBgBoxDelegate>)delegate;
 - (void)dismiss;

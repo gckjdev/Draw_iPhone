@@ -21,7 +21,6 @@
 }
 - (IBAction)clickCloseButton:(id)sender;
 
-@property(nonatomic, retain) NSString *selectedBgId;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) NSArray *dataList;
 @property (retain, nonatomic) CustomInfoView *infoView;
@@ -74,7 +73,6 @@
 - (void)dealloc {
     PPRelease(_infoView);
     PPRelease(_tableView);
-    PPRelease(_selectedBgId);
     PPRelease(_dataList);
     [super dealloc];
 }
@@ -105,10 +103,6 @@
     PBDrawBgGroup *group = [self groupOfIndexPath:indexPath];
     [cell updateCellWithDrawBGGroup:group];
     return cell;
-}
-- (void)updateViewsWithSelectedBgId:(NSString *)bgId
-{
-    
 }
 
 - (void)drawBgCell:(DrawBgCell *)cell didSelectDrawBg:(PBDrawBg *)bg
