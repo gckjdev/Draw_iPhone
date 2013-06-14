@@ -208,8 +208,14 @@
 @class PBSize;
 @class PBSize_Builder;
 @class PBSong;
+@class PBSongCategory;
+@class PBSongCategoryList;
+@class PBSongCategoryList_Builder;
+@class PBSongCategory_Builder;
 @class PBSongList;
 @class PBSongList_Builder;
+@class PBSongTag;
+@class PBSongTag_Builder;
 @class PBSong_Builder;
 @class PBTimeline;
 @class PBTimeline_Builder;

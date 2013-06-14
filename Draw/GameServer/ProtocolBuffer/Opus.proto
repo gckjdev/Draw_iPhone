@@ -121,9 +121,9 @@ message PBOpusAction{
     optional int32 actionType = 2;                  //3 comment, 2, guess, 6 flower
     
     
-    optional string opusId = 5;                     // 评论的作品的Id
+//    optional string opusId = 5;                     // 评论的作品的Id
     optional PBUserBasicInfo userInfo = 6;          // 评论人的信息
-//    optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
+    optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
 
     optional int32 createDate = 11;                 // 评论的创建时间
 
