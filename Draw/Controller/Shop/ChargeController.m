@@ -268,6 +268,8 @@
 #else
     order.amount = [product priceInRMB];
 #endif
+
+    PPDebug(@"charge price in RMB is %@", [product priceInRMB]);
     
     order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
     [[AlixPayOrderManager defaultManager] addOrder:order];
