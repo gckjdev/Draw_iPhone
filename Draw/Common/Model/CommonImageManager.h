@@ -43,4 +43,8 @@
 - (UIImage*)commonMessageCenterHappyFace;
 - (UIImage*)commonMessageCenterUnhappyFace;
 
+- (UIImage*)photoTagTitleBackground;
+- (UIImage*)photoTagUnselectedBackground;
+- (UIImage*)photoTagSelectedBackground;
+
 @end

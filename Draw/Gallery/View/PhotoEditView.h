@@ -15,6 +15,8 @@ typedef void(^PhotoEditResultBLock)(NSString* name, NSSet* tagSet);
 @interface PhotoEditView : CommonInfoView <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (copy, nonatomic) PhotoEditResultBLock resultBlock;
+@property (retain, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (retain, nonatomic) IBOutlet UIButton *cancelBtn;
 
 + (PhotoEditView*)createViewWithPhoto:(PBUserPhoto*)photo
                              editName:(BOOL)editName

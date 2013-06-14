@@ -93,10 +93,13 @@ AUTO_CREATE_VIEW_BY_XIB(SearchView)
     NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
     NSArray* history = [def objectForKey:SEARCH_HISTORY];
     NSMutableArray* array = [NSMutableArray arrayWithArray:history];
-    [array addObject:self.searchTextField.text];
-    [def setObject:array forKey:SEARCH_HISTORY];
-    [def synchronize];
-    PPDebug(@"<saveSearchHistory> save search history <%@>", self.searchTextField.text);
+    if (![array containsObject:self.searchTextField.text]) {
+        [array addObject:self.searchTextField.text];
+        [def setObject:array forKey:SEARCH_HISTORY];
+        [def synchronize];
+        PPDebug(@"<saveSearchHistory> save search history <%@>", self.searchTextField.text);
+    }
+   
 }
 
 - (IBAction)clickSearch:(id)sender
