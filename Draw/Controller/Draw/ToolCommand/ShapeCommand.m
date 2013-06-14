@@ -81,7 +81,17 @@ didSelectedShape:(ShapeType)shape
 
         [shapeBox dismiss];
         self.box = nil;
+        
+//        UIImage * image = [ShapeInfo shapeImageForShapeType:type];
+//        UIButton *button = (UIButton *)self.control;
+//        [button setImage:image forState:UIControlStateNormal];
+
     }
+}
+
+- (void)shapeBox:(ShapeBox *)shapeBox didChangeDrawStyle:(BOOL)stroke
+{
+    [self.toolHandler changeShapeStroke:stroke];
 }
 
 - (void)buyItemSuccessfully:(ItemType)type
