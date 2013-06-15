@@ -19,4 +19,8 @@
 
 - (id)initWithURL:(NSString *)URL title:(NSString *)title;
 
+- (IBAction)clickWebViewBack:(id)sender;
+- (IBAction)clickWebViewForward:(id)sender;
+- (IBAction)clickWebViewRefresh:(id)sender;
+
 @end
