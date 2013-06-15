@@ -127,6 +127,13 @@ typedef enum {
 
 BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value);
 
+typedef enum {
+  PBOpusStatusOpusStatusNormal = 0,
+  PBOpusStatusOpusStatusDelete = 1,
+} PBOpusStatus;
+
+BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
+
 
 @interface OpusRoot : NSObject {
 }
@@ -311,47 +318,49 @@ BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value);
   BOOL hasDeviceType_:1;
   BOOL hasStatus_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasLocalDataUrl_:1;
   BOOL hasContestId_:1;
   BOOL hasAppId_:1;
   BOOL hasDeviceName_:1;
+  BOOL hasOpusId_:1;
   BOOL hasDataUrl_:1;
   BOOL hasThumbImage_:1;
   BOOL hasImage_:1;
   BOOL hasDesc_:1;
   BOOL hasName_:1;
-  BOOL hasOpusId_:1;
+  BOOL hasAuthor_:1;
+  BOOL hasTargetUser_:1;
   BOOL hasAskPsOpus_:1;
   BOOL hasAskPs_:1;
-  BOOL hasSing_:1;
   BOOL hasDraw_:1;
-  BOOL hasTargetUser_:1;
-  BOOL hasAuthor_:1;
+  BOOL hasSing_:1;
+  BOOL hasStoreType_:1;
   BOOL hasType_:1;
   BOOL hasCategory_:1;
   BOOL hasLanguage_:1;
-  BOOL hasStoreType_:1;
   int32_t deviceType;
   int32_t status;
   int32_t createDate;
+  NSString* localDataUrl;
   NSString* contestId;
   NSString* appId;
   NSString* deviceName;
+  NSString* opusId;
   NSString* dataUrl;
   NSString* thumbImage;
   NSString* image;
   NSString* desc;
   NSString* name;
-  NSString* opusId;
+  PBGameUser* author;
+  PBGameUser* targetUser;
   PBAskPsOpus* askPsOpus;
   PBAskPs* askPs;
-  PBSingOpus* sing;
   PBDrawOpus* draw;
-  PBGameUser* targetUser;
-  PBGameUser* author;
+  PBSingOpus* sing;
+  PBOpusStoreType storeType;
   PBOpusType type;
   PBOpusCategoryType category;
   PBLanguage language;
-  PBOpusStoreType storeType;
   NSMutableArray* mutableActionTimesList;
 }
 - (BOOL) hasOpusId;
@@ -375,6 +384,7 @@ BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value);
 - (BOOL) hasSing;
 - (BOOL) hasAskPs;
 - (BOOL) hasAskPsOpus;
+- (BOOL) hasLocalDataUrl;
 - (BOOL) hasStoreType;
 @property (readonly, retain) NSString* opusId;
 @property (readonly) PBOpusType type;
@@ -397,6 +407,7 @@ BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value);
 @property (readonly, retain) PBSingOpus* sing;
 @property (readonly, retain) PBAskPs* askPs;
 @property (readonly, retain) PBAskPsOpus* askPsOpus;
+@property (readonly, retain) NSString* localDataUrl;
 @property (readonly) PBOpusStoreType storeType;
 - (NSArray*) actionTimesList;
 - (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
@@ -558,6 +569,11 @@ BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value);
 - (PBOpus_Builder*) setAskPsOpusBuilder:(PBAskPsOpus_Builder*) builderForValue;
 - (PBOpus_Builder*) mergeAskPsOpus:(PBAskPsOpus*) value;
 - (PBOpus_Builder*) clearAskPsOpus;
+
+- (BOOL) hasLocalDataUrl;
+- (NSString*) localDataUrl;
+- (PBOpus_Builder*) setLocalDataUrl:(NSString*) value;
+- (PBOpus_Builder*) clearLocalDataUrl;
 
 - (BOOL) hasStoreType;
 - (PBOpusStoreType) storeType;

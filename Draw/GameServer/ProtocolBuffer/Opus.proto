@@ -132,7 +132,10 @@ message PBOpus {
   optional PBAskPs    askPs = 103;               // 求PS
   optional PBAskPsOpus askPsOpus = 104;          // 求PS作品
   
-  optional PBOpusStoreType storeType = 200;                // 当前保存类型 
+  // for local draft & opus storage
+  optional string localDataUrl = 150;            // 保存数据文件的本地路径URL
+
+  optional PBOpusStoreType storeType = 200;      // 当前保存类型 
 }
 
 //message PBSourceAction{
