@@ -13,7 +13,14 @@
 @interface ImageShapeManager : NSObject
 
 - (ImageShapeInfo *)imageShapeWithType:(ShapeType)type;
-- (UIBezierPath *)pathWithType:(ShapeType)type;
+
+- (UIBezierPath *)pathWithType:(ShapeType)type; //default rect = {0, 0, 64, 64}
+
+- (UIBezierPath *)pathWithBasicType:(ShapeType)type
+                         startPoint:(CGPoint)startPoint
+                           endPoint:(CGPoint)endPoint;
+
+- (BOOL)isBasicShapeType:(ShapeType)type;
 - (void)cleanCache;
 - (NSArray *)imageShapeGroupList;
 + (id)defaultManager;

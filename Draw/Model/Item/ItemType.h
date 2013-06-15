@@ -57,10 +57,11 @@ typedef enum
     ///////////////
     BasicShape = 1300,
     
-    //add by Gamy 2013-5-30
-    BasicEmptyShape = 1301,
     
     //add by Gamy 2013-6-7
+    
+    ImageShapeBasic0 = 1300,
+    
     ImageShapeNature0 = 1310,
     ImageShapeNature1 = 1311,
 
