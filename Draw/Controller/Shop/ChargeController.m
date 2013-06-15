@@ -139,9 +139,9 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    __block typeof(self) bself = self;
+    //__block typeof(self) bself = self;
     [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
-        [bself updateBalance];
+        //[bself updateBalance];
     }];
     [super viewDidAppear:animated];
 }
