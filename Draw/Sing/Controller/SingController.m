@@ -34,8 +34,8 @@ enum{
     BOOL _newOpus;
 }
 @property (retain, nonatomic) SingOpus *singOpus;
-@property (copy, nonatomic) NSURL *recordURL;
-@property (copy, nonatomic) NSURL *playURL;
+//@property (copy, nonatomic) NSURL *recordURL;
+//@property (copy, nonatomic) NSURL *playURL;
 @property (retain, nonatomic) VoiceRecorder *recorder;
 @property (retain, nonatomic) VoiceChanger *player;
 @property (retain, nonatomic) UIButton *selectedButton;
@@ -53,10 +53,10 @@ enum{
     [_desc release];
     [_selectedButton release];
     [_singOpus release];
-    [_recordURL release];
+//    [_recordURL release];
     [_recorder release];
     [_player release];
-    [_playURL release];
+//    [_playURL release];
     
     [_micImageView release];
     [_timeLabel release];
@@ -84,7 +84,20 @@ enum{
     [super dealloc];
 }
 
+- (NSURL*)recordURL
+{
+    return [_singOpus localNativeDataURL];
+}
 
+- (NSURL*)playURL
+{
+    return [_singOpus localNativeDataURL];
+}
+
+- (NSURL*)finalOpusURL
+{
+    return [_singOpus localDataURL];
+}
 
 - (id)initWithSong:(PBSong *)song{
     if (self = [super init]) {
@@ -154,9 +167,9 @@ enum{
     NSURL *url = [NSURL URLWithString:image];
     [_opusImageButton setImageWithURL:url placeholderImage:nil];
     
-    NSString *recordPath = [NSString stringWithFormat:@"%@.m4a", _singOpus.pbOpus.opusId];
-    self.recordURL = [FileUtil fileURLInAppDocument:recordPath];
-    self.playURL = _recordURL;
+//    NSString *recordPath = [NSString stringWithFormat:@"%@.m4a", _singOpus.pbOpus.opusId];
+//    self.recordURL = [FileUtil fileURLInAppDocument:recordPath];
+//    self.playURL = _recordURL;
     
     if (_newOpus) {
         [self prepareToRecord];
@@ -261,7 +274,7 @@ enum{
         self.recorder = [[[VoiceRecorder alloc] init] autorelease];
     }
     _recorder.delegate = self;
-    [_recorder prepareToRecord:_recordURL];
+    [_recorder prepareToRecord:[self recordURL]];
 }
 
 - (void)record {
@@ -278,7 +291,7 @@ enum{
         self.player = [[[VoiceChanger alloc] init] autorelease];
     }
     _player.delegate = self;
-    [_player prepareToPlay:_playURL];
+    [_player prepareToPlay:[self playURL]];
 }
 
 - (void)play{
@@ -577,8 +590,8 @@ enum{
 //                            progressDelegate:nil
 //                                    delegate:self];
     
-    NSURL *inUrl = _recordURL;
-	NSURL *outUrl = [FileUtil fileURLInAppDocument:@"out.aif"];
+    NSURL *inUrl = [self recordURL];
+	NSURL *outUrl = [self finalOpusURL];
     
     _player.progressDelegate = self;
     [_player processVoice:inUrl outURL:outUrl duration:0.5 pitch:2 formant:1];

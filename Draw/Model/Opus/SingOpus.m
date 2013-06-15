@@ -8,6 +8,7 @@
 
 #import "Opus.h"
 #import "SingOpus.h"
+#import "FileUtil.h"
 
 @implementation SingOpus
 
@@ -39,6 +40,28 @@
 - (void)setFormant:(float)formant{
     PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setFormant:formant];
+    [self.pbOpusBuilder setSing:[builder build]];
+}
+
+#pragma data & native data URL handling
+
+- (NSURL*)localNativeDataURL
+{
+    return  [NSURL fileURLWithPath:[self.pbOpusBuilder.sing localNativeDataUrl]];
+}
+
++ (NSString*)localDataDir
+{
+    return @"SingData";
+}
+
+- (void)setLocalNativeDataUrl:(NSString*)extension
+{
+    NSString* path = [NSString stringWithFormat:@"%@/%@_native.%@", [[self class] localDataDir], [self opusKey], extension];
+    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+    
+    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
+    [builder setLocalNativeDataUrl:finalPath];
     [self.pbOpusBuilder setSing:[builder build]];
 }
 

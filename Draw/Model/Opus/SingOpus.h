@@ -8,6 +8,8 @@
 
 #import "Opus.h"
 
+#define SING_FILE_EXTENSION         @"m4a"
+
 @interface SingOpus : Opus
 
 - (void)setSong:(PBSong *)song;
@@ -16,5 +18,7 @@
 - (void)setPitch:(float)pitch;
 - (void)setFormant:(float)formant;
 
+- (NSURL*)localNativeDataURL;
+- (void)setLocalNativeDataUrl:(NSString*)extension;
 
 @end
