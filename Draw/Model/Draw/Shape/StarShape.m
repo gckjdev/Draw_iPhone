@@ -7,7 +7,7 @@
 //
 
 #import "StarShape.h"
-
+/*
 #define T  0.3819660112501
 #define TSLP(x,y) CGPointMake((x)+1,1-(y)) //外五边形的坐标转换
 #define TSLP1(x,y) CGPointMake((x*T)+1,1-(y*T)) //内五边形的坐标转换
@@ -43,12 +43,13 @@ void updateStartPoints(CGPoint *points, BOOL reverse){
     }
 }
 
-
+*/
 @implementation StarShape
 
 
 - (void)drawInContext:(CGContextRef)context
 {
+    /*
     if (context != NULL) {
         
         CGContextSaveGState(context);
@@ -93,6 +94,7 @@ void updateStartPoints(CGPoint *points, BOOL reverse){
         }
         CGContextRestoreGState(context);
     }
+     */
 }
 
 @end

@@ -12,6 +12,7 @@
 
 typedef enum{
     ShapeTypeNone = 0,
+    ShapeTypeImageBasicStart = 1,
     ShapeTypeBeeline = 1,
     ShapeTypeRectangle,
     ShapeTypeEllipse,
@@ -28,6 +29,7 @@ typedef enum{
     ShapeTypeEmptyRoundRect,
     ShapeTypeEmptyEnd,
     
+    ShapeTypeImageBasicEnd,
 
     ShapeTypeImageStart = 1000,
     
@@ -91,6 +93,7 @@ typedef enum{
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
 - (CGPathRef)path;
+- (BOOL)isBasicShape;
 //- (BOOL)isStroke;
 @end
 

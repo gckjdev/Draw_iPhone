@@ -340,7 +340,9 @@ BOOL staticStroke = NO;
         
         layer.frame = button.bounds;//CGRectMake(0, 0, SHAPE_SIZE, SHAPE_SIZE);
         [layer setFillColor:OPAQUE_COLOR(62, 43, 23).CGColor];
+        [layer setStrokeColor:OPAQUE_COLOR(62, 43, 23).CGColor];
         [layer setPath:cgPath];
+        [layer setLineWidth:2];
         [button.layer addSublayer:layer];
         CGPathRelease(cgPath);
         

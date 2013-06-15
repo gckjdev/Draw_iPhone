@@ -67,6 +67,7 @@
      */
     
     ShapeInfo *shapeInfo = nil;
+    /*
     switch (type) {
         case ShapeTypeBeeline:
         case ShapeTypeEmptyBeeline:
@@ -101,16 +102,24 @@
         default:
             break;
     }
-    
-    if (shapeInfo == nil && type >= ShapeTypeImageStart) {
+    */
+//    if (shapeInfo == nil && type >= ShapeTypeImageStart) {
         shapeInfo = [[[ImageShapeManager defaultManager] imageShapeWithType:type] retain];
-    }
+//    }
     [shapeInfo setWidth:with];
     [shapeInfo setType:type];
     [shapeInfo setPenType:penType];
     [shapeInfo setColor:color];
 
     return [shapeInfo autorelease];
+}
+
+- (BOOL)isBasicShape
+{
+    if (_type >= ShapeTypeImageBasicStart && _type < ShapeTypeImageBasicEnd) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)setPointsWithPointComponentC:(float*)floatList listCount:(int)listCount
@@ -180,11 +189,7 @@
         _redrawRect = CGRectUnion(_redrawRect, rect);
     }
     
-    _redrawRect.origin.x -= self.width;
-    _redrawRect.origin.y -= self.width;
-    _redrawRect.size.width += self.width*2;
-    _redrawRect.size.height += self.width*2;
-
+    CGRectEnlarge(&_redrawRect, self.width, self.width);
     
     return rect;
 }
@@ -372,7 +377,60 @@
     }
 }
 
+- (void)setStroke:(BOOL)stroke
+{
+    if (_type == ShapeTypeBeeline) {
+        _stroke = YES;
+    }else{
+        _stroke = stroke;
+    }
+}
+
 #define STROKE_WIDTH 2
+
+- (void)updateBasihShapePath
+{
+    PPCGPathRelease(_path);
+    _path = [[ImageShapeManager defaultManager] pathWithBasicType:_type
+                                                       startPoint:self.startPoint
+                                                         endPoint:self.endPoint].CGPath;
+    if (_path) {
+        CGPathRetain(_path);
+    }
+}
+
+- (void)updatePathWithContext:(CGContextRef)context
+{
+    
+    if ([self isBasicShape]) {
+        [self updateBasihShapePath];
+        return;
+    }
+    CGRect rect = [self rect];
+    
+    CGFloat sx = CGRectGetWidth(rect) / SVG_IMAGE_SIZE;
+    CGFloat sy = CGRectGetHeight(rect) / SVG_IMAGE_SIZE;
+    
+    CGFloat tx = CGRectGetMinX(rect) / sx;
+    CGFloat ty = CGRectGetMinY(rect)/ sy;
+    
+    if (self.startPoint.x > self.endPoint.x) {
+        sx = - sx;
+    }
+    
+    if (self.startPoint.y > self.endPoint.y) {
+        sy = - sy;
+    }
+    
+    CGContextScaleCTM(context, sx, sy);
+    if (sy < 0) {
+        ty = -(ty + SVG_IMAGE_SIZE);
+    }
+    if (sx < 0) {
+        tx = -(tx + SVG_IMAGE_SIZE);
+    }
+    CGContextTranslateCTM(context, tx, ty);
+}
 
 - (void)drawInContext:(CGContextRef)context
 {
@@ -381,39 +439,19 @@
     if (_path != NULL) {
         //translate && scale the path according to the rect.
         
-        CGRect rect = [self rect];
 
-        CGFloat sx = CGRectGetWidth(rect) / SVG_IMAGE_SIZE;
-        CGFloat sy = CGRectGetHeight(rect) / SVG_IMAGE_SIZE;
-        
-        CGFloat tx = CGRectGetMinX(rect) / sx;
-        CGFloat ty = CGRectGetMinY(rect)/ sy;
-        
-        if (self.startPoint.x > self.endPoint.x) {
-            sx = - sx;
-        }
-        
-        if (self.startPoint.y > self.endPoint.y) {
-            sy = - sy;
-        }
-
-        CGContextScaleCTM(context, sx, sy);
-        if (sy < 0) {
-            ty = -(ty + SVG_IMAGE_SIZE);
-        }
-        if (sx < 0) {
-            tx = -(tx + SVG_IMAGE_SIZE);
-        }
-        CGContextTranslateCTM(context, tx, ty);
-        
+        [self updatePathWithContext:context];
         
         CGContextAddPath(context, _path);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        
         if (_stroke) {
-            CGContextSetLineWidth(context, STROKE_WIDTH);
+            CGFloat strokeWidth = [self isBasicShape] ? self.width : STROKE_WIDTH;
+            CGContextSetLineWidth(context, strokeWidth);
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);
-            CGContextSetLineJoin(context, kCGLineJoinBevel);
+            CGContextSetLineJoin(context, kCGLineJoinMiter);
             CGContextStrokePath(context);
-            [self updateRedrawRectWithWidth:STROKE_WIDTH];
+            [self updateRedrawRectWithWidth:strokeWidth];
         }else{
             CGContextSetFillColorWithColor(context, self.color.CGColor);
             CGContextFillPath(context);
