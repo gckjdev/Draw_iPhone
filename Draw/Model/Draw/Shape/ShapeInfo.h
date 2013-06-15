@@ -73,7 +73,13 @@ typedef enum{
 
 //+ (UIImage *)shapeImageForShapeType:(ShapeType)type;
 
-+ (id)shapeWithType:(ShapeType) type penType:(ItemType)penType width:(CGFloat)with color:(DrawColor *)color;
++ (id)shapeWithType:(ShapeType) type
+            penType:(ItemType)penType
+              width:(CGFloat)with
+              color:(DrawColor *)color;
+
++ (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2;
+
 - (void)drawInContext:(CGContextRef)context;
 - (CGRect)rect;
 - (void)setPointsWithPointComponent:(NSArray *)pointComponent;

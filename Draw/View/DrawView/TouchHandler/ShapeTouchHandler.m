@@ -39,6 +39,15 @@
     PPRelease(action);
 }
 
+- (void)updateEndPoint
+{
+    if ([ShapeInfo point1:action.shape.startPoint equalToPoint:action.shape.endPoint]) {
+        action.shape.endPoint = CGPointMake(action.shape.endPoint.x + self.drawView.lineWidth,
+                                     action.shape.endPoint.y + self.drawView.lineWidth);        
+    }
+}
+
+#define STROKE_WIDTH 2
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state
 {
@@ -49,13 +58,30 @@
             handleFailed = NO;
             ShapeInfo *shape = nil;
             if (!action) {
+                
+
+                
                 shape = [ShapeInfo shapeWithType:self.drawView.shapeType
                                          penType:self.drawView.penType
                                            width:self.drawView.lineWidth
                                            color:self.drawView.lineColor];
+                                
                 [shape setStroke:self.drawView.strokeShape];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
+                
                 shape.startPoint = shape.endPoint = point;
+                
+
+                //Add at DrawDataVersion == 4, May edit in the future. By Gamy
+                ////=====start====////
+                
+                if (![shape isBasicShape]) {
+                    shape.width = STROKE_WIDTH;
+                }
+                [self updateEndPoint];
+                ////=====end=====/////
+                
+                
                 [self.drawView drawDrawAction:action show:YES];
             }else{
                 shape.startPoint = shape.endPoint = point;
@@ -72,6 +98,7 @@
                 return;
             }
             [action addPoint:point inRect:self.drawView.bounds];
+            [self updateEndPoint];
             [self.drawView updateLastAction:action show:YES];
             break;
         }
