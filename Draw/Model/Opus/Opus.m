@@ -10,6 +10,7 @@
 #import "StringUtil.h"
 #import "SingOpus.h"
 #import "AskPs.h"
+#import "FileUtil.h"
 
 @interface Opus()
 
@@ -18,6 +19,8 @@
 
 @implementation Opus
 
+#pragma mark - Init & Dealloc
+
 - (void)dealloc
 {
     [_pbOpusBuilder release];
@@ -25,7 +28,7 @@
 }
 
 - (id)init{
-    if (self = [super init]) {
+    if (self = [super init]) {        
         self.pbOpusBuilder = [[[PBOpus_Builder alloc] init] autorelease];
     }
     
@@ -37,7 +40,7 @@
     return [_pbOpusBuilder opusId];
 }
 
-+ (id)opusWithCategory:(OpusCategory)category{
++ (Opus*)opusWithCategory:(OpusCategory)category{
     Opus *opus = nil;
     switch (category) {
         case OpusCategorySing:
@@ -55,11 +58,13 @@
 
 
 
-+ (id)opusWithPBOpus:(PBOpus *)pbOpus{
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus{
     Opus *opus = [[[Opus alloc] init] autorelease];
     opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
     return opus;
 }
+
+#pragma mark - Get & Set Methods
 
 - (void)setType:(PBOpusType)type{
     [_pbOpusBuilder setType:type];
@@ -128,6 +133,27 @@
     }
 }
 
+- (void)setLocalDataUrl:(NSString*)extension
+{
+    NSString* path = [NSString stringWithFormat:@"%@/%@.%@", [[self class] localDataDir], [self opusKey], extension];
+    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+    [_pbOpusBuilder setLocalDataUrl:finalPath];
+}
+
+- (NSURL*)localDataURL
+{
+    return [NSURL fileURLWithPath:[_pbOpusBuilder localDataUrl]];
+}
+            
++ (NSString*)localDataDir
+{
+    PPDebug(@"******************************* localDataDir MUST BE IMPLEMENTED BY SUB CLASS *******************************");
+    return nil;
+}
+            
+
+#pragma mark - Data Generation
+
 - (PBOpus *)pbOpus{
     PBOpus *opus = [_pbOpusBuilder build];
     self.pbOpusBuilder = [PBOpus builderWithPrototype:opus];
@@ -153,6 +179,8 @@
     
     return data;
 }
+
+#pragma mark - Buri Handling
 
 #define ENCODE_OPUS_DATA        @"opusData"
 #define ENCODE_OPUS_KEY         @"opusKey"
