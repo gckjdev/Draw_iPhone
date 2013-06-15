@@ -1398,7 +1398,7 @@ static UserService* _defaultUserService;
     [builder setLanguage:[LocaleUtils getLanguageCode]];
     [builder setDeviceModel:[UIDevice currentDevice].model];
     [builder setDeviceType:STRING_DEVICE_TYPE_IOS];
-    [builder setDeviceModel:[DeviceDetection deviceOS]];
+    [builder setDeviceOs:[DeviceDetection deviceOS]];
     [builder setIsJailBroken:[MobClick isJailbroken]];
     
     PBGameUser* newUser = [builder build];

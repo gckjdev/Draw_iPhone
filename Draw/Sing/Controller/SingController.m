@@ -86,14 +86,11 @@ enum{
     [super dealloc];
 }
 
+
+
 - (id)initWithSong:(PBSong *)song{
     if (self = [super init]) {
-        self.singOpus = [Opus opusWithCategory:OpusCategorySing];
-        [_singOpus setType:PBOpusTypeSing];
-        [_singOpus setSong:song];
-        [_singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
-        [_singOpus setDuration:1];
-        [_singOpus setPitch:1];
+        self.singOpus = [[OpusManager singOpusManager] createDraftSingOpus:song]; //[Opus opusWithCategory:OpusCategorySing];        
         _newOpus = YES;
     }
     
@@ -615,8 +612,7 @@ enum{
 }
 
 - (void)didImageSelected:(UIImage*)image{
-//    self.image = image;
-    
+    self.image = image;    
     [_opusImageButton setImage:image forState:UIControlStateNormal];
 //    [_opusImageView setImageWithURL:url placeholderImage:nil];
 }

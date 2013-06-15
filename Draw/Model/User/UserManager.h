@@ -67,6 +67,8 @@ typedef enum {
 - (NSString*)bloodGroup;
 - (int)level;
 - (long)experience;
+- (int)deviceType;
+- (NSString*)deviceModel;
 
 - (BOOL)isMe:(NSString *)userId;
 - (BOOL)isPasswordEmpty;
