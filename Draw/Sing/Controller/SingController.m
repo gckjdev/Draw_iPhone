@@ -581,10 +581,8 @@ enum{
 //                            progressDelegate:nil
 //                                    delegate:self];
     
-    NSString *inputSound  = [[[NSBundle mainBundle] pathForResource:  @"dahai" ofType: @"mp3"] retain];
-	NSString *outputSound = [[[NSHomeDirectory() stringByAppendingString:@"/Documents/"] stringByAppendingString:@"out.aif"] retain];
-	NSURL *inUrl = [[NSURL fileURLWithPath:inputSound] retain];
-	NSURL *outUrl = [[NSURL fileURLWithPath:outputSound] retain];
+    NSURL *inUrl = _recordURL.path;
+	NSURL *outUrl = [FileUtil fileURLInAppDocument:@"out.aif"];
     
     _player.progressDelegate = self;
     [_player processVoice:inUrl outURL:outUrl duration:0.5 pitch:2 formant:1];
@@ -595,8 +593,21 @@ enum{
 }
 
 - (void)processDone:(NSURL *)outURL{
-    PPDebug(@"processDone: %@", outURL.path);
+    
+    NSString *path = outURL.path;
+    PPDebug(@"path is %@", path);
 
+    NSData *singData = [NSData dataWithContentsOfFile:path];
+    if (singData == nil) {
+        return;
+    }
+
+    [[OpusService defaultService] submitOpus:_singOpus
+                                       image:_image
+                                    opusData:singData
+                                 opusManager:[OpusManager singOpusManager]
+                            progressDelegate:nil
+                                    delegate:self];
 }
 
 - (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus{
