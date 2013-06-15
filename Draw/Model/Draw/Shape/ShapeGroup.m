@@ -93,6 +93,7 @@ return type##List;}
 \
 @end
 
+IMPLEMENTE(Basic0,ImageShapeBasic0,Basic,0,@"Basic", @"基本")
 
 IMPLEMENTE(Animal0,ImageShapeAnimal0,Animal,0,@"Aniaml 1", @"动物1")
 
