@@ -454,8 +454,8 @@ WordManager *GlobalGetWordManager()
         }
         [dict setObject:count forKey:charString];
     }
-    const int CANDIDATE_LENGTH = 50;
-    BOOL canDeleteIndex[CANDIDATE_LENGTH] = {NO};
+
+    BOOL canDeleteIndex[50] = {NO};
     for (int i = 0; i < candidateString.length; ++ i) {
         NSString *subString = [candidateString substringWithRange:NSMakeRange(i, 1)];
         NSNumber *number = [dict objectForKey:subString];

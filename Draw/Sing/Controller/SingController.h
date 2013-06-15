@@ -15,8 +15,10 @@
 #import "Sing.pb.h"
 #import "OpusService.h"
 #import "SingOpus.h"
+#import "VoiceRecorder.h"
+#import "VoiceChanger.h"
 
-@interface SingController : PPViewController <AVAudioRecorderDelegate,InputDialogDelegate, ChangeAvatarDelegate, OpusServiceDelegate>
+@interface SingController : PPViewController <AVAudioRecorderDelegate,InputDialogDelegate, ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *originButton;
 @property (retain, nonatomic) IBOutlet UIButton *tomCatButton;
