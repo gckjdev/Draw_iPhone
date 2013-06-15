@@ -515,4 +515,9 @@
     return NO;
 }
 
+- (void)createIAPTestDataFile
+{
+    
+}
+
 @end
