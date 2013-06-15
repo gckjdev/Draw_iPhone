@@ -108,13 +108,19 @@
         self.drawView.lineColor = color;
     }
 }
-- (void)changeShape:(ShapeType)shape
+- (void)changeShape:(ShapeType)shape isStroke:(BOOL)isStroke
 {
     [self enterShapeMode];
     [self.drawView setShapeType:shape];
+    [self.drawView setStrokeShape:isStroke];
     self.drawView.penType = self.penType;
     [self changePenColor:self.penColor];
 }
+- (void)changeShapeStroke:(BOOL)isStroke
+{
+    [self.drawView setStrokeShape:isStroke];
+}
+
 - (void)changeDesc:(NSString *)desc
 {
     PPDebug(@"<ChangeDesc> desc = %@", desc);

@@ -102,11 +102,10 @@
             break;
     }
     
-    if (shapeInfo == nil && type > ShapeTypeImageStart) {
+    if (shapeInfo == nil && type >= ShapeTypeImageStart) {
         shapeInfo = [[[ImageShapeManager defaultManager] imageShapeWithType:type] retain];
-    }else{    
-        [shapeInfo setWidth:with];
     }
+    [shapeInfo setWidth:with];
     [shapeInfo setType:type];
     [shapeInfo setPenType:penType];
     [shapeInfo setColor:color];
@@ -354,7 +353,6 @@
     self = [super init];
     if (self) {
         _path = CGPathRetain(path);
-        self.width = 2;
         self.color = [DrawColor blackColor];
     }
     return self;
@@ -373,6 +371,8 @@
         CGRectEnlarge(&_redrawRect, width, width);
     }
 }
+
+#define STROKE_WIDTH 2
 
 - (void)drawInContext:(CGContextRef)context
 {
@@ -409,13 +409,14 @@
         
         CGContextAddPath(context, _path);
         if (_stroke) {
-            CGContextSetLineWidth(context, self.width);
+            CGContextSetLineWidth(context, STROKE_WIDTH);
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);
-            [self updateRedrawRectWithWidth:self.width];
+            CGContextSetLineJoin(context, kCGLineJoinBevel);
+            CGContextStrokePath(context);
+            [self updateRedrawRectWithWidth:STROKE_WIDTH];
         }else{
             CGContextSetFillColorWithColor(context, self.color.CGColor);
             CGContextFillPath(context);
-//            _redrawRect = CGPathGetBoundingBox(_path);
             [self updateRedrawRectWithWidth:0];
         }
     }
@@ -440,6 +441,10 @@
     [super updatePBDrawActionC:pbDrawActionC];
     pbDrawActionC->width = 2;
     pbDrawActionC->has_width = 1;
+    if (_stroke) {
+        pbDrawActionC->shapestroke = _stroke;
+        pbDrawActionC->has_shapestroke = 1;        
+    }
 }
 
 @end

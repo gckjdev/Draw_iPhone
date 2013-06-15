@@ -1722,5 +1722,7 @@
 "kEditPhoto" = "Edit Photo";
 "kName" = "Name";
 "kOperations" = "Operations";
+"kSetTag" = "Set Tag";
+"kFilter" = "filter";
 /*********************图库国际化字符串结束 ************************/
 

@@ -11,8 +11,8 @@
 #import "PPSmartUpdateData.h"
 #import "TagPackage.h"
 
-#define PHOTO_TAG_FILE  @"photo_tags.txt"
-#define BUNDLE_FILE     @"photo_tags.txt"
+#define PHOTO_TAG_FILE  ([LocaleUtils isChinese]?@"photo_tags.txt":@"photo_tags_en.txt")
+#define BUNDLE_FILE     ([LocaleUtils isChinese]?@"photo_tags.txt":@"photo_tags_en.txt")
 #define INIT_VER    @"1.0"
 
 @interface PhotoTagManager ()
@@ -25,6 +25,7 @@
 
 - (id)init
 {
+    
     self = [super init];
     if (self) {
         self.smartData = [[[PPSmartUpdateData alloc] initWithName:PHOTO_TAG_FILE type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:BUNDLE_FILE initDataVersion:INIT_VER] autorelease];
