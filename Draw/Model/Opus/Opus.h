@@ -32,5 +32,15 @@ typedef enum _OpusCategory{
 - (PBOpus *)pbOpus;
 - (NSData *)data;
 
+- (void)setCategory:(int)value;
+- (void)setLanguage:(int)value;
+- (void)setOpusId:(NSString *)value;
+- (void)setDeviceName:(NSString *)value;
+- (void)setAppId:(NSString *)value;
+- (void)setAuthor:(PBGameUser *)user;
+- (void)setStorageType:(int)value;
+- (void)setCreateDate:(int)value;
+- (void)setDeviceType:(int)value;
+
 @end
 

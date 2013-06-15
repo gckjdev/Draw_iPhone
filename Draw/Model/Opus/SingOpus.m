@@ -11,6 +11,7 @@
 
 @implementation SingOpus
 
+
 - (void)setSong:(PBSong *)song{
     PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setSong:song];

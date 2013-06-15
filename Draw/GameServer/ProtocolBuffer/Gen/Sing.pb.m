@@ -1309,6 +1309,7 @@ static PBSongList* defaultPBSongListInstance = nil;
 @property Float32 duration;
 @property Float32 pitch;
 @property Float32 formant;
+@property (retain) NSString* localNativeDataUrl;
 @end
 
 @implementation PBSingOpus
@@ -1348,8 +1349,16 @@ static PBSongList* defaultPBSongListInstance = nil;
   hasFormant_ = !!value;
 }
 @synthesize formant;
+- (BOOL) hasLocalNativeDataUrl {
+  return !!hasLocalNativeDataUrl_;
+}
+- (void) setHasLocalNativeDataUrl:(BOOL) value {
+  hasLocalNativeDataUrl_ = !!value;
+}
+@synthesize localNativeDataUrl;
 - (void) dealloc {
   self.song = nil;
+  self.localNativeDataUrl = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1359,6 +1368,7 @@ static PBSongList* defaultPBSongListInstance = nil;
     self.duration = 1;
     self.pitch = 1;
     self.formant = 1;
+    self.localNativeDataUrl = @"";
   }
   return self;
 }
@@ -1398,6 +1408,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   if (self.hasFormant) {
     [output writeFloat:5 value:self.formant];
   }
+  if (self.hasLocalNativeDataUrl) {
+    [output writeString:100 value:self.localNativeDataUrl];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1421,6 +1434,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   }
   if (self.hasFormant) {
     size += computeFloatSize(5, self.formant);
+  }
+  if (self.hasLocalNativeDataUrl) {
+    size += computeStringSize(100, self.localNativeDataUrl);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1512,6 +1528,9 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
   if (other.hasFormant) {
     [self setFormant:other.formant];
   }
+  if (other.hasLocalNativeDataUrl) {
+    [self setLocalNativeDataUrl:other.localNativeDataUrl];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1561,6 +1580,10 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
       }
       case 45: {
         [self setFormant:[input readFloat]];
+        break;
+      }
+      case 802: {
+        [self setLocalNativeDataUrl:[input readString]];
         break;
       }
     }
@@ -1658,6 +1681,22 @@ static PBSingOpus* defaultPBSingOpusInstance = nil;
 - (PBSingOpus_Builder*) clearFormant {
   result.hasFormant = NO;
   result.formant = 1;
+  return self;
+}
+- (BOOL) hasLocalNativeDataUrl {
+  return result.hasLocalNativeDataUrl;
+}
+- (NSString*) localNativeDataUrl {
+  return result.localNativeDataUrl;
+}
+- (PBSingOpus_Builder*) setLocalNativeDataUrl:(NSString*) value {
+  result.hasLocalNativeDataUrl = YES;
+  result.localNativeDataUrl = value;
+  return self;
+}
+- (PBSingOpus_Builder*) clearLocalNativeDataUrl {
+  result.hasLocalNativeDataUrl = NO;
+  result.localNativeDataUrl = @"";
   return self;
 }
 @end

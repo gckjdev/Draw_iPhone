@@ -85,7 +85,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://192.167.1.101:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 
-//    return @"http://58.215.160.100:8020/api/i?";
+//    return @"http://58.215.160.100:8888/api/i?";
 //    return @"http://192.168.1.5:8000/api/i?";
 
 //    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
@@ -113,10 +113,10 @@ NSString* GlobalGetTrafficServerURL()
 #endif
 #ifdef DEBUG
 //    return @"http://58.215.184.18:8699/api/i?";
-//    return @"http://192.168.1.198:8100/api/i?";
+    return @"http://192.168.1.198:8100/api/i?";
 #endif
     
-    return [ConfigManager getTrafficAPIServerURL];
+//    return [ConfigManager getTrafficAPIServerURL];
 //    return @"http://58.215.172.169:8100/api/i?";
 //    return @"http://192.168.1.123:8100/api/i?";
 //    return @"http://192.168.1.5:8100/api/i?";
