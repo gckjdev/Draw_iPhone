@@ -128,6 +128,12 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 //    return self.tagPaceekageArray.count;
 }
 
+#pragma mark - tableView delegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.nameTextField resignFirstResponder];
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EditTagCell* cell = [tableView dequeueReusableCellWithIdentifier:[EditTagCell getCellIdentifier]];
@@ -166,20 +172,28 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     return cell;
 }
 
+#define MAX_TAG_COUNT   6
 - (void)updateCell:(EditTagCell*)cell
      forTagPackage:(TagPackage*)package
 {
     UIButton* titleLabel = (UIButton*)[cell viewWithTag:TITLE_TAG];
     [titleLabel setTitle:package.tagPackageName forState:UIControlStateNormal];
     
-    for (int i = 0; i < package.tagArray.count; i ++) {
-        NSString* photoTag = [package.tagArray objectAtIndex:i];
+    for (int i = 0; i < MAX_TAG_COUNT; i ++) {
         UIButton* btn = (UIButton*)[cell viewWithTag:TAG_BTN_OFFSET + i];
-        [btn setTitle:photoTag forState:UIControlStateNormal];
-        if ([self.tagSet containsObject:photoTag]) {
-            [btn setSelected:YES];
+        if (i < package.tagArray.count) {
+            NSString* photoTag = [package.tagArray objectAtIndex:i];
+            
+            [btn setTitle:photoTag forState:UIControlStateNormal];
+            if ([self.tagSet containsObject:photoTag]) {
+                [btn setSelected:YES];
+            }
+            [btn addTarget:self action:@selector(clickTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setHidden:NO];
+        } else {
+            [btn setHidden:YES];
         }
-        [btn addTarget:self action:@selector(clickTagBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
 //        if (!btn) {
 //            PPDebug(@"find btn err");
 //        }

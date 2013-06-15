@@ -1387,4 +1387,15 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return [manager imageForKey:BBS_BG_IMAGE_KEY];
 }
 
+- (int)deviceType
+{
+    return DEVICE_TYPE_IOS;
+}
+
+- (NSString*)deviceModel
+{
+    return [[UIDevice currentDevice] model];
+}
+
+
 @end

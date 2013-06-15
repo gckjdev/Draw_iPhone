@@ -10,7 +10,11 @@
 #import "BuriManager.h"
 #import "SingOpus.h"
 #import "DrawOpus.h"
+#import "UserManager.h"
 #import "AskPs.h"
+#import "StringUtil.h"
+#import "Opus.h"
+#import "SingOpus.h"
 
 static OpusManager* globalSingOpusManager;
 static OpusManager* globalDrawOpusManager;
@@ -18,6 +22,7 @@ static OpusManager* globalAskPsManager;
 
 @interface OpusManager()
 @property (assign, nonatomic) Class aClass;
+@property (assign, nonatomic) UserManager* userManager;
 
 @end
 
@@ -66,6 +71,7 @@ static OpusManager* globalAskPsManager;
 - (id)initWithClass:(Class)class{
     if (self = [super init]) {
         self.aClass = class;
+        self.userManager = [UserManager defaultManager];
     }
     
     return self;
@@ -122,6 +128,82 @@ static OpusManager* globalAskPsManager;
     [builder setTargetUser:[toUserBuilder build]];
     
     return [builder build];
+}
+
+- (void)setDraftOpusId:(Opus*)opus
+{
+    NSString* tempOpusId = [NSString GetUUID];
+    [opus setOpusId:tempOpusId];
+    [opus setStorageType:PBOpusStoreTypeDraftOpus];
+}
+
+- (void)setCommonOpusInfo:(Opus*)opus
+{
+    [opus setLanguage:[_userManager getLanguageType]];
+    [opus setCreateDate:time(0)];
+    [opus setDeviceType:[_userManager deviceType]];
+    [opus setDeviceName:[_userManager deviceModel]];
+    [opus setAppId:[GameApp appId]];
+    
+    // set author information
+    PBGameUser_Builder* userBuilder = [[PBGameUser_Builder alloc] init];
+    [userBuilder setUserId:[_userManager userId]];
+    [userBuilder setNickName:[_userManager nickName]];
+    [userBuilder setAvatar:[_userManager avatarURL]];
+    [userBuilder setSignature:[_userManager signature]];
+    [userBuilder setGender:[_userManager gender]];
+    
+    [opus setAuthor:[userBuilder build]];
+    [userBuilder release];
+}
+
+- (SingOpus*)createDraftSingOpus:(PBSong*)song
+{
+    SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
+    
+    // set basic info
+    [self setDraftOpusId:singOpus];
+    [self setCommonOpusInfo:singOpus];
+
+    // set type and category
+    [singOpus setType:PBOpusTypeSing];
+    [singOpus setCategory:PBOpusCategoryTypeSingCategory];
+    [singOpus setName:[song name]];
+    
+    // init song info
+    [singOpus setSong:song];
+    [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
+    [singOpus setDuration:1];
+    [singOpus setPitch:1];
+    [singOpus setFormant:1];
+    
+    return singOpus;
+    
+    /*
+     required string opusId = 1;                   // 作品Id
+     optional PBOpusType type = 2;                 // 作品类型
+     optional string name = 3;                     // 作品名称
+     optional string desc = 4;                     // 作品描述
+     optional string image = 5;                    // 作品图片
+     optional string thumbImage = 6;               // 作品缩略图
+     optional string dataUrl = 9;                  // 作品数据远程URL
+     
+     optional PBLanguage language = 10;            // 作品语言
+     optional PBOpusCategoryType category = 11;    // 作品大分类
+     
+     optional int32 createDate = 15;               // 作品创建时间
+     optional int32 status = 20;                   // 作品状态，0表示正常，1表示已删除。
+     
+     // 创建来源信息，如来自哪些设备、应用
+     optional int32  deviceType = 25;               // deviceType : (1:iPhone/iPod Touch, 2:iPad, 3:Android Phone)
+     optional string deviceName = 26;               // 设备名称，如 iPhone4, New iPad, iPhone5, 三星Galaxy 等等
+     optional string appId = 28;                    // 来自哪个应用创作的
+     
+     optional PBGameUser author = 35;              // 作者基本信息
+     
+     optional PBGameUser targetUser = 41;          // 作品是给谁的
+     optional string contestId = 42;               // 参与的比赛的Id
+     */
 }
 
 @end

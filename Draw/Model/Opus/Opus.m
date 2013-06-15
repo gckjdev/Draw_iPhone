@@ -12,7 +12,6 @@
 #import "AskPs.h"
 
 @interface Opus()
-@property (copy, nonatomic) NSString *opusKey;
 
 @end
 
@@ -21,7 +20,6 @@
 
 - (void)dealloc
 {
-    [_opusKey release];
     [_pbOpusBuilder release];
     [super dealloc];
 }
@@ -29,12 +27,14 @@
 - (id)init{
     if (self = [super init]) {
         self.pbOpusBuilder = [[[PBOpus_Builder alloc] init] autorelease];
-//        [self.pbOpusBuilder setOpusId:[NSString GetUUID]];
-        [self.pbOpusBuilder setOpusId:@"2"];
-        self.opusKey = _pbOpusBuilder.opusId;
     }
     
     return self;
+}
+
+- (NSString*)opusKey
+{
+    return [_pbOpusBuilder opusId];
 }
 
 + (id)opusWithCategory:(OpusCategory)category{
@@ -53,10 +53,11 @@
     return opus;
 }
 
+
+
 + (id)opusWithPBOpus:(PBOpus *)pbOpus{
     Opus *opus = [[[Opus alloc] init] autorelease];
     opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
-    opus.opusKey = opus.pbOpusBuilder.opusId;
     return opus;
 }
 
@@ -71,6 +72,51 @@
 - (void)setDesc:(NSString *)desc{
     [_pbOpusBuilder setDesc:desc];
 }
+
+- (void)setCategory:(int)value{
+    [_pbOpusBuilder setCategory:value];
+}
+
+- (void)setLanguage:(int)value
+{
+    [_pbOpusBuilder setLanguage:value];
+}
+
+- (void)setOpusId:(NSString *)value
+{
+    [_pbOpusBuilder setOpusId:value];
+}
+
+- (void)setDeviceName:(NSString *)value
+{
+    [_pbOpusBuilder setDeviceName:value];
+}
+
+- (void)setAppId:(NSString *)value
+{
+    [_pbOpusBuilder setAppId:value];
+}
+
+- (void)setAuthor:(PBGameUser *)user
+{
+    [_pbOpusBuilder setAuthor:user];
+}
+
+- (void)setStorageType:(int)value
+{
+    [_pbOpusBuilder setStoreType:value];
+}
+
+- (void)setCreateDate:(int)value
+{
+    [_pbOpusBuilder setCreateDate:value];
+}
+
+- (void)setDeviceType:(int)value
+{
+    [_pbOpusBuilder setDeviceType:value];
+}
+
 
 - (void)setTargetUser:(PBGameUser *)user{
     [self setTargetUser:user];
@@ -122,10 +168,7 @@
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	if ((self = [super init])) {
-        NSString *opusKey = [decoder decodeObjectForKey:ENCODE_OPUS_KEY];
-		NSData *data = [decoder decodeObjectForKey:ENCODE_OPUS_DATA];
-        
-        self.opusKey = opusKey;
+		NSData *data = [decoder decodeObjectForKey:ENCODE_OPUS_DATA];        
         self.pbOpusBuilder = [PBOpus builderWithPrototype:[PBOpus parseFromData:data]];
 	}
     
@@ -134,7 +177,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:_opusKey forKey:ENCODE_OPUS_KEY];
+    [encoder encodeObject:[self opusKey] forKey:ENCODE_OPUS_KEY];
     [encoder encodeObject:[[self pbOpus] data] forKey:ENCODE_OPUS_DATA];
 }
 

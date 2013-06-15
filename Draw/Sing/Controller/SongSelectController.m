@@ -13,6 +13,8 @@
 #import "OpusManager.h"
 #import "SongCategoryView.h"
 
+#define CELL_COUNT 5
+
 @interface SongSelectController(){
     BOOL _isCategoryViewShow;
 }
@@ -36,7 +38,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-    self.songs = [[SongManager defaultManager] randomSongsWithCount:5];
+    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -103,10 +105,6 @@
     [super viewDidUnload];
 }
 
-- (IBAction)clickBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)didClickBgButton{
     [_categoryView dismiss];
     _isCategoryViewShow = NO;
@@ -117,6 +115,9 @@
     _isCategoryViewShow = NO;
     
     PPDebug(@"click tag: %d", tagId);
+    
+    self.songs = [[SongManager defaultManager] randomSongsWithTag:tagId count:CELL_COUNT];
+    [self.dataTableView reloadData];
 }
 
 @end

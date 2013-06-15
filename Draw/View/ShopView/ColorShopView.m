@@ -219,7 +219,7 @@
 {
     if (dialog.tag == BUY_CONFIRM_TAG && willBuyGroup) {
             
-        __block typeof (self) bself = self;
+        __block typeof(self) bself = self;
         [self showActivity];
         
        [[UserGameItemService defaultService] buyItem:willBuyGroup.groupId count:1 totalPrice:willBuyGroup.price currency:PBGameCurrencyCoin handler:^(int resultCode, int itemId, int count, NSString *toUserId) {

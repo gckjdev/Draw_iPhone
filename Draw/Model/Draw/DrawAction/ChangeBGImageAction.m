@@ -130,7 +130,7 @@
     if (self.image == nil) {
         self.image = [[self drawBg] localImage];
         if (self.image == nil) {
-            __block typeof (self) cp = self;
+            __block typeof(self) cp = self;
             [[SDWebImageManager sharedManager] downloadWithURL:self.drawBg.remoteURL delegate:self options:0 success:^(UIImage *image, BOOL cached) {
                 cp.image = image;
             } failure:^(NSError *error) {

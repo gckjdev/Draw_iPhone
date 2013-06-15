@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Opus.h"
 
-
+@class Opus;
+@class SingOpus;
+@class PBOpus;
+@class PBSong;
 
 @interface OpusManager : NSObject
 
@@ -23,5 +25,6 @@
 
 
 + (PBOpus *)createTestOpus;
+- (SingOpus*)createDraftSingOpus:(PBSong*)song;
 
 @end

@@ -38,6 +38,7 @@
 #import "FreeIngotController.h"
 #import "BulletinService.h"
 #import "AdService.h"
+#import "AccountService.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -86,6 +87,13 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                                                        frame:CGRectMake(0, 120, 0, 0)
                                                    iPadFrame:CGRectMake(15, 150, 320, 50)
                                                      useLmAd:YES];
+    
+
+    
+    __block ZJHHomeViewController* bself = self;
+    [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
+        [bself updateAllBadge];
+    }];
     
     [super viewDidAppear:animated];
 }

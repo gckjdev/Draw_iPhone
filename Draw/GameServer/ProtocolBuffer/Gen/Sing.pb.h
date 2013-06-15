@@ -344,11 +344,13 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
   BOOL hasDuration_:1;
   BOOL hasPitch_:1;
   BOOL hasFormant_:1;
+  BOOL hasLocalNativeDataUrl_:1;
   BOOL hasSong_:1;
   BOOL hasVoiceType_:1;
   Float32 duration;
   Float32 pitch;
   Float32 formant;
+  NSString* localNativeDataUrl;
   PBSong* song;
   PBVoiceType voiceType;
 }
@@ -357,11 +359,13 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (BOOL) hasDuration;
 - (BOOL) hasPitch;
 - (BOOL) hasFormant;
+- (BOOL) hasLocalNativeDataUrl;
 @property (readonly, retain) PBSong* song;
 @property (readonly) PBVoiceType voiceType;
 @property (readonly) Float32 duration;
 @property (readonly) Float32 pitch;
 @property (readonly) Float32 formant;
+@property (readonly, retain) NSString* localNativeDataUrl;
 
 + (PBSingOpus*) defaultInstance;
 - (PBSingOpus*) defaultInstance;
@@ -423,5 +427,10 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (Float32) formant;
 - (PBSingOpus_Builder*) setFormant:(Float32) value;
 - (PBSingOpus_Builder*) clearFormant;
+
+- (BOOL) hasLocalNativeDataUrl;
+- (NSString*) localNativeDataUrl;
+- (PBSingOpus_Builder*) setLocalNativeDataUrl:(NSString*) value;
+- (PBSingOpus_Builder*) clearLocalNativeDataUrl;
 @end
 

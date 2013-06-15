@@ -28,9 +28,7 @@ enum{
 
 @interface SingController (){
     int _recordLimitTime;
-    NSTimeInterval _recordDuration;
-    NSTimeInterval _playTimerInterval;
-    NSTimeInterval _recordTimerInterval;
+    double _fileDuration;
     
     int _state;
     BOOL _newOpus;
@@ -38,8 +36,8 @@ enum{
 @property (retain, nonatomic) SingOpus *singOpus;
 @property (copy, nonatomic) NSURL *recordURL;
 @property (copy, nonatomic) NSURL *playURL;
-@property (retain, nonatomic) AVAudioRecorder *recorder;
-@property (retain, nonatomic) DiracFxAudioPlayer *player;
+@property (retain, nonatomic) VoiceRecorder *recorder;
+@property (retain, nonatomic) VoiceChanger *player;
 @property (retain, nonatomic) UIButton *selectedButton;
 @property (copy, nonatomic) NSString *desc;
 @property (copy, nonatomic) UIImage *image;
@@ -86,14 +84,11 @@ enum{
     [super dealloc];
 }
 
+
+
 - (id)initWithSong:(PBSong *)song{
     if (self = [super init]) {
-        self.singOpus = [Opus opusWithCategory:OpusCategorySing];
-        [_singOpus setType:PBOpusTypeSing];
-        [_singOpus setSong:song];
-        [_singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
-        [_singOpus setDuration:1];
-        [_singOpus setPitch:1];
+        self.singOpus = [[OpusManager singOpusManager] createDraftSingOpus:song]; //[Opus opusWithCategory:OpusCategorySing];        
         _newOpus = YES;
     }
     
@@ -155,14 +150,12 @@ enum{
     self.lyricTextView.text = lyric;
     
     _recordLimitTime = 30;
-    _recordTimerInterval = 0.5;
-    _playTimerInterval = 0.1;
     
     NSURL *url = [NSURL URLWithString:image];
     [_opusImageButton setImageWithURL:url placeholderImage:nil];
     
-//    NSString *recordPath = [NSString stringWithFormat:@"%@.m4a", _singOpus.pbOpus.opusId];
-    self.recordURL = [FileUtil fileURLInAppDocument:@"record.m4a"];
+    NSString *recordPath = [NSString stringWithFormat:@"%@.m4a", _singOpus.pbOpus.opusId];
+    self.recordURL = [FileUtil fileURLInAppDocument:recordPath];
     self.playURL = _recordURL;
     
     if (_newOpus) {
@@ -171,7 +164,6 @@ enum{
     }else{
         [self prepareToPlay];
         [self setState:StateReadyPlay];
-        [self performSelector:@selector(setFileDuration) withObject:nil afterDelay:0.2];
     }
     
     [self showMainView];
@@ -225,20 +217,18 @@ enum{
     [self.tagButton updateCenterX:_selectedButton.center.x];
 }
 
-- (void)timeout{
-    if (_recorder.recording) {
-        PPDebug(@"record currentTime = %f", _recorder.currentTime);
-        _recordDuration = _recorder.currentTime;
-        NSTimeInterval leftTime =  _recordLimitTime -  _recordDuration;
-        [self updateUITime:@(leftTime)];
-    }
+- (void)recorder:(VoiceRecorder *)recorder didChangeRecordState:(VoiceRecorderState)recordState{
     
-    if ([_player playing]) {
-        NSTimeInterval leftTime = _player.fileDuration - _player.currentTime;
-        PPDebug(@"play currentTime = %f", _player.currentTime);
-        PPDebug(@"play leftTime = %f", leftTime);
-        [self updateUITime:@(leftTime)];
+    // prepare to play
+    if (recordState == VoiceRecorderStateStopped) {
+        [self prepareToPlay];
+        [self setState:StateReadyPlay];
     }
+}
+
+- (void)recorder:(VoiceRecorder *)recorder recordTime:(CGFloat)recordTime{
+    NSTimeInterval leftTime =  recorder.duration -  recordTime;
+    [self updateUITime:@(leftTime)];
 }
 
 
@@ -266,106 +256,45 @@ enum{
     }];
 }
 
-
 - (void)prepareToRecord{
-    
-    // Define the recorder setting
-    NSMutableDictionary *recordSetting = [[NSMutableDictionary alloc] init];
-    
-    [recordSetting setValue:[NSNumber numberWithInt:kAudioFormatMPEG4AAC] forKey:AVFormatIDKey];
-    [recordSetting setValue:[NSNumber numberWithFloat:44100.0] forKey:AVSampleRateKey];
-    [recordSetting setValue:[NSNumber numberWithInt: 2] forKey:AVNumberOfChannelsKey];
-    [recordSetting setValue:[NSNumber numberWithInt: AVAudioQualityHigh] forKey:AVSampleRateConverterAudioQualityKey];
-    [recordSetting setValue:[NSNumber numberWithInt: AVAudioQualityMin] forKey:AVEncoderAudioQualityKey];
-
-    
-    
-    // Initiate and prepare the recorder
-    // For demo purpose, we skip the error handling. In real app, don’t forget to include proper error handling.
-    self.recorder = [[[AVAudioRecorder alloc] initWithURL:_recordURL settings:recordSetting error:NULL] autorelease];
-    [_recorder prepareToRecord];
-
-    // Setup audio session
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryRecord error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    
-    // start recording
+    if (_recorder == nil) {
+        self.recorder = [[[VoiceRecorder alloc] init] autorelease];
+    }
     _recorder.delegate = self;
+    [_recorder prepareToRecord:_recordURL];
 }
 
 - (void)record {
-    [_recorder recordForDuration:_recordLimitTime];
-    
-    // start timer
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:_recordTimerInterval target:self selector:@selector(timeout) userInfo:nil repeats:YES];
+    [_recorder startToRecordForDutaion:_recordLimitTime];
 }
 
 - (void)stopRecord{
-    // kill timer
-    [timer invalidate];
-    self.timer = nil;
-    
     // stop record
-    [_recorder stop];
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [_recorder stopRecording];
 }
 
 - (void)prepareToPlay{
-    
-    NSError *error = nil;
-    self.player = [[[DiracFxAudioPlayer alloc] initWithContentsOfURL:_playURL channels:1 error:&error] autorelease];		// LE only supports 1 channel!
-    [_player prepareToPlay];
-
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient error:nil];
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
-    [_player setDelegate:self];
+    if (_player == nil) {
+        self.player = [[[VoiceChanger alloc] init] autorelease];
+    }
+    _player.delegate = self;
+    [_player prepareToPlay:_playURL];
 }
 
 - (void)play{
     float duration = _singOpus.pbOpus.sing.duration;
     float pitch = _singOpus.pbOpus.sing.pitch;
-    [_player changeDuration:duration];
-    [_player changePitch:pitch];
+    float formant = _singOpus.pbOpus.sing.formant;
     
-    [_player play];
-
-    // start timer
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:_playTimerInterval target:self selector:@selector(timeout) userInfo:nil repeats:YES];
+    [_player startPlayingWithDuration:duration pitch:pitch formant:formant];
 }
 
 - (void)pausePlay{
-    // kill timer
-    [timer invalidate];
-    self.timer = nil;
-    
-    [_player pause];
+    [_player pausePlaying];
 }
 
 - (void)stopPlay{
-    // kill timer
-    [timer invalidate];
-    self.timer = nil;
-
-    [_player stop];
-}
-
-/* audioRecorderDidFinishRecording:successfully: is called when a recording has been finished or stopped. This method is NOT called if the recorder is stopped due to an interruption. */
-- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{
-    
-    // kill timer
-    [timer invalidate];
-    self.timer = nil;
-    
-    // prepare to play
-    [self prepareToPlay];
-    [self setState:StateReadyPlay];
-    
-    
-    [self performSelector:@selector(setFileDuration) withObject:nil afterDelay:0.2];
-}
-
-- (void)setFileDuration{
-    [self updateUITime:@(_player.fileDuration + 0.5)];
+    [_player stopPlaying];
 }
 
 - (void)diracPlayerDidFinishPlaying:(DiracAudioPlayerBase *)player successfully:(BOOL)flag{
@@ -379,7 +308,7 @@ enum{
     
     // prepare to play
     
-    [self updateUITime:@(_player.fileDuration)];
+    [self updateUITime:@(_fileDuration)];
     [self prepareToPlay];
     [self setState:StateReadyPlay];
 }
@@ -553,11 +482,7 @@ enum{
     [_singOpus setPitch:pitch];
     [_singOpus setFormant:formant];
 
-    if ([_player playing]) {
-        [_player changeDuration:duration];
-        [_player changePitch:pitch];
-        [_player changeFormant:formant];
-    }
+    [_player changeDuration:duration pitch:pitch formant:formant];
 }
 
 - (IBAction)clickOriginButton:(id)sender {
@@ -615,21 +540,18 @@ enum{
 }
 
 - (void)didImageSelected:(UIImage*)image{
-//    self.image = image;
-    
+    self.image = image;    
     [_opusImageButton setImage:image forState:UIControlStateNormal];
 //    [_opusImageView setImageWithURL:url placeholderImage:nil];
 }
 
 - (IBAction)clickBackButton:(id)sender {
 
-    if ([_recorder isRecording]) {
-        [self stopRecord];
-    }
-    
-    if ([_player playing]) {
-        [self pausePlay];
-    }
+    [self stopRecord];
+    [self pausePlay];
+    _recorder.delegate = nil;
+    _player.delegate = nil;
+    _player.progressDelegate = nil;
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -640,14 +562,42 @@ enum{
 
 - (IBAction)clickSubmitButton:(id)sender {
     
-    NSString *path = _recordURL.path;
-    PPDebug(@"path is %@", path);
+//    NSString *path = _recordURL.path;
+//    PPDebug(@"path is %@", path);
+//    
+//    NSData *singData = [NSData dataWithContentsOfFile:path];
+//    if (singData == nil) {
+//        return;
+//    }
+//    
+//    [[OpusService defaultService] submitOpus:_singOpus
+//                                       image:_image
+//                                    opusData:singData
+//                                 opusManager:[OpusManager singOpusManager]
+//                            progressDelegate:nil
+//                                    delegate:self];
     
+    NSURL *inUrl = _recordURL;
+	NSURL *outUrl = [FileUtil fileURLInAppDocument:@"out.aif"];
+    
+    _player.progressDelegate = self;
+    [_player processVoice:inUrl outURL:outUrl duration:0.5 pitch:2 formant:1];
+}
+
+- (void)setProgress:(float)process{
+    PPDebug(@"process = %f", process);
+}
+
+- (void)processDone:(NSURL *)outURL{
+    
+    NSString *path = outURL.path;
+    PPDebug(@"path is %@", path);
+
     NSData *singData = [NSData dataWithContentsOfFile:path];
     if (singData == nil) {
         return;
     }
-    
+
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
@@ -683,6 +633,39 @@ enum{
 - (void)showReView{
     self.opusMainView.hidden = YES;
     self.opusReview.hidden = NO;
+}
+
+- (void)voiceChanger:(VoiceChanger *)voiceChanger didGetFileDuration:(double)fileDuration{
+    _fileDuration = fileDuration + 0.5;
+    [self updateUITime:@(_fileDuration)];
+}
+
+- (void)voiceChanger:(VoiceChanger *)voiceChanger didChangePlayState:(VoiceChangerState)playState{
+    
+    switch (playState) {
+        case VoiceChangerStateError:
+            PPDebug(@"Something error happen!");
+            break;
+            
+        case VoiceChangerStateEnded:
+            [self updateUITime:@(_fileDuration)];
+            [self prepareToPlay];
+            [self setState:StateReadyPlay];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)voiceChanger:(VoiceChanger *)voiceChanger
+            playTime:(CGFloat)playTime
+        fileDuration:(double)fileDuration{
+    
+    NSTimeInterval leftTime = fileDuration - playTime;
+    PPDebug(@"play currentTime = %f", playTime);
+    PPDebug(@"play leftTime = %f", leftTime);
+    [self updateUITime:@(leftTime)];
 }
 
 @end
