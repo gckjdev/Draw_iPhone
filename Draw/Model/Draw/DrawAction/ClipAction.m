@@ -64,16 +64,14 @@
 
 - (void)updateShapeWithDrawActionC:(Game__PBDrawAction *)action
 {
-    ShapeType shapeType;
-    if (action->cliptype == ClipTypeEllipse) {
-        shapeType = ShapeTypeEmptyEllipse;
-    }else if(action->cliptype == ClipTypeRectangle){
-        shapeType = ShapeTypeEmptyRectangle;
-    }
+    ShapeType shapeType = action->cliptype;
+    
     self.shape = [ShapeInfo shapeWithType:shapeType
                                   penType:Pencil
                                     width:1
                                     color:[DrawColor blackColor]];
+
+    [self.shape setStroke:YES];
     
     [self.shape setPointsWithPointComponentC:action->rectcomponent listCount:action->n_rectcomponent];
 }

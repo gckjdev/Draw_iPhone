@@ -10,13 +10,7 @@
 #import "Draw.pb.h"
 #import "DrawUtils.h"
 
-#import "TriangleShape.h"
-#import "BeelineShape.h"
-#import "RectangleShape.h"
-#import "EllipseShape.h"
-#import "StarShape.h"
 #import "ShareImageManager.h"
-#import "RoundRectShape.h"
 #import "ImageShapeManager.h"
 
 @interface ShapeInfo()
@@ -26,6 +20,8 @@
 }
 
 @end
+
+
 
 @implementation ShapeInfo
 @synthesize type = _type;
@@ -49,68 +45,12 @@
               width:(CGFloat)with
               color:(DrawColor *)color
 {
-    /*
-    if (type == ShapeTypeBeeline) {
-        type = ShapeTypeImageSignStart + 1;
-    }
-    if (type == ShapeTypeEllipse) {
-        type = ShapeTypeImageAnimalStart + 7;
-    }
     
-    if (type == ShapeTypeRectangle) {
-        type = ShapeTypeImageStuffStart + 4;
-    }
-    
-    if (type == ShapeTypeTriangle) {
-        type = ShapeTypeImageNatureStart + 8;
-    }
-     */
-    
-    ShapeInfo *shapeInfo = nil;
-    /*
-    switch (type) {
-        case ShapeTypeBeeline:
-        case ShapeTypeEmptyBeeline:
-            shapeInfo = [[BeelineShape alloc] init];
-            break;
-
-        case ShapeTypeRectangle:
-        case ShapeTypeEmptyRectangle:
-            shapeInfo = [[RectangleShape alloc] init];
-            break;
-
-        case ShapeTypeEllipse:
-        case ShapeTypeEmptyEllipse:
-            shapeInfo = [[EllipseShape alloc] init];
-            break;
-
-        case ShapeTypeTriangle:
-        case ShapeTypeEmptyTriangle:
-            shapeInfo = [[TriangleShape alloc] init];
-            break;
-
-        case ShapeTypeStar:
-        case ShapeTypeEmptyStar:
-            shapeInfo = [[StarShape alloc] init];
-            break;
-
-        case ShapeTypeRoundRect:
-        case ShapeTypeEmptyRoundRect:
-            shapeInfo = [[RoundRectShape alloc] init];
-            break;            
-            
-        default:
-            break;
-    }
-    */
-//    if (shapeInfo == nil && type >= ShapeTypeImageStart) {
-        shapeInfo = [[[ImageShapeManager defaultManager] imageShapeWithType:type] retain];
-//    }
+    ShapeInfo *shapeInfo = [[[ImageShapeManager defaultManager] imageShapeWithType:type] retain];
     [shapeInfo setWidth:with];
     [shapeInfo setType:type];
     [shapeInfo setPenType:penType];
     [shapeInfo setColor:color];
-
     return [shapeInfo autorelease];
 }
 
@@ -152,7 +92,6 @@
 
 - (void)setEndPoint:(CGPoint)endPoint
 {
-//    _lastEndPoint = _endPoint;
     _endPoint = endPoint;
 }
 
@@ -175,7 +114,7 @@
         CGFloat y = self.startPoint.y;
         rect = CGRectMake(x - self.width / 2, y - self.width / 2, self.width, self.width);
     }else{
-        if ([self isKindOfClass:[BeelineShape class]]) {
+        if (_type == ShapeTypeBeeline) {
             rect = CGRectWithPointsAndWidth(self.startPoint, self.endPoint, self.width);
         }else{
             rect = CGRectWithPoints(self.startPoint, self.endPoint);
@@ -253,31 +192,8 @@
     pbDrawActionC->width = self.width;
     pbDrawActionC->has_width = 1;
     
-//    [builder setBetterColor:[self.color toBetterCompressColor]];
-//    [builder setPenType:self.penType];
-//    [builder setShapeType:self.type];
-//    [builder addAllRectComponent:self.rectComponent];
-//    [builder setWidth:self.width];
 }
 
-+ (UIImage *)shapeImageForShapeType:(ShapeType)type
-{
-    ShareImageManager *manager = [ShareImageManager defaultManager];
-    switch (type) {
-        case ShapeTypeBeeline:
-            return [manager shapeLine];
-        case ShapeTypeEllipse:
-            return [manager shapeEllipse];
-        case ShapeTypeRectangle:
-            return [manager shapeRectangle];
-        case ShapeTypeStar:
-            return [manager shapeStar];
-        case ShapeTypeTriangle:
-            return [manager shapeTriangle];
-        default:
-            return nil;
-    }
-}
 
 - (CGPathRef)path
 {
@@ -288,60 +204,6 @@
 
 
 
-@implementation BasicShapeInfo
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        _stroke = NO;
-    }
-    return self;
-}
-
-
-- (void)setType:(ShapeType)type
-{
-    _type = type;
-    if (type > ShapeTypeEmptyStart && type < ShapeTypeEmptyEnd) {
-        _stroke = YES;
-    }
-//    _stroke = YES;
-}
-
-
-
-#define MIN_DISTANCE1 MAX(8,self.width+2)
-- (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
-{
-    if (_stroke) {
-        BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE1) && (ABS(p1.y - p2.y) <= MIN_DISTANCE1);
-        return flag;
-    }
-    return [super point1:p1 equalToPoint:p2];
-}
-
-
-- (CGRect)rect
-{
-    CGRect r;
-    if (_stroke) {
-        CGRect rect = [super rect];
-        if (self.type != ShapeTypeBeeline && ![self point1:self.startPoint equalToPoint:self.endPoint]) {
-            CGRectEnlarge(&rect, - self.width / 2, - self.width / 2);
-        }
-        r = rect;
-    }else{
-        r = [super rect];
-    }
-    r.size.width = MAX(4, r.size.width);
-    r.size.height = MAX(4, r.size.height);
-    return r;
-    
-}
-
-@end
-
 
 
 @interface ImageShapeInfo()
@@ -349,6 +211,11 @@
 
 }
 @end
+
+
+#define SVG_IMAGE_SIZE CGSizeMake(64, 64)
+
+
 
 @implementation ImageShapeInfo
 
@@ -362,8 +229,6 @@
     }
     return self;
 }
-#define SVG_IMAGE_SIZE 64
-
 
 - (void)updateRedrawRectWithWidth:(CGFloat)width
 {
@@ -408,8 +273,8 @@
     }
     CGRect rect = [self rect];
     
-    CGFloat sx = CGRectGetWidth(rect) / SVG_IMAGE_SIZE;
-    CGFloat sy = CGRectGetHeight(rect) / SVG_IMAGE_SIZE;
+    CGFloat sx = CGRectGetWidth(rect) / SVG_IMAGE_SIZE.width;
+    CGFloat sy = CGRectGetHeight(rect) / SVG_IMAGE_SIZE.height;
     
     CGFloat tx = CGRectGetMinX(rect) / sx;
     CGFloat ty = CGRectGetMinY(rect)/ sy;
@@ -424,10 +289,10 @@
     
     CGContextScaleCTM(context, sx, sy);
     if (sy < 0) {
-        ty = -(ty + SVG_IMAGE_SIZE);
+        ty = -(ty + SVG_IMAGE_SIZE.height);
     }
     if (sx < 0) {
-        tx = -(tx + SVG_IMAGE_SIZE);
+        tx = -(tx + SVG_IMAGE_SIZE.width);
     }
     CGContextTranslateCTM(context, tx, ty);
 }
@@ -483,6 +348,13 @@
         pbDrawActionC->shapestroke = _stroke;
         pbDrawActionC->has_shapestroke = 1;        
     }
+}
+
+
+
++ (CGSize)defaultImageShapeSize
+{
+    return SVG_IMAGE_SIZE;
 }
 
 @end

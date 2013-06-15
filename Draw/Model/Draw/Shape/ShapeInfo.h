@@ -20,15 +20,6 @@ typedef enum{
     ShapeTypeStar,
     ShapeTypeRoundRect,
     
-    ShapeTypeEmptyStart = 500,
-    ShapeTypeEmptyBeeline = 501,
-    ShapeTypeEmptyRectangle,
-    ShapeTypeEmptyEllipse,
-    ShapeTypeEmptyTriangle,
-    ShapeTypeEmptyStar,
-    ShapeTypeEmptyRoundRect,
-    ShapeTypeEmptyEnd,
-    
     ShapeTypeImageBasicEnd,
 
     ShapeTypeImageStart = 1000,
@@ -80,7 +71,7 @@ typedef enum{
 @property(nonatomic, retain)DrawColor *color;
 
 
-+ (UIImage *)shapeImageForShapeType:(ShapeType)type;
+//+ (UIImage *)shapeImageForShapeType:(ShapeType)type;
 
 + (id)shapeWithType:(ShapeType) type penType:(ItemType)penType width:(CGFloat)with color:(DrawColor *)color;
 - (void)drawInContext:(CGContextRef)context;
@@ -99,20 +90,10 @@ typedef enum{
 
 
 
-
-@interface BasicShapeInfo : ShapeInfo
-{
-   
-}
-
-
-
-@end
-
-
 @interface ImageShapeInfo : ShapeInfo
 
 - (id)initWithCGPath:(CGPathRef)path;
++ (CGSize)defaultImageShapeSize;
 
 @end
 

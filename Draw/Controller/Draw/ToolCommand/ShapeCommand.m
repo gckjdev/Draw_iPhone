@@ -8,11 +8,13 @@
 
 #import "ShapeCommand.h"
 #import "ShapeInfo.h"
-
+#import "ImageShapeManager.h"
+#import "UIBezierPath+Ext.h"
+#import "UIColor+UIColorExt.h"
 
 @interface ShapeCommand()
 {
-    
+    ShapeType _currentType;
 }
 
 @property(nonatomic, retain)ShapeBox *box;
@@ -70,6 +72,22 @@
     return YES;
 }
 
+- (void)updateButtonImageWithStroke:(BOOL)stroke
+{
+    UIButton *button = (UIButton *)self.control;
+    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:_currentType];
+    UIColor *color = OPAQUE_COLOR(62, 43, 23);
+    UIImage *image = nil;
+    if (stroke || _currentType == ShapeTypeBeeline) {
+        image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }else{
+        image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }
+    [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [button setSelected:YES];
+    [button setImage:image forState:UIControlStateNormal];
+}
+
 - (void)shapeBox:(ShapeBox *)shapeBox
 didSelectedShape:(ShapeType)shape
         isStroke:(BOOL)isStroke
@@ -81,10 +99,9 @@ didSelectedShape:(ShapeType)shape
 
         [shapeBox dismiss];
         self.box = nil;
-        
-//        UIImage * image = [ShapeInfo shapeImageForShapeType:type];
-//        UIButton *button = (UIButton *)self.control;
-//        [button setImage:image forState:UIControlStateNormal];
+
+        _currentType = shape;
+        [self updateButtonImageWithStroke:isStroke];
 
     }
 }
@@ -92,16 +109,15 @@ didSelectedShape:(ShapeType)shape
 - (void)shapeBox:(ShapeBox *)shapeBox didChangeDrawStyle:(BOOL)stroke
 {
     [self.toolHandler changeShapeStroke:stroke];
+    if(_currentType != 0){
+        [self updateButtonImageWithStroke:stroke];
+    }
 }
 
 - (void)buyItemSuccessfully:(ItemType)type
 {
     [self.box reloadView];
 }
-
-//-(void)sendAnalyticsReport{
-//    AnalyticsReport(DRAW_CLICK_DRAWBG_BOX);
-//}
 
 -(void)sendAnalyticsReport{
     AnalyticsReport(DRAW_CLICK_SHAPE_BOX);
