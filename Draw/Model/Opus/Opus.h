@@ -21,8 +21,9 @@ typedef enum _OpusCategory{
 
 @property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
 
-+ (id)opusWithCategory:(OpusCategory)category;
-+ (id)opusWithPBOpus:(PBOpus *)pbOpus;
++ (Opus*)opusWithCategory:(OpusCategory)category;
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus;
+- (NSString*)opusKey;
 
 - (void)setType:(PBOpusType)type;
 - (void)setName:(NSString *)name;  
@@ -41,6 +42,10 @@ typedef enum _OpusCategory{
 - (void)setStorageType:(int)value;
 - (void)setCreateDate:(int)value;
 - (void)setDeviceType:(int)value;
+
+- (NSURL*)localDataURL;
++ (NSString*)localDataDir;
+- (void)setLocalDataUrl:(NSString*)extension;
 
 @end
 

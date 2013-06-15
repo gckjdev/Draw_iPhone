@@ -15,6 +15,7 @@
 #import "StringUtil.h"
 #import "Opus.h"
 #import "SingOpus.h"
+#import "FileUtil.h"
 
 static OpusManager* globalSingOpusManager;
 static OpusManager* globalDrawOpusManager;
@@ -72,6 +73,8 @@ static OpusManager* globalAskPsManager;
     if (self = [super init]) {
         self.aClass = class;
         self.userManager = [UserManager defaultManager];
+        
+        [FileUtil createDir:[FileUtil filePathInAppDocument:[self.aClass localDataDir]]];
     }
     
     return self;
@@ -91,7 +94,7 @@ static OpusManager* globalAskPsManager;
         return;
     }
     
-    PPDebug(@"SAVE LOCAL OPUS=%@", [opus description]);
+    PPDebug(@"SAVE LOCAL OPUS KEY=%@", [opus opusKey]);
     [BuriBucket(_aClass) storeObject:opus];
 }
 
@@ -130,11 +133,12 @@ static OpusManager* globalAskPsManager;
     return [builder build];
 }
 
-- (void)setDraftOpusId:(Opus*)opus
+- (void)setDraftOpusId:(Opus*)opus extension:(NSString*)fileNameExtension
 {
     NSString* tempOpusId = [NSString GetUUID];
     [opus setOpusId:tempOpusId];
     [opus setStorageType:PBOpusStoreTypeDraftOpus];
+    [opus setLocalDataUrl:fileNameExtension];
 }
 
 - (void)setCommonOpusInfo:(Opus*)opus
@@ -162,7 +166,7 @@ static OpusManager* globalAskPsManager;
     SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
     
     // set basic info
-    [self setDraftOpusId:singOpus];
+    [self setDraftOpusId:singOpus extension:SING_FILE_EXTENSION];
     [self setCommonOpusInfo:singOpus];
 
     // set type and category
@@ -176,6 +180,7 @@ static OpusManager* globalAskPsManager;
     [singOpus setDuration:1];
     [singOpus setPitch:1];
     [singOpus setFormant:1];
+    [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
     
     return singOpus;
     
