@@ -52,7 +52,8 @@ long myReadData(float **chdata, long numFrames, void *userData)
 @property (retain, nonatomic) NSURL *playURL;
 @property (retain, nonatomic) DiracFxAudioPlayer *player;
 @property (retain, nonatomic) NSTimer *timer;
-@property (assign, nonatomic) id<VoiceProcessDelegate> progressDelegate;
+@property (retain, nonatomic) NSURL *inURL;
+@property (retain, nonatomic) NSURL *outURL;
 
 @end
 
@@ -66,6 +67,8 @@ long myReadData(float **chdata, long numFrames, void *userData)
     [_timer release];
     [reader release];
     [writer release];
+    [_inURL release];
+    [_outURL release];
     [super dealloc];
 }
 
@@ -192,9 +195,9 @@ long myReadData(float **chdata, long numFrames, void *userData)
 -(void)playOnMainThread:(id)param
 {
     
-    if ([_progressDelegate respondsToSelector:@selector(processDone)]) {
+    if ([_progressDelegate respondsToSelector:@selector(processDone:)]) {
         
-        [_progressDelegate processDone];
+        [_progressDelegate processDone:_outURL];
     }
 }
 
@@ -211,8 +214,6 @@ long myReadData(float **chdata, long numFrames, void *userData)
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#define KEY_INURL @"inURL"
-#define KEY_OUTURL @"outURL"
 #define KEY_DURATION @"duration"
 #define KEY_PITCH @"pitch"
 #define KEY_FORMANT @"formant"
@@ -221,10 +222,10 @@ long myReadData(float **chdata, long numFrames, void *userData)
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
+    reader = [[EAFRead alloc] init];
+    writer = [[EAFWrite alloc] init];
     
     NSDictionary *dic  = (NSDictionary *)param;
-    NSURL *inUrl = [dic objectForKey:KEY_INURL];
-    NSURL *outUrl = [dic objectForKey:KEY_OUTURL];
     float time = [[dic objectForKey:KEY_DURATION] floatValue];
     float pitch = [[dic objectForKey:KEY_PITCH] floatValue];
     float formant = [[dic objectForKey:KEY_FORMANT] floatValue];
@@ -233,10 +234,10 @@ long myReadData(float **chdata, long numFrames, void *userData)
 	float sampleRate = 44100.;
     
 	// open input file
-	[reader openFileForRead:inUrl sr:sampleRate channels:numChannels];
+	[reader openFileForRead:_inURL sr:sampleRate channels:numChannels];
 	
 	// create output file (overwrite if exists)
-	[writer openFileForWrite:outUrl sr:sampleRate channels:numChannels wordLength:16 type:kAudioFileAIFFType];
+	[writer openFileForWrite:_outURL sr:sampleRate channels:numChannels wordLength:16 type:kAudioFileAIFFType];
 	
 	// DIRAC parameters
 	// Here we set our time an pitch manipulation values
@@ -295,7 +296,7 @@ long myReadData(float **chdata, long numFrames, void *userData)
 		long ipercent = percent;
 		if (lastPercent != percent) {
 			[self performSelectorOnMainThread:@selector(updateBarOnMainThread:) withObject:self waitUntilDone:NO];
-			printf("\rProgress: %3li%% [%-40s] ", ipercent, &"||||||||||||||||||||||||||||||||||||||||"[40 - ((ipercent>100)?40:(2*ipercent/5))] );
+//			printf("\rProgress: %3li%% [%-40s] ", ipercent, &"||||||||||||||||||||||||||||||||||||||||"[40 - ((ipercent>100)?40:(2*ipercent/5))] );
 			lastPercent = ipercent;
 			fflush(stdout);
 		}
@@ -308,7 +309,7 @@ long myReadData(float **chdata, long numFrames, void *userData)
 		bavg += (numFrames/sampleRate);
 		gExecTimeTotal += DiracClockTimeSeconds();		// ............................. stop timer ..........................................
 		
-		printf("x realtime = %3.3f : 1 (DSP only), CPU load (peak, DSP+disk): %3.2f%%\n", bavg/gExecTimeTotal, DiracPeakCpuUsagePercent(dirac));
+//		printf("x realtime = %3.3f : 1 (DSP only), CPU load (peak, DSP+disk): %3.2f%%\n", bavg/gExecTimeTotal, DiracPeakCpuUsagePercent(dirac));
 		
 		// Process only as many frames as needed
 		long framesToWrite = numFrames;
@@ -353,22 +354,16 @@ long myReadData(float **chdata, long numFrames, void *userData)
               outURL:(NSURL *)outURL
             duration:(float)duration
                pitch:(float)pitch
-             formant:(float)formant
-    progressDelegate:(id<VoiceProcessDelegate>)progressDelegate{
+             formant:(float)formant{
     
-    self.progressDelegate = progressDelegate;
-    
-    if (reader == nil) {
-        reader = [[EAFRead alloc] init];
+    if (inURL == nil || outURL == nil) {
+        return;
     }
     
-    if (writer == nil) {
-        writer = [[EAFWrite alloc] init];
-    }
+    self.inURL = inURL;
+    self.outURL = outURL;
     
-    NSDictionary *dic = @{KEY_INURL: inURL,
-                          KEY_OUTURL : outURL,
-                          KEY_DURATION : @(duration),
+    NSDictionary *dic = @{KEY_DURATION : @(duration),
                           KEY_PITCH : @(pitch),
                           KEY_FORMANT : @(formant),
                           };
