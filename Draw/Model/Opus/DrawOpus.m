@@ -10,4 +10,9 @@
 
 @implementation DrawOpus
 
++ (NSString*)localDataDir
+{
+    return @"PaintData";
+}
+
 @end
