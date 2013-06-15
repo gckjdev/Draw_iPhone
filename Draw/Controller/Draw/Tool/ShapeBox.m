@@ -81,7 +81,7 @@
 
 - (IBAction)changeDrawStyle:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIButton *drawStyleButton;
+
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) NSArray *dataList;
 @property (retain, nonatomic) CustomInfoView *infoView;
@@ -99,7 +99,17 @@ BOOL staticStroke = NO;
     self.infoView = nil;
 }
 
+#define FILL_BUTTON_TAG 101
+#define STROK_BUTTON_TAG 100
+- (id)fillButton
+{
+    return [self viewWithTag:FILL_BUTTON_TAG];
+}
 
+- (id)strokeButton
+{
+    return [self viewWithTag:STROK_BUTTON_TAG];
+}
 
 + (id)shapeBoxWithDelegate:(id<ShapeBoxDelegate>)delegate
 {
@@ -136,8 +146,9 @@ BOOL staticStroke = NO;
 
 - (void)setStroke:(BOOL)stroke
 {
-    [self.drawStyleButton setSelected:stroke];
     staticStroke = stroke;
+    [[self strokeButton] setSelected:stroke];
+    [[self fillButton] setSelected:!stroke];
 }
 - (BOOL)isStroke
 {
@@ -148,7 +159,6 @@ BOOL staticStroke = NO;
     PPRelease(_infoView);
     PPRelease(_tableView);
     PPRelease(_dataList);
-    [_drawStyleButton release];
     [super dealloc];
 }
 
@@ -192,8 +202,15 @@ BOOL staticStroke = NO;
     [self dismiss];
 }
 
+
+
 - (IBAction)changeDrawStyle:(id)sender {
-    [self setStroke:![self isStroke]];
+//    [self setStroke:![self isStroke]];
+    if (sender == [self strokeButton]) {
+        [self setStroke:YES];
+    }else{
+        [self setStroke:NO];
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didChangeDrawStyle:)]) {
         [self.delegate shapeBox:self didChangeDrawStyle:[self isStroke]];
     }
@@ -246,15 +263,6 @@ BOOL staticStroke = NO;
         [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
         
     }
-//    for (UIButton *button in cell.subviews) {
-//        if ([button isKindOfClass:[UIButton class]]) {
-//            if (button.tag > 0 && button.tag < 7) {
-//                [button setBackgroundColor:[UIColor clearColor]];
-//                [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-//                [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
-//            }
-//        }
-//    }
     return cell;
 }
 

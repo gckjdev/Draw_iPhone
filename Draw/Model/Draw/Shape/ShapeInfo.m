@@ -21,7 +21,7 @@
 
 @end
 
-
+#define STROKE_WIDTH 2
 
 @implementation ShapeInfo
 @synthesize type = _type;
@@ -75,8 +75,14 @@
     
     CGFloat endX = floatList[2];
     CGFloat endY = floatList[3];
+    
     self.endPoint = CGPointMake(endX, endY);
     
+    if (self.width > 0 && [ShapeInfo point1:self.startPoint equalToPoint:self.endPoint]) {
+        CGPoint point = self.startPoint;
+        self.startPoint = CGPointMake(point.x - self.width / 2, point.y - self.width / 2);
+        self.endPoint = CGPointMake(point.x + self.width / 2, point.y + self.width / 2);
+    }
 }
 
 - (void)setPointsWithPointComponent:(NSArray *)pointComponent
@@ -97,7 +103,7 @@
 
 
 #define MIN_DISTANCE (8)
-- (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
++ (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
 {
     BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE) && (ABS(p1.y - p2.y) <= MIN_DISTANCE);
     return flag;
@@ -108,7 +114,7 @@
 - (CGRect)rect
 {
     CGRect rect= CGRectZero;
-    if ([self point1:self.startPoint equalToPoint:self.endPoint]) {
+    if ([ShapeInfo point1:self.startPoint equalToPoint:self.endPoint]) {
         self.endPoint = self.startPoint;
         CGFloat x = self.startPoint.x;
         CGFloat y = self.startPoint.y;
@@ -146,8 +152,7 @@
 
 - (NSArray *)rectComponent
 {
-    CGPoint start = self.startPoint, end = self.endPoint;
-    return [self rectComponentWithStartPoint:start endPoint:end];
+    return [self rectComponentWithStartPoint:self.startPoint endPoint:self.endPoint];
 }
 
 - (NSArray *)rectComponentWithStartPoint:(CGPoint)start endPoint:(CGPoint)end
@@ -220,6 +225,7 @@
 @implementation ImageShapeInfo
 
 
+
 - (id)initWithCGPath:(CGPathRef)path
 {
     self = [super init];
@@ -251,7 +257,6 @@
     }
 }
 
-#define STROKE_WIDTH 2
 
 - (void)updateBasihShapePath
 {
@@ -311,7 +316,7 @@
         CGContextSetLineCap(context, kCGLineCapRound);
         
         if (_stroke) {
-            CGFloat strokeWidth = [self isBasicShape] ? self.width : STROKE_WIDTH;
+            CGFloat strokeWidth = [self width];
             CGContextSetLineWidth(context, strokeWidth);
             CGContextSetStrokeColorWithColor(context, self.color.CGColor);
             CGContextSetLineJoin(context, kCGLineJoinMiter);
@@ -342,7 +347,7 @@
 {
     
     [super updatePBDrawActionC:pbDrawActionC];
-    pbDrawActionC->width = 2;
+    pbDrawActionC->width = [self width];
     pbDrawActionC->has_width = 1;
     if (_stroke) {
         pbDrawActionC->shapestroke = _stroke;
