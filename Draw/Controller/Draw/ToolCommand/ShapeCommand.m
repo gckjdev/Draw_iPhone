@@ -77,7 +77,12 @@
     UIButton *button = (UIButton *)self.control;
     UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:_currentType];
     UIColor *color = OPAQUE_COLOR(62, 43, 23);
-    UIImage *image = stroke ? [path toStrokeImageWithColor:color] : [path toFillImageWithColor:color];
+    UIImage *image = nil;
+    if (stroke || _currentType == ShapeTypeBeeline) {
+        image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }else{
+        image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }
     [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
     [button setSelected:YES];
     [button setImage:image forState:UIControlStateNormal];

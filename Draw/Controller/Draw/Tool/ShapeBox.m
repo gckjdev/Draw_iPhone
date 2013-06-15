@@ -310,7 +310,6 @@ BOOL staticStroke = NO;
     
 }
 
-#define SHAPE_SIZE 64
 #define SHAPE_LAYER_TAG @"SHAPE_LAYER_TAG"
 
 - (void)updateCellWithImageShapeGroup:(PBImageShapeGroup *)group
@@ -330,7 +329,8 @@ BOOL staticStroke = NO;
         
         UIBezierPath * path = [[ImageShapeManager defaultManager] pathWithType:type.integerValue];
         
-        const CGAffineTransform transform = (CGAffineTransformMakeScale(CGRectGetWidth(button.bounds)/SHAPE_SIZE, CGRectGetHeight(button.bounds)/SHAPE_SIZE));
+        CGSize shapeSize = [ImageShapeInfo defaultImageShapeSize];
+        const CGAffineTransform transform = (CGAffineTransformMakeScale(CGRectGetWidth(button.bounds)/shapeSize.width, CGRectGetHeight(button.bounds)/shapeSize.height));
         
         CGPathRef cgPath = CGPathCreateCopyByTransformingPath(path.CGPath, &transform);
         

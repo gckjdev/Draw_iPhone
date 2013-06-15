@@ -21,6 +21,8 @@
 
 @end
 
+
+
 @implementation ShapeInfo
 @synthesize type = _type;
 @synthesize stroke = _stroke;
@@ -210,6 +212,11 @@
 }
 @end
 
+
+#define SVG_IMAGE_SIZE CGSizeMake(64, 64)
+
+
+
 @implementation ImageShapeInfo
 
 
@@ -222,8 +229,6 @@
     }
     return self;
 }
-#define SVG_IMAGE_SIZE 64
-
 
 - (void)updateRedrawRectWithWidth:(CGFloat)width
 {
@@ -268,8 +273,8 @@
     }
     CGRect rect = [self rect];
     
-    CGFloat sx = CGRectGetWidth(rect) / SVG_IMAGE_SIZE;
-    CGFloat sy = CGRectGetHeight(rect) / SVG_IMAGE_SIZE;
+    CGFloat sx = CGRectGetWidth(rect) / SVG_IMAGE_SIZE.width;
+    CGFloat sy = CGRectGetHeight(rect) / SVG_IMAGE_SIZE.height;
     
     CGFloat tx = CGRectGetMinX(rect) / sx;
     CGFloat ty = CGRectGetMinY(rect)/ sy;
@@ -284,10 +289,10 @@
     
     CGContextScaleCTM(context, sx, sy);
     if (sy < 0) {
-        ty = -(ty + SVG_IMAGE_SIZE);
+        ty = -(ty + SVG_IMAGE_SIZE.height);
     }
     if (sx < 0) {
-        tx = -(tx + SVG_IMAGE_SIZE);
+        tx = -(tx + SVG_IMAGE_SIZE.width);
     }
     CGContextTranslateCTM(context, tx, ty);
 }
@@ -343,6 +348,13 @@
         pbDrawActionC->shapestroke = _stroke;
         pbDrawActionC->has_shapestroke = 1;        
     }
+}
+
+
+
++ (CGSize)defaultImageShapeSize
+{
+    return SVG_IMAGE_SIZE;
 }
 
 @end

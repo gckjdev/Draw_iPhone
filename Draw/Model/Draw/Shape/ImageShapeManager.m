@@ -19,7 +19,7 @@
 #define IMAGE_SHAPE_ZIP_NAME @"image_shape.zip"
 #define IMAGE_SHAPE_META_FILE @"meta.pb"
 #define SUFFIX @".svg"
-#define IMAGE_SHAPE_SIZE 64
+
 
 @interface ImageShapeManager()
 {
@@ -158,7 +158,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
 - (UIBezierPath *)pathWithBasicType:(ShapeType)type
 {
-    return [self pathWithBasicType:type startPoint:CGPointZero endPoint:CGPointMake(IMAGE_SHAPE_SIZE, IMAGE_SHAPE_SIZE)];
+    CGSize size = [ImageShapeInfo defaultImageShapeSize];
+    CGPoint end = CGPointMake(size.width, size.height);
+    return [self pathWithBasicType:type startPoint:CGPointZero endPoint:end];
 }
 
 
