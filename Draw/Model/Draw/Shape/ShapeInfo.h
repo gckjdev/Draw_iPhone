@@ -93,6 +93,7 @@ typedef enum{
 @interface ImageShapeInfo : ShapeInfo
 
 - (id)initWithCGPath:(CGPathRef)path;
++ (CGSize)defaultImageShapeSize;
 
 @end
 
