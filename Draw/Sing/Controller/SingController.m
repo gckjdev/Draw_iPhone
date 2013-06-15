@@ -34,10 +34,10 @@ enum{
     BOOL _newOpus;
 }
 @property (retain, nonatomic) SingOpus *singOpus;
-//@property (copy, nonatomic) NSURL *recordURL;
-//@property (copy, nonatomic) NSURL *playURL;
 @property (retain, nonatomic) VoiceRecorder *recorder;
 @property (retain, nonatomic) VoiceChanger *player;
+@property (retain, nonatomic) VoiceProcessor *processor;
+
 @property (retain, nonatomic) UIButton *selectedButton;
 @property (copy, nonatomic) NSString *desc;
 @property (copy, nonatomic) UIImage *image;
@@ -53,10 +53,9 @@ enum{
     [_desc release];
     [_selectedButton release];
     [_singOpus release];
-//    [_recordURL release];
     [_recorder release];
     [_player release];
-//    [_playURL release];
+    [_processor release];
     
     [_micImageView release];
     [_timeLabel release];
@@ -101,7 +100,7 @@ enum{
 
 - (id)initWithSong:(PBSong *)song{
     if (self = [super init]) {
-        self.singOpus = [[OpusManager singOpusManager] createDraftSingOpus:song]; //[Opus opusWithCategory:OpusCategorySing];        
+        self.singOpus = [[OpusManager singOpusManager] createDraftSingOpus:song];      
         _newOpus = YES;
     }
     
@@ -118,6 +117,7 @@ enum{
 }
 
 - (void)initSelectedButton{
+    
     switch (_singOpus.pbOpus.sing.voiceType) {
         case PBVoiceTypeVoiceTypeOrigin:
             self.selectedButton = _originButton;
@@ -166,10 +166,6 @@ enum{
     
     NSURL *url = [NSURL URLWithString:image];
     [_opusImageButton setImageWithURL:url placeholderImage:nil];
-    
-//    NSString *recordPath = [NSString stringWithFormat:@"%@.m4a", _singOpus.pbOpus.opusId];
-//    self.recordURL = [FileUtil fileURLInAppDocument:recordPath];
-//    self.playURL = _recordURL;
     
     if (_newOpus) {
         [self prepareToRecord];
@@ -233,7 +229,7 @@ enum{
 - (void)recorder:(VoiceRecorder *)recorder didChangeRecordState:(VoiceRecorderState)recordState{
     
     // prepare to play
-    if (recordState == VoiceRecorderStateStopped) {
+    if (recordState == VoiceRecorderStateStopped || recordState == VoiceChangerStateEnded) {
         [self prepareToPlay];
         [self setState:StateReadyPlay];
     }
@@ -244,10 +240,10 @@ enum{
     [self updateUITime:@(leftTime)];
 }
 
-
 - (void)reset{
     _recorder.delegate = nil;
     _player.delegate = nil;
+    _processor.delegate = nil;
     [self stopRecord];
     [self stopPlay];
 }
@@ -256,7 +252,7 @@ enum{
 
     __block typeof(self) bself = self;
     
-    MKBlockAlertView *v = [[[MKBlockAlertView alloc] initWithTitle:NSLS(@"kGifTips") message:NSLS(@"kRerecordWarnning") delegate:nil cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOk"), nil] autorelease];
+    MKBlockAlertView *v = [[[MKBlockAlertView alloc] initWithTitle:NSLS(@"kGifTips") message:NSLS(@"kRerecordWarnning") delegate:nil cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil] autorelease];
     
     [v show];
     
@@ -292,6 +288,9 @@ enum{
     }
     _player.delegate = self;
     [_player prepareToPlay:[self playURL]];
+    [_player changeDuration:_singOpus.pbOpus.sing.duration
+                      pitch:_singOpus.pbOpus.sing.pitch
+                    formant:_singOpus.pbOpus.sing.formant];
 }
 
 - (void)play{
@@ -310,28 +309,10 @@ enum{
     [_player stopPlaying];
 }
 
-- (void)diracPlayerDidFinishPlaying:(DiracAudioPlayerBase *)player successfully:(BOOL)flag{
-    
-    NSLog(@"diracPlayerDidFinishPlaying : %@", flag ? @"YES" : @"NO");
-
-    
-    // kill timer
-    [timer invalidate];
-    self.timer = nil;
-    
-    // prepare to play
-    
-    [self updateUITime:@(_fileDuration)];
-    [self prepareToPlay];
-    [self setState:StateReadyPlay];
-}
-
 - (void) mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
 
 - (IBAction)clickControlButton:(id)sender {
     switch (_state) {
@@ -453,79 +434,16 @@ enum{
     self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d", min, sec];
 }
 
-- (void)changeVoiceType:(PBVoiceType)voiceType{
-    
-    [_singOpus setVoiceType:voiceType];
-    
-    switch (voiceType) {
-        case PBVoiceTypeVoiceTypeOrigin:
-            [self changeDuration:1 pitch:1 formant:1];
-            break;
-            
-        case PBVoiceTypeVoiceTypeTomCat:
-            [self changeDuration:0.5 pitch:1.f/0.5 formant:1];
-
-            break;
-            
-        case PBVoiceTypeVoiceTypeDuck:
-            [self changeDuration:0.5 pitch:1.f/0.5 formant:1];
-
-            break;
-            
-        case PBVoiceTypeVoiceTypeMale:
-            [self changeDuration:1 pitch:0.8 formant:0.5];
-            break;
-            
-        case PBVoiceTypeVoiceTypeChild:
-            [self changeDuration:0.5 pitch:1.f/0.5 formant:1];
-
-            break;
-            
-        case PBVoiceTypeVoiceTypeFemale:
-            [self changeDuration:1 pitch:1.2 formant:1];
-            break;
-            
-        default:
-            break;
-    }
+- (void)changeVoiceType:(PBVoiceType)type{
+    [_singOpus setVoiceType:type];
+    [_player changeDuration:_singOpus.pbOpus.sing.duration
+                      pitch:_singOpus.pbOpus.sing.pitch
+                    formant:_singOpus.pbOpus.sing.formant];
 }
 
-- (void)changeDuration:(CGFloat)duration pitch:(CGFloat)pitch formant:(CGFloat)formant{
-    [_singOpus setDuration:duration];
-    [_singOpus setPitch:pitch];
-    [_singOpus setFormant:formant];
-
-    [_player changeDuration:duration pitch:pitch formant:formant];
-}
-
-- (IBAction)clickOriginButton:(id)sender {
+- (IBAction)clickVoiceTypeButton:(id)sender {
     self.selectedButton = (UIButton *)sender;
-    [self changeVoiceType:PBVoiceTypeVoiceTypeOrigin];
-}
-
-- (IBAction)clickTomCatButton:(id)sender {
-    self.selectedButton = (UIButton *)sender;
-    [self changeVoiceType:PBVoiceTypeVoiceTypeTomCat];
-}
-
-- (IBAction)clickDuckButton:(id)sender {
-    self.selectedButton = (UIButton *)sender;
-    [self changeVoiceType:PBVoiceTypeVoiceTypeDuck];
-}
-
-- (IBAction)clickMaleButton:(id)sender {
-    self.selectedButton = (UIButton *)sender;
-    [self changeVoiceType:PBVoiceTypeVoiceTypeMale];
-}
-
-- (IBAction)clickChildButton:(id)sender {
-    self.selectedButton = (UIButton *)sender;
-    [self changeVoiceType:PBVoiceTypeVoiceTypeChild];
-}
-
-- (IBAction)clickFemaleButton:(id)sender {
-    self.selectedButton = (UIButton *)sender;
-    [self changeVoiceType:PBVoiceTypeVoiceTypeFemale];
+    [self changeVoiceType:self.selectedButton.tag];
 }
 
 - (IBAction)clickDescButton:(id)sender {
@@ -555,7 +473,6 @@ enum{
 - (void)didImageSelected:(UIImage*)image{
     self.image = image;    
     [_opusImageButton setImage:image forState:UIControlStateNormal];
-//    [_opusImageView setImageWithURL:url placeholderImage:nil];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -564,7 +481,7 @@ enum{
     [self pausePlay];
     _recorder.delegate = nil;
     _player.delegate = nil;
-    _player.progressDelegate = nil;
+    _processor.delegate = nil;
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -574,43 +491,40 @@ enum{
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    
-//    NSString *path = _recordURL.path;
-//    PPDebug(@"path is %@", path);
-//    
-//    NSData *singData = [NSData dataWithContentsOfFile:path];
-//    if (singData == nil) {
-//        return;
-//    }
-//    
-//    [[OpusService defaultService] submitOpus:_singOpus
-//                                       image:_image
-//                                    opusData:singData
-//                                 opusManager:[OpusManager singOpusManager]
-//                            progressDelegate:nil
-//                                    delegate:self];
-    
+
     NSURL *inUrl = [self recordURL];
 	NSURL *outUrl = [self finalOpusURL];
+
+    if (_processor == nil) {
+        self.processor = [[[VoiceProcessor alloc] init] autorelease];
+        _processor.delegate = self;
+    }
     
-    _player.progressDelegate = self;
-    [_player processVoice:inUrl outURL:outUrl duration:0.5 pitch:2 formant:1];
+    [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
+    
+    
+    [self showProgressViewWithMessage:NSLS(@"kSending")];
 }
 
-- (void)setProgress:(float)process{
-    PPDebug(@"process = %f", process);
+- (void)processor:(VoiceProcessor *)processor progress:(float)progress{
+    PPDebug(@"progress = %f", progress);
+    
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
+    [self.progressView setLabelText:progressText];
+    
+    [self.progressView setProgress:progress];
 }
 
-- (void)processDone:(NSURL *)outURL{
+- (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL{
     
     NSString *path = outURL.path;
     PPDebug(@"path is %@", path);
-
+    
     NSData *singData = [NSData dataWithContentsOfFile:path];
     if (singData == nil) {
         return;
     }
-
+    
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
@@ -621,6 +535,8 @@ enum{
 
 - (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus{
     
+    [self hideProgressView];
+
     if (resultCode == ERROR_SUCCESS) {
         [self popupMessage:@"成功" title:nil];
     }else{

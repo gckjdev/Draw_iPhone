@@ -177,9 +177,6 @@ static OpusManager* globalAskPsManager;
     // init song info
     [singOpus setSong:song];
     [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
-    [singOpus setDuration:1];
-    [singOpus setPitch:1];
-    [singOpus setFormant:1];
     [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
     
     return singOpus;

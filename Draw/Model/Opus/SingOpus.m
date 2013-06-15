@@ -22,24 +22,48 @@
 - (void)setVoiceType:(PBVoiceType)voiceType{
     PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
     [builder setVoiceType:voiceType];
-    [self.pbOpusBuilder setSing:[builder build]];
-}
-
-- (void)setDuration:(float)duration{
-    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
-    [builder setDuration:duration];
-    [self.pbOpusBuilder setSing:[builder build]];
-}
-
-- (void)setPitch:(float)pitch{
-    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
-    [builder setPitch:pitch];
-    [self.pbOpusBuilder setSing:[builder build]];
-}
-
-- (void)setFormant:(float)formant{
-    PBSingOpus_Builder *builder = [PBSingOpus builderWithPrototype:self.pbOpusBuilder.sing];
-    [builder setFormant:formant];
+    
+    switch (voiceType) {
+        case PBVoiceTypeVoiceTypeOrigin:
+            [builder setDuration:1];
+            [builder setPitch:1];
+            [builder setFormant:1];
+            break;
+            
+        case PBVoiceTypeVoiceTypeTomCat:
+            [builder setDuration:0.5];
+            [builder setPitch:1.f/0.5];
+            [builder setFormant:1];
+            break;
+            
+        case PBVoiceTypeVoiceTypeDuck:
+            [builder setDuration:0.5];
+            [builder setPitch:1.f/0.5];
+            [builder setFormant:1];
+            break;
+            
+        case PBVoiceTypeVoiceTypeMale:
+            [builder setDuration:1];
+            [builder setPitch:0.8];
+            [builder setFormant:0.5];
+            break;
+            
+        case PBVoiceTypeVoiceTypeChild:
+            [builder setDuration:0.5];
+            [builder setPitch:1.f/0.5];
+            [builder setFormant:1];
+            break;
+            
+        case PBVoiceTypeVoiceTypeFemale:
+            [builder setDuration:1];
+            [builder setPitch:1.2];
+            [builder setFormant:1];
+            break;
+            
+        default:
+            break;
+    }
+    
     [self.pbOpusBuilder setSing:[builder build]];
 }
 
