@@ -1229,7 +1229,7 @@
 
 "kTaoBaoCharge" = "到官方淘宝店充值（支持支付宝）";
 "kTaoBaoChargeTitle" = "淘宝店充值";
-"kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
+"kQuitTaoBaoTips" = "确定要离开当前页面？";
 
 "kSelectPaymentWay" = "选择购买方式";
 "kPayViaZhiFuBao" = "使用支付宝客户端购买";

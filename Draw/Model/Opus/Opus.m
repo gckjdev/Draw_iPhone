@@ -150,7 +150,11 @@
     PPDebug(@"******************************* localDataDir MUST BE IMPLEMENTED BY SUB CLASS *******************************");
     return nil;
 }
-            
+
+- (NSString*)dataType
+{
+    return @"dat";
+}
 
 #pragma mark - Data Generation
 

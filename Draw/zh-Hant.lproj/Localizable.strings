@@ -1214,7 +1214,7 @@
 
 "kTaoBaoCharge" = "到官方淘寶店充值（支持支付寶）";
 "kTaoBaoChargeTitle" = "淘寶店充值";
-"kQuitTaoBaoTips" = "確定退出淘寶？";
+"kQuitTaoBaoTips" = "確定退出？";
 
 "kSelectPaymentWay" = "選擇購買方式";
 "kPayViaZhiFuBao" = "使用支付寶客戶端購買";

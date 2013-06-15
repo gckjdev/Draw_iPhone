@@ -47,5 +47,7 @@ typedef enum _OpusCategory{
 + (NSString*)localDataDir;
 - (void)setLocalDataUrl:(NSString*)extension;
 
+- (NSString*)dataType;
+
 @end
 

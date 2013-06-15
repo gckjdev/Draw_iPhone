@@ -47,6 +47,9 @@ typedef enum{
 @implementation StoreController
 
 - (void)dealloc {
+    
+    [self unregisterAllNotifications];
+    
     [_selectedButton release];
     [_backButton release];
     [_chargeButton release];
@@ -102,6 +105,7 @@ typedef enum{
         [bself reloadTableViewDataSource];
         [bself updateBalance];
     }];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -149,6 +153,11 @@ typedef enum{
 #ifdef DEBUG
     [GameItemService createTestDataFile];
 #endif
+    
+    [self registerNotificationWithName:NOTIFICATION_SYNC_ACCOUNT usingBlock:^(NSNotification *note) {
+        [self updateBalance];
+    }];
+    
 }
 
 - (void)hideTaoBaoTab

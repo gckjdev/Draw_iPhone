@@ -78,6 +78,10 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 
     
     [self registerUIApplicationWillEnterForegroundNotification];
+
+    [self registerNotificationWithName:NOTIFICATION_SYNC_ACCOUNT usingBlock:^(NSNotification *note) {
+        [self updateAllBadge];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -90,10 +94,8 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
     
 
     
-    __block ZJHHomeViewController* bself = self;
-    [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
-        [bself updateAllBadge];
-    }];
+    [[AccountService defaultService] syncAccountWithResultHandler:nil];    
+    
     
     [super viewDidAppear:animated];
 }
