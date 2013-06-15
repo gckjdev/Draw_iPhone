@@ -577,7 +577,7 @@ enum{
 //                            progressDelegate:nil
 //                                    delegate:self];
     
-    NSURL *inUrl = _recordURL.path;
+    NSURL *inUrl = _recordURL;
 	NSURL *outUrl = [FileUtil fileURLInAppDocument:@"out.aif"];
     
     _player.progressDelegate = self;
