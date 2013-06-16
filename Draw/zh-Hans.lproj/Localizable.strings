@@ -1229,7 +1229,7 @@
 
 "kTaoBaoCharge" = "到官方淘宝店充值（支持支付宝）";
 "kTaoBaoChargeTitle" = "淘宝店充值";
-"kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
+"kQuitTaoBaoTips" = "确定要离开当前页面？";
 
 "kSelectPaymentWay" = "选择购买方式";
 "kPayViaZhiFuBao" = "使用支付宝客户端购买";
@@ -1246,6 +1246,9 @@
 "kDetailChat" = "聊天";
 
 "kSelectBGImage" = "选择背景";
+"kSelectShape" = "选择形状";
+"kStroke" = "描边";
+"kFill" = "填充";
 
 "kCustomBg" = "自定义背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";

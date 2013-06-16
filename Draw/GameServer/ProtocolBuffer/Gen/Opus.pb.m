@@ -62,6 +62,25 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value) {
       return NO;
   }
 }
+BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value) {
+  switch (value) {
+    case PBOpusStoreTypeDraftOpus:
+    case PBOpusStoreTypeSubmitOpus:
+    case PBOpusStoreTypeSavedOpus:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBOpusStatusIsValidValue(PBOpusStatus value) {
+  switch (value) {
+    case PBOpusStatusOpusStatusNormal:
+    case PBOpusStatusOpusStatusDelete:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBDrawOpus ()
 @end
 
@@ -759,6 +778,8 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 @property (retain) PBSingOpus* sing;
 @property (retain) PBAskPs* askPs;
 @property (retain) PBAskPsOpus* askPsOpus;
+@property (retain) NSString* localDataUrl;
+@property PBOpusStoreType storeType;
 @end
 
 @implementation PBOpus
@@ -911,6 +932,20 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   hasAskPsOpus_ = !!value;
 }
 @synthesize askPsOpus;
+- (BOOL) hasLocalDataUrl {
+  return !!hasLocalDataUrl_;
+}
+- (void) setHasLocalDataUrl:(BOOL) value {
+  hasLocalDataUrl_ = !!value;
+}
+@synthesize localDataUrl;
+- (BOOL) hasStoreType {
+  return !!hasStoreType_;
+}
+- (void) setHasStoreType:(BOOL) value {
+  hasStoreType_ = !!value;
+}
+@synthesize storeType;
 - (void) dealloc {
   self.opusId = nil;
   self.name = nil;
@@ -928,6 +963,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   self.sing = nil;
   self.askPs = nil;
   self.askPsOpus = nil;
+  self.localDataUrl = nil;
   [super dealloc];
 }
 - (id) init {
@@ -953,6 +989,8 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
     self.sing = [PBSingOpus defaultInstance];
     self.askPs = [PBAskPs defaultInstance];
     self.askPsOpus = [PBAskPsOpus defaultInstance];
+    self.localDataUrl = @"";
+    self.storeType = PBOpusStoreTypeDraftOpus;
   }
   return self;
 }
@@ -1073,6 +1111,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasAskPsOpus) {
     [output writeMessage:104 value:self.askPsOpus];
   }
+  if (self.hasLocalDataUrl) {
+    [output writeString:150 value:self.localDataUrl];
+  }
+  if (self.hasStoreType) {
+    [output writeEnum:200 value:self.storeType];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1147,6 +1191,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasAskPsOpus) {
     size += computeMessageSize(104, self.askPsOpus);
+  }
+  if (self.hasLocalDataUrl) {
+    size += computeStringSize(150, self.localDataUrl);
+  }
+  if (self.hasStoreType) {
+    size += computeEnumSize(200, self.storeType);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1291,6 +1341,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (other.hasAskPsOpus) {
     [self mergeAskPsOpus:other.askPsOpus];
+  }
+  if (other.hasLocalDataUrl) {
+    [self setLocalDataUrl:other.localDataUrl];
+  }
+  if (other.hasStoreType) {
+    [self setStoreType:other.storeType];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1446,6 +1502,19 @@ static PBOpus* defaultPBOpusInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setAskPsOpus:[subBuilder buildPartial]];
+        break;
+      }
+      case 1202: {
+        [self setLocalDataUrl:[input readString]];
+        break;
+      }
+      case 1600: {
+        int32_t value = [input readEnum];
+        if (PBOpusStoreTypeIsValidValue(value)) {
+          [self setStoreType:value];
+        } else {
+          [unknownFields mergeVarintField:200 value:value];
+        }
         break;
       }
     }
@@ -1898,6 +1967,38 @@ static PBOpus* defaultPBOpusInstance = nil;
 - (PBOpus_Builder*) clearAskPsOpus {
   result.hasAskPsOpus = NO;
   result.askPsOpus = [PBAskPsOpus defaultInstance];
+  return self;
+}
+- (BOOL) hasLocalDataUrl {
+  return result.hasLocalDataUrl;
+}
+- (NSString*) localDataUrl {
+  return result.localDataUrl;
+}
+- (PBOpus_Builder*) setLocalDataUrl:(NSString*) value {
+  result.hasLocalDataUrl = YES;
+  result.localDataUrl = value;
+  return self;
+}
+- (PBOpus_Builder*) clearLocalDataUrl {
+  result.hasLocalDataUrl = NO;
+  result.localDataUrl = @"";
+  return self;
+}
+- (BOOL) hasStoreType {
+  return result.hasStoreType;
+}
+- (PBOpusStoreType) storeType {
+  return result.storeType;
+}
+- (PBOpus_Builder*) setStoreType:(PBOpusStoreType) value {
+  result.hasStoreType = YES;
+  result.storeType = value;
+  return self;
+}
+- (PBOpus_Builder*) clearStoreType {
+  result.hasStoreType = NO;
+  result.storeType = PBOpusStoreTypeDraftOpus;
   return self;
 }
 @end

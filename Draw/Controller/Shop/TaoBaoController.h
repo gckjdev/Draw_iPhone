@@ -13,7 +13,14 @@
 
 @property (retain, nonatomic) IBOutlet UIWebView *taoBaoWebView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UIButton *webViewBackButton;
+@property (retain, nonatomic) IBOutlet UIButton *webViewForwardButton;
+@property (retain, nonatomic) IBOutlet UIButton *webViewRefreshButton;
 
 - (id)initWithURL:(NSString *)URL title:(NSString *)title;
+
+- (IBAction)clickWebViewBack:(id)sender;
+- (IBAction)clickWebViewForward:(id)sender;
+- (IBAction)clickWebViewRefresh:(id)sender;
 
 @end

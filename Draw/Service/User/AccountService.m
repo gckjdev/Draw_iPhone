@@ -112,6 +112,10 @@ static AccountService* _defaultAccountService;
                     
                     // sync other user information, add by Benson 2013-04-02
                     [[UserManager defaultManager] storeUserData:user];
+                    
+                    // post notification
+                    [self postNotification:NOTIFICATION_SYNC_ACCOUNT];
+                    
                 }
             }
             if (output.resultCode == ERROR_SUCCESS) {
@@ -126,6 +130,17 @@ static AccountService* _defaultAccountService;
     });
     
 }
+
+- (void)postNotification:(NSString*)name
+{
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:nil];
+    
+    PPDebug(@"post notification %@", name);
+}
+
 
 - (void)syncAccountWithResultHandler:(SyncAccountResultHandler)resultHandler
 {
@@ -160,6 +175,9 @@ static AccountService* _defaultAccountService;
                     
                     // sync user item from server
                     [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                    
+                    // post notification
+                    [self postNotification:NOTIFICATION_SYNC_ACCOUNT];
                 }
             }            
             EXECUTE_BLOCK(tempHandler, output.resultCode);

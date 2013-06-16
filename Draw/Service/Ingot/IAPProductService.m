@@ -66,7 +66,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
 
 + (void)createTestDataFile
 {
-    [GameApp createIAPTestDataFile];
+#ifdef DEBUG
+        [GameApp createIAPTestDataFile];
+#endif
+
     
 //    if (isLittleGeeAPP()){
 //        [self createLittlegeeIngotTestDataFile];

@@ -293,6 +293,7 @@
 #define PARA_OPUS_META_DATA @"meta_data"
 #define PARA_OPUS_IMAGE_DATA @"image"
 #define PARA_OPUS_DATA @"data"
+#define PARA_UPLOAD_DATA_TYPE @"dataType"
 
 #define PARA_DRAW_IMAGE @"photo"
 #define PARA_FEED_ID @"fid"

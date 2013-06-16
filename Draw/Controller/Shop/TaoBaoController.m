@@ -16,7 +16,6 @@
 
 @end
 
-
 @implementation TaoBaoController
 
 - (id)initWithURL:(NSString *)URL title:(NSString *)title
@@ -44,6 +43,8 @@
     else{
         [UIUtils alert:NSLS(@"无法打开网页")];
     }
+    
+    [self updateButtonsState];
 }
 
 - (void)clickBack:(id)sender
@@ -69,13 +70,40 @@
     [_titleLabel release];
     [_customTitle release];
     [_url release];
+    [_webViewBackButton release];
+    [_webViewForwardButton release];
+    [_webViewRefreshButton release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
     [self setTaoBaoWebView:nil];
     [self setTitleLabel:nil];
+    [self setWebViewBackButton:nil];
+    [self setWebViewForwardButton:nil];
+    [self setWebViewRefreshButton:nil];
     [super viewDidUnload];
+}
+
+- (void)updateButtonsState
+{
+    self.webViewBackButton.enabled = [_taoBaoWebView canGoBack];
+    self.webViewForwardButton.enabled = [_taoBaoWebView canGoForward];
+}
+
+- (IBAction)clickWebViewBack:(id)sender {
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [_taoBaoWebView goBack];
+}
+
+- (IBAction)clickWebViewForward:(id)sender {
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [_taoBaoWebView goForward];
+}
+
+- (IBAction)clickWebViewRefresh:(id)sender {
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [_taoBaoWebView reload];
 }
 
 #pragma mark -
@@ -93,11 +121,13 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     [self hideActivity];
+    [self updateButtonsState];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     [self hideActivity];
+    [self updateButtonsState];
 }
 
 @end

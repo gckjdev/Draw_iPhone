@@ -44,6 +44,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [ConfigManager appId],
+                               PARA_UPLOAD_DATA_TYPE : [opusMeta dataType]
                                };
         
         NSDictionary *imageDataDict = nil;
@@ -76,19 +77,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
+            Opus* newOpus = nil;
             if (output.resultCode == ERROR_SUCCESS && pbOpus != nil){
                 
                 // save opus as normal opus locally
-                Opus* newOpus = [Opus opusWithPBOpus:pbOpus];
+                newOpus = [Opus opusWithPBOpus:pbOpus storeType:PBOpusStoreTypeSubmitOpus];
                 [opusManager saveOpus:newOpus];
                 
                 // delete current draft opus
-                // [opusManager deleteOpus:[opusMeta opusKey]];
+                [opusManager deleteOpus:[opusMeta opusKey]];
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {
-                Opus *opus = [Opus opusWithPBOpus:pbOpus];
-                [delegate didSubmitOpus:output.resultCode opus:opus];
+                [delegate didSubmitOpus:output.resultCode opus:(newOpus != nil) ? newOpus : opusMeta];
             }
         });
     });

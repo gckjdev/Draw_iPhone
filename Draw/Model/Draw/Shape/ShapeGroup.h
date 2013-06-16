@@ -42,6 +42,8 @@
 
 @end
 
+INTERFACE(Basic0)
+
 INTERFACE(Animal0)
 INTERFACE(Animal1)
 

@@ -1250,6 +1250,9 @@
 "kDetailChat" = "Chat";
 
 "kSelectBGImage" = "Select Background";
+"kSelectShape" = "Select Shape";
+"kStroke" = "Stroke";
+"kFill" = "Fill";
 
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";

@@ -10,7 +10,12 @@
 #import "BuriManager.h"
 #import "SingOpus.h"
 #import "DrawOpus.h"
+#import "UserManager.h"
 #import "AskPs.h"
+#import "StringUtil.h"
+#import "Opus.h"
+#import "SingOpus.h"
+#import "FileUtil.h"
 
 static OpusManager* globalSingOpusManager;
 static OpusManager* globalDrawOpusManager;
@@ -18,6 +23,7 @@ static OpusManager* globalAskPsManager;
 
 @interface OpusManager()
 @property (assign, nonatomic) Class aClass;
+@property (assign, nonatomic) UserManager* userManager;
 
 @end
 
@@ -66,6 +72,9 @@ static OpusManager* globalAskPsManager;
 - (id)initWithClass:(Class)class{
     if (self = [super init]) {
         self.aClass = class;
+        self.userManager = [UserManager defaultManager];
+        
+        [FileUtil createDir:[FileUtil filePathInAppDocument:[self.aClass localDataDir]]];
     }
     
     return self;
@@ -85,13 +94,17 @@ static OpusManager* globalAskPsManager;
         return;
     }
     
-    PPDebug(@"SAVE LOCAL OPUS=%@", [opus description]);
+    PPDebug(@"SAVE LOCAL OPUS KEY=%@", [opus opusKey]);
     [BuriBucket(_aClass) storeObject:opus];
+    
+    [self printAllOpus];
 }
 
 - (void)deleteOpus:(NSString *)opusId{
     PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusId);
     [BuriBucket(_aClass) deleteObjectForKey:opusId];
+    
+    [self printAllOpus];    
 }
 
 + (PBOpus *)createTestOpus{
@@ -123,5 +136,168 @@ static OpusManager* globalAskPsManager;
     
     return [builder build];
 }
+
+- (void)setDraftOpusId:(Opus*)opus extension:(NSString*)fileNameExtension
+{
+    NSString* tempOpusId = [NSString stringWithFormat:@"draft-%010ld-%@", time(0), [NSString GetUUID]];
+    [opus setOpusId:tempOpusId];
+    [opus setAsDraft];
+    [opus setLocalDataUrl:fileNameExtension];
+}
+
+- (void)setCommonOpusInfo:(Opus*)opus
+{
+    [opus setLanguage:[_userManager getLanguageType]];
+    [opus setCreateDate:time(0)];
+    [opus setDeviceType:[_userManager deviceType]];
+    [opus setDeviceName:[_userManager deviceModel]];
+    [opus setAppId:[GameApp appId]];
+    
+    // set author information
+    PBGameUser_Builder* userBuilder = [[PBGameUser_Builder alloc] init];
+    [userBuilder setUserId:[_userManager userId]];
+    [userBuilder setNickName:[_userManager nickName]];
+    [userBuilder setAvatar:[_userManager avatarURL]];
+    [userBuilder setSignature:[_userManager signature]];
+    [userBuilder setGender:[_userManager gender]];
+    
+    [opus setAuthor:[userBuilder build]];
+    [userBuilder release];
+}
+
+- (SingOpus*)createDraftSingOpus:(PBSong*)song
+{
+    SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
+    
+    // set basic info
+    [self setDraftOpusId:singOpus extension:SING_FILE_EXTENSION];
+    [self setCommonOpusInfo:singOpus];
+
+    // set type and category
+    [singOpus setType:PBOpusTypeSing];
+    [singOpus setCategory:PBOpusCategoryTypeSingCategory];
+    [singOpus setName:[song name]];
+    
+    // init song info
+    [singOpus setSong:song];
+    [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
+    [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
+    
+    return singOpus;
+}
+
+- (NSArray*)reverseSubArray:(NSArray*)array offset:(int)offset limit:(int)limit
+{
+    if (array == nil || [array count] == 0){
+        return nil;
+    }
+    
+    int count = [array count];
+
+    int startIndex = count - 1 - offset;
+    int endIndex = count - 1 - offset - limit;
+
+    if (startIndex < 0){
+        return nil;
+    }
+
+    if (endIndex < 0)
+        endIndex = 0;
+
+    NSRange range;
+    range.length = (startIndex - endIndex);
+    range.location = endIndex;
+
+    NSMutableArray* retArray = [NSMutableArray array];
+    for (int i=startIndex; i>=endIndex; i--){
+        [retArray addObject:[array objectAtIndex:i]];
+    }
+    
+    return retArray;
+}
+
+// 草稿作品
+- (NSArray*)findAllDrafts
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeDraftOpus)];
+}
+
+- (NSArray*)findAllDraftsWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllDrafts];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+// 已经提交的所有作品
+- (NSArray*)findAllSubmitOpus
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeSubmitOpus)];
+}
+
+- (NSArray*)findAllSubmitOpusWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllSubmitOpus];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+// 保存到本地的所有作品
+- (NSArray*)findAllSavedOpus
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeSavedOpus)];
+}
+
+- (NSArray*)findAllSavedOpusWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllSavedOpus];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+- (NSArray*)findAll
+{
+    return [BuriBucket(_aClass) allObjects];
+}
+
+- (NSArray*)findAllWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAll];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+- (void)printAllOpus
+{    
+    NSArray* opuses = [self findAllDraftsWithOffset:0 limit:10];
+    PPDebug(@"==== total %d draft opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+
+    opuses = [self findAllDraftsWithOffset:2 limit:5];
+    PPDebug(@"==== total %d draft opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+    
+    opuses = [self findAllSubmitOpusWithOffset:0 limit:3];
+    PPDebug(@"==== total %d submit opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+    
+    opuses = [self findAllSavedOpus];
+    PPDebug(@"==== total %d saved opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+    
+    opuses = [self findAllWithOffset:0 limit:5];
+    PPDebug(@"==== total %d ALL opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+}
+
 
 @end

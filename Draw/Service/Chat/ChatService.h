@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
 
+#define NOTIFICATION_MESSAGE_SENT   @"NOTIFICATION_MESSAGE_SENT"
+#define KEY_USER_INFO_MESSAGE       @"KEY_USER_INFO_MESSAGE"
+#define KEY_USER_INFO_RESULT_CODE   @"KEY_USER_INFO_RESULT_CODE"
+
 @class PPMessage;
 @protocol ChatServiceDelegate <NSObject>
 

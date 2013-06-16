@@ -17,6 +17,8 @@
 #define PAYMENT_FAILURE 1
 #define PAYMENT_CANCEL  2
 
+#define NOTIFICATION_SYNC_ACCOUNT       @"NOTIFICATION_SYNC_ACCOUNT"
+
 @class AccountManager;
 
 typedef void (^SyncAccountResultHandler)(int resultCode);

@@ -81,7 +81,7 @@
 
 - (IBAction)changeDrawStyle:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIButton *drawStyleButton;
+
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) NSArray *dataList;
 @property (retain, nonatomic) CustomInfoView *infoView;
@@ -89,28 +89,50 @@
 @end
 
 BOOL staticStroke = NO;
+CGPoint contentOffset;
 
 @implementation ShapeBox
 
 - (void)dismiss
 {
+    contentOffset = [self.tableView contentOffset];
     [self.infoView dismiss];
     self.infoView.infoView = nil;
     self.infoView = nil;
 }
 
+#define FILL_BUTTON_TAG 101
+#define STROK_BUTTON_TAG 100
+- (id)fillButton
+{
+    return [self viewWithTag:FILL_BUTTON_TAG];
+}
 
+- (id)strokeButton
+{
+    return [self viewWithTag:STROK_BUTTON_TAG];
+}
+
+
+
+- (void)updateView
+{
+    self.dataList = [[ImageShapeManager defaultManager] imageShapeGroupList];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self setBackgroundColor:[UIColor clearColor]];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self setStroke:staticStroke];
+    [[self fillButton] setTitle:NSLS(@"kFill") forState:UIControlStateNormal];
+    [[self strokeButton] setTitle:NSLS(@"kStroke") forState:UIControlStateNormal];
+    [self.tableView setContentOffset:contentOffset animated:YES];
+}
 
 + (id)shapeBoxWithDelegate:(id<ShapeBoxDelegate>)delegate
 {
     ShapeBox *box = [UIView createViewWithXibIdentifier:@"ShapeBox"];
     box.delegate = delegate;
-    box.dataList = [[ImageShapeManager defaultManager] imageShapeGroupList];
-    box.tableView.delegate = box;
-    box.tableView.dataSource = box;
-    [box setBackgroundColor:[UIColor clearColor]];
-    [box.tableView setBackgroundColor:[UIColor clearColor]];
-    [box setStroke:staticStroke];
+    [box updateView];
     return box;
 }
 
@@ -121,6 +143,7 @@ BOOL staticStroke = NO;
         self.infoView = [CustomInfoView createWithTitle:NSLS(@"kSelectShape")
                                                infoView:self
                                            closeHandler:^{
+                                               contentOffset = [bself.tableView contentOffset];
                                                bself.infoView = nil;
                                            }];
         
@@ -136,8 +159,9 @@ BOOL staticStroke = NO;
 
 - (void)setStroke:(BOOL)stroke
 {
-    [self.drawStyleButton setSelected:stroke];
     staticStroke = stroke;
+    [[self strokeButton] setSelected:stroke];
+    [[self fillButton] setSelected:!stroke];
 }
 - (BOOL)isStroke
 {
@@ -148,7 +172,6 @@ BOOL staticStroke = NO;
     PPRelease(_infoView);
     PPRelease(_tableView);
     PPRelease(_dataList);
-    [_drawStyleButton release];
     [super dealloc];
 }
 
@@ -192,8 +215,15 @@ BOOL staticStroke = NO;
     [self dismiss];
 }
 
+
+
 - (IBAction)changeDrawStyle:(id)sender {
-    [self setStroke:![self isStroke]];
+//    [self setStroke:![self isStroke]];
+    if (sender == [self strokeButton]) {
+        [self setStroke:YES];
+    }else{
+        [self setStroke:NO];
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(shapeBox:didChangeDrawStyle:)]) {
         [self.delegate shapeBox:self didChangeDrawStyle:[self isStroke]];
     }
@@ -246,15 +276,6 @@ BOOL staticStroke = NO;
         [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
         
     }
-//    for (UIButton *button in cell.subviews) {
-//        if ([button isKindOfClass:[UIButton class]]) {
-//            if (button.tag > 0 && button.tag < 7) {
-//                [button setBackgroundColor:[UIColor clearColor]];
-//                [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-//                [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
-//            }
-//        }
-//    }
     return cell;
 }
 
@@ -310,7 +331,6 @@ BOOL staticStroke = NO;
     
 }
 
-#define SHAPE_SIZE 64
 #define SHAPE_LAYER_TAG @"SHAPE_LAYER_TAG"
 
 - (void)updateCellWithImageShapeGroup:(PBImageShapeGroup *)group
@@ -330,7 +350,8 @@ BOOL staticStroke = NO;
         
         UIBezierPath * path = [[ImageShapeManager defaultManager] pathWithType:type.integerValue];
         
-        const CGAffineTransform transform = (CGAffineTransformMakeScale(CGRectGetWidth(button.bounds)/SHAPE_SIZE, CGRectGetHeight(button.bounds)/SHAPE_SIZE));
+        CGSize shapeSize = [ImageShapeInfo defaultImageShapeSize];
+        const CGAffineTransform transform = (CGAffineTransformMakeScale(CGRectGetWidth(button.bounds)/shapeSize.width, CGRectGetHeight(button.bounds)/shapeSize.height));
         
         CGPathRef cgPath = CGPathCreateCopyByTransformingPath(path.CGPath, &transform);
         
@@ -340,7 +361,9 @@ BOOL staticStroke = NO;
         
         layer.frame = button.bounds;//CGRectMake(0, 0, SHAPE_SIZE, SHAPE_SIZE);
         [layer setFillColor:OPAQUE_COLOR(62, 43, 23).CGColor];
+        [layer setStrokeColor:OPAQUE_COLOR(62, 43, 23).CGColor];
         [layer setPath:cgPath];
+        [layer setLineWidth:2];
         [button.layer addSublayer:layer];
         CGPathRelease(cgPath);
         

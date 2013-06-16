@@ -35,6 +35,9 @@
 @implementation ChargeController
 
 - (void)dealloc {
+    
+    [self unregisterAllNotifications];
+    
     [_countLabel release];
     [_taobaoLinkView release];
     [_currencyImageView release];
@@ -139,11 +142,18 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    __block typeof(self) bself = self;
-    [[AccountService defaultService] syncAccountWithResultHandler:^(int resultCode) {
-        [bself updateBalance];
-    }];
+    [[AccountService defaultService] syncAccountWithResultHandler:nil];
     [super viewDidAppear:animated];
+    
+    [self registerNotificationWithName:NOTIFICATION_SYNC_ACCOUNT usingBlock:^(NSNotification *note) {
+        [self updateBalance];
+    }];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self unregisterAllNotifications];
 }
 
 - (void)viewDidUnload {
@@ -268,6 +278,8 @@
 #else
     order.amount = [product priceInRMB];
 #endif
+
+    PPDebug(@"charge price in RMB is %@", [product priceInRMB]);
     
     order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
     [[AlixPayOrderManager defaultManager] addOrder:order];

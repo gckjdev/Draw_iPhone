@@ -13,7 +13,8 @@
 #import "ShapeGroup.h"
 #import "PPSmartUpdateData.h"
 #import "ConfigManager.h"
-
+#import "DrawUtils.h"
+#import "UIBezierPath+Ext.h"
 
 #define IMAGE_SHAPE_ZIP_NAME @"image_shape.zip"
 #define IMAGE_SHAPE_META_FILE @"meta.pb"
@@ -119,6 +120,50 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     return nil;
 }
 
+
+- (BOOL)isBasicShapeType:(ShapeType)type
+{
+    if (type >= ShapeTypeImageBasicStart && type < ShapeTypeImageBasicEnd) {
+        return YES;
+    }
+    return NO;
+}
+
+
+- (UIBezierPath *)pathWithBasicType:(ShapeType)type
+                         startPoint:(CGPoint)startPoint
+                           endPoint:(CGPoint)endPoint
+{
+    
+    CGRect rect = CGRectWithPoints(startPoint, endPoint);
+    switch (type) {
+        case ShapeTypeBeeline:
+            return [UIBezierPath bezierPathWithLineFromStartPoint:startPoint endPoint:endPoint];
+        case ShapeTypeRectangle:
+            return [UIBezierPath bezierPathWithRect:rect];
+        case ShapeTypeTriangle:
+            return [UIBezierPath bezierPathWithTriangleInRect:rect reverse:(startPoint.y > endPoint.y)];
+        case ShapeTypeStar:
+            return [UIBezierPath bezierPathWithFiveStartInRect:rect reverse:(startPoint.y > endPoint.y)];
+        case ShapeTypeRoundRect:
+            return [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:12];
+        case ShapeTypeEllipse:
+            return [UIBezierPath bezierPathWithOvalInRect:rect];
+        default:
+            break;
+    }
+    return nil;
+}
+
+
+- (UIBezierPath *)pathWithBasicType:(ShapeType)type
+{
+    CGSize size = [ImageShapeInfo defaultImageShapeSize];
+    CGPoint end = CGPointMake(size.width, size.height);
+    return [self pathWithBasicType:type startPoint:CGPointZero endPoint:end];
+}
+
+
 - (UIBezierPath *)pathWithType:(ShapeType)type
 {
     if (_bezierPathDict == nil) {
@@ -127,12 +172,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     NSString *key = [NSString stringWithFormat:@"%d",type];
     UIBezierPath *bPath = [_bezierPathDict objectForKey:key];
     if (bPath == nil) {
-        NSString *filePath = [self fullPathWithShapeType:type];
-        if ([filePath length] != 0) {
-            bPath = [PocketSVG bezierPathWithSVGFilePath:filePath];
-            if (bPath) {
-                [_bezierPathDict setObject:bPath forKey:key];
+        if ([self isBasicShapeType:type]) {
+            bPath = [self pathWithBasicType:type];
+        }else{
+            NSString *filePath = [self fullPathWithShapeType:type];
+            if ([filePath length] != 0) {
+                bPath = [PocketSVG bezierPathWithSVGFilePath:filePath];
             }
+        }
+        if (bPath) {
+            [_bezierPathDict setObject:bPath forKey:key];
         }
     }
     return bPath;
@@ -197,6 +246,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 {
     PBImageShapeGroupMeta_Builder *builder = [[[PBImageShapeGroupMeta_Builder alloc] init] autorelease];
     
+    BUILD_GROUP(Basic0)
     BUILD_GROUP(Nature0)
     BUILD_GROUP(Nature1)
 

@@ -10,19 +10,28 @@
 #import "Opus.pb.h"
 #import "BuriSerialization.h"
 
-typedef enum _OpusCategory{
-    OpusCategoryDraw = 1,
-    OpusCategorySing = 2,
-    OpusCategoryAskPs = 3,
-    OpusCategoryAskPsOpus = 4
-}OpusCategory;
+//typedef enum _OpusCategory{
+//    OpusCategoryDraw = 1,
+//    OpusCategorySing = 2,
+//    OpusCategoryAskPs = 3,
+//    OpusCategoryAskPsOpus = 4
+//}OpusCategory;
+
+#define ENCODE_OPUS_DATA        @"opusData"
+#define ENCODE_OPUS_KEY         @"opusKey"
+#define BURI_INDEX_STORE_TYPE   @"opusStoreType"
 
 @interface Opus : NSObject <BuriSupport>
 
 @property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
 
-+ (id)opusWithCategory:(OpusCategory)category;
-+ (id)opusWithPBOpus:(PBOpus *)pbOpus;
++ (Opus*)opusWithCategory:(PBOpusCategoryType)category;
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus storeType:(PBOpusStoreType)storeType;
+
+// don't change method name, used for Buri Index
+- (NSString*)opusKey;
+- (NSNumber*)opusStoreType;
+
 
 - (void)setType:(PBOpusType)type;
 - (void)setName:(NSString *)name;  
@@ -31,6 +40,26 @@ typedef enum _OpusCategory{
 
 - (PBOpus *)pbOpus;
 - (NSData *)data;
+
+- (void)setCategory:(int)value;
+- (void)setLanguage:(int)value;
+- (void)setOpusId:(NSString *)value;
+- (void)setDeviceName:(NSString *)value;
+- (void)setAppId:(NSString *)value;
+- (void)setAuthor:(PBGameUser *)user;
+- (void)setStorageType:(PBOpusStoreType)value;
+- (void)setCreateDate:(int)value;
+- (void)setDeviceType:(int)value;
+
+- (void)setAsDraft;
+- (void)setAsSubmit;
+- (void)setAsSaved;
+
+- (NSURL*)localDataURL;
++ (NSString*)localDataDir;
+- (void)setLocalDataUrl:(NSString*)extension;
+
+- (NSString*)dataType;
 
 @end
 

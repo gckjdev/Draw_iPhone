@@ -38,6 +38,7 @@
 #import "FreeIngotController.h"
 #import "BulletinService.h"
 #import "AdService.h"
+#import "AccountService.h"
 
 @interface ZJHHomeViewController ()
 {
@@ -77,6 +78,10 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
 
     
     [self registerUIApplicationWillEnterForegroundNotification];
+
+    [self registerNotificationWithName:NOTIFICATION_SYNC_ACCOUNT usingBlock:^(NSNotification *note) {
+        [self updateAllBadge];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -86,6 +91,11 @@ ZJHHomeViewController *_staticZJHHomeViewController = nil;
                                                        frame:CGRectMake(0, 120, 0, 0)
                                                    iPadFrame:CGRectMake(15, 150, 320, 50)
                                                      useLmAd:YES];
+    
+
+    
+    [[AccountService defaultService] syncAccountWithResultHandler:nil];    
+    
     
     [super viewDidAppear:animated];
 }

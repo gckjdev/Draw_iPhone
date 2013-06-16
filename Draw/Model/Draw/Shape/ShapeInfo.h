@@ -12,6 +12,7 @@
 
 typedef enum{
     ShapeTypeNone = 0,
+    ShapeTypeImageBasicStart = 1,
     ShapeTypeBeeline = 1,
     ShapeTypeRectangle,
     ShapeTypeEllipse,
@@ -19,15 +20,7 @@ typedef enum{
     ShapeTypeStar,
     ShapeTypeRoundRect,
     
-    ShapeTypeEmptyStart = 500,
-    ShapeTypeEmptyBeeline = 501,
-    ShapeTypeEmptyRectangle,
-    ShapeTypeEmptyEllipse,
-    ShapeTypeEmptyTriangle,
-    ShapeTypeEmptyStar,
-    ShapeTypeEmptyRoundRect,
-    ShapeTypeEmptyEnd,
-    
+    ShapeTypeImageBasicEnd,
 
     ShapeTypeImageStart = 1000,
     
@@ -78,9 +71,15 @@ typedef enum{
 @property(nonatomic, retain)DrawColor *color;
 
 
-+ (UIImage *)shapeImageForShapeType:(ShapeType)type;
+//+ (UIImage *)shapeImageForShapeType:(ShapeType)type;
 
-+ (id)shapeWithType:(ShapeType) type penType:(ItemType)penType width:(CGFloat)with color:(DrawColor *)color;
++ (id)shapeWithType:(ShapeType) type
+            penType:(ItemType)penType
+              width:(CGFloat)with
+              color:(DrawColor *)color;
+
++ (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2;
+
 - (void)drawInContext:(CGContextRef)context;
 - (CGRect)rect;
 - (void)setPointsWithPointComponent:(NSArray *)pointComponent;
@@ -91,25 +90,16 @@ typedef enum{
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 
 - (CGPathRef)path;
+- (BOOL)isBasicShape;
 //- (BOOL)isStroke;
 @end
 
 
 
-
-@interface BasicShapeInfo : ShapeInfo
-{
-   
-}
-
-
-
-@end
-
-
 @interface ImageShapeInfo : ShapeInfo
 
 - (id)initWithCGPath:(CGPathRef)path;
++ (CGSize)defaultImageShapeSize;
 
 @end
 

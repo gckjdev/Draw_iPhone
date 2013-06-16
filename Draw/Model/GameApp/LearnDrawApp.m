@@ -13,6 +13,7 @@
 #import "DrawGameJumpHandler.h"
 #import "LearnDrawHomeController.h"
 #import "LearnDrawManager.h"
+#import "IAPProductService.h"
 
 @implementation LearnDrawApp
 
@@ -162,6 +163,11 @@
 - (BOOL)showLocateButton
 {
     return NO;
+}
+
+- (void)createIAPTestDataFile
+{
+    [IAPProductService createLearnDrawIngotTestDataFile];
 }
 
 @end
