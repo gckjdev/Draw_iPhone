@@ -146,7 +146,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
         case ShapeTypeStar:
             return [UIBezierPath bezierPathWithFiveStartInRect:rect reverse:(startPoint.y > endPoint.y)];
         case ShapeTypeRoundRect:
-            return [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:15];
+            return [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:12];
         case ShapeTypeEllipse:
             return [UIBezierPath bezierPathWithOvalInRect:rect];
         default:

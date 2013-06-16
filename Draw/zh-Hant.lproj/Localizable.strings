@@ -1230,6 +1230,10 @@
 "kDetailChat" = "聊天";
 
 "kSelectBGImage" = "選擇背景";
+"kSelectBGImage" = "選擇背景";
+"kSelectShape" = "選擇形狀";
+"kStroke" = "描邊";
+"kFill" = "填充";
 
 "kCustomBg" = "自定義背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
@@ -1725,4 +1729,19 @@
 "kOperations" = "操作";
 "kSetTag" = "設置標籤";
 "kFilter" = "篩選";
+
+"kColorTone" = "色調";
+"kImageSize" = "大小";
+"kImageType" = "類型";
+"kColorful" = "彩色";
+"KBlackAndWhite" = "黑白";
+"kIcon" = "圖標";
+"kMedium" = "標準";
+"kLarge" = "大";
+"kHuge" = "超大";
+"kFace" = "人臉";
+"kPhoto" = "照片";
+"kClipart" = "卡通";
+"kLineart" = "素描";
+"kUnlimit" = "不限";
 /*********************图库国际化字符串结束 ************************/
