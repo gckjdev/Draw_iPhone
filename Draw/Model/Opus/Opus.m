@@ -40,13 +40,13 @@
     return [_pbOpusBuilder opusId];
 }
 
-+ (Opus*)opusWithCategory:(OpusCategory)category{
++ (Opus*)opusWithCategory:(PBOpusCategoryType)category{
     Opus *opus = nil;
     switch (category) {
-        case OpusCategorySing:
+        case PBOpusCategoryTypeSingCategory:
             opus = [[[SingOpus alloc] init] autorelease];
             break;
-        case OpusCategoryAskPs:
+        case PBOpusCategoryTypeAskPsCategory:
             opus = [[[AskPs alloc] init] autorelease];
             break;
         default:
@@ -56,10 +56,8 @@
     return opus;
 }
 
-
-
-+ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus{
-    Opus *opus = [[[Opus alloc] init] autorelease];
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus{    
+    Opus *opus = [self opusWithCategory:pbOpus.category];
     opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
     return opus;
 }

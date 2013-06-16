@@ -77,10 +77,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
+            Opus* newOpus = nil;
             if (output.resultCode == ERROR_SUCCESS && pbOpus != nil){
                 
                 // save opus as normal opus locally
-                Opus* newOpus = [Opus opusWithPBOpus:pbOpus];
+                newOpus = [Opus opusWithPBOpus:pbOpus];
                 [newOpus setStorageType:PBOpusStoreTypeNormalOpus];
                 [opusManager saveOpus:newOpus];
                 
@@ -89,8 +90,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {
-                Opus *opus = [Opus opusWithPBOpus:pbOpus];
-                [delegate didSubmitOpus:output.resultCode opus:opus];
+                [delegate didSubmitOpus:output.resultCode opus:(newOpus != nil) ? newOpus : opusMeta];
             }
         });
     });
