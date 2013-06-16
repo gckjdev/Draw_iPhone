@@ -122,7 +122,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value);
 
 typedef enum {
   PBOpusStoreTypeDraftOpus = 1,
-  PBOpusStoreTypeNormalOpus = 2,
+  PBOpusStoreTypeSubmitOpus = 2,
+  PBOpusStoreTypeSavedOpus = 3,
 } PBOpusStoreType;
 
 BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value);

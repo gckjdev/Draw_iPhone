@@ -81,8 +81,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
             if (output.resultCode == ERROR_SUCCESS && pbOpus != nil){
                 
                 // save opus as normal opus locally
-                newOpus = [Opus opusWithPBOpus:pbOpus];
-                [newOpus setStorageType:PBOpusStoreTypeNormalOpus];
+                newOpus = [Opus opusWithPBOpus:pbOpus storeType:PBOpusStoreTypeSubmitOpus];
                 [opusManager saveOpus:newOpus];
                 
                 // delete current draft opus

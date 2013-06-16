@@ -17,13 +17,21 @@
 //    OpusCategoryAskPsOpus = 4
 //}OpusCategory;
 
+#define ENCODE_OPUS_DATA        @"opusData"
+#define ENCODE_OPUS_KEY         @"opusKey"
+#define BURI_INDEX_STORE_TYPE   @"opusStoreType"
+
 @interface Opus : NSObject <BuriSupport>
 
 @property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
 
 + (Opus*)opusWithCategory:(PBOpusCategoryType)category;
-+ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus;
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus storeType:(PBOpusStoreType)storeType;
+
+// don't change method name, used for Buri Index
 - (NSString*)opusKey;
+- (NSNumber*)opusStoreType;
+
 
 - (void)setType:(PBOpusType)type;
 - (void)setName:(NSString *)name;  
@@ -39,9 +47,13 @@
 - (void)setDeviceName:(NSString *)value;
 - (void)setAppId:(NSString *)value;
 - (void)setAuthor:(PBGameUser *)user;
-- (void)setStorageType:(int)value;
+- (void)setStorageType:(PBOpusStoreType)value;
 - (void)setCreateDate:(int)value;
 - (void)setDeviceType:(int)value;
+
+- (void)setAsDraft;
+- (void)setAsSubmit;
+- (void)setAsSaved;
 
 - (NSURL*)localDataURL;
 + (NSString*)localDataDir;

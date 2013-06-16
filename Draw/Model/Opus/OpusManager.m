@@ -96,11 +96,15 @@ static OpusManager* globalAskPsManager;
     
     PPDebug(@"SAVE LOCAL OPUS KEY=%@", [opus opusKey]);
     [BuriBucket(_aClass) storeObject:opus];
+    
+    [self printAllOpus];
 }
 
 - (void)deleteOpus:(NSString *)opusId{
     PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusId);
     [BuriBucket(_aClass) deleteObjectForKey:opusId];
+    
+    [self printAllOpus];    
 }
 
 + (PBOpus *)createTestOpus{
@@ -135,9 +139,9 @@ static OpusManager* globalAskPsManager;
 
 - (void)setDraftOpusId:(Opus*)opus extension:(NSString*)fileNameExtension
 {
-    NSString* tempOpusId = [NSString GetUUID];
+    NSString* tempOpusId = [NSString stringWithFormat:@"draft-%010ld-%@", time(0), [NSString GetUUID]];
     [opus setOpusId:tempOpusId];
-    [opus setStorageType:PBOpusStoreTypeDraftOpus];
+    [opus setAsDraft];
     [opus setLocalDataUrl:fileNameExtension];
 }
 
@@ -180,32 +184,120 @@ static OpusManager* globalAskPsManager;
     [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
     
     return singOpus;
-    
-    /*
-     required string opusId = 1;                   // 作品Id
-     optional PBOpusType type = 2;                 // 作品类型
-     optional string name = 3;                     // 作品名称
-     optional string desc = 4;                     // 作品描述
-     optional string image = 5;                    // 作品图片
-     optional string thumbImage = 6;               // 作品缩略图
-     optional string dataUrl = 9;                  // 作品数据远程URL
-     
-     optional PBLanguage language = 10;            // 作品语言
-     optional PBOpusCategoryType category = 11;    // 作品大分类
-     
-     optional int32 createDate = 15;               // 作品创建时间
-     optional int32 status = 20;                   // 作品状态，0表示正常，1表示已删除。
-     
-     // 创建来源信息，如来自哪些设备、应用
-     optional int32  deviceType = 25;               // deviceType : (1:iPhone/iPod Touch, 2:iPad, 3:Android Phone)
-     optional string deviceName = 26;               // 设备名称，如 iPhone4, New iPad, iPhone5, 三星Galaxy 等等
-     optional string appId = 28;                    // 来自哪个应用创作的
-     
-     optional PBGameUser author = 35;              // 作者基本信息
-     
-     optional PBGameUser targetUser = 41;          // 作品是给谁的
-     optional string contestId = 42;               // 参与的比赛的Id
-     */
 }
+
+- (NSArray*)reverseSubArray:(NSArray*)array offset:(int)offset limit:(int)limit
+{
+    if (array == nil || [array count] == 0){
+        return nil;
+    }
+    
+    int count = [array count];
+
+    int startIndex = count - 1 - offset;
+    int endIndex = count - 1 - offset - limit;
+
+    if (startIndex < 0){
+        return nil;
+    }
+
+    if (endIndex < 0)
+        endIndex = 0;
+
+    NSRange range;
+    range.length = (startIndex - endIndex);
+    range.location = endIndex;
+
+    NSMutableArray* retArray = [NSMutableArray array];
+    for (int i=startIndex; i>=endIndex; i--){
+        [retArray addObject:[array objectAtIndex:i]];
+    }
+    
+    return retArray;
+}
+
+// 草稿作品
+- (NSArray*)findAllDrafts
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeDraftOpus)];
+}
+
+- (NSArray*)findAllDraftsWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllDrafts];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+// 已经提交的所有作品
+- (NSArray*)findAllSubmitOpus
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeSubmitOpus)];
+}
+
+- (NSArray*)findAllSubmitOpusWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllSubmitOpus];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+// 保存到本地的所有作品
+- (NSArray*)findAllSavedOpus
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeSavedOpus)];
+}
+
+- (NSArray*)findAllSavedOpusWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllSavedOpus];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+- (NSArray*)findAll
+{
+    return [BuriBucket(_aClass) allObjects];
+}
+
+- (NSArray*)findAllWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAll];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+- (void)printAllOpus
+{    
+    NSArray* opuses = [self findAllDraftsWithOffset:0 limit:10];
+    PPDebug(@"==== total %d draft opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+
+    opuses = [self findAllDraftsWithOffset:2 limit:5];
+    PPDebug(@"==== total %d draft opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+    
+    opuses = [self findAllSubmitOpusWithOffset:0 limit:3];
+    PPDebug(@"==== total %d submit opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+    
+    opuses = [self findAllSavedOpus];
+    PPDebug(@"==== total %d saved opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+    
+    opuses = [self findAllWithOffset:0 limit:5];
+    PPDebug(@"==== total %d ALL opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+}
+
 
 @end

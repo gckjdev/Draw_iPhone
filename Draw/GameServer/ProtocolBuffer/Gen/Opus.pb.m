@@ -65,7 +65,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value) {
 BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value) {
   switch (value) {
     case PBOpusStoreTypeDraftOpus:
-    case PBOpusStoreTypeNormalOpus:
+    case PBOpusStoreTypeSubmitOpus:
+    case PBOpusStoreTypeSavedOpus:
       return YES;
     default:
       return NO;
