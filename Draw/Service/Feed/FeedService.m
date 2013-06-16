@@ -518,6 +518,8 @@ static FeedService *_staticFeedService = nil;
         }else{
             if ([[feed drawDataUrl] length] > 0){
                 @try {
+//                    NSString *url = @"http://58.215.184.18:8080/draw_data/20130511/dc07db20-ba18-11e2-b3f0-00163e017d23.zip";
+//                    NSString *feedId = @"518e080fe4b04202099a89d9";
                     data = [[FeedDownloadService defaultService]
                                     downloadDrawDataFile:[feed drawDataUrl]
                                     fileName:[feed feedId]
