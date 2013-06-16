@@ -100,7 +100,7 @@ enum{
 
 - (id)initWithSong:(PBSong *)song{
     if (self = [super init]) {
-        self.singOpus = [[OpusManager singOpusManager] createDraftSingOpus:song];      
+        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpus:song];
         _newOpus = YES;
     }
     
@@ -487,7 +487,7 @@ enum{
 }
 
 - (IBAction)clickSaveButton:(id)sender {
-    [[OpusManager singOpusManager] saveOpus:_singOpus];
+    [[[OpusService defaultService] singDraftOpusManager] saveOpus:_singOpus];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -528,7 +528,8 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
-                                 opusManager:[OpusManager singOpusManager]
+                            opusDraftManager:[[OpusService defaultService] singDraftOpusManager]
+                                 opusManager:[[OpusService defaultService] singLocalMyOpusManager]
                             progressDelegate:nil
                                     delegate:self];
 }

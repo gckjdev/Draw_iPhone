@@ -9,9 +9,12 @@
 #import "BuriManager.h"
 #import "BuriSerialization.h"
 #import "Buri.h"
-
+#import "FileUtil.h"
 #import "SynthesizeSingleton.h"
 
+#import "SingOpus.h"
+
+#define BURI_DB_DIR   @"buri_db"
 
 @interface BuriManager()
 
@@ -20,27 +23,58 @@
 
 @implementation BuriManager
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(BuriManager);
+- (id)initWithDbName:(NSString*)dbName
+{
+    self = [super init];
+    NSString* dir = [FileUtil filePathInAppDocument:BURI_DB_DIR];
+    [FileUtil createDir:dir];    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", BURI_DB_DIR, dbName];
+    self.db = [Buri databaseInLibraryWithName:path];
+    self.bucket = [[[BuriBucket alloc] initWithDB:_db andObjectClass:[SingOpus class]] autorelease];
 
-- (void)dealloc{
-    
-    [_db release];
-    [super dealloc];
-}
-
-- (id)init{
-    
-    if (self = [super init]) {
-        self.db = [Buri databaseInLibraryWithName:@"database.buri"];
-    }
-        
     return self;
 }
 
+- (void)dealloc{
+
+    PPRelease(_bucket);
+    PPRelease(_db);
+    [super dealloc];
+}
+
 - (BuriBucket *)bucketWithObjectClass:(Class)aClass{
-    return [[[BuriBucket alloc] initWithDB:_db andObjectClass:aClass] autorelease];
+    return _bucket;
 }
 
 
+
+@end
+
+@implementation AllBuriManager
+
+SYNTHESIZE_SINGLETON_FOR_CLASS(AllBuriManager)
+
+- (id)init
+{
+    self = [super init];
+    _allBuriDb = [[NSMutableDictionary alloc] init];
+    return self;
+}
+
+- (BuriManager*)buriManager:(NSString*)dbName
+{
+    if ([dbName length] == 0)
+        return nil;
+    
+    BuriManager* manager = [_allBuriDb objectForKey:dbName];
+    if (manager != nil)
+        return manager;
+    
+    manager = [[BuriManager alloc] initWithDbName:dbName];
+    [_allBuriDb setObject:manager forKey:dbName];
+    [manager release];
+    
+    return manager;
+}
 
 @end

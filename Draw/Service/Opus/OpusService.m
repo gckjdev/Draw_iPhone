@@ -15,25 +15,47 @@
 #import "UIImageExt.h"
 #import "SynthesizeSingleton.h"
 #import "PPGameNetworkRequest.h"
+#import "SingOpus.h"
+
+#define SING_MY_OPUS_DB     @"sing_my_opus.db"
+#define SING_FAVORITE_DB    @"sing_favorite.db"
+#define SING_DRAFT_DB       @"sing_draft.db"
 
 @implementation OpusService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
+
+- (id)init
+{
+    self = [super init];
+    _singLocalMyOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class] dbName:SING_MY_OPUS_DB];
+    _singLocalFavoriteOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class] dbName:SING_FAVORITE_DB];
+    _singDraftOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class] dbName:SING_DRAFT_DB];
+    return self;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+}
 
 - (Opus*)createDraftOpus
 {
     return nil;
 }
 
-- (void)submitOpus:(Opus*)opusMeta
+
+
+- (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
           opusData:(NSData *)opusData
+  opusDraftManager:(OpusManager*)opusDraftManager
        opusManager:(OpusManager*)opusManager
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate
 
 {    
-//    if ([opusData length] == 0 || opusMeta == nil){
+//    if ([opusData length] == 0 || draftOpus == nil){
 //        if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]){
 //            [delegate didSubmitOpus:ERROR_CLIENT_REQUEST_NULL opus:nil];
 //        }
@@ -44,7 +66,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
                                PARA_APPID : [ConfigManager appId],
-                               PARA_UPLOAD_DATA_TYPE : [opusMeta dataType]
+                               PARA_UPLOAD_DATA_TYPE : [draftOpus dataType]
                                };
         
         NSDictionary *imageDataDict = nil;
@@ -53,9 +75,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         }
         
         NSMutableDictionary *postDataDict = [NSMutableDictionary dictionary];
-        NSData* opusMetaData = [opusMeta data];
-        if (opusMetaData) {
-            [postDataDict setObject:opusMetaData forKey:PARA_OPUS_META_DATA];
+        NSData* draftOpusData = [draftOpus data];
+        if (draftOpusData) {
+            [postDataDict setObject:draftOpusData forKey:PARA_OPUS_META_DATA];
         }
         
         if (opusData) {
@@ -85,11 +107,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
                 [opusManager saveOpus:newOpus];
                 
                 // delete current draft opus
-                [opusManager deleteOpus:[opusMeta opusKey]];
+                [opusDraftManager deleteOpus:[draftOpus opusKey]];
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {
-                [delegate didSubmitOpus:output.resultCode opus:(newOpus != nil) ? newOpus : opusMeta];
+                [delegate didSubmitOpus:output.resultCode opus:(newOpus != nil) ? newOpus : draftOpus];
             }
         });
     });

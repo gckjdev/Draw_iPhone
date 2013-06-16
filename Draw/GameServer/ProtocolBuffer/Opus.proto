@@ -36,7 +36,9 @@ option java_outer_classname = "OpusProtos";
 //}
 
 message PBDrawOpus {
-  // TODO add size here
+  // TODO add size here    
+
+  optional int32 level = 1;
 }
 
 //求PS信息
@@ -134,7 +136,10 @@ message PBOpus {
   optional PBAskPsOpus askPsOpus = 104;          // 求PS作品
   
   // for local draft & opus storage
-  optional string localDataUrl = 150;            // 保存数据文件的本地路径URL
+  optional string localDataUrl = 150;              // 保存数据文件的本地路径URL
+  optional string localImageUrl = 151;             // 本地图片的大图路径
+  optional string localThumbImageUrl = 152;        // 本地图片的小图路径
+  optional bool   isRecovery = 153[default=false]; // 是否是自动恢复的草稿
 
   optional PBOpusStoreType storeType = 200;      // 当前保存类型 
 }
