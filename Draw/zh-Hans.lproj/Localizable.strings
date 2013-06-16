@@ -1246,6 +1246,9 @@
 "kDetailChat" = "聊天";
 
 "kSelectBGImage" = "选择背景";
+"kSelectShape" = "选择形状";
+"kStroke" = "描边";
+"kFill" = "填充";
 
 "kCustomBg" = "自定义背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
