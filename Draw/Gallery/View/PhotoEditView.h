@@ -10,7 +10,7 @@
 
 @class PBUserPhoto;
 
-typedef void(^PhotoEditResultBLock)(NSString* name, NSSet* tagSet);
+typedef void(^PhotoEditResultBLock)(NSSet* tagSet);
 
 @interface PhotoEditView : CommonInfoView <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 

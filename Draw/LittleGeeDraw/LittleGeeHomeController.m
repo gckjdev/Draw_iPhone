@@ -46,6 +46,7 @@
 #import "ViewUserDetail.h"
 #import "ContestManager.h"
 #import "DrawAppDelegate.h"
+#import "SearchPhotoController.h"
 
 #define POP_OPTION_SHEET_TAG    120130511
 #define DRAW_OPTION_SHEET_TAG   220130511
@@ -1095,7 +1096,7 @@ int getPopOptionCount()
 
 - (IBAction)clickTest:(id)sender
 {
-    Class class = NSClassFromString(@"CommonSearchImageController");
+    Class class = NSClassFromString(@"SearchPhotoController");
     UIViewController* vc = [[[class alloc] init] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }

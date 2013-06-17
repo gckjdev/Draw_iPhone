@@ -1742,6 +1742,7 @@
 "kClipart" = "Clipart";
 "kLineart" = "Lineart";
 "kUnlimit" = "All";
-
+"kNoPhoto" = "You havn't saved any photo";
+"kSearchNoResult" = "No match result";
 /*********************图库国际化字符串结束 ************************/
 
