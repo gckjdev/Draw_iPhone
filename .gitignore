@@ -1,7 +1,7 @@
 /build/
 build_game_protocol.sh
+Draw/LocalAttribute.h
 .DS_Store
 temp.txt
 tmp.txt
 UserInterfaceState.xcuserstate
-Draw/LocalAttribute.h

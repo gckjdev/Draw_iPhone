@@ -94,8 +94,6 @@ NSString* GlobalGetServerURL()
 //        PPDebug(@"<for test!!!!!!> get api server %@", str);
 //        return [NSString stringWithFormat:@"http://%@/api/i?",str];
 //    }
-
-    return LOCAL_API_SERVER;
 #endif
     
     return [ConfigManager getAPIServerURL];
@@ -107,9 +105,7 @@ NSString* GlobalGetTrafficServerURL()
 
 #ifdef DEBUG
 
-    return LOCAL_TRAFFIC_API_SERVER;
-
-    //    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
 //    NSString* str = [def objectForKey:@"traffic_server"];
 //    if (str && str.length > 5) {
 //        PPDebug(@"<for test!!!!!!> get traffic server %@", str);
