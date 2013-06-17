@@ -22,5 +22,7 @@
 
 + (CommonSearchImageFilterView*)createViewWithFilter:(NSMutableDictionary*)filter
                                             delegate:(id<CommonSearchImageFilterViewDelegate>)delegate;
+@property (retain, nonatomic) IBOutlet UIButton *confirmBtn;
+@property (retain, nonatomic) IBOutlet UIButton *cancelBtn;
 
 @end

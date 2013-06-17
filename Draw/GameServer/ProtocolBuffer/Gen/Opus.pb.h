@@ -144,7 +144,11 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 
 @interface PBDrawOpus : PBGeneratedMessage {
 @private
+  BOOL hasLevel_:1;
+  int32_t level;
 }
+- (BOOL) hasLevel;
+@property (readonly) int32_t level;
 
 + (PBDrawOpus*) defaultInstance;
 - (PBDrawOpus*) defaultInstance;
@@ -179,6 +183,11 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 - (PBDrawOpus_Builder*) mergeFrom:(PBDrawOpus*) other;
 - (PBDrawOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBDrawOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasLevel;
+- (int32_t) level;
+- (PBDrawOpus_Builder*) setLevel:(int32_t) value;
+- (PBDrawOpus_Builder*) clearLevel;
 @end
 
 @interface PBAskPs : PBGeneratedMessage {
@@ -316,9 +325,12 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 
 @interface PBOpus : PBGeneratedMessage {
 @private
+  BOOL hasIsRecovery_:1;
   BOOL hasDeviceType_:1;
   BOOL hasStatus_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasLocalThumbImageUrl_:1;
+  BOOL hasLocalImageUrl_:1;
   BOOL hasLocalDataUrl_:1;
   BOOL hasContestId_:1;
   BOOL hasAppId_:1;
@@ -331,17 +343,20 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
   BOOL hasName_:1;
   BOOL hasAuthor_:1;
   BOOL hasTargetUser_:1;
-  BOOL hasAskPsOpus_:1;
-  BOOL hasAskPs_:1;
   BOOL hasDraw_:1;
   BOOL hasSing_:1;
+  BOOL hasAskPs_:1;
+  BOOL hasAskPsOpus_:1;
   BOOL hasStoreType_:1;
   BOOL hasType_:1;
-  BOOL hasCategory_:1;
   BOOL hasLanguage_:1;
+  BOOL hasCategory_:1;
+  BOOL isRecovery_:1;
   int32_t deviceType;
   int32_t status;
   int32_t createDate;
+  NSString* localThumbImageUrl;
+  NSString* localImageUrl;
   NSString* localDataUrl;
   NSString* contestId;
   NSString* appId;
@@ -354,14 +369,14 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
   NSString* name;
   PBGameUser* author;
   PBGameUser* targetUser;
-  PBAskPsOpus* askPsOpus;
-  PBAskPs* askPs;
   PBDrawOpus* draw;
   PBSingOpus* sing;
+  PBAskPs* askPs;
+  PBAskPsOpus* askPsOpus;
   PBOpusStoreType storeType;
   PBOpusType type;
-  PBOpusCategoryType category;
   PBLanguage language;
+  PBOpusCategoryType category;
   NSMutableArray* mutableActionTimesList;
 }
 - (BOOL) hasOpusId;
@@ -386,6 +401,9 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 - (BOOL) hasAskPs;
 - (BOOL) hasAskPsOpus;
 - (BOOL) hasLocalDataUrl;
+- (BOOL) hasLocalImageUrl;
+- (BOOL) hasLocalThumbImageUrl;
+- (BOOL) hasIsRecovery;
 - (BOOL) hasStoreType;
 @property (readonly, retain) NSString* opusId;
 @property (readonly) PBOpusType type;
@@ -409,6 +427,9 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 @property (readonly, retain) PBAskPs* askPs;
 @property (readonly, retain) PBAskPsOpus* askPsOpus;
 @property (readonly, retain) NSString* localDataUrl;
+@property (readonly, retain) NSString* localImageUrl;
+@property (readonly, retain) NSString* localThumbImageUrl;
+- (BOOL) isRecovery;
 @property (readonly) PBOpusStoreType storeType;
 - (NSArray*) actionTimesList;
 - (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
@@ -575,6 +596,21 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 - (NSString*) localDataUrl;
 - (PBOpus_Builder*) setLocalDataUrl:(NSString*) value;
 - (PBOpus_Builder*) clearLocalDataUrl;
+
+- (BOOL) hasLocalImageUrl;
+- (NSString*) localImageUrl;
+- (PBOpus_Builder*) setLocalImageUrl:(NSString*) value;
+- (PBOpus_Builder*) clearLocalImageUrl;
+
+- (BOOL) hasLocalThumbImageUrl;
+- (NSString*) localThumbImageUrl;
+- (PBOpus_Builder*) setLocalThumbImageUrl:(NSString*) value;
+- (PBOpus_Builder*) clearLocalThumbImageUrl;
+
+- (BOOL) hasIsRecovery;
+- (BOOL) isRecovery;
+- (PBOpus_Builder*) setIsRecovery:(BOOL) value;
+- (PBOpus_Builder*) clearIsRecovery;
 
 - (BOOL) hasStoreType;
 - (PBOpusStoreType) storeType;
