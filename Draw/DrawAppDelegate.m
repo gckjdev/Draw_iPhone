@@ -76,7 +76,6 @@
 
 
 #import "ImageShapeManager.h"
-#import "LocalAttribute.h"
 
 NSString* GlobalGetServerURL()
 {
