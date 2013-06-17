@@ -7,19 +7,37 @@
 //
 
 #import "PaintBucketCommand.h"
+#import "CommonDialog.h"
 
 @implementation PaintBucketCommand
 
-- (BOOL)execute
+
+- (void)changeBG
 {
-    [self becomeActive];    
+    [self becomeActive];
     [self.toolHandler usePaintBucket];
     if (self.toolHandler.touchActionType == TouchActionTypeShape) {
         [self.toolHandler enterShapeMode];
     }else{
         [self.toolHandler enterDrawMode];
     }
-
+}
+- (BOOL)execute
+{
+    DrawAction *lastDrawAction = [self.toolHandler.drawView lastAction];
+    if (lastDrawAction && ![lastDrawAction isKindOfClass:[ChangeBackAction class]]) {
+        [[CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
+                                      style:CommonDialogStyleDoubleButton
+                                   delegate:nil
+                               clickOkBlock:^{
+            [self changeBG];
+        } clickCancelBlock:NULL]
+         showInView:[self.control theTopView]];
+    
+        
+    }else{
+        [self changeBG];        
+    }
     return YES;
 }
 

@@ -156,6 +156,11 @@
 
 }
 
+- (DrawAction *)lastAction
+{
+    return [self.drawActionList lastObject];
+}
+
 - (void)changeRect:(CGRect)rect
 {
     

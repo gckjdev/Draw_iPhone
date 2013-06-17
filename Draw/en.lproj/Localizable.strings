@@ -1254,6 +1254,8 @@
 "kStroke" = "Stroke";
 "kFill" = "Fill";
 
+"kCannotRevoke" = "Can't undo any more. If you want to undo more, save it, and edit it from the draf box.";
+
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
 "kUpdateBackgroundFail" = "Fail to update background. Please try later.";
