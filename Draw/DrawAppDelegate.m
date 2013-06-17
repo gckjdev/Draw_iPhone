@@ -77,12 +77,11 @@
 
 #import "ImageShapeManager.h"
 
-
 NSString* GlobalGetServerURL()
 {
 
 #ifdef DEBUG
-//    return @"http://192.167.1.101:8000/api/i?";
+    return @"http://192.167.1.100:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 
 //    return @"http://58.215.160.100:8888/api/i?";
@@ -94,7 +93,6 @@ NSString* GlobalGetServerURL()
 //        PPDebug(@"<for test!!!!!!> get api server %@", str);
 //        return [NSString stringWithFormat:@"http://%@/api/i?",str];
 //    }
-//    return @"http://192.168.1.198:8000/api/i?";
 #endif
     
     return [ConfigManager getAPIServerURL];
@@ -103,7 +101,9 @@ NSString* GlobalGetServerURL()
 
 NSString* GlobalGetTrafficServerURL()
 {
+
 #ifdef DEBUG
+
 //    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
 //    NSString* str = [def objectForKey:@"traffic_server"];
 //    if (str && str.length > 5) {
@@ -117,9 +117,6 @@ NSString* GlobalGetTrafficServerURL()
 #endif
     
     return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://58.215.172.169:8100/api/i?";
-//    return @"http://192.168.1.123:8100/api/i?";
-//    return @"http://192.168.1.5:8100/api/i?";
 }
 
 NSString* GlobalGetBoardServerURL()

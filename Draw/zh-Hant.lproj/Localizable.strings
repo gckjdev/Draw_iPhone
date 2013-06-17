@@ -436,7 +436,7 @@
 "kSearchUserPlaceholder" = "用戶暱稱/微博暱稱/郵件地址";
 "kSearchFailedTitle" = "網絡錯誤";
 "kSearchFailed" = "網絡錯誤，搜索用戶失敗，請檢查網絡是否可用或稍候再試";
-"kSearching" = "搜索用戶中...";
+"kSearching" = "搜索中...";
 "kMyself" = "我";
 
 "kLevelSettings" = "猜詞難度";
@@ -1234,6 +1234,7 @@
 "kSelectShape" = "選擇形狀";
 "kStroke" = "描邊";
 "kFill" = "填充";
+"kCannotRevoke" = "不能繼續撤銷了！如果需要繼續撤銷可以嘗試先保存，然後從草稿箱重新打開。";
 
 "kCustomBg" = "自定義背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
@@ -1744,4 +1745,6 @@
 "kClipart" = "卡通";
 "kLineart" = "素描";
 "kUnlimit" = "不限";
+"kNoPhoto" = "你沒保存過任何圖片";
+"kSearchNoResult" = "搜不到符合條件的結果";
 /*********************图库国际化字符串结束 ************************/

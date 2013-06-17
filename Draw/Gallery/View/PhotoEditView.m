@@ -17,12 +17,10 @@
 @interface PhotoEditView ()
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UILabel *inputNameLabel;
 @property (retain, nonatomic) PBUserPhoto* photo;
 
 @property (retain, nonatomic) IBOutlet UITableView *tagTable;
 @property (retain, nonatomic) NSMutableSet* tagSet;
-@property (retain, nonatomic) IBOutlet UITextField *nameTextField;
 @property (retain, nonatomic) NSArray* tagPackageArray;
 
 @end
@@ -74,7 +72,6 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     view.resultBlock = resultBlock;
     view.tagTable.dataSource = view;
     view.tagTable.delegate = view;
-    view.nameTextField.delegate = view;
     return view;
 }
 
@@ -84,7 +81,6 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     [self initView:editName];
     if (photo) {
         self.tagSet = [[[NSMutableSet alloc] initWithArray:photo.tagsList] autorelease];
-        [self.nameTextField setText:photo.name];
     }
     [self.tagTable reloadData];
     
@@ -95,10 +91,7 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     [self.confirmBtn setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     [self.cancelBtn setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     if (!editName) {
-        [self.nameTextField setHidden:YES];
-        [self.inputNameLabel setHidden:YES];
         [self.titleLabel setText:NSLS(@"kSetTag")];
-        [self.tagTable setFrame:CGRectMake(self.tagTable.frame.origin.x, self.inputNameLabel.frame.origin.y, self.tagTable.frame.size.width, (self.tagTable.frame.size.height+ self.titleLabel.frame.size.height))];
         [self.confirmBtn setTitle:NSLS(@"kFilter") forState:UIControlStateNormal];
     }
 
@@ -129,10 +122,6 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 }
 
 #pragma mark - tableView delegate
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [self.nameTextField resignFirstResponder];
-}
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -207,7 +196,7 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 //    if (_delegate && [_delegate respondsToSelector:@selector(didEditPictureInfo:name:imageUrl:)]) {
 //        [_delegate didEditPictureInfo:self.tagSet name:self.nameTextField.text imageUrl:self.imageUrl];
 //    }
-    EXECUTE_BLOCK(_resultBlock, self.nameTextField.text, self.tagSet);
+    EXECUTE_BLOCK(_resultBlock, self.tagSet);
     self.resultBlock = nil;
     [self disappear];
 }
@@ -232,19 +221,12 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     }
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self.nameTextField resignFirstResponder];
-    return YES;
-}
 
 - (void)dealloc {
     [_photo release];
     [_tagSet release];
     [_tagPackageArray release];
-    [_nameTextField release];
     [_titleLabel release];
-    [_inputNameLabel release];
     RELEASE_BLOCK(_resultBlock);
     [_confirmBtn release];
     [_cancelBtn release];

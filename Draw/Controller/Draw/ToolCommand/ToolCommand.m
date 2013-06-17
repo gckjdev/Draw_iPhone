@@ -60,6 +60,8 @@
         }
     }];
     
+    NSLog(@"You CAN'T use item = %d", type);
+    
     return NO;
 }
 
