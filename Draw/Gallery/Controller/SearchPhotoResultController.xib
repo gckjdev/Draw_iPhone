@@ -38,7 +38,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="849189427">
+					<object class="IBUIImageView" id="517751256">
 						<reference key="NSNextResponder" ref="334917104"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
@@ -52,7 +52,7 @@
 							<string key="NSResourceName">wood_bg@2x.jpg</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="117146523">
+					<object class="IBUILabel" id="594596939">
 						<reference key="NSNextResponder" ref="334917104"/>
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{0, 143}, {320, 40}}</string>
@@ -87,9 +87,9 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 47}, {320, 413}}</string>
 						<reference key="NSSuperview" ref="334917104"/>
-						<reference key="NSNextKeyView" ref="117146523"/>
+						<reference key="NSNextKeyView" ref="594596939"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="291406970">
+						<object class="NSColor" key="IBUIBackgroundColor" id="76531445">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -161,7 +161,7 @@
 						<reference key="NSSuperview" ref="334917104"/>
 						<reference key="NSNextKeyView" ref="429935567"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<reference key="IBUIBackgroundColor" ref="291406970"/>
+						<reference key="IBUIBackgroundColor" ref="76531445"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -191,7 +191,7 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="849189427"/>
+				<reference key="NSNextKeyView" ref="517751256"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -250,7 +250,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">noDataTipLabl</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="117146523"/>
+						<reference key="destination" ref="594596939"/>
 					</object>
 					<int key="connectionID">38</int>
 				</object>
@@ -307,8 +307,8 @@
 							<reference ref="173261705"/>
 							<reference ref="449740360"/>
 							<reference ref="375866167"/>
-							<reference ref="849189427"/>
-							<reference ref="117146523"/>
+							<reference ref="517751256"/>
+							<reference ref="594596939"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -334,12 +334,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
-						<reference key="object" ref="849189427"/>
+						<reference key="object" ref="517751256"/>
 						<reference key="parent" ref="334917104"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">37</int>
-						<reference key="object" ref="117146523"/>
+						<reference key="object" ref="594596939"/>
 						<reference key="parent" ref="334917104"/>
 					</object>
 				</array>

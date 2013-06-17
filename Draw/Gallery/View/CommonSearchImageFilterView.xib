@@ -39,7 +39,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="863488231">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIImageView" id="102539284">
 								<reference key="NSNextResponder" ref="863488231"/>
@@ -954,12 +954,12 @@
 								<reference key="IBUIFontDescription" ref="52019441"/>
 								<reference key="IBUIFont" ref="830149206"/>
 							</object>
-							<object class="IBUIButton" id="129410415">
+							<object class="IBUIButton" id="450145089">
 								<reference key="NSNextResponder" ref="863488231"/>
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{20, 390}, {83, 30}}</string>
 								<reference key="NSSuperview" ref="863488231"/>
-								<reference key="NSNextKeyView" ref="102047344"/>
+								<reference key="NSNextKeyView" ref="788366823"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -973,18 +973,18 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace" id="729653693">
+									<object class="NSColorSpace" key="NSCustomColorSpace" id="653909340">
 										<int key="NSID">2</int>
 									</object>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="761180283">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="793321604">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">common_dialog_btn_bg@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="845309073"/>
 								<reference key="IBUIFont" ref="606340299"/>
 							</object>
-							<object class="IBUIButton" id="102047344">
+							<object class="IBUIButton" id="788366823">
 								<reference key="NSNextResponder" ref="863488231"/>
 								<int key="NSvFlags">265</int>
 								<string key="NSFrame">{{182, 390}, {83, 30}}</string>
@@ -1002,9 +1002,9 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
-									<reference key="NSCustomColorSpace" ref="729653693"/>
+									<reference key="NSCustomColorSpace" ref="653909340"/>
 								</object>
-								<reference key="IBUINormalBackgroundImage" ref="761180283"/>
+								<reference key="IBUINormalBackgroundImage" ref="793321604"/>
 								<reference key="IBUIFontDescription" ref="845309073"/>
 								<reference key="IBUIFont" ref="606340299"/>
 							</object>
@@ -1056,7 +1056,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">cancelBtn</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="129410415"/>
+						<reference key="destination" ref="450145089"/>
 					</object>
 					<int key="connectionID">83</int>
 				</object>
@@ -1064,7 +1064,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">confirmBtn</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="102047344"/>
+						<reference key="destination" ref="788366823"/>
 					</object>
 					<int key="connectionID">84</int>
 				</object>
@@ -1305,7 +1305,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickCancelBtn:</string>
-						<reference key="source" ref="129410415"/>
+						<reference key="source" ref="450145089"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1314,7 +1314,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickConfirmBtn:</string>
-						<reference key="source" ref="102047344"/>
+						<reference key="source" ref="788366823"/>
 						<reference key="destination" ref="191373211"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -1384,8 +1384,8 @@
 							<reference ref="890741209"/>
 							<reference ref="206597289"/>
 							<reference ref="102539284"/>
-							<reference ref="102047344"/>
-							<reference ref="129410415"/>
+							<reference ref="788366823"/>
+							<reference ref="450145089"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -1551,12 +1551,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">81</int>
-						<reference key="object" ref="129410415"/>
+						<reference key="object" ref="450145089"/>
 						<reference key="parent" ref="863488231"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">82</int>
-						<reference key="object" ref="102047344"/>
+						<reference key="object" ref="788366823"/>
 						<reference key="parent" ref="863488231"/>
 					</object>
 				</array>
