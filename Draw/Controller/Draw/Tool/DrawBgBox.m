@@ -152,6 +152,7 @@ CGPoint boxContentOffset;
         [self.delegate drawBgCell:self didSelectDrawBg:bg];
     }
 }
+#define BUTTON_COUNT 5
 
 + (id)createCell:(id)delegate
 {
@@ -159,7 +160,7 @@ CGPoint boxContentOffset;
     cell.delegate = delegate;
     for (UIButton *button in cell.subviews) {
         if ([button isKindOfClass:[UIButton class]]) {
-            if (button.tag > 0 && button.tag < 6) {
+            if (button.tag > 0 && button.tag <= BUTTON_COUNT) {
                 [button setBackgroundColor:[UIColor clearColor]];
                 [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
                 [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
