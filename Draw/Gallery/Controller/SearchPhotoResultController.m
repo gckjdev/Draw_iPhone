@@ -17,7 +17,6 @@
 #import "UIImageView+WebCache.h"
 #import "ImageSearchResult.h"
 #import "GoogleCustomSearchNetworkConstants.h"
-#import "SearchView.h"
 #import "MKBlockActionSheet.h"
 #import "GalleryPicture.h"
 #import "GalleryManager.h"
@@ -211,7 +210,7 @@
 - (void)saveSearchResult:(ImageSearchResult*)searchResult
 {
     __block SearchPhotoResultController* cp = self;
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil editName:YES resultBlock:^( NSSet *tagSet) {
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil title:NSLS(@"kSetTag") confirmTitle:NSLS(@"kConfirm") resultBlock:^( NSSet *tagSet) {
         [cp didEditPictureInfo:tagSet name:cp.searchText imageUrl:searchResult.url];
     }];
     [view showInView:self.view];

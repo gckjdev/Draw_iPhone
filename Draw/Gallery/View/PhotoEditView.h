@@ -19,7 +19,8 @@ typedef void(^PhotoEditResultBLock)(NSSet* tagSet);
 @property (retain, nonatomic) IBOutlet UIButton *cancelBtn;
 
 + (PhotoEditView*)createViewWithPhoto:(PBUserPhoto*)photo
-                             editName:(BOOL)editName
+                                title:(NSString*)title
+                         confirmTitle:(NSString*)confirmTitle
                           resultBlock:(PhotoEditResultBLock)resultBlock;
 
 - (IBAction)clickConfirm:(id)sender;

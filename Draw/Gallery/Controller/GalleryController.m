@@ -116,7 +116,7 @@
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 2;
+    return 8;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
@@ -225,7 +225,10 @@ enum {
 
 - (void)editPhoto:(PBUserPhoto*)photo
 {
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo editName:YES resultBlock:^(NSSet *tagSet) {
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo
+                                                       title:NSLS(@"kSetTag")
+                                                confirmTitle:NSLS(@"kConfirm")
+                                                 resultBlock:^(NSSet *tagSet) {
         [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:photo.name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto* photo) {
             if (resultCode == 0) {
                 PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [tagSet description]);
@@ -256,7 +259,10 @@ enum {
     }
     
     __block GalleryController* cp = self;
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto editName:NO resultBlock:^(NSSet *tagSet) {
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto
+                                                       title:NSLS(@"kFilter")
+                                                confirmTitle:NSLS(@"kFilter")
+                                                 resultBlock:^(NSSet *tagSet) {
         cp.tagSet = tagSet;
         [cp reloadTableViewDataSource];
     }];

@@ -64,11 +64,12 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 //}
 
 + (PhotoEditView*)createViewWithPhoto:(PBUserPhoto*)photo
-                             editName:(BOOL)editName
+                                title:(NSString*)title
+                         confirmTitle:(NSString*)confirmTitle
                           resultBlock:(PhotoEditResultBLock)resultBlock
 {
     PhotoEditView* view = [self createView];
-    [view initWithPhoto:photo editName:editName];
+    [view initWithPhoto:photo title:title confirmTitle:confirmTitle];
     view.resultBlock = resultBlock;
     view.tagTable.dataSource = view;
     view.tagTable.delegate = view;
@@ -76,24 +77,25 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 }
 
 - (void)initWithPhoto:(PBUserPhoto*)photo
-             editName:(BOOL)editName
+                title:(NSString*)title
+         confirmTitle:(NSString*)confirmTitle
 {
-    [self initView:editName];
+    [self initView:title confirmTitle:confirmTitle];
     if (photo) {
         self.tagSet = [[[NSMutableSet alloc] initWithArray:photo.tagsList] autorelease];
+        
     }
     [self.tagTable reloadData];
     
 }
 
-- (void)initView:(BOOL)editName
+- (void)initView:(NSString*)title
+    confirmTitle:(NSString*)confirmTitle
 {
     [self.confirmBtn setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     [self.cancelBtn setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    if (!editName) {
-        [self.titleLabel setText:NSLS(@"kSetTag")];
-        [self.confirmBtn setTitle:NSLS(@"kFilter") forState:UIControlStateNormal];
-    }
+    [self.titleLabel setText:title];
+    [self.confirmBtn setTitle:confirmTitle forState:UIControlStateNormal];
 
     self.tagPackageArray = [[PhotoTagManager defaultManager] tagPackageArray];
     [self.tagTable reloadData];
