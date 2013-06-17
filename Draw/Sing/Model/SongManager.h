@@ -17,7 +17,7 @@
 
 - (NSArray *)randomSongsWithCount:(int)count;
 
-- (NSArray *)randomSongsWithTag:(int)tag
+- (NSArray *)randomSongsWithTag:(NSString *)tag
                           count:(int)count;
 
 + (PBSong *)testSong;

@@ -405,7 +405,7 @@ NSString* GlobalGetBoardServerURL()
     // load item data
     [[GameItemService defaultService] syncData:NULL];
     [[IAPProductService defaultService] syncData:NULL];
-        
+    
     if ([GameApp isAutoRegister]){
         [[UserService defaultService] autoRegisteration:nil];
     }

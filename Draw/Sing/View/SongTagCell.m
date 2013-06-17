@@ -22,11 +22,13 @@
     return @"SongTagCell";
 }
 
-+ (CGFloat)getCellHeightWithCategory:(PBSongCategory *)category{
-    return 65 + 23 * ceil([category.songTagsList count] / TagsPerCell);
++ (CGFloat)getCellHeightWithCategory:(NSDictionary *)category{
+    
+    NSArray *tag = [[category allValues] objectAtIndex:0];
+    return 65 + 23 * ceil([tag count] / TagsPerCell);
 }
 
-- (void)setCellInfo:(PBSongCategory *)category{
+- (void)setCellInfo:(NSDictionary *)category{
 
     for (UIView *view in self.subviews) {
         if ([[view class] isSubclassOfClass:[UIButton class]]) {
@@ -36,15 +38,15 @@
     
     [self updateHeight:[SongTagCell getCellHeightWithCategory:category]];
     
-    self.categoryLabel.text = category.name;
+    self.categoryLabel.text = [[category allKeys] objectAtIndex:0];
 
-    NSArray *tags = category.songTagsList;
+    NSArray *tags = [[category allValues] objectAtIndex:0];
     int count = [tags count];
     for (int index = 0; index < count; index++) {
         
-        PBSongTag *songTag = [tags objectAtIndex:index];
-        UIButton *button = [self buttonWithTag:songTag.tagId index:index];
-        [button setTitle:songTag.tagName forState:UIControlStateNormal];
+        NSString *tag = [tags objectAtIndex:index];
+        UIButton *button = [self buttonWithTag:0 index:index];
+        [button setTitle:tag forState:UIControlStateNormal];
         [self addSubview:button];
     }
     
@@ -71,8 +73,8 @@
 
 - (void)clickButton:(UIButton *)button{
     if ([delegate respondsToSelector:@selector(didClickTag:)]) {
-        int tagId = button.tag;
-        [delegate didClickTag:tagId];
+        NSString *tag = [button titleForState:UIControlStateNormal];
+        [delegate didClickTag:tag];
     }
 }
 

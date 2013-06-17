@@ -12,7 +12,7 @@
 
 @optional
 - (void)didClickBgButton;
-- (void)didSelectTag:(int)tagId;
+- (void)didSelectTag:(NSString *)tag;
 
 @end
 

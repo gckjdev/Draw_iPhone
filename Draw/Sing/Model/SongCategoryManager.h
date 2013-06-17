@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface SongCategoryManager : NSObject
-@property (readonly, retain, nonatomic) NSArray *categorys;
+@property (readonly, retain, nonatomic) NSMutableArray *categorys;
 
+
++ (id)defaultManager;
 - (void)syncData;
 
-+ (NSArray *)createTestData;
+//+ (NSArray *)createTestData;
 
 @end
