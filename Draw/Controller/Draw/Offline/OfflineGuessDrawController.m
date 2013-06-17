@@ -813,7 +813,8 @@
     if ([[AccountService defaultService] hasEnoughBalance:[ConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
             [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
-            [self commitCorrectAnswer];
+            [_guessWords addObject:cp.word.text];
+            [cp commitCorrectAnswer];
         } clickCancelBlock:^{
             [cp quitGameDirectly];
         }];
