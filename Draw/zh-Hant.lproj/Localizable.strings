@@ -1234,6 +1234,7 @@
 "kSelectShape" = "選擇形狀";
 "kStroke" = "描邊";
 "kFill" = "填充";
+"kCannotRevoke" = "不能繼續撤銷了！如果需要繼續撤銷可以嘗試先保存，然後從草稿箱重新打開。";
 
 "kCustomBg" = "自定義背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";

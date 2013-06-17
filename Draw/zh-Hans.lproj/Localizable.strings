@@ -1250,6 +1250,8 @@
 "kStroke" = "描边";
 "kFill" = "填充";
 
+"kCannotRevoke" = "不能继续撤销了！如果需要继续撤销可以尝试先保存，然后从草稿箱重新打开。";
+
 "kCustomBg" = "自定义背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失败，稍后再试。";
