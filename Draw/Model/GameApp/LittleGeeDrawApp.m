@@ -182,4 +182,15 @@
     return NO;
 }
 
+- (BOOL)supportWeixin
+{
+    return YES;
+}
+
+- (NSString *)weixinId
+{
+    return LITTLE_GEE_WEIXIN_ID;
+}
+
+
 @end

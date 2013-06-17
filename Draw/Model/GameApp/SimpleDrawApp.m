@@ -190,6 +190,11 @@
     return NO;
 }
 
+- (NSString *)weixinId
+{
+    return @"";
+}
+
 - (NSString*)homeHeaderViewId
 {
     return @"DrawHomeHeaderPanel";

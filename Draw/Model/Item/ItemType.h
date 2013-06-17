@@ -41,7 +41,8 @@ typedef enum
     
     ItemTypeGrid = 1106,
     
-    ItemTypePurse = 1105,            
+    ItemTypePurse = 1105,
+    ItemTypePurseOneThousand = 1107,
     
     DrawBackgroundStart = 1200,
     DrawBackground1,                

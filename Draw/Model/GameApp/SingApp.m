@@ -44,6 +44,11 @@
     return YES;
 }
 
+- (NSString *)weixinId
+{
+    return SING_WEIXIN_ID;
+}
+
 - (BOOL)isAutoRegister
 {
     return NO;

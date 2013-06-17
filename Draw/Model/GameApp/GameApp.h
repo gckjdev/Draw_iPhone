@@ -92,6 +92,13 @@
 #define DREAM_LOCKSCREEN_FREE_UMENG_ID  DREAM_LOCKSCREEN_UMENG_ID
 #define LITTLE_GEE_UMENG_ID             @"518902cb56240b0c2600c457"
 
+
+//Weixin ID
+#define DRAW_WEIXIN_ID                  @"wx427a2f57bc4456d1"
+#define LITTLE_GEE_WEIXIN_ID            @"wx90e5b16de6688114"
+#define SING_WEIXIN_ID                  @""
+#define ASK_PS_WEIXIN_ID                @""
+
 // Lm Ad Wall ID
 //#define DRAW_LM_WALL_ID         @"ed21340370b99ad5bd2a5e304e3ea6c4"
 #define DRAW_LM_WALL_ID         @"f86cc23b710f1e4d9603dcde84474588" // New, Add By Benson 2013-03-13
