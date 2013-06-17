@@ -126,6 +126,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     PBDrawBgMeta_Builder *drawBgMeta = [[[PBDrawBgMeta_Builder alloc] init] autorelease];
     NSInteger i = 1;
     NSInteger start = 1;
+    NSMutableArray *tempList = [NSMutableArray array];
     for (NSString *group in groupList) {
 
         PBDrawBgGroup_Builder *gb = [[[PBDrawBgGroup_Builder alloc] init] autorelease];
@@ -154,6 +155,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
         
         //////bg list
         
+
         for (i = start; i < start + 5; i ++) {
             NSString *bgId = [NSString stringWithFormat:@"%d",i];
             NSString *localUrl = [NSString stringWithFormat:@"%d.jpg",i];
@@ -164,15 +166,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
             [builder setBgId:bgId];
             [builder setLocalUrl:localUrl];
             [builder setRemoteUrl:remoteUrl];
-            
             [gb addDrawBgs:[builder build]];
         }
         
-        
-        [drawBgMeta addDrawBgGroup:[gb build]];
+//        [tempList addObject:[gb build]];
+        [tempList insertObject:[gb build] atIndex:0];
+
         start += 10;
     }
-
+    [drawBgMeta addAllDrawBgGroup:tempList];
+//    NSInteger count = [tempList count];
+//    while (--count >= 0) {
+//        PBDrawBgGroup *group = [tempList objectAtIndex:count];
+//        [drawBgMeta addDrawBgGroup:group];
+//    }
+    
     NSData *data = [[drawBgMeta build] data];
     PPDebug(@"<Write Data>, data length = %d",[data length]);
     [data writeToFile:@"/Users/qqn_pipi/tool/draw_bg/meta.pb" atomically:YES];
