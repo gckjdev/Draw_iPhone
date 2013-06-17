@@ -79,7 +79,7 @@
 }
 
 - (IBAction)clickDraftButton:(id)sender {
-//    SingOpus *opus = [[OpusManager singOpusManager] opusWithOpusId:@"2"];
+//    SingOpus *opus = [[OpusManager singDraftOpusManager] opusWithOpusId:@"2"];
 //    SingController *vc = [[[SingController alloc] initWithOpus:opus] autorelease];
 //    [self.navigationController pushViewController:vc animated:YES];
 }

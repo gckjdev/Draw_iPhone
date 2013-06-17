@@ -51,6 +51,19 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
     return nil;
 }
 
++ (NSArray*)NameArrayForKey:(NSString*)key
+{
+    if ([key isEqualToString:PARA_IMAGE_GRAY]) {
+        return [NSArray arrayWithObjects:NSLS(@"kColorful"),NSLS(@"KBlackAndWhite"),nil];
+    } else if ([key isEqualToString:PARA_IMAGE_SIZE]) {
+        return [NSArray arrayWithObjects:NSLS(@"kIcon"),NSLS(@"kMedium"),NSLS(@"kLarge"),NSLS(@"kHuge"),nil];
+    }
+    else if ([key isEqualToString:PARA_IMAGE_TYPE]) {
+        return [NSArray arrayWithObjects:NSLS(@"kFace"),NSLS(@"kPhoto"),NSLS(@"kClipart"),NSLS(@"kLineart"),nil];
+    }
+    return nil;
+}
+
 - (NSString*)getKeyByOffset:(int)offset
 {
     switch (offset) {
@@ -101,7 +114,61 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
     for (NSString* key in [filter allKeys]) {
         [view initViewWithKey:key filter:filter];
     }
+    [view initBtns];
     return view;
+}
+
+- (void)initBtns
+{
+    [self.confirmBtn setTitle:NSLS(@"kConfirm") forState:UIControlStateNormal];
+    [self.cancelBtn setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    
+    [self initGroupForKey:PARA_IMAGE_GRAY];
+    [self initGroupForKey:PARA_IMAGE_SIZE];
+    [self initGroupForKey:PARA_IMAGE_TYPE];
+    [self initGroupForKey:PARA_IMAGE_COLOR];
+    
+}
+
+- (void)initGroupForKey:(NSString*)key
+{
+    if ([key isEqualToString:PARA_IMAGE_GRAY]) {
+        NSArray* nameArray = [CommonSearchImageFilterView NameArrayForKey:key];
+        UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_GRAY_OFFSET];
+        [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+        for (int i = 1; i <= nameArray.count; i ++) {
+            UIButton* btn = (UIButton*)[self viewWithTag:(IMAGE_GRAY_OFFSET+i)];
+            NSString* title = [nameArray objectAtIndex:(i-1)];
+            [btn setTitle:title forState:UIControlStateNormal];
+        }
+    }
+    
+    if ([key isEqualToString:PARA_IMAGE_SIZE]) {
+        NSArray* nameArray = [CommonSearchImageFilterView NameArrayForKey:key];
+        UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_SIZE_OFFSET];
+        [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+        for (int i = 1; i <= nameArray.count; i ++) {
+            UIButton* btn = (UIButton*)[self viewWithTag:(IMAGE_SIZE_OFFSET+i)];
+            NSString* title = [nameArray objectAtIndex:(i-1)];
+            [btn setTitle:title forState:UIControlStateNormal];
+        }
+    }
+    
+    if ([key isEqualToString:PARA_IMAGE_TYPE]) {
+        NSArray* nameArray = [CommonSearchImageFilterView NameArrayForKey:key];
+        UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_TYPE_OFFSET];
+        [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+        for (int i = 1; i <= nameArray.count; i ++) {
+            UIButton* btn = (UIButton*)[self viewWithTag:(IMAGE_TYPE_OFFSET+i)];
+            NSString* title = [nameArray objectAtIndex:(i-1)];
+            [btn setTitle:title forState:UIControlStateNormal];
+        }
+    }
+    
+    if ([key isEqualToString:PARA_IMAGE_COLOR]) {
+        UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_COLOR_OFFSET];
+        [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+    }
 }
 
 

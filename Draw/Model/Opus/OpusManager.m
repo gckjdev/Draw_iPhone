@@ -16,10 +16,11 @@
 #import "Opus.h"
 #import "SingOpus.h"
 #import "FileUtil.h"
+#import "LevelDBManager.h"
 
-static OpusManager* globalSingOpusManager;
-static OpusManager* globalDrawOpusManager;
-static OpusManager* globalAskPsManager;
+//static OpusManager* globalSingDraftOpusManager;
+//static OpusManager* globalDrawOpusManager;
+//static OpusManager* globalAskPsManager;
 
 @interface OpusManager()
 @property (assign, nonatomic) Class aClass;
@@ -30,77 +31,44 @@ static OpusManager* globalAskPsManager;
 @implementation OpusManager
 
 - (void)dealloc{
+    
+    PPRelease(_db);
+    PPRelease(_dbName);
     [super dealloc];
 }
 
-+ (id)singOpusManager{
-    
-    static dispatch_once_t singOpusManagerOnceToken;
-    dispatch_once(&singOpusManagerOnceToken, ^{
-        if (globalSingOpusManager == nil){
-            globalSingOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class]];
-        }
-    });
-    
-    return globalSingOpusManager;
-}
-
-+ (id)drawOpusManager{
-    
-    static dispatch_once_t drawOpusManagerOnceToken;
-    dispatch_once(&drawOpusManagerOnceToken, ^{
-        if (globalDrawOpusManager == nil){
-            globalDrawOpusManager = [[OpusManager alloc] initWithClass:[DrawOpus class]];
-        }
-    });
-    
-    return globalSingOpusManager;
-}
-
-+ (id)askPsManager{
-    
-    static dispatch_once_t askPsManagerOnceToken;
-    dispatch_once(&askPsManagerOnceToken, ^{
-        if (globalAskPsManager == nil){
-            globalAskPsManager = [[OpusManager alloc] initWithClass:[AskPs class]];
-        }
-    });
-    
-    return globalAskPsManager;
-}
-
-- (id)initWithClass:(Class)class{
+- (id)initWithClass:(Class)class dbName:(NSString*)dbName{
     if (self = [super init]) {
         self.aClass = class;
+        self.dbName = dbName;
         self.userManager = [UserManager defaultManager];
         
         [FileUtil createDir:[FileUtil filePathInAppDocument:[self.aClass localDataDir]]];
+        
+        self.db = [[LevelDBManager defaultManager] db:dbName];
     }
     
     return self;
 }
 
-
-- (id)opusWithOpusId:(NSString *)opusId{
-
-    Opus *opus = [BuriBucket(_aClass) fetchObjectForKey:opusId];
+- (Opus*)opusWithOpusId:(NSString *)opusId{
+    Opus* opus = [_db objectForKey:opusId];
     return opus;
 }
 
 - (void)saveOpus:(Opus*)opus
 {
-    if ([opus class] != _aClass) {
-        PPDebug(@"ERROR: the object type you are trying to store, should be of the %@ class", NSStringFromClass(_aClass));
-        return;
-    }
-    
     PPDebug(@"SAVE LOCAL OPUS KEY=%@", [opus opusKey]);
-    [BuriBucket(_aClass) storeObject:opus];
+    [_db setObject:opus forKey:[opus opusKey]];
+    
+    [self printAllOpus];
 }
 
 - (void)deleteOpus:(NSString *)opusId{
     PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusId);
-    [BuriBucket(_aClass) deleteObjectForKey:opusId];
+    [_db removeKey:opusId];
+    
+    [self printAllOpus];    
 }
 
 + (PBOpus *)createTestOpus{
@@ -135,9 +103,9 @@ static OpusManager* globalAskPsManager;
 
 - (void)setDraftOpusId:(Opus*)opus extension:(NSString*)fileNameExtension
 {
-    NSString* tempOpusId = [NSString GetUUID];
+    NSString* tempOpusId = [NSString stringWithFormat:@"draft-%010ld-%@", time(0), [NSString GetUUID]];
     [opus setOpusId:tempOpusId];
-    [opus setStorageType:PBOpusStoreTypeDraftOpus];
+    [opus setAsDraft];
     [opus setLocalDataUrl:fileNameExtension];
 }
 
@@ -180,32 +148,187 @@ static OpusManager* globalAskPsManager;
     [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
     
     return singOpus;
-    
-    /*
-     required string opusId = 1;                   // 作品Id
-     optional PBOpusType type = 2;                 // 作品类型
-     optional string name = 3;                     // 作品名称
-     optional string desc = 4;                     // 作品描述
-     optional string image = 5;                    // 作品图片
-     optional string thumbImage = 6;               // 作品缩略图
-     optional string dataUrl = 9;                  // 作品数据远程URL
-     
-     optional PBLanguage language = 10;            // 作品语言
-     optional PBOpusCategoryType category = 11;    // 作品大分类
-     
-     optional int32 createDate = 15;               // 作品创建时间
-     optional int32 status = 20;                   // 作品状态，0表示正常，1表示已删除。
-     
-     // 创建来源信息，如来自哪些设备、应用
-     optional int32  deviceType = 25;               // deviceType : (1:iPhone/iPod Touch, 2:iPad, 3:Android Phone)
-     optional string deviceName = 26;               // 设备名称，如 iPhone4, New iPad, iPhone5, 三星Galaxy 等等
-     optional string appId = 28;                    // 来自哪个应用创作的
-     
-     optional PBGameUser author = 35;              // 作者基本信息
-     
-     optional PBGameUser targetUser = 41;          // 作品是给谁的
-     optional string contestId = 42;               // 参与的比赛的Id
-     */
 }
+
+- (NSArray*)reverseSubArray:(NSArray*)array offset:(int)offset limit:(int)limit
+{
+    if (array == nil || [array count] == 0){
+        return nil;
+    }
+    
+    int count = [array count];
+
+    int startIndex = count - 1 - offset;
+    int endIndex = count - 1 - offset - limit;
+
+    if (startIndex < 0){
+        return nil;
+    }
+
+    if (endIndex < 0)
+        endIndex = 0;
+
+    NSRange range;
+    range.length = (startIndex - endIndex);
+    range.location = endIndex;
+
+    NSMutableArray* retArray = [NSMutableArray array];
+    for (int i=startIndex; i>=endIndex; i--){
+        [retArray addObject:[array objectAtIndex:i]];
+    }
+    
+    return retArray;
+}
+
+- (NSArray*)findAll
+{
+    return [_db allObjects];
+}
+
+- (NSArray*)findAllOpusWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* opusArray = [self findAll];
+    return [self reverseSubArray:opusArray offset:offset limit:limit];
+}
+
+- (void)deleteOpusInArray:(NSArray*)opusArray
+{
+    for (Opus* opus in opusArray){
+        [_db removeKey:[opus opusKey]];
+    }
+}
+
+- (void)deleteAllOpus
+{
+    NSArray* opusArray = [self findAll];
+    [self deleteOpusInArray:opusArray];
+}
+
+- (int)allOpusCount
+{
+    return [[self findAll] count];
+}
+
+- (int)recoveryOpusCount
+{
+    int count = 0;
+    
+    NSArray* opusArray = [self findAll];
+    for (Opus* opus in opusArray){
+        if ([opus.pbOpusBuilder isRecovery]){
+            count ++;
+        }
+    }
+    
+    return count;
+}
+
+/*
+// 草稿作品
+- (NSArray*)findAllDrafts
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeDraftOpus)];
+}
+
+- (NSArray*)findAllDraftsWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllDrafts];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+// 已经提交的所有作品
+- (NSArray*)findAllSubmitOpus
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeSubmitOpus)];
+}
+
+- (NSArray*)findAllSubmitOpusWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllSubmitOpus];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+// 保存到本地的所有作品
+- (NSArray*)findAllSavedOpus
+{
+    return [BuriBucket(_aClass) fetchObjectsForNumericIndex:BURI_INDEX_STORE_TYPE
+                                                       value:@(PBOpusStoreTypeSavedOpus)];
+}
+
+- (NSArray*)findAllSavedOpusWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAllSavedOpus];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+
+
+- (NSArray*)findAllWithOffset:(int)offset limit:(int)limit
+{
+    NSArray* drafts = [self findAll];
+    return [self reverseSubArray:drafts offset:offset limit:limit];
+}
+
+
+- (void)deleteAllDrafts
+{
+    NSArray* opusArray = [self findAllDrafts];
+    [self deleteOpusInArray:opusArray];
+}
+
+- (void)deleteAllSubmitOpus
+{
+    NSArray* opusArray = [self findAllSubmitOpus];
+    [self deleteOpusInArray:opusArray];
+}
+
+- (void)deleteAllSavedOpus
+{
+    NSArray* opusArray = [self findAllSavedOpus];
+    [self deleteOpusInArray:opusArray];
+}
+
+
+- (int)draftOpusCount
+{
+    return [[self findAllDrafts] count];
+}
+
+- (int)submitOpusCount
+{
+    return [[self findAllSubmitOpus] count];
+}
+
+- (int)savedOpusCount
+{
+    return [[self findAllSavedOpus] count];
+}
+
+- (int)recoveryOpusCount
+{
+    int count = 0;
+    
+    NSArray* opusArray = [self findAll];
+    for (Opus* opus in opusArray){
+        if ([opus.pbOpusBuilder isRecovery]){
+            count ++;
+        }
+    }
+    
+    return count;
+}
+*/
+
+- (void)printAllOpus
+{    
+    NSArray* opuses = [self findAllOpusWithOffset:0 limit:100];
+    PPDebug(@"==== total %d opus ====", [opuses count]);
+    for (Opus* opus in opuses){
+        PPDebug(@"opus = %@", [opus description]);
+    }
+}
+
 
 @end

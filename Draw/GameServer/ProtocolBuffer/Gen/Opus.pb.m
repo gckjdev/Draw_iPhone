@@ -65,7 +65,8 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value) {
 BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value) {
   switch (value) {
     case PBOpusStoreTypeDraftOpus:
-    case PBOpusStoreTypeNormalOpus:
+    case PBOpusStoreTypeSubmitOpus:
+    case PBOpusStoreTypeSavedOpus:
       return YES;
     default:
       return NO;
@@ -81,15 +82,24 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value) {
   }
 }
 @interface PBDrawOpus ()
+@property int32_t level;
 @end
 
 @implementation PBDrawOpus
 
+- (BOOL) hasLevel {
+  return !!hasLevel_;
+}
+- (void) setHasLevel:(BOOL) value {
+  hasLevel_ = !!value;
+}
+@synthesize level;
 - (void) dealloc {
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
+    self.level = 0;
   }
   return self;
 }
@@ -109,6 +119,9 @@ static PBDrawOpus* defaultPBDrawOpusInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasLevel) {
+    [output writeInt32:1 value:self.level];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -118,6 +131,9 @@ static PBDrawOpus* defaultPBDrawOpusInstance = nil;
   }
 
   size = 0;
+  if (self.hasLevel) {
+    size += computeInt32Size(1, self.level);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
@@ -193,6 +209,9 @@ static PBDrawOpus* defaultPBDrawOpusInstance = nil;
   if (other == [PBDrawOpus defaultInstance]) {
     return self;
   }
+  if (other.hasLevel) {
+    [self setLevel:other.level];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -214,8 +233,28 @@ static PBDrawOpus* defaultPBDrawOpusInstance = nil;
         }
         break;
       }
+      case 8: {
+        [self setLevel:[input readInt32]];
+        break;
+      }
     }
   }
+}
+- (BOOL) hasLevel {
+  return result.hasLevel;
+}
+- (int32_t) level {
+  return result.level;
+}
+- (PBDrawOpus_Builder*) setLevel:(int32_t) value {
+  result.hasLevel = YES;
+  result.level = value;
+  return self;
+}
+- (PBDrawOpus_Builder*) clearLevel {
+  result.hasLevel = NO;
+  result.level = 0;
+  return self;
 }
 @end
 
@@ -778,6 +817,9 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 @property (retain) PBAskPs* askPs;
 @property (retain) PBAskPsOpus* askPsOpus;
 @property (retain) NSString* localDataUrl;
+@property (retain) NSString* localImageUrl;
+@property (retain) NSString* localThumbImageUrl;
+@property BOOL isRecovery;
 @property PBOpusStoreType storeType;
 @end
 
@@ -938,6 +980,32 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   hasLocalDataUrl_ = !!value;
 }
 @synthesize localDataUrl;
+- (BOOL) hasLocalImageUrl {
+  return !!hasLocalImageUrl_;
+}
+- (void) setHasLocalImageUrl:(BOOL) value {
+  hasLocalImageUrl_ = !!value;
+}
+@synthesize localImageUrl;
+- (BOOL) hasLocalThumbImageUrl {
+  return !!hasLocalThumbImageUrl_;
+}
+- (void) setHasLocalThumbImageUrl:(BOOL) value {
+  hasLocalThumbImageUrl_ = !!value;
+}
+@synthesize localThumbImageUrl;
+- (BOOL) hasIsRecovery {
+  return !!hasIsRecovery_;
+}
+- (void) setHasIsRecovery:(BOOL) value {
+  hasIsRecovery_ = !!value;
+}
+- (BOOL) isRecovery {
+  return !!isRecovery_;
+}
+- (void) setIsRecovery:(BOOL) value {
+  isRecovery_ = !!value;
+}
 - (BOOL) hasStoreType {
   return !!hasStoreType_;
 }
@@ -963,6 +1031,8 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   self.askPs = nil;
   self.askPsOpus = nil;
   self.localDataUrl = nil;
+  self.localImageUrl = nil;
+  self.localThumbImageUrl = nil;
   [super dealloc];
 }
 - (id) init {
@@ -989,6 +1059,9 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
     self.askPs = [PBAskPs defaultInstance];
     self.askPsOpus = [PBAskPsOpus defaultInstance];
     self.localDataUrl = @"";
+    self.localImageUrl = @"";
+    self.localThumbImageUrl = @"";
+    self.isRecovery = NO;
     self.storeType = PBOpusStoreTypeDraftOpus;
   }
   return self;
@@ -1113,6 +1186,15 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasLocalDataUrl) {
     [output writeString:150 value:self.localDataUrl];
   }
+  if (self.hasLocalImageUrl) {
+    [output writeString:151 value:self.localImageUrl];
+  }
+  if (self.hasLocalThumbImageUrl) {
+    [output writeString:152 value:self.localThumbImageUrl];
+  }
+  if (self.hasIsRecovery) {
+    [output writeBool:153 value:self.isRecovery];
+  }
   if (self.hasStoreType) {
     [output writeEnum:200 value:self.storeType];
   }
@@ -1193,6 +1275,15 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasLocalDataUrl) {
     size += computeStringSize(150, self.localDataUrl);
+  }
+  if (self.hasLocalImageUrl) {
+    size += computeStringSize(151, self.localImageUrl);
+  }
+  if (self.hasLocalThumbImageUrl) {
+    size += computeStringSize(152, self.localThumbImageUrl);
+  }
+  if (self.hasIsRecovery) {
+    size += computeBoolSize(153, self.isRecovery);
   }
   if (self.hasStoreType) {
     size += computeEnumSize(200, self.storeType);
@@ -1343,6 +1434,15 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (other.hasLocalDataUrl) {
     [self setLocalDataUrl:other.localDataUrl];
+  }
+  if (other.hasLocalImageUrl) {
+    [self setLocalImageUrl:other.localImageUrl];
+  }
+  if (other.hasLocalThumbImageUrl) {
+    [self setLocalThumbImageUrl:other.localThumbImageUrl];
+  }
+  if (other.hasIsRecovery) {
+    [self setIsRecovery:other.isRecovery];
   }
   if (other.hasStoreType) {
     [self setStoreType:other.storeType];
@@ -1505,6 +1605,18 @@ static PBOpus* defaultPBOpusInstance = nil;
       }
       case 1202: {
         [self setLocalDataUrl:[input readString]];
+        break;
+      }
+      case 1210: {
+        [self setLocalImageUrl:[input readString]];
+        break;
+      }
+      case 1218: {
+        [self setLocalThumbImageUrl:[input readString]];
+        break;
+      }
+      case 1224: {
+        [self setIsRecovery:[input readBool]];
         break;
       }
       case 1600: {
@@ -1982,6 +2094,54 @@ static PBOpus* defaultPBOpusInstance = nil;
 - (PBOpus_Builder*) clearLocalDataUrl {
   result.hasLocalDataUrl = NO;
   result.localDataUrl = @"";
+  return self;
+}
+- (BOOL) hasLocalImageUrl {
+  return result.hasLocalImageUrl;
+}
+- (NSString*) localImageUrl {
+  return result.localImageUrl;
+}
+- (PBOpus_Builder*) setLocalImageUrl:(NSString*) value {
+  result.hasLocalImageUrl = YES;
+  result.localImageUrl = value;
+  return self;
+}
+- (PBOpus_Builder*) clearLocalImageUrl {
+  result.hasLocalImageUrl = NO;
+  result.localImageUrl = @"";
+  return self;
+}
+- (BOOL) hasLocalThumbImageUrl {
+  return result.hasLocalThumbImageUrl;
+}
+- (NSString*) localThumbImageUrl {
+  return result.localThumbImageUrl;
+}
+- (PBOpus_Builder*) setLocalThumbImageUrl:(NSString*) value {
+  result.hasLocalThumbImageUrl = YES;
+  result.localThumbImageUrl = value;
+  return self;
+}
+- (PBOpus_Builder*) clearLocalThumbImageUrl {
+  result.hasLocalThumbImageUrl = NO;
+  result.localThumbImageUrl = @"";
+  return self;
+}
+- (BOOL) hasIsRecovery {
+  return result.hasIsRecovery;
+}
+- (BOOL) isRecovery {
+  return result.isRecovery;
+}
+- (PBOpus_Builder*) setIsRecovery:(BOOL) value {
+  result.hasIsRecovery = YES;
+  result.isRecovery = value;
+  return self;
+}
+- (PBOpus_Builder*) clearIsRecovery {
+  result.hasIsRecovery = NO;
+  result.isRecovery = NO;
   return self;
 }
 - (BOOL) hasStoreType {

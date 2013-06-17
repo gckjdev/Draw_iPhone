@@ -1229,7 +1229,7 @@
 
 "kTaoBaoCharge" = "到官方淘宝店充值（支持支付宝）";
 "kTaoBaoChargeTitle" = "淘宝店充值";
-"kQuitTaoBaoTips" = "确定要离开当前淘宝商品页面？";
+"kQuitTaoBaoTips" = "确定要离开当前页面？";
 
 "kSelectPaymentWay" = "选择购买方式";
 "kPayViaZhiFuBao" = "使用支付宝客户端购买";
@@ -1246,6 +1246,9 @@
 "kDetailChat" = "聊天";
 
 "kSelectBGImage" = "选择背景";
+"kSelectShape" = "选择形状";
+"kStroke" = "描边";
+"kFill" = "填充";
 
 "kCustomBg" = "自定义背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
@@ -1734,4 +1737,19 @@
 "kOperations" = "操作";
 "kSetTag" = "设置标签";
 "kFilter" = "筛选";
+
+"kColorTone" = "色调";
+"kImageSize" = "大小";
+"kImageType" = "类型";
+"kColorful" = "彩色";
+"KBlackAndWhite" = "黑白";
+"kIcon" = "图标";
+"kMedium" = "标准";
+"kLarge" = "大";
+"kHuge" = "超大";
+"kFace" = "人脸";
+"kPhoto" = "照片";
+"kClipart" = "卡通";
+"kLineart" = "素描";
+"kUnlimit" = "不限";
 /*********************图库国际化字符串结束 ************************/

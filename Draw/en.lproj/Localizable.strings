@@ -1250,6 +1250,9 @@
 "kDetailChat" = "Chat";
 
 "kSelectBGImage" = "Select Background";
+"kSelectShape" = "Select Shape";
+"kStroke" = "Stroke";
+"kFill" = "Fill";
 
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
@@ -1724,5 +1727,21 @@
 "kOperations" = "Operations";
 "kSetTag" = "Set Tag";
 "kFilter" = "filter";
+
+"kColorTone" = "Tone";
+"kImageSize" = "Size";
+"kImageType" = "Type";
+"kColorful" = "Colorful";
+"KBlackAndWhite" = "Gray";
+"kIcon" = "Icon";
+"kMedium" = "Medium";
+"kLarge" = "Large";
+"kHuge" = "Huge";
+"kFace" = "Face";
+"kPhoto" = "Photo";
+"kClipart" = "Clipart";
+"kLineart" = "Lineart";
+"kUnlimit" = "All";
+
 /*********************图库国际化字符串结束 ************************/
 

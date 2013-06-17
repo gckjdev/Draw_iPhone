@@ -68,7 +68,7 @@
         if (returnPB){
             @try {
                 GameNetworkOutput* output = nil;
-                if ([output isKindOfClass:[GameNetworkOutput class]]){
+                if ([origOutput isKindOfClass:[GameNetworkOutput class]]){
                     output = (GameNetworkOutput*)origOutput;
                 }
                 
@@ -136,7 +136,7 @@
         if (returnPB){
             @try {
                 GameNetworkOutput* output = nil;
-                if ([output isKindOfClass:[GameNetworkOutput class]]){
+                if ([origOutput isKindOfClass:[GameNetworkOutput class]]){
                     output = (GameNetworkOutput*)origOutput;
                 }
                 
@@ -208,7 +208,7 @@
         if (returnPB){
             @try {
                 GameNetworkOutput* output = nil;
-                if ([output isKindOfClass:[GameNetworkOutput class]]){
+                if ([origOutput isKindOfClass:[GameNetworkOutput class]]){
                     output = (GameNetworkOutput*)origOutput;
                 }
                 

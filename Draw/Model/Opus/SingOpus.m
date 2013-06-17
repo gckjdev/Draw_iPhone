@@ -89,4 +89,10 @@
     [self.pbOpusBuilder setSing:[builder build]];
 }
 
+- (NSString*)dataType
+{
+    return @"m4a";
+}
+
+
 @end

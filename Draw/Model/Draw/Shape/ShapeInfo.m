@@ -102,7 +102,7 @@
 }
 
 
-#define MIN_DISTANCE (8)
+#define MIN_DISTANCE (11)
 + (BOOL)point1:(CGPoint)p1 equalToPoint:(CGPoint)p2
 {
     BOOL flag =(ABS(p1.x - p2.x) <= MIN_DISTANCE) && (ABS(p1.y - p2.y) <= MIN_DISTANCE);

@@ -128,12 +128,27 @@ static ChatService *_chatService = nil;
     }];
 }
 
+- (void)postNotification:(NSString*)name message:(PPMessage*)message resultCode:(int)resultCode
+{
+    NSDictionary* dict = @{
+                                 KEY_USER_INFO_MESSAGE : [[message toPBMessage] data],
+                                 KEY_USER_INFO_RESULT_CODE : @(resultCode)
+                                };
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:name
+     object:self
+     userInfo:dict];
+    
+    PPDebug(@"post notification %@", name);
+}
+
 
 - (void)sendMessage:(PPMessage *)message 
            delegate:(id<ChatServiceDelegate>)delegate
 {
     [message retain];
-//    [delegate retain];
+
     dispatch_async(workingQueue, ^{
         
         NSString *userId = [[UserManager defaultManager] userId];
@@ -257,23 +272,24 @@ static ChatService *_chatService = nil;
                 message.status = MessageStatusFail;
                 PPDebug(@"<ChatService>sendMessage failed");
             }
-
-            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
-                if (type == MessageTypeImage) {
-                    ImageMessage *imageMessage = (ImageMessage *)message;
-                    if (output.resultCode == ERROR_SUCCESS) {
-                        [PPMessageManager removeLocalImage:[imageMessage thumbImageUrl]];
-                    }
-                    imageMessage.imageUrl = imageUrl;
-                    imageMessage.thumbImageUrl = thumbImageUrl;
-                    [delegate didSendMessage:imageMessage resultCode:output.resultCode];
-                } else {
-                    [delegate didSendMessage:message resultCode:output.resultCode];
+            
+            if (type == MessageTypeImage) {
+                ImageMessage *imageMessage = (ImageMessage *)message;
+                if (output.resultCode == ERROR_SUCCESS) {
+                    [PPMessageManager removeLocalImage:[imageMessage thumbImageUrl]];
                 }
+                imageMessage.imageUrl = imageUrl;
+                imageMessage.thumbImageUrl = thumbImageUrl;
+            }
+            
+            // post notification
+//            [self postNotification:NOTIFICATION_MESSAGE_SENT message:message resultCode:output.resultCode];
+            
+            if (delegate && [delegate respondsToSelector:@selector(didSendMessage:resultCode:)]){
+                [delegate didSendMessage:message resultCode:output.resultCode];
             }
             
             [message release];
-//            [delegate release];
         });
     });
 }

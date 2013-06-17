@@ -40,13 +40,18 @@
     return [_pbOpusBuilder opusId];
 }
 
-+ (Opus*)opusWithCategory:(OpusCategory)category{
+- (NSNumber*)opusStoreType
+{
+    return @([_pbOpusBuilder storeType]);
+}
+
++ (Opus*)opusWithCategory:(PBOpusCategoryType)category{
     Opus *opus = nil;
     switch (category) {
-        case OpusCategorySing:
+        case PBOpusCategoryTypeSingCategory:
             opus = [[[SingOpus alloc] init] autorelease];
             break;
-        case OpusCategoryAskPs:
+        case PBOpusCategoryTypeAskPsCategory:
             opus = [[[AskPs alloc] init] autorelease];
             break;
         default:
@@ -56,11 +61,10 @@
     return opus;
 }
 
-
-
-+ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus{
-    Opus *opus = [[[Opus alloc] init] autorelease];
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus storeType:(PBOpusStoreType)storeType{
+    Opus *opus = [self opusWithCategory:pbOpus.category];
     opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
+    [opus setStorageType:storeType];
     return opus;
 }
 
@@ -107,9 +111,24 @@
     [_pbOpusBuilder setAuthor:user];
 }
 
-- (void)setStorageType:(int)value
+- (void)setStorageType:(PBOpusStoreType)value
 {
     [_pbOpusBuilder setStoreType:value];
+}
+
+- (void)setAsDraft
+{
+    [_pbOpusBuilder setStoreType:PBOpusStoreTypeDraftOpus];
+}
+
+- (void)setAsSubmit
+{
+    [_pbOpusBuilder setStoreType:PBOpusStoreTypeSubmitOpus];
+}
+
+- (void)setAsSaved
+{
+    [_pbOpusBuilder setStoreType:PBOpusStoreTypeSavedOpus];
 }
 
 - (void)setCreateDate:(int)value
@@ -150,7 +169,11 @@
     PPDebug(@"******************************* localDataDir MUST BE IMPLEMENTED BY SUB CLASS *******************************");
     return nil;
 }
-            
+
+- (NSString*)dataType
+{
+    return @"dat";
+}
 
 #pragma mark - Data Generation
 
@@ -180,14 +203,18 @@
     return data;
 }
 
-#pragma mark - Buri Handling
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"[id=%@, type=%d, storeType=%d, name=%@]",
+            [self opusKey], [self.pbOpusBuilder type], [[self opusStoreType] intValue], [self.pbOpusBuilder name]];
+}
 
-#define ENCODE_OPUS_DATA        @"opusData"
-#define ENCODE_OPUS_KEY         @"opusKey"
+#pragma mark - Buri Protocol 
 
 + (NSDictionary *)buriProperties{
     return @{
              BURI_KEY: ENCODE_OPUS_KEY, // make sure it's in Opus.h
+             BURI_NUMERIC_INDEXES: @[BURI_INDEX_STORE_TYPE],
              };
 }
 
@@ -205,7 +232,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:[self opusKey] forKey:ENCODE_OPUS_KEY];
+    [encoder encodeObject:[self opusKey] forKey:ENCODE_OPUS_KEY];           // useless???
     [encoder encodeObject:[[self pbOpus] data] forKey:ENCODE_OPUS_DATA];
 }
 

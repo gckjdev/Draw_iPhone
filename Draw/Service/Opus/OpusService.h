@@ -19,13 +19,18 @@
 
 @interface OpusService : CommonService
 
+@property (nonatomic, retain) OpusManager* singDraftOpusManager;
+@property (nonatomic, retain) OpusManager* singLocalFavoriteOpusManager;
+@property (nonatomic, retain) OpusManager* singLocalMyOpusManager;
+
 + (id)defaultService;
 
 - (Opus*)createDraftOpus;
 
-- (void)submitOpus:(Opus*)opusMeta
+- (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
           opusData:(NSData *)opusData
+  opusDraftManager:(OpusManager*)opusDraftManager
        opusManager:(OpusManager*)opusManager
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate;

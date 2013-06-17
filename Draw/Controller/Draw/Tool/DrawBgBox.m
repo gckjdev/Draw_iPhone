@@ -29,8 +29,11 @@
 
 @implementation DrawBgBox
 
+CGPoint contentOffset;
+
 - (void)dismiss
 {
+    contentOffset = [self.tableView contentOffset];
     [self.infoView dismiss];
     self.infoView.infoView = nil;
     self.infoView = nil;
@@ -45,7 +48,7 @@
     box.tableView.dataSource = box;
     [box setBackgroundColor:[UIColor clearColor]];
     [box.tableView setBackgroundColor:[UIColor clearColor]];
-    
+    [box.tableView setContentOffset:contentOffset animated:YES];
     
     return box;
 }
@@ -57,6 +60,7 @@
         self.infoView = [CustomInfoView createWithTitle:NSLS(@"kSelectBGImage")
                                               infoView:self
                          closeHandler:^{
+                             contentOffset = [bself.tableView contentOffset];                             
                              bself.infoView = nil;
                          }];
         
