@@ -81,7 +81,7 @@ NSString* GlobalGetServerURL()
 {
 
 #ifdef DEBUG
-    return @"http://192.167.1.100:8000/api/i?";
+//    return @"http://192.167.1.100:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 
 //    return @"http://58.215.160.100:8888/api/i?";
