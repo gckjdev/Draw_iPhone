@@ -436,7 +436,7 @@
 "kSearchUserPlaceholder" = "用戶暱稱/微博暱稱/郵件地址";
 "kSearchFailedTitle" = "網絡錯誤";
 "kSearchFailed" = "網絡錯誤，搜索用戶失敗，請檢查網絡是否可用或稍候再試";
-"kSearching" = "搜索用戶中...";
+"kSearching" = "搜索中...";
 "kMyself" = "我";
 
 "kLevelSettings" = "猜詞難度";
