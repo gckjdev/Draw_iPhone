@@ -92,14 +92,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     return resultSongs;
 }
 
-- (NSArray *)randomSongsWithTag:(int)tag
+- (NSArray *)randomSongsWithTag:(NSString *)tag
                           count:(int)count{
     
     
     NSMutableArray *songs = [NSMutableArray arrayWithCapacity:count];
     for (NSString *key in [_songsDic allKeys]) {
         PBSong *song = [_songsDic objectForKey:key];
-        if ([song.tagIdList containsObject:@(tag)]) {
+        if ([song.tagList containsObject:tag]) {
             [songs addObject:song];
         }
     }
@@ -177,7 +177,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongManager);
     [builder setName:name];
     [builder setAuthor:author];
     [builder setLyric:lyric];
-    [builder addAllTagId:tag];
+    [builder addAllTag:tag];
     return [builder build];
 }
 

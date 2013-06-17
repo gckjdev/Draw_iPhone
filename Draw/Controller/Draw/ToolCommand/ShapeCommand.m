@@ -84,7 +84,6 @@
         image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
     }
     [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [button setSelected:YES];
     [button setImage:image forState:UIControlStateNormal];
 }
 
@@ -93,16 +92,14 @@ didSelectedShape:(ShapeType)shape
         isStroke:(BOOL)isStroke
          groudId:(ItemType)groupId
 {
-    if ([self canUseItem:groupId] || YES) {
+    if ([self canUseItem:groupId]) {
         [self becomeActive];
         [self.toolHandler changeShape:shape isStroke:isStroke];
 
         [shapeBox dismiss];
         self.box = nil;
-
         _currentType = shape;
         [self updateButtonImageWithStroke:isStroke];
-
     }
 }
 

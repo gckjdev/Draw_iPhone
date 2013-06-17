@@ -54,7 +54,15 @@ typedef enum
     DrawBackground7,
     DrawBackground8,
     DrawBackground9,
-    
+   //Add 2013-6-17 By Gamy 
+    DrawBackground10,
+    DrawBackground11,                
+    DrawBackground12,
+    DrawBackground13,
+    DrawBackground14,
+    DrawBackground15,
+    DrawBackground16,
+    DrawBackground17,
     ///////////////
     BasicShape = 1300,
     

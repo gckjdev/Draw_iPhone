@@ -105,7 +105,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
                          limit:(int)limit
                    resultBlock:(void(^)(int resultCode, NSArray* resultArray))resultBlock
 {
-    PPDebug(@"<getUserPhotoWithTagSet> get image with tag %@", [tagSet description]);
+    PPDebug(@"<getUserPhotoWithTagSet> get image with tag %@,offset = %d, limit = %d", [tagSet description], offset, limit);
     
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* appId = [ConfigManager appId];

@@ -820,12 +820,14 @@
 
 + (NSString *)currentDrawBgVersion
 {
-    return @"1.1";
+    return @"1.2";
+    //Version 1.1 9 Group
+    //Version 1.2 +8 Group
 }
 
 + (NSString *)currentImageShapeVersion
 {
-    return @"0.1";
+    return @"1.0";
 }
 
 + (BOOL)isEnableLimeiWall

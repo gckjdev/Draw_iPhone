@@ -210,8 +210,9 @@
 
 - (void)saveSearchResult:(ImageSearchResult*)searchResult
 {
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil editName:YES resultBlock:^(NSString *name, NSSet *tagSet) {
-        [self didEditPictureInfo:tagSet name:name imageUrl:searchResult.url];
+    __block CommonSearchImageController *cp = self;
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil editName:YES resultBlock:^( NSSet *tagSet) {
+        [self didEditPictureInfo:tagSet name:cp.searchText imageUrl:searchResult.url];
     }];
     [view showInView:self.view];
 }

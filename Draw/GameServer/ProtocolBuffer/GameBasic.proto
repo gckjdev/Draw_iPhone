@@ -93,6 +93,8 @@ message PBGameUser {
   optional string signature = 100;
   
   
+  optional int32 singRecordLimit = 200[default = 30];  //你唱我猜用户最长录音时间限制。 
+  
 }
 
 message PBGameSession {

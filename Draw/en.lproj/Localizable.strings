@@ -230,7 +230,7 @@
 "kMore_apps" = "More apps";
 "kGive_a_5-star_review" = "Give a 5-star review";
 "kSure_delete" = "Delete Drawing";
-"kAre_you_sure" = "Are you sure to delete this drawing?";
+"kAre_you_sure" = "Are you sure to delete it?";
 "kAre_you_sure_to_unfavorite" = "Are you sure to unsubscribe this drawing?";
 "kOptions" = "Options";
 "kShare" = "Share";
@@ -1257,6 +1257,8 @@
 "kStroke" = "Stroke";
 "kFill" = "Fill";
 
+"kCannotRevoke" = "Can't undo any more. If you want to undo more, save it, and edit it from the draf box.";
+
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
 "kUpdateBackgroundFail" = "Fail to update background. Please try later.";
@@ -1745,6 +1747,7 @@
 "kClipart" = "Clipart";
 "kLineart" = "Lineart";
 "kUnlimit" = "All";
-
+"kNoPhoto" = "You havn't saved any photo";
+"kSearchNoResult" = "No match result";
 /*********************图库国际化字符串结束 ************************/
 

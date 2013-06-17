@@ -169,18 +169,18 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
     [self updateImage];
     if (self.image) {
-        CTMContext(context, rect);        
+
+        UIGraphicsPushContext(context);
         if (self.drawBg.showStyle == ShowStyleCenter) {
-//            CGRect imageRect = [self imageRectWithSize:self.image.size canvasRect:rect];
-            CGContextDrawImage(context, rect, self.image.CGImage);
+            [self.image drawInRect:rect];
         }else if(self.drawBg.showStyle == ShowStylePattern){
             [self.image drawAsPatternInRect:rect];
-            CGContextDrawTiledImage(context, rect, self.image.CGImage);
         }else{
             //
         }
+        UIGraphicsPopContext();
     }
-    
+
     CGContextRestoreGState(context);
 
     return rect;

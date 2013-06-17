@@ -1062,6 +1062,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property PBOpenInfoType openInfoType;
 @property int32_t opusCoverflowType;
 @property (retain) NSString* signature;
+@property int32_t singRecordLimit;
 @end
 
 @implementation PBGameUser
@@ -1348,6 +1349,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasSignature_ = !!value;
 }
 @synthesize signature;
+- (BOOL) hasSingRecordLimit {
+  return !!hasSingRecordLimit_;
+}
+- (void) setHasSingRecordLimit:(BOOL) value {
+  hasSingRecordLimit_ = !!value;
+}
+@synthesize singRecordLimit;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -1411,6 +1419,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.openInfoType = PBOpenInfoTypeOpenToFriend;
     self.opusCoverflowType = 0;
     self.signature = @"";
+    self.singRecordLimit = 30;
   }
   return self;
 }
@@ -1592,6 +1601,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasSignature) {
     [output writeString:100 value:self.signature];
   }
+  if (self.hasSingRecordLimit) {
+    [output writeInt32:200 value:self.singRecordLimit];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1720,6 +1732,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasSignature) {
     size += computeStringSize(100, self.signature);
+  }
+  if (self.hasSingRecordLimit) {
+    size += computeInt32Size(200, self.singRecordLimit);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1925,6 +1940,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasSignature) {
     [self setSignature:other.signature];
   }
+  if (other.hasSingRecordLimit) {
+    [self setSingRecordLimit:other.singRecordLimit];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2115,6 +2133,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 802: {
         [self setSignature:[input readString]];
+        break;
+      }
+      case 1600: {
+        [self setSingRecordLimit:[input readInt32]];
         break;
       }
     }
@@ -2797,6 +2819,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearSignature {
   result.hasSignature = NO;
   result.signature = @"";
+  return self;
+}
+- (BOOL) hasSingRecordLimit {
+  return result.hasSingRecordLimit;
+}
+- (int32_t) singRecordLimit {
+  return result.singRecordLimit;
+}
+- (PBGameUser_Builder*) setSingRecordLimit:(int32_t) value {
+  result.hasSingRecordLimit = YES;
+  result.singRecordLimit = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearSingRecordLimit {
+  result.hasSingRecordLimit = NO;
+  result.singRecordLimit = 30;
   return self;
 }
 @end

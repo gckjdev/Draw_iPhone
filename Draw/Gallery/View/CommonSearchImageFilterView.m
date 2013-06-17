@@ -22,6 +22,8 @@
 @property (retain, nonatomic) NSMutableDictionary* filter;
 @property (assign, nonatomic) id<CommonSearchImageFilterViewDelegate>delegate;
 
+- (IBAction)clickCancelBtn:(id)sender;
+
 @end
 
 @implementation CommonSearchImageFilterView
@@ -280,6 +282,11 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
     if (_delegate && [_delegate respondsToSelector:@selector(didConfirmFilter:)]) {
         [_delegate didConfirmFilter:self.filter];
     }
+    [self disappear];
+}
+
+- (IBAction)clickCancelBtn:(id)sender
+{
     [self disappear];
 }
 
