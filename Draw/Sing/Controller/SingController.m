@@ -451,6 +451,10 @@ enum{
     [self.view addSubview:dialog];
 }
 
+- (IBAction)clickAddTimeButton:(id)sender {
+    
+}
+
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText{
     
     self.desc = targetText;
