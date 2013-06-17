@@ -14,6 +14,7 @@
 #import "StorageManager.h"
 //#import "SearchResultView.h"
 #import "CommonMessageCenter.h"
+#import "CommonDialog.h"
 
 @interface GalleryController () {
     NSString* _currentImageUrl;
@@ -177,7 +178,7 @@ enum {
 #pragma mark - UserPhotoView delegate
 - (void)didClickPhoto:(PBUserPhoto *)photo
 {
-    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kShareAction") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kEdit"), NSLS(@"kDelete"), nil];
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOptions") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kEdit"), NSLS(@"kDelete"), nil];
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     __block GalleryController* cp = self;
@@ -205,23 +206,32 @@ enum {
 
 - (void)deletePhoto:(PBUserPhoto*)photo
 {
-    [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId usage:PBPhotoUsageForPs resultBlock:^(int resultCode) {
-        if (resultCode == 0) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
-            [self reloadTableViewDataSource];
-        } else {
-            PPDebug(@"<deletePhoto> err code = %d", resultCode);
-        }
-     
+    __block GalleryController* cp = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDelete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId usage:PBPhotoUsageForPs resultBlock:^(int resultCode) {
+            if (resultCode == 0) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
+                [cp reloadTableViewDataSource];
+            } else {
+                PPDebug(@"<deletePhoto> err code = %d", resultCode);
+            }
+            
+        }];
+    } clickCancelBlock:^{
+        //
     }];
+    [dialog showInView:self.view];
 }
 
 - (void)editPhoto:(PBUserPhoto*)photo
 {
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo editName:YES resultBlock:^(NSString *name, NSSet *tagSet) {
-        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto* photo) {
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo
+                                                       title:NSLS(@"kSetTag")
+                                                confirmTitle:NSLS(@"kConfirm")
+                                                 resultBlock:^(NSSet *tagSet) {
+        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:photo.name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto* photo) {
             if (resultCode == 0) {
-                PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, name, [tagSet description]);
+                PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [tagSet description]);
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
                 [self reloadTableViewDataSource];
             } else {
@@ -249,7 +259,10 @@ enum {
     }
     
     __block GalleryController* cp = self;
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto editName:NO resultBlock:^(NSString *name, NSSet *tagSet) {
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto
+                                                       title:NSLS(@"kFilter")
+                                                confirmTitle:NSLS(@"kFilter")
+                                                 resultBlock:^(NSSet *tagSet) {
         cp.tagSet = tagSet;
         [cp reloadTableViewDataSource];
     }];

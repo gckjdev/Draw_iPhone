@@ -110,13 +110,13 @@
     _isCategoryViewShow = NO;
 }
 
-- (void)didSelectTag:(int)tagId{
+- (void)didSelectTag:(NSString *)tag{
     [_categoryView dismiss];
     _isCategoryViewShow = NO;
     
-    PPDebug(@"click tag: %d", tagId);
+    PPDebug(@"click tag: %@", tag);
     
-    self.songs = [[SongManager defaultManager] randomSongsWithTag:tagId count:CELL_COUNT];
+    self.songs = [[SongManager defaultManager] randomSongsWithTag:tag count:CELL_COUNT];
     [self.dataTableView reloadData];
 }
 

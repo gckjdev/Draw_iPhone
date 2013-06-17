@@ -70,41 +70,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
         [GameApp createIAPTestDataFile];
 #endif
 
-    
-//    if (isLittleGeeAPP()){
-//        [self createLittlegeeIngotTestDataFile];
-//    }
-//    else if (isDrawApp()) {
-//        [self createDrawIngotTestDataFile];
-//    }else if (isZhajinhuaApp()){
-//        [self createZJHCoinTestDataFile];
-//    }else if(isDiceApp()){
-//        [self createDiceCoinTestDataFile];
-//    }else if (isLearnDrawApp()){
-//        [self createLearnDrawIngotTestDataFile];
-//    }else if(isPureDrawApp()){
-//        [self createPureDrawIngotTestDataFile];
-//    }else if(isPureDrawFreeApp()){
-//        [self createPureDrawFreeIngotTestDataFile];
-//    }else if(isPhotoDrawApp()){
-//        [self createPhotoDrawIngotTestDataFile];
-//    }else if(isPhotoDrawFreeApp()){
-//        [self createPhotoDrawFreeIngotTestDataFile];
-//    }else if(isDreamAvatarApp()) {
-//        [self createDreamAvatarIngotTestDataFile];
-//    }else if(isDreamAvatarFreeApp()) {
-//        [self createDreamAvatarFreeIngotTestDataFile];
-//    }else if(isDreamLockscreenApp()) {
-//        [self createDreamLockscreenIngotTestDataFile];
-//    }else if(isDreamLockscreenFreeApp()) {
-//        [self createDreamLockscreenFreeIngotTestDataFile];
-//    }
 }
 
 #define DRAW_INGOT_18_TAOBAO_URL @"http://a.m.taobao.com/i17800225785.htm?v=0&mz_key=0"
 #define DRAW_INGOT_32_TAOBAO_URL @"http://a.m.taobao.com/i23762488264.htm?v=0&mz_key=0"
 #define DRAW_INGOT_90_TAOBAO_URL @"http://a.m.taobao.com/i17800321867.htm?v=0&mz_key=0"
 #define DRAW_INGOT_250_TAOBAO_URL @"http://a.m.taobao.com/i19665779806.htm?v=0&mz_key=0"
+
+#define DRAW_COIN_10000_TAOBAO_URL @"http://a.m.taobao.com/i18806438949.htm?v=0&mz_key=0"
+#define DRAW_COIN_20000_TAOBAO_URL @"http://a.m.taobao.com/i25865932315.htm?v=0&mz_key=0"
+#define DRAW_COIN_80000_TAOBAO_URL @"http://a.m.taobao.com/i25865932473.htm?v=0&mz_key=0"
+#define DRAW_COIN_250000_TAOBAO_URL @"http://a.m.taobao.com/i25865840952.htm?v=0&mz_key=0"
 
 #define ZJH_COIN_10000_TAOBAO_URL @"http://a.m.taobao.com/i23758468517.htm?v=0&mz_key=0"
 #define ZJH_COIN_18000_TAOBAO_URL @"http://a.m.taobao.com/i17798661047.htm?v=0&mz_key=0"
@@ -213,6 +189,68 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductPrice *priceUS;
     NSArray *priceList;
     
+    priceCN = [self cnPriceWithPrice:@"12" saving:nil];
+    priceUS = [self usPriceWithPrice:@"1.99" saving:nil];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.littlegee.coin_10000"
+                                  alipayProductId:@"draw_coin_10000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
+                                            count:10000
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_COIN_10000_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    
+    priceCN = [self cnPriceWithPrice:@"18" saving:@"25%"];
+    priceUS = [self usPriceWithPrice:@"2.99" saving:@"25%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.littlegee.coin_20000"
+                                  alipayProductId:@"draw_coin_20000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
+                                            count:20000
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_COIN_20000_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    priceCN = [self cnPriceWithPrice:@"68" saving:@"29%"];
+    priceUS = [self usPriceWithPrice:@"9.99" saving:@"29%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.littlegee.coin_80000"
+                                  alipayProductId:@"draw_coin_80000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
+                                            count:80000
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_COIN_80000_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    priceCN = [self cnPriceWithPrice:@"163" saving:@"46%"];
+    priceUS = [self usPriceWithPrice:@"24.99" saving:@"46%"];
+    priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
+    [mutableArray addObject:[self productWithType:PBIAPProductTypeIapcoin
+                                   appleProductId:@"com.orange.littlegee.coin_250000"
+                                  alipayProductId:@"draw_coin_250000"
+                                             name:@"kCoin"
+                                             desc:@"kCoin"
+                                            count:250000
+                                       totalPrice:priceCN.price
+                                           saving:priceCN.saving
+                                        taobaoUrl:DRAW_COIN_250000_TAOBAO_URL
+                                        priceList:priceList
+                             ]];
+    
+    
     priceCN = [self cnPriceWithPrice:@"18" saving:nil];
     priceUS = [self usPriceWithPrice:@"2.99" saving:nil];
     priceList = [NSArray arrayWithObjects:priceCN, priceUS, nil];
@@ -278,7 +316,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(IAPProductService);
     PBIAPProductList *list = [listBuilder build];
     
     //write to file
-    NSString *filePath = [@"/gitdata/Draw_iPhone/Draw/LittleGeeDraw/Resource/Config/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+//    NSString *filePath = [@"~/gitdata/Draw_iPhone/Draw/LittleGeeDraw/Resource/Config/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
+        NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[IAPProductManager IAPProductFileName]];
     if (![[list data] writeToFile:filePath atomically:YES]) {
         PPDebug(@"<createTestDataFile> error");
     } else {

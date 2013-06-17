@@ -15,6 +15,7 @@
 #import "OpusManager.h"
 #import "MKBlockAlertView.h"
 #import "UIButton+WebCache.h"
+#import "UserManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -162,7 +163,7 @@ enum{
     self.songAuthorLabel1.text = author;
     self.lyricTextView.text = lyric;
     
-    _recordLimitTime = 30;
+    _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
     
     NSURL *url = [NSURL URLWithString:image];
     [_opusImageButton setImageWithURL:url placeholderImage:nil];
@@ -453,6 +454,8 @@ enum{
 
 - (IBAction)clickAddTimeButton:(id)sender {
     
+    [[UserManager defaultManager] setSingLimitTime:(_recordLimitTime + 15)];
+    _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
 }
 
 - (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText{
