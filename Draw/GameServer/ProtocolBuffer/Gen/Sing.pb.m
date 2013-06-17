@@ -32,243 +32,13 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value) {
       return NO;
   }
 }
-@interface PBSongTag ()
-@property int32_t tagId;
-@property (retain) NSString* tagName;
-@end
-
-@implementation PBSongTag
-
-- (BOOL) hasTagId {
-  return !!hasTagId_;
-}
-- (void) setHasTagId:(BOOL) value {
-  hasTagId_ = !!value;
-}
-@synthesize tagId;
-- (BOOL) hasTagName {
-  return !!hasTagName_;
-}
-- (void) setHasTagName:(BOOL) value {
-  hasTagName_ = !!value;
-}
-@synthesize tagName;
-- (void) dealloc {
-  self.tagName = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.tagId = 0;
-    self.tagName = @"";
-  }
-  return self;
-}
-static PBSongTag* defaultPBSongTagInstance = nil;
-+ (void) initialize {
-  if (self == [PBSongTag class]) {
-    defaultPBSongTagInstance = [[PBSongTag alloc] init];
-  }
-}
-+ (PBSongTag*) defaultInstance {
-  return defaultPBSongTagInstance;
-}
-- (PBSongTag*) defaultInstance {
-  return defaultPBSongTagInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasTagId) {
-    return NO;
-  }
-  if (!self.hasTagName) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasTagId) {
-    [output writeInt32:1 value:self.tagId];
-  }
-  if (self.hasTagName) {
-    [output writeString:2 value:self.tagName];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasTagId) {
-    size += computeInt32Size(1, self.tagId);
-  }
-  if (self.hasTagName) {
-    size += computeStringSize(2, self.tagName);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBSongTag*) parseFromData:(NSData*) data {
-  return (PBSongTag*)[[[PBSongTag builder] mergeFromData:data] build];
-}
-+ (PBSongTag*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSongTag*)[[[PBSongTag builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBSongTag*) parseFromInputStream:(NSInputStream*) input {
-  return (PBSongTag*)[[[PBSongTag builder] mergeFromInputStream:input] build];
-}
-+ (PBSongTag*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSongTag*)[[[PBSongTag builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBSongTag*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBSongTag*)[[[PBSongTag builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBSongTag*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBSongTag*)[[[PBSongTag builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBSongTag_Builder*) builder {
-  return [[[PBSongTag_Builder alloc] init] autorelease];
-}
-+ (PBSongTag_Builder*) builderWithPrototype:(PBSongTag*) prototype {
-  return [[PBSongTag builder] mergeFrom:prototype];
-}
-- (PBSongTag_Builder*) builder {
-  return [PBSongTag builder];
-}
-@end
-
-@interface PBSongTag_Builder()
-@property (retain) PBSongTag* result;
-@end
-
-@implementation PBSongTag_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBSongTag alloc] init] autorelease];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (PBSongTag_Builder*) clear {
-  self.result = [[[PBSongTag alloc] init] autorelease];
-  return self;
-}
-- (PBSongTag_Builder*) clone {
-  return [PBSongTag builderWithPrototype:result];
-}
-- (PBSongTag*) defaultInstance {
-  return [PBSongTag defaultInstance];
-}
-- (PBSongTag*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBSongTag*) buildPartial {
-  PBSongTag* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBSongTag_Builder*) mergeFrom:(PBSongTag*) other {
-  if (other == [PBSongTag defaultInstance]) {
-    return self;
-  }
-  if (other.hasTagId) {
-    [self setTagId:other.tagId];
-  }
-  if (other.hasTagName) {
-    [self setTagName:other.tagName];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBSongTag_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBSongTag_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 8: {
-        [self setTagId:[input readInt32]];
-        break;
-      }
-      case 18: {
-        [self setTagName:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasTagId {
-  return result.hasTagId;
-}
-- (int32_t) tagId {
-  return result.tagId;
-}
-- (PBSongTag_Builder*) setTagId:(int32_t) value {
-  result.hasTagId = YES;
-  result.tagId = value;
-  return self;
-}
-- (PBSongTag_Builder*) clearTagId {
-  result.hasTagId = NO;
-  result.tagId = 0;
-  return self;
-}
-- (BOOL) hasTagName {
-  return result.hasTagName;
-}
-- (NSString*) tagName {
-  return result.tagName;
-}
-- (PBSongTag_Builder*) setTagName:(NSString*) value {
-  result.hasTagName = YES;
-  result.tagName = value;
-  return self;
-}
-- (PBSongTag_Builder*) clearTagName {
-  result.hasTagName = NO;
-  result.tagName = @"";
-  return self;
-}
-@end
-
 @interface PBSongCategory ()
-@property int32_t categoryId;
 @property (retain) NSString* name;
 @property (retain) NSMutableArray* mutableSongTagsList;
 @end
 
 @implementation PBSongCategory
 
-- (BOOL) hasCategoryId {
-  return !!hasCategoryId_;
-}
-- (void) setHasCategoryId:(BOOL) value {
-  hasCategoryId_ = !!value;
-}
-@synthesize categoryId;
 - (BOOL) hasName {
   return !!hasName_;
 }
@@ -284,7 +54,6 @@ static PBSongTag* defaultPBSongTagInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.categoryId = 0;
     self.name = @"";
   }
   return self;
@@ -304,33 +73,22 @@ static PBSongCategory* defaultPBSongCategoryInstance = nil;
 - (NSArray*) songTagsList {
   return mutableSongTagsList;
 }
-- (PBSongTag*) songTagsAtIndex:(int32_t) index {
+- (NSString*) songTagsAtIndex:(int32_t) index {
   id value = [mutableSongTagsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
-  if (!self.hasCategoryId) {
-    return NO;
-  }
   if (!self.hasName) {
     return NO;
-  }
-  for (PBSongTag* element in self.songTagsList) {
-    if (!element.isInitialized) {
-      return NO;
-    }
   }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasCategoryId) {
-    [output writeInt32:1 value:self.categoryId];
-  }
   if (self.hasName) {
-    [output writeString:2 value:self.name];
+    [output writeString:1 value:self.name];
   }
-  for (PBSongTag* element in self.songTagsList) {
-    [output writeMessage:3 value:element];
+  for (NSString* element in self.mutableSongTagsList) {
+    [output writeString:3 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -341,14 +99,16 @@ static PBSongCategory* defaultPBSongCategoryInstance = nil;
   }
 
   size = 0;
-  if (self.hasCategoryId) {
-    size += computeInt32Size(1, self.categoryId);
-  }
   if (self.hasName) {
-    size += computeStringSize(2, self.name);
+    size += computeStringSize(1, self.name);
   }
-  for (PBSongTag* element in self.songTagsList) {
-    size += computeMessageSize(3, element);
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableSongTagsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 1 * self.mutableSongTagsList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -425,9 +185,6 @@ static PBSongCategory* defaultPBSongCategoryInstance = nil;
   if (other == [PBSongCategory defaultInstance]) {
     return self;
   }
-  if (other.hasCategoryId) {
-    [self setCategoryId:other.categoryId];
-  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -458,38 +215,16 @@ static PBSongCategory* defaultPBSongCategoryInstance = nil;
         }
         break;
       }
-      case 8: {
-        [self setCategoryId:[input readInt32]];
-        break;
-      }
-      case 18: {
+      case 10: {
         [self setName:[input readString]];
         break;
       }
       case 26: {
-        PBSongTag_Builder* subBuilder = [PBSongTag builder];
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self addSongTags:[subBuilder buildPartial]];
+        [self addSongTags:[input readString]];
         break;
       }
     }
   }
-}
-- (BOOL) hasCategoryId {
-  return result.hasCategoryId;
-}
-- (int32_t) categoryId {
-  return result.categoryId;
-}
-- (PBSongCategory_Builder*) setCategoryId:(int32_t) value {
-  result.hasCategoryId = YES;
-  result.categoryId = value;
-  return self;
-}
-- (PBSongCategory_Builder*) clearCategoryId {
-  result.hasCategoryId = NO;
-  result.categoryId = 0;
-  return self;
 }
 - (BOOL) hasName {
   return result.hasName;
@@ -508,14 +243,23 @@ static PBSongCategory* defaultPBSongCategoryInstance = nil;
   return self;
 }
 - (NSArray*) songTagsList {
-  if (result.mutableSongTagsList == nil) { return [NSArray array]; }
+  if (result.mutableSongTagsList == nil) {
+    return [NSArray array];
+  }
   return result.mutableSongTagsList;
 }
-- (PBSongTag*) songTagsAtIndex:(int32_t) index {
+- (NSString*) songTagsAtIndex:(int32_t) index {
   return [result songTagsAtIndex:index];
 }
-- (PBSongCategory_Builder*) replaceSongTagsAtIndex:(int32_t) index with:(PBSongTag*) value {
+- (PBSongCategory_Builder*) replaceSongTagsAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableSongTagsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBSongCategory_Builder*) addSongTags:(NSString*) value {
+  if (result.mutableSongTagsList == nil) {
+    result.mutableSongTagsList = [NSMutableArray array];
+  }
+  [result.mutableSongTagsList addObject:value];
   return self;
 }
 - (PBSongCategory_Builder*) addAllSongTags:(NSArray*) values {
@@ -527,13 +271,6 @@ static PBSongCategory* defaultPBSongCategoryInstance = nil;
 }
 - (PBSongCategory_Builder*) clearSongTagsList {
   result.mutableSongTagsList = nil;
-  return self;
-}
-- (PBSongCategory_Builder*) addSongTags:(PBSongTag*) value {
-  if (result.mutableSongTagsList == nil) {
-    result.mutableSongTagsList = [NSMutableArray array];
-  }
-  [result.mutableSongTagsList addObject:value];
   return self;
 }
 @end
@@ -744,7 +481,7 @@ static PBSongCategoryList* defaultPBSongCategoryListInstance = nil;
 @property (retain) NSString* name;
 @property (retain) NSString* author;
 @property (retain) NSString* lyric;
-@property (retain) NSMutableArray* mutableTagIdList;
+@property (retain) NSMutableArray* mutableTagList;
 @end
 
 @implementation PBSong
@@ -777,13 +514,13 @@ static PBSongCategoryList* defaultPBSongCategoryListInstance = nil;
   hasLyric_ = !!value;
 }
 @synthesize lyric;
-@synthesize mutableTagIdList;
+@synthesize mutableTagList;
 - (void) dealloc {
   self.songId = nil;
   self.name = nil;
   self.author = nil;
   self.lyric = nil;
-  self.mutableTagIdList = nil;
+  self.mutableTagList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -807,12 +544,12 @@ static PBSong* defaultPBSongInstance = nil;
 - (PBSong*) defaultInstance {
   return defaultPBSongInstance;
 }
-- (NSArray*) tagIdList {
-  return mutableTagIdList;
+- (NSArray*) tagList {
+  return mutableTagList;
 }
-- (int32_t) tagIdAtIndex:(int32_t) index {
-  id value = [mutableTagIdList objectAtIndex:index];
-  return [value intValue];
+- (NSString*) tagAtIndex:(int32_t) index {
+  id value = [mutableTagList objectAtIndex:index];
+  return value;
 }
 - (BOOL) isInitialized {
   if (!self.hasSongId) {
@@ -836,8 +573,8 @@ static PBSong* defaultPBSongInstance = nil;
   if (self.hasLyric) {
     [output writeString:4 value:self.lyric];
   }
-  for (NSNumber* value in self.mutableTagIdList) {
-    [output writeInt32:20 value:[value intValue]];
+  for (NSString* element in self.mutableTagList) {
+    [output writeString:20 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -862,11 +599,11 @@ static PBSong* defaultPBSongInstance = nil;
   }
   {
     int32_t dataSize = 0;
-    for (NSNumber* value in self.mutableTagIdList) {
-      dataSize += computeInt32SizeNoTag([value intValue]);
+    for (NSString* element in self.mutableTagList) {
+      dataSize += computeStringSizeNoTag(element);
     }
     size += dataSize;
-    size += 2 * self.mutableTagIdList.count;
+    size += 2 * self.mutableTagList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -955,11 +692,11 @@ static PBSong* defaultPBSongInstance = nil;
   if (other.hasLyric) {
     [self setLyric:other.lyric];
   }
-  if (other.mutableTagIdList.count > 0) {
-    if (result.mutableTagIdList == nil) {
-      result.mutableTagIdList = [NSMutableArray array];
+  if (other.mutableTagList.count > 0) {
+    if (result.mutableTagList == nil) {
+      result.mutableTagList = [NSMutableArray array];
     }
-    [result.mutableTagIdList addObjectsFromArray:other.mutableTagIdList];
+    [result.mutableTagList addObjectsFromArray:other.mutableTagList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -998,8 +735,8 @@ static PBSong* defaultPBSongInstance = nil;
         [self setLyric:[input readString]];
         break;
       }
-      case 160: {
-        [self addTagId:[input readInt32]];
+      case 162: {
+        [self addTag:[input readString]];
         break;
       }
     }
@@ -1069,35 +806,35 @@ static PBSong* defaultPBSongInstance = nil;
   result.lyric = @"";
   return self;
 }
-- (NSArray*) tagIdList {
-  if (result.mutableTagIdList == nil) {
+- (NSArray*) tagList {
+  if (result.mutableTagList == nil) {
     return [NSArray array];
   }
-  return result.mutableTagIdList;
+  return result.mutableTagList;
 }
-- (int32_t) tagIdAtIndex:(int32_t) index {
-  return [result tagIdAtIndex:index];
+- (NSString*) tagAtIndex:(int32_t) index {
+  return [result tagAtIndex:index];
 }
-- (PBSong_Builder*) replaceTagIdAtIndex:(int32_t) index with:(int32_t) value {
-  [result.mutableTagIdList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+- (PBSong_Builder*) replaceTagAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableTagList replaceObjectAtIndex:index withObject:value];
   return self;
 }
-- (PBSong_Builder*) addTagId:(int32_t) value {
-  if (result.mutableTagIdList == nil) {
-    result.mutableTagIdList = [NSMutableArray array];
+- (PBSong_Builder*) addTag:(NSString*) value {
+  if (result.mutableTagList == nil) {
+    result.mutableTagList = [NSMutableArray array];
   }
-  [result.mutableTagIdList addObject:[NSNumber numberWithInt:value]];
+  [result.mutableTagList addObject:value];
   return self;
 }
-- (PBSong_Builder*) addAllTagId:(NSArray*) values {
-  if (result.mutableTagIdList == nil) {
-    result.mutableTagIdList = [NSMutableArray array];
+- (PBSong_Builder*) addAllTag:(NSArray*) values {
+  if (result.mutableTagList == nil) {
+    result.mutableTagList = [NSMutableArray array];
   }
-  [result.mutableTagIdList addObjectsFromArray:values];
+  [result.mutableTagList addObjectsFromArray:values];
   return self;
 }
-- (PBSong_Builder*) clearTagIdList {
-  result.mutableTagIdList = nil;
+- (PBSong_Builder*) clearTagList {
+  result.mutableTagList = nil;
   return self;
 }
 @end

@@ -576,6 +576,15 @@ static UserManager* _defaultManager;
     [self storeUserData];
 }
 
+- (void)setSingLimitTime:(int)value{
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setSingRecordLimit:value];
+    self.pbUser = [builder build];
+    [self storeUserData];
+}
+
+
 - (void)setEmail:(NSString *)email
 {
     if (self.pbUser == nil)

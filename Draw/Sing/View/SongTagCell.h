@@ -14,7 +14,7 @@
 @protocol SongTagCellDelegate <NSObject>
 
 @optional
-- (void)didClickTag:(int)tagId;
+- (void)didClickTag:(NSString *)tag;
 
 @end
 
@@ -22,7 +22,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *seperator;
 
-- (void)setCellInfo:(PBSongCategory *)category;
-+ (CGFloat)getCellHeightWithCategory:(PBSongCategory *)category;
+- (void)setCellInfo:(NSDictionary *)category;
++ (CGFloat)getCellHeightWithCategory:(NSDictionary *)category;
 
 @end

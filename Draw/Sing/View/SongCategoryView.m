@@ -29,7 +29,8 @@ AUTO_CREATE_VIEW_BY_XIB(SongCategoryView);
 
 + (id)createCategoryView{
     SongCategoryView *view  = [self createView];
-    view.categorys = [SongCategoryManager createTestData];
+    view.categorys = [[SongCategoryManager defaultManager] categorys];
+//    view.categorys = [SongCategoryManager createTestData];
     return view;
 }
 
@@ -59,7 +60,7 @@ AUTO_CREATE_VIEW_BY_XIB(SongCategoryView);
         cell = [SongTagCell createCell:self];
     }
     
-    PBSongCategory *category = [_categorys objectAtIndex:indexPath.row];
+    NSDictionary *category = [_categorys objectAtIndex:indexPath.row];
     [cell setCellInfo:category];
 
     return cell;
@@ -71,9 +72,9 @@ AUTO_CREATE_VIEW_BY_XIB(SongCategoryView);
     }
 }
 
-- (void)didClickTag:(int)tagId{
+- (void)didClickTag:(NSString *)tag{
     if ([_delegate respondsToSelector:@selector(didSelectTag:)]) {
-        [_delegate didSelectTag:tagId];
+        [_delegate didSelectTag:tag];
     }
 }
 
