@@ -110,7 +110,10 @@ NSString* GlobalGetTrafficServerURL()
 //        PPDebug(@"<for test!!!!!!> get traffic server %@", str);
 //        return [NSString stringWithFormat:@"http://%@/api/i?",str];
 //    }
-    
+#endif
+#ifdef DEBUG
+//    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://192.168.1.198:8100/api/i?";
 #endif
     
     return [ConfigManager getTrafficAPIServerURL];
