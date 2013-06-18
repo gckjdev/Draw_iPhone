@@ -20,6 +20,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [BbsRoot registerAllExtensions:registry];
     [OpusRoot registerAllExtensions:registry];
     [PhotoRoot registerAllExtensions:registry];
+    [SingRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -17691,6 +17692,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBOpus* opus;
 @property (retain) NSMutableArray* mutableOpusListList;
 @property (retain) NSMutableArray* mutableIdListList;
+@property (retain) PBSongList* songs;
 @end
 
 @implementation DataQueryResponse
@@ -17771,6 +17773,13 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize opus;
 @synthesize mutableOpusListList;
 @synthesize mutableIdListList;
+- (BOOL) hasSongs {
+  return !!hasSongs_;
+}
+- (void) setHasSongs:(BOOL) value {
+  hasSongs_ = !!value;
+}
+@synthesize songs;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17790,6 +17799,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.opus = nil;
   self.mutableOpusListList = nil;
   self.mutableIdListList = nil;
+  self.songs = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17803,6 +17813,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.user = [PBGameUser defaultInstance];
     self.userRelation = 0;
     self.opus = [PBOpus defaultInstance];
+    self.songs = [PBSongList defaultInstance];
   }
   return self;
 }
@@ -17998,6 +18009,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasSongs) {
+    if (!self.songs.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18066,6 +18082,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (NSString* element in self.mutableIdListList) {
     [output writeString:90 value:element];
+  }
+  if (self.hasSongs) {
+    [output writeMessage:101 value:self.songs];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18146,6 +18165,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableIdListList.count;
+  }
+  if (self.hasSongs) {
+    size += computeMessageSize(101, self.songs);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18327,6 +18349,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableIdListList addObjectsFromArray:other.mutableIdListList];
   }
+  if (other.hasSongs) {
+    [self mergeSongs:other.songs];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18483,6 +18508,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       }
       case 722: {
         [self addIdList:[input readString]];
+        break;
+      }
+      case 810: {
+        PBSongList_Builder* subBuilder = [PBSongList builder];
+        if (self.hasSongs) {
+          [subBuilder mergeFrom:self.songs];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSongs:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19079,6 +19113,36 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
 }
 - (DataQueryResponse_Builder*) clearIdListList {
   result.mutableIdListList = nil;
+  return self;
+}
+- (BOOL) hasSongs {
+  return result.hasSongs;
+}
+- (PBSongList*) songs {
+  return result.songs;
+}
+- (DataQueryResponse_Builder*) setSongs:(PBSongList*) value {
+  result.hasSongs = YES;
+  result.songs = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setSongsBuilder:(PBSongList_Builder*) builderForValue {
+  return [self setSongs:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeSongs:(PBSongList*) value {
+  if (result.hasSongs &&
+      result.songs != [PBSongList defaultInstance]) {
+    result.songs =
+      [[[PBSongList builderWithPrototype:result.songs] mergeFrom:value] buildPartial];
+  } else {
+    result.songs = value;
+  }
+  result.hasSongs = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearSongs {
+  result.hasSongs = NO;
+  result.songs = [PBSongList defaultInstance];
   return self;
 }
 @end

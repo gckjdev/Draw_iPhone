@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "PPTableViewController.h"
+#import "SongService.h"
 
-@interface SongSelectController : PPTableViewController
+@interface SongSelectController : PPTableViewController<SongServiceDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
