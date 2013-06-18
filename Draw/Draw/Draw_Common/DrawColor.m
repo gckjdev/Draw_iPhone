@@ -63,12 +63,23 @@
     self.color = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 }
 
+#define CHANGE_VALUE_255(x) (((int)(x * 255)) / 255.0f)
+
 - (void)setAlpha:(CGFloat)alpha
 {
     if(_alpha != alpha){
         _alpha = alpha;
+        _alpha = CHANGE_VALUE_255(_alpha);//((int)_alpha * 255) / 255.0f;
         [self updateColor];
     }
+}
+
+- (void)updateRGBA
+{
+    _red = CHANGE_VALUE_255(_red);//(int(_red * 255)) / 255.0f;
+    _green = CHANGE_VALUE_255(_green);//(int(_green * 255)) / 255.0f;
+    _blue = CHANGE_VALUE_255(_blue);//(int(_blue * 255)) / 255.0f;
+    _alpha = CHANGE_VALUE_255(_alpha);//(int(_alpha * 255)) / 255.0f;
 }
 
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
@@ -79,6 +90,7 @@
         _green = green;
         _blue = blue;
         _alpha = alpha;
+        [self updateRGBA];
         self.color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
     }
     return self;
@@ -92,6 +104,7 @@
         _green = color.green;
         _blue = color.blue;
         _alpha = color.alpha;
+        [self updateRGBA];
         self.color = [UIColor colorWithRed:_red
                                      green:_green
                                       blue:_blue
@@ -108,6 +121,7 @@
         _green = color->green;
         _blue = color->blue;
         _alpha = color->alpha;
+        [self updateRGBA];
         self.color = [UIColor colorWithRed:_red
                                      green:_green
                                       blue:_blue
