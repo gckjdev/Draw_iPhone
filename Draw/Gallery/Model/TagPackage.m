@@ -28,7 +28,9 @@
             NSString* tagStr = [array objectAtIndex:1];
             NSArray* tags = [tagStr componentsSeparatedByString:@"^"];
             for (NSString* string in tags) {
-                [self.tagArray addObject:string];
+                if (string.length > 0) {
+                    [self.tagArray addObject:string];
+                }
             }
         }
     }

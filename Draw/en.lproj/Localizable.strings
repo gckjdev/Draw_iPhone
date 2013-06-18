@@ -1746,5 +1746,7 @@
 "kUnlimit" = "All";
 "kNoPhoto" = "You havn't saved any photo";
 "kSearchNoResult" = "No match result";
+"kEditName" = "Edit Name";
+"kEnterNewName" = "Enter New Name";
 /*********************图库国际化字符串结束 ************************/
 
