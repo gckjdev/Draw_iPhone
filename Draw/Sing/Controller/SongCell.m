@@ -25,8 +25,7 @@ AUTO_CREATE_VIEW_BY_XIB(SongCell);
 }
 
 + (CGFloat)getCellHeight{
-    return 60;
-    
+    return (ISIPAD ? 132 : 60);
 }
 
 - (void)setCellData:(PBSong *)song forIndex:(NSIndexPath *)index{

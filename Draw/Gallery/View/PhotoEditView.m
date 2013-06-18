@@ -172,6 +172,7 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     
     for (int i = 0; i < MAX_TAG_COUNT; i ++) {
         UIButton* btn = (UIButton*)[cell viewWithTag:TAG_BTN_OFFSET + i];
+        [btn setHidden:YES];
         if (i < package.tagArray.count) {
             NSString* photoTag = [package.tagArray objectAtIndex:i];
             
@@ -181,8 +182,6 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
             }
             [btn addTarget:self action:@selector(clickTagBtn:) forControlEvents:UIControlEventTouchUpInside];
             [btn setHidden:NO];
-        } else {
-            [btn setHidden:YES];
         }
         
 //        if (!btn) {
@@ -216,10 +215,16 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     UIButton* btn = (UIButton*)sender;
     if (!btn.selected) {
         [btn setSelected:YES];
-        [self.tagSet addObject:btn.titleLabel.text];
+        if (btn.titleLabel.text && btn.titleLabel.text.length > 0) {
+            [self.tagSet addObject:btn.titleLabel.text];
+        }
+    
     } else {
         [btn setSelected:NO];
-        [self.tagSet removeObject:btn.titleLabel.text];
+        if (btn.titleLabel.text && btn.titleLabel.text.length > 0) {
+            [self.tagSet removeObject:btn.titleLabel.text];
+        }
+        
     }
 }
 

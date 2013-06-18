@@ -45,7 +45,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{166, 4}, {200, 36}}</string>
 								<reference key="NSSuperview" ref="460425814"/>
-								<reference key="NSNextKeyView" ref="1069754750"/>
+								<reference key="NSNextKeyView" ref="475510827"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">120130608</int>
@@ -77,7 +77,7 @@
 							</object>
 							<object class="IBUIButton" id="758028132">
 								<reference key="NSNextResponder" ref="460425814"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">-2147483329</int>
 								<string key="NSFrame">{{202, 52}, {130, 50}}</string>
 								<reference key="NSSuperview" ref="460425814"/>
 								<reference key="NSNextKeyView" ref="268568288"/>
@@ -119,7 +119,7 @@
 							</object>
 							<object class="IBUIButton" id="504986280">
 								<reference key="NSNextResponder" ref="460425814"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">-2147483329</int>
 								<string key="NSFrame">{{202, 118}, {130, 50}}</string>
 								<reference key="NSSuperview" ref="460425814"/>
 								<reference key="NSNextKeyView" ref="637667949"/>
@@ -148,7 +148,7 @@
 							</object>
 							<object class="IBUIButton" id="973358074">
 								<reference key="NSNextResponder" ref="460425814"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">-2147483329</int>
 								<string key="NSFrame">{{40, 52}, {130, 50}}</string>
 								<reference key="NSSuperview" ref="460425814"/>
 								<reference key="NSNextKeyView" ref="758028132"/>
@@ -177,7 +177,7 @@
 							</object>
 							<object class="IBUIButton" id="479759336">
 								<reference key="NSNextResponder" ref="460425814"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">-2147483329</int>
 								<string key="NSFrame">{{40, 118}, {130, 50}}</string>
 								<reference key="NSSuperview" ref="460425814"/>
 								<reference key="NSNextKeyView" ref="504986280"/>
@@ -206,7 +206,7 @@
 							</object>
 							<object class="IBUIButton" id="268568288">
 								<reference key="NSNextResponder" ref="460425814"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">-2147483329</int>
 								<string key="NSFrame">{{360, 52}, {130, 50}}</string>
 								<reference key="NSSuperview" ref="460425814"/>
 								<reference key="NSNextKeyView" ref="479759336"/>
@@ -235,10 +235,9 @@
 							</object>
 							<object class="IBUIButton" id="637667949">
 								<reference key="NSNextResponder" ref="460425814"/>
-								<int key="NSvFlags">319</int>
+								<int key="NSvFlags">-2147483329</int>
 								<string key="NSFrame">{{360, 118}, {130, 50}}</string>
 								<reference key="NSSuperview" ref="460425814"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">20130613</int>
@@ -262,7 +261,7 @@
 								<reference key="IBUIFontDescription" ref="38438508"/>
 								<reference key="IBUIFont" ref="150023440"/>
 							</object>
-							<object class="IBUIImageView" id="933454705">
+							<object class="IBUIImageView" id="916548696">
 								<reference key="NSNextResponder" ref="460425814"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{10, 16}, {160, 12}}</string>
@@ -276,7 +275,7 @@
 									<string key="NSResourceName">tag_title_left@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUIImageView" id="1069754750">
+							<object class="IBUIImageView" id="475510827">
 								<reference key="NSNextResponder" ref="460425814"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{360, 16}, {160, 12}}</string>
@@ -293,7 +292,7 @@
 						</array>
 						<string key="NSFrameSize">{530, 189}</string>
 						<reference key="NSSuperview" ref="167205155"/>
-						<reference key="NSNextKeyView" ref="933454705"/>
+						<reference key="NSNextKeyView" ref="916548696"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="760992016">
 							<int key="NSColorSpace">3</int>
@@ -348,8 +347,8 @@
 							<reference ref="504986280"/>
 							<reference ref="990205812"/>
 							<reference ref="758028132"/>
-							<reference ref="933454705"/>
-							<reference ref="1069754750"/>
+							<reference ref="916548696"/>
+							<reference ref="475510827"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -390,12 +389,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="933454705"/>
+						<reference key="object" ref="916548696"/>
 						<reference key="parent" ref="167205155"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
-						<reference key="object" ref="1069754750"/>
+						<reference key="object" ref="475510827"/>
 						<reference key="parent" ref="167205155"/>
 					</object>
 				</array>
