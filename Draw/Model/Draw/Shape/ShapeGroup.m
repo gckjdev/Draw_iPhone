@@ -95,26 +95,26 @@ return type##List;}
 
 IMPLEMENTE(Basic0,ImageShapeBasic0,Basic,0,@"Basic", @"基本")
 
-IMPLEMENTE(Animal0,ImageShapeAnimal0,Animal,0,@"Aniaml 1", @"动物1")
+IMPLEMENTE(Animal0,ImageShapeAnimal0,Animal,0,@"Bird", @"飞禽")
 
-IMPLEMENTE(Animal1,ImageShapeAnimal1,Animal,6,@"Aniaml 2", @"动物2")
+IMPLEMENTE(Animal1,ImageShapeAnimal1,Animal,6,@"Animal", @"走兽")
 
-IMPLEMENTE(Nature0,ImageShapeNature0,Nature,0,@"Nature 1", @"自然1")
-IMPLEMENTE(Nature1,ImageShapeNature1,Nature,6,@"Nature 2", @"自然2")
+IMPLEMENTE(Nature0,ImageShapeNature0,Nature,0,@"Snow", @"雨雪")
+IMPLEMENTE(Nature1,ImageShapeNature1,Nature,6,@"Sun", @"日月")
 
 //
-IMPLEMENTE(Shape0,ImageShapeShape0,Shape,0,@"Shape 1", @"形状1")
-IMPLEMENTE(Shape1,ImageShapeShape1,Shape,6,@"Shape 2", @"形状2")
+IMPLEMENTE(Shape0,ImageShapeShape0,Shape,0,@"Corner", @"棱角")
+IMPLEMENTE(Shape1,ImageShapeShape1,Shape,6,@"Arc", @"圆弧")
 
-IMPLEMENTE(Sign0,ImageShapeSign0,Sign,0,@"Sign 1", @"标记1")
-IMPLEMENTE(Sign1,ImageShapeSign1,Sign,6,@"Sign 2", @"标记2")
+IMPLEMENTE(Sign0,ImageShapeSign0,Sign,0,@"Stuff", @"家具")
+IMPLEMENTE(Sign1,ImageShapeSign1,Sign,6,@"Travel", @"出行")
 
-IMPLEMENTE(Stuff0,ImageShapeStuff0,Stuff,0,@"Stuff 1", @"材料1")
-IMPLEMENTE(Stuff1,ImageShapeStuff1,Stuff,6,@"Stuff 2", @"材料2")
+IMPLEMENTE(Stuff0,ImageShapeStuff0,Stuff,0,@"Math", @"算术")
+IMPLEMENTE(Stuff1,ImageShapeStuff1,Stuff,6,@"Music", @"玄音")
 
-IMPLEMENTE(Plant0,ImageShapePlant0,Plant,0,@"Plant 1", @"植物1")
-IMPLEMENTE(Plant1,ImageShapePlant1,Plant,6,@"Plant 2", @"植物2")
-IMPLEMENTE(Plant2,ImageShapePlant2,Plant,12,@"Plant 3", @"植物3")
+IMPLEMENTE(Plant0,ImageShapePlant0,Plant,0,@"Grass", @"芳草")
+IMPLEMENTE(Plant1,ImageShapePlant1,Plant,6,@"Leaf", @"落木")
+IMPLEMENTE(Plant2,ImageShapePlant2,Plant,12,@"Flower", @"羞花")
 
 
 /*

@@ -248,7 +248,7 @@ NSString* GlobalGetBoardServerURL()
 
 
 #ifdef DEBUG
-    [DrawBgManager createTestData:0];
+//    [DrawBgManager createTestData:0];
 //    [GameConfigDataManager createTestConfigData];
 //    [ImageShapeManager createMetaFile];
 //    [DrawBgManager scaleImages];
