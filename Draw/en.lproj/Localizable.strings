@@ -816,6 +816,15 @@
 "kDrawBgRegulus" = "Regulus";
 "kDrawBgMirfak" = "Mirfak";
 
+"Rigel" = "Rigel";
+"Procyon" = "Procyon";
+"Achernar" = "Achernar";
+"Regor" = "Regor";
+"Mirzam" = "Mirzam";
+"Dubhe" = "Dubhe";
+"Avior" = "Avior";
+"Alkaid" = "Alkaid";
+
 "kDrawBgAntaresDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgAdharaDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgElnathDesc" = "A butiful backgroud on your drawing, with size of 700*700";
@@ -825,6 +834,15 @@
 "kDrawBgPolluxDesc" = "butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgRegulusDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgMirfakDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+
+"RigelDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"ProcyonDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"AchernarDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"RegorDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"MirzamDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"DubheDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"AviorDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"AlkaidDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 
 "kPickToolTitle" = "Use Item";
 
@@ -1170,6 +1188,38 @@
 
 "kBasicShape" = "Basic Shape";
 "kBasicShapeDescription" = "Use to draw line、circle、rectangle、five-pointed star and triangle";
+
+"Snow" = "Snow";
+"SnowDescription" = "to do";
+"Sun" = "Sun";
+"SunDescription" = "to do";
+
+"Bird" = "Bird";
+"BirdDescription" = "to do";
+"Animal" = "Animal";
+"AnimalDescription" = "to do";
+
+"Corner" = "Corner";
+"CornerDescription" = "to do";
+"Arc" = "Arc";
+"ArcDescription" = "to do";
+
+"Math" = "Math";
+"MathDescription" = "to do";
+"Music" = "Music";
+"MusicDescription" = "to do";
+
+"Stuff" = "Stuff";
+"StuffDescription" = "to do";
+"Travel" = "Travel";
+"TravelDescription" = "to do";
+
+"Grass" = "Grass";
+"GrassDescription" = "to do";
+"Leaf" = "Leaf";
+"LeafDescription" = "to do";
+"Flower" = "Flower";
+"FlowerDescription" = "to do";
 
 
 "kUpdateTips" = "Update Tips";
