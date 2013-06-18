@@ -7,7 +7,7 @@
 //
 
 #import "SongSelectController.h"
-//#import "SongManager.h"
+#import "SongManager.h"
 #import "SongCell.h"
 #import "SingController.h"
 #import "OpusManager.h"
@@ -39,8 +39,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [[SongService defaultService] setDelegate:self];
-    [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
-//    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
+//    [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
+    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

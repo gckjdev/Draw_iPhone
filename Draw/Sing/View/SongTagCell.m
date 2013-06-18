@@ -10,11 +10,12 @@
 #import "UIViewUtils.h"
 #import "UIColor+UIColorExt.h"
 
-#define GAP 4
-#define FIRST_TAG_ORIGIN_X  16
-#define FIRST_TAG_ORIGIN_Y  47
-#define TAG_WIDTH  58
-#define TAG_HEIGHT 23
+#define GAP (ISIPAD ? 8 : 4)
+#define FIRST_TAG_ORIGIN_X  (ISIPAD ? 36 : 16)
+#define FIRST_TAG_ORIGIN_Y  (ISIPAD ? 102 : 47)
+#define TAG_WIDTH  (ISIPAD ? 126 : 58)
+#define TAG_HEIGHT (ISIPAD ? 50 : 23)
+#define TAG_FONT (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
 
 @implementation SongTagCell
 
@@ -25,7 +26,7 @@
 + (CGFloat)getCellHeightWithCategory:(NSDictionary *)category{
     
     NSArray *tag = [[category allValues] objectAtIndex:0];
-    return 65 + 23 * ceil([tag count] / TagsPerCell);
+    return FIRST_TAG_ORIGIN_Y + GAP*2 + TAG_HEIGHT * ceil([tag count] / TagsPerCell);
 }
 
 - (void)setCellInfo:(NSDictionary *)category{
@@ -63,7 +64,7 @@
     UIButton *button = [[[UIButton alloc] initWithFrame:rect] autorelease];
     button.tag = tag;
     
-    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    button.titleLabel.font = TAG_FONT;
     [button setTitleColor:[UIColor colorWithIntegerRed:42 green:140 blue:204 alpha:1] forState:UIControlStateNormal];
     
     [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
