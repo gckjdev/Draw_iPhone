@@ -187,6 +187,11 @@
     return YES;
 }
 
+- (NSString *)weixinId
+{
+    return ASK_PS_WEIXIN_ID;
+}
+
 - (NSString*)homeHeaderViewId
 {
     return @"DrawHomeHeaderPanel";
