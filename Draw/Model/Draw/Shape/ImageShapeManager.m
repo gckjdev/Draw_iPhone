@@ -233,7 +233,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
 + (void)loadMetaFile
 {
-    NSData *data = [NSData dataWithContentsOfFile:@"/Users/qqn_pipi/tool/shape_group_meta.pb"];
+    NSData *data = [NSData dataWithContentsOfFile:@"/Users/qqn_pipi/tool/image_shape/meta.pb"];
     PBImageShapeGroupMeta *meta = [PBImageShapeGroupMeta parseFromData:data];
     
     for (PBImageShapeGroup *group in meta.imageShapeGroupList) {
@@ -267,7 +267,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
     BUILD_GROUP(Plant2)
     
     NSData *data = [[builder build] data];
-    [data writeToFile:@"/Users/qqn_pipi/tool/shape_group_meta.pb" atomically:YES];
+    [data writeToFile:@"/Users/qqn_pipi/tool/image_shape/meta.pb" atomically:YES];
 }
 
 @end

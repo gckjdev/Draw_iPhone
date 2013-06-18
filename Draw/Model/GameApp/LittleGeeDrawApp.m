@@ -182,6 +182,7 @@
     return NO;
 }
 
+
 - (int)photoUsage
 {
     return PBPhotoUsageForDraw;
@@ -202,5 +203,16 @@
 {
     return @"photo_tags_en.txt";
 }
+
+- (BOOL)supportWeixin
+{
+    return YES;
+}
+
+- (NSString *)weixinId
+{
+    return LITTLE_GEE_WEIXIN_ID;
+}
+
 
 @end

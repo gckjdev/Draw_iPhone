@@ -411,6 +411,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]
                                 defaultSaleCount:1]];
     
+    // 1元宝购买1000金币的钱箱
+    [mutableArray addObject:[self itemWithItemId:ItemTypePurseOneThousand
+                                            name:@"kItemTypePurseOneThousand"
+                                            desc:@"kItemTypePurseOneThousandDesc"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_purse@2x.png")
+                                            type:PBDrawItemTypeDrawNomal
+                                           price:1
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:1
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]
+                                defaultSaleCount:1]];
+    
+    
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ColorAlphaItem

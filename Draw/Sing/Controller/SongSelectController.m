@@ -7,7 +7,7 @@
 //
 
 #import "SongSelectController.h"
-#import "SongManager.h"
+//#import "SongManager.h"
 #import "SongCell.h"
 #import "SingController.h"
 #import "OpusManager.h"
@@ -21,6 +21,7 @@
 
 @property (retain, nonatomic) NSArray *songs;
 @property (retain, nonatomic) SongCategoryView *categoryView;
+@property (retain, nonatomic) NSString *tag;
 
 @end
 
@@ -37,8 +38,9 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
+    [[SongService defaultService] setDelegate:self];
+    [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
+//    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -73,9 +75,7 @@
 
 - (IBAction)clickChangeSongsButton:(id)sender {
     
-    self.songs = [[SongManager defaultManager] randomSongsWithCount:5];
-    
-    [self.dataTableView reloadData];
+    [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
 }
 
 - (IBAction)clickDraftButton:(id)sender {
@@ -115,9 +115,23 @@
     _isCategoryViewShow = NO;
     
     PPDebug(@"click tag: %@", tag);
+    self.tag = tag;
+    [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
+}
+
+- (void)didGetSongs:(int)resultCode songs:(NSArray *)songs{
     
-    self.songs = [[SongManager defaultManager] randomSongsWithTag:tag count:CELL_COUNT];
-    [self.dataTableView reloadData];
+    if (resultCode == 0) {
+        [self hideTipsOnTableView];
+        self.songs = songs;
+        [self.dataTableView reloadData];
+        
+        if ([self.songs count] == 0) {
+            [self showTipsOnTableView:NSLS(@"kNoData")];
+        }
+    }else{
+        [self showTipsOnTableView:NSLS(@"kLoadFail")];
+    }
 }
 
 @end

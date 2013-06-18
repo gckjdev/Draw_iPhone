@@ -789,6 +789,9 @@
 "kItemTypePurse" = "钱箱";
 "kItemTypePurseDesc" = "包含10000个金币的钱箱";
 
+"kItemTypePurseOneThousand" = "钱箱(小)";
+"kItemTypePurseOneThousandDesc" = "包含1000个金币的钱箱";
+
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
 
@@ -1170,7 +1173,7 @@
 "kRewardIngotWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kRewardCoinWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取金币";
 
-"kFreeIngots" = "免费元宝";
+"kFreeIngots" = "免费金币";
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";
 "kCleaning" = "清理缓存中，时间可能比较长，请耐心等待";
 

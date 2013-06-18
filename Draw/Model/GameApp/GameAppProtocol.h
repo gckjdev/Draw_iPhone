@@ -85,6 +85,9 @@
 - (NSString *)popupMessageDialogBackgroundImage;
 
 - (BOOL)supportWeixin;
+
+- (NSString *)weixinId;
+
 - (NSString*)homeHeaderViewId;
 
 - (NSString *)roomListCellBgImageName;
