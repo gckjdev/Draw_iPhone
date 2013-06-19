@@ -106,11 +106,11 @@ IMPLEMENTE(Nature1,ImageShapeNature1,Nature,6,@"Sun", @"日月")
 IMPLEMENTE(Shape0,ImageShapeShape0,Shape,0,@"Corner", @"棱角")
 IMPLEMENTE(Shape1,ImageShapeShape1,Shape,6,@"Arc", @"圆弧")
 
-IMPLEMENTE(Sign0,ImageShapeSign0,Sign,0,@"Stuff", @"家具")
-IMPLEMENTE(Sign1,ImageShapeSign1,Sign,6,@"Travel", @"出行")
+IMPLEMENTE(Sign0,ImageShapeSign0,Sign,0,@"Math", @"算术")
+IMPLEMENTE(Sign1,ImageShapeSign1,Sign,6,@"Music", @"玄音")
 
-IMPLEMENTE(Stuff0,ImageShapeStuff0,Stuff,0,@"Math", @"算术")
-IMPLEMENTE(Stuff1,ImageShapeStuff1,Stuff,6,@"Music", @"玄音")
+IMPLEMENTE(Stuff0,ImageShapeStuff0,Stuff,0,@"Stuff", @"家具")
+IMPLEMENTE(Stuff1,ImageShapeStuff1,Stuff,6,@"Travel", @"出行")
 
 IMPLEMENTE(Plant0,ImageShapePlant0,Plant,0,@"Grass", @"芳草")
 IMPLEMENTE(Plant1,ImageShapePlant1,Plant,6,@"Leaf", @"落木")
