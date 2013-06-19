@@ -1330,6 +1330,10 @@
 "kAskLoginTitle" = "Registration";
 "kAskLoginMessage" = "Haven't register yet. Take 10 seconds to create your account now?";
 
+"kOption" = "Option";
+"kPlay" = "Play";
+"kGuess" = "Guess";
+"kLargeImage" = "Image";
 
 
 //learn draw
