@@ -75,14 +75,14 @@
             
         }
             break;
-
-        case HomeMenuTypeSingTop: {
-            PPDebug(@"HomeMenuTypeSingTop");
+            
+        case HomeMenuTypeSingContest: {
+            PPDebug(@"HomeMenuTypeSingContest");
         }
             break;
-
-        case HomeMenuTypeSingShop: {
-            PPDebug(@"HomeMenuTypeSingShop");
+            
+        case HomeMenuTypeSingTop: {
+            PPDebug(@"HomeMenuTypeSingTop");
         }
             break;
 
@@ -123,8 +123,8 @@
         }
             break;
             
-        case HomeMenuTypeSingFriend:{
-            PPDebug(@"HomeMenuTypeSingFriend");
+        case HomeMenuTypeSingShop:{
+            PPDebug(@"HomeMenuTypeSingShop");
 
         }
             break;

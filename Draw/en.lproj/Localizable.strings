@@ -1770,6 +1770,10 @@
 
 /*********************你唱我猜国际化字符串开始 ************************/
 "kRerecordWarnning" = "Did you want to discard the previous recored voice and re-record?";
+"kSing"= "SING";
+"kGuessSing" = "GUESS";
+"kSingTop" = "TOP";
+"kSingContest" = "CONTEST";
 
 /*********************你唱我猜国际化字符串结束 ************************/
 
