@@ -9,6 +9,7 @@
 #import "SingHomeController.h"
 #import "SongSelectController.h"
 #import "SingOpusDetailController.h"
+#import "SingGuessController.h"
 #import "OpusManageController.h"
 
 @interface SingHomeController ()
@@ -75,16 +76,19 @@
             
         }
             break;
+            
+        case HomeMenuTypeSingContest: {
+            PPDebug(@"HomeMenuTypeSingContest");
+        }
+            break;
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
+            SingGuessController *vc = [[[SingGuessController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-
-        case HomeMenuTypeSingShop: {
-            PPDebug(@"HomeMenuTypeSingShop");
-        }
-            break;
+        
 
         case HomeMenuTypeSingFreeCoins: {
             PPDebug(@"HomeMenuTypeSingFreeCoins");
@@ -123,8 +127,8 @@
         }
             break;
             
-        case HomeMenuTypeSingFriend:{
-            PPDebug(@"HomeMenuTypeSingFriend");
+        case HomeMenuTypeSingShop:{
+            PPDebug(@"HomeMenuTypeSingShop");
 
         }
             break;

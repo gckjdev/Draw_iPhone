@@ -779,8 +779,8 @@
 "kItemTypePurse" = "Coins Box";
 "kItemTypePurseDesc" = "10,000 coins inside it";
 
-"kItemTypePurseOneThousand" = "Coins Box(S)";
-"kItemTypePurseOneThousandDesc" = "1,000 coins inside it";
+"Small Purse" = "Small Coins Box";
+"Small Purse 1000 coins" = "1,000 coins inside it";
 
 "kItemTypeGrid" = "Network Grid";
 "kItemTypeGridDesc" = "A Network grid show when you are drawing, make it easy to aline";
@@ -1215,7 +1215,9 @@
 "Music Icons" = "Icons, include music, play, etc.";
 
 "Grass" = "Grass";
-"Grass Iconsn" = "Icons, include a number of leaf.";
+//"Grass Iconsn" = "Icons, include a number of leaf.";
+"Grass Icons" = "Icons, include a number of leaf.";
+
 "Leaf" = "Leaf";
 "Leaf Icons" = "Icons, include trees and grasses.";
 "Flower" = "Flower";
@@ -1770,6 +1772,10 @@
 
 /*********************你唱我猜国际化字符串开始 ************************/
 "kRerecordWarnning" = "Did you want to discard the previous recored voice and re-record?";
+"kSing"= "SING";
+"kGuessSing" = "GUESS";
+"kSingTop" = "TOP";
+"kSingContest" = "CONTEST";
 
 /*********************你唱我猜国际化字符串结束 ************************/
 
