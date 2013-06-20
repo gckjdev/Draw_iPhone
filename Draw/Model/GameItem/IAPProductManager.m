@@ -11,7 +11,7 @@
 
 #define IAP_PRODUCT_FILE_WITHOUT_SUFFIX  @"iap_product"
 #define IAP_PRODUCT_FILE_TYPE @"pb"
-#define IAP_PRODUCT_FILE_VERSION @"1.0"
+#define IAP_PRODUCT_FILE_VERSION @"10.0"
 
 @interface IAPProductManager()
 
