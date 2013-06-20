@@ -1190,36 +1190,38 @@
 "kBasicShapeDescription" = "Use to draw line、circle、rectangle、five-pointed star and triangle";
 
 "Snow" = "Snow";
-"Snow Icons" = "用于绘画，包含云朵、雪花、水滴形状";
+"Snow Icons" = "";
 "Sun" = "Sun";
-"Sun Icons" = "用于绘画，包含闪电、太远、月亮、火光形状";
+"Sun Icons" = "Icons, include sun, moon, etc";
 
 "Bird" = "Bird";
-"Bird Icons" = "用于绘画，包含小鸟、公鸡、飞鹰、鱼、熊掌形状";
+"Bird Icons" = "Icons, include bird, hen, hawk, fish, etc.";
 "Animal" = "Animal";
-"Animal Icons" = "用于绘画，包含猫、狗、猪、兔子、蜗牛、鲸鱼形状";
+"Animal Icons" = "Icons, include cat, dog, rabbit, pig, etc.";
 
 "Corner" = "Corner";
-"Corner Icons" = "用于绘画，包含梯形、菱形、六边形、八角星、十角星、多角星形状";
+"Corner Icons" = "Icons, include a number of shapes.";
 "Arc" = "Arc";
-"Arc Icons" = "用于绘画，包含圆角星、海浪、心形、气泡形状";
+"Arc Icons" = "Icons, includes love, bubble, etc.";
 
 "Stuff" = "Stuff";
-"Stuff Icons" = "用于绘画，包含扣针、刷子、铅笔、毛笔、灯泡形状";
+"Stuff Icons" = "Icons, include pen, brush, etc.";
 "Travel" = "Travel";
-"Travel Icons" = "用于绘画，包含相机、雨伞、单车、放大镜、耳机形状";
+"Travel Icons" = "Icons, include camera, bike,etc.";
 
 "Math" = "Math";
-"Math Icons" = "用于绘画，包含勾形、叉形、称号、加号、性别、箭头形状";
+"Math Icons" = "Icons, include arrow, plus, etc.";
 "Music" = "Music";
-"Music Icons" = "用于绘画，包含音符、播放、快进、循环形状";
+"Music Icons" = "Icons, include music, play, etc.";
 
 "Grass" = "Grass";
-"Grass Icons" = "用于绘画，包含各种叶子的形状";
+//"Grass Iconsn" = "Icons, include a number of leaf.";
+"Grass Icons" = "Icons, include a number of leaf.";
+
 "Leaf" = "Leaf";
-"Leaf Icons" = "用于绘画，包含各种树木、小草的形状";
+"Leaf Icons" = "Icons, include trees and grasses.";
 "Flower" = "Flower";
-"Flower Icons" = "用于绘画，包含各种花的形状";
+"Flower Icons" = "Icons, include a number of flowers.";
 
 
 "kUpdateTips" = "Update Tips";
