@@ -8,13 +8,7 @@
 
 #import "OpusManageController.h"
 #import "LocaleUtils.h"
-#import "ShareEditController.h"
-#import "MyPaint.h"
-#import "DrawAction.h"
-#import "ShareCell.h"
 #import "UserManager.h"
-#import "ReplayController.h"
-#import "GifView.h"
 #import "PPDebug.h"
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
@@ -22,13 +16,13 @@
 #import "FileUtil.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
-#import "OfflineDrawViewController.h"
 #import "TableTab.h"
 #import "TableTabManager.h"
 #import "UIImageExt.h"
-#import "OfflineDrawViewController.h"
 #import "ReplayView.h"
-#import "SaveToContactPickerView.h"
+
+#import "OpusManager.h"
+#import "OpusView.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -51,7 +45,13 @@ typedef enum{
 @interface OpusManageController () {
     BOOL isLoading;
 }
+
+@property (retain, nonatomic) OpusManager* selfOpusManager;
+@property (retain, nonatomic) OpusManager* favoriteManager;
+@property (retain, nonatomic) OpusManager* draftManager;
+
 @end
+
 
 @implementation OpusManageController
 @synthesize clearButton;
@@ -64,13 +64,30 @@ typedef enum{
     PPRelease(clearButton);
     PPRelease(awardCoinTips);
     PPRelease(backButton);
+    PPRelease(_selfOpusManager);
+    PPRelease(_favoriteManager);
+    PPRelease(_draftManager);
     [super dealloc];
+}
+
+- (id)initWithClass:(Class)aClass
+             selfDb:(NSString *)selfDb
+         favoriteDb:(NSString *)favoriteDb
+            draftDb:(NSString *)draftDb
+{
+    self = [super init];
+    if (self) {
+        self.selfOpusManager = [[[OpusManager alloc] initWithClass:aClass dbName:selfDb] autorelease];
+        self.favoriteManager = [[[OpusManager alloc] initWithClass:aClass dbName:favoriteDb] autorelease];
+        self.draftManager = [[[OpusManager alloc] initWithClass:aClass dbName:draftDb] autorelease];
+    }
+    return self;
 }
 
 - (void)reloadView
 {
     [self.dataTableView reloadData];
-    if ([self.paints count] != 0) {
+    if ([[self getOpusList] count] != 0) {
 //        self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
         self.awardCoinTips.text = @"";
         [self.clearButton setHidden:NO];
@@ -89,49 +106,49 @@ typedef enum{
     self.noDataTipLabl.hidden = NO;
 }
 
-#pragma mark - MyPaintManager Delegate
-- (void)didGetAllPaints:(NSArray *)paints
-{
-    [self finishLoadDataForTabID:TabTypeAll resultList:paints];
-    
-    [self hideActivity];
-    [self reloadView];
-    [self updateTab:paints];
-}
-- (void)didGetMyPaints:(NSArray *)paints
-{
-    [self finishLoadDataForTabID:TabTypeMine resultList:paints];
-    
-    [self hideActivity];
-    [self reloadView];
-    [self updateTab:paints];
-}
-
-- (void)didGetAllDrafts:(NSArray *)paints
-{
-    [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
-    
-    [self hideActivity];
-    [self reloadView];
-    [self updateTab:paints];
-}
-
-- (void)didGetAllPaintCount:(NSInteger)allPaintCount
-               myPaintCount:(NSInteger)myPaintCount
-                 draftCount:(NSInteger)draftCount
-{
-    UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
-    NSString *draftTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftCount];
-    [draftButton setTitle:draftTitle forState:UIControlStateNormal];
-    
-    UIButton *myButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
-    NSString *myTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myPaintCount];
-    [myButton setTitle:myTitle forState:UIControlStateNormal];
-    
-    UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
-    NSString *allTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allPaintCount];
-    [allButton setTitle:allTitle forState:UIControlStateNormal];
-}
+//#pragma mark - MyPaintManager Delegate
+//- (void)didGetAllPaints:(NSArray *)paints
+//{
+//    [self finishLoadDataForTabID:TabTypeAll resultList:paints];
+//    
+//    [self hideActivity];
+//    [self reloadView];
+//    [self updateTab:paints];
+//}
+//- (void)didGetMyPaints:(NSArray *)paints
+//{
+//    [self finishLoadDataForTabID:TabTypeMine resultList:paints];
+//    
+//    [self hideActivity];
+//    [self reloadView];
+//    [self updateTab:paints];
+//}
+//
+//- (void)didGetAllDrafts:(NSArray *)paints
+//{
+//    [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
+//    
+//    [self hideActivity];
+//    [self reloadView];
+//    [self updateTab:paints];
+//}
+//
+//- (void)didGetAllPaintCount:(NSInteger)allPaintCount
+//               myPaintCount:(NSInteger)myPaintCount
+//                 draftCount:(NSInteger)draftCount
+//{
+//    UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
+//    NSString *draftTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftCount];
+//    [draftButton setTitle:draftTitle forState:UIControlStateNormal];
+//    
+//    UIButton *myButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
+//    NSString *myTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myPaintCount];
+//    [myButton setTitle:myTitle forState:UIControlStateNormal];
+//    
+//    UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
+//    NSString *allTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allPaintCount];
+//    [allButton setTitle:allTitle forState:UIControlStateNormal];
+//}
 
 - (void)performLoadMyPaints
 {
@@ -159,8 +176,10 @@ typedef enum{
 
 - (void)performLoadDrafts
 {
-//    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
+    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
 //    [_myPaintManager findAllDraftsFrom:tab.offset limit:tab.limit delegate:self];
+    NSArray* array = [self.draftManager findAllOpusWithOffset:tab.offset limit:tab.limit];
+    [self finishLoadDataForTabID:tab.tabID resultList:array];
     [self hideActivity];
 }
 
@@ -271,10 +290,11 @@ typedef enum{
 {
     return NO;
 }
-
+#define CELL_HEIGHT ([DeviceDetection isIPAD]?189.4:94.7)
+#define OPUS_VIEW_WIDTH ([DeviceDetection isIPAD]?150:75)
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [ShareCell getCellHeight];
+    return CELL_HEIGHT;
         
 }
 
@@ -282,41 +302,64 @@ typedef enum{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int number = 0;
-    if (self.paints.count % IMAGES_PER_LINE == 0){
-        number = self.paints.count / IMAGES_PER_LINE;
+    if ([self getOpusList].count % IMAGES_PER_LINE == 0){
+        number = [self getOpusList].count / IMAGES_PER_LINE;
     }
     else{
-        number = self.paints.count / IMAGES_PER_LINE + 1;
+        number = [self getOpusList].count / IMAGES_PER_LINE + 1;
     }
     return number;
 }
 
-- (NSArray *)paints
+//- (NSArray *)paints
+//{
+//    return [self tabDataList];
+//}
+- (NSArray*)getOpusList
 {
     return [self tabDataList];
 }
 
+#define OPUS_VIEW_TAG_OFFSET   120130619
+#define VIEW_PER_LINE   4
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ShareCell* cell = [tableView dequeueReusableCellWithIdentifier:[ShareCell getIdentifier]];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
-//        cell = [ShareCell creatShareCellWithIndexPath:indexPath delegate:self];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    NSMutableArray* myPaintArray = [NSMutableArray array];
-
-    NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
-    for (int lineIndex = 0; lineIndex < IMAGES_PER_LINE; lineIndex++) {
-        int paintIndex = indexPath.row*IMAGES_PER_LINE + lineIndex;
-        if (paintIndex < self.paints.count) {
-            MyPaint* paint  = [self.paints objectAtIndex:paintIndex]; 
-            [myPaintArray addObject:paint];                
+        float sep = (tableView.frame.size.width/VIEW_PER_LINE - OPUS_VIEW_WIDTH)/2;
+        for (int i = 0; i < VIEW_PER_LINE; i ++) {
+            OpusView* view = [OpusView createOpusView];
+            [view setFrame:CGRectMake(i*tableView.frame.size.width/VIEW_PER_LINE+sep, 0, OPUS_VIEW_WIDTH, CELL_HEIGHT)];
+            view.tag = OPUS_VIEW_TAG_OFFSET + i;
+            [cell.contentView addSubview:view];
         }
     }
-    [loopPool release];
-
-    cell.indexPath = indexPath;
-    [cell setPaints:myPaintArray];
+    for (int i = 0; i < VIEW_PER_LINE; i ++) {
+        OpusView* view = (OpusView*)[cell viewWithTag:(OPUS_VIEW_TAG_OFFSET+i)];
+        if (indexPath.row*VIEW_PER_LINE + i < [[self getOpusList] count]) {
+            Opus* opus = [[self getOpusList] objectAtIndex:(indexPath.row*VIEW_PER_LINE + i)];
+            [view updateWithOpus:opus];
+            [view setHidden:NO];
+        } else {
+            [view setHidden:YES];
+        }
+    }
+//    NSMutableArray* myPaintArray = [NSMutableArray array];
+//
+//    NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
+//    for (int lineIndex = 0; lineIndex < VIEW_PER_LINE; lineIndex++) {
+//        int paintIndex = indexPath.row*VIEW_PER_LINE + lineIndex;
+//        if (paintIndex < self.paints.count) {
+//            MyPaint* paint  = [self.paints objectAtIndex:paintIndex]; 
+//            [myPaintArray addObject:paint];                
+//        }
+//    }
+//    [loopPool release];
+//
+//    cell.indexPath = indexPath;
+//    [cell setPaints:myPaintArray];
     return cell;
 }
 
