@@ -31,9 +31,9 @@ BOOL showBGOffscreen = NO;
 
 #define DEFAULT_LEVEL 3
 
-int TestStep = 1000;
+//int TestStep = 100;
 
-#define DEFAULT_UNDO_STEP TestStep
+#define DEFAULT_UNDO_STEP 100 
 
 #define SHOWVIEW_LEVEL 2
 #define SHOWVIEW_UNDO_STEP 1
@@ -108,8 +108,6 @@ int TestStep = 1000;
 + (id)drawViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
-//    TestStep -= 10;
-//    if(TestStep <= 0)TestStep = 100;
 
     if ([GameApp hasBGOffscreen]||showBGOffscreen) {
         [manager addBgOffscreen:rect];
