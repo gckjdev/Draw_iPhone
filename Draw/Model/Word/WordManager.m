@@ -343,7 +343,6 @@ WordManager *GlobalGetWordManager()
     NSString* retString = [retArray componentsJoinedByString:@""];
     [retArray release];
     return retString;
-    
 }
 
 - (void)addWord:(Word *)word
