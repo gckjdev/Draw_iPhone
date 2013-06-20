@@ -789,8 +789,8 @@
 "kItemTypePurse" = "钱箱";
 "kItemTypePurseDesc" = "包含10000个金币的钱箱";
 
-"kItemTypePurseOneThousand" = "钱箱(小)";
-"kItemTypePurseOneThousandDesc" = "包含1000个金币的钱箱";
+"Small Purse" = "小钱箱";
+"Small Purse 1000 coins" = "包含1000个金币的钱箱";
 
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
@@ -1739,7 +1739,7 @@
 "Music Icons" = "用于绘画，包含音符、播放、快进、循环形状";
 
 "Grass" = "芳草";
-"Grass Iconsn" = "用于绘画，包含各种叶子的形状";
+"Grass Icons" = "用于绘画，包含各种叶子的形状";
 "Leaf" = "落木";
 "Leaf Icons" = "用于绘画，包含各种树木、小草的形状";
 "Flower" = "羞花";
