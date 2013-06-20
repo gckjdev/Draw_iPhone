@@ -779,8 +779,8 @@
 "kItemTypePurse" = "Coins Box";
 "kItemTypePurseDesc" = "10,000 coins inside it";
 
-"kItemTypePurseOneThousand" = "Coins Box(S)";
-"kItemTypePurseOneThousandDesc" = "1,000 coins inside it";
+"Small Purse" = "Small Coins Box";
+"Small Purse 1000 coins" = "1,000 coins inside it";
 
 "kItemTypeGrid" = "Network Grid";
 "kItemTypeGridDesc" = "A Network grid show when you are drawing, make it easy to aline";
@@ -1215,7 +1215,7 @@
 "Music Icons" = "用于绘画，包含音符、播放、快进、循环形状";
 
 "Grass" = "Grass";
-"Grass Iconsn" = "用于绘画，包含各种叶子的形状";
+"Grass Icons" = "用于绘画，包含各种叶子的形状";
 "Leaf" = "Leaf";
 "Leaf Icons" = "用于绘画，包含各种树木、小草的形状";
 "Flower" = "Flower";
@@ -1770,6 +1770,10 @@
 
 /*********************你唱我猜国际化字符串开始 ************************/
 "kRerecordWarnning" = "Did you want to discard the previous recored voice and re-record?";
+"kSing"= "SING";
+"kGuessSing" = "GUESS";
+"kSingTop" = "TOP";
+"kSingContest" = "CONTEST";
 
 /*********************你唱我猜国际化字符串结束 ************************/
 

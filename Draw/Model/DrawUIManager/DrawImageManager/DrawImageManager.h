@@ -81,4 +81,19 @@
 //little gee
 - (UIImage*)littleGeeBottomSplit;
 - (UIImage*)littleGeeMoreOptionsImage;
+
+//sing
+- (UIImage *)singHomeSing;
+- (UIImage *)singHomeGuess;
+- (UIImage *)singHomeTop;
+- (UIImage *)singHomeBBS;
+- (UIImage *)singHomeFreeCoins;
+- (UIImage *)singHomeContest;
+
+- (UIImage *)singHomeTimeline;
+- (UIImage *)singHomeDraft;
+- (UIImage *)singHomeShop;
+- (UIImage *)singHomeChat;
+- (UIImage *)singHomeSetting;
+
 @end

@@ -4,7 +4,7 @@
 //
 //  Created by gamy on 13-2-20.
 //
-//
+//  new
 
 #import "OffscreenManager.h"
 #import "Offscreen.h"
@@ -30,7 +30,10 @@ BOOL showBGOffscreen = NO;
 #define MAX_CAN_UNDO_COUNT 200
 
 #define DEFAULT_LEVEL 3
-#define DEFAULT_UNDO_STEP 100
+
+//int TestStep = 100;
+
+#define DEFAULT_UNDO_STEP 100 
 
 #define SHOWVIEW_LEVEL 2
 #define SHOWVIEW_UNDO_STEP 1
@@ -105,7 +108,6 @@ BOOL showBGOffscreen = NO;
 + (id)drawViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
-    
 
     if ([GameApp hasBGOffscreen]||showBGOffscreen) {
         [manager addBgOffscreen:rect];
@@ -267,6 +269,7 @@ BOOL showBGOffscreen = NO;
         if ([os noLimit]) {
             startIndex = 0;
         }else{
+//            continue;
             startIndex = endIndex - os.capacity;
             if (startIndex < 0) {
                 startIndex = 0;

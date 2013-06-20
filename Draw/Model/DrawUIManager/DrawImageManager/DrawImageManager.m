@@ -343,4 +343,73 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+
+//sing
+- (UIImage *)singHomeSing
+{
+    NSString *imageName = [self fixImageName:@"sing_home_sing"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeGuess
+{
+    NSString *imageName = [self fixImageName:@"sing_home_guess"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeTop
+{
+    NSString *imageName = [self fixImageName:@"sing_home_top"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeBBS
+{
+    NSString *imageName = [self fixImageName:@"sing_home_bbs"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeFreeCoins
+{
+    NSString *imageName = [self fixImageName:@"sing_home_free_coins"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeContest
+{
+    NSString *imageName = [self fixImageName:@"sing_home_contest"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeTimeline
+{
+    NSString *imageName = [self fixImageName:@"sing_home_timeline"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeDraft
+{
+    NSString *imageName = [self fixImageName:@"sing_home_draft"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeShop
+{
+    NSString *imageName = [self fixImageName:@"sing_home_shop"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeChat
+{
+    NSString *imageName = [self fixImageName:@"sing_home_chat"];
+    return [UIImage imageNamed:imageName];
+}
+
+- (UIImage *)singHomeSetting
+{
+    NSString *imageName = [self fixImageName:@"sing_home_setting"];
+    return [UIImage imageNamed:imageName];
+}
+
+
 @end

@@ -148,13 +148,14 @@
             return NSLS(@"kSing");
         case HomeMenuTypeGuessSing:
             return NSLS(@"kGuessSing");
+        case HomeMenuTypeSingContest:
+            return NSLS(@"kSingContest");
         case HomeMenuTypeSingTop:
             return NSLS(@"kSingTop");
         case HomeMenuTypeSingBBS:
             return NSLS(@"kBBS");
-        case HomeMenuTypeSingShop:
-            return NSLS(@"kShop");
-        case HomeMenuTypeSingFreeCoins:                        return NSLS(@"kFreeCoins");
+        case HomeMenuTypeSingFreeCoins:
+            return NSLS(@"kFreeCoins");
         default:
         return nil;
     }
@@ -336,29 +337,30 @@
             
             
         case HomeMenuTypeSing:
-            return [imageManager drawHomeDraw];
+            return [imageManager singHomeSing];
         case HomeMenuTypeGuessSing:
-            return [imageManager drawHomeDraw];
+            return [imageManager singHomeGuess];
+        case HomeMenuTypeSingContest:
+            return [imageManager singHomeContest];
         case HomeMenuTypeSingTop:
-            return [imageManager drawHomeDraw];
+            return [imageManager singHomeTop];
         case HomeMenuTypeSingBBS:
-            return [imageManager drawHomeDraw];
-        case HomeMenuTypeSingShop:
-            return [imageManager drawHomeDraw];
+            return [imageManager singHomeBBS];
         case HomeMenuTypeSingFreeCoins:
-            return [imageManager drawHomeDraw];
+            return [imageManager singHomeFreeCoins];
+            
             
             
         case HomeMenuTypeSingTimeline:
-            return [imageManager drawHomeMessage];
+            return [imageManager singHomeTimeline];
         case HomeMenuTypeSingDraft:
-            return [imageManager drawHomeMessage];
-        case HomeMenuTypeSingFriend:
-            return [imageManager drawHomeMessage];
+            return [imageManager singHomeDraft];
+        case HomeMenuTypeSingShop:
+            return [imageManager singHomeShop];
         case HomeMenuTypeSingChat:
-            return [imageManager drawHomeMessage];
+            return [imageManager singHomeChat];
         case HomeMenuTypeSingSetting:
-            return [imageManager drawHomeMessage];
+            return [imageManager singHomeSetting];
 
         default:
             return nil;
@@ -603,9 +605,9 @@ int *getSingMainMenuTypeListWithFreeCoins()
     int static list[] = {
         HomeMenuTypeSing,
         HomeMenuTypeGuessSing,
+        HomeMenuTypeSingContest,
         HomeMenuTypeSingTop,
         HomeMenuTypeSingBBS,
-        HomeMenuTypeSingShop,
         HomeMenuTypeSingFreeCoins,
         HomeMenuTypeEnd,
     };
@@ -617,9 +619,9 @@ int *getSingMainMenuTypeListWithoutFreeCoins()
     int static list[] = {
         HomeMenuTypeSing,
         HomeMenuTypeGuessSing,
+        HomeMenuTypeSingContest,
         HomeMenuTypeSingTop,
         HomeMenuTypeSingBBS,
-        HomeMenuTypeSingShop,
         HomeMenuTypeEnd,
     };
     return list;
@@ -640,7 +642,7 @@ int *getSingBottomMenuTypeList()
     int static list[] = {
         HomeMenuTypeSingTimeline,
         HomeMenuTypeSingDraft,
-        HomeMenuTypeSingFriend,
+        HomeMenuTypeSingShop,
         HomeMenuTypeSingChat,
         HomeMenuTypeSingSetting,
         HomeMenuTypeEnd

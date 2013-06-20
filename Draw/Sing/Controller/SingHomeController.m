@@ -76,6 +76,11 @@
             
         }
             break;
+            
+        case HomeMenuTypeSingContest: {
+            PPDebug(@"HomeMenuTypeSingContest");
+        }
+            break;
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
@@ -83,11 +88,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-
-        case HomeMenuTypeSingShop: {
-            PPDebug(@"HomeMenuTypeSingShop");
-        }
-            break;
+        
 
         case HomeMenuTypeSingFreeCoins: {
             PPDebug(@"HomeMenuTypeSingFreeCoins");
@@ -126,8 +127,8 @@
         }
             break;
             
-        case HomeMenuTypeSingFriend:{
-            PPDebug(@"HomeMenuTypeSingFriend");
+        case HomeMenuTypeSingShop:{
+            PPDebug(@"HomeMenuTypeSingShop");
 
         }
             break;
