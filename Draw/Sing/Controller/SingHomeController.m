@@ -79,6 +79,8 @@
             
         case HomeMenuTypeSingContest: {
             PPDebug(@"HomeMenuTypeSingContest");
+        }
+            break;
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
