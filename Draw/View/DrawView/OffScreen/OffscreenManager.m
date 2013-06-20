@@ -13,24 +13,20 @@
 #import "ChangeBackAction.h"
 #import "ChangeBGImageAction.h"
 
-
-
-BOOL showBGOffscreen = NO;
-
 @interface OffscreenManager()
 {
     NSMutableArray *_offscreenList;
 }
 
-//@property(nonatomic, retain)Offscreen *gridOffscreen;
+@property(nonatomic, retain)Offscreen *gridOffscreen;
 @property(nonatomic, retain)Offscreen *bgOffscreen;
 
 @end
 
 #define MAX_CAN_UNDO_COUNT 200
 
-#define DEFAULT_LEVEL 3
-#define DEFAULT_UNDO_STEP 100
+#define DEFAULT_LEVEL 4
+#define DEFAULT_UNDO_STEP 50
 
 #define SHOWVIEW_LEVEL 2
 #define SHOWVIEW_UNDO_STEP 1
@@ -39,25 +35,26 @@ BOOL showBGOffscreen = NO;
 
 @implementation OffscreenManager
 
-+ (void)setShowBGOffscreen:(BOOL)show
-{
-    showBGOffscreen = show;
-}
-
 #define VALUE(X) (ISIPAD ? 2*X : X)
 #define LINE_SPACE [ConfigManager getDrawGridLineSpace]
 
-
-- (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect
+- (void)addGridOffscreen:(CGRect)rect
 {
-    CGContextSaveGState(context);
     
+    self.gridOffscreen = [[[Offscreen alloc] initWithCapacity:0 rect:rect] autorelease];
+    self.gridOffscreen.forceShow = YES;
+    CGContextRef context = [self.gridOffscreen cacheContext];
+
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:160/255. green:1 blue:1 alpha:1].CGColor);
     CGContextSetLineWidth(context, VALUE(0.5));
     
+//    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+//    CGContextFillRect(context, rect);
     
     NSInteger i = 1;
-
+    
+    
+    
     while (i * LINE_SPACE < (CGRectGetWidth(rect))) {
         CGContextMoveToPoint(context, i * LINE_SPACE, 0);
         CGContextAddLineToPoint(context, i * LINE_SPACE, CGRectGetHeight(rect));
@@ -72,19 +69,8 @@ BOOL showBGOffscreen = NO;
         CGContextStrokePath(context);
         i ++;
     }
-    CGContextRestoreGState(context);
 
 }
-
-//- (void)addGridOffscreen:(CGRect)rect
-//{
-//    
-//    self.gridOffscreen = [[[Offscreen alloc] initWithCapacity:0 rect:rect] autorelease];
-//    self.gridOffscreen.forceShow = YES;
-//    CGContextRef context = [self.gridOffscreen cacheContext];
-//    [self drawGridInContext:context rect:rect];
-//
-//}
 
 
 - (void)addBgOffscreen:(CGRect)rect
@@ -94,20 +80,12 @@ BOOL showBGOffscreen = NO;
 }
 
 
-//- (void)setShowGridOffscreen:(BOOL)showGridOffscreen
-//{
-//    if (showGridOffscreen && self.gridOffscreen == nil) {
-//        [self addGridOffscreen:self.enteryScreen.rect];
-//    }
-//    _showGridOffscreen = showGridOffscreen;
-//}
-
 + (id)drawViewOffscreenManagerWithRect:(CGRect)rect //default OffscreenManager
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:DEFAULT_LEVEL maxUndoStep:DEFAULT_UNDO_STEP rect:rect] autorelease];
-    
+    [manager addGridOffscreen:rect];
 
-    if ([GameApp hasBGOffscreen]||showBGOffscreen) {
+    if ([GameApp hasBGOffscreen]) {
         [manager addBgOffscreen:rect];
     }
     
@@ -117,7 +95,7 @@ BOOL showBGOffscreen = NO;
 {
     OffscreenManager *manager = [[[OffscreenManager alloc] initWithLevelNumber:SHOWVIEW_LEVEL maxUndoStep:SHOWVIEW_UNDO_STEP rect:rect] autorelease];
     
-    if ([GameApp hasBGOffscreen] || showBGOffscreen) {
+    if ([GameApp hasBGOffscreen]) {
         [manager addBgOffscreen:rect];
     }
     
@@ -134,6 +112,7 @@ BOOL showBGOffscreen = NO;
 - (void)dealloc
 {
     PPRelease(_offscreenList);
+    PPRelease(_gridOffscreen);
     PPRelease(_bgOffscreen);
     [super dealloc];
 }
@@ -291,7 +270,7 @@ BOOL showBGOffscreen = NO;
         [os showInContext:context];
     }
     if (self.showGridOffscreen) {
-        [self drawGridInContext:context rect:self.enteryScreen.rect];
+        [_gridOffscreen showInContext:context];
     }
 }
 
