@@ -31,15 +31,8 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
 }
 
 + (OpusView*)createOpusView
-{
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"OpusView" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <OpusView> but cannot find cell object from Nib");
-        return nil;
-    }
-    OpusView* view =  (OpusView*)[topLevelObjects objectAtIndex:0];
-    
-    return view;
+{  
+    return [OpusView createView];
 }
 /*
 + (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 

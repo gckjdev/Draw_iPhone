@@ -317,6 +317,7 @@ typedef enum{
 //}
 - (NSArray*)getOpusList
 {
+    PPDebug(@"<test>current data list count = %d", [self tabDataList].count);
     return [self tabDataList];
 }
 
