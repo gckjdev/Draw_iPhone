@@ -9,6 +9,7 @@
 #import "SingHomeController.h"
 #import "SongSelectController.h"
 #import "SingOpusDetailController.h"
+#import "SingGuessController.h"
 
 @interface SingHomeController ()
 
@@ -60,6 +61,8 @@
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
+            SingGuessController *vc = [[[SingGuessController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
 
