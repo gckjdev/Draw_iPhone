@@ -61,5 +61,10 @@
 
 - (NSString*)dataType;
 
+//add by kira
+- (BOOL)isMyOpus;
+- (NSString*)name;
+- (NSDate*)createDate;
+
 @end
 

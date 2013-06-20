@@ -11,6 +11,7 @@
 #import "SingOpus.h"
 #import "AskPs.h"
 #import "FileUtil.h"
+#import "UserManager.h"
 
 @interface Opus()
 
@@ -234,6 +235,19 @@
 {
     [encoder encodeObject:[self opusKey] forKey:ENCODE_OPUS_KEY];           // useless???
     [encoder encodeObject:[[self pbOpus] data] forKey:ENCODE_OPUS_DATA];
+}
+
+- (BOOL)isMyOpus
+{
+    return [[UserManager defaultManager] isMe:self.pbOpus.author.userId];
+}
+- (NSString*)name
+{
+    return self.pbOpus.name;
+}
+- (NSDate*)createDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:self.pbOpus.createDate];
 }
 
 @end

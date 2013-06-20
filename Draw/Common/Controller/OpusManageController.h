@@ -10,12 +10,8 @@
 #import "CommonTabController.h"
 #import "PPViewController.h"
 #import "ShareCell.h"
-#import "ShowDrawView.h"
 #import "CommonDialog.h"
-#import "ShareAction.h"
-#import "MyPaintManager.h"
 #import "PPTableViewController.h"
-#import "OfflineDrawViewController.h"
 #import "UserService.h"
 
 typedef enum {
@@ -38,4 +34,9 @@ typedef enum {
 - (IBAction)deleteAll:(id)sender;
 
 + (void)shareFromWeiXin:(UIViewController*)superController;
+
+- (id)initWithClass:(Class)aClass
+             selfDb:(NSString*)selfDb
+         favoriteDb:(NSString*)favoriteDb
+            draftDb:(NSString*)draftDb;
 @end
