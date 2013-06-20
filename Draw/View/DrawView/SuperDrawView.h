@@ -51,6 +51,8 @@
 - (void)show;
 - (void)cleanAllActions;
 - (void)addDrawAction:(DrawAction *)drawAction;
+- (DrawAction *)lastAction;
+
 
 //add a new draw action
 - (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;

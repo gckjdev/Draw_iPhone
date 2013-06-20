@@ -1463,146 +1463,18 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">PPViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="className">SingController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickBack:</string>
+						<string key="NS.key.0">clickBackButton:</string>
 						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickBack:</string>
+						<string key="NS.key.0">clickBackButton:</string>
 						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickBack:</string>
+							<string key="name">clickBackButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PPViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">SingController</string>
-					<string key="superclassName">PPViewController</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="addTimeButton">UIButton</string>
-						<string key="childButton">UIButton</string>
-						<string key="duckButton">UIButton</string>
-						<string key="femaleButton">UIButton</string>
-						<string key="lyricTextView">UITextView</string>
-						<string key="maleButton">UIButton</string>
-						<string key="micImageView">UIImageView</string>
-						<string key="opusImageButton">UIButton</string>
-						<string key="opusMainView">UIView</string>
-						<string key="opusReview">UIView</string>
-						<string key="originButton">UIButton</string>
-						<string key="pauseImageView">UIImageView</string>
-						<string key="playImageView">UIImageView</string>
-						<string key="rerecordButton">UIButton</string>
-						<string key="saveButton">UIButton</string>
-						<string key="songAuthorLabel">UILabel</string>
-						<string key="songAuthorLabel1">UILabel</string>
-						<string key="songNameLabel">UILabel</string>
-						<string key="songNameLabel1">UILabel</string>
-						<string key="submitButton">UIButton</string>
-						<string key="tagButton">UIImageView</string>
-						<string key="timeLabel">UILabel</string>
-						<string key="tomCatButton">UIButton</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="addTimeButton">
-							<string key="name">addTimeButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="childButton">
-							<string key="name">childButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="duckButton">
-							<string key="name">duckButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="femaleButton">
-							<string key="name">femaleButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="lyricTextView">
-							<string key="name">lyricTextView</string>
-							<string key="candidateClassName">UITextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="maleButton">
-							<string key="name">maleButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="micImageView">
-							<string key="name">micImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="opusImageButton">
-							<string key="name">opusImageButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="opusMainView">
-							<string key="name">opusMainView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="opusReview">
-							<string key="name">opusReview</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="originButton">
-							<string key="name">originButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="pauseImageView">
-							<string key="name">pauseImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="playImageView">
-							<string key="name">playImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="rerecordButton">
-							<string key="name">rerecordButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="saveButton">
-							<string key="name">saveButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="songAuthorLabel">
-							<string key="name">songAuthorLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="songAuthorLabel1">
-							<string key="name">songAuthorLabel1</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="songNameLabel">
-							<string key="name">songNameLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="songNameLabel1">
-							<string key="name">songNameLabel1</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="submitButton">
-							<string key="name">submitButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="tagButton">
-							<string key="name">tagButton</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="timeLabel">
-							<string key="name">timeLabel</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="tomCatButton">
-							<string key="name">tomCatButton</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/SingController.h</string>

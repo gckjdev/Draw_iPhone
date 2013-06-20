@@ -81,7 +81,7 @@ NSString* GlobalGetServerURL()
 {
 
 #ifdef DEBUG
-//    return @"http://192.167.1.101:8000/api/i?";
+//    return @"http://192.167.1.100:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 
 //    return @"http://58.215.160.100:8888/api/i?";
@@ -250,7 +250,8 @@ NSString* GlobalGetBoardServerURL()
 #ifdef DEBUG
 //    [DrawBgManager createTestData:0];
 //    [GameConfigDataManager createTestConfigData];
-    [ImageShapeManager createMetaFile];
+//    [ImageShapeManager createMetaFile];
+//    [DrawBgManager scaleImages];
 //    [ImageShapeManager loadMetaFile];
 //    [GameItemService createDrawTestDataFile];
 #endif
@@ -420,7 +421,7 @@ NSString* GlobalGetBoardServerURL()
     // load item data
     [[GameItemService defaultService] syncData:NULL];
     [[IAPProductService defaultService] syncData:NULL];
-        
+    
     if ([GameApp isAutoRegister]){
         [[UserService defaultService] autoRegisteration:nil];
     }

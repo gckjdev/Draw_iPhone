@@ -102,7 +102,9 @@
 - (void)setItem:(PBGameItem *)item
           count:(int)count
 {
-    if (item.itemId == ItemTypeColor || item.itemId == ItemTypePurse) {
+    if (item.itemId == ItemTypeColor
+        || item.itemId == ItemTypePurse
+        || item.itemId == ItemTypePurseOneThousand) {
         self.countButton.hidden = YES;
         return;
     }

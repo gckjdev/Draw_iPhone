@@ -14,6 +14,7 @@
 #import "OfflineDrawViewController.h"
 #import "OnlineDrawViewController.h"
 #import "UIViewUtils.h"
+#import "CommonMessageCenter.h"
 
 @interface ToolHandler ()
 {
@@ -184,7 +185,11 @@
 }
 - (void)handleUndo
 {
-    [self.drawView undo];
+    if ([self.drawView canRevoke]) {
+        [self.drawView undo];
+    }else if([[self.drawView drawActionList] count] > 0){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotRevoke") delayTime:1.5 isHappy:NO];
+    }    
 }
 
 - (void)handleChat

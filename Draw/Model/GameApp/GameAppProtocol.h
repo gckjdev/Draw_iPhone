@@ -15,6 +15,7 @@
 #import "GameConfigDataManager.h"
 #import "PPSmartUpdateDataUtils.h"
 #import "Config.pb.h"
+#import "Photo.pb.h"
 
 @protocol GameAppProtocol <NSObject>
 
@@ -84,6 +85,9 @@
 - (NSString *)popupMessageDialogBackgroundImage;
 
 - (BOOL)supportWeixin;
+
+- (NSString *)weixinId;
+
 - (NSString*)homeHeaderViewId;
 
 - (NSString *)roomListCellBgImageName;
@@ -165,6 +169,12 @@
 - (void)createIAPTestDataFile;
 
 - (BOOL)showLocateButton;
+
+- (int)photoUsage;
+- (NSString*)keywordSmartDataCn;
+- (NSString*)keywordSmartDataEn;
+- (NSString*)photoTagsCn;
+- (NSString*)photoTagsEn;
 
 @end
 

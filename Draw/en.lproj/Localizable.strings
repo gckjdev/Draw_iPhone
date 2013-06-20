@@ -230,7 +230,7 @@
 "kMore_apps" = "More apps";
 "kGive_a_5-star_review" = "Give a 5-star review";
 "kSure_delete" = "Delete Drawing";
-"kAre_you_sure" = "Are you sure to delete this drawing?";
+"kAre_you_sure" = "Are you sure to delete it?";
 "kAre_you_sure_to_unfavorite" = "Are you sure to unsubscribe this drawing?";
 "kOptions" = "Options";
 "kShare" = "Share";
@@ -779,6 +779,9 @@
 "kItemTypePurse" = "Coins Box";
 "kItemTypePurseDesc" = "10,000 coins inside it";
 
+"kItemTypePurseOneThousand" = "Coins Box(S)";
+"kItemTypePurseOneThousandDesc" = "1,000 coins inside it";
+
 "kItemTypeGrid" = "Network Grid";
 "kItemTypeGridDesc" = "A Network grid show when you are drawing, make it easy to aline";
 
@@ -813,6 +816,15 @@
 "kDrawBgRegulus" = "Regulus";
 "kDrawBgMirfak" = "Mirfak";
 
+"Rigel" = "Rigel";
+"Procyon" = "Procyon";
+"Achernar" = "Achernar";
+"Regor" = "Regor";
+"Mirzam" = "Mirzam";
+"Dubhe" = "Dubhe";
+"Avior" = "Avior";
+"Alkaid" = "Alkaid";
+
 "kDrawBgAntaresDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgAdharaDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgElnathDesc" = "A butiful backgroud on your drawing, with size of 700*700";
@@ -822,6 +834,15 @@
 "kDrawBgPolluxDesc" = "butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgRegulusDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 "kDrawBgMirfakDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+
+"RigelDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"ProcyonDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"AchernarDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"RegorDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"MirzamDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"DubheDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"AviorDesc" = "A butiful backgroud on your drawing, with size of 700*700";
+"AlkaidDesc" = "A butiful backgroud on your drawing, with size of 700*700";
 
 "kPickToolTitle" = "Use Item";
 
@@ -1168,6 +1189,38 @@
 "kBasicShape" = "Basic Shape";
 "kBasicShapeDescription" = "Use to draw line、circle、rectangle、five-pointed star and triangle";
 
+"Snow" = "Snow";
+"Snow Icons" = "用于绘画，包含云朵、雪花、水滴形状";
+"Sun" = "Sun";
+"Sun Icons" = "用于绘画，包含闪电、太远、月亮、火光形状";
+
+"Bird" = "Bird";
+"Bird Icons" = "用于绘画，包含小鸟、公鸡、飞鹰、鱼、熊掌形状";
+"Animal" = "Animal";
+"Animal Icons" = "用于绘画，包含猫、狗、猪、兔子、蜗牛、鲸鱼形状";
+
+"Corner" = "Corner";
+"Corner Icons" = "用于绘画，包含梯形、菱形、六边形、八角星、十角星、多角星形状";
+"Arc" = "Arc";
+"Arc Icons" = "用于绘画，包含圆角星、海浪、心形、气泡形状";
+
+"Stuff" = "Stuff";
+"Stuff Icons" = "用于绘画，包含扣针、刷子、铅笔、毛笔、灯泡形状";
+"Travel" = "Travel";
+"Travel Icons" = "用于绘画，包含相机、雨伞、单车、放大镜、耳机形状";
+
+"Math" = "Math";
+"Math Icons" = "用于绘画，包含勾形、叉形、称号、加号、性别、箭头形状";
+"Music" = "Music";
+"Music Icons" = "用于绘画，包含音符、播放、快进、循环形状";
+
+"Grass" = "Grass";
+"Grass Iconsn" = "用于绘画，包含各种叶子的形状";
+"Leaf" = "Leaf";
+"Leaf Icons" = "用于绘画，包含各种树木、小草的形状";
+"Flower" = "Flower";
+"Flower Icons" = "用于绘画，包含各种花的形状";
+
 
 "kUpdateTips" = "Update Tips";
 "kVersionIsOld" = "Version is too low to use this feature, do you want to update version now?";
@@ -1254,6 +1307,8 @@
 "kStroke" = "Stroke";
 "kFill" = "Fill";
 
+"kCannotRevoke" = "Can't undo any more. If you want to undo more, save it, and edit it from the draf box.";
+
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
 "kUpdateBackgroundFail" = "Fail to update background. Please try later.";
@@ -1275,6 +1330,10 @@
 "kAskLoginTitle" = "Registration";
 "kAskLoginMessage" = "Haven't register yet. Take 10 seconds to create your account now?";
 
+"kOption" = "Option";
+"kPlay" = "Play";
+"kGuess" = "Guess";
+"kLargeImage" = "Image";
 
 
 //learn draw
@@ -1742,6 +1801,9 @@
 "kClipart" = "Clipart";
 "kLineart" = "Lineart";
 "kUnlimit" = "All";
-
+"kNoPhoto" = "You havn't saved any photo";
+"kSearchNoResult" = "No match result";
+"kEditName" = "Edit Name";
+"kEnterNewName" = "Enter New Name";
 /*********************图库国际化字符串结束 ************************/
 

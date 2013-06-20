@@ -10,11 +10,12 @@
 #import "UIViewUtils.h"
 #import "UIColor+UIColorExt.h"
 
-#define GAP 4
-#define FIRST_TAG_ORIGIN_X  16
-#define FIRST_TAG_ORIGIN_Y  47
-#define TAG_WIDTH  58
-#define TAG_HEIGHT 23
+#define GAP (ISIPAD ? 8 : 4)
+#define FIRST_TAG_ORIGIN_X  (ISIPAD ? 36 : 16)
+#define FIRST_TAG_ORIGIN_Y  (ISIPAD ? 102 : 47)
+#define TAG_WIDTH  (ISIPAD ? 126 : 58)
+#define TAG_HEIGHT (ISIPAD ? 50 : 23)
+#define TAG_FONT (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
 
 @implementation SongTagCell
 
@@ -22,11 +23,13 @@
     return @"SongTagCell";
 }
 
-+ (CGFloat)getCellHeightWithCategory:(PBSongCategory *)category{
-    return 65 + 23 * ceil([category.songTagsList count] / TagsPerCell);
++ (CGFloat)getCellHeightWithCategory:(NSDictionary *)category{
+    
+    NSArray *tag = [[category allValues] objectAtIndex:0];
+    return FIRST_TAG_ORIGIN_Y + GAP*2 + TAG_HEIGHT * ceil([tag count] / TagsPerCell);
 }
 
-- (void)setCellInfo:(PBSongCategory *)category{
+- (void)setCellInfo:(NSDictionary *)category{
 
     for (UIView *view in self.subviews) {
         if ([[view class] isSubclassOfClass:[UIButton class]]) {
@@ -36,15 +39,15 @@
     
     [self updateHeight:[SongTagCell getCellHeightWithCategory:category]];
     
-    self.categoryLabel.text = category.name;
+    self.categoryLabel.text = [[category allKeys] objectAtIndex:0];
 
-    NSArray *tags = category.songTagsList;
+    NSArray *tags = [[category allValues] objectAtIndex:0];
     int count = [tags count];
     for (int index = 0; index < count; index++) {
         
-        PBSongTag *songTag = [tags objectAtIndex:index];
-        UIButton *button = [self buttonWithTag:songTag.tagId index:index];
-        [button setTitle:songTag.tagName forState:UIControlStateNormal];
+        NSString *tag = [tags objectAtIndex:index];
+        UIButton *button = [self buttonWithTag:0 index:index];
+        [button setTitle:tag forState:UIControlStateNormal];
         [self addSubview:button];
     }
     
@@ -61,7 +64,7 @@
     UIButton *button = [[[UIButton alloc] initWithFrame:rect] autorelease];
     button.tag = tag;
     
-    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    button.titleLabel.font = TAG_FONT;
     [button setTitleColor:[UIColor colorWithIntegerRed:42 green:140 blue:204 alpha:1] forState:UIControlStateNormal];
     
     [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,8 +74,8 @@
 
 - (void)clickButton:(UIButton *)button{
     if ([delegate respondsToSelector:@selector(didClickTag:)]) {
-        int tagId = button.tag;
-        [delegate didClickTag:tagId];
+        NSString *tag = [button titleForState:UIControlStateNormal];
+        [delegate didClickTag:tag];
     }
 }
 

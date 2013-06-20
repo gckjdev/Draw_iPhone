@@ -9,5 +9,6 @@
 #import "SuperHomeController.h"
 
 @interface SingHomeController : SuperHomeController
+@property (retain, nonatomic) IBOutlet UIButton *testBtn;
 
 @end

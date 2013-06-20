@@ -13,6 +13,7 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUITableViewCell</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -44,7 +45,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{83, 0}, {100, 18}}</string>
 								<reference key="NSSuperview" ref="53195597"/>
-								<reference key="NSNextKeyView" ref="386160512"/>
+								<reference key="NSNextKeyView" ref="252623511"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">120130608</int>
@@ -64,10 +65,6 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">photo_tag_title_bg@2x.png</string>
-								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">13</double>
@@ -80,7 +77,7 @@
 							</object>
 							<object class="IBUIButton" id="155139935">
 								<reference key="NSNextResponder" ref="53195597"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{97, 24}, {73, 31}}</string>
 								<reference key="NSSuperview" ref="53195597"/>
 								<reference key="NSNextKeyView" ref="554436942"/>
@@ -122,7 +119,7 @@
 							</object>
 							<object class="IBUIButton" id="100817114">
 								<reference key="NSNextResponder" ref="53195597"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{97, 61}, {73, 31}}</string>
 								<reference key="NSSuperview" ref="53195597"/>
 								<reference key="NSNextKeyView" ref="149847433"/>
@@ -151,7 +148,7 @@
 							</object>
 							<object class="IBUIButton" id="386160512">
 								<reference key="NSNextResponder" ref="53195597"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{9, 24}, {73, 31}}</string>
 								<reference key="NSSuperview" ref="53195597"/>
 								<reference key="NSNextKeyView" ref="155139935"/>
@@ -180,7 +177,7 @@
 							</object>
 							<object class="IBUIButton" id="292961515">
 								<reference key="NSNextResponder" ref="53195597"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{9, 61}, {73, 31}}</string>
 								<reference key="NSSuperview" ref="53195597"/>
 								<reference key="NSNextKeyView" ref="100817114"/>
@@ -209,7 +206,7 @@
 							</object>
 							<object class="IBUIButton" id="554436942">
 								<reference key="NSNextResponder" ref="53195597"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{183, 24}, {73, 31}}</string>
 								<reference key="NSSuperview" ref="53195597"/>
 								<reference key="NSNextKeyView" ref="292961515"/>
@@ -238,7 +235,7 @@
 							</object>
 							<object class="IBUIButton" id="149847433">
 								<reference key="NSNextResponder" ref="53195597"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<string key="NSFrame">{{183, 61}, {73, 31}}</string>
 								<reference key="NSSuperview" ref="53195597"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -264,10 +261,38 @@
 								<reference key="IBUIFontDescription" ref="662379815"/>
 								<reference key="IBUIFont" ref="798304529"/>
 							</object>
+							<object class="IBUIImageView" id="3763568">
+								<reference key="NSNextResponder" ref="53195597"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{9, 6}, {80, 6}}</string>
+								<reference key="NSSuperview" ref="53195597"/>
+								<reference key="NSNextKeyView" ref="573246883"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">tag_title_left@2x.png</string>
+								</object>
+							</object>
+							<object class="IBUIImageView" id="252623511">
+								<reference key="NSNextResponder" ref="53195597"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{176, 6}, {80, 6}}</string>
+								<reference key="NSSuperview" ref="53195597"/>
+								<reference key="NSNextKeyView" ref="386160512"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">tag_title_right@2x.png</string>
+								</object>
+							</object>
 						</array>
 						<string key="NSFrameSize">{265, 94}</string>
 						<reference key="NSSuperview" ref="948769604"/>
-						<reference key="NSNextKeyView" ref="573246883"/>
+						<reference key="NSNextKeyView" ref="3763568"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="450541649">
 							<int key="NSColorSpace">3</int>
@@ -322,6 +347,8 @@
 							<reference ref="149847433"/>
 							<reference ref="386160512"/>
 							<reference ref="292961515"/>
+							<reference ref="3763568"/>
+							<reference ref="252623511"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -360,6 +387,16 @@
 						<reference key="object" ref="292961515"/>
 						<reference key="parent" ref="948769604"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">11</int>
+						<reference key="object" ref="3763568"/>
+						<reference key="parent" ref="948769604"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">12</int>
+						<reference key="object" ref="252623511"/>
+						<reference key="parent" ref="948769604"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -368,6 +405,8 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">EditTagCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -386,7 +425,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">12</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -395,8 +434,9 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="photo_tag_select@2x.png">{130, 51}</string>
-			<string key="photo_tag_title_bg@2x.png">{200, 36}</string>
 			<string key="photo_tag_unselect@2x.png">{130, 51}</string>
+			<string key="tag_title_left@2x.png">{163, 12}</string>
+			<string key="tag_title_right@2x.png">{163, 12}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

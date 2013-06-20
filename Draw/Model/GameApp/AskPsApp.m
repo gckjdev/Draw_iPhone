@@ -187,6 +187,11 @@
     return YES;
 }
 
+- (NSString *)weixinId
+{
+    return ASK_PS_WEIXIN_ID;
+}
+
 - (NSString*)homeHeaderViewId
 {
     return @"DrawHomeHeaderPanel";
@@ -536,6 +541,27 @@
 - (BOOL)showLocateButton
 {
     return NO;
+}
+
+- (int)photoUsage
+{
+    return PBPhotoUsageForPs;
+}
+- (NSString*)keywordSmartDataCn
+{
+    return @"keywords.txt";
+}
+- (NSString*)keywordSmartDataEn
+{
+    return @"keywords_en.txt";
+}
+- (NSString*)photoTagsCn
+{
+    return @"photo_tags.txt";
+}
+- (NSString*)photoTagsEn
+{
+    return @"photo_tags_en.txt";
 }
 
 @end

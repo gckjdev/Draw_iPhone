@@ -170,4 +170,25 @@
     [IAPProductService createLearnDrawIngotTestDataFile];
 }
 
+- (int)photoUsage
+{
+    return PBPhotoUsageForDraw;
+}
+- (NSString*)keywordSmartDataCn
+{
+    return @"keywords.txt";
+}
+- (NSString*)keywordSmartDataEn
+{
+    return @"keywords_en.txt";
+}
+- (NSString*)photoTagsCn
+{
+    return @"photo_tags.txt";
+}
+- (NSString*)photoTagsEn
+{
+    return @"photo_tags_en.txt";
+}
+
 @end

@@ -11,10 +11,6 @@
 #import "PPSmartUpdateData.h"
 #import "TagPackage.h"
 
-#define PHOTO_TAG_FILE  ([LocaleUtils isChinese]?@"photo_tags.txt":@"photo_tags_en.txt")
-#define BUNDLE_FILE     ([LocaleUtils isChinese]?@"photo_tags.txt":@"photo_tags_en.txt")
-#define INIT_VER    @"1.0"
-
 @interface PhotoTagManager ()
 
 @property (retain, nonatomic) PPSmartUpdateData* smartData;
@@ -28,7 +24,8 @@
     
     self = [super init];
     if (self) {
-        self.smartData = [[[PPSmartUpdateData alloc] initWithName:PHOTO_TAG_FILE type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:BUNDLE_FILE initDataVersion:INIT_VER] autorelease];
+        NSString* smartDataFile = [LocaleUtils isChinese]?[GameApp photoTagsCn]:[GameApp photoTagsEn];
+        self.smartData = [[[PPSmartUpdateData alloc] initWithName:smartDataFile type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:smartDataFile initDataVersion:@"1.0"] autorelease];
         
         [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
             PPDebug(@"checkUpdateAndDownload successfully");

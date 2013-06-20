@@ -131,7 +131,8 @@
 
 //for opus
 #define METHOD_SUBMIT_OPUS @"submitOpus"
-
+#define METHOD_RANDOM_GET_SONGS @"randomGetSongs"
+#define PARA_SUB_CATEGORY @"subCategory"
 
 //contest
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"

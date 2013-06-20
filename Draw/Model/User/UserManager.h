@@ -90,6 +90,8 @@ typedef enum {
 - (void)setBloodGroup:(NSString*)bloodGroup;
 - (void)setExperience:(long)exp;
 - (void)setLevel:(int)level;
+- (void)setSingLimitTime:(int)value;
+
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;

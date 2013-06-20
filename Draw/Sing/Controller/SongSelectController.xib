@@ -238,7 +238,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">[消耗1个锦囊]</string>
+						<string key="IBUIText">[1个锦囊]</string>
 						<reference key="IBUITextColor" ref="396434834"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -267,7 +267,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">[消耗3个锦囊]</string>
+						<string key="IBUIText">[3个锦囊]</string>
 						<reference key="IBUITextColor" ref="396434834"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -574,6 +574,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">SongSelectController</string>
 					<string key="superclassName">PPTableViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">titleLabel</string>
+						<string key="NS.object.0">UILabel</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">titleLabel</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">titleLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/SongSelectController.h</string>

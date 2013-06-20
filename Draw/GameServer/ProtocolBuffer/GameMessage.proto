@@ -7,6 +7,7 @@ import "ZhaJinHua.proto";
 import "BBS.proto";
 import "Opus.proto";
 import "Photo.proto";
+import "Sing.proto";
 
 package game;
 
@@ -456,7 +457,6 @@ message GameMessage {
   
   optional TimeoutSettingRequest timeoutSettingRequest =163;
   optional TimeoutSettingResponse timeoutSettingResponse =164;
-
   
   // Normal
   optional int32 startOffset = 1000;        // 返回记录列表中的开始记录位置
@@ -505,5 +505,5 @@ message DataQueryResponse {
 
   repeated string idList = 90;              //for learn draw
 
-  
+  optional PBSongList songs = 101;  
 }

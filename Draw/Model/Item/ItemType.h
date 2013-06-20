@@ -41,7 +41,8 @@ typedef enum
     
     ItemTypeGrid = 1106,
     
-    ItemTypePurse = 1105,            
+    ItemTypePurse = 1105,
+    ItemTypePurseOneThousand = 1107,
     
     DrawBackgroundStart = 1200,
     DrawBackground1,                
@@ -53,7 +54,15 @@ typedef enum
     DrawBackground7,
     DrawBackground8,
     DrawBackground9,
-    
+   //Add 2013-6-17 By Gamy 
+    DrawBackground10,
+    DrawBackground11,                
+    DrawBackground12,
+    DrawBackground13,
+    DrawBackground14,
+    DrawBackground15,
+    DrawBackground16,
+    DrawBackground17,
     ///////////////
     BasicShape = 1300,
     

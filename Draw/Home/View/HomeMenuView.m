@@ -10,6 +10,7 @@
 #import "DrawImageManager.h"
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
+#import "StatisticManager.h"
 
 @implementation HomeMenuView
 @synthesize button = _button;
@@ -438,7 +439,7 @@
 
 
 
-int *getDrawMainMenuTypeListWithFreeCoins()
+int *getDrawMainMenuTypeListHasNewContest()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
@@ -449,7 +450,23 @@ int *getDrawMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawBigShop,
-//        HomeMenuTypeDrawCharge, //no icon now, when icon designed, revover it --kira
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+int *getDrawMainMenuTypeListNotHasNewContest()
+{
+    int static list[] = {
+        HomeMenuTypeDrawDraw,
+        HomeMenuTypeDrawGuess,
+        HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
@@ -466,7 +483,6 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawBigShop,
-//        HomeMenuTypeDrawCharge, //no icon now, when icon designed, revover it --kira
         HomeMenuTypeDrawMore,
         HomeMenuTypeEnd
     };
@@ -475,7 +491,15 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
 
 int *getDrawMainMenuTypeList()
 {
-    return ([ConfigManager freeCoinsEnabled] ? getDrawMainMenuTypeListWithFreeCoins() : getDrawMainMenuTypeListWithoutFreeCoins());
+    if ([ConfigManager freeCoinsEnabled]) {
+        if ([[StatisticManager defaultManager] newContestCount] > 0) {
+            return getDrawMainMenuTypeListHasNewContest();
+        } else {
+            return getDrawMainMenuTypeListNotHasNewContest();
+        }
+    } else {
+        return getDrawMainMenuTypeListWithoutFreeCoins();
+    }
 }
 
 

@@ -411,6 +411,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]
                                 defaultSaleCount:1]];
     
+    // 1元宝购买1000金币的钱箱
+    [mutableArray addObject:[self itemWithItemId:ItemTypePurseOneThousand
+                                            name:@"kItemTypePurseOneThousand"
+                                            desc:@"kItemTypePurseOneThousandDesc"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_purse@2x.png")
+                                            type:PBDrawItemTypeDrawNomal
+                                           price:1
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:1
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]
+                                defaultSaleCount:1]];
+    
+    
     
     // 透明笔
     [mutableArray addObject:[self itemWithItemId:ColorAlphaItem
@@ -480,9 +495,176 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    //雨雪形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeNature0
+                                            name:@"Snow"
+                                            desc:@"Snow Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_snow@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    //日月形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeNature1
+                                            name:@"Sun"
+                                            desc:@"Sun Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_sun@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    //飞禽形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeAnimal0
+                                            name:@"Bird"
+                                            desc:@"Bird Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_bird@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    //走兽形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeAnimal1
+                                            name:@"Animal"
+                                            desc:@"Animal Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_animal@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //棱角形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeShape0
+                                            name:@"Corner"
+                                            desc:@"Corner Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_corner@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //圆弧形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeShape1
+                                            name:@"Arc"
+                                            desc:@"Arc Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_arc@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //家具形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeStuff0
+                                            name:@"Stuff"
+                                            desc:@"Stuff Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_stuff@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //出行形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeStuff1
+                                            name:@"Travel"
+                                            desc:@"Travel Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_travel@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //算术形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeSign0
+                                            name:@"Math"
+                                            desc:@"Math Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_math@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //玄音形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeSign1
+                                            name:@"Music"
+                                            desc:@"Music Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_music@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+
+    
+    //芳草形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapePlant0
+                                            name:@"Grass"
+                                            desc:@"Grass Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_grass@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //落木形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapePlant1
+                                            name:@"Leaf"
+                                            desc:@"Leaf Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_leaf@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //羞花形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapePlant2
+                                            name:@"Flower"
+                                            desc:@"Flower Icons"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_flower@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
     // 网格参考线
     [mutableArray addObject:[self itemWithItemId:ItemTypeGrid
                                             name:@"kItemTypeGrid"
@@ -609,6 +791,110 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             desc:@"kDrawBgMirfakDesc"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_mirfak@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景10
+    [mutableArray addObject:[self itemWithItemId:DrawBackground10
+                                            name:@"Rigel"
+                                            desc:@"RigelDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_rigel@2x.jpg")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景11
+    [mutableArray addObject:[self itemWithItemId:DrawBackground11
+                                            name:@"Procyon"
+                                            desc:@"ProcyonDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_procyon@2x.jpg")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景12
+    [mutableArray addObject:[self itemWithItemId:DrawBackground12
+                                            name:@"Achernar"
+                                            desc:@"AchernarDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_achernar@2x.jpg")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景13
+    [mutableArray addObject:[self itemWithItemId:DrawBackground13
+                                            name:@"Regor"
+                                            desc:@"RegorDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_regor@2x.jpg")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景14
+    [mutableArray addObject:[self itemWithItemId:DrawBackground14
+                                            name:@"Mirzam"
+                                            desc:@"MirzamDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_mirzam@2x.jpg")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景15
+    [mutableArray addObject:[self itemWithItemId:DrawBackground15
+                                            name:@"Dubhe"
+                                            desc:@"DubheDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_dubhe@2x.jpg")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景16
+    [mutableArray addObject:[self itemWithItemId:DrawBackground16
+                                            name:@"Avior"
+                                            desc:@"AviorDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_avior@2x.jpg")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4
+                                        currency:PBGameCurrencyIngot
+                                  promotionPrice:4/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    // 背景17
+    [mutableArray addObject:[self itemWithItemId:DrawBackground17
+                                            name:@"Alkaid"
+                                            desc:@"AlkaidDesc"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_draw_bg_alkaid@2x.jpg")
                                             type:PBDrawItemTypeDrawTool
                                            price:4
                                         currency:PBGameCurrencyIngot

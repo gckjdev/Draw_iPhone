@@ -10,6 +10,7 @@
 #import "Bbs.pb.h"
 #import "Opus.pb.h"
 #import "Photo.pb.h"
+#import "Sing.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
@@ -214,8 +215,6 @@
 @class PBSongCategory_Builder;
 @class PBSongList;
 @class PBSongList_Builder;
-@class PBSongTag;
-@class PBSongTag_Builder;
 @class PBSong_Builder;
 @class PBTimeline;
 @class PBTimeline_Builder;
@@ -4471,6 +4470,7 @@ BOOL BetTypeIsValidValue(BetType value);
   BOOL hasTotalCount_:1;
   BOOL hasVersion_:1;
   BOOL hasUserRelation_:1;
+  BOOL hasSongs_:1;
   BOOL hasOpus_:1;
   BOOL hasUser_:1;
   BOOL hasUserPhoto_:1;
@@ -4480,6 +4480,7 @@ BOOL BetTypeIsValidValue(BetType value);
   int32_t totalCount;
   int32_t version;
   int32_t userRelation;
+  PBSongList* songs;
   PBOpus* opus;
   PBGameUser* user;
   PBUserPhoto* userPhoto;
@@ -4508,6 +4509,7 @@ BOOL BetTypeIsValidValue(BetType value);
 - (BOOL) hasUser;
 - (BOOL) hasUserRelation;
 - (BOOL) hasOpus;
+- (BOOL) hasSongs;
 @property (readonly) int32_t resultCode;
 @property (readonly) int32_t totalCount;
 @property (readonly) int32_t version;
@@ -4517,6 +4519,7 @@ BOOL BetTypeIsValidValue(BetType value);
 @property (readonly, retain) PBGameUser* user;
 @property (readonly) int32_t userRelation;
 @property (readonly, retain) PBOpus* opus;
+@property (readonly, retain) PBSongList* songs;
 - (NSArray*) drawDataList;
 - (PBDraw*) drawDataAtIndex:(int32_t) index;
 - (NSArray*) messageList;
@@ -4723,5 +4726,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) addIdList:(NSString*) value;
 - (DataQueryResponse_Builder*) addAllIdList:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearIdListList;
+
+- (BOOL) hasSongs;
+- (PBSongList*) songs;
+- (DataQueryResponse_Builder*) setSongs:(PBSongList*) value;
+- (DataQueryResponse_Builder*) setSongsBuilder:(PBSongList_Builder*) builderForValue;
+- (DataQueryResponse_Builder*) mergeSongs:(PBSongList*) value;
+- (DataQueryResponse_Builder*) clearSongs;
 @end
 

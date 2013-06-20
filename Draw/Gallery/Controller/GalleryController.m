@@ -14,6 +14,8 @@
 #import "StorageManager.h"
 //#import "SearchResultView.h"
 #import "CommonMessageCenter.h"
+#import "CommonDialog.h"
+#import "InputDialog.h"
 
 @interface GalleryController () {
     NSString* _currentImageUrl;
@@ -136,7 +138,7 @@
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     
-    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:PBPhotoUsageForPs offset:[self currentTab].offset limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
+    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:[self currentTab].offset limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self finishLoadDataForTabID:[self currentTab].tabID resultList:resultArray];
 //        [self loadTestData];
     }];
@@ -171,13 +173,14 @@
 
 enum {
     actionShowResult = 0,
-    actionEdit,
+    actionEditTag,
+    actionEditName,
     actionDelete,
 };
 #pragma mark - UserPhotoView delegate
 - (void)didClickPhoto:(PBUserPhoto *)photo
 {
-    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kShareAction") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kEdit"), NSLS(@"kDelete"), nil];
+    MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOptions") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kSetTag"), NSLS(@"kEditName"), NSLS(@"kDelete"), nil];
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     __block GalleryController* cp = self;
@@ -189,8 +192,11 @@ enum {
             case actionShowResult: {
                 [cp showPhoto:photo];
             } break;
-            case actionEdit: {
+            case actionEditTag: {
                 [cp editPhoto:photo];
+            } break;
+            case actionEditName: {
+                [cp editName:photo];
             } break;
             case actionDelete: {
                 [cp deletePhoto:photo];
@@ -203,25 +209,61 @@ enum {
     
 }
 
-- (void)deletePhoto:(PBUserPhoto*)photo
+- (void)editName:(PBUserPhoto*)photo
 {
-    [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId usage:PBPhotoUsageForPs resultBlock:^(int resultCode) {
+    __block GalleryController* cp = self;
+    InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kEnterNewName") clickOK:^(NSString *inputStr) {
+        [cp editPhoto:photo withName:inputStr];
+    } clickCancel:^(NSString *inputStr) {
+        //
+    }];
+    [dialog showInView:self.view];
+}
+
+- (void)editPhoto:(PBUserPhoto*)photo
+         withName:(NSString*)name
+{
+    [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tagsList] usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto* photo) {
         if (resultCode == 0) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
+            PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [photo.tagsList description]);
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
             [self reloadTableViewDataSource];
         } else {
             PPDebug(@"<deletePhoto> err code = %d", resultCode);
         }
-     
     }];
+}
+
+- (void)deletePhoto:(PBUserPhoto*)photo
+{
+    __block GalleryController* cp = self;
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDelete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId
+                                                   usage:[GameApp photoUsage]
+                                             resultBlock:^(int resultCode) {
+            if (resultCode == 0) {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
+                [cp reloadTableViewDataSource];
+            } else {
+                PPDebug(@"<deletePhoto> err code = %d", resultCode);
+            }
+            
+        }];
+    } clickCancelBlock:^{
+        //
+    }];
+    [dialog showInView:self.view];
 }
 
 - (void)editPhoto:(PBUserPhoto*)photo
 {
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo editName:YES resultBlock:^(NSString *name, NSSet *tagSet) {
-        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:tagSet usage:PBPhotoUsageForPs resultBlock:^(int resultCode, PBUserPhoto* photo) {
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo
+                                                       title:NSLS(@"kSetTag")
+                                                confirmTitle:NSLS(@"kConfirm")
+                                                 resultBlock:^(NSSet *tagSet) {
+        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:photo.name tagSet:tagSet usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto* photo) {
             if (resultCode == 0) {
-                PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, name, [tagSet description]);
+                PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [tagSet description]);
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
                 [self reloadTableViewDataSource];
             } else {
@@ -249,7 +291,10 @@ enum {
     }
     
     __block GalleryController* cp = self;
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto editName:NO resultBlock:^(NSString *name, NSSet *tagSet) {
+    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto
+                                                       title:NSLS(@"kFilter")
+                                                confirmTitle:NSLS(@"kFilter")
+                                                 resultBlock:^(NSSet *tagSet) {
         cp.tagSet = tagSet;
         [cp reloadTableViewDataSource];
     }];
