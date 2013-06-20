@@ -1699,36 +1699,36 @@
 "kBasicShapeDescription" = "用於繪畫，包含直線、圓形、矩形、五角星、三角形五種基本形狀";
 
 "Snow" = "雨雪";
-"SnowDescription" = "to do";
+"Snow Icons" = "用於繪畫，包含雲朵、雪花、水滴形狀";
 "Sun" = "日月";
-"SunDescription" = "to do";
+"Sun Icons" = "用於繪畫，包含閃電、太遠、月亮、火光形狀";
 
 "Bird" = "飛禽";
-"BirdDescription" = "to do";
+"Bird Icons" = "用於繪畫，包含小鳥、公雞、飛鷹、魚、熊掌形狀";
 "Animal" = "走獸";
-"AnimalDescription" = "to do";
+"Animal Icons" = "用於繪畫，包含貓、狗、豬、兔子、蝸牛、鯨魚形狀";
 
 "Corner" = "棱角";
-"CornerDescription" = "to do";
+"Corner Icons" = "用於繪畫，包含梯形、菱形、六邊形、八角星、十角星、多角星形狀";
 "Arc" = "圓弧";
-"ArcDescription" = "to do";
-
-"Math" = "算術";
-"MathDescription" = "to do";
-"Music" = "玄音";
-"MusicDescription" = "to do";
+"Arc Icons" = "用於繪畫，包含圓角星、海浪、心形、氣泡形狀";
 
 "Stuff" = "家具";
-"StuffDescription" = "to do";
+"Stuff Icons" = "用於繪畫，包含扣針、刷子、鉛筆、毛筆、燈泡形狀";
 "Travel" = "出行";
-"TravelDescription" = "to do";
+"Travel Icons" = "用於繪畫，包含相機、雨傘、單車、放大鏡、耳機形狀";
+
+"Math" = "算術";
+"Math Icons" = "用於繪畫，包含勾形、叉形、稱號、加號、性別、箭頭形狀";
+"Music" = "玄音";
+"Music Icons" = "用於繪畫，包含音符、播放、快進、循環形狀";
 
 "Grass" = "芳草";
-"GrassDescription" = "to do";
+"Grass Iconsn" = "用於繪畫，包含各種葉子的形狀";
 "Leaf" = "落木";
-"LeafDescription" = "to do";
+"Leaf Icons" = "用於繪畫，包含各種樹木、小草的形狀";
 "Flower" = "羞花";
-"FlowerDescription" = "to do";
+"Flower Icons" = "用於繪畫，包含各種花的形狀";
 
 
 "kUpdateTips" = "更新提示";
