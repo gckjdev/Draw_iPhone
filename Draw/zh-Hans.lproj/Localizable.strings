@@ -1296,6 +1296,11 @@
 "kAskLoginTitle" = "注册提示";
 "kAskLoginMessage" = "你尚未注册，无法使用此功能，马上注册吗？注册只需10秒";
 
+"kOption" = "选项";
+"kPlay" = "播放";
+"kGuess" = "猜画";
+"kLargeImage" = "大图";
+
 
 "kLearnDrawAll" = "全部";
 "kLearnDrawCartoon" = "动漫";

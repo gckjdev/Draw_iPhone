@@ -573,34 +573,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
-    //算术形状
-    [mutableArray addObject:[self itemWithItemId:ImageShapeStuff0
-                                            name:@"Math"
-                                            desc:@"MathDescription"
-                                     consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_math@2x.png")
-                                            type:PBDrawItemTypeDrawTool
-                                           price:5
-                                        currency:PBGameCurrencyIngot //]];
-                                  promotionPrice:5/discount
-                                       startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
-    
-    //玄音形状
-    [mutableArray addObject:[self itemWithItemId:ImageShapeStuff1
-                                            name:@"Music"
-                                            desc:@"MusicDescription"
-                                     consumeType:PBGameItemConsumeTypeNonConsumable
-                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_music@2x.png")
-                                            type:PBDrawItemTypeDrawTool
-                                           price:5
-                                        currency:PBGameCurrencyIngot //]];
-                                  promotionPrice:5/discount
-                                       startDate:[NSDate date]
-                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
-    
     //家具形状
-    [mutableArray addObject:[self itemWithItemId:ImageShapeSign0
+    [mutableArray addObject:[self itemWithItemId:ImageShapeStuff0
                                             name:@"Stuff"
                                             desc:@"StuffDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
@@ -613,7 +587,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     //出行形状
-    [mutableArray addObject:[self itemWithItemId:ImageShapeSign1
+    [mutableArray addObject:[self itemWithItemId:ImageShapeStuff1
                                             name:@"Travel"
                                             desc:@"TravelDescription"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
@@ -624,6 +598,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:5/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //算术形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeSign0
+                                            name:@"Math"
+                                            desc:@"MathDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_math@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //玄音形状
+    [mutableArray addObject:[self itemWithItemId:ImageShapeSign1
+                                            name:@"Music"
+                                            desc:@"MusicDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_music@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:5
+                                        currency:PBGameCurrencyIngot //]];
+                                  promotionPrice:5/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+
     
     //芳草形状
     [mutableArray addObject:[self itemWithItemId:ImageShapePlant0

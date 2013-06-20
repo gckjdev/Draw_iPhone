@@ -45,6 +45,9 @@
 #import "FeedSceneDetailGuessResult.h"
 #import "FeedSceneFeedDetail.h"
 #import "HomeController.h"
+#import "MKBlockActionSheet.h"
+
+#import "MWPhotoBrowser.h"
 
 
 @interface ShowFeedController () {
@@ -824,11 +827,59 @@ enum{
 
 - (void)didClickDrawImageMaskView
 {
-    if ([self.feed showAnswer]) {
-        [self clickActionButton:self.replayButton];
+    int indexOfGuess = 0;
+    int indexOfPlay = 1;
+    int indexOfPhoto = 2;
+    
+    MKBlockActionSheet *sheet = nil;
+    
+    if (![self.feed showAnswer]) {
+        sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
+                                                 delegate:nil
+                                        cancelButtonTitle:NSLS(@"kCancel")
+                                   destructiveButtonTitle:NSLS(@"kGuess") otherButtonTitles:NSLS(@"kPlay"),NSLS(@"kLargeImage"), nil];
     }else{
-        [self clickActionButton:self.guessButton];
+        sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
+                                                 delegate:nil
+                                        cancelButtonTitle:NSLS(@"kCancel")
+                                   destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), nil];
+        indexOfGuess = -1;
+        indexOfPlay = 0;
+        indexOfPhoto = 1;
     }
+    
+    [sheet setActionBlock:^(NSInteger buttonIndex){
+        if (buttonIndex == indexOfGuess) {
+            [self clickActionButton:self.guessButton];
+        }else if (buttonIndex == indexOfPhoto){
+            //TODO show photo
+            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+            browser.canSave = YES;
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+            nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentModalViewController:nc animated:YES];
+            [browser release];
+            [nc release];
+            
+        }else if (buttonIndex == indexOfPlay){
+            [self clickActionButton:self.replayButton];
+        }else{
+            
+        }
+        
+        [sheet setActionBlock:NULL];
+    }];
+    [sheet showInView:self.view];
+
+}
+
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    return [MWPhoto photoWithURL:self.feed.largeImageURL];
 }
 
 
