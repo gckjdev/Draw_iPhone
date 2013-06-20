@@ -1190,36 +1190,36 @@
 "kBasicShapeDescription" = "Use to draw line、circle、rectangle、five-pointed star and triangle";
 
 "Snow" = "Snow";
-"SnowDescription" = "to do";
+"Snow Icons" = "用于绘画，包含云朵、雪花、水滴形状";
 "Sun" = "Sun";
-"SunDescription" = "to do";
+"Sun Icons" = "用于绘画，包含闪电、太远、月亮、火光形状";
 
 "Bird" = "Bird";
-"BirdDescription" = "to do";
+"Bird Icons" = "用于绘画，包含小鸟、公鸡、飞鹰、鱼、熊掌形状";
 "Animal" = "Animal";
-"AnimalDescription" = "to do";
+"Animal Icons" = "用于绘画，包含猫、狗、猪、兔子、蜗牛、鲸鱼形状";
 
 "Corner" = "Corner";
-"CornerDescription" = "to do";
+"Corner Icons" = "用于绘画，包含梯形、菱形、六边形、八角星、十角星、多角星形状";
 "Arc" = "Arc";
-"ArcDescription" = "to do";
-
-"Math" = "Math";
-"MathDescription" = "to do";
-"Music" = "Music";
-"MusicDescription" = "to do";
+"Arc Icons" = "用于绘画，包含圆角星、海浪、心形、气泡形状";
 
 "Stuff" = "Stuff";
-"StuffDescription" = "to do";
+"Stuff Icons" = "用于绘画，包含扣针、刷子、铅笔、毛笔、灯泡形状";
 "Travel" = "Travel";
-"TravelDescription" = "to do";
+"Travel Icons" = "用于绘画，包含相机、雨伞、单车、放大镜、耳机形状";
+
+"Math" = "Math";
+"Math Icons" = "用于绘画，包含勾形、叉形、称号、加号、性别、箭头形状";
+"Music" = "Music";
+"Music Icons" = "用于绘画，包含音符、播放、快进、循环形状";
 
 "Grass" = "Grass";
-"GrassDescription" = "to do";
+"Grass Iconsn" = "用于绘画，包含各种叶子的形状";
 "Leaf" = "Leaf";
-"LeafDescription" = "to do";
+"Leaf Icons" = "用于绘画，包含各种树木、小草的形状";
 "Flower" = "Flower";
-"FlowerDescription" = "to do";
+"Flower Icons" = "用于绘画，包含各种花的形状";
 
 
 "kUpdateTips" = "Update Tips";

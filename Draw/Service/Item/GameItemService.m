@@ -498,7 +498,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //雨雪形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeNature0
                                             name:@"Snow"
-                                            desc:@"SnowDescription"
+                                            desc:@"Snow Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_snow@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -511,7 +511,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //日月形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeNature1
                                             name:@"Sun"
-                                            desc:@"SunDescription"
+                                            desc:@"Sun Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_sun@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -524,7 +524,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //飞禽形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeAnimal0
                                             name:@"Bird"
-                                            desc:@"BirdDescription"
+                                            desc:@"Bird Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_bird@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -537,7 +537,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //走兽形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeAnimal1
                                             name:@"Animal"
-                                            desc:@"AnimalDescription"
+                                            desc:@"Animal Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_animal@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -550,7 +550,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //棱角形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeShape0
                                             name:@"Corner"
-                                            desc:@"CornerDescription"
+                                            desc:@"Corner Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_corner@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -563,7 +563,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //圆弧形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeShape1
                                             name:@"Arc"
-                                            desc:@"ArcDescription"
+                                            desc:@"Arc Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_arc@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -576,7 +576,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //家具形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeStuff0
                                             name:@"Stuff"
-                                            desc:@"StuffDescription"
+                                            desc:@"Stuff Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_stuff@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -589,7 +589,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //出行形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeStuff1
                                             name:@"Travel"
-                                            desc:@"TravelDescription"
+                                            desc:@"Travel Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_travel@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -602,7 +602,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //算术形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeSign0
                                             name:@"Math"
-                                            desc:@"MathDescription"
+                                            desc:@"Math Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_math@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -615,7 +615,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //玄音形状
     [mutableArray addObject:[self itemWithItemId:ImageShapeSign1
                                             name:@"Music"
-                                            desc:@"MusicDescription"
+                                            desc:@"Music Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_music@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -630,7 +630,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //芳草形状
     [mutableArray addObject:[self itemWithItemId:ImageShapePlant0
                                             name:@"Grass"
-                                            desc:@"GrassDescription"
+                                            desc:@"Grass Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_grass@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -643,7 +643,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //落木形状
     [mutableArray addObject:[self itemWithItemId:ImageShapePlant1
                                             name:@"Leaf"
-                                            desc:@"LeafDescription"
+                                            desc:@"Leaf Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_leaf@2x.png")
                                             type:PBDrawItemTypeDrawTool
@@ -656,7 +656,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     //羞花形状
     [mutableArray addObject:[self itemWithItemId:ImageShapePlant2
                                             name:@"Flower"
-                                            desc:@"FlowerDescription"
+                                            desc:@"Flower Icons"
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_image_shape_flower@2x.png")
                                             type:PBDrawItemTypeDrawTool
