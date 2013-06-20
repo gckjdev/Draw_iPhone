@@ -10,8 +10,11 @@
 #import "SongSelectController.h"
 #import "SingOpusDetailController.h"
 #import "SingGuessController.h"
+#import "OpusManageController.h"
 
 @interface SingHomeController ()
+
+- (IBAction)clickTest:(id)sender;
 
 @end
 
@@ -21,8 +24,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+#ifdef DEBUG
+
+    [self.view bringSubviewToFront:self.testBtn];
+#endif
     // Do any additional setup after loading the view from its nib.
 }
+
+#ifdef DEBUG
+#define SING_MY_OPUS_DB     @"sing_my_opus.db"
+#define SING_FAVORITE_DB    @"sing_favorite.db"
+#define SING_DRAFT_DB       @"sing_draft.db"
+- (IBAction)clickTest:(id)sender
+{
+    OpusManageController* vc = [[[OpusManageController alloc] initWithClass:NSClassFromString(@"SingOpus") selfDb:SING_MY_OPUS_DB favoriteDb:SING_FAVORITE_DB draftDb:SING_DRAFT_DB] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+#endif
 
 - (void)didReceiveMemoryWarning
 {
@@ -132,4 +150,12 @@
 }
 
 
+- (void)dealloc {
+    [_testBtn release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setTestBtn:nil];
+    [super viewDidUnload];
+}
 @end

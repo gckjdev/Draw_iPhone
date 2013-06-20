@@ -824,6 +824,15 @@
 "kDrawBgRegulus" = "軒轅";
 "kDrawBgMirfak" = "天船";
 
+"Rigel" = "參宿";
+"Procyon" = "南河";
+"Achernar" = "水委";
+"Regor" = "天社";
+"Mirzam" = "軍市";
+"Dubhe" = "天樞";
+"Avior" = "海石";
+"Alkaid" = "搖光";
+
 "kDrawBgAntaresDesc" = "一套素雅的肌理背景，給你​​的畫面增添別樣的樂趣";
 "kDrawBgAdharaDesc" = "水彩效果的繪畫背景，讓你的畫面更加豐富靈動";
 "kDrawBgElnathDesc" = "信紙？相框？怎麼用的妙趣橫生？盡情發揮你的想像吧";
@@ -833,6 +842,15 @@
 "kDrawBgPolluxDesc" = "一套漸變背景，幫你更輕鬆的繪製出長河落日星空大海";
 "kDrawBgRegulusDesc" = "一套中國風背景，為你的畫面增添濃濃墨韻";
 "kDrawBgMirfakDesc" = "一套彩色相框，把你的作品集裝點的更加生動活潑";
+
+"RigelDesc" = "五種不同質感的紙張背景，幫您打造更加獨特的畫面效果";
+"ProcyonDesc" = "一套牛皮紙背景，幫您留下時光的印記";
+"AchernarDesc" = "各種質感的黑色背景，讓您的作品裹上一層神秘的外衣";
+"RegorDesc" = "一套藍色背景，星空大海讓它來幫助你";
+"MirzamDesc" = "一套素雅布紋背景，讓您的畫面更加質樸純淨";
+"DubheDesc" = "五種不同的水彩暈染背景，給您的作品增添夢幻氣息";
+"AviorDesc" = "一套水墨淡彩背景，娓娓道來詩情畫意";
+"AlkaidDesc" = "一套清新花紋背景，奇妙氛圍輕鬆打造";
 
 "kPickToolTitle" = "使用道具";
 
@@ -1262,6 +1280,11 @@
 "kAskLoginMessage" = "你尚未註冊，無法使用此功能，馬上註冊嗎？註冊只需10秒";
 
 
+"kOption" = "選項";
+"kPlay" = "播放";
+"kGuess" = "猜畫";
+"kLargeImage" = "大圖";
+
 "kLearnDrawAll" = "全部";
 "kLearnDrawCartoon" = "動漫";
 "kLearnDrawCharater" = "人物";
@@ -1674,6 +1697,38 @@
 
 "kBasicShape" = "基本形狀";
 "kBasicShapeDescription" = "用於繪畫，包含直線、圓形、矩形、五角星、三角形五種基本形狀";
+
+"Snow" = "雨雪";
+"Snow Icons" = "用於繪畫，包含雲朵、雪花、水滴形狀";
+"Sun" = "日月";
+"Sun Icons" = "用於繪畫，包含閃電、太遠、月亮、火光形狀";
+
+"Bird" = "飛禽";
+"Bird Icons" = "用於繪畫，包含小鳥、公雞、飛鷹、魚、熊掌形狀";
+"Animal" = "走獸";
+"Animal Icons" = "用於繪畫，包含貓、狗、豬、兔子、蝸牛、鯨魚形狀";
+
+"Corner" = "棱角";
+"Corner Icons" = "用於繪畫，包含梯形、菱形、六邊形、八角星、十角星、多角星形狀";
+"Arc" = "圓弧";
+"Arc Icons" = "用於繪畫，包含圓角星、海浪、心形、氣泡形狀";
+
+"Stuff" = "家具";
+"Stuff Icons" = "用於繪畫，包含扣針、刷子、鉛筆、毛筆、燈泡形狀";
+"Travel" = "出行";
+"Travel Icons" = "用於繪畫，包含相機、雨傘、單車、放大鏡、耳機形狀";
+
+"Math" = "算術";
+"Math Icons" = "用於繪畫，包含勾形、叉形、稱號、加號、性別、箭頭形狀";
+"Music" = "玄音";
+"Music Icons" = "用於繪畫，包含音符、播放、快進、循環形狀";
+
+"Grass" = "芳草";
+"Grass Iconsn" = "用於繪畫，包含各種葉子的形狀";
+"Leaf" = "落木";
+"Leaf Icons" = "用於繪畫，包含各種樹木、小草的形狀";
+"Flower" = "羞花";
+"Flower Icons" = "用於繪畫，包含各種花的形狀";
 
 
 "kUpdateTips" = "更新提示";

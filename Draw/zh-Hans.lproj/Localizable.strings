@@ -826,6 +826,15 @@
 "kDrawBgRegulus" = "轩辕";
 "kDrawBgMirfak" = "天船";
 
+"Rigel" = "参宿";
+"Procyon" = "南河";
+"Achernar" = "水委";
+"Regor" = "天社";
+"Mirzam" = "军市";
+"Dubhe" = "天枢";
+"Avior" = "海石";
+"Alkaid" = "摇光";
+
 "kDrawBgAntaresDesc" = "一套素雅的肌理背景，给你的画面增添别样的乐趣";
 "kDrawBgAdharaDesc" = "水彩效果的绘画背景，让你的画面更加丰富灵动";
 "kDrawBgElnathDesc" = "信纸？相框？怎么用的妙趣横生？尽情发挥你的想象吧";
@@ -835,6 +844,15 @@
 "kDrawBgPolluxDesc" = "一套渐变背景，帮你更轻松的绘制出长河落日星空大海";
 "kDrawBgRegulusDesc" = "一套中国风背景，为你的画面增添浓浓墨韵";
 "kDrawBgMirfakDesc" = "一套彩色相框，把你的作品集装点的更加生动活泼";
+
+"RigelDesc" = "五种不同质感的纸张背景，帮您打造更加独特的画面效果";
+"ProcyonDesc" = "一套牛皮纸背景，帮您留下时光的印记";
+"AchernarDesc" = "各种质感的黑色背景，让您的作品裹上一层神秘的外衣";
+"RegorDesc" = "一套蓝色背景，星空大海让它来帮助你";
+"MirzamDesc" = "一套素雅布纹背景，让您的画面更加质朴纯净";
+"DubheDesc" = "五种不同的水彩晕染背景，给您的作品增添梦幻气息";
+"AviorDesc" = "一套水墨淡彩背景，娓娓道来诗情画意";
+"AlkaidDesc" = "一套清新花纹背景，奇妙氛围轻松打造";
 
 "kPickToolTitle" = "使用道具";
 
@@ -1278,6 +1296,11 @@
 "kAskLoginTitle" = "注册提示";
 "kAskLoginMessage" = "你尚未注册，无法使用此功能，马上注册吗？注册只需10秒";
 
+"kOption" = "选项";
+"kPlay" = "播放";
+"kGuess" = "猜画";
+"kLargeImage" = "大图";
+
 
 "kLearnDrawAll" = "全部";
 "kLearnDrawCartoon" = "动漫";
@@ -1690,6 +1713,37 @@
 "kBasicShape" = "基本形状";
 "kBasicShapeDescription" = "用于绘画，包含直线、圆形、矩形、五角星、三角形五种基本形状";
 
+"Snow" = "雨雪";
+"Snow Icons" = "用于绘画，包含云朵、雪花、水滴形状";
+"Sun" = "日月";
+"Sun Icons" = "用于绘画，包含闪电、太远、月亮、火光形状";
+
+"Bird" = "飞禽";
+"Bird Icons" = "用于绘画，包含小鸟、公鸡、飞鹰、鱼、熊掌形状";
+"Animal" = "走兽";
+"Animal Icons" = "用于绘画，包含猫、狗、猪、兔子、蜗牛、鲸鱼形状";
+
+"Corner" = "棱角";
+"Corner Icons" = "用于绘画，包含梯形、菱形、六边形、八角星、十角星、多角星形状";
+"Arc" = "圆弧";
+"Arc Icons" = "用于绘画，包含圆角星、海浪、心形、气泡形状";
+
+"Stuff" = "家具";
+"Stuff Icons" = "用于绘画，包含扣针、刷子、铅笔、毛笔、灯泡形状";
+"Travel" = "出行";
+"Travel Icons" = "用于绘画，包含相机、雨伞、单车、放大镜、耳机形状";
+
+"Math" = "算术";
+"Math Icons" = "用于绘画，包含勾形、叉形、称号、加号、性别、箭头形状";
+"Music" = "玄音";
+"Music Icons" = "用于绘画，包含音符、播放、快进、循环形状";
+
+"Grass" = "芳草";
+"Grass Iconsn" = "用于绘画，包含各种叶子的形状";
+"Leaf" = "落木";
+"Leaf Icons" = "用于绘画，包含各种树木、小草的形状";
+"Flower" = "羞花";
+"Flower Icons" = "用于绘画，包含各种花的形状";
 
 "kUpdateTips" = "更新提示";
 "kVersionIsOld"  = "版本过低，不能使用该功能，确定立即更新？";

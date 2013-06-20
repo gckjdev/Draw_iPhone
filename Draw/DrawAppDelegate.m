@@ -74,7 +74,7 @@
 #import "SKProductService.h"
 #import "ShareController.h"
 
-
+#import "DrawUtils.h"
 #import "ImageShapeManager.h"
 
 NSString* GlobalGetServerURL()
@@ -339,6 +339,21 @@ NSString* GlobalGetBoardServerURL()
     
 //    PPDebug(@"level=%d exp=%ld", 39, [[LevelService defaultService] getExpByLevel:39]);
 //    PPDebug(@"level=%d exp=%ld", 40, [[LevelService defaultService] getExpByLevel:40]);
+    
+    
+    DrawColor* drawColor = [DrawColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.10];
+    PPDebug(@"before=%@", [drawColor description]);
+    int color = [DrawUtils compressColor8WithRed:0.9 green:0.9 blue:0.9 alpha:0.10];
+    PPDebug(@"color=%d", color);
+    drawColor = [DrawColor colorWithBetterCompressColor:color];
+    PPDebug(@"after=%@", [drawColor description]);
+    
+    drawColor = [DrawColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.08];
+    PPDebug(@"before=%@", [drawColor description]);
+    color = [DrawUtils compressColor8WithRed:0.5 green:0.5 blue:0.5 alpha:0.08];
+    PPDebug(@"color=%d", color);
+    drawColor = [DrawColor colorWithBetterCompressColor:color];
+    PPDebug(@"after=%@", [drawColor description]);
     
     return YES;
 }

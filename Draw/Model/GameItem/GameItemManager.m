@@ -15,7 +15,7 @@
 
 #define SHOP_ITEMS_FILE_WITHOUT_SUFFIX @"shop_item"
 #define SHOP_ITEM_FILE_TYPE @"pb"
-#define SHOP_ITEMS_FILE_VERSION @"1.0"
+#define SHOP_ITEMS_FILE_VERSION @"2.0"
 
 @interface GameItemManager()
 
@@ -79,7 +79,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 {
     NSMutableArray *itemList = [NSMutableArray array];
     for (PBGameItem *item in items) {
-        if (item.itemId != ItemTypeRemoveAd && item.itemId != ItemTypePurse) {
+        if (item.itemId != ItemTypeRemoveAd
+            && item.itemId != ItemTypePurse
+            && item.itemId != ItemTypePurseOneThousand) {
             [itemList addObject:item];
         }
     }
