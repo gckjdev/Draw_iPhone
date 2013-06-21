@@ -21,6 +21,8 @@
 #import "PaintAction.h"
 #import "ShapeAction.h"
 
+#import "CacheDrawManager.h"
+
 @interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate>
 {
     NSMutableArray *_drawActionList;
@@ -29,6 +31,8 @@
     DrawAction *_currentAction;
     
     OffscreenManager *osManager;
+    CacheDrawManager *cdManager;
+    
     GestureRecognizerManager *_gestureRecognizerManager;
 }
 

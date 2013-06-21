@@ -220,8 +220,12 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     if (image) {
         [self clear];
         _hasImage = YES;
-        CTMContext(cacheContext, self.rect);
-        CGContextDrawImage(cacheContext, self.rect, image.CGImage);
+        UIGraphicsPushContext(cacheContext);
+        [image drawAtPoint:CGPointZero];
+        UIGraphicsPopContext();
+//        CGContextsa
+//        CTMContext(cacheContext, self.rect);
+//        CGContextDrawImage(cacheContext, self.rect, image.CGImage);
     }
 }
 

@@ -43,6 +43,7 @@
     PPRelease(_drawActionList);
     _currentAction = nil;
     PPRelease(osManager);
+    PPRelease(cdManager);
     PPRelease(_gestureRecognizerManager);
     [super dealloc];
 }
@@ -97,7 +98,8 @@
 
 - (void)show
 {
-    [osManager updateWithDrawActionList:self.drawActionList];
+//    [osManager updateWithDrawActionList:self.drawActionList];
+    [cdManager updateWithDrawActionList:self.drawActionList];
     [self setNeedsDisplay];
  
 }
@@ -113,26 +115,29 @@
 
 #define SPAN_RECT_MIN_WIDTH 20
 
+#define LAST_ACTION_UPDATE_POINT_COUNT 3
+
 - (void)updateLastAction:(DrawAction *)action show:(BOOL)show
 {
-    CGRect rect = [osManager updateLastAction:action];
+//    CGRect rect = [osManager updateLastAction:action];
+    CGRect rect = [cdManager updateLastAction:action];
     if (show) {
-        /* Don't Remove this code!! By Gamy, Optimize draw speed. 
-            2013-6-14
-         
+        //如果笔不是透明的话，则更新最后3个点所在的区域即可，否则整笔全部更新
+        
         if ([action isKindOfClass:[PaintAction class]]) {
             PaintAction *paintAction = (PaintAction *)action;
-            NSUInteger count = [[paintAction paint] pointCount];
-            if (count > 2) {
-                id<PenEffectProtocol> pen = [PenFactory getPen:Pencil];
-                NSArray *list = [paintAction.paint.pointNodeList subarrayWithRange:NSMakeRange(count - 3, 3)];
-                [pen constructPath:list inRect:self.bounds];
-                rect = CGPathGetBoundingBox([pen penPath]);
-                CGFloat w = MAX(paintAction.paint.width, SPAN_RECT_MIN_WIDTH);
-                CGRectEnlarge(&rect, w * 4, w * 4);
+            if (paintAction.paint.color.alpha >= 1) {
+                NSUInteger count = [[paintAction paint] pointCount];
+                if (count > LAST_ACTION_UPDATE_POINT_COUNT) {
+                    id<PenEffectProtocol> pen = [PenFactory getPen:Pencil];
+                    NSArray *list = [paintAction.paint.pointNodeList subarrayWithRange:NSMakeRange(count - LAST_ACTION_UPDATE_POINT_COUNT, LAST_ACTION_UPDATE_POINT_COUNT)];
+                    [pen constructPath:list inRect:self.bounds];
+                    rect = CGPathGetBoundingBox([pen penPath]);
+                    CGFloat w = MAX(paintAction.paint.width, SPAN_RECT_MIN_WIDTH);
+                    CGRectEnlarge(&rect, w * 2, w * 2);
+                }                
             }
         }
-         */ 
 
         [self setNeedsDisplayInRect:rect];
     }
@@ -141,7 +146,8 @@
 - (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
 {
     if (drawAction) {
-        CGRect rect = [osManager addDrawAction:drawAction];
+//        CGRect rect = [osManager addDrawAction:drawAction];
+        CGRect rect = [cdManager addDrawAction:drawAction];
         if (show) {
             [self setNeedsDisplayInRect:rect];
         }        
@@ -186,7 +192,8 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [osManager showAllLayersInContext:context];
+//    [osManager showAllLayersInContext:context];
+    [cdManager showInContext:context];
     [super drawRect:rect];
 }
 
