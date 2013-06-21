@@ -27,7 +27,6 @@
             break;
             
         case ItemTypePurse:
-        case ItemTypePurseOneThousand:
             [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeViaBuyPurseItem];
             break;
             
@@ -57,7 +56,6 @@
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     switch (itemId) {
         case ItemTypePurse:
-        case ItemTypePurseOneThousand:
             [[AccountService defaultService] chargeCoin:(([ConfigManager getCoinsIngotRate] * item.priceInfo.price) * count) toUser:toUserId source:ChargeAsAGift];
             break;
             
