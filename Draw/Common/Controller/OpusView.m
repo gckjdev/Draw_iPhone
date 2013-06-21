@@ -15,6 +15,12 @@
 #import "TimeUtils.h"
 #import "AutoCreateViewByXib.h"
 
+@interface OpusView ()
+
+- (IBAction)clickOpusView:(id)sender;
+
+@end
+
 @implementation OpusView
 
 AUTO_CREATE_VIEW_BY_XIB(OpusView)
@@ -30,9 +36,11 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     [super dealloc];
 }
 
-+ (OpusView*)createOpusView
++ (id)createOpusView:(id<OpusViewDelegate>)delegate;
 {  
-    return [OpusView createView];
+    OpusView* view =  [OpusView createView];
+    view.delegate = delegate;
+    return view;
 }
 /*
 + (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 
@@ -68,5 +76,12 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     [self.myOpusTag setHidden:![opus isMyOpus]];
     
     self.hidden = NO;
+}
+
+- (IBAction)clickOpusView:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickOpus:)]) {
+        [_delegate didClickOpus:self.opus];
+    }
 }
 @end

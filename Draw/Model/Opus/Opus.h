@@ -65,6 +65,12 @@
 - (BOOL)isMyOpus;
 - (NSString*)name;
 - (NSDate*)createDate;
+- (void)replayInController:(UIViewController*)controller;
+
+- (NSArray*)shareOptionsTitleArray;
+- (void)handleShareOptionAtIndex:(int)index
+                  fromController:(UIViewController*)controller;
+- (void)enterEditFromController:(UIViewController*)controller;
 
 @end
 
