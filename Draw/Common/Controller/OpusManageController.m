@@ -98,7 +98,6 @@ typedef enum {
 {
     [self.dataTableView reloadData];
     if ([[self getOpusList] count] != 0) {
-//        self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
         self.awardCoinTips.text = @"";
         [self.clearButton setHidden:NO];
     }else{
@@ -115,180 +114,6 @@ typedef enum {
     isLoading = NO;   
     self.noDataTipLabl.hidden = NO;
 }
-
-//#pragma mark - MyPaintManager Delegate
-//- (void)didGetAllPaints:(NSArray *)paints
-//{
-//    [self finishLoadDataForTabID:TabTypeAll resultList:paints];
-//    
-//    [self hideActivity];
-//    [self reloadView];
-//    [self updateTab:paints];
-//}
-//- (void)didGetMyPaints:(NSArray *)paints
-//{
-//    [self finishLoadDataForTabID:TabTypeMine resultList:paints];
-//    
-//    [self hideActivity];
-//    [self reloadView];
-//    [self updateTab:paints];
-//}
-//
-//- (void)didGetAllDrafts:(NSArray *)paints
-//{
-//    [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
-//    
-//    [self hideActivity];
-//    [self reloadView];
-//    [self updateTab:paints];
-//}
-//
-//- (void)didGetAllPaintCount:(NSInteger)allPaintCount
-//               myPaintCount:(NSInteger)myPaintCount
-//                 draftCount:(NSInteger)draftCount
-//{
-//    UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
-//    NSString *draftTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftCount];
-//    [draftButton setTitle:draftTitle forState:UIControlStateNormal];
-//    
-//    UIButton *myButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
-//    NSString *myTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myPaintCount];
-//    [myButton setTitle:myTitle forState:UIControlStateNormal];
-//    
-//    UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
-//    NSString *allTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allPaintCount];
-//    [allButton setTitle:allTitle forState:UIControlStateNormal];
-//}
-
-- (void)performLoadMyPaints
-{
-//    TableTab *tab = [_tabManager tabForID:TabTypeMine];
-//    [_myPaintManager findMyPaintsFrom:tab.offset limit:tab.limit delegate:self];
-    [self hideActivity];
-}
-
-- (void)performLoadAllPaints
-{
-//    TableTab *tab = [_tabManager tabForID:TabTypeAll];
-//    [_myPaintManager findAllPaintsFrom:tab.offset limit:tab.limit delegate:self];
-    [self hideActivity];
-}
-
-- (void)loadPaintsOnlyMine:(BOOL)onlyMine
-{
-    [self showActivityWithText:NSLS(@"kLoading")];
-    if (onlyMine) {
-        [self performSelector:@selector(performLoadMyPaints) withObject:nil afterDelay:0.3f];
-    } else {
-        [self performSelector:@selector(performLoadAllPaints) withObject:nil afterDelay:0.3f];
-    }
-}
-
-- (void)performLoadDrafts
-{
-    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
-//    [_myPaintManager findAllDraftsFrom:tab.offset limit:tab.limit delegate:self];
-    NSArray* array = [self.draftManager findAllOpusWithOffset:tab.offset limit:tab.limit];
-    [self finishLoadDataForTabID:tab.tabID resultList:array];
-    [self reloadView];
-    [self hideActivity];
-}
-
-// db.bulletin.insert({"date":new Date(), "type":0, "game_id":"Draw","function":"","content":"[公告] 近期发现部分用户反复使用草稿发同一副作品，影响画榜。先明令禁止此种行为，发现一律直接删除，严重违反者直接封号"});
-
-- (void)loadDrafts
-{
-//    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
-//    if (tab.status == TableTabStatusLoading) {
-//        return;
-//    }
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [self performSelector:@selector(performLoadDrafts) withObject:nil afterDelay:0.3f];
-}
-
-//- (void)loadDrafts
-//{
-//    [self loadDraftsShouldShowLoading:YES];
-//}
-
-#define TITLE_RECOVERY        NSLS(@"kRecovery")
-#define TITLE_EDIT            NSLS(@"kEdit")
-#define TITLE_SAVE_TO_ALBUM   NSLS(@"kDreamAvatarSaveToAlbum")
-#define TITLE_SAVE_TO_CONTACT NSLS(@"kDreamAvatarSaveToContact")
-#define TITLE_DELETE          NSLS(@"kDelete")
-
-#define DREAM_AVATAR_TITLES  TITLE_SAVE_TO_ALBUM, TITLE_SAVE_TO_CONTACT, TITLE_DELETE, nil
-- (void)didSelectPaintInDreamAvatar
-{
-  
-}
-
-- (void)didSelectPaintInDreamLockscreen
-{    
-    
-}
-
-#pragma mark - Share Cell Delegate
-- (void)didSelectPaint:(MyPaint *)paint
-{
-    
-   
-    
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)showViewController:(UIViewController*)controller
-{
-    [self.navigationController presentModalViewController:controller animated:YES];
-}
-
-
-- (void)weixinActionSheet:(UIActionSheet *)actionSheet
-     clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case FromWeixinOptionShareOpus: {
-        } break;
-        case FromWeixinOptionDrawAPicture: {
-//            OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
-//            odc.startController = self;
-//            [self.navigationController pushViewController:odc animated:YES];
-//            [odc release];
-        } break;
-        default:
-            break;
-    }
-}
-
-- (void)performReplay
-{
-    
-}
-
-- (void)performEdit
-{
-    
-}
-
-- (void)imageActionSheet:(UIActionSheet *)actionSheet
-    clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-}
-
-- (void)dreamAvatarActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-}
-
-
-- (void)dreamLockscreenActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-}
-
-
 
 
 #pragma mark - table view delegate
@@ -322,13 +147,8 @@ typedef enum {
     return number;
 }
 
-//- (NSArray *)paints
-//{
-//    return [self tabDataList];
-//}
 - (NSArray*)getOpusList
 {
-    PPDebug(@"<test>current data list count = %d", [self tabDataList].count);
     return [self tabDataList];
 }
 
@@ -425,31 +245,6 @@ typedef enum {
     [dialog showInView:self.view];
 }
 
--(IBAction)clickBackButton:(id)sender
-{
-//    self.shareAction = nil;
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (BOOL)isMineTab
-{
-    return self.currentTab.tabID == TabTypeMine;
-}
-- (BOOL)isAllTab
-{
-    return self.currentTab.tabID == TabTypeFavorite;
-}
-- (BOOL)isDraftTab
-{
-    return self.currentTab.tabID == TabTypeDraft;
-}
-
-
-- (void)updateActionSheetIndexs
-{
-    
-    
-}
 
 
 - (id)init
@@ -476,18 +271,6 @@ typedef enum {
 
 - (void)initTabButtons
 {
-    
-//    switch ([self currentTab].tabID) {
-//        case TabTypeDraft:
-//            //
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    [self loadDrafts];
-//    [self loadPaintsOnlyMine:YES];
-//    [self loadPaintsOnlyMine:NO];
     [super initTabButtons];
     
     if ([GameApp showPaintCategory] == NO){
@@ -531,7 +314,6 @@ typedef enum {
         
         [self showChooseWeixinOptionActionSheet];
     }else{
-//        [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
         self.titleLabel.text = NSLS(@"kShareTitle");
     }
@@ -546,8 +328,7 @@ typedef enum {
     [self setAwardCoinTips:nil];
     [self setBackButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
 
@@ -555,12 +336,6 @@ typedef enum {
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    if (self.isDraftTab) {
-//        TableTab *tab = [self currentTab];
-//        tab.offset = 0;
-//        [tab.dataList removeAllObjects];
-//        [self loadDrafts];
-//    }
     [super viewDidAppear:animated];
     [self clickRefreshButton:nil];
 }
@@ -591,7 +366,6 @@ typedef enum {
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-//    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoMyOpus"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
     
     return NSLS(@"NoData");
 }
@@ -606,49 +380,23 @@ typedef enum {
 - (void)clickTabButton:(id)sender
 {
     [super clickTabButton:sender];
-    [self updateActionSheetIndexs];
     [self reloadView];
 }
 
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-//    [self reloadView];
     TableTab *tab = [_tabManager tabForID:tabID];
     
-//    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
-    //    [_myPaintManager findAllDraftsFrom:tab.offset limit:tab.limit delegate:self];
+
     [self showActivityWithText:NSLS(@"kLoading")];
     OpusManager* manager = [self managerForTab:tabID];
     NSArray* array = [manager findAllOpusWithOffset:tab.offset limit:tab.limit];
     [self finishLoadDataForTabID:tab.tabID resultList:array];
+    [self updateTab:array];
     [self reloadView];
     [self hideActivity];
-//    if (tab) {
-//        isLoading = YES;
-//        self.noDataTipLabl.hidden = YES;
-//        switch (tabID) {
-//            case TabTypeMine:
-//                [self loadPaintsOnlyMine:YES];
-//                break;
-//            case TabTypeFavorite:
-//            {
-//                [self loadPaintsOnlyMine:NO];
-//                break;
-//            }
-//                
-//            case TabTypeDraft: //for test
-//            {
-//                [self loadDrafts];
-//                break;
-//            }
-//            default:
-//                
-//                [self hideActivity];
-//                break;
-//        }
-//        
-//    }
+
 }
 
 #pragma mark - OpusViewDelegate
@@ -698,7 +446,6 @@ typedef enum {
         }
         
     }
-//    tips.tag = IMAGE_OPTION;
     _currentSelectOpus = opus;
     [tips showInView:self.view];
     [tips release];

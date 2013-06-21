@@ -116,6 +116,7 @@ static int popOptionListWithoutFreeCoinsEn[] = {
 @property (retain, nonatomic) IBOutlet UIButton *drawOptionBtn;
 @property (retain, nonatomic) IBOutlet UIImageView *bigPen;
 
+@property (retain, nonatomic) IBOutlet UIButton *testBtn;
 
 
 @end
@@ -130,6 +131,7 @@ static int popOptionListWithoutFreeCoinsEn[] = {
     PPRelease(_drawOptionSheet);
     [_drawOptionBtn release];
     [_bigPen release];
+    [_testBtn release];
     [super dealloc];
 }
 
@@ -315,6 +317,9 @@ int getPopOptionCount()
     }];
     [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [self registerNetworkDisconnectedNotification];
+#if DEBUG
+    self.testBtn.hidden = NO;
+#endif
     // Do any additional setup after loading the view from its nib.
     
 }
@@ -942,6 +947,7 @@ int getPopOptionCount()
 - (void)viewDidUnload {
     [self setDrawOptionBtn:nil];
     [self setBigPen:nil];
+    [self setTestBtn:nil];
     [super viewDidUnload];
 }
 

@@ -14,6 +14,7 @@
 #import "ShareImageManager.h"
 #import "TimeUtils.h"
 #import "AutoCreateViewByXib.h"
+#import "UIImageView+WebCache.h"
 
 @interface OpusView ()
 
@@ -65,12 +66,11 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     if ([opus.pbOpus isRecovery]){
         NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), title];
         [self.opusTitle setText:name];
-//        [self.drawImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
-        
-        
+        [self.opusImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
     }
     else{
         [self.opusTitle setText:title];
+        [self.opusImage setImageWithURL:[NSURL URLWithString:opus.pbOpus.thumbImage]];
     }
 
     [self.myOpusTag setHidden:![opus isMyOpus]];
