@@ -779,8 +779,8 @@
 "kItemTypePurse" = "Coins Box";
 "kItemTypePurseDesc" = "10,000 coins inside it";
 
-"kItemTypePurseOneThousand" = "Coins Box(S)";
-"kItemTypePurseOneThousandDesc" = "1,000 coins inside it";
+"Small Purse" = "Small Coins Box";
+"Small Purse 1000 coins" = "1,000 coins inside it";
 
 "kItemTypeGrid" = "Network Grid";
 "kItemTypeGridDesc" = "A Network grid show when you are drawing, make it easy to aline";
@@ -1190,36 +1190,38 @@
 "kBasicShapeDescription" = "Use to draw line、circle、rectangle、five-pointed star and triangle";
 
 "Snow" = "Snow";
-"SnowDescription" = "to do";
+"Snow Icons" = "";
 "Sun" = "Sun";
-"SunDescription" = "to do";
+"Sun Icons" = "Icons, include sun, moon, etc";
 
 "Bird" = "Bird";
-"BirdDescription" = "to do";
+"Bird Icons" = "Icons, include bird, hen, hawk, fish, etc.";
 "Animal" = "Animal";
-"AnimalDescription" = "to do";
+"Animal Icons" = "Icons, include cat, dog, rabbit, pig, etc.";
 
 "Corner" = "Corner";
-"CornerDescription" = "to do";
+"Corner Icons" = "Icons, include a number of shapes.";
 "Arc" = "Arc";
-"ArcDescription" = "to do";
-
-"Math" = "Math";
-"MathDescription" = "to do";
-"Music" = "Music";
-"MusicDescription" = "to do";
+"Arc Icons" = "Icons, includes love, bubble, etc.";
 
 "Stuff" = "Stuff";
-"StuffDescription" = "to do";
+"Stuff Icons" = "Icons, include pen, brush, etc.";
 "Travel" = "Travel";
-"TravelDescription" = "to do";
+"Travel Icons" = "Icons, include camera, bike,etc.";
+
+"Math" = "Math";
+"Math Icons" = "Icons, include arrow, plus, etc.";
+"Music" = "Music";
+"Music Icons" = "Icons, include music, play, etc.";
 
 "Grass" = "Grass";
-"GrassDescription" = "to do";
+//"Grass Iconsn" = "Icons, include a number of leaf.";
+"Grass Icons" = "Icons, include a number of leaf.";
+
 "Leaf" = "Leaf";
-"LeafDescription" = "to do";
+"Leaf Icons" = "Icons, include trees and grasses.";
 "Flower" = "Flower";
-"FlowerDescription" = "to do";
+"Flower Icons" = "Icons, include a number of flowers.";
 
 
 "kUpdateTips" = "Update Tips";
@@ -1770,6 +1772,10 @@
 
 /*********************你唱我猜国际化字符串开始 ************************/
 "kRerecordWarnning" = "Did you want to discard the previous recored voice and re-record?";
+"kSing"= "SING";
+"kGuessSing" = "GUESS";
+"kSingTop" = "TOP";
+"kSingContest" = "CONTEST";
 
 /*********************你唱我猜国际化字符串结束 ************************/
 

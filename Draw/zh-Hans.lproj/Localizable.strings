@@ -789,8 +789,8 @@
 "kItemTypePurse" = "钱箱";
 "kItemTypePurseDesc" = "包含10000个金币的钱箱";
 
-"kItemTypePurseOneThousand" = "钱箱(小)";
-"kItemTypePurseOneThousandDesc" = "包含1000个金币的钱箱";
+"Small Purse" = "小钱箱";
+"Small Purse 1000 coins" = "包含1000个金币的钱箱";
 
 "kItemTypeGrid" = "网格参考线";
 "kItemTypeGridDesc" = "绘画时候用网格参考线，可对准和对齐绘画元素";
@@ -1714,36 +1714,36 @@
 "kBasicShapeDescription" = "用于绘画，包含直线、圆形、矩形、五角星、三角形五种基本形状";
 
 "Snow" = "雨雪";
-"SnowDescription" = "to do";
+"Snow Icons" = "用于绘画，包含云朵、雪花、水滴形状";
 "Sun" = "日月";
-"SunDescription" = "to do";
+"Sun Icons" = "用于绘画，包含闪电、太远、月亮、火光形状";
 
 "Bird" = "飞禽";
-"BirdDescription" = "to do";
+"Bird Icons" = "用于绘画，包含小鸟、公鸡、飞鹰、鱼、熊掌形状";
 "Animal" = "走兽";
-"AnimalDescription" = "to do";
+"Animal Icons" = "用于绘画，包含猫、狗、猪、兔子、蜗牛、鲸鱼形状";
 
 "Corner" = "棱角";
-"CornerDescription" = "to do";
+"Corner Icons" = "用于绘画，包含梯形、菱形、六边形、八角星、十角星、多角星形状";
 "Arc" = "圆弧";
-"ArcDescription" = "to do";
-
-"Math" = "算术";
-"MathDescription" = "to do";
-"Music" = "玄音";
-"MusicDescription" = "to do";
+"Arc Icons" = "用于绘画，包含圆角星、海浪、心形、气泡形状";
 
 "Stuff" = "家具";
-"StuffDescription" = "to do";
+"Stuff Icons" = "用于绘画，包含扣针、刷子、铅笔、毛笔、灯泡形状";
 "Travel" = "出行";
-"TravelDescription" = "to do";
+"Travel Icons" = "用于绘画，包含相机、雨伞、单车、放大镜、耳机形状";
+
+"Math" = "算术";
+"Math Icons" = "用于绘画，包含勾形、叉形、称号、加号、性别、箭头形状";
+"Music" = "玄音";
+"Music Icons" = "用于绘画，包含音符、播放、快进、循环形状";
 
 "Grass" = "芳草";
-"GrassDescription" = "to do";
+"Grass Icons" = "用于绘画，包含各种叶子的形状";
 "Leaf" = "落木";
-"LeafDescription" = "to do";
+"Leaf Icons" = "用于绘画，包含各种树木、小草的形状";
 "Flower" = "羞花";
-"FlowerDescription" = "to do";
+"Flower Icons" = "用于绘画，包含各种花的形状";
 
 "kUpdateTips" = "更新提示";
 "kVersionIsOld"  = "版本过低，不能使用该功能，确定立即更新？";
@@ -1780,6 +1780,10 @@
 
 /*********************你唱我猜国际化字符串开始 ************************/
 "kRerecordWarnning" = "是否放弃当前录音，重新录音？";
+"kSing"= "唱歌";
+"kGuessSing" = "猜歌";
+"kSingTop" = "榜单";
+"kSingContest" = "比赛";
 
 /*********************你唱我猜国际化字符串结束 ************************/
 

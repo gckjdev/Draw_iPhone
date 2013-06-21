@@ -68,13 +68,13 @@ typedef enum{
     HomeMenuTypeGuessSing,
     HomeMenuTypeSingTop,
     HomeMenuTypeSingBBS,
-    HomeMenuTypeSingShop,
     HomeMenuTypeSingFreeCoins,
+    HomeMenuTypeSingContest,
     
     // sing bottom menu
     HomeMenuTypeSingTimeline,
     HomeMenuTypeSingDraft,
-    HomeMenuTypeSingFriend,
+    HomeMenuTypeSingShop,
     HomeMenuTypeSingChat,
     HomeMenuTypeSingSetting,
     
