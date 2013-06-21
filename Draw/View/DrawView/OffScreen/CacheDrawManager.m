@@ -205,10 +205,13 @@
 
 - (void)showToIndex:(NSInteger)index
 {
-//    [self updateWithDrawActionList:_drawActionList toIndex:index];
-    for (NSInteger i = _offscreen.actionCount; i < index; ++ i) {
-        DrawAction *action = [_drawActionList objectAtIndex:i];
-        [self addDrawAction:action];
+    if (index < _offscreen.actionCount) {
+      [self updateWithDrawActionList:_drawActionList toIndex:index];
+    }else{
+        for (NSInteger i = _offscreen.actionCount; i < index; ++ i) {
+            DrawAction *action = [_drawActionList objectAtIndex:i];
+            [self addDrawAction:action];
+        }
     }
 }
 
