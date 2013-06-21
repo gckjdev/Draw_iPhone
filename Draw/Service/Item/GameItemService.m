@@ -397,13 +397,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
                                             type:PBDrawItemTypeDrawNomal
-                                           price:10
-                                        currency:PBGameCurrencyIngot //]];
-                                  promotionPrice:10/discount
+                                           price:10*1000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:10*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     // 钱箱
+    /* rem by Benson
     [mutableArray addObject:[self itemWithItemId:ItemTypePurse
                                             name:@"kItemTypePurse"
                                             desc:@"kItemTypePurseDesc"
@@ -416,6 +417,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]
                                 defaultSaleCount:1]];
+     */
     
     
     // 透明笔
@@ -425,9 +427,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_alpha@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:10
-                                        currency:PBGameCurrencyIngot
-                                  promotionPrice:10/discount
+                                           price:10*1000
+                                        currency:PBGameCurrencyCoin
+                                  promotionPrice:10*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -902,9 +904,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_square_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:4
-                                        currency:PBGameCurrencyIngot  //]];
-                                  promotionPrice:4/discount
+                                           price:4*1000
+                                        currency:PBGameCurrencyCoin  //]];
+                                  promotionPrice:4*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -928,9 +930,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:2
-                                        currency:PBGameCurrencyIngot //]];
-                                  promotionPrice:2/discount
+                                           price:2*1000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:2*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -941,9 +943,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_horizontal_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:4
-                                        currency:PBGameCurrencyIngot //]];
-                                  promotionPrice:4/discount
+                                           price:4*1000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:4*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -968,9 +970,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:2
-                                        currency:PBGameCurrencyIngot //]];
-                                  promotionPrice:2/discount
+                                           price:2*1000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:2*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -981,9 +983,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_vertical_canvas@2x.png")
                                             type:PBDrawItemTypeDrawTool
-                                           price:4
-                                        currency:PBGameCurrencyIngot //]];
-                                  promotionPrice:4/discount
+                                           price:4*1000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:4*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -991,7 +993,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     // 维锐电容笔（大）
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"维锐魔法师电容笔"
-                                            desc:@"【促销】赠送10个元宝！知名品牌，原装正品，仅售79元，全网最优惠价格"
+                                            desc:@"【促销】赠送10000个金币！知名品牌，原装正品，仅售79元，全网最优惠价格"
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_taobao_weirui_pen1.png")
                              
                                             type:PBDrawItemTypeDrawTaoBao
