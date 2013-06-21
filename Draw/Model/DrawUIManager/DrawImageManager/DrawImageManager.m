@@ -411,5 +411,10 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage *)singBottomBar
+{
+    NSString *imageName = [self fixImageName:@"sing_bottom_bar"];
+    return [UIImage imageNamed:imageName];
+}
 
 @end
