@@ -14,6 +14,13 @@
 #import "ShareImageManager.h"
 #import "TimeUtils.h"
 #import "AutoCreateViewByXib.h"
+#import "UIImageView+WebCache.h"
+
+@interface OpusView ()
+
+- (IBAction)clickOpusView:(id)sender;
+
+@end
 
 @implementation OpusView
 
@@ -30,9 +37,11 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     [super dealloc];
 }
 
-+ (OpusView*)createOpusView
++ (id)createOpusView:(id<OpusViewDelegate>)delegate;
 {  
-    return [OpusView createView];
+    OpusView* view =  [OpusView createView];
+    view.delegate = delegate;
+    return view;
 }
 /*
 + (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 
@@ -57,16 +66,22 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     if ([opus.pbOpus isRecovery]){
         NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), title];
         [self.opusTitle setText:name];
-//        [self.drawImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
-        
-        
+        [self.opusImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
     }
     else{
         [self.opusTitle setText:title];
+        [self.opusImage setImageWithURL:[NSURL URLWithString:opus.pbOpus.thumbImage]];
     }
 
     [self.myOpusTag setHidden:![opus isMyOpus]];
     
     self.hidden = NO;
+}
+
+- (IBAction)clickOpusView:(id)sender
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickOpus:)]) {
+        [_delegate didClickOpus:self.opus];
+    }
 }
 @end

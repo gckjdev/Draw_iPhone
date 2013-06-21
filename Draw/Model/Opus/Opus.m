@@ -250,5 +250,26 @@
     return [NSDate dateWithTimeIntervalSince1970:self.pbOpus.createDate];
 }
 
+- (void)replayInController:(UIViewController*)controller
+{
+    PPDebug(@"<replayInController> no impletement!");
+}
+
+- (NSArray*)shareOptionsTitleArray
+{
+    PPDebug(@"<shareOptionsTitleArray> no impletement!");
+    return nil;
+}
+- (void)handleShareOptionAtIndex:(int)index
+                  fromController:(UIViewController*)controller
+{
+    PPDebug(@"<handleShareOptionAtIndex> no impletement!");
+}
+
+- (void)enterEditFromController:(UIViewController *)controller
+{
+    PPDebug(@"<enterEditFromController> no impletement!");
+}
+
 @end
 

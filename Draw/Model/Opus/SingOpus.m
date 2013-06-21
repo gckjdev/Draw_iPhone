@@ -94,5 +94,56 @@
     return @"m4a";
 }
 
+- (void)replayInController:(UIViewController*)controller
+{
+    PPDebug(@"<replayInController> no impletement!");
+}
+
+enum {
+    SHARE_VIA_EMAIL = 0,
+    SHARE_VIA_WEIXIN_TIMELINE,
+    SHARE_VIA_WEIXIN_FRIEND,
+    SHARE_VIA_SINA,
+    SHARE_VIA_QQ_WEIBO,
+    SHARE_VIA_FACEBOOK,
+};
+
+- (NSArray*)shareOptionsTitleArray
+{
+    return [NSArray arrayWithObjects:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Weixin_Timeline"), NSLS(@"kShare_via_Weixin_Friend"), NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_tencent_weibo"), NSLS(@"kShare_via_Facebook"), nil];
+}
+                                                                                                                                                                         
+- (void)handleShareOptionAtIndex:(int)index
+                  fromController:(UIViewController*)controller
+{
+    switch (index) {
+        case SHARE_VIA_EMAIL: {
+            PPDebug(@"share via email");
+        } break;
+        case SHARE_VIA_WEIXIN_TIMELINE: {
+            PPDebug(@"share via weixin timeline");
+        } break;
+        case SHARE_VIA_WEIXIN_FRIEND: {
+            PPDebug(@"share via weixin friend");
+        } break;
+        case SHARE_VIA_SINA: {
+            PPDebug(@"share via sina");
+        } break;
+        case SHARE_VIA_QQ_WEIBO: {
+            PPDebug(@"share via qq weibo");
+        } break;
+        case SHARE_VIA_FACEBOOK: {
+            PPDebug(@"share via facebook");
+        } break;
+        default:
+            break;
+    }
+}
+
+- (void)enterEditFromController:(UIViewController *)controller
+{
+    PPDebug(@"<enterEditFromController> no impletement!");
+}
+
 
 @end
