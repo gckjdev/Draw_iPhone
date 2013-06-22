@@ -17,4 +17,6 @@
 - (UIImage*)inputDialogLeftBtnImage;
 - (UIImage*)inputDialogRightBtnImage;
 
+- (UIImage*)badgeImage;
+
 @end

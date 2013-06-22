@@ -42,4 +42,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SingImageManager);
     return nil;
 }
 
+- (UIImage*)badgeImage
+{
+    return [UIImage imageNamed:@"sing_home_badge.png"];
+}
+
 @end
