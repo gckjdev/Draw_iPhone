@@ -35,6 +35,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *freeCoin;
 @property (retain, nonatomic) IBOutlet UIButton *bulletinBadge;
 @property (retain, nonatomic) IBOutlet UILabel *ingotLabel;
+@property (retain, nonatomic) IBOutlet UILabel *friendCountLabel;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
@@ -321,6 +322,7 @@
     PPRelease(_feedList);
     PPRelease(_freeCoin);
     [_ingotLabel release];
+    [_friendCountLabel release];
     [super dealloc];
 }
 - (IBAction)clickFreeCoinButton:(id)sender {
