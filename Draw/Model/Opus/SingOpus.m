@@ -9,6 +9,13 @@
 #import "Opus.h"
 #import "SingOpus.h"
 #import "FileUtil.h"
+#import "MFMailComposeViewController+ShareEmailSender.h"
+#import "CommonMessageCenter.h"
+
+@interface SingOpus () <MFMailComposeViewControllerDelegate>
+
+
+@end
 
 @implementation SingOpus
 
@@ -112,13 +119,27 @@ enum {
 {
     return [NSArray arrayWithObjects:NSLS(@"kShare_via_Email"), NSLS(@"kShare_via_Weixin_Timeline"), NSLS(@"kShare_via_Weixin_Friend"), NSLS(@"kShare_via_Sina_weibo"), NSLS(@"kShare_via_tencent_weibo"), NSLS(@"kShare_via_Facebook"), nil];
 }
-                                                                                                                                                                         
+
+- (void)shareViaEmailFromController:(UIViewController*)controller
+{
+    NSString* appName = NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @"");
+    
+    NSString* subject = [NSString stringWithFormat:NSLS(@"kShareMusicEmailSubject"), appName];
+    NSString* body = [NSString stringWithFormat:NSLS(@"kShareMusicEmailBody"), appName];
+    
+    NSString* mime = @"audio/mp3";
+    
+    NSString* filePath = @"";
+    
+    [MFMailComposeViewController shareWithSbuject:subject body:body filePath:filePath mediaType:mime fromController:controller delegate:self];
+}
+
 - (void)handleShareOptionAtIndex:(int)index
                   fromController:(UIViewController*)controller
 {
     switch (index) {
         case SHARE_VIA_EMAIL: {
-            PPDebug(@"share via email");
+            [self shareViaEmailFromController:controller];
         } break;
         case SHARE_VIA_WEIXIN_TIMELINE: {
             PPDebug(@"share via weixin timeline");
@@ -145,5 +166,19 @@ enum {
     PPDebug(@"<enterEditFromController> no impletement!");
 }
 
+
+#pragma mark - mail compose delegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError *)error
+{
+    [controller.presentingViewController dismissModalViewControllerAnimated:YES];
+    if (error == nil && result == MFMailComposeResultSent) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kShareByEmailSuccess") delayTime:1.5 isHappy:YES];
+//        [self reportActionToServer:DB_FIELD_ACTION_SHARE_EMAIL];
+    }
+    
+}
 
 @end
