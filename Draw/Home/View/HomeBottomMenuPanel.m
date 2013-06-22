@@ -122,6 +122,8 @@
             line.image = imageManager.learnDrawBottomSplit;
         }else if (isLittleGeeAPP()) {
             line.image = [imageManager littleGeeBottomSplit];
+        }else if (isSingApp()) {
+            line.image = [imageManager drawHomeSplitline1];
         }
         else{
             line.image = imageManager.drawHomeSplitline;
@@ -138,12 +140,16 @@
 
 - (void)updateView
 {
-    if (isDrawApp() || isLittleGeeAPP() || isSingApp()) {
+    if (isDrawApp() || isLittleGeeAPP()) {
         [[self bgImageView] removeFromSuperview];
     }
     
     if (isLearnDrawApp()) {
         [[self bgImageView] setImage:[[DrawImageManager defaultManager] learnDrawBottomBar]];
+    }
+    
+    if (isSingApp()) {
+        [[self bgImageView] setImage:[[DrawImageManager defaultManager] singBottomBar]];
     }
     
     //add menu views;

@@ -121,6 +121,10 @@
     if (isDrawApp() || isSingApp()) {
         [[self viewWithTag:1234] removeFromSuperview];
     }
+    
+    if (isSingApp()) {
+        [[self viewWithTag:101] removeFromSuperview];
+    }
 }
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type
