@@ -56,6 +56,8 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     return button;
 }
 */
+
+#define TITLE_FONT_SIZE (ISIPAD?18:9)
 - (void)updateWithOpus:(Opus *)opus
 {
     self.opus = opus;
@@ -74,7 +76,7 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     }
 
     [self.myOpusTag setHidden:![opus isMyOpus]];
-    
+    [self.opusTitle setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
     self.hidden = NO;
 }
 
