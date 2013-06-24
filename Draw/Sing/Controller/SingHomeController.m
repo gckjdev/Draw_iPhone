@@ -14,6 +14,9 @@
 #import "UserDetailViewController.h"
 #import "SelfUserDetail.h"
 #import "FriendController.h"
+#import "UserSettingController.h"
+#import "ChatListController.h"
+#import "BBSBoardController.h"
 
 @interface SingHomeController ()
 
@@ -86,7 +89,9 @@
             break;
 
         case HomeMenuTypeSingBBS:{
-            PPDebug(@"HomeMenuTypeSingBBS");
+//            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+//            [self.navigationController pushViewController:bbs animated:YES];
+//            [bbs release];
         }
             break;
             
@@ -124,14 +129,16 @@
             break;
             
         case HomeMenuTypeSingChat:{
-            PPDebug(@"HomeMenuTypeSingChat");
-
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         }
             break;
             
         case HomeMenuTypeSingSetting:{
-            PPDebug(@"HomeMenuTypeSingSetting");
-
+            UserSettingController *settings = [[UserSettingController alloc] init];
+            [self.navigationController pushViewController:settings animated:YES];
+            [settings release];
         }
             break;
             
