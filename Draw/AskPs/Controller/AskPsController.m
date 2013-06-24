@@ -146,7 +146,7 @@ enum {
     int coinsPerUse = [_coinsPerUserTextField.text integerValue];
     int coinsMaxTotal = [_coinsMaxTotalTextField.text integerValue];
     int ingotBestUser = [_ingotBestUserTextField.text integerValue];
-    self.askPs = [Opus opusWithCategory:OpusCategoryAskPs];
+    self.askPs = [Opus opusWithCategory:PBOpusCategoryTypeAskPsCategory];
     [_askPs setRequirements:[_requirementSet allObjects]];
     [_askPs setType:PBOpusTypeAskPs];
     [_askPs setDesc:_descTextField.text];

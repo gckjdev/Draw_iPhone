@@ -12,7 +12,7 @@
 
 @implementation AskPsService
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
+SYNTHESIZE_SINGLETON_FOR_CLASS(AskPsService)
 
 - (void)awardIngot:(id<AskPsServiceDelegate>)delegate
             userId:(NSString *)userId
