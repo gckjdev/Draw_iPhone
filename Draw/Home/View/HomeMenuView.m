@@ -98,6 +98,9 @@
         case HomeMenuTypeDrawCharge: {
             return NSLS(@"kChargeTitle");
         }
+        case HomeMenuTypeDrawPhoto: {
+            return NSLS(@"kGallery");
+        }
             
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -202,6 +205,9 @@
         case HomeMenuTypeDrawPlayWithFriend:{
             return [imageManager drawPlayWithFriend];
         }
+        case HomeMenuTypeDrawPhoto: {
+            return [imageManager userPhoto];
+        }
             //draw bottom menu
         case HomeMenuTypeDrawHome :{
             return [imageManager drawHomeHome];
@@ -227,6 +233,7 @@
         case HomeMenuTypeDrawCharge: {
             return [imageManager zjhHomeCharge];
         }
+        
             
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -258,6 +265,7 @@
         {
             return [imageManager zjhHomeMore];
         }
+            
 
      
         //dice
@@ -454,6 +462,7 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeDrawFreeCoins,
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPhoto,
         HomeMenuTypeEnd
     };
     return list;
@@ -471,6 +480,7 @@ int *getDrawMainMenuTypeListNotHasNewContest()
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPhoto,
         HomeMenuTypeEnd
     };
     return list;
@@ -487,6 +497,7 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPhoto,
         HomeMenuTypeEnd
     };
     return list;

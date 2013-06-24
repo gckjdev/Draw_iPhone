@@ -14,7 +14,8 @@
 @implementation TouchHandler
 
 @synthesize drawView = _drawView;
-@synthesize osManager = _osManager;
+//@synthesize osManager = _osManager;
+@synthesize cdManager = _cdManager;
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state
 {

@@ -208,36 +208,25 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     return rect;
 //    [self updateView:self.showDrawView origin:origin];
 }
+#define DRAW_IMAGE_TAG 12344
 
 - (void)updateDrawMessageView:(DrawMessage *)message
 {
     //create the image once...
 //    [self.showDrawView removeFromSuperview];
 
-    [self updateContentButtonFrame:message.canvasSize];
+//    [self updateContentButtonFrame:message.canvasSize];
     
     CGSize size = [ChatDetailCell adjustContentSize:message.canvasSize];
     
-    if (self.showDrawView == nil) {
-        if (message.thumbImage) {
-            CGRect frame = CGRectFromCGSize(size);
-            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:nil delegate:self];
-        }else{
-            CGRect frame = CGRectFromCGSize(message.canvasSize);
-            self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
-        }
-        
-        [self.showDrawView setPressEnable:YES];
-        
-        DrawHolderView *holder = [DrawHolderView drawHolderViewWithFrame:[self showViewFrame:message.canvasSize] contentView:self.showDrawView];
-        [self addSubview:holder];
-    }
-    if (!message.thumbImage) {
+    if (message.thumbImage == nil) {
+        CGRect frame = CGRectFromCGSize(message.canvasSize);
+        self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
         [self.showDrawView show];
-        
-        message.thumbImage = [self.showDrawView createImageWithSize:size];
+        message.thumbImage = [self.showDrawView createImageWithSize:size];        
     }
-    [self.showDrawView showImage:message.thumbImage];
+    [self updateContentButtonFrame:size];
+    [self.contentButton setImage:message.thumbImage forState:UIControlStateNormal];
 }
 
 - (void)updateImageMessageView:(ImageMessage *)message
@@ -466,6 +455,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     self.message = message;
     self.showTime = showTime;
     self.indexPath = theIndexPath;
+    
+    [[self viewWithTag:DRAW_IMAGE_TAG] removeFromSuperview];
     
     //adjust time label and content
     [self.timeButton setHidden:!showTime];

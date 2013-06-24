@@ -156,9 +156,6 @@
     }
 }
 
-#define CTMContext(context,rect) \
-CGContextScaleCTM(context, 1.0, -1.0);\
-CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
