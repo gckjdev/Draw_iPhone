@@ -96,4 +96,6 @@
 - (UIImage *)singHomeChat;
 - (UIImage *)singHomeSetting;
 
+- (UIImage *)singBottomBar;
+
 @end

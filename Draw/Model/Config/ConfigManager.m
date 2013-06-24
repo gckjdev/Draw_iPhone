@@ -19,6 +19,11 @@
 
 @implementation ConfigManager
 
++ (NSString*)getLimeiWallId
+{
+    return [MobClickUtils getStringValueByKey:@"LIMEI_WALL_ID" defaultValue:@"69ac217d7a8a8da8f7a90f424f3c9e9f"];   // new wall ID for coins
+}
+
 + (int)supportRecovery
 {
     return [MobClickUtils getIntValueByKey:@"SUPPORT_RECOVERY" defaultValue:1];

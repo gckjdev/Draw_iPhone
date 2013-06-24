@@ -20,9 +20,11 @@
 #import "TableTabManager.h"
 #import "UIImageExt.h"
 #import "ReplayView.h"
+#import "MKBlockActionSheet.h"
 
 #import "OpusManager.h"
 #import "OpusView.h"
+#import "Opus.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -38,12 +40,20 @@
 
 typedef enum{
     TabTypeMine = 100,
-    TabTypeAll = 101,
+    TabTypeFavorite = 101,
     TabTypeDraft = 102,
 }TabType;
 
-@interface OpusManageController () {
+typedef enum {
+    OpusOptionEdit = 0,
+    OpusOptionShare,
+    OpusOptionReplay,
+    OpusOptionDelete,
+}OpusOption;
+
+@interface OpusManageController () <OpusViewDelegate, UIActionSheetDelegate>{
     BOOL isLoading;
+    Opus* _currentSelectOpus;
 }
 
 @property (retain, nonatomic) OpusManager* selfOpusManager;
@@ -88,7 +98,6 @@ typedef enum{
 {
     [self.dataTableView reloadData];
     if ([[self getOpusList] count] != 0) {
-//        self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
         self.awardCoinTips.text = @"";
         [self.clearButton setHidden:NO];
     }else{
@@ -105,179 +114,6 @@ typedef enum{
     isLoading = NO;   
     self.noDataTipLabl.hidden = NO;
 }
-
-//#pragma mark - MyPaintManager Delegate
-//- (void)didGetAllPaints:(NSArray *)paints
-//{
-//    [self finishLoadDataForTabID:TabTypeAll resultList:paints];
-//    
-//    [self hideActivity];
-//    [self reloadView];
-//    [self updateTab:paints];
-//}
-//- (void)didGetMyPaints:(NSArray *)paints
-//{
-//    [self finishLoadDataForTabID:TabTypeMine resultList:paints];
-//    
-//    [self hideActivity];
-//    [self reloadView];
-//    [self updateTab:paints];
-//}
-//
-//- (void)didGetAllDrafts:(NSArray *)paints
-//{
-//    [self finishLoadDataForTabID:TabTypeDraft resultList:paints];
-//    
-//    [self hideActivity];
-//    [self reloadView];
-//    [self updateTab:paints];
-//}
-//
-//- (void)didGetAllPaintCount:(NSInteger)allPaintCount
-//               myPaintCount:(NSInteger)myPaintCount
-//                 draftCount:(NSInteger)draftCount
-//{
-//    UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
-//    NSString *draftTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftCount];
-//    [draftButton setTitle:draftTitle forState:UIControlStateNormal];
-//    
-//    UIButton *myButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
-//    NSString *myTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myPaintCount];
-//    [myButton setTitle:myTitle forState:UIControlStateNormal];
-//    
-//    UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
-//    NSString *allTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allPaintCount];
-//    [allButton setTitle:allTitle forState:UIControlStateNormal];
-//}
-
-- (void)performLoadMyPaints
-{
-//    TableTab *tab = [_tabManager tabForID:TabTypeMine];
-//    [_myPaintManager findMyPaintsFrom:tab.offset limit:tab.limit delegate:self];
-    [self hideActivity];
-}
-
-- (void)performLoadAllPaints
-{
-//    TableTab *tab = [_tabManager tabForID:TabTypeAll];
-//    [_myPaintManager findAllPaintsFrom:tab.offset limit:tab.limit delegate:self];
-    [self hideActivity];
-}
-
-- (void)loadPaintsOnlyMine:(BOOL)onlyMine
-{
-    [self showActivityWithText:NSLS(@"kLoading")];
-    if (onlyMine) {
-        [self performSelector:@selector(performLoadMyPaints) withObject:nil afterDelay:0.3f];
-    } else {
-        [self performSelector:@selector(performLoadAllPaints) withObject:nil afterDelay:0.3f];
-    }
-}
-
-- (void)performLoadDrafts
-{
-    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
-//    [_myPaintManager findAllDraftsFrom:tab.offset limit:tab.limit delegate:self];
-    NSArray* array = [self.draftManager findAllOpusWithOffset:tab.offset limit:tab.limit];
-    [self finishLoadDataForTabID:tab.tabID resultList:array];
-    [self hideActivity];
-}
-
-// db.bulletin.insert({"date":new Date(), "type":0, "game_id":"Draw","function":"","content":"[公告] 近期发现部分用户反复使用草稿发同一副作品，影响画榜。先明令禁止此种行为，发现一律直接删除，严重违反者直接封号"});
-
-- (void)loadDrafts
-{
-//    TableTab *tab = [_tabManager tabForID:TabTypeDraft];
-//    if (tab.status == TableTabStatusLoading) {
-//        return;
-//    }
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [self performSelector:@selector(performLoadDrafts) withObject:nil afterDelay:0.3f];
-}
-
-//- (void)loadDrafts
-//{
-//    [self loadDraftsShouldShowLoading:YES];
-//}
-
-#define TITLE_RECOVERY        NSLS(@"kRecovery")
-#define TITLE_EDIT            NSLS(@"kEdit")
-#define TITLE_SAVE_TO_ALBUM   NSLS(@"kDreamAvatarSaveToAlbum")
-#define TITLE_SAVE_TO_CONTACT NSLS(@"kDreamAvatarSaveToContact")
-#define TITLE_DELETE          NSLS(@"kDelete")
-
-#define DREAM_AVATAR_TITLES  TITLE_SAVE_TO_ALBUM, TITLE_SAVE_TO_CONTACT, TITLE_DELETE, nil
-- (void)didSelectPaintInDreamAvatar
-{
-  
-}
-
-- (void)didSelectPaintInDreamLockscreen
-{    
-    
-}
-
-#pragma mark - Share Cell Delegate
-- (void)didSelectPaint:(MyPaint *)paint
-{
-    
-   
-    
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)showViewController:(UIViewController*)controller
-{
-    [self.navigationController presentModalViewController:controller animated:YES];
-}
-
-
-- (void)weixinActionSheet:(UIActionSheet *)actionSheet
-     clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case FromWeixinOptionShareOpus: {
-        } break;
-        case FromWeixinOptionDrawAPicture: {
-//            OfflineDrawViewController *odc = [[OfflineDrawViewController alloc] initWithTargetType:TypeGraffiti delegate:self];
-//            odc.startController = self;
-//            [self.navigationController pushViewController:odc animated:YES];
-//            [odc release];
-        } break;
-        default:
-            break;
-    }
-}
-
-- (void)performReplay
-{
-    
-}
-
-- (void)performEdit
-{
-    
-}
-
-- (void)imageActionSheet:(UIActionSheet *)actionSheet
-    clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-}
-
-- (void)dreamAvatarActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-}
-
-
-- (void)dreamLockscreenActionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-}
-
-
 
 
 #pragma mark - table view delegate
@@ -311,13 +147,8 @@ typedef enum{
     return number;
 }
 
-//- (NSArray *)paints
-//{
-//    return [self tabDataList];
-//}
 - (NSArray*)getOpusList
 {
-    PPDebug(@"<test>current data list count = %d", [self tabDataList].count);
     return [self tabDataList];
 }
 
@@ -331,7 +162,7 @@ typedef enum{
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         float sep = (tableView.frame.size.width/VIEW_PER_LINE - OPUS_VIEW_WIDTH)/2;
         for (int i = 0; i < VIEW_PER_LINE; i ++) {
-            OpusView* view = [OpusView createOpusView];
+            OpusView* view = [OpusView createOpusView:self];
             [view setFrame:CGRectMake(i*tableView.frame.size.width/VIEW_PER_LINE+sep, 0, OPUS_VIEW_WIDTH, CELL_HEIGHT)];
             view.tag = OPUS_VIEW_TAG_OFFSET + i;
             [cell.contentView addSubview:view];
@@ -378,36 +209,42 @@ typedef enum{
 }
 
 
+- (OpusManager*)managerForTab:(TabType)tabType
+{
+    switch (tabType) {
+        case TabTypeFavorite: {
+            return self.favoriteManager;
+        };
+        case TabTypeMine: {
+            return self.selfOpusManager;
+        };
+        case TabTypeDraft: {
+            return self.draftManager;
+        }
+            
+        default:
+            break;
+    }
+    return nil;
+}
+
 - (IBAction)deleteAll:(id)sender
 {
+    __block OpusManageController* cp = self;
     
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAttention")
+                                                       message:NSLS(@"kDeleteAllWarning")
+                                                         style:CommonDialogStyleDoubleButton
+                                                      delegate:nil clickOkBlock:^{
+                                                          OpusManager* manager = [cp managerForTab:[cp currentTab].tabID];
+                                                          [manager deleteAllOpus];
+                                                          [cp reloadTableViewDataSource];
+                                                      } clickCancelBlock:^{
+                                                          //
+                                                      }];
+    [dialog showInView:self.view];
 }
 
--(IBAction)clickBackButton:(id)sender
-{
-//    self.shareAction = nil;
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (BOOL)isMineTab
-{
-    return self.currentTab.tabID == TabTypeMine;
-}
-- (BOOL)isAllTab
-{
-    return self.currentTab.tabID == TabTypeAll;    
-}
-- (BOOL)isDraftTab
-{
-    return self.currentTab.tabID == TabTypeDraft;
-}
-
-
-- (void)updateActionSheetIndexs
-{
-    
-    
-}
 
 
 - (id)init
@@ -422,9 +259,7 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
         [self setFromWeiXin:NO];
-
     }
     return self;
 }
@@ -436,23 +271,11 @@ typedef enum{
 
 - (void)initTabButtons
 {
-    
-//    switch ([self currentTab].tabID) {
-//        case TabTypeDraft:
-//            //
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    [self loadDrafts];
-//    [self loadPaintsOnlyMine:YES];
-//    [self loadPaintsOnlyMine:NO];
     [super initTabButtons];
     
     if ([GameApp showPaintCategory] == NO){
         UIButton *mineButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
-        UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
+        UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeFavorite];
         UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
         mineButton.hidden = YES;
         allButton.hidden = YES;
@@ -470,7 +293,7 @@ typedef enum{
     [super viewDidLoad]; 
 
     [self initTabButtons];
-    UIButton *allButton = [self tabButtonWithTabID:TabTypeAll];
+    UIButton *allButton = [self tabButtonWithTabID:TabTypeFavorite];
     
 
     if (self.isFromWeiXin) {
@@ -491,7 +314,6 @@ typedef enum{
         
         [self showChooseWeixinOptionActionSheet];
     }else{
-//        [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
         self.titleLabel.text = NSLS(@"kShareTitle");
     }
@@ -506,8 +328,7 @@ typedef enum{
     [self setAwardCoinTips:nil];
     [self setBackButton:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
 
@@ -515,12 +336,6 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    if (self.isDraftTab) {
-//        TableTab *tab = [self currentTab];
-//        tab.offset = 0;
-//        [tab.dataList removeAllObjects];
-//        [self loadDrafts];
-//    }
     [super viewDidAppear:animated];
     [self clickRefreshButton:nil];
 }
@@ -545,20 +360,19 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {TabTypeMine,TabTypeAll,TabTypeDraft};
+    NSInteger tabId[] = {TabTypeMine,TabTypeFavorite,TabTypeDraft};
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-//    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoMyOpus"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
     
     return NSLS(@"NoData");
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kMine"),NSLS(@"kAll"),NSLS(@"kDraft")};
+    NSString *tabTitle[] = {NSLS(@"kMine"),NSLS(@"kFavorite"),NSLS(@"kDraft")};
     return tabTitle[index];
     
 }
@@ -566,39 +380,137 @@ typedef enum{
 - (void)clickTabButton:(id)sender
 {
     [super clickTabButton:sender];
-    [self updateActionSheetIndexs];
     [self reloadView];
 }
 
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-    [self reloadView];
     TableTab *tab = [_tabManager tabForID:tabID];
-    if (tab) {
-        isLoading = YES;
-        self.noDataTipLabl.hidden = YES;
-        switch (tabID) {
-            case TabTypeMine:
-                [self loadPaintsOnlyMine:YES];
-                break;
-            case TabTypeAll:
-            {
-                [self loadPaintsOnlyMine:NO];
-                break;
-            }
-                
-            case TabTypeDraft: //for test
-            {
-                [self loadDrafts];
-                break;
-            }
-            default:
-                
-                [self hideActivity];
-                break;
+    
+
+    [self showActivityWithText:NSLS(@"kLoading")];
+    OpusManager* manager = [self managerForTab:tabID];
+    NSArray* array = [manager findAllOpusWithOffset:tab.offset limit:tab.limit];
+    [self finishLoadDataForTabID:tab.tabID resultList:array];
+    [self updateTab:array];
+    [self reloadView];
+    [self hideActivity];
+
+}
+
+#pragma mark - OpusViewDelegate
+
+- (void)didClickOpus:(Opus *)opus
+{
+    PPDebug(@"<test>did click opus %@", opus.name);
+    
+    UIActionSheet* tips = nil;
+    
+    NSString* editString = [opus.pbOpusBuilder isRecovery]?NSLS(@"kRecovery"):NSLS(@"kEdit");
+    
+    
+    NSString *shareString = NSLS(@"kShare");
+    
+    if ([LocaleUtils isChina]){
+        
+        if ([self currentTab].tabID == TabTypeDraft) {
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                               delegate:self
+                                      cancelButtonTitle:NSLS(@"kCancel")
+                                 destructiveButtonTitle:editString
+                                      otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+        }else{
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                               delegate:self
+                                      cancelButtonTitle:NSLS(@"kCancel")
+                                 destructiveButtonTitle:shareString
+                                      otherButtonTitles:
+                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+        }
+    }
+    else{
+        if ([self currentTab].tabID == TabTypeDraft) {
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                               delegate:self
+                                      cancelButtonTitle:NSLS(@"kCancel")
+                                 destructiveButtonTitle:editString
+                                      otherButtonTitles:shareString,
+                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+        }else{
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                               delegate:self
+                                      cancelButtonTitle:NSLS(@"kCancel")
+                                 destructiveButtonTitle:shareString
+                                      otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
         }
         
+    }
+    _currentSelectOpus = opus;
+    [tips showInView:self.view];
+    [tips release];
+}
+
+- (OpusOption)optionIndex:(int)buttonIndex
+                   forTab:(TabType)tabType
+{
+    if (tabType != TabTypeDraft) {
+        return buttonIndex + 1;
+    }
+    return buttonIndex;
+}
+
+- (OpusManager*)currentOpusManager
+{
+    return [self managerForTab:[self currentTab].tabID];
+}
+
+#pragma mark - actionsheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    int index = [self optionIndex:buttonIndex forTab:[self currentTab].tabID];
+    __block OpusManageController* cp = self;
+    switch (index) {
+        case OpusOptionEdit: {
+            [_currentSelectOpus enterEditFromController:self];
+        } break;
+        case OpusOptionShare: {
+            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
+            NSArray* titleArray = [_currentSelectOpus shareOptionsTitleArray];
+            for (NSString* title in titleArray) {
+                [actionSheet addButtonWithTitle:title];
+            }
+            int cancelIndex = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+            [actionSheet setCancelButtonIndex:cancelIndex];
+            [actionSheet setActionBlock:^(NSInteger buttonIndex){
+                if (buttonIndex == actionSheet.cancelButtonIndex) {
+                    return ;
+                }
+                [_currentSelectOpus handleShareOptionAtIndex:buttonIndex fromController:cp];
+            }];
+            [actionSheet showInView:self.view];
+        } break;
+        case OpusOptionReplay: {
+            [_currentSelectOpus replayInController:self];
+        } break;
+        case OpusOptionDelete: {
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
+                                                               message:NSLS(@"kAre_you_sure")
+                                                                 style:CommonDialogStyleDoubleButton
+                                                              delegate:nil
+                                                          clickOkBlock:^{
+                                                              [[cp currentOpusManager] deleteOpus:_currentSelectOpus.pbOpus.opusId];
+                                                              [cp reloadTableViewDataSource];
+                                                              }
+                                                      clickCancelBlock:^{
+                                                                  //
+                                                              }];
+            
+            [dialog showInView:self.view];
+        } break;
+        default:
+            break;
     }
 }
 

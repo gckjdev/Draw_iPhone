@@ -46,7 +46,7 @@
 
 - (NSString*)lmwallId
 {
-    return DRAW_LM_WALL_ID;
+    return [ConfigManager getLimeiWallId];
 }
 
 - (NSString*)lmAdPublisherId
@@ -338,7 +338,7 @@
 
 - (PBGameCurrency)saleCurrency
 {
-    return PBGameCurrencyIngot;
+    return PBGameCurrencyCoin;
 }
 
 - (BOOL)hasIngotBalance
@@ -466,7 +466,7 @@
 //    PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
 //    PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
     //    PBAppReward* drawApp = [self drawAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
-    PBAppReward* xiaojiDrawApp = [GameConfigDataManager xiaojiDrawAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* xiaojiDrawApp = [GameConfigDataManager xiaojiDrawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
     
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
 //    PBRewardWall* youmi = [GameConfigDataManager youmiWall];

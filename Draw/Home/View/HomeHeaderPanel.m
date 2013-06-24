@@ -18,6 +18,8 @@
 #import "DrawImageManager.h"
 #import "ConfigManager.h"
 #import "BulletinView.h"
+#import "FriendController.h"
+#import "StatisticManager.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -35,6 +37,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *freeCoin;
 @property (retain, nonatomic) IBOutlet UIButton *bulletinBadge;
 @property (retain, nonatomic) IBOutlet UILabel *ingotLabel;
+@property (retain, nonatomic) IBOutlet UILabel *friendCountLabel;
+@property (retain, nonatomic) IBOutlet UIButton *friendBadgeButton;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
@@ -42,6 +46,7 @@
 - (IBAction)clickChargeButton:(id)sender;
 - (IBAction)clickAvatarButton:(id)sender;
 - (IBAction)clickBulletinButton:(id)sender;
+- (IBAction)clickFriendButton:(id)sender;
 
 @end
 
@@ -236,6 +241,14 @@
     }
 }
 
+- (void)didGetFanCount:(NSInteger)fanCount
+           followCount:(NSInteger)followCount
+            blackCount:(NSInteger)blackCount
+            resultCode:(NSInteger)resultCode
+{
+    self.friendCountLabel.text = [NSString stringWithFormat:@"%d", fanCount];
+}
+
 #pragma mark - UpdateView
 
 - (void)updateView
@@ -245,10 +258,17 @@
     //avatar
     [self.avatar.layer setMasksToBounds:YES];
     [self.avatar.layer setCornerRadius:(self.avatar.frame.size.width / 2)];
-    [self.avatar.layer setBorderWidth:3];
-    UIColor *borderColor = [UIColor colorWithRed:108/225 green:223./225 blue:187./225 alpha:1];
-    [self.avatar.layer setBorderColor:borderColor.CGColor];
-    [self.nickName setTextColor:borderColor];
+    
+    if (isSingApp()) {
+        [self.avatar.layer setBorderWidth:6];
+        [self.avatar.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [self.nickName setTextColor:[UIColor blackColor]];
+    } else {
+        [self.avatar.layer setBorderWidth:3];
+        UIColor *borderColor = [UIColor colorWithRed:108/225 green:223./225 blue:187./225 alpha:1];
+        [self.avatar.layer setBorderColor:borderColor.CGColor];
+        [self.nickName setTextColor:borderColor];
+    }
     
     UserManager *userManager = [UserManager defaultManager];
     if([[userManager avatarURL] length] > 0){
@@ -273,8 +293,13 @@
     //coin
     NSInteger coin = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
     NSInteger ingot = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot];
-
-    NSString *coinString = [NSString stringWithFormat:@"x %d",coin];
+    
+    NSString *coinString = nil;
+    if (isSingApp()) {
+        coinString = [NSString stringWithFormat:@"%d",coin];
+    } else {
+        coinString = [NSString stringWithFormat:@"x %d",coin];
+    }
     [self.coin setText:coinString];
     
     NSString *ingotString = [NSString stringWithFormat:@"x %d",ingot];
@@ -307,6 +332,17 @@
         [self.freeCoin setBackgroundImage:[imageManager zjhHomeFreeCoinBG]
                                  forState:UIControlStateNormal];
     }
+    
+    if (isSingApp()) {
+        [[FriendService defaultService] getRelationCount:self];
+        
+        if ([StatisticManager defaultManager].fanCount > 0) {
+            self.friendBadgeButton.hidden = NO;
+            [self.friendBadgeButton setTitle:[NSString stringWithFormat:@"%d", (int)[StatisticManager defaultManager].fanCount] forState:UIControlStateNormal];
+        } else {
+            self.friendBadgeButton.hidden = YES;
+        }
+    }
 }
 
 - (void)dealloc {
@@ -321,6 +357,8 @@
     PPRelease(_feedList);
     PPRelease(_freeCoin);
     [_ingotLabel release];
+    [_friendCountLabel release];
+    [_friendBadgeButton release];
     [super dealloc];
 }
 - (IBAction)clickFreeCoinButton:(id)sender {
@@ -346,6 +384,15 @@
         [self.delegate homeHeaderPanel:self didClickBulletinButton:sender];
     }
     [self updateBulletinBadge:0];
+}
+
+- (IBAction)clickFriendButton:(id)sender {
+    FriendController *controller = [[FriendController alloc] init];
+    if ([[StatisticManager defaultManager] fanCount] > 0) {
+        [controller setDefaultTabIndex:FriendTabIndexFan];
+    }
+    
+    self.friendBadgeButton.hidden = YES;
 }
 
 - (void)updateBulletinBadge:(int)count
