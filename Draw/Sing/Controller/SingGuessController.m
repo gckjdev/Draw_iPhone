@@ -12,7 +12,6 @@
 
 @interface SingGuessController ()
 
-@property (retain, nonatomic) 
 
 @end
 

@@ -17,10 +17,16 @@
 #import "PPGameNetworkRequest.h"
 #import "SingOpus.h"
 #import "StringUtil.h"
+#import "FeedDownloadService.h"
+#import "FeedManager.h"
 
 #define SING_MY_OPUS_DB     @"sing_my_opus.db"
 #define SING_FAVORITE_DB    @"sing_favorite.db"
 #define SING_DRAFT_DB       @"sing_draft.db"
+
+#define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
+#define GET_OPUS_DATA_QUEUE        @"GET_OPUS_DATA_QUEUE"
+#define GET_FEED_COMMENT_QUEUE  @"GET_FEED_COMMENT_QUEUE"
 
 @implementation OpusService
 
@@ -132,15 +138,57 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     
 }
 
-- (void)downloadOpusData:(Opus*)opus
-        progressDelegate:(id)progressDelegate
-                delegate:(id<OpusServiceDelegate>)delegate{
+- (void)getOpusData:(Opus*)opus
+   progressDelegate:(id)progressDelegate{
     
-    NSURL *url = [NSURL URLWithString:opus.pbOpus.dataUrl];
-    if (opus.pbOpus.dataUrl == nil) {
+    FeedManager *manager = [FeedManager defaultManager];
+    
+    NSOperationQueue *queue = [self getOperationQueue:GET_OPUS_DATA_QUEUE];
+    [queue cancelAllOperations];
+    
+    [queue addOperationWithBlock:^{
         
-    }
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        BOOL fromCache = NO;
+        NSInteger resultCode = 0;
+        NSData* data = nil;
+        NSString *dataUrl = opus.pbOpus.dataUrl;
+        NSString *opusId = opus.pbOpus.opusId;
+
+        
+        data = [manager loadPBDrawDataWithFeedId:opusId];
+        if (data) {
+            fromCache = YES;
+        }else{
+            if ([dataUrl length] > 0){
+                @try {
+                    data = [[FeedDownloadService defaultService]
+                            downloadDrawDataFile:dataUrl
+                            fileName:opusId
+                            downloadProgressDelegate:progressDelegate];
+                }
+                @catch (NSException *exception) {
+                    PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
+                    resultCode = ERROR_CLIENT_PARSE_DATA;
+                }
+                @finally {}
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (handler != NULL) {
+//                handler(resultCode, data, feed, fromCache);
+//            }
+        });
+        
+//        if (!fromCache) {
+//            [manager cachePBDrawData:data forFeedId:feed.feedId];
+//        }
+        
+        [subPool drain];
+        
+    }];
     
+
 }
 
 

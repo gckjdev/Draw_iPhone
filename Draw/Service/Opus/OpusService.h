@@ -42,9 +42,9 @@
                    score:(int)score
                 delegate:(id)delegate;
 
-- (void)downloadOpusData:(Opus*)opus
-        progressDelegate:(id)progressDelegate
-                delegate:(id<OpusServiceDelegate>)delegate;
+- (void)getOpusData:(Opus*)opus
+           delegate:(id<OpusServiceDelegate>)delegate;
+
 
 @end
 
