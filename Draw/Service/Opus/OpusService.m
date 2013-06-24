@@ -16,6 +16,7 @@
 #import "SynthesizeSingleton.h"
 #import "PPGameNetworkRequest.h"
 #import "SingOpus.h"
+#import "StringUtil.h"
 
 #define SING_MY_OPUS_DB     @"sing_my_opus.db"
 #define SING_FAVORITE_DB    @"sing_favorite.db"
@@ -115,6 +116,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
             }
         });
     });
+}
+
+- (void)submitGuessWords:(NSArray *)words
+                    opus:(Opus *)opus
+               isCorrect:(BOOL)isCorrect
+                   score:(int)score
+                delegate:(id)delegate{
+    
+    if ([words count] == 0) {
+        return;
+    }
+    
+    
+    
 }
 
 

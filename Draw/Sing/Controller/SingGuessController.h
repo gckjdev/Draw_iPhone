@@ -10,10 +10,11 @@
 #import "WordInputView.h"
 #import "Opus.h"
 
-@interface SingGuessController : PPViewController
-@property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
-@property (retain, nonatomic) PBOpus *pbOpus;
+@interface SingGuessController : PPViewController <WordInputViewDelegate>
 
-- (id)initWithPBOpus:(PBOpus *)pbOpus;
+@property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
+@property (retain, nonatomic) Opus *opus;
+
+- (id)initWithOpus:(Opus *)opus;
 
 @end
