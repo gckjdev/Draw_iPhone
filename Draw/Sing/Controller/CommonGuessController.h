@@ -13,12 +13,15 @@
 @interface CommonGuessController : PPViewController <WordInputViewDelegate>
 
 @property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) Opus *opus;
 
 - (id)initWithOpus:(Opus *)opus;
+- (IBAction)clickRunAwayButton:(id)sender;
 
 // Rewrite in sub-class
 - (void)didGuessWrong:(NSString *)word;
 - (void)didGuessCorrect:(NSString *)word;
+- (void)runAway;
 
 @end

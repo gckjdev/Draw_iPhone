@@ -14,6 +14,7 @@
 @protocol OpusServiceDelegate <NSObject>
 
 - (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus;
+- (void)didDownloadOpusData:(int)resultCode opus:(Opus *)opus;
 
 @end
 
@@ -40,6 +41,10 @@
                isCorrect:(BOOL)isCorrect
                    score:(int)score
                 delegate:(id)delegate;
+
+- (void)downloadOpusData:(Opus*)opus
+        progressDelegate:(id)progressDelegate
+                delegate:(id<OpusServiceDelegate>)delegate;
 
 @end
 

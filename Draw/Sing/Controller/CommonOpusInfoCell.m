@@ -10,6 +10,7 @@
 #import "UIButton+WebCache.h"
 #import "UIImageView+WebCache.h"
 #import "TimeUtils.h"
+#import "UIButtonExt.h"
 
 @interface CommonOpusInfoCell()
 
@@ -40,26 +41,9 @@
     // set opus image.
     NSURL *thumbUrl =[NSURL URLWithString:opus.thumbImage];
     NSURL *url = [NSURL URLWithString:opus.image];
+    UIImage *placeholderImage = nil;
     
-//    __block typeof(self) bself  = self;
-
-    UIImage *defaultImage = nil;
-    
-    UIImageView *thumbImageView = nil;
-    if (thumbUrl != nil) {
-        thumbImageView = [[[UIImageView alloc] initWithFrame:self.opusImageButton.bounds] autorelease];
-        thumbImageView.userInteractionEnabled = NO;
-        [self.opusImageButton addSubview:thumbImageView];
-        [thumbImageView setImageWithURL:thumbUrl placeholderImage:defaultImage];
-    }
-
-    if (url != nil) {
-        [self.opusImageButton setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-            [thumbImageView removeFromSuperview];
-        } failure:^(NSError *error) {
-            [thumbImageView removeFromSuperview];
-        }];
-    }
+    [self.opusImageButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeholderImage];
     
     [self.opusImageButton addTarget:self action:@selector(clickOpusImageButton:) forControlEvents:UIControlEventTouchUpInside];
     

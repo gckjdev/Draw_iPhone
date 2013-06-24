@@ -27,6 +27,7 @@
     [_guessWords release];
     [_wordInputView release];
     [_opus release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -72,6 +73,7 @@
 - (void)viewDidUnload {
     
     [self setWordInputView:nil];
+    [self setTitleLabel:nil];
     [super viewDidUnload];
 }
 
