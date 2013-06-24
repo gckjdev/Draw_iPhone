@@ -134,6 +134,8 @@
 #define METHOD_RANDOM_GET_SONGS @"randomGetSongs"
 #define PARA_SUB_CATEGORY @"subCategory"
 
+#define METHOD_GUESS_OPUS @"guessOpus"
+
 //contest
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"
 
@@ -251,6 +253,7 @@
 #define PARA_PASSWORD @"pwd"
 #define PARA_NEW_PASSWORD @"npwd"
 
+#define PARA_USER @"user"
 
 #define PARA_SINA_ID @"siid"
 #define PARA_QQ_ID @"qid"
