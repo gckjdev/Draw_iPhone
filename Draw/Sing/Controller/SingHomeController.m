@@ -11,6 +11,8 @@
 #import "SingOpusDetailController.h"
 #import "SingGuessController.h"
 #import "OpusManageController.h"
+#import "UserDetailViewController.h"
+#import "SelfUserDetail.h"
 
 @interface SingHomeController ()
 
@@ -150,6 +152,14 @@
     }
 }
 
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
+{
+    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+    //    UserSettingController *us = [[UserSettingController alloc] init];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
+}
 
 - (void)dealloc {
     [_testBtn release];

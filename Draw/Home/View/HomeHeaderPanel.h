@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HomeCommonView.h"
 #import "FeedService.h"
+#import "FriendService.h"
 
 @class HomeHeaderPanel;
 @class DrawFeed;
@@ -33,7 +34,7 @@
 
 @end
 
-@interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate>
+@interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate, FriendServiceDelegate>
 {
     
 }
