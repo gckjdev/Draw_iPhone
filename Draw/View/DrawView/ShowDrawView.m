@@ -65,8 +65,9 @@
     self.tempAction = nil;
     _currentAction = nil;
 //    [osManager clean];
-//    [cdManager reset];
+    [cdManager reset];
     pen.hidden = YES;
+
 }
 
 #define VALUE(x) (ISIPAD ? 2*x : x)
