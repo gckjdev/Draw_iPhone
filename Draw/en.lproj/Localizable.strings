@@ -967,7 +967,8 @@
 "kAccept" = "Accept";
 
 "kCoinsForFollowUs" = "+%d coins";
-"kFollowUs" = "Follow us";
+"kFollowSinaWeibo" = "Follow us with Sina";
+"kFollowTencentWeibo" = "Follow us with Tencent";
 
 "kContestRule" = "Rule";
 "kFailLoad" = "Fail to load data, please try it later.";

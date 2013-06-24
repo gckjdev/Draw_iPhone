@@ -979,7 +979,8 @@
 "kAccept" = "接受";
 
 "kCoinsForFollowUs" = "+%d金幣";
-"kFollowUs" = "關注官方微博";
+"kFollowSinaWeibo" = "關注新浪​​官方微博";
+"kFollowTencentWeibo" = "關注騰訊官方微博";
 
 "kContestRule" = "規則";
 "kFailLoad" = "獲取數據失敗，請稍後再試。";

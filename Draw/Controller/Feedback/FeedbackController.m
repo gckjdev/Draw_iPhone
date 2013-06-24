@@ -43,7 +43,8 @@
 @property (assign, nonatomic) int rowOfAbout;
 @property (assign, nonatomic) int rowOfAppUpdate;
 @property (assign, nonatomic) int numberOfRows;
-@property (assign, nonatomic) int rowOfFollow;
+@property (assign, nonatomic) int rowOfFollowSina;
+@property (assign, nonatomic) int rowOfFollowTencent;
 @property (assign, nonatomic) int rowOfCleanCache;
 
 @end
@@ -55,7 +56,8 @@
 @synthesize backgroundImageView;
 
 @synthesize rowOfShare;
-@synthesize rowOfFollow;
+@synthesize rowOfFollowSina;
+@synthesize rowOfFollowTencent;
 @synthesize rowOfAddWords;
 @synthesize rowOfReportBug;
 @synthesize rowOfFeedback;
@@ -69,7 +71,7 @@
 
 #pragma mark - Table dataSource ,table view delegate
 
-#define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
+#define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 380)
 #define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
 
 - (void)initRowNumber
@@ -78,7 +80,8 @@
     if (isDrawApp()) {
         rowOfShare = count++;
         if ([LocaleUtils isChina] || [LocaleUtils isOtherChina]) {
-            rowOfFollow = count++;
+            rowOfFollowSina = count++;
+            rowOfFollowTencent = count++;
         }
         rowOfCleanCache = count++;
         if (!isLittleGeeAPP()) {
@@ -102,7 +105,8 @@
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
     }else{ 
         rowOfShare = count++;
-        rowOfFollow = count++;
+        rowOfFollowSina = count++;
+        rowOfFollowTencent = count++;
         rowOfReportBug = count++;
         rowOfFeedback = count++;
         rowOfMoreApp = count++;
@@ -134,11 +138,16 @@
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
         [aCell.customTextLabel setText:message];
     } 
-    else if (anIndex == rowOfFollow) {
+    else if (anIndex == rowOfFollowSina) {
         NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];            
-        message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowUs"), message];
+        message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowSinaWeibo"), message];
         [aCell.customTextLabel setText:message];
-    } 
+    }
+    else if (anIndex == rowOfFollowTencent) {
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];
+        message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowTencentWeibo"), message];
+        [aCell.customTextLabel setText:message];
+    }
     else if (anIndex == rowOfAddWords) {
         [aCell.customTextLabel setText:NSLS(@"kAddWords")];
     } 
@@ -296,20 +305,7 @@ enum {
         [rc release];
     } 
     
-    else if (indexPath.row == rowOfFollow){
-        if ([[UserManager defaultManager] hasBindQQWeibo]){
-            
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] followUser:nil
-                                                                                      userId:[GameApp qqWeiboId]
-                                                                                successBlock:^(NSDictionary *userInfo) {
-                                                                                    
-                [self popupMessage:@"谢谢，你已经成功关注了腾讯官方微博帐号" title:nil];
-                                                                                    
-            } failureBlock:^(NSError *error) {
-                [self popupMessage:@"你未绑定腾讯微博或者腾讯微博授权已经过期，请到个人设置页面进行腾讯微博授权" title:@""];
-            }];
-        }
-        
+    else if (indexPath.row == rowOfFollowSina){
         if ([[UserManager defaultManager] hasBindSinaWeibo]){
             
             [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] followUser:[GameApp sinaWeiboId]
@@ -326,6 +322,19 @@ enum {
                 }
             }];
             
+        }
+    }else if (indexPath.row == rowOfFollowTencent){
+        if ([[UserManager defaultManager] hasBindQQWeibo]){
+            
+            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] followUser:nil
+                                                                                      userId:[GameApp qqWeiboId]
+                                                                                successBlock:^(NSDictionary *userInfo) {
+                                                                                    
+                                                                                    [self popupMessage:@"谢谢，你已经成功关注了腾讯官方微博帐号" title:nil];
+                                                                                    
+                                                                                } failureBlock:^(NSError *error) {
+                                                                                    [self popupMessage:@"你未绑定腾讯微博或者腾讯微博授权已经过期，请到个人设置页面进行腾讯微博授权" title:@""];
+                                                                                }];
         }
     }
     
