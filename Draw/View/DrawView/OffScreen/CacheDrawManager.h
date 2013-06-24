@@ -56,7 +56,9 @@
 
 - (CGRect)updateLastAction:(DrawAction *)action;
 
-- (void)finishDrawAction:(DrawAction *)action;
+- (void)cancelLastAction;
+
+- (BOOL)finishDrawAction:(DrawAction *)action;
 
 //Draw View Action
 - (BOOL)canUndo;

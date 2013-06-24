@@ -51,6 +51,13 @@
 @synthesize penType = _penType;
 
 
+- (void)setDrawActionList:(NSMutableArray *)drawActionList
+{
+    [super setDrawActionList:drawActionList];
+    [cdManager setDrawActionList:drawActionList];
+}
+
+
 - (void)callbackFinishDelegateWithAction:(DrawAction *)action
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(drawView:didFinishDrawAction:)]) {
@@ -87,7 +94,8 @@
     [self clearRedoStack];
     DrawAction *cleanAction = [[[CleanAction alloc] init] autorelease];
     [self.drawActionList addObject:cleanAction];
-    [osManager addDrawAction:cleanAction];
+//    [osManager addDrawAction:cleanAction];
+    [cdManager addDrawAction:cleanAction];
     [self drawDrawAction:cleanAction show:YES];
     self.bgColor = [DrawColor whiteColor];
 }
@@ -151,7 +159,8 @@
         [_gestureRecognizerManager setCapture:YES];
         self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:self.touchActionType];
         [self.touchHandler setDrawView:self];
-        [self.touchHandler setOsManager:osManager];
+//        [self.touchHandler setOsManager:osManager];
+        [self.touchHandler setCdManager:cdManager];
         if (self.touchActionType == TouchActionTypeGetColor) {
             [(StrawTouchHandler *)self.touchHandler setStrawDelegate:self.strawDelegate];
         }
@@ -238,8 +247,9 @@
         _drawActionList = [[NSMutableArray alloc] init];
         _redoStack = [[PPStack alloc] init];
         
-        osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
-        
+//        osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
+        cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
+        cdManager.drawActionList = self.drawActionList;
         [self setMultipleTouchEnabled:YES];
         _gestureRecognizerManager.delegate = self;
     }
@@ -256,11 +266,15 @@
     self.transform = CGAffineTransformIdentity;
     self.bounds = rect;
     self.frame = rect;
-    [osManager release];
-    osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
-    if (_grid) {
-        [osManager setShowGridOffscreen:YES];
-    }
+    [cdManager release];
+    cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
+    cdManager.drawActionList = self.drawActionList;
+    [cdManager setShowGrid:_grid];
+//    [osManager release];
+//    osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
+//    if (_grid) {
+//        [osManager setShowGridOffscreen:YES];
+//    }
     [(DrawHolderView *)self.superview updateContentScale];
     [self setNeedsDisplay];
 }
@@ -268,7 +282,8 @@
 - (void)setGrid:(BOOL)grid
 {
     _grid = grid;
-    [osManager setShowGridOffscreen:grid];
+//    [osManager setShowGridOffscreen:grid];
+    [cdManager setShowGrid:grid];
     [self setNeedsDisplay];
 }
 
@@ -290,6 +305,7 @@
 {
 //    [self printOSInfoWithTag:@"<Revoke> Before"];
     
+/*
     NSUInteger count = [self.drawActionList count];
     NSUInteger index = [osManager closestIndexWithActionIndex:count];
     Offscreen *os = [osManager offScreenForActionIndex:index];
@@ -299,6 +315,8 @@
         DrawAction *action = [self.drawActionList objectAtIndex:index];
         [os drawAction:action clear:NO];
     }
+ */
+    [cdManager undo];
     [self setNeedsDisplay];
 
     [self synBGColor];
@@ -312,7 +330,8 @@
 
 - (BOOL)canRevoke
 {
-    return [_drawActionList count] > 0 && [osManager canUndo];
+//    return [_drawActionList count] > 0 && [osManager canUndo];
+    return [_drawActionList count] > 0 && [cdManager canUndo];
 }
 
 
@@ -347,7 +366,8 @@
         if (action) {
 //            [self printOSInfoWithTag:@"<Redo> before"];
             [self.drawActionList addObject:action];
-            [osManager addDrawAction:action];
+//            [osManager addDrawAction:action];
+            [cdManager addDrawAction:action];
             [self setNeedsDisplay];
 //            [self printOSInfoWithTag:@"<Redo> after"];
             if ([action isKindOfClass:[ChangeBackAction class]]) {

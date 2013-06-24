@@ -14,7 +14,7 @@
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 
-#define MAX_CACHED_ACTION_COUNT 300
+#define MAX_CACHED_ACTION_COUNT 600
 #define MIN_UNDO_COUNT 100
 #define LINE_SPACE [ConfigManager getDrawGridLineSpace]
 
@@ -45,27 +45,37 @@
     CacheDrawManager *manager = [[[CacheDrawManager alloc] init] autorelease];
     manager.rect = rect;
     manager.offscreen = [Offscreen offscreenWithCapacity:MAX_CACHED_ACTION_COUNT rect:rect];
+    manager.useCachedImage = YES;
     return manager;
 }
 
 //add draw action and draw it in the last layer.
 - (CGRect)addDrawAction:(DrawAction *)action
 {
+    PPDebug(@"<addDrawAction> Start: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);
+
 //    self.inDrawAction = nil;
     if (_offscreen.actionCount >= MAX_CACHED_ACTION_COUNT && self.useCachedImage) {
         NSInteger from = self.imageIndex;
         
         NSInteger osIndex = from + _offscreen.actionCount + 1;
         NSInteger to = self.imageIndex + MAX_CACHED_ACTION_COUNT - MIN_UNDO_COUNT;
+
+//        PPDebug(@"<addDrawAction> Start: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);
+
         [self updateImageFromIndex:from toIndex:to];
- 
+        [_offscreen clear];
         [_offscreen showImage:self.cachedImage];
+        
         [self updateOSFromIndex:to toIndex:osIndex clear:NO];
 
-        PPDebug(@"<addDrawAction> Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);
+        PPDebug(@"Change Image!!!");
+        PPDebug(@"<addDrawAction> Start: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);
+
         return _rect;
     }else{
         CGRect rect = [_offscreen drawAction:action clear:NO];
+        PPDebug(@"<addDrawAction> End: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);        
         return rect;
     }
 }
@@ -82,8 +92,9 @@
 
 - (void)updateImageFromIndex:(NSInteger)from toIndex:(NSInteger)to
 {
-    UIGraphicsBeginImageContextWithOptions(_rect.size, NO, 2);
+    UIGraphicsBeginImageContextWithOptions(_rect.size, NO, 1);
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
     [self.cachedImage drawAtPoint:CGPointZero];
     for (NSInteger i = from ; i < to; i ++) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
@@ -111,6 +122,7 @@
         if (toIndex > 0) {
             [self updateImageFromIndex:0 toIndex:toIndex];
         }
+        [_offscreen clear];
         [_offscreen showImage:self.cachedImage];
         [self updateOSFromIndex:self.imageIndex toIndex:index clear:NO];
     }else{
@@ -120,13 +132,14 @@
 
 - (void)updateWithDrawActionList:(NSArray *)drawActionList
 {
-    [self updateWithDrawActionList:drawActionList toIndex:[_drawActionList count]];
+    [self updateWithDrawActionList:drawActionList toIndex:[drawActionList count]];
 }
 
 //show all the action render in the layer list
 - (void)showInContext:(CGContextRef)context
 {
-    [self.bgPhto drawAtPoint:CGPointZero];
+//    [self.bgPhto drawAtPoint:CGPointZero];
+    [self.bgPhto drawInRect:_rect];
     [_offscreen showInContext:context];
     [_inDrawAction drawInContext:context inRect:_rect];
     if (self.showGrid) {
@@ -141,6 +154,11 @@
     return [action redrawRectInRect:_rect];
 //    CGRect rect = [action redrawRectInRect:_rect];
 //    return _rect;
+}
+
+- (void)cancelLastAction
+{
+    self.inDrawAction = nil;
 }
 
 - (BOOL)canUndo
@@ -162,15 +180,22 @@
 - (void)undo
 {
     if ([self canUndo]) {
+        [_offscreen clear];
         [_offscreen showImage:self.cachedImage];
         [self updateOSFromIndex:self.imageIndex toIndex:[_drawActionList count] clear:NO];
     }
 }
 
-- (void)finishDrawAction:(DrawAction *)action
+- (BOOL)finishDrawAction:(DrawAction *)action
 {
-    [self addDrawAction:action];
-    self.inDrawAction = nil;
+    if (action) {
+        CGRect  rect = [self addDrawAction:action];
+        self.inDrawAction = nil;
+        if (CGRectEqualToRect(rect, _rect)) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 

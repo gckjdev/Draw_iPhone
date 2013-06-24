@@ -10,7 +10,7 @@
 #import "DrawAction.h"
 #import "DrawView.h"
 #import "OffscreenManager.h"
-
+#import "CacheDrawManager.h"
 
 typedef enum {
     TouchStateBegin = 0,
@@ -32,6 +32,7 @@ typedef enum {
 
 @property(nonatomic, assign)DrawView *drawView;
 @property(nonatomic, assign)OffscreenManager *osManager;
+@property(nonatomic, assign)CacheDrawManager *cdManager;
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state;
 - (void)handleFailTouch;

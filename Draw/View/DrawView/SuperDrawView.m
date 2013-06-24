@@ -34,7 +34,8 @@
 - (void)cleanAllActions
 {
     [_drawActionList removeAllObjects];
-    [osManager clean];
+//    [osManager clean];
+    [cdManager reset];
 }
 
 - (void)dealloc
@@ -174,7 +175,8 @@
 
 - (void)setBGImage:(UIImage *)image
 {
-    [osManager setBGOffscreenImage:image];
+//    [osManager setBGOffscreenImage:image];
+    [cdManager setBgPhto:image];
 }
 
 //- (void)setScale:(CGFloat)scale
@@ -199,6 +201,7 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
 
 
 
+/*
 - (CGContextRef)createBitmapContext
 {
     CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];    
@@ -210,29 +213,21 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
 
-    CTMContext(context, self.bounds);
-    [osManager showAllLayersInContext:context];
+    [cdManager showInContext:context];
     
     return context;
 }
-
+*/
 - (UIImage*)createImage
 {
+    UIGraphicsBeginImageContext(self.bounds.size);
     
-    PPDebug(@"<createImage> image bounds = %@", NSStringFromCGRect(self.bounds));
-    CGContextRef context = [self createBitmapContext];
-    if (context == NULL) {
-        return nil;
-    }
-    CGImageRef image = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    if (image == NULL) {
-        return nil;
-    }else{
-        UIImage *img = [UIImage imageWithCGImage:image];
-        CGImageRelease(image);
-        return img;
-    }
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [cdManager showInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+
 }
 
 - (UIImage *)createImageWithSize:(CGSize)size
@@ -248,9 +243,12 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     if (image) {
         [self setBackgroundColor:[UIColor clearColor]];
         PPDebug(@"draw image in bounds = %@",NSStringFromCGRect(self.bounds));
-        [osManager clean];
-        Offscreen *os = [osManager enteryScreen];
-        [os showImage:image];
+        [cdManager reset];
+        [cdManager setBgPhto:image];
+        [self setNeedsDisplay];
+//        [osManager clean];
+//        Offscreen *os = [osManager enteryScreen];
+//        [os showImage:image];
     }
 }
 @end

@@ -42,8 +42,9 @@
                                    pointList:nil];
         
         action = [[PaintAction paintActionWithPaint:currentPaint] retain];
-        [action addPoint:point inRect:self.drawView.bounds];
-        [self.drawView drawDrawAction:action show:YES];
+//        [action addPoint:point inRect:self.drawView.bounds];
+//        [self.drawView drawDrawAction:action show:YES];
+        [self.drawView updateLastAction:action show:YES];
     }else{
         [action addPoint:point inRect:self.drawView.bounds];
         [self.drawView updateLastAction:action show:YES];
@@ -67,6 +68,12 @@
     currentState = TouchStateEnd;
     [action finishAddPoint];
     [self addAction:action];
+    BOOL needRedraw = [self.cdManager finishDrawAction:action];
+    
+    if (needRedraw) {
+        [self.drawView setNeedsDisplay];
+    }
+    
     if (action) {
         [self.drawView clearRedoStack];
     }
@@ -109,7 +116,8 @@
     }
     [super handleFailTouch];
     [self reset];
-    [self.osManager cancelLastAction];
+//    [self.osManager cancelLastAction];
+    [self.cdManager cancelLastAction];
     [self.drawView setNeedsDisplay];
 }
 
