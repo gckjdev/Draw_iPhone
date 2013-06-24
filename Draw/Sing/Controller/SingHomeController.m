@@ -9,7 +9,7 @@
 #import "SingHomeController.h"
 #import "SongSelectController.h"
 #import "SingOpusDetailController.h"
-#import "SingGuessController.h"
+#import "CommonGuessController.h"
 #import "OpusManageController.h"
 #import "UserDetailViewController.h"
 #import "SelfUserDetail.h"
@@ -86,7 +86,7 @@
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
-            SingGuessController *vc = [[[SingGuessController alloc] init] autorelease];
+            CommonGuessController *vc = [[[CommonGuessController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -156,7 +156,6 @@
 {
     [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
     UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-    //    UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
 }

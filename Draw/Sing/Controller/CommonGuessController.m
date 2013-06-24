@@ -1,28 +1,27 @@
 //
-//  SingGuessController.m
+//  CommonGuessController.m
 //  Draw
 //
 //  Created by 王 小涛 on 13-6-19.
 //
 //
 
-#import "SingGuessController.h"
+#import "CommonGuessController.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
 #import "CommonDialog.h"
 #import "CommonMessageCenter.h"
-#import "AudioManager.h"
 #import "LevelService.h"
 #import "DrawSoundManager.h"
 #import "OpusService.h"
 
-@interface SingGuessController ()
+@interface CommonGuessController ()
 
 @property (retain, nonatomic) NSMutableArray *guessWords;
 
 @end
 
-@implementation SingGuessController
+@implementation CommonGuessController
 
 - (void)dealloc {
     [_guessWords release];
@@ -47,11 +46,18 @@
     // Do any additional setup after loading the view from its nib.
     _wordInputView.answerImage = [UIImage imageNamed:@"wood_button@2x.png"];
     _wordInputView.candidateImage = [UIImage imageNamed:@"wood_button@2x.png"];
-    _wordInputView.answer = _opus.pbOpus.name;
+//    _wordInputView.answer = _opus.pbOpus.name;
+    _wordInputView.answer = @"草泥马";
+
     _wordInputView.delegate = self;
     
     // TODO: Set candidate here
     [_wordInputView setCandidates:@"是克拉草建设的离开泥法国就阿拉山马口" column:9];
+    
+    [_wordInputView setClickSound:[DrawSoundManager defaultManager].clickWordSound];
+    [_wordInputView setWrongSound:[DrawSoundManager defaultManager].guessWrongSound];
+    [_wordInputView setCorrectSound:[DrawSoundManager defaultManager].guessCorrectSound];
+
     
     self.guessWords = [NSMutableArray array];
 }
@@ -69,8 +75,6 @@
     [super viewDidUnload];
 }
 
-
-
 - (IBAction)clickRunAwayButton:(id)sender {
     
     [[OpusService defaultService] submitGuessWords:_guessWords
@@ -78,6 +82,8 @@
                                          isCorrect:NO
                                              score:3
                                           delegate:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)wordInputView:(WordInputView *)wordInputView
@@ -87,12 +93,18 @@
     [_guessWords addObject:word];
     
     if (isCorrect) {
-        
-        // Jump to another controller
+        [self didGuessCorrect:word];
     }else{
-        
-        
+        [self didGuessWrong:word];
     }
+}
+
+- (void)didGuessCorrect:(NSString *)word{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
+}
+
+- (void)didGuessWrong:(NSString *)word{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
 }
 
 @end
