@@ -194,7 +194,7 @@
 }
 
 
-/*
+
 - (CGContextRef)createBitmapContext
 {
     CGContextRef context = [DrawUtils createNewBitmapContext:self.bounds];    
@@ -206,17 +206,18 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
 
-    [cdManager showInContext:context];
+    [cdManager showInContextWithoutGrid:context];
     
     return context;
 }
-*/
+
+
 - (UIImage*)createImage
 {
     UIGraphicsBeginImageContext(self.bounds.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    [cdManager showInContext:context];
+    [cdManager showInContextWithoutGrid:context];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

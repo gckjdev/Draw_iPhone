@@ -32,6 +32,9 @@
     unsigned char* data = CGBitmapContextGetData (context);
     DrawColor *color = nil;
     CGFloat w = (NSUInteger)CGRectGetWidth(self.drawView.bounds);
+    CGFloat h = (NSUInteger)CGRectGetHeight(self.drawView.bounds);
+    point.y = h - point.y; //Needed in new version
+    
     if (data != NULL) {
         //offset locates the pixel in the data from x,y.
         //4 for 4 bytes of data per pixel, w is width of one row of data.
@@ -53,6 +56,8 @@
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state
 {
     [super handlePoint:point forTouchState:state];
+    
+//    point.y = CGRectGetHeight(self.drawView.bounds) - point.y;
     switch (state) {
         case TouchStateBegin:
         {
@@ -60,6 +65,10 @@
             [self reset];
             //new and show color view and show it in the super view
             _tempBitmapContext = [self.drawView createBitmapContext];
+            
+//            CGContextScaleCTM(_tempBitmapContext, 1, -1);
+//            CGContextTranslateCTM(_tempBitmapContext, 1, - self.drawView.bounds.size.height);
+            
             DrawColor *color = [self colorAtPoint:point inContext:_tempBitmapContext];
             _strawView = [StrawView strawViewWithColor:color.color];
             [self.drawView addSubview:_strawView];

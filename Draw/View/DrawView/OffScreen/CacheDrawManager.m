@@ -147,6 +147,12 @@
     }
 }
 
+- (void)showInContextWithoutGrid:(CGContextRef)context
+{
+    [self.bgPhto drawInRect:_rect];
+    [_offscreen showInContext:context];
+    [_inDrawAction drawInContext:context inRect:_rect];
+}
 
 - (CGRect)updateLastAction:(DrawAction *)action
 {

@@ -393,7 +393,7 @@
 //    [osManager printOSInfo];
 }
 
-
+/*
 - (UIImage *)createImage
 {
     if ([cdManager showGrid]) {
@@ -402,6 +402,7 @@
     UIImage *image = [super createImage];
     return image;
 }
+*/
 
 - (NSInteger)totalActionCount
 {
