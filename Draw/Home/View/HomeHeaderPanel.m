@@ -387,9 +387,8 @@
 }
 
 - (IBAction)clickFriendButton:(id)sender {
-    FriendController *controller = [[FriendController alloc] init];
-    if ([[StatisticManager defaultManager] fanCount] > 0) {
-        [controller setDefaultTabIndex:FriendTabIndexFan];
+    if ([self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickFriendButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickFriendButton:sender];
     }
     
     self.friendBadgeButton.hidden = YES;

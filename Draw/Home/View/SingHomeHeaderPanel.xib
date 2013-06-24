@@ -238,7 +238,6 @@
 						<string key="NSFrame">{{0, 98}, {320, 80}}</string>
 						<reference key="NSSuperview" ref="378630192"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -373,6 +372,15 @@
 						<reference key="destination" ref="343093806"/>
 					</object>
 					<int key="connectionID">171</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickBulletinButton:</string>
+						<reference key="source" ref="306504069"/>
+						<reference key="destination" ref="378630192"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">172</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -514,7 +522,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">171</int>
+			<int key="maxID">172</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -567,6 +575,7 @@
 						<string key="displayBG">UIImageView</string>
 						<string key="displayScrollView">UIScrollView</string>
 						<string key="freeCoin">UIButton</string>
+						<string key="friendBadgeButton">UIButton</string>
 						<string key="friendCountLabel">UILabel</string>
 						<string key="ingotLabel">UILabel</string>
 						<string key="level">UILabel</string>
@@ -603,6 +612,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="freeCoin">
 							<string key="name">freeCoin</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="friendBadgeButton">
+							<string key="name">friendBadgeButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="friendCountLabel">
