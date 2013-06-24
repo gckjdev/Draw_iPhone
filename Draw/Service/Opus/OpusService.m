@@ -132,5 +132,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     
 }
 
+- (void)downloadOpusData:(Opus*)opus
+        progressDelegate:(id)progressDelegate
+                delegate:(id<OpusServiceDelegate>)delegate{
+    
+    NSURL *url = [NSURL URLWithString:opus.pbOpus.dataUrl];
+    if (opus.pbOpus.dataUrl == nil) {
+        
+    }
+    
+}
+
 
 @end

@@ -9,7 +9,7 @@
 #import "SingHomeController.h"
 #import "SongSelectController.h"
 #import "SingOpusDetailController.h"
-#import "CommonGuessController.h"
+#import "SingGuessController.h"
 #import "OpusManageController.h"
 #import "UserDetailViewController.h"
 #import "SelfUserDetail.h"
@@ -86,7 +86,7 @@
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
-            CommonGuessController *vc = [[[CommonGuessController alloc] init] autorelease];
+            SingGuessController *vc = [[[SingGuessController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
