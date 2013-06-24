@@ -251,7 +251,6 @@
         self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
         
-//        osManager = [[OffscreenManager showViewOffscreenManagerWithRect:self.bounds] retain];;
         cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
         cdManager.drawActionList = self.drawActionList;
         cdManager.useCachedImage = NO;        
@@ -518,8 +517,7 @@
     self.transform = CGAffineTransformIdentity;
     self.bounds = rect;
     self.frame = rect;
-//    PPRelease(osManager);
-//    osManager = [[OffscreenManager showViewOffscreenManagerWithRect:rect] retain];
+
     PPRelease(cdManager);
     cdManager = [[CacheDrawManager managerWithRect:rect] retain];
     cdManager.drawActionList = self.drawActionList;

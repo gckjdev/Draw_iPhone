@@ -598,24 +598,10 @@
     }
 }
 
-- (void)updateShowBgScreenForPhoto
-{
-    if (targetType == TypePhoto) {
-        [OffscreenManager setShowBGOffscreen:YES];
-    }
-}
-
-- (void)updateNotShowBgScreenForPhoto
-{
-    if (targetType == TypePhoto) {
-        [OffscreenManager setShowBGOffscreen:NO];
-    }
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateShowBgScreenForPhoto];
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
@@ -655,7 +641,6 @@
 {
     [self stopBackupTimer];
     [super viewDidDisappear:animated];
-    [self updateNotShowBgScreenForPhoto];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -667,7 +652,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self updateNotShowBgScreenForPhoto];
 }
 
 

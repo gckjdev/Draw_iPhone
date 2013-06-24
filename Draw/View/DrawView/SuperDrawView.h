@@ -12,7 +12,6 @@
 #import "DrawColor.h"
 #import "DrawAction.h"
 #import "ItemType.h"
-#import "OffscreenManager.h"
 #import "DrawBgManager.h"
 #import "GestureRecognizerManager.h"
 #import <QuartzCore/QuartzCore.h>
@@ -30,7 +29,6 @@
     //used by subclass
     DrawAction *_currentAction;
     
-//    OffscreenManager *osManager;
     CacheDrawManager *cdManager;
     
     GestureRecognizerManager *_gestureRecognizerManager;

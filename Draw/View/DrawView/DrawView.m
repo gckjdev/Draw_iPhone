@@ -247,7 +247,6 @@
         _drawActionList = [[NSMutableArray alloc] init];
         _redoStack = [[PPStack alloc] init];
         
-//        osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
         cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
         cdManager.drawActionList = self.drawActionList;
         [self setMultipleTouchEnabled:YES];
@@ -270,11 +269,6 @@
     cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
     cdManager.drawActionList = self.drawActionList;
     [cdManager setShowGrid:_grid];
-//    [osManager release];
-//    osManager = [[OffscreenManager drawViewOffscreenManagerWithRect:self.bounds] retain];
-//    if (_grid) {
-//        [osManager setShowGridOffscreen:YES];
-//    }
     [(DrawHolderView *)self.superview updateContentScale];
     [self setNeedsDisplay];
 }
@@ -282,7 +276,6 @@
 - (void)setGrid:(BOOL)grid
 {
     _grid = grid;
-//    [osManager setShowGridOffscreen:grid];
     [cdManager setShowGrid:grid];
     [self setNeedsDisplay];
 }
