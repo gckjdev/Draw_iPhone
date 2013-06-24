@@ -95,6 +95,8 @@
 #import "ChargeController.h"
 #import "ContestManager.h"
 
+#import "GalleryController.h"
+
 @interface HomeController()
 {
 
@@ -722,6 +724,10 @@
         case HomeMenuTypeDrawCharge: {
             ChargeController *vc = [[[ChargeController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
+        } break;
+        case HomeMenuTypeDrawPhoto: {
+            GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
+            [self.navigationController pushViewController:gallery animated:YES];
         } break;
         default:
             break;

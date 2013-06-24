@@ -20,6 +20,7 @@
 #import "BulletinView.h"
 #import "FriendController.h"
 #import "StatisticManager.h"
+#import "UIViewUtils.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -39,6 +40,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *ingotLabel;
 @property (retain, nonatomic) IBOutlet UILabel *friendCountLabel;
 @property (retain, nonatomic) IBOutlet UIButton *friendBadgeButton;
+@property (retain, nonatomic) IBOutlet UIImageView *coinCountBackgroundImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *friendCountBackgroundImageView;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
@@ -241,12 +244,26 @@
     }
 }
 
+#define MAX_COUNT_BG_SIZE  ([DeviceDetection isIPAD] ? CGSizeMake(160, 36) : CGSizeMake(80, 18))
+#define MIN_COUNT_BG_SIZE  ([DeviceDetection isIPAD] ? CGSizeMake(80, 36) : CGSizeMake(40, 18))
+
 - (void)didGetFanCount:(NSInteger)fanCount
            followCount:(NSInteger)followCount
             blackCount:(NSInteger)blackCount
             resultCode:(NSInteger)resultCode
-{
+{    
     self.friendCountLabel.text = [NSString stringWithFormat:@"%d", fanCount];
+    
+    //change bg size
+    CGSize size = [_friendCountLabel.text sizeWithFont:_friendCountLabel.font];
+    if (size.width > MAX_COUNT_BG_SIZE.width) {
+        size = MAX_COUNT_BG_SIZE;
+    }
+    if (size.width < MIN_COUNT_BG_SIZE.width) {
+        size = MIN_COUNT_BG_SIZE;
+    }
+    [self.friendCountBackgroundImageView updateWidth:size.width];
+    self.friendCountBackgroundImageView.center = self.friendCountLabel.center;
 }
 
 #pragma mark - UpdateView
@@ -334,8 +351,19 @@
     }
     
     if (isSingApp()) {
-        [[FriendService defaultService] getRelationCount:self];
+        //change coin bg size
+        CGSize size = [_coin.text sizeWithFont:_coin.font];
+        if (size.width > MAX_COUNT_BG_SIZE.width) {
+            size = MAX_COUNT_BG_SIZE;
+        }
+        if (size.width < MIN_COUNT_BG_SIZE.width) {
+            size = MIN_COUNT_BG_SIZE;
+        }
+        [self.coinCountBackgroundImageView updateWidth:size.width];
+        self.coinCountBackgroundImageView.center = self.coin.center;
         
+        //get fan count
+        [[FriendService defaultService] getRelationCount:self];
         if ([StatisticManager defaultManager].fanCount > 0) {
             self.friendBadgeButton.hidden = NO;
             [self.friendBadgeButton setTitle:[NSString stringWithFormat:@"%d", (int)[StatisticManager defaultManager].fanCount] forState:UIControlStateNormal];
@@ -359,6 +387,8 @@
     [_ingotLabel release];
     [_friendCountLabel release];
     [_friendBadgeButton release];
+    [_coinCountBackgroundImageView release];
+    [_friendCountBackgroundImageView release];
     [super dealloc];
 }
 - (IBAction)clickFreeCoinButton:(id)sender {
@@ -387,9 +417,8 @@
 }
 
 - (IBAction)clickFriendButton:(id)sender {
-    FriendController *controller = [[FriendController alloc] init];
-    if ([[StatisticManager defaultManager] fanCount] > 0) {
-        [controller setDefaultTabIndex:FriendTabIndexFan];
+    if ([self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickFriendButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickFriendButton:sender];
     }
     
     self.friendBadgeButton.hidden = YES;
