@@ -820,6 +820,9 @@
         case MessageTypeText:
             [self showActionOptionsForMessage:message];
             break;
+        case MessageTypeDraw:
+            [self clickMessage:message withDrawActionList:[(DrawMessage *)message drawActionList]];
+            break;
         case MessageTypeLocationRequest:
         {
             if (message.sourceType == SourceTypeSend) {

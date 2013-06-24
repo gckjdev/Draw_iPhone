@@ -65,6 +65,9 @@
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
     CGRect rect1 = [self.paint redrawRectInRect:rect];
+    if (self.shadow) {
+        [self.shadow spanRect:&rect1];
+    }
     
 //    PPDebug(@"<PaintAction> redrawRectInRect = %@, in rect = %@", NSStringFromCGRect(rect1), NSStringFromCGRect(rect));
     

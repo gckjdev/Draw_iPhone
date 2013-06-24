@@ -21,6 +21,7 @@
 #import "FriendController.h"
 #import "StatisticManager.h"
 #import "UIViewUtils.h"
+#import "ShareImageManager.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -203,26 +204,14 @@
     }
 }
 
-- (void)didGetFeedList:(NSArray *)feedList
-          feedListType:(FeedListType)type
-            resultCode:(NSInteger)resultCode
+- (void)showFreed
 {
-
-    if (resultCode == 0 && [feedList count] != 0) {
-
-        //get Top 6 feed
-        if (self.feedList != feedList) {
-            self.feedList = [NSMutableArray arrayWithArray:feedList];
-        }
-
-
-        PPDebug(@"<didGetFeedList> ready to display images");
-        [self.displayScrollView setHidden:NO];
-        
-        [self clearOldDisplayImages];
-        //display image.
-        NSInteger i = 0;
-        for (DrawFeed *feed in feedList) {
+    [self.displayScrollView setHidden:NO];
+    [self clearOldDisplayImages];
+    NSInteger i = 0;
+    
+    if ([_feedList count] > 0) {
+        for (DrawFeed *feed in _feedList) {
             UIImageView *iv = [self imageForFeed:feed index:i];
             if (iv) {
                 iv.contentMode = UIViewContentModeScaleAspectFill;
@@ -233,15 +222,41 @@
                 break;
             }
         }
-        
-        //update the scroll view frame
-        NSInteger page = i / IMAGE_NUMBER_PER_PAGE;
-        if (i % IMAGE_NUMBER_PER_PAGE != 0) {
-            page ++;
+    } else {
+        for (; i < IMAGE_NUMBER_PER_PAGE; i++) {
+            CGFloat x = i * ([self imageWidth]  + SPACE_IMAGE);
+            UIImageView *imageView = [[[UIImageView alloc] initWithImage:[[ShareImageManager defaultManager] unloadBg]] autorelease];
+            [imageView.layer setCornerRadius:(self.imageWidth / 20)];
+            imageView.frame = CGRectMake(x, 0, [self imageWidth], [self imageWidth]);
+            [self.displayScrollView addSubview:imageView];
         }
-        self.displayScrollView.contentSize = CGSizeMake(DISPLAY_SIZE.width * page, DISPLAY_SIZE.height);
-        [self startDisplayAnimation];
     }
+    
+    //update the scroll view frame
+    NSInteger page = i / IMAGE_NUMBER_PER_PAGE;
+    if (i % IMAGE_NUMBER_PER_PAGE != 0) {
+        page ++;
+    }
+    self.displayScrollView.contentSize = CGSizeMake(DISPLAY_SIZE.width * page, DISPLAY_SIZE.height);
+    [self startDisplayAnimation];
+}
+
+- (void)didGetFeedList:(NSArray *)feedList
+          feedListType:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+
+    if (resultCode == 0 && [feedList count] != 0) {
+        //get Top 6 feed
+        if (self.feedList != feedList) {
+            self.feedList = [NSMutableArray arrayWithArray:feedList];
+        } 
+    } else {
+        NSArray *list = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
+        self.feedList = [NSMutableArray arrayWithArray:list];
+    }
+    
+    [self showFreed];
 }
 
 #define MAX_COUNT_BG_SIZE  ([DeviceDetection isIPAD] ? CGSizeMake(160, 36) : CGSizeMake(80, 18))
@@ -338,7 +353,7 @@
             [self didGetFeedList:self.feedList feedListType:0 resultCode:0];
         }
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
-
+        [self showFreed];
     }else{
         self.displayBG.hidden = YES;
         DrawImageManager *imageManager = [DrawImageManager defaultManager];
