@@ -397,17 +397,16 @@
 {
     PPDebug(tag);
     PPDebug(@"Action list count = %d",[_drawActionList count]);
-    [osManager printOSInfo];
+//    [osManager printOSInfo];
 }
 
 
 - (UIImage *)createImage
 {
-    if ([osManager showGridOffscreen]) {
-        [osManager setShowGridOffscreen:NO];
+    if ([cdManager showGrid]) {
+        [cdManager setShowGrid:NO];
     }
     UIImage *image = [super createImage];
-    [osManager setShowGridOffscreen:_grid];
     return image;
 }
 

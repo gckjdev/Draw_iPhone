@@ -16,6 +16,7 @@
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "InputDialog.h"
+#import "SearchPhotoController.h"
 
 @interface GalleryController () {
     NSString* _currentImageUrl;
@@ -23,6 +24,8 @@
 }
 
 @property (retain, nonatomic) NSSet* tagSet;
+
+- (IBAction)clickSearch:(id)sender;
 
 @end
 
@@ -48,6 +51,12 @@
     [super viewDidLoad];
     [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self reloadTableViewDataSource];
 }
 
 - (void)didReceiveMemoryWarning
@@ -301,6 +310,12 @@ enum {
     [view showInView:self.view];
 }
 
+
+- (IBAction)clickSearch:(id)sender
+{
+    SearchPhotoController* sc = [[[SearchPhotoController alloc] init] autorelease];
+    [self.navigationController pushViewController:sc animated:YES];
+}
 //#pragma mark - PhotoEditView delegate
 //- (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
 //{

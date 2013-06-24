@@ -31,7 +31,7 @@ typedef enum {
 }
 
 @property(nonatomic, assign)DrawView *drawView;
-@property(nonatomic, assign)OffscreenManager *osManager;
+//@property(nonatomic, assign)OffscreenManager *osManager;
 @property(nonatomic, assign)CacheDrawManager *cdManager;
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state;

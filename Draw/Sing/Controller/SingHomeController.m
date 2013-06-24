@@ -13,10 +13,12 @@
 #import "OpusManageController.h"
 #import "UserDetailViewController.h"
 #import "SelfUserDetail.h"
+#import "FriendController.h"
+#import "UserSettingController.h"
+#import "ChatListController.h"
+#import "BBSBoardController.h"
 
 @interface SingHomeController ()
-
-- (IBAction)clickTest:(id)sender;
 
 @end
 
@@ -26,23 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-#ifdef DEBUG
-
-    [self.view bringSubviewToFront:self.testBtn];
-#endif
     // Do any additional setup after loading the view from its nib.
 }
 
-#ifdef DEBUG
 #define SING_MY_OPUS_DB     @"sing_my_opus.db"
 #define SING_FAVORITE_DB    @"sing_favorite.db"
 #define SING_DRAFT_DB       @"sing_draft.db"
-- (IBAction)clickTest:(id)sender
-{
-    OpusManageController* vc = [[[OpusManageController alloc] initWithClass:NSClassFromString(@"SingOpus") selfDb:SING_MY_OPUS_DB favoriteDb:SING_FAVORITE_DB draftDb:SING_DRAFT_DB] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-#endif
 
 - (void)didReceiveMemoryWarning
 {
@@ -98,7 +89,9 @@
             break;
 
         case HomeMenuTypeSingBBS:{
-            PPDebug(@"HomeMenuTypeSingBBS");
+//            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+//            [self.navigationController pushViewController:bbs animated:YES];
+//            [bbs release];
         }
             break;
             
@@ -124,8 +117,8 @@
             break;
             
         case HomeMenuTypeSingDraft:{
-            PPDebug(@"HomeMenuTypeSingDraft");
-
+            OpusManageController* vc = [[[OpusManageController alloc] initWithClass:NSClassFromString(@"SingOpus") selfDb:SING_MY_OPUS_DB favoriteDb:SING_FAVORITE_DB draftDb:SING_DRAFT_DB] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
@@ -136,14 +129,16 @@
             break;
             
         case HomeMenuTypeSingChat:{
-            PPDebug(@"HomeMenuTypeSingChat");
-
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
         }
             break;
             
         case HomeMenuTypeSingSetting:{
-            PPDebug(@"HomeMenuTypeSingSetting");
-
+            UserSettingController *settings = [[UserSettingController alloc] init];
+            [self.navigationController pushViewController:settings animated:YES];
+            [settings release];
         }
             break;
             
@@ -156,17 +151,23 @@
 {
     [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
     UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-    //    UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
 }
 
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickFriendButton:(UIButton *)button
+{
+    FriendController *controller = [[FriendController alloc] init];
+    if ([[StatisticManager defaultManager] fanCount] > 0) {
+        [controller setDefaultTabIndex:FriendTabIndexFan];
+    }
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 - (void)dealloc {
-    [_testBtn release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setTestBtn:nil];
     [super viewDidUnload];
 }
 @end

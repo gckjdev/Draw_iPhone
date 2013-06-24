@@ -2,42 +2,43 @@
 //  SingGuessController.m
 //  Draw
 //
-//  Created by 王 小涛 on 13-6-19.
+//  Created by 王 小涛 on 13-6-24.
 //
 //
 
 #import "SingGuessController.h"
+#import "UIButtonExt.h"
+#import "OpusService.h"
 
 @interface SingGuessController ()
+
 
 @end
 
 @implementation SingGuessController
 
 - (void)dealloc {
-    [_wordInputView release];
-    [_pbOpus release];
+    [_opusButton release];
     [super dealloc];
 }
 
-- (id)initWithPBOpus:(PBOpus *)pbOpus{
-    
-    if (self = [super init]) {
-        
-        self.pbOpus = pbOpus;
-    }
-    
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _wordInputView.answerImage = [UIImage imageNamed:@"wood_button@2x.png"];
-    _wordInputView.candidateImage = [UIImage imageNamed:@"wood_button@2x.png"];
-    _wordInputView.answer = _pbOpus.name;
-    [_wordInputView setCandidates:@"是克拉草建设的离开泥法国就阿拉山马口" column:9];
+    
+    self.titleLabel.text = NSLS(@"kGuessing");
+    
+    NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
+    NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
+    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
+}
+
+- (void)viewDidUnload {
+    
+    [self setOpusButton:nil];
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,11 +47,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)viewDidUnload {
+- (IBAction)clickOpusButton:(id)sender {
     
-    [self setWordInputView:nil];
-    [super viewDidUnload];
+    
+    [[OpusService defaultService] downloadOpusData:self.opus progressDelegate:nil delegate:self];
 }
+
 
 @end

@@ -210,11 +210,6 @@
     return _actionCount > 0 || _hasImage;
 }
 
-#define CTMContext(context,rect) \
-CGContextScaleCTM(context, 1.0, -1.0);\
-CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
-
-
 - (void)showImage:(UIImage *)image
 {
     if (image) {
@@ -223,9 +218,6 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
         UIGraphicsPushContext(cacheContext);
         [image drawAtPoint:CGPointZero];
         UIGraphicsPopContext();
-//        CGContextsa
-//        CTMContext(cacheContext, self.rect);
-//        CGContextDrawImage(cacheContext, self.rect, image.CGImage);
     }
 }
 

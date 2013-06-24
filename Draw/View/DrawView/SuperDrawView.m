@@ -43,7 +43,7 @@
     PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
     _currentAction = nil;
-    PPRelease(osManager);
+//    PPRelease(osManager);
     PPRelease(cdManager);
     PPRelease(_gestureRecognizerManager);
     [super dealloc];
@@ -185,12 +185,6 @@
 //    [self.layer setTransform:CATransform3DMakeScale(scale, scale, 1)];
 //}
 
-
-#define CTMContext(context,rect) \
-CGContextScaleCTM(context, 1.0, -1.0);\
-CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
-
-
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -198,7 +192,6 @@ CGContextTranslateCTM(context, 0, -CGRectGetHeight(rect));
     [cdManager showInContext:context];
     [super drawRect:rect];
 }
-
 
 
 /*

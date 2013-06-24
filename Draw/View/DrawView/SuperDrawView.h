@@ -30,7 +30,7 @@
     //used by subclass
     DrawAction *_currentAction;
     
-    OffscreenManager *osManager;
+//    OffscreenManager *osManager;
     CacheDrawManager *cdManager;
     
     GestureRecognizerManager *_gestureRecognizerManager;

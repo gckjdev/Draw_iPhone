@@ -7,6 +7,7 @@
 //
 
 #import "WordInputView.h"
+#import "AudioManager.h"
 
 #define BUTTON_WIDTH (ISIPAD ? 65 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
@@ -49,6 +50,9 @@
     [_answerImage release];
     [_candidateColor release];
     [_answerColor release];
+    [_clickSound release];
+    [_wrongSound release];
+    [_correctSound release];
     [super dealloc];
 }
 
@@ -242,6 +246,8 @@
     [button setTitle:nil forState:UIControlStateNormal];
     button.enabled = NO;
     
+    [[AudioManager defaultManager] playSoundByName:_clickSound];
+    
     CGPoint startPoint = [_candidateView convertPoint:button.center toView:self];
     CGPoint endPoint = [_answerView convertPoint:answerButton.center toView:self];
     
@@ -281,8 +287,10 @@
     
     BOOL isCorrect = [word isEqualToString:_answer];
     if (isCorrect) {
+        [[AudioManager defaultManager] playSoundByName:_correctSound];
         PPDebug(@"You get it: %@", word);
     }else{
+        [[AudioManager defaultManager] playSoundByName:_wrongSound];
         PPDebug(@"Wrong word: %@", word);
     }
     

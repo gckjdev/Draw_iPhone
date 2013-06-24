@@ -14,6 +14,7 @@
 @protocol OpusServiceDelegate <NSObject>
 
 - (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus;
+- (void)didDownloadOpusData:(int)resultCode opus:(Opus *)opus;
 
 @end
 
@@ -34,6 +35,16 @@
        opusManager:(OpusManager*)opusManager
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate;
+
+- (void)submitGuessWords:(NSArray *)words
+                    opus:(Opus *)opus
+               isCorrect:(BOOL)isCorrect
+                   score:(int)score
+                delegate:(id)delegate;
+
+- (void)getOpusData:(Opus*)opus
+           delegate:(id<OpusServiceDelegate>)delegate;
+
 
 @end
 
