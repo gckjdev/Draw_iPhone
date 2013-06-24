@@ -7,8 +7,9 @@
 //
 
 #import "CommonGuessController.h"
+#import "OpusService.h"
 
-@interface SingGuessController : CommonGuessController
+@interface SingGuessController : CommonGuessController <OpusServiceDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *opusButton;
 
 @end

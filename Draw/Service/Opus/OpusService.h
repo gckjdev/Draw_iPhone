@@ -13,8 +13,12 @@
 
 @protocol OpusServiceDelegate <NSObject>
 
-- (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus;
-- (void)didDownloadOpusData:(int)resultCode opus:(Opus *)opus;
+- (void)didSubmitOpus:(int)resultCode
+                 opus:(Opus *)opus;
+
+- (void)didGetOpusFile:(int)resultCode
+                  path:(NSString *)path
+                  opus:(Opus *)opus;
 
 @end
 
@@ -42,8 +46,9 @@
                    score:(int)score
                 delegate:(id)delegate;
 
-- (void)getOpusData:(Opus*)opus
-           delegate:(id<OpusServiceDelegate>)delegate;
+- (void)getOpusDataFile:(Opus*)opus
+       progressDelegate:(id)progressDelegate
+               delegate:(id<OpusServiceDelegate>)delegate;
 
 
 @end
