@@ -344,6 +344,7 @@
             return [imageManager drawHomeTimeline];
             
             
+        //sing
         case HomeMenuTypeSing:
             return [imageManager singHomeSing];
         case HomeMenuTypeGuessSing:

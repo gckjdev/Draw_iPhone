@@ -35,5 +35,11 @@
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate;
 
+- (void)submitGuessWords:(NSArray *)words
+                    opus:(Opus *)opus
+               isCorrect:(BOOL)isCorrect
+                   score:(int)score
+                delegate:(id)delegate;
+
 @end
 
