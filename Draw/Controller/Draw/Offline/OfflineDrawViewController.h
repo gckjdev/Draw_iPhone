@@ -49,7 +49,7 @@
 
 - (IBAction)clickSubmitButton:(id)sender;
 - (IBAction)clickDraftButton:(id)sender;
-
+- (IBAction)clickUpPanel:(id)sender;
 
 
 @property (retain, nonatomic) Word *word;

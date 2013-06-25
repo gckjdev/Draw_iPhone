@@ -93,7 +93,7 @@
 
 - (IBAction)switchToolPage:(UIButton *)sender;
 
-- (IBAction)clickTool:(UIButton *)sender;
+
 @property (retain, nonatomic) IBOutlet UIImageView *toolBGImageView;
 
 @end
