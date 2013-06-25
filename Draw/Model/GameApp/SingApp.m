@@ -151,7 +151,7 @@
 }
 
 - (NSString *)iapResourceFileName{
-    return @"";
+    return [self appId];
 }
 
 - (BOOL)showLocateButton

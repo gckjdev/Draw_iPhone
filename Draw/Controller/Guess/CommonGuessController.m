@@ -110,6 +110,9 @@
                                          isCorrect:NO
                                              score:3
                                           delegate:nil];
+    
+    [_guessWords removeAllObjects];
+    
     [super clickBack:sender];
 }
 
@@ -131,6 +134,14 @@
     [_guessWords addObject:word];
     
     if (isCorrect) {
+        
+        [[OpusService defaultService] submitGuessWords:_guessWords
+                                                  opus:_opus
+                                             isCorrect:YES
+                                                 score:3
+                                              delegate:nil];
+        [_guessWords removeAllObjects];
+        
         [self didGuessCorrect:word];
     }else{
         [self didGuessWrong:word];

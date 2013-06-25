@@ -17,6 +17,7 @@
 #import "UserSettingController.h"
 #import "ChatListController.h"
 #import "BBSBoardController.h"
+#import "StoreController.h"
 
 @interface SingHomeController ()
 
@@ -125,7 +126,8 @@
             
         case HomeMenuTypeSingShop:{
             PPDebug(@"HomeMenuTypeSingShop");
-
+            StoreController *vc = [[[StoreController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
