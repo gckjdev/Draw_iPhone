@@ -8,10 +8,11 @@
 
 #import "SingGuessController.h"
 #import "UIButtonExt.h"
-#import "OpusService.h"
+#import "VoiceChanger.h"
 
 @interface SingGuessController ()
 
+@property (retain, nonatomic) VoiceChanger *player;
 
 @end
 
@@ -19,6 +20,7 @@
 
 - (void)dealloc {
     [_opusButton release];
+    [_player release];
     [super dealloc];
 }
 
@@ -49,8 +51,15 @@
 
 - (IBAction)clickOpusButton:(id)sender {
     
+    [[OpusService defaultService] getOpusDataFile:self.opus progressDelegate:nil delegate:self];
+}
+
+- (void)didGetOpusData:(int)resultCode
+                  data:(NSData *)data
+                  opus:(Opus *)opus
+             fromCache:(BOOL)fromCache{
     
-    [[OpusService defaultService] downloadOpusData:self.opus progressDelegate:nil delegate:self];
+    self.player = [[[VoiceChanger alloc] init] autorelease];
 }
 
 

@@ -17,8 +17,8 @@
 #import "PPGameNetworkRequest.h"
 #import "SingOpus.h"
 #import "StringUtil.h"
-#import "FeedDownloadService.h"
-#import "FeedManager.h"
+#import "OpusDownloadService.h"
+#import "FileUtil.h"
 
 #define SING_MY_OPUS_DB     @"sing_my_opus.db"
 #define SING_FAVORITE_DB    @"sing_favorite.db"
@@ -28,9 +28,22 @@
 #define GET_OPUS_DATA_QUEUE        @"GET_OPUS_DATA_QUEUE"
 #define GET_FEED_COMMENT_QUEUE  @"GET_FEED_COMMENT_QUEUE"
 
+@interface OpusService()
+
+
+@end
+
 @implementation OpusService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
+
+- (void)dealloc
+{
+    [_singDraftOpusManager release];
+    [_singLocalFavoriteOpusManager release];
+    [_singLocalMyOpusManager release];
+    [super dealloc];
+}
 
 - (id)init
 {
@@ -41,17 +54,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (Opus*)createDraftOpus
 {
     return nil;
 }
-
-
 
 - (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
@@ -138,57 +145,41 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     
 }
 
-- (void)getOpusData:(Opus*)opus
-   progressDelegate:(id)progressDelegate{
-    
-    FeedManager *manager = [FeedManager defaultManager];
-    
+- (void)getOpusDataFile:(Opus*)opus
+       progressDelegate:(id)progressDelegate
+               delegate:(id<OpusServiceDelegate>)delegate{
+        
     NSOperationQueue *queue = [self getOperationQueue:GET_OPUS_DATA_QUEUE];
     [queue cancelAllOperations];
     
     [queue addOperationWithBlock:^{
         
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
-        BOOL fromCache = NO;
         NSInteger resultCode = 0;
-        NSData* data = nil;
         NSString *dataUrl = opus.pbOpus.dataUrl;
-        NSString *opusId = opus.pbOpus.opusId;
-
         
-        data = [manager loadPBDrawDataWithFeedId:opusId];
-        if (data) {
-            fromCache = YES;
-        }else{
-            if ([dataUrl length] > 0){
-                @try {
-                    data = [[FeedDownloadService defaultService]
-                            downloadDrawDataFile:dataUrl
-                            fileName:opusId
-                            downloadProgressDelegate:progressDelegate];
-                }
-                @catch (NSException *exception) {
-                    PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
-                    resultCode = ERROR_CLIENT_PARSE_DATA;
-                }
-                @finally {}
-            }
+        NSString *destDir = [[FileUtil getAppCacheDir] stringByAppendingPathComponent:@"opusdata"];
+                
+        NSString *destPath = nil;
+        @try {
+            destPath = [[OpusDownloadService defaultService] downloadFileSynchronous:dataUrl destDir:destDir progressDelegate:progressDelegate];
         }
+        @catch (NSException *exception) {
+            PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
+            resultCode = ERROR_CLIENT_PARSE_DATA;
+        }
+        @finally {
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-//            if (handler != NULL) {
-//                handler(resultCode, data, feed, fromCache);
-//            }
+            
+            if ([delegate respondsToSelector:@selector(didGetOpusFile:path:opus:)]) {
+                [delegate didGetOpusFile:resultCode path:destPath opus:opus];
+            }
         });
         
-//        if (!fromCache) {
-//            [manager cachePBDrawData:data forFeedId:feed.feedId];
-//        }
-        
         [subPool drain];
-        
     }];
-    
-
 }
 
 
