@@ -95,6 +95,8 @@ NotificationManager *_staticNotificationManager = nil;
 #define DRAWTOME_BADGE @"DB"
 #define FLOWER_BADGE @"FLB"
 #define TOMATO_BADGE @"TMB"
+#define TIME_LINE_OPUS_BADGE @"TLOB"
+#define TIME_LINE_GUESS_BADGE @"TLGB"
 
 + (NotificationManager *)defaultManager
 {
@@ -170,6 +172,16 @@ NotificationManager *_staticNotificationManager = nil;
     return 0;    
 }
 
++ (int)timelineOpousBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:TIME_LINE_OPUS_BADGE];
+}
+
++ (int)timelineGuessBadge:(NSDictionary *)userInfo
+{
+    return [NotificationManager intValueOfUserInfo:userInfo forKey:TIME_LINE_GUESS_BADGE];
+}
+
 + (int)feedBadge:(NSDictionary *)userInfo
 {
     return [NotificationManager intValueOfUserInfo:userInfo forKey:FEED_BADGE];
@@ -242,6 +254,8 @@ NotificationManager *_staticNotificationManager = nil;
 {
     
     StatisticManager *manager = [StatisticManager defaultManager];
+    [manager setTimelineOpusCount:[NotificationManager timelineOpousBadge:notification]];
+    [manager setTimelineGuessCount:[NotificationManager timelineGuessBadge:notification]];
     [manager setFeedCount:[NotificationManager feedBadge:notification]];
     [manager setFanCount:[NotificationManager fanBadge:notification]];
     [manager setRoomCount:[NotificationManager roomBadge:notification]];

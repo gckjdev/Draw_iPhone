@@ -644,7 +644,7 @@
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
             
             [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
-            [[StatisticManager defaultManager] setFeedCount:0];
+            [[StatisticManager defaultManager] setTimelineOpusCount:0];
         }
             break;
         case HomeMenuTypeDrawBigShop:
@@ -812,7 +812,7 @@
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
             
             [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
-            [[StatisticManager defaultManager] setFeedCount:0];
+            [[StatisticManager defaultManager] setTimelineOpusCount:0];
         }
             break;
         case HomeMenuTypeDrawShop:

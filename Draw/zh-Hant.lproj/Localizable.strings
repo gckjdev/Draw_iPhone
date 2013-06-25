@@ -693,6 +693,7 @@
 
 "kUserFeedTitle" = "%@的動態";
 "kUserFeed" = "動態";
+"kUserGuess" = "猜";
 "kUserOpus" = "作品";
 "kUserFavorite" = "收藏";
 "kUnFavorite" = "取消收藏";
@@ -958,6 +959,7 @@
 "kDrawToMe" = "畫給我";
 
 "kNoMyFeed" = "你還沒有動態，去畫一幅畫或猜一幅畫？";
+"kNoTimelineGuess" = "還沒有猜的動態";
 "kNoMyOpus" = "你還沒有作品，去畫一幅畫？";
 "kNoMyComment" = "目前沒有關於你的評論。";
 "kNoDrawToMe" = "還沒有人畫過畫給你，先畫一幅給別人？";

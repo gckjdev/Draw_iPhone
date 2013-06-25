@@ -58,8 +58,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.contentHolderView updateHeight:400];
-    self.contentHolderView.contentSize = CGSizeMake(320, 531);
+//    [self.contentHolderView updateHeight:400];
+//    self.contentHolderView.contentSize = CGSizeMake(320, 531);
     [self updateButtonsTitle];
 }
 
@@ -140,6 +140,7 @@ enum {
     [_coinsPerUserTextField resignFirstResponder];
     [_coinsMaxTotalTextField resignFirstResponder];
     [_ingotBestUserTextField resignFirstResponder];
+    [self.contentHolderView setContentOffset:CGPointMake(0,0) animated:YES];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -173,9 +174,9 @@ enum {
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField == self.descTextField) {
-        [self.contentHolderView setContentOffset:CGPointMake(0,160) animated:YES];
+        [self.contentHolderView setContentOffset:CGPointMake(0,60) animated:YES];
     } else {
-        [self.contentHolderView setContentOffset:CGPointMake(0,270) animated:YES];
+        [self.contentHolderView setContentOffset:CGPointMake(0,160) animated:YES];
     }
     return YES;
 }
@@ -183,6 +184,7 @@ enum {
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [self.contentHolderView setContentOffset:CGPointMake(0,0) animated:YES];
     return YES;
 }
 
