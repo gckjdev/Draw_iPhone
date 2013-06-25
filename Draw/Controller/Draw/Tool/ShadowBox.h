@@ -16,7 +16,7 @@
 
 @protocol ShadowBoxDelegate <NSObject>
 
-- (void)shadowBox:(ShadowBox)box didGetShadow:(Shadow *)shadow;
+- (void)shadowBox:(ShadowBox *)box didGetShadow:(Shadow *)shadow;
 
 @end
 
