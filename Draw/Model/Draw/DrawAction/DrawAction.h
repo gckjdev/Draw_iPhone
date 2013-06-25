@@ -125,6 +125,9 @@ typedef enum {
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
 
+- (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance;
+- (CGFloat)distance;
+- (CGFloat)degree;
 @end
 
 

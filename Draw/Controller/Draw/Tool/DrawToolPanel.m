@@ -93,7 +93,7 @@
 
 - (IBAction)switchToolPage:(UIButton *)sender;
 
-- (IBAction)clickTool:(UIButton *)sender;
+
 @property (retain, nonatomic) IBOutlet UIImageView *toolBGImageView;
 
 @end
@@ -239,6 +239,7 @@
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
         image = [UIImage shrinkImage:image withRate:0.8];
         [cp.drawToUser setImage:image forState:UIControlStateNormal];
+        [cp.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
     } failure:^(NSError *error) {
         
     }];

@@ -49,6 +49,8 @@ typedef enum _WordInputViewAlignment{
 - (void)setCandidates:(NSString *)characters
                column:(int)column;
 - (void)bomb:(int)count;
+- (void)bombHalf;
+
 - (void)reset;
 
 @end

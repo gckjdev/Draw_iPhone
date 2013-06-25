@@ -38,6 +38,8 @@
 - (NSArray *)randOfflineDrawWordList; // add by Benson, for offline draw word list
 - (NSArray *)randGuessWordList:(NSString*)drawWord;//rand guess word for share to weibo
 - (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count;
+- (NSString *)randChineseCandidateStringWithWord:(NSString *)word count:(NSInteger)count;
+
 - (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count;
 - (void)loadDictByWithLanguage:(LanguageType)languageType;
 + (NSString *)upperText:(NSString *)text;
