@@ -69,6 +69,13 @@
     return opus;
 }
 
++ (Opus*)opusFromPBOpus:(PBOpus *)pbOpus{
+    
+    Opus *opus = [[[Opus alloc] init] autorelease];
+    opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
+    return opus;
+}
+
 #pragma mark - Get & Set Methods
 
 - (void)setType:(PBOpusType)type{

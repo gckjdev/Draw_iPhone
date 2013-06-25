@@ -9,15 +9,18 @@
 #import "PPViewController.h"
 #import "WordInputView.h"
 #import "Opus.h"
+#import "PickToolView.h"
 
-@interface CommonGuessController : PPViewController <WordInputViewDelegate>
+@interface CommonGuessController : PPViewController <WordInputViewDelegate, PickViewDelegate>
 
 @property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) Opus *opus;
 
 - (id)initWithOpus:(Opus *)opus;
-- (IBAction)clickRunAwayButton:(id)sender;
+- (IBAction)clickToolBoxButton:(id)sender;
+
+- (void)initPickToolView;
 
 // Rewrite in sub-class
 - (void)didGuessWrong:(NSString *)word;

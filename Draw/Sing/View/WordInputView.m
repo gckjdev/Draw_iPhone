@@ -518,6 +518,11 @@
     [self setCandidates:s column:_column];
 }
 
+- (void)bombHalf{
+    
+    [self bomb:([_candidates length]/2)];
+}
+
 - (int)nonBombCharCountInCandidates{
     
     int count = 0;
