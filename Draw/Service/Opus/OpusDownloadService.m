@@ -46,6 +46,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusDownloadService);
     NSURL* url = [NSURL URLWithString:fileUrl];
     if (url == nil) return nil;
     
+    [FileUtil createDir:destDir];
+    
     NSString *fileName = [fileUrl lastPathComponent];
     NSString *destPath = [destDir stringByAppendingPathComponent:fileName];
     NSString *tempPath = [_tempDir stringByAppendingPathComponent:fileName];

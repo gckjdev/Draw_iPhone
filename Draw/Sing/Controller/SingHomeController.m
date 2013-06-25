@@ -17,6 +17,7 @@
 #import "UserSettingController.h"
 #import "ChatListController.h"
 #import "BBSBoardController.h"
+#import "StoreController.h"
 
 @interface SingHomeController ()
 
@@ -77,7 +78,8 @@
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
-            SingGuessController *vc = [[[SingGuessController alloc] init] autorelease];
+            Opus *opus = [Opus opusFromPBOpus:[OpusManager createTestOpus]];
+            SingGuessController *vc = [[[SingGuessController alloc] initWithOpus:opus] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -124,7 +126,8 @@
             
         case HomeMenuTypeSingShop:{
             PPDebug(@"HomeMenuTypeSingShop");
-
+            StoreController *vc = [[[StoreController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             

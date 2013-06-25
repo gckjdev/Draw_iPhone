@@ -31,10 +31,20 @@
     // Do any additional setup after loading the view from its nib.
     
     self.titleLabel.text = NSLS(@"kGuessing");
+    self.wordInputView.answerImage = [UIImage imageNamed:@"candidate_bg@2x.png"];
+    self.wordInputView.candidateImage = [UIImage imageNamed:@"candidate_bg@2x.png"];
+    
+    [self initPickToolView];
     
     NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
     NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
     [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
+    
+    self.player = [[[VoiceChanger alloc] init] autorelease];
+    
+    [[OpusService defaultService] getOpusDataFile:self.opus progressDelegate:self delegate:self];
+    
+    [self showActivityWithText:@"kLoadingSingData"];
 }
 
 - (void)viewDidUnload {
@@ -51,15 +61,32 @@
 
 - (IBAction)clickOpusButton:(id)sender {
     
-    [[OpusService defaultService] getOpusDataFile:self.opus progressDelegate:nil delegate:self];
+    if ([_player isPlaying]) {
+        [_player pausePlaying];
+    }else{
+        [_player startPlaying];
+    }
 }
 
-- (void)didGetOpusData:(int)resultCode
-                  data:(NSData *)data
-                  opus:(Opus *)opus
-             fromCache:(BOOL)fromCache{
+- (IBAction)clickBack:(id)sender{
+    [_player stopPlaying];
+    [super clickBack:sender];
+}
+
+- (void)didGetOpusFile:(int)resultCode
+                  path:(NSString *)path
+                  opus:(Opus *)opus{
     
-    self.player = [[[VoiceChanger alloc] init] autorelease];
+    [self hideActivity];
+
+    NSURL *url = [NSURL fileURLWithPath:path];
+    [_player prepareToPlay:url];
+    [_player startPlaying];
+}
+
+- (void)didGuessCorrect:(NSString *)word{
+    
+    
 }
 
 
