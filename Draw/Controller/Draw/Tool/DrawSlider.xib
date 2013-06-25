@@ -226,9 +226,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_slider_bg@2x.png">{181, 19}</string>
-			<string key="draw_slider_load@2x.png">{15, 19}</string>
-			<string key="draw_slider_point@2x.png">{17, 19}</string>
+			<string key="draw_slider_bg@2x.png">{16, 16}</string>
+			<string key="draw_slider_load@2x.png">{16, 16}</string>
+			<string key="draw_slider_point@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -127,7 +127,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{19, 18}, {80, 63}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSNextKeyView" ref="423372939"/>
+						<reference key="NSNextKeyView" ref="157818643"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -188,7 +188,7 @@
 						<reference key="IBUIFontDescription" ref="605853301"/>
 						<reference key="IBUIFont" ref="308515567"/>
 					</object>
-					<object class="IBUIButton" id="423372939">
+					<object class="IBUIButton" id="157818643">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{448, 20}, {100, 60}}</string>
@@ -293,7 +293,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickUpPanel:</string>
-						<reference key="source" ref="423372939"/>
+						<reference key="source" ref="157818643"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -333,7 +333,7 @@
 							<reference ref="76228336"/>
 							<reference ref="172150538"/>
 							<reference ref="362739228"/>
-							<reference ref="423372939"/>
+							<reference ref="157818643"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -369,7 +369,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">150</int>
-						<reference key="object" ref="423372939"/>
+						<reference key="object" ref="157818643"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</object>
@@ -450,13 +450,13 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{73, 59}</string>
-				<string>{91, 56}</string>
-				<string>{62, 62}</string>
-				<string>{640, 960}</string>
-				<string>{62, 62}</string>
-				<string>{62, 62}</string>
-				<string>{640, 79}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
