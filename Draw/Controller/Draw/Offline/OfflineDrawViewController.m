@@ -65,6 +65,7 @@
 #import "ToolCommand.h"
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
+#import "DrawToolUpPanel.h"
 
 @interface OfflineDrawViewController()
 {
@@ -106,6 +107,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
+@property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
 @property (assign, nonatomic) ToolHandler *toolHandler;
 
 @property (retain, nonatomic) InputAlertView *inputAlert;
@@ -197,6 +199,7 @@
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
     PPRelease(_drawToolPanel);
+    PPRelease(_drawToolUpPanel);
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_word);
@@ -474,12 +477,18 @@
     self.toolHandler.controller = self;
     
     self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
+    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
+    [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
     [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
+    
     [self.view addSubview:self.drawToolPanel];
+    [self.view addSubview:self.drawToolUpPanel];
+    
     [self.drawToolPanel setPanelForOnline:NO];
+    [self.drawToolUpPanel setPanelForOnline:NO];
 }
 
 - (void)setOpusDesc:(NSString *)opusDesc
@@ -1262,6 +1271,15 @@
             [self showInputAlertViewWithSubject:YES];
         }
         
+    }
+}
+
+- (IBAction)clickUpPanel:(id)sender
+{
+    if (![self.drawToolUpPanel isVisable]) {
+        [self.drawToolUpPanel appear];
+    } else {
+        [self.drawToolUpPanel disappear];
     }
 }
 
