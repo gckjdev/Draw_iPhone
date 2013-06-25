@@ -630,6 +630,20 @@
     [builder setShadowColor:[self.color toBetterCompressColor]];
 }
 
+- (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance
+{
+    _offset.width = cosf(degree / 180) * distance;
+    _offset.height = sinf(degree / 180) * distance;
+}
+- (CGFloat)distance
+{
+    return CGPointDistance(CGPointZero, CGPointMake(_offset.width, _offset.height));
+}
+- (CGFloat)degree
+{
+    return acosf(_offset.width / [self distance]) * 180;
+}
+
 @end
 
 

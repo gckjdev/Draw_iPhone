@@ -144,7 +144,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{105, 0}, {110, 40}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSNextKeyView" ref="900024735"/>
+						<reference key="NSNextKeyView" ref="567240881"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -195,7 +195,7 @@
 						<reference key="IBUIFontDescription" ref="7115529"/>
 						<reference key="IBUIFont" ref="293359554"/>
 					</object>
-					<object class="IBUIButton" id="900024735">
+					<object class="IBUIButton" id="567240881">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{164, 6}, {45, 28}}</string>
@@ -305,7 +305,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickUpPanel:</string>
-						<reference key="source" ref="900024735"/>
+						<reference key="source" ref="567240881"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -345,7 +345,7 @@
 							<reference ref="587339147"/>
 							<reference ref="362739228"/>
 							<reference ref="172150538"/>
-							<reference ref="900024735"/>
+							<reference ref="567240881"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -381,7 +381,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">151</int>
-						<reference key="object" ref="900024735"/>
+						<reference key="object" ref="567240881"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</object>
@@ -460,11 +460,11 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{73, 59}</string>
-				<string>{91, 56}</string>
-				<string>{91, 56}</string>
-				<string>{640, 960}</string>
-				<string>{640, 79}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
