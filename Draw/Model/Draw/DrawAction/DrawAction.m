@@ -630,6 +630,19 @@
     [builder setShadowColor:[self.color toBetterCompressColor]];
 }
 
+- (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance
+{
+//    self.offset.width
+}
+- (CGFloat)distance
+{
+    
+}
+- (CGFloat)degree
+{
+    
+}
+
 @end
 
 
