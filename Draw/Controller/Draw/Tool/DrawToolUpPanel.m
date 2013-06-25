@@ -76,6 +76,8 @@
 - (void)dealloc
 {
     [_copyPaint release];
+    [_titleLabel release];
+    [_drawToUserNickNameLabel release];
     [super dealloc];
 }
 
@@ -125,9 +127,24 @@
     return panel;
 }
 
+- (void)updateDrawToUser:(MyFriend *)user
+{
+    [super updateDrawToUser:user];
+    [self.drawToUserNickNameLabel setText:user.nickName];
+}
+
 - (void)updateView
 {
     [self registerToolCommands];
+    [self.grid setSelected:NO];
+    [self.canvasSize setTitle:NSLS(@"kSize") forState:UIControlStateNormal];
+    [self.drawBg setTitle:NSLS(@"kBackground") forState:UIControlStateNormal];
+    [self.copyPaint setTitle:NSLS(@"kCopyPaint") forState:UIControlStateNormal];
+    [self.opusDesc setTitle:NSLS(@"kDescription") forState:UIControlStateNormal];
+    [self.drawToUserNickNameLabel setText:NSLS(@"kDrawTo")];
+    [self.grid setTitle:NSLS(@"kGrid") forState:UIControlStateNormal];
+    [self.help setTitle:NSLS(@"kHelp") forState:UIControlStateNormal];
+    
 }
 - (IBAction)clickTool:(id)sender
 {
