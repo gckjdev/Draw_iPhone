@@ -1421,6 +1421,13 @@
 "kCustomBBSBgSucc" = "Customize BBS background successfully!";
 "kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";
 "kCustomBBSBg" = "Custom BBS Background";
+"kSize" = "Size";
+"kBackground" = "Background";
+"kCopyPaint" = "Copy";
+"kDescription" = "Description";
+"kDrawTo" = "Draw to";
+"kGrid" = "Grid";
+"kHelp" = "Help";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

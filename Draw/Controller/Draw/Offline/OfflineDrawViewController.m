@@ -479,7 +479,7 @@
     self.toolHandler.controller = self;
     
     self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
-    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];
+//    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
@@ -1388,6 +1388,7 @@
 {
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     // Modal
+    [browser setCanSave:NO];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:nc animated:YES];
