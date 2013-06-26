@@ -1368,6 +1368,13 @@
 "kCustomBBSBgSucc" = "成功自定義論壇背景！";
 "kResetCustomBBSBgSucc" = "成功重設論壇背景!";
 "kCustomBBSBg" = "自定義論壇背景";
+"kSize" = "尺寸";
+"kBackground" = "背景";
+"kCopyPaint" = "臨摹";
+"kDescription" = "描述";
+"kDrawTo" = "畫給";
+"kGrid" = "網格";
+"kHelp" = "幫助";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

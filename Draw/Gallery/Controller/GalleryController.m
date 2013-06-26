@@ -122,6 +122,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [super tableView:tableView numberOfRowsInSection:section];
     return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
 }
 
@@ -160,6 +161,7 @@
     
     [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:[self currentTab].offset limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self finishLoadDataForTabID:[self currentTab].tabID resultList:resultArray];
+        [self currentTab].status = TableTabStatusLoaded;
 //        [self loadTestData];
     }];
     
