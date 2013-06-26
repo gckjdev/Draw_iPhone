@@ -13,6 +13,7 @@
 
 @protocol OpusServiceDelegate <NSObject>
 
+@optional
 - (void)didSubmitOpus:(int)resultCode
                  opus:(Opus *)opus;
 
@@ -49,7 +50,6 @@
 - (void)getOpusDataFile:(Opus*)opus
        progressDelegate:(id)progressDelegate
                delegate:(id<OpusServiceDelegate>)delegate;
-
 
 
 

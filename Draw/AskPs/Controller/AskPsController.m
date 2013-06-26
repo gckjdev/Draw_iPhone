@@ -147,17 +147,19 @@ enum {
     int coinsPerUse = [_coinsPerUserTextField.text integerValue];
     int coinsMaxTotal = [_coinsMaxTotalTextField.text integerValue];
     int ingotBestUser = [_ingotBestUserTextField.text integerValue];
-    self.askPs = [Opus opusWithCategory:PBOpusCategoryTypeAskPsCategory];
+    self.askPs = (AskPs *)[Opus opusWithCategory:PBOpusCategoryTypeAskPsCategory];
     [_askPs setRequirements:[_requirementSet allObjects]];
     [_askPs setType:PBOpusTypeAskPs];
     [_askPs setDesc:_descTextField.text];
     [_askPs setAwardCoinsPerUser:coinsPerUse];
     [_askPs setAwardCoinsMaxTotal:coinsMaxTotal];
     [_askPs setAwardIngotBestUser:ingotBestUser];
+    
     [[OpusService defaultService] submitOpus:_askPs
                                        image:_pendingImage
                                     opusData:nil
-                                 opusManager:[OpusManager askPsManager]
+                            opusDraftManager:nil
+                                 opusManager:nil //[OpusManager askPsManager]
                             progressDelegate:nil
                                     delegate:self];
 }
