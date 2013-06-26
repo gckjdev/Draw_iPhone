@@ -685,6 +685,7 @@
 
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";
+"kUserGuess" = "Guess";
 "kUserOpus" = "Opus";
 "kUserFavorite" = "Favorite";
 "kUnFavorite" = "Unsubscribe";
@@ -949,6 +950,7 @@
 "kDrawToMe" = "@Me";
 
 "kNoMyFeed" = "No Feeds. Try to draw and guess?";
+"kNoTimelineGuess" = "No Guess";
 "kNoMyOpus" = "No Opus. Try to draw one?";
 "kNoMyComment" = "No Comment.";
 "kNoDrawToMe" = "No one draw to you.";

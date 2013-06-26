@@ -432,7 +432,7 @@ int getPopOptionCount()
         } break;
         case HomeMenuTypeLittleGeeFeed: {
             [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
-            [[StatisticManager defaultManager] setFeedCount:0];
+            [[StatisticManager defaultManager] setTimelineOpusCount:0];
         } break;
         default:
             break;
@@ -978,9 +978,9 @@ int getPopOptionCount()
     [self updateBadgeWithType:HomeMenuTypeLittleGeeFriend badge:manager.fanCount];
     //    [self updateBadgeWithType:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
     
-    long timelineCount = manager.feedCount + manager.commentCount + manager.drawToMeCount;
+    long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
     
-    PPDebug(@"<LittleGee-updateAllBadge> update feed count = %d, comment count = %d, draw to me count = %d", manager.feedCount, manager.commentCount, manager.drawToMeCount);
+    PPDebug(@"<LittleGee-updateAllBadge> update timelineOpus count = %d, comment count = %d, draw to me count = %d", manager.timelineOpusCount, manager.commentCount, manager.drawToMeCount);
     
     [self updateBadgeWithType:HomeMenuTypeLittleGeeFeed badge:timelineCount];
     

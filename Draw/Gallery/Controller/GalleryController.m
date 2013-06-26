@@ -23,6 +23,8 @@
     
 }
 
+@property (assign, nonatomic) id<GalleryControllerDelegate> delegate;
+
 @property (retain, nonatomic) NSSet* tagSet;
 
 - (IBAction)clickSearch:(id)sender;
@@ -42,6 +44,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}
+
+- (id)initWithDelegate:(id<GalleryControllerDelegate>)delegate
+{
+    self = [super init];
+    if (self) {
+        self.delegate = delegate;
     }
     return self;
 }
@@ -189,6 +200,11 @@ enum {
 #pragma mark - UserPhotoView delegate
 - (void)didClickPhoto:(PBUserPhoto *)photo
 {
+    if (_delegate && [_delegate respondsToSelector:@selector(didGalleryController:SelectedUserPhoto:)]) {
+        [_delegate didGalleryController:self SelectedUserPhoto:photo];
+        return;
+    }
+    
     MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOptions") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kSetTag"), NSLS(@"kEditName"), NSLS(@"kDelete"), nil];
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];

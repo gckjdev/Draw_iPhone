@@ -501,6 +501,8 @@
 #define PARA_FAN_COUNT @"fac"
 #define PARA_MESSAGE_COUNT @"mc"
 #define PARA_ROOM_COUNT @"rc"
+#define PARA_TIME_LINE_GUESS_COUNT @"tlgc"
+#define PARA_TIME_LINE_OPUS_COUNT @"tloc"
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"

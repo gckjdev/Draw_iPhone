@@ -694,6 +694,7 @@
 "kUserFeedTitle" = "%@的动态";
 
 "kUserFeed" = "动态";
+"kUserGuess" = "猜";
 "kUserOpus" = "作品";
 "kUserFavorite" = "收藏";
 "kUnFavorite" = "取消收藏";
@@ -963,6 +964,7 @@
 
 
 "kNoMyFeed" = "你还没有动态，去画一幅画或猜一幅画？";
+"kNoTimelineGuess" = "还没有猜的动态";
 "kNoMyOpus" = "你还没有作品，去画一幅画？";
 "kNoMyComment" = "目前没有关于你的评论。";
 "kNoDrawToMe" = "还没有人画过画给你，先画一幅给别人？";

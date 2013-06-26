@@ -43,6 +43,7 @@
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
+#import "UIImageView+WebCache.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -239,10 +240,13 @@
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
         image = [UIImage shrinkImage:image withRate:0.8];
         [cp.drawToUser setImage:image forState:UIControlStateNormal];
+        [cp.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
     } failure:^(NSError *error) {
         
     }];
 }
+
+
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {

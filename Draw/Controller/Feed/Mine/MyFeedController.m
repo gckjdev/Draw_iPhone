@@ -27,8 +27,8 @@
 #import "CommonMessageCenter.h"
 
 typedef enum{
-    MyTypeFeed = FeedListTypeAll,
-    MyTypeOpus = FeedListTypeUserOpus,
+    MyTypeTimelineOpus = FeedListTypeTimelineOpus,
+    MyTypeTimelineGuess = FeedListTypeTimelineGuess,
     MyTypeComment = FeedListTypeComment,
     MyTypeDrawToMe = FeedListTypeDrawToMe,
     
@@ -174,10 +174,10 @@ typedef enum{
 {
     
     switch (self.currentTab.tabID) {
-//        case MyTypeOpus:
         case MyTypeDrawToMe:
         return [RankView heightForRankViewType:RankViewTypeNormal]+1;
-        case MyTypeFeed:
+        case MyTypeTimelineOpus:
+        case MyTypeTimelineGuess:
             return [FeedCell getCellHeight];
         case MyTypeComment:
         {
@@ -237,10 +237,6 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
-//        rankView.drawFlag.hidden = YES;
-//        if (self.currentTab.tabID == MyTypeOpus) {
-//            [rankView updateViewInfoForMyOpus];
-//        }
     }
 }
 
@@ -258,7 +254,7 @@ typedef enum{
     
     TableTab *tab = [self currentTab];
     
-    if (tab.tabID == MyTypeFeed) {
+    if (tab.tabID == MyTypeTimelineOpus || tab.tabID == MyTypeTimelineGuess ) {
         
         NSString *CellIdentifier = [FeedCell getCellIdentifier];
         FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -272,7 +268,6 @@ typedef enum{
         [cell setCellInfo:feed];
         return cell;
         
-//    }else if(tab.tabID == MyTypeDrawToMe || tab.tabID == MyTypeOpus){
     }else if(tab.tabID == MyTypeDrawToMe){
         
         NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
@@ -318,7 +313,6 @@ typedef enum{
 - (void)updateSeparator:(NSInteger)dataCount
 {
     MyType type = self.currentTab.tabID;
-//    if (type == MyTypeOpus || type == MyTypeDrawToMe) {
     if (type == MyTypeDrawToMe) {
         [self.dataTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }else{
@@ -335,10 +329,10 @@ typedef enum{
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     [self updateSeparator:count];
     switch (self.currentTab.tabID) {
-        case MyTypeFeed:
+        case MyTypeTimelineOpus:
+        case MyTypeTimelineGuess:
         case MyTypeComment:
             return count;
-//        case MyTypeOpus:
         case MyTypeDrawToMe:
             if (count %3 == 0) {
                 return count/3;
@@ -363,7 +357,7 @@ typedef enum{
         return;
     }
     
-    if (type != MyTypeFeed || indexPath.row > [self.tabDataList count])
+    if ((type != MyTypeTimelineOpus && type != MyTypeTimelineGuess) || indexPath.row > [self.tabDataList count])
         return;
     
     Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
@@ -393,12 +387,12 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _seletedFeed = [self.tabDataList objectAtIndex:indexPath.row];
-    [self alertDeleteConfirmForType:MyTypeFeed];
+    [self alertDeleteConfirmForType:MyTypeTimelineOpus];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.currentTab.tabID == MyTypeFeed) {
+    if (self.currentTab.tabID == MyTypeTimelineOpus) {
         Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
         return [feed isMyFeed];        
     }
@@ -409,7 +403,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 3;
+    return 4;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -417,27 +411,23 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-//    NSInteger tabId[] = {MyTypeFeed,MyTypeOpus,MyTypeComment,MyTypeDrawToMe};
-    NSInteger tabId[] = {MyTypeFeed,MyTypeComment,MyTypeDrawToMe};
+    NSInteger tabId[] = {MyTypeTimelineOpus,MyTypeTimelineGuess,MyTypeComment,MyTypeDrawToMe};
 
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-//    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoMyOpus"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
-    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
+    NSString *tabDesc[] = {NSLS(@"kNoMyFeed"),NSLS(@"kNoTimelineGuess"),NSLS(@"kNoMyComment"),NSLS(@"kNoDrawToMe")};
     
     return tabDesc[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-//    NSString *tabTitle[] = {NSLS(@"kUserFeed"),NSLS(@"kUserOpus"),NSLS(@"kComment"),NSLS(@"kDrawToMe")};
-    NSString *tabTitle[] = {NSLS(@"kUserFeed"),NSLS(@"kComment"),NSLS(@"kDrawToMe")};
+    NSString *tabTitle[] = {NSLS(@"kUserFeed"),NSLS(@"kUserGuess"),NSLS(@"kComment"),NSLS(@"kDrawToMe")};
 
     return tabTitle[index];
-    
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
@@ -450,22 +440,23 @@ typedef enum{
         NSInteger offset = tab.offset;
         NSInteger limit = tab.limit;
         switch (tabID) {
-            case MyTypeFeed:
-                [feedService getFeedList:FeedListTypeAll
+            case MyTypeTimelineOpus:
+            {
+                [feedService getFeedList:FeedListTypeTimelineOpus
                                   offset:offset
                                    limit:limit
                                 delegate:self];
                 break;
-//            case MyTypeOpus:
-//            {
-//                NSString *userId = [[UserManager defaultManager] userId];
-//                [feedService getUserOpusList:userId
-//                                      offset:offset
-//                                       limit:limit 
-//                                        type:FeedListTypeUserOpus 
-//                                    delegate:self];
-//            }
-//                break;
+            }
+                
+            case MyTypeTimelineGuess:
+            {
+                [feedService getFeedList:FeedListTypeTimelineGuess
+                                  offset:offset
+                                   limit:limit
+                                delegate:self];
+                break;
+            }
 
             case MyTypeDrawToMe: //for test
             {
@@ -494,7 +485,7 @@ typedef enum{
 
 - (void)updateBadge:(FeedListType)type count:(NSInteger)count
 {
-    UIButton *badgeButton = (UIButton *)[self.view viewWithTag:10 + type];
+    UIButton *badgeButton = (UIButton *)[self.view viewWithTag:1000 + type];
     [badgeButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
     if (count == 0) {
         badgeButton.hidden = YES;
@@ -506,7 +497,8 @@ typedef enum{
 - (void)updateAllBadge
 {
     StatisticManager * manager = [StatisticManager defaultManager];
-    [self updateBadge:FeedListTypeAll count:manager.feedCount];
+    [self updateBadge:FeedListTypeTimelineOpus count:manager.timelineOpusCount];
+    [self updateBadge:FeedListTypeTimelineGuess count:manager.timelineGuessCount];
     [self updateBadge:FeedListTypeComment count:manager.commentCount];
     [self updateBadge:FeedListTypeDrawToMe count:manager.drawToMeCount];
 }
@@ -515,8 +507,11 @@ typedef enum{
 {
     StatisticManager * manager = [StatisticManager defaultManager];
     switch (type) {
-        case FeedListTypeAll:
-            manager.feedCount = 0;
+        case FeedListTypeTimelineOpus:
+            manager.timelineOpusCount = 0;
+            break;
+        case FeedListTypeTimelineGuess:
+            manager.timelineGuessCount = 0;
             break;
         case FeedListTypeComment:
             manager.commentCount = 0;
@@ -581,10 +576,7 @@ typedef enum{
 {
     if (resultCode == 0) {
         if (count != 0) {
-            //update opus count
-//            UIButton * button = [self tabButtonWithTabID:MyTypeOpus];
-//            NSString *title = [NSString stringWithFormat:NSLS(@"kOpusCount"),count];
-//            [button setTitle:title forState:UIControlStateNormal];
+            
         }
     }
 }
@@ -600,7 +592,7 @@ typedef enum{
 - (void)alertDeleteConfirmForType:(MyType)type
 {    
     CommonDialog* dialog = nil;
-    if (type == MyTypeFeed) {
+    if (type == MyTypeTimelineOpus) {
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete") 
                                     message:NSLS(@"kAre_you_sure") 
                                       style:CommonDialogStyleDoubleButton 
@@ -615,7 +607,6 @@ typedef enum{
 - (void)showActionSheetForType:(MyType)type
 {
     UIActionSheet *actionSheet = nil;
-//    if (type == MyTypeOpus) {
     if (NO) {
         actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:NSLS(@"kOpusOperation")
@@ -672,7 +663,6 @@ typedef enum{
 {
     
     MyType type = self.currentTab.tabID;
-//    if (type == MyTypeOpus) {
     if (NO) {
         DrawFeed *feed = _selectRanView.feed;
         
@@ -680,7 +670,7 @@ typedef enum{
             case ActionSheetIndexDelete:
             {
                 _seletedFeed = feed;
-                [self alertDeleteConfirmForType:MyTypeFeed];
+                [self alertDeleteConfirmForType:MyTypeTimelineOpus];
             }
                 break;
             case ActionSheetIndexDetail:
@@ -760,7 +750,6 @@ typedef enum{
 - (void)didClickRankView:(RankView *)rankView
 {
     TableTab *tab = [self currentTab];
-//    if((tab.tabID == MyTypeOpus || tab.tabID == MyTypeDrawToMe)&& ![rankView.feed isContestFeed]){
     if(tab.tabID == MyTypeDrawToMe && ![rankView.feed isContestFeed]){
 
         //action sheet
