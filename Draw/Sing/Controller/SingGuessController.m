@@ -84,10 +84,5 @@
     [_player startPlaying];
 }
 
-- (void)didGuessCorrect:(NSString *)word{
-    
-    
-}
-
 
 @end
