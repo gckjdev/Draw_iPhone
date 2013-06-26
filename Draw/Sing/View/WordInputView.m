@@ -11,8 +11,8 @@
 
 #define BUTTON_WIDTH (ISIPAD ? 65 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
-#define BUTTON_WIDTH_GAP (ISIPAD ? 8 : 4)
-#define BUTTON_HEIGHT_GAP (ISIPAD ? 8 : 4)
+#define BUTTON_WIDTH_GAP (ISIPAD ? 9 : 4)
+#define BUTTON_HEIGHT_GAP (ISIPAD ? 9 : 4)
 
 #define DEFAULT_COLOR [UIColor blackColor]
 
