@@ -1776,6 +1776,15 @@
 "kOnlyChineseTitleAllowed" = "作品標題只允許中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品標題只允許英文單詞！";
 "kViewPost" = "查看帖子";
+
+
+//draw shadow
+"kRencent" = "最近"; 
+"kCustom" = "自定義"; 
+"kApply" = "應用"; 
+"kDegree" = "角度"; 
+"kDistance" = "距離"; 
+"kBlur" = "模糊度"; 
 /*********************小吉画画国际化字符串结束 ************************/
 
 
