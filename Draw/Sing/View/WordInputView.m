@@ -16,7 +16,7 @@
 
 #define DEFAULT_COLOR [UIColor blackColor]
 
-#define FONT [UIFont systemFontOfSize:(ISIPAD ? 26 : 13)]
+#define FONT [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)]
 
 #define BUTTON_TAG_OFFSET 1000
 
