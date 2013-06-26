@@ -43,6 +43,8 @@
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
+#import "CopyPaintCommand.h"
+#import "ShowCopyPaintCommand.h"
 
 @interface DrawToolUpPanel () {
     NSInteger _retainTime;
@@ -78,6 +80,8 @@
     [_copyPaint release];
     [_titleLabel release];
     [_drawToUserNickNameLabel release];
+    [_copyPaintPicker release];
+    [_copyPaintLabel release];
     [super dealloc];
 }
 
@@ -110,6 +114,11 @@
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
+    command = [[[CopyPaintCommand alloc] initWithControl:self.copyPaintPicker itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+    
+    command = [[[ShowCopyPaintCommand alloc] initWithControl:self.copyPaint itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
     
     [toolCmdManager updateHandler:self.toolHandler];
     [toolCmdManager updatePanel:self];
@@ -139,7 +148,7 @@
     [self.grid setSelected:NO];
     [self.canvasSize setTitle:NSLS(@"kSize") forState:UIControlStateNormal];
     [self.drawBg setTitle:NSLS(@"kBackground") forState:UIControlStateNormal];
-    [self.copyPaint setTitle:NSLS(@"kCopyPaint") forState:UIControlStateNormal];
+    [self.copyPaintLabel setText:NSLS(@"kCopyPaint")];
     [self.opusDesc setTitle:NSLS(@"kDescription") forState:UIControlStateNormal];
     [self.drawToUserNickNameLabel setText:NSLS(@"kDrawTo")];
     [self.grid setTitle:NSLS(@"kGrid") forState:UIControlStateNormal];
@@ -150,6 +159,18 @@
 {
     [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
     [[toolCmdManager commandForControl:sender] execute];
+}
+
+- (IBAction)clickShowCopyPaint:(id)sender
+{
+    if (self.copyPaintPicker.hidden) {
+        [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:self.copyPaintPicker]];
+        [[toolCmdManager commandForControl:self.copyPaintPicker] execute];
+    } else {
+        [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+        [[toolCmdManager commandForControl:sender] execute];
+    }
+    
 }
 
 - (void)appear
@@ -167,6 +188,12 @@
     self.center = CGPointMake(self.center.x, -self.frame.size.height/2);
     [UIView commitAnimations];
     self.isVisable = NO;
+}
+
+- (void)updateCopyPaint:(PBUserPhoto*)aPhoto
+{
+    [self.copyPaint setImageWithURL:[NSURL URLWithString:aPhoto.url]];
+    [self.copyPaintPicker setHidden:NO];
 }
 
 /*
