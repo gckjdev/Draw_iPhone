@@ -1368,6 +1368,13 @@
 "kCustomBBSBgSucc" = "成功自定義論壇背景！";
 "kResetCustomBBSBgSucc" = "成功重設論壇背景!";
 "kCustomBBSBg" = "自定義論壇背景";
+"kSize" = "尺寸";
+"kBackground" = "背景";
+"kCopyPaint" = "臨摹";
+"kDescription" = "描述";
+"kDrawTo" = "畫給";
+"kGrid" = "網格";
+"kHelp" = "幫助";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1769,6 +1776,15 @@
 "kOnlyChineseTitleAllowed" = "作品標題只允許中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品標題只允許英文單詞！";
 "kViewPost" = "查看帖子";
+
+
+//draw shadow
+"kRencent" = "最近"; 
+"kCustom" = "自定義"; 
+"kApply" = "應用"; 
+"kDegree" = "角度"; 
+"kDistance" = "距離"; 
+"kBlur" = "模糊度"; 
 /*********************小吉画画国际化字符串结束 ************************/
 
 

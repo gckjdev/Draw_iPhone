@@ -20,6 +20,7 @@
 #import "MyFriend.h"
 #import "UserService.h"
 #import "InputAlertView.h"
+#import "MWPhotoBrowser.h"
 
 //#import "CommonItemInfoView.h"
 
@@ -43,7 +44,7 @@
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, InputAlertViewDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, InputAlertViewDelegate, MWPhotoBrowserDelegate> {
     
 }
 
@@ -51,6 +52,7 @@
 - (IBAction)clickDraftButton:(id)sender;
 - (IBAction)clickUpPanel:(id)sender;
 
+- (void)showCopyPaint;
 
 @property (retain, nonatomic) Word *word;
 
@@ -61,6 +63,7 @@
 @property (retain, nonatomic) NSString *opusDesc;
 @property (retain, nonatomic) UIImage *bgImage;
 @property (retain, nonatomic) NSString *bgImageName;
+@property (retain, nonatomic) NSString* copyPaintUrl;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;

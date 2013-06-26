@@ -1421,6 +1421,13 @@
 "kCustomBBSBgSucc" = "Customize BBS background successfully!";
 "kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";
 "kCustomBBSBg" = "Custom BBS Background";
+"kSize" = "Size";
+"kBackground" = "Background";
+"kCopyPaint" = "Copy";
+"kDescription" = "Description";
+"kDrawTo" = "Draw to";
+"kGrid" = "Grid";
+"kHelp" = "Help";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1769,6 +1776,13 @@
 "kOnlyChineseTitleAllowed" = "Only chinese title is allowed, please check your title!";
 "kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
 "kViewPost" = "View Post";
+"kRencent" = "Recent";
+"kCustom" = "Custom";
+"kApply" = "Apply";
+"kDegree" = "Degree";
+"kDistance" = "Distance";
+"kBlur" = "Blur";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 

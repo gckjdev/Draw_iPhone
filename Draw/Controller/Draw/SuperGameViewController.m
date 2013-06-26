@@ -389,6 +389,7 @@
     [_groupChatController showInView:self.view messagesType:GameMessages selectedUserId:nil needAnimation:YES];
 }
 
+
 - (void)didSelectMessage:(NSString*)message toUser:(NSString *)userNickName
 {
     //add by haodong

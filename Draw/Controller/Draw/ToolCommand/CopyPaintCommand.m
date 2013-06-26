@@ -9,6 +9,7 @@
 #import "CopyPaintCommand.h"
 #import "MyFriend.h"
 #import "UIImageUtil.h"
+#import "DrawToolUpPanel.h"
 
 @implementation CopyPaintCommand
 
@@ -25,6 +26,16 @@
 //    }
 //}
 
+- (void)changeCopyPaint:(PBUserPhoto*)photo
+{
+    if (photo) {
+        [self.toolHandler changeCopyPaint:photo];
+        if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
+            [(DrawToolUpPanel*)self.toolPanel updateCopyPaint:photo];
+        }
+    }
+}
+
 //- (void)friendController:(FriendController *)controller
 //         didSelectFriend:(MyFriend *)aFriend
 //{
@@ -32,12 +43,19 @@
 //    [controller.navigationController popViewControllerAnimated:YES];
 //}
 
+- (void)didGalleryController:(GalleryController *)galleryController SelectedUserPhoto:(PBUserPhoto *)userPhoto
+{
+    [self changeCopyPaint:userPhoto];
+    [galleryController.navigationController popViewControllerAnimated:YES];
+    
+}
+
 - (BOOL)execute
 {
     //TODO enter MyFriendController and select the friend
-//    FriendController *fc = [[FriendController alloc] initWithDelegate:self];
-//    [[[self.toolPanel theViewController] navigationController] pushViewController:fc animated:YES];
-//    [fc release];
+    GalleryController *fc = [[GalleryController alloc] initWithDelegate:self];
+    [[[self.toolPanel theViewController] navigationController] pushViewController:fc animated:YES];
+    [fc release];
     
     return YES;
 }

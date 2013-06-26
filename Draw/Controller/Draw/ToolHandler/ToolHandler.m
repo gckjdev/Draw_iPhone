@@ -141,6 +141,13 @@
     [oc setTargetUid:aFriend.friendUserId];
 }
 
+- (void)changeCopyPaint:(PBUserPhoto*)aPhoto
+{
+    PPDebug(@"<changeCopyPaint> photo id = ", aPhoto.photoId);
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+    [oc setCopyPaintUrl:aPhoto.url];
+}
+
 - (void)enterShapeMode
 {
     self.drawView.touchActionType = TouchActionTypeShape;
@@ -196,6 +203,12 @@
 {
     OnlineDrawViewController *oc = (OnlineDrawViewController *)self.controller;
     [oc showGroupChatView];
+}
+
+- (void)handleShowCopyPaint
+{
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)self.controller;
+    [oc showCopyPaint];
 }
 
 - (TouchActionType)setTouchActionType:(TouchActionType)type

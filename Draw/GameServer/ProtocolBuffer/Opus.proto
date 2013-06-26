@@ -8,33 +8,6 @@ option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "OpusProtos";
 
 
-
-//message PBSong{
-//  required string songId = 1;       // 歌曲Id
-//  required string name = 2;         // 歌曲名称
-//
-//  optional string author = 3;       // 作者
-//  optional string lyric = 4;        // 歌词
-//
-//  repeated int32 tag = 20;            // 标签，用于分类
-//}
-//
-//message PBSongList{
-//  repeated PBSong songs = 1;
-//}
-//
-//message PBSingOpus {
-//  optional PBSong song = 1;
-//
-//
-//  // 声音变声器参数控制
-//  optional int32 voiceType = 2;
-//
-//  optional float duration = 3[default = 1];
-//  optional float pitch = 4[default = 1];
-//  optional float formant = 5[default = 1];
-//}
-
 message PBDrawOpus {
   // TODO add size here    
 
@@ -144,22 +117,13 @@ message PBOpus {
   optional PBOpusStoreType storeType = 200;      // 当前保存类型 
 }
 
-//message PBSourceAction{
-//
-//    required string actionId = 1;                   // 如果source是作品，传opusId
-//    required PBUserBasicInfo userInfo = 2;          // 用户基本信息
-//    required int32 type = 3;                      
-//    optional string briefComment = 4;
-//}
-
-
 message PBOpusAction{
     required string actionId = 1;
     optional int32 actionType = 2;                  //3 comment, 2, guess, 6 flower
     
     
-//    optional string opusId = 5;                     // 评论的作品的Id
-    optional PBUserBasicInfo userInfo = 6;          // 评论人的信息
+//    optional string opusId = 5;                   // 评论的作品的Id
+    optional PBGameUser userInfo = 6;               // 评论人的信息
     optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
 
     optional int32 createDate = 11;                 // 评论的创建时间

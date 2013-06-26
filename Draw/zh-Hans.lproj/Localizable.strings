@@ -1385,6 +1385,13 @@
 "kCustomBBSBgSucc" = "成功自定义论坛背景！";
 "kResetCustomBBSBgSucc" = "成功重设论坛背景!";
 "kCustomBBSBg" = "自定义论坛背景";
+"kSize" = "尺寸";
+"kBackground" = "背景";
+"kCopyPaint" = "临摹";
+"kDescription" = "描述";
+"kDrawTo" = "画给";
+"kGrid" = "网格";
+"kHelp" = "帮助";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1779,6 +1786,14 @@
 "kOnlyChineseTitleAllowed" = "作品标题只允许中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品标题只允许英文单词！";
 "kViewPost" = "查看帖子";
+
+"kRencent" = "最近";
+"kCustom" = "自定义";
+"kApply" = "应用";
+"kDegree" = "角度";
+"kDistance" = "距离";
+"kBlur" = "模糊度";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 /*********************你唱我猜国际化字符串开始 ************************/

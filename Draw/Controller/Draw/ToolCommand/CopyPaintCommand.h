@@ -7,8 +7,8 @@
 //
 
 #import "ToolCommand.h"
-#import "FriendController.h"
+#import "GalleryController.h"
 
-@interface CopyPaintCommand : ToolCommand
+@interface CopyPaintCommand : ToolCommand <GalleryControllerDelegate>
 
 @end

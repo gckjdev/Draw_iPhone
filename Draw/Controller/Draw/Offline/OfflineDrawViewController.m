@@ -67,6 +67,7 @@
 #import "MKBlockActionSheet.h"
 #import "DrawToolUpPanel.h"
 
+
 @interface OfflineDrawViewController()
 {
     DrawView *drawView;
@@ -212,6 +213,7 @@
     PPRelease(_bgImage);
     PPRelease(_bgImageName);
     PPRelease(_currentDialog);
+    PPRelease(_copyPaintUrl);
     [super dealloc];
 }
 
@@ -477,7 +479,7 @@
     self.toolHandler.controller = self;
     
     self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
-    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];
+//    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
@@ -1381,5 +1383,32 @@
     }
     return [ConfigManager maxDrawChineseTitleLen];
 }
+
+- (void)showCopyPaint
+{
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    // Modal
+    [browser setCanSave:NO];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [browser release];
+    [nc release];
+}
+
+
+#pragma mark - mwPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (self.copyPaintUrl) {
+        return [MWPhoto photoWithURL:[NSURL URLWithString:self.copyPaintUrl]];
+    }
+    return nil;
+    
+}
+
 
 @end

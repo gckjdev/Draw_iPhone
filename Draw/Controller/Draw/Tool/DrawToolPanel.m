@@ -43,6 +43,7 @@
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
+#import "UIImageView+WebCache.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -244,6 +245,8 @@
         
     }];
 }
+
+
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
