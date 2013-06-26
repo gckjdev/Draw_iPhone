@@ -23,5 +23,6 @@
 @interface GalleryController : CommonTabController <UITableViewDataSource, UITableViewDelegate, MWPhotoBrowserDelegate, UserPhotoViewDelegate>
 - (IBAction)clickFilterUserPhoto:(id)sender;
 
-- (id)initWithDelegate:(id<GalleryControllerDelegate>)delegate;
+- (id)initWithDelegate:(id<GalleryControllerDelegate>)delegate
+                 title:(NSString*)title;
 @end

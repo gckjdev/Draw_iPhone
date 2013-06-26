@@ -53,7 +53,7 @@
 - (BOOL)execute
 {
     //TODO enter MyFriendController and select the friend
-    GalleryController *fc = [[GalleryController alloc] initWithDelegate:self];
+    GalleryController *fc = [[GalleryController alloc] initWithDelegate:self title:NSLS(@"kSelectPhoto")];
     [[[self.toolPanel theViewController] navigationController] pushViewController:fc animated:YES];
     [fc release];
     

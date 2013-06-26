@@ -25,6 +25,7 @@
 
 @property (assign, nonatomic) id<GalleryControllerDelegate> delegate;
 
+
 @property (retain, nonatomic) NSSet* tagSet;
 
 - (IBAction)clickSearch:(id)sender;
@@ -49,10 +50,12 @@
 }
 
 - (id)initWithDelegate:(id<GalleryControllerDelegate>)delegate
+                 title:(NSString *)title
 {
     self = [super init];
     if (self) {
         self.delegate = delegate;
+        self.title = title;
     }
     return self;
 }
@@ -60,7 +63,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self serviceLoadDataForTabID:[self currentTab].tabID];
+    [self.titleLabel setText:self.title];
+//    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
 

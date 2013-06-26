@@ -478,8 +478,12 @@
     self.toolHandler.drawView = drawView;
     self.toolHandler.controller = self;
     
+    ToolHandler* upHandler = [[[ToolHandler alloc] init] autorelease];
+    upHandler.controller = self;
+    upHandler.drawView = drawView;
+    
     self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
-//    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];
+    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:upHandler];
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);

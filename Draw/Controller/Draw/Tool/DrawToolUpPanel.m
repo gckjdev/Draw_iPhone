@@ -88,9 +88,9 @@
 - (void)registerToolCommands
 {
     toolCmdManager = [ToolCommandManager defaultManager];
-    _commandVersion = [toolCmdManager createVersion];
-    [toolCmdManager setVersion:_commandVersion];
-    [toolCmdManager removeAllCommand:_commandVersion];
+//    _commandVersion = [toolCmdManager createVersion];
+//    [toolCmdManager setVersion:_commandVersion];
+//    [toolCmdManager removeAllCommand:_commandVersion];
     
     ToolCommand *command;
 
