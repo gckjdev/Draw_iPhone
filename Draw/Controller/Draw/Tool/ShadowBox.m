@@ -9,11 +9,21 @@
 #import "ShadowBox.h"
 #import "DrawAction.h"
 #import "DrawSlider.h"
+#import "DrawColor.h"
+#import "PocketSVG.h"
+#import <QuartzCore/QuartzCore.h>
 
+@interface ShadowBox()
+{
+    ShadowPreview *preView;
+    ShadowSettingView *settingView;
+    BOOL _isSpan;
+}
 
+@end
 
 @implementation ShadowBox
-
+@synthesize shadow = _shadow;
 
 - (void)dealloc {
     [_cancelButton release];
@@ -22,27 +32,142 @@
     PPRelease(_shadow);
     [super dealloc];
 }
+
+#define SETTING_PARENT_VIEW_TAG 12345
+
+#define RECENT_BUTTON_BASE_TAG 100
+#define RECENT_BUTTON_COUNT 4
+- (void)updateRecentShadows
+{
+    NSArray *list = [[ShadowManager defaultManager] recentShadowList];
+    for (NSInteger i = 0; i < 4; ++ i) {
+        NSInteger tag = RECENT_BUTTON_BASE_TAG + i;
+        UIButton *button = (id)[self viewWithTag:tag];
+        if (i < [list count]) {
+            button.enabled = YES;
+        }else{
+            button.enabled = NO;
+        }
+    }
+}
+
+- (void)updateView
+{
+//    self.backgroundColor = [UIColor yellowColor];
+    _isSpan = YES;
+    preView = [ShadowPreview shadowPreviewWithShadow:self.shadow];
+    [self addSubview:preView];
+    settingView = [ShadowSettingView shadowSettingViewWithShadow:_shadow];
+    [[self viewWithTag:SETTING_PARENT_VIEW_TAG] addSubview:settingView];
+    settingView.delegate = self;
+    [self hideSettingView:NO];
+    [self updateRecentShadows];
+}
+
++ (id)shadowBoxWithShadow:(Shadow *)shadow
+{
+    ShadowBox *box = [UIView createViewWithXibIdentifier:@"ShadowBox"];
+    box.shadow = shadow;
+    [box updateView];
+    return box;
+}
+
+- (void)shadowSettingView:(ShadowSettingView *)settingView didChangeShadow:(Shadow *)shadow
+{
+    [preView setNeedsDisplay];
+}
+
 - (IBAction)clickCancel:(id)sender {
+    _shadow.blur = 0;
+    [_shadow updateWithDegree:0 distance:0];
+    _shadow.color = [DrawColor blackColor];
+    [preView setNeedsDisplay];
+    [settingView updateSliders];
 }
 
 - (IBAction)clickApply:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(shadowBox:didGetShadow:)])
+    {
+        [self.delegate shadowBox:self didGetShadow:self.shadow];
+    }
+    [[ShadowManager defaultManager] pushRecentShadow:self.shadow];    
+}
+
+#define ANIMATION_INTERVAL 0.5
+#define SPAN_HEIGHT ISIPAD ? 330 : 158
+
+- (void)spanSettingView:(BOOL)animated
+{
+    if (!_isSpan) {
+        _isSpan = YES;
+        
+        __block CGRect frame = self.frame;
+        NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
+        [UIView animateWithDuration:interval animations:^{
+            frame.size.height += SPAN_HEIGHT;
+            self.frame = frame;
+        } completion:NULL];
+    }
+
+}
+
+- (void)hideSettingView:(BOOL)animated
+{
+    if (_isSpan) {
+        _isSpan = NO;
+        
+        __block CGRect frame = self.frame;
+
+        NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
+        
+        [UIView animateWithDuration:interval animations:^{
+            frame.size.height -= SPAN_HEIGHT;
+            self.frame = frame;
+        } completion:NULL];
+    }
 }
 
 - (IBAction)clickCustom:(id)sender {
+    [self spanSettingView:YES];
 }
 
-- (IBAction)clickExistingShadow:(UIButton *)sender {
+#define MOD 100
+
+- (void)performClickShadowButton:(NSInteger)tag shadowList:(NSArray *)list
+{
+    NSInteger index = tag % MOD;
+    if (index < [list count]) {
+        Shadow *shadow = [list objectAtIndex:index];
+        shadow = [Shadow shadowWithShadow:shadow];
+        if (shadow) {
+            [self setShadow:shadow];
+            [settingView setShadow:shadow];
+            [preView setShadow:shadow];
+        }
+    }
+}
+
+- (IBAction)clickRecentShadow:(UIButton *)sender {
+    [self hideSettingView:YES];
+    NSArray *list = [[ShadowManager defaultManager] recentShadowList];
+    [self performClickShadowButton:sender.tag shadowList:list];
     
+}
+
+- (IBAction)clickSystemShadow:(UIButton *)sender{
+    [self hideSettingView:YES];
+    NSArray *list = [[ShadowManager defaultManager] systemShadowList];
+    [self performClickShadowButton:sender.tag shadowList:list];
 }
 @end
 
 
 
 
-
-
-#define PREVIEW_FRAME_IPHONE CGRectMake(5, 85, 240, 60)
-#define PREVIEW_FRAME_IPAD CGRectMake(5, 85, 240, 60)
+//#define NORMAL_SIZE 64
+#define SCALE (ISIPAD ? 1.8 : 0.9)
+#define PREVIEW_FRAME_IPHONE CGRectMake(5, 92, 240, 60)
+#define PREVIEW_FRAME_IPAD CGRectMake(10, 170, 480, 120)
 #define PREVIEW_FRAME ISIPAD ? PREVIEW_FRAME_IPAD : PREVIEW_FRAME_IPHONE
 
 @implementation ShadowPreview
@@ -55,16 +180,199 @@
     }
 }
 
++ (id)shadowPreviewWithShadow:(Shadow *)shadow
+{
+    ShadowPreview *preView = [[ShadowPreview alloc] initWithFrame:PREVIEW_FRAME];
+    [preView setShadow:shadow];
+    [preView setBackgroundColor:[UIColor clearColor]];
+    return [preView autorelease];
+}
+
 - (void)drawRect:(CGRect)rect
 {
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:8];
+    [[UIColor whiteColor] setFill];
+    [path fill];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 4);
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    [[UIColor blueColor] setFill];
+    [[UIColor blueColor] setStroke];
+    UIBezierPath *line = [PocketSVG bezierPathWithSVGFileNamed:@"line"];
+    UIBezierPath *rect3 = [PocketSVG bezierPathWithSVGFileNamed:@"rect"];
+    path = [PocketSVG bezierPathWithSVGFileNamed:@"path"];
+    CGContextSaveGState(context);
+
+    CGContextScaleCTM(context, SCALE, SCALE);
+    if (self.shadow) {
+        [self.shadow updateContext:context];
+    }
+    CGContextTranslateCTM(context, 30, 2);
+    [line fill];
+    CGContextTranslateCTM(context, 70, 0);
+    [rect3 fill];
+    CGContextTranslateCTM(context, 70, 0);
+    [path fill];
+    
+    CGContextRestoreGState(context);
+
+
     
 }
 
 @end
 
+//#define SETTINGVIEW_CENTER_IPHONE CGPointMake(125,150+73)
+//#define SETTINGVIEW_CENTER_IPAD CGPointMake(125,153+65)
+//#define SETTINGVIEW_CENTER ISIPAD ? SETTINGVIEW_CENTER_IPAD : SETTINGVIEW_CENTER_IPHONE
+
+#define VALUE(X) (ISIPAD ? 2 * X : X)
+#define ALPHA_LABEL_FRAME (ISIPAD ? CGRectMake(0, 0, 40*2, 20*2) : CGRectMake(0, 0, 40, 20))
+#define ALPHA_FONT_SIZE VALUE(14.0)
+
 
 @implementation ShadowSettingView
 
+#define REPLACE_SLIDER(SLIDER,MIN_VALUE,MAX_VALUE,DEFAULT_VALUE,TAG)\
+frame = SLIDER.frame;\
+[SLIDER removeFromSuperview];\
+SLIDER = [DrawSlider sliderWithMaxValue:MAX_VALUE\
+                               minValue:MIN_VALUE\
+                           defaultValue:DEFAULT_VALUE\
+                               delegate:self];\
+SLIDER.frame = frame;\
+SLIDER.tag = TAG;\
+[self addSubview:SLIDER];
+
+//TODO get from reomote parameters
+#define MAX_SHADOW_DISTANCE 30
+#define MAX_SHADOW_BLUR 15
+
+- (void)updateViews
+{
+    CGRect frame;
+    REPLACE_SLIDER(self.degreeSlider, 0, 360, _shadow.degree, 1);
+    REPLACE_SLIDER(self.distanceSlider, 0, MAX_SHADOW_DISTANCE, _shadow.distance, 2);
+    REPLACE_SLIDER(self.blurSlider, 0, MAX_SHADOW_BLUR, _shadow.blur, 3);
+    
+    
+    //add Palette
+    Palette *palette = [Palette createViewWithdelegate:self];
+    palette.backgroundColor = [UIColor whiteColor];
+    palette.layer.cornerRadius = 10;
+    palette.layer.masksToBounds = YES;
+    
+    frame = self.palette.frame;
+    CGFloat sx = CGRectGetWidth(self.palette.bounds) / CGRectGetWidth(palette.bounds);
+    CGFloat sy = CGRectGetHeight(self.palette.bounds) / CGRectGetHeight(palette.bounds);
+    CGAffineTransform scale = CGAffineTransformMakeScale(sx, sy);
+    [palette setTransform:scale];
+    palette.center = CGRectGetCenter(frame);
+    [self.palette removeFromSuperview];
+    self.palette = palette;
+    [self addSubview:palette];
+    if (self.shadow.color) {
+//        palette.currentColor = self.shadow.color;
+        self.palette.currentColor = [DrawColor colorWithColor:_shadow.color];
+    }
+    
+}
+
+- (void)updateSliders
+{
+    self.degreeSlider.value = _shadow.degree;
+    self.distanceSlider.value = _shadow.distance;
+    self.blurSlider.value = _shadow.blur;
+    self.palette.currentColor = [DrawColor colorWithColor:_shadow.color];
+}
+
+
++ (id)shadowSettingViewWithShadow:(Shadow *)shadow
+{
+    ShadowSettingView *view = [UIView createViewWithXibIdentifier:@"ShadowBox" ofViewIndex:1];
+//    view.center = SETTINGVIEW_CENTER;
+    [view setShadow:shadow];
+    [view updateViews];
+    return view;
+}
+- (void)updateLabel:(UILabel *)label value:(CGFloat)value format:(NSString *)format
+{
+    NSString *v = [NSString stringWithFormat:format,value];
+    [label setText:v];
+}
+
+- (void)callBack
+{
+    if ([self.delegate respondsToSelector:@selector(shadowSettingView:didChangeShadow:)]) {
+        [self.delegate shadowSettingView:self didChangeShadow:self.shadow];
+    }
+}
+
+- (void)setShadow:(Shadow *)shadow
+{
+    if (_shadow != shadow) {
+        _shadow = shadow;
+        self.distanceSlider.value = _shadow.distance;
+        self.blurSlider.value = _shadow.blur;
+        self.degreeSlider.value = _shadow.degree;
+    }
+}
+
+- (void)updateShadowWithSlider:(DrawSlider *)slider
+{
+    CGFloat value = slider.value;
+    if (slider == self.degreeSlider) {
+        [self.shadow updateWithDegree:value distance:_shadow.distance];
+    }else if(slider == self.distanceSlider){
+        [self.shadow updateWithDegree:_shadow.degree distance:value];
+    }else if(slider == self.blurSlider){
+        self.shadow.blur = value;
+    }else{
+        
+    }
+    [self callBack];
+}
+
+- (void)drawSlider:(DrawSlider *)drawSlider didValueChange:(CGFloat)value
+{
+    UILabel *label = (UILabel *)drawSlider.contentView;
+
+    if (drawSlider == self.degreeSlider) {
+        [self updateLabel:label value:value format:@"%.0f°"];
+    }else{
+        [self updateLabel:label value:value format:@"%.01f"];
+    }
+    [self updateShadowWithSlider:drawSlider];    
+}
+- (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
+{
+    
+    UILabel *label = [[[UILabel alloc] initWithFrame:ALPHA_LABEL_FRAME] autorelease];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [drawSlider popupWithContenView:label];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setFont:[UIFont boldSystemFontOfSize:ALPHA_FONT_SIZE]];
+    UIColor *textColor = [UIColor colorWithRed:23./255. green:21./255. blue:20./255. alpha:1];
+    [label setTextColor:textColor];
+    if (drawSlider == self.degreeSlider) {
+        [self updateLabel:label value:value format:@"%.0f°"];
+    }else{
+        [self updateLabel:label value:value format:@"%.01f"];
+    }
+    [self updateShadowWithSlider:drawSlider];
+}
+- (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
+{
+    [drawSlider.contentView removeFromSuperview];
+    [drawSlider dismissPopupView];
+}
+
+- (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
+{
+    _shadow.color = color;
+    [self callBack];
+}
 
 - (void)dealloc {
     [_degreeLabel release];
@@ -73,6 +381,7 @@
     [_degreeSlider release];
     [_distanceSlider release];
     [_blurSlider release];
+    [_palette release];
     [super dealloc];
 }
 @end
