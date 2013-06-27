@@ -161,7 +161,10 @@
 {
     [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
     [[toolCmdManager commandForControl:sender] execute];
-    [self disappear];
+    
+    if (sender != self.canvasSize) {
+        [self disappear];
+    }
 }
 
 - (IBAction)clickShowCopyPaint:(id)sender
@@ -224,7 +227,14 @@
 
 - (void)updateCopyPaint:(PBUserPhoto*)aPhoto
 {
-    [self.copyPaint setImageWithURL:[NSURL URLWithString:aPhoto.url]];
+    NSURL *URL = [NSURL URLWithString:aPhoto.url];
+    __block typeof(self) cp = self;
+    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
+        image = [UIImage shrinkImage:image withRate:0.8];
+        [cp.copyPaint setImage:image forState:UIControlStateNormal];
+    } failure:^(NSError *error) {
+        
+    }];
     [self.copyPaintPicker setHidden:NO];
 }
 
