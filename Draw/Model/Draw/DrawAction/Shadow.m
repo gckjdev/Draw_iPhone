@@ -39,6 +39,9 @@
 - (void)updateDegreeAndDisdance
 {
     CGFloat d = CGPointDistance(CGPointZero, CGPointMake(_offset.width, _offset.height));
+//    if (d <= 0) {
+//        d = 0.001;
+//    }
     if (d != 0) {
         _degree = acosf(_offset.width / d) * 180 / M_PI;
     }
@@ -124,16 +127,20 @@
 
 - (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance
 {
-    _offset.width = cosf(degree / 180) * distance;
-    _offset.height = sinf(degree / 180) * distance;
+    _degree = degree;
+    _distance = distance;
+    
+    CGFloat radio = degree / 180 * M_PI;
+    _offset.width = cosf(radio)  * distance;
+    _offset.height = sinf(radio) * distance;
 }
 - (CGFloat)distance
 {
-    return CGPointDistance(CGPointZero, CGPointMake(_offset.width, _offset.height));
+    return _distance;
 }
 - (CGFloat)degree
 {
-    return acosf(_offset.width / [self distance]) * 180;
+    return _degree;
 }
 
 - (NSUInteger)hash
