@@ -41,6 +41,4 @@
     [super setOpusInfo:opus];
 }
 
-
-
 @end

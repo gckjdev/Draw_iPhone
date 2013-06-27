@@ -16,6 +16,8 @@
 
 #define DEFAULT_COLOR [UIColor blackColor]
 
+#define FONT [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)]
+
 #define BUTTON_TAG_OFFSET 1000
 
 #define BOMB_CHAR ' '
@@ -210,6 +212,7 @@
         CGRect frame = CGRectMake(originX, originY, width, height);
         UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
         [button setTitle:ch forState:UIControlStateNormal];
+        button.titleLabel.font = FONT;
         [button setTitleColor:_candidateColor forState:UIControlStateNormal];
         if ([ch characterAtIndex:0] == BOMB_CHAR) {
             button.enabled = NO;
@@ -255,6 +258,7 @@
     moveButton.frame = button.bounds;
     moveButton.center = startPoint;
     [moveButton setTitle:ch forState:UIControlStateNormal];
+    moveButton.titleLabel.font = FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self addSubview:moveButton];
@@ -320,6 +324,7 @@
 
     UIButton *moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [moveButton setTitle:ch forState:UIControlStateNormal];
+    moveButton.titleLabel.font = FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     moveButton.frame = button.bounds;
@@ -418,6 +423,7 @@
         
         UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(originX, 0, width, height)] autorelease];
         [button setTitleColor:_answerColor forState:UIControlStateNormal];
+        button.titleLabel.font = FONT;
         button.tag = BUTTON_TAG_OFFSET + index;
         button.enabled = NO;
         [button addTarget:self action:@selector(clickAnswerButton:) forControlEvents:UIControlEventTouchUpInside];
