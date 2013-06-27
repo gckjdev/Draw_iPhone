@@ -51,7 +51,6 @@
         }
         
     }
-    CGGradientCreateWithColors(<#CGColorSpaceRef space#>, <#CFArrayRef colors#>, <#const CGFloat *locations#>)
 }
 
 - (void)buyItemSuccessfully:(ItemType)type
