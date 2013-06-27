@@ -63,7 +63,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.titleLabel setText:self.title];
+    if (self.title && self.title.length > 0) {
+        [self.titleLabel setText:self.title];
+    }
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }

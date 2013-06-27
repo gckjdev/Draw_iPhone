@@ -1285,7 +1285,7 @@
 - (IBAction)clickUpPanel:(id)sender
 {
     if (![self.drawToolUpPanel isVisable]) {
-        [self.drawToolUpPanel appear];
+        [self.drawToolUpPanel appear:self];
     } else {
         [self.drawToolUpPanel disappear];
     }
