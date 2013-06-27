@@ -125,10 +125,10 @@
 
 #define PRE_TEXT_BTN_OFFSET 120130609
 #define KEYWORD_BTN_PER_LINE    3
-#define ORG_POINT (CGPointMake(33, 162))
-#define KEYWORD_BTN_SIZE    (CGSizeMake(73, 34))
-#define SEP_X   18
-#define SEP_Y   8
+#define ORG_POINT (ISIPAD?CGPointMake(79, 338):CGPointMake(33, 162))
+#define KEYWORD_BTN_SIZE    (ISIPAD?CGSizeMake(175, 71):CGSizeMake(73, 34))
+#define SEP_X   (ISIPAD?43:18)
+#define SEP_Y   (ISIPAD?17:8)
 
 - (void)initKeywords:(NSArray*)array
 {
@@ -138,7 +138,7 @@
         
         [keywordBtn setBackgroundImage:[UIImage imageNamed:@"keyword_btn.png"] forState:UIControlStateNormal];
         [keywordBtn setTitleColor:OPAQUE_COLOR(129, 85, 37) forState:UIControlStateNormal];
-        [keywordBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [keywordBtn.titleLabel setFont:[UIFont systemFontOfSize:(ISIPAD?28:14)]];
         [keywordBtn addTarget:self action:@selector(clickKeywordBtn:) forControlEvents:UIControlEventTouchUpInside];
         [keywordBtn setTag:(PRE_TEXT_BTN_OFFSET+i)];
         [self.view addSubview:keywordBtn];

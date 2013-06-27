@@ -1804,6 +1804,7 @@
 "kKeywords" = "Keywords:";
 "kGallery" = "Gallery";
 "kImageSearch" = "Search Image";
+"kSearchResult" = "Search Results";
 "kDeletePhotoSucc" = "Delete photo successfully!";
 "kEditPhotoSucc" = "Photo updated!";
 "kAddUserPhotoSucc" = "Photo saved!";
@@ -1831,5 +1832,6 @@
 "kSearchNoResult" = "No match result";
 "kEditName" = "Edit Name";
 "kEnterNewName" = "Enter New Name";
+"kReset" = "Reset";
 /*********************图库国际化字符串结束 ************************/
 

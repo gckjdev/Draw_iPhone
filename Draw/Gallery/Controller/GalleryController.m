@@ -326,7 +326,7 @@ enum {
     __block GalleryController* cp = self;
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto
                                                        title:NSLS(@"kFilter")
-                                                confirmTitle:NSLS(@"kFilter")
+                                                confirmTitle:NSLS(@"kConfirm")
                                                  resultBlock:^(NSSet *tagSet) {
         cp.tagSet = tagSet;
         [cp reloadTableViewDataSource];
