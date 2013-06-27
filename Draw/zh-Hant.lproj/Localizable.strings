@@ -1753,6 +1753,8 @@
 
 "kContentRepeatedError" = "請不要發重復的帖子。";
 "kNoPost" = "還沒有發過帖子";
+
+"kBBSQuitTips" = "内容尚未发出，是否退出？";
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";

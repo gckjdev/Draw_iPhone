@@ -227,6 +227,7 @@
 
 - (void)initViews
 {
+    [self.textView setText:[BBSManager lastInputText]];
     
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     BBSColorManager *colorManager = [BBSColorManager defaultManager];
@@ -319,6 +320,10 @@
 #define IMAGE_SIZE_MAX 1500
 
 - (IBAction)clickBackButton:(id)sender {
+    if ([_textView.text length] > 0) {
+        [self showQuitAlert];
+        return;
+    }
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -361,7 +366,8 @@
 }
 
 #define ALERT_CLEAR_IMAGE_TAG 201212041
-#define ALERT_CLEAR_DRAW_TAG 201212042
+#define ALERT_CLEAR_DRAW_TAG  201212042
+#define ALERT_QUIT_TAG        201306271
 
 - (void)showClearImageAlert
 {
@@ -385,6 +391,19 @@
                                           otherButtonTitles:NSLS(@"kOK"),nil];
     
     alert.tag = ALERT_CLEAR_DRAW_TAG;
+    [alert show];
+    [alert release];
+}
+
+
+- (void)showQuitAlert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"kWarning")
+                                                        message:NSLS(@"kBBSQuitTips")
+                                                       delegate:self
+                                              cancelButtonTitle:NSLS(@"kCancel")
+                                              otherButtonTitles:NSLS(@"kOK"), nil];
+    alert.tag = ALERT_QUIT_TAG;
     [alert show];
     [alert release];
 }
@@ -429,6 +448,8 @@
             [self startToDraw];
         }else if(theAlertView.tag == ALERT_CLEAR_DRAW_TAG){
             [self startToSelectImage];
+        }else if(theAlertView.tag == ALERT_QUIT_TAG){
+            [self dismissModalViewControllerAnimated:YES];
         }
     }
 }
@@ -541,6 +562,7 @@
     [self hideActivity];
     canCommit = YES;
     if (resultCode == 0) {
+        [BBSManager saveLastInputText:nil];
         PPDebug(@"<didCreatePost>create post successful!");
         if (self.delegate && [self.delegate
                               respondsToSelector:@selector(didController:CreateNewPost:)]) {
@@ -565,6 +587,7 @@
     [self hideActivity];
     canCommit = YES;    
     if (resultCode == 0) {
+        [BBSManager saveLastInputText:nil];
         PPDebug(@"<didCreateAction>create action successful!");
         if (self.delegate && [self.delegate
                               respondsToSelector:@selector(didController:CreateNewAction:)]) {
@@ -610,4 +633,10 @@
     return YES;
 }
 */
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    [BBSManager saveLastInputText:textView.text];
+}
+
 @end

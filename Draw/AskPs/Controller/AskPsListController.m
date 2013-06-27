@@ -8,6 +8,7 @@
 
 #import "AskPsListController.h"
 #import "Opus.pb.h"
+#import "AskPsManager.h"
 
 @interface AskPsListController ()
 
@@ -23,7 +24,7 @@
 
 - (void)didGetTopAskPsList:(NSArray *)list result:(int)resultCode
 {
-    
+    list = [AskPsManager createAskPsList];
     if (resultCode == 0) {
         for (PBOpus *pbOpus in list) {
             PPDebug(@"id:%@", pbOpus.opusId);

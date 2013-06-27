@@ -1757,6 +1757,8 @@
 
 "kContentRepeatedError" = "Can't send repeated content.";
 "kNoPost" = "No Post";
+
+"kBBSQuitTips" = "Are you sure to quit?";
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/

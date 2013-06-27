@@ -839,6 +839,15 @@ static FeedService *_staticFeedService = nil;
              resultBlock:resultBlock];
 }
 
+- (void)rejectOpusDrawToMe:(NSString *)opusId
+               resultBlock:(FeedActionResultBlock)resultBlock
+{
+    [self actionSaveOpus:opusId
+              actionType:ACTION_TYPE_REJECT_DRAW_TO_ME_OPUS
+              actionName:@""
+             resultBlock:resultBlock];
+}
+
 #define UPDATE_OPUS_QUEUE @"UPDATE_OPUS_QUEUE"
 
 - (void)updateOpus:(NSString *)opusId image:(UIImage *)image
