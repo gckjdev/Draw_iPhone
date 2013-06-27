@@ -60,7 +60,10 @@
 
 + (Shadow *)shadowWithShadow:(Shadow *)shadow
 {
-    return [Shadow shadowWithDrawColor:shadow.color offset:shadow.offset blur:shadow.blur];
+    if (shadow) {
+        return [Shadow shadowWithDrawColor:shadow.color offset:shadow.offset blur:shadow.blur];
+    }
+    return [Shadow shadowWithDrawColor:[DrawColor blackColor] offset:CGSizeZero blur:0];
 }
 
 
@@ -86,7 +89,9 @@
 
 - (void)updateContext:(CGContextRef)context
 {
-    CGContextSetShadowWithColor(context, _offset, _blur, _color.CGColor);
+    if (![self isEmpty]) {
+        CGContextSetShadowWithColor(context, _offset, _blur, _color.CGColor);
+    }
 }
 
 - (void)spanRect:(CGRect *)rect
@@ -124,16 +129,20 @@
 
 - (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance
 {
-    _offset.width = cosf(degree / 180) * distance;
-    _offset.height = sinf(degree / 180) * distance;
+    _degree = degree;
+    _distance = distance;
+    
+    CGFloat radio = degree / 180 * M_PI;
+    _offset.width = cosf(radio)  * distance;
+    _offset.height = sinf(radio) * distance;
 }
 - (CGFloat)distance
 {
-    return CGPointDistance(CGPointZero, CGPointMake(_offset.width, _offset.height));
+    return _distance;
 }
 - (CGFloat)degree
 {
-    return acosf(_offset.width / [self distance]) * 180;
+    return _degree;
 }
 
 - (NSUInteger)hash
@@ -150,6 +159,11 @@
     return self.blur == shadow.blur &&
     CGSizeEqualToSize(self.offset, shadow.offset) &&
     [self.color isEqual:shadow.color];
+}
+
+- (BOOL)isEmpty
+{
+    return _blur == 0 && CGSizeEqualToSize(CGSizeZero, _offset);
 }
 
 @end
@@ -223,6 +237,9 @@ ShadowManager *_staticShadowManager = nil;
 }
 - (void)pushRecentShadow:(Shadow *)shadow
 {
+    if (shadow == nil) {
+        return;
+    }
     shadow = [Shadow shadowWithShadow:shadow];
     if (![_recentShadowList containsObject:shadow]) {
         [_recentShadowList insertObject:shadow atIndex:0];

@@ -9,6 +9,8 @@
 #import "EditDescCommand.h"
 #import "InputAlertView.h"
 
+#define KEYBOARD_RECT (CGRectMake(0, 228, 328, 252))
+
 @interface EditDescCommand ()
 
 
@@ -20,6 +22,7 @@
 
 - (void)dealloc
 {
+    
     PPRelease(_inputAlertView);
     [super dealloc];
 }
@@ -72,6 +75,9 @@
     }
     
     [self.inputAlertView showInView:oc.view animated:YES];
+    if (!ISIPAD) {
+        [self.inputAlertView adjustWithKeyBoardRect:KEYBOARD_RECT];
+    }
 
 }
 

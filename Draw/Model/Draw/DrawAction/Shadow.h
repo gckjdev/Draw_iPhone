@@ -29,6 +29,9 @@
 - (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance;
 - (CGFloat)distance;
 - (CGFloat)degree;
+
+- (BOOL)isEmpty;
+
 @end
 
 

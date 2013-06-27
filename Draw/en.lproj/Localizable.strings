@@ -1779,12 +1779,14 @@
 "kOnlyChineseTitleAllowed" = "Only chinese title is allowed, please check your title!";
 "kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
 "kViewPost" = "View Post";
-"kRencent" = "Recent";
+"kRecent" = "Recent";
 "kCustom" = "Custom";
 "kApply" = "Apply";
 "kDegree" = "Degree";
 "kDistance" = "Distance";
 "kBlur" = "Blur";
+"kNoShadow" = "None";
+"kSetShadow" = "Shadow Setting";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
@@ -1804,6 +1806,7 @@
 "kKeywords" = "Keywords:";
 "kGallery" = "Gallery";
 "kImageSearch" = "Search Image";
+"kSearchResult" = "Search Results";
 "kDeletePhotoSucc" = "Delete photo successfully!";
 "kEditPhotoSucc" = "Photo updated!";
 "kAddUserPhotoSucc" = "Photo saved!";
@@ -1831,5 +1834,6 @@
 "kSearchNoResult" = "No match result";
 "kEditName" = "Edit Name";
 "kEnterNewName" = "Enter New Name";
+"kReset" = "Reset";
 /*********************图库国际化字符串结束 ************************/
 

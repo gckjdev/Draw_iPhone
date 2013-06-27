@@ -288,6 +288,7 @@
     PPRelease(_bgColor);
     PPRelease(_touchHandler);
     PPRelease(_currentTouch);
+    PPRelease(_shadow);
     [super dealloc];
 }
 

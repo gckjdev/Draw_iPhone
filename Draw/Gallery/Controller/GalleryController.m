@@ -63,7 +63,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.titleLabel setText:self.title];
+    if (self.title && self.title.length > 0) {
+        [self.titleLabel setText:self.title];
+    }
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
@@ -324,7 +326,7 @@ enum {
     __block GalleryController* cp = self;
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto
                                                        title:NSLS(@"kFilter")
-                                                confirmTitle:NSLS(@"kFilter")
+                                                confirmTitle:NSLS(@"kConfirm")
                                                  resultBlock:^(NSSet *tagSet) {
         cp.tagSet = tagSet;
         [cp reloadTableViewDataSource];

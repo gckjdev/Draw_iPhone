@@ -49,6 +49,9 @@ typedef enum{
 
 @property(nonatomic, retain) DrawColor* lineColor; //default is black
 @property(nonatomic, retain) DrawColor* bgColor; //default is black
+@property(nonatomic, retain) Shadow *shadow;
+
+
 @property(nonatomic, assign) CGFloat lineWidth; //default is 5.0
 @property(nonatomic, assign) ItemType penType;
 @property(nonatomic, assign) ShapeType shapeType;

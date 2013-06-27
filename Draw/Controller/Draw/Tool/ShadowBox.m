@@ -12,6 +12,8 @@
 #import "DrawColor.h"
 #import "PocketSVG.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CustomInfoView.h"
+
 
 @interface ShadowBox()
 {
@@ -19,17 +21,54 @@
     ShadowSettingView *settingView;
     BOOL _isSpan;
 }
+@property (retain, nonatomic) IBOutlet UILabel *recentLabel;
+@property (retain, nonatomic) IBOutlet UIButton *cancelButton;
+@property (retain, nonatomic) IBOutlet UIButton *applyButton;
+@property (retain, nonatomic) IBOutlet UIButton *customButton;
+@property (retain, nonatomic) CustomInfoView *infoView;
+
+- (IBAction)clickCancel:(id)sender;
+- (IBAction)clickApply:(id)sender;
+- (IBAction)clickCustom:(id)sender;
+- (IBAction)clickRecentShadow:(UIButton *)sender;
+- (IBAction)clickSystemShadow:(UIButton *)sender;
 
 @end
 
 @implementation ShadowBox
 @synthesize shadow = _shadow;
 
+- (void)dismiss
+{
+    [self.infoView dismiss];
+    self.infoView.infoView = nil;
+    self.infoView = nil;
+}
+
+- (void)showInView:(UIView *)view
+{
+    if (self.infoView == nil) {
+        __block typeof (self) bself = self;
+        self.infoView = [CustomInfoView createWithTitle:NSLS(@"kSetShadow")
+                                               infoView:self
+                                           closeHandler:^{
+                                               bself.infoView = nil;
+                                           }];
+        
+        [self.infoView.mainView updateCenterY:(self.infoView.mainView.center.y - (ISIPAD ? 35 : 20))];
+    }
+
+    [self.infoView showInView:view];
+    [self updateView];
+}
+
 - (void)dealloc {
-    [_cancelButton release];
-    [_applyButton release];
-    [_customButton release];
+    PPRelease(_cancelButton);
+    PPRelease(_applyButton);
+    PPRelease(_customButton);
     PPRelease(_shadow);
+    PPRelease(_shadow);
+    [_recentLabel release];
     [super dealloc];
 }
 
@@ -62,13 +101,20 @@
     settingView.delegate = self;
     [self hideSettingView:NO];
     [self updateRecentShadows];
+    
+    //Set text
+    [self.cancelButton setTitle:NSLS(@"kNoShadow") forState:UIControlStateNormal];
+    [self.applyButton setTitle:NSLS(@"kApply") forState:UIControlStateNormal];
+    [self.customButton setTitle:NSLS(@"kCustom") forState:UIControlStateNormal];
+    
+    [self.recentLabel setText:NSLS(@"kRecent")];
+
 }
 
 + (id)shadowBoxWithShadow:(Shadow *)shadow
 {
     ShadowBox *box = [UIView createViewWithXibIdentifier:@"ShadowBox"];
     box.shadow = shadow;
-    [box updateView];
     return box;
 }
 
@@ -94,19 +140,23 @@
 }
 
 #define ANIMATION_INTERVAL 0.5
-#define SPAN_HEIGHT ISIPAD ? 330 : 158
+#define SPAN_HEIGHT ISIPAD ? 330 : 159
 
 - (void)spanSettingView:(BOOL)animated
 {
     if (!_isSpan) {
         _isSpan = YES;
         
-        __block CGRect frame = self.frame;
+//        __block CGRect frame = self.frame;
+        __block CGRect frame = self.infoView.mainView.frame;
         NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
         [UIView animateWithDuration:interval animations:^{
             frame.size.height += SPAN_HEIGHT;
-            self.frame = frame;
-        } completion:NULL];
+//            self.frame = frame;
+            self.infoView.mainView.frame = frame;
+        } completion:^(BOOL finished) {
+            [settingView.superview setClipsToBounds:NO];
+        }];
     }
 
 }
@@ -116,19 +166,22 @@
     if (_isSpan) {
         _isSpan = NO;
         
-        __block CGRect frame = self.frame;
-
+        [settingView.superview setClipsToBounds:YES];
+//        __block CGRect frame = self.frame;
+        __block CGRect frame = self.infoView.mainView.frame;
         NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
         
         [UIView animateWithDuration:interval animations:^{
             frame.size.height -= SPAN_HEIGHT;
-            self.frame = frame;
+//            self.frame = frame;
+            self.infoView.mainView.frame = frame;            
         } completion:NULL];
     }
 }
 
 - (IBAction)clickCustom:(id)sender {
     [self spanSettingView:YES];
+    [self makeSelectedButton:sender];
 }
 
 #define MOD 100
@@ -147,17 +200,28 @@
     }
 }
 
+- (void)makeSelectedButton:(UIButton *)button
+{
+    for (UIButton *btn in self.subviews) {
+        if (btn.tag > 0 && [btn isKindOfClass:[UIButton class]] && btn.isSelected) {
+            [btn setSelected:NO];
+        }
+    }
+    [button setSelected:YES];
+}
+
 - (IBAction)clickRecentShadow:(UIButton *)sender {
     [self hideSettingView:YES];
     NSArray *list = [[ShadowManager defaultManager] recentShadowList];
     [self performClickShadowButton:sender.tag shadowList:list];
-    
+    [self makeSelectedButton:sender];
 }
 
 - (IBAction)clickSystemShadow:(UIButton *)sender{
     [self hideSettingView:YES];
     NSArray *list = [[ShadowManager defaultManager] systemShadowList];
     [self performClickShadowButton:sender.tag shadowList:list];
+    [self makeSelectedButton:sender];    
 }
 @end
 
@@ -166,8 +230,8 @@
 
 //#define NORMAL_SIZE 64
 #define SCALE (ISIPAD ? 1.8 : 0.9)
-#define PREVIEW_FRAME_IPHONE CGRectMake(5, 92, 240, 60)
-#define PREVIEW_FRAME_IPAD CGRectMake(10, 170, 480, 120)
+#define PREVIEW_FRAME_IPHONE CGRectMake(5, 91, 240, 60)
+#define PREVIEW_FRAME_IPAD CGRectMake(10, 162, 480, 120)
 #define PREVIEW_FRAME ISIPAD ? PREVIEW_FRAME_IPAD : PREVIEW_FRAME_IPHONE
 
 @implementation ShadowPreview
@@ -197,8 +261,9 @@
     CGContextSetLineWidth(context, 4);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
-    [[UIColor blueColor] setFill];
-    [[UIColor blueColor] setStroke];
+    UIColor *color = OPAQUE_COLOR(149, 239, 238);
+    [color setFill];
+    [color setStroke];
     UIBezierPath *line = [PocketSVG bezierPathWithSVGFileNamed:@"line"];
     UIBezierPath *rect3 = [PocketSVG bezierPathWithSVGFileNamed:@"rect"];
     path = [PocketSVG bezierPathWithSVGFileNamed:@"path"];
@@ -276,6 +341,11 @@ SLIDER.tag = TAG;\
 //        palette.currentColor = self.shadow.color;
         self.palette.currentColor = [DrawColor colorWithColor:_shadow.color];
     }
+    
+    //Set Text
+    [self.distanceLabel setText:NSLS(@"kDistance")];
+    [self.degreeLabel setText:NSLS(@"kDegree")];
+    [self.blurLabel setText:NSLS(@"kBlur")];
     
 }
 
@@ -375,13 +445,13 @@ SLIDER.tag = TAG;\
 }
 
 - (void)dealloc {
-    [_degreeLabel release];
-    [_distanceLabel release];
-    [_blurLabel release];
-    [_degreeSlider release];
-    [_distanceSlider release];
-    [_blurSlider release];
-    [_palette release];
+    PPRelease(_degreeLabel);
+    PPRelease(_distanceLabel);
+    PPRelease(_blurLabel);
+    PPRelease(_degreeSlider);
+    PPRelease(_distanceSlider);
+    PPRelease(_blurSlider);
+    PPRelease(_palette);
     [super dealloc];
 }
 @end

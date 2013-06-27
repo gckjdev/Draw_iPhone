@@ -487,7 +487,7 @@
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
-    [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2-15, -self.drawToolUpPanel.frame.size.height/2)];
+    [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
     [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
     
     [self.view addSubview:self.drawToolPanel];
@@ -1285,7 +1285,7 @@
 - (IBAction)clickUpPanel:(id)sender
 {
     if (![self.drawToolUpPanel isVisable]) {
-        [self.drawToolUpPanel appear];
+        [self.drawToolUpPanel appear:self];
     } else {
         [self.drawToolUpPanel disappear];
     }

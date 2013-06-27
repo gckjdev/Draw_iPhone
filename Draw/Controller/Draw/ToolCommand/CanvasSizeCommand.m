@@ -9,6 +9,7 @@
 #import "CanvasSizeCommand.h"
 #import "CommonMessageCenter.h"
 #import "DrawRecoveryService.h"
+#import "DrawToolUpPanel.h"
 
 @interface CanvasSizeCommand ()
 
@@ -53,6 +54,9 @@
 - (void)canvasBox:(CanvasRectBox *)box didSelectedRect:(CanvasRect *)rect
 {
 //    CanvasRect
+    if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
+        [((DrawToolUpPanel*)self.toolPanel) disappear];
+    }
     if ([self canUseItem:[CanvasRect itemTypeFromCanvasRectStyle:rect.style]]) {
         [self useCanvasRect:rect];
     }

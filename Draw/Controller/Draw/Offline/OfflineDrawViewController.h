@@ -65,6 +65,7 @@
 @property (retain, nonatomic) NSString *bgImageName;
 @property (retain, nonatomic) NSString* copyPaintUrl;
 
+
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;
 

@@ -1368,13 +1368,13 @@
 "kCustomBBSBgSucc" = "成功自定義論壇背景！";
 "kResetCustomBBSBgSucc" = "成功重設論壇背景!";
 "kCustomBBSBg" = "自定義論壇背景";
-"kSize" = "尺寸";
-"kBackground" = "背景";
-"kCopyPaint" = "臨摹";
-"kDescription" = "描述";
-"kDrawTo" = "畫給";
-"kGrid" = "網格";
-"kHelp" = "幫助";
+"kSize" = "畫布尺寸";
+"kBackground" = "畫畫背景";
+"kCopyPaint" = "臨摹圖片";
+"kDescription" = "作品描述";
+"kDrawTo" = "畫給好友";
+"kGrid" = "輔助網格";
+"kHelp" = "縮放幫助";
 "kSelectPhoto" = "選取圖片";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
@@ -1787,7 +1787,10 @@
 "kApply" = "應用"; 
 "kDegree" = "角度"; 
 "kDistance" = "距離"; 
-"kBlur" = "模糊度"; 
+"kBlur" = "模糊";
+"kNoShadow" = "無陰影";
+"kSetShadow" = "設置陰影";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 
@@ -1806,6 +1809,7 @@
 "kKeywords" = "關鍵字:";
 "kGallery" = "圖庫";
 "kImageSearch" = "搜索圖片";
+"kSearchResult" = "搜索結果";
 "kDeletePhotoSucc" = "成功刪除圖片!";
 "kEditPhotoSucc" = "成功更新圖片信息!";
 "kAddUserPhotoSucc" = "成功保存圖片!";
@@ -1833,4 +1837,5 @@
 "kSearchNoResult" = "搜不到符合條件的結果";
 "kEditName" = "編輯名字";
 "kEnterNewName" = "輸入新名字";
+"kReset" = "重置";
 /*********************图库国际化字符串结束 ************************/
