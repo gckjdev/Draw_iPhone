@@ -99,7 +99,7 @@
 						<int key="NSvFlags">293</int>
 						<string key="NSFrame">{{13, 10}, {34, 26}}</string>
 						<reference key="NSSuperview" ref="189205802"/>
-						<reference key="NSNextKeyView" ref="976468799"/>
+						<reference key="NSNextKeyView" ref="920923655"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -254,7 +254,7 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUILabel" id="976468799">
+					<object class="IBUILabel" id="920923655">
 						<reference key="NSNextResponder" ref="189205802"/>
 						<int key="NSvFlags">293</int>
 						<string key="NSFrame">{{50, 3}, {220, 40}}</string>
@@ -390,7 +390,7 @@
 							<reference ref="652582225"/>
 							<reference ref="691514893"/>
 							<reference ref="580274899"/>
-							<reference ref="976468799"/>
+							<reference ref="920923655"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -441,7 +441,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">44</int>
-						<reference key="object" ref="976468799"/>
+						<reference key="object" ref="920923655"/>
 						<reference key="parent" ref="189205802"/>
 					</object>
 				</array>
@@ -477,13 +477,13 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{67, 53}</string>
-			<string key="search_bar_bg@2x.png">{624, 103}</string>
-			<string key="search_btn@2x.png">{45, 43}</string>
-			<string key="search_input_bg@2x.png">{478, 66}</string>
-			<string key="search_setting_btn@2x.png">{71, 67}</string>
-			<string key="topwood@2x.jpg">{640, 79}</string>
-			<string key="wood_bg@2x.jpg">{640, 960}</string>
+			<string key="back@2x.png">{16, 16}</string>
+			<string key="search_bar_bg@2x.png">{16, 16}</string>
+			<string key="search_btn@2x.png">{16, 16}</string>
+			<string key="search_input_bg@2x.png">{16, 16}</string>
+			<string key="search_setting_btn@2x.png">{16, 16}</string>
+			<string key="topwood@2x.jpg">{16, 16}</string>
+			<string key="wood_bg@2x.jpg">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

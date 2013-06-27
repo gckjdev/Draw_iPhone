@@ -40,6 +40,7 @@
 #import "GridCommand.h"
 #import "RedoCommand.h"
 #import "UndoCommand.h"
+#import "ShadowCommand.h"
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
@@ -317,9 +318,15 @@
     command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
+/*
     command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
+*/
+    command = [[[ShadowCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
 
+    
+    
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
