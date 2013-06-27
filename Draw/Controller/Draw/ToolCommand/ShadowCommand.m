@@ -30,13 +30,15 @@
     
     //TODO get shadow from common handler
     
-    Shadow *shadow = [Shadow shadowWithDrawColor:[DrawColor yellowColor] offset:CGSizeMake(2, 2) blur:3];
+    Shadow *shadow = [Shadow shadowWithShadow:self.toolHandler.shadow];
     
     ShadowBox *view  = [ShadowBox shadowBoxWithShadow:shadow];
     UIView *spView = [[self.control theViewController] view];
     view.center = spView.center;
     [view showInView:spView];
+    view.delegate = self;
     self.box = view;
+    
     
     return YES;
 }
@@ -45,7 +47,11 @@
 
 - (void)shadowBox:(ShadowBox *)box didGetShadow:(Shadow *)shadow
 {
-    //TODO change shadow
+    if ([shadow isEmpty]) {
+        shadow = nil;
+    }
+    [self.toolHandler changeShadow:shadow];
+    [box dismiss];
 }
 
 -(void)sendAnalyticsReport{

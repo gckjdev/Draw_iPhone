@@ -39,9 +39,6 @@
 - (void)updateDegreeAndDisdance
 {
     CGFloat d = CGPointDistance(CGPointZero, CGPointMake(_offset.width, _offset.height));
-//    if (d <= 0) {
-//        d = 0.001;
-//    }
     if (d != 0) {
         _degree = acosf(_offset.width / d) * 180 / M_PI;
     }
@@ -63,7 +60,10 @@
 
 + (Shadow *)shadowWithShadow:(Shadow *)shadow
 {
-    return [Shadow shadowWithDrawColor:shadow.color offset:shadow.offset blur:shadow.blur];
+    if (shadow) {
+        return [Shadow shadowWithDrawColor:shadow.color offset:shadow.offset blur:shadow.blur];
+    }
+    return [Shadow shadowWithDrawColor:[DrawColor blackColor] offset:CGSizeZero blur:0];
 }
 
 
@@ -159,6 +159,11 @@
     [self.color isEqual:shadow.color];
 }
 
+- (BOOL)isEmpty
+{
+    return _blur == 0 && CGSizeEqualToSize(CGSizeZero, _offset);
+}
+
 @end
 
 
@@ -230,6 +235,9 @@ ShadowManager *_staticShadowManager = nil;
 }
 - (void)pushRecentShadow:(Shadow *)shadow
 {
+    if (shadow == nil) {
+        return;
+    }
     shadow = [Shadow shadowWithShadow:shadow];
     if (![_recentShadowList containsObject:shadow]) {
         [_recentShadowList insertObject:shadow atIndex:0];

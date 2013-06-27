@@ -46,6 +46,12 @@
     self.penType = drawView.penType;
 }
 
+- (void)changeShadow:(Shadow *)shadow
+{
+    self.shadow = shadow;
+    self.drawView.shadow = shadow;
+}
+
 - (void)changePenColor:(DrawColor *)color
 {
     CGFloat alpha = self.penColor.alpha;

@@ -42,6 +42,7 @@
                                    pointList:nil];
         
         action = [[PaintAction paintActionWithPaint:currentPaint] retain];
+        action.shadow = self.drawView.shadow;
 //        [action addPoint:point inRect:self.drawView.bounds];
 //        [self.drawView drawDrawAction:action show:YES];
         [self.drawView updateLastAction:action show:YES];
