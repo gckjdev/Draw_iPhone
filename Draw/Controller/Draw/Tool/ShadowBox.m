@@ -181,6 +181,7 @@
 
 - (IBAction)clickCustom:(id)sender {
     [self spanSettingView:YES];
+    [self makeSelectedButton:sender];
 }
 
 #define MOD 100
@@ -230,7 +231,7 @@
 //#define NORMAL_SIZE 64
 #define SCALE (ISIPAD ? 1.8 : 0.9)
 #define PREVIEW_FRAME_IPHONE CGRectMake(5, 91, 240, 60)
-#define PREVIEW_FRAME_IPAD CGRectMake(10, 170, 480, 120)
+#define PREVIEW_FRAME_IPAD CGRectMake(10, 162, 480, 120)
 #define PREVIEW_FRAME ISIPAD ? PREVIEW_FRAME_IPAD : PREVIEW_FRAME_IPHONE
 
 @implementation ShadowPreview
