@@ -189,7 +189,7 @@
     
     self.layer.opacity = 1;
     self.layer.transform = CATransform3DMakeScale(1, 1, 1);
-    self.center = CGPointMake(self.center.x, self.frame.size.height/2+30);
+    self.center = CGPointMake(self.center.x, self.frame.size.height/2+(ISIPAD?70:30));
     [UIView commitAnimations];
     self.isVisable = YES;
     
