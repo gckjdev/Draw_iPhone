@@ -89,7 +89,9 @@
 
 - (void)updateContext:(CGContextRef)context
 {
-    CGContextSetShadowWithColor(context, _offset, _blur, _color.CGColor);
+    if (![self isEmpty]) {
+        CGContextSetShadowWithColor(context, _offset, _blur, _color.CGColor);
+    }
 }
 
 - (void)spanRect:(CGRect *)rect
