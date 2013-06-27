@@ -6,18 +6,18 @@
 //
 //
 
-#import "DrawBgCommand.h"
+#import "ShadowCommand.h"
 
-@interface DrawBgCommand()
+@interface ShadowCommand()
 {
      
 }
 
-@property(nonatomic, retain)DrawBgBox *box;
+@property(nonatomic, retain)ShadowBox *box;
 
 @end
 
-@implementation DrawBgCommand
+@implementation ShadowCommand
 
 - (void)dealloc
 {
@@ -28,34 +28,24 @@
 - (BOOL)execute
 {
     
-    DrawBgBox *view = [DrawBgBox drawBgBoxWithDelegate:self];
+    //TODO get shadow from common handler
+    
+    Shadow *shadow = [Shadow shadowWithDrawColor:[DrawColor yellowColor] offset:CGSizeMake(2, 2) blur:3];
+    
+    ShadowBox *view  = [ShadowBox shadowBoxWithShadow:shadow];
     UIView *spView = [[self.control theViewController] view];
     view.center = spView.center;
     [view showInView:spView];
     self.box = view;
-//    [spView addSubview:view];
+    
     return YES;
 }
 
-- (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg groudId:(NSInteger)groupId
-{
-    if ([self canUseItem:groupId]) {
-        [self.toolHandler changeDrawBG:drawBg];
-        [drawBgBox dismiss];
-        self.box = nil;
 
-        if (self.toolHandler.touchActionType == TouchActionTypeShape) {
-            [self.toolHandler enterShapeMode];
-        }else{
-            [self.toolHandler enterDrawMode];
-        }
-        
-    }
-}
 
-- (void)buyItemSuccessfully:(ItemType)type
+- (void)shadowBox:(ShadowBox *)box didGetShadow:(Shadow *)shadow
 {
-    [self.box reloadView];
+    //TODO change shadow
 }
 
 -(void)sendAnalyticsReport{

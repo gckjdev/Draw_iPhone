@@ -106,6 +106,7 @@
 #define DRAW_CLICK_SHAPE_BOX                        @"DRAW_CLICK_SHAPE_BOX"
 
 #define DRAW_CLICK_DRAWBG_BOX                       @"DRAW_CLICK_DRAWBG_BOX"
+#define DRAW_CLICK_SHADOW_BOX                       @"DRAW_CLICK_SHADOW_BOX"
 
 #define DRAW_CLICK_CANVAS_BOX                       @"DRAW_CLICK_CANVAS_BOX"
 #define DRAW_CLICK_EDIT_DESC                        @"DRAW_CLICK_EDIT_DESC"

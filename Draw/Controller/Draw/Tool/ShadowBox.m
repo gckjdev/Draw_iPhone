@@ -12,6 +12,8 @@
 #import "DrawColor.h"
 #import "PocketSVG.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CustomInfoView.h"
+
 
 @interface ShadowBox()
 {
@@ -19,17 +21,53 @@
     ShadowSettingView *settingView;
     BOOL _isSpan;
 }
+@property (retain, nonatomic) IBOutlet UILabel *recentLabel;
+@property (retain, nonatomic) IBOutlet UIButton *cancelButton;
+@property (retain, nonatomic) IBOutlet UIButton *applyButton;
+@property (retain, nonatomic) IBOutlet UIButton *customButton;
+@property (retain, nonatomic) CustomInfoView *infoView;
+
+- (IBAction)clickCancel:(id)sender;
+- (IBAction)clickApply:(id)sender;
+- (IBAction)clickCustom:(id)sender;
+- (IBAction)clickRecentShadow:(UIButton *)sender;
+- (IBAction)clickSystemShadow:(UIButton *)sender;
 
 @end
 
 @implementation ShadowBox
 @synthesize shadow = _shadow;
 
+- (void)dismiss
+{
+    [self.infoView dismiss];
+    self.infoView.infoView = nil;
+    self.infoView = nil;
+}
+
+- (void)showInView:(UIView *)view
+{
+    if (self.infoView == nil) {
+        __block typeof (self) bself = self;
+        self.infoView = [CustomInfoView createWithTitle:NSLS(@"kSetShadow")
+                                               infoView:self
+                                           closeHandler:^{
+                                               bself.infoView = nil;
+                                           }];
+        
+        [self.infoView.mainView updateCenterY:(self.infoView.mainView.center.y - (ISIPAD ? 35 : 20))];
+    }
+    
+    [self.infoView showInView:view];
+}
+
 - (void)dealloc {
-    [_cancelButton release];
-    [_applyButton release];
-    [_customButton release];
+    PPRelease(_cancelButton);
+    PPRelease(_applyButton);
+    PPRelease(_customButton);
     PPRelease(_shadow);
+    PPRelease(_shadow);
+    [_recentLabel release];
     [super dealloc];
 }
 
@@ -62,6 +100,14 @@
     settingView.delegate = self;
     [self hideSettingView:NO];
     [self updateRecentShadows];
+    
+    //Set text
+    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.applyButton setTitle:NSLS(@"kApply") forState:UIControlStateNormal];
+    [self.customButton setTitle:NSLS(@"kCustom") forState:UIControlStateNormal];
+    
+    [self.recentLabel setText:NSLS(@"kRecent")];
+
 }
 
 + (id)shadowBoxWithShadow:(Shadow *)shadow
@@ -101,11 +147,13 @@
     if (!_isSpan) {
         _isSpan = YES;
         
-        __block CGRect frame = self.frame;
+//        __block CGRect frame = self.frame;
+        __block CGRect frame = self.infoView.mainView.frame;
         NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
         [UIView animateWithDuration:interval animations:^{
             frame.size.height += SPAN_HEIGHT;
-            self.frame = frame;
+//            self.frame = frame;
+            self.infoView.mainView.frame = frame;
         } completion:NULL];
     }
 
@@ -116,13 +164,14 @@
     if (_isSpan) {
         _isSpan = NO;
         
-        __block CGRect frame = self.frame;
-
+//        __block CGRect frame = self.frame;
+        __block CGRect frame = self.infoView.mainView.frame;
         NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
         
         [UIView animateWithDuration:interval animations:^{
             frame.size.height -= SPAN_HEIGHT;
-            self.frame = frame;
+//            self.frame = frame;
+            self.infoView.mainView.frame = frame;            
         } completion:NULL];
     }
 }
@@ -277,6 +326,11 @@ SLIDER.tag = TAG;\
         self.palette.currentColor = [DrawColor colorWithColor:_shadow.color];
     }
     
+    //Set Text
+    [self.distanceLabel setText:NSLS(@"kDistance")];
+    [self.degreeLabel setText:NSLS(@"kDegree")];
+    [self.blurLabel setText:NSLS(@"kBlur")];
+    
 }
 
 - (void)updateSliders
@@ -375,13 +429,13 @@ SLIDER.tag = TAG;\
 }
 
 - (void)dealloc {
-    [_degreeLabel release];
-    [_distanceLabel release];
-    [_blurLabel release];
-    [_degreeSlider release];
-    [_distanceSlider release];
-    [_blurSlider release];
-    [_palette release];
+    PPRelease(_degreeLabel);
+    PPRelease(_distanceLabel);
+    PPRelease(_blurLabel);
+    PPRelease(_degreeSlider);
+    PPRelease(_distanceSlider);
+    PPRelease(_blurSlider);
+    PPRelease(_palette);
     [super dealloc];
 }
 @end

@@ -1783,6 +1783,7 @@
 "kDegree" = "Degree";
 "kDistance" = "Distance";
 "kBlur" = "Blur";
+"kSetShadow" = "Shadow Setting";
 
 /*********************小吉画画国际化字符串结束 ************************/
 

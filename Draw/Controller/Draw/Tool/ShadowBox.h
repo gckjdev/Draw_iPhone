@@ -33,17 +33,13 @@
     
 }
 
-@property (retain, nonatomic) IBOutlet UIButton *cancelButton;
-@property (retain, nonatomic) IBOutlet UIButton *applyButton;
-@property (retain, nonatomic) IBOutlet UIButton *customButton;
 @property (retain, nonatomic)  Shadow *shadow;
 @property (assign, nonatomic) id<ShadowBoxDelegate>delegate;
 
-- (IBAction)clickCancel:(id)sender;
-- (IBAction)clickApply:(id)sender;
-- (IBAction)clickCustom:(id)sender;
-- (IBAction)clickRecentShadow:(UIButton *)sender;
-- (IBAction)clickSystemShadow:(UIButton *)sender;
+
+
+- (void)dismiss;
+- (void)showInView:(UIView *)view;
 
 
 //Should pass a copy of shadow, or the attributes of it will be changed
