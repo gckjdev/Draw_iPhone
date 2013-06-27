@@ -261,8 +261,9 @@
     CGContextSetLineWidth(context, 4);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
-    [[UIColor blueColor] setFill];
-    [[UIColor blueColor] setStroke];
+    UIColor *color = OPAQUE_COLOR(149, 239, 238);
+    [color setFill];
+    [color setStroke];
     UIBezierPath *line = [PocketSVG bezierPathWithSVGFileNamed:@"line"];
     UIBezierPath *rect3 = [PocketSVG bezierPathWithSVGFileNamed:@"rect"];
     path = [PocketSVG bezierPathWithSVGFileNamed:@"path"];

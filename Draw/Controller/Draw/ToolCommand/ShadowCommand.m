@@ -27,9 +27,7 @@
 
 - (BOOL)execute
 {
-    
-    //TODO get shadow from common handler
-    
+
     Shadow *shadow = [Shadow shadowWithShadow:self.toolHandler.shadow];
     
     ShadowBox *view  = [ShadowBox shadowBoxWithShadow:shadow];
