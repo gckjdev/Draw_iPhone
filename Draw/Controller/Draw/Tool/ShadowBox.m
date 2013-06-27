@@ -57,8 +57,9 @@
         
         [self.infoView.mainView updateCenterY:(self.infoView.mainView.center.y - (ISIPAD ? 35 : 20))];
     }
-    
+
     [self.infoView showInView:view];
+    [self updateView];
 }
 
 - (void)dealloc {
@@ -102,7 +103,7 @@
     [self updateRecentShadows];
     
     //Set text
-    [self.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.cancelButton setTitle:NSLS(@"kNoShadow") forState:UIControlStateNormal];
     [self.applyButton setTitle:NSLS(@"kApply") forState:UIControlStateNormal];
     [self.customButton setTitle:NSLS(@"kCustom") forState:UIControlStateNormal];
     
@@ -114,7 +115,6 @@
 {
     ShadowBox *box = [UIView createViewWithXibIdentifier:@"ShadowBox"];
     box.shadow = shadow;
-    [box updateView];
     return box;
 }
 
@@ -140,7 +140,7 @@
 }
 
 #define ANIMATION_INTERVAL 0.5
-#define SPAN_HEIGHT ISIPAD ? 330 : 158
+#define SPAN_HEIGHT ISIPAD ? 330 : 159
 
 - (void)spanSettingView:(BOOL)animated
 {
@@ -154,7 +154,9 @@
             frame.size.height += SPAN_HEIGHT;
 //            self.frame = frame;
             self.infoView.mainView.frame = frame;
-        } completion:NULL];
+        } completion:^(BOOL finished) {
+            [settingView.superview setClipsToBounds:NO];
+        }];
     }
 
 }
@@ -164,6 +166,7 @@
     if (_isSpan) {
         _isSpan = NO;
         
+        [settingView.superview setClipsToBounds:YES];
 //        __block CGRect frame = self.frame;
         __block CGRect frame = self.infoView.mainView.frame;
         NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
@@ -196,17 +199,28 @@
     }
 }
 
+- (void)makeSelectedButton:(UIButton *)button
+{
+    for (UIButton *btn in self.subviews) {
+        if (btn.tag > 0 && [btn isKindOfClass:[UIButton class]] && btn.isSelected) {
+            [btn setSelected:NO];
+        }
+    }
+    [button setSelected:YES];
+}
+
 - (IBAction)clickRecentShadow:(UIButton *)sender {
     [self hideSettingView:YES];
     NSArray *list = [[ShadowManager defaultManager] recentShadowList];
     [self performClickShadowButton:sender.tag shadowList:list];
-    
+    [self makeSelectedButton:sender];
 }
 
 - (IBAction)clickSystemShadow:(UIButton *)sender{
     [self hideSettingView:YES];
     NSArray *list = [[ShadowManager defaultManager] systemShadowList];
     [self performClickShadowButton:sender.tag shadowList:list];
+    [self makeSelectedButton:sender];    
 }
 @end
 
@@ -215,7 +229,7 @@
 
 //#define NORMAL_SIZE 64
 #define SCALE (ISIPAD ? 1.8 : 0.9)
-#define PREVIEW_FRAME_IPHONE CGRectMake(5, 92, 240, 60)
+#define PREVIEW_FRAME_IPHONE CGRectMake(5, 91, 240, 60)
 #define PREVIEW_FRAME_IPAD CGRectMake(10, 170, 480, 120)
 #define PREVIEW_FRAME ISIPAD ? PREVIEW_FRAME_IPAD : PREVIEW_FRAME_IPHONE
 

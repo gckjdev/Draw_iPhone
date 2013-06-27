@@ -1788,12 +1788,13 @@
 "kOnlyEnglishTitleAllowed" = "作品标题只允许英文单词！";
 "kViewPost" = "查看帖子";
 
-"kRencent" = "最近";
+"kRecent" = "最近";
 "kCustom" = "自定义";
 "kApply" = "应用";
 "kDegree" = "角度";
 "kDistance" = "距离";
-"kBlur" = "模糊度";
+"kBlur" = "模糊";
+"kNoShadow" = "无阴影";
 "kSetShadow" = "设置阴影";
 /*********************小吉画画国际化字符串结束 ************************/
 
