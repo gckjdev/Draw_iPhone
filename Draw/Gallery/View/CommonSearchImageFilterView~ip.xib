@@ -1611,11 +1611,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="common_dialog_bg@2x.png">{531, 330}</string>
-			<string key="common_dialog_btn_bg@2x.png">{166, 59}</string>
-			<string key="common_dialog_head_bg@2x.png">{531, 66}</string>
-			<string key="photo_tag_select@2x.png">{130, 51}</string>
-			<string key="photo_tag_unselect@2x.png">{130, 51}</string>
+			<string key="common_dialog_bg@2x.png">{16, 16}</string>
+			<string key="common_dialog_btn_bg@2x.png">{16, 16}</string>
+			<string key="common_dialog_head_bg@2x.png">{16, 16}</string>
+			<string key="photo_tag_select@2x.png">{16, 16}</string>
+			<string key="photo_tag_unselect@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

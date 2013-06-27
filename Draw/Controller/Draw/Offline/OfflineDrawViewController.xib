@@ -409,12 +409,12 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{73, 59}</string>
-				<string>{62, 62}</string>
-				<string>{640, 960}</string>
-				<string>{62, 62}</string>
-				<string>{62, 62}</string>
-				<string>{640, 79}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

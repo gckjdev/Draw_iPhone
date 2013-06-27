@@ -51,6 +51,8 @@
     DrawColorManager *drawColorManager;
     ToolCommandManager *toolCmdManager;
     NSUInteger _commandVersion;
+    
+    UIControl* _mask;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *canvasSize;
@@ -159,6 +161,7 @@
 {
     [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
     [[toolCmdManager commandForControl:sender] execute];
+    [self disappear];
 }
 
 - (IBAction)clickShowCopyPaint:(id)sender
@@ -169,25 +172,54 @@
     } else {
         [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
         [[toolCmdManager commandForControl:sender] execute];
+        [self disappear];
     }
     
 }
 
-- (void)appear
+- (void)appear:(UIViewController*)parentController
 {
+    self.layer.opacity = 0;
+    self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.3];
+    
+    self.layer.opacity = 1;
+    self.layer.transform = CATransform3DMakeScale(1, 1, 1);
     self.center = CGPointMake(self.center.x, self.frame.size.height/2+30);
     [UIView commitAnimations];
     self.isVisable = YES;
+    
+    [self addMask:parentController];
+}
+
+- (void)addMask:(UIViewController*)parentController
+{
+    _mask= [[[UIControl alloc] initWithFrame:parentController.view.bounds] autorelease];
+    [parentController.view insertSubview:_mask belowSubview:self];
+    [_mask addTarget:self action:@selector(clickMask:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)clickMask:(id)sender
+{
+    UIControl* control = (UIControl*)sender;
+    [self disappear];
+    [control removeFromSuperview];
 }
 - (void)disappear
 {
+    [_mask removeFromSuperview];
+    
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.3];
     self.center = CGPointMake(self.center.x, -self.frame.size.height/2);
+    self.layer.opacity = 0;
+    self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
     [UIView commitAnimations];
     self.isVisable = NO;
+    
+    
 }
 
 - (void)updateCopyPaint:(PBUserPhoto*)aPhoto
