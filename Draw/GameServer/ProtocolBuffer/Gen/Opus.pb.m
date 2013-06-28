@@ -2165,7 +2165,7 @@ static PBOpus* defaultPBOpusInstance = nil;
 @interface PBOpusAction ()
 @property (retain) NSString* actionId;
 @property int32_t actionType;
-@property (retain) PBUserBasicInfo* userInfo;
+@property (retain) PBGameUser* userInfo;
 @property (retain) PBOpus* opus;
 @property int32_t createDate;
 @property (retain) PBOpusAction* sourceAction;
@@ -2253,7 +2253,7 @@ static PBOpus* defaultPBOpusInstance = nil;
   if ((self = [super init])) {
     self.actionId = @"";
     self.actionType = 0;
-    self.userInfo = [PBUserBasicInfo defaultInstance];
+    self.userInfo = [PBGameUser defaultInstance];
     self.opus = [PBOpus defaultInstance];
     self.createDate = 0;
     self.sourceAction = [PBOpusAction defaultInstance];
@@ -2497,7 +2497,7 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
         break;
       }
       case 50: {
-        PBUserBasicInfo_Builder* subBuilder = [PBUserBasicInfo builder];
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
         if (self.hasUserInfo) {
           [subBuilder mergeFrom:self.userInfo];
         }
@@ -2592,22 +2592,22 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
 - (BOOL) hasUserInfo {
   return result.hasUserInfo;
 }
-- (PBUserBasicInfo*) userInfo {
+- (PBGameUser*) userInfo {
   return result.userInfo;
 }
-- (PBOpusAction_Builder*) setUserInfo:(PBUserBasicInfo*) value {
+- (PBOpusAction_Builder*) setUserInfo:(PBGameUser*) value {
   result.hasUserInfo = YES;
   result.userInfo = value;
   return self;
 }
-- (PBOpusAction_Builder*) setUserInfoBuilder:(PBUserBasicInfo_Builder*) builderForValue {
+- (PBOpusAction_Builder*) setUserInfoBuilder:(PBGameUser_Builder*) builderForValue {
   return [self setUserInfo:[builderForValue build]];
 }
-- (PBOpusAction_Builder*) mergeUserInfo:(PBUserBasicInfo*) value {
+- (PBOpusAction_Builder*) mergeUserInfo:(PBGameUser*) value {
   if (result.hasUserInfo &&
-      result.userInfo != [PBUserBasicInfo defaultInstance]) {
+      result.userInfo != [PBGameUser defaultInstance]) {
     result.userInfo =
-      [[[PBUserBasicInfo builderWithPrototype:result.userInfo] mergeFrom:value] buildPartial];
+      [[[PBGameUser builderWithPrototype:result.userInfo] mergeFrom:value] buildPartial];
   } else {
     result.userInfo = value;
   }
@@ -2616,7 +2616,7 @@ static PBOpusAction* defaultPBOpusActionInstance = nil;
 }
 - (PBOpusAction_Builder*) clearUserInfo {
   result.hasUserInfo = NO;
-  result.userInfo = [PBUserBasicInfo defaultInstance];
+  result.userInfo = [PBGameUser defaultInstance];
   return self;
 }
 - (BOOL) hasOpus {

@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_Draw_2eproto__INCLUDED
 #define PROTOBUF_C_Draw_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include <google/protobuf-c/protobuf-c.h>
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -22,6 +22,8 @@ typedef struct _Game__PBNoCompressDrawAction Game__PBNoCompressDrawAction;
 typedef struct _Game__PBNoCompressDrawData Game__PBNoCompressDrawData;
 typedef struct _Game__PBDrawBgGroup Game__PBDrawBgGroup;
 typedef struct _Game__PBDrawBgMeta Game__PBDrawBgMeta;
+typedef struct _Game__PBImageShapeGroup Game__PBImageShapeGroup;
+typedef struct _Game__PBImageShapeGroupMeta Game__PBImageShapeGroupMeta;
 typedef struct _Game__PBHotWord Game__PBHotWord;
 typedef struct _Game__PBHotWordList Game__PBHotWordList;
 typedef struct _Game__PBWallOpus Game__PBWallOpus;
@@ -273,6 +275,31 @@ struct  _Game__PBDrawBgMeta
 };
 #define GAME__PBDRAW_BG_META__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_bg_meta__descriptor) \
+    , 0,NULL }
+
+
+struct  _Game__PBImageShapeGroup
+{
+  ProtobufCMessage base;
+  int32_t groupid;
+  size_t n_groupname;
+  Game__PBLocalizeString **groupname;
+  size_t n_shapetype;
+  int32_t *shapetype;
+};
+#define GAME__PBIMAGE_SHAPE_GROUP__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbimage_shape_group__descriptor) \
+    , 0, 0,NULL, 0,NULL }
+
+
+struct  _Game__PBImageShapeGroupMeta
+{
+  ProtobufCMessage base;
+  size_t n_imageshapegroup;
+  Game__PBImageShapeGroup **imageshapegroup;
+};
+#define GAME__PBIMAGE_SHAPE_GROUP_META__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbimage_shape_group_meta__descriptor) \
     , 0,NULL }
 
 
@@ -611,6 +638,44 @@ Game__PBDrawBgMeta *
 void   game__pbdraw_bg_meta__free_unpacked
                      (Game__PBDrawBgMeta *message,
                       ProtobufCAllocator *allocator);
+/* Game__PBImageShapeGroup methods */
+void   game__pbimage_shape_group__init
+                     (Game__PBImageShapeGroup         *message);
+size_t game__pbimage_shape_group__get_packed_size
+                     (const Game__PBImageShapeGroup   *message);
+size_t game__pbimage_shape_group__pack
+                     (const Game__PBImageShapeGroup   *message,
+                      uint8_t             *out);
+size_t game__pbimage_shape_group__pack_to_buffer
+                     (const Game__PBImageShapeGroup   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBImageShapeGroup *
+       game__pbimage_shape_group__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbimage_shape_group__free_unpacked
+                     (Game__PBImageShapeGroup *message,
+                      ProtobufCAllocator *allocator);
+/* Game__PBImageShapeGroupMeta methods */
+void   game__pbimage_shape_group_meta__init
+                     (Game__PBImageShapeGroupMeta         *message);
+size_t game__pbimage_shape_group_meta__get_packed_size
+                     (const Game__PBImageShapeGroupMeta   *message);
+size_t game__pbimage_shape_group_meta__pack
+                     (const Game__PBImageShapeGroupMeta   *message,
+                      uint8_t             *out);
+size_t game__pbimage_shape_group_meta__pack_to_buffer
+                     (const Game__PBImageShapeGroupMeta   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBImageShapeGroupMeta *
+       game__pbimage_shape_group_meta__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbimage_shape_group_meta__free_unpacked
+                     (Game__PBImageShapeGroupMeta *message,
+                      ProtobufCAllocator *allocator);
 /* Game__PBHotWord methods */
 void   game__pbhot_word__init
                      (Game__PBHotWord         *message);
@@ -817,6 +882,12 @@ typedef void (*Game__PBDrawBgGroup_Closure)
 typedef void (*Game__PBDrawBgMeta_Closure)
                  (const Game__PBDrawBgMeta *message,
                   void *closure_data);
+typedef void (*Game__PBImageShapeGroup_Closure)
+                 (const Game__PBImageShapeGroup *message,
+                  void *closure_data);
+typedef void (*Game__PBImageShapeGroupMeta_Closure)
+                 (const Game__PBImageShapeGroupMeta *message,
+                  void *closure_data);
 typedef void (*Game__PBHotWord_Closure)
                  (const Game__PBHotWord *message,
                   void *closure_data);
@@ -861,6 +932,8 @@ extern const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descrip
 extern const ProtobufCMessageDescriptor game__pbno_compress_draw_data__descriptor;
 extern const ProtobufCMessageDescriptor game__pbdraw_bg_group__descriptor;
 extern const ProtobufCMessageDescriptor game__pbdraw_bg_meta__descriptor;
+extern const ProtobufCMessageDescriptor game__pbimage_shape_group__descriptor;
+extern const ProtobufCMessageDescriptor game__pbimage_shape_group_meta__descriptor;
 extern const ProtobufCMessageDescriptor game__pbhot_word__descriptor;
 extern const ProtobufCMessageDescriptor game__pbhot_word_list__descriptor;
 extern const ProtobufCMessageDescriptor game__pbwall_opus__descriptor;

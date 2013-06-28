@@ -3,8 +3,7 @@
 #ifndef PROTOBUF_C_GameBasic_2eproto__INCLUDED
 #define PROTOBUF_C_GameBasic_2eproto__INCLUDED
 
-#include "protobuf-c.h"
-
+include "protobuf-c.h"
 PROTOBUF_C_BEGIN_DECLS
 
 
@@ -179,10 +178,12 @@ struct  _Game__PBGameUser
   protobuf_c_boolean has_opuscoverflowtype;
   int32_t opuscoverflowtype;
   char *signature;
+  protobuf_c_boolean has_singrecordlimit;
+  int32_t singrecordlimit;
 };
 #define GAME__PBGAME_USER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbgame_user__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL }
+    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL, 0,30 }
 
 
 struct  _Game__PBGameSession

@@ -1289,7 +1289,8 @@ static const protobuf_c_boolean game__pbgame_user__is_playing__default_value = 1
 static const protobuf_c_boolean game__pbgame_user__is_taken_over__default_value = 0;
 static const int32_t game__pbgame_user__guess_word_language__default_value = 1;
 static const Game__PBOpenInfoType game__pbgame_user__open_info_type__default_value = GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND;
-static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[40] =
+static const int32_t game__pbgame_user__sing_record_limit__default_value = 30;
+static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[41] =
 {
   {
     "userId",
@@ -1771,6 +1772,18 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[40] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "singRecordLimit",
+    200,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_singrecordlimit),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, singrecordlimit),
+    NULL,
+    &game__pbgame_user__sing_record_limit__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbgame_user__field_indices_by_name[] = {
   11,   /* field[11] = attributes */
@@ -1809,12 +1822,13 @@ static const unsigned game__pbgame_user__field_indices_by_name[] = {
   13,   /* field[13] = password */
   8,   /* field[8] = seatId */
   39,   /* field[39] = signature */
+  40,   /* field[40] = singRecordLimit */
   4,   /* field[4] = snsUsers */
   0,   /* field[0] = userId */
   6,   /* field[6] = userLevel */
   15,   /* field[15] = zodiac */
 };
-static const ProtobufCIntRange game__pbgame_user__number_ranges[10 + 1] =
+static const ProtobufCIntRange game__pbgame_user__number_ranges[11 + 1] =
 {
   { 1, 0 },
   { 20, 9 },
@@ -1826,7 +1840,8 @@ static const ProtobufCIntRange game__pbgame_user__number_ranges[10 + 1] =
   { 81, 31 },
   { 91, 37 },
   { 100, 39 },
-  { 0, 40 }
+  { 200, 40 },
+  { 0, 41 }
 };
 const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
 {
@@ -1836,10 +1851,10 @@ const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
   "Game__PBGameUser",
   "game",
   sizeof(Game__PBGameUser),
-  40,
+  41,
   game__pbgame_user__field_descriptors,
   game__pbgame_user__field_indices_by_name,
-  10,  game__pbgame_user__number_ranges,
+  11,  game__pbgame_user__number_ranges,
   (ProtobufCMessageInit) game__pbgame_user__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
