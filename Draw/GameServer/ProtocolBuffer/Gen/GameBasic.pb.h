@@ -18,6 +18,8 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBGradient;
+@class PBGradient_Builder;
 @class PBIAPProduct;
 @class PBIAPProductList;
 @class PBIAPProductList_Builder;
@@ -1074,35 +1076,104 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBDrawBg_Builder*) clearShowStyle;
 @end
 
+@interface PBGradient : PBGeneratedMessage {
+@private
+  BOOL hasDegree_:1;
+  BOOL hasDivision_:1;
+  Float32 degree;
+  Float32 division;
+  NSMutableArray* mutableColorList;
+}
+- (BOOL) hasDegree;
+- (BOOL) hasDivision;
+@property (readonly) Float32 degree;
+@property (readonly) Float32 division;
+- (NSArray*) colorList;
+- (int32_t) colorAtIndex:(int32_t) index;
+
++ (PBGradient*) defaultInstance;
+- (PBGradient*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBGradient_Builder*) builder;
++ (PBGradient_Builder*) builder;
++ (PBGradient_Builder*) builderWithPrototype:(PBGradient*) prototype;
+
++ (PBGradient*) parseFromData:(NSData*) data;
++ (PBGradient*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGradient*) parseFromInputStream:(NSInputStream*) input;
++ (PBGradient*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGradient*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGradient*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBGradient_Builder : PBGeneratedMessage_Builder {
+@private
+  PBGradient* result;
+}
+
+- (PBGradient*) defaultInstance;
+
+- (PBGradient_Builder*) clear;
+- (PBGradient_Builder*) clone;
+
+- (PBGradient*) build;
+- (PBGradient*) buildPartial;
+
+- (PBGradient_Builder*) mergeFrom:(PBGradient*) other;
+- (PBGradient_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGradient_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasDegree;
+- (Float32) degree;
+- (PBGradient_Builder*) setDegree:(Float32) value;
+- (PBGradient_Builder*) clearDegree;
+
+- (BOOL) hasDivision;
+- (Float32) division;
+- (PBGradient_Builder*) setDivision:(Float32) value;
+- (PBGradient_Builder*) clearDivision;
+
+- (NSArray*) colorList;
+- (int32_t) colorAtIndex:(int32_t) index;
+- (PBGradient_Builder*) replaceColorAtIndex:(int32_t) index with:(int32_t) value;
+- (PBGradient_Builder*) addColor:(int32_t) value;
+- (PBGradient_Builder*) addAllColor:(NSArray*) values;
+- (PBGradient_Builder*) clearColorList;
+@end
+
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasShapeStroke_:1;
   BOOL hasWidth_:1;
   BOOL hasShadowBlur_:1;
-  BOOL hasShadowOffsetY_:1;
   BOOL hasShadowOffsetX_:1;
+  BOOL hasShadowOffsetY_:1;
+  BOOL hasType_:1;
+  BOOL hasColor_:1;
+  BOOL hasPenType_:1;
+  BOOL hasShapeType_:1;
   BOOL hasClipType_:1;
   BOOL hasClipTag_:1;
-  BOOL hasShadowColor_:1;
   BOOL hasBetterColor_:1;
-  BOOL hasShapeType_:1;
-  BOOL hasPenType_:1;
-  BOOL hasColor_:1;
-  BOOL hasType_:1;
+  BOOL hasShadowColor_:1;
+  BOOL hasGradient_:1;
   BOOL hasDrawBg_:1;
   BOOL shapeStroke_:1;
   Float32 width;
   Float32 shadowBlur;
-  Float32 shadowOffsetY;
   Float32 shadowOffsetX;
+  Float32 shadowOffsetY;
+  int32_t type;
+  int32_t color;
+  int32_t penType;
+  int32_t shapeType;
   int32_t clipType;
   int32_t clipTag;
-  int32_t shadowColor;
   int32_t betterColor;
-  int32_t shapeType;
-  int32_t penType;
-  int32_t color;
-  int32_t type;
+  int32_t shadowColor;
+  PBGradient* gradient;
   PBDrawBg* drawBg;
   NSMutableArray* mutablePointsYList;
   NSMutableArray* mutablePointsXList;
@@ -1124,6 +1195,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasShadowBlur;
 - (BOOL) hasClipTag;
 - (BOOL) hasClipType;
+- (BOOL) hasGradient;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
 @property (readonly) int32_t color;
@@ -1138,6 +1210,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly) Float32 shadowBlur;
 @property (readonly) int32_t clipTag;
 @property (readonly) int32_t clipType;
+@property (readonly, retain) PBGradient* gradient;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
 - (NSArray*) rectComponentList;
@@ -1280,6 +1353,13 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (int32_t) clipType;
 - (PBDrawAction_Builder*) setClipType:(int32_t) value;
 - (PBDrawAction_Builder*) clearClipType;
+
+- (BOOL) hasGradient;
+- (PBGradient*) gradient;
+- (PBDrawAction_Builder*) setGradient:(PBGradient*) value;
+- (PBDrawAction_Builder*) setGradientBuilder:(PBGradient_Builder*) builderForValue;
+- (PBDrawAction_Builder*) mergeGradient:(PBGradient*) value;
+- (PBDrawAction_Builder*) clearGradient;
 @end
 
 @interface PBMessage : PBGeneratedMessage {

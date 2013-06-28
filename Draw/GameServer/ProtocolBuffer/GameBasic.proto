@@ -131,11 +131,17 @@ message PBDrawBg
     optional int32 showStyle = 4 [default=0]; // 0 for show in center, 1 for show in pattern
 }
 
+message PBGradient {
+    required float degree = 1;
+    required float division = 2;
+    repeated int32 color = 3;
+}
 
 // internal usage, to store draw data
 message PBDrawAction {
-  required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape 3: change bg with color, 
+  required int32 type = 1;                      // 0 : draw, 1 : clean draw, 2 : shape 3: change bg with color,  
                                                 //4 : change bg with draw bg
+//5 gradient action
 
   //deprecated attribute
   repeated int32 points = 2 [packed=true];      // compressed INT point (include float x,y), deprecated in new version 2
@@ -171,6 +177,8 @@ message PBDrawAction {
   optional int32 clipTag = 20; //the id of clip action, 0 for no clip
   optional int32 clipType = 21; //1: Rect, 2: Circle, 3: Multiple Edge Shape 4: Path
 
+ //Support gradient
+  optional PBGradient gradient = 30;
 }
 
 

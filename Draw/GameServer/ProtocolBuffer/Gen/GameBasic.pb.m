@@ -4208,6 +4208,289 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 }
 @end
 
+@interface PBGradient ()
+@property Float32 degree;
+@property Float32 division;
+@property (retain) NSMutableArray* mutableColorList;
+@end
+
+@implementation PBGradient
+
+- (BOOL) hasDegree {
+  return !!hasDegree_;
+}
+- (void) setHasDegree:(BOOL) value {
+  hasDegree_ = !!value;
+}
+@synthesize degree;
+- (BOOL) hasDivision {
+  return !!hasDivision_;
+}
+- (void) setHasDivision:(BOOL) value {
+  hasDivision_ = !!value;
+}
+@synthesize division;
+@synthesize mutableColorList;
+- (void) dealloc {
+  self.mutableColorList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.degree = 0;
+    self.division = 0;
+  }
+  return self;
+}
+static PBGradient* defaultPBGradientInstance = nil;
++ (void) initialize {
+  if (self == [PBGradient class]) {
+    defaultPBGradientInstance = [[PBGradient alloc] init];
+  }
+}
++ (PBGradient*) defaultInstance {
+  return defaultPBGradientInstance;
+}
+- (PBGradient*) defaultInstance {
+  return defaultPBGradientInstance;
+}
+- (NSArray*) colorList {
+  return mutableColorList;
+}
+- (int32_t) colorAtIndex:(int32_t) index {
+  id value = [mutableColorList objectAtIndex:index];
+  return [value intValue];
+}
+- (BOOL) isInitialized {
+  if (!self.hasDegree) {
+    return NO;
+  }
+  if (!self.hasDivision) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasDegree) {
+    [output writeFloat:1 value:self.degree];
+  }
+  if (self.hasDivision) {
+    [output writeFloat:2 value:self.division];
+  }
+  for (NSNumber* value in self.mutableColorList) {
+    [output writeInt32:3 value:[value intValue]];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasDegree) {
+    size += computeFloatSize(1, self.degree);
+  }
+  if (self.hasDivision) {
+    size += computeFloatSize(2, self.division);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSNumber* value in self.mutableColorList) {
+      dataSize += computeInt32SizeNoTag([value intValue]);
+    }
+    size += dataSize;
+    size += 1 * self.mutableColorList.count;
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGradient*) parseFromData:(NSData*) data {
+  return (PBGradient*)[[[PBGradient builder] mergeFromData:data] build];
+}
++ (PBGradient*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGradient*)[[[PBGradient builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGradient*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGradient*)[[[PBGradient builder] mergeFromInputStream:input] build];
+}
++ (PBGradient*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGradient*)[[[PBGradient builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGradient*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGradient*)[[[PBGradient builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGradient*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGradient*)[[[PBGradient builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGradient_Builder*) builder {
+  return [[[PBGradient_Builder alloc] init] autorelease];
+}
++ (PBGradient_Builder*) builderWithPrototype:(PBGradient*) prototype {
+  return [[PBGradient builder] mergeFrom:prototype];
+}
+- (PBGradient_Builder*) builder {
+  return [PBGradient builder];
+}
+@end
+
+@interface PBGradient_Builder()
+@property (retain) PBGradient* result;
+@end
+
+@implementation PBGradient_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGradient alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGradient_Builder*) clear {
+  self.result = [[[PBGradient alloc] init] autorelease];
+  return self;
+}
+- (PBGradient_Builder*) clone {
+  return [PBGradient builderWithPrototype:result];
+}
+- (PBGradient*) defaultInstance {
+  return [PBGradient defaultInstance];
+}
+- (PBGradient*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGradient*) buildPartial {
+  PBGradient* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGradient_Builder*) mergeFrom:(PBGradient*) other {
+  if (other == [PBGradient defaultInstance]) {
+    return self;
+  }
+  if (other.hasDegree) {
+    [self setDegree:other.degree];
+  }
+  if (other.hasDivision) {
+    [self setDivision:other.division];
+  }
+  if (other.mutableColorList.count > 0) {
+    if (result.mutableColorList == nil) {
+      result.mutableColorList = [NSMutableArray array];
+    }
+    [result.mutableColorList addObjectsFromArray:other.mutableColorList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGradient_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGradient_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 13: {
+        [self setDegree:[input readFloat]];
+        break;
+      }
+      case 21: {
+        [self setDivision:[input readFloat]];
+        break;
+      }
+      case 24: {
+        [self addColor:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasDegree {
+  return result.hasDegree;
+}
+- (Float32) degree {
+  return result.degree;
+}
+- (PBGradient_Builder*) setDegree:(Float32) value {
+  result.hasDegree = YES;
+  result.degree = value;
+  return self;
+}
+- (PBGradient_Builder*) clearDegree {
+  result.hasDegree = NO;
+  result.degree = 0;
+  return self;
+}
+- (BOOL) hasDivision {
+  return result.hasDivision;
+}
+- (Float32) division {
+  return result.division;
+}
+- (PBGradient_Builder*) setDivision:(Float32) value {
+  result.hasDivision = YES;
+  result.division = value;
+  return self;
+}
+- (PBGradient_Builder*) clearDivision {
+  result.hasDivision = NO;
+  result.division = 0;
+  return self;
+}
+- (NSArray*) colorList {
+  if (result.mutableColorList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableColorList;
+}
+- (int32_t) colorAtIndex:(int32_t) index {
+  return [result colorAtIndex:index];
+}
+- (PBGradient_Builder*) replaceColorAtIndex:(int32_t) index with:(int32_t) value {
+  [result.mutableColorList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBGradient_Builder*) addColor:(int32_t) value {
+  if (result.mutableColorList == nil) {
+    result.mutableColorList = [NSMutableArray array];
+  }
+  [result.mutableColorList addObject:[NSNumber numberWithInt:value]];
+  return self;
+}
+- (PBGradient_Builder*) addAllColor:(NSArray*) values {
+  if (result.mutableColorList == nil) {
+    result.mutableColorList = [NSMutableArray array];
+  }
+  [result.mutableColorList addObjectsFromArray:values];
+  return self;
+}
+- (PBGradient_Builder*) clearColorList {
+  result.mutableColorList = nil;
+  return self;
+}
+@end
+
 @interface PBDrawAction ()
 @property int32_t type;
 @property (retain) NSMutableArray* mutablePointsList;
@@ -4227,6 +4510,7 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
 @property Float32 shadowBlur;
 @property int32_t clipTag;
 @property int32_t clipType;
+@property (retain) PBGradient* gradient;
 @end
 
 @implementation PBDrawAction
@@ -4338,12 +4622,20 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
   hasClipType_ = !!value;
 }
 @synthesize clipType;
+- (BOOL) hasGradient {
+  return !!hasGradient_;
+}
+- (void) setHasGradient:(BOOL) value {
+  hasGradient_ = !!value;
+}
+@synthesize gradient;
 - (void) dealloc {
   self.mutablePointsList = nil;
   self.mutableRectComponentList = nil;
   self.mutablePointsXList = nil;
   self.mutablePointsYList = nil;
   self.drawBg = nil;
+  self.gradient = nil;
   [super dealloc];
 }
 - (id) init {
@@ -4362,6 +4654,7 @@ static PBDrawBg* defaultPBDrawBgInstance = nil;
     self.shadowBlur = 0;
     self.clipTag = 0;
     self.clipType = 0;
+    self.gradient = [PBGradient defaultInstance];
   }
   return self;
 }
@@ -4411,6 +4704,11 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasDrawBg) {
     if (!self.drawBg.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasGradient) {
+    if (!self.gradient.isInitialized) {
       return NO;
     }
   }
@@ -4474,6 +4772,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasClipType) {
     [output writeInt32:21 value:self.clipType];
+  }
+  if (self.hasGradient) {
+    [output writeMessage:30 value:self.gradient];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4555,6 +4856,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasClipType) {
     size += computeInt32Size(21, self.clipType);
+  }
+  if (self.hasGradient) {
+    size += computeMessageSize(30, self.gradient);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4697,6 +5001,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasClipType) {
     [self setClipType:other.clipType];
   }
+  if (other.hasGradient) {
+    [self mergeGradient:other.gradient];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4798,6 +5105,15 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 168: {
         [self setClipType:[input readInt32]];
+        break;
+      }
+      case 242: {
+        PBGradient_Builder* subBuilder = [PBGradient builder];
+        if (self.hasGradient) {
+          [subBuilder mergeFrom:self.gradient];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGradient:[subBuilder buildPartial]];
         break;
       }
     }
@@ -5163,6 +5479,36 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearClipType {
   result.hasClipType = NO;
   result.clipType = 0;
+  return self;
+}
+- (BOOL) hasGradient {
+  return result.hasGradient;
+}
+- (PBGradient*) gradient {
+  return result.gradient;
+}
+- (PBDrawAction_Builder*) setGradient:(PBGradient*) value {
+  result.hasGradient = YES;
+  result.gradient = value;
+  return self;
+}
+- (PBDrawAction_Builder*) setGradientBuilder:(PBGradient_Builder*) builderForValue {
+  return [self setGradient:[builderForValue build]];
+}
+- (PBDrawAction_Builder*) mergeGradient:(PBGradient*) value {
+  if (result.hasGradient &&
+      result.gradient != [PBGradient defaultInstance]) {
+    result.gradient =
+      [[[PBGradient builderWithPrototype:result.gradient] mergeFrom:value] buildPartial];
+  } else {
+    result.gradient = value;
+  }
+  result.hasGradient = YES;
+  return self;
+}
+- (PBDrawAction_Builder*) clearGradient {
+  result.hasGradient = NO;
+  result.gradient = [PBGradient defaultInstance];
   return self;
 }
 @end
