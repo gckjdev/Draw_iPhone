@@ -7,8 +7,9 @@
 //
 
 #import "PPViewController.h"
+#import "AskPsService.h"
 
-@interface AskPsListController : PPViewController
+@interface AskPsListController : PPViewController<AskPsServiceDelegate>
 
 
 

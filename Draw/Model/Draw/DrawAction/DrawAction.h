@@ -10,9 +10,10 @@
 #import "Draw.pb.h"
 #import "DrawUtils.h"
 #import "Draw.pb-c.h"
+#import "Shadow.h"
 
 @class Word;
-@class Shadow;
+//@class Shadow;
 
 typedef enum {
     
@@ -107,27 +108,6 @@ typedef enum {
 
 - (DrawColor *)drawColor;
 
-@end
-
-
-
-@interface Shadow : NSObject
-
-@property(nonatomic, retain)DrawColor *color;
-@property(nonatomic, assign)CGSize offset;
-@property(nonatomic, assign)CGFloat blur;
-
-
-+ (Shadow *)shadowWithIntColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur;
-+ (Shadow *)shadowWithDrawColor:(NSUInteger)color offset:(CGSize)offset blur:(CGFloat)blur;
-- (void)updateContext:(CGContextRef)context;
-- (void)spanRect:(CGRect *)rect;
-- (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
-- (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder;
-
-- (void)updateWithDegree:(CGFloat)degree distance:(CGFloat)distance;
-- (CGFloat)distance;
-- (CGFloat)degree;
 @end
 
 

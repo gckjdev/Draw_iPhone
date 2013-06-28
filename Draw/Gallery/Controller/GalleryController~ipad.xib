@@ -143,7 +143,7 @@
 					</object>
 					<object class="IBUILabel" id="464345141">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483356</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{196, 285}, {376, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView"/>
@@ -192,7 +192,7 @@
 					<object class="IBUIButton" id="535882481">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{562, 20.5}, {78, 58}}</string>
+						<string key="NSFrame">{{562, 19.5}, {78, 62}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="899426413"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -210,9 +210,9 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="158626383"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_add@2x.png</string>
+							<string key="NSResourceName">gallery_search_btn@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="643106852"/>
 						<reference key="IBUIFont" ref="511349777"/>
@@ -425,11 +425,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{67, 53}</string>
-			<string key="draw_add@2x.png">{47, 47}</string>
-			<string key="filter_btn@2x.png">{63, 53}</string>
-			<string key="topwood@2x.jpg">{640, 79}</string>
-			<string key="wood_bg@2x.jpg">{640, 960}</string>
+			<string key="back@2x.png">{16, 16}</string>
+			<string key="filter_btn@2x.png">{16, 16}</string>
+			<string key="gallery_search_btn@2x.png">{16, 16}</string>
+			<string key="topwood@2x.jpg">{16, 16}</string>
+			<string key="wood_bg@2x.jpg">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

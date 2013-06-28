@@ -19,7 +19,7 @@
 
 - (IBAction)clickShowCopyPaint:(id)sender;
 
-- (void)appear;
+- (void)appear:(UIViewController*)parentController;
 - (void)disappear;
 
 - (void)updateCopyPaint:(PBUserPhoto*)aPhoto;

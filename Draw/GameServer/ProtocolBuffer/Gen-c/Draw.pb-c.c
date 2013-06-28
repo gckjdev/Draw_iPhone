@@ -479,6 +479,92 @@ void   game__pbdraw_bg_meta__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbdraw_bg_meta__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+void   game__pbimage_shape_group__init
+                     (Game__PBImageShapeGroup         *message)
+{
+  static Game__PBImageShapeGroup init_value = GAME__PBIMAGE_SHAPE_GROUP__INIT;
+  *message = init_value;
+}
+size_t game__pbimage_shape_group__get_packed_size
+                     (const Game__PBImageShapeGroup *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbimage_shape_group__pack
+                     (const Game__PBImageShapeGroup *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbimage_shape_group__pack_to_buffer
+                     (const Game__PBImageShapeGroup *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBImageShapeGroup *
+       game__pbimage_shape_group__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBImageShapeGroup *)
+     protobuf_c_message_unpack (&game__pbimage_shape_group__descriptor,
+                                allocator, len, data);
+}
+void   game__pbimage_shape_group__free_unpacked
+                     (Game__PBImageShapeGroup *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   game__pbimage_shape_group_meta__init
+                     (Game__PBImageShapeGroupMeta         *message)
+{
+  static Game__PBImageShapeGroupMeta init_value = GAME__PBIMAGE_SHAPE_GROUP_META__INIT;
+  *message = init_value;
+}
+size_t game__pbimage_shape_group_meta__get_packed_size
+                     (const Game__PBImageShapeGroupMeta *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group_meta__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbimage_shape_group_meta__pack
+                     (const Game__PBImageShapeGroupMeta *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group_meta__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbimage_shape_group_meta__pack_to_buffer
+                     (const Game__PBImageShapeGroupMeta *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group_meta__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBImageShapeGroupMeta *
+       game__pbimage_shape_group_meta__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBImageShapeGroupMeta *)
+     protobuf_c_message_unpack (&game__pbimage_shape_group_meta__descriptor,
+                                allocator, len, data);
+}
+void   game__pbimage_shape_group_meta__free_unpacked
+                     (Game__PBImageShapeGroupMeta *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbimage_shape_group_meta__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbhot_word__init
                      (Game__PBHotWord         *message)
 {
@@ -2430,6 +2516,108 @@ const ProtobufCMessageDescriptor game__pbdraw_bg_meta__descriptor =
   game__pbdraw_bg_meta__field_indices_by_name,
   1,  game__pbdraw_bg_meta__number_ranges,
   (ProtobufCMessageInit) game__pbdraw_bg_meta__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbimage_shape_group__field_descriptors[3] =
+{
+  {
+    "groupId",
+    1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_INT32,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBImageShapeGroup, groupid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "groupName",
+    2,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBImageShapeGroup, n_groupname),
+    PROTOBUF_C_OFFSETOF(Game__PBImageShapeGroup, groupname),
+    &game__pblocalize_string__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "shapeType",
+    3,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBImageShapeGroup, n_shapetype),
+    PROTOBUF_C_OFFSETOF(Game__PBImageShapeGroup, shapetype),
+    NULL,
+    NULL,
+    1,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbimage_shape_group__field_indices_by_name[] = {
+  0,   /* field[0] = groupId */
+  1,   /* field[1] = groupName */
+  2,   /* field[2] = shapeType */
+};
+static const ProtobufCIntRange game__pbimage_shape_group__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 3 }
+};
+const ProtobufCMessageDescriptor game__pbimage_shape_group__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBImageShapeGroup",
+  "PBImageShapeGroup",
+  "Game__PBImageShapeGroup",
+  "game",
+  sizeof(Game__PBImageShapeGroup),
+  3,
+  game__pbimage_shape_group__field_descriptors,
+  game__pbimage_shape_group__field_indices_by_name,
+  1,  game__pbimage_shape_group__number_ranges,
+  (ProtobufCMessageInit) game__pbimage_shape_group__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbimage_shape_group_meta__field_descriptors[1] =
+{
+  {
+    "imageShapeGroup",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBImageShapeGroupMeta, n_imageshapegroup),
+    PROTOBUF_C_OFFSETOF(Game__PBImageShapeGroupMeta, imageshapegroup),
+    &game__pbimage_shape_group__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbimage_shape_group_meta__field_indices_by_name[] = {
+  0,   /* field[0] = imageShapeGroup */
+};
+static const ProtobufCIntRange game__pbimage_shape_group_meta__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor game__pbimage_shape_group_meta__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBImageShapeGroupMeta",
+  "PBImageShapeGroupMeta",
+  "Game__PBImageShapeGroupMeta",
+  "game",
+  sizeof(Game__PBImageShapeGroupMeta),
+  1,
+  game__pbimage_shape_group_meta__field_descriptors,
+  game__pbimage_shape_group_meta__field_indices_by_name,
+  1,  game__pbimage_shape_group_meta__number_ranges,
+  (ProtobufCMessageInit) game__pbimage_shape_group_meta__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbhot_word__coins__default_value = 0;

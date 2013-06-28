@@ -1428,6 +1428,7 @@
 "kDrawTo" = "Draw to";
 "kGrid" = "Grid";
 "kHelp" = "Help";
+"kSelectPhoto" = "Select Photo";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1756,6 +1757,8 @@
 
 "kContentRepeatedError" = "Can't send repeated content.";
 "kNoPost" = "No Post";
+
+"kBBSQuitTips" = "Are you sure to quit?";
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/
@@ -1776,6 +1779,15 @@
 "kOnlyChineseTitleAllowed" = "Only chinese title is allowed, please check your title!";
 "kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
 "kViewPost" = "View Post";
+"kRecent" = "Recent";
+"kCustom" = "Custom";
+"kApply" = "Apply";
+"kDegree" = "Degree";
+"kDistance" = "Distance";
+"kBlur" = "Blur";
+"kNoShadow" = "None";
+"kSetShadow" = "Shadow Setting";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 
@@ -1798,6 +1810,7 @@
 "kKeywords" = "Keywords:";
 "kGallery" = "Gallery";
 "kImageSearch" = "Search Image";
+"kSearchResult" = "Search Results";
 "kDeletePhotoSucc" = "Delete photo successfully!";
 "kEditPhotoSucc" = "Photo updated!";
 "kAddUserPhotoSucc" = "Photo saved!";
@@ -1825,6 +1838,7 @@
 "kSearchNoResult" = "No match result";
 "kEditName" = "Edit Name";
 "kEnterNewName" = "Enter New Name";
+"kReset" = "Reset";
 /*********************图库国际化字符串结束 ************************/
 
 

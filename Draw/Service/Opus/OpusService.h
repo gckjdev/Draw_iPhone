@@ -42,6 +42,7 @@ typedef enum{
 
 @protocol OpusServiceDelegate <NSObject>
 
+@optional
 - (void)didSubmitOpus:(int)resultCode
                  opus:(Opus *)opus;
 
@@ -87,7 +88,6 @@ typedef enum{
              offset:(NSInteger)offset
               limit:(NSInteger)limit
            delegate:(id<OpusServiceDelegate>)delegate;
-
 
 @end
 

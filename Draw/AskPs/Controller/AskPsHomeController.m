@@ -8,6 +8,7 @@
 
 #import "AskPsHomeController.h"
 #import "AskPsController.h"
+#import "AskPsListController.h"
 
 @interface AskPsHomeController ()
 
@@ -38,6 +39,10 @@
 
 - (IBAction)clickAskPsButton:(id)sender {
     [self.navigationController pushViewController:[[[AskPsController alloc] init] autorelease] animated:YES];
+}
+
+- (IBAction)clickAskPsListButton:(id)sender {
+    [self.navigationController pushViewController:[[[AskPsListController alloc] init] autorelease] animated:YES];
 }
 
 @end
