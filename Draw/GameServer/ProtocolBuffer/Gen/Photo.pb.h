@@ -20,6 +20,8 @@
 @class PBGameSession_Builder;
 @class PBGameUser;
 @class PBGameUser_Builder;
+@class PBGradient;
+@class PBGradient_Builder;
 @class PBIAPProduct;
 @class PBIAPProductList;
 @class PBIAPProductList_Builder;
