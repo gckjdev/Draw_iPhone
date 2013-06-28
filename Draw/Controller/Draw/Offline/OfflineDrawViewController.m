@@ -496,7 +496,7 @@
     [self.drawToolPanel setPanelForOnline:NO];
     [self.drawToolUpPanel setPanelForOnline:NO];
     
-    [self.drawToolUpPanel.titleLabel setText:self.word.text];
+    [self.drawToolUpPanel.titleLabel setText:(self.word.text && self.word.text.length > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
 }
 
 - (void)setOpusDesc:(NSString *)opusDesc
