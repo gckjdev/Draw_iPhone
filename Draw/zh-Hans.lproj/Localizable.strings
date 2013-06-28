@@ -1794,6 +1794,8 @@
 "kGuessSing" = "猜歌";
 "kSingTop" = "榜单";
 "kSingContest" = "比赛";
+"kInputSingName" = "输入歌曲名称";
+"kSingNameCannotBeBlankStr" = "歌曲名称不能为空";
 
 /*********************你唱我猜国际化字符串结束 ************************/
 

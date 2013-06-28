@@ -1786,6 +1786,10 @@
 "kGuessSing" = "猜歌";
 "kSingTop" = "榜單";
 "kSingContest" = "比賽";
+"kInputSingName" = "輸入歌曲名稱";
+"kSingNameCannotBeBlankStr" = "歌曲名稱不能為空";
+
+
 
 /*********************你唱我猜國際化字符串結束 ************************/
 

@@ -10,6 +10,7 @@
 #import "Sing.pb.h"
 
 #define TagsPerCell 4.0f
+#define KEY_SONG_CATEGORY_TAG @"KEY_SONG_CATEGORY_TAG"
 
 @protocol SongTagCellDelegate <NSObject>
 

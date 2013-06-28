@@ -151,6 +151,26 @@
     return singOpus;
 }
 
+- (SingOpus*)createDraftSingOpusWithSelfDefineName:(NSString*)name{
+    
+    SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
+    
+    // set basic info
+    [self setDraftOpusId:singOpus extension:SING_FILE_EXTENSION];
+    [self setCommonOpusInfo:singOpus];
+    
+    // set type and category
+    [singOpus setType:PBOpusTypeSing];
+    [singOpus setCategory:PBOpusCategoryTypeSingCategory];
+    [singOpus setName:name];
+    
+    // init song info
+    [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
+    [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
+    
+    return singOpus;
+}
+
 - (NSArray*)reverseSubArray:(NSArray*)array offset:(int)offset limit:(int)limit
 {
     if (array == nil || [array count] == 0){

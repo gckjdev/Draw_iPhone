@@ -67,12 +67,16 @@ AUTO_CREATE_VIEW_BY_XIB(SongCategoryView);
 }
 
 - (IBAction)clickBgButton:(id)sender {
+    [self dismiss];
+
     if ([_delegate respondsToSelector:@selector(didClickBgButton)]) {
         [_delegate didClickBgButton];
     }
 }
 
 - (void)didClickTag:(NSString *)tag{
+    [self dismiss];
+
     if ([_delegate respondsToSelector:@selector(didSelectTag:)]) {
         [_delegate didSelectTag:tag];
     }

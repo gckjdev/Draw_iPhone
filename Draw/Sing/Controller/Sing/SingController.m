@@ -16,6 +16,7 @@
 #import "MKBlockAlertView.h"
 #import "UIButton+WebCache.h"
 #import "UserManager.h"
+#import "UITextView+WebCache.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -40,7 +41,6 @@ enum{
 @property (retain, nonatomic) VoiceProcessor *processor;
 
 @property (retain, nonatomic) UIButton *selectedButton;
-@property (copy, nonatomic) NSString *desc;
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
 
@@ -51,7 +51,6 @@ enum{
 - (void)dealloc{
     [_picker release];
     [_image release];
-    [_desc release];
     [_selectedButton release];
     [_singOpus release];
     [_recorder release];
@@ -108,6 +107,15 @@ enum{
     return self;
 }
 
+- (id)initWithName:(NSString *)name{
+    if (self = [super init]) {
+        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpusWithSelfDefineName:name];
+        _newOpus = YES;
+    }
+    
+    return self;
+}
+
 - (id)initWithOpus:(SingOpus *)opus{
     if (self = [super init]) {
         self.singOpus = opus;
@@ -152,16 +160,27 @@ enum{
     // Do any additional setup after loading the view from its nib.
     [self initSelectedButton];
     
-    NSString *name = _singOpus.pbOpus.sing.song.name;
+    NSString *name = _singOpus.pbOpus.name;
     NSString *author = _singOpus.pbOpus.sing.song.author;
     NSString *lyric = _singOpus.pbOpus.sing.song.lyric;
     NSString *image = _singOpus.pbOpus.image;
+    if ([author length] <= 0) {
+        author = NSLS(@"未知");
+    }
     
     self.songNameLabel.text = name;
     self.songAuthorLabel.text = author;
     self.songNameLabel1.text = name;
     self.songAuthorLabel1.text = author;
-    self.lyricTextView.text = lyric;
+    
+    __block typeof (self)bself = self;
+    [self.lyricTextView setTextWithURL:lyric placeHolderText:NSLS(@"kLoadMore") success:^(NSString *text, BOOL cached) {
+        if ([text length] <= 0) {
+            [bself.lyricTextView setText:NSLS(@"暂无歌词")];
+        }
+    } failure:^(NSError *error) {
+        [bself.lyricTextView setText:NSLS(@"暂无歌词")];
+    }];
     
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
     
@@ -448,25 +467,23 @@ enum{
 }
 
 - (IBAction)clickDescButton:(id)sender {
-    InputDialog *dialog = [InputDialog dialogWith:@"kInputDesc" delegate:self];
-    [self.view addSubview:dialog];
+
+    PPDebug(@"clickDescButton");
+    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kEditOpusDesc") clickOK:^(NSString *inputStr) {
+
+        [_singOpus setDesc:inputStr];
+        
+    } clickCancel:^(NSString *inputStr) {
+        
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickAddTimeButton:(id)sender {
     
     [[UserManager defaultManager] setSingLimitTime:(_recordLimitTime + 15)];
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
-}
-
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText{
-    
-    self.desc = targetText;
-    [dialog removeFromSuperview];
-}
-
-- (void)didClickCancel:(InputDialog *)dialog{
-    
-    [dialog removeFromSuperview];
 }
 
 - (IBAction)clickImageButton:(id)sender {
@@ -490,7 +507,7 @@ enum{
     _player.delegate = nil;
     _processor.delegate = nil;
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)clickSaveButton:(id)sender {

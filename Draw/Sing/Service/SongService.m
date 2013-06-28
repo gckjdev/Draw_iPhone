@@ -29,7 +29,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
                 
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_RANDOM_GET_SONGS parameters:para];
         
+        PPDebug(@"%@", output.description);
+        
         int resultCode = output.resultCode;
+
         NSArray *songs = nil;
         
         if (resultCode == ERROR_SUCCESS) {

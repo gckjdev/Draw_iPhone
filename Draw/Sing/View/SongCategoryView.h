@@ -22,6 +22,6 @@
 
 + (id)createCategoryView;
 - (void)showInView:(UIView *)view;
-- (void)dismiss;
+//- (void)dismiss;
 
 @end

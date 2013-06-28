@@ -12,11 +12,13 @@
 #import "SingController.h"
 #import "OpusManager.h"
 #import "SongCategoryView.h"
+#import "InputDialog.h"
+#import "StringUtil.h"
+#import "SongTagCell.h"
 
 #define CELL_COUNT 5
 
 @interface SongSelectController(){
-    BOOL _isCategoryViewShow;
 }
 
 @property (retain, nonatomic) NSArray *songs;
@@ -38,9 +40,11 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.tag = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SONG_CATEGORY_TAG];
+
     [[SongService defaultService] setDelegate:self];
-//    [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
-    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
+    [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
+//    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -78,26 +82,31 @@
     [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
 }
 
-- (IBAction)clickDraftButton:(id)sender {
-//    SingOpus *opus = [[OpusManager singDraftOpusManager] opusWithOpusId:@"2"];
-//    SingController *vc = [[[SingController alloc] initWithOpus:opus] autorelease];
-//    [self.navigationController pushViewController:vc animated:YES];
+- (IBAction)clickSelfDefineButton:(id)sender {
+    
+    PPDebug(@"clickSelfDefine");
+    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kInputSingName") clickOK:^(NSString *inputStr) {
+        
+        if ([inputStr isBlank]) {
+            [self popupUnhappyMessage:NSLS(@"kSingNameCannotBeBlankStr") title:nil];
+            return;
+        }
+        
+        SingController *vc = [[[SingController alloc] initWithName:inputStr] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } clickCancel:^(NSString *inputStr) {
+        
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickCategoryButton:(id)sender {
-    if (_categoryView == nil) {
-        self.categoryView = [SongCategoryView createCategoryView];
-        _categoryView.delegate = self;
-        _isCategoryViewShow = NO;
-    }
     
-    if (_isCategoryViewShow) {
-        [_categoryView dismiss];
-        _isCategoryViewShow = NO;
-    }else{
-        [_categoryView showInView:self.view];
-        _isCategoryViewShow = YES;
-    }
+    self.categoryView = [SongCategoryView createCategoryView];
+    _categoryView.delegate = self;
+    [_categoryView showInView:self.view];
 }
 
 - (void)viewDidUnload {
@@ -105,14 +114,7 @@
     [super viewDidUnload];
 }
 
-- (void)didClickBgButton{
-    [_categoryView dismiss];
-    _isCategoryViewShow = NO;
-}
-
 - (void)didSelectTag:(NSString *)tag{
-    [_categoryView dismiss];
-    _isCategoryViewShow = NO;
     
     PPDebug(@"click tag: %@", tag);
     self.tag = tag;
