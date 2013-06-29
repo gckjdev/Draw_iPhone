@@ -609,6 +609,7 @@
 }
 
 
+
 + (NSMutableArray *)drawActionListFromPBBBSDraw:(PBBBSDraw *)bbsDraw
 {
     
@@ -629,11 +630,10 @@
                 pbBBSDrawC = game__pbbbsdraw__unpack(NULL, dataLen, buf);
                 free(buf);
 
-                drawActionList =
-                [NSMutableArray arrayWithArray:[Draw drawActionListFromPBActions:pbBBSDrawC->drawactionlist
-                                                                     actionCount:pbBBSDrawC->n_drawactionlist
-                                                                      canvasSize:CGSizeFromPBSizeC(pbBBSDrawC->canvassize)]];
                 
+                drawActionList = (id)[Draw drawActionListFromPBActions:pbBBSDrawC->drawactionlist
+                                                      actionCount:pbBBSDrawC->n_drawactionlist
+                                                       canvasSize:CGSizeFromPBSizeC(pbBBSDrawC->canvassize)];
                 [drawActionList retain];
                 game__pbbbsdraw__free_unpacked(pbBBSDrawC, NULL);
             }
@@ -647,7 +647,39 @@
 }
 + (NSMutableArray *)drawActionListFromPBMessage:(PBMessage *)message
 {
+    NSMutableArray* drawActionList = nil;
     
+    if (message) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
+        Game__PBMessage *pbMessageC = NULL;
+        
+        NSData* data = [message data];
+        int dataLen = [data length];
+        if (dataLen > 0){
+            uint8_t* buf = malloc(dataLen);
+            if (buf != NULL){
+                
+                [data getBytes:buf length:dataLen];
+                pbMessageC = game__pbmessage__unpack(NULL, dataLen, buf);
+                free(buf);
+                
+                drawActionList =
+                [NSMutableArray arrayWithArray:[Draw drawActionListFromPBActions:pbMessageC->drawdata
+                                                                     actionCount:pbMessageC->n_drawdata
+                                                                      canvasSize:CGSizeFromPBSizeC(pbMessageC->canvassize)]];
+                
+                [drawActionList retain];
+                game__pbmessage__free_unpacked(pbMessageC, NULL);
+            }
+        }
+        
+        [pool drain];
+    }
+    
+    return [drawActionList autorelease];
+    
+
 }
 
 @end

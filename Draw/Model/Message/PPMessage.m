@@ -12,6 +12,7 @@
 #import "DrawAction.h"
 #import "GameMessage.pb.h"
 #import "CanvasRect.h"
+#import "GameBasic.pb-c.h"
 
 #define KEY_MESSAGEID @"KEY_MESSAGEID"
 #define KEY_CREATE_DATE @"KEY_CREATE_DATE"
@@ -251,14 +252,14 @@
 {
     self = [super initWithPBMessage:pbMessage];
     if (self) {
-        NSArray *pbAList = [pbMessage drawDataList];
+//        NSArray *pbAList = [pbMessage drawDataList];
 //        _drawActionList = [[NSMutableArray alloc] initWithCapacity:[pbAList count]];
 //        for (PBDrawAction *action in pbAList) {
 //            DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
 //            [_drawActionList addObject:da];
 //        }
         
-        _drawActionList = [[DrawAction drawActionListFromPBBMessage:pbMessage] retain];
+        _drawActionList = [[DrawAction drawActionListFromPBMessage:pbMessage] retain];
         
         self.drawDataVersion = pbMessage.drawDataVersion;
         if ([pbMessage hasCanvasSize]) {
@@ -278,7 +279,43 @@
     [builder setDrawDataVersion:self.drawDataVersion];
     if ([self.drawActionList count] != 0) {
         for (DrawAction *action in self.drawActionList) {
-            [builder addDrawData:[action toPBDrawAction]];
+//            [builder addDrawData:[action toPBDrawAction]];
+            
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+            // create one item array for later free
+            int count = 1;
+            int i = 0;
+            Game__PBDrawAction** pbDrawActionC = malloc(sizeof(Game__PBDrawAction*)*count);
+            
+            pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
+            game__pbdraw_action__init(pbDrawActionC[i]);
+            [action toPBDrawActionC:pbDrawActionC[i]];
+            
+            
+            void *buf = NULL;
+            unsigned len = 0;
+            NSData* data = nil;
+            
+            len = game__pbdraw_action__get_packed_size (pbDrawActionC[i]);    // This is the calculated packing length
+            buf = malloc (len);                                                 // Allocate memory
+            if (buf != NULL){
+                game__pbdraw_action__pack (pbDrawActionC[i], buf);                // Pack msg, including submessages
+                
+                // create data object
+                data = [NSData dataWithBytesNoCopy:buf length:len];
+            }
+
+            // free
+            [DrawAction freePBDrawActionC:pbDrawActionC count:count];
+
+            // add data
+            PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
+            [builder addDrawData:pbDrawAction];
+            
+            [pool drain];
+            
+//            [action toPBDrawActionC:<#(Game__PBDrawAction *)#>]
         }
     }
     return [builder build];
