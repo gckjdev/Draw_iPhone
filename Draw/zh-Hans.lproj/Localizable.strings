@@ -1270,6 +1270,7 @@
 "kDetailChat" = "聊天";
 
 "kSelectBGImage" = "选择背景";
+"kBgDownloading" = "背景更新中【进度:%2.1f%%】";
 "kSelectShape" = "选择形状";
 "kStroke" = "空心";
 "kFill" = "实心";

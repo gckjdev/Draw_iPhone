@@ -13,7 +13,7 @@
      
 }
 
-@property(nonatomic, retain)DrawBgBox *box;
+@property(nonatomic, assign)DrawBgBox *box;
 
 @end
 
@@ -21,7 +21,8 @@
 
 - (void)dealloc
 {
-    PPRelease(_box);
+//    PPRelease(_box);
+    self.box = nil;
     [super dealloc];
 }
 
@@ -49,8 +50,7 @@
         }else{
             [self.toolHandler enterDrawMode];
         }
-        
-    }
+    }    
 }
 
 - (void)buyItemSuccessfully:(ItemType)type
