@@ -312,7 +312,7 @@ SLIDER.tag = TAG;\
 
 - (void)updateViews
 {
-
+    
     CGRect frame;
     REPLACE_SLIDER(self.degreeSlider, 0, 360, _shadow.degree, 1);
     REPLACE_SLIDER(self.distanceSlider, 0, MAX_SHADOW_DISTANCE, _shadow.distance, 2);
