@@ -205,6 +205,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     }
 }
 
+- (NSString*)downloadProgressNotificationName
+{
+    return [_smartData progressNotificationName];
+}
+
 @end
 
 
