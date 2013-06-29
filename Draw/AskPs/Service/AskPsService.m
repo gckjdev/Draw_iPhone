@@ -12,7 +12,7 @@
 
 @implementation AskPsService
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
+SYNTHESIZE_SINGLETON_FOR_CLASS(AskPsService)
 
 - (void)awardIngot:(id<AskPsServiceDelegate>)delegate
             userId:(NSString *)userId
@@ -27,5 +27,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
         });
     });
 }
+
+- (void)getTopAskPsList:(id<AskPsServiceDelegate>)delegate
+{
+    dispatch_async(workingQueue, ^{
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:nil parameters:nil];
+        
+        NSArray *pbOpusList = nil;
+        if (output.resultCode == ERROR_SUCCESS){
+            pbOpusList = output.pbResponse.opusListList;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([delegate respondsToSelector:@selector(didGetTopAskPsList:result:)]) {
+                [delegate didGetTopAskPsList:pbOpusList result:output.resultCode];
+            }
+        });
+    });
+}
+
+
+
 
 @end

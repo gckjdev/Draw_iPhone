@@ -22,6 +22,8 @@ static StatisticManager *_globalStatisticManager;
 @synthesize bbsActionCount;
 //@synthesize bulletinCount;
 @synthesize newContestCount;
+@synthesize timelineOpusCount;
+@synthesize timelineGuessCount;
 
 + (StatisticManager *)defaultManager
 {

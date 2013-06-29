@@ -12,6 +12,7 @@
 
 @optional
 - (void)didAwardIngot:(int)resultCode;
+- (void)didGetTopAskPsList:(NSArray *)list result:(int)resultCode;
 
 @end
 
@@ -21,5 +22,7 @@
 
 - (void)awardIngot:(id<AskPsServiceDelegate>)delegate
             userId:(NSString *)userId;
+
+- (void)getTopAskPsList:(id<AskPsServiceDelegate>)delegate;
 
 @end

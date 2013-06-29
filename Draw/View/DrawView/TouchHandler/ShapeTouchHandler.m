@@ -78,7 +78,9 @@ CGPoint realStartPoint;
                                 
                 [shape setStroke:self.drawView.strokeShape];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
-
+                action.shadow = self.drawView.shadow;
+                
+                [self.cdManager updateLastAction:action];
                 shape.startPoint = shape.endPoint = point;
                 
 
@@ -92,7 +94,7 @@ CGPoint realStartPoint;
                 ////=====end=====/////
                 
                 
-                [self.drawView drawDrawAction:action show:YES];
+//                [self.drawView drawDrawAction:action show:YES];
             }else{
                 shape.startPoint = shape.endPoint = point;
                 [self updateEndPoint];
@@ -119,6 +121,7 @@ CGPoint realStartPoint;
     
     if (state == TouchStateCancel || state == TouchStateEnd) {
         [self.drawView addDrawAction:action];
+        [self.cdManager finishDrawAction:action];
         if (action) {
             [self.drawView clearRedoStack];
         }
@@ -130,8 +133,8 @@ CGPoint realStartPoint;
 {
     [super handleFailTouch];
     [self reset];
-    [self.osManager cancelLastAction];
-    //    [[self.osManager enteryScreen] clear];
+//    [self.osManager cancelLastAction];
+    [self.cdManager cancelLastAction];
     [self.drawView setNeedsDisplay];
 }
 

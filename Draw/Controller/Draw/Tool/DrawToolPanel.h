@@ -43,6 +43,10 @@
 - (void)setPenSelected:(BOOL)selected;
 - (void)setEraserSelected:(BOOL)selected;
 
+- (void)registerToolCommands;
+- (IBAction)clickTool:(UIButton *)sender;
+- (void)updateView;
+
 #pragma mark - Timer
 
 - (void)startTimer;

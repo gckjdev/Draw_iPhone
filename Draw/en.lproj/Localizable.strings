@@ -685,6 +685,7 @@
 
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";
+"kUserGuess" = "Guess";
 "kUserOpus" = "Opus";
 "kUserFavorite" = "Favorite";
 "kUnFavorite" = "Unsubscribe";
@@ -949,6 +950,7 @@
 "kDrawToMe" = "@Me";
 
 "kNoMyFeed" = "No Feeds. Try to draw and guess?";
+"kNoTimelineGuess" = "No Guess";
 "kNoMyOpus" = "No Opus. Try to draw one?";
 "kNoMyComment" = "No Comment.";
 "kNoDrawToMe" = "No one draw to you.";
@@ -967,7 +969,8 @@
 "kAccept" = "Accept";
 
 "kCoinsForFollowUs" = "+%d coins";
-"kFollowUs" = "Follow us";
+"kFollowSinaWeibo" = "Follow us with Sina";
+"kFollowTencentWeibo" = "Follow us with Tencent";
 
 "kContestRule" = "Rule";
 "kFailLoad" = "Fail to load data, please try it later.";
@@ -1418,6 +1421,14 @@
 "kCustomBBSBgSucc" = "Customize BBS background successfully!";
 "kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";
 "kCustomBBSBg" = "Custom BBS Background";
+"kSize" = "Size";
+"kBackground" = "Background";
+"kCopyPaint" = "Copy";
+"kDescription" = "Description";
+"kDrawTo" = "Draw to";
+"kGrid" = "Grid";
+"kHelp" = "Help";
+"kSelectPhoto" = "Select Photo";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1746,6 +1757,8 @@
 
 "kContentRepeatedError" = "Can't send repeated content.";
 "kNoPost" = "No Post";
+
+"kBBSQuitTips" = "Are you sure to quit?";
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/
@@ -1766,6 +1779,15 @@
 "kOnlyChineseTitleAllowed" = "Only chinese title is allowed, please check your title!";
 "kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
 "kViewPost" = "View Post";
+"kRecent" = "Recent";
+"kCustom" = "Custom";
+"kApply" = "Apply";
+"kDegree" = "Degree";
+"kDistance" = "Distance";
+"kBlur" = "Blur";
+"kNoShadow" = "None";
+"kSetShadow" = "Shadow Setting";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 
@@ -1777,6 +1799,10 @@
 "kSingTop" = "TOP";
 "kSingContest" = "CONTEST";
 
+"kInputSingName" = "Input song name";
+"kSingNameCannotBeBlankStr" = "You can not input a blank string.";
+
+
 /*********************你唱我猜国际化字符串结束 ************************/
 
 /*********************图库国际化字符串开始 ************************/
@@ -1784,6 +1810,7 @@
 "kKeywords" = "Keywords:";
 "kGallery" = "Gallery";
 "kImageSearch" = "Search Image";
+"kSearchResult" = "Search Results";
 "kDeletePhotoSucc" = "Delete photo successfully!";
 "kEditPhotoSucc" = "Photo updated!";
 "kAddUserPhotoSucc" = "Photo saved!";
@@ -1811,5 +1838,9 @@
 "kSearchNoResult" = "No match result";
 "kEditName" = "Edit Name";
 "kEnterNewName" = "Enter New Name";
+"kReset" = "Reset";
 /*********************图库国际化字符串结束 ************************/
+
+
+
 

@@ -40,9 +40,11 @@
 #import "GridCommand.h"
 #import "RedoCommand.h"
 #import "UndoCommand.h"
+#import "ShadowCommand.h"
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
+#import "UIImageView+WebCache.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -93,7 +95,7 @@
 
 - (IBAction)switchToolPage:(UIButton *)sender;
 
-- (IBAction)clickTool:(UIButton *)sender;
+
 @property (retain, nonatomic) IBOutlet UIImageView *toolBGImageView;
 
 @end
@@ -239,10 +241,13 @@
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
         image = [UIImage shrinkImage:image withRate:0.8];
         [cp.drawToUser setImage:image forState:UIControlStateNormal];
+        [cp.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
     } failure:^(NSError *error) {
         
     }];
 }
+
+
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {
@@ -313,9 +318,15 @@
     command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
+/*
     command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
+*/
+    command = [[[ShadowCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
 
+    
+    
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 

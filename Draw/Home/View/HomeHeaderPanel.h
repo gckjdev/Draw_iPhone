@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HomeCommonView.h"
 #import "FeedService.h"
+#import "FriendService.h"
 
 @class HomeHeaderPanel;
 @class DrawFeed;
@@ -31,9 +32,12 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickBulletinButton:(UIButton *)button;
 
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+ didClickFriendButton:(UIButton *)button;
+
 @end
 
-@interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate>
+@interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate, FriendServiceDelegate>
 {
     
 }

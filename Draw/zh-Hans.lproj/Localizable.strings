@@ -694,6 +694,7 @@
 "kUserFeedTitle" = "%@的动态";
 
 "kUserFeed" = "动态";
+"kUserGuess" = "猜";
 "kUserOpus" = "作品";
 "kUserFavorite" = "收藏";
 "kUnFavorite" = "取消收藏";
@@ -963,6 +964,7 @@
 
 
 "kNoMyFeed" = "你还没有动态，去画一幅画或猜一幅画？";
+"kNoTimelineGuess" = "还没有猜的动态";
 "kNoMyOpus" = "你还没有作品，去画一幅画？";
 "kNoMyComment" = "目前没有关于你的评论。";
 "kNoDrawToMe" = "还没有人画过画给你，先画一幅给别人？";
@@ -984,7 +986,8 @@
 "kAccept" = "接受";
 
 "kCoinsForFollowUs" = "+%d金币";
-"kFollowUs" = "关注官方微博";
+"kFollowSinaWeibo" = "关注新浪官方微博";
+"kFollowTencentWeibo" = "关注腾讯官方微博";
 
 "kContestRule" = "规则";
 "kFailLoad" = "获取数据失败，请稍后再试。";
@@ -1382,6 +1385,14 @@
 "kCustomBBSBgSucc" = "成功自定义论坛背景！";
 "kResetCustomBBSBgSucc" = "成功重设论坛背景!";
 "kCustomBBSBg" = "自定义论坛背景";
+"kSize" = "画布尺寸";
+"kBackground" = "画画背景";
+"kCopyPaint" = "临摹图片";
+"kDescription" = "作品描述";
+"kDrawTo" = "画给好友";
+"kGrid" = "辅助网格";
+"kHelp" = "缩放帮助";
+"kSelectPhoto" = "选取图片";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1756,6 +1767,8 @@
 
 "kContentRepeatedError" = "请不要发重复的帖子。";
 "kNoPost" = "还没有发过帖子";
+
+"kBBSQuitTips" = "內容尚未發出，是否退出？";
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/
@@ -1776,6 +1789,15 @@
 "kOnlyChineseTitleAllowed" = "作品标题只允许中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品标题只允许英文单词！";
 "kViewPost" = "查看帖子";
+
+"kRecent" = "最近";
+"kCustom" = "自定义";
+"kApply" = "应用";
+"kDegree" = "角度";
+"kDistance" = "距离";
+"kBlur" = "模糊";
+"kNoShadow" = "无阴影";
+"kSetShadow" = "设置阴影";
 /*********************小吉画画国际化字符串结束 ************************/
 
 /*********************你唱我猜国际化字符串开始 ************************/
@@ -1784,6 +1806,8 @@
 "kGuessSing" = "猜歌";
 "kSingTop" = "榜单";
 "kSingContest" = "比赛";
+"kInputSingName" = "输入歌曲名称";
+"kSingNameCannotBeBlankStr" = "歌曲名称不能为空";
 
 /*********************你唱我猜国际化字符串结束 ************************/
 
@@ -1792,6 +1816,7 @@
 "kKeywords" = "关键字:";
 "kGallery" = "图库";
 "kImageSearch" = "搜索图片";
+"kSearchResult" = "搜索结果";
 "kDeletePhotoSucc" = "成功删除图片!";
 "kEditPhotoSucc" = "成功更新图片信息!";
 "kAddUserPhotoSucc" = "成功保存图片!";
@@ -1819,4 +1844,5 @@
 "kSearchNoResult" = "搜不到符合条件的结果";
 "kEditName" = "编辑名字";
 "kEnterNewName" = "输入新名字";
+"kReset" = "重置";
 /*********************图库国际化字符串结束 ************************/

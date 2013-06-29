@@ -134,6 +134,8 @@
 #define METHOD_RANDOM_GET_SONGS @"randomGetSongs"
 #define PARA_SUB_CATEGORY @"subCategory"
 
+#define METHOD_GUESS_OPUS @"guessOpus"
+
 //contest
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"
 
@@ -167,6 +169,7 @@
 #define ACTION_TYPE_REMOVE_FAVORITE         101
 #define ACTION_TYPE_RECOMMEND_OPUS          102
 #define ACTION_TYPE_UNRECOMMEND_OPUS        103
+#define ACTION_TYPE_REJECT_DRAW_TO_ME_OPUS  104
 
 // for item
 #define METHOD_BUY_ITEM @"buyItem"
@@ -251,6 +254,7 @@
 #define PARA_PASSWORD @"pwd"
 #define PARA_NEW_PASSWORD @"npwd"
 
+#define PARA_USER @"user"
 
 #define PARA_SINA_ID @"siid"
 #define PARA_QQ_ID @"qid"
@@ -498,6 +502,8 @@
 #define PARA_FAN_COUNT @"fac"
 #define PARA_MESSAGE_COUNT @"mc"
 #define PARA_ROOM_COUNT @"rc"
+#define PARA_TIME_LINE_GUESS_COUNT @"tlgc"
+#define PARA_TIME_LINE_OPUS_COUNT @"tloc"
 
 //friends operation
 #define PARA_TARGETUSERID   @"tid"

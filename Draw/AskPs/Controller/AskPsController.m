@@ -58,8 +58,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.contentHolderView updateHeight:400];
-    self.contentHolderView.contentSize = CGSizeMake(320, 531);
+//    [self.contentHolderView updateHeight:400];
+//    self.contentHolderView.contentSize = CGSizeMake(320, 531);
     [self updateButtonsTitle];
 }
 
@@ -140,23 +140,26 @@ enum {
     [_coinsPerUserTextField resignFirstResponder];
     [_coinsMaxTotalTextField resignFirstResponder];
     [_ingotBestUserTextField resignFirstResponder];
+    [self.contentHolderView setContentOffset:CGPointMake(0,0) animated:YES];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
     int coinsPerUse = [_coinsPerUserTextField.text integerValue];
     int coinsMaxTotal = [_coinsMaxTotalTextField.text integerValue];
     int ingotBestUser = [_ingotBestUserTextField.text integerValue];
-    self.askPs = [Opus opusWithCategory:OpusCategoryAskPs];
+    self.askPs = (AskPs *)[Opus opusWithCategory:PBOpusCategoryTypeAskPsCategory];
     [_askPs setRequirements:[_requirementSet allObjects]];
     [_askPs setType:PBOpusTypeAskPs];
     [_askPs setDesc:_descTextField.text];
     [_askPs setAwardCoinsPerUser:coinsPerUse];
     [_askPs setAwardCoinsMaxTotal:coinsMaxTotal];
     [_askPs setAwardIngotBestUser:ingotBestUser];
+    
     [[OpusService defaultService] submitOpus:_askPs
                                        image:_pendingImage
                                     opusData:nil
-                                 opusManager:[OpusManager askPsManager]
+                            opusDraftManager:nil
+                                 opusManager:nil //[OpusManager askPsManager]
                             progressDelegate:nil
                                     delegate:self];
 }
@@ -173,9 +176,9 @@ enum {
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField == self.descTextField) {
-        [self.contentHolderView setContentOffset:CGPointMake(0,160) animated:YES];
+        [self.contentHolderView setContentOffset:CGPointMake(0,60) animated:YES];
     } else {
-        [self.contentHolderView setContentOffset:CGPointMake(0,270) animated:YES];
+        [self.contentHolderView setContentOffset:CGPointMake(0,160) animated:YES];
     }
     return YES;
 }
@@ -183,6 +186,7 @@ enum {
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [self.contentHolderView setContentOffset:CGPointMake(0,0) animated:YES];
     return YES;
 }
 

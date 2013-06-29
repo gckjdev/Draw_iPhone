@@ -312,7 +312,36 @@ WordManager *GlobalGetWordManager()
     return str;
 }
 
-
+- (NSString *)randChineseCandidateStringWithWord:(NSString *)word count:(NSInteger)count
+{
+    if (word == nil || [word length] == 0) {
+        return nil;
+    }
+    NSDictionary *wordBase = [self getWordBaseDictionary];
+    NSInteger length = word.length;
+    NSMutableArray *retArray = [[NSMutableArray alloc] init];
+    NSString *createSet = [NSString stringWithFormat:@"%@",word];
+    for (int i = 0; i < count - length; ++ i) {
+        NSInteger l = [createSet length];
+        NSString *key = [createSet substringWithRange:NSMakeRange(rand() % l, 1)];
+        NSString *value = [self charWithKey:key dict:wordBase outOfString:createSet];
+        if ([createSet rangeOfString:value].location == NSNotFound) {
+            createSet = [NSString stringWithFormat:@"%@%@",createSet,value];
+        }
+        [retArray addObject:value];
+    }
+    wordBase = nil;
+    int k = rand() % retArray.count;
+    for (int i = length - 1 ; i >= 0; -- i) {
+        NSString *value = [word substringWithRange:NSMakeRange(i, 1)];
+        [retArray insertObject:value atIndex:k];
+        NSInteger t = count / 4 + (rand() % (count / 4));
+        k = (k + t) % retArray.count;
+    }
+    NSString* retString = [retArray componentsJoinedByString:@""];
+    [retArray release];
+    return retString;
+}
 
 - (NSString *)randChinesStringWithWord:(Word *)word count:(NSInteger)count
 {

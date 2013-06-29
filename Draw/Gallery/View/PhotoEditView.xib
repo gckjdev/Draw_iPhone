@@ -109,7 +109,7 @@
 							</object>
 							<object class="IBUIButton" id="491454324">
 								<reference key="NSNextResponder" ref="1001070231"/>
-								<int key="NSvFlags">-2147483356</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{244, 4}, {30, 30}}</string>
 								<reference key="NSSuperview" ref="1001070231"/>
 								<reference key="NSNextKeyView" ref="281217356"/>
@@ -215,7 +215,6 @@
 								<int key="NSvFlags">265</int>
 								<string key="NSFrame">{{167, 370}, {83, 30}}</string>
 								<reference key="NSSuperview" ref="1001070231"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -317,11 +316,20 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickCancel:</string>
+						<reference key="source" ref="491454324"/>
+						<reference key="destination" ref="766893617"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">58</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickReset:</string>
 						<reference key="source" ref="711560992"/>
 						<reference key="destination" ref="766893617"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">54</int>
+					<int key="connectionID">59</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -439,7 +447,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">56</int>
+			<int key="maxID">59</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

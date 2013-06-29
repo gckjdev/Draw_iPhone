@@ -64,9 +64,10 @@
 //    self.tempPaint = nil;
     self.tempAction = nil;
     _currentAction = nil;
-    [osManager clean];
-
+//    [osManager clean];
+    [cdManager reset];
     pen.hidden = YES;
+
 }
 
 #define VALUE(x) (ISIPAD ? 2*x : x)
@@ -167,10 +168,14 @@
 //        pen.hidden = YES;
 //    }
 
-    for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
-        DrawAction *action = [_drawActionList objectAtIndex:i];
-        [[osManager bottomScreen] drawAction:action clear:NO];
-    }
+//    for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
+//        DrawAction *action = [_drawActionList objectAtIndex:i];
+//        [[osManager bottomScreen] drawAction:action clear:NO];
+//        [cdManager addDrawAction:action];
+//    }
+    
+    [cdManager showToIndex:index];
+    
     if (index >= [self.drawActionList count]) {
         self.status = Stop;
     }else{
@@ -220,7 +225,8 @@
         }
     }else{
         self.status = Stop;
-        CGRect rect = [osManager addDrawAction:action];
+//        CGRect rect = [osManager addDrawAction:action];
+        CGRect rect = [cdManager addDrawAction:action];
         [self setNeedsDisplayInRect:rect];
     }
 }
@@ -246,7 +252,9 @@
         self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
         
-        osManager = [[OffscreenManager showViewOffscreenManagerWithRect:self.bounds] retain];;
+        cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
+        cdManager.drawActionList = self.drawActionList;
+        cdManager.useCachedImage = NO;        
     }
     return self;
 }
@@ -423,13 +431,15 @@
     if (self.status == Playing) {
         if (self.tempAction) {
             if([self.tempAction pointCount] == 1){
-                [self drawDrawAction:self.tempAction show:YES];
+//                [self drawDrawAction:self.tempAction show:YES];
             }else{
                 [self updateLastAction:self.tempAction show:YES];
             }
             
             if ([self.tempAction hasFinishAddPoint]) {
-                [self callDidDrawPaintDelegate];
+                [self callDidDrawPaintDelegate];                
+                //TEST CODE
+                [cdManager finishDrawAction:_currentAction];
             }
             
             double delay = (CACurrentMediaTime() - _playFrameTime - self.playSpeed);
@@ -500,6 +510,7 @@
         self.speed = PlaySpeedTypeSuper;
     }
     PPDebug(@"<setDrawActionList>auto set speed: %d,actionCount = %d",self.speed, count);
+    [cdManager setDrawActionList:drawActionList];
 }
 
 - (void)changeRect:(CGRect)rect
@@ -507,8 +518,11 @@
     self.transform = CGAffineTransformIdentity;
     self.bounds = rect;
     self.frame = rect;
-    PPRelease(osManager);
-    osManager = [[OffscreenManager showViewOffscreenManagerWithRect:rect] retain];
+
+    PPRelease(cdManager);
+    cdManager = [[CacheDrawManager managerWithRect:rect] retain];
+    cdManager.drawActionList = self.drawActionList;
+    cdManager.useCachedImage = NO;
     [(DrawHolderView *)self.superview updateContentScale];
     [self setNeedsDisplay];
 }

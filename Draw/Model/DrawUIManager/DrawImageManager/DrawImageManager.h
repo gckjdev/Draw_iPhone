@@ -32,6 +32,7 @@
 - (UIImage *)drawHomeMore;
 - (UIImage *)drawHomeMe;
 - (UIImage *)drawHomeFriend;
+- (UIImage*)userPhoto;
 
 //
 - (UIImage *)drawHomeBG;
@@ -95,5 +96,7 @@
 - (UIImage *)singHomeShop;
 - (UIImage *)singHomeChat;
 - (UIImage *)singHomeSetting;
+
+- (UIImage *)singBottomBar;
 
 @end

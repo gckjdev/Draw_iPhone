@@ -65,6 +65,8 @@
 #import "ToolCommand.h"
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
+#import "DrawToolUpPanel.h"
+
 
 @interface OfflineDrawViewController()
 {
@@ -106,6 +108,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
+@property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
 @property (assign, nonatomic) ToolHandler *toolHandler;
 
 @property (retain, nonatomic) InputAlertView *inputAlert;
@@ -197,6 +200,7 @@
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
     PPRelease(_drawToolPanel);
+    PPRelease(_drawToolUpPanel);
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_word);
@@ -209,6 +213,7 @@
     PPRelease(_bgImage);
     PPRelease(_bgImageName);
     PPRelease(_currentDialog);
+    PPRelease(_copyPaintUrl);
     [super dealloc];
 }
 
@@ -473,13 +478,25 @@
     self.toolHandler.drawView = drawView;
     self.toolHandler.controller = self;
     
+    ToolHandler* upHandler = [[[ToolHandler alloc] init] autorelease];
+    upHandler.controller = self;
+    upHandler.drawView = drawView;
+    
     self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
+    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:upHandler];
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
+    [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
     [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
+    
     [self.view addSubview:self.drawToolPanel];
+    [self.view addSubview:self.drawToolUpPanel];
+    
     [self.drawToolPanel setPanelForOnline:NO];
+    [self.drawToolUpPanel setPanelForOnline:NO];
+    
+    [self.drawToolUpPanel.titleLabel setText:self.word.text];
 }
 
 - (void)setOpusDesc:(NSString *)opusDesc
@@ -575,7 +592,7 @@
 - (void)didGetUserInfo:(MyFriend *)user resultCode:(NSInteger)resultCode
 {
     if (resultCode == 0 && user) {
-        [self.drawToolPanel updateDrawToUser:user];
+        [self.drawToolUpPanel updateDrawToUser:user];
     }
 }
 
@@ -598,24 +615,10 @@
     }
 }
 
-- (void)updateShowBgScreenForPhoto
-{
-    if (targetType == TypePhoto) {
-        [OffscreenManager setShowBGOffscreen:YES];
-    }
-}
-
-- (void)updateNotShowBgScreenForPhoto
-{
-    if (targetType == TypePhoto) {
-        [OffscreenManager setShowBGOffscreen:NO];
-    }
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateShowBgScreenForPhoto];
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
@@ -655,7 +658,6 @@
 {
     [self stopBackupTimer];
     [super viewDidDisappear:animated];
-    [self updateNotShowBgScreenForPhoto];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -667,7 +669,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self updateNotShowBgScreenForPhoto];
 }
 
 
@@ -1281,6 +1282,15 @@
     }
 }
 
+- (IBAction)clickUpPanel:(id)sender
+{
+    if (![self.drawToolUpPanel isVisable]) {
+        [self.drawToolUpPanel appear:self];
+    } else {
+        [self.drawToolUpPanel disappear];
+    }
+}
+
 
 - (void)alertExit
 {
@@ -1377,5 +1387,32 @@
     }
     return [ConfigManager maxDrawChineseTitleLen];
 }
+
+- (void)showCopyPaint
+{
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    // Modal
+    [browser setCanSave:NO];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [browser release];
+    [nc release];
+}
+
+
+#pragma mark - mwPhotoBrowserDelegate
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (self.copyPaintUrl) {
+        return [MWPhoto photoWithURL:[NSURL URLWithString:self.copyPaintUrl]];
+    }
+    return nil;
+    
+}
+
 
 @end

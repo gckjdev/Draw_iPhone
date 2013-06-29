@@ -158,6 +158,12 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage*)userPhoto
+{
+    NSString *imageName = [self fixImageName:@"draw_home_play_with_friend"];
+    return [UIImage imageNamed:imageName];
+}
+
 - (UIImage *)drawHomeBG
 {
     return [self stretchableImageWithImageName:@"draw_home_bg"
@@ -411,5 +417,10 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage *)singBottomBar
+{
+    NSString *imageName = [self fixImageName:@"sing_bottom_bar"];
+    return [UIImage imageNamed:imageName];
+}
 
 @end

@@ -46,6 +46,12 @@
     self.penType = drawView.penType;
 }
 
+- (void)changeShadow:(Shadow *)shadow
+{
+    self.shadow = shadow;
+    self.drawView.shadow = shadow;
+}
+
 - (void)changePenColor:(DrawColor *)color
 {
     CGFloat alpha = self.penColor.alpha;
@@ -141,6 +147,13 @@
     [oc setTargetUid:aFriend.friendUserId];
 }
 
+- (void)changeCopyPaint:(PBUserPhoto*)aPhoto
+{
+    PPDebug(@"<changeCopyPaint> photo id = ", aPhoto.photoId);
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+    [oc setCopyPaintUrl:aPhoto.url];
+}
+
 - (void)enterShapeMode
 {
     self.drawView.touchActionType = TouchActionTypeShape;
@@ -196,6 +209,12 @@
 {
     OnlineDrawViewController *oc = (OnlineDrawViewController *)self.controller;
     [oc showGroupChatView];
+}
+
+- (void)handleShowCopyPaint
+{
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)self.controller;
+    [oc showCopyPaint];
 }
 
 - (TouchActionType)setTouchActionType:(TouchActionType)type

@@ -16,14 +16,35 @@
 #import "SynthesizeSingleton.h"
 #import "PPGameNetworkRequest.h"
 #import "SingOpus.h"
+#import "StringUtil.h"
+#import "OpusDownloadService.h"
+#import "FileUtil.h"
+#import "DrawDataService.h"
 
 #define SING_MY_OPUS_DB     @"sing_my_opus.db"
 #define SING_FAVORITE_DB    @"sing_favorite.db"
 #define SING_DRAFT_DB       @"sing_draft.db"
 
+#define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
+#define GET_OPUS_DATA_QUEUE        @"GET_OPUS_DATA_QUEUE"
+#define GET_FEED_COMMENT_QUEUE  @"GET_FEED_COMMENT_QUEUE"
+
+@interface OpusService()
+
+
+@end
+
 @implementation OpusService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
+
+- (void)dealloc
+{
+    [_singDraftOpusManager release];
+    [_singLocalFavoriteOpusManager release];
+    [_singLocalMyOpusManager release];
+    [super dealloc];
+}
 
 - (id)init
 {
@@ -34,17 +55,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (Opus*)createDraftOpus
 {
     return nil;
 }
-
-
 
 - (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
@@ -115,6 +130,58 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
             }
         });
     });
+}
+
+- (void)submitGuessWords:(NSArray *)words
+                    opus:(Opus *)opus
+               isCorrect:(BOOL)isCorrect
+                   score:(int)score
+                delegate:(id)delegate{
+    
+    if ([words count] == 0) {
+        return;
+    }
+    NSString *opusId = opus.pbOpus.opusId;
+    NSString *authorId = opus.pbOpus.author.userId;
+    
+    [[DrawDataService defaultService] guessDraw:words opusId:opusId opusCreatorUid:authorId isCorrect:NO score:3 delegate:delegate];
+}
+
+- (void)getOpusDataFile:(Opus*)opus
+       progressDelegate:(id)progressDelegate
+               delegate:(id<OpusServiceDelegate>)delegate{
+        
+    NSOperationQueue *queue = [self getOperationQueue:GET_OPUS_DATA_QUEUE];
+    [queue cancelAllOperations];
+    
+    [queue addOperationWithBlock:^{
+        
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        NSInteger resultCode = 0;
+        NSString *dataUrl = opus.pbOpus.dataUrl;
+        
+        NSString *destDir = [[FileUtil getAppCacheDir] stringByAppendingPathComponent:@"opusdata"];
+                
+        NSString *destPath = nil;
+        @try {
+            destPath = [[OpusDownloadService defaultService] downloadFileSynchronous:dataUrl destDir:destDir progressDelegate:progressDelegate];
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<getPBDrawByFeed> catch exception =%@", [exception description]);
+            resultCode = ERROR_CLIENT_PARSE_DATA;
+        }
+        @finally {
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([delegate respondsToSelector:@selector(didGetOpusFile:path:opus:)]) {
+                [delegate didGetOpusFile:resultCode path:destPath opus:opus];
+            }
+        });
+        
+        [subPool drain];
+    }];
 }
 
 

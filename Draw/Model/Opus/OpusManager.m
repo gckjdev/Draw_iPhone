@@ -78,6 +78,7 @@
 
     [builder setType:PBOpusTypeSingToUser];
     [builder setName:@"我的作品"];
+    [builder setDataUrl:@"http://58.254.132.169/90115000/fulltrack_dl/MP3_128_44_Stero/2012060802/481874.mp3"];
     [builder setDesc:@"详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述"];
     [builder setThumbImage:@"http://pic.rouding.com/uploadfile/201202/19/50223649544.jpg"];
     [builder setImage:@"http://www.lockonfiles.com/modules/Downloads/imageuploads/Su-34%20x2048.jpg"];
@@ -144,6 +145,26 @@
     
     // init song info
     [singOpus setSong:song];
+    [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
+    [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
+    
+    return singOpus;
+}
+
+- (SingOpus*)createDraftSingOpusWithSelfDefineName:(NSString*)name{
+    
+    SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
+    
+    // set basic info
+    [self setDraftOpusId:singOpus extension:SING_FILE_EXTENSION];
+    [self setCommonOpusInfo:singOpus];
+    
+    // set type and category
+    [singOpus setType:PBOpusTypeSing];
+    [singOpus setCategory:PBOpusCategoryTypeSingCategory];
+    [singOpus setName:name];
+    
+    // init song info
     [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
     [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
     

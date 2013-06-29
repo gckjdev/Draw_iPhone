@@ -16,13 +16,19 @@
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "InputDialog.h"
+#import "SearchPhotoController.h"
 
 @interface GalleryController () {
     NSString* _currentImageUrl;
     
 }
 
+@property (assign, nonatomic) id<GalleryControllerDelegate> delegate;
+
+
 @property (retain, nonatomic) NSSet* tagSet;
+
+- (IBAction)clickSearch:(id)sender;
 
 @end
 
@@ -43,11 +49,31 @@
     return self;
 }
 
+- (id)initWithDelegate:(id<GalleryControllerDelegate>)delegate
+                 title:(NSString *)title
+{
+    self = [super init];
+    if (self) {
+        self.delegate = delegate;
+        self.title = title;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self serviceLoadDataForTabID:[self currentTab].tabID];
+    if (self.title && self.title.length > 0) {
+        [self.titleLabel setText:self.title];
+    }
+//    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self reloadTableViewDataSource];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,6 +128,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    [super tableView:tableView numberOfRowsInSection:section];
     return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
 }
 
@@ -140,6 +167,7 @@
     
     [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:[self currentTab].offset limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self finishLoadDataForTabID:[self currentTab].tabID resultList:resultArray];
+        [self currentTab].status = TableTabStatusLoaded;
 //        [self loadTestData];
     }];
     
@@ -180,6 +208,11 @@ enum {
 #pragma mark - UserPhotoView delegate
 - (void)didClickPhoto:(PBUserPhoto *)photo
 {
+    if (_delegate && [_delegate respondsToSelector:@selector(didGalleryController:SelectedUserPhoto:)]) {
+        [_delegate didGalleryController:self SelectedUserPhoto:photo];
+        return;
+    }
+    
     MKBlockActionSheet* actionSheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOptions") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kShow"), NSLS(@"kSetTag"), NSLS(@"kEditName"), NSLS(@"kDelete"), nil];
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
@@ -293,7 +326,7 @@ enum {
     __block GalleryController* cp = self;
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto
                                                        title:NSLS(@"kFilter")
-                                                confirmTitle:NSLS(@"kFilter")
+                                                confirmTitle:NSLS(@"kConfirm")
                                                  resultBlock:^(NSSet *tagSet) {
         cp.tagSet = tagSet;
         [cp reloadTableViewDataSource];
@@ -301,6 +334,12 @@ enum {
     [view showInView:self.view];
 }
 
+
+- (IBAction)clickSearch:(id)sender
+{
+    SearchPhotoController* sc = [[[SearchPhotoController alloc] init] autorelease];
+    [self.navigationController pushViewController:sc animated:YES];
+}
 //#pragma mark - PhotoEditView delegate
 //- (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
 //{

@@ -1043,6 +1043,8 @@ static UserService* _defaultUserService;
                 long commentCount = [[output.jsonDataDict objectForKey:PARA_COMMENT_COUNT] longValue];
                 long drawToMeCount = [[output.jsonDataDict objectForKey:PARA_DRAWTOME_COUNT] longValue];
                 long bbsActionCount = [[output.jsonDataDict objectForKey:PARA_BBS_ACTION_COUNT] longValue];
+                long timeLineOpusCount = [[output.jsonDataDict objectForKey:PARA_TIME_LINE_OPUS_COUNT] longValue];
+                long timeLineGuessCount = [[output.jsonDataDict objectForKey:PARA_TIME_LINE_GUESS_COUNT] longValue];
                 
                 PPDebug(@"<didGetStatistic>:feedCount = %ld, messageCount = %ld, fanCount = %ld", feedCount,messageCount,fanCount);
                 
@@ -1055,6 +1057,8 @@ static UserService* _defaultUserService;
                 [manager setCommentCount:commentCount];
                 [manager setDrawToMeCount:drawToMeCount];
                 [manager setBbsActionCount:bbsActionCount];
+                [manager setTimelineOpusCount:timeLineOpusCount];
+                [manager setTimelineGuessCount:timeLineGuessCount];
             }
             if (viewController && [viewController respondsToSelector:@selector(didSyncStatisticWithResultCode:)]) {
                 [viewController didSyncStatisticWithResultCode:output.resultCode];

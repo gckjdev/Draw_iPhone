@@ -300,4 +300,20 @@ BBSManager *_staticBBSManager;
     
 }
 */
+
+#define KEY_BBS_LAST_INPUT_TEXT @"KEY_BBS_LAST_INPUT_TEXT"
+
++ (NSString *)lastInputText
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults valueForKey:KEY_BBS_LAST_INPUT_TEXT];
+}
+
++ (BOOL)saveLastInputText:(NSString *)lastInputText
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:lastInputText forKey:KEY_BBS_LAST_INPUT_TEXT];
+    return [userDefaults synchronize];
+}
+
 @end

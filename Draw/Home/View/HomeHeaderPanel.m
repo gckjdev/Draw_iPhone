@@ -18,6 +18,10 @@
 #import "DrawImageManager.h"
 #import "ConfigManager.h"
 #import "BulletinView.h"
+#import "FriendController.h"
+#import "StatisticManager.h"
+#import "UIViewUtils.h"
+#import "ShareImageManager.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -35,6 +39,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *freeCoin;
 @property (retain, nonatomic) IBOutlet UIButton *bulletinBadge;
 @property (retain, nonatomic) IBOutlet UILabel *ingotLabel;
+@property (retain, nonatomic) IBOutlet UILabel *friendCountLabel;
+@property (retain, nonatomic) IBOutlet UIButton *friendBadgeButton;
+@property (retain, nonatomic) IBOutlet UIImageView *coinCountBackgroundImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *friendCountBackgroundImageView;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
 
@@ -42,6 +50,7 @@
 - (IBAction)clickChargeButton:(id)sender;
 - (IBAction)clickAvatarButton:(id)sender;
 - (IBAction)clickBulletinButton:(id)sender;
+- (IBAction)clickFriendButton:(id)sender;
 
 @end
 
@@ -195,26 +204,14 @@
     }
 }
 
-- (void)didGetFeedList:(NSArray *)feedList
-          feedListType:(FeedListType)type
-            resultCode:(NSInteger)resultCode
+- (void)showFreed
 {
-
-    if (resultCode == 0 && [feedList count] != 0) {
-
-        //get Top 6 feed
-        if (self.feedList != feedList) {
-            self.feedList = [NSMutableArray arrayWithArray:feedList];
-        }
-
-
-        PPDebug(@"<didGetFeedList> ready to display images");
-        [self.displayScrollView setHidden:NO];
-        
-        [self clearOldDisplayImages];
-        //display image.
-        NSInteger i = 0;
-        for (DrawFeed *feed in feedList) {
+    [self.displayScrollView setHidden:NO];
+    [self clearOldDisplayImages];
+    NSInteger i = 0;
+    
+    if ([_feedList count] > 0) {
+        for (DrawFeed *feed in _feedList) {
             UIImageView *iv = [self imageForFeed:feed index:i];
             if (iv) {
                 iv.contentMode = UIViewContentModeScaleAspectFill;
@@ -225,15 +222,63 @@
                 break;
             }
         }
-        
-        //update the scroll view frame
-        NSInteger page = i / IMAGE_NUMBER_PER_PAGE;
-        if (i % IMAGE_NUMBER_PER_PAGE != 0) {
-            page ++;
+    } else {
+        for (; i < IMAGE_NUMBER_PER_PAGE; i++) {
+            CGFloat x = i * ([self imageWidth]  + SPACE_IMAGE);
+            UIImageView *imageView = [[[UIImageView alloc] initWithImage:[[ShareImageManager defaultManager] unloadBg]] autorelease];
+            [imageView.layer setCornerRadius:(self.imageWidth / 20)];
+            imageView.frame = CGRectMake(x, 0, [self imageWidth], [self imageWidth]);
+            [self.displayScrollView addSubview:imageView];
         }
-        self.displayScrollView.contentSize = CGSizeMake(DISPLAY_SIZE.width * page, DISPLAY_SIZE.height);
-        [self startDisplayAnimation];
     }
+    
+    //update the scroll view frame
+    NSInteger page = i / IMAGE_NUMBER_PER_PAGE;
+    if (i % IMAGE_NUMBER_PER_PAGE != 0) {
+        page ++;
+    }
+    self.displayScrollView.contentSize = CGSizeMake(DISPLAY_SIZE.width * page, DISPLAY_SIZE.height);
+    [self startDisplayAnimation];
+}
+
+- (void)didGetFeedList:(NSArray *)feedList
+          feedListType:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+
+    if (resultCode == 0 && [feedList count] != 0) {
+        //get Top 6 feed
+        if (self.feedList != feedList) {
+            self.feedList = [NSMutableArray arrayWithArray:feedList];
+        } 
+    } else {
+        NSArray *list = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
+        self.feedList = [NSMutableArray arrayWithArray:list];
+    }
+    
+    [self showFreed];
+}
+
+#define MAX_COUNT_BG_SIZE  ([DeviceDetection isIPAD] ? CGSizeMake(160, 36) : CGSizeMake(80, 18))
+#define MIN_COUNT_BG_SIZE  ([DeviceDetection isIPAD] ? CGSizeMake(80, 36) : CGSizeMake(40, 18))
+
+- (void)didGetFanCount:(NSInteger)fanCount
+           followCount:(NSInteger)followCount
+            blackCount:(NSInteger)blackCount
+            resultCode:(NSInteger)resultCode
+{    
+    self.friendCountLabel.text = [NSString stringWithFormat:@"%d", fanCount];
+    
+    //change bg size
+    CGSize size = [_friendCountLabel.text sizeWithFont:_friendCountLabel.font];
+    if (size.width > MAX_COUNT_BG_SIZE.width) {
+        size = MAX_COUNT_BG_SIZE;
+    }
+    if (size.width < MIN_COUNT_BG_SIZE.width) {
+        size = MIN_COUNT_BG_SIZE;
+    }
+    [self.friendCountBackgroundImageView updateWidth:size.width];
+    self.friendCountBackgroundImageView.center = self.friendCountLabel.center;
 }
 
 #pragma mark - UpdateView
@@ -245,10 +290,17 @@
     //avatar
     [self.avatar.layer setMasksToBounds:YES];
     [self.avatar.layer setCornerRadius:(self.avatar.frame.size.width / 2)];
-    [self.avatar.layer setBorderWidth:3];
-    UIColor *borderColor = [UIColor colorWithRed:108/225 green:223./225 blue:187./225 alpha:1];
-    [self.avatar.layer setBorderColor:borderColor.CGColor];
-    [self.nickName setTextColor:borderColor];
+    
+    if (isSingApp()) {
+        [self.avatar.layer setBorderWidth:6];
+        [self.avatar.layer setBorderColor:[UIColor whiteColor].CGColor];
+        [self.nickName setTextColor:[UIColor blackColor]];
+    } else {
+        [self.avatar.layer setBorderWidth:3];
+        UIColor *borderColor = [UIColor colorWithRed:108/225 green:223./225 blue:187./225 alpha:1];
+        [self.avatar.layer setBorderColor:borderColor.CGColor];
+        [self.nickName setTextColor:borderColor];
+    }
     
     UserManager *userManager = [UserManager defaultManager];
     if([[userManager avatarURL] length] > 0){
@@ -273,8 +325,13 @@
     //coin
     NSInteger coin = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
     NSInteger ingot = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyIngot];
-
-    NSString *coinString = [NSString stringWithFormat:@"x %d",coin];
+    
+    NSString *coinString = nil;
+    if (isSingApp()) {
+        coinString = [NSString stringWithFormat:@"%d",coin];
+    } else {
+        coinString = [NSString stringWithFormat:@"x %d",coin];
+    }
     [self.coin setText:coinString];
     
     NSString *ingotString = [NSString stringWithFormat:@"x %d",ingot];
@@ -296,7 +353,7 @@
             [self didGetFeedList:self.feedList feedListType:0 resultCode:0];
         }
         self.displayBG.image = [[DrawImageManager defaultManager] drawHomeDisplayBG];
-
+        [self showFreed];
     }else{
         self.displayBG.hidden = YES;
         DrawImageManager *imageManager = [DrawImageManager defaultManager];
@@ -306,6 +363,28 @@
 
         [self.freeCoin setBackgroundImage:[imageManager zjhHomeFreeCoinBG]
                                  forState:UIControlStateNormal];
+    }
+    
+    if (isSingApp()) {
+        //change coin bg size
+        CGSize size = [_coin.text sizeWithFont:_coin.font];
+        if (size.width > MAX_COUNT_BG_SIZE.width) {
+            size = MAX_COUNT_BG_SIZE;
+        }
+        if (size.width < MIN_COUNT_BG_SIZE.width) {
+            size = MIN_COUNT_BG_SIZE;
+        }
+        [self.coinCountBackgroundImageView updateWidth:size.width];
+        self.coinCountBackgroundImageView.center = self.coin.center;
+        
+        //get fan count
+        [[FriendService defaultService] getRelationCount:self];
+        if ([StatisticManager defaultManager].fanCount > 0) {
+            self.friendBadgeButton.hidden = NO;
+            [self.friendBadgeButton setTitle:[NSString stringWithFormat:@"%d", (int)[StatisticManager defaultManager].fanCount] forState:UIControlStateNormal];
+        } else {
+            self.friendBadgeButton.hidden = YES;
+        }
     }
 }
 
@@ -321,6 +400,10 @@
     PPRelease(_feedList);
     PPRelease(_freeCoin);
     [_ingotLabel release];
+    [_friendCountLabel release];
+    [_friendBadgeButton release];
+    [_coinCountBackgroundImageView release];
+    [_friendCountBackgroundImageView release];
     [super dealloc];
 }
 - (IBAction)clickFreeCoinButton:(id)sender {
@@ -346,6 +429,14 @@
         [self.delegate homeHeaderPanel:self didClickBulletinButton:sender];
     }
     [self updateBulletinBadge:0];
+}
+
+- (IBAction)clickFriendButton:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickFriendButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickFriendButton:sender];
+    }
+    
+    self.friendBadgeButton.hidden = YES;
 }
 
 - (void)updateBulletinBadge:(int)count

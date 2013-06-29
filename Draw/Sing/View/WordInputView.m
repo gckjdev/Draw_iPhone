@@ -7,13 +7,16 @@
 //
 
 #import "WordInputView.h"
+#import "AudioManager.h"
 
 #define BUTTON_WIDTH (ISIPAD ? 65 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
-#define BUTTON_WIDTH_GAP (ISIPAD ? 8 : 4)
-#define BUTTON_HEIGHT_GAP (ISIPAD ? 8 : 4)
+#define BUTTON_WIDTH_GAP (ISIPAD ? 9 : 4)
+#define BUTTON_HEIGHT_GAP (ISIPAD ? 9 : 4)
 
 #define DEFAULT_COLOR [UIColor blackColor]
+
+#define FONT [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)]
 
 #define BUTTON_TAG_OFFSET 1000
 
@@ -49,6 +52,9 @@
     [_answerImage release];
     [_candidateColor release];
     [_answerColor release];
+    [_clickSound release];
+    [_wrongSound release];
+    [_correctSound release];
     [super dealloc];
 }
 
@@ -206,6 +212,7 @@
         CGRect frame = CGRectMake(originX, originY, width, height);
         UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
         [button setTitle:ch forState:UIControlStateNormal];
+        button.titleLabel.font = FONT;
         [button setTitleColor:_candidateColor forState:UIControlStateNormal];
         if ([ch characterAtIndex:0] == BOMB_CHAR) {
             button.enabled = NO;
@@ -242,6 +249,8 @@
     [button setTitle:nil forState:UIControlStateNormal];
     button.enabled = NO;
     
+    [[AudioManager defaultManager] playSoundByName:_clickSound];
+    
     CGPoint startPoint = [_candidateView convertPoint:button.center toView:self];
     CGPoint endPoint = [_answerView convertPoint:answerButton.center toView:self];
     
@@ -249,6 +258,7 @@
     moveButton.frame = button.bounds;
     moveButton.center = startPoint;
     [moveButton setTitle:ch forState:UIControlStateNormal];
+    moveButton.titleLabel.font = FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self addSubview:moveButton];
@@ -281,8 +291,10 @@
     
     BOOL isCorrect = [word isEqualToString:_answer];
     if (isCorrect) {
+        [[AudioManager defaultManager] playSoundByName:_correctSound];
         PPDebug(@"You get it: %@", word);
     }else{
+        [[AudioManager defaultManager] playSoundByName:_wrongSound];
         PPDebug(@"Wrong word: %@", word);
     }
     
@@ -312,6 +324,7 @@
 
     UIButton *moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [moveButton setTitle:ch forState:UIControlStateNormal];
+    moveButton.titleLabel.font = FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     moveButton.frame = button.bounds;
@@ -410,6 +423,7 @@
         
         UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(originX, 0, width, height)] autorelease];
         [button setTitleColor:_answerColor forState:UIControlStateNormal];
+        button.titleLabel.font = FONT;
         button.tag = BUTTON_TAG_OFFSET + index;
         button.enabled = NO;
         [button addTarget:self action:@selector(clickAnswerButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -508,6 +522,11 @@
     }
     
     [self setCandidates:s column:_column];
+}
+
+- (void)bombHalf{
+    
+    [self bomb:([_candidates length]/2)];
 }
 
 - (int)nonBombCharCountInCandidates{

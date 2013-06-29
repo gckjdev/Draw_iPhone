@@ -12,7 +12,6 @@
 #import "DrawColor.h"
 #import "DrawAction.h"
 #import "ItemType.h"
-#import "OffscreenManager.h"
 #import "DrawBgManager.h"
 #import "GestureRecognizerManager.h"
 #import <QuartzCore/QuartzCore.h>
@@ -21,6 +20,8 @@
 #import "PaintAction.h"
 #import "ShapeAction.h"
 
+#import "CacheDrawManager.h"
+
 @interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate>
 {
     NSMutableArray *_drawActionList;
@@ -28,7 +29,8 @@
     //used by subclass
     DrawAction *_currentAction;
     
-    OffscreenManager *osManager;
+    CacheDrawManager *cdManager;
+    
     GestureRecognizerManager *_gestureRecognizerManager;
 }
 

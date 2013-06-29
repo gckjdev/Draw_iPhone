@@ -119,6 +119,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
         [self createDiceTestDataFile];
     }else if (isSimpleDrawApp()){
         [self createLearnDrawTestDataFile];
+    }else if (isSingApp()){
+        [self createSingTestDataFile];
     }
 }
 
@@ -333,6 +335,47 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     
     [listBuilder release];
 }
+
++ (void)createSingTestDataFile
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    // 鲜花
+    [mutableArray addObject:[self itemWithItemId:ItemTypeFlower
+                                            name:@"kFlower"
+                                            desc:@"kFlowerDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_flower@2x.png")
+                                            type:PBDrawItemTypeDrawNomal
+                                           price:20
+                                        currency:PBGameCurrencyCoin]];
+    
+    // 锦囊
+    [mutableArray addObject:[self itemWithItemId:ItemTypeTips
+                                            name:@"kTips"
+                                            desc:@"kTipsDescription"
+                                     consumeType:PBGameItemConsumeTypeAmountConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_tipbag@2x.png")
+                                            type:PBDrawItemTypeDrawNomal
+                                           price:20
+                                        currency:PBGameCurrencyCoin]];
+    
+    PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
+    [listBuilder addAllItems:mutableArray];
+    PBGameItemList *list = [listBuilder build];
+    
+    //write to file
+    NSString *filePath = [@"/Users/Linruin/gitdata/" stringByAppendingPathComponent:[GameItemManager shopItemsFileName]];
+    
+    if (![[list data] writeToFile:filePath atomically:YES]) {
+        PPDebug(@"<createTestDataFile> error");
+    } else {
+        PPDebug(@"<createTestDataFile> succ");
+    }
+    
+    [listBuilder release];
+}
+
 
 
 + (void)createDrawTestDataFile

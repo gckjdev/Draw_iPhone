@@ -108,7 +108,7 @@
 							</object>
 							<object class="IBUIButton" id="715649699">
 								<reference key="NSNextResponder" ref="616950265"/>
-								<int key="NSvFlags">-2147483329</int>
+								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{585, 8}, {72, 65}}</string>
 								<reference key="NSSuperview" ref="616950265"/>
 								<reference key="NSNextKeyView" ref="345662721"/>
@@ -184,7 +184,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{435, 812}, {170, 60}}</string>
 								<reference key="NSSuperview" ref="616950265"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -309,6 +308,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickCancel:</string>
+						<reference key="source" ref="715649699"/>
+						<reference key="destination" ref="401776198"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">45</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickConfirm:</string>
 						<reference key="source" ref="113727065"/>
 						<reference key="destination" ref="401776198"/>
@@ -318,12 +326,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">clickCancel:</string>
+						<string key="label">clickReset:</string>
 						<reference key="source" ref="718157091"/>
 						<reference key="destination" ref="401776198"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">44</int>
+					<int key="connectionID">46</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -431,7 +439,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">44</int>
+			<int key="maxID">46</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

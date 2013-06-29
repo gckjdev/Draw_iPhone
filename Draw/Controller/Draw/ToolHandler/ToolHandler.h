@@ -21,6 +21,7 @@ typedef enum{
 @class PBDrawBg;
 @class MyFriend;
 @class CanvasRect;
+@class PBUserPhoto;
 
 @protocol ToolHandlerDelegate <NSObject>
 
@@ -42,6 +43,8 @@ didHandledToolEvent:(ToolEvent)toolEvent
 @property (retain, nonatomic) DrawColor *penColor;
 
 @property(nonatomic, assign) ItemType penType;
+@property(nonatomic, assign) Shadow *shadow;
+
 
 //method from draw view
 - (CGFloat)width;
@@ -58,6 +61,9 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeShapeStroke:(BOOL)isStroke;
 - (void)changeDesc:(NSString *)desc;
 - (void)changeDrawToFriend:(MyFriend *)aFriend;
+- (void)changeCopyPaint:(PBUserPhoto*)aPhoto;
+- (void)changeShadow:(Shadow *)shadow;
+
 - (void)usePaintBucket;
 - (void)enterDrawMode;
 - (void)enterStrawMode;
@@ -67,6 +73,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)handleRedo;
 - (void)handleUndo;
 - (void)handleChat;
+- (void)handleShowCopyPaint;
 
 //only use for little gee
 - (void)changeDrawWord:(NSString*)wordText;

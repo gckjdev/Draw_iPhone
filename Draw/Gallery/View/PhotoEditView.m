@@ -93,7 +93,7 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
     confirmTitle:(NSString*)confirmTitle
 {
     [self.confirmBtn setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
-    [self.cancelBtn setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    [self.cancelBtn setTitle:NSLS(@"kReset") forState:UIControlStateNormal];
     [self.titleLabel setText:title];
     [self.confirmBtn setTitle:confirmTitle forState:UIControlStateNormal];
 
@@ -205,6 +205,12 @@ AUTO_CREATE_VIEW_BY_XIB(PhotoEditView)
 - (IBAction)clickCancel:(id)sender
 {
     [self disappear];
+}
+
+- (IBAction)clickReset:(id)sender
+{
+    [self.tagSet removeAllObjects];
+    [self.tagTable reloadData];
 }
 
 - (IBAction)clickTagBtn:(id)sender

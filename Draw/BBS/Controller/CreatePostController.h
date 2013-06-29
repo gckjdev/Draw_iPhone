@@ -28,7 +28,7 @@
 @end
 
 
-@interface CreatePostController : PPViewController<BBSServiceDelegate, ChangeAvatarDelegate, OfflineDrawDelegate, BBSOptionViewDelegate>
+@interface CreatePostController : PPViewController<BBSServiceDelegate, ChangeAvatarDelegate, OfflineDrawDelegate, BBSOptionViewDelegate, UITextViewDelegate>
 {
     
 }

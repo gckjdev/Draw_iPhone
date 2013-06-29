@@ -151,7 +151,7 @@
 }
 
 - (NSString *)iapResourceFileName{
-    return @"";
+    return [self appId];
 }
 
 - (BOOL)showLocateButton
@@ -171,7 +171,7 @@
 
 - (UIColor *)homeMenuColor
 {
-    return [UIColor whiteColor];
+    return [UIColor blackColor];
 }
 
 - (NSString *)popupMessageDialogBackgroundImage

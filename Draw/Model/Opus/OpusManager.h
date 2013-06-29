@@ -44,7 +44,8 @@
 
 // 创建唱歌草稿
 - (SingOpus*)createDraftSingOpus:(PBSong*)song;
- 
+- (SingOpus*)createDraftSingOpusWithSelfDefineName:(NSString*)name;
+
 + (PBOpus *)createTestOpus;
 
 

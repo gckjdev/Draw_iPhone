@@ -74,5 +74,7 @@
 //+(void)printBBSPost:(PBBBSPost *)post;
 //+(void)printBBSAction:(PBBBSAction *)action;
 
++ (NSString *)lastInputText;
++ (BOOL)saveLastInputText:(NSString *)lastInputText;
 
 @end
