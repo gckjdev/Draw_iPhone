@@ -34,6 +34,8 @@ typedef enum{
 + (void)createTestData:(NSUInteger)number;
 + (void)scaleImages;
 
+- (NSString*)downloadProgressNotificationName;
+
 @end
 
 

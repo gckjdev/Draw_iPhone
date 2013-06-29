@@ -1314,6 +1314,7 @@
 
 "kCannotRevoke" = "Can't undo any more. If you want to undo more, save it, and edit it from the draf box.";
 
+"kBgDownloading" = "Background (%2.1f%%)";
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
 "kUpdateBackgroundFail" = "Fail to update background. Please try later.";

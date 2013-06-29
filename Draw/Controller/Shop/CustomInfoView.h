@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomInfoView : UIView
+{
+        
+}
 
 typedef void(^ButtonActionBlock)(UIButton *button, UIView *infoView);
 typedef void(^CloseHandler)();
@@ -18,6 +21,7 @@ typedef void(^CloseHandler)();
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
 @property (retain, nonatomic) UIView *infoView;
+@property (retain, nonatomic) NSMutableDictionary *notifications;
 @property (retain, nonatomic) IBOutlet UIImageView *mainBgImageView;
 
 
@@ -46,5 +50,11 @@ typedef void(^CloseHandler)();
 
 - (void)showActivity;
 - (void)hideActivity;
+
+- (void)setTitle:(NSString*)title;
+
+- (void)registerNotificationWithName:(NSString *)name
+                          usingBlock:(void (^)(NSNotification *note))block;
+- (void)unregisterAllNotifications;
 
 @end

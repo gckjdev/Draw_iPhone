@@ -10,7 +10,8 @@
 #import "SingUserInfoCell.h"
 #import "SingOpusInfoCell.h"
 #import "OpusManager.h"
-
+#import "UserDetailViewController.h"
+#import "SelfUserDetail.h"
 
 @interface SingOpusDetailController ()
 
@@ -44,6 +45,8 @@
 
 - (void)clickOnAuthor:(PBGameUser *)author{
     PPDebug(@"click author");
+    UserDetailViewController *vc = [[[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)clickOnOpus:(PBOpus *)opus{
@@ -52,10 +55,14 @@
 
 - (void)clickOnTargetUser:(PBGameUser *)user{
     PPDebug(@"click user");
+
 }
 
 - (void)clickAction:(id)sender{
     PPDebug(@"clickAction");
 }
+
+
+
 
 @end

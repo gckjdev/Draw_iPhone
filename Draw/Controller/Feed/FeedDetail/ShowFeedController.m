@@ -701,6 +701,7 @@ enum{
     [self presentModalViewController:replyController animated:YES];
     [replyController release];
 }
+
 - (void)didClickAvatar:(MyFriend *)myFriend
 {
 //    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName]] autorelease];

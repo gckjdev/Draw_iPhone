@@ -237,11 +237,11 @@
 {
 
     NSURL *URL = [NSURL URLWithString:user.avatar];
-    __block typeof(self) cp = self;
+//    __block typeof(self) cp = self;
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
         image = [UIImage shrinkImage:image withRate:0.8];
-        [cp.drawToUser setImage:image forState:UIControlStateNormal];
-        [cp.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
+        [self.drawToUser setImage:image forState:UIControlStateNormal];
+        [self.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
     } failure:^(NSError *error) {
         
     }];

@@ -22,7 +22,10 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "DrawGameAnimationManager.h"
 #import "ItemUseRecorder.h"
+#import "OpusGuessRecorder.h"
+
 #import "GameItemManager.h"
+#import "OpusGuessRecorder.h"
 
 @interface CommonGuessController ()
 
@@ -149,6 +152,8 @@
 }
 
 - (void)didGuessCorrect:(NSString *)word{
+    
+    [OpusGuessRecorder setOpusAsGuessed:_opus.pbOpus.opusId];
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
 }
 
