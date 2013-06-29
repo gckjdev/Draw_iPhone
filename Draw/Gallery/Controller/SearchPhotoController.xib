@@ -229,7 +229,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{33, 121}, {94, 33}}</string>
 						<reference key="NSSuperview" ref="189205802"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -259,7 +258,7 @@
 						<int key="NSvFlags">293</int>
 						<string key="NSFrame">{{50, 3}, {220, 40}}</string>
 						<reference key="NSSuperview" ref="189205802"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="591526245"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -477,13 +476,13 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="back@2x.png">{16, 16}</string>
-			<string key="search_bar_bg@2x.png">{16, 16}</string>
-			<string key="search_btn@2x.png">{16, 16}</string>
-			<string key="search_input_bg@2x.png">{16, 16}</string>
-			<string key="search_setting_btn@2x.png">{16, 16}</string>
-			<string key="topwood@2x.jpg">{16, 16}</string>
-			<string key="wood_bg@2x.jpg">{16, 16}</string>
+			<string key="back@2x.png">{67, 53}</string>
+			<string key="search_bar_bg@2x.png">{624, 103}</string>
+			<string key="search_btn@2x.png">{45, 43}</string>
+			<string key="search_input_bg@2x.png">{478, 66}</string>
+			<string key="search_setting_btn@2x.png">{71, 67}</string>
+			<string key="topwood@2x.jpg">{640, 79}</string>
+			<string key="wood_bg@2x.jpg">{640, 960}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

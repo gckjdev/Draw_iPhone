@@ -217,6 +217,8 @@
     UIGraphicsBeginImageContext(self.bounds.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
+    [[UIColor whiteColor] setFill];
+    CGContextFillRect(context, self.bounds);
     [cdManager showInContextWithoutGrid:context];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

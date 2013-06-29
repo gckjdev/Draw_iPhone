@@ -333,7 +333,7 @@
 
 - (PBGameCurrency)wallRewardCurrencyType
 {
-    return PBGameCurrencyIngot;
+    return PBGameCurrencyCoin;
 }
 
 - (PBGameCurrency)saleCurrency

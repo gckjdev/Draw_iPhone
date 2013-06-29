@@ -100,7 +100,6 @@
             
             [cell.contentView addSubview:photoView];
             [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)];
-            PPDebug(@"dataTableView width = %.2f, photo width = %.2f",self.dataTableView.frame.size.width, photoView.frame.size.width);
         }
     }
     for (int i = 0; i < IMAGE_PER_LINE; i ++) {

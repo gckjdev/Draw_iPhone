@@ -160,7 +160,7 @@ static DrawImageManager * _staticDrawImageManager;
 
 - (UIImage*)userPhoto
 {
-    NSString *imageName = [self fixImageName:@"draw_home_play_with_friend"];
+    NSString *imageName = [self fixImageName:@"draw_home_user_photo"];
     return [UIImage imageNamed:imageName];
 }
 
