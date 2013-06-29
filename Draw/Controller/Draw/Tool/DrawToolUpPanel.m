@@ -134,6 +134,7 @@
     panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
     panel.toolHandler = handler;
     handler.drawToolPanel = panel;
+    panel.hidden = YES;
     [panel updateView];
     return panel;
 }
@@ -181,6 +182,7 @@
 }
 
 - (void)appear:(UIViewController*)parentController
+         title:(NSString*)title
 {
     self.layer.opacity = 0;
     self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
@@ -192,6 +194,8 @@
     self.center = CGPointMake(self.center.x, self.frame.size.height/2+(ISIPAD?70:30));
     [UIView commitAnimations];
     self.isVisable = YES;
+    self.hidden = NO;
+    [self.titleLabel setText:title];
     
     [self addMask:parentController];
 }
@@ -221,6 +225,7 @@
     self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
     [UIView commitAnimations];
     self.isVisable = NO;
+    self.hidden = YES;
     
     
 }
