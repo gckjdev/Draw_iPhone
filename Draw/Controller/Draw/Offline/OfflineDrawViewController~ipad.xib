@@ -60,6 +60,7 @@
 						<string key="NSFrame">{{19, 100}, {730, 698}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -185,10 +186,6 @@
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_save_btn@2x.png</string>
-						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_button_highlight@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="605853301"/>
 						<reference key="IBUIFont" ref="308515567"/>
@@ -409,13 +406,13 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="0.0"/>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="0.0"/>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="0.0"/>
+					<real value="1"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -906,10 +903,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>draftButton</string>
 							<string>submitButton</string>
+							<string>upPanelButton</string>
 							<string>wordLabel</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
@@ -921,6 +920,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>draftButton</string>
 							<string>submitButton</string>
+							<string>upPanelButton</string>
 							<string>wordLabel</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -931,6 +931,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">submitButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">upPanelButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -1326,7 +1330,6 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>draw_back@2x.png</string>
-				<string>draw_button_highlight@2x.png</string>
 				<string>draw_commit_btn@2x.png</string>
 				<string>draw_main_bg@2x.jpg</string>
 				<string>draw_save_btn@2x.png</string>
@@ -1336,7 +1339,6 @@
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{73, 59}</string>
-				<string>{91, 56}</string>
 				<string>{62, 62}</string>
 				<string>{640, 960}</string>
 				<string>{62, 62}</string>

@@ -52,6 +52,7 @@
     defaultImage = [[ShareImageManager defaultManager] unloadBg];
     //        }
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [self setBackgroundColor:[UIColor blackColor]];
     [self.imageView setImageWithURL:[NSURL URLWithString:url]
                    placeholderImage:defaultImage
                             success:^(UIImage *image, BOOL cached) {
