@@ -106,6 +106,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
+@property (retain, nonatomic) IBOutlet UIButton *upPanelButton;
 
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
@@ -214,6 +215,7 @@
     PPRelease(_bgImageName);
     PPRelease(_currentDialog);
     PPRelease(_copyPaintUrl);
+    [_upPanelButton release];
     [super dealloc];
 }
 
@@ -466,6 +468,7 @@
     
     if (targetType == TypeGraffiti || targetType == TypePhoto) {
         self.draftButton.hidden = YES;
+        [self.upPanelButton setCenter:self.draftButton.center];
     }
     
 }
@@ -496,7 +499,7 @@
     [self.drawToolPanel setPanelForOnline:NO];
     [self.drawToolUpPanel setPanelForOnline:NO];
     
-    [self.drawToolUpPanel.titleLabel setText:self.word.text];
+    [self.drawToolUpPanel.titleLabel setText:(self.word.text && self.word.text.length > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
 }
 
 - (void)setOpusDesc:(NSString *)opusDesc
@@ -651,6 +654,7 @@
     [self setWordLabel:nil];
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
+    [self setUpPanelButton:nil];
     [super viewDidUnload];
 }
 
@@ -1285,7 +1289,7 @@
 - (IBAction)clickUpPanel:(id)sender
 {
     if (![self.drawToolUpPanel isVisable]) {
-        [self.drawToolUpPanel appear:self];
+        [self.drawToolUpPanel appear:self title:self.word.text];
     } else {
         [self.drawToolUpPanel disappear];
     }

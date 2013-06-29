@@ -19,7 +19,6 @@
 @protocol UserDetailProtocol <NSObject>
 
 - (NSString*)getUserId;
-//- (PBGameUser*)queryUser;
 - (BOOL)canEdit;
 - (BOOL)shouldShow;
 - (BOOL)isBlackBtnVisable;

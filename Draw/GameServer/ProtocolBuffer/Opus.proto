@@ -121,8 +121,6 @@ message PBOpusAction{
     required string actionId = 1;
     optional int32 actionType = 2;                  //3 comment, 2, guess, 6 flower
     
-    
-//    optional string opusId = 5;                   // 评论的作品的Id
     optional PBGameUser userInfo = 6;               // 评论人的信息
     optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
 
@@ -154,7 +152,7 @@ message PBActionGuess{
 message PBActionTimes{
     required int32  type  = 1;                      // 操作类型
     optional string name  = 2;                      // 名字
-    optional int32  value = 3[default=0];           // 
+    optional int32  value = 3[default=0];           
 }
 
 message PBTimeline

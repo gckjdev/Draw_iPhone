@@ -18,7 +18,9 @@
 
 #define SEARCH_HISTORY @"searchHistory"
 
-@interface SearchPhotoController () <CommonSearchImageFilterViewDelegate, GoogleCustomSearchServiceDelegate>
+@interface SearchPhotoController () <CommonSearchImageFilterViewDelegate, GoogleCustomSearchServiceDelegate, AutocompletionTableViewDelegate> {
+    UIControl* _mask;
+}
 
 @property (retain, nonatomic) NSMutableDictionary* options;
 @property (retain, nonatomic) AutocompletionTableView* autoCompleter;
@@ -58,7 +60,7 @@
     self.options = [[[NSMutableDictionary alloc] init] autorelease];
     [self.searchTextField addTarget:self.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
     self.searchTextField.delegate = self;
-    
+    self.autoCompleter.completeDelegate = self;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -175,12 +177,13 @@
 
 - (IBAction)clickSearch:(id)sender
 {
-//    [self saveSearchHistory];
+    [self saveSearchHistory];
 //    EXECUTE_BLOCK(self.searchHandler, self.searchTextField.text, self.options);
 //    self.searchHandler = nil;
 //    [self disappear];
     
     //TODO:enter search result
+    [self.searchTextField resignFirstResponder];
     
     [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchTextField.text imageSize:CGSizeMake(0, 0) imageType:nil startPage:0 paramDict:self.options delegate:self];
     [self showActivityWithText:NSLS(@"kSearching")];
@@ -215,6 +218,7 @@
 {
     if (textField.text.length > 0) {
         [self clickSearch:nil];
+        [textField resignFirstResponder];
         return YES;
     }
     return NO;
@@ -230,6 +234,35 @@
         SearchPhotoResultController* vc = [[[SearchPhotoResultController alloc] initWithKeyword:self.searchTextField.text options:self.options resultArray:array] autorelease];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+{
+    _mask = [[[UIControl alloc] initWithFrame:CGRectMake(0, self.searchTextField.frame.origin.y + self.searchTextField.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height)] autorelease];
+    [_mask addTarget:self action:@selector(clickMask:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_mask];
+    
+}
+
+- (void)keyboardWillHideWithRect:(CGRect)keyboardRect
+{
+    if (_mask) {
+        [_mask removeFromSuperview];
+    }
+}
+
+- (void)clickMask:(id)sender
+{
+    _mask = nil;
+    UIControl* mask = (UIControl*)sender;
+    [self.searchTextField resignFirstResponder];
+    [mask removeFromSuperview];
+    
+}
+
+- (void)didSelectCompleteText:(NSString *)text
+{
+    [self clickSearch:nil];
 }
 
 @end

@@ -907,7 +907,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_up_panel_accessory@2x.png">{38, 38}</string>
 			<string key="draw_up_panel_background@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_bg@2x.png">{345, 547}</string>
+			<string key="draw_up_panel_bg@2x.png">{357, 544}</string>
 			<string key="draw_up_panel_blocks@2x.png">{54, 54}</string>
 			<string key="draw_up_panel_canvas_btn@2x.png">{54, 54}</string>
 			<string key="draw_up_panel_copy_paint_btn@2x.png">{54, 54}</string>
