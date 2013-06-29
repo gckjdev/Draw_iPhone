@@ -1067,7 +1067,7 @@
 
 "kCharge" = "充值";
 "kChargeTitle" = "充值";
-"kFreeCoins" = "免费金币";
+"kFreeCoins" = "金币";
 
 "kHomeMenuTypeZJHHelp" = "帮助";
 "kHomeMenuTypeZJHStart" = "快速开始";
@@ -1191,7 +1191,7 @@
 "kRewardIngotWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取元宝";
 "kRewardCoinWallTips" = "下载第三方应用(免费)，注册使用60秒以上可赚取金币";
 
-"kFreeIngots" = "免费金币";
+"kFreeIngots" = "金币";
 "kGoToBBS4Help" = "逛逛论坛寻求帮助";
 "kCleaning" = "清理缓存中，时间可能比较长，请耐心等待";
 
@@ -1268,8 +1268,8 @@
 
 "kSelectBGImage" = "选择背景";
 "kSelectShape" = "选择形状";
-"kStroke" = "描边";
-"kFill" = "填充";
+"kStroke" = "空心";
+"kFill" = "实心";
 
 "kCannotRevoke" = "不能继续撤销了！如果需要继续撤销可以尝试先保存，然后从草稿箱重新打开。";
 
