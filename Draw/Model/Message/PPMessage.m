@@ -252,11 +252,14 @@
     self = [super initWithPBMessage:pbMessage];
     if (self) {
         NSArray *pbAList = [pbMessage drawDataList];
-        _drawActionList = [[NSMutableArray alloc] initWithCapacity:[pbAList count]];
-        for (PBDrawAction *action in pbAList) {
-            DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
-            [_drawActionList addObject:da];
-        }
+//        _drawActionList = [[NSMutableArray alloc] initWithCapacity:[pbAList count]];
+//        for (PBDrawAction *action in pbAList) {
+//            DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
+//            [_drawActionList addObject:da];
+//        }
+        
+        _drawActionList = [[DrawAction drawActionListFromPBBMessage:pbMessage] retain];
+        
         self.drawDataVersion = pbMessage.drawDataVersion;
         if ([pbMessage hasCanvasSize]) {
             self.canvasSize = CGSizeFromPBSize(pbMessage.canvasSize);

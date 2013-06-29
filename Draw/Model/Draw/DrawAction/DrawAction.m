@@ -16,6 +16,9 @@
 #import "ChangeBGImageAction.h"
 #import "StringUtil.h"
 #import "Word.h"
+#import "BBS.pb-c.h"
+#import "DrawUtils.h"
+#import "Draw.h"
 
 @implementation DrawAction
 
@@ -355,6 +358,67 @@
     
 }
 
++ (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size
+{
+    
+    Game__PBBBSDraw pbBBSDrawC = GAME__PBBBSDRAW__INIT;
+    
+    Game__PBSize canvasSize = GAME__PBSIZE__INIT;
+    pbBBSDrawC.canvassize = &canvasSize;
+    pbBBSDrawC.canvassize->has_height = 1;
+    pbBBSDrawC.canvassize->has_width = 1;
+    pbBBSDrawC.canvassize->height = size.height;
+    pbBBSDrawC.canvassize->width = size.width;
+    
+    pbBBSDrawC.version = [ConfigManager currentDrawDataVersion];
+    pbBBSDrawC.has_version = 1;
+    
+    int count = [drawActionList count];
+    if (count > 0){
+        pbBBSDrawC.drawactionlist = malloc(sizeof(Game__PBDrawAction*)*count);
+        pbBBSDrawC.n_drawactionlist = count;
+    }
+    
+    // set data
+    [DrawAction createPBDrawActionC:pbBBSDrawC.drawactionlist drawActionList:drawActionList];
+    
+    void *buf = NULL;
+    unsigned len = 0;
+    NSData* data = nil;
+    
+    len = game__pbbbsdraw__get_packed_size (&pbBBSDrawC);    // This is the calculated packing length
+    buf = malloc (len);                                                 // Allocate memory
+    if (buf != NULL){
+        game__pbbbsdraw__pack (&pbBBSDrawC, buf);                // Pack msg, including submessages
+        
+        // create data object
+        data = [NSData dataWithBytesNoCopy:buf length:len];
+    }
+    
+    // free memory
+    [DrawAction freePBDrawActionC:pbBBSDrawC.drawactionlist count:pbBBSDrawC.n_drawactionlist];
+    free(pbBBSDrawC.drawactionlist);
+    
+    return data;
+
+    
+    //    PBBBSDraw *bbsDraw = nil;
+    //    NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
+    //    for (DrawAction *action in drawActionList) {
+    //        PBDrawAction * pbAction = [action toPBDrawAction];
+    //        [pbDrawActionList addObject:pbAction];
+    //    }
+    //    if ([pbDrawActionList count] != 0) {
+    //        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
+    //        [builder addAllDrawActionList:pbDrawActionList];
+    //        [builder setVersion:[ConfigManager currentDrawDataVersion]];
+    //        [builder setCanvasSize:CGSizeToPBSize(size)];
+    //        bbsDraw = [builder build];
+    //        [builder release];
+    //    }
+    //    return bbsDraw;
+}
+
 + (NSData*)buildPBDrawData:(NSString*)userId
                       nick:(NSString *)nick
                     avatar:(NSString *)avatar
@@ -542,6 +606,48 @@
     }
     
     return nil;
+}
+
+
++ (NSMutableArray *)drawActionListFromPBBBSDraw:(PBBBSDraw *)bbsDraw
+{
+    
+    NSMutableArray* drawActionList = nil;
+    
+    if (bbsDraw) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
+        Game__PBBBSDraw* pbBBSDrawC = NULL;
+        
+        NSData* data = [bbsDraw data];
+        int dataLen = [data length];
+        if (dataLen > 0){
+            uint8_t* buf = malloc(dataLen);
+            if (buf != NULL){
+                
+                [data getBytes:buf length:dataLen];
+                pbBBSDrawC = game__pbbbsdraw__unpack(NULL, dataLen, buf);
+                free(buf);
+
+                drawActionList =
+                [NSMutableArray arrayWithArray:[Draw drawActionListFromPBActions:pbBBSDrawC->drawactionlist
+                                                                     actionCount:pbBBSDrawC->n_drawactionlist
+                                                                      canvasSize:CGSizeFromPBSizeC(pbBBSDrawC->canvassize)]];
+                
+                [drawActionList retain];
+                game__pbbbsdraw__free_unpacked(pbBBSDrawC, NULL);
+            }
+        }
+        
+        [pool drain];
+    }
+
+    return [drawActionList autorelease];
+    
+}
++ (NSMutableArray *)drawActionListFromPBMessage:(PBMessage *)message
+{
+    
 }
 
 @end
