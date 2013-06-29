@@ -185,6 +185,34 @@
     return nil;
 }
 
+- (NSData *)toData
+{
+    int count = 1;
+    int i = 0;
+    Game__PBDrawAction** pbDrawActionC = malloc(sizeof(Game__PBDrawAction*)*count);
+    
+    pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
+    game__pbdraw_action__init(pbDrawActionC[i]);
+    [self toPBDrawActionC:pbDrawActionC[i]];
+    
+    
+    void *buf = NULL;
+    unsigned len = 0;
+    NSData* data = nil;
+    
+    len = game__pbdraw_action__get_packed_size (pbDrawActionC[i]);    // This is the calculated packing length
+    buf = malloc (len);                                                 // Allocate memory
+    if (buf != NULL){
+        game__pbdraw_action__pack (pbDrawActionC[i], buf);                // Pack msg, including submessages
+        // create data object
+        data = [NSData dataWithBytesNoCopy:buf length:len];
+//        free(buf)   if call dataWithBytesNoCopy, should not free buf...
+    }
+    
+    [DrawAction freePBDrawActionC:pbDrawActionC count:count];
+    return data;
+}
+
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
     if (self.clipTag != 0) {
@@ -470,7 +498,6 @@
     buf = malloc (len);                                                 // Allocate memory
     if (buf != NULL){
         game__pbdraw__pack (&pbDrawC, buf);                // Pack msg, including submessages
-        
         // create data object
         data = [NSData dataWithBytesNoCopy:buf length:len];
     }
@@ -664,10 +691,9 @@
                 pbMessageC = game__pbmessage__unpack(NULL, dataLen, buf);
                 free(buf);
                 
-                drawActionList =
-                [NSMutableArray arrayWithArray:[Draw drawActionListFromPBActions:pbMessageC->drawdata
+                drawActionList = (id)[Draw drawActionListFromPBActions:pbMessageC->drawdata
                                                                      actionCount:pbMessageC->n_drawdata
-                                                                      canvasSize:CGSizeFromPBSizeC(pbMessageC->canvassize)]];
+                                                                      canvasSize:CGSizeFromPBSizeC(pbMessageC->canvassize)];
                 
                 [drawActionList retain];
                 game__pbmessage__free_unpacked(pbMessageC, NULL);

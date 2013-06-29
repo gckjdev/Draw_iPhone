@@ -100,6 +100,7 @@ typedef enum {
 
 
 - (PBDrawAction *)toPBDrawAction;
+- (NSData *)toData;
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 

@@ -279,43 +279,15 @@
     [builder setDrawDataVersion:self.drawDataVersion];
     if ([self.drawActionList count] != 0) {
         for (DrawAction *action in self.drawActionList) {
-//            [builder addDrawData:[action toPBDrawAction]];
-            
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-            // create one item array for later free
-            int count = 1;
-            int i = 0;
-            Game__PBDrawAction** pbDrawActionC = malloc(sizeof(Game__PBDrawAction*)*count);
+            NSData *data = [action toData];
             
-            pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
-            game__pbdraw_action__init(pbDrawActionC[i]);
-            [action toPBDrawActionC:pbDrawActionC[i]];
-            
-            
-            void *buf = NULL;
-            unsigned len = 0;
-            NSData* data = nil;
-            
-            len = game__pbdraw_action__get_packed_size (pbDrawActionC[i]);    // This is the calculated packing length
-            buf = malloc (len);                                                 // Allocate memory
-            if (buf != NULL){
-                game__pbdraw_action__pack (pbDrawActionC[i], buf);                // Pack msg, including submessages
-                
-                // create data object
-                data = [NSData dataWithBytesNoCopy:buf length:len];
-            }
-
-            // free
-            [DrawAction freePBDrawActionC:pbDrawActionC count:count];
-
-            // add data
             PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
             [builder addDrawData:pbDrawAction];
             
             [pool drain];
             
-//            [action toPBDrawActionC:<#(Game__PBDrawAction *)#>]
         }
     }
     return [builder build];
