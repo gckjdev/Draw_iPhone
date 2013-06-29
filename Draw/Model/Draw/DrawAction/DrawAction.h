@@ -84,6 +84,8 @@ typedef enum {
               isCompressed:(BOOL)isCompressed;
 
 
++ (void)freePBDrawActionC:(Game__PBDrawAction**)pbDrawActionC count:(int)count;
+
 + (NSMutableArray *)drawActionListFromPBBBSDraw:(PBBBSDraw *)bbsDraw;
 + (NSMutableArray *)drawActionListFromPBMessage:(PBMessage *)message;
 
@@ -98,6 +100,7 @@ typedef enum {
 
 
 - (PBDrawAction *)toPBDrawAction;
+- (NSData *)toData;
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 

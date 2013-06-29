@@ -12,6 +12,7 @@
 #import "DrawAction.h"
 #import "GameMessage.pb.h"
 #import "CanvasRect.h"
+#import "GameBasic.pb-c.h"
 
 #define KEY_MESSAGEID @"KEY_MESSAGEID"
 #define KEY_CREATE_DATE @"KEY_CREATE_DATE"
@@ -251,14 +252,14 @@
 {
     self = [super initWithPBMessage:pbMessage];
     if (self) {
-        NSArray *pbAList = [pbMessage drawDataList];
+//        NSArray *pbAList = [pbMessage drawDataList];
 //        _drawActionList = [[NSMutableArray alloc] initWithCapacity:[pbAList count]];
 //        for (PBDrawAction *action in pbAList) {
 //            DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
 //            [_drawActionList addObject:da];
 //        }
         
-        _drawActionList = [[DrawAction drawActionListFromPBBMessage:pbMessage] retain];
+        _drawActionList = [[DrawAction drawActionListFromPBMessage:pbMessage] retain];
         
         self.drawDataVersion = pbMessage.drawDataVersion;
         if ([pbMessage hasCanvasSize]) {
@@ -278,7 +279,15 @@
     [builder setDrawDataVersion:self.drawDataVersion];
     if ([self.drawActionList count] != 0) {
         for (DrawAction *action in self.drawActionList) {
-            [builder addDrawData:[action toPBDrawAction]];
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+            NSData *data = [action toData];
+            
+            PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
+            [builder addDrawData:pbDrawAction];
+            
+            [pool drain];
+            
         }
     }
     return [builder build];

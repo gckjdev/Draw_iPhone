@@ -931,8 +931,9 @@ BBSService *_staticBBSService;
     
         if (draw != nil) {
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
-            NSArray *list = [draw drawActionListList];
-            NSMutableArray *drawActionList = [DrawManager parseFromPBDrawActionList:list];
+//            NSArray *list = [draw drawActionListList];
+            NSMutableArray *drawActionList = [DrawAction drawActionListFromPBBBSDraw:draw];
+//            NSMutableArray *drawActionList = [DrawManager parseFromPBDrawActionList:list];
             if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:canvasSize:postId:actionId:fromRemote:resultCode:)]) {
                 
                 CGSize size = [draw hasCanvasSize] ? (CGSizeFromPBSize(draw.canvasSize)) : [CanvasRect deprecatedIPhoneRect].size;

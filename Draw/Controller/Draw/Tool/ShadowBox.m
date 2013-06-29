@@ -129,6 +129,9 @@
     _shadow.color = [DrawColor blackColor];
     [preView setNeedsDisplay];
     [settingView updateSliders];
+    
+    [self clickApply:nil];//apply && close the window
+    
 }
 
 - (IBAction)clickApply:(id)sender {
