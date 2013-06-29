@@ -1014,4 +1014,22 @@
 {
     return [MobClickUtils getFloatValueByKey:@"LITTLE_GEE_SHOW_OPTIONS_DURATION" defaultValue:60.0];
 }
+
++ (int)maxShadowDistance
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_SHADOW_DISTANCE" defaultValue:30];
+}
++ (int)maxShadowBlur
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_SHADOW_BLUR" defaultValue:15];
+}
++ (int)cachedActionCount
+{
+    return [MobClickUtils getIntValueByKey:@"CACHED_ACTION_COUNT" defaultValue:700];
+}
++ (int)minUndoActionCount
+{
+    return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:100];
+}
+
 @end

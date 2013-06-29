@@ -267,4 +267,11 @@ typedef enum{
 + (NSString*)getAppItuneLink;
 + (int)maxDrawChineseTitleLen;
 + (int)maxDrawEnglishTitleLen;
+
+
++ (int)maxShadowDistance;
++ (int)maxShadowBlur;
++ (int)cachedActionCount;
++ (int)minUndoActionCount;
+
 @end

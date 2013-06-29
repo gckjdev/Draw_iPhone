@@ -13,7 +13,7 @@
 #import "PocketSVG.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CustomInfoView.h"
-
+#import "ConfigManager.h"
 
 @interface ShadowBox()
 {
@@ -288,10 +288,6 @@
 
 @end
 
-//#define SETTINGVIEW_CENTER_IPHONE CGPointMake(125,150+73)
-//#define SETTINGVIEW_CENTER_IPAD CGPointMake(125,153+65)
-//#define SETTINGVIEW_CENTER ISIPAD ? SETTINGVIEW_CENTER_IPAD : SETTINGVIEW_CENTER_IPHONE
-
 #define VALUE(X) (ISIPAD ? 2 * X : X)
 #define ALPHA_LABEL_FRAME (ISIPAD ? CGRectMake(0, 0, 40*2, 20*2) : CGRectMake(0, 0, 40, 20))
 #define ALPHA_FONT_SIZE VALUE(14.0)
@@ -310,12 +306,13 @@ SLIDER.frame = frame;\
 SLIDER.tag = TAG;\
 [self addSubview:SLIDER];
 
-//TODO get from reomote parameters
-#define MAX_SHADOW_DISTANCE 30
-#define MAX_SHADOW_BLUR 15
+
+#define MAX_SHADOW_DISTANCE [ConfigManager maxShadowDistance]
+#define MAX_SHADOW_BLUR [ConfigManager maxShadowBlur]
 
 - (void)updateViews
 {
+
     CGRect frame;
     REPLACE_SLIDER(self.degreeSlider, 0, 360, _shadow.degree, 1);
     REPLACE_SLIDER(self.distanceSlider, 0, MAX_SHADOW_DISTANCE, _shadow.distance, 2);

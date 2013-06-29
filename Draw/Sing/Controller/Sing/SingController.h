@@ -19,7 +19,7 @@
 #import "VoiceChanger.h"
 #import "VoiceProcessor.h"
 
-@interface SingController : PPViewController <AVAudioRecorderDelegate,InputDialogDelegate, ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
+@interface SingController : PPViewController <InputDialogDelegate, ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *originButton;
 @property (retain, nonatomic) IBOutlet UIButton *tomCatButton;
@@ -45,7 +45,13 @@
 @property (retain, nonatomic) IBOutlet UIView *opusMainView;
 @property (retain, nonatomic) IBOutlet UIView *opusReview;
 
+// if select a song, load with this.
 - (id)initWithSong:(PBSong *)song;
+
+// if self define, load with this.
+- (id)initWithName:(NSString *)name;
+
+// if load form draft, use this method.
 - (id)initWithOpus:(SingOpus *)opus;
 
 @end

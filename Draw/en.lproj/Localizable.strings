@@ -1799,6 +1799,10 @@
 "kSingTop" = "TOP";
 "kSingContest" = "CONTEST";
 
+"kInputSingName" = "Input song name";
+"kSingNameCannotBeBlankStr" = "You can not input a blank string.";
+
+
 /*********************你唱我猜国际化字符串结束 ************************/
 
 /*********************图库国际化字符串开始 ************************/
@@ -1836,4 +1840,7 @@
 "kEnterNewName" = "Enter New Name";
 "kReset" = "Reset";
 /*********************图库国际化字符串结束 ************************/
+
+
+
 

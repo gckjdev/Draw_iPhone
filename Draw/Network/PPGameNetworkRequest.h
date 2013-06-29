@@ -44,6 +44,7 @@
                                               parameters:(NSDictionary *)parameters
                                            isReturnArray:(BOOL)isReturnArray;
 
+
 + (GameNetworkOutput*)trafficApiServerGetAndResponsePB:(NSString *)method
                                             parameters:(NSDictionary *)parameters;
 

@@ -150,7 +150,7 @@ drawActionList:(NSArray*)drawActionList
         // backup data to file
         if ([data length] > 0){
             [data writeToFile:dataPath atomically:YES];
-        }        
+        }
 
         // release temp objects
         [subPool drain];

@@ -14,8 +14,8 @@
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 
-#define MAX_CACHED_ACTION_COUNT 600
-#define MIN_UNDO_COUNT 100
+#define MAX_CACHED_ACTION_COUNT [ConfigManager cachedActionCount]
+#define MIN_UNDO_COUNT [ConfigManager minUndoActionCount]
 #define LINE_SPACE [ConfigManager getDrawGridLineSpace]
 
 

@@ -11,6 +11,7 @@
 #import "SingOpusInfoCell.h"
 #import "OpusManager.h"
 
+
 @interface SingOpusDetailController ()
 
 @end

@@ -29,9 +29,6 @@ enum{
 - (void)dealloc {
     [_titleLabel release];
     [_pbOpus release];
-//    [_userInfoCell release];
-//    [_opusInfoCell release];
-//    [_actionHeader release];
     [super dealloc];
 }
 
@@ -199,6 +196,7 @@ enum{
 }
 
 - (void)clickOnAuthor:(PBGameUser *)author{
+    
 }
 
 - (void)clickOnOpus:(PBOpus *)opus{
