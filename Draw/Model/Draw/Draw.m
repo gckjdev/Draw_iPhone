@@ -28,6 +28,41 @@
     [super dealloc];
 }
 
++ (NSArray *)drawActionListFromPBActions:(Game__PBDrawAction **)array
+                             actionCount:(int)actionCount
+                              canvasSize:(CGSize)canvasSize
+{
+    if (array != NULL) {
+        
+        NSMutableArray *list = [NSMutableArray array];
+        for (int i=0; i<actionCount; i++){
+            
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            
+            Game__PBDrawAction* pbDrawActionC = array[i];
+            if (pbDrawActionC != NULL){
+                DrawAction* drawAction = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
+                [drawAction setCanvasSize:canvasSize];
+                [list addObject:drawAction];
+            }
+            
+            [pool drain];
+        }
+        
+        return list;
+        
+        //        NSMutableArray *list = [NSMutableArray array];
+        //        for (PBDrawAction *action in array) {
+        //            DrawAction *drawAction = [DrawAction drawActionWithPBDrawAction:action];
+        //            [drawAction setCanvasSize:canvasSize];
+        //            [list addObject:drawAction];
+        //        }
+        //        return list;
+    }
+    return nil;
+}
+
+/*
 - (NSArray *)drawActionListFromPBActions:(Game__PBDrawAction **)array
                              actionCount:(int)actionCount
                               canvasSize:(CGSize)canvasSize
@@ -61,6 +96,7 @@
     }
     return nil;
 }
+*/
 
 - (NSArray *)drawActionListFromPBActions:(NSArray *)array canvasSize:(CGSize)canvasSize
 {
@@ -108,10 +144,9 @@
             self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
         }
         
-        self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDrawC->drawdata
+        self.drawActionList = [NSMutableArray arrayWithArray:[Draw drawActionListFromPBActions:pbDrawC->drawdata
                                                                                    actionCount:pbDrawC->n_drawdata
                                                                                     canvasSize:self.canvasSize]];
-//        self.drawActionList = [NSMutableArray arrayWithArray:[self drawActionListFromPBActions:pbDraw.drawDataList canvasSize:self.canvasSize]];
     }
     return self;
     

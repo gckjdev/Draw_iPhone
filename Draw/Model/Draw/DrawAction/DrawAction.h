@@ -12,6 +12,8 @@
 #import "Draw.pb-c.h"
 #import "Shadow.h"
 
+@class PBBBSDraw;
+@class PBMessage;
 @class Word;
 //@class Shadow;
 
@@ -80,6 +82,12 @@ typedef enum {
                   language:(int)language
                       size:(CGSize)size
               isCompressed:(BOOL)isCompressed;
+
+
++ (NSMutableArray *)drawActionListFromPBBBSDraw:(PBBBSDraw *)bbsDraw;
++ (NSMutableArray *)drawActionListFromPBMessage:(PBMessage *)message;
+
++ (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size;
 
 //new Method should overload by sub classes..
 

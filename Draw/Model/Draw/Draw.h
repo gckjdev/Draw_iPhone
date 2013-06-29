@@ -46,7 +46,9 @@
                 word:(Word *)word
           canvasSize:(CGSize)size;
 
-
++ (NSArray *)drawActionListFromPBActions:(Game__PBDrawAction **)array
+                             actionCount:(int)actionCount
+                              canvasSize:(CGSize)canvasSize;
 
 - (id)initWithPBDraw:(PBDraw *)pbDraw;
 - (id)initWithPBDrawC:(Game__PBDraw*)pbDrawC;
