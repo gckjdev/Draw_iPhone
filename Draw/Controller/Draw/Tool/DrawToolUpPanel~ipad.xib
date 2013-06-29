@@ -148,13 +148,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">help</string>
+						<string key="IBUINormalTitle">Label</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="514889441">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -186,13 +186,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">grid</string>
+						<string key="IBUINormalTitle">Label</string>
 						<reference key="IBUIHighlightedTitleColor" ref="514889441"/>
 						<reference key="IBUISelectedTitleColor" ref="514889441"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -247,13 +247,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">BG</string>
+						<string key="IBUINormalTitle">Label</string>
 						<reference key="IBUIHighlightedTitleColor" ref="514889441"/>
 						<reference key="IBUISelectedTitleColor" ref="514889441"/>
 						<reference key="IBUINormalTitleColor" ref="694083474"/>
@@ -279,13 +279,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">e</string>
+						<string key="IBUINormalTitle">Label</string>
 						<reference key="IBUIHighlightedTitleColor" ref="514889441"/>
 						<reference key="IBUISelectedTitleColor" ref="514889441"/>
 						<reference key="IBUINormalTitleColor" ref="694083474"/>
@@ -312,7 +312,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
@@ -876,16 +876,16 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="17.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="17.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="18.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="18.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="18.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="19.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="19.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="200.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="200.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="200.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="200.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="203.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="204.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -900,7 +900,7 @@
 				<real value="2" key="212.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="212.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="214.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="214.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="214.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="214.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="217.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="219.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -908,7 +908,7 @@
 				<real value="0.0" key="221.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="224.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="27.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="27.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="27.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="28.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
@@ -1200,7 +1200,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_up_panel_accessory@2x.png">{38, 38}</string>
 			<string key="draw_up_panel_background@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_bg@2x.png">{345, 547}</string>
+			<string key="draw_up_panel_bg@2x.png">{357, 544}</string>
 			<string key="draw_up_panel_blocks@2x.png">{54, 54}</string>
 			<string key="draw_up_panel_canvas_btn@2x.png">{54, 54}</string>
 			<string key="draw_up_panel_copy_paint_btn@2x.png">{54, 54}</string>
