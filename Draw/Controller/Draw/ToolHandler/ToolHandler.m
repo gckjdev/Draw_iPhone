@@ -15,6 +15,7 @@
 #import "OnlineDrawViewController.h"
 #import "UIViewUtils.h"
 #import "CommonMessageCenter.h"
+#import "GradientAction.h"
 
 @interface ToolHandler ()
 {
@@ -39,10 +40,19 @@
 }
 
 
+- (void)printDrawColor:(NSTimer *)timer
+{
+//    PPDebug(@"Draw Color = %@", self.drawView.lineColor);
+}
+
 - (id)init
 {
     self = [super init];
     if (self) {
+
+#ifdef DEBUG
+        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(printDrawColor:) userInfo:nil repeats:YES];
+#endif
         
     }
     return self;
@@ -51,7 +61,7 @@
 - (void)setDrawView:(DrawView *)drawView
 {
     _drawView = drawView;
-    self.penColor = drawView.lineColor;
+    self.penColor = [DrawColor colorWithColor:drawView.lineColor];
     self.penType = drawView.penType;
 }
 
@@ -61,36 +71,40 @@
     self.drawView.shadow = shadow;
 }
 
-- (void)setPenColor:(DrawColor *)penColor
-{
-    if (_penColor != penColor) {
-        [_penColor release];
-        _penColor = penColor;
-        _penColor = [penColor retain];
-
-        PPDebug(@"set pen color = %@",_penColor.description);
-    }
-}
-
 
 
 - (void)changePenColor:(DrawColor *)color
 {
     CGFloat alpha = self.penColor.alpha;
-//    color = [DrawColor colorWithColor:color];
-    self.penColor = [DrawColor colorWithColor:color];;
+    self.penColor = [DrawColor colorWithColor:color];
     self.drawView.lineColor = [DrawColor colorWithColor:color];;
     self.drawView.penType = self.penType;
-    [self changeAlpha:alpha];
-    
+
+    [self.penColor setAlpha:alpha];
+    if (self.drawView.penType != Eraser) {
+        [self.drawView.lineColor setAlpha:alpha];
+    }
 }
 - (void)changeDrawBG:(PBDrawBg *)drawBG
 {
     [self.drawView changeBGImageWithDrawBG:drawBG];
 }
 
+- (void)addGradient
+{
+
+    CGPoint ep = CGPointMake(CGRectGetMaxX(self.drawView.bounds), CGRectGetMaxY(self.drawView.bounds));
+    Gradient *gd = [[Gradient alloc] initWithStartPoint:CGPointZero endPoint:ep startColor:[DrawColor rankColor] endColor:[DrawColor rankColor] division:0.5];
+    GradientAction *gradient = [[[GradientAction alloc] initWithGradient:gd] autorelease];
+    [self.drawView addGradient:gradient];
+}
+
 - (void)usePaintBucket
 {
+#ifdef DEBUG
+    [self addGradient];
+    return;
+#endif
     DrawColor *color = [DrawColor colorWithColor:self.penColor];
     color.alpha = 1;
     [self.drawView changeBackWithColor:color];
@@ -129,12 +143,9 @@
 }
 - (void)changeAlpha:(CGFloat)alpha
 {
-    self.penColor = [DrawColor colorWithColor:self.penColor];
     [self.penColor setAlpha:alpha];
     if (self.drawView.penType != Eraser) {
-        DrawColor *color = [DrawColor colorWithColor:self.drawView.lineColor];
-        [color setAlpha:alpha];
-        self.drawView.lineColor = color;
+        self.drawView.lineColor = [DrawColor colorWithColor:self.penColor];
     }
 }
 - (void)changeShape:(ShapeType)shape isStroke:(BOOL)isStroke
@@ -143,7 +154,7 @@
     [self.drawView setShapeType:shape];
     [self.drawView setStrokeShape:isStroke];
     self.drawView.penType = self.penType;
-    [self changePenColor:self.penColor];
+    self.drawView.lineColor = [DrawColor colorWithColor:self.penColor];
 }
 - (void)changeShapeStroke:(BOOL)isStroke
 {

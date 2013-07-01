@@ -63,7 +63,7 @@
     self.color = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 }
 
-#define CHANGE_VALUE_255(x) (((int)(x * 255)) / 255.0f)
+#define CHANGE_VALUE_255(x) (x)//(((int)(x * 255)) / 255.0f)
 
 - (void)setAlpha:(CGFloat)alpha
 {
@@ -229,8 +229,11 @@
 {
     return [DrawColor colorWithRed:1 green:1 blue:1 alpha:1];
 }
-//+ (DrawColor *)grayColor;       // 0.5 white 
-+ (DrawColor *)redColor        // 1.0, 0.0, 0.0 RGB 
++ (DrawColor *)grayColor       // 0.5 white
+{
+    return [DrawColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];
+}
++ (DrawColor *)redColor        // 1.0, 0.0, 0.0 RGB
 {
     return [DrawColor colorWithRed:1 green:0 blue:0 alpha:1];
 }
