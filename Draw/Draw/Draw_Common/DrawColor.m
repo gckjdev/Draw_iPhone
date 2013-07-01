@@ -229,8 +229,11 @@
 {
     return [DrawColor colorWithRed:1 green:1 blue:1 alpha:1];
 }
-//+ (DrawColor *)grayColor;       // 0.5 white 
-+ (DrawColor *)redColor        // 1.0, 0.0, 0.0 RGB 
++ (DrawColor *)grayColor       // 0.5 white
+{
+    return [DrawColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];
+}
++ (DrawColor *)redColor        // 1.0, 0.0, 0.0 RGB
 {
     return [DrawColor colorWithRed:1 green:0 blue:0 alpha:1];
 }
