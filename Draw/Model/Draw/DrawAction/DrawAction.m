@@ -380,6 +380,15 @@
             free(pbDrawActionC[i]->drawbg);
         }
         
+        if (pbDrawActionC[i]->gradient != NULL) {
+            if (pbDrawActionC[i]->gradient->color != NULL) {
+                free(pbDrawActionC[i]->gradient->color);
+            }
+            if (pbDrawActionC[i]->gradient->point) {
+                free(pbDrawActionC[i]->gradient->point);
+            }
+            free(pbDrawActionC[i]->gradient);            
+        }
         // free draw action
         free(pbDrawActionC[i]);
     }

@@ -1078,18 +1078,19 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 
 @interface PBGradient : PBGeneratedMessage {
 @private
-  BOOL hasDegree_:1;
   BOOL hasDivision_:1;
-  Float32 degree;
   Float32 division;
   NSMutableArray* mutableColorList;
+  int32_t colorMemoizedSerializedSize;
+  NSMutableArray* mutablePointList;
+  int32_t pointMemoizedSerializedSize;
 }
-- (BOOL) hasDegree;
 - (BOOL) hasDivision;
-@property (readonly) Float32 degree;
 @property (readonly) Float32 division;
 - (NSArray*) colorList;
 - (int32_t) colorAtIndex:(int32_t) index;
+- (NSArray*) pointList;
+- (int32_t) pointAtIndex:(int32_t) index;
 
 + (PBGradient*) defaultInstance;
 - (PBGradient*) defaultInstance;
@@ -1125,11 +1126,6 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBGradient_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBGradient_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasDegree;
-- (Float32) degree;
-- (PBGradient_Builder*) setDegree:(Float32) value;
-- (PBGradient_Builder*) clearDegree;
-
 - (BOOL) hasDivision;
 - (Float32) division;
 - (PBGradient_Builder*) setDivision:(Float32) value;
@@ -1141,6 +1137,13 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBGradient_Builder*) addColor:(int32_t) value;
 - (PBGradient_Builder*) addAllColor:(NSArray*) values;
 - (PBGradient_Builder*) clearColorList;
+
+- (NSArray*) pointList;
+- (int32_t) pointAtIndex:(int32_t) index;
+- (PBGradient_Builder*) replacePointAtIndex:(int32_t) index with:(int32_t) value;
+- (PBGradient_Builder*) addPoint:(int32_t) value;
+- (PBGradient_Builder*) addAllPoint:(NSArray*) values;
+- (PBGradient_Builder*) clearPointList;
 @end
 
 @interface PBDrawAction : PBGeneratedMessage {

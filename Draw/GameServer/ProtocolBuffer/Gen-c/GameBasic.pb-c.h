@@ -4,6 +4,7 @@
 #define PROTOBUF_C_GameBasic_2eproto__INCLUDED
 
 #include "protobuf-c.h"
+
 PROTOBUF_C_BEGIN_DECLS
 
 
@@ -249,14 +250,15 @@ struct  _Game__PBDrawBg
 struct  _Game__PBGradient
 {
   ProtobufCMessage base;
-  float degree;
   float division;
   size_t n_color;
   int32_t *color;
+  size_t n_point;
+  int32_t *point;
 };
 #define GAME__PBGRADIENT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbgradient__descriptor) \
-    , 0, 0, 0,NULL }
+    , 0, 0,NULL, 0,NULL }
 
 
 struct  _Game__PBDrawAction
