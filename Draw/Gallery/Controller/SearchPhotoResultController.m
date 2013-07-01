@@ -253,7 +253,11 @@
 {
     __block SearchPhotoResultController* cp = self;
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil title:NSLS(@"kSetTag") confirmTitle:NSLS(@"kConfirm") resultBlock:^( NSSet *tagSet) {
-        [cp didEditPictureInfo:tagSet name:cp.searchText imageUrl:searchResult.url];
+        [cp didEditPictureInfo:tagSet
+                          name:cp.searchText
+                      imageUrl:searchResult.url
+                         width:searchResult.width
+                        height:searchResult.height];
     }];
     [view showInView:self.view];
 }
@@ -330,9 +334,19 @@ enum {
 //    [self reloadTableViewDataSource];
 //}
 
-- (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
+- (void)didEditPictureInfo:(NSSet *)tagSet
+                      name:(NSString *)name
+                  imageUrl:(NSString *)url
+                     width:(float)width
+                    height:(float)height
 {
-    [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto *photo) {
+    [[GalleryService defaultService] addUserPhoto:url
+                                             name:name
+                                           tagSet:tagSet
+                                            usage:[GameApp photoUsage]
+                                            width:width
+                                           heithg:height
+                                      resultBlock:^(int resultCode, PBUserPhoto *photo) {
         if (resultCode == 0) {
             PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tagsList description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAddUserPhotoSucc") delayTime:1.5];

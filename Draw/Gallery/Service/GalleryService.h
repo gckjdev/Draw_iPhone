@@ -16,6 +16,8 @@
                 name:(NSString*)name
               tagSet:(NSSet*)tagSet
                usage:(PBPhotoUsage)usage
+               width:(float)width
+              heithg:(float)height
          resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock;
 
 - (void)getUserPhotoWithTagSet:(NSSet*)tagSet

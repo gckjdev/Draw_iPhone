@@ -300,7 +300,7 @@
 
 - (void)serviceLoadServiceFromOffset:(int)offset
 {
-    
+    self.dataListOffset = offset;
 }
 - (void)didFinishLoadData:(NSArray*)data
 {

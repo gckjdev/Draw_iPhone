@@ -37,6 +37,7 @@
 - (void)dealloc
 {
     [_tagSet release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -66,6 +67,7 @@
     if (self.title && self.title.length > 0) {
         [self.titleLabel setText:self.title];
     }
+    self.dataTableView.numColsPortrait = 2;
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
@@ -82,73 +84,101 @@
     // Dispose of any resources that can be recreated.
 }
 
-#define IMAGE_PER_LINE 2
-#define IMAGE_HEIGHT  (ISIPAD?384:160)
-#define RESULT_IMAGE_TAG_OFFSET 9999
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+//#define IMAGE_PER_LINE 2
+//#define IMAGE_HEIGHT  (ISIPAD?384:160)
+//#define RESULT_IMAGE_TAG_OFFSET 9999
+//- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+//        [cell setAutoresizingMask:UIViewAutoresizingNone];
+//        [cell setAccessoryType:UITableViewCellAccessoryNone];
+//        for (int i = 0; i < IMAGE_PER_LINE; i ++) {
+//            UserPhotoView* photoView = [UserPhotoView createViewWithPhoto:nil delegate:self];
+//            
+//            photoView.tag = RESULT_IMAGE_TAG_OFFSET + i;
+////            resultView.delegate = self;
+//            
+//            [cell.contentView addSubview:photoView];
+//            [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)];
+//        }
+//    }
+//    for (int i = 0; i < IMAGE_PER_LINE; i ++) {
+//        NSArray* list = [self tabDataList];
+//        UserPhotoView* photoView = (UserPhotoView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
+//        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
+//            
+//            PBUserPhoto* result = (PBUserPhoto*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
+//            PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
+//            [photoView updateWithUserPhoto:result];
+//            photoView.hidden = NO;
+//        } else {
+//            photoView.hidden = YES;
+//        }
+//        
+//    }
+//    
+//    return cell;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return IMAGE_HEIGHT;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    [super tableView:tableView numberOfRowsInSection:section];
+//    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
+//}
+
+- (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView viewAtIndex:(NSInteger)index {
+    UserPhotoView* cell = (UserPhotoView*)[self.dataTableView dequeueReusableView];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
-        [cell setAutoresizingMask:UIViewAutoresizingNone];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-        for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-            UserPhotoView* photoView = [UserPhotoView createViewWithPhoto:nil delegate:self];
-            
-            photoView.tag = RESULT_IMAGE_TAG_OFFSET + i;
-//            resultView.delegate = self;
-            
-            [cell.contentView addSubview:photoView];
-            [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)];
-        }
+        cell = [UserPhotoView createViewWithPhoto:nil delegate:self];
     }
-    for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-        NSArray* list = [self tabDataList];
-        UserPhotoView* photoView = (UserPhotoView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
-        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
-            
-            PBUserPhoto* result = (PBUserPhoto*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
-            PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
-            [photoView updateWithUserPhoto:result];
-            photoView.hidden = NO;
-        } else {
-            photoView.hidden = YES;
-        }
-        
-    }
-    
+    PBUserPhoto* result = (PBUserPhoto*)[self.dataList objectAtIndex:index];
+    [cell updateWithUserPhoto:result];
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return IMAGE_HEIGHT;
+- (CGFloat)heightForViewAtIndex:(NSInteger)index {
+    //    NSDictionary *item = [self.items objectAtIndex:index];
+    PBUserPhoto* result = [self.dataList objectAtIndex:index];
+    NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
+    [dict setObject:[NSNumber numberWithFloat:result.width] forKey:@"width"];
+    [dict setObject:[NSNumber numberWithFloat:result.height] forKey:@"height"];
+    //    return 60;
+    return [UserPhotoView heightForViewWithObject:dict inColumnWidth:self.dataTableView.colWidth];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    [super tableView:tableView numberOfRowsInSection:section];
-    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
+- (void)collectionView:(PSCollectionView *)collectionView didSelectView:(PSCollectionViewCell *)view atIndex:(NSInteger)index {
+    //    NSDictionary *item = [self.items objectAtIndex:index];
+    PBUserPhoto* result = [self.dataList objectAtIndex:index];
+    [self didClickPhoto:result];
+    // You can do something when the user taps on a collectionViewCell here
 }
+
 
 #pragma mark tab controller delegate
 
-- (NSInteger)tabCount
-{
-    return 1;
-}
-- (NSInteger)currentTabIndex
-{
-    return _defaultTabIndex;
-}
-- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+//- (NSInteger)tabCount
+//{
+//    return 1;
+//}
+//- (NSInteger)currentTabIndex
+//{
+//    return _defaultTabIndex;
+//}
+- (NSInteger)loadMoreLimit
 {
     return 8;
 }
-- (NSInteger)tabIDforIndex:(NSInteger)index
-{
-    return index;
-}
+//- (NSInteger)tabIDforIndex:(NSInteger)index
+//{
+//    return index;
+//}
 
 - (void)loadTestData
 {
@@ -157,16 +187,16 @@
     if (data) {
         PBUserPhotoList* list = [PBUserPhotoList parseFromData:data];
         
-        [self finishLoadDataForTabID:[self currentTab].tabID resultList:list.photoListList];
+        [self didFinishLoadData:list.photoListList];
     } 
 }
 
-- (void)serviceLoadDataForTabID:(NSInteger)tabID
+- (void)serviceLoadServiceFromOffset:(int)offset
 {
-    
-    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:[self currentTab].offset limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
-        [self finishLoadDataForTabID:[self currentTab].tabID resultList:resultArray];
-        [self currentTab].status = TableTabStatusLoaded;
+    [super serviceLoadServiceFromOffset:offset];
+    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:offset limit:[self loadMoreLimit] resultBlock:^(int resultCode, NSArray *resultArray) {
+        [self didFinishLoadData:resultArray];
+//        [self currentTab].status = TableTabStatusLoaded;
 //        [self loadTestData];
     }];
     
@@ -348,4 +378,9 @@ enum {
 //}
 
 
+
+- (void)viewDidUnload {
+    [self setTitleLabel:nil];
+    [super viewDidUnload];
+}
 @end

@@ -14,7 +14,6 @@
 @interface SearchResultView ()
 
 @property (retain, nonatomic) UIImageView* imageView;
-@property (retain, nonatomic) UIControl* control;
 
 @end
 
@@ -26,11 +25,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0,0,frame.size.width, frame.size.height)] autorelease];
-        self.control = [[[UIControl alloc] initWithFrame:CGRectMake(0,0,frame.size.width, frame.size.height)] autorelease];
-        [self.control setBackgroundColor:[UIColor clearColor]];
-        [self.control addTarget:self action:@selector(didClickImage:) forControlEvents:UIControlEventTouchUpInside];
+        [self.imageView setAutoresizingMask:!UIViewAutoresizingNone];
         [self addSubview:_imageView];
-        [self addSubview:_control];
     }
     return self;
 }
@@ -86,11 +82,10 @@
 - (void)dealloc
 {
     [_imageView release];
-    [_control release];
     [_searchResult release];
     [super dealloc];
 }
-#define MARGIN 4.0
+#define MARGIN 0.0
 + (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth {
     CGFloat height = 0.0;
     CGFloat width = columnWidth - MARGIN * 2;
@@ -119,39 +114,6 @@
     [super prepareForReuse];
     self.imageView.image = nil;
 //    self.captionLabel.text = nil;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    CGFloat width = self.frame.size.width - MARGIN * 2;
-    CGFloat top = MARGIN;
-    CGFloat left = MARGIN;
-    
-    // Image
-    CGFloat objectWidth = [[self.object objectForKey:@"width"] floatValue];
-    CGFloat objectHeight = [[self.object objectForKey:@"height"] floatValue];
-    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
-    self.imageView.frame = CGRectMake(left, top, width, scaledHeight);
-    
-    // Label
-//    CGSize labelSize = CGSizeZero;
-//    labelSize = [self.captionLabel.text sizeWithFont:self.captionLabel.font constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:self.captionLabel.lineBreakMode];
-    top = self.imageView.frame.origin.y + self.imageView.frame.size.height + MARGIN;
-    
-//    self.captionLabel.frame = CGRectMake(left, top, labelSize.width, labelSize.height);
-}
-
-- (void)fillViewWithObject:(id)object {
-    [super fillViewWithObject:object];
-    
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        self.imageView.image = [UIImage imageWithData:data];
-    }];
-    
-//    self.captionLabel.text = [object objectForKey:@"title"];
 }
 
 /*
