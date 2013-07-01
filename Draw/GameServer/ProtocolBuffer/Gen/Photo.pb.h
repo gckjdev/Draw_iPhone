@@ -76,6 +76,8 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value);
 
 @interface PBUserPhoto : PBGeneratedMessage {
 @private
+  BOOL hasWidth_:1;
+  BOOL hasHeight_:1;
   BOOL hasCreateDate_:1;
   BOOL hasUsage_:1;
   BOOL hasUserId_:1;
@@ -83,6 +85,8 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value);
   BOOL hasUserPhotoId_:1;
   BOOL hasUrl_:1;
   BOOL hasName_:1;
+  Float32 width;
+  Float32 height;
   int32_t createDate;
   int32_t usage;
   NSString* userId;
@@ -99,6 +103,8 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value);
 - (BOOL) hasName;
 - (BOOL) hasCreateDate;
 - (BOOL) hasUsage;
+- (BOOL) hasWidth;
+- (BOOL) hasHeight;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* photoId;
 @property (readonly, retain) NSString* userPhotoId;
@@ -106,6 +112,8 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value);
 @property (readonly, retain) NSString* name;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t usage;
+@property (readonly) Float32 width;
+@property (readonly) Float32 height;
 - (NSArray*) tagsList;
 - (NSString*) tagsAtIndex:(int32_t) index;
 
@@ -184,6 +192,16 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value);
 - (int32_t) usage;
 - (PBUserPhoto_Builder*) setUsage:(int32_t) value;
 - (PBUserPhoto_Builder*) clearUsage;
+
+- (BOOL) hasWidth;
+- (Float32) width;
+- (PBUserPhoto_Builder*) setWidth:(Float32) value;
+- (PBUserPhoto_Builder*) clearWidth;
+
+- (BOOL) hasHeight;
+- (Float32) height;
+- (PBUserPhoto_Builder*) setHeight:(Float32) value;
+- (PBUserPhoto_Builder*) clearHeight;
 @end
 
 @interface PBUserPhotoList : PBGeneratedMessage {

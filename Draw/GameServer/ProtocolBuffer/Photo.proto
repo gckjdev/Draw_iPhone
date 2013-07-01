@@ -22,6 +22,8 @@ message PBUserPhoto {
     optional int32  createDate = 6;
     repeated string tags = 7;
     optional int32 usage = 8;               // refer to PBPhotoUsage
+    optional float width = 9;               // photo width
+    optional float height = 10;             // photo height
 }
 
 message PBUserPhotoList {
