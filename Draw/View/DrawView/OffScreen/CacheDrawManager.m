@@ -52,7 +52,7 @@
 //add draw action and draw it in the last layer.
 - (CGRect)addDrawAction:(DrawAction *)action
 {
-    PPDebug(@"<addDrawAction> Start: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);
+//    PPDebug(@"<addDrawAction> Start: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);
 
 //    self.inDrawAction = nil;
     if (_offscreen.actionCount >= MAX_CACHED_ACTION_COUNT && self.useCachedImage) {
@@ -75,7 +75,7 @@
         return _rect;
     }else{
         CGRect rect = [_offscreen drawAction:action clear:NO];
-        PPDebug(@"<addDrawAction> End: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);        
+//        PPDebug(@"<addDrawAction> End: Change image, image index = %d, os count = %u, action count = %u", self.imageIndex, _offscreen.actionCount, [_drawActionList count]);        
         return rect;
     }
 }

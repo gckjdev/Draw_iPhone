@@ -63,7 +63,7 @@
     self.color = [UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:self.alpha];
 }
 
-#define CHANGE_VALUE_255(x) (((int)(x * 255)) / 255.0f)
+#define CHANGE_VALUE_255(x) (x)//(((int)(x * 255)) / 255.0f)
 
 - (void)setAlpha:(CGFloat)alpha
 {
