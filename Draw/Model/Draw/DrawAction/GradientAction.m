@@ -20,6 +20,23 @@
 
 #define COLOR_COUNT 2
 #define POINT_COUNT 4
+- (id)initWithStartPoint:(CGPoint)sp
+                endPoint:(CGPoint)ep
+              startColor:(DrawColor *)sc
+                endColor:(DrawColor *)ec
+                division:(CGFloat)division
+{
+    self = [super init];
+    if (self) {
+        self.division = division;
+        self.startColor = sc;
+        self.endColor = ec;
+        self.startPoint = sp;
+        self.endPoint = ep;
+    }
+    return self;
+}
+
 
 - (void)updatePBGradientC:(Game__PBGradient *)gradient
 {
@@ -71,12 +88,82 @@
 
 - (CGFloat)degree
 {
-    //TODO
+    
     return 0;
+}
+
+- (CGGradientRef)createGradientRef
+{
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
+    
+    CGFloat component[4 * COLOR_COUNT] = {};
+    const CGFloat *c1 = CGColorGetComponents(self.startColor.CGColor);
+    const CGFloat *c2 = CGColorGetComponents(self.endColor.CGColor);
+    memcpy(component, c1, sizeof(CGFloat) * 4);
+    memcpy(component+4, c2, sizeof(CGFloat) * 4);
+
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(space, component, NULL, COLOR_COUNT);
+    CGColorSpaceRelease(space);
+    return gradient;
+}
+
+- (void)drawInContext:(CGContextRef)context
+{
+    CGGradientRef gradient = [self createGradientRef];
+    CGContextDrawLinearGradient(context, gradient, self.startPoint, self.endPoint, 0);
+    CGGradientRelease(gradient);
 }
 
 @end
 
 @implementation GradientAction
+
+- (id)initWithGradient:(Gradient *)gradient
+{
+    self = [super init];
+    if (self) {
+        self.gradient = gradient;
+        self.type = DrawActionTypeGradient;
+    }
+    return self;
+}
+
+
+- (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
+{
+    self = [super initWithPBDrawActionC:action];
+    if (self) {
+        self.gradient = [[Gradient alloc] initWithPBGradientC:action->gradient];
+        self.type = DrawActionTypeGradient;
+    }
+    return self;
+}
+
+
+- (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
+{
+    [super toPBDrawActionC:pbDrawActionC];
+    pbDrawActionC->type = DrawActionTypeGradient;
+    pbDrawActionC->gradient = malloc(sizeof(Game__PBGradient));
+    game__pbgradient__init(pbDrawActionC->gradient);
+    [self.gradient updatePBGradientC:pbDrawActionC->gradient];
+}
+
+- (void)addPoint:(CGPoint)point inRect:(CGRect)rect
+{
+    
+}
+
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    [self.gradient drawInContext:context];
+    return rect;
+}
+
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    return rect;
+}
+
 
 @end

@@ -26,6 +26,13 @@
 
 - (id)initWithPBGradientC:(Game__PBGradient *)gradient;
 - (void)updatePBGradientC:(Game__PBGradient *)gradient;
+- (void)drawInContext:(CGContextRef)context;
+
+- (id)initWithStartPoint:(CGPoint)sp
+                endPoint:(CGPoint)ep
+              startColor:(DrawColor *)sc
+                endColor:(DrawColor *)ec
+                division:(CGFloat)division;
 
 @end
 
@@ -33,6 +40,7 @@
 {
     
 }
-
+@property(nonatomic, retain) Gradient *gradient;
+- (id)initWithGradient:(Gradient *)gradient;
 
 @end

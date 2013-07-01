@@ -18,7 +18,7 @@
 #import "DrawUtils.h"
 #import "DrawAction.h"
 #import "DrawHolderView.h"
-
+#import "GradientAction.h"
 
 #define MAX_POINT_COUNT 5
 
@@ -94,11 +94,17 @@
     [self clearRedoStack];
     DrawAction *cleanAction = [[[CleanAction alloc] init] autorelease];
     [self.drawActionList addObject:cleanAction];
-//    [osManager addDrawAction:cleanAction];
-    [cdManager addDrawAction:cleanAction];
     [self drawDrawAction:cleanAction show:YES];
     self.bgColor = [DrawColor whiteColor];
 }
+
+//for test
+- (void)addGradient:(GradientAction *)gradient
+{
+    [self.drawActionList addObject:gradient];
+    [self drawDrawAction:gradient show:YES];
+}
+
 - (ChangeBackAction *)changeBackWithColor:(DrawColor *)color
 {
     [self clearRedoStack];
