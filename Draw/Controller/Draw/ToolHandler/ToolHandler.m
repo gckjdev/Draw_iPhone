@@ -38,6 +38,31 @@
     [super dealloc];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+//    if (object == self.penColor) {
+//        PPDebug(@"change pen color!!");
+//    }
+}
+
+- (void)printPenColor:(NSTimer *)timer
+{
+    if (self.penColor) {
+        PPDebug(@"PenColor = %@", [self.penColor description]);
+    }else{
+        PPDebug(@"pen color is nil");
+    }
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+        [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(printPenColor:) userInfo:nil repeats:YES];
+    }
+    return self;
+}
 
 - (void)setDrawView:(DrawView *)drawView
 {
@@ -52,12 +77,25 @@
     self.drawView.shadow = shadow;
 }
 
+- (void)setPenColor:(DrawColor *)penColor
+{
+    if (_penColor != penColor) {
+        [_penColor release];
+        _penColor = penColor;
+        _penColor = [penColor retain];
+
+        PPDebug(@"set pen color = %@",_penColor.description);
+    }
+}
+
+
+
 - (void)changePenColor:(DrawColor *)color
 {
     CGFloat alpha = self.penColor.alpha;
-    color = [DrawColor colorWithColor:color];
-    self.penColor = color;
-    self.drawView.lineColor = color;
+//    color = [DrawColor colorWithColor:color];
+    self.penColor = [DrawColor colorWithColor:color];;
+    self.drawView.lineColor = [DrawColor colorWithColor:color];;
     self.drawView.penType = self.penType;
     [self changeAlpha:alpha];
     
