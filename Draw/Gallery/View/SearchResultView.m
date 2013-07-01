@@ -38,6 +38,11 @@
 - (void)updateWithResult:(ImageSearchResult*)result
 {
     self.searchResult = result;
+    NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
+    [dict setObject:[NSNumber numberWithFloat:result.width] forKey:@"width"];
+    [dict setObject:[NSNumber numberWithFloat:result.height] forKey:@"height"];
+    self.object = dict;
+    
     [self updateWithUrl:result.url];
 }
 
@@ -84,6 +89,69 @@
     [_control release];
     [_searchResult release];
     [super dealloc];
+}
+#define MARGIN 4.0
++ (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth {
+    CGFloat height = 0.0;
+    CGFloat width = columnWidth - MARGIN * 2;
+    
+    height += MARGIN;
+    
+    // Image
+    CGFloat objectWidth = [[object objectForKey:@"width"] floatValue];
+    CGFloat objectHeight = [[object objectForKey:@"height"] floatValue];
+    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+    height += scaledHeight;
+    
+    // Label
+    NSString *caption = [object objectForKey:@"title"];
+    CGSize labelSize = CGSizeZero;
+    UIFont *labelFont = [UIFont boldSystemFontOfSize:14.0];
+    labelSize = [caption sizeWithFont:labelFont constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    height += labelSize.height;
+    
+    height += MARGIN;
+    
+    return height;
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.imageView.image = nil;
+//    self.captionLabel.text = nil;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGFloat width = self.frame.size.width - MARGIN * 2;
+    CGFloat top = MARGIN;
+    CGFloat left = MARGIN;
+    
+    // Image
+    CGFloat objectWidth = [[self.object objectForKey:@"width"] floatValue];
+    CGFloat objectHeight = [[self.object objectForKey:@"height"] floatValue];
+    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+    self.imageView.frame = CGRectMake(left, top, width, scaledHeight);
+    
+    // Label
+//    CGSize labelSize = CGSizeZero;
+//    labelSize = [self.captionLabel.text sizeWithFont:self.captionLabel.font constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:self.captionLabel.lineBreakMode];
+    top = self.imageView.frame.origin.y + self.imageView.frame.size.height + MARGIN;
+    
+//    self.captionLabel.frame = CGRectMake(left, top, labelSize.width, labelSize.height);
+}
+
+- (void)fillViewWithObject:(id)object {
+    [super fillViewWithObject:object];
+    
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        self.imageView.image = [UIImage imageWithData:data];
+    }];
+    
+//    self.captionLabel.text = [object objectForKey:@"title"];
 }
 
 /*

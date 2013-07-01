@@ -6,9 +6,9 @@
 //
 //
 
-#import "CommonTabController.h"
+#import "CommonWaterFlowController.h"
 
-@interface SearchPhotoResultController : CommonTabController
+@interface SearchPhotoResultController : CommonWaterFlowController
 
 - (id)initWithKeyword:(NSString*)keyword
               options:(NSDictionary*)options
