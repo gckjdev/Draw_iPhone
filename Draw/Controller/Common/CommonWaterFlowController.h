@@ -33,6 +33,8 @@
 @property (nonatomic, retain) NSMutableArray* dataList;
 @property (assign, nonatomic) NSInteger dataListOffset;
 
+@property (nonatomic, retain) IBOutlet UILabel *noDataTipLabel;
+
 #pragma mark: For pull down to refresh
 // For pull down to refresh
 @property(nonatomic,assign) BOOL supportRefreshHeader;

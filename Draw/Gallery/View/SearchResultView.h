@@ -22,8 +22,6 @@
 @property (retain, nonatomic) ImageSearchResult* searchResult;
 @property (assign, nonatomic) id<SearchResultViewDelegate>delegate;
 
-+ (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth;
-
 - (void)updateWithResult:(ImageSearchResult*)result;
 - (void)updateWithUrl:(NSString*)url;
 @end

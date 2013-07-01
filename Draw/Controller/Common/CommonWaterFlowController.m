@@ -23,6 +23,7 @@
 - (void)dealloc
 {
     [_dataTableView release];
+    PPRelease(_noDataTipLabel);
     PPRelease(_dataList);
     PPRelease(_refreshHeaderView);
     PPRelease(_refreshFooterView);
@@ -101,7 +102,9 @@
 
 - (EGORefreshTableHeaderView*)createRefreshHeaderView
 {
-    return [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height)] autorelease];
+    EGORefreshTableHeaderView* header =  [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height)] autorelease];
+    [header setBackgroundColor:[UIColor clearColor]];
+    return header;
 }
 
 
@@ -122,7 +125,9 @@
 
 - (EGORefreshTableFooterView*)createRefreshFooterView
 {
-    return [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650)];
+    EGORefreshTableFooterView* footer = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650)];
+    [footer setBackgroundColor:[UIColor clearColor]];
+    return footer;
 }
 
 - (void)initRefreshFooterView
@@ -319,6 +324,7 @@
         [self.dataList addObjectsFromArray:data];
         self.dataListOffset += [self loadMoreLimit];//[tab.dataList count];
     }
+    [self.noDataTipLabel setHidden:(self.dataList.count == 0)];
     [self.dataTableView reloadData];
 }
 

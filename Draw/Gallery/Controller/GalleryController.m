@@ -146,11 +146,8 @@
 - (CGFloat)heightForViewAtIndex:(NSInteger)index {
     //    NSDictionary *item = [self.items objectAtIndex:index];
     PBUserPhoto* result = [self.dataList objectAtIndex:index];
-    NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
-    [dict setObject:[NSNumber numberWithFloat:result.width] forKey:@"width"];
-    [dict setObject:[NSNumber numberWithFloat:result.height] forKey:@"height"];
     //    return 60;
-    return [UserPhotoView heightForViewWithObject:dict inColumnWidth:self.dataTableView.colWidth];
+    return [UserPhotoView heightForViewWithPhotoWidth:result.width height:result.height inColumnWidth:self.dataTableView.colWidth];
 }
 
 - (void)collectionView:(PSCollectionView *)collectionView didSelectView:(PSCollectionViewCell *)view atIndex:(NSInteger)index {
