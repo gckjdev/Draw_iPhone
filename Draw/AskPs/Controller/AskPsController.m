@@ -32,6 +32,13 @@
     [_coinsMaxTotalTextField release];
     [_ingotBestUserTextField release];
     [_titleLabel release];
+    [_requirementLabel release];
+    [_awardLabel release];
+    [_coinsPerUserLabel release];
+    [_coinsMaxTotalLabel release];
+    [_ingotBestUserLabel release];
+    [_submitButton release];
+    [_chargeButton release];
     [super dealloc];
 }
 
@@ -43,6 +50,13 @@
     [self setCoinsMaxTotalTextField:nil];
     [self setIngotBestUserTextField:nil];
     [self setTitleLabel:nil];
+    [self setRequirementLabel:nil];
+    [self setAwardLabel:nil];
+    [self setCoinsPerUserLabel:nil];
+    [self setCoinsMaxTotalLabel:nil];
+    [self setIngotBestUserLabel:nil];
+    [self setSubmitButton:nil];
+    [self setChargeButton:nil];
     [super viewDidUnload];
 }
 
@@ -61,6 +75,18 @@
 //    [self.contentHolderView updateHeight:400];
 //    self.contentHolderView.contentSize = CGSizeMake(320, 531);
     [self updateButtonsTitle];
+}
+
+- (void)updateLabels
+{
+    self.titleLabel.text = NSLS(@"求PS");
+    self.requirementLabel.text = NSLS(@"");
+    self.awardLabel.text = NSLS(@"");
+    self.coinsPerUserLabel.text = NSLS(@"");
+    self.coinsMaxTotalLabel.text = NSLS(@"");
+    self.ingotBestUserLabel.text = NSLS(@"");
+    [self.submitButton setTitle:NSLS(@"") forState:UIControlStateNormal];
+    [self.chargeButton setTitle:NSLS(@"") forState:UIControlStateNormal];
 }
 
 - (IBAction)clickPictureButton:(id)sende{
