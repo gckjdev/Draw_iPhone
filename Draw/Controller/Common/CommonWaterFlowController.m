@@ -82,10 +82,11 @@
         self.dataTableView.numColsLandscape = 4;
     }
     
-    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:self.dataTableView.bounds];
-    loadingLabel.text = NSLS(@"kLoading");
-    loadingLabel.textAlignment = UITextAlignmentCenter;
-    self.dataTableView.loadingView = loadingLabel;
+//    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:self.dataTableView.bounds];
+//    loadingLabel.text = NSLS(@"kLoading");
+//    loadingLabel.textAlignment = UITextAlignmentCenter;
+//    [loadingLabel setBackgroundColor:[UIColor clearColor]];
+//    self.dataTableView.loadingView = loadingLabel;
     
     
 //    [self createFooterLoadMoreButton];
@@ -228,7 +229,8 @@
 // When "pull down to refresh" in triggered, this function will be called
 - (void) reloadTableViewDataSource
 {
-    [self serviceLoadServiceFromOffset:0];
+    self.dataListOffset = 0;
+    [self serviceLoadData];
 }
 
 // After finished loading data source, call this method to hide refresh view.
@@ -245,7 +247,7 @@
 // When "pull down to refresh" in triggered, this function will be called
 - (void) loadMoreTableViewDataSource
 {
-    [self serviceLoadServiceFromOffset:self.dataListOffset];
+    [self serviceLoadData];
 }
 
 // After finished loading data source, call this method to hide refresh view.
@@ -303,9 +305,10 @@
     }
 }
 
-- (void)serviceLoadServiceFromOffset:(int)offset
+- (void)serviceLoadData
 {
-    self.dataListOffset = offset;
+    [self showActivityWithText:NSLS(@"kLoading")];
+    PPDebug(@"<serviceLoadData> implement by sub class");
 }
 - (void)didFinishLoadData:(NSArray*)data
 {

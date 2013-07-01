@@ -188,10 +188,10 @@
     } 
 }
 
-- (void)serviceLoadServiceFromOffset:(int)offset
+- (void)serviceLoadData
 {
-    [super serviceLoadServiceFromOffset:offset];
-    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:offset limit:[self loadMoreLimit] resultBlock:^(int resultCode, NSArray *resultArray) {
+    [super serviceLoadData];
+    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:self.dataListOffset limit:[self loadMoreLimit] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self didFinishLoadData:resultArray];
 //        [self currentTab].status = TableTabStatusLoaded;
 //        [self loadTestData];

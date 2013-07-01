@@ -57,7 +57,7 @@
 
 //for sub class impletement
 - (NSInteger)loadMoreLimit;
-- (void)serviceLoadServiceFromOffset:(int)offset;
+- (void)serviceLoadData;
 - (void)didFinishLoadData:(NSArray*)data;
 - (void)didFinishLoadDataError:(int)errorCode;
 - (NSString*)errorTextForCode:(int)errorCode;

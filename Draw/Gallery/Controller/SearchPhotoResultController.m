@@ -214,11 +214,11 @@
 //{
 //    return index;
 //}
-- (void)serviceLoadServiceFromOffset:(int)offset
+- (void)serviceLoadData
 {
-    [super serviceLoadServiceFromOffset:offset];
+    [super serviceLoadData];
     if (self.searchText && self.searchText.length > 0) {
-        [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchText imageSize:CGSizeMake(0, 0) imageType:nil startPage:offset paramDict:self.options delegate:self];
+        [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchText imageSize:CGSizeMake(0, 0) imageType:nil startPage:self.dataListOffset paramDict:self.options delegate:self];
     }
 }
 
