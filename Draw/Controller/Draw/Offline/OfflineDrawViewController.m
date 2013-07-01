@@ -477,13 +477,11 @@
 
 - (void)initDrawToolPanel
 {
+    //the tool handler is single for an draw view controller.
     self.toolHandler = [[[ToolHandler alloc] init] autorelease];
     self.toolHandler.drawView = drawView;
     self.toolHandler.controller = self;
     
-//    ToolHandler* upHandler = [[[ToolHandler alloc] init] autorelease];
-//    upHandler.controller = self;
-//    upHandler.drawView = drawView;
     
     self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
     self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];

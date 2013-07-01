@@ -38,28 +38,12 @@
     [super dealloc];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-//    if (object == self.penColor) {
-//        PPDebug(@"change pen color!!");
-//    }
-}
-
-- (void)printPenColor:(NSTimer *)timer
-{
-    if (self.penColor) {
-        PPDebug(@"PenColor = %@", [self.penColor description]);
-    }else{
-        PPDebug(@"pen color is nil");
-    }
-}
 
 - (id)init
 {
     self = [super init];
     if (self) {
         
-        [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(printPenColor:) userInfo:nil repeats:YES];
     }
     return self;
 }
