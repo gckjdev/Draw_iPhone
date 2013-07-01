@@ -68,6 +68,7 @@
         [self.titleLabel setText:self.title];
     }
     self.dataTableView.numColsPortrait = 2;
+    [((UIButton*)self.noDataTipLabel) setTitle:NSLS(@"kNoPhoto") forState:UIControlStateNormal];
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }

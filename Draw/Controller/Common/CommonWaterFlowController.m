@@ -327,7 +327,7 @@
         [self.dataList addObjectsFromArray:data];
         self.dataListOffset += [self loadMoreLimit];//[tab.dataList count];
     }
-    [self.noDataTipLabel setHidden:(self.dataList.count == 0)];
+    [self.noDataTipLabel setHidden:!(self.dataList.count == 0)];
     [self.dataTableView reloadData];
 }
 
