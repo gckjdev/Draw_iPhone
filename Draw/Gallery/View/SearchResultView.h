@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSCollectionViewCell.h"
 
 @class ImageSearchResult;
 
@@ -16,10 +17,12 @@
 
 @end
 
-@interface SearchResultView : UIView
+@interface SearchResultView : PSCollectionViewCell
 
 @property (retain, nonatomic) ImageSearchResult* searchResult;
 @property (assign, nonatomic) id<SearchResultViewDelegate>delegate;
+
++ (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth;
 
 - (void)updateWithResult:(ImageSearchResult*)result;
 - (void)updateWithUrl:(NSString*)url;

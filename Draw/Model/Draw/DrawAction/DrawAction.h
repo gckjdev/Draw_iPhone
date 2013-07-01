@@ -25,7 +25,8 @@ typedef enum {
     DrawActionTypeChangeBack,       //Change bg with color 3
     DrawActionTypeChangeBGImage,    //Change bg with pb draw bg 4
 
-    DrawActionTypeClip,             //Clip 5
+    DrawActionTypeGradient,             //Gradient 5
+    DrawActionTypeClip,             //Clip 6
     
 } DrawActionType;
 
@@ -47,14 +48,17 @@ typedef enum {
 
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
 + (id)drawActionWithPBDrawActionC:(Game__PBDrawAction *)action;
+
+//deprecated
 + (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
 
-
+//deprecated
 + (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data
                                               canvasSize:(CGSize)canvasSize;
 
 + (NSMutableArray *)pbNoCompressDrawDataCToDrawActionList:(Game__PBNoCompressDrawData *)data
                                                canvasSize:(CGSize)canvasSize;
+
 
 + (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
                                                             size:(CGSize)size
@@ -91,16 +95,19 @@ typedef enum {
 
 + (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size;
 
+- (NSData *)toData;
+
 //new Method should overload by sub classes..
 
-- (id)initWithPBDrawAction:(PBDrawAction *)action;
+
+- (id)initWithPBDrawAction:(PBDrawAction *)action;//deprecated
 - (id)initWithPBDrawActionC:(Game__PBDrawAction *)action;
-- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
+
+- (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;//deprecated
+
 - (id)initWithPBNoCompressDrawActionC:(Game__PBNoCompressDrawAction *)action;
 
 
-- (PBDrawAction *)toPBDrawAction;
-- (NSData *)toData;
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC;
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect;
 
@@ -108,8 +115,11 @@ typedef enum {
 
 - (NSUInteger)pointCount;
 - (void)finishAddPoint;
-
 - (CGRect)redrawRectInRect:(CGRect)rect;
+
+
+- (PBDrawAction *)toPBDrawAction; //deprecated
+
 
 @end
 

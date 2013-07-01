@@ -19,6 +19,7 @@
 #import "BBS.pb-c.h"
 #import "DrawUtils.h"
 #import "Draw.h"
+#import "GradientAction.h"
 
 @implementation DrawAction
 
@@ -50,7 +51,8 @@
             return [[[ChangeBackAction alloc] initWithPBDrawActionC:action] autorelease];
         case DrawActionTypeChangeBGImage:
             return [[[ChangeBGImageAction alloc] initWithPBDrawActionC:action] autorelease];
-            
+        case DrawActionTypeGradient:
+            return [[[GradientAction alloc] initWithPBDrawActionC:action] autorelease];
         default:
             return nil;
     }
@@ -380,6 +382,15 @@
             free(pbDrawActionC[i]->drawbg);
         }
         
+        if (pbDrawActionC[i]->gradient != NULL) {
+            if (pbDrawActionC[i]->gradient->color != NULL) {
+                free(pbDrawActionC[i]->gradient->color);
+            }
+            if (pbDrawActionC[i]->gradient->point) {
+                free(pbDrawActionC[i]->gradient->point);
+            }
+            free(pbDrawActionC[i]->gradient);            
+        }
         // free draw action
         free(pbDrawActionC[i]);
     }

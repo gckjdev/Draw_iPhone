@@ -49,7 +49,7 @@
 					</object>
 					<object class="IBUIView" id="1005654519">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">282</int>
+						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 288}, {384, 96}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -65,7 +65,7 @@
 					</object>
 					<object class="IBUILabel" id="674918447">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">283</int>
+						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 291}, {384, 47}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -97,11 +97,10 @@
 					</object>
 					<object class="IBUILabel" id="7944489">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">286</int>
+						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 336}, {384, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -264,8 +263,16 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">UserPhotoView</string>
+					<string key="className">PSCollectionViewCell</string>
 					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PSCollectionViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UserPhotoView</string>
+					<string key="superclassName">PSCollectionViewCell</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">clickPhoto:</string>
 						<string key="NS.object.0">id</string>

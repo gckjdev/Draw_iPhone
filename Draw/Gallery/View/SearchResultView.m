@@ -14,7 +14,6 @@
 @interface SearchResultView ()
 
 @property (retain, nonatomic) UIImageView* imageView;
-@property (retain, nonatomic) UIControl* control;
 
 @end
 
@@ -26,11 +25,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0,0,frame.size.width, frame.size.height)] autorelease];
-        self.control = [[[UIControl alloc] initWithFrame:CGRectMake(0,0,frame.size.width, frame.size.height)] autorelease];
-        [self.control setBackgroundColor:[UIColor clearColor]];
-        [self.control addTarget:self action:@selector(didClickImage:) forControlEvents:UIControlEventTouchUpInside];
+        [self.imageView setAutoresizingMask:!UIViewAutoresizingNone];
         [self addSubview:_imageView];
-        [self addSubview:_control];
     }
     return self;
 }
@@ -38,6 +34,11 @@
 - (void)updateWithResult:(ImageSearchResult*)result
 {
     self.searchResult = result;
+    NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
+    [dict setObject:[NSNumber numberWithFloat:result.width] forKey:@"width"];
+    [dict setObject:[NSNumber numberWithFloat:result.height] forKey:@"height"];
+    self.object = dict;
+    
     [self updateWithUrl:result.url];
 }
 
@@ -81,9 +82,38 @@
 - (void)dealloc
 {
     [_imageView release];
-    [_control release];
     [_searchResult release];
     [super dealloc];
+}
+#define MARGIN 0.0
++ (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth {
+    CGFloat height = 0.0;
+    CGFloat width = columnWidth - MARGIN * 2;
+    
+    height += MARGIN;
+    
+    // Image
+    CGFloat objectWidth = [[object objectForKey:@"width"] floatValue];
+    CGFloat objectHeight = [[object objectForKey:@"height"] floatValue];
+    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+    height += scaledHeight;
+    
+    // Label
+    NSString *caption = [object objectForKey:@"title"];
+    CGSize labelSize = CGSizeZero;
+    UIFont *labelFont = [UIFont boldSystemFontOfSize:14.0];
+    labelSize = [caption sizeWithFont:labelFont constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:UILineBreakModeWordWrap];
+    height += labelSize.height;
+    
+    height += MARGIN;
+    
+    return height;
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.imageView.image = nil;
+//    self.captionLabel.text = nil;
 }
 
 /*
