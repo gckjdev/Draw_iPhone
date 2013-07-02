@@ -61,7 +61,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeShapeStroke:(BOOL)isStroke;
 - (void)changeDesc:(NSString *)desc;
 - (void)changeDrawToFriend:(MyFriend *)aFriend;
-- (void)changeCopyPaint:(PBUserPhoto*)aPhoto;
+- (void)changeCopyPaint:(UIImage*)aPhoto;
 - (void)changeShadow:(Shadow *)shadow;
 
 - (void)usePaintBucket;

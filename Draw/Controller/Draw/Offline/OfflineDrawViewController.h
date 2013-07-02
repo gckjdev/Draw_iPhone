@@ -63,7 +63,7 @@
 @property (retain, nonatomic) NSString *opusDesc;
 @property (retain, nonatomic) UIImage *bgImage;
 @property (retain, nonatomic) NSString *bgImageName;
-@property (retain, nonatomic) NSString* copyPaintUrl;
+@property (retain, nonatomic) UIImage* copyPaintImage;
 
 
 - (id)initWithTargetType:(TargetType)aTargetType 
