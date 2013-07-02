@@ -671,7 +671,7 @@
 "kGuessOnly" = "Guess";
 "kDrawOnly" = "Draw";
 "kFeed" = "Timeline";
-"kFeeds" = "Timeline";
+"kFeeds" = "Drawings";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 

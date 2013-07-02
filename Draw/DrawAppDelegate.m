@@ -87,12 +87,12 @@ NSString* GlobalGetServerURL()
 //    return @"http://58.215.160.100:8888/api/i?";
 //    return @"http://192.168.1.5:8000/api/i?";
 
-//    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-//    NSString* str = [def objectForKey:@"api_server"];
-//    if (str && str.length > 5) {
-//        PPDebug(@"<for test!!!!!!> get api server %@", str);
-//        return [NSString stringWithFormat:@"http://%@/api/i?",str];
-//    }
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    NSString* str = [def objectForKey:@"api_server"];
+    if (str && str.length > 5) {
+        PPDebug(@"<for test!!!!!!> get api server %@", str);
+        return [NSString stringWithFormat:@"http://%@/api/i?",str];
+    }
 #endif
     
     return [ConfigManager getAPIServerURL];
@@ -104,12 +104,12 @@ NSString* GlobalGetTrafficServerURL()
 
 #ifdef DEBUG
 
-//    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-//    NSString* str = [def objectForKey:@"traffic_server"];
-//    if (str && str.length > 5) {
-//        PPDebug(@"<for test!!!!!!> get traffic server %@", str);
-//        return [NSString stringWithFormat:@"http://%@/api/i?",str];
-//    }
+    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+    NSString* str = [def objectForKey:@"traffic_server"];
+    if (str && str.length > 5) {
+        PPDebug(@"<for test!!!!!!> get traffic server %@", str);
+        return [NSString stringWithFormat:@"http://%@/api/i?",str];
+    }
 #endif
 #ifdef DEBUG
 //    return @"http://192.168.1.5:8001/api/i?";
