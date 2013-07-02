@@ -500,7 +500,7 @@ typedef enum{
         NSString *tabTitle[] = {NSLS(@"kUserOpus"), NSLS(@"kUserFavorite")};
         return tabTitle[index];
     }else{
-        NSString *tabTitle[] = {NSLS(@"kUserOpus"),NSLS(@"kUserFeed")};
+        NSString *tabTitle[] = {NSLS(@"kUserOpus"),NSLS(@"kUserGuess")};
         return tabTitle[index];
 
     }
