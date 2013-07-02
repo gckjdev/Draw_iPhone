@@ -31,10 +31,7 @@
     return self;
 }
 
-- (void)resizeSubviews
-{
-    self.imageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-}
+
 
 - (void)updateWithResult:(ImageSearchResult*)result
 {
@@ -91,7 +88,7 @@
     [_searchResult release];
     [super dealloc];
 }
-#define MARGIN 0.0
+#define MARGIN 4.0
 + (CGFloat)heightForViewWithPhotoWidth:(float)photoWidth
                                 height:(float)photoHeight
                          inColumnWidth:(CGFloat)columnWidth {
@@ -107,6 +104,11 @@
     height += MARGIN;
     
     return height;
+}
+
+- (void)resizeSubviews
+{
+    self.imageView.frame = CGRectMake(MARGIN, MARGIN, self.frame.size.width - MARGIN*2, self.frame.size.height - MARGIN*2);
 }
 
 - (void)prepareForReuse {
