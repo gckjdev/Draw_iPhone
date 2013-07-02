@@ -12,8 +12,12 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler handleShowCopyPaint];
-    return YES;
+    if ([self canUseItem:self.itemType]) {
+        [self sendAnalyticsReport];
+        [self.toolHandler handleShowCopyPaint];
+        return YES;
+    }
+    return NO;
 }
 
 @end

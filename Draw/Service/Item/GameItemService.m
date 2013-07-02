@@ -531,6 +531,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    //临摹
+    [mutableArray addObject:[self itemWithItemId:ItemTypeCopyPaint
+                                            name:@"kCopyPaint"
+                                            desc:@"kCopyPaintDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_copy_paint@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:1000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
     // 网格参考线
     [mutableArray addObject:[self itemWithItemId:ItemTypeGrid
                                             name:@"kItemTypeGrid"
@@ -1031,6 +1044,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:4*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
     
     
     // 维锐电容笔（大）

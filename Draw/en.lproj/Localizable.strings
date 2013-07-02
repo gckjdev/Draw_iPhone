@@ -1425,11 +1425,13 @@
 "kSize" = "Size";
 "kBackground" = "Background";
 "kCopyPaint" = "Copy";
+"kCopyPaintDescription" = "You can have a peek on some image with this when you draw";
 "kDescription" = "Description";
 "kDrawTo" = "Draw to";
 "kGrid" = "Grid";
 "kHelp" = "Help";
 "kSelectPhoto" = "Select Photo";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

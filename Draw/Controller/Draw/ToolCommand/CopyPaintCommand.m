@@ -78,9 +78,18 @@
 {
     //TODO enter MyFriendController and select the friend
     
-    
-    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kSelectFromUserPhoto"), nil] autorelease];
+    if ([self canUseItem:self.itemType]) {
+        [self sendAnalyticsReport];
+        [self showSelection];
+        return YES;
+    }
+    return NO;
+}
 
+- (void)showSelection
+{
+    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kSelectFromUserPhoto"), nil] autorelease];
+    
     [actionSheet setActionBlock:^(NSInteger buttonIndex) {
         if (buttonIndex == actionSheet.cancelButtonIndex) {
             return ;
@@ -99,8 +108,6 @@
         }
     }];
     [actionSheet showInView:[self.toolPanel theViewController].view];
-    
-    return YES;
 }
 
 - (void)selectImageFromAlbum:(UIViewController*)superController
