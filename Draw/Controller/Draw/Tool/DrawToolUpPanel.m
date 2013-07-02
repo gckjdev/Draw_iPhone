@@ -116,10 +116,10 @@
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[CopyPaintCommand alloc] initWithControl:self.copyPaintPicker itemType:ItemTypeNo] autorelease];
+    command = [[[CopyPaintCommand alloc] initWithControl:self.copyPaintPicker itemType:ItemTypeCopyPaint] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[ShowCopyPaintCommand alloc] initWithControl:self.copyPaint itemType:ItemTypeNo] autorelease];
+    command = [[[ShowCopyPaintCommand alloc] initWithControl:self.copyPaint itemType:ItemTypeCopyPaint] autorelease];
     [toolCmdManager registerCommand:command];
     
     [toolCmdManager updateHandler:self.toolHandler];

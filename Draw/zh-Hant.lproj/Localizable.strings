@@ -1371,6 +1371,7 @@
 "kSize" = "畫布尺寸";
 "kBackground" = "畫畫背景";
 "kCopyPaint" = "臨摹圖片";
+"kCopyPaintDescription" = "讓你在畫畫過程中可以看一下你想臨摹的圖片";
 "kDescription" = "作品描述";
 "kDrawTo" = "畫給好友";
 "kGrid" = "輔助網格";
