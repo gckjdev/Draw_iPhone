@@ -214,7 +214,7 @@
     PPRelease(_bgImage);
     PPRelease(_bgImageName);
     PPRelease(_currentDialog);
-    PPRelease(_copyPaintUrl);
+    PPRelease(_copyPaintImage);
     [_upPanelButton release];
     [super dealloc];
 }
@@ -1409,8 +1409,8 @@
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (self.copyPaintUrl) {
-        return [MWPhoto photoWithURL:[NSURL URLWithString:self.copyPaintUrl]];
+    if (self.copyPaintImage) {
+        return [MWPhoto photoWithImage:self.copyPaintImage];
     }
     return nil;
     

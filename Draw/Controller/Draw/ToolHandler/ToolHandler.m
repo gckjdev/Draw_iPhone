@@ -180,11 +180,10 @@
     [oc setTargetUid:aFriend.friendUserId];
 }
 
-- (void)changeCopyPaint:(PBUserPhoto*)aPhoto
+- (void)changeCopyPaint:(UIImage*)aPhoto
 {
-    PPDebug(@"<changeCopyPaint> photo id = ", aPhoto.photoId);
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-    [oc setCopyPaintUrl:aPhoto.url];
+    [oc setCopyPaintImage:aPhoto];
 }
 
 - (void)enterShapeMode

@@ -23,5 +23,5 @@
          title:(NSString*)title;
 - (void)disappear;
 
-- (void)updateCopyPaint:(PBUserPhoto*)aPhoto;
+- (void)updateCopyPaint:(UIImage*)aPhoto;
 @end
