@@ -157,6 +157,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
                    name:(NSString*)name
                  tagSet:(NSSet*)tagSet
                   usage:(PBPhotoUsage)usage
+             protoPhoto:(PBUserPhoto*)protoPhoto
             resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock
 {
     PPDebug(@"<updateUserPhoto> userPhotoId = %@,  url = %@ with name %@ ,tag %@", userPhotoId, photoUrl, name, [tagSet description]);
@@ -165,7 +166,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     NSString* appId = [ConfigManager appId];
 //    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
-    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+    PBUserPhoto_Builder* builder = [PBUserPhoto builderWithPrototype:protoPhoto];
     
     [builder setName:name];
     [builder setUrl:photoUrl];

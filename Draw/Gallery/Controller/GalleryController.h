@@ -20,7 +20,7 @@
 
 @end
 
-@interface GalleryController : CommonWaterFlowController <MWPhotoBrowserDelegate, UserPhotoViewDelegate>
+@interface GalleryController : CommonWaterFlowController <MWPhotoBrowserDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickFilterUserPhoto:(id)sender;
 

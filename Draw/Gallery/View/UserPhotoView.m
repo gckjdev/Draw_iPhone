@@ -116,6 +116,10 @@ AUTO_CREATE_VIEW_BY_XIB(UserPhotoView)
 + (CGFloat)heightForViewWithPhotoWidth:(float)photoWidth
                                 height:(float)photoHeight
                          inColumnWidth:(CGFloat)columnWidth {
+    if (photoHeight == 0 || photoWidth == 0) {
+        return columnWidth;
+    }
+    
     CGFloat height = 0.0;
     CGFloat width = columnWidth - BLANK_WIDTH * 2;
 

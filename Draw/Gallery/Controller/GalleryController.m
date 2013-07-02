@@ -137,7 +137,7 @@
 - (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView viewAtIndex:(NSInteger)index {
     UserPhotoView* cell = (UserPhotoView*)[self.dataTableView dequeueReusableView];
     if (cell == nil) {
-        cell = [UserPhotoView createViewWithPhoto:nil delegate:self];
+        cell = [UserPhotoView createViewWithPhoto:nil delegate:nil];
     }
     PBUserPhoto* result = (PBUserPhoto*)[self.dataList objectAtIndex:index];
     [cell updateWithUserPhoto:result];
@@ -154,7 +154,7 @@
 - (void)collectionView:(PSCollectionView *)collectionView didSelectView:(PSCollectionViewCell *)view atIndex:(NSInteger)index {
     //    NSDictionary *item = [self.items objectAtIndex:index];
     PBUserPhoto* result = [self.dataList objectAtIndex:index];
-    [self didClickPhoto:result];
+    [self didClickPhoto:result atIndex:index];
     // You can do something when the user taps on a collectionViewCell here
 }
 
@@ -234,6 +234,7 @@ enum {
 };
 #pragma mark - UserPhotoView delegate
 - (void)didClickPhoto:(PBUserPhoto *)photo
+              atIndex:(int)photoIndex
 {
     if (_delegate && [_delegate respondsToSelector:@selector(didGalleryController:SelectedUserPhoto:)]) {
         [_delegate didGalleryController:self SelectedUserPhoto:photo];
@@ -253,13 +254,13 @@ enum {
                 [cp showPhoto:photo];
             } break;
             case actionEditTag: {
-                [cp editPhoto:photo];
+                [cp editPhoto:photo atIndex:photoIndex];
             } break;
             case actionEditName: {
-                [cp editName:photo];
+                [cp editName:photo atIndex:photoIndex];
             } break;
             case actionDelete: {
-                [cp deletePhoto:photo];
+                [cp deletePhoto:photo atIndex:photoIndex];
             } break;
             default:
                 break;
@@ -269,11 +270,11 @@ enum {
     
 }
 
-- (void)editName:(PBUserPhoto*)photo
+- (void)editName:(PBUserPhoto*)photo atIndex:(int)photoIndex
 {
     __block GalleryController* cp = self;
     InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kEnterNewName") clickOK:^(NSString *inputStr) {
-        [cp editPhoto:photo withName:inputStr];
+        [cp editPhoto:photo withName:inputStr atIndex:photoIndex];
     } clickCancel:^(NSString *inputStr) {
         //
     }];
@@ -282,19 +283,25 @@ enum {
 
 - (void)editPhoto:(PBUserPhoto*)photo
          withName:(NSString*)name
+          atIndex:(int)photoIndex
 {
-    [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tagsList] usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto* photo) {
+    [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tagsList] usage:[GameApp photoUsage] protoPhoto:photo resultBlock:^(int resultCode, PBUserPhoto* photo) {
         if (resultCode == 0) {
             PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [photo.tagsList description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
-            [self reloadTableViewDataSource];
+//            [self reloadTableViewDataSource];
+            if (photoIndex < self.dataList.count) {
+                [self.dataList setObject:photo atIndexedSubscript:photoIndex];
+                [self.dataTableView reloadData];
+            }
         } else {
-            PPDebug(@"<deletePhoto> err code = %d", resultCode);
+            PPDebug(@"<editPhoto> err code = %d", resultCode);
         }
     }];
 }
 
 - (void)deletePhoto:(PBUserPhoto*)photo
+            atIndex:(int)photoIndex
 {
     __block GalleryController* cp = self;
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDelete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
@@ -303,7 +310,11 @@ enum {
                                              resultBlock:^(int resultCode) {
             if (resultCode == 0) {
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
-                [cp reloadTableViewDataSource];
+//                [cp reloadTableViewDataSource];
+                if (photoIndex < cp.dataList.count) {
+                    [cp.dataList removeObjectAtIndex:photoIndex];
+                    [cp.dataTableView reloadData];
+                }
             } else {
                 PPDebug(@"<deletePhoto> err code = %d", resultCode);
             }
@@ -315,17 +326,26 @@ enum {
     [dialog showInView:self.view];
 }
 
-- (void)editPhoto:(PBUserPhoto*)photo
+- (void)editPhoto:(PBUserPhoto*)photo atIndex:(int)photoIndex
 {
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo
                                                        title:NSLS(@"kSetTag")
                                                 confirmTitle:NSLS(@"kConfirm")
                                                  resultBlock:^(NSSet *tagSet) {
-        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:photo.name tagSet:tagSet usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto* photo) {
+                                                     [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url
+                                                                                                 name:photo.name
+                                                                                               tagSet:tagSet
+                                                                                                usage:[GameApp photoUsage]
+                                                                                           protoPhoto:photo
+                                                                                          resultBlock:^(int resultCode, PBUserPhoto* photo) {
             if (resultCode == 0) {
                 PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [tagSet description]);
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
-                [self reloadTableViewDataSource];
+//                [self reloadTableViewDataSource];
+                if (photoIndex < self.dataList.count) {
+                    [self.dataList setObject:photo atIndexedSubscript:photoIndex];
+                    [self.dataTableView reloadData];
+                }
             } else {
                 PPDebug(@"<deletePhoto> err code = %d", resultCode);
             }
