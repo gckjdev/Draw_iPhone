@@ -18,9 +18,8 @@
 #import "InputDialog.h"
 #import "SearchPhotoController.h"
 
-@interface GalleryController () {
+@interface GalleryController () <SearchPhotoResultControllerDelegate>{
     NSString* _currentImageUrl;
-    
 }
 
 @property (assign, nonatomic) id<GalleryControllerDelegate> delegate;
@@ -69,6 +68,7 @@
     }
     self.dataTableView.numColsPortrait = 2;
     [((UIButton*)self.noDataTipLabel) setTitle:NSLS(@"kNoPhoto") forState:UIControlStateNormal];
+    [self reloadTableViewDataSource];
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
@@ -76,7 +76,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self reloadTableViewDataSource];
+//    [self reloadTableViewDataSource];
 }
 
 - (void)didReceiveMemoryWarning
@@ -285,7 +285,9 @@ enum {
          withName:(NSString*)name
           atIndex:(int)photoIndex
 {
+    [self showActivityWithText:NSLS(@"kUpdating")];
     [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tagsList] usage:[GameApp photoUsage] protoPhoto:photo resultBlock:^(int resultCode, PBUserPhoto* photo) {
+        [self hideActivity];
         if (resultCode == 0) {
             PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [photo.tagsList description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
@@ -295,6 +297,7 @@ enum {
                 [self.dataTableView reloadData];
             }
         } else {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoFail") delayTime:2];
             PPDebug(@"<editPhoto> err code = %d", resultCode);
         }
     }];
@@ -305,9 +308,11 @@ enum {
 {
     __block GalleryController* cp = self;
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDelete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [self showActivityWithText:NSLS(@"kDeleting")];
         [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId
                                                    usage:[GameApp photoUsage]
                                              resultBlock:^(int resultCode) {
+                                                 [self hideActivity];
             if (resultCode == 0) {
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
 //                [cp reloadTableViewDataSource];
@@ -316,6 +321,7 @@ enum {
                     [cp.dataTableView reloadData];
                 }
             } else {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoFail") delayTime:2];
                 PPDebug(@"<deletePhoto> err code = %d", resultCode);
             }
             
@@ -332,12 +338,14 @@ enum {
                                                        title:NSLS(@"kSetTag")
                                                 confirmTitle:NSLS(@"kConfirm")
                                                  resultBlock:^(NSSet *tagSet) {
+                                                     [self showActivityWithText:NSLS(@"kUpdating")];
                                                      [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url
                                                                                                  name:photo.name
                                                                                                tagSet:tagSet
                                                                                                 usage:[GameApp photoUsage]
                                                                                            protoPhoto:photo
                                                                                           resultBlock:^(int resultCode, PBUserPhoto* photo) {
+                                                                                              [self hideActivity];
             if (resultCode == 0) {
                 PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [tagSet description]);
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
@@ -347,6 +355,7 @@ enum {
                     [self.dataTableView reloadData];
                 }
             } else {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoFail") delayTime:2];
                 PPDebug(@"<deletePhoto> err code = %d", resultCode);
             }
         }];
@@ -385,6 +394,7 @@ enum {
 - (IBAction)clickSearch:(id)sender
 {
     SearchPhotoController* sc = [[[SearchPhotoController alloc] init] autorelease];
+    sc.delegate = self;
     [self.navigationController pushViewController:sc animated:YES];
 }
 //#pragma mark - PhotoEditView delegate
@@ -395,7 +405,12 @@ enum {
 //    }];
 //}
 
-
+- (void)didAddUserPhoto:(PBUserPhoto *)photo
+{
+    [self.dataList insertObject:photo atIndex:0];
+    [self.noDataTipLabel setHidden:YES];
+    [self.dataTableView reloadData];
+}
 
 - (void)viewDidUnload {
     [self setTitleLabel:nil];

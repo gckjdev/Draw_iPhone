@@ -735,6 +735,7 @@
 "kChallenge" = "挑釁TA";
 
 "kDeleting" = "刪除中...";
+"kUpdating" = "更新中...";
 "kDeleteFail" = "刪除失敗！";
 "kUnfavoriteFail" = "取消收藏失敗";
 
@@ -1817,6 +1818,8 @@
 "kSearchResult" = "搜索結果";
 "kDeletePhotoSucc" = "成功刪除圖片!";
 "kEditPhotoSucc" = "成功更新圖片信息!";
+"kDeletePhotoFail" = "刪除圖片失敗, 請稍後再試。";
+"kEditPhotoFail" = "更新圖片信息失敗， 請稍後再試。";
 "kAddUserPhotoSucc" = "成功保存圖片!";
 "kEditPhoto" = "編輯圖片信息";
 "kName" = "名字";

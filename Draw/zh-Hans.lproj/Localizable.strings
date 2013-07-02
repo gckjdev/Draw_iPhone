@@ -735,6 +735,7 @@
 
 
 "kDeleting" = "删除中...";
+"kUpdating" = "更新中...";
 "kDeleteFail" = "删除失败！";
 "kUnfavoriteFail" = "取消收藏失败";
 
@@ -1821,6 +1822,8 @@
 "kSearchResult" = "搜索结果";
 "kDeletePhotoSucc" = "成功删除图片!";
 "kEditPhotoSucc" = "成功更新图片信息!";
+"kDeletePhotoFail" = "删除图片失败, 请稍后再试。";
+"kEditPhotoFail" = "更新图片信息失败， 请稍后再试。";
 "kAddUserPhotoSucc" = "成功保存图片!";
 "kEditPhoto" = "编辑图片信息";
 "kName" = "名字";
