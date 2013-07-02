@@ -33,6 +33,8 @@
 @property (nonatomic, retain) NSMutableArray* dataList;
 @property (assign, nonatomic) NSInteger dataListOffset;
 
+@property (nonatomic, retain) IBOutlet UIView *noDataTipLabel;
+
 #pragma mark: For pull down to refresh
 // For pull down to refresh
 @property(nonatomic,assign) BOOL supportRefreshHeader;
@@ -55,7 +57,7 @@
 
 //for sub class impletement
 - (NSInteger)loadMoreLimit;
-- (void)serviceLoadServiceFromOffset:(int)offset;
+- (void)serviceLoadData;
 - (void)didFinishLoadData:(NSArray*)data;
 - (void)didFinishLoadDataError:(int)errorCode;
 - (NSString*)errorTextForCode:(int)errorCode;

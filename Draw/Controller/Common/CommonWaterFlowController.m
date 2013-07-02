@@ -23,6 +23,7 @@
 - (void)dealloc
 {
     [_dataTableView release];
+    PPRelease(_noDataTipLabel);
     PPRelease(_dataList);
     PPRelease(_refreshHeaderView);
     PPRelease(_refreshFooterView);
@@ -81,10 +82,11 @@
         self.dataTableView.numColsLandscape = 4;
     }
     
-    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:self.dataTableView.bounds];
-    loadingLabel.text = NSLS(@"kLoading");
-    loadingLabel.textAlignment = UITextAlignmentCenter;
-    self.dataTableView.loadingView = loadingLabel;
+//    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:self.dataTableView.bounds];
+//    loadingLabel.text = NSLS(@"kLoading");
+//    loadingLabel.textAlignment = UITextAlignmentCenter;
+//    [loadingLabel setBackgroundColor:[UIColor clearColor]];
+//    self.dataTableView.loadingView = loadingLabel;
     
     
 //    [self createFooterLoadMoreButton];
@@ -101,7 +103,9 @@
 
 - (EGORefreshTableHeaderView*)createRefreshHeaderView
 {
-    return [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height)] autorelease];
+    EGORefreshTableHeaderView* header =  [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height)] autorelease];
+    [header setBackgroundColor:[UIColor clearColor]];
+    return header;
 }
 
 
@@ -122,7 +126,9 @@
 
 - (EGORefreshTableFooterView*)createRefreshFooterView
 {
-    return [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650)];
+    EGORefreshTableFooterView* footer = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650)];
+    [footer setBackgroundColor:[UIColor clearColor]];
+    return footer;
 }
 
 - (void)initRefreshFooterView
@@ -223,7 +229,8 @@
 // When "pull down to refresh" in triggered, this function will be called
 - (void) reloadTableViewDataSource
 {
-    [self serviceLoadServiceFromOffset:0];
+    self.dataListOffset = 0;
+    [self serviceLoadData];
 }
 
 // After finished loading data source, call this method to hide refresh view.
@@ -240,7 +247,7 @@
 // When "pull down to refresh" in triggered, this function will be called
 - (void) loadMoreTableViewDataSource
 {
-    [self serviceLoadServiceFromOffset:self.dataListOffset];
+    [self serviceLoadData];
 }
 
 // After finished loading data source, call this method to hide refresh view.
@@ -298,9 +305,10 @@
     }
 }
 
-- (void)serviceLoadServiceFromOffset:(int)offset
+- (void)serviceLoadData
 {
-    self.dataListOffset = offset;
+    [self showActivityWithText:NSLS(@"kLoading")];
+    PPDebug(@"<serviceLoadData> implement by sub class");
 }
 - (void)didFinishLoadData:(NSArray*)data
 {
@@ -319,6 +327,7 @@
         [self.dataList addObjectsFromArray:data];
         self.dataListOffset += [self loadMoreLimit];//[tab.dataList count];
     }
+    [self.noDataTipLabel setHidden:!(self.dataList.count == 0)];
     [self.dataTableView reloadData];
 }
 

@@ -68,6 +68,7 @@
         [self.titleLabel setText:self.title];
     }
     self.dataTableView.numColsPortrait = 2;
+    [((UIButton*)self.noDataTipLabel) setTitle:NSLS(@"kNoPhoto") forState:UIControlStateNormal];
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
@@ -146,11 +147,8 @@
 - (CGFloat)heightForViewAtIndex:(NSInteger)index {
     //    NSDictionary *item = [self.items objectAtIndex:index];
     PBUserPhoto* result = [self.dataList objectAtIndex:index];
-    NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
-    [dict setObject:[NSNumber numberWithFloat:result.width] forKey:@"width"];
-    [dict setObject:[NSNumber numberWithFloat:result.height] forKey:@"height"];
     //    return 60;
-    return [UserPhotoView heightForViewWithObject:dict inColumnWidth:self.dataTableView.colWidth];
+    return [UserPhotoView heightForViewWithPhotoWidth:result.width height:result.height inColumnWidth:self.dataTableView.colWidth];
 }
 
 - (void)collectionView:(PSCollectionView *)collectionView didSelectView:(PSCollectionViewCell *)view atIndex:(NSInteger)index {
@@ -191,10 +189,10 @@
     } 
 }
 
-- (void)serviceLoadServiceFromOffset:(int)offset
+- (void)serviceLoadData
 {
-    [super serviceLoadServiceFromOffset:offset];
-    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:offset limit:[self loadMoreLimit] resultBlock:^(int resultCode, NSArray *resultArray) {
+    [super serviceLoadData];
+    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:self.dataListOffset limit:[self loadMoreLimit] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self didFinishLoadData:resultArray];
 //        [self currentTab].status = TableTabStatusLoaded;
 //        [self loadTestData];

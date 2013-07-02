@@ -56,10 +56,10 @@ AUTO_CREATE_VIEW_BY_XIB(UserPhotoView)
             [self.createDateLabel setText:englishBeforeTime(date)];
         }
         
-        NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
-        [dict setObject:[NSNumber numberWithFloat:photo.width] forKey:@"width"];
-        [dict setObject:[NSNumber numberWithFloat:photo.height] forKey:@"height"];
-        self.object = dict;
+//        NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
+//        [dict setObject:[NSNumber numberWithFloat:photo.width] forKey:@"width"];
+//        [dict setObject:[NSNumber numberWithFloat:photo.height] forKey:@"height"];
+//        self.object = dict;
     }
     
 }
@@ -95,24 +95,17 @@ AUTO_CREATE_VIEW_BY_XIB(UserPhotoView)
 }
 
 #define MARGIN 0
-+ (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth {
++ (CGFloat)heightForViewWithPhotoWidth:(float)photoWidth
+                                height:(float)photoHeight
+                         inColumnWidth:(CGFloat)columnWidth {
     CGFloat height = 0.0;
     CGFloat width = columnWidth - MARGIN * 2;
     
     height += MARGIN;
     
     // Image
-    CGFloat objectWidth = [[object objectForKey:@"width"] floatValue];
-    CGFloat objectHeight = [[object objectForKey:@"height"] floatValue];
-    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+    CGFloat scaledHeight = floorf(photoHeight / (photoWidth / width));
     height += scaledHeight;
-    
-    // Label
-    NSString *caption = [object objectForKey:@"title"];
-    CGSize labelSize = CGSizeZero;
-    UIFont *labelFont = [UIFont boldSystemFontOfSize:14.0];
-    labelSize = [caption sizeWithFont:labelFont constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:UILineBreakModeWordWrap];
-    height += labelSize.height;
     
     height += MARGIN;
     
