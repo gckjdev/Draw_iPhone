@@ -8,17 +8,34 @@
 
 #import <UIKit/UIKit.h>
 #import "PPTableViewHeader.h"
+#import "Opus.pb.h"
+
+typedef enum{
+    CommentTypeNO = 0,
+    CommentTypeGuess = 2,
+    CommentTypeComment = 3,
+    CommentTypeFlower = 6,
+    CommentTypeTomato = 7,
+    CommentTypeSave = 8,
+}CommentType;
 
 @protocol CommonActionHeaderDelegate <NSObject>
 
 @optional
-- (void)didClickActionButton:(UIButton *)sender;
+- (void)didSelectCommentType:(CommentType)type;
 
 @end
 
 
-@interface CommonActionHeader : PPTableViewHeader
+@interface CommonActionHeader : PPTableViewHeader{
+    NSInteger _currentType;
+}
 
-- (IBAction)clickActionButton:(id)sender;
+- (void)setViewInfo:(PBOpus*)opus;
+- (void)updateTimes:(PBOpus *)opus;
+
+- (void)setSeletType:(CommentType)type;
+- (CommentType)seletedType;
+
 
 @end

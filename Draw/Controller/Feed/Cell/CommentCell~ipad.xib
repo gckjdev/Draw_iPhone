@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">11E53</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
-		<string key="IBDocument.HIToolboxVersion">626.00</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -47,7 +47,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{12, 10}, {74, 77}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="318933844"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -57,7 +56,6 @@
 								<int key="NSvFlags">294</int>
 								<string key="NSFrame">{{100, 6}, {362, 36}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="683987011"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -87,7 +85,6 @@
 								<int key="NSvFlags">289</int>
 								<string key="NSFrame">{{473, 8}, {221, 36}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="319891268"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -111,7 +108,6 @@
 								<int key="NSvFlags">278</int>
 								<string key="NSFrame">{{100, 48}, {500, 50}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="331180959"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -137,8 +133,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 109}, {724, 1}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="612205501"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -147,7 +141,6 @@
 								<int key="NSvFlags">289</int>
 								<string key="NSFrame">{{547, 44}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1067762314"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -161,7 +154,6 @@
 								<int key="NSvFlags">289</int>
 								<string key="NSFrame">{{622, 42}, {72, 56}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="905327152"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -196,7 +188,6 @@
 						</array>
 						<string key="NSFrameSize">{724, 109}</string>
 						<reference key="NSSuperview" ref="786630657"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="997992109"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -211,7 +202,6 @@
 				</array>
 				<string key="NSFrameSize">{724, 110}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="153973212"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="153973212"/>

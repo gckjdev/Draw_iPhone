@@ -11,22 +11,21 @@
 #import "CommonUserInfoCell.h"
 #import "CommonOpusInfoCell.h"
 #import "CommonActionHeader.h"
+#import "CommonTabController.h"
+#import "FeedService.h"
 
-@interface CommonOpusDetailController : PPTableViewController
+@interface CommonOpusDetailController : CommonTabController<FeedServiceDelegate>
 
 @property (retain, nonatomic) PBOpus *pbOpus;
 @property (assign, nonatomic) Class userInfoCellClass;
 @property (assign, nonatomic) Class opusInfoCellClass;
 @property (assign, nonatomic) Class actionHeaderClass;
 
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-
 // if you want to do something before back, overwrite "clickBack:" please, and  remenber to call "[super clickBack:sender] in your overwrite method"
 
 // Overwrite these methods below in your sub-class.
-- (void)clickOnAuthor:(PBGameUser *)author;
+//- (void)clickOnAuthor:(PBGameUser *)author;
 - (void)clickOnOpus:(PBOpus *)opus;
-- (void)clickOnTargetUser:(PBGameUser *)user;
-- (void)clickAction:(id)sender;
+//- (void)clickOnTargetUser:(PBGameUser *)user;
 
 @end

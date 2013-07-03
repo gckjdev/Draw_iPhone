@@ -50,6 +50,9 @@ typedef enum{
                   path:(NSString *)path
                   opus:(Opus *)opus;
 
+- (void)didGetOpus:(int)resultCode
+              opus:(PBOpus *)opus;
+
 - (void)didGetOpusList:(int)resultCode
                   list:(NSArray *)list;
 
@@ -83,6 +86,8 @@ typedef enum{
        progressDelegate:(id)progressDelegate
                delegate:(id<OpusServiceDelegate>)delegate;
 
+- (void)getOpusWithOpusId:(NSString *)opusId
+                 delegate:(id<OpusServiceDelegate>)delegate;
 
 - (void)getOpusList:(OpusListType)opusListType
              offset:(NSInteger)offset
