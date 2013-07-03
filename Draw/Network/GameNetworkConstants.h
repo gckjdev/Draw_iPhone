@@ -133,6 +133,7 @@
 #define METHOD_SUBMIT_OPUS @"submitOpus"
 #define METHOD_RANDOM_GET_SONGS @"randomGetSongs"
 #define PARA_SUB_CATEGORY @"subCategory"
+#define METHOD_RECOVERY_OPUS @"constructIndex"
 
 #define METHOD_GUESS_OPUS @"guessOpus"
 

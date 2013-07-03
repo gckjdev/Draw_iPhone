@@ -140,5 +140,6 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
                            autoRegister:(BOOL)autoRegister
                             resultBlock:(AutoResgistrationResultBlock)resultBlock;
-
+- (void)recoverUserOpus:(NSString*)targetUserId
+           successBlock:(void (^)(void))successBlock;
 @end

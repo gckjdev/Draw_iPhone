@@ -1435,6 +1435,7 @@
 "kHelp" = "Help";
 "kSelectPhoto" = "Select Photo";
 "kUpdateSucc" = "Update successfully!";
+"kContestNotSupportDesc" = "Can not modify contest description!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -343,6 +343,10 @@ typedef enum{
 
 - (void)editDescOfFeed:(DrawFeed*)feed
 {
+    if ([feed isContestFeed]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotSupportDesc") delayTime:2.5];
+        return;
+    }
     self.currentSelectFeed = feed;
     self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc")
                                                       content:feed.opusDesc
