@@ -9,9 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
 
-#define NOTIFICATION_MESSAGE_SENT   @"NOTIFICATION_MESSAGE_SENT"
+#define NOTIFICATION_MESSAGE_SENT       @"NOTIFICATION_MESSAGE_SENT"
+#define NOTIFICATION_MESSAGE_SENDING    @"NOTIFICATION_MESSAGE_SENDING"
+#define NOTIFICATION_MESSAGE_DELETE     @"NOTIFICATION_MESSAGE_DELETE"
+#define NOTIFICATION_MESSAGE_LOAD       @"NOTIFICATION_MESSAGE_LOAD"
+
 #define KEY_USER_INFO_MESSAGE       @"KEY_USER_INFO_MESSAGE"
 #define KEY_USER_INFO_RESULT_CODE   @"KEY_USER_INFO_RESULT_CODE"
+#define KEY_USER_INFO_FORWARD       @"KEY_USER_INFO_FORWARD"
+#define KEY_USER_INFO_INSERTMIDDLE  @"KEY_USER_INFO_INSERTMIDDLE"
 
 @class PPMessage;
 @protocol ChatServiceDelegate <NSObject>
@@ -46,23 +52,46 @@
                   offset:(int)starOffset 
                     limit:(int)maxCount;
 
-- (void)getMessageList:(id<ChatServiceDelegate>)delegate 
-          friendUserId:(NSString *)friendUserId 
-       offsetMessageId:(NSString *)offsetMessageId
-               forward:(BOOL)forward
-                 limit:(int)limit;
+//- (void)getMessageList:(id<ChatServiceDelegate>)delegate 
+//          friendUserId:(NSString *)friendUserId 
+//       offsetMessageId:(NSString *)offsetMessageId
+//               forward:(BOOL)forward
+//                 limit:(int)limit;
 
 
-- (void)sendMessage:(PPMessage *)message 
-           delegate:(id<ChatServiceDelegate>)delegate;
+//- (void)sendMessage:(PPMessage *)message 
+//           delegate:(id<ChatServiceDelegate>)delegate;
 
 
 - (void)sendHasReadMessage:(id<ChatServiceDelegate>)delegate friendUserId:(NSString *)friendUserId;
 
-- (void)deleteMessageStat:(id<ChatServiceDelegate>)delegate 
+- (void)deleteMessageStat:(id<ChatServiceDelegate>)delegate
               friendUserId:(NSString *)friendUserId;
 
-- (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
-        messageList:(NSArray *)messageList;
+//- (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
+//        messageList:(NSArray *)messageList;
+
+
+// new message method, use notification after load/sent complete
+- (void)loadMessageList:(NSString *)friendUserId
+        offsetMessageId:(NSString *)offsetMessageId
+                forward:(BOOL)forward
+                  limit:(int)limit;
+
+- (void)sendTextMessage:(NSString *)text friendUserId:(NSString*)friendUserId;
+- (void)sendDrawMessage:(NSMutableArray *)drawActionList canvasSize:(CGSize)size friendUserId:(NSString*)friendUserId;
+- (void)sendImage:(UIImage *)image friendUserId:(NSString*)friendUserId;
+- (void)sendAskLocationMessage:(double)latitude
+                     longitude:(double)longitude
+                  friendUserId:(NSString*)friendUserId;
+- (void)sendReplyLocationMessage:(double)latitude
+                       longitude:(double)longitude
+                    reqMessageId:(NSString *)reqMessageId
+                     replyResult:(NSInteger)replyResult
+                    friendUserId:(NSString*)friendUserId;
+
+- (void)sendMessage:(PPMessage *)message;
+- (void)deleteMessage:(PPMessage*)message;
+
 
 @end

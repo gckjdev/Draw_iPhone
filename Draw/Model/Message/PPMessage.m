@@ -40,6 +40,11 @@
 @synthesize sourceType = _sourceType;
 @synthesize text = _text;
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"id=%@, friendId=%@, status=%d, type=%d, source=%d, text=%@, date=%@",
+            _messageId, _friendId, _status, _messageType, _sourceType, _text, [_createDate description]];
+}
 
 + (id)oldMessageWithPBMessage:(PBMessage *)pbMessage
 {
@@ -87,7 +92,7 @@
 
 - (void)dealloc
 {
-    PPDebug(@"PPMessage = %@ dealloc", self);
+//    PPDebug(@"PPMessage = %@ dealloc", self);
     PPRelease(_messageId);
     PPRelease(_createDate);
     PPRelease(_friendId);

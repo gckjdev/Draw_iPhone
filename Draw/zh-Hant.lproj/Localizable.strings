@@ -749,6 +749,7 @@
 "kTomatoStatus" = "新番茄(%d)";
 
 "kChatTitle" = "發送消息";
+"kLoadingMessage" = "收取消息中...";
 
 "kOpusDelete" = "不好意思，该作品已經被刪除了。";
 
