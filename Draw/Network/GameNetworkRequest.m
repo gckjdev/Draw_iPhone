@@ -2323,7 +2323,12 @@
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+#ifdef DEBUG
+        str = [str stringByAddQueryParameter:PARA_APPID value:DRAW_APP_ID];
+#else
         str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+#endif
+
         str = [str stringByAddQueryParameter:PARA_RETURN_ITEM intValue:1];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         

@@ -613,6 +613,14 @@
 					<int key="connectionID">225</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backgroundImageView</string>
+						<reference key="source" ref="546724298"/>
+						<reference key="destination" ref="222373438"/>
+					</object>
+					<int key="connectionID">227</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickTool:</string>
 						<reference key="source" ref="578467750"/>
@@ -897,7 +905,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">226</int>
+			<int key="maxID">227</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -905,16 +913,16 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_up_panel_accessory@2x.png">{38, 38}</string>
-			<string key="draw_up_panel_background@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_bg@2x.png">{357, 544}</string>
-			<string key="draw_up_panel_blocks@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_canvas_btn@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_copy_paint_btn@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_draw_to_btn@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_edit_btn@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_help_btn_@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_sep_line@2x.png">{243, 1}</string>
+			<string key="draw_up_panel_accessory@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_background@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_bg@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_blocks@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_canvas_btn@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_copy_paint_btn@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_draw_to_btn@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_edit_btn@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_help_btn_@2x.png">{16, 16}</string>
+			<string key="draw_up_panel_sep_line@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

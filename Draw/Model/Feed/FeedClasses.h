@@ -38,12 +38,12 @@
 @end
 
 typedef enum{
-    FeedTimesTypeMatch = 1,
+    FeedTimesTypeMatch = 1, //
     FeedTimesTypeGuess = 2,
     FeedTimesTypeCorrect = 3,
     FeedTimesTypeComment = 4,
     FeedTimesTypeFlower = 5,
-    FeedTimesTypeTomato = 6,
+    FeedTimesTypeTomato = 6,//
     FeedTimesTypeSave = 7
 }FeedTimesType;
 

@@ -82,14 +82,6 @@
 @class OpenDiceRequest_Builder;
 @class OpenDiceResponse;
 @class OpenDiceResponse_Builder;
-@class PBActionComment;
-@class PBActionComment_Builder;
-@class PBActionFlower;
-@class PBActionFlower_Builder;
-@class PBActionGuess;
-@class PBActionGuess_Builder;
-@class PBActionTimes;
-@class PBActionTimes_Builder;
 @class PBApp;
 @class PBApp_Builder;
 @class PBAskPs;
@@ -193,8 +185,6 @@
 @class PBNoCompressDrawData;
 @class PBNoCompressDrawData_Builder;
 @class PBOpus;
-@class PBOpusAction;
-@class PBOpusAction_Builder;
 @class PBOpus_Builder;
 @class PBPoint;
 @class PBPoint_Builder;
@@ -218,8 +208,6 @@
 @class PBSongList;
 @class PBSongList_Builder;
 @class PBSong_Builder;
-@class PBTimeline;
-@class PBTimeline_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserDice;

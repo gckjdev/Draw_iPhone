@@ -184,5 +184,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     }];
 }
 
+- (void)getOpusWithOpusId:(NSString *)opusId
+                 delegate:(id<OpusServiceDelegate>)delegate{
+    
+}
 
 @end

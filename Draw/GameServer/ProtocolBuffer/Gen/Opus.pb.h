@@ -4,27 +4,38 @@
 
 #import "GameBasic.pb.h"
 #import "Sing.pb.h"
+#import "Draw.pb.h"
 
-@class PBActionComment;
-@class PBActionComment_Builder;
-@class PBActionFlower;
-@class PBActionFlower_Builder;
-@class PBActionGuess;
-@class PBActionGuess_Builder;
-@class PBActionTimes;
-@class PBActionTimes_Builder;
 @class PBApp;
 @class PBApp_Builder;
 @class PBAskPs;
 @class PBAskPsOpus;
 @class PBAskPsOpus_Builder;
 @class PBAskPs_Builder;
+@class PBColor;
+@class PBColor_Builder;
+@class PBCommentInfo;
+@class PBCommentInfo_Builder;
+@class PBDraw;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;
+@class PBDrawBgGroup;
+@class PBDrawBgGroup_Builder;
+@class PBDrawBgMeta;
+@class PBDrawBgMeta_Builder;
 @class PBDrawBg_Builder;
 @class PBDrawOpus;
 @class PBDrawOpus_Builder;
+@class PBDraw_Builder;
+@class PBFeed;
+@class PBFeedTimes;
+@class PBFeedTimes_Builder;
+@class PBFeed_Builder;
+@class PBFrame;
+@class PBFrameList;
+@class PBFrameList_Builder;
+@class PBFrame_Builder;
 @class PBGameItem;
 @class PBGameItemList;
 @class PBGameItemList_Builder;
@@ -37,28 +48,48 @@
 @class PBGameUser_Builder;
 @class PBGradient;
 @class PBGradient_Builder;
+@class PBHotWord;
+@class PBHotWordList;
+@class PBHotWordList_Builder;
+@class PBHotWord_Builder;
 @class PBIAPProduct;
 @class PBIAPProductList;
 @class PBIAPProductList_Builder;
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBImageShapeGroup;
+@class PBImageShapeGroupMeta;
+@class PBImageShapeGroupMeta_Builder;
+@class PBImageShapeGroup_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLayout;
+@class PBLayoutList;
+@class PBLayoutList_Builder;
+@class PBLayout_Builder;
+@class PBLearnDraw;
+@class PBLearnDraw_Builder;
 @class PBLocalizeString;
 @class PBLocalizeString_Builder;
 @class PBMessage;
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBNoCompressDrawAction;
+@class PBNoCompressDrawAction_Builder;
+@class PBNoCompressDrawData;
+@class PBNoCompressDrawData_Builder;
 @class PBOpus;
-@class PBOpusAction;
-@class PBOpusAction_Builder;
 @class PBOpus_Builder;
+@class PBPoint;
+@class PBPoint_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
+@class PBRect;
+@class PBRect_Builder;
 @class PBSNSUser;
 @class PBSNSUser_Builder;
 @class PBSingOpus;
@@ -73,8 +104,6 @@
 @class PBSongList;
 @class PBSongList_Builder;
 @class PBSong_Builder;
-@class PBTimeline;
-@class PBTimeline_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserItem;
@@ -85,6 +114,10 @@
 @class PBUserLevel_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
+@class PBWall;
+@class PBWallOpus;
+@class PBWallOpus_Builder;
+@class PBWall_Builder;
 typedef enum {
   PBOpusCategoryTypeDrawCategory = 0,
   PBOpusCategoryTypeSingCategory = 1,
@@ -134,6 +167,18 @@ typedef enum {
 } PBOpusStatus;
 
 BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
+
+typedef enum {
+  PBFeedTimesTypeFeedTimesTypeMatch = 1,
+  PBFeedTimesTypeFeedTimesTypeGuess = 2,
+  PBFeedTimesTypeFeedTimesTypeCorrect = 3,
+  PBFeedTimesTypeFeedTimesTypeComment = 4,
+  PBFeedTimesTypeFeedTimesTypeFlower = 5,
+  PBFeedTimesTypeFeedTimesTypeTomato = 6,
+  PBFeedTimesTypeFeedTimesTypeSave = 7,
+} PBFeedTimesType;
+
+BOOL PBFeedTimesTypeIsValidValue(PBFeedTimesType value);
 
 
 @interface OpusRoot : NSObject {
@@ -377,7 +422,7 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
   PBOpusType type;
   PBLanguage language;
   PBOpusCategoryType category;
-  NSMutableArray* mutableActionTimesList;
+  NSMutableArray* mutableFeedTimesList;
 }
 - (BOOL) hasOpusId;
 - (BOOL) hasType;
@@ -431,8 +476,8 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 @property (readonly, retain) NSString* localThumbImageUrl;
 - (BOOL) isRecovery;
 @property (readonly) PBOpusStoreType storeType;
-- (NSArray*) actionTimesList;
-- (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
+- (NSArray*) feedTimesList;
+- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
 
 + (PBOpus*) defaultInstance;
 - (PBOpus*) defaultInstance;
@@ -557,12 +602,12 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 - (PBOpus_Builder*) setContestId:(NSString*) value;
 - (PBOpus_Builder*) clearContestId;
 
-- (NSArray*) actionTimesList;
-- (PBActionTimes*) actionTimesAtIndex:(int32_t) index;
-- (PBOpus_Builder*) replaceActionTimesAtIndex:(int32_t) index with:(PBActionTimes*) value;
-- (PBOpus_Builder*) addActionTimes:(PBActionTimes*) value;
-- (PBOpus_Builder*) addAllActionTimes:(NSArray*) values;
-- (PBOpus_Builder*) clearActionTimesList;
+- (NSArray*) feedTimesList;
+- (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
+- (PBOpus_Builder*) replaceFeedTimesAtIndex:(int32_t) index with:(PBFeedTimes*) value;
+- (PBOpus_Builder*) addFeedTimes:(PBFeedTimes*) value;
+- (PBOpus_Builder*) addAllFeedTimes:(NSArray*) values;
+- (PBOpus_Builder*) clearFeedTimesList;
 
 - (BOOL) hasDraw;
 - (PBDrawOpus*) draw;
@@ -616,418 +661,5 @@ BOOL PBOpusStatusIsValidValue(PBOpusStatus value);
 - (PBOpusStoreType) storeType;
 - (PBOpus_Builder*) setStoreType:(PBOpusStoreType) value;
 - (PBOpus_Builder*) clearStoreType;
-@end
-
-@interface PBOpusAction : PBGeneratedMessage {
-@private
-  BOOL hasActionType_:1;
-  BOOL hasCreateDate_:1;
-  BOOL hasActionId_:1;
-  BOOL hasUserInfo_:1;
-  BOOL hasOpus_:1;
-  BOOL hasSourceAction_:1;
-  BOOL hasCommentAction_:1;
-  BOOL hasFlowerAction_:1;
-  BOOL hasGuessAction_:1;
-  int32_t actionType;
-  int32_t createDate;
-  NSString* actionId;
-  PBGameUser* userInfo;
-  PBOpus* opus;
-  PBOpusAction* sourceAction;
-  PBActionComment* commentAction;
-  PBActionFlower* flowerAction;
-  PBActionGuess* guessAction;
-}
-- (BOOL) hasActionId;
-- (BOOL) hasActionType;
-- (BOOL) hasUserInfo;
-- (BOOL) hasOpus;
-- (BOOL) hasCreateDate;
-- (BOOL) hasSourceAction;
-- (BOOL) hasCommentAction;
-- (BOOL) hasFlowerAction;
-- (BOOL) hasGuessAction;
-@property (readonly, retain) NSString* actionId;
-@property (readonly) int32_t actionType;
-@property (readonly, retain) PBGameUser* userInfo;
-@property (readonly, retain) PBOpus* opus;
-@property (readonly) int32_t createDate;
-@property (readonly, retain) PBOpusAction* sourceAction;
-@property (readonly, retain) PBActionComment* commentAction;
-@property (readonly, retain) PBActionFlower* flowerAction;
-@property (readonly, retain) PBActionGuess* guessAction;
-
-+ (PBOpusAction*) defaultInstance;
-- (PBOpusAction*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBOpusAction_Builder*) builder;
-+ (PBOpusAction_Builder*) builder;
-+ (PBOpusAction_Builder*) builderWithPrototype:(PBOpusAction*) prototype;
-
-+ (PBOpusAction*) parseFromData:(NSData*) data;
-+ (PBOpusAction*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBOpusAction*) parseFromInputStream:(NSInputStream*) input;
-+ (PBOpusAction*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBOpusAction*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBOpusAction*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBOpusAction_Builder : PBGeneratedMessage_Builder {
-@private
-  PBOpusAction* result;
-}
-
-- (PBOpusAction*) defaultInstance;
-
-- (PBOpusAction_Builder*) clear;
-- (PBOpusAction_Builder*) clone;
-
-- (PBOpusAction*) build;
-- (PBOpusAction*) buildPartial;
-
-- (PBOpusAction_Builder*) mergeFrom:(PBOpusAction*) other;
-- (PBOpusAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBOpusAction_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasActionId;
-- (NSString*) actionId;
-- (PBOpusAction_Builder*) setActionId:(NSString*) value;
-- (PBOpusAction_Builder*) clearActionId;
-
-- (BOOL) hasActionType;
-- (int32_t) actionType;
-- (PBOpusAction_Builder*) setActionType:(int32_t) value;
-- (PBOpusAction_Builder*) clearActionType;
-
-- (BOOL) hasUserInfo;
-- (PBGameUser*) userInfo;
-- (PBOpusAction_Builder*) setUserInfo:(PBGameUser*) value;
-- (PBOpusAction_Builder*) setUserInfoBuilder:(PBGameUser_Builder*) builderForValue;
-- (PBOpusAction_Builder*) mergeUserInfo:(PBGameUser*) value;
-- (PBOpusAction_Builder*) clearUserInfo;
-
-- (BOOL) hasOpus;
-- (PBOpus*) opus;
-- (PBOpusAction_Builder*) setOpus:(PBOpus*) value;
-- (PBOpusAction_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
-- (PBOpusAction_Builder*) mergeOpus:(PBOpus*) value;
-- (PBOpusAction_Builder*) clearOpus;
-
-- (BOOL) hasCreateDate;
-- (int32_t) createDate;
-- (PBOpusAction_Builder*) setCreateDate:(int32_t) value;
-- (PBOpusAction_Builder*) clearCreateDate;
-
-- (BOOL) hasSourceAction;
-- (PBOpusAction*) sourceAction;
-- (PBOpusAction_Builder*) setSourceAction:(PBOpusAction*) value;
-- (PBOpusAction_Builder*) setSourceActionBuilder:(PBOpusAction_Builder*) builderForValue;
-- (PBOpusAction_Builder*) mergeSourceAction:(PBOpusAction*) value;
-- (PBOpusAction_Builder*) clearSourceAction;
-
-- (BOOL) hasCommentAction;
-- (PBActionComment*) commentAction;
-- (PBOpusAction_Builder*) setCommentAction:(PBActionComment*) value;
-- (PBOpusAction_Builder*) setCommentActionBuilder:(PBActionComment_Builder*) builderForValue;
-- (PBOpusAction_Builder*) mergeCommentAction:(PBActionComment*) value;
-- (PBOpusAction_Builder*) clearCommentAction;
-
-- (BOOL) hasFlowerAction;
-- (PBActionFlower*) flowerAction;
-- (PBOpusAction_Builder*) setFlowerAction:(PBActionFlower*) value;
-- (PBOpusAction_Builder*) setFlowerActionBuilder:(PBActionFlower_Builder*) builderForValue;
-- (PBOpusAction_Builder*) mergeFlowerAction:(PBActionFlower*) value;
-- (PBOpusAction_Builder*) clearFlowerAction;
-
-- (BOOL) hasGuessAction;
-- (PBActionGuess*) guessAction;
-- (PBOpusAction_Builder*) setGuessAction:(PBActionGuess*) value;
-- (PBOpusAction_Builder*) setGuessActionBuilder:(PBActionGuess_Builder*) builderForValue;
-- (PBOpusAction_Builder*) mergeGuessAction:(PBActionGuess*) value;
-- (PBOpusAction_Builder*) clearGuessAction;
-@end
-
-@interface PBActionComment : PBGeneratedMessage {
-@private
-  BOOL hasContent_:1;
-  NSString* content;
-}
-- (BOOL) hasContent;
-@property (readonly, retain) NSString* content;
-
-+ (PBActionComment*) defaultInstance;
-- (PBActionComment*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBActionComment_Builder*) builder;
-+ (PBActionComment_Builder*) builder;
-+ (PBActionComment_Builder*) builderWithPrototype:(PBActionComment*) prototype;
-
-+ (PBActionComment*) parseFromData:(NSData*) data;
-+ (PBActionComment*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionComment*) parseFromInputStream:(NSInputStream*) input;
-+ (PBActionComment*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionComment*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBActionComment*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBActionComment_Builder : PBGeneratedMessage_Builder {
-@private
-  PBActionComment* result;
-}
-
-- (PBActionComment*) defaultInstance;
-
-- (PBActionComment_Builder*) clear;
-- (PBActionComment_Builder*) clone;
-
-- (PBActionComment*) build;
-- (PBActionComment*) buildPartial;
-
-- (PBActionComment_Builder*) mergeFrom:(PBActionComment*) other;
-- (PBActionComment_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBActionComment_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasContent;
-- (NSString*) content;
-- (PBActionComment_Builder*) setContent:(NSString*) value;
-- (PBActionComment_Builder*) clearContent;
-@end
-
-@interface PBActionFlower : PBGeneratedMessage {
-@private
-  BOOL hasType_:1;
-  int32_t type;
-}
-- (BOOL) hasType;
-@property (readonly) int32_t type;
-
-+ (PBActionFlower*) defaultInstance;
-- (PBActionFlower*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBActionFlower_Builder*) builder;
-+ (PBActionFlower_Builder*) builder;
-+ (PBActionFlower_Builder*) builderWithPrototype:(PBActionFlower*) prototype;
-
-+ (PBActionFlower*) parseFromData:(NSData*) data;
-+ (PBActionFlower*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionFlower*) parseFromInputStream:(NSInputStream*) input;
-+ (PBActionFlower*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionFlower*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBActionFlower*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBActionFlower_Builder : PBGeneratedMessage_Builder {
-@private
-  PBActionFlower* result;
-}
-
-- (PBActionFlower*) defaultInstance;
-
-- (PBActionFlower_Builder*) clear;
-- (PBActionFlower_Builder*) clone;
-
-- (PBActionFlower*) build;
-- (PBActionFlower*) buildPartial;
-
-- (PBActionFlower_Builder*) mergeFrom:(PBActionFlower*) other;
-- (PBActionFlower_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBActionFlower_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasType;
-- (int32_t) type;
-- (PBActionFlower_Builder*) setType:(int32_t) value;
-- (PBActionFlower_Builder*) clearType;
-@end
-
-@interface PBActionGuess : PBGeneratedMessage {
-@private
-  BOOL hasCorrect_:1;
-  BOOL correct_:1;
-  NSMutableArray* mutableWordsList;
-}
-- (BOOL) hasCorrect;
-- (BOOL) correct;
-- (NSArray*) wordsList;
-- (NSString*) wordsAtIndex:(int32_t) index;
-
-+ (PBActionGuess*) defaultInstance;
-- (PBActionGuess*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBActionGuess_Builder*) builder;
-+ (PBActionGuess_Builder*) builder;
-+ (PBActionGuess_Builder*) builderWithPrototype:(PBActionGuess*) prototype;
-
-+ (PBActionGuess*) parseFromData:(NSData*) data;
-+ (PBActionGuess*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionGuess*) parseFromInputStream:(NSInputStream*) input;
-+ (PBActionGuess*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionGuess*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBActionGuess*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBActionGuess_Builder : PBGeneratedMessage_Builder {
-@private
-  PBActionGuess* result;
-}
-
-- (PBActionGuess*) defaultInstance;
-
-- (PBActionGuess_Builder*) clear;
-- (PBActionGuess_Builder*) clone;
-
-- (PBActionGuess*) build;
-- (PBActionGuess*) buildPartial;
-
-- (PBActionGuess_Builder*) mergeFrom:(PBActionGuess*) other;
-- (PBActionGuess_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBActionGuess_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (NSArray*) wordsList;
-- (NSString*) wordsAtIndex:(int32_t) index;
-- (PBActionGuess_Builder*) replaceWordsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBActionGuess_Builder*) addWords:(NSString*) value;
-- (PBActionGuess_Builder*) addAllWords:(NSArray*) values;
-- (PBActionGuess_Builder*) clearWordsList;
-
-- (BOOL) hasCorrect;
-- (BOOL) correct;
-- (PBActionGuess_Builder*) setCorrect:(BOOL) value;
-- (PBActionGuess_Builder*) clearCorrect;
-@end
-
-@interface PBActionTimes : PBGeneratedMessage {
-@private
-  BOOL hasType_:1;
-  BOOL hasValue_:1;
-  BOOL hasName_:1;
-  int32_t type;
-  int32_t value;
-  NSString* name;
-}
-- (BOOL) hasType;
-- (BOOL) hasName;
-- (BOOL) hasValue;
-@property (readonly) int32_t type;
-@property (readonly, retain) NSString* name;
-@property (readonly) int32_t value;
-
-+ (PBActionTimes*) defaultInstance;
-- (PBActionTimes*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBActionTimes_Builder*) builder;
-+ (PBActionTimes_Builder*) builder;
-+ (PBActionTimes_Builder*) builderWithPrototype:(PBActionTimes*) prototype;
-
-+ (PBActionTimes*) parseFromData:(NSData*) data;
-+ (PBActionTimes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionTimes*) parseFromInputStream:(NSInputStream*) input;
-+ (PBActionTimes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBActionTimes*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBActionTimes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBActionTimes_Builder : PBGeneratedMessage_Builder {
-@private
-  PBActionTimes* result;
-}
-
-- (PBActionTimes*) defaultInstance;
-
-- (PBActionTimes_Builder*) clear;
-- (PBActionTimes_Builder*) clone;
-
-- (PBActionTimes*) build;
-- (PBActionTimes*) buildPartial;
-
-- (PBActionTimes_Builder*) mergeFrom:(PBActionTimes*) other;
-- (PBActionTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBActionTimes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasType;
-- (int32_t) type;
-- (PBActionTimes_Builder*) setType:(int32_t) value;
-- (PBActionTimes_Builder*) clearType;
-
-- (BOOL) hasName;
-- (NSString*) name;
-- (PBActionTimes_Builder*) setName:(NSString*) value;
-- (PBActionTimes_Builder*) clearName;
-
-- (BOOL) hasValue;
-- (int32_t) value;
-- (PBActionTimes_Builder*) setValue:(int32_t) value;
-- (PBActionTimes_Builder*) clearValue;
-@end
-
-@interface PBTimeline : PBGeneratedMessage {
-@private
-  BOOL hasOpus_:1;
-  BOOL hasAction_:1;
-  PBOpus* opus;
-  PBOpusAction* action;
-}
-- (BOOL) hasOpus;
-- (BOOL) hasAction;
-@property (readonly, retain) PBOpus* opus;
-@property (readonly, retain) PBOpusAction* action;
-
-+ (PBTimeline*) defaultInstance;
-- (PBTimeline*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBTimeline_Builder*) builder;
-+ (PBTimeline_Builder*) builder;
-+ (PBTimeline_Builder*) builderWithPrototype:(PBTimeline*) prototype;
-
-+ (PBTimeline*) parseFromData:(NSData*) data;
-+ (PBTimeline*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBTimeline*) parseFromInputStream:(NSInputStream*) input;
-+ (PBTimeline*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBTimeline*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBTimeline*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBTimeline_Builder : PBGeneratedMessage_Builder {
-@private
-  PBTimeline* result;
-}
-
-- (PBTimeline*) defaultInstance;
-
-- (PBTimeline_Builder*) clear;
-- (PBTimeline_Builder*) clone;
-
-- (PBTimeline*) build;
-- (PBTimeline*) buildPartial;
-
-- (PBTimeline_Builder*) mergeFrom:(PBTimeline*) other;
-- (PBTimeline_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBTimeline_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasOpus;
-- (PBOpus*) opus;
-- (PBTimeline_Builder*) setOpus:(PBOpus*) value;
-- (PBTimeline_Builder*) setOpusBuilder:(PBOpus_Builder*) builderForValue;
-- (PBTimeline_Builder*) mergeOpus:(PBOpus*) value;
-- (PBTimeline_Builder*) clearOpus;
-
-- (BOOL) hasAction;
-- (PBOpusAction*) action;
-- (PBTimeline_Builder*) setAction:(PBOpusAction*) value;
-- (PBTimeline_Builder*) setActionBuilder:(PBOpusAction_Builder*) builderForValue;
-- (PBTimeline_Builder*) mergeAction:(PBOpusAction*) value;
-- (PBTimeline_Builder*) clearAction;
 @end
 

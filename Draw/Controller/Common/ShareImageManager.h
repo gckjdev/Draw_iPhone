@@ -269,4 +269,7 @@
 - (UIImage *)splitPhoto;
 - (UIImage *)placeholderPhoto;
 
+- (UIImage *)drawToolUpPanelLeftArrowBg;
+- (UIImage *)drawToolUpPanelRightArrowBg;
+
 @end

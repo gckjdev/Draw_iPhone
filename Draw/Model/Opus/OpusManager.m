@@ -74,7 +74,7 @@
 + (PBOpus *)createTestOpus{
     PBOpus_Builder *builder = [[[PBOpus_Builder alloc] init] autorelease];
     
-    [builder setOpusId:@"2"];
+    [builder setOpusId:@"512c971de4b02d50d0d20376"];
 
     [builder setType:PBOpusTypeSingToUser];
     [builder setName:@"我的作品"];
@@ -94,6 +94,8 @@
     [authorBuilder setSignature:@"这是我的个人签名"];
     [builder setAuthor:[authorBuilder build]];
     
+    [builder addAllFeedTimes:[self feedTimesList]];
+    
     PBGameUser_Builder *toUserBuilder = [[[PBGameUser_Builder alloc] init] autorelease];
     [toUserBuilder setUserId:@"xxx"];
     [toUserBuilder setNickName:@"甘米"];
@@ -101,6 +103,43 @@
     
     return [builder build];
 }
+
+
++ (NSArray *)feedTimesList{
+    PBFeedTimes *t1 = [self feedTimesWithType:PBFeedTimesTypeFeedTimesTypeComment value:16];
+    PBFeedTimes *t2 = [self feedTimesWithType:PBFeedTimesTypeFeedTimesTypeGuess value:21];
+    PBFeedTimes *t3 = [self feedTimesWithType:PBFeedTimesTypeFeedTimesTypeFlower value:10];
+    PBFeedTimes *t4 = [self feedTimesWithType:PBFeedTimesTypeFeedTimesTypeSave value:2];
+
+    return [NSArray arrayWithObjects:t1, t2, t3, t4, nil];
+}
+
++ (PBFeedTimes *)feedTimesWithType:(PBFeedTimesType)type value:(int)value{
+    PBFeedTimes_Builder *builder = [[[PBFeedTimes_Builder alloc] init] autorelease];
+    [builder setType:type];
+    [builder setValue:value];
+
+    return  [builder build];
+}
+
+//+ (NSArray *)actionTimes{
+//    PBActionTimes *t1 = [self actionTimesWithType:PBOpusActionTypeOpusActionTypeComment name:@"评论" value:16];
+//    PBActionTimes *t2 = [self actionTimesWithType:PBOpusActionTypeOpusActionTypeGuess name:@"猜画" value:10];
+//    PBActionTimes *t3 = [self actionTimesWithType:PBOpusActionTypeOpusActionTypeFlower name:@"鲜花" value:21];
+//    PBActionTimes *t4 = [self actionTimesWithType:PBOpusActionTypeOpusActionTypeSave name:@"收藏" value:1];
+//    
+//    return [NSArray arrayWithObjects:t1, t2, t3, t4, nil];
+//
+//}
+//
+//+ (PBActionTimes *)actionTimesWithType:(PBOpusActionType)type name:(NSString *)name value:(int)value{
+//    PBActionTimes_Builder *builder = [[[PBActionTimes_Builder alloc] init] autorelease];
+//    [builder setType:type];
+//    [builder setName:name];
+//    [builder setValue:value];
+//    
+//    return  [builder build];
+//}
 
 - (void)setDraftOpusId:(Opus*)opus extension:(NSString*)fileNameExtension
 {
