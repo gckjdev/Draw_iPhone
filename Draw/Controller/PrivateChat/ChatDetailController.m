@@ -34,8 +34,8 @@
 
 @interface ChatDetailController ()
 {
-    MessageStat *_messageStat;
-    NSMutableArray *_messageList;
+//    MessageStat *_messageStat;
+//    NSMutableArray *_messageList;
     CGFloat _panelHeight;
     
     NSInteger _asIndexDelete;
@@ -50,7 +50,7 @@
 
 @property (retain, nonatomic) PPMessage *selectedMessage;
 @property (retain, nonatomic) MessageStat *messageStat;
-@property (retain, nonatomic) NSMutableArray *messageList;
+@property (retain, nonatomic) NSArray *messageList;
 @property (retain, nonatomic) PhotoDrawSheet *photoDrawSheet;
 - (IBAction)clickBack:(id)sender;
 - (NSInteger)loadNewDataCount;
@@ -58,7 +58,7 @@
 - (void)tableViewScrollToTop;
 - (void)tableViewScrollToBottom;
 - (BOOL)messageShowTime:(PPMessage *)message;
-- (void)appendMessageList:(NSArray *)list;
+//- (void)appendMessageList:(NSArray *)list;
 @end
 
 
@@ -73,11 +73,12 @@
 @synthesize refreshButton;
 @synthesize selectedMessage = _selectedMessage;
 @synthesize messageStat = _messageStat;
-@synthesize messageList = _messageList;
+//@synthesize messageList = _messageList;
 @synthesize delegate = _delegate;
 
 - (void)reloadTableView
 {
+    /*
     NSArray *temp = [self.messageList sortedArrayUsingComparator:^(id obj1,id obj2){
         NSDate *date1 = [(PPMessage *)obj1 createDate];
         NSDate *date2 = [(PPMessage *)obj2 createDate];
@@ -89,6 +90,9 @@
     } ];
     self.messageList = [NSMutableArray arrayWithArray:temp];
     temp = nil;
+    */
+    
+    self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
     [[self dataTableView] reloadData];
 }
 
@@ -97,6 +101,7 @@
     return self.messageStat.friendId;
 }
 
+/*
 - (void)appendMessageList:(NSArray *)list
 {
     if ([list count] == 0) {
@@ -119,6 +124,7 @@
     [_messageList addObjectsFromArray:list];
     [_messageList removeObjectsInArray:repeatList];
 }
+*/
 
 #define GROUP_INTERVAL 60 * 5
 - (BOOL)messageShowTime:(PPMessage *)message
@@ -141,6 +147,7 @@
     [self unregisterAllNotifications];
     
     PPDebug(@"%@ dealloc",self);
+    PPRelease(_loadingActivityView);
     PPRelease(_delegate);
     PPRelease(titleLabel);
     PPRelease(inputTextView);
@@ -161,9 +168,8 @@
     self = [super init];
     if (self) {
         self.messageStat = messageStat;
-        _messageList = [[NSMutableArray alloc] init];
+//        _messageList = [[NSMutableArray alloc] init];
     }
-    PPDebug(@"%@<initWithMessageStat>", self);
     return self;
 }
 
@@ -181,37 +187,35 @@
 
 - (void)initListWithLocalData
 {
-    NSArray* list = [PPMessageManager messageListForFriendId:self.fid];
-    PPDebug(@"<initListWithLocalData> list count = %d", [list count]);
-    if ([list count] != 0) {
-        [self appendMessageList:list];
+    // TODO check
+//    NSArray* list =  //[PPMessageManager messageListForFriendId:self.fid];
+//    PPDebug(@"<initListWithLocalData> list count = %d", [list count]);
+//    if ([list count] != 0) {
+//        [self appendMessageList:list];
         [self reloadTableView];
         [self tableViewScrollToBottom];
         
         //reSend the sendding messages...
+        // TODO resent sending message, move to chat service
+        /*
         for (PPMessage *message in list) {
             if (message.status == MessageStatusSending) {
                 [[ChatService defaultService] sendMessage:message delegate:self];
             }
         }
-    }
-}
-
-- (void)bgRunBlock:(dispatch_block_t)block
-{
-    block();
-    
-//    dispatch_queue_t queue = dispatch_get_main_queue(); //dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    if (queue) {
-//        dispatch_async(queue, block);
+        */
 //    }
 }
-- (void)bgSaveMessageList
-{
-//    [self bgRunBlock:^{
-    [PPMessageManager saveFriend:self.fid messageList:self.messageList];
-//    }];
-}
+
+//- (void)bgRunBlock:(dispatch_block_t)block
+//{
+//    block();
+//
+//}
+//- (void)bgSaveMessageList
+//{
+//    [PPMessageManager saveFriend:self.fid messageList:self.messageList];
+//}
 
 //235 - 68 
 
@@ -225,14 +229,6 @@
         self.inputTextView.frame = RECT_INPUT_TEXT_VIEW;
         self.inputTextBackgroundImage.frame = RECT_INPUT_TEXT_BACKGROUND;
     } else {
-//        MyFriend *friend = [MyFriend friendWithFid:_messageStat.friendId
-//                                          nickName:_messageStat.friendNickName
-//                                            avatar:_messageStat.friendAvatar
-//                                            gender:_messageStat.friendGenderString
-//                                             level:1];
-//        if (friend.relation != RelationTypeFriend){
-//            self.locateButton.enabled = NO;
-//        }
         
         [[UserService defaultService] getUserInfo:_messageStat.friendId resultBlock:^(int resultCode, PBGameUser *user, int relation) {
             if (resultCode == 0){
@@ -247,34 +243,47 @@
     }
 }
 
+- (void)registerAllChatNotification
+{
+    __block ChatDetailController* bself = self;
+    [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENT usingBlock:^(NSNotification *note) {
+        
+        NSDictionary* userInfo = [note userInfo];
+        NSNumber* resultCode = [userInfo objectForKey:KEY_USER_INFO_RESULT_CODE];
+        [bself didSendMessage:nil resultCode:[resultCode intValue]];
+    }];
+    
+    [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENDING usingBlock:^(NSNotification *note) {
+        [bself reloadTableView];
+    }];
+    
+    [self registerNotificationWithName:NOTIFICATION_MESSAGE_DELETE usingBlock:^(NSNotification *note) {
+        [bself reloadTableView];
+    }];
+    
+    [self registerNotificationWithName:NOTIFICATION_MESSAGE_LOAD usingBlock:^(NSNotification *note) {
+        
+        NSDictionary* userInfo = [note userInfo];
+        NSNumber* resultCode = [userInfo objectForKey:KEY_USER_INFO_RESULT_CODE];
+        NSNumber* forward = [userInfo objectForKey:KEY_USER_INFO_FORWARD];
+        NSNumber* insertMiddle = [userInfo objectForKey:KEY_USER_INFO_INSERTMIDDLE];
+        
+        [bself didGetMessages:nil forward:[forward boolValue] insertMiddle:[insertMiddle intValue] resultCode:[resultCode intValue]];
+        
+        [bself clearTitleForLoading];
+    }];
+}
+
 - (void)viewDidLoad
 {
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
     [self initViews];
     [self initListWithLocalData];
+    [self registerAllChatNotification];
     [self loadNewMessage:YES];
-    self.unReloadDataWhenViewDidAppear = YES;
-    
+    self.unReloadDataWhenViewDidAppear = YES;    
     [self updateLocateButton];
-    
-    __block ChatDetailController* bself = self;
-    [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENT usingBlock:^(NSNotification *note) {
-        
-        NSDictionary* userInfo = [note userInfo];
-        NSData* data = [userInfo objectForKey:KEY_USER_INFO_MESSAGE];
-        NSNumber* resultCode = [userInfo objectForKey:KEY_USER_INFO_RESULT_CODE];
-
-        PPMessage* message = nil;
-        if (data != nil){
-            PBMessage* pbMessage = [PBMessage parseFromData:data];
-            if (pbMessage){
-                message = [PPMessage messageWithPBMessage:pbMessage];
-            }
-        }
-        
-        [bself didSendMessage:message resultCode:[resultCode intValue]];        
-    }];
 }
 
 - (void)viewDidUnload
@@ -291,7 +300,7 @@
 
 
 - (void)viewDidAppear:(BOOL)animated
-{    
+{
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = self;
     [super viewDidAppear:animated];
@@ -301,7 +310,7 @@
 {
     PPRelease(_delegate);
     
-    [self bgSaveMessageList];
+//    [self bgSaveMessageList];
     
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = nil;
@@ -310,10 +319,14 @@
 
 
 #pragma mark - ChatServiceDelegate methods
-- (void)didGetMessages:(NSArray *)list 
+- (void)didGetMessages:(NSArray *)list
                forward:(BOOL)forward
+          insertMiddle:(BOOL)insertMiddle
             resultCode:(int)resultCode
 {
+    self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
+    list = self.messageList;
+    
     [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];
     if (resultCode == 0) {
@@ -324,9 +337,9 @@
         if ([list count] == 0) {
             return;
         }
-        [self appendMessageList:list];
+
         [self reloadTableView];
-        if (forward) {
+        if (forward || insertMiddle) {
             [self tableViewScrollToBottom];
         }else{
             [self tableViewScrollToTop];
@@ -345,16 +358,18 @@
 
 - (void)didSendMessage:(PPMessage *)message resultCode:(int)resultCode
 {
-    [self.dataTableView reloadData];
     if (resultCode == 0) {
-        if (_delegate && [_delegate respondsToSelector:@selector(didMessageStat:createNewMessage:)]) {
-            [_delegate didMessageStat:self.messageStat createNewMessage:message];
-        }
+//        if (_delegate && [_delegate respondsToSelector:@selector(didMessageStat:createNewMessage:)]) {
+//            [_delegate didMessageStat:self.messageStat createNewMessage:message];
+//        }
         self.inputTextView.text = nil;
         [self textViewDidChange:self.inputTextView];
     } else {
         
     }
+
+    [self reloadTableView];
+    [self scrollToBottom:YES];
 }
 
 
@@ -400,7 +415,7 @@
     PPMessage *message = [self messageOfIndex:indexPath.row];
     BOOL flag = [self messageShowTime:message];
     CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
-    PPDebug(@"<heightForRowAtIndexPath> = %f, index = %d", height, indexPath.row);
+//    PPDebug(@"<heightForRowAtIndexPath> = %f, index = %d", height, indexPath.row);
     return height;
 }
 
@@ -427,6 +442,8 @@
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
 {
+    [self unregisterAllNotifications];
+    
     NSArray *viewControllers = self.navigationController.viewControllers;
 //    PPDebug(@"<clickBack>viewControllers = %@",viewControllers);
     for (UIViewController* controller in viewControllers){
@@ -540,7 +557,7 @@
 
 
 #pragma mark sendMessage
-
+/*
 - (void)constructMessage:(PPMessage *)message
 {
     [message setFriendId:_messageStat.friendId];
@@ -647,7 +664,7 @@
     [self.dataTableView reloadData];
     [self tableViewScrollToBottom];
 }
-
+*/
 
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
@@ -661,14 +678,14 @@
             drawImage:(UIImage *)drawImage
 {
     [controller dismissModalViewControllerAnimated:YES];
-    [self sendDrawMessage:drawActionList canvasSize:size];
+    [[ChatService defaultService]  sendDrawMessage:drawActionList canvasSize:size friendUserId:self.fid];
     [self tableViewScrollToBottom];
 }
 
 - (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
 {
     [controller dismissModalViewControllerAnimated:YES];
-    [self sendImage:image];
+    [[ChatService defaultService]  sendImage:image friendUserId:self.fid];
     [self tableViewScrollToBottom];
 }
 
@@ -682,7 +699,9 @@
 {  
     if ([text isEqualToString:@"\n"]) {  
         if ([textView.text length] != 0) {
-            [self sendTextMessage:textView.text];
+//            [self sendTextMessage:textView.text];
+            
+            [[ChatService defaultService] sendTextMessage:textView.text friendUserId:self.fid];
             [self tableViewScrollToBottom];
             textView.text = nil;            
         }
@@ -857,7 +876,12 @@
             }
             case 1:
             {
-                [bself sendReplyLocationMessage:0 longitude:0 reqMessageId:message.messageId replyResult:REJECT_ASK_LOCATION];
+                // TODO
+                [[ChatService defaultService] sendReplyLocationMessage:0
+                                                             longitude:0
+                                                          reqMessageId:message.messageId
+                                                           replyResult:REJECT_ASK_LOCATION
+                                                          friendUserId:self.fid];
                 break;
             }
             case 2:
@@ -1013,20 +1037,21 @@
 {
     _showingActionSheet = NO;
     if (_asIndexDelete == buttonIndex) {
-        [[ChatService defaultService] deleteMessage:self
-                                      messageList:[NSArray arrayWithObject:_selectedMessage]];
-
-        if (_selectedMessage.messageType == MessageTypeImage){
-            if (_selectedMessage.status == MessageStatusSending || _selectedMessage.status == MessageStatusFail) {
-                [PPMessageManager removeLocalImage:[(ImageMessage *)_selectedMessage thumbImageUrl]];
-            }
-        }
         
-        NSInteger row = [self.messageList indexOfObject:_selectedMessage];
-        NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
-        NSArray *indexPaths = [NSArray arrayWithObject:path];
-        [self.messageList removeObject:_selectedMessage];
-        [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [[ChatService defaultService] deleteMessage:_selectedMessage];
+        
+//        [[ChatService defaultService] deleteMessage:self
+//                                      messageList:[NSArray arrayWithObject:_selectedMessage]];
+
+        
+//        NSInteger row = [self.messageList indexOfObject:_selectedMessage];
+//        NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
+//        NSArray *indexPaths = [NSArray arrayWithObject:path];
+//        [self.messageList removeObject:_selectedMessage];
+//        [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self reloadTableView];
+        
     }else if(_asIndexCopy == buttonIndex && _selectedMessage.messageType == MessageTypeText)
     {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -1039,9 +1064,12 @@
              (_selectedMessage.messageType == MessageTypeLocationRequest || _selectedMessage.messageType == MessageTypeLocationResponse)){
         [self showLocation:_selectedMessage];
     }else if(_asIndexResend == buttonIndex){
-        [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
-        [_selectedMessage setCreateDate:[NSDate date]];
-        [_selectedMessage setStatus:MessageStatusSending];
+        
+        // TODO change status shall be in chat service
+//        [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
+
+        [[ChatService defaultService] sendMessage:_selectedMessage];
+        
         [self reloadTableView];
         [self tableViewScrollToBottom];
     }
@@ -1061,17 +1089,17 @@
     return 10;
 }
 
-#define LAST_MESSAGE_ID_KEY     @"LAST_MESSAGE_ID_KEY"
-
-- (void)saveLastMessageId:(NSString*)messageId
-{
-    [[NSUserDefaults standardUserDefaults] setObject:messageId forKey:LAST_MESSAGE_ID_KEY];
-}
-
-- (NSString*)loadLastMessageId
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_MESSAGE_ID_KEY];
-}
+//#define LAST_MESSAGE_ID_KEY     @"LAST_MESSAGE_ID_KEY"
+//
+//- (void)saveLastMessageId:(NSString*)messageId
+//{
+//    [[NSUserDefaults standardUserDefaults] setObject:messageId forKey:LAST_MESSAGE_ID_KEY];
+//}
+//
+//- (NSString*)loadLastMessageId
+//{
+//    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_MESSAGE_ID_KEY];
+//}
 
 - (NSString *)lastMessageId
 {
@@ -1079,38 +1107,83 @@
     for (int i = count; i >= 0; --i) {
         PPMessage *message = [_messageList objectAtIndex:i];
         if (message.isMessageSentOrReceived) {
+            PPDebug(@"Last message Id is %@ from %@, text=%@", message.messageId, message.friendId, message.text);
             return message.messageId;
         }
     }
     return nil;
 }
+
 - (NSString *)firstMessageId
 {
     for (PPMessage *message in _messageList) {
         if (message.isMessageSentOrReceived) {
+            PPDebug(@"First message Id is %@ from %@, text=%@", message.messageId, message.friendId, message.text);
             return message.messageId;
         }
     }
     return nil;    
 }
+
+- (void)updateTitleForLoading
+{
+    self.titleLabel.text = NSLS(@"kLoadingMessage");
+    
+    if (self.loadingActivityView == nil){
+        self.loadingActivityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.loadingActivityView.frame = self.refreshButton.frame;
+    }
+    [self.view addSubview:self.loadingActivityView];
+    [self.loadingActivityView startAnimating];
+
+    self.refreshButton.hidden = YES;
+}
+
+- (void)clearTitleForLoading
+{
+    self.titleLabel.text = self.messageStat.friendNickName;
+    
+    [self.loadingActivityView stopAnimating];
+    [self.loadingActivityView removeFromSuperview];
+
+    self.refreshButton.hidden = NO;
+}
+
 - (void)loadNewMessage:(BOOL)showActivity
 {
-    if (showActivity) {
-        [self showActivityWithText:NSLS(@"kLoading")];
-    }
+//    if (showActivity) {
+////        [self showActivityWithText:NSLS(@"kLoading")];
+//    }
+    
+    [self updateTitleForLoading];
+    
+    [[ChatService defaultService] loadMessageList:self.fid
+                                  offsetMessageId:self.lastMessageId
+                                          forward:YES
+                                            limit:[self loadNewDataCount]];
+    
+    /*
     [[ChatService defaultService] getMessageList:self
                                     friendUserId:self.fid
                                  offsetMessageId:self.lastMessageId 
                                          forward:YES 
                                            limit:[self loadNewDataCount]];
+    */
 }
 - (void)loadMoreMessage
 {
-    [[ChatService defaultService] getMessageList:self 
-                                    friendUserId:self.fid
-                                 offsetMessageId:self.firstMessageId 
-                                         forward:NO 
-                                           limit:[self loadMoreDataCount]];
+    [self updateTitleForLoading];
+
+    [[ChatService defaultService] loadMessageList:self.fid
+                                  offsetMessageId:self.firstMessageId
+                                          forward:NO
+                                            limit:[self loadMoreDataCount]];
+    
+//    [[ChatService defaultService] getMessageList:self 
+//                                    friendUserId:self.fid
+//                                 offsetMessageId:self.firstMessageId 
+//                                         forward:NO 
+//                                           limit:[self loadMoreDataCount]];
 }
 
 - (void)tableViewScrollToTop
@@ -1161,10 +1234,11 @@
                  messageType:(MessageType)messageType
                 reqMessageId:(NSString *)reqMessageId
 {
+    // TODO 
     if (messageType == MessageTypeLocationRequest) {
-        [self sendAskLocationMessage:latitude longitude:longitude];
+        [[ChatService defaultService] sendAskLocationMessage:latitude longitude:longitude friendUserId:self.fid];
     } else {
-        [self sendReplyLocationMessage:latitude longitude:longitude reqMessageId:reqMessageId replyResult:ACCEPT_ASK_LOCATION];
+        [[ChatService defaultService] sendReplyLocationMessage:latitude longitude:longitude reqMessageId:reqMessageId replyResult:ACCEPT_ASK_LOCATION friendUserId:self.fid];
     }
 }
 

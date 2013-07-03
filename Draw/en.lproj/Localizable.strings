@@ -683,6 +683,7 @@
 "kPlayWithHim" = "Play with him(her)";
 "kChatToHim" = "Say hi";
 
+
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";
 "kUserGuess" = "Guess";
@@ -743,6 +744,7 @@
 "kOpusDelete" = "Sorry. The opus has been deleted.";
 
 "kChatTitle" = "Send Message";
+"kLoadingMessage" = "Loading...";
 
 "kGuessUserDraw_MyDraw" = "my paint";
 "kGuessRightDesc_MyDraw" = "Guessed my paint: [%@].";

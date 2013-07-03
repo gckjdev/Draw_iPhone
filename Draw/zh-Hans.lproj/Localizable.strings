@@ -751,6 +751,7 @@
 
 
 "kChatTitle" = "发送消息";
+"kLoadingMessage" = "收取消息中...";
 "kOpusDelete" = "不好意思，该作品已经被删除了。";
 
 "kGuessUserDraw_MyDraw" = "正在猜我的画";
