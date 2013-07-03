@@ -103,6 +103,7 @@ CGFloat CGPointRadian(CGPoint p1, CGPoint p2);
 CGPoint CGPointVector(CGPoint p1, CGPoint p2);
 CGPoint CGPointRand(NSUInteger maxX, NSUInteger maxY);
 CGPoint CGPointMid(CGPoint p1, CGPoint p2);
+void translateFromCartesianCoordinates(CGPoint *point, CGRect rect);
 
 CGRect CGRectWithPoints(CGPoint p1, CGPoint p2);
 CGRect CGRectWithPointsAndWidth(CGPoint p1, CGPoint p2, CGFloat width);
@@ -113,3 +114,8 @@ CGSize CGSizeFromPBSizeC(Game__PBSize *size);
 CGRect CGRectFromCGSize(CGSize size);
 CGSize CGSizeRand(NSUInteger maxWidth, NSUInteger maxHeight);
 void CGRectEnlarge(CGRect *rect, CGFloat xLength, CGFloat yLength); //enlarge and hode the center
+CGPoint CGRectGetLeftTopPoint(CGRect rect);
+CGPoint CGRectGetRightTopPoint(CGRect rect);
+CGPoint CGRectGetLeftBottomPoint(CGRect rect);
+CGPoint CGRectGetRightBottomPoint(CGRect rect);
+

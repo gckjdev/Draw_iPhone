@@ -438,6 +438,20 @@ CGPoint CGPointRand(NSUInteger maxX, NSUInteger maxY)
     return CGPointMake(rand()%maxX, rand()%maxY);
 }
 
+void translateFromCartesianCoordinates(CGPoint *point, CGRect rect)
+{
+    CGFloat tx = CGRectGetWidth(rect) / 2;
+    CGFloat ty = CGRectGetHeight(rect) / 2;
+    
+    point->x += tx;
+    point->y -= ty;
+    point->y = -point->y;
+    
+    point->x += CGRectGetMinX(rect);
+    point->y += CGRectGetMinY(rect);
+}
+
+
 CGRect CGRectWithPoints(CGPoint p1, CGPoint p2)
 {
     
@@ -510,4 +524,34 @@ void CGRectEnlarge(CGRect *rect, CGFloat xLength, CGFloat yLength)//enlarge and 
     
     rect->size.width += 2 * xLength;
     rect->size.height += 2 * yLength;
+}
+
+
+CGPoint CGRectGetLeftTopPoint(CGRect rect)
+{
+    CGPoint point;
+    point.x = CGRectGetMinX(rect);
+    point.y = CGRectGetMinY(rect);
+    return point;
+}
+CGPoint CGRectGetRightTopPoint(CGRect rect)
+{
+    CGPoint point;
+    point.x = CGRectGetMaxX(rect);
+    point.y = CGRectGetMinY(rect);
+    return point;
+}
+CGPoint CGRectGetLeftBottomPoint(CGRect rect)
+{
+    CGPoint point;
+    point.x = CGRectGetMinX(rect);
+    point.y = CGRectGetMaxY(rect);
+    return point;
+}
+CGPoint CGRectGetRightBottomPoint(CGRect rect)
+{
+    CGPoint point;
+    point.x = CGRectGetMinX(rect);
+    point.y = CGRectGetMaxY(rect);
+    return point;
 }

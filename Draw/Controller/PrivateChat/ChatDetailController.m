@@ -296,7 +296,7 @@
     [self setMessageList:nil];
     [self setLocateButton:nil];
     [super viewDidUnload];
-}
+}   
 
 
 - (void)viewDidAppear:(BOOL)animated

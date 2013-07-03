@@ -1,6 +1,7 @@
 
 import "GameBasic.proto";
 import "Sing.proto";
+import "Draw.proto";
 
 package game;
 
@@ -75,6 +76,17 @@ enum PBOpusStatus{
     OPUS_STATUS_DELETE = 1;
 }
 
+enum PBFeedTimesType{
+
+    FEED_TIMES_TYPE_MATCH = 1; 
+    FEED_TIMES_TYPE_GUESS = 2;
+    FEED_TIMES_TYPE_CORRECT = 3;
+    FEED_TIMES_TYPE_COMMENT = 4;
+    FEED_TIMES_TYPE_FLOWER = 5;
+    FEED_TIMES_TYPE_TOMATO = 6;
+    FEED_TIMES_TYPE_SAVE = 7;
+}
+
 message PBOpus {
 
   required string opusId = 1;                   // 作品Id
@@ -101,7 +113,7 @@ message PBOpus {
   optional PBGameUser targetUser = 41;          // 作品是给谁的
   optional string contestId = 42;               // 参与的比赛的Id
 
-  repeated PBActionTimes actionTimes = 45;      // 作品操作统计信息
+  repeated PBFeedTimes feedTimes = 45;      // 作品操作统计信息
 
   optional PBDrawOpus draw = 101;                // 画画特有信息
   optional PBSingOpus sing = 102;                // 唱歌特有信息
@@ -117,47 +129,47 @@ message PBOpus {
   optional PBOpusStoreType storeType = 200;      // 当前保存类型 
 }
 
-message PBOpusAction{
-    required string actionId = 1;
-    optional int32 actionType = 2;                  //3 comment, 2, guess, 6 flower
-    
-    optional PBGameUser userInfo = 6;               // 评论人的信息
-    optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
+//message PBOpusAction{
+//    required string actionId = 1;
+//    optional PBOpusActionType actionType = 2;       
+//    
+//    optional PBGameUser userInfo = 6;               // 评论人的信息
+//    optional PBOpus opus = 7;                       // 评论的作品的详细信息 only used in local
+//
+//    optional int32 createDate = 11;                 // 评论的创建时间
+//
+//    optional PBOpusAction sourceAction = 15;        // 原评论的内容
+//
+//
+//    //content
+//    optional PBActionComment commentAction = 51;    // 评论
+//    optional PBActionFlower flowerAction = 52;      // 鲜花
+//    optional PBActionGuess guessAction = 53;        // 猜
+//}
 
-    optional int32 createDate = 11;                 // 评论的创建时间
-
-    optional PBOpusAction sourceAction = 15;        // 原评论的内容
-
-
-    //content
-    optional PBActionComment commentAction = 51;    // 评论
-    optional PBActionFlower flowerAction = 52;      // 鲜花
-    optional PBActionGuess guessAction = 53;        // 猜
-}
-
-message PBActionComment{
-    optional string content = 1;                    // 评论内容
-}
-
-message PBActionFlower{
-    required int32 type = 1 ;                       // 1 for current flower
-}
-
-message PBActionGuess{
-    repeated string words = 1;                      // 猜过的词
-    optional bool correct = 2;                      // 是否猜中？
-}
-
-
-message PBActionTimes{
-    required int32  type  = 1;                      // 操作类型
-    optional string name  = 2;                      // 名字
-    optional int32  value = 3[default=0];           
-}
-
-message PBTimeline
-{
-    optional PBOpus opus = 1;                       
-    optional PBOpusAction action = 2;               //only guess action
-}
+//message PBActionComment{
+//    optional string content = 1;                    // 评论内容
+//}
+//
+//message PBActionFlower{
+//    required int32 type = 1 ;                       // 1 for current flower
+//}
+//
+//message PBActionGuess{
+//    repeated string words = 1;                      // 猜过的词
+//    optional bool correct = 2;                      // 是否猜中？
+//}
+//
+//
+//message PBActionTimes{
+//    required PBOpusActionType type  = 1;            // 操作类型
+//    optional string name  = 2;                      // 名字
+//    optional int32  value = 3[default=0];           
+//}
+//
+//message PBTimeline
+//{
+//    optional PBOpus opus = 1;                       
+//    optional PBOpusAction action = 2;               //only guess action
+//}
 

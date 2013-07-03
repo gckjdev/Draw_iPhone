@@ -363,7 +363,7 @@ enum{
         return false;
     }
     if (indexPath.row < [self.dataList count]) {
-        DrawFeed *feed = [self.dataList objectAtIndex:indexPath.row];
+        CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
         //can only delete comment feed, but flower and tomato.
         return [feed isMyFeed]|| ([self.feed isMyOpus] && feed.feedType == FeedTypeComment);        
     }

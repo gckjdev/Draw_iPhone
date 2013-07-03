@@ -239,9 +239,13 @@ static PPMessageManager* globalDefaultMessageManager;
             PPMessage* m2 = (PPMessage*)obj2;
             return [m1.createDate compare:m2.createDate];
         }];
-        if (list != nil){
-            [_friendMessageDict setObject:list forKey:friendUserId];
+        
+        // make sure list is NOT null
+        if (list == nil){
+            list = [NSMutableArray array];
         }
+        
+        [_friendMessageDict setObject:list forKey:friendUserId];
     }
     
     return list;
