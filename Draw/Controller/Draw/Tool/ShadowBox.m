@@ -84,8 +84,10 @@
         UIButton *button = (id)[self viewWithTag:tag];
         if (i < [list count]) {
             button.enabled = YES;
+            [button setTitle:[@(i+1) stringValue] forState:UIControlStateNormal];
         }else{
             button.enabled = NO;
+            [button setTitle:NSLS(@"kNone") forState:UIControlStateNormal];
         }
     }
 }
@@ -126,9 +128,12 @@
 - (IBAction)clickCancel:(id)sender {
     _shadow.blur = 0;
     [_shadow updateWithDegree:0 distance:0];
-    _shadow.color = [DrawColor blackColor];
+    _shadow.color = [DrawColor grayColor];
     [preView setNeedsDisplay];
     [settingView updateSliders];
+    
+    [self clickApply:nil];//apply && close the window
+    
 }
 
 - (IBAction)clickApply:(id)sender {

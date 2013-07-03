@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSCollectionViewCell.h"
 @class PBUserPhoto;
 
 @protocol UserPhotoViewDelegate <NSObject>
@@ -16,7 +17,7 @@
 @end
 
 
-@interface UserPhotoView : UIView
+@interface UserPhotoView : PSCollectionViewCell
 @property (retain, nonatomic) IBOutlet UILabel *createDateLabel;
 
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;

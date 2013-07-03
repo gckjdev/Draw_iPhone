@@ -132,9 +132,9 @@ message PBDrawBg
 }
 
 message PBGradient {
-    required float degree = 1;
-    required float division = 2;
-    repeated int32 color = 3;
+    required float division = 1;
+    repeated int32 color = 2[packed = true];
+    repeated int32 point = 3[packed = true];
 }
 
 // internal usage, to store draw data

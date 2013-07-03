@@ -33,6 +33,8 @@ CGPoint boxContentOffset;
 
 - (void)dismiss
 {
+    [self.infoView unregisterAllNotifications];
+    
     boxContentOffset = [self.tableView contentOffset];
     [self.infoView dismiss];
     self.infoView.infoView = nil;
@@ -57,12 +59,39 @@ CGPoint boxContentOffset;
 {
     if (self.infoView == nil) {
         __block typeof (self) bself = self;
-        self.infoView = [CustomInfoView createWithTitle:NSLS(@"kSelectBGImage")
+        NSString* defaultTitle = NSLS(@"kSelectBGImage");
+        self.infoView = [CustomInfoView createWithTitle:defaultTitle
                                               infoView:self
                          closeHandler:^{
+                             [self.infoView unregisterAllNotifications];
                              boxContentOffset = [bself.tableView contentOffset];                             
                              bself.infoView = nil;
                          }];
+        
+        [self.infoView registerNotificationWithName:[[DrawBgManager defaultManager] downloadProgressNotificationName]
+                                         usingBlock:^(NSNotification *note) {
+                                             
+                                             NSDictionary* userInfo = [note userInfo];
+                                             PPDebug(@"Handle background download progress, data=%@", [userInfo description]);
+                                             
+                                             NSNumber* progress = [userInfo objectForKey:SMART_DATA_PROGRESS];
+                                             NSString* name = [userInfo objectForKey:SMART_DATA_NAME];
+                                             
+                                             if ([name length] > 0 && progress != nil){
+                                                 NSString* title = nil;                                                 
+                                                 if ([progress doubleValue] >= 99.99f){
+                                                     title = defaultTitle;
+                                                 }
+                                                 else{
+                                                     title = [NSString stringWithFormat:NSLS(@"kBgDownloading"), ([progress doubleValue]*100)];
+                                                 }
+                                                 [bself.infoView setTitle:title];
+                                             }
+                                             else{
+                                                 [bself.infoView setTitle:defaultTitle];
+                                             }
+                                             
+                                         }];
         
         [self.infoView.mainView updateCenterY:(self.infoView.mainView.center.y - (ISIPAD ? 35 : 20))];
     }
@@ -75,6 +104,9 @@ CGPoint boxContentOffset;
 }
 
 - (void)dealloc {
+    
+    [self.infoView unregisterAllNotifications];
+    
     PPRelease(_infoView);
     PPRelease(_tableView);
     PPRelease(_dataList);

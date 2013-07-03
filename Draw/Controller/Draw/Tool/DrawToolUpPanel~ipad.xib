@@ -42,7 +42,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrameSize">{346, 548}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="578467750"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -57,7 +56,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 276}, {244, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="285205356"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -89,7 +87,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 152}, {244, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="351953065"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -114,7 +111,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 462}, {244, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="862774812"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -139,7 +135,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 400}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="72854557"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -148,13 +143,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">help</string>
+						<string key="IBUINormalTitle">Label</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="514889441">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -177,7 +172,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 338}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="101665476"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -186,13 +180,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">grid</string>
+						<string key="IBUINormalTitle">Label</string>
 						<reference key="IBUIHighlightedTitleColor" ref="514889441"/>
 						<reference key="IBUISelectedTitleColor" ref="514889441"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -212,7 +206,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 462}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="625144277"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -238,7 +231,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 92}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="438659159"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -247,13 +239,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">BG</string>
+						<string key="IBUINormalTitle">Label</string>
 						<reference key="IBUIHighlightedTitleColor" ref="514889441"/>
 						<reference key="IBUISelectedTitleColor" ref="514889441"/>
 						<reference key="IBUINormalTitleColor" ref="694083474"/>
@@ -270,7 +262,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 30}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1514082"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -279,13 +270,13 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
 						<double key="IBUIImageEdgeInsets.left">0.0</double>
 						<double key="IBUIImageEdgeInsets.right">240</double>
-						<string key="IBUINormalTitle">e</string>
+						<string key="IBUINormalTitle">Label</string>
 						<reference key="IBUIHighlightedTitleColor" ref="514889441"/>
 						<reference key="IBUISelectedTitleColor" ref="514889441"/>
 						<reference key="IBUINormalTitleColor" ref="694083474"/>
@@ -302,7 +293,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 214}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="811770183"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -312,7 +302,7 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<double key="IBUITitleEdgeInsets.top">0.0</double>
 						<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-						<double key="IBUITitleEdgeInsets.left">-26</double>
+						<double key="IBUITitleEdgeInsets.left">-1</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
 						<double key="IBUIImageEdgeInsets.top">0.0</double>
 						<double key="IBUIImageEdgeInsets.bottom">0.0</double>
@@ -335,7 +325,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 276}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1048819712"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -372,7 +361,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{28, 152}, {296, 54}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="88591818"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -403,7 +391,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 82}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="157866796"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -418,7 +405,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 144}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="555655216"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -430,7 +416,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 204}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="195031038"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -442,7 +427,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 266}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="330722265"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -454,7 +438,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 328}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="830951474"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -466,7 +449,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 390}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="826654274"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -478,7 +460,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 452}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="991512500"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -490,7 +471,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 514}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -502,7 +482,6 @@
 						<int key="NSvFlags">-2147483329</int>
 						<string key="NSFrame">{{284, 156}, {48, 48}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1049733211"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -535,7 +514,6 @@
 				</array>
 				<string key="NSFrameSize">{344, 548}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="222373438"/>
 				<reference key="IBUIBackgroundColor" ref="514889441"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -876,16 +854,16 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="17.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="17.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="18.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="18.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="18.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="19.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="19.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="200.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="200.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="200.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="200.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="203.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="204.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -900,7 +878,7 @@
 				<real value="2" key="212.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="212.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="214.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="214.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="214.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="214.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="217.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="219.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -908,7 +886,7 @@
 				<real value="0.0" key="221.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="224.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="27.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="27.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="0.0" key="27.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="28.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
@@ -1200,7 +1178,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_up_panel_accessory@2x.png">{38, 38}</string>
 			<string key="draw_up_panel_background@2x.png">{54, 54}</string>
-			<string key="draw_up_panel_bg@2x.png">{345, 547}</string>
+			<string key="draw_up_panel_bg@2x.png">{357, 544}</string>
 			<string key="draw_up_panel_blocks@2x.png">{54, 54}</string>
 			<string key="draw_up_panel_canvas_btn@2x.png">{54, 54}</string>
 			<string key="draw_up_panel_copy_paint_btn@2x.png">{54, 54}</string>

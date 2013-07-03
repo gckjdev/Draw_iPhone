@@ -63,7 +63,7 @@
     if (shadow) {
         return [Shadow shadowWithDrawColor:shadow.color offset:shadow.offset blur:shadow.blur];
     }
-    return [Shadow shadowWithDrawColor:[DrawColor blackColor] offset:CGSizeZero blur:0];
+    return [Shadow shadowWithDrawColor:[DrawColor grayColor] offset:CGSizeZero blur:0];
 }
 
 

@@ -40,6 +40,8 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value) {
 @property int32_t createDate;
 @property (retain) NSMutableArray* mutableTagsList;
 @property int32_t usage;
+@property Float32 width;
+@property Float32 height;
 @end
 
 @implementation PBUserPhoto
@@ -94,6 +96,20 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value) {
   hasUsage_ = !!value;
 }
 @synthesize usage;
+- (BOOL) hasWidth {
+  return !!hasWidth_;
+}
+- (void) setHasWidth:(BOOL) value {
+  hasWidth_ = !!value;
+}
+@synthesize width;
+- (BOOL) hasHeight {
+  return !!hasHeight_;
+}
+- (void) setHasHeight:(BOOL) value {
+  hasHeight_ = !!value;
+}
+@synthesize height;
 - (void) dealloc {
   self.userId = nil;
   self.photoId = nil;
@@ -112,6 +128,8 @@ BOOL PBPhotoUsageIsValidValue(PBPhotoUsage value) {
     self.name = @"";
     self.createDate = 0;
     self.usage = 0;
+    self.width = 0;
+    self.height = 0;
   }
   return self;
 }
@@ -165,6 +183,12 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
   if (self.hasUsage) {
     [output writeInt32:8 value:self.usage];
   }
+  if (self.hasWidth) {
+    [output writeFloat:9 value:self.width];
+  }
+  if (self.hasHeight) {
+    [output writeFloat:10 value:self.height];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -202,6 +226,12 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
   }
   if (self.hasUsage) {
     size += computeInt32Size(8, self.usage);
+  }
+  if (self.hasWidth) {
+    size += computeFloatSize(9, self.width);
+  }
+  if (self.hasHeight) {
+    size += computeFloatSize(10, self.height);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -305,6 +335,12 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
   if (other.hasUsage) {
     [self setUsage:other.usage];
   }
+  if (other.hasWidth) {
+    [self setWidth:other.width];
+  }
+  if (other.hasHeight) {
+    [self setHeight:other.height];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -356,6 +392,14 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
       }
       case 64: {
         [self setUsage:[input readInt32]];
+        break;
+      }
+      case 77: {
+        [self setWidth:[input readFloat]];
+        break;
+      }
+      case 85: {
+        [self setHeight:[input readFloat]];
         break;
       }
     }
@@ -502,6 +546,38 @@ static PBUserPhoto* defaultPBUserPhotoInstance = nil;
 - (PBUserPhoto_Builder*) clearUsage {
   result.hasUsage = NO;
   result.usage = 0;
+  return self;
+}
+- (BOOL) hasWidth {
+  return result.hasWidth;
+}
+- (Float32) width {
+  return result.width;
+}
+- (PBUserPhoto_Builder*) setWidth:(Float32) value {
+  result.hasWidth = YES;
+  result.width = value;
+  return self;
+}
+- (PBUserPhoto_Builder*) clearWidth {
+  result.hasWidth = NO;
+  result.width = 0;
+  return self;
+}
+- (BOOL) hasHeight {
+  return result.hasHeight;
+}
+- (Float32) height {
+  return result.height;
+}
+- (PBUserPhoto_Builder*) setHeight:(Float32) value {
+  result.hasHeight = YES;
+  result.height = value;
+  return self;
+}
+- (PBUserPhoto_Builder*) clearHeight {
+  result.hasHeight = NO;
+  result.height = 0;
   return self;
 }
 @end

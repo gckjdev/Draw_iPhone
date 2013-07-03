@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSCollectionViewCell.h"
 
 @class ImageSearchResult;
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface SearchResultView : UIView
+@interface SearchResultView : PSCollectionViewCell
 
 @property (retain, nonatomic) ImageSearchResult* searchResult;
 @property (assign, nonatomic) id<SearchResultViewDelegate>delegate;

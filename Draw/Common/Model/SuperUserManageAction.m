@@ -22,6 +22,7 @@ typedef enum
     SuperUserManageActionIndexBlackDevice,
     SuperUserManageActionIndexUnblackUserId,
     SuperUserManageActionIndexUnblackDevice,
+    SuperUserManageActionIndexRecoverOpus,
 }SuperUserManageActionIndex;
 
 @implementation SuperUserManageAction
@@ -55,7 +56,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -87,7 +88,6 @@ typedef enum
             } clickCancel:^(NSString *inputStr) {
                 //
             }];
-            dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
             [dialog.targetTextField setPlaceholder:@"请输入要充值的金币数"];
             [dialog showInView:_superController.view];
         } break;
@@ -142,6 +142,11 @@ typedef enum
                 //
             }];
             [dialog showInView:_superController.view];
+        } break;
+        case SuperUserManageActionIndexRecoverOpus: {
+            [[UserService defaultService] recoverUserOpus:_targetUserId successBlock:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功恢复用户作品" delayTime:1.5];
+            }];
         } break;
         default:
             break;

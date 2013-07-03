@@ -38,6 +38,7 @@
 #import "RegisterUserController.h"
 #import "CommonDialog.h"
 #import "DrawAppDelegate.h"
+#import "PPGameNetworkRequest.h"
 
 @implementation UserService
 
@@ -1315,7 +1316,21 @@ static UserService* _defaultUserService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
-                successBlock();
+                EXECUTE_BLOCK(successBlock);
+            }
+        });
+    });
+}
+
+- (void)recoverUserOpus:(NSString*)targetUserId
+           successBlock:(void (^)(void))successBlock
+{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_RECOVERY_OPUS parameters:@{PARA_TARGETUSERID:targetUserId} isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                EXECUTE_BLOCK(successBlock);
             }
         });
     });

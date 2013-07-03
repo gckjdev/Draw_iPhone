@@ -25,6 +25,7 @@
 #import "GalleryController.h"
 #import "Photo.pb.h"
 #import "PPSmartUpdateData.h"
+#import "PSCollectionViewCell.h"
 
 #import "StorageManager.h"
 #import "UserManager.h"
@@ -37,6 +38,7 @@
 @property (retain, nonatomic) NSDictionary* options;
 @property (retain, nonatomic) NSString* searchText;
 @property (retain, nonatomic) NSArray* initArray;
+@property (assign, nonatomic) id<SearchPhotoResultControllerDelegate>delegate;
 
 @end
 
@@ -61,19 +63,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self finishLoadDataForTabID:[self currentTab].tabID resultList:self.initArray];
+    self.dataTableView.numColsPortrait = 2;
+    [self didFinishLoadData:self.initArray];
+//    [self finishLoadDataForTabID:[self currentTab].tabID resultList:self.initArray];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (id)initWithKeyword:(NSString*)keyword
               options:(NSDictionary*)options
           resultArray:(NSArray *)array
+             delegate:(id<SearchPhotoResultControllerDelegate>)delegate
 {
     self = [super init];
     if (self) {
         self.searchText = keyword;
         self.options = options;
         self.initArray = array;
+        self.delegate = delegate;
         // Custom initialization
     }
     return self;
@@ -108,47 +114,47 @@
 #define IMAGE_HEIGHT  (ISIPAD?384:160)
 #define RESULT_IMAGE_TAG_OFFSET 20130601
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return IMAGE_HEIGHT;
-}
-#pragma mark tab controller delegate
-
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
-        for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-            SearchResultView* resultView = [[[SearchResultView alloc] initWithFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)] autorelease];
-            resultView.tag = RESULT_IMAGE_TAG_OFFSET + i;
-            resultView.delegate = self;
-            
-            [cell.contentView addSubview:resultView];
-        }
-    }
-    for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-        NSArray* list = [self tabDataList];
-        SearchResultView* resultView = (SearchResultView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
-        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
-            
-            ImageSearchResult* result = (ImageSearchResult*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
-            PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
-            [resultView updateWithResult:result];
-            resultView.hidden = NO;
-        } else {
-            resultView.hidden = YES;
-        }
-        
-    }
-    
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return IMAGE_HEIGHT;
+//}
+//#pragma mark tab controller delegate
+//
+//- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+//        for (int i = 0; i < IMAGE_PER_LINE; i ++) {
+//            SearchResultView* resultView = [[[SearchResultView alloc] initWithFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)] autorelease];
+//            resultView.tag = RESULT_IMAGE_TAG_OFFSET + i;
+//            resultView.delegate = self;
+//            
+//            [cell.contentView addSubview:resultView];
+//        }
+//    }
+//    for (int i = 0; i < IMAGE_PER_LINE; i ++) {
+//        NSArray* list = [self tabDataList];
+//        SearchResultView* resultView = (SearchResultView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
+//        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
+//            
+//            ImageSearchResult* result = (ImageSearchResult*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
+//            PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
+//            [resultView updateWithResult:result];
+//            resultView.hidden = NO;
+//        } else {
+//            resultView.hidden = YES;
+//        }
+//        
+//    }
+//    
+//    return cell;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
+//}
 
 //- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 //{
@@ -158,41 +164,77 @@
 //    [searchBar resignFirstResponder];
 //}
 
+- (NSInteger)numberOfViewsInCollectionView:(PSCollectionView *)collectionView
+{
+//    return 8;
+    return self.dataList.count;
+}
+
+- (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView viewAtIndex:(NSInteger)index {
+    SearchResultView* cell = (SearchResultView*)[self.dataTableView dequeueReusableView];
+    if (cell == nil) {
+        cell = [[[SearchResultView alloc] init] autorelease];
+    }
+    ImageSearchResult* result = [self.dataList objectAtIndex:index];
+    [cell updateWithResult:result];
+    return cell;
+}
+
+- (CGFloat)heightForViewAtIndex:(NSInteger)index {
+    //    NSDictionary *item = [self.items objectAtIndex:index];
+    ImageSearchResult* result = [self.dataList objectAtIndex:index];
+//    return 60;
+    return [SearchResultView heightForViewWithPhotoWidth:result.width height:result.height inColumnWidth:self.dataTableView.colWidth];
+}
+
+- (void)collectionView:(PSCollectionView *)collectionView didSelectView:(PSCollectionViewCell *)view atIndex:(NSInteger)index {
+    //    NSDictionary *item = [self.items objectAtIndex:index];
+    ImageSearchResult* result = [self.dataList objectAtIndex:index];
+    [self didClickSearchResult:result];
+    // You can do something when the user taps on a collectionViewCell here
+}
+
 #pragma mark tab controller delegate
 
-- (NSInteger)tabCount
-{
-    return 1;
-}
-- (NSInteger)currentTabIndex
-{
-    return _defaultTabIndex;
-}
-- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+//- (NSInteger)tabCount
+//{
+//    return 1;
+//}
+//- (NSInteger)currentTabIndex
+//{
+//    return _defaultTabIndex;
+//}
+- (NSInteger)loadMoreLimit
 {
     return 8;
 }
-- (NSInteger)tabIDforIndex:(NSInteger)index
+- (int)maxDataCount
 {
-    return index;
+    return 56;
 }
 
-- (void)serviceLoadDataForTabID:(NSInteger)tabID
+//- (NSInteger)tabIDforIndex:(NSInteger)index
+//{
+//    return index;
+//}
+- (void)serviceLoadData
 {
+    [super serviceLoadData];
     if (self.searchText && self.searchText.length > 0) {
-        [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchText imageSize:CGSizeMake(0, 0) imageType:nil startPage:[[self currentTab] offset] paramDict:self.options delegate:self];
+        [[GoogleCustomSearchService defaultService] searchImageBytext:self.searchText imageSize:CGSizeMake(0, 0) imageType:nil startPage:self.dataListOffset paramDict:self.options delegate:self];
     }
-    
 }
 
 - (void)didSearchImageResultList:(NSMutableArray *)array resultCode:(NSInteger)resultCode
 {
     if (resultCode == OLD_G_ERROR_SUCCESS) {
-        [self finishLoadDataForTabID:[self currentTab].tabID resultList:array];
+        [self didFinishLoadData:array];
     } else {
-        [self failLoadDataForTabID:[self currentTab].tabID];
+//        [self failLoadDataForTabID:[self currentTab].tabID];
+        [self didFinishLoadDataError:resultCode];
     }
 }
+
 
 - (void)showSearhResult:(ImageSearchResult*)searchResult
 {
@@ -211,7 +253,11 @@
 {
     __block SearchPhotoResultController* cp = self;
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil title:NSLS(@"kSetTag") confirmTitle:NSLS(@"kConfirm") resultBlock:^( NSSet *tagSet) {
-        [cp didEditPictureInfo:tagSet name:cp.searchText imageUrl:searchResult.url];
+        [cp didEditPictureInfo:tagSet
+                          name:cp.searchText
+                      imageUrl:searchResult.url
+                         width:searchResult.width
+                        height:searchResult.height];
     }];
     [view showInView:self.view];
 }
@@ -288,13 +334,25 @@ enum {
 //    [self reloadTableViewDataSource];
 //}
 
-- (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
+- (void)didEditPictureInfo:(NSSet *)tagSet
+                      name:(NSString *)name
+                  imageUrl:(NSString *)url
+                     width:(float)width
+                    height:(float)height
 {
-    [[GalleryService defaultService] addUserPhoto:url name:name tagSet:tagSet usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto *photo) {
+    [[GalleryService defaultService] addUserPhoto:url
+                                             name:name
+                                           tagSet:tagSet
+                                            usage:[GameApp photoUsage]
+                                            width:width
+                                           heithg:height
+                                      resultBlock:^(int resultCode, PBUserPhoto *photo) {
         if (resultCode == 0) {
             PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tagsList description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAddUserPhotoSucc") delayTime:1.5];
-            
+            if (_delegate && [_delegate respondsToSelector:@selector(didAddUserPhoto:)]) {
+                [_delegate didAddUserPhoto:photo];
+            }
         } else {
             PPDebug(@"<didEditPictureInfo> err! code = %d", resultCode);
         }

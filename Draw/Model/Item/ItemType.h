@@ -31,7 +31,7 @@ typedef enum
     SmoothPen,
     PolygonPen,
     PenCount,
-    
+    ItemTypeCopyPaint,
     
     Eraser = 1100,
     PaletteItem = 1101,
@@ -43,6 +43,7 @@ typedef enum
     
     ItemTypePurse = 1105,
     ItemTypePurseOneThousand = 1107,
+    
     
     DrawBackgroundStart = 1200,
     DrawBackground1,                

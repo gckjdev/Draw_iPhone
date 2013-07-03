@@ -671,7 +671,7 @@
 "kGuessOnly" = "Guess";
 "kDrawOnly" = "Draw";
 "kFeed" = "Timeline";
-"kFeeds" = "Timeline";
+"kFeeds" = "Drawings";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 
@@ -682,6 +682,7 @@
 "kExploreHim" = "View Opus";
 "kPlayWithHim" = "Play with him(her)";
 "kChatToHim" = "Say hi";
+
 
 "kUserFeedTitle" = "%@'s Timeline";
 "kUserFeed" = "Timeline";
@@ -725,6 +726,7 @@
 
 "kChallenge" = "Challenge";
 "kDeleting" = "Deleting...";
+"kUpdating" = "Updating...";
 "kDeleteFail" = "Fail to delete.";
 "kUnfavoriteFail" = "Fail to unsubscribe";
 
@@ -742,6 +744,7 @@
 "kOpusDelete" = "Sorry. The opus has been deleted.";
 
 "kChatTitle" = "Send Message";
+"kLoadingMessage" = "Loading...";
 
 "kGuessUserDraw_MyDraw" = "my paint";
 "kGuessRightDesc_MyDraw" = "Guessed my paint: [%@].";
@@ -1314,6 +1317,7 @@
 
 "kCannotRevoke" = "Can't undo any more. If you want to undo more, save it, and edit it from the draf box.";
 
+"kBgDownloading" = "Background (%2.1f%%)";
 "kCustomBg" = "Custom Background";
 "kUpdateBackgroundSucc" = "Update backtround successfully!";
 "kUpdateBackgroundFail" = "Fail to update background. Please try later.";
@@ -1424,11 +1428,14 @@
 "kSize" = "Size";
 "kBackground" = "Background";
 "kCopyPaint" = "Copy";
+"kCopyPaintDescription" = "You can have a peek on some image with this when you draw";
 "kDescription" = "Description";
 "kDrawTo" = "Draw to";
 "kGrid" = "Grid";
 "kHelp" = "Help";
 "kSelectPhoto" = "Select Photo";
+"kUpdateSucc" = "Update successfully!";
+"kContestNotSupportDesc" = "Can not modify contest description!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1813,6 +1820,8 @@
 "kSearchResult" = "Search Results";
 "kDeletePhotoSucc" = "Delete photo successfully!";
 "kEditPhotoSucc" = "Photo updated!";
+"kDeletePhotoFail" = "Delete pictures failed, please try again later.";
+"kEditPhotoFail" = "Update the picture information failed, please try again later.";
 "kAddUserPhotoSucc" = "Photo saved!";
 "kEditPhoto" = "Edit Photo";
 "kName" = "Name";
@@ -1839,6 +1848,7 @@
 "kEditName" = "Edit Name";
 "kEnterNewName" = "Enter New Name";
 "kReset" = "Reset";
+"kSelectFromUserPhoto" = "Select from gallery";
 /*********************图库国际化字符串结束 ************************/
 
 

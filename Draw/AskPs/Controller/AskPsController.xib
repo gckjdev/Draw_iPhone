@@ -381,7 +381,7 @@
 							<object class="IBUITextField" id="984157820">
 								<reference key="NSNextResponder" ref="944942716"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{30, 180}, {261, 41}}</string>
+								<string key="NSFrame">{{30, 182}, {261, 41}}</string>
 								<reference key="NSSuperview" ref="944942716"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="270119954"/>
@@ -390,7 +390,6 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
 								<string key="IBUIPlaceholder">编辑更多描述...</string>
 								<object class="NSColor" key="IBUITextColor">
@@ -1007,6 +1006,62 @@
 					<int key="connectionID">53</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">requirementLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="71840544"/>
+					</object>
+					<int key="connectionID">74</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">awardLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="270119954"/>
+					</object>
+					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">coinsPerUserLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="763139003"/>
+					</object>
+					<int key="connectionID">76</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">coinsMaxTotalLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="90721684"/>
+					</object>
+					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ingotBestUserLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1049832370"/>
+					</object>
+					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">submitButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="196971098"/>
+					</object>
+					<int key="connectionID">79</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">chargeButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="710995845"/>
+					</object>
+					<int key="connectionID">80</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickPictureButton:</string>
 						<reference key="source" ref="902929681"/>
@@ -1465,37 +1520,73 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">73</int>
+			<int key="maxID">80</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AskPsController</string>
 					<string key="superclassName">PPViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickRequirementButton:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickRequirementButton:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickPictureButton:">id</string>
+						<string key="clickRequirementButton:">id</string>
+						<string key="clickSubmitButton:">id</string>
+						<string key="touchDownBackground:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickPictureButton:">
+							<string key="name">clickPictureButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickRequirementButton:">
 							<string key="name">clickRequirementButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="clickSubmitButton:">
+							<string key="name">clickSubmitButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="touchDownBackground:">
+							<string key="name">touchDownBackground:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="awardLabel">UILabel</string>
+						<string key="chargeButton">UIButton</string>
+						<string key="coinsMaxTotalLabel">UILabel</string>
 						<string key="coinsMaxTotalTextField">UITextField</string>
+						<string key="coinsPerUserLabel">UILabel</string>
 						<string key="coinsPerUserTextField">UITextField</string>
 						<string key="contentHolderView">UIScrollView</string>
 						<string key="descTextField">UITextField</string>
+						<string key="ingotBestUserLabel">UILabel</string>
 						<string key="ingotBestUserTextField">UITextField</string>
 						<string key="pictureButton">UIButton</string>
+						<string key="requirementLabel">UILabel</string>
+						<string key="submitButton">UIButton</string>
 						<string key="titleLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="awardLabel">
+							<string key="name">awardLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="chargeButton">
+							<string key="name">chargeButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coinsMaxTotalLabel">
+							<string key="name">coinsMaxTotalLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="coinsMaxTotalTextField">
 							<string key="name">coinsMaxTotalTextField</string>
 							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="coinsPerUserLabel">
+							<string key="name">coinsPerUserLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="coinsPerUserTextField">
 							<string key="name">coinsPerUserTextField</string>
@@ -1509,12 +1600,24 @@
 							<string key="name">descTextField</string>
 							<string key="candidateClassName">UITextField</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="ingotBestUserLabel">
+							<string key="name">ingotBestUserLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="ingotBestUserTextField">
 							<string key="name">ingotBestUserTextField</string>
 							<string key="candidateClassName">UITextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="pictureButton">
 							<string key="name">pictureButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="requirementLabel">
+							<string key="name">requirementLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="submitButton">
+							<string key="name">submitButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="titleLabel">

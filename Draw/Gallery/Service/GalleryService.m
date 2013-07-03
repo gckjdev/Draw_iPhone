@@ -41,6 +41,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
                 name:(NSString*)name
               tagSet:(NSSet*)tagSet
                usage:(PBPhotoUsage)usage
+               width:(float)width
+              heithg:(float)height
          resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock
 {
     PPDebug(@"<addUserPhoto> favor image %@ with name %@ ,tag %@", photoUrl, name, [tagSet description]);
@@ -53,6 +55,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     [builder setUrl:photoUrl];
     [builder setUserId:userId];
     [builder setCreateDate:time(0)];
+    [builder setWidth:width];
+    [builder setHeight:height];
     for (NSString* tag in tagSet) {
         [builder addTags:tag];
     }
@@ -153,6 +157,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
                    name:(NSString*)name
                  tagSet:(NSSet*)tagSet
                   usage:(PBPhotoUsage)usage
+             protoPhoto:(PBUserPhoto*)protoPhoto
             resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock
 {
     PPDebug(@"<updateUserPhoto> userPhotoId = %@,  url = %@ with name %@ ,tag %@", userPhotoId, photoUrl, name, [tagSet description]);
@@ -161,7 +166,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     NSString* appId = [ConfigManager appId];
 //    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
-    PBUserPhoto_Builder* builder = [PBUserPhoto builder];
+    PBUserPhoto_Builder* builder = [PBUserPhoto builderWithPrototype:protoPhoto];
     
     [builder setName:name];
     [builder setUrl:photoUrl];

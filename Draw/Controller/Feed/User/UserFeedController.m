@@ -18,7 +18,7 @@
 #import "UserManager.h"
 #import "MKBlockActionSheet.h"
 #import "AddLearnDrawView.h"
-
+#import "InputAlertView.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -31,6 +31,8 @@ typedef enum{
     DrawFeed* _selectedFeed;
     BOOL canSellOpus;
 }
+@property (retain, nonatomic) InputAlertView* inputAlert;
+@property (retain, nonatomic) DrawFeed* currentSelectFeed;
 
 @end
 
@@ -43,6 +45,8 @@ typedef enum{
 {
     PPRelease(_userId);
     PPRelease(_nickName);
+    PPRelease(_inputAlert);
+    PPRelease(_currentSelectFeed);
     [super dealloc];
 }
 
@@ -337,12 +341,46 @@ typedef enum{
     [dialog showInView:self.view];
 }
 
+- (void)editDescOfFeed:(DrawFeed*)feed
+{
+    if ([feed isContestFeed]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotSupportDesc") delayTime:2.5];
+        return;
+    }
+    self.currentSelectFeed = feed;
+    self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc")
+                                                      content:feed.opusDesc
+                                                       target:self
+                                                commitSeletor:@selector(commitDesc)
+                                                cancelSeletor:nil
+                                                       hasSNS:NO
+                                                   hasSubject:NO];
+    [self.inputAlert  showInView:self.view animated:YES];
+    PPDebug(@"<editDescOfFeed> edit desc of feed: <%@>",feed.wordText);
+}
+
+- (void)commitDesc{
+    [[FeedService defaultService] updateOpus:self.currentSelectFeed.feedId image:nil description:self.inputAlert.contentText resultHandler:^(int resultCode) {
+        if (resultCode == 0) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateSucc") delayTime:2];
+        } else {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateFail") delayTime:2];
+        }
+    }];
+}
+
 typedef enum{
     ActionSheetIndexDetail = 0,
-    ActionSheetIndexDelete = 1,
-    ActionSheetIndexUnFavorite = 1,
+    ActionSheetIndexEditDesc,
+    ActionSheetIndexDelete,
     ActionSheetIndexCancel,
 }ActionSheetIndex;
+
+typedef enum{
+    FavoriteActionSheetIndexDetail = 0,
+    FavoriteActionSheetIndexUnFavorite = 1,
+    FavoriteActionSheetIndexCancel,
+}FavoriteActionSheetIndex;
 
 typedef enum{
     SuperActionSheetIndexDetail = 0,
@@ -378,6 +416,9 @@ typedef enum{
         {
             PPDebug(@"Detail");
             [self enterDetailFeed:feed];
+        } break;
+        case ActionSheetIndexEditDesc: {
+            [self editDescOfFeed:feed];
         } break;
         default:
         {
@@ -500,7 +541,7 @@ typedef enum{
         NSString *tabTitle[] = {NSLS(@"kUserOpus"), NSLS(@"kUserFavorite")};
         return tabTitle[index];
     }else{
-        NSString *tabTitle[] = {NSLS(@"kUserOpus"),NSLS(@"kUserFeed")};
+        NSString *tabTitle[] = {NSLS(@"kUserOpus"),NSLS(@"kUserGuess")};
         return tabTitle[index];
 
     }
@@ -600,7 +641,7 @@ typedef enum{
     TableTab *tab = [self currentTab];
     if(tab.tabID == UserTypeOpus ){
         if ([[UserManager defaultManager] isMe:self.userId]) {
-            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kDelete"), nil] autorelease];
+            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kDelete"), nil] autorelease];
             sheet.cancelButtonIndex = ActionSheetIndexCancel;
             [sheet showInView:self.view];
             __block typeof (self) bself  = self;
@@ -677,13 +718,13 @@ typedef enum{
     DrawFeed* feed = _selectedRankView.feed;
     
     switch (buttonIndex) {
-        case ActionSheetIndexUnFavorite:
+        case FavoriteActionSheetIndexUnFavorite:
         {
             _selectedFeed = feed;
             [self alertUnFavoriteConfirm];
         }
             break;
-        case ActionSheetIndexDetail:
+        case FavoriteActionSheetIndexDetail:
         {
             [self enterDetailFeed:feed];
         }

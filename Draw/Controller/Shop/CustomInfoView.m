@@ -42,6 +42,8 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 - (void)dealloc
 {
+    [self unregisterAllNotifications];
+    PPRelease(_notifications);
     [_indicator release];
     [_infoView release];
     [_mainView release];
@@ -97,7 +99,9 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
          buttonTitles:(NSArray *)buttonTitles
 {
     CustomInfoView *view = [self createView];
-        
+    
+    view.notifications = [NSMutableDictionary dictionary];
+    
     view.infoView = infoView;
     COPY_BLOCK(view.closeHandler, closeHandler);
     
@@ -236,6 +240,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 - (void)dismiss
 {
+    [self unregisterAllNotifications];    
     [self removeFromSuperview];
 }
 
@@ -273,6 +278,71 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 - (IBAction)clickCloseButton:(id)sender {
     [self dismiss];
     EXECUTE_BLOCK(_closeHandler);
+}
+
+- (void)setTitle:(NSString*)title
+{
+    [self.titleLabel setText:title];
+}
+
+#pragma Notification
+#pragma mark -
+
+- (void)registerNotificationWithName:(NSString *)name
+                              object:(id)obj
+                               queue:(NSOperationQueue *)queue
+                          usingBlock:(void (^)(NSNotification *note))block
+{
+    PPDebug(@"%@ registerNotificationWithName %@", [self description], name);
+    NSNotification *notification = [[NSNotificationCenter defaultCenter]
+                                    addObserverForName:name
+                                    object:obj
+                                    queue:queue
+                                    usingBlock:block];
+    
+    [_notifications setObject:notification forKey:name];
+}
+
+- (void)registerNotificationWithName:(NSString *)name
+                          usingBlock:(void (^)(NSNotification *note))block
+{
+    if ([_notifications objectForKey:name] != nil) {
+        return;
+    }
+    
+    PPDebug(@"%@ registerNotificationWithName %@", [self description], name);
+    
+    NSNotification *notification = [[NSNotificationCenter defaultCenter]
+                                    addObserverForName:name
+                                    object:nil
+                                    queue:[NSOperationQueue mainQueue]
+                                    usingBlock:block];
+    
+    [_notifications setObject:notification forKey:name];
+}
+
+
+- (void)unregisterNotificationWithName:(NSString *)name
+{
+    PPDebug(@"%@ unregisterNotificationWithName %@", [self description], name);
+    
+    NSNotification *notification = [_notifications objectForKey:name];
+    [[NSNotificationCenter defaultCenter] removeObserver:notification];
+    [_notifications removeObjectForKey:name];
+}
+
+- (void)unregisterAllNotifications
+{
+    [_notifications enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        
+        //        if ([obj isKindOfClass:[NSNotification class]]) {
+        NSNotification *notification = (NSNotification *)obj;
+        [[NSNotificationCenter defaultCenter] removeObserver:notification];
+        //        }
+        
+    }];
+    
+    [_notifications removeAllObjects];
 }
 
 @end

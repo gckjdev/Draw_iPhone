@@ -12,6 +12,7 @@
 #import "DrawAction.h"
 #import "GameMessage.pb.h"
 #import "CanvasRect.h"
+#import "GameBasic.pb-c.h"
 
 #define KEY_MESSAGEID @"KEY_MESSAGEID"
 #define KEY_CREATE_DATE @"KEY_CREATE_DATE"
@@ -39,6 +40,11 @@
 @synthesize sourceType = _sourceType;
 @synthesize text = _text;
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"id=%@, friendId=%@, status=%d, type=%d, source=%d, text=%@, date=%@",
+            _messageId, _friendId, _status, _messageType, _sourceType, _text, [_createDate description]];
+}
 
 + (id)oldMessageWithPBMessage:(PBMessage *)pbMessage
 {
@@ -86,7 +92,7 @@
 
 - (void)dealloc
 {
-    PPDebug(@"PPMessage = %@ dealloc", self);
+//    PPDebug(@"PPMessage = %@ dealloc", self);
     PPRelease(_messageId);
     PPRelease(_createDate);
     PPRelease(_friendId);
@@ -251,12 +257,15 @@
 {
     self = [super initWithPBMessage:pbMessage];
     if (self) {
-        NSArray *pbAList = [pbMessage drawDataList];
-        _drawActionList = [[NSMutableArray alloc] initWithCapacity:[pbAList count]];
-        for (PBDrawAction *action in pbAList) {
-            DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
-            [_drawActionList addObject:da];
-        }
+//        NSArray *pbAList = [pbMessage drawDataList];
+//        _drawActionList = [[NSMutableArray alloc] initWithCapacity:[pbAList count]];
+//        for (PBDrawAction *action in pbAList) {
+//            DrawAction *da = [DrawAction drawActionWithPBDrawAction:action];
+//            [_drawActionList addObject:da];
+//        }
+        
+        _drawActionList = [[DrawAction drawActionListFromPBMessage:pbMessage] retain];
+        
         self.drawDataVersion = pbMessage.drawDataVersion;
         if ([pbMessage hasCanvasSize]) {
             self.canvasSize = CGSizeFromPBSize(pbMessage.canvasSize);
@@ -275,7 +284,15 @@
     [builder setDrawDataVersion:self.drawDataVersion];
     if ([self.drawActionList count] != 0) {
         for (DrawAction *action in self.drawActionList) {
-            [builder addDrawData:[action toPBDrawAction]];
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+            NSData *data = [action toData];
+            
+            PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
+            [builder addDrawData:pbDrawAction];
+            
+            [pool drain];
+            
         }
     }
     return [builder build];

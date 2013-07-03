@@ -16,6 +16,10 @@
 #import "ChangeBGImageAction.h"
 #import "StringUtil.h"
 #import "Word.h"
+#import "BBS.pb-c.h"
+#import "DrawUtils.h"
+#import "Draw.h"
+#import "GradientAction.h"
 
 @implementation DrawAction
 
@@ -47,7 +51,8 @@
             return [[[ChangeBackAction alloc] initWithPBDrawActionC:action] autorelease];
         case DrawActionTypeChangeBGImage:
             return [[[ChangeBGImageAction alloc] initWithPBDrawActionC:action] autorelease];
-            
+        case DrawActionTypeGradient:
+            return [[[GradientAction alloc] initWithPBDrawActionC:action] autorelease];
         default:
             return nil;
     }
@@ -180,6 +185,34 @@
 - (PBDrawAction *)toPBDrawAction
 {
     return nil;
+}
+
+- (NSData *)toData
+{
+    int count = 1;
+    int i = 0;
+    Game__PBDrawAction** pbDrawActionC = malloc(sizeof(Game__PBDrawAction*)*count);
+    
+    pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
+    game__pbdraw_action__init(pbDrawActionC[i]);
+    [self toPBDrawActionC:pbDrawActionC[i]];
+    
+    
+    void *buf = NULL;
+    unsigned len = 0;
+    NSData* data = nil;
+    
+    len = game__pbdraw_action__get_packed_size (pbDrawActionC[i]);    // This is the calculated packing length
+    buf = malloc (len);                                                 // Allocate memory
+    if (buf != NULL){
+        game__pbdraw_action__pack (pbDrawActionC[i], buf);                // Pack msg, including submessages
+        // create data object
+        data = [NSData dataWithBytesNoCopy:buf length:len];
+//        free(buf)   if call dataWithBytesNoCopy, should not free buf...
+    }
+    
+    [DrawAction freePBDrawActionC:pbDrawActionC count:count];
+    return data;
 }
 
 - (void)toPBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
@@ -349,10 +382,80 @@
             free(pbDrawActionC[i]->drawbg);
         }
         
+        if (pbDrawActionC[i]->gradient != NULL) {
+            if (pbDrawActionC[i]->gradient->color != NULL) {
+                free(pbDrawActionC[i]->gradient->color);
+            }
+            if (pbDrawActionC[i]->gradient->point) {
+                free(pbDrawActionC[i]->gradient->point);
+            }
+            free(pbDrawActionC[i]->gradient);            
+        }
         // free draw action
         free(pbDrawActionC[i]);
     }
     
+}
+
++ (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size
+{
+    
+    Game__PBBBSDraw pbBBSDrawC = GAME__PBBBSDRAW__INIT;
+    
+    Game__PBSize canvasSize = GAME__PBSIZE__INIT;
+    pbBBSDrawC.canvassize = &canvasSize;
+    pbBBSDrawC.canvassize->has_height = 1;
+    pbBBSDrawC.canvassize->has_width = 1;
+    pbBBSDrawC.canvassize->height = size.height;
+    pbBBSDrawC.canvassize->width = size.width;
+    
+    pbBBSDrawC.version = [ConfigManager currentDrawDataVersion];
+    pbBBSDrawC.has_version = 1;
+    
+    int count = [drawActionList count];
+    if (count > 0){
+        pbBBSDrawC.drawactionlist = malloc(sizeof(Game__PBDrawAction*)*count);
+        pbBBSDrawC.n_drawactionlist = count;
+    }
+    
+    // set data
+    [DrawAction createPBDrawActionC:pbBBSDrawC.drawactionlist drawActionList:drawActionList];
+    
+    void *buf = NULL;
+    unsigned len = 0;
+    NSData* data = nil;
+    
+    len = game__pbbbsdraw__get_packed_size (&pbBBSDrawC);    // This is the calculated packing length
+    buf = malloc (len);                                                 // Allocate memory
+    if (buf != NULL){
+        game__pbbbsdraw__pack (&pbBBSDrawC, buf);                // Pack msg, including submessages
+        
+        // create data object
+        data = [NSData dataWithBytesNoCopy:buf length:len];
+    }
+    
+    // free memory
+    [DrawAction freePBDrawActionC:pbBBSDrawC.drawactionlist count:pbBBSDrawC.n_drawactionlist];
+    free(pbBBSDrawC.drawactionlist);
+    
+    return data;
+
+    
+    //    PBBBSDraw *bbsDraw = nil;
+    //    NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
+    //    for (DrawAction *action in drawActionList) {
+    //        PBDrawAction * pbAction = [action toPBDrawAction];
+    //        [pbDrawActionList addObject:pbAction];
+    //    }
+    //    if ([pbDrawActionList count] != 0) {
+    //        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
+    //        [builder addAllDrawActionList:pbDrawActionList];
+    //        [builder setVersion:[ConfigManager currentDrawDataVersion]];
+    //        [builder setCanvasSize:CGSizeToPBSize(size)];
+    //        bbsDraw = [builder build];
+    //        [builder release];
+    //    }
+    //    return bbsDraw;
 }
 
 + (NSData*)buildPBDrawData:(NSString*)userId
@@ -406,7 +509,6 @@
     buf = malloc (len);                                                 // Allocate memory
     if (buf != NULL){
         game__pbdraw__pack (&pbDrawC, buf);                // Pack msg, including submessages
-        
         // create data object
         data = [NSData dataWithBytesNoCopy:buf length:len];
     }
@@ -542,6 +644,79 @@
     }
     
     return nil;
+}
+
+
+
++ (NSMutableArray *)drawActionListFromPBBBSDraw:(PBBBSDraw *)bbsDraw
+{
+    
+    NSMutableArray* drawActionList = nil;
+    
+    if (bbsDraw) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
+        Game__PBBBSDraw* pbBBSDrawC = NULL;
+        
+        NSData* data = [bbsDraw data];
+        int dataLen = [data length];
+        if (dataLen > 0){
+            uint8_t* buf = malloc(dataLen);
+            if (buf != NULL){
+                
+                [data getBytes:buf length:dataLen];
+                pbBBSDrawC = game__pbbbsdraw__unpack(NULL, dataLen, buf);
+                free(buf);
+
+                
+                drawActionList = (id)[Draw drawActionListFromPBActions:pbBBSDrawC->drawactionlist
+                                                      actionCount:pbBBSDrawC->n_drawactionlist
+                                                       canvasSize:CGSizeFromPBSizeC(pbBBSDrawC->canvassize)];
+                [drawActionList retain];
+                game__pbbbsdraw__free_unpacked(pbBBSDrawC, NULL);
+            }
+        }
+        
+        [pool drain];
+    }
+
+    return [drawActionList autorelease];
+    
+}
++ (NSMutableArray *)drawActionListFromPBMessage:(PBMessage *)message
+{
+    NSMutableArray* drawActionList = nil;
+    
+    if (message) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
+        Game__PBMessage *pbMessageC = NULL;
+        
+        NSData* data = [message data];
+        int dataLen = [data length];
+        if (dataLen > 0){
+            uint8_t* buf = malloc(dataLen);
+            if (buf != NULL){
+                
+                [data getBytes:buf length:dataLen];
+                pbMessageC = game__pbmessage__unpack(NULL, dataLen, buf);
+                free(buf);
+                
+                drawActionList = (id)[Draw drawActionListFromPBActions:pbMessageC->drawdata
+                                                                     actionCount:pbMessageC->n_drawdata
+                                                                      canvasSize:CGSizeFromPBSizeC(pbMessageC->canvassize)];
+                
+                [drawActionList retain];
+                game__pbmessage__free_unpacked(pbMessageC, NULL);
+            }
+        }
+        
+        [pool drain];
+    }
+    
+    return [drawActionList autorelease];
+    
+
 }
 
 @end

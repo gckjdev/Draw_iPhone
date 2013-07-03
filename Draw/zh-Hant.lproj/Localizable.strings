@@ -678,7 +678,7 @@
 "kDrawOnly" = "我要畫";
 "kFeed" = "好友動態";
 
-"kFeeds" = "動態";
+"kFeeds" = "畫";
 "kMathOpusFail" = "不好意思，不能為你找到匹配的作品。";
 
 "kGuessWords" = "猜畫的是: %@";
@@ -692,7 +692,7 @@
 
 
 "kUserFeedTitle" = "%@的動態";
-"kUserFeed" = "動態";
+"kUserFeed" = "畫";
 "kUserGuess" = "猜";
 "kUserOpus" = "作品";
 "kUserFavorite" = "收藏";
@@ -735,6 +735,7 @@
 "kChallenge" = "挑釁TA";
 
 "kDeleting" = "刪除中...";
+"kUpdating" = "更新中...";
 "kDeleteFail" = "刪除失敗！";
 "kUnfavoriteFail" = "取消收藏失敗";
 
@@ -749,6 +750,7 @@
 "kTomatoStatus" = "新番茄(%d)";
 
 "kChatTitle" = "發送消息";
+"kLoadingMessage" = "收取消息中...";
 
 "kOpusDelete" = "不好意思，该作品已經被刪除了。";
 
@@ -1254,7 +1256,7 @@
 "kDetailChat" = "聊天";
 
 "kSelectBGImage" = "選擇背景";
-"kSelectBGImage" = "選擇背景";
+"kBgDownloading" = "背景 (下載:%2.1f%%)";
 "kSelectShape" = "選擇形狀";
 "kStroke" = "描邊";
 "kFill" = "填充";
@@ -1371,11 +1373,14 @@
 "kSize" = "畫布尺寸";
 "kBackground" = "畫畫背景";
 "kCopyPaint" = "臨摹圖片";
+"kCopyPaintDescription" = "讓你在畫畫過程中可以看一下你想臨摹的圖片";
 "kDescription" = "作品描述";
 "kDrawTo" = "畫給好友";
 "kGrid" = "輔助網格";
 "kHelp" = "縮放幫助";
 "kSelectPhoto" = "選取圖片";
+"kUpdateSucc" = "更新成功!";
+"kContestNotSupportDesc" = "參賽作品不能編輯描述!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1816,6 +1821,8 @@
 "kSearchResult" = "搜索結果";
 "kDeletePhotoSucc" = "成功刪除圖片!";
 "kEditPhotoSucc" = "成功更新圖片信息!";
+"kDeletePhotoFail" = "刪除圖片失敗, 請稍後再試。";
+"kEditPhotoFail" = "更新圖片信息失敗， 請稍後再試。";
 "kAddUserPhotoSucc" = "成功保存圖片!";
 "kEditPhoto" = "編輯圖片信息";
 "kName" = "名字";
@@ -1842,4 +1849,5 @@
 "kEditName" = "編輯名字";
 "kEnterNewName" = "輸入新名字";
 "kReset" = "重置";
+"kSelectFromUserPhoto" = "從圖庫選擇";
 /*********************图库国际化字符串结束 ************************/

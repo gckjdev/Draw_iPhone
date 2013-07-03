@@ -18,6 +18,7 @@
 #import "ItemType.h"
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
+#import "PPGameNetworkRequest.h"
 
 #define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
 #define GET_PBDRAW_QUEUE        @"GET_PBDRAW_QUEUE"
@@ -852,25 +853,52 @@ static FeedService *_staticFeedService = nil;
 
 - (void)updateOpus:(NSString *)opusId image:(UIImage *)image
 {
-    NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    [self updateOpus:opusId image:image description:nil resultHandler:nil];
+}
+
+- (void)updateOpus:(NSString *)opusId
+             image:(UIImage *)image
+       description:(NSString*)description
+     resultHandler:(void(^)(int resultCode))resultHandler
+{
+//    NSString* userId = [[UserManager defaultManager] userId];
+//    NSString* appId = [ConfigManager appId];
+    
+    NSData* imgData = nil;
+    if (image) {
+        imgData = [image data];
+    }
     
     dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
     
     dispatch_async(updateOpusQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL
-                                                               appId:appId
-                                                              userId:userId
-                                                              opusId:opusId
-                                                                data:nil
-                                                           imageData:[image data]
-                                                        isCompressed:YES];
-        if (output.resultCode == 0) {
-            PPDebug(@"<updateOpus> succ!");
-        }else{
-            PPDebug(@"<updateOpus> fail!");
-        }
+//        CommonNetworkOutput* output = [GameNetworkRequest updateOpus:TRAFFIC_SERVER_URL
+//                                                               appId:appId
+//                                                              userId:userId
+//                                                              opusId:opusId
+//                                                                data:nil
+//                                                           imageData:imgData
+//                                                        isCompressed:YES
+//                                                         description:description];
+//        if (output.resultCode == 0) {
+//            PPDebug(@"<updateOpus> succ!");
+//        }else{
+//            PPDebug(@"<updateOpus> fail!");
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            EXECUTE_BLOCK(resultHandler, output.resultCode);
+//        });
+        
+        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:opusId, PARA_OPUS_ID, description, PARA_DESC, nil];
+        CommonNetworkOutput* output = [PPGameNetworkRequest trafficApiServerPostAndResponseJSON:METHOD_UPDATE_OPUS parameters:params postData:imgData isReturnArray:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(resultHandler, output.resultCode);
+        });
+        
     });
+    
+    
+    
 }
 
 - (void)rejectOpusDrawToMe:(NSString *)opusId

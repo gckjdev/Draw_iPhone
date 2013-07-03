@@ -10,11 +10,11 @@
 #import "UIImageView+WebCache.h"
 #import "ImageSearchResult.h"
 #import "ShareImageManager.h"
+#import "UIColor+UIColorExt.h"
 
 @interface SearchResultView ()
 
 @property (retain, nonatomic) UIImageView* imageView;
-@property (retain, nonatomic) UIControl* control;
 
 @end
 
@@ -26,18 +26,22 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(0,0,frame.size.width, frame.size.height)] autorelease];
-        self.control = [[[UIControl alloc] initWithFrame:CGRectMake(0,0,frame.size.width, frame.size.height)] autorelease];
-        [self.control setBackgroundColor:[UIColor clearColor]];
-        [self.control addTarget:self action:@selector(didClickImage:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_imageView];
-        [self addSubview:_control];
     }
     return self;
 }
 
+
+
 - (void)updateWithResult:(ImageSearchResult*)result
 {
     self.searchResult = result;
+//    NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
+//    [dict setObject:[NSNumber numberWithFloat:result.width] forKey:@"width"];
+//    [dict setObject:[NSNumber numberWithFloat:result.height] forKey:@"height"];
+//    self.object = dict;
+    
+    [self.imageView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [self updateWithUrl:result.url];
 }
 
@@ -51,6 +55,8 @@
     //        else{
     defaultImage = [[ShareImageManager defaultManager] unloadBg];
     //        }
+    [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [self setBackgroundColor:OPAQUE_COLOR(231, 231, 231)];
     [self.imageView setImageWithURL:[NSURL URLWithString:url]
                    placeholderImage:defaultImage
                             success:^(UIImage *image, BOOL cached) {
@@ -79,10 +85,62 @@
 - (void)dealloc
 {
     [_imageView release];
-    [_control release];
     [_searchResult release];
     [super dealloc];
 }
+#define MARGIN 4.0
++ (CGFloat)heightForViewWithPhotoWidth:(float)photoWidth
+                                height:(float)photoHeight
+                         inColumnWidth:(CGFloat)columnWidth {
+    if (photoHeight == 0 || photoWidth == 0) {
+        return columnWidth;
+    }
+    
+    CGFloat height = 0.0;
+    CGFloat width = columnWidth - MARGIN * 2;
+    
+    height += MARGIN;
+    
+    // Image
+    CGFloat scaledHeight = floorf(photoHeight / (photoWidth / width));
+    height += scaledHeight;
+    
+    height += MARGIN;
+    
+    return height;
+}
+
+- (void)resizeSubviews
+{
+    self.imageView.frame = CGRectMake(MARGIN, MARGIN, self.frame.size.width - MARGIN*2, self.frame.size.height - MARGIN*2);
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.imageView.image = nil;
+//    self.captionLabel.text = nil;
+}
+
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    
+//    CGFloat width = self.frame.size.width - MARGIN * 2;
+//    CGFloat top = MARGIN;
+//    CGFloat left = MARGIN;
+//    
+//    // Image
+//    CGFloat objectWidth = [[self.object objectForKey:@"width"] floatValue];
+//    CGFloat objectHeight = [[self.object objectForKey:@"height"] floatValue];
+//    CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
+//    self.imageView.frame = CGRectMake(left, top, width, scaledHeight);
+//    
+//    // Label
+////    CGSize labelSize = CGSizeZero;
+////    labelSize = [self.captionLabel.text sizeWithFont:self.captionLabel.font constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:self.captionLabel.lineBreakMode];
+//    top = self.imageView.frame.origin.y + self.imageView.frame.size.height + MARGIN;
+//    
+////    self.captionLabel.frame = CGRectMake(left, top, labelSize.width, labelSize.height);
+//}
 
 /*
 // Only override drawRect: if you perform custom drawing.

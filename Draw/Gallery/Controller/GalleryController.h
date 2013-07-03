@@ -6,7 +6,7 @@
 //
 //
 
-#import "CommonTabController.h"
+#import "CommonWaterFlowController.h"
 #import "MWPhotoBrowser.h"
 #import "PhotoEditView.h"
 #import "UserPhotoView.h"
@@ -20,7 +20,8 @@
 
 @end
 
-@interface GalleryController : CommonTabController <UITableViewDataSource, UITableViewDelegate, MWPhotoBrowserDelegate, UserPhotoViewDelegate>
+@interface GalleryController : CommonWaterFlowController <MWPhotoBrowserDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickFilterUserPhoto:(id)sender;
 
 - (id)initWithDelegate:(id<GalleryControllerDelegate>)delegate

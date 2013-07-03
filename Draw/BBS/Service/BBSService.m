@@ -219,24 +219,25 @@ BBSService *_staticBBSService;
     return post;
 }
 
-+ (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList canvasSize:(CGSize)size;
-{
-    PBBBSDraw *bbsDraw = nil;
-    NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
-    for (DrawAction *action in drawActionList) {
-        PBDrawAction * pbAction = [action toPBDrawAction];
-        [pbDrawActionList addObject:pbAction];
-    }
-    if ([pbDrawActionList count] != 0) {
-        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
-        [builder addAllDrawActionList:pbDrawActionList];
-        [builder setVersion:[ConfigManager currentDrawDataVersion]];
-        [builder setCanvasSize:CGSizeToPBSize(size)];
-        bbsDraw = [builder build];
-        [builder release];
-    }
-    return bbsDraw;
-}
+//+ (PBBBSDraw *)buildBBSDraw:(NSArray *)drawActionList canvasSize:(CGSize)size;
+//{
+//    PBBBSDraw *bbsDraw = nil;
+//    NSMutableArray *pbDrawActionList = [NSMutableArray arrayWithCapacity:drawActionList.count];
+//    for (DrawAction *action in drawActionList) {
+//        PBDrawAction * pbAction = [action toPBDrawAction];
+//        [pbDrawActionList addObject:pbAction];
+//    }
+//    if ([pbDrawActionList count] != 0) {
+//        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
+//        [builder addAllDrawActionList:pbDrawActionList];
+//        [builder setVersion:[ConfigManager currentDrawDataVersion]];
+//        [builder setCanvasSize:CGSizeToPBSize(size)];
+//        bbsDraw = [builder build];
+//        [builder release];
+//    }
+//    return bbsDraw;
+//}
+
 
 
 - (PBBBSActionSource *)buildActionSourceWithPostId:(NSString *)postId
@@ -385,8 +386,9 @@ BBSService *_staticBBSService;
             type = ContentTypeImage;
         }else if (drawImage) {
             type = ContentTypeDraw;
-            PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
-            drawData = [bbsDraw data];
+//            PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
+//            drawData = [bbsDraw data];
+            drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size];
         }
         
         NSInteger resultCode = [self checkFrequent];
@@ -644,8 +646,9 @@ BBSService *_staticBBSService;
                 contentType = ContentTypeImage;
             }else if (drawImage) {
                 contentType = ContentTypeDraw;
-                PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
-                drawData = [bbsDraw data];
+                drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size];
+//                PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
+//                drawData = [bbsDraw data];
             }else{
                 contentType = ContentTypeText;
             }
@@ -928,8 +931,9 @@ BBSService *_staticBBSService;
     
         if (draw != nil) {
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
-            NSArray *list = [draw drawActionListList];
-            NSMutableArray *drawActionList = [DrawManager parseFromPBDrawActionList:list];
+//            NSArray *list = [draw drawActionListList];
+            NSMutableArray *drawActionList = [DrawAction drawActionListFromPBBBSDraw:draw];
+//            NSMutableArray *drawActionList = [DrawManager parseFromPBDrawActionList:list];
             if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:canvasSize:postId:actionId:fromRemote:resultCode:)]) {
                 
                 CGSize size = [draw hasCanvasSize] ? (CGSizeFromPBSize(draw.canvasSize)) : [CanvasRect deprecatedIPhoneRect].size;
@@ -969,8 +973,12 @@ BBSService *_staticBBSService;
                         if (resultCode == ERROR_SUCCESS) {
                             remoteDraw = [response bbsDrawData];
                             [_bbsManager cacheBBSDrawData:remoteDraw forKey:key];
-                            NSArray *list = [remoteDraw drawActionListList];
-                            drawActionList = [DrawManager parseFromPBDrawActionList:list];                            
+                            //
+                            
+                            drawActionList = [DrawAction drawActionListFromPBBBSDraw:remoteDraw];
+//                            NSArray *list = [remoteDraw drawActionListList];
+//                            drawActionList = [DrawManager parseFromPBDrawActionList:list];
+                            //
                         }
                     }
                 }

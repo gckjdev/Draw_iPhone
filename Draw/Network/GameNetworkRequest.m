@@ -1710,11 +1710,12 @@
                               data:(NSData*)data
                          imageData:(NSData *)imageData
                       isCompressed:(BOOL)isCompressed
+                       description:(NSString *)description
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
-    if (userId == nil || (data == nil && imageData == nil)){
-        PPDebug(@"<updateOpus> but userId nil or data/imageData nil");
+    if (userId == nil || (data == nil && imageData == nil && description == nil)){
+        PPDebug(@"<updateOpus> but userId nil or data/imageData/description nil");
         return nil;
     }
     
@@ -1729,6 +1730,7 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_DESC value:description];
         
         // add device model
         NSString* deviceModel = [DeviceDetection platform];

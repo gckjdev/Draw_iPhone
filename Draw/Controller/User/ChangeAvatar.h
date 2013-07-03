@@ -21,7 +21,8 @@ typedef void(^DidSetDefaultBlock)(void);
 
 @interface ChangeAvatar : NSObject<UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, retain) PPViewController<ChangeAvatarDelegate> *superViewController;
+@property (nonatomic, retain) UIViewController *superViewController;
+@property (nonatomic, assign) id<ChangeAvatarDelegate> delegate;
 @property (nonatomic, assign) CGSize imageSize;
 @property (nonatomic, assign) BOOL autoRoundRect;
 @property (assign, nonatomic) BOOL isCompressImage;
@@ -29,13 +30,20 @@ typedef void(^DidSetDefaultBlock)(void);
 @property (nonatomic, copy) DidSelectedImageBlock selectImageBlock;
 @property (nonatomic, copy) DidSetDefaultBlock setDefaultBlock;
 
-- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController;
+- (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController;
 - (void)showEditImageView:(UIImage*)image
-             inController:(PPViewController<ChangeAvatarDelegate>*)superViewController;
-- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
+             inController:(UIViewController<ChangeAvatarDelegate>*)superViewController;
+- (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController
        selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
        didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
                     title:(NSString*)title
           hasRemoveOption:(BOOL)hasRemoveOption;
+- (void)showSelectionView:(UIViewController*)superViewController
+                 delegate:(id<ChangeAvatarDelegate>)delegate
+       selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
+       didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
+                    title:(NSString*)title
+          hasRemoveOption:(BOOL)hasRemoveOption
+             canTakePhoto:(BOOL)canTakePhoto;
 
 @end

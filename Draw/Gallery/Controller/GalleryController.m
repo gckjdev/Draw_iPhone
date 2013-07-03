@@ -18,9 +18,8 @@
 #import "InputDialog.h"
 #import "SearchPhotoController.h"
 
-@interface GalleryController () {
+@interface GalleryController () <SearchPhotoResultControllerDelegate>{
     NSString* _currentImageUrl;
-    
 }
 
 @property (assign, nonatomic) id<GalleryControllerDelegate> delegate;
@@ -37,6 +36,7 @@
 - (void)dealloc
 {
     [_tagSet release];
+    [_titleLabel release];
     [super dealloc];
 }
 
@@ -66,6 +66,9 @@
     if (self.title && self.title.length > 0) {
         [self.titleLabel setText:self.title];
     }
+    self.dataTableView.numColsPortrait = 2;
+    [((UIButton*)self.noDataTipLabel) setTitle:NSLS(@"kNoPhoto") forState:UIControlStateNormal];
+    [self reloadTableViewDataSource];
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
@@ -73,7 +76,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self reloadTableViewDataSource];
+//    [self reloadTableViewDataSource];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,73 +85,98 @@
     // Dispose of any resources that can be recreated.
 }
 
-#define IMAGE_PER_LINE 2
-#define IMAGE_HEIGHT  (ISIPAD?384:160)
-#define RESULT_IMAGE_TAG_OFFSET 9999
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+//#define IMAGE_PER_LINE 2
+//#define IMAGE_HEIGHT  (ISIPAD?384:160)
+//#define RESULT_IMAGE_TAG_OFFSET 9999
+//- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
+//        [cell setAutoresizingMask:UIViewAutoresizingNone];
+//        [cell setAccessoryType:UITableViewCellAccessoryNone];
+//        for (int i = 0; i < IMAGE_PER_LINE; i ++) {
+//            UserPhotoView* photoView = [UserPhotoView createViewWithPhoto:nil delegate:self];
+//            
+//            photoView.tag = RESULT_IMAGE_TAG_OFFSET + i;
+////            resultView.delegate = self;
+//            
+//            [cell.contentView addSubview:photoView];
+//            [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)];
+//        }
+//    }
+//    for (int i = 0; i < IMAGE_PER_LINE; i ++) {
+//        NSArray* list = [self tabDataList];
+//        UserPhotoView* photoView = (UserPhotoView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
+//        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
+//            
+//            PBUserPhoto* result = (PBUserPhoto*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
+//            PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
+//            [photoView updateWithUserPhoto:result];
+//            photoView.hidden = NO;
+//        } else {
+//            photoView.hidden = YES;
+//        }
+//        
+//    }
+//    
+//    return cell;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return IMAGE_HEIGHT;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    [super tableView:tableView numberOfRowsInSection:section];
+//    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
+//}
+
+- (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView viewAtIndex:(NSInteger)index {
+    UserPhotoView* cell = (UserPhotoView*)[self.dataTableView dequeueReusableView];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
-        [cell setAutoresizingMask:UIViewAutoresizingNone];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-        for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-            UserPhotoView* photoView = [UserPhotoView createViewWithPhoto:nil delegate:self];
-            
-            photoView.tag = RESULT_IMAGE_TAG_OFFSET + i;
-//            resultView.delegate = self;
-            
-            [cell.contentView addSubview:photoView];
-            [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)];
-        }
+        cell = [UserPhotoView createViewWithPhoto:nil delegate:nil];
     }
-    for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-        NSArray* list = [self tabDataList];
-        UserPhotoView* photoView = (UserPhotoView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
-        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
-            
-            PBUserPhoto* result = (PBUserPhoto*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
-            PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
-            [photoView updateWithUserPhoto:result];
-            photoView.hidden = NO;
-        } else {
-            photoView.hidden = YES;
-        }
-        
-    }
-    
+    PBUserPhoto* result = (PBUserPhoto*)[self.dataList objectAtIndex:index];
+    [cell updateWithUserPhoto:result];
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return IMAGE_HEIGHT;
+- (CGFloat)heightForViewAtIndex:(NSInteger)index {
+    //    NSDictionary *item = [self.items objectAtIndex:index];
+    PBUserPhoto* result = [self.dataList objectAtIndex:index];
+    //    return 60;
+    return [UserPhotoView heightForViewWithPhotoWidth:result.width height:result.height inColumnWidth:self.dataTableView.colWidth];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    [super tableView:tableView numberOfRowsInSection:section];
-    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
+- (void)collectionView:(PSCollectionView *)collectionView didSelectView:(PSCollectionViewCell *)view atIndex:(NSInteger)index {
+    //    NSDictionary *item = [self.items objectAtIndex:index];
+    PBUserPhoto* result = [self.dataList objectAtIndex:index];
+    [self didClickPhoto:result atIndex:index];
+    // You can do something when the user taps on a collectionViewCell here
 }
+
 
 #pragma mark tab controller delegate
 
-- (NSInteger)tabCount
-{
-    return 1;
-}
-- (NSInteger)currentTabIndex
-{
-    return _defaultTabIndex;
-}
-- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+//- (NSInteger)tabCount
+//{
+//    return 1;
+//}
+//- (NSInteger)currentTabIndex
+//{
+//    return _defaultTabIndex;
+//}
+- (NSInteger)loadMoreLimit
 {
     return 8;
 }
-- (NSInteger)tabIDforIndex:(NSInteger)index
-{
-    return index;
-}
+//- (NSInteger)tabIDforIndex:(NSInteger)index
+//{
+//    return index;
+//}
 
 - (void)loadTestData
 {
@@ -157,16 +185,16 @@
     if (data) {
         PBUserPhotoList* list = [PBUserPhotoList parseFromData:data];
         
-        [self finishLoadDataForTabID:[self currentTab].tabID resultList:list.photoListList];
+        [self didFinishLoadData:list.photoListList];
     } 
 }
 
-- (void)serviceLoadDataForTabID:(NSInteger)tabID
+- (void)serviceLoadData
 {
-    
-    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:[self currentTab].offset limit:[self fetchDataLimitForTabIndex:[self currentTab].tabID] resultBlock:^(int resultCode, NSArray *resultArray) {
-        [self finishLoadDataForTabID:[self currentTab].tabID resultList:resultArray];
-        [self currentTab].status = TableTabStatusLoaded;
+    [super serviceLoadData];
+    [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:self.dataListOffset limit:[self loadMoreLimit] resultBlock:^(int resultCode, NSArray *resultArray) {
+        [self didFinishLoadData:resultArray];
+//        [self currentTab].status = TableTabStatusLoaded;
 //        [self loadTestData];
     }];
     
@@ -206,6 +234,7 @@ enum {
 };
 #pragma mark - UserPhotoView delegate
 - (void)didClickPhoto:(PBUserPhoto *)photo
+              atIndex:(int)photoIndex
 {
     if (_delegate && [_delegate respondsToSelector:@selector(didGalleryController:SelectedUserPhoto:)]) {
         [_delegate didGalleryController:self SelectedUserPhoto:photo];
@@ -225,13 +254,13 @@ enum {
                 [cp showPhoto:photo];
             } break;
             case actionEditTag: {
-                [cp editPhoto:photo];
+                [cp editPhoto:photo atIndex:photoIndex];
             } break;
             case actionEditName: {
-                [cp editName:photo];
+                [cp editName:photo atIndex:photoIndex];
             } break;
             case actionDelete: {
-                [cp deletePhoto:photo];
+                [cp deletePhoto:photo atIndex:photoIndex];
             } break;
             default:
                 break;
@@ -241,11 +270,11 @@ enum {
     
 }
 
-- (void)editName:(PBUserPhoto*)photo
+- (void)editName:(PBUserPhoto*)photo atIndex:(int)photoIndex
 {
     __block GalleryController* cp = self;
     InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kEnterNewName") clickOK:^(NSString *inputStr) {
-        [cp editPhoto:photo withName:inputStr];
+        [cp editPhoto:photo withName:inputStr atIndex:photoIndex];
     } clickCancel:^(NSString *inputStr) {
         //
     }];
@@ -254,29 +283,45 @@ enum {
 
 - (void)editPhoto:(PBUserPhoto*)photo
          withName:(NSString*)name
+          atIndex:(int)photoIndex
 {
-    [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tagsList] usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto* photo) {
+    [self showActivityWithText:NSLS(@"kUpdating")];
+    [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:name tagSet:[NSSet setWithArray:photo.tagsList] usage:[GameApp photoUsage] protoPhoto:photo resultBlock:^(int resultCode, PBUserPhoto* photo) {
+        [self hideActivity];
         if (resultCode == 0) {
             PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [photo.tagsList description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
-            [self reloadTableViewDataSource];
+//            [self reloadTableViewDataSource];
+            if (photoIndex < self.dataList.count) {
+                [self.dataList setObject:photo atIndexedSubscript:photoIndex];
+                [self.dataTableView reloadData];
+            }
         } else {
-            PPDebug(@"<deletePhoto> err code = %d", resultCode);
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoFail") delayTime:2];
+            PPDebug(@"<editPhoto> err code = %d", resultCode);
         }
     }];
 }
 
 - (void)deletePhoto:(PBUserPhoto*)photo
+            atIndex:(int)photoIndex
 {
     __block GalleryController* cp = self;
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDelete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [self showActivityWithText:NSLS(@"kDeleting")];
         [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId
                                                    usage:[GameApp photoUsage]
                                              resultBlock:^(int resultCode) {
+                                                 [self hideActivity];
             if (resultCode == 0) {
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
-                [cp reloadTableViewDataSource];
+//                [cp reloadTableViewDataSource];
+                if (photoIndex < cp.dataList.count) {
+                    [cp.dataList removeObjectAtIndex:photoIndex];
+                    [cp.dataTableView reloadData];
+                }
             } else {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoFail") delayTime:2];
                 PPDebug(@"<deletePhoto> err code = %d", resultCode);
             }
             
@@ -287,18 +332,30 @@ enum {
     [dialog showInView:self.view];
 }
 
-- (void)editPhoto:(PBUserPhoto*)photo
+- (void)editPhoto:(PBUserPhoto*)photo atIndex:(int)photoIndex
 {
     PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo
                                                        title:NSLS(@"kSetTag")
                                                 confirmTitle:NSLS(@"kConfirm")
                                                  resultBlock:^(NSSet *tagSet) {
-        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url name:photo.name tagSet:tagSet usage:[GameApp photoUsage] resultBlock:^(int resultCode, PBUserPhoto* photo) {
+                                                     [self showActivityWithText:NSLS(@"kUpdating")];
+                                                     [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url
+                                                                                                 name:photo.name
+                                                                                               tagSet:tagSet
+                                                                                                usage:[GameApp photoUsage]
+                                                                                           protoPhoto:photo
+                                                                                          resultBlock:^(int resultCode, PBUserPhoto* photo) {
+                                                                                              [self hideActivity];
             if (resultCode == 0) {
                 PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [tagSet description]);
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
-                [self reloadTableViewDataSource];
+//                [self reloadTableViewDataSource];
+                if (photoIndex < self.dataList.count) {
+                    [self.dataList setObject:photo atIndexedSubscript:photoIndex];
+                    [self.dataTableView reloadData];
+                }
             } else {
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoFail") delayTime:2];
                 PPDebug(@"<deletePhoto> err code = %d", resultCode);
             }
         }];
@@ -337,6 +394,7 @@ enum {
 - (IBAction)clickSearch:(id)sender
 {
     SearchPhotoController* sc = [[[SearchPhotoController alloc] init] autorelease];
+    sc.delegate = self;
     [self.navigationController pushViewController:sc animated:YES];
 }
 //#pragma mark - PhotoEditView delegate
@@ -347,5 +405,15 @@ enum {
 //    }];
 //}
 
+- (void)didAddUserPhoto:(PBUserPhoto *)photo
+{
+    [self.dataList insertObject:photo atIndex:0];
+    [self.noDataTipLabel setHidden:YES];
+    [self.dataTableView reloadData];
+}
 
+- (void)viewDidUnload {
+    [self setTitleLabel:nil];
+    [super viewDidUnload];
+}
 @end

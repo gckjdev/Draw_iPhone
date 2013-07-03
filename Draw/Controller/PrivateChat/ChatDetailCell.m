@@ -398,7 +398,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         {
             CGSize size = [ChatDetailCell adjustContentSize:[(ImageMessage *)message thumbImageSize]];
             height += (size.height + TEXT_VERTICAL_EDGE * 2);
-            PPDebug(@"image height = %f, message id = %@", height,message.messageId);
+//            PPDebug(@"image height = %f, message id = %@", height,message.messageId);
             break;
         }
         case MessageTypeText:

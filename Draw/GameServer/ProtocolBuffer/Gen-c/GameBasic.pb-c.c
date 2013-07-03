@@ -2269,20 +2269,8 @@ const ProtobufCMessageDescriptor game__pbdraw_bg__descriptor =
 static const ProtobufCFieldDescriptor game__pbgradient__field_descriptors[3] =
 {
   {
-    "degree",
-    1,
-    PROTOBUF_C_LABEL_REQUIRED,
-    PROTOBUF_C_TYPE_FLOAT,
-    0,   /* quantifier_offset */
-    PROTOBUF_C_OFFSETOF(Game__PBGradient, degree),
-    NULL,
-    NULL,
-    0,            /* packed */
-    0,NULL,NULL    /* reserved1,reserved2, etc */
-  },
-  {
     "division",
-    2,
+    1,
     PROTOBUF_C_LABEL_REQUIRED,
     PROTOBUF_C_TYPE_FLOAT,
     0,   /* quantifier_offset */
@@ -2294,21 +2282,33 @@ static const ProtobufCFieldDescriptor game__pbgradient__field_descriptors[3] =
   },
   {
     "color",
-    3,
+    2,
     PROTOBUF_C_LABEL_REPEATED,
     PROTOBUF_C_TYPE_INT32,
     PROTOBUF_C_OFFSETOF(Game__PBGradient, n_color),
     PROTOBUF_C_OFFSETOF(Game__PBGradient, color),
     NULL,
     NULL,
-    0,            /* packed */
+    1,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "point",
+    3,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBGradient, n_point),
+    PROTOBUF_C_OFFSETOF(Game__PBGradient, point),
+    NULL,
+    NULL,
+    1,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
 static const unsigned game__pbgradient__field_indices_by_name[] = {
-  2,   /* field[2] = color */
-  0,   /* field[0] = degree */
-  1,   /* field[1] = division */
+  1,   /* field[1] = color */
+  0,   /* field[0] = division */
+  2,   /* field[2] = point */
 };
 static const ProtobufCIntRange game__pbgradient__number_ranges[1 + 1] =
 {

@@ -189,69 +189,71 @@
 //    [self.view bringSubviewToFront:self.testBulletin];
 //    [self.view bringSubviewToFront:self.testCreateWallBtn];
     
-//#ifdef DEBUG
-//    [self createBtnForTest];
-//#endif
+#ifdef DEBUG
+    [self createBtnForTest];
+#endif
 }
 
+#ifdef DEBUG
 // the 3 methods below work for creating set api server url and traffic server url
 //---by kira
-//- (void)createBtnForTest
-//{
-//    UIButton* btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [btn1 setTitle:@"api" forState:UIControlStateNormal];
-//    [btn1 addTarget:self action:@selector(clickSetAPI) forControlEvents:UIControlEventTouchUpInside];
-//    [btn1 setFrame:CGRectMake(self.view.bounds.size.width/2-80, 0, 80, 40)];
-//    
-//    UIButton* btn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [btn2 setTitle:@"traffic" forState:UIControlStateNormal];
-//    [btn2 addTarget:self action:@selector(clickSetTraffic) forControlEvents:UIControlEventTouchUpInside];
-//    [btn2 setFrame:CGRectMake(self.view.bounds.size.width/2, 0, 80, 40)];
-//    [btn1 setBackgroundColor:[UIColor clearColor]];
-//    [btn2 setBackgroundColor:[UIColor clearColor]];
-//    
-//    [self.view addSubview:btn1];
-//    [self.view addSubview:btn2];
-//}
-//
-//- (void)clickSetAPI
-//{
-//    InputDialog* dialog = [InputDialog dialogWith:nil clickOK:^(NSString *inputStr) {
-//        NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
-//        [userdefault setObject:inputStr forKey:@"api_server"];
-//        [userdefault synchronize];
-//    } clickCancel:^(NSString *inputStr) {
-//        //
-//    }];
-//    NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
-//    NSString* str = [userdefault objectForKey:@"api_server"];
-//    if (str && str.length > 5) {
-//        [dialog.targetTextField setText:str];
-//    } else {
-//        [dialog.targetTextField setText:@"192.168.1.198:8000"];
-//    }
-//    
-//    [dialog showInView:self.view];
-//}
-//
-//- (void)clickSetTraffic
-//{
-//    InputDialog* dialog = [InputDialog dialogWith:nil clickOK:^(NSString *inputStr) {
-//        NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
-//        [userdefault setObject:inputStr forKey:@"traffic_server"];
-//        [userdefault synchronize];
-//    } clickCancel:^(NSString *inputStr) {
-//        //
-//    }];
-//    NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
-//    NSString* str = [userdefault objectForKey:@"traffic_server"];
-//    if (str && str.length > 5) {
-//        [dialog.targetTextField setText:str];
-//    } else {
-//        [dialog.targetTextField setText:@"192.168.1.198:8100"];
-//    }
-//    [dialog showInView:self.view];
-//}
+- (void)createBtnForTest
+{
+    UIButton* btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btn1 setTitle:@"api" forState:UIControlStateNormal];
+    [btn1 addTarget:self action:@selector(clickSetAPI) forControlEvents:UIControlEventTouchUpInside];
+    [btn1 setFrame:CGRectMake(self.view.bounds.size.width/2-80, 0, 80, 40)];
+    
+    UIButton* btn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btn2 setTitle:@"traffic" forState:UIControlStateNormal];
+    [btn2 addTarget:self action:@selector(clickSetTraffic) forControlEvents:UIControlEventTouchUpInside];
+    [btn2 setFrame:CGRectMake(self.view.bounds.size.width/2, 0, 80, 40)];
+    [btn1 setBackgroundColor:[UIColor clearColor]];
+    [btn2 setBackgroundColor:[UIColor clearColor]];
+    
+    [self.view addSubview:btn1];
+    [self.view addSubview:btn2];
+}
+
+- (void)clickSetAPI
+{
+    InputDialog* dialog = [InputDialog dialogWith:nil clickOK:^(NSString *inputStr) {
+        NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
+        [userdefault setObject:inputStr forKey:@"api_server"];
+        [userdefault synchronize];
+    } clickCancel:^(NSString *inputStr) {
+        //
+    }];
+    NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
+    NSString* str = [userdefault objectForKey:@"api_server"];
+    if (str && str.length > 5) {
+        [dialog.targetTextField setText:str];
+    } else {
+        [dialog.targetTextField setText:@"192.168.1.198:8000"];
+    }
+    
+    [dialog showInView:self.view];
+}
+
+- (void)clickSetTraffic
+{
+    InputDialog* dialog = [InputDialog dialogWith:nil clickOK:^(NSString *inputStr) {
+        NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
+        [userdefault setObject:inputStr forKey:@"traffic_server"];
+        [userdefault synchronize];
+    } clickCancel:^(NSString *inputStr) {
+        //
+    }];
+    NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
+    NSString* str = [userdefault objectForKey:@"traffic_server"];
+    if (str && str.length > 5) {
+        [dialog.targetTextField setText:str];
+    } else {
+        [dialog.targetTextField setText:@"192.168.1.198:8100"];
+    }
+    [dialog showInView:self.view];
+}
+#endif
 
 - (void)registerUIApplicationNotification
 {

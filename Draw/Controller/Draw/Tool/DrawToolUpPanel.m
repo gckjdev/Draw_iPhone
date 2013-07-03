@@ -116,10 +116,10 @@
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[CopyPaintCommand alloc] initWithControl:self.copyPaintPicker itemType:ItemTypeNo] autorelease];
+    command = [[[CopyPaintCommand alloc] initWithControl:self.copyPaintPicker itemType:ItemTypeCopyPaint] autorelease];
     [toolCmdManager registerCommand:command];
     
-    command = [[[ShowCopyPaintCommand alloc] initWithControl:self.copyPaint itemType:ItemTypeNo] autorelease];
+    command = [[[ShowCopyPaintCommand alloc] initWithControl:self.copyPaint itemType:ItemTypeCopyPaint] autorelease];
     [toolCmdManager registerCommand:command];
     
     [toolCmdManager updateHandler:self.toolHandler];
@@ -230,16 +230,10 @@
     
 }
 
-- (void)updateCopyPaint:(PBUserPhoto*)aPhoto
+- (void)updateCopyPaint:(UIImage*)aPhoto
 {
-    NSURL *URL = [NSURL URLWithString:aPhoto.url];
-    __block typeof(self) cp = self;
-    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
-        image = [UIImage shrinkImage:image withRate:0.8];
-        [cp.copyPaint setImage:image forState:UIControlStateNormal];
-    } failure:^(NSError *error) {
-        
-    }];
+    UIImage* image = [UIImage shrinkImage:aPhoto withRate:0.8];
+    [self.copyPaint setImage:image forState:UIControlStateNormal];
     [self.copyPaintPicker setHidden:NO];
 }
 
