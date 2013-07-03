@@ -144,7 +144,11 @@
     if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
         [(DrawToolUpPanel*)self.toolPanel updateCopyPaint:image];
     }
-    [picker.presentingViewController dismissModalViewControllerAnimated:YES];
+    if (_popoverController != nil) {
+        [_popoverController dismissPopoverAnimated:YES];
+    }else{
+        [picker dismissModalViewControllerAnimated:YES];
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
