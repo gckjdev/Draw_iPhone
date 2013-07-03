@@ -138,7 +138,8 @@ enum {
                      }
                                   title:nil
                         hasRemoveOption:NO
-                           canTakePhoto:NO];
+                           canTakePhoto:NO
+                      userOriginalImage:YES];
 }
 //
 //- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo

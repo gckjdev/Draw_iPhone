@@ -44,6 +44,7 @@ typedef void(^DidSetDefaultBlock)(void);
        didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
                     title:(NSString*)title
           hasRemoveOption:(BOOL)hasRemoveOption
-             canTakePhoto:(BOOL)canTakePhoto;
+             canTakePhoto:(BOOL)canTakePhoto
+        userOriginalImage:(BOOL)userOriginalImage;
 
 @end

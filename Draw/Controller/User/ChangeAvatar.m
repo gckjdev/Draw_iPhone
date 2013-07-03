@@ -22,6 +22,7 @@
 
 @property (assign, nonatomic) BOOL hasRemoveOption;
 @property (assign, nonatomic) BOOL canTakePhoto;
+@property (assign, nonatomic) BOOL userOriginalImage;
 
 @end
 
@@ -71,7 +72,8 @@
          didSetDefaultBlock:setDefaultBlock
                       title:title
             hasRemoveOption:hasRemoveOption
-               canTakePhoto:YES];
+               canTakePhoto:YES
+          userOriginalImage:NO];
 }
 
 - (void)showSelectionView:(UIViewController*)superViewController
@@ -81,6 +83,7 @@
                     title:(NSString*)title
           hasRemoveOption:(BOOL)hasRemoveOption
              canTakePhoto:(BOOL)canTakePhoto
+        userOriginalImage:(BOOL)userOriginalImage
 {
     _buttonIndexAlbum = -1;
     _buttonIndexCamera = -1;
@@ -92,6 +95,7 @@
     self.hasRemoveOption = hasRemoveOption;
     self.canTakePhoto = canTakePhoto;
     self.setDefaultBlock = setDefaultBlock;
+    self.userOriginalImage = userOriginalImage;
     
     if (!hasRemoveOption && !canTakePhoto) {
         [self selectPhoto];
@@ -125,8 +129,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 //    [picker dismissModalViewControllerAnimated:YES];
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [info objectForKey:self.userOriginalImage?UIImagePickerControllerOriginalImage:UIImagePickerControllerEditedImage];
 
+    PPDebug(@"select image size = %@", NSStringFromCGSize(image.size));
     if (image != nil){
         if (_superViewController)
             
@@ -179,7 +184,7 @@
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-        picker.allowsEditing = YES;
+        picker.allowsEditing = !self.userOriginalImage;
         picker.delegate = self;
         
         if ([DeviceDetection isIPAD]){
