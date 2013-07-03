@@ -243,36 +243,17 @@
     }
 }
 
-- (void)viewDidLoad
+- (void)registerAllChatNotification
 {
-    [self setSupportRefreshHeader:YES];
-    [super viewDidLoad];
-    [self initViews];
-    [self initListWithLocalData];
-    [self loadNewMessage:YES];
-    self.unReloadDataWhenViewDidAppear = YES;
-    
-    [self updateLocateButton];
-    
     __block ChatDetailController* bself = self;
     [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENT usingBlock:^(NSNotification *note) {
         
         NSDictionary* userInfo = [note userInfo];
-//        NSData* data = [userInfo objectForKey:KEY_USER_INFO_MESSAGE];
         NSNumber* resultCode = [userInfo objectForKey:KEY_USER_INFO_RESULT_CODE];
-
-        PPMessage* message = nil;
-//        if (data != nil){
-//            PBMessage* pbMessage = [PBMessage parseFromData:data];
-//            if (pbMessage){
-//                message = [PPMessage messageWithPBMessage:pbMessage];
-//            }
-//        }
-        
-        [bself didSendMessage:message resultCode:[resultCode intValue]];        
+        [bself didSendMessage:nil resultCode:[resultCode intValue]];
     }];
     
-    [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENDING usingBlock:^(NSNotification *note) {        
+    [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENDING usingBlock:^(NSNotification *note) {
         [bself reloadTableView];
     }];
     
@@ -293,6 +274,18 @@
     }];
 }
 
+- (void)viewDidLoad
+{
+    [self setSupportRefreshHeader:YES];
+    [super viewDidLoad];
+    [self initViews];
+    [self initListWithLocalData];
+    [self registerAllChatNotification];
+    [self loadNewMessage:YES];
+    self.unReloadDataWhenViewDidAppear = YES;    
+    [self updateLocateButton];
+}
+
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
@@ -307,7 +300,7 @@
 
 
 - (void)viewDidAppear:(BOOL)animated
-{    
+{
     DrawAppDelegate *drawAppDelegate = (DrawAppDelegate *)[[UIApplication sharedApplication] delegate];
     drawAppDelegate.chatDetailController = self;
     [super viewDidAppear:animated];
@@ -449,6 +442,8 @@
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
 {
+    [self unregisterAllNotifications];
+    
     NSArray *viewControllers = self.navigationController.viewControllers;
 //    PPDebug(@"<clickBack>viewControllers = %@",viewControllers);
     for (UIViewController* controller in viewControllers){
