@@ -8,15 +8,20 @@
 
 #import "ChangeAvatar.h"
 #import "LocaleUtils.h"
-#import "PPViewController.h"
+//#import "PPViewController.h"
 #import "UIImageExt.h"
 #import "DeviceDetection.h"
 
 #define DEFAULT_AVATAR_SIZE 320
 
-@interface ChangeAvatar ()
+@interface ChangeAvatar () {
+    int _buttonIndexAlbum;
+    int _buttonIndexCamera;
+    int _buttonIndexReset;
+}
 
 @property (assign, nonatomic) BOOL hasRemoveOption;
+@property (assign, nonatomic) BOOL canTakePhoto;
 
 @end
 
@@ -45,35 +50,68 @@
     [super dealloc];
 }
 
-- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
+- (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController
 {
     self.superViewController = superViewController;
-    
+    self.delegate = superViewController;
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
     [actionSheet showInView:[superViewController view]];
     [actionSheet release];        
 }
 
-- (void)showSelectionView:(PPViewController<ChangeAvatarDelegate>*)superViewController
+- (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController
        selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
        didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
                     title:(NSString*)title
           hasRemoveOption:(BOOL)hasRemoveOption
 {
+    [self showSelectionView:superViewController
+                   delegate:superViewController
+         selectedImageBlock:selectedImageBlock
+         didSetDefaultBlock:setDefaultBlock
+                      title:title
+            hasRemoveOption:hasRemoveOption
+               canTakePhoto:YES];
+}
+
+- (void)showSelectionView:(UIViewController*)superViewController
+                 delegate:(id<ChangeAvatarDelegate>)delegate
+       selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
+       didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
+                    title:(NSString*)title
+          hasRemoveOption:(BOOL)hasRemoveOption
+             canTakePhoto:(BOOL)canTakePhoto
+{
+    _buttonIndexAlbum = -1;
+    _buttonIndexCamera = -1;
+    _buttonIndexReset = -1;
+    
     self.selectImageBlock = selectedImageBlock;
     self.superViewController = superViewController;
+    self.delegate = delegate;
     self.hasRemoveOption = hasRemoveOption;
+    self.canTakePhoto = canTakePhoto;
     self.setDefaultBlock = setDefaultBlock;
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
+    if (!hasRemoveOption && !canTakePhoto) {
+        [self selectPhoto];
+        return;
+    }
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), nil];
+    _buttonIndexAlbum = 0;
+    if (canTakePhoto) {
+        _buttonIndexCamera = [actionSheet addButtonWithTitle:NSLS(@"kTakePhoto")];
+    }
     if (hasRemoveOption) {
-        [actionSheet addButtonWithTitle:NSLS(@"kResetDefault")];
+        _buttonIndexReset = [actionSheet addButtonWithTitle:NSLS(@"kResetDefault")];
     }
     int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
     [actionSheet setCancelButtonIndex:index];
     [actionSheet showInView:[superViewController view]];
     [actionSheet release];
 }
+
 
 //- (void)setUserAvatar:(UIImage*)image
 //{    
@@ -90,7 +128,7 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
 
     if (image != nil){
-        if (_superViewController &&  [_superViewController respondsToSelector:@selector(didImageSelected:)])
+        if (_superViewController)
             
             if (_autoRoundRect || (_imageSize.width > 0.0f && _imageSize.height > 0.0f)){
                 if (_autoRoundRect){
@@ -102,8 +140,9 @@
                     }
                 }
             }
-            
-            [_superViewController didImageSelected:image];
+        if (_delegate && [_delegate respondsToSelector:@selector(didImageSelected:)]) {
+            [_delegate didImageSelected:image];
+        }
     }
     if (_selectImageBlock != NULL) {
         EXECUTE_BLOCK(_selectImageBlock, image);
@@ -118,7 +157,7 @@
 }
 
 - (void)showEditImageView:(UIImage*)image
-             inController:(PPViewController<ChangeAvatarDelegate>*)superViewController
+             inController:(UIViewController<ChangeAvatarDelegate>*)superViewController
 {
     
 }
@@ -184,25 +223,14 @@
 
 - (void)handleSelectAvatar:(int)buttonIndex
 {
-    enum{
-        BUTTON_SELECT_ALBUM,
-        BUTTON_TAKE_PHOTO,
-        BUTTON_SET_DEFAULT
-    };
-    
-    switch (buttonIndex) {
-        case BUTTON_SELECT_ALBUM:
-            [self selectPhoto];
-            break;
-            
-        case BUTTON_TAKE_PHOTO:
-            [self takePhoto];
-            break;
-        case BUTTON_SET_DEFAULT:
-            [self executeDefault];
-            break;
-        default:
-            break;
+    if (buttonIndex == _buttonIndexAlbum) {
+        [self selectPhoto];
+    }
+    if (buttonIndex == _buttonIndexCamera) {
+        [self takePhoto];
+    }
+    if (buttonIndex == _buttonIndexReset) {
+        [self executeDefault];
     }
     
 }
