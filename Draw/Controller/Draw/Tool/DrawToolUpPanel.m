@@ -84,6 +84,7 @@
     [_drawToUserNickNameLabel release];
     [_copyPaintPicker release];
     [_copyPaintLabel release];
+    [_backgroundImageView release];
     [super dealloc];
 }
 
@@ -181,21 +182,30 @@
     
 }
 
+#define TOP_WOOD_HEIGHT    (ISIPAD?85:33)
 - (void)appear:(UIViewController*)parentController
          title:(NSString*)title
+   isLeftArrow:(BOOL)isLeftArrow
 {
     self.layer.opacity = 0;
     self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
+    self.center = CGPointMake(self.center.x, TOP_WOOD_HEIGHT);
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     
     self.layer.opacity = 1;
     self.layer.transform = CATransform3DMakeScale(1, 1, 1);
-    self.center = CGPointMake(self.center.x, self.frame.size.height/2+(ISIPAD?70:30));
+    self.center = CGPointMake(self.center.x, self.frame.size.height/2+TOP_WOOD_HEIGHT);
     [UIView commitAnimations];
     self.isVisable = YES;
     self.hidden = NO;
     [self.titleLabel setText:title];
+    
+    if (isLeftArrow) {
+        [self.backgroundImageView setImage:[[ShareImageManager defaultManager] drawToolUpPanelLeftArrowBg]];
+    } else {
+        [self.backgroundImageView setImage:[[ShareImageManager defaultManager] drawToolUpPanelRightArrowBg]];
+    }
     
     [self addMask:parentController];
 }

@@ -471,7 +471,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{80, 514}, {244, 2}}</string>
 						<reference key="NSSuperview" ref="546724298"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -612,6 +611,14 @@
 						<reference key="destination" ref="88591818"/>
 					</object>
 					<int key="connectionID">225</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backgroundImageView</string>
+						<reference key="source" ref="546724298"/>
+						<reference key="destination" ref="222373438"/>
+					</object>
+					<int key="connectionID">227</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -898,7 +905,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">226</int>
+			<int key="maxID">227</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

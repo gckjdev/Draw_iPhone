@@ -613,6 +613,14 @@
 					<int key="connectionID">225</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backgroundImageView</string>
+						<reference key="source" ref="546724298"/>
+						<reference key="destination" ref="222373438"/>
+					</object>
+					<int key="connectionID">227</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickTool:</string>
 						<reference key="source" ref="578467750"/>
@@ -897,7 +905,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">226</int>
+			<int key="maxID">227</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
