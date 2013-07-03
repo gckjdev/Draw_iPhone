@@ -31,6 +31,7 @@
                    name:(NSString*)name
                  tagSet:(NSSet*)tagSet
                   usage:(PBPhotoUsage)usage
+             protoPhoto:(PBUserPhoto*)protoPhoto
             resultBlock:(void(^)(int resultCode, PBUserPhoto* photo))resultBlock;
 
 - (void)deleteUserPhoto:(NSString*)userPhotoId

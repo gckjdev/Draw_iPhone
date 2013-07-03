@@ -87,7 +87,6 @@ typedef enum
             } clickCancel:^(NSString *inputStr) {
                 //
             }];
-            dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
             [dialog.targetTextField setPlaceholder:@"请输入要充值的金币数"];
             [dialog showInView:_superController.view];
         } break;

@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "TimeUtils.h"
 #import "LocaleUtils.h"
+#import "ShareImageManager.h"
 
 @interface UserPhotoView ()
 
@@ -43,10 +44,26 @@ AUTO_CREATE_VIEW_BY_XIB(UserPhotoView)
 */
 - (void)updateWithUserPhoto:(PBUserPhoto*)photo
 {
+    UIImage *defaultImage = nil;
+    defaultImage = [[ShareImageManager defaultManager] unloadBg];
     if (photo) {
         self.photo = photo;
         [self.nameLabel setText:photo.name];
-        [self.photoImage setImageWithURL:[NSURL URLWithString:photo.url]];
+        [self.photoImage setImageWithURL:[NSURL URLWithString:photo.url]
+                       placeholderImage:defaultImage
+                                success:^(UIImage *image, BOOL cached) {
+                                    if (!cached) {
+                                        self.photoImage.alpha = 0;
+                                    }
+                                    
+                                    [UIView animateWithDuration:1 animations:^{
+                                        self.photoImage.alpha = 1.0;
+                                    }];
+                                    //            feed.largeImage = image;
+                                    [self.photoImage setImage:image];
+                                } failure:^(NSError *error) {
+                                    self.photoImage.alpha = 1;
+                                }];
         
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:photo.createDate];
 //        PPDebug(@"create date = %@", [date description]);
@@ -94,22 +111,24 @@ AUTO_CREATE_VIEW_BY_XIB(UserPhotoView)
     return view;
 }
 
-#define MARGIN 0
+#define BLANK_WIDTH     8
+#define BLANK_HEIGHT    (ISIPAD?32:18)
 + (CGFloat)heightForViewWithPhotoWidth:(float)photoWidth
                                 height:(float)photoHeight
                          inColumnWidth:(CGFloat)columnWidth {
-    CGFloat height = 0.0;
-    CGFloat width = columnWidth - MARGIN * 2;
+    if (photoHeight == 0 || photoWidth == 0) {
+        return columnWidth;
+    }
     
-    height += MARGIN;
+    CGFloat height = 0.0;
+    CGFloat width = columnWidth - BLANK_WIDTH * 2;
+
     
     // Image
     CGFloat scaledHeight = floorf(photoHeight / (photoWidth / width));
     height += scaledHeight;
     
-    height += MARGIN;
-    
-    return height;
+    return height + BLANK_HEIGHT;
 }
 
 @end

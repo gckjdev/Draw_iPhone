@@ -726,6 +726,7 @@
 
 "kChallenge" = "Challenge";
 "kDeleting" = "Deleting...";
+"kUpdating" = "Updating...";
 "kDeleteFail" = "Fail to delete.";
 "kUnfavoriteFail" = "Fail to unsubscribe";
 
@@ -1818,6 +1819,8 @@
 "kSearchResult" = "Search Results";
 "kDeletePhotoSucc" = "Delete photo successfully!";
 "kEditPhotoSucc" = "Photo updated!";
+"kDeletePhotoFail" = "Delete pictures failed, please try again later.";
+"kEditPhotoFail" = "Update the picture information failed, please try again later.";
 "kAddUserPhotoSucc" = "Photo saved!";
 "kEditPhoto" = "Edit Photo";
 "kName" = "Name";

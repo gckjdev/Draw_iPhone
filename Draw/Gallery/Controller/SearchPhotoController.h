@@ -7,10 +7,12 @@
 //
 
 #import "PPViewController.h"
+#import "SearchPhotoResultController.h"
 
 @interface SearchPhotoController : PPViewController <UITextFieldDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *searchTextField;
+@property (assign, nonatomic) id<SearchPhotoResultControllerDelegate>delegate;
 
 - (IBAction)clickSearch:(id)sender;
 - (IBAction)clickOptions:(id)sender;

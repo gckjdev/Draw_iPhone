@@ -362,17 +362,7 @@
     }
     
     if (_chatType == GameChatTypeChatPrivate) {
-        
-        PPMessage *textMessage = [[[TextMessage alloc] init] autorelease];
-        
-        [textMessage setCreateDate:[NSDate date]];
-        [textMessage setFriendId:_selectedUserId];
-        [textMessage setMessageType:MessageTypeText];
-        [textMessage setStatus:MessageStatusSending];
-        [textMessage setSourceType:SourceTypeSend];
-        [textMessage setText:message];
-        [[ChatService defaultService] sendMessage:textMessage delegate:nil];
-        
+        [[ChatService defaultService] sendTextMessage:message friendUserId:_selectedUserId];        
         [[DrawGameService defaultService] privateChatMessage:[NSArray arrayWithObjects:_selectedUserId, nil] message:message];            
     }else {
         [[DrawGameService defaultService] groupChatMessage:message];            

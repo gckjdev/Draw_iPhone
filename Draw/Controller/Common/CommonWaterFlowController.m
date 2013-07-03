@@ -82,6 +82,7 @@
         self.dataTableView.numColsLandscape = 4;
     }
     
+    self.dataTableView.margin = 8.0;
 //    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:self.dataTableView.bounds];
 //    loadingLabel.text = NSLS(@"kLoading");
 //    loadingLabel.textAlignment = UITextAlignmentCenter;

@@ -14,8 +14,9 @@
 #import "ChangeAvatar.h"
 #import "SDWebImageManager.h"
 
-@interface CopyPaintCommand () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CopyPaintCommand ()
 @property (retain, nonatomic) UIPopoverController* popoverController;
+@property (retain, nonatomic) ChangeAvatar* imagePicker;
 @end
 
 @implementation CopyPaintCommand
@@ -23,6 +24,7 @@
 - (void)dealloc
 {
     PPRelease(_popoverController);
+    PPRelease(_imagePicker);
     [super dealloc];
 }
 
@@ -86,6 +88,11 @@
     return NO;
 }
 
+enum {
+    selectPhotoFromAlbum = 0,
+    selectPhotoFromGallery,
+};
+
 - (void)showSelection
 {
     MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kSelectFromUserPhoto"), nil] autorelease];
@@ -95,10 +102,10 @@
             return ;
         }
         switch (buttonIndex) {
-            case 0: {
+            case selectPhotoFromAlbum: {
                 [self selectImageFromAlbum:[self.toolPanel theViewController]];
             } break;
-            case 1: {
+            case selectPhotoFromGallery: {
                 GalleryController *fc = [[GalleryController alloc] initWithDelegate:self title:NSLS(@"kSelectPhoto")];
                 [[[self.toolPanel theViewController] navigationController] pushViewController:fc animated:YES];
                 [fc release];
@@ -112,45 +119,45 @@
 
 - (void)selectImageFromAlbum:(UIViewController*)superController
 {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum] &&
-        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-        picker.allowsEditing = YES;
-        picker.delegate = self;
-        
-        if ([DeviceDetection isIPAD]){
-            UIPopoverController *controller = [[UIPopoverController alloc] initWithContentViewController:picker];
-            self.popoverController = controller;
-            [controller release];
-            CGRect popoverRect = CGRectMake((768-400)/2, -140, 400, 400);
-            [_popoverController presentPopoverFromRect:popoverRect
-                                                inView:superController.view
-                              permittedArrowDirections:UIPopoverArrowDirectionUp
-                                              animated:YES];
-            
-        }else {
-            [superController presentModalViewController:picker animated:YES];
-        }
-        
-        [picker release];
-    }
+    __block CopyPaintCommand* cp = self;
+    self.imagePicker = [[[ChangeAvatar alloc] init] autorelease];
+    [self.imagePicker setAutoRoundRect:NO];
+    [self.imagePicker setImageSize:CGSizeMake(0, 0)];
+    [self.imagePicker setIsCompressImage:NO];
+    [self.imagePicker showSelectionView:superController
+                               delegate:nil
+                     selectedImageBlock:^(UIImage *image) {
+                         [cp.toolHandler changeCopyPaint:image];
+                         if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
+                             [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
+                         }
+                         
+                     }
+                     didSetDefaultBlock:^{
+                         //
+                     }
+                                  title:nil
+                        hasRemoveOption:NO
+                           canTakePhoto:NO];
 }
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-{
-    [self.toolHandler changeCopyPaint:image];
-    if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
-        [(DrawToolUpPanel*)self.toolPanel updateCopyPaint:image];
-    }
-    [picker.presentingViewController dismissModalViewControllerAnimated:YES];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker.presentingViewController dismissModalViewControllerAnimated:YES];
-}
+//
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+//{
+//    [self.toolHandler changeCopyPaint:image];
+//    if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
+//        [(DrawToolUpPanel*)self.toolPanel updateCopyPaint:image];
+//    }
+//    if (_popoverController != nil) {
+//        [_popoverController dismissPopoverAnimated:YES];
+//    }else{
+//        [picker dismissModalViewControllerAnimated:YES];
+//    }
+//}
+//
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+//{
+//    [picker.presentingViewController dismissModalViewControllerAnimated:YES];
+//}
 
 
 @end

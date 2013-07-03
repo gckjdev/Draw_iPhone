@@ -38,6 +38,7 @@
 @property (retain, nonatomic) NSDictionary* options;
 @property (retain, nonatomic) NSString* searchText;
 @property (retain, nonatomic) NSArray* initArray;
+@property (assign, nonatomic) id<SearchPhotoResultControllerDelegate>delegate;
 
 @end
 
@@ -71,12 +72,14 @@
 - (id)initWithKeyword:(NSString*)keyword
               options:(NSDictionary*)options
           resultArray:(NSArray *)array
+             delegate:(id<SearchPhotoResultControllerDelegate>)delegate
 {
     self = [super init];
     if (self) {
         self.searchText = keyword;
         self.options = options;
         self.initArray = array;
+        self.delegate = delegate;
         // Custom initialization
     }
     return self;
@@ -347,7 +350,9 @@ enum {
         if (resultCode == 0) {
             PPDebug(@"<didEditPictureInfo> favor image %@(%@) ,name = %@ with tag <%@>succ !", photo.url, photo.userPhotoId, photo.name,[photo.tagsList description]);
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kAddUserPhotoSucc") delayTime:1.5];
-            
+            if (_delegate && [_delegate respondsToSelector:@selector(didAddUserPhoto:)]) {
+                [_delegate didAddUserPhoto:photo];
+            }
         } else {
             PPDebug(@"<didEditPictureInfo> err! code = %d", resultCode);
         }

@@ -231,7 +231,7 @@
 {
     [self hideActivity];
     if (resultCode == OLD_G_ERROR_SUCCESS) {
-        SearchPhotoResultController* vc = [[[SearchPhotoResultController alloc] initWithKeyword:self.searchTextField.text options:self.options resultArray:array] autorelease];
+        SearchPhotoResultController* vc = [[[SearchPhotoResultController alloc] initWithKeyword:self.searchTextField.text options:self.options resultArray:array delegate:self.delegate] autorelease];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
