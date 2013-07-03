@@ -69,7 +69,7 @@
 {
     NSString* smartDataFile = ([LocaleUtils isChinese]?[GameApp keywordSmartDataCn]:[GameApp keywordSmartDataEn]);
     self.smartData = [[[PPSmartUpdateData alloc] initWithName:smartDataFile type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:smartDataFile initDataVersion:@"1.5"] autorelease];
-    [self loadKeywords];
+    [self loadKeywordsFromSmartDataFile];
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
         [self reloadKeywords];
@@ -93,9 +93,9 @@
 - (void)reloadKeywords
 {
     [self removeAllKeywords];
-    [self loadKeywords];
+    [self loadKeywordsFromSmartDataFile];
 }
-- (void)loadKeywords
+- (void)loadKeywordsFromSmartDataFile
 {
     NSError* err;
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
