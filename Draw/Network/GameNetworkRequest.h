@@ -310,7 +310,8 @@
                             opusId:(NSString*)opusId
                               data:(NSData*)data
                          imageData:(NSData *)imageData
-                      isCompressed:(BOOL)isCompressed;
+                      isCompressed:(BOOL)isCompressed
+                       description:(NSString*)description;
 
 + (CommonNetworkOutput*)rejectOpusDrawToMe:(NSString*)baseURL
                                      appId:(NSString*)appId

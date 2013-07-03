@@ -183,7 +183,10 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 
 
 - (void)updateOpus:(NSString *)opusId image:(UIImage *)image;
-
+- (void)updateOpus:(NSString *)opusId
+             image:(UIImage *)image
+       description:(NSString*)description
+     resultHandler:(void(^)(int resultCode))resultHandler;
 //- (void)rejectOpusDrawToMe:(NSString *)opusId
 //              successBlock:(void (^)(void))successBlock
 //                 failBlock:(void (^)(void))failBlock;
