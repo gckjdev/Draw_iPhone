@@ -346,9 +346,6 @@ transactionRecepit:(NSString*)transactionRecepit
 transactionRecepit:(NSString*)transactionRecepit
          alixOrder:(NSString*)alixOrder
 {
-    if (amount <= 0) {
-        return;
-    }
     dispatch_async(workingQueue, ^{
         
         if ([self checkIAPReceiptBeforeCharge:transactionId
