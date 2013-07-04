@@ -151,8 +151,8 @@
 - (void)openChatDetail:(MessageStat *)messageStat
 {
     ChatDetailController *controller = [[ChatDetailController alloc] initWithMessageStat:messageStat];
-    [self.navigationController pushViewController:controller animated:YES];
     controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 
 }

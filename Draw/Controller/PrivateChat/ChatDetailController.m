@@ -57,7 +57,7 @@
 - (NSInteger)loadMoreDataCount;
 - (void)tableViewScrollToTop;
 - (void)tableViewScrollToBottom;
-- (BOOL)messageShowTime:(PPMessage *)message;
+- (BOOL)messageShowTime:(PPMessage *)message row:(int)row;
 //- (void)appendMessageList:(NSArray *)list;
 @end
 
@@ -127,13 +127,15 @@
 */
 
 #define GROUP_INTERVAL 60 * 5
-- (BOOL)messageShowTime:(PPMessage *)message
+- (BOOL)messageShowTime:(PPMessage *)message row:(int)row
 {
-    NSInteger index = [self.messageList indexOfObject:message];
-    if (index == 0) {
+//    NSInteger index = [self.messageList indexOfObject:message];
+//    if (index == 0) {
+    if (row == 0 || (row-1) < ([_messageList count] -1) ){
         return YES;
     }
-    PPMessage *lastMessage = [self.messageList objectAtIndex:index - 1];
+    
+    PPMessage *lastMessage = [_messageList objectAtIndex:(row - 1)];
     
     NSInteger timeValue = [[message createDate] timeIntervalSince1970];
     NSInteger lastTime = [[lastMessage createDate] timeIntervalSince1970];
@@ -148,7 +150,6 @@
     
     PPDebug(@"%@ dealloc",self);
     PPRelease(_loadingActivityView);
-    PPRelease(_delegate);
     PPRelease(titleLabel);
     PPRelease(inputTextView);
     PPRelease(inputBackgroundView);
@@ -168,6 +169,7 @@
     self = [super init];
     if (self) {
         self.messageStat = messageStat;
+        self.messageList = [[PPMessageManager defaultManager] getMessageList:messageStat.friendId];
 //        _messageList = [[NSMutableArray alloc] init];
     }
     return self;
@@ -192,7 +194,8 @@
 //    PPDebug(@"<initListWithLocalData> list count = %d", [list count]);
 //    if ([list count] != 0) {
 //        [self appendMessageList:list];
-        [self reloadTableView];
+
+//        [self reloadTableView];
         [self tableViewScrollToBottom];
         
         //reSend the sendding messages...
@@ -245,20 +248,19 @@
 
 - (void)registerAllChatNotification
 {
-    __block ChatDetailController* bself = self;
     [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENT usingBlock:^(NSNotification *note) {
         
         NSDictionary* userInfo = [note userInfo];
         NSNumber* resultCode = [userInfo objectForKey:KEY_USER_INFO_RESULT_CODE];
-        [bself didSendMessage:nil resultCode:[resultCode intValue]];
+        [self didSendMessage:nil resultCode:[resultCode intValue]];
     }];
     
     [self registerNotificationWithName:NOTIFICATION_MESSAGE_SENDING usingBlock:^(NSNotification *note) {
-        [bself reloadTableView];
+        [self reloadTableView];
     }];
     
     [self registerNotificationWithName:NOTIFICATION_MESSAGE_DELETE usingBlock:^(NSNotification *note) {
-        [bself reloadTableView];
+        [self reloadTableView];
     }];
     
     [self registerNotificationWithName:NOTIFICATION_MESSAGE_LOAD usingBlock:^(NSNotification *note) {
@@ -268,9 +270,8 @@
         NSNumber* forward = [userInfo objectForKey:KEY_USER_INFO_FORWARD];
         NSNumber* insertMiddle = [userInfo objectForKey:KEY_USER_INFO_INSERTMIDDLE];
         
-        [bself didGetMessages:nil forward:[forward boolValue] insertMiddle:[insertMiddle intValue] resultCode:[resultCode intValue]];
-        
-        [bself clearTitleForLoading];
+        [self didGetMessages:nil forward:[forward boolValue] insertMiddle:[insertMiddle intValue] resultCode:[resultCode intValue]];        
+        [self clearTitleForLoading];
     }];
 }
 
@@ -278,12 +279,15 @@
 {
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
+
     [self initViews];
     [self initListWithLocalData];
+    self.unReloadDataWhenViewDidAppear = YES;
+    [self updateLocateButton];
+    
     [self registerAllChatNotification];
     [self loadNewMessage:YES];
-    self.unReloadDataWhenViewDidAppear = YES;    
-    [self updateLocateButton];
+    
 }
 
 - (void)viewDidUnload
@@ -308,7 +312,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    PPRelease(_delegate);
+//    PPRelease(_delegate);
     
 //    [self bgSaveMessageList];
     
@@ -412,10 +416,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PPDebug(@"<heightForRowAtIndexPath> index = %d", indexPath.row);
     PPMessage *message = [self messageOfIndex:indexPath.row];
-    BOOL flag = [self messageShowTime:message];
+    BOOL flag = [self messageShowTime:message row:indexPath.row];
     CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
-//    PPDebug(@"<heightForRowAtIndexPath> = %f, index = %d", height, indexPath.row);
     return height;
 }
 
@@ -429,7 +433,7 @@
     if (cell == nil) {
         cell = [ChatDetailCell createCell:self isReceive:isReceive];
     }
-    BOOL flag = [self messageShowTime:message];
+    BOOL flag = [self messageShowTime:message row:indexPath.row];
     [cell setCellWithMessageStat:self.messageStat 
                          message:message
                        indexPath:indexPath 
@@ -442,6 +446,7 @@
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
 {
+    self.messageList = nil;
     [self unregisterAllNotifications];
     
     NSArray *viewControllers = self.navigationController.viewControllers;
@@ -1130,7 +1135,7 @@
     self.titleLabel.text = NSLS(@"kLoadingMessage");
     
     if (self.loadingActivityView == nil){
-        self.loadingActivityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        self.loadingActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
         self.loadingActivityView.frame = self.refreshButton.frame;
     }
     [self.view addSubview:self.loadingActivityView];
