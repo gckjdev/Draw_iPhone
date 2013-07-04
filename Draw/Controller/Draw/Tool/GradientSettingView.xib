@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="472484734">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{-2, -2}, {44, 44}}</string>
+						<string key="NSFrame">{{-2, -1}, {44, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="27867052"/>
@@ -55,7 +55,7 @@
 					<object class="IBUIImageView" id="350027981">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{252, -2}, {68, 44}}</string>
+						<string key="NSFrame">{{252, -1}, {68, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1010009998"/>
@@ -71,7 +71,7 @@
 					<object class="IBUIImageView" id="961395243">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{42, -2}, {210, 44}}</string>
+						<string key="NSFrame">{{42, -1}, {210, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="791596624"/>
@@ -90,7 +90,7 @@
 						<string key="NSFrame">{{217, 6}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="64555665"/>
+						<reference key="NSNextKeyView" ref="350027981"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="169069331">
 							<int key="NSColorSpace">1</int>
@@ -123,10 +123,10 @@
 					<object class="IBUIButton" id="64555665">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{47, 5}, {30, 30}}</string>
+						<string key="NSFrame">{{47, 6}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="350027981"/>
+						<reference key="NSNextKeyView" ref="134038515"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="169069331"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -144,7 +144,7 @@
 					<object class="IBUIButton" id="27867052">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{7, 5}, {30, 30}}</string>
+						<string key="NSFrame">{{7, 6}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="961395243"/>
@@ -177,7 +177,7 @@
 					<object class="IBUIButton" id="482043919">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{285, 5}, {30, 30}}</string>
+						<string key="NSFrame">{{285, 6}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -229,10 +229,10 @@
 					<object class="IBUIButton" id="791596624">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{45, 1}, {210, 40}}</string>
+						<string key="NSFrame">{{45, 0}, {210, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="134038515"/>
+						<reference key="NSNextKeyView" ref="64555665"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="36126850">
 							<int key="NSColorSpace">3</int>
@@ -256,7 +256,7 @@
 						<reference key="IBUIFont" ref="492703154"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 40}</string>
+				<string key="NSFrameSize">{320, 42}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="472484734"/>
@@ -592,7 +592,7 @@
 			<string key="gradient_bg_right@2x.png">{137, 83}</string>
 			<string key="gradient_cancel@2x.png">{48, 48}</string>
 			<string key="gradient_confirm@2x.png">{48, 48}</string>
-			<string key="gradient_division@2x.png">{19, 88}</string>
+			<string key="gradient_division@2x.png">{39, 79}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -69,7 +69,7 @@
     
 }
 
-#define GRADIENT_LAYER_FRAME (ISIPAD ? CGRectMake(190, 5, 320, 80) : CGRectMake(82, 5, 130, 30))
+#define GRADIENT_LAYER_FRAME (ISIPAD ? CGRectMake(190, 8, 320, 70) : CGRectMake(82, 5, 130, 31))
 
 
 
