@@ -68,7 +68,7 @@
 - (void)updateKeywords
 {
     NSString* smartDataFile = ([LocaleUtils isChinese]?[GameApp keywordSmartDataCn]:[GameApp keywordSmartDataEn]);
-    self.smartData = [[[PPSmartUpdateData alloc] initWithName:smartDataFile type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:smartDataFile initDataVersion:@"1.5"] autorelease];
+    self.smartData = [[[PPSmartUpdateData alloc] initWithName:smartDataFile type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:smartDataFile initDataVersion:@"1.0"] autorelease];
     [self loadKeywordsFromSmartDataFile];
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
