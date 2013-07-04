@@ -420,7 +420,14 @@
     self.imagePicker = [[[ChangeAvatar alloc] init] autorelease];
     [self.imagePicker setAutoRoundRect:NO];
     [self.imagePicker setImageSize:CGSizeMake(0, 0)];
-    [self.imagePicker showSelectionView:self];
+    [self.imagePicker showSelectionView:self
+                               delegate:self
+                     selectedImageBlock:nil
+                     didSetDefaultBlock:nil
+                                  title:nil
+                        hasRemoveOption:NO
+                           canTakePhoto:YES
+                      userOriginalImage:YES];
     [self.textView resignFirstResponder];
 }
 - (IBAction)clickGraffitiButton:(id)sender {
