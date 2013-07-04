@@ -1796,6 +1796,11 @@
 "kNoShadow" = "無陰影";
 "kSetShadow" = "設置陰影";
 
+"kLeftTop" = "左上";
+"kRightTop" = "右上";
+"kLeftBottom" = "左下";
+"kRightBottom" = "右下";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 

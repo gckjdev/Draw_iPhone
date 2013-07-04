@@ -76,6 +76,21 @@
 
 #define RECENT_BUTTON_BASE_TAG 100
 #define RECENT_BUTTON_COUNT 4
+
+//System shadow
+#define SYSTEM_SHADOW_BUTTON_TAG 200
+#define SYSTEM_SHADOW_BUTTON_COUNT 4
+
+- (void)updateSystemShadowButtons
+{
+    NSArray *titles = @[NSLS(@"kLeftTop"), NSLS(@"kRightTop"), NSLS(@"kLeftBottom"), NSLS(@"kRightBottom")];
+    for (int i = 0; i < SYSTEM_SHADOW_BUTTON_COUNT; ++ i) {
+        UIButton *button = (id)[self viewWithTag:SYSTEM_SHADOW_BUTTON_TAG + i];
+        NSString *title = [titles objectAtIndex:i];
+        [button setTitle:title forState:UIControlStateNormal];
+    }
+}
+
 - (void)updateRecentShadows
 {
     NSArray *list = [[ShadowManager defaultManager] recentShadowList];
@@ -110,6 +125,9 @@
     [self.customButton setTitle:NSLS(@"kCustom") forState:UIControlStateNormal];
     
     [self.recentLabel setText:NSLS(@"kRecent")];
+
+    //update system shadow button
+    [self updateSystemShadowButtons];
 
 }
 
@@ -314,6 +332,8 @@ SLIDER.tag = TAG;\
 
 #define MAX_SHADOW_DISTANCE [ConfigManager maxShadowDistance]
 #define MAX_SHADOW_BLUR [ConfigManager maxShadowBlur]
+
+
 
 - (void)updateViews
 {
