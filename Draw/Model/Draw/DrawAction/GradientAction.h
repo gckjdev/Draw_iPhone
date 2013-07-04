@@ -12,7 +12,8 @@
 
 @interface Gradient : NSObject
 {
-    
+    CGFloat _degree;
+    CGRect _rect;
 }
 
 
@@ -33,6 +34,15 @@
               startColor:(DrawColor *)sc
                 endColor:(DrawColor *)ec
                 division:(CGFloat)division;
+
+- (void)setDegree:(CGFloat)degree;
+
+- (id)initWithDegree:(CGFloat)degree
+          startColor:(DrawColor *)sc
+            endColor:(DrawColor *)ec
+            division:(CGFloat)division
+              inRect:(CGRect)rect;
+
 
 @end
 

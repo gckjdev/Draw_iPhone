@@ -38,58 +38,75 @@
 }
 
 
-- (void)updatePBGradientC:(Game__PBGradient *)gradient
+- (void)updatePointsWithDegreeAndDivision
 {
-    gradient->division = self.division;
-    gradient->division = 1;
-
-
-    gradient->n_point = POINT_COUNT;
-    gradient->point = malloc(sizeof(int32_t) * POINT_COUNT);
-    gradient->point[0] = self.startPoint.x;
-    gradient->point[1] = self.startPoint.y;
-    gradient->point[2] = self.endPoint.x;
-    gradient->point[3] = self.endPoint.y;
-
+    CGFloat radio = _degree * M_PI / 180;
     
-    if (self.startColor && self.endColor) {
-        gradient->n_color = COLOR_COUNT;
-        gradient->color = malloc(sizeof(int32_t) * COLOR_COUNT);
-        gradient->color[0] = [self.startColor toBetterCompressColor];
-        gradient->color[1] = [self.endColor toBetterCompressColor];
-        
+    CGFloat R = CGPointDistance(CGPointZero, CGRectGetCenter(_rect));
+    
+    _startPoint.x = cosf(radio) * R;
+    _startPoint.y = sinf(radio) * R;
+    
+    _endPoint.x = -_startPoint.x;
+    _endPoint.y = -_startPoint.y;
+    
+    
+    translateFromCartesianCoordinates(&_startPoint, _rect);
+    translateFromCartesianCoordinates(&_endPoint, _rect);
+    
+    CGFloat division = _division;
+    CGPoint vector = CGPointVector(_startPoint, _endPoint);
+    
+    
+    
+    if (division > 0.5) {
+        _endPoint.x += vector.x * (division - 0.5);
+        _endPoint.y += vector.y * (division - 0.5);
     }else{
-        gradient->n_color = 0;
+        _startPoint.x += vector.x * (division - 0.5);
+        _startPoint.y += vector.y * (division - 0.5);
     }
-
+    PPDebug(@"<updatePointsWithDegreeAndDivision> startPoint = %@, endPoint = %@", NSStringFromCGPoint(_startPoint),NSStringFromCGPoint(_endPoint));
+    
+    
+    
 }
 
-- (id)initWithPBGradientC:(Game__PBGradient *)gradient
+- (id)initWithDegree:(CGFloat)degree
+          startColor:(DrawColor *)sc
+            endColor:(DrawColor *)ec
+            division:(CGFloat)division
+              inRect:(CGRect)rect
 {
     self = [super init];
     if (self) {
-        self.division = gradient->division;
-        NSInteger count = gradient->n_color;
-        if (count >= COLOR_COUNT) {
-            self.startColor = [DrawColor colorWithBetterCompressColor:gradient->color[0]];
-            self.endColor = [DrawColor colorWithBetterCompressColor:gradient->color[1]];
-        }
-        
-        count = gradient->n_point;
-        if (count >= POINT_COUNT) {
-            _startPoint.x = gradient->point[0];
-            _startPoint.y = gradient->point[1];
-            _endPoint.x = gradient->point[2];
-            _endPoint.y = gradient->point[3];
-        }
+        _degree = degree;
+        _rect = rect;
+        self.startColor = sc;
+        self.endColor = ec;
+        self.division = division;
+        [self updatePointsWithDegreeAndDivision];
     }
     return self;
+}
+
+//new
+- (void)setDegree:(CGFloat)degree
+{
+    _degree = degree;
+    [self updatePointsWithDegreeAndDivision];
+}
+
+- (void)setDivision:(CGFloat)division
+{
+    _division = division;
+    [self updatePointsWithDegreeAndDivision];
 }
 
 - (CGFloat)degree
 {
     
-    return 0;
+    return _degree;
 }
 
 - (CGGradientRef)createGradientRef
@@ -101,7 +118,7 @@
     const CGFloat *c2 = CGColorGetComponents(self.endColor.CGColor);
     memcpy(component, c1, sizeof(CGFloat) * 4);
     memcpy(component+4, c2, sizeof(CGFloat) * 4);
-
+    
     CGGradientRef gradient = CGGradientCreateWithColorComponents(space, component, NULL, COLOR_COUNT);
     CGColorSpaceRelease(space);
     return gradient;
@@ -115,6 +132,7 @@
 }
 
 @end
+
 
 @implementation GradientAction
 

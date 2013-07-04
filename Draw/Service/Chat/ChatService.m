@@ -424,24 +424,25 @@ static ChatService *_chatService = nil;
                                                          offsetMessageId:offsetMessageId
                                                                 maxCount:limit
                                                                  forward:forward];
-        NSArray *messageList = nil;
-        if (output.resultCode == ERROR_SUCCESS){
-            
-            @try{
-                DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
-                NSArray *mList = [travelResponse messageList];
-                messageList = [PPMessageManager parseMessageListAndReverse:mList];
-                
-            }@catch (NSException *exception){
-                PPDebug (@"<ChatService>findAllMessages try catch:%@%@", [exception name], [exception reason]);
-            }
-            
-            PPDebug(@"<ChatService>findAllMessages success");
-        }else {
-            PPDebug(@"<ChatService>findAllMessages failed");
-        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSArray *messageList = nil;
+            if (output.resultCode == ERROR_SUCCESS){
+                
+                @try{
+                    DataQueryResponse *travelResponse = [DataQueryResponse parseFromData:output.responseData];
+                    NSArray *mList = [travelResponse messageList];
+                    messageList = [PPMessageManager parseMessageListAndReverse:mList];
+                    
+                }@catch (NSException *exception){
+                    PPDebug (@"<ChatService>findAllMessages try catch:%@%@", [exception name], [exception reason]);
+                }
+                
+                PPDebug(@"<ChatService>findAllMessages success");
+            }else {
+                PPDebug(@"<ChatService>findAllMessages failed");
+            }
+
             if (output.resultCode == 0){
                 
                 if ([messageList count] > 0){

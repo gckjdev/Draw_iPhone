@@ -234,6 +234,8 @@ static PPMessageManager* globalDefaultMessageManager;
     if (list == nil){
         // try to load from local cache
         list = [PPMessageManager messageListForFriendId:friendUserId];
+        
+        // sort list
         list = [list sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             PPMessage* m1 = (PPMessage*)obj1;
             PPMessage* m2 = (PPMessage*)obj2;
