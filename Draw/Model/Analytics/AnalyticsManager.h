@@ -113,7 +113,7 @@
 #define DRAW_CLICK_CHANGE_DRAWTOUSER                @"DRAW_CLICK_CHANGE_DRAWTOUSER"
 #define DRAW_CLICK_HELP                             @"DRAW_CLICK_HELP"
 #define DRAW_CLICK_GRID                             @"DRAW_CLICK_GRID"
-
+#define DRAW_CLICK_GRADIENT                         @"DRAW_CLICK_GRADIENT"
 
 @interface AnalyticsManager : NSObject
 

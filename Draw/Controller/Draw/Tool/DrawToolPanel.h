@@ -46,6 +46,7 @@
 - (void)registerToolCommands;
 - (IBAction)clickTool:(UIButton *)sender;
 - (void)updateView;
+- (void)hideColorPanel:(BOOL)hide;
 
 #pragma mark - Timer
 
