@@ -88,6 +88,12 @@
     [super dealloc];
 }
 
+#define ADD_COMMAND(cmd, cls, button, it)\
+cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
+[toolCmdManager registerCommand:command];\
+[cmd setToolPanel:self];
+
+
 - (void)registerToolCommands
 {
     toolCmdManager = [ToolCommandManager defaultManager];
@@ -98,33 +104,18 @@
     ToolCommand *command;
 
     
-    //
-    command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[GridCommand alloc] initWithControl:self.grid itemType:ItemTypeGrid] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[CopyPaintCommand alloc] initWithControl:self.copyPaintPicker itemType:ItemTypeCopyPaint] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[ShowCopyPaintCommand alloc] initWithControl:self.copyPaint itemType:ItemTypeCopyPaint] autorelease];
-    [toolCmdManager registerCommand:command];
+
+    ADD_COMMAND(command, DrawBgCommand, self.drawBg, ItemTypeNo);
+    ADD_COMMAND(command, CanvasSizeCommand, self.canvasSize, ItemTypeNo);
+    ADD_COMMAND(command, GridCommand, self.grid, ItemTypeGrid);
+    ADD_COMMAND(command, EditDescCommand, self.opusDesc, ItemTypeNo);
+    ADD_COMMAND(command, DrawToCommand, self.drawToUser, ItemTypeNo);
+    ADD_COMMAND(command, HelpCommand, self.help, ItemTypeNo);
+    ADD_COMMAND(command, CopyPaintCommand, self.copyPaintPicker, ItemTypeCopyPaint);
+    ADD_COMMAND(command, ShowCopyPaintCommand, self.copyPaint, ItemTypeCopyPaint);
     
     [toolCmdManager updateHandler:self.toolHandler];
-    [toolCmdManager updatePanel:self];
+
     
     [self.toolHandler enterDrawMode];
 }

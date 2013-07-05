@@ -175,8 +175,8 @@
 
 - (void)callBack
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didSetGradient:)]) {
-        [self.delegate gradientSettingView:self didSetGradient:self.gradient];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didChangeradient:)]) {
+        [self.delegate gradientSettingView:self didChangeradient:self.gradient];
     }
     
 }
@@ -227,10 +227,20 @@
 
 - (IBAction)clickConfirm:(id)sender {
     [self dismissPopView];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel::)]) {
+        [self.delegate gradientSettingView:self
+                      didFinishSetGradient:self.gradient
+                                    cancel:NO];
+    }
 }
 
 - (IBAction)clickCancel:(id)sender {
     [self dismissPopView];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel::)]) {
+        [self.delegate gradientSettingView:self
+                      didFinishSetGradient:self.gradient
+                                    cancel:YES];
+    }    
 }
 
 #pragma mark pallete delegate

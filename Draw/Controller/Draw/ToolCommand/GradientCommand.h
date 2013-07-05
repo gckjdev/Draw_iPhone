@@ -7,7 +7,8 @@
 //
 
 #import "ToolCommand.h"
+#import "GradientSettingView.h"
 
-@interface GradientCommand : ToolCommand
+@interface GradientCommand : ToolCommand<GradientSettingViewDelegate>
 
 @end

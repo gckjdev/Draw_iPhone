@@ -15,5 +15,8 @@
     [self.toolHandler handleUndo];
     return YES;
 }
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_UNDO);
+}
 
 @end

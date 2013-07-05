@@ -16,5 +16,8 @@
     return YES;
 }
 
+-(void)sendAnalyticsReport{
+    AnalyticsReport(DRAW_CLICK_REDO);
+}
 @end
 
