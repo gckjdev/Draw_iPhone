@@ -12,6 +12,7 @@
 #import "OnlineDrawViewController.h"
 #import "DrawView.h"
 #import "PPViewController.h"
+#import "GradientAction.h"
 
 typedef enum{
     ToolEventRedo = 1,
@@ -63,6 +64,11 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeDrawToFriend:(MyFriend *)aFriend;
 - (void)changeCopyPaint:(UIImage*)aPhoto;
 - (void)changeShadow:(Shadow *)shadow;
+
+//gradient
+- (void)updateGradient:(Gradient *)gradient;
+- (void)confirmGradient:(Gradient *)gradient;
+- (void)cancelGradient;
 
 - (void)usePaintBucket;
 - (void)enterDrawMode;

@@ -29,11 +29,11 @@
 - (void)updatePBGradientC:(Game__PBGradient *)gradient;
 - (void)drawInContext:(CGContextRef)context;
 
-- (id)initWithStartPoint:(CGPoint)sp
-                endPoint:(CGPoint)ep
-              startColor:(DrawColor *)sc
-                endColor:(DrawColor *)ec
-                division:(CGFloat)division;
+//- (id)initWithStartPoint:(CGPoint)sp
+//                endPoint:(CGPoint)ep
+//              startColor:(DrawColor *)sc
+//                endColor:(DrawColor *)ec
+//                division:(CGFloat)division;
 
 - (void)setDegree:(CGFloat)degree;
 

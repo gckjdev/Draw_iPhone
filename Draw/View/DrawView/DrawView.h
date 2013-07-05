@@ -13,6 +13,8 @@
 #import "ChangeBGImageAction.h"
 
 @class DrawView;
+@class Gradient;
+
 @protocol DrawViewDelegate <NSObject>
 
 @optional
@@ -78,5 +80,9 @@ typedef enum{
 
 - (NSInteger)totalActionCount;
 - (NSInteger)actionCount;
+
+- (void)updateLastAction:(DrawAction *)action;
+- (void)saveLastAction:(DrawAction *)action;
+- (void)cancelLastAction;
 
 @end

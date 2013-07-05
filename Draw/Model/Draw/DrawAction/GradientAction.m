@@ -18,24 +18,73 @@
     [super dealloc];
 }
 
+
+
 #define COLOR_COUNT 2
 #define POINT_COUNT 4
-- (id)initWithStartPoint:(CGPoint)sp
-                endPoint:(CGPoint)ep
-              startColor:(DrawColor *)sc
-                endColor:(DrawColor *)ec
-                division:(CGFloat)division
+
+- (id)initWithPBGradientC:(Game__PBGradient *)gradient
 {
     self = [super init];
     if (self) {
-        self.division = division;
-        self.startColor = sc;
-        self.endColor = ec;
-        self.startPoint = sp;
-        self.endPoint = ep;
+        self.division = gradient->division;
+        if (gradient->n_color >= COLOR_COUNT) {
+            self.startColor = [DrawColor colorWithBetterCompressColor:gradient->color[0]];
+            self.endColor = [DrawColor colorWithBetterCompressColor:gradient->color[1]];
+        }
+        if (gradient->n_point >= POINT_COUNT) {
+            CGFloat x = gradient->point[0];
+            CGFloat y = gradient->point[1];
+            self.startPoint = CGPointMake(x, y);
+            
+            x = gradient->point[2];
+            y = gradient->point[3];
+            self.endPoint = CGPointMake(x, y);
+
+        }
+        
     }
     return self;
 }
+- (void)updatePBGradientC:(Game__PBGradient *)gradient
+{
+//    gradient->n_color = 1;
+//    gradient->has_point = 1;
+//    gradient->has_division = 1;
+
+    gradient->division = _division;
+    gradient->n_point = POINT_COUNT;
+    gradient->n_color = COLOR_COUNT;
+    
+    gradient->color = malloc(sizeof(int32_t) * COLOR_COUNT);
+    gradient->point = malloc(sizeof(float) * POINT_COUNT);
+    
+    gradient->color[0] = [self.startColor toBetterCompressColor];
+    gradient->color[1] = [self.endColor toBetterCompressColor];
+    
+    gradient->point[0] = self.startPoint.x;
+    gradient->point[1] = self.startPoint.y;
+    gradient->point[2] = self.endPoint.x;
+    gradient->point[3] = self.endPoint.y;
+}
+
+
+//- (id)initWithStartPoint:(CGPoint)sp
+//                endPoint:(CGPoint)ep
+//              startColor:(DrawColor *)sc
+//                endColor:(DrawColor *)ec
+//                division:(CGFloat)division
+//{
+//    self = [super init];
+//    if (self) {
+//        self.division = division;
+//        self.startColor = sc;
+//        self.endColor = ec;
+//        self.startPoint = sp;
+//        self.endPoint = ep;
+//    }
+//    return self;
+//}
 
 
 - (void)updatePointsWithDegreeAndDivision

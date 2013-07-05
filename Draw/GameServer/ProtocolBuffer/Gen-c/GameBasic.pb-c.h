@@ -254,7 +254,7 @@ struct  _Game__PBGradient
   size_t n_color;
   int32_t *color;
   size_t n_point;
-  int32_t *point;
+  float *point;
 };
 #define GAME__PBGRADIENT__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbgradient__descriptor) \

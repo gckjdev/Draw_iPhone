@@ -286,6 +286,25 @@
     [self setNeedsDisplay];
 }
 
+
+- (void)updateLastAction:(DrawAction *)action
+{
+    CGRect rect = [cdManager updateLastAction:action];
+    [self setNeedsDisplayInRect:rect];
+}
+- (void)saveLastAction:(DrawAction *)action;
+{
+    [cdManager finishDrawAction:action];
+    [self setNeedsDisplay];
+    [self addDrawAction:action];
+}
+- (void)cancelLastAction
+{
+    [cdManager cancelLastAction];
+    [self setNeedsDisplay];
+}
+
+
 - (void)dealloc
 {
     PPRelease(_drawActionList);

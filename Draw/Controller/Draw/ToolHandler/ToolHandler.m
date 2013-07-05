@@ -71,6 +71,23 @@
     self.drawView.shadow = shadow;
 }
 
+- (void)updateGradient:(Gradient *)gradient
+{
+    GradientAction *action = [[GradientAction alloc] initWithGradient:gradient];
+    [self.drawView updateLastAction:action];
+    PPRelease(action);
+}
+- (void)confirmGradient:(Gradient *)gradient
+{
+    GradientAction *action = [[GradientAction alloc] initWithGradient:gradient];
+    [self.drawView saveLastAction:action];
+    PPRelease(action);
+
+}
+- (void)cancelGradient
+{
+    [self.drawView cancelLastAction];
+}
 
 
 - (void)changePenColor:(DrawColor *)color

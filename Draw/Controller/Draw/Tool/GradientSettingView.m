@@ -191,7 +191,9 @@
         slider.tag = DEGREE_TAG;
         self.popColorView = [[[CMPopTipView alloc] initWithCustomView:slider] autorelease];
         self.popColorView.delegate = self;
-        [self.popColorView presentPointingAtView:sender inView:self.superview animated:NO];
+        [self.popColorView setBackgroundColor:[UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.95]];
+
+        [self.popColorView presentPointingAtView:sender inView:self.theTopView animated:NO];
     }
 }
 
@@ -205,7 +207,9 @@
     [palette setCurrentColor:color];
     self.popColorView = [[[CMPopTipView alloc] initWithCustomView:palette] autorelease];
     self.popColorView.delegate = self;    
-    [self.popColorView presentPointingAtView:sender inView:self.superview animated:NO];
+    [self.popColorView setBackgroundColor:[UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.95]];
+
+    [self.popColorView presentPointingAtView:sender inView:self.theTopView animated:NO pointDirection:PointDirectionDown];
  
 }
 
@@ -227,7 +231,7 @@
 
 - (IBAction)clickConfirm:(id)sender {
     [self dismissPopView];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel::)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel:)]) {
         [self.delegate gradientSettingView:self
                       didFinishSetGradient:self.gradient
                                     cancel:NO];
@@ -236,7 +240,7 @@
 
 - (IBAction)clickCancel:(id)sender {
     [self dismissPopView];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel::)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel:)]) {
         [self.delegate gradientSettingView:self
                       didFinishSetGradient:self.gradient
                                     cancel:YES];

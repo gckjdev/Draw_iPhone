@@ -19,7 +19,6 @@
 
 - (void)showPopTipView
 {
-    
     //create an gradient setting view and add to tool panel
     Gradient *graident = [[Gradient alloc] initWithDegree:0
                                                startColor:[DrawColor whiteColor]
@@ -28,6 +27,7 @@
                                                    inRect:self.toolHandler.drawView.bounds];
     
     self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: graident];
+    [self.toolHandler updateGradient:graident];
     [graident release];
     CGPoint center = CGPointMake(160, 26);
     if (ISIPHONE5) {
@@ -48,6 +48,7 @@
     [self.gradientSettingView removeFromSuperview];
     self.gradientSettingView = nil;
     [self.toolPanel hideColorPanel:NO];
+    [self.toolHandler cancelGradient];
 }
 
 - (BOOL)execute
@@ -55,6 +56,7 @@
     if ([super execute]) {
         //TODO add an gradient action to the draw view.
         [self showPopTipView];
+
         return YES;
     }
     return NO;
@@ -68,6 +70,7 @@
 - (void)gradientSettingView:(GradientSettingView *)view
            didChangeradient:(Gradient *)gradient
 {
+    [self.toolHandler updateGradient:gradient];
     
 }
 
@@ -75,7 +78,13 @@
 - (void)gradientSettingView:(GradientSettingView *)view
        didFinishSetGradient:(Gradient *)gradient
                      cancel:(BOOL) cancel{
-                     
+    
+    if (cancel) {
+        [self.toolHandler cancelGradient];
+    }else{
+        [self.toolHandler confirmGradient:gradient];
+    }
+    [self hidePopTipView];
 }
 
 
