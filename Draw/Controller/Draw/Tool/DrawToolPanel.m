@@ -289,10 +289,10 @@
     command = [[[PaintBucketCommand alloc] initWithControl:self.paintBucket itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-    /*
+    
     command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
-    */
+    
     command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ColorStrawItem] autorelease];
     [toolCmdManager registerCommand:command];
     
@@ -325,17 +325,17 @@
     [toolCmdManager registerCommand:command];
 */
     
-    command = [[[GradientCommand alloc] initWithControl:self.shape itemType:ItemTypeNo] autorelease];
+    command = [[[GradientCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
     
     command = [[[ShadowCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-
+/*
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
-
+*/
     
     command = [[[RedoCommand alloc] initWithControl:self.redo itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];

@@ -42,6 +42,12 @@
  
 }
 
+- (void)clear
+{
+    [self.popColorView removeFromSuperview];
+    self.popColorView = nil;
+}
+
 - (void)updatePointsWithDegree:(CGFloat)degree
 {
     CGFloat radio = degree/180 * M_PI;

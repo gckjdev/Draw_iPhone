@@ -12,23 +12,37 @@
 
 @interface GradientCommand()
 @property(nonatomic, assign) GradientSettingView *gradientSettingView;
+@property(nonatomic, retain) Gradient *lastGradient;
+
 
 @end
 
 @implementation GradientCommand
 
+- (void)dealloc
+{
+    PPRelease(_lastGradient);
+    [super dealloc];
+}
+
 - (void)showPopTipView
 {
     //create an gradient setting view and add to tool panel
-    Gradient *graident = [[Gradient alloc] initWithDegree:0
-                                               startColor:[DrawColor whiteColor]
-                                                 endColor:[DrawColor blackColor]
-                                                 division:0.5
-                                                   inRect:self.toolHandler.drawView.bounds];
+    if (self.lastGradient) {
+        self.lastGradient = [[[Gradient alloc] initWithGradient:_lastGradient] autorelease];
+    }else{
+        Gradient *graident = [[Gradient alloc] initWithDegree:0
+                                                   startColor:[DrawColor whiteColor]
+                                                     endColor:[DrawColor blackColor]
+                                                     division:0.5
+                                                       inRect:self.toolHandler.drawView.bounds];
+        self.lastGradient = graident;
+        [graident release];
+    }
     
-    self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: graident];
-    [self.toolHandler updateGradient:graident];
-    [graident release];
+    self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: self.lastGradient];
+    [self.toolHandler updateGradient:self.lastGradient];
+
     CGPoint center = CGPointMake(160, 26);
     if (ISIPHONE5) {
         center = CGPointMake(160, 21);
@@ -45,6 +59,7 @@
 - (void)hidePopTipView
 {
     self.showing = NO;
+    [self.gradientSettingView clear];
     [self.gradientSettingView removeFromSuperview];
     self.gradientSettingView = nil;
     [self.toolPanel hideColorPanel:NO];

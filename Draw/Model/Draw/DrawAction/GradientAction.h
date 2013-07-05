@@ -24,6 +24,7 @@
 @property(nonatomic, assign)CGPoint endPoint;
 
 - (CGFloat)degree;
+- (CGRect)rect;
 
 - (id)initWithPBGradientC:(Game__PBGradient *)gradient;
 - (void)updatePBGradientC:(Game__PBGradient *)gradient;
@@ -42,6 +43,8 @@
             endColor:(DrawColor *)ec
             division:(CGFloat)division
               inRect:(CGRect)rect;
+
+- (id)initWithGradient:(Gradient *)gradient;
 
 
 @end

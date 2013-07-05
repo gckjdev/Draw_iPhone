@@ -81,8 +81,6 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)handleChat;
 - (void)handleShowCopyPaint;
 
-//for test
-- (void)addGradient;
 
 //only use for little gee
 - (void)changeDrawWord:(NSString*)wordText;

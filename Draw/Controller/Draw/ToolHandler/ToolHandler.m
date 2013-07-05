@@ -107,21 +107,10 @@
     [self.drawView changeBGImageWithDrawBG:drawBG];
 }
 
-- (void)addGradient
-{
 
-    CGPoint ep = CGPointMake(CGRectGetMaxX(self.drawView.bounds), CGRectGetMaxY(self.drawView.bounds));
-    Gradient *gd = [[Gradient alloc] initWithStartPoint:CGPointZero endPoint:ep startColor:[DrawColor rankColor] endColor:[DrawColor rankColor] division:0.5];
-    GradientAction *gradient = [[[GradientAction alloc] initWithGradient:gd] autorelease];
-    [self.drawView addGradient:gradient];
-}
 
 - (void)usePaintBucket
 {
-#ifdef DEBUG
-    [self addGradient];
-    return;
-#endif
     DrawColor *color = [DrawColor colorWithColor:self.penColor];
     color.alpha = 1;
     [self.drawView changeBackWithColor:color];

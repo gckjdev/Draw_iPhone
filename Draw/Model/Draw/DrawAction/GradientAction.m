@@ -116,9 +116,20 @@
         _startPoint.y += vector.y * (division - 0.5);
     }
     PPDebug(@"<updatePointsWithDegreeAndDivision> startPoint = %@, endPoint = %@", NSStringFromCGPoint(_startPoint),NSStringFromCGPoint(_endPoint));
-    
-    
-    
+}
+
+- (CGRect)rect
+{
+    return _rect;
+}
+
+- (id)initWithGradient:(Gradient *)gradient
+{
+    return [self initWithDegree:gradient.degree
+                     startColor:gradient.startColor
+                       endColor:gradient.endColor
+                       division:gradient.division
+                         inRect:gradient.rect];
 }
 
 - (id)initWithDegree:(CGFloat)degree

@@ -36,7 +36,7 @@
 
 + (id)gradientSettingViewWithGradient:(Gradient *)gradient;
 
-
+- (void)clear;
 
 - (IBAction)moveDivisionButton:(UIButton *)sender forEvent:(UIEvent *)event;
 
