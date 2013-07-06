@@ -8,6 +8,7 @@
 
 #import "GradientAction.h"
 #import "DrawColor.h"
+#import "ClipAction.h"
 
 @implementation Gradient
 
@@ -186,9 +187,11 @@
 
 - (void)drawInContext:(CGContextRef)context
 {
+//    CGContextSaveGState(context);
     CGGradientRef gradient = [self createGradientRef];
     CGContextDrawLinearGradient(context, gradient, self.startPoint, self.endPoint, 0);
     CGGradientRelease(gradient);
+//    CGContextRestoreGState(context);
 }
 
 @end
@@ -234,7 +237,10 @@
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
+    CGContextSaveGState(context);
+    [self.clipAction clipContext:context];
     [self.gradient drawInContext:context];
+    CGContextRestoreGState(context);
     return rect;
 }
 

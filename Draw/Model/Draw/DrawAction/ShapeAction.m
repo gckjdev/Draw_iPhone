@@ -8,6 +8,8 @@
 
 #import "ShapeAction.h"
 #import "ShapeInfo.h"
+#import "ClipAction.h"
+
 @interface ShapeAction()
 
 

@@ -79,8 +79,6 @@
 
 - (void)commonInit
 {
-    _hasUnClipContext = YES;
-    _hasClipContext = NO;
     self.type = DrawActionTypeClip;
 }
 
@@ -182,20 +180,14 @@
 
 - (void)clipContext:(CGContextRef)context
 {
-    if (_hasClipContext) {
-        return;
-    }
-    _hasClipContext = YES;
-    _hasUnClipContext = !_hasClipContext;
-    
-    CGPathRef path = NULL;
+    CGPathRef path = nil;
     
     if (self.paint) {
         path = self.paint.path;
     }else{
         path = self.shape.path;
     }
-    CGContextSaveGState(context);
+//    CGContextSaveGState(context);
     CGContextAddPath(context, path);
     CGContextClosePath(context);
     CGContextClip(context);
@@ -206,12 +198,7 @@
 
 - (void)unClipContext:(CGContextRef)context
 {
-    if (_hasUnClipContext) {
-        return;
-    }
-    _hasUnClipContext = YES;
-    _hasClipContext = !_hasUnClipContext;
-    CGContextRestoreGState(context);
+//    CGContextRestoreGState(context);
 }
 
 - (PBDrawAction *)toPBDrawAction

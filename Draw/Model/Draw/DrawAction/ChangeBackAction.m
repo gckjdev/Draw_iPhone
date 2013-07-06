@@ -10,6 +10,7 @@
 #import "DrawUtils.h"
 #import "DrawColor.h"
 #import "Paint.h"
+#import "ClipAction.h"
 
 @interface ChangeBackAction()
 {
@@ -33,8 +34,10 @@
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
-    CGContextClearRect(context, rect);
+    
+//    CGContextClearRect(context, rect);
     CGContextSaveGState(context);
+    [self.clipAction clipContext:context];
     CGContextSetFillColorWithColor(context, [self.color CGColor]);
     CGContextFillRect(context, rect);
     CGContextRestoreGState(context);

@@ -23,15 +23,15 @@ typedef enum{
 
 @interface ClipAction : DrawAction
 {
-    BOOL _hasClipContext;
-    BOOL _hasUnClipContext;
+//    BOOL _hasClipContext;
+//    BOOL _hasUnClipContext;
 }
 
 //@property(nonatomic, assign)NSInteger clipTag;
 @property(nonatomic, assign)ClipType clipType;
 
 - (void)clipContext:(CGContextRef)context; //execute once.
-- (void)unClipContext:(CGContextRef)context;
+//- (void)unClipContext:(CGContextRef)context;
 
 + (id)clipActionWithShape:(ShapeInfo *)shape;
 + (id)clipActionWithPaint:(Paint *)paint;

@@ -9,6 +9,8 @@
 #import "ChangeBGImageAction.h"
 #import "DrawBgManager.h"
 #import "SDWebImageManager.h"
+#import "ClipAction.h"
+
 
 @interface ChangeBGImageAction()
 
@@ -160,9 +162,10 @@
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
-    CGContextClearRect(context, rect);
+//    CGContextClearRect(context, rect);
     CGContextSaveGState(context);
-
+ 
+    [self.clipAction clipContext:context];
 
     [self updateImage];
     if (self.image) {
