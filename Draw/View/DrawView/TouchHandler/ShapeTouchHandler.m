@@ -87,9 +87,9 @@ CGPoint realStartPoint;
                 //Add at DrawDataVersion == 4, May edit in the future. By Gamy
                 ////=====start====////
                 
-//                if (![shape isBasicShape]) {
-                shape.width = STROKE_WIDTH;
-//                }
+                if (shape.type != ShapeTypeBeeline) {
+                    shape.width = STROKE_WIDTH;
+                }
                 [self updateEndPoint];
                 ////=====end=====/////
                 
