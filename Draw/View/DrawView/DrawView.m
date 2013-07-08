@@ -368,6 +368,9 @@
         DrawAction *obj = [_drawActionList lastObject];
         [_redoStack push:obj];
         [_drawActionList removeLastObject];
+        if ([obj isKindOfClass:[ClipAction class]]) {
+            cdManager.currentClip = nil;
+        }
         [self showForRevoke:obj finishBlock:finishBlock];
     }
 }
@@ -393,7 +396,14 @@
 //            [self printOSInfoWithTag:@"<Redo> before"];
             [self.drawActionList addObject:action];
 //            [osManager addDrawAction:action];
+            
+            if ([action isKindOfClass:[ClipAction class]]) {
+                cdManager.currentClip = (id)action;
+            }
+
             [cdManager addDrawAction:action];
+            
+            
             [self setNeedsDisplay];
 //            [self printOSInfoWithTag:@"<Redo> after"];
             if ([action isKindOfClass:[ChangeBackAction class]]) {
