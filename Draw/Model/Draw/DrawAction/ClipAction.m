@@ -18,8 +18,6 @@
 {
     
 }
-@property(nonatomic, retain)Paint *paint;
-@property(nonatomic, retain)ShapeInfo *shape;
 
 @end
 
@@ -101,7 +99,7 @@
         switch (self.clipType) {
             case ClipTypeEllipse:
             case ClipTypeRectangle:
-
+                [self updateShapeWithDrawActionC:action];
                 break;
             case ClipTypePolygon:
             case ClipTypeSmoothPath:
@@ -145,6 +143,19 @@
     }
     return self;
 }
+
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    if (self.paint) {
+        return [self.paint drawInContext:context inRect:rect];
+    }else if(self.shape){
+        [self.shape drawInContext:context];
+        return self.shape.redrawRect;
+    }else{
+        return CGRectZero;
+    }
+}
+
 
 + (id)clipActionWithShape:(ShapeInfo *)shape
 {
