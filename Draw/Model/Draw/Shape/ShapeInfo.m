@@ -78,7 +78,7 @@
     
     self.endPoint = CGPointMake(endX, endY);
     
-    if (self.width > 0 && [ShapeInfo point1:self.startPoint equalToPoint:self.endPoint]) {
+    if (self.width > 0 && [ShapeInfo point1:self.startPoint equalToPoint:self.endPoint] && self.type != ShapeTypeBeeline) {
         CGPoint point = self.startPoint;
         self.startPoint = CGPointMake(point.x - self.width / 2, point.y - self.width / 2);
         self.endPoint = CGPointMake(point.x + self.width / 2, point.y + self.width / 2);
@@ -114,7 +114,7 @@
 - (CGRect)rect
 {
     CGRect rect= CGRectZero;
-    if ([ShapeInfo point1:self.startPoint equalToPoint:self.endPoint]) {
+    if ([ShapeInfo point1:self.startPoint equalToPoint:self.endPoint] && self.type != ShapeTypeBeeline) {
         self.endPoint = self.startPoint;
         CGFloat x = self.startPoint.x;
         CGFloat y = self.startPoint.y;

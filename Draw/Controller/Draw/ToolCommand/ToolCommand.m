@@ -212,7 +212,7 @@ NSUInteger _ManagerVersion = 1;
 - (void)hideAllPopTipViews
 {
     for (ToolCommand *command in commandList) {
-        if (command.popTipView) {
+        if (command.isShowing) {
             [command hidePopTipView];
         }
 
@@ -222,7 +222,7 @@ NSUInteger _ManagerVersion = 1;
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command
 {
     for (ToolCommand *command1 in commandList) {
-        if (command != command1 && command1.popTipView) {
+        if (command != command1 && command1.isShowing) {
             [command1 hidePopTipView];
         }
     }

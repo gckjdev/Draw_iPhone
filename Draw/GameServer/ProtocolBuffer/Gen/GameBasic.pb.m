@@ -4258,9 +4258,9 @@ static PBGradient* defaultPBGradientInstance = nil;
 - (NSArray*) pointList {
   return mutablePointList;
 }
-- (int32_t) pointAtIndex:(int32_t) index {
+- (Float32) pointAtIndex:(int32_t) index {
   id value = [mutablePointList objectAtIndex:index];
-  return [value intValue];
+  return [value floatValue];
 }
 - (BOOL) isInitialized {
   if (!self.hasDivision) {
@@ -4279,12 +4279,8 @@ static PBGradient* defaultPBGradientInstance = nil;
   for (NSNumber* value in self.mutableColorList) {
     [output writeInt32NoTag:[value intValue]];
   }
-  if (self.mutablePointList.count > 0) {
-    [output writeRawVarint32:26];
-    [output writeRawVarint32:pointMemoizedSerializedSize];
-  }
   for (NSNumber* value in self.mutablePointList) {
-    [output writeInt32NoTag:[value intValue]];
+    [output writeFloat:3 value:[value floatValue]];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4312,15 +4308,9 @@ static PBGradient* defaultPBGradientInstance = nil;
   }
   {
     int32_t dataSize = 0;
-    for (NSNumber* value in self.mutablePointList) {
-      dataSize += computeInt32SizeNoTag([value intValue]);
-    }
+    dataSize = 4 * self.mutablePointList.count;
     size += dataSize;
-    if (self.mutablePointList.count > 0) {
-      size += 1;
-      size += computeInt32SizeNoTag(dataSize);
-    }
-    pointMemoizedSerializedSize = dataSize;
+    size += 1 * self.mutablePointList.count;
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4446,13 +4436,8 @@ static PBGradient* defaultPBGradientInstance = nil;
         [input popLimit:limit];
         break;
       }
-      case 26: {
-        int32_t length = [input readRawVarint32];
-        int32_t limit = [input pushLimit:length];
-        while (input.bytesUntilLimit > 0) {
-          [self addPoint:[input readInt32]];
-        }
-        [input popLimit:limit];
+      case 29: {
+        [self addPoint:[input readFloat]];
         break;
       }
     }
@@ -4511,18 +4496,18 @@ static PBGradient* defaultPBGradientInstance = nil;
   }
   return result.mutablePointList;
 }
-- (int32_t) pointAtIndex:(int32_t) index {
+- (Float32) pointAtIndex:(int32_t) index {
   return [result pointAtIndex:index];
 }
-- (PBGradient_Builder*) replacePointAtIndex:(int32_t) index with:(int32_t) value {
-  [result.mutablePointList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
+- (PBGradient_Builder*) replacePointAtIndex:(int32_t) index with:(Float32) value {
+  [result.mutablePointList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
   return self;
 }
-- (PBGradient_Builder*) addPoint:(int32_t) value {
+- (PBGradient_Builder*) addPoint:(Float32) value {
   if (result.mutablePointList == nil) {
     result.mutablePointList = [NSMutableArray array];
   }
-  [result.mutablePointList addObject:[NSNumber numberWithInt:value]];
+  [result.mutablePointList addObject:[NSNumber numberWithFloat:value]];
   return self;
 }
 - (PBGradient_Builder*) addAllPoint:(NSArray*) values {

@@ -18,8 +18,6 @@
 {
     
 }
-@property(nonatomic, retain)Paint *paint;
-@property(nonatomic, retain)ShapeInfo *shape;
 
 @end
 
@@ -79,8 +77,6 @@
 
 - (void)commonInit
 {
-    _hasUnClipContext = YES;
-    _hasClipContext = NO;
     self.type = DrawActionTypeClip;
 }
 
@@ -103,7 +99,7 @@
         switch (self.clipType) {
             case ClipTypeEllipse:
             case ClipTypeRectangle:
-
+                [self updateShapeWithDrawActionC:action];
                 break;
             case ClipTypePolygon:
             case ClipTypeSmoothPath:
@@ -148,6 +144,19 @@
     return self;
 }
 
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    if (self.paint) {
+        return [self.paint drawInContext:context inRect:rect];
+    }else if(self.shape){
+        [self.shape drawInContext:context];
+        return self.shape.redrawRect;
+    }else{
+        return CGRectZero;
+    }
+}
+
+
 + (id)clipActionWithShape:(ShapeInfo *)shape
 {
     return [[[ClipAction alloc] initWithShape:shape] autorelease];
@@ -182,20 +191,14 @@
 
 - (void)clipContext:(CGContextRef)context
 {
-    if (_hasClipContext) {
-        return;
-    }
-    _hasClipContext = YES;
-    _hasUnClipContext = !_hasClipContext;
-    
-    CGPathRef path = NULL;
+    CGPathRef path = nil;
     
     if (self.paint) {
         path = self.paint.path;
     }else{
         path = self.shape.path;
     }
-    CGContextSaveGState(context);
+//    CGContextSaveGState(context);
     CGContextAddPath(context, path);
     CGContextClosePath(context);
     CGContextClip(context);
@@ -206,12 +209,7 @@
 
 - (void)unClipContext:(CGContextRef)context
 {
-    if (_hasUnClipContext) {
-        return;
-    }
-    _hasUnClipContext = YES;
-    _hasClipContext = !_hasUnClipContext;
-    CGContextRestoreGState(context);
+//    CGContextRestoreGState(context);
 }
 
 - (PBDrawAction *)toPBDrawAction

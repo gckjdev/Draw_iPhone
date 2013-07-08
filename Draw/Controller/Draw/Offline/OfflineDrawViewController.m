@@ -913,15 +913,27 @@
 - (PBDraw *)createPBDraw
 {
     UserManager *userManager = [UserManager defaultManager];
-    PBDraw *pbDraw = [[DrawDataService defaultService]
-                      buildPBDraw:[userManager userId]
-                      nick:[userManager nickName]
-                      avatar:[userManager avatarURL]
-                      drawActionList:drawView.drawActionList
-                      drawWord:self.word
-                      language:languageType
-                      size:drawView.bounds.size
-                      isCompressed:NO];
+    NSData *data = [DrawAction buildPBDrawData:[userManager userId]
+                                          nick:[userManager nickName]
+                                        avatar:[userManager avatarURL]
+                                drawActionList:drawView.drawActionList
+                                      drawWord:self.word
+                                      language:languageType
+                                          size:drawView.bounds.size
+                                  isCompressed:NO];
+
+    PBDraw *pbDraw = [PBDraw parseFromData:data];
+    data = nil;
+    
+//    PBDraw *pbDraw = [[DrawDataService defaultService]
+//                      buildPBDraw:[userManager userId]
+//                      nick:[userManager nickName]
+//                      avatar:[userManager avatarURL]
+//                      drawActionList:drawView.drawActionList
+//                      drawWord:self.word
+//                      language:languageType
+//                      size:drawView.bounds.size
+//                      isCompressed:NO];
     return pbDraw;
 }
 

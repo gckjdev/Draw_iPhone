@@ -1080,17 +1080,16 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @private
   BOOL hasDivision_:1;
   Float32 division;
+  NSMutableArray* mutablePointList;
   NSMutableArray* mutableColorList;
   int32_t colorMemoizedSerializedSize;
-  NSMutableArray* mutablePointList;
-  int32_t pointMemoizedSerializedSize;
 }
 - (BOOL) hasDivision;
 @property (readonly) Float32 division;
 - (NSArray*) colorList;
 - (int32_t) colorAtIndex:(int32_t) index;
 - (NSArray*) pointList;
-- (int32_t) pointAtIndex:(int32_t) index;
+- (Float32) pointAtIndex:(int32_t) index;
 
 + (PBGradient*) defaultInstance;
 - (PBGradient*) defaultInstance;
@@ -1139,9 +1138,9 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBGradient_Builder*) clearColorList;
 
 - (NSArray*) pointList;
-- (int32_t) pointAtIndex:(int32_t) index;
-- (PBGradient_Builder*) replacePointAtIndex:(int32_t) index with:(int32_t) value;
-- (PBGradient_Builder*) addPoint:(int32_t) value;
+- (Float32) pointAtIndex:(int32_t) index;
+- (PBGradient_Builder*) replacePointAtIndex:(int32_t) index with:(Float32) value;
+- (PBGradient_Builder*) addPoint:(Float32) value;
 - (PBGradient_Builder*) addAllPoint:(NSArray*) values;
 - (PBGradient_Builder*) clearPointList;
 @end

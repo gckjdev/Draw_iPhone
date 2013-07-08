@@ -7,6 +7,7 @@
 //
 
 #import "CleanAction.h"
+#import "ClipAction.h"
 
 @implementation CleanAction
 

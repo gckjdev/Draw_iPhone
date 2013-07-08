@@ -2296,12 +2296,12 @@ static const ProtobufCFieldDescriptor game__pbgradient__field_descriptors[3] =
     "point",
     3,
     PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_TYPE_FLOAT,
     PROTOBUF_C_OFFSETOF(Game__PBGradient, n_point),
     PROTOBUF_C_OFFSETOF(Game__PBGradient, point),
     NULL,
     NULL,
-    1,            /* packed */
+    0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
 };
