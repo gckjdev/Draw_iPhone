@@ -42,7 +42,7 @@
 - (void)addMessageListHead:(NSArray*)messageList friendUserId:(NSString*)friendUserId;
 - (void)addMessageListTail:(NSArray*)messageList friendUserId:(NSString*)friendUserId;
 - (void)addMessageList:(NSArray*)messageList friendUserId:(NSString*)friendUserId offsetMessageId:(NSString*)offsetMessageId;
-- (void)removeAllMessages;
+//- (void)removeAllMessages;
 - (void)clearMemoryCache;
 - (void)save:(NSArray*)messageList friendUserId:(NSString*)friendUserId;
 - (void)updateMessage:(PPMessage*)message friendUserId:(NSString*)friendUserId;
