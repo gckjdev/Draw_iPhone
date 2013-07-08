@@ -20,6 +20,7 @@
 #import "DrawUtils.h"
 #import "Draw.h"
 #import "GradientAction.h"
+#import "ClipAction.h"
 
 @implementation DrawAction
 
@@ -53,6 +54,9 @@
             return [[[ChangeBGImageAction alloc] initWithPBDrawActionC:action] autorelease];
         case DrawActionTypeGradient:
             return [[[GradientAction alloc] initWithPBDrawActionC:action] autorelease];
+        case DrawActionTypeClip:
+            return [[[ClipAction alloc] initWithPBDrawActionC:action] autorelease];
+            
         default:
             return nil;
     }
@@ -247,16 +251,20 @@
         
         for (int i=0; i<data->n_drawactionlist2; i++){
             DrawAction *at = [DrawAction drawActionWithPBDrawActionC:data->drawactionlist2[i]];
-            [at setCanvasSize:canvasSize];
-            [drawActionList addObject:at];
-            at = nil;
+            if (at) {
+                [at setCanvasSize:canvasSize];
+                [drawActionList addObject:at];
+                at = nil;                
+            }
         }
     }else if(data->n_drawactionlist > 0){
         for (int i=0; i<data->n_drawactionlist; i++){
             DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawActionC:data->drawactionlist[i]];
-            [dAction setCanvasSize:canvasSize];
-            [drawActionList addObject:dAction];
-            dAction = nil;
+            if (dAction) {
+                [dAction setCanvasSize:canvasSize];
+                [drawActionList addObject:dAction];
+                dAction = nil;                
+            }
         }
     }
     

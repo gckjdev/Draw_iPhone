@@ -44,8 +44,8 @@
         action = [[ClipAction clipActionWithPaint:currentPaint] retain];
     }
     [action addPoint:point inRect:self.drawView.bounds];
+    [self.cdManager startClipAction:action];
     [self.drawView updateLastAction:action show:YES];
-
     
 }
 
@@ -70,6 +70,8 @@
     
     if (needRedraw) {
         [self.drawView setNeedsDisplay];
+    }else{
+        [self.drawView setNeedsDisplayInRect:[action redrawRectInRect:self.drawView.bounds]];
     }
     
     if (action) {

@@ -38,7 +38,10 @@ typedef enum{
     TouchActionTypeDraw = 0,
     TouchActionTypeGetColor = 1,
     TouchActionTypeShape = 2,
-    TouchActionTypeRewind = 3,
+    TouchActionTypeClipPath = 3,
+    TouchActionTypeClipShape = 4,
+    TouchActionTypeClipPolygon = 5,
+    
 }TouchActionType;
 
 @interface DrawView : SuperDrawView

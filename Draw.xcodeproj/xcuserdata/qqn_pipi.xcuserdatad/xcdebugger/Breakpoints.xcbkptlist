@@ -31,5 +31,18 @@
          landmarkName = "-displayComposerSheetTo:ccRecipients:bccRecipients:subject:body:isHTML:delegate:"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Draw/View/DrawView/SuperDrawView.m"
+         timestampString = "394949308.199419"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
+         landmarkName = "-updateLastAction:show:"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

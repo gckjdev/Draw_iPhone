@@ -32,6 +32,7 @@
 
 
 @class DrawAction;
+@class ClipAction;
 
 @interface CacheDrawManager : NSObject
 
@@ -40,6 +41,8 @@
 @property(nonatomic, assign)BOOL showGrid;
 @property(nonatomic, retain)NSArray *drawActionList; //a pointer point to drawview/showview drawActionList
 @property(nonatomic, assign)BOOL useCachedImage; //default is YES, in showDrawView it is NO.
+
+@property(nonatomic, assign)ClipAction *currentClip;
 
 + (id)managerWithRect:(CGRect)rect;
 
@@ -69,7 +72,9 @@
 //Show View Action
 - (void)showToIndex:(NSInteger)index;
 
-
+//clip action
+- (void)startClipAction:(ClipAction *)action;
+- (void)finishCurrentClip;
 
 
 @end
