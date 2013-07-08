@@ -125,7 +125,7 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     DrawToolUpPanel *panel = nil;
     panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
     panel.toolHandler = handler;
-//    handler.drawToolPanel = panel;
+    handler.DrawToolUpPanel = panel;
     panel.hidden = YES;
     [panel updateView];
     return panel;
