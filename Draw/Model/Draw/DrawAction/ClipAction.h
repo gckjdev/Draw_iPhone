@@ -31,9 +31,10 @@ typedef enum{
 
 - (void)clipContext:(CGContextRef)context; //execute once.
 
-
-//- (void)show
 + (id)clipActionWithShape:(ShapeInfo *)shape;
 + (id)clipActionWithPaint:(Paint *)paint;
+
+- (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect;
+
 @end
 

@@ -144,17 +144,6 @@
     return self;
 }
 
-- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
-{
-    if (self.paint) {
-        return [self.paint drawInContext:context inRect:rect];
-    }else if(self.shape){
-        [self.shape drawInContext:context];
-        return self.shape.redrawRect;
-    }else{
-        return CGRectZero;
-    }
-}
 
 
 + (id)clipActionWithShape:(ShapeInfo *)shape
@@ -167,7 +156,7 @@
 }
 
 
-- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+- (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
     CGRect retRrect;
@@ -252,6 +241,12 @@
     return;
 }
 
+
+- (void)finishAddPoint
+{
+    [super finishAddPoint];
+    [self.paint finishAddPoint];
+}
 
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
