@@ -113,6 +113,7 @@
 {
     [self clearRedoStack];
     ChangeBackAction *changBackAction = [[[ChangeBackAction alloc] initWithColor:color] autorelease];
+    changBackAction.clipAction = self.currentClip;
     [self.drawActionList addObject:changBackAction];
     [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
@@ -124,6 +125,7 @@
     [self clearRedoStack];
     
     ChangeBGImageAction *changBG = [[[ChangeBGImageAction alloc] initWithDrawBg:drawBg] autorelease];
+    changBG.clipAction = self.currentClip;
     [self addDrawAction:changBG];
     [self drawDrawAction:changBG show:YES];
                                     
@@ -298,6 +300,7 @@
 }
 - (void)saveLastAction:(DrawAction *)action;
 {
+    action.clipAction = cdManager.currentClip;
     [cdManager finishDrawAction:action];
     [self setNeedsDisplay];
     [self addDrawAction:action];
