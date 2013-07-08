@@ -45,6 +45,7 @@
  
     CGRect returnRect;
     CGContextSaveGState(context);
+    [self.clipAction clipContext:context];
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
 

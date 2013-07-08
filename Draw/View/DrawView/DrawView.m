@@ -167,7 +167,7 @@
         PPDebug(@"SET touch handler and current touch");
         
         [_gestureRecognizerManager setCapture:YES];
-        self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:TouchActionTypeClipPath];//self.touchActionType];
+        self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:self.touchActionType];
         [self.touchHandler setDrawView:self];
 //        [self.touchHandler setOsManager:osManager];
         [self.touchHandler setCdManager:cdManager];

@@ -225,6 +225,18 @@
     [self.drawToolPanel setEraserSelected:NO];
 }
 
+- (void)enterClipModeWithClipType:(ClipType)clipType
+{
+    if (clipType == ClipTypeSmoothPath) {
+        [self.drawView setTouchActionType:TouchActionTypeClipPath];
+    }else if(clipType == ClipTypePolygon){
+        [self.drawView setTouchActionType:TouchActionTypeClipPolygon];
+    }else if(clipType == ClipTypeEllipse || clipType == ClipTypeRectangle){
+        [self.drawView setTouchActionType:TouchActionTypeClipShape];
+    }
+}
+
+
 - (void)useGid:(BOOL)flag
 {
     self.drawView.grid = flag;
