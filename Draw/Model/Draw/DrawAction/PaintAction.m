@@ -273,7 +273,10 @@
     pbDrawActionC->type = DrawActionTypePaint;
     [self.paint updatePBDrawActionC:pbDrawActionC];
     [self.shadow updatePBDrawActionC:pbDrawActionC];
-    pbDrawActionC->cliptag = self.clipAction.clipTag;
+    if (self.clipAction) {
+        pbDrawActionC->has_cliptag = 1;
+        pbDrawActionC->cliptag = self.clipAction.clipTag;
+    }
     return;
 }
 

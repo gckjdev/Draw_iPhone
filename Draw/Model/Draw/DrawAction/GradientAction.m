@@ -228,6 +228,10 @@
     pbDrawActionC->gradient = malloc(sizeof(Game__PBGradient));
     game__pbgradient__init(pbDrawActionC->gradient);
     [self.gradient updatePBGradientC:pbDrawActionC->gradient];
+    if (self.clipAction) {
+        pbDrawActionC->has_cliptag = 1;
+        pbDrawActionC->cliptag = self.clipAction.clipTag;
+    }
 }
 
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect

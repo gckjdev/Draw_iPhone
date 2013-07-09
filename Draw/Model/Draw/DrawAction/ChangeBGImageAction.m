@@ -104,7 +104,10 @@
     
     [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypeChangeBGImage;
-    pbDrawActionC->cliptag = self.clipAction.clipTag;    
+    if (self.clipAction) {
+        pbDrawActionC->has_cliptag = 1;
+        pbDrawActionC->cliptag = self.clipAction.clipTag;
+    }
     if (self.drawBg) {
 //        [builder setDrawBg:self.drawBg];
         

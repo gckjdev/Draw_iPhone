@@ -28,12 +28,13 @@
 - (void)selectorBox:(SelectorBox *)box didSelectClipType:(ClipType)clipType
 {
     if (clipType != ClipTypeNo) {
-//        self.toolHandler c
+        [self.toolHandler enterClipModeWithClipType:clipType];
     }
     [self hidePopTipView];
 }
 - (void)didClickCancelAtSelectorBox:(SelectorBox *)box
 {
+    [self.toolHandler exitFromClipMode];
     [self hidePopTipView];
 }
 - (void)didClickHelpAtSelectorBox:(SelectorBox *)box
