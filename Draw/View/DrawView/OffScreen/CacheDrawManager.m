@@ -22,6 +22,9 @@
 
 
 @interface CacheDrawManager()
+{
+    int clipTag;
+}
 @property(nonatomic, retain)Offscreen *offscreen;
 @property(nonatomic, assign)NSInteger imageIndex; //[0, imageIndex)
 @property(nonatomic, retain)UIImage* cachedImage;
@@ -100,6 +103,7 @@
     for (NSInteger i = from ; i < to; i ++) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [action drawInContext:context inRect:_rect];
+        clipTag = MAX(clipTag, action.clipTag);
     }
     self.cachedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -163,8 +167,6 @@
     
     if ([action isKindOfClass:[ClipAction class]]) {
         self.currentClip = (id)action;
-    }else{
-        action.clipAction =  self.currentClip;
     }
     return [action redrawRectInRect:_rect];
 }
@@ -191,6 +193,7 @@
     for (NSInteger i = from; i < to; ++ i) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [_offscreen drawAction:action clear:NO];
+        clipTag = MAX(clipTag, action.clipTag);        
     }
 }
 
@@ -258,9 +261,14 @@
 }
 
 
+
+
 - (void)startClipAction:(ClipAction *)action
 {
-    self.currentClip = action;
+    if (self.currentClip != action) {
+        self.currentClip = action;
+        action.clipTag = ++clipTag;
+    }
 }
 - (void)finishCurrentClip
 {

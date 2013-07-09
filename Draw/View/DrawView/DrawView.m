@@ -311,6 +311,10 @@
     [self setNeedsDisplay];
 }
 
+- (void)exitFromClipMode
+{
+    [cdManager finishCurrentClip];
+}
 
 - (void)dealloc
 {

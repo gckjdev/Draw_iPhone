@@ -79,7 +79,7 @@ CGPoint realStartPoint;
                 [shape setStroke:self.drawView.strokeShape];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
                 action.shadow = self.drawView.shadow;
-                
+                action.clipAction = self.cdManager.currentClip;
                 [self.cdManager updateLastAction:action];
                 shape.startPoint = shape.endPoint = point;
                 

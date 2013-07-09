@@ -80,6 +80,8 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)enterShapeMode;
 - (void)enterEraserMode;
 - (void)enterClipModeWithClipType:(ClipType)clipType;
+- (void)exitFromClipMode;
+
 - (void)useGid:(BOOL)flag;
 - (void)handleRedo;
 - (void)handleUndo;

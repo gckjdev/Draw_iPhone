@@ -233,6 +233,11 @@
     }
 }
 
+- (void)exitFromClipMode
+{
+    [self.drawView exitFromClipMode];
+    [self enterDrawMode];
+}
 
 - (void)useGid:(BOOL)flag
 {
