@@ -166,7 +166,7 @@
     return [[[ClipAction alloc] initWithPaint:paint] autorelease];
 }
 
-
+/*
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
@@ -187,7 +187,7 @@
     
     return retRrect;
 }
-
+*/
 
 - (void)clipContext:(CGContextRef)context
 {
