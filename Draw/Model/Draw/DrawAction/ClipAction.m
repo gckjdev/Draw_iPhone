@@ -154,29 +154,48 @@
     return [[[ClipAction alloc] initWithPaint:paint] autorelease];
 }
 
+- (CGPathRef)path
+{
+    if (self.paint) {
+        return self.paint.path;
+    }else if(self.shape){
+        CGRect rect = CGRectWithPoints(self.shape.startPoint, self.shape.endPoint);
+        if (self.clipType == ClipTypeRectangle) {
+            return [UIBezierPath bezierPathWithRect:rect].CGPath;
+        }else if(self.clipType == ClipTypeEllipse){
+            return [UIBezierPath bezierPathWithOvalInRect:rect].CGPath;
+        }
+    }
+    return NULL;
+
+}
+
 
 - (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
     CGRect retRrect;
     
-    static CGFloat lengths[] = {3,3};
+    static CGFloat lengths[] = {5,5};
     
     CGContextSetLineDash(context, 0, lengths, 2);
+    CGContextSetLineWidth(context, 2);
+    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
     
     if (self.paint) {
-        CGPathRef path = self.paint.path;
-        CGContextAddPath(context, path);
-        if (self.hasFinishAddPoint) {
-            CGContextClosePath(context);
-        }
-        CGContextStrokePath(context);
         retRrect = [self.paint redrawRectInRect:rect];
     }else{
-        [self.shape drawInContext:context];
-        retRrect = self.shape.redrawRect;
+        retRrect = [self.shape rect];
     }
-    
+    CGPathRef path = [self path];
+    if (path != NULL) {
+        CGContextAddPath(context, path);
+        if (self.hasFinishAddPoint && self.paint) {
+            CGContextClosePath(context);
+        }
+
+        CGContextStrokePath(context);
+    }
     CGContextRestoreGState(context);
     
     return retRrect;
@@ -190,17 +209,14 @@
 
 - (void)clipContext:(CGContextRef)context
 {
-    CGPathRef path = nil;
+    CGPathRef path = [self path];
     
-    if (self.paint) {
-        path = self.paint.path;
-    }else{
-        path = self.shape.path;
+    if (path) {
+        CGContextAddPath(context, path);
+        CGContextClosePath(context);
+        CGContextClip(context);        
     }
-//    CGContextSaveGState(context);
-    CGContextAddPath(context, path);
-    CGContextClosePath(context);
-    CGContextClip(context);
+
 }
 
 

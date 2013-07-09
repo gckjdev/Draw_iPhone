@@ -15,7 +15,7 @@
 @property(nonatomic, assign) ClipType clipType;
 @property(nonatomic, assign) ShapeType shapeType;
 
-- (void)drawAction;
+- (DrawAction *)drawAction;
 
 
 @end

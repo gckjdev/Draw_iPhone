@@ -295,6 +295,7 @@
 
 - (void)updateLastAction:(DrawAction *)action
 {
+    action.clipAction = cdManager.currentClip;
     CGRect rect = [cdManager updateLastAction:action];
     [self setNeedsDisplayInRect:rect];
 }

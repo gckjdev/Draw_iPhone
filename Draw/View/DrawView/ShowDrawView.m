@@ -116,6 +116,7 @@
     if (index < [self.drawActionList count]) {
         _currentAction = [self.drawActionList objectAtIndex:index];        
         self.status = Playing;
+        cdManager.currentClip = _currentAction.clipAction;
         [self playCurrentFrame];
         return YES;
     }else{
@@ -359,6 +360,7 @@
             Paint *paint = [Paint paintWithWidth:currentPaint.width color:currentPaint.color penType:currentPaint.penType pointList:nil];
             self.tempAction = [PaintAction paintActionWithPaint:paint];
             self.tempAction.shadow = [_currentAction shadow];
+            self.tempAction.clipAction = _currentAction.clipAction;
         }
         NSInteger i = [self.tempAction pointCount];
         for (; i <= _playingPointIndex; ++ i) {

@@ -72,30 +72,21 @@ CGPoint realStartPoint;
                 
                 
                 
-                shape = [ShapeInfo shapeWithType:self.drawView.shapeType
+                shape = [ShapeInfo shapeWithType:self.shapeType
                                          penType:self.drawView.penType
                                            width:self.drawView.lineWidth
                                            color:self.drawView.lineColor];
                 
                 [shape setStroke:self.drawView.strokeShape];
-                action = [[ShapeAction shapeActionWithShape:shape] retain];
-                action.shadow = self.drawView.shadow;
-                
-                [self.cdManager updateLastAction:action];
                 shape.startPoint = shape.endPoint = point;
-                
-                
-                //Add at DrawDataVersion == 4, May edit in the future. By Gamy
-                ////=====start====////
-                
-                if (shape.type != ShapeTypeBeeline) {
-                    shape.width = STROKE_WIDTH;
-                }
+                shape.width = STROKE_WIDTH;
+
+                action = [[ClipAction clipActionWithShape:shape] retain];
+                [self.cdManager startClipAction:action];
+                [self.cdManager updateLastAction:action];
+            
+
                 [self updateEndPoint];
-                ////=====end=====/////
-                
-                
-                //                [self.drawView drawDrawAction:action show:YES];
             }else{
                 shape.startPoint = shape.endPoint = point;
                 [self updateEndPoint];
