@@ -51,8 +51,8 @@
 {
     CGRect rect1;
     CGContextSaveGState(context);
+    [self.clipAction clipContext:context];
     if (self.shadow) {
-        [self.clipAction clipContext:context];
         CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
         rect1 = [self.paint drawInContext:context inRect:rect];
@@ -273,6 +273,7 @@
     pbDrawActionC->type = DrawActionTypePaint;
     [self.paint updatePBDrawActionC:pbDrawActionC];
     [self.shadow updatePBDrawActionC:pbDrawActionC];
+    pbDrawActionC->cliptag = self.clipAction.clipTag;
     return;
 }
 

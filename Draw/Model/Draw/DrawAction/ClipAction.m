@@ -14,6 +14,7 @@
 #import "ShapeInfo.h"
 
 
+
 @interface ClipAction()
 {
     
@@ -34,17 +35,15 @@
 - (void)updatePaintWithDrawActionC:(Game__PBDrawAction *)action
 {
     NSMutableArray *pointList = nil;
-    NSInteger count =  action->n_points;
+    NSInteger count =  action->n_pointsx;
     
     if (count > 0) {
         pointList = [NSMutableArray arrayWithCapacity:count];
         for (NSInteger i = 0; i < count; ++ i) {
-            Game__PBPoint* point = action->points[i];
-            if (point != NULL){
-                PointNode *node = [[PointNode alloc] initPointWithX:point->x Y:point->y];
-                [pointList addObject:node];
-                [node release];
-            }
+            PointNode *node = [[PointNode alloc] initPointWithX:action->pointsx[i]
+                                                              Y:action->pointsy[i]];
+            [pointList addObject:node];
+            [node release];
         }
     }
     ItemType penType;
@@ -144,17 +143,6 @@
     return self;
 }
 
-- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
-{
-    if (self.paint) {
-        return [self.paint drawInContext:context inRect:rect];
-    }else if(self.shape){
-        [self.shape drawInContext:context];
-        return self.shape.redrawRect;
-    }else{
-        return CGRectZero;
-    }
-}
 
 
 + (id)clipActionWithShape:(ShapeInfo *)shape
@@ -166,8 +154,8 @@
     return [[[ClipAction alloc] initWithPaint:paint] autorelease];
 }
 
-/*
-- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+
+- (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
     CGRect retRrect;
@@ -177,7 +165,13 @@
     CGContextSetLineDash(context, 0, lengths, 2);
     
     if (self.paint) {
-       retRrect = [self.paint drawInContext:context inRect:rect];
+        CGPathRef path = self.paint.path;
+        CGContextAddPath(context, path);
+        if (self.hasFinishAddPoint) {
+            CGContextClosePath(context);
+        }
+        CGContextStrokePath(context);
+        retRrect = [self.paint redrawRectInRect:rect];
     }else{
         [self.shape drawInContext:context];
         retRrect = self.shape.redrawRect;
@@ -187,7 +181,12 @@
     
     return retRrect;
 }
-*/
+
+
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    return CGRectZero;
+}
 
 - (void)clipContext:(CGContextRef)context
 {
@@ -253,6 +252,12 @@
 }
 
 
+- (void)finishAddPoint
+{
+    [super finishAddPoint];
+    [self.paint finishAddPoint];
+}
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     [super addPoint:point inRect:rect];
@@ -261,6 +266,17 @@
     }else if(self.shape){
         self.shape.endPoint = point;
     }
+}
+
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    if (self.shape) {
+        [self.shape rect];
+        return self.shape.redrawRect;
+    }else if(self.paint){
+        return [self.paint redrawRectInRect:rect];
+    }
+    return CGRectZero;
 }
 
 @end

@@ -10,6 +10,9 @@
 #import "DrawTouchHandler.h"
 #import "StrawTouchHandler.h"
 #import "ShapeTouchHandler.h"
+#import "PathClipTouchHandler.h"
+#import "ShapeClipTouchHandler.h"
+#import "PolygonClipTouchHandler.h"
 
 @implementation TouchHandler
 
@@ -34,6 +37,25 @@
             return [[[ShapeTouchHandler alloc] init] autorelease];
         case TouchActionTypeGetColor:
             return [[[StrawTouchHandler alloc] init] autorelease];
+            
+        //clip action
+        case TouchActionTypeClipPath:
+            return [[[PathClipTouchHandler alloc] init] autorelease];
+        case TouchActionTypeClipEllipse:
+        {
+            ShapeClipTouchHandler * handler = [[[ShapeClipTouchHandler alloc] init] autorelease];
+            handler.shapeType = ShapeTypeEllipse;
+            return handler;
+        }
+        case TouchActionTypeClipRectangle:
+        {
+            ShapeClipTouchHandler * handler = [[[ShapeClipTouchHandler alloc] init] autorelease];
+            handler.shapeType = ShapeTypeRectangle;
+            return handler;
+        }
+        case TouchActionTypeClipPolygon:
+            return [[[PolygonClipTouchHandler alloc] init] autorelease];
+            
         default:
             return nil;
     }

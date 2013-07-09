@@ -42,6 +42,7 @@
 #import "UndoCommand.h"
 #import "ShadowCommand.h"
 #import "GradientCommand.h"
+#import "SelectorCommand.h"
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
@@ -310,8 +311,12 @@
     //
     command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
-
+/*
     command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+  */
+    
+    command = [[[SelectorCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
     command = [[[GridCommand alloc] initWithControl:self.grid itemType:ItemTypeGrid] autorelease];

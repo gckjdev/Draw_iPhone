@@ -15,6 +15,7 @@
 #import "ConfigManager.h"
 #import "CanvasRect.h"
 #import "DrawHolderView.h"
+#import "ClipAction.h"
 //#define DEFAULT_PLAY_SPEED  (0.01)
 //#define MIN_PLAY_SPEED      (0.001f)
 
@@ -450,11 +451,14 @@
 
         }else{
             if (![_currentAction isKindOfClass:[PaintAction class]]) {
+                if([_currentAction isKindOfClass:[ClipAction class]]){
+                    cdManager.currentClip = (id)_currentAction;
+                }
+                
                 [self delayShowAction:_currentAction];
-//                [self performSelector:@selector(delayShowAction:) withObject:_currentAction afterDelay:self.playSpeed * 30];
-            }else{
+                
+            } else {
                 [self delayShowActionStop:_currentAction];
-//                [self performSelector:@selector(delayShowAction:) withObject:_currentAction];
             }
         }
     }

@@ -15,6 +15,10 @@
 #import "StrawTouchHandler.h"
 #import "DrawTouchHandler.h"
 #import "ShapeTouchHandler.h"
+#import "PathClipTouchHandler.h"
+#import "ShapeClipTouchHandler.h"
+#import "PolygonClipTouchHandler.h"
+
 #import "DrawUtils.h"
 #import "DrawAction.h"
 #import "DrawHolderView.h"
@@ -109,6 +113,7 @@
 {
     [self clearRedoStack];
     ChangeBackAction *changBackAction = [[[ChangeBackAction alloc] initWithColor:color] autorelease];
+    changBackAction.clipAction = self.currentClip;
     [self.drawActionList addObject:changBackAction];
     [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
@@ -120,6 +125,7 @@
     [self clearRedoStack];
     
     ChangeBGImageAction *changBG = [[[ChangeBGImageAction alloc] initWithDrawBg:drawBg] autorelease];
+    changBG.clipAction = self.currentClip;
     [self addDrawAction:changBG];
     [self drawDrawAction:changBG show:YES];
                                     
@@ -294,6 +300,7 @@
 }
 - (void)saveLastAction:(DrawAction *)action;
 {
+    action.clipAction = cdManager.currentClip;
     [cdManager finishDrawAction:action];
     [self setNeedsDisplay];
     [self addDrawAction:action];
@@ -361,6 +368,9 @@
         DrawAction *obj = [_drawActionList lastObject];
         [_redoStack push:obj];
         [_drawActionList removeLastObject];
+        if ([obj isKindOfClass:[ClipAction class]]) {
+            cdManager.currentClip = nil;
+        }
         [self showForRevoke:obj finishBlock:finishBlock];
     }
 }
@@ -386,7 +396,14 @@
 //            [self printOSInfoWithTag:@"<Redo> before"];
             [self.drawActionList addObject:action];
 //            [osManager addDrawAction:action];
+            
+            if ([action isKindOfClass:[ClipAction class]]) {
+                cdManager.currentClip = (id)action;
+            }
+
             [cdManager addDrawAction:action];
+            
+            
             [self setNeedsDisplay];
 //            [self printOSInfoWithTag:@"<Redo> after"];
             if ([action isKindOfClass:[ChangeBackAction class]]) {

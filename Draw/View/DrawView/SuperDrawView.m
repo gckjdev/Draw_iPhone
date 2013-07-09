@@ -29,7 +29,10 @@
 @implementation SuperDrawView
 @synthesize drawActionList = _drawActionList;
 
-
+- (ClipAction *)currentClip
+{
+    return [cdManager currentClip];
+}
 
 - (void)cleanAllActions
 {

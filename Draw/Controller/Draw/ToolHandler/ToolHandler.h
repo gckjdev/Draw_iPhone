@@ -13,6 +13,7 @@
 #import "DrawView.h"
 #import "PPViewController.h"
 #import "GradientAction.h"
+#import "ClipAction.h"
 
 typedef enum{
     ToolEventRedo = 1,
@@ -23,6 +24,8 @@ typedef enum{
 @class MyFriend;
 @class CanvasRect;
 @class PBUserPhoto;
+@class DrawToolUpPanel;
+
 
 @protocol ToolHandlerDelegate <NSObject>
 
@@ -37,6 +40,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 
 @property(nonatomic, assign)DrawView *drawView;
 @property(nonatomic, assign)DrawToolPanel *drawToolPanel;
+@property(nonatomic, assign)DrawToolUpPanel *drawToolUpPanel;
 @property(nonatomic, assign)PPViewController *controller;
 
 
@@ -75,6 +79,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)enterStrawMode;
 - (void)enterShapeMode;
 - (void)enterEraserMode;
+- (void)enterClipModeWithClipType:(ClipType)clipType;
 - (void)useGid:(BOOL)flag;
 - (void)handleRedo;
 - (void)handleUndo;

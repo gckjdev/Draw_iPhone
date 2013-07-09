@@ -139,7 +139,7 @@
     
     pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
     pbDrawActionC->has_bettercolor = 1;
-    
+    pbDrawActionC->cliptag = self.clipAction.clipTag;
     return;
 }
 

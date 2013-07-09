@@ -45,6 +45,7 @@
  
     CGRect returnRect;
     CGContextSaveGState(context);
+    [self.clipAction clipContext:context];
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
 
@@ -143,6 +144,7 @@
     pbDrawActionC->type = DrawActionTypeShape;
     [self.shape updatePBDrawActionC:pbDrawActionC];
     [self.shadow updatePBDrawActionC:pbDrawActionC];
+    pbDrawActionC->cliptag = self.clipAction.clipTag;    
     return;
     
 //    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];

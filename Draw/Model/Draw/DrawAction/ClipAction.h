@@ -10,7 +10,7 @@
 //#import "PathConstructor.h"
 
 typedef enum{
-    
+    ClipTypeNo = 0,
     ClipTypeRectangle = 1,
     ClipTypeEllipse = 2,
     ClipTypePolygon = 3,
@@ -31,9 +31,10 @@ typedef enum{
 
 - (void)clipContext:(CGContextRef)context; //execute once.
 
-
-//- (void)show
 + (id)clipActionWithShape:(ShapeInfo *)shape;
 + (id)clipActionWithPaint:(Paint *)paint;
+
+- (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect;
+
 @end
 

@@ -40,19 +40,11 @@
 }
 
 
-- (void)printDrawColor:(NSTimer *)timer
-{
-//    PPDebug(@"Draw Color = %@", self.drawView.lineColor);
-}
 
 - (id)init
 {
     self = [super init];
     if (self) {
-
-#ifdef DEBUG
-        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(printDrawColor:) userInfo:nil repeats:YES];
-#endif
         
     }
     return self;
@@ -114,6 +106,7 @@
     DrawColor *color = [DrawColor colorWithColor:self.penColor];
     color.alpha = 1;
     [self.drawView changeBackWithColor:color];
+//    action.clipAction = self.drawView.currentClip;
 
     [self changePenColor:[DrawColor blackColor]];
     [self changeInPenType:self.penType];
@@ -224,6 +217,22 @@
     [self.drawToolPanel setPenSelected:NO];
     [self.drawToolPanel setEraserSelected:NO];
 }
+
+- (void)enterClipModeWithClipType:(ClipType)clipType
+{
+    if (clipType == ClipTypeSmoothPath) {
+        [self.drawView setTouchActionType:TouchActionTypeClipPath];
+    }else if(clipType == ClipTypePolygon){
+        [self.drawView setTouchActionType:TouchActionTypeClipPolygon];
+    }else if(clipType == ClipTypeEllipse){
+        [self.drawView setTouchActionType:TouchActionTypeClipEllipse];
+    }else if(clipType == ClipTypeRectangle){
+        [self.drawView setTouchActionType:TouchActionTypeClipRectangle];
+    }else{
+        //
+    }
+}
+
 
 - (void)useGid:(BOOL)flag
 {

@@ -11,6 +11,7 @@
 #import "Offscreen.h"
 #import "DrawAction.h"
 #import "ConfigManager.h"
+#import "ClipAction.h"
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 
@@ -138,10 +139,12 @@
 //show all the action render in the layer list
 - (void)showInContext:(CGContextRef)context
 {
-//    [self.bgPhto drawAtPoint:CGPointZero];
     [self.bgPhto drawInRect:_rect];
     [_offscreen showInContext:context];
+    
+    [self.currentClip showClipInContext:context inRect:_rect];
     [_inDrawAction drawInContext:context inRect:_rect];
+    
     if (self.showGrid) {
         [self drawGridInContext:context rect:_rect];
     }
@@ -157,14 +160,22 @@
 - (CGRect)updateLastAction:(DrawAction *)action
 {
     self.inDrawAction = action;
+    
+    if ([action isKindOfClass:[ClipAction class]]) {
+        self.currentClip = (id)action;
+    }else{
+        action.clipAction =  self.currentClip;
+    }
     return [action redrawRectInRect:_rect];
-//    CGRect rect = [action redrawRectInRect:_rect];
-//    return _rect;
 }
 
 - (void)cancelLastAction
 {
+    if ([self.inDrawAction isKindOfClass:[ClipAction class]]) {
+        self.currentClip = nil;
+    }
     self.inDrawAction = nil;
+    
 }
 
 - (BOOL)canUndo
@@ -201,7 +212,7 @@
             return YES;
         }
     }
-    return NO;
+    return YES;
 }
 
 
@@ -245,5 +256,16 @@
         }
     }
 }
+
+
+- (void)startClipAction:(ClipAction *)action
+{
+    self.currentClip = action;
+}
+- (void)finishCurrentClip
+{
+    self.currentClip = nil;
+}
+
 
 @end
