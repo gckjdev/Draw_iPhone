@@ -171,6 +171,12 @@
 }
 
 
+- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    [super drawInContext:context inRect:rect];
+    return rect;
+}
+
 - (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
@@ -201,11 +207,6 @@
     return retRrect;
 }
 
-
-- (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
-{
-    return CGRectZero;
-}
 
 - (void)clipContext:(CGContextRef)context
 {

@@ -125,8 +125,10 @@
 {
 //    CGRect rect = [osManager updateLastAction:action];
     CGRect rect = [cdManager updateLastAction:action];
+
     if (show) {
-        //如果笔不是透明的话，则更新最后3个点所在的区域即可，否则整笔全部更新
+    /*
+     //如果笔不是透明的话，则更新最后3个点所在的区域即可，否则整笔全部更新
         
         if ([action isKindOfClass:[PaintAction class]]) {
             PaintAction *paintAction = (PaintAction *)action;
@@ -142,7 +144,7 @@
                 }                
             }
         }
-
+     */
         [self setNeedsDisplayInRect:rect];
     }
 }

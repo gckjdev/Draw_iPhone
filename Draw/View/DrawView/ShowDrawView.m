@@ -385,14 +385,19 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
         [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex pointIndex:_playingPointIndex];
     }    
-    if(_playingActionIndex >= [self.drawActionList count]-1 && self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
-        [self.delegate didPlayDrawView:self];
-
-        self.status = Stop;
-        _playingActionIndex = _playingPointIndex = 0;
-        _currentAction =  nil;
+    if(_playingActionIndex >= [self.drawActionList count]-1){
+        cdManager.currentClip = nil;
+        [self setNeedsDisplay];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
+            [self.delegate didPlayDrawView:self];
+            
+            self.status = Stop;
+            _playingActionIndex = _playingPointIndex = 0;
+            _currentAction =  nil;
+        }
     }
     self.tempAction = nil;
+
 }
 
 - (void)delayShowAction:(DrawAction *)drawAction
