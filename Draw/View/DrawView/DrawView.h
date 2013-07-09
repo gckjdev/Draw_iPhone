@@ -39,8 +39,9 @@ typedef enum{
     TouchActionTypeGetColor = 1,
     TouchActionTypeShape = 2,
     TouchActionTypeClipPath = 3,
-    TouchActionTypeClipShape = 4,
-    TouchActionTypeClipPolygon = 5,
+    TouchActionTypeClipPolygon = 4,
+    TouchActionTypeClipEllipse = 5,
+    TouchActionTypeClipRectangle = 6,
     
 }TouchActionType;
 

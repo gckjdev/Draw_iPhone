@@ -8,11 +8,12 @@
 
 #import "TouchHandler.h"
 #import "ClipAction.h"
+#import "ShapeAction.h"
 
 @interface ShapeClipTouchHandler : TouchHandler
 
 @property(nonatomic, assign) ClipType clipType;
-
+@property(nonatomic, assign) ShapeType shapeType;
 
 - (void)drawAction;
 

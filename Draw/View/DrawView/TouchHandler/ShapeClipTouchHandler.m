@@ -7,7 +7,6 @@
 //
 
 #import "ShapeClipTouchHandler.h"
-#import "ShapeAction.h"
 #import "PaintAction.h"
 #import "ClipAction.h"
 

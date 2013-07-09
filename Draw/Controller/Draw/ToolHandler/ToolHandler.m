@@ -224,8 +224,12 @@
         [self.drawView setTouchActionType:TouchActionTypeClipPath];
     }else if(clipType == ClipTypePolygon){
         [self.drawView setTouchActionType:TouchActionTypeClipPolygon];
-    }else if(clipType == ClipTypeEllipse || clipType == ClipTypeRectangle){
-        [self.drawView setTouchActionType:TouchActionTypeClipShape];
+    }else if(clipType == ClipTypeEllipse){
+        [self.drawView setTouchActionType:TouchActionTypeClipEllipse];
+    }else if(clipType == ClipTypeRectangle){
+        [self.drawView setTouchActionType:TouchActionTypeClipRectangle];
+    }else{
+        //
     }
 }
 

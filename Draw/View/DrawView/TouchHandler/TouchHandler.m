@@ -41,8 +41,18 @@
         //clip action
         case TouchActionTypeClipPath:
             return [[[PathClipTouchHandler alloc] init] autorelease];
-        case TouchActionTypeClipShape:
-            return [[[ShapeClipTouchHandler alloc] init] autorelease];
+        case TouchActionTypeClipEllipse:
+        {
+            ShapeClipTouchHandler * handler = [[[ShapeClipTouchHandler alloc] init] autorelease];
+            handler.shapeType = ShapeTypeEllipse;
+            return handler;
+        }
+        case TouchActionTypeClipRectangle:
+        {
+            ShapeClipTouchHandler * handler = [[[ShapeClipTouchHandler alloc] init] autorelease];
+            handler.shapeType = ShapeTypeRectangle;
+            return handler;
+        }
         case TouchActionTypeClipPolygon:
             return [[[PolygonClipTouchHandler alloc] init] autorelease];
             

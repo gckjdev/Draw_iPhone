@@ -27,6 +27,9 @@
 
 - (void)selectorBox:(SelectorBox *)box didSelectClipType:(ClipType)clipType
 {
+    if (clipType != ClipTypeNo) {
+//        self.toolHandler c
+    }
     [self hidePopTipView];
 }
 - (void)didClickCancelAtSelectorBox:(SelectorBox *)box
