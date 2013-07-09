@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClipAction.h"
 
 
 @class SelectorBox;
 
+
 @protocol SelectorBoxDelegate <NSObject>
-
-
+- (void)selectorBox:(SelectorBox *)box didSelectClipType:(ClipType)clipType;
+- (void)didClickCancelAtSelectorBox:(SelectorBox *)box;
+- (void)didClickHelpAtSelectorBox:(SelectorBox *)box;
 
 @end
 

@@ -10,7 +10,7 @@
 //#import "PathConstructor.h"
 
 typedef enum{
-    
+    ClipTypeNo = 0,
     ClipTypeRectangle = 1,
     ClipTypeEllipse = 2,
     ClipTypePolygon = 3,

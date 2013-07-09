@@ -23,13 +23,47 @@
     [box updateViews];
     return box;
 }
+
+#define TAG_PATH 100
+#define TAG_POLYGON 101
+#define TAG_ELLIPSE 102
+#define TAG_RECTRANGLE 103
+
+
+- (ClipType)clipTypeForTag:(NSInteger)tag
+{
+#ifndef JUDGE_TAG
+#define JUDGE_TAG(tagValue, typeValue) \
+    if (tag == tagValue)  {\
+        return typeValue; }
+#endif
+    
+    JUDGE_TAG(TAG_PATH, ClipTypeSmoothPath)
+    JUDGE_TAG(TAG_POLYGON, ClipTypePolygon)
+    JUDGE_TAG(TAG_ELLIPSE, ClipTypeEllipse)
+    JUDGE_TAG(TAG_RECTRANGLE, ClipTypeRectangle)
+  
+    return ClipTypeNo;
+}
+
 - (IBAction)clickSelector:(UIButton *)sender {
+    
+    ClipType clipType = [self clipTypeForTag:sender.tag];
+    if (_delegate && [_delegate respondsToSelector:@selector(selectorBox:didSelectClipType:)]) {
+        [_delegate selectorBox:self didSelectClipType:clipType];
+    }
 }
 
 - (IBAction)clickCancel:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickCancelAtSelectorBox:)]) {
+        [_delegate didClickCancelAtSelectorBox:self];
+    }
 }
 
 - (IBAction)clickHelp:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickHelpAtSelectorBox:)]) {
+        [_delegate didClickHelpAtSelectorBox:self];
+    }
 }
 
 @end
