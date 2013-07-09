@@ -10,22 +10,26 @@
 
 @implementation SelectorBox
 
-- (id)initWithFrame:(CGRect)frame
+- (void)updateViews
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
++ (id)selectorBoxWithDelegate:(id<SelectorBoxDelegate>)delegate
 {
-    // Drawing code
+    NSUInteger index = ISIPAD ? 1 : 0;
+    SelectorBox *box = [UIView createViewWithXibIdentifier:@"SelectorBox" ofViewIndex:index];
+    box.delegate = delegate;
+    [box updateViews];
+    return box;
 }
-*/
+- (IBAction)clickSelector:(UIButton *)sender {
+}
+
+- (IBAction)clickCancel:(id)sender {
+}
+
+- (IBAction)clickHelp:(id)sender {
+}
 
 @end
