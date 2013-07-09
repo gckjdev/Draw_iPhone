@@ -472,7 +472,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:10*1000
                                         currency:PBGameCurrencyCoin
-                                  promotionPrice:10*1000/discount
+                                  promotionPrice:2000 // 10*1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
@@ -532,6 +532,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     //临摹
+    /*
     [mutableArray addObject:[self itemWithItemId:ItemTypeCopyPaint
                                             name:@"kCopyPaint"
                                             desc:@"kCopyPaintDescription"
@@ -540,9 +541,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTool
                                            price:1000
                                         currency:PBGameCurrencyCoin //]];
-                                  promotionPrice:1000/discount
+                                  promotionPrice:500 //1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
+     */
     
     // 网格参考线
     [mutableArray addObject:[self itemWithItemId:ItemTypeGrid
@@ -1046,7 +1048,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
     
-    
+    /*
     // 维锐电容笔（大）
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"维锐魔法师电容笔"
@@ -1055,6 +1057,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                              
                                             type:PBDrawItemTypeDrawTaoBao
                                              url:@"http://a.m.taobao.com/i17538377874.htm"]];
+     */
     
     PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
     [listBuilder addAllItems:mutableArray];
@@ -1340,6 +1343,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                         currency:PBGameCurrencyIngot]];
     
     
+    /*
     // 维锐电容笔（大）
     [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
                                             name:@"维锐魔法师电容笔"
@@ -1348,6 +1352,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                              
                                             type:PBDrawItemTypeDrawTaoBao
                                              url:@"http://a.m.taobao.com/i17538377874.htm"]];
+     */
     
     PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
     [listBuilder addAllItems:mutableArray];

@@ -68,7 +68,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 + (NSString *)shopItemsFileVersion
 {
 #ifdef DEBUG
-    return @"10.0";
+    return @"1.90";
 #endif
     return SHOP_ITEMS_FILE_VERSION;
 }
