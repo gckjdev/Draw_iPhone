@@ -23,6 +23,7 @@ typedef enum{
 
 @interface ClipAction : DrawAction
 {
+    NSUInteger addPointTimes;
 }
 
 @property(nonatomic, retain)Paint *paint;

@@ -26,6 +26,7 @@
 
 - (void)startAddPoint;
 - (void)addPointIntoPath:(CGPoint)point;
+//- (void)updateLastPoint:(CGPoint)point;
 - (void)finishAddPoint;
 
 

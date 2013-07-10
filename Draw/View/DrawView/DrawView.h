@@ -11,9 +11,15 @@
 #import "MyPaint.h"
 #import "ShapeInfo.h"
 #import "ChangeBGImageAction.h"
+//#import "PolygonClipTouchHandler.h"
 
 @class DrawView;
 @class Gradient;
+
+//@protocol PolygonClipTouchHandlerDelegate <NSObject>
+//- (void) didPolygonClipTouchHandler:(PolygonClipTouchHandler *)handler finishAddPointsToAction:(ClipAction *)action;
+//@end
+
 
 @protocol DrawViewDelegate <NSObject>
 
@@ -24,6 +30,7 @@
 
 
 @end
+
 
 
 @protocol DrawViewStrawDelegate <NSObject>

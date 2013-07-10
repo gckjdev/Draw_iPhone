@@ -283,10 +283,23 @@
     }else if(self.shape){
         self.shape.endPoint = point;
     }
+    addPointTimes ++;
+}
+
+- (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect
+{
+    if (self.paint) {
+        [self.paint addPoint:point inRect:rect];
+    }else if(self.shape){
+        self.shape.endPoint = point;
+    }    
 }
 
 - (CGRect)redrawRectInRect:(CGRect)rect
 {
+    if (addPointTimes == 1) {
+        return rect;
+    }
     if (self.shape) {
         [self.shape rect];
         return self.shape.redrawRect;

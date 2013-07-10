@@ -169,12 +169,19 @@
         PPDebug(@"SET touch handler and current touch");
         
         [_gestureRecognizerManager setCapture:YES];
-        self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:self.touchActionType];
-        [self.touchHandler setDrawView:self];
-//        [self.touchHandler setOsManager:osManager];
-        [self.touchHandler setCdManager:cdManager];
-        if (self.touchActionType == TouchActionTypeGetColor) {
-            [(StrawTouchHandler *)self.touchHandler setStrawDelegate:self.strawDelegate];
+        if (self.touchActionType != TouchActionTypeClipPolygon ||
+            ![self.touchHandler isKindOfClass:[PolygonClipTouchHandler class]]) {
+            
+            self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:self.touchActionType];
+            if ([self.touchHandler isKindOfClass:[PolygonClipTouchHandler class]]) {
+                [(PolygonClipTouchHandler *)self.touchHandler setDelegate:self];
+            }
+            
+            [self.touchHandler setDrawView:self];
+            [self.touchHandler setCdManager:cdManager];
+            if (self.touchActionType == TouchActionTypeGetColor) {
+                [(StrawTouchHandler *)self.touchHandler setStrawDelegate:self.strawDelegate];
+            }
         }
         [self.touchHandler handlePoint:[self pointForTouches:touches] forTouchState:TouchStateBegin];
         _pointCount = 1;
@@ -219,7 +226,9 @@
         [self callbackFinishDelegateWithAction:drawAction];
         
         PPDebug(@"RESET touch handler and current touch");
-        self.touchHandler = nil;
+        if (self.touchActionType != TouchActionTypeClipPolygon) {
+            self.touchHandler = nil;
+        }
         self.currentTouch = nil;
         _pointCount = 0;
     }
@@ -434,24 +443,6 @@
 
 
 
-- (void)printOSInfoWithTag:(NSString *)tag
-{
-    PPDebug(tag);
-    PPDebug(@"Action list count = %d",[_drawActionList count]);
-//    [osManager printOSInfo];
-}
-
-/*
-- (UIImage *)createImage
-{
-    if ([cdManager showGrid]) {
-        [cdManager setShowGrid:NO];
-    }
-    UIImage *image = [super createImage];
-    return image;
-}
-*/
-
 - (NSInteger)totalActionCount
 {
     return [self actionCount] + [_redoStack size];
@@ -479,5 +470,15 @@
         [self.touchHandler handleFailTouch];
         self.touchHandler = nil;
     }
+}
+
+#pragma mark -- Polygon Delegate
+
+- (void) didPolygonClipTouchHandler:(PolygonClipTouchHandler *)handler finishAddPointsToAction:(ClipAction *)action
+{
+    self.touchHandler = nil;
+    PPDebug(@"<didPolygonClipTouchHandler> finish!!!");
+    PPViewController *vc = (id)[self theViewController];
+    [vc popupHappyMessage:NSLS(@"kPolygonJoined") title:nil];
 }
 @end

@@ -1799,7 +1799,7 @@
 "kRightTop" = "RT";
 "kLeftBottom" = "LB";
 "kRightBottom" = "RB";
-
+"kPolygonJoined" = "Polygon joined!";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
