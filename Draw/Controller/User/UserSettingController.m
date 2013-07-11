@@ -19,7 +19,7 @@
 #import "DeviceDetection.h"
 #import "AudioManager.h"
 #import "DeviceDetection.h"
-#import "MusicSettingController.h"
+//#import "MusicSettingController.h"
 #import "LevelService.h"
 #import "MyWordsController.h"
 #import "StringUtil.h"
@@ -791,9 +791,11 @@ enum {
         if(row == rowOfSoundSwitcher) {
             //no action
         }else if (row == rowOfMusicSettings) {
+            /*
             MusicSettingController *controller = [[MusicSettingController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
+             */
         } else if (row == rowOfVolumeSetting) {
             //no action
         } 

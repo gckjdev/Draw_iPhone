@@ -31,7 +31,7 @@
 #import "CommonMessageCenter.h"
 #import "SearchRoomController.h"
 #import "AudioManager.h"
-#import "MusicItemManager.h"
+//#import "MusicItemManager.h"
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
 #import "WordManager.h"
@@ -79,9 +79,9 @@
 #import "UMGridViewController.h"
 #import "DrawRoomListController.h"
 
-#import "OpusSelectController.h"
-#import "Wall.h"
-#import "OpusWallController.h"
+//#import "OpusSelectController.h"
+//#import "Wall.h"
+//#import "OpusWallController.h"
 
 #import "StoreController.h"
 
@@ -914,6 +914,7 @@
     [VersionUpdateView showInView:self.view];
 }
 
+/* rem by Benson to disable wall
 - (void)didGetWall:(int)resultCode wall:(PBWall *)pbWall
 {
     PPDebug(@"resultCode = %d", resultCode);
@@ -921,6 +922,7 @@
     OpusWallController *vc = [[[OpusWallController alloc] initWithWall:wall] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
+*/
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
 {
