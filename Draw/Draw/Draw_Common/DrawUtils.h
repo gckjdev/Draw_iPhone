@@ -119,3 +119,4 @@ CGPoint CGRectGetRightTopPoint(CGRect rect);
 CGPoint CGRectGetLeftBottomPoint(CGRect rect);
 CGPoint CGRectGetRightBottomPoint(CGRect rect);
 
+void calGradientPoints(CGRect rect, CGFloat degree, CGPoint *startPoint, CGPoint *endPoint);
