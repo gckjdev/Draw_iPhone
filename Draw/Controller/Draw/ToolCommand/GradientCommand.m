@@ -28,17 +28,25 @@
 - (void)showPopTipView
 {
     //create an gradient setting view and add to tool panel
+    
+    CGRect rect = self.toolHandler.drawView.bounds;
+    if (self.toolHandler.drawView.currentClip) {
+        rect = self.toolHandler.drawView.currentClip.pathRect;
+    }
+    
     if (self.lastGradient) {
         self.lastGradient = [[[Gradient alloc] initWithGradient:_lastGradient] autorelease];
+        self.lastGradient.rect = rect;
     }else{
         Gradient *graident = [[Gradient alloc] initWithDegree:0
                                                    startColor:[DrawColor whiteColor]
                                                      endColor:[DrawColor blackColor]
                                                      division:0.5
-                                                       inRect:self.toolHandler.drawView.bounds];
+                                                       inRect:rect];
         self.lastGradient = graident;
         [graident release];
     }
+    
     
     self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: self.lastGradient];
     [self.toolHandler updateGradient:self.lastGradient];

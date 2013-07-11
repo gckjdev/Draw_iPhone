@@ -555,3 +555,40 @@ CGPoint CGRectGetRightBottomPoint(CGRect rect)
     point.y = CGRectGetMaxY(rect);
     return point;
 }
+
+void calGradientPoints(CGRect rect, CGFloat degree, CGPoint *startPoint, CGPoint *endPoint)
+{
+    while (degree < 0) {
+        degree += 360;
+    }
+    if (degree >= 360) {
+        degree -= (((int)degree / 360) * 360);
+    }
+    
+    CGFloat radio = degree * M_PI / 180;
+    CGFloat r  = 0;
+    CGFloat a = atanf(CGRectGetHeight(rect) / CGRectGetWidth(rect));
+    if (degree < 90) {
+        r = ABS(a - radio);
+    }else if(degree < 180){
+        r = ABS(M_PI - (a + radio));
+    }else if(degree < 270){
+        r = ABS(M_PI + a - radio);
+    }else{
+        r = ABS(2 * M_PI - (a + radio));
+    }
+    
+    CGFloat L = (CGRectGetHeight(rect) * 0.5) / sinf(a);
+    CGFloat R = cosf(r) * L;
+    
+    CGFloat x = R * cosf(radio);
+    CGFloat y = R * sinf(radio);
+    
+    CGPoint center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect));
+    
+    startPoint->x = center.x + x;
+    startPoint->y = center.y - y;
+    
+    endPoint->x = center.x - x;
+    endPoint->y = center.y + y;
+}

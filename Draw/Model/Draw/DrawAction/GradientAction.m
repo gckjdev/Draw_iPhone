@@ -49,10 +49,6 @@
 }
 - (void)updatePBGradientC:(Game__PBGradient *)gradient
 {
-//    gradient->n_color = 1;
-//    gradient->has_point = 1;
-//    gradient->has_division = 1;
-
     gradient->division = _division;
     gradient->n_point = POINT_COUNT;
     gradient->n_color = COLOR_COUNT;
@@ -70,53 +66,10 @@
 }
 
 
-//- (id)initWithStartPoint:(CGPoint)sp
-//                endPoint:(CGPoint)ep
-//              startColor:(DrawColor *)sc
-//                endColor:(DrawColor *)ec
-//                division:(CGFloat)division
-//{
-//    self = [super init];
-//    if (self) {
-//        self.division = division;
-//        self.startColor = sc;
-//        self.endColor = ec;
-//        self.startPoint = sp;
-//        self.endPoint = ep;
-//    }
-//    return self;
-//}
-
 
 - (void)updatePointsWithDegreeAndDivision
 {
-    CGFloat radio = _degree * M_PI / 180;
-    
-    CGFloat R = CGPointDistance(CGPointZero, CGRectGetCenter(_rect));
-    
-    _startPoint.x = cosf(radio) * R;
-    _startPoint.y = sinf(radio) * R;
-    
-    _endPoint.x = -_startPoint.x;
-    _endPoint.y = -_startPoint.y;
-    
-    
-    translateFromCartesianCoordinates(&_startPoint, _rect);
-    translateFromCartesianCoordinates(&_endPoint, _rect);
-    
-    CGFloat division = _division;
-    CGPoint vector = CGPointVector(_startPoint, _endPoint);
-    
-    
-    
-    if (division > 0.5) {
-        _endPoint.x += vector.x * (division - 0.5);
-        _endPoint.y += vector.y * (division - 0.5);
-    }else{
-        _startPoint.x += vector.x * (division - 0.5);
-        _startPoint.y += vector.y * (division - 0.5);
-    }
-    PPDebug(@"<updatePointsWithDegreeAndDivision> startPoint = %@, endPoint = %@", NSStringFromCGPoint(_startPoint),NSStringFromCGPoint(_endPoint));
+    calGradientPoints(_rect, _degree, &_startPoint, &_endPoint);
 }
 
 - (CGRect)rect
@@ -174,13 +127,21 @@
 {
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
     
-    CGFloat component[4 * COLOR_COUNT] = {};
+    CGFloat component[4 * (COLOR_COUNT + 1)] = {};
+    
+    DrawColor *midColor = [DrawColor midColorWithStartColor:_startColor endColor:_endColor];
+    
     const CGFloat *c1 = CGColorGetComponents(self.startColor.CGColor);
-    const CGFloat *c2 = CGColorGetComponents(self.endColor.CGColor);
+    const CGFloat *c2 = CGColorGetComponents(midColor.CGColor);
+    const CGFloat *c3 = CGColorGetComponents(self.endColor.CGColor);
+    
     memcpy(component, c1, sizeof(CGFloat) * 4);
     memcpy(component+4, c2, sizeof(CGFloat) * 4);
+    memcpy(component+8, c3, sizeof(CGFloat) * 4);
     
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(space, component, NULL, COLOR_COUNT);
+    CGFloat locations[] = {0, _division, 1};
+    
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(space, component, locations, COLOR_COUNT+1);
     CGColorSpaceRelease(space);
     return gradient;
 }
