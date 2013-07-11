@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
 #import "DrawGameService.h"
-#import "RouterService.h"
+//#import "RouterService.h"
 #import "CommonDialog.h"
 #import "DrawDataService.h"
 #import "NotificationManager.h"
@@ -23,7 +23,7 @@
 @class MenuPanel;
 @class BottomMenuPanel;
 
-@interface HomeController : SuperHomeController<DrawGameServiceDelegate, RouterServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, WallServiceDelegate, DrawHomeControllerProtocol, ContestServiceDelegate>
+@interface HomeController : SuperHomeController<DrawGameServiceDelegate, CommonDialogDelegate,DrawDataServiceDelegate, UserServiceDelegate, WallServiceDelegate, DrawHomeControllerProtocol, ContestServiceDelegate>
 {
     BOOL        _isTryJoinGame;  
     UserManager *_userManager;

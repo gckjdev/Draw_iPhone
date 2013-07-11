@@ -447,7 +447,7 @@
 
 - (void)didServerListFetched:(int)result
 {
-    RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
+//    RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
     NSString* address = nil;
     int port = 9000;
 
@@ -462,10 +462,10 @@
     }
     
     
-    if (server != nil){        
-        address = [server address];
-        port = [server.port intValue];            
-    }
+//    if (server != nil){        
+//        address = [server address];
+//        port = [server.port intValue];            
+//    }
 
 
     [[DrawGameService defaultService] setServerAddress:address];
