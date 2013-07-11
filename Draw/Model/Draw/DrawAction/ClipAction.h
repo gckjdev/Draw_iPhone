@@ -37,5 +37,7 @@ typedef enum{
 
 - (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect;
 
+- (CGRect)pathRect;
+
 @end
 

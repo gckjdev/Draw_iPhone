@@ -68,5 +68,6 @@
 + (DrawColor *)rankColor;
 
 //- (id)initWithRed:(CGFloat)red 
++ (DrawColor *)midColorWithStartColor:(DrawColor *)startColor endColor:(DrawColor *)endColor;
 
 @end

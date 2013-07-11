@@ -309,4 +309,36 @@
     return CGRectZero;
 }
 
+- (CGRect)pathRect
+{
+//    [self path];
+    if (self.paint) {
+//        if (_paint.pointCount <= 0) {
+//            return CGRectZero;
+//        }
+//        CGFloat minx = CGFLOAT_MAX;
+//        CGFloat miny = CGFLOAT_MAX;
+//      
+//        CGFloat maxx = CGFLOAT_MIN;
+//        CGFloat maxy = CGFLOAT_MIN;
+//        
+//        for (PointNode *node in _paint.pointNodeList) {
+//            minx = MIN(minx, node.point.x);
+//            maxx = MAX(maxx, node.point.x);
+//            miny = MIN(miny, node.point.y);
+//            maxy = MAX(maxy, node.point.y);
+//        }
+//        CGFloat width = maxx - minx;
+//        CGFloat height = maxy - miny;
+//        CGRect rect = CGRectMake(minx, miny, width, height);
+//        rect = CGRectUnion(rect, CGPathGetPathBoundingBox(_paint.path));
+//        return rect;
+        return CGPathGetBoundingBox(_paint.path);
+        
+    }else{
+        return CGRectWithPoints(self.shape.startPoint, self.shape.endPoint);
+    }
+    
+}
+
 @end
