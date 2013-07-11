@@ -21,12 +21,6 @@
 - (void)gradientSettingView:(GradientSettingView *)view
            didChangeradient:(Gradient *)gradient;
 
-//click the ok/cancel button
-- (void)gradientSettingView:(GradientSettingView *)view
-       didFinishSetGradient:(Gradient *)gradient
-                     cancel:(BOOL) cancel;
-
-
 @end
 
 

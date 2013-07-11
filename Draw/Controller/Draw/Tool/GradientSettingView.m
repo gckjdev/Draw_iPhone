@@ -31,9 +31,6 @@
 - (IBAction)clickLeftColor:(UIButton *)sender;
 - (IBAction)clickRightColorButton:(UIButton *)sender;
 
-- (IBAction)clickConfirm:(id)sender;
-- (IBAction)clickCancel:(id)sender;
-
 @end
 
 @implementation GradientSettingView
@@ -223,23 +220,7 @@
     [self handleColorSelection:[DrawColor colorWithColor:_gradient.endColor] sender:sender];
 }
 
-- (IBAction)clickConfirm:(id)sender {
-    [self dismissPopView];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel:)]) {
-        [self.delegate gradientSettingView:self
-                      didFinishSetGradient:self.gradient
-                                    cancel:NO];
-    }
-}
 
-- (IBAction)clickCancel:(id)sender {
-    [self dismissPopView];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(gradientSettingView:didFinishSetGradient:cancel:)]) {
-        [self.delegate gradientSettingView:self
-                      didFinishSetGradient:self.gradient
-                                    cancel:YES];
-    }    
-}
 
 #pragma mark pallete delegate
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
