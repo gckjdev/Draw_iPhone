@@ -43,6 +43,7 @@
 @property(nonatomic, assign)BOOL useCachedImage; //default is YES, in showDrawView it is NO.
 
 @property(nonatomic, assign)ClipAction *currentClip;
+@property(nonatomic, retain)DrawAction *inDrawAction; //show in the view context
 
 + (id)managerWithRect:(CGRect)rect;
 

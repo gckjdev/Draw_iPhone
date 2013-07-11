@@ -47,9 +47,11 @@
         [graident release];
     }
     
+    [self.toolHandler startGradient:self.lastGradient];
+    
     
     self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: self.lastGradient];
-    [self.toolHandler updateGradient:self.lastGradient];
+
 
     CGPoint center = CGPointMake(160, 26);
     if (ISIPHONE5) {
@@ -71,7 +73,7 @@
     [self.gradientSettingView removeFromSuperview];
     self.gradientSettingView = nil;
     [self.toolPanel hideColorPanel:NO];
-    [self.toolHandler cancelGradient];
+    [self.toolHandler confirmGradient:self.lastGradient];
 }
 
 - (BOOL)execute
@@ -96,6 +98,7 @@
     [self.toolHandler updateGradient:gradient];
     
 }
+/*
 
 //click the ok/cancel button
 - (void)gradientSettingView:(GradientSettingView *)view
@@ -110,6 +113,6 @@
     [self hidePopTipView];
 }
 
-
+*/
 
 @end

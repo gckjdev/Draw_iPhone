@@ -70,9 +70,10 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeShadow:(Shadow *)shadow;
 
 //gradient
+- (void)startGradient:(Gradient *)gradient;
 - (void)updateGradient:(Gradient *)gradient;
 - (void)confirmGradient:(Gradient *)gradient;
-- (void)cancelGradient;
+//- (void)cancelGradient;
 
 - (void)usePaintBucket;
 - (void)enterDrawMode;

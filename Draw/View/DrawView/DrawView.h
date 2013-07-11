@@ -95,6 +95,7 @@ typedef enum{
 - (void)updateLastAction:(DrawAction *)action;
 - (void)saveLastAction:(DrawAction *)action;
 - (void)cancelLastAction;
+- (DrawAction *)inDrawAction;
 
 - (void)exitFromClipMode;
 @end

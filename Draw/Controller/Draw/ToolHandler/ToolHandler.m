@@ -63,22 +63,30 @@
     self.drawView.shadow = shadow;
 }
 
-- (void)updateGradient:(Gradient *)gradient
+- (void)startGradient:(Gradient *)gradient
 {
     GradientAction *action = [[GradientAction alloc] initWithGradient:gradient];
+    [self.drawView addDrawAction:action];
     [self.drawView updateLastAction:action];
+//    [self.drawView drawDrawAction:action show:YES];
     PPRelease(action);
 }
+
 - (void)confirmGradient:(Gradient *)gradient
 {
-    GradientAction *action = [[GradientAction alloc] initWithGradient:gradient];
-    [self.drawView saveLastAction:action];
-    PPRelease(action);
-
+    GradientAction *action = (id)[self.drawView inDrawAction];
+    if ([action isKindOfClass:[GradientAction class]]) {
+        [self.drawView saveLastAction:action];
+    }
 }
-- (void)cancelGradient
+
+- (void)updateGradient:(Gradient *)gradient
 {
-    [self.drawView cancelLastAction];
+    GradientAction *action = (id)[self.drawView inDrawAction];
+    if ([action isKindOfClass:[GradientAction class]]) {
+        action.gradient = gradient;
+        [self.drawView updateLastAction:action];
+    }
 }
 
 

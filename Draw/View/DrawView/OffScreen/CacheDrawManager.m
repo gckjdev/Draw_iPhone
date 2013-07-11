@@ -28,7 +28,7 @@
 @property(nonatomic, retain)Offscreen *offscreen;
 @property(nonatomic, assign)NSInteger imageIndex; //[0, imageIndex)
 @property(nonatomic, retain)UIImage* cachedImage;
-@property(nonatomic, retain)DrawAction *inDrawAction; //show in the view context
+
 
 
 @end
@@ -175,6 +175,9 @@
 {
     if ([self.inDrawAction isKindOfClass:[ClipAction class]]) {
         self.currentClip = nil;
+    }
+    if (self.inDrawAction) {
+        
     }
     self.inDrawAction = nil;
     

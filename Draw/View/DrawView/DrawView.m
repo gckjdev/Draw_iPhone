@@ -321,6 +321,11 @@
     [self setNeedsDisplay];
 }
 
+- (DrawAction *)inDrawAction
+{
+    return [cdManager inDrawAction];
+}
+
 - (void)exitFromClipMode
 {
     [cdManager finishCurrentClip];
