@@ -204,6 +204,7 @@
 {
     if ([self canUndo]) {
         [_offscreen clear];
+        self.inDrawAction = nil;
         [_offscreen showImage:self.cachedImage];
         [self updateOSFromIndex:self.imageIndex toIndex:[_drawActionList count] clear:NO];
     }
