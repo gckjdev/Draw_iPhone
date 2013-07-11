@@ -40,5 +40,6 @@
 
 - (IBAction)moveDivisionButton:(UIButton *)sender forEvent:(UIEvent *)event;
 
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @end

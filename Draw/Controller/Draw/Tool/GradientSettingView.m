@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIViewUtils.h"
 #import "DrawColor.h"
+#import "ShareImageManager.h"
 
 @interface GradientSettingView()
 {
@@ -72,12 +73,16 @@
 
 }
 
-#define GRADIENT_LAYER_FRAME (ISIPAD ? CGRectMake(190, 8, 320, 70) : CGRectMake(82, 5, 130, 31))
+#define GRADIENT_LAYER_FRAME (ISIPAD ? CGRectMake(200, 13, 450, 60) : CGRectMake(90, 5, 175, 31))
 
 
 
 - (void)updateView
 {
+    
+    [self.bgImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
+
+    
     self.leftColorButton.layer.cornerRadius = CGRectGetHeight(_leftColorButton.bounds) / 2;
     self.leftColorButton.layer.masksToBounds = YES;
     [self.leftColorButton setBackgroundColor:_gradient.startColor.color];
@@ -154,6 +159,7 @@
     PPRelease(_gradientLayer);
     PPRelease(_gradient);
     PPRelease(_popColorView);
+    [_bgImageView release];
     [super dealloc];
 }
 
