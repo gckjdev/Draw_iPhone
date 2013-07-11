@@ -50,29 +50,26 @@
 
 - (void)updatePointsWithDegree:(CGFloat)degree
 {
-    CGFloat radio = degree/180 * M_PI;
-    CGPoint startPoint = CGPointMake(cosf(radio), sinf(radio));
-    CGPoint endPoint = CGPointMake(-startPoint.x, -startPoint.y);
-    CGRect rect = CGRectMake(0, 0, 1, 1);
-    translateFromCartesianCoordinates(&startPoint, rect);
-    translateFromCartesianCoordinates(&endPoint, rect);
-    
-    self.gradientLayer.startPoint = startPoint;
-    self.gradientLayer.endPoint = endPoint;
-    [_gradient setDegree:degree];
     [self callBack];
-}
-
-- (void)resetPoints
-{
-    [self updatePointsWithDegree:_degree];
 }
 
 - (void)updateLayer
 {
-    self.gradientLayer.colors = [NSArray arrayWithObjects:(id)_gradient.startColor.CGColor, (id)_gradient.endColor.CGColor, nil];
-    [self resetPoints];
     
+    DrawColor *midColor = [DrawColor midColorWithStartColor:_gradient.startColor endColor:_gradient.endColor];
+    
+    self.gradientLayer.colors = [NSArray arrayWithObjects:(id)_gradient.startColor.CGColor, (id)midColor.CGColor, (id)_gradient.endColor.CGColor, nil];
+    self.gradientLayer.locations = [NSArray arrayWithObjects:@(0), @(1 - _gradient.division), @(1), nil];
+
+    CGPoint startPoint, endPoint;
+    
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    
+    calGradientPoints(rect, _degree, &startPoint, &endPoint);
+
+    self.gradientLayer.startPoint = startPoint;
+    self.gradientLayer.endPoint = endPoint;
+
 }
 
 #define GRADIENT_LAYER_FRAME (ISIPAD ? CGRectMake(190, 8, 320, 70) : CGRectMake(82, 5, 130, 31))
@@ -94,6 +91,7 @@
     
     self.gradientLayer.frame = GRADIENT_LAYER_FRAME;
     [self.layer addSublayer:self.gradientLayer];
+//    self.gradientLayer.transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
     [self bringSubviewToFront:self.divisionButton];
     for (UIButton *button in self.subviews) {
         if ([button isKindOfClass:[UIButton class]] && button != self.divisionButton) {
@@ -140,24 +138,8 @@
     
     CGFloat division = (location.x - CGRectGetMinX(GRADIENT_LAYER_FRAME)) / CGRectGetWidth(GRADIENT_LAYER_FRAME);
     
-    CGPoint vector = CGPointVector(self.gradientLayer.startPoint, self.gradientLayer.endPoint);
-    
-    [self resetPoints];
-    
-
-    if (division > 0.5) {
-        CGPoint end = self.gradientLayer.endPoint;
-        end.x += vector.x * (division - 0.5);
-        end.y += vector.y * (division - 0.5);
-        self.gradientLayer.endPoint = end;
-    }else{
-        CGPoint start = self.gradientLayer.startPoint;
-        start.x += vector.x * (division - 0.5);
-        start.y += vector.y * (division - 0.5);
-        self.gradientLayer.startPoint = start;
-        
-    }
     self.gradient.division = division;
+    [self updateLayer];
     [self callBack];
 
 }
@@ -263,7 +245,7 @@
         _gradient.endColor = color;
         self.rightColorButton.backgroundColor = color.color;
     }
-    _gradientLayer.colors = [NSArray arrayWithObjects:(id)_gradient.startColor.CGColor, (id)_gradient.endColor.CGColor, nil];
+    [self updateLayer];
     [self callBack];
 }
 
@@ -282,13 +264,15 @@
 - (void)updateDegreeWithValue:(CGFloat)value slider:(DrawSlider *)slider
 {
     _degree = value;
-    [self updatePointsWithDegree:_degree];
+    _gradient.degree = value;
+    [self updateLayer];
     UILabel *label = (id)slider.contentView;
     
     NSString *str = [NSString stringWithFormat:@"%.0f°",value];
     [label setText:str];
     
     [self.degreeButton setTitle:[@((int)value) stringValue] forState:UIControlStateNormal];
+    [self callBack];
 }
 
 - (void)drawSlider:(DrawSlider *)drawSlider didValueChange:(CGFloat)value

@@ -139,7 +139,7 @@
     memcpy(component+4, c2, sizeof(CGFloat) * 4);
     memcpy(component+8, c3, sizeof(CGFloat) * 4);
     
-    CGFloat locations[] = {0, _division, 1};
+    CGFloat locations[] = {0, 1-_division, 1};
     
     CGGradientRef gradient = CGGradientCreateWithColorComponents(space, component, locations, COLOR_COUNT+1);
     CGColorSpaceRelease(space);
