@@ -42,4 +42,5 @@
          feedScene:(NSObject<ShowFeedSceneProtocol>*)feedScene;
 
 @property (nonatomic, retain) NSObject<ShowFeedSceneProtocol>* feedScene;
+
 @end

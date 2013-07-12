@@ -771,8 +771,10 @@ enum{
     [self updateTitle];
     [self.feedScene initNavitgatorRightBtn:self.navigatorRightButton];
     
-
-    [self showOpusImageBrower];
+    if (_useItemScene.sceneType != UseSceneTypeOfflineGuess) {
+        [self showOpusImageBrower];
+    }
+    
     [[FeedService defaultService] getFeedByFeedId:_feed.feedId
                                          delegate:self];
 }
