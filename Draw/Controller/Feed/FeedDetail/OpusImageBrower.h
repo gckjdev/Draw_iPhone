@@ -10,4 +10,10 @@
 
 @interface OpusImageBrower : UIView
 
+@property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
+
++ (id)createWithThumbImageUrl:(NSString *)thumbImageUrl
+                     imageUrl:(NSString *)imageUrl;
+- (void)showInView:(UIView *)view;
+
 @end
