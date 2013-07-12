@@ -342,11 +342,11 @@
 								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="567525013">
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">18</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="879459870">
+								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">18</double>
 									<int key="NSfFlags">16</int>
@@ -515,7 +515,7 @@
 							<object class="IBUILabel" id="527403676">
 								<reference key="NSNextResponder" ref="338718009"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{49, 191}, {185, 21}}</string>
+								<string key="NSFrame">{{49, 195}, {185, 21}}</string>
 								<reference key="NSSuperview" ref="338718009"/>
 								<reference key="NSNextKeyView" ref="600270930"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -533,8 +533,15 @@
 								</object>
 								<string key="IBUIShadowOffset">{0, 1}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="567525013"/>
-								<reference key="IBUIFont" ref="879459870"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">1</int>
+									<double key="pointSize">15</double>
+								</object>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">15</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="600270930">
@@ -561,8 +568,15 @@
 								<reference key="IBUIShadowColor" ref="941368818"/>
 								<string key="IBUIShadowOffset">{0, 1}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<reference key="IBUIFontDescription" ref="452063240"/>
-								<reference key="IBUIFont" ref="23059890"/>
+								<object class="IBUIFontDescription" key="IBUIFontDescription">
+									<int key="type">1</int>
+									<double key="pointSize">11</double>
+								</object>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">11</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
@@ -678,6 +692,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{228, 402}, {58, 58}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1431,24 +1446,24 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="add_time@2x.png">{16, 16}</string>
-			<string key="desc@2x.png">{16, 16}</string>
-			<string key="holder@2x.png">{16, 16}</string>
-			<string key="image@2x.png">{16, 16}</string>
-			<string key="lyric@2x.png">{16, 16}</string>
-			<string key="mic@2x.png">{16, 16}</string>
-			<string key="pause@2x.png">{16, 16}</string>
-			<string key="play@2x.png">{16, 16}</string>
-			<string key="record@2x.png">{16, 16}</string>
-			<string key="rerecord@2x.png">{16, 16}</string>
-			<string key="review@2x.png">{16, 16}</string>
-			<string key="save@2x.png">{16, 16}</string>
-			<string key="shadow@2x.png">{16, 16}</string>
-			<string key="sing_back@2x.png">{16, 16}</string>
-			<string key="sing_bg@2x.jpg">{16, 16}</string>
-			<string key="submit_sing@2x.png">{16, 16}</string>
-			<string key="tag@2x.png">{16, 16}</string>
-			<string key="up@2x.png">{16, 16}</string>
+			<string key="add_time@2x.png">{117, 117}</string>
+			<string key="desc@2x.png">{63, 63}</string>
+			<string key="holder@2x.png">{550, 81}</string>
+			<string key="image@2x.png">{63, 63}</string>
+			<string key="lyric@2x.png">{626, 637}</string>
+			<string key="mic@2x.png">{186, 220}</string>
+			<string key="pause@2x.png">{28, 27}</string>
+			<string key="play@2x.png">{28, 27}</string>
+			<string key="record@2x.png">{186, 220}</string>
+			<string key="rerecord@2x.png">{117, 117}</string>
+			<string key="review@2x.png">{60, 60}</string>
+			<string key="save@2x.png">{117, 117}</string>
+			<string key="shadow@2x.png">{626, 637}</string>
+			<string key="sing_back@2x.png">{73, 69}</string>
+			<string key="sing_bg@2x.jpg">{640, 960}</string>
+			<string key="submit_sing@2x.png">{117, 117}</string>
+			<string key="tag@2x.png">{87, 94}</string>
+			<string key="up@2x.png">{640, 90}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
