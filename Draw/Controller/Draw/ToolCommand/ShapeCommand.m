@@ -76,7 +76,7 @@
 {
     UIButton *button = (UIButton *)self.control;
     UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:_currentType];
-    UIColor *color = OPAQUE_COLOR(62, 43, 23);
+    UIColor *color = [UIColor whiteColor];
     UIImage *image = nil;
     if (stroke || _currentType == ShapeTypeBeeline) {
         image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
