@@ -12,4 +12,6 @@
 
 + (UserDeviceService*)defaultService;
 
+- (void)uploadUserDeviceInfo:(BOOL)forceUpload;
+
 @end
