@@ -136,6 +136,8 @@
 #define METHOD_RECOVERY_OPUS @"constructIndex"
 
 #define METHOD_GUESS_OPUS @"guessOpus"
+#define METHOD_GET_OPUS @"getOpus"
+
 
 //contest
 #define METHOD_GET_CONTEST_OPUS_LIST @"gcol"

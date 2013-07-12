@@ -59,53 +59,53 @@
     return SING_APP_ID;
 }
 
-- (NSString*)sinaAppKey{
-    return @"xxxxx";
-}
-
-- (NSString*)sinaAppSecret{
-    return @"xxxxx";
-}
-
-- (NSString*)sinaAppRedirectURI{
-    return @"xxxxx";
-}
-
-- (NSString*)sinaWeiboId
-{
-    return @"xxxxx";
-
-}
-
-- (NSString*)qqAppKey
-{
-    return @"xxxxx";
-}
-
-- (NSString*)qqAppSecret
-{
-    return @"xxxxx";
-}
-
-- (NSString*)qqAppRedirectURI
-{
-    return @"xxxxx";
-}
-
-- (NSString*)qqWeiboId
-{
-    return @"xxxxx";
-}
-
-- (NSString*)facebookAppKey
-{
-    return @"xxxxx";
-}
-
-- (NSString*)facebookAppSecret
-{
-    return @"xxxxx";
-}
+//- (NSString*)sinaAppKey{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)sinaAppSecret{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)sinaAppRedirectURI{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)sinaWeiboId
+//{
+//    return @"xxxxx";
+//
+//}
+//
+//- (NSString*)qqAppKey
+//{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)qqAppSecret
+//{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)qqAppRedirectURI
+//{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)qqWeiboId
+//{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)facebookAppKey
+//{
+//    return @"xxxxx";
+//}
+//
+//- (NSString*)facebookAppSecret
+//{
+//    return @"xxxxx";
+//}
 
 - (NSString*)lmwallId
 {

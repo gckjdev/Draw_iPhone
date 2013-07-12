@@ -106,16 +106,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
                                                                              progressDelegate:progressDelegate];
 
         
-        
+        int resultCode = output.resultCode;
         PBOpus *pbOpus = nil;
-        if (output.resultCode == ERROR_SUCCESS){
+        
+        if (resultCode == ERROR_SUCCESS){
+            resultCode = output.pbResponse.resultCode;
             pbOpus = output.pbResponse.opus;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
 
             Opus* newOpus = nil;
-            if (output.resultCode == ERROR_SUCCESS && pbOpus != nil){
+            if (resultCode == ERROR_SUCCESS && pbOpus != nil){
                 
                 // save opus as normal opus locally
                 newOpus = [Opus opusWithPBOpus:pbOpus storeType:PBOpusStoreTypeSubmitOpus];
@@ -126,7 +128,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {
-                [delegate didSubmitOpus:output.resultCode opus:(newOpus != nil) ? newOpus : draftOpus];
+                [delegate didSubmitOpus:resultCode opus:(newOpus != nil) ? newOpus : draftOpus];
             }
         });
     });
@@ -187,6 +189,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 - (void)getOpusWithOpusId:(NSString *)opusId
                  delegate:(id<OpusServiceDelegate>)delegate{
     
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
+                               PARA_APPID : [ConfigManager appId],
+                               PARA_OPUS_ID : opusId
+                               };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_OPUS parameters:para];
+        int resultCode = output.resultCode;
+        PBOpus *pbOpus = nil;
+        
+        if (resultCode == ERROR_SUCCESS){
+            resultCode = output.pbResponse.resultCode;
+            pbOpus = output.pbResponse.opus;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            Opus* opus = nil;
+            if (resultCode == ERROR_SUCCESS && pbOpus != nil){
+                opus = [Opus opusWithPBOpus:pbOpus];
+            }
+            
+            if ([delegate respondsToSelector:@selector(didGetOpus:opus:)]) {
+                [delegate didGetOpus:resultCode opus:opus];
+            }
+        });
+    });
 }
 
 @end

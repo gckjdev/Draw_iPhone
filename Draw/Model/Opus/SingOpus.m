@@ -11,6 +11,8 @@
 #import "FileUtil.h"
 #import "MFMailComposeViewController+ShareEmailSender.h"
 #import "CommonMessageCenter.h"
+#import "ConfigManager.h"
+#import "GameSNSService.h"
 
 @interface SingOpus () <MFMailComposeViewControllerDelegate>
 
@@ -179,6 +181,17 @@ enum {
 //        [self reportActionToServer:DB_FIELD_ACTION_SHARE_EMAIL];
     }
     
+}
+
+
+- (NSString *)shareTextWithSNSType:(int)type{
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+    
+    PBOpus *pbOpus = self.pbOpus;
+    
+    NSString *text = [NSString stringWithFormat:NSLS(@"kShareMySingOpus"), snsOfficialNick, pbOpus.name, pbOpus.dataUrl, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+    
+    return text;
 }
 
 @end

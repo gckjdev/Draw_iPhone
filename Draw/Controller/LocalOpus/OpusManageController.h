@@ -24,8 +24,6 @@ typedef enum {
     
 }
 
-
-
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;

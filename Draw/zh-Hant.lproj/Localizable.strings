@@ -1814,8 +1814,7 @@
 "kSingContest" = "比賽";
 "kInputSingName" = "輸入歌曲名稱";
 "kSingNameCannotBeBlankStr" = "歌曲名稱不能為空";
-
-
+"kShareMySingOpus" = "看看%@唱的[%@] %@ #%@# %@ ";
 
 /*********************你唱我猜國際化字符串結束 ************************/
 

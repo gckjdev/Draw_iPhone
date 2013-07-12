@@ -154,6 +154,7 @@ typedef enum {
 BOOL PBOpusTypeIsValidValue(PBOpusType value);
 
 typedef enum {
+  PBOpusStoreTypeNormalOpus = 0,
   PBOpusStoreTypeDraftOpus = 1,
   PBOpusStoreTypeSubmitOpus = 2,
   PBOpusStoreTypeSavedOpus = 3,

@@ -286,7 +286,6 @@ typedef enum {
     }
 }
 
-
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeNone];
@@ -317,8 +316,6 @@ typedef enum {
         [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
         self.titleLabel.text = NSLS(@"kShareTitle");
     }
-
-    
 }
 
 - (void)viewDidUnload
@@ -330,9 +327,6 @@ typedef enum {
     [super viewDidUnload];
 
 }
-
-
-
 
 - (void)viewDidAppear:(BOOL)animated
 {

@@ -17,6 +17,7 @@
 #import "UIButton+WebCache.h"
 #import "UserManager.h"
 #import "UITextView+WebCache.h"
+#import "SingImageManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -184,8 +185,11 @@ enum{
     
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
     
+    [_opusImageButton.layer setMasksToBounds:YES];
+    [_opusImageButton.layer setCornerRadius:10.0];
+    
     NSURL *url = [NSURL URLWithString:image];
-    [_opusImageButton setImageWithURL:url placeholderImage:nil];
+    [_opusImageButton setImageWithURL:url placeholderImage:[[SingImageManager defaultManager] placeholderImage]];
     
     if (_newOpus) {
         [self prepareToRecord];
