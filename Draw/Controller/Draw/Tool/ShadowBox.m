@@ -479,6 +479,7 @@ SLIDER.tag = TAG;\
 }
 
 - (void)dealloc {
+    PPDebug(@"<ShadowBox> dealloc");
     PPRelease(_degreeLabel);
     PPRelease(_distanceLabel);
     PPRelease(_blurLabel);

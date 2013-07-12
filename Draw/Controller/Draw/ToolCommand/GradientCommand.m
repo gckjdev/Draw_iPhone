@@ -62,6 +62,10 @@
     self.gradientSettingView.center = center;
     self.gradientSettingView.delegate = self;
     [self.toolPanel addSubview:self.gradientSettingView];
+    self.gradientSettingView.alpha = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.gradientSettingView.alpha = 1;
+    }];
     [self.toolPanel hideColorPanel:YES];
     self.showing = YES;
     
@@ -70,8 +74,16 @@
 {
     self.showing = NO;
     [self.gradientSettingView clear];
-    [self.gradientSettingView removeFromSuperview];
-    self.gradientSettingView = nil;
+    
+    self.gradientSettingView.alpha = 1;
+    [UIView animateWithDuration:0.5 animations:^{
+    self.gradientSettingView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.gradientSettingView removeFromSuperview];
+        self.gradientSettingView = nil;
+    }];
+    
+    
     [self.toolPanel hideColorPanel:NO];
     [self.toolHandler confirmGradient:self.lastGradient];
 }
