@@ -27,6 +27,9 @@
 
 - (void)showPopTipView
 {
+    
+    
+    
     //create an gradient setting view and add to tool panel
     
     CGRect rect = self.toolHandler.drawView.bounds;
@@ -88,11 +91,26 @@
     [self.toolHandler confirmGradient:self.lastGradient];
 }
 
+
+
+
 - (BOOL)execute
 {
     if ([super execute]) {
-        //TODO add an gradient action to the draw view.
-        [self showPopTipView];
+        DrawAction *lastAction = [self.toolHandler.drawView lastAction];
+        if (lastAction && !self.toolHandler.drawView.currentClip) {
+            [[CommonDialog createDialogWithTitle:NSLS(@"kUseGradientTitle")
+                                         message:NSLS(@"kUseGradientMessage")
+                                           style:CommonDialogStyleDoubleButton
+                                        delegate:nil
+                                    clickOkBlock:^{
+                                        [self showPopTipView];
+                                    } clickCancelBlock:NULL]
+             showInView:[self.control theTopView]];
+            
+        }else{
+            [self showPopTipView];
+        }
 
         return YES;
     }
