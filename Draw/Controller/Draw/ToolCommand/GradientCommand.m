@@ -27,6 +27,9 @@
 
 - (void)showPopTipView
 {
+    
+    
+    
     //create an gradient setting view and add to tool panel
     
     CGRect rect = self.toolHandler.drawView.bounds;
@@ -62,6 +65,10 @@
     self.gradientSettingView.center = center;
     self.gradientSettingView.delegate = self;
     [self.toolPanel addSubview:self.gradientSettingView];
+    self.gradientSettingView.alpha = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.gradientSettingView.alpha = 1;
+    }];
     [self.toolPanel hideColorPanel:YES];
     self.showing = YES;
     
@@ -70,17 +77,40 @@
 {
     self.showing = NO;
     [self.gradientSettingView clear];
-    [self.gradientSettingView removeFromSuperview];
-    self.gradientSettingView = nil;
+    
+    self.gradientSettingView.alpha = 1;
+    [UIView animateWithDuration:0.5 animations:^{
+    self.gradientSettingView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.gradientSettingView removeFromSuperview];
+        self.gradientSettingView = nil;
+    }];
+    
+    
     [self.toolPanel hideColorPanel:NO];
     [self.toolHandler confirmGradient:self.lastGradient];
 }
 
+
+
+
 - (BOOL)execute
 {
     if ([super execute]) {
-        //TODO add an gradient action to the draw view.
-        [self showPopTipView];
+        DrawAction *lastAction = [self.toolHandler.drawView lastAction];
+        if (lastAction && !self.toolHandler.drawView.currentClip) {
+            [[CommonDialog createDialogWithTitle:NSLS(@"kUseGradientTitle")
+                                         message:NSLS(@"kUseGradientMessage")
+                                           style:CommonDialogStyleDoubleButton
+                                        delegate:nil
+                                    clickOkBlock:^{
+                                        [self showPopTipView];
+                                    } clickCancelBlock:NULL]
+             showInView:[self.control theTopView]];
+            
+        }else{
+            [self showPopTipView];
+        }
 
         return YES;
     }

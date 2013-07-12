@@ -98,14 +98,15 @@
     if (contentView) {
         _showing = YES;
         self.popTipView = [[[CMPopTipView alloc] initWithCustomView:contentView] autorelease];
-        [self.popTipView presentPointingAtView:self.control inView:[self.control theTopView] animated:NO];
+        self.popTipView.delegate = self;
+        [self.popTipView presentPointingAtView:self.control inView:[self.control theTopView] animated:YES];
         [self updatePopTipView:self.popTipView];
     }
 }
 - (void)hidePopTipView
 {
     _showing = NO;
-    [self.popTipView dismissAnimated:NO];
+    [self.popTipView dismissAnimated:YES];
     self.popTipView = nil;
 }
 - (void)finish
@@ -135,7 +136,11 @@
     
 }
 
-
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    self.popTipView = nil;
+    _showing = NO;
+}
 
 @end
 

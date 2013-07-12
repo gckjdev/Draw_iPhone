@@ -902,8 +902,8 @@
 "kRecommendApps" = "精彩应用推荐";
 "kRecommend" = "荐";
 
-"kChangeBackgroundTitle" = "改变背景颜色";
-"kChangeBackgroundMessage" = "改变背景颜色将会导致之前所画的东西都消失，确定要这样做吗？";
+"kChangeBackgroundTitle" = "提示";
+"kChangeBackgroundMessage" = "使用全局填充将会导致之前的笔画都消失，是否继续？";
 
 "kBuySuccess" = "购买成功";
 
@@ -1810,6 +1810,9 @@
 "kLeftBottom" = "左下";
 "kRightBottom" = "右下";
 "kPolygonJoined" = "多边形连接成功！";
+
+"kUseGradientTitle" = "提示";
+"kUseGradientMessage" = "使用全局渐变将会导致之前的笔画都消失，是否继续？";
 
 /*********************小吉画画国际化字符串结束 ************************/
 

@@ -892,7 +892,7 @@
 "kRecommendApps" = "App Recommend";
 "kRecommend" = "Feature";
 
-"kChangeBackgroundTitle" = "Change Background";
+"kChangeBackgroundTitle" = "Warning";
 "kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";
 
 "kBuySuccess" = "Buy item successfully!";
@@ -1800,6 +1800,8 @@
 "kLeftBottom" = "LB";
 "kRightBottom" = "RB";
 "kPolygonJoined" = "Polygon joined!";
+"kUseGradientTitle" = "Warning";
+"kUseGradientTitle" = "Use gradient, the paints will be lost. Continue?";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
