@@ -780,7 +780,7 @@ enum{
 - (void)showOpusImageBrower{
     if (_brower == nil) {
 //        _brower = [[OpusImageBrower createWithThumbImageUrl:_feed.thumbURL.absoluteString imageUrl:_feed.drawImageUrl] retain];
-        _brower = [[OpusImageBrower createWithThumbImageUrl:nil imageUrl:_feed.drawImageUrl] retain];
+        _brower = [[OpusImageBrower createWithThumbImageUrl:_feed.thumbURL.absoluteString imageUrl:_feed.largeImageURL.absoluteString] retain];
 
     }
     
