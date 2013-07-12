@@ -148,6 +148,7 @@
 
 
 - (void)dealloc {
+    PPDebug(@"<GradientSettingView> dealloc");
     PPRelease(_degreeButton);
     PPRelease(_leftColorButton);
     PPRelease(_rightColorButton);

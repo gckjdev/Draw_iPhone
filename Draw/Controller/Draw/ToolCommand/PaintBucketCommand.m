@@ -27,7 +27,7 @@
 - (BOOL)execute
 {
     DrawAction *lastDrawAction = [self.toolHandler.drawView lastAction];
-    if (lastDrawAction && ![lastDrawAction isKindOfClass:[ChangeBackAction class]]) {
+    if (lastDrawAction && ![lastDrawAction isKindOfClass:[ChangeBackAction class]] && !self.toolHandler.drawView.currentClip) {
         [[CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
                                       style:CommonDialogStyleDoubleButton
                                    delegate:nil
@@ -35,7 +35,6 @@
             [self changeBG];
         } clickCancelBlock:NULL]
          showInView:[self.control theTopView]];
-    
         
     }else{
         [self changeBG];        

@@ -15,6 +15,12 @@
     
 }
 
+- (void)dealloc
+{
+    PPDebug(@"<SelectorBox> dealloc");
+    [super dealloc];
+}
+
 + (id)selectorBoxWithDelegate:(id<SelectorBoxDelegate>)delegate
 {
     NSUInteger index = ISIPAD ? 1 : 0;
