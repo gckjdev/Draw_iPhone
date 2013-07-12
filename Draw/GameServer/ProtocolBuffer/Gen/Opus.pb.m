@@ -65,6 +65,7 @@ BOOL PBOpusTypeIsValidValue(PBOpusType value) {
 }
 BOOL PBOpusStoreTypeIsValidValue(PBOpusStoreType value) {
   switch (value) {
+    case PBOpusStoreTypeNormalOpus:
     case PBOpusStoreTypeDraftOpus:
     case PBOpusStoreTypeSubmitOpus:
     case PBOpusStoreTypeSavedOpus:
@@ -1077,7 +1078,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
     self.localImageUrl = @"";
     self.localThumbImageUrl = @"";
     self.isRecovery = NO;
-    self.storeType = PBOpusStoreTypeDraftOpus;
+    self.storeType = PBOpusStoreTypeNormalOpus;
   }
   return self;
 }
@@ -2172,7 +2173,7 @@ static PBOpus* defaultPBOpusInstance = nil;
 }
 - (PBOpus_Builder*) clearStoreType {
   result.hasStoreType = NO;
-  result.storeType = PBOpusStoreTypeDraftOpus;
+  result.storeType = PBOpusStoreTypeNormalOpus;
   return self;
 }
 @end

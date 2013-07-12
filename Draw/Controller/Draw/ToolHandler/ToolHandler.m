@@ -66,7 +66,7 @@
 - (void)startGradient:(Gradient *)gradient
 {
     GradientAction *action = [[GradientAction alloc] initWithGradient:gradient];
-    [self.drawView addDrawAction:action];
+//    [self.drawView addDrawAction:action];
     [self.drawView updateLastAction:action];
 //    [self.drawView drawDrawAction:action show:YES];
     PPRelease(action);
@@ -75,9 +75,9 @@
 - (void)confirmGradient:(Gradient *)gradient
 {
     GradientAction *action = (id)[self.drawView inDrawAction];
-    if ([action isKindOfClass:[GradientAction class]]) {
-        [self.drawView saveLastAction:action];
-    }
+//    if ([action isKindOfClass:[GradientAction class]]) {
+    [self.drawView saveLastAction:action];
+//    }
 }
 
 - (void)updateGradient:(Gradient *)gradient

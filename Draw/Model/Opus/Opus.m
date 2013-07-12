@@ -69,6 +69,11 @@
     return opus;
 }
 
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus{
+    return [self opusWithPBOpus:pbOpus storeType:PBOpusStoreTypeNormalOpus];
+}
+
+
 + (Opus*)opusFromPBOpus:(PBOpus *)pbOpus{
     
     Opus *opus = [[[Opus alloc] init] autorelease];
@@ -276,6 +281,11 @@
 - (void)enterEditFromController:(UIViewController *)controller
 {
     PPDebug(@"<enterEditFromController> no impletement!");
+}
+
+- (NSString *)shareTextWithSNSType:(int)type{
+    
+    return nil;
 }
 
 @end

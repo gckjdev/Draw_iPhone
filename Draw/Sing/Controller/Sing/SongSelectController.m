@@ -44,6 +44,7 @@
 
     [[SongService defaultService] setDelegate:self];
     [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
+    [self showActivityWithText:NSLS(@"kLoading")];
 //    self.songs = [[SongManager defaultManager] randomSongsWithCount:CELL_COUNT];
 }
 
@@ -80,6 +81,7 @@
 - (IBAction)clickChangeSongsButton:(id)sender {
     
     [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 - (IBAction)clickSelfDefineButton:(id)sender {
@@ -119,10 +121,13 @@
     PPDebug(@"click tag: %@", tag);
     self.tag = tag;
     [[SongService defaultService] randomSongsWithTag:_tag count:CELL_COUNT];
+    
+    [self showActivityWithText:NSLS(@"kLoading")];
 }
 
 - (void)didGetSongs:(int)resultCode songs:(NSArray *)songs{
     
+    [self hideActivity];
     if (resultCode == 0) {
         [self hideTipsOnTableView];
         self.songs = songs;

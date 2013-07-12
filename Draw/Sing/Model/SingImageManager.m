@@ -8,6 +8,7 @@
 
 #import "SingImageManager.h"
 #import "SynthesizeSingleton.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SingImageManager
 
@@ -45,6 +46,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SingImageManager);
 - (UIImage*)badgeImage
 {
     return [UIImage imageNamed:@"sing_home_badge.png"];
+}
+
+- (UIImage*)placeholderImage{
+    return [UIImage imageNamed:@"place_holder_image@2x.jpg"];
 }
 
 @end
