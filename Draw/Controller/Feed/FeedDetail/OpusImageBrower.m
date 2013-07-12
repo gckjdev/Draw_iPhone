@@ -7,25 +7,41 @@
 //
 
 #import "OpusImageBrower.h"
+#import "UIImageView+Extend.h"
+#import "AutoCreateViewByXib.h"
 
 @implementation OpusImageBrower
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+AUTO_CREATE_VIEW_BY_XIB(OpusImageBrower);
+
+- (void)dealloc {
+    [_opusImageView release];
+    [super dealloc];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+
++ (id)createWithThumbImageUrl:(NSString *)thumbImageUrl
+                     imageUrl:(NSString *)imageUrl{
+    
+    OpusImageBrower *brower = [self createView];
+    
+    NSURL *url = [NSURL URLWithString:imageUrl];
+    NSURL *thumbUrl = [NSURL URLWithString:thumbImageUrl];
+    [brower.opusImageView setImageWithUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
+    
+    return brower;
 }
-*/
+
+- (void)showInView:(UIView *)view{
+    
+    self.frame = view.bounds;
+    [view addSubview:self];
+}
+
+
+- (IBAction)clickBgButton:(id)sender {
+    
+    [self removeFromSuperview];
+}
 
 @end

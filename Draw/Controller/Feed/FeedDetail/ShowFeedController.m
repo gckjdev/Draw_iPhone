@@ -49,11 +49,13 @@
 
 #import "MWPhotoBrowser.h"
 #import "UIButton+WebCache.h"
+#import "OpusImageBrower.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
     ShareAction *_shareAction;
+    OpusImageBrower *_brower;
 }
 @property (retain, nonatomic) IBOutlet UIButton *guessButton;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
@@ -94,7 +96,7 @@ typedef enum{
 
     _feed.drawData = nil;
     _feed.pbDrawData = nil;
-    
+    [_brower release];
     
     PPRelease(_feed);
     PPRelease(_drawCell);
@@ -768,11 +770,21 @@ enum{
     [self updateActionButtons];
     [self updateTitle];
     [self.feedScene initNavitgatorRightBtn:self.navigatorRightButton];
-//    [self.feedScene initContentImageView:self.con withWord:<#(NSString *)#>]
+    
 
-    [self showPhotoBrower];
+    [self showOpusImageBrower];
     [[FeedService defaultService] getFeedByFeedId:_feed.feedId
                                          delegate:self];
+}
+
+- (void)showOpusImageBrower{
+    if (_brower == nil) {
+//        _brower = [[OpusImageBrower createWithThumbImageUrl:_feed.thumbURL.absoluteString imageUrl:_feed.drawImageUrl] retain];
+        _brower = [[OpusImageBrower createWithThumbImageUrl:nil imageUrl:_feed.drawImageUrl] retain];
+
+    }
+    
+    [_brower showInView:self.view];
 }
 
 - (void)viewDidUnload
