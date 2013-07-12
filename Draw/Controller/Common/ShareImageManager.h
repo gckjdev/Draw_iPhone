@@ -162,6 +162,9 @@
 - (UIImage *)drawColorBG; //draw_color_bg@2x.png
 - (UIImage *)drawToolBG;
 
+- (UIImage *)drawToolButtonBG; //draw_tool_button_bg@2x.png
+- (UIImage *)drawToolButtonSelectedBG;
+
 - (UIImage *)drawSliderLoader;
 - (UIImage *)drawSliderBG;
 - (UIImage *)drawSliderPoint;

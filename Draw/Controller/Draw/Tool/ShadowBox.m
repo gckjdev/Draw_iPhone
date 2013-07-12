@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CustomInfoView.h"
 #import "ConfigManager.h"
+#import "ShareImageManager.h"
 
 @interface ShadowBox()
 {
@@ -107,6 +108,16 @@
     }
 }
 
+- (void)updateButtonBG
+{
+    for (UIButton *button in self.subviews) {
+        if ([button isKindOfClass:[UIButton class]]) {
+            [button setBackgroundImage:[[ShareImageManager defaultManager] drawToolButtonBG] forState:UIControlStateNormal];
+            [button setBackgroundImage:[[ShareImageManager defaultManager]drawToolButtonSelectedBG] forState:UIControlStateSelected];
+        }
+    }
+}
+
 - (void)updateView
 {
 //    self.backgroundColor = [UIColor yellowColor];
@@ -128,6 +139,7 @@
 
     //update system shadow button
     [self updateSystemShadowButtons];
+    [self updateButtonBG];
 
 }
 
