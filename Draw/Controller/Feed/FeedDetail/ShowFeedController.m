@@ -48,7 +48,7 @@
 #import "MKBlockActionSheet.h"
 
 #import "MWPhotoBrowser.h"
-
+#import "UIButton+WebCache.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
@@ -769,6 +769,8 @@ enum{
     [self updateTitle];
     [self.feedScene initNavitgatorRightBtn:self.navigatorRightButton];
 //    [self.feedScene initContentImageView:self.con withWord:<#(NSString *)#>]
+
+    [self showPhotoBrower];
     [[FeedService defaultService] getFeedByFeedId:_feed.feedId
                                          delegate:self];
 }
@@ -854,13 +856,15 @@ enum{
             [self clickActionButton:self.guessButton];
         }else if (buttonIndex == indexOfPhoto){
             //TODO show photo
-            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-            browser.canSave = YES;
-            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-            nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            [self presentModalViewController:nc animated:YES];
-            [browser release];
-            [nc release];
+//            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+//            browser.canSave = YES;
+//            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+//            nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//            [self presentModalViewController:nc animated:YES];
+//            [browser release];
+//            [nc release];
+            
+            [self showPhotoBrower];
             
         }else if (buttonIndex == indexOfPlay){
             [self clickActionButton:self.replayButton];
@@ -872,6 +876,17 @@ enum{
     }];
     [sheet showInView:self.view];
 
+}
+
+- (void)showPhotoBrower{
+    
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.canSave = YES;
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
+    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentModalViewController:nc animated:YES];
+    [browser release];
+    [nc release];
 }
 
 
