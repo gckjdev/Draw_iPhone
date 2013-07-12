@@ -49,6 +49,9 @@
 - (void)showImage:(UIImage *)image;
 - (CGContextRef)createBitmapContext;
 
+
+- (ClipAction *)currentClip;
+
 #pragma mark -show && stroke
 - (void)show;
 - (void)cleanAllActions;

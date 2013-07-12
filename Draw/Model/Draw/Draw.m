@@ -43,7 +43,9 @@
             if (pbDrawActionC != NULL){
                 DrawAction* drawAction = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
                 [drawAction setCanvasSize:canvasSize];
-                [list addObject:drawAction];
+                if (drawAction) {
+                    [list addObject:drawAction];
+                }
             }
             
             [pool drain];

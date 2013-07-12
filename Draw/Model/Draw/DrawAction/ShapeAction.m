@@ -8,6 +8,8 @@
 
 #import "ShapeAction.h"
 #import "ShapeInfo.h"
+#import "ClipAction.h"
+
 @interface ShapeAction()
 
 
@@ -43,6 +45,7 @@
  
     CGRect returnRect;
     CGContextSaveGState(context);
+    [self.clipAction clipContext:context];
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
 
@@ -141,6 +144,10 @@
     pbDrawActionC->type = DrawActionTypeShape;
     [self.shape updatePBDrawActionC:pbDrawActionC];
     [self.shadow updatePBDrawActionC:pbDrawActionC];
+    if (self.clipAction) {
+        pbDrawActionC->has_cliptag = 1;
+        pbDrawActionC->cliptag = self.clipAction.clipTag;
+    }
     return;
     
 //    PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];

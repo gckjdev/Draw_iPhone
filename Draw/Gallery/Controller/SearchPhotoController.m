@@ -68,18 +68,34 @@
 - (void)updateKeywords
 {
     NSString* smartDataFile = ([LocaleUtils isChinese]?[GameApp keywordSmartDataCn]:[GameApp keywordSmartDataEn]);
-    self.smartData = [[[PPSmartUpdateData alloc] initWithName:smartDataFile type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:smartDataFile initDataVersion:@"1.5"] autorelease];
-    
+    self.smartData = [[[PPSmartUpdateData alloc] initWithName:smartDataFile type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:smartDataFile initDataVersion:@"1.0"] autorelease];
+    [self loadKeywordsFromSmartDataFile];
     [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
         PPDebug(@"checkUpdateAndDownload successfully");
-        [self loadKeywords];
+        [self reloadKeywords];
     } failureBlock:^(NSError *error) {
         PPDebug(@"checkUpdateAndDownload failure error=%@", [error description]);
-        [self loadKeywords];
+//        [self loadKeywords];
     }];
 }
+#define PRE_TEXT_BTN_OFFSET 120130609
+- (void)removeAllKeywords
+{
+    for (int i = 0; i < self.keywords.count
+         ; i ++) {
+        UIButton* keywordBtn = (UIButton*)[self.view viewWithTag:(PRE_TEXT_BTN_OFFSET+i)];
+        if (keywordBtn) {
+            [keywordBtn removeFromSuperview];
+        }
+    }
+}
 
-- (void)loadKeywords
+- (void)reloadKeywords
+{
+    [self removeAllKeywords];
+    [self loadKeywordsFromSmartDataFile];
+}
+- (void)loadKeywordsFromSmartDataFile
 {
     NSError* err;
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF8);
@@ -125,7 +141,7 @@
 //    return view;
 //}
 
-#define PRE_TEXT_BTN_OFFSET 120130609
+
 #define KEYWORD_BTN_PER_LINE    3
 #define ORG_POINT (ISIPAD?CGPointMake(79, 338):CGPointMake(33, 162))
 #define KEYWORD_BTN_SIZE    (ISIPAD?CGSizeMake(175, 71):CGSizeMake(73, 34))

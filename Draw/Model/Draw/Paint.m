@@ -156,6 +156,14 @@
     return self.width > (BACK_GROUND_WIDTH/10);
 }
 
+- (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect
+{
+    PointNode *pointNode = [self.pointNodeList lastObject];
+    if (!CGPointEqualToPoint(point, pointNode.point)) {
+        pointNode.point = point;
+        [self constructPath];
+    }
+}
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
 

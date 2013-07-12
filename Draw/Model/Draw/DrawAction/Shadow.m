@@ -211,10 +211,10 @@ ShadowManager *_staticShadowManager = nil;
         
         //Load System data
         _systemShadowList = [[NSArray arrayWithObjects:
-                              SHADOW([DrawColor blackColor], 2, 2, 1),
-                              SHADOW([DrawColor greenColor], 6, 6, 2),
-                              SHADOW([DrawColor blueColor], 2, -5, 3),
-                              SHADOW([DrawColor orangeColor], -3, 2, 4),
+                              SHADOW([DrawColor grayColor], -5, -5, 2),
+                              SHADOW([DrawColor grayColor], 5, -5, 2),
+                              SHADOW([DrawColor grayColor], -5, 5, 2),
+                              SHADOW([DrawColor grayColor], 5, 5, 2),
                               nil] retain];
     }
     return self;

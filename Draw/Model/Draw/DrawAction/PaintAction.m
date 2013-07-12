@@ -8,6 +8,7 @@
 
 #import "PaintAction.h"
 #import "PointNode.h"
+#import "ClipAction.h"
 
 @interface PaintAction()
 
@@ -48,18 +49,20 @@
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
 {
+    CGRect rect1;
+    CGContextSaveGState(context);
+    [self.clipAction clipContext:context];
     if (self.shadow) {
-        CGContextSaveGState(context);
         CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
-        CGRect rect1 = [self.paint drawInContext:context inRect:rect];
+        rect1 = [self.paint drawInContext:context inRect:rect];
         CGContextEndTransparencyLayer(context);
-        CGContextRestoreGState(context);
         [self.shadow spanRect:&rect1];
-        return rect1;
     }else{
-        return [self.paint drawInContext:context inRect:rect];
+        rect1 = [self.paint drawInContext:context inRect:rect];
     }
+    CGContextRestoreGState(context);    
+    return rect1;
 }
 
 - (CGRect)redrawRectInRect:(CGRect)rect
@@ -270,6 +273,10 @@
     pbDrawActionC->type = DrawActionTypePaint;
     [self.paint updatePBDrawActionC:pbDrawActionC];
     [self.shadow updatePBDrawActionC:pbDrawActionC];
+    if (self.clipAction) {
+        pbDrawActionC->has_cliptag = 1;
+        pbDrawActionC->cliptag = self.clipAction.clipTag;
+    }
     return;
 }
 

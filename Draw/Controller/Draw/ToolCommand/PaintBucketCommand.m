@@ -22,6 +22,8 @@
         [self.toolHandler enterDrawMode];
     }
 }
+
+
 - (BOOL)execute
 {
     DrawAction *lastDrawAction = [self.toolHandler.drawView lastAction];

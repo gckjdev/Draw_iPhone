@@ -291,6 +291,16 @@
     return [DrawColor colorWithRed:R green:G blue:B alpha:1];
 }
 
++ (DrawColor *)midColorWithStartColor:(DrawColor *)startColor endColor:(DrawColor *)endColor
+{
+    CGFloat red =  (endColor.red + startColor.red) / 2;
+    CGFloat green = (endColor.green + startColor.green) / 2;
+    CGFloat blue = (endColor.blue + startColor.blue) / 2;
+    CGFloat alpha = (endColor.alpha + startColor.alpha) / 2;
+    DrawColor *midColor = [DrawColor colorWithRed:red green:green blue:blue alpha:alpha];
+    
+    return midColor;
 
+}
 
 @end

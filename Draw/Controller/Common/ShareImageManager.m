@@ -1161,5 +1161,14 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"common_dialog_head_bg@2x.png"];
 }
 
+- (UIImage *)drawToolUpPanelLeftArrowBg
+{
+    return [UIImage imageNamed:@"draw_up_panel_bg_left_arrow@2x.png"];
+}
+- (UIImage *)drawToolUpPanelRightArrowBg
+{
+    return [UIImage imageNamed:@"draw_up_panel_bg_right_arrow@2x.png"];
+}
+
 @end
 

@@ -12,6 +12,8 @@
 #import "OnlineDrawViewController.h"
 #import "DrawView.h"
 #import "PPViewController.h"
+#import "GradientAction.h"
+#import "ClipAction.h"
 
 typedef enum{
     ToolEventRedo = 1,
@@ -22,6 +24,8 @@ typedef enum{
 @class MyFriend;
 @class CanvasRect;
 @class PBUserPhoto;
+@class DrawToolUpPanel;
+
 
 @protocol ToolHandlerDelegate <NSObject>
 
@@ -36,6 +40,7 @@ didHandledToolEvent:(ToolEvent)toolEvent
 
 @property(nonatomic, assign)DrawView *drawView;
 @property(nonatomic, assign)DrawToolPanel *drawToolPanel;
+@property(nonatomic, assign)DrawToolUpPanel *drawToolUpPanel;
 @property(nonatomic, assign)PPViewController *controller;
 
 
@@ -64,19 +69,26 @@ didHandledToolEvent:(ToolEvent)toolEvent
 - (void)changeCopyPaint:(UIImage*)aPhoto;
 - (void)changeShadow:(Shadow *)shadow;
 
+//gradient
+- (void)startGradient:(Gradient *)gradient;
+- (void)updateGradient:(Gradient *)gradient;
+- (void)confirmGradient:(Gradient *)gradient;
+//- (void)cancelGradient;
+
 - (void)usePaintBucket;
 - (void)enterDrawMode;
 - (void)enterStrawMode;
 - (void)enterShapeMode;
 - (void)enterEraserMode;
+- (void)enterClipModeWithClipType:(ClipType)clipType;
+- (void)exitFromClipMode;
+
 - (void)useGid:(BOOL)flag;
 - (void)handleRedo;
 - (void)handleUndo;
 - (void)handleChat;
 - (void)handleShowCopyPaint;
 
-//for test
-- (void)addGradient;
 
 //only use for little gee
 - (void)changeDrawWord:(NSString*)wordText;

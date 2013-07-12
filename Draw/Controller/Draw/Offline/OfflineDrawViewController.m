@@ -913,15 +913,27 @@
 - (PBDraw *)createPBDraw
 {
     UserManager *userManager = [UserManager defaultManager];
-    PBDraw *pbDraw = [[DrawDataService defaultService]
-                      buildPBDraw:[userManager userId]
-                      nick:[userManager nickName]
-                      avatar:[userManager avatarURL]
-                      drawActionList:drawView.drawActionList
-                      drawWord:self.word
-                      language:languageType
-                      size:drawView.bounds.size
-                      isCompressed:NO];
+    NSData *data = [DrawAction buildPBDrawData:[userManager userId]
+                                          nick:[userManager nickName]
+                                        avatar:[userManager avatarURL]
+                                drawActionList:drawView.drawActionList
+                                      drawWord:self.word
+                                      language:languageType
+                                          size:drawView.bounds.size
+                                  isCompressed:NO];
+
+    PBDraw *pbDraw = [PBDraw parseFromData:data];
+    data = nil;
+    
+//    PBDraw *pbDraw = [[DrawDataService defaultService]
+//                      buildPBDraw:[userManager userId]
+//                      nick:[userManager nickName]
+//                      avatar:[userManager avatarURL]
+//                      drawActionList:drawView.drawActionList
+//                      drawWord:self.word
+//                      language:languageType
+//                      size:drawView.bounds.size
+//                      isCompressed:NO];
     return pbDraw;
 }
 
@@ -1287,7 +1299,7 @@
 - (IBAction)clickUpPanel:(id)sender
 {
     if (![self.drawToolUpPanel isVisable]) {
-        [self.drawToolUpPanel appear:self title:self.word.text];
+        [self.drawToolUpPanel appear:self title:self.word.text isLeftArrow:!self.draftButton.hidden];
     } else {
         [self.drawToolUpPanel disappear];
     }

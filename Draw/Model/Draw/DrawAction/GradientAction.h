@@ -12,7 +12,8 @@
 
 @interface Gradient : NSObject
 {
-    
+    CGFloat _degree;
+//    CGRect _rect;
 }
 
 
@@ -21,18 +22,31 @@
 @property(nonatomic, retain)DrawColor *endColor;
 @property(nonatomic, assign)CGPoint startPoint;
 @property(nonatomic, assign)CGPoint endPoint;
+@property(nonatomic, assign)CGRect rect;
 
 - (CGFloat)degree;
+//- (CGRect)rect;
 
 - (id)initWithPBGradientC:(Game__PBGradient *)gradient;
 - (void)updatePBGradientC:(Game__PBGradient *)gradient;
 - (void)drawInContext:(CGContextRef)context;
 
-- (id)initWithStartPoint:(CGPoint)sp
-                endPoint:(CGPoint)ep
-              startColor:(DrawColor *)sc
-                endColor:(DrawColor *)ec
-                division:(CGFloat)division;
+//- (id)initWithStartPoint:(CGPoint)sp
+//                endPoint:(CGPoint)ep
+//              startColor:(DrawColor *)sc
+//                endColor:(DrawColor *)ec
+//                division:(CGFloat)division;
+
+- (void)setDegree:(CGFloat)degree;
+
+- (id)initWithDegree:(CGFloat)degree
+          startColor:(DrawColor *)sc
+            endColor:(DrawColor *)ec
+            division:(CGFloat)division
+              inRect:(CGRect)rect;
+
+- (id)initWithGradient:(Gradient *)gradient;
+
 
 @end
 

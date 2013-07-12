@@ -14,12 +14,11 @@
 #import "ShapeInfo.h"
 
 
+
 @interface ClipAction()
 {
     
 }
-@property(nonatomic, retain)Paint *paint;
-@property(nonatomic, retain)ShapeInfo *shape;
 
 @end
 
@@ -36,17 +35,15 @@
 - (void)updatePaintWithDrawActionC:(Game__PBDrawAction *)action
 {
     NSMutableArray *pointList = nil;
-    NSInteger count =  action->n_points;
+    NSInteger count =  action->n_pointsx;
     
     if (count > 0) {
         pointList = [NSMutableArray arrayWithCapacity:count];
         for (NSInteger i = 0; i < count; ++ i) {
-            Game__PBPoint* point = action->points[i];
-            if (point != NULL){
-                PointNode *node = [[PointNode alloc] initPointWithX:point->x Y:point->y];
-                [pointList addObject:node];
-                [node release];
-            }
+            PointNode *node = [[PointNode alloc] initPointWithX:action->pointsx[i]
+                                                              Y:action->pointsy[i]];
+            [pointList addObject:node];
+            [node release];
         }
     }
     ItemType penType;
@@ -79,8 +76,6 @@
 
 - (void)commonInit
 {
-    _hasUnClipContext = YES;
-    _hasClipContext = NO;
     self.type = DrawActionTypeClip;
 }
 
@@ -103,7 +98,7 @@
         switch (self.clipType) {
             case ClipTypeEllipse:
             case ClipTypeRectangle:
-
+                [self updateShapeWithDrawActionC:action];
                 break;
             case ClipTypePolygon:
             case ClipTypeSmoothPath:
@@ -148,6 +143,8 @@
     return self;
 }
 
+
+
 + (id)clipActionWithShape:(ShapeInfo *)shape
 {
     return [[[ClipAction alloc] initWithShape:shape] autorelease];
@@ -157,23 +154,54 @@
     return [[[ClipAction alloc] initWithPaint:paint] autorelease];
 }
 
+- (CGPathRef)path
+{
+    if (self.paint) {
+        return self.paint.path;
+    }else if(self.shape){
+        CGRect rect = CGRectWithPoints(self.shape.startPoint, self.shape.endPoint);
+        if (self.clipType == ClipTypeRectangle) {
+            return [UIBezierPath bezierPathWithRect:rect].CGPath;
+        }else if(self.clipType == ClipTypeEllipse){
+            return [UIBezierPath bezierPathWithOvalInRect:rect].CGPath;
+        }
+    }
+    return NULL;
+
+}
+
 
 - (CGRect)drawInContext:(CGContextRef)context inRect:(CGRect)rect
+{
+    [super drawInContext:context inRect:rect];
+    return rect;
+}
+
+- (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGContextSaveGState(context);
     CGRect retRrect;
     
-    static CGFloat lengths[] = {3,3};
+    static CGFloat lengths[] = {5,5};
     
     CGContextSetLineDash(context, 0, lengths, 2);
+    CGContextSetLineWidth(context, 2);
+    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
     
     if (self.paint) {
-       retRrect = [self.paint drawInContext:context inRect:rect];
+        retRrect = [self.paint redrawRectInRect:rect];
     }else{
-        [self.shape drawInContext:context];
-        retRrect = self.shape.redrawRect;
+        retRrect = [self.shape rect];
     }
-    
+    CGPathRef path = [self path];
+    if (path != NULL) {
+        CGContextAddPath(context, path);
+        if (self.hasFinishAddPoint && self.paint) {
+            CGContextClosePath(context);
+        }
+
+        CGContextStrokePath(context);
+    }
     CGContextRestoreGState(context);
     
     return retRrect;
@@ -182,23 +210,14 @@
 
 - (void)clipContext:(CGContextRef)context
 {
-    if (_hasClipContext) {
-        return;
-    }
-    _hasClipContext = YES;
-    _hasUnClipContext = !_hasClipContext;
+    CGPathRef path = [self path];
     
-    CGPathRef path = NULL;
-    
-    if (self.paint) {
-        path = self.paint.path;
-    }else{
-        path = self.shape.path;
+    if (path) {
+        CGContextAddPath(context, path);
+        CGContextClosePath(context);
+        CGContextClip(context);        
     }
-    CGContextSaveGState(context);
-    CGContextAddPath(context, path);
-    CGContextClosePath(context);
-    CGContextClip(context);
+
 }
 
 
@@ -206,12 +225,7 @@
 
 - (void)unClipContext:(CGContextRef)context
 {
-    if (_hasUnClipContext) {
-        return;
-    }
-    _hasUnClipContext = YES;
-    _hasClipContext = !_hasUnClipContext;
-    CGContextRestoreGState(context);
+//    CGContextRestoreGState(context);
 }
 
 - (PBDrawAction *)toPBDrawAction
@@ -255,6 +269,12 @@
 }
 
 
+- (void)finishAddPoint
+{
+    [super finishAddPoint];
+    [self.paint finishAddPoint];
+}
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
     [super addPoint:point inRect:rect];
@@ -263,6 +283,62 @@
     }else if(self.shape){
         self.shape.endPoint = point;
     }
+    addPointTimes ++;
+}
+
+- (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect
+{
+    if (self.paint) {
+        [self.paint addPoint:point inRect:rect];
+    }else if(self.shape){
+        self.shape.endPoint = point;
+    }    
+}
+
+- (CGRect)redrawRectInRect:(CGRect)rect
+{
+    if (addPointTimes == 1) {
+        return rect;
+    }
+    if (self.shape) {
+        [self.shape rect];
+        return self.shape.redrawRect;
+    }else if(self.paint){
+        return [self.paint redrawRectInRect:rect];
+    }
+    return CGRectZero;
+}
+
+- (CGRect)pathRect
+{
+//    [self path];
+    if (self.paint) {
+//        if (_paint.pointCount <= 0) {
+//            return CGRectZero;
+//        }
+//        CGFloat minx = CGFLOAT_MAX;
+//        CGFloat miny = CGFLOAT_MAX;
+//      
+//        CGFloat maxx = CGFLOAT_MIN;
+//        CGFloat maxy = CGFLOAT_MIN;
+//        
+//        for (PointNode *node in _paint.pointNodeList) {
+//            minx = MIN(minx, node.point.x);
+//            maxx = MAX(maxx, node.point.x);
+//            miny = MIN(miny, node.point.y);
+//            maxy = MAX(maxy, node.point.y);
+//        }
+//        CGFloat width = maxx - minx;
+//        CGFloat height = maxy - miny;
+//        CGRect rect = CGRectMake(minx, miny, width, height);
+//        rect = CGRectUnion(rect, CGPathGetPathBoundingBox(_paint.path));
+//        return rect;
+        return CGPathGetBoundingBox(_paint.path);
+        
+    }else{
+        return CGRectWithPoints(self.shape.startPoint, self.shape.endPoint);
+    }
+    
 }
 
 @end

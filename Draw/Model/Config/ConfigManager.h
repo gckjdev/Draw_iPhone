@@ -274,4 +274,6 @@ typedef enum{
 + (int)cachedActionCount;
 + (int)minUndoActionCount;
 
++ (NSString*)getLimeiWallId;
+
 @end

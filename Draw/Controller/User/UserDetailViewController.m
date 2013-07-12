@@ -139,6 +139,9 @@
         UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:detail] autorelease];
         [viewController.navigationController pushViewController:uc animated:YES];
     }
+    else{
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCannotShowYourself") delayTime:2];
+    }
 }
 
 

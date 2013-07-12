@@ -72,7 +72,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
 
 #define TEXT_WIDTH_MAX    (([DeviceDetection isIPAD])?(473.0):(198.0))
-#define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(2000.0):(1000.0))
+#define TEXT_HEIGHT_MAX   (([DeviceDetection isIPAD])?(10000.0):(10000.0))
 #define TEXT_VERTICAL_EDGE (([DeviceDetection isIPAD])?(22.0):(15.0)) //文字和泡泡的y上的距离
 
 #define TIME_HEIGHT  (([DeviceDetection isIPAD])?(34):(17))//时间的高度

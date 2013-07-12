@@ -11,6 +11,7 @@
 #import "Offscreen.h"
 #import "DrawAction.h"
 #import "ConfigManager.h"
+#import "ClipAction.h"
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 
@@ -21,10 +22,13 @@
 
 
 @interface CacheDrawManager()
+{
+    int clipTag;
+}
 @property(nonatomic, retain)Offscreen *offscreen;
 @property(nonatomic, assign)NSInteger imageIndex; //[0, imageIndex)
 @property(nonatomic, retain)UIImage* cachedImage;
-@property(nonatomic, retain)DrawAction *inDrawAction; //show in the view context
+
 
 
 @end
@@ -99,6 +103,7 @@
     for (NSInteger i = from ; i < to; i ++) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [action drawInContext:context inRect:_rect];
+        clipTag = MAX(clipTag, action.clipTag);
     }
     self.cachedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -138,10 +143,12 @@
 //show all the action render in the layer list
 - (void)showInContext:(CGContextRef)context
 {
-//    [self.bgPhto drawAtPoint:CGPointZero];
     [self.bgPhto drawInRect:_rect];
     [_offscreen showInContext:context];
+    
+    [self.currentClip showClipInContext:context inRect:_rect];
     [_inDrawAction drawInContext:context inRect:_rect];
+    
     if (self.showGrid) {
         [self drawGridInContext:context rect:_rect];
     }
@@ -157,14 +164,23 @@
 - (CGRect)updateLastAction:(DrawAction *)action
 {
     self.inDrawAction = action;
+    
+    if ([action isKindOfClass:[ClipAction class]]) {
+        self.currentClip = (id)action;
+    }
     return [action redrawRectInRect:_rect];
-//    CGRect rect = [action redrawRectInRect:_rect];
-//    return _rect;
 }
 
 - (void)cancelLastAction
 {
+    if ([self.inDrawAction isKindOfClass:[ClipAction class]]) {
+        self.currentClip = nil;
+    }
+    if (self.inDrawAction) {
+        
+    }
     self.inDrawAction = nil;
+    
 }
 
 - (BOOL)canUndo
@@ -180,6 +196,7 @@
     for (NSInteger i = from; i < to; ++ i) {
         DrawAction *action = [_drawActionList objectAtIndex:i];
         [_offscreen drawAction:action clear:NO];
+        clipTag = MAX(clipTag, action.clipTag);        
     }
 }
 
@@ -187,6 +204,7 @@
 {
     if ([self canUndo]) {
         [_offscreen clear];
+        self.inDrawAction = nil;
         [_offscreen showImage:self.cachedImage];
         [self updateOSFromIndex:self.imageIndex toIndex:[_drawActionList count] clear:NO];
     }
@@ -201,7 +219,7 @@
             return YES;
         }
     }
-    return NO;
+    return YES;
 }
 
 
@@ -245,5 +263,21 @@
         }
     }
 }
+
+
+
+
+- (void)startClipAction:(ClipAction *)action
+{
+    if (self.currentClip != action) {
+        self.currentClip = action;
+        action.clipTag = ++clipTag;
+    }
+}
+- (void)finishCurrentClip
+{
+    self.currentClip = nil;
+}
+
 
 @end

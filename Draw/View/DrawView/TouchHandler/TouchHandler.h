@@ -19,7 +19,6 @@ typedef enum {
 }TouchState;
 
 
-
 @class DrawView;
 
 @interface TouchHandler : NSObject

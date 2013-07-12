@@ -40,19 +40,11 @@
 }
 
 
-- (void)printDrawColor:(NSTimer *)timer
-{
-//    PPDebug(@"Draw Color = %@", self.drawView.lineColor);
-}
 
 - (id)init
 {
     self = [super init];
     if (self) {
-
-#ifdef DEBUG
-        [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(printDrawColor:) userInfo:nil repeats:YES];
-#endif
         
     }
     return self;
@@ -71,6 +63,31 @@
     self.drawView.shadow = shadow;
 }
 
+- (void)startGradient:(Gradient *)gradient
+{
+    GradientAction *action = [[GradientAction alloc] initWithGradient:gradient];
+    [self.drawView addDrawAction:action];
+    [self.drawView updateLastAction:action];
+//    [self.drawView drawDrawAction:action show:YES];
+    PPRelease(action);
+}
+
+- (void)confirmGradient:(Gradient *)gradient
+{
+    GradientAction *action = (id)[self.drawView inDrawAction];
+    if ([action isKindOfClass:[GradientAction class]]) {
+        [self.drawView saveLastAction:action];
+    }
+}
+
+- (void)updateGradient:(Gradient *)gradient
+{
+    GradientAction *action = (id)[self.drawView inDrawAction];
+    if ([action isKindOfClass:[GradientAction class]]) {
+        action.gradient = gradient;
+        [self.drawView updateLastAction:action];
+    }
+}
 
 
 - (void)changePenColor:(DrawColor *)color
@@ -90,24 +107,14 @@
     [self.drawView changeBGImageWithDrawBG:drawBG];
 }
 
-- (void)addGradient
-{
 
-    CGPoint ep = CGPointMake(CGRectGetMaxX(self.drawView.bounds), CGRectGetMaxY(self.drawView.bounds));
-    Gradient *gd = [[Gradient alloc] initWithStartPoint:CGPointZero endPoint:ep startColor:[DrawColor rankColor] endColor:[DrawColor rankColor] division:0.5];
-    GradientAction *gradient = [[[GradientAction alloc] initWithGradient:gd] autorelease];
-    [self.drawView addGradient:gradient];
-}
 
 - (void)usePaintBucket
 {
-#ifdef DEBUG
-    [self addGradient];
-    return;
-#endif
     DrawColor *color = [DrawColor colorWithColor:self.penColor];
     color.alpha = 1;
     [self.drawView changeBackWithColor:color];
+//    action.clipAction = self.drawView.currentClip;
 
     [self changePenColor:[DrawColor blackColor]];
     [self changeInPenType:self.penType];
@@ -217,6 +224,27 @@
     [self.drawToolPanel setShapeSelected:NO];
     [self.drawToolPanel setPenSelected:NO];
     [self.drawToolPanel setEraserSelected:NO];
+}
+
+- (void)enterClipModeWithClipType:(ClipType)clipType
+{
+    if (clipType == ClipTypeSmoothPath) {
+        [self.drawView setTouchActionType:TouchActionTypeClipPath];
+    }else if(clipType == ClipTypePolygon){
+        [self.drawView setTouchActionType:TouchActionTypeClipPolygon];
+    }else if(clipType == ClipTypeEllipse){
+        [self.drawView setTouchActionType:TouchActionTypeClipEllipse];
+    }else if(clipType == ClipTypeRectangle){
+        [self.drawView setTouchActionType:TouchActionTypeClipRectangle];
+    }else{
+        //
+    }
+}
+
+- (void)exitFromClipMode
+{
+    [self.drawView exitFromClipMode];
+    [self enterDrawMode];
 }
 
 - (void)useGid:(BOOL)flag

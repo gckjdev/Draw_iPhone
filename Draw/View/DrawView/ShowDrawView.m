@@ -15,6 +15,7 @@
 #import "ConfigManager.h"
 #import "CanvasRect.h"
 #import "DrawHolderView.h"
+#import "ClipAction.h"
 //#define DEFAULT_PLAY_SPEED  (0.01)
 //#define MIN_PLAY_SPEED      (0.001f)
 
@@ -115,6 +116,7 @@
     if (index < [self.drawActionList count]) {
         _currentAction = [self.drawActionList objectAtIndex:index];        
         self.status = Playing;
+        cdManager.currentClip = _currentAction.clipAction;
         [self playCurrentFrame];
         return YES;
     }else{
@@ -358,6 +360,7 @@
             Paint *paint = [Paint paintWithWidth:currentPaint.width color:currentPaint.color penType:currentPaint.penType pointList:nil];
             self.tempAction = [PaintAction paintActionWithPaint:paint];
             self.tempAction.shadow = [_currentAction shadow];
+            self.tempAction.clipAction = _currentAction.clipAction;
         }
         NSInteger i = [self.tempAction pointCount];
         for (; i <= _playingPointIndex; ++ i) {
@@ -382,14 +385,19 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:AtActionIndex:pointIndex:)]) {
         [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex pointIndex:_playingPointIndex];
     }    
-    if(_playingActionIndex >= [self.drawActionList count]-1 && self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
-        [self.delegate didPlayDrawView:self];
-
-        self.status = Stop;
-        _playingActionIndex = _playingPointIndex = 0;
-        _currentAction =  nil;
+    if(_playingActionIndex >= [self.drawActionList count]-1){
+        cdManager.currentClip = nil;
+        [self setNeedsDisplay];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
+            [self.delegate didPlayDrawView:self];
+            
+            self.status = Stop;
+            _playingActionIndex = _playingPointIndex = 0;
+            _currentAction =  nil;
+        }
     }
     self.tempAction = nil;
+
 }
 
 - (void)delayShowAction:(DrawAction *)drawAction
@@ -450,11 +458,14 @@
 
         }else{
             if (![_currentAction isKindOfClass:[PaintAction class]]) {
+                if([_currentAction isKindOfClass:[ClipAction class]]){
+                    cdManager.currentClip = (id)_currentAction;
+                }
+                
                 [self delayShowAction:_currentAction];
-//                [self performSelector:@selector(delayShowAction:) withObject:_currentAction afterDelay:self.playSpeed * 30];
-            }else{
+                
+            } else {
                 [self delayShowActionStop:_currentAction];
-//                [self performSelector:@selector(delayShowAction:) withObject:_currentAction];
             }
         }
     }

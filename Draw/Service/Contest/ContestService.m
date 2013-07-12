@@ -7,7 +7,7 @@
 //
 
 #import "ContestService.h"
-#import "BoardNetworkConstant.h"
+//#import "BoardNetworkConstant.h"
 #import "PPNetworkRequest.h"
 #import "ContestManager.h"
 #import "ConfigManager.h"

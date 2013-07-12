@@ -10,7 +10,7 @@
 //#import "PathConstructor.h"
 
 typedef enum{
-    
+    ClipTypeNo = 0,
     ClipTypeRectangle = 1,
     ClipTypeEllipse = 2,
     ClipTypePolygon = 3,
@@ -23,17 +23,21 @@ typedef enum{
 
 @interface ClipAction : DrawAction
 {
-    BOOL _hasClipContext;
-    BOOL _hasUnClipContext;
+    NSUInteger addPointTimes;
 }
 
-//@property(nonatomic, assign)NSInteger clipTag;
+@property(nonatomic, retain)Paint *paint;
+@property(nonatomic, retain)ShapeInfo *shape;
 @property(nonatomic, assign)ClipType clipType;
 
 - (void)clipContext:(CGContextRef)context; //execute once.
-- (void)unClipContext:(CGContextRef)context;
 
 + (id)clipActionWithShape:(ShapeInfo *)shape;
 + (id)clipActionWithPaint:(Paint *)paint;
+
+- (CGRect)showClipInContext:(CGContextRef)context inRect:(CGRect)rect;
+
+- (CGRect)pathRect;
+
 @end
 

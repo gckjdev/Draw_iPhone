@@ -75,6 +75,11 @@
 
 - (void)startAddPoint
 {
+    if (_path != NULL && !CGPathIsEmpty(_path)) {
+        PPCGPathRelease(_path);
+        _path = CGPathCreateMutable();
+    }
+    _hasPoint = NO;
     _startAddPoint = YES;
 }
 

@@ -11,8 +11,16 @@
 #import "MyPaint.h"
 #import "ShapeInfo.h"
 #import "ChangeBGImageAction.h"
+//#import "PolygonClipTouchHandler.h"
 
 @class DrawView;
+@class Gradient;
+
+//@protocol PolygonClipTouchHandlerDelegate <NSObject>
+//- (void) didPolygonClipTouchHandler:(PolygonClipTouchHandler *)handler finishAddPointsToAction:(ClipAction *)action;
+//@end
+
+
 @protocol DrawViewDelegate <NSObject>
 
 @optional
@@ -22,6 +30,7 @@
 
 
 @end
+
 
 
 @protocol DrawViewStrawDelegate <NSObject>
@@ -36,7 +45,11 @@ typedef enum{
     TouchActionTypeDraw = 0,
     TouchActionTypeGetColor = 1,
     TouchActionTypeShape = 2,
-    TouchActionTypeRewind = 3,
+    TouchActionTypeClipPath = 3,
+    TouchActionTypeClipPolygon = 4,
+    TouchActionTypeClipEllipse = 5,
+    TouchActionTypeClipRectangle = 6,
+    
 }TouchActionType;
 
 @interface DrawView : SuperDrawView
@@ -79,4 +92,10 @@ typedef enum{
 - (NSInteger)totalActionCount;
 - (NSInteger)actionCount;
 
+- (void)updateLastAction:(DrawAction *)action;
+- (void)saveLastAction:(DrawAction *)action;
+- (void)cancelLastAction;
+- (DrawAction *)inDrawAction;
+
+- (void)exitFromClipMode;
 @end

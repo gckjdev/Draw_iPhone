@@ -15,6 +15,10 @@
 #import "StrawTouchHandler.h"
 #import "DrawTouchHandler.h"
 #import "ShapeTouchHandler.h"
+#import "PathClipTouchHandler.h"
+#import "ShapeClipTouchHandler.h"
+#import "PolygonClipTouchHandler.h"
+
 #import "DrawUtils.h"
 #import "DrawAction.h"
 #import "DrawHolderView.h"
@@ -109,6 +113,7 @@
 {
     [self clearRedoStack];
     ChangeBackAction *changBackAction = [[[ChangeBackAction alloc] initWithColor:color] autorelease];
+    changBackAction.clipAction = self.currentClip;
     [self.drawActionList addObject:changBackAction];
     [self drawDrawAction:changBackAction show:YES];
     self.bgColor = color;
@@ -120,6 +125,7 @@
     [self clearRedoStack];
     
     ChangeBGImageAction *changBG = [[[ChangeBGImageAction alloc] initWithDrawBg:drawBg] autorelease];
+    changBG.clipAction = self.currentClip;
     [self addDrawAction:changBG];
     [self drawDrawAction:changBG show:YES];
                                     
@@ -163,12 +169,19 @@
         PPDebug(@"SET touch handler and current touch");
         
         [_gestureRecognizerManager setCapture:YES];
-        self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:self.touchActionType];
-        [self.touchHandler setDrawView:self];
-//        [self.touchHandler setOsManager:osManager];
-        [self.touchHandler setCdManager:cdManager];
-        if (self.touchActionType == TouchActionTypeGetColor) {
-            [(StrawTouchHandler *)self.touchHandler setStrawDelegate:self.strawDelegate];
+        if (self.touchActionType != TouchActionTypeClipPolygon ||
+            ![self.touchHandler isKindOfClass:[PolygonClipTouchHandler class]]) {
+            
+            self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:self.touchActionType];
+            if ([self.touchHandler isKindOfClass:[PolygonClipTouchHandler class]]) {
+                [(PolygonClipTouchHandler *)self.touchHandler setDelegate:self];
+            }
+            
+            [self.touchHandler setDrawView:self];
+            [self.touchHandler setCdManager:cdManager];
+            if (self.touchActionType == TouchActionTypeGetColor) {
+                [(StrawTouchHandler *)self.touchHandler setStrawDelegate:self.strawDelegate];
+            }
         }
         [self.touchHandler handlePoint:[self pointForTouches:touches] forTouchState:TouchStateBegin];
         _pointCount = 1;
@@ -213,7 +226,9 @@
         [self callbackFinishDelegateWithAction:drawAction];
         
         PPDebug(@"RESET touch handler and current touch");
-        self.touchHandler = nil;
+        if (self.touchActionType != TouchActionTypeClipPolygon) {
+            self.touchHandler = nil;
+        }
         self.currentTouch = nil;
         _pointCount = 0;
     }
@@ -286,6 +301,36 @@
     [self setNeedsDisplay];
 }
 
+
+- (void)updateLastAction:(DrawAction *)action
+{
+    action.clipAction = cdManager.currentClip;
+    CGRect rect = [cdManager updateLastAction:action];
+    [self setNeedsDisplayInRect:rect];
+}
+- (void)saveLastAction:(DrawAction *)action;
+{
+    action.clipAction = cdManager.currentClip;
+    [cdManager finishDrawAction:action];
+    [self setNeedsDisplay];
+    [self addDrawAction:action];
+}
+- (void)cancelLastAction
+{
+    [cdManager cancelLastAction];
+    [self setNeedsDisplay];
+}
+
+- (DrawAction *)inDrawAction
+{
+    return [cdManager inDrawAction];
+}
+
+- (void)exitFromClipMode
+{
+    [cdManager finishCurrentClip];
+}
+
 - (void)dealloc
 {
     PPRelease(_drawActionList);
@@ -342,6 +387,9 @@
         DrawAction *obj = [_drawActionList lastObject];
         [_redoStack push:obj];
         [_drawActionList removeLastObject];
+        if ([obj isKindOfClass:[ClipAction class]]) {
+            cdManager.currentClip = nil;
+        }
         [self showForRevoke:obj finishBlock:finishBlock];
     }
 }
@@ -367,7 +415,14 @@
 //            [self printOSInfoWithTag:@"<Redo> before"];
             [self.drawActionList addObject:action];
 //            [osManager addDrawAction:action];
+            
+            if ([action isKindOfClass:[ClipAction class]]) {
+                cdManager.currentClip = (id)action;
+            }
+
             [cdManager addDrawAction:action];
+            
+            
             [self setNeedsDisplay];
 //            [self printOSInfoWithTag:@"<Redo> after"];
             if ([action isKindOfClass:[ChangeBackAction class]]) {
@@ -392,24 +447,6 @@
 }
 
 
-
-- (void)printOSInfoWithTag:(NSString *)tag
-{
-    PPDebug(tag);
-    PPDebug(@"Action list count = %d",[_drawActionList count]);
-//    [osManager printOSInfo];
-}
-
-/*
-- (UIImage *)createImage
-{
-    if ([cdManager showGrid]) {
-        [cdManager setShowGrid:NO];
-    }
-    UIImage *image = [super createImage];
-    return image;
-}
-*/
 
 - (NSInteger)totalActionCount
 {
@@ -438,5 +475,15 @@
         [self.touchHandler handleFailTouch];
         self.touchHandler = nil;
     }
+}
+
+#pragma mark -- Polygon Delegate
+
+- (void) didPolygonClipTouchHandler:(PolygonClipTouchHandler *)handler finishAddPointsToAction:(ClipAction *)action
+{
+    self.touchHandler = nil;
+    PPDebug(@"<didPolygonClipTouchHandler> finish!!!");
+    PPViewController *vc = (id)[self theViewController];
+    [vc popupHappyMessage:NSLS(@"kPolygonJoined") title:nil];
 }
 @end

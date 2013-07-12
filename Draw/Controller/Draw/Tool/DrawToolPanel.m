@@ -41,6 +41,8 @@
 #import "RedoCommand.h"
 #import "UndoCommand.h"
 #import "ShadowCommand.h"
+#import "GradientCommand.h"
+#import "SelectorCommand.h"
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
@@ -287,6 +289,7 @@
 
     command = [[[PaintBucketCommand alloc] initWithControl:self.paintBucket itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
+
     
     command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
@@ -308,8 +311,12 @@
     //
     command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
-
+/*
     command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+  */
+    
+    command = [[[SelectorCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
     command = [[[GridCommand alloc] initWithControl:self.grid itemType:ItemTypeGrid] autorelease];
@@ -322,14 +329,19 @@
     command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 */
+    
+    command = [[[GradientCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
+    [toolCmdManager registerCommand:command];
+
+    
     command = [[[ShadowCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-    
-    
+/*
     command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
-
+*/
+    
     command = [[[RedoCommand alloc] initWithControl:self.redo itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
@@ -440,6 +452,18 @@
     size.width = isOnline ? size.width : size.width * 2;
     _scrollView.contentSize = size;
     PPDebug(@"Content Size = %@",NSStringFromCGSize(_scrollView.contentSize));
+}
+
+#define COLOR_PANEL_TAG 123
+- (void)hideColorPanel:(BOOL)hide
+{
+    UIView *view = [self viewWithTag:COLOR_PANEL_TAG];
+    [view setHidden:hide];
+    for (ColorPoint *cp in self.subviews) {
+        if ([cp isKindOfClass:[ColorPoint class]]) {
+            [cp setHidden:hide];
+        }
+    }
 }
 
 - (void)dealloc {

@@ -12,9 +12,11 @@
 #import "Draw.pb-c.h"
 #import "Shadow.h"
 
+
 @class PBBBSDraw;
 @class PBMessage;
 @class Word;
+@class ClipAction;
 //@class Shadow;
 
 typedef enum {
@@ -32,15 +34,18 @@ typedef enum {
 
 //#define BACK_GROUND_WIDTH 5000
 
+
+
 @interface DrawAction : NSObject {
 //    Paint *_paint;
 }
 
 
-@property(nonatomic, assign)DrawActionType type;
-@property(nonatomic, assign)NSInteger clipTag;
+@property(nonatomic, assign) DrawActionType type;
+@property(nonatomic, assign) NSInteger clipTag;
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
-@property(nonatomic, retain)Shadow *shadow;
+@property(nonatomic, retain) Shadow *shadow;
+@property(nonatomic, retain) ClipAction *clipAction;
 
 //@property(nonatomic, assign)CGSize canvasSize;
 

@@ -84,8 +84,15 @@
     [_drawToUserNickNameLabel release];
     [_copyPaintPicker release];
     [_copyPaintLabel release];
+    [_backgroundImageView release];
     [super dealloc];
 }
+
+#define ADD_COMMAND(cmd, cls, button, it)\
+cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
+[toolCmdManager registerCommand:command];\
+[cmd setToolPanel:self];
+
 
 - (void)registerToolCommands
 {
@@ -97,33 +104,18 @@
     ToolCommand *command;
 
     
-    //
-    command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[GridCommand alloc] initWithControl:self.grid itemType:ItemTypeGrid] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[CopyPaintCommand alloc] initWithControl:self.copyPaintPicker itemType:ItemTypeCopyPaint] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[ShowCopyPaintCommand alloc] initWithControl:self.copyPaint itemType:ItemTypeCopyPaint] autorelease];
-    [toolCmdManager registerCommand:command];
+
+    ADD_COMMAND(command, DrawBgCommand, self.drawBg, ItemTypeNo);
+    ADD_COMMAND(command, CanvasSizeCommand, self.canvasSize, ItemTypeNo);
+    ADD_COMMAND(command, GridCommand, self.grid, ItemTypeGrid);
+    ADD_COMMAND(command, EditDescCommand, self.opusDesc, ItemTypeNo);
+    ADD_COMMAND(command, DrawToCommand, self.drawToUser, ItemTypeNo);
+    ADD_COMMAND(command, HelpCommand, self.help, ItemTypeNo);
+    ADD_COMMAND(command, CopyPaintCommand, self.copyPaintPicker, ItemTypeCopyPaint);
+    ADD_COMMAND(command, ShowCopyPaintCommand, self.copyPaint, ItemTypeCopyPaint);
     
     [toolCmdManager updateHandler:self.toolHandler];
-    [toolCmdManager updatePanel:self];
+
     
     [self.toolHandler enterDrawMode];
 }
@@ -133,7 +125,7 @@
     DrawToolUpPanel *panel = nil;
     panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
     panel.toolHandler = handler;
-    handler.drawToolPanel = panel;
+    handler.DrawToolUpPanel = panel;
     panel.hidden = YES;
     [panel updateView];
     return panel;
@@ -181,21 +173,30 @@
     
 }
 
+#define TOP_WOOD_HEIGHT    (ISIPAD?85:33)
 - (void)appear:(UIViewController*)parentController
          title:(NSString*)title
+   isLeftArrow:(BOOL)isLeftArrow
 {
     self.layer.opacity = 0;
     self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
+    self.center = CGPointMake(self.center.x, TOP_WOOD_HEIGHT);
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     
     self.layer.opacity = 1;
     self.layer.transform = CATransform3DMakeScale(1, 1, 1);
-    self.center = CGPointMake(self.center.x, self.frame.size.height/2+(ISIPAD?70:30));
+    self.center = CGPointMake(self.center.x, self.frame.size.height/2+TOP_WOOD_HEIGHT);
     [UIView commitAnimations];
     self.isVisable = YES;
     self.hidden = NO;
     [self.titleLabel setText:title];
+    
+    if (isLeftArrow) {
+        [self.backgroundImageView setImage:[[ShareImageManager defaultManager] drawToolUpPanelLeftArrowBg]];
+    } else {
+        [self.backgroundImageView setImage:[[ShareImageManager defaultManager] drawToolUpPanelRightArrowBg]];
+    }
     
     [self addMask:parentController];
 }

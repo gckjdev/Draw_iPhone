@@ -43,13 +43,12 @@
         
         action = [[PaintAction paintActionWithPaint:currentPaint] retain];
         action.shadow = self.drawView.shadow;
-//        [action addPoint:point inRect:self.drawView.bounds];
-//        [self.drawView drawDrawAction:action show:YES];
-        [self.drawView updateLastAction:action show:YES];
-    }else{
-        [action addPoint:point inRect:self.drawView.bounds];
-        [self.drawView updateLastAction:action show:YES];
+        action.clipAction = self.cdManager.currentClip;
+
     }
+    [action addPoint:point inRect:self.drawView.bounds];
+    [self.drawView updateLastAction:action show:YES];
+//    }
 }
 
 - (void)addAction:(DrawAction *)drawAction

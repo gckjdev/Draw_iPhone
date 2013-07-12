@@ -79,7 +79,7 @@ CGPoint realStartPoint;
                 [shape setStroke:self.drawView.strokeShape];
                 action = [[ShapeAction shapeActionWithShape:shape] retain];
                 action.shadow = self.drawView.shadow;
-                
+                action.clipAction = self.cdManager.currentClip;
                 [self.cdManager updateLastAction:action];
                 shape.startPoint = shape.endPoint = point;
                 
@@ -87,9 +87,9 @@ CGPoint realStartPoint;
                 //Add at DrawDataVersion == 4, May edit in the future. By Gamy
                 ////=====start====////
                 
-//                if (![shape isBasicShape]) {
-                shape.width = STROKE_WIDTH;
-//                }
+                if (shape.type != ShapeTypeBeeline) {
+                    shape.width = STROKE_WIDTH;
+                }
                 [self updateEndPoint];
                 ////=====end=====/////
                 
