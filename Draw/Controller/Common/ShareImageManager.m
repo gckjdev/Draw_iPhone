@@ -658,6 +658,16 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"popuptools_bg.png"];    
 }
 
+- (UIImage *)drawToolButtonBG
+{
+    return [UIImage strectchableImageName:@"draw_tool_button_bg"];
+}
+
+- (UIImage *)drawToolButtonSelectedBG
+{
+    return [UIImage strectchableImageName:@"draw_tool_button_selected_bg"];
+}
+
 - (UIImage *)drawColorBG //draw_color_bg@2x.png
 {
 //    return [self fixedAndStrectchableImageNamed:@"draw_color_bg"];
