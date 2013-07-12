@@ -23,30 +23,41 @@ enum{
 #import "UserDetailViewController.h"
 #import "SelfUserDetail.h"
 #import "ViewUserDetail.h"
-#import "OpusService.h"
 #import "CommentCell.h"
 #import "PBOpus+Extend.h"
 #import "CommonCommentController.h"
+#import "UserManager.h"
+#import "PPSNSIntegerationService.h"
+#import "PPSNSConstants.h"
+#import "GameSNSService.h"
+#import "UserService.h"
+#import "ConfigManager.h"
+#import "FeedService.h"
+#import "CommonShareAction.h"
 
 @interface CommonOpusDetailController (){
     
 }
 
-@property (retain, nonatomic) CommonActionHeader *commonActionHeader;
+@property (retain, nonatomic) CommonCommentHeader *commonCommentHeader;
+@property (retain, nonatomic) CommonShareAction *shareAction;
 
 @end
 
 @implementation CommonOpusDetailController
 
 - (void)dealloc {
-    [_commonActionHeader release];
-    [_pbOpus release];
+    [_commonCommentHeader release];
+    [_opus release];
+    [_shareButton release];
+    [_shareAction release];
     [super dealloc];
 }
 
 - (void)viewDidUnload {
 
     [self setTitleLabel:nil];
+    [self setShareButton:nil];
     [super viewDidUnload];
 }
 
@@ -60,10 +71,14 @@ enum{
     [self initTabButtons];
     // Do any additional setup after loading the view from its nib.
     
-    self.commonActionHeader = [[_actionHeaderClass class] createHeader:self];
-    [_commonActionHeader setDelegate:self];
-    [_commonActionHeader setViewInfo:_pbOpus];
-    [_commonActionHeader setSeletType:CommentTypeComment];
+//    self.commonCommentHeader = [[_actionHeaderClass class] createHeader:self];
+//    [_commonCommentHeader setDelegate:self];
+//    [_commonCommentHeader setViewInfo:_opus.pbOpus];
+//    [_commonCommentHeader setSeletType:CommentTypeComment];
+//    
+//    self.shareAction = [[[CommonShareAction alloc] initWithOpus:_opus] autorelease];
+    
+    [[OpusService defaultService] getOpusWithOpusId:_opus.pbOpus.opusId delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,7 +165,7 @@ enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == SectionUserInfo) {
-        [self clickOnAuthor:_pbOpus.author];
+        [self clickOnAuthor:_opus.pbOpus.author];
     }
 }
 
@@ -162,15 +177,15 @@ enum{
     if (indexPath.row < [[self feedList] count]) {
         CommentFeed *feed = [[self feedList] objectAtIndex:indexPath.row];
         //can only delete comment feed, but flower and tomato.
-        return [feed isMyFeed] || ([_pbOpus isMyOpus] && feed.feedType == FeedTypeComment);
+        return [feed isMyFeed] || ([_opus.pbOpus isMyOpus] && feed.feedType == FeedTypeComment);
     }
     return NO;
 }
 
 - (UIView *)headerForAction{
     
-    [_commonActionHeader updateTimes:_pbOpus];
-    return _commonActionHeader;
+    [_commonCommentHeader updateTimes:_opus.pbOpus];
+    return _commonCommentHeader;
 }
 
 - (UITableViewCell *)cellForUserInfo{
@@ -181,7 +196,7 @@ enum{
         cell = [[_userInfoCellClass class] createCell:self];
     }
     
-    [cell setUserInfo:_pbOpus.author];
+    [cell setUserInfo:_opus.pbOpus.author];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
     return cell;
@@ -194,7 +209,7 @@ enum{
         cell = [[_opusInfoCellClass class] createCell:self];
     }
     
-    [cell setOpusInfo:_pbOpus];
+    [cell setOpusInfo:_opus.pbOpus];
     
     return cell;
 }
@@ -243,7 +258,7 @@ enum{
 }
 
 - (CGFloat)heightForOpusInfoCell{
-    return [[_opusInfoCellClass class] getCellHeightWithOpus:_pbOpus];
+    return [[_opusInfoCellClass class] getCellHeightWithOpus:_opus.pbOpus];
 }
 
 - (CGFloat)heightForCommentInfoCellAtRow:(int)row{
@@ -315,7 +330,7 @@ enum{
 
 - (NSInteger)tabCount
 {
-    if ([_pbOpus.contestId length] > 0) {
+    if ([_opus.pbOpus.contestId length] > 0) {
         return 2;
     }
     return 3;
@@ -333,7 +348,7 @@ enum{
 
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    if ([_pbOpus isContestOpus]) {
+    if ([_opus.pbOpus isContestOpus]) {
         NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower, CommentTypeSave};
         return tabIDs[index];
     }else{
@@ -353,7 +368,7 @@ enum{
     PPDebug(@"<ShowFeedController> load data with tab ID = %d", tabID);
     
     TableTab *tab = [_tabManager tabForID:tabID];
-    [[FeedService defaultService] getOpusCommentList:_pbOpus.opusId
+    [[FeedService defaultService] getOpusCommentList:_opus.pbOpus.opusId
                                                 type:tab.tabID
                                               offset:tab.offset
                                                limit:tab.limit
@@ -388,9 +403,13 @@ enum{
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
 {
+    [self presentCommentController:feed];
+}
+
+- (void)presentCommentController:(CommentFeed *)feed{
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
     
-    CommonCommentController *replyController = [[CommonCommentController alloc] initWithOpus:_pbOpus feed:feed];
+    CommonCommentController *replyController = [[CommonCommentController alloc] initWithOpus:_opus.pbOpus feed:feed];
     [self presentModalViewController:replyController animated:YES];
     [replyController release];
 }
@@ -400,5 +419,37 @@ enum{
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName] inViewController:self];
 }
 
+- (IBAction)clickGuessActionButton:(UIButton *)button{
+    
+    PPViewController *vc = [[[[_guessControllerClass class] alloc] initWithOpus:_opus] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)clickCommentActionButton:(UIButton *)button{
+    
+    [self presentCommentController:nil];
+}
+
+- (IBAction)clickShareActionButton:(UIButton *)button{
+    [_shareAction displayWithViewController:self onView:self.shareButton];
+}
+
+- (void)didGetOpus:(int)resultCode
+              opus:(Opus *)opus{
+    
+    if (resultCode == ERROR_SUCCESS) {
+    
+        self.opus = _opus;
+        self.commonCommentHeader = [[_actionHeaderClass class] createHeader:self];
+        [_commonCommentHeader setDelegate:self];
+        [_commonCommentHeader setViewInfo:_opus.pbOpus];
+        [_commonCommentHeader setSeletType:CommentTypeComment];
+        
+        self.shareAction = [[[CommonShareAction alloc] initWithOpus:_opus] autorelease];
+        
+    }else{
+        [self popupUnhappyMessage:NSLS(@"kLoadFail") title:nil];
+    }
+}
 
 @end

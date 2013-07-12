@@ -64,7 +64,7 @@ enum PBOpusType{
 }
 
 enum PBOpusStoreType{
-
+    NORMAL_OPUS = 0;                    
     DRAFT_OPUS  = 1;                    // 本地草稿
     SUBMIT_OPUS = 2;                    // 已经提交的作品
     SAVED_OPUS  = 3;                    // 收藏的作品

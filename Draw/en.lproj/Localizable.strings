@@ -1808,6 +1808,7 @@
 
 "kInputSingName" = "Input song name";
 "kSingNameCannotBeBlankStr" = "You can not input a blank string.";
+"kShareMySingOpus" = "%@ sing a song[%@] %@ #%@# %@ ";
 
 
 /*********************你唱我猜国际化字符串结束 ************************/

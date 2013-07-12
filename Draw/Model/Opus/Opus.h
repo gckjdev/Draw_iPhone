@@ -27,6 +27,8 @@
 
 + (Opus*)opusWithCategory:(PBOpusCategoryType)category;
 + (Opus*)opusWithPBOpus:(PBOpus *)pbOpus storeType:(PBOpusStoreType)storeType;
++ (Opus*)opusWithPBOpus:(PBOpus *)pbOpus;
+
 + (Opus*)opusFromPBOpus:(PBOpus *)pbOpus;
  
 // don't change method name, used for Buri Index
@@ -72,6 +74,9 @@
 - (void)handleShareOptionAtIndex:(int)index
                   fromController:(UIViewController*)controller;
 - (void)enterEditFromController:(UIViewController*)controller;
+
+
+- (NSString *)shareTextWithSNSType:(int)type;
 
 @end
 

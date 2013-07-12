@@ -18,5 +18,6 @@
 - (UIImage*)inputDialogRightBtnImage;
 
 - (UIImage*)badgeImage;
+- (UIImage*)placeholderImage;
 
 @end

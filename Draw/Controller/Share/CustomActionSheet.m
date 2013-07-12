@@ -315,6 +315,7 @@
     if (_popView == nil) {
         _popView = [[CMPopTipView alloc] initWithCustomView:[self createShowView] needBubblePath:NO];
         [_popView setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]];
+        _popView.delegate = self;
     }
     _popView.hidden = NO;
     [_popView presentPointingAtView:onView inView:view animated:YES];

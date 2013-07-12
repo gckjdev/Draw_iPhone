@@ -51,7 +51,7 @@ typedef enum{
                   opus:(Opus *)opus;
 
 - (void)didGetOpus:(int)resultCode
-              opus:(PBOpus *)opus;
+              opus:(Opus *)opus;
 
 - (void)didGetOpusList:(int)resultCode
                   list:(NSArray *)list;

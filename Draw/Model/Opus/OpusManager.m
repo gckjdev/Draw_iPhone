@@ -75,7 +75,7 @@
     PBOpus_Builder *builder = [[[PBOpus_Builder alloc] init] autorelease];
     
     [builder setOpusId:@"512c971de4b02d50d0d20376"];
-
+    [builder setCategory:PBOpusCategoryTypeSingCategory];
     [builder setType:PBOpusTypeSingToUser];
     [builder setName:@"我的作品"];
     [builder setDataUrl:@"http://58.254.132.169/90115000/fulltrack_dl/MP3_128_44_Stero/2012060802/481874.mp3"];
