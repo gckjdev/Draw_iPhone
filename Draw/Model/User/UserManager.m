@@ -789,6 +789,59 @@ static UserManager* _defaultManager;
     
 }
 
+- (void)setDeviceModel:(NSString*)deviceModel
+{
+    if (self.pbUser == nil)
+        return;
+    
+    if (deviceModel == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceModel:deviceModel];
+    self.pbUser = [builder build];
+
+}
+
+- (void)setDeviceType:(int)deviceType
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceType:[NSString stringWithFormat:@"%d", deviceType]];
+    self.pbUser = [builder build];
+    
+}
+
+- (void)setDeviceId:(NSString*)deviceId
+{
+    if (self.pbUser == nil)
+        return;
+    
+    if (deviceId == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceId:deviceId];
+    self.pbUser = [builder build];
+    
+}
+
+- (void)setDeviceOS:(NSString*)deviceOS
+{
+    if (self.pbUser == nil)
+        return;
+    
+    if (deviceOS == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceOs:deviceOS];
+    self.pbUser = [builder build];    
+}
+
+
 - (UIImage*)readAvatarImageLocally
 {
     UIImage* localImage = [[[UIImage alloc] initWithContentsOfFile:AVATAR_LOCAL_FILENAME] autorelease];
