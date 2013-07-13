@@ -293,7 +293,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_tool_button_bg@2x.png</string>
+									<string key="NSResourceName">draw_shape_default@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="358047561"/>
@@ -394,7 +394,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">help</string>
+								<string key="IBUINormalTitle">Gradient</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1057924229"/>
 								<reference key="IBUISelectedTitleColor" ref="1057924229"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -404,7 +404,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="1057924229"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_help@2x.png</string>
+									<string key="NSResourceName">draw_gradient@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="358047561"/>
@@ -446,7 +446,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Size</string>
+								<string key="IBUINormalTitle">Selector</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1057924229"/>
 								<reference key="IBUISelectedTitleColor" ref="1057924229"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -456,7 +456,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="1057924229"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_size@2x.png</string>
+									<string key="NSResourceName">draw_selector@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="358047561"/>
@@ -472,7 +472,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Grid</string>
+								<string key="IBUINormalTitle">FX</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1057924229"/>
 								<reference key="IBUISelectedTitleColor" ref="1057924229"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -482,7 +482,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="1057924229"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_grid@2x.png</string>
+									<string key="NSResourceName">draw_fx@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="358047561"/>
@@ -498,7 +498,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Desc</string>
+								<string key="IBUINormalTitle">Text</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1057924229"/>
 								<reference key="IBUISelectedTitleColor" ref="1057924229"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -508,7 +508,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="1057924229"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_desc@2x.png</string>
+									<string key="NSResourceName">draw_text@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="358047561"/>
@@ -524,7 +524,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<string key="IBUINormalTitle">Target</string>
+								<string key="IBUINormalTitle">Shadow</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1057924229"/>
 								<reference key="IBUISelectedTitleColor" ref="1057924229"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -534,7 +534,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="1057924229"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_target@2x.png</string>
+									<string key="NSResourceName">draw_shadow@2x.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="36910274"/>
 								<reference key="IBUIFont" ref="358047561"/>
@@ -617,6 +617,7 @@
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{216, 146}, {95, 22}}</string>
 						<reference key="NSSuperview" ref="68347603"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="397568519"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -5649,15 +5650,15 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 				<string key="80.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="80.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="81.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="81.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="81.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="82.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="82.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="83.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="83.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="83.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="84.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="84.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="85.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="85.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="85.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="86.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="86.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="87.CustomClassName">DrawSlider</string>
@@ -5698,21 +5699,21 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<string key="draw_add@2x.png">{47, 47}</string>
 			<string key="draw_canvas_bg@2x.png">{71, 69}</string>
 			<string key="draw_color_bg@2x.png">{622, 84}</string>
-			<string key="draw_desc@2x.png">{73, 72}</string>
-			<string key="draw_grid@2x.png">{73, 72}</string>
-			<string key="draw_help@2x.png">{73, 72}</string>
+			<string key="draw_fx@2x.png">{72, 71}</string>
+			<string key="draw_gradient@2x.png">{72, 71}</string>
 			<string key="draw_oil@2x.png">{72, 71}</string>
 			<string key="draw_palette@2x.png">{75, 61}</string>
 			<string key="draw_redo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_redo_normal@2x.png">{69, 71}</string>
 			<string key="draw_rubber@2x.png">{122, 122}</string>
-			<string key="draw_size@2x.png">{73, 72}</string>
+			<string key="draw_selector@2x.png">{72, 71}</string>
+			<string key="draw_shadow@2x.png">{72, 71}</string>
+			<string key="draw_shape_default@2x.png">{72, 71}</string>
 			<string key="draw_star@2x.png">{65, 65}</string>
 			<string key="draw_straw@2x.png">{57, 78}</string>
 			<string key="draw_straw_seleted@2x.png">{57, 78}</string>
 			<string key="draw_switch@2x.png">{73, 72}</string>
-			<string key="draw_target@2x.png">{73, 72}</string>
-			<string key="draw_tool_button_bg@2x.png">{69, 68}</string>
+			<string key="draw_text@2x.png">{72, 71}</string>
 			<string key="draw_tool_button_selected_bg@2x.png">{75, 74}</string>
 			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
 			<string key="draw_undo_normal@2x.png">{69, 71}</string>

@@ -37,6 +37,7 @@
 #define METHOD_DEVICELOGIN @"dl"
 #define METHOD_GETPOSTRELATEDPOST @"gpr"
 #define METHOD_BINDUSER @"bu"
+#define METHOD_UPDATE_USER_DEVICE @"updateUserDevice"
 
 #define METHOD_SENDMESSAGE @"sm"
 #define METHOD_GETMYMESSAGE @"gmm"
