@@ -76,6 +76,7 @@
 
 #import "DrawUtils.h"
 #import "ImageShapeManager.h"
+#import "UserDeviceService.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -85,7 +86,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://58.215.160.100:8002/api/i?";
 
 //    return @"http://58.215.160.100:8888/api/i?";
-//    return @"http://192.168.1.5:8000/api/i?";
+//    return @"http://192.168.1.198:8000/api/i?";
 
 //    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
 //    NSString* str = [def objectForKey:@"api_server"];
@@ -342,24 +343,6 @@ NSString* GlobalGetBoardServerURL()
     
     [UIUtils checkAppVersion];
     
-//    PPDebug(@"level=%d exp=%ld", 39, [[LevelService defaultService] getExpByLevel:39]);
-//    PPDebug(@"level=%d exp=%ld", 40, [[LevelService defaultService] getExpByLevel:40]);
-    
-    
-    DrawColor* drawColor = [DrawColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.10];
-    PPDebug(@"before=%@", [drawColor description]);
-    int color = [DrawUtils compressColor8WithRed:0.9 green:0.9 blue:0.9 alpha:0.10];
-    PPDebug(@"color=%d", color);
-    drawColor = [DrawColor colorWithBetterCompressColor:color];
-    PPDebug(@"after=%@", [drawColor description]);
-    
-    drawColor = [DrawColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.08];
-    PPDebug(@"before=%@", [drawColor description]);
-    color = [DrawUtils compressColor8WithRed:0.5 green:0.5 blue:0.5 alpha:0.08];
-    PPDebug(@"color=%d", color);
-    drawColor = [DrawColor colorWithBetterCompressColor:color];
-    PPDebug(@"after=%@", [drawColor description]);
-    
     return YES;
 }
 
@@ -408,7 +391,6 @@ NSString* GlobalGetBoardServerURL()
      */
     
     PPDebug(@"<applicationDidEnterBackground>");
-
     
     UIApplication* app = [UIApplication sharedApplication];
     
@@ -416,6 +398,9 @@ NSString* GlobalGetBoardServerURL()
         [app endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     }];
+
+    // upload user device info
+    [[UserDeviceService defaultService] uploadUserDeviceInfo:NO];
     
     // update when enter background
     [MobClick updateOnlineConfig];
@@ -437,7 +422,6 @@ NSString* GlobalGetBoardServerURL()
     });     
     
     [[UserStatusService defaultService] stop];
-//    [[FacetimeService defaultService] disconnectServer];
     
 }
 
@@ -446,10 +430,8 @@ NSString* GlobalGetBoardServerURL()
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-//    [[AudioManager defaultManager] backgroundMusicStart];
 
-    PPDebug(@"<applicationWillEnterForeground>");
-    
+    PPDebug(@"<applicationWillEnterForeground>");    
     application.applicationIconBadgeNumber = 0;
 }
 
@@ -525,6 +507,9 @@ NSString* GlobalGetBoardServerURL()
     
     // user already register
     [[UserManager defaultManager] setDeviceToken:[self getDeviceToken]];
+    
+    // update user device token
+    [[UserDeviceService defaultService] uploadUserDeviceInfo:YES];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *) error {

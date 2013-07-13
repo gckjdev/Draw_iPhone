@@ -92,6 +92,10 @@ typedef enum {
 - (void)setLevel:(int)level;
 - (void)setSingLimitTime:(int)value;
 
+- (void)setDeviceModel:(NSString*)deviceModel;
+- (void)setDeviceType:(int)deviceType;
+- (void)setDeviceId:(NSString*)deviceId;
+- (void)setDeviceOS:(NSString*)deviceOS;
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;
