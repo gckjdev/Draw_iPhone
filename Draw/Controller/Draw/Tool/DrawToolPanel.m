@@ -43,6 +43,8 @@
 #import "ShadowCommand.h"
 #import "GradientCommand.h"
 #import "SelectorCommand.h"
+#import "TextCommand.h"
+#import "FXCommand.h"
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
@@ -233,11 +235,11 @@
 {
     [self.eraser setSelected:selected];
 }
-- (void)updateDrawToUser:(MyFriend *)user
-{
-
-}
-
+//- (void)updateDrawToUser:(MyFriend *)user
+//{
+//
+//}
+//
 
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
@@ -298,7 +300,7 @@
     [toolCmdManager registerCommand:command];
 
     //
-    command = [[[DrawBgCommand alloc] initWithControl:self.text itemType:ItemTypeNo] autorelease];
+    command = [[[TextCommand alloc] initWithControl:self.text itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 /*
     command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
@@ -308,8 +310,8 @@
     command = [[[SelectorCommand alloc] initWithControl:self.selector itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
 
-//    command = [[[GridCommand alloc] initWithControl:self.fx itemType:ItemTypeGrid] autorelease];
-//    [toolCmdManager registerCommand:command];
+    command = [[[FXCommand alloc] initWithControl:self.fx itemType:ItemTypeGrid] autorelease];
+    [toolCmdManager registerCommand:command];
 
 //    command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
 //    [toolCmdManager registerCommand:command];
