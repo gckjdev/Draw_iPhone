@@ -13,7 +13,7 @@
 
 - (BOOL)execute
 {
-    PPViewController *vc = (id)[self theViewController];
+    PPViewController *vc = (id)[self.control theViewController];
     [vc popupHappyMessage:NSLS(@"kFurtureFunction") title:nil];
     return YES;
 }
