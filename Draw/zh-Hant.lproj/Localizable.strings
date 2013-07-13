@@ -369,6 +369,9 @@
 
 /*the new words below without Japanese*/
 
+"kFeatureSucc" = "成功推薦";
+"kUnfeatureSucc" = "成功取消推薦";
+"kUnfeature" = "取消推薦";
 
 "kSaveSucc" = "保存成功！在作品頁面可以查看以往保存的草稿。";
 "kSaveFail" = "保存失敗";

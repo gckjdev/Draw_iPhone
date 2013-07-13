@@ -88,6 +88,8 @@
 @class PBPoint_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
+@class PBRanking;
+@class PBRanking_Builder;
 @class PBRect;
 @class PBRect_Builder;
 @class PBSNSUser;
@@ -662,5 +664,80 @@ BOOL PBFeedTimesTypeIsValidValue(PBFeedTimesType value);
 - (PBOpusStoreType) storeType;
 - (PBOpus_Builder*) setStoreType:(PBOpusStoreType) value;
 - (PBOpus_Builder*) clearStoreType;
+@end
+
+@interface PBRanking : PBGeneratedMessage {
+@private
+  BOOL hasTotalPass_:1;
+  BOOL hasTotalEarn_:1;
+  BOOL hasLead_:1;
+  BOOL hasCurrency_:1;
+  int32_t totalPass;
+  int32_t totalEarn;
+  int32_t lead;
+  PBGameCurrency currency;
+}
+- (BOOL) hasTotalPass;
+- (BOOL) hasTotalEarn;
+- (BOOL) hasCurrency;
+- (BOOL) hasLead;
+@property (readonly) int32_t totalPass;
+@property (readonly) int32_t totalEarn;
+@property (readonly) PBGameCurrency currency;
+@property (readonly) int32_t lead;
+
++ (PBRanking*) defaultInstance;
+- (PBRanking*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBRanking_Builder*) builder;
++ (PBRanking_Builder*) builder;
++ (PBRanking_Builder*) builderWithPrototype:(PBRanking*) prototype;
+
++ (PBRanking*) parseFromData:(NSData*) data;
++ (PBRanking*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRanking*) parseFromInputStream:(NSInputStream*) input;
++ (PBRanking*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBRanking*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBRanking*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBRanking_Builder : PBGeneratedMessage_Builder {
+@private
+  PBRanking* result;
+}
+
+- (PBRanking*) defaultInstance;
+
+- (PBRanking_Builder*) clear;
+- (PBRanking_Builder*) clone;
+
+- (PBRanking*) build;
+- (PBRanking*) buildPartial;
+
+- (PBRanking_Builder*) mergeFrom:(PBRanking*) other;
+- (PBRanking_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBRanking_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasTotalPass;
+- (int32_t) totalPass;
+- (PBRanking_Builder*) setTotalPass:(int32_t) value;
+- (PBRanking_Builder*) clearTotalPass;
+
+- (BOOL) hasTotalEarn;
+- (int32_t) totalEarn;
+- (PBRanking_Builder*) setTotalEarn:(int32_t) value;
+- (PBRanking_Builder*) clearTotalEarn;
+
+- (BOOL) hasCurrency;
+- (PBGameCurrency) currency;
+- (PBRanking_Builder*) setCurrency:(PBGameCurrency) value;
+- (PBRanking_Builder*) clearCurrency;
+
+- (BOOL) hasLead;
+- (int32_t) lead;
+- (PBRanking_Builder*) setLead:(int32_t) value;
+- (PBRanking_Builder*) clearLead;
 @end
 

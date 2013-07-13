@@ -169,12 +169,15 @@ static AccountService* _defaultAccountService;
                 
                 if (res.resultCode == ERROR_SUCCESS && user != nil) {
                 
+                    // update user feature opus flag
+                    [[UserManager defaultManager] setFeatureOpus:user.featureOpus];
+
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
                     
                     // sync user item from server
-                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+                    [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];                    
                     
                     // post notification
                     [self postNotification:NOTIFICATION_SYNC_ACCOUNT];

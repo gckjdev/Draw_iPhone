@@ -176,9 +176,9 @@ message PBOpus {
 
 message PBRanking{
 
-   optional int totalPass = 1;
-   optional int totalEarn = 2;
+   optional int32 totalPass = 1;
+   optional int32 totalEarn = 2;
    optional PBGameCurrency currency = 3;
-   optional int lead = 5;      
+   optional int32 lead = 5;      
 }
 

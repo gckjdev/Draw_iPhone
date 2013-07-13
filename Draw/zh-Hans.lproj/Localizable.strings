@@ -900,7 +900,7 @@
 "kGroupBuy" = "甘橙团购";
 "kGroupBuyDescription" = "甘橙团购是一款团购导航和推荐应用,帮你快速找到你想要的团购商品!";
 "kRecommendApps" = "精彩应用推荐";
-"kRecommend" = "荐";
+"kRecommend" = "推荐";
 
 "kChangeBackgroundTitle" = "提示";
 "kChangeBackgroundMessage" = "使用全局填充将会导致之前的笔画都消失，是否继续？";
@@ -1107,6 +1107,9 @@
 
 "kCanotSendItemToOverContestOpus" = "比赛已经结束，不能再送东西了！";
 
+"kUnfeature" = "取消推荐";
+"kFeatureSucc" = "成功推荐";
+"kUnfeatureSucc" = "取消推荐成功";
 
 "kPenWidth" = "粗细";
 "kColorAlpha" = "透明度";

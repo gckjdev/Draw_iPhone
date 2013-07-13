@@ -665,6 +665,16 @@ static UserManager* _defaultManager;
     self.pbUser = [builder build];
 }
 
+- (void)setFeatureOpus:(NSInteger)flag
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setFeatureOpus:flag];
+    self.pbUser = [builder build];
+}
+
 - (void)setBloodGroup:(NSString*)bloodGroup
 {
     if (self.pbUser == nil)
@@ -1459,5 +1469,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return [[UIDevice currentDevice] model];
 }
 
+- (BOOL)canFeatureDrawOpus
+{
+//    return YES;
+    return ([self.pbUser featureOpus] & CAN_REATURE_DRAW_OPUS);
+}
 
 @end

@@ -891,6 +891,10 @@
 
 "kRecommendApps" = "App Recommend";
 "kRecommend" = "Feature";
+"kUnfeature" = "Unfeature";
+"kFeatureSucc" = "Feature successfully";
+"kUnfeatureSucc" = "Unfeature successfully";
+
 
 "kChangeBackgroundTitle" = "Warning";
 "kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";
