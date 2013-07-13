@@ -418,7 +418,7 @@
         [self exchangeCenterView1:self.redo view2:self.paintBucket];
         [self exchangeCenterView1:self.undo view2:self.chat];
         
-//        self.redo.hidden = self.undo.hidden =
+        self.redo.hidden = self.undo.hidden = YES;
 //        self.grid.hidden = self.drawBg.hidden =
 //        self.canvasSize.hidden = self.help.hidden =
 //        self.opusDesc.hidden = self.drawToUser.hidden = YES;
