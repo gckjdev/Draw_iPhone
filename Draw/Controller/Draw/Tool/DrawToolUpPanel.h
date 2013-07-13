@@ -7,16 +7,32 @@
 //
 
 #import "DrawToolPanel.h"
+#import "DrawView.h"
+#import "MyFriend.h"
 
 @interface DrawToolUpPanel : DrawToolPanel
 
-@property (retain, nonatomic) IBOutlet UIButton* copyPaint;
 @property (assign, nonatomic) BOOL isVisable;
+//@property(nonatomic, retain)ToolHandler *toolHandler;
+
+
+@property (retain, nonatomic) IBOutlet UIButton* copyPaint;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *copyPaintPicker;
 @property (retain, nonatomic) IBOutlet UILabel *drawToUserNickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *copyPaintLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+@property (retain, nonatomic) IBOutlet UIButton *canvasSize;
+@property (retain, nonatomic) IBOutlet UIButton *grid;
+@property (retain, nonatomic) IBOutlet UIButton *opusDesc;
+@property (retain, nonatomic) IBOutlet UIButton *drawToUser;
+@property (retain, nonatomic) IBOutlet UIButton *help;
+@property (retain, nonatomic) IBOutlet UIButton *drawBg;
+
+@property (retain, nonatomic) IBOutlet UIButton *subject;
+
+
 
 - (IBAction)clickShowCopyPaint:(id)sender;
 
@@ -24,6 +40,7 @@
          title:(NSString*)title
    isLeftArrow:(BOOL)isLeftArrow;
 - (void)disappear;
-
+- (void)updateDrawToUser:(MyFriend *)user;
+- (void)registerToolCommands;
 - (void)updateCopyPaint:(UIImage*)aPhoto;
 @end
