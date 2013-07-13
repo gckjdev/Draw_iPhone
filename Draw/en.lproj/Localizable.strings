@@ -1804,6 +1804,16 @@
 "kUseGradientTitle" = "Use gradient, the paints will be lost. Continue?";
 "kSubject" = "Subject";
 
+"kSelectorItem" = "Selector";
+"kSelectorItemDescription" = "Select an area & draw inside the area";
+
+"kShadowItem" = "Shadow";
+"kShadowItemDescription" = "Add shadow to the paints";
+
+
+"kGradientItem" = "Gradient";
+"kGradientItemDescription" = "Fill the drawing objects with gradient colors";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 

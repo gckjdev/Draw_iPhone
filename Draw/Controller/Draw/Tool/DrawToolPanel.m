@@ -299,39 +299,23 @@
     command = [[[AlphaSliderCommand alloc] initWithControl:self.alphaSlider itemType:ColorAlphaItem] autorelease];
     [toolCmdManager registerCommand:command];
 
-    //
     command = [[[TextCommand alloc] initWithControl:self.text itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
-/*
-    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-  */
     
-    command = [[[SelectorCommand alloc] initWithControl:self.selector itemType:ItemTypeNo] autorelease];
+    command = [[[SelectorCommand alloc] initWithControl:self.selector itemType:ItemTypeSelector] autorelease];
     [toolCmdManager registerCommand:command];
 
     command = [[[FXCommand alloc] initWithControl:self.fx itemType:ItemTypeGrid] autorelease];
     [toolCmdManager registerCommand:command];
 
-//    command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
-//    [toolCmdManager registerCommand:command];
-
-/*
-    command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-*/
     
-    command = [[[GradientCommand alloc] initWithControl:self.gradient itemType:ItemTypeNo] autorelease];
+    command = [[[GradientCommand alloc] initWithControl:self.gradient itemType:ItemTypeGradient] autorelease];
     [toolCmdManager registerCommand:command];
 
     
-    command = [[[ShadowCommand alloc] initWithControl:self.shadow itemType:ItemTypeNo] autorelease];
+    command = [[[ShadowCommand alloc] initWithControl:self.shadow itemType:ItemTypeShadow] autorelease];
     [toolCmdManager registerCommand:command];
 
-/*
-    command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-*/
     
     command = [[[RedoCommand alloc] initWithControl:self.redo itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
@@ -365,8 +349,11 @@
 
 }
 
+
 - (void)updateView
 {
+    [self.scrollView setDelegate:self];
+    
     [self updateSliders];
     
     [self registerToolCommands];
@@ -549,5 +536,42 @@
     }];
     
 }
+
+- (void)updateButtonWithOffsetX:(CGFloat)x
+{
+    if (x < CGRectGetWidth(self.scrollView.bounds)) {
+        [UIView animateWithDuration:0.15 animations:^{
+            [self.switchPage setTransform:CGAffineTransformIdentity];
+        }];
+        self.switchPage.selected = NO;
+    }else{
+        [UIView animateWithDuration:0.15 animations:^{
+            [self.switchPage setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, M_PI)];
+        }];
+        self.switchPage.selected = YES;
+    }
+
+}
+
+
+#pragma mark- ScrollView delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [toolCmdManager hideAllPopTipViews];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    CGFloat offset = scrollView.contentOffset.x;
+    [self updateButtonWithOffsetX:offset];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat offset = scrollView.contentOffset.x;
+    [self updateButtonWithOffsetX:offset];    
+}
+
 @end
 

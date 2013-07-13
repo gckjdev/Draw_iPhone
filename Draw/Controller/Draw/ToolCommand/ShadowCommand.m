@@ -28,16 +28,16 @@
 - (BOOL)execute
 {
 
-    Shadow *shadow = [Shadow shadowWithShadow:self.toolHandler.shadow];
-    
-    ShadowBox *view  = [ShadowBox shadowBoxWithShadow:shadow];
-    UIView *spView = [[self.control theViewController] view];
-    view.center = spView.center;
-    [view showInView:spView];
-    view.delegate = self;
-    self.box = view;
-    
-    
+    if ([super execute]) {
+        Shadow *shadow = [Shadow shadowWithShadow:self.toolHandler.shadow];
+        
+        ShadowBox *view  = [ShadowBox shadowBoxWithShadow:shadow];
+        UIView *spView = [[self.control theViewController] view];
+        view.center = spView.center;
+        [view showInView:spView];
+        view.delegate = self;
+        self.box = view;
+    }
     return YES;
 }
 

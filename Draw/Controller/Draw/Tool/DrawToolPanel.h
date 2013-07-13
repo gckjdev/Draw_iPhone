@@ -17,7 +17,7 @@
 
 
 
-@interface DrawToolPanel : UIView<ColorPointDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, UIScrollViewDelegate>
 {
     
 }

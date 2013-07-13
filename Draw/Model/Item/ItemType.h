@@ -32,6 +32,14 @@ typedef enum
     PolygonPen,
     PenCount,
     ItemTypeCopyPaint,
+
+    ItemTypeShadow,
+    ItemTypeGradient,
+    ItemTypeSelector,
+
+    ItemTypeText,
+    ItemTypeFX,
+    
     
     Eraser = 1100,
     PaletteItem = 1101,
