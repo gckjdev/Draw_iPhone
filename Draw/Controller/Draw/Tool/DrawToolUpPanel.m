@@ -55,13 +55,6 @@
     UIControl* _mask;
 }
 
-@property (retain, nonatomic) IBOutlet UIButton *canvasSize;
-@property (retain, nonatomic) IBOutlet UIButton *grid;
-@property (retain, nonatomic) IBOutlet UIButton *opusDesc;
-@property (retain, nonatomic) IBOutlet UIButton *drawToUser;
-@property (retain, nonatomic) IBOutlet UIButton *help;
-
-@property (retain, nonatomic) IBOutlet UIButton *drawBg;
 @property (retain, nonatomic) NSTimer *timer;
 
 @end
@@ -85,6 +78,16 @@
     [_copyPaintPicker release];
     [_copyPaintLabel release];
     [_backgroundImageView release];
+    
+    PPRelease(_drawBg);
+    PPRelease(_canvasSize);
+    PPRelease(_grid);
+    PPRelease(_opusDesc);
+    PPRelease(_drawToUser);
+    PPRelease(_help);
+
+    
+    [_subject release];
     [super dealloc];
 }
 
@@ -133,7 +136,15 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 
 - (void)updateDrawToUser:(MyFriend *)user
 {
-    [super updateDrawToUser:user];
+    NSURL *URL = [NSURL URLWithString:user.avatar];
+    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
+        image = [UIImage shrinkImage:image withRate:0.8];
+        [self.drawToUser setImage:image forState:UIControlStateNormal];
+        [self.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
+    } failure:^(NSError *error) {
+        
+    }];
+
     [self.drawToUserNickNameLabel setText:user.nickName];
 }
 
@@ -148,6 +159,7 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     [self.drawToUserNickNameLabel setText:NSLS(@"kDrawTo")];
     [self.grid setTitle:NSLS(@"kGrid") forState:UIControlStateNormal];
     [self.help setTitle:NSLS(@"kHelp") forState:UIControlStateNormal];
+    [self.subject setTitle:NSLS(@"kSubject") forState:UIControlStateNormal];
     
 }
 - (IBAction)clickTool:(id)sender

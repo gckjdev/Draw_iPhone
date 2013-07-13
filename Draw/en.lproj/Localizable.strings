@@ -1802,6 +1802,7 @@
 "kPolygonJoined" = "Polygon joined!";
 "kUseGradientTitle" = "Warning";
 "kUseGradientTitle" = "Use gradient, the paints will be lost. Continue?";
+"kSubject" = "Subject";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
