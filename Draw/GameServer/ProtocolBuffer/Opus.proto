@@ -173,3 +173,12 @@ message PBOpus {
 //    optional PBOpusAction action = 2;               //only guess action
 //}
 
+
+message PBRanking{
+
+   optional int totalPass = 1;
+   optional int totalEarn = 2;
+   optional PBGameCurrency currency = 3;
+   optional int lead = 5;      
+}
+
