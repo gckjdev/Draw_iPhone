@@ -1808,7 +1808,7 @@
 "kUseGradientTitle" = "提示";
 "kUseGradientMessage" = "使用全局漸變將會導致之前的筆畫都消失，是否繼續？";
 "kSubject" = "主題";
-"kFurtureFunction" = "本功能即將推出，敬請期待...";
+"kFurtureFunction" = "神秘功能即將推出，敬請期待...";
 
 "kSelectorItem" = "套索";
 "kSelectorItemDescription" = "可建立矩形、橢圓、手繪圖形和多邊形選區。通過選擇特定區域，可以在此區域內繪畫或編輯效果，同時保持未選定區域不會被改動。";
