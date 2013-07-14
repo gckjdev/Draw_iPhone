@@ -7,13 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DrawFeed.h"
+#import "NonCyclePageScrollView.h"
 
-@interface OpusImageBrower : UIView
+@class OpusImageBrower;
 
-@property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
+@protocol OpusImageBrowerDelegate <NSObject>
 
-+ (id)createWithThumbImageUrl:(NSString *)thumbImageUrl
-                     imageUrl:(NSString *)imageUrl;
+@optional
+- (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed;
+
+@end
+
+@interface OpusImageBrower : UIView<UIGestureRecognizerDelegate, PageScrollViewDatasource, PageScrollViewDelegate>
+
+@property (assign, nonatomic) id<OpusImageBrowerDelegate> delegate;
+
+- (id)initWithFeedList:(NSArray *)feedList;
+- (void)setIndex:(int)index;
 - (void)showInView:(UIView *)view;
 
 @end

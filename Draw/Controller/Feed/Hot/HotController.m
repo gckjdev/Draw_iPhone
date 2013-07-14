@@ -21,6 +21,7 @@
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
 #import "AddLearnDrawView.h"
+#import "UINavigationController+UINavigationControllerAdditions.h"
 
 typedef enum{
 
@@ -417,8 +418,32 @@ typedef enum{
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
     [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
 
+    [sc release];
+}
+
+- (void)showFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
+    
+    [sc release];
+    
+    
+}
+
+- (void)showOpusImageBrower:(int)index{
+    
+    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:_tabManager.currentTab.dataList] autorelease];
+    brower.delegate = self;
+    [brower showInView:self.view];
+    [brower setIndex:index];
+}
+
+
+- (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed{
+    
+    [self showFeed:feed animatedWithTransition:UIViewAnimationTransitionCurlUp];
 }
 
 - (void)didClickRankView:(RankView *)rankView
@@ -426,7 +451,10 @@ typedef enum{
 
     if ((!isLearnDrawApp() && !isDreamAvatarApp() && !isDreamLockscreenApp())
          || ![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
-        [self showFeed:rankView.feed];
+        
+        int index = [[self.currentTab dataList] indexOfObject:rankView.feed];
+        [self showOpusImageBrower:index];
+        
     }else{
         MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc]
                                      initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]

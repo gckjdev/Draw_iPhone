@@ -19,6 +19,7 @@
 #import "MKBlockActionSheet.h"
 #import "AddLearnDrawView.h"
 #import "InputAlertView.h"
+#import "UINavigationController+UINavigationControllerAdditions.h"
 
 typedef enum{
     UserTypeFeed = FeedListTypeUserFeed,
@@ -295,6 +296,30 @@ typedef enum{
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
+
+- (void)enterDetailFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
+    [sc release];
+}
+
+
+- (void)showOpusImageBrower:(int)index{
+    
+    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:_tabManager.currentTab.dataList] autorelease];
+    brower.delegate = self;
+    [brower showInView:self.view];
+    [brower setIndex:index];
+}
+
+
+- (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed{
+
+    [self enterDetailFeed:feed animatedWithTransition:UIViewAnimationTransitionCurlUp];
+}
+
+
 
 - (void)alertDeleteConfirm
 {
@@ -667,7 +692,10 @@ typedef enum{
                 [sheet showInView:self.view];
                 [sheet release];
         }else{
-            [self enterDetailFeed:_selectedRankView.feed];
+            
+            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
+            [self showOpusImageBrower:index];
+//            [self enterDetailFeed:_selectedRankView.feed];
         }
     }else if(tab.tabID == UserTypeFavorite){
         sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kUnFavorite"), nil] autorelease];
@@ -737,12 +765,12 @@ typedef enum{
     }
 }
 
-- (void)showRankView:(RankView *)rankView
-{
-    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
-}
+//- (void)showRankView:(RankView *)rankView
+//{
+//    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
+//    [self.navigationController pushViewController:sc animated:YES];
+//    [sc release];
+//}
 
 
 
