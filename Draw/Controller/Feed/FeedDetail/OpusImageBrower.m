@@ -199,6 +199,16 @@
 - (void)showInView:(UIView *)view{
     
     [view addSubview:self];
+
+//    [self updateOriginY:PAGE_HEIGHT];
+    self.alpha = 0;
+    __block typeof (self) bself = self;
+    [UIView animateWithDuration:0.5 animations:^{
+//        [bself updateOriginY:0];
+        bself.alpha = 1;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
