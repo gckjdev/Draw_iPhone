@@ -568,6 +568,13 @@ int getPopOptionCount()
     
 }
 
+- (void)showFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
+{
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
+    [sc release];
+}
+
 - (void)didClickRankView:(RankView *)rankView
 {
     if (![self isRegistered]) {
@@ -575,12 +582,27 @@ int getPopOptionCount()
         return;
     }
     [self hideOptionSheet];
-//    [self cleanFrontData];
-    [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.001];
+//    [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.001];
+
+    int index = [[self.currentTab dataList] indexOfObject:rankView.feed];
+    [self showOpusImageBrower:index];
 
 }
 
 
+- (void)showOpusImageBrower:(int)index{
+    
+    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:_tabManager.currentTab.dataList] autorelease];
+    brower.delegate = self;
+    [brower showInView:self.view];
+    [brower setIndex:index];
+}
+
+
+- (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed{
+    
+    [self showFeed:feed animatedWithTransition:UIViewAnimationTransitionCurlUp];
+}
 
 //table view delegate
 

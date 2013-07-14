@@ -14,6 +14,7 @@
 #import "FriendController.h"
 #import "DrawHomeControllerProtocol.h"
 #import "ContestService.h"
+#import "OpusImageBrower.h"
 
 typedef enum {
     LittleGeeHomeGalleryTypeAnnual = 0,
@@ -24,7 +25,7 @@ typedef enum {
     
 }LittleGeeHomeGalleryType;
 
-@interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate, FeedServiceDelegate, UserServiceDelegate, CustomActionSheetDelegate, FriendControllerDelegate, DrawHomeControllerProtocol, ContestServiceDelegate>
+@interface LittleGeeHomeController : CommonTabController<HomeBottomMenuPanelDelegate, FeedServiceDelegate, UserServiceDelegate, CustomActionSheetDelegate, FriendControllerDelegate, DrawHomeControllerProtocol, ContestServiceDelegate, OpusImageBrowerDelegate>
 
 + (LittleGeeHomeController*)defaultInstance;
 - (IBAction)clickTest:(id)sender;
