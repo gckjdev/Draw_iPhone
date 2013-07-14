@@ -46,6 +46,7 @@
         [self hidePopTipView];
         [[DrawRecoveryService defaultService] changeCanvasSize:canvasRect.rect.size];
     }else{
+        [self hidePopTipView];        
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kChangeCanvasFailed") delayTime:1.5];
     }
 

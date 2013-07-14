@@ -43,6 +43,8 @@
 #import "ShadowCommand.h"
 #import "GradientCommand.h"
 #import "SelectorCommand.h"
+#import "TextCommand.h"
+#import "FXCommand.h"
 
 #import "WidthView.h"
 #import "UIImageUtil.h"
@@ -82,17 +84,15 @@
 @property (retain, nonatomic) IBOutlet UIButton *addColor;
 @property (retain, nonatomic) IBOutlet UIButton *switchPage;
 
-
 @property (retain, nonatomic) IBOutlet UIButton *paintBucket;
-
 @property (retain, nonatomic) IBOutlet UIButton *shape;
-@property (retain, nonatomic) IBOutlet UIButton *canvasSize;
-@property (retain, nonatomic) IBOutlet UIButton *grid;
-@property (retain, nonatomic) IBOutlet UIButton *opusDesc;
-@property (retain, nonatomic) IBOutlet UIButton *drawToUser;
-@property (retain, nonatomic) IBOutlet UIButton *help;
 
-@property (retain, nonatomic) IBOutlet UIButton *drawBg;
+@property (retain, nonatomic) IBOutlet UIButton *shadow;
+@property (retain, nonatomic) IBOutlet UIButton *gradient;
+@property (retain, nonatomic) IBOutlet UIButton *selector;
+@property (retain, nonatomic) IBOutlet UIButton *fx;
+@property (retain, nonatomic) IBOutlet UIButton *text;
+
 @property (retain, nonatomic) NSTimer *timer;
 
 - (IBAction)switchToolPage:(UIButton *)sender;
@@ -235,20 +235,11 @@
 {
     [self.eraser setSelected:selected];
 }
-- (void)updateDrawToUser:(MyFriend *)user
-{
-
-    NSURL *URL = [NSURL URLWithString:user.avatar];
-//    __block typeof(self) cp = self;
-    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
-        image = [UIImage shrinkImage:image withRate:0.8];
-        [self.drawToUser setImage:image forState:UIControlStateNormal];
-        [self.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
+//- (void)updateDrawToUser:(MyFriend *)user
+//{
+//
+//}
+//
 
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
@@ -308,39 +299,23 @@
     command = [[[AlphaSliderCommand alloc] initWithControl:self.alphaSlider itemType:ColorAlphaItem] autorelease];
     [toolCmdManager registerCommand:command];
 
-    //
-    command = [[[DrawBgCommand alloc] initWithControl:self.drawBg itemType:ItemTypeNo] autorelease];
+    command = [[[TextCommand alloc] initWithControl:self.text itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
-/*
-    command = [[[CanvasSizeCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-  */
     
-    command = [[[SelectorCommand alloc] initWithControl:self.canvasSize itemType:ItemTypeNo] autorelease];
+    command = [[[SelectorCommand alloc] initWithControl:self.selector itemType:ItemTypeSelector] autorelease];
     [toolCmdManager registerCommand:command];
 
-    command = [[[GridCommand alloc] initWithControl:self.grid itemType:ItemTypeGrid] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    command = [[[EditDescCommand alloc] initWithControl:self.opusDesc itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-
-/*
-    command = [[[DrawToCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-*/
-    
-    command = [[[GradientCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
+    command = [[[FXCommand alloc] initWithControl:self.fx itemType:ItemTypeGrid] autorelease];
     [toolCmdManager registerCommand:command];
 
     
-    command = [[[ShadowCommand alloc] initWithControl:self.drawToUser itemType:ItemTypeNo] autorelease];
+    command = [[[GradientCommand alloc] initWithControl:self.gradient itemType:ItemTypeGradient] autorelease];
     [toolCmdManager registerCommand:command];
 
-/*
-    command = [[[HelpCommand alloc] initWithControl:self.help itemType:ItemTypeNo] autorelease];
+    
+    command = [[[ShadowCommand alloc] initWithControl:self.shadow itemType:ItemTypeShadow] autorelease];
     [toolCmdManager registerCommand:command];
-*/
+
     
     command = [[[RedoCommand alloc] initWithControl:self.redo itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
@@ -363,19 +338,22 @@
 - (void)updateViewsForSimpleDraw
 {
     if (isSimpleDrawApp()) {
-        if(!ISIPAD){
-            self.paintBucket.center = self.drawToUser.center;
-        }else{
-            self.shape.center = self.opusDesc.center;
-            self.paintBucket.center = self.drawToUser.center;
-        }
-        self.drawToUser.hidden = self.opusDesc.hidden = YES;
+//        if(!ISIPAD){
+//            self.paintBucket.center = self.drawToUser.center;
+//        }else{
+//            self.shape.center = self.opusDesc.center;
+//            self.paintBucket.center = self.drawToUser.center;
+//        }
+//        self.drawToUser.hidden = self.opusDesc.hidden = YES;
     }
 
 }
 
+
 - (void)updateView
 {
+    [self.scrollView setDelegate:self];
+    
     [self updateSliders];
     
     [self registerToolCommands];
@@ -440,10 +418,10 @@
         [self exchangeCenterView1:self.redo view2:self.paintBucket];
         [self exchangeCenterView1:self.undo view2:self.chat];
         
-        self.redo.hidden = self.undo.hidden =
-        self.grid.hidden = self.drawBg.hidden =
-        self.canvasSize.hidden = self.help.hidden =
-        self.opusDesc.hidden = self.drawToUser.hidden = YES;
+        self.redo.hidden = self.undo.hidden = YES;
+//        self.grid.hidden = self.drawBg.hidden =
+//        self.canvasSize.hidden = self.help.hidden =
+//        self.opusDesc.hidden = self.drawToUser.hidden = YES;
     }
     
     CGRect frame = self.scrollView.frame;
@@ -472,7 +450,6 @@
     [toolCmdManager removeAllCommand:_commandVersion];
     [drawColorManager syncRecentList];
     PPRelease(_toolHandler);
-    PPRelease(_drawBgId);
     PPRelease(_widthSlider);
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);
@@ -496,12 +473,13 @@
     
     PPRelease(_shape);
     PPRelease(_paintBucket);
-    PPRelease(_drawBg);
-    PPRelease(_canvasSize);
-    PPRelease(_grid);
-    PPRelease(_opusDesc);
-    PPRelease(_drawToUser);
-    PPRelease(_help);
+    
+    PPRelease(_shadow);
+    PPRelease(_gradient);
+    PPRelease(_selector);
+    PPRelease(_fx);
+    PPRelease(_text);
+    
     PPRelease(_toolBGImageView);
     [super dealloc];
 }
@@ -558,5 +536,42 @@
     }];
     
 }
+
+- (void)updateButtonWithOffsetX:(CGFloat)x
+{
+    if (x < CGRectGetWidth(self.scrollView.bounds)) {
+        [UIView animateWithDuration:0.15 animations:^{
+            [self.switchPage setTransform:CGAffineTransformIdentity];
+        }];
+        self.switchPage.selected = NO;
+    }else{
+        [UIView animateWithDuration:0.15 animations:^{
+            [self.switchPage setTransform:CGAffineTransformRotate(CGAffineTransformIdentity, M_PI)];
+        }];
+        self.switchPage.selected = YES;
+    }
+
+}
+
+
+#pragma mark- ScrollView delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [toolCmdManager hideAllPopTipViews];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    CGFloat offset = scrollView.contentOffset.x;
+    [self updateButtonWithOffsetX:offset];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat offset = scrollView.contentOffset.x;
+    [self updateButtonWithOffsetX:offset];    
+}
+
 @end
 

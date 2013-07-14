@@ -369,6 +369,9 @@
 
 /*the new words below without Japanese*/
 
+"kFeatureSucc" = "成功推薦";
+"kUnfeatureSucc" = "成功取消推薦";
+"kUnfeature" = "取消推薦";
 
 "kSaveSucc" = "保存成功！在作品頁面可以查看以往保存的草稿。";
 "kSaveFail" = "保存失敗";
@@ -1804,6 +1807,17 @@
 
 "kUseGradientTitle" = "提示";
 "kUseGradientMessage" = "使用全局漸變將會導致之前的筆畫都消失，是否繼續？";
+"kSubject" = "主題";
+"kFurtureFunction" = "本功能即將推出，敬請期待...";
+
+"kSelectorItem" = "套索";
+"kSelectorItemDescription" = "可建立矩形、橢圓、手繪圖形和多邊形選區。通過選擇特定區域，可以在此區域內繪畫或編輯效果，同時保持未選定區域不會被改動。";
+
+"kShadowItem" = "投影";
+"kShadowItemDescription" = "在繪制內容的後面添加陰影。";
+
+"kGradientItem" = "漸變";
+"kGradientItemDescription" = "用漸變填充畫面內容。";
 
 /*********************小吉画画国际化字符串结束 ************************/
 

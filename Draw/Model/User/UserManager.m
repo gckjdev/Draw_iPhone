@@ -665,6 +665,16 @@ static UserManager* _defaultManager;
     self.pbUser = [builder build];
 }
 
+- (void)setFeatureOpus:(NSInteger)flag
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setFeatureOpus:flag];
+    self.pbUser = [builder build];
+}
+
 - (void)setBloodGroup:(NSString*)bloodGroup
 {
     if (self.pbUser == nil)
@@ -788,6 +798,59 @@ static UserManager* _defaultManager;
     //    [userDefaults synchronize];
     
 }
+
+- (void)setDeviceModel:(NSString*)deviceModel
+{
+    if (self.pbUser == nil)
+        return;
+    
+    if (deviceModel == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceModel:deviceModel];
+    self.pbUser = [builder build];
+
+}
+
+- (void)setDeviceType:(int)deviceType
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceType:[NSString stringWithFormat:@"%d", deviceType]];
+    self.pbUser = [builder build];
+    
+}
+
+- (void)setDeviceId:(NSString*)deviceId
+{
+    if (self.pbUser == nil)
+        return;
+    
+    if (deviceId == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceId:deviceId];
+    self.pbUser = [builder build];
+    
+}
+
+- (void)setDeviceOS:(NSString*)deviceOS
+{
+    if (self.pbUser == nil)
+        return;
+    
+    if (deviceOS == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setDeviceOs:deviceOS];
+    self.pbUser = [builder build];    
+}
+
 
 - (UIImage*)readAvatarImageLocally
 {
@@ -1406,5 +1469,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return [[UIDevice currentDevice] model];
 }
 
+- (BOOL)canFeatureDrawOpus
+{
+//    return YES;
+    return ([self.pbUser featureOpus] & CAN_REATURE_DRAW_OPUS);
+}
 
 @end

@@ -832,22 +832,49 @@ enum{
     int indexOfGuess = 0;
     int indexOfPlay = 1;
     int indexOfPhoto = 2;
+    int indexOfFeature = -1;
+    int indexOfUnfeature = -1;
     
     MKBlockActionSheet *sheet = nil;
+    BOOL canFeature = [[UserManager defaultManager] canFeatureDrawOpus];
     
     if (![self.feed showAnswer]) {
-        sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
-                                                 delegate:nil
-                                        cancelButtonTitle:NSLS(@"kCancel")
-                                   destructiveButtonTitle:NSLS(@"kGuess") otherButtonTitles:NSLS(@"kPlay"),NSLS(@"kLargeImage"), nil];
+        if (canFeature){
+            sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLS(@"kCancel")
+                                       destructiveButtonTitle:NSLS(@"kGuess")
+                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
+            indexOfFeature = indexOfPhoto + 1;
+            indexOfUnfeature = indexOfFeature + 1;
+        }
+        else{
+            sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLS(@"kCancel")
+                                       destructiveButtonTitle:NSLS(@"kGuess")
+                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), nil];
+        }
     }else{
-        sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
-                                                 delegate:nil
-                                        cancelButtonTitle:NSLS(@"kCancel")
-                                   destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), nil];
         indexOfGuess = -1;
         indexOfPlay = 0;
         indexOfPhoto = 1;
+
+        if (canFeature){
+            sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLS(@"kCancel")
+                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
+        
+            indexOfFeature = indexOfPhoto + 1;
+            indexOfUnfeature = indexOfFeature + 1;
+        }
+        else{
+            sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLS(@"kCancel")
+                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), nil];
+        }
     }
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
@@ -867,7 +894,21 @@ enum{
             
         }else if (buttonIndex == indexOfPlay){
             [self clickActionButton:self.replayButton];
-        }else{
+        }else if (buttonIndex == indexOfFeature){
+            [[FeedService defaultService] recommendOpus:self.feed.feedId resultBlock:^(int resultCode) {
+                if (resultCode == 0){
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFeatureSucc") delayTime:2];
+                }                
+            }];
+        }
+        else if (buttonIndex == indexOfUnfeature){
+            [[FeedService defaultService] unRecommendOpus:self.feed.feedId resultBlock:^(int resultCode) {
+                if (resultCode == 0){
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfeatureSucc") delayTime:2];
+                }
+            }];
+        }
+        else{
             
         }
         

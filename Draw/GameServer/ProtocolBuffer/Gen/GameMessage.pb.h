@@ -192,6 +192,8 @@
 @class PBPoker_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
+@class PBRanking;
+@class PBRanking_Builder;
 @class PBRect;
 @class PBRect_Builder;
 @class PBSNSUser;

@@ -2178,3 +2178,299 @@ static PBOpus* defaultPBOpusInstance = nil;
 }
 @end
 
+@interface PBRanking ()
+@property int32_t totalPass;
+@property int32_t totalEarn;
+@property PBGameCurrency currency;
+@property int32_t lead;
+@end
+
+@implementation PBRanking
+
+- (BOOL) hasTotalPass {
+  return !!hasTotalPass_;
+}
+- (void) setHasTotalPass:(BOOL) value {
+  hasTotalPass_ = !!value;
+}
+@synthesize totalPass;
+- (BOOL) hasTotalEarn {
+  return !!hasTotalEarn_;
+}
+- (void) setHasTotalEarn:(BOOL) value {
+  hasTotalEarn_ = !!value;
+}
+@synthesize totalEarn;
+- (BOOL) hasCurrency {
+  return !!hasCurrency_;
+}
+- (void) setHasCurrency:(BOOL) value {
+  hasCurrency_ = !!value;
+}
+@synthesize currency;
+- (BOOL) hasLead {
+  return !!hasLead_;
+}
+- (void) setHasLead:(BOOL) value {
+  hasLead_ = !!value;
+}
+@synthesize lead;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.totalPass = 0;
+    self.totalEarn = 0;
+    self.currency = PBGameCurrencyCoin;
+    self.lead = 0;
+  }
+  return self;
+}
+static PBRanking* defaultPBRankingInstance = nil;
++ (void) initialize {
+  if (self == [PBRanking class]) {
+    defaultPBRankingInstance = [[PBRanking alloc] init];
+  }
+}
++ (PBRanking*) defaultInstance {
+  return defaultPBRankingInstance;
+}
+- (PBRanking*) defaultInstance {
+  return defaultPBRankingInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasTotalPass) {
+    [output writeInt32:1 value:self.totalPass];
+  }
+  if (self.hasTotalEarn) {
+    [output writeInt32:2 value:self.totalEarn];
+  }
+  if (self.hasCurrency) {
+    [output writeEnum:3 value:self.currency];
+  }
+  if (self.hasLead) {
+    [output writeInt32:5 value:self.lead];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasTotalPass) {
+    size += computeInt32Size(1, self.totalPass);
+  }
+  if (self.hasTotalEarn) {
+    size += computeInt32Size(2, self.totalEarn);
+  }
+  if (self.hasCurrency) {
+    size += computeEnumSize(3, self.currency);
+  }
+  if (self.hasLead) {
+    size += computeInt32Size(5, self.lead);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBRanking*) parseFromData:(NSData*) data {
+  return (PBRanking*)[[[PBRanking builder] mergeFromData:data] build];
+}
++ (PBRanking*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBRanking*)[[[PBRanking builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBRanking*) parseFromInputStream:(NSInputStream*) input {
+  return (PBRanking*)[[[PBRanking builder] mergeFromInputStream:input] build];
+}
++ (PBRanking*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBRanking*)[[[PBRanking builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBRanking*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBRanking*)[[[PBRanking builder] mergeFromCodedInputStream:input] build];
+}
++ (PBRanking*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBRanking*)[[[PBRanking builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBRanking_Builder*) builder {
+  return [[[PBRanking_Builder alloc] init] autorelease];
+}
++ (PBRanking_Builder*) builderWithPrototype:(PBRanking*) prototype {
+  return [[PBRanking builder] mergeFrom:prototype];
+}
+- (PBRanking_Builder*) builder {
+  return [PBRanking builder];
+}
+@end
+
+@interface PBRanking_Builder()
+@property (retain) PBRanking* result;
+@end
+
+@implementation PBRanking_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBRanking alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBRanking_Builder*) clear {
+  self.result = [[[PBRanking alloc] init] autorelease];
+  return self;
+}
+- (PBRanking_Builder*) clone {
+  return [PBRanking builderWithPrototype:result];
+}
+- (PBRanking*) defaultInstance {
+  return [PBRanking defaultInstance];
+}
+- (PBRanking*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBRanking*) buildPartial {
+  PBRanking* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBRanking_Builder*) mergeFrom:(PBRanking*) other {
+  if (other == [PBRanking defaultInstance]) {
+    return self;
+  }
+  if (other.hasTotalPass) {
+    [self setTotalPass:other.totalPass];
+  }
+  if (other.hasTotalEarn) {
+    [self setTotalEarn:other.totalEarn];
+  }
+  if (other.hasCurrency) {
+    [self setCurrency:other.currency];
+  }
+  if (other.hasLead) {
+    [self setLead:other.lead];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBRanking_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBRanking_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setTotalPass:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setTotalEarn:[input readInt32]];
+        break;
+      }
+      case 24: {
+        int32_t value = [input readEnum];
+        if (PBGameCurrencyIsValidValue(value)) {
+          [self setCurrency:value];
+        } else {
+          [unknownFields mergeVarintField:3 value:value];
+        }
+        break;
+      }
+      case 40: {
+        [self setLead:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasTotalPass {
+  return result.hasTotalPass;
+}
+- (int32_t) totalPass {
+  return result.totalPass;
+}
+- (PBRanking_Builder*) setTotalPass:(int32_t) value {
+  result.hasTotalPass = YES;
+  result.totalPass = value;
+  return self;
+}
+- (PBRanking_Builder*) clearTotalPass {
+  result.hasTotalPass = NO;
+  result.totalPass = 0;
+  return self;
+}
+- (BOOL) hasTotalEarn {
+  return result.hasTotalEarn;
+}
+- (int32_t) totalEarn {
+  return result.totalEarn;
+}
+- (PBRanking_Builder*) setTotalEarn:(int32_t) value {
+  result.hasTotalEarn = YES;
+  result.totalEarn = value;
+  return self;
+}
+- (PBRanking_Builder*) clearTotalEarn {
+  result.hasTotalEarn = NO;
+  result.totalEarn = 0;
+  return self;
+}
+- (BOOL) hasCurrency {
+  return result.hasCurrency;
+}
+- (PBGameCurrency) currency {
+  return result.currency;
+}
+- (PBRanking_Builder*) setCurrency:(PBGameCurrency) value {
+  result.hasCurrency = YES;
+  result.currency = value;
+  return self;
+}
+- (PBRanking_Builder*) clearCurrency {
+  result.hasCurrency = NO;
+  result.currency = PBGameCurrencyCoin;
+  return self;
+}
+- (BOOL) hasLead {
+  return result.hasLead;
+}
+- (int32_t) lead {
+  return result.lead;
+}
+- (PBRanking_Builder*) setLead:(int32_t) value {
+  result.hasLead = YES;
+  result.lead = value;
+  return self;
+}
+- (PBRanking_Builder*) clearLead {
+  result.hasLead = NO;
+  result.lead = 0;
+  return self;
+}
+@end
+

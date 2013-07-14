@@ -11,6 +11,8 @@
 #define DEFAULT_AVATAR          @"http://tp4.sinaimg.cn/2198792115/180/0/1"
 #define TEMP_AVATAR_LOCAL_PATH  @"avatar"
 
+#define CAN_REATURE_DRAW_OPUS       0x000001
+
 @class PBGameUser;
 
 typedef enum {
@@ -92,6 +94,10 @@ typedef enum {
 - (void)setLevel:(int)level;
 - (void)setSingLimitTime:(int)value;
 
+- (void)setDeviceModel:(NSString*)deviceModel;
+- (void)setDeviceType:(int)deviceType;
+- (void)setDeviceId:(NSString*)deviceId;
+- (void)setDeviceOS:(NSString*)deviceOS;
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;
@@ -184,4 +190,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)setBbsBackground:(UIImage*)image;
 - (BOOL)resetBbsBackground;
 - (UIImage*)bbsBackground;
+
+- (BOOL)canFeatureDrawOpus;
+- (void)setFeatureOpus:(NSInteger)flag;
 @end

@@ -518,6 +518,46 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    //阴影
+    [mutableArray addObject:[self itemWithItemId:ItemTypeShadow
+                                            name:@"kShadowItem"
+                                            desc:@"kShadowItemDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_shadow@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:2000 //1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //渐变
+    [mutableArray addObject:[self itemWithItemId:ItemTypeGradient
+                                            name:@"kGradientItem"
+                                            desc:@"kGradientItemDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_gradient@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:2000 //1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    //选择器
+    [mutableArray addObject:[self itemWithItemId:ItemTypeSelector
+                                            name:@"kSelectorItem"
+                                            desc:@"kSelectorItemDescription"
+                                     consumeType:PBGameItemConsumeTypeNonConsumable
+                                           image:DRAW_URL_ITEM_IMAGE(@"shop_item_selector@2x.png")
+                                            type:PBDrawItemTypeDrawTool
+                                           price:4000
+                                        currency:PBGameCurrencyCoin //]];
+                                  promotionPrice:2000 //1000/discount
+                                       startDate:[NSDate date]
+                                      expireDate:[[NSDate date] dateByAddingDays:90]]];
+    
+    
     //基本形状
     [mutableArray addObject:[self itemWithItemId:BasicShape
                                             name:@"kBasicShape"
@@ -531,8 +571,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+
     //临摹
-    /*
     [mutableArray addObject:[self itemWithItemId:ItemTypeCopyPaint
                                             name:@"kCopyPaint"
                                             desc:@"kCopyPaintDescription"
@@ -544,7 +584,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:500 //1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
-     */
+    
     
     // 网格参考线
     [mutableArray addObject:[self itemWithItemId:ItemTypeGrid

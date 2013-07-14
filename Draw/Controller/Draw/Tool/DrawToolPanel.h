@@ -11,22 +11,21 @@
 #import "PenView.h"
 #import "ItemType.h"
 #import "Palette.h"
-#import "DrawView.h"
-#import "MyFriend.h"
 
 
 @class ToolHandler;
 
 
 
-@interface DrawToolPanel : UIView<ColorPointDelegate>
+@interface DrawToolPanel : UIView<ColorPointDelegate, UIScrollViewDelegate>
 {
     
 }
 
 @property(nonatomic, assign)NSInteger timerDuration;
-@property(nonatomic, retain)NSString *drawBgId;
+//@property(nonatomic, retain)NSString *drawBgId;
 @property(nonatomic, retain)ToolHandler *toolHandler;
+
 
 
 //+ (id)createViewWithdelegate:(id)delegate;
@@ -36,7 +35,7 @@
 - (void)updateView;
 - (void)setPanelForOnline:(BOOL)isOnline;
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
-- (void)updateDrawToUser:(MyFriend *)user;
+
 - (void)updateWidthSliderWithValue:(CGFloat)value;
 - (void)setShapeSelected:(BOOL)selected;
 - (void)setStrawSelected:(BOOL)selected;

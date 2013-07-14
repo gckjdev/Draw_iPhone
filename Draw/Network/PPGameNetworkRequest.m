@@ -54,7 +54,17 @@
         str = [str stringByAddQueryParameter:METHOD value:method];
         str = [self addDefaultParameters:str parameters:parameters];
         for (NSString *key in [parameters allKeys]) {
-            NSString *value = [parameters objectForKey:key];
+            NSObject* obj = [parameters objectForKey:key];
+            NSString *value = nil;
+            if ([obj isKindOfClass:[NSNumber class]]){
+                value = [NSString stringWithInt:[(NSNumber*)obj intValue]];
+            }
+            else if ([obj isKindOfClass:[NSString class]]){
+                value = (NSString*)obj;
+            }
+            else{
+                value = [obj description];
+            }
             str = [str stringByAddQueryParameter:key value:value];
         }
         if (returnPB) {
@@ -122,8 +132,18 @@
         str = [str stringByAddQueryParameter:METHOD value:method];
         str = [self addDefaultParameters:str parameters:parameters];        
         for (NSString *key in [parameters allKeys]) {
-            NSString *value = [parameters objectForKey:key];
-            str = [str stringByAddQueryParameter:key value:value];
+//            NSString *value = [parameters objectForKey:key];
+            NSObject* obj = [parameters objectForKey:key];
+            NSString *value = nil;
+            if ([obj isKindOfClass:[NSNumber class]]){
+                value = [NSString stringWithInt:[(NSNumber*)obj intValue]];
+            }
+            else if ([obj isKindOfClass:[NSString class]]){
+                value = (NSString*)obj;
+            }
+            else{
+                value = [obj description];
+            }            str = [str stringByAddQueryParameter:key value:value];
         }
         if (returnPB) {
             str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];
@@ -194,8 +214,18 @@
         str = [str stringByAddQueryParameter:METHOD value:method];
         str = [self addDefaultParameters:str parameters:parameters];        
         for (NSString *key in [parameters allKeys]) {
-            NSString *value = [parameters objectForKey:key];
-            str = [str stringByAddQueryParameter:key value:value];
+//            NSString *value = [parameters objectForKey:key];
+            NSObject* obj = [parameters objectForKey:key];
+            NSString *value = nil;
+            if ([obj isKindOfClass:[NSNumber class]]){
+                value = [NSString stringWithInt:[(NSNumber*)obj intValue]];
+            }
+            else if ([obj isKindOfClass:[NSString class]]){
+                value = (NSString*)obj;
+            }
+            else{
+                value = [obj description];
+            }            str = [str stringByAddQueryParameter:key value:value];
         }
         if (returnPB) {
             str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];

@@ -21,7 +21,7 @@
 {
     if (aFriend) {
         [self.toolHandler changeDrawToFriend:aFriend];
-        [self.toolPanel updateDrawToUser:aFriend];
+        [(DrawToolUpPanel *)self.toolPanel updateDrawToUser:aFriend];
     }
 }
 

@@ -1062,6 +1062,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property PBOpenInfoType openInfoType;
 @property int32_t opusCoverflowType;
 @property (retain) NSString* signature;
+@property int32_t featureOpus;
 @property int32_t singRecordLimit;
 @end
 
@@ -1349,6 +1350,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasSignature_ = !!value;
 }
 @synthesize signature;
+- (BOOL) hasFeatureOpus {
+  return !!hasFeatureOpus_;
+}
+- (void) setHasFeatureOpus:(BOOL) value {
+  hasFeatureOpus_ = !!value;
+}
+@synthesize featureOpus;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -1419,6 +1427,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.openInfoType = PBOpenInfoTypeOpenToFriend;
     self.opusCoverflowType = 0;
     self.signature = @"";
+    self.featureOpus = 0;
     self.singRecordLimit = 30;
   }
   return self;
@@ -1601,6 +1610,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasSignature) {
     [output writeString:100 value:self.signature];
   }
+  if (self.hasFeatureOpus) {
+    [output writeInt32:101 value:self.featureOpus];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -1732,6 +1744,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasSignature) {
     size += computeStringSize(100, self.signature);
+  }
+  if (self.hasFeatureOpus) {
+    size += computeInt32Size(101, self.featureOpus);
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -1940,6 +1955,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasSignature) {
     [self setSignature:other.signature];
   }
+  if (other.hasFeatureOpus) {
+    [self setFeatureOpus:other.featureOpus];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -2133,6 +2151,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 802: {
         [self setSignature:[input readString]];
+        break;
+      }
+      case 808: {
+        [self setFeatureOpus:[input readInt32]];
         break;
       }
       case 1600: {
@@ -2819,6 +2841,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearSignature {
   result.hasSignature = NO;
   result.signature = @"";
+  return self;
+}
+- (BOOL) hasFeatureOpus {
+  return result.hasFeatureOpus;
+}
+- (int32_t) featureOpus {
+  return result.featureOpus;
+}
+- (PBGameUser_Builder*) setFeatureOpus:(int32_t) value {
+  result.hasFeatureOpus = YES;
+  result.featureOpus = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearFeatureOpus {
+  result.hasFeatureOpus = NO;
+  result.featureOpus = 0;
   return self;
 }
 - (BOOL) hasSingRecordLimit {

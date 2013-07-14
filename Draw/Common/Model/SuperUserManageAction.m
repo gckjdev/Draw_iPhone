@@ -13,11 +13,13 @@
 #import "CommonMessageCenter.h"
 #import "UserService.h"
 #import "GameBasic.pb.h"
+#import "MKBlockActionSheet.h"
 
 typedef enum
 {
     SuperUserManageActionIndexCharge = 0,
     SuperUserManageActionIndexChargeIngot,
+    SuperUserManageActionIndexFeatureOpus,
     SuperUserManageActionIndexBlackUserId,
     SuperUserManageActionIndexBlackDevice,
     SuperUserManageActionIndexUnblackUserId,
@@ -56,7 +58,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"用户作品推荐设置", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -103,6 +105,35 @@ typedef enum
             [dialog.targetTextField setPlaceholder:@"请输入要充值的元宝数"];
             [dialog showInView:_superController.view];
         } break;
+        
+        case SuperUserManageActionIndexFeatureOpus:{
+            
+            int indexOfFeatureOpusDraw = 0;
+            int indexOfCancelFeatureOpusDraw = 1;
+            
+            MKBlockActionSheet* sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"选项")
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLS(@"取消")
+                                       destructiveButtonTitle:NSLS(@"可推荐画画作品")
+                                            otherButtonTitles:NSLS(@"取消推荐画画作品"), nil];
+
+            [sheet setActionBlock:^(NSInteger buttonIndex){
+                if (buttonIndex == indexOfFeatureOpusDraw) {
+                    // TODO
+                }else if (buttonIndex == indexOfCancelFeatureOpusDraw){
+                    // TODO
+                }
+                else{
+                }
+                
+                [sheet setActionBlock:NULL];
+            }];
+
+            [sheet showInView:_superController.view];
+            
+        }
+            break;
+            
         case SuperUserManageActionIndexBlackUserId: {
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
                 [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{

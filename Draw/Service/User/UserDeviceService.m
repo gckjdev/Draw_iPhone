@@ -11,6 +11,7 @@
 #import "PPGameNetworkRequest.h"
 #import "DeviceDetection.h"
 #import "UIDevice+IdentifierAddition.h"
+#import "UserService.h"
 
 @implementation UserDeviceService
 
@@ -31,6 +32,15 @@ static UserDeviceService* _defaultUserService;
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults removeObjectForKey:uploadKey];
 }
+
+- (void)setUploadDone
+{
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* uploadKey = [NSString stringWithFormat:@"upload_device_user_id_%@", userId];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"DONE" forKey:uploadKey];
+}
+
 
 - (BOOL)isUploadDone
 {
@@ -85,23 +95,37 @@ static UserDeviceService* _defaultUserService;
     
     NSString* deviceModel = [[UIDevice currentDevice] model];
     NSString* deviceOS = [DeviceDetection deviceOS];
-    int deviceType = DEVICE_TYPE_IOS;
     NSString* newDeviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     NSString* deviceToken = [[[UserManager defaultManager] pbUser] deviceToken];    
+    
+
+    
     
     dispatch_async(queue, ^{
         
         NSDictionary* para = @{ PARA_DEVICEMODEL : (deviceModel == nil) ? @"" : deviceModel,
                                 PARA_DEVICEID : (newDeviceId == nil) ? @"" : newDeviceId,
-                                PARA_DEVICETYPE : @(deviceType),
+                                PARA_DEVICETYPE : STRING_DEVICE_TYPE_IOS,
                                 PARA_DEVICETOKEN : (deviceToken == nil) ? @"" : deviceToken,
                                 PARA_DEVICEOS : (deviceOS == nil) ? @"" : deviceOS };
         
         
-        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_UPDATE_USER_DEVICE
-                                                                         parameters:para];
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_UPDATE_USER_DEVICE
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
         
         
+        if (output.resultCode == ERROR_SUCCESS){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self setUploadDone];
+
+                [[UserManager defaultManager] setDeviceModel:deviceModel];
+                [[UserManager defaultManager] setDeviceOS:deviceOS];
+                [[UserManager defaultManager] setDeviceId:newDeviceId];
+                [[UserManager defaultManager] storeUserData];                
+            });
+        }
         
     });
 }
