@@ -1380,7 +1380,7 @@
 "kDescription" = "作品描述";
 "kDrawTo" = "畫給好友";
 "kGrid" = "輔助網格";
-"kHelp" = "縮放幫助";
+"kHelp" = "幫助";
 "kSelectPhoto" = "選取圖片";
 "kUpdateSucc" = "更新成功!";
 "kContestNotSupportDesc" = "參賽作品不能編輯描述!";
@@ -1818,6 +1818,8 @@
 
 "kGradientItem" = "漸變";
 "kGradientItemDescription" = "用漸變填充畫面內容。";
+
+"kSelectorHelp" = "1、用“選擇器”選出壹個區域\n\n2、在此區域內繪畫\n\n3、繪畫只在此區域內生效，區域外不會改動";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
