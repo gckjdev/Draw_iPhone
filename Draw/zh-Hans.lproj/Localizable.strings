@@ -1398,7 +1398,7 @@
 "kDescription" = "作品描述";
 "kDrawTo" = "画给好友";
 "kGrid" = "辅助网格";
-"kHelp" = "缩放帮助";
+"kHelp" = "帮助";
 "kSelectPhoto" = "选取图片";
 "kUpdateSucc" = "更新成功!";
 "kContestNotSupportDesc" = "参赛作品不能编辑描述!";
@@ -1817,7 +1817,7 @@
 "kUseGradientTitle" = "提示";
 "kUseGradientMessage" = "使用全局渐变将会导致之前的笔画都消失，是否继续？";
 "kSubject" = "主题";
-"kFurtureFunction" = "本功能即将推出，敬请期待...";
+"kFurtureFunction" = "神秘功能即将推出，敬请期待...";
 
 "kSelectorItem" = "套索";
 "kSelectorItemDescription" = "可建立矩形、椭圆、手绘图形和多边形选区。通过选择特定区域，可以在此区域内绘画或编辑效果，同时保持未选定区域不会被改动。";
@@ -1827,6 +1827,8 @@
 
 "kGradientItem" = "渐变";
 "kGradientItemDescription" = "用渐变填充画面内容。";
+
+"kSelectorHelp" = "1、用“选择器”选出一个区域\n\n2、在此区域内绘画\n\n3、绘画只在此区域内生效，区域外不会改动";
 
 /*********************小吉画画国际化字符串结束 ************************/
 

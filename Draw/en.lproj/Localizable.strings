@@ -1818,6 +1818,8 @@
 "kGradientItem" = "Gradient";
 "kGradientItemDescription" = "Fill the drawing objects with gradient colors";
 
+"kSelectorHelp" = "1) Select an area\n2) Draw inside the area\n3) Drawings only affect inside area";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 
