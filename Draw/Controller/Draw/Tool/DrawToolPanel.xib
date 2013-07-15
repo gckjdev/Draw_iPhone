@@ -1351,7 +1351,7 @@
 			<string key="draw_selector@2x.png">{72, 71}</string>
 			<string key="draw_shadow@2x.png">{72, 71}</string>
 			<string key="draw_shape_default@2x.png">{72, 71}</string>
-			<string key="draw_shape_image@2x.png">{72, 69}</string>
+			<string key="draw_shape_image@2x.png">{45, 44}</string>
 			<string key="draw_shape_selected@2x.png">{72, 71}</string>
 			<string key="draw_straw@2x.png">{57, 78}</string>
 			<string key="draw_straw_seleted@2x.png">{57, 78}</string>
