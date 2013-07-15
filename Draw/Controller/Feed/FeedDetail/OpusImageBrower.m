@@ -22,6 +22,12 @@
 
 #define THUMB_IMAGE_VIEW_FRAME   (ISIPAD ? CGRectMake(0, 0, 600, 600) : CGRectMake(0, 0, 300, 300))
 
+#define PAGE_INDICATOR_WIDTH 50
+#define DESC_LABEL_HEIGHT 60
+
+#define DESC_LABEL_FONT (ISIPAD ? [UIFont systemFontOfSize:24] : [UIFont systemFontOfSize:12])
+#define DESC_LABEL_SHADOW_OFFSET (ISIPAD ? CGSizeMake(2, 2) : CGSizeMake(1, 1))
+
 @interface OpusImageBrower()
 @property (retain, nonatomic) NSArray *feedList;
 //@property (assign, nonatomic) UIScrollView *scrollView;
@@ -35,6 +41,8 @@
     [_feedList release];
     [super dealloc];
 }
+
+
 
 - (id)initWithFeedList:(NSArray *)feedList{
     
@@ -139,9 +147,6 @@
     opusImageView.tag = OPUS_IMAGEVIEW_TAG;
     [view addSubview:opusImageView];
     [opusImageView release];
-
-    
-    
     
     UIImageView *thumbImageView = nil;
     UIActivityIndicatorView *indicator = nil;
@@ -153,7 +158,16 @@
         thumbImageView.contentMode = UIViewContentModeScaleAspectFit;
         [view addSubview:thumbImageView];
         [thumbImageView release];
-        [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil];
+        [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+            thumbImageView.alpha = 0;
+            [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
+                thumbImageView.alpha = 1;
+            } completion:^(BOOL finished) {
+                
+            }];
+        } failure:^(NSError *error) {
+            
+        }];
         
         indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         indicator.center = CGPointMake(PAGE_WIDTH/2, PAGE_HEIGHT/2);
@@ -188,17 +202,29 @@
         }];
     }
     
-    UILabel *descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, PAGE_HEIGHT - 80, PAGE_WIDTH - 40, 60)] autorelease];
+    UILabel *descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, PAGE_HEIGHT - DESC_LABEL_HEIGHT - 20, PAGE_WIDTH - 20*2 - PAGE_INDICATOR_WIDTH - 10, DESC_LABEL_HEIGHT)] autorelease];
     descLabel.tag = OPUS_DESC_LABEL_TAG;
     descLabel.backgroundColor = [UIColor clearColor];
     descLabel.textColor = [UIColor whiteColor];
     descLabel.shadowColor = [UIColor blackColor];
     
-    descLabel.shadowOffset = CGSizeMake(VALUE(1), VALUE(1));
-    descLabel.font = [UIFont systemFontOfSize:VALUE(12)];
+    descLabel.shadowOffset = DESC_LABEL_SHADOW_OFFSET;
+    descLabel.font = DESC_LABEL_FONT;
     descLabel.numberOfLines = 2;
     descLabel.text = desc;
     [view addSubview:descLabel];
+    
+    
+    CGRect frame = CGRectMake(PAGE_WIDTH - PAGE_INDICATOR_WIDTH - 20, PAGE_HEIGHT - DESC_LABEL_HEIGHT - 20, PAGE_INDICATOR_WIDTH, DESC_LABEL_HEIGHT);
+    UILabel *pageIndicator = [[[UILabel alloc] initWithFrame:frame] autorelease];
+    pageIndicator.backgroundColor = [UIColor clearColor];
+    pageIndicator.textColor = [UIColor whiteColor];
+    pageIndicator.shadowColor = [UIColor blackColor];
+    pageIndicator.shadowOffset = DESC_LABEL_SHADOW_OFFSET;
+    pageIndicator.font = DESC_LABEL_FONT;
+    pageIndicator.textAlignment = UITextAlignmentRight;
+    pageIndicator.text = [NSString stringWithFormat:@"[%d/%d]", index+1, [_feedList count]];
+    [view addSubview:pageIndicator];
     
     return view;
 }
