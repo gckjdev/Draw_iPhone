@@ -1490,4 +1490,27 @@ static UserService* _defaultUserService;
     return NO;
 }
 
+- (void)setUserFeatureOpus:(NSString*)targetUserId
+               featureOpus:(int)featureOpus
+              successBlock:(void (^)(void))successBlock
+{
+    
+    NSDictionary* para = @{ PARA_TARGETUSERID : targetUserId,
+                            PARA_FEATURE_OPUS : @(featureOpus)};
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_MANAGE_USER_INFO parameters:para isReturnArray:NO];
+        if (output.resultCode == 0){
+            if (successBlock){
+                successBlock();
+            }
+        }
+    });
+    
+    
+}
+
+
 @end
+
+

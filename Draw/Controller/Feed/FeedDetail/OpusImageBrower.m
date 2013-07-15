@@ -141,6 +141,8 @@
     [opusImageView release];
 
     
+    
+    
     UIImageView *thumbImageView = nil;
     UIActivityIndicatorView *indicator = nil;
     if (thumbUrl != nil) {
@@ -166,7 +168,21 @@
             [opusImageView updateHeight:MIN(image.size.height, PAGE_HEIGHT)];
             opusImageView.center = CGRectGetCenter(view.bounds);//CGPointMake(PAGE_WIDTH/2, PAGE_HEIGHT/2);
             [indicator stopAnimating];
-            [thumbImageView removeFromSuperview];
+            
+            if (!cached) {
+                opusImageView.alpha = 0;
+                
+                [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    thumbImageView.frame = opusImageView.frame;
+                    //                thumbImageView.alpha = 0;
+                } completion:^(BOOL finished) {
+                    [thumbImageView removeFromSuperview];
+                    opusImageView.alpha = 1;
+                }];
+            }else{
+                [thumbImageView removeFromSuperview];
+            }
+            
         } failure:^(NSError *error) {
             [indicator stopAnimating];
         }];
@@ -203,8 +219,8 @@
 //    [self updateOriginY:PAGE_HEIGHT];
     self.alpha = 0;
     __block typeof (self) bself = self;
-    [UIView animateWithDuration:0.5 animations:^{
-//        [bself updateOriginY:0];
+    
+    [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         bself.alpha = 1;
     } completion:^(BOOL finished) {
         

@@ -374,9 +374,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_color_bg@2x.png">{622, 84}</string>
-			<string key="draw_tool_button_bg@2x.png">{69, 68}</string>
-			<string key="gradient_division@2x.png">{39, 79}</string>
+			<string key="draw_color_bg@2x.png">{16, 16}</string>
+			<string key="draw_tool_button_bg@2x.png">{16, 16}</string>
+			<string key="gradient_division@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

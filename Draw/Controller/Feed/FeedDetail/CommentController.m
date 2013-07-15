@@ -9,6 +9,7 @@
 #import "CommentController.h"
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
+#import "WordFilterService.h"
 
 @interface CommentController ()
 {
@@ -102,11 +103,16 @@
 
 - (void)sendComment
 {
+    NSString *msg = contentView.text;
+    if ([[WordFilterService defaultService] checkForbiddenWord:msg]){
+        return;
+    }
+
     if (!canSend) {
         return;
     }
     canSend = NO;
-    NSString *msg = contentView.text;
+    
     if ([msg length] != 0) {
         [self showActivityWithText:NSLS(@"kSending")];
         FeedService *_feedService = [FeedService defaultService];

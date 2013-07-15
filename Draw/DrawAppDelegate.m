@@ -78,6 +78,8 @@
 #import "ImageShapeManager.h"
 #import "UserDeviceService.h"
 
+#import "WordFilterService.h"
+
 NSString* GlobalGetServerURL()
 {
 
@@ -342,7 +344,7 @@ NSString* GlobalGetBoardServerURL()
     [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
     
     [UIUtils checkAppVersion];
-    
+        
     return YES;
 }
 

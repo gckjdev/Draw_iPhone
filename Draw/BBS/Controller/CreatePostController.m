@@ -17,6 +17,7 @@
 #import "AccountService.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ConfigManager.h"
+#import "WordFilterService.h"
 
 @interface CreatePostController ()
 {
@@ -329,6 +330,11 @@
 
 - (IBAction)clickSubmitButton:(id)sender {
 
+    self.text = self.textView.text;
+    if ([[WordFilterService defaultService] checkForbiddenWord:self.text]){
+        return;
+    }
+
     //if has source post, then send an action, or create a new post
     if (!canCommit) {
         PPDebug(@"Cannot Commit!!! it is sending!!!");
@@ -336,7 +342,7 @@
     }
     canCommit = NO;
     
-    self.text = self.textView.text;
+    
     [self showActivityWithText:NSLS(@"kSending")];
     if ([self.postId length] != 0) {
         

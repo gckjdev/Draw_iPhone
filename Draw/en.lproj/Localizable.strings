@@ -895,6 +895,7 @@
 "kFeatureSucc" = "Feature successfully";
 "kUnfeatureSucc" = "Unfeature successfully";
 
+"kWordForbidden" = "Text contains forbbiden words";
 
 "kChangeBackgroundTitle" = "Warning";
 "kChangeBackgroundMessage" = "Change background? All the paints will dismiss.";
