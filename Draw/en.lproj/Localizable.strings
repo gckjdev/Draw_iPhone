@@ -1806,7 +1806,7 @@
 "kRightBottom" = "RB";
 "kPolygonJoined" = "Polygon joined!";
 "kUseGradientTitle" = "Warning";
-"kUseGradientTitle" = "Use gradient, the paints will be lost. Continue?";
+"kUseGradientMessage" = "Use gradient, the paints will be lost. Continue?";
 "kSubject" = "Subject";
 
 "kSelectorItem" = "Selector";
@@ -1820,7 +1820,7 @@
 "kGradientItemDescription" = "Fill the drawing objects with gradient colors";
 
 "kSelectorHelp" = "1) Select an area\n2) Draw inside the area\n3) Drawings only affect inside area";
-
+"kScaleHelp" = "Scale Help";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

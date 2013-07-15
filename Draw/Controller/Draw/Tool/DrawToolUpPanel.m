@@ -158,7 +158,7 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     [self.opusDesc setTitle:NSLS(@"kDescription") forState:UIControlStateNormal];
     [self.drawToUserNickNameLabel setText:NSLS(@"kDrawTo")];
     [self.grid setTitle:NSLS(@"kGrid") forState:UIControlStateNormal];
-    [self.help setTitle:NSLS(@"kHelp") forState:UIControlStateNormal];
+    [self.help setTitle:NSLS(@"kScaleHelp") forState:UIControlStateNormal];
     [self.subject setTitle:NSLS(@"kSubject") forState:UIControlStateNormal];
     
 }

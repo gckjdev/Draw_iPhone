@@ -47,6 +47,7 @@
 {
     [self removeCloseView];
     
+    
     UIView *_closeView = [UIView createViewWithXibIdentifier:@"SelectorBox"  ofViewIndex:2];
     
     if (ISIPAD) {
