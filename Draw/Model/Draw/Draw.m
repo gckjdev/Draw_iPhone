@@ -15,6 +15,7 @@
 #import "ConfigManager.h"
 #import "CanvasRect.h"
 #import "Draw.pb-c.h"
+#import "ClipAction.h"
 
 @implementation Draw
 
@@ -35,13 +36,21 @@
     if (array != NULL) {
         
         NSMutableArray *list = [NSMutableArray array];
+        ClipAction *clipAction = nil;        
         for (int i=0; i<actionCount; i++){
             
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-            
+
             Game__PBDrawAction* pbDrawActionC = array[i];
             if (pbDrawActionC != NULL){
                 DrawAction* drawAction = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
+                if ([drawAction isKindOfClass:[ClipAction class]]) {
+                    clipAction = (ClipAction *) drawAction;
+                }
+                if (drawAction.clipTag == clipAction.clipTag) {
+                    drawAction.clipAction = clipAction;
+                }
+
                 [drawAction setCanvasSize:canvasSize];
                 if (drawAction) {
                     [list addObject:drawAction];
