@@ -40,6 +40,7 @@
     if (self.lastGradient) {
         self.lastGradient = [[[Gradient alloc] initWithGradient:_lastGradient] autorelease];
         self.lastGradient.rect = rect;
+        [self.lastGradient setDegree:self.lastGradient.degree];
     }else{
         Gradient *graident = [[Gradient alloc] initWithDegree:0
                                                    startColor:[DrawColor whiteColor]

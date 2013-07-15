@@ -225,14 +225,14 @@
 + (NSString*)getDrawServerString
 {
 //
-    
+/*
 #ifdef DEBUG
     
     return @"58.215.172.169:9111";
     
 #endif
-    
-    if ([[UserManager defaultManager] getLanguageType] == ChineseType ){        
+*/    
+  if ([[UserManager defaultManager] getLanguageType] == ChineseType ){        
         return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN_NEW" defaultValue:@"58.215.172.169:9000"];
     }
     else{
@@ -1031,10 +1031,20 @@
 }
 + (int)cachedActionCount
 {
+/*
+#ifdef DEBUG
+    return 6;
+#endif
+*/
     return [MobClickUtils getIntValueByKey:@"CACHED_ACTION_COUNT" defaultValue:700];
 }
 + (int)minUndoActionCount
 {
+/*
+#ifdef DEBUG
+    return 3;
+#endif
+*/
     return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:100];
 }
 
