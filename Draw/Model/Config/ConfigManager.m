@@ -224,8 +224,13 @@
 
 + (NSString*)getDrawServerString
 {
-//    
-//    return @"192.168.1.198:8080";
+//
+    
+#ifdef DEBUG
+    
+    return @"58.215.172.169:9111";
+    
+#endif
     
     if ([[UserManager defaultManager] getLanguageType] == ChineseType ){        
         return [MobClickUtils getStringValueByKey:@"DRAW_SERVER_LIST_CN_NEW" defaultValue:@"58.215.172.169:9000"];
