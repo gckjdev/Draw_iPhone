@@ -14,7 +14,7 @@
 #define PAGE_WIDTH (ISIPAD ? 768 : 320)
 #define PAGE_HEIGHT (ISIPAD ? 1004 : 460)
 //#define FONT (ISIPAD ? 1004 : 460)
-#define VALUE(x) (ISIPAD ? (2*(x)) : (x))
+//#define VALUE(x) (ISIPAD ? (2*(x)) : (x))
 
 #define OPUS_IMAGEVIEW_TAG 200
 #define OPUS_THUMB_IMAGEVIEW_TAG 300
@@ -22,8 +22,8 @@
 
 #define THUMB_IMAGE_VIEW_FRAME   (ISIPAD ? CGRectMake(0, 0, 600, 600) : CGRectMake(0, 0, 300, 300))
 
-#define PAGE_INDICATOR_WIDTH 50
-#define DESC_LABEL_HEIGHT 60
+#define PAGE_INDICATOR_WIDTH (ISIPAD ? 120 : 60)
+#define DESC_LABEL_HEIGHT (ISIPAD ? 60 : 30)
 
 #define DESC_LABEL_FONT (ISIPAD ? [UIFont systemFontOfSize:24] : [UIFont systemFontOfSize:12])
 #define DESC_LABEL_SHADOW_OFFSET (ISIPAD ? CGSizeMake(2, 2) : CGSizeMake(1, 1))
@@ -198,7 +198,9 @@
         }];
     }
     
-    UILabel *descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, PAGE_HEIGHT - DESC_LABEL_HEIGHT - 20, PAGE_WIDTH - 20*2 - PAGE_INDICATOR_WIDTH - 10, DESC_LABEL_HEIGHT)] autorelease];
+    int yGap = (ISIPAD ? 40 : 20);
+    int xSp = (ISIPAD ? 20 : 10);
+    UILabel *descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, PAGE_HEIGHT - DESC_LABEL_HEIGHT - yGap, PAGE_WIDTH - 20*2 - PAGE_INDICATOR_WIDTH - xSp, DESC_LABEL_HEIGHT)] autorelease];
     descLabel.tag = OPUS_DESC_LABEL_TAG;
     descLabel.backgroundColor = [UIColor clearColor];
     descLabel.textColor = [UIColor whiteColor];
@@ -211,7 +213,7 @@
     [view addSubview:descLabel];
     
     
-    CGRect frame = CGRectMake(PAGE_WIDTH - PAGE_INDICATOR_WIDTH - 20, PAGE_HEIGHT - DESC_LABEL_HEIGHT - 20, PAGE_INDICATOR_WIDTH, DESC_LABEL_HEIGHT);
+    CGRect frame = CGRectMake(PAGE_WIDTH - PAGE_INDICATOR_WIDTH - 20, descLabel.frame.origin.y, PAGE_INDICATOR_WIDTH, DESC_LABEL_HEIGHT);
     UILabel *pageIndicator = [[[UILabel alloc] initWithFrame:frame] autorelease];
     pageIndicator.backgroundColor = [UIColor clearColor];
     pageIndicator.textColor = [UIColor whiteColor];
