@@ -85,6 +85,7 @@
     }
     [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
     [button setImage:image forState:UIControlStateNormal];
+
 }
 
 - (void)shapeBox:(ShapeBox *)shapeBox

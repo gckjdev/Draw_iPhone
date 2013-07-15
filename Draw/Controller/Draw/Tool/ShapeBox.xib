@@ -116,7 +116,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{145, 294}, {70, 30}}</string>
 						<reference key="NSSuperview" ref="547314671"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">101</int>
@@ -158,7 +157,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITableViewCell" id="970031405">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="81579057">
@@ -370,7 +369,6 @@
 								<int key="NSvFlags">264</int>
 								<string key="NSFrame">{{0, 73}, {230, 2}}</string>
 								<reference key="NSSuperview" ref="81579057"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -393,7 +391,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{230, 75}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="81579057"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
