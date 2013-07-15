@@ -12,6 +12,6 @@
 
 + (WordFilterService*)defaultService;
 - (BOOL)containForbiddenWord:(NSString*)text;
-
+- (BOOL)checkForbiddenWord:(NSString*)inputText;
 
 @end

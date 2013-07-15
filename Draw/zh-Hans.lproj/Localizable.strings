@@ -1148,6 +1148,8 @@
 "kShareOpus" = "分享一幅作品";
 "kDrawAPicture" = "画一幅画";
 
+"kWordForbidden" = "文本内容中包含了敏感词，请检查";
+
 "kNewDrawVersionTip" = "当前应用版本比较旧，可能不支持部分画画效果，建议升级。";
 "kVersionNotSupport" = "当前应用版本可能比较旧，暂时不支持这一功能，建议升级。";
 "kRecovery" = "恢复";

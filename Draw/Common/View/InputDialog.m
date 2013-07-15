@@ -12,7 +12,7 @@
 #import "LocaleUtils.h"
 #import "DiceImageManager.h"
 #import "ZJHImageManager.h"
-
+#import "WordFilterService.h"
 
 @interface InputDialog ()
 
@@ -182,6 +182,11 @@
 }
 
 - (IBAction)clickOkButton:(id)sender {
+    
+    if ([[WordFilterService defaultService] checkForbiddenWord:targetTextField.text]){
+        return;
+    }
+    
     [self disappear];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickOk:targetText:)]) {
         [self.delegate didClickOk:self targetText:self.targetTextField.text];
