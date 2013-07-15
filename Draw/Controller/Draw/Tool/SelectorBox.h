@@ -23,9 +23,10 @@
 @interface SelectorBox : UIView
 
 @property(nonatomic, assign)id<SelectorBoxDelegate>delegate;
+//@property(nonatomic, retain)UIView *closeView;
 
 + (id)selectorBoxWithDelegate:(id<SelectorBoxDelegate>)delegate;
-
+- (void)showCloseViewInView:(UIView *)view;
 - (IBAction)clickSelector:(UIButton *)sender;
 - (IBAction)clickCancel:(id)sender;
 - (IBAction)clickHelp:(id)sender;

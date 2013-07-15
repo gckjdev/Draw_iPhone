@@ -1033,4 +1033,9 @@
     return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:100];
 }
 
++ (BOOL)enableWordFilter
+{
+    return [MobClickUtils getBoolValueByKey:@"ENABLE_WORD_FILTER" defaultValue:YES];
+}
+
 @end

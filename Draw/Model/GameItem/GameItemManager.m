@@ -15,7 +15,9 @@
 
 #define SHOP_ITEMS_FILE_WITHOUT_SUFFIX @"shop_item"
 #define SHOP_ITEM_FILE_TYPE @"pb"
-#define SHOP_ITEMS_FILE_VERSION @"2.0"
+
+// change for each item bundle file upgrade
+#define SHOP_ITEMS_FILE_VERSION @"2.95"
 
 @interface GameItemManager()
 

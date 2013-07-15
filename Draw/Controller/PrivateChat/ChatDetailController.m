@@ -31,6 +31,7 @@
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
 #import "GameApp.h"
+#import "WordFilterService.h"
 
 @interface ChatDetailController ()
 {
@@ -704,7 +705,10 @@
 {  
     if ([text isEqualToString:@"\n"]) {  
         if ([textView.text length] != 0) {
-//            [self sendTextMessage:textView.text];
+
+            if ([[WordFilterService defaultService] checkForbiddenWord:textView.text]){
+                return YES;
+            }            
             
             [[ChatService defaultService] sendTextMessage:textView.text friendUserId:self.fid];
             [self tableViewScrollToBottom];

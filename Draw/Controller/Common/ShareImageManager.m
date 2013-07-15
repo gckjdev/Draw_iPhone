@@ -703,6 +703,15 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"draw_slider_disable"];
 }
 
+- (UIImage *)drawSelectorCloseBGImage
+{
+    return [self fixedImageNamed:@"selector_close_bg"];
+}
+- (UIImage *)drawSelectorCloseImage
+{
+    return [self fixedImageNamed:@"selector_close"];    
+}
+
 - (UIImage *)playProgressLoader
 {
     return [self fixedAndStrectchableImageNamed:@"draw_player_progress_load"];

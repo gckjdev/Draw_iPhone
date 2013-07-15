@@ -328,6 +328,7 @@
 
 - (void)exitFromClipMode
 {
+    [self setNeedsDisplay];
     [cdManager finishCurrentClip];
 }
 

@@ -239,6 +239,7 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     [UIView commitAnimations];
     self.isVisable = NO;
     self.hidden = YES;
+    [self.superview sendSubviewToBack:self];
     
     
 }

@@ -120,8 +120,12 @@ typedef enum
             [sheet setActionBlock:^(NSInteger buttonIndex){
                 if (buttonIndex == indexOfFeatureOpusDraw) {
                     // TODO
+                    [[UserService defaultService] setUserFeatureOpus:_targetUserId featureOpus:1 successBlock:^{
+                    }];
+                    
                 }else if (buttonIndex == indexOfCancelFeatureOpusDraw){
-                    // TODO
+                    [[UserService defaultService] setUserFeatureOpus:_targetUserId featureOpus:0 successBlock:^{
+                    }];
                 }
                 else{
                 }

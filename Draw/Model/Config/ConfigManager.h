@@ -275,5 +275,6 @@ typedef enum{
 + (int)minUndoActionCount;
 
 + (NSString*)getLimeiWallId;
++ (BOOL)enableWordFilter;
 
 @end

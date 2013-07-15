@@ -520,6 +520,7 @@
 #define PARA_RELATION_FAN_COUNT @"rfac"
 #define PARA_RELATION_FOLLOW_COUNT @"rflc"
 #define PARA_RELATION_BLACK_COUNT @"rfbc"
+#define PARA_FEATURE_OPUS   @"featureOpus"
 
 #define PARA_RELATION @"rl"
 #define FRIENDS_TYPE_FOLLOW 0
@@ -610,6 +611,8 @@
 #define METHOD_BUY_LEARN_DRAW @"bld"
 #define METHOD_ADD_LEARN_DRAW @"ald"
 #define METHOD_REMOVE_LEARN_DRAW @"rld"
+
+#define METHOD_MANAGE_USER_INFO @"manageUserInfo"
 
 
 #define REGISTER_TYPE_EMAIL     1

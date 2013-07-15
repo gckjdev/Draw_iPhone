@@ -142,4 +142,10 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
                             resultBlock:(AutoResgistrationResultBlock)resultBlock;
 - (void)recoverUserOpus:(NSString*)targetUserId
            successBlock:(void (^)(void))successBlock;
+
+
+- (void)setUserFeatureOpus:(NSString*)targetUserId
+               featureOpus:(int)featureOpus
+              successBlock:(void (^)(void))successBlock;;
+
 @end

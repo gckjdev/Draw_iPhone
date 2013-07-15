@@ -367,6 +367,8 @@
 
 "kContentRepeat" = "不要重複提交哦!";
 
+"kWordForbidden" = "文本內容中包含了敏感詞，請檢查";
+
 /*the new words below without Japanese*/
 
 "kFeatureSucc" = "成功推薦";
@@ -1810,10 +1812,10 @@
 "kSubject" = "主題";
 "kFurtureFunction" = "神秘功能即將推出，敬請期待...";
 
-"kSelectorItem" = "套索";
+"kSelectorItem" = "選擇器";
 "kSelectorItemDescription" = "可建立矩形、橢圓、手繪圖形和多邊形選區。通過選擇特定區域，可以在此區域內繪畫或編輯效果，同時保持未選定區域不會被改動。";
 
-"kShadowItem" = "投影";
+"kShadowItem" = "陰影";
 "kShadowItemDescription" = "在繪制內容的後面添加陰影。";
 
 "kGradientItem" = "漸變";
