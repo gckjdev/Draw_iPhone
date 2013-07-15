@@ -150,6 +150,7 @@
     
     UIImageView *thumbImageView = nil;
     UIActivityIndicatorView *indicator = nil;
+    
     if (thumbUrl != nil) {
 
         thumbImageView = [[UIImageView alloc] initWithFrame:THUMB_IMAGE_VIEW_FRAME];
@@ -158,13 +159,8 @@
         thumbImageView.contentMode = UIViewContentModeScaleAspectFit;
         [view addSubview:thumbImageView];
         [thumbImageView release];
+        
         [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-            thumbImageView.alpha = 0;
-            [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-                thumbImageView.alpha = 1;
-            } completion:^(BOOL finished) {
-                
-            }];
         } failure:^(NSError *error) {
             
         }];
