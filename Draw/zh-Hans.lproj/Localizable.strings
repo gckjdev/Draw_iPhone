@@ -1819,10 +1819,10 @@
 "kSubject" = "主题";
 "kFurtureFunction" = "神秘功能即将推出，敬请期待...";
 
-"kSelectorItem" = "套索";
+"kSelectorItem" = "选择器";
 "kSelectorItemDescription" = "可建立矩形、椭圆、手绘图形和多边形选区。通过选择特定区域，可以在此区域内绘画或编辑效果，同时保持未选定区域不会被改动。";
 
-"kShadowItem" = "投影";
+"kShadowItem" = "阴影";
 "kShadowItemDescription" = "在绘制内容的后面添加阴影。";
 
 "kGradientItem" = "渐变";

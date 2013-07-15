@@ -170,6 +170,9 @@
 - (UIImage *)drawSliderPoint;
 - (UIImage *)drawSliderDisableImage;
 
+- (UIImage *)drawSelectorCloseBGImage;
+- (UIImage *)drawSelectorCloseImage;
+
 //player
 
 - (UIImage *)playProgressLoader;//draw_player_progress_load@2x.png

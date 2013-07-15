@@ -15,12 +15,27 @@
 #define HEIGHT VALUE(200)
 #define FONT_SIZE VALUE(16)
 
+@interface SelectorCommand()
+
+@property(nonatomic, retain)SelectorBox *box;
+
+@end
+
 @implementation SelectorCommand
 
 
+- (void)dealloc
+{
+    PPRelease(_box);
+    [super dealloc];
+}
+
 - (UIView *)contentView
 {
-    return [SelectorBox selectorBoxWithDelegate:self];
+    if (self.box == nil) {
+        self.box = [SelectorBox selectorBoxWithDelegate:self];
+    }
+    return self.box;
 }
 
 - (BOOL)execute
@@ -36,6 +51,7 @@
 {
     if (clipType != ClipTypeNo) {
         [self.toolHandler enterClipModeWithClipType:clipType];
+        [self.box showCloseViewInView:[self.control theTopView]];
     }
     [self hidePopTipView];
 }

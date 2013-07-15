@@ -1299,6 +1299,7 @@
 - (IBAction)clickUpPanel:(id)sender
 {
     if (![self.drawToolUpPanel isVisable]) {
+        [self.view bringSubviewToFront: self.drawToolUpPanel];
         [self.drawToolUpPanel appear:self title:self.word.text isLeftArrow:!self.draftButton.hidden];
     } else {
         [self.drawToolUpPanel disappear];
