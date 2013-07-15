@@ -570,7 +570,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="231337641"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_star@2x.png</string>
+									<string key="NSResourceName">draw_shape_image@2x.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 									<string key="NSClassName">NSImage</string>
@@ -1566,8 +1566,8 @@
 			<string key="draw_selector@2x.png">{72, 71}</string>
 			<string key="draw_shadow@2x.png">{72, 71}</string>
 			<string key="draw_shape_default@2x.png">{72, 71}</string>
+			<string key="draw_shape_image@2x.png">{72, 71}</string>
 			<string key="draw_shape_selected@2x.png">{72, 71}</string>
-			<string key="draw_star@2x.png">{65, 65}</string>
 			<string key="draw_straw@2x.png">{57, 78}</string>
 			<string key="draw_straw_seleted@2x.png">{57, 78}</string>
 			<string key="draw_switch@2x.png">{73, 72}</string>
