@@ -20,6 +20,7 @@
 #import "CommonMessageCenter.h"
 #import "ShareImageManager.h"
 #import "StringUtil.h"
+#import "WordFilterService.h"
 
 @interface InputAlertView ()
 {
@@ -284,6 +285,15 @@
 //        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kIllegalTitle") delayTime:1.5 atHorizon:(ISIPAD?0:(-60))];
         return;
     }
+    
+    if ([[WordFilterService defaultService] checkForbiddenWord:[self contentText]]){
+        return;
+    }
+    
+    if ([self hasSubjectText] && [[WordFilterService defaultService] checkForbiddenWord:[self subjectText]]){
+        return;
+    }
+    
     if (self.commitSeletor != NULL && [self.target respondsToSelector:self.commitSeletor]) {
         NSSet *shareSet = [self setForShareType];
         [self.target performSelector:self.commitSeletor withObject:shareSet];
@@ -341,6 +351,8 @@
 
 - (void)clickConfirm
 {
+  
+    
     [self clickConfirm:self.confirm];
 }
 #pragma mark - UITextView Delegate

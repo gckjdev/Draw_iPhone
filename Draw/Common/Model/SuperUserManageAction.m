@@ -120,8 +120,14 @@ typedef enum
             [sheet setActionBlock:^(NSInteger buttonIndex){
                 if (buttonIndex == indexOfFeatureOpusDraw) {
                     // TODO
+                    [[UserService defaultService] setUserFeatureOpus:_targetUserId featureOpus:1 successBlock:^{
+                        [[CommonMessageCenter defaultCenter] postMessageWithText:@"设置用户推荐标志成功" delayTime:1.5f];
+                    }];
+                    
                 }else if (buttonIndex == indexOfCancelFeatureOpusDraw){
-                    // TODO
+                    [[UserService defaultService] setUserFeatureOpus:_targetUserId featureOpus:0 successBlock:^{
+                        [[CommonMessageCenter defaultCenter] postMessageWithText:@"取消用户推荐标志成功" delayTime:1.5f];
+                    }];
                 }
                 else{
                 }
