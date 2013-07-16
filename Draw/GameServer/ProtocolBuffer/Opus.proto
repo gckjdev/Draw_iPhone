@@ -179,24 +179,29 @@ message PBOpusList{
     repeated string passOpusIds = 2;
 }
 
+enum PBUserGuessMode{
+   GUESS_MODE_HAPPY = 1;
+   GUESS_MODE_GENIUS = 2;
+   GUESS_MODE_CONTEST = 3;
+}
+
 
 message PBRanking{
 
    optional int32 lead = 1;         // 领先百分之多少的用户
-   optional int32 pass = 1;         // 通过了多少关
-   optional int32 earn = 2;         // 赢得了多少钱
-   optional PBGameCurrency currency = 3;    // 货币种类
-
-
-   optional int startTime = 50;     // 开始时间
-   optional int endTime = 51;       // 结束时间
-   optional int totalTime = 52;     // 总共耗时。
+   optional int32 pass = 2;         // 通过了多少关
+   optional int32 earn = 3;         // 赢得了多少钱
+   optional PBGameCurrency currency = 4;    // 货币种类
+   
+   optional int32 startTime = 50;     // 开始时间
+   optional int32 endTime = 51;       // 结束时间
+   optional int32 totalTime = 52;     // 总共耗时。
 }
 
 message PBGuessResult{
    
    optional bool isOver = 1;        // 是否结束
-   optional PBRanking = 2;          // 排名信息
+   optional PBRanking ranking= 2;          // 排名信息
 }
 
 message PBGuessContest{
@@ -204,6 +209,9 @@ message PBGuessContest{
    required string contestId = 1;
    optional string name = 2;
    
-   optional int startTime = 5;
-   optional int endTime = 6;
+   optional int32 startTime = 5;
+   optional int32 endTime = 6;
 }
+
+
+

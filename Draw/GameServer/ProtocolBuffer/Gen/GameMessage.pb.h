@@ -150,6 +150,10 @@
 @class PBGameUser_Builder;
 @class PBGradient;
 @class PBGradient_Builder;
+@class PBGuessContest;
+@class PBGuessContest_Builder;
+@class PBGuessResult;
+@class PBGuessResult_Builder;
 @class PBHotWord;
 @class PBHotWordList;
 @class PBHotWordList_Builder;
@@ -185,6 +189,8 @@
 @class PBNoCompressDrawData;
 @class PBNoCompressDrawData_Builder;
 @class PBOpus;
+@class PBOpusList;
+@class PBOpusList_Builder;
 @class PBOpus_Builder;
 @class PBPoint;
 @class PBPoint_Builder;
