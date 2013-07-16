@@ -373,6 +373,9 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+    
+    
+    
     PPDebug(@"<applicationWillResignActive>");
     
     /*
