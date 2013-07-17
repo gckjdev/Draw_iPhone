@@ -22,7 +22,7 @@
 #import "GameItemManager.h"
 #import "DrawHolderView.h"
 #import "CommonDialog.h"
-#import "LearnDrawService.h"
+//#import "LearnDrawService.h"
 #import "ShareAction.h"
 #import "CommonMessageCenter.h"
 
@@ -432,7 +432,7 @@
 
 - (IBAction)clickPlayerToolMask:(id)sender {
     PPDebug(@"%d", [self hasBounghtPlayer]);
-    if (![self hasBounghtPlayer] && !isLearnDrawApp()) {
+    if (![self hasBounghtPlayer] /*&& !isLearnDrawApp()*/) {
             [BuyItemView showOnlyBuyItemView:PaintPlayerItem inView:self resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
             if (resultCode == ERROR_SUCCESS) {
                 [self.playerToolMask removeFromSuperview];
@@ -465,7 +465,7 @@
 
 
 - (void)buyAndPlayDraw:(DrawFeed *)feed
-{
+{/*
     ReplayView *cp = self;
     [[LearnDrawService defaultService] buyLearnDraw:self.drawFeed.feedId
                                               price:self.drawFeed.learnDraw.price
@@ -490,12 +490,14 @@
             //TODO show error message
         }
     }];
+  */
 }
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
           AtActionIndex:(NSInteger)actionIndex
              pointIndex:(NSInteger)pointIndex
 {
+    /*
     if (isLearnDrawApp() && actionIndex > self.endIndex && self.endIndex != 0) {
 //        [showDrawView stop];
         [self.playButton setEnabled:YES];
@@ -514,6 +516,7 @@
         }] showInView:[self theTopView]];
          
     }
+     */
     //move progress
     if (curPlayIndex != actionIndex) {
         curPlayIndex = actionIndex;

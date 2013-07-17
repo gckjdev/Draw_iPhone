@@ -6,20 +6,18 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "CommonRoundAvatarView.h"
+#import "DiceAvatarView.h"
 #import "DACircularProgressView.h"
 #import "HJManagedImageV.h"
-//#import "DiceImageManager.h"
+#import "DiceImageManager.h"
 #import "PPApplication.h"
-#import "PPDebug.h"
-#import "DeviceDetection.h"
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
 #import "UIImage+FiltrrCompositions.h"
 
 #define PROGRESS_UPDATE_TIME    0.01
 
-@implementation CommonRoundAvatarView
+@implementation DiceAvatarView
 @synthesize score = _score;
 @synthesize userId = _userId;
 @synthesize delegate = _delegate;
@@ -27,15 +25,16 @@
 
 - (void)dealloc
 {
-    PPRelease(imageView);
-    PPRelease(_userId);
-    PPRelease(progressView);
-    PPRelease(bgView);
-    PPRelease(_timer);
-    PPRelease(_rewardCoinLabel);
-    PPRelease(_rewardCoinView);
-    PPRelease(_rewardView);
-    PPRelease(_clockView);
+    [imageView release];
+//    [markButton release];
+    [_userId release];
+    [progressView release];
+    [bgView release];
+    [_timer release];
+    [_rewardCoinLabel release];
+    [_rewardCoinView release];
+    [_rewardView release];
+    [_clockView release];
     [super dealloc];
 }
 
@@ -92,12 +91,8 @@
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
-        
-        //MARK SIMPLE
-        /*
         [imageView setImage:[[DiceImageManager defaultManager] 
                              whiteSofaImage]];
-         */
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
@@ -109,14 +104,15 @@
         progressView.clockwise = YES;
         [self addSubview:progressView];
         
-        int pointSize = [DeviceDetection isIPAD]?32:16;
-        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2)];
+        int pointSize = [DeviceDetection isIPAD]?20:13;
+        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width*0.8, self.frame.size.height*0.8/2)]; // 0.8为放大系数
         _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
         [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
         _rewardCoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height)];
         [_rewardCoinLabel setFont:[UIFont systemFontOfSize:pointSize]];
         [_rewardCoinLabel setTextColor:[UIColor whiteColor]];
         [_rewardCoinLabel setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        [_rewardCoinLabel setBackgroundColor:[UIColor clearColor]];
         //[_rewardCoinLabel setTextAlignment:UITextAlignmentCenter];
         [_rewardView addSubview:_rewardCoinView];
         [_rewardView addSubview:_rewardCoinLabel];
@@ -146,12 +142,8 @@
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
-        
-        //MARK SIMPLE
-        /*
         [imageView setImage:[[DiceImageManager defaultManager]
                              whiteSofaImage]];
-         */
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
@@ -163,8 +155,8 @@
         progressView.clockwise = YES;
         [self addSubview:progressView];
         
-        int pointSize = [DeviceDetection isIPAD]?32:16;
-        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height/2)];
+        int pointSize = [DeviceDetection isIPAD]?20:13;
+        _rewardView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width *0.8, self.frame.size.height/2 *0.8)];
         _rewardCoinView = [[UIImageView alloc] initWithImage:[ShareImageManager defaultManager].rewardCoin];
         [_rewardCoinView setFrame:CGRectMake(_rewardView.frame.size.width/2-_rewardView.frame.size.height, 0, _rewardView.frame.size.height, _rewardView.frame.size.height)];
         _rewardCoinLabel = [[UILabel alloc] initWithFrame:CGRectMake(_rewardView.frame.size.width/2, 0, _rewardView.frame.size.width, _rewardView.frame.size.height)];
@@ -217,17 +209,17 @@
     [UIView commitAnimations];
 }
 
-- (void)setAvatarStyle:(CommonRoundAvatarViewStyle)style
+- (void)setAvatarStyle:(AvatarViewStyle)style
 {
-    if (style == CommonRoundAvatarViewStyle_Square) {
+    if (style == AvatarViewStyle_Square) {
         progressView.hidden = YES;
         imageView.layer.cornerRadius = 0;
-        _currentStyle = CommonRoundAvatarViewStyle_Square;
+        _currentStyle = AvatarViewStyle_Square;
         [bgView setImage:[[ShareImageManager defaultManager] avatarUnSelectImage]];
     } else {
         progressView.hidden = NO;
         imageView.layer.cornerRadius = imageView.frame.size.width/2;
-        _currentStyle = CommonRoundAvatarViewStyle_Round;
+        _currentStyle = AvatarViewStyle_Round;
         [bgView setImage:nil];
     }
     imageView.layer.masksToBounds = YES;
@@ -334,7 +326,7 @@
           drunkPoint:(int)drunkPint 
               wealth:(int)wealth
 {
-    [imageView setImage:[ShareImageManager defaultManager].commonRoundAavatarNoUserImage];
+    [imageView setImage:[DiceImageManager defaultManager].whiteSofaImage];
     [self setUserId:userId];
     if (userId) {
         [self setAvatarUrl:urlString gender:gender];
@@ -407,10 +399,7 @@
 - (void)addFlyClockOnMyHead
 {
     if (_clockView == nil) {
-        //MARK SIMPLE
-        /*
         _clockView = [[UIImageView alloc] initWithImage:[DiceImageManager defaultManager].urgeImage];
-         */
         float clockWidth = self.frame.size.width * 0.5;
         float clockHeight = self.frame.size.height * 0.5;
         

@@ -30,8 +30,8 @@
 //#import "DrawUserInfoView.h"
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
-#import "DiceUserInfoView.h"
-#import "ZJHUserInfoView.h"
+//#import "DiceUserInfoView.h"
+//#import "ZJHUserInfoView.h"
 #import "Bbs.pb.h"
 
 #define RUN_OUT_TIME 0.2
@@ -309,6 +309,7 @@
         [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName] inViewController:superController];
         return;
     }
+    /*
     if (isDiceApp()) {
         [DiceUserInfoView showFriend:afriend
                           infoInView:superController
@@ -328,7 +329,7 @@
         return;
     }
     
-    
+    */
     [CommonUserInfoView showFriend:afriend
                         infoInView:superController
                         needUpdate:needUpdate];

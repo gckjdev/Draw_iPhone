@@ -87,11 +87,13 @@
         if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
             //reset pen type
             ItemType penType = paintAction.paint.penType;
+/*
             if (isLearnDrawApp()) {
                 if (penType != Eraser) {
                     penType = Pencil;
                 }
             }
+ */
             [pen setPenType:penType];
         }
         CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];

@@ -2,6 +2,9 @@
 #import "GameApp.h"
 #import "DrawGameApp.h"
 #import "DrawGameProApp.h"
+#import "LittleGeeDrawApp.h"
+
+/*
 #import "DiceGameApp.h"
 #import "ZJHGameApp.h"
 #import "LearnDrawApp.h"
@@ -13,9 +16,9 @@
 #import "DreamAvatarFreeApp.h"
 #import "DreamLockscreenApp.h"
 #import "DreamLockscreenFreeApp.h"
-#import "LittleGeeDrawApp.h"
 #import "CallTrackApp.h"
 #import "SecureSmsApp.h"
+*/
 //#import "SingApp.h"
 
 static NSObject<GameAppProtocol>* currentApp;
@@ -113,6 +116,18 @@ BOOL isDrawApp()
     return ([[GameApp gameId] isEqualToString:DRAW_GAME_ID]);
 }
 
+BOOL isSingApp()
+{
+    return ([[GameApp gameId] isEqualToString:SING_GAME_ID]);
+}
+
+extern BOOL isLittleGeeAPP()
+{
+    return ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]);
+}
+/*
+
+
 BOOL isDiceApp()
 {
     return ([[GameApp gameId] isEqualToString:DICE_GAME_ID]);    
@@ -123,10 +138,6 @@ BOOL isZhajinhuaApp()
     return ([[GameApp gameId] isEqualToString:ZHAJINHUA_GAME_ID]);
 }
 
-BOOL isSingApp()
-{
-    return ([[GameApp gameId] isEqualToString:SING_GAME_ID]);
-}
 
 BOOL isAskPsApp()
 {
@@ -192,10 +203,6 @@ extern BOOL isDreamLockscreenFreeApp()
     return ([[ContentGameApp appId] isEqualToString:DREAM_LOCKSCREEN_FREE_APP_ID]);
 }
 
-extern BOOL isLittleGeeAPP()
-{
-    return ([[GameApp appId] isEqualToString:LITTLE_GEE_APP_ID]);
-}
 
 extern BOOL isSecureSmsAPP()
 {
@@ -206,6 +213,7 @@ extern BOOL isCallTrackAPP()
 {
     return ([[GameApp appId] isEqualToString:CALL_TRACK_APP_ID]);
 }
+ */
 
 GameAppType gameAppType()
 {

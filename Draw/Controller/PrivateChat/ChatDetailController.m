@@ -21,7 +21,7 @@
 #import "ChatDetailCell.h"
 #import "CommonMessageCenter.h"
 //#import "DrawUserInfoView.h"
-#import "DiceUserInfoView.h"
+//#import "DiceUserInfoView.h"
 #import "GameNetworkConstants.h"
 #import "ChatListController.h"
 #import "MessageStat.h"

@@ -795,7 +795,7 @@ int *getBottomMenuTypeList()
 {
     if (isDrawApp() && !isLittleGeeAPP()) {
         return getDrawBottomMenuTypeList();
-    }else if(isZhajinhuaApp()){
+    }/*else if(isZhajinhuaApp()){
         return getZJHBottomMenuTypeList();
     }else if(isDiceApp()){
         return getDiceBottomMenuTypeList();
@@ -805,7 +805,7 @@ int *getBottomMenuTypeList()
         return getDreamAvatarBottomMenuTypeList();
     }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
         return getDreamLockscreenBottomMenuTypeList();
-    }else if (isLittleGeeAPP()) {
+    }*/else if (isLittleGeeAPP()) {
         return getLittleGeeBottomMenuTypeList();
     }else if (isSingApp()){
         return getSingBottomMenuTypeList();

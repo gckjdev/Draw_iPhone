@@ -97,7 +97,7 @@
     [self.passwordAgainTextField setBackground:[[ShareImageManager defaultManager] inputImage]];
     _passwordAgainTextField.delegate = self;
     _passwordAgainTextField.tag = TAG_PASSOWRD_AGAIN_TEXTFIELD;
-    
+    /*
     if (isSecureSmsAPP()) {
         self.passwordTextField.hidden = NO;
         self.passwordAgainTextField.hidden = NO;
@@ -105,13 +105,13 @@
         [self.userIdTextField updateOriginY:Y_EMAIL];
         [self.passwordTextField updateOriginY:Y_PAASWORD];
         [self.passwordAgainTextField updateOriginY:Y_PASSWORD_AGAIN];
-    } else {
+    } else {*/
         if ([DeviceDetection isIPAD]) {
         
         }
         self.passwordTextField.hidden = YES;
         self.passwordAgainTextField.hidden = YES;
-    }
+//    }
 
     
     [self.submitButton setTitle:NSLS(@"kStartGame") forState:UIControlStateNormal];
@@ -133,7 +133,7 @@
         facebookButton.hidden = YES;
         self.promptLabel.hidden = YES;
     }
-    
+    /*
     if (isSecureSmsAPP() || isCallTrackAPP()) {
         sinaButton.hidden = YES;
         qqButton.hidden = YES;
@@ -142,7 +142,7 @@
         
         [self.submitButton setTitle:NSLS(@"kRegister") forState:UIControlStateNormal];
     }
-    
+    */
 //    [self addRemoteDraw];    
     [self.userIdTextField becomeFirstResponder];
 }
@@ -232,7 +232,7 @@
         return NO;        
     }
     
-    
+   /*
     if (isSecureSmsAPP()) {
         if ([_passwordTextField.text length] == 0){
             [UIUtils alert:NSLS(@"kEnterPassword")];
@@ -246,7 +246,7 @@
             return NO;
         }
     }
-    
+    */
 //    if ([loginPasswordTextField.text length] == 0){
 //        [UIUtils alert:@"密码不能为空"];
 //        [loginPasswordTextField becomeFirstResponder];

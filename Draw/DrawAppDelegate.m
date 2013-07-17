@@ -41,11 +41,11 @@
 #import "LmWallService.h"
 #import "UserStatusService.h"
 //#import "FacetimeService.h"
-#import "DiceGameService.h"
+//#import "DiceGameService.h"
 //#import "DiceFontManager.h"
 #import "WordManager.h"
-#import "DiceFontManager.h"
-#import "DiceSoundManager.h"
+//#import "DiceFontManager.h"
+//#import "DiceSoundManager.h"
 #import "CommonHelpManager.h"
 //#import "BoardService.h"
 
@@ -386,7 +386,7 @@ NSString* GlobalGetBoardServerURL()
      */
     
     [[DrawGameService defaultService] startDisconnectTimer];
-    [[DiceGameService defaultService] startDisconnectTimer];
+//    [[DiceGameService defaultService] startDisconnectTimer];
     [self.networkDetector stop];
 }
 
@@ -455,8 +455,8 @@ NSString* GlobalGetBoardServerURL()
     [[AccountService defaultService] syncAccount:nil];
     
     [[DrawGameService defaultService] clearDisconnectTimer];
-    [[DiceGameService defaultService] clearDisconnectTimer];
-    [self.networkDetector start];     
+//    [[DiceGameService defaultService] clearDisconnectTimer];
+    [self.networkDetector start];
     
     [[UserStatusService defaultService] start];
     

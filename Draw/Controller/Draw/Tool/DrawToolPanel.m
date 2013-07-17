@@ -337,7 +337,7 @@
 
 - (void)updateViewsForSimpleDraw
 {
-    if (isSimpleDrawApp()) {
+//    if (isSimpleDrawApp()) {
 //        if(!ISIPAD){
 //            self.paintBucket.center = self.drawToUser.center;
 //        }else{
@@ -345,7 +345,7 @@
 //            self.paintBucket.center = self.drawToUser.center;
 //        }
 //        self.drawToUser.hidden = self.opusDesc.hidden = YES;
-    }
+//    }
 
 }
 

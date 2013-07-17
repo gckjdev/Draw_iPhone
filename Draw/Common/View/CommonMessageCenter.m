@@ -7,7 +7,7 @@
 //
 
 #import "CommonMessageCenter.h"
-#import "DiceImageManager.h"
+//#import "DiceImageManager.h"
 #import "LocaleUtils.h"
 #import "CommonImageManager.h"
 
@@ -33,10 +33,11 @@ CommonMessageViewTheme globalGetTheme() {
     if (isDrawApp()) {
         return CommonMessageViewThemeDraw;
     }
+/*
     if (isDiceApp()) {
         return CommonMessageViewThemeDice;
     }
-    
+*/
     //TODO Check For ZJH    
     return CommonMessageViewThemeDraw;
 }
@@ -97,9 +98,12 @@ CommonMessageViewTheme globalGetTheme() {
         case CommonMessageViewThemeDraw: {
             [self.messageLabel setFont:[UIFont systemFontOfSize:MESSAGE_FONT_SIZE]];
         }break;
+            /*
         case CommonMessageViewThemeDice: {
             [self.messageBackgroundView setImage:[DiceImageManager defaultManager].popupBackgroundImage];
+             
         }break;
+             */
         default:
             break;
     }

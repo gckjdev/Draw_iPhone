@@ -13,7 +13,7 @@
 #import "AccountService.h"
 #import "ConfigManager.h"
 #import "GameItemManager.h"
-#import "CustomDiceManager.h"
+//#import "CustomDiceManager.h"
 
 @implementation BuyItemSpecialHandler
 
@@ -41,7 +41,7 @@
         case ItemTypeCustomDicePinkDiamondDice:
         case ItemTypeCustomDiceGreenDiamondDice:
         case ItemTypeCustomDicePurpleDiamondDice:
-            [[CustomDiceManager defaultManager] setMyDiceTypeByItemType:itemId];
+//            [[CustomDiceManager defaultManager] setMyDiceTypeByItemType:itemId];
             break;
             
         default:

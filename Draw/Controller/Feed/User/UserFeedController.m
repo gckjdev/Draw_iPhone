@@ -17,7 +17,7 @@
 #import "ConfigManager.h"
 #import "UserManager.h"
 #import "MKBlockActionSheet.h"
-#import "AddLearnDrawView.h"
+//#import "AddLearnDrawView.h"
 #import "InputAlertView.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 
@@ -477,13 +477,15 @@ typedef enum{
         }
             break;
         case SuperActionSheetIndexAddToCell:
-        {
+        {/*
             if (canSellOpus) {
                 PPDebug(@"<handleActionSheet> ActionSheetIndexAddToCell" );
                 AddLearnDrawView *ldView = [AddLearnDrawView createViewWithOpusId:feed.feedId];
                 [ldView showInView:self.view];
                 break;
             }
+          */
+            break;
         }
         case SuperActionSheetIndexAddToRecommend: {
             PPDebug(@"<handleActionSheet> ActionSheetIndexAddToRecommend" );

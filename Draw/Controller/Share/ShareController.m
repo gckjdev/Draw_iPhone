@@ -28,7 +28,7 @@
 #import "UIImageExt.h"
 #import "OfflineDrawViewController.h"
 #import "ReplayView.h"
-#import "SaveToContactPickerView.h"
+//#import "SaveToContactPickerView.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -58,7 +58,7 @@ typedef enum{
 
 }
 @property (retain, nonatomic) IBOutlet MyPaint *selectedPaint;
-@property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
+//@property (retain, nonatomic) SaveToContactPickerView *saveToContactPickerView;
 - (void)loadPaintsOnlyMine:(BOOL)onlyMine;
 - (NSArray *)paints;
 - (void)reloadView;
@@ -84,7 +84,7 @@ typedef enum{
     PPRelease(clearButton);
     PPRelease(awardCoinTips);
     PPRelease(backButton);
-    PPRelease(_saveToContactPickerView);
+//    PPRelease(_saveToContactPickerView);
     [super dealloc];
 }
 
@@ -270,7 +270,7 @@ typedef enum{
     }
     self.selectedPaint = paint;
     
-    
+    /*
     if (isDreamAvatarApp() || isDreamAvatarFreeApp()) {
         [self didSelectPaintInDreamAvatar];
         return;
@@ -278,7 +278,7 @@ typedef enum{
         [self didSelectPaintInDreamLockscreen];
         return;
     }
-    
+    */
     
     UIActionSheet* tips = nil;
     
@@ -488,7 +488,7 @@ typedef enum{
         [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
         [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
         
-    } else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_CONTACT]) {
+    } /*else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_CONTACT]) {
         if (_saveToContactPickerView == nil) {
             self.saveToContactPickerView = [SaveToContactPickerView createWithSuperController:self];
         }
@@ -496,7 +496,8 @@ typedef enum{
         UIImage* image = [[UIImage alloc] initWithContentsOfFile:_selectedPaint.imageFilePath];
         [_saveToContactPickerView saveToContact:image];
         [image release];
-    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
+       
+    }*/ else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
                                                            message:NSLS(@"kAre_you_sure")
                                                              style:CommonDialogStyleDoubleButton

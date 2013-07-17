@@ -46,9 +46,11 @@
     if (isDrawApp()) {
         return CommonDialogThemeDraw;
     }
+    /*
     if (isDiceApp()) {
         return CommonDialogThemeDice;
     }
+     */
     return CommonDialogThemeDraw;
 }
 - (void)dealloc
@@ -142,6 +144,7 @@
 
             [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
         } break;
+   
         case CommonDialogThemeDraw:
             [self.oKButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
             [self.backButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
@@ -211,18 +214,21 @@
 {
     CommonDialog* view;
     switch (theme) {
-        case CommonDialogThemeDice: {
+/*        case CommonDialogThemeDice: {
             view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DICE]; 
         } break;
+
+        case CommonDialogThemeZJH: {
+            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_ZJH];
+            [view.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
+        } break;
+ */
+            
         case CommonDialogThemeDraw: {
             view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
         } break;
         case CommonDialogThemeStarry: {
             view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_STARRY];
-        } break;
-        case CommonDialogThemeZJH: {
-            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_ZJH];
-            [view.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
         } break;
         default:
             PPDebug(@"<CommonDialog> theme %d do not exist",theme);

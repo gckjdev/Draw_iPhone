@@ -383,7 +383,9 @@
         }break;
         case UserDetailActionDrawTo: {
             NSString *title = nil;
+            title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
             
+            /*
             if (isSecureSmsAPP()) {
                 title = NSLS(@"kGraffiti");
             } else if (isCallTrackAPP()) {
@@ -396,6 +398,7 @@
             } else {
                 title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
             }
+             */
             
             [button.downLabel setText:title];
         } break;
@@ -466,7 +469,7 @@
 {
     if (isLittleGeeAPP()) {
         [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
-    } else if (isSecureSmsAPP()) {
+    }/* else if (isSecureSmsAPP()) {
         ChatDetailController *controller = [self createChatDetailController];
         [viewController.navigationController pushViewController:controller
                                                        animated:YES];
@@ -476,7 +479,7 @@
         [viewController.navigationController pushViewController:controller
                                                        animated:NO];
         [controller clickLocateButton:nil];
-    }
+    }*/
     else {
         SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
         vc.superController = viewController;

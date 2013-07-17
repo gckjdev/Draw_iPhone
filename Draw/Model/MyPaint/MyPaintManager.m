@@ -388,13 +388,14 @@ static MyPaintManager* _defaultManager;
     [newMyPaint setDrawUserId:feed.feedUser.userId];
     [newMyPaint setDrawUserNickName:feed.feedUser.nickName];
     [newMyPaint setCreateDate:[NSDate date]];
-    
+    /*
     if (isSimpleDrawApp()) {
         NSString *word = dateToLocaleStringWithFormat([NSDate date], DATE_FORMAT);
         [newMyPaint setDrawWord:word];
     }else{
         [newMyPaint setDrawWord:feed.wordText];
     }
+     */
     [newMyPaint setLanguage:[NSNumber numberWithInt:ChineseType]];      // hard code here, some risk?
     [newMyPaint setLevel:[NSNumber numberWithInt:1]];                   // hard code here, some risk?
 
