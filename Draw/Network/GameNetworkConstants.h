@@ -18,6 +18,22 @@
 
 //#define SHARE_KEY @"NetworkRequestShareKey"
 
+//for opus
+#define METHOD_SUBMIT_OPUS @"submitOpus"
+#define METHOD_RANDOM_GET_SONGS @"randomGetSongs"
+#define PARA_SUB_CATEGORY @"subCategory"
+#define METHOD_RECOVERY_OPUS @"constructIndex"
+#define METHOD_GET_OPUS @"getOpus"
+
+// for guess
+#define METHOD_GET_USER_GUESS_OPUSES @"getUserGuessOpus"
+#define PARA_MODE @"mode"
+#define PARA_IS_START_NEW @"isStartNew"
+
+#define METHOD_GUESS_OPUS @"guessOpus"
+#define METHOD_GET_USER_GUESS_RANK @"getUserGuessRank"
+#define METHOD_GET_GUESS_RANK_LIST @"getGuessRankList"
+
 // method name
 
 #define METHOD @"m1"                    // set by Benson, use m1 for security
@@ -130,14 +146,7 @@
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"
 #define METHOD_GET_OUPS_TIMES @"got"
 
-//for opus
-#define METHOD_SUBMIT_OPUS @"submitOpus"
-#define METHOD_RANDOM_GET_SONGS @"randomGetSongs"
-#define PARA_SUB_CATEGORY @"subCategory"
-#define METHOD_RECOVERY_OPUS @"constructIndex"
 
-#define METHOD_GUESS_OPUS @"guessOpus"
-#define METHOD_GET_OPUS @"getOpus"
 
 
 //contest
