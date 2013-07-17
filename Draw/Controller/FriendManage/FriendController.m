@@ -24,7 +24,7 @@
 //#import "DrawUserInfoView.h"
 #import "ConfigManager.h"
 #import "NotificationManager.h"
-#import "DiceUserInfoView.h"
+//#import "DiceUserInfoView.h"
 #import "FriendService.h"
 #import "MyFriend.h"
 #import "CommonUserInfoView.h"

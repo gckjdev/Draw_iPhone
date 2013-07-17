@@ -87,11 +87,13 @@
         if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
             //reset pen type
             ItemType penType = paintAction.paint.penType;
+/*
             if (isLearnDrawApp()) {
                 if (penType != Eraser) {
                     penType = Pencil;
                 }
             }
+ */
             [pen setPenType:penType];
         }
         CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];
@@ -438,8 +440,12 @@
     [self updateTempAction];
     if (self.status == Playing) {
         if (self.tempAction) {
-            if([self.tempAction pointCount] == 1){
-//                [self drawDrawAction:self.tempAction show:YES];
+            
+            if (cdManager.currentClip && self.tempAction.clipAction != cdManager.currentClip) {
+                //clean the
+                cdManager.currentClip = self.tempAction.clipAction;
+                [self updateLastAction:self.tempAction show:NO];
+                [self setNeedsDisplay];
             }else{
                 [self updateLastAction:self.tempAction show:YES];
             }

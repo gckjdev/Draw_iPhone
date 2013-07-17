@@ -131,6 +131,7 @@ typedef enum{
     [super viewDidLoad];
     [self initTabButtons];
     
+    /*
     if (isDiceApp()) {
         for (TableTab *tab in [_tabManager tabList]) {
             [[self tabButtonWithTabID:tab.tabID] setHidden:YES];;
@@ -138,7 +139,7 @@ typedef enum{
         [self.dataTableView updateHeight:(self.dataTableView.frame.size.height + ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON)];
         [self.dataTableView updateCenterY:(self.dataTableView.center.y - ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON)];
     }
-    
+    */
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];

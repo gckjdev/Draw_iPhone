@@ -26,12 +26,13 @@
     if (isDrawApp()) {
         return CommonInputDialogThemeDraw;
     }
+    /*
     if (isDiceApp()) {
         return CommonInputDialogThemeZJH;
     }
     if (isZhajinhuaApp()) {
         return CommonInputDialogThemeZJH;
-    }
+    }*/
     return CommonInputDialogThemeDraw;
 }
 

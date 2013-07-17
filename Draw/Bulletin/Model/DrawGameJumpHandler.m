@@ -12,7 +12,7 @@
 #import "HotController.h"
 #import "ContestController.h"
 #import "StringUtil.h"
-#import "FreeCoinsControllerViewController.h"
+//#import "FreeCoinsControllerViewController.h"
 #import "StoreController.h"
 #import "FreeIngotController.h"
 #import "BBSPostDetailController.h"
@@ -48,7 +48,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
     }else if([func isEqualToString:FUNC_TOP ignoreCapital:YES]){
         jumpController = [[[HotController alloc] init] autorelease];
     }else if ([func isEqualToString:FUNC_FREE_COINS ignoreCapital:YES]){
-        jumpController = [[[FreeCoinsControllerViewController alloc] init] autorelease];
+//        jumpController = [[[FreeCoinsControllerViewController alloc] init] autorelease];
     }else if ([func isEqualToString:FUNC_FREE_INGOT ignoreCapital:YES]) {
         jumpController = [[[FreeIngotController alloc] init] autorelease];
     }else if ([func isEqualToString:FUNC_SHOP ignoreCapital:YES]){

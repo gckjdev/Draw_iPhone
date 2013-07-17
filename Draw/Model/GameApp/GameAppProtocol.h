@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChatMsgManagerProtocol.h"
+//#import "ChatMsgManagerProtocol.h"
 #import "ImageManagerProtocol.h"
 #import "GameJumpHandlerProtocol.h"
 #import "GameBasic.pb.h"
@@ -57,7 +57,7 @@
 - (NSString*)feedbackTips;
 
 - (NSString *)resourcesPackage;
-- (id<ChatMsgManagerProtocol>)getChatMsgManager;
+//- (id<ChatMsgManagerProtocol>)getChatMsgManager;
 - (NSString *)chatViewBgImageName;
 - (NSString *)chatViewInputTextBgImageName;
 - (NSString *)popupViewCloseBtnBgImageName;

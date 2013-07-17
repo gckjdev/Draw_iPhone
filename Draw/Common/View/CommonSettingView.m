@@ -10,7 +10,7 @@
 #import "AudioManager.h"
 #import "AutoCreateViewByXib.h"
 #import "GameApp.h"
-#import "ZJHImageManager.h"
+//#import "ZJHImageManager.h"
 #import "ShareImageManager.h"
 #import "PPResourceService.h"
 

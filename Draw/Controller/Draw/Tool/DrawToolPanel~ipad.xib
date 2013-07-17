@@ -482,7 +482,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{682, 24}, {66, 66}}</string>
 								<reference key="NSSuperview" ref="310984990"/>
-								<reference key="NSNextKeyView" ref="324496460"/>
+								<reference key="NSNextKeyView" ref="197503410"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -563,10 +563,10 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">10</double>
-								<double key="IBUIContentEdgeInsets.bottom">10</double>
-								<double key="IBUIContentEdgeInsets.left">10</double>
-								<double key="IBUIContentEdgeInsets.right">10</double>
+								<double key="IBUIContentEdgeInsets.top">13</double>
+								<double key="IBUIContentEdgeInsets.bottom">13</double>
+								<double key="IBUIContentEdgeInsets.left">13</double>
+								<double key="IBUIContentEdgeInsets.right">13</double>
 								<string key="IBUINormalTitle">SP</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1057924229"/>
 								<reference key="IBUINormalTitleColor" ref="1057924229"/>
@@ -574,7 +574,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="1057924229"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">draw_star@2x.png</string>
+									<string key="NSResourceName">draw_shape_image@2x.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 									<string key="NSClassName">NSImage</string>
@@ -592,7 +592,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{1062, 24}, {66, 66}}</string>
 								<reference key="NSSuperview" ref="310984990"/>
-								<reference key="NSNextKeyView" ref="880177052"/>
+								<reference key="NSNextKeyView" ref="324496460"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -615,7 +615,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{1157, 24}, {66, 66}}</string>
 								<reference key="NSSuperview" ref="310984990"/>
-								<reference key="NSNextKeyView" ref="197503410"/>
+								<reference key="NSNextKeyView" ref="880177052"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -637,7 +637,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{1252, 24}, {66, 66}}</string>
 								<reference key="NSSuperview" ref="310984990"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1326,33 +1325,33 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_add@2x.png">{16, 16}</string>
-			<string key="draw_color_bg@2x.png">{16, 16}</string>
-			<string key="draw_fx@2x.png">{16, 16}</string>
-			<string key="draw_gradient@2x.png">{16, 16}</string>
-			<string key="draw_oil@2x.png">{16, 16}</string>
-			<string key="draw_palette@2x.png">{16, 16}</string>
-			<string key="draw_redo_highlight@2x.png">{16, 16}</string>
-			<string key="draw_redo_normal@2x.png">{16, 16}</string>
-			<string key="draw_rubber@2x.png">{16, 16}</string>
-			<string key="draw_selector@2x.png">{16, 16}</string>
-			<string key="draw_shadow@2x.png">{16, 16}</string>
-			<string key="draw_shape_default@2x.png">{16, 16}</string>
-			<string key="draw_shape_selected@2x.png">{16, 16}</string>
-			<string key="draw_star@2x.png">{16, 16}</string>
-			<string key="draw_straw@2x.png">{16, 16}</string>
-			<string key="draw_straw_seleted@2x.png">{16, 16}</string>
-			<string key="draw_switch@2x.png">{16, 16}</string>
-			<string key="draw_text@2x.png">{16, 16}</string>
-			<string key="draw_tool_bg@2x.png">{16, 16}</string>
-			<string key="draw_undo_highlight@2x.png">{16, 16}</string>
-			<string key="draw_undo_normal@2x.png">{16, 16}</string>
-			<string key="draw_width_highlight@2x.png">{16, 16}</string>
-			<string key="draw_width_normal@2x.png">{16, 16}</string>
-			<string key="group_message@2x.png">{16, 16}</string>
-			<string key="pen_pencil@2x.png">{16, 16}</string>
-			<string key="selected_pen_rubber@2x.png">{16, 16}</string>
-			<string key="timeset@2x.png">{16, 16}</string>
+			<string key="draw_add@2x.png">{47, 47}</string>
+			<string key="draw_color_bg@2x.png">{622, 84}</string>
+			<string key="draw_fx@2x.png">{72, 71}</string>
+			<string key="draw_gradient@2x.png">{72, 71}</string>
+			<string key="draw_oil@2x.png">{72, 71}</string>
+			<string key="draw_palette@2x.png">{75, 61}</string>
+			<string key="draw_redo_highlight@2x.png">{69, 71}</string>
+			<string key="draw_redo_normal@2x.png">{69, 71}</string>
+			<string key="draw_rubber@2x.png">{122, 122}</string>
+			<string key="draw_selector@2x.png">{72, 71}</string>
+			<string key="draw_shadow@2x.png">{72, 71}</string>
+			<string key="draw_shape_default@2x.png">{72, 71}</string>
+			<string key="draw_shape_image@2x.png">{45, 44}</string>
+			<string key="draw_shape_selected@2x.png">{72, 71}</string>
+			<string key="draw_straw@2x.png">{57, 78}</string>
+			<string key="draw_straw_seleted@2x.png">{57, 78}</string>
+			<string key="draw_switch@2x.png">{73, 72}</string>
+			<string key="draw_text@2x.png">{72, 71}</string>
+			<string key="draw_tool_bg@2x.png">{237, 100}</string>
+			<string key="draw_undo_highlight@2x.png">{69, 71}</string>
+			<string key="draw_undo_normal@2x.png">{69, 71}</string>
+			<string key="draw_width_highlight@2x.png">{67, 34}</string>
+			<string key="draw_width_normal@2x.png">{67, 34}</string>
+			<string key="group_message@2x.png">{86, 66}</string>
+			<string key="pen_pencil@2x.png">{122, 122}</string>
+			<string key="selected_pen_rubber@2x.png">{122, 122}</string>
+			<string key="timeset@2x.png">{76, 74}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -19,7 +19,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 //#import "DrawUserInfoView.h"
-#import "DiceUserInfoView.h"
+//#import "DiceUserInfoView.h"
 #import "GameApp.h"
 #import "MyFriend.h"
 #import "MessageStat.h"

@@ -20,7 +20,7 @@
 #import "CommonMessageCenter.h"
 #import "MKBlockActionSheet.h"
 #import "BBSPermissionManager.h"
-#import "AddLearnDrawView.h"
+//#import "AddLearnDrawView.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 
 typedef enum{
@@ -448,14 +448,17 @@ typedef enum{
 
 - (void)didClickRankView:(RankView *)rankView
 {
-
+    int index = [[self.currentTab dataList] indexOfObject:rankView.feed];
+    [self showOpusImageBrower:index];
+    return;
+/*
     if ((!isLearnDrawApp() && !isDreamAvatarApp() && !isDreamLockscreenApp())
          || ![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
         
         int index = [[self.currentTab dataList] indexOfObject:rankView.feed];
         [self showOpusImageBrower:index];
         
-    }else{
+    }else{*/
         MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc]
                                      initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
                                      delegate:nil
@@ -470,8 +473,10 @@ typedef enum{
             if (buttonIndex == 0) {
                 [cp showFeed:rankView.feed];
             }else if(buttonIndex == 1){
+                /*
                 AddLearnDrawView* alView = [AddLearnDrawView createViewWithOpusId:rankView.feed.feedId];
                 [alView showInView:cp.view];
+                 */
             }
 
         }];
@@ -479,7 +484,7 @@ typedef enum{
         [sheet showInView:self.view];
         [sheet release];
         
-    }
+//    }
     
 }
 

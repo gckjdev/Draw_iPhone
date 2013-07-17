@@ -9,7 +9,7 @@
 #import "CommonRoundAvatarView.h"
 #import "DACircularProgressView.h"
 #import "HJManagedImageV.h"
-#import "DiceImageManager.h"
+//#import "DiceImageManager.h"
 #import "PPApplication.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
@@ -92,8 +92,12 @@
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
+        
+        //MARK SIMPLE
+        /*
         [imageView setImage:[[DiceImageManager defaultManager] 
                              whiteSofaImage]];
+         */
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
@@ -142,8 +146,12 @@
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
+        
+        //MARK SIMPLE
+        /*
         [imageView setImage:[[DiceImageManager defaultManager]
                              whiteSofaImage]];
+         */
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
@@ -399,7 +407,10 @@
 - (void)addFlyClockOnMyHead
 {
     if (_clockView == nil) {
+        //MARK SIMPLE
+        /*
         _clockView = [[UIImageView alloc] initWithImage:[DiceImageManager defaultManager].urgeImage];
+         */
         float clockWidth = self.frame.size.width * 0.5;
         float clockHeight = self.frame.size.height * 0.5;
         

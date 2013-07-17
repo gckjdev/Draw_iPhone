@@ -11,7 +11,7 @@
 #import "GameNetworkRequest.h"
 #import "GameNetworkConstants.h"
 #import "ConfigManager.h"
-#import "UserManager+DiceUserManager.h"
+#import "UserManager.h"
 #import "Photo.pb.h"
 #import "GameMessage.pb.h"
 

@@ -41,11 +41,11 @@
 #import "LmWallService.h"
 #import "UserStatusService.h"
 //#import "FacetimeService.h"
-#import "DiceGameService.h"
+//#import "DiceGameService.h"
 //#import "DiceFontManager.h"
 #import "WordManager.h"
-#import "DiceFontManager.h"
-#import "DiceSoundManager.h"
+//#import "DiceFontManager.h"
+//#import "DiceSoundManager.h"
 #import "CommonHelpManager.h"
 //#import "BoardService.h"
 
@@ -87,6 +87,8 @@ NSString* GlobalGetServerURL()
 #ifdef DEBUG
     return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
+//    return @"http://192.168.1.13:8001/api/i?";
+//    return @"http://58.215.160.100:8020/api/i?";
 
 //    return @"http://58.215.160.100:8888/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
@@ -100,7 +102,9 @@ NSString* GlobalGetServerURL()
 #endif
     
     return [ConfigManager getAPIServerURL];
+    // 51a48c8be4b02cb4e8cff780
     
+    // http://58.215.160.100:8020/api/i?&m1=fu&app=513819630&uid=4fc3089a26099b2ca8c7a4ab&tid=%2451a48c8be4b02cb4e8cff780&ts=1373953721&mac=wAPF3UOhmOVqSYSfDyMzrA%3D%3D
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -375,6 +379,9 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+    
+    
+    
     PPDebug(@"<applicationWillResignActive>");
     
     /*
@@ -383,7 +390,7 @@ NSString* GlobalGetBoardServerURL()
      */
     
     [[DrawGameService defaultService] startDisconnectTimer];
-    [[DiceGameService defaultService] startDisconnectTimer];
+//    [[DiceGameService defaultService] startDisconnectTimer];
     [self.networkDetector stop];
 }
 
@@ -456,8 +463,8 @@ NSString* GlobalGetBoardServerURL()
     [[AccountService defaultService] syncAccount:nil];
     
     [[DrawGameService defaultService] clearDisconnectTimer];
-    [[DiceGameService defaultService] clearDisconnectTimer];
-    [self.networkDetector start];     
+//    [[DiceGameService defaultService] clearDisconnectTimer];
+    [self.networkDetector start];
     
     [[UserStatusService defaultService] start];
     

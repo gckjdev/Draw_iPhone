@@ -241,6 +241,7 @@
 #define TAG_WILL_HIDE   400
 - (void)handleInSecureSmsApp
 {
+    /*
     if (isSecureSmsAPP() || isCallTrackAPP()) {
         NSArray *contentSubViewList = self.contentView.subviews;
         for (UIView *subView in contentSubViewList) {
@@ -256,6 +257,7 @@
             }
         }
     }
+     */
 }
 
 /*

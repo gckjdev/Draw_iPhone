@@ -17,7 +17,7 @@
 #import "FriendManager.h"
 //#import "ChatMessage.h"
 //#import "DrawUserInfoView.h"
-#import "DiceUserInfoView.h"
+//#import "DiceUserInfoView.h"
 #import "MessageStat.h"
 #import "PPMessageManager.h"
 #import "UserManager.h"
@@ -89,13 +89,18 @@
     //use local data
     [self initListWithLocalData];    
     
+    [self.titleLabel setText:NSLS(@"kChatListTitle")];
+    
     [addChatButton setTitle:NSLS(@"kAddChat") forState:UIControlStateNormal];
+    
+    /*
+    
     if (isCallTrackAPP()) {
         [self.titleLabel setText:NSLS(@"kSecureSmsLocateTitle")];
     } else {
         [self.titleLabel setText:NSLS(@"kChatListTitle")];
     }
-
+     */
     
     TableTab *tab = [self currentTab];    
     [self clickTab:tab.tabID];

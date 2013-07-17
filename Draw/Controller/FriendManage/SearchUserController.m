@@ -15,7 +15,7 @@
 #import "CommonDialog.h"
 #import "FriendCell.h"
 //#import "DrawUserInfoView.h"
-#import "DiceUserInfoView.h"
+//#import "DiceUserInfoView.h"
 #import "CommonUserInfoView.h"
 
 @interface SearchUserController () {
