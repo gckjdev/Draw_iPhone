@@ -622,12 +622,14 @@
 - (void)didSaveOpus:(BOOL)succ
 {
     [self.superViewController hideActivity];
+    /*
     if (succ && !isSimpleDrawApp() ) {
          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaveToLocalSuccess") delayTime:2 isHappy:YES];
         
         // remove due to it's reported now
 //        [self reportActionToServer:DB_FIELD_ACTION_SAVE_TIMES];
     }
+     */
 }
 
 #pragma mark - MyPaintManager delegater

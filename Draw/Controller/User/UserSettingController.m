@@ -155,7 +155,7 @@ enum {
             rowOfAutoSave = 1,
             rowsInSectionGuessWord = 1;//hide autosave--kira
         }
-    } else if (isDiceApp()) {
+    }/* else if (isDiceApp()) {
         rowsInSectionGuessWord = 0;
         rowOfCustomDice = 3;
         rowsInSectionUser = 4; //add custom dice
@@ -163,7 +163,7 @@ enum {
         rowsInSectionGuessWord = 0;
         rowsInSectionUser = 9;
     }
-
+*/
     
     //section sound
     rowOfSoundSwitcher = 0;

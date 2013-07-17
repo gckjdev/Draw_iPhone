@@ -16,7 +16,7 @@
 #import "FeedManager.h"
 #import "FeedService.h"
 #import "UIViewUtils.h"
-#import "LearnDrawManager.h"
+//#import "LearnDrawManager.h"
 #import "UIImageExt.h"
 
 @interface RankView ()
@@ -113,7 +113,7 @@
 {
     [self.costLabel setText:[NSString stringWithFormat:@"%d", learnDraw.price]];
     [self.boughtCountLabel setText:[NSString stringWithFormat:@"%d", learnDraw.boughtCount]];
-    [self.drawFlag setHidden:![[LearnDrawManager defaultManager] hasBoughtDraw:self.feed.feedId]];
+//    [self.drawFlag setHidden:![[LearnDrawManager defaultManager] hasBoughtDraw:self.feed.feedId]];
 }
 
 - (void)setViewInfo:(DrawFeed *)feed

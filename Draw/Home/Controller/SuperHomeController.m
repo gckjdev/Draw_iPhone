@@ -108,10 +108,11 @@
     if (!ISIPAD) {
         self.view.frame = CGRectMake(0, 0, 320, 460);
     }
-
+/*
     if (isLearnDrawApp()) {
         [self addBottomMenuView];
     }else{
+ */
         [self addMainMenuView];
         [self addHeaderView];
         [self addBottomMenuView];
@@ -130,7 +131,7 @@
         if ([[AudioManager defaultManager] isMusicOn]) {
             [[AudioManager defaultManager] backgroundMusicPlay];
         }        
-    }
+//    }
     
     if (!ISIPAD) {
         self.view.frame = [[UIScreen mainScreen] bounds];

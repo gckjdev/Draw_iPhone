@@ -115,11 +115,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
 {
     if (isDrawApp() || isLittleGeeAPP()) {
         [self createDrawTestDataFile];
-    }else if(isDiceApp()){
+    }/*else if(isDiceApp()){
         [self createDiceTestDataFile];
     }else if (isSimpleDrawApp()){
         [self createLearnDrawTestDataFile];
-    }else if (isSingApp()){
+    }*/else if (isSingApp()){
         [self createSingTestDataFile];
     }
 }

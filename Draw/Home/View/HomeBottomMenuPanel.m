@@ -118,8 +118,8 @@
         line.center = CGPointMake(x, y);
         if (isDrawApp() && !isLittleGeeAPP()) {
             line.image = imageManager.drawHomeSplitline1;
-        }else if(isLearnDrawApp()){
-            line.image = imageManager.learnDrawBottomSplit;
+//        }else if(isLearnDrawApp()){
+//            line.image = imageManager.learnDrawBottomSplit;
         }else if (isLittleGeeAPP()) {
             line.image = [imageManager littleGeeBottomSplit];
         }else if (isSingApp()) {
@@ -144,9 +144,11 @@
         [[self bgImageView] removeFromSuperview];
     }
     
+    /*
     if (isLearnDrawApp()) {
         [[self bgImageView] setImage:[[DrawImageManager defaultManager] learnDrawBottomBar]];
     }
+     */
     
     if (isSingApp()) {
         [[self bgImageView] setImage:[[DrawImageManager defaultManager] singBottomBar]];

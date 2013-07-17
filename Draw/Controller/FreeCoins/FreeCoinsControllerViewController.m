@@ -238,10 +238,11 @@
     NSString *note = NSLS(@"kUnknowGame");
     if (isDrawApp()) {
         note = [self drawAwardNote:money flowers:flowersAward tips:tipsAward remainTimes:remainTimes];
-    }else if (isZhajinhuaApp()){
+    }
+    /*else if (isZhajinhuaApp()){
         note = [self zjhAwardNote:money remainTimes:remainTimes];
     }
-    
+    */
     [[CommonMessageCenter defaultCenter] postMessageWithText:note delayTime:3 isHappy:YES];
     
     if ([self remainTimes] <= 0) {

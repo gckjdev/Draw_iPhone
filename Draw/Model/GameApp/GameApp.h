@@ -168,6 +168,11 @@ extern NSObject<GameAppProtocol>* getGameApp();
 extern NSObject<ContentGameAppProtocol>* getContentGameApp();
 
 extern BOOL isDrawApp();
+extern BOOL isSingApp();
+extern BOOL isAskPsApp();
+extern BOOL isLittleGeeAPP();
+
+/*
 extern BOOL isDiceApp();
 extern BOOL isZhajinhuaApp();
 extern BOOL isSimpleDrawApp();
@@ -180,12 +185,9 @@ extern BOOL isDreamAvatarApp();
 extern BOOL isDreamAvatarFreeApp();
 extern BOOL isDreamLockscreenApp();
 extern BOOL isDreamLockscreenFreeApp();
-extern BOOL isLittleGeeAPP();
 extern BOOL isSecureSmsAPP();
 extern BOOL isCallTrackAPP();
-extern BOOL isSingApp();
-extern BOOL isAskPsApp();
-
+*/
 extern GameAppType gameAppType();
 
 #endif

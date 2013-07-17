@@ -228,10 +228,12 @@
 {
     return nil;
 }
+/*
 - (id<ChatMsgManagerProtocol>)getChatMsgManager
 {
     return nil;
 }
+ */
 - (NSString *)chatViewBgImageName
 {
     return nil;
