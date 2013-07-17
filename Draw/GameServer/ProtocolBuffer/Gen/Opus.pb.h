@@ -50,6 +50,8 @@
 @class PBGradient_Builder;
 @class PBGuessContest;
 @class PBGuessContest_Builder;
+@class PBGuessRank;
+@class PBGuessRank_Builder;
 @class PBGuessResult;
 @class PBGuessResult_Builder;
 @class PBHotWord;
@@ -87,6 +89,8 @@
 @class PBNoCompressDrawData;
 @class PBNoCompressDrawData_Builder;
 @class PBOpus;
+@class PBOpusGuess;
+@class PBOpusGuess_Builder;
 @class PBOpusList;
 @class PBOpusList_Builder;
 @class PBOpus_Builder;
@@ -94,8 +98,6 @@
 @class PBPoint_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
-@class PBRanking;
-@class PBRanking_Builder;
 @class PBRect;
 @class PBRect_Builder;
 @class PBSNSUser;
@@ -391,54 +393,56 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
   BOOL hasDeviceType_:1;
   BOOL hasStatus_:1;
   BOOL hasCreateDate_:1;
-  BOOL hasLocalThumbImageUrl_:1;
-  BOOL hasLocalImageUrl_:1;
-  BOOL hasLocalDataUrl_:1;
   BOOL hasContestId_:1;
+  BOOL hasLocalDataUrl_:1;
+  BOOL hasLocalImageUrl_:1;
   BOOL hasAppId_:1;
   BOOL hasDeviceName_:1;
-  BOOL hasOpusId_:1;
+  BOOL hasLocalThumbImageUrl_:1;
   BOOL hasDataUrl_:1;
   BOOL hasThumbImage_:1;
   BOOL hasImage_:1;
   BOOL hasDesc_:1;
   BOOL hasName_:1;
-  BOOL hasAuthor_:1;
-  BOOL hasTargetUser_:1;
-  BOOL hasDraw_:1;
-  BOOL hasSing_:1;
-  BOOL hasAskPs_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasGuessInfo_:1;
   BOOL hasAskPsOpus_:1;
+  BOOL hasAskPs_:1;
+  BOOL hasSing_:1;
+  BOOL hasDraw_:1;
+  BOOL hasTargetUser_:1;
+  BOOL hasAuthor_:1;
+  BOOL hasCategory_:1;
+  BOOL hasLanguage_:1;
   BOOL hasStoreType_:1;
   BOOL hasType_:1;
-  BOOL hasLanguage_:1;
-  BOOL hasCategory_:1;
   BOOL isRecovery_:1;
   int32_t deviceType;
   int32_t status;
   int32_t createDate;
-  NSString* localThumbImageUrl;
-  NSString* localImageUrl;
-  NSString* localDataUrl;
   NSString* contestId;
+  NSString* localDataUrl;
+  NSString* localImageUrl;
   NSString* appId;
   NSString* deviceName;
-  NSString* opusId;
+  NSString* localThumbImageUrl;
   NSString* dataUrl;
   NSString* thumbImage;
   NSString* image;
   NSString* desc;
   NSString* name;
-  PBGameUser* author;
-  PBGameUser* targetUser;
-  PBDrawOpus* draw;
-  PBSingOpus* sing;
-  PBAskPs* askPs;
+  NSString* opusId;
+  PBOpusGuess* guessInfo;
   PBAskPsOpus* askPsOpus;
+  PBAskPs* askPs;
+  PBSingOpus* sing;
+  PBDrawOpus* draw;
+  PBGameUser* targetUser;
+  PBGameUser* author;
+  PBOpusCategoryType category;
+  PBLanguage language;
   PBOpusStoreType storeType;
   PBOpusType type;
-  PBLanguage language;
-  PBOpusCategoryType category;
   NSMutableArray* mutableFeedTimesList;
 }
 - (BOOL) hasOpusId;
@@ -467,6 +471,7 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 - (BOOL) hasLocalThumbImageUrl;
 - (BOOL) hasIsRecovery;
 - (BOOL) hasStoreType;
+- (BOOL) hasGuessInfo;
 @property (readonly, retain) NSString* opusId;
 @property (readonly) PBOpusType type;
 @property (readonly, retain) NSString* name;
@@ -493,6 +498,7 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 @property (readonly, retain) NSString* localThumbImageUrl;
 - (BOOL) isRecovery;
 @property (readonly) PBOpusStoreType storeType;
+@property (readonly, retain) PBOpusGuess* guessInfo;
 - (NSArray*) feedTimesList;
 - (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
 
@@ -678,17 +684,21 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 - (PBOpusStoreType) storeType;
 - (PBOpus_Builder*) setStoreType:(PBOpusStoreType) value;
 - (PBOpus_Builder*) clearStoreType;
+
+- (BOOL) hasGuessInfo;
+- (PBOpusGuess*) guessInfo;
+- (PBOpus_Builder*) setGuessInfo:(PBOpusGuess*) value;
+- (PBOpus_Builder*) setGuessInfoBuilder:(PBOpusGuess_Builder*) builderForValue;
+- (PBOpus_Builder*) mergeGuessInfo:(PBOpusGuess*) value;
+- (PBOpus_Builder*) clearGuessInfo;
 @end
 
 @interface PBOpusList : PBGeneratedMessage {
 @private
-  NSMutableArray* mutablePassOpusIdsList;
   NSMutableArray* mutableOpusesList;
 }
 - (NSArray*) opusesList;
 - (PBOpus*) opusesAtIndex:(int32_t) index;
-- (NSArray*) passOpusIdsList;
-- (NSString*) passOpusIdsAtIndex:(int32_t) index;
 
 + (PBOpusList*) defaultInstance;
 - (PBOpusList*) defaultInstance;
@@ -730,16 +740,57 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 - (PBOpusList_Builder*) addOpuses:(PBOpus*) value;
 - (PBOpusList_Builder*) addAllOpuses:(NSArray*) values;
 - (PBOpusList_Builder*) clearOpusesList;
-
-- (NSArray*) passOpusIdsList;
-- (NSString*) passOpusIdsAtIndex:(int32_t) index;
-- (PBOpusList_Builder*) replacePassOpusIdsAtIndex:(int32_t) index with:(NSString*) value;
-- (PBOpusList_Builder*) addPassOpusIds:(NSString*) value;
-- (PBOpusList_Builder*) addAllPassOpusIds:(NSArray*) values;
-- (PBOpusList_Builder*) clearPassOpusIdsList;
 @end
 
-@interface PBRanking : PBGeneratedMessage {
+@interface PBOpusGuess : PBGeneratedMessage {
+@private
+  BOOL hasIsCorrect_:1;
+  BOOL isCorrect_:1;
+}
+- (BOOL) hasIsCorrect;
+- (BOOL) isCorrect;
+
++ (PBOpusGuess*) defaultInstance;
+- (PBOpusGuess*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBOpusGuess_Builder*) builder;
++ (PBOpusGuess_Builder*) builder;
++ (PBOpusGuess_Builder*) builderWithPrototype:(PBOpusGuess*) prototype;
+
++ (PBOpusGuess*) parseFromData:(NSData*) data;
++ (PBOpusGuess*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpusGuess*) parseFromInputStream:(NSInputStream*) input;
++ (PBOpusGuess*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpusGuess*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBOpusGuess*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBOpusGuess_Builder : PBGeneratedMessage_Builder {
+@private
+  PBOpusGuess* result;
+}
+
+- (PBOpusGuess*) defaultInstance;
+
+- (PBOpusGuess_Builder*) clear;
+- (PBOpusGuess_Builder*) clone;
+
+- (PBOpusGuess*) build;
+- (PBOpusGuess*) buildPartial;
+
+- (PBOpusGuess_Builder*) mergeFrom:(PBOpusGuess*) other;
+- (PBOpusGuess_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBOpusGuess_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasIsCorrect;
+- (BOOL) isCorrect;
+- (PBOpusGuess_Builder*) setIsCorrect:(BOOL) value;
+- (PBOpusGuess_Builder*) clearIsCorrect;
+@end
+
+@interface PBGuessRank : PBGeneratedMessage {
 @private
   BOOL hasLead_:1;
   BOOL hasPass_:1;
@@ -747,6 +798,7 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
   BOOL hasStartTime_:1;
   BOOL hasEndTime_:1;
   BOOL hasTotalTime_:1;
+  BOOL hasUser_:1;
   BOOL hasCurrency_:1;
   int32_t lead;
   int32_t pass;
@@ -754,8 +806,10 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
   int32_t startTime;
   int32_t endTime;
   int32_t totalTime;
+  PBGameUser* user;
   PBGameCurrency currency;
 }
+- (BOOL) hasUser;
 - (BOOL) hasLead;
 - (BOOL) hasPass;
 - (BOOL) hasEarn;
@@ -763,6 +817,7 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 - (BOOL) hasStartTime;
 - (BOOL) hasEndTime;
 - (BOOL) hasTotalTime;
+@property (readonly, retain) PBGameUser* user;
 @property (readonly) int32_t lead;
 @property (readonly) int32_t pass;
 @property (readonly) int32_t earn;
@@ -771,87 +826,94 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 @property (readonly) int32_t endTime;
 @property (readonly) int32_t totalTime;
 
-+ (PBRanking*) defaultInstance;
-- (PBRanking*) defaultInstance;
++ (PBGuessRank*) defaultInstance;
+- (PBGuessRank*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBRanking_Builder*) builder;
-+ (PBRanking_Builder*) builder;
-+ (PBRanking_Builder*) builderWithPrototype:(PBRanking*) prototype;
+- (PBGuessRank_Builder*) builder;
++ (PBGuessRank_Builder*) builder;
++ (PBGuessRank_Builder*) builderWithPrototype:(PBGuessRank*) prototype;
 
-+ (PBRanking*) parseFromData:(NSData*) data;
-+ (PBRanking*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBRanking*) parseFromInputStream:(NSInputStream*) input;
-+ (PBRanking*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBRanking*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBRanking*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGuessRank*) parseFromData:(NSData*) data;
++ (PBGuessRank*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGuessRank*) parseFromInputStream:(NSInputStream*) input;
++ (PBGuessRank*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGuessRank*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGuessRank*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBRanking_Builder : PBGeneratedMessage_Builder {
+@interface PBGuessRank_Builder : PBGeneratedMessage_Builder {
 @private
-  PBRanking* result;
+  PBGuessRank* result;
 }
 
-- (PBRanking*) defaultInstance;
+- (PBGuessRank*) defaultInstance;
 
-- (PBRanking_Builder*) clear;
-- (PBRanking_Builder*) clone;
+- (PBGuessRank_Builder*) clear;
+- (PBGuessRank_Builder*) clone;
 
-- (PBRanking*) build;
-- (PBRanking*) buildPartial;
+- (PBGuessRank*) build;
+- (PBGuessRank*) buildPartial;
 
-- (PBRanking_Builder*) mergeFrom:(PBRanking*) other;
-- (PBRanking_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBRanking_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBGuessRank_Builder*) mergeFrom:(PBGuessRank*) other;
+- (PBGuessRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGuessRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUser;
+- (PBGameUser*) user;
+- (PBGuessRank_Builder*) setUser:(PBGameUser*) value;
+- (PBGuessRank_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBGuessRank_Builder*) mergeUser:(PBGameUser*) value;
+- (PBGuessRank_Builder*) clearUser;
 
 - (BOOL) hasLead;
 - (int32_t) lead;
-- (PBRanking_Builder*) setLead:(int32_t) value;
-- (PBRanking_Builder*) clearLead;
+- (PBGuessRank_Builder*) setLead:(int32_t) value;
+- (PBGuessRank_Builder*) clearLead;
 
 - (BOOL) hasPass;
 - (int32_t) pass;
-- (PBRanking_Builder*) setPass:(int32_t) value;
-- (PBRanking_Builder*) clearPass;
+- (PBGuessRank_Builder*) setPass:(int32_t) value;
+- (PBGuessRank_Builder*) clearPass;
 
 - (BOOL) hasEarn;
 - (int32_t) earn;
-- (PBRanking_Builder*) setEarn:(int32_t) value;
-- (PBRanking_Builder*) clearEarn;
+- (PBGuessRank_Builder*) setEarn:(int32_t) value;
+- (PBGuessRank_Builder*) clearEarn;
 
 - (BOOL) hasCurrency;
 - (PBGameCurrency) currency;
-- (PBRanking_Builder*) setCurrency:(PBGameCurrency) value;
-- (PBRanking_Builder*) clearCurrency;
+- (PBGuessRank_Builder*) setCurrency:(PBGameCurrency) value;
+- (PBGuessRank_Builder*) clearCurrency;
 
 - (BOOL) hasStartTime;
 - (int32_t) startTime;
-- (PBRanking_Builder*) setStartTime:(int32_t) value;
-- (PBRanking_Builder*) clearStartTime;
+- (PBGuessRank_Builder*) setStartTime:(int32_t) value;
+- (PBGuessRank_Builder*) clearStartTime;
 
 - (BOOL) hasEndTime;
 - (int32_t) endTime;
-- (PBRanking_Builder*) setEndTime:(int32_t) value;
-- (PBRanking_Builder*) clearEndTime;
+- (PBGuessRank_Builder*) setEndTime:(int32_t) value;
+- (PBGuessRank_Builder*) clearEndTime;
 
 - (BOOL) hasTotalTime;
 - (int32_t) totalTime;
-- (PBRanking_Builder*) setTotalTime:(int32_t) value;
-- (PBRanking_Builder*) clearTotalTime;
+- (PBGuessRank_Builder*) setTotalTime:(int32_t) value;
+- (PBGuessRank_Builder*) clearTotalTime;
 @end
 
 @interface PBGuessResult : PBGeneratedMessage {
 @private
   BOOL hasIsOver_:1;
-  BOOL hasRanking_:1;
+  BOOL hasRank_:1;
   BOOL isOver_:1;
-  PBRanking* ranking;
+  PBGuessRank* rank;
 }
 - (BOOL) hasIsOver;
-- (BOOL) hasRanking;
+- (BOOL) hasRank;
 - (BOOL) isOver;
-@property (readonly, retain) PBRanking* ranking;
+@property (readonly, retain) PBGuessRank* rank;
 
 + (PBGuessResult*) defaultInstance;
 - (PBGuessResult*) defaultInstance;
@@ -892,12 +954,12 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 - (PBGuessResult_Builder*) setIsOver:(BOOL) value;
 - (PBGuessResult_Builder*) clearIsOver;
 
-- (BOOL) hasRanking;
-- (PBRanking*) ranking;
-- (PBGuessResult_Builder*) setRanking:(PBRanking*) value;
-- (PBGuessResult_Builder*) setRankingBuilder:(PBRanking_Builder*) builderForValue;
-- (PBGuessResult_Builder*) mergeRanking:(PBRanking*) value;
-- (PBGuessResult_Builder*) clearRanking;
+- (BOOL) hasRank;
+- (PBGuessRank*) rank;
+- (PBGuessResult_Builder*) setRank:(PBGuessRank*) value;
+- (PBGuessResult_Builder*) setRankBuilder:(PBGuessRank_Builder*) builderForValue;
+- (PBGuessResult_Builder*) mergeRank:(PBGuessRank*) value;
+- (PBGuessResult_Builder*) clearRank;
 @end
 
 @interface PBGuessContest : PBGeneratedMessage {

@@ -506,4 +506,7 @@ message DataQueryResponse {
   repeated string idList = 90;              //for learn draw
 
   optional PBSongList songs = 101;  
+  
+  optional PBGuessRank guessRank = 120; 
+  repeated PBGuessRank guessRankList = 121;
 }

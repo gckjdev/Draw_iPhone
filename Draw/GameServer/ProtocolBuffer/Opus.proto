@@ -127,6 +127,8 @@ message PBOpus {
   optional bool   isRecovery = 153[default=false]; // 是否是自动恢复的草稿
 
   optional PBOpusStoreType storeType = 200;      // 当前保存类型 
+  
+  optional PBOpusGuess guessInfo = 250;                 // 用户猜的信息
 }
 
 //message PBOpusAction{
@@ -176,7 +178,10 @@ message PBOpus {
 message PBOpusList{
 
     repeated PBOpus opuses = 1;
-    repeated string passOpusIds = 2;
+}
+
+message PBOpusGuess{
+    optional bool isCorrect = 2 [default = false];         // 已经猜中过
 }
 
 enum PBUserGuessMode{
@@ -186,12 +191,14 @@ enum PBUserGuessMode{
 }
 
 
-message PBRanking{
+message PBGuessRank{
 
-   optional int32 lead = 1;         // 领先百分之多少的用户
-   optional int32 pass = 2;         // 通过了多少关
-   optional int32 earn = 3;         // 赢得了多少钱
-   optional PBGameCurrency currency = 4;    // 货币种类
+   optional PBGameUser user = 1;    
+
+   optional int32 lead = 11;         // 领先百分之多少的用户
+   optional int32 pass = 12;         // 通过了多少关
+   optional int32 earn = 13;         // 赢得了多少钱
+   optional PBGameCurrency currency = 21;    // 货币种类
    
    optional int32 startTime = 50;     // 开始时间
    optional int32 endTime = 51;       // 结束时间
@@ -201,7 +208,7 @@ message PBRanking{
 message PBGuessResult{
    
    optional bool isOver = 1;        // 是否结束
-   optional PBRanking ranking= 2;          // 排名信息
+   optional PBGuessRank rank= 2;          // 排名信息
 }
 
 message PBGuessContest{

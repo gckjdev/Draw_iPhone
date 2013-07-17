@@ -79,12 +79,13 @@
 #import "UserDeviceService.h"
 
 #import "WordFilterService.h"
+#import "GuessService.h"
 
 NSString* GlobalGetServerURL()
 {
 
 #ifdef DEBUG
-//    return @"http://192.168.1.13:8001/api/i?";
+    return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 
 //    return @"http://58.215.160.100:8888/api/i?";
@@ -115,7 +116,7 @@ NSString* GlobalGetTrafficServerURL()
 //    }
 #endif
 #ifdef DEBUG
-//    return @"http://192.168.1.5:8001/api/i?";
+    return @"http://localhost:8100/api/i?";
 //    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
@@ -344,6 +345,7 @@ NSString* GlobalGetBoardServerURL()
     [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
     
     [UIUtils checkAppVersion];
+    
         
     return YES;
 }
@@ -435,6 +437,10 @@ NSString* GlobalGetBoardServerURL()
 
     PPDebug(@"<applicationWillEnterForeground>");    
     application.applicationIconBadgeNumber = 0;
+    
+//    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy offset:0 count:4 isStartNew:NO];
+    [[GuessService defaultService] guessOpus:nil mode:PBUserGuessModeGuessModeHappy contestId:nil words:[NSArray arrayWithObjects:@"电脑", @"商家", @"店铺", nil] correct:YES startDate:nil endDate:nil];
+//    [[GuessService defaultService] getGuessRank:nil mode:PBUserGuessModeGuessModeHappy contestId:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
