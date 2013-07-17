@@ -518,7 +518,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
-    /*
+    ///*
     //阴影
     [mutableArray addObject:[self itemWithItemId:ItemTypeShadow
                                             name:@"kShadowItem"
@@ -557,7 +557,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:2000 //1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
-    */
+    //*/
     
     //基本形状
     [mutableArray addObject:[self itemWithItemId:BasicShape
@@ -573,7 +573,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
 
-    /*
+    ///*
     //临摹
     [mutableArray addObject:[self itemWithItemId:ItemTypeCopyPaint
                                             name:@"kCopyPaint"
@@ -586,6 +586,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:500 //1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
+    //*/
     
     
     // 网格参考线
@@ -600,8 +601,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:1500/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
-    */
-     
+    
     // 背景10
     [mutableArray addObject:[self itemWithItemId:DrawBackground10
                                             name:@"Rigel"
