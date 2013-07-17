@@ -5232,12 +5232,6 @@
 		CA745D301503B1B500600024 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D2F1503B1B500600024 /* main.m */; };
 		CA745D331503B1B500600024 /* DrawAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D321503B1B500600024 /* DrawAppDelegate.m */; };
 		CA745D361503B1B500600024 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA745D341503B1B500600024 /* MainWindow.xib */; };
-		CA745D431503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
-		CA745D441503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
-		CA745D451503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
-		CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4B1503B1B500600024 /* InfoPlist.strings */; };
-		CA745D501503B1B500600024 /* DrawTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CA745D4F1503B1B500600024 /* DrawTests.h */; };
-		CA745D521503B1B500600024 /* DrawTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D511503B1B500600024 /* DrawTests.m */; };
 		CA78ED031772FF4000B38CDD /* CacheDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78ED021772FF4000B38CDD /* CacheDrawManager.m */; };
 		CA78ED041772FF4000B38CDD /* CacheDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78ED021772FF4000B38CDD /* CacheDrawManager.m */; };
 		CA78ED101772FF4000B38CDD /* CacheDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78ED021772FF4000B38CDD /* CacheDrawManager.m */; };
@@ -9012,13 +9006,6 @@
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = QWeiboSDK4iOS;
 		};
-		CA745D461503B1B500600024 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CA745D151503B1B400600024 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA745D1D1503B1B400600024;
-			remoteInfo = Draw;
-		};
 		CA96E33F150DF27400292335 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA96E335150DF27300292335 /* ProtocolBuffers.xcodeproj */;
@@ -11126,7 +11113,6 @@
 		CA745D311503B1B500600024 /* DrawAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawAppDelegate.h; sourceTree = "<group>"; };
 		CA745D321503B1B500600024 /* DrawAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawAppDelegate.m; sourceTree = "<group>"; };
 		CA745D351503B1B500600024 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		CA745D421503B1B500600024 /* DrawTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA745D4A1503B1B500600024 /* DrawTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DrawTests-Info.plist"; sourceTree = "<group>"; };
 		CA745D4C1503B1B500600024 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -12317,16 +12303,6 @@
 				CAD9F19C1735525400011AFA /* libDomobAdSDK.a in Frameworks */,
 				CA62C7811756FC5A00C9EF56 /* protolCLib.a in Frameworks */,
 				A4C8D5EB175EEC23007ED7E4 /* libleveldb.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA745D3E1503B1B500600024 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA745D431503B1B500600024 /* UIKit.framework in Frameworks */,
-				CA745D441503B1B500600024 /* Foundation.framework in Frameworks */,
-				CA745D451503B1B500600024 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -16875,7 +16851,6 @@
 			isa = PBXGroup;
 			children = (
 				CA745D1E1503B1B500600024 /* Draw.app */,
-				CA745D421503B1B500600024 /* DrawTests.octest */,
 				CAB5CC9916994F0200A4CE3B /* DrawPro.app */,
 				C28AA0BB1738F04B007A819F /* LittleGeeDraw.app */,
 				A461B7FC174CBAA70088B061 /* Sing.app */,
@@ -19366,25 +19341,6 @@
 			productReference = CA745D1E1503B1B500600024 /* Draw.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CA745D411503B1B500600024 /* DrawTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA745D581503B1B500600024 /* Build configuration list for PBXNativeTarget "DrawTests" */;
-			buildPhases = (
-				CA745D3D1503B1B500600024 /* Sources */,
-				CA745D3E1503B1B500600024 /* Frameworks */,
-				CA745D3F1503B1B500600024 /* Resources */,
-				CA745D401503B1B500600024 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CA745D471503B1B500600024 /* PBXTargetDependency */,
-			);
-			name = DrawTests;
-			productName = DrawTests;
-			productReference = CA745D421503B1B500600024 /* DrawTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		CAB5C6FF16994F0200A4CE3B /* DrawPro */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAB5CC9616994F0200A4CE3B /* Build configuration list for PBXNativeTarget "DrawPro" */;
@@ -19461,7 +19417,6 @@
 			targets = (
 				CA745D1D1503B1B400600024 /* Draw */,
 				CAB5C6FF16994F0200A4CE3B /* DrawPro */,
-				CA745D411503B1B500600024 /* DrawTests */,
 				C28A99641738F04B007A819F /* LittleGeeDraw */,
 				A461B07C174CBAA70088B061 /* Sing */,
 				EA411810176066F500DA72D0 /* AskPs */,
@@ -22574,15 +22529,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA745D3F1503B1B500600024 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA745D4D1503B1B500600024 /* InfoPlist.strings in Resources */,
-				CA745D501503B1B500600024 /* DrawTests.h in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CAB5C9BA16994F0200A4CE3B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -24485,22 +24431,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		CA745D401503B1B500600024 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A461B07D174CBAA70088B061 /* Sources */ = {
@@ -26853,14 +26783,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA745D3D1503B1B500600024 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA745D521503B1B500600024 /* DrawTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CAB5C70016994F0200A4CE3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -28350,14 +28272,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		CA745D471503B1B500600024 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA745D1D1503B1B400600024 /* Draw */;
-			targetProxy = CA745D461503B1B500600024 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		A455F8B61585D21400CA5743 /* EGORefreshTableHeaderView.strings */ = {
 			isa = PBXVariantGroup;
@@ -28961,58 +28875,6 @@
 			};
 			name = Release;
 		};
-		CA745D591503B1B500600024 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Draw.app/Draw";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DrawTests/DrawTests-Prefix.pch";
-				INFOPLIST_FILE = "DrawTests/DrawTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "336AD4AC-628F-4EC6-9468-26FB86F94CA3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F522EBB3-EA3E-4EF8-8644-F46CFF3D3EAB";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		CA745D5A1503B1B500600024 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Draw.app/Draw";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DrawTests/DrawTests-Prefix.pch";
-				INFOPLIST_FILE = "DrawTests/DrawTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "336AD4AC-628F-4EC6-9468-26FB86F94CA3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F522EBB3-EA3E-4EF8-8644-F46CFF3D3EAB";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 		CAB5CC9716994F0200A4CE3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -29290,15 +29152,6 @@
 			buildConfigurations = (
 				CA745D561503B1B500600024 /* Debug */,
 				CA745D571503B1B500600024 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CA745D581503B1B500600024 /* Build configuration list for PBXNativeTarget "DrawTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CA745D591503B1B500600024 /* Debug */,
-				CA745D5A1503B1B500600024 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
