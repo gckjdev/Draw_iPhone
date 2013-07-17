@@ -2146,6 +2146,8 @@
 		A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
 		A4DE148D169AB41C00841940 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
 		A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
+		A4E254D01796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
+		A4E254D11796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
 		A4E64911178425D10063F393 /* UIButton+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64910178425D10063F393 /* UIButton+Extend.m */; };
 		A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
 		A4E6491A178426310063F393 /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
@@ -9674,6 +9676,8 @@
 		A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomWordCell.m; sourceTree = "<group>"; };
 		A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCustomWordCell.xib; sourceTree = "<group>"; };
 		A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectCustomWordCell~ipad.xib"; sourceTree = "<group>"; };
+		A4E254CE1796CC5D00767506 /* GuessService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessService.h; sourceTree = "<group>"; };
+		A4E254CF1796CC5D00767506 /* GuessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessService.m; sourceTree = "<group>"; };
 		A4E6490F178425D10063F393 /* UIButton+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extend.h"; sourceTree = "<group>"; };
 		A4E64910178425D10063F393 /* UIButton+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extend.m"; sourceTree = "<group>"; };
 		A4E64917178426310063F393 /* PBOpus+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBOpus+Extend.h"; sourceTree = "<group>"; };
@@ -13559,6 +13563,15 @@
 			path = wordSelected;
 			sourceTree = "<group>";
 		};
+		A4E254CD1796CC5D00767506 /* Guess */ = {
+			isa = PBXGroup;
+			children = (
+				A4E254CE1796CC5D00767506 /* GuessService.h */,
+				A4E254CF1796CC5D00767506 /* GuessService.m */,
+			);
+			path = Guess;
+			sourceTree = "<group>";
+		};
 		A4E6490E178425D10063F393 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -14692,6 +14705,7 @@
 		CA103B371509A55000F60C03 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				A4E254CD1796CC5D00767506 /* Guess */,
 				CA2614DB1793B0E1007D5462 /* WordFilter */,
 				A4C8D561175EDFC6007ED7E4 /* Opus */,
 				C214A627170FE88300492393 /* Geography */,
@@ -26069,6 +26083,7 @@
 				CABEC6B617968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6EB17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FA17969462006F89BB /* FreeIngotController.m in Sources */,
+				A4E254D11796CC5D00767506 /* GuessService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26850,6 +26865,7 @@
 				CABEC6B417968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6E917969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F817969462006F89BB /* FreeIngotController.m in Sources */,
+				A4E254D01796CC5D00767506 /* GuessService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
