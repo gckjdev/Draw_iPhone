@@ -518,6 +518,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
+    /*
     //阴影
     [mutableArray addObject:[self itemWithItemId:ItemTypeShadow
                                             name:@"kShadowItem"
@@ -556,7 +557,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:2000 //1000/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
-    
+    */
     
     //基本形状
     [mutableArray addObject:[self itemWithItemId:BasicShape
@@ -572,6 +573,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
     
 
+    /*
     //临摹
     [mutableArray addObject:[self itemWithItemId:ItemTypeCopyPaint
                                             name:@"kCopyPaint"
@@ -598,7 +600,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                   promotionPrice:1500/discount
                                        startDate:[NSDate date]
                                       expireDate:[[NSDate date] dateByAddingDays:90]]];
-    
+    */
+     
     // 背景10
     [mutableArray addObject:[self itemWithItemId:DrawBackground10
                                             name:@"Rigel"
@@ -1098,6 +1101,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                             type:PBDrawItemTypeDrawTaoBao
                                              url:@"http://a.m.taobao.com/i17538377874.htm"]];
      */
+
+    [mutableArray addObject:[self itemWithItemId:ItemTypeTaoBao
+                                            name:@"Jot Pro专业绘画笔"
+                                            desc:@"【促销】Adonit Jot Pro电容笔，苹果iPad/三星专业绘画触控手写笔，高精度超细，赠送30000个金币"
+                                           image:DRAW_URL_ITEM_IMAGE(@"jotpro.png")
+                                            type:PBDrawItemTypeDrawTaoBao
+                                             url:@"http://a.m.taobao.com/i19191213826.htm"]];
     
     PBGameItemList_Builder* listBuilder = [[PBGameItemList_Builder alloc] init];
     [listBuilder addAllItems:mutableArray];

@@ -17,7 +17,7 @@
 #define SHOP_ITEM_FILE_TYPE @"pb"
 
 // change for each item bundle file upgrade
-#define SHOP_ITEMS_FILE_VERSION @"2.95"
+#define SHOP_ITEMS_FILE_VERSION @"2.94"
 
 @interface GameItemManager()
 
@@ -70,7 +70,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 + (NSString *)shopItemsFileVersion
 {
 #ifdef DEBUG
-    return @"11.90";
+    return @"2.90";
 #endif
     return SHOP_ITEMS_FILE_VERSION;
 }
