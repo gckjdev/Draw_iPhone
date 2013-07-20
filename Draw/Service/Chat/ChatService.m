@@ -29,6 +29,7 @@
 #import "DrawUtils.h"
 #import "UIImageExt.h"
 #import "StringUtil.h"
+#import "PPGameNetworkRequest.h"
 
 static ChatService *_chatService = nil;
 
@@ -353,7 +354,7 @@ static ChatService *_chatService = nil;
     });
 }
 
-
+/*
 - (void)deleteMessage:(id<ChatServiceDelegate>)delegate 
         messageList:(NSArray *)messageList
 {
@@ -388,6 +389,7 @@ static ChatService *_chatService = nil;
     });
     
 }
+*/
 
 #pragma mark new message methods
 
@@ -737,15 +739,48 @@ static ChatService *_chatService = nil;
 
 - (void)deleteMessage:(PPMessage*)message
 {
-    NSString* messageId = [message messageId];
+    NSString *messageId = [message messageId];
     NSString *userId = [[UserManager defaultManager] userId];
-    if (userId == nil || messageId == nil)
+    NSString *friendId = message.friendId;
+    if (userId == nil || messageId == nil || friendId == nil)
         return;
-    
-    NSArray  *messageIdList = [NSArray arrayWithObject:messageId];
     
     dispatch_async(workingQueue, ^{
         
+        NSDictionary* para = @{ PARA_USERID : userId,
+                                PARA_MESSAGE_ID : messageId,
+                                PARA_TARGETUSERID : friendId,
+                               };
+        
+        CommonNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_DELETE_SINGLE_MESSAGE
+                                                                                    parameters:para
+                                                                                 isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS){
+                PPDebug(@"<ChatService> deleteMessage success, id=%@", messageId);
+                
+                if (message.messageType == MessageTypeImage){
+                    if (message.status == MessageStatusSending || message.status == MessageStatusFail) {
+                        [PPMessageManager removeLocalImage:[(ImageMessage *)message thumbImageUrl]];
+                    }
+                }
+                
+                [[PPMessageManager defaultManager] deleteMessage:message];
+                
+            }else {
+                PPDebug(@"<ChatService> deleteMessage failed, id=%@", messageId);
+            }
+            
+            [self postNotification:NOTIFICATION_MESSAGE_DELETE
+                           message:message
+                        resultCode:output.resultCode
+                      insertMiddle:NO
+                           forward:YES];
+            
+        });
+        
+        /* old interface, now use new interface
         CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:TRAFFIC_SERVER_URL
                                                                   appId:[ConfigManager appId]
                                                                  userId:userId
@@ -774,6 +809,7 @@ static ChatService *_chatService = nil;
                            forward:YES];
             
         });
+         */
     });    
 }
 
