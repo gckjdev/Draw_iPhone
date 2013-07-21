@@ -127,6 +127,8 @@
 #define METHOD_GET_STATISTICS @"gss"
 #define METHOD_REPORT_STATUS  @"rs" 
 
+#define METHOD_DELETE_SINGLE_MESSAGE @"deleteMessage"
+
 //find draw
 #define METHOD_FINDDRAW @"fd"
 
