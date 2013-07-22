@@ -2037,7 +2037,7 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL]; 
         
-        str = [str stringByAddQueryParameter:METHOD value:METHOD_GETMESSAGELIST];
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_NEW_GETMESSAGELIST];
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];                
         str = [str stringByAddQueryParameter:PARA_TO_USERID value:friendUserId];
