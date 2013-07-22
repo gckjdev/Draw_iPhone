@@ -1,48 +1,34 @@
-cd /Users/Linruin/ProtocolBuffers-2.2.0-Source/src
+#!/bin/bash
 
-echo build Objective-C codes
+SRC_DIR=`pwd`/Draw/GameServer/ProtocolBuffer
+OBJC_DIR=$SRC_DIR/Gen
+C_DIR=$SRC_DIR/Gen-c
 
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameBasic.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameConstants.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameMessage.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Draw.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Dice.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ZhaJinHua.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Sing.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --objc_out=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Gen /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Opus.proto
+CFILES=(GameBasic Draw)
 
 
 
+cd $SRC_DIR
+Files=`ls *.proto`
 
+echo "Start to build proto files for object c"
 
-cd /Users/Linruin/protobuf-2.4.1/src
+for file in $Files
+    do 
+        echo "Build file: $file"
+        protoc -I=$SRC_DIR --objc_out=$OBJC_DIR $SRC_DIR/$file
+    done
 
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameBasic.proto
+echo "Done"
 
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameConstants.proto
+for file in ${CFILES[@]}
+    do 
+        echo "Build file: $file"
+        filePath=$SRC_DIR/$file".proto"
+        protoc-c -I=$SRC_DIR --c_out=$C_DIR $filePath
+        sed "s/^.*include.*\>$/#include \"protobuf-c.h\"/" $C_DIR/$file".pb-c.h" > ~/ttt.h
+        mv ~/ttt.h $C_DIR/$file".pb-c.h"
+        
+    done
 
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/GameMessage.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Dice.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Draw.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ZhaJinHua.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/BBS.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Config.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Photo.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Opus.proto
-
-./protoc --proto_path=/Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/ --java_out=/Users/Linruin/gitdata/Common_Java_Game/src/ /Users/Linruin/gitdata/Draw_iPhone/Draw/GameServer/ProtocolBuffer/Sing.proto
-
+echo "Done"
