@@ -72,6 +72,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLayer;
+@class PBLayer_Builder;
 @class PBLayout;
 @class PBLayoutList;
 @class PBLayoutList_Builder;
