@@ -64,6 +64,7 @@
 #define METHOD_USER_READ_MSG @"urm"
 #define METHOD_GETMESSAGESTATLIST @"gmsl"
 #define METHOD_GETMESSAGELIST @"gml"
+#define METHOD_NEW_GETMESSAGELIST @"getMessageList"
 
 
 #define METHOD_REGISTERUSER @"ru"
