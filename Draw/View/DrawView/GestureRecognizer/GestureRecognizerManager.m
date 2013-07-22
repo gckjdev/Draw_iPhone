@@ -86,6 +86,7 @@
 
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
     [view addGestureRecognizer:pinchGesture];
+    pinchGesture.delegate = self;
     [grSet addObject:pinchGesture];
     return [pinchGesture autorelease];
 }
@@ -100,6 +101,7 @@
     [doubleTap setNumberOfTapsRequired:2];
     [doubleTap setNumberOfTouchesRequired:2];
     [view addGestureRecognizer:doubleTap];
+    [doubleTap setDelegate:self];
     [grSet addObject:doubleTap];
     return [doubleTap autorelease];
 
@@ -115,6 +117,7 @@
 
     [view addGestureRecognizer:longPress];
     [grSet addObject:longPress];
+    [longPress setDelegate:self];
     
     return [longPress autorelease];
 }
@@ -128,6 +131,7 @@
     
     [view addGestureRecognizer:tap];
     [grSet addObject:tap];
+    [tap setDelegate:self];
 
     return [tap autorelease];
 }
@@ -286,19 +290,9 @@
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-//    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
-//        return NO;
-//    }
     return YES;
 }
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
-    if (!self.capture) {
-        return NO;
-    }
-//    if ([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![self canMoveView:gestureRecognizer.view]) {
-//        return NO;
-//    }
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return YES;
 }
 @end
