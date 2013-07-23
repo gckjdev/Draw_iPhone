@@ -1031,6 +1031,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property int32_t userLevel;
 @property (retain) NSString* facetimeId;
 @property int32_t seatId;
+@property (retain) NSString* xiaojiNumber;
 @property BOOL isPlaying;
 @property BOOL isTakenOver;
 @property (retain) NSMutableArray* mutableAttributesList;
@@ -1130,6 +1131,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasSeatId_ = !!value;
 }
 @synthesize seatId;
+- (BOOL) hasXiaojiNumber {
+  return !!hasXiaojiNumber_;
+}
+- (void) setHasXiaojiNumber:(BOOL) value {
+  hasXiaojiNumber_ = !!value;
+}
+@synthesize xiaojiNumber;
 - (BOOL) hasIsPlaying {
   return !!hasIsPlaying_;
 }
@@ -1371,6 +1379,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.mutableSnsUsersList = nil;
   self.location = nil;
   self.facetimeId = nil;
+  self.xiaojiNumber = nil;
   self.mutableAttributesList = nil;
   self.email = nil;
   self.password = nil;
@@ -1398,6 +1407,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.userLevel = 0;
     self.facetimeId = @"";
     self.seatId = 0;
+    self.xiaojiNumber = @"";
     self.isPlaying = YES;
     self.isTakenOver = NO;
     self.email = @"";
@@ -1516,6 +1526,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasSeatId) {
     [output writeInt32:9 value:self.seatId];
+  }
+  if (self.hasXiaojiNumber) {
+    [output writeString:10 value:self.xiaojiNumber];
   }
   if (self.hasIsPlaying) {
     [output writeBool:20 value:self.isPlaying];
@@ -1651,6 +1664,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasSeatId) {
     size += computeInt32Size(9, self.seatId);
+  }
+  if (self.hasXiaojiNumber) {
+    size += computeStringSize(10, self.xiaojiNumber);
   }
   if (self.hasIsPlaying) {
     size += computeBoolSize(20, self.isPlaying);
@@ -1856,6 +1872,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasSeatId) {
     [self setSeatId:other.seatId];
   }
+  if (other.hasXiaojiNumber) {
+    [self setXiaojiNumber:other.xiaojiNumber];
+  }
   if (other.hasIsPlaying) {
     [self setIsPlaying:other.isPlaying];
   }
@@ -2018,6 +2037,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 72: {
         [self setSeatId:[input readInt32]];
+        break;
+      }
+      case 82: {
+        [self setXiaojiNumber:[input readString]];
         break;
       }
       case 160: {
@@ -2319,6 +2342,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearSeatId {
   result.hasSeatId = NO;
   result.seatId = 0;
+  return self;
+}
+- (BOOL) hasXiaojiNumber {
+  return result.hasXiaojiNumber;
+}
+- (NSString*) xiaojiNumber {
+  return result.xiaojiNumber;
+}
+- (PBGameUser_Builder*) setXiaojiNumber:(NSString*) value {
+  result.hasXiaojiNumber = YES;
+  result.xiaojiNumber = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearXiaojiNumber {
+  result.hasXiaojiNumber = NO;
+  result.xiaojiNumber = @"";
   return self;
 }
 - (BOOL) hasIsPlaying {

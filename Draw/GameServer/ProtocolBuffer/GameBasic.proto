@@ -44,6 +44,8 @@ message PBGameUser {
   optional string facetimeId = 8;
      
   optional int32 seatId = 9;                        // 座位号，从1开始
+  optional string xiaojiNumber = 10;                // 小吉号码
+
   optional bool isPlaying = 20 [default=true];      // 用户是否参与当前游戏，默认为true
   optional bool isTakenOver = 21 [default=false];   // 用户是否被系统接管，默认为false
   repeated PBKeyValue attributes = 22;              // 其他属性，用于不同游戏个性化的参数传递，如用户骰子
