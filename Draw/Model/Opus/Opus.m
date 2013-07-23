@@ -12,6 +12,7 @@
 #import "AskPs.h"
 #import "FileUtil.h"
 #import "UserManager.h"
+#import "DrawOpus.h"
 
 @interface Opus()
 
@@ -55,6 +56,10 @@
         case PBOpusCategoryTypeAskPsCategory:
             opus = [[[AskPs alloc] init] autorelease];
             break;
+            
+        case PBOpusCategoryTypeDrawCategory:
+            opus = [[[DrawOpus alloc] init] autorelease];
+            break;
         default:
             break;
     }
@@ -74,12 +79,12 @@
 }
 
 
-+ (Opus*)opusFromPBOpus:(PBOpus *)pbOpus{
-    
-    Opus *opus = [[[Opus alloc] init] autorelease];
-    opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
-    return opus;
-}
+//+ (Opus*)opusFromPBOpus:(PBOpus *)pbOpus{
+//    
+//    Opus *opus = [[[Opus alloc] init] autorelease];
+//    opus.pbOpusBuilder = [PBOpus builderWithPrototype:pbOpus];
+//    return opus;
+//}
 
 #pragma mark - Get & Set Methods
 

@@ -94,6 +94,7 @@
 #import "ContestManager.h"
 
 #import "GalleryController.h"
+#import "GuessModesController.h"
 
 @interface HomeController()
 {
@@ -634,10 +635,15 @@
             break;
         case HomeMenuTypeDrawGuess:
         {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_GUESS];
+//            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_GUESS];
+//            
+//            [self showActivityWithText:NSLS(@"kLoading")];
+//            [[DrawDataService defaultService] matchDraw:self];
             
-            [self showActivityWithText:NSLS(@"kLoading")];
-            [[DrawDataService defaultService] matchDraw:self];
+            
+            GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+            
         }
             break;
             

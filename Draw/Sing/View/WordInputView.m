@@ -8,6 +8,7 @@
 
 #import "WordInputView.h"
 #import "AudioManager.h"
+#import "HPThemeManager.h"
 
 #define BUTTON_WIDTH (ISIPAD ? 65 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
@@ -75,6 +76,11 @@
         
         self.candidateColor = self.answerColor = DEFAULT_COLOR;
         self.alignment = WordInputViewStyleAlignmentLeft;
+        
+        
+        // Set appearance of wordInputView
+        self.answerImage = UIThemeImageNamed(@"word_input_answer@2x.png");
+        self.candidateImage = UIThemeImageNamed(@"word_input_candidate@2x.png");
     }
     
     return self;

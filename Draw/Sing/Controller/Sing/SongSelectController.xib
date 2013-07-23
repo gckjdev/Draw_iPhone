@@ -526,12 +526,12 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="change_song@2x.png">{16, 16}</string>
-			<string key="custom_song@2x.png">{16, 16}</string>
-			<string key="sing_back@2x.png">{16, 16}</string>
-			<string key="sing_bg@2x.jpg">{16, 16}</string>
-			<string key="song_category@2x.png">{16, 16}</string>
-			<string key="up@2x.png">{16, 16}</string>
+			<string key="change_song@2x.png">{184, 206}</string>
+			<string key="custom_song@2x.png">{184, 206}</string>
+			<string key="sing_back@2x.png">{73, 69}</string>
+			<string key="sing_bg@2x.jpg">{640, 960}</string>
+			<string key="song_category@2x.png">{91, 60}</string>
+			<string key="up@2x.png">{640, 90}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

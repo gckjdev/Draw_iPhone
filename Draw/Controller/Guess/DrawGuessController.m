@@ -1,0 +1,52 @@
+//
+//  DrawGuessController.m
+//  Draw
+//
+//  Created by 王 小涛 on 13-7-19.
+//
+//
+
+#import "DrawGuessController.h"
+#import "GuessService.h"
+#import "CommonTitleView.h"
+
+@interface DrawGuessController ()
+@property (retain, nonatomic) NSDate *startDate;
+
+@end
+
+@implementation DrawGuessController
+
+- (void)dealloc {
+    [_startDate release];
+    [super dealloc];
+}
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    CommonTitleView *titleView = [CommonTitleView createWithTitle:NSLS(@"kGuess") delegate:self];
+    [self.view addSubview:titleView];
+    
+    self.startDate = [NSDate date];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
+
+// Rewrite in sub-class
+- (void)didGuessWrong:(NSString *)word{
+    
+    
+}
+
+- (void)didGuessCorrect:(NSString *)word{
+    
+    
+}
+
+@end
