@@ -7,7 +7,6 @@
 //
 
 #import "DrawGuessController.h"
-#import "GuessService.h"
 #import "CommonTitleView.h"
 
 @interface DrawGuessController ()
@@ -19,7 +18,6 @@
 - (void)dealloc {
     [super dealloc];
 }
-
 
 - (void)viewDidLoad
 {
@@ -33,16 +31,5 @@
     [super viewDidUnload];
 }
 
-
-// Rewrite in sub-class
-- (void)didGuessWrong:(NSString *)word{
-    
-    
-}
-
-- (void)didGuessCorrect:(NSString *)word{
-    
-    
-}
 
 @end

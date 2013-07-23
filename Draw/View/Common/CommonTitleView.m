@@ -48,7 +48,7 @@
 
 - (void)update{
     
-    [_backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.png") forState:UIControlStateNormal];
+    [_backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.jpg") forState:UIControlStateNormal];
     
     _bgImageView.image = UIThemeImageNamed(@"navigation_bg@2x.png");
     

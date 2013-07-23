@@ -23,10 +23,9 @@
 - (IBAction)clickToolBoxButton:(id)sender;
 - (IBAction)clickOpusButton:(id)sender;
 
-// Rewrite in sub-class
+// optional - implemented in your sub-class
 - (void)didGuessWrong:(NSString *)word;
 - (void)didGuessCorrect:(NSString *)word;
 - (void)clickBack:(id)sender;
-//- (void)runAway;
 
 @end
