@@ -1855,8 +1855,6 @@
 		A49971F3177831B800B01EBE /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
 		A4997206177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
 		A4997207177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
-		A4997208177831E100B01EBE /* CommonGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49971FC177831E100B01EBE /* CommonGuessController.xib */; };
-		A4997209177831E100B01EBE /* CommonGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49971FC177831E100B01EBE /* CommonGuessController.xib */; };
 		A499720C177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
 		A499720D177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
 		A499720E177831E200B01EBE /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
@@ -9397,7 +9395,6 @@
 		A49971F1177831B800B01EBE /* PPTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTableViewHeader.m; sourceTree = "<group>"; };
 		A49971FA177831E100B01EBE /* CommonGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGuessController.h; sourceTree = "<group>"; };
 		A49971FB177831E100B01EBE /* CommonGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGuessController.m; sourceTree = "<group>"; };
-		A49971FC177831E100B01EBE /* CommonGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonGuessController.xib; sourceTree = "<group>"; };
 		A4997200177831E100B01EBE /* CommonOpusDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusDetailController.h; sourceTree = "<group>"; };
 		A4997201177831E100B01EBE /* CommonOpusDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonOpusDetailController.m; sourceTree = "<group>"; };
 		A4997202177831E100B01EBE /* CommonOpusInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusInfoCell.h; sourceTree = "<group>"; };
@@ -13053,7 +13050,6 @@
 				A4B789A7179E2F040008E21B /* DrawGuessController.xib */,
 				A49971FA177831E100B01EBE /* CommonGuessController.h */,
 				A49971FB177831E100B01EBE /* CommonGuessController.m */,
-				A49971FC177831E100B01EBE /* CommonGuessController.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -20441,7 +20437,6 @@
 				EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */,
 				C2CA7E5717782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5D17782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
-				A4997209177831E100B01EBE /* CommonGuessController.xib in Resources */,
 				A4997218177832EA00B01EBE /* OpusManageController.xib in Resources */,
 				A4997219177832EA00B01EBE /* OpusManageController~ipad.xib in Resources */,
 				A499721B177832EA00B01EBE /* OpusView.xib in Resources */,
@@ -22468,7 +22463,6 @@
 				C214553B1778279E007D44C7 /* OpusView.xib in Resources */,
 				C2CA7E5217782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5817782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
-				A4997208177831E100B01EBE /* CommonGuessController.xib in Resources */,
 				CA3D4AF517794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B0717794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
 				C2C09DDC17797EF3009408EB /* DrawToolUpPanel.xib in Resources */,
