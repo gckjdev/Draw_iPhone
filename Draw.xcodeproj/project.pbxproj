@@ -2020,8 +2020,12 @@
 		A4B7880F179D34AC0008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7880D179D34AB0008E21B /* HPThemeManager.m */; };
 		A4B78810179D34AC0008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7880D179D34AB0008E21B /* HPThemeManager.m */; };
 		A4B78814179E1F8F0008E21B /* Draw-Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4B78813179E1F8F0008E21B /* Draw-Themes.plist */; };
-		A4B78817179E21BB0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78816179E21BB0008E21B /* Theme */; };
 		A4B78819179E256B0008E21B /* Sing-Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4B78818179E256B0008E21B /* Sing-Themes.plist */; };
+		A4B7881B179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
+		A4B7881C179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
+		A4B7881D179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
+		A4B7881E179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
+		A4B7881F179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -9468,8 +9472,8 @@
 		A4B7880C179D34AB0008E21B /* HPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPThemeManager.h; sourceTree = "<group>"; };
 		A4B7880D179D34AB0008E21B /* HPThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPThemeManager.m; sourceTree = "<group>"; };
 		A4B78813179E1F8F0008E21B /* Draw-Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Draw-Themes.plist"; sourceTree = "<group>"; };
-		A4B78816179E21BB0008E21B /* Theme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Theme; sourceTree = "<group>"; };
 		A4B78818179E256B0008E21B /* Sing-Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sing-Themes.plist"; sourceTree = "<group>"; };
+		A4B7881A179E2D000008E21B /* Theme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Theme; sourceTree = "<group>"; };
 		A4B7A0021772F99800C586F7 /* WordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordInputView.h; sourceTree = "<group>"; };
 		A4B7A0031772F99800C586F7 /* WordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordInputView.m; sourceTree = "<group>"; };
 		A4BABB37176F0C3C008D7AAB /* songCategory.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = songCategory.txt; sourceTree = "<group>"; };
@@ -16922,6 +16926,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A4B7881A179E2D000008E21B /* Theme */,
 				EA411F441763050300DA72D0 /* AskPs */,
 				C2C18A6B1760A7B400DE933B /* Gallery */,
 				A461B803174CCB1A0088B061 /* Sing */,
@@ -19093,7 +19098,6 @@
 		CAFEFEF5166072AB00441D77 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
-				A4B78816179E21BB0008E21B /* Theme */,
 				CA7D41DD168D7588009F43F7 /* Resource */,
 				CAFEFEF6166072AB00441D77 /* Draw_Common */,
 			);
@@ -20509,6 +20513,7 @@
 				CABEC70017969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70517969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
 				A4B78819179E256B0008E21B /* Sing-Themes.plist in Resources */,
+				A4B7881E179E2D040008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21520,6 +21525,7 @@
 				A4B78801179D10910008E21B /* SingGuessController.xib in Resources */,
 				A4B78803179D10910008E21B /* SingGuessController~ipad.xib in Resources */,
 				A4B78806179D11250008E21B /* DrawGuessController.xib in Resources */,
+				A4B7881D179E2D040008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22521,7 +22527,7 @@
 				A4B78802179D10910008E21B /* SingGuessController~ipad.xib in Resources */,
 				A4B78805179D11250008E21B /* DrawGuessController.xib in Resources */,
 				A4B78814179E1F8F0008E21B /* Draw-Themes.plist in Resources */,
-				A4B78817179E21BB0008E21B /* Theme in Resources */,
+				A4B7881B179E2D040008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23438,6 +23444,7 @@
 				CABEC6F417969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FE17969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70317969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4B7881C179E2D040008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24387,6 +24394,7 @@
 				CABEC6F717969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC70117969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4B7881F179E2D040008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
