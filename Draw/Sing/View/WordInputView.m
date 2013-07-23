@@ -8,6 +8,7 @@
 
 #import "WordInputView.h"
 #import "AudioManager.h"
+#import "HPThemeManager.h"
 
 #define BUTTON_WIDTH (ISIPAD ? 65 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
@@ -38,6 +39,13 @@
 @property (retain, nonatomic) UIView *answerView;
 @property (assign, nonatomic) CGSize candidateSize;
 @property (assign, nonatomic) CGSize answerSize;
+
+@property (retain, nonatomic) UIImage *candidateImage;
+@property (retain, nonatomic) UIImage *answerImage;
+@property (copy, nonatomic) NSString *clickSound;
+@property (copy, nonatomic) NSString *wrongSound;
+@property (copy, nonatomic) NSString *correctSound;
+
 @end
 
 @implementation WordInputView
@@ -75,6 +83,17 @@
         
         self.candidateColor = self.answerColor = DEFAULT_COLOR;
         self.alignment = WordInputViewStyleAlignmentLeft;
+        
+        
+        // Set appearance of wordInputView
+        self.answerImage = UIThemeImageNamed(@"word_input_answer@2x.png");
+        self.candidateImage = UIThemeImageNamed(@"word_input_candidate@2x.png");
+        
+        
+        // Set sound.
+        self.clickSound = @"ding.m4a";
+        self.wrongSound = @"oowrong.mp3";
+        self.correctSound = @"correct.mp3";
     }
     
     return self;

@@ -29,8 +29,8 @@
 + (Opus*)opusWithPBOpus:(PBOpus *)pbOpus storeType:(PBOpusStoreType)storeType;
 + (Opus*)opusWithPBOpus:(PBOpus *)pbOpus;
 
-+ (Opus*)opusFromPBOpus:(PBOpus *)pbOpus;
- 
+//+ (Opus*)opusFromPBOpus:(PBOpus *)pbOpus;
+
 // don't change method name, used for Buri Index
 - (NSString*)opusKey;
 - (NSNumber*)opusStoreType;

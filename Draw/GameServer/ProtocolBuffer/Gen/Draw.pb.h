@@ -60,6 +60,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLayer;
+@class PBLayer_Builder;
 @class PBLayout;
 @class PBLayoutList;
 @class PBLayoutList_Builder;
@@ -117,6 +119,82 @@
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
 @end
 
+@interface PBLayer : PBGeneratedMessage {
+@private
+  BOOL hasAlpha_:1;
+  BOOL hasTag_:1;
+  BOOL hasName_:1;
+  Float32 alpha;
+  int32_t tag;
+  NSString* name;
+  NSMutableArray* mutableRectComponentList;
+}
+- (BOOL) hasTag;
+- (BOOL) hasAlpha;
+- (BOOL) hasName;
+@property (readonly) int32_t tag;
+@property (readonly) Float32 alpha;
+@property (readonly, retain) NSString* name;
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+
++ (PBLayer*) defaultInstance;
+- (PBLayer*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLayer_Builder*) builder;
++ (PBLayer_Builder*) builder;
++ (PBLayer_Builder*) builderWithPrototype:(PBLayer*) prototype;
+
++ (PBLayer*) parseFromData:(NSData*) data;
++ (PBLayer*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayer*) parseFromInputStream:(NSInputStream*) input;
++ (PBLayer*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLayer*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLayer_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLayer* result;
+}
+
+- (PBLayer*) defaultInstance;
+
+- (PBLayer_Builder*) clear;
+- (PBLayer_Builder*) clone;
+
+- (PBLayer*) build;
+- (PBLayer*) buildPartial;
+
+- (PBLayer_Builder*) mergeFrom:(PBLayer*) other;
+- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLayer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasTag;
+- (int32_t) tag;
+- (PBLayer_Builder*) setTag:(int32_t) value;
+- (PBLayer_Builder*) clearTag;
+
+- (NSArray*) rectComponentList;
+- (Float32) rectComponentAtIndex:(int32_t) index;
+- (PBLayer_Builder*) replaceRectComponentAtIndex:(int32_t) index with:(Float32) value;
+- (PBLayer_Builder*) addRectComponent:(Float32) value;
+- (PBLayer_Builder*) addAllRectComponent:(NSArray*) values;
+- (PBLayer_Builder*) clearRectComponentList;
+
+- (BOOL) hasAlpha;
+- (Float32) alpha;
+- (PBLayer_Builder*) setAlpha:(Float32) value;
+- (PBLayer_Builder*) clearAlpha;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBLayer_Builder*) setName:(NSString*) value;
+- (PBLayer_Builder*) clearName;
+@end
+
 @interface PBDraw : PBGeneratedMessage {
 @private
   BOOL hasGender_:1;
@@ -146,6 +224,7 @@
   NSString* opusId;
   PBSize* canvasSize;
   NSMutableArray* mutableDrawDataList;
+  NSMutableArray* mutableLayerList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasWord;
@@ -175,6 +254,8 @@
 @property (readonly, retain) PBSize* canvasSize;
 - (NSArray*) drawDataList;
 - (PBDrawAction*) drawDataAtIndex:(int32_t) index;
+- (NSArray*) layerList;
+- (PBLayer*) layerAtIndex:(int32_t) index;
 
 + (PBDraw*) defaultInstance;
 - (PBDraw*) defaultInstance;
@@ -283,6 +364,13 @@
 - (PBDraw_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
 - (PBDraw_Builder*) mergeCanvasSize:(PBSize*) value;
 - (PBDraw_Builder*) clearCanvasSize;
+
+- (NSArray*) layerList;
+- (PBLayer*) layerAtIndex:(int32_t) index;
+- (PBDraw_Builder*) replaceLayerAtIndex:(int32_t) index with:(PBLayer*) value;
+- (PBDraw_Builder*) addLayer:(PBLayer*) value;
+- (PBDraw_Builder*) addAllLayer:(NSArray*) values;
+- (PBDraw_Builder*) clearLayerList;
 @end
 
 @interface PBFeedTimes : PBGeneratedMessage {

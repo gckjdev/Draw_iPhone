@@ -78,7 +78,7 @@
 
         case HomeMenuTypeSingTop: {
             PPDebug(@"HomeMenuTypeSingTop");
-            Opus *opus = [Opus opusFromPBOpus:[OpusManager createTestOpus]];
+            Opus *opus = [Opus opusWithPBOpus:[OpusManager createTestOpus]];
             SingGuessController *vc = [[[SingGuessController alloc] initWithOpus:opus] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }

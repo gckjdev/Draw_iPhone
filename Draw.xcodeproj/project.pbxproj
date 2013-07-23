@@ -1855,8 +1855,6 @@
 		A49971F3177831B800B01EBE /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
 		A4997206177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
 		A4997207177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
-		A4997208177831E100B01EBE /* CommonGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49971FC177831E100B01EBE /* CommonGuessController.xib */; };
-		A4997209177831E100B01EBE /* CommonGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49971FC177831E100B01EBE /* CommonGuessController.xib */; };
 		A499720C177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
 		A499720D177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
 		A499720E177831E200B01EBE /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
@@ -1991,6 +1989,34 @@
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
+		A4B78824179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78825179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78826179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78827179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78828179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78996179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B78997179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B78998179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B78999179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899C179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899F179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B789A0179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A1179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A2179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A3179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A8179E2F040008E21B /* DrawGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789A6179E2F040008E21B /* DrawGuessController.m */; };
+		A4B789A9179E2F040008E21B /* DrawGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789A7179E2F040008E21B /* DrawGuessController.xib */; };
+		A4B789B0179E2F120008E21B /* GuessModesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789AB179E2F120008E21B /* GuessModesController.m */; };
+		A4B789B1179E2F120008E21B /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AC179E2F120008E21B /* GuessModesController.xib */; };
+		A4B789B2179E2F120008E21B /* GuessSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789AE179E2F120008E21B /* GuessSelectController.m */; };
+		A4B789B3179E2F120008E21B /* GuessSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AF179E2F120008E21B /* GuessSelectController.xib */; };
+		A4B789B4179E36C20008E21B /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
+		A4B789B5179E36C40008E21B /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -4940,6 +4966,16 @@
 		CA485F5716E440E300AEE725 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB823179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82A179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
 		CA507F4616AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
@@ -9361,7 +9397,6 @@
 		A49971F1177831B800B01EBE /* PPTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTableViewHeader.m; sourceTree = "<group>"; };
 		A49971FA177831E100B01EBE /* CommonGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGuessController.h; sourceTree = "<group>"; };
 		A49971FB177831E100B01EBE /* CommonGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGuessController.m; sourceTree = "<group>"; };
-		A49971FC177831E100B01EBE /* CommonGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonGuessController.xib; sourceTree = "<group>"; };
 		A4997200177831E100B01EBE /* CommonOpusDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusDetailController.h; sourceTree = "<group>"; };
 		A4997201177831E100B01EBE /* CommonOpusDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonOpusDetailController.m; sourceTree = "<group>"; };
 		A4997202177831E100B01EBE /* CommonOpusInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusInfoCell.h; sourceTree = "<group>"; };
@@ -9421,6 +9456,22 @@
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
 		A4B763A515C25218003B4E72 /* Draw.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.pb.m; sourceTree = "<group>"; };
+		A4B78823179E2E3C0008E21B /* Theme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Theme; sourceTree = "<group>"; };
+		A4B7898B179E2E890008E21B /* CommonBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonBgView.h; sourceTree = "<group>"; };
+		A4B7898C179E2E890008E21B /* CommonBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonBgView.m; sourceTree = "<group>"; };
+		A4B7898D179E2E890008E21B /* CommonTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTitleView.h; sourceTree = "<group>"; };
+		A4B7898E179E2E890008E21B /* CommonTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTitleView.m; sourceTree = "<group>"; };
+		A4B7898F179E2E890008E21B /* HPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPThemeManager.h; sourceTree = "<group>"; };
+		A4B78990179E2E890008E21B /* HPThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPThemeManager.m; sourceTree = "<group>"; };
+		A4B789A5179E2F040008E21B /* DrawGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGuessController.h; sourceTree = "<group>"; };
+		A4B789A6179E2F040008E21B /* DrawGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGuessController.m; sourceTree = "<group>"; };
+		A4B789A7179E2F040008E21B /* DrawGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawGuessController.xib; sourceTree = "<group>"; };
+		A4B789AA179E2F120008E21B /* GuessModesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessModesController.h; sourceTree = "<group>"; };
+		A4B789AB179E2F120008E21B /* GuessModesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessModesController.m; sourceTree = "<group>"; };
+		A4B789AC179E2F120008E21B /* GuessModesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessModesController.xib; sourceTree = "<group>"; };
+		A4B789AD179E2F120008E21B /* GuessSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessSelectController.h; sourceTree = "<group>"; };
+		A4B789AE179E2F120008E21B /* GuessSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessSelectController.m; sourceTree = "<group>"; };
+		A4B789AF179E2F120008E21B /* GuessSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessSelectController.xib; sourceTree = "<group>"; };
 		A4B7A0021772F99800C586F7 /* WordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordInputView.h; sourceTree = "<group>"; };
 		A4B7A0031772F99800C586F7 /* WordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordInputView.m; sourceTree = "<group>"; };
 		A4BABB37176F0C3C008D7AAB /* songCategory.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = songCategory.txt; sourceTree = "<group>"; };
@@ -10877,6 +10928,10 @@
 		CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgBox~ipad.xib"; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		CA4FB820179E240B00A57387 /* DrawLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayer.h; sourceTree = "<group>"; };
+		CA4FB821179E240B00A57387 /* DrawLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayer.m; sourceTree = "<group>"; };
+		CA4FB827179E24A100A57387 /* DrawLayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayerManager.h; sourceTree = "<group>"; };
+		CA4FB828179E24A100A57387 /* DrawLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayerManager.m; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
 		CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGroup.m; sourceTree = "<group>"; };
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
@@ -12986,9 +13041,17 @@
 		A49971F9177831E100B01EBE /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A4B789AA179E2F120008E21B /* GuessModesController.h */,
+				A4B789AB179E2F120008E21B /* GuessModesController.m */,
+				A4B789AC179E2F120008E21B /* GuessModesController.xib */,
+				A4B789AD179E2F120008E21B /* GuessSelectController.h */,
+				A4B789AE179E2F120008E21B /* GuessSelectController.m */,
+				A4B789AF179E2F120008E21B /* GuessSelectController.xib */,
+				A4B789A5179E2F040008E21B /* DrawGuessController.h */,
+				A4B789A6179E2F040008E21B /* DrawGuessController.m */,
+				A4B789A7179E2F040008E21B /* DrawGuessController.xib */,
 				A49971FA177831E100B01EBE /* CommonGuessController.h */,
 				A49971FB177831E100B01EBE /* CommonGuessController.m */,
-				A49971FC177831E100B01EBE /* CommonGuessController.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -13133,6 +13196,19 @@
 				A4B6C66B176C0F4500C72E17 /* DiracUtilities.mm */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		A4B78987179E2E890008E21B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A4B7898B179E2E890008E21B /* CommonBgView.h */,
+				A4B7898C179E2E890008E21B /* CommonBgView.m */,
+				A4B7898D179E2E890008E21B /* CommonTitleView.h */,
+				A4B7898E179E2E890008E21B /* CommonTitleView.m */,
+				A4B7898F179E2E890008E21B /* HPThemeManager.h */,
+				A4B78990179E2E890008E21B /* HPThemeManager.m */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		A4BABB35176F0C3C008D7AAB /* Resource */ = {
@@ -14536,6 +14612,7 @@
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
+				CA4FB81A179E23E600A57387 /* DrawLayer */,
 				CAB5325C16F0232B008FD307 /* GestureRecognizer */,
 				CA881A4016EB278A0085F57B /* OffScreen */,
 				CA881A4516EB278A0085F57B /* TouchHandler */,
@@ -16496,6 +16573,17 @@
 			path = DrawBg;
 			sourceTree = "<group>";
 		};
+		CA4FB81A179E23E600A57387 /* DrawLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CA4FB820179E240B00A57387 /* DrawLayer.h */,
+				CA4FB821179E240B00A57387 /* DrawLayer.m */,
+				CA4FB827179E24A100A57387 /* DrawLayerManager.h */,
+				CA4FB828179E24A100A57387 /* DrawLayerManager.m */,
+			);
+			path = DrawLayer;
+			sourceTree = "<group>";
+		};
 		CA507F4916AE9D3B00CCB00F /* Command */ = {
 			isa = PBXGroup;
 			children = (
@@ -16849,6 +16937,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				A4B78823179E2E3C0008E21B /* Theme */,
 				EA411F441763050300DA72D0 /* AskPs */,
 				C2C18A6B1760A7B400DE933B /* Gallery */,
 				A461B803174CCB1A0088B061 /* Sing */,
@@ -17644,6 +17733,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4B78987179E2E890008E21B /* Common */,
 				CA3EB93A16B927B300660FE7 /* StrawView */,
 				CABEDD1B16B64C5900BB9060 /* ReplayView */,
 				CA53292916A3E4B200E9E96B /* InputAlertView */,
@@ -20349,7 +20439,6 @@
 				EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */,
 				C2CA7E5717782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5D17782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
-				A4997209177831E100B01EBE /* CommonGuessController.xib in Resources */,
 				A4997218177832EA00B01EBE /* OpusManageController.xib in Resources */,
 				A4997219177832EA00B01EBE /* OpusManageController~ipad.xib in Resources */,
 				A499721B177832EA00B01EBE /* OpusView.xib in Resources */,
@@ -20434,6 +20523,7 @@
 				CABEC6F617969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC70017969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70517969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4B78827179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21438,6 +21528,7 @@
 				CABEC6F517969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FF17969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70417969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4B78826179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22374,7 +22465,6 @@
 				C214553B1778279E007D44C7 /* OpusView.xib in Resources */,
 				C2CA7E5217782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5817782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
-				A4997208177831E100B01EBE /* CommonGuessController.xib in Resources */,
 				CA3D4AF517794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B0717794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
 				C2C09DDC17797EF3009408EB /* DrawToolUpPanel.xib in Resources */,
@@ -22432,6 +22522,10 @@
 				CABEC6F317969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FD17969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70217969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4B78824179E2E3C0008E21B /* Theme in Resources */,
+				A4B789A9179E2F040008E21B /* DrawGuessController.xib in Resources */,
+				A4B789B1179E2F120008E21B /* GuessModesController.xib in Resources */,
+				A4B789B3179E2F120008E21B /* GuessSelectController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23348,6 +23442,7 @@
 				CABEC6F417969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FE17969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70317969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4B78825179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24297,6 +24392,7 @@
 				CABEC6F717969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC70117969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
+				A4B78828179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25104,6 +25200,11 @@
 				CABEC6B717968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6EC17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FB17969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78999179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A3179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25870,6 +25971,12 @@
 				CABEC6EB17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FA17969462006F89BB /* FreeIngotController.m in Sources */,
 				A4E254D11796CC5D00767506 /* GuessService.m in Sources */,
+				CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78998179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A2179E2E890008E21B /* HPThemeManager.m in Sources */,
+				A4B789B5179E36C40008E21B /* WordInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26652,6 +26759,15 @@
 				CABEC6E917969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F817969462006F89BB /* FreeIngotController.m in Sources */,
 				A4E254D01796CC5D00767506 /* GuessService.m in Sources */,
+				CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78996179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A0179E2E890008E21B /* HPThemeManager.m in Sources */,
+				A4B789A8179E2F040008E21B /* DrawGuessController.m in Sources */,
+				A4B789B0179E2F120008E21B /* GuessModesController.m in Sources */,
+				A4B789B2179E2F120008E21B /* GuessSelectController.m in Sources */,
+				A4B789B4179E36C20008E21B /* WordInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27377,6 +27493,11 @@
 				CABEC6B517968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6EA17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F917969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB823179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82A179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78997179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899C179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A1179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28139,6 +28260,11 @@
 				CABEC6B817968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6ED17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FC17969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899F179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -93,12 +93,12 @@ NSString* GlobalGetServerURL()
 //    return @"http://58.215.160.100:8888/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 
-    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-    NSString* str = [def objectForKey:@"api_server"];
-    if (str && str.length > 5) {
-        PPDebug(@"<for test!!!!!!> get api server %@", str);
-        return [NSString stringWithFormat:@"http://%@/api/i?",str];
-    }
+//    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+//    NSString* str = [def objectForKey:@"api_server"];
+//    if (str && str.length > 5) {
+//        PPDebug(@"<for test!!!!!!> get api server %@", str);
+//        return [NSString stringWithFormat:@"http://%@/api/i?",str];
+//    }
 #endif
     
     return [ConfigManager getAPIServerURL];
@@ -112,15 +112,15 @@ NSString* GlobalGetTrafficServerURL()
 
 #ifdef DEBUG
 
-    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
-    NSString* str = [def objectForKey:@"traffic_server"];
-    if (str && str.length > 5) {
-        PPDebug(@"<for test!!!!!!> get traffic server %@", str);
-        return [NSString stringWithFormat:@"http://%@/api/i?",str];
-    }
+//    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
+//    NSString* str = [def objectForKey:@"traffic_server"];
+//    if (str && str.length > 5) {
+//        PPDebug(@"<for test!!!!!!> get traffic server %@", str);
+//        return [NSString stringWithFormat:@"http://%@/api/i?",str];
+//    }
 #endif
 #ifdef DEBUG
-//    return @"http://localhost:8100/api/i?";
+    return @"http://localhost:8100/api/i?";
 //    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
@@ -445,9 +445,14 @@ NSString* GlobalGetBoardServerURL()
     PPDebug(@"<applicationWillEnterForeground>");    
     application.applicationIconBadgeNumber = 0;
     
-//    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy offset:0 count:4 isStartNew:NO];
-    [[GuessService defaultService] guessOpus:nil mode:PBUserGuessModeGuessModeHappy contestId:nil words:[NSArray arrayWithObjects:@"电脑", @"商家", @"店铺", nil] correct:YES startDate:nil endDate:nil];
+//    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
+//                                           contestId:nil
+//                                              offset:0
+//                                               limit:4
+//                                          isStartNew:NO];
+//    [[GuessService defaultService] guessOpus:nil mode:PBUserGuessModeGuessModeHappy contestId:nil words:[NSArray arrayWithObjects:@"电脑", @"商家", @"店铺", nil] correct:YES startDate:nil endDate:nil];
 //    [[GuessService defaultService] getGuessRank:nil mode:PBUserGuessModeGuessModeHappy contestId:nil];
+//    [[GuessService defaultService] getGuessRankListWithType:ALL_TIME_RANK mode:PBUserGuessModeGuessModeHappy contestId:nil offset:0 limit:2];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

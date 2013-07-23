@@ -10,6 +10,9 @@
 #import "Opus.pb.h"
 #import "CommonService.h"
 
+#define HOT_RANK 0
+#define ALL_TIME_RANK 1
+
 @protocol GusessServiceDelegate <NSObject>
 
 @optional
@@ -27,8 +30,9 @@
 + (GuessService *)defaultService;
 
 - (void)getOpusesWithMode:(PBUserGuessMode)mode
+                contestId:(NSString *)contestId
                    offset:(int)offset
-                    count:(int)count
+                    limit:(int)limit
                isStartNew:(BOOL)isStartNew;
 
 - (void)guessOpus:(PBOpus *)opus
@@ -39,10 +43,15 @@
         startDate:(NSDate *)startDate
           endDate:(NSDate *)endDate;
 
-- (void)getGuessRankWithMode:(PBUserGuessMode)mode
+
+- (void)getGuessRankWithType:(int)type
+                        mode:(PBUserGuessMode)mode
                    contestId:(NSString *)contestId;
 
-- (void)getGuessRankListWithMode:(PBUserGuessMode)mode
-                       contestId:(NSString *)contestId;
+- (void)getGuessRankListWithType:(int)type
+                            mode:(PBUserGuessMode)mode
+                       contestId:(NSString *)contestId
+                          offset:(int)offset
+                           limit:(int)limit;
 
 @end

@@ -8,6 +8,14 @@ package game;
 option java_package = "com.orange.network.game.protocol.model";
 option java_outer_classname = "DrawProtos";
 
+
+message PBLayer{
+    required int32 tag = 1;
+    repeated float rectComponent = 2;
+    optional float alpha = 3 [default = 1];
+    optional string name = 4;
+}
+
 //// internal usage, to store draw data
 message PBDraw {
   required string userId = 1;    
@@ -28,6 +36,7 @@ message PBDraw {
   optional bool isCompressed = 19[default=true];    // is draw data points compressed, default is TRUE (old data)
 
   optional PBSize canvasSize = 21;                        // draw rect size
+  repeated PBLayer layer = 22;
   
 }
 

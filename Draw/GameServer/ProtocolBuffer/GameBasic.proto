@@ -179,6 +179,9 @@ message PBDrawAction {
   optional int32 clipTag = 20; //the id of clip action, 0 for no clip
   optional int32 clipType = 21; //1: Rect, 2: Circle, 3: Multiple Edge Shape 4: Path
 
+
+  optional int32 layerTag = 23; //layer identifier
+
  //Support gradient
   optional PBGradient gradient = 30;
 }
