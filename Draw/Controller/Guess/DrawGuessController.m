@@ -27,8 +27,6 @@
     // Do any additional setup after loading the view from its nib.
     CommonTitleView *titleView = [CommonTitleView createWithTitle:NSLS(@"kGuess") delegate:self];
     [self.view addSubview:titleView];
-    
-    self.startDate = [NSDate date];
 }
 
 - (void)viewDidUnload {
