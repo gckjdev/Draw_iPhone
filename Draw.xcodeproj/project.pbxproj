@@ -4940,6 +4940,16 @@
 		CA485F5716E440E300AEE725 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB823179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82A179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
 		CA507F4616AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
@@ -10877,6 +10887,10 @@
 		CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgBox~ipad.xib"; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		CA4FB820179E240B00A57387 /* DrawLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayer.h; sourceTree = "<group>"; };
+		CA4FB821179E240B00A57387 /* DrawLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayer.m; sourceTree = "<group>"; };
+		CA4FB827179E24A100A57387 /* DrawLayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayerManager.h; sourceTree = "<group>"; };
+		CA4FB828179E24A100A57387 /* DrawLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayerManager.m; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
 		CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGroup.m; sourceTree = "<group>"; };
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
@@ -14536,6 +14550,7 @@
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
+				CA4FB81A179E23E600A57387 /* DrawLayer */,
 				CAB5325C16F0232B008FD307 /* GestureRecognizer */,
 				CA881A4016EB278A0085F57B /* OffScreen */,
 				CA881A4516EB278A0085F57B /* TouchHandler */,
@@ -16494,6 +16509,17 @@
 				CA48588F16E19D8500AEE725 /* DrawBgManager.m */,
 			);
 			path = DrawBg;
+			sourceTree = "<group>";
+		};
+		CA4FB81A179E23E600A57387 /* DrawLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CA4FB820179E240B00A57387 /* DrawLayer.h */,
+				CA4FB821179E240B00A57387 /* DrawLayer.m */,
+				CA4FB827179E24A100A57387 /* DrawLayerManager.h */,
+				CA4FB828179E24A100A57387 /* DrawLayerManager.m */,
+			);
+			path = DrawLayer;
 			sourceTree = "<group>";
 		};
 		CA507F4916AE9D3B00CCB00F /* Command */ = {
@@ -25104,6 +25130,8 @@
 				CABEC6B717968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6EC17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FB17969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25870,6 +25898,8 @@
 				CABEC6EB17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FA17969462006F89BB /* FreeIngotController.m in Sources */,
 				A4E254D11796CC5D00767506 /* GuessService.m in Sources */,
+				CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26652,6 +26682,8 @@
 				CABEC6E917969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F817969462006F89BB /* FreeIngotController.m in Sources */,
 				A4E254D01796CC5D00767506 /* GuessService.m in Sources */,
+				CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27377,6 +27409,8 @@
 				CABEC6B517968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6EA17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F917969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB823179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82A179E24A100A57387 /* DrawLayerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28139,6 +28173,8 @@
 				CABEC6B817968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6ED17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FC17969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
