@@ -81,6 +81,10 @@
     UIView *bgView = [CommonBgView create];
     [self.view addSubview:bgView];
     [self.view sendSubviewToBack:bgView];
+    
+    // Set answer
+    self.wordInputView.answer = self.opus.pbOpus.name;
+    self.wordInputView.delegate = self;
 }
 
 

@@ -27,10 +27,6 @@
     CommonTitleView *titleView = [CommonTitleView createWithTitle:NSLS(@"kGuess") delegate:self];
     [self.view addSubview:titleView];
     
-    self.wordInputView.answer = self.opus.pbOpus.name;
-    self.wordInputView.delegate = self;
-    
-    
     // Set candidates
     NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
     [self.wordInputView setCandidates:candidates column:9];

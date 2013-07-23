@@ -2015,6 +2015,8 @@
 		A4B789B1179E2F120008E21B /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AC179E2F120008E21B /* GuessModesController.xib */; };
 		A4B789B2179E2F120008E21B /* GuessSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789AE179E2F120008E21B /* GuessSelectController.m */; };
 		A4B789B3179E2F120008E21B /* GuessSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AF179E2F120008E21B /* GuessSelectController.xib */; };
+		A4B789B4179E36C20008E21B /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
+		A4B789B5179E36C40008E21B /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -25974,6 +25976,7 @@
 				A4B78998179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A2179E2E890008E21B /* HPThemeManager.m in Sources */,
+				A4B789B5179E36C40008E21B /* WordInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26764,6 +26767,7 @@
 				A4B789A8179E2F040008E21B /* DrawGuessController.m in Sources */,
 				A4B789B0179E2F120008E21B /* GuessModesController.m in Sources */,
 				A4B789B2179E2F120008E21B /* GuessSelectController.m in Sources */,
+				A4B789B4179E36C20008E21B /* WordInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
