@@ -32,12 +32,14 @@
 @interface CommonGuessController ()
 
 @property (retain, nonatomic) PickToolView *pickToolView;
+@property (retain, nonatomic) NSDate *startDate;
 
 @end
 
 @implementation CommonGuessController
 
 - (void)dealloc {
+    [_startDate release];
     [_guessWords release];
     [_wordInputView release];
     [_opus release];

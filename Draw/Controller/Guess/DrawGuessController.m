@@ -11,14 +11,12 @@
 #import "CommonTitleView.h"
 
 @interface DrawGuessController ()
-@property (retain, nonatomic) NSDate *startDate;
 
 @end
 
 @implementation DrawGuessController
 
 - (void)dealloc {
-    [_startDate release];
     [super dealloc];
 }
 
