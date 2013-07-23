@@ -36,15 +36,12 @@ typedef enum _WordInputViewAlignment{
 
 // optional
 @property (assign, nonatomic) WordInputViewAlignment alignment;
-@property (retain, nonatomic) UIImage *candidateImage;
-@property (retain, nonatomic) UIImage *answerImage;
+
 @property (retain, nonatomic) UIColor *candidateColor;
 @property (retain, nonatomic) UIColor *answerColor;
 @property (assign, nonatomic) CGFloat hGap;
 @property (assign, nonatomic) CGFloat wGap;
-@property (copy, nonatomic) NSString *clickSound;
-@property (copy, nonatomic) NSString *wrongSound;
-@property (copy, nonatomic) NSString *correctSound;
+
 
 - (void)setCandidates:(NSString *)characters
                column:(int)column;

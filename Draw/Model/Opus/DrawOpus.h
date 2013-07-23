@@ -8,8 +8,6 @@
 
 #import "Opus.h"
 
-@class DrawFeed;
-
 @interface DrawOpus : Opus {
     
 }

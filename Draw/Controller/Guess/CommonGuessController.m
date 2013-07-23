@@ -14,7 +14,6 @@
 #import "LevelService.h"
 #import "DrawSoundManager.h"
 #import "OpusService.h"
-#import "WordManager.h"
 #import "StableView.h"
 #import "ItemType.h"
 #import "CommonMessageCenter.h"
@@ -23,25 +22,29 @@
 #import "DrawGameAnimationManager.h"
 #import "ItemUseRecorder.h"
 #import "OpusGuessRecorder.h"
-
 #import "GameItemManager.h"
 #import "OpusGuessRecorder.h"
+#import "CommonBgView.h"
+#import "UIButtonExt.h"
+#import "GuessService.h"
 
 @interface CommonGuessController ()
 
-@property (retain, nonatomic) NSMutableArray *guessWords;
 @property (retain, nonatomic) PickToolView *pickToolView;
+@property (retain, nonatomic) NSDate *startDate;
 
 @end
 
 @implementation CommonGuessController
 
 - (void)dealloc {
+    [_startDate release];
     [_guessWords release];
     [_wordInputView release];
     [_opus release];
-    [_titleLabel release];
     [_pickToolView release];
+    [_opusButton release];
+    [_bgImageView release];
     [super dealloc];
 }
 
@@ -59,44 +62,45 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _wordInputView.answerImage = [UIImage imageNamed:@"wood_button@2x.png"];
-    _wordInputView.candidateImage = [UIImage imageNamed:@"wood_button@2x.png"];
-    _wordInputView.answer = _opus.pbOpus.name;
-    _wordInputView.delegate = self;
     
-    NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:_opus.pbOpus.name count:27];
-    // TODO: Set candidate here
-    [_wordInputView setCandidates:candidates column:9];
-    
-    [_wordInputView setClickSound:[DrawSoundManager defaultManager].clickWordSound];
-    [_wordInputView setWrongSound:[DrawSoundManager defaultManager].guessWrongSound];
-    [_wordInputView setCorrectSound:[DrawSoundManager defaultManager].guessCorrectSound];
-    
-    self.guessWords = [NSMutableArray array];
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    // Init guess words
+    self.guessWords = [NSMutableArray array];
+    
+    // Init item box
+    [self initItemBox];
+    
+    
+    // Set opus image
+    NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
+    NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
+    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
+    
+    // Set bgView
+    UIView *bgView = [CommonBgView create];
+    [self.view addSubview:bgView];
+    [self.view sendSubviewToBack:bgView];
+    
+    // Set answer
+    self.wordInputView.answer = self.opus.pbOpus.name;
+    self.wordInputView.delegate = self;
 }
 
 
 - (void)viewDidUnload {
     
     [self setWordInputView:nil];
-    [self setTitleLabel:nil];
+    [self setOpusButton:nil];
+    [self setBgImageView:nil];
     [super viewDidUnload];
 }
 
-
-- (void)initPickToolView
+- (void)initItemBox
 {
     NSMutableArray *array = [NSMutableArray array];
     ToolView *tips = [ToolView tipsViewWithNumber:0];
-    //    tips.tag = TOOLVIEW_TAG_TIPS;
     ToolView *flower = [ToolView flowerViewWithNumber:0];
-    //    flower.tag = TOOLVIEW_TAG_FLOWER;
     [array addObject:tips];
     [array addObject:flower];
     _pickToolView = [[PickToolView alloc] initWithTools:array];
@@ -108,11 +112,19 @@
 
 - (IBAction)clickBack:(id)sender{
     
-    [[OpusService defaultService] submitGuessWords:_guessWords
-                                              opus:_opus
-                                         isCorrect:NO
-                                             score:3
-                                          delegate:nil];
+//    [[OpusService defaultService] submitGuessWords:_guessWords
+//                                              opus:_opus
+//                                         isCorrect:NO
+//                                             score:3
+//                                          delegate:nil];
+    
+    [[GuessService defaultService] guessOpus:self.opus.pbOpus
+                                        mode:PBUserGuessModeGuessModeHappy
+                                   contestId:nil
+                                       words:self.guessWords
+                                     correct:NO
+                                   startDate:_startDate
+                                     endDate:[NSDate date]];
     
     [_guessWords removeAllObjects];
     
@@ -130,6 +142,11 @@
     [_pickToolView setHidden:!_pickToolView.hidden animated:YES];
 }
 
+- (IBAction)clickOpusButton:(id)sender {
+    
+    PPDebug(@"Implement this method <%s> in your sub-class", __FUNCTION__);
+}
+
 - (void)wordInputView:(WordInputView *)wordInputView
            didGetWord:(NSString *)word
             isCorrect:(BOOL)isCorrect{
@@ -143,6 +160,7 @@
                                              isCorrect:YES
                                                  score:3
                                               delegate:nil];
+        
         [_guessWords removeAllObjects];
         
         [self didGuessCorrect:word];

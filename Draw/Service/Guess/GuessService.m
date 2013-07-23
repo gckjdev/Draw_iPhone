@@ -13,24 +13,28 @@
 #import "ConfigManager.h"
 #import "SynthesizeSingleton.h"
 
+#define SAFE_STRING(x) ((x == nil) ? @"" : (x))
+#define WORD_SPLIT_STRING  @":"
 
 @implementation GuessService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
 
 - (void)getOpusesWithMode:(PBUserGuessMode)mode
+                contestId:(NSString *)contestId
                    offset:(int)offset
-                    count:(int)count
+                    limit:(int)limit
                isStartNew:(BOOL)isStartNew{
     
     __block typeof(self) bself = self;
     dispatch_async(workingQueue, ^{
         
-        NSDictionary *para = @{PARA_USERID  : [[UserManager defaultManager] userId],
+        NSDictionary *para = @{PARA_USERID  : @"51e507ff036498e676b37fee",
                                PARA_APPID   : [ConfigManager appId],
                                PARA_MODE    : @(mode),
+                               PARA_CONTESTID : SAFE_STRING(contestId),
                                PARA_OFFSET  : @(offset),
-                               PARA_COUNT   : @(count),
+                               PARA_COUNT   : @(limit),
                                PARA_IS_START_NEW : @(isStartNew)
                                };
         
@@ -61,8 +65,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     });
 }
 
-#define SAFE_STRING(x) ((x == nil) ? @"" : (x))
-#define WORD_SPLIT_STRING  @":"
+
 
 - (void)guessOpus:(PBOpus *)opus
              mode:(PBUserGuessMode)mode
@@ -86,19 +89,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     double start = [startDate timeIntervalSince1970];
     double end = [endDate timeIntervalSince1970];
     
+    PPDebug(@"<%s> submit words: %@", __FUNCTION__, [words componentsJoinedByString:@","]);
     
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_APPID       : [ConfigManager appId],
                                PARA_USERID      : userId,
+                               
                                PARA_NICKNAME    : nickName,
                                PARA_AVATAR      : avatarUrl,
                                PARA_GENDER      : gender,
                                
-//                               PARA_OPUS_ID     : opus.opusId,
-                               PARA_OPUS_ID     : @"51e5084a03648b38d2d61de5",
-//                               PARA_OPUS_CREATOR_UID    : opus.author.userId,
-                               PARA_OPUS_CREATOR_UID    : @"51e507ff036498e676b37fed",
+                               PARA_OPUS_ID     : opus.opusId,
+                               PARA_OPUS_CREATOR_UID    : opus.author.userId,
                                
                                PARA_MODE        : @(mode),
                                PARA_CONTESTID   : SAFE_STRING(contestId),
@@ -125,7 +128,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     });
 }
 
-- (void)getGuessRankWithMode:(PBUserGuessMode)mode
+- (void)getGuessRankWithType:(int)type
+                        mode:(PBUserGuessMode)mode
                    contestId:(NSString *)contestId{
     
     __block typeof(self) bself = self;
@@ -135,6 +139,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         NSDictionary *para = @{PARA_APPID       : [ConfigManager appId],
 //                               PARA_USERID      : SAFE_STRING(userId),
                                PARA_USERID      : @"51e4f554036498e676b37fe7",
+                               PARA_TYPE        : @(type),
                                PARA_MODE        : @(mode),
                                PARA_CONTESTID   : SAFE_STRING(contestId),
                                };
@@ -157,16 +162,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
 }
 
 
-- (void)getGuessRankListWithMode:(PBUserGuessMode)mode
-                       contestId:(NSString *)contestId{
+- (void)getGuessRankListWithType:(int)type
+                            mode:(PBUserGuessMode)mode
+                       contestId:(NSString *)contestId
+                          offset:(int)offset
+                           limit:(int)limit{
     
     __block typeof(self) bself = self;
     
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_APPID       : [ConfigManager appId],
+                               PARA_TYPE        : @(type),
                                PARA_MODE        : @(mode),
                                PARA_CONTESTID   : SAFE_STRING(contestId),
+                               PARA_OFFSET      : @(offset),
+                               PARA_COUNT       : @(limit),
                                };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GUESS_RANK_LIST parameters:para];
