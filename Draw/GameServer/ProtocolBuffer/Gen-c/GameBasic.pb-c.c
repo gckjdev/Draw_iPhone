@@ -1333,7 +1333,7 @@ static const protobuf_c_boolean game__pbgame_user__is_taken_over__default_value 
 static const int32_t game__pbgame_user__guess_word_language__default_value = 1;
 static const Game__PBOpenInfoType game__pbgame_user__open_info_type__default_value = GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND;
 static const int32_t game__pbgame_user__sing_record_limit__default_value = 30;
-static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[41] =
+static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[42] =
 {
   {
     "userId",
@@ -1816,6 +1816,18 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[41] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "featureOpus",
+    101,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_featureopus),
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, featureopus),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "singRecordLimit",
     200,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -1846,6 +1858,7 @@ static const unsigned game__pbgame_user__field_indices_by_name[] = {
   22,   /* field[22] = experience */
   7,   /* field[7] = facetimeId */
   32,   /* field[32] = fanCount */
+  40,   /* field[40] = featureOpus */
   33,   /* field[33] = followCount */
   3,   /* field[3] = gender */
   16,   /* field[16] = guessWordLanguage */
@@ -1865,7 +1878,7 @@ static const unsigned game__pbgame_user__field_indices_by_name[] = {
   13,   /* field[13] = password */
   8,   /* field[8] = seatId */
   39,   /* field[39] = signature */
-  40,   /* field[40] = singRecordLimit */
+  41,   /* field[41] = singRecordLimit */
   4,   /* field[4] = snsUsers */
   0,   /* field[0] = userId */
   6,   /* field[6] = userLevel */
@@ -1883,8 +1896,8 @@ static const ProtobufCIntRange game__pbgame_user__number_ranges[11 + 1] =
   { 81, 31 },
   { 91, 37 },
   { 100, 39 },
-  { 200, 40 },
-  { 0, 41 }
+  { 200, 41 },
+  { 0, 42 }
 };
 const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
 {
@@ -1894,7 +1907,7 @@ const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
   "Game__PBGameUser",
   "game",
   sizeof(Game__PBGameUser),
-  41,
+  42,
   game__pbgame_user__field_descriptors,
   game__pbgame_user__field_indices_by_name,
   11,  game__pbgame_user__number_ranges,
@@ -2330,7 +2343,7 @@ const ProtobufCMessageDescriptor game__pbgradient__descriptor =
   (ProtobufCMessageInit) game__pbgradient__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[19] =
+static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[20] =
 {
   {
     "type",
@@ -2549,6 +2562,18 @@ static const ProtobufCFieldDescriptor game__pbdraw_action__field_descriptors[19]
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "layerTag",
+    23,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, has_layertag),
+    PROTOBUF_C_OFFSETOF(Game__PBDrawAction, layertag),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "gradient",
     30,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -2567,7 +2592,8 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   17,   /* field[17] = clipType */
   3,   /* field[3] = color */
   11,   /* field[11] = drawBg */
-  18,   /* field[18] = gradient */
+  19,   /* field[19] = gradient */
+  18,   /* field[18] = layerTag */
   4,   /* field[4] = penType */
   1,   /* field[1] = points */
   8,   /* field[8] = pointsX */
@@ -2582,13 +2608,14 @@ static const unsigned game__pbdraw_action__field_indices_by_name[] = {
   0,   /* field[0] = type */
   2,   /* field[2] = width */
 };
-static const ProtobufCIntRange game__pbdraw_action__number_ranges[4 + 1] =
+static const ProtobufCIntRange game__pbdraw_action__number_ranges[5 + 1] =
 {
   { 1, 0 },
   { 11, 8 },
   { 20, 16 },
-  { 30, 18 },
-  { 0, 19 }
+  { 23, 18 },
+  { 30, 19 },
+  { 0, 20 }
 };
 const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
 {
@@ -2598,10 +2625,10 @@ const ProtobufCMessageDescriptor game__pbdraw_action__descriptor =
   "Game__PBDrawAction",
   "game",
   sizeof(Game__PBDrawAction),
-  19,
+  20,
   game__pbdraw_action__field_descriptors,
   game__pbdraw_action__field_indices_by_name,
-  4,  game__pbdraw_action__number_ranges,
+  5,  game__pbdraw_action__number_ranges,
   (ProtobufCMessageInit) game__pbdraw_action__init,
   NULL,NULL,NULL    /* reserved[123] */
 };

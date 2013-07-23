@@ -6,26 +6,15 @@
 	<dict>
 		<key>AskPs.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>20</integer>
 		</dict>
-		<key>CallTrack.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>17</integer>
-		</dict>
-		<key>CallTrack.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>18</integer>
-		</dict>
-		<key>Dice.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 		<key>Draw Pro.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
@@ -41,70 +30,15 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>DreamAvatar.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
-		</dict>
-		<key>DreamAvatarFree.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
-		<key>DreamLockscreen.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
-		</dict>
-		<key>DreamLockscreenFree.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
-		</dict>
-		<key>LearnDraw.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
-		</dict>
 		<key>LittleGreeDraw.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
-		<key>PhotoDraw.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
-		</dict>
-		<key>PhotoDrawFree.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
-		<key>PureDraw.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
-		</dict>
-		<key>PureDrawFree.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
-		</dict>
-		<key>SecureSms.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>16</integer>
-		</dict>
 		<key>Sing.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>19</integer>
-		</dict>
-		<key>Zhajinhua.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

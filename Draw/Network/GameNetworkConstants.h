@@ -64,6 +64,7 @@
 #define METHOD_USER_READ_MSG @"urm"
 #define METHOD_GETMESSAGESTATLIST @"gmsl"
 #define METHOD_GETMESSAGELIST @"gml"
+#define METHOD_NEW_GETMESSAGELIST @"getMessageList"
 
 
 #define METHOD_REGISTERUSER @"ru"
@@ -126,6 +127,8 @@
 
 #define METHOD_GET_STATISTICS @"gss"
 #define METHOD_REPORT_STATUS  @"rs" 
+
+#define METHOD_DELETE_SINGLE_MESSAGE @"deleteMessage"
 
 //find draw
 #define METHOD_FINDDRAW @"fd"

@@ -1427,24 +1427,24 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="add_time@2x.png">{117, 117}</string>
-			<string key="desc@2x.png">{63, 63}</string>
-			<string key="holder@2x.png">{550, 81}</string>
-			<string key="image@2x.png">{63, 63}</string>
-			<string key="lyric@2x.png">{626, 637}</string>
-			<string key="mic@2x.png">{186, 220}</string>
-			<string key="pause@2x.png">{28, 27}</string>
-			<string key="play@2x.png">{28, 27}</string>
-			<string key="record@2x.png">{186, 220}</string>
-			<string key="rerecord@2x.png">{117, 117}</string>
-			<string key="review@2x.png">{60, 60}</string>
-			<string key="save@2x.png">{117, 117}</string>
-			<string key="shadow@2x.png">{626, 637}</string>
-			<string key="sing_back@2x.png">{73, 69}</string>
-			<string key="sing_bg@2x.jpg">{640, 960}</string>
-			<string key="submit_sing@2x.png">{117, 117}</string>
-			<string key="tag@2x.png">{87, 94}</string>
-			<string key="up@2x.png">{640, 90}</string>
+			<string key="add_time@2x.png">{16, 16}</string>
+			<string key="desc@2x.png">{16, 16}</string>
+			<string key="holder@2x.png">{16, 16}</string>
+			<string key="image@2x.png">{16, 16}</string>
+			<string key="lyric@2x.png">{16, 16}</string>
+			<string key="mic@2x.png">{16, 16}</string>
+			<string key="pause@2x.png">{16, 16}</string>
+			<string key="play@2x.png">{16, 16}</string>
+			<string key="record@2x.png">{16, 16}</string>
+			<string key="rerecord@2x.png">{16, 16}</string>
+			<string key="review@2x.png">{16, 16}</string>
+			<string key="save@2x.png">{16, 16}</string>
+			<string key="shadow@2x.png">{16, 16}</string>
+			<string key="sing_back@2x.png">{16, 16}</string>
+			<string key="sing_bg@2x.jpg">{16, 16}</string>
+			<string key="submit_sing@2x.png">{16, 16}</string>
+			<string key="tag@2x.png">{16, 16}</string>
+			<string key="up@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

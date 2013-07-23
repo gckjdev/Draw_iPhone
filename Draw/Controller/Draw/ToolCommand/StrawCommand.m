@@ -34,8 +34,6 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler enterClipModeWithClipType:ClipTypeSmoothPath];
-    return YES;
     if ([self canUseItem:self.itemType]) {
         [self sendAnalyticsReport];
         [self showPopTipView];

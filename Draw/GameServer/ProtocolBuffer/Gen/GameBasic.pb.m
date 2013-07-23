@@ -4580,6 +4580,7 @@ static PBGradient* defaultPBGradientInstance = nil;
 @property Float32 shadowBlur;
 @property int32_t clipTag;
 @property int32_t clipType;
+@property int32_t layerTag;
 @property (retain) PBGradient* gradient;
 @end
 
@@ -4692,6 +4693,13 @@ static PBGradient* defaultPBGradientInstance = nil;
   hasClipType_ = !!value;
 }
 @synthesize clipType;
+- (BOOL) hasLayerTag {
+  return !!hasLayerTag_;
+}
+- (void) setHasLayerTag:(BOOL) value {
+  hasLayerTag_ = !!value;
+}
+@synthesize layerTag;
 - (BOOL) hasGradient {
   return !!hasGradient_;
 }
@@ -4724,6 +4732,7 @@ static PBGradient* defaultPBGradientInstance = nil;
     self.shadowBlur = 0;
     self.clipTag = 0;
     self.clipType = 0;
+    self.layerTag = 0;
     self.gradient = [PBGradient defaultInstance];
   }
   return self;
@@ -4843,6 +4852,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasClipType) {
     [output writeInt32:21 value:self.clipType];
   }
+  if (self.hasLayerTag) {
+    [output writeInt32:23 value:self.layerTag];
+  }
   if (self.hasGradient) {
     [output writeMessage:30 value:self.gradient];
   }
@@ -4926,6 +4938,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasClipType) {
     size += computeInt32Size(21, self.clipType);
+  }
+  if (self.hasLayerTag) {
+    size += computeInt32Size(23, self.layerTag);
   }
   if (self.hasGradient) {
     size += computeMessageSize(30, self.gradient);
@@ -5071,6 +5086,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasClipType) {
     [self setClipType:other.clipType];
   }
+  if (other.hasLayerTag) {
+    [self setLayerTag:other.layerTag];
+  }
   if (other.hasGradient) {
     [self mergeGradient:other.gradient];
   }
@@ -5175,6 +5193,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 168: {
         [self setClipType:[input readInt32]];
+        break;
+      }
+      case 184: {
+        [self setLayerTag:[input readInt32]];
         break;
       }
       case 242: {
@@ -5549,6 +5571,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearClipType {
   result.hasClipType = NO;
   result.clipType = 0;
+  return self;
+}
+- (BOOL) hasLayerTag {
+  return result.hasLayerTag;
+}
+- (int32_t) layerTag {
+  return result.layerTag;
+}
+- (PBDrawAction_Builder*) setLayerTag:(int32_t) value {
+  result.hasLayerTag = YES;
+  result.layerTag = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearLayerTag {
+  result.hasLayerTag = NO;
+  result.layerTag = 0;
   return self;
 }
 - (BOOL) hasGradient {

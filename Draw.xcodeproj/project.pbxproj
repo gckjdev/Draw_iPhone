@@ -61,6 +61,8 @@
 		A4117526177AD09900D3FE23 /* SingUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117508177AD09900D3FE23 /* SingUserInfoCell.m */; };
 		A4117527177AD09900D3FE23 /* SingUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117509177AD09900D3FE23 /* SingUserInfoCell.xib */; };
 		A4117528177AD09900D3FE23 /* SingGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A411750C177AD09900D3FE23 /* SingGuessController.m */; };
+		A4117529177AD09900D3FE23 /* SingGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411750D177AD09900D3FE23 /* SingGuessController.xib */; };
+		A411752A177AD09900D3FE23 /* SingGuessController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411750E177AD09900D3FE23 /* SingGuessController~ipad.xib */; };
 		A411752B177AD09900D3FE23 /* SingHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117511177AD09900D3FE23 /* SingHomeController.m */; };
 		A411752C177AD09900D3FE23 /* SingHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117512177AD09900D3FE23 /* SingHomeController.xib */; };
 		A411752D177AD09900D3FE23 /* SingHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117513177AD09900D3FE23 /* SingHomeController~ipad.xib */; };
@@ -1777,24 +1779,6 @@
 		A46AD48C171FD5A4003BEBC3 /* gray_ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423416E6E13500106265 /* gray_ingot@2x.png */; };
 		A46AD48F171FD5AB003BEBC3 /* gray_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423316E6E13500106265 /* gray_coin@2x.png */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
-		A47EC6331798F23D00CEB59F /* GuessModesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EC6311798F23C00CEB59F /* GuessModesController.m */; };
-		A47EC6341798F23D00CEB59F /* GuessModesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EC6311798F23C00CEB59F /* GuessModesController.m */; };
-		A47EC6351798F23D00CEB59F /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47EC6321798F23C00CEB59F /* GuessModesController.xib */; };
-		A47EC6361798F23D00CEB59F /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47EC6321798F23C00CEB59F /* GuessModesController.xib */; };
-		A47EC63F17991DF600CEB59F /* GuessSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EC63D17991DF500CEB59F /* GuessSelectController.m */; };
-		A47EC64017991DF600CEB59F /* GuessSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EC63D17991DF500CEB59F /* GuessSelectController.m */; };
-		A47EC64117991DF600CEB59F /* GuessSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47EC63E17991DF500CEB59F /* GuessSelectController.xib */; };
-		A47EC64217991DF600CEB59F /* GuessSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A47EC63E17991DF500CEB59F /* GuessSelectController.xib */; };
-		A47EC6461799259500CEB59F /* DrawGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EC6441799259500CEB59F /* DrawGuessController.m */; };
-		A47EC6471799259500CEB59F /* DrawGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A47EC6441799259500CEB59F /* DrawGuessController.m */; };
-		A47EC64A179933ED00CEB59F /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
-		A47EC64B1799349600CEB59F /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB56176F0C3C008D7AAB /* up@2x.png */; };
-		A47EC64C179934A800CEB59F /* sing_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB4B176F0C3C008D7AAB /* sing_back@2x.png */; };
-		A47EC64D179934AA00CEB59F /* sing_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB4B176F0C3C008D7AAB /* sing_back@2x.png */; };
-		A47EC64E179934AE00CEB59F /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB56176F0C3C008D7AAB /* up@2x.png */; };
-		A47EC64F179934BD00CEB59F /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
-		A47EC650179934C300CEB59F /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
-		A47EC6511799388000CEB59F /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
 		A4834BCB171694FD00190347 /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
 		A4834BCE1716957700190347 /* common_dialog_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C28BD0D616D4B03B00E974A6 /* common_dialog_bg@2x.png */; };
 		A4834BD11716958F00190347 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
@@ -1871,6 +1855,8 @@
 		A49971F3177831B800B01EBE /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
 		A4997206177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
 		A4997207177831E100B01EBE /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
+		A4997208177831E100B01EBE /* CommonGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49971FC177831E100B01EBE /* CommonGuessController.xib */; };
+		A4997209177831E100B01EBE /* CommonGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49971FC177831E100B01EBE /* CommonGuessController.xib */; };
 		A499720C177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
 		A499720D177831E200B01EBE /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
 		A499720E177831E200B01EBE /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
@@ -2005,27 +1991,26 @@
 		A4B763A215C25208003B4E72 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A4B763A315C25208003B4E72 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
 		A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
-		A4B787F7179CF1870008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B787F6179CF1870008E21B /* CommonTitleView.m */; };
-		A4B787F8179CF1870008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B787F6179CF1870008E21B /* CommonTitleView.m */; };
-		A4B787FC179D09D50008E21B /* AppThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B787FB179D09D50008E21B /* AppThemeManager.m */; };
-		A4B787FD179D09D50008E21B /* AppThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B787FB179D09D50008E21B /* AppThemeManager.m */; };
-		A4B78800179D10910008E21B /* SingGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B787FE179D10910008E21B /* SingGuessController.xib */; };
-		A4B78801179D10910008E21B /* SingGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B787FE179D10910008E21B /* SingGuessController.xib */; };
-		A4B78802179D10910008E21B /* SingGuessController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B787FF179D10910008E21B /* SingGuessController~ipad.xib */; };
-		A4B78803179D10910008E21B /* SingGuessController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B787FF179D10910008E21B /* SingGuessController~ipad.xib */; };
-		A4B78805179D11250008E21B /* DrawGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B78804179D11250008E21B /* DrawGuessController.xib */; };
-		A4B78806179D11250008E21B /* DrawGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B78804179D11250008E21B /* DrawGuessController.xib */; };
-		A4B78809179D225C0008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78808179D225B0008E21B /* CommonBgView.m */; };
-		A4B7880A179D225C0008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78808179D225B0008E21B /* CommonBgView.m */; };
-		A4B7880F179D34AC0008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7880D179D34AB0008E21B /* HPThemeManager.m */; };
-		A4B78810179D34AC0008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7880D179D34AB0008E21B /* HPThemeManager.m */; };
-		A4B78814179E1F8F0008E21B /* Draw-Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4B78813179E1F8F0008E21B /* Draw-Themes.plist */; };
-		A4B78819179E256B0008E21B /* Sing-Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4B78818179E256B0008E21B /* Sing-Themes.plist */; };
-		A4B7881B179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
-		A4B7881C179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
-		A4B7881D179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
-		A4B7881E179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
-		A4B7881F179E2D040008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B7881A179E2D000008E21B /* Theme */; };
+		A4B78824179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78825179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78826179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78827179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78828179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
+		A4B78996179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B78997179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B78998179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B78999179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
+		A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899C179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B7899F179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
+		A4B789A0179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A1179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A2179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A3179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
+		A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78990179E2E890008E21B /* HPThemeManager.m */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -2070,6 +2055,7 @@
 		A4C8D564175EDFC6007ED7E4 /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
 		A4C8D565175EDFC6007ED7E4 /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
 		A4C8D56F175EE027007ED7E4 /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
+		A4C8D570175EE027007ED7E4 /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
 		A4C8D571175EE027007ED7E4 /* Opus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56A175EE027007ED7E4 /* Opus.m */; };
 		A4C8D572175EE027007ED7E4 /* Opus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56A175EE027007ED7E4 /* Opus.m */; };
 		A4C8D573175EE027007ED7E4 /* OpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56C175EE027007ED7E4 /* OpusManager.m */; };
@@ -4974,6 +4960,16 @@
 		CA485F5716E440E300AEE725 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		CA485F5916E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB823179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
+		CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82A179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
+		CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB828179E24A100A57387 /* DrawLayerManager.m */; };
 		CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		CA507F4516AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
 		CA507F4616AE9D2D00CCB00F /* BBSPostCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F4416AE9D2D00CCB00F /* BBSPostCommand.m */; };
@@ -7888,6 +7884,7 @@
 		EA411B04176066F500DA72D0 /* GoogleCustomSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE5739175DED3000AFD6AA /* GoogleCustomSearchService.m */; };
 		EA411B05176066F500DA72D0 /* GoogleCustomSearchNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */; };
 		EA411B06176066F500DA72D0 /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
+		EA411B07176066F500DA72D0 /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
 		EA411B08176066F500DA72D0 /* Opus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56A175EE027007ED7E4 /* Opus.m */; };
 		EA411B09176066F500DA72D0 /* OpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56C175EE027007ED7E4 /* OpusManager.m */; };
 		EA411B0A176066F500DA72D0 /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
@@ -9080,6 +9077,8 @@
 		A4117509177AD09900D3FE23 /* SingUserInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingUserInfoCell.xib; sourceTree = "<group>"; };
 		A411750B177AD09900D3FE23 /* SingGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingGuessController.h; sourceTree = "<group>"; };
 		A411750C177AD09900D3FE23 /* SingGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingGuessController.m; sourceTree = "<group>"; };
+		A411750D177AD09900D3FE23 /* SingGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingGuessController.xib; sourceTree = "<group>"; };
+		A411750E177AD09900D3FE23 /* SingGuessController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingGuessController~ipad.xib"; sourceTree = "<group>"; };
 		A4117510177AD09900D3FE23 /* SingHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingHomeController.h; sourceTree = "<group>"; };
 		A4117511177AD09900D3FE23 /* SingHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingHomeController.m; sourceTree = "<group>"; };
 		A4117512177AD09900D3FE23 /* SingHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHomeController.xib; sourceTree = "<group>"; };
@@ -9219,14 +9218,6 @@
 		A46918AE174F52020000FD39 /* SongManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongManager.m; sourceTree = "<group>"; };
 		A46E704716BBAA2D00F0E68C /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		A46E704816BBAA2D00F0E68C /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
-		A47EC6301798F23C00CEB59F /* GuessModesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessModesController.h; sourceTree = "<group>"; };
-		A47EC6311798F23C00CEB59F /* GuessModesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessModesController.m; sourceTree = "<group>"; };
-		A47EC6321798F23C00CEB59F /* GuessModesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessModesController.xib; sourceTree = "<group>"; };
-		A47EC63C17991DF500CEB59F /* GuessSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessSelectController.h; sourceTree = "<group>"; };
-		A47EC63D17991DF500CEB59F /* GuessSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessSelectController.m; sourceTree = "<group>"; };
-		A47EC63E17991DF500CEB59F /* GuessSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessSelectController.xib; sourceTree = "<group>"; };
-		A47EC6431799259500CEB59F /* DrawGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawGuessController.h; sourceTree = "<group>"; };
-		A47EC6441799259500CEB59F /* DrawGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawGuessController.m; sourceTree = "<group>"; };
 		A4834D641716AD5300190347 /* AliPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliPayManager.h; sourceTree = "<group>"; };
 		A4834D651716AD5300190347 /* AliPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliPayManager.m; sourceTree = "<group>"; };
 		A4834D671716AD5300190347 /* AlixPay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPay.h; sourceTree = "<group>"; };
@@ -9400,6 +9391,7 @@
 		A49971F1177831B800B01EBE /* PPTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPTableViewHeader.m; sourceTree = "<group>"; };
 		A49971FA177831E100B01EBE /* CommonGuessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGuessController.h; sourceTree = "<group>"; };
 		A49971FB177831E100B01EBE /* CommonGuessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGuessController.m; sourceTree = "<group>"; };
+		A49971FC177831E100B01EBE /* CommonGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonGuessController.xib; sourceTree = "<group>"; };
 		A4997200177831E100B01EBE /* CommonOpusDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusDetailController.h; sourceTree = "<group>"; };
 		A4997201177831E100B01EBE /* CommonOpusDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonOpusDetailController.m; sourceTree = "<group>"; };
 		A4997202177831E100B01EBE /* CommonOpusInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonOpusInfoCell.h; sourceTree = "<group>"; };
@@ -9459,21 +9451,13 @@
 		A4B763A115C25208003B4E72 /* Dice.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Dice.proto; sourceTree = "<group>"; };
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
 		A4B763A515C25218003B4E72 /* Draw.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.pb.m; sourceTree = "<group>"; };
-		A4B787F5179CF1870008E21B /* CommonTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTitleView.h; sourceTree = "<group>"; };
-		A4B787F6179CF1870008E21B /* CommonTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTitleView.m; sourceTree = "<group>"; };
-		A4B787F9179D00C20008E21B /* AppThemeConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppThemeConstants.h; sourceTree = "<group>"; };
-		A4B787FA179D09D50008E21B /* AppThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppThemeManager.h; sourceTree = "<group>"; };
-		A4B787FB179D09D50008E21B /* AppThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppThemeManager.m; sourceTree = "<group>"; };
-		A4B787FE179D10910008E21B /* SingGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingGuessController.xib; sourceTree = "<group>"; };
-		A4B787FF179D10910008E21B /* SingGuessController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingGuessController~ipad.xib"; sourceTree = "<group>"; };
-		A4B78804179D11250008E21B /* DrawGuessController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawGuessController.xib; sourceTree = "<group>"; };
-		A4B78807179D225B0008E21B /* CommonBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonBgView.h; sourceTree = "<group>"; };
-		A4B78808179D225B0008E21B /* CommonBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonBgView.m; sourceTree = "<group>"; };
-		A4B7880C179D34AB0008E21B /* HPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPThemeManager.h; sourceTree = "<group>"; };
-		A4B7880D179D34AB0008E21B /* HPThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPThemeManager.m; sourceTree = "<group>"; };
-		A4B78813179E1F8F0008E21B /* Draw-Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Draw-Themes.plist"; sourceTree = "<group>"; };
-		A4B78818179E256B0008E21B /* Sing-Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sing-Themes.plist"; sourceTree = "<group>"; };
-		A4B7881A179E2D000008E21B /* Theme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Theme; sourceTree = "<group>"; };
+		A4B78823179E2E3C0008E21B /* Theme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Theme; sourceTree = "<group>"; };
+		A4B7898B179E2E890008E21B /* CommonBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonBgView.h; sourceTree = "<group>"; };
+		A4B7898C179E2E890008E21B /* CommonBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonBgView.m; sourceTree = "<group>"; };
+		A4B7898D179E2E890008E21B /* CommonTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTitleView.h; sourceTree = "<group>"; };
+		A4B7898E179E2E890008E21B /* CommonTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTitleView.m; sourceTree = "<group>"; };
+		A4B7898F179E2E890008E21B /* HPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPThemeManager.h; sourceTree = "<group>"; };
+		A4B78990179E2E890008E21B /* HPThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPThemeManager.m; sourceTree = "<group>"; };
 		A4B7A0021772F99800C586F7 /* WordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordInputView.h; sourceTree = "<group>"; };
 		A4B7A0031772F99800C586F7 /* WordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordInputView.m; sourceTree = "<group>"; };
 		A4BABB37176F0C3C008D7AAB /* songCategory.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = songCategory.txt; sourceTree = "<group>"; };
@@ -10930,6 +10914,10 @@
 		CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawBgBox~ipad.xib"; sourceTree = "<group>"; };
 		CA4AF8C015D23A4E00734FAC /* MainDataModel 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 7.xcdatamodel"; sourceTree = "<group>"; };
 		CA4F066F1546F66500A38C84 /* MainDataModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		CA4FB820179E240B00A57387 /* DrawLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayer.h; sourceTree = "<group>"; };
+		CA4FB821179E240B00A57387 /* DrawLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayer.m; sourceTree = "<group>"; };
+		CA4FB827179E24A100A57387 /* DrawLayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayerManager.h; sourceTree = "<group>"; };
+		CA4FB828179E24A100A57387 /* DrawLayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayerManager.m; sourceTree = "<group>"; };
 		CA4FEFFF152AEFDF00F0AC88 /* ColorGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorGroup.h; sourceTree = "<group>"; };
 		CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorGroup.m; sourceTree = "<group>"; };
 		CA4FF007152AF21900F0AC88 /* ColorShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorShopCell.h; sourceTree = "<group>"; };
@@ -12522,10 +12510,10 @@
 		A411750A177AD09900D3FE23 /* Guess */ = {
 			isa = PBXGroup;
 			children = (
-				A4B787FE179D10910008E21B /* SingGuessController.xib */,
-				A4B787FF179D10910008E21B /* SingGuessController~ipad.xib */,
 				A411750B177AD09900D3FE23 /* SingGuessController.h */,
 				A411750C177AD09900D3FE23 /* SingGuessController.m */,
+				A411750D177AD09900D3FE23 /* SingGuessController.xib */,
+				A411750E177AD09900D3FE23 /* SingGuessController~ipad.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -13041,15 +13029,7 @@
 			children = (
 				A49971FA177831E100B01EBE /* CommonGuessController.h */,
 				A49971FB177831E100B01EBE /* CommonGuessController.m */,
-				A47EC6301798F23C00CEB59F /* GuessModesController.h */,
-				A47EC6311798F23C00CEB59F /* GuessModesController.m */,
-				A47EC6321798F23C00CEB59F /* GuessModesController.xib */,
-				A47EC63C17991DF500CEB59F /* GuessSelectController.h */,
-				A47EC63D17991DF500CEB59F /* GuessSelectController.m */,
-				A47EC63E17991DF500CEB59F /* GuessSelectController.xib */,
-				A47EC6431799259500CEB59F /* DrawGuessController.h */,
-				A47EC6441799259500CEB59F /* DrawGuessController.m */,
-				A4B78804179D11250008E21B /* DrawGuessController.xib */,
+				A49971FC177831E100B01EBE /* CommonGuessController.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -13196,18 +13176,15 @@
 			path = util;
 			sourceTree = "<group>";
 		};
-		A4B787EF179CF09F0008E21B /* Common */ = {
+		A4B78987179E2E890008E21B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A4B7880C179D34AB0008E21B /* HPThemeManager.h */,
-				A4B7880D179D34AB0008E21B /* HPThemeManager.m */,
-				A4B787F5179CF1870008E21B /* CommonTitleView.h */,
-				A4B787F6179CF1870008E21B /* CommonTitleView.m */,
-				A4B78807179D225B0008E21B /* CommonBgView.h */,
-				A4B78808179D225B0008E21B /* CommonBgView.m */,
-				A4B787F9179D00C20008E21B /* AppThemeConstants.h */,
-				A4B787FA179D09D50008E21B /* AppThemeManager.h */,
-				A4B787FB179D09D50008E21B /* AppThemeManager.m */,
+				A4B7898B179E2E890008E21B /* CommonBgView.h */,
+				A4B7898C179E2E890008E21B /* CommonBgView.m */,
+				A4B7898D179E2E890008E21B /* CommonTitleView.h */,
+				A4B7898E179E2E890008E21B /* CommonTitleView.m */,
+				A4B7898F179E2E890008E21B /* HPThemeManager.h */,
+				A4B78990179E2E890008E21B /* HPThemeManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -14613,6 +14590,7 @@
 		CA051DAE1546802D00D0A00A /* DrawView */ = {
 			isa = PBXGroup;
 			children = (
+				CA4FB81A179E23E600A57387 /* DrawLayer */,
 				CAB5325C16F0232B008FD307 /* GestureRecognizer */,
 				CA881A4016EB278A0085F57B /* OffScreen */,
 				CA881A4516EB278A0085F57B /* TouchHandler */,
@@ -16573,6 +16551,17 @@
 			path = DrawBg;
 			sourceTree = "<group>";
 		};
+		CA4FB81A179E23E600A57387 /* DrawLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CA4FB820179E240B00A57387 /* DrawLayer.h */,
+				CA4FB821179E240B00A57387 /* DrawLayer.m */,
+				CA4FB827179E24A100A57387 /* DrawLayerManager.h */,
+				CA4FB828179E24A100A57387 /* DrawLayerManager.m */,
+			);
+			path = DrawLayer;
+			sourceTree = "<group>";
+		};
 		CA507F4916AE9D3B00CCB00F /* Command */ = {
 			isa = PBXGroup;
 			children = (
@@ -16926,7 +16915,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
-				A4B7881A179E2D000008E21B /* Theme */,
+				A4B78823179E2E3C0008E21B /* Theme */,
 				EA411F441763050300DA72D0 /* AskPs */,
 				C2C18A6B1760A7B400DE933B /* Gallery */,
 				A461B803174CCB1A0088B061 /* Sing */,
@@ -16957,8 +16946,6 @@
 		CA745D291503B1B500600024 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A4B78818179E256B0008E21B /* Sing-Themes.plist */,
-				A4B78813179E1F8F0008E21B /* Draw-Themes.plist */,
 				EA411F2D17606A6700DA72D0 /* AskPs-Info.plist */,
 				A461B079174CBA490088B061 /* Sing-Info.plist */,
 				C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */,
@@ -17724,7 +17711,7 @@
 		CA9AA963150F4071009D1CB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A4B787EF179CF09F0008E21B /* Common */,
+				A4B78987179E2E890008E21B /* Common */,
 				CA3EB93A16B927B300660FE7 /* StrawView */,
 				CABEDD1B16B64C5900BB9060 /* ReplayView */,
 				CA53292916A3E4B200E9E96B /* InputAlertView */,
@@ -20430,6 +20417,7 @@
 				EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */,
 				C2CA7E5717782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5D17782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
+				A4997209177831E100B01EBE /* CommonGuessController.xib in Resources */,
 				A4997218177832EA00B01EBE /* OpusManageController.xib in Resources */,
 				A4997219177832EA00B01EBE /* OpusManageController~ipad.xib in Resources */,
 				A499721B177832EA00B01EBE /* OpusView.xib in Resources */,
@@ -20467,6 +20455,8 @@
 				A4117523177AD09900D3FE23 /* SingOpusDetailController.xib in Resources */,
 				A4117525177AD09900D3FE23 /* SingOpusInfoCell.xib in Resources */,
 				A4117527177AD09900D3FE23 /* SingUserInfoCell.xib in Resources */,
+				A4117529177AD09900D3FE23 /* SingGuessController.xib in Resources */,
+				A411752A177AD09900D3FE23 /* SingGuessController~ipad.xib in Resources */,
 				A411752C177AD09900D3FE23 /* SingHomeController.xib in Resources */,
 				A411752D177AD09900D3FE23 /* SingHomeController~ipad.xib in Resources */,
 				A411752F177AD09900D3FE23 /* SingController.xib in Resources */,
@@ -20512,8 +20502,7 @@
 				CABEC6F617969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC70017969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70517969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
-				A4B78819179E256B0008E21B /* Sing-Themes.plist in Resources */,
-				A4B7881E179E2D040008E21B /* Theme in Resources */,
+				A4B78827179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21518,14 +21507,7 @@
 				CABEC6F517969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FF17969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70417969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
-				A47EC6361798F23D00CEB59F /* GuessModesController.xib in Resources */,
-				A47EC64217991DF600CEB59F /* GuessSelectController.xib in Resources */,
-				A47EC64D179934AA00CEB59F /* sing_back@2x.png in Resources */,
-				A47EC64E179934AE00CEB59F /* up@2x.png in Resources */,
-				A4B78801179D10910008E21B /* SingGuessController.xib in Resources */,
-				A4B78803179D10910008E21B /* SingGuessController~ipad.xib in Resources */,
-				A4B78806179D11250008E21B /* DrawGuessController.xib in Resources */,
-				A4B7881D179E2D040008E21B /* Theme in Resources */,
+				A4B78826179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22462,6 +22444,7 @@
 				C214553B1778279E007D44C7 /* OpusView.xib in Resources */,
 				C2CA7E5217782BC30086D0FD /* CommonRoomListController.xib in Resources */,
 				C2CA7E5817782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
+				A4997208177831E100B01EBE /* CommonGuessController.xib in Resources */,
 				CA3D4AF517794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B0717794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
 				C2C09DDC17797EF3009408EB /* DrawToolUpPanel.xib in Resources */,
@@ -22519,15 +22502,7 @@
 				CABEC6F317969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FD17969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70217969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
-				A47EC6351798F23D00CEB59F /* GuessModesController.xib in Resources */,
-				A47EC64117991DF600CEB59F /* GuessSelectController.xib in Resources */,
-				A47EC64B1799349600CEB59F /* up@2x.png in Resources */,
-				A47EC64C179934A800CEB59F /* sing_back@2x.png in Resources */,
-				A4B78800179D10910008E21B /* SingGuessController.xib in Resources */,
-				A4B78802179D10910008E21B /* SingGuessController~ipad.xib in Resources */,
-				A4B78805179D11250008E21B /* DrawGuessController.xib in Resources */,
-				A4B78814179E1F8F0008E21B /* Draw-Themes.plist in Resources */,
-				A4B7881B179E2D040008E21B /* Theme in Resources */,
+				A4B78824179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23444,7 +23419,7 @@
 				CABEC6F417969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC6FE17969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70317969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
-				A4B7881C179E2D040008E21B /* Theme in Resources */,
+				A4B78825179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24394,7 +24369,7 @@
 				CABEC6F717969462006F89BB /* FreeIngotCell~ipad.xib in Resources */,
 				CABEC70117969462006F89BB /* FreeIngotController.xib in Resources */,
 				CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
-				A4B7881F179E2D040008E21B /* Theme in Resources */,
+				A4B78828179E2E3C0008E21B /* Theme in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25079,6 +25054,7 @@
 				A4DC4EA4175C44EA00CB5841 /* LocalSingManager.m in Sources */,
 				A4DC4EA5175C44EA00CB5841 /* SingImageManager.m in Sources */,
 				A4C8D565175EDFC6007ED7E4 /* OpusService.m in Sources */,
+				A4C8D570175EE027007ED7E4 /* DrawOpus.m in Sources */,
 				A4C8D572175EE027007ED7E4 /* Opus.m in Sources */,
 				A4C8D574175EE027007ED7E4 /* OpusManager.m in Sources */,
 				A4C8D576175EE028007ED7E4 /* SingOpus.m in Sources */,
@@ -25201,6 +25177,11 @@
 				CABEC6B717968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6EC17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FB17969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78999179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A3179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25967,16 +25948,11 @@
 				CABEC6EB17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FA17969462006F89BB /* FreeIngotController.m in Sources */,
 				A4E254D11796CC5D00767506 /* GuessService.m in Sources */,
-				A47EC6341798F23D00CEB59F /* GuessModesController.m in Sources */,
-				A47EC64017991DF600CEB59F /* GuessSelectController.m in Sources */,
-				A47EC6471799259500CEB59F /* DrawGuessController.m in Sources */,
-				A47EC64F179934BD00CEB59F /* WordInputView.m in Sources */,
-				A47EC650179934C300CEB59F /* CommonGuessController.m in Sources */,
-				A47EC6511799388000CEB59F /* DrawOpus.m in Sources */,
-				A4B787F8179CF1870008E21B /* CommonTitleView.m in Sources */,
-				A4B787FD179D09D50008E21B /* AppThemeManager.m in Sources */,
-				A4B7880A179D225C0008E21B /* CommonBgView.m in Sources */,
-				A4B78810179D34AC0008E21B /* HPThemeManager.m in Sources */,
+				CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78998179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A2179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26759,14 +26735,11 @@
 				CABEC6E917969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F817969462006F89BB /* FreeIngotController.m in Sources */,
 				A4E254D01796CC5D00767506 /* GuessService.m in Sources */,
-				A47EC6331798F23D00CEB59F /* GuessModesController.m in Sources */,
-				A47EC63F17991DF600CEB59F /* GuessSelectController.m in Sources */,
-				A47EC6461799259500CEB59F /* DrawGuessController.m in Sources */,
-				A47EC64A179933ED00CEB59F /* WordInputView.m in Sources */,
-				A4B787F7179CF1870008E21B /* CommonTitleView.m in Sources */,
-				A4B787FC179D09D50008E21B /* AppThemeManager.m in Sources */,
-				A4B78809179D225C0008E21B /* CommonBgView.m in Sources */,
-				A4B7880F179D34AC0008E21B /* HPThemeManager.m in Sources */,
+				CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78996179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A0179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27492,6 +27465,11 @@
 				CABEC6B517968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6EA17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6F917969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB823179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82A179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B78997179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899C179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A1179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28177,6 +28155,7 @@
 				EA411B04176066F500DA72D0 /* GoogleCustomSearchService.m in Sources */,
 				EA411B05176066F500DA72D0 /* GoogleCustomSearchNetworkRequest.m in Sources */,
 				EA411B06176066F500DA72D0 /* OpusService.m in Sources */,
+				EA411B07176066F500DA72D0 /* DrawOpus.m in Sources */,
 				EA411B08176066F500DA72D0 /* Opus.m in Sources */,
 				EA411B09176066F500DA72D0 /* OpusManager.m in Sources */,
 				EA411B0A176066F500DA72D0 /* SingOpus.m in Sources */,
@@ -28253,6 +28232,11 @@
 				CABEC6B817968F0B006F89BB /* CommonSearchView.m in Sources */,
 				CABEC6ED17969462006F89BB /* FreeIngotCell.m in Sources */,
 				CABEC6FC17969462006F89BB /* FreeIngotController.m in Sources */,
+				CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */,
+				CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */,
+				A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */,
+				A4B7899F179E2E890008E21B /* CommonTitleView.m in Sources */,
+				A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
