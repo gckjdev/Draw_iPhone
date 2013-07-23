@@ -45,7 +45,6 @@
     return titleView;
 }
 
-
 - (void)update{
     
     [_backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.jpg") forState:UIControlStateNormal];

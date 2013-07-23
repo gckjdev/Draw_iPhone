@@ -14,7 +14,6 @@
 #import "LevelService.h"
 #import "DrawSoundManager.h"
 #import "OpusService.h"
-#import "WordManager.h"
 #import "StableView.h"
 #import "ItemType.h"
 #import "CommonMessageCenter.h"
@@ -65,18 +64,6 @@
     // Do any additional setup after loading the view from its nib.
     
 
-    _wordInputView.answer = _opus.pbOpus.name;
-    _wordInputView.delegate = self;
-    
-    
-    // Set candidates
-    NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:_opus.pbOpus.name count:27];
-    [_wordInputView setCandidates:candidates column:9];
-    
-    // Set sound.
-    [_wordInputView setClickSound:[DrawSoundManager defaultManager].clickWordSound];
-    [_wordInputView setWrongSound:[DrawSoundManager defaultManager].guessWrongSound];
-    [_wordInputView setCorrectSound:[DrawSoundManager defaultManager].guessCorrectSound];
     
     // Init guess words
     self.guessWords = [NSMutableArray array];
