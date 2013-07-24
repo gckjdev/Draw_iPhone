@@ -211,10 +211,17 @@ message PBGuessResult{
    optional PBGuessRank rank= 2;          // 排名信息
 }
 
+enum PBGuessContestState{
+   GUESS_CONTEST_STATE_NOT_START = 0;   // 比赛还没开始
+   GUESS_CONTEST_STATE_ING = 1;         // 比赛进行中
+   GUESS_CONTEST_STATE_END = 2;         // 比赛已经结束
+}
+
 message PBGuessContest{
    
    required string contestId = 1;
    optional string name = 2;
+   optional int state = 3;
    
    optional int32 startTime = 5;
    optional int32 endTime = 6;
