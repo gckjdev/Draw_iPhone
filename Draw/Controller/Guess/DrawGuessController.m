@@ -30,11 +30,23 @@
     // Set candidates
     NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
     [self.wordInputView setCandidates:candidates column:9];
+    
+    [self.wordInputView setSeperatorYOffset:-4];
+    [self.wordInputView setCandidateYOffset:-4];
+    [self.wordInputView  setAnswerViewXOffset:8];
+    
+    [self.wordInputView setCandidateColor:[UIColor whiteColor]];
+
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
 
+- (void)didGuessWrong:(NSString *)word{
+    
+    [self.wordInputView reset];
+    [super didGuessWrong:word];
+}
 
 @end

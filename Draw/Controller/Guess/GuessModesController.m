@@ -8,6 +8,7 @@
 
 #import "GuessModesController.h"
 #import "GuessSelectController.h"
+#import "CommonTitleView.h"
 
 @interface GuessModesController ()
 
@@ -28,6 +29,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kSelectGuessMode") delegate:self]];
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,8 +7,13 @@
 //
 
 #import "GuessSelectController.h"
-#import "Opus.h"
 #import "DrawGuessController.h"
+#import "Opus.h"
+#import "CommonTitleView.h"
+#import "CommonMessageCenter.h"
+
+#define OPUS_BUTTON_OFFSET 100
+
 
 @interface GuessSelectController ()
 @property (retain, nonatomic) NSArray *opuses;
@@ -19,50 +24,62 @@
 
 - (void)dealloc{
     [_opuses release];
+    [_opusesHolderView release];
+    [_guessedInfoLabel release];
+    [_awardInfoLabel release];
+    [_aheadInfoLabel release];
     [super dealloc];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+- (void)viewWillAppear:(BOOL)animated{
     [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
                                            contestId:nil
                                               offset:0
                                                limit:20
                                           isStartNew:NO];
+    [super viewWillAppear:animated];
+}
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kGuangKa") delegate:self]];
+
+    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
+                                           contestId:nil
+                                              offset:0
+                                               limit:20
+                                          isStartNew:NO];
+    [[GuessService defaultService] getGuessRankWithType:HOT_RANK mode:PBUserGuessModeGuessModeHappy contestId:nil];
+    
     [[GuessService defaultService] setDelegate:self];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidUnload {
+    [self setOpusesHolderView:nil];
+    [self setGuessedInfoLabel:nil];
+    [self setAwardInfoLabel:nil];
+    [self setAheadInfoLabel:nil];
+    [super viewDidUnload];
 }
 
 - (IBAction)clickOpusButton:(UIButton *)button {
     
-    int index = button.tag;
+    int index = button.tag - OPUS_BUTTON_OFFSET;
     if (index >= [_opuses count]) {
         return;
     }
     
     PBOpus *pbOpus = [_opuses objectAtIndex:index];
-    Opus *opus = [Opus opusWithPBOpus:pbOpus];
     
-//    PPDebug(@"category = %d", pbOpus.category);
-//    PPDebug(@"opusId = %@", pbOpus.opusId);
-//    PPDebug(@"opusName = %@", pbOpus.name);
-//    PPDebug(@"opusDesc = %@", pbOpus.desc);
-//    PPDebug(@"thumbImage = %@", pbOpus.thumbImage);
-//    PPDebug(@"image = %@", pbOpus.image);
-//    
-//    PPDebug(@"category = %@", opus.pbOpus.category);
-//    PPDebug(@"opusId = %@", opus.pbOpus.opusId);
-//    PPDebug(@"opusName = %@", opus.pbOpus.name);
-//    PPDebug(@"opusDesc = %@", opus.pbOpus.desc);
-//    PPDebug(@"thumbImage = %@", opus.pbOpus.thumbImage);
-//    PPDebug(@"image = %@", opus.pbOpus.image);
+    if (pbOpus.guessInfo.isCorrect) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kThisOpusIsGuessed") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    
+    Opus *opus = [Opus opusWithPBOpus:pbOpus];
     
     DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
@@ -72,9 +89,47 @@
     
     if (resultCode == 0) {
         self.opuses = opuses;
+        [self setGuessedOpus];
     }else{
         [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
     }
+}
+
+- (void)didGetGuessRank:(PBGuessRank *)rank resultCode:(int)resultCode{
+    if (resultCode == 0) {
+        _aheadInfoLabel.text = [NSString stringWithFormat:NSLS(@"kLead:%d\%"), rank.lead];
+    }else{
+        [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
+    }
+}
+
+- (UIButton *)opusButtonWithIndex:(int)index{
+    
+    return (UIButton *)[_opusesHolderView viewWithTag:(index + OPUS_BUTTON_OFFSET)];
+}
+
+- (void)setGuessedOpus{
+    
+    for (int index = 0; index < [_opuses count]; index++) {
+        PBOpus *opus = [_opuses objectAtIndex:index];
+        if (opus.guessInfo.isCorrect) {
+            [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"pine_tree@2x.png"] forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (IBAction)clickRestartButton:(id)sender {
+    
+    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
+                                           contestId:nil
+                                              offset:0
+                                               limit:20
+                                          isStartNew:YES];
+    [[GuessService defaultService] getGuessRankWithType:HOT_RANK mode:PBUserGuessModeGuessModeHappy contestId:nil];
+}
+
+- (IBAction)clickShareButton:(id)sender {
+    
 }
 
 @end

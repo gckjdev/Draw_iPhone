@@ -27,10 +27,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
                isStartNew:(BOOL)isStartNew{
     
     __block typeof(self) bself = self;
+    
     dispatch_async(workingQueue, ^{
         
-        NSDictionary *para = @{PARA_USERID  : @"51e507ff036498e676b37fee",
-                               PARA_APPID   : [ConfigManager appId],
+        NSDictionary *para = @{
                                PARA_MODE    : @(mode),
                                PARA_CONTESTID : SAFE_STRING(contestId),
                                PARA_OFFSET  : @(offset),
@@ -81,7 +81,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     
     __block typeof(self) bself = self;
     
-    NSString *userId = SAFE_STRING([[UserManager defaultManager] userId]);
     NSString *nickName = SAFE_STRING([[UserManager defaultManager] nickName]);
     NSString *avatarUrl = SAFE_STRING([[UserManager defaultManager] avatarURL]);
     NSString *gender = [[UserManager defaultManager] gender];
@@ -93,9 +92,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     
     dispatch_async(workingQueue, ^{
         
-        NSDictionary *para = @{PARA_APPID       : [ConfigManager appId],
-                               PARA_USERID      : userId,
-                               
+        NSDictionary *para = @{
                                PARA_NICKNAME    : nickName,
                                PARA_AVATAR      : avatarUrl,
                                PARA_GENDER      : gender,
@@ -136,9 +133,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     
     dispatch_async(workingQueue, ^{
         
-        NSDictionary *para = @{PARA_APPID       : [ConfigManager appId],
-//                               PARA_USERID      : SAFE_STRING(userId),
-                               PARA_USERID      : @"51e4f554036498e676b37fe7",
+        NSDictionary *para = @{
                                PARA_TYPE        : @(type),
                                PARA_MODE        : @(mode),
                                PARA_CONTESTID   : SAFE_STRING(contestId),
@@ -172,7 +167,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     
     dispatch_async(workingQueue, ^{
         
-        NSDictionary *para = @{PARA_APPID       : [ConfigManager appId],
+        NSDictionary *para = @{
                                PARA_TYPE        : @(type),
                                PARA_MODE        : @(mode),
                                PARA_CONTESTID   : SAFE_STRING(contestId),
