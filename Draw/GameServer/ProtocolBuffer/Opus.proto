@@ -221,7 +221,7 @@ message PBGuessContest{
    
    required string contestId = 1;
    optional string name = 2;
-   optional int state = 3;
+   optional int32 state = 3;
    
    optional int32 startTime = 5;
    optional int32 endTime = 6;

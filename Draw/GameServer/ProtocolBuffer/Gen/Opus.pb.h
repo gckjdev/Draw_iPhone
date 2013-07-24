@@ -201,6 +201,14 @@ typedef enum {
 
 BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 
+typedef enum {
+  PBGuessContestStateGuessContestStateNotStart = 0,
+  PBGuessContestStateGuessContestStateIng = 1,
+  PBGuessContestStateGuessContestStateEnd = 2,
+} PBGuessContestState;
+
+BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
+
 
 @interface OpusRoot : NSObject {
 }
@@ -966,10 +974,12 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 
 @interface PBGuessContest : PBGeneratedMessage {
 @private
+  BOOL hasState_:1;
   BOOL hasStartTime_:1;
   BOOL hasEndTime_:1;
   BOOL hasContestId_:1;
   BOOL hasName_:1;
+  int32_t state;
   int32_t startTime;
   int32_t endTime;
   NSString* contestId;
@@ -977,10 +987,12 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 }
 - (BOOL) hasContestId;
 - (BOOL) hasName;
+- (BOOL) hasState;
 - (BOOL) hasStartTime;
 - (BOOL) hasEndTime;
 @property (readonly, retain) NSString* contestId;
 @property (readonly, retain) NSString* name;
+@property (readonly) int32_t state;
 @property (readonly) int32_t startTime;
 @property (readonly) int32_t endTime;
 
@@ -1027,6 +1039,11 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 - (NSString*) name;
 - (PBGuessContest_Builder*) setName:(NSString*) value;
 - (PBGuessContest_Builder*) clearName;
+
+- (BOOL) hasState;
+- (int32_t) state;
+- (PBGuessContest_Builder*) setState:(int32_t) value;
+- (PBGuessContest_Builder*) clearState;
 
 - (BOOL) hasStartTime;
 - (int32_t) startTime;
