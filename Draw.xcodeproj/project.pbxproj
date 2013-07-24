@@ -2067,6 +2067,8 @@
 		A4B78A4F179F78BC0008E21B /* round_dot_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A1E179F78BB0008E21B /* round_dot_9@2x.png */; };
 		A4B78A50179F78BC0008E21B /* share_guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A1F179F78BB0008E21B /* share_guess_rank@2x.png */; };
 		A4B78A51179F78BC0008E21B /* share_guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A1F179F78BB0008E21B /* share_guess_rank@2x.png */; };
+		A4B78A57179F7A2E0008E21B /* GuessModesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789AB179E2F120008E21B /* GuessModesController.m */; };
+		A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AC179E2F120008E21B /* GuessModesController.xib */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -21643,6 +21645,7 @@
 				A4B78A4D179F78BC0008E21B /* round_dot_8@2x.png in Resources */,
 				A4B78A4F179F78BC0008E21B /* round_dot_9@2x.png in Resources */,
 				A4B78A51179F78BC0008E21B /* share_guess_rank@2x.png in Resources */,
+				A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26117,6 +26120,7 @@
 				A4B789B5179E36C40008E21B /* WordInputView.m in Sources */,
 				CA51834C179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518356179F79A80033AA95 /* UserNumberService.m in Sources */,
+				A4B78A57179F7A2E0008E21B /* GuessModesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
