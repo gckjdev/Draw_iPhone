@@ -31,7 +31,7 @@
 @interface OpusImageBrower()
 @property (retain, nonatomic) NSArray *feedList;
 //@property (assign, nonatomic) UIScrollView *scrollView;
-@property (assign, nonatomic) NonCyclePageScrollView *pageScroller;
+@property (assign, nonatomic) CyclePageScrollView *pageScroller;
 
 @end
 
@@ -51,32 +51,13 @@
         self.frame = FRAME;
         self.feedList = feedList;
         
-        self.pageScroller = [[[NonCyclePageScrollView alloc] initWithFrame:FRAME] autorelease];
+        self.pageScroller = [[[CyclePageScrollView alloc] initWithFrame:FRAME] autorelease];
         [_pageScroller hidePageControl];
         _pageScroller.backgroundColor = [UIColor blackColor];
         _pageScroller.delegate = self;
         _pageScroller.datasource  = self;
         [_pageScroller reloadData];
         [self addSubview:_pageScroller];
-        
-//        self.scrollView = [[[UIScrollView alloc] initWithFrame:FRAME] autorelease];
-//        _scrollView.pagingEnabled = YES;
-//        _scrollView.showsVerticalScrollIndicator = NO;
-//        _scrollView.showsHorizontalScrollIndicator = NO;
-//        _scrollView.backgroundColor = [UIColor blackColor];
-//        _scrollView.delegate = self;
-//        
-//        _scrollView.contentSize = CGSizeMake(PAGE_WIDTH * [feedList count], PAGE_HEIGHT) ;
-//        
-//        for (int index= 0; index < [feedList count]; index ++) {
-//            
-//            UIView *view = [self createViewWithIndex:index];
-//            [view updateOriginX:(PAGE_WIDTH * index)];
-//            [_scrollView addSubview:view];
-//        }
-        
-        
-//        [self  addSubview:_scrollView];
     }
     
     return self;

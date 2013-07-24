@@ -109,9 +109,9 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value) {
 }
 BOOL PBGuessContestStateIsValidValue(PBGuessContestState value) {
   switch (value) {
-    case PBGuessContestStateGuessContestStateNotStart:
-    case PBGuessContestStateGuessContestStateIng:
     case PBGuessContestStateGuessContestStateEnd:
+    case PBGuessContestStateGuessContestStateIng:
+    case PBGuessContestStateGuessContestStateNotStart:
       return YES;
     default:
       return NO;

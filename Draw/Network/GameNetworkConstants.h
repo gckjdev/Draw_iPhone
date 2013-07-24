@@ -33,6 +33,8 @@
 #define METHOD_GUESS_OPUS @"guessOpus"
 #define METHOD_GET_USER_GUESS_RANK @"getUserGuessRank"
 #define METHOD_GET_GUESS_RANK_LIST @"getGuessRankList"
+#define METHOD_GET_GUESS_CONTEST_LIST @"getGuessContestList"
+
 
 // method name
 

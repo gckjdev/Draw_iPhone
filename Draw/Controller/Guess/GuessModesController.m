@@ -14,18 +14,27 @@
     int _countDown;
     CGRect _contestModeLabelOriginFrame;
 }
+@property (retain, nonatomic) PBGuessContest *contest;
 
 @end
 
 @implementation GuessModesController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+
+- (void)dealloc {
+    [[GuessService defaultService] setDelegate:nil];
+    [_contest release];
+    [_happyModeLabel release];
+    [_contestModeLabel release];
+    [_genuisModeLabel release];
+    [_rankListLabel release];
+    [_rulesLabel release];
+    [_hourLabel release];
+    [_minusLabel release];
+    [_secondLabel release];
+    [_countDownImageView release];
+    [_contestModeButton release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -36,13 +45,51 @@
     
     [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kSelectGuessMode") delegate:self]];
     
-    
+    [[GuessService defaultService] getGuessContestList];
+    [[GuessService defaultService] setDelegate:self];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidUnload {
+    [self setHappyModeLabel:nil];
+    [self setContestModeLabel:nil];
+    [self setGenuisModeLabel:nil];
+    [self setRankListLabel:nil];
+    [self setRulesLabel:nil];
+    [self setHourLabel:nil];
+    [self setHourLabel:nil];
+    [self setMinusLabel:nil];
+    [self setSecondLabel:nil];
+    [self setCountDownImageView:nil];
+    [self setContestModeButton:nil];
+    [super viewDidUnload];
+}
+
+- (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode{
+    if (resultCode == 0) {
+        self.contest = [list objectAtIndex:0];
+        [self reload];
+    }else{
+        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
+    }
+}
+
+- (void)reload{
+    switch (_contest.state) {
+        case PBGuessContestStateGuessContestStateNotStart:
+            [self contestNotStart];
+            break;
+            
+        case PBGuessContestStateGuessContestStateEnd:
+            [self contestEnd];
+            break;
+            
+        case PBGuessContestStateGuessContestStateIng:
+            [self contesting];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)startTimer{
@@ -56,15 +103,12 @@
 
 - (void)timeout:(id)sender{
     
-    int pre = _countDown;
-    int cur = _countDown - 1;
+    _countDown--;
     
-    if (pre > 0 && cur <= 0) {
-        [self openContestMode];        
-    }
+    if (_countDown <= 0) {
+        [self contesting];
         
-    else{
-        
+    }else{
         int hour =  _countDown / 3600;
         int minus = (_countDown % 3600) / 60;
         int second = _countDown % 60;
@@ -75,28 +119,46 @@
     }
 }
 
-- (void)openContestMode{
+- (void)contestEnd{
     
     [UIView animateWithDuration:1 animations:^{
         _contestModeLabel.center = _contestModeButton.center;
+        self.countDownImageView.alpha = 0;
+        self.hourLabel.alpha = 0;
+        self.minusLabel.alpha = 0;
+        self.secondLabel.alpha = 0;
     } completion:^(BOOL finished) {
-        self.countDownImageView.hidden = YES;
-        self.hourLabel.hidden = YES;
-        self.minusLabel.hidden = YES;
-        self.secondLabel.hidden = YES;
+        
     }];
+    
+    [self killTimer];
 }
 
-- (void)closeContestMode{
+- (void)contesting{
+    
+    [UIView animateWithDuration:1 animations:^{
+        self.contestModeLabel.center = _contestModeButton.center;
+        
+        self.countDownImageView.alpha = 0;
+        self.hourLabel.alpha = 0;
+        self.minusLabel.alpha = 0;
+        self.secondLabel.alpha = 0;
+    } completion:^(BOOL finished) {
+
+    }];
+    
+    [self killTimer];
+}
+
+- (void)contestNotStart{
     
     [UIView animateWithDuration:1 animations:^{
         self.contestModeLabel.frame = _contestModeLabelOriginFrame;
     } completion:^(BOOL finished) {
-        self.countDownImageView.hidden = NO;
-        self.hourLabel.hidden = NO;
-        self.minusLabel.hidden = NO;
-        self.secondLabel.hidden = NO;
+
     }];
+    
+    [self startTimer];
 }
 
 - (IBAction)clickHappyModeButton:(id)sender {
@@ -120,32 +182,10 @@
 - (IBAction)clickRuleButton:(id)sender {
 }
 
-- (void)dealloc {
-    [_happyModeLabel release];
-    [_contestModeLabel release];
-    [_genuisModeLabel release];
-    [_rankListLabel release];
-    [_rulesLabel release];
-    [_hourLabel release];
-    [_hourLabel release];
-    [_minusLabel release];
-    [_secondLabel release];
-    [_countDownImageView release];
-    [_contestModeButton release];
-    [super dealloc];
+- (void)clickBack:(id)sender{
+    [self killTimer];
+    [super clickBack:sender];
 }
-- (void)viewDidUnload {
-    [self setHappyModeLabel:nil];
-    [self setContestModeLabel:nil];
-    [self setGenuisModeLabel:nil];
-    [self setRankListLabel:nil];
-    [self setRulesLabel:nil];
-    [self setHourLabel:nil];
-    [self setHourLabel:nil];
-    [self setMinusLabel:nil];
-    [self setSecondLabel:nil];
-    [self setCountDownImageView:nil];
-    [self setContestModeButton:nil];
-    [super viewDidUnload];
-}
+
+
 @end

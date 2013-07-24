@@ -202,9 +202,9 @@ typedef enum {
 BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value);
 
 typedef enum {
-  PBGuessContestStateGuessContestStateNotStart = 0,
+  PBGuessContestStateGuessContestStateEnd = 0,
   PBGuessContestStateGuessContestStateIng = 1,
-  PBGuessContestStateGuessContestStateEnd = 2,
+  PBGuessContestStateGuessContestStateNotStart = 2,
 } PBGuessContestState;
 
 BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
