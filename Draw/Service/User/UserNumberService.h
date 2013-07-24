@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CommonService.h"
 
-@interface UserNumberService : NSObject
+typedef void(^UserNumberServiceResultBlock)(int resultCode, NSString* number);
+
+
+@interface UserNumberService : CommonService
+
++ (UserNumberService*)defaultService;
+
+- (void)getAndRegisterNumber:(UserNumberServiceResultBlock)block;
 
 @end

@@ -92,7 +92,7 @@
     //ignore the warning By Gamy...
     //for history issue, the action always passed nil.
     if (_delegate && [_delegate respondsToSelector:@selector(didPolygonClipTouchHandler:finishAddPointsToAction:)]) {
-        [_delegate didPolygonClipTouchHandler:self finishAddPointsToAction:nil];
+        [_delegate performSelector:@selector(didPolygonClipTouchHandler:finishAddPointsToAction:) withObject:self withObject:nil];
     }
     
 
