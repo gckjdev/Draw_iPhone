@@ -23,6 +23,7 @@
 @implementation GuessSelectController
 
 - (void)dealloc{
+    [[GuessService defaultService] setDelegate:nil];
     [_opuses release];
     [_opusesHolderView release];
     [_guessedInfoLabel release];

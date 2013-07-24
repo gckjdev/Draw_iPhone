@@ -252,7 +252,7 @@
 							<object class="IBUIButton" id="256126247">
 								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{50, 106}, {34, 34}}</string>
+								<string key="NSFrame">{{51, 106}, {34, 34}}</string>
 								<reference key="NSSuperview" ref="188775712"/>
 								<reference key="NSNextKeyView" ref="965810306"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -1224,30 +1224,30 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="guess_rank_bg@2x.jpg">{16, 16}</string>
-			<string key="guess_select_bg@2x.jpg">{16, 16}</string>
-			<string key="restart_guess@2x.png">{16, 16}</string>
-			<string key="round_dot_10@2x.png">{16, 16}</string>
-			<string key="round_dot_11@2x.png">{16, 16}</string>
-			<string key="round_dot_12@2x.png">{16, 16}</string>
-			<string key="round_dot_13@2x.png">{16, 16}</string>
-			<string key="round_dot_14@2x.png">{16, 16}</string>
-			<string key="round_dot_15@2x.png">{16, 16}</string>
-			<string key="round_dot_16@2x.png">{16, 16}</string>
-			<string key="round_dot_17@2x.png">{16, 16}</string>
-			<string key="round_dot_18@2x.png">{16, 16}</string>
-			<string key="round_dot_19@2x.png">{16, 16}</string>
-			<string key="round_dot_1@2x.png">{16, 16}</string>
-			<string key="round_dot_20@2x.png">{16, 16}</string>
-			<string key="round_dot_2@2x.png">{16, 16}</string>
-			<string key="round_dot_3@2x.png">{16, 16}</string>
-			<string key="round_dot_4@2x.png">{16, 16}</string>
-			<string key="round_dot_5@2x.png">{16, 16}</string>
-			<string key="round_dot_6@2x.png">{16, 16}</string>
-			<string key="round_dot_7@2x.png">{16, 16}</string>
-			<string key="round_dot_8@2x.png">{16, 16}</string>
-			<string key="round_dot_9@2x.png">{16, 16}</string>
-			<string key="share_guess_rank@2x.png">{16, 16}</string>
+			<string key="guess_rank_bg@2x.jpg">{768, 167}</string>
+			<string key="guess_select_bg@2x.jpg">{698, 708}</string>
+			<string key="restart_guess@2x.png">{156, 73}</string>
+			<string key="round_dot_10@2x.png">{68, 69}</string>
+			<string key="round_dot_11@2x.png">{68, 69}</string>
+			<string key="round_dot_12@2x.png">{68, 69}</string>
+			<string key="round_dot_13@2x.png">{68, 69}</string>
+			<string key="round_dot_14@2x.png">{68, 69}</string>
+			<string key="round_dot_15@2x.png">{68, 69}</string>
+			<string key="round_dot_16@2x.png">{68, 69}</string>
+			<string key="round_dot_17@2x.png">{68, 69}</string>
+			<string key="round_dot_18@2x.png">{68, 69}</string>
+			<string key="round_dot_19@2x.png">{68, 69}</string>
+			<string key="round_dot_1@2x.png">{68, 69}</string>
+			<string key="round_dot_20@2x.png">{68, 69}</string>
+			<string key="round_dot_2@2x.png">{68, 69}</string>
+			<string key="round_dot_3@2x.png">{68, 69}</string>
+			<string key="round_dot_4@2x.png">{68, 69}</string>
+			<string key="round_dot_5@2x.png">{68, 69}</string>
+			<string key="round_dot_6@2x.png">{68, 69}</string>
+			<string key="round_dot_7@2x.png">{68, 69}</string>
+			<string key="round_dot_8@2x.png">{68, 69}</string>
+			<string key="round_dot_9@2x.png">{68, 69}</string>
+			<string key="share_guess_rank@2x.png">{156, 73}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
