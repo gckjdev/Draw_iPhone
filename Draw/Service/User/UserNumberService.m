@@ -9,6 +9,8 @@
 #import "UserNumberService.h"
 #import "UserManager.h"
 #import "PPGameNetworkRequest.h"
+#import "StringUtil.h"
+#import "UIDevice+IdentifierAddition.h"
 
 @implementation UserNumberService
 
@@ -39,14 +41,17 @@ static UserNumberService* _defaultUserService;
                                                                              parameters:para
                                                                           isReturnArray:NO];
         
-        NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];
-        if (output.resultCode == 0){
-            // save number
-            [[UserManager defaultManager] setXiaojiNumber:number];
-        }
-
-        EXECUTE_BLOCK(block, output.resultCode, number);
-
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];
+            if (output.resultCode == 0){
+                // save number
+                [[UserManager defaultManager] setXiaojiNumber:number];
+                [[UserManager defaultManager] storeUserData];
+            }
+            
+            EXECUTE_BLOCK(block, output.resultCode, number);
+            
+        });
         
     });
 }
@@ -68,8 +73,10 @@ static UserNumberService* _defaultUserService;
                                                                              parameters:para
                                                                           isReturnArray:NO];
         
-        NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];        
-        EXECUTE_BLOCK(block, output.resultCode, number);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];
+            EXECUTE_BLOCK(block, output.resultCode, number);
+        });
         
     });
 }
@@ -91,12 +98,15 @@ static UserNumberService* _defaultUserService;
                                                                              parameters:para
                                                                           isReturnArray:NO];
         
-        if (output.resultCode == 0){
-            // save number
-            [[UserManager defaultManager] setXiaojiNumber:number];
-        }
-        
-        EXECUTE_BLOCK(block, output.resultCode, number);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == 0){
+                // save number
+                [[UserManager defaultManager] setXiaojiNumber:number];
+                [[UserManager defaultManager] storeUserData];            
+            }
+            
+            EXECUTE_BLOCK(block, output.resultCode, number);
+        });
         
     });
 }
@@ -109,26 +119,40 @@ static UserNumberService* _defaultUserService;
         return;
     }
     
+    NSString* encodePassword = [password encodeMD5Base64:PASSWORD_KEY];
+    NSString* deviceModel = [[UIDevice currentDevice] model];
+    NSString* deviceOS = [DeviceDetection deviceOS];
+    NSString* newDeviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceToken = [[[UserManager defaultManager] pbUser] deviceToken];
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary* para = @{ PARA_XIAOJI_NUMBER : number,
-                                PARA_PASSWORD : password
+                                PARA_PASSWORD : encodePassword,
+                                PARA_DEVICEMODEL : (deviceModel == nil) ? @"" : deviceModel,
+                                PARA_DEVICEID : (newDeviceId == nil) ? @"" : newDeviceId,
+                                PARA_DEVICETYPE : STRING_DEVICE_TYPE_IOS,
+                                PARA_DEVICETOKEN : (deviceToken == nil) ? @"" : deviceToken,
+                                PARA_DEVICEOS : (deviceOS == nil) ? @"" : deviceOS
                                 };
         
         GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_LOGIN_NUMBER
                                                                          parameters:para];
         
-        if (output.resultCode == 0){
-            PBGameUser* user = [output.pbResponse user];
-            if (user != nil){
-                [[UserManager defaultManager] storeUserData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            if (output.resultCode == 0){
+                PBGameUser* user = [output.pbResponse user];
+                if (user != nil){
+                    [[UserManager defaultManager] storeUserData:user];
+                }
+                else{
+                    output.resultCode = ERROR_USER_DATA_NULL;
+                }
             }
-            else{
-                output.resultCode = ERROR_USER_DATA_NULL;
-            }
-        }
-        
-        EXECUTE_BLOCK(block, output.resultCode, number);
+            
+            EXECUTE_BLOCK(block, output.resultCode, number);
+        });
     });
 }
 

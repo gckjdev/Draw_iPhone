@@ -31,7 +31,10 @@
     
 }
 
-- (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode;
+- (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode
+{
+    
+}
 
 
 @end

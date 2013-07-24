@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 
-@interface ShowNumberController : UIViewController
+@interface ShowNumberController : PPViewController
 @property (retain, nonatomic) IBOutlet UILabel *showNumberTipsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *numberLabel;
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
