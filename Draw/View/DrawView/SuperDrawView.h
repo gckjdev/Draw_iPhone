@@ -21,6 +21,7 @@
 #import "ShapeAction.h"
 
 #import "CacheDrawManager.h"
+#import "DrawLayer.h"
 
 @interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate>
 {
