@@ -39,6 +39,6 @@
 @property(nonatomic, retain)CacheDrawManager *cdManager;
 @property(nonatomic, retain)NSMutableArray *drawActionList;
 @property(nonatomic, assign)NSUInteger tag;
-@property(nonatomic, retain)NSString *name;
+@property(nonatomic, copy)NSString *name;
 
 @end

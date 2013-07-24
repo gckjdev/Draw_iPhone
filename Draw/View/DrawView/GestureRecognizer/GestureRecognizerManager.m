@@ -99,7 +99,12 @@
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     [doubleTap setNumberOfTapsRequired:2];
-    [doubleTap setNumberOfTouchesRequired:2];
+    if ([view isKindOfClass:[ShowDrawView class]]) {
+        [doubleTap setNumberOfTouchesRequired:1];
+    }else{
+        [doubleTap setNumberOfTouchesRequired:2];
+    }
+
     [view addGestureRecognizer:doubleTap];
     [doubleTap setDelegate:self];
     [grSet addObject:doubleTap];
