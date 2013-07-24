@@ -27,6 +27,7 @@
 #import "CommonBgView.h"
 #import "UIButtonExt.h"
 #import "GuessService.h"
+#import "HPThemeManager.h"
 
 @interface CommonGuessController ()
 
@@ -45,6 +46,7 @@
     [_pickToolView release];
     [_opusButton release];
     [_bgImageView release];
+    [_toolBoxButton release];
     [super dealloc];
 }
 
@@ -85,6 +87,9 @@
     // Set answer
     self.wordInputView.answer = self.opus.pbOpus.name;
     self.wordInputView.delegate = self;
+    
+    
+    [self.toolBoxButton setImage:UIThemeImageNamed(@"item_box@2x.png") forState:UIControlStateNormal];
 }
 
 
@@ -93,6 +98,7 @@
     [self setWordInputView:nil];
     [self setOpusButton:nil];
     [self setBgImageView:nil];
+    [self setToolBoxButton:nil];
     [super viewDidUnload];
 }
 
@@ -154,15 +160,7 @@
     [_guessWords addObject:word];
     
     if (isCorrect) {
-        
-        [[OpusService defaultService] submitGuessWords:_guessWords
-                                                  opus:_opus
-                                             isCorrect:YES
-                                                 score:3
-                                              delegate:nil];
-        
-        [_guessWords removeAllObjects];
-        
+
         [self didGuessCorrect:word];
     }else{
         [self didGuessWrong:word];
@@ -171,7 +169,23 @@
 
 - (void)didGuessCorrect:(NSString *)word{
     
+    //        [[OpusService defaultService] submitGuessWords:_guessWords
+    //                                                  opus:_opus
+    //                                             isCorrect:YES
+    //                                                 score:3
+    //                                              delegate:nil];
+    
+    [[GuessService defaultService] guessOpus:self.opus.pbOpus
+                                        mode:PBUserGuessModeGuessModeHappy
+                                   contestId:nil
+                                       words:self.guessWords
+                                     correct:YES
+                                   startDate:_startDate
+                                     endDate:[NSDate date]];
+    [_guessWords removeAllObjects];
+
     [OpusGuessRecorder setOpusAsGuessed:_opus.pbOpus.opusId];
+    
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
 }
 

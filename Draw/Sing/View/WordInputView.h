@@ -39,9 +39,6 @@ typedef enum _WordInputViewAlignment{
 
 @property (retain, nonatomic) UIColor *candidateColor;
 @property (retain, nonatomic) UIColor *answerColor;
-@property (assign, nonatomic) CGFloat hGap;
-@property (assign, nonatomic) CGFloat wGap;
-
 
 - (void)setCandidates:(NSString *)characters
                column:(int)column;
@@ -49,6 +46,10 @@ typedef enum _WordInputViewAlignment{
 - (void)bombHalf;
 
 - (void)reset;
+
+- (void)setAnswerViewXOffset:(CGFloat)XOffset;
+- (void)setSeperatorYOffset:(CGFloat)YOffset;
+- (void)setCandidateYOffset:(CGFloat)YOffset;
 
 @end
 

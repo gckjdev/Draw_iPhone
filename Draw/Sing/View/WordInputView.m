@@ -35,10 +35,13 @@
 // 候选字
 @property (copy, nonatomic) NSString *candidates;
 
-@property (retain, nonatomic) UIView *candidateView;
 @property (retain, nonatomic) UIView *answerView;
+@property (retain, nonatomic) UIImageView *sepertorImageView;
+@property (retain, nonatomic) UIView *candidateView;
 @property (assign, nonatomic) CGSize candidateSize;
 @property (assign, nonatomic) CGSize answerSize;
+
+@property (assign, nonatomic) CGFloat wGap;
 
 @property (retain, nonatomic) UIImage *candidateImage;
 @property (retain, nonatomic) UIImage *answerImage;
@@ -53,6 +56,7 @@
 - (void)dealloc{
     
     [_answer release];
+    [_sepertorImageView release];
     [_candidates release];
     [_candidateView release];
     [_answerView release];
@@ -75,10 +79,31 @@
         CGRect frame1 = CGRectMake(0, 0, self.frame.size.width, _answerSize.width);
         self.answerView = [[[UIView alloc] initWithFrame:frame1] autorelease];
         
-        CGRect frame2 = CGRectMake(0, _answerSize.height + BUTTON_HEIGHT_GAP, self.frame.size.width, self.frame.size.height - (_answerSize.height + BUTTON_HEIGHT_GAP));
-        self.candidateView = [[[UIView alloc] initWithFrame:frame2] autorelease];
+        UIImage *seperator = UIThemeImageNamed(@"word_input_seperator@2x.png");
+        CGFloat originY = CGRectGetMaxY(_answerView.frame) + BUTTON_HEIGHT_GAP;
+
+        if (seperator != nil) {
+            
+            CGFloat width = ISIPAD ? seperator.size.width * 2 : seperator.size.width;
+            CGFloat height = ISIPAD ? seperator.size.height * 2 : seperator.size.height;
+            if (width > self.bounds.size.width) {
+                width = self.bounds.size.width;
+            }
+            
+            CGRect frame2 = CGRectMake(0, originY, width, height);
+
+            self.sepertorImageView = [[[UIImageView alloc] initWithFrame:frame2] autorelease];
+            _sepertorImageView.image = seperator;
+            [_sepertorImageView updateCenterX:_answerView.center.x];
+            [_sepertorImageView updateOriginY:originY];
+        }
+        
+        originY = CGRectGetMaxY(_sepertorImageView.frame) + BUTTON_HEIGHT_GAP;
+        CGRect frame3 = CGRectMake(0, originY, self.frame.size.width, self.frame.size.height - originY);
+        self.candidateView = [[[UIView alloc] initWithFrame:frame3] autorelease];
         
         [self addSubview:_answerView];
+        [self addSubview:_sepertorImageView];
         [self addSubview:_candidateView];
         
         self.candidateColor = self.answerColor = DEFAULT_COLOR;
@@ -88,7 +113,6 @@
         // Set appearance of wordInputView
         self.answerImage = UIThemeImageNamed(@"word_input_answer@2x.png");
         self.candidateImage = UIThemeImageNamed(@"word_input_candidate@2x.png");
-        
         
         // Set sound.
         self.clickSound = @"ding.m4a";
@@ -122,17 +146,21 @@
     [self relayout];
 }
 
-- (void)setWGap:(CGFloat)wGap{
+- (void)setAnswerViewXOffset:(CGFloat)XOffset{
     
     _alignment = WordInputViewStyleAlignmentCustom;
-    _wGap = wGap;
+    _wGap = XOffset;
     [self relayout];
 }
 
-
-- (void)setHGap:(CGFloat)hGap{
+- (void)setSeperatorYOffset:(CGFloat)YOffset{
     
-    [_candidateView updateOriginY:(_answerView.bounds.size.height + hGap)];
+    [_sepertorImageView updateOriginY:(_sepertorImageView.frame.origin.y + YOffset)];
+}
+
+- (void)setCandidateYOffset:(CGFloat)YOffset{
+    
+    [_candidateView updateOriginY:(_candidateView.frame.origin.y + YOffset)];
 }
 
 - (void)setCandidateImage:(UIImage *)candidateImage{
@@ -302,7 +330,7 @@
     for (int index = 0; index < [_answer length]; index ++) {
         UIButton *button = [self answerButtonWithIndex:index];
         NSString *ch = [button titleForState:UIControlStateNormal];
-        if (ch == nil) {
+        if (ch.length == 0) {
             return;
         }
         word = [word stringByAppendingString:ch];
