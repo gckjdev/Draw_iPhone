@@ -37,15 +37,15 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="208431628">
+					<object class="IBUIView" id="188775712">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="1059234072">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIImageView" id="1059399343">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{5, 2}, {310, 330}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
+								<reference key="NSSuperview" ref="188775712"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -55,11 +55,11 @@
 								</object>
 							</object>
 							<object class="IBUIButton" id="653396752">
-								<reference key="NSNextResponder" ref="208431628"/>
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{92, -7}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="194997925"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="312384036"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">100</int>
@@ -93,12 +93,12 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
-							<object class="IBUIButton" id="194997925">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="312384036">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{286, -7}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="647452115"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="75881336"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">101</int>
@@ -119,12 +119,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="647452115">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="75881336">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{65, 22}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="258427245"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="904256248"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">102</int>
@@ -145,12 +145,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="258427245">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="904256248">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{233, 22}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="867865484"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="939377172"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">103</int>
@@ -171,12 +171,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="867865484">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="939377172">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{4, 50}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="620500573"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="784368004"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">104</int>
@@ -197,12 +197,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="620500573">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="784368004">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{163, 50}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="112617736"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="795084670"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">105</int>
@@ -223,12 +223,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="112617736">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="795084670">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{261, 78}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="722559135"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="256126247"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">106</int>
@@ -249,12 +249,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="722559135">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="256126247">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{50, 106}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="266724224"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="965810306"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">107</int>
@@ -275,12 +275,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="266724224">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="965810306">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{152, 106}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="591873212"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="1066745050"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">108</int>
@@ -301,12 +301,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="591873212">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="1066745050">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{96, 135}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="863498834"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="717868264"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">109</int>
@@ -327,12 +327,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="863498834">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="717868264">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{286, 135}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="328872066"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="857332187"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">110</int>
@@ -353,12 +353,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="269667732">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="505745758">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{261, 191}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="964572245"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="263185205"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">114</int>
@@ -379,12 +379,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="328872066">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="857332187">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{206, 163}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="390490900"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="987532998"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">111</int>
@@ -405,12 +405,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="390490900">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="987532998">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{14, 192}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="181445300"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="792060083"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">112</int>
@@ -431,12 +431,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="964572245">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="263185205">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{99, 221}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="271661379"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="589020883"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">115</int>
@@ -457,12 +457,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="271661379">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="589020883">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{223, 249}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="461743017"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="60619727"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">116</int>
@@ -483,12 +483,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="461743017">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="60619727">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{11, 277}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="965263706"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="199998583"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">117</int>
@@ -509,12 +509,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="965263706">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="199998583">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{188, 277}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="270183978"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="576523325"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">118</int>
@@ -535,11 +535,11 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="270183978">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="576523325">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{121, 306}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
+								<reference key="NSSuperview" ref="188775712"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">119</int>
@@ -560,12 +560,12 @@
 								<reference key="IBUIFontDescription" ref="294125804"/>
 								<reference key="IBUIFont" ref="212745927"/>
 							</object>
-							<object class="IBUIButton" id="181445300">
-								<reference key="NSNextResponder" ref="208431628"/>
+							<object class="IBUIButton" id="792060083">
+								<reference key="NSNextResponder" ref="188775712"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{147, 192}, {34, 34}}</string>
-								<reference key="NSSuperview" ref="208431628"/>
-								<reference key="NSNextKeyView" ref="269667732"/>
+								<reference key="NSSuperview" ref="188775712"/>
+								<reference key="NSNextKeyView" ref="505745758"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">113</int>
@@ -597,7 +597,7 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIImageView" id="820086952">
+					<object class="IBUIImageView" id="393195242">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 390}, {320, 70}}</string>
@@ -610,7 +610,7 @@
 							<string key="NSResourceName">guess_rank_bg@2x.jpg</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="481682322">
+					<object class="IBUILabel" id="1073137776">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{15, 400}, {104, 21}}</string>
@@ -622,25 +622,25 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">关卡: 14</string>
-						<object class="NSColor" key="IBUITextColor" id="1008471719">
+						<object class="NSColor" key="IBUITextColor" id="13904703">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="325836677">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1049467586">
 							<int key="type">1</int>
 							<double key="pointSize">13</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="146828554">
+						<object class="NSFont" key="IBUIFont" id="252088888">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUILabel" id="445129029">
+					<object class="IBUILabel" id="193428942">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{15, 417}, {104, 21}}</string>
@@ -652,14 +652,14 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">奖金: 400金币</string>
-						<reference key="IBUITextColor" ref="1008471719"/>
+						<reference key="IBUITextColor" ref="13904703"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="325836677"/>
-						<reference key="IBUIFont" ref="146828554"/>
+						<reference key="IBUIFontDescription" ref="1049467586"/>
+						<reference key="IBUIFont" ref="252088888"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUILabel" id="1061244267">
+					<object class="IBUILabel" id="657099653">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{15, 434}, {104, 21}}</string>
@@ -671,14 +671,14 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">领先: 90%</string>
-						<reference key="IBUITextColor" ref="1008471719"/>
+						<reference key="IBUITextColor" ref="13904703"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="325836677"/>
-						<reference key="IBUIFont" ref="146828554"/>
+						<reference key="IBUIFontDescription" ref="1049467586"/>
+						<reference key="IBUIFont" ref="252088888"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUIButton" id="887649943">
+					<object class="IBUIButton" id="632336317">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{134, 410}, {78, 36}}</string>
@@ -701,7 +701,7 @@
 						<reference key="IBUIFontDescription" ref="294125804"/>
 						<reference key="IBUIFont" ref="212745927"/>
 					</object>
-					<object class="IBUIButton" id="472945261">
+					<object class="IBUIButton" id="225372793">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{222, 410}, {78, 36}}</string>
@@ -727,7 +727,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="208431628"/>
+				<reference key="NSNextKeyView" ref="188775712"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -752,7 +752,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">opusesHolderView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="208431628"/>
+						<reference key="destination" ref="188775712"/>
 					</object>
 					<int key="connectionID">60</int>
 				</object>
@@ -760,7 +760,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">guessedInfoLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="481682322"/>
+						<reference key="destination" ref="1073137776"/>
 					</object>
 					<int key="connectionID">66</int>
 				</object>
@@ -768,7 +768,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">aheadInfoLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1061244267"/>
+						<reference key="destination" ref="657099653"/>
 					</object>
 					<int key="connectionID">68</int>
 				</object>
@@ -776,7 +776,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">awardInfoLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="445129029"/>
+						<reference key="destination" ref="193428942"/>
 					</object>
 					<int key="connectionID">70</int>
 				</object>
@@ -792,7 +792,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="194997925"/>
+						<reference key="source" ref="312384036"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -801,7 +801,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="647452115"/>
+						<reference key="source" ref="75881336"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -810,7 +810,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="258427245"/>
+						<reference key="source" ref="904256248"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -819,7 +819,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="867865484"/>
+						<reference key="source" ref="939377172"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -828,7 +828,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="620500573"/>
+						<reference key="source" ref="784368004"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -837,7 +837,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="112617736"/>
+						<reference key="source" ref="795084670"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -846,7 +846,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="722559135"/>
+						<reference key="source" ref="256126247"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -855,7 +855,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="266724224"/>
+						<reference key="source" ref="965810306"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -864,7 +864,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="591873212"/>
+						<reference key="source" ref="1066745050"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -873,7 +873,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="863498834"/>
+						<reference key="source" ref="717868264"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -882,7 +882,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="269667732"/>
+						<reference key="source" ref="505745758"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -891,7 +891,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="328872066"/>
+						<reference key="source" ref="857332187"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -900,7 +900,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="390490900"/>
+						<reference key="source" ref="987532998"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -909,7 +909,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="964572245"/>
+						<reference key="source" ref="263185205"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -918,7 +918,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="181445300"/>
+						<reference key="source" ref="792060083"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -927,7 +927,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="271661379"/>
+						<reference key="source" ref="589020883"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -936,7 +936,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="461743017"/>
+						<reference key="source" ref="60619727"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -945,7 +945,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="965263706"/>
+						<reference key="source" ref="199998583"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -954,7 +954,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickOpusButton:</string>
-						<reference key="source" ref="270183978"/>
+						<reference key="source" ref="576523325"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -963,7 +963,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickShareButton:</string>
-						<reference key="source" ref="887649943"/>
+						<reference key="source" ref="632336317"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -972,7 +972,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickRestartButton:</string>
-						<reference key="source" ref="472945261"/>
+						<reference key="source" ref="225372793"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -991,13 +991,13 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="208431628"/>
-							<reference ref="481682322"/>
-							<reference ref="445129029"/>
-							<reference ref="1061244267"/>
-							<reference ref="820086952"/>
-							<reference ref="887649943"/>
-							<reference ref="472945261"/>
+							<reference ref="188775712"/>
+							<reference ref="1073137776"/>
+							<reference ref="193428942"/>
+							<reference ref="657099653"/>
+							<reference ref="393195242"/>
+							<reference ref="632336317"/>
+							<reference ref="225372793"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1014,165 +1014,165 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">59</int>
-						<reference key="object" ref="208431628"/>
+						<reference key="object" ref="188775712"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="1059234072"/>
+							<reference ref="1059399343"/>
 							<reference ref="653396752"/>
-							<reference ref="647452115"/>
-							<reference ref="258427245"/>
-							<reference ref="867865484"/>
-							<reference ref="620500573"/>
-							<reference ref="112617736"/>
-							<reference ref="722559135"/>
-							<reference ref="591873212"/>
-							<reference ref="863498834"/>
-							<reference ref="328872066"/>
-							<reference ref="271661379"/>
-							<reference ref="269667732"/>
-							<reference ref="390490900"/>
-							<reference ref="965263706"/>
-							<reference ref="181445300"/>
-							<reference ref="194997925"/>
-							<reference ref="964572245"/>
-							<reference ref="461743017"/>
-							<reference ref="270183978"/>
-							<reference ref="266724224"/>
+							<reference ref="75881336"/>
+							<reference ref="904256248"/>
+							<reference ref="939377172"/>
+							<reference ref="784368004"/>
+							<reference ref="795084670"/>
+							<reference ref="256126247"/>
+							<reference ref="1066745050"/>
+							<reference ref="717868264"/>
+							<reference ref="857332187"/>
+							<reference ref="589020883"/>
+							<reference ref="505745758"/>
+							<reference ref="987532998"/>
+							<reference ref="199998583"/>
+							<reference ref="792060083"/>
+							<reference ref="312384036"/>
+							<reference ref="263185205"/>
+							<reference ref="60619727"/>
+							<reference ref="576523325"/>
+							<reference ref="965810306"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="653396752"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="194997925"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="312384036"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="647452115"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="75881336"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="258427245"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="904256248"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
-						<reference key="object" ref="867865484"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="939377172"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
-						<reference key="object" ref="620500573"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="784368004"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">23</int>
-						<reference key="object" ref="112617736"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="795084670"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
-						<reference key="object" ref="722559135"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="256126247"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">27</int>
-						<reference key="object" ref="266724224"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="965810306"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
-						<reference key="object" ref="591873212"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="1066745050"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">31</int>
-						<reference key="object" ref="863498834"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="717868264"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">33</int>
-						<reference key="object" ref="269667732"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="505745758"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">35</int>
-						<reference key="object" ref="328872066"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="857332187"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">37</int>
-						<reference key="object" ref="390490900"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="987532998"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">39</int>
-						<reference key="object" ref="964572245"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="263185205"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">51</int>
-						<reference key="object" ref="271661379"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="589020883"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">53</int>
-						<reference key="object" ref="461743017"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="60619727"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">55</int>
-						<reference key="object" ref="965263706"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="199998583"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">57</int>
-						<reference key="object" ref="270183978"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="576523325"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
-						<reference key="object" ref="181445300"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="792060083"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">62</int>
-						<reference key="object" ref="1059234072"/>
-						<reference key="parent" ref="208431628"/>
+						<reference key="object" ref="1059399343"/>
+						<reference key="parent" ref="188775712"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">63</int>
-						<reference key="object" ref="481682322"/>
+						<reference key="object" ref="1073137776"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">64</int>
-						<reference key="object" ref="445129029"/>
+						<reference key="object" ref="193428942"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">65</int>
-						<reference key="object" ref="1061244267"/>
+						<reference key="object" ref="657099653"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">71</int>
-						<reference key="object" ref="820086952"/>
+						<reference key="object" ref="393195242"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">72</int>
-						<reference key="object" ref="887649943"/>
+						<reference key="object" ref="632336317"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">73</int>
-						<reference key="object" ref="472945261"/>
+						<reference key="object" ref="225372793"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -1224,30 +1224,30 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="guess_rank_bg@2x.jpg">{768, 167}</string>
-			<string key="guess_select_bg@2x.jpg">{698, 708}</string>
-			<string key="restart_guess@2x.png">{156, 73}</string>
-			<string key="round_dot_10@2x.png">{68, 69}</string>
-			<string key="round_dot_11@2x.png">{68, 69}</string>
-			<string key="round_dot_12@2x.png">{68, 69}</string>
-			<string key="round_dot_13@2x.png">{68, 69}</string>
-			<string key="round_dot_14@2x.png">{68, 69}</string>
-			<string key="round_dot_15@2x.png">{68, 69}</string>
-			<string key="round_dot_16@2x.png">{68, 69}</string>
-			<string key="round_dot_17@2x.png">{68, 69}</string>
-			<string key="round_dot_18@2x.png">{68, 69}</string>
-			<string key="round_dot_19@2x.png">{68, 69}</string>
-			<string key="round_dot_1@2x.png">{68, 69}</string>
-			<string key="round_dot_20@2x.png">{68, 69}</string>
-			<string key="round_dot_2@2x.png">{68, 69}</string>
-			<string key="round_dot_3@2x.png">{68, 69}</string>
-			<string key="round_dot_4@2x.png">{68, 69}</string>
-			<string key="round_dot_5@2x.png">{68, 69}</string>
-			<string key="round_dot_6@2x.png">{68, 69}</string>
-			<string key="round_dot_7@2x.png">{68, 69}</string>
-			<string key="round_dot_8@2x.png">{68, 69}</string>
-			<string key="round_dot_9@2x.png">{68, 69}</string>
-			<string key="share_guess_rank@2x.png">{156, 73}</string>
+			<string key="guess_rank_bg@2x.jpg">{16, 16}</string>
+			<string key="guess_select_bg@2x.jpg">{16, 16}</string>
+			<string key="restart_guess@2x.png">{16, 16}</string>
+			<string key="round_dot_10@2x.png">{16, 16}</string>
+			<string key="round_dot_11@2x.png">{16, 16}</string>
+			<string key="round_dot_12@2x.png">{16, 16}</string>
+			<string key="round_dot_13@2x.png">{16, 16}</string>
+			<string key="round_dot_14@2x.png">{16, 16}</string>
+			<string key="round_dot_15@2x.png">{16, 16}</string>
+			<string key="round_dot_16@2x.png">{16, 16}</string>
+			<string key="round_dot_17@2x.png">{16, 16}</string>
+			<string key="round_dot_18@2x.png">{16, 16}</string>
+			<string key="round_dot_19@2x.png">{16, 16}</string>
+			<string key="round_dot_1@2x.png">{16, 16}</string>
+			<string key="round_dot_20@2x.png">{16, 16}</string>
+			<string key="round_dot_2@2x.png">{16, 16}</string>
+			<string key="round_dot_3@2x.png">{16, 16}</string>
+			<string key="round_dot_4@2x.png">{16, 16}</string>
+			<string key="round_dot_5@2x.png">{16, 16}</string>
+			<string key="round_dot_6@2x.png">{16, 16}</string>
+			<string key="round_dot_7@2x.png">{16, 16}</string>
+			<string key="round_dot_8@2x.png">{16, 16}</string>
+			<string key="round_dot_9@2x.png">{16, 16}</string>
+			<string key="share_guess_rank@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
