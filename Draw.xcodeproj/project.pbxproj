@@ -2067,6 +2067,10 @@
 		A4B78A4F179F78BC0008E21B /* round_dot_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A1E179F78BB0008E21B /* round_dot_9@2x.png */; };
 		A4B78A50179F78BC0008E21B /* share_guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A1F179F78BB0008E21B /* share_guess_rank@2x.png */; };
 		A4B78A51179F78BC0008E21B /* share_guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A1F179F78BB0008E21B /* share_guess_rank@2x.png */; };
+		A4B78A57179F7A2E0008E21B /* GuessModesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789AB179E2F120008E21B /* GuessModesController.m */; };
+		A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AC179E2F120008E21B /* GuessModesController.xib */; };
+		A4B78A59179F7A700008E21B /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
+		A4B78A5A179F7A790008E21B /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -2111,12 +2115,10 @@
 		A4C8D564175EDFC6007ED7E4 /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
 		A4C8D565175EDFC6007ED7E4 /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
 		A4C8D56F175EE027007ED7E4 /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
-		A4C8D570175EE027007ED7E4 /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
 		A4C8D571175EE027007ED7E4 /* Opus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56A175EE027007ED7E4 /* Opus.m */; };
 		A4C8D572175EE027007ED7E4 /* Opus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56A175EE027007ED7E4 /* Opus.m */; };
 		A4C8D573175EE027007ED7E4 /* OpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56C175EE027007ED7E4 /* OpusManager.m */; };
 		A4C8D574175EE027007ED7E4 /* OpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56C175EE027007ED7E4 /* OpusManager.m */; };
-		A4C8D575175EE028007ED7E4 /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
 		A4C8D576175EE028007ED7E4 /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
 		A4C8D5EB175EEC23007ED7E4 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
 		A4C8D5EC175EEC23007ED7E4 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
@@ -2378,7 +2380,6 @@
 		C235C62116A3F46100D80BA4 /* maleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = C235C61716A3F43600D80BA4 /* maleImage.png */; };
 		C2385E391753396700A6B19E /* iap_product_645475970.pb in Resources */ = {isa = PBXBuildFile; fileRef = C2385E381753396700A6B19E /* iap_product_645475970.pb */; };
 		C23C334C176A11FA004BE236 /* Opus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56A175EE027007ED7E4 /* Opus.m */; };
-		C23C3352176A125E004BE236 /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
 		C23C3355176AB0ED004BE236 /* PhotoTagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C23C3354176AB0ED004BE236 /* PhotoTagManager.m */; };
 		C23C3356176AB0ED004BE236 /* PhotoTagManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C23C3354176AB0ED004BE236 /* PhotoTagManager.m */; };
 		C23C3358176AB922004BE236 /* photo_tags.txt in Resources */ = {isa = PBXBuildFile; fileRef = C23C3357176AB922004BE236 /* photo_tags.txt */; };
@@ -7942,10 +7943,8 @@
 		EA411B04176066F500DA72D0 /* GoogleCustomSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE5739175DED3000AFD6AA /* GoogleCustomSearchService.m */; };
 		EA411B05176066F500DA72D0 /* GoogleCustomSearchNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */; };
 		EA411B06176066F500DA72D0 /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
-		EA411B07176066F500DA72D0 /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
 		EA411B08176066F500DA72D0 /* Opus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56A175EE027007ED7E4 /* Opus.m */; };
 		EA411B09176066F500DA72D0 /* OpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56C175EE027007ED7E4 /* OpusManager.m */; };
-		EA411B0A176066F500DA72D0 /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
 		EA411B0B176066F500DA72D0 /* Opus.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244A76175EE48D002C0A37 /* Opus.pb.m */; };
 		EA411B11176066F500DA72D0 /* Opus.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CAE58A00175EF45E009149E9 /* Opus.pb-c.c */; };
 		EA411B14176066F500DA72D0 /* ClipAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244ADF175F4574002C0A37 /* ClipAction.m */; };
@@ -21643,6 +21642,7 @@
 				A4B78A4D179F78BC0008E21B /* round_dot_8@2x.png in Resources */,
 				A4B78A4F179F78BC0008E21B /* round_dot_9@2x.png in Resources */,
 				A4B78A51179F78BC0008E21B /* share_guess_rank@2x.png in Resources */,
+				A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25218,7 +25218,6 @@
 				A4DC4EA4175C44EA00CB5841 /* LocalSingManager.m in Sources */,
 				A4DC4EA5175C44EA00CB5841 /* SingImageManager.m in Sources */,
 				A4C8D565175EDFC6007ED7E4 /* OpusService.m in Sources */,
-				A4C8D570175EE027007ED7E4 /* DrawOpus.m in Sources */,
 				A4C8D572175EE027007ED7E4 /* Opus.m in Sources */,
 				A4C8D574175EE027007ED7E4 /* OpusManager.m in Sources */,
 				A4C8D576175EE028007ED7E4 /* SingOpus.m in Sources */,
@@ -26055,7 +26054,6 @@
 				CAF7DCAA17685238001596C0 /* ShapeGroup.m in Sources */,
 				EA6FE5AE1769B9C700AB4E56 /* AskPs.m in Sources */,
 				C23C334C176A11FA004BE236 /* Opus.m in Sources */,
-				C23C3352176A125E004BE236 /* SingOpus.m in Sources */,
 				C23C3356176AB0ED004BE236 /* PhotoTagManager.m in Sources */,
 				C23C336F176B0797004BE236 /* EditTagCell.m in Sources */,
 				CAE49C7C176C4FF7005743F2 /* UIBezierPath+Ext.m in Sources */,
@@ -26117,6 +26115,9 @@
 				A4B789B5179E36C40008E21B /* WordInputView.m in Sources */,
 				CA51834C179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518356179F79A80033AA95 /* UserNumberService.m in Sources */,
+				A4B78A57179F7A2E0008E21B /* GuessModesController.m in Sources */,
+				A4B78A59179F7A700008E21B /* DrawOpus.m in Sources */,
+				A4B78A5A179F7A790008E21B /* PBOpus+Extend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26813,7 +26814,6 @@
 				A4C8D56F175EE027007ED7E4 /* DrawOpus.m in Sources */,
 				A4C8D571175EE027007ED7E4 /* Opus.m in Sources */,
 				A4C8D573175EE027007ED7E4 /* OpusManager.m in Sources */,
-				A4C8D575175EE028007ED7E4 /* SingOpus.m in Sources */,
 				CA244A77175EE48D002C0A37 /* Opus.pb.m in Sources */,
 				CAE58A02175EF45E009149E9 /* Opus.pb-c.c in Sources */,
 				CA244AE0175F4574002C0A37 /* ClipAction.m in Sources */,
@@ -28320,10 +28320,8 @@
 				EA411B04176066F500DA72D0 /* GoogleCustomSearchService.m in Sources */,
 				EA411B05176066F500DA72D0 /* GoogleCustomSearchNetworkRequest.m in Sources */,
 				EA411B06176066F500DA72D0 /* OpusService.m in Sources */,
-				EA411B07176066F500DA72D0 /* DrawOpus.m in Sources */,
 				EA411B08176066F500DA72D0 /* Opus.m in Sources */,
 				EA411B09176066F500DA72D0 /* OpusManager.m in Sources */,
-				EA411B0A176066F500DA72D0 /* SingOpus.m in Sources */,
 				EA411B0B176066F500DA72D0 /* Opus.pb.m in Sources */,
 				EA411B11176066F500DA72D0 /* Opus.pb-c.c in Sources */,
 				EA411B14176066F500DA72D0 /* ClipAction.m in Sources */,

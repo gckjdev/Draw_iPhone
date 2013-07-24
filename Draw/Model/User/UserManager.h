@@ -99,6 +99,10 @@ typedef enum {
 - (void)setDeviceId:(NSString*)deviceId;
 - (void)setDeviceOS:(NSString*)deviceOS;
 
+- (void)setXiaojiNumber:(NSString*)number;
+- (NSString*)xiaojiNumber;
+- (BOOL)hasXiaojiNumber;
+
 - (BOOL)hasUser;
 - (BOOL)isUserMale;
 - (NSString*)defaultAvatar;
