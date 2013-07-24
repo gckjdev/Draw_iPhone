@@ -107,6 +107,16 @@ BOOL PBUserGuessModeIsValidValue(PBUserGuessMode value) {
       return NO;
   }
 }
+BOOL PBGuessContestStateIsValidValue(PBGuessContestState value) {
+  switch (value) {
+    case PBGuessContestStateGuessContestStateNotStart:
+    case PBGuessContestStateGuessContestStateIng:
+    case PBGuessContestStateGuessContestStateEnd:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBDrawOpus ()
 @property int32_t level;
 @end
@@ -3350,6 +3360,7 @@ static PBGuessResult* defaultPBGuessResultInstance = nil;
 @interface PBGuessContest ()
 @property (retain) NSString* contestId;
 @property (retain) NSString* name;
+@property int32_t state;
 @property int32_t startTime;
 @property int32_t endTime;
 @end
@@ -3370,6 +3381,13 @@ static PBGuessResult* defaultPBGuessResultInstance = nil;
   hasName_ = !!value;
 }
 @synthesize name;
+- (BOOL) hasState {
+  return !!hasState_;
+}
+- (void) setHasState:(BOOL) value {
+  hasState_ = !!value;
+}
+@synthesize state;
 - (BOOL) hasStartTime {
   return !!hasStartTime_;
 }
@@ -3393,6 +3411,7 @@ static PBGuessResult* defaultPBGuessResultInstance = nil;
   if ((self = [super init])) {
     self.contestId = @"";
     self.name = @"";
+    self.state = 0;
     self.startTime = 0;
     self.endTime = 0;
   }
@@ -3423,6 +3442,9 @@ static PBGuessContest* defaultPBGuessContestInstance = nil;
   if (self.hasName) {
     [output writeString:2 value:self.name];
   }
+  if (self.hasState) {
+    [output writeInt32:3 value:self.state];
+  }
   if (self.hasStartTime) {
     [output writeInt32:5 value:self.startTime];
   }
@@ -3443,6 +3465,9 @@ static PBGuessContest* defaultPBGuessContestInstance = nil;
   }
   if (self.hasName) {
     size += computeStringSize(2, self.name);
+  }
+  if (self.hasState) {
+    size += computeInt32Size(3, self.state);
   }
   if (self.hasStartTime) {
     size += computeInt32Size(5, self.startTime);
@@ -3531,6 +3556,9 @@ static PBGuessContest* defaultPBGuessContestInstance = nil;
   if (other.hasName) {
     [self setName:other.name];
   }
+  if (other.hasState) {
+    [self setState:other.state];
+  }
   if (other.hasStartTime) {
     [self setStartTime:other.startTime];
   }
@@ -3564,6 +3592,10 @@ static PBGuessContest* defaultPBGuessContestInstance = nil;
       }
       case 18: {
         [self setName:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setState:[input readInt32]];
         break;
       }
       case 40: {
@@ -3607,6 +3639,22 @@ static PBGuessContest* defaultPBGuessContestInstance = nil;
 - (PBGuessContest_Builder*) clearName {
   result.hasName = NO;
   result.name = @"";
+  return self;
+}
+- (BOOL) hasState {
+  return result.hasState;
+}
+- (int32_t) state {
+  return result.state;
+}
+- (PBGuessContest_Builder*) setState:(int32_t) value {
+  result.hasState = YES;
+  result.state = value;
+  return self;
+}
+- (PBGuessContest_Builder*) clearState {
+  result.hasState = NO;
+  result.state = 0;
   return self;
 }
 - (BOOL) hasStartTime {

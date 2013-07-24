@@ -1333,7 +1333,7 @@ static const protobuf_c_boolean game__pbgame_user__is_taken_over__default_value 
 static const int32_t game__pbgame_user__guess_word_language__default_value = 1;
 static const Game__PBOpenInfoType game__pbgame_user__open_info_type__default_value = GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND;
 static const int32_t game__pbgame_user__sing_record_limit__default_value = 30;
-static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[42] =
+static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[43] =
 {
   {
     "userId",
@@ -1438,6 +1438,18 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[42] =
     PROTOBUF_C_TYPE_INT32,
     PROTOBUF_C_OFFSETOF(Game__PBGameUser, has_seatid),
     PROTOBUF_C_OFFSETOF(Game__PBGameUser, seatid),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "xiaojiNumber",
+    10,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBGameUser, xiaojinumber),
     NULL,
     NULL,
     0,            /* packed */
@@ -1841,63 +1853,64 @@ static const ProtobufCFieldDescriptor game__pbgame_user__field_descriptors[42] =
   },
 };
 static const unsigned game__pbgame_user__field_indices_by_name[] = {
-  11,   /* field[11] = attributes */
+  12,   /* field[12] = attributes */
   2,   /* field[2] = avatar */
-  17,   /* field[17] = backgroundURL */
-  14,   /* field[14] = birthday */
-  31,   /* field[31] = bloodGroup */
-  23,   /* field[23] = coinBalance */
-  19,   /* field[19] = countryCode */
-  29,   /* field[29] = deviceId */
-  27,   /* field[27] = deviceModel */
-  28,   /* field[28] = deviceOS */
-  18,   /* field[18] = deviceToken */
-  30,   /* field[30] = deviceType */
-  24,   /* field[24] = diamondBalance */
-  12,   /* field[12] = email */
-  22,   /* field[22] = experience */
+  18,   /* field[18] = backgroundURL */
+  15,   /* field[15] = birthday */
+  32,   /* field[32] = bloodGroup */
+  24,   /* field[24] = coinBalance */
+  20,   /* field[20] = countryCode */
+  30,   /* field[30] = deviceId */
+  28,   /* field[28] = deviceModel */
+  29,   /* field[29] = deviceOS */
+  19,   /* field[19] = deviceToken */
+  31,   /* field[31] = deviceType */
+  25,   /* field[25] = diamondBalance */
+  13,   /* field[13] = email */
+  23,   /* field[23] = experience */
   7,   /* field[7] = facetimeId */
-  32,   /* field[32] = fanCount */
-  40,   /* field[40] = featureOpus */
-  33,   /* field[33] = followCount */
+  33,   /* field[33] = fanCount */
+  41,   /* field[41] = featureOpus */
+  34,   /* field[34] = followCount */
   3,   /* field[3] = gender */
-  16,   /* field[16] = guessWordLanguage */
-  25,   /* field[25] = ingotBalance */
-  36,   /* field[36] = isJailBroken */
-  9,   /* field[9] = isPlaying */
-  10,   /* field[10] = isTakenOver */
-  26,   /* field[26] = items */
-  20,   /* field[20] = language */
-  35,   /* field[35] = latitude */
-  21,   /* field[21] = level */
+  17,   /* field[17] = guessWordLanguage */
+  26,   /* field[26] = ingotBalance */
+  37,   /* field[37] = isJailBroken */
+  10,   /* field[10] = isPlaying */
+  11,   /* field[11] = isTakenOver */
+  27,   /* field[27] = items */
+  21,   /* field[21] = language */
+  36,   /* field[36] = latitude */
+  22,   /* field[22] = level */
   5,   /* field[5] = location */
-  34,   /* field[34] = longitude */
+  35,   /* field[35] = longitude */
   1,   /* field[1] = nickName */
-  37,   /* field[37] = openInfoType */
-  38,   /* field[38] = opusCoverflowType */
-  13,   /* field[13] = password */
+  38,   /* field[38] = openInfoType */
+  39,   /* field[39] = opusCoverflowType */
+  14,   /* field[14] = password */
   8,   /* field[8] = seatId */
-  39,   /* field[39] = signature */
-  41,   /* field[41] = singRecordLimit */
+  40,   /* field[40] = signature */
+  42,   /* field[42] = singRecordLimit */
   4,   /* field[4] = snsUsers */
   0,   /* field[0] = userId */
   6,   /* field[6] = userLevel */
-  15,   /* field[15] = zodiac */
+  9,   /* field[9] = xiaojiNumber */
+  16,   /* field[16] = zodiac */
 };
 static const ProtobufCIntRange game__pbgame_user__number_ranges[11 + 1] =
 {
   { 1, 0 },
-  { 20, 9 },
-  { 31, 12 },
-  { 41, 21 },
-  { 51, 23 },
-  { 61, 26 },
-  { 71, 27 },
-  { 81, 31 },
-  { 91, 37 },
-  { 100, 39 },
-  { 200, 41 },
-  { 0, 42 }
+  { 20, 10 },
+  { 31, 13 },
+  { 41, 22 },
+  { 51, 24 },
+  { 61, 27 },
+  { 71, 28 },
+  { 81, 32 },
+  { 91, 38 },
+  { 100, 40 },
+  { 200, 42 },
+  { 0, 43 }
 };
 const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
 {
@@ -1907,7 +1920,7 @@ const ProtobufCMessageDescriptor game__pbgame_user__descriptor =
   "Game__PBGameUser",
   "game",
   sizeof(Game__PBGameUser),
-  42,
+  43,
   game__pbgame_user__field_descriptors,
   game__pbgame_user__field_indices_by_name,
   11,  game__pbgame_user__number_ranges,

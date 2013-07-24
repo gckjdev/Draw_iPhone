@@ -26,14 +26,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
     [[GuessService defaultService] getGuessRankListWithType:HOT_RANK mode:PBUserGuessModeGuessModeHappy contestId:nil offset:0 limit:20];
     [[GuessService defaultService] setDelegate:self];
     
 }
 
-- (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode
-{
-    
+- (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode{
 }
 
 
