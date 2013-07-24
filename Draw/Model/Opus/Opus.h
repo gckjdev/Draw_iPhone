@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Opus.pb.h"
-#import "BuriSerialization.h"
 
 //typedef enum _OpusCategory{
 //    OpusCategoryDraw = 1,
@@ -21,7 +20,7 @@
 #define ENCODE_OPUS_KEY         @"opusKey"
 #define BURI_INDEX_STORE_TYPE   @"opusStoreType"
 
-@interface Opus : NSObject <BuriSupport>
+@interface Opus : NSObject
 
 @property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
 

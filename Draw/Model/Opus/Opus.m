@@ -229,15 +229,6 @@
 
 #pragma mark - Buri Protocol 
 
-+ (NSDictionary *)buriProperties{
-    return @{
-             BURI_KEY: ENCODE_OPUS_KEY, // make sure it's in Opus.h
-             BURI_NUMERIC_INDEXES: @[BURI_INDEX_STORE_TYPE],
-             };
-}
-
-
-
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	if ((self = [super init])) {

@@ -10,4 +10,16 @@
 
 @implementation UserNumberService
 
+static UserNumberService* _defaultUserService;
+
++ (UserNumberService*)defaultService
+{
+    if (_defaultUserService == nil)
+        _defaultUserService = [[UserNumberService alloc] init];
+    
+    return _defaultUserService;
+}
+
+
+
 @end
