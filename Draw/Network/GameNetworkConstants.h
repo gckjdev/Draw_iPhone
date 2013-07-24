@@ -149,7 +149,16 @@
 #define METHOD_GET_FEED_COMMENT_LIST @"gfc"
 #define METHOD_GET_OUPS_TIMES @"got"
 
+#define METHOD_GET_NEW_NUMBER           @"getNewNumber"
+#define METHOD_GET_NUMBERS_FOR_USER     @"getNumbersForUser"
+#define METHOD_LOGIN_NUMBER             @"loginNumber"
+#define METHOD_LOGOUT_NUMBER            @"logoutNumber"
+#define METHOD_SEND_PASSWORD            @"sendPassword"
+#define METHOD_SET_USER_NUMBER          @"setUserNumber"
 
+#define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
+#define PARA_SET_USER_NUMBER            @"setUserNumber"
+#define PARA_XIAOJI_NUMBER              @"xn"
 
 
 //contest
