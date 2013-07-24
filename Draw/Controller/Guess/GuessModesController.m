@@ -53,4 +53,11 @@
     
 }
 
+- (IBAction)clickRankButton:(id)sender {
+}
+
+
+- (IBAction)clickRuleButton:(id)sender {
+}
+
 @end

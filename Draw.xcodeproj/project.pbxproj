@@ -2084,6 +2084,22 @@
 		A4B78A65179F7C680008E21B /* DrawGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789A6179E2F040008E21B /* DrawGuessController.m */; };
 		A4B78A66179F7C680008E21B /* DrawGuessController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789A7179E2F040008E21B /* DrawGuessController.xib */; };
 		A4B78A67179F7C6D0008E21B /* CommonGuessController.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971FB177831E100B01EBE /* CommonGuessController.m */; };
+		A4B78A6B179FA6F10008E21B /* GuessRankListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A69179FA6ED0008E21B /* GuessRankListController.m */; };
+		A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A69179FA6ED0008E21B /* GuessRankListController.m */; };
+		A4B78A6D179FA6F10008E21B /* GuessRankListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */; };
+		A4B78A6E179FA6F10008E21B /* GuessRankListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */; };
+		A4B78A75179FADE20008E21B /* guess_contest_mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A6F179FADE20008E21B /* guess_contest_mode@2x.png */; };
+		A4B78A76179FADE20008E21B /* guess_contest_mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A6F179FADE20008E21B /* guess_contest_mode@2x.png */; };
+		A4B78A77179FADE20008E21B /* guess_contest_time.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A70179FADE20008E21B /* guess_contest_time.png */; };
+		A4B78A78179FADE20008E21B /* guess_contest_time.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A70179FADE20008E21B /* guess_contest_time.png */; };
+		A4B78A79179FADE20008E21B /* guess_genius_mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A71179FADE20008E21B /* guess_genius_mode@2x.png */; };
+		A4B78A7A179FADE20008E21B /* guess_genius_mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A71179FADE20008E21B /* guess_genius_mode@2x.png */; };
+		A4B78A7B179FADE20008E21B /* guess_happy_mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A72179FADE20008E21B /* guess_happy_mode@2x.png */; };
+		A4B78A7C179FADE20008E21B /* guess_happy_mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A72179FADE20008E21B /* guess_happy_mode@2x.png */; };
+		A4B78A7D179FADE20008E21B /* guess_rank_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A73179FADE20008E21B /* guess_rank_list@2x.png */; };
+		A4B78A7E179FADE20008E21B /* guess_rank_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A73179FADE20008E21B /* guess_rank_list@2x.png */; };
+		A4B78A7F179FADE20008E21B /* guess_rules@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A74179FADE20008E21B /* guess_rules@2x.png */; };
+		A4B78A80179FADE20008E21B /* guess_rules@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A74179FADE20008E21B /* guess_rules@2x.png */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -9556,6 +9572,15 @@
 		A4B78A1D179F78BB0008E21B /* round_dot_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_dot_8@2x.png"; sourceTree = "<group>"; };
 		A4B78A1E179F78BB0008E21B /* round_dot_9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_dot_9@2x.png"; sourceTree = "<group>"; };
 		A4B78A1F179F78BB0008E21B /* share_guess_rank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_guess_rank@2x.png"; sourceTree = "<group>"; };
+		A4B78A68179FA6E70008E21B /* GuessRankListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessRankListController.h; sourceTree = "<group>"; };
+		A4B78A69179FA6ED0008E21B /* GuessRankListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessRankListController.m; sourceTree = "<group>"; };
+		A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessRankListController.xib; sourceTree = "<group>"; };
+		A4B78A6F179FADE20008E21B /* guess_contest_mode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_contest_mode@2x.png"; sourceTree = "<group>"; };
+		A4B78A70179FADE20008E21B /* guess_contest_time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guess_contest_time.png; sourceTree = "<group>"; };
+		A4B78A71179FADE20008E21B /* guess_genius_mode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_genius_mode@2x.png"; sourceTree = "<group>"; };
+		A4B78A72179FADE20008E21B /* guess_happy_mode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_happy_mode@2x.png"; sourceTree = "<group>"; };
+		A4B78A73179FADE20008E21B /* guess_rank_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rank_list@2x.png"; sourceTree = "<group>"; };
+		A4B78A74179FADE20008E21B /* guess_rules@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rules@2x.png"; sourceTree = "<group>"; };
 		A4B7A0021772F99800C586F7 /* WordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordInputView.h; sourceTree = "<group>"; };
 		A4B7A0031772F99800C586F7 /* WordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordInputView.m; sourceTree = "<group>"; };
 		A4BABB37176F0C3C008D7AAB /* songCategory.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = songCategory.txt; sourceTree = "<group>"; };
@@ -13131,6 +13156,9 @@
 				A4B789A7179E2F040008E21B /* DrawGuessController.xib */,
 				A49971FA177831E100B01EBE /* CommonGuessController.h */,
 				A49971FB177831E100B01EBE /* CommonGuessController.m */,
+				A4B78A68179FA6E70008E21B /* GuessRankListController.h */,
+				A4B78A69179FA6ED0008E21B /* GuessRankListController.m */,
+				A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -13293,6 +13321,12 @@
 		A4B78A06179F78BA0008E21B /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A4B78A6F179FADE20008E21B /* guess_contest_mode@2x.png */,
+				A4B78A70179FADE20008E21B /* guess_contest_time.png */,
+				A4B78A71179FADE20008E21B /* guess_genius_mode@2x.png */,
+				A4B78A72179FADE20008E21B /* guess_happy_mode@2x.png */,
+				A4B78A73179FADE20008E21B /* guess_rank_list@2x.png */,
+				A4B78A74179FADE20008E21B /* guess_rules@2x.png */,
 				A4B78A07179F78BA0008E21B /* guess_rank_bg@2x.jpg */,
 				A4B78A08179F78BB0008E21B /* guess_select_bg@2x.jpg */,
 				A4B78A09179F78BB0008E21B /* pine_tree@2x.png */,
@@ -21661,6 +21695,13 @@
 				A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */,
 				A4B78A60179F7C5E0008E21B /* GuessSelectController.xib in Resources */,
 				A4B78A64179F7C660008E21B /* DrawGuessController.xib in Resources */,
+				A4B78A6E179FA6F10008E21B /* GuessRankListController.xib in Resources */,
+				A4B78A76179FADE20008E21B /* guess_contest_mode@2x.png in Resources */,
+				A4B78A78179FADE20008E21B /* guess_contest_time.png in Resources */,
+				A4B78A7A179FADE20008E21B /* guess_genius_mode@2x.png in Resources */,
+				A4B78A7C179FADE20008E21B /* guess_happy_mode@2x.png in Resources */,
+				A4B78A7E179FADE20008E21B /* guess_rank_list@2x.png in Resources */,
+				A4B78A80179FADE20008E21B /* guess_rules@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22684,6 +22725,13 @@
 				A4B78A4C179F78BC0008E21B /* round_dot_8@2x.png in Resources */,
 				A4B78A4E179F78BC0008E21B /* round_dot_9@2x.png in Resources */,
 				A4B78A50179F78BC0008E21B /* share_guess_rank@2x.png in Resources */,
+				A4B78A6D179FA6F10008E21B /* GuessRankListController.xib in Resources */,
+				A4B78A75179FADE20008E21B /* guess_contest_mode@2x.png in Resources */,
+				A4B78A77179FADE20008E21B /* guess_contest_time.png in Resources */,
+				A4B78A79179FADE20008E21B /* guess_genius_mode@2x.png in Resources */,
+				A4B78A7B179FADE20008E21B /* guess_happy_mode@2x.png in Resources */,
+				A4B78A7D179FADE20008E21B /* guess_rank_list@2x.png in Resources */,
+				A4B78A7F179FADE20008E21B /* guess_rules@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26143,6 +26191,7 @@
 				A4B78A5F179F7C5E0008E21B /* GuessSelectController.m in Sources */,
 				A4B78A63179F7C660008E21B /* DrawGuessController.m in Sources */,
 				A4B78A67179F7C6D0008E21B /* CommonGuessController.m in Sources */,
+				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26931,6 +26980,7 @@
 				CA51834B179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518355179F79A80033AA95 /* UserNumberService.m in Sources */,
 				A4B78A5B179F7C350008E21B /* SingOpus.m in Sources */,
+				A4B78A6B179FA6F10008E21B /* GuessRankListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

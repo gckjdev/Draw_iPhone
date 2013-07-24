@@ -39,6 +39,8 @@
 @implementation CommonGuessController
 
 - (void)dealloc {
+    
+    [[GuessService defaultService] setDelegate:nil];
     [_startDate release];
     [_guessWords release];
     [_wordInputView release];
@@ -64,8 +66,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-
     
     // Init guess words
     self.guessWords = [NSMutableArray array];
