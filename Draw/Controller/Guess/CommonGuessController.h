@@ -15,6 +15,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
 @property (retain, nonatomic) IBOutlet UIButton *opusButton;
+@property (retain, nonatomic) IBOutlet UIButton *toolBoxButton;
 
 @property (retain, nonatomic) Opus *opus;
 @property (retain, nonatomic) NSMutableArray *guessWords;

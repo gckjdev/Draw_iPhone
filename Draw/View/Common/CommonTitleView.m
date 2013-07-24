@@ -47,9 +47,9 @@
 
 - (void)update{
     
-    [_backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.jpg") forState:UIControlStateNormal];
+    [_backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.png") forState:UIControlStateNormal];
     
-    _bgImageView.image = UIThemeImageNamed(@"navigation_bg@2x.png");
+    _bgImageView.image = UIThemeImageNamed(@"navigation_bg@2x.jpg");
     
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.shadowOffset = CGSizeMake(1, 1);
@@ -64,6 +64,7 @@
         self.delegate = delegate;
         
         self.backButton = [[[UIButton alloc] initWithFrame:BACK_BUTTON_FRAME] autorelease];
+//        [self.backButton updateCenterY:self.bounds.size.height/2];
         [_backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
         
         self.bgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
