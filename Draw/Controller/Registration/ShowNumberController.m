@@ -1,18 +1,18 @@
 //
-//  GetNewNumberViewController.m
+//  ShowNumberController.m
 //  Draw
 //
 //  Created by qqn_pipi on 13-7-24.
 //
 //
 
-#import "GetNewNumberViewController.h"
+#import "ShowNumberController.h"
 
-@interface GetNewNumberViewController ()
+@interface ShowNumberController ()
 
 @end
 
-@implementation GetNewNumberViewController
+@implementation ShowNumberController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,13 +36,17 @@
 }
 
 - (void)dealloc {
-    [_takeNumberButton release];
-    [_loginButton release];
+    [_showNumberTipsLabel release];
+    [_numberLabel release];
+    [_okButton release];
+    [_completeUserInfoButton release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setTakeNumberButton:nil];
-    [self setLoginButton:nil];
+    [self setShowNumberTipsLabel:nil];
+    [self setNumberLabel:nil];
+    [self setOkButton:nil];
+    [self setCompleteUserInfoButton:nil];
     [super viewDidUnload];
 }
 @end

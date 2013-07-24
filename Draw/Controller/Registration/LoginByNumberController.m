@@ -1,18 +1,18 @@
 //
-//  GetNewNumberViewController.m
+//  LoginByNumberController.m
 //  Draw
 //
 //  Created by qqn_pipi on 13-7-24.
 //
 //
 
-#import "GetNewNumberViewController.h"
+#import "LoginByNumberController.h"
 
-@interface GetNewNumberViewController ()
+@interface LoginByNumberController ()
 
 @end
 
-@implementation GetNewNumberViewController
+@implementation LoginByNumberController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,14 +35,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    [_takeNumberButton release];
-    [_loginButton release];
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [self setTakeNumberButton:nil];
-    [self setLoginButton:nil];
-    [super viewDidUnload];
-}
 @end

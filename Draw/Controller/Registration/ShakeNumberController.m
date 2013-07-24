@@ -1,18 +1,18 @@
 //
-//  GetNewNumberViewController.m
+//  ShakeNumberController.m
 //  Draw
 //
 //  Created by qqn_pipi on 13-7-24.
 //
 //
 
-#import "GetNewNumberViewController.h"
+#import "ShakeNumberController.h"
 
-@interface GetNewNumberViewController ()
+@interface ShakeNumberController ()
 
 @end
 
-@implementation GetNewNumberViewController
+@implementation ShakeNumberController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,14 +35,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc {
-    [_takeNumberButton release];
-    [_loginButton release];
-    [super dealloc];
-}
-- (void)viewDidUnload {
-    [self setTakeNumberButton:nil];
-    [self setLoginButton:nil];
-    [super viewDidUnload];
-}
 @end

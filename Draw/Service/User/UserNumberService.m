@@ -26,13 +26,17 @@ static UserNumberService* _defaultUserService;
 {
     if ([[UserManager defaultManager] hasXiaojiNumber]){
         PPDebug(@"<getAndRegisterNumber> user already has xiaoji number, skip");
+        EXECUTE_BLOCK(block, 0, nil);
         return;
     }
     
     dispatch_async(workingQueue, ^{
 
-        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
-                                                                             parameters:nil
+        NSDictionary* para = @{ PARA_REMOVE_OLD_NUMBER : @(0),
+                                PARA_SET_USER_NUMBER : @(1) };
+
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
+                                                                             parameters:para
                                                                           isReturnArray:NO];
         
         NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];
@@ -41,10 +45,90 @@ static UserNumberService* _defaultUserService;
             [[UserManager defaultManager] setXiaojiNumber:number];
         }
 
-        if (block != NULL){
-           block(output.resultCode, number);
+        EXECUTE_BLOCK(block, output.resultCode, number);
+
+        
+    });
+}
+
+- (void)getOneNumber:(UserNumberServiceResultBlock)block
+{
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        PPDebug(@"<getOneNumber> user already has xiaoji number, skip");
+        EXECUTE_BLOCK(block, 0, nil);        
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_REMOVE_OLD_NUMBER : @(1),
+                                PARA_SET_USER_NUMBER : @(0) };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
+                                                                             parameters:para
+                                                                          isReturnArray:NO];
+        
+        NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];        
+        EXECUTE_BLOCK(block, output.resultCode, number);
+        
+    });
+}
+
+- (void)takeUserNumber:(NSString*)number block:(UserNumberServiceResultBlock)block
+{
+    
+    if ([number length] == 0){
+        EXECUTE_BLOCK(block, ERROR_XIAOJI_NUMBER_NULL, nil);
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_XIAOJI_NUMBER : number,
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_SET_USER_NUMBER
+                                                                             parameters:para
+                                                                          isReturnArray:NO];
+        
+        if (output.resultCode == 0){
+            // save number
+            [[UserManager defaultManager] setXiaojiNumber:number];
         }
         
+        EXECUTE_BLOCK(block, output.resultCode, number);
+        
+    });
+}
+
+- (void)loginUser:(NSString*)number password:(NSString*)password block:(UserNumberServiceResultBlock)block
+{
+    
+    if ([number length] == 0 || [password length] == 0){
+        EXECUTE_BLOCK(block, ERROR_XIAOJI_NUMBER_NULL, nil);
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_XIAOJI_NUMBER : number,
+                                PARA_PASSWORD : password
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponsePB:METHOD_LOGIN_NUMBER
+                                                                         parameters:para];
+        
+        if (output.resultCode == 0){
+            PBGameUser* user = [output.pbResponse user];
+            if (user != nil){
+                [[UserManager defaultManager] storeUserData];
+            }
+            else{
+                output.resultCode = ERROR_USER_DATA_NULL;
+            }
+        }
+        
+        EXECUTE_BLOCK(block, output.resultCode, number);
     });
 }
 

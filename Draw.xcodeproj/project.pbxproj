@@ -5071,6 +5071,30 @@
 		CA518356179F79A80033AA95 /* UserNumberService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518354179F79A80033AA95 /* UserNumberService.m */; };
 		CA518357179F79A80033AA95 /* UserNumberService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518354179F79A80033AA95 /* UserNumberService.m */; };
 		CA518358179F79A80033AA95 /* UserNumberService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518354179F79A80033AA95 /* UserNumberService.m */; };
+		CA518365179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
+		CA518366179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
+		CA518367179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
+		CA518368179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
+		CA518369179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
+		CA51836A179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
+		CA51836B179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
+		CA51836C179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
+		CA518375179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
+		CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
+		CA518377179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
+		CA518378179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
+		CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
+		CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
+		CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
+		CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
+		CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51837E179FB6340033AA95 /* ShakeNumberController.m */; };
+		CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51837E179FB6340033AA95 /* ShakeNumberController.m */; };
+		CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51837E179FB6340033AA95 /* ShakeNumberController.m */; };
+		CA518383179FB6340033AA95 /* ShakeNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51837E179FB6340033AA95 /* ShakeNumberController.m */; };
+		CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA51837F179FB6340033AA95 /* ShakeNumberController.xib */; };
+		CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA51837F179FB6340033AA95 /* ShakeNumberController.xib */; };
+		CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA51837F179FB6340033AA95 /* ShakeNumberController.xib */; };
+		CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA51837F179FB6340033AA95 /* ShakeNumberController.xib */; };
 		CA5328ED16A3E1E000E9E96B /* ColorBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328D916A3E1E000E9E96B /* ColorBox.m */; };
 		CA5328EE16A3E1E000E9E96B /* ColorBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328D916A3E1E000E9E96B /* ColorBox.m */; };
 		CA5328F116A3E1E000E9E96B /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
@@ -11056,6 +11080,15 @@
 		CA51834A179F79570033AA95 /* GetNewNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetNewNumberViewController.xib; sourceTree = "<group>"; };
 		CA518353179F79A80033AA95 /* UserNumberService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNumberService.h; sourceTree = "<group>"; };
 		CA518354179F79A80033AA95 /* UserNumberService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNumberService.m; sourceTree = "<group>"; };
+		CA518362179FB5D50033AA95 /* LoginByNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginByNumberController.h; sourceTree = "<group>"; };
+		CA518363179FB5D50033AA95 /* LoginByNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginByNumberController.m; sourceTree = "<group>"; };
+		CA518364179FB5D50033AA95 /* LoginByNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginByNumberController.xib; sourceTree = "<group>"; };
+		CA518372179FB6000033AA95 /* ShowNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowNumberController.h; sourceTree = "<group>"; };
+		CA518373179FB6000033AA95 /* ShowNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowNumberController.m; sourceTree = "<group>"; };
+		CA518374179FB6000033AA95 /* ShowNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowNumberController.xib; sourceTree = "<group>"; };
+		CA51837D179FB6340033AA95 /* ShakeNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeNumberController.h; sourceTree = "<group>"; };
+		CA51837E179FB6340033AA95 /* ShakeNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeNumberController.m; sourceTree = "<group>"; };
+		CA51837F179FB6340033AA95 /* ShakeNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShakeNumberController.xib; sourceTree = "<group>"; };
 		CA5328D816A3E1E000E9E96B /* ColorBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorBox.h; sourceTree = "<group>"; };
 		CA5328D916A3E1E000E9E96B /* ColorBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorBox.m; sourceTree = "<group>"; };
 		CA5328DA16A3E1E000E9E96B /* ColorBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorBox.xib; sourceTree = "<group>"; };
@@ -15907,6 +15940,15 @@
 				CA518348179F79570033AA95 /* GetNewNumberViewController.h */,
 				CA518349179F79570033AA95 /* GetNewNumberViewController.m */,
 				CA51834A179F79570033AA95 /* GetNewNumberViewController.xib */,
+				CA518362179FB5D50033AA95 /* LoginByNumberController.h */,
+				CA518363179FB5D50033AA95 /* LoginByNumberController.m */,
+				CA518364179FB5D50033AA95 /* LoginByNumberController.xib */,
+				CA518372179FB6000033AA95 /* ShowNumberController.h */,
+				CA518373179FB6000033AA95 /* ShowNumberController.m */,
+				CA518374179FB6000033AA95 /* ShowNumberController.xib */,
+				CA51837D179FB6340033AA95 /* ShakeNumberController.h */,
+				CA51837E179FB6340033AA95 /* ShakeNumberController.m */,
+				CA51837F179FB6340033AA95 /* ShakeNumberController.xib */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -20661,6 +20703,9 @@
 				A4B78A5E179F7C570008E21B /* GuessModesController.xib in Resources */,
 				A4B78A62179F7C600008E21B /* GuessSelectController.xib in Resources */,
 				A4B78A66179F7C680008E21B /* DrawGuessController.xib in Resources */,
+				CA51836B179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
+				CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */,
+				CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21702,6 +21747,9 @@
 				A4B78A7C179FADE20008E21B /* guess_happy_mode@2x.png in Resources */,
 				A4B78A7E179FADE20008E21B /* guess_rank_list@2x.png in Resources */,
 				A4B78A80179FADE20008E21B /* guess_rules@2x.png in Resources */,
+				CA51836A179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
+				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
+				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22732,6 +22780,9 @@
 				A4B78A7B179FADE20008E21B /* guess_happy_mode@2x.png in Resources */,
 				A4B78A7D179FADE20008E21B /* guess_rank_list@2x.png in Resources */,
 				A4B78A7F179FADE20008E21B /* guess_rules@2x.png in Resources */,
+				CA518369179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
+				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
+				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24600,6 +24651,9 @@
 				CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
 				A4B78828179E2E3C0008E21B /* Theme in Resources */,
 				CA518352179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
+				CA51836C179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
+				CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */,
+				CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25411,6 +25465,9 @@
 				A4B78A5D179F7C570008E21B /* GuessModesController.m in Sources */,
 				A4B78A61179F7C600008E21B /* GuessSelectController.m in Sources */,
 				A4B78A65179F7C680008E21B /* DrawGuessController.m in Sources */,
+				CA518367179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
+				CA518377179FB6010033AA95 /* ShowNumberController.m in Sources */,
+				CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26192,6 +26249,9 @@
 				A4B78A63179F7C660008E21B /* DrawGuessController.m in Sources */,
 				A4B78A67179F7C6D0008E21B /* CommonGuessController.m in Sources */,
 				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
+				CA518366179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
+				CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */,
+				CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26981,6 +27041,9 @@
 				CA518355179F79A80033AA95 /* UserNumberService.m in Sources */,
 				A4B78A5B179F7C350008E21B /* SingOpus.m in Sources */,
 				A4B78A6B179FA6F10008E21B /* GuessRankListController.m in Sources */,
+				CA518365179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
+				CA518375179FB6010033AA95 /* ShowNumberController.m in Sources */,
+				CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28473,6 +28536,9 @@
 				A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */,
 				CA51834E179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518358179F79A80033AA95 /* UserNumberService.m in Sources */,
+				CA518368179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
+				CA518378179FB6010033AA95 /* ShowNumberController.m in Sources */,
+				CA518383179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
