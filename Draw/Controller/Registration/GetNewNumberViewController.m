@@ -7,6 +7,9 @@
 //
 
 #import "GetNewNumberViewController.h"
+#import "UserNumberService.h"
+#import "LoginByNumberController.h"
+#import "ShowNumberController.h"
 
 @interface GetNewNumberViewController ()
 
@@ -26,7 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,11 +43,38 @@
 - (void)dealloc {
     [_takeNumberButton release];
     [_loginButton release];
+    [_loginController release];
+    [_showNumberController release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setTakeNumberButton:nil];
     [self setLoginButton:nil];
+    [self setLoginController:nil];
+    [self setShowNumberController:nil];
     [super viewDidUnload];
 }
+
+- (IBAction)clickLogin:(id)sender
+{
+    self.loginController = [[[LoginByNumberController alloc] init] autorelease];
+    [self.view addSubview:self.loginController.view];    
+}
+
+- (IBAction)clickTakeNumber:(id)sender
+{
+    [self showActivityWithText:NSLS(@"kLoading")];
+    [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
+        [self hideActivity];
+        if (resultCode == 0){
+            self.showNumberController = [[[ShowNumberController alloc] init] autorelease];
+            [self.view addSubview:self.showNumberController.view];
+        }
+        else{
+            // TODO show error information
+        }
+    }];      
+}
+
+
 @end

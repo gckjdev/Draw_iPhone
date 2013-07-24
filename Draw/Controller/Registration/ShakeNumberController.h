@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PPViewController.h"
 
-@interface ShakeNumberController : UIViewController
+@interface ShakeNumberController : PPViewController
 
 @end
