@@ -51,7 +51,7 @@
         self.frame = FRAME;
         self.feedList = feedList;
         
-        self.pageScroller = [PageScrollViewFactory createPageScrollViewWithCycle:YES];
+        self.pageScroller = [PageScrollViewFactory createPageScrollViewWithCycle:NO];
         _pageScroller.frame = FRAME;
         [_pageScroller hidePageControl];
         _pageScroller.backgroundColor = [UIColor blackColor];
