@@ -9,5 +9,9 @@
 #import "PPViewController.h"
 
 @interface GuessModesController : PPViewController
+@property (retain, nonatomic) IBOutlet UILabel *happyModeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *genuisModeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *contestModeLabel;
+
 
 @end

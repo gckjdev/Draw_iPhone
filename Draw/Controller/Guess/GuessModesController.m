@@ -60,4 +60,16 @@
 - (IBAction)clickRuleButton:(id)sender {
 }
 
+- (void)dealloc {
+    [_happyModeLabel release];
+    [_contestModeLabel release];
+    [_genuisModeLabel release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setHappyModeLabel:nil];
+    [self setContestModeLabel:nil];
+    [self setGenuisModeLabel:nil];
+    [super viewDidUnload];
+}
 @end
