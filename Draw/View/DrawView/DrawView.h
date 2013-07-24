@@ -40,17 +40,6 @@
 @end
 
 
-typedef enum{
-    
-    TouchActionTypeDraw = 0,
-    TouchActionTypeGetColor = 1,
-    TouchActionTypeShape = 2,
-    TouchActionTypeClipPath = 3,
-    TouchActionTypeClipPolygon = 4,
-    TouchActionTypeClipEllipse = 5,
-    TouchActionTypeClipRectangle = 6,
-    
-}TouchActionType;
 
 @interface DrawView : SuperDrawView
 {
@@ -98,4 +87,8 @@ typedef enum{
 - (DrawAction *)inDrawAction;
 
 - (void)exitFromClipMode;
+
+
+/////New Methods
+
 @end

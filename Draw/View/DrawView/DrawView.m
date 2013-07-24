@@ -24,6 +24,7 @@
 #import "DrawHolderView.h"
 #import "GradientAction.h"
 
+#import "DrawLayer.h"
 #define MAX_POINT_COUNT 5
 
 #pragma mark - draw view implementation
@@ -487,4 +488,41 @@
     PPViewController *vc = (id)[self theViewController];
     [vc popupHappyMessage:NSLS(@"kPolygonJoined") title:nil];
 }
+
+
+///New Methods
+
+- (DrawInfo *)drawInfo{
+    return nil;
+}
+
+
+- (void)changeAlpha:(CGFloat)alpha
+{
+    self.drawInfo.alpha = alpha;
+    self.drawInfo.penColor = [DrawColor colorWithColor:self.drawInfo.penColor];
+    self.drawInfo.penColor.alpha = alpha;
+}
+- (void)changePenWidth:(CGFloat)width
+{
+    self.drawInfo.penWidth = width;
+}
+- (void)changePenType:(ItemType)penType
+{
+    self.drawInfo.penType = penType;
+}
+- (void)changeShapeType:(ShapeType)shapeType
+{
+    self.drawInfo.shapeType = shapeType;
+}
+- (void)changePenColor:(DrawColor *)penColor
+{
+    self.drawInfo.penColor = [DrawColor colorWithColor:penColor];
+    self.drawInfo.penColor.alpha = self.alpha;
+}
+- (void)changeShadow:(Shadow *)shadow
+{
+    self.drawInfo.shadow = shadow;
+}
+
 @end

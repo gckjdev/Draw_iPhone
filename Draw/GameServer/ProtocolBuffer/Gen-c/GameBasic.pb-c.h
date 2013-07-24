@@ -131,6 +131,7 @@ struct  _Game__PBGameUser
   char *facetimeid;
   protobuf_c_boolean has_seatid;
   int32_t seatid;
+  char *xiaojinumber;
   protobuf_c_boolean has_isplaying;
   protobuf_c_boolean isplaying;
   protobuf_c_boolean has_istakenover;
@@ -187,7 +188,7 @@ struct  _Game__PBGameUser
 };
 #define GAME__PBGAME_USER__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbgame_user__descriptor) \
-    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL, 0,0, 0,30 }
+    , NULL, NULL, NULL, 0,0, 0,NULL, NULL, 0,0, NULL, 0,0, NULL, 0,1, 0,0, 0,NULL, NULL, NULL, NULL, 0,0, 0,1, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,GAME__PBOPEN_INFO_TYPE__OPEN_TO_FRIEND, 0,0, NULL, 0,0, 0,30 }
 
 
 struct  _Game__PBGameSession

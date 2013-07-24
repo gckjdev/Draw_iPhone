@@ -7,6 +7,8 @@
 //
 
 #import "ShowNumberController.h"
+#import "UserNumberService.h"
+#import "UserManager.h"
 
 @interface ShowNumberController ()
 
@@ -26,8 +28,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
+    self.numberLabel.text = [[UserManager defaultManager] xiaojiNumber];
+
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
