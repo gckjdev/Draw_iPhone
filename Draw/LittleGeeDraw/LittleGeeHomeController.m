@@ -1056,14 +1056,17 @@ int getPopOptionCount()
 #pragma mark - draw home controller protocol
 - (BOOL)isRegistered
 {
-    return [[UserManager defaultManager] hasUser];
+    return ([[UserManager defaultManager] hasUser] && [[UserManager defaultManager] hasXiaojiNumber]);
 }
 
 - (void)toRegister
 {
-    RegisterUserController *ruc = [[RegisterUserController alloc] init];
-    [self.navigationController pushViewController:ruc animated:YES];
-    [ruc release];
+//    RegisterUserController *ruc = [[RegisterUserController alloc] init];
+//    [self.navigationController pushViewController:ruc animated:YES];
+//    [ruc release];
+
+    // change by Benson for new xiaoji number login and logout
+    [[UserService defaultService] checkAndAskLogin:self.view];
 }
 
 #pragma mark - contest service delegate

@@ -1183,7 +1183,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)hasXiaojiNumber
 {
-    return ([[self.pbUser xiaojiNumber] length] > 0);
+    return YES;
+//    return ([[self.pbUser xiaojiNumber] length] > 0);
 }
 
 
