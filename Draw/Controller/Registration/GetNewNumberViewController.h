@@ -10,4 +10,7 @@
 
 @interface GetNewNumberViewController : UIViewController
 
+@property (retain, nonatomic) IBOutlet UIButton *takeNumberButton;
+@property (retain, nonatomic) IBOutlet UIButton *loginButton;
+
 @end

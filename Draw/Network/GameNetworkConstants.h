@@ -700,6 +700,9 @@
 #define ERROR_SINATURE                  320002
 #define ERROR_PAY_ERROR                 320003
 
+#define ERROR_XIAOJI_NUMBER_NULL        320004
+#define ERROR_USER_DATA_NULL            320005
+
 
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0
