@@ -2100,6 +2100,8 @@
 		A4B78A7E179FADE20008E21B /* guess_rank_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A73179FADE20008E21B /* guess_rank_list@2x.png */; };
 		A4B78A7F179FADE20008E21B /* guess_rules@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A74179FADE20008E21B /* guess_rules@2x.png */; };
 		A4B78A80179FADE20008E21B /* guess_rules@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A74179FADE20008E21B /* guess_rules@2x.png */; };
+		A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */; };
+		A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -9605,6 +9607,8 @@
 		A4B78A72179FADE20008E21B /* guess_happy_mode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_happy_mode@2x.png"; sourceTree = "<group>"; };
 		A4B78A73179FADE20008E21B /* guess_rank_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rank_list@2x.png"; sourceTree = "<group>"; };
 		A4B78A74179FADE20008E21B /* guess_rules@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rules@2x.png"; sourceTree = "<group>"; };
+		A4B78A8417A046480008E21B /* PageScrollViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageScrollViewFactory.h; sourceTree = "<group>"; };
+		A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageScrollViewFactory.m; sourceTree = "<group>"; };
 		A4B7A0021772F99800C586F7 /* WordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordInputView.h; sourceTree = "<group>"; };
 		A4B7A0031772F99800C586F7 /* WordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordInputView.m; sourceTree = "<group>"; };
 		A4BABB37176F0C3C008D7AAB /* songCategory.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = songCategory.txt; sourceTree = "<group>"; };
@@ -13741,6 +13745,8 @@
 				A4ECE9BC1792A036006DD933 /* PageScrollView+Protected.h */,
 				A4ECE9BD1792A036006DD933 /* PageScrollView.h */,
 				A4ECE9BE1792A036006DD933 /* PageScrollView.m */,
+				A4B78A8417A046480008E21B /* PageScrollViewFactory.h */,
+				A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */,
 			);
 			path = PageScrollView;
 			sourceTree = "<group>";
@@ -26252,6 +26258,7 @@
 				CA518366179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
 				CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */,
+				A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27044,6 +27051,7 @@
 				CA518365179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
 				CA518375179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */,
+				A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
