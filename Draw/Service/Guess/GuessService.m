@@ -43,7 +43,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         NSArray *opuses = nil;
         
         if (resultCode == ERROR_SUCCESS){
-            resultCode = output.pbResponse.resultCode;
             opuses = output.pbResponse.opusListList;
             for (PBOpus *pbOpus in opuses) {
                 PPDebug(@"opusId : %@", pbOpus.opusId);
@@ -112,9 +111,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GUESS_OPUS parameters:para];
         int resultCode = output.resultCode;
-        if (resultCode == ERROR_SUCCESS){
-            resultCode = output.pbResponse.resultCode;
-        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -143,7 +139,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         int resultCode = output.resultCode;
         PBGuessRank *rank = nil;
         if (resultCode == ERROR_SUCCESS){
-            resultCode = output.pbResponse.resultCode;
             rank = output.pbResponse.guessRank;
         }
         
@@ -179,7 +174,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         int resultCode = output.resultCode;
         NSArray *rankList = nil;
         if (resultCode == ERROR_SUCCESS){
-            resultCode = output.pbResponse.resultCode;
             rankList = output.pbResponse.guessRankListList;
         }
         
@@ -187,6 +181,28 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
             
             if ([bself.delegate respondsToSelector:@selector(didGetGuessRankList:resultCode:)]) {
                 [bself.delegate didGetGuessRankList:rankList resultCode:resultCode];
+            }
+        });
+    });
+}
+
+- (void)getGuessContestList{
+    
+    __block typeof(self) bself = self;
+    
+    dispatch_async(workingQueue, ^{
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GUESS_CONTEST_LIST parameters:nil];
+        int resultCode = output.resultCode;
+        NSArray *list = nil;
+        if (resultCode == ERROR_SUCCESS){
+            list = output.pbResponse.guessContestListList;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([bself.delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
+                [bself.delegate didGetGuessContestList:list resultCode:resultCode];
             }
         });
     });

@@ -14,18 +14,27 @@
     int _countDown;
     CGRect _contestModeLabelOriginFrame;
 }
+@property (retain, nonatomic) PBGuessContest *contest;
 
 @end
 
 @implementation GuessModesController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+
+- (void)dealloc {
+    [[GuessService defaultService] setDelegate:nil];
+    [_contest release];
+    [_happyModeLabel release];
+    [_contestModeLabel release];
+    [_genuisModeLabel release];
+    [_rankListLabel release];
+    [_rulesLabel release];
+    [_hourLabel release];
+    [_minusLabel release];
+    [_secondLabel release];
+    [_countDownImageView release];
+    [_contestModeButton release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -36,104 +45,10 @@
     
     [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kSelectGuessMode") delegate:self]];
     
-    
+    [[GuessService defaultService] getGuessContestList];
+    [[GuessService defaultService] setDelegate:self];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)startTimer{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
-}
-
-- (void)killTimer{
-    [self.timer invalidate];
-    self.timer = nil;
-}
-
-- (void)timeout:(id)sender{
-    
-    int pre = _countDown;
-    int cur = _countDown - 1;
-    
-    if (pre > 0 && cur <= 0) {
-        [self openContestMode];        
-    }
-        
-    else{
-        
-        int hour =  _countDown / 3600;
-        int minus = (_countDown % 3600) / 60;
-        int second = _countDown % 60;
-        
-        self.hourLabel.text = [NSString stringWithFormat:@"%d", hour];
-        self.minusLabel.text = [NSString stringWithFormat:@"%d", minus];
-        self.secondLabel.text = [NSString stringWithFormat:@"%d", second];
-    }
-}
-
-- (void)openContestMode{
-    
-    [UIView animateWithDuration:1 animations:^{
-        _contestModeLabel.center = _contestModeButton.center;
-    } completion:^(BOOL finished) {
-        self.countDownImageView.hidden = YES;
-        self.hourLabel.hidden = YES;
-        self.minusLabel.hidden = YES;
-        self.secondLabel.hidden = YES;
-    }];
-}
-
-- (void)closeContestMode{
-    
-    [UIView animateWithDuration:1 animations:^{
-        self.contestModeLabel.frame = _contestModeLabelOriginFrame;
-    } completion:^(BOOL finished) {
-        self.countDownImageView.hidden = NO;
-        self.hourLabel.hidden = NO;
-        self.minusLabel.hidden = NO;
-        self.secondLabel.hidden = NO;
-    }];
-}
-
-- (IBAction)clickHappyModeButton:(id)sender {
-    
-    GuessSelectController *vc = [[[GuessSelectController alloc] init] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (IBAction)clickGeniusModeButton:(id)sender {
-    
-}
-
-- (IBAction)clickContestModeButton:(id)sender {
-    
-}
-
-- (IBAction)clickRankButton:(id)sender {
-}
-
-
-- (IBAction)clickRuleButton:(id)sender {
-}
-
-- (void)dealloc {
-    [_happyModeLabel release];
-    [_contestModeLabel release];
-    [_genuisModeLabel release];
-    [_rankListLabel release];
-    [_rulesLabel release];
-    [_hourLabel release];
-    [_hourLabel release];
-    [_minusLabel release];
-    [_secondLabel release];
-    [_countDownImageView release];
-    [_contestModeButton release];
-    [super dealloc];
-}
 - (void)viewDidUnload {
     [self setHappyModeLabel:nil];
     [self setContestModeLabel:nil];
@@ -148,4 +63,131 @@
     [self setContestModeButton:nil];
     [super viewDidUnload];
 }
+
+- (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode{
+    if (resultCode == 0) {
+        self.contest = [list objectAtIndex:0];
+        [self reload];
+    }else{
+        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
+    }
+}
+
+- (void)reload{
+    switch (_contest.state) {
+        case PBGuessContestStateGuessContestStateNotStart:
+            _countDown = _contest.startTime - [[NSDate date] timeIntervalSince1970];
+            [self contestNotStart];
+            break;
+            
+        case PBGuessContestStateGuessContestStateEnd:
+            [self contestEnd];
+            break;
+            
+        case PBGuessContestStateGuessContestStateIng:
+            [self contesting];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)startTimer{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeout:) userInfo:nil repeats:YES];
+}
+
+- (void)killTimer{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)timeout:(id)sender{
+    
+    _countDown--;
+    
+    if (_countDown <= 0) {
+        [self contesting];
+        
+    }else{
+        int hour =  _countDown / 3600;
+        int minus = (_countDown % 3600) / 60;
+        int second = _countDown % 60;
+        
+        self.hourLabel.text = [NSString stringWithFormat:@"%02d", hour];
+        self.minusLabel.text = [NSString stringWithFormat:@"%02d", minus];
+        self.secondLabel.text = [NSString stringWithFormat:@"%02d", second];
+    }
+}
+
+- (void)contestEnd{
+    
+    [UIView animateWithDuration:1 animations:^{
+        _contestModeLabel.center = _contestModeButton.center;
+        self.countDownImageView.alpha = 0;
+        self.hourLabel.alpha = 0;
+        self.minusLabel.alpha = 0;
+        self.secondLabel.alpha = 0;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [self killTimer];
+}
+
+- (void)contesting{
+    
+    [UIView animateWithDuration:1 animations:^{
+        self.contestModeLabel.center = _contestModeButton.center;
+        
+        self.countDownImageView.alpha = 0;
+        self.hourLabel.alpha = 0;
+        self.minusLabel.alpha = 0;
+        self.secondLabel.alpha = 0;
+    } completion:^(BOOL finished) {
+
+    }];
+    
+    [self killTimer];
+}
+
+- (void)contestNotStart{
+    
+    [UIView animateWithDuration:1 animations:^{
+        self.contestModeLabel.frame = _contestModeLabelOriginFrame;
+    } completion:^(BOOL finished) {
+
+    }];
+    
+    [self startTimer];
+}
+
+- (IBAction)clickHappyModeButton:(id)sender {
+    
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)clickGeniusModeButton:(id)sender {
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)clickContestModeButton:(id)sender {
+    
+}
+
+- (IBAction)clickRankButton:(id)sender {
+}
+
+
+- (IBAction)clickRuleButton:(id)sender {
+}
+
+- (void)clickBack:(id)sender{
+    [self killTimer];
+    [super clickBack:sender];
+}
+
+
 @end

@@ -20,6 +20,7 @@
 - (void)didGuessOpus:(PBOpus *)opus resultCode:(int)resultCode;
 - (void)didGetGuessRank:(PBGuessRank *)rank resultCode:(int)resultCode;
 - (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode;
+- (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode;
 
 @end
 
@@ -53,5 +54,7 @@
                        contestId:(NSString *)contestId
                           offset:(int)offset
                            limit:(int)limit;
+
+- (void)getGuessContestList;
 
 @end

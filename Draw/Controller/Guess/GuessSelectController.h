@@ -16,5 +16,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *awardInfoLabel;
 @property (retain, nonatomic) IBOutlet UILabel *aheadInfoLabel;
 
+- (id)initWithMode:(PBUserGuessMode)mode;
+
 @end
 
