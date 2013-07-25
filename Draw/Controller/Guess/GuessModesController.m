@@ -76,6 +76,7 @@
 - (void)reload{
     switch (_contest.state) {
         case PBGuessContestStateGuessContestStateNotStart:
+            _countDown = _contest.startTime - [[NSDate date] timeIntervalSince1970];
             [self contestNotStart];
             break;
             
@@ -113,9 +114,9 @@
         int minus = (_countDown % 3600) / 60;
         int second = _countDown % 60;
         
-        self.hourLabel.text = [NSString stringWithFormat:@"%d", hour];
-        self.minusLabel.text = [NSString stringWithFormat:@"%d", minus];
-        self.secondLabel.text = [NSString stringWithFormat:@"%d", second];
+        self.hourLabel.text = [NSString stringWithFormat:@"%02d", hour];
+        self.minusLabel.text = [NSString stringWithFormat:@"%02d", minus];
+        self.secondLabel.text = [NSString stringWithFormat:@"%02d", second];
     }
 }
 
@@ -163,12 +164,13 @@
 
 - (IBAction)clickHappyModeButton:(id)sender {
     
-    GuessSelectController *vc = [[[GuessSelectController alloc] init] autorelease];
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickGeniusModeButton:(id)sender {
-    
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickContestModeButton:(id)sender {
