@@ -5328,10 +5328,6 @@
 		CA766D5B17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
 		CA766D5C17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
 		CA766D5D17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
-		CA766D5E17A15EB600D60E3D /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA766D5717A15EB600D60E3D /* Readme.txt */; };
-		CA766D5F17A15EB600D60E3D /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA766D5717A15EB600D60E3D /* Readme.txt */; };
-		CA766D6017A15EB600D60E3D /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA766D5717A15EB600D60E3D /* Readme.txt */; };
-		CA766D6117A15EB600D60E3D /* Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA766D5717A15EB600D60E3D /* Readme.txt */; };
 		CA766D6217A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5917A15EB600D60E3D /* UIResponder+MotionRecognizers.m */; };
 		CA766D6317A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5917A15EB600D60E3D /* UIResponder+MotionRecognizers.m */; };
 		CA766D6417A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5917A15EB600D60E3D /* UIResponder+MotionRecognizers.m */; };
@@ -20742,7 +20738,6 @@
 				CA51836B179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
-				CA766D6017A15EB600D60E3D /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21787,7 +21782,6 @@
 				CA51836A179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
-				CA766D5F17A15EB600D60E3D /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22821,7 +22815,6 @@
 				CA518369179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
-				CA766D5E17A15EB600D60E3D /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24693,7 +24686,6 @@
 				CA51836C179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
-				CA766D6117A15EB600D60E3D /* Readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

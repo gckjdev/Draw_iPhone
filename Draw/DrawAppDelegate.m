@@ -80,6 +80,7 @@
 
 #import "WordFilterService.h"
 #import "GuessService.h"
+#import "CPMotionRecognizingWindow.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -102,9 +103,6 @@ NSString* GlobalGetServerURL()
 #endif
     
     return [ConfigManager getAPIServerURL];
-    // 51a48c8be4b02cb4e8cff780
-    
-    // http://58.215.160.100:8020/api/i?&m1=fu&app=513819630&uid=4fc3089a26099b2ca8c7a4ab&tid=%2451a48c8be4b02cb4e8cff780&ts=1373953721&mac=wAPF3UOhmOVqSYSfDyMzrA%3D%3D
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -120,7 +118,7 @@ NSString* GlobalGetTrafficServerURL()
 //    }
 #endif
 #ifdef DEBUG
-    return @"http://localhost:8100/api/i?";
+//    return @"http://localhost:8100/api/i?";
 //    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
@@ -328,6 +326,7 @@ NSString* GlobalGetBoardServerURL()
     
 
     // Show Root View
+    self.window = [[CPMotionRecognizingWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navigationController;
     
     // Init SNS service
