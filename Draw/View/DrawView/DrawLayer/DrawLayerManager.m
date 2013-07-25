@@ -9,7 +9,7 @@
 #import "DrawLayerManager.h"
 
 #import "DrawLayer.h"
-
+#import "DrawAction.h"
 
 @interface DrawLayerManager()
 {
@@ -65,6 +65,19 @@
     layer.frame = self.view.bounds;
     [self addLayer:layer];
     return layer;
+}
+
+- (DrawLayer *)layerWithTag:(NSUInteger)tag
+{
+    if (self.selectedLayer.layerTag == tag) {
+        return self.selectedLayer;
+    }
+    for (DrawLayer *layer in _layerList) {
+        if(layer.layerTag == tag){
+            return layer;
+        }
+    }
+    return self.selectedLayer;
 }
 
 - (void)removeLayerWithTag:(NSUInteger)tag
@@ -124,6 +137,7 @@
     }
     for (DrawLayer *layer in _layerList) {
         [_view.layer addSublayer:layer];
+        [layer setNeedsDisplay];
     }
 }
 
@@ -132,6 +146,75 @@
     PPRelease(_layerList);
     PPRelease(_view);
     [super dealloc];
+}
+
+- (void)resetAllLayers
+{
+    for (DrawLayer *layer in _layerList) {
+        [layer reset];
+    }
+}
+
+- (NSArray *)layers
+{
+    return [[_layerList retain] autorelease];
+}
+
+- (void)arrangeActions:(NSArray *)actions
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[_layerList count]];
+    for (DrawLayer *layer in _layerList) {
+        [dict setObject:[NSMutableArray array] forKey:@(layer.layerTag)];
+    }
+    for (DrawAction *action in actions) {
+        NSMutableArray *array = [dict objectForKey:@(action.layerTag)];
+        [array addObject:action];
+    }
+    for (DrawLayer *layer in _layerList) {
+        NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
+        [layer updateWithDrawActions:array];
+        [layer setNeedsDisplay];
+    }
+}
+
+//start to add a new draw action
+- (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    [layer addDrawAction:drawAction show:show];
+}
+
+//update the last action
+- (void)updateLastAction:(DrawAction *)action refresh:(BOOL)refresh
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    [layer updateLastAction:action refresh:refresh];
+}
+
+//finish update the last action
+- (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    [layer finishLastAction:action refresh:refresh];
+}
+
+//remove the last action force to refresh
+- (void)cancelLastAction
+{
+    DrawLayer *layer = [self selectedLayer];
+    [layer cancelLastAction];
+}
+
+- (DrawAction *)undoDrawAction:(DrawAction *)action
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    return [layer undoDrawAction:action];
+}
+
+- (DrawAction *)redoDrawAction:(DrawAction *)action
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    return [layer redoDrawAction:action];
 }
 
 

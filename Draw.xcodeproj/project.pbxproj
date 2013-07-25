@@ -11423,6 +11423,7 @@
 		CA853C0116B3A45A006FC155 /* BoardAdminListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardAdminListView.m; sourceTree = "<group>"; };
 		CA853C0616B3A472006FC155 /* BoardAdminListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardAdminListView.xib; sourceTree = "<group>"; };
 		CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BoardAdminListView~ipad.xib"; sourceTree = "<group>"; };
+		CA856A1117A1134600486CB3 /* DrawProcessProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawProcessProtocol.h; sourceTree = "<group>"; };
 		CA8815CE1657447800E29BB1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CA881A4116EB278A0085F57B /* Offscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offscreen.h; sourceTree = "<group>"; };
 		CA881A4216EB278A0085F57B /* Offscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offscreen.m; sourceTree = "<group>"; };
@@ -16755,6 +16756,7 @@
 				CA4FB821179E240B00A57387 /* DrawLayer.m */,
 				CA4FB827179E24A100A57387 /* DrawLayerManager.h */,
 				CA4FB828179E24A100A57387 /* DrawLayerManager.m */,
+				CA856A1117A1134600486CB3 /* DrawProcessProtocol.h */,
 			);
 			path = DrawLayer;
 			sourceTree = "<group>";

@@ -9,7 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ItemType.h"
 #import "ShapeInfo.h"
-
+#import "DrawProcessProtocol.h"
 
 typedef enum{
     
@@ -50,26 +50,33 @@ typedef enum{
 
 @class CacheDrawManager;
 @class DrawAction;
+@class ClipAction;
+@class PPStack;
 
-@interface DrawLayer : CALayer
+@interface DrawLayer : CALayer<DrawProcessProtocol>
 {
-    
+    PPStack *_redoStack;
 }
 
+
++ (id)initWithFrame:(CGRect)frame
+           drawInfo:(DrawInfo *)drawInfo
+                tag:(NSUInteger)tag
+               name:(NSString *)name
+        suportCache:(BOOL)supporCache;
 
 @property(nonatomic, retain)DrawInfo *drawInfo;
 @property(nonatomic, retain)CacheDrawManager *cdManager;
 @property(nonatomic, retain)NSMutableArray *drawActionList;
 @property(nonatomic, retain)NSString *layerName;
+@property(nonatomic, assign)ClipAction *clipAction;
 
 @property(nonatomic, assign)NSUInteger layerTag;
-@property(nonatomic, assign)BOOL supportCache;
-//@property(nonatomic, assign)DrawAction *lastAction;
-
-- (void)addDrawAction:(DrawAction *)action show:(BOOL)show;
-- (void)updateLastAction:(DrawAction *)action refresh:(BOOL)refresh;
-- (void)finishLastAction;
+@property(nonatomic, readonly)BOOL supportCache;
+@property(nonatomic, assign)BOOL grid;
 
 
+- (void)reset;
+- (void)updateWithDrawActions:(NSArray *)actionList;
 
 @end

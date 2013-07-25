@@ -50,16 +50,13 @@
 
 @implementation DrawView
 
-@synthesize lineColor = _lineColor;
-@synthesize lineWidth = _lineWidth;
 @synthesize delegate = _delegate;
-@synthesize penType = _penType;
 
 
 - (void)setDrawActionList:(NSMutableArray *)drawActionList
 {
     [super setDrawActionList:drawActionList];
-    [cdManager setDrawActionList:drawActionList];
+    [dlManager arrangeActions:drawActionList];
 }
 
 
@@ -70,77 +67,22 @@
     }
 }
 
-- (void)synBGColor
-{
-    NSInteger count = [self.drawActionList count];
-    for (NSInteger i = count - 1; i >= 0; -- i) {
-        DrawAction *action = [self.drawActionList objectAtIndex:i];
-        if ([action isKindOfClass:[ChangeBackAction class]]) {
-            self.bgColor = [(ChangeBackAction *)action color];
-            return;
-        }
-    }
-    self.bgColor = [DrawColor whiteColor];
-}
-
-- (DrawColor *)bgColor
-{
-    if (_bgColor == nil) {
-        self.bgColor = [DrawColor whiteColor];
-    }
-    return _bgColor;
-}
-
 
 #pragma mark - paint action
-
-- (void)clearScreen
-{
-    [self clearRedoStack];
-    DrawAction *cleanAction = [[[CleanAction alloc] init] autorelease];
-    [self.drawActionList addObject:cleanAction];
-    [self drawDrawAction:cleanAction show:YES];
-    self.bgColor = [DrawColor whiteColor];
-}
-
-//for test
-- (void)addGradient:(GradientAction *)gradient
-{
-    [self.drawActionList addObject:gradient];
-    [self drawDrawAction:gradient show:YES];
-}
-
-- (ChangeBackAction *)changeBackWithColor:(DrawColor *)color
-{
-    [self clearRedoStack];
-    ChangeBackAction *changBackAction = [[[ChangeBackAction alloc] initWithColor:color] autorelease];
-    changBackAction.clipAction = self.currentClip;
-    [self.drawActionList addObject:changBackAction];
-    [self drawDrawAction:changBackAction show:YES];
-    self.bgColor = color;
-    [self callbackFinishDelegateWithAction:changBackAction];
-    return changBackAction;
-}
-- (ChangeBGImageAction *)changeBGImageWithDrawBG:(PBDrawBg *)drawBg
-{
-    [self clearRedoStack];
-    
-    ChangeBGImageAction *changBG = [[[ChangeBGImageAction alloc] initWithDrawBg:drawBg] autorelease];
-    changBG.clipAction = self.currentClip;
-    [self addDrawAction:changBG];
-    [self drawDrawAction:changBG show:YES];
-                                    
-    self.bgColor = [DrawColor whiteColor];
-    [self callbackFinishDelegateWithAction:changBG];
-    return changBG;
-}
 
 - (void)setDrawEnabled:(BOOL)enabled
 {
     self.userInteractionEnabled = enabled;
 }
 
-
+- (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
+{
+    if (drawAction) {
+        [super addDrawAction:drawAction show:show];
+        [self clearRedoStack];
+        [self callbackFinishDelegateWithAction:drawAction];
+    }
+}
 
 #pragma mark Gesture Handler
 
@@ -179,7 +121,7 @@
             }
             
             [self.touchHandler setDrawView:self];
-            [self.touchHandler setCdManager:cdManager];
+//            [self.touchHandler setCdManager:cdManager];
             if (self.touchActionType == TouchActionTypeGetColor) {
                 [(StrawTouchHandler *)self.touchHandler setStrawDelegate:self.strawDelegate];
             }
@@ -261,16 +203,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.lineColor = [DrawColor blackColor];
-        self.lineWidth = LINE_DEFAULT_WIDTH;
-        self.penType = Pencil;
         self.backgroundColor = [UIColor whiteColor];
         
         _drawActionList = [[NSMutableArray alloc] init];
         _redoStack = [[PPStack alloc] init];
         
-        cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
-        cdManager.drawActionList = self.drawActionList;
+        dlManager = [[DrawLayerManager alloc] initWithView:self];
+        
         [self setMultipleTouchEnabled:YES];
         _gestureRecognizerManager.delegate = self;
     }
@@ -287,151 +226,47 @@
     self.transform = CGAffineTransformIdentity;
     self.bounds = rect;
     self.frame = rect;
-    [cdManager release];
-    cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
-    cdManager.drawActionList = self.drawActionList;
-    [cdManager setShowGrid:_grid];
+    [dlManager release];
+    
+    [dlManager resetAllLayers];
+
     [(DrawHolderView *)self.superview updateContentScale];
     [self setNeedsDisplay];
-}
-
-- (void)setGrid:(BOOL)grid
-{
-    _grid = grid;
-    [cdManager setShowGrid:grid];
-    [self setNeedsDisplay];
-}
-
-
-- (void)updateLastAction:(DrawAction *)action
-{
-    action.clipAction = cdManager.currentClip;
-    CGRect rect = [cdManager updateLastAction:action];
-    [self setNeedsDisplayInRect:rect];
-}
-- (void)saveLastAction:(DrawAction *)action;
-{
-    action.clipAction = cdManager.currentClip;
-    [cdManager finishDrawAction:action];
-    [self setNeedsDisplay];
-    [self addDrawAction:action];
-}
-- (void)cancelLastAction
-{
-    [cdManager cancelLastAction];
-    [self setNeedsDisplay];
-}
-
-- (DrawAction *)inDrawAction
-{
-    return [cdManager inDrawAction];
-}
-
-- (void)exitFromClipMode
-{
-    [self setNeedsDisplay];
-    [cdManager finishCurrentClip];
 }
 
 - (void)dealloc
 {
     PPRelease(_drawActionList);
-    PPRelease(_lineColor);
     PPRelease(_redoStack);
-    PPRelease(_bgColor);
     PPRelease(_touchHandler);
     PPRelease(_currentTouch);
-    PPRelease(_shadow);
     [super dealloc];
 }
 
 
 
 #pragma mark - Revoke
-- (void)showForRevoke:(DrawAction*)lastAction finishBlock:(dispatch_block_t)finishiBlock
+
+- (BOOL)undo
 {
-//    [self printOSInfoWithTag:@"<Revoke> Before"];
-    
-/*
-    NSUInteger count = [self.drawActionList count];
-    NSUInteger index = [osManager closestIndexWithActionIndex:count];
-    Offscreen *os = [osManager offScreenForActionIndex:index];
-    [os clear];
-//    [osManager removeContentAfterIndex:count];
-    for (; index < count; ++ index) {
-        DrawAction *action = [self.drawActionList objectAtIndex:index];
-        [os drawAction:action clear:NO];
-    }
- */
-    [cdManager undo];
-    [self setNeedsDisplay];
-
-    [self synBGColor];
-    
-    // call block
-    if (finishiBlock != NULL){
-        finishiBlock();
-    }
-//    [self printOSInfoWithTag:@"<Revoke> after"];
-}
-
-- (BOOL)canRevoke
-{
-//    return [_drawActionList count] > 0 && [osManager canUndo];
-    return [_drawActionList count] > 0 && [cdManager canUndo];
-}
-
-
-- (void)revoke:(dispatch_block_t)finishBlock
-{
-    
-    if ([self canRevoke]) {
-        DrawAction *obj = [_drawActionList lastObject];
-        [_redoStack push:obj];
+    DrawAction *action = [dlManager undoDrawAction:[_drawActionList lastObject]];
+    if (action) {
         [_drawActionList removeLastObject];
-        if ([obj isKindOfClass:[ClipAction class]]) {
-            cdManager.currentClip = nil;
-        }
-        [self showForRevoke:obj finishBlock:finishBlock];
+        [_redoStack push:action];
+        return YES;
     }
+    return NO;
 }
 
-
-- (void)undo
+- (BOOL)redo
 {
-    [self revoke:NULL];
-}
-
-- (BOOL)canRedo
-{
-    return ![_redoStack isEmpty];
-}
-
-
-- (void)redo
-{
-    if ([self canRedo]) {
-        
-        DrawAction *action = [_redoStack pop];
-        if (action) {
-//            [self printOSInfoWithTag:@"<Redo> before"];
-            [self.drawActionList addObject:action];
-//            [osManager addDrawAction:action];
-            
-            if ([action isKindOfClass:[ClipAction class]]) {
-                cdManager.currentClip = (id)action;
-            }
-
-            [cdManager addDrawAction:action];
-            
-            
-            [self setNeedsDisplay];
-//            [self printOSInfoWithTag:@"<Redo> after"];
-            if ([action isKindOfClass:[ChangeBackAction class]]) {
-                self.bgColor = [(ChangeBackAction *)action color];
-            }
-        }        
+    DrawAction *action = [dlManager undoDrawAction:[_redoStack top]];
+    if (action) {
+        [_drawActionList addObject:action];
+        [_redoStack pop];
+        return YES;
     }
+    return NO;
 }
 - (void)clearRedoStack
 {
@@ -444,7 +279,6 @@
 {
     self.drawActionList = draft.drawActionList;
     [self changeRect:CGRectFromCGSize(draft.canvasSize)];
-    [self synBGColor];
     [self show];
 }
 
@@ -493,7 +327,7 @@
 ///New Methods
 
 - (DrawInfo *)drawInfo{
-    return nil;
+    return [[self currentLayer] drawInfo];
 }
 
 

@@ -56,5 +56,5 @@
 }
 @property(nonatomic, retain) Gradient *gradient;
 - (id)initWithGradient:(Gradient *)gradient;
-
++ (GradientAction *)actionWithGradient:(Gradient *)gradient;
 @end

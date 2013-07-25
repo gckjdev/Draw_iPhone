@@ -46,6 +46,7 @@ typedef enum {
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
 @property(nonatomic, retain) Shadow *shadow;
 @property(nonatomic, retain) ClipAction *clipAction;
+@property(nonatomic, assign) NSUInteger layerTag;
 
 //@property(nonatomic, assign)CGSize canvasSize;
 

@@ -809,7 +809,7 @@
 {
  
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.lineColor updateModel:YES];
+//        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.lineColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
     _isNewDraft = NO;

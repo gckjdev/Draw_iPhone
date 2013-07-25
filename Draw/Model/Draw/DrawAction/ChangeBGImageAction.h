@@ -13,5 +13,6 @@
 @property(nonatomic, retain)PBDrawBg *drawBg;
 
 - (id)initWithDrawBg:(PBDrawBg *)drawBg;
++ (ChangeBGImageAction *)actionWithDrawBG:(PBDrawBg *)drawBg;
 
 @end
