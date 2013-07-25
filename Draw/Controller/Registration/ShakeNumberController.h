@@ -10,5 +10,7 @@
 #import "PPViewController.h"
 
 @interface ShakeNumberController : PPViewController
+@property (retain, nonatomic) IBOutlet UIButton *shakeButton;
+- (IBAction)clickShakeButton:(id)sender;
 
 @end

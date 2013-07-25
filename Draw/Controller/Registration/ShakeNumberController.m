@@ -35,4 +35,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [_shakeButton release];
+    [super dealloc];
+}
+- (void)viewDidUnload {
+    [self setShakeButton:nil];
+    [super viewDidUnload];
+}
+- (IBAction)clickShakeButton:(id)sender {
+}
 @end
