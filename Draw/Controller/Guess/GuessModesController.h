@@ -7,8 +7,9 @@
 //
 
 #import "PPViewController.h"
+#import "GuessService.h"
 
-@interface GuessModesController : PPViewController
+@interface GuessModesController : PPViewController <GusessServiceDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *happyModeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *genuisModeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *contestModeLabel;

@@ -17695,6 +17695,8 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBSongList* songs;
 @property (retain) PBGuessRank* guessRank;
 @property (retain) NSMutableArray* mutableGuessRankListList;
+@property (retain) PBGuessContest* guessContest;
+@property (retain) NSMutableArray* mutableGuessContestListList;
 @end
 
 @implementation DataQueryResponse
@@ -17790,6 +17792,14 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @synthesize guessRank;
 @synthesize mutableGuessRankListList;
+- (BOOL) hasGuessContest {
+  return !!hasGuessContest_;
+}
+- (void) setHasGuessContest:(BOOL) value {
+  hasGuessContest_ = !!value;
+}
+@synthesize guessContest;
+@synthesize mutableGuessContestListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17812,6 +17822,8 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.songs = nil;
   self.guessRank = nil;
   self.mutableGuessRankListList = nil;
+  self.guessContest = nil;
+  self.mutableGuessContestListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17827,6 +17839,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.opus = [PBOpus defaultInstance];
     self.songs = [PBSongList defaultInstance];
     self.guessRank = [PBGuessRank defaultInstance];
+    self.guessContest = [PBGuessContest defaultInstance];
   }
   return self;
 }
@@ -17940,6 +17953,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableGuessRankListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) guessContestListList {
+  return mutableGuessContestListList;
+}
+- (PBGuessContest*) guessContestListAtIndex:(int32_t) index {
+  id value = [mutableGuessContestListList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -18044,6 +18064,16 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasGuessContest) {
+    if (!self.guessContest.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGuessContest* element in self.guessContestListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18121,6 +18151,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGuessRank* element in self.guessRankListList) {
     [output writeMessage:121 value:element];
+  }
+  if (self.hasGuessContest) {
+    [output writeMessage:122 value:self.guessContest];
+  }
+  for (PBGuessContest* element in self.guessContestListList) {
+    [output writeMessage:123 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18210,6 +18246,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGuessRank* element in self.guessRankListList) {
     size += computeMessageSize(121, element);
+  }
+  if (self.hasGuessContest) {
+    size += computeMessageSize(122, self.guessContest);
+  }
+  for (PBGuessContest* element in self.guessContestListList) {
+    size += computeMessageSize(123, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18403,6 +18445,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableGuessRankListList addObjectsFromArray:other.mutableGuessRankListList];
   }
+  if (other.hasGuessContest) {
+    [self mergeGuessContest:other.guessContest];
+  }
+  if (other.mutableGuessContestListList.count > 0) {
+    if (result.mutableGuessContestListList == nil) {
+      result.mutableGuessContestListList = [NSMutableArray array];
+    }
+    [result.mutableGuessContestListList addObjectsFromArray:other.mutableGuessContestListList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18583,6 +18634,21 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBGuessRank_Builder* subBuilder = [PBGuessRank builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGuessRankList:[subBuilder buildPartial]];
+        break;
+      }
+      case 978: {
+        PBGuessContest_Builder* subBuilder = [PBGuessContest builder];
+        if (self.hasGuessContest) {
+          [subBuilder mergeFrom:self.guessContest];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGuessContest:[subBuilder buildPartial]];
+        break;
+      }
+      case 986: {
+        PBGuessContest_Builder* subBuilder = [PBGuessContest builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addGuessContestList:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19268,6 +19334,65 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableGuessRankListList = [NSMutableArray array];
   }
   [result.mutableGuessRankListList addObject:value];
+  return self;
+}
+- (BOOL) hasGuessContest {
+  return result.hasGuessContest;
+}
+- (PBGuessContest*) guessContest {
+  return result.guessContest;
+}
+- (DataQueryResponse_Builder*) setGuessContest:(PBGuessContest*) value {
+  result.hasGuessContest = YES;
+  result.guessContest = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setGuessContestBuilder:(PBGuessContest_Builder*) builderForValue {
+  return [self setGuessContest:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeGuessContest:(PBGuessContest*) value {
+  if (result.hasGuessContest &&
+      result.guessContest != [PBGuessContest defaultInstance]) {
+    result.guessContest =
+      [[[PBGuessContest builderWithPrototype:result.guessContest] mergeFrom:value] buildPartial];
+  } else {
+    result.guessContest = value;
+  }
+  result.hasGuessContest = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGuessContest {
+  result.hasGuessContest = NO;
+  result.guessContest = [PBGuessContest defaultInstance];
+  return self;
+}
+- (NSArray*) guessContestListList {
+  if (result.mutableGuessContestListList == nil) { return [NSArray array]; }
+  return result.mutableGuessContestListList;
+}
+- (PBGuessContest*) guessContestListAtIndex:(int32_t) index {
+  return [result guessContestListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceGuessContestListAtIndex:(int32_t) index with:(PBGuessContest*) value {
+  [result.mutableGuessContestListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllGuessContestList:(NSArray*) values {
+  if (result.mutableGuessContestListList == nil) {
+    result.mutableGuessContestListList = [NSMutableArray array];
+  }
+  [result.mutableGuessContestListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGuessContestListList {
+  result.mutableGuessContestListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addGuessContestList:(PBGuessContest*) value {
+  if (result.mutableGuessContestListList == nil) {
+    result.mutableGuessContestListList = [NSMutableArray array];
+  }
+  [result.mutableGuessContestListList addObject:value];
   return self;
 }
 @end

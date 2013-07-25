@@ -11,16 +11,29 @@
 #import "Opus.h"
 #import "CommonTitleView.h"
 #import "CommonMessageCenter.h"
+#import "AnimationManager.h"
 
 #define OPUS_BUTTON_OFFSET 100
 
 
-@interface GuessSelectController ()
+@interface GuessSelectController (){
+    PBUserGuessMode _mode;
+    int _curIndex;
+}
 @property (retain, nonatomic) NSArray *opuses;
 
 @end
 
 @implementation GuessSelectController
+
+- (id)initWithMode:(PBUserGuessMode)mode{
+    
+    if (self  = [super init]) {
+        _mode = mode;
+    }
+    
+    return self;
+}
 
 - (void)dealloc{
     [[GuessService defaultService] setDelegate:nil];
@@ -33,7 +46,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
+    [[GuessService defaultService] getOpusesWithMode:_mode
                                            contestId:nil
                                               offset:0
                                                limit:20
@@ -48,7 +61,7 @@
     // Do any additional setup after loading the view from its nib.
     [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kGuangKa") delegate:self]];
 
-    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
+    [[GuessService defaultService] getOpusesWithMode:_mode
                                            contestId:nil
                                               offset:0
                                                limit:20
@@ -73,12 +86,17 @@
         return;
     }
     
-    PBOpus *pbOpus = [_opuses objectAtIndex:index];
-    
-    if (pbOpus.guessInfo.isCorrect) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kThisOpusIsGuessed") delayTime:1.5 isHappy:NO];
+    if (index > _curIndex) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPleaseCompletePreviousOpus") delayTime:1.5 isHappy:NO];
         return;
     }
+    
+    PBOpus *pbOpus = [_opuses objectAtIndex:index];
+    
+//    if (pbOpus.guessInfo.isCorrect) {
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kThisOpusIsGuessed") delayTime:1.5 isHappy:NO];
+//        return;
+//    }
     
     Opus *opus = [Opus opusWithPBOpus:pbOpus];
     
@@ -90,7 +108,7 @@
     
     if (resultCode == 0) {
         self.opuses = opuses;
-        [self setGuessedOpus];
+        [self reload];
     }else{
         [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
     }
@@ -109,19 +127,29 @@
     return (UIButton *)[_opusesHolderView viewWithTag:(index + OPUS_BUTTON_OFFSET)];
 }
 
-- (void)setGuessedOpus{
-    
-    for (int index = 0; index < [_opuses count]; index++) {
+- (void)reload{
+    int index = 0;
+    for (; index < [_opuses count]; index++) {
         PBOpus *opus = [_opuses objectAtIndex:index];
         if (opus.guessInfo.isCorrect) {
             [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"pine_tree@2x.png"] forState:UIControlStateNormal];
+            continue;
+        }else{
+            break;
         }
     }
+    
+    _curIndex = index;
+    CAAnimation *ani = [AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:1 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:1 repeatCount:FLT_MAX];
+    [[self opusButtonWithIndex:index].layer addAnimation:ani forKey:nil];
+    
+    _guessedInfoLabel.text = [NSString stringWithFormat:NSLS(@"kCurGuessOpusIs:%d"), _curIndex];
+    _aheadInfoLabel.text = [NSString stringWithFormat:NSLS(@"kAwardIs:%d"), [self getAward]];
 }
 
 - (IBAction)clickRestartButton:(id)sender {
     
-    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
+    [[GuessService defaultService] getOpusesWithMode:_mode
                                            contestId:nil
                                               offset:0
                                                limit:20

@@ -31,7 +31,7 @@
 @interface OpusImageBrower()
 @property (retain, nonatomic) NSArray *feedList;
 //@property (assign, nonatomic) UIScrollView *scrollView;
-@property (assign, nonatomic) NonCyclePageScrollView *pageScroller;
+@property (assign, nonatomic) PageScrollView *pageScroller;
 
 @end
 
@@ -51,32 +51,14 @@
         self.frame = FRAME;
         self.feedList = feedList;
         
-        self.pageScroller = [[[NonCyclePageScrollView alloc] initWithFrame:FRAME] autorelease];
+        self.pageScroller = [PageScrollViewFactory createPageScrollViewWithCycle:NO];
+        _pageScroller.frame = FRAME;
         [_pageScroller hidePageControl];
         _pageScroller.backgroundColor = [UIColor blackColor];
         _pageScroller.delegate = self;
         _pageScroller.datasource  = self;
         [_pageScroller reloadData];
         [self addSubview:_pageScroller];
-        
-//        self.scrollView = [[[UIScrollView alloc] initWithFrame:FRAME] autorelease];
-//        _scrollView.pagingEnabled = YES;
-//        _scrollView.showsVerticalScrollIndicator = NO;
-//        _scrollView.showsHorizontalScrollIndicator = NO;
-//        _scrollView.backgroundColor = [UIColor blackColor];
-//        _scrollView.delegate = self;
-//        
-//        _scrollView.contentSize = CGSizeMake(PAGE_WIDTH * [feedList count], PAGE_HEIGHT) ;
-//        
-//        for (int index= 0; index < [feedList count]; index ++) {
-//            
-//            UIView *view = [self createViewWithIndex:index];
-//            [view updateOriginX:(PAGE_WIDTH * index)];
-//            [_scrollView addSubview:view];
-//        }
-        
-        
-//        [self  addSubview:_scrollView];
     }
     
     return self;
@@ -135,7 +117,6 @@
                            desc:(NSString *)desc{
     
     UIButton *view = [[[UIButton alloc] initWithFrame:FRAME] autorelease];
-//    [view addTarget:self action:@selector(clickOpusImageButton:) forControlEvents:UIControlEventTouchUpInside];
     view.tag = index;
     
     UIGestureRecognizer *r = [[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)]autorelease];
@@ -301,18 +282,6 @@
         
         [_delegate brower:self didSelecteFeed:feed];
         [self removeFromSuperview];
-
-//        __block typeof(self) bself = self;
-//        [UIView animateWithDuration:0.3 animations:^{
-//            UIView *imageView = [view viewWithTag:OPUS_IMAGEVIEW_TAG];
-//            UIView *label = [view viewWithTag:OPUS_DESC_LABEL_TAG];
-//
-//            imageView.frame = DETAIL_CONTROLLER_OPUS_FRAME;
-//            label.alpha = 0;
-//        } completion:^(BOOL finished) {
-//            [bself.delegate brower:bself didSelecteFeed:feed];
-//            [bself removeFromSuperview];
-//        }];
     }
 }
 

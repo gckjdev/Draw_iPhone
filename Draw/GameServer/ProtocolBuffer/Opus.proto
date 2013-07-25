@@ -212,9 +212,9 @@ message PBGuessResult{
 }
 
 enum PBGuessContestState{
-   GUESS_CONTEST_STATE_NOT_START = 0;   // 比赛还没开始
+   GUESS_CONTEST_STATE_END= 0;          // 比赛已经结束
    GUESS_CONTEST_STATE_ING = 1;         // 比赛进行中
-   GUESS_CONTEST_STATE_END = 2;         // 比赛已经结束
+   GUESS_CONTEST_STATE_NOT_START = 2;   // 比赛还没开始
 }
 
 message PBGuessContest{
@@ -226,6 +226,3 @@ message PBGuessContest{
    optional int32 startTime = 5;
    optional int32 endTime = 6;
 }
-
-
-

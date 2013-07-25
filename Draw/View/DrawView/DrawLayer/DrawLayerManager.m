@@ -38,7 +38,7 @@
 {
     NSUInteger mt = 0;
     for (DrawLayer *layer in _layerList) {
-        mt = MAX(mt, layer.tag);
+        mt = MAX(mt, layer.layerTag);
     }
     return mt + 1;
 }
@@ -48,6 +48,7 @@
     if (layer && ![_layerList containsObject:layer]) {
         [_layerList addObject:layer];
         [self.view.layer addSublayer:layer];
+        self.selectedLayer = layer;
     }
 }
 - (void)removeLayer:(DrawLayer *)layer
@@ -60,7 +61,7 @@
 - (DrawLayer *)addLayerWithTag:(NSUInteger)tag
 {
     DrawLayer *layer = [[[DrawLayer alloc] init] autorelease];
-    layer.tag = [self nextTag];
+    layer.layerTag = [self nextTag];
     layer.frame = self.view.bounds;
     [self addLayer:layer];
     return layer;
@@ -70,7 +71,7 @@
 {
     DrawLayer *target = nil;
     for (DrawLayer *layer in _layerList) {
-        if (layer.tag == tag) {
+        if (layer.layerTag == tag) {
             target = layer;
         }
     }

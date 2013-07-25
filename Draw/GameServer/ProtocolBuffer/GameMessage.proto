@@ -509,4 +509,7 @@ message DataQueryResponse {
   
   optional PBGuessRank guessRank = 120; 
   repeated PBGuessRank guessRankList = 121;
+  
+  optional PBGuessContest guessContest = 122;
+  repeated PBGuessContest guessContestList = 123;
 }

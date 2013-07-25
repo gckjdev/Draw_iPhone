@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DrawFeed.h"
-#import "NonCyclePageScrollView.h"
+#import "PageScrollViewFactory.h"
 
 @class OpusImageBrower;
 
