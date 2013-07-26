@@ -46,9 +46,6 @@
     
 }
 
-@property(nonatomic, retain) Shadow *shadow;
-
-
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;
@@ -56,8 +53,6 @@
 - (void)setDrawEnabled:(BOOL)enabled;
 
 - (void)clearRedoStack;
-//- (BOOL)canUndo;
-//- (BOOL)canRedo;
 - (BOOL)redo;
 - (BOOL)undo;
 - (void)showDraft:(MyPaint *)draft;
@@ -66,6 +61,6 @@
 - (NSInteger)totalActionCount;
 - (NSInteger)actionCount;
 
-- (DrawAction *)inDrawAction;
+- (DrawInfo *)drawInfo;
 
 @end

@@ -12,20 +12,6 @@
 #import "PPStack.h"
 
 
-
-@implementation DrawInfo
-
-- (void)dealloc
-{
-    PPRelease(_shadow);
-    PPRelease(_penColor);
-    PPRelease(_bgColor);
-    [super dealloc];
-}
-
-@end
-
-
 @implementation DrawLayer
 @synthesize drawActionList = _drawActionList;
 @synthesize drawInfo = _drawInfo;

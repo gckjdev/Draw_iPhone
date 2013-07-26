@@ -217,6 +217,15 @@
     return [layer redoDrawAction:action];
 }
 
+- (void)enterClipMode:(ClipAction *)clipAction
+{
+    [self.selectedLayer enterClipMode:clipAction];
+}
+- (void)exitFromClipMode
+{
+    [self.selectedLayer exitFromClipMode];
+}
+
 
 @end
 

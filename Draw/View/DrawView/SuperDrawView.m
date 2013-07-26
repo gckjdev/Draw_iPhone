@@ -152,8 +152,7 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
 
-//    [cdManager showInContextWithoutGrid:context];
-    
+    [self.layer renderInContext:context];
     return context;
 }
 
@@ -185,11 +184,23 @@
     if (image) {
         [self setBackgroundColor:[UIColor clearColor]];
         PPDebug(@"draw image in bounds = %@",NSStringFromCGRect(self.bounds));
-        self.layer.contents = image.CGImage;
+        self.layer.contents = (id)image.CGImage;
     }
 }
 - (DrawLayer *)currentLayer
 {
     return [dlManager selectedLayer];
 }
+
+- (void)enterClipMode:(ClipAction *)clipAction
+{
+    [dlManager enterClipMode:clipAction];
+}
+
+- (void)exitFromClipMode
+{
+    [dlManager exitFromClipMode];
+}
+
+
 @end

@@ -10,6 +10,9 @@
 
 #import "ClipAction.h"
 
+
+#define STROKE_WIDTH 2
+
 @interface PolygonClipTouchHandler()
 {
     ClipAction *action;
@@ -31,33 +34,30 @@
     [super dealloc];
 }
 
-- (void)addPoint:(CGPoint)point
+
+- (DrawAction *)createDrawAction
 {
-    if (handleFailed) {
-        return;
-    }
-    Paint *currentPaint = nil;
     if (action == nil) {
-        currentPaint = [Paint paintWithWidth:2
+        Paint *currentPaint = [Paint paintWithWidth:STROKE_WIDTH
                                        color:[DrawColor grayColor]
                                      penType:PolygonPen
                                    pointList:nil];
         
         action = [[ClipAction clipActionWithPaint:currentPaint] retain];
     }
-    [action addPoint:point inRect:self.drawView.bounds];
-    [self.cdManager startClipAction:action];
-    [self.drawView updateLastAction:action show:YES];
-    
+    return action;
+}
+
+- (void)addPoint:(CGPoint)point
+{
+    if (handleFailed) {
+        return;
+    }
+    action = [self createDrawAction];
 }
 - (void)replaceLastPoint:(CGPoint)point
 {
     [action.paint updateLastPoint:point inRect:self.drawView.bounds];
-}
-
-- (void)addAction:(DrawAction *)drawAction
-{
-    [self.drawView addDrawAction:drawAction];
 }
 
 
@@ -71,25 +71,9 @@
 {
     currentState = TouchStateEnd;
     [action finishAddPoint];
-    [self addAction:action];
-    BOOL needRedraw = [self.cdManager finishDrawAction:action];
-    
-    if (needRedraw) {
-        [self.drawView setNeedsDisplay];
-    }else{
-        [self.drawView setNeedsDisplayInRect:[action redrawRectInRect:self.drawView.bounds]];
-    }
-    
-    if (action) {
-        [self.drawView clearRedoStack];
-    }
-    
-//    ClipAction *tempAction = action;
-//    [tempAction autorelease];
-    
+    [self.drawView finishLastAction:action refresh:YES];    
     [self reset];
     
-    //ignore the warning By Gamy...
     //for history issue, the action always passed nil.
     if (_delegate && [_delegate respondsToSelector:@selector(didPolygonClipTouchHandler:finishAddPointsToAction:)]) {
         [_delegate performSelector:@selector(didPolygonClipTouchHandler:finishAddPointsToAction:) withObject:self withObject:nil];
@@ -118,12 +102,13 @@
         {
             handleFailed = NO;
             [self addPoint:point];
+            [self.drawView addDrawAction:action show:YES];
             break;
         }
         case TouchStateMove:
         {
-//            [self addPoint:point];
             [self replaceLastPoint:point];
+            [self.drawView updateLastAction:action refresh:YES];
             break;
         }
         case TouchStateEnd:
@@ -134,7 +119,6 @@
             }else{
                 [self replaceLastPoint:point];
             }
-
             
             break;
         }
@@ -147,15 +131,13 @@
 
 - (void)handleFailTouch
 {
-    if ([action pointCount] >= FORCE_END_POINT_COUNT_WHEN_CANCEL) {
-        [self finishAddPoints];
-        return;
-    }
+//    if ([action pointCount] >= FORCE_END_POINT_COUNT_WHEN_CANCEL) {
+//        [self finishAddPoints];
+//        return;
+//    }
     [super handleFailTouch];
+    [self.drawView cancelLastAction];
     [self reset];
-    //    [self.osManager cancelLastAction];
-    [self.cdManager cancelLastAction];
-    [self.drawView setNeedsDisplay];
 }
 
 

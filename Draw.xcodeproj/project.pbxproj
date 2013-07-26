@@ -5498,6 +5498,11 @@
 		CA853C0816B3A472006FC155 /* BoardAdminListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0616B3A472006FC155 /* BoardAdminListView.xib */; };
 		CA853C0C16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */; };
 		CA853C0D16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */; };
+		CA856A2417A2477200486CB3 /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA856A2317A2477100486CB3 /* DrawInfo.m */; };
+		CA856A2517A2477200486CB3 /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA856A2317A2477100486CB3 /* DrawInfo.m */; };
+		CA856A2617A2477200486CB3 /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA856A2317A2477100486CB3 /* DrawInfo.m */; };
+		CA856A2717A2477200486CB3 /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA856A2317A2477100486CB3 /* DrawInfo.m */; };
+		CA856A2817A2477200486CB3 /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CA856A2317A2477100486CB3 /* DrawInfo.m */; };
 		CA8815CF1657447800E29BB1 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8815CE1657447800E29BB1 /* libicucore.dylib */; };
 		CA881A4E16EB278A0085F57B /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A4216EB278A0085F57B /* Offscreen.m */; };
 		CA881A4F16EB278A0085F57B /* Offscreen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA881A4216EB278A0085F57B /* Offscreen.m */; };
@@ -11428,6 +11433,8 @@
 		CA853C0616B3A472006FC155 /* BoardAdminListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardAdminListView.xib; sourceTree = "<group>"; };
 		CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BoardAdminListView~ipad.xib"; sourceTree = "<group>"; };
 		CA856A1117A1134600486CB3 /* DrawProcessProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawProcessProtocol.h; sourceTree = "<group>"; };
+		CA856A2217A2477100486CB3 /* DrawInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfo.h; sourceTree = "<group>"; };
+		CA856A2317A2477100486CB3 /* DrawInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfo.m; sourceTree = "<group>"; };
 		CA8815CE1657447800E29BB1 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		CA881A4116EB278A0085F57B /* Offscreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offscreen.h; sourceTree = "<group>"; };
 		CA881A4216EB278A0085F57B /* Offscreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offscreen.m; sourceTree = "<group>"; };
@@ -16763,6 +16770,8 @@
 				CA4FB827179E24A100A57387 /* DrawLayerManager.h */,
 				CA4FB828179E24A100A57387 /* DrawLayerManager.m */,
 				CA856A1117A1134600486CB3 /* DrawProcessProtocol.h */,
+				CA856A2217A2477100486CB3 /* DrawInfo.h */,
+				CA856A2317A2477100486CB3 /* DrawInfo.m */,
 			);
 			path = DrawLayer;
 			sourceTree = "<group>";
@@ -25476,6 +25485,7 @@
 				CA518367179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
 				CA518377179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */,
+				CA856A2717A2477200486CB3 /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26261,6 +26271,7 @@
 				CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */,
+				CA856A2617A2477200486CB3 /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27054,6 +27065,7 @@
 				CA518375179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */,
+				CA856A2417A2477200486CB3 /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27784,6 +27796,7 @@
 				A4B78997179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899C179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A1179E2E890008E21B /* HPThemeManager.m in Sources */,
+				CA856A2517A2477200486CB3 /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -28549,6 +28562,7 @@
 				CA518368179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
 				CA518378179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518383179FB6340033AA95 /* ShakeNumberController.m in Sources */,
+				CA856A2817A2477200486CB3 /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

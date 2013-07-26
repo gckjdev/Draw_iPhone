@@ -18,10 +18,6 @@
 @end
 
 @implementation ShapeClipTouchHandler
-- (void)addAction:(DrawAction *)drawAction
-{
-    [self.drawView addDrawAction:drawAction];
-}
 
 - (void)dealloc
 {
@@ -45,17 +41,39 @@ CGPoint realStartPoint;
 
 - (void)updateEndPoint
 {
+    
+    DrawInfo *info = self.drawView.drawInfo;
     action.shape.startPoint = realStartPoint;
     if ([ShapeInfo point1:action.shape.startPoint equalToPoint:action.shape.endPoint]) {
-        action.shape.endPoint = CGPointMake(action.shape.endPoint.x + self.drawView.lineWidth/2,
-                                            action.shape.endPoint.y + self.drawView.lineWidth/2);
-        action.shape.startPoint = CGPointMake(action.shape.startPoint.x - self.drawView.lineWidth/2,
-                                              action.shape.startPoint.y - self.drawView.lineWidth/2);
+        action.shape.endPoint = CGPointMake(action.shape.endPoint.x + info.penWidth/2,
+                                            action.shape.endPoint.y + info.penWidth/2);
+        action.shape.startPoint = CGPointMake(action.shape.startPoint.x - info.penWidth/2,
+                                              action.shape.startPoint.y - info.penWidth/2);
         
     }
 }
 
+
 #define STROKE_WIDTH 2
+
+- (DrawAction *)createDrawAction
+{
+    if (action == nil) {
+        
+        DrawInfo *info = self.drawView.drawInfo;
+        
+        ShapeInfo *shape = [ShapeInfo shapeWithType:info.shapeType
+                                            penType:info.penType
+                                              width:info.penWidth
+                                              color:info.penColor];
+        
+        action = [[ShapeAction shapeActionWithShape:shape] retain];
+ 
+        shape.width = STROKE_WIDTH;
+
+    }
+    return action;
+}
 
 
 
@@ -66,33 +84,12 @@ CGPoint realStartPoint;
         case TouchStateBegin:
         {
             handleFailed = NO;
-            ShapeInfo *shape = nil;
             realStartPoint = point;
-            if (!action) {
-                
-                
-                
-                shape = [ShapeInfo shapeWithType:self.shapeType
-                                         penType:self.drawView.penType
-                                           width:self.drawView.lineWidth
-                                           color:self.drawView.lineColor];
-                
-                [shape setStroke:self.drawView.strokeShape];
-                shape.startPoint = shape.endPoint = point;
-                shape.width = STROKE_WIDTH;
-
-                action = [[ClipAction clipActionWithShape:shape] retain];
-                [self.cdManager startClipAction:action];
-                [self.cdManager updateLastAction:action];
-            
-
-                [self updateEndPoint];
-            }else{
-                shape.startPoint = shape.endPoint = point;
-                [self updateEndPoint];
-                [self.drawView updateLastAction:action show:YES];
-            }
-            
+            action = [self createDrawAction];
+            ShapeInfo *shape = action.shape;
+            shape.startPoint = shape.endPoint = point;
+            [self updateEndPoint];
+            [self.drawView addDrawAction:action show:YES];
             break;
         }
             
@@ -104,7 +101,8 @@ CGPoint realStartPoint;
             }
             [action addPoint:point inRect:self.drawView.bounds];
             [self updateEndPoint];
-            [self.drawView updateLastAction:action show:YES];
+            [self.drawView updateLastAction:action refresh:YES];
+            
             break;
         }
         default:
@@ -112,11 +110,7 @@ CGPoint realStartPoint;
     }
     
     if (state == TouchStateCancel || state == TouchStateEnd) {
-        [self.drawView addDrawAction:action];
-        [self.cdManager finishDrawAction:action];
-        if (action) {
-            [self.drawView clearRedoStack];
-        }
+        [self.drawView finishLastAction:action refresh:YES];
         [self reset];
     }
 }
@@ -125,9 +119,7 @@ CGPoint realStartPoint;
 {
     [super handleFailTouch];
     [self reset];
-    //    [self.osManager cancelLastAction];
-    [self.cdManager cancelLastAction];
-    [self.drawView setNeedsDisplay];
+    [self.drawView cancelLastAction];
 }
 
 - (DrawAction *)drawAction

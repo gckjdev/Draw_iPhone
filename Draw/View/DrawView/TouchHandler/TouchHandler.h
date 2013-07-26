@@ -28,12 +28,13 @@ typedef enum {
 }
 
 @property(nonatomic, assign)DrawView *drawView;
-@property(nonatomic, assign)CacheDrawManager *cdManager;
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state;
 - (void)handleFailTouch;
 + (id)touchHandlerWithTouchActionType:(TouchActionType)type;
 - (void)reset;
 - (BOOL)handleFailed;
+
+- (DrawAction *)createDrawAction;
 
 @end
