@@ -11,7 +11,7 @@
 #import "PenView.h"
 #import "ItemType.h"
 #import "Palette.h"
-
+#import "DrawInfo.h"
 
 @class ToolHandler;
 
@@ -26,25 +26,22 @@
 //@property(nonatomic, retain)NSString *drawBgId;
 @property(nonatomic, retain)ToolHandler *toolHandler;
 
+- (void)updateWithDrawInfo:(DrawInfo *)drawInfo;
+
++ (id)createViewWithDrawInfo:(DrawInfo *)drawInfo;
+
+////
 
 
-//+ (id)createViewWithdelegate:(id)delegate;
-
+///deprecated method
 + (id)createViewWithdToolHandler:(ToolHandler *)handler;
 
 - (void)updateView;
 - (void)setPanelForOnline:(BOOL)isOnline;
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
 
-- (void)updateWidthSliderWithValue:(CGFloat)value;
-- (void)setShapeSelected:(BOOL)selected;
-- (void)setStrawSelected:(BOOL)selected;
-- (void)setPenSelected:(BOOL)selected;
-- (void)setEraserSelected:(BOOL)selected;
-
 - (void)registerToolCommands;
 - (IBAction)clickTool:(UIButton *)sender;
-- (void)updateView;
 - (void)hideColorPanel:(BOOL)hide;
 
 #pragma mark - Timer

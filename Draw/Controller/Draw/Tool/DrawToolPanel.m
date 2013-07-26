@@ -335,36 +335,21 @@
 
 
 
-- (void)updateViewsForSimpleDraw
-{
-//    if (isSimpleDrawApp()) {
-//        if(!ISIPAD){
-//            self.paintBucket.center = self.drawToUser.center;
-//        }else{
-//            self.shape.center = self.opusDesc.center;
-//            self.paintBucket.center = self.drawToUser.center;
-//        }
-//        self.drawToUser.hidden = self.opusDesc.hidden = YES;
-//    }
-
-}
-
 
 - (void)updateView
 {
     [self.scrollView setDelegate:self];
     
-    [self updateSliders];
+//    [self updateSliders];
     
     [self registerToolCommands];
-        
+    
     [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
 
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
     [self.toolBGImageView setImage:[[ShareImageManager defaultManager] drawToolBG]];
     
-    [self updateViewsForSimpleDraw];
 }
 
 + (id)createViewWithdelegate:(id)delegate
@@ -399,6 +384,20 @@
     handler.drawToolPanel = panel;
     [panel updateView];
     return panel;
+}
+
++ (id)createViewWithDrawInfo:(DrawInfo *)drawInfo
+{
+    DrawToolPanel *panel = nil;
+    if (ISIPHONE5) {
+        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel_ip5"];
+    }else{
+        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel"];
+    }
+    [panel updateView];
+    [panel updateWithDrawInfo:drawInfo];
+    return panel;
+    
 }
 
 
@@ -573,5 +572,46 @@
     [self updateButtonWithOffsetX:offset];    
 }
 
+
+
+
+/////new methods
+
+- (void)updateWithDrawInfo:(DrawInfo *)drawInfo
+{
+    NSArray *buttons = @[self.pen, self.straw, self.shape, self.eraser];
+    for (UIButton *button in buttons) {
+        [button setSelected:NO];
+    }
+    
+    switch (drawInfo.touchType) {
+        case TouchActionTypeDraw:
+            if (drawInfo.penType == Eraser) {
+                self.eraser.selected = YES;
+            }else{
+                self.pen.selected = YES;
+            }
+            break;
+            
+        case TouchActionTypeGetColor:
+            [self.straw setSelected:YES];
+            break;
+            
+        case TouchActionTypeShape:
+            [self.shape setSelected:YES];
+            
+        default:
+            break;
+    }
+    
+    //TODO set pen image
+
+    //TODO set shape image
+
+    [self.alphaSlider setValue:drawInfo.alpha];
+    [self.widthSlider setValue:drawInfo.penWidth];
+
+    //TODO set color
+}
 @end
 
