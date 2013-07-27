@@ -240,6 +240,8 @@
     PPRelease(_redoStack);
     PPRelease(_touchHandler);
     PPRelease(_currentTouch);
+    PPRelease(_desc);
+    PPRelease(_word);
     [super dealloc];
 }
 

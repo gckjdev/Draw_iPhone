@@ -9,6 +9,8 @@
 #import "DrawToCommand.h"
 #import "MyFriend.h"
 #import "UIImageUtil.h"
+#import "OfflineDrawViewController.h"
+#import "UIButton+WebCache.h"
 
 @implementation DrawToCommand
 
@@ -20,8 +22,10 @@
 - (void)changeTargetFriend:(MyFriend *)aFriend
 {
     if (aFriend) {
-        [self.toolHandler changeDrawToFriend:aFriend];
-        [(DrawToolUpPanel *)self.toolPanel updateDrawToUser:aFriend];
+        PPDebug(@"<changeDrawToFriend> nick = %@", aFriend.nickName);
+        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+        [oc setTargetUid:aFriend.friendUserId];
+        [(UIButton *)self.control setImageWithURL:[NSURL URLWithString:aFriend.avatar]];
     }
 }
 
@@ -34,11 +38,10 @@
 
 - (BOOL)execute
 {
-    //TODO enter MyFriendController and select the friend
     FriendController *fc = [[FriendController alloc] initWithDelegate:self];
     [[[self.toolPanel theViewController] navigationController] pushViewController:fc animated:YES];
     [fc release];
-    
+    [self sendAnalyticsReport];
     return YES;
 }
 

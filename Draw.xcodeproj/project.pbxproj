@@ -780,7 +780,6 @@
 		A461B367174CBAA70088B061 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		A461B36A174CBAA70088B061 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		A461B36B174CBAA70088B061 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		A461B36C174CBAA70088B061 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		A461B36D174CBAA70088B061 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		A461B36E174CBAA70088B061 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		A461B36F174CBAA70088B061 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -3167,7 +3166,6 @@
 		C28A9C4F1738F04B007A819F /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		C28A9C521738F04B007A819F /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		C28A9C531738F04B007A819F /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		C28A9C541738F04B007A819F /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		C28A9C551738F04B007A819F /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		C28A9C561738F04B007A819F /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		C28A9C571738F04B007A819F /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -7130,8 +7128,6 @@
 		CAEFC4B016FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		CAEFC4F016FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
 		CAEFC4F116FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
-		CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
-		CAEFC5321700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		CAEFC5381700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
@@ -7920,7 +7916,6 @@
 		EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		EA411AA6176066F500DA72D0 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		EA411AA7176066F500DA72D0 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		EA411AA8176066F500DA72D0 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		EA411AA9176066F500DA72D0 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		EA411AAA176066F500DA72D0 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -11896,8 +11891,6 @@
 		CAEFC49D16FD64DB00D799B7 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
 		CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeInfo.m; sourceTree = "<group>"; };
 		CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_canvas_bg@2x.png"; sourceTree = "<group>"; };
-		CAEFC52F1700002F00D799B7 /* ToolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHandler.h; sourceTree = "<group>"; };
-		CAEFC5301700002F00D799B7 /* ToolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolHandler.m; sourceTree = "<group>"; };
 		CAEFC5351700005400D799B7 /* ToolCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolCommand.h; sourceTree = "<group>"; };
 		CAEFC5361700005400D799B7 /* ToolCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolCommand.m; sourceTree = "<group>"; };
 		CAEFC5411700024100D799B7 /* AddColorCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddColorCommand.h; sourceTree = "<group>"; };
@@ -15783,7 +15776,6 @@
 			isa = PBXGroup;
 			children = (
 				CAEFC52D1700002F00D799B7 /* ToolCommand */,
-				CAEFC52E1700002F00D799B7 /* ToolHandler */,
 				CA5328D716A3E1E000E9E96B /* Tool */,
 				CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */,
 				CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */,
@@ -18809,15 +18801,6 @@
 				CAC85C0E179117B100827C20 /* FXCommand.m */,
 			);
 			path = ToolCommand;
-			sourceTree = "<group>";
-		};
-		CAEFC52E1700002F00D799B7 /* ToolHandler */ = {
-			isa = PBXGroup;
-			children = (
-				CAEFC52F1700002F00D799B7 /* ToolHandler.h */,
-				CAEFC5301700002F00D799B7 /* ToolHandler.m */,
-			);
-			path = ToolHandler;
 			sourceTree = "<group>";
 		};
 		CAF9B70D16AA3C4200865CCE /* PenEffect */ = {
@@ -25276,7 +25259,6 @@
 				A461B367174CBAA70088B061 /* ShapeInfo.m in Sources */,
 				A461B36A174CBAA70088B061 /* SNSUtils.m in Sources */,
 				A461B36B174CBAA70088B061 /* CustomSegmentedControl.m in Sources */,
-				A461B36C174CBAA70088B061 /* ToolHandler.m in Sources */,
 				A461B36D174CBAA70088B061 /* ToolCommand.m in Sources */,
 				A461B36E174CBAA70088B061 /* AddColorCommand.m in Sources */,
 				A461B36F174CBAA70088B061 /* PaletteCommand.m in Sources */,
@@ -26093,7 +26075,6 @@
 				C28A9C4F1738F04B007A819F /* ShapeInfo.m in Sources */,
 				C28A9C521738F04B007A819F /* SNSUtils.m in Sources */,
 				C28A9C531738F04B007A819F /* CustomSegmentedControl.m in Sources */,
-				C28A9C541738F04B007A819F /* ToolHandler.m in Sources */,
 				C28A9C551738F04B007A819F /* ToolCommand.m in Sources */,
 				C28A9C561738F04B007A819F /* AddColorCommand.m in Sources */,
 				C28A9C571738F04B007A819F /* PaletteCommand.m in Sources */,
@@ -26881,7 +26862,6 @@
 				CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				C2D6B09616FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
-				CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */,
 				CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */,
@@ -27668,7 +27648,6 @@
 				CAEFC4B016FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				C2D6B09716FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BC16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
-				CAEFC5321700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5381700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5441700024300D799B7 /* AddColorCommand.m in Sources */,
 				CAEFC54A1700026900D799B7 /* PaletteCommand.m in Sources */,
@@ -28399,7 +28378,6 @@
 				EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */,
 				EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */,
 				EA411AA6176066F500DA72D0 /* CustomSegmentedControl.m in Sources */,
-				EA411AA7176066F500DA72D0 /* ToolHandler.m in Sources */,
 				EA411AA8176066F500DA72D0 /* ToolCommand.m in Sources */,
 				EA411AA9176066F500DA72D0 /* AddColorCommand.m in Sources */,
 				EA411AAA176066F500DA72D0 /* PaletteCommand.m in Sources */,

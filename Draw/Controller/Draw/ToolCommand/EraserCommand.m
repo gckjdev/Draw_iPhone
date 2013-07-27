@@ -13,8 +13,9 @@
 - (BOOL)execute
 {
     [self showPopTipView];
-    [self.toolHandler enterEraserMode];
-    [self.toolHandler changeInPenType:Eraser];
+    self.drawInfo.penType = Eraser;
+    self.drawInfo.touchType = TouchActionTypeDraw;
+    [self sendAnalyticsReport];
     return YES;
 }
 

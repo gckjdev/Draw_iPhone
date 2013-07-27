@@ -12,7 +12,8 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler handleUndo];
+    [self sendAnalyticsReport];
+    [self.drawView undo];
     return YES;
 }
 -(void)sendAnalyticsReport{

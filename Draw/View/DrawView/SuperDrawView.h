@@ -19,6 +19,7 @@
 #import "CleanAction.h"
 #import "PaintAction.h"
 #import "ShapeAction.h"
+#import "CanvasRect.h"
 
 #import "DrawLayerManager.h"
 
@@ -43,6 +44,9 @@
 
 @property (nonatomic, assign) CGFloat minScale; //default is 1
 @property (nonatomic, assign) CGFloat maxScale; //default is 10
+
+
+//@property (nonatomic, retain) CanvasRect *canvasRect;
 
 //public method
 #pragma mark - util methods

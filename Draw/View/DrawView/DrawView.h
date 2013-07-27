@@ -50,6 +50,8 @@
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
 @property(nonatomic, assign) TouchActionType touchActionType;
 
+
+
 - (void)setDrawEnabled:(BOOL)enabled;
 
 - (void)clearRedoStack;
@@ -62,5 +64,11 @@
 - (NSInteger)actionCount;
 
 - (DrawInfo *)drawInfo;
+
+
+//New property
+
+@property(nonatomic, copy) NSString *word;
+@property(nonatomic, copy) NSString *desc;
 
 @end

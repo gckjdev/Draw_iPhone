@@ -26,7 +26,9 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler enterDrawMode];
+    self.drawInfo.touchType = TouchActionTypeDraw;
+    [self updateToolPanel];
+    
     if ([super execute]) {
         [self updatePenWithPenType:self.itemType];
         if ([self popupPenView] != 0) {
@@ -45,28 +47,17 @@
     return penBox;
 }
 
-- (void)updateControlView
-{
-    UIButton *button = (UIButton *)self.control;
-    [button setImage:[Item imageForItemType:self.itemType] forState:UIControlStateNormal];
-    [button setImage:[Item seletedPenImageForType:self.itemType] forState:UIControlStateSelected];
-}
 
 - (void)updatePenWithPenType:(ItemType)type
 {
     [self hidePopTipView];
-    [self becomeActive];
     self.itemType = type;
-    [self.toolHandler changeInPenType:self.itemType];
-    [self updateControlView];
+    
 }
 
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
 {
     self = [super initWithControl:control itemType:itemType];
-    if (self) {
-        [self updateControlView];
-    }
     return self;
 }
 

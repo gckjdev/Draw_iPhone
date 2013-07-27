@@ -45,7 +45,10 @@ typedef enum{
 @property(nonatomic, retain)Shadow *shadow;
 @property(nonatomic, retain)Gradient *gradient;
 
-
 @property(nonatomic, assign) BOOL strokeShape;
+
+@property(nonatomic, assign) BOOL grid;
+
++ (id)defaultDrawInfo;
 
 @end

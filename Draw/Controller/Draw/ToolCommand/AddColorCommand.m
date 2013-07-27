@@ -8,8 +8,6 @@
 
 #import "AddColorCommand.h"
 #import "ColorView.h"
-#import "DrawToolPanel.h"
-
 @implementation AddColorCommand
 
 
@@ -35,21 +33,18 @@
 #pragma mark-- Color Box Delegate
 
 - (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
-{    
-    TouchActionType type = self.toolHandler.drawView.touchActionType;
-    [self.toolHandler changePenColor:color];
+{
+    self.drawInfo.penColor = color;
+    [self updateToolPanel];
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
     [self hidePopTipView];
-    if (type == TouchActionTypeShape) {
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
 }
+
 - (void)didClickCloseButtonOnColorBox:(ColorBox *)colorBox
 {
     [self hidePopTipView];
 }
+
 - (void)didClickMoreButtonOnColorBox:(ColorBox *)colorBox
 {
     UIView *topView = [self.control theTopView];
@@ -62,15 +57,8 @@
 #pragma mark-- Color Shop Delegate
 
 - (void)didPickedColorView:(ColorView *)colorView{
-    TouchActionType type = self.toolHandler.drawView.touchActionType;
-    [self becomeActive];    
-    [self.toolHandler changePenColor:colorView.drawColor];
-    [self.toolPanel updateRecentColorViewWithColor:colorView.drawColor updateModel:YES];
-    if (type == TouchActionTypeShape) {
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
+    self.drawInfo.penColor = colorView.drawColor;
+    [self.toolPanel updateWithDrawInfo:self.drawInfo];
 }
 
 - (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId

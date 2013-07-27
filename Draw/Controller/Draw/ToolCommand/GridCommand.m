@@ -12,7 +12,7 @@
 
 - (BOOL)execute{
     if ([super execute]) {
-        [self.toolHandler useGid:!self.toolHandler.grid];
+        [self.drawInfo setGrid:!self.drawInfo.grid];
         return YES;
     }else{
         return NO;
@@ -21,7 +21,7 @@
 
 - (void)buyItemSuccessfully:(ItemType)type
 {
-    [self.toolHandler useGid:!self.toolHandler.grid];
+    [self.drawInfo setGrid:!self.drawInfo.grid];
 }
 
 -(void)sendAnalyticsReport{

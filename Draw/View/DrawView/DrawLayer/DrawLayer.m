@@ -58,6 +58,9 @@
 
 - (void)drawInContext:(CGContextRef)ctx
 {
+    if (self.drawInfo.grid) {
+        //TODO show grid
+    }
     if (self.supportCache) {
         [_cdManager showInContext:ctx];
     }else{

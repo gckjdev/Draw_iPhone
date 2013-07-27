@@ -109,10 +109,7 @@
     [self.popTipView dismissAnimated:YES];
     self.popTipView = nil;
 }
-- (void)finish
-{
-    [self hidePopTipView];
-}
+
 
 - (void)becomeActive
 {
@@ -140,6 +137,11 @@
 {
     self.popTipView = nil;
     _showing = NO;
+}
+
+- (void)updateToolPanel
+{
+    [self.toolPanel updateWithDrawInfo:self.drawInfo];
 }
 
 @end

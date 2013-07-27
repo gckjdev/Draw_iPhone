@@ -22,16 +22,16 @@
 - (UIView *)contentView
 {
     WidthBox *box = [WidthBox widthBox];
-    [box setWidthSelected:self.toolHandler.width];
+    [box setWidthSelected:self.drawInfo.penWidth];
     box.delegate = self;
     return box;
 }
 
 - (void)widthBox:(WidthBox *)widthBox didSelectWidth:(CGFloat)width
 {
-    [self.toolHandler changeWidth:width];
+    self.drawInfo.penWidth = width;
+    [self updateToolPanel];
     [self hidePopTipView];
-    [self.toolPanel updateWidthSliderWithValue:width];
 }
 
 -(void)sendAnalyticsReport{

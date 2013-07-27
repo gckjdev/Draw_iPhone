@@ -49,6 +49,7 @@
 #import "WidthView.h"
 #import "UIImageUtil.h"
 #import "UIImageView+WebCache.h"
+#import "DrawInfo.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -577,6 +578,29 @@
 
 /////new methods
 
+- (void)updateShapeWithDrawInfo:(DrawInfo *)drawInfo
+{
+    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:self.drawInfo.shapeType];
+    UIColor *color = ISIPHONE5 ? OPAQUE_COLOR(62, 43, 23) : [UIColor whiteColor];
+    UIImage *image = nil;
+    if (drawInfo.stroke || self.drawInfo.shapeType == ShapeTypeBeeline) {
+        image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }else{
+        image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }
+    [self.shape.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [self.shape setImage:image forState:UIControlStateNormal];
+
+}
+
+- (void)updatePenWithDrawInfo:(DrawInfo *)drawInfo
+{
+    if (drawInfo.penType != Eraser) {
+        [self.pen setImage:[Item imageForItemType:drawInfo.penType] forState:UIControlStateNormal];
+        [self.pen setImage:[Item seletedPenImageForType:drawInfo.penType] forState:UIControlStateSelected];
+    }
+}
+
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo
 {
     NSArray *buttons = @[self.pen, self.straw, self.shape, self.eraser];
@@ -604,10 +628,11 @@
             break;
     }
     
-    //TODO set pen image
 
-    //TODO set shape image
-
+    [self updatePenWithDrawInfo:drawInfo];
+    [self updateShapeWithDrawInfo:drawInfo];
+    
+    
     [self.alphaSlider setValue:drawInfo.alpha];
     [self.widthSlider setValue:drawInfo.penWidth];
 

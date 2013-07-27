@@ -30,8 +30,8 @@
 - (UIView *)contentView
 {
     CanvasRectBox *rectBox = [CanvasRectBox canvasRectBoxWithDelegate:self];
-    CanvasRectStyle style = self.toolHandler.canvasRect.style;
-    [rectBox setSelectedRect:style];
+    CanvasRect *cRect = [CanvasRect canvasRectWithRect:self.drawView.bounds];
+    [rectBox setSelectedRect:cRect.style];
     return rectBox;
 }
 
@@ -42,7 +42,10 @@
 
 - (void)useCanvasRect:(CanvasRect *)canvasRect
 {
-    if ([self.toolHandler changeCanvasRect:canvasRect]) {
+    BOOL flag = CGRectEqualToRect(canvasRect.rect, self.drawView.bounds);
+    
+    if (flag) {
+        [self.drawView changeRect:canvasRect.rect];
         [self hidePopTipView];
         [[DrawRecoveryService defaultService] changeCanvasSize:canvasRect.rect.size];
     }else{

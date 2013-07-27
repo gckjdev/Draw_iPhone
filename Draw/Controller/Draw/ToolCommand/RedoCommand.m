@@ -12,7 +12,8 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler handleRedo];
+    [self sendAnalyticsReport];
+    [self.drawView redo];
     return YES;
 }
 

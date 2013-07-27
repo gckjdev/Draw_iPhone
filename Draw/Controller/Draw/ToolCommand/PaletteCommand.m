@@ -9,15 +9,11 @@
 #import "PaletteCommand.h"
 #import "Palette.h"
 
-
 @implementation PaletteCommand
 - (UIView *)contentView
 {
     Palette *pallete = [Palette createViewWithdelegate:self];
-    if (self.toolHandler.penColor) {
-        pallete.currentColor = self.toolHandler.penColor;
-        [self.toolHandler changePenColor:pallete.currentColor];
-    }
+    pallete.currentColor = [DrawColor colorWithColor:self.drawInfo.penColor];
     return pallete;
 }
 
@@ -45,22 +41,18 @@
 - (void)hidePopTipView
 {
     if (self.popTipView) {
-        [self.toolPanel updateRecentColorViewWithColor:self.toolHandler.penColor
+        
+        [self.toolPanel updateRecentColorViewWithColor:self.drawInfo.penColor
                                            updateModel:YES];
+ 
+        [self updateToolPanel];
     }
     [super hidePopTipView];
 }
 
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
-    TouchActionType t = self.toolHandler.touchActionType;
-    [self becomeActive];
-    if (t == TouchActionTypeShape) {
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
-    [self.toolHandler changePenColor:color];
+    self.drawInfo.penColor = [DrawColor colorWithColor:color];
 }
 
 @end

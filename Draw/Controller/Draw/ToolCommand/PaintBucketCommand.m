@@ -14,13 +14,10 @@
 
 - (void)changeBG
 {
-    [self becomeActive];
-    [self.toolHandler usePaintBucket];
-    if (self.toolHandler.touchActionType == TouchActionTypeShape) {
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
+    bgAction = [ChangeBackAction actionWithColor:self.drawInfo.penColor];
+    [self.drawView addDrawAction:bgAction show:YES];
+    [self.drawView finishLastAction:bgAction refresh:NO];
+    [self sendAnalyticsReport];
 }
 
 

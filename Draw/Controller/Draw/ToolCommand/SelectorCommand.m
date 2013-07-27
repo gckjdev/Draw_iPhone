@@ -44,20 +44,32 @@
         [self showPopTipView];
     }
     return YES;
-    
+}
+
+
+- (TouchActionType)touchTypeFromClipType:(ClipType)cliptype
+{
+    NSDictionary *dict = @{@(ClipTypeEllipse): @(TouchActionTypeClipEllipse),
+                           @(ClipTypeRectangle): @(TouchActionTypeClipRectangle),
+                           @(ClipTypeSmoothPath): @(TouchActionTypeClipPath),
+                           @(ClipTypePolygon): @(TouchActionTypeClipPolygon)
+                           };
+    return [[dict objectForKey:@(cliptype)] intValue];
+
 }
 
 - (void)selectorBox:(SelectorBox *)box didSelectClipType:(ClipType)clipType
 {
     if (clipType != ClipTypeNo) {
-        [self.toolHandler enterClipModeWithClipType:clipType];
+        self.drawInfo.touchType = [self touchTypeFromClipType:clipType];
         [self.box showCloseViewInView:[self.control theTopView]];
+        [self.toolPanel updateWithDrawInfo:self.drawInfo];
     }
     [self hidePopTipView];
 }
 - (void)didClickCancelAtSelectorBox:(SelectorBox *)box
 {
-    [self.toolHandler exitFromClipMode];
+    [self.drawView exitFromClipMode];
     [self hidePopTipView];
 }
 - (void)didClickHelpAtSelectorBox:(SelectorBox *)box

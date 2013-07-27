@@ -7,6 +7,7 @@
 //
 
 #import "ChatCommand.h"
+#import "OnlineDrawViewController.h"
 
 @implementation ChatCommand
 
@@ -16,7 +17,9 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler handleChat];
+    [self sendAnalyticsReport];
+    OnlineDrawViewController *oc = (OnlineDrawViewController *)self.controller;
+    [oc showGroupChatView];
     return YES;
 }
 
