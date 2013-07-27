@@ -62,7 +62,7 @@ didSelectedShape:(ShapeType)shape
 - (void)shapeBox:(ShapeBox *)shapeBox didChangeDrawStyle:(BOOL)stroke
 {
     if (self.drawInfo.shapeType != ShapeTypeNone) {
-        self.drawInfo.strokeShape = isStroke;
+        self.drawInfo.strokeShape = stroke;
         self.drawInfo.touchType = TouchActionTypeShape;
         [self updateToolPanel];
     }

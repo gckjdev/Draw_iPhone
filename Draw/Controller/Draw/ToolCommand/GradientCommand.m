@@ -9,11 +9,11 @@
 #import "GradientCommand.h"
 #import "GradientSettingView.h"
 #import "GradientAction.h"
+#import "ClipAction.h"
+#import "CommonDialog.h"
 
 @interface GradientCommand()
 @property(nonatomic, assign) GradientSettingView *gradientSettingView;
-@property(nonatomic, retain) Gradient *lastGradient;
-
 
 @end
 
@@ -21,40 +21,28 @@
 
 - (void)dealloc
 {
-    PPRelease(_lastGradient);
     [super dealloc];
 }
 
 - (void)showPopTipView
 {
-    
-    
-    
     //create an gradient setting view and add to tool panel
     
-    CGRect rect = self.toolHandler.drawView.bounds;
-    if (self.toolHandler.drawView.currentClip) {
-        rect = self.toolHandler.drawView.currentClip.pathRect;
-    }
-    
-    if (self.lastGradient) {
-        self.lastGradient = [[[Gradient alloc] initWithGradient:_lastGradient] autorelease];
-        self.lastGradient.rect = rect;
-        [self.lastGradient setDegree:self.lastGradient.degree];
+    CGRect rect = self.drawView.bounds;
+    Gradient *gradient = self.drawInfo.gradient;
+    if (gradient) {
+        gradient = [[[Gradient alloc] initWithGradient:gradient] autorelease];
+        gradient.rect = rect;
+        [gradient updatePointsWithDegreeAndDivision]; 
     }else{
-        Gradient *graident = [[Gradient alloc] initWithDegree:0
-                                                   startColor:[DrawColor whiteColor]
-                                                     endColor:[DrawColor blackColor]
-                                                     division:0.5
-                                                       inRect:rect];
-        self.lastGradient = graident;
-        [graident release];
+        gradient = [[[Gradient alloc] initWithDegree:0
+                                         startColor:[DrawColor whiteColor]
+                                           endColor:[DrawColor blackColor]
+                                           division:0.5
+                                             inRect:rect] autorelease];
     }
-    
-    [self.toolHandler startGradient:self.lastGradient];
-    
-    
-    self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: self.lastGradient];
+    self.drawInfo.gradient = gradient;
+    self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: gradient];
 
 
     CGPoint center = CGPointMake(160, 26);
@@ -89,7 +77,12 @@
     
     
     [self.toolPanel hideColorPanel:NO];
-    [self.toolHandler confirmGradient:self.lastGradient];
+
+    GradientAction *gradientAction = [self.drawView lastAction];
+    
+    if ([gradientAction isKindOfClass:[GradientAction class]]) {
+        [self.drawView finishLastAction:gradientAction refresh:NO];
+    }
 }
 
 
@@ -98,8 +91,10 @@
 - (BOOL)execute
 {
     if ([super execute]) {
-        DrawAction *lastAction = [self.toolHandler.drawView lastAction];
-        if (lastAction && !self.toolHandler.drawView.currentClip) {
+        DrawAction *lastAction = [self.drawView lastAction];
+        
+        if (lastAction && ![lastAction isKindOfClass:[ClipAction class]])
+        {
             [[CommonDialog createDialogWithTitle:NSLS(@"kUseGradientTitle")
                                          message:NSLS(@"kUseGradientMessage")
                                            style:CommonDialogStyleDoubleButton
@@ -126,24 +121,12 @@
 - (void)gradientSettingView:(GradientSettingView *)view
            didChangeradient:(Gradient *)gradient
 {
-    [self.toolHandler updateGradient:gradient];
-    
-}
-/*
 
-//click the ok/cancel button
-- (void)gradientSettingView:(GradientSettingView *)view
-       didFinishSetGradient:(Gradient *)gradient
-                     cancel:(BOOL) cancel{
-    
-    if (cancel) {
-        [self.toolHandler cancelGradient];
-    }else{
-        [self.toolHandler confirmGradient:gradient];
+    GradientAction *gradientAction = [self.drawView lastAction];
+    if ([gradientAction isKindOfClass:[GradientAction class]]) {
+        gradientAction.gradient = [[[Gradient alloc] initWithGradient:gradient] autorelease];
+        [self.drawView updateLastAction:gradientAction refresh:YES];
     }
-    [self hidePopTipView];
 }
-
-*/
 
 @end

@@ -22,9 +22,7 @@
 
 - (void)showPopTipView
 {
-    [self becomeActive];
     self.showing = YES;
-
 }
 
 - (void)hidePopTipView

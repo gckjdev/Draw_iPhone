@@ -84,9 +84,6 @@
     [self.view addSubview:slider1];
 
    */ 
-    DrawToolPanel *panel = [DrawToolPanel createViewWithdToolHandler:nil];
-    panel.center = CGPointMake(160, 407.5);
-    [self.view addSubview:panel];
     
     /*
     Palette *pickBox = [Palette createViewWithdelegate:nil];

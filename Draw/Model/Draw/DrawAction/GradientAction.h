@@ -39,6 +39,8 @@
 
 - (void)setDegree:(CGFloat)degree;
 
+- (void)updatePointsWithDegreeAndDivision;
+
 - (id)initWithDegree:(CGFloat)degree
           startColor:(DrawColor *)sc
             endColor:(DrawColor *)ec

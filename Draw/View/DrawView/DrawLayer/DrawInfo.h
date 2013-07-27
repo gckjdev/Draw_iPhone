@@ -27,7 +27,7 @@ typedef enum{
 @class Shadow;
 @class DrawColor;
 @class Gradient;
-
+@class ClipAction;
 
 //Used as draw info setting.
 
@@ -44,6 +44,8 @@ typedef enum{
 @property(nonatomic, retain)DrawColor *bgColor;
 @property(nonatomic, retain)Shadow *shadow;
 @property(nonatomic, retain)Gradient *gradient;
+
+
 
 @property(nonatomic, assign) BOOL strokeShape;
 

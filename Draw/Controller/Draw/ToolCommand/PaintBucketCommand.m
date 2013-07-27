@@ -14,17 +14,19 @@
 
 - (void)changeBG
 {
-    bgAction = [ChangeBackAction actionWithColor:self.drawInfo.penColor];
+    ChangeBackAction *bgAction = [ChangeBackAction actionWithColor:self.drawInfo.penColor];
     [self.drawView addDrawAction:bgAction show:YES];
     [self.drawView finishLastAction:bgAction refresh:NO];
+    
     [self sendAnalyticsReport];
 }
 
 
 - (BOOL)execute
 {
-    DrawAction *lastDrawAction = [self.toolHandler.drawView lastAction];
-    if (lastDrawAction && ![lastDrawAction isKindOfClass:[ChangeBackAction class]] && !self.toolHandler.drawView.currentClip) {
+    DrawAction *lastDrawAction = [self.drawView lastAction];
+    
+    if (lastDrawAction && ![lastDrawAction isKindOfClass:[ChangeBackAction class]] && ![lastDrawAction isKindOfClass:[ClipAction class]]) {
         [[CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
                                       style:CommonDialogStyleDoubleButton
                                    delegate:nil

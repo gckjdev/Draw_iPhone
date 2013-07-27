@@ -50,6 +50,9 @@
 #import "UIImageUtil.h"
 #import "UIImageView+WebCache.h"
 #import "DrawInfo.h"
+#import "Item.h"
+#import "ImageShapeManager.h"
+#import "UIBezierPath+Ext.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -236,28 +239,6 @@
 {
     [self.eraser setSelected:selected];
 }
-//- (void)updateDrawToUser:(MyFriend *)user
-//{
-//
-//}
-//
-
-
-- (void)didSelectColorPoint:(ColorPoint *)colorPoint
-{
-    
-    TouchActionType type = self.toolHandler.drawView.touchActionType;
-    
-    [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
-    [self.toolHandler changePenColor:colorPoint.color];
-    [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
-    if(type == TouchActionTypeShape){
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
-
-}
 
 
 - (void)registerToolCommands
@@ -327,11 +308,7 @@
     command = [[[ChatCommand alloc] initWithControl:self.chat itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
-
-    [toolCmdManager updateHandler:self.toolHandler];
     [toolCmdManager updatePanel:self];
-    
-    [self.toolHandler enterDrawMode];
 }
 
 
@@ -373,19 +350,6 @@
     
 }
 
-+ (id)createViewWithdToolHandler:(ToolHandler *)handler
-{
-    DrawToolPanel *panel = nil;
-    if (ISIPHONE5) {
-        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel_ip5"];
-    }else{
-        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel"];
-    }
-    panel.toolHandler = handler;
-    handler.drawToolPanel = panel;
-    [panel updateView];
-    return panel;
-}
 
 + (id)createViewWithDrawInfo:(DrawInfo *)drawInfo
 {
@@ -398,7 +362,7 @@
     [panel updateView];
     [panel updateWithDrawInfo:drawInfo];
     return panel;
-    
+
 }
 
 
@@ -449,7 +413,6 @@
     PPDebug(@"%@ dealloc",self);
     [toolCmdManager removeAllCommand:_commandVersion];
     [drawColorManager syncRecentList];
-    PPRelease(_toolHandler);
     PPRelease(_widthSlider);
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);
@@ -580,10 +543,10 @@
 
 - (void)updateShapeWithDrawInfo:(DrawInfo *)drawInfo
 {
-    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:self.drawInfo.shapeType];
+    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:drawInfo.shapeType];
     UIColor *color = ISIPHONE5 ? OPAQUE_COLOR(62, 43, 23) : [UIColor whiteColor];
     UIImage *image = nil;
-    if (drawInfo.stroke || self.drawInfo.shapeType == ShapeTypeBeeline) {
+    if (drawInfo.strokeShape || drawInfo.shapeType == ShapeTypeBeeline) {
         image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
     }else{
         image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];

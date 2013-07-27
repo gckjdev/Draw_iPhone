@@ -180,7 +180,7 @@
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
-    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    DrawLayer *layer = [self layerWithTag:drawAction.layerTag];
     [layer addDrawAction:drawAction show:show];
 }
 

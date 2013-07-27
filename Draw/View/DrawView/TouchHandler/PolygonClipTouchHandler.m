@@ -35,7 +35,7 @@
 }
 
 
-- (DrawAction *)createDrawAction
+- (ClipAction *)createDrawAction
 {
     if (action == nil) {
         Paint *currentPaint = [Paint paintWithWidth:STROKE_WIDTH

@@ -13,7 +13,6 @@
 @interface DrawToolUpPanel : DrawToolPanel
 
 @property (assign, nonatomic) BOOL isVisable;
-//@property(nonatomic, retain)ToolHandler *toolHandler;
 
 
 @property (retain, nonatomic) IBOutlet UIButton* copyPaint;

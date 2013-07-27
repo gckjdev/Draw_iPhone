@@ -23,7 +23,6 @@
 @interface ToolCommand : NSObject<CMPopTipViewDelegate>
 
 @property(nonatomic, assign)UIControl *control;
-//@property(nonatomic, assign)ToolHandler *toolHandler;
 
 @property(nonatomic, assign)DrawToolPanel *toolPanel;
 @property(nonatomic, assign)PPViewController *controller;
@@ -38,9 +37,6 @@
 
 - (void)showPopTipView;
 - (void)hidePopTipView;
-//- (void)finish;
-
-//- (void)becomeActive;
 
 //need to be override by the sub classes
 - (void)sendAnalyticsReport;
@@ -76,7 +72,6 @@
 - (void)hideAllPopTipViews;
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command;
 
-- (void)updateHandler:(ToolHandler *)handler;
 - (void)updatePanel:(DrawToolPanel *)panel;
 
 - (BOOL)isPaletteShowing;

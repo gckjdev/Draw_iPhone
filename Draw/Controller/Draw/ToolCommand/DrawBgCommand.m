@@ -51,6 +51,7 @@
         [self changeBGImage:drawBg];
         [drawBgBox dismiss];
         self.box = nil;
+    }
 }
 
 - (void)buyItemSuccessfully:(ItemType)type

@@ -110,12 +110,6 @@
     self.popTipView = nil;
 }
 
-
-- (void)becomeActive
-{
-    [[ToolCommandManager defaultManager] makeCommanActive:self];
-}
-
 //need to be override by the sub classes
 - (UIView *)contentView
 {
@@ -241,13 +235,6 @@ NSUInteger _ManagerVersion = 1;
         if (command != command1) {
             [command1 hidePopTipView];
         }
-    }
-}
-
-- (void)updateHandler:(ToolHandler *)handler
-{
-    for (ToolCommand *command in commandList) {
-        [command setToolHandler:handler];
     }
 }
 

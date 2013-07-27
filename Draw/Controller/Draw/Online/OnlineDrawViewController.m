@@ -40,14 +40,14 @@
 #import "BuyItemView.h"
 #import "ToolCommand.h"
 #import "DrawHolderView.h"
-#import "ToolHandler.h"
+#import "DrawInfo.h"
+
 
 @interface OnlineDrawViewController ()
 {
 
 }
 @property(nonatomic, retain)DrawToolPanel *drawToolPanel;
-@property (assign, nonatomic) ToolHandler *toolHandler;
 
 @property (retain, nonatomic) IBOutlet UIImageView *wordLabelBGView;
 
@@ -77,7 +77,6 @@
 - (void)dealloc
 {
     [drawGameService setDrawDelegate:nil];
-    self.toolHandler = nil;
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);
@@ -111,11 +110,8 @@
 - (void)initDrawToolPanel
 {
     
-    self.toolHandler = [[[ToolHandler alloc] init] autorelease];
-    self.toolHandler.drawView = drawView;
-    self.toolHandler.controller = self;
-    
-    self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
+    DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
+    self.drawToolPanel = [DrawToolPanel createViewWithDrawInfo:drawInfo];
     
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2 - STATUSBAR_HEIGHT;

@@ -100,13 +100,9 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 - (void)registerToolCommands
 {
     toolCmdManager = [ToolCommandManager defaultManager];
-//    _commandVersion = [toolCmdManager createVersion];
-//    [toolCmdManager setVersion:_commandVersion];
-//    [toolCmdManager removeAllCommand:_commandVersion];
+    
     
     ToolCommand *command;
-
-    
 
     ADD_COMMAND(command, DrawBgCommand, self.drawBg, ItemTypeNo);
     ADD_COMMAND(command, CanvasSizeCommand, self.canvasSize, ItemTypeNo);
@@ -117,22 +113,17 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     ADD_COMMAND(command, CopyPaintCommand, self.copyPaintPicker, ItemTypeCopyPaint);
     ADD_COMMAND(command, ShowCopyPaintCommand, self.copyPaint, ItemTypeCopyPaint);
     
-    [toolCmdManager updateHandler:self.toolHandler];
-
-    
-    [self.toolHandler enterDrawMode];
 }
 
-+ (id)createViewWithdToolHandler:(ToolHandler *)handler
++ (id)createViewWithDrawInfo:(DrawInfo *)drawInfo
 {
-    DrawToolUpPanel *panel = nil;
-    panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
-    panel.toolHandler = handler;
-    handler.DrawToolUpPanel = panel;
-    panel.hidden = YES;
+    DrawToolUpPanel *panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
     [panel updateView];
+    [panel updateWithDrawInfo:drawInfo];
     return panel;
+    
 }
+
 
 - (void)updateDrawToUser:(MyFriend *)user
 {

@@ -13,9 +13,6 @@
 #import "Palette.h"
 #import "DrawInfo.h"
 
-@class ToolHandler;
-
-
 
 @interface DrawToolPanel : UIView<ColorPointDelegate, UIScrollViewDelegate>
 {
@@ -24,7 +21,6 @@
 
 @property(nonatomic, assign)NSInteger timerDuration;
 //@property(nonatomic, retain)NSString *drawBgId;
-@property(nonatomic, retain)ToolHandler *toolHandler;
 
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo;
 
@@ -32,9 +28,6 @@
 
 ////
 
-
-///deprecated method
-+ (id)createViewWithdToolHandler:(ToolHandler *)handler;
 
 - (void)updateView;
 - (void)setPanelForOnline:(BOOL)isOnline;

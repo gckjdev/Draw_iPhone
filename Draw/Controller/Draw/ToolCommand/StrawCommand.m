@@ -26,15 +26,12 @@
     return self;
 }
 
-- (void)setToolHandler:(ToolHandler *)toolHandler
-{
-    [super setToolHandler:toolHandler];
-    self.drawView.strawDelegate = self;
-}
 
 - (BOOL)execute
 {
     if ([self canUseItem:self.itemType]) {
+ 
+        self.drawView.strawDelegate = self;
         [self showPopTipView];
         return YES;
     }
@@ -68,7 +65,7 @@
 {
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
     self.drawInfo.penColor = color;
-    self.drawInfo.alpha = color;
+    self.drawInfo.alpha = 1;
     self.drawInfo.touchType = type;
     [self hidePopTipView];
     [self updateToolPanel];

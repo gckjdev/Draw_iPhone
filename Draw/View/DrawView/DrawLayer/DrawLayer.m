@@ -10,7 +10,8 @@
 #import "CacheDrawManager.h"
 #import "DrawAction.h"
 #import "PPStack.h"
-
+#import "GradientAction.h"
+#import "ClipAction.h"
 
 @implementation DrawLayer
 @synthesize drawActionList = _drawActionList;
@@ -76,17 +77,24 @@
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
+    if ([drawAction isKindOfClass:[GradientAction class]]) {
+        if (self.clipAction && self.clipAction == [self.drawActionList lastObject]) {
+            [[(GradientAction *)drawAction gradient] setRect:self.clipAction.pathRect];
+            [[(GradientAction *)drawAction gradient] updatePointsWithDegreeAndDivision];
+        }        
+    }
+
+    if (drawAction) {
+        [self.drawActionList addObject:drawAction];
+    }
     
     if (_supportCache) {
-        CGRect rect = [self.cdManager updateLastAction:action];
-        if (refresh) {
+        CGRect rect = [self.cdManager updateLastAction:drawAction];
+        if (show) {
             [self setNeedsDisplayInRect:rect];
         }
-        return;
-    }
-    if (action) {
-        [self.drawActionList addObject:action];
-        [self updateLastAction:action refresh:show];
+    }else{
+        [self updateLastAction:drawAction refresh:show];
     }
 }
 
