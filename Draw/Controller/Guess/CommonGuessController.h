@@ -20,7 +20,7 @@
 @property (retain, nonatomic) Opus *opus;
 @property (retain, nonatomic) NSMutableArray *guessWords;
 
-- (id)initWithOpus:(Opus *)opus;
+- (id)initWithOpus:(Opus *)opus mode:(PBUserGuessMode)mode;
 - (IBAction)clickToolBoxButton:(id)sender;
 - (IBAction)clickOpusButton:(id)sender;
 

@@ -237,8 +237,6 @@
     [self updateTempPostListWithTabID:tabID];
 }
 
-
-
 #pragma mark - common tab controller delegate
 
 

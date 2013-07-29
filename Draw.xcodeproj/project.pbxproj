@@ -2045,6 +2045,18 @@
 		A4C8D576175EE028007ED7E4 /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
 		A4C8D5EB175EEC23007ED7E4 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
 		A4C8D5EC175EEC23007ED7E4 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
+		A4C9E03517A61B4200DE982F /* GuessRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E03317A61B4200DE982F /* GuessRankCell.m */; };
+		A4C9E03617A61B4200DE982F /* GuessRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E03317A61B4200DE982F /* GuessRankCell.m */; };
+		A4C9E03717A61B4200DE982F /* GuessRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E03317A61B4200DE982F /* GuessRankCell.m */; };
+		A4C9E03817A61B4200DE982F /* GuessRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E03317A61B4200DE982F /* GuessRankCell.m */; };
+		A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C9E03417A61B4200DE982F /* GuessRankCell.xib */; };
+		A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C9E03417A61B4200DE982F /* GuessRankCell.xib */; };
+		A4C9E03B17A61B4200DE982F /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C9E03417A61B4200DE982F /* GuessRankCell.xib */; };
+		A4C9E03C17A61B4200DE982F /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C9E03417A61B4200DE982F /* GuessRankCell.xib */; };
+		A4C9E04517A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
+		A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
+		A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
+		A4C9E04817A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
 		A4CCE73B16771A6D00F90726 /* face_anger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72E16771A6D00F90726 /* face_anger@2x.png */; };
 		A4CCE73C16771A6D00F90726 /* face_crazy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */; };
 		A4CCE73D16771A6D00F90726 /* face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73016771A6D00F90726 /* face_cry@2x.png */; };
@@ -8005,6 +8017,11 @@
 		A4C8D5E0175EEC23007ED7E4 /* table_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table_builder.h; sourceTree = "<group>"; };
 		A4C8D5E1175EEC23007ED7E4 /* write_batch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = write_batch.h; sourceTree = "<group>"; };
 		A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libleveldb.a; sourceTree = "<group>"; };
+		A4C9E03217A61B4200DE982F /* GuessRankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessRankCell.h; sourceTree = "<group>"; };
+		A4C9E03317A61B4200DE982F /* GuessRankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessRankCell.m; sourceTree = "<group>"; };
+		A4C9E03417A61B4200DE982F /* GuessRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessRankCell.xib; sourceTree = "<group>"; };
+		A4C9E04317A61B6500DE982F /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		A4C9E04417A61B6500DE982F /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
 		A4CCE72E16771A6D00F90726 /* face_anger@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_anger@2x.png"; sourceTree = "<group>"; };
 		A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_crazy@2x.png"; sourceTree = "<group>"; };
 		A4CCE73016771A6D00F90726 /* face_cry@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_cry@2x.png"; sourceTree = "<group>"; };
@@ -11458,6 +11475,9 @@
 		A49971F9177831E100B01EBE /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9E03217A61B4200DE982F /* GuessRankCell.h */,
+				A4C9E03317A61B4200DE982F /* GuessRankCell.m */,
+				A4C9E03417A61B4200DE982F /* GuessRankCell.xib */,
 				A4B789AA179E2F120008E21B /* GuessModesController.h */,
 				A4B789AB179E2F120008E21B /* GuessModesController.m */,
 				A4B789AC179E2F120008E21B /* GuessModesController.xib */,
@@ -11841,6 +11861,15 @@
 				A4C8D5E1175EEC23007ED7E4 /* write_batch.h */,
 			);
 			path = leveldb;
+			sourceTree = "<group>";
+		};
+		A4C9E04217A61B6500DE982F /* KxMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A4C9E04317A61B6500DE982F /* KxMenu.h */,
+				A4C9E04417A61B6500DE982F /* KxMenu.m */,
+			);
+			path = KxMenu;
 			sourceTree = "<group>";
 		};
 		A4CCE72D16771A6D00F90726 /* exps */ = {
@@ -13693,6 +13722,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9E04217A61B6500DE982F /* KxMenu */,
 				A4EC5ABD178FFE820085031F /* ImageView */,
 				C206FFC1178034450033CF63 /* PSCollectionView */,
 				C21D414B16D5B3E5006A0AA3 /* CustomUITextField */,
@@ -18982,6 +19012,7 @@
 				CA51836B179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
+				A4C9E03B17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20026,6 +20057,7 @@
 				CA51836A179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
+				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21059,6 +21091,7 @@
 				CA518369179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
+				A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22013,6 +22046,7 @@
 				CA51836C179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
+				A4C9E03C17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22829,6 +22863,8 @@
 				CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				CA766D5C17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6417A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
+				A4C9E03717A61B4200DE982F /* GuessRankCell.m in Sources */,
+				A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23616,6 +23652,8 @@
 				A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */,
 				CA766D5B17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6317A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
+				A4C9E03617A61B4200DE982F /* GuessRankCell.m in Sources */,
+				A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24411,6 +24449,8 @@
 				A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */,
 				CA766D5A17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6217A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
+				A4C9E03517A61B4200DE982F /* GuessRankCell.m in Sources */,
+				A4C9E04517A61B6500DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25178,6 +25218,8 @@
 				CA518383179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				CA766D5D17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6517A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
+				A4C9E03817A61B4200DE982F /* GuessRankCell.m in Sources */,
+				A4C9E04817A61B6500DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25386,6 +25428,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Sing-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25448,6 +25491,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/Sing-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25510,6 +25554,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/LittleGeeDraw-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25568,6 +25613,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/LittleGeeDraw-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25689,6 +25735,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25749,6 +25796,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "Draw/Draw-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25811,6 +25859,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/AskPs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
@@ -25871,6 +25920,7 @@
 					"../Common_iPhone_20/3PP-SDK/AliPaySDK/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Draw/AskPs-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Common_iPhone_20/3PP-SDK/MobClick\"",
