@@ -57,12 +57,14 @@
       [KxMenuItem menuItem:NSLS(@"year")
                      image:nil
                     target:self
-                    action:@selector(pushMenuItem:)],
+                    action:@selector(pushMenuItem:)]];
     
-//    KxMenuItem *first = menuItems[0];
-//    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-//    first.alignment = NSTextAlignmentCenter;
+    KxMenuItem *first = menuItems[0];
+    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
+    first.alignment = NSTextAlignmentCenter;
     
+      
+      
     [KxMenu showMenuInView:self.view
                   fromRect:sender.frame
                  menuItems:menuItems];
@@ -94,12 +96,12 @@
       [KxMenuItem menuItem:NSLS(@"beforYestoday")
                      image:nil
                     target:self
-                    action:@selector(pushMenuItem:)],
+                    action:@selector(pushMenuItem:)]];
       
-//      KxMenuItem *first = menuItems[0];
-//      first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-//      first.alignment = NSTextAlignmentCenter;
-      
+      KxMenuItem *first = menuItems[0];
+      first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
+      first.alignment = NSTextAlignmentCenter;
+    
       [KxMenu showMenuInView:self.view
                     fromRect:sender.frame
                    menuItems:menuItems];
