@@ -154,8 +154,6 @@
 @class PBGuessContest_Builder;
 @class PBGuessRank;
 @class PBGuessRank_Builder;
-@class PBGuessResult;
-@class PBGuessResult_Builder;
 @class PBHotWord;
 @class PBHotWordList;
 @class PBHotWordList_Builder;

@@ -7,7 +7,10 @@
 //
 
 #import "PPViewController.h"
+#import "CommonTabController.h"
+#import "GuessService.h"
 
-@interface GuessRankListController : PPViewController
+@interface GuessRankListController : CommonTabController <GusessServiceDelegate>
+
 
 @end

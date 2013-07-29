@@ -45,12 +45,23 @@
     [super dealloc];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)loadData{
     [[GuessService defaultService] getOpusesWithMode:_mode
                                            contestId:nil
                                               offset:0
                                                limit:20
                                           isStartNew:NO];
+    
+    [[GuessService defaultService] getGuessRankWithType:HOT_RANK
+                                                   mode:PBUserGuessModeGuessModeHappy
+                                              contestId:nil];
+    
+    [[GuessService defaultService] setDelegate:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [self loadData];
     [super viewWillAppear:animated];
 }
 
@@ -60,15 +71,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kGuangKa") delegate:self]];
-
-    [[GuessService defaultService] getOpusesWithMode:_mode
-                                           contestId:nil
-                                              offset:0
-                                               limit:20
-                                          isStartNew:NO];
-    [[GuessService defaultService] getGuessRankWithType:HOT_RANK mode:PBUserGuessModeGuessModeHappy contestId:nil];
-    
-    [[GuessService defaultService] setDelegate:self];
 }
 
 - (void)viewDidUnload {
@@ -100,7 +102,7 @@
     
     Opus *opus = [Opus opusWithPBOpus:pbOpus];
     
-    DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus] autorelease];
+    DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus mode:_mode] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -108,7 +110,7 @@
     
     if (resultCode == 0) {
         self.opuses = opuses;
-        [self reload];
+        [self reloadView];
     }else{
         [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
     }
@@ -127,7 +129,8 @@
     return (UIButton *)[_opusesHolderView viewWithTag:(index + OPUS_BUTTON_OFFSET)];
 }
 
-- (void)reload{
+- (void)reloadView{
+    
     int index = 0;
     for (; index < [_opuses count]; index++) {
         PBOpus *opus = [_opuses objectAtIndex:index];
@@ -144,17 +147,12 @@
     [[self opusButtonWithIndex:index].layer addAnimation:ani forKey:nil];
     
     _guessedInfoLabel.text = [NSString stringWithFormat:NSLS(@"kCurGuessOpusIs:%d"), _curIndex];
-    _aheadInfoLabel.text = [NSString stringWithFormat:NSLS(@"kAwardIs:%d"), [self getAward]];
+    _aheadInfoLabel.text = [NSString stringWithFormat:NSLS(@"kAwardIs:%d"), 5000];
 }
 
 - (IBAction)clickRestartButton:(id)sender {
     
-    [[GuessService defaultService] getOpusesWithMode:_mode
-                                           contestId:nil
-                                              offset:0
-                                               limit:20
-                                          isStartNew:YES];
-    [[GuessService defaultService] getGuessRankWithType:HOT_RANK mode:PBUserGuessModeGuessModeHappy contestId:nil];
+    [self loadData];
 }
 
 - (IBAction)clickShareButton:(id)sender {

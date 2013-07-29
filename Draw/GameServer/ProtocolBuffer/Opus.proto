@@ -181,37 +181,40 @@ message PBOpusList{
 }
 
 message PBOpusGuess{
+
     optional bool isCorrect = 2 [default = false];         // 已经猜中过
 }
 
+enum PBRankType{
+   HOT_RANK = 1;
+   ALL_TIME_RANK = 2;
+}
+
 enum PBUserGuessMode{
+
    GUESS_MODE_HAPPY = 1;
    GUESS_MODE_GENIUS = 2;
    GUESS_MODE_CONTEST = 3;
 }
 
-
 message PBGuessRank{
 
    optional PBGameUser user = 1;    
 
-   optional int32 lead = 11;         // 领先百分之多少的用户
-   optional int32 pass = 12;         // 通过了多少关
-   optional int32 earn = 13;         // 赢得了多少钱
-   optional PBGameCurrency currency = 21;    // 货币种类
+   optional int32 guess = 5;         // 猜的总次数
+   optional int32 pass = 6;          // 一共通过了多少关
+   optional int32 spendTime = 7;     // 总耗时
    
-   optional int32 startTime = 50;     // 开始时间
-   optional int32 endTime = 51;       // 结束时间
-   optional int32 totalTime = 52;     // 总共耗时。
-}
+   optional int32 earn = 11;         // 赢得了多少
+   optional PBGameCurrency currency = 12 [default = Coin];    // 货币种类
 
-message PBGuessResult{
-   
-   optional bool isOver = 1;        // 是否结束
-   optional PBGuessRank rank= 2;          // 排名信息
+   optional int32 lead = 31;         // 领先百分之多少的用户
+   optional int32 startTime = 35;    // 开始时间
+   optional int32 endTime = 36;      // 结束时间
 }
 
 enum PBGuessContestState{
+
    GUESS_CONTEST_STATE_END= 0;          // 比赛已经结束
    GUESS_CONTEST_STATE_ING = 1;         // 比赛进行中
    GUESS_CONTEST_STATE_NOT_START = 2;   // 比赛还没开始

@@ -2102,6 +2102,10 @@
 		A4B78A80179FADE20008E21B /* guess_rules@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A74179FADE20008E21B /* guess_rules@2x.png */; };
 		A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */; };
 		A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */; };
+		A4B78A8F17A11B000008E21B /* GuessRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A8E17A11AFB0008E21B /* GuessRankCell.m */; };
+		A4B78A9017A11B000008E21B /* GuessRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A8E17A11AFB0008E21B /* GuessRankCell.m */; };
+		A4B78A9217A11B3B0008E21B /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A9117A11B360008E21B /* GuessRankCell.xib */; };
+		A4B78A9317A11B3B0008E21B /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B78A9117A11B360008E21B /* GuessRankCell.xib */; };
 		A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7A0031772F99800C586F7 /* WordInputView.m */; };
 		A4BABB57176F0C3C008D7AAB /* songCategory.txt in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB37176F0C3C008D7AAB /* songCategory.txt */; };
 		A4BABB58176F0C3C008D7AAB /* add_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4BABB39176F0C3C008D7AAB /* add_time@2x.png */; };
@@ -2153,6 +2157,9 @@
 		A4C8D576175EE028007ED7E4 /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
 		A4C8D5EB175EEC23007ED7E4 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
 		A4C8D5EC175EEC23007ED7E4 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
+		A4C9E02717A6154E00DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E02617A6154E00DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4C9E02817A6154E00DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E02617A6154E00DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4C9E02917A6154E00DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E02617A6154E00DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4CCE73B16771A6D00F90726 /* face_anger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72E16771A6D00F90726 /* face_anger@2x.png */; };
 		A4CCE73C16771A6D00F90726 /* face_crazy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */; };
 		A4CCE73D16771A6D00F90726 /* face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73016771A6D00F90726 /* face_cry@2x.png */; };
@@ -9609,6 +9616,9 @@
 		A4B78A74179FADE20008E21B /* guess_rules@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rules@2x.png"; sourceTree = "<group>"; };
 		A4B78A8417A046480008E21B /* PageScrollViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageScrollViewFactory.h; sourceTree = "<group>"; };
 		A4B78A8517A0464C0008E21B /* PageScrollViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageScrollViewFactory.m; sourceTree = "<group>"; };
+		A4B78A8D17A11AF40008E21B /* GuessRankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessRankCell.h; sourceTree = "<group>"; };
+		A4B78A8E17A11AFB0008E21B /* GuessRankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessRankCell.m; sourceTree = "<group>"; };
+		A4B78A9117A11B360008E21B /* GuessRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessRankCell.xib; sourceTree = "<group>"; };
 		A4B7A0021772F99800C586F7 /* WordInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordInputView.h; sourceTree = "<group>"; };
 		A4B7A0031772F99800C586F7 /* WordInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordInputView.m; sourceTree = "<group>"; };
 		A4BABB37176F0C3C008D7AAB /* songCategory.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = songCategory.txt; sourceTree = "<group>"; };
@@ -9678,6 +9688,8 @@
 		A4C8D5E0175EEC23007ED7E4 /* table_builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = table_builder.h; sourceTree = "<group>"; };
 		A4C8D5E1175EEC23007ED7E4 /* write_batch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = write_batch.h; sourceTree = "<group>"; };
 		A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libleveldb.a; sourceTree = "<group>"; };
+		A4C9E02517A6154E00DE982F /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		A4C9E02617A6154E00DE982F /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
 		A4CCE72E16771A6D00F90726 /* face_anger@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_anger@2x.png"; sourceTree = "<group>"; };
 		A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_crazy@2x.png"; sourceTree = "<group>"; };
 		A4CCE73016771A6D00F90726 /* face_cry@2x.png */ = {isa = PBXFileReference; explicitFileType = image.icns; path = "face_cry@2x.png"; sourceTree = "<group>"; };
@@ -13196,6 +13208,9 @@
 				A4B78A68179FA6E70008E21B /* GuessRankListController.h */,
 				A4B78A69179FA6ED0008E21B /* GuessRankListController.m */,
 				A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */,
+				A4B78A8D17A11AF40008E21B /* GuessRankCell.h */,
+				A4B78A8E17A11AFB0008E21B /* GuessRankCell.m */,
+				A4B78A9117A11B360008E21B /* GuessRankCell.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -13565,6 +13580,15 @@
 				A4C8D5E1175EEC23007ED7E4 /* write_batch.h */,
 			);
 			path = leveldb;
+			sourceTree = "<group>";
+		};
+		A4C9E02417A6154E00DE982F /* KxMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A4C9E02517A6154E00DE982F /* KxMenu.h */,
+				A4C9E02617A6154E00DE982F /* KxMenu.m */,
+			);
+			path = KxMenu;
 			sourceTree = "<group>";
 		};
 		A4CCE72D16771A6D00F90726 /* exps */ = {
@@ -15417,6 +15441,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				A4C9E02417A6154E00DE982F /* KxMenu */,
 				A4EC5ABD178FFE820085031F /* ImageView */,
 				C206FFC1178034450033CF63 /* PSCollectionView */,
 				C21D414B16D5B3E5006A0AA3 /* CustomUITextField */,
@@ -21756,6 +21781,7 @@
 				CA51836A179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
+				A4B78A9317A11B3B0008E21B /* GuessRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22789,6 +22815,7 @@
 				CA518369179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
 				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
+				A4B78A9217A11B3B0008E21B /* GuessRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25474,6 +25501,7 @@
 				CA518367179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
 				CA518377179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */,
+				A4C9E02917A6154E00DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26259,6 +26287,8 @@
 				CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */,
+				A4B78A9017A11B000008E21B /* GuessRankCell.m in Sources */,
+				A4C9E02817A6154E00DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27045,13 +27075,15 @@
 				A4B789B2179E2F120008E21B /* GuessSelectController.m in Sources */,
 				A4B789B4179E36C20008E21B /* WordInputView.m in Sources */,
 				CA51834B179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
-				CA518355179F79A80033AA95 /* UserNumberService.m in Sources */,
 				A4B78A5B179F7C350008E21B /* SingOpus.m in Sources */,
 				A4B78A6B179FA6F10008E21B /* GuessRankListController.m in Sources */,
 				CA518365179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
 				CA518375179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */,
+				A4B78A8F17A11B000008E21B /* GuessRankCell.m in Sources */,
+				CA518355179F79A80033AA95 /* UserNumberService.m in Sources */,
+				A4C9E02717A6154E00DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
