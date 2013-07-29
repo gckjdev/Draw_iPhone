@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HJManagedImageV;
+//@class HJManagedImageV;
 @class DACircularProgressView;
 @class DiceAvatarView;
 
@@ -29,7 +29,7 @@ typedef enum {
 {
 //    NSInteger _score;
 //    UIButton *markButton;
-    HJManagedImageV *imageView;
+    UIImageView *imageView;
     DACircularProgressView* progressView;
     NSString *_userId;
     UIImageView *bgView;

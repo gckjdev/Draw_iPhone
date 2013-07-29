@@ -8,12 +8,13 @@
 
 #import "DiceAvatarView.h"
 #import "DACircularProgressView.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 #import "DiceImageManager.h"
 #import "PPApplication.h"
 #import "ShareImageManager.h"
 #import "AnimationManager.h"
 #import "UIImage+FiltrrCompositions.h"
+#import "UIImageView+Extend.h"
 
 #define PROGRESS_UPDATE_TIME    0.01
 
@@ -87,7 +88,7 @@
         [self addSubview:bgView];
         
         float width = MIN(self.bounds.size.width, self.bounds.size.height);
-        imageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
@@ -138,7 +139,7 @@
         [self addSubview:bgView];
         
         float width = MIN(self.bounds.size.width, self.bounds.size.height);
-        imageView = [[HJManagedImageV alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
         [imageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
         imageView.layer.cornerRadius = self.frame.size.width/2;
         imageView.layer.masksToBounds = YES;
@@ -266,9 +267,9 @@
 
 - (void)setImage:(UIImage *)image
 {
-    [imageView clear];
+//    [imageView clear];
     [imageView setImage:image];
-    [GlobalGetImageCache() manage:imageView];
+//    [GlobalGetImageCache() manage:imageView];
 }
 
 - (void)updateTimer:(id)sender
@@ -301,20 +302,31 @@
     
 }
 
-- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
+- (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender
 {
-    [imageView clear];
+//    [imageView clear];
+//    if (gender) {
+//        [imageView setImage:[[ShareImageManager defaultManager] 
+//                             maleDefaultAvatarImage]];
+//    }else{
+//        [imageView setImage:[[ShareImageManager defaultManager] 
+//                             femaleDefaultAvatarImage]];                
+//    }
+//    if ([url length] > 0){
+//        [imageView setUrl:[NSURL URLWithString:url]];
+//        [GlobalGetImageCache() manage:imageView];
+//    }
+
+    UIImage* placeHolderImage = nil;
     if (gender) {
-        [imageView setImage:[[ShareImageManager defaultManager] 
-                             maleDefaultAvatarImage]];
+        placeHolderImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
     }else{
-        [imageView setImage:[[ShareImageManager defaultManager] 
-                             femaleDefaultAvatarImage]];                
+        placeHolderImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     }
-    if ([url length] > 0){
-        [imageView setUrl:[NSURL URLWithString:url]];
-        [GlobalGetImageCache() manage:imageView];
-    }
+    
+    NSURL* url = [NSURL URLWithString:urlString];
+    [imageView setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];
+    
     _isBlackAndWhite = NO;
     _originAvatar = nil;
 }
@@ -380,8 +392,8 @@
 {
     if (isGray != _isBlackAndWhite) {
         if (isGray) {
-            _originAvatar = imageView.imageView.image;
-            [self  setImage:[imageView.imageView.image blackAndWhite]];
+            _originAvatar = imageView.image;
+            [self  setImage:[imageView.image blackAndWhite]];
         } else {
             if (_originAvatar) {
                 [self setImage:_originAvatar];
