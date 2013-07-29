@@ -20,6 +20,8 @@
 - (void)dealloc{
     
     [[GuessService defaultService] setDelegate:nil];
+    [_geniusButton release];
+    [_contestButton release];
     [super dealloc];
 }
 
@@ -30,41 +32,39 @@
     [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kGuessRank") delegate:self]];
     // Do any additional setup after loading the view from its nib.
     [self initTabButtons];
-//    self 
+    
+    [self clickTab:TabTypeGeniusHot];
 
     
 }
 
-
+#define GENIUS_WEEK NSLS(@"kWeek")
+#define GENIUS_YEAR NSLS(@"kYear")
+#define CONTEST_TODAY NSLS(@"kToday")
+#define CONTEST_YESTODAY NSLS(@"kYestoday")
+#define CONTEST_BEFOREYESTODAY NSLS(@"kBeforeYestoday")
 
 - (IBAction)clickGeniusButton:(UIButton *)sender {
     
     // TODO: set pull down list to select
-    
-    [KxMenu dismissMenu];
-    
+        
     NSArray *menuItems =
     @[
 
-        [KxMenuItem menuItem:NSLS(@"select")
-                       image:nil
-                      target:nil
-                      action:NULL],
-
-        [KxMenuItem menuItem:NSLS(@"week")
+        [KxMenuItem menuItem:GENIUS_WEEK
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)],
 
-        [KxMenuItem menuItem:NSLS(@"year")
+        [KxMenuItem menuItem:GENIUS_YEAR
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)]
     ];
 
-    KxMenuItem *first = menuItems[0];
-    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-    first.alignment = NSTextAlignmentCenter;
+//    KxMenuItem *first = menuItems[0];
+//    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
+//    first.alignment = NSTextAlignmentCenter;
 
     [KxMenu showMenuInView:self.view
     fromRect:sender.frame
@@ -76,35 +76,27 @@
     
     // TODO: set pull down list to select
     
-    [KxMenu dismissMenu];
-    
     NSArray *menuItems =
     @[
-      
-        [KxMenuItem menuItem:NSLS(@"select")
-                       image:nil
-                      target:nil
-                      action:NULL],
-
-        [KxMenuItem menuItem:NSLS(@"today")
+        [KxMenuItem menuItem:CONTEST_TODAY
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)],
 
-        [KxMenuItem menuItem:NSLS(@"yestoday")
+        [KxMenuItem menuItem:CONTEST_YESTODAY
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)],
 
-        [KxMenuItem menuItem:NSLS(@"beforYestoday")
+        [KxMenuItem menuItem:CONTEST_BEFOREYESTODAY
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)]
     ];
     
-    KxMenuItem *first = menuItems[0];
-    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-    first.alignment = NSTextAlignmentCenter;
+//    KxMenuItem *first = menuItems[0];
+//    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
+//    first.alignment = NSTextAlignmentCenter;
 
     [KxMenu showMenuInView:self.view
                 fromRect:sender.frame
@@ -113,19 +105,34 @@
       
 - (void) pushMenuItem:(KxMenuItem *)item
 {
-    PPDebug(@"title = %@", item.title);
+    if ([item.title isEqualToString:GENIUS_WEEK]) {
+        [_geniusButton setTitle:item.title forState:UIControlStateNormal];
+        [self clickTab:TabTypeGeniusHot];
+    }else if ([item.title isEqualToString:GENIUS_YEAR]) {
+        [_geniusButton setTitle:item.title forState:UIControlStateNormal];
+        [self clickTab:TabTypeGeniusAllTime];
+    }else if ([item.title isEqualToString:CONTEST_TODAY]) {
+        [_contestButton setTitle:item.title forState:UIControlStateNormal];
+        [self clickTab:TabTypeContestToday];
+    }else if ([item.title isEqualToString:CONTEST_YESTODAY]) {
+        [_contestButton setTitle:item.title forState:UIControlStateNormal];
+        [self clickTab:TabTypeContestYestoday];
+    }else if ([item.title isEqualToString:CONTEST_BEFOREYESTODAY]) {
+        [_contestButton setTitle:item.title forState:UIControlStateNormal];
+        [self clickTab:TabTypeContestBeforeYestoday];
+    }
 }
 
 - (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode{
     
-    
     if (resultCode == 0) {
         PPDebug(@"list count = %d", [list count]);
+        [self finishLoadDataForTabID:self.currentTab.tabID resultList:list];
     }else{
-        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
+//        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
+        [self failLoadDataForTabID:self.currentTab.tabID];
     }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -133,6 +140,9 @@
     if (cell == nil) {
         cell = [GuessRankCell createCell:nil];
     }
+    
+    PBGuessRank *rank = [self.currentTab.dataList objectAtIndex:indexPath.row];
+    [cell setCellInfo:rank];
     
     return cell;
 }
@@ -206,4 +216,9 @@ typedef enum{
 }
 
 
+- (void)viewDidUnload {
+    [self setGeniusButton:nil];
+    [self setContestButton:nil];
+    [super viewDidUnload];
+}
 @end
