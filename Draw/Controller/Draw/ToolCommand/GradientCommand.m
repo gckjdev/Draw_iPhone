@@ -13,6 +13,9 @@
 #import "CommonDialog.h"
 
 @interface GradientCommand()
+{
+    GradientAction *gradientAction;
+}
 @property(nonatomic, assign) GradientSettingView *gradientSettingView;
 
 @end
@@ -59,7 +62,12 @@
         self.gradientSettingView.alpha = 1;
     }];
     [self.toolPanel hideColorPanel:YES];
+    
     self.showing = YES;
+    
+    gradientAction = [GradientAction actionWithGradient:gradient];
+    [self.drawView addDrawAction:gradientAction show:YES];
+    
     
 }
 - (void)hidePopTipView
@@ -75,16 +83,10 @@
         self.gradientSettingView = nil;
     }];
     
-    
+    [self.drawView finishLastAction:gradientAction refresh:YES];
+        
     [self.toolPanel hideColorPanel:NO];
-
-    GradientAction *gradientAction = (id)[self.drawView lastAction];
-    
-    if ([gradientAction isKindOfClass:[GradientAction class]]) {
-        [self.drawView finishLastAction:gradientAction refresh:NO];
-    }
 }
-
 
 
 
@@ -117,16 +119,13 @@
 -(void)sendAnalyticsReport{
     AnalyticsReport(DRAW_CLICK_GRADIENT);
 }
+
 //change degree, division, color
 - (void)gradientSettingView:(GradientSettingView *)view
            didChangeradient:(Gradient *)gradient
 {
-
-    GradientAction *gradientAction = (id)[self.drawView lastAction];
-    if ([gradientAction isKindOfClass:[GradientAction class]]) {
-        gradientAction.gradient = [[[Gradient alloc] initWithGradient:gradient] autorelease];
-        [self.drawView updateLastAction:gradientAction refresh:YES];
-    }
+    gradientAction.gradient = [[[Gradient alloc] initWithGradient:gradient] autorelease];
+    [self.drawView updateLastAction:gradientAction refresh:YES];
 }
 
 @end

@@ -40,10 +40,12 @@
         self.layerTag = tag;
         self.layerName = name;
         _supportCache = supporCache;
+        self.drawActionList = [NSMutableArray array];
         if (_supportCache) {
             self.cdManager = [CacheDrawManager managerWithRect:self.bounds];
+            [self.cdManager updateWithDrawActionList:self.drawActionList];
         }
-        self.drawActionList = [NSMutableArray array];
+    
     }
     return self;
 }
@@ -74,15 +76,19 @@
 
 #pragma mark-- DrawProcessProtocol
 
-//start to add a new draw action
-- (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
+- (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show redo:(BOOL)redo
 {
-    PPDebug(@"<DrawLayer> name = %@, addDrawAction", self.layerName);
-    if ([drawAction isKindOfClass:[GradientAction class]]) {
-        if (self.clipAction && self.clipAction == [self lastAction]) {
-            [[(GradientAction *)drawAction gradient] setRect:self.clipAction.pathRect];
+    
+    if (!redo) {
+        drawAction.shadow = [Shadow shadowWithShadow:self.drawInfo.shadow];
+        if ([drawAction isKindOfClass:[GradientAction class]]) {
+            if (self.clipAction && self.clipAction == [self lastAction]) {
+                [[(GradientAction *)drawAction gradient] setRect:self.clipAction.pathRect];
+            }else{ 
+                [[(GradientAction *)drawAction gradient] setRect:self.bounds];
+            }
             [[(GradientAction *)drawAction gradient] updatePointsWithDegreeAndDivision];
-        }        
+        }
     }
 
     if (drawAction) {
@@ -98,6 +104,14 @@
     }else{
         [self updateLastAction:drawAction refresh:show];
     }
+
+}
+
+//start to add a new draw action
+- (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
+{
+    PPDebug(@"<DrawLayer> name = %@, addDrawAction", self.layerName);
+    [self addDrawAction:drawAction show:show redo:NO];
 }
 
 //update the last action
@@ -131,6 +145,9 @@
     if (_supportCache) {
         [self.cdManager finishDrawAction:action];
     }
+    if (refresh) {
+        [self setNeedsDisplayInRect:[action redrawRectInRect:self.bounds]];
+    }    
 }
 
 //remove the last action force to refresh
@@ -208,7 +225,9 @@
 - (DrawAction *)redoDrawAction:(DrawAction *)action
 {
     if ([self canRedoDrawAction:action]) {
-        [self addDrawAction:action show:YES];
+        [self addDrawAction:action show:NO redo:YES];
+        [self finishLastAction:action refresh:YES];
+//        [self setNeedsDisplay];
         return action;
     }
     return nil;
@@ -217,14 +236,18 @@
 - (DrawAction *)undoDrawAction:(DrawAction *)action
 {
     if ([self canUndoDrawAction:action]) {
-        if (_supportCache) {
-            [_cdManager undo];
-        }
         if ([action isKindOfClass:[ClipAction class]]) {
             self.clipAction = nil;
         }
         [self.drawActionList removeLastObject];
+
+        if (_supportCache) {
+            [_cdManager undo];
+        }
+
         [self setNeedsDisplayInRect:[action redrawRectInRect:self.bounds]];
+//        [self setNeedsDisplay];
+
         return action;
     }
     return nil;

@@ -617,6 +617,7 @@
     drawInfo.penColor = [DrawColor colorWithColor:colorPoint.color];
     [drawInfo setAlpha:drawInfo.alpha];
     [self updateWithDrawInfo:drawInfo];
+    [toolCmdManager hideAllPopTipViews];
 }
 @end
 
