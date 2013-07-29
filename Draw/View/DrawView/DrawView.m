@@ -75,9 +75,19 @@
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
     if (drawAction) {
+        [self.drawActionList addObject:drawAction];
         [super addDrawAction:drawAction show:show];
         [self clearRedoStack];
         [self callbackFinishDelegateWithAction:drawAction];
+    }
+}
+
+//remove the last action force to refresh
+- (void)cancelLastAction
+{
+    if ([self.drawActionList count] > 0) {
+        [self.drawActionList removeLastObject];
+        [super cancelLastAction];
     }
 }
 
@@ -248,10 +258,13 @@
 
 - (BOOL)undo
 {
+    if ([self.drawActionList count] == 0) {
+        return NO;
+    }
     DrawAction *action = [dlManager undoDrawAction:[_drawActionList lastObject]];
     if (action) {
-        [_drawActionList removeLastObject];
         [_redoStack push:action];
+        [_drawActionList removeLastObject];
         return YES;
     }
     return NO;
@@ -259,7 +272,10 @@
 
 - (BOOL)redo
 {
-    DrawAction *action = [dlManager undoDrawAction:[_redoStack top]];
+    if ([_redoStack isEmpty]) {
+        return NO;
+    }
+    DrawAction *action = [dlManager redoDrawAction:[_redoStack top]];
     if (action) {
         [_drawActionList addObject:action];
         [_redoStack pop];

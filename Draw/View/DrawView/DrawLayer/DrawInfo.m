@@ -28,6 +28,7 @@
         self.alpha = 1;
         self.penWidth = [ConfigManager defaultPenWidth];
         self.penType = Pencil;
+        self.lastPenType = Pencil;
         self.shapeType = ShapeTypeNone;
         self.touchType = TouchActionTypeDraw;
         self.penColor = [DrawColor blackColor];
@@ -52,6 +53,28 @@
 }
 
 
+- (void)setPenType:(ItemType)penType
+{
+    if (_penType != Eraser) {
+        self.lastPenType = _penType;
+    }
+    _penType = penType;
+}
+
+- (void)setTouchType:(TouchActionType)touchType
+{
+    if (_touchType == TouchActionTypeDraw || _touchType == TouchActionTypeShape) {
+        self.lastDrawType = _touchType;
+    }
+    _touchType = touchType;
+}
+
+- (void)backToLastDrawMode
+{
+    _touchType = self.lastDrawType;
+    if (_penType == Eraser) {
+        _penType = self.lastPenType;
+    }
+}
+
 @end
-
-

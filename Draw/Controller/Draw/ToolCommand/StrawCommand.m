@@ -10,7 +10,7 @@
 
 @interface StrawCommand ()
 {
-    TouchActionType type;
+//    TouchActionType type;
 }
 
 @end
@@ -42,7 +42,6 @@
 
 - (void)showPopTipView
 {
-    type = self.drawInfo.touchType;
     self.drawInfo.touchType = TouchActionTypeGetColor;
     self.showing = YES;
 }
@@ -68,11 +67,8 @@
     self.drawInfo.penColor = color;
     self.drawInfo.alpha = 1;
 
-    if (type != TouchActionTypeDraw && type != TouchActionTypeShape) {
-        type = TouchActionTypeDraw;
-    }
-
-    self.drawInfo.touchType = type;
+    [self.drawInfo backToLastDrawMode];
+    
     [self hidePopTipView];
     [self updateToolPanel];
 }

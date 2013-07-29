@@ -38,6 +38,10 @@ typedef enum{
 
 @property(nonatomic, assign)ItemType penType;
 @property(nonatomic, assign)ShapeType shapeType;
+
+@property(nonatomic, assign)ItemType lastPenType;
+@property(nonatomic, assign)TouchActionType lastDrawType;
+
 @property(nonatomic, assign)TouchActionType touchType;
 
 @property(nonatomic, retain)DrawColor *penColor;
@@ -52,5 +56,7 @@ typedef enum{
 @property(nonatomic, assign) BOOL grid;
 
 + (id)defaultDrawInfo;
+
+- (void)backToLastDrawMode;
 
 @end

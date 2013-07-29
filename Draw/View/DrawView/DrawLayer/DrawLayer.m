@@ -127,7 +127,7 @@
 //finish update the last action
 - (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
 {
-//    PPDebug(@"<DrawLayer> name = %@, finishLastAction", self.layerName);    
+    PPDebug(@"<DrawLayer> name = %@, tag = %d, finishLastAction", self.layerName, self.layerTag);
     if (_supportCache) {
         [self.cdManager finishDrawAction:action];
     }
@@ -194,7 +194,11 @@
 - (BOOL)canUndoDrawAction:(DrawAction *)action
 {
     if (action && [_drawActionList lastObject] == action) {
-        return _supportCache && [_cdManager canUndo];
+        if (_supportCache) {
+            return [_cdManager canUndo];
+        }else{
+            return YES;
+        }
     }
     return NO;
 }
@@ -243,7 +247,7 @@
                                                   drawInfo:drawInfo
                                                        tag:MAIN_LAYER_TAG
                                                       name:NSLS(@"kMainLayer")
-                                               suportCache:YES] autorelease];
+                                               suportCache:NO] autorelease];
 
 //    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     

@@ -32,11 +32,17 @@
 
 #pragma mark-- Color Box Delegate
 
-- (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
+- (void)updateWithColor:(DrawColor *)color
 {
     self.drawInfo.penColor = color;
+    [self.drawInfo backToLastDrawMode];
     [self updateToolPanel];
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
+}
+
+- (void)colorBox:(ColorBox *)colorBox didSelectColor:(DrawColor *)color
+{
+    [self updateWithColor:color];
     [self hidePopTipView];
 }
 
@@ -57,8 +63,7 @@
 #pragma mark-- Color Shop Delegate
 
 - (void)didPickedColorView:(ColorView *)colorView{
-    self.drawInfo.penColor = colorView.drawColor;
-    [self.toolPanel updateWithDrawInfo:self.drawInfo];
+    [self updateWithColor:colorView.drawColor];
 }
 
 - (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId
