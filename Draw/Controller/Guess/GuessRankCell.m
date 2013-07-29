@@ -47,7 +47,7 @@
     _signatureLable.text = rank.user.signature;
     
     _guessCountLabel.text = [NSString stringWithFormat:NSLS(@"kGuessCorrectIs%d"), _rank.pass];
-    _costTimeLabel.text =
+    _costTimeLabel.text = @"";
     
     
 }
