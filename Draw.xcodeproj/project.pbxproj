@@ -2053,10 +2053,10 @@
 		A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C9E03417A61B4200DE982F /* GuessRankCell.xib */; };
 		A4C9E03B17A61B4200DE982F /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C9E03417A61B4200DE982F /* GuessRankCell.xib */; };
 		A4C9E03C17A61B4200DE982F /* GuessRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C9E03417A61B4200DE982F /* GuessRankCell.xib */; };
-		A4C9E04517A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
-		A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
-		A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
-		A4C9E04817A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; };
+		A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4C9E04817A61B6500DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4C9E04917A61E8000DE982F /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E04417A61B6500DE982F /* KxMenu.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4CCE73B16771A6D00F90726 /* face_anger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72E16771A6D00F90726 /* face_anger@2x.png */; };
 		A4CCE73C16771A6D00F90726 /* face_crazy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE72F16771A6D00F90726 /* face_crazy@2x.png */; };
 		A4CCE73D16771A6D00F90726 /* face_cry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CCE73016771A6D00F90726 /* face_cry@2x.png */; };
@@ -23645,7 +23645,6 @@
 				A4B78A5F179F7C5E0008E21B /* GuessSelectController.m in Sources */,
 				A4B78A63179F7C660008E21B /* DrawGuessController.m in Sources */,
 				A4B78A67179F7C6D0008E21B /* CommonGuessController.m in Sources */,
-				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
 				CA518366179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
 				CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */,
@@ -23653,6 +23652,7 @@
 				CA766D5B17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6317A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
 				A4C9E03617A61B4200DE982F /* GuessRankCell.m in Sources */,
+				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
 				A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -24450,7 +24450,7 @@
 				CA766D5A17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6217A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
 				A4C9E03517A61B4200DE982F /* GuessRankCell.m in Sources */,
-				A4C9E04517A61B6500DE982F /* KxMenu.m in Sources */,
+				A4C9E04917A61E8000DE982F /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
