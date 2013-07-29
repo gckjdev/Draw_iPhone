@@ -31,8 +31,6 @@
     //used by subclass
     DrawAction *_currentAction;
     
-//    CacheDrawManager *cdManager;
-    
     DrawLayerManager *dlManager;
     
     GestureRecognizerManager *_gestureRecognizerManager;
@@ -46,7 +44,8 @@
 @property (nonatomic, assign) CGFloat maxScale; //default is 10
 
 
-//@property (nonatomic, retain) CanvasRect *canvasRect;
+- (id)initWithFrame:(CGRect)frame layers:(NSArray *)layers;
+
 
 //public method
 #pragma mark - util methods

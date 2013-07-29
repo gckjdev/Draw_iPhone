@@ -48,7 +48,7 @@
 
 @property(nonatomic, assign) id<DrawViewDelegate>delegate;
 @property(nonatomic, assign) id<DrawViewStrawDelegate>strawDelegate;
-@property(nonatomic, assign) TouchActionType touchActionType;
+//@property(nonatomic, assign) TouchActionType touchActionType;
 
 
 
@@ -60,15 +60,11 @@
 - (void)showDraft:(MyPaint *)draft;
 
 
+- (DrawAction *)lastAction;
+
 - (NSInteger)totalActionCount;
 - (NSInteger)actionCount;
-
 - (DrawInfo *)drawInfo;
 
-
-//New property
-
-@property(nonatomic, copy) NSString *word;
-@property(nonatomic, copy) NSString *desc;
 
 @end

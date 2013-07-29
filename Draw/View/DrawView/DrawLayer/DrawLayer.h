@@ -19,7 +19,7 @@
 
 @interface DrawLayer : CALayer<DrawProcessProtocol>
 {
-    PPStack *_redoStack;
+//    PPStack *_redoStack;
 }
 
 
@@ -42,5 +42,8 @@
 
 - (void)reset;
 - (void)updateWithDrawActions:(NSArray *)actionList;
+- (DrawAction *)lastAction;
+
++ (NSArray *)defaultLayersWithFrame:(CGRect)frame;
 
 @end

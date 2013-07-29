@@ -45,6 +45,7 @@
 
 - (void)addLayer:(DrawLayer *)layer
 {
+    PPDebug(@"<addLayer> layer name = %@", layer.layerName);
     if (layer && ![_layerList containsObject:layer]) {
         [_layerList addObject:layer];
         [self.view.layer addSublayer:layer];
@@ -58,10 +59,11 @@
         [layer removeFromSuperlayer];
     }
 }
-- (DrawLayer *)addLayerWithTag:(NSUInteger)tag
+- (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name
 {
     DrawLayer *layer = [[[DrawLayer alloc] init] autorelease];
     layer.layerTag = [self nextTag];
+    layer.layerName = name;
     layer.frame = self.view.bounds;
     [self addLayer:layer];
     return layer;

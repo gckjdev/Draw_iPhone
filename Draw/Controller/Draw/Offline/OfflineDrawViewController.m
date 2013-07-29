@@ -325,9 +325,9 @@
 
 - (void)initDrawView
 {
-//    drawView = [[DrawView alloc] initWithFrame:[CanvasRect rectForCanvasRectStype:CanvasRectiPadDefault]];
     
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]
+                                        layers:[DrawLayer defaultLayersWithFrame:[CanvasRect defaultRect]]];
 
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -339,15 +339,10 @@
             [self setDrawBGImage:self.draft.bgImage];
         }
 
-
         [drawView showDraft:self.draft];
         self.draft.paintImage = nil;
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
-        
-    }else{
-        //Test
-//        [self addTestActions];
     }
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
 
@@ -396,10 +391,9 @@
 
 - (void)initDrawToolPanel
 {
-    DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
-    self.drawToolPanel = [DrawToolPanel createViewWithDrawInfo:drawInfo];
+    self.drawToolPanel = [DrawToolPanel createViewWithDrawView:drawView];
     
-    self.drawToolUpPanel = [DrawToolUpPanel createViewWithDrawInfo:drawInfo];
+    self.drawToolUpPanel = [DrawToolUpPanel createViewWithDrawView:drawView];
     
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
@@ -725,7 +719,7 @@
 {
  
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-//        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.lineColor updateModel:YES];
+        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
     _isNewDraft = NO;

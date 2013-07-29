@@ -52,6 +52,8 @@
 {
     [self hidePopTipView];
     self.itemType = type;
+    self.drawInfo.penType = type;
+    [self updateToolPanel];
     
 }
 

@@ -87,6 +87,7 @@
         case TouchStateMove:
         {
             [self addPoint:point];
+            [self.drawView updateLastAction:action refresh:YES];
             break;
         }
         case TouchStateEnd:

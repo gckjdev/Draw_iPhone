@@ -23,7 +23,7 @@
 - (id)initWithView:(UIView *)view;
 - (void)addLayer:(DrawLayer *)layer;
 - (void)removeLayer:(DrawLayer *)layer;
-- (DrawLayer *)addLayerWithTag:(NSUInteger)tag;
+- (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name;
 - (DrawLayer *)layerWithTag:(NSUInteger)tag;
 - (void)removeLayerWithTag:(NSUInteger)tag;
 - (void)bringLayerToFront:(DrawLayer *)layer;
@@ -36,9 +36,9 @@
 //key = layerTag, value = actionList
 - (void)arrangeActions:(NSArray *)actions;
 
-- (DrawAction *)undoWithDrawAction:(DrawAction *)action;
+- (DrawAction *)undoDrawAction:(DrawAction *)action;
 
-- (DrawAction *)redoWithDrawAction:(DrawAction *)action;
+- (DrawAction *)redoDrawAction:(DrawAction *)action;
 
 
 @end

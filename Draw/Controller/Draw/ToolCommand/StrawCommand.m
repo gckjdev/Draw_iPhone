@@ -33,6 +33,7 @@
  
         self.drawView.strawDelegate = self;
         [self showPopTipView];
+        [self updateToolPanel];
         return YES;
     }
     return NO;
@@ -66,6 +67,11 @@
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
     self.drawInfo.penColor = color;
     self.drawInfo.alpha = 1;
+
+    if (type != TouchActionTypeDraw && type != TouchActionTypeShape) {
+        type = TouchActionTypeDraw;
+    }
+
     self.drawInfo.touchType = type;
     [self hidePopTipView];
     [self updateToolPanel];

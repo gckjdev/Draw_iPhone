@@ -33,10 +33,7 @@
 {
     PPStack *_redoStack;
     CGPoint _currentPoint;
-    DrawColor *_bgColor;
     NSInteger _pointCount;
-//    NSInteger
-
 }
 #pragma mark Private Helper function
 - (void)clearRedoStack;
@@ -94,7 +91,6 @@
         self.currentTouch = [touches anyObject];
     }
     CGPoint point = [self.currentTouch locationInView:self];
-//    PPDebug(@"<pointForTouches> point = %@",NSStringFromCGPoint(point));
     return point;
 }
 
@@ -105,24 +101,25 @@
         [self.delegate drawView:self didStartTouchWithAction:nil];
     }
     
-//    PPDebug(@"=========<touchesBegan>======= touch count = %d",[touches count]);
-    
     if (self.currentTouch == nil) {
         
         PPDebug(@"SET touch handler and current touch");
         
         [_gestureRecognizerManager setCapture:YES];
-        if (self.touchActionType != TouchActionTypeClipPolygon ||
+        
+        DrawInfo *drawInfo = [self drawInfo];
+        
+        if (drawInfo.touchType != TouchActionTypeClipPolygon ||
             ![self.touchHandler isKindOfClass:[PolygonClipTouchHandler class]]) {
             
-            self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:self.touchActionType];
+            self.touchHandler = [TouchHandler touchHandlerWithTouchActionType:drawInfo.touchType];
+            
             if ([self.touchHandler isKindOfClass:[PolygonClipTouchHandler class]]) {
                 [(PolygonClipTouchHandler *)self.touchHandler setDelegate:self];
             }
             
             [self.touchHandler setDrawView:self];
-//            [self.touchHandler setCdManager:cdManager];
-            if (self.touchActionType == TouchActionTypeGetColor) {
+            if (drawInfo.touchType == TouchActionTypeGetColor) {
                 [(StrawTouchHandler *)self.touchHandler setStrawDelegate:self.strawDelegate];
             }
         }
@@ -169,7 +166,7 @@
         [self callbackFinishDelegateWithAction:drawAction];
         
         PPDebug(@"RESET touch handler and current touch");
-        if (self.touchActionType != TouchActionTypeClipPolygon) {
+        if ([[self drawInfo] touchType] != TouchActionTypeClipPolygon) {
             self.touchHandler = nil;
         }
         self.currentTouch = nil;
@@ -210,6 +207,8 @@
         
         dlManager = [[DrawLayerManager alloc] initWithView:self];
         
+        
+        
         [self setMultipleTouchEnabled:YES];
         _gestureRecognizerManager.delegate = self;
     }
@@ -240,8 +239,6 @@
     PPRelease(_redoStack);
     PPRelease(_touchHandler);
     PPRelease(_currentTouch);
-    PPRelease(_desc);
-    PPRelease(_word);
     [super dealloc];
 }
 
@@ -284,6 +281,10 @@
     [self show];
 }
 
+- (DrawAction *)lastAction
+{
+    return [[self currentLayer] lastAction];
+}
 
 
 - (NSInteger)totalActionCount

@@ -15,6 +15,7 @@
     [self showPopTipView];
     self.drawInfo.penType = Eraser;
     self.drawInfo.touchType = TouchActionTypeDraw;
+    [self updateToolPanel];
     [self sendAnalyticsReport];
     return YES;
 }

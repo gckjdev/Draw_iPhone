@@ -78,7 +78,7 @@
     
     [self.toolPanel hideColorPanel:NO];
 
-    GradientAction *gradientAction = [self.drawView lastAction];
+    GradientAction *gradientAction = (id)[self.drawView lastAction];
     
     if ([gradientAction isKindOfClass:[GradientAction class]]) {
         [self.drawView finishLastAction:gradientAction refresh:NO];
@@ -122,7 +122,7 @@
            didChangeradient:(Gradient *)gradient
 {
 
-    GradientAction *gradientAction = [self.drawView lastAction];
+    GradientAction *gradientAction = (id)[self.drawView lastAction];
     if ([gradientAction isKindOfClass:[GradientAction class]]) {
         gradientAction.gradient = [[[Gradient alloc] initWithGradient:gradient] autorelease];
         [self.drawView updateLastAction:gradientAction refresh:YES];

@@ -115,11 +115,17 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     
 }
 
-+ (id)createViewWithDrawInfo:(DrawInfo *)drawInfo
+- (void)updateWithDrawInfo:(DrawInfo *)drawInfo
+{
+    
+}
+
++ (id)createViewWithDrawView:(DrawView *)drawView
 {
     DrawToolUpPanel *panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
+    panel.drawView = drawView;
     [panel updateView];
-    [panel updateWithDrawInfo:drawInfo];
+    [panel updateWithDrawInfo:drawView.drawInfo];
     return panel;
     
 }

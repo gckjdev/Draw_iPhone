@@ -28,17 +28,23 @@
 
 @implementation SuperDrawView
 @synthesize drawActionList = _drawActionList;
-/*
-- (ClipAction *)currentClip
+
+- (id)initWithFrame:(CGRect)frame layers:(NSArray *)layers
 {
-    return [cdManager currentClip];
+    self = [self initWithFrame:frame];
+    
+    for (DrawLayer *layer in layers) {
+        [dlManager addLayer:layer];
+        [dlManager setSelectedLayer:layer];
+    }
+     
+    return self;
 }
-*/
+
+
 - (void)cleanAllActions
 {
     [_drawActionList removeAllObjects];
-//    [osManager clean];
-//    [cdManager reset];
 }
 
 - (void)dealloc
@@ -46,8 +52,7 @@
     PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
     _currentAction = nil;
-//    PPRelease(osManager);
-//    PPRelease(cdManager);
+    PPRelease(dlManager);
     PPRelease(_gestureRecognizerManager);
     [super dealloc];
 }
@@ -61,7 +66,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-//        _scale = 1;
         self.minScale = DEFALT_MIN_SCALE;
         self.maxScale = DEFALT_MAX_SCALE;
         self.scale = self.minScale;
@@ -70,6 +74,8 @@
         [_gestureRecognizerManager addPinchGestureReconizerToView:self];
         [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
         _gestureRecognizerManager.delegate = self;
+        
+        dlManager = [[DrawLayerManager alloc] initWithView:self];
 
     }
     return self;
@@ -109,7 +115,8 @@
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
-    [dlManager updateLastAction:drawAction refresh:show];
+//    [dlManager updateLastAction:drawAction refresh:show];
+    [dlManager addDrawAction:drawAction show:YES];
 }
 
 //update the last action
@@ -164,7 +171,6 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     [[UIColor whiteColor] setFill];
     CGContextFillRect(context, self.bounds);
-//    [cdManager showInContextWithoutGrid:context];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

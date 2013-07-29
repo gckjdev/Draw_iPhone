@@ -56,7 +56,7 @@ CGPoint realStartPoint;
 
 #define STROKE_WIDTH 2
 
-- (DrawAction *)createDrawAction
+- (ShapeAction *)createDrawAction
 {
     if (action == nil) {
         

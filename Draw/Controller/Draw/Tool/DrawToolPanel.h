@@ -12,6 +12,7 @@
 #import "ItemType.h"
 #import "Palette.h"
 #import "DrawInfo.h"
+#import "DrawView.h"
 
 
 @interface DrawToolPanel : UIView<ColorPointDelegate, UIScrollViewDelegate>
@@ -20,11 +21,12 @@
 }
 
 @property(nonatomic, assign)NSInteger timerDuration;
-//@property(nonatomic, retain)NSString *drawBgId;
+@property(nonatomic, assign)DrawView *drawView;
+
 
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo;
 
-+ (id)createViewWithDrawInfo:(DrawInfo *)drawInfo;
++ (id)createViewWithDrawView:(DrawView *)drawView;
 
 ////
 

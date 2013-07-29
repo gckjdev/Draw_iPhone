@@ -111,7 +111,7 @@
 {
     
     DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
-    self.drawToolPanel = [DrawToolPanel createViewWithDrawInfo:drawInfo];
+    self.drawToolPanel = [DrawToolPanel createViewWithDrawView:drawView];
     
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2 - STATUSBAR_HEIGHT;
@@ -288,7 +288,7 @@
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
 {
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-//        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.lineColor updateModel:YES];
+        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
 }

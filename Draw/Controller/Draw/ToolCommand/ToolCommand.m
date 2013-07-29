@@ -229,13 +229,11 @@ NSUInteger _ManagerVersion = 1;
     }
 }
 
-- (void)makeCommanActive:(ToolCommand *)command
+- (void)updateDrawInfo:(DrawInfo *)drawInfo
 {
-    for (ToolCommand *command1 in commandList) {
-        if (command != command1) {
-            [command1 hidePopTipView];
-        }
-    }
+    for (ToolCommand *command in commandList) {
+        [command setDrawInfo:drawInfo];
+    }    
 }
 
 - (void)updatePanel:(DrawToolPanel *)panel
@@ -243,6 +241,13 @@ NSUInteger _ManagerVersion = 1;
     for (ToolCommand *command in commandList) {
         [command setToolPanel:panel];
     }
+}
+
+- (void)updateDrawView:(DrawView *)drawView
+{
+    for (ToolCommand *command in commandList) {
+        [command setDrawView:drawView];
+    }    
 }
 
 - (BOOL)isPaletteShowing
@@ -253,17 +258,6 @@ NSUInteger _ManagerVersion = 1;
         }
     }
     return NO;
-}
-
-- (void)resetAlpha
-{
-    for (ToolCommand *command in commandList) {
-        if (command.itemType == ColorAlphaItem) {
-            DrawSlider* slider =(DrawSlider *)command.control;
-            [slider setValue:1];
-            return;
-        }
-    }
 }
 
 - (InputAlertView *)inputAlertView

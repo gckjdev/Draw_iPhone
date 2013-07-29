@@ -69,16 +69,19 @@
 - (void)unregisterCommand:(ToolCommand *)command;
 - (ToolCommand *)commandForControl:(UIControl *)control;
 - (void)removeAllCommand:(NSUInteger)version;
+
 - (void)hideAllPopTipViews;
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command;
 
+- (void)updateDrawInfo:(DrawInfo *)drawInfo;
+- (void)updateDrawView:(DrawView *)drawView;
 - (void)updatePanel:(DrawToolPanel *)panel;
 
 - (BOOL)isPaletteShowing;
-- (void)makeCommanActive:(ToolCommand *)command;
 
 
-- (void)resetAlpha;
+
+
 - (InputAlertView *)inputAlertView;
 @end
 

@@ -45,6 +45,7 @@
         }
         self.drawActionList = [NSMutableArray array];
     }
+    return self;
 }
 
 - (void)dealloc
@@ -53,7 +54,6 @@
     PPRelease(_layerName);
     PPRelease(_cdManager);
     PPRelease(_drawInfo);
-    PPRelease(_redoStack);
     [super dealloc];
 }
 
@@ -77,8 +77,9 @@
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
+    PPDebug(@"<DrawLayer> name = %@, addDrawAction", self.layerName);
     if ([drawAction isKindOfClass:[GradientAction class]]) {
-        if (self.clipAction && self.clipAction == [self.drawActionList lastObject]) {
+        if (self.clipAction && self.clipAction == [self lastAction]) {
             [[(GradientAction *)drawAction gradient] setRect:self.clipAction.pathRect];
             [[(GradientAction *)drawAction gradient] updatePointsWithDegreeAndDivision];
         }        
@@ -86,6 +87,7 @@
 
     if (drawAction) {
         [self.drawActionList addObject:drawAction];
+        drawAction.layerTag = self.layerTag;
     }
     
     if (_supportCache) {
@@ -101,6 +103,8 @@
 //update the last action
 - (void)updateLastAction:(DrawAction *)action refresh:(BOOL)refresh
 {
+
+//    PPDebug(@"<DrawLayer> name = %@, updateLastAction", self.layerName);
     if (_supportCache) {
         CGRect rect = [self.cdManager updateLastAction:action];
         if (refresh) {
@@ -123,6 +127,7 @@
 //finish update the last action
 - (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
 {
+//    PPDebug(@"<DrawLayer> name = %@, finishLastAction", self.layerName);    
     if (_supportCache) {
         [self.cdManager finishDrawAction:action];
     }
@@ -131,6 +136,7 @@
 //remove the last action force to refresh
 - (void)cancelLastAction
 {
+//    PPDebug(@"<DrawLayer> name = %@, cancelLastAction", self.layerName);        
     if (_supportCache) {
         [self.cdManager cancelLastAction];
     }
@@ -139,6 +145,10 @@
     }
 }
 
+- (DrawAction *)lastAction
+{
+    return [self.drawActionList lastObject];
+}
 
 - (void)reset
 {
@@ -151,7 +161,7 @@
 - (void)updateWithDrawActions:(NSArray *)actionList
 {
     if ([actionList isKindOfClass:[NSMutableArray class]]) {
-        self.drawActionList = actionList;
+        self.drawActionList = (id)actionList;
     }else{
         self.drawActionList = [NSMutableArray arrayWithArray:actionList];
     }
@@ -195,8 +205,11 @@
 {
     if ([self canRedoDrawAction:action]) {
         [self addDrawAction:action show:YES];
+        return action;
     }
+    return nil;
 }
+
 - (DrawAction *)undoDrawAction:(DrawAction *)action
 {
     if ([self canUndoDrawAction:action]) {
@@ -213,6 +226,30 @@
     return nil;
 }
 
+#define BG_LAYER_TAG 1
+#define MAIN_LAYER_TAG 2
 
++ (NSArray *)defaultLayersWithFrame:(CGRect)frame
+{
+    DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
+    /*
+    DrawLayer *bgLayer = [[[DrawLayer alloc] initWithFrame:frame
+                                                  drawInfo:drawInfo
+                                                       tag:BG_LAYER_TAG
+                                                      name:NSLS(@"kBGLayer")
+                                               suportCache:NO] autorelease];
+     */
+    DrawLayer *mainLayer = [[[DrawLayer alloc] initWithFrame:frame
+                                                  drawInfo:drawInfo
+                                                       tag:MAIN_LAYER_TAG
+                                                      name:NSLS(@"kMainLayer")
+                                               suportCache:YES] autorelease];
+
+//    mainLayer.backgroundColor = [UIColor redColor].CGColor;
+    
+//    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
+ 
+    return [NSArray arrayWithObjects:mainLayer, nil];
+}
 
 @end

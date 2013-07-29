@@ -309,8 +309,9 @@
     [toolCmdManager registerCommand:command];
     
     [toolCmdManager updatePanel:self];
+    [toolCmdManager updateDrawInfo:self.drawView.drawInfo];
+    [toolCmdManager updateDrawView:self.drawView];
 }
-
 
 
 
@@ -318,7 +319,7 @@
 {
     [self.scrollView setDelegate:self];
     
-//    [self updateSliders];
+    [self updateSliders];
     
     [self registerToolCommands];
     
@@ -351,7 +352,7 @@
 }
 
 
-+ (id)createViewWithDrawInfo:(DrawInfo *)drawInfo
++ (id)createViewWithDrawView:(DrawView *)drawView;
 {
     DrawToolPanel *panel = nil;
     if (ISIPHONE5) {
@@ -359,8 +360,9 @@
     }else{
         panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel"];
     }
+    panel.drawView = drawView;
     [panel updateView];
-    [panel updateWithDrawInfo:drawInfo];
+    [panel updateWithDrawInfo:drawView.drawInfo];
     return panel;
 
 }
@@ -566,6 +568,12 @@
 
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo
 {
+    if (drawInfo == nil) {
+        PPDebug(@"<updateWithDrawInfo> drawInfo = nil");
+        return;
+    }
+    [toolCmdManager updateDrawInfo:drawInfo];
+    
     NSArray *buttons = @[self.pen, self.straw, self.shape, self.eraser];
     for (UIButton *button in buttons) {
         [button setSelected:NO];
@@ -600,6 +608,15 @@
     [self.widthSlider setValue:drawInfo.penWidth];
 
     //TODO set color
+}
+
+- (void)didSelectColorPoint:(ColorPoint *)colorPoint
+{
+    [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
+    DrawInfo *drawInfo = self.drawView.drawInfo;
+    drawInfo.penColor = [DrawColor colorWithColor:colorPoint.color];
+    [drawInfo setAlpha:drawInfo.alpha];
+    [self updateWithDrawInfo:drawInfo];
 }
 @end
 

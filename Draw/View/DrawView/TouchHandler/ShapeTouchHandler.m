@@ -88,7 +88,7 @@ CGPoint realStartPoint;
             handleFailed = NO;
             realStartPoint = point;
 
-            action = [self createDrawAction];
+            action = (id)[self createDrawAction];
             ShapeInfo *shape = action.shape;
             shape.startPoint = shape.endPoint = point;
             [self updateEndPoint];
