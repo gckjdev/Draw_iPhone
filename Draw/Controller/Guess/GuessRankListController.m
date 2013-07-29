@@ -41,33 +41,34 @@
     
     // TODO: set pull down list to select
     
+    [KxMenu dismissMenu];
+    
     NSArray *menuItems =
     @[
-      
-      [KxMenuItem menuItem:NSLS(@"select")
-                     image:nil
-                    target:nil
-                    action:NULL],
-      
-      [KxMenuItem menuItem:NSLS(@"week")
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)],
-      
-      [KxMenuItem menuItem:NSLS(@"year")
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)]];
-    
+
+        [KxMenuItem menuItem:NSLS(@"select")
+                       image:nil
+                      target:nil
+                      action:NULL],
+
+        [KxMenuItem menuItem:NSLS(@"week")
+                       image:nil
+                      target:self
+                      action:@selector(pushMenuItem:)],
+
+        [KxMenuItem menuItem:NSLS(@"year")
+                       image:nil
+                      target:self
+                      action:@selector(pushMenuItem:)]
+    ];
+
     KxMenuItem *first = menuItems[0];
     first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
     first.alignment = NSTextAlignmentCenter;
-    
-      
-      
+
     [KxMenu showMenuInView:self.view
-                  fromRect:sender.frame
-                 menuItems:menuItems];
+    fromRect:sender.frame
+    menuItems:menuItems];
 
 }
 
@@ -75,41 +76,44 @@
     
     // TODO: set pull down list to select
     
+    [KxMenu dismissMenu];
+    
     NSArray *menuItems =
     @[
       
-      [KxMenuItem menuItem:NSLS(@"select")
-                     image:nil
-                    target:nil
-                    action:NULL],
-      
-      [KxMenuItem menuItem:NSLS(@"today")
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)],
-      
-      [KxMenuItem menuItem:NSLS(@"yestoday")
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)],
-      
-      [KxMenuItem menuItem:NSLS(@"beforYestoday")
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)]];
-      
-      KxMenuItem *first = menuItems[0];
-      first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-      first.alignment = NSTextAlignmentCenter;
+        [KxMenuItem menuItem:NSLS(@"select")
+                       image:nil
+                      target:nil
+                      action:NULL],
+
+        [KxMenuItem menuItem:NSLS(@"today")
+                       image:nil
+                      target:self
+                      action:@selector(pushMenuItem:)],
+
+        [KxMenuItem menuItem:NSLS(@"yestoday")
+                       image:nil
+                      target:self
+                      action:@selector(pushMenuItem:)],
+
+        [KxMenuItem menuItem:NSLS(@"beforYestoday")
+                       image:nil
+                      target:self
+                      action:@selector(pushMenuItem:)]
+    ];
     
-      [KxMenu showMenuInView:self.view
-                    fromRect:sender.frame
-                   menuItems:menuItems];
+    KxMenuItem *first = menuItems[0];
+    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
+    first.alignment = NSTextAlignmentCenter;
+
+    [KxMenu showMenuInView:self.view
+                fromRect:sender.frame
+               menuItems:menuItems];
 }
       
-- (void) pushMenuItem:(id)sender
+- (void) pushMenuItem:(KxMenuItem *)item
 {
-    NSLog(@"%@", sender);
+    PPDebug(@"title = %@", item.title);
 }
 
 - (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode{
