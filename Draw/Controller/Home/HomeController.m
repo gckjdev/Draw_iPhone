@@ -635,15 +635,18 @@
             break;
         case HomeMenuTypeDrawGuess:
         {
-//            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_GUESS];
-//            
-//            [self showActivityWithText:NSLS(@"kLoading")];
-//            [[DrawDataService defaultService] matchDraw:self];
+
+#ifdef DEBUG
+//            GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
+//            [self.navigationController pushViewController:vc animated:YES];
+//            return;
+#endif
             
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_GUESS];
             
-            GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
-            
+            [self showActivityWithText:NSLS(@"kLoading")];
+            [[DrawDataService defaultService] matchDraw:self];
+                                    
         }
             break;
             

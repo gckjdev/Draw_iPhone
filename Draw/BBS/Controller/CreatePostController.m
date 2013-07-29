@@ -433,7 +433,7 @@
                                   title:nil
                         hasRemoveOption:NO
                            canTakePhoto:YES
-                      userOriginalImage:YES];
+                      userOriginalImage:NO];
     [self.textView resignFirstResponder];
 }
 - (IBAction)clickGraffitiButton:(id)sender {

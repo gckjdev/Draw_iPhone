@@ -486,7 +486,14 @@ typedef enum{
 - (void)updateBadge:(FeedListType)type count:(NSInteger)count
 {
     UIButton *badgeButton = (UIButton *)[self.view viewWithTag:1000 + type];
-    [badgeButton setTitle:[NSString stringWithFormat:@"%d",count] forState:UIControlStateNormal];
+    NSString* title = @"";
+    if (count > 99){
+        title = @"N";
+    }
+    else{
+        title = [NSString stringWithFormat:@"%d",count];
+    }
+    [badgeButton setTitle:title forState:UIControlStateNormal];
     if (count == 0) {
         badgeButton.hidden = YES;
     } else {
