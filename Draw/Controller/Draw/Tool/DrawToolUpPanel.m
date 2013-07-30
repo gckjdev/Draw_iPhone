@@ -113,11 +113,14 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     ADD_COMMAND(command, CopyPaintCommand, self.copyPaintPicker, ItemTypeCopyPaint);
     ADD_COMMAND(command, ShowCopyPaintCommand, self.copyPaint, ItemTypeCopyPaint);
     
+    [toolCmdManager updateDrawInfo:self.drawView.drawInfo];
+    [toolCmdManager updateDrawView:self.drawView];
+    
 }
 
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo
 {
-    
+
 }
 
 + (id)createViewWithDrawView:(DrawView *)drawView
@@ -161,7 +164,8 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 }
 - (IBAction)clickTool:(id)sender
 {
-    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+//    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+    [toolCmdManager hideAllPopTipViews];
     [[toolCmdManager commandForControl:sender] execute];
     
     if (sender != self.canvasSize) {

@@ -110,7 +110,6 @@
 - (void)initDrawToolPanel
 {
     
-    DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
     self.drawToolPanel = [DrawToolPanel createViewWithDrawView:drawView];
     
     CGFloat x = self.view.center.x;

@@ -235,12 +235,12 @@
     self.transform = CGAffineTransformIdentity;
     self.bounds = rect;
     self.frame = rect;
-    [dlManager release];
-    
-    [dlManager resetAllLayers];
 
+    for (DrawLayer *layer in dlManager.layers) {
+        layer.frame = rect;
+    }
+    
     [(DrawHolderView *)self.superview updateContentScale];
-    [self setNeedsDisplay];
 }
 
 - (void)dealloc

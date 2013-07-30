@@ -42,7 +42,7 @@
 
 - (void)useCanvasRect:(CanvasRect *)canvasRect
 {
-    BOOL flag = CGRectEqualToRect(canvasRect.rect, self.drawView.bounds);
+    BOOL flag = [[self.drawView drawActionList] count] == 0;//CGRectEqualToRect(canvasRect.rect, self.drawView.bounds);
     
     if (flag) {
         [self.drawView changeRect:canvasRect.rect];

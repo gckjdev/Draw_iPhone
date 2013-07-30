@@ -174,6 +174,7 @@
     }
     if ([self.drawActionList lastObject]) {
         [self.drawActionList removeLastObject];
+        [self setNeedsDisplay];
     }
 }
 
@@ -292,7 +293,7 @@
                                                       name:NSLS(@"kMainLayer")
                                                suportCache:NO] autorelease];
 
-//    mainLayer.backgroundColor = [UIColor redColor].CGColor;
+    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     
 //    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
  
