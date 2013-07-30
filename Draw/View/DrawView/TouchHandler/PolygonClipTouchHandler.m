@@ -52,7 +52,14 @@
     if (handleFailed) {
         return;
     }
-    action = [self createDrawAction];
+    if (action == nil) {
+        action = (id)[self createDrawAction];
+        [self.drawView addDrawAction:action show:YES];
+    }
+ 
+    [action addPoint:point inRect:self.drawView.bounds];
+
+    
 }
 - (void)replaceLastPoint:(CGPoint)point
 {
@@ -101,7 +108,6 @@
         {
             handleFailed = NO;
             [self addPoint:point];
-            [self.drawView addDrawAction:action show:YES];
             break;
         }
         case TouchStateMove:
@@ -117,6 +123,7 @@
                 [self finishAddPoints];
             }else{
                 [self replaceLastPoint:point];
+                [self.drawView updateLastAction:action refresh:YES];                
             }
             
             break;
