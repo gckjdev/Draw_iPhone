@@ -71,9 +71,9 @@
 
 - (UIImage *)defaultAvatar
 {
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    return self.gender ? [imageManager maleDefaultAvatarImage] : [imageManager femaleDefaultAvatarImage];
+    return [[ShareImageManager defaultManager] avatarImageByGender:self.gender];
 }
+
 - (NSURL *)avatarURL
 {
     if ([self.avatar length] != 0) {

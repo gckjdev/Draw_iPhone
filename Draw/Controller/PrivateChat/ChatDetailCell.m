@@ -429,21 +429,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
     }
         
-
-    UIImage *defaultImage = nil;
-    if (isMale) {
-        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
-    }else{
-        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
-    }
-    
-//    if([avatar length] != 0){
-//        NSURL *url = [NSURL URLWithString:avatar];
-//        [self.avatarView setImageWithURL:url placeholderImage:defaultImage];
-//    } else{
-//        [self.avatarView setImage:defaultImage];
-//    }
-    
+    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:isMale];
     NSURL *url = [NSURL URLWithString:avatar];
     [self.avatarView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
     

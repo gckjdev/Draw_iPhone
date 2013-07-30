@@ -313,24 +313,9 @@
 
 - (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender
 {
-    /*
-    [imageView clear];
-
-    if ([url length] > 0){
-        [imageView setUrl:[NSURL URLWithString:url]];
-        [GlobalGetImageCache() manage:imageView];
-    }
-    */
-    
-    UIImage* placeHolderImage = nil;
-    if (gender) {
-        placeHolderImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
-    }else{
-        placeHolderImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
-    }
-    
+    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:gender];
     NSURL* url = [NSURL URLWithString:urlString];
-    [imageView setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];
+    [imageView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
     
     _isBlackAndWhite = NO;
     _originAvatar = nil;

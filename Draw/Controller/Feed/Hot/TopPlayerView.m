@@ -11,6 +11,7 @@
 #import "PPApplication.h"
 //#import "HJManagedImageV.h"
 #import "UIImageView+WebCache.h"
+#import "UIImageView+Extend.h"
 
 @implementation TopPlayerView
 @synthesize avatar = _avatar;
@@ -54,47 +55,13 @@
         return;
     }
     self.topPlayer = player;
+    
+    // set avatar image
+    NSURL* url = [NSURL URLWithString:player.avatar];
+    UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:player.gender];
+    [self.avatar setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];
 
-//    [self.avatar clear];
-    if([_topPlayer.avatar length] != 0){
-//        [self.avatar setUrl:[NSURL URLWithString:_topPlayer.avatar]];
-        
-        NSURL *url = [NSURL URLWithString:_topPlayer.avatar];
-        UIImage *defaultImage = nil;
-        if (player.gender) {
-            defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
-        }else{
-            defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
-        }
-        
-        self.avatar.alpha = 0;
-        [self.avatar setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-            if (!cached) {
-                [UIView animateWithDuration:1 animations:^{
-                    self.avatar.alpha = 1.0;
-                }];
-            }else{
-                self.avatar.alpha = 1.0;
-            }
-        } failure:^(NSError *error) {
-            self.avatar.alpha = 1;
-        }];
-        
-    } else{
-        UIImage *image = nil;
-        if (player.gender) {
-            image = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
-        }else{
-            image = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
-        }
-//        self.avatar.alpha = 0;
-        [self.avatar setImage:image];
-//        [UIView animateWithDuration:1 animations:^{
-//            self.avatar.alpha = 1.0;
-//        }];
-        
-    }
-//    [GlobalGetImageCache() manage:self.avatar];
+    // set nick name
     if (player.nickName) {
         NSString *nick = [NSString stringWithFormat:@" %@",player.nickName];
         //        [self.author setText:author];
@@ -104,14 +71,6 @@
     }
     
     [self.genderImageView setImage:[[ShareImageManager defaultManager] userDetailGenderImage:player.gender]];
-
-//    NSString *level = nil;
-//    NSString *genderString = player.gender ? NSLS(@"kMale") :NSLS(@"kFemale");
-    
-//    level = [NSString stringWithFormat:@" %@  LV.%d",genderString, player.level];
-//    [self.levelInfo setText:level];
-    
-//    [self.maskButton addTarget:self action:@selector(didClickTopPlayerView:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setRankFlag:(NSInteger)rank

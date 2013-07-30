@@ -83,19 +83,6 @@
     NSURL* url = [NSURL URLWithString:avatar];
     [avatarView setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];
     
-    
-    
-//    if (gender)
-//    {
-//        [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-//    }else {
-//        [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
-//    }
-//    if ([avatar length] > 0){
-//        [avatarView setUrl:[NSURL URLWithString:avatar]];
-//        [GlobalGetImageCache() manage:avatarView];
-//    }
-
     if ([[UserManager defaultManager] isMe:user.userId]) {
         [self.creatorLabel setText:NSLS(@"Me")];        
     }else{

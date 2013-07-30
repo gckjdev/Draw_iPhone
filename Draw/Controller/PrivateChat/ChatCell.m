@@ -86,40 +86,9 @@
 {
     NSString *avatar = self.messageStat.friendAvatar;
     BOOL isMale = self.messageStat.friendGender;
-    UIImage *defaultImage = nil;
-    if (isMale) {
-        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
-    }else{
-        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
-    }
-    
+    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:isMale];
     NSURL *url = [NSURL URLWithString:avatar];
     [self.avatarImage setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
-
-    
-//    if([avatar length] != 0){
-//        NSURL *url = [NSURL URLWithString:avatar];
-//        
-//        self.avatarImage.alpha = 0;
-//        [self.avatarImage setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-//            if (!cached) {
-//                [UIView animateWithDuration:1 animations:^{
-//                    self.avatarImage.alpha = 1.0;
-//                }];
-//            }else{
-//                self.avatarImage.alpha = 1.0;
-//            }
-//        } failure:^(NSError *error) {
-//            self.avatarImage.alpha = 1;
-//            [self.avatarImage setImage:defaultImage];
-//        }];
-//    } else{
-//        [self.avatarImage setImage:defaultImage];
-//    }
-
-
-    
-    
 }
 
 - (void)updateBadge

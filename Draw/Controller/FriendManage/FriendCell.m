@@ -93,15 +93,9 @@
 
 - (void)updateAvatar:(MyFriend *)aFriend
 {
-    UIImage *defaultImage = nil;
-    if (aFriend.isMale) {
-        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
-    }else{
-        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
-    }
-    
+    UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:aFriend.isMale];
     NSURL *url = [NSURL URLWithString:aFriend.avatar];
-    [self.avatarView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
+    [self.avatarView setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];
 }
 
 
