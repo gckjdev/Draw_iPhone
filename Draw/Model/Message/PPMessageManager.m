@@ -225,26 +225,38 @@ static PPMessageManager* globalDefaultMessageManager;
     [super dealloc];
 }
 
-- (NSArray*)getMessageList:(NSString*)friendUserId
+//- (NSMutableArray*)getListByUserId:(NSString*)userId
+//{
+//    NSMutableArray* list = [_friendMessageDict objectForKey:friendUserId];
+//    if (list == nil){
+//        
+//    }
+//    
+//}
+
+- (NSMutableArray*)getMessageList:(NSString*)friendUserId
 {
     if (friendUserId == nil)
         return nil;
     
-    NSArray* list = [_friendMessageDict objectForKey:friendUserId];
+    NSMutableArray* list = [_friendMessageDict objectForKey:friendUserId];
     if (list == nil){
         // try to load from local cache
-        list = [PPMessageManager messageListForFriendId:friendUserId];
+        NSArray* localCacheList = [PPMessageManager messageListForFriendId:friendUserId];
         
         // sort list
-        list = [list sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSArray* sortedList = [localCacheList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             PPMessage* m1 = (PPMessage*)obj1;
             PPMessage* m2 = (PPMessage*)obj2;
             return [m1.createDate compare:m2.createDate];
         }];
         
         // make sure list is NOT null
-        if (list == nil){
+        if (sortedList == nil){
             list = [NSMutableArray array];
+        }
+        else{
+            list = [NSMutableArray arrayWithArray:sortedList];
         }
         
         [_friendMessageDict setObject:list forKey:friendUserId];
@@ -259,12 +271,12 @@ static PPMessageManager* globalDefaultMessageManager;
     if (friendId == nil)
         return;
     
-    NSArray* oldList = [self getMessageList:friendId];
-    if (oldList == nil){
+    NSMutableArray* list = [self getMessageList:friendId];
+    if (list == nil){
         return;
     }
     
-    NSMutableArray* list = [NSMutableArray arrayWithArray:oldList];
+//    NSMutableArray* list = [NSMutableArray arrayWithArray:oldList];
     PPMessage* foundMessage = nil;
     for (PPMessage* m in list){
         if ([[m messageId] isEqualToString:[message messageId]]){
@@ -286,15 +298,7 @@ static PPMessageManager* globalDefaultMessageManager;
     if (friendId == nil)
         return;
     
-    NSArray* oldList = [self getMessageList:friendId];
-    NSMutableArray* list = nil;
-    if (oldList != nil){
-        list = [NSMutableArray arrayWithArray:oldList];
-    }
-    else{
-        list = [NSMutableArray array];
-    }
-    
+    NSMutableArray* list = [self getMessageList:friendId];    
     [list addObject:message];
     [self save:list friendUserId:friendId];
 }
@@ -305,12 +309,11 @@ static PPMessageManager* globalDefaultMessageManager;
     if (friendId == nil)
         return;
     
-    NSArray* oldList = [self getMessageList:friendId];
-    if (oldList == nil){
+    NSMutableArray* list = [self getMessageList:friendId];
+    if (list == nil){
         return;
     }
     
-    NSMutableArray* list = [NSMutableArray arrayWithArray:oldList];
     BOOL foundMessage = NO;
     int foundIndex = 0;
     for (PPMessage* m in list){
@@ -342,12 +345,11 @@ static PPMessageManager* globalDefaultMessageManager;
     if (friendId == nil)
         return;
     
-    NSArray* oldList = [self getMessageList:friendId];
-    if (oldList == nil){
+    NSMutableArray* list = [self getMessageList:friendId];
+    if (list == nil){
         return;
     }
     
-    NSMutableArray* list = [NSMutableArray arrayWithArray:oldList];
     BOOL foundMessage = NO;
     int foundIndex = 0;
     for (PPMessage* m in list){
@@ -398,19 +400,19 @@ static PPMessageManager* globalDefaultMessageManager;
     if (messageList == nil || friendUserId == nil)
         return;
     
-    NSArray* oldList = [self getMessageList:friendUserId];
-    NSMutableArray* list = nil;
-    if (oldList != nil){
-        list = [NSMutableArray arrayWithArray:oldList];
-    }
-    else{
-        list = [NSMutableArray array];
-    }
+    NSMutableArray* list = [self getMessageList:friendUserId];
+    if (list == nil)
+        return;
     
-    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:oldList];
+    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
+    NSArray* oldList = [NSArray arrayWithArray:list];
     
-    list = [NSMutableArray arrayWithArray:filterList];
+    [list removeAllObjects];
+    [list addObjectsFromArray:filterList];
     [list addObjectsFromArray:oldList];
+    
+//    list = [NSMutableArray arrayWithArray:filterList];
+//    [list addObjectsFromArray:oldList];
     
     [self save:list friendUserId:friendUserId];
 }
@@ -420,17 +422,11 @@ static PPMessageManager* globalDefaultMessageManager;
     if (messageList == nil || friendUserId == nil)
         return;
     
-    NSArray* oldList = [self getMessageList:friendUserId];
-    NSMutableArray* list = nil;
-    if (oldList != nil){
-        list = [NSMutableArray arrayWithArray:oldList];
-    }
-    else{
-        list = [NSMutableArray array];
-    }
+    NSMutableArray* list = [self getMessageList:friendUserId];
+    if (list == nil)
+        return;
     
-    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:oldList];
-    
+    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
     [list addObjectsFromArray:filterList];
     [self save:list friendUserId:friendUserId];
 }
@@ -440,16 +436,11 @@ static PPMessageManager* globalDefaultMessageManager;
     if (messageList == nil || friendUserId == nil)
         return;
     
-    NSArray* oldList = [self getMessageList:friendUserId];
-    NSMutableArray* list = nil;
-    if (oldList != nil){
-        list = [NSMutableArray arrayWithArray:oldList];
-    }
-    else{
-        list = [NSMutableArray array];
-    }
+    NSMutableArray* list = [self getMessageList:friendUserId];
+    if (list == nil)
+        return;
     
-    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:oldList];
+    NSArray* filterList = [self listWithoutDuplicateMessage:messageList oldList:list];
     
     int offsetIndex = -1;
     for (int i=list.count-1; i>=0; i--){
@@ -486,7 +477,8 @@ static PPMessageManager* globalDefaultMessageManager;
         return;
     }
 
-    [_friendMessageDict setObject:messageList forKey:friendUserId];
+    // rem by Benson
+//    [_friendMessageDict setObject:messageList forKey:friendUserId];
     [PPMessageManager saveFriend:friendUserId messageList:messageList];
 }
 
