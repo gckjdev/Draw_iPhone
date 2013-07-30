@@ -8,13 +8,14 @@
 
 #import "StableView.h"
 #import "ShareImageManager.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 #import "UIImageView+WebCache.h"
 #import "GameItemManager.h"
 #import "UIButton+WebCache.h"
+#import "UIImageView+Extend.h"
 
 #define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 61 * 1.5, 61 * 1.5) : CGRectMake(0, 0, 61, 61))
 
@@ -269,7 +270,10 @@
 //    [imageView setUrl:[NSURL URLWithString:urlString]];
 //    [GlobalGetImageCache() manage:imageView];
     
-    [imageView setImageWithURL:[NSURL URLWithString:urlString]];
+//    [imageView setImageWithURL:[NSURL URLWithString:urlString]];
+
+    [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:nil showLoading:YES animated:YES];
+
 }
 - (void)dealloc
 {
@@ -316,21 +320,28 @@
     imageView.frame = self.bounds;
 //    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
-- (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender
+- (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender
 {
 //    [imageView clear];
+    
+    UIImage* placeHolderImage = nil;
     if (gender) {
-        [imageView setImage:[[ShareImageManager defaultManager] 
-                             maleDefaultAvatarImage]];
+        placeHolderImage = [[ShareImageManager defaultManager]
+                            maleDefaultAvatarImage];
     }else{
-        [imageView setImage:[[ShareImageManager defaultManager] 
-                             femaleDefaultAvatarImage]];                
+        placeHolderImage = [[ShareImageManager defaultManager]
+                             femaleDefaultAvatarImage];                
     }
-    if ([url length] > 0){
+//    if ([url length] > 0){
 //        [imageView setUrl:[NSURL URLWithString:url]];
 //        [GlobalGetImageCache() manage:imageView];
-        [imageView setImageWithURL:[NSURL URLWithString:url]];
-    }
+//        [imageView setImageWithURL:[NSURL URLWithString:url]];
+//    }
+    
+
+    [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
+    
+    
 }
 - (void)setAvatarSelected:(BOOL)selected
 {

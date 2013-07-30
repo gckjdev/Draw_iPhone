@@ -7,13 +7,14 @@
 //
 
 #import "RoomCell.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "ShareImageManager.h"
 #import "StableView.h"
 #import "RoomManager.h"
 #import "DeviceDetection.h"
 #import "UIManager.h"
+#import "UIImageView+Extend.h"
 
 @implementation RoomCell
 @synthesize avatarView;
@@ -72,16 +73,28 @@
     NSString *avatar = user.avatar;
     BOOL gender = [user isMale];
     
-    if (gender)
-    {
-        [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-    }else {
-        [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+    UIImage* placeHolderImage = nil;
+    if (gender) {
+        placeHolderImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+    }else{
+        placeHolderImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     }
-    if ([avatar length] > 0){
-        [avatarView setUrl:[NSURL URLWithString:avatar]];
-        [GlobalGetImageCache() manage:avatarView];
-    }
+    
+    NSURL* url = [NSURL URLWithString:avatar];
+    [avatarView setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];
+    
+    
+    
+//    if (gender)
+//    {
+//        [avatarView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
+//    }else {
+//        [avatarView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
+//    }
+//    if ([avatar length] > 0){
+//        [avatarView setUrl:[NSURL URLWithString:avatar]];
+//        [GlobalGetImageCache() manage:avatarView];
+//    }
 
     if ([[UserManager defaultManager] isMe:user.userId]) {
         [self.creatorLabel setText:NSLS(@"Me")];        
