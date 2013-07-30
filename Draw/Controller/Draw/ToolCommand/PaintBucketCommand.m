@@ -26,7 +26,7 @@
 {
     DrawAction *lastDrawAction = [self.drawView lastAction];
     
-    if (lastDrawAction && ![lastDrawAction isKindOfClass:[ChangeBackAction class]] && ![lastDrawAction isKindOfClass:[ClipAction class]]) {
+    if (lastDrawAction && ![lastDrawAction isChangeBGAction] && ![lastDrawAction isClipAction]) {
         [[CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
                                       style:CommonDialogStyleDoubleButton
                                    delegate:nil

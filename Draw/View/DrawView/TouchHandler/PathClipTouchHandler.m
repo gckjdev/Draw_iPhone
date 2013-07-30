@@ -29,20 +29,16 @@
     [super dealloc];
 }
 
-- (DrawAction *)createDrawAction
+- (ClipAction *)createDrawAction
 {
     if (action == nil) {
-        Paint *currentPaint = nil;
-        if (action == nil) {
-            DrawInfo *info = self.drawView.drawInfo;
+        if (action == nil) {            
+            Paint *currentPaint = [Paint paintWithWidth:STROKE_WIDTH
+                                                  color:[DrawColor grayColor]
+                                                penType:Pencil
+                                              pointList:nil];
             
-            currentPaint = [Paint paintWithWidth:info.penWidth
-                                           color:info.penColor
-                                         penType:info.penType
-                                       pointList:nil];
-            
-            action.shadow = info.shadow;
-            action = [[PaintAction paintActionWithPaint:currentPaint] retain];
+            action = [[ClipAction clipActionWithPaint:currentPaint] retain];
         }
     }
     return action;
@@ -53,7 +49,7 @@
     if (handleFailed) {
         return;
     }
-    action = [self createDrawAction];
+    action = (id)[self createDrawAction];
     [action addPoint:point inRect:self.drawView.bounds];
 }
 
@@ -69,7 +65,8 @@
 {
     currentState = TouchStateEnd;
     [action finishAddPoint];
-    [self.drawView addDrawAction:action show:YES];
+    [self.drawView finishLastAction:action refresh:YES];
+//    [self.drawView addDrawAction:action show:YES];
     [self reset];
 }
 

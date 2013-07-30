@@ -18,6 +18,9 @@ typedef enum {
     TouchStateCancel = 3,
 }TouchState;
 
+#ifndef STROKE_WIDTH
+    #define STROKE_WIDTH 2
+#endif
 
 @class DrawView;
 

@@ -1435,9 +1435,7 @@
 		A461B666174CBAA70088B061 /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		A461B667174CBAA70088B061 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		A461B669174CBAA70088B061 /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		A461B66A174CBAA70088B061 /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		A461B66B174CBAA70088B061 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
+		A461B669174CBAA70088B061 /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* ToolPanel.xib */; };
 		A461B66C174CBAA70088B061 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		A461B66D174CBAA70088B061 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		A461B66E174CBAA70088B061 /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -3828,9 +3826,7 @@
 		C28A9F481738F04B007A819F /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		C28A9F491738F04B007A819F /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		C28A9F4B1738F04B007A819F /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		C28A9F4C1738F04B007A819F /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		C28A9F4D1738F04B007A819F /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
+		C28A9F4B1738F04B007A819F /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* ToolPanel.xib */; };
 		C28A9F4E1738F04B007A819F /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		C28A9F4F1738F04B007A819F /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		C28A9F501738F04B007A819F /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -5107,12 +5103,8 @@
 		CA5328FE16A3E1E000E9E96B /* DrawSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DF16A3E1E000E9E96B /* DrawSlider.m */; };
 		CA53290116A3E1E000E9E96B /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */; };
 		CA53290216A3E1E000E9E96B /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */; };
-		CA53290516A3E1E000E9E96B /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		CA53290616A3E1E000E9E96B /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		CA53290916A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		CA53290A16A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		CA53290D16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
-		CA53290E16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
+		CA53290516A3E1E000E9E96B /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* ToolPanel.xib */; };
+		CA53290616A3E1E000E9E96B /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* ToolPanel.xib */; };
 		CA53291116A3E1E000E9E96B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E616A3E1E000E9E96B /* Palette.m */; };
 		CA53291216A3E1E000E9E96B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E616A3E1E000E9E96B /* Palette.m */; };
 		CA53291516A3E1E000E9E96B /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
@@ -8601,9 +8593,7 @@
 		EA411D90176066F500DA72D0 /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		EA411D93176066F500DA72D0 /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		EA411D94176066F500DA72D0 /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		EA411D95176066F500DA72D0 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
+		EA411D93176066F500DA72D0 /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* ToolPanel.xib */; };
 		EA411D96176066F500DA72D0 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		EA411D97176066F500DA72D0 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		EA411D98176066F500DA72D0 /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -11103,9 +11093,7 @@
 		CA5328DF16A3E1E000E9E96B /* DrawSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSlider.m; sourceTree = "<group>"; };
 		CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawToolPanel.h; sourceTree = "<group>"; };
 		CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToolPanel.m; sourceTree = "<group>"; };
-		CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel.xib; sourceTree = "<group>"; };
-		CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel_ip5.xib; sourceTree = "<group>"; };
-		CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawToolPanel~ipad.xib"; sourceTree = "<group>"; };
+		CA5328E216A3E1E000E9E96B /* ToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolPanel.xib; sourceTree = "<group>"; };
 		CA5328E516A3E1E000E9E96B /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		CA5328E616A3E1E000E9E96B /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
 		CA5328E716A3E1E000E9E96B /* Palette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Palette.xib; sourceTree = "<group>"; };
@@ -16821,9 +16809,7 @@
 				CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */,
 				CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */,
 				CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */,
-				CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */,
-				CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */,
-				CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */,
+				CA5328E216A3E1E000E9E96B /* ToolPanel.xib */,
 				C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */,
 				C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */,
 				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
@@ -20220,9 +20206,7 @@
 				A461B666174CBAA70088B061 /* shop_item_palette@2x.png in Resources */,
 				A461B667174CBAA70088B061 /* ColorBox.xib in Resources */,
 				A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */,
-				A461B669174CBAA70088B061 /* DrawToolPanel.xib in Resources */,
-				A461B66A174CBAA70088B061 /* DrawToolPanel_ip5.xib in Resources */,
-				A461B66B174CBAA70088B061 /* DrawToolPanel~ipad.xib in Resources */,
+				A461B669174CBAA70088B061 /* ToolPanel.xib in Resources */,
 				A461B66C174CBAA70088B061 /* Palette.xib in Resources */,
 				A461B66D174CBAA70088B061 /* Palette~ipad.xib in Resources */,
 				A461B66E174CBAA70088B061 /* PenBox.xib in Resources */,
@@ -21269,9 +21253,7 @@
 				C28A9F481738F04B007A819F /* shop_item_palette@2x.png in Resources */,
 				C28A9F491738F04B007A819F /* ColorBox.xib in Resources */,
 				C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */,
-				C28A9F4B1738F04B007A819F /* DrawToolPanel.xib in Resources */,
-				C28A9F4C1738F04B007A819F /* DrawToolPanel_ip5.xib in Resources */,
-				C28A9F4D1738F04B007A819F /* DrawToolPanel~ipad.xib in Resources */,
+				C28A9F4B1738F04B007A819F /* ToolPanel.xib in Resources */,
 				C28A9F4E1738F04B007A819F /* Palette.xib in Resources */,
 				C28A9F4F1738F04B007A819F /* Palette~ipad.xib in Resources */,
 				C28A9F501738F04B007A819F /* PenBox.xib in Resources */,
@@ -22317,9 +22299,7 @@
 				C297BFE1169ED04500E00258 /* shop_item_palette@2x.png in Resources */,
 				CA5328F116A3E1E000E9E96B /* ColorBox.xib in Resources */,
 				CA5328F516A3E1E000E9E96B /* ColorBox~ipad.xib in Resources */,
-				CA53290516A3E1E000E9E96B /* DrawToolPanel.xib in Resources */,
-				CA53290916A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */,
-				CA53290D16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */,
+				CA53290516A3E1E000E9E96B /* ToolPanel.xib in Resources */,
 				CA53291516A3E1E000E9E96B /* Palette.xib in Resources */,
 				CA53291916A3E1E000E9E96B /* Palette~ipad.xib in Resources */,
 				CA53292116A3E1E000E9E96B /* PenBox.xib in Resources */,
@@ -23343,9 +23323,7 @@
 				A48B0A0F16A1331C00B56975 /* TapjoyResources.bundle in Resources */,
 				CA5328F216A3E1E000E9E96B /* ColorBox.xib in Resources */,
 				CA5328F616A3E1E000E9E96B /* ColorBox~ipad.xib in Resources */,
-				CA53290616A3E1E000E9E96B /* DrawToolPanel.xib in Resources */,
-				CA53290A16A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */,
-				CA53290E16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */,
+				CA53290616A3E1E000E9E96B /* ToolPanel.xib in Resources */,
 				CA53291616A3E1E000E9E96B /* Palette.xib in Resources */,
 				CA53291A16A3E1E000E9E96B /* Palette~ipad.xib in Resources */,
 				CA53292216A3E1E000E9E96B /* PenBox.xib in Resources */,
@@ -24253,9 +24231,7 @@
 				EA411D90176066F500DA72D0 /* shop_item_palette@2x.png in Resources */,
 				EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */,
 				EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */,
-				EA411D93176066F500DA72D0 /* DrawToolPanel.xib in Resources */,
-				EA411D94176066F500DA72D0 /* DrawToolPanel_ip5.xib in Resources */,
-				EA411D95176066F500DA72D0 /* DrawToolPanel~ipad.xib in Resources */,
+				EA411D93176066F500DA72D0 /* ToolPanel.xib in Resources */,
 				EA411D96176066F500DA72D0 /* Palette.xib in Resources */,
 				EA411D97176066F500DA72D0 /* Palette~ipad.xib in Resources */,
 				EA411D98176066F500DA72D0 /* PenBox.xib in Resources */,

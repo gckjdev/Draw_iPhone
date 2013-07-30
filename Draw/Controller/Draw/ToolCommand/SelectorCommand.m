@@ -71,6 +71,8 @@
 {
     [self.drawView exitFromClipMode];
     [self hidePopTipView];
+    [self.drawInfo backToLastDrawMode];
+    [self updateToolPanel];
 }
 - (void)didClickHelpAtSelectorBox:(SelectorBox *)box
 {

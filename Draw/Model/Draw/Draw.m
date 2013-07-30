@@ -44,7 +44,7 @@
             Game__PBDrawAction* pbDrawActionC = array[i];
             if (pbDrawActionC != NULL){
                 DrawAction* drawAction = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
-                if ([drawAction isKindOfClass:[ClipAction class]]) {
+                if ([drawAction isClipAction]) {
                     clipAction = (ClipAction *) drawAction;
                 }
                 if (drawAction.clipTag == clipAction.clipTag) {

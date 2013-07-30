@@ -54,23 +54,17 @@ CGPoint realStartPoint;
 }
 
 
-#define STROKE_WIDTH 2
 
-- (ShapeAction *)createDrawAction
+- (ClipAction *)createDrawAction
 {
     if (action == nil) {
+        ShapeInfo *shape = [ShapeInfo shapeWithType:self.shapeType
+                                            penType:[DrawColor grayColor]
+                                              width:Pencil
+                                              color:nil];
         
-        DrawInfo *info = self.drawView.drawInfo;
-        
-        ShapeInfo *shape = [ShapeInfo shapeWithType:info.shapeType
-                                            penType:info.penType
-                                              width:info.penWidth
-                                              color:info.penColor];
-        
-        action = [[ShapeAction shapeActionWithShape:shape] retain];
- 
+        action = [[ClipAction clipActionWithShape:shape] retain];
         shape.width = STROKE_WIDTH;
-
     }
     return action;
 }

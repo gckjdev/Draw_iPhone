@@ -461,8 +461,8 @@
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:delay];
 
         }else{
-            if (![_currentAction isKindOfClass:[PaintAction class]]) {
-                if([_currentAction isKindOfClass:[ClipAction class]]){
+            if (![_currentAction isPaintAction]) {
+                if([_currentAction isClipAction]){
 //                    cdManager.currentClip = (id)_currentAction;
                 }
                 

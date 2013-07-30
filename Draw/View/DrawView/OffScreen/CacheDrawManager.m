@@ -165,7 +165,7 @@
 {
     self.inDrawAction = action;
     
-    if ([action isKindOfClass:[ClipAction class]]) {
+    if ([action isClipAction]) {
         self.currentClip = (id)action;
     }
     return [action redrawRectInRect:_rect];
@@ -173,7 +173,7 @@
 
 - (void)cancelLastAction
 {
-    if ([self.inDrawAction isKindOfClass:[ClipAction class]]) {
+    if ([self.inDrawAction isClipAction]) {
         self.currentClip = nil;
     }
     if (self.inDrawAction) {

@@ -11,7 +11,6 @@
 #import "ClipAction.h"
 
 
-#define STROKE_WIDTH 2
 
 @interface PolygonClipTouchHandler()
 {

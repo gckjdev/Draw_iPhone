@@ -95,7 +95,7 @@
     if ([super execute]) {
         DrawAction *lastAction = [self.drawView lastAction];
         
-        if (lastAction && ![lastAction isKindOfClass:[ClipAction class]])
+        if (lastAction && ![lastAction isClipAction])
         {
             [[CommonDialog createDialogWithTitle:NSLS(@"kUseGradientTitle")
                                          message:NSLS(@"kUseGradientMessage")

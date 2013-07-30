@@ -49,7 +49,6 @@ CGPoint realStartPoint;
     }
 }
 
-#define STROKE_WIDTH 2
 
 - (ShapeAction *)createDrawAction
 {

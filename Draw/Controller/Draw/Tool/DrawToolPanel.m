@@ -331,35 +331,19 @@
     
 }
 
-+ (id)createViewWithdelegate:(id)delegate
-{
-    NSString *identifier = @"DrawToolPanel";
-    if (ISIPHONE5) {
-        identifier = @"DrawToolPanel_ip5";
-    }
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier
-                                                             owner:self options:nil];
-    
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", identifier);
-        return nil;
-    }
-    
-    DrawToolPanel  *view = (DrawToolPanel *)[topLevelObjects objectAtIndex:0];
-    [view updateView];
-    return view;
-    
-}
-
 
 + (id)createViewWithDrawView:(DrawView *)drawView;
 {
     DrawToolPanel *panel = nil;
+    NSUInteger index = 0;
+    
     if (ISIPHONE5) {
-        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel_ip5"];
-    }else{
-        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel"];
+        index = 1;
+    }else if(ISIPAD){
+        index = 2;
     }
+
+    panel = [UIView createViewWithXibIdentifier:@"ToolPanel" ofViewIndex:index];
     panel.drawView = drawView;
     [panel updateView];
     [panel updateWithDrawInfo:drawView.drawInfo];
@@ -548,7 +532,9 @@
     UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:drawInfo.shapeType];
     UIColor *color = ISIPHONE5 ? OPAQUE_COLOR(62, 43, 23) : [UIColor whiteColor];
     UIImage *image = nil;
-    if (drawInfo.strokeShape || drawInfo.shapeType == ShapeTypeBeeline) {
+    if(drawInfo.shapeType == ShapeTypeNone){
+        return;
+    }else if (drawInfo.strokeShape || drawInfo.shapeType == ShapeTypeBeeline) {
         image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
     }else{
         image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
@@ -616,6 +602,7 @@
     DrawInfo *drawInfo = self.drawView.drawInfo;
     drawInfo.penColor = [DrawColor colorWithColor:colorPoint.color];
     [drawInfo setAlpha:drawInfo.alpha];
+    [drawInfo backToLastDrawMode];
     [self updateWithDrawInfo:drawInfo];
     [toolCmdManager hideAllPopTipViews];
 }

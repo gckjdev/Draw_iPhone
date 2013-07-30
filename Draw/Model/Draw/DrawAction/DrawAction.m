@@ -25,6 +25,33 @@
 @implementation DrawAction
 
 
+- (BOOL)isPaintAction
+{
+    return [self isKindOfClass:[PaintAction class]];
+}
+- (BOOL)isShapeAction
+{
+    return [self isKindOfClass:[ShapeAction class]];
+}
+- (BOOL)isClipAction
+{
+     return [self isKindOfClass:[ClipAction class]];
+}
+- (BOOL)isGradientAction
+{
+     return [self isKindOfClass:[GradientAction class]];
+}
+- (BOOL)isChangeBGAction
+{
+     return [self isKindOfClass:[ChangeBackAction class]];
+}
+- (BOOL)isChangeImageBGAction
+{
+     return [self isKindOfClass:[ChangeBGImageAction class]];
+}
+
+
+
 - (void)setCanvasSize:(CGSize)canvasSize
 {
     

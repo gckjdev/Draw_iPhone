@@ -127,6 +127,13 @@ typedef enum {
 - (PBDrawAction *)toPBDrawAction; //deprecated
 
 
+- (BOOL)isPaintAction;
+- (BOOL)isShapeAction;
+- (BOOL)isClipAction;
+- (BOOL)isGradientAction;
+- (BOOL)isChangeBGAction;
+- (BOOL)isChangeImageBGAction;
+
 @end
 
 
