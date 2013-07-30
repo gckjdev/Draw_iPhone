@@ -241,9 +241,9 @@
 - (DrawAction *)redoDrawAction:(DrawAction *)action
 {
     if ([self canRedoDrawAction:action]) {
-        [self addDrawAction:action show:YES redo:YES];
+        [self addDrawAction:action show:NO redo:YES];
         [self finishLastAction:action refresh:NO];
-//        [self setNeedsDisplay];
+        [self setNeedsDisplay];
         return action;
     }
     return nil;
@@ -252,19 +252,22 @@
 - (DrawAction *)undoDrawAction:(DrawAction *)action
 {
     if ([self canUndoDrawAction:action]) {
-        if ([action isClipAction]) {
-            self.clipAction = nil;
-            _cdManager.currentClip = nil;
-        }
         [self.drawActionList removeLastObject];
-
+        
         if (_supportCache) {
             [_cdManager undo];
         }
 
-        [self setNeedsDisplayInRect:[action redrawRectInRect:self.bounds]];
-//        [self setNeedsDisplay];
-
+        DrawAction *drawAction = [_drawActionList lastObject];
+        if (drawAction.clipAction) {
+            self.clipAction = drawAction.clipAction;
+        }else if([drawAction isClipAction]){
+            self.clipAction = (id)drawAction;
+        }else{
+            self.clipAction = nil;
+            _cdManager.currentClip = nil;
+        }
+        [self setNeedsDisplay];
         return action;
     }
     return nil;

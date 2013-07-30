@@ -14,6 +14,7 @@
 {
     [self sendAnalyticsReport];
     [self.drawView redo];
+    [self updateToolPanel];
     return YES;
 }
 

@@ -14,6 +14,7 @@
 {
     [self sendAnalyticsReport];
     [self.drawView undo];
+    [self updateToolPanel];
     return YES;
 }
 -(void)sendAnalyticsReport{

@@ -62,18 +62,17 @@
 {
     if (clipType != ClipTypeNo) {
         self.drawInfo.touchType = [self touchTypeFromClipType:clipType];
-        [self.box showCloseViewInView:[self.control theTopView]];
         [self.toolPanel updateWithDrawInfo:self.drawInfo];
     }
     [self hidePopTipView];
 }
-- (void)didClickCancelAtSelectorBox:(SelectorBox *)box
-{
-    [self.drawView exitFromClipMode];
-    [self hidePopTipView];
-    [self.drawInfo backToLastDrawMode];
-    [self updateToolPanel];
-}
+//- (void)didClickCancelAtSelectorBox:(SelectorBox *)box
+//{
+//    [self.drawView exitFromClipMode];
+//    [self hidePopTipView];
+//    [self.drawInfo backToLastDrawMode];
+//    [self updateToolPanel];
+//}
 - (void)didClickHelpAtSelectorBox:(SelectorBox *)box
 {
     [self hidePopTipView];

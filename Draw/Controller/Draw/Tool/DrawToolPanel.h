@@ -24,6 +24,7 @@
 @property(nonatomic, assign)DrawView *drawView;
 
 
+
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo;
 
 + (id)createViewWithDrawView:(DrawView *)drawView;

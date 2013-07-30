@@ -99,6 +99,8 @@
 
 @property (retain, nonatomic) NSTimer *timer;
 
+@property (retain, nonatomic) UIView *closeSelector;
+
 - (IBAction)switchToolPage:(UIButton *)sender;
 
 
@@ -332,6 +334,8 @@
 }
 
 
+
+
 + (id)createViewWithDrawView:(DrawView *)drawView;
 {
     DrawToolPanel *panel = nil;
@@ -345,6 +349,7 @@
 
     panel = [UIView createViewWithXibIdentifier:@"ToolPanel" ofViewIndex:index];
     panel.drawView = drawView;
+    [panel addCloseSelectorView];
     [panel updateView];
     [panel updateWithDrawInfo:drawView.drawInfo];
     return panel;
@@ -593,8 +598,70 @@
     [self.alphaSlider setValue:drawInfo.alpha];
     [self.widthSlider setValue:drawInfo.penWidth];
 
+
+    NSArray *array = @[@(TouchActionTypeClipEllipse), @(TouchActionTypeClipPath), @(TouchActionTypeClipPolygon), @(TouchActionTypeClipRectangle)];
+    [self setCloseSelectorHidden:_drawView.currentClip == nil &&![array containsObject:@(drawInfo.touchType)]];
+    
     //TODO set color
 }
+
+
+
+
+#define IMAGE_VIEW_SIZE (ISIPAD ? 140 : 70)
+#define CLOSE_VIEW_SIZE (ISIPAD ? 80 : 40)
+
+#define CLOSE_BUTTON_TAG 201307301
+#define CLOSE_BUTTON_BG_TAG 201307302
+#define CLOSE_VIEW_X (ISIPAD ? (768-IMAGE_VIEW_SIZE-34) : (320-IMAGE_VIEW_SIZE-10))
+#define CLOSE_VIEW_Y (ISIPAD ? 100 : 50)
+
+- (void)setCloseSelectorHidden:(BOOL)hidden
+{
+    UIButton *button = (id)[[self.drawView theTopView] viewWithTag:CLOSE_BUTTON_TAG];
+    UIImageView *bg = (id)[[self.drawView theTopView] viewWithTag:CLOSE_BUTTON_BG_TAG];
+    button.hidden = bg.hidden = hidden;
+}
+
+- (void)addCloseSelectorView
+{
+    self.closeSelector = [UIView createViewWithXibIdentifier:@"ToolPanel" ofViewIndex:3];
+//    UIView *_coloseView = self.closeSelector;
+    
+    if (ISIPAD) {
+        _closeSelector.frame = CGRectMake(CLOSE_VIEW_X, CLOSE_VIEW_Y, IMAGE_VIEW_SIZE, IMAGE_VIEW_SIZE);
+    }else{
+        _closeSelector.frame = CGRectMake(CLOSE_VIEW_X, CLOSE_VIEW_Y, IMAGE_VIEW_SIZE, IMAGE_VIEW_SIZE);
+    }
+    
+    UIButton *button = (id)[_closeSelector viewWithTag:CLOSE_BUTTON_TAG];
+    [button addTarget:self action:@selector(clickCloseSelector:) forControlEvents:UIControlEventTouchUpInside];
+
+    CGFloat x = CLOSE_VIEW_X + CGRectGetMinX(button.frame);
+    CGFloat y = CLOSE_VIEW_Y + CGRectGetMinY(button.frame);
+    [button updateOriginX:x];
+    [button updateOriginY:y];
+    
+    UIImageView *bg = (id)[_closeSelector viewWithTag:CLOSE_BUTTON_BG_TAG];
+    x = CLOSE_VIEW_X + CGRectGetMinX(bg.frame);
+    y = CLOSE_VIEW_Y + CGRectGetMinY(bg.frame);
+    [bg updateOriginX:x];
+    [bg updateOriginY:y];
+    
+    [[self.drawView theTopView] addSubview:bg];
+    [[self.drawView theTopView] addSubview:button];    
+}
+
+
+
+- (void)clickCloseSelector:(id)sender
+{
+ 
+    [self.drawView exitFromClipMode];
+    [self.drawView.drawInfo backToLastDrawMode];
+    [self updateWithDrawInfo:self.drawView.drawInfo];
+}
+
 
 - (void)didSelectColorPoint:(ColorPoint *)colorPoint
 {

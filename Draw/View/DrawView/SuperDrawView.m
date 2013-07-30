@@ -112,6 +112,11 @@
     [dlManager arrangeActions:self.drawActionList];
 }
 
+- (ClipAction *)currentClip
+{
+    return [[self currentLayer] clipAction];
+}
+
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
