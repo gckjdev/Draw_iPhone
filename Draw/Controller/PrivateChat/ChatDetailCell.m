@@ -26,6 +26,7 @@
 #import "CommonUserInfoView.h"
 #import "DrawHolderView.h"
 #import "UIImageExt.h"
+#import "UIImageView+Extend.h"
 
 CGRect CGRectFrom(CGPoint origin, CGSize size){
     return CGRectMake(origin.x, origin.y, size.width, size.height); 
@@ -436,14 +437,16 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     }
     
-    if([avatar length] != 0){
-        NSURL *url = [NSURL URLWithString:avatar];
-//        self.avatarView.alpha = 0;
-//        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:NULL failure:NULL];
-        [self.avatarView setImageWithURL:url placeholderImage:defaultImage];
-    } else{
-        [self.avatarView setImage:defaultImage];
-    }
+//    if([avatar length] != 0){
+//        NSURL *url = [NSURL URLWithString:avatar];
+//        [self.avatarView setImageWithURL:url placeholderImage:defaultImage];
+//    } else{
+//        [self.avatarView setImage:defaultImage];
+//    }
+    
+    NSURL *url = [NSURL URLWithString:avatar];
+    [self.avatarView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
+    
 }
 
 - (void)setCellWithMessageStat:(MessageStat *)messageStat

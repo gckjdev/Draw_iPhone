@@ -15,7 +15,7 @@
 #import "FriendManager.h"
 #import "TimeUtils.h"
 #import "MessageStat.h"
-
+#import "UIImageView+Extend.h"
 #import "CanvasRect.h"
 
 @interface ChatCell()
@@ -93,26 +93,33 @@
         defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     }
     
-    if([avatar length] != 0){
-        NSURL *url = [NSURL URLWithString:avatar];
-        
-        self.avatarImage.alpha = 0;
-        [self.avatarImage setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-            if (!cached) {
-                [UIView animateWithDuration:1 animations:^{
-                    self.avatarImage.alpha = 1.0;
-                }];
-            }else{
-                self.avatarImage.alpha = 1.0;
-            }
-        } failure:^(NSError *error) {
-            self.avatarImage.alpha = 1;
-            [self.avatarImage setImage:defaultImage];
-        }];
-    } else{
-        [self.avatarImage setImage:defaultImage];
-    }
+    NSURL *url = [NSURL URLWithString:avatar];
+    [self.avatarImage setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
 
+    
+//    if([avatar length] != 0){
+//        NSURL *url = [NSURL URLWithString:avatar];
+//        
+//        self.avatarImage.alpha = 0;
+//        [self.avatarImage setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
+//            if (!cached) {
+//                [UIView animateWithDuration:1 animations:^{
+//                    self.avatarImage.alpha = 1.0;
+//                }];
+//            }else{
+//                self.avatarImage.alpha = 1.0;
+//            }
+//        } failure:^(NSError *error) {
+//            self.avatarImage.alpha = 1;
+//            [self.avatarImage setImage:defaultImage];
+//        }];
+//    } else{
+//        [self.avatarImage setImage:defaultImage];
+//    }
+
+
+    
+    
 }
 
 - (void)updateBadge

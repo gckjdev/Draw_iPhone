@@ -7,7 +7,7 @@
 //
 
 #import "FriendCell.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 #import "GameNetworkConstants.h"
 #import "ShareImageManager.h"
 #import "FriendManager.h"
@@ -17,6 +17,7 @@
 #import "Room.h"
 #import "LogUtil.h"
 #import "MyFriend.h"
+#import "UIImageView+Extend.h"
 
 @implementation FriendCell
 @synthesize avatarView;
@@ -92,33 +93,15 @@
 
 - (void)updateAvatar:(MyFriend *)aFriend
 {
-    NSString *avatar = aFriend.avatar;
     UIImage *defaultImage = nil;
     if (aFriend.isMale) {
         defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
     }else{
         defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     }
-
-    if([avatar length] != 0){
-        NSURL *url = [NSURL URLWithString:aFriend.avatar];
-
-        self.avatarView.alpha = 0;
-        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-            if (!cached) {
-                [UIView animateWithDuration:1 animations:^{
-                    self.avatarView.alpha = 1.0;
-                }];
-            }else{
-                self.avatarView.alpha = 1.0;
-            }
-        } failure:^(NSError *error) {
-            self.avatarView.alpha = 1;
-            [self.avatarView setImage:defaultImage];
-        }];
-    } else{
-        [self.avatarView setImage:defaultImage];
-    }
+    
+    NSURL *url = [NSURL URLWithString:aFriend.avatar];
+    [self.avatarView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
 }
 
 

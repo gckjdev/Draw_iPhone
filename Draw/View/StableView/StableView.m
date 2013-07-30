@@ -272,7 +272,17 @@
     
 //    [imageView setImageWithURL:[NSURL URLWithString:urlString]];
 
+    BOOL isMale = self.gender;
+    UIImage *defaultImage = nil;
+    if (isMale) {
+        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+    }else{
+        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+    }
+    
     [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:nil showLoading:YES animated:YES];
+    
+    
 
 }
 - (void)dealloc
