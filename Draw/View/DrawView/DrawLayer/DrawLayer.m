@@ -12,10 +12,46 @@
 #import "PPStack.h"
 #import "GradientAction.h"
 #import "ClipAction.h"
+#import "ConfigManager.h"
+#import "ChangeBackAction.h"
+#import "ChangeBGImageAction.h"
+#import "DrawBgManager.h"
+#import "GameBasic.pb.h"
+
+@interface DrawLayer()
+@property(nonatomic, retain) NSString *drawBgId;
+@property(nonatomic, retain) PPStack *bgColorStack;
+
+@end
 
 @implementation DrawLayer
 @synthesize drawActionList = _drawActionList;
 @synthesize drawInfo = _drawInfo;
+
+/*
+- (void)handleChangeBGAction:(ChangeBackAction *)drawAction inContext:(CGContextRef)ctx
+{
+    if (drawAction.clipAction) {
+        [drawAction drawInContext:ctx inRect:self.bounds];
+    }else{
+        if (self.backgroundColor != drawAction.color.CGColor) {
+            self.backgroundColor = drawAction.color.CGColor;
+        }
+    }
+}
+- (void)handleChangeBGImageAction:(ChangeBGImageAction *)drawAction inContext:(CGContextRef)ctx
+{
+    if (drawAction.clipAction) {
+        [drawAction drawInContext:ctx inRect:self.bounds];
+    }else{
+        if (![self.drawBgId isEqualToString:[[drawAction drawBg] bgId]]) {
+            self.contents = (id)[[[drawAction drawBg] localImage] CGImage];
+            self.drawBgId = [[drawAction drawBg] bgId];
+            PPDebug(@"change bg image action, draw bg id = %@",self.drawBgId);
+        }
+    }
+}
+ */
 
 - (id)init{
     self = [super init];
@@ -38,7 +74,9 @@
         self.drawInfo = (self.drawInfo == nil) ? [[[DrawInfo alloc] init] autorelease] : drawInfo;
         self.layerTag = tag;
         self.layerName = name;
+        self.bgColorStack = [[[PPStack alloc] init] autorelease];
         _supportCache = supporCache;
+
         self.drawActionList = [NSMutableArray array];
         if (_supportCache) {
             self.cdManager = [CacheDrawManager managerWithRect:self.bounds];
@@ -55,21 +93,23 @@
     PPRelease(_layerName);
     PPRelease(_cdManager);
     PPRelease(_drawInfo);
+//    PPRelease(_drawBgId);
+    PPRelease(_bgColorStack);
     [super dealloc];
 }
 
 - (void)drawInContext:(CGContextRef)ctx
 {
     if (self.drawInfo.grid) {
-        //TODO show grid
+        [DrawLayer drawGridInContext:ctx rect:self.bounds];
     }
     if (self.supportCache) {
         [_cdManager showInContext:ctx];
     }else{
-        [self.clipAction showClipInContext:ctx inRect:self.bounds];
         for (DrawAction *action in _drawActionList) {
             [action drawInContext:ctx inRect:self.bounds];
         }
+        [self.clipAction showClipInContext:ctx inRect:self.bounds];
     }
 }
 
@@ -79,6 +119,10 @@
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show redo:(BOOL)redo
 {
     
+    if ([drawAction isChangeBGAction]) {
+        [self.bgColorStack push:[(ChangeBackAction *)drawAction color]];
+    }
+    //special deal
     if ([drawAction isClipAction]) {
         self.clipAction = (id)drawAction;
     }
@@ -165,15 +209,27 @@
     }    
 }
 
+- (void)updateClipAction
+{
+    DrawAction *lastAction = [self.drawActionList lastObject];
+    if ([lastAction isClipAction]) {
+        self.clipAction = (id)lastAction;
+    }else{
+        self.clipAction = lastAction.clipAction;
+    }
+    self.cdManager.currentClip = self.clipAction;
+}
+
 //remove the last action force to refresh
 - (void)cancelLastAction
 {
-//    PPDebug(@"<DrawLayer> name = %@, cancelLastAction", self.layerName);        
     if (_supportCache) {
         [self.cdManager cancelLastAction];
     }
-    if ([self.drawActionList lastObject]) {
+    DrawAction *lastAction = [self.drawActionList lastObject];    
+    if (lastAction) {
         [self.drawActionList removeLastObject];
+        [self updateClipAction];
         [self setNeedsDisplay];
     }
 }
@@ -253,21 +309,15 @@
 - (DrawAction *)undoDrawAction:(DrawAction *)action
 {
     if ([self canUndoDrawAction:action]) {
+        if ([action isChangeBGAction]) {
+            [self.bgColorStack pop];
+        }
         [self.drawActionList removeLastObject];
         
         if (_supportCache) {
             [_cdManager undo];
         }
-
-        DrawAction *drawAction = [_drawActionList lastObject];
-        if (drawAction.clipAction) {
-            self.clipAction = drawAction.clipAction;
-        }else if([drawAction isClipAction]){
-            self.clipAction = (id)drawAction;
-        }else{
-            self.clipAction = nil;
-            _cdManager.currentClip = nil;
-        }
+        [self updateClipAction];        
         [self setNeedsDisplay];
         return action;
     }
@@ -293,11 +343,48 @@
                                                       name:NSLS(@"kMainLayer")
                                                suportCache:NO] autorelease];
 
-    mainLayer.backgroundColor = [UIColor redColor].CGColor;
+//    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     
 //    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
  
     return [NSArray arrayWithObjects:mainLayer, nil];
+}
+
+
+
++ (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect
+{
+    
+#ifndef GRID
+#define LINE_SPACE [ConfigManager getDrawGridLineSpace]
+#define VALUE(X) (ISIPAD ? 2*X : X)
+#define GRID
+#endif
+    
+    CGContextSaveGState(context);
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:160/255. green:1 blue:1 alpha:1].CGColor);
+    CGContextSetLineWidth(context, VALUE(0.5));
+    
+    
+    NSInteger i = 1;
+    
+    while (i * LINE_SPACE < (CGRectGetWidth(rect))) {
+        CGContextMoveToPoint(context, i * LINE_SPACE, 0);
+        CGContextAddLineToPoint(context, i * LINE_SPACE, CGRectGetHeight(rect));
+        CGContextStrokePath(context);
+        i ++;
+    }
+    
+    i = 1;
+    while (i * LINE_SPACE < (CGRectGetHeight(rect))) {
+        CGContextMoveToPoint(context, 0, i * LINE_SPACE);
+        CGContextAddLineToPoint(context, CGRectGetWidth(rect), i * LINE_SPACE);
+        CGContextStrokePath(context);
+        i ++;
+    }
+    CGContextRestoreGState(context);
+    
 }
 
 @end

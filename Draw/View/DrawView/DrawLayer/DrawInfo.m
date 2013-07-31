@@ -53,6 +53,16 @@
 }
 
 
+- (void)setPenColor:(DrawColor *)penColor
+{
+    if (penColor != _penColor) {
+        [_penColor release];
+        _penColor = [[DrawColor colorWithColor:penColor] retain];
+        [_penColor setAlpha:_alpha];
+    }
+}
+
+
 - (void)setPenType:(ItemType)penType
 {
     if (_penType != Eraser) {

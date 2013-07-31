@@ -137,12 +137,10 @@
 
 - (void)handleFailTouch
 {
-//    if ([action pointCount] >= FORCE_END_POINT_COUNT_WHEN_CANCEL) {
-//        [self finishAddPoints];
-//        return;
-//    }
     [super handleFailTouch];
-    [self.drawView cancelLastAction];
+    if (action) {
+        [self.drawView cancelLastAction];
+    }
     [self reset];
 }
 

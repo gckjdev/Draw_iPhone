@@ -119,8 +119,10 @@ CGPoint realStartPoint;
 - (void)handleFailTouch
 {
     [super handleFailTouch];
+    if (action) {
+        [self.drawView cancelLastAction];
+    }
     [self reset];
-    [self.drawView cancelLastAction];
 }
 
 - (DrawAction *)drawAction

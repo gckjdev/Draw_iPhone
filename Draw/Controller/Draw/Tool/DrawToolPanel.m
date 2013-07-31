@@ -217,31 +217,6 @@
     [selectedPoint setSelected:YES];
 }
 
-- (void)updateWidthSliderWithValue:(CGFloat)value
-{
-    [self.widthSlider setValue:value];
-}
-
-- (void)setShapeSelected:(BOOL)selected
-{
-    self.shape.selected = selected;
-}
-
-- (void)setStrawSelected:(BOOL)selected
-{
-    [self.straw setSelected:selected];
-}
-
-- (void)setPenSelected:(BOOL)selected
-{
-    [self.pen setSelected:selected];
-}
-
-- (void)setEraserSelected:(BOOL)selected
-{
-    [self.eraser setSelected:selected];
-}
-
 
 - (void)registerToolCommands
 {
@@ -668,7 +643,6 @@
     [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
     DrawInfo *drawInfo = self.drawView.drawInfo;
     drawInfo.penColor = [DrawColor colorWithColor:colorPoint.color];
-    [drawInfo setAlpha:drawInfo.alpha];
     [drawInfo backToLastDrawMode];
     [self updateWithDrawInfo:drawInfo];
     [toolCmdManager hideAllPopTipViews];

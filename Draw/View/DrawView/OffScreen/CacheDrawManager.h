@@ -38,7 +38,6 @@
 
 @property(nonatomic, retain)UIImage* bgPhto;
 @property(nonatomic, assign)CGRect rect;
-@property(nonatomic, assign)BOOL showGrid;
 @property(nonatomic, retain)NSArray *drawActionList; //a pointer point to drawview/showview drawActionList
 @property(nonatomic, assign)BOOL useCachedImage; //default is YES, in showDrawView it is NO.
 

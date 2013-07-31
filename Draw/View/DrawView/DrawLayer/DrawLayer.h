@@ -19,7 +19,7 @@
 
 @interface DrawLayer : CALayer<DrawProcessProtocol>
 {
-//    PPStack *_redoStack;
+
 }
 
 
