@@ -11,7 +11,6 @@
 #import "DrawProcessProtocol.h"
 
 
-
 @class CacheDrawManager;
 @class DrawAction;
 @class ClipAction;
@@ -45,5 +44,8 @@
 - (DrawAction *)lastAction;
 
 + (NSArray *)defaultLayersWithFrame:(CGRect)frame;
+
++ (DrawLayer *)layerFromPBLayerC:(Game__PBLayer *)layer;
+- (void)updatePBLayerC:(Game__PBLayer *)layer;
 
 @end

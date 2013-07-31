@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "Word.h"
 #import "StorageManager.h"
+#import "Draw.pb-c.h"
 
 @class DrawFeed;
 

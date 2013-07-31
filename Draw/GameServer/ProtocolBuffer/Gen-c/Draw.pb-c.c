@@ -2433,7 +2433,7 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_action__descriptor =
   NULL,NULL,NULL    /* reserved[123] */
 };
 static const int32_t game__pbno_compress_draw_data__version__default_value = 0;
-static const ProtobufCFieldDescriptor game__pbno_compress_draw_data__field_descriptors[7] =
+static const ProtobufCFieldDescriptor game__pbno_compress_draw_data__field_descriptors[8] =
 {
   {
     "drawActionList",
@@ -2519,6 +2519,18 @@ static const ProtobufCFieldDescriptor game__pbno_compress_draw_data__field_descr
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "layer",
+    9,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, n_layer),
+    PROTOBUF_C_OFFSETOF(Game__PBNoCompressDrawData, layer),
+    &game__pblayer__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbno_compress_draw_data__field_indices_by_name[] = {
   6,   /* field[6] = bgImageName */
@@ -2526,6 +2538,7 @@ static const unsigned game__pbno_compress_draw_data__field_indices_by_name[] = {
   0,   /* field[0] = drawActionList */
   3,   /* field[3] = drawActionList2 */
   4,   /* field[4] = drawToUser */
+  7,   /* field[7] = layer */
   5,   /* field[5] = opusDesc */
   1,   /* field[1] = version */
 };
@@ -2533,7 +2546,7 @@ static const ProtobufCIntRange game__pbno_compress_draw_data__number_ranges[2 + 
 {
   { 1, 0 },
   { 4, 2 },
-  { 0, 7 }
+  { 0, 8 }
 };
 const ProtobufCMessageDescriptor game__pbno_compress_draw_data__descriptor =
 {
@@ -2543,7 +2556,7 @@ const ProtobufCMessageDescriptor game__pbno_compress_draw_data__descriptor =
   "Game__PBNoCompressDrawData",
   "game",
   sizeof(Game__PBNoCompressDrawData),
-  7,
+  8,
   game__pbno_compress_draw_data__field_descriptors,
   game__pbno_compress_draw_data__field_indices_by_name,
   2,  game__pbno_compress_draw_data__number_ranges,

@@ -467,7 +467,7 @@
 {
     if (![self supportRecovery])
         return;
-
+    [DrawRecoveryService defaultService].layers = drawView.layers;
     [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
 }
 
@@ -830,46 +830,28 @@
                                       drawWord:self.word
                                       language:languageType
                                           size:drawView.bounds.size
-                                  isCompressed:NO];
+                                  isCompressed:NO
+                                        layers:drawView.layers
+                                          info:nil];
 
     PBDraw *pbDraw = [PBDraw parseFromData:data];
     data = nil;
     
-//    PBDraw *pbDraw = [[DrawDataService defaultService]
-//                      buildPBDraw:[userManager userId]
-//                      nick:[userManager nickName]
-//                      avatar:[userManager avatarURL]
-//                      drawActionList:drawView.drawActionList
-//                      drawWord:self.word
-//                      language:languageType
-//                      size:drawView.bounds.size
-//                      isCompressed:NO];
+    
     return pbDraw;
 }
 
-- (PBNoCompressDrawData *)drawDataSnapshot
-{
-    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
-                                                                               size:drawView.bounds.size
-                                                                           opusDesc:self.opusDesc
-                                                                         drawToUser:nil
-                                                                    bgImageFileName:_bgImageName];
-    return data;
-}
+
 
 - (NSData *)newDrawDataSnapshot
 {
-//    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
-//                                                                               size:drawView.bounds.size
-//                                                                           opusDesc:self.opusDesc
-//                                                                         drawToUser:nil
-//                                                                    bgImageFileName:_bgImageName];
-    
+
     NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:drawView.drawActionList
                                                                   size:drawView.bounds.size
                                                               opusDesc:self.opusDesc
                                                             drawToUser:nil
-                                                       bgImageFileName:_bgImageName];
+                                                       bgImageFileName:_bgImageName
+                                                                layers:drawView.layers];
     return data;
 }
 
@@ -1126,9 +1108,9 @@
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                    size:drawView.bounds.size
+                                                 layers:drawView.layers
+                                                   info:nil
                                                delegate:self];
-
-    
 
 }
 

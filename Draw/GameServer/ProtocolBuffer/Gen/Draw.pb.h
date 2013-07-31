@@ -1333,6 +1333,7 @@
   PBUserBasicInfo* drawToUser;
   NSMutableArray* mutableDrawActionListList;
   NSMutableArray* mutableDrawActionList2List;
+  NSMutableArray* mutableLayerList;
 }
 - (BOOL) hasVersion;
 - (BOOL) hasCanvasSize;
@@ -1348,6 +1349,8 @@
 - (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
 - (NSArray*) drawActionList2List;
 - (PBDrawAction*) drawActionList2AtIndex:(int32_t) index;
+- (NSArray*) layerList;
+- (PBLayer*) layerAtIndex:(int32_t) index;
 
 + (PBNoCompressDrawData*) defaultInstance;
 - (PBNoCompressDrawData*) defaultInstance;
@@ -1425,6 +1428,13 @@
 - (NSString*) bgImageName;
 - (PBNoCompressDrawData_Builder*) setBgImageName:(NSString*) value;
 - (PBNoCompressDrawData_Builder*) clearBgImageName;
+
+- (NSArray*) layerList;
+- (PBLayer*) layerAtIndex:(int32_t) index;
+- (PBNoCompressDrawData_Builder*) replaceLayerAtIndex:(int32_t) index with:(PBLayer*) value;
+- (PBNoCompressDrawData_Builder*) addLayer:(PBLayer*) value;
+- (PBNoCompressDrawData_Builder*) addAllLayer:(NSArray*) values;
+- (PBNoCompressDrawData_Builder*) clearLayerList;
 @end
 
 @interface PBDrawBgGroup : PBGeneratedMessage {

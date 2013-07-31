@@ -143,7 +143,9 @@ drawActionList:(NSArray*)drawActionList
                                                                       size:cp.canvasSize
                                                                   opusDesc:nil
                                                                 drawToUser:cp.drawToUser
-                                                           bgImageFileName:cp.currentPaint.bgImageName];
+                                                           bgImageFileName:cp.currentPaint.bgImageName
+                                                                    layers:cp.layers];
+                        
 
         PPDebug(@"<backup> file path=%@", dataPath);
         

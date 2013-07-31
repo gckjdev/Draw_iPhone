@@ -22,7 +22,6 @@
 #import "DrawFeed.h"
 #import "CanvasRect.h"
 #import "TimeUtils.h"
-#import "Draw.pb-c.h"
 #import "UIImageUtil.h"
 
 #define SUFFIX_NUMBER 100

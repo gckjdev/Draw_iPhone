@@ -17,6 +17,10 @@
 #import "ChangeBGImageAction.h"
 #import "DrawBgManager.h"
 #import "GameBasic.pb.h"
+#import "DrawUtils.h"
+#import "GameBasic.pb-c.h"
+#import "Draw.pb-c.h"
+
 
 @interface DrawLayer()
 @property(nonatomic, retain) NSString *drawBgId;
@@ -386,5 +390,34 @@
     CGContextRestoreGState(context);
     
 }
+
++ (DrawLayer *)layerFromPBLayerC:(Game__PBLayer *)layer
+{
+    float *r = layer->rectcomponent;
+    CGRect rect = CGRectMake(r[0], r[1], r[2], r[3]);
+    NSString *name = [NSString stringWithUTF8String:layer->name];
+    BOOL cached = (layer->tag == MAIN_LAYER_TAG);
+    
+    DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect drawInfo:nil tag:layer->tag name:name suportCache:cached];
+    l.opacity = layer->alpha;
+    return [l autorelease];
+}
+- (void)updatePBLayerC:(Game__PBLayer *)layer
+{
+    layer->tag = self.layerTag;
+    layer->has_alpha = 1;
+    layer->alpha = self.opacity;
+    
+    layer->name = (char *)[self.layerName UTF8String];
+    layer->n_rectcomponent = 4;
+    layer->rectcomponent = malloc(sizeof(float) * 4);
+    float *r = layer->rectcomponent;
+    r[0] = CGRectGetMinX(self.frame);
+    r[1] = CGRectGetMinY(self.frame);
+    r[2] = CGRectGetWidth(self.frame);
+    r[3] = CGRectGetHeight(self.frame);
+        
+}
+
 
 @end

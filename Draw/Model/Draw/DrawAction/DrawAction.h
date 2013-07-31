@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Draw.pb.h"
 #import "DrawUtils.h"
-#import "Draw.pb-c.h"
 #import "Shadow.h"
 
 
@@ -82,8 +80,10 @@ typedef enum {
                                                size:(CGSize)size
                                            opusDesc:(NSString *)opusDesc
                                          drawToUser:(PBUserBasicInfo *)drawToUser
-                                    bgImageFileName:(NSString *)bgImageFileName;
+                                    bgImageFileName:(NSString *)bgImageFileName
+                                             layers:(NSArray *)layers;
 
+//info for more attributes
 + (NSData*)buildPBDrawData:(NSString*)userId
                       nick:(NSString *)nick
                     avatar:(NSString *)avatar
@@ -91,7 +91,9 @@ typedef enum {
                   drawWord:(Word*)drawWord
                   language:(int)language
                       size:(CGSize)size
-              isCompressed:(BOOL)isCompressed;
+              isCompressed:(BOOL)isCompressed
+                    layers:(NSArray *)layers
+                    info:(NSDictionary *)info;
 
 
 + (void)freePBDrawActionC:(Game__PBDrawAction**)pbDrawActionC count:(int)count;
@@ -99,7 +101,8 @@ typedef enum {
 + (NSMutableArray *)drawActionListFromPBBBSDraw:(PBBBSDraw *)bbsDraw;
 + (NSMutableArray *)drawActionListFromPBMessage:(PBMessage *)message;
 
-+ (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size;
+//info for extendsion
++ (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size info:(NSDictionary *)info;
 
 - (NSData *)toData;
 

@@ -386,9 +386,7 @@ BBSService *_staticBBSService;
             type = ContentTypeImage;
         }else if (drawImage) {
             type = ContentTypeDraw;
-//            PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
-//            drawData = [bbsDraw data];
-            drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size];
+            drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size info:nil];
         }
         
         NSInteger resultCode = [self checkFrequent];
@@ -646,9 +644,7 @@ BBSService *_staticBBSService;
                 contentType = ContentTypeImage;
             }else if (drawImage) {
                 contentType = ContentTypeDraw;
-                drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size];
-//                PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
-//                drawData = [bbsDraw data];
+                drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size info:nil];
             }else{
                 contentType = ContentTypeText;
             }

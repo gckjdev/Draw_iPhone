@@ -24,6 +24,7 @@
 @property (nonatomic, retain) MyPaint* currentPaint;
 @property (nonatomic, retain) PBUserBasicInfo *drawToUser;
 @property (nonatomic, assign) CGSize canvasSize;
+@property (nonatomic, assign) NSArray * layers;
 //@property (nonatomic, retain) MyPaint* currentPaint;
 //@property (nonatomic, retain) MyPaint* currentPaint;
 

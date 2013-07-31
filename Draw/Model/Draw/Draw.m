@@ -14,6 +14,7 @@
 #import "TimeUtils.h"
 #import "ConfigManager.h"
 #import "CanvasRect.h"
+#import "GameBasic.pb-c.h"
 #import "Draw.pb-c.h"
 #import "ClipAction.h"
 
@@ -26,6 +27,7 @@
     PPRelease(_word);
     PPRelease(_date);
     PPRelease(_avatar);
+    PPRelease(_layers);
     [super dealloc];
 }
 
@@ -158,6 +160,8 @@
         self.drawActionList = [NSMutableArray arrayWithArray:[Draw drawActionListFromPBActions:pbDrawC->drawdata
                                                                                    actionCount:pbDrawC->n_drawdata
                                                                                     canvasSize:self.canvasSize]];
+        
+        //TODO update layers
     }
     return self;
     

@@ -57,6 +57,7 @@
 
 
 - (ClipAction *)currentClip;
+- (NSArray *)layers;
 
 #pragma mark -show && stroke
 - (void)show;

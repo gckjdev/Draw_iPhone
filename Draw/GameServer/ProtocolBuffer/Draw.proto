@@ -201,6 +201,8 @@ message PBNoCompressDrawData
     optional PBUserBasicInfo drawToUser = 6;
     optional string opusDesc = 7;
     optional string bgImageName = 8;
+
+    repeated PBLayer layer = 9; // used after version 7.0
 }
 
 

@@ -47,6 +47,8 @@
                 contestId:(NSString *)contestId
                      desc:(NSString *)desc
                      size:(CGSize)size
+                   layers:(NSArray *)layers
+                     info:(NSDictionary *)info
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;

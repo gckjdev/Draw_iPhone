@@ -117,6 +117,11 @@
     return [[self currentLayer] clipAction];
 }
 
+- (NSArray *)layers
+{
+    return [dlManager layers];
+}
+
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
