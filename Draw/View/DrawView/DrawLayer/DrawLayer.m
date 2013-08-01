@@ -419,5 +419,17 @@
         
 }
 
-
++ (NSMutableArray *)layersFromPBLayers:(Game__PBLayer **)layers number:(int)number
+{
+    if (number <= 0) {
+        return nil;
+    }
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:number];
+    for (int i = 0; i < number, ++i) {
+        Game__PBLayer *layer = layers[i];
+        DrawLayer *dl = [DrawLayer layerFromPBLayerC:layer];
+        [array addObject:dl];
+    }
+    return array;
+}
 @end

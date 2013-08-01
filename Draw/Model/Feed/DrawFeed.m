@@ -54,14 +54,7 @@
 //        self.pbDraw = drawData;
         self.pbDrawData = data;
         
-        
-        
-//        if (self.drawImage == nil && drawData) {
-//            Draw* draw = [[Draw alloc]initWithPBDraw:drawData];
-//            self.drawData = draw;
-//            [draw release];
-//            PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl is nil, load image from local, feedID = %@",self.feedId);        
-//        }
+
     }else{
         PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl = %@,feedID = %@", self.drawImageUrl,self.feedId);
     }
@@ -121,25 +114,12 @@
     [aCoder encodeObject:self.timesSet forKey:KEY_TIMES];
 }
 
-- (void)parseDrawData:(PBFeed *)pbFeed
-{
-    if (self.drawData == nil && pbFeed.drawData != nil) {
-        Draw* drawData = [[Draw alloc] initWithPBDraw:pbFeed.drawData];
-        self.drawData = drawData;        
-        [drawData release];
-    }
-}
 
 #define MAX_DRAW_DATA_SIZE 1024*1024*10
 
 - (void)parseDrawData
 {
-//    if (self.drawData == nil && self.pbDraw != nil) {
-//        PPDebug(@"<parseDrawData> parse DrawData, ready to show.");
-//        Draw* drawData = [[Draw alloc] initWithPBDraw:self.pbDraw];
-//        self.drawData = drawData;
-//        [drawData release];
-//    }
+
 
     if (self.drawData == nil && self.pbDrawData != nil) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -166,11 +146,7 @@
                 [drawData release];
             }
         }
-        
-//        PBDraw* pbDraw = [PBDraw parseFromData:self.pbDrawData];
-//        Draw* drawData = [[Draw alloc] initWithPBDraw:pbDraw];
-//        self.drawData = drawData;
-//        [drawData release];
+
         
         int end = time(0);
         PPDebug(@"<parseDrawData> parse draw data complete, take %d seconds", end - start);

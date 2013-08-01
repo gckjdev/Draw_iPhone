@@ -56,7 +56,6 @@
 
 //show all the action render in the layer list
 - (void)showInContext:(CGContextRef)context;
-- (void)showInContextWithoutGrid:(CGContextRef)context;
 
 - (CGRect)updateLastAction:(DrawAction *)action;
 

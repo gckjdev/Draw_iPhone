@@ -21,7 +21,6 @@
 #import "UIImageExt.h"
 
 #import "DrawAction.h"
-#import "DrawManager.h"
 #import "BBSPermissionManager.h"
 #import "CanvasRect.h"
 
@@ -929,7 +928,6 @@ BBSService *_staticBBSService;
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
 //            NSArray *list = [draw drawActionListList];
             NSMutableArray *drawActionList = [DrawAction drawActionListFromPBBBSDraw:draw];
-//            NSMutableArray *drawActionList = [DrawManager parseFromPBDrawActionList:list];
             if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:canvasSize:postId:actionId:fromRemote:resultCode:)]) {
                 
                 CGSize size = [draw hasCanvasSize] ? (CGSizeFromPBSize(draw.canvasSize)) : [CanvasRect deprecatedIPhoneRect].size;
@@ -972,9 +970,7 @@ BBSService *_staticBBSService;
                             //
                             
                             drawActionList = [DrawAction drawActionListFromPBBBSDraw:remoteDraw];
-//                            NSArray *list = [remoteDraw drawActionListList];
-//                            drawActionList = [DrawManager parseFromPBDrawActionList:list];
-                            //
+
                         }
                     }
                 }

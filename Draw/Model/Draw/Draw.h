@@ -40,21 +40,15 @@
 
 - (CGRect)canvasRect;
 
-- (id)initWithUserId:(NSString *)userId 
-            nickName:(NSString *)nickName
-              avatar:(NSString *)avatar
-      drawActionList:(NSMutableArray *)drawActionList 
-                word:(Word *)word
-          canvasSize:(CGSize)size;
+
 
 + (NSArray *)drawActionListFromPBActions:(Game__PBDrawAction **)array
                              actionCount:(int)actionCount
                               canvasSize:(CGSize)canvasSize;
 
 
-- (id)initWithPBDraw:(PBDraw *)pbDraw;
 - (id)initWithPBDrawC:(Game__PBDraw*)pbDrawC;
 
 - (BOOL)isNewVersion;
-- (PBDraw *)toPBDraw;
+
 @end

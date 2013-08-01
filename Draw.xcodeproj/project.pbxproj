@@ -413,7 +413,6 @@
 		A461B16B174CBAA70088B061 /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		A461B171174CBAA70088B061 /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		A461B172174CBAA70088B061 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		A461B173174CBAA70088B061 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		A461B174174CBAA70088B061 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		A461B175174CBAA70088B061 /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		A461B176174CBAA70088B061 /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -2796,7 +2795,6 @@
 		C28A9A581738F04B007A819F /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
 		C28A9A591738F04B007A819F /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		C28A9A5A1738F04B007A819F /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		C28A9A5B1738F04B007A819F /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		C28A9A5C1738F04B007A819F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		C28A9A5D1738F04B007A819F /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		C28A9A5E1738F04B007A819F /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -5915,7 +5913,6 @@
 		CAB5C80116994F0200A4CE3B /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
 		CAB5C80216994F0200A4CE3B /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		CAB5C80316994F0200A4CE3B /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		CAB5C80416994F0200A4CE3B /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAB5C80516994F0200A4CE3B /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		CAB5C80616994F0200A4CE3B /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		CAB5C80716994F0200A4CE3B /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -7004,7 +7001,6 @@
 		CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
 		CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
 		CAD083001676E124007B6B65 /* DrawHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */; };
-		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD8EE9D173A9CCD0048333D /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE87173A9CCC0048333D /* DrawDefault-568h@2x.png */; };
 		CAD8EE9F173A9CCD0048333D /* DrawDefault-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE8B173A9CCC0048333D /* DrawDefault-Portrait.png */; };
 		CAD8EEA0173A9CCD0048333D /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE8D173A9CCC0048333D /* DrawDefault@2x.png */; };
@@ -7546,7 +7542,6 @@
 		EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		EA411905176066F500DA72D0 /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		EA411907176066F500DA72D0 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		EA411908176066F500DA72D0 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		EA411909176066F500DA72D0 /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		EA41190A176066F500DA72D0 /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -11776,8 +11771,6 @@
 		CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
-		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
-		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
 		CAD8EE87173A9CCC0048333D /* DrawDefault-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DrawDefault-568h@2x.png"; sourceTree = "<group>"; };
 		CAD8EE8C173A9CCC0048333D /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "DrawDefault-Portrait.png"; sourceTree = "<group>"; };
 		CAD8EE8E173A9CCC0048333D /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "DrawDefault@2x.png"; sourceTree = "<group>"; };
@@ -16000,8 +15993,6 @@
 				CA48588816E19D4500AEE725 /* DrawBg */,
 				CAE9AA3F16D71D42008392F9 /* DrawPen */,
 				CAF9B70D16AA3C4200865CCE /* PenEffect */,
-				CAD6EACD15805D780004A483 /* DrawManager.h */,
-				CAD6EACE15805D780004A483 /* DrawManager.m */,
 				A3C129E31563A70E00C021A7 /* Draw.h */,
 				A3C129E41563A70E00C021A7 /* Draw.m */,
 				CA1041E91509B99A00F60C03 /* Paint.h */,
@@ -24880,7 +24871,6 @@
 				A461B16B174CBAA70088B061 /* CustomWord.m in Sources */,
 				A461B171174CBAA70088B061 /* MyWordsController.m in Sources */,
 				A461B172174CBAA70088B061 /* SelectCustomWordView.m in Sources */,
-				A461B173174CBAA70088B061 /* DrawManager.m in Sources */,
 				A461B174174CBAA70088B061 /* ChatCell.m in Sources */,
 				A461B175174CBAA70088B061 /* ChatDetailController.m in Sources */,
 				A461B176174CBAA70088B061 /* ChatListController.m in Sources */,
@@ -25695,7 +25685,6 @@
 				C28A9A581738F04B007A819F /* OfflineGuessDrawController.m in Sources */,
 				C28A9A591738F04B007A819F /* MyWordsController.m in Sources */,
 				C28A9A5A1738F04B007A819F /* SelectCustomWordView.m in Sources */,
-				C28A9A5B1738F04B007A819F /* DrawManager.m in Sources */,
 				C28A9A5C1738F04B007A819F /* ChatCell.m in Sources */,
 				C28A9A5D1738F04B007A819F /* ChatDetailController.m in Sources */,
 				C28A9A5E1738F04B007A819F /* ChatListController.m in Sources */,
@@ -26482,7 +26471,6 @@
 				CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */,
 				A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */,
 				A31B5EF5157E1BE8003DDBF1 /* SelectCustomWordView.m in Sources */,
-				CAD6EACF15805D780004A483 /* DrawManager.m in Sources */,
 				A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */,
 				A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */,
 				A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */,
@@ -27274,7 +27262,6 @@
 				CAB5C80116994F0200A4CE3B /* OfflineGuessDrawController.m in Sources */,
 				CAB5C80216994F0200A4CE3B /* MyWordsController.m in Sources */,
 				CAB5C80316994F0200A4CE3B /* SelectCustomWordView.m in Sources */,
-				CAB5C80416994F0200A4CE3B /* DrawManager.m in Sources */,
 				CAB5C80516994F0200A4CE3B /* ChatCell.m in Sources */,
 				CAB5C80616994F0200A4CE3B /* ChatDetailController.m in Sources */,
 				CAB5C80716994F0200A4CE3B /* ChatListController.m in Sources */,
@@ -27999,7 +27986,6 @@
 				EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */,
 				EA411905176066F500DA72D0 /* MyWordsController.m in Sources */,
 				EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */,
-				EA411907176066F500DA72D0 /* DrawManager.m in Sources */,
 				EA411908176066F500DA72D0 /* ChatCell.m in Sources */,
 				EA411909176066F500DA72D0 /* ChatDetailController.m in Sources */,
 				EA41190A176066F500DA72D0 /* ChatListController.m in Sources */,

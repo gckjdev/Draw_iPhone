@@ -22,7 +22,8 @@
 }
 
 
-+ (id)initWithFrame:(CGRect)frame
+
+- (id)initWithFrame:(CGRect)frame
            drawInfo:(DrawInfo *)drawInfo
                 tag:(NSUInteger)tag
                name:(NSString *)name
@@ -43,9 +44,10 @@
 - (void)updateWithDrawActions:(NSArray *)actionList;
 - (DrawAction *)lastAction;
 
-+ (NSArray *)defaultLayersWithFrame:(CGRect)frame;
-
-+ (DrawLayer *)layerFromPBLayerC:(Game__PBLayer *)layer;
 - (void)updatePBLayerC:(Game__PBLayer *)layer;
 
+
++ (NSArray *)defaultLayersWithFrame:(CGRect)frame;
++ (DrawLayer *)layerFromPBLayerC:(Game__PBLayer *)layer;
++ (NSMutableArray *)layersFromPBLayers:(Game__PBLayer **)layers number:(int)number;
 @end

@@ -135,27 +135,6 @@
     }
 }
 
-+ (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
-{
-    switch (action.type) {
-        case DrawActionTypeClean:
-            return [[[CleanAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
-        case DrawActionTypeShape:
-            return [[[ShapeAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
-        case DrawActionTypePaint:
-            if (action.width >= BACK_GROUND_WIDTH / 10) {
-                return [[[ChangeBackAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
-            }
-            return [[[PaintAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
-        case DrawActionTypeChangeBack:
-            return [[[ChangeBackAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
-        case DrawActionTypeChangeBGImage:
-            return [[[ChangeBGImageAction alloc] initWithPBNoCompressDrawAction:action] autorelease];
-        default:
-            return nil;
-    }
-}
-
 
 - (id)initWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action
 {
@@ -309,89 +288,6 @@
     return drawActionList;
 }
 
-+ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data canvasSize:(CGSize)canvasSize
-{
-    NSMutableArray *drawActionList = [NSMutableArray array];
-    if ([[data drawActionList2List] count] != 0) {
-        for (PBDrawAction *action in [data drawActionList2List]) {
-            DrawAction *at = [DrawAction drawActionWithPBDrawAction:action];
-
-            [at setCanvasSize:canvasSize];
-
-            [drawActionList addObject:at];
-            at = nil;
-        }
-    }else if([[data drawActionListList] count] != 0)
-        for (PBNoCompressDrawAction *action in [data drawActionListList]) {
-            DrawAction *dAction = [DrawAction drawActionWithPBNoCompressDrawAction:action];
-            [dAction setCanvasSize:canvasSize];
-            [drawActionList addObject:dAction];
-            dAction = nil;
-        }
-    return drawActionList;
-}
-+ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                            size:(CGSize)size
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser
-                                                 bgImageFileName:(NSString *)bgImageFileName
-{
-//    if ([drawActionList count] != 0) {
-        PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
-        
-        for (DrawAction *drawAction in drawActionList) {
-            PBDrawAction *pbd = [drawAction toPBDrawAction];
-            if (pbd) {
-                [builder addDrawActionList2:pbd];
-            }
-        }
-        
-        if (drawToUser) {
-            [builder setDrawToUser:drawToUser];
-        }
-        [builder setCanvasSize:CGSizeToPBSize(size)];
-        [builder setVersion:[ConfigManager currentDrawDataVersion]];
-        [builder setBgImageName:bgImageFileName];
-
-        PBNoCompressDrawData *nData = [builder build];
-        PPRelease(builder);
-        return nData;
-//    }
-//    return nil;
-}
-
-+ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                            size:(CGSize)size
-                                                        opusDesc:(NSString *)opusDesc
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser
-                                                 bgImageFileName:(NSString *)bgImageFileName
-{
-    if ([drawActionList count] != 0 || [GameApp forceSaveDraft]) {
-        PBNoCompressDrawData_Builder *builder = [[PBNoCompressDrawData_Builder alloc] init];
-        
-        for (DrawAction *drawAction in drawActionList) {
-            PBDrawAction *pbd = [drawAction toPBDrawAction];
-            if (pbd) {
-                [builder addDrawActionList2:pbd];
-            }
-        }
-        
-        if (drawToUser) {
-            [builder setDrawToUser:drawToUser];
-        }
-        if (opusDesc) {
-            [builder setOpusDesc:opusDesc];
-        }
-        [builder setCanvasSize:CGSizeToPBSize(size)];
-        [builder setVersion:[ConfigManager currentDrawDataVersion]];
-        [builder setBgImageName:bgImageFileName];
-        
-        PBNoCompressDrawData *nData = [builder build];
-        
-        PPRelease(builder);
-        return nData;
-    }
-    return nil;
-}
 
 + (void)updatePBLayerC:(Game__PBLayer **)pblayers layers:(NSArray *)layers
 {
@@ -581,7 +477,7 @@
     // free memory
     [DrawAction freePBDrawActionC:pbDrawC.drawdata count:pbDrawC.n_drawdata];
     //Free layers
-    [DrawAction freePBDrawActionC:pbDrawC.layer count:pbDrawC.n_layer];
+    [DrawAction freePBLayers:pbDrawC.layer count:pbDrawC.n_layer];
     
     free(pbDrawC.drawdata);
     

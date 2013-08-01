@@ -25,7 +25,6 @@
 //@property(nonatomic, retain)UIView *closeView;
 
 + (id)selectorBoxWithDelegate:(id<SelectorBoxDelegate>)delegate;
-- (void)showCloseViewInView:(UIView *)view;
 - (IBAction)clickSelector:(UIButton *)sender;
 - (IBAction)clickHelp:(id)sender;
 

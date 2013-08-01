@@ -53,27 +53,11 @@ typedef enum {
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
 + (id)drawActionWithPBDrawActionC:(Game__PBDrawAction *)action;
 
-//deprecated
-+ (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
-
-//deprecated
-+ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data
-                                              canvasSize:(CGSize)canvasSize;
 
 + (NSMutableArray *)pbNoCompressDrawDataCToDrawActionList:(Game__PBNoCompressDrawData *)data
                                                canvasSize:(CGSize)canvasSize;
 
 
-+ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                            size:(CGSize)size
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser
-                                                 bgImageFileName:(NSString *)bgImageFileName;
-
-+ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                            size:(CGSize)size
-                                                        opusDesc:(NSString *)opusDesc
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser
-                                                 bgImageFileName:(NSString *)bgImageFileName;
 
 
 + (NSData *)pbNoCompressDrawDataCFromDrawActionList:(NSArray *)drawActionList

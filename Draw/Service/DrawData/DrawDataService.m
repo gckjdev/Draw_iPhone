@@ -17,7 +17,6 @@
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
 #import "Draw.h"
-#import "DrawManager.h"
 #import "FeedManager.h"
 #import "MyPaintManager.h"
 #import "ConfigManager.h"

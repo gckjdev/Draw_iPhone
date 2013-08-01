@@ -65,7 +65,7 @@
 
     self.tempAction = nil;
     _currentAction = nil;
-    [dlManager reset];
+    [dlManager resetAllLayers];
     pen.hidden = YES;
 
 }
