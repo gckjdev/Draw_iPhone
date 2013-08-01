@@ -362,7 +362,7 @@
                                                   drawInfo:drawInfo
                                                        tag:MAIN_LAYER_TAG
                                                       name:NSLS(@"kMainLayer")
-                                               suportCache:NO] autorelease];
+                                               suportCache:YES] autorelease];
 
 //    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     
@@ -377,7 +377,7 @@
                                                     drawInfo:drawInfo
                                                          tag:DEFAULT_LAYER_TAG
                                                         name:NSLS(@"kMainLayer")
-                                                 suportCache:NO] autorelease];
+                                                 suportCache:YES] autorelease];
     
     return [NSMutableArray arrayWithObjects:defaultLayer, nil];
 }
