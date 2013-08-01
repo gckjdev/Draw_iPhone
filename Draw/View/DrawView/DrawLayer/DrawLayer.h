@@ -53,4 +53,6 @@
 + (NSArray *)defaultOldLayersWithFrame:(CGRect)frame;
 + (DrawLayer *)layerFromPBLayerC:(Game__PBLayer *)layer;
 + (NSMutableArray *)layersFromPBLayers:(Game__PBLayer **)layers number:(int)number;
+
+
 @end

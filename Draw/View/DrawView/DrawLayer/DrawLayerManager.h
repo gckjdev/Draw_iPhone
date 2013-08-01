@@ -41,6 +41,8 @@
 
 - (void)updateLayers:(NSArray *)layers;
 
+- (void)refresh;
+
 - (UIImage *)createImage;
 
 @end

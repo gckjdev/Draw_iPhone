@@ -122,6 +122,10 @@
     return [dlManager layers];
 }
 
+- (void)updateLayers:(NSArray *)layers
+{
+    [dlManager updateLayers:layers];
+}
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
@@ -177,18 +181,6 @@
 - (UIImage*)createImage
 {
     return [dlManager createImage];
-    /*
-    
-    UIGraphicsBeginImageContext(self.bounds.size);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [[UIColor whiteColor] setFill];
-    CGContextFillRect(context, self.bounds);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-     */
-
 }
 
 - (UIImage *)createImageWithSize:(CGSize)size

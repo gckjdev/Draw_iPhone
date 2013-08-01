@@ -27,7 +27,7 @@
 {
     self = [super init];
     if (self) {
-        _layerList = [[NSMutableArray alloc] initWithCapacity:5];
+        _layerList = [[DrawLayer defaultLayersWithFrame:view.bounds] retain];
         self.view = view;
     }
     
@@ -156,6 +156,14 @@
         [layer reset];
     }
 }
+
+- (void)refresh
+{
+    for (DrawLayer *layer in _layerList) {
+        [layer setNeedsDisplay];
+    }
+}
+
 
 - (NSArray *)layers
 {

@@ -26,6 +26,24 @@
 #import "ShareAction.h"
 #import "CommonMessageCenter.h"
 
+
+@implementation ReplayObject
+
++ (id)obj
+{
+    return [[ReplayObject alloc] autorelease];
+}
+
+- (void)dealloc
+{
+    PPRelease(_actionList);
+    PPRelease(_bgImage);
+    PPRelease(_layers);
+    [super dealloc];
+}
+
+@end
+
 #define PLAYER_LOADER_MAX_X (ISIPAD ? 638 : 266)
 #define PLAYER_LOADER_MIN_X (ISIPAD ? 76 : 26)
 
@@ -148,24 +166,11 @@
     }
 }
 
-- (void)showInController:(PPViewController *)controller
-          withActionList:(NSMutableArray *)actionList
-            isNewVersion:(BOOL)isNewVersion
-                    size:(CGSize)size
-{
-    return [self showInController:controller
-                   withActionList:actionList
-                     isNewVersion:isNewVersion
-                             size:size
-                          bgImage:nil];
-}
+
 
 - (void)showInController:(PPViewController *)controller
-          withActionList:(NSMutableArray *)actionList
-            isNewVersion:(BOOL)isNewVersion
-                    size:(CGSize)size
-                 bgImage:(UIImage *)bgImage
-{    
+                  object:(ReplayObject *)obj
+{
     self.superController = controller;
     UIView *view = controller.view;
     [self updateMaskViewWithFrame:view.bounds];
@@ -173,32 +178,27 @@
     [view addSubview:self];
     self.center = view.center;
     
-    self.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(size) drawActionList:actionList delegate:self];
+    self.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(obj.canvasSize)
+                                     drawActionList:obj.actionList
+                                           delegate:self];
+
+    [self.showView updateLayers:obj.layers];
+
     
-    if (bgImage) {
-        [self.showView setBGImage:bgImage];
+    if (obj.bgImage) {
+        [self.showView setBGImage:obj.bgImage];
     }
     
     [self.showView setPressEnable:YES];
-
+    
     [self.holderView setContentView:self.showView];
     
-    if (isNewVersion) {
+    if (obj.isNewVersion) {
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
     }
     
     [self performSelector:@selector(clickPlay:) withObject:self.playButton afterDelay:0.2];
-}
 
-
-- (void)showInController:(PPViewController *)controller
-          withActionList:(NSMutableArray *)actionList
-            isNewVersion:(BOOL)isNewVersion
-{
-    [self showInController:controller
-            withActionList:actionList
-              isNewVersion:isNewVersion
-                      size:self.holderView.frame.size];
 }
 
 - (void)dealloc {

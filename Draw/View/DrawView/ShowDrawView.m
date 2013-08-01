@@ -49,7 +49,6 @@
 
     _playingActionIndex = 0;
     _playingPointIndex = 0;
-//    self.tempPaint = nil;
     self.tempAction = nil;
     _currentAction = nil;
 
@@ -86,17 +85,10 @@
         if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
             //reset pen type
             ItemType penType = paintAction.paint.penType;
-/*
-            if (isLearnDrawApp()) {
-                if (penType != Eraser) {
-                    penType = Pencil;
-                }
-            }
- */
             [pen setPenType:penType];
         }
         CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];
-//        CGRect rect = CGRectZero;
+
         point= [pen.superview convertPoint:point fromView:self];
         if (pen.penType != Eraser) {
             pen.frame = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
@@ -150,32 +142,15 @@
 
 - (void)showToIndex:(NSInteger)index
 {
-    if (index < 0) {
-        index = 0;
-    }
-    if (index > [self.drawActionList count]) {
-        index = [self.drawActionList count];
-    }
+    index = MAX(0, index);
+    index = MIN(index , [self.drawActionList count]);
     
     [self resetView];
-
-//    if (_playingActionIndex > index || _playingActionIndex <= 0) {
-//        [self resetView];
-//    }else{
-//        [self setStatus:Stop];
-//        [[osManager enteryScreen] clear];
-//        _playingPointIndex = 0;
-//        self.tempAction = nil;
-//        _currentAction = nil;
-//        pen.hidden = YES;
-//    }
-
-//    for (NSInteger i = _playingActionIndex; i < index; ++ i, ++_playingActionIndex) {
-//        DrawAction *action = [_drawActionList objectAtIndex:i];
-//        [[osManager bottomScreen] drawAction:action clear:NO];
-//        [cdManager addDrawAction:action];
-//    }
     
+    NSArray *array = [_drawActionList subarrayWithRange:NSMakeRange(0, index)];
+    [dlManager arrangeActions:array];
+    _playingActionIndex = index;
+
     
     if (index >= [self.drawActionList count]) {
         self.status = Stop;
@@ -339,10 +314,6 @@
             _currentAction = nil;
             _status = Stop;
         }
-//        PPDebug(@"<updateNextPlayIndex> index = %d, action Type = %d", _playingActionIndex, _currentAction.type);
-//        if (_currentAction.type == DrawActionTypeShape) {
-//            PPDebug(@"Stop!!!");
-//        }
     }else{
         _playingPointIndex = MIN([_currentAction pointCount]-1, _playingPointIndex + 1); //self.speed);
     }
@@ -354,7 +325,6 @@
 {
     
     if ([_currentAction isKindOfClass:[PaintAction class]]) {
-//        PaintAction *paintAction = (PaintAction *)_currentAction;
         Paint *currentPaint = [(PaintAction *)_currentAction paint];
         if (self.tempAction == nil) {
             Paint *paint = [Paint paintWithWidth:currentPaint.width color:currentPaint.color penType:currentPaint.penType pointList:nil];
@@ -375,8 +345,6 @@
         self.tempAction = nil;//_currentAction;
     }
     
-//    PPDebug(@"<updateTempAction>actionIndex = %d, pointIndex = %d, currentAction = %@, tempAction = %@", _playingActionIndex, _playingPointIndex,_currentAction,_tempAction);
-//    
 }
 
 
@@ -438,20 +406,16 @@
     [self updateTempAction];
     if (self.status == Playing) {
         if (self.tempAction) {
-            
-//            if (cdManager.currentClip && self.tempAction.clipAction != cdManager.currentClip) {
-//                //clean the
-//                cdManager.currentClip = self.tempAction.clipAction;
-//                [self updateLastAction:self.tempAction show:NO];
-//                [self setNeedsDisplay];
-//            }else{
-//                [self updateLastAction:self.tempAction show:YES];
-//            }
-            
+            if([self.tempAction pointCount] == 1){
+                [dlManager addDrawAction:self.tempAction show:YES];
+            }else{
+                [dlManager updateLastAction:self.tempAction refresh:YES];
+            }
+
             if ([self.tempAction hasFinishAddPoint]) {
-                [self callDidDrawPaintDelegate];                
-                //TEST CODE
-//                [cdManager finishDrawAction:_currentAction];
+                [dlManager updateLastAction:_currentAction refresh:NO];
+                [dlManager finishLastAction:_currentAction refresh:YES];
+                [self callDidDrawPaintDelegate];
             }
             
             double delay = (CACurrentMediaTime() - _playFrameTime - self.playSpeed);
@@ -462,10 +426,8 @@
 
         }else{
             if (![_currentAction isPaintAction]) {
-                if([_currentAction isClipAction]){
-//                    cdManager.currentClip = (id)_currentAction;
-                }
-                
+                [self addDrawAction:_currentAction show:NO];
+                [self finishLastAction:_currentAction refresh:YES];
                 [self delayShowAction:_currentAction];
                 
             } else {

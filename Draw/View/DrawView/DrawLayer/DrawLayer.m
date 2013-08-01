@@ -187,7 +187,7 @@
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
-    PPDebug(@"<DrawLayer> name = %@, addDrawAction", self.layerName);
+//    PPDebug(@"<DrawLayer> name = %@, addDrawAction", self.layerName);
     [self addDrawAction:drawAction show:show redo:NO];
 }
 
@@ -218,7 +218,7 @@
 //finish update the last action
 - (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
 {
-    PPDebug(@"<DrawLayer> name = %@, tag = %d, finishLastAction", self.layerName, self.layerTag);
+//    PPDebug(@"<DrawLayer> name = %@, tag = %d, finishLastAction", self.layerName, self.layerTag);
     if (_supportCache) {
         [self.cdManager finishDrawAction:action];
     }
@@ -264,6 +264,7 @@
     self.frame = self.superlayer.bounds;
     self.cdManager = [CacheDrawManager managerWithRect:self.bounds];
 }
+
 
 - (void)updateWithDrawActions:(NSArray *)actionList
 {
@@ -366,8 +367,7 @@
 //    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     
 //    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
- 
-    return [NSArray arrayWithObjects:mainLayer, nil];
+    return [NSMutableArray arrayWithObjects:mainLayer, nil];
 }
 
 + (NSArray *)defaultOldLayersWithFrame:(CGRect)frame
@@ -379,7 +379,7 @@
                                                         name:NSLS(@"kMainLayer")
                                                  suportCache:NO] autorelease];
     
-    return [NSArray arrayWithObjects:defaultLayer, nil];
+    return [NSMutableArray arrayWithObjects:defaultLayer, nil];
 }
 
 + (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect

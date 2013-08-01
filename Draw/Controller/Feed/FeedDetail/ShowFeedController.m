@@ -643,11 +643,15 @@ enum{
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
         }
-        [replay showInController:cp
-                  withActionList:cp.feed.drawData.drawActionList
-                    isNewVersion:[cp.feed.drawData isNewVersion]
-                            size:cp.feed.drawData.canvasSize];
-//        self.feed.drawData = nil;
+        
+        ReplayObject *obj = [ReplayObject obj];
+        obj.actionList = cp.feed.drawData.drawActionList;
+        obj.isNewVersion = [cp.feed.drawData isNewVersion];
+        obj.canvasSize = cp.feed.drawData.canvasSize;
+        obj.layers = cp.feed.drawData.layers;
+        
+        [replay showInController:cp object:obj];
+
     }];
     
 }
