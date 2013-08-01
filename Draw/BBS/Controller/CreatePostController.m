@@ -228,7 +228,14 @@
 
 - (void)initViews
 {
-    [self.textView setText:[BBSManager lastInputText]];
+    NSString* initText = [BBSManager lastInputText];
+//    if ([self.postText length] == 0){
+//        initText = [BBSManager lastInputText];
+//    }
+//    else{
+//        initText = self.postText;
+//    }
+    [self.textView setText:initText];
     
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     BBSColorManager *colorManager = [BBSColorManager defaultManager];
@@ -433,7 +440,7 @@
                                   title:nil
                         hasRemoveOption:NO
                            canTakePhoto:YES
-                      userOriginalImage:YES];
+                      userOriginalImage:NO];
     [self.textView resignFirstResponder];
 }
 - (IBAction)clickGraffitiButton:(id)sender {

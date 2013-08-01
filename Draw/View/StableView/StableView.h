@@ -75,6 +75,7 @@ typedef enum {
 - (void)setAvatarSelected:(BOOL)selected;
 - (void)setAvatarSelected:(BOOL)selected level:(int)level;
 @property(nonatomic, assign) NSInteger score;
+@property(nonatomic, assign) BOOL gender;
 @property(nonatomic, retain) NSString *userId;
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
 @property(nonatomic, assign) BOOL hasPen;

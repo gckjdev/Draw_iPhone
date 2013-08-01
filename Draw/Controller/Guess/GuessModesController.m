@@ -9,6 +9,7 @@
 #import "GuessModesController.h"
 #import "GuessSelectController.h"
 #import "CommonTitleView.h"
+#import "GuessRankListController.h"
 
 @interface GuessModesController (){
     int _countDown;
@@ -178,6 +179,8 @@
 }
 
 - (IBAction)clickRankButton:(id)sender {
+    GuessRankListController *vc = [[[GuessRankListController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

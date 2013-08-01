@@ -35,7 +35,7 @@
 
 // add by Benson for new message model, message stat not included since it's stable and looks OK
 + (PPMessageManager*)defaultManager;
-- (NSArray*)getMessageList:(NSString*)friendUserId;
+- (NSMutableArray*)getMessageList:(NSString*)friendUserId;
 - (void)deleteMessage:(PPMessage*)message;
 - (void)addMessage:(PPMessage*)message;
 - (void)addOrUpdateMessage:(PPMessage*)message;

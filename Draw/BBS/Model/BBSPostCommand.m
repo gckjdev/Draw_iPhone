@@ -9,7 +9,7 @@
 #import "BBSPostCommand.h"
 #import "BBSPermissionManager.h"
 #import "BBSImageManager.h"
-
+#import "BBSActionListController.h"
 
 @implementation BBSPostCommand
 - (id)initWithPost:(PBBBSPost *)post controller:(BBSPostDetailController *)controller
@@ -77,6 +77,12 @@
 
 @implementation BBSPostReplyCommand
 -(void)excute{
+    
+#ifdef DEBUG
+    [BBSActionListController showReplyActions:self.controller postId:self.post.postId postUserId:self.post.postUid sourceAction:nil];
+    return;
+#endif
+
     [CreatePostController enterControllerWithSourecePost:self.post
                                             sourceAction:nil
                                           fromController:self.controller].delegate = self.controller;

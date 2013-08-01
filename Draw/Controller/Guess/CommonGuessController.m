@@ -29,7 +29,9 @@
 #import "GuessService.h"
 #import "HPThemeManager.h"
 
-@interface CommonGuessController ()
+@interface CommonGuessController (){
+    PBUserGuessMode _mode;
+}
 
 @property (retain, nonatomic) PickToolView *pickToolView;
 @property (retain, nonatomic) NSDate *startDate;
@@ -52,11 +54,13 @@
     [super dealloc];
 }
 
-- (id)initWithOpus:(Opus *)opus{
-    
+- (id)initWithOpus:(Opus *)opus mode:(PBUserGuessMode)mode{
+
     if (self = [super init]) {
         
         self.opus = opus;
+        _mode = mode;
+        self.startDate = [NSDate date];
     }
     
     return self;
@@ -125,7 +129,7 @@
 //                                          delegate:nil];
     
     [[GuessService defaultService] guessOpus:self.opus.pbOpus
-                                        mode:PBUserGuessModeGuessModeHappy
+                                        mode:_mode
                                    contestId:nil
                                        words:self.guessWords
                                      correct:NO
@@ -176,7 +180,7 @@
     //                                              delegate:nil];
     
     [[GuessService defaultService] guessOpus:self.opus.pbOpus
-                                        mode:PBUserGuessModeGuessModeHappy
+                                        mode:_mode
                                    contestId:nil
                                        words:self.guessWords
                                      correct:YES

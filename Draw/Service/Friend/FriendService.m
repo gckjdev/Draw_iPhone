@@ -17,6 +17,7 @@
 #import "ConfigManager.h"
 #import "MyFriend.h"
 #import "UserService.h"
+#import "PPGameNetworkRequest.h"
 
 static FriendService* friendService;
 FriendService* globalGetFriendService() 
@@ -432,4 +433,28 @@ FriendService* globalGetFriendService()
         });
     });
 }
+
+
+- (void)setFriendMemo:(NSString*)targetUserId
+                 memo:(NSString*)memo
+         successBlock:(void (^)(int resultCode))successBlock
+{
+    if (targetUserId == nil || memo == nil){
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+
+        NSDictionary* para = @{ PARA_TARGETUSERID : targetUserId,
+                                PARA_MEMO : memo
+                               };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_SET_FRIEND_MEMO parameters:para isReturnArray:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(successBlock, output.resultCode);
+        });
+    });
+}
+
+
 @end

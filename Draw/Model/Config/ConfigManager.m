@@ -155,6 +155,11 @@
     return value;
 }
 
++ (CGFloat)minPenWidth
+{
+    CGFloat value = [MobClickUtils getFloatValueByKey:@"MIN_PEN_WIDTH" defaultValue:1.0f];
+    return value;
+}
 
 + (NSInteger)maxPenWidth
 {

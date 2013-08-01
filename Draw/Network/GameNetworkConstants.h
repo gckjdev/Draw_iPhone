@@ -157,6 +157,9 @@
 #define METHOD_LOGOUT_NUMBER            @"logoutNumber"
 #define METHOD_SEND_PASSWORD            @"sendPassword"
 #define METHOD_SET_USER_NUMBER          @"setUserNumber"
+#define METHOD_SET_FRIEND_MEMO          @"setFriendMemo"
+
+
 
 #define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
 #define PARA_SET_USER_NUMBER            @"setUserNumber"
@@ -544,6 +547,7 @@
 #define PARA_RELATION_FOLLOW_COUNT @"rflc"
 #define PARA_RELATION_BLACK_COUNT @"rfbc"
 #define PARA_FEATURE_OPUS   @"featureOpus"
+#define PARA_MEMO           @"memo"
 
 #define PARA_RELATION @"rl"
 #define FRIENDS_TYPE_FOLLOW 0

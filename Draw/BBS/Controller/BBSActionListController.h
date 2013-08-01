@@ -12,6 +12,8 @@
 #import "BBSActionSheet.h"
 #import "MWPhotoBrowser.h"
 
+@class PBBBSAction;
+
 @interface BBSActionListController : BBSController<BBSOptionViewDelegate>
 {
     
@@ -19,5 +21,6 @@
 
 
 + (BBSActionListController *)enterActionListControllerFromController:(UIViewController *)fromController animated:(BOOL)animated;
++ (void)showReplyActions:(UIViewController*)superController postId:(NSString*)postId postUserId:(NSString*)postUserId sourceAction:(PBBBSAction*)sourceAction;
 
 @end

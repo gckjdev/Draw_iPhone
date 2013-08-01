@@ -183,6 +183,15 @@ static UIImage* _whitePaperImage;
     return [LocaleUtils isChina] ? [UIImage imageNamed:@"female1.png"] : [UIImage imageNamed:@"female2.png"];
 }
 
+- (UIImage*)avatarImageByGender:(BOOL)gender
+{
+    if (gender) {
+        return [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+    }else{
+        return [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+    }
+}
+
 #pragma makr - Color Image
 
 //- (UIImage *)redColorImage

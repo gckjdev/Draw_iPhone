@@ -179,6 +179,7 @@
         point.y = MAX(point.y, 0);
         point.x = MIN(point.x, CGRectGetWidth(rect));
         point.y = MIN(point.y, CGRectGetHeight(rect));
+        PPDebug(@"<addPoint> Change Point to %@", NSStringFromCGPoint(point));        
     }
     
     [[self getPen] addPointIntoPath:point];

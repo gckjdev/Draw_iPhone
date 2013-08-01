@@ -84,4 +84,11 @@ typedef enum{
        successBlock:(void (^)(void))successBlock;
 - (void)unblackFriend:(NSString*)targetUserId
          successBlock:(void (^)(void))successBlock;
+
+- (void)setFriendMemo:(NSString*)targetUserId
+                 memo:(NSString*)memo
+         successBlock:(void (^)(int resultCode))successBlock;
+
+
+
 @end

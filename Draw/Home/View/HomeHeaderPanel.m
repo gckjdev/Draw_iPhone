@@ -22,6 +22,7 @@
 #import "StatisticManager.h"
 #import "UIViewUtils.h"
 #import "ShareImageManager.h"
+#import "UIImageView+Extend.h"
 
 @interface HomeHeaderPanel ()
 {
@@ -167,7 +168,11 @@
         if (feed.drawImage) {
             [imageView setImage:feed.drawImage];
         }else{
-            [imageView setImageWithURL:[feed thumbURL]];
+            
+            UIImage* placeHolder = [[ShareImageManager defaultManager] unloadBg];
+            [imageView setImageWithUrl:[feed thumbURL] placeholderImage:placeHolder showLoading:NO animated:YES];
+            
+            //[imageView setImageWithURL:[feed thumbURL]];
         }
         
         NSInteger page = index / IMAGE_NUMBER_PER_PAGE;
@@ -303,12 +308,10 @@
     }
     
     UserManager *userManager = [UserManager defaultManager];
-    if([[userManager avatarURL] length] > 0){
-        [self.avatar setImageWithURL:[NSURL URLWithString:[userManager avatarURL]]];
-    }
-    else {
-        [self.avatar setImage:[userManager avatarImage]];
-    }
+    
+    NSURL* url = [NSURL URLWithString:[userManager avatarURL]];
+    UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:[userManager gender]];
+    [self.avatar setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];    
     
     UIButton *mask = [UIButton buttonWithType:UIControlStateNormal];
     mask.frame = self.avatar.frame;
