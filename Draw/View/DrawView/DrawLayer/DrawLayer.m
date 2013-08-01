@@ -102,6 +102,20 @@
     [super dealloc];
 }
 
+- (void)showCleanDataInContext:(CGContextRef)ctx
+{
+    if (self.supportCache) {
+        ClipAction *cc = _cdManager.currentClip;
+        _cdManager.currentClip = nil;
+        [_cdManager showInContext:ctx];
+        _cdManager.currentClip = cc;
+    }else{
+        for (DrawAction *action in _drawActionList) {
+            [action drawInContext:ctx inRect:self.bounds];
+        }
+    }
+}
+
 - (void)drawInContext:(CGContextRef)ctx
 {
     if (self.drawInfo.grid) {
@@ -265,6 +279,7 @@
     }else{
         //pass
     }
+    [self updateClipAction];
 }
 
 //clip action
@@ -330,6 +345,7 @@
 
 #define BG_LAYER_TAG 1
 #define MAIN_LAYER_TAG 2
+#define DEFAULT_LAYER_TAG 0
 
 + (NSArray *)defaultLayersWithFrame:(CGRect)frame
 {
@@ -354,7 +370,17 @@
     return [NSArray arrayWithObjects:mainLayer, nil];
 }
 
-
++ (NSArray *)defaultOldLayersWithFrame:(CGRect)frame
+{
+    DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
+    DrawLayer *defaultLayer = [[[DrawLayer alloc] initWithFrame:frame
+                                                    drawInfo:drawInfo
+                                                         tag:DEFAULT_LAYER_TAG
+                                                        name:NSLS(@"kMainLayer")
+                                                 suportCache:NO] autorelease];
+    
+    return [NSArray arrayWithObjects:defaultLayer, nil];
+}
 
 + (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect
 {
@@ -425,7 +451,7 @@
         return nil;
     }
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:number];
-    for (int i = 0; i < number, ++i) {
+    for (int i = 0; i < number; ++i) {
         Game__PBLayer *layer = layers[i];
         DrawLayer *dl = [DrawLayer layerFromPBLayerC:layer];
         [array addObject:dl];

@@ -94,12 +94,20 @@
         }else{
             self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
         }
+        
+        
         NSArray *list = [Draw drawActionListFromPBActions:pbDrawC->drawdata
                                               actionCount:pbDrawC->n_drawdata
                                                canvasSize:self.canvasSize];
+
+        self.layers = [DrawLayer layersFromPBLayers:pbDrawC->layer number:pbDrawC->n_layer];
+
+        if (self.layers == nil) {
+            self.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(self.canvasSize)];
+        }
+
         
         self.drawActionList = (([list isKindOfClass:[NSMutableArray class]] || list == nil) ?  list : [NSMutableArray arrayWithArray:list]);
-        self.layers = [DrawLayer layersFromPBLayers:pbDrawC->layer number:pbDrawC->n_layer];
     }
     return self;
     

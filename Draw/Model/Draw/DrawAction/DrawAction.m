@@ -170,6 +170,7 @@
     if (self) {
         self.type = action.type;
         self.clipTag = (action.hasClipTag ? action.clipTag : 0);
+        self.layerTag = (action.hasLayerTag ? action.layerTag : 0);
         if ([action hasShadowOffsetX] && [action hasShadowColor]) {
             self.shadow = [Shadow shadowWithIntColor:action.shadowColor
                                               offset:CGSizeMake(action.shadowOffsetX,
@@ -186,6 +187,7 @@
     if (self) {
         self.type = action->type;
         self.clipTag = action->has_cliptag ? action->cliptag : 0;
+        self.layerTag = action->has_layertag ? action->layertag : 0;
         
         if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {            
             self.shadow = [Shadow shadowWithIntColor:action->shadowcolor offset:CGSizeMake(action->shadowoffsetx, action->shadowoffsety) blur:action->shadowblur];
@@ -232,6 +234,10 @@
     if (self.clipTag != 0) {
         pbDrawActionC->cliptag = self.clipTag;
         pbDrawActionC->has_cliptag = YES;
+    }
+    if (self.layerTag != 0) {
+        pbDrawActionC->layertag = self.layerTag;
+        pbDrawActionC->has_layertag = YES;
     }
 }
 

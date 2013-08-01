@@ -47,7 +47,10 @@
 - (void)updatePBLayerC:(Game__PBLayer *)layer;
 
 
+- (void)showCleanDataInContext:(CGContextRef)ctx;
+
 + (NSArray *)defaultLayersWithFrame:(CGRect)frame;
++ (NSArray *)defaultOldLayersWithFrame:(CGRect)frame;
 + (DrawLayer *)layerFromPBLayerC:(Game__PBLayer *)layer;
 + (NSMutableArray *)layersFromPBLayers:(Game__PBLayer **)layers number:(int)number;
 @end

@@ -292,6 +292,7 @@
 
 - (void)showDraft:(MyPaint *)draft
 {
+    [dlManager updateLayers:draft.layers];
     self.drawActionList = draft.drawActionList;
     [self changeRect:CGRectFromCGSize(draft.canvasSize)];
     [self show];

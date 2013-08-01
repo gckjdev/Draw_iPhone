@@ -33,12 +33,14 @@
 
 - (NSArray *)layers;
 
-//key = layerTag, value = actionList
 - (void)arrangeActions:(NSArray *)actions;
 
 - (DrawAction *)undoDrawAction:(DrawAction *)action;
 
 - (DrawAction *)redoDrawAction:(DrawAction *)action;
 
+- (void)updateLayers:(NSArray *)layers;
+
+- (UIImage *)createImage;
 
 @end

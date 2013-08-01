@@ -176,6 +176,9 @@
 
 - (UIImage*)createImage
 {
+    return [dlManager createImage];
+    /*
+    
     UIGraphicsBeginImageContext(self.bounds.size);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -184,6 +187,7 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+     */
 
 }
 

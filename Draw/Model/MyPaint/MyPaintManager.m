@@ -816,6 +816,14 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                 paint.bgImageName = [NSString stringWithUTF8String:nDrawC->bgimagename];
             }
             
+            paint.layers = [DrawLayer layersFromPBLayers:nDrawC->layer number:nDrawC->n_layer];
+
+            //create layer for old datas
+            if (paint.layers == nil) {
+                paint.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(paint.canvasSize)];
+            }
+
+            
             NSMutableArray* list = [DrawAction pbNoCompressDrawDataCToDrawActionList:nDrawC
                                                                           canvasSize:paint.canvasSize];
             game__pbno_compress_draw_data__free_unpacked(nDrawC, NULL);
@@ -851,6 +859,13 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                         paint.canvasSize = CGSizeFromPBSizeC(pbDrawC->canvassize);
                     }
                     
+                    paint.layers = [DrawLayer layersFromPBLayers:pbDrawC->layer number:pbDrawC->n_layer];
+                    
+                    //create layer for old datas
+                    if (paint.layers == nil) {
+                        paint.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(paint.canvasSize)];
+                    }
+
                     game__pbdraw__free_unpacked(pbDrawC, NULL);                    
                     return draw.drawActionList;
                     

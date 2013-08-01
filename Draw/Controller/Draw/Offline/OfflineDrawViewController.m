@@ -338,7 +338,7 @@
         if ([GameApp hasBGOffscreen]) {
             [self setDrawBGImage:self.draft.bgImage];
         }
-
+        
         [drawView showDraft:self.draft];
         self.draft.paintImage = nil;
         self.draft.thumbImage = nil;

@@ -39,7 +39,7 @@
 @synthesize opusDesc = _opusDesc;
 @synthesize bgImageName = _bgImageName;
 @synthesize bgImage = _bgImage;
-
+@synthesize layers = _layers;
 
 #define IMAGE_SUFFIX @".png"
 #define THUMB_IMAGE_SUFFIX @"_m.png"
@@ -129,6 +129,7 @@
     PPRelease(_imageFilePath);
     PPRelease(_bgImageName);
     PPRelease(_bgImage);
+    PPRelease(_layers);
     [super dealloc];
 }
 

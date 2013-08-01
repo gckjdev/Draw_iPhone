@@ -228,6 +228,31 @@
     [self.selectedLayer exitFromClipMode];
 }
 
+- (void)updateLayers:(NSArray *)layers
+{
+    [_layerList removeAllObjects];
+    for (DrawLayer *layer in layers) {
+        [self addLayer:layer];
+        [self setSelectedLayer:layer];
+    }
+}
+
+- (UIImage *)createImage
+{
+    UIImage *image;
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [[UIColor whiteColor] setFill];
+    CGContextFillRect(ctx, self.view.bounds);
+
+    for (DrawLayer *layer in _layerList) {
+        [layer showCleanDataInContext:ctx];
+    }
+    
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 
 @end
 
