@@ -118,6 +118,16 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 }
 */
 
+- (void)printPoints
+{
+    NSString* str = @"";
+    for (int i=0; i<ptsCount; i++){
+        str = [str stringByAppendingFormat:@" [%d]=[%@]", i, NSStringFromCGPoint(pts[i])];
+    }
+    
+    PPDebug(@"pts = %@", str);
+}
+
 - (void)addPointIntoPath:(CGPoint)point
 {
     /* move to [Paint addPoint]
@@ -142,6 +152,9 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
     pts[ptsCount] = point;
     ptsCount ++;
     ptsComplete = NO;
+    
+//    [self printPoints];
+    
     if (ptsCount == SQC_POINT_COUNT){
         
         if (threeInOneLine(pts[0], pts[1], pts[2])){

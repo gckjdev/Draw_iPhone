@@ -16,6 +16,7 @@
 #import "BBSPostCommandPanel.h"
 #import "BBSPermissionManager.h"
 #import "BBSBoardController.h"
+#import "BBSActionListController.h"
 
 @interface BBSPostDetailController ()
 {
@@ -476,6 +477,12 @@ typedef enum{
 #pragma mark - bbs post action cell delegate
 - (void)didClickReplyButtonWithAction:(PBBBSAction *)action
 {
+
+#ifdef DEBUG
+    [BBSActionListController showReplyActions:self postId:self.post.postId postUserId:self.post.postUid sourceAction:action];
+    return;
+#endif
+    
     [CreatePostController enterControllerWithSourecePost:self.post
                                             sourceAction:action
                                           fromController:self].delegate = self;

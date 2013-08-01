@@ -611,4 +611,107 @@ NSString* GlobalGetBoardServerURL()
     }
 }
 
+/*
+ 
+ db.action.insert(
+ 
+ {
+ "_id" : ObjectId("51e5084a03648b38d2d61de5"),
+ "app_id" : "513819630",
+ "avatar" : "http://app.qlogo.cn/mbloghead/32222b7df0b6a95af3de/100",
+ "c_date" : ISODate("2013-07-15T06:24:13.745Z"),
+ "comment_times" : 7,
+ "correct_times" : 6,
+ "create_uid" : "51e507ff036498e676b37fed",
+ "data_len" : 2621,
+ "data_url" : "20130715/2b15dce0-ed17-11e2-a60f-00163e017d23.zip",
+ "desc" : "粉笔 好玩吧",
+ "device_model" : "x86_64",
+ "device_type" : 2,
+ "file_gen" : 1,
+ "file_gen_result" : 0,
+ "flower_times" : 1,
+ "gender" : "m",
+ "guess_list" : [
+ "粉笔",
+ "口硒"
+ ],
+ "guess_times" : 7,
+ "history_score" : 17.917,
+ "hot" : 190845.47936720427,
+ "image" : "20130715/2b0b7ca0-ed17-11e2-a60f-00163e017d23.jpg",
+ "language" : 1,
+ "level" : 1,
+ "match_times" : 0,
+ "nick_name" : "Little Gee",
+ "opus_status" : 0,
+ "related_uid" : [
+ "4fc3089a26099b2ca8c7a4ab"
+ ],
+ "signature" : "Hello World",
+ "thumb" : "20130715/2b0b7ca0-ed17-11e2-a60f-00163e017d23_m.jpg",
+ "type" : 1,
+ "user_list" : [ ],
+ "word" : "粉笔",
+ "word_score" : 2
+ });
+
+ db.user.insert(
+ {
+ "_id" : ObjectId("51e507ff036498e676b37fed"),
+ "app_id" : "513819630",
+ "avatar" : "http://app.qlogo.cn/mbloghead/32222b7df0b6a95af3de/100",
+ "award_exp" : 0,
+ "balance" : 577,
+ "birthday" : "1997-09-02",
+ "c_date" : ISODate("2012-08-09T14:12:59.689Z"),
+ "city" : "27",
+ "country_code" : "CN",
+ "device_id" : "aec5664308b000d184baa0e997576f58",
+ "device_model" : "iPad",
+ "device_os" : "iPhone OS_5.0.1",
+ "device_type" : 1,
+ "draw_rank_score" : NumberLong(9310),
+ "feed_timestamp" : ISODate("2013-06-15T16:48:46.799Z"),
+ "gender" : "f",
+ "guess_balance" : 0,
+ "language" : "zh-Hans",
+ "level_dice" : {
+ "level" : 1,
+ "experience" : NumberLong(0)
+ },
+ "level_draw" : {
+ "level" : 20,
+ "experience" : NumberLong(9310)
+ },
+ "level_game" : {
+ "level" : 20,
+ "experience" : NumberLong(9505),
+ "m_date" : ISODate("2013-07-30T14:42:28.154Z")
+ },
+ "level_zhajinhua" : {
+ "level" : 1,
+ "experience" : NumberLong(0)
+ },
+ "location" : "中国 火星",
+ "new_fan_cnt" : 0,
+ "nick_name" : "自守自城",
+ "province" : "52",
+ "qq_at" : "6934e0953e8d4ac78da1b2350f188c66",
+ "qq_ats" : "d8d738f7d0b679473f97eb6be40363b2",
+ "qq_domain" : "longtbj",
+ "qq_id" : "longtbj",
+ "qq_nick" : "谭琲珺",
+ "source_id" : "513819630",
+ "top_draw" : {
+ "score" : 1.9019,
+ "opus_id" : "51f7cf89e4b0577e07ca8f5c",
+ "m_date" : ISODate("2013-07-30T14:36:57.409Z")
+ },
+ "version" : "6.88"
+ });
+
+ 
+ */
+
 @end

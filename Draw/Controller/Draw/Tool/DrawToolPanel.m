@@ -116,7 +116,7 @@
 
 #define TIMESET_FONT_SIZE VALUE(15.0)
 
-#define LINE_MIN_WIDTH (1.0)
+#define LINE_MIN_WIDTH ([ConfigManager minPenWidth]) //(1.0)
 #define LINE_MAX_WIDTH ([ConfigManager maxPenWidth])
 #define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
 

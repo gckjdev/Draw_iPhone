@@ -14,6 +14,7 @@
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
 #import "CommonUserInfoView.h"
+#import "MKBlockActionSheet.h"
 
 
 @interface BBSActionListController ()
@@ -212,6 +213,64 @@ enum{
     IndexDetail = 1,
 //    IndexDelete = 2,
 };
+ 
++ (void)showReplyActions:(UIViewController*)superController postId:(NSString*)postId postUserId:(NSString*)postUserId sourceAction:(PBBBSAction*)sourceAction
+{
+#ifdef DEBUG
+    if ([[UserManager defaultManager] isSuperUser]){
+        MKBlockActionSheet* sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"回复选项")
+                                                                     delegate:nil
+                                                            cancelButtonTitle:NSLS(@"取消")
+                                                       destructiveButtonTitle:NSLS(@"普通回复")
+                                                            otherButtonTitles:
+                                     NSLS(@"金币已经增加，请重启应用查看"),
+                                     NSLS(@"非常感谢反馈"),
+                                     NSLS(@"投诉已经收到，会进行处理"),
+                                     NSLS(@"请勿对骂，专心画画，保持社区文明，警告无效封号"),
+                                     NSLS(@"请勿刷帖，帖子请发表到正确分区，警告无效封号"),
+                                     NSLS(@"帖子请发表到正确分区，请自行删除本帖，警告无效封号"),
+                                     NSLS(@"帖子请发表到正确分区，请勿发表无关帖子，本帖子已经手工移动，警告无效封号"),
+                                     nil];
+        
+        [sheet setActionBlock:^(NSInteger buttonIndex){
+            NSString* title = [sheet buttonTitleAtIndex:buttonIndex];
+            int lastIndex = [sheet numberOfButtons] - 1;
+            PPDebug(@"select button %@", title);
+            if (buttonIndex == lastIndex){
+                PPDebug(@"cancel");
+            }
+            else if (buttonIndex == 0) {
+                PPDebug(@"normal reply");
+                [self replyPost:nil superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
+            }
+            else{
+                [BBSManager saveLastInputText:title];
+                [self replyPost:title superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
+            }
+            
+            [sheet setActionBlock:NULL];
+        }];
+        
+        [sheet showInView:superController.view];
+
+    }
+    
+    return;
+#endif
+
+    [self replyPost:nil superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
+}
+
++ (void)replyPost:(NSString*)postText superController:(UIViewController*)superController postId:(NSString*)postId postUserId:(NSString*)postUid sourceAction:(PBBBSAction*)sourceAction
+{
+//    NSString *postId =  _selectedAction.source.postId;
+//    NSString *postUid = _selectedAction.source.postUid;
+    [CreatePostController enterControllerWithSourecePostId:postId
+                                                   postUid:postUid
+                                                  postText:postText
+                                              sourceAction:sourceAction
+                                            fromController:superController];
+}
 
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
@@ -219,12 +278,17 @@ enum{
     switch (index) {
         case IndexReply:
         {
+            /*
             NSString *postUid = _selectedAction.source.postUid;
             [CreatePostController enterControllerWithSourecePostId:postId
                                                            postUid:postUid
                                                           postText:nil
                                                       sourceAction:_selectedAction
                                                     fromController:self];
+             */
+            
+            NSString *postUid = _selectedAction.source.postUid;
+            [BBSActionListController showReplyActions:self postId:postId postUserId:postUid sourceAction:_selectedAction];
         }
             break;
         case IndexDetail:

@@ -311,16 +311,7 @@
     
     NSURL* url = [NSURL URLWithString:[userManager avatarURL]];
     UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:[userManager gender]];
-    [self.avatar setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];
-    
-//    if([[userManager avatarURL] length] > 0){
-//        [self.avatar setImageWithURL:[NSURL URLWithString:[userManager avatarURL]]];
-//    }
-//    else {
-//        [self.avatar setImage:[userManager avatarImage]];
-//    }
-    
-    
+    [self.avatar setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];    
     
     UIButton *mask = [UIButton buttonWithType:UIControlStateNormal];
     mask.frame = self.avatar.frame;

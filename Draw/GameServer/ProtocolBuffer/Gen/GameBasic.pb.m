@@ -1064,6 +1064,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property int32_t opusCoverflowType;
 @property (retain) NSString* signature;
 @property int32_t featureOpus;
+@property (retain) NSString* friendMemo;
 @property int32_t singRecordLimit;
 @end
 
@@ -1365,6 +1366,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasFeatureOpus_ = !!value;
 }
 @synthesize featureOpus;
+- (BOOL) hasFriendMemo {
+  return !!hasFriendMemo_;
+}
+- (void) setHasFriendMemo:(BOOL) value {
+  hasFriendMemo_ = !!value;
+}
+@synthesize friendMemo;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -1395,6 +1403,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.deviceType = nil;
   self.bloodGroup = nil;
   self.signature = nil;
+  self.friendMemo = nil;
   [super dealloc];
 }
 - (id) init {
@@ -1438,6 +1447,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.opusCoverflowType = 0;
     self.signature = @"";
     self.featureOpus = 0;
+    self.friendMemo = @"";
     self.singRecordLimit = 30;
   }
   return self;
@@ -1626,6 +1636,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasFeatureOpus) {
     [output writeInt32:101 value:self.featureOpus];
   }
+  if (self.hasFriendMemo) {
+    [output writeString:102 value:self.friendMemo];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -1763,6 +1776,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasFeatureOpus) {
     size += computeInt32Size(101, self.featureOpus);
+  }
+  if (self.hasFriendMemo) {
+    size += computeStringSize(102, self.friendMemo);
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -1977,6 +1993,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasFeatureOpus) {
     [self setFeatureOpus:other.featureOpus];
   }
+  if (other.hasFriendMemo) {
+    [self setFriendMemo:other.friendMemo];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -2178,6 +2197,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 808: {
         [self setFeatureOpus:[input readInt32]];
+        break;
+      }
+      case 818: {
+        [self setFriendMemo:[input readString]];
         break;
       }
       case 1600: {
@@ -2896,6 +2919,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearFeatureOpus {
   result.hasFeatureOpus = NO;
   result.featureOpus = 0;
+  return self;
+}
+- (BOOL) hasFriendMemo {
+  return result.hasFriendMemo;
+}
+- (NSString*) friendMemo {
+  return result.friendMemo;
+}
+- (PBGameUser_Builder*) setFriendMemo:(NSString*) value {
+  result.hasFriendMemo = YES;
+  result.friendMemo = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearFriendMemo {
+  result.hasFriendMemo = NO;
+  result.friendMemo = @"";
   return self;
 }
 - (BOOL) hasSingRecordLimit {
