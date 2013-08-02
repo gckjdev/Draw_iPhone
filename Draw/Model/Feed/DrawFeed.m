@@ -40,7 +40,6 @@
 
 
 - (void)initDrawInfo:(NSString *)drawImageUrl data:(NSData*)data
-//- (void)initDrawInfo:(NSString *)drawImageUrl drawData:(PBDraw *)drawData
 {
     self.drawImageUrl = drawImageUrl;
     if ([self.drawImageUrl length] == 0) {
@@ -50,8 +49,7 @@
         self.drawImage = [[FeedManager defaultManager] thumbImageForFeedId:self.feedId];
         self.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feedId];
 
-        // rem by Benson
-//        self.pbDraw = drawData;
+
         self.pbDrawData = data;
         
 
@@ -69,13 +67,11 @@
         [self initTimeList:pbFeed.feedTimesList];
 
         if ([pbFeed hasDrawData]) {
-//            self.pbDraw = pbFeed.drawData;
             self.pbDrawData = [pbFeed.drawData data];
         }
 
         //set draw info
         self.wordText = pbFeed.opusWord;
-//        [self initDrawInfo:pbFeed.opusImage drawData:pbFeed.drawData];
         [self initDrawInfo:pbFeed.opusImage data:nil];
         self.deviceType = pbFeed.deviceType;
         self.opusDesc = pbFeed.opusDesc;

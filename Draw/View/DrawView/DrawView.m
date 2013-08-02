@@ -50,11 +50,10 @@
 @synthesize delegate = _delegate;
 
 
-- (void)setDrawActionList:(NSMutableArray *)drawActionList
-{
-    [super setDrawActionList:drawActionList];
-    [dlManager arrangeActions:drawActionList];
-}
+//- (void)setDrawActionList:(NSMutableArray *)drawActionList
+//{
+//    [super setDrawActionList:drawActionList];
+//}
 
 
 - (void)callbackFinishDelegateWithAction:(DrawAction *)action
@@ -78,7 +77,9 @@
         [self.drawActionList addObject:drawAction];
         [super addDrawAction:drawAction show:show];
         [self clearRedoStack];
-        [self callbackFinishDelegateWithAction:drawAction];
+        if (![drawAction isPaintAction]) {
+            [self callbackFinishDelegateWithAction:drawAction];
+        }
     }
 }
 

@@ -181,6 +181,7 @@
         [array addObject:action];
     }
     for (DrawLayer *layer in _layerList) {
+        [layer reset];
         NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
         [layer updateWithDrawActions:array];
         [layer setNeedsDisplay];

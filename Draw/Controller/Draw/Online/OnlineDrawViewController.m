@@ -127,8 +127,9 @@
 
 - (void)initDrawView
 {
-    
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]
+                                        layers:[DrawLayer defaultOldLayersWithFrame:[CanvasRect defaultRect]]];
+
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     

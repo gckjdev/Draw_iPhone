@@ -796,6 +796,9 @@
         rect = CGRectFromCGSize(drawGameService.canvasSize);
     }
     showView = [[ShowDrawView alloc] initWithFrame:rect];
+    
+    [showView updateLayers:[DrawLayer defaultOldLayersWithFrame:rect]];
+    
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
     [self.view insertSubview:holder atIndex:4];
