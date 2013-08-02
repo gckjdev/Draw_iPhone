@@ -156,5 +156,9 @@ static UserNumberService* _defaultUserService;
     });
 }
 
+- (void)askForLogout
+{
+    
+}
 
 @end
