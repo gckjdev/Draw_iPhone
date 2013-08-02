@@ -118,9 +118,6 @@
 
 - (void)drawInContext:(CGContextRef)ctx
 {
-    if (self.drawInfo.grid) {
-        [DrawLayer drawGridInContext:ctx rect:self.bounds];
-    }
     if (self.supportCache) {
         [_cdManager showInContext:ctx];
     }else{
@@ -129,6 +126,9 @@
         }
         [self.clipAction showClipInContext:ctx inRect:self.bounds];
     }
+    if (self.drawInfo.grid) {
+        [DrawLayer drawGridInContext:ctx rect:self.bounds];
+    }    
 }
 
 
