@@ -27,7 +27,7 @@
 {
     self = [super init];
     if (self) {
-        _layerList = [[DrawLayer defaultLayersWithFrame:view.bounds] retain];
+        _layerList = [[NSMutableArray array] retain];
         self.view = view;
     }
     
@@ -239,7 +239,12 @@
 
 - (void)updateLayers:(NSArray *)layers
 {
+    for (DrawLayer *layer in _layerList) {
+        [layer removeFromSuperlayer];
+    }
+    
     [_layerList removeAllObjects];
+    
     for (DrawLayer *layer in layers) {
         [self addLayer:layer];
         [self setSelectedLayer:layer];
