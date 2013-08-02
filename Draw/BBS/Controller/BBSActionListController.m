@@ -235,12 +235,12 @@ enum{
         [sheet setActionBlock:^(NSInteger buttonIndex){
             NSString* title = [sheet buttonTitleAtIndex:buttonIndex];
             int lastIndex = [sheet numberOfButtons] - 1;
-            PPDebug(@"select button %@", title);
+//            PPDebug(@"select button %@", title);
             if (buttonIndex == lastIndex){
                 PPDebug(@"cancel");
             }
             else if (buttonIndex == 0) {
-                PPDebug(@"normal reply");
+//                PPDebug(@"normal reply");
                 [self replyPost:nil superController:superController postId:postId postUserId:postUserId sourceAction:sourceAction];
             }
             else{

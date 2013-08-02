@@ -153,7 +153,7 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
     ptsCount ++;
     ptsComplete = NO;
     
-//    [self printPoints];
+   //  [self printPoints];
     
     if (ptsCount == SQC_POINT_COUNT){
         
