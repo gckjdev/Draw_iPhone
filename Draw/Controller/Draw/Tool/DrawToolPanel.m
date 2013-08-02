@@ -524,6 +524,14 @@
 
 }
 
+- (void)updateSelectorWithDrawInfo:(DrawInfo *)drawInfo
+{
+    UIImage *image = [DrawInfo imageForClipActionType:drawInfo.touchType];
+    [self.selector setImage:image forState:UIControlStateNormal];
+    [self.selector setImage:image forState:UIControlStateSelected];
+    [self.selector setSelected:[drawInfo isSelectorMode]];
+}
+
 - (void)updatePenWithDrawInfo:(DrawInfo *)drawInfo
 {
     if (drawInfo.penType != Eraser) {
@@ -568,7 +576,7 @@
 
     [self updatePenWithDrawInfo:drawInfo];
     [self updateShapeWithDrawInfo:drawInfo];
-    
+    [self updateSelectorWithDrawInfo:drawInfo];
     
     [self.alphaSlider setValue:drawInfo.alpha];
     [self.widthSlider setValue:drawInfo.penWidth];

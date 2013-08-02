@@ -144,7 +144,7 @@
 {
     if ([feed.drawImageUrl length] != 0){
         PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
-
+        [self addMaskView];
         
         __block UIImage *placeholderImage = nil;
         [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL delegate:self options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
@@ -211,7 +211,6 @@
 - (void)loadImageFinish
 {
     [self.loadingActivity stopAnimating];
-    [self addMaskView];
     if (_delegate && [_delegate respondsToSelector:@selector(didLoadDrawPicture)]) {
         [_delegate didLoadDrawPicture];
     }

@@ -55,8 +55,12 @@ typedef enum{
 
 @property(nonatomic, assign) BOOL grid;
 
++ (UIImage *)imageForClipActionType:(TouchActionType)type;
 + (id)defaultDrawInfo;
 
 - (void)backToLastDrawMode;
+
+- (BOOL)isSelectorMode;
+
 
 @end

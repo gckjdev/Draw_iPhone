@@ -1198,5 +1198,24 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"draw_up_panel_bg_right_arrow@2x.png"];
 }
 
+
+- (UIImage *)polygonSelectorImage
+{
+    return [UIImage imageNamed:@"selector_polygon@2x.png"];
+}
+- (UIImage *)pathSelectorImage
+{
+    return [UIImage imageNamed:@"selector_path@2x.png"];
+}
+- (UIImage *)ellipseSelectorImage
+{
+    return [UIImage imageNamed:@"selector_ellipse@2x.png"];
+}
+- (UIImage *)rectangeSelectorImage
+{
+    return [UIImage imageNamed:@"selector_rectangle@2x.png"];
+}
+
+
 @end
 

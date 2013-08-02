@@ -93,9 +93,9 @@
 - (BOOL)execute
 {
     if ([super execute]) {
-        DrawAction *lastAction = [self.drawView lastAction];
+        DrawAction *lastDrawAction = [self.drawView lastAction];
         
-        if (lastAction && ![lastAction isClipAction])
+        if (lastDrawAction && ![lastDrawAction isChangeBGAction] && ![lastDrawAction isClipAction] && lastDrawAction.clipAction == nil)
         {
             [[CommonDialog createDialogWithTitle:NSLS(@"kUseGradientTitle")
                                          message:NSLS(@"kUseGradientMessage")

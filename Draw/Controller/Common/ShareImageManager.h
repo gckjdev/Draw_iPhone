@@ -279,4 +279,9 @@
 - (UIImage *)drawToolUpPanelLeftArrowBg;
 - (UIImage *)drawToolUpPanelRightArrowBg;
 
+- (UIImage *)polygonSelectorImage;
+- (UIImage *)pathSelectorImage;
+- (UIImage *)ellipseSelectorImage;
+- (UIImage *)rectangeSelectorImage;
+
 @end

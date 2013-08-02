@@ -154,6 +154,7 @@
 {
     for (DrawLayer *layer in _layerList) {
         [layer reset];
+        [layer setNeedsDisplay];
     }
 }
 

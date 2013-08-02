@@ -41,11 +41,12 @@ typedef enum
     ItemTypeFX,
     
     
-    Eraser = 1100,
+    DeprecatedEraser = 1100,
     PaletteItem = 1101,
     ColorAlphaItem = 1102,
     PaintPlayerItem = 1103,
     ColorStrawItem = 1104,
+    Eraser = 1105, //the new EraserType, from version 7.0 of Draw
     
     ItemTypeGrid = 1106,
     
