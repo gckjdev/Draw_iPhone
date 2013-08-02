@@ -8,7 +8,7 @@
 
 #import "DrawInfo.h"
 #import "ConfigManager.h"
-
+#import "ShareImageManager.h"
 
 @implementation DrawInfo
 
@@ -73,8 +73,8 @@
 
 - (void)setTouchType:(TouchActionType)touchType
 {
-    if (_touchType == TouchActionTypeDraw || _touchType == TouchActionTypeShape) {
-        self.lastDrawType = _touchType;
+    if (touchType == TouchActionTypeDraw || touchType == TouchActionTypeShape) {
+        self.lastDrawType = touchType;
     }
     _touchType = touchType;
 }
@@ -84,6 +84,31 @@
     _touchType = self.lastDrawType;
     if (_penType == Eraser) {
         _penType = self.lastPenType;
+    }
+}
+
+- (BOOL)isSelectorMode
+{
+    NSSet *set = [NSSet setWithObjects:@(TouchActionTypeClipEllipse),
+                  @(TouchActionTypeClipPolygon),
+                  @(TouchActionTypeClipPath),
+                  @(TouchActionTypeClipRectangle),
+                  nil];
+    return [set containsObject:@(self.touchType)];
+}
+
++ (UIImage *)imageForClipActionType:(TouchActionType)type
+{
+    switch (type) {
+        case TouchActionTypeClipEllipse:
+            return [[ShareImageManager defaultManager] ellipseSelectorImage];
+        case TouchActionTypeClipPolygon:
+            return [[ShareImageManager defaultManager] polygonSelectorImage];
+        case TouchActionTypeClipRectangle:
+            return [[ShareImageManager defaultManager] rectangeSelectorImage];
+        case TouchActionTypeClipPath:
+        default:
+            return [[ShareImageManager defaultManager] pathSelectorImage];
     }
 }
 
