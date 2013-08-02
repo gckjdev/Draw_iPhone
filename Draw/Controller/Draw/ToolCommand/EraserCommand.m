@@ -13,17 +13,17 @@
 - (BOOL)execute
 {
     [self showPopTipView];
-    [self.toolHandler enterEraserMode];
-    [self.toolHandler changeInPenType:Eraser];
+    self.drawInfo.penType = Eraser;
+    self.drawInfo.touchType = TouchActionTypeDraw;
+    [self updateToolPanel];
+    [self sendAnalyticsReport];
     return YES;
 }
 
 
 - (void)showPopTipView
 {
-    [self becomeActive];
     self.showing = YES;
-
 }
 
 - (void)hidePopTipView

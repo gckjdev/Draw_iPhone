@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "ItemType.h"
-#import "ToolHandler.h"
 #import "AnalyticsManager.h"
 #import "CMPopTipView.h"
 #import "UIViewUtils.h"
 #import "InputAlertView.h"
+#import "DrawInfo.h"
+#import "DrawToolPanel.h"
+#import "DrawView.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -21,22 +23,20 @@
 @interface ToolCommand : NSObject<CMPopTipViewDelegate>
 
 @property(nonatomic, assign)UIControl *control;
-@property(nonatomic, assign)ToolHandler *toolHandler;
+
 @property(nonatomic, assign)DrawToolPanel *toolPanel;
 @property(nonatomic, assign)PPViewController *controller;
 @property(nonatomic, assign)ItemType itemType;
 @property(nonatomic, assign, getter = isShowing)BOOL showing;
 @property(nonatomic, retain) CMPopTipView *popTipView;
-
+@property(nonatomic, assign)DrawInfo *drawInfo;
+@property(nonatomic, assign)DrawView *drawView;
 
 - (BOOL)canUseItem:(ItemType)type;
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType;
 
 - (void)showPopTipView;
 - (void)hidePopTipView;
-- (void)finish;
-
-- (void)becomeActive;
 
 //need to be override by the sub classes
 - (void)sendAnalyticsReport;
@@ -44,6 +44,7 @@
 - (BOOL)execute;
 - (void)buyItemSuccessfully:(ItemType)type;
 
+- (void)updateToolPanel;
 
 
 @end
@@ -57,6 +58,7 @@
 //@property(nonatomic, assign)BOOL canRemoveAllCommand;
 @property(nonatomic, assign)NSUInteger version;
 
+
 - (NSUInteger)createVersion;
 
 - (id)init;
@@ -67,17 +69,19 @@
 - (void)unregisterCommand:(ToolCommand *)command;
 - (ToolCommand *)commandForControl:(UIControl *)control;
 - (void)removeAllCommand:(NSUInteger)version;
+
 - (void)hideAllPopTipViews;
 - (void)hideAllPopTipViewsExcept:(ToolCommand *)command;
 
-- (void)updateHandler:(ToolHandler *)handler;
+- (void)updateDrawInfo:(DrawInfo *)drawInfo;
+- (void)updateDrawView:(DrawView *)drawView;
 - (void)updatePanel:(DrawToolPanel *)panel;
 
 - (BOOL)isPaletteShowing;
-- (void)makeCommanActive:(ToolCommand *)command;
 
 
-- (void)resetAlpha;
+
+
 - (InputAlertView *)inputAlertView;
 @end
 

@@ -398,14 +398,18 @@ typedef enum{
 {
     MyPaint* currentPaint = _selectedPaint;
     ReplayView *replayView = [ReplayView createReplayView];
-    NSMutableArray *actionList = [currentPaint drawActionList];
-    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
-    UIImage *bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];;
     
-    [replayView showInController:self withActionList:actionList
-                    isNewVersion:isNewVersion
-                            size:currentPaint.canvasSize
-                         bgImage:bgImage];
+    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.actionList = [currentPaint drawActionList];
+    obj.isNewVersion = isNewVersion;
+    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
+    obj.layers = currentPaint.layers;
+    obj.canvasSize = [currentPaint canvasSize];
+    
+    [replayView showInController:self object:obj];
+    
     [self hideActivity];
 }
 

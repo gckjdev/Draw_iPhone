@@ -19,18 +19,19 @@
 #import "CleanAction.h"
 #import "PaintAction.h"
 #import "ShapeAction.h"
+#import "CanvasRect.h"
 
-#import "CacheDrawManager.h"
-#import "DrawLayer.h"
+#import "DrawLayerManager.h"
 
-@interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate>
+
+@interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate, DrawProcessProtocol>
 {
     NSMutableArray *_drawActionList;
     
     //used by subclass
     DrawAction *_currentAction;
     
-    CacheDrawManager *cdManager;
+    DrawLayerManager *dlManager;
     
     GestureRecognizerManager *_gestureRecognizerManager;
 }
@@ -42,6 +43,10 @@
 @property (nonatomic, assign) CGFloat minScale; //default is 1
 @property (nonatomic, assign) CGFloat maxScale; //default is 10
 
+
+- (id)initWithFrame:(CGRect)frame layers:(NSArray *)layers;
+
+
 //public method
 #pragma mark - util methods
 - (BOOL)isViewBlank;
@@ -52,26 +57,23 @@
 
 
 - (ClipAction *)currentClip;
+- (NSArray *)layers;
+- (void)updateLayers:(NSArray *)layers;
 
 #pragma mark -show && stroke
 - (void)show;
 - (void)cleanAllActions;
-- (void)addDrawAction:(DrawAction *)drawAction;
-- (DrawAction *)lastAction;
 
-
-//add a new draw action
-- (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
-
-//update the last action
-- (void)updateLastAction:(DrawAction *)action show:(BOOL)show;
-
-//- (void)drawPaint:(Paint *)paint show:(BOOL)show;
 
 - (void)resetTransform;
 - (void)changeRect:(CGRect)rect;
 - (void)setBGImage:(UIImage *)image;
 
+
+
+////layer
+
+- (DrawLayer *)currentLayer;
 @end
 
 

@@ -38,19 +38,20 @@
     return YES;
 }
 
+- (void)changeBGImage:(PBDrawBg *)drawBg
+{
+    ChangeBGImageAction *action = [ChangeBGImageAction actionWithDrawBG:drawBg];
+    [self.drawView addDrawAction:action show:YES];
+    [self.drawView finishLastAction:action refresh:NO];
+}
+
 - (void)drawBgBox:(DrawBgBox *)drawBgBox didSelectedDrawBg:(PBDrawBg *)drawBg groudId:(NSInteger)groupId
 {
     if ([self canUseItem:groupId]) {
-        [self.toolHandler changeDrawBG:drawBg];
+        [self changeBGImage:drawBg];
         [drawBgBox dismiss];
         self.box = nil;
-
-        if (self.toolHandler.touchActionType == TouchActionTypeShape) {
-            [self.toolHandler enterShapeMode];
-        }else{
-            [self.toolHandler enterDrawMode];
-        }
-    }    
+    }
 }
 
 - (void)buyItemSuccessfully:(ItemType)type

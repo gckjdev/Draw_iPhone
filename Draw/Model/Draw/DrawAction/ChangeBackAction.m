@@ -157,4 +157,10 @@
     [super finishAddPoint];
 }
 
++ (ChangeBackAction *)actionWithColor:(DrawColor *)color
+{
+    ChangeBackAction *action = [[[ChangeBackAction alloc] initWithColor:color] autorelease];
+    return action;
+}
+
 @end

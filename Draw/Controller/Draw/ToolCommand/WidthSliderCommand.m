@@ -95,7 +95,8 @@
     [[self superScrollView] setClipsToBounds:YES];
     [drawSlider.contentView removeFromSuperview];
     [drawSlider dismissPopupView];
-    [self.toolHandler changeWidth:value];
+    self.drawInfo.penWidth = value;
+    [self updateToolPanel];
 }
 
 

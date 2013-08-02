@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DrawLayer.h"
 
-
+@class DrawAction;
 @class DrawLayer;
 
-@interface DrawLayerManager : NSObject
+@interface DrawLayerManager : NSObject<DrawProcessProtocol>
 {
     
 }
@@ -22,10 +23,26 @@
 - (id)initWithView:(UIView *)view;
 - (void)addLayer:(DrawLayer *)layer;
 - (void)removeLayer:(DrawLayer *)layer;
-- (DrawLayer *)addLayerWithTag:(NSUInteger)tag;
+- (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name;
+- (DrawLayer *)layerWithTag:(NSUInteger)tag;
 - (void)removeLayerWithTag:(NSUInteger)tag;
 - (void)bringLayerToFront:(DrawLayer *)layer;
 - (void)moveLayer:(DrawLayer *)layer1 below:(DrawLayer *)layer2; //if layer2 is nil, then move layer1 to the front.
 - (void)reload;
+- (void)resetAllLayers;
+
+- (NSArray *)layers;
+
+- (void)arrangeActions:(NSArray *)actions;
+
+- (DrawAction *)undoDrawAction:(DrawAction *)action;
+
+- (DrawAction *)redoDrawAction:(DrawAction *)action;
+
+- (void)updateLayers:(NSArray *)layers;
+
+- (void)refresh;
+
+- (UIImage *)createImage;
 
 @end

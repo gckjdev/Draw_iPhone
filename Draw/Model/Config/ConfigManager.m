@@ -836,9 +836,10 @@
 
 + (NSString *)currentDrawBgVersion
 {
-    return @"1.2";
+    return @"1.4";
     //Version 1.1 9 Group
     //Version 1.2 +8 Group
+    //Version 1.4 = 1.2
 }
 
 + (NSString *)currentImageShapeVersion

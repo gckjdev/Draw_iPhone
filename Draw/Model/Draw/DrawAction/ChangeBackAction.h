@@ -12,4 +12,5 @@
 
 - (DrawColor *)color;
 - (id)initWithColor:(DrawColor *)color;
++ (ChangeBackAction *)actionWithColor:(DrawColor *)color;
 @end

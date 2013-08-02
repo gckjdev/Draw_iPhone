@@ -862,6 +862,7 @@
         rect = [self.feed.drawData canvasRect];
     }
     showView = [[ShowDrawView alloc] initWithFrame:rect];
+    [showView updateLayers:self.feed.drawData.layers];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
     [self.view insertSubview:holder atIndex:4];
 }

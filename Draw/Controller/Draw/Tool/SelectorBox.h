@@ -15,7 +15,6 @@
 
 @protocol SelectorBoxDelegate <NSObject>
 - (void)selectorBox:(SelectorBox *)box didSelectClipType:(ClipType)clipType;
-- (void)didClickCancelAtSelectorBox:(SelectorBox *)box;
 - (void)didClickHelpAtSelectorBox:(SelectorBox *)box;
 
 @end
@@ -26,9 +25,7 @@
 //@property(nonatomic, retain)UIView *closeView;
 
 + (id)selectorBoxWithDelegate:(id<SelectorBoxDelegate>)delegate;
-- (void)showCloseViewInView:(UIView *)view;
 - (IBAction)clickSelector:(UIButton *)sender;
-- (IBAction)clickCancel:(id)sender;
 - (IBAction)clickHelp:(id)sender;
 
 @end

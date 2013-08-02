@@ -61,7 +61,7 @@
 #import "CanvasRect.h"
 #import "UserManager.h"
 
-#import "ToolHandler.h"
+
 #import "ToolCommand.h"
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
@@ -110,7 +110,6 @@
 
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
-@property (assign, nonatomic) ToolHandler *toolHandler;
 
 @property (retain, nonatomic) InputAlertView *inputAlert;
 //@property (retain, nonatomic) TKProgressBarView *progressView;
@@ -195,7 +194,6 @@
 - (void)dealloc
 {
     [self stopRecovery];
-    self.toolHandler = nil;
     self.delegate = nil;
     _draft.drawActionList = nil;
     PPRelease(_shareWeiboSet);
@@ -325,90 +323,11 @@
     return self;
 }
 
-
-#pragma mark - Update Data
-
-#define STEP 5
-- (void)createActionWithStartPoint:(CGPoint)p1 endPoint:(CGPoint)p2
-{
-    
-    PPDebug(@"Line: %@ -----> %@",NSStringFromCGPoint(p1),NSStringFromCGPoint(p2));
-    NSMutableArray *pList = [NSMutableArray array];
-    Paint *paint = [Paint paintWithWidth:1 color:[DrawColor blackColor] penType:Pencil pointList:pList];
-    [paint addPoint:p1 inRect:drawView.bounds];
-    
-//    if (p1.x == p2.x) {
-//        for (NSInteger i = p1.y; i <= p2.y; i += STEP) {
-//            CGPoint p = CGPointMake(p1.x, i);
-//            [paint addPoint:p inRect:drawView.bounds];
-//        }
-//    }else if (p1.y == p2.y) {
-//        for (NSInteger i = p1.x; i <= p2.x; i += STEP) {
-//            CGPoint p = CGPointMake(i,p1.y);
-//            [paint addPoint:p inRect:drawView.bounds];
-//        }
-//    }
-    
-    [paint addPoint:p2 inRect:drawView.bounds];
-    
-    PaintAction *action = [PaintAction paintActionWithPaint:paint];
-    [drawView drawDrawAction:action show:YES];
-    [drawView addDrawAction:action];
-
-}
-
-
-- (void)addTestActions
-{
-    CGFloat OFFSET = 3;
-    CGFloat width = CGRectGetWidth(drawView.bounds);
-    CGFloat height = CGRectGetHeight(drawView.bounds);
-
-    CGPoint cP;
-    for (NSInteger r = width/2-2; r > 2; r -= OFFSET) {
-        NSMutableArray *pList = [NSMutableArray array];
-        Paint *paint = [Paint paintWithWidth:1 color:[DrawColor blackColor] penType:Pencil pointList:pList];
-
-        for (CGFloat a = 0.0; a <= M_PI * 3; a+= 0.03) {
-            if (M_PI * 2 <= a) {
-                a = 2*M_PI+0.015;
-                cP = CGPointMake(cosf(a) * r + width/2., sinf(a)*r + height/2.);
-                [paint addPoint:cP inRect:drawView.bounds];
-                break;
-            }
-            cP = CGPointMake(cosf(a) * r + width/2., sinf(a)*r + height/2.);
-            [paint addPoint:cP inRect:drawView.bounds];
-            
-        }
-        PaintAction *action = [PaintAction paintActionWithPaint:paint];
-        [drawView drawDrawAction:action show:YES];
-        [drawView addDrawAction:action];
-
-    }
-    
-    return;
-    
-    for (NSInteger i = 0; i < 10000; i += OFFSET) {
-        CGFloat H = i;
-        if (H  > width ) {
-            break;
-        }
-        
-        [self createActionWithStartPoint:CGPointMake(0, H) endPoint:CGPointMake(width, H)];
-
-//        [self createActionWithStartPoint:CGPointMake(width - H, H) endPoint:CGPointMake(width - H, height - H)];
-//
-//        [self createActionWithStartPoint:CGPointMake(H, height - H) endPoint:CGPointMake(width - H, height - H)];
-
-        [self createActionWithStartPoint:CGPointMake(H, 0) endPoint:CGPointMake(H, height)];
-    }
-}
-
 - (void)initDrawView
 {
-//    drawView = [[DrawView alloc] initWithFrame:[CanvasRect rectForCanvasRectStype:CanvasRectiPadDefault]];
     
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]
+                                        layers:[DrawLayer defaultLayersWithFrame:[CanvasRect defaultRect]]];
 
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
@@ -419,16 +338,11 @@
         if ([GameApp hasBGOffscreen]) {
             [self setDrawBGImage:self.draft.bgImage];
         }
-
-
+        
         [drawView showDraft:self.draft];
         self.draft.paintImage = nil;
         self.draft.thumbImage = nil;
         self.opusDesc = self.draft.opusDesc;
-        
-    }else{
-        //Test
-//        [self addTestActions];
     }
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:drawView];
 
@@ -477,14 +391,10 @@
 
 - (void)initDrawToolPanel
 {
-    //the tool handler is single for an draw view controller.
-    self.toolHandler = [[[ToolHandler alloc] init] autorelease];
-    self.toolHandler.drawView = drawView;
-    self.toolHandler.controller = self;
+    self.drawToolPanel = [DrawToolPanel createViewWithDrawView:drawView];
     
+    self.drawToolUpPanel = [DrawToolUpPanel createViewWithDrawView:drawView];
     
-    self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
-    self.drawToolUpPanel = [DrawToolUpPanel createViewWithdToolHandler:self.toolHandler];
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
@@ -557,7 +467,7 @@
 {
     if (![self supportRecovery])
         return;
-
+    [DrawRecoveryService defaultService].layers = drawView.layers;
     [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
 }
 
@@ -809,7 +719,7 @@
 {
  
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.lineColor updateModel:YES];
+        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
     _isNewDraft = NO;
@@ -920,46 +830,28 @@
                                       drawWord:self.word
                                       language:languageType
                                           size:drawView.bounds.size
-                                  isCompressed:NO];
+                                  isCompressed:NO
+                                        layers:drawView.layers
+                                          info:nil];
 
     PBDraw *pbDraw = [PBDraw parseFromData:data];
     data = nil;
     
-//    PBDraw *pbDraw = [[DrawDataService defaultService]
-//                      buildPBDraw:[userManager userId]
-//                      nick:[userManager nickName]
-//                      avatar:[userManager avatarURL]
-//                      drawActionList:drawView.drawActionList
-//                      drawWord:self.word
-//                      language:languageType
-//                      size:drawView.bounds.size
-//                      isCompressed:NO];
+    
     return pbDraw;
 }
 
-- (PBNoCompressDrawData *)drawDataSnapshot
-{
-    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
-                                                                               size:drawView.bounds.size
-                                                                           opusDesc:self.opusDesc
-                                                                         drawToUser:nil
-                                                                    bgImageFileName:_bgImageName];
-    return data;
-}
+
 
 - (NSData *)newDrawDataSnapshot
 {
-//    PBNoCompressDrawData *data = [DrawAction pbNoCompressDrawDataFromDrawActionList:drawView.drawActionList
-//                                                                               size:drawView.bounds.size
-//                                                                           opusDesc:self.opusDesc
-//                                                                         drawToUser:nil
-//                                                                    bgImageFileName:_bgImageName];
-    
+
     NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:drawView.drawActionList
                                                                   size:drawView.bounds.size
                                                               opusDesc:self.opusDesc
                                                             drawToUser:nil
-                                                       bgImageFileName:_bgImageName];
+                                                       bgImageFileName:_bgImageName
+                                                                layers:drawView.layers];
     return data;
 }
 
@@ -1216,9 +1108,9 @@
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                    size:drawView.bounds.size
+                                                 layers:drawView.layers
+                                                   info:nil
                                                delegate:self];
-
-    
 
 }
 
@@ -1349,16 +1241,6 @@
 
 }
 
-
-#pragma mark - CommonItemInfoView Delegate
-
-
-- (void)performRevoke
-{
-    [drawView revoke:^{
-        [self hideActivity];
-    }];
-}
 
 
 #pragma mark -- super method

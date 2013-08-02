@@ -7,69 +7,52 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "ItemType.h"
-#import "ShapeInfo.h"
-
-
-typedef enum{
-    
-    TouchActionTypeDraw = 0,
-    TouchActionTypeGetColor = 1,
-    TouchActionTypeShape = 2,
-    TouchActionTypeClipPath = 3,
-    TouchActionTypeClipPolygon = 4,
-    TouchActionTypeClipEllipse = 5,
-    TouchActionTypeClipRectangle = 6,
-    
-}TouchActionType;
-
-
-@class Shadow;
-//@class Gradient;
-
-@interface DrawInfo : NSObject
-
-@property(nonatomic, assign)CGFloat alpha;
-@property(nonatomic, assign)CGFloat penWidth;
-
-@property(nonatomic, assign)ItemType penType;
-@property(nonatomic, assign)ShapeType shapeType;
-@property(nonatomic, assign)TouchActionType touchType;
-
-@property(nonatomic, retain)DrawColor *penColor;
-@property(nonatomic, retain)DrawColor *bgColor;
-@property(nonatomic, retain)Shadow *shadow;
-
-@property(nonatomic, assign) BOOL strokeShape;
-
-
-
-@end
-
+#import "DrawInfo.h"
+#import "DrawProcessProtocol.h"
 
 
 @class CacheDrawManager;
 @class DrawAction;
+@class ClipAction;
+@class PPStack;
 
-@interface DrawLayer : CALayer
+@interface DrawLayer : CALayer<DrawProcessProtocol>
 {
-    
+
 }
 
+
+
+- (id)initWithFrame:(CGRect)frame
+           drawInfo:(DrawInfo *)drawInfo
+                tag:(NSUInteger)tag
+               name:(NSString *)name
+        suportCache:(BOOL)supporCache;
 
 @property(nonatomic, retain)DrawInfo *drawInfo;
 @property(nonatomic, retain)CacheDrawManager *cdManager;
 @property(nonatomic, retain)NSMutableArray *drawActionList;
 @property(nonatomic, retain)NSString *layerName;
+@property(nonatomic, assign)ClipAction *clipAction;
 
 @property(nonatomic, assign)NSUInteger layerTag;
-@property(nonatomic, assign)BOOL supportCache;
-//@property(nonatomic, assign)DrawAction *lastAction;
+@property(nonatomic, readonly)BOOL supportCache;
+@property(nonatomic, assign)BOOL grid;
 
-- (void)addDrawAction:(DrawAction *)action show:(BOOL)show;
-- (void)updateLastAction:(DrawAction *)action refresh:(BOOL)refresh;
-- (void)finishLastAction;
 
+- (void)reset;
+- (void)updateWithDrawActions:(NSArray *)actionList;
+- (DrawAction *)lastAction;
+
+- (void)updatePBLayerC:(Game__PBLayer *)layer;
+
+
+- (void)showCleanDataInContext:(CGContextRef)ctx;
+
++ (NSArray *)defaultLayersWithFrame:(CGRect)frame;
++ (NSArray *)defaultOldLayersWithFrame:(CGRect)frame;
++ (DrawLayer *)layerFromPBLayerC:(Game__PBLayer *)layer;
++ (NSMutableArray *)layersFromPBLayers:(Game__PBLayer **)layers number:(int)number;
 
 
 @end

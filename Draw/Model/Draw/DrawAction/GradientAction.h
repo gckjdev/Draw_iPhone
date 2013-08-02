@@ -39,6 +39,8 @@
 
 - (void)setDegree:(CGFloat)degree;
 
+- (void)updatePointsWithDegreeAndDivision;
+
 - (id)initWithDegree:(CGFloat)degree
           startColor:(DrawColor *)sc
             endColor:(DrawColor *)ec
@@ -56,5 +58,5 @@
 }
 @property(nonatomic, retain) Gradient *gradient;
 - (id)initWithGradient:(Gradient *)gradient;
-
++ (GradientAction *)actionWithGradient:(Gradient *)gradient;
 @end

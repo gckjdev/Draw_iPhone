@@ -7,14 +7,15 @@
 //
 
 #import "ShowCopyPaintCommand.h"
+#import "OfflineDrawViewController.h"
 
 @implementation ShowCopyPaintCommand
 
 - (BOOL)execute
 {
     if ([self canUseItem:self.itemType]) {
-        [self sendAnalyticsReport];
-        [self.toolHandler handleShowCopyPaint];
+        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+        [oc showCopyPaint];
         return YES;
     }
     return NO;

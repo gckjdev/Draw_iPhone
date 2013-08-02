@@ -65,9 +65,7 @@
             [self reset];
             //new and show color view and show it in the super view
             _tempBitmapContext = [self.drawView createBitmapContext];
-            
-//            CGContextScaleCTM(_tempBitmapContext, 1, -1);
-//            CGContextTranslateCTM(_tempBitmapContext, 1, - self.drawView.bounds.size.height);
+
             
             DrawColor *color = [self colorAtPoint:point inContext:_tempBitmapContext];
             _strawView = [StrawView strawViewWithColor:color.color];

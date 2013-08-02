@@ -8,7 +8,7 @@
 
 #import "DrawUtils.h"
 #import "DrawColor.h"
-
+#import "Draw.pb-c.h"
 
 @implementation DrawUtils
 

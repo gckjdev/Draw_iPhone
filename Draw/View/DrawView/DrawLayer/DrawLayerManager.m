@@ -9,7 +9,7 @@
 #import "DrawLayerManager.h"
 
 #import "DrawLayer.h"
-
+#import "DrawAction.h"
 
 @interface DrawLayerManager()
 {
@@ -27,7 +27,7 @@
 {
     self = [super init];
     if (self) {
-        _layerList = [[NSMutableArray alloc] initWithCapacity:5];
+        _layerList = [[NSMutableArray array] retain];
         self.view = view;
     }
     
@@ -45,6 +45,7 @@
 
 - (void)addLayer:(DrawLayer *)layer
 {
+    PPDebug(@"<addLayer> layer name = %@", layer.layerName);
     if (layer && ![_layerList containsObject:layer]) {
         [_layerList addObject:layer];
         [self.view.layer addSublayer:layer];
@@ -58,13 +59,27 @@
         [layer removeFromSuperlayer];
     }
 }
-- (DrawLayer *)addLayerWithTag:(NSUInteger)tag
+- (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name
 {
     DrawLayer *layer = [[[DrawLayer alloc] init] autorelease];
     layer.layerTag = [self nextTag];
+    layer.layerName = name;
     layer.frame = self.view.bounds;
     [self addLayer:layer];
     return layer;
+}
+
+- (DrawLayer *)layerWithTag:(NSUInteger)tag
+{
+    if (self.selectedLayer.layerTag == tag) {
+        return self.selectedLayer;
+    }
+    for (DrawLayer *layer in _layerList) {
+        if(layer.layerTag == tag){
+            return layer;
+        }
+    }
+    return self.selectedLayer;
 }
 
 - (void)removeLayerWithTag:(NSUInteger)tag
@@ -124,6 +139,7 @@
     }
     for (DrawLayer *layer in _layerList) {
         [_view.layer addSublayer:layer];
+        [layer setNeedsDisplay];
     }
 }
 
@@ -134,6 +150,123 @@
     [super dealloc];
 }
 
+- (void)resetAllLayers
+{
+    for (DrawLayer *layer in _layerList) {
+        [layer reset];
+    }
+}
+
+- (void)refresh
+{
+    for (DrawLayer *layer in _layerList) {
+        [layer setNeedsDisplay];
+    }
+}
+
+
+- (NSArray *)layers
+{
+    return [[_layerList retain] autorelease];
+}
+
+- (void)arrangeActions:(NSArray *)actions
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:[_layerList count]];
+    for (DrawLayer *layer in _layerList) {
+        [dict setObject:[NSMutableArray array] forKey:@(layer.layerTag)];
+    }
+    for (DrawAction *action in actions) {
+        NSMutableArray *array = [dict objectForKey:@(action.layerTag)];
+        [array addObject:action];
+    }
+    for (DrawLayer *layer in _layerList) {
+        [layer reset];
+        NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
+        [layer updateWithDrawActions:array];
+        [layer setNeedsDisplay];
+    }
+}
+
+//start to add a new draw action
+- (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
+{
+    DrawLayer *layer = [self layerWithTag:drawAction.layerTag];
+    [layer addDrawAction:drawAction show:show];
+}
+
+//update the last action
+- (void)updateLastAction:(DrawAction *)action refresh:(BOOL)refresh
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    [layer updateLastAction:action refresh:refresh];
+}
+
+//finish update the last action
+- (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    [layer finishLastAction:action refresh:refresh];
+}
+
+//remove the last action force to refresh
+- (void)cancelLastAction
+{
+    DrawLayer *layer = [self selectedLayer];
+    [layer cancelLastAction];
+}
+
+- (DrawAction *)undoDrawAction:(DrawAction *)action
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    return [layer undoDrawAction:action];
+}
+
+- (DrawAction *)redoDrawAction:(DrawAction *)action
+{
+    DrawLayer *layer = [self layerWithTag:action.layerTag];
+    return [layer redoDrawAction:action];
+}
+
+- (void)enterClipMode:(ClipAction *)clipAction
+{
+    [self.selectedLayer enterClipMode:clipAction];
+}
+- (void)exitFromClipMode
+{
+    [self.selectedLayer exitFromClipMode];
+}
+
+- (void)updateLayers:(NSArray *)layers
+{
+    for (DrawLayer *layer in _layerList) {
+        [layer removeFromSuperlayer];
+    }
+    
+    [_layerList removeAllObjects];
+    
+    for (DrawLayer *layer in layers) {
+        [self addLayer:layer];
+        [self setSelectedLayer:layer];
+    }
+}
+
+- (UIImage *)createImage
+{
+    UIImage *image;
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    [[UIColor whiteColor] setFill];
+    CGContextFillRect(ctx, self.view.bounds);
+
+    for (DrawLayer *layer in _layerList) {
+        [layer showCleanDataInContext:ctx];
+    }
+    
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 
 @end
 

@@ -13,6 +13,7 @@
 #import "MKBlockActionSheet.h"
 #import "ChangeAvatar.h"
 #import "SDWebImageManager.h"
+#import "OfflineDrawViewController.h"
 
 @interface CopyPaintCommand ()
 @property (retain, nonatomic) UIPopoverController* popoverController;
@@ -29,22 +30,15 @@
 }
 
 -(void)sendAnalyticsReport{
-//    AnalyticsReport(DRAW_CLICK_CHANGE_DRAWTOUSER);
+    
 }
 
-
-//- (void)changeTargetFriend:(MyFriend *)aFriend
-//{
-//    if (aFriend) {
-//        [self.toolHandler changeDrawToFriend:aFriend];
-//        [self.toolPanel updateDrawToUser:aFriend];
-//    }
-//}
 
 - (void)changeCopyPaint:(UIImage*)photo
 {
     if (photo) {
-        [self.toolHandler changeCopyPaint:photo];
+        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+        [oc setCopyPaintImage:photo];
         if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
             [(DrawToolUpPanel*)self.toolPanel updateCopyPaint:photo];
         }
@@ -54,18 +48,12 @@
     
 }
 
-//- (void)friendController:(FriendController *)controller
-//         didSelectFriend:(MyFriend *)aFriend
-//{
-//    [self changeTargetFriend:aFriend];
-//    [controller.navigationController popViewControllerAnimated:YES];
-//}
-
 - (void)didGalleryController:(GalleryController *)galleryController SelectedUserPhoto:(PBUserPhoto *)userPhoto
 {
     __block CopyPaintCommand* cp = self;
     [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:userPhoto.url] delegate:self options:0 success:^(UIImage *image, BOOL cached) {
-        [cp.toolHandler changeCopyPaint:image];
+        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+        [oc setCopyPaintImage:image];
         if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
             [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
         }
@@ -78,10 +66,7 @@
 
 - (BOOL)execute
 {
-    //TODO enter MyFriendController and select the friend
-    
     if ([self canUseItem:self.itemType]) {
-        [self sendAnalyticsReport];
         [self showSelection];
         return YES;
     }
@@ -127,7 +112,8 @@ enum {
     [self.imagePicker showSelectionView:superController
                                delegate:nil
                      selectedImageBlock:^(UIImage *image) {
-                         [cp.toolHandler changeCopyPaint:image];
+                         OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+                         [oc setCopyPaintImage:image];
                          if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
                              [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
                          }
@@ -141,24 +127,5 @@ enum {
                            canTakePhoto:NO
                       userOriginalImage:YES];
 }
-//
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
-//{
-//    [self.toolHandler changeCopyPaint:image];
-//    if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
-//        [(DrawToolUpPanel*)self.toolPanel updateCopyPaint:image];
-//    }
-//    if (_popoverController != nil) {
-//        [_popoverController dismissPopoverAnimated:YES];
-//    }else{
-//        [picker dismissModalViewControllerAnimated:YES];
-//    }
-//}
-//
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-//{
-//    [picker.presentingViewController dismissModalViewControllerAnimated:YES];
-//}
-
 
 @end

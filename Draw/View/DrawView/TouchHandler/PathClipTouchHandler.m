@@ -29,30 +29,30 @@
     [super dealloc];
 }
 
+- (ClipAction *)createDrawAction
+{
+    if (action == nil) {
+        if (action == nil) {            
+            Paint *currentPaint = [Paint paintWithWidth:STROKE_WIDTH
+                                                  color:[DrawColor grayColor]
+                                                penType:Pencil
+                                              pointList:nil];
+            
+            action = [[ClipAction clipActionWithPaint:currentPaint] retain];
+        }
+    }
+    return action;
+}
+
 - (void)addPoint:(CGPoint)point
 {
     if (handleFailed) {
         return;
     }
-    Paint *currentPaint = nil;
-    if (action == nil) {
-        currentPaint = [Paint paintWithWidth:self.drawView.lineWidth
-                                       color:self.drawView.lineColor
-                                     penType:self.drawView.penType
-                                   pointList:nil];
-        
-        action = [[ClipAction clipActionWithPaint:currentPaint] retain];
-    }
+    action = (id)[self createDrawAction];
     [action addPoint:point inRect:self.drawView.bounds];
-    [self.cdManager startClipAction:action];
-    [self.drawView updateLastAction:action show:YES];
-    
 }
 
-- (void)addAction:(DrawAction *)drawAction
-{
-    [self.drawView addDrawAction:drawAction];
-}
 
 
 - (void)reset
@@ -65,18 +65,8 @@
 {
     currentState = TouchStateEnd;
     [action finishAddPoint];
-    [self addAction:action];
-    BOOL needRedraw = [self.cdManager finishDrawAction:action];
-    
-    if (needRedraw) {
-        [self.drawView setNeedsDisplay];
-    }else{
-        [self.drawView setNeedsDisplayInRect:[action redrawRectInRect:self.drawView.bounds]];
-    }
-    
-    if (action) {
-        [self.drawView clearRedoStack];
-    }
+    [self.drawView finishLastAction:action refresh:YES];
+//    [self.drawView addDrawAction:action show:YES];
     [self reset];
 }
 
@@ -88,17 +78,20 @@
         {
             handleFailed = NO;
             [self addPoint:point];
+            [self.drawView addDrawAction:action show:YES];
             break;
         }
         case TouchStateMove:
         {
             [self addPoint:point];
+            [self.drawView updateLastAction:action refresh:YES];            
             break;
         }
         case TouchStateEnd:
         case TouchStateCancel:
         {
             [self finishAddPoints];
+            [self.drawView finishLastAction:action refresh:YES];
             break;
         }
         default:
@@ -110,15 +103,11 @@
 
 - (void)handleFailTouch
 {
-    if ([action pointCount] >= FORCE_END_POINT_COUNT_WHEN_CANCEL) {
-        [self finishAddPoints];
-        return;
-    }
     [super handleFailTouch];
+    if (action) {
+        [self.drawView cancelLastAction];
+    }
     [self reset];
-    //    [self.osManager cancelLastAction];
-    [self.cdManager cancelLastAction];
-    [self.drawView setNeedsDisplay];
 }
 
 

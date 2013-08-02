@@ -355,7 +355,6 @@
 		A461B16B174CBAA70088B061 /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		A461B171174CBAA70088B061 /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		A461B172174CBAA70088B061 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		A461B173174CBAA70088B061 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		A461B174174CBAA70088B061 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		A461B175174CBAA70088B061 /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		A461B176174CBAA70088B061 /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -722,7 +721,6 @@
 		A461B367174CBAA70088B061 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		A461B36A174CBAA70088B061 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		A461B36B174CBAA70088B061 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		A461B36C174CBAA70088B061 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		A461B36D174CBAA70088B061 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		A461B36E174CBAA70088B061 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		A461B36F174CBAA70088B061 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -1378,9 +1376,6 @@
 		A461B666174CBAA70088B061 /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		A461B667174CBAA70088B061 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		A461B669174CBAA70088B061 /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		A461B66A174CBAA70088B061 /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		A461B66B174CBAA70088B061 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		A461B66C174CBAA70088B061 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		A461B66D174CBAA70088B061 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		A461B66E174CBAA70088B061 /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -2618,7 +2613,6 @@
 		C28A9A581738F04B007A819F /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
 		C28A9A591738F04B007A819F /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		C28A9A5A1738F04B007A819F /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		C28A9A5B1738F04B007A819F /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		C28A9A5C1738F04B007A819F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		C28A9A5D1738F04B007A819F /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		C28A9A5E1738F04B007A819F /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -2986,7 +2980,6 @@
 		C28A9C4F1738F04B007A819F /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		C28A9C521738F04B007A819F /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		C28A9C531738F04B007A819F /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		C28A9C541738F04B007A819F /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		C28A9C551738F04B007A819F /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		C28A9C561738F04B007A819F /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		C28A9C571738F04B007A819F /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -3649,9 +3642,6 @@
 		C28A9F481738F04B007A819F /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		C28A9F491738F04B007A819F /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		C28A9F4B1738F04B007A819F /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		C28A9F4C1738F04B007A819F /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		C28A9F4D1738F04B007A819F /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		C28A9F4E1738F04B007A819F /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		C28A9F4F1738F04B007A819F /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		C28A9F501738F04B007A819F /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -4777,9 +4767,6 @@
 		CA5328F916A3E1E000E9E96B /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DD16A3E1E000E9E96B /* ColorPoint.m */; };
 		CA5328FD16A3E1E000E9E96B /* DrawSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DF16A3E1E000E9E96B /* DrawSlider.m */; };
 		CA53290116A3E1E000E9E96B /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */; };
-		CA53290516A3E1E000E9E96B /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		CA53290916A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		CA53290D16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		CA53291116A3E1E000E9E96B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E616A3E1E000E9E96B /* Palette.m */; };
 		CA53291516A3E1E000E9E96B /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		CA53291916A3E1E000E9E96B /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
@@ -5445,7 +5432,6 @@
 		CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
 		CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
 		CAD083001676E124007B6B65 /* DrawHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */; };
-		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD8EE9D173A9CCD0048333D /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE87173A9CCC0048333D /* DrawDefault-568h@2x.png */; };
 		CAD8EE9F173A9CCD0048333D /* DrawDefault-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE8B173A9CCC0048333D /* DrawDefault-Portrait.png */; };
 		CAD8EEA0173A9CCD0048333D /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE8D173A9CCC0048333D /* DrawDefault@2x.png */; };
@@ -5520,7 +5506,6 @@
 		CAEFC48D16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */; };
 		CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		CAEFC4F016FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
-		CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -5542,6 +5527,14 @@
 		CAF0DB5B17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF0DB5217019AED009FE646 /* CanvasRectBox~ipad.xib */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		CAF4897417AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897517AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897617AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897717AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
+		CAF4897A17AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
+		CAF4897B17AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
+		CAF4897C17AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
 		CAF7DC9D17685238001596C0 /* ShapeGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7DC9C17685238001596C0 /* ShapeGroup.m */; };
 		CAF7DCAA17685238001596C0 /* ShapeGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7DC9C17685238001596C0 /* ShapeGroup.m */; };
 		CAF7DCAD17685238001596C0 /* ShapeGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7DC9C17685238001596C0 /* ShapeGroup.m */; };
@@ -5899,7 +5892,6 @@
 		EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		EA411905176066F500DA72D0 /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		EA411907176066F500DA72D0 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		EA411908176066F500DA72D0 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		EA411909176066F500DA72D0 /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		EA41190A176066F500DA72D0 /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -6266,7 +6258,6 @@
 		EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		EA411AA6176066F500DA72D0 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		EA411AA7176066F500DA72D0 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		EA411AA8176066F500DA72D0 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		EA411AA9176066F500DA72D0 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		EA411AAA176066F500DA72D0 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -6952,9 +6943,6 @@
 		EA411D90176066F500DA72D0 /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		EA411D93176066F500DA72D0 /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		EA411D94176066F500DA72D0 /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		EA411D95176066F500DA72D0 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		EA411D96176066F500DA72D0 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		EA411D97176066F500DA72D0 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		EA411D98176066F500DA72D0 /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -9453,9 +9441,6 @@
 		CA5328DF16A3E1E000E9E96B /* DrawSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSlider.m; sourceTree = "<group>"; };
 		CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawToolPanel.h; sourceTree = "<group>"; };
 		CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToolPanel.m; sourceTree = "<group>"; };
-		CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel.xib; sourceTree = "<group>"; };
-		CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel_ip5.xib; sourceTree = "<group>"; };
-		CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawToolPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA5328E516A3E1E000E9E96B /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		CA5328E616A3E1E000E9E96B /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
 		CA5328E716A3E1E000E9E96B /* Palette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Palette.xib; sourceTree = "<group>"; };
@@ -10134,8 +10119,6 @@
 		CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
-		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
-		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
 		CAD8EE87173A9CCC0048333D /* DrawDefault-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DrawDefault-568h@2x.png"; sourceTree = "<group>"; };
 		CAD8EE8C173A9CCC0048333D /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "DrawDefault-Portrait.png"; sourceTree = "<group>"; };
 		CAD8EE8E173A9CCC0048333D /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "DrawDefault@2x.png"; sourceTree = "<group>"; };
@@ -10242,8 +10225,6 @@
 		CAEFC49D16FD64DB00D799B7 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
 		CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeInfo.m; sourceTree = "<group>"; };
 		CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_canvas_bg@2x.png"; sourceTree = "<group>"; };
-		CAEFC52F1700002F00D799B7 /* ToolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHandler.h; sourceTree = "<group>"; };
-		CAEFC5301700002F00D799B7 /* ToolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolHandler.m; sourceTree = "<group>"; };
 		CAEFC5351700005400D799B7 /* ToolCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolCommand.h; sourceTree = "<group>"; };
 		CAEFC5361700005400D799B7 /* ToolCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolCommand.m; sourceTree = "<group>"; };
 		CAEFC5411700024100D799B7 /* AddColorCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddColorCommand.h; sourceTree = "<group>"; };
@@ -10284,6 +10265,10 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		CAF4897117AA6D4400F015AB /* DrawInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfo.h; sourceTree = "<group>"; };
+		CAF4897217AA6D4400F015AB /* DrawInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfo.m; sourceTree = "<group>"; };
+		CAF4897317AA6D4400F015AB /* DrawProcessProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawProcessProtocol.h; sourceTree = "<group>"; };
+		CAF4897817AA736900F015AB /* ToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolPanel.xib; sourceTree = "<group>"; };
 		CAF7DC9B17685238001596C0 /* ShapeGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeGroup.h; sourceTree = "<group>"; };
 		CAF7DC9C17685238001596C0 /* ShapeGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeGroup.m; sourceTree = "<group>"; };
 		CAF7E82716BB662B00F09584 /* WidthBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidthBox.h; sourceTree = "<group>"; };
@@ -14089,7 +14074,6 @@
 			isa = PBXGroup;
 			children = (
 				CAEFC52D1700002F00D799B7 /* ToolCommand */,
-				CAEFC52E1700002F00D799B7 /* ToolHandler */,
 				CA5328D716A3E1E000E9E96B /* Tool */,
 				CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */,
 				CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */,
@@ -14320,8 +14304,6 @@
 				CA48588816E19D4500AEE725 /* DrawBg */,
 				CAE9AA3F16D71D42008392F9 /* DrawPen */,
 				CAF9B70D16AA3C4200865CCE /* PenEffect */,
-				CAD6EACD15805D780004A483 /* DrawManager.h */,
-				CAD6EACE15805D780004A483 /* DrawManager.m */,
 				A3C129E31563A70E00C021A7 /* Draw.h */,
 				A3C129E41563A70E00C021A7 /* Draw.m */,
 				CA1041E91509B99A00F60C03 /* Paint.h */,
@@ -15071,6 +15053,9 @@
 		CA4FB81A179E23E600A57387 /* DrawLayer */ = {
 			isa = PBXGroup;
 			children = (
+				CAF4897117AA6D4400F015AB /* DrawInfo.h */,
+				CAF4897217AA6D4400F015AB /* DrawInfo.m */,
+				CAF4897317AA6D4400F015AB /* DrawProcessProtocol.h */,
 				CA4FB820179E240B00A57387 /* DrawLayer.h */,
 				CA4FB821179E240B00A57387 /* DrawLayer.m */,
 				CA4FB827179E24A100A57387 /* DrawLayerManager.h */,
@@ -15132,10 +15117,8 @@
 				CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */,
 				CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */,
 				CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */,
-				CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */,
-				CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */,
-				CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */,
 				C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */,
+				CAF4897817AA736900F015AB /* ToolPanel.xib */,
 				C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */,
 				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
 				C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */,
@@ -17125,15 +17108,6 @@
 			path = ToolCommand;
 			sourceTree = "<group>";
 		};
-		CAEFC52E1700002F00D799B7 /* ToolHandler */ = {
-			isa = PBXGroup;
-			children = (
-				CAEFC52F1700002F00D799B7 /* ToolHandler.h */,
-				CAEFC5301700002F00D799B7 /* ToolHandler.m */,
-			);
-			path = ToolHandler;
-			sourceTree = "<group>";
-		};
 		CAF9B70D16AA3C4200865CCE /* PenEffect */ = {
 			isa = PBXGroup;
 			children = (
@@ -18534,9 +18508,6 @@
 				A461B666174CBAA70088B061 /* shop_item_palette@2x.png in Resources */,
 				A461B667174CBAA70088B061 /* ColorBox.xib in Resources */,
 				A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */,
-				A461B669174CBAA70088B061 /* DrawToolPanel.xib in Resources */,
-				A461B66A174CBAA70088B061 /* DrawToolPanel_ip5.xib in Resources */,
-				A461B66B174CBAA70088B061 /* DrawToolPanel~ipad.xib in Resources */,
 				A461B66C174CBAA70088B061 /* Palette.xib in Resources */,
 				A461B66D174CBAA70088B061 /* Palette~ipad.xib in Resources */,
 				A461B66E174CBAA70088B061 /* PenBox.xib in Resources */,
@@ -19021,6 +18992,7 @@
 				CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03B17A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				CAF4897B17AA736900F015AB /* ToolPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19584,9 +19556,6 @@
 				C28A9F481738F04B007A819F /* shop_item_palette@2x.png in Resources */,
 				C28A9F491738F04B007A819F /* ColorBox.xib in Resources */,
 				C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */,
-				C28A9F4B1738F04B007A819F /* DrawToolPanel.xib in Resources */,
-				C28A9F4C1738F04B007A819F /* DrawToolPanel_ip5.xib in Resources */,
-				C28A9F4D1738F04B007A819F /* DrawToolPanel~ipad.xib in Resources */,
 				C28A9F4E1738F04B007A819F /* Palette.xib in Resources */,
 				C28A9F4F1738F04B007A819F /* Palette~ipad.xib in Resources */,
 				C28A9F501738F04B007A819F /* PenBox.xib in Resources */,
@@ -20066,6 +20035,7 @@
 				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				CAF4897A17AA736900F015AB /* ToolPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20633,9 +20603,6 @@
 				C297BFE1169ED04500E00258 /* shop_item_palette@2x.png in Resources */,
 				CA5328F116A3E1E000E9E96B /* ColorBox.xib in Resources */,
 				CA5328F516A3E1E000E9E96B /* ColorBox~ipad.xib in Resources */,
-				CA53290516A3E1E000E9E96B /* DrawToolPanel.xib in Resources */,
-				CA53290916A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */,
-				CA53290D16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */,
 				CA53291516A3E1E000E9E96B /* Palette.xib in Resources */,
 				CA53291916A3E1E000E9E96B /* Palette~ipad.xib in Resources */,
 				CA53292116A3E1E000E9E96B /* PenBox.xib in Resources */,
@@ -21100,6 +21067,7 @@
 				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21653,9 +21621,6 @@
 				EA411D90176066F500DA72D0 /* shop_item_palette@2x.png in Resources */,
 				EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */,
 				EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */,
-				EA411D93176066F500DA72D0 /* DrawToolPanel.xib in Resources */,
-				EA411D94176066F500DA72D0 /* DrawToolPanel_ip5.xib in Resources */,
-				EA411D95176066F500DA72D0 /* DrawToolPanel~ipad.xib in Resources */,
 				EA411D96176066F500DA72D0 /* Palette.xib in Resources */,
 				EA411D97176066F500DA72D0 /* Palette~ipad.xib in Resources */,
 				EA411D98176066F500DA72D0 /* PenBox.xib in Resources */,
@@ -22055,6 +22020,7 @@
 				CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03C17A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				CAF4897C17AA736900F015AB /* ToolPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22293,7 +22259,6 @@
 				A461B16B174CBAA70088B061 /* CustomWord.m in Sources */,
 				A461B171174CBAA70088B061 /* MyWordsController.m in Sources */,
 				A461B172174CBAA70088B061 /* SelectCustomWordView.m in Sources */,
-				A461B173174CBAA70088B061 /* DrawManager.m in Sources */,
 				A461B174174CBAA70088B061 /* ChatCell.m in Sources */,
 				A461B175174CBAA70088B061 /* ChatDetailController.m in Sources */,
 				A461B176174CBAA70088B061 /* ChatListController.m in Sources */,
@@ -22660,7 +22625,6 @@
 				A461B367174CBAA70088B061 /* ShapeInfo.m in Sources */,
 				A461B36A174CBAA70088B061 /* SNSUtils.m in Sources */,
 				A461B36B174CBAA70088B061 /* CustomSegmentedControl.m in Sources */,
-				A461B36C174CBAA70088B061 /* ToolHandler.m in Sources */,
 				A461B36D174CBAA70088B061 /* ToolCommand.m in Sources */,
 				A461B36E174CBAA70088B061 /* AddColorCommand.m in Sources */,
 				A461B36F174CBAA70088B061 /* PaletteCommand.m in Sources */,
@@ -22874,6 +22838,7 @@
 				A4C9E03717A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05417A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				CAF4897617AA6D4500F015AB /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23113,7 +23078,6 @@
 				C28A9A581738F04B007A819F /* OfflineGuessDrawController.m in Sources */,
 				C28A9A591738F04B007A819F /* MyWordsController.m in Sources */,
 				C28A9A5A1738F04B007A819F /* SelectCustomWordView.m in Sources */,
-				C28A9A5B1738F04B007A819F /* DrawManager.m in Sources */,
 				C28A9A5C1738F04B007A819F /* ChatCell.m in Sources */,
 				C28A9A5D1738F04B007A819F /* ChatDetailController.m in Sources */,
 				C28A9A5E1738F04B007A819F /* ChatListController.m in Sources */,
@@ -23481,7 +23445,6 @@
 				C28A9C4F1738F04B007A819F /* ShapeInfo.m in Sources */,
 				C28A9C521738F04B007A819F /* SNSUtils.m in Sources */,
 				C28A9C531738F04B007A819F /* CustomSegmentedControl.m in Sources */,
-				C28A9C541738F04B007A819F /* ToolHandler.m in Sources */,
 				C28A9C551738F04B007A819F /* ToolCommand.m in Sources */,
 				C28A9C561738F04B007A819F /* AddColorCommand.m in Sources */,
 				C28A9C571738F04B007A819F /* PaletteCommand.m in Sources */,
@@ -23664,6 +23627,7 @@
 				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
 				A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05317A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				CAF4897517AA6D4500F015AB /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23905,7 +23869,6 @@
 				CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */,
 				A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */,
 				A31B5EF5157E1BE8003DDBF1 /* SelectCustomWordView.m in Sources */,
-				CAD6EACF15805D780004A483 /* DrawManager.m in Sources */,
 				A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */,
 				A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */,
 				A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */,
@@ -24273,7 +24236,6 @@
 				CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				C2D6B09616FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
-				CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */,
 				CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */,
@@ -24462,6 +24424,7 @@
 				A4C9E03517A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04917A61E8000DE982F /* KxMenu.m in Sources */,
 				A4C9E05217A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				CAF4897417AA6D4500F015AB /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24697,7 +24660,6 @@
 				EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */,
 				EA411905176066F500DA72D0 /* MyWordsController.m in Sources */,
 				EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */,
-				EA411907176066F500DA72D0 /* DrawManager.m in Sources */,
 				EA411908176066F500DA72D0 /* ChatCell.m in Sources */,
 				EA411909176066F500DA72D0 /* ChatDetailController.m in Sources */,
 				EA41190A176066F500DA72D0 /* ChatListController.m in Sources */,
@@ -25064,7 +25026,6 @@
 				EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */,
 				EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */,
 				EA411AA6176066F500DA72D0 /* CustomSegmentedControl.m in Sources */,
-				EA411AA7176066F500DA72D0 /* ToolHandler.m in Sources */,
 				EA411AA8176066F500DA72D0 /* ToolCommand.m in Sources */,
 				EA411AA9176066F500DA72D0 /* AddColorCommand.m in Sources */,
 				EA411AAA176066F500DA72D0 /* PaletteCommand.m in Sources */,
@@ -25232,6 +25193,7 @@
 				A4C9E03817A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04817A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05517A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				CAF4897717AA6D4500F015AB /* DrawInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -130,20 +130,15 @@ drawActionList:(NSArray*)drawActionList
 
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
-        /*
-        PBNoCompressDrawData *drawData = [DrawAction pbNoCompressDrawDataFromDrawActionList:arrayList
-                                                                                       size:cp.canvasSize
-                                                                                 drawToUser:cp.drawToUser bgImageFileName:cp.currentPaint.bgImageName];
-        
-        NSData* data = [drawData data];
-         */
         
         // TODO check difference of two methods
         NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:arrayList
                                                                       size:cp.canvasSize
                                                                   opusDesc:nil
                                                                 drawToUser:cp.drawToUser
-                                                           bgImageFileName:cp.currentPaint.bgImageName];
+                                                           bgImageFileName:cp.currentPaint.bgImageName
+                                                                    layers:cp.layers];
+                        
 
         PPDebug(@"<backup> file path=%@", dataPath);
         

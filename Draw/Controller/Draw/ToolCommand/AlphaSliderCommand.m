@@ -83,7 +83,8 @@
     }
     
     [[self superScrollView] setClipsToBounds:YES];
-    [self.toolHandler changeAlpha:value];
+    [self.drawInfo setAlpha:value];
+    [self updateToolPanel];
     
     [drawSlider.contentView removeFromSuperview];
     [drawSlider dismissPopupView];

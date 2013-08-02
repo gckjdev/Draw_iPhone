@@ -214,5 +214,10 @@
     return rect;
 }
 
++ (GradientAction *)actionWithGradient:(Gradient *)gradient
+{
+    GradientAction *action = [[[GradientAction alloc] initWithGradient:gradient] autorelease];
+    return action;
+}
 
 @end

@@ -12,7 +12,9 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler handleUndo];
+    [self sendAnalyticsReport];
+    [self.drawView undo];
+    [self updateToolPanel];
     return YES;
 }
 -(void)sendAnalyticsReport{

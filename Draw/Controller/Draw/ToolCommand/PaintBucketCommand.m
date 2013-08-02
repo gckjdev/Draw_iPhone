@@ -14,20 +14,21 @@
 
 - (void)changeBG
 {
-    [self becomeActive];
-    [self.toolHandler usePaintBucket];
-    if (self.toolHandler.touchActionType == TouchActionTypeShape) {
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
+    DrawColor *color = [DrawColor colorWithColor:self.drawInfo.penColor];
+    [color setAlpha:1];
+    ChangeBackAction *bgAction = [ChangeBackAction actionWithColor:color];
+    [self.drawView addDrawAction:bgAction show:YES];
+    [self.drawView finishLastAction:bgAction refresh:NO];
+    
+    [self sendAnalyticsReport];
 }
 
 
 - (BOOL)execute
 {
-    DrawAction *lastDrawAction = [self.toolHandler.drawView lastAction];
-    if (lastDrawAction && ![lastDrawAction isKindOfClass:[ChangeBackAction class]] && !self.toolHandler.drawView.currentClip) {
+    DrawAction *lastDrawAction = [self.drawView lastAction];
+    
+    if (lastDrawAction && ![lastDrawAction isChangeBGAction] && ![lastDrawAction isClipAction]) {
         [[CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
                                       style:CommonDialogStyleDoubleButton
                                    delegate:nil

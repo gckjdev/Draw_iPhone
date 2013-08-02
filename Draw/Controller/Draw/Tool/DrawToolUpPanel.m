@@ -100,13 +100,9 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 - (void)registerToolCommands
 {
     toolCmdManager = [ToolCommandManager defaultManager];
-//    _commandVersion = [toolCmdManager createVersion];
-//    [toolCmdManager setVersion:_commandVersion];
-//    [toolCmdManager removeAllCommand:_commandVersion];
+    
     
     ToolCommand *command;
-
-    
 
     ADD_COMMAND(command, DrawBgCommand, self.drawBg, ItemTypeNo);
     ADD_COMMAND(command, CanvasSizeCommand, self.canvasSize, ItemTypeNo);
@@ -117,22 +113,26 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     ADD_COMMAND(command, CopyPaintCommand, self.copyPaintPicker, ItemTypeCopyPaint);
     ADD_COMMAND(command, ShowCopyPaintCommand, self.copyPaint, ItemTypeCopyPaint);
     
-    [toolCmdManager updateHandler:self.toolHandler];
-
+    [toolCmdManager updateDrawInfo:self.drawView.drawInfo];
+    [toolCmdManager updateDrawView:self.drawView];
     
-    [self.toolHandler enterDrawMode];
 }
 
-+ (id)createViewWithdToolHandler:(ToolHandler *)handler
+- (void)updateWithDrawInfo:(DrawInfo *)drawInfo
 {
-    DrawToolUpPanel *panel = nil;
-    panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
-    panel.toolHandler = handler;
-    handler.DrawToolUpPanel = panel;
-    panel.hidden = YES;
-    [panel updateView];
-    return panel;
+
 }
+
++ (id)createViewWithDrawView:(DrawView *)drawView
+{
+    DrawToolUpPanel *panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
+    panel.drawView = drawView;
+    [panel updateView];
+    [panel updateWithDrawInfo:drawView.drawInfo];
+    return panel;
+    
+}
+
 
 - (void)updateDrawToUser:(MyFriend *)user
 {
@@ -164,7 +164,8 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 }
 - (IBAction)clickTool:(id)sender
 {
-    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+//    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
+    [toolCmdManager hideAllPopTipViews];
     [[toolCmdManager commandForControl:sender] execute];
     
     if (sender != self.canvasSize) {

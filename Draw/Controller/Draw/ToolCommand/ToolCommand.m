@@ -109,15 +109,6 @@
     [self.popTipView dismissAnimated:YES];
     self.popTipView = nil;
 }
-- (void)finish
-{
-    [self hidePopTipView];
-}
-
-- (void)becomeActive
-{
-    [[ToolCommandManager defaultManager] makeCommanActive:self];
-}
 
 //need to be override by the sub classes
 - (UIView *)contentView
@@ -140,6 +131,11 @@
 {
     self.popTipView = nil;
     _showing = NO;
+}
+
+- (void)updateToolPanel
+{
+    [self.toolPanel updateWithDrawInfo:self.drawInfo];
 }
 
 @end
@@ -233,20 +229,11 @@ NSUInteger _ManagerVersion = 1;
     }
 }
 
-- (void)makeCommanActive:(ToolCommand *)command
-{
-    for (ToolCommand *command1 in commandList) {
-        if (command != command1) {
-            [command1 hidePopTipView];
-        }
-    }
-}
-
-- (void)updateHandler:(ToolHandler *)handler
+- (void)updateDrawInfo:(DrawInfo *)drawInfo
 {
     for (ToolCommand *command in commandList) {
-        [command setToolHandler:handler];
-    }
+        [command setDrawInfo:drawInfo];
+    }    
 }
 
 - (void)updatePanel:(DrawToolPanel *)panel
@@ -254,6 +241,13 @@ NSUInteger _ManagerVersion = 1;
     for (ToolCommand *command in commandList) {
         [command setToolPanel:panel];
     }
+}
+
+- (void)updateDrawView:(DrawView *)drawView
+{
+    for (ToolCommand *command in commandList) {
+        [command setDrawView:drawView];
+    }    
 }
 
 - (BOOL)isPaletteShowing
@@ -264,17 +258,6 @@ NSUInteger _ManagerVersion = 1;
         }
     }
     return NO;
-}
-
-- (void)resetAlpha
-{
-    for (ToolCommand *command in commandList) {
-        if (command.itemType == ColorAlphaItem) {
-            DrawSlider* slider =(DrawSlider *)command.control;
-            [slider setValue:1];
-            return;
-        }
-    }
 }
 
 - (InputAlertView *)inputAlertView

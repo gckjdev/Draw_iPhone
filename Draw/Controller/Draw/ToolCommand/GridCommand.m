@@ -10,9 +10,16 @@
 
 @implementation GridCommand
 
+
+- (void)handleGrid
+{
+    [self.drawInfo setGrid:!self.drawInfo.grid];
+    [self.drawView.currentLayer setNeedsDisplay];
+}
+
 - (BOOL)execute{
     if ([super execute]) {
-        [self.toolHandler useGid:!self.toolHandler.grid];
+        [self handleGrid];
         return YES;
     }else{
         return NO;
@@ -21,7 +28,7 @@
 
 - (void)buyItemSuccessfully:(ItemType)type
 {
-    [self.toolHandler useGid:!self.toolHandler.grid];
+    [self handleGrid];
 }
 
 -(void)sendAnalyticsReport{

@@ -12,7 +12,9 @@
 
 - (BOOL)execute
 {
-    [self.toolHandler handleRedo];
+    [self sendAnalyticsReport];
+    [self.drawView redo];
+    [self updateToolPanel];
     return YES;
 }
 

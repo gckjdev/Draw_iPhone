@@ -33,6 +33,8 @@
     
     [info showInView:[self.control theTopView]];
     
+    [self sendAnalyticsReport];
+    
     return YES;
 }
 -(void)sendAnalyticsReport{

@@ -29,16 +29,22 @@
 @implementation SuperDrawView
 @synthesize drawActionList = _drawActionList;
 
-- (ClipAction *)currentClip
+- (id)initWithFrame:(CGRect)frame layers:(NSArray *)layers
 {
-    return [cdManager currentClip];
+    self = [self initWithFrame:frame];
+    
+    for (DrawLayer *layer in layers) {
+        [dlManager addLayer:layer];
+        [dlManager setSelectedLayer:layer];
+    }
+     
+    return self;
 }
+
 
 - (void)cleanAllActions
 {
     [_drawActionList removeAllObjects];
-//    [osManager clean];
-    [cdManager reset];
 }
 
 - (void)dealloc
@@ -46,8 +52,7 @@
     PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_drawActionList);
     _currentAction = nil;
-//    PPRelease(osManager);
-    PPRelease(cdManager);
+    PPRelease(dlManager);
     PPRelease(_gestureRecognizerManager);
     [super dealloc];
 }
@@ -61,7 +66,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-//        _scale = 1;
         self.minScale = DEFALT_MIN_SCALE;
         self.maxScale = DEFALT_MAX_SCALE;
         self.scale = self.minScale;
@@ -70,6 +74,8 @@
         [_gestureRecognizerManager addPinchGestureReconizerToView:self];
         [_gestureRecognizerManager addDoubleTapGestureReconizerToView:self];
         _gestureRecognizerManager.delegate = self;
+        
+        dlManager = [[DrawLayerManager alloc] initWithView:self];
 
     }
     return self;
@@ -100,78 +106,50 @@
 }
 
 
+
 - (void)show
 {
-//    [osManager updateWithDrawActionList:self.drawActionList];
-    [cdManager updateWithDrawActionList:self.drawActionList];
-    [self setNeedsDisplay];
- 
+    [dlManager arrangeActions:self.drawActionList];
 }
 
-
-//- (void)drawPaint:(Paint *)paint show:(BOOL)show
-//{
-//    CGRect rect = [osManager updateLastPaint:paint];
-//    if (show) {
-//        [self setNeedsDisplayInRect:rect];
-//    }
-//}
-
-#define SPAN_RECT_MIN_WIDTH 20
-
-#define LAST_ACTION_UPDATE_POINT_COUNT 3
-
-- (void)updateLastAction:(DrawAction *)action show:(BOOL)show
+- (ClipAction *)currentClip
 {
-//    CGRect rect = [osManager updateLastAction:action];
-    CGRect rect = [cdManager updateLastAction:action];
-
-    if (show) {
-    /*
-     //如果笔不是透明的话，则更新最后3个点所在的区域即可，否则整笔全部更新
-        
-        if ([action isKindOfClass:[PaintAction class]]) {
-            PaintAction *paintAction = (PaintAction *)action;
-            if (paintAction.paint.color.alpha >= 1) {
-                NSUInteger count = [[paintAction paint] pointCount];
-                if (count > LAST_ACTION_UPDATE_POINT_COUNT) {
-                    id<PenEffectProtocol> pen = [PenFactory getPen:Pencil];
-                    NSArray *list = [paintAction.paint.pointNodeList subarrayWithRange:NSMakeRange(count - LAST_ACTION_UPDATE_POINT_COUNT, LAST_ACTION_UPDATE_POINT_COUNT)];
-                    [pen constructPath:list inRect:self.bounds];
-                    rect = CGPathGetBoundingBox([pen penPath]);
-                    CGFloat w = MAX(paintAction.paint.width, SPAN_RECT_MIN_WIDTH);
-                    CGRectEnlarge(&rect, w * 2, w * 2);
-                }                
-            }
-        }
-     */
-        [self setNeedsDisplayInRect:rect];
-    }
+    return [[self currentLayer] clipAction];
 }
 
-- (void)drawDrawAction:(DrawAction *)drawAction show:(BOOL)show;
+- (NSArray *)layers
 {
-    if (drawAction) {
-//        CGRect rect = [osManager addDrawAction:drawAction];
-        CGRect rect = [cdManager addDrawAction:drawAction];
-        if (show) {
-            [self setNeedsDisplayInRect:rect];
-        }        
-    }
+    return [dlManager layers];
 }
 
-- (void)addDrawAction:(DrawAction *)drawAction
+- (void)updateLayers:(NSArray *)layers
 {
-    if (drawAction) {
-        [self.drawActionList addObject:drawAction];        
-    }
-
+    [dlManager updateLayers:layers];
 }
-
-- (DrawAction *)lastAction
+//start to add a new draw action
+- (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
-    return [self.drawActionList lastObject];
+//    [dlManager updateLastAction:drawAction refresh:show];
+    [dlManager addDrawAction:drawAction show:YES];
 }
+
+//update the last action
+- (void)updateLastAction:(DrawAction *)action refresh:(BOOL)refresh
+{
+    [dlManager updateLastAction:action refresh:refresh];
+}
+
+//finish update the last action
+- (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
+{
+    [dlManager finishLastAction:action refresh:refresh];
+}
+
+//remove the last action force to refresh
+- (void)cancelLastAction{
+    [dlManager cancelLastAction];
+}
+
 
 - (void)changeRect:(CGRect)rect
 {
@@ -180,24 +158,8 @@
 
 - (void)setBGImage:(UIImage *)image
 {
-//    [osManager setBGOffscreenImage:image];
-    [cdManager setBgPhto:image];
+//    [cdManager setBgPhto:image];
 }
-
-//- (void)setScale:(CGFloat)scale
-//{
-//    _scale = scale;
-//    [self.layer setTransform:CATransform3DMakeScale(scale, scale, 1)];
-//}
-
-- (void)drawRect:(CGRect)rect
-{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-//    [osManager showAllLayersInContext:context];
-    [cdManager showInContext:context];
-    [super drawRect:rect];
-}
-
 
 
 - (CGContextRef)createBitmapContext
@@ -211,24 +173,14 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
 
-    [cdManager showInContextWithoutGrid:context];
-    
+    [self.layer renderInContext:context];
     return context;
 }
 
 
 - (UIImage*)createImage
 {
-    UIGraphicsBeginImageContext(self.bounds.size);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [[UIColor whiteColor] setFill];
-    CGContextFillRect(context, self.bounds);
-    [cdManager showInContextWithoutGrid:context];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-
+    return [dlManager createImage];
 }
 
 - (UIImage *)createImageWithSize:(CGSize)size
@@ -244,12 +196,23 @@
     if (image) {
         [self setBackgroundColor:[UIColor clearColor]];
         PPDebug(@"draw image in bounds = %@",NSStringFromCGRect(self.bounds));
-        [cdManager reset];
-        [cdManager setBgPhto:image];
-        [self setNeedsDisplay];
-//        [osManager clean];
-//        Offscreen *os = [osManager enteryScreen];
-//        [os showImage:image];
+        self.layer.contents = (id)image.CGImage;
     }
 }
+- (DrawLayer *)currentLayer
+{
+    return [dlManager selectedLayer];
+}
+
+- (void)enterClipMode:(ClipAction *)clipAction
+{
+    [dlManager enterClipMode:clipAction];
+}
+
+- (void)exitFromClipMode
+{
+    [dlManager exitFromClipMode];
+}
+
+
 @end

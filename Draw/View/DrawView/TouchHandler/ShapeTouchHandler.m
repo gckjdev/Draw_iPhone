@@ -17,19 +17,12 @@
 
 @implementation ShapeTouchHandler
 
-- (void)addAction:(DrawAction *)drawAction
-{
-    [self.drawView addDrawAction:drawAction];
-}
-
 - (void)dealloc
 {
     if ((currentState != TouchStateCancel) && (currentState != TouchStateEnd)) {
         [self handleFailTouch];
-    }else{
-        [self reset];
-    }
-    PPRelease(action);
+    }    
+    [self reset];
     [super dealloc];
     
 }
@@ -44,19 +37,46 @@ CGPoint realStartPoint;
 
 - (void)updateEndPoint
 {
+ 
+    DrawInfo *info = self.drawView.drawInfo;
     action.shape.startPoint = realStartPoint;
     if ([ShapeInfo point1:action.shape.startPoint equalToPoint:action.shape.endPoint]) {
-        action.shape.endPoint = CGPointMake(action.shape.endPoint.x + self.drawView.lineWidth/2,
-                                     action.shape.endPoint.y + self.drawView.lineWidth/2);
-        action.shape.startPoint = CGPointMake(action.shape.startPoint.x - self.drawView.lineWidth/2,
-                                            action.shape.startPoint.y - self.drawView.lineWidth/2);
+        action.shape.endPoint = CGPointMake(action.shape.endPoint.x + info.penWidth/2,
+                                     action.shape.endPoint.y + info.penWidth/2);
+        action.shape.startPoint = CGPointMake(action.shape.startPoint.x - info.penWidth/2,
+                                            action.shape.startPoint.y - info.penWidth/2);
         
     }
 }
 
-#define STROKE_WIDTH 2
 
+- (ShapeAction *)createDrawAction
+{
+    if (action == nil) {
+ 
+        DrawInfo *info = self.drawView.drawInfo;
+        
+        ShapeInfo *shape = [ShapeInfo shapeWithType:info.shapeType
+                                 penType:info.penType
+                                   width:info.penWidth
+                                   color:info.penColor];
+        [shape setStroke:info.strokeShape];
 
+        action = [[ShapeAction shapeActionWithShape:shape] retain];
+        action.shadow = info.shadow;
+
+        
+        
+        
+        //Add at DrawDataVersion == 4, May edit in the future. By Gamy
+        ////=====start====////
+        
+        if (shape.type != ShapeTypeBeeline) {
+            shape.width = STROKE_WIDTH;
+        }
+    }
+    return action;
+}
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state
 {
@@ -65,42 +85,13 @@ CGPoint realStartPoint;
         case TouchStateBegin:
         {
             handleFailed = NO;
-            ShapeInfo *shape = nil;
             realStartPoint = point;
-            if (!action) {
-                
 
-                
-                shape = [ShapeInfo shapeWithType:self.drawView.shapeType
-                                         penType:self.drawView.penType
-                                           width:self.drawView.lineWidth
-                                           color:self.drawView.lineColor];
-                                
-                [shape setStroke:self.drawView.strokeShape];
-                action = [[ShapeAction shapeActionWithShape:shape] retain];
-                action.shadow = self.drawView.shadow;
-                action.clipAction = self.cdManager.currentClip;
-                [self.cdManager updateLastAction:action];
-                shape.startPoint = shape.endPoint = point;
-                
-
-                //Add at DrawDataVersion == 4, May edit in the future. By Gamy
-                ////=====start====////
-                
-                if (shape.type != ShapeTypeBeeline) {
-                    shape.width = STROKE_WIDTH;
-                }
-                [self updateEndPoint];
-                ////=====end=====/////
-                
-                
-//                [self.drawView drawDrawAction:action show:YES];
-            }else{
-                shape.startPoint = shape.endPoint = point;
-                [self updateEndPoint];
-                [self.drawView updateLastAction:action show:YES];
-            }
-            
+            action = (id)[self createDrawAction];
+            ShapeInfo *shape = action.shape;
+            shape.startPoint = shape.endPoint = point;
+            [self updateEndPoint];
+            [self.drawView addDrawAction:action show:YES];            
             break;
         }
             
@@ -112,7 +103,7 @@ CGPoint realStartPoint;
             }
             [action addPoint:point inRect:self.drawView.bounds];
             [self updateEndPoint];
-            [self.drawView updateLastAction:action show:YES];
+            [self.drawView updateLastAction:action refresh:YES];
             break;
         }
         default:
@@ -120,11 +111,7 @@ CGPoint realStartPoint;
     }
     
     if (state == TouchStateCancel || state == TouchStateEnd) {
-        [self.drawView addDrawAction:action];
-        [self.cdManager finishDrawAction:action];
-        if (action) {
-            [self.drawView clearRedoStack];
-        }
+        [self.drawView finishLastAction:action refresh:YES];
         [self reset];
     }
 }
@@ -132,10 +119,10 @@ CGPoint realStartPoint;
 - (void)handleFailTouch
 {
     [super handleFailTouch];
+    if (action) {
+        [self.drawView cancelLastAction];
+    }
     [self reset];
-//    [self.osManager cancelLastAction];
-    [self.cdManager cancelLastAction];
-    [self.drawView setNeedsDisplay];
 }
 
 - (DrawAction *)drawAction

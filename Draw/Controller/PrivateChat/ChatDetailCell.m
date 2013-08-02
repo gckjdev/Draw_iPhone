@@ -223,6 +223,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     if (message.thumbImage == nil) {
         CGRect frame = CGRectFromCGSize(message.canvasSize);
         self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        [self.showDrawView updateLayers:[DrawLayer defaultOldLayersWithFrame:frame]];
         [self.showDrawView show];
         message.thumbImage = [self.showDrawView createImageWithSize:size];        
     }

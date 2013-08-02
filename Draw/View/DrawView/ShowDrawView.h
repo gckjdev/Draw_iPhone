@@ -69,6 +69,7 @@ typedef enum {
                 drawActionList:(NSArray *)actionList
                       delegate:(id<ShowDrawViewDelegate>)delegate;
 
+
 + (BOOL)canPlayDrawVersion:(NSInteger)version;
 
 @end

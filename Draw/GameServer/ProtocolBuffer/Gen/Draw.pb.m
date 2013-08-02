@@ -5249,6 +5249,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @property (retain) PBUserBasicInfo* drawToUser;
 @property (retain) NSString* opusDesc;
 @property (retain) NSString* bgImageName;
+@property (retain) NSMutableArray* mutableLayerList;
 @end
 
 @implementation PBNoCompressDrawData
@@ -5290,6 +5291,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   hasBgImageName_ = !!value;
 }
 @synthesize bgImageName;
+@synthesize mutableLayerList;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
   self.canvasSize = nil;
@@ -5297,6 +5299,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   self.drawToUser = nil;
   self.opusDesc = nil;
   self.bgImageName = nil;
+  self.mutableLayerList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -5335,6 +5338,13 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   id value = [mutableDrawActionList2List objectAtIndex:index];
   return value;
 }
+- (NSArray*) layerList {
+  return mutableLayerList;
+}
+- (PBLayer*) layerAtIndex:(int32_t) index {
+  id value = [mutableLayerList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   for (PBNoCompressDrawAction* element in self.drawActionListList) {
     if (!element.isInitialized) {
@@ -5348,6 +5358,11 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasDrawToUser) {
     if (!self.drawToUser.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBLayer* element in self.layerList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -5374,6 +5389,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasBgImageName) {
     [output writeString:8 value:self.bgImageName];
+  }
+  for (PBLayer* element in self.layerList) {
+    [output writeMessage:9 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5404,6 +5422,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasBgImageName) {
     size += computeStringSize(8, self.bgImageName);
+  }
+  for (PBLayer* element in self.layerList) {
+    size += computeMessageSize(9, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5507,6 +5528,12 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (other.hasBgImageName) {
     [self setBgImageName:other.bgImageName];
   }
+  if (other.mutableLayerList.count > 0) {
+    if (result.mutableLayerList == nil) {
+      result.mutableLayerList = [NSMutableArray array];
+    }
+    [result.mutableLayerList addObjectsFromArray:other.mutableLayerList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5568,6 +5595,12 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
       }
       case 66: {
         [self setBgImageName:[input readString]];
+        break;
+      }
+      case 74: {
+        PBLayer_Builder* subBuilder = [PBLayer builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addLayer:[subBuilder buildPartial]];
         break;
       }
     }
@@ -5737,6 +5770,35 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 - (PBNoCompressDrawData_Builder*) clearBgImageName {
   result.hasBgImageName = NO;
   result.bgImageName = @"";
+  return self;
+}
+- (NSArray*) layerList {
+  if (result.mutableLayerList == nil) { return [NSArray array]; }
+  return result.mutableLayerList;
+}
+- (PBLayer*) layerAtIndex:(int32_t) index {
+  return [result layerAtIndex:index];
+}
+- (PBNoCompressDrawData_Builder*) replaceLayerAtIndex:(int32_t) index with:(PBLayer*) value {
+  [result.mutableLayerList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addAllLayer:(NSArray*) values {
+  if (result.mutableLayerList == nil) {
+    result.mutableLayerList = [NSMutableArray array];
+  }
+  [result.mutableLayerList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearLayerList {
+  result.mutableLayerList = nil;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addLayer:(PBLayer*) value {
+  if (result.mutableLayerList == nil) {
+    result.mutableLayerList = [NSMutableArray array];
+  }
+  [result.mutableLayerList addObject:value];
   return self;
 }
 @end
