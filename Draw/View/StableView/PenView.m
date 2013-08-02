@@ -69,6 +69,7 @@
         case IcePen:
             return imageManager.showIcePenImage;
         case Eraser:
+        case DeprecatedEraser:
             return imageManager.showEraserImage;
         case Pencil:
             default:

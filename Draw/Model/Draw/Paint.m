@@ -289,8 +289,11 @@
             i++;
         }
     }    
-    
-    pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
+    if (self.penType == Eraser) {
+        pbDrawActionC->bettercolor = [[DrawColor whiteColor] toBetterCompressColor];
+    }else{
+        pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
+    }
     pbDrawActionC->has_bettercolor = 1;
     
     pbDrawActionC->pentype = self.penType;

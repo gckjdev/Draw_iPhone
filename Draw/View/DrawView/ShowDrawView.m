@@ -90,7 +90,7 @@
         CGPoint point = [paintAction.paint pointAtIndex:_playingPointIndex];
 
         point= [pen.superview convertPoint:point fromView:self];
-        if (pen.penType != Eraser) {
+        if (pen.penType != Eraser && pen.penType != DeprecatedEraser) {
             pen.frame = CGRectMake(point.x, point.y-SHOWPEN_HEIGHT, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
         }else{
             pen.frame = CGRectMake(point.x, point.y, SHOWPEN_WIDTH, SHOWPEN_HEIGHT);
@@ -157,8 +157,7 @@
     }else{
         self.status = Playing;
     }
-    
-    [self setNeedsDisplay];            
+          
 }
 
 
