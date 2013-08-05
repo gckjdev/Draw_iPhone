@@ -55,8 +55,14 @@
 - (void)removeLayer:(DrawLayer *)layer
 {
     if (layer) {
+        if (self.selectedLayer == layer) {
+            self.selectedLayer = nil;
+        }
         [_layerList removeObject:layer];
         [layer removeFromSuperlayer];
+    }
+    if (self.selectedLayer == nil) {
+        [self setSelectedLayer:[_layerList lastObject]];
     }
 }
 - (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name

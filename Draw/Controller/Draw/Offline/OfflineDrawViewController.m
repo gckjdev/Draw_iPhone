@@ -66,7 +66,7 @@
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
 #import "DrawToolUpPanel.h"
-
+#import "DrawLayerPanel.h"
 
 @interface OfflineDrawViewController()
 {
@@ -98,7 +98,7 @@
 
     BOOL _commitAsNormal;
     
-
+    CMPopTipView *layerPanelPopView;
     
 }
 
@@ -409,6 +409,7 @@
     
     [self.drawToolUpPanel.titleLabel setText:(self.word.text && self.word.text.length > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
 }
+
 
 - (void)setOpusDesc:(NSString *)opusDesc
 {
@@ -1195,6 +1196,17 @@
         [self.drawToolUpPanel appear:self title:self.word.text isLeftArrow:!self.draftButton.hidden];
     } else {
         [self.drawToolUpPanel disappear];
+    }
+}
+
+- (IBAction)clickLayerButton:(id)sender {
+    if (layerPanelPopView) {
+        [layerPanelPopView dismissAnimated:YES];
+        layerPanelPopView = nil;
+    }else{
+        DrawLayerPanel *layerPanel = [DrawLayerPanel drawLayerPanelWithDrawLayerManager:drawView.dlManager];
+        layerPanelPopView = [[CMPopTipView alloc] initWithCustomView:layerPanel];
+        [layerPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
     }
 }
 

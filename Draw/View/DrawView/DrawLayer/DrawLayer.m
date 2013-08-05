@@ -361,13 +361,13 @@
 + (NSArray *)defaultLayersWithFrame:(CGRect)frame
 {
     DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
-    /*
+    
     DrawLayer *bgLayer = [[[DrawLayer alloc] initWithFrame:frame
                                                   drawInfo:drawInfo
                                                        tag:BG_LAYER_TAG
                                                       name:NSLS(@"kBGLayer")
                                                suportCache:NO] autorelease];
-     */
+     
     DrawLayer *mainLayer = [[[DrawLayer alloc] initWithFrame:frame
                                                   drawInfo:drawInfo
                                                        tag:MAIN_LAYER_TAG
@@ -376,8 +376,8 @@
 
 //    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     
-//    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
-    return [NSMutableArray arrayWithObjects:mainLayer, nil];
+    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
+//    return [NSMutableArray arrayWithObjects:mainLayer, nil];
 }
 
 + (NSArray *)defaultOldLayersWithFrame:(CGRect)frame

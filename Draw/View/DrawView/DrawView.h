@@ -66,5 +66,5 @@
 - (NSInteger)actionCount;
 - (DrawInfo *)drawInfo;
 
-
+- (DrawLayerManager *)dlManager;
 @end

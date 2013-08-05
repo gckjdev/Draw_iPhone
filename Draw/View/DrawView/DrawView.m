@@ -351,7 +351,7 @@
 - (DrawInfo *)drawInfo{
     return [[self currentLayer] drawInfo];
 }
-
+/*
 
 - (void)changeAlpha:(CGFloat)alpha
 {
@@ -379,6 +379,11 @@
 - (void)changeShadow:(Shadow *)shadow
 {
     self.drawInfo.shadow = shadow;
+}
+*/
+- (DrawLayerManager *)dlManager
+{
+    return dlManager;
 }
 
 @end
