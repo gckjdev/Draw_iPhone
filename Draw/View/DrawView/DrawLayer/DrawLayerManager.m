@@ -269,6 +269,21 @@
     return image;
 }
 
+- (void)updateLayersRect:(CGRect)rect
+{
+    NSMutableArray *newLayers = [NSMutableArray arrayWithCapacity:[_layerList count]];
+    for (DrawLayer *layer in _layerList) {
+        DrawLayer *l = [DrawLayer layerWithLayer:layer frame:rect];
+        [newLayers addObject:l];
+        [layer removeFromSuperlayer];
+    }
+    [_layerList removeAllObjects];
+    for (DrawLayer *layer in newLayers) {
+        [self addLayer:layer];
+    }
+
+}
+
 @end
 
 

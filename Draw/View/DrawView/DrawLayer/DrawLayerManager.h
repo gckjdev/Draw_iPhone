@@ -45,4 +45,5 @@
 
 - (UIImage *)createImage;
 
+- (void)updateLayersRect:(CGRect)rect;
 @end

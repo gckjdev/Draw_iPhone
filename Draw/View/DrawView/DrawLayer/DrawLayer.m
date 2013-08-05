@@ -66,6 +66,16 @@
     return self;
 }
 
++ (id)layerWithLayer:(DrawLayer *)layer frame:(CGRect)frame
+{
+    DrawLayer *dl = [[DrawLayer alloc] initWithFrame:frame
+                                            drawInfo:layer.drawInfo
+                                                 tag:layer.layerTag
+                                                name:layer.layerName
+                                         suportCache:layer.supportCache];
+    return [dl autorelease];
+}
+
 - (id)initWithFrame:(CGRect)frame
            drawInfo:(DrawInfo *)drawInfo
                 tag:(NSUInteger)tag
@@ -128,7 +138,7 @@
     }
     if (self.drawInfo.grid) {
         [DrawLayer drawGridInContext:ctx rect:self.bounds];
-    }    
+    }
 }
 
 
