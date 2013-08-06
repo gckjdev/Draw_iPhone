@@ -4278,6 +4278,10 @@
 		CA0CB76A155CB773009C8EE6 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB769155CB773009C8EE6 /* RoomService.m */; };
 		CA0CB76E155CB799009C8EE6 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB76D155CB799009C8EE6 /* Room.m */; };
 		CA0CB771155CB7A9009C8EE6 /* RoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB770155CB7A9009C8EE6 /* RoomManager.m */; };
+		CA0F236917B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
+		CA0F236A17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
+		CA0F236B17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
+		CA0F236C17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
 		CA0FC07C178EA13E00A72B79 /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0FC07B178EA13E00A72B79 /* JumpHandler.m */; };
 		CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0FC07B178EA13E00A72B79 /* JumpHandler.m */; };
 		CA0FC08B178EA13E00A72B79 /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0FC07B178EA13E00A72B79 /* JumpHandler.m */; };
@@ -8773,6 +8777,8 @@
 		CA0CB76D155CB799009C8EE6 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		CA0CB76F155CB7A9009C8EE6 /* RoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomManager.h; sourceTree = "<group>"; };
 		CA0CB770155CB7A9009C8EE6 /* RoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomManager.m; sourceTree = "<group>"; };
+		CA0F236717B15D09004247FB /* JTTableViewGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTTableViewGestureRecognizer.h; sourceTree = "<group>"; };
+		CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTTableViewGestureRecognizer.m; sourceTree = "<group>"; };
 		CA0FC07A178EA13E00A72B79 /* JumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpHandler.h; sourceTree = "<group>"; };
 		CA0FC07B178EA13E00A72B79 /* JumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpHandler.m; sourceTree = "<group>"; };
 		CA0FC096178FFA6700A72B79 /* UserDeviceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDeviceService.h; sourceTree = "<group>"; };
@@ -13822,6 +13828,8 @@
 		CA103DAF1509A56100F60C03 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				CA0F236717B15D09004247FB /* JTTableViewGestureRecognizer.h */,
+				CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */,
 				CA103DB01509A56100F60C03 /* UITableViewUtil.h */,
 				CA103DB11509A56100F60C03 /* UITableViewUtil.m */,
 			);
@@ -22916,6 +22924,7 @@
 				A4C9E05417A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
 				CAF4897617AA6D4500F015AB /* DrawInfo.m in Sources */,
 				CAE74B7217AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236B17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23706,6 +23715,7 @@
 				A4C9E05317A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
 				CAF4897517AA6D4500F015AB /* DrawInfo.m in Sources */,
 				CAE74B7117AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236A17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24504,6 +24514,7 @@
 				A4C9E05217A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
 				CAF4897417AA6D4500F015AB /* DrawInfo.m in Sources */,
 				CAE74B7017AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236917B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25274,6 +25285,7 @@
 				A4C9E05517A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
 				CAF4897717AA6D4500F015AB /* DrawInfo.m in Sources */,
 				CAE74B7317AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236C17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
