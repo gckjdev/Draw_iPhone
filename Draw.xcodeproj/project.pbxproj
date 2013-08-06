@@ -25638,8 +25638,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "B45DAF60-8894-4E09-8A0C-042ED1BEA6B9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B45DAF60-8894-4E09-8A0C-042ED1BEA6B9";
+				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -25648,8 +25648,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -25697,8 +25697,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "869A63EF-F10E-4797-B1CD-A94ACB2B352D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "869A63EF-F10E-4797-B1CD-A94ACB2B352D";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -25727,8 +25727,8 @@
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
+				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
@@ -25742,8 +25742,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_VERSION = "";
@@ -25756,8 +25756,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";

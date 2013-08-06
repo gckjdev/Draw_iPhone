@@ -376,6 +376,7 @@ typedef enum{
         return;
     }
     ShowFeedController *sfc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed]];
+    sfc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sfc animated:YES];
     [sfc release];
         
@@ -592,6 +593,7 @@ typedef enum{
 - (void)enterDetailFeed:(DrawFeed *)feed
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];    
 }

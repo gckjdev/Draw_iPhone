@@ -293,6 +293,7 @@ typedef enum{
 - (void)enterDetailFeed:(DrawFeed *)feed
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
@@ -300,6 +301,7 @@ typedef enum{
 - (void)enterDetailFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
     [sc release];
 }
@@ -472,8 +474,11 @@ typedef enum{
             break;
         case SuperActionSheetIndexDetail:
         {
-            PPDebug(@"Detail");
-            [self enterDetailFeed:feed];
+//            PPDebug(@"Detail");
+//            [self enterDetailFeed:feed];
+            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
+            [self showOpusImageBrower:index];
+
         }
             break;
         case SuperActionSheetIndexAddToCell:

@@ -40,7 +40,7 @@
             swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
             swipe.delegate = self;
             [self.view addGestureRecognizer:swipe];
-            swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+            swipe.direction = UISwipeGestureRecognizerDirectionLeft;//|UISwipeGestureRecognizerDirectionRight|UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
             [swipe release];
         }
     }else{

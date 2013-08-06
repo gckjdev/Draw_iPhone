@@ -176,15 +176,16 @@
 #define MASKVIEW_TAG 20130130
 - (void)addMaskView
 {
-    UIControl *mask = (UIControl *)[self viewWithTag:MASKVIEW_TAG];
+//    UIControl *mask = (UIControl *)[self viewWithTag:MASKVIEW_TAG];
     if (mask == nil) {
         mask = [[UIControl alloc] initWithFrame:self.drawImage.frame];
         [mask setBackgroundColor:[UIColor clearColor]];
         [mask addTarget:self action:@selector(clickDrawImageMask:) forControlEvents:UIControlEventTouchUpInside];
-        [mask addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchDown];
-        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpOutside];
+//        [mask addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchDown];
+//        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpOutside];
+//        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:mask];
-        PPRelease(mask);
+//        PPRelease(mask);
     }
 }
 
