@@ -7,7 +7,7 @@
 //
 
 #import "DrawLayerPanel.h"
-
+#import "CMPopTipView.h"
 #define CELL_ID @"DrawLayerPanelCell"
 
 @implementation DrawLayerPanelCell
@@ -19,55 +19,46 @@
     return cell;
 }
 
-- (void)onlyShowViews:(NSArray *)views
-{
-    NSArray *allViews = @[
-                             self.showFlag,
-                             self.layerName,
-                             self.remove,
-                             self.help,
-                             self.add,
-                             self.swap
-                             ];
-    
-    for (UIView *view in allViews) {
-        [view setHidden:![views containsObject:view]];
-    }
-
-}
+//- (void)onlyShowViews:(NSArray *)views
+//{
+//    NSArray *allViews = @[
+//                             self.showFlag,
+//                             self.layerName,
+//                             self.remove,
+//                             ];
+//    
+//    for (UIView *view in allViews) {
+//        [view setHidden:![views containsObject:view]];
+//    }
+//
+//}
 
 
 - (void)updateWithDrawLayer:(DrawLayer *)layer
 {
+    if (![layer isKindOfClass:[DrawLayer class]]) {
+        self.drawLayer = nil;
+        for (UIView *view in self.subviews) {
+            view.hidden = YES;
+        }
+        return;
+    }
+    for (UIView *view in self.subviews) {
+        view.hidden = NO;
+    }
+
     self.drawLayer = layer;
     [self.layerName setTitle:layer.layerName forState:UIControlStateNormal];
-    [self onlyShowViews: @[self.showFlag, self.layerName, self.remove]];
     [self.showFlag setSelected:self.drawLayer.hidden];
 }
 
 
-- (void)updateForSwapCell
-{
-    [self onlyShowViews:@[self.swap]];
-}
 
-- (void)updateForAddCell
-{
-    [self onlyShowViews:@[self.add]];
-}
-
-- (void)updateForHelpCell
-{
-    [self onlyShowViews:@[self.help]];
-}
 
 - (void)dealloc {
     [_showFlag release];
-    [_help release];
-    [_add release];
     [_layerName release];
     [_remove release];
-    [_swap release];
     [super dealloc];
 }
 - (IBAction)clickShowFlag:(id)sender {
@@ -85,27 +76,12 @@
                           onDrawLayer:self.drawLayer];
 }
 
-- (IBAction)clickAdd:(id)sender {
-    [self.delegate didClickAddAtCell:self];
-}
-
-- (IBAction)clickHelp:(id)sender {
-    [self.delegate didClickHelpAtCell:self];
-}
-
-- (IBAction)clickSwap:(id)sender {
-    [self.delegate didClickSwapAtCell:self];
-}
 @end
 
 
-#define BASIC_ROW_COUNT 2
-
 @interface DrawLayerPanel()
 {
-    int RowOfAdd;
-    int RowOfHelp;
-    int RowOfSwap;
+    
 }
 
 @end
@@ -118,31 +94,23 @@
 {
     DrawLayerPanel *panel = [DrawLayerPanel createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:1];
     panel.dlManager = dlManager;
-    [panel updateRows];
+    [panel reloadView];
+    [panel.tableView enableGestureTableViewWithDelegate:panel];
     return panel;
 }
 
-//- (void)awakeFromNib
-//{
-//    [self updateRows];
-//}
 - (void)dealloc
 {
     [_tableView release];
+    [_help release];
+    [_add release];    
     [super dealloc];
-}
-
-- (void)updateRows
-{
-    RowOfAdd = [[self.dlManager layers] count];
-    RowOfHelp = RowOfAdd + 1;
-    RowOfSwap = RowOfHelp + 1;    
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.dlManager layers] count] + BASIC_ROW_COUNT;
+    return [[self.dlManager layers] count];
 }
 
 - (DrawLayer *)layerOfIndexPath:(NSIndexPath *)indexPath
@@ -162,15 +130,7 @@
         cell = [DrawLayerPanelCell cell:self];
     }
     cell.drawLayer = nil;
-    if (indexPath.row == RowOfAdd)
-        [cell updateForAddCell];
-    else if(indexPath.row == RowOfHelp)
-        [cell updateForHelpCell];
-    else if(indexPath.row == RowOfSwap)
-        [cell updateForSwapCell];
-    else
-        [cell updateWithDrawLayer:[self layerOfIndexPath:indexPath]];
-
+    [cell updateWithDrawLayer:[self layerOfIndexPath:indexPath]];
     if (cell.drawLayer && cell.drawLayer == _dlManager.selectedLayer) {
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
@@ -178,9 +138,12 @@
     return cell;
 
 }
+
+#define CELL_HEIGHT 45
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
+    return CELL_HEIGHT;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -200,40 +163,79 @@
     PPDebug(@"<didClickName> name = %@", layer.layerName);
 }
 
--(void)didClickHelpAtCell:(DrawLayerPanelCell *)cell
-{
-    PPDebug(@"<didClickHelpAtCell>");
-}
--(void)didClickAddAtCell:(DrawLayerPanelCell *)cell
-{
-    PPDebug(@"<didClickAddAtCell>");
-    DrawLayer *layer = [DrawLayer layerWithLayer:[_dlManager selectedLayer]
-                                           frame:[[_dlManager selectedLayer] bounds]];
 
-    layer.layerTag = rand();
-    layer.layerName = [@(layer.layerTag) stringValue];
-    [_dlManager addLayer:layer];
-    
-    [self updateRows];
-    [self.tableView reloadData];
-}
-
--(void)didClickSwapAtCell:(DrawLayerPanelCell *)cell
-{
-    if ([[_dlManager layers] count] > 1) {
-        DrawLayer *l1 = [[_dlManager layers] objectAtIndex:0];
-        DrawLayer *l2 = [[_dlManager layers] lastObject];
-        [_dlManager moveLayer:l2 below:l1];
-        [self updateRows];
-        [self.tableView reloadData];
-    }
-}
 
 -(void)drawLayerPanelCell:(DrawLayerPanelCell *)cell
 didClickRemoveAtDrawLayer:(DrawLayer *)layer
 {
     [_dlManager removeLayer:layer];
-    [self updateRows];
-    [self.tableView reloadData];    
+    [self reloadView];
 }
+
+- (IBAction)clickAdd:(id)sender {
+    PPDebug(@"<didClickAddAtCell>");
+    DrawLayer *layer = [DrawLayer layerWithLayer:[_dlManager selectedLayer]
+                                           frame:[[_dlManager selectedLayer] bounds]];
+    
+    layer.layerTag = rand();
+    layer.layerName = [@(layer.layerTag) stringValue];
+    [_dlManager addLayer:layer];
+    [self reloadView];
+}
+
+- (IBAction)clickHelp:(id)sender {
+
+}
+
+
+
+- (void)reloadView
+{
+ 
+    CMPopTipView *superView = (id)self.superview;
+    CGFloat height = [[_dlManager layers] count] * CELL_HEIGHT + (CELL_HEIGHT * 2);
+    
+    CGFloat x = height - CGRectGetHeight(self.bounds);
+    
+    NSTimeInterval interval = 0;
+    if (superView) {
+        interval = 0.3;
+    }
+    
+    [UIView animateWithDuration:interval animations:^{        
+        if ([superView isKindOfClass:[CMPopTipView class]]) {
+            superView.noAdjustCustomViewFrame = YES;
+            [superView updateHeight:CGRectGetHeight(superView.bounds) + x];
+        }        
+        [self updateHeight:height];
+
+    }];
+    
+    [self.tableView reloadData];
+}
+
+
+- (BOOL)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsCreatePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.grabbedObject = [self layerOfIndexPath:indexPath];
+    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:indexPath.row withObject:@""];
+}
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsMoveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    id object = [self layerOfIndexPath:sourceIndexPath];
+    [(NSMutableArray *)[_dlManager layers] removeObjectAtIndex:sourceIndexPath.row];
+    [(NSMutableArray *)[_dlManager layers] insertObject:object atIndex:destinationIndexPath.row];
+
+}
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsReplacePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
+    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:indexPath.row withObject:self.grabbedObject];
+    self.grabbedObject = nil;
+    [self.dlManager reload];
+}
+
+
 @end
