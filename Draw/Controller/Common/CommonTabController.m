@@ -15,6 +15,42 @@
 @synthesize noDataTipLabl = _noDataTipLabl;
 
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return (gestureRecognizer.view == self.view);
+}
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return (gestureRecognizer.view == self.view);    
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swp
+{
+    PPDebug(@"<handleSwipe> STATA = %d, DIRECTION = %d", swp.state, swp.direction);
+    
+    if (swp.state == UIGestureRecognizerStateRecognized) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)setSwipeToBack:(BOOL)swipeToBack
+{
+    if (swipeToBack) {
+        if (swipe == nil) {
+            swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+            swipe.delegate = self;
+            [self.view addGestureRecognizer:swipe];
+            swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+            [swipe release];
+        }
+    }else{
+        if (swipe){
+            [self.view removeGestureRecognizer:swipe];
+            swipe = nil;
+        }
+    }
+}
+
 - (void)setDefaultTabIndex:(int)tabIndex
 {
     _defaultTabIndex = tabIndex;
@@ -159,6 +195,7 @@
     [super viewDidLoad];
     [self initTabs];
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self setSwipeToBack:YES];
 }
 
 
