@@ -265,37 +265,6 @@
         [imageView setUserId:user.userId];
         [imageView setAvatarSelected:NO level:user.level];
         imageView.hidden = NO;
-        //[imageView setFrame:viewForFrame.frame];
-        
-        // set default image firstly
-        PPDebug(@"user gender=%d", [user gender]);
-//        if ([user gender])
-//            [imageView setImage:[[ShareImageManager defaultManager] maleDefaultAvatarImage]];
-//        else
-//            [imageView setImage:[[ShareImageManager defaultManager] femaleDefaultAvatarImage]];
-
-//        if (isMe){
-//            [imageView setImage:[[UserManager defaultManager] avatarImage]];
-//        }
-
-        
-//        UIView *view = [imageView viewWithTag:DRAWING_MARK_TAG];
-//        [view removeFromSuperview];
-        
-//        UIImage* frameImage = nil;
-//        
-//        if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]) {
-//            UIImage *drawingMark = [[ShareImageManager defaultManager] drawingMarkLargeImage];
-//            UIImageView *drawingImageView = [[UIImageView alloc] initWithImage:drawingMark];
-//            [drawingImageView setFrame:DRAWING_MARK_FRAME];
-//            drawingImageView.tag = DRAWING_MARK_TAG;
-//            [imageView addSubview:drawingImageView];
-//            [drawingImageView release];
-//        }
-//        else{
-//            
-//            frameImage = [[ShareImageManager defaultManager] avatarUnSelectImage];            
-//        }
         
         if ([[[DrawGameService defaultService] session] isCurrentPlayUser:user.userId]){
             [imageView setHasPen:YES];

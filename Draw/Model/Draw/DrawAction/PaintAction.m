@@ -52,7 +52,10 @@
     CGRect rect1;
     CGContextSaveGState(context);
     [self.clipAction clipContext:context];
-    if (self.shadow) {
+    if (self.paint.penType == Eraser) {
+        CGContextSetBlendMode(context, kCGBlendModeClear);
+    }
+    if (self.shadow && self.paint.penType != Eraser && self.paint.penType != DeprecatedEraser) {
         CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
         rect1 = [self.paint drawInContext:context inRect:rect];

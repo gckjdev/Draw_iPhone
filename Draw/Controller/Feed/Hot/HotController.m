@@ -417,16 +417,16 @@ typedef enum{
 - (void)showFeed:(DrawFeed *)feed
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animated:YES];
-
     [sc release];
 }
 
 - (void)showFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
-    
     [sc release];
     
     

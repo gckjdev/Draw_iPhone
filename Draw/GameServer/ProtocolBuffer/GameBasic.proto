@@ -94,6 +94,7 @@ message PBGameUser {
   
   optional string signature = 100;
   optional int32  featureOpus = 101;                // 推荐作品标志
+  optional string friendMemo = 102;                 // 用户好友备注
   
   optional int32 singRecordLimit = 200[default = 30];  //你唱我猜用户最长录音时间限制。 
   
@@ -388,3 +389,11 @@ message PBSize
     optional float width = 1 [default=304.0];
     optional float height = 2 [default=320.0];
 }
+
+message PBOpusRank
+{
+    required int32 type = 1 [default=1];
+    required int32 value = 2 [default=0];
+    optional string userId = 3;
+}
+

@@ -14,10 +14,28 @@
 #import "DrawFeed.h"
 #import "AdService.h"
 
+
+@interface ReplayObject : NSObject
+{
+    
+}
+
++ (id)obj;
+
+@property(nonatomic, assign) BOOL *isNewVersion;
+@property(nonatomic, assign) CGSize canvasSize;
+
+@property(nonatomic, retain) NSMutableArray *actionList;
+@property(nonatomic, retain) UIImage *bgImage;
+@property(nonatomic, retain) NSArray *layers;
+
+@end
+
 @interface ReplayView : UIView<ShowDrawViewDelegate>
 {
-
 }
+
+
 
 
 @property(nonatomic, assign)NSUInteger endIndex;
@@ -28,19 +46,7 @@
 + (id)createReplayView;
 
 - (void)showInController:(PPViewController *)controller
-          withActionList:(NSMutableArray *)actionList
-            isNewVersion:(BOOL)isNewVersion;
-
-- (void)showInController:(PPViewController *)controller
-          withActionList:(NSMutableArray *)actionList
-            isNewVersion:(BOOL)isNewVersion
-                    size:(CGSize)size;
-
-- (void)showInController:(PPViewController *)controller
-          withActionList:(NSMutableArray *)actionList
-            isNewVersion:(BOOL)isNewVersion
-                    size:(CGSize)size
-                 bgImage:(UIImage *)bgImage;
+                  object:(ReplayObject *)obj;
 
 - (void)setPlayControlsDisable:(BOOL)disable;
 

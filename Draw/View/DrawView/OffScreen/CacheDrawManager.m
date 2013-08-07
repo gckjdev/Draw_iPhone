@@ -13,11 +13,8 @@
 #import "ConfigManager.h"
 #import "ClipAction.h"
 
-#define VALUE(X) (ISIPAD ? 2*X : X)
-
 #define MAX_CACHED_ACTION_COUNT [ConfigManager cachedActionCount]
 #define MIN_UNDO_COUNT [ConfigManager minUndoActionCount]
-#define LINE_SPACE [ConfigManager getDrawGridLineSpace]
 
 
 
@@ -148,24 +145,14 @@
     
     [self.currentClip showClipInContext:context inRect:_rect];
     [_inDrawAction drawInContext:context inRect:_rect];
-    
-    if (self.showGrid) {
-        [self drawGridInContext:context rect:_rect];
-    }
 }
 
-- (void)showInContextWithoutGrid:(CGContextRef)context
-{
-    [self.bgPhto drawInRect:_rect];
-    [_offscreen showInContext:context];
-    [_inDrawAction drawInContext:context inRect:_rect];
-}
 
 - (CGRect)updateLastAction:(DrawAction *)action
 {
     self.inDrawAction = action;
     
-    if ([action isKindOfClass:[ClipAction class]]) {
+    if ([action isClipAction]) {
         self.currentClip = (id)action;
     }
     return [action redrawRectInRect:_rect];
@@ -173,7 +160,7 @@
 
 - (void)cancelLastAction
 {
-    if ([self.inDrawAction isKindOfClass:[ClipAction class]]) {
+    if ([self.inDrawAction isClipAction]) {
         self.currentClip = nil;
     }
     if (self.inDrawAction) {
@@ -223,33 +210,7 @@
 }
 
 
-- (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect
-{
-    CGContextSaveGState(context);
-    
-    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:160/255. green:1 blue:1 alpha:1].CGColor);
-    CGContextSetLineWidth(context, VALUE(0.5));
-    
-    
-    NSInteger i = 1;
-    
-    while (i * LINE_SPACE < (CGRectGetWidth(rect))) {
-        CGContextMoveToPoint(context, i * LINE_SPACE, 0);
-        CGContextAddLineToPoint(context, i * LINE_SPACE, CGRectGetHeight(rect));
-        CGContextStrokePath(context);
-        i ++;
-    }
-    
-    i = 1;
-    while (i * LINE_SPACE < (CGRectGetHeight(rect))) {
-        CGContextMoveToPoint(context, 0, i * LINE_SPACE);
-        CGContextAddLineToPoint(context, CGRectGetWidth(rect), i * LINE_SPACE);
-        CGContextStrokePath(context);
-        i ++;
-    }
-    CGContextRestoreGState(context);
-    
-}
+
 
 
 - (void)showToIndex:(NSInteger)index

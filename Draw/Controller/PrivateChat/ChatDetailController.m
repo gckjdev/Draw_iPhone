@@ -792,9 +792,16 @@
 - (void)enterReplayController:(DrawMessage *)message
 {
     ReplayView *replayView = [ReplayView createReplayView];
-    NSMutableArray *actionList = [message drawActionList];
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
-    [replayView showInController:self withActionList:actionList isNewVersion:isNewVersion size:message.canvasSize];
+    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.actionList = [message drawActionList];
+    obj.isNewVersion = isNewVersion;
+    obj.canvasSize = [message canvasSize];
+    
+    obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(message.canvasSize)];
+    [replayView showInController:self object:obj];
+
 }
 
 - (void)enterLargeImage:(PPMessage *)message

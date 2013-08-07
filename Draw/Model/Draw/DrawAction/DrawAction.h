@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Draw.pb.h"
 #import "DrawUtils.h"
-#import "Draw.pb-c.h"
 #import "Shadow.h"
 
 
@@ -46,6 +44,7 @@ typedef enum {
 @property(nonatomic, assign, readonly) BOOL hasFinishAddPoint;
 @property(nonatomic, retain) Shadow *shadow;
 @property(nonatomic, retain) ClipAction *clipAction;
+@property(nonatomic, assign) NSUInteger layerTag;
 
 //@property(nonatomic, assign)CGSize canvasSize;
 
@@ -54,35 +53,21 @@ typedef enum {
 + (id)drawActionWithPBDrawAction:(PBDrawAction *)action;
 + (id)drawActionWithPBDrawActionC:(Game__PBDrawAction *)action;
 
-//deprecated
-+ (id)drawActionWithPBNoCompressDrawAction:(PBNoCompressDrawAction *)action;
-
-//deprecated
-+ (NSMutableArray *)pbNoCompressDrawDataToDrawActionList:(PBNoCompressDrawData *)data
-                                              canvasSize:(CGSize)canvasSize;
 
 + (NSMutableArray *)pbNoCompressDrawDataCToDrawActionList:(Game__PBNoCompressDrawData *)data
                                                canvasSize:(CGSize)canvasSize;
 
 
-+ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                            size:(CGSize)size
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser
-                                                 bgImageFileName:(NSString *)bgImageFileName;
-
-+ (PBNoCompressDrawData *)pbNoCompressDrawDataFromDrawActionList:(NSArray *)drawActionList
-                                                            size:(CGSize)size
-                                                        opusDesc:(NSString *)opusDesc
-                                                      drawToUser:(PBUserBasicInfo *)drawToUser
-                                                 bgImageFileName:(NSString *)bgImageFileName;
 
 
 + (NSData *)pbNoCompressDrawDataCFromDrawActionList:(NSArray *)drawActionList
                                                size:(CGSize)size
                                            opusDesc:(NSString *)opusDesc
                                          drawToUser:(PBUserBasicInfo *)drawToUser
-                                    bgImageFileName:(NSString *)bgImageFileName;
+                                    bgImageFileName:(NSString *)bgImageFileName
+                                             layers:(NSArray *)layers;
 
+//info for more attributes
 + (NSData*)buildPBDrawData:(NSString*)userId
                       nick:(NSString *)nick
                     avatar:(NSString *)avatar
@@ -90,7 +75,9 @@ typedef enum {
                   drawWord:(Word*)drawWord
                   language:(int)language
                       size:(CGSize)size
-              isCompressed:(BOOL)isCompressed;
+              isCompressed:(BOOL)isCompressed
+                    layers:(NSArray *)layers
+                    info:(NSDictionary *)info;
 
 
 + (void)freePBDrawActionC:(Game__PBDrawAction**)pbDrawActionC count:(int)count;
@@ -98,7 +85,8 @@ typedef enum {
 + (NSMutableArray *)drawActionListFromPBBBSDraw:(PBBBSDraw *)bbsDraw;
 + (NSMutableArray *)drawActionListFromPBMessage:(PBMessage *)message;
 
-+ (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size;
+//info for extendsion
++ (NSData *)buildBBSDrawData:(NSArray *)drawActionList canvasSize:(CGSize)size info:(NSDictionary *)info;
 
 - (NSData *)toData;
 
@@ -125,6 +113,13 @@ typedef enum {
 
 - (PBDrawAction *)toPBDrawAction; //deprecated
 
+
+- (BOOL)isPaintAction;
+- (BOOL)isShapeAction;
+- (BOOL)isClipAction;
+- (BOOL)isGradientAction;
+- (BOOL)isChangeBGAction;
+- (BOOL)isChangeImageBGAction;
 
 @end
 

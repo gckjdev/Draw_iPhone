@@ -8,6 +8,7 @@
 
 #import "EditDescCommand.h"
 #import "InputAlertView.h"
+#import "OfflineDrawViewController.h"
 
 #define KEYBOARD_RECT (CGRectMake(0, 228, 328, 252))
 
@@ -99,13 +100,14 @@
 //TODO when close the alertView, call changeDesc method
 - (void)changeDesc:(NSString *)desc
 {
-    [self.toolHandler changeDesc:desc];
-//    [self hidePopTipView];
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+    oc.opusDesc = desc;
 }
 
 - (void)changeDrawWord:(NSString*)wordText
 {
-    [self.toolHandler changeDrawWord:wordText];
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+    oc.word = [Word wordWithText:wordText level:0];
 }
 
 @end

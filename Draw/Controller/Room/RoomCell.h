@@ -25,14 +25,15 @@ typedef enum
 - (void)didClickAvatar:(NSIndexPath *)indexPath;
 
 @end
-@class HJManagedImageV;
+
+//@class HJManagedImageV;
 @class AvatarView;
 
 @interface RoomCell : PPTableViewCell
 {
     RoomCellType _roomCellType;
 }
-@property (retain, nonatomic) IBOutlet HJManagedImageV *avatarView;
+@property (retain, nonatomic) IBOutlet UIImageView *avatarView;
 @property (retain, nonatomic) IBOutlet UILabel *roomNameLabel;
 
 @property (retain, nonatomic) IBOutlet UILabel *creatorLabel;

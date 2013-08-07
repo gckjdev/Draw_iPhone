@@ -49,6 +49,10 @@
 #import "WidthView.h"
 #import "UIImageUtil.h"
 #import "UIImageView+WebCache.h"
+#import "DrawInfo.h"
+#import "Item.h"
+#import "ImageShapeManager.h"
+#import "UIBezierPath+Ext.h"
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -95,6 +99,8 @@
 
 @property (retain, nonatomic) NSTimer *timer;
 
+@property (retain, nonatomic) UIView *closeSelector;
+
 - (IBAction)switchToolPage:(UIButton *)sender;
 
 
@@ -116,7 +122,7 @@
 
 #define TIMESET_FONT_SIZE VALUE(15.0)
 
-#define LINE_MIN_WIDTH (1.0)
+#define LINE_MIN_WIDTH ([ConfigManager minPenWidth]) //(1.0)
 #define LINE_MAX_WIDTH ([ConfigManager maxPenWidth])
 #define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
 
@@ -135,6 +141,7 @@
 
 - (IBAction)clickTool:(id)sender
 {
+    [self.delegate drawToolPanel:self didClickTool:sender];
     [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
     [[toolCmdManager commandForControl:sender] execute];
 }
@@ -211,53 +218,6 @@
     [selectedPoint setSelected:YES];
 }
 
-- (void)updateWidthSliderWithValue:(CGFloat)value
-{
-    [self.widthSlider setValue:value];
-}
-
-- (void)setShapeSelected:(BOOL)selected
-{
-    self.shape.selected = selected;
-}
-
-- (void)setStrawSelected:(BOOL)selected
-{
-    [self.straw setSelected:selected];
-}
-
-- (void)setPenSelected:(BOOL)selected
-{
-    [self.pen setSelected:selected];
-}
-
-- (void)setEraserSelected:(BOOL)selected
-{
-    [self.eraser setSelected:selected];
-}
-//- (void)updateDrawToUser:(MyFriend *)user
-//{
-//
-//}
-//
-
-
-- (void)didSelectColorPoint:(ColorPoint *)colorPoint
-{
-    
-    TouchActionType type = self.toolHandler.drawView.touchActionType;
-    
-    [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
-    [self.toolHandler changePenColor:colorPoint.color];
-    [[[ToolCommandManager defaultManager] commandForControl:self.pen] becomeActive];
-    if(type == TouchActionTypeShape){
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
-
-}
-
 
 - (void)registerToolCommands
 {
@@ -326,28 +286,11 @@
     command = [[[ChatCommand alloc] initWithControl:self.chat itemType:ItemTypeNo] autorelease];
     [toolCmdManager registerCommand:command];
     
-
-    [toolCmdManager updateHandler:self.toolHandler];
     [toolCmdManager updatePanel:self];
-    
-    [self.toolHandler enterDrawMode];
+    [toolCmdManager updateDrawInfo:self.drawView.drawInfo];
+    [toolCmdManager updateDrawView:self.drawView];
 }
 
-
-
-- (void)updateViewsForSimpleDraw
-{
-//    if (isSimpleDrawApp()) {
-//        if(!ISIPAD){
-//            self.paintBucket.center = self.drawToUser.center;
-//        }else{
-//            self.shape.center = self.opusDesc.center;
-//            self.paintBucket.center = self.drawToUser.center;
-//        }
-//        self.drawToUser.hidden = self.opusDesc.hidden = YES;
-//    }
-
-}
 
 
 - (void)updateView
@@ -357,48 +300,36 @@
     [self updateSliders];
     
     [self registerToolCommands];
-        
+    
     [self updateRecentColorViewWithColor:[DrawColor blackColor] updateModel:NO];
 
     [self.timeSet.titleLabel setFont:[UIFont fontWithName:@"DBLCDTempBlack" size:TIMESET_FONT_SIZE]];
     [self.colorBGImageView setImage:[[ShareImageManager defaultManager] drawColorBG]];
     [self.toolBGImageView setImage:[[ShareImageManager defaultManager] drawToolBG]];
     
-    [self updateViewsForSimpleDraw];
 }
 
-+ (id)createViewWithdelegate:(id)delegate
-{
-    NSString *identifier = @"DrawToolPanel";
-    if (ISIPHONE5) {
-        identifier = @"DrawToolPanel_ip5";
-    }
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier
-                                                             owner:self options:nil];
-    
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", identifier);
-        return nil;
-    }
-    
-    DrawToolPanel  *view = (DrawToolPanel *)[topLevelObjects objectAtIndex:0];
-    [view updateView];
-    return view;
-    
-}
 
-+ (id)createViewWithdToolHandler:(ToolHandler *)handler
+
+
++ (id)createViewWithDrawView:(DrawView *)drawView;
 {
     DrawToolPanel *panel = nil;
+    NSUInteger index = 0;
+    
     if (ISIPHONE5) {
-        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel_ip5"];
-    }else{
-        panel = [UIView createViewWithXibIdentifier:@"DrawToolPanel"];
+        index = 1;
+    }else if(ISIPAD){
+        index = 2;
     }
-    panel.toolHandler = handler;
-    handler.drawToolPanel = panel;
+
+    panel = [UIView createViewWithXibIdentifier:@"ToolPanel" ofViewIndex:index];
+    panel.drawView = drawView;
+    [panel addCloseSelectorView];
     [panel updateView];
+    [panel updateWithDrawInfo:drawView.drawInfo];
     return panel;
+
 }
 
 
@@ -449,7 +380,6 @@
     PPDebug(@"%@ dealloc",self);
     [toolCmdManager removeAllCommand:_commandVersion];
     [drawColorManager syncRecentList];
-    PPRelease(_toolHandler);
     PPRelease(_widthSlider);
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);
@@ -573,5 +503,161 @@
     [self updateButtonWithOffsetX:offset];    
 }
 
+
+
+
+/////new methods
+
+- (void)updateShapeWithDrawInfo:(DrawInfo *)drawInfo
+{
+    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:drawInfo.shapeType];
+    UIColor *color = ISIPHONE5 ? OPAQUE_COLOR(62, 43, 23) : [UIColor whiteColor];
+    UIImage *image = nil;
+    if(drawInfo.shapeType == ShapeTypeNone){
+        return;
+    }else if (drawInfo.strokeShape || drawInfo.shapeType == ShapeTypeBeeline) {
+        image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }else{
+        image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+    }
+    [self.shape.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [self.shape setImage:image forState:UIControlStateNormal];
+
+}
+
+- (void)updateSelectorWithDrawInfo:(DrawInfo *)drawInfo
+{
+    UIImage *image = [DrawInfo imageForClipActionType:drawInfo.touchType];
+    [self.selector setImage:image forState:UIControlStateNormal];
+    [self.selector setImage:image forState:UIControlStateSelected];
+    [self.selector setSelected:[drawInfo isSelectorMode]];
+}
+
+- (void)updatePenWithDrawInfo:(DrawInfo *)drawInfo
+{
+    if (drawInfo.penType != Eraser) {
+        [self.pen setImage:[Item imageForItemType:drawInfo.penType] forState:UIControlStateNormal];
+        [self.pen setImage:[Item seletedPenImageForType:drawInfo.penType] forState:UIControlStateSelected];
+    }
+}
+
+- (void)updateWithDrawInfo:(DrawInfo *)drawInfo
+{
+    if (drawInfo == nil) {
+        PPDebug(@"<updateWithDrawInfo> drawInfo = nil");
+        return;
+    }
+    [toolCmdManager updateDrawInfo:drawInfo];
+    
+    NSArray *buttons = @[self.pen, self.straw, self.shape, self.eraser];
+    for (UIButton *button in buttons) {
+        [button setSelected:NO];
+    }
+    
+    switch (drawInfo.touchType) {
+        case TouchActionTypeDraw:
+            if (drawInfo.penType == Eraser) {
+                self.eraser.selected = YES;
+            }else{
+                self.pen.selected = YES;
+            }
+            break;
+            
+        case TouchActionTypeGetColor:
+            [self.straw setSelected:YES];
+            break;
+            
+        case TouchActionTypeShape:
+            [self.shape setSelected:YES];
+            
+        default:
+            break;
+    }
+    
+
+    [self updatePenWithDrawInfo:drawInfo];
+    [self updateShapeWithDrawInfo:drawInfo];
+    [self updateSelectorWithDrawInfo:drawInfo];
+    
+    [self.alphaSlider setValue:drawInfo.alpha];
+    [self.widthSlider setValue:drawInfo.penWidth];
+
+
+    NSArray *array = @[@(TouchActionTypeClipEllipse), @(TouchActionTypeClipPath), @(TouchActionTypeClipPolygon), @(TouchActionTypeClipRectangle)];
+    [self setCloseSelectorHidden:_drawView.currentClip == nil &&![array containsObject:@(drawInfo.touchType)]];
+    
+    //TODO set color
+    DrawColor *color = [DrawColor colorWithColor:drawInfo.penColor];
+    [color setAlpha:1];
+    [self updateRecentColorViewWithColor:color updateModel:NO];
+}
+
+
+
+
+#define IMAGE_VIEW_SIZE (ISIPAD ? 140 : 70)
+#define CLOSE_VIEW_SIZE (ISIPAD ? 80 : 40)
+
+#define CLOSE_BUTTON_TAG 201307301
+#define CLOSE_BUTTON_BG_TAG 201307302
+#define CLOSE_VIEW_X (ISIPAD ? (768-IMAGE_VIEW_SIZE-34) : (320-IMAGE_VIEW_SIZE-10))
+#define CLOSE_VIEW_Y (ISIPAD ? 100 : 50)
+
+- (void)setCloseSelectorHidden:(BOOL)hidden
+{
+    UIButton *button = (id)[[self.drawView theTopView] viewWithTag:CLOSE_BUTTON_TAG];
+    UIImageView *bg = (id)[[self.drawView theTopView] viewWithTag:CLOSE_BUTTON_BG_TAG];
+    button.hidden = bg.hidden = hidden;
+}
+
+- (void)addCloseSelectorView
+{
+    self.closeSelector = [UIView createViewWithXibIdentifier:@"ToolPanel" ofViewIndex:3];
+//    UIView *_coloseView = self.closeSelector;
+    
+    if (ISIPAD) {
+        _closeSelector.frame = CGRectMake(CLOSE_VIEW_X, CLOSE_VIEW_Y, IMAGE_VIEW_SIZE, IMAGE_VIEW_SIZE);
+    }else{
+        _closeSelector.frame = CGRectMake(CLOSE_VIEW_X, CLOSE_VIEW_Y, IMAGE_VIEW_SIZE, IMAGE_VIEW_SIZE);
+    }
+    
+    UIButton *button = (id)[_closeSelector viewWithTag:CLOSE_BUTTON_TAG];
+    [button addTarget:self action:@selector(clickCloseSelector:) forControlEvents:UIControlEventTouchUpInside];
+
+    CGFloat x = CLOSE_VIEW_X + CGRectGetMinX(button.frame);
+    CGFloat y = CLOSE_VIEW_Y + CGRectGetMinY(button.frame);
+    [button updateOriginX:x];
+    [button updateOriginY:y];
+    
+    UIImageView *bg = (id)[_closeSelector viewWithTag:CLOSE_BUTTON_BG_TAG];
+    x = CLOSE_VIEW_X + CGRectGetMinX(bg.frame);
+    y = CLOSE_VIEW_Y + CGRectGetMinY(bg.frame);
+    [bg updateOriginX:x];
+    [bg updateOriginY:y];
+    
+    [[self.drawView theTopView] addSubview:bg];
+    [[self.drawView theTopView] addSubview:button];    
+}
+
+
+
+- (void)clickCloseSelector:(id)sender
+{
+ 
+    [self.drawView exitFromClipMode];
+    [self.drawView.drawInfo backToLastDrawMode];
+    [self updateWithDrawInfo:self.drawView.drawInfo];
+}
+
+
+- (void)didSelectColorPoint:(ColorPoint *)colorPoint
+{
+    [self updateRecentColorViewWithColor:colorPoint.color updateModel:NO];
+    DrawInfo *drawInfo = self.drawView.drawInfo;
+    drawInfo.penColor = [DrawColor colorWithColor:colorPoint.color];
+    [drawInfo backToLastDrawMode];
+    [self updateWithDrawInfo:drawInfo];
+    [toolCmdManager hideAllPopTipViews];
+}
 @end
 

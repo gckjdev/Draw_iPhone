@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "ShareImageManager.h"
 #import "GameItemManager.h"
+#import "UIImageView+Extend.h"
 
 @implementation GiftDetailView
 
@@ -47,9 +48,9 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
     view.priceLabel.text = [NSString stringWithFormat:@"%d", [item promotionPrice] * count];
     
     [view.itemImageView setImageWithURL:[NSURL URLWithString:item.image]];
-    UIImage *placeHolderImage = [myFriend isMale] ? [[ShareImageManager defaultManager] maleDefaultAvatarImage] : [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
     
-    [view.avatarImageView setImageWithURL:[NSURL URLWithString:myFriend.avatar] placeholderImage:placeHolderImage];
+    UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:[myFriend isMale]];
+    [view.avatarImageView setImageWithUrl:[NSURL URLWithString:myFriend.avatar] placeholderImage:placeHolderImage showLoading:YES animated:YES];
     
     return view;
 }

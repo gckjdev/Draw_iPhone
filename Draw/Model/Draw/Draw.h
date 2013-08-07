@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "UserManager.h"
-#import "GameBasic.pb-c.h"
-#import "Draw.pb-c.h"
+#import "DrawLayer.h"
 
 @class PBDrawAction;
 @class DrawAction;
 @class Word;
 @class PBDraw;
 @class PBDrawBg;
+
 
 //@class pbcom
 //@class LanguageType;
@@ -34,25 +34,21 @@
 @property (assign, nonatomic) LanguageType languageType;
 
 @property (retain, nonatomic) NSDate *date;
+@property (retain, nonatomic) NSArray *layers;
 @property (assign, nonatomic) NSInteger version;
 @property (assign, nonatomic) CGSize canvasSize;
 
 - (CGRect)canvasRect;
 
-- (id)initWithUserId:(NSString *)userId 
-            nickName:(NSString *)nickName
-              avatar:(NSString *)avatar
-      drawActionList:(NSMutableArray *)drawActionList 
-                word:(Word *)word
-          canvasSize:(CGSize)size;
+
 
 + (NSArray *)drawActionListFromPBActions:(Game__PBDrawAction **)array
                              actionCount:(int)actionCount
                               canvasSize:(CGSize)canvasSize;
 
-- (id)initWithPBDraw:(PBDraw *)pbDraw;
+
 - (id)initWithPBDrawC:(Game__PBDraw*)pbDrawC;
 
 - (BOOL)isNewVersion;
-- (PBDraw *)toPBDraw;
+
 @end

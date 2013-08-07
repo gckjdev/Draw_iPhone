@@ -11,11 +11,16 @@
 #import "PenView.h"
 #import "ItemType.h"
 #import "Palette.h"
+#import "DrawInfo.h"
+#import "DrawView.h"
 
+@class DrawToolPanel;
 
-@class ToolHandler;
+@protocol DrawToolPanelDelegate <NSObject>
 
+- (void)drawToolPanel:(DrawToolPanel *)panel didClickTool:(UIButton *)toolButton;
 
+@end
 
 @interface DrawToolPanel : UIView<ColorPointDelegate, UIScrollViewDelegate>
 {
@@ -23,28 +28,23 @@
 }
 
 @property(nonatomic, assign)NSInteger timerDuration;
-//@property(nonatomic, retain)NSString *drawBgId;
-@property(nonatomic, retain)ToolHandler *toolHandler;
+@property(nonatomic, assign)DrawView *drawView;
+@property(nonatomic, assign)id<DrawToolPanelDelegate> delegate;
 
 
+- (void)updateWithDrawInfo:(DrawInfo *)drawInfo;
 
-//+ (id)createViewWithdelegate:(id)delegate;
++ (id)createViewWithDrawView:(DrawView *)drawView;
 
-+ (id)createViewWithdToolHandler:(ToolHandler *)handler;
+////
+
 
 - (void)updateView;
 - (void)setPanelForOnline:(BOOL)isOnline;
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
 
-- (void)updateWidthSliderWithValue:(CGFloat)value;
-- (void)setShapeSelected:(BOOL)selected;
-- (void)setStrawSelected:(BOOL)selected;
-- (void)setPenSelected:(BOOL)selected;
-- (void)setEraserSelected:(BOOL)selected;
-
 - (void)registerToolCommands;
 - (IBAction)clickTool:(UIButton *)sender;
-- (void)updateView;
 - (void)hideColorPanel:(BOOL)hide;
 
 #pragma mark - Timer

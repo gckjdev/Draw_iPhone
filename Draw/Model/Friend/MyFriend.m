@@ -57,6 +57,7 @@
         self.relation = [[dict objectForKey:PARA_RELATION] intValue];
         self.level = [[dict objectForKey:PARA_LEVEL] intValue]; 
         self.coins = [[dict objectForKey:PARA_USER_COINS] longValue];
+        self.memo = [dict objectForKey:PARA_MEMO];
         if (self.level < 1) {
             self.level = 1;
         }
@@ -108,6 +109,9 @@
 
 - (NSString *)friendNick;
 {
+    if ([self.memo length] > 0){
+        return self.memo;
+    }
     
     if ([self.nickName length] != 0) {
         return [self nickName];
@@ -214,6 +218,7 @@
     PPRelease(_createDate);
     PPRelease(_lastModifiedDate);
     PPRelease(_location);
+    PPRelease(_memo);
     
     [super dealloc];
 }
@@ -232,5 +237,14 @@
 {
     return (type & RelationTypeFan) != 0;
 }
+
+//- (NSString*)displayName
+//{
+//    if ([self.memo length] > 0){
+//        return self.memo;
+//    }
+//    
+//    return self.nickName;
+//}
 
 @end

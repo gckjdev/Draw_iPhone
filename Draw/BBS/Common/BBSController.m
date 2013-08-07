@@ -37,7 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+//    [self setSwipeToBack:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,10 +113,14 @@
         ReplayView *replayView = [ReplayView createReplayView];
         BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
         
-        [replayView showInController:self
-                      withActionList:drawActionList
-                        isNewVersion:isNewVersion
-                                size:canvasSize];
+        ReplayObject *obj = [ReplayObject obj];
+        obj.actionList = drawActionList;
+        obj.isNewVersion = isNewVersion;
+        obj.canvasSize = canvasSize;
+        obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(canvasSize)];
+        
+        [replayView showInController:self object:obj];
+        
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);
     }

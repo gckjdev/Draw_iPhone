@@ -183,6 +183,15 @@ static UIImage* _whitePaperImage;
     return [LocaleUtils isChina] ? [UIImage imageNamed:@"female1.png"] : [UIImage imageNamed:@"female2.png"];
 }
 
+- (UIImage*)avatarImageByGender:(BOOL)gender
+{
+    if (gender) {
+        return [[ShareImageManager defaultManager] maleDefaultAvatarImage];
+    }else{
+        return [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
+    }
+}
+
 #pragma makr - Color Image
 
 //- (UIImage *)redColorImage
@@ -1188,6 +1197,25 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"draw_up_panel_bg_right_arrow@2x.png"];
 }
+
+
+- (UIImage *)polygonSelectorImage
+{
+    return [UIImage imageNamed:@"selector_polygon@2x.png"];
+}
+- (UIImage *)pathSelectorImage
+{
+    return [UIImage imageNamed:@"selector_path@2x.png"];
+}
+- (UIImage *)ellipseSelectorImage
+{
+    return [UIImage imageNamed:@"selector_ellipse@2x.png"];
+}
+- (UIImage *)rectangeSelectorImage
+{
+    return [UIImage imageNamed:@"selector_rectangle@2x.png"];
+}
+
 
 @end
 

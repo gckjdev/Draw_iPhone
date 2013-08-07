@@ -128,10 +128,12 @@ message PBFeed {
   // for contest information
   optional string contestId = 91;               // 参与的比赛的Id
   optional double contestScore = 92;            // 参与的比赛的分数
+  repeated PBOpusRank rankInfo = 93;            // 比赛打分
 
   //for learn Draw
   optional PBLearnDraw learnDraw = 100;
 //  optional PBSing sing = 101;                   // 具体作品
+
 }
 
 message PBPoint
@@ -201,6 +203,8 @@ message PBNoCompressDrawData
     optional PBUserBasicInfo drawToUser = 6;
     optional string opusDesc = 7;
     optional string bgImageName = 8;
+
+    repeated PBLayer layer = 9; // used after version 7.0
 }
 
 

@@ -155,6 +155,11 @@
     return value;
 }
 
++ (CGFloat)minPenWidth
+{
+    CGFloat value = [MobClickUtils getFloatValueByKey:@"MIN_PEN_WIDTH" defaultValue:1.0f];
+    return value;
+}
 
 + (NSInteger)maxPenWidth
 {
@@ -645,7 +650,9 @@
     // version 3 : support shape, draw bg, scale, new  data compress
     // version 4 : support, svg image shape
     // version 5 : support shadow, selector, gradient, input text, layers
-    return 5;
+    // version 6 : support layers
+    // version 7 : input text, FX// Developing...
+    return 6;
 }
 
 
@@ -836,9 +843,10 @@
 
 + (NSString *)currentDrawBgVersion
 {
-    return @"1.2";
+    return @"1.4";
     //Version 1.1 9 Group
     //Version 1.2 +8 Group
+    //Version 1.4 = 1.2
 }
 
 + (NSString *)currentImageShapeVersion

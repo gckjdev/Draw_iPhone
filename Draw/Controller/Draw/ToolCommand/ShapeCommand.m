@@ -14,7 +14,7 @@
 
 @interface ShapeCommand()
 {
-    ShapeType _currentType;
+//    ShapeType _currentType;
 }
 
 @property(nonatomic, retain)ShapeBox *box;
@@ -23,37 +23,6 @@
 
 
 @implementation ShapeCommand
-
-/*
-- (BOOL)execute
-{
-    if ([super execute]) {
-        [self showPopTipView];
-        return YES;
-    }
-    return NO;
-}
-
-- (UIView *)contentView
-{
-    return [ShapeBox shapeBoxWithDelegate:self];
-
-}
-
-
-- (void)shapeBox:(ShapeBox *)shapeBox didSelectShapeType:(ShapeType)type
-{
-    [self becomeActive]; 
-    [self.toolHandler changeShape:type];
-    [self hidePopTipView];
-
-    UIImage * image = [ShapeInfo shapeImageForShapeType:type];
-    UIButton *button = (UIButton *)self.control;
-    [button setImage:image forState:UIControlStateNormal];
-//    [button setSelected:YES];
-   
-}
-*/
 
 - (void)dealloc
 {
@@ -69,24 +38,10 @@
     view.center = spView.center;
     [view showInView:spView];
     self.box = view;
+    [self sendAnalyticsReport];
     return YES;
 }
 
-- (void)updateButtonImageWithStroke:(BOOL)stroke
-{
-    UIButton *button = (UIButton *)self.control;
-    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:_currentType];
-    UIColor *color = ISIPHONE5 ? OPAQUE_COLOR(62, 43, 23) : [UIColor whiteColor];
-    UIImage *image = nil;
-    if (stroke || _currentType == ShapeTypeBeeline) {
-        image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
-    }else{
-        image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
-    }
-    [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [button setImage:image forState:UIControlStateNormal];
-
-}
 
 - (void)shapeBox:(ShapeBox *)shapeBox
 didSelectedShape:(ShapeType)shape
@@ -94,21 +49,22 @@ didSelectedShape:(ShapeType)shape
          groudId:(ItemType)groupId
 {
     if ([self canUseItem:groupId]) {
-        [self becomeActive];
-        [self.toolHandler changeShape:shape isStroke:isStroke];
-
+        
         [shapeBox dismiss];
         self.box = nil;
-        _currentType = shape;
-        [self updateButtonImageWithStroke:isStroke];
+        self.drawInfo.shapeType = shape;
+        self.drawInfo.strokeShape = isStroke;
+        self.drawInfo.touchType = TouchActionTypeShape;
+        [self updateToolPanel];
     }
 }
 
 - (void)shapeBox:(ShapeBox *)shapeBox didChangeDrawStyle:(BOOL)stroke
 {
-    [self.toolHandler changeShapeStroke:stroke];
-    if(_currentType != 0){
-        [self updateButtonImageWithStroke:stroke];
+    if (self.drawInfo.shapeType != ShapeTypeNone) {
+        self.drawInfo.strokeShape = stroke;
+        self.drawInfo.touchType = TouchActionTypeShape;
+        [self updateToolPanel];
     }
 }
 

@@ -651,7 +651,7 @@
         superController.feedScene = [[[FeedSceneDetailGuessResult alloc] init] autorelease];
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        ShowFeedController* resultFeed = [[ShowFeedController alloc] initWithFeed:self.feed scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed] feedScene:[[[FeedSceneGuessResult alloc] init] autorelease]];
+        ShowFeedController* resultFeed = [[ShowFeedController alloc] initWithFeed:self.feed scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed] feedScene:[[[FeedSceneGuessResult alloc] init] autorelease]];        
         [self.navigationController pushViewController:resultFeed animated:YES];
         [resultFeed release];
     }
@@ -862,6 +862,7 @@
         rect = [self.feed.drawData canvasRect];
     }
     showView = [[ShowDrawView alloc] initWithFrame:rect];
+    [showView updateLayers:self.feed.drawData.layers];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
     [self.view insertSubview:holder atIndex:4];
 }

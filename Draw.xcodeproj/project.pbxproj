@@ -355,7 +355,6 @@
 		A461B16B174CBAA70088B061 /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		A461B171174CBAA70088B061 /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		A461B172174CBAA70088B061 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		A461B173174CBAA70088B061 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		A461B174174CBAA70088B061 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		A461B175174CBAA70088B061 /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		A461B176174CBAA70088B061 /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -722,7 +721,6 @@
 		A461B367174CBAA70088B061 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		A461B36A174CBAA70088B061 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		A461B36B174CBAA70088B061 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		A461B36C174CBAA70088B061 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		A461B36D174CBAA70088B061 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		A461B36E174CBAA70088B061 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		A461B36F174CBAA70088B061 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -1378,9 +1376,6 @@
 		A461B666174CBAA70088B061 /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		A461B667174CBAA70088B061 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		A461B669174CBAA70088B061 /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		A461B66A174CBAA70088B061 /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		A461B66B174CBAA70088B061 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		A461B66C174CBAA70088B061 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		A461B66D174CBAA70088B061 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		A461B66E174CBAA70088B061 /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -1713,15 +1708,6 @@
 		A467BBCC17798E0500455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBCE17798E0C00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBCF17798E0F00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
-		A468A65A17A7A06C0027768C /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A468A65917A7A0690027768C /* GuessSelectCell.m */; };
-		A468A65B17A7A06C0027768C /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A468A65917A7A0690027768C /* GuessSelectCell.m */; };
-		A468A65C17A7A06C0027768C /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A468A65917A7A0690027768C /* GuessSelectCell.m */; };
-		A468A66317A7A0C20027768C /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A468A66217A7A0C00027768C /* GuessSelectCell.xib */; };
-		A468A66417A7A0C20027768C /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A468A66217A7A0C00027768C /* GuessSelectCell.xib */; };
-		A468A66517A7A0C20027768C /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A468A66217A7A0C00027768C /* GuessSelectCell.xib */; };
-		A468A66917A90FA70027768C /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A468A66817A90FA40027768C /* round_dot_no@2x.png */; };
-		A468A66A17A90FA70027768C /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A468A66817A90FA40027768C /* round_dot_no@2x.png */; };
-		A468A66B17A90FA70027768C /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A468A66817A90FA40027768C /* round_dot_no@2x.png */; };
 		A46918AF174F52020000FD39 /* SongManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A46918AE174F52020000FD39 /* SongManager.m */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
 		A4834DCD1716AD5400190347 /* AliPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834D651716AD5300190347 /* AliPayManager.m */; };
@@ -2144,6 +2130,34 @@
 		A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
 		A4DE148D169AB41C00841940 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
 		A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
+		A4E1D21917B2236800E13728 /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E1D21717B2236800E13728 /* GuessSelectCell.m */; };
+		A4E1D21A17B2236800E13728 /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E1D21717B2236800E13728 /* GuessSelectCell.m */; };
+		A4E1D21B17B2236800E13728 /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E1D21717B2236800E13728 /* GuessSelectCell.m */; };
+		A4E1D21C17B2236800E13728 /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E1D21717B2236800E13728 /* GuessSelectCell.m */; };
+		A4E1D21D17B2236800E13728 /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D21817B2236800E13728 /* GuessSelectCell.xib */; };
+		A4E1D21E17B2236800E13728 /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D21817B2236800E13728 /* GuessSelectCell.xib */; };
+		A4E1D21F17B2236800E13728 /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D21817B2236800E13728 /* GuessSelectCell.xib */; };
+		A4E1D22017B2236800E13728 /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D21817B2236800E13728 /* GuessSelectCell.xib */; };
+		A4E1D22B17B2241000E13728 /* award_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22617B2241000E13728 /* award_coin@2x.png */; };
+		A4E1D22C17B2241000E13728 /* award_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22617B2241000E13728 /* award_coin@2x.png */; };
+		A4E1D22D17B2241000E13728 /* award_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22617B2241000E13728 /* award_coin@2x.png */; };
+		A4E1D22E17B2241000E13728 /* award_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22617B2241000E13728 /* award_coin@2x.png */; };
+		A4E1D22F17B2241000E13728 /* guess_correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22717B2241000E13728 /* guess_correct@2x.png */; };
+		A4E1D23017B2241000E13728 /* guess_correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22717B2241000E13728 /* guess_correct@2x.png */; };
+		A4E1D23117B2241000E13728 /* guess_correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22717B2241000E13728 /* guess_correct@2x.png */; };
+		A4E1D23217B2241000E13728 /* guess_correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22717B2241000E13728 /* guess_correct@2x.png */; };
+		A4E1D23317B2241000E13728 /* guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22817B2241000E13728 /* guess_rank@2x.png */; };
+		A4E1D23417B2241000E13728 /* guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22817B2241000E13728 /* guess_rank@2x.png */; };
+		A4E1D23517B2241000E13728 /* guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22817B2241000E13728 /* guess_rank@2x.png */; };
+		A4E1D23617B2241000E13728 /* guess_rank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22817B2241000E13728 /* guess_rank@2x.png */; };
+		A4E1D23717B2241000E13728 /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22917B2241000E13728 /* round_dot_no@2x.png */; };
+		A4E1D23817B2241000E13728 /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22917B2241000E13728 /* round_dot_no@2x.png */; };
+		A4E1D23917B2241000E13728 /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22917B2241000E13728 /* round_dot_no@2x.png */; };
+		A4E1D23A17B2241000E13728 /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22917B2241000E13728 /* round_dot_no@2x.png */; };
+		A4E1D23B17B2241000E13728 /* spend_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22A17B2241000E13728 /* spend_time@2x.png */; };
+		A4E1D23C17B2241000E13728 /* spend_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22A17B2241000E13728 /* spend_time@2x.png */; };
+		A4E1D23D17B2241000E13728 /* spend_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22A17B2241000E13728 /* spend_time@2x.png */; };
+		A4E1D23E17B2241000E13728 /* spend_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22A17B2241000E13728 /* spend_time@2x.png */; };
 		A4E254D01796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
 		A4E254D11796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
 		A4E64911178425D10063F393 /* UIButton+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64910178425D10063F393 /* UIButton+Extend.m */; };
@@ -2627,7 +2641,6 @@
 		C28A9A581738F04B007A819F /* OfflineGuessDrawController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCF7157CB3E9009C95CB /* OfflineGuessDrawController.m */; };
 		C28A9A591738F04B007A819F /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		C28A9A5A1738F04B007A819F /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		C28A9A5B1738F04B007A819F /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		C28A9A5C1738F04B007A819F /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		C28A9A5D1738F04B007A819F /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		C28A9A5E1738F04B007A819F /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -2995,7 +3008,6 @@
 		C28A9C4F1738F04B007A819F /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		C28A9C521738F04B007A819F /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		C28A9C531738F04B007A819F /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		C28A9C541738F04B007A819F /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		C28A9C551738F04B007A819F /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		C28A9C561738F04B007A819F /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		C28A9C571738F04B007A819F /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -3658,9 +3670,6 @@
 		C28A9F481738F04B007A819F /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		C28A9F491738F04B007A819F /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		C28A9F4B1738F04B007A819F /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		C28A9F4C1738F04B007A819F /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		C28A9F4D1738F04B007A819F /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		C28A9F4E1738F04B007A819F /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		C28A9F4F1738F04B007A819F /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		C28A9F501738F04B007A819F /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -4278,6 +4287,14 @@
 		CA06BE4315522F3000B94FB1 /* SuperGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */; };
 		CA0A2CAB161046D300F66400 /* TopPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0A2CAA161046D300F66400 /* TopPlayerView.xib */; };
 		CA0A2CAE1610473800F66400 /* TopPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A2CAD1610473800F66400 /* TopPlayerView.m */; };
+		CA0C83AD17ABC6170058F753 /* draw_selector_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83AC17ABC6170058F753 /* draw_selector_selected@2x.png */; };
+		CA0C83AE17ABC6170058F753 /* draw_selector_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83AC17ABC6170058F753 /* draw_selector_selected@2x.png */; };
+		CA0C83AF17ABC6170058F753 /* draw_selector_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83AC17ABC6170058F753 /* draw_selector_selected@2x.png */; };
+		CA0C83B017ABC6170058F753 /* draw_selector_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83AC17ABC6170058F753 /* draw_selector_selected@2x.png */; };
+		CA0C83B717ABC6900058F753 /* selector_close_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83B617ABC68F0058F753 /* selector_close_bg@2x.png */; };
+		CA0C83B817ABC6900058F753 /* selector_close_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83B617ABC68F0058F753 /* selector_close_bg@2x.png */; };
+		CA0C83B917ABC6900058F753 /* selector_close_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83B617ABC68F0058F753 /* selector_close_bg@2x.png */; };
+		CA0C83BA17ABC6900058F753 /* selector_close_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0C83B617ABC68F0058F753 /* selector_close_bg@2x.png */; };
 		CA0CB74F155CB037009C8EE6 /* FriendRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB74D155CB037009C8EE6 /* FriendRoomController.m */; };
 		CA0CB750155CB037009C8EE6 /* FriendRoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0CB74E155CB037009C8EE6 /* FriendRoomController.xib */; };
 		CA0CB754155CB04D009C8EE6 /* SearchRoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB752155CB04D009C8EE6 /* SearchRoomController.m */; };
@@ -4289,6 +4306,10 @@
 		CA0CB76A155CB773009C8EE6 /* RoomService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB769155CB773009C8EE6 /* RoomService.m */; };
 		CA0CB76E155CB799009C8EE6 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB76D155CB799009C8EE6 /* Room.m */; };
 		CA0CB771155CB7A9009C8EE6 /* RoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0CB770155CB7A9009C8EE6 /* RoomManager.m */; };
+		CA0F236917B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
+		CA0F236A17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
+		CA0F236B17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
+		CA0F236C17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */; };
 		CA0FC07C178EA13E00A72B79 /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0FC07B178EA13E00A72B79 /* JumpHandler.m */; };
 		CA0FC088178EA13E00A72B79 /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0FC07B178EA13E00A72B79 /* JumpHandler.m */; };
 		CA0FC08B178EA13E00A72B79 /* JumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0FC07B178EA13E00A72B79 /* JumpHandler.m */; };
@@ -4786,9 +4807,6 @@
 		CA5328F916A3E1E000E9E96B /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DD16A3E1E000E9E96B /* ColorPoint.m */; };
 		CA5328FD16A3E1E000E9E96B /* DrawSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DF16A3E1E000E9E96B /* DrawSlider.m */; };
 		CA53290116A3E1E000E9E96B /* DrawToolPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */; };
-		CA53290516A3E1E000E9E96B /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		CA53290916A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		CA53290D16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		CA53291116A3E1E000E9E96B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328E616A3E1E000E9E96B /* Palette.m */; };
 		CA53291516A3E1E000E9E96B /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		CA53291916A3E1E000E9E96B /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
@@ -5454,7 +5472,6 @@
 		CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
 		CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
 		CAD083001676E124007B6B65 /* DrawHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */; };
-		CAD6EACF15805D780004A483 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		CAD8EE9D173A9CCD0048333D /* DrawDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE87173A9CCC0048333D /* DrawDefault-568h@2x.png */; };
 		CAD8EE9F173A9CCD0048333D /* DrawDefault-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE8B173A9CCC0048333D /* DrawDefault-Portrait.png */; };
 		CAD8EEA0173A9CCD0048333D /* DrawDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD8EE8D173A9CCC0048333D /* DrawDefault@2x.png */; };
@@ -5509,6 +5526,26 @@
 		CAE58A12175EF45E009149E9 /* Opus.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CAE58A00175EF45E009149E9 /* Opus.pb-c.c */; };
 		CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
+		CAE74B7017AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
+		CAE74B7117AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
+		CAE74B7217AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
+		CAE74B7317AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
+		CAE74B7A17AF83D500E73875 /* DrawLayerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */; };
+		CAE74B7B17AF83D500E73875 /* DrawLayerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */; };
+		CAE74B7C17AF83D500E73875 /* DrawLayerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */; };
+		CAE74B7D17AF83D500E73875 /* DrawLayerPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */; };
+		CAE74B8217AF868000E73875 /* drawlayer_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7F17AF868000E73875 /* drawlayer_delete@2x.png */; };
+		CAE74B8317AF868000E73875 /* drawlayer_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7F17AF868000E73875 /* drawlayer_delete@2x.png */; };
+		CAE74B8417AF868000E73875 /* drawlayer_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7F17AF868000E73875 /* drawlayer_delete@2x.png */; };
+		CAE74B8517AF868000E73875 /* drawlayer_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B7F17AF868000E73875 /* drawlayer_delete@2x.png */; };
+		CAE74B8617AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8017AF868000E73875 /* drawlayer_flag_hide@2x.png */; };
+		CAE74B8717AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8017AF868000E73875 /* drawlayer_flag_hide@2x.png */; };
+		CAE74B8817AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8017AF868000E73875 /* drawlayer_flag_hide@2x.png */; };
+		CAE74B8917AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8017AF868000E73875 /* drawlayer_flag_hide@2x.png */; };
+		CAE74B8A17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8117AF868000E73875 /* drawlayer_flag_show@2x.png */; };
+		CAE74B8B17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8117AF868000E73875 /* drawlayer_flag_show@2x.png */; };
+		CAE74B8C17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8117AF868000E73875 /* drawlayer_flag_show@2x.png */; };
+		CAE74B8D17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE74B8117AF868000E73875 /* drawlayer_flag_show@2x.png */; };
 		CAE9AA4816D71E61008392F9 /* DrawPenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4716D71E61008392F9 /* DrawPenFactory.m */; };
 		CAE9AA4E16D71FCD008392F9 /* DashPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA4D16D71FCD008392F9 /* DashPen.m */; };
 		CAE9AA5416D71FE2008392F9 /* BlurPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA5316D71FE2008392F9 /* BlurPen.m */; };
@@ -5529,7 +5566,6 @@
 		CAEFC48D16FD63EB00D799B7 /* draw_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC46416FD63D900D799B7 /* draw_triangle@2x.png */; };
 		CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		CAEFC4F016FDEC2400D799B7 /* draw_canvas_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */; };
-		CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -5551,6 +5587,14 @@
 		CAF0DB5B17019AED009FE646 /* CanvasRectBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF0DB5217019AED009FE646 /* CanvasRectBox~ipad.xib */; };
 		CAF10AFB151C665D008C4512 /* AccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFA151C665D008C4512 /* AccountManager.m */; };
 		CAF10AFE151C666E008C4512 /* ItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF10AFD151C666E008C4512 /* ItemManager.m */; };
+		CAF4897417AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897517AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897617AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897717AA6D4500F015AB /* DrawInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF4897217AA6D4400F015AB /* DrawInfo.m */; };
+		CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
+		CAF4897A17AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
+		CAF4897B17AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
+		CAF4897C17AA736900F015AB /* ToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF4897817AA736900F015AB /* ToolPanel.xib */; };
 		CAF7DC9D17685238001596C0 /* ShapeGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7DC9C17685238001596C0 /* ShapeGroup.m */; };
 		CAF7DCAA17685238001596C0 /* ShapeGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7DC9C17685238001596C0 /* ShapeGroup.m */; };
 		CAF7DCAD17685238001596C0 /* ShapeGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7DC9C17685238001596C0 /* ShapeGroup.m */; };
@@ -5908,7 +5952,6 @@
 		EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */ = {isa = PBXBuildFile; fileRef = A359848B157C977100745BAB /* CustomWord.m */; };
 		EA411905176066F500DA72D0 /* MyWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35984AF157CCAB900745BAB /* MyWordsController.m */; };
 		EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = A31B5EF2157E1BE8003DDBF1 /* SelectCustomWordView.m */; };
-		EA411907176066F500DA72D0 /* DrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD6EACE15805D780004A483 /* DrawManager.m */; };
 		EA411908176066F500DA72D0 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A28461580C2AE006CA3CC /* ChatCell.m */; };
 		EA411909176066F500DA72D0 /* ChatDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284A1580C2AE006CA3CC /* ChatDetailController.m */; };
 		EA41190A176066F500DA72D0 /* ChatListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A30A284E1580C2AE006CA3CC /* ChatListController.m */; };
@@ -6275,7 +6318,6 @@
 		EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D6B09516FD8CEE00EDD41C /* SNSUtils.m */; };
 		EA411AA6176066F500DA72D0 /* CustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2A1BA16FEB9970074A168 /* CustomSegmentedControl.m */; };
-		EA411AA7176066F500DA72D0 /* ToolHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5301700002F00D799B7 /* ToolHandler.m */; };
 		EA411AA8176066F500DA72D0 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		EA411AA9176066F500DA72D0 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
 		EA411AAA176066F500DA72D0 /* PaletteCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5481700026800D799B7 /* PaletteCommand.m */; };
@@ -6961,9 +7003,6 @@
 		EA411D90176066F500DA72D0 /* shop_item_palette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C297BFDF169ED04500E00258 /* shop_item_palette@2x.png */; };
 		EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
-		EA411D93176066F500DA72D0 /* DrawToolPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */; };
-		EA411D94176066F500DA72D0 /* DrawToolPanel_ip5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */; };
-		EA411D95176066F500DA72D0 /* DrawToolPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */; };
 		EA411D96176066F500DA72D0 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
 		EA411D97176066F500DA72D0 /* Palette~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */; };
 		EA411D98176066F500DA72D0 /* PenBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328EB16A3E1E000E9E96B /* PenBox.xib */; };
@@ -7673,10 +7712,6 @@
 		A467BBAB177844DB00455E3A /* OpusDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusDownloadService.m; sourceTree = "<group>"; };
 		A467BBC217798CA500455E3A /* ItemUseRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemUseRecorder.h; sourceTree = "<group>"; };
 		A467BBC317798CA500455E3A /* ItemUseRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemUseRecorder.m; sourceTree = "<group>"; };
-		A468A65817A7A0670027768C /* GuessSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessSelectCell.h; sourceTree = "<group>"; };
-		A468A65917A7A0690027768C /* GuessSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessSelectCell.m; sourceTree = "<group>"; };
-		A468A66217A7A0C00027768C /* GuessSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessSelectCell.xib; sourceTree = "<group>"; };
-		A468A66817A90FA40027768C /* round_dot_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_dot_no@2x.png"; sourceTree = "<group>"; };
 		A46918AD174F52020000FD39 /* SongManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongManager.h; sourceTree = "<group>"; };
 		A46918AE174F52020000FD39 /* SongManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongManager.m; sourceTree = "<group>"; };
 		A46E704716BBAA2D00F0E68C /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -8132,6 +8167,14 @@
 		A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomWordCell.m; sourceTree = "<group>"; };
 		A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCustomWordCell.xib; sourceTree = "<group>"; };
 		A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SelectCustomWordCell~ipad.xib"; sourceTree = "<group>"; };
+		A4E1D21617B2236800E13728 /* GuessSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessSelectCell.h; sourceTree = "<group>"; };
+		A4E1D21717B2236800E13728 /* GuessSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessSelectCell.m; sourceTree = "<group>"; };
+		A4E1D21817B2236800E13728 /* GuessSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessSelectCell.xib; sourceTree = "<group>"; };
+		A4E1D22617B2241000E13728 /* award_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "award_coin@2x.png"; sourceTree = "<group>"; };
+		A4E1D22717B2241000E13728 /* guess_correct@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_correct@2x.png"; sourceTree = "<group>"; };
+		A4E1D22817B2241000E13728 /* guess_rank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rank@2x.png"; sourceTree = "<group>"; };
+		A4E1D22917B2241000E13728 /* round_dot_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_dot_no@2x.png"; sourceTree = "<group>"; };
+		A4E1D22A17B2241000E13728 /* spend_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spend_time@2x.png"; sourceTree = "<group>"; };
 		A4E254CE1796CC5D00767506 /* GuessService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessService.h; sourceTree = "<group>"; };
 		A4E254CF1796CC5D00767506 /* GuessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessService.m; sourceTree = "<group>"; };
 		A4E6490F178425D10063F393 /* UIButton+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extend.h"; sourceTree = "<group>"; };
@@ -8751,6 +8794,8 @@
 		CA0A2CAA161046D300F66400 /* TopPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopPlayerView.xib; sourceTree = "<group>"; };
 		CA0A2CAC1610473800F66400 /* TopPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayerView.h; sourceTree = "<group>"; };
 		CA0A2CAD1610473800F66400 /* TopPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayerView.m; sourceTree = "<group>"; };
+		CA0C83AC17ABC6170058F753 /* draw_selector_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_selector_selected@2x.png"; sourceTree = "<group>"; };
+		CA0C83B617ABC68F0058F753 /* selector_close_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selector_close_bg@2x.png"; sourceTree = "<group>"; };
 		CA0CB74C155CB037009C8EE6 /* FriendRoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRoomController.h; sourceTree = "<group>"; };
 		CA0CB74D155CB037009C8EE6 /* FriendRoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRoomController.m; sourceTree = "<group>"; };
 		CA0CB74E155CB037009C8EE6 /* FriendRoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendRoomController.xib; sourceTree = "<group>"; };
@@ -8768,6 +8813,8 @@
 		CA0CB76D155CB799009C8EE6 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		CA0CB76F155CB7A9009C8EE6 /* RoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomManager.h; sourceTree = "<group>"; };
 		CA0CB770155CB7A9009C8EE6 /* RoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomManager.m; sourceTree = "<group>"; };
+		CA0F236717B15D09004247FB /* JTTableViewGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTTableViewGestureRecognizer.h; sourceTree = "<group>"; };
+		CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTTableViewGestureRecognizer.m; sourceTree = "<group>"; };
 		CA0FC07A178EA13E00A72B79 /* JumpHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpHandler.h; sourceTree = "<group>"; };
 		CA0FC07B178EA13E00A72B79 /* JumpHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JumpHandler.m; sourceTree = "<group>"; };
 		CA0FC096178FFA6700A72B79 /* UserDeviceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDeviceService.h; sourceTree = "<group>"; };
@@ -9466,9 +9513,6 @@
 		CA5328DF16A3E1E000E9E96B /* DrawSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawSlider.m; sourceTree = "<group>"; };
 		CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawToolPanel.h; sourceTree = "<group>"; };
 		CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToolPanel.m; sourceTree = "<group>"; };
-		CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel.xib; sourceTree = "<group>"; };
-		CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolPanel_ip5.xib; sourceTree = "<group>"; };
-		CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawToolPanel~ipad.xib"; sourceTree = "<group>"; };
 		CA5328E516A3E1E000E9E96B /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		CA5328E616A3E1E000E9E96B /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
 		CA5328E716A3E1E000E9E96B /* Palette.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Palette.xib; sourceTree = "<group>"; };
@@ -10147,8 +10191,6 @@
 		CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
-		CAD6EACD15805D780004A483 /* DrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawManager.h; sourceTree = "<group>"; };
-		CAD6EACE15805D780004A483 /* DrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawManager.m; sourceTree = "<group>"; };
 		CAD8EE87173A9CCC0048333D /* DrawDefault-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DrawDefault-568h@2x.png"; sourceTree = "<group>"; };
 		CAD8EE8C173A9CCC0048333D /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "DrawDefault-Portrait.png"; sourceTree = "<group>"; };
 		CAD8EE8E173A9CCC0048333D /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "DrawDefault@2x.png"; sourceTree = "<group>"; };
@@ -10219,6 +10261,12 @@
 		CAE58A01175EF45E009149E9 /* Opus.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Opus.pb-c.h"; sourceTree = "<group>"; };
 		CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawOnCell.xib; sourceTree = "<group>"; };
 		CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawOnCell~ipad.xib"; sourceTree = "<group>"; };
+		CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayerPanel.h; sourceTree = "<group>"; };
+		CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayerPanel.m; sourceTree = "<group>"; };
+		CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawLayerPanel.xib; sourceTree = "<group>"; };
+		CAE74B7F17AF868000E73875 /* drawlayer_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawlayer_delete@2x.png"; sourceTree = "<group>"; };
+		CAE74B8017AF868000E73875 /* drawlayer_flag_hide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawlayer_flag_hide@2x.png"; sourceTree = "<group>"; };
+		CAE74B8117AF868000E73875 /* drawlayer_flag_show@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "drawlayer_flag_show@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0016D632CB008392F9 /* dice_home_header_foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_foot@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0116D632CB008392F9 /* dice_home_header_man@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_man@2x.png"; sourceTree = "<group>"; };
 		CAE9AA0416D633E3008392F9 /* dice_home_header_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dice_home_header_bg@2x.png"; sourceTree = "<group>"; };
@@ -10255,8 +10303,6 @@
 		CAEFC49D16FD64DB00D799B7 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
 		CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeInfo.m; sourceTree = "<group>"; };
 		CAEFC4EF16FDEC2400D799B7 /* draw_canvas_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_canvas_bg@2x.png"; sourceTree = "<group>"; };
-		CAEFC52F1700002F00D799B7 /* ToolHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHandler.h; sourceTree = "<group>"; };
-		CAEFC5301700002F00D799B7 /* ToolHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolHandler.m; sourceTree = "<group>"; };
 		CAEFC5351700005400D799B7 /* ToolCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolCommand.h; sourceTree = "<group>"; };
 		CAEFC5361700005400D799B7 /* ToolCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolCommand.m; sourceTree = "<group>"; };
 		CAEFC5411700024100D799B7 /* AddColorCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddColorCommand.h; sourceTree = "<group>"; };
@@ -10297,6 +10343,10 @@
 		CAF10AFA151C665D008C4512 /* AccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManager.m; sourceTree = "<group>"; };
 		CAF10AFC151C666D008C4512 /* ItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemManager.h; sourceTree = "<group>"; };
 		CAF10AFD151C666E008C4512 /* ItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemManager.m; sourceTree = "<group>"; };
+		CAF4897117AA6D4400F015AB /* DrawInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfo.h; sourceTree = "<group>"; };
+		CAF4897217AA6D4400F015AB /* DrawInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfo.m; sourceTree = "<group>"; };
+		CAF4897317AA6D4400F015AB /* DrawProcessProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawProcessProtocol.h; sourceTree = "<group>"; };
+		CAF4897817AA736900F015AB /* ToolPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolPanel.xib; sourceTree = "<group>"; };
 		CAF7DC9B17685238001596C0 /* ShapeGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeGroup.h; sourceTree = "<group>"; };
 		CAF7DC9C17685238001596C0 /* ShapeGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeGroup.m; sourceTree = "<group>"; };
 		CAF7E82716BB662B00F09584 /* WidthBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidthBox.h; sourceTree = "<group>"; };
@@ -11494,6 +11544,9 @@
 		A49971F9177831E100B01EBE /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A4E1D21617B2236800E13728 /* GuessSelectCell.h */,
+				A4E1D21717B2236800E13728 /* GuessSelectCell.m */,
+				A4E1D21817B2236800E13728 /* GuessSelectCell.xib */,
 				A4C9E03217A61B4200DE982F /* GuessRankCell.h */,
 				A4C9E03317A61B4200DE982F /* GuessRankCell.m */,
 				A4C9E03417A61B4200DE982F /* GuessRankCell.xib */,
@@ -11511,9 +11564,6 @@
 				A4B78A68179FA6E70008E21B /* GuessRankListController.h */,
 				A4B78A69179FA6ED0008E21B /* GuessRankListController.m */,
 				A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */,
-				A468A65817A7A0670027768C /* GuessSelectCell.h */,
-				A468A65917A7A0690027768C /* GuessSelectCell.m */,
-				A468A66217A7A0C00027768C /* GuessSelectCell.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -11676,7 +11726,11 @@
 		A4B78A06179F78BA0008E21B /* Guess */ = {
 			isa = PBXGroup;
 			children = (
-				A468A66817A90FA40027768C /* round_dot_no@2x.png */,
+				A4E1D22617B2241000E13728 /* award_coin@2x.png */,
+				A4E1D22717B2241000E13728 /* guess_correct@2x.png */,
+				A4E1D22817B2241000E13728 /* guess_rank@2x.png */,
+				A4E1D22917B2241000E13728 /* round_dot_no@2x.png */,
+				A4E1D22A17B2241000E13728 /* spend_time@2x.png */,
 				A4B78A6F179FADE20008E21B /* guess_contest_mode@2x.png */,
 				A4B78A70179FADE20008E21B /* guess_contest_time@2x.png */,
 				A4B78A71179FADE20008E21B /* guess_genius_mode@2x.png */,
@@ -13818,6 +13872,8 @@
 		CA103DAF1509A56100F60C03 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				CA0F236717B15D09004247FB /* JTTableViewGestureRecognizer.h */,
+				CA0F236817B15D09004247FB /* JTTableViewGestureRecognizer.m */,
 				CA103DB01509A56100F60C03 /* UITableViewUtil.h */,
 				CA103DB11509A56100F60C03 /* UITableViewUtil.m */,
 			);
@@ -14106,7 +14162,6 @@
 			isa = PBXGroup;
 			children = (
 				CAEFC52D1700002F00D799B7 /* ToolCommand */,
-				CAEFC52E1700002F00D799B7 /* ToolHandler */,
 				CA5328D716A3E1E000E9E96B /* Tool */,
 				CA06BE4115522F2F00B94FB1 /* SuperGameViewController.h */,
 				CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */,
@@ -14337,8 +14392,6 @@
 				CA48588816E19D4500AEE725 /* DrawBg */,
 				CAE9AA3F16D71D42008392F9 /* DrawPen */,
 				CAF9B70D16AA3C4200865CCE /* PenEffect */,
-				CAD6EACD15805D780004A483 /* DrawManager.h */,
-				CAD6EACE15805D780004A483 /* DrawManager.m */,
 				A3C129E31563A70E00C021A7 /* Draw.h */,
 				A3C129E41563A70E00C021A7 /* Draw.m */,
 				CA1041E91509B99A00F60C03 /* Paint.h */,
@@ -14788,6 +14841,7 @@
 		CA25C3A2168968070064C05D /* DrawPage */ = {
 			isa = PBXGroup;
 			children = (
+				CAE74B7E17AF868000E73875 /* DrawLayer */,
 				CACEC2E6178BA94000D88643 /* Selector */,
 				CA9C1287178275B9004372B6 /* Gradient */,
 				CA5B064916BFC2FF004A64C4 /* BG */,
@@ -15088,6 +15142,9 @@
 		CA4FB81A179E23E600A57387 /* DrawLayer */ = {
 			isa = PBXGroup;
 			children = (
+				CAF4897117AA6D4400F015AB /* DrawInfo.h */,
+				CAF4897217AA6D4400F015AB /* DrawInfo.m */,
+				CAF4897317AA6D4400F015AB /* DrawProcessProtocol.h */,
 				CA4FB820179E240B00A57387 /* DrawLayer.h */,
 				CA4FB821179E240B00A57387 /* DrawLayer.m */,
 				CA4FB827179E24A100A57387 /* DrawLayerManager.h */,
@@ -15149,10 +15206,8 @@
 				CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */,
 				CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */,
 				CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */,
-				CA5328E216A3E1E000E9E96B /* DrawToolPanel.xib */,
-				CA5328E316A3E1E000E9E96B /* DrawToolPanel_ip5.xib */,
-				CA5328E416A3E1E000E9E96B /* DrawToolPanel~ipad.xib */,
 				C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */,
+				CAF4897817AA736900F015AB /* ToolPanel.xib */,
 				C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */,
 				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
 				C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */,
@@ -15173,6 +15228,9 @@
 				CACEC2BA178BA7AD00D88643 /* SelectorBox.h */,
 				CACEC2BB178BA7AD00D88643 /* SelectorBox.m */,
 				CACEC2D3178BA7D200D88643 /* SelectorBox.xib */,
+				CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */,
+				CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */,
+				CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -15301,6 +15359,7 @@
 		CA5B066F16BFC2FF004A64C4 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				CA0C83AC17ABC6170058F753 /* draw_selector_selected@2x.png */,
 				CAB188B417940D7A00918364 /* draw_shape_image@2x.png */,
 				CA1595F1179006A6008C950D /* draw_shape_selected@2x.png */,
 				CA1595F2179006A6008C950D /* draw_shape_default@2x.png */,
@@ -16839,6 +16898,7 @@
 		CACEC2E6178BA94000D88643 /* Selector */ = {
 			isa = PBXGroup;
 			children = (
+				CA0C83B617ABC68F0058F753 /* selector_close_bg@2x.png */,
 				CAB1889C1793DC4200918364 /* selector_close@2x.png */,
 				CACEC2E7178BA94000D88643 /* selector_cancel@2x.png */,
 				CACEC2E8178BA94000D88643 /* selector_ellipse@2x.png */,
@@ -16962,6 +17022,16 @@
 				CAE49C6E176C4FF7005743F2 /* UIBezierPath+Ext.m */,
 			);
 			path = Path;
+			sourceTree = "<group>";
+		};
+		CAE74B7E17AF868000E73875 /* DrawLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CAE74B7F17AF868000E73875 /* drawlayer_delete@2x.png */,
+				CAE74B8017AF868000E73875 /* drawlayer_flag_hide@2x.png */,
+				CAE74B8117AF868000E73875 /* drawlayer_flag_show@2x.png */,
+			);
+			path = DrawLayer;
 			sourceTree = "<group>";
 		};
 		CAE9A9FF16D632C9008392F9 /* Dice */ = {
@@ -17140,15 +17210,6 @@
 				CAC85C0E179117B100827C20 /* FXCommand.m */,
 			);
 			path = ToolCommand;
-			sourceTree = "<group>";
-		};
-		CAEFC52E1700002F00D799B7 /* ToolHandler */ = {
-			isa = PBXGroup;
-			children = (
-				CAEFC52F1700002F00D799B7 /* ToolHandler.h */,
-				CAEFC5301700002F00D799B7 /* ToolHandler.m */,
-			);
-			path = ToolHandler;
 			sourceTree = "<group>";
 		};
 		CAF9B70D16AA3C4200865CCE /* PenEffect */ = {
@@ -18551,9 +18612,6 @@
 				A461B666174CBAA70088B061 /* shop_item_palette@2x.png in Resources */,
 				A461B667174CBAA70088B061 /* ColorBox.xib in Resources */,
 				A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */,
-				A461B669174CBAA70088B061 /* DrawToolPanel.xib in Resources */,
-				A461B66A174CBAA70088B061 /* DrawToolPanel_ip5.xib in Resources */,
-				A461B66B174CBAA70088B061 /* DrawToolPanel~ipad.xib in Resources */,
 				A461B66C174CBAA70088B061 /* Palette.xib in Resources */,
 				A461B66D174CBAA70088B061 /* Palette~ipad.xib in Resources */,
 				A461B66E174CBAA70088B061 /* PenBox.xib in Resources */,
@@ -19038,8 +19096,19 @@
 				CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03B17A61B4200DE982F /* GuessRankCell.xib in Resources */,
-				A468A66517A7A0C20027768C /* GuessSelectCell.xib in Resources */,
-				A468A66B17A90FA70027768C /* round_dot_no@2x.png in Resources */,
+				CAF4897B17AA736900F015AB /* ToolPanel.xib in Resources */,
+				CA0C83AF17ABC6170058F753 /* draw_selector_selected@2x.png in Resources */,
+				CA0C83B917ABC6900058F753 /* selector_close_bg@2x.png in Resources */,
+				CAE74B7C17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
+				CAE74B8417AF868000E73875 /* drawlayer_delete@2x.png in Resources */,
+				CAE74B8817AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */,
+				CAE74B8C17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */,
+				A4E1D21F17B2236800E13728 /* GuessSelectCell.xib in Resources */,
+				A4E1D22D17B2241000E13728 /* award_coin@2x.png in Resources */,
+				A4E1D23117B2241000E13728 /* guess_correct@2x.png in Resources */,
+				A4E1D23517B2241000E13728 /* guess_rank@2x.png in Resources */,
+				A4E1D23917B2241000E13728 /* round_dot_no@2x.png in Resources */,
+				A4E1D23D17B2241000E13728 /* spend_time@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19603,9 +19672,6 @@
 				C28A9F481738F04B007A819F /* shop_item_palette@2x.png in Resources */,
 				C28A9F491738F04B007A819F /* ColorBox.xib in Resources */,
 				C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */,
-				C28A9F4B1738F04B007A819F /* DrawToolPanel.xib in Resources */,
-				C28A9F4C1738F04B007A819F /* DrawToolPanel_ip5.xib in Resources */,
-				C28A9F4D1738F04B007A819F /* DrawToolPanel~ipad.xib in Resources */,
 				C28A9F4E1738F04B007A819F /* Palette.xib in Resources */,
 				C28A9F4F1738F04B007A819F /* Palette~ipad.xib in Resources */,
 				C28A9F501738F04B007A819F /* PenBox.xib in Resources */,
@@ -20085,8 +20151,19 @@
 				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
-				A468A66417A7A0C20027768C /* GuessSelectCell.xib in Resources */,
-				A468A66A17A90FA70027768C /* round_dot_no@2x.png in Resources */,
+				CAF4897A17AA736900F015AB /* ToolPanel.xib in Resources */,
+				CA0C83AE17ABC6170058F753 /* draw_selector_selected@2x.png in Resources */,
+				CA0C83B817ABC6900058F753 /* selector_close_bg@2x.png in Resources */,
+				CAE74B7B17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
+				CAE74B8317AF868000E73875 /* drawlayer_delete@2x.png in Resources */,
+				CAE74B8717AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */,
+				CAE74B8B17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */,
+				A4E1D21E17B2236800E13728 /* GuessSelectCell.xib in Resources */,
+				A4E1D22C17B2241000E13728 /* award_coin@2x.png in Resources */,
+				A4E1D23017B2241000E13728 /* guess_correct@2x.png in Resources */,
+				A4E1D23417B2241000E13728 /* guess_rank@2x.png in Resources */,
+				A4E1D23817B2241000E13728 /* round_dot_no@2x.png in Resources */,
+				A4E1D23C17B2241000E13728 /* spend_time@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20654,9 +20731,6 @@
 				C297BFE1169ED04500E00258 /* shop_item_palette@2x.png in Resources */,
 				CA5328F116A3E1E000E9E96B /* ColorBox.xib in Resources */,
 				CA5328F516A3E1E000E9E96B /* ColorBox~ipad.xib in Resources */,
-				CA53290516A3E1E000E9E96B /* DrawToolPanel.xib in Resources */,
-				CA53290916A3E1E000E9E96B /* DrawToolPanel_ip5.xib in Resources */,
-				CA53290D16A3E1E000E9E96B /* DrawToolPanel~ipad.xib in Resources */,
 				CA53291516A3E1E000E9E96B /* Palette.xib in Resources */,
 				CA53291916A3E1E000E9E96B /* Palette~ipad.xib in Resources */,
 				CA53292116A3E1E000E9E96B /* PenBox.xib in Resources */,
@@ -21121,8 +21195,19 @@
 				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */,
-				A468A66317A7A0C20027768C /* GuessSelectCell.xib in Resources */,
-				A468A66917A90FA70027768C /* round_dot_no@2x.png in Resources */,
+				CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */,
+				CA0C83AD17ABC6170058F753 /* draw_selector_selected@2x.png in Resources */,
+				CA0C83B717ABC6900058F753 /* selector_close_bg@2x.png in Resources */,
+				CAE74B7A17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
+				CAE74B8217AF868000E73875 /* drawlayer_delete@2x.png in Resources */,
+				CAE74B8617AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */,
+				CAE74B8A17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */,
+				A4E1D21D17B2236800E13728 /* GuessSelectCell.xib in Resources */,
+				A4E1D22B17B2241000E13728 /* award_coin@2x.png in Resources */,
+				A4E1D22F17B2241000E13728 /* guess_correct@2x.png in Resources */,
+				A4E1D23317B2241000E13728 /* guess_rank@2x.png in Resources */,
+				A4E1D23717B2241000E13728 /* round_dot_no@2x.png in Resources */,
+				A4E1D23B17B2241000E13728 /* spend_time@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21676,9 +21761,6 @@
 				EA411D90176066F500DA72D0 /* shop_item_palette@2x.png in Resources */,
 				EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */,
 				EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */,
-				EA411D93176066F500DA72D0 /* DrawToolPanel.xib in Resources */,
-				EA411D94176066F500DA72D0 /* DrawToolPanel_ip5.xib in Resources */,
-				EA411D95176066F500DA72D0 /* DrawToolPanel~ipad.xib in Resources */,
 				EA411D96176066F500DA72D0 /* Palette.xib in Resources */,
 				EA411D97176066F500DA72D0 /* Palette~ipad.xib in Resources */,
 				EA411D98176066F500DA72D0 /* PenBox.xib in Resources */,
@@ -22078,6 +22160,19 @@
 				CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03C17A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				CAF4897C17AA736900F015AB /* ToolPanel.xib in Resources */,
+				CA0C83B017ABC6170058F753 /* draw_selector_selected@2x.png in Resources */,
+				CA0C83BA17ABC6900058F753 /* selector_close_bg@2x.png in Resources */,
+				CAE74B7D17AF83D500E73875 /* DrawLayerPanel.xib in Resources */,
+				CAE74B8517AF868000E73875 /* drawlayer_delete@2x.png in Resources */,
+				CAE74B8917AF868000E73875 /* drawlayer_flag_hide@2x.png in Resources */,
+				CAE74B8D17AF868000E73875 /* drawlayer_flag_show@2x.png in Resources */,
+				A4E1D22017B2236800E13728 /* GuessSelectCell.xib in Resources */,
+				A4E1D22E17B2241000E13728 /* award_coin@2x.png in Resources */,
+				A4E1D23217B2241000E13728 /* guess_correct@2x.png in Resources */,
+				A4E1D23617B2241000E13728 /* guess_rank@2x.png in Resources */,
+				A4E1D23A17B2241000E13728 /* round_dot_no@2x.png in Resources */,
+				A4E1D23E17B2241000E13728 /* spend_time@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22316,7 +22411,6 @@
 				A461B16B174CBAA70088B061 /* CustomWord.m in Sources */,
 				A461B171174CBAA70088B061 /* MyWordsController.m in Sources */,
 				A461B172174CBAA70088B061 /* SelectCustomWordView.m in Sources */,
-				A461B173174CBAA70088B061 /* DrawManager.m in Sources */,
 				A461B174174CBAA70088B061 /* ChatCell.m in Sources */,
 				A461B175174CBAA70088B061 /* ChatDetailController.m in Sources */,
 				A461B176174CBAA70088B061 /* ChatListController.m in Sources */,
@@ -22683,7 +22777,6 @@
 				A461B367174CBAA70088B061 /* ShapeInfo.m in Sources */,
 				A461B36A174CBAA70088B061 /* SNSUtils.m in Sources */,
 				A461B36B174CBAA70088B061 /* CustomSegmentedControl.m in Sources */,
-				A461B36C174CBAA70088B061 /* ToolHandler.m in Sources */,
 				A461B36D174CBAA70088B061 /* ToolCommand.m in Sources */,
 				A461B36E174CBAA70088B061 /* AddColorCommand.m in Sources */,
 				A461B36F174CBAA70088B061 /* PaletteCommand.m in Sources */,
@@ -22897,7 +22990,10 @@
 				A4C9E03717A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05417A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
-				A468A65C17A7A06C0027768C /* GuessSelectCell.m in Sources */,
+				CAF4897617AA6D4500F015AB /* DrawInfo.m in Sources */,
+				CAE74B7217AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236B17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
+				A4E1D21B17B2236800E13728 /* GuessSelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23137,7 +23233,6 @@
 				C28A9A581738F04B007A819F /* OfflineGuessDrawController.m in Sources */,
 				C28A9A591738F04B007A819F /* MyWordsController.m in Sources */,
 				C28A9A5A1738F04B007A819F /* SelectCustomWordView.m in Sources */,
-				C28A9A5B1738F04B007A819F /* DrawManager.m in Sources */,
 				C28A9A5C1738F04B007A819F /* ChatCell.m in Sources */,
 				C28A9A5D1738F04B007A819F /* ChatDetailController.m in Sources */,
 				C28A9A5E1738F04B007A819F /* ChatListController.m in Sources */,
@@ -23505,7 +23600,6 @@
 				C28A9C4F1738F04B007A819F /* ShapeInfo.m in Sources */,
 				C28A9C521738F04B007A819F /* SNSUtils.m in Sources */,
 				C28A9C531738F04B007A819F /* CustomSegmentedControl.m in Sources */,
-				C28A9C541738F04B007A819F /* ToolHandler.m in Sources */,
 				C28A9C551738F04B007A819F /* ToolCommand.m in Sources */,
 				C28A9C561738F04B007A819F /* AddColorCommand.m in Sources */,
 				C28A9C571738F04B007A819F /* PaletteCommand.m in Sources */,
@@ -23688,7 +23782,10 @@
 				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
 				A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05317A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
-				A468A65B17A7A06C0027768C /* GuessSelectCell.m in Sources */,
+				CAF4897517AA6D4500F015AB /* DrawInfo.m in Sources */,
+				CAE74B7117AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236A17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
+				A4E1D21A17B2236800E13728 /* GuessSelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23930,7 +24027,6 @@
 				CA22DCFE157CB3E9009C95CB /* OfflineGuessDrawController.m in Sources */,
 				A35984B2157CCAB900745BAB /* MyWordsController.m in Sources */,
 				A31B5EF5157E1BE8003DDBF1 /* SelectCustomWordView.m in Sources */,
-				CAD6EACF15805D780004A483 /* DrawManager.m in Sources */,
 				A30A28511580C2AE006CA3CC /* ChatCell.m in Sources */,
 				A30A28541580C2AE006CA3CC /* ChatDetailController.m in Sources */,
 				A30A28571580C2AE006CA3CC /* ChatListController.m in Sources */,
@@ -24298,7 +24394,6 @@
 				CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */,
 				C2D6B09616FD8CEE00EDD41C /* SNSUtils.m in Sources */,
 				C2C2A1BB16FEB9970074A168 /* CustomSegmentedControl.m in Sources */,
-				CAEFC5311700002F00D799B7 /* ToolHandler.m in Sources */,
 				CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */,
 				CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */,
 				CAEFC5491700026900D799B7 /* PaletteCommand.m in Sources */,
@@ -24487,7 +24582,10 @@
 				A4C9E03517A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04917A61E8000DE982F /* KxMenu.m in Sources */,
 				A4C9E05217A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
-				A468A65A17A7A06C0027768C /* GuessSelectCell.m in Sources */,
+				CAF4897417AA6D4500F015AB /* DrawInfo.m in Sources */,
+				CAE74B7017AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236917B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
+				A4E1D21917B2236800E13728 /* GuessSelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24723,7 +24821,6 @@
 				EA4118FF176066F500DA72D0 /* CustomWord.m in Sources */,
 				EA411905176066F500DA72D0 /* MyWordsController.m in Sources */,
 				EA411906176066F500DA72D0 /* SelectCustomWordView.m in Sources */,
-				EA411907176066F500DA72D0 /* DrawManager.m in Sources */,
 				EA411908176066F500DA72D0 /* ChatCell.m in Sources */,
 				EA411909176066F500DA72D0 /* ChatDetailController.m in Sources */,
 				EA41190A176066F500DA72D0 /* ChatListController.m in Sources */,
@@ -25090,7 +25187,6 @@
 				EA411AA2176066F500DA72D0 /* ShapeInfo.m in Sources */,
 				EA411AA5176066F500DA72D0 /* SNSUtils.m in Sources */,
 				EA411AA6176066F500DA72D0 /* CustomSegmentedControl.m in Sources */,
-				EA411AA7176066F500DA72D0 /* ToolHandler.m in Sources */,
 				EA411AA8176066F500DA72D0 /* ToolCommand.m in Sources */,
 				EA411AA9176066F500DA72D0 /* AddColorCommand.m in Sources */,
 				EA411AAA176066F500DA72D0 /* PaletteCommand.m in Sources */,
@@ -25258,6 +25354,10 @@
 				A4C9E03817A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04817A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05517A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				CAF4897717AA6D4500F015AB /* DrawInfo.m in Sources */,
+				CAE74B7317AF834D00E73875 /* DrawLayerPanel.m in Sources */,
+				CA0F236C17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
+				A4E1D21C17B2236800E13728 /* GuessSelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25622,8 +25722,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "B45DAF60-8894-4E09-8A0C-042ED1BEA6B9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B45DAF60-8894-4E09-8A0C-042ED1BEA6B9";
+				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -25632,8 +25732,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -25681,8 +25781,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "869A63EF-F10E-4797-B1CD-A94ACB2B352D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "869A63EF-F10E-4797-B1CD-A94ACB2B352D";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -25711,8 +25811,8 @@
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
+				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
@@ -25726,8 +25826,8 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_VERSION = "";
@@ -25740,8 +25840,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F48C4EDD-338F-42A3-A737-1DBB54CC13B4";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";

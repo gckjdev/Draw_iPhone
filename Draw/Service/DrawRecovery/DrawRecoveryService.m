@@ -113,6 +113,12 @@ drawActionList:(NSArray*)drawActionList
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
     
+    if ([drawActionList count] == 0){
+        // don't backup empty file
+        PPDebug(@"<backup> but draw action list count is zero");
+        return;
+    }
+    
     if (drawActionList == nil){
         drawActionList = [NSMutableArray arrayWithCapacity:1];
     }
@@ -130,20 +136,15 @@ drawActionList:(NSArray*)drawActionList
 
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
-        /*
-        PBNoCompressDrawData *drawData = [DrawAction pbNoCompressDrawDataFromDrawActionList:arrayList
-                                                                                       size:cp.canvasSize
-                                                                                 drawToUser:cp.drawToUser bgImageFileName:cp.currentPaint.bgImageName];
-        
-        NSData* data = [drawData data];
-         */
         
         // TODO check difference of two methods
         NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:arrayList
                                                                       size:cp.canvasSize
                                                                   opusDesc:nil
                                                                 drawToUser:cp.drawToUser
-                                                           bgImageFileName:cp.currentPaint.bgImageName];
+                                                           bgImageFileName:cp.currentPaint.bgImageName
+                                                                    layers:cp.layers];
+                        
 
         PPDebug(@"<backup> file path=%@", dataPath);
         

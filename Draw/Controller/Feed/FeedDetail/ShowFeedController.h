@@ -31,8 +31,10 @@
 
 @interface ShowFeedController : CommonTabController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, DrawInfoCellDelegate, UserServiceDelegate, MWPhotoBrowserDelegate>
 {
-
+    time_t timestamp;
 }
+
+@property(nonatomic, assign)NSArray *feedList;
 
 - (id)initWithFeed:(DrawFeed *)feed;
 - (id)initWithFeed:(DrawFeed *)feed

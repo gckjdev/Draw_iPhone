@@ -26,6 +26,7 @@
 #import "CommonUserInfoView.h"
 #import "DrawHolderView.h"
 #import "UIImageExt.h"
+#import "UIImageView+Extend.h"
 
 CGRect CGRectFrom(CGPoint origin, CGSize size){
     return CGRectMake(origin.x, origin.y, size.width, size.height); 
@@ -222,6 +223,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
     if (message.thumbImage == nil) {
         CGRect frame = CGRectFromCGSize(message.canvasSize);
         self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
+        [self.showDrawView updateLayers:[DrawLayer defaultOldLayersWithFrame:frame]];
         [self.showDrawView show];
         message.thumbImage = [self.showDrawView createImageWithSize:size];        
     }
@@ -428,22 +430,10 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
     }
         
-
-    UIImage *defaultImage = nil;
-    if (isMale) {
-        defaultImage = [[ShareImageManager defaultManager] maleDefaultAvatarImage];
-    }else{
-        defaultImage = [[ShareImageManager defaultManager] femaleDefaultAvatarImage];
-    }
+    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:isMale];
+    NSURL *url = [NSURL URLWithString:avatar];
+    [self.avatarView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
     
-    if([avatar length] != 0){
-        NSURL *url = [NSURL URLWithString:avatar];
-//        self.avatarView.alpha = 0;
-//        [self.avatarView setImageWithURL:url placeholderImage:defaultImage success:NULL failure:NULL];
-        [self.avatarView setImageWithURL:url placeholderImage:defaultImage];
-    } else{
-        [self.avatarView setImage:defaultImage];
-    }
 }
 
 - (void)setCellWithMessageStat:(MessageStat *)messageStat

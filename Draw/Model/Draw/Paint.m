@@ -179,6 +179,7 @@
         point.y = MAX(point.y, 0);
         point.x = MIN(point.x, CGRectGetWidth(rect));
         point.y = MIN(point.y, CGRectGetHeight(rect));
+        PPDebug(@"<addPoint> Change Point to %@", NSStringFromCGPoint(point));        
     }
     
     [[self getPen] addPointIntoPath:point];
@@ -288,8 +289,11 @@
             i++;
         }
     }    
-    
-    pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
+    if (self.penType == Eraser) {
+        pbDrawActionC->bettercolor = [[DrawColor whiteColor] toBetterCompressColor];
+    }else{
+        pbDrawActionC->bettercolor = [self.color toBetterCompressColor];
+    }
     pbDrawActionC->has_bettercolor = 1;
     
     pbDrawActionC->pentype = self.penType;

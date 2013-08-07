@@ -20,6 +20,7 @@ static int *getDefaultItemTypeList()
         ItemTypeNo,
         Pencil,
         Eraser,
+        DeprecatedEraser,
         CanvasRectiPadDefault,
         CanvasRectiPhoneDefault,
         

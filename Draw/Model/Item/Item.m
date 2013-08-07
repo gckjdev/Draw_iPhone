@@ -123,6 +123,7 @@
         case Pencil:
             return manager.selectedPencilImage;
         case Eraser:
+        case DeprecatedEraser:
             return manager.selectedEraserImage;
         default:
             return nil;
@@ -144,6 +145,7 @@
         case Pencil:
             return manager.showPencilPenImage;
         case Eraser:
+        case DeprecatedEraser:            
             return manager.showEraserImage;
         default:
             return nil;

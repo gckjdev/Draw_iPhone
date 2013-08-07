@@ -17,7 +17,6 @@
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
 #import "Draw.h"
-#import "DrawManager.h"
 #import "FeedManager.h"
 #import "MyPaintManager.h"
 #import "ConfigManager.h"
@@ -187,6 +186,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                 contestId:(NSString *)contestId
                      desc:(NSString *)desc
                      size:(CGSize)size
+                   layers:(NSArray *)layers
+                     info:(NSDictionary *)info
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
     
@@ -215,7 +216,9 @@ static DrawDataService* _defaultDrawDataService = nil;
                                           drawWord:drawWord
                                           language:language
                                               size:size
-                                      isCompressed:isCompressed];
+                                      isCompressed:isCompressed
+                                            layers:layers
+                                              info:info];
     
     if ([drawData length] == 0){
         if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
@@ -273,6 +276,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                 contestId:(NSString *)contestId
                      desc:(NSString *)desc
                      size:(CGSize)size
+                   layers:(NSArray *)layers
+                     info:(NSDictionary *)info
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 {
 
@@ -301,7 +306,9 @@ static DrawDataService* _defaultDrawDataService = nil;
                             drawWord:drawWord
                             language:language
                                 size:size
-                        isCompressed:isCompressed];
+                        isCompressed:isCompressed
+                                            layers:layers
+                                              info:nil];
     
     if ([drawData length] == 0){
         if ([viewController respondsToSelector:@selector(didCreateDraw:)]){

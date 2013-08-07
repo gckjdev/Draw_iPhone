@@ -91,15 +91,16 @@ static ChatService *_chatService = nil;
 {
     NSString *userId = [[UserManager defaultManager] userId];
     
-    NSOperationQueue *queue = [self getOperationQueue:GET_MESSAGELIST_QUEUE];
-    [queue cancelAllOperations];
-    if ([queue operationCount] != 0) {
-        PPDebug(@"GET_MESSAGELIST_QUEUE is working... return without fecth remote message list");
-        return;
-    }
+//    NSOperationQueue *queue = [self getOperationQueue:GET_MESSAGELIST_QUEUE];
+//    [queue cancelAllOperations];
+//    if ([queue operationCount] != 0) {
+//        PPDebug(@"GET_MESSAGELIST_QUEUE is working... return without fecth remote message list");
+//        return;
+//    }
     
-    [queue addOperationWithBlock: ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:TRAFFIC_SERVER_URL 
+//    [queue addOperationWithBlock: ^{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:TRAFFIC_SERVER_URL
                                                                    appId:[ConfigManager appId] 
                                                                   userId:userId 
                                                             friendUserId:friendUserId offsetMessageId:offsetMessageId maxCount:limit
@@ -126,7 +127,7 @@ static ChatService *_chatService = nil;
                 [delegate didGetMessages:messageList forward:forward resultCode:output.resultCode];
             }
         }); 
-    }];
+    });
 }
 
 - (void)postNotification:(NSString*)name
@@ -411,14 +412,15 @@ static ChatService *_chatService = nil;
     
     NSString *userId = [[UserManager defaultManager] userId];
     
-    NSOperationQueue *queue = [self getOperationQueue:GET_MESSAGELIST_QUEUE];
-    [queue cancelAllOperations];
-    if ([queue operationCount] != 0) {
-        PPDebug(@"GET_MESSAGELIST_QUEUE is working... return without fecth remote message list");
-        return;
-    }
+//    NSOperationQueue *queue = [self getOperationQueue:GET_MESSAGELIST_QUEUE];
+//    [queue cancelAllOperations];
+//    if ([queue operationCount] != 0) {
+//        PPDebug(@"GET_MESSAGELIST_QUEUE is working... return without fecth remote message list");
+//        return;
+//    }
     
-    [queue addOperationWithBlock: ^{
+//    [queue addOperationWithBlock: ^{
+    dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getMessageList:TRAFFIC_SERVER_URL
                                                                    appId:[ConfigManager appId]
                                                                   userId:userId
@@ -471,7 +473,7 @@ static ChatService *_chatService = nil;
                            forward:forward];
             
         });
-    }];
+    });
     
 }
 

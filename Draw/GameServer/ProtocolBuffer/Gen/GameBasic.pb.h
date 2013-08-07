@@ -36,6 +36,8 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBOpusRank;
+@class PBOpusRank_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
@@ -350,87 +352,89 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @private
   BOOL hasGender_:1;
   BOOL hasIsJailBroken_:1;
-  BOOL hasIsPlaying_:1;
   BOOL hasIsTakenOver_:1;
+  BOOL hasIsPlaying_:1;
   BOOL hasLatitude_:1;
   BOOL hasLongitude_:1;
   BOOL hasExperience_:1;
-  BOOL hasDiamondBalance_:1;
-  BOOL hasCoinBalance_:1;
-  BOOL hasLevel_:1;
-  BOOL hasIngotBalance_:1;
   BOOL hasGuessWordLanguage_:1;
-  BOOL hasZodiac_:1;
+  BOOL hasLevel_:1;
+  BOOL hasCoinBalance_:1;
+  BOOL hasDiamondBalance_:1;
+  BOOL hasIngotBalance_:1;
   BOOL hasFanCount_:1;
   BOOL hasFollowCount_:1;
-  BOOL hasSeatId_:1;
-  BOOL hasUserLevel_:1;
   BOOL hasOpusCoverflowType_:1;
   BOOL hasFeatureOpus_:1;
   BOOL hasSingRecordLimit_:1;
+  BOOL hasZodiac_:1;
+  BOOL hasUserLevel_:1;
+  BOOL hasSeatId_:1;
+  BOOL hasUserId_:1;
+  BOOL hasFriendMemo_:1;
+  BOOL hasNickName_:1;
+  BOOL hasSignature_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasLocation_:1;
+  BOOL hasFacetimeId_:1;
   BOOL hasBloodGroup_:1;
   BOOL hasDeviceType_:1;
   BOOL hasDeviceId_:1;
   BOOL hasDeviceOs_:1;
   BOOL hasDeviceModel_:1;
-  BOOL hasSignature_:1;
-  BOOL hasUserId_:1;
-  BOOL hasNickName_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasLocation_:1;
-  BOOL hasFacetimeId_:1;
   BOOL hasXiaojiNumber_:1;
   BOOL hasEmail_:1;
   BOOL hasPassword_:1;
   BOOL hasBirthday_:1;
-  BOOL hasBackgroundUrl_:1;
-  BOOL hasDeviceToken_:1;
-  BOOL hasCountryCode_:1;
   BOOL hasLanguage_:1;
+  BOOL hasCountryCode_:1;
+  BOOL hasDeviceToken_:1;
+  BOOL hasBackgroundUrl_:1;
   BOOL hasOpenInfoType_:1;
   BOOL gender_:1;
   BOOL isJailBroken_:1;
-  BOOL isPlaying_:1;
   BOOL isTakenOver_:1;
+  BOOL isPlaying_:1;
   Float32 latitude;
   Float32 longitude;
   int64_t experience;
-  int32_t diamondBalance;
-  int32_t coinBalance;
-  int32_t level;
-  int32_t ingotBalance;
   int32_t guessWordLanguage;
-  int32_t zodiac;
+  int32_t level;
+  int32_t coinBalance;
+  int32_t diamondBalance;
+  int32_t ingotBalance;
   int32_t fanCount;
   int32_t followCount;
-  int32_t seatId;
-  int32_t userLevel;
   int32_t opusCoverflowType;
   int32_t featureOpus;
   int32_t singRecordLimit;
+  int32_t zodiac;
+  int32_t userLevel;
+  int32_t seatId;
+  NSString* userId;
+  NSString* friendMemo;
+  NSString* nickName;
+  NSString* signature;
+  NSString* avatar;
+  NSString* location;
+  NSString* facetimeId;
   NSString* bloodGroup;
   NSString* deviceType;
   NSString* deviceId;
   NSString* deviceOs;
   NSString* deviceModel;
-  NSString* signature;
-  NSString* userId;
-  NSString* nickName;
-  NSString* avatar;
-  NSString* location;
-  NSString* facetimeId;
   NSString* xiaojiNumber;
   NSString* email;
   NSString* password;
   NSString* birthday;
-  NSString* backgroundUrl;
-  NSString* deviceToken;
-  NSString* countryCode;
   NSString* language;
+  NSString* countryCode;
+  NSString* deviceToken;
+  NSString* backgroundUrl;
   PBOpenInfoType openInfoType;
+  NSMutableArray* mutableItemsList;
   NSMutableArray* mutableAttributesList;
   NSMutableArray* mutableSnsUsersList;
-  NSMutableArray* mutableItemsList;
 }
 - (BOOL) hasUserId;
 - (BOOL) hasNickName;
@@ -471,6 +475,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasOpusCoverflowType;
 - (BOOL) hasSignature;
 - (BOOL) hasFeatureOpus;
+- (BOOL) hasFriendMemo;
 - (BOOL) hasSingRecordLimit;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
@@ -511,6 +516,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly) int32_t opusCoverflowType;
 @property (readonly, retain) NSString* signature;
 @property (readonly) int32_t featureOpus;
+@property (readonly, retain) NSString* friendMemo;
 @property (readonly) int32_t singRecordLimit;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
@@ -768,6 +774,11 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (int32_t) featureOpus;
 - (PBGameUser_Builder*) setFeatureOpus:(int32_t) value;
 - (PBGameUser_Builder*) clearFeatureOpus;
+
+- (BOOL) hasFriendMemo;
+- (NSString*) friendMemo;
+- (PBGameUser_Builder*) setFriendMemo:(NSString*) value;
+- (PBGameUser_Builder*) clearFriendMemo;
 
 - (BOOL) hasSingRecordLimit;
 - (int32_t) singRecordLimit;
@@ -2846,5 +2857,71 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (Float32) height;
 - (PBSize_Builder*) setHeight:(Float32) value;
 - (PBSize_Builder*) clearHeight;
+@end
+
+@interface PBOpusRank : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasValue_:1;
+  BOOL hasUserId_:1;
+  int32_t type;
+  int32_t value;
+  NSString* userId;
+}
+- (BOOL) hasType;
+- (BOOL) hasValue;
+- (BOOL) hasUserId;
+@property (readonly) int32_t type;
+@property (readonly) int32_t value;
+@property (readonly, retain) NSString* userId;
+
++ (PBOpusRank*) defaultInstance;
+- (PBOpusRank*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBOpusRank_Builder*) builder;
++ (PBOpusRank_Builder*) builder;
++ (PBOpusRank_Builder*) builderWithPrototype:(PBOpusRank*) prototype;
+
++ (PBOpusRank*) parseFromData:(NSData*) data;
++ (PBOpusRank*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpusRank*) parseFromInputStream:(NSInputStream*) input;
++ (PBOpusRank*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpusRank*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBOpusRank*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBOpusRank_Builder : PBGeneratedMessage_Builder {
+@private
+  PBOpusRank* result;
+}
+
+- (PBOpusRank*) defaultInstance;
+
+- (PBOpusRank_Builder*) clear;
+- (PBOpusRank_Builder*) clone;
+
+- (PBOpusRank*) build;
+- (PBOpusRank*) buildPartial;
+
+- (PBOpusRank_Builder*) mergeFrom:(PBOpusRank*) other;
+- (PBOpusRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBOpusRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBOpusRank_Builder*) setType:(int32_t) value;
+- (PBOpusRank_Builder*) clearType;
+
+- (BOOL) hasValue;
+- (int32_t) value;
+- (PBOpusRank_Builder*) setValue:(int32_t) value;
+- (PBOpusRank_Builder*) clearValue;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBOpusRank_Builder*) setUserId:(NSString*) value;
+- (PBOpusRank_Builder*) clearUserId;
 @end
 

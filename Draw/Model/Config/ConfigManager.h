@@ -43,6 +43,7 @@ typedef enum{
 + (NSInteger)drawAutoSavePaintInterval;//DRAFT_PAINT_COUNT
 + (NSInteger)opusDescMaxLength;
 + (NSInteger)maxPenWidth;
++ (CGFloat)minPenWidth;
 + (double)minAlpha;
 
 + (NSInteger)getMessageStatMaxCount; //MESSAGE_STAT_MAX_COUNT

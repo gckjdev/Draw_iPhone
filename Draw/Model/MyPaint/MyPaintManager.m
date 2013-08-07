@@ -22,7 +22,6 @@
 #import "DrawFeed.h"
 #import "CanvasRect.h"
 #import "TimeUtils.h"
-#import "Draw.pb-c.h"
 #import "UIImageUtil.h"
 
 #define SUFFIX_NUMBER 100
@@ -817,32 +816,20 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                 paint.bgImageName = [NSString stringWithUTF8String:nDrawC->bgimagename];
             }
             
+            paint.layers = [DrawLayer layersFromPBLayers:nDrawC->layer number:nDrawC->n_layer];
+
+            //create layer for old datas
+            if (paint.layers == nil) {
+                paint.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(paint.canvasSize)];
+            }
+
+            
             NSMutableArray* list = [DrawAction pbNoCompressDrawDataCToDrawActionList:nDrawC
                                                                           canvasSize:paint.canvasSize];
             game__pbno_compress_draw_data__free_unpacked(nDrawC, NULL);
             
             return list;
             
-            // old implementation, keep here for later check
-//            drawData = [_drawDataManager dataForKey:paint.dataFilePath];
-//            PBNoCompressDrawData *nDraw = [PBNoCompressDrawData parseFromData:drawData];
-//            paint.drawDataVersion = nDraw.version;
-//            if ([nDraw hasOpusDesc]) {
-//                paint.opusDesc = nDraw.opusDesc;
-//            }
-//            if (![nDraw hasCanvasSize]) {
-//                
-//                paint.canvasSize = [CanvasRect deprecatedRect].size;
-//
-//            }else{
-//                paint.canvasSize = CGSizeFromPBSize(nDraw.canvasSize);
-//            }
-//            
-//            if ([nDraw hasBgImageName]) {
-//                paint.bgImageName = nDraw.bgImageName;
-//            }
-//            
-//            return [DrawAction pbNoCompressDrawDataToDrawActionList:nDraw canvasSize:paint.canvasSize];
         }else if ([self saveDataAsPBDraw:paint]) {
                                     
             drawData = [_drawDataManager dataForKey:paint.dataFilePath];
@@ -872,30 +859,19 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                         paint.canvasSize = CGSizeFromPBSizeC(pbDrawC->canvassize);
                     }
                     
+                    paint.layers = [DrawLayer layersFromPBLayers:pbDrawC->layer number:pbDrawC->n_layer];
+                    
+                    //create layer for old datas
+                    if (paint.layers == nil) {
+                        paint.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(paint.canvasSize)];
+                    }
+
                     game__pbdraw__free_unpacked(pbDrawC, NULL);                    
                     return draw.drawActionList;
                     
                 }
             }
-                        
-            // old implementation, keep here for later check
-//            drawData = [_drawDataManager dataForKey:paint.dataFilePath];
-//            PBDraw *pbDraw = [PBDraw parseFromData:drawData];
-//            paint.drawDataVersion = pbDraw.version;
-//            if (![pbDraw hasCanvasSize]) {
-//                // paint.canvasSize = [CanvasRect deprecatedRect].size;
-//                if (paint.draft.intValue == 1) {
-//                    paint.canvasSize = [CanvasRect deprecatedRect].size;
-//                }else{
-//                    paint.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
-//                }
-//
-//            }else{
-//                paint.canvasSize = CGSizeFromPBSize(pbDraw.canvasSize);
-//            }
-//
-//            Draw *draw = [[[Draw alloc] initWithPBDraw:pbDraw] autorelease];
-//            return draw.drawActionList;
+            
         }else{
             NSString *fullPath = [_drawDataManager pathWithKey:paint.dataFilePath];
             drawData = [NSData dataWithContentsOfFile:fullPath];

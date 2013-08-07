@@ -18,6 +18,9 @@ typedef enum {
     TouchStateCancel = 3,
 }TouchState;
 
+#ifndef STROKE_WIDTH
+    #define STROKE_WIDTH 2
+#endif
 
 @class DrawView;
 
@@ -28,12 +31,13 @@ typedef enum {
 }
 
 @property(nonatomic, assign)DrawView *drawView;
-@property(nonatomic, assign)CacheDrawManager *cdManager;
 
 - (void)handlePoint:(CGPoint)point forTouchState:(TouchState)state;
 - (void)handleFailTouch;
 + (id)touchHandlerWithTouchActionType:(TouchActionType)type;
 - (void)reset;
 - (BOOL)handleFailed;
+
+- (DrawAction *)createDrawAction;
 
 @end

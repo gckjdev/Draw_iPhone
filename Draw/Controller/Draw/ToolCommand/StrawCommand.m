@@ -10,7 +10,7 @@
 
 @interface StrawCommand ()
 {
-    TouchActionType type;
+//    TouchActionType type;
 }
 
 @end
@@ -26,17 +26,14 @@
     return self;
 }
 
-- (void)setToolHandler:(ToolHandler *)toolHandler
-{
-    [super setToolHandler:toolHandler];
-    toolHandler.drawView.strawDelegate = self;
-}
 
 - (BOOL)execute
 {
     if ([self canUseItem:self.itemType]) {
-        [self sendAnalyticsReport];
+ 
+        self.drawView.strawDelegate = self;
         [self showPopTipView];
+        [self updateToolPanel];
         return YES;
     }
     return NO;
@@ -45,10 +42,8 @@
 
 - (void)showPopTipView
 {
-    type = self.toolHandler.touchActionType;
-    [self becomeActive];
+    self.drawInfo.touchType = TouchActionTypeGetColor;
     self.showing = YES;
-    [self.toolHandler enterStrawMode];
 }
 
 - (void)hidePopTipView
@@ -69,16 +64,13 @@
 - (void)didStrawGetColor:(DrawColor *)color
 {
     [self.toolPanel updateRecentColorViewWithColor:color updateModel:YES];
-    [self.toolHandler changeAlpha:1];
-    [self.toolHandler changePenColor:color];
-    [[ToolCommandManager defaultManager] resetAlpha];
-    if (type == TouchActionTypeShape) {
-        [self.toolHandler enterShapeMode];
-    }else{
-        [self.toolHandler enterDrawMode];
-    }
+    self.drawInfo.penColor = color;
+    self.drawInfo.alpha = 1;
+
+    [self.drawInfo backToLastDrawMode];
     
     [self hidePopTipView];
+    [self updateToolPanel];
 }
 
 @end

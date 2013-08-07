@@ -190,4 +190,10 @@
     return rect;
 }
 
++ (ChangeBGImageAction *)actionWithDrawBG:(PBDrawBg *)drawBg
+{
+    ChangeBGImageAction *changBG = [[[ChangeBGImageAction alloc] initWithDrawBg:drawBg] autorelease];
+    return changBG;
+}
+
 @end

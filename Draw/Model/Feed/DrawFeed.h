@@ -62,7 +62,7 @@ typedef enum{
             wordText:(NSString *)wordText 
           timesArray:(NSArray *)timesArray;
 
-- (void)parseDrawData:(PBFeed *)pbFeed;
+
 - (void)parseDrawData;
 - (BOOL)isMyOpus;
 - (BOOL)hasGuessed;

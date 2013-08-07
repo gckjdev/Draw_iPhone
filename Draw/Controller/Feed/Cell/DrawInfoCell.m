@@ -144,7 +144,7 @@
 {
     if ([feed.drawImageUrl length] != 0){
         PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
-
+        [self addMaskView];
         
         __block UIImage *placeholderImage = nil;
         [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL delegate:self options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
@@ -176,15 +176,16 @@
 #define MASKVIEW_TAG 20130130
 - (void)addMaskView
 {
-    UIControl *mask = (UIControl *)[self viewWithTag:MASKVIEW_TAG];
+//    UIControl *mask = (UIControl *)[self viewWithTag:MASKVIEW_TAG];
     if (mask == nil) {
         mask = [[UIControl alloc] initWithFrame:self.drawImage.frame];
         [mask setBackgroundColor:[UIColor clearColor]];
         [mask addTarget:self action:@selector(clickDrawImageMask:) forControlEvents:UIControlEventTouchUpInside];
-        [mask addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchDown];
-        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpOutside];
+//        [mask addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchDown];
+//        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpOutside];
+//        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:mask];
-        PPRelease(mask);
+//        PPRelease(mask);
     }
 }
 
@@ -211,7 +212,6 @@
 - (void)loadImageFinish
 {
     [self.loadingActivity stopAnimating];
-    [self addMaskView];
     if (_delegate && [_delegate respondsToSelector:@selector(didLoadDrawPicture)]) {
         [_delegate didLoadDrawPicture];
     }

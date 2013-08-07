@@ -26,6 +26,7 @@
 #import "CustomInfoView.h"
 #import "UIViewUtils.h"
 #import "GameApp.h"
+#import "UIImageView+Extend.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -110,7 +111,9 @@
     
     [self.noSNSTipsLabel setHidden:!(self.sinaBtn.hidden && self.qqBtn.hidden && self.facebookBtn.hidden)];
     
-    [self.customBackgroundImageView setImageWithURL:[NSURL URLWithString:[[detail getUser] backgroundUrl]]];
+//    [self.customBackgroundImageView setImageWithURL:[NSURL URLWithString:[[detail getUser] backgroundUrl]]];
+
+    [self.customBackgroundImageView setImageWithUrl:[NSURL URLWithString:[[detail getUser] backgroundUrl]] placeholderImage:nil showLoading:NO animated:YES];
     
     [self.customBackgroundControl addTarget:self action:@selector(clickCustomBackground:) forControlEvents:UIControlEventTouchUpInside];
     

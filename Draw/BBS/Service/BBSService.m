@@ -21,7 +21,6 @@
 #import "UIImageExt.h"
 
 #import "DrawAction.h"
-#import "DrawManager.h"
 #import "BBSPermissionManager.h"
 #import "CanvasRect.h"
 
@@ -386,9 +385,7 @@ BBSService *_staticBBSService;
             type = ContentTypeImage;
         }else if (drawImage) {
             type = ContentTypeDraw;
-//            PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
-//            drawData = [bbsDraw data];
-            drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size];
+            drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size info:nil];
         }
         
         NSInteger resultCode = [self checkFrequent];
@@ -646,9 +643,7 @@ BBSService *_staticBBSService;
                 contentType = ContentTypeImage;
             }else if (drawImage) {
                 contentType = ContentTypeDraw;
-                drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size];
-//                PBBBSDraw *bbsDraw = [BBSService buildBBSDraw:drawActionList canvasSize:size];
-//                drawData = [bbsDraw data];
+                drawData = [DrawAction buildBBSDrawData:drawActionList canvasSize:size info:nil];
             }else{
                 contentType = ContentTypeText;
             }
@@ -933,7 +928,6 @@ BBSService *_staticBBSService;
             PPDebug(@"<getBBSDrawDataWithPostId> load data from local service");
 //            NSArray *list = [draw drawActionListList];
             NSMutableArray *drawActionList = [DrawAction drawActionListFromPBBBSDraw:draw];
-//            NSMutableArray *drawActionList = [DrawManager parseFromPBDrawActionList:list];
             if (delegate && [delegate respondsToSelector:@selector(didGetBBSDrawActionList:drawDataVersion:canvasSize:postId:actionId:fromRemote:resultCode:)]) {
                 
                 CGSize size = [draw hasCanvasSize] ? (CGSizeFromPBSize(draw.canvasSize)) : [CanvasRect deprecatedIPhoneRect].size;
@@ -976,9 +970,7 @@ BBSService *_staticBBSService;
                             //
                             
                             drawActionList = [DrawAction drawActionListFromPBBBSDraw:remoteDraw];
-//                            NSArray *list = [remoteDraw drawActionListList];
-//                            drawActionList = [DrawManager parseFromPBDrawActionList:list];
-                            //
+
                         }
                     }
                 }

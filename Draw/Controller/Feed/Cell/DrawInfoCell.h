@@ -30,6 +30,7 @@
     DrawFeed *_feed;
     BOOL _isLoading;
     FeedUser *_targetUser;
+    UIControl *mask;
 }
 
 @property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;

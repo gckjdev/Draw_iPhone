@@ -265,10 +265,12 @@ struct  _Game__PBNoCompressDrawData
   Game__PBUserBasicInfo *drawtouser;
   char *opusdesc;
   char *bgimagename;
+  size_t n_layer;
+  Game__PBLayer **layer;
 };
 #define GAME__PBNO_COMPRESS_DRAW_DATA__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbno_compress_draw_data__descriptor) \
-    , 0,NULL, 0,0, NULL, 0,NULL, NULL, NULL, NULL }
+    , 0,NULL, 0,0, NULL, 0,NULL, NULL, NULL, NULL, 0,NULL }
 
 
 struct  _Game__PBDrawBgGroup

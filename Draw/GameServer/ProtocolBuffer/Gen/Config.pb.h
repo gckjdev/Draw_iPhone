@@ -47,6 +47,8 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBOpusRank;
+@class PBOpusRank_Builder;
 @class PBPrice;
 @class PBPrice_Builder;
 @class PBPromotionInfo;

@@ -29,7 +29,7 @@
 {
 
     if ([super execute]) {
-        Shadow *shadow = [Shadow shadowWithShadow:self.toolHandler.shadow];
+        Shadow *shadow = [Shadow shadowWithShadow:self.drawInfo.shadow];
         
         ShadowBox *view  = [ShadowBox shadowBoxWithShadow:shadow];
         UIView *spView = [[self.control theViewController] view];
@@ -48,7 +48,8 @@
     if ([shadow isEmpty]) {
         shadow = nil;
     }
-    [self.toolHandler changeShadow:shadow];
+    self.drawInfo.shadow = shadow;
+    [self updateToolPanel];
     [box dismiss];
 }
 

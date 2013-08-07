@@ -2080,6 +2080,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property (retain) NSString* dataUrl;
 @property (retain) NSString* contestId;
 @property Float64 contestScore;
+@property (retain) NSMutableArray* mutableRankInfoList;
 @property (retain) PBLearnDraw* learnDraw;
 @end
 
@@ -2361,6 +2362,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasContestScore_ = !!value;
 }
 @synthesize contestScore;
+@synthesize mutableRankInfoList;
 - (BOOL) hasLearnDraw {
   return !!hasLearnDraw_;
 }
@@ -2394,6 +2396,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.opusThumbImage = nil;
   self.dataUrl = nil;
   self.contestId = nil;
+  self.mutableRankInfoList = nil;
   self.learnDraw = nil;
   [super dealloc];
 }
@@ -2466,6 +2469,13 @@ static PBFeed* defaultPBFeedInstance = nil;
   id value = [mutableFeedTimesList objectAtIndex:index];
   return value;
 }
+- (NSArray*) rankInfoList {
+  return mutableRankInfoList;
+}
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index {
+  id value = [mutableRankInfoList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasFeedId) {
     return NO;
@@ -2490,6 +2500,11 @@ static PBFeed* defaultPBFeedInstance = nil;
     }
   }
   for (PBFeedTimes* element in self.feedTimesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBOpusRank* element in self.rankInfoList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -2618,6 +2633,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasContestScore) {
     [output writeDouble:92 value:self.contestScore];
+  }
+  for (PBOpusRank* element in self.rankInfoList) {
+    [output writeMessage:93 value:element];
   }
   if (self.hasLearnDraw) {
     [output writeMessage:100 value:self.learnDraw];
@@ -2752,6 +2770,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasContestScore) {
     size += computeDoubleSize(92, self.contestScore);
+  }
+  for (PBOpusRank* element in self.rankInfoList) {
+    size += computeMessageSize(93, element);
   }
   if (self.hasLearnDraw) {
     size += computeMessageSize(100, self.learnDraw);
@@ -2954,6 +2975,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasContestScore) {
     [self setContestScore:other.contestScore];
   }
+  if (other.mutableRankInfoList.count > 0) {
+    if (result.mutableRankInfoList == nil) {
+      result.mutableRankInfoList = [NSMutableArray array];
+    }
+    [result.mutableRankInfoList addObjectsFromArray:other.mutableRankInfoList];
+  }
   if (other.hasLearnDraw) {
     [self mergeLearnDraw:other.learnDraw];
   }
@@ -3144,6 +3171,12 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 737: {
         [self setContestScore:[input readDouble]];
+        break;
+      }
+      case 746: {
+        PBOpusRank_Builder* subBuilder = [PBOpusRank builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addRankInfo:[subBuilder buildPartial]];
         break;
       }
       case 802: {
@@ -3836,6 +3869,35 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearContestScore {
   result.hasContestScore = NO;
   result.contestScore = 0;
+  return self;
+}
+- (NSArray*) rankInfoList {
+  if (result.mutableRankInfoList == nil) { return [NSArray array]; }
+  return result.mutableRankInfoList;
+}
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index {
+  return [result rankInfoAtIndex:index];
+}
+- (PBFeed_Builder*) replaceRankInfoAtIndex:(int32_t) index with:(PBOpusRank*) value {
+  [result.mutableRankInfoList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllRankInfo:(NSArray*) values {
+  if (result.mutableRankInfoList == nil) {
+    result.mutableRankInfoList = [NSMutableArray array];
+  }
+  [result.mutableRankInfoList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearRankInfoList {
+  result.mutableRankInfoList = nil;
+  return self;
+}
+- (PBFeed_Builder*) addRankInfo:(PBOpusRank*) value {
+  if (result.mutableRankInfoList == nil) {
+    result.mutableRankInfoList = [NSMutableArray array];
+  }
+  [result.mutableRankInfoList addObject:value];
   return self;
 }
 - (BOOL) hasLearnDraw {
@@ -5249,6 +5311,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
 @property (retain) PBUserBasicInfo* drawToUser;
 @property (retain) NSString* opusDesc;
 @property (retain) NSString* bgImageName;
+@property (retain) NSMutableArray* mutableLayerList;
 @end
 
 @implementation PBNoCompressDrawData
@@ -5290,6 +5353,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   hasBgImageName_ = !!value;
 }
 @synthesize bgImageName;
+@synthesize mutableLayerList;
 - (void) dealloc {
   self.mutableDrawActionListList = nil;
   self.canvasSize = nil;
@@ -5297,6 +5361,7 @@ static PBNoCompressDrawAction* defaultPBNoCompressDrawActionInstance = nil;
   self.drawToUser = nil;
   self.opusDesc = nil;
   self.bgImageName = nil;
+  self.mutableLayerList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -5335,6 +5400,13 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   id value = [mutableDrawActionList2List objectAtIndex:index];
   return value;
 }
+- (NSArray*) layerList {
+  return mutableLayerList;
+}
+- (PBLayer*) layerAtIndex:(int32_t) index {
+  id value = [mutableLayerList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   for (PBNoCompressDrawAction* element in self.drawActionListList) {
     if (!element.isInitialized) {
@@ -5348,6 +5420,11 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasDrawToUser) {
     if (!self.drawToUser.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBLayer* element in self.layerList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -5374,6 +5451,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasBgImageName) {
     [output writeString:8 value:self.bgImageName];
+  }
+  for (PBLayer* element in self.layerList) {
+    [output writeMessage:9 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -5404,6 +5484,9 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   }
   if (self.hasBgImageName) {
     size += computeStringSize(8, self.bgImageName);
+  }
+  for (PBLayer* element in self.layerList) {
+    size += computeMessageSize(9, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5507,6 +5590,12 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
   if (other.hasBgImageName) {
     [self setBgImageName:other.bgImageName];
   }
+  if (other.mutableLayerList.count > 0) {
+    if (result.mutableLayerList == nil) {
+      result.mutableLayerList = [NSMutableArray array];
+    }
+    [result.mutableLayerList addObjectsFromArray:other.mutableLayerList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5568,6 +5657,12 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
       }
       case 66: {
         [self setBgImageName:[input readString]];
+        break;
+      }
+      case 74: {
+        PBLayer_Builder* subBuilder = [PBLayer builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addLayer:[subBuilder buildPartial]];
         break;
       }
     }
@@ -5737,6 +5832,35 @@ static PBNoCompressDrawData* defaultPBNoCompressDrawDataInstance = nil;
 - (PBNoCompressDrawData_Builder*) clearBgImageName {
   result.hasBgImageName = NO;
   result.bgImageName = @"";
+  return self;
+}
+- (NSArray*) layerList {
+  if (result.mutableLayerList == nil) { return [NSArray array]; }
+  return result.mutableLayerList;
+}
+- (PBLayer*) layerAtIndex:(int32_t) index {
+  return [result layerAtIndex:index];
+}
+- (PBNoCompressDrawData_Builder*) replaceLayerAtIndex:(int32_t) index with:(PBLayer*) value {
+  [result.mutableLayerList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addAllLayer:(NSArray*) values {
+  if (result.mutableLayerList == nil) {
+    result.mutableLayerList = [NSMutableArray array];
+  }
+  [result.mutableLayerList addObjectsFromArray:values];
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) clearLayerList {
+  result.mutableLayerList = nil;
+  return self;
+}
+- (PBNoCompressDrawData_Builder*) addLayer:(PBLayer*) value {
+  if (result.mutableLayerList == nil) {
+    result.mutableLayerList = [NSMutableArray array];
+  }
+  [result.mutableLayerList addObject:value];
   return self;
 }
 @end

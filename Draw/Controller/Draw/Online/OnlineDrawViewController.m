@@ -40,14 +40,14 @@
 #import "BuyItemView.h"
 #import "ToolCommand.h"
 #import "DrawHolderView.h"
-#import "ToolHandler.h"
+#import "DrawInfo.h"
+
 
 @interface OnlineDrawViewController ()
 {
 
 }
 @property(nonatomic, retain)DrawToolPanel *drawToolPanel;
-@property (assign, nonatomic) ToolHandler *toolHandler;
 
 @property (retain, nonatomic) IBOutlet UIImageView *wordLabelBGView;
 
@@ -77,7 +77,6 @@
 - (void)dealloc
 {
     [drawGameService setDrawDelegate:nil];
-    self.toolHandler = nil;
     PPRelease(wordLabel);
     PPRelease(drawView);
     PPRelease(_gameCompleteMessage);
@@ -111,11 +110,7 @@
 - (void)initDrawToolPanel
 {
     
-    self.toolHandler = [[[ToolHandler alloc] init] autorelease];
-    self.toolHandler.drawView = drawView;
-    self.toolHandler.controller = self;
-    
-    self.drawToolPanel = [DrawToolPanel createViewWithdToolHandler:self.toolHandler];
+    self.drawToolPanel = [DrawToolPanel createViewWithDrawView:drawView];
     
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2 - STATUSBAR_HEIGHT;
@@ -132,8 +127,9 @@
 
 - (void)initDrawView
 {
-    
-    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]];
+    drawView = [[DrawView alloc] initWithFrame:[CanvasRect defaultRect]
+                                        layers:[DrawLayer defaultOldLayersWithFrame:[CanvasRect defaultRect]]];
+
     [drawView setDrawEnabled:YES];
     drawView.delegate = self;
     
@@ -292,7 +288,7 @@
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
 {
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.lineColor updateModel:YES];
+        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
 }

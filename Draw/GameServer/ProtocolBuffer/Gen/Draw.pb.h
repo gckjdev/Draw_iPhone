@@ -78,6 +78,8 @@
 @class PBNoCompressDrawAction_Builder;
 @class PBNoCompressDrawData;
 @class PBNoCompressDrawData_Builder;
+@class PBOpusRank;
+@class PBOpusRank_Builder;
 @class PBPoint;
 @class PBPoint_Builder;
 @class PBPromotionInfo;
@@ -678,6 +680,7 @@
   PBDraw* drawData;
   NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableFeedTimesList;
+  NSMutableArray* mutableRankInfoList;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -759,6 +762,8 @@
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 - (NSArray*) feedTimesList;
 - (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
+- (NSArray*) rankInfoList;
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
 
 + (PBFeed*) defaultInstance;
 - (PBFeed*) defaultInstance;
@@ -996,6 +1001,13 @@
 - (Float64) contestScore;
 - (PBFeed_Builder*) setContestScore:(Float64) value;
 - (PBFeed_Builder*) clearContestScore;
+
+- (NSArray*) rankInfoList;
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
+- (PBFeed_Builder*) replaceRankInfoAtIndex:(int32_t) index with:(PBOpusRank*) value;
+- (PBFeed_Builder*) addRankInfo:(PBOpusRank*) value;
+- (PBFeed_Builder*) addAllRankInfo:(NSArray*) values;
+- (PBFeed_Builder*) clearRankInfoList;
 
 - (BOOL) hasLearnDraw;
 - (PBLearnDraw*) learnDraw;
@@ -1333,6 +1345,7 @@
   PBUserBasicInfo* drawToUser;
   NSMutableArray* mutableDrawActionListList;
   NSMutableArray* mutableDrawActionList2List;
+  NSMutableArray* mutableLayerList;
 }
 - (BOOL) hasVersion;
 - (BOOL) hasCanvasSize;
@@ -1348,6 +1361,8 @@
 - (PBNoCompressDrawAction*) drawActionListAtIndex:(int32_t) index;
 - (NSArray*) drawActionList2List;
 - (PBDrawAction*) drawActionList2AtIndex:(int32_t) index;
+- (NSArray*) layerList;
+- (PBLayer*) layerAtIndex:(int32_t) index;
 
 + (PBNoCompressDrawData*) defaultInstance;
 - (PBNoCompressDrawData*) defaultInstance;
@@ -1425,6 +1440,13 @@
 - (NSString*) bgImageName;
 - (PBNoCompressDrawData_Builder*) setBgImageName:(NSString*) value;
 - (PBNoCompressDrawData_Builder*) clearBgImageName;
+
+- (NSArray*) layerList;
+- (PBLayer*) layerAtIndex:(int32_t) index;
+- (PBNoCompressDrawData_Builder*) replaceLayerAtIndex:(int32_t) index with:(PBLayer*) value;
+- (PBNoCompressDrawData_Builder*) addLayer:(PBLayer*) value;
+- (PBNoCompressDrawData_Builder*) addAllLayer:(NSArray*) values;
+- (PBNoCompressDrawData_Builder*) clearLayerList;
 @end
 
 @interface PBDrawBgGroup : PBGeneratedMessage {
