@@ -34,9 +34,9 @@
 //}
 
 
-- (void)updateWithDrawLayer:(DrawLayer *)layer
+- (void)updateWithDrawLayer:(DrawLayer *)layer isSelected:(BOOL)selected
 {
-    if (![layer isKindOfClass:[DrawLayer class]]) {
+    if (layer == nil) {
         self.drawLayer = nil;
         for (UIView *view in self.subviews) {
             view.hidden = YES;
@@ -51,6 +51,11 @@
     [self.layerName setTitle:layer.layerName forState:UIControlStateNormal];
     [self.showFlag setSelected:self.drawLayer.isHidden];
     [self.remove setHidden:![layer canBeRemoved]];
+    if (selected) {
+        [self.layerName setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }else{
+        [self.layerName setTitleColor:OPAQUE_COLOR(62, 43, 23) forState:UIControlStateNormal];
+    }
 }
 
 
@@ -135,12 +140,16 @@
     DrawLayerPanelCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
     if (cell == nil) {
         cell = [DrawLayerPanelCell cell:self];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     cell.drawLayer = nil;
-    if (cell.drawLayer && cell.drawLayer == _dlManager.selectedLayer) {
-        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+ 
+    DrawLayer *layer = [self layerOfIndexPath:indexPath];
+    if (layer == self.grabbedObject) {
+        layer = nil;
     }
-    [cell updateWithDrawLayer:[self layerOfIndexPath:indexPath]];
+    [cell updateWithDrawLayer:layer isSelected:layer == _dlManager.selectedLayer];
+
     return cell;
 
 }
@@ -159,6 +168,7 @@
     if (indexPath.row < layerCount) {
         DrawLayer *layer = [self layerOfIndexPath:indexPath];
         [_dlManager setSelectedLayer:layer];
+        [self.tableView reloadData];
     }
 }
 
@@ -225,11 +235,14 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsCreatePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PPDebug(@"<needsCreatePlaceholderForRowAtIndexPath> at row = %d",indexPath.row);
     self.grabbedObject = [self layerOfIndexPath:indexPath];
-    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:TRANSLATE_ROW(indexPath.row) withObject:@""];
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsMoveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    PPDebug(@"<needsMoveRowAtIndexPath> from row = %d, to row = %d",sourceIndexPath.row, destinationIndexPath.row);
+    
     id object = [self layerOfIndexPath:sourceIndexPath];
     [(NSMutableArray *)[_dlManager layers] removeObjectAtIndex:TRANSLATE_ROW(sourceIndexPath.row)];
     [(NSMutableArray *)[_dlManager layers] insertObject:object atIndex:TRANSLATE_ROW(destinationIndexPath.row)];
@@ -237,6 +250,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsReplacePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PPDebug(@"<needsReplacePlaceholderForRowAtIndexPath> at row = %d",indexPath.row);
     [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:TRANSLATE_ROW(indexPath.row) withObject:self.grabbedObject];
     self.grabbedObject = nil;
     [self.dlManager reload];

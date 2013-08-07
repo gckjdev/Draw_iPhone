@@ -87,9 +87,6 @@
 
 - (DrawLayer *)layerWithTag:(NSUInteger)tag
 {
-    if (self.selectedLayer.layerTag == tag) {
-        return self.selectedLayer;
-    }
     for (DrawLayer *layer in _layerList) {
         if(layer.layerTag == tag){
             return layer;
@@ -171,6 +168,7 @@
         [array addObject:action];
     }
     for (DrawLayer *layer in _layerList) {
+        PPDebug(@"<arrangeActions> layer name = %@", layer.layerName);
         [layer reset];
         NSMutableArray *array = [dict objectForKey:@(layer.layerTag)];
         [layer updateWithDrawActions:array];

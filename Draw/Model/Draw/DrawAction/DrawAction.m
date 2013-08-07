@@ -235,10 +235,8 @@
         pbDrawActionC->cliptag = self.clipTag;
         pbDrawActionC->has_cliptag = YES;
     }
-    if (self.layerTag != 0) {
-        pbDrawActionC->layertag = self.layerTag;
-        pbDrawActionC->has_layertag = YES;
-    }
+    pbDrawActionC->layertag = self.layerTag;
+    pbDrawActionC->has_layertag = YES;
 }
 
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect

@@ -200,10 +200,6 @@
         }
     }else{
         self.status = Stop;
-//        dlManager addDrawAction:<#(DrawAction *)#> show:<#(BOOL)#>
-//        CGRect rect = [osManager addDrawAction:action];
-//        CGRect rect = [cdManager addDrawAction:action];
-//        [self setNeedsDisplayInRect:rect];
     }
 }
 
@@ -330,6 +326,7 @@
             self.tempAction = [PaintAction paintActionWithPaint:paint];
             self.tempAction.shadow = [_currentAction shadow];
             self.tempAction.clipAction = _currentAction.clipAction;
+            self.tempAction.layerTag = _currentAction.layerTag;
         }
         NSInteger i = [self.tempAction pointCount];
         for (; i <= _playingPointIndex; ++ i) {
