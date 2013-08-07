@@ -98,7 +98,7 @@
 
     BOOL _commitAsNormal;
     
-    CMPopTipView *layerPanelPopView;
+
     
 }
 
@@ -121,7 +121,7 @@
 @property (assign, nonatomic) NSTimer* backupTimer;         // backup recovery timer
 
 @property (retain, nonatomic) CommonDialog* currentDialog;
-
+@property (retain, nonatomic) CMPopTipView *layerPanelPopView;
 //@property (assign, nonatomic) CGRect canvasRect;
 
 - (void)initDrawView;
@@ -408,6 +408,9 @@
     [self.drawToolUpPanel setPanelForOnline:NO];
     
     [self.drawToolUpPanel.titleLabel setText:(self.word.text && self.word.text.length > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
+    
+    self.drawToolPanel.delegate = self;
+    [drawView.dlManager setDelegate:self];
 }
 
 
@@ -718,11 +721,12 @@
 
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
 {
- 
+    [self.layerPanelPopView dismissAnimated:YES];
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
         [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
+    [self.layerPanelPopView dismissAnimated:NO];
     _isNewDraft = NO;
 
 }
@@ -967,7 +971,7 @@
 }
 
 - (IBAction)clickDraftButton:(id)sender {
-    
+    [self.layerPanelPopView dismissAnimated:YES];
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
     }
@@ -1143,7 +1147,7 @@
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-    
+    [self.layerPanelPopView dismissAnimated:YES];
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
     }    
@@ -1191,6 +1195,7 @@
 
 - (IBAction)clickUpPanel:(id)sender
 {
+    [self.layerPanelPopView dismissAnimated:YES];
     if (![self.drawToolUpPanel isVisable]) {
         [self.view bringSubviewToFront: self.drawToolUpPanel];
         [self.drawToolUpPanel appear:self title:self.word.text isLeftArrow:!self.draftButton.hidden];
@@ -1200,13 +1205,13 @@
 }
 
 - (IBAction)clickLayerButton:(id)sender {
-    if (layerPanelPopView) {
-        [layerPanelPopView dismissAnimated:YES];
-        layerPanelPopView = nil;
+    if (self.layerPanelPopView) {
+        [self.layerPanelPopView dismissAnimated:YES];
     }else{
         DrawLayerPanel *layerPanel = [DrawLayerPanel drawLayerPanelWithDrawLayerManager:drawView.dlManager];
-        layerPanelPopView = [[CMPopTipView alloc] initWithCustomView:layerPanel];
-        [layerPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
+        self.layerPanelPopView = [[[CMPopTipView alloc] initWithCustomView:layerPanel] autorelease];
+        [self.layerPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
+        self.layerPanelPopView.delegate = self;
     }
 }
 
@@ -1233,6 +1238,7 @@
 
 - (void)clickBackButton:(id)sender
 {
+    [self.layerPanelPopView dismissAnimated:YES];
     if ([[UserManager defaultManager] hasUser] == NO){
         [self quit];
         return;
@@ -1324,4 +1330,29 @@
 }
 
 
+#pragma mark- DrawLayerManager Delegate
+- (void)layerManager:(DrawLayerManager *)manager
+didChangeSelectedLayer:(DrawLayer *)selectedLayer
+           lastLayer:(DrawLayer *)lastLayer
+{
+    if (selectedLayer) {
+        PPDebug(@"<didChangeSelectedLayer> tag = %d, name = %@",selectedLayer.layerTag, selectedLayer.layerName);
+        [self.drawToolPanel updateWithDrawInfo:selectedLayer.drawInfo];
+    }
+}
+#pragma mark- CMPopTipView Delegate
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    self.layerPanelPopView = nil;
+}
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    self.layerPanelPopView = nil;
+}
+
+#pragma mark- DrawToolPanel Delegate
+- (void)drawToolPanel:(DrawToolPanel *)panel didClickTool:(UIButton *)toolButton
+{
+    [self.layerPanelPopView dismissAnimated:YES];
+}
 @end

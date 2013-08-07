@@ -14,6 +14,13 @@
 #import "DrawInfo.h"
 #import "DrawView.h"
 
+@class DrawToolPanel;
+
+@protocol DrawToolPanelDelegate <NSObject>
+
+- (void)drawToolPanel:(DrawToolPanel *)panel didClickTool:(UIButton *)toolButton;
+
+@end
 
 @interface DrawToolPanel : UIView<ColorPointDelegate, UIScrollViewDelegate>
 {
@@ -22,7 +29,7 @@
 
 @property(nonatomic, assign)NSInteger timerDuration;
 @property(nonatomic, assign)DrawView *drawView;
-
+@property(nonatomic, assign)id<DrawToolPanelDelegate> delegate;
 
 
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo;

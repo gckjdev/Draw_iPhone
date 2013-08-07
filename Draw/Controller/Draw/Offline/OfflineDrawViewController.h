@@ -21,7 +21,8 @@
 #import "UserService.h"
 #import "InputAlertView.h"
 #import "MWPhotoBrowser.h"
-
+#import "CMPopTipView.h"
+#import "DrawToolPanel.h"
 //#import "CommonItemInfoView.h"
 
 @class Word;
@@ -44,7 +45,7 @@
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, InputAlertViewDelegate, MWPhotoBrowserDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, InputAlertViewDelegate, MWPhotoBrowserDelegate, DrawLayerManagerDelegate, CMPopTipViewDelegate, DrawToolPanelDelegate> {
     
 }
 

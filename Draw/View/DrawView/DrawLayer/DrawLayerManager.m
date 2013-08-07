@@ -231,6 +231,14 @@
     }
 }
 
+- (void)setSelectedLayer:(DrawLayer *)selectedLayer
+{
+    [self.delegate layerManager:self
+         didChangeSelectedLayer:selectedLayer
+                      lastLayer:_selectedLayer];
+    _selectedLayer = selectedLayer;
+}
+
 - (UIImage *)createImage
 {
     UIImage *image;

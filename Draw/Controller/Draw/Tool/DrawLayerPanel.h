@@ -29,8 +29,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *remove;
 
 
+
 @property (assign, nonatomic) id<DrawLayerPanelCellDelegate> delegate;
 @property (assign, nonatomic) DrawLayer *drawLayer;
+
 
 - (IBAction)clickShowFlag:(id)sender;
 - (IBAction)clickRemove:(id)sender;
@@ -52,6 +54,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *help;
 @property (retain, nonatomic) IBOutlet UIButton *add;
 @property (retain, nonatomic) id grabbedObject;
+@property (retain, nonatomic) JTTableViewGestureRecognizer *recognizer;
 
 - (IBAction)clickAdd:(id)sender;
 - (IBAction)clickHelp:(id)sender;

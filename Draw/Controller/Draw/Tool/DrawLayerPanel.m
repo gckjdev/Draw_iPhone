@@ -49,7 +49,7 @@
 
     self.drawLayer = layer;
     [self.layerName setTitle:layer.layerName forState:UIControlStateNormal];
-    [self.showFlag setSelected:self.drawLayer.hidden];
+    [self.showFlag setSelected:self.drawLayer.isHidden];
 }
 
 
@@ -95,7 +95,7 @@
     DrawLayerPanel *panel = [DrawLayerPanel createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:1];
     panel.dlManager = dlManager;
     [panel reloadView];
-    [panel.tableView enableGestureTableViewWithDelegate:panel];
+    panel.recognizer = [panel.tableView enableGestureTableViewWithDelegate:panel];
     return panel;
 }
 
@@ -103,10 +103,14 @@
 {
     [_tableView release];
     [_help release];
-    [_add release];    
+    [_add release];
+    PPRelease(_grabbedObject);
+    PPRelease(_recognizer);
     [super dealloc];
 }
 
+
+#define TRANSLATE_ROW(row) row //([[_dlManager layers] count] - (row+1))
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -221,18 +225,18 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsCreatePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
     self.grabbedObject = [self layerOfIndexPath:indexPath];
-    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:indexPath.row withObject:@""];
+    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:TRANSLATE_ROW(indexPath.row) withObject:@""];
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsMoveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     id object = [self layerOfIndexPath:sourceIndexPath];
-    [(NSMutableArray *)[_dlManager layers] removeObjectAtIndex:sourceIndexPath.row];
-    [(NSMutableArray *)[_dlManager layers] insertObject:object atIndex:destinationIndexPath.row];
+    [(NSMutableArray *)[_dlManager layers] removeObjectAtIndex:TRANSLATE_ROW(sourceIndexPath.row)];
+    [(NSMutableArray *)[_dlManager layers] insertObject:object atIndex:TRANSLATE_ROW(destinationIndexPath.row)];
 
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsReplacePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:indexPath.row withObject:self.grabbedObject];
+    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:TRANSLATE_ROW(indexPath.row) withObject:self.grabbedObject];
     self.grabbedObject = nil;
     [self.dlManager reload];
 }

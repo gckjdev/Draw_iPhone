@@ -141,6 +141,7 @@
 
 - (IBAction)clickTool:(id)sender
 {
+    [self.delegate drawToolPanel:self didClickTool:sender];
     [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
     [[toolCmdManager commandForControl:sender] execute];
 }
@@ -586,6 +587,9 @@
     [self setCloseSelectorHidden:_drawView.currentClip == nil &&![array containsObject:@(drawInfo.touchType)]];
     
     //TODO set color
+    DrawColor *color = [DrawColor colorWithColor:drawInfo.penColor];
+    [color setAlpha:1];
+    [self updateRecentColorViewWithColor:color updateModel:NO];
 }
 
 

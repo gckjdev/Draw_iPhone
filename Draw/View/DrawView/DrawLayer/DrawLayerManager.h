@@ -12,12 +12,23 @@
 @class DrawAction;
 @class DrawLayer;
 
+@class DrawLayerManager;
+
+@protocol DrawLayerManagerDelegate <NSObject>
+
+
+- (void)layerManager:(DrawLayerManager *)manager
+didChangeSelectedLayer:(DrawLayer *)selectedLayer
+           lastLayer:(DrawLayer *)lastLayer;
+
+@end
+
 @interface DrawLayerManager : NSObject<DrawProcessProtocol>
 {
     
 }
 @property(nonatomic, assign)DrawLayer *selectedLayer;
-
+@property(nonatomic, assign)id<DrawLayerManagerDelegate> delegate;
 
 - (void)selectLayer:(DrawLayer *)layer;
 - (id)initWithView:(UIView *)view;
