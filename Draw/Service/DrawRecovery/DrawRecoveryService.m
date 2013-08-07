@@ -113,6 +113,12 @@ drawActionList:(NSArray*)drawActionList
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
     
+    if ([drawActionList count] == 0){
+        // don't backup empty file
+        PPDebug(@"<backup> but draw action list count is zero");
+        return;
+    }
+    
     if (drawActionList == nil){
         drawActionList = [NSMutableArray arrayWithCapacity:1];
     }

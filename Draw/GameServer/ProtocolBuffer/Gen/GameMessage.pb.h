@@ -195,6 +195,8 @@
 @class PBOpusGuess_Builder;
 @class PBOpusList;
 @class PBOpusList_Builder;
+@class PBOpusRank;
+@class PBOpusRank_Builder;
 @class PBOpus_Builder;
 @class PBPoint;
 @class PBPoint_Builder;

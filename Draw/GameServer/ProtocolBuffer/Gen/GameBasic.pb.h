@@ -36,6 +36,8 @@
 @class PBMessageStat;
 @class PBMessageStat_Builder;
 @class PBMessage_Builder;
+@class PBOpusRank;
+@class PBOpusRank_Builder;
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
@@ -2855,5 +2857,71 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (Float32) height;
 - (PBSize_Builder*) setHeight:(Float32) value;
 - (PBSize_Builder*) clearHeight;
+@end
+
+@interface PBOpusRank : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasValue_:1;
+  BOOL hasUserId_:1;
+  int32_t type;
+  int32_t value;
+  NSString* userId;
+}
+- (BOOL) hasType;
+- (BOOL) hasValue;
+- (BOOL) hasUserId;
+@property (readonly) int32_t type;
+@property (readonly) int32_t value;
+@property (readonly, retain) NSString* userId;
+
++ (PBOpusRank*) defaultInstance;
+- (PBOpusRank*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBOpusRank_Builder*) builder;
++ (PBOpusRank_Builder*) builder;
++ (PBOpusRank_Builder*) builderWithPrototype:(PBOpusRank*) prototype;
+
++ (PBOpusRank*) parseFromData:(NSData*) data;
++ (PBOpusRank*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpusRank*) parseFromInputStream:(NSInputStream*) input;
++ (PBOpusRank*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBOpusRank*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBOpusRank*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBOpusRank_Builder : PBGeneratedMessage_Builder {
+@private
+  PBOpusRank* result;
+}
+
+- (PBOpusRank*) defaultInstance;
+
+- (PBOpusRank_Builder*) clear;
+- (PBOpusRank_Builder*) clone;
+
+- (PBOpusRank*) build;
+- (PBOpusRank*) buildPartial;
+
+- (PBOpusRank_Builder*) mergeFrom:(PBOpusRank*) other;
+- (PBOpusRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBOpusRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBOpusRank_Builder*) setType:(int32_t) value;
+- (PBOpusRank_Builder*) clearType;
+
+- (BOOL) hasValue;
+- (int32_t) value;
+- (PBOpusRank_Builder*) setValue:(int32_t) value;
+- (PBOpusRank_Builder*) clearValue;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBOpusRank_Builder*) setUserId:(NSString*) value;
+- (PBOpusRank_Builder*) clearUserId;
 @end
 

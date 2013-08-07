@@ -389,3 +389,11 @@ message PBSize
     optional float width = 1 [default=304.0];
     optional float height = 2 [default=320.0];
 }
+
+message PBOpusRank
+{
+    required int32 type = 1 [default=1];
+    required int32 value = 2 [default=0];
+    optional string userId = 3;
+}
+

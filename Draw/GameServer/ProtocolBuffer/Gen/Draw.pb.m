@@ -2080,6 +2080,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property (retain) NSString* dataUrl;
 @property (retain) NSString* contestId;
 @property Float64 contestScore;
+@property (retain) NSMutableArray* mutableRankInfoList;
 @property (retain) PBLearnDraw* learnDraw;
 @end
 
@@ -2361,6 +2362,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasContestScore_ = !!value;
 }
 @synthesize contestScore;
+@synthesize mutableRankInfoList;
 - (BOOL) hasLearnDraw {
   return !!hasLearnDraw_;
 }
@@ -2394,6 +2396,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.opusThumbImage = nil;
   self.dataUrl = nil;
   self.contestId = nil;
+  self.mutableRankInfoList = nil;
   self.learnDraw = nil;
   [super dealloc];
 }
@@ -2466,6 +2469,13 @@ static PBFeed* defaultPBFeedInstance = nil;
   id value = [mutableFeedTimesList objectAtIndex:index];
   return value;
 }
+- (NSArray*) rankInfoList {
+  return mutableRankInfoList;
+}
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index {
+  id value = [mutableRankInfoList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasFeedId) {
     return NO;
@@ -2490,6 +2500,11 @@ static PBFeed* defaultPBFeedInstance = nil;
     }
   }
   for (PBFeedTimes* element in self.feedTimesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBOpusRank* element in self.rankInfoList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -2618,6 +2633,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasContestScore) {
     [output writeDouble:92 value:self.contestScore];
+  }
+  for (PBOpusRank* element in self.rankInfoList) {
+    [output writeMessage:93 value:element];
   }
   if (self.hasLearnDraw) {
     [output writeMessage:100 value:self.learnDraw];
@@ -2752,6 +2770,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasContestScore) {
     size += computeDoubleSize(92, self.contestScore);
+  }
+  for (PBOpusRank* element in self.rankInfoList) {
+    size += computeMessageSize(93, element);
   }
   if (self.hasLearnDraw) {
     size += computeMessageSize(100, self.learnDraw);
@@ -2954,6 +2975,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasContestScore) {
     [self setContestScore:other.contestScore];
   }
+  if (other.mutableRankInfoList.count > 0) {
+    if (result.mutableRankInfoList == nil) {
+      result.mutableRankInfoList = [NSMutableArray array];
+    }
+    [result.mutableRankInfoList addObjectsFromArray:other.mutableRankInfoList];
+  }
   if (other.hasLearnDraw) {
     [self mergeLearnDraw:other.learnDraw];
   }
@@ -3144,6 +3171,12 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 737: {
         [self setContestScore:[input readDouble]];
+        break;
+      }
+      case 746: {
+        PBOpusRank_Builder* subBuilder = [PBOpusRank builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addRankInfo:[subBuilder buildPartial]];
         break;
       }
       case 802: {
@@ -3836,6 +3869,35 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearContestScore {
   result.hasContestScore = NO;
   result.contestScore = 0;
+  return self;
+}
+- (NSArray*) rankInfoList {
+  if (result.mutableRankInfoList == nil) { return [NSArray array]; }
+  return result.mutableRankInfoList;
+}
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index {
+  return [result rankInfoAtIndex:index];
+}
+- (PBFeed_Builder*) replaceRankInfoAtIndex:(int32_t) index with:(PBOpusRank*) value {
+  [result.mutableRankInfoList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllRankInfo:(NSArray*) values {
+  if (result.mutableRankInfoList == nil) {
+    result.mutableRankInfoList = [NSMutableArray array];
+  }
+  [result.mutableRankInfoList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearRankInfoList {
+  result.mutableRankInfoList = nil;
+  return self;
+}
+- (PBFeed_Builder*) addRankInfo:(PBOpusRank*) value {
+  if (result.mutableRankInfoList == nil) {
+    result.mutableRankInfoList = [NSMutableArray array];
+  }
+  [result.mutableRankInfoList addObject:value];
   return self;
 }
 - (BOOL) hasLearnDraw {

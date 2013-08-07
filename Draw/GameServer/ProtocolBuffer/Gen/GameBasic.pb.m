@@ -11788,3 +11788,263 @@ static PBSize* defaultPBSizeInstance = nil;
 }
 @end
 
+@interface PBOpusRank ()
+@property int32_t type;
+@property int32_t value;
+@property (retain) NSString* userId;
+@end
+
+@implementation PBOpusRank
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasValue {
+  return !!hasValue_;
+}
+- (void) setHasValue:(BOOL) value {
+  hasValue_ = !!value;
+}
+@synthesize value;
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+- (void) dealloc {
+  self.userId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 1;
+    self.value = 0;
+    self.userId = @"";
+  }
+  return self;
+}
+static PBOpusRank* defaultPBOpusRankInstance = nil;
++ (void) initialize {
+  if (self == [PBOpusRank class]) {
+    defaultPBOpusRankInstance = [[PBOpusRank alloc] init];
+  }
+}
++ (PBOpusRank*) defaultInstance {
+  return defaultPBOpusRankInstance;
+}
+- (PBOpusRank*) defaultInstance {
+  return defaultPBOpusRankInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  if (!self.hasValue) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasValue) {
+    [output writeInt32:2 value:self.value];
+  }
+  if (self.hasUserId) {
+    [output writeString:3 value:self.userId];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasValue) {
+    size += computeInt32Size(2, self.value);
+  }
+  if (self.hasUserId) {
+    size += computeStringSize(3, self.userId);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBOpusRank*) parseFromData:(NSData*) data {
+  return (PBOpusRank*)[[[PBOpusRank builder] mergeFromData:data] build];
+}
++ (PBOpusRank*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBOpusRank*)[[[PBOpusRank builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBOpusRank*) parseFromInputStream:(NSInputStream*) input {
+  return (PBOpusRank*)[[[PBOpusRank builder] mergeFromInputStream:input] build];
+}
++ (PBOpusRank*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBOpusRank*)[[[PBOpusRank builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBOpusRank*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBOpusRank*)[[[PBOpusRank builder] mergeFromCodedInputStream:input] build];
+}
++ (PBOpusRank*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBOpusRank*)[[[PBOpusRank builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBOpusRank_Builder*) builder {
+  return [[[PBOpusRank_Builder alloc] init] autorelease];
+}
++ (PBOpusRank_Builder*) builderWithPrototype:(PBOpusRank*) prototype {
+  return [[PBOpusRank builder] mergeFrom:prototype];
+}
+- (PBOpusRank_Builder*) builder {
+  return [PBOpusRank builder];
+}
+@end
+
+@interface PBOpusRank_Builder()
+@property (retain) PBOpusRank* result;
+@end
+
+@implementation PBOpusRank_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBOpusRank alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBOpusRank_Builder*) clear {
+  self.result = [[[PBOpusRank alloc] init] autorelease];
+  return self;
+}
+- (PBOpusRank_Builder*) clone {
+  return [PBOpusRank builderWithPrototype:result];
+}
+- (PBOpusRank*) defaultInstance {
+  return [PBOpusRank defaultInstance];
+}
+- (PBOpusRank*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBOpusRank*) buildPartial {
+  PBOpusRank* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBOpusRank_Builder*) mergeFrom:(PBOpusRank*) other {
+  if (other == [PBOpusRank defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasValue) {
+    [self setValue:other.value];
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBOpusRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBOpusRank_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setValue:[input readInt32]];
+        break;
+      }
+      case 26: {
+        [self setUserId:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBOpusRank_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBOpusRank_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 1;
+  return self;
+}
+- (BOOL) hasValue {
+  return result.hasValue;
+}
+- (int32_t) value {
+  return result.value;
+}
+- (PBOpusRank_Builder*) setValue:(int32_t) value {
+  result.hasValue = YES;
+  result.value = value;
+  return self;
+}
+- (PBOpusRank_Builder*) clearValue {
+  result.hasValue = NO;
+  result.value = 0;
+  return self;
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (PBOpusRank_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (PBOpusRank_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+@end
+
