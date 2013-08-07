@@ -7,7 +7,8 @@
 //
 
 #import "GuessRankCell.h"
-#import "UIImageView+WebCache.h"'
+#import "UIImageView+WebCache.h"
+#import "PBGuessRank+Extend.h"
 
 @interface GuessRankCell()
 @property (retain, nonatomic) PBGuessRank *rank;
@@ -35,7 +36,7 @@
 
 + (CGFloat)getCellHeight{
     
-    return 50;
+    return 70;
 }
 
 - (void)setCellInfo:(PBGuessRank *)rank{
@@ -46,8 +47,9 @@
     _nickNameLabel.text = rank.user.nickName;
     _signatureLable.text = rank.user.signature;
     
-    _guessCountLabel.text = [NSString stringWithFormat:NSLS(@"kGuessCorrectIs%d"), _rank.pass];
-    _costTimeLabel.text =
+    _guessCountLabel.text = _rank.correctTimesDesc;
+    _costTimeLabel.text = _rank.costTimeDesc;
+    _awardLabel.text = _rank.earnDesc;
     
     
 }

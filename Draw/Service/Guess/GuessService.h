@@ -13,7 +13,7 @@
 #define HOT_RANK 0
 #define ALL_TIME_RANK 1
 
-@protocol GusessServiceDelegate <NSObject>
+@protocol GuessServiceDelegate <NSObject>
 
 @optional
 - (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode;
@@ -26,9 +26,10 @@
 
 @interface GuessService : CommonService
 
-@property (assign, nonatomic) id<GusessServiceDelegate> delegate;
+@property (assign, nonatomic) id<GuessServiceDelegate> delegate;
 
 + (GuessService *)defaultService;
++ (NSString *)contestId:(NSDate *)date;
 
 - (void)getOpusesWithMode:(PBUserGuessMode)mode
                 contestId:(NSString *)contestId
@@ -55,6 +56,12 @@
                           offset:(int)offset
                            limit:(int)limit;
 
+
+
+// Get today contest list
 - (void)getGuessContestList;
+
+// Get recent contest list
+- (void)getRecentGuessContestList;
 
 @end

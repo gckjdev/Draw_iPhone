@@ -340,6 +340,11 @@
     return [MobClickUtils getIntValueByKey:@"TOMATO_EXP" defaultValue:-5];
 }
 
++ (int)getAwardInHappyMode
+{
+    return [MobClickUtils getIntValueByKey:@"AWARD_IN_HAPPY_MODE" defaultValue:1000];
+}
+
 
 + (int)getTomatoAwardAmount
 {
@@ -1052,5 +1057,7 @@
 {
     return [MobClickUtils getBoolValueByKey:@"ENABLE_WORD_FILTER" defaultValue:YES];
 }
+
+
 
 @end

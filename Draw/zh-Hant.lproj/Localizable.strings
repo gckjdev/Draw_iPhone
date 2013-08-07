@@ -1386,6 +1386,41 @@
 "kSelectPhoto" = "選取圖片";
 "kUpdateSucc" = "更新成功!";
 "kContestNotSupportDesc" = "參賽作品不能編輯描述!";
+
+"kGuessCorrectIs:%d" = "猜對: %d個";
+"kCostSencond:%d" = "耗時: %d秒";
+"kCostMinus:%d, second:%d" = "耗時:%d分鐘%d秒";
+"kCostHour:%d, minus:%d, second:%d" = "耗時:%d小時%d分鐘%d秒";
+"kCostDay:%d, hour:%d, minus:%d" = "耗時: %d天%d小時%d分鐘";
+"kAwardIs:%d" = "獎勵: %d金幣";
+
+"kIGotIt" = "我知道了";
+"kRestart" = "重開";
+"kSelectGuessMode" = "選擇猜畫模式";
+
+"kHappGuessMode" = "歡樂模式";
+"kGeniusGuessMode" = "天才模式";
+"kContestGuessMode" = "VS";
+"kGuessRank" = "遊戲榜單";
+"kGuessRules" = "規則說明";
+"kLoadFailed" = "加載失敗";
+
+"kGuessPreviousOpusFirst" = "該關卡被鎖定，請先完成前面的關卡";
+"kCompleteGuessContest" = "恭喜你完成比賽，比賽結束後揭曉你的比賽排名";
+
+"kGoOn" = "繼續";
+"kAward" = "獎勵";
+"kGuessHappyModeAwardTips" = "恭喜你順利猜中%d副作品，系統獎勵你%d金幣，是否還想繼續歡樂模式？";
+"kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d副作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
+
+"kGuessHappyModeTips" = "你已經猜中了%d副作品，再猜%d副作品就可以獲得%d獎勵哦!";
+"kGuessGenuisModeTips" = "你已經連續猜中了%d副作品，再猜%d副作品就可以獲得%d獎勵哦!";
+"kGuessGenuisFail" = "你猜錯了，不能繼續玩下去了，重新開始？";
+
+"kHint" = "提示";
+"kGuessWrong" =  "猜错了";
+
+"kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

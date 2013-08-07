@@ -1441,6 +1441,43 @@
 "kSelectPhoto" = "Select Photo";
 "kUpdateSucc" = "Update successfully!";
 "kContestNotSupportDesc" = "Can not modify contest description!";
+
+"kGuessCorrectIs:%d" = "Correct: %d";
+"kCostSencond:%d" = "Cost: %ds";
+"kCostMinus:%d, second:%d" = "Cost: %dm,%ds";
+"kCostHour:%d, minus:%d, second:%d" = "Cost: %dh,%dm,%ds";
+"kCostDay:%d, hour:%d, minus:%d" = "Cost: %dd,%dh,%dm";
+"kAwardIs:%d" = "Award: %d coins";
+
+"kIGotIt" = "Got it";
+"kRestart" = "Restart";
+"kSelectGuessMode" = "Select Guess Mode";
+
+"kHappGuessMode" = "HAPPY MODE";
+"kGeniusGuessMode" = "GENIUS MODE";
+"kContestGuessMode" = "VS";
+"kGuessRank" = "RANK";
+"kGuessRules" = "RULES";
+"kLoadFailed" = "Load failed";
+
+"kGuessPreviousOpusFirst" = "Please guess the previous opus first";
+"kCompleteGuessContest" = "Contest complete, you will get your rank after contest over";
+"kContinue" = "Continue";
+"kGoOn" = "Go on";
+"kAward" = "Award";
+"kGuessHappyModeAwardTips" = "Congratulations! you have guessed %d opuses, award %d coins, will you continue to play?";
+"kGuessGenuisModeAwardTips" = "Congratulations! you have guessed %d opuses continuous, award %d coins, will you continue to play?";
+
+"kGuessHappyModeTips" = "You have guessed %d opues, guess %d more opuses will get award: %d";
+"kGuessGenuisModeTips" = "You have guessed %d opues continuous, guess %d more opuses will get award: %d";
+
+"kGuessGenuisFail" = "you guess wrong, can not continue in genius mode, will you restart";
+
+
+"kHint" = "Hint";
+"kGuessWrong" =  "Guess Wrong";
+
+"kRestartGuessWarnning" = "Will you restart game?";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
@@ -1878,7 +1915,3 @@
 "kSelectFromUserPhoto" = "Select from gallery";
 "kFurtureFunction" = "Furture function, is coming soon...";
 /*********************图库国际化字符串结束 ************************/
-
-
-
-

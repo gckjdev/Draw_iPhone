@@ -7,7 +7,6 @@
 //
 
 #import "DrawGuessController.h"
-#import "CommonTitleView.h"
 #import "WordManager.h"
 
 @interface DrawGuessController ()
@@ -17,6 +16,7 @@
 @implementation DrawGuessController
 
 - (void)dealloc {
+    [_titleView release];
     [super dealloc];
 }
 
@@ -24,8 +24,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    CommonTitleView *titleView = [CommonTitleView createWithTitle:NSLS(@"kGuess") delegate:self];
-    [self.view addSubview:titleView];
+    [_titleView setTitle:NSLS(@"kGuess")];
+    [_titleView setTarget:self];
     
     // Set candidates
     NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
@@ -40,13 +40,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setTitleView:nil];
     [super viewDidUnload];
 }
-
-- (void)didGuessWrong:(NSString *)word{
-    
-    [self.wordInputView reset];
-    [super didGuessWrong:word];
-}
-
 @end

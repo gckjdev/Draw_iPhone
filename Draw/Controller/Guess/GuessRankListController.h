@@ -9,8 +9,10 @@
 #import "PPViewController.h"
 #import "CommonTabController.h"
 #import "GuessService.h"
+#import "CommonTitleView.h"
 
-@interface GuessRankListController : CommonTabController <GusessServiceDelegate>
+@interface GuessRankListController : CommonTabController <GuessServiceDelegate>
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 @property (retain, nonatomic) IBOutlet UIButton *geniusButton;
 @property (retain, nonatomic) IBOutlet UIButton *contestButton;
 

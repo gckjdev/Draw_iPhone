@@ -10,6 +10,8 @@
 
 @interface PBGuessRank (Extend)
 
+- (NSString *)correctTimesDesc;
 - (NSString *)costTimeDesc;
+- (NSString *)earnDesc;
 
 @end

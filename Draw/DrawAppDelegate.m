@@ -444,14 +444,9 @@ NSString* GlobalGetBoardServerURL()
     PPDebug(@"<applicationWillEnterForeground>");    
     application.applicationIconBadgeNumber = 0;
     
-//    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeHappy
-//                                           contestId:nil
-//                                              offset:0
-//                                               limit:4
-//                                          isStartNew:NO];
-//    [[GuessService defaultService] guessOpus:nil mode:PBUserGuessModeGuessModeHappy contestId:nil words:[NSArray arrayWithObjects:@"电脑", @"商家", @"店铺", nil] correct:YES startDate:nil endDate:nil];
-//    [[GuessService defaultService] getGuessRank:nil mode:PBUserGuessModeGuessModeHappy contestId:nil];
-//    [[GuessService defaultService] getGuessRankListWithType:ALL_TIME_RANK mode:PBUserGuessModeGuessModeHappy contestId:nil offset:0 limit:2];
+    
+#if DEBUG
+#endif
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

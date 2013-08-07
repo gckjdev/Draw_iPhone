@@ -6,11 +6,18 @@
 //
 //
 
+
 #import <UIKit/UIKit.h>
+
+typedef void (^NavigationButtonActionBlock)(UIButton *button);
 
 @interface CommonTitleView : UIView
 
-+ (CommonTitleView *)createWithTitle:(NSString *)title
-                            delegate:(id)delegate;
+@property (assign, nonatomic) id target;
+@property (assign, nonatomic) SEL rightButtonSelctor;
+
+- (void)setTitle:(NSString *)title;
+- (void)setRightButtonAsRefresh;
+- (void)setRightButtonTitle:(NSString *)title;
 
 @end

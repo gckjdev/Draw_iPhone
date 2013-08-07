@@ -8,8 +8,10 @@
 
 #import "PPViewController.h"
 #import "CommonGuessController.h"
+#import "CommonTitleView.h"
 
 @interface DrawGuessController : CommonGuessController
 
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 @end

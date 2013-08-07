@@ -91,6 +91,7 @@ typedef enum{
 + (NSInteger)getDrawGridLineSpace;
 
 + (int)getTomatoAwardExp;
++ (int)getAwardInHappyMode;
 + (int)getTomatoAwardAmount;
 + (int)getFlowerAwardExp;
 + (int)getFlowerAwardAmount;

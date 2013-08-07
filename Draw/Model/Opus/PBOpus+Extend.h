@@ -7,10 +7,14 @@
 //
 
 #import "Opus.pb.h"
+#import "DrawFeed.h"
 
 @interface PBOpus (Extend)
 
 - (int)feedTimesWithFeedTimesType:(PBFeedTimesType)type;
 - (BOOL)isContestOpus;
 - (BOOL)isMyOpus;
+
+- (DrawFeed *)toDrawFeed;
+
 @end

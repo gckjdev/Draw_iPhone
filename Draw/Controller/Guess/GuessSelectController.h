@@ -6,17 +6,16 @@
 //
 //
 
-#import "PPViewController.h"
+#import "CommonTabController.h"
 #import "GuessService.h"
+#import "CommonTitleView.h"
+#import "DrawGuessController.h"
 
-@interface GuessSelectController : PPViewController<GusessServiceDelegate>
+@interface GuessSelectController : CommonTabController<GuessServiceDelegate, CommonGuessControllerDelegate>
 
-@property (retain, nonatomic) IBOutlet UIView *opusesHolderView;
-@property (retain, nonatomic) IBOutlet UILabel *guessedInfoLabel;
-@property (retain, nonatomic) IBOutlet UILabel *awardInfoLabel;
-@property (retain, nonatomic) IBOutlet UILabel *aheadInfoLabel;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
-- (id)initWithMode:(PBUserGuessMode)mode;
+- (id)initWithMode:(PBUserGuessMode)mode contestId:(NSString *)contestId;
 
 @end
 

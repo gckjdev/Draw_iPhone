@@ -7,11 +7,14 @@
 //
 
 #import "GuessRankListController.h"
-#import "CommonTitleView.h"
 #import "GuessRankCell.h"
 #import "KxMenu.h"
+#import "TimeUtils.h"
+#import "Opus.pb.h"
 
 @interface GuessRankListController ()
+
+@property (retain, nonatomic) NSArray *contests;
 
 @end
 
@@ -22,6 +25,8 @@
     [[GuessService defaultService] setDelegate:nil];
     [_geniusButton release];
     [_contestButton release];
+    [_titleView release];
+    [_contests release];
     [super dealloc];
 }
 
@@ -29,13 +34,22 @@
 {
 
     [super viewDidLoad];
-    [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kGuessRank") delegate:self]];
-    // Do any additional setup after loading the view from its nib.
+    
+    [_titleView setTitle:NSLS(@"kGuessRank")];
+    [_titleView setTarget:self];
+
     [self initTabButtons];
     
     [self clickTab:TabTypeGeniusHot];
+    [[GuessService defaultService] getRecentGuessContestList];
+    [[GuessService defaultService] setDelegate:self];
+}
 
-    
+- (void)viewDidUnload {
+    [self setGeniusButton:nil];
+    [self setContestButton:nil];
+    [self setTitleView:nil];
+    [super viewDidUnload];
 }
 
 #define GENIUS_WEEK NSLS(@"kWeek")
@@ -61,10 +75,6 @@
                       target:self
                       action:@selector(pushMenuItem:)]
     ];
-
-//    KxMenuItem *first = menuItems[0];
-//    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-//    first.alignment = NSTextAlignmentCenter;
 
     [KxMenu showMenuInView:self.view
     fromRect:sender.frame
@@ -93,14 +103,10 @@
                       target:self
                       action:@selector(pushMenuItem:)]
     ];
-    
-//    KxMenuItem *first = menuItems[0];
-//    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-//    first.alignment = NSTextAlignmentCenter;
 
     [KxMenu showMenuInView:self.view
-                fromRect:sender.frame
-               menuItems:menuItems];
+                  fromRect:sender.frame
+                 menuItems:menuItems];
 }
       
 - (void) pushMenuItem:(KxMenuItem *)item
@@ -129,9 +135,12 @@
         PPDebug(@"list count = %d", [list count]);
         [self finishLoadDataForTabID:self.currentTab.tabID resultList:list];
     }else{
-//        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
         [self failLoadDataForTabID:self.currentTab.tabID];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [GuessRankCell getCellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -184,6 +193,8 @@ typedef enum{
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
     
     TableTab *tab = [_tabManager tabForID:tabID];
+    NSString *contestId = nil;
+    
     switch (tabID) {
         case TabTypeGeniusHot:
             [[GuessService defaultService] getGuessRankListWithType:HOT_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit];
@@ -196,17 +207,20 @@ typedef enum{
             break;
             
         case TabTypeContestToday:
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:nil offset:tab.offset limit:tab.limit];
+            contestId = [[_contests objectAtIndex:0] contestId];
+            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit];
             [[GuessService defaultService] setDelegate:self];
             break;
             
         case TabTypeContestYestoday:
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:nil offset:tab.offset limit:tab.limit];
+            contestId = [[_contests objectAtIndex:1] contestId];
+            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit];
             [[GuessService defaultService] setDelegate:self];
             break;
             
         case TabTypeContestBeforeYestoday:
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:nil offset:tab.offset limit:tab.limit];
+            contestId = [[_contests objectAtIndex:2] contestId];
+            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit];
             [[GuessService defaultService] setDelegate:self];
             break;
             
@@ -215,10 +229,20 @@ typedef enum{
     }
 }
 
-
-- (void)viewDidUnload {
-    [self setGeniusButton:nil];
-    [self setContestButton:nil];
-    [super viewDidUnload];
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
+    
+    return NSLS(@"kNoData");
 }
+
+
+- (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode{
+    
+    if (resultCode == 0) {
+        self.contests = list;
+    }else{
+        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
+    }
+}
+
+
 @end

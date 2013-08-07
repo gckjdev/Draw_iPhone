@@ -12,6 +12,7 @@
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "SynthesizeSingleton.h"
+#import "TimeUtils.h"
 
 #define SAFE_STRING(x) ((x == nil) ? @"" : (x))
 #define WORD_SPLIT_STRING  @":"
@@ -193,6 +194,27 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     dispatch_async(workingQueue, ^{
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GUESS_CONTEST_LIST parameters:nil];
+        int resultCode = output.resultCode;
+        NSArray *list = nil;
+        if (resultCode == ERROR_SUCCESS){
+            list = output.pbResponse.guessContestListList;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if ([bself.delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
+                [bself.delegate didGetGuessContestList:list resultCode:resultCode];
+            }
+        });
+    });
+}
+
+- (void)getRecentGuessContestList{
+    __block typeof(self) bself = self;
+    
+    dispatch_async(workingQueue, ^{
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_RECENT_GUESS_CONTEST_LIST parameters:nil];
         int resultCode = output.resultCode;
         NSArray *list = nil;
         if (resultCode == ERROR_SUCCESS){

@@ -8,7 +8,6 @@
 
 #import "GuessModesController.h"
 #import "GuessSelectController.h"
-#import "CommonTitleView.h"
 #import "GuessRankListController.h"
 
 @interface GuessModesController (){
@@ -35,6 +34,7 @@
     [_secondLabel release];
     [_countDownImageView release];
     [_contestModeButton release];
+    [_titleView release];
     [super dealloc];
 }
 
@@ -44,7 +44,14 @@
     // Do any additional setup after loading the view from its nib.
     _contestModeLabelOriginFrame = self.contestModeLabel.frame;
     
-    [self.view addSubview:[CommonTitleView createWithTitle:NSLS(@"kSelectGuessMode") delegate:self]];
+    [_titleView setTitle:NSLS(@"kSelectGuessMode")];
+    [_titleView setTarget:self];
+    
+    _happyModeLabel.text = NSLS(@"kHappGuessMode");
+    _genuisModeLabel.text = NSLS(@"kGeniusGuessMode");
+    _contestModeLabel.text = NSLS(@"kContestGuessMode");
+    _rankListLabel.text = NSLS(@"kGuessRank");
+    _rulesLabel.text = NSLS(@"kGuessRules");
     
     [[GuessService defaultService] getGuessContestList];
     [[GuessService defaultService] setDelegate:self];
@@ -62,6 +69,7 @@
     [self setSecondLabel:nil];
     [self setCountDownImageView:nil];
     [self setContestModeButton:nil];
+    [self setTitleView:nil];
     [super viewDidUnload];
 }
 
@@ -165,17 +173,18 @@
 
 - (IBAction)clickHappyModeButton:(id)sender {
     
-    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy] autorelease];
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy contestId:nil]  autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickGeniusModeButton:(id)sender {
-    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius] autorelease];
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius contestId:nil] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickContestModeButton:(id)sender {
-    
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contestId:_contest.contestId] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickRankButton:(id)sender {

@@ -1713,6 +1713,15 @@
 		A467BBCC17798E0500455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBCE17798E0C00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBCF17798E0F00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
+		A468A65A17A7A06C0027768C /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A468A65917A7A0690027768C /* GuessSelectCell.m */; };
+		A468A65B17A7A06C0027768C /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A468A65917A7A0690027768C /* GuessSelectCell.m */; };
+		A468A65C17A7A06C0027768C /* GuessSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A468A65917A7A0690027768C /* GuessSelectCell.m */; };
+		A468A66317A7A0C20027768C /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A468A66217A7A0C00027768C /* GuessSelectCell.xib */; };
+		A468A66417A7A0C20027768C /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A468A66217A7A0C00027768C /* GuessSelectCell.xib */; };
+		A468A66517A7A0C20027768C /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A468A66217A7A0C00027768C /* GuessSelectCell.xib */; };
+		A468A66917A90FA70027768C /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A468A66817A90FA40027768C /* round_dot_no@2x.png */; };
+		A468A66A17A90FA70027768C /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A468A66817A90FA40027768C /* round_dot_no@2x.png */; };
+		A468A66B17A90FA70027768C /* round_dot_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A468A66817A90FA40027768C /* round_dot_no@2x.png */; };
 		A46918AF174F52020000FD39 /* SongManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A46918AE174F52020000FD39 /* SongManager.m */; };
 		A46E704916BBAA2D00F0E68C /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46E704816BBAA2D00F0E68C /* iCarousel.m */; };
 		A4834DCD1716AD5400190347 /* AliPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834D651716AD5300190347 /* AliPayManager.m */; };
@@ -7664,6 +7673,10 @@
 		A467BBAB177844DB00455E3A /* OpusDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusDownloadService.m; sourceTree = "<group>"; };
 		A467BBC217798CA500455E3A /* ItemUseRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemUseRecorder.h; sourceTree = "<group>"; };
 		A467BBC317798CA500455E3A /* ItemUseRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemUseRecorder.m; sourceTree = "<group>"; };
+		A468A65817A7A0670027768C /* GuessSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessSelectCell.h; sourceTree = "<group>"; };
+		A468A65917A7A0690027768C /* GuessSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessSelectCell.m; sourceTree = "<group>"; };
+		A468A66217A7A0C00027768C /* GuessSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessSelectCell.xib; sourceTree = "<group>"; };
+		A468A66817A90FA40027768C /* round_dot_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_dot_no@2x.png"; sourceTree = "<group>"; };
 		A46918AD174F52020000FD39 /* SongManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongManager.h; sourceTree = "<group>"; };
 		A46918AE174F52020000FD39 /* SongManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongManager.m; sourceTree = "<group>"; };
 		A46E704716BBAA2D00F0E68C /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
@@ -11498,6 +11511,9 @@
 				A4B78A68179FA6E70008E21B /* GuessRankListController.h */,
 				A4B78A69179FA6ED0008E21B /* GuessRankListController.m */,
 				A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */,
+				A468A65817A7A0670027768C /* GuessSelectCell.h */,
+				A468A65917A7A0690027768C /* GuessSelectCell.m */,
+				A468A66217A7A0C00027768C /* GuessSelectCell.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -11660,6 +11676,7 @@
 		A4B78A06179F78BA0008E21B /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A468A66817A90FA40027768C /* round_dot_no@2x.png */,
 				A4B78A6F179FADE20008E21B /* guess_contest_mode@2x.png */,
 				A4B78A70179FADE20008E21B /* guess_contest_time@2x.png */,
 				A4B78A71179FADE20008E21B /* guess_genius_mode@2x.png */,
@@ -19021,6 +19038,8 @@
 				CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03B17A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				A468A66517A7A0C20027768C /* GuessSelectCell.xib in Resources */,
+				A468A66B17A90FA70027768C /* round_dot_no@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20066,6 +20085,8 @@
 				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				A468A66417A7A0C20027768C /* GuessSelectCell.xib in Resources */,
+				A468A66A17A90FA70027768C /* round_dot_no@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21100,6 +21121,8 @@
 				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */,
+				A468A66317A7A0C20027768C /* GuessSelectCell.xib in Resources */,
+				A468A66917A90FA70027768C /* round_dot_no@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22874,6 +22897,7 @@
 				A4C9E03717A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04717A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05417A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				A468A65C17A7A06C0027768C /* GuessSelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23664,6 +23688,7 @@
 				A4B78A6C179FA6F10008E21B /* GuessRankListController.m in Sources */,
 				A4C9E04617A61B6500DE982F /* KxMenu.m in Sources */,
 				A4C9E05317A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				A468A65B17A7A06C0027768C /* GuessSelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24462,6 +24487,7 @@
 				A4C9E03517A61B4200DE982F /* GuessRankCell.m in Sources */,
 				A4C9E04917A61E8000DE982F /* KxMenu.m in Sources */,
 				A4C9E05217A651C800DE982F /* PBGuessRank+Extend.m in Sources */,
+				A468A65A17A7A06C0027768C /* GuessSelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

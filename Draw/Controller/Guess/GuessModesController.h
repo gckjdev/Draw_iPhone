@@ -8,8 +8,10 @@
 
 #import "PPViewController.h"
 #import "GuessService.h"
+#import "CommonTitleView.h"
 
-@interface GuessModesController : PPViewController <GusessServiceDelegate>
+@interface GuessModesController : PPViewController <GuessServiceDelegate>
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 @property (retain, nonatomic) IBOutlet UILabel *happyModeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *genuisModeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *contestModeLabel;

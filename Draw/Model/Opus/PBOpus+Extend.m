@@ -40,4 +40,19 @@
     }
 }
 
+- (DrawFeed *)toDrawFeed{
+    
+    return [[[DrawFeed alloc] initWithFeedId:self.opusId
+                                      userId:self.author.userId
+                                    nickName:self.author.nickName
+                                      avatar:self.author.avatar
+                                      gender:self.author.gender
+                                   signature:self.author.signature
+                                drawImageUrl:self.image
+                                      pbDraw:nil
+                                    wordText:self.name
+                                  timesArray:nil] autorelease];
+    
+}
+
 @end
