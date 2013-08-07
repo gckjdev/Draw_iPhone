@@ -358,6 +358,12 @@
 #define MAIN_LAYER_TAG 2
 #define DEFAULT_LAYER_TAG 0
 
+- (BOOL)canBeRemoved
+{
+    NSArray *retainTags = [NSArray arrayWithObjects:@(BG_LAYER_TAG), @(MAIN_LAYER_TAG), @(DEFAULT_LAYER_TAG), nil];
+    return ![retainTags containsObject:@(self.layerTag)];
+}
+
 + (NSArray *)defaultLayersWithFrame:(CGRect)frame
 {
     DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
@@ -383,13 +389,20 @@
 + (NSArray *)defaultOldLayersWithFrame:(CGRect)frame
 {
     DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
+    
+    DrawLayer *bgLayer = [[[DrawLayer alloc] initWithFrame:frame
+                                                  drawInfo:drawInfo
+                                                       tag:BG_LAYER_TAG
+                                                      name:NSLS(@"kBGLayer")
+                                               suportCache:NO] autorelease];
+    
     DrawLayer *defaultLayer = [[[DrawLayer alloc] initWithFrame:frame
                                                     drawInfo:drawInfo
                                                          tag:DEFAULT_LAYER_TAG
                                                         name:NSLS(@"kMainLayer")
                                                  suportCache:YES] autorelease];
     
-    return [NSMutableArray arrayWithObjects:defaultLayer, nil];
+    return [NSMutableArray arrayWithObjects:bgLayer, defaultLayer, nil];
 }
 
 + (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect

@@ -22,7 +22,7 @@
 {
 
 }
-
+@property(nonatomic, retain) UIImage *bgImage;
 
 @end
 
@@ -54,6 +54,7 @@
     _currentAction = nil;
     PPRelease(dlManager);
     PPRelease(_gestureRecognizerManager);
+    PPRelease(_bgImage);
     [super dealloc];
 }
 
@@ -158,7 +159,11 @@
 
 - (void)setBGImage:(UIImage *)image
 {
-//    [cdManager setBgPhto:image];
+    self.bgImage = image;
+    if (image) {
+        [self.layer setContents:(id)image.CGImage];
+    }
+
 }
 
 
@@ -180,7 +185,7 @@
 
 - (UIImage*)createImage
 {
-    return [dlManager createImage];
+    return [dlManager createImageWithBGImage:self.bgImage];
 }
 
 - (UIImage *)createImageWithSize:(CGSize)size

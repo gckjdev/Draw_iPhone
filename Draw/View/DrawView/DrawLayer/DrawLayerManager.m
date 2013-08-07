@@ -250,14 +250,14 @@
     _selectedLayer = selectedLayer;
 }
 
-- (UIImage *)createImage
+- (UIImage *)createImageWithBGImage:(UIImage *)bg
 {
     UIImage *image;
     UIGraphicsBeginImageContext(self.view.bounds.size);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     [[UIColor whiteColor] setFill];
     CGContextFillRect(ctx, self.view.bounds);
-
+    [bg drawAtPoint:CGPointZero];
     for (DrawLayer *layer in _layerList) {
         [layer showCleanDataInContext:ctx];
     }

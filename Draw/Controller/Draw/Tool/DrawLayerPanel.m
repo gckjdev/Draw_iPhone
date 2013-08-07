@@ -50,6 +50,7 @@
     self.drawLayer = layer;
     [self.layerName setTitle:layer.layerName forState:UIControlStateNormal];
     [self.showFlag setSelected:self.drawLayer.isHidden];
+    [self.remove setHidden:![layer canBeRemoved]];
 }
 
 

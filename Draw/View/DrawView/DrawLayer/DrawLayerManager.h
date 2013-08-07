@@ -52,7 +52,7 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 
 - (void)refresh;
 
-- (UIImage *)createImage;
+- (UIImage *)createImageWithBGImage:(UIImage *)bg;
 
 - (void)updateLayersRect:(CGRect)rect;
 @end

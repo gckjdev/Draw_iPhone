@@ -40,7 +40,7 @@
 @property(nonatomic, assign)BOOL grid;
 
 
-
+- (BOOL)canBeRemoved;
 
 - (void)reset;
 - (void)updateWithDrawActions:(NSArray *)actionList;
