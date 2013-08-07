@@ -282,6 +282,12 @@
 
 }
 
+- (void)genLayerTagAndName:(DrawLayer *)layer
+{
+    layer.layerTag = [self nextTag];
+    layer.layerName = [NSString stringWithFormat:NSLS(@"kNumLayerName"), layer.layerTag];
+}
+
 @end
 
 

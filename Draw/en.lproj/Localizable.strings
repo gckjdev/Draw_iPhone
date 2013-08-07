@@ -1823,6 +1823,9 @@
 "kScaleHelp" = "Scale Help";
 "kScrollToFirst" = "You have Scrolled to the first opus!";
 "kScrollToEnd" = "You have Scrolled to the last opus!";
+"kBGLayer" = "BG";
+"kMainLayer" = "Main";
+"kNumLayerName" = "Layer %d";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

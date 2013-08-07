@@ -198,7 +198,7 @@
 					<object class="IBUIButton" id="864590208">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{113.5, 0}, {60, 40}}</string>
+						<string key="NSFrame">{{140, 4}, {40, 30}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="567240881"/>
@@ -207,14 +207,17 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Layer</string>
+						<string key="IBUINormalTitle">图层</string>
 						<reference key="IBUIHighlightedTitleColor" ref="373991744"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<bytes key="NSRGB">MC4zMTc2NDcwNTg4IDAuMTc2NDcwNTg4MiAwLjAyNzQ1MDk4MDM5AA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="37795446"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">draw_tool_button_bg@2x.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="7115529"/>
 						<reference key="IBUIFont" ref="293359554"/>
 					</object>
@@ -425,7 +428,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -1254,6 +1257,7 @@
 				<string>draw_save_btn@2x.png</string>
 				<string>draw_setting_btn@2x.png</string>
 				<string>draw_title_bg@2x.jpg</string>
+				<string>draw_tool_button_bg@2x.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1263,6 +1267,7 @@
 				<string>{62, 62}</string>
 				<string>{62, 62}</string>
 				<string>{640, 79}</string>
+				<string>{69, 68}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
