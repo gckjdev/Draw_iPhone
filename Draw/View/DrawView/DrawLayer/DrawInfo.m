@@ -14,6 +14,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", self);
     PPRelease(_shadow);
     PPRelease(_penColor);
     PPRelease(_bgColor);

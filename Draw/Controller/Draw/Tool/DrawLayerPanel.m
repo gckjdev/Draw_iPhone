@@ -57,6 +57,7 @@
 
 
 - (void)dealloc {
+    PPDebug(@"%@ dealloc", [self class]);
     [_showFlag release];
     [_layerName release];
     [_remove release];
@@ -102,6 +103,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", [self class]);
     [_tableView release];
     [_help release];
     [_add release];
@@ -135,11 +137,10 @@
         cell = [DrawLayerPanelCell cell:self];
     }
     cell.drawLayer = nil;
-    [cell updateWithDrawLayer:[self layerOfIndexPath:indexPath]];
     if (cell.drawLayer && cell.drawLayer == _dlManager.selectedLayer) {
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
-    
+    [cell updateWithDrawLayer:[self layerOfIndexPath:indexPath]];
     return cell;
 
 }

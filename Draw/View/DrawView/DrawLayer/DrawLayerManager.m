@@ -11,12 +11,15 @@
 #import "DrawLayer.h"
 #import "DrawAction.h"
 #import "DrawView.h"
+#import "NSArray+Ext.h"
+
+
 
 @interface DrawLayerManager()
 {
     NSMutableArray *_layerList;
 }
-@property(nonatomic, retain)UIView *view;
+@property(nonatomic, assign)UIView *view;
 
 @end
 
@@ -48,9 +51,8 @@
 {
     PPDebug(@"<addLayer> layer name = %@", layer.layerName);
     if (layer && ![_layerList containsObject:layer]) {
-        [_layerList addObject:layer];
+        [_layerList insertObject:layer atIndex:0];
         [self.view.layer addSublayer:layer];
-        self.selectedLayer = layer;
     }
 }
 - (void)removeLayer:(DrawLayer *)layer
@@ -71,19 +73,16 @@
 
     }
     if (self.selectedLayer == nil) {
-        [self setSelectedLayer:[_layerList lastObject]];
+        for (DrawLayer *layer in _layerList) {
+            if ([layer isMainLayer]) {
+                [self setSelectedLayer:layer];
+                return;
+            }
+        }
+        [self setSelectedLayer:[_layerList firstObject]];
     }
     
     
-}
-- (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name
-{
-    DrawLayer *layer = [[[DrawLayer alloc] init] autorelease];
-    layer.layerTag = [self nextTag];
-    layer.layerName = name;
-    layer.frame = self.view.bounds;
-    [self addLayer:layer];
-    return layer;
 }
 
 - (DrawLayer *)layerWithTag:(NSUInteger)tag
@@ -127,16 +126,16 @@
     for (DrawLayer *layer in set) {
         [layer removeFromSuperlayer];
     }
-    for (DrawLayer *layer in _layerList) {
-        [_view.layer addSublayer:layer];
-        [layer setNeedsDisplay];
-    }
+    
+    [_layerList reversEnumWithHandler:^(id object) {
+        [_view.layer addSublayer:object];
+    }];
 }
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", self);
     PPRelease(_layerList);
-    PPRelease(_view);
     [super dealloc];
 }
 
@@ -233,12 +232,20 @@
     for (DrawLayer *layer in _layerList) {
         [layer removeFromSuperlayer];
     }
-    
     [_layerList removeAllObjects];
     
-    for (DrawLayer *layer in layers) {
-        [self addLayer:layer];
-        [self setSelectedLayer:layer];
+    if ([layers count] != 0) {
+        [layers reversEnumWithHandler:^(id object) {
+            DrawLayer *layer = object;
+            [self addLayer:layer];
+            if ([layer isMainLayer]) {
+                [self setSelectedLayer:layer];
+            }
+        }];
+        
+        if (self.selectedLayer == nil) {
+            self.selectedLayer = [_layerList firstObject];
+        }
     }
 }
 
@@ -258,9 +265,10 @@
     [[UIColor whiteColor] setFill];
     CGContextFillRect(ctx, self.view.bounds);
     [bg drawAtPoint:CGPointZero];
-    for (DrawLayer *layer in _layerList) {
-        [layer showCleanDataInContext:ctx];
-    }
+    
+    [_layerList reversEnumWithHandler:^(id object) {
+        [object showCleanDataInContext:ctx];
+    }];
     
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -273,13 +281,8 @@
     for (DrawLayer *layer in _layerList) {
         DrawLayer *l = [DrawLayer layerWithLayer:layer frame:rect];
         [newLayers addObject:l];
-        [layer removeFromSuperlayer];
     }
-    [_layerList removeAllObjects];
-    for (DrawLayer *layer in newLayers) {
-        [self addLayer:layer];
-    }
-
+    [self updateLayers:newLayers];
 }
 
 - (void)genLayerTagAndName:(DrawLayer *)layer

@@ -103,6 +103,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", self);
     PPRelease(_drawActionList);
     PPRelease(_layerName);
     PPRelease(_cdManager);
@@ -364,6 +365,11 @@
     return ![retainTags containsObject:@(self.layerTag)];
 }
 
+- (BOOL)isMainLayer
+{
+    return self.layerTag == MAIN_LAYER_TAG || self.layerTag == DEFAULT_LAYER_TAG;
+}
+
 + (NSArray *)defaultLayersWithFrame:(CGRect)frame
 {
     DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
@@ -382,7 +388,7 @@
 
 //    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     
-    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
+    return [NSArray arrayWithObjects:mainLayer, bgLayer, nil];
 //    return [NSMutableArray arrayWithObjects:mainLayer, nil];
 }
 
@@ -402,7 +408,7 @@
                                                         name:NSLS(@"kMainLayer")
                                                  suportCache:YES] autorelease];
     
-    return [NSMutableArray arrayWithObjects:bgLayer, defaultLayer, nil];
+    return [NSMutableArray arrayWithObjects: defaultLayer, bgLayer, nil];
 }
 
 + (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect
