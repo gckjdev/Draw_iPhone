@@ -65,6 +65,8 @@
 
 - (void)reloadView{
     
+
+    
     int index = 0;
     for (; index < [_opuses count]; index ++ ) {
         PBOpus *pbOpus = [_opuses objectAtIndex:index];

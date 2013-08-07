@@ -12,7 +12,12 @@
 #import "ImageManagerProtocol.h"
 #import "GameBasic.pb.h"
 
-//#define DEFAULT_AVATAR_BUNDLE   ([[UserManager defaultManager] defaultAvatar])
+
+#define COLOR_ORANGE [UIColor colorWithRed:238/255.0 green:94/255.0 blue:82/255.0 alpha:1];
+#define COLOR_WHITE [UIColor whiteColor];
+#define COLOR_GRAY [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1];
+
+
 
 #define SETTING_BUTTON_IMAGE    @"home_setting.png"
 #define FEEDBACK_BUTTON_IMAGE   @"feedback.png"
