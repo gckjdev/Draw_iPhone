@@ -522,7 +522,7 @@
             [DrawAction updatePBLayerC:pbNoCompressDrawDataC.layer layers:layers];
         }
         
-        if (drawToUser) {
+        if (drawToUser && drawToUser.userId && drawToUser.nickName) {
             Game__PBUserBasicInfo pbDrawToUserC = GAME__PBUSER_BASIC_INFO__INIT;
             pbNoCompressDrawDataC.drawtouser = &pbDrawToUserC;
             pbNoCompressDrawDataC.drawtouser->avatar = (char*)[drawToUser.avatar UTF8String];
@@ -561,32 +561,6 @@
             data = [NSData dataWithBytesNoCopy:buf length:len];
         }
         
-        // free malloc memory in structs
-//        for (int i=0; i<count; i++){
-//            
-//            // be careful to free sub message inside draw action
-//            if (pbNoCompressDrawDataC.drawactionlist2[i]->rectcomponent != NULL){
-//                free(pbNoCompressDrawDataC.drawactionlist2[i]->rectcomponent);
-//            }
-//            
-//            // free point x
-//            if (pbNoCompressDrawDataC.drawactionlist2[i]->pointsx != NULL){
-//                free(pbNoCompressDrawDataC.drawactionlist2[i]->pointsx);
-//            }
-//            
-//            // free point y
-//            if (pbNoCompressDrawDataC.drawactionlist2[i]->pointsy != NULL){
-//                free(pbNoCompressDrawDataC.drawactionlist2[i]->pointsy);
-//            }
-//            
-//            if (pbNoCompressDrawDataC.drawactionlist2[i]->drawbg != NULL){
-//                free(pbNoCompressDrawDataC.drawactionlist2[i]->drawbg);
-//            }
-//
-//            // free draw action
-//            free(pbNoCompressDrawDataC.drawactionlist2[i]);
-//        }
-
         [DrawAction freePBDrawActionC:pbNoCompressDrawDataC.drawactionlist2 count:pbNoCompressDrawDataC.n_drawactionlist2];
         free(pbNoCompressDrawDataC.drawactionlist2);
         [DrawAction freePBLayers:pbNoCompressDrawDataC.layer count:pbNoCompressDrawDataC.n_layer];

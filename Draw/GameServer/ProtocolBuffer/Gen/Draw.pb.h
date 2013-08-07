@@ -78,6 +78,8 @@
 @class PBNoCompressDrawAction_Builder;
 @class PBNoCompressDrawData;
 @class PBNoCompressDrawData_Builder;
+@class PBOpusRank;
+@class PBOpusRank_Builder;
 @class PBPoint;
 @class PBPoint_Builder;
 @class PBPromotionInfo;
@@ -678,6 +680,7 @@
   PBDraw* drawData;
   NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableFeedTimesList;
+  NSMutableArray* mutableRankInfoList;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -759,6 +762,8 @@
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 - (NSArray*) feedTimesList;
 - (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
+- (NSArray*) rankInfoList;
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
 
 + (PBFeed*) defaultInstance;
 - (PBFeed*) defaultInstance;
@@ -996,6 +1001,13 @@
 - (Float64) contestScore;
 - (PBFeed_Builder*) setContestScore:(Float64) value;
 - (PBFeed_Builder*) clearContestScore;
+
+- (NSArray*) rankInfoList;
+- (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
+- (PBFeed_Builder*) replaceRankInfoAtIndex:(int32_t) index with:(PBOpusRank*) value;
+- (PBFeed_Builder*) addRankInfo:(PBOpusRank*) value;
+- (PBFeed_Builder*) addAllRankInfo:(NSArray*) values;
+- (PBFeed_Builder*) clearRankInfoList;
 
 - (BOOL) hasLearnDraw;
 - (PBLearnDraw*) learnDraw;

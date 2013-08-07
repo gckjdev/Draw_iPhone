@@ -128,10 +128,12 @@ message PBFeed {
   // for contest information
   optional string contestId = 91;               // 参与的比赛的Id
   optional double contestScore = 92;            // 参与的比赛的分数
+  repeated PBOpusRank rankInfo = 93;            // 比赛打分
 
   //for learn Draw
   optional PBLearnDraw learnDraw = 100;
 //  optional PBSing sing = 101;                   // 具体作品
+
 }
 
 message PBPoint
