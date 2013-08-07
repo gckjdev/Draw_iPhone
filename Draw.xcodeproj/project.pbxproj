@@ -8175,6 +8175,7 @@
 		A4E1D22817B2241000E13728 /* guess_rank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rank@2x.png"; sourceTree = "<group>"; };
 		A4E1D22917B2241000E13728 /* round_dot_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_dot_no@2x.png"; sourceTree = "<group>"; };
 		A4E1D22A17B2241000E13728 /* spend_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spend_time@2x.png"; sourceTree = "<group>"; };
+		A4E1D24217B22B1C00E13728 /* UIContant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIContant.h; sourceTree = "<group>"; };
 		A4E254CE1796CC5D00767506 /* GuessService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessService.h; sourceTree = "<group>"; };
 		A4E254CF1796CC5D00767506 /* GuessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessService.m; sourceTree = "<group>"; };
 		A4E6490F178425D10063F393 /* UIButton+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extend.h"; sourceTree = "<group>"; };
@@ -12090,6 +12091,14 @@
 				A4DE14191697DBA900841940 /* word_bg@2x.png */,
 			);
 			path = wordSelected;
+			sourceTree = "<group>";
+		};
+		A4E1D24117B22B1C00E13728 /* UIConstant */ = {
+			isa = PBXGroup;
+			children = (
+				A4E1D24217B22B1C00E13728 /* UIContant.h */,
+			);
+			path = UIConstant;
 			sourceTree = "<group>";
 		};
 		A4E254CD1796CC5D00767506 /* Guess */ = {
@@ -17095,6 +17104,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A4E1D24117B22B1C00E13728 /* UIConstant */,
 				A4C8D566175EE027007ED7E4 /* Opus */,
 				CA16411E16D724B5001C615F /* GameItem */,
 				CA479465168E984A00D4AF55 /* Analytics */,
