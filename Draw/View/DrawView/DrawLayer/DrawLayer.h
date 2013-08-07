@@ -21,7 +21,7 @@
 
 }
 
-
++ (id)layerWithLayer:(DrawLayer *)layer frame:(CGRect)frame;
 
 - (id)initWithFrame:(CGRect)frame
            drawInfo:(DrawInfo *)drawInfo
@@ -38,6 +38,8 @@
 @property(nonatomic, assign)NSUInteger layerTag;
 @property(nonatomic, readonly)BOOL supportCache;
 @property(nonatomic, assign)BOOL grid;
+
+
 
 
 - (void)reset;

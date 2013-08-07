@@ -338,6 +338,7 @@ typedef enum{
         scene = [UseItemScene createSceneByType:UseSceneTypeMatchRank feed:rankView.feed];
     }
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:scene];
+    sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

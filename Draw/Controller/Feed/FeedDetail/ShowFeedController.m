@@ -143,6 +143,76 @@ typedef enum{
     return self;
 }
 
+
+#pragma mark-- Swip action
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swp
+{
+    if ([self.feedList count] != 0 && swp.state == UIGestureRecognizerStateRecognized) {
+        NSInteger currentIndex = NSNotFound;
+        //[self.feedList indexOfObject:self.feed];
+        NSInteger i = 0;
+        for (DrawFeed *feed in self.feedList) {
+            if ([feed.feedId isEqualToString:self.feed.feedId]) {
+                currentIndex = i;
+                break;
+            }
+            i ++;
+        }
+        if (currentIndex == NSNotFound) {
+            return;
+        }
+        DrawFeed *feed = nil;
+        if (swp.direction == UISwipeGestureRecognizerDirectionRight) {
+            currentIndex --;
+            if (currentIndex >= 0) {
+                feed = [self.feedList objectAtIndex:currentIndex];
+            }else{
+                [self popupUnhappyMessage:NSLS(@"kScrollToFirst") title:nil];
+            }
+        }else if(swp.direction == UISwipeGestureRecognizerDirectionLeft){
+            currentIndex ++;
+            if (currentIndex < [self.feedList count]) {
+                feed = [self.feedList objectAtIndex:currentIndex];
+            }else{
+                [self popupUnhappyMessage:NSLS(@"kScrollToEnd") title:nil];
+            }
+        }
+        
+#define TIME_INTERVAL 0.35
+        
+        if (feed  && (time(0) - timestamp) > TIME_INTERVAL) {
+            timestamp = time(0);
+            self.feed = feed;
+            self.useItemScene.feed = self.feed;
+            self.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
+            [self reloadView];
+            self.dataTableView.alpha = 0.3;
+            [UIView animateWithDuration:0.8 animations:^{
+                self.dataTableView.alpha = 1;
+            }];
+            
+        }
+    }
+}
+
+- (void)addSwipe
+{
+    [self setSwipeToBack:NO];
+    UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [self.view addGestureRecognizer:left];
+    left.direction = UISwipeGestureRecognizerDirectionLeft;
+    left.delegate = self;
+    [left release];
+    
+    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [self.view addGestureRecognizer:right];
+    right.direction = UISwipeGestureRecognizerDirectionRight;
+    right.delegate = self;
+    [right release];
+
+}
+
+
 enum{
   ActionTagGuess = 100,
   ActionTagComment, 
@@ -155,6 +225,8 @@ enum{
 
 #define SCREEN_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
 #define ACTION_BUTTON_Y ([DeviceDetection isIPAD] ? 921 : 422)
+
+
 
 
 - (void)updateActionButtons
@@ -763,18 +835,26 @@ enum{
     [self.commentHeader setSeletType:CommentTypeComment];
 }
 
+
+- (void)reloadView
+{
+    [self updateActionButtons];
+    [self updateTitle];
+    [self.feedScene initNavitgatorRightBtn:self.navigatorRightButton];
+    [[FeedService defaultService] getFeedByFeedId:_feed.feedId
+                                         delegate:self];
+    [self.dataTableView reloadData];
+    [_commentHeader setViewInfo:self.feed];
+
+}
 - (void)viewDidLoad
 {
     
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self initTabButtons];
-    [self updateActionButtons];
-    [self updateTitle];
-    [self.feedScene initNavitgatorRightBtn:self.navigatorRightButton];
-    
-    [[FeedService defaultService] getFeedByFeedId:_feed.feedId
-                                         delegate:self];
+    [self addSwipe];
+    [self reloadView];
 }
 
 
@@ -803,7 +883,7 @@ enum{
         resultCode:(NSInteger)resultCode
          fromCache:(BOOL)fromCache
 {
-    if (resultCode == 0) {
+    if (resultCode == 0 && [feed.feedId isEqualToString:self.feed.feedId]) {
         feed.largeImage = self.feed.largeImage;
         feed.wordText = self.feed.wordText;
         self.feed = feed;

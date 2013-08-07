@@ -303,6 +303,7 @@
     
     UseItemScene *scene  = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:drawFeed];
     ShowFeedController* sc = [[ShowFeedController alloc] initWithFeed:drawFeed scene:scene];
+    sc.feedList = [self opusList];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

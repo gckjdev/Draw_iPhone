@@ -66,6 +66,16 @@
     return self;
 }
 
++ (id)layerWithLayer:(DrawLayer *)layer frame:(CGRect)frame
+{
+    DrawLayer *dl = [[DrawLayer alloc] initWithFrame:frame
+                                            drawInfo:layer.drawInfo
+                                                 tag:layer.layerTag
+                                                name:layer.layerName
+                                         suportCache:layer.supportCache];
+    return [dl autorelease];
+}
+
 - (id)initWithFrame:(CGRect)frame
            drawInfo:(DrawInfo *)drawInfo
                 tag:(NSUInteger)tag
@@ -128,7 +138,7 @@
     }
     if (self.drawInfo.grid) {
         [DrawLayer drawGridInContext:ctx rect:self.bounds];
-    }    
+    }
 }
 
 
@@ -351,13 +361,13 @@
 + (NSArray *)defaultLayersWithFrame:(CGRect)frame
 {
     DrawInfo *drawInfo = [DrawInfo defaultDrawInfo];
-    /*
+    
     DrawLayer *bgLayer = [[[DrawLayer alloc] initWithFrame:frame
                                                   drawInfo:drawInfo
                                                        tag:BG_LAYER_TAG
                                                       name:NSLS(@"kBGLayer")
                                                suportCache:NO] autorelease];
-     */
+     
     DrawLayer *mainLayer = [[[DrawLayer alloc] initWithFrame:frame
                                                   drawInfo:drawInfo
                                                        tag:MAIN_LAYER_TAG
@@ -366,8 +376,8 @@
 
 //    mainLayer.backgroundColor = [UIColor redColor].CGColor;
     
-//    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
-    return [NSMutableArray arrayWithObjects:mainLayer, nil];
+    return [NSArray arrayWithObjects:bgLayer, mainLayer, nil];
+//    return [NSMutableArray arrayWithObjects:mainLayer, nil];
 }
 
 + (NSArray *)defaultOldLayersWithFrame:(CGRect)frame

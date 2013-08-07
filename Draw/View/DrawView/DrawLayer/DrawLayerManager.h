@@ -26,8 +26,6 @@
 - (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name;
 - (DrawLayer *)layerWithTag:(NSUInteger)tag;
 - (void)removeLayerWithTag:(NSUInteger)tag;
-- (void)bringLayerToFront:(DrawLayer *)layer;
-- (void)moveLayer:(DrawLayer *)layer1 below:(DrawLayer *)layer2; //if layer2 is nil, then move layer1 to the front.
 - (void)reload;
 - (void)resetAllLayers;
 
@@ -45,4 +43,5 @@
 
 - (UIImage *)createImage;
 
+- (void)updateLayersRect:(CGRect)rect;
 @end

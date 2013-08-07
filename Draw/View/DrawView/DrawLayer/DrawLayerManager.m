@@ -55,8 +55,14 @@
 - (void)removeLayer:(DrawLayer *)layer
 {
     if (layer) {
+        if (self.selectedLayer == layer) {
+            self.selectedLayer = nil;
+        }
         [_layerList removeObject:layer];
         [layer removeFromSuperlayer];
+    }
+    if (self.selectedLayer == nil) {
+        [self setSelectedLayer:[_layerList lastObject]];
     }
 }
 - (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name
@@ -93,33 +99,6 @@
     [self removeLayer:target];
 }
 
-- (void)bringLayerToFront:(DrawLayer *)layer
-{
-    DrawLayer *l = [layer retain];
-    [self removeLayer:layer];
-    [self addLayer:l];
-    [l release];
-}
-
-- (void)moveLayer:(DrawLayer *)layer1 below:(DrawLayer *)layer2
-{
-    if (!layer1 || layer1 == layer2) {
-        return;
-    }
-    if ([_layerList containsObject:layer1] &&([_layerList containsObject:layer2] || layer2 == nil)) {
-        
-        if (layer2) {
-            [self removeLayer:layer1];
-            NSUInteger l2 = [_layerList indexOfObject:layer2];
-            
-            [_layerList insertObject:layer1 atIndex:l2];
-            [_view.layer insertSublayer:layer1 below:layer2];
-        }else{
-            [self removeLayer:layer1];
-            [self addLayer:layer1];
-        }
-    }
-}
 
 - (void)selectLayer:(DrawLayer *)layer
 {
@@ -267,6 +246,21 @@
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+- (void)updateLayersRect:(CGRect)rect
+{
+    NSMutableArray *newLayers = [NSMutableArray arrayWithCapacity:[_layerList count]];
+    for (DrawLayer *layer in _layerList) {
+        DrawLayer *l = [DrawLayer layerWithLayer:layer frame:rect];
+        [newLayers addObject:l];
+        [layer removeFromSuperlayer];
+    }
+    [_layerList removeAllObjects];
+    for (DrawLayer *layer in newLayers) {
+        [self addLayer:layer];
+    }
+
 }
 
 @end

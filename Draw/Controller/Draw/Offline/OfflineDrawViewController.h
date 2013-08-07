@@ -52,6 +52,7 @@
 - (IBAction)clickDraftButton:(id)sender;
 - (IBAction)clickUpPanel:(id)sender;
 
+- (IBAction)clickLayerButton:(id)sender;
 - (void)showCopyPaint;
 
 @property (retain, nonatomic) Word *word;

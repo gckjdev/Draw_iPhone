@@ -1821,6 +1821,8 @@
 
 "kSelectorHelp" = "1) Select an area\n\n2) Draw inside the area\n\n3) Drawings only affect inside area";
 "kScaleHelp" = "Scale Help";
+"kScrollToFirst" = "You have Scrolled to the first opus!";
+"kScrollToEnd" = "You have Scrolled to the last opus!";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

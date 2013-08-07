@@ -237,9 +237,10 @@
     self.bounds = rect;
     self.frame = rect;
 
-    for (DrawLayer *layer in dlManager.layers) {
-        layer.frame = rect;
-    }
+    [dlManager updateLayersRect:rect];
+//    for (DrawLayer *layer in dlManager.layers) {
+//        layer.frame = rect;
+//    }
     
     [(DrawHolderView *)self.superview updateContentScale];
 }
@@ -350,7 +351,7 @@
 - (DrawInfo *)drawInfo{
     return [[self currentLayer] drawInfo];
 }
-
+/*
 
 - (void)changeAlpha:(CGFloat)alpha
 {
@@ -378,6 +379,11 @@
 - (void)changeShadow:(Shadow *)shadow
 {
     self.drawInfo.shadow = shadow;
+}
+*/
+- (DrawLayerManager *)dlManager
+{
+    return dlManager;
 }
 
 @end
