@@ -181,9 +181,8 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     PPDebug(@"<didClickAddAtCell>");
     DrawLayer *layer = [DrawLayer layerWithLayer:[_dlManager selectedLayer]
                                            frame:[[_dlManager selectedLayer] bounds]];
-    
-    layer.layerTag = rand();
-    layer.layerName = [@(layer.layerTag) stringValue];
+
+    [_dlManager genLayerTagAndName:layer];
     [_dlManager addLayer:layer];
     [self reloadView];
 }

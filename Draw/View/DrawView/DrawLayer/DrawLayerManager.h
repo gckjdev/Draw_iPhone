@@ -55,4 +55,6 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 - (UIImage *)createImageWithBGImage:(UIImage *)bg;
 
 - (void)updateLayersRect:(CGRect)rect;
+
+- (void)genLayerTagAndName:(DrawLayer *)layer;
 @end
