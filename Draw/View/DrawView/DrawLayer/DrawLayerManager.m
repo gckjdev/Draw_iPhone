@@ -10,6 +10,7 @@
 
 #import "DrawLayer.h"
 #import "DrawAction.h"
+#import "DrawView.h"
 
 @interface DrawLayerManager()
 {
@@ -58,12 +59,22 @@
         if (self.selectedLayer == layer) {
             self.selectedLayer = nil;
         }
+        
+        //Remove Actions from draw view action list
+        if ([self.view isKindOfClass:[DrawView class]]) {
+            NSMutableArray *totalActions = [(DrawView *) self.view drawActionList];
+            [totalActions removeObjectsInArray:layer.drawActionList];
+        }
+        
         [_layerList removeObject:layer];
         [layer removeFromSuperlayer];
+
     }
     if (self.selectedLayer == nil) {
         [self setSelectedLayer:[_layerList lastObject]];
     }
+    
+    
 }
 - (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name
 {

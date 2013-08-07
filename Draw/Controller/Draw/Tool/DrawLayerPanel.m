@@ -62,8 +62,8 @@
     [super dealloc];
 }
 - (IBAction)clickShowFlag:(id)sender {
-    [self.drawLayer setHidden:!self.drawLayer.hidden];
-    [sender setSelected:self.drawLayer.hidden];
+    [self.drawLayer setHidden:!self.drawLayer.isHidden];
+    [sender setSelected:self.drawLayer.isHidden];
 }
 
 - (IBAction)clickRemove:(id)sender {
