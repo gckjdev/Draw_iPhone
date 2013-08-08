@@ -261,14 +261,15 @@
     NSMutableArray *drawActionList = [NSMutableArray array];
 
     if (data->n_drawactionlist2 > 0) {
-        ClipAction *clipAction = nil;
-        
+        NSMutableDictionary *clipDict = [NSMutableDictionary dictionary];        
         for (int i=0; i<data->n_drawactionlist2; i++){
             DrawAction *at = [DrawAction drawActionWithPBDrawActionC:data->drawactionlist2[i]];
             if (at) {
                 if ([at isKindOfClass:[ClipAction class]]) {
-                    clipAction = (id) at;
+                    [clipDict setObject:at forKey:@(at.layerTag)];
+                    [at finishAddPoint];
                 }else{
+                    ClipAction *clipAction = [clipDict objectForKey:@(at.layerTag)];
                     if (at.clipTag == clipAction.clipTag) {
                         at.clipAction = clipAction;
                     }

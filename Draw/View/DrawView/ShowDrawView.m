@@ -404,6 +404,9 @@
         if (self.tempAction) {
             if([self.tempAction pointCount] == 1){
                 [dlManager addDrawAction:self.tempAction show:YES];
+                if ([self currentClip] && _currentAction.clipAction == nil) {
+                    [dlManager exitFromClipMode];
+                }
             }else{
                 [dlManager updateLastAction:self.tempAction refresh:YES];
             }
@@ -428,6 +431,9 @@
                 
             } else {
                 [self delayShowActionStop:_currentAction];
+            }
+            if ([self currentClip] && _currentAction.clipAction == nil) {
+                [dlManager exitFromClipMode];
             }
         }
     }

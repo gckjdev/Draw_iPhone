@@ -40,4 +40,7 @@ typedef enum {
 
 - (DrawAction *)createDrawAction;
 
+
+- (NSUInteger)genClipTag;
+
 @end
