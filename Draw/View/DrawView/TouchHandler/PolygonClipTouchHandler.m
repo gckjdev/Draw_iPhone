@@ -43,6 +43,7 @@
                                    pointList:nil];
         
         action = [[ClipAction clipActionWithPaint:currentPaint] retain];
+        action.clipTag = [self genClipTag];        
     }
     return action;
 }

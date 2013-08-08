@@ -32,12 +32,9 @@
 - (id)initWithFrame:(CGRect)frame layers:(NSArray *)layers
 {
     self = [self initWithFrame:frame];
+
+    [dlManager updateLayers:layers];
     
-    for (DrawLayer *layer in layers) {
-        [dlManager addLayer:layer];
-        [dlManager setSelectedLayer:layer];
-    }
-     
     return self;
 }
 

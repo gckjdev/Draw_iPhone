@@ -39,8 +39,11 @@
 @property(nonatomic, readonly)BOOL supportCache;
 @property(nonatomic, assign)BOOL grid;
 
+//only used in draw layer panel.
+
 
 - (BOOL)canBeRemoved;
+- (BOOL)isMainLayer;
 
 - (void)reset;
 - (void)updateWithDrawActions:(NSArray *)actionList;

@@ -38,24 +38,28 @@
     if (array != NULL) {
         
         NSMutableArray *list = [NSMutableArray array];
-        ClipAction *clipAction = nil;        
+//        ClipAction *clipAction = nil;
+        NSMutableDictionary *clipDict = [NSMutableDictionary dictionary];        
         for (int i=0; i<actionCount; i++){
             
             NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
             Game__PBDrawAction* pbDrawActionC = array[i];
             if (pbDrawActionC != NULL){
-                DrawAction* drawAction = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
-                if ([drawAction isClipAction]) {
-                    clipAction = (ClipAction *) drawAction;
-                }
-                if (drawAction.clipTag == clipAction.clipTag) {
-                    drawAction.clipAction = clipAction;
-                }
-
-                [drawAction setCanvasSize:canvasSize];
-                if (drawAction) {
-                    [list addObject:drawAction];
+                DrawAction* at = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
+                if (at) {
+                    if ([at isKindOfClass:[ClipAction class]]) {
+                        [clipDict setObject:at forKey:@(at.layerTag)];
+                        [at finishAddPoint];
+                    }else{
+                        ClipAction *clipAction = [clipDict objectForKey:@(at.layerTag)];
+                        if (at.clipTag == clipAction.clipTag) {
+                            at.clipAction = clipAction;
+                        }
+                    }
+                    [at setCanvasSize:canvasSize];
+                    [list addObject:at];
+                    at = nil;
                 }
             }
             

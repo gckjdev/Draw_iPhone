@@ -471,7 +471,7 @@
 {
     if (![self supportRecovery])
         return;
-    [DrawRecoveryService defaultService].layers = drawView.layers;
+    [DrawRecoveryService defaultService].layers = [drawView.layers mutableCopy];
     [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
 }
 
@@ -836,7 +836,7 @@
                                       language:languageType
                                           size:drawView.bounds.size
                                   isCompressed:NO
-                                        layers:drawView.layers
+                                        layers:[drawView.layers mutableCopy]
                                           info:nil];
 
     PBDraw *pbDraw = [PBDraw parseFromData:data];
@@ -856,7 +856,7 @@
                                                               opusDesc:self.opusDesc
                                                             drawToUser:nil
                                                        bgImageFileName:_bgImageName
-                                                                layers:drawView.layers];
+                                                                layers:[drawView.layers mutableCopy]];
     return data;
 }
 
@@ -1113,7 +1113,7 @@
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                    size:drawView.bounds.size
-                                                 layers:drawView.layers
+                                                 layers:[drawView.layers mutableCopy]
                                                    info:nil
                                                delegate:self];
 

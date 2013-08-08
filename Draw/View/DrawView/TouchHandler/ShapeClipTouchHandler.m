@@ -64,6 +64,7 @@ CGPoint realStartPoint;
                                               color:nil];
         
         action = [[ClipAction clipActionWithShape:shape] retain];
+        action.clipTag = [self genClipTag];
         shape.width = STROKE_WIDTH;
     }
     return action;

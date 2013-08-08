@@ -14,6 +14,8 @@
 
 @protocol DrawLayerPanelCellDelegate <NSObject>
 
+- (BOOL)canHidenLayer:(DrawLayer *)layer;
+
 -(void)drawLayerPanelCell:(DrawLayerPanelCell *)cell
              didClickName:(NSString *)name
               onDrawLayer:(DrawLayer *)layer;
@@ -53,7 +55,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIButton *help;
 @property (retain, nonatomic) IBOutlet UIButton *add;
-@property (retain, nonatomic) id grabbedObject;
+@property (retain, nonatomic) DrawLayer *grabbedObject;
 @property (retain, nonatomic) JTTableViewGestureRecognizer *recognizer;
 
 - (IBAction)clickAdd:(id)sender;

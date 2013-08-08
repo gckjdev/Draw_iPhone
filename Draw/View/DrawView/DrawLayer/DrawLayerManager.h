@@ -34,7 +34,6 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 - (id)initWithView:(UIView *)view;
 - (void)addLayer:(DrawLayer *)layer;
 - (void)removeLayer:(DrawLayer *)layer;
-- (DrawLayer *)addLayerWithTag:(NSUInteger)tag name:(NSString *)name;
 - (DrawLayer *)layerWithTag:(NSUInteger)tag;
 - (void)removeLayerWithTag:(NSUInteger)tag;
 - (void)reload;

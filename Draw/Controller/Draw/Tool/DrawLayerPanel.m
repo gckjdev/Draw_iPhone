@@ -8,6 +8,9 @@
 
 #import "DrawLayerPanel.h"
 #import "CMPopTipView.h"
+#import "PPViewController.h"
+#import "CommonDialog.h"
+
 #define CELL_ID @"DrawLayerPanelCell"
 
 @implementation DrawLayerPanelCell
@@ -34,9 +37,9 @@
 //}
 
 
-- (void)updateWithDrawLayer:(DrawLayer *)layer
+- (void)updateWithDrawLayer:(DrawLayer *)layer isSelected:(BOOL)selected
 {
-    if (![layer isKindOfClass:[DrawLayer class]]) {
+    if (layer == nil) {
         self.drawLayer = nil;
         for (UIView *view in self.subviews) {
             view.hidden = YES;
@@ -51,24 +54,41 @@
     [self.layerName setTitle:layer.layerName forState:UIControlStateNormal];
     [self.showFlag setSelected:self.drawLayer.isHidden];
     [self.remove setHidden:![layer canBeRemoved]];
+    if (selected) {
+        [self.layerName setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }else{
+        [self.layerName setTitleColor:OPAQUE_COLOR(62, 43, 23) forState:UIControlStateNormal];
+    }
 }
 
 
 
 
 - (void)dealloc {
+    PPDebug(@"%@ dealloc", [self class]);
     [_showFlag release];
     [_layerName release];
     [_remove release];
     [super dealloc];
 }
 - (IBAction)clickShowFlag:(id)sender {
-    [self.drawLayer setHidden:!self.drawLayer.isHidden];
-    [sender setSelected:self.drawLayer.isHidden];
+    
+    if (self.drawLayer.isHidden || ([self.delegate canHidenLayer:self.drawLayer])) {
+        [self.drawLayer setHidden:!self.drawLayer.isHidden];
+        [sender setSelected:self.drawLayer.isHidden];
+    }else{
+        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kMainLayerCannotHiden") title:nil];
+    }
+    
 }
 
 - (IBAction)clickRemove:(id)sender {
-    [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
+    
+    [[CommonDialog createDialogWithTitle:NSLS(@"kTips") message:NSLS(@"kDeleteDrawLayer") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
+    } clickCancelBlock:NULL] showInView:[self theTopView]];
+    
+
 }
 
 - (IBAction)clickName:(id)sender {
@@ -102,6 +122,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ dealloc", [self class]);
     [_tableView release];
     [_help release];
     [_add release];
@@ -133,13 +154,16 @@
     DrawLayerPanelCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
     if (cell == nil) {
         cell = [DrawLayerPanelCell cell:self];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     cell.drawLayer = nil;
-    [cell updateWithDrawLayer:[self layerOfIndexPath:indexPath]];
-    if (cell.drawLayer && cell.drawLayer == _dlManager.selectedLayer) {
-        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+ 
+    DrawLayer *layer = [self layerOfIndexPath:indexPath];
+    if (layer == self.grabbedObject) {
+        layer = nil;
     }
-    
+    [cell updateWithDrawLayer:layer isSelected:layer == _dlManager.selectedLayer];
+
     return cell;
 
 }
@@ -157,7 +181,12 @@
     
     if (indexPath.row < layerCount) {
         DrawLayer *layer = [self layerOfIndexPath:indexPath];
-        [_dlManager setSelectedLayer:layer];
+        if (!layer.isHidden) {
+            [_dlManager setSelectedLayer:layer];
+            [self.tableView reloadData];
+        }else{
+            [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kHidenLayerCannotBeSelected") title:nil];
+        }
     }
 }
 
@@ -218,17 +247,26 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     [self.tableView reloadData];
 }
 
+#pragma mark DrawLayer Cell Delegate
+- (BOOL)canHidenLayer:(DrawLayer *)layer
+{
+    return [_dlManager selectedLayer] != layer;
+}
 
+#pragma mark JTTableViewGestureRecognizer Delegate
 - (BOOL)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsCreatePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PPDebug(@"<needsCreatePlaceholderForRowAtIndexPath> at row = %d",indexPath.row);
     self.grabbedObject = [self layerOfIndexPath:indexPath];
-    [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:TRANSLATE_ROW(indexPath.row) withObject:@""];
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsMoveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+    PPDebug(@"<needsMoveRowAtIndexPath> from row = %d, to row = %d",sourceIndexPath.row, destinationIndexPath.row);
+    
     id object = [self layerOfIndexPath:sourceIndexPath];
     [(NSMutableArray *)[_dlManager layers] removeObjectAtIndex:TRANSLATE_ROW(sourceIndexPath.row)];
     [(NSMutableArray *)[_dlManager layers] insertObject:object atIndex:TRANSLATE_ROW(destinationIndexPath.row)];
@@ -236,6 +274,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 }
 
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsReplacePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PPDebug(@"<needsReplacePlaceholderForRowAtIndexPath> at row = %d",indexPath.row);
     [(NSMutableArray *)[_dlManager layers] replaceObjectAtIndex:TRANSLATE_ROW(indexPath.row) withObject:self.grabbedObject];
     self.grabbedObject = nil;
     [self.dlManager reload];
