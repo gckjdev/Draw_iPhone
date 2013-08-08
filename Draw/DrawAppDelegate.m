@@ -280,7 +280,7 @@ NSString* GlobalGetBoardServerURL()
     
     if ([GameApp supportWeixin] == YES){
         PPDebug(@"Init Weixin SDK");
-        [WXApi registerApp:@"wx427a2f57bc4456d1"];
+        [WXApi registerApp:[GameApp weixinId]]; //@"wx427a2f57bc4456d1"];
     }
     
     // Push Setup

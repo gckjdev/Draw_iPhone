@@ -71,5 +71,16 @@ static ContestService *_staticContestService;
     
 }
 
+- (NSArray*)getOngoingContestList
+{
+    return nil;
+}
+
+- (void)syncOngoingContestList
+{
+    
+}
+
+
 
 @end

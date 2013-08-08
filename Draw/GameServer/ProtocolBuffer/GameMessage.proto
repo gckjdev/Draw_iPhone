@@ -481,6 +481,7 @@ message DataQueryResponse {
   
   // for user feed
   repeated PBFeed feed = 41;
+  repeated PBContest contestList = 42;
   
   //for bbs
   repeated PBBBSBoard bbsBoard = 51;

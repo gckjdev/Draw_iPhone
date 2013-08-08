@@ -26,17 +26,28 @@ typedef enum{
 	FeedTypeFlower = ItemTypeFlower,
 	FeedTypeTomato = ItemTypeTomato,
     FeedTypeOnlyComment = 8,
-    FeedTypeDrawToContest = 9
+    FeedTypeDrawToContest = 9,
+    
+    FeedTypeContestComment = 105
     
     
 }FeedType;
 
+typedef enum{
+    CommentTypeNO = 0,
+    CommentTypeGuess = 2,
+    CommentTypeComment = 3,
+    CommentTypeFlower = 6,
+    CommentTypeTomato = 7,
+    CommentTypeSave = 8,
+    CommentTypeContestComment = 105
+} CommentType;
 
 
 typedef enum {
     OPusStatusNormal = 0, 
     OPusStatusDelete = 1 
-}OpusStatus;
+} OpusStatus;
 
 
 

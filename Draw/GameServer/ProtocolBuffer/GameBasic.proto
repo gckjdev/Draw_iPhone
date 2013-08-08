@@ -397,3 +397,45 @@ message PBOpusRank
     optional string userId = 3;
 }
 
+message PBContestAward
+{
+    required PBContestRankType type = 1;            // 奖励类型
+    required PBGameUser user = 2;                   // 用户信息
+    optional int32 rank = 3;                        // 奖励结果名次，如：第一名1，第二名2，第三名3
+    optional float score = 4;                       // 用户得分，可选
+    optional int32 coins = 5;                       // 赢取的金币
+}
+
+message PBContestRankType
+{
+    required int32  type = 1;                       // 奖励类型，必须唯一
+    required string name = 2;                       // 奖励名字，如最佳创意奖
+}
+
+message PBContest
+{
+    required string contestId = 1;
+    optional int32  startDate = 2;
+    optional int32  endDate = 3;
+    optional int32  type = 4;
+    optional int32  status = 5;
+    optional int32  participantCount = 6;
+    optional int32  opusCount = 7;
+    optional string title = 8;
+    optional string contestUrl = 9;
+    optional string statementUrl = 10;
+    optional int32  voteStartDate = 11;
+    optional int32  voteEndDate = 12;
+    optional bool   isAnounymous = 13;
+
+    optional int32  canSubmitCount = 31 [default=1];
+    optional int32  flowerPerUser = 32 [default=20];
+
+    repeated PBGameUser judges = 51;
+    repeated PBGameUser reporters = 52;
+    repeated PBContestAward winnerUsers = 53;
+    repeated PBContestAward awardUsers = 54;
+    repeated PBContestRankType rankTypes = 55;
+    
+}
+

@@ -24,6 +24,12 @@
 @class PBBBSReward_Builder;
 @class PBBBSUser;
 @class PBBBSUser_Builder;
+@class PBContest;
+@class PBContestAward;
+@class PBContestAward_Builder;
+@class PBContestRankType;
+@class PBContestRankType_Builder;
+@class PBContest_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
 @class PBDrawBg;

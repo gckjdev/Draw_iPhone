@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewHeader.h"
 #import "Opus.pb.h"
+#import "Feed.h"
 
-typedef enum{
-    CommentTypeNO = 0,
-    CommentTypeGuess = 2,
-    CommentTypeComment = 3,
-    CommentTypeFlower = 6,
-    CommentTypeTomato = 7,
-    CommentTypeSave = 8,
-}CommentType;
+//typedef enum{
+//    CommentTypeNO = 0,
+//    CommentTypeGuess = 2,
+//    CommentTypeComment = 3,
+//    CommentTypeFlower = 6,
+//    CommentTypeTomato = 7,
+//    CommentTypeSave = 8,
+//}CommentType;
 
 @protocol CommonCommentHeaderDelegate <NSObject>
 
