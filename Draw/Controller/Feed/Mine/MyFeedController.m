@@ -146,6 +146,7 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
+    [self setSwipeToBack:YES];
     [self.titleLabel setText:NSLS(@"kFeed")];
     if ([ConfigManager showOpusCount]) {
         [[FeedService defaultService] getOpusCount:[[UserManager defaultManager] userId]

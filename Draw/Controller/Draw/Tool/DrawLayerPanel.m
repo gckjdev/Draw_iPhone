@@ -26,6 +26,7 @@
     [dialog setAllowEmpty:NO];
     dialog.maxInputLen = 10;
     [dialog showInView:[self theTopView]];
+    
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch

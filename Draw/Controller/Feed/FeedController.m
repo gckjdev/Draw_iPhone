@@ -132,6 +132,7 @@
     self.hotFeedButton.tag = FeedListTypeHot;
     self.latestFeedButton.tag = FeedListTypeLatest;
     [self clickFeedButton:self.allFeedButton];
+    [self setSwipeToBack:YES];
     
 //    [[FeedService defaultService] getFeedList:FeedListTypeMy offset:0 limit:50 delegate:self];
 }
