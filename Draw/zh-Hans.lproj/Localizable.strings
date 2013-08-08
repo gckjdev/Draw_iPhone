@@ -1439,6 +1439,19 @@
 "kGuessWrong" =  "猜错了";
 
 "kRestartGuessWarnning" = "重新开始将清空本次成绩，重新来过，是否确定？";
+
+
+"kGeniusRankWeek" = "天才榜(每周)";
+"kGeniusRankYear" = "天才榜(年度)";
+"kContestRankToday" = "比赛榜(今天)";
+"kContestRankYesterday" = "比赛榜(昨天)";
+"kContestRankBeforeYesterday" = "比赛榜(两天前)";
+
+"kWeek" = "每周";
+"kYear" = "年度";
+"kToday" = "今天";
+"kYesterday" = "昨天";
+"kBeforeYesterday" = "两天前";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

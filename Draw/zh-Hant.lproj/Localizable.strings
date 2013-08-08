@@ -1421,6 +1421,18 @@
 "kGuessWrong" =  "猜错了";
 
 "kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";
+
+"kWeek" = "每周";
+"kYear" = "年度";
+"kToday" = "今天";
+"kYesterday" = "昨天";
+"kBeforeYesterday" = "兩天前";
+
+"kGeniusRankWeek" = "天才榜(每周)";
+"kGeniusRankYear" = "天才榜(年度)";
+"kContestRankToday" = "比賽榜(今天)";
+"kContestRankYesterday" = "比賽榜(昨天)";
+"kContestRankBeforeYesterday" = "比賽榜(兩天前)";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

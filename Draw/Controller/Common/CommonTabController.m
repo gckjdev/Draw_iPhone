@@ -304,7 +304,7 @@
     }else{
         tab.hasMoreData = YES;        
         [tab.dataList addObjectsFromArray:list];
-        tab.offset += tab.limit;//[tab.dataList count];
+        tab.offset += tab.limit;
     }
     tab.status = TableTabStatusLoaded;
     if (tab.isCurrentTab) {

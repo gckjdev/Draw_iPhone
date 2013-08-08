@@ -9,6 +9,7 @@
 #import "GuessRankCell.h"
 #import "UIImageView+WebCache.h"
 #import "PBGuessRank+Extend.h"
+#import "ShareImageManager.h"
 
 @interface GuessRankCell()
 @property (retain, nonatomic) PBGuessRank *rank;
@@ -36,12 +37,22 @@
 
 + (CGFloat)getCellHeight{
     
-    return 70;
+    return 60;
 }
 
-- (void)setCellInfo:(PBGuessRank *)rank{
+- (void)setCellInfo:(PBGuessRank *)rank {
+    
+//    self.backgroundColor = COLOR_ORANGE;
+//    self.contentView.backgroundColor = COLOR_ORANGE;
+    
+    self.backgroundColor = [UIColor clearColor];
     
     self.rank = rank;
+    
+    _nickNameLabel.textColor = COLOR_ORANGE;
+    _guessCountLabel.textColor = COLOR_ORANGE;
+    _costTimeLabel.textColor = COLOR_ORANGE;
+    _awardLabel.textColor = COLOR_ORANGE;
     
     [_avatarImageView setImageWithURL:[NSURL URLWithString:rank.user.avatar]];
     _nickNameLabel.text = rank.user.nickName;
@@ -50,6 +61,8 @@
     _guessCountLabel.text = _rank.correctTimesDesc;
     _costTimeLabel.text = _rank.costTimeDesc;
     _awardLabel.text = _rank.earnDesc;
+    
+    _rankLabel.text = [NSString stringWithFormat:@"%d",rank.ranking];
 }
 
 @end
