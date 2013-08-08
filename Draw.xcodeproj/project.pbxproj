@@ -2158,6 +2158,10 @@
 		A4E1D23C17B2241000E13728 /* spend_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22A17B2241000E13728 /* spend_time@2x.png */; };
 		A4E1D23D17B2241000E13728 /* spend_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22A17B2241000E13728 /* spend_time@2x.png */; };
 		A4E1D23E17B2241000E13728 /* spend_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D22A17B2241000E13728 /* spend_time@2x.png */; };
+		A4E1D24C17B3582500E13728 /* little_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D24B17B3582500E13728 /* little_triangle@2x.png */; };
+		A4E1D24D17B3582500E13728 /* little_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D24B17B3582500E13728 /* little_triangle@2x.png */; };
+		A4E1D24E17B3582500E13728 /* little_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D24B17B3582500E13728 /* little_triangle@2x.png */; };
+		A4E1D24F17B3582500E13728 /* little_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D24B17B3582500E13728 /* little_triangle@2x.png */; };
 		A4E254D01796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
 		A4E254D11796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
 		A4E64911178425D10063F393 /* UIButton+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64910178425D10063F393 /* UIButton+Extend.m */; };
@@ -8179,6 +8183,7 @@
 		A4E1D22817B2241000E13728 /* guess_rank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guess_rank@2x.png"; sourceTree = "<group>"; };
 		A4E1D22917B2241000E13728 /* round_dot_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "round_dot_no@2x.png"; sourceTree = "<group>"; };
 		A4E1D22A17B2241000E13728 /* spend_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spend_time@2x.png"; sourceTree = "<group>"; };
+		A4E1D24B17B3582500E13728 /* little_triangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little_triangle@2x.png"; sourceTree = "<group>"; };
 		A4E254CE1796CC5D00767506 /* GuessService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessService.h; sourceTree = "<group>"; };
 		A4E254CF1796CC5D00767506 /* GuessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessService.m; sourceTree = "<group>"; };
 		A4E6490F178425D10063F393 /* UIButton+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extend.h"; sourceTree = "<group>"; };
@@ -11732,6 +11737,7 @@
 		A4B78A06179F78BA0008E21B /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A4E1D24B17B3582500E13728 /* little_triangle@2x.png */,
 				A4E1D22617B2241000E13728 /* award_coin@2x.png */,
 				A4E1D22717B2241000E13728 /* guess_correct@2x.png */,
 				A4E1D22817B2241000E13728 /* guess_rank@2x.png */,
@@ -15184,61 +15190,8 @@
 		CA5328D716A3E1E000E9E96B /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				CA02CB681785581A00B6910D /* GradientSettingView.h */,
-				CA02CB691785581A00B6910D /* GradientSettingView.m */,
-				CA02CB6A1785581A00B6910D /* GradientSettingView.xib */,
-				CA02CB6B1785581A00B6910D /* GradientSettingView~ipad.xib */,
-				CA3D4ADF17794748000A8FC7 /* ShadowBox.h */,
-				CA3D4AE017794748000A8FC7 /* ShadowBox.m */,
-				CA3D4AE117794748000A8FC7 /* ShadowBox.xib */,
-				CA3D4AE217794748000A8FC7 /* ShadowBox~ipad.xib */,
-				CAF0DB4F17019AED009FE646 /* CanvasRectBox.h */,
-				CAF0DB5017019AED009FE646 /* CanvasRectBox.m */,
-				CAF0DB5117019AED009FE646 /* CanvasRectBox.xib */,
-				CAF0DB5217019AED009FE646 /* CanvasRectBox~ipad.xib */,
-				CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */,
-				CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */,
-				CA485F5016E440E300AEE725 /* DrawBgBox.h */,
-				CA485F5116E440E300AEE725 /* DrawBgBox.m */,
-				CA485F5216E440E300AEE725 /* DrawBgBox.xib */,
-				CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */,
-				CA5328D816A3E1E000E9E96B /* ColorBox.h */,
-				CA5328D916A3E1E000E9E96B /* ColorBox.m */,
-				CA5328DA16A3E1E000E9E96B /* ColorBox.xib */,
-				CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */,
-				CA5328DC16A3E1E000E9E96B /* ColorPoint.h */,
-				CA5328DD16A3E1E000E9E96B /* ColorPoint.m */,
-				CA5328DE16A3E1E000E9E96B /* DrawSlider.h */,
-				CA5328DF16A3E1E000E9E96B /* DrawSlider.m */,
-				CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */,
-				CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */,
-				CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */,
-				CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */,
-				C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */,
-				CAF4897817AA736900F015AB /* ToolPanel.xib */,
-				C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */,
-				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
-				C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */,
-				CA5328E516A3E1E000E9E96B /* Palette.h */,
-				CA5328E616A3E1E000E9E96B /* Palette.m */,
-				CA5328E716A3E1E000E9E96B /* Palette.xib */,
-				CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */,
-				CA5328E916A3E1E000E9E96B /* PenBox.h */,
-				CA5328EA16A3E1E000E9E96B /* PenBox.m */,
-				CA5328EB16A3E1E000E9E96B /* PenBox.xib */,
-				CA5328EC16A3E1E000E9E96B /* PenBox~ipad.xib */,
-				CAF7E82716BB662B00F09584 /* WidthBox.h */,
-				CAF7E82816BB662B00F09584 /* WidthBox.m */,
-				CA9A7EC116DC57B10089BD51 /* ShapeBox.h */,
-				CA9A7EC216DC57B10089BD51 /* ShapeBox.m */,
-				CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */,
-				CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */,
-				CACEC2BA178BA7AD00D88643 /* SelectorBox.h */,
-				CACEC2BB178BA7AD00D88643 /* SelectorBox.m */,
-				CACEC2D3178BA7D200D88643 /* SelectorBox.xib */,
-				CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */,
-				CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */,
-				CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */,
+				CAC9022A17B34EEB009AF8E1 /* Views */,
+				CAC9022917B34EB7009AF8E1 /* Panels */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -16901,6 +16854,75 @@
 				CAC7924C16685D42009B4053 /* bbs_detail_toolbar@2x.jpg */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		CAC9022917B34EB7009AF8E1 /* Panels */ = {
+			isa = PBXGroup;
+			children = (
+				CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */,
+				CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */,
+				C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */,
+				C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */,
+				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
+				C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */,
+				CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */,
+				CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */,
+				CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */,
+			);
+			name = Panels;
+			sourceTree = "<group>";
+		};
+		CAC9022A17B34EEB009AF8E1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CA02CB681785581A00B6910D /* GradientSettingView.h */,
+				CA02CB691785581A00B6910D /* GradientSettingView.m */,
+				CA02CB6A1785581A00B6910D /* GradientSettingView.xib */,
+				CA02CB6B1785581A00B6910D /* GradientSettingView~ipad.xib */,
+				CA3D4ADF17794748000A8FC7 /* ShadowBox.h */,
+				CA3D4AE017794748000A8FC7 /* ShadowBox.m */,
+				CA3D4AE117794748000A8FC7 /* ShadowBox.xib */,
+				CA3D4AE217794748000A8FC7 /* ShadowBox~ipad.xib */,
+				CAF0DB4F17019AED009FE646 /* CanvasRectBox.h */,
+				CAF0DB5017019AED009FE646 /* CanvasRectBox.m */,
+				CAF0DB5117019AED009FE646 /* CanvasRectBox.xib */,
+				CAF0DB5217019AED009FE646 /* CanvasRectBox~ipad.xib */,
+				CAF95E3E1706EE1E00B7526C /* DrawBgCell.xib */,
+				CAF95E481706EE4D00B7526C /* DrawBgCell~ipad.xib */,
+				CA485F5016E440E300AEE725 /* DrawBgBox.h */,
+				CA485F5116E440E300AEE725 /* DrawBgBox.m */,
+				CA485F5216E440E300AEE725 /* DrawBgBox.xib */,
+				CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */,
+				CA5328D816A3E1E000E9E96B /* ColorBox.h */,
+				CA5328D916A3E1E000E9E96B /* ColorBox.m */,
+				CA5328DA16A3E1E000E9E96B /* ColorBox.xib */,
+				CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */,
+				CA5328DC16A3E1E000E9E96B /* ColorPoint.h */,
+				CA5328DD16A3E1E000E9E96B /* ColorPoint.m */,
+				CA5328DE16A3E1E000E9E96B /* DrawSlider.h */,
+				CA5328DF16A3E1E000E9E96B /* DrawSlider.m */,
+				CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */,
+				CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */,
+				CAF4897817AA736900F015AB /* ToolPanel.xib */,
+				CA5328E516A3E1E000E9E96B /* Palette.h */,
+				CA5328E616A3E1E000E9E96B /* Palette.m */,
+				CA5328E716A3E1E000E9E96B /* Palette.xib */,
+				CA5328E816A3E1E000E9E96B /* Palette~ipad.xib */,
+				CA5328E916A3E1E000E9E96B /* PenBox.h */,
+				CA5328EA16A3E1E000E9E96B /* PenBox.m */,
+				CA5328EB16A3E1E000E9E96B /* PenBox.xib */,
+				CA5328EC16A3E1E000E9E96B /* PenBox~ipad.xib */,
+				CAF7E82716BB662B00F09584 /* WidthBox.h */,
+				CAF7E82816BB662B00F09584 /* WidthBox.m */,
+				CA9A7EC116DC57B10089BD51 /* ShapeBox.h */,
+				CA9A7EC216DC57B10089BD51 /* ShapeBox.m */,
+				CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */,
+				CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */,
+				CACEC2BA178BA7AD00D88643 /* SelectorBox.h */,
+				CACEC2BB178BA7AD00D88643 /* SelectorBox.m */,
+				CACEC2D3178BA7D200D88643 /* SelectorBox.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		CACEC2E6178BA94000D88643 /* Selector */ = {
@@ -19117,6 +19139,7 @@
 				A4E1D23517B2241000E13728 /* guess_rank@2x.png in Resources */,
 				A4E1D23917B2241000E13728 /* round_dot_no@2x.png in Resources */,
 				A4E1D23D17B2241000E13728 /* spend_time@2x.png in Resources */,
+				A4E1D24E17B3582500E13728 /* little_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20172,6 +20195,7 @@
 				A4E1D23417B2241000E13728 /* guess_rank@2x.png in Resources */,
 				A4E1D23817B2241000E13728 /* round_dot_no@2x.png in Resources */,
 				A4E1D23C17B2241000E13728 /* spend_time@2x.png in Resources */,
+				A4E1D24D17B3582500E13728 /* little_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21216,6 +21240,7 @@
 				A4E1D23317B2241000E13728 /* guess_rank@2x.png in Resources */,
 				A4E1D23717B2241000E13728 /* round_dot_no@2x.png in Resources */,
 				A4E1D23B17B2241000E13728 /* spend_time@2x.png in Resources */,
+				A4E1D24C17B3582500E13728 /* little_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22181,6 +22206,7 @@
 				A4E1D23617B2241000E13728 /* guess_rank@2x.png in Resources */,
 				A4E1D23A17B2241000E13728 /* round_dot_no@2x.png in Resources */,
 				A4E1D23E17B2241000E13728 /* spend_time@2x.png in Resources */,
+				A4E1D24F17B3582500E13728 /* little_triangle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

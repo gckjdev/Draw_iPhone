@@ -76,4 +76,15 @@
 {
     return nil;
 }
+
+- (NSUInteger)genClipTag
+{
+    for (NSInteger i = [_drawView.drawActionList count] - 1; i >= 0; i--) {
+        DrawAction *action = [_drawView.drawActionList objectAtIndex:i];
+        if ([action isClipAction] || action.clipAction != nil) {
+            return action.clipTag + 1;
+        }
+    }
+    return 1;
+}
 @end

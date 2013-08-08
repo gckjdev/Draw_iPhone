@@ -195,7 +195,7 @@
     [super viewDidLoad];
     [self initTabs];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setSwipeToBack:YES];
+    [self setSwipeToBack:NO];
 }
 
 
@@ -304,7 +304,7 @@
     }else{
         tab.hasMoreData = YES;        
         [tab.dataList addObjectsFromArray:list];
-        tab.offset += tab.limit;//[tab.dataList count];
+        tab.offset += tab.limit;
     }
     tab.status = TableTabStatusLoaded;
     if (tab.isCurrentTab) {

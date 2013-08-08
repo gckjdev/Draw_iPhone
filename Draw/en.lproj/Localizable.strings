@@ -1478,6 +1478,27 @@
 "kGuessWrong" =  "Guess Wrong";
 
 "kRestartGuessWarnning" = "Will you restart game?";
+
+
+
+#define GENIUS_WEEK NSLS(@"kGeniusWeek")
+#define GENIUS_YEAR NSLS(@"kGeniusYear")
+#define CONTEST_TODAY NSLS(@"kContestToday")
+#define CONTEST_YESTODAY NSLS(@"kContestYesterday")
+#define CONTEST_BEFOREYESTODAY NSLS(@"kContestBeforeYesterday")
+
+"kGeniusRankWeek" = "Genius Ranking(Weekly)";
+"kGeniusRankYear" = "Genius Ranking(Annual)";
+"kContestRankToday" = "Contest Ranking(Today)";
+"kContestRankYesterday" = "Contest Ranking(Yesterday)";
+"kContestRankBeforeYesterday" = "Contest Ranking(Two day ago)";
+
+"kWeek" = "Weekly";
+"kYear" = "Annual";
+"kToday" = "Today";
+"kYesterday" = "Yesterday";
+"kBeforeYesterday" = "Two day ago";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

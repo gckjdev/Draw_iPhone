@@ -2650,6 +2650,7 @@ static PBOpusGuess* defaultPBOpusGuessInstance = nil;
 
 @interface PBGuessRank ()
 @property (retain) PBGameUser* user;
+@property int32_t ranking;
 @property int32_t guess;
 @property int32_t pass;
 @property int32_t spendTime;
@@ -2669,6 +2670,13 @@ static PBOpusGuess* defaultPBOpusGuessInstance = nil;
   hasUser_ = !!value;
 }
 @synthesize user;
+- (BOOL) hasRanking {
+  return !!hasRanking_;
+}
+- (void) setHasRanking:(BOOL) value {
+  hasRanking_ = !!value;
+}
+@synthesize ranking;
 - (BOOL) hasGuess {
   return !!hasGuess_;
 }
@@ -2732,6 +2740,7 @@ static PBOpusGuess* defaultPBOpusGuessInstance = nil;
 - (id) init {
   if ((self = [super init])) {
     self.user = [PBGameUser defaultInstance];
+    self.ranking = 0;
     self.guess = 0;
     self.pass = 0;
     self.spendTime = 0;
@@ -2766,6 +2775,9 @@ static PBGuessRank* defaultPBGuessRankInstance = nil;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasUser) {
     [output writeMessage:1 value:self.user];
+  }
+  if (self.hasRanking) {
+    [output writeInt32:2 value:self.ranking];
   }
   if (self.hasGuess) {
     [output writeInt32:5 value:self.guess];
@@ -2802,6 +2814,9 @@ static PBGuessRank* defaultPBGuessRankInstance = nil;
   size = 0;
   if (self.hasUser) {
     size += computeMessageSize(1, self.user);
+  }
+  if (self.hasRanking) {
+    size += computeInt32Size(2, self.ranking);
   }
   if (self.hasGuess) {
     size += computeInt32Size(5, self.guess);
@@ -2905,6 +2920,9 @@ static PBGuessRank* defaultPBGuessRankInstance = nil;
   if (other.hasUser) {
     [self mergeUser:other.user];
   }
+  if (other.hasRanking) {
+    [self setRanking:other.ranking];
+  }
   if (other.hasGuess) {
     [self setGuess:other.guess];
   }
@@ -2957,6 +2975,10 @@ static PBGuessRank* defaultPBGuessRankInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 16: {
+        [self setRanking:[input readInt32]];
         break;
       }
       case 40: {
@@ -3027,6 +3049,22 @@ static PBGuessRank* defaultPBGuessRankInstance = nil;
 - (PBGuessRank_Builder*) clearUser {
   result.hasUser = NO;
   result.user = [PBGameUser defaultInstance];
+  return self;
+}
+- (BOOL) hasRanking {
+  return result.hasRanking;
+}
+- (int32_t) ranking {
+  return result.ranking;
+}
+- (PBGuessRank_Builder*) setRanking:(int32_t) value {
+  result.hasRanking = YES;
+  result.ranking = value;
+  return self;
+}
+- (PBGuessRank_Builder*) clearRanking {
+  result.hasRanking = NO;
+  result.ranking = 0;
   return self;
 }
 - (BOOL) hasGuess {

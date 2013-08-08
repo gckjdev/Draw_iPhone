@@ -815,6 +815,7 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 
 @interface PBGuessRank : PBGeneratedMessage {
 @private
+  BOOL hasRanking_:1;
   BOOL hasGuess_:1;
   BOOL hasPass_:1;
   BOOL hasSpendTime_:1;
@@ -824,6 +825,7 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
   BOOL hasEndTime_:1;
   BOOL hasUser_:1;
   BOOL hasCurrency_:1;
+  int32_t ranking;
   int32_t guess;
   int32_t pass;
   int32_t spendTime;
@@ -835,6 +837,7 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
   PBGameCurrency currency;
 }
 - (BOOL) hasUser;
+- (BOOL) hasRanking;
 - (BOOL) hasGuess;
 - (BOOL) hasPass;
 - (BOOL) hasSpendTime;
@@ -844,6 +847,7 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 - (BOOL) hasStartTime;
 - (BOOL) hasEndTime;
 @property (readonly, retain) PBGameUser* user;
+@property (readonly) int32_t ranking;
 @property (readonly) int32_t guess;
 @property (readonly) int32_t pass;
 @property (readonly) int32_t spendTime;
@@ -893,6 +897,11 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 - (PBGuessRank_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
 - (PBGuessRank_Builder*) mergeUser:(PBGameUser*) value;
 - (PBGuessRank_Builder*) clearUser;
+
+- (BOOL) hasRanking;
+- (int32_t) ranking;
+- (PBGuessRank_Builder*) setRanking:(int32_t) value;
+- (PBGuessRank_Builder*) clearRanking;
 
 - (BOOL) hasGuess;
 - (int32_t) guess;

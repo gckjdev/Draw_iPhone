@@ -201,6 +201,7 @@ message PBGuessRank{
 
    optional PBGameUser user = 1;    
 
+   optional int32 ranking = 2;       // 排名
    optional int32 guess = 5;         // 猜的总次数
    optional int32 pass = 6;          // 一共通过了多少关
    optional int32 spendTime = 7;     // 总耗时

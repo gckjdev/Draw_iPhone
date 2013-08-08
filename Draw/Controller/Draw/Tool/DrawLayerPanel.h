@@ -14,18 +14,16 @@
 
 @protocol DrawLayerPanelCellDelegate <NSObject>
 
--(void)drawLayerPanelCell:(DrawLayerPanelCell *)cell
-             didClickName:(NSString *)name
-              onDrawLayer:(DrawLayer *)layer;
+- (BOOL)canHidenLayer:(DrawLayer *)layer;
 
 -(void)drawLayerPanelCell:(DrawLayerPanelCell *)cell
     didClickRemoveAtDrawLayer:(DrawLayer *)layer;
 
 @end
 
-@interface DrawLayerPanelCell : UITableViewCell
+@interface DrawLayerPanelCell : UITableViewCell<UIGestureRecognizerDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *showFlag;
-@property (retain, nonatomic) IBOutlet UIButton *layerName;
+@property (retain, nonatomic) IBOutlet UILabel *layerName;
 @property (retain, nonatomic) IBOutlet UIButton *remove;
 
 
@@ -36,7 +34,6 @@
 
 - (IBAction)clickShowFlag:(id)sender;
 - (IBAction)clickRemove:(id)sender;
-- (IBAction)clickName:(id)sender;
 
 
 @end

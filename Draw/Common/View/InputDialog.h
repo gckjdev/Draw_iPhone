@@ -51,6 +51,7 @@ typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
 @property (retain, nonatomic) IBOutlet UITextField *targetTextField;
 @property (assign, nonatomic) id<InputDialogDelegate> delegate;
 @property (assign, nonatomic) NSInteger maxInputLen;
+@property (assign, nonatomic) BOOL allowEmpty;
 
 - (IBAction)clickCancelButton:(id)sender;
 - (IBAction)clickOkButton:(id)sender;
@@ -64,5 +65,10 @@ typedef void (^InputDialogSelectionBlock)(NSString* inputStr);
                     clickOK:(InputDialogSelectionBlock)clickOk
                 clickCancel:(InputDialogSelectionBlock)clickCancel;
 
++ (InputDialog *)dialogWith:(NSString *)title
+                defaultText:(NSString *)defaultText
+            placeHolderText:(NSString *)placeHolderText
+                    clickOK:(InputDialogSelectionBlock)clickOk
+                clickCancel:(InputDialogSelectionBlock)clickCancel;
 - (void)initView:(NSString*)title;
 @end

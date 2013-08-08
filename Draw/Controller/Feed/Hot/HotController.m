@@ -110,6 +110,7 @@ typedef enum{
     [super viewDidLoad];    
     [self initTabButtons];
     [self.titleLabel setText:NSLS(@"kRank")];
+    [self setSwipeToBack:YES];
 }
 
 - (void)viewDidUnload

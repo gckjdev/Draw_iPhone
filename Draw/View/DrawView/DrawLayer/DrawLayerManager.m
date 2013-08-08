@@ -249,10 +249,12 @@
 
 - (void)setSelectedLayer:(DrawLayer *)selectedLayer
 {
+    DrawLayer *oldLayer = [[_selectedLayer retain] autorelease];
+    _selectedLayer = selectedLayer;
     [self.delegate layerManager:self
          didChangeSelectedLayer:selectedLayer
-                      lastLayer:_selectedLayer];
-    _selectedLayer = selectedLayer;
+                      lastLayer:oldLayer];
+
 }
 
 - (UIImage *)createImageWithBGImage:(UIImage *)bg

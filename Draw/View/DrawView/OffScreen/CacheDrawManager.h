@@ -72,7 +72,6 @@
 - (void)showToIndex:(NSInteger)index;
 
 //clip action
-- (void)startClipAction:(ClipAction *)action;
 - (void)finishCurrentClip;
 
 

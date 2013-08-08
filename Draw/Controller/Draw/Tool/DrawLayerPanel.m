@@ -8,30 +8,47 @@
 
 #import "DrawLayerPanel.h"
 #import "CMPopTipView.h"
+#import "PPViewController.h"
+#import "CommonDialog.h"
+#import "InputDialog.h"
+
 #define CELL_ID @"DrawLayerPanelCell"
 
 @implementation DrawLayerPanelCell
+
+- (void)handleDoubleTap:(UITapGestureRecognizer *)tap
+{
+    PPDebug(@"<handleDoubleTap> layer name = %@", _drawLayer.layerName);
+    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kEditLayerName") defaultText:_drawLayer.layerName placeHolderText:nil clickOK:^(NSString *inputStr) {
+        self.drawLayer.layerName = inputStr;
+        [self.layerName setText:inputStr];
+    } clickCancel:NULL];
+    [dialog setAllowEmpty:NO];
+    dialog.maxInputLen = 10;
+    [dialog showInView:[self theTopView]];
+    
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
+}
+- (void)updateView
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    tap.delegate = self;
+    tap.numberOfTapsRequired = 2;
+    [self addGestureRecognizer:tap];    
+    [tap release];
+}
 
 + (id)cell:(id<DrawLayerPanelCellDelegate>)delegate
 {
     DrawLayerPanelCell* cell = [DrawLayerPanelCell createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:0];
     cell.delegate = delegate;
+    [cell updateView];
     return cell;
 }
-
-//- (void)onlyShowViews:(NSArray *)views
-//{
-//    NSArray *allViews = @[
-//                             self.showFlag,
-//                             self.layerName,
-//                             self.remove,
-//                             ];
-//    
-//    for (UIView *view in allViews) {
-//        [view setHidden:![views containsObject:view]];
-//    }
-//
-//}
 
 
 - (void)updateWithDrawLayer:(DrawLayer *)layer isSelected:(BOOL)selected
@@ -48,17 +65,15 @@
     }
 
     self.drawLayer = layer;
-    [self.layerName setTitle:layer.layerName forState:UIControlStateNormal];
+    [self.layerName setText:layer.layerName];
     [self.showFlag setSelected:self.drawLayer.isHidden];
     [self.remove setHidden:![layer canBeRemoved]];
     if (selected) {
-        [self.layerName setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [self.layerName setTextColor:[UIColor redColor]];
     }else{
-        [self.layerName setTitleColor:OPAQUE_COLOR(62, 43, 23) forState:UIControlStateNormal];
+        [self.layerName setTextColor:OPAQUE_COLOR(62, 43, 23)];
     }
 }
-
-
 
 
 - (void)dealloc {
@@ -69,19 +84,25 @@
     [super dealloc];
 }
 - (IBAction)clickShowFlag:(id)sender {
-    [self.drawLayer setHidden:!self.drawLayer.isHidden];
-    [sender setSelected:self.drawLayer.isHidden];
+    
+    if (self.drawLayer.isHidden || ([self.delegate canHidenLayer:self.drawLayer])) {
+        [self.drawLayer setHidden:!self.drawLayer.isHidden];
+        [sender setSelected:self.drawLayer.isHidden];
+    }else{
+        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kMainLayerCannotHiden") title:nil];
+    }
+    
 }
 
 - (IBAction)clickRemove:(id)sender {
-    [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
+    
+    [[CommonDialog createDialogWithTitle:NSLS(@"kTips") message:NSLS(@"kDeleteDrawLayer") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
+    } clickCancelBlock:NULL] showInView:[self theTopView]];
+    
+
 }
 
-- (IBAction)clickName:(id)sender {
-    [self.delegate drawLayerPanelCell:self
-                         didClickName:self.drawLayer.layerName
-                          onDrawLayer:self.drawLayer];
-}
 
 @end
 
@@ -167,18 +188,14 @@
     
     if (indexPath.row < layerCount) {
         DrawLayer *layer = [self layerOfIndexPath:indexPath];
-        [_dlManager setSelectedLayer:layer];
-        [self.tableView reloadData];
+        if (!layer.isHidden) {
+            [_dlManager setSelectedLayer:layer];
+            [self.tableView reloadData];
+        }else{
+            [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kHidenLayerCannotBeSelected") title:nil];
+        }
     }
 }
-
--(void)drawLayerPanelCell:(DrawLayerPanelCell *)cell
-             didClickName:(NSString *)name
-              onDrawLayer:(DrawLayer *)layer
-{
-    PPDebug(@"<didClickName> name = %@", layer.layerName);
-}
-
 
 
 -(void)drawLayerPanelCell:(DrawLayerPanelCell *)cell
@@ -229,7 +246,13 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     [self.tableView reloadData];
 }
 
+#pragma mark DrawLayer Cell Delegate
+- (BOOL)canHidenLayer:(DrawLayer *)layer
+{
+    return [_dlManager selectedLayer] != layer;
+}
 
+#pragma mark JTTableViewGestureRecognizer Delegate
 - (BOOL)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
