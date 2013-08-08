@@ -13,10 +13,19 @@
 #import "GameBasic.pb.h"
 
 
-#define COLOR_ORANGE [UIColor colorWithRed:238/255.0 green:94/255.0 blue:82/255.0 alpha:1];
-#define COLOR_WHITE [UIColor whiteColor];
-#define COLOR_GRAY [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1];
+#define COLOR_ORANGE [UIColor colorWithRed:238/255.0 green:94/255.0 blue:82/255.0 alpha:1]
+#define COLOR_WHITE [UIColor whiteColor]
+#define COLOR_GRAY [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
 
+#define SET_CELL_BG                     \
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
+    if (indexPath.row % 2 == 0) {                       \
+        cell.backgroundColor = COLOR_GRAY;              \
+    }else{                                              \
+        cell.backgroundColor = COLOR_WHITE;             \
+    }                                                   \
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath]; \
+}
 
 
 #define SETTING_BUTTON_IMAGE    @"home_setting.png"

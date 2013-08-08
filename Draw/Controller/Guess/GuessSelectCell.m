@@ -65,7 +65,7 @@
 
 - (void)reloadView{
     
-
+    
     
     int index = 0;
     for (; index < [_opuses count]; index ++ ) {

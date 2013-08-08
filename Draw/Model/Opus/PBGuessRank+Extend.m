@@ -13,17 +13,19 @@
 
 - (NSString *)correctTimesDesc{
     
-    return [NSString stringWithFormat:NSLS(@"kGuessCorrectIs:%d"), self.pass];
+//    return [NSString stringWithFormat:NSLS(@"kGuessCorrectIs:%d"), self.pass];
+    return [NSString stringWithFormat:NSLS(@"%d"), self.pass];
+
 }
 
 - (NSString *)costTimeDesc{
     
 //    if (self.spendTime < 60) {
-//        return [NSString stringWithFormat:NSLS(@"kCostSencond:%d"), self.spendTime];
+        return [NSString stringWithFormat:NSLS(@"%d"), self.spendTime];
 //    }else if (self.spendTime < 3600){
-        int minus = self.spendTime / 60;
-        int second = self.spendTime % 60;
-        return [NSString stringWithFormat:NSLS(@"kCostMinus:%d, second:%d"), minus, second];
+//        int minus = self.spendTime / 60;
+//        int second = self.spendTime % 60;
+//        return [NSString stringWithFormat:NSLS(@"kCostMinus:%d, second:%d"), minus, second];
 //    }else if (self.spendTime < 24 * 3600){
 //        int hour = self.spendTime / 3600;
 //        int minus = ((self.spendTime % 3600)) / 60;
@@ -40,7 +42,9 @@
 
 - (NSString *)earnDesc{
     
-    return [NSString stringWithFormat:NSLS(@"kAwardIs:%d"), self.earn];
+//    return [NSString stringWithFormat:NSLS(@"kAwardIs:%d"), self.earn];
+    return [NSString stringWithFormat:NSLS(@"%d"), self.earn];
+
 }
 
 

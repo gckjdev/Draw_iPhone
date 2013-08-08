@@ -11,6 +11,21 @@
 #import "KxMenu.h"
 #import "TimeUtils.h"
 #import "Opus.pb.h"
+#import "ShareImageManager.h"
+
+
+#define GENIUS_WEEK NSLS(@"kGeniusRankWeek")
+#define GENIUS_YEAR NSLS(@"kGeniusRankYear")
+#define CONTEST_TODAY NSLS(@"kContestRankToday")
+#define CONTEST_YESTODAY NSLS(@"kContestRankYesterday")
+#define CONTEST_BEFOREYESTODAY NSLS(@"kContestRankBeforeYesterday")
+
+#define WEEK NSLS(@"kWeek")
+#define YEAR NSLS(@"kYear")
+#define TODAY NSLS(@"kToday")
+#define YESTERDAY NSLS(@"kYesterday")
+#define BEFOREYESTERDAY NSLS(@"kBeforeYesterday")
+
 
 @interface GuessRankListController ()
 
@@ -40,9 +55,13 @@
 
     [self initTabButtons];
     
+    
     [self clickTab:TabTypeGeniusHot];
     [[GuessService defaultService] getRecentGuessContestList];
     [[GuessService defaultService] setDelegate:self];
+    
+    [_geniusButton setTitle:GENIUS_WEEK forState:UIControlStateNormal];
+    [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload {
@@ -52,12 +71,6 @@
     [super viewDidUnload];
 }
 
-#define GENIUS_WEEK NSLS(@"kWeek")
-#define GENIUS_YEAR NSLS(@"kYear")
-#define CONTEST_TODAY NSLS(@"kToday")
-#define CONTEST_YESTODAY NSLS(@"kYestoday")
-#define CONTEST_BEFOREYESTODAY NSLS(@"kBeforeYestoday")
-
 - (IBAction)clickGeniusButton:(UIButton *)sender {
     
     // TODO: set pull down list to select
@@ -65,12 +78,12 @@
     NSArray *menuItems =
     @[
 
-        [KxMenuItem menuItem:GENIUS_WEEK
+        [KxMenuItem menuItem:WEEK
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)],
 
-        [KxMenuItem menuItem:GENIUS_YEAR
+        [KxMenuItem menuItem:YEAR
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)]
@@ -88,17 +101,17 @@
     
     NSArray *menuItems =
     @[
-        [KxMenuItem menuItem:CONTEST_TODAY
+        [KxMenuItem menuItem:TODAY
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)],
 
-        [KxMenuItem menuItem:CONTEST_YESTODAY
+        [KxMenuItem menuItem:YESTERDAY
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)],
 
-        [KxMenuItem menuItem:CONTEST_BEFOREYESTODAY
+        [KxMenuItem menuItem:BEFOREYESTERDAY
                        image:nil
                       target:self
                       action:@selector(pushMenuItem:)]
@@ -111,20 +124,20 @@
       
 - (void) pushMenuItem:(KxMenuItem *)item
 {
-    if ([item.title isEqualToString:GENIUS_WEEK]) {
-        [_geniusButton setTitle:item.title forState:UIControlStateNormal];
+    if ([item.title isEqualToString:WEEK]) {
+        [_geniusButton setTitle:GENIUS_WEEK forState:UIControlStateNormal];
         [self clickTab:TabTypeGeniusHot];
-    }else if ([item.title isEqualToString:GENIUS_YEAR]) {
-        [_geniusButton setTitle:item.title forState:UIControlStateNormal];
+    }else if ([item.title isEqualToString:YEAR]) {
+        [_geniusButton setTitle:GENIUS_YEAR forState:UIControlStateNormal];
         [self clickTab:TabTypeGeniusAllTime];
-    }else if ([item.title isEqualToString:CONTEST_TODAY]) {
-        [_contestButton setTitle:item.title forState:UIControlStateNormal];
+    }else if ([item.title isEqualToString:TODAY]) {
+        [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
         [self clickTab:TabTypeContestToday];
-    }else if ([item.title isEqualToString:CONTEST_YESTODAY]) {
-        [_contestButton setTitle:item.title forState:UIControlStateNormal];
+    }else if ([item.title isEqualToString:YESTERDAY]) {
+        [_contestButton setTitle:CONTEST_YESTODAY forState:UIControlStateNormal];
         [self clickTab:TabTypeContestYestoday];
-    }else if ([item.title isEqualToString:CONTEST_BEFOREYESTODAY]) {
-        [_contestButton setTitle:item.title forState:UIControlStateNormal];
+    }else if ([item.title isEqualToString:BEFOREYESTERDAY]) {
+        [_contestButton setTitle:CONTEST_BEFOREYESTODAY forState:UIControlStateNormal];
         [self clickTab:TabTypeContestBeforeYestoday];
     }
 }
@@ -155,6 +168,8 @@
     
     return cell;
 }
+
+SET_CELL_BG
 
 
 #pragma mark - CommonTabController delegate

@@ -145,9 +145,7 @@
 
 
 - (void)loadData:(int)offset limit:(int)limit startNew:(BOOL)startNew{
-    
-    [self showActivityWithText:NSLS(@"kLoading")];
-    
+        
     [[GuessService defaultService] getOpusesWithMode:_mode
                                            contestId:nil
                                               offset:offset
@@ -210,6 +208,7 @@
 - (void)didClickOpusWithIndex:(int)index{
     
     if (index >= [self.currentTab.dataList count]) {
+        PPDebug(@"<didClickOpusIndex> index = %d, large than datalist count %d", index, [self.currentTab.dataList count]);
         return;
     }
     
@@ -318,8 +317,10 @@
     
     [infoView setActionBlock:^(UIButton *button, UIView *view){
         if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kGoOn")]) {
-            [self loadData:0 limit:LIMIT startNew:YES];
-            [self.currentTab.dataList removeAllObjects];
+            if (passCount >= 20) {
+                [self loadData:0 limit:LIMIT startNew:YES];
+                [self.currentTab.dataList removeAllObjects];
+            }
         }else{
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -342,11 +343,9 @@
                                                   buttonTitles:titles];
     
     [infoView setActionBlock:^(UIButton *button, UIView *view){
-        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kGoOn")]) {
-            [self loadData:0 limit:LIMIT startNew:YES];
-            [self.currentTab.dataList removeAllObjects];
-        }else{
+        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kQuit")]) {
             [self.navigationController popViewControllerAnimated:YES];
+
         }
         [infoView dismiss];
     }];
@@ -393,6 +392,11 @@
     [self loadData:0 limit:count startNew:NO];
     [self.currentTab.dataList removeAllObjects];
 }
+
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
+    return NSLS(@"kNoData");
+}
+
 
 
 @end
