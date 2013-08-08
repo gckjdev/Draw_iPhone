@@ -8,6 +8,9 @@
 
 #import "DrawLayerPanel.h"
 #import "CMPopTipView.h"
+#import "PPViewController.h"
+#import "CommonDialog.h"
+
 #define CELL_ID @"DrawLayerPanelCell"
 
 @implementation DrawLayerPanelCell
@@ -69,12 +72,23 @@
     [super dealloc];
 }
 - (IBAction)clickShowFlag:(id)sender {
-    [self.drawLayer setHidden:!self.drawLayer.isHidden];
-    [sender setSelected:self.drawLayer.isHidden];
+    
+    if (self.drawLayer.isHidden || ([self.delegate canHidenLayer:self.drawLayer])) {
+        [self.drawLayer setHidden:!self.drawLayer.isHidden];
+        [sender setSelected:self.drawLayer.isHidden];
+    }else{
+        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kMainLayerCannotHiden") title:nil];
+    }
+    
 }
 
 - (IBAction)clickRemove:(id)sender {
-    [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
+    
+    [[CommonDialog createDialogWithTitle:NSLS(@"kTips") message:NSLS(@"kDeleteDrawLayer") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
+    } clickCancelBlock:NULL] showInView:[self theTopView]];
+    
+
 }
 
 - (IBAction)clickName:(id)sender {
@@ -167,8 +181,12 @@
     
     if (indexPath.row < layerCount) {
         DrawLayer *layer = [self layerOfIndexPath:indexPath];
-        [_dlManager setSelectedLayer:layer];
-        [self.tableView reloadData];
+        if (!layer.isHidden) {
+            [_dlManager setSelectedLayer:layer];
+            [self.tableView reloadData];
+        }else{
+            [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kHidenLayerCannotBeSelected") title:nil];
+        }
     }
 }
 
@@ -229,7 +247,13 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     [self.tableView reloadData];
 }
 
+#pragma mark DrawLayer Cell Delegate
+- (BOOL)canHidenLayer:(DrawLayer *)layer
+{
+    return [_dlManager selectedLayer] != layer;
+}
 
+#pragma mark JTTableViewGestureRecognizer Delegate
 - (BOOL)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }

@@ -14,6 +14,8 @@
 
 @protocol DrawLayerPanelCellDelegate <NSObject>
 
+- (BOOL)canHidenLayer:(DrawLayer *)layer;
+
 -(void)drawLayerPanelCell:(DrawLayerPanelCell *)cell
              didClickName:(NSString *)name
               onDrawLayer:(DrawLayer *)layer;
