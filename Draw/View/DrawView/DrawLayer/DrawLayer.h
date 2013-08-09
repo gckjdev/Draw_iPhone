@@ -9,12 +9,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DrawInfo.h"
 #import "DrawProcessProtocol.h"
+#import "Offscreen.h"
 
-
-@class CacheDrawManager;
 @class DrawAction;
 @class ClipAction;
-@class PPStack;
 
 @interface DrawLayer : CALayer<DrawProcessProtocol>
 {
@@ -30,16 +28,19 @@
         suportCache:(BOOL)supporCache;
 
 @property(nonatomic, retain)DrawInfo *drawInfo;
-@property(nonatomic, retain)CacheDrawManager *cdManager;
+@property(nonatomic, retain)Offscreen *offscreen;
 @property(nonatomic, retain)NSMutableArray *drawActionList;
 @property(nonatomic, retain)NSString *layerName;
 @property(nonatomic, assign)ClipAction *clipAction;
 
 @property(nonatomic, assign)NSUInteger layerTag;
-@property(nonatomic, readonly)BOOL supportCache;
 @property(nonatomic, assign)BOOL grid;
 
+//CACHED
+//supported cached
 //only used in draw layer panel.
+@property(nonatomic, readonly)BOOL supportCache;
+@property(nonatomic, assign)NSUInteger cachedCount; //only used when
 
 
 - (BOOL)canBeRemoved;

@@ -33,7 +33,6 @@
 + (id)unlimitOffscreenWithRect:(CGRect)rect;
 
 
-
 - (void)updateContextWithCGLayer:(CGLayerRef)layer
                     actionCount:(NSInteger)actionCount;
 - (void)addContextWithCGLayer:(CGLayerRef)layer

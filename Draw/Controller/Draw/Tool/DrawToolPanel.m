@@ -586,7 +586,6 @@
     NSArray *array = @[@(TouchActionTypeClipEllipse), @(TouchActionTypeClipPath), @(TouchActionTypeClipPolygon), @(TouchActionTypeClipRectangle)];
     [self setCloseSelectorHidden:_drawView.currentClip == nil &&![array containsObject:@(drawInfo.touchType)]];
     
-    //TODO set color
     DrawColor *color = [DrawColor colorWithColor:drawInfo.penColor];
     [color setAlpha:1];
     [self updateRecentColorViewWithColor:color updateModel:NO];

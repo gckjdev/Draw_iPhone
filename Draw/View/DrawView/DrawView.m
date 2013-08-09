@@ -114,8 +114,6 @@
     
     if (self.currentTouch == nil) {
         
-        PPDebug(@"SET touch handler and current touch");
-        
         [_gestureRecognizerManager setCapture:YES];
         
         DrawInfo *drawInfo = [self drawInfo];
@@ -176,7 +174,6 @@
         
         [self callbackFinishDelegateWithAction:drawAction];
         
-        PPDebug(@"RESET touch handler and current touch");
         if ([[self drawInfo] touchType] != TouchActionTypeClipPolygon) {
             self.touchHandler = nil;
         }

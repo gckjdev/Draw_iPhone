@@ -4949,10 +4949,6 @@
 		CA766D6317A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5917A15EB600D60E3D /* UIResponder+MotionRecognizers.m */; };
 		CA766D6417A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5917A15EB600D60E3D /* UIResponder+MotionRecognizers.m */; };
 		CA766D6517A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5917A15EB600D60E3D /* UIResponder+MotionRecognizers.m */; };
-		CA78ED031772FF4000B38CDD /* CacheDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78ED021772FF4000B38CDD /* CacheDrawManager.m */; };
-		CA78ED101772FF4000B38CDD /* CacheDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78ED021772FF4000B38CDD /* CacheDrawManager.m */; };
-		CA78ED131772FF4100B38CDD /* CacheDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78ED021772FF4000B38CDD /* CacheDrawManager.m */; };
-		CA78ED141772FF4100B38CDD /* CacheDrawManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA78ED021772FF4000B38CDD /* CacheDrawManager.m */; };
 		CA7ACA6C16367548001B273C /* ZhaJinHua.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */; };
 		CA7AFD04164E05A10039E07F /* ImplicitDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCF3164E05A10039E07F /* ImplicitDownloadService.m */; };
 		CA7AFD05164E05A10039E07F /* PPResourcePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7AFCF6164E05A10039E07F /* PPResourcePackage.m */; };
@@ -9669,8 +9665,6 @@
 		CA766D5717A15EB600D60E3D /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
 		CA766D5817A15EB600D60E3D /* UIResponder+MotionRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+MotionRecognizers.h"; sourceTree = "<group>"; };
 		CA766D5917A15EB600D60E3D /* UIResponder+MotionRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+MotionRecognizers.m"; sourceTree = "<group>"; };
-		CA78ED011772FF4000B38CDD /* CacheDrawManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheDrawManager.h; sourceTree = "<group>"; };
-		CA78ED021772FF4000B38CDD /* CacheDrawManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheDrawManager.m; sourceTree = "<group>"; };
 		CA7ACA6A16367548001B273C /* ZhaJinHua.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhaJinHua.pb.h; sourceTree = "<group>"; };
 		CA7ACA6B16367548001B273C /* ZhaJinHua.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhaJinHua.pb.m; sourceTree = "<group>"; };
 		CA7AFCF2164E05A10039E07F /* ImplicitDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImplicitDownloadService.h; sourceTree = "<group>"; };
@@ -15901,8 +15895,6 @@
 			children = (
 				CA881A4116EB278A0085F57B /* Offscreen.h */,
 				CA881A4216EB278A0085F57B /* Offscreen.m */,
-				CA78ED011772FF4000B38CDD /* CacheDrawManager.h */,
-				CA78ED021772FF4000B38CDD /* CacheDrawManager.m */,
 			);
 			path = OffScreen;
 			sourceTree = "<group>";
@@ -22928,7 +22920,6 @@
 				CA27B569176DF27800310651 /* LevelDBManager.m in Sources */,
 				A4BABB83176F1814008D7AAB /* SongService.m in Sources */,
 				A4B7A0041772F99800C586F7 /* WordInputView.m in Sources */,
-				CA78ED131772FF4100B38CDD /* CacheDrawManager.m in Sources */,
 				C2CBB19017745C7200F64956 /* MFMailComposeViewController+ShareEmailSender.m in Sources */,
 				C2CA7E4B17782BC30086D0FD /* CommonRoomListCell.m in Sources */,
 				C2CA7E5117782BC30086D0FD /* CommonRoomListController.m in Sources */,
@@ -23751,7 +23742,6 @@
 				EAB94F451772D3ED0038DB7A /* OpusManager.m in Sources */,
 				EAB94F4C1772D4A20038DB7A /* LevelDBManager.m in Sources */,
 				EAB94F4D1772D50B0038DB7A /* APLevelDB.mm in Sources */,
-				CA78ED101772FF4000B38CDD /* CacheDrawManager.m in Sources */,
 				C21455341778279E007D44C7 /* OpusManageController.m in Sources */,
 				C214553A1778279E007D44C7 /* OpusView.m in Sources */,
 				C2CA7E4A17782BC30086D0FD /* CommonRoomListCell.m in Sources */,
@@ -24546,7 +24536,6 @@
 				CA27B568176DF27800310651 /* LevelDBManager.m in Sources */,
 				C27E6902176EAC1D0019F41B /* SearchPhotoController.m in Sources */,
 				C27E6911176EAD370019F41B /* SearchPhotoResultController.m in Sources */,
-				CA78ED031772FF4000B38CDD /* CacheDrawManager.m in Sources */,
 				C2CBB18F17745C7200F64956 /* MFMailComposeViewController+ShareEmailSender.m in Sources */,
 				C21455331778279E007D44C7 /* OpusManageController.m in Sources */,
 				C21455391778279E007D44C7 /* OpusView.m in Sources */,
@@ -25330,7 +25319,6 @@
 				CAE49C80176C4FF7005743F2 /* UIBezierPath+Ext.m in Sources */,
 				CA27B565176DF0D200310651 /* APLevelDB.mm in Sources */,
 				CA27B56A176DF27800310651 /* LevelDBManager.m in Sources */,
-				CA78ED141772FF4100B38CDD /* CacheDrawManager.m in Sources */,
 				A4997250177834A200B01EBE /* HomeController.m in Sources */,
 				A4997254177834AE00B01EBE /* ResultController.m in Sources */,
 				A49972561778350000B01EBE /* OfflineGuessDrawController.m in Sources */,

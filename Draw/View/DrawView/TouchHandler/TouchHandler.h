@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "DrawAction.h"
 #import "DrawView.h"
-#import "CacheDrawManager.h"
 
 typedef enum {
     TouchStateBegin = 0,

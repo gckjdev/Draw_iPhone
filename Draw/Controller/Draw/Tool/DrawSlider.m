@@ -132,7 +132,6 @@
 {
     _value = MIN(_maxValue, value);
     _value = MAX(_minValue, value);
-    PPDebug(@"<setValue> value = %f", _value);
     [self updateViewWithValue:_value];
     
 }

@@ -1340,6 +1340,14 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
         [self.drawToolPanel updateWithDrawInfo:selectedLayer.drawInfo];
     }
 }
+
+- (void)layerManager:(DrawLayerManager *)manager
+            didLayer:(DrawLayer *)layer
+    changeClipAction:(ClipAction *)action
+{
+    [self.drawToolPanel updateWithDrawInfo:layer.drawInfo];
+}
+
 #pragma mark- CMPopTipView Delegate
 - (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
 {
