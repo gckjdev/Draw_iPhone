@@ -253,11 +253,15 @@
     
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
 
-    if ([_delegate respondsToSelector:@selector(didGuessWrong)]) {
-        [_delegate didGuessWrong];
-    }
 
-    [self.navigationController popViewControllerAnimated:YES];
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        
+        if ([_delegate respondsToSelector:@selector(didGuessWrong)]) {
+            [_delegate didGuessWrong];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
 }
 
 //- (void)guessWrongInHappyMode{
