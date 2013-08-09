@@ -1058,11 +1058,11 @@
 }
 + (int)minUndoActionCount
 {
-/*
+
 #ifdef DEBUG
-    return 3;
+    return 20;
 #endif
-*/
+
     return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:100];
 }
 
