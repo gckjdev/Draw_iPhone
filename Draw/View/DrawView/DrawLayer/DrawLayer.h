@@ -11,7 +11,6 @@
 #import "DrawProcessProtocol.h"
 #import "Offscreen.h"
 
-@class CacheDrawManager;
 @class DrawAction;
 @class ClipAction;
 

@@ -7,7 +7,6 @@
 //
 
 #import "DrawLayer.h"
-#import "CacheDrawManager.h"
 #import "DrawAction.h"
 #import "GradientAction.h"
 #import "ClipAction.h"
