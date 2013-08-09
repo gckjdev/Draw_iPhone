@@ -25,10 +25,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
                 contestId:(NSString *)contestId
                    offset:(int)offset
                     limit:(int)limit
-               isStartNew:(BOOL)isStartNew{
-    
-    __block typeof(self) bself = self;
-    
+               isStartNew:(BOOL)isStartNew
+                 delegate:(id<GuessServiceDelegate>)delegate{
+        
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{
@@ -58,8 +57,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([bself.delegate respondsToSelector:@selector(didGetOpuses:resultCode:)]) {
-                [bself.delegate didGetOpuses:opuses resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetOpuses:resultCode:)]) {
+                [delegate didGetOpuses:opuses resultCode:resultCode];
             }
         });
     });
@@ -73,14 +72,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
             words:(NSArray *)words
           correct:(BOOL)correct
         startDate:(NSDate *)startDate
-          endDate:(NSDate *)endDate{
+          endDate:(NSDate *)endDate
+         delegate:(id<GuessServiceDelegate>)delegate{
     
     if ([words count] == 0) {
         return;
     }
-    
-    __block typeof(self) bself = self;
-    
+        
     NSString *nickName = SAFE_STRING([[UserManager defaultManager] nickName]);
     NSString *avatarUrl = SAFE_STRING([[UserManager defaultManager] avatarURL]);
     NSString *gender = [[UserManager defaultManager] gender];
@@ -115,8 +113,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([bself.delegate respondsToSelector:@selector(didGuessOpus:resultCode:)]) {
-                [bself.delegate didGuessOpus:opus resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGuessOpus:resultCode:)]) {
+                [delegate didGuessOpus:opus resultCode:resultCode];
             }
         });
     });
@@ -124,10 +122,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
 
 - (void)getGuessRankWithType:(int)type
                         mode:(PBUserGuessMode)mode
-                   contestId:(NSString *)contestId{
-    
-    __block typeof(self) bself = self;
-    
+                   contestId:(NSString *)contestId
+                    delegate:(id<GuessServiceDelegate>)delegate{
+        
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{
@@ -145,8 +142,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([bself.delegate respondsToSelector:@selector(didGetGuessRank:resultCode:)]) {
-                [bself.delegate didGetGuessRank:rank resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetGuessRank:resultCode:)]) {
+                [delegate didGetGuessRank:rank resultCode:resultCode];
             }
         });
     });
@@ -157,10 +154,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
                             mode:(PBUserGuessMode)mode
                        contestId:(NSString *)contestId
                           offset:(int)offset
-                           limit:(int)limit{
-    
-    __block typeof(self) bself = self;
-    
+                           limit:(int)limit
+                        delegate:(id<GuessServiceDelegate>)delegate{
+        
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{
@@ -180,17 +176,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([bself.delegate respondsToSelector:@selector(didGetGuessRankList:resultCode:)]) {
-                [bself.delegate didGetGuessRankList:rankList resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetGuessRankList:resultCode:)]) {
+                [delegate didGetGuessRankList:rankList resultCode:resultCode];
             }
         });
     });
 }
 
-- (void)getGuessContestList{
-    
-    __block typeof(self) bself = self;
-    
+- (void)getGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate{
+        
     dispatch_async(workingQueue, ^{
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GUESS_CONTEST_LIST parameters:nil];
@@ -202,15 +196,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([bself.delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
-                [bself.delegate didGetGuessContestList:list resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
+                [delegate didGetGuessContestList:list resultCode:resultCode];
             }
         });
     });
 }
 
-- (void)getRecentGuessContestList{
-    __block typeof(self) bself = self;
+- (void)getRecentGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate;{
     
     dispatch_async(workingQueue, ^{
         
@@ -223,8 +216,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([bself.delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
-                [bself.delegate didGetGuessContestList:list resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
+                [delegate didGetGuessContestList:list resultCode:resultCode];
             }
         });
     });

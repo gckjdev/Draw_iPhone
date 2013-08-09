@@ -1433,6 +1433,9 @@
 "kContestRankToday" = "比賽榜(今天)";
 "kContestRankYesterday" = "比賽榜(昨天)";
 "kContestRankBeforeYesterday" = "比賽榜(兩天前)";
+
+"kContestIsNotStart" = "今天的比賽尚未開始，請先到處逛逛，稍後再來參加比賽吧。";
+"kContestIsOver" = "今天的比賽已經結束啦！請明天同一時間再來參加比賽吧。";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

@@ -9,6 +9,7 @@
 #import "GuessModesController.h"
 #import "GuessSelectController.h"
 #import "GuessRankListController.h"
+#import "CommonMessageCenter.h"
 
 @interface GuessModesController (){
     int _countDown;
@@ -22,7 +23,6 @@
 
 
 - (void)dealloc {
-    [[GuessService defaultService] setDelegate:nil];
     [_contest release];
     [_happyModeLabel release];
     [_contestModeLabel release];
@@ -53,8 +53,7 @@
     _rankListLabel.text = NSLS(@"kGuessRank");
     _rulesLabel.text = NSLS(@"kGuessRules");
     
-    [[GuessService defaultService] getGuessContestList];
-    [[GuessService defaultService] setDelegate:self];
+    [[GuessService defaultService] getGuessContestListWithDelegate:self];
 }
 
 - (void)viewDidUnload {
@@ -173,17 +172,35 @@
 
 - (IBAction)clickHappyModeButton:(id)sender {
     
-    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy contestId:nil]  autorelease];
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy contest:nil]  autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickGeniusModeButton:(id)sender {
-    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius contestId:nil] autorelease];
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius contest:nil] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)showContestIsNotStartTip{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsNotStart") delayTime:1.5 isHappy:NO];
+}
+
+- (void)showContestIsOverTip{
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsOver") delayTime:1.5 isHappy:NO];
+}
+
 - (IBAction)clickContestModeButton:(id)sender {
-    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contestId:_contest.contestId] autorelease];
+    int time = [[NSDate date] timeIntervalSince1970];
+    if (time < _contest.startTime) {
+        [self showContestIsNotStartTip];
+        return;
+    }
+    if (time > _contest.endTime) {
+        [self showContestIsOverTip];
+        return;
+    }
+    
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

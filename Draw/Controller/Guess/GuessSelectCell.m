@@ -82,11 +82,11 @@
     }
     
     for (int index = OPUS_BUTTON_OFFSET; index < OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS; index ++) {
-        UIButton *button = [self viewWithTag:tag];
+        UIButton *button = (UIButton *)[self viewWithTag:tag];
         [button.layer removeAllAnimations];
     }
     
-    UIButton *button = [self viewWithTag:tag];
+    UIButton *button = (UIButton *)[self viewWithTag:tag];
     [button.layer addAnimation:[AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:0.5 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:0.5 repeatCount:MAXFLOAT] forKey:nil];
 
 }
