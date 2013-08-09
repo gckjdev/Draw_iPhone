@@ -20,7 +20,7 @@
 #import "DrawUtils.h"
 #import "GameBasic.pb-c.h"
 #import "Draw.pb-c.h"
-
+#import "Offscreen.h"
 
 @interface DrawLayer()
 @property(nonatomic, retain) NSString *drawBgId;
@@ -32,30 +32,6 @@
 @synthesize drawActionList = _drawActionList;
 @synthesize drawInfo = _drawInfo;
 
-/*
-- (void)handleChangeBGAction:(ChangeBackAction *)drawAction inContext:(CGContextRef)ctx
-{
-    if (drawAction.clipAction) {
-        [drawAction drawInContext:ctx inRect:self.bounds];
-    }else{
-        if (self.backgroundColor != drawAction.color.CGColor) {
-            self.backgroundColor = drawAction.color.CGColor;
-        }
-    }
-}
-- (void)handleChangeBGImageAction:(ChangeBGImageAction *)drawAction inContext:(CGContextRef)ctx
-{
-    if (drawAction.clipAction) {
-        [drawAction drawInContext:ctx inRect:self.bounds];
-    }else{
-        if (![self.drawBgId isEqualToString:[[drawAction drawBg] bgId]]) {
-            self.contents = (id)[[[drawAction drawBg] localImage] CGImage];
-            self.drawBgId = [[drawAction drawBg] bgId];
-            PPDebug(@"change bg image action, draw bg id = %@",self.drawBgId);
-        }
-    }
-}
- */
 
 - (id)init{
     self = [super init];
@@ -451,17 +427,8 @@
     float *r = layer->rectcomponent;
     CGRect rect = CGRectMake(r[0], r[1], r[2], r[3]);
     NSString *name = [NSString stringWithUTF8String:layer->name];
-/*
-#if DEBUG
-    if (MAIN_LAYER_TAG == layer->tag) {
-        layer->tag = 10;
-    }else if(0 == layer->tag){
-        layer->tag = MAIN_LAYER_TAG;
-    }
-    
-#endif
-*/  
-    BOOL cached = (layer->tag == MAIN_LAYER_TAG);
+
+    BOOL cached = (layer->tag == MAIN_LAYER_TAG || layer->tag == DEFAULT_LAYER_TAG);
     
     DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect drawInfo:nil tag:layer->tag name:name suportCache:cached];
     l.opacity = layer->alpha;
