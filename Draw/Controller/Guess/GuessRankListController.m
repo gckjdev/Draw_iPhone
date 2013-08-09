@@ -30,6 +30,7 @@
 @interface GuessRankListController ()
 
 @property (retain, nonatomic) NSArray *contests;
+@property (copy, nonatomic) NSString *currentSelect;
 
 @end
 
@@ -42,6 +43,7 @@
     [_contestButton release];
     [_titleView release];
     [_contests release];
+    [_currentSelect release];
     [super dealloc];
 }
 
@@ -55,12 +57,13 @@
 
     [self initTabButtons];
     
-    
-    [self clickTab:TabTypeGeniusHot];
     [[GuessService defaultService] getRecentGuessContestList];
     [[GuessService defaultService] setDelegate:self];
     
-    [_geniusButton setTitle:GENIUS_WEEK forState:UIControlStateNormal];
+    [_geniusButton setBackgroundColor:COLOR_ORANGE];
+    [_contestButton setBackgroundColor:COLOR_ORANGE];
+    
+    self.currentSelect = WEEK;
     [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
 }
 
@@ -71,75 +74,102 @@
     [super viewDidUnload];
 }
 
-- (IBAction)clickGeniusButton:(UIButton *)sender {
+- (void)setCurrentSelect:(NSString *)currentSelect{
+    [_currentSelect release];
+    _currentSelect = nil;
+    _currentSelect = [currentSelect copy];
     
-    // TODO: set pull down list to select
-        
-    NSArray *menuItems =
-    @[
-
-        [KxMenuItem menuItem:WEEK
-                       image:nil
-                      target:self
-                      action:@selector(pushMenuItem:)],
-
-        [KxMenuItem menuItem:YEAR
-                       image:nil
-                      target:self
-                      action:@selector(pushMenuItem:)]
-    ];
-
-    [KxMenu showMenuInView:self.view
-    fromRect:sender.frame
-    menuItems:menuItems];
-
+    if ([_currentSelect isEqualToString:WEEK]) {
+        [_geniusButton setTitle:GENIUS_WEEK forState:UIControlStateNormal];
+        [self clickTab:TabTypeGeniusHot];
+    }else if ([_currentSelect isEqualToString:YEAR]) {
+        [_geniusButton setTitle:GENIUS_YEAR forState:UIControlStateNormal];
+        [self clickTab:TabTypeGeniusAllTime];
+    }else if ([_currentSelect isEqualToString:TODAY]) {
+        [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
+        [self clickTab:TabTypeContestToday];
+    }else if ([_currentSelect isEqualToString:YESTERDAY]) {
+        [_contestButton setTitle:CONTEST_YESTODAY forState:UIControlStateNormal];
+        [self clickTab:TabTypeContestYestoday];
+    }else if ([_currentSelect isEqualToString:BEFOREYESTERDAY]) {
+        [_contestButton setTitle:CONTEST_BEFOREYESTODAY forState:UIControlStateNormal];
+        [self clickTab:TabTypeContestBeforeYestoday];
+    }
 }
 
-- (IBAction)clickContestButton:(UIButton *)sender {
+- (IBAction)clickGeniusSelectButton:(UIButton *)sender {
     
     // TODO: set pull down list to select
     
     NSArray *menuItems =
     @[
-        [KxMenuItem menuItem:TODAY
-                       image:nil
-                      target:self
-                      action:@selector(pushMenuItem:)],
-
-        [KxMenuItem menuItem:YESTERDAY
-                       image:nil
-                      target:self
-                      action:@selector(pushMenuItem:)],
-
-        [KxMenuItem menuItem:BEFOREYESTERDAY
-                       image:nil
-                      target:self
-                      action:@selector(pushMenuItem:)]
-    ];
-
+      
+      [KxMenuItem menuItem:WEEK
+                     image:nil
+                    target:self
+                    action:@selector(pushMenuItem:)],
+      
+      [KxMenuItem menuItem:YEAR
+                     image:nil
+                    target:self
+                    action:@selector(pushMenuItem:)]
+      ];
+    
     [KxMenu showMenuInView:self.view
                   fromRect:sender.frame
                  menuItems:menuItems];
 }
+
+- (IBAction)clickGeniusButton:(UIButton *)sender {
+
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:GENIUS_WEEK]) {
+        self.currentSelect = WEEK;
+    }else{
+        self.currentSelect = YEAR;
+    }
+}
+
+- (IBAction)clickContestSelectButton:(UIButton *)sender {
+    
+    // TODO: set pull down list to select
+    
+    NSArray *menuItems =
+    @[
+      [KxMenuItem menuItem:TODAY
+                     image:nil
+                    target:self
+                    action:@selector(pushMenuItem:)],
       
+      [KxMenuItem menuItem:YESTERDAY
+                     image:nil
+                    target:self
+                    action:@selector(pushMenuItem:)],
+      
+      [KxMenuItem menuItem:BEFOREYESTERDAY
+                     image:nil
+                    target:self
+                    action:@selector(pushMenuItem:)]
+      ];
+    
+    [KxMenu showMenuInView:self.view
+                  fromRect:sender.frame
+                 menuItems:menuItems];
+}
+
+- (IBAction)clickContestButton:(id)sender {
+    
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:CONTEST_TODAY]) {
+        self.currentSelect = TODAY;
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CONTEST_YESTODAY]){
+        self.currentSelect = YESTERDAY;
+    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CONTEST_BEFOREYESTODAY]){
+        self.currentSelect = BEFOREYESTERDAY;
+    }
+}
+
 - (void) pushMenuItem:(KxMenuItem *)item
 {
-    if ([item.title isEqualToString:WEEK]) {
-        [_geniusButton setTitle:GENIUS_WEEK forState:UIControlStateNormal];
-        [self clickTab:TabTypeGeniusHot];
-    }else if ([item.title isEqualToString:YEAR]) {
-        [_geniusButton setTitle:GENIUS_YEAR forState:UIControlStateNormal];
-        [self clickTab:TabTypeGeniusAllTime];
-    }else if ([item.title isEqualToString:TODAY]) {
-        [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
-        [self clickTab:TabTypeContestToday];
-    }else if ([item.title isEqualToString:YESTERDAY]) {
-        [_contestButton setTitle:CONTEST_YESTODAY forState:UIControlStateNormal];
-        [self clickTab:TabTypeContestYestoday];
-    }else if ([item.title isEqualToString:BEFOREYESTERDAY]) {
-        [_contestButton setTitle:CONTEST_BEFOREYESTODAY forState:UIControlStateNormal];
-        [self clickTab:TabTypeContestBeforeYestoday];
-    }
+    self.currentSelect = item.title;
 }
 
 - (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode{

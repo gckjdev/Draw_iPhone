@@ -119,7 +119,9 @@ NSString* GlobalGetTrafficServerURL()
 #endif
 #ifdef DEBUG
 //    return @"http://localhost:8100/api/i?";
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
+
+    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -279,7 +281,7 @@ NSString* GlobalGetBoardServerURL()
     [GameApp HandleWithDidFinishLaunching];
     
     if ([GameApp supportWeixin] == YES){
-        PPDebug(@"Init Weixin SDK");
+        PPDebug(@"Init Weixin SDK, AppId(%@)", [GameApp weixinId]);
         [WXApi registerApp:[GameApp weixinId]]; //@"wx427a2f57bc4456d1"];
     }
     

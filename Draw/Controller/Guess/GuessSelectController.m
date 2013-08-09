@@ -138,8 +138,11 @@
     int leftLen = [self.currentTab.dataList count] - location;
     int length = MIN(LIMIT, leftLen);
     NSArray *arr = [self.currentTab.dataList subarrayWithRange:NSMakeRange(location, length)];
-    [cell setCellInfo:arr cellRow:indexPath.row curGuessIndex:[self guessIndex]];
-    
+    [cell setCellInfo:arr];
+    [cell setIndexPath:indexPath];
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        [cell setCurrentGuessIndex:[self guessIndex]];
+    }
     return cell;
 }
 
@@ -178,8 +181,7 @@
     CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint") info:NSLS(@"kRestartGuessWarnning") hasCloseButton:NO buttonTitles:titles];
     [infoView setActionBlock:^(UIButton *button, UIView *view){
         if ([button titleForState:UIControlStateNormal] == NSLS(@"kOK")) {
-            [self loadData:0 limit:LIMIT startNew:YES];
-            [self.currentTab.dataList removeAllObjects];
+            [self restart];
         }
         [infoView dismiss];
     }];
@@ -187,22 +189,13 @@
     [infoView showInView:self.view];
 }
 
-- (IBAction)clickShareButton:(id)sender {
-    
+- (void)restart{
+    [self loadData:0 limit:LIMIT startNew:YES];
+    [self.currentTab.dataList removeAllObjects];
 }
 
-- (int)guessIndex{
+- (IBAction)clickShareButton:(id)sender {
     
-    int index = 0;
-    for (; index < [self.currentTab.dataList count]; index ++) {
-        PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
-        if (pbOpus.guessInfo.isCorrect) {
-            continue;
-        }else{
-            break;
-        }
-    }
-    return index;
 }
 
 - (void)didClickOpusWithIndex:(int)index{
@@ -213,20 +206,36 @@
     }
     
     PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
-
-    if (index < [self guessIndex]) {
-        DrawFeed *feed = [pbOpus toDrawFeed];
-        UseItemScene *scene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed];
-        ShowFeedController *vc = [[[ShowFeedController alloc] initWithFeed:feed scene:scene] autorelease];
-        [self.navigationController pushViewController:vc animated:YES];
-    }else if (index == [self guessIndex]) {
-        Opus *opus = [Opus opusWithPBOpus:pbOpus];
-        DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus mode:_mode contestId:_contestId] autorelease];
-        vc.delegate = self;
-        [self.navigationController pushViewController:vc animated:YES];
+    
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        if (pbOpus.guessInfo.isCorrect == YES) {
+            [self gotoOpusDetailController:pbOpus];
+        }else if (pbOpus.guessInfo.isCorrect == NO && index == [self guessIndex]) {
+            [self gotoOpusGuessController:pbOpus];
+        }else{
+            [self popupHappyMessage:NSLS(@"kGuessPreviousOpusFirst") title:nil];
+        }
     }else{
-        [self popupHappyMessage:NSLS(@"kGuessPreviousOpusFirst") title:nil];
+        if (pbOpus.guessInfo.isCorrect == YES) {
+            [self gotoOpusDetailController:pbOpus];
+        }else {
+            [self gotoOpusGuessController:pbOpus];
+        }
     }
+}
+
+- (void)gotoOpusGuessController:(PBOpus *)pbOpus{
+    Opus *opus = [Opus opusWithPBOpus:pbOpus];
+    DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus mode:_mode contestId:_contestId] autorelease];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)gotoOpusDetailController:(PBOpus *)pbOpus{
+    DrawFeed *feed = [pbOpus toDrawFeed];
+    UseItemScene *scene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed];
+    ShowFeedController *vc = [[[ShowFeedController alloc] initWithFeed:feed scene:scene] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didGuessCorrect{
@@ -255,7 +264,7 @@
             [self clickRestartButton:nil];
             [infoView dismiss];
         }else{
-            [self clickRestartButton:nil];
+            [self restart];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
@@ -263,13 +272,37 @@
     [infoView showInView:self.view];
 }
 
+- (int)guessIndex{
+    
+    int index = 0;
+    for (; index < [self.currentTab.dataList count]; index ++) {
+        PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
+        if (pbOpus.guessInfo.isCorrect) {
+            continue;
+        }else{
+            break;
+        }
+    }
+    return index;
+}
+
 - (int)passCount{
-    return [self guessIndex] + 1;
+    
+    int count = 0;
+    for (int index = 0; index < [self.currentTab.dataList count]; index++) {
+        PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
+        if (pbOpus.guessInfo.isCorrect) {
+            count++;
+        }
+    }
+    return count;
 }
 
 - (void)award{
     
-    int count = [self passCount];
+    [self refreshData];
+    
+    int count = [self passCount] + 1;
     
     if (_mode == PBUserGuessModeGuessModeHappy) {
         
@@ -297,8 +330,6 @@
 //            [self showTipOnContestMode];
         }
     }
-    
-    [self update];
 }
 
 - (void)awardInHappyMode:(int)passCount award:(int)award{
@@ -386,7 +417,7 @@
     [infoView showInView:self.view];
 }
 
-- (void)update{
+- (void)refreshData{
     
     int count = [self.currentTab.dataList count];
     [self loadData:0 limit:count startNew:NO];
@@ -396,7 +427,5 @@
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
     return NSLS(@"kNoData");
 }
-
-
 
 @end
