@@ -224,9 +224,6 @@
         self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
         
-//        cdManager = [[CacheDrawManager managerWithRect:self.bounds] retain];
-//        cdManager.drawActionList = self.drawActionList;
-//        cdManager.useCachedImage = NO;        
     }
     return self;
 }
@@ -350,7 +347,6 @@
         [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex pointIndex:_playingPointIndex];
     }    
     if(_playingActionIndex >= [self.drawActionList count]-1){
-//        cdManager.currentClip = nil;
         [self setNeedsDisplay];
         if(self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
             [self.delegate didPlayDrawView:self];
@@ -489,7 +485,6 @@
         self.speed = PlaySpeedTypeSuper;
     }
     PPDebug(@"<setDrawActionList>auto set speed: %d,actionCount = %d",self.speed, count);
-//    [cdManager setDrawActionList:drawActionList];
 }
 
 - (void)changeRect:(CGRect)rect
@@ -498,10 +493,6 @@
     self.bounds = rect;
     self.frame = rect;
 
-//    PPRelease(cdManager);
-//    cdManager = [[CacheDrawManager managerWithRect:rect] retain];
-//    cdManager.drawActionList = self.drawActionList;
-//    cdManager.useCachedImage = NO;
     [(DrawHolderView *)self.superview updateContentScale];
     [self setNeedsDisplay];
 }

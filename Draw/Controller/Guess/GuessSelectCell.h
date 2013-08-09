@@ -18,8 +18,6 @@
 @interface GuessSelectCell : PPTableViewCell
 @property (retain, nonatomic) IBOutlet UIButton *awardButton;
 
-- (void)setCellInfo:(NSArray *)opuses
-            cellRow:(int)cellRow
-      curGuessIndex:(int)curGuessIndex;
-
+- (void)setCellInfo:(NSArray *)opuses;
+- (void)setCurrentGuessIndex:(int)index;
 @end

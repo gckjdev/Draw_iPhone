@@ -13,10 +13,7 @@
 #define OPUS_BUTTON_OFFSET 100
 #define MAX_COUNT_OPUS 20
 
-@interface GuessSelectCell(){
-    int _cellRowIndex;
-    int _curGuessIndex;
-}
+@interface GuessSelectCell()
 @property (retain, nonatomic) NSArray *opuses;
 
 @end
@@ -39,13 +36,9 @@
     return 408;
 }
 
-- (void)setCellInfo:(NSArray *)opuses
-            cellRow:(int)cellRow
-      curGuessIndex:(int)curGuessIndex{
+- (void)setCellInfo:(NSArray *)opuses{
     
     self.opuses = opuses;
-    _cellRowIndex = cellRow;
-    _curGuessIndex = curGuessIndex;
     [self reloadView];
 }
 
@@ -53,7 +46,7 @@
     
     if ([delegate respondsToSelector:@selector(didClickOpusWithIndex:)]) {
         
-        int index = _cellRowIndex * MAX_COUNT_OPUS + button.tag - OPUS_BUTTON_OFFSET;
+        int index = self.indexPath.row * MAX_COUNT_OPUS + button.tag - OPUS_BUTTON_OFFSET;
         [delegate didClickOpusWithIndex:index];
     }
 }
@@ -65,8 +58,6 @@
 
 - (void)reloadView{
     
-    
-    
     int index = 0;
     for (; index < [_opuses count]; index ++ ) {
         PBOpus *pbOpus = [_opuses objectAtIndex:index];
@@ -76,25 +67,33 @@
             NSString *name = [NSString stringWithFormat:@"round_dot_%d@2x.png", index + 1];
             [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:name] forState:UIControlStateNormal];
         }
-        [[self opusButtonWithIndex:index].layer removeAllAnimations];
-
     }
     
     for (; index < 20; index ++) {
         [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"round_dot_no@2x.png"] forState:UIControlStateNormal];
         [[self opusButtonWithIndex:index].layer removeAllAnimations];
     }
-    
-    
-    index = _curGuessIndex - (_cellRowIndex * MAX_COUNT_OPUS);
-    if (index >= 0 && index < [_opuses count]) {
-        CAAnimation *ani = [AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:1 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:1 repeatCount:FLT_MAX];
-        [[self opusButtonWithIndex:index].layer addAnimation:ani forKey:nil];
+}
+
+- (void)setCurrentGuessIndex:(int)index{
+    int tag = index - indexPath.row * MAX_COUNT_OPUS + OPUS_BUTTON_OFFSET;
+    if (tag < OPUS_BUTTON_OFFSET && tag > OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS) {
+        return;
     }
+    
+    for (int index = OPUS_BUTTON_OFFSET; index < OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS; index ++) {
+        UIButton *button = [self viewWithTag:tag];
+        [button.layer removeAllAnimations];
+    }
+    
+    UIButton *button = [self viewWithTag:tag];
+    [button.layer addAnimation:[AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:0.5 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:0.5 repeatCount:MAXFLOAT] forKey:nil];
+
 }
 
 - (IBAction)clickAwardButton:(id)sender {
     
 
 }
+
 @end
