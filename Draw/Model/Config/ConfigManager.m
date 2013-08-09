@@ -54,6 +54,11 @@
     return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:YES];
 }
 
++ (BOOL)useSpeedLevel
+{
+    return [MobClickUtils getBoolValueByKey:@"USE_SPEED_LEVEL" defaultValue:YES];
+}
+
 + (BOOL)isProVersion
 {
     return [GameApp disableAd];

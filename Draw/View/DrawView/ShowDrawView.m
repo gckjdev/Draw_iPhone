@@ -305,9 +305,16 @@
     pen.hidden = showPenHidden;
 }
 
+//#define STEP 3
 - (void)updateNextPlayIndex
 {
-    if ( ++_playingPointIndex >= [_currentAction pointCount]) {
+
+    if (_playingPointIndex+self.speed >= [_currentAction pointCount] && _playingPointIndex < [_currentAction pointCount]-1) {
+        _playingPointIndex = [_currentAction pointCount] - 1;
+    }else{
+        _playingPointIndex += self.speed;
+    }
+    if (_playingPointIndex >= [_currentAction pointCount]) {
         _playingPointIndex = 0;
 
         //next action
@@ -480,22 +487,26 @@
     [super setNeedsDisplayInRect:rect];
 }
 
-#define LEVEL_TIMES 50
+#define LEVEL_TIMES 2000
 
 - (void)setDrawActionList:(NSMutableArray *)drawActionList
 {
     [super setDrawActionList:drawActionList];
-    NSInteger count = [self.drawActionList count];
-    if (count < PlaySpeedTypeNormal * LEVEL_TIMES) {
-        self.speed = PlaySpeedTypeLow;
-    }else if(count < PlaySpeedTypeHigh * LEVEL_TIMES){
-        self.speed = PlaySpeedTypeNormal;
-    }else if(count < PlaySpeedTypeSuper* LEVEL_TIMES){
-        self.speed = PlaySpeedTypeHigh;
-    }else{
-        self.speed = PlaySpeedTypeSuper;
-    }
-    PPDebug(@"<setDrawActionList>auto set speed: %d,actionCount = %d",self.speed, count);
+    self.speed = PlaySpeedTypeNormal;
+    
+    if ([ConfigManager useSpeedLevel]) {
+        NSInteger count = [self.drawActionList count];
+        if (count < PlaySpeedTypeNormal * LEVEL_TIMES) {
+            self.speed = PlaySpeedTypeLow;
+        }else if(count < PlaySpeedTypeHigh * LEVEL_TIMES){
+            self.speed = PlaySpeedTypeNormal;
+        }else if(count < PlaySpeedTypeSuper* LEVEL_TIMES){
+            self.speed = PlaySpeedTypeHigh;
+        }else{
+            self.speed = PlaySpeedTypeSuper;
+        }
+        PPDebug(@"<setDrawActionList>auto set speed: %d,actionCount = %d",self.speed, count);
+    }    
 }
 
 - (void)changeRect:(CGRect)rect

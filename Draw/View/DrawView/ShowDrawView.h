@@ -16,10 +16,10 @@ typedef enum{
 }DrawViewStatus;
 
 typedef enum {
-    PlaySpeedTypeLow = 0, // 1/30.0
-    PlaySpeedTypeNormal = 1, // x2
-    PlaySpeedTypeHigh = 4, //x3
-    PlaySpeedTypeSuper= 8,//x4
+    PlaySpeedTypeLow = 1, // 1/30.0
+    PlaySpeedTypeNormal = 2, // x2
+    PlaySpeedTypeHigh = 4, //x2
+    PlaySpeedTypeSuper= 6,//x6
 }PlaySpeedType;
 
 @class ShowDrawView;
