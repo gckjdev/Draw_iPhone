@@ -62,7 +62,7 @@
     for (; index < [_opuses count]; index ++ ) {
         PBOpus *pbOpus = [_opuses objectAtIndex:index];
         if (pbOpus.guessInfo.isCorrect) {
-            [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"pine_tree@2x.png"] forState:UIControlStateNormal];
+            [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"shoes@2x.png"] forState:UIControlStateNormal];
         }else{
             NSString *name = [NSString stringWithFormat:@"round_dot_%d@2x.png", index + 1];
             [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:name] forState:UIControlStateNormal];
