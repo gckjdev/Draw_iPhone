@@ -198,8 +198,6 @@
     
 }
 
-
-
 - (void)didClickOpusWithIndex:(int)index{
     
     if (index >= [self.currentTab.dataList count]) {
@@ -302,7 +300,9 @@
 
 - (void)award{
     
-    int count = [self passCount];
+    [self refreshData];
+    
+    int count = [self passCount] + 1;
     
     if (_mode == PBUserGuessModeGuessModeHappy) {
         
@@ -330,8 +330,6 @@
 //            [self showTipOnContestMode];
         }
     }
-    
-    [self update];
 }
 
 - (void)awardInHappyMode:(int)passCount award:(int)award{
@@ -419,7 +417,7 @@
     [infoView showInView:self.view];
 }
 
-- (void)update{
+- (void)refreshData{
     
     int count = [self.currentTab.dataList count];
     [self loadData:0 limit:count startNew:NO];
