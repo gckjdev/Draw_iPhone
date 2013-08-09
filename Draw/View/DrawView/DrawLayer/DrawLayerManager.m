@@ -38,13 +38,14 @@
     return self;
 }
 
+#define CUSTOM_TAG_BASE 10
 - (NSUInteger)nextTag
 {
-    NSUInteger mt = 0;
+    NSUInteger mt = CUSTOM_TAG_BASE;
     for (DrawLayer *layer in _layerList) {
-        mt = MAX(mt, layer.layerTag);
+        mt = MAX(mt, layer.layerTag + 1);
     }
-    return mt + 1;
+    return mt;
 }
 
 - (void)addLayer:(DrawLayer *)layer

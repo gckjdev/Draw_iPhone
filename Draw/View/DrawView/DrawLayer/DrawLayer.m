@@ -357,7 +357,7 @@
 
 #define BG_LAYER_TAG 1
 #define MAIN_LAYER_TAG 2
-#define DEFAULT_LAYER_TAG 0
+#define DEFAULT_LAYER_TAG 2
 
 - (BOOL)canBeRemoved
 {
@@ -451,6 +451,16 @@
     float *r = layer->rectcomponent;
     CGRect rect = CGRectMake(r[0], r[1], r[2], r[3]);
     NSString *name = [NSString stringWithUTF8String:layer->name];
+/*
+#if DEBUG
+    if (MAIN_LAYER_TAG == layer->tag) {
+        layer->tag = 10;
+    }else if(0 == layer->tag){
+        layer->tag = MAIN_LAYER_TAG;
+    }
+    
+#endif
+*/  
     BOOL cached = (layer->tag == MAIN_LAYER_TAG);
     
     DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect drawInfo:nil tag:layer->tag name:name suportCache:cached];
