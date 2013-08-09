@@ -9,7 +9,6 @@
 #import "DrawLayer.h"
 #import "CacheDrawManager.h"
 #import "DrawAction.h"
-#import "PPStack.h"
 #import "GradientAction.h"
 #import "ClipAction.h"
 #import "ConfigManager.h"
@@ -20,11 +19,10 @@
 #import "DrawUtils.h"
 #import "GameBasic.pb-c.h"
 #import "Draw.pb-c.h"
-#import "Offscreen.h"
+#import "ConfigManager.h"
 
 @interface DrawLayer()
 @property(nonatomic, retain) NSString *drawBgId;
-@property(nonatomic, retain) PPStack *bgColorStack;
 
 @end
 
@@ -38,6 +36,7 @@
     if (self) {
         self.drawInfo = [[[DrawInfo alloc] init]autorelease];
         _supportCache = NO;
+        _cachedCount = [ConfigManager minUndoActionCount];
     }
     return self;
 }
@@ -64,14 +63,13 @@
         self.drawInfo = (self.drawInfo == nil) ? [[[DrawInfo alloc] init] autorelease] : drawInfo;
         self.layerTag = tag;
         self.layerName = name;
-        self.bgColorStack = [[[PPStack alloc] init] autorelease];
         _supportCache = supporCache;
 
         self.drawActionList = [NSMutableArray array];
         if (_supportCache) {
-            self.cdManager = [CacheDrawManager managerWithRect:self.bounds];
-            [self.cdManager updateWithDrawActionList:self.drawActionList];
+            self.offscreen = [Offscreen offscreenWithCapacity:0 rect:self.bounds];
         }
+        _cachedCount = [ConfigManager minUndoActionCount];
     
     }
     return self;
@@ -82,20 +80,22 @@
     PPDebug(@"%@ dealloc", self);
     PPRelease(_drawActionList);
     PPRelease(_layerName);
-    PPRelease(_cdManager);
     PPRelease(_drawInfo);
-//    PPRelease(_drawBgId);
-    PPRelease(_bgColorStack);
+    PPRelease(_offscreen);
     [super dealloc];
 }
 
+
+
 - (void)showCleanDataInContext:(CGContextRef)ctx
 {
+    NSUInteger count = [_drawActionList count];
     if (self.supportCache) {
-        ClipAction *cc = _cdManager.currentClip;
-        _cdManager.currentClip = nil;
-        [_cdManager showInContext:ctx];
-        _cdManager.currentClip = cc;
+        [self.offscreen showInContext:ctx];
+        for(NSUInteger i = self.offscreen.actionCount; i < count; i++){
+            DrawAction *action = [_drawActionList objectAtIndex:i];
+            [action drawInContext:ctx inRect:self.bounds];
+        }
     }else{
         for (DrawAction *action in _drawActionList) {
             [action drawInContext:ctx inRect:self.bounds];
@@ -105,14 +105,8 @@
 
 - (void)drawInContext:(CGContextRef)ctx
 {
-    if (self.supportCache) {
-        [_cdManager showInContext:ctx];
-    }else{
-        for (DrawAction *action in _drawActionList) {
-            [action drawInContext:ctx inRect:self.bounds];
-        }
-        [self.clipAction showClipInContext:ctx inRect:self.bounds];
-    }
+    [self showCleanDataInContext:ctx];
+    [self.clipAction showClipInContext:ctx inRect:self.bounds];
     if (self.drawInfo.grid) {
         [DrawLayer drawGridInContext:ctx rect:self.bounds];
     }
@@ -123,10 +117,6 @@
 
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show redo:(BOOL)redo
 {
-    
-    if ([drawAction isChangeBGAction]) {
-        [self.bgColorStack push:[(ChangeBackAction *)drawAction color]];
-    }
     //special deal
     if ([drawAction isClipAction]) {
         self.clipAction = (id)drawAction;
@@ -161,9 +151,6 @@
     }else{
         rect = [drawAction redrawRectInRect:self.bounds];
     }    
-    if (_supportCache) {
-        [self.cdManager updateLastAction:drawAction];
-    }
     if (show) {
         [self setNeedsDisplayInRect:rect];
     }
@@ -181,16 +168,6 @@
 //update the last action
 - (void)updateLastAction:(DrawAction *)action refresh:(BOOL)refresh
 {
-
-//    PPDebug(@"<DrawLayer> name = %@, updateLastAction", self.layerName);
-    if (_supportCache) {
-        CGRect rect = [self.cdManager updateLastAction:action];
-        if (refresh) {
-            [self setNeedsDisplayInRect:rect];
-        }
-        return;
-    }
-    
     if (action && [self.drawActionList lastObject]) {
         if ([self.drawActionList lastObject] != action) {
             [self.drawActionList replaceObjectAtIndex:[self.drawActionList count]-1 withObject:action];
@@ -202,12 +179,20 @@
     }
 }
 
+
 //finish update the last action
 - (void)finishLastAction:(DrawAction *)action refresh:(BOOL)refresh
 {
-//    PPDebug(@"<DrawLayer> name = %@, tag = %d, finishLastAction", self.layerName, self.layerTag);
     if (_supportCache) {
-        [self.cdManager finishDrawAction:action];
+        int count = [_drawActionList count];
+        if(count - self.offscreen.actionCount >= _cachedCount * 2){
+            PPDebug(@"<finishLastAction> action count = %d, reach cached count", count);
+            int endIndex = count - _cachedCount; 
+            for(int i = _offscreen.actionCount; i < endIndex; ++ i){
+                DrawAction *drawAction = [_drawActionList objectAtIndex:i];
+                [self.offscreen drawAction:drawAction clear:NO];
+            }
+        }
     }
     if (refresh) {
         [self setNeedsDisplayInRect:[action redrawRectInRect:self.bounds]];
@@ -222,15 +207,11 @@
     }else{
         self.clipAction = lastAction.clipAction;
     }
-    self.cdManager.currentClip = self.clipAction;
 }
 
 //remove the last action force to refresh
 - (void)cancelLastAction
 {
-    if (_supportCache) {
-        [self.cdManager cancelLastAction];
-    }
     DrawAction *lastAction = [self.drawActionList lastObject];    
     if (lastAction) {
         [self.drawActionList removeLastObject];
@@ -249,8 +230,9 @@
     self.clipAction = nil;
     [self.drawActionList removeAllObjects];
     self.frame = self.superlayer.bounds;
-    self.cdManager = [CacheDrawManager managerWithRect:self.bounds];
+    self.offscreen = [Offscreen offscreenWithCapacity:0 rect:self.bounds];
 }
+
 
 
 - (void)updateWithDrawActions:(NSArray *)actionList
@@ -262,10 +244,16 @@
     }
     
     if (_supportCache) {
-        [self.cdManager reset];
-        [self.cdManager updateWithDrawActionList:actionList];
-    }else{
-        //pass
+        int count = [_drawActionList count];
+        [self.offscreen clear];
+        if(count - self.offscreen.actionCount >= _cachedCount * 2){
+            PPDebug(@"<updateWithDrawActions> action count = %d, reach cached count", count);
+            int endIndex = count - _cachedCount;
+            for(int i = _offscreen.actionCount; i < endIndex; ++ i){
+                DrawAction *drawAction = [_drawActionList objectAtIndex:i];
+                [self.offscreen drawAction:drawAction clear:NO];
+            }
+        } 
     }
     [self updateClipAction];
 }
@@ -278,7 +266,6 @@
 - (void)exitFromClipMode
 {
     self.clipAction = nil;
-    [self.cdManager finishCurrentClip];
     [self setNeedsDisplay];
 }
 
@@ -292,7 +279,7 @@
 {
     if (action && [_drawActionList lastObject] == action) {
         if (_supportCache) {
-            return [_cdManager canUndo];
+            return [_drawActionList count] - [_offscreen actionCount] > 0;
         }else{
             return YES;
         }
@@ -316,14 +303,7 @@
 - (DrawAction *)undoDrawAction:(DrawAction *)action
 {
     if ([self canUndoDrawAction:action]) {
-        if ([action isChangeBGAction]) {
-            [self.bgColorStack pop];
-        }
         [self.drawActionList removeLastObject];
-        
-        if (_supportCache) {
-            [_cdManager undo];
-        }
         [self updateClipAction];        
         [self setNeedsDisplay];
         return action;

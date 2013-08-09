@@ -208,7 +208,9 @@
 - (DrawAction *)undoDrawAction:(DrawAction *)action
 {
     DrawLayer *layer = [self layerWithTag:action.layerTag];
-    return [layer undoDrawAction:action];
+    DrawAction *retAction = [layer undoDrawAction:action];
+    
+    return retAction;
 }
 
 - (DrawAction *)redoDrawAction:(DrawAction *)action
@@ -220,10 +222,12 @@
 - (void)enterClipMode:(ClipAction *)clipAction
 {
     [self.selectedLayer enterClipMode:clipAction];
+//    [self.delegate layerManager:self didLayer:self.selectedLayer changeClipAction:clipAction];
 }
 - (void)exitFromClipMode
 {
     [self.selectedLayer exitFromClipMode];
+//    [self.delegate layerManager:self didLayer:self.selectedLayer changeClipAction:nil];
 }
 
 - (void)updateLayers:(NSArray *)layers

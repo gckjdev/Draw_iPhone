@@ -14,6 +14,7 @@
 #import "PenFactory.h"
 #import "ImageManagerProtocol.h"
 #import "SmoothQuadCurvePen.h"
+#import "ShowDrawView.h"
 
 #define DEFALT_MIN_SCALE 1
 #define DEFALT_MAX_SCALE 10

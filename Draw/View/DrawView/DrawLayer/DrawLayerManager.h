@@ -16,6 +16,9 @@
 
 @protocol DrawLayerManagerDelegate <NSObject>
 
+- (void)layerManager:(DrawLayerManager *)manager
+            didLayer:(DrawLayer *)layer
+    changeClipAction:(ClipAction *)action;
 
 - (void)layerManager:(DrawLayerManager *)manager
 didChangeSelectedLayer:(DrawLayer *)selectedLayer

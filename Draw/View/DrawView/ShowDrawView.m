@@ -238,6 +238,17 @@
     }
 }
 
+- (void)updateLayers:(NSArray *)layers
+{
+    [super updateLayers:layers];
+    for (DrawLayer *layer in layers) {
+        if ([layer supportCache]) {
+            layer.cachedCount = 0;
+        }
+    }
+
+}
+
 + (ShowDrawView *)showView
 {
     return [[[ShowDrawView alloc] initWithFrame:[CanvasRect defaultRect]] autorelease];
