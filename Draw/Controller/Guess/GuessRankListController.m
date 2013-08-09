@@ -38,7 +38,6 @@
 
 - (void)dealloc{
     
-    [[GuessService defaultService] setDelegate:nil];
     [_geniusButton release];
     [_contestButton release];
     [_titleView release];
@@ -57,8 +56,7 @@
 
     [self initTabButtons];
     
-    [[GuessService defaultService] getRecentGuessContestList];
-    [[GuessService defaultService] setDelegate:self];
+    [[GuessService defaultService] getRecentGuessContestListWithDelegate:self];
     
     [_geniusButton setBackgroundColor:COLOR_ORANGE];
     [_contestButton setBackgroundColor:COLOR_ORANGE];
@@ -242,31 +240,26 @@ typedef enum{
     
     switch (tabID) {
         case TabTypeGeniusHot:
-            [[GuessService defaultService] getGuessRankListWithType:HOT_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit];
-            [[GuessService defaultService] setDelegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:HOT_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
             break;
             
         case TabTypeGeniusAllTime:
-            [[GuessService defaultService] getGuessRankListWithType:ALL_TIME_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit];
-            [[GuessService defaultService] setDelegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:ALL_TIME_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
             break;
             
         case TabTypeContestToday:
             contestId = [[_contests objectAtIndex:0] contestId];
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit];
-            [[GuessService defaultService] setDelegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
             break;
             
         case TabTypeContestYestoday:
             contestId = [[_contests objectAtIndex:1] contestId];
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit];
-            [[GuessService defaultService] setDelegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
             break;
             
         case TabTypeContestBeforeYestoday:
             contestId = [[_contests objectAtIndex:2] contestId];
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit];
-            [[GuessService defaultService] setDelegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
             break;
             
         default:

@@ -26,16 +26,16 @@
 
 @interface GuessService : CommonService
 
-@property (assign, nonatomic) id<GuessServiceDelegate> delegate;
+//@property (assign, nonatomic) id<GuessServiceDelegate> delegate;
 
 + (GuessService *)defaultService;
-+ (NSString *)contestId:(NSDate *)date;
 
 - (void)getOpusesWithMode:(PBUserGuessMode)mode
                 contestId:(NSString *)contestId
                    offset:(int)offset
                     limit:(int)limit
-               isStartNew:(BOOL)isStartNew;
+               isStartNew:(BOOL)isStartNew
+                 delegate:(id<GuessServiceDelegate>)delegate;
 
 - (void)guessOpus:(PBOpus *)opus
              mode:(PBUserGuessMode)mode
@@ -43,25 +43,30 @@
             words:(NSArray *)words
           correct:(BOOL)correct
         startDate:(NSDate *)startDate
-          endDate:(NSDate *)endDate;
+          endDate:(NSDate *)endDate
+         delegate:(id<GuessServiceDelegate>)delegate;
 
 
 - (void)getGuessRankWithType:(int)type
                         mode:(PBUserGuessMode)mode
-                   contestId:(NSString *)contestId;
+                   contestId:(NSString *)contestId
+                    delegate:(id<GuessServiceDelegate>)delegate;
+
 
 - (void)getGuessRankListWithType:(int)type
                             mode:(PBUserGuessMode)mode
                        contestId:(NSString *)contestId
                           offset:(int)offset
-                           limit:(int)limit;
+                           limit:(int)limit
+                        delegate:(id<GuessServiceDelegate>)delegate;
 
 
 
 // Get today contest list
-- (void)getGuessContestList;
+- (void)getGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate;
+
 
 // Get recent contest list
-- (void)getRecentGuessContestList;
+- (void)getRecentGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate;
 
 @end

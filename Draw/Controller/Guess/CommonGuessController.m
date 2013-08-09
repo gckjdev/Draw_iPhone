@@ -26,7 +26,6 @@
 #import "OpusGuessRecorder.h"
 #import "CommonBgView.h"
 #import "UIButtonExt.h"
-#import "GuessService.h"
 #import "HPThemeManager.h"
 #import "CustomInfoView.h"
 #import "TimeUtils.h"
@@ -37,7 +36,7 @@
 
 @property (retain, nonatomic) PickToolView *pickToolView;
 @property (retain, nonatomic) NSDate *startDate;
-@property (copy, nonatomic) NSString *contestId;
+@property (retain, nonatomic) PBGuessContest *contest;
 
 @end
 
@@ -45,7 +44,6 @@
 
 - (void)dealloc {
     
-    [[GuessService defaultService] setDelegate:nil];
     [_startDate release];
     [_guessWords release];
     [_wordInputView release];
@@ -54,17 +52,17 @@
     [_opusButton release];
     [_bgImageView release];
     [_toolBoxButton release];
-    [_contestId release];
+    [_contest release];
     [super dealloc];
 }
 
-- (id)initWithOpus:(Opus *)opus mode:(PBUserGuessMode)mode contestId:(NSString *)contestId{
+- (id)initWithOpus:(Opus *)opus mode:(PBUserGuessMode)mode contest:(PBGuessContest *)contest{
 
     if (self = [super init]) {
         
         self.opus = opus;
         _mode = mode;
-        self.contestId = contestId;
+        self.contest = contest;
         self.startDate = [NSDate date];
     }
     
@@ -82,11 +80,13 @@
     // Init item box
     [self initItemBox];
     
-    if (_mode != PBUserGuessModeGuessModeHappy){
+    if (_mode == PBUserGuessModeGuessModeContest){
         [_toolBoxButton removeFromSuperview];
     }
     
     // Set opus image
+    self.opusButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.opusButton.backgroundColor = [UIColor clearColor];
     NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
     NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
     [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
@@ -129,13 +129,15 @@
 
 - (void)submitWords:(BOOL)correct{
     
+
     [[GuessService defaultService] guessOpus:self.opus.pbOpus
                                         mode:_mode
-                                   contestId:_contestId
+                                   contestId:_contest.contestId
                                        words:self.guessWords
                                      correct:correct
                                    startDate:_startDate
-                                     endDate:[NSDate date]];
+                                     endDate:[NSDate date]
+                                    delegate:self];
     
     [_guessWords removeAllObjects];
 }
@@ -166,6 +168,12 @@
 - (void)wordInputView:(WordInputView *)wordInputView
            didGetWord:(NSString *)word
             isCorrect:(BOOL)isCorrect{
+    
+    int time = [[NSDate date] timeIntervalSince1970];
+    if (_mode == PBUserGuessModeGuessModeContest && time > _contest.endTime) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsOver") delayTime:1.5 isHappy:NO];
+        return;
+    }
 
     [_guessWords addObject:word];
     
@@ -188,71 +196,11 @@
     }
 
     [self.navigationController popViewControllerAnimated:YES];
-    
-//    if (_mode == PBUserGuessModeGuessModeGenius) {
-//        [self guessCorrectInGeniusMode];
-//    }else if (_mode == PBUserGuessModeGuessModeHappy){
-//        [self guessCorrectInHappyMode];
-//    }else if (_mode == PBUserGuessModeGuessModeContest){
-//        [self guessCorrectInContestMode];
-//    }
 }
-
-//- (void)guessCorrectInHappyMode{
-//    
-//    if ([_delegate respondsToSelector:@selector(didGuessCorrect)]) {
-//        [_delegate didGuessCorrect];
-//    }
-//    
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
-
-//- (void)guessCorrectInGeniusMode{
-//    
-//    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kQuitGameAlertTitle"), NSLS(@"k继续"), nil];
-//    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"k恭喜你猜对了")
-//                                                          info:NSLS(@"k恭喜你猜对了，是否继续往下猜?")
-//                                                hasCloseButton:NO
-//                                                  buttonTitles:titles];
-//    
-//    [infoView setActionBlock:^(UIButton *button, UIView *infoView){
-//        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"k继续")]) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }else{
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-//        }
-//        
-//        if ([_delegate respondsToSelector:@selector(didGuessCorrect)]) {
-//            [_delegate didGuessCorrect];
-//        }
-//    }];
-//    
-//    [infoView showInView:self.view];
-//}
-
-//- (void)guessCorrectInContestMode{
-//    
-//    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
-//    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"k恭喜你猜对了")
-//                                                          info:NSLS(@"k该作品耗时20秒，继续加油！")
-//                                                hasCloseButton:NO
-//                                                  buttonTitles:titles];
-//    
-//    [infoView setActionBlock:^(UIButton *button, UIView *infoView){
-//        [self.navigationController popViewControllerAnimated:YES];
-//        
-//        if ([_delegate respondsToSelector:@selector(didGuessCorrect)]) {
-//            [_delegate didGuessCorrect];
-//        }
-//    }];
-//    
-//    [infoView showInView:self.view];
-//}
 
 - (void)didGuessWrong:(NSString *)word{
     
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
-
 
     if (_mode == PBUserGuessModeGuessModeGenius) {
         
@@ -260,43 +208,8 @@
             [_delegate didGuessWrong];
         }
         [self.navigationController popViewControllerAnimated:YES];
-        
     }
 }
-
-//- (void)guessWrongInHappyMode{
-//    
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
-//}
-//
-//- (void)guessWrongInGenuisMode{
-//    
-//    // 猜错的话，清空服务器猜的列表，重新开始。
-//    [[GuessService defaultService] getOpusesWithMode:PBUserGuessModeGuessModeGenius contestId:nil offset:0 limit:20 isStartNew:YES];
-//        
-//    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kQuit"),
-//                       NSLS(@"kRestart"), nil];
-//    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kGuessWrong")
-//                                                          info:NSLS(@"kGuessGenuisFail")
-//                                                hasCloseButton:NO
-//                                                  buttonTitles:titles];
-//    
-//    [infoView setActionBlock:^(UIButton *button, UIView *infoView){
-//        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kRestart")]) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }else{
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-//        }
-//    }];
-//    
-//    [infoView showInView:self.view];
-//}
-//
-//
-//- (void)guessWrongInContestMode{
-//    
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
-//}
 
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView{
     

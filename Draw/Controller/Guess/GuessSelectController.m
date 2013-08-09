@@ -24,9 +24,10 @@
 
 @interface GuessSelectController (){
     PBUserGuessMode _mode;
+    BOOL _isRefreshData;
 }
 @property (retain, nonatomic) NSArray *opuses;
-@property (copy, nonatomic) NSString *contestId;
+@property (retain, nonatomic) PBGuessContest *contest;
 
 @end
 
@@ -34,19 +35,18 @@
 
 
 - (void)dealloc{
-    [[GuessService defaultService] setDelegate:nil];
     [_opuses release];
     [_titleView release];
-    [_contestId release];
+    [_contest release];
     [super dealloc];
 }
 
 
-- (id)initWithMode:(PBUserGuessMode)mode contestId:(NSString *)contestId{
+- (id)initWithMode:(PBUserGuessMode)mode contest:(PBGuessContest *)contest{
     
     if (self  = [super init]) {
         _mode = mode;
-        self.contestId = contestId;
+        self.contest = contest;
     }
     
     return self;
@@ -148,20 +148,24 @@
 
 
 - (void)loadData:(int)offset limit:(int)limit startNew:(BOOL)startNew{
-        
+    
     [[GuessService defaultService] getOpusesWithMode:_mode
-                                           contestId:nil
+                                           contestId:_contest.contestId
                                               offset:offset
                                                limit:limit
-                                          isStartNew:startNew];
+                                          isStartNew:startNew
+                                            delegate:self];
     
-    [[GuessService defaultService] setDelegate:self];
 }
 
 - (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode{
     
     PPDebug(@"count = %d", [opuses count]);
     if (resultCode == 0) {
+        if (_isRefreshData) {
+            _isRefreshData = NO;
+            [self.currentTab.dataList removeAllObjects];
+        }
         [self finishLoadDataForTabID:TABID resultList:opuses];
     }else{
         [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
@@ -226,7 +230,7 @@
 
 - (void)gotoOpusGuessController:(PBOpus *)pbOpus{
     Opus *opus = [Opus opusWithPBOpus:pbOpus];
-    DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus mode:_mode contestId:_contestId] autorelease];
+    DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus mode:_mode contest:_contest] autorelease];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -421,7 +425,7 @@
     
     int count = [self.currentTab.dataList count];
     [self loadData:0 limit:count startNew:NO];
-    [self.currentTab.dataList removeAllObjects];
+    _isRefreshData = YES;
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index{

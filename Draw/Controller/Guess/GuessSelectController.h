@@ -15,7 +15,7 @@
 
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
-- (id)initWithMode:(PBUserGuessMode)mode contestId:(NSString *)contestId;
+- (id)initWithMode:(PBUserGuessMode)mode contest:(PBGuessContest *)contest;
 
 @end
 
