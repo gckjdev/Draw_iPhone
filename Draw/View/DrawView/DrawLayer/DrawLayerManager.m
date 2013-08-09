@@ -272,11 +272,31 @@
     [bg drawAtPoint:CGPointZero];
     
     [_layerList reversEnumWithHandler:^(id object) {
-        [object showCleanDataInContext:ctx];
+        DrawLayer *layer= object;
+        CGContextSaveGState(ctx);
+
+        ClipAction *clip = [layer clipAction];
+        BOOL grid = [[layer drawInfo] grid];
+        if (clip != nil || !grid) {
+            layer.clipAction = nil;
+            layer.drawInfo.grid = NO;
+            [layer setNeedsDisplay];
+            
+            [layer renderInContext:ctx];
+            
+            [layer setClipAction:clip];
+            
+            [layer.drawInfo setGrid:grid];
+            [layer setNeedsDisplay];
+        }else{
+            [layer renderInContext:ctx];
+        }
+        CGContextRestoreGState(ctx);
     }];
     
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+
     return image;
 }
 

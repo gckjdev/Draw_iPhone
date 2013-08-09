@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DrawLayerManager.h"
 #import "JTTableViewGestureRecognizer.h"
+#import "DrawSlider.h"
 
 @class DrawLayerPanelCell;
 
@@ -41,7 +42,7 @@
 
 
 
-@interface DrawLayerPanel : UIView<UITableViewDataSource, UITableViewDelegate, DrawLayerPanelCellDelegate, JTTableViewGestureMoveRowDelegate>
+@interface DrawLayerPanel : UIView<UITableViewDataSource, UITableViewDelegate, DrawLayerPanelCellDelegate, JTTableViewGestureMoveRowDelegate, DrawSliderDelegate>
 
 
 + (id)drawLayerPanelWithDrawLayerManager:(DrawLayerManager *)dlManager;
@@ -50,6 +51,8 @@
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIButton *help;
 @property (retain, nonatomic) IBOutlet UIButton *add;
+@property (retain, nonatomic) IBOutlet UILabel *alphaLabel;
+@property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
 @property (retain, nonatomic) DrawLayer *grabbedObject;
 @property (retain, nonatomic) JTTableViewGestureRecognizer *recognizer;
 

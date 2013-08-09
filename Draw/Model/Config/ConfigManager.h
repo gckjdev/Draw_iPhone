@@ -158,6 +158,7 @@ typedef enum{
 
 + (WallType)wallType;
 + (BOOL)isEnableAd;
++ (BOOL)useSpeedLevel;
 
 + (int)getPostponeTime;
 + (int)getUrgeTime;
