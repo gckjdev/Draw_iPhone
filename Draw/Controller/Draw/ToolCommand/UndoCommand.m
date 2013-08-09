@@ -7,13 +7,16 @@
 //
 
 #import "UndoCommand.h"
+#import "PPTableViewController.h"
 
 @implementation UndoCommand
 
 - (BOOL)execute
 {
     [self sendAnalyticsReport];
-    [self.drawView undo];
+    if (![self.drawView undo]) {
+        [(PPTableViewController *)[self.control theViewController] popupHappyMessage:NSLS("kCannotRevoke") title:nil];
+    }
     [self updateToolPanel];
     return YES;
 }
