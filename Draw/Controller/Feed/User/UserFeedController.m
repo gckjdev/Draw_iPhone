@@ -105,6 +105,7 @@ typedef enum{
     [super viewDidLoad];
     
     [self initTabButtons];
+    [self setSwipeToBack:YES];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@",_nickName]];
 
     if ([ConfigManager showOpusCount]) {

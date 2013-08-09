@@ -170,7 +170,6 @@
 //    [self.targetTextField setPlaceholder:NSLS(@"kNicknameHolder")];
 //}
 
-
 - (IBAction)clickCancelButton:(id)sender {
     [self disappear];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickCancel:)]) {
@@ -207,6 +206,7 @@
     }
     view.delegate = delegate;
     view.tag = 0;
+    view.allowEmpty = YES;
     return view;
 
 }
@@ -228,9 +228,11 @@
         default:
             PPDebug(@"<CommonDialog> theme %d do not exist",theme);
             view = nil;
-    }   
+    }
+    view.allowEmpty = YES;
     return view;
 }
+
 
 + (InputDialog *)dialogWith:(NSString *)title 
                    delegate:(id<InputDialogDelegate>)delegate 
@@ -246,6 +248,8 @@
 
 }
 
+
+
 - (void)setClickOkBlock:(InputDialogSelectionBlock)block
 {
     [_clickOkBlock release];
@@ -258,6 +262,8 @@
 }
 
 + (InputDialog *)dialogWith:(NSString *)title
+                defaultText:(NSString *)defaultText
+            placeHolderText:(NSString *)placeHolderText
                     clickOK:(InputDialogSelectionBlock)clickOk
                 clickCancel:(InputDialogSelectionBlock)clickCancel
 {
@@ -267,8 +273,21 @@
         view.delegate = nil;
         [view setClickOkBlock:clickOk];
         [view setClickCancelBlock:clickCancel];
+        view.targetTextField.text = defaultText;
+        view.targetTextField.placeholder = placeHolderText;
     }
     return view;
+}
+
++ (InputDialog *)dialogWith:(NSString *)title
+                    clickOK:(InputDialogSelectionBlock)clickOk
+                clickCancel:(InputDialogSelectionBlock)clickCancel
+{
+    return [InputDialog dialogWith:title
+                       defaultText:nil
+                   placeHolderText:nil
+                           clickOK:clickOk
+                       clickCancel:clickCancel];
 }
 
 - (void)showInView:(UIView *)view
@@ -295,8 +314,15 @@
     return YES;
 }
 
+
+- (void)updateOKButton
+{
+    [self.okButton setEnabled:(_allowEmpty || [self.targetTextField.text length] != 0)];
+}
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    [self performSelector:@selector(updateOKButton) withObject:nil afterDelay:0.3];
     if (self.maxInputLen > 0 && range.location >= self.maxInputLen)
         return NO; // return NO to not change text
     return YES;

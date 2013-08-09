@@ -42,5 +42,7 @@ typedef enum{
                       delegate:(id<ContestServiceDelegate>)delegate;
 
 
+- (NSArray*)getOngoingContestList;
+- (void)syncOngoingContestList;
 
 @end
