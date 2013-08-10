@@ -25,7 +25,7 @@
 @property(nonatomic, assign)UIControl *control;
 
 @property(nonatomic, assign)DrawToolPanel *toolPanel;
-@property(nonatomic, assign)PPViewController *controller;
+//@property(nonatomic, assign)PPViewController *controller;
 @property(nonatomic, assign)ItemType itemType;
 @property(nonatomic, assign, getter = isShowing)BOOL showing;
 @property(nonatomic, retain) CMPopTipView *popTipView;

@@ -23,7 +23,7 @@
 {
     if (aFriend) {
         PPDebug(@"<changeDrawToFriend> nick = %@", aFriend.nickName);
-        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.control theViewController];
         [oc setTargetUid:aFriend.friendUserId];
         [(UIButton *)self.control setImageWithURL:[NSURL URLWithString:aFriend.avatar]];
     }

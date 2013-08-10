@@ -15,7 +15,7 @@
 {
     [self sendAnalyticsReport];
     if (![self.drawView undo]) {
-        [(PPTableViewController *)[self.control theViewController] popupHappyMessage:NSLS("kCannotRevoke") title:nil];
+        [(PPTableViewController *)[self.control theViewController] popupHappyMessage:NSLS(@"kCannotRevoke") title:nil];
     }
     [self updateToolPanel];
     return YES;
