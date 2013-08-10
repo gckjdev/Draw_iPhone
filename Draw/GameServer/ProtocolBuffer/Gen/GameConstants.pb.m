@@ -240,3 +240,14 @@ BOOL PBMessageTypeIsValidValue(PBMessageType value) {
       return NO;
   }
 }
+BOOL PBContestStatusIsValidValue(PBContestStatus value) {
+  switch (value) {
+    case PBContestStatusNotStarted:
+    case PBContestStatusOngoing:
+    case PBContestStatusCompleted:
+    case PBContestStatusDeleted:
+      return YES;
+    default:
+      return NO;
+  }
+}

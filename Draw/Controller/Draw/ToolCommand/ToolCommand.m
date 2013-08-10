@@ -26,6 +26,11 @@
     return [[UserGameItemManager defaultManager] hasItem:type];
 }
 
+- (id)controller
+{
+    return [self.control theViewController];
+}
+
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
 {
     self = [super init];

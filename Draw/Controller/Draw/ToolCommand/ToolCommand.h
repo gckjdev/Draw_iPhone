@@ -25,12 +25,14 @@
 @property(nonatomic, assign)UIControl *control;
 
 @property(nonatomic, assign)DrawToolPanel *toolPanel;
-@property(nonatomic, assign)PPViewController *controller;
+//@property(nonatomic, assign)PPViewController *controller;
 @property(nonatomic, assign)ItemType itemType;
 @property(nonatomic, assign, getter = isShowing)BOOL showing;
 @property(nonatomic, retain) CMPopTipView *popTipView;
 @property(nonatomic, assign)DrawInfo *drawInfo;
 @property(nonatomic, assign)DrawView *drawView;
+
+- (id)controller;
 
 - (BOOL)canUseItem:(ItemType)type;
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType;

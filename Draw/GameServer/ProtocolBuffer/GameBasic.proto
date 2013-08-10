@@ -10,6 +10,12 @@ message PBKeyValue{
   optional string value = 2;
 }
 
+message PBIntKeyValue{
+  required int32  key = 1;
+  optional string value = 2;
+}
+
+
 enum PBOpenInfoType{
   OPEN_TO_FRIEND = 0;       // 仅对互相关注的人公开
   OPEN_NO = 1;              // 完全不公开
@@ -397,19 +403,18 @@ message PBOpusRank
     optional string userId = 3;
 }
 
-message PBContestAward
+// 比赛奖励结果
+message PBUserAward
 {
-    required PBContestRankType type = 1;            // 奖励类型
+    required PBIntKeyValue awardType = 1;           // 奖励类型，key为类型整数值，value为类型名字，如最佳创意奖
     required PBGameUser user = 2;                   // 用户信息
     optional int32 rank = 3;                        // 奖励结果名次，如：第一名1，第二名2，第三名3
     optional float score = 4;                       // 用户得分，可选
     optional int32 coins = 5;                       // 赢取的金币
-}
+    
+    optional int32 createDate = 11;                 // 获得奖励日期
 
-message PBContestRankType
-{
-    required int32  type = 1;                       // 奖励类型，必须唯一
-    required string name = 2;                       // 奖励名字，如最佳创意奖
+    optional string contestId = 20;                 
 }
 
 message PBContest
@@ -433,9 +438,13 @@ message PBContest
 
     repeated PBGameUser judges = 51;
     repeated PBGameUser reporters = 52;
-    repeated PBContestAward winnerUsers = 53;
-    repeated PBContestAward awardUsers = 54;
-    repeated PBContestRankType rankTypes = 55;
+    repeated PBUserAward winnerUsers = 53;
+    repeated PBUserAward awardUsers = 54;
+    repeated PBIntKeyValue rankTypes = 55;         // 奖励类型，key为类型整数值，value为类型名字，如最佳创意奖
     
 }
 
+message PBContestList
+{
+    repeated PBContest contests = 1;
+}

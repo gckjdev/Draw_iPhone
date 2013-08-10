@@ -18,7 +18,7 @@
 - (BOOL)execute
 {
     [self sendAnalyticsReport];
-    OnlineDrawViewController *oc = (OnlineDrawViewController *)self.controller;
+    OnlineDrawViewController *oc = (OnlineDrawViewController *)[self.control theViewController];
     [oc showGroupChatView];
     return YES;
 }
