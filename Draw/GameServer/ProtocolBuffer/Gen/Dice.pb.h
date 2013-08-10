@@ -7,10 +7,8 @@
 @class PBApp;
 @class PBApp_Builder;
 @class PBContest;
-@class PBContestAward;
-@class PBContestAward_Builder;
-@class PBContestRankType;
-@class PBContestRankType_Builder;
+@class PBContestList;
+@class PBContestList_Builder;
 @class PBContest_Builder;
 @class PBDice;
 @class PBDiceAction;
@@ -42,6 +40,8 @@
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBIntKeyValue;
+@class PBIntKeyValue_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
@@ -60,6 +60,8 @@
 @class PBSNSUser_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBUserAward;
+@class PBUserAward_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserDice;

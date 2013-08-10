@@ -504,7 +504,7 @@ message DataQueryResponse {
   optional PBOpus opus = 87;                // 返回作品
   repeated PBOpus opusList = 88;            // 返回作品列表
 
-  repeated string idList = 90;              //for learn draw
+  repeated string idList = 90;              // for learn draw
 
   optional PBSongList songs = 101;  
   

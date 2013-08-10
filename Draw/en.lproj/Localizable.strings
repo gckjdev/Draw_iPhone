@@ -1470,6 +1470,8 @@
 
 "kGuessHappyModeTips" = "You have guessed %d opues, guess %d more opuses will get award: %d";
 "kGuessGenuisModeTips" = "You have guessed %d opues continuous, guess %d more opuses will get award: %d";
+"kGuessContestModeOverTips" = "Congratulations! Now there are %d player join this contest, your ranking is %d and you maybe get %d coins award.";
+"kGuessContestModeTips" = "You have guessed %d opues, your ranking is %d and you maybe get %d coins award, now there are %d player join this contest";
 
 "kGuessGenuisFail" = "you guess wrong, can not continue in genius mode, will you restart";
 
@@ -1503,6 +1505,8 @@
 "kContestIsOver" = "Contest is over";
 
 "kNoRank" = "No rank data";
+"kRanking" = "Ranking";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

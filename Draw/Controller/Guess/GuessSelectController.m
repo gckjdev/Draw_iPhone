@@ -18,6 +18,7 @@
 #import "AccountService.h"
 #import "ConfigManager.h"
 #import "CustomInfoView.h"
+#import "GuessManager.h"
 
 #define TABID 1
 #define LIMIT 20
@@ -86,6 +87,8 @@
         [_titleView setRightButtonSelctor:@selector(clickRestartButton:)];
     }else if(_mode == PBUserGuessModeGuessModeContest){
         [_titleView setTitle:NSLS(@"kContestGuessMode")];
+        [_titleView setRightButtonTitle:NSLS(@"kRanking")];
+        [_titleView setRightButtonSelctor:@selector(clickRankingButton:)];
     }
 }
 
@@ -141,7 +144,7 @@
     [cell setCellInfo:arr];
     [cell setIndexPath:indexPath];
     if (_mode == PBUserGuessModeGuessModeGenius) {
-        [cell setCurrentGuessIndex:[self guessIndex]];
+        [cell setCurrentGuessIndex:[[GuessManager defaultManager] guessIndex:self.currentTab.dataList]];
     }
     return cell;
 }
@@ -149,6 +152,7 @@
 
 - (void)loadData:(int)offset limit:(int)limit startNew:(BOOL)startNew{
     
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[GuessService defaultService] getOpusesWithMode:_mode
                                            contestId:_contest.contestId
                                               offset:offset
@@ -161,19 +165,14 @@
 - (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode{
     
     PPDebug(@"count = %d", [opuses count]);
+    [self hideActivity];
+
     if (resultCode == 0) {
         if (_isRefreshData) {
             _isRefreshData = NO;
             [self.currentTab.dataList removeAllObjects];
         }
         [self finishLoadDataForTabID:TABID resultList:opuses];
-    }else{
-        [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
-    }
-}
-
-- (void)didGetGuessRank:(PBGuessRank *)rank resultCode:(int)resultCode{
-    if (resultCode == 0) {
     }else{
         [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
     }
@@ -191,6 +190,13 @@
     }];
     
     [infoView showInView:self.view];
+}
+
+- (void)clickRankingButton:(id)sender{
+    [[GuessService defaultService] getGuessRankWithType:0
+                                                   mode:_mode
+                                              contestId:_contest.contestId
+                                               delegate:self];
 }
 
 - (void)restart{
@@ -214,7 +220,7 @@
     if (_mode == PBUserGuessModeGuessModeGenius) {
         if (pbOpus.guessInfo.isCorrect == YES) {
             [self gotoOpusDetailController:pbOpus];
-        }else if (pbOpus.guessInfo.isCorrect == NO && index == [self guessIndex]) {
+        }else if (pbOpus.guessInfo.isCorrect == NO && index == [[GuessManager defaultManager] guessIndex:self.currentTab.dataList]) {
             [self gotoOpusGuessController:pbOpus];
         }else{
             [self popupHappyMessage:NSLS(@"kGuessPreviousOpusFirst") title:nil];
@@ -244,7 +250,15 @@
 
 - (void)didGuessCorrect{
     
-    [self award];
+    [self refreshData];
+
+    int count = [[GuessManager defaultManager] passCount:self.currentTab.dataList] + 1;
+    
+    if ([[GuessManager defaultManager] canAwardNow:count mode:_mode]) {
+        [self awardWithCount:count];
+    }else{
+        [self showTipsWithCount:count];
+    }
 }
 
 - (void)didGuessWrong{
@@ -276,67 +290,47 @@
     [infoView showInView:self.view];
 }
 
-- (int)guessIndex{
+- (void)awardWithCount:(int)count{
     
-    int index = 0;
-    for (; index < [self.currentTab.dataList count]; index ++) {
-        PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
-        if (pbOpus.guessInfo.isCorrect) {
-            continue;
-        }else{
-            break;
-        }
-    }
-    return index;
-}
+    int awardCoins = [[GuessManager defaultManager] awardCoins:count mode:_mode];
 
-- (int)passCount{
-    
-    int count = 0;
-    for (int index = 0; index < [self.currentTab.dataList count]; index++) {
-        PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
-        if (pbOpus.guessInfo.isCorrect) {
-            count++;
-        }
-    }
-    return count;
-}
-
-- (void)award{
-    
-    [self refreshData];
-    
-    int count = [self passCount] + 1;
-    
     if (_mode == PBUserGuessModeGuessModeHappy) {
         
-        if (count % 10 == 0) {
-            int award = [ConfigManager getAwardInHappyMode];
-            [self awardInHappyMode:count award:award];
-        }else{
-            [self showTipInHappyMode:count];
-        }
-        
+        [self awardInHappyMode:count award:awardCoins];
     }else if (_mode == PBUserGuessModeGuessModeGenius){
         
-        int award = (count - 10) / 10 * 100 + 1000;
-        if (count % 10 == 0) {
-            [self awardInGeniusMode:count award:award];
-        }else{
-            [self showTipInGeniusMode:count award:(int)award];
-        }
-        
+        [self awardInGeniusMode:count award:awardCoins];        
     }else if (_mode == PBUserGuessModeGuessModeContest){
+
+    }
+}
+
+- (void)showTipsWithCount:(int)count{
+    
+    if (_mode == PBUserGuessModeGuessModeHappy) {
+        [self showTipInHappyMode:count];
+    }else if (_mode == PBUserGuessModeGuessModeGenius){
+        [self showTipInGeniusMode:count];
+    }else if (_mode == PBUserGuessModeGuessModeContest){
+        // TODO: show tip in contest mode.
+        [[GuessService defaultService] getGuessRankWithType:0 mode:PBUserGuessModeGuessModeContest contestId:_contest.contestId delegate:self];
+    }
+}
+
+- (void)didGetGuessRank:(PBGuessRank *)rank resultCode:(int)resultCode{
+    
+    if (resultCode == 0) {
         
-        if (count == 20) {
-            PPDebug(NSLS(@"kCompleteGuessContest"));
+        if ([[GuessManager defaultManager] countNeedToGuessToAward:rank.pass mode:_mode] == 0) {
+            [self showTipInContestModeWhenContestOver:rank];
         }else{
-//            [self showTipOnContestMode];
+            [self showTipInContestMode:rank];
         }
     }
 }
 
-- (void)awardInHappyMode:(int)passCount award:(int)award{
+- (void)awardInHappyMode:(int)passCount
+                   award:(int)award{
     
     // chage account
     [[AccountService defaultService] chargeCoin:award source:AwardCoinType];
@@ -390,8 +384,11 @@
 
 - (void)showTipInHappyMode:(int)count{
     
+    int predictAwardCoins = [[GuessManager defaultManager] predictAwardCoins:count mode:_mode];
+    int needToGuess = [[GuessManager defaultManager] countNeedToGuessToAward:count mode:_mode];
+    
     NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
-    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeTips"), count, 10 - count%10, [ConfigManager getAwardInHappyMode]];
+    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeTips"), count, needToGuess, predictAwardCoins];
     CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
                                                           info:info
                                                 hasCloseButton:NO
@@ -405,10 +402,45 @@
 }
 
 
-- (void)showTipInGeniusMode:(int)passCount award:(int)award{
+- (void)showTipInGeniusMode:(int)count{
+    
+    int predictAwardCoins = [[GuessManager defaultManager] predictAwardCoins:count mode:_mode];
+    int needToGuess = [[GuessManager defaultManager] countNeedToGuessToAward:count mode:_mode];
     
     NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
-    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), passCount, 10 - passCount%10, award];
+    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), count, needToGuess, predictAwardCoins];
+    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
+                                                          info:info
+                                                hasCloseButton:NO
+                                                  buttonTitles:titles];
+    
+    [infoView setActionBlock:^(UIButton *button, UIView *view){
+        [infoView dismiss];
+    }];
+    
+    [infoView showInView:self.view];
+}
+
+- (void)showTipInContestMode:(PBGuessRank *)rank{
+    
+    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
+    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeTips"), rank.pass, rank.ranking, rank.earn, rank.totalPlayer];
+    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
+                                                          info:info
+                                                hasCloseButton:NO
+                                                  buttonTitles:titles];
+    
+    [infoView setActionBlock:^(UIButton *button, UIView *view){
+        [infoView dismiss];
+    }];
+    
+    [infoView showInView:self.view];
+}
+
+- (void)showTipInContestModeWhenContestOver:(PBGuessRank *)rank{
+    
+    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
+    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeOverTips"), rank.totalPlayer, rank.ranking, rank.earn];
     CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
                                                           info:info
                                                 hasCloseButton:NO

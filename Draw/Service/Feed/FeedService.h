@@ -106,6 +106,13 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
               limit:(NSInteger)limit 
            delegate:(id<FeedServiceDelegate>)delegate;
 
+
+- (void)getContestCommentFeedList:(NSString*)contestId
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                         delegate:(id<FeedServiceDelegate>)delegate;
+
+
 - (void)getContestOpusList:(int)type 
                  contestId:(NSString *)contestId
                     offset:(NSInteger)offset 
@@ -113,7 +120,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
                   delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getOpusCommentList:(NSString *)opusId 
-                      type:(int)type
+                      type:(CommentType)type
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit 
                   delegate:(id<FeedServiceDelegate>)delegate;
@@ -145,7 +152,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 - (void)commentOpus:(NSString *)opusId 
              author:(NSString *)author 
             comment:(NSString *)comment          
-        commentType:(int)commentType 
+        commentType:(CommentType)commentType
           commentId:(NSString *)commentId 
      commentSummary:(NSString *)commentSummary
       commentUserId:(NSString *)commentUserId 

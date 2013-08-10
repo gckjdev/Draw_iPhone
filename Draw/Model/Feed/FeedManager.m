@@ -62,24 +62,34 @@ FeedManager *_staticFeedManager = nil;
 + (Feed *)parsePbFeed:(PBFeed *)pbFeed
 {
     Feed *feed = nil;
-    switch (pbFeed.actionType) {
-        case FeedTypeDraw:
-            feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
-            break;
-        case FeedTypeGuess:
-            feed = [[[GuessFeed alloc] initWithPBFeed:pbFeed] autorelease];
-            break;
-        case FeedTypeDrawToUser:
-            feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
-            break;                
-        case FeedTypeDrawToContest:
-            feed = [[[ContestFeed alloc] initWithPBFeed:pbFeed] autorelease];
-            break;
-        default:
-            break;
+    @try {
+        switch (pbFeed.actionType) {
+            case FeedTypeDraw:
+                feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
+            case FeedTypeGuess:
+            case FeedTypeContestComment: // TODO check later
+                feed = [[[GuessFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
+            case FeedTypeDrawToUser:
+                feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
+            case FeedTypeDrawToContest:
+                feed = [[[ContestFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
+            default:
+                break;
+        }
+    }
+    @catch (NSException *exception) {
+        PPDebug(@"<parsePbFeed> but catch exception (%@)", [exception description]);
+        feed = nil;
+    }
+    @finally {
     }
     return feed;
 }
+
 #pragma mark - parse pbfeed list
 + (NSArray *)parsePbFeedList:(NSArray *)pbFeedList
 {
