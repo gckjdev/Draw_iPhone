@@ -118,6 +118,65 @@ static FeedService *_staticFeedService = nil;
 
 }
 
+- (void)getContestCommentFeedList:(NSString*)contestId
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                         delegate:(id<FeedServiceDelegate>)delegate
+{
+    NSString *userId = [[UserManager defaultManager] userId];
+    if (userId  == nil){
+        // this is mainly for HOME display
+        userId = [ConfigManager getSystemUserId];
+    }
+    
+    LanguageType lang = UnknowType;
+    lang = [[UserManager defaultManager] getLanguageType];
+    
+    //little gee force chinese opus --kira
+    if ([GameApp forceChineseOpus]) {
+        lang = ChineseType;
+    }
+    
+    dispatch_queue_t getFeedListQueue = [self getQueue:GET_FEEDLIST_QUEUE];
+    if (getFeedListQueue == NULL) {
+        getFeedListQueue = workingQueue;
+    }
+    
+    dispatch_async(getFeedListQueue, ^{
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        
+        NSDictionary* para = @{ PARA_TYPE : @(FeedTypeContestComment),
+                                PARA_CONTESTID : contestId,
+                                PARA_OFFSET : @(offset),
+                                PARA_COUNT : @(limit)
+                               };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_FEED_LIST parameters:para];
+        
+        NSArray* list = nil;
+        if (output.resultCode == ERROR_SUCCESS){
+            NSArray *pbFeedList = [output.pbResponse feedList];
+            list = [FeedManager parsePbFeedList:pbFeedList];
+            if ([list count] != 0 && offset == 0) {
+                [[FeedManager defaultManager] cacheFeedDataQueryResponse:output.pbResponse
+                                                                  forKey:[self cachedKeyForFeedListType:FeedTypeContestComment]];
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:feedListType:resultCode:)]) {
+                [delegate didGetFeedList:list
+                            feedListType:FeedTypeContestComment
+                              resultCode:output.resultCode];
+            }            
+        });
+        
+        [subPool drain];
+    });
+}
+
 
 - (void)getContestOpusList:(int)type 
                  contestId:(NSString *)contestId
@@ -340,7 +399,7 @@ static FeedService *_staticFeedService = nil;
 }
 
 - (void)getOpusCommentList:(NSString *)opusId 
-                      type:(int)type
+                      type:(CommentType)type
                     offset:(NSInteger)offset 
                      limit:(NSInteger)limit 
                   delegate:(id<FeedServiceDelegate>)delegate
@@ -634,7 +693,7 @@ static FeedService *_staticFeedService = nil;
 - (void)commentOpus:(NSString *)opusId
              author:(NSString *)author 
             comment:(NSString *)comment          
-        commentType:(int)commentType 
+        commentType:(CommentType)commentType 
           commentId:(NSString *)commentId 
      commentSummary:(NSString *)commentSummary
       commentUserId:(NSString *)commentUserId 

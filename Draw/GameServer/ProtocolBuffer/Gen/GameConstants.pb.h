@@ -207,6 +207,15 @@ typedef enum {
 
 BOOL PBMessageTypeIsValidValue(PBMessageType value);
 
+typedef enum {
+  PBContestStatusNotStarted = 0,
+  PBContestStatusOngoing = 1,
+  PBContestStatusCompleted = 2,
+  PBContestStatusDeleted = 3,
+} PBContestStatus;
+
+BOOL PBContestStatusIsValidValue(PBContestStatus value);
+
 
 @interface GameConstantsRoot : NSObject {
 }
