@@ -201,7 +201,6 @@ message PBGuessRank{
 
    optional PBGameUser user = 1;    
 
-   optional int32 ranking = 2;       // 排名
    optional int32 guess = 5;         // 猜的总次数
    optional int32 pass = 6;          // 一共通过了多少关
    optional int32 spendTime = 7;     // 总耗时
@@ -209,9 +208,10 @@ message PBGuessRank{
    optional int32 earn = 11;         // 赢得了多少
    optional PBGameCurrency currency = 12 [default = Coin];    // 货币种类
 
-   optional int32 lead = 31;         // 领先百分之多少的用户
-   optional int32 startTime = 35;    // 开始时间
-   optional int32 endTime = 36;      // 结束时间
+   optional int32 ranking = 25;         // 排名
+   optional int32 totalPlayer = 31;     // 总共参赛人数
+   optional int32 startTime = 35;       // 开始时间
+   optional int32 endTime = 36;         // 结束时间
 }
 
 enum PBGuessContestState{

@@ -99,6 +99,7 @@
     // Set answer
     self.wordInputView.answer = self.opus.pbOpus.name;
     self.wordInputView.delegate = self;
+    self.wordInputView.answerColor = [UIColor whiteColor];
     
     
     [self.toolBoxButton setImage:UIThemeImageNamed(@"item_box@2x.png") forState:UIControlStateNormal];

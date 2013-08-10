@@ -1413,9 +1413,11 @@
 "kGuessHappyModeAwardTips" = "恭喜你順利猜中%d副作品，系統獎勵你%d金幣，是否還想繼續歡樂模式？";
 "kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d副作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
 
-"kGuessHappyModeTips" = "你已經猜中了%d副作品，再猜%d副作品就可以獲得%d獎勵哦!";
-"kGuessGenuisModeTips" = "你已經連續猜中了%d副作品，再猜%d副作品就可以獲得%d獎勵哦!";
-"kGuessGenuisFail" = "你猜錯了，不能繼續玩下去了，重新開始？";
+"kGuessHappyModeTips" = "你已經猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵哦!";
+"kGuessGenuisModeTips" = "你已經連續猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵哦!";
+"kGuessGenuisFail" = "你猜錯了，不能再繼續玩下去了，重新開始？";
+"kGuessContestModeOverTips" = "恭喜你完成比賽啦，目前有%d位玩家參加比賽，你目前的排名是第%d名，預計可獲得%d金幣獎勵";
+"kGuessContestModeTips" = "你已經猜對了%d副作品，目前排名是第%d名，預計可獲得%d金幣獎勵，目前總共有%d玩家參與";
 
 "kHint" = "提示";
 "kGuessWrong" =  "猜错了";
@@ -1438,6 +1440,9 @@
 "kContestIsOver" = "今天的比賽已經結束啦！請明天同一時間再來參加比賽吧。";
 
 "kNoRank" = "暫無排行記錄";
+
+"kRanking" = "排名";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

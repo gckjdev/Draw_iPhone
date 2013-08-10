@@ -815,45 +815,45 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 
 @interface PBGuessRank : PBGeneratedMessage {
 @private
-  BOOL hasRanking_:1;
   BOOL hasGuess_:1;
   BOOL hasPass_:1;
   BOOL hasSpendTime_:1;
   BOOL hasEarn_:1;
-  BOOL hasLead_:1;
+  BOOL hasRanking_:1;
+  BOOL hasTotalPlayer_:1;
   BOOL hasStartTime_:1;
   BOOL hasEndTime_:1;
   BOOL hasUser_:1;
   BOOL hasCurrency_:1;
-  int32_t ranking;
   int32_t guess;
   int32_t pass;
   int32_t spendTime;
   int32_t earn;
-  int32_t lead;
+  int32_t ranking;
+  int32_t totalPlayer;
   int32_t startTime;
   int32_t endTime;
   PBGameUser* user;
   PBGameCurrency currency;
 }
 - (BOOL) hasUser;
-- (BOOL) hasRanking;
 - (BOOL) hasGuess;
 - (BOOL) hasPass;
 - (BOOL) hasSpendTime;
 - (BOOL) hasEarn;
 - (BOOL) hasCurrency;
-- (BOOL) hasLead;
+- (BOOL) hasRanking;
+- (BOOL) hasTotalPlayer;
 - (BOOL) hasStartTime;
 - (BOOL) hasEndTime;
 @property (readonly, retain) PBGameUser* user;
-@property (readonly) int32_t ranking;
 @property (readonly) int32_t guess;
 @property (readonly) int32_t pass;
 @property (readonly) int32_t spendTime;
 @property (readonly) int32_t earn;
 @property (readonly) PBGameCurrency currency;
-@property (readonly) int32_t lead;
+@property (readonly) int32_t ranking;
+@property (readonly) int32_t totalPlayer;
 @property (readonly) int32_t startTime;
 @property (readonly) int32_t endTime;
 
@@ -898,11 +898,6 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 - (PBGuessRank_Builder*) mergeUser:(PBGameUser*) value;
 - (PBGuessRank_Builder*) clearUser;
 
-- (BOOL) hasRanking;
-- (int32_t) ranking;
-- (PBGuessRank_Builder*) setRanking:(int32_t) value;
-- (PBGuessRank_Builder*) clearRanking;
-
 - (BOOL) hasGuess;
 - (int32_t) guess;
 - (PBGuessRank_Builder*) setGuess:(int32_t) value;
@@ -928,10 +923,15 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 - (PBGuessRank_Builder*) setCurrency:(PBGameCurrency) value;
 - (PBGuessRank_Builder*) clearCurrency;
 
-- (BOOL) hasLead;
-- (int32_t) lead;
-- (PBGuessRank_Builder*) setLead:(int32_t) value;
-- (PBGuessRank_Builder*) clearLead;
+- (BOOL) hasRanking;
+- (int32_t) ranking;
+- (PBGuessRank_Builder*) setRanking:(int32_t) value;
+- (PBGuessRank_Builder*) clearRanking;
+
+- (BOOL) hasTotalPlayer;
+- (int32_t) totalPlayer;
+- (PBGuessRank_Builder*) setTotalPlayer:(int32_t) value;
+- (PBGuessRank_Builder*) clearTotalPlayer;
 
 - (BOOL) hasStartTime;
 - (int32_t) startTime;

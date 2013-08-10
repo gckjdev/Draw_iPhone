@@ -1739,6 +1739,26 @@
 		A489C00517B5D39F003E5150 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFB17B5D39F003E5150 /* heart@2x.png */; };
 		A489C00617B5D39F003E5150 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFB17B5D39F003E5150 /* heart@2x.png */; };
 		A489C00717B5D39F003E5150 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFB17B5D39F003E5150 /* heart@2x.png */; };
+		A489C01017B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */; };
+		A489C01117B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */; };
+		A489C01217B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */; };
+		A489C01317B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */; };
+		A489C01417B5D942003E5150 /* JDFlipNumberView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A489C00B17B5D942003E5150 /* JDFlipNumberView.bundle */; };
+		A489C01517B5D942003E5150 /* JDFlipNumberView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A489C00B17B5D942003E5150 /* JDFlipNumberView.bundle */; };
+		A489C01617B5D942003E5150 /* JDFlipNumberView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A489C00B17B5D942003E5150 /* JDFlipNumberView.bundle */; };
+		A489C01717B5D942003E5150 /* JDFlipNumberView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A489C00B17B5D942003E5150 /* JDFlipNumberView.bundle */; };
+		A489C01817B5D942003E5150 /* JDFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00D17B5D942003E5150 /* JDFlipNumberView.m */; };
+		A489C01917B5D942003E5150 /* JDFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00D17B5D942003E5150 /* JDFlipNumberView.m */; };
+		A489C01A17B5D942003E5150 /* JDFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00D17B5D942003E5150 /* JDFlipNumberView.m */; };
+		A489C01B17B5D942003E5150 /* JDFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00D17B5D942003E5150 /* JDFlipNumberView.m */; };
+		A489C01C17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00F17B5D942003E5150 /* JDGroupedFlipNumberView.m */; };
+		A489C01D17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00F17B5D942003E5150 /* JDGroupedFlipNumberView.m */; };
+		A489C01E17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00F17B5D942003E5150 /* JDGroupedFlipNumberView.m */; };
+		A489C01F17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C00F17B5D942003E5150 /* JDGroupedFlipNumberView.m */; };
+		A489C02317B5E46A003E5150 /* GuessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C02217B5E46A003E5150 /* GuessManager.m */; };
+		A489C02417B5E46A003E5150 /* GuessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C02217B5E46A003E5150 /* GuessManager.m */; };
+		A489C02517B5E46A003E5150 /* GuessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C02217B5E46A003E5150 /* GuessManager.m */; };
+		A489C02617B5E46A003E5150 /* GuessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C02217B5E46A003E5150 /* GuessManager.m */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
 		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
@@ -7849,6 +7869,15 @@
 		A489BFF917B5D39F003E5150 /* angel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angel@2x.png"; sourceTree = "<group>"; };
 		A489BFFA17B5D39F003E5150 /* foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foot@2x.png"; sourceTree = "<group>"; };
 		A489BFFB17B5D39F003E5150 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
+		A489C00917B5D942003E5150 /* JDDateCountdownFlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDateCountdownFlipView.h; sourceTree = "<group>"; };
+		A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDateCountdownFlipView.m; sourceTree = "<group>"; };
+		A489C00B17B5D942003E5150 /* JDFlipNumberView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JDFlipNumberView.bundle; sourceTree = "<group>"; };
+		A489C00C17B5D942003E5150 /* JDFlipNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDFlipNumberView.h; sourceTree = "<group>"; };
+		A489C00D17B5D942003E5150 /* JDFlipNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDFlipNumberView.m; sourceTree = "<group>"; };
+		A489C00E17B5D942003E5150 /* JDGroupedFlipNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGroupedFlipNumberView.h; sourceTree = "<group>"; };
+		A489C00F17B5D942003E5150 /* JDGroupedFlipNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGroupedFlipNumberView.m; sourceTree = "<group>"; };
+		A489C02117B5E46A003E5150 /* GuessManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessManager.h; sourceTree = "<group>"; };
+		A489C02217B5E46A003E5150 /* GuessManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessManager.m; sourceTree = "<group>"; };
 		A48B0978169E664600B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
 		A48B0979169E664600B56975 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
 		A48B097A169E664600B56975 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
@@ -11468,6 +11497,29 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		A489C00817B5D942003E5150 /* JDFlipNumberView */ = {
+			isa = PBXGroup;
+			children = (
+				A489C00917B5D942003E5150 /* JDDateCountdownFlipView.h */,
+				A489C00A17B5D942003E5150 /* JDDateCountdownFlipView.m */,
+				A489C00B17B5D942003E5150 /* JDFlipNumberView.bundle */,
+				A489C00C17B5D942003E5150 /* JDFlipNumberView.h */,
+				A489C00D17B5D942003E5150 /* JDFlipNumberView.m */,
+				A489C00E17B5D942003E5150 /* JDGroupedFlipNumberView.h */,
+				A489C00F17B5D942003E5150 /* JDGroupedFlipNumberView.m */,
+			);
+			path = JDFlipNumberView;
+			sourceTree = "<group>";
+		};
+		A489C02017B5E44E003E5150 /* Guess */ = {
+			isa = PBXGroup;
+			children = (
+				A489C02117B5E46A003E5150 /* GuessManager.h */,
+				A489C02217B5E46A003E5150 /* GuessManager.m */,
+			);
+			path = Guess;
+			sourceTree = "<group>";
+		};
 		A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -13440,6 +13492,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				A489C00817B5D942003E5150 /* JDFlipNumberView */,
 				A4ECE9B71792A036006DD933 /* PageScrollView */,
 				A40EE81D170043A9003B8FFC /* ReflectionView */,
 				C2C2A1B316FDF59A0074A168 /* CustomSegmentedControl */,
@@ -17144,6 +17197,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A489C02017B5E44E003E5150 /* Guess */,
 				A4C8D566175EE027007ED7E4 /* Opus */,
 				CA16411E16D724B5001C615F /* GameItem */,
 				CA479465168E984A00D4AF55 /* Analytics */,
@@ -19163,6 +19217,7 @@
 				A489BFFE17B5D39F003E5150 /* angel@2x.png in Resources */,
 				A489C00217B5D39F003E5150 /* foot@2x.png in Resources */,
 				A489C00617B5D39F003E5150 /* heart@2x.png in Resources */,
+				A489C01617B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20223,6 +20278,7 @@
 				A489BFFD17B5D39F003E5150 /* angel@2x.png in Resources */,
 				A489C00117B5D39F003E5150 /* foot@2x.png in Resources */,
 				A489C00517B5D39F003E5150 /* heart@2x.png in Resources */,
+				A489C01517B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21273,6 +21329,7 @@
 				A489BFFC17B5D39F003E5150 /* angel@2x.png in Resources */,
 				A489C00017B5D39F003E5150 /* foot@2x.png in Resources */,
 				A489C00417B5D39F003E5150 /* heart@2x.png in Resources */,
+				A489C01417B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22243,6 +22300,7 @@
 				A489BFFF17B5D39F003E5150 /* angel@2x.png in Resources */,
 				A489C00317B5D39F003E5150 /* foot@2x.png in Resources */,
 				A489C00717B5D39F003E5150 /* heart@2x.png in Resources */,
+				A489C01717B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23064,6 +23122,10 @@
 				CA0F236B17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 				A4E1D21B17B2236800E13728 /* GuessSelectCell.m in Sources */,
 				CAC9022217B2331C009AF8E1 /* NSArray+Ext.m in Sources */,
+				A489C01217B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */,
+				A489C01A17B5D942003E5150 /* JDFlipNumberView.m in Sources */,
+				A489C01E17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
+				A489C02517B5E46A003E5150 /* GuessManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23856,6 +23918,10 @@
 				CA0F236A17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 				A4E1D21A17B2236800E13728 /* GuessSelectCell.m in Sources */,
 				CAC9022117B2331C009AF8E1 /* NSArray+Ext.m in Sources */,
+				A489C01117B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */,
+				A489C01917B5D942003E5150 /* JDFlipNumberView.m in Sources */,
+				A489C01D17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
+				A489C02417B5E46A003E5150 /* GuessManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24656,6 +24722,10 @@
 				CA0F236917B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 				A4E1D21917B2236800E13728 /* GuessSelectCell.m in Sources */,
 				CAC9022017B2331C009AF8E1 /* NSArray+Ext.m in Sources */,
+				A489C01017B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */,
+				A489C01817B5D942003E5150 /* JDFlipNumberView.m in Sources */,
+				A489C01C17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
+				A489C02317B5E46A003E5150 /* GuessManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25428,6 +25498,10 @@
 				CA0F236C17B15D09004247FB /* JTTableViewGestureRecognizer.m in Sources */,
 				A4E1D21C17B2236800E13728 /* GuessSelectCell.m in Sources */,
 				CAC9022317B2331C009AF8E1 /* NSArray+Ext.m in Sources */,
+				A489C01317B5D942003E5150 /* JDDateCountdownFlipView.m in Sources */,
+				A489C01B17B5D942003E5150 /* JDFlipNumberView.m in Sources */,
+				A489C01F17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
+				A489C02617B5E46A003E5150 /* GuessManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
