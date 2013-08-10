@@ -136,8 +136,7 @@
 - (void)show
 {
     PPDebug(@"<ShowDrawView> show");
-    [self resetView];
-    [super show];
+    [self showToIndex:[_drawActionList count]];
 }
 
 - (void)showToIndex:(NSInteger)index
@@ -154,6 +153,11 @@
     
     if (index >= [self.drawActionList count]) {
         self.status = Stop;
+        for (DrawLayer *layer in [self layers]) {
+            if (layer.clipAction) {
+                [layer exitFromClipMode];
+            }
+        }
     }else{
         self.status = Playing;
     }
@@ -243,7 +247,7 @@
     [super updateLayers:layers];
     for (DrawLayer *layer in layers) {
         if ([layer supportCache]) {
-            layer.cachedCount = 0;
+            layer.cachedCount = 10;
         }
     }
 
@@ -372,6 +376,13 @@
             self.status = Stop;
             _playingActionIndex = _playingPointIndex = 0;
             _currentAction =  nil;
+            
+            for (DrawLayer *layer in [self layers]) {
+                if (layer.clipAction) {
+                    [layer exitFromClipMode];
+                }
+            }
+
         }
     }
     self.tempAction = nil;
