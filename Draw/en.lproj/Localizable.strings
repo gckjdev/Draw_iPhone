@@ -1501,6 +1501,8 @@
 
 "kContestIsNotStart" = "Contest is not start";
 "kContestIsOver" = "Contest is over";
+
+"kNoRank" = "No rank data";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

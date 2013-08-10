@@ -119,7 +119,9 @@
 }
 
 - (IBAction)clickGeniusButton:(UIButton *)sender {
-
+    
+    _geniusButton.selected = YES;
+    _contestButton.selected = NO;
     if ([[sender titleForState:UIControlStateNormal] isEqualToString:GENIUS_WEEK]) {
         self.currentSelect = WEEK;
     }else{
@@ -129,7 +131,8 @@
 
 - (IBAction)clickContestSelectButton:(UIButton *)sender {
     
-    // TODO: set pull down list to select
+    _geniusButton.selected = NO;
+    _contestButton.selected = YES;
     
     NSArray *menuItems =
     @[
@@ -269,7 +272,7 @@ typedef enum{
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
     
-    return NSLS(@"kNoData");
+    return NSLS(@"kNoRank");
 }
 
 

@@ -1727,6 +1727,18 @@
 		A489BFF117B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
 		A489BFF217B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
 		A489BFF317B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
+		A489BFFC17B5D39F003E5150 /* angel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFF917B5D39F003E5150 /* angel@2x.png */; };
+		A489BFFD17B5D39F003E5150 /* angel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFF917B5D39F003E5150 /* angel@2x.png */; };
+		A489BFFE17B5D39F003E5150 /* angel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFF917B5D39F003E5150 /* angel@2x.png */; };
+		A489BFFF17B5D39F003E5150 /* angel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFF917B5D39F003E5150 /* angel@2x.png */; };
+		A489C00017B5D39F003E5150 /* foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFA17B5D39F003E5150 /* foot@2x.png */; };
+		A489C00117B5D39F003E5150 /* foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFA17B5D39F003E5150 /* foot@2x.png */; };
+		A489C00217B5D39F003E5150 /* foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFA17B5D39F003E5150 /* foot@2x.png */; };
+		A489C00317B5D39F003E5150 /* foot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFA17B5D39F003E5150 /* foot@2x.png */; };
+		A489C00417B5D39F003E5150 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFB17B5D39F003E5150 /* heart@2x.png */; };
+		A489C00517B5D39F003E5150 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFB17B5D39F003E5150 /* heart@2x.png */; };
+		A489C00617B5D39F003E5150 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFB17B5D39F003E5150 /* heart@2x.png */; };
+		A489C00717B5D39F003E5150 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFFB17B5D39F003E5150 /* heart@2x.png */; };
 		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
 		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
 		A48B0992169E9C0A00B56975 /* draw_home_free_coins@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48B0990169E9C0A00B56975 /* draw_home_free_coins@2x.png */; };
@@ -7834,6 +7846,9 @@
 		A4834E151716AEB600190347 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		A489BFE517B4F0FF003E5150 /* Draw-Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Draw-Themes.plist"; sourceTree = "<group>"; };
 		A489BFEF17B4F694003E5150 /* shoes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoes@2x.png"; sourceTree = "<group>"; };
+		A489BFF917B5D39F003E5150 /* angel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angel@2x.png"; sourceTree = "<group>"; };
+		A489BFFA17B5D39F003E5150 /* foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foot@2x.png"; sourceTree = "<group>"; };
+		A489BFFB17B5D39F003E5150 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
 		A48B0978169E664600B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
 		A48B0979169E664600B56975 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
 		A48B097A169E664600B56975 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
@@ -11738,6 +11753,9 @@
 		A4B78A06179F78BA0008E21B /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A489BFF917B5D39F003E5150 /* angel@2x.png */,
+				A489BFFA17B5D39F003E5150 /* foot@2x.png */,
+				A489BFFB17B5D39F003E5150 /* heart@2x.png */,
 				A489BFEF17B4F694003E5150 /* shoes@2x.png */,
 				A4E1D24B17B3582500E13728 /* little_triangle@2x.png */,
 				A4E1D22617B2241000E13728 /* award_coin@2x.png */,
@@ -19142,6 +19160,9 @@
 				A4E1D23D17B2241000E13728 /* spend_time@2x.png in Resources */,
 				A4E1D24E17B3582500E13728 /* little_triangle@2x.png in Resources */,
 				A489BFF217B4F694003E5150 /* shoes@2x.png in Resources */,
+				A489BFFE17B5D39F003E5150 /* angel@2x.png in Resources */,
+				A489C00217B5D39F003E5150 /* foot@2x.png in Resources */,
+				A489C00617B5D39F003E5150 /* heart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20199,6 +20220,9 @@
 				A4E1D23C17B2241000E13728 /* spend_time@2x.png in Resources */,
 				A4E1D24D17B3582500E13728 /* little_triangle@2x.png in Resources */,
 				A489BFF117B4F694003E5150 /* shoes@2x.png in Resources */,
+				A489BFFD17B5D39F003E5150 /* angel@2x.png in Resources */,
+				A489C00117B5D39F003E5150 /* foot@2x.png in Resources */,
+				A489C00517B5D39F003E5150 /* heart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21246,6 +21270,9 @@
 				A4E1D24C17B3582500E13728 /* little_triangle@2x.png in Resources */,
 				A489BFE617B4F100003E5150 /* Draw-Themes.plist in Resources */,
 				A489BFF017B4F694003E5150 /* shoes@2x.png in Resources */,
+				A489BFFC17B5D39F003E5150 /* angel@2x.png in Resources */,
+				A489C00017B5D39F003E5150 /* foot@2x.png in Resources */,
+				A489C00417B5D39F003E5150 /* heart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22213,6 +22240,9 @@
 				A4E1D23E17B2241000E13728 /* spend_time@2x.png in Resources */,
 				A4E1D24F17B3582500E13728 /* little_triangle@2x.png in Resources */,
 				A489BFF317B4F694003E5150 /* shoes@2x.png in Resources */,
+				A489BFFF17B5D39F003E5150 /* angel@2x.png in Resources */,
+				A489C00317B5D39F003E5150 /* foot@2x.png in Resources */,
+				A489C00717B5D39F003E5150 /* heart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
