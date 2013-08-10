@@ -441,21 +441,30 @@
     return YES;
 }
 
+- (void)updateDrawRecoveryService
+{
+    DrawRecoveryService *drs = [DrawRecoveryService defaultService];
+    drs.canvasSize = drawView.bounds.size;
+    drs.drawActionList = drawView.drawActionList;
+    drs.targetUid = self.targetUid;
+    drs.layers = [[drawView layers] mutableCopy];
+}
+
 - (void)initRecovery
 {
     if (![self supportRecovery])
         return;
     
-    [[DrawRecoveryService defaultService] start:_targetUid
-                                      contestId:_contest.contestId
-                                         userId:[[UserManager defaultManager] userId]
-                                       nickName:[[UserManager defaultManager] nickName]
-                                           word:_word
-                                       language:languageType
-                                     canvasSize:drawView.bounds.size
-                                 drawActionList:drawView.drawActionList
-                                    bgImageName:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]
-                                        bgImage:_bgImage];
+    DrawRecoveryService *drs = [DrawRecoveryService defaultService];
+    drs.userId = [[UserManager defaultManager] userId];
+    drs.nickName = [[UserManager defaultManager] nickName];
+    drs.contestId = self.contest.contestId;
+    drs.word = self.word;
+    drs.language = languageType;
+    drs.bgImageName = [NSString stringWithFormat:@"%@.png", [NSString GetUUID]];
+    drs.bgImage = self.bgImage;
+    [self updateDrawRecoveryService];    
+    [drs start];
 }
 
 - (void)stopRecovery
@@ -471,8 +480,11 @@
 {
     if (![self supportRecovery])
         return;
-    [DrawRecoveryService defaultService].layers = [drawView.layers mutableCopy];
-    [[DrawRecoveryService defaultService] handleTimer:drawView.drawActionList];
+    
+    [self updateDrawRecoveryService];
+    if ([[DrawRecoveryService defaultService] needBackup]) {
+        [[DrawRecoveryService defaultService] backup];
+    }
 }
 
 - (void)startBackupTimer
@@ -731,9 +743,6 @@
 
 }
 
-#define DRAFT_PAINT_COUNT           [ConfigManager drawAutoSavePaintInterval]
-#define DRAFT_PAINT_TIME_INTERVAL   [ConfigManager drawAutoSavePaintTimeInterval]
-
 - (void)drawView:(DrawView *)view didFinishDrawAction:(DrawAction *)action
 {
     // add back auto save for future recovery
@@ -871,7 +880,7 @@
         }
         
         if ([self supportRecovery]){
-            [[DrawRecoveryService defaultService] updateTargetUid:targetUid];
+            [[DrawRecoveryService defaultService] setTargetUid:targetUid];
         }
     }
 }

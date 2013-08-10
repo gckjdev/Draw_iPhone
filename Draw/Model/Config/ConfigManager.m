@@ -31,7 +31,7 @@
 
 + (int)recoveryBackupInterval
 {
-    return [MobClickUtils getIntValueByKey:@"RECOVERY_BACKUP_INTERVAL" defaultValue:5];
+    return [MobClickUtils getIntValueByKey:@"RECOVERY_BACKUP_INTERVAL" defaultValue:30];
 }
 
 + (int)maxCacheBulletinCount

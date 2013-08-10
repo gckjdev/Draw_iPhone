@@ -16,6 +16,8 @@
 #define GAME_TIME 60
 @class AvatarView;
 @class Word;
+
+
 @interface SuperGameViewController : PPViewController<DrawGameServiceDelegate, ChatControllerDelegate, AvatarViewDelegate>
 {
     ShareImageManager *shareImageManager;

@@ -235,6 +235,7 @@
     for (DrawLayer *layer in _layerList) {
         [layer removeFromSuperlayer];
     }
+    _selectedLayer = nil;
     [_layerList removeAllObjects];
     
     if ([layers count] != 0) {

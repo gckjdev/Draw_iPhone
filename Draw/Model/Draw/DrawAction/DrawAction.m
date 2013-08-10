@@ -322,15 +322,20 @@
     }
 }
 
-+ (void)createPBDrawActionC:(Game__PBDrawAction**)pbDrawActionC drawActionList:(NSArray*)drawActionList
++ (BOOL)createPBDrawActionC:(Game__PBDrawAction**)pbDrawActionC drawActionList:(NSArray*)drawActionList
 {
     int i=0;
     for (DrawAction *drawAction in drawActionList) {
         pbDrawActionC[i] = malloc (sizeof(Game__PBDrawAction));
+        if (pbDrawActionC[i] == NULL) {
+            PPDebug(@"<createPBDrawActionC> malloc pbDrawActionC[%d] is NULL", i);
+            return NO;
+        }
         game__pbdraw_action__init(pbDrawActionC[i]);
         [drawAction toPBDrawActionC:pbDrawActionC[i]];
         i++;
     }
+    return YES;
 }
 
 + (void)freePBDrawActionC:(Game__PBDrawAction**)pbDrawActionC count:(int)count
@@ -508,17 +513,10 @@
                                     bgImageFileName:(NSString *)bgImageFileName
                                              layers:(NSArray *)layers
 {
-    if ([drawActionList count] != 0 || [GameApp forceSaveDraft]) {
+    if (drawActionList != nil || [GameApp forceSaveDraft]) {
         
         Game__PBNoCompressDrawData pbNoCompressDrawDataC = GAME__PBNO_COMPRESS_DRAW_DATA__INIT;
         
-        int count = [drawActionList count];
-        if (count > 0){
-            pbNoCompressDrawDataC.drawactionlist2 = malloc(sizeof(Game__PBDrawAction*)*count);
-            pbNoCompressDrawDataC.n_drawactionlist2 = count;
-
-            [DrawAction createPBDrawActionC:pbNoCompressDrawDataC.drawactionlist2 drawActionList:drawActionList];
-        }
 
         
         //update layers
@@ -555,6 +553,24 @@
         // set bg image name
         pbNoCompressDrawDataC.bgimagename = (char*)[bgImageFileName UTF8String];
 
+        //put it last
+        int count = [drawActionList count];
+        if (count > 0){
+            pbNoCompressDrawDataC.n_drawactionlist2 = count;
+            pbNoCompressDrawDataC.drawactionlist2 = NULL;
+            
+            pbNoCompressDrawDataC.drawactionlist2 = malloc(sizeof(Game__PBDrawAction*)*count);
+            if (pbNoCompressDrawDataC.drawactionlist2 == NULL) {
+                return nil;
+            }
+            
+            BOOL flag = [DrawAction createPBDrawActionC:pbNoCompressDrawDataC.drawactionlist2 drawActionList:drawActionList];
+            if (!flag) {
+                PPDebug(@"<createPBDrawActionC> failed!!!");
+                return nil;
+            }
+        }
+        
         void *buf = NULL;
         unsigned len = 0;
         NSData* data = nil;

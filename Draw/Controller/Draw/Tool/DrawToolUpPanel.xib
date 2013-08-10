@@ -945,17 +945,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">DrawToolUpPanel</string>
 					<string key="superclassName">DrawToolPanel</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickShowCopyPaint:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickShowCopyPaint:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickShowCopyPaint:">id</string>
+						<string key="clickTool:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickShowCopyPaint:">
 							<string key="name">clickShowCopyPaint:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="clickTool:">
+							<string key="name">clickTool:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="backgroundImageView">UIImageView</string>
 						<string key="canvasSize">UIButton</string>
