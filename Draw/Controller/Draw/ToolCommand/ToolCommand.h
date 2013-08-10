@@ -32,6 +32,8 @@
 @property(nonatomic, assign)DrawInfo *drawInfo;
 @property(nonatomic, assign)DrawView *drawView;
 
+- (id)controller;
+
 - (BOOL)canUseItem:(ItemType)type;
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType;
 
