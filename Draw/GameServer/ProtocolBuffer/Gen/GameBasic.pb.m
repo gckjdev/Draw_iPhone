@@ -306,6 +306,225 @@ static PBKeyValue* defaultPBKeyValueInstance = nil;
 }
 @end
 
+@interface PBIntKeyValue ()
+@property int32_t key;
+@property (retain) NSString* value;
+@end
+
+@implementation PBIntKeyValue
+
+- (BOOL) hasKey {
+  return !!hasKey_;
+}
+- (void) setHasKey:(BOOL) value {
+  hasKey_ = !!value;
+}
+@synthesize key;
+- (BOOL) hasValue {
+  return !!hasValue_;
+}
+- (void) setHasValue:(BOOL) value {
+  hasValue_ = !!value;
+}
+@synthesize value;
+- (void) dealloc {
+  self.value = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.key = 0;
+    self.value = @"";
+  }
+  return self;
+}
+static PBIntKeyValue* defaultPBIntKeyValueInstance = nil;
++ (void) initialize {
+  if (self == [PBIntKeyValue class]) {
+    defaultPBIntKeyValueInstance = [[PBIntKeyValue alloc] init];
+  }
+}
++ (PBIntKeyValue*) defaultInstance {
+  return defaultPBIntKeyValueInstance;
+}
+- (PBIntKeyValue*) defaultInstance {
+  return defaultPBIntKeyValueInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasKey) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasKey) {
+    [output writeInt32:1 value:self.key];
+  }
+  if (self.hasValue) {
+    [output writeString:2 value:self.value];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasKey) {
+    size += computeInt32Size(1, self.key);
+  }
+  if (self.hasValue) {
+    size += computeStringSize(2, self.value);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBIntKeyValue*) parseFromData:(NSData*) data {
+  return (PBIntKeyValue*)[[[PBIntKeyValue builder] mergeFromData:data] build];
+}
++ (PBIntKeyValue*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIntKeyValue*)[[[PBIntKeyValue builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBIntKeyValue*) parseFromInputStream:(NSInputStream*) input {
+  return (PBIntKeyValue*)[[[PBIntKeyValue builder] mergeFromInputStream:input] build];
+}
++ (PBIntKeyValue*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIntKeyValue*)[[[PBIntKeyValue builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBIntKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBIntKeyValue*)[[[PBIntKeyValue builder] mergeFromCodedInputStream:input] build];
+}
++ (PBIntKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBIntKeyValue*)[[[PBIntKeyValue builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBIntKeyValue_Builder*) builder {
+  return [[[PBIntKeyValue_Builder alloc] init] autorelease];
+}
++ (PBIntKeyValue_Builder*) builderWithPrototype:(PBIntKeyValue*) prototype {
+  return [[PBIntKeyValue builder] mergeFrom:prototype];
+}
+- (PBIntKeyValue_Builder*) builder {
+  return [PBIntKeyValue builder];
+}
+@end
+
+@interface PBIntKeyValue_Builder()
+@property (retain) PBIntKeyValue* result;
+@end
+
+@implementation PBIntKeyValue_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBIntKeyValue alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBIntKeyValue_Builder*) clear {
+  self.result = [[[PBIntKeyValue alloc] init] autorelease];
+  return self;
+}
+- (PBIntKeyValue_Builder*) clone {
+  return [PBIntKeyValue builderWithPrototype:result];
+}
+- (PBIntKeyValue*) defaultInstance {
+  return [PBIntKeyValue defaultInstance];
+}
+- (PBIntKeyValue*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBIntKeyValue*) buildPartial {
+  PBIntKeyValue* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBIntKeyValue_Builder*) mergeFrom:(PBIntKeyValue*) other {
+  if (other == [PBIntKeyValue defaultInstance]) {
+    return self;
+  }
+  if (other.hasKey) {
+    [self setKey:other.key];
+  }
+  if (other.hasValue) {
+    [self setValue:other.value];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBIntKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBIntKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setKey:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setValue:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasKey {
+  return result.hasKey;
+}
+- (int32_t) key {
+  return result.key;
+}
+- (PBIntKeyValue_Builder*) setKey:(int32_t) value {
+  result.hasKey = YES;
+  result.key = value;
+  return self;
+}
+- (PBIntKeyValue_Builder*) clearKey {
+  result.hasKey = NO;
+  result.key = 0;
+  return self;
+}
+- (BOOL) hasValue {
+  return result.hasValue;
+}
+- (NSString*) value {
+  return result.value;
+}
+- (PBIntKeyValue_Builder*) setValue:(NSString*) value {
+  result.hasValue = YES;
+  result.value = value;
+  return self;
+}
+- (PBIntKeyValue_Builder*) clearValue {
+  result.hasValue = NO;
+  result.value = @"";
+  return self;
+}
+@end
+
 @interface PBSNSUser ()
 @property int32_t type;
 @property (retain) NSString* userId;
@@ -12048,23 +12267,25 @@ static PBOpusRank* defaultPBOpusRankInstance = nil;
 }
 @end
 
-@interface PBContestAward ()
-@property (retain) PBContestRankType* type;
+@interface PBUserAward ()
+@property (retain) PBIntKeyValue* awardType;
 @property (retain) PBGameUser* user;
 @property int32_t rank;
 @property Float32 score;
 @property int32_t coins;
+@property int32_t createDate;
+@property (retain) NSString* contestId;
 @end
 
-@implementation PBContestAward
+@implementation PBUserAward
 
-- (BOOL) hasType {
-  return !!hasType_;
+- (BOOL) hasAwardType {
+  return !!hasAwardType_;
 }
-- (void) setHasType:(BOOL) value {
-  hasType_ = !!value;
+- (void) setHasAwardType:(BOOL) value {
+  hasAwardType_ = !!value;
 }
-@synthesize type;
+@synthesize awardType;
 - (BOOL) hasUser {
   return !!hasUser_;
 }
@@ -12093,41 +12314,58 @@ static PBOpusRank* defaultPBOpusRankInstance = nil;
   hasCoins_ = !!value;
 }
 @synthesize coins;
+- (BOOL) hasCreateDate {
+  return !!hasCreateDate_;
+}
+- (void) setHasCreateDate:(BOOL) value {
+  hasCreateDate_ = !!value;
+}
+@synthesize createDate;
+- (BOOL) hasContestId {
+  return !!hasContestId_;
+}
+- (void) setHasContestId:(BOOL) value {
+  hasContestId_ = !!value;
+}
+@synthesize contestId;
 - (void) dealloc {
-  self.type = nil;
+  self.awardType = nil;
   self.user = nil;
+  self.contestId = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.type = [PBContestRankType defaultInstance];
+    self.awardType = [PBIntKeyValue defaultInstance];
     self.user = [PBGameUser defaultInstance];
     self.rank = 0;
     self.score = 0;
     self.coins = 0;
+    self.createDate = 0;
+    self.contestId = @"";
   }
   return self;
 }
-static PBContestAward* defaultPBContestAwardInstance = nil;
+static PBUserAward* defaultPBUserAwardInstance = nil;
 + (void) initialize {
-  if (self == [PBContestAward class]) {
-    defaultPBContestAwardInstance = [[PBContestAward alloc] init];
+  if (self == [PBUserAward class]) {
+    defaultPBUserAwardInstance = [[PBUserAward alloc] init];
   }
 }
-+ (PBContestAward*) defaultInstance {
-  return defaultPBContestAwardInstance;
++ (PBUserAward*) defaultInstance {
+  return defaultPBUserAwardInstance;
 }
-- (PBContestAward*) defaultInstance {
-  return defaultPBContestAwardInstance;
+- (PBUserAward*) defaultInstance {
+  return defaultPBUserAwardInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasType) {
+  if (!self.hasAwardType) {
     return NO;
   }
   if (!self.hasUser) {
     return NO;
   }
-  if (!self.type.isInitialized) {
+  if (!self.awardType.isInitialized) {
     return NO;
   }
   if (!self.user.isInitialized) {
@@ -12136,8 +12374,8 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasType) {
-    [output writeMessage:1 value:self.type];
+  if (self.hasAwardType) {
+    [output writeMessage:1 value:self.awardType];
   }
   if (self.hasUser) {
     [output writeMessage:2 value:self.user];
@@ -12151,6 +12389,12 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
   if (self.hasCoins) {
     [output writeInt32:5 value:self.coins];
   }
+  if (self.hasCreateDate) {
+    [output writeInt32:11 value:self.createDate];
+  }
+  if (self.hasContestId) {
+    [output writeString:20 value:self.contestId];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -12160,8 +12404,8 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
   }
 
   size = 0;
-  if (self.hasType) {
-    size += computeMessageSize(1, self.type);
+  if (self.hasAwardType) {
+    size += computeMessageSize(1, self.awardType);
   }
   if (self.hasUser) {
     size += computeMessageSize(2, self.user);
@@ -12175,44 +12419,50 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
   if (self.hasCoins) {
     size += computeInt32Size(5, self.coins);
   }
+  if (self.hasCreateDate) {
+    size += computeInt32Size(11, self.createDate);
+  }
+  if (self.hasContestId) {
+    size += computeStringSize(20, self.contestId);
+  }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
-+ (PBContestAward*) parseFromData:(NSData*) data {
-  return (PBContestAward*)[[[PBContestAward builder] mergeFromData:data] build];
++ (PBUserAward*) parseFromData:(NSData*) data {
+  return (PBUserAward*)[[[PBUserAward builder] mergeFromData:data] build];
 }
-+ (PBContestAward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBContestAward*)[[[PBContestAward builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
++ (PBUserAward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserAward*)[[[PBUserAward builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
-+ (PBContestAward*) parseFromInputStream:(NSInputStream*) input {
-  return (PBContestAward*)[[[PBContestAward builder] mergeFromInputStream:input] build];
++ (PBUserAward*) parseFromInputStream:(NSInputStream*) input {
+  return (PBUserAward*)[[[PBUserAward builder] mergeFromInputStream:input] build];
 }
-+ (PBContestAward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBContestAward*)[[[PBContestAward builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBUserAward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserAward*)[[[PBUserAward builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBContestAward*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBContestAward*)[[[PBContestAward builder] mergeFromCodedInputStream:input] build];
++ (PBUserAward*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBUserAward*)[[[PBUserAward builder] mergeFromCodedInputStream:input] build];
 }
-+ (PBContestAward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBContestAward*)[[[PBContestAward builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
++ (PBUserAward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserAward*)[[[PBUserAward builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (PBContestAward_Builder*) builder {
-  return [[[PBContestAward_Builder alloc] init] autorelease];
++ (PBUserAward_Builder*) builder {
+  return [[[PBUserAward_Builder alloc] init] autorelease];
 }
-+ (PBContestAward_Builder*) builderWithPrototype:(PBContestAward*) prototype {
-  return [[PBContestAward builder] mergeFrom:prototype];
++ (PBUserAward_Builder*) builderWithPrototype:(PBUserAward*) prototype {
+  return [[PBUserAward builder] mergeFrom:prototype];
 }
-- (PBContestAward_Builder*) builder {
-  return [PBContestAward builder];
+- (PBUserAward_Builder*) builder {
+  return [PBUserAward builder];
 }
 @end
 
-@interface PBContestAward_Builder()
-@property (retain) PBContestAward* result;
+@interface PBUserAward_Builder()
+@property (retain) PBUserAward* result;
 @end
 
-@implementation PBContestAward_Builder
+@implementation PBUserAward_Builder
 @synthesize result;
 - (void) dealloc {
   self.result = nil;
@@ -12220,38 +12470,38 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
 }
 - (id) init {
   if ((self = [super init])) {
-    self.result = [[[PBContestAward alloc] init] autorelease];
+    self.result = [[[PBUserAward alloc] init] autorelease];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
   return result;
 }
-- (PBContestAward_Builder*) clear {
-  self.result = [[[PBContestAward alloc] init] autorelease];
+- (PBUserAward_Builder*) clear {
+  self.result = [[[PBUserAward alloc] init] autorelease];
   return self;
 }
-- (PBContestAward_Builder*) clone {
-  return [PBContestAward builderWithPrototype:result];
+- (PBUserAward_Builder*) clone {
+  return [PBUserAward builderWithPrototype:result];
 }
-- (PBContestAward*) defaultInstance {
-  return [PBContestAward defaultInstance];
+- (PBUserAward*) defaultInstance {
+  return [PBUserAward defaultInstance];
 }
-- (PBContestAward*) build {
+- (PBUserAward*) build {
   [self checkInitialized];
   return [self buildPartial];
 }
-- (PBContestAward*) buildPartial {
-  PBContestAward* returnMe = [[result retain] autorelease];
+- (PBUserAward*) buildPartial {
+  PBUserAward* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-- (PBContestAward_Builder*) mergeFrom:(PBContestAward*) other {
-  if (other == [PBContestAward defaultInstance]) {
+- (PBUserAward_Builder*) mergeFrom:(PBUserAward*) other {
+  if (other == [PBUserAward defaultInstance]) {
     return self;
   }
-  if (other.hasType) {
-    [self mergeType:other.type];
+  if (other.hasAwardType) {
+    [self mergeAwardType:other.awardType];
   }
   if (other.hasUser) {
     [self mergeUser:other.user];
@@ -12265,13 +12515,19 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
   if (other.hasCoins) {
     [self setCoins:other.coins];
   }
+  if (other.hasCreateDate) {
+    [self setCreateDate:other.createDate];
+  }
+  if (other.hasContestId) {
+    [self setContestId:other.contestId];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-- (PBContestAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBUserAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-- (PBContestAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+- (PBUserAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (YES) {
     int32_t tag = [input readTag];
@@ -12287,12 +12543,12 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
         break;
       }
       case 10: {
-        PBContestRankType_Builder* subBuilder = [PBContestRankType builder];
-        if (self.hasType) {
-          [subBuilder mergeFrom:self.type];
+        PBIntKeyValue_Builder* subBuilder = [PBIntKeyValue builder];
+        if (self.hasAwardType) {
+          [subBuilder mergeFrom:self.awardType];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setType:[subBuilder buildPartial]];
+        [self setAwardType:[subBuilder buildPartial]];
         break;
       }
       case 18: {
@@ -12316,37 +12572,45 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
         [self setCoins:[input readInt32]];
         break;
       }
+      case 88: {
+        [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 162: {
+        [self setContestId:[input readString]];
+        break;
+      }
     }
   }
 }
-- (BOOL) hasType {
-  return result.hasType;
+- (BOOL) hasAwardType {
+  return result.hasAwardType;
 }
-- (PBContestRankType*) type {
-  return result.type;
+- (PBIntKeyValue*) awardType {
+  return result.awardType;
 }
-- (PBContestAward_Builder*) setType:(PBContestRankType*) value {
-  result.hasType = YES;
-  result.type = value;
+- (PBUserAward_Builder*) setAwardType:(PBIntKeyValue*) value {
+  result.hasAwardType = YES;
+  result.awardType = value;
   return self;
 }
-- (PBContestAward_Builder*) setTypeBuilder:(PBContestRankType_Builder*) builderForValue {
-  return [self setType:[builderForValue build]];
+- (PBUserAward_Builder*) setAwardTypeBuilder:(PBIntKeyValue_Builder*) builderForValue {
+  return [self setAwardType:[builderForValue build]];
 }
-- (PBContestAward_Builder*) mergeType:(PBContestRankType*) value {
-  if (result.hasType &&
-      result.type != [PBContestRankType defaultInstance]) {
-    result.type =
-      [[[PBContestRankType builderWithPrototype:result.type] mergeFrom:value] buildPartial];
+- (PBUserAward_Builder*) mergeAwardType:(PBIntKeyValue*) value {
+  if (result.hasAwardType &&
+      result.awardType != [PBIntKeyValue defaultInstance]) {
+    result.awardType =
+      [[[PBIntKeyValue builderWithPrototype:result.awardType] mergeFrom:value] buildPartial];
   } else {
-    result.type = value;
+    result.awardType = value;
   }
-  result.hasType = YES;
+  result.hasAwardType = YES;
   return self;
 }
-- (PBContestAward_Builder*) clearType {
-  result.hasType = NO;
-  result.type = [PBContestRankType defaultInstance];
+- (PBUserAward_Builder*) clearAwardType {
+  result.hasAwardType = NO;
+  result.awardType = [PBIntKeyValue defaultInstance];
   return self;
 }
 - (BOOL) hasUser {
@@ -12355,15 +12619,15 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
 - (PBGameUser*) user {
   return result.user;
 }
-- (PBContestAward_Builder*) setUser:(PBGameUser*) value {
+- (PBUserAward_Builder*) setUser:(PBGameUser*) value {
   result.hasUser = YES;
   result.user = value;
   return self;
 }
-- (PBContestAward_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+- (PBUserAward_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
   return [self setUser:[builderForValue build]];
 }
-- (PBContestAward_Builder*) mergeUser:(PBGameUser*) value {
+- (PBUserAward_Builder*) mergeUser:(PBGameUser*) value {
   if (result.hasUser &&
       result.user != [PBGameUser defaultInstance]) {
     result.user =
@@ -12374,7 +12638,7 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
   result.hasUser = YES;
   return self;
 }
-- (PBContestAward_Builder*) clearUser {
+- (PBUserAward_Builder*) clearUser {
   result.hasUser = NO;
   result.user = [PBGameUser defaultInstance];
   return self;
@@ -12385,12 +12649,12 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
 - (int32_t) rank {
   return result.rank;
 }
-- (PBContestAward_Builder*) setRank:(int32_t) value {
+- (PBUserAward_Builder*) setRank:(int32_t) value {
   result.hasRank = YES;
   result.rank = value;
   return self;
 }
-- (PBContestAward_Builder*) clearRank {
+- (PBUserAward_Builder*) clearRank {
   result.hasRank = NO;
   result.rank = 0;
   return self;
@@ -12401,12 +12665,12 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
 - (Float32) score {
   return result.score;
 }
-- (PBContestAward_Builder*) setScore:(Float32) value {
+- (PBUserAward_Builder*) setScore:(Float32) value {
   result.hasScore = YES;
   result.score = value;
   return self;
 }
-- (PBContestAward_Builder*) clearScore {
+- (PBUserAward_Builder*) clearScore {
   result.hasScore = NO;
   result.score = 0;
   return self;
@@ -12417,236 +12681,46 @@ static PBContestAward* defaultPBContestAwardInstance = nil;
 - (int32_t) coins {
   return result.coins;
 }
-- (PBContestAward_Builder*) setCoins:(int32_t) value {
+- (PBUserAward_Builder*) setCoins:(int32_t) value {
   result.hasCoins = YES;
   result.coins = value;
   return self;
 }
-- (PBContestAward_Builder*) clearCoins {
+- (PBUserAward_Builder*) clearCoins {
   result.hasCoins = NO;
   result.coins = 0;
   return self;
 }
-@end
-
-@interface PBContestRankType ()
-@property int32_t type;
-@property (retain) NSString* name;
-@end
-
-@implementation PBContestRankType
-
-- (BOOL) hasType {
-  return !!hasType_;
+- (BOOL) hasCreateDate {
+  return result.hasCreateDate;
 }
-- (void) setHasType:(BOOL) value {
-  hasType_ = !!value;
+- (int32_t) createDate {
+  return result.createDate;
 }
-@synthesize type;
-- (BOOL) hasName {
-  return !!hasName_;
-}
-- (void) setHasName:(BOOL) value {
-  hasName_ = !!value;
-}
-@synthesize name;
-- (void) dealloc {
-  self.name = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.type = 0;
-    self.name = @"";
-  }
+- (PBUserAward_Builder*) setCreateDate:(int32_t) value {
+  result.hasCreateDate = YES;
+  result.createDate = value;
   return self;
 }
-static PBContestRankType* defaultPBContestRankTypeInstance = nil;
-+ (void) initialize {
-  if (self == [PBContestRankType class]) {
-    defaultPBContestRankTypeInstance = [[PBContestRankType alloc] init];
-  }
-}
-+ (PBContestRankType*) defaultInstance {
-  return defaultPBContestRankTypeInstance;
-}
-- (PBContestRankType*) defaultInstance {
-  return defaultPBContestRankTypeInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasType) {
-    return NO;
-  }
-  if (!self.hasName) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasType) {
-    [output writeInt32:1 value:self.type];
-  }
-  if (self.hasName) {
-    [output writeString:2 value:self.name];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
-    return size;
-  }
-
-  size = 0;
-  if (self.hasType) {
-    size += computeInt32Size(1, self.type);
-  }
-  if (self.hasName) {
-    size += computeStringSize(2, self.name);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
-}
-+ (PBContestRankType*) parseFromData:(NSData*) data {
-  return (PBContestRankType*)[[[PBContestRankType builder] mergeFromData:data] build];
-}
-+ (PBContestRankType*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBContestRankType*)[[[PBContestRankType builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (PBContestRankType*) parseFromInputStream:(NSInputStream*) input {
-  return (PBContestRankType*)[[[PBContestRankType builder] mergeFromInputStream:input] build];
-}
-+ (PBContestRankType*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBContestRankType*)[[[PBContestRankType builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBContestRankType*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (PBContestRankType*)[[[PBContestRankType builder] mergeFromCodedInputStream:input] build];
-}
-+ (PBContestRankType*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (PBContestRankType*)[[[PBContestRankType builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (PBContestRankType_Builder*) builder {
-  return [[[PBContestRankType_Builder alloc] init] autorelease];
-}
-+ (PBContestRankType_Builder*) builderWithPrototype:(PBContestRankType*) prototype {
-  return [[PBContestRankType builder] mergeFrom:prototype];
-}
-- (PBContestRankType_Builder*) builder {
-  return [PBContestRankType builder];
-}
-@end
-
-@interface PBContestRankType_Builder()
-@property (retain) PBContestRankType* result;
-@end
-
-@implementation PBContestRankType_Builder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-  [super dealloc];
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[[PBContestRankType alloc] init] autorelease];
-  }
+- (PBUserAward_Builder*) clearCreateDate {
+  result.hasCreateDate = NO;
+  result.createDate = 0;
   return self;
 }
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
+- (BOOL) hasContestId {
+  return result.hasContestId;
 }
-- (PBContestRankType_Builder*) clear {
-  self.result = [[[PBContestRankType alloc] init] autorelease];
+- (NSString*) contestId {
+  return result.contestId;
+}
+- (PBUserAward_Builder*) setContestId:(NSString*) value {
+  result.hasContestId = YES;
+  result.contestId = value;
   return self;
 }
-- (PBContestRankType_Builder*) clone {
-  return [PBContestRankType builderWithPrototype:result];
-}
-- (PBContestRankType*) defaultInstance {
-  return [PBContestRankType defaultInstance];
-}
-- (PBContestRankType*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (PBContestRankType*) buildPartial {
-  PBContestRankType* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
-}
-- (PBContestRankType_Builder*) mergeFrom:(PBContestRankType*) other {
-  if (other == [PBContestRankType defaultInstance]) {
-    return self;
-  }
-  if (other.hasType) {
-    [self setType:other.type];
-  }
-  if (other.hasName) {
-    [self setName:other.name];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (PBContestRankType_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (PBContestRankType_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 8: {
-        [self setType:[input readInt32]];
-        break;
-      }
-      case 18: {
-        [self setName:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasType {
-  return result.hasType;
-}
-- (int32_t) type {
-  return result.type;
-}
-- (PBContestRankType_Builder*) setType:(int32_t) value {
-  result.hasType = YES;
-  result.type = value;
-  return self;
-}
-- (PBContestRankType_Builder*) clearType {
-  result.hasType = NO;
-  result.type = 0;
-  return self;
-}
-- (BOOL) hasName {
-  return result.hasName;
-}
-- (NSString*) name {
-  return result.name;
-}
-- (PBContestRankType_Builder*) setName:(NSString*) value {
-  result.hasName = YES;
-  result.name = value;
-  return self;
-}
-- (PBContestRankType_Builder*) clearName {
-  result.hasName = NO;
-  result.name = @"";
+- (PBUserAward_Builder*) clearContestId {
+  result.hasContestId = NO;
+  result.contestId = @"";
   return self;
 }
 @end
@@ -12852,21 +12926,21 @@ static PBContest* defaultPBContestInstance = nil;
 - (NSArray*) winnerUsersList {
   return mutableWinnerUsersList;
 }
-- (PBContestAward*) winnerUsersAtIndex:(int32_t) index {
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index {
   id value = [mutableWinnerUsersList objectAtIndex:index];
   return value;
 }
 - (NSArray*) awardUsersList {
   return mutableAwardUsersList;
 }
-- (PBContestAward*) awardUsersAtIndex:(int32_t) index {
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index {
   id value = [mutableAwardUsersList objectAtIndex:index];
   return value;
 }
 - (NSArray*) rankTypesList {
   return mutableRankTypesList;
 }
-- (PBContestRankType*) rankTypesAtIndex:(int32_t) index {
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index {
   id value = [mutableRankTypesList objectAtIndex:index];
   return value;
 }
@@ -12884,17 +12958,17 @@ static PBContest* defaultPBContestInstance = nil;
       return NO;
     }
   }
-  for (PBContestAward* element in self.winnerUsersList) {
+  for (PBUserAward* element in self.winnerUsersList) {
     if (!element.isInitialized) {
       return NO;
     }
   }
-  for (PBContestAward* element in self.awardUsersList) {
+  for (PBUserAward* element in self.awardUsersList) {
     if (!element.isInitialized) {
       return NO;
     }
   }
-  for (PBContestRankType* element in self.rankTypesList) {
+  for (PBIntKeyValue* element in self.rankTypesList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -12953,13 +13027,13 @@ static PBContest* defaultPBContestInstance = nil;
   for (PBGameUser* element in self.reportersList) {
     [output writeMessage:52 value:element];
   }
-  for (PBContestAward* element in self.winnerUsersList) {
+  for (PBUserAward* element in self.winnerUsersList) {
     [output writeMessage:53 value:element];
   }
-  for (PBContestAward* element in self.awardUsersList) {
+  for (PBUserAward* element in self.awardUsersList) {
     [output writeMessage:54 value:element];
   }
-  for (PBContestRankType* element in self.rankTypesList) {
+  for (PBIntKeyValue* element in self.rankTypesList) {
     [output writeMessage:55 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -13022,13 +13096,13 @@ static PBContest* defaultPBContestInstance = nil;
   for (PBGameUser* element in self.reportersList) {
     size += computeMessageSize(52, element);
   }
-  for (PBContestAward* element in self.winnerUsersList) {
+  for (PBUserAward* element in self.winnerUsersList) {
     size += computeMessageSize(53, element);
   }
-  for (PBContestAward* element in self.awardUsersList) {
+  for (PBUserAward* element in self.awardUsersList) {
     size += computeMessageSize(54, element);
   }
-  for (PBContestRankType* element in self.rankTypesList) {
+  for (PBIntKeyValue* element in self.rankTypesList) {
     size += computeMessageSize(55, element);
   }
   size += self.unknownFields.serializedSize;
@@ -13275,19 +13349,19 @@ static PBContest* defaultPBContestInstance = nil;
         break;
       }
       case 426: {
-        PBContestAward_Builder* subBuilder = [PBContestAward builder];
+        PBUserAward_Builder* subBuilder = [PBUserAward builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addWinnerUsers:[subBuilder buildPartial]];
         break;
       }
       case 434: {
-        PBContestAward_Builder* subBuilder = [PBContestAward builder];
+        PBUserAward_Builder* subBuilder = [PBUserAward builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addAwardUsers:[subBuilder buildPartial]];
         break;
       }
       case 442: {
-        PBContestRankType_Builder* subBuilder = [PBContestRankType builder];
+        PBIntKeyValue_Builder* subBuilder = [PBIntKeyValue builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRankTypes:[subBuilder buildPartial]];
         break;
@@ -13597,10 +13671,10 @@ static PBContest* defaultPBContestInstance = nil;
   if (result.mutableWinnerUsersList == nil) { return [NSArray array]; }
   return result.mutableWinnerUsersList;
 }
-- (PBContestAward*) winnerUsersAtIndex:(int32_t) index {
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index {
   return [result winnerUsersAtIndex:index];
 }
-- (PBContest_Builder*) replaceWinnerUsersAtIndex:(int32_t) index with:(PBContestAward*) value {
+- (PBContest_Builder*) replaceWinnerUsersAtIndex:(int32_t) index with:(PBUserAward*) value {
   [result.mutableWinnerUsersList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -13615,7 +13689,7 @@ static PBContest* defaultPBContestInstance = nil;
   result.mutableWinnerUsersList = nil;
   return self;
 }
-- (PBContest_Builder*) addWinnerUsers:(PBContestAward*) value {
+- (PBContest_Builder*) addWinnerUsers:(PBUserAward*) value {
   if (result.mutableWinnerUsersList == nil) {
     result.mutableWinnerUsersList = [NSMutableArray array];
   }
@@ -13626,10 +13700,10 @@ static PBContest* defaultPBContestInstance = nil;
   if (result.mutableAwardUsersList == nil) { return [NSArray array]; }
   return result.mutableAwardUsersList;
 }
-- (PBContestAward*) awardUsersAtIndex:(int32_t) index {
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index {
   return [result awardUsersAtIndex:index];
 }
-- (PBContest_Builder*) replaceAwardUsersAtIndex:(int32_t) index with:(PBContestAward*) value {
+- (PBContest_Builder*) replaceAwardUsersAtIndex:(int32_t) index with:(PBUserAward*) value {
   [result.mutableAwardUsersList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -13644,7 +13718,7 @@ static PBContest* defaultPBContestInstance = nil;
   result.mutableAwardUsersList = nil;
   return self;
 }
-- (PBContest_Builder*) addAwardUsers:(PBContestAward*) value {
+- (PBContest_Builder*) addAwardUsers:(PBUserAward*) value {
   if (result.mutableAwardUsersList == nil) {
     result.mutableAwardUsersList = [NSMutableArray array];
   }
@@ -13655,10 +13729,10 @@ static PBContest* defaultPBContestInstance = nil;
   if (result.mutableRankTypesList == nil) { return [NSArray array]; }
   return result.mutableRankTypesList;
 }
-- (PBContestRankType*) rankTypesAtIndex:(int32_t) index {
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index {
   return [result rankTypesAtIndex:index];
 }
-- (PBContest_Builder*) replaceRankTypesAtIndex:(int32_t) index with:(PBContestRankType*) value {
+- (PBContest_Builder*) replaceRankTypesAtIndex:(int32_t) index with:(PBIntKeyValue*) value {
   [result.mutableRankTypesList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -13673,11 +13747,212 @@ static PBContest* defaultPBContestInstance = nil;
   result.mutableRankTypesList = nil;
   return self;
 }
-- (PBContest_Builder*) addRankTypes:(PBContestRankType*) value {
+- (PBContest_Builder*) addRankTypes:(PBIntKeyValue*) value {
   if (result.mutableRankTypesList == nil) {
     result.mutableRankTypesList = [NSMutableArray array];
   }
   [result.mutableRankTypesList addObject:value];
+  return self;
+}
+@end
+
+@interface PBContestList ()
+@property (retain) NSMutableArray* mutableContestsList;
+@end
+
+@implementation PBContestList
+
+@synthesize mutableContestsList;
+- (void) dealloc {
+  self.mutableContestsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+  }
+  return self;
+}
+static PBContestList* defaultPBContestListInstance = nil;
++ (void) initialize {
+  if (self == [PBContestList class]) {
+    defaultPBContestListInstance = [[PBContestList alloc] init];
+  }
+}
++ (PBContestList*) defaultInstance {
+  return defaultPBContestListInstance;
+}
+- (PBContestList*) defaultInstance {
+  return defaultPBContestListInstance;
+}
+- (NSArray*) contestsList {
+  return mutableContestsList;
+}
+- (PBContest*) contestsAtIndex:(int32_t) index {
+  id value = [mutableContestsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  for (PBContest* element in self.contestsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (PBContest* element in self.contestsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  for (PBContest* element in self.contestsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBContestList*) parseFromData:(NSData*) data {
+  return (PBContestList*)[[[PBContestList builder] mergeFromData:data] build];
+}
++ (PBContestList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContestList*)[[[PBContestList builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input {
+  return (PBContestList*)[[[PBContestList builder] mergeFromInputStream:input] build];
+}
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContestList*)[[[PBContestList builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBContestList*)[[[PBContestList builder] mergeFromCodedInputStream:input] build];
+}
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBContestList*)[[[PBContestList builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBContestList_Builder*) builder {
+  return [[[PBContestList_Builder alloc] init] autorelease];
+}
++ (PBContestList_Builder*) builderWithPrototype:(PBContestList*) prototype {
+  return [[PBContestList builder] mergeFrom:prototype];
+}
+- (PBContestList_Builder*) builder {
+  return [PBContestList builder];
+}
+@end
+
+@interface PBContestList_Builder()
+@property (retain) PBContestList* result;
+@end
+
+@implementation PBContestList_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBContestList alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBContestList_Builder*) clear {
+  self.result = [[[PBContestList alloc] init] autorelease];
+  return self;
+}
+- (PBContestList_Builder*) clone {
+  return [PBContestList builderWithPrototype:result];
+}
+- (PBContestList*) defaultInstance {
+  return [PBContestList defaultInstance];
+}
+- (PBContestList*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBContestList*) buildPartial {
+  PBContestList* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBContestList_Builder*) mergeFrom:(PBContestList*) other {
+  if (other == [PBContestList defaultInstance]) {
+    return self;
+  }
+  if (other.mutableContestsList.count > 0) {
+    if (result.mutableContestsList == nil) {
+      result.mutableContestsList = [NSMutableArray array];
+    }
+    [result.mutableContestsList addObjectsFromArray:other.mutableContestsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBContest_Builder* subBuilder = [PBContest builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addContests:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (NSArray*) contestsList {
+  if (result.mutableContestsList == nil) { return [NSArray array]; }
+  return result.mutableContestsList;
+}
+- (PBContest*) contestsAtIndex:(int32_t) index {
+  return [result contestsAtIndex:index];
+}
+- (PBContestList_Builder*) replaceContestsAtIndex:(int32_t) index with:(PBContest*) value {
+  [result.mutableContestsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContestList_Builder*) addAllContests:(NSArray*) values {
+  if (result.mutableContestsList == nil) {
+    result.mutableContestsList = [NSMutableArray array];
+  }
+  [result.mutableContestsList addObjectsFromArray:values];
+  return self;
+}
+- (PBContestList_Builder*) clearContestsList {
+  result.mutableContestsList = nil;
+  return self;
+}
+- (PBContestList_Builder*) addContests:(PBContest*) value {
+  if (result.mutableContestsList == nil) {
+    result.mutableContestsList = [NSMutableArray array];
+  }
+  [result.mutableContestsList addObject:value];
   return self;
 }
 @end

@@ -5,10 +5,8 @@
 @class PBApp;
 @class PBApp_Builder;
 @class PBContest;
-@class PBContestAward;
-@class PBContestAward_Builder;
-@class PBContestRankType;
-@class PBContestRankType_Builder;
+@class PBContestList;
+@class PBContestList_Builder;
 @class PBContest_Builder;
 @class PBDrawAction;
 @class PBDrawAction_Builder;
@@ -32,6 +30,8 @@
 @class PBIAPProductPrice;
 @class PBIAPProductPrice_Builder;
 @class PBIAPProduct_Builder;
+@class PBIntKeyValue;
+@class PBIntKeyValue_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
@@ -50,6 +50,8 @@
 @class PBSNSUser_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBUserAward;
+@class PBUserAward_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserItem;
@@ -175,6 +177,63 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSString*) value;
 - (PBKeyValue_Builder*) setValue:(NSString*) value;
 - (PBKeyValue_Builder*) clearValue;
+@end
+
+@interface PBIntKeyValue : PBGeneratedMessage {
+@private
+  BOOL hasKey_:1;
+  BOOL hasValue_:1;
+  int32_t key;
+  NSString* value;
+}
+- (BOOL) hasKey;
+- (BOOL) hasValue;
+@property (readonly) int32_t key;
+@property (readonly, retain) NSString* value;
+
++ (PBIntKeyValue*) defaultInstance;
+- (PBIntKeyValue*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBIntKeyValue_Builder*) builder;
++ (PBIntKeyValue_Builder*) builder;
++ (PBIntKeyValue_Builder*) builderWithPrototype:(PBIntKeyValue*) prototype;
+
++ (PBIntKeyValue*) parseFromData:(NSData*) data;
++ (PBIntKeyValue*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIntKeyValue*) parseFromInputStream:(NSInputStream*) input;
++ (PBIntKeyValue*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBIntKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBIntKeyValue*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBIntKeyValue_Builder : PBGeneratedMessage_Builder {
+@private
+  PBIntKeyValue* result;
+}
+
+- (PBIntKeyValue*) defaultInstance;
+
+- (PBIntKeyValue_Builder*) clear;
+- (PBIntKeyValue_Builder*) clone;
+
+- (PBIntKeyValue*) build;
+- (PBIntKeyValue*) buildPartial;
+
+- (PBIntKeyValue_Builder*) mergeFrom:(PBIntKeyValue*) other;
+- (PBIntKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBIntKeyValue_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasKey;
+- (int32_t) key;
+- (PBIntKeyValue_Builder*) setKey:(int32_t) value;
+- (PBIntKeyValue_Builder*) clearKey;
+
+- (BOOL) hasValue;
+- (NSString*) value;
+- (PBIntKeyValue_Builder*) setValue:(NSString*) value;
+- (PBIntKeyValue_Builder*) clearValue;
 @end
 
 @interface PBSNSUser : PBGeneratedMessage {
@@ -2931,149 +2990,110 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBOpusRank_Builder*) clearUserId;
 @end
 
-@interface PBContestAward : PBGeneratedMessage {
+@interface PBUserAward : PBGeneratedMessage {
 @private
   BOOL hasScore_:1;
   BOOL hasRank_:1;
   BOOL hasCoins_:1;
-  BOOL hasType_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasContestId_:1;
+  BOOL hasAwardType_:1;
   BOOL hasUser_:1;
   Float32 score;
   int32_t rank;
   int32_t coins;
-  PBContestRankType* type;
+  int32_t createDate;
+  NSString* contestId;
+  PBIntKeyValue* awardType;
   PBGameUser* user;
 }
-- (BOOL) hasType;
+- (BOOL) hasAwardType;
 - (BOOL) hasUser;
 - (BOOL) hasRank;
 - (BOOL) hasScore;
 - (BOOL) hasCoins;
-@property (readonly, retain) PBContestRankType* type;
+- (BOOL) hasCreateDate;
+- (BOOL) hasContestId;
+@property (readonly, retain) PBIntKeyValue* awardType;
 @property (readonly, retain) PBGameUser* user;
 @property (readonly) int32_t rank;
 @property (readonly) Float32 score;
 @property (readonly) int32_t coins;
+@property (readonly) int32_t createDate;
+@property (readonly, retain) NSString* contestId;
 
-+ (PBContestAward*) defaultInstance;
-- (PBContestAward*) defaultInstance;
++ (PBUserAward*) defaultInstance;
+- (PBUserAward*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBContestAward_Builder*) builder;
-+ (PBContestAward_Builder*) builder;
-+ (PBContestAward_Builder*) builderWithPrototype:(PBContestAward*) prototype;
+- (PBUserAward_Builder*) builder;
++ (PBUserAward_Builder*) builder;
++ (PBUserAward_Builder*) builderWithPrototype:(PBUserAward*) prototype;
 
-+ (PBContestAward*) parseFromData:(NSData*) data;
-+ (PBContestAward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBContestAward*) parseFromInputStream:(NSInputStream*) input;
-+ (PBContestAward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBContestAward*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBContestAward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserAward*) parseFromData:(NSData*) data;
++ (PBUserAward*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserAward*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserAward*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserAward*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserAward*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
-@interface PBContestAward_Builder : PBGeneratedMessage_Builder {
+@interface PBUserAward_Builder : PBGeneratedMessage_Builder {
 @private
-  PBContestAward* result;
+  PBUserAward* result;
 }
 
-- (PBContestAward*) defaultInstance;
+- (PBUserAward*) defaultInstance;
 
-- (PBContestAward_Builder*) clear;
-- (PBContestAward_Builder*) clone;
+- (PBUserAward_Builder*) clear;
+- (PBUserAward_Builder*) clone;
 
-- (PBContestAward*) build;
-- (PBContestAward*) buildPartial;
+- (PBUserAward*) build;
+- (PBUserAward*) buildPartial;
 
-- (PBContestAward_Builder*) mergeFrom:(PBContestAward*) other;
-- (PBContestAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBContestAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (PBUserAward_Builder*) mergeFrom:(PBUserAward*) other;
+- (PBUserAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserAward_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasType;
-- (PBContestRankType*) type;
-- (PBContestAward_Builder*) setType:(PBContestRankType*) value;
-- (PBContestAward_Builder*) setTypeBuilder:(PBContestRankType_Builder*) builderForValue;
-- (PBContestAward_Builder*) mergeType:(PBContestRankType*) value;
-- (PBContestAward_Builder*) clearType;
+- (BOOL) hasAwardType;
+- (PBIntKeyValue*) awardType;
+- (PBUserAward_Builder*) setAwardType:(PBIntKeyValue*) value;
+- (PBUserAward_Builder*) setAwardTypeBuilder:(PBIntKeyValue_Builder*) builderForValue;
+- (PBUserAward_Builder*) mergeAwardType:(PBIntKeyValue*) value;
+- (PBUserAward_Builder*) clearAwardType;
 
 - (BOOL) hasUser;
 - (PBGameUser*) user;
-- (PBContestAward_Builder*) setUser:(PBGameUser*) value;
-- (PBContestAward_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
-- (PBContestAward_Builder*) mergeUser:(PBGameUser*) value;
-- (PBContestAward_Builder*) clearUser;
+- (PBUserAward_Builder*) setUser:(PBGameUser*) value;
+- (PBUserAward_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBUserAward_Builder*) mergeUser:(PBGameUser*) value;
+- (PBUserAward_Builder*) clearUser;
 
 - (BOOL) hasRank;
 - (int32_t) rank;
-- (PBContestAward_Builder*) setRank:(int32_t) value;
-- (PBContestAward_Builder*) clearRank;
+- (PBUserAward_Builder*) setRank:(int32_t) value;
+- (PBUserAward_Builder*) clearRank;
 
 - (BOOL) hasScore;
 - (Float32) score;
-- (PBContestAward_Builder*) setScore:(Float32) value;
-- (PBContestAward_Builder*) clearScore;
+- (PBUserAward_Builder*) setScore:(Float32) value;
+- (PBUserAward_Builder*) clearScore;
 
 - (BOOL) hasCoins;
 - (int32_t) coins;
-- (PBContestAward_Builder*) setCoins:(int32_t) value;
-- (PBContestAward_Builder*) clearCoins;
-@end
+- (PBUserAward_Builder*) setCoins:(int32_t) value;
+- (PBUserAward_Builder*) clearCoins;
 
-@interface PBContestRankType : PBGeneratedMessage {
-@private
-  BOOL hasType_:1;
-  BOOL hasName_:1;
-  int32_t type;
-  NSString* name;
-}
-- (BOOL) hasType;
-- (BOOL) hasName;
-@property (readonly) int32_t type;
-@property (readonly, retain) NSString* name;
+- (BOOL) hasCreateDate;
+- (int32_t) createDate;
+- (PBUserAward_Builder*) setCreateDate:(int32_t) value;
+- (PBUserAward_Builder*) clearCreateDate;
 
-+ (PBContestRankType*) defaultInstance;
-- (PBContestRankType*) defaultInstance;
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (PBContestRankType_Builder*) builder;
-+ (PBContestRankType_Builder*) builder;
-+ (PBContestRankType_Builder*) builderWithPrototype:(PBContestRankType*) prototype;
-
-+ (PBContestRankType*) parseFromData:(NSData*) data;
-+ (PBContestRankType*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBContestRankType*) parseFromInputStream:(NSInputStream*) input;
-+ (PBContestRankType*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBContestRankType*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBContestRankType*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-@end
-
-@interface PBContestRankType_Builder : PBGeneratedMessage_Builder {
-@private
-  PBContestRankType* result;
-}
-
-- (PBContestRankType*) defaultInstance;
-
-- (PBContestRankType_Builder*) clear;
-- (PBContestRankType_Builder*) clone;
-
-- (PBContestRankType*) build;
-- (PBContestRankType*) buildPartial;
-
-- (PBContestRankType_Builder*) mergeFrom:(PBContestRankType*) other;
-- (PBContestRankType_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBContestRankType_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-- (BOOL) hasType;
-- (int32_t) type;
-- (PBContestRankType_Builder*) setType:(int32_t) value;
-- (PBContestRankType_Builder*) clearType;
-
-- (BOOL) hasName;
-- (NSString*) name;
-- (PBContestRankType_Builder*) setName:(NSString*) value;
-- (PBContestRankType_Builder*) clearName;
+- (BOOL) hasContestId;
+- (NSString*) contestId;
+- (PBUserAward_Builder*) setContestId:(NSString*) value;
+- (PBUserAward_Builder*) clearContestId;
 @end
 
 @interface PBContest : PBGeneratedMessage {
@@ -3149,11 +3169,11 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSArray*) reportersList;
 - (PBGameUser*) reportersAtIndex:(int32_t) index;
 - (NSArray*) winnerUsersList;
-- (PBContestAward*) winnerUsersAtIndex:(int32_t) index;
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index;
 - (NSArray*) awardUsersList;
-- (PBContestAward*) awardUsersAtIndex:(int32_t) index;
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index;
 - (NSArray*) rankTypesList;
-- (PBContestRankType*) rankTypesAtIndex:(int32_t) index;
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index;
 
 + (PBContest*) defaultInstance;
 - (PBContest*) defaultInstance;
@@ -3279,24 +3299,73 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBContest_Builder*) clearReportersList;
 
 - (NSArray*) winnerUsersList;
-- (PBContestAward*) winnerUsersAtIndex:(int32_t) index;
-- (PBContest_Builder*) replaceWinnerUsersAtIndex:(int32_t) index with:(PBContestAward*) value;
-- (PBContest_Builder*) addWinnerUsers:(PBContestAward*) value;
+- (PBUserAward*) winnerUsersAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceWinnerUsersAtIndex:(int32_t) index with:(PBUserAward*) value;
+- (PBContest_Builder*) addWinnerUsers:(PBUserAward*) value;
 - (PBContest_Builder*) addAllWinnerUsers:(NSArray*) values;
 - (PBContest_Builder*) clearWinnerUsersList;
 
 - (NSArray*) awardUsersList;
-- (PBContestAward*) awardUsersAtIndex:(int32_t) index;
-- (PBContest_Builder*) replaceAwardUsersAtIndex:(int32_t) index with:(PBContestAward*) value;
-- (PBContest_Builder*) addAwardUsers:(PBContestAward*) value;
+- (PBUserAward*) awardUsersAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceAwardUsersAtIndex:(int32_t) index with:(PBUserAward*) value;
+- (PBContest_Builder*) addAwardUsers:(PBUserAward*) value;
 - (PBContest_Builder*) addAllAwardUsers:(NSArray*) values;
 - (PBContest_Builder*) clearAwardUsersList;
 
 - (NSArray*) rankTypesList;
-- (PBContestRankType*) rankTypesAtIndex:(int32_t) index;
-- (PBContest_Builder*) replaceRankTypesAtIndex:(int32_t) index with:(PBContestRankType*) value;
-- (PBContest_Builder*) addRankTypes:(PBContestRankType*) value;
+- (PBIntKeyValue*) rankTypesAtIndex:(int32_t) index;
+- (PBContest_Builder*) replaceRankTypesAtIndex:(int32_t) index with:(PBIntKeyValue*) value;
+- (PBContest_Builder*) addRankTypes:(PBIntKeyValue*) value;
 - (PBContest_Builder*) addAllRankTypes:(NSArray*) values;
 - (PBContest_Builder*) clearRankTypesList;
+@end
+
+@interface PBContestList : PBGeneratedMessage {
+@private
+  NSMutableArray* mutableContestsList;
+}
+- (NSArray*) contestsList;
+- (PBContest*) contestsAtIndex:(int32_t) index;
+
++ (PBContestList*) defaultInstance;
+- (PBContestList*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBContestList_Builder*) builder;
++ (PBContestList_Builder*) builder;
++ (PBContestList_Builder*) builderWithPrototype:(PBContestList*) prototype;
+
++ (PBContestList*) parseFromData:(NSData*) data;
++ (PBContestList*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input;
++ (PBContestList*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBContestList*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBContestList_Builder : PBGeneratedMessage_Builder {
+@private
+  PBContestList* result;
+}
+
+- (PBContestList*) defaultInstance;
+
+- (PBContestList_Builder*) clear;
+- (PBContestList_Builder*) clone;
+
+- (PBContestList*) build;
+- (PBContestList*) buildPartial;
+
+- (PBContestList_Builder*) mergeFrom:(PBContestList*) other;
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBContestList_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (NSArray*) contestsList;
+- (PBContest*) contestsAtIndex:(int32_t) index;
+- (PBContestList_Builder*) replaceContestsAtIndex:(int32_t) index with:(PBContest*) value;
+- (PBContestList_Builder*) addContests:(PBContest*) value;
+- (PBContestList_Builder*) addAllContests:(NSArray*) values;
+- (PBContestList_Builder*) clearContestsList;
 @end
 

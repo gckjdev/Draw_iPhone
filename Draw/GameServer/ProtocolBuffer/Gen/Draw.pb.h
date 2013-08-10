@@ -13,10 +13,8 @@
 @class PBCommentInfo;
 @class PBCommentInfo_Builder;
 @class PBContest;
-@class PBContestAward;
-@class PBContestAward_Builder;
-@class PBContestRankType;
-@class PBContestRankType_Builder;
+@class PBContestList;
+@class PBContestList_Builder;
 @class PBContest_Builder;
 @class PBDraw;
 @class PBDrawAction;
@@ -62,6 +60,8 @@
 @class PBImageShapeGroupMeta;
 @class PBImageShapeGroupMeta_Builder;
 @class PBImageShapeGroup_Builder;
+@class PBIntKeyValue;
+@class PBIntKeyValue_Builder;
 @class PBItemPriceInfo;
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
@@ -106,6 +106,8 @@
 @class PBSongList;
 @class PBSongList_Builder;
 @class PBSong_Builder;
+@class PBUserAward;
+@class PBUserAward_Builder;
 @class PBUserBasicInfo;
 @class PBUserBasicInfo_Builder;
 @class PBUserItem;

@@ -11,9 +11,14 @@
 @interface ContestManager : NSObject {
 }
 
+@property (nonatomic, retain) NSMutableArray* ongoingContestList;
+
 + (ContestManager *)defaultManager;
 - (NSArray *)parseContestList:(NSArray *)jsonArray;
 
 - (int)calNewContestCount:(NSArray*)contestList;
 - (void)updateHasReadContestList:(NSArray*)contestList;
+
+- (void)saveOngoingContestList:(NSArray*)newList;
+
 @end
