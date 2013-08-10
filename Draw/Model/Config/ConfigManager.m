@@ -54,6 +54,11 @@
     return [MobClickUtils getBoolValueByKey:@"ENABLE_AD" defaultValue:YES];
 }
 
++ (BOOL)useSpeedLevel
+{
+    return [MobClickUtils getBoolValueByKey:@"USE_SPEED_LEVEL" defaultValue:YES];
+}
+
 + (BOOL)isProVersion
 {
     return [GameApp disableAd];
@@ -1053,11 +1058,11 @@
 }
 + (int)minUndoActionCount
 {
-/*
+
 #ifdef DEBUG
-    return 3;
+    return 20;
 #endif
-*/
+
     return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:100];
 }
 

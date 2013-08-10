@@ -38,7 +38,8 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
     tap.delegate = self;
     tap.numberOfTapsRequired = 2;
-    [self addGestureRecognizer:tap];    
+    [self addGestureRecognizer:tap];
+    
     [tap release];
 }
 
@@ -118,12 +119,53 @@
 
 @implementation DrawLayerPanel
 
+
+- (void)updateAlphaLabelWithValue:(CGFloat)value
+{
+    NSString *v = [NSString stringWithFormat:@"%.0f%%",value*100];
+    [self.alphaLabel setText:v];
+}
+
+- (void)drawSlider:(DrawSlider *)drawSlider didValueChange:(CGFloat)value
+{
+    [[_dlManager selectedLayer] setOpacity:value];
+    [self updateAlphaLabelWithValue:value];
+
+}
+- (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
+{
+    [[_dlManager selectedLayer] setOpacity:value];
+    [self updateAlphaLabelWithValue:value];
+}
+/*
+- (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
+{
+    [[_dlManager selectedLayer] setOpacity:value];
+    [self updateAlphaLabelWithValue:value];
+}
+ */
+
+
+- (void)updateView
+{
+    self.recognizer = [self.tableView enableGestureTableViewWithDelegate:self];
+    CGRect frame = self.alphaSlider.frame;
+    CGFloat alpha = [[_dlManager selectedLayer] opacity];
+    UIViewAutoresizing mark = self.alphaSlider.autoresizingMask;
+    [self.alphaSlider removeFromSuperview];
+    self.alphaSlider = [DrawSlider sliderWithMaxValue:1 minValue:0 defaultValue:alpha delegate:self];
+    [self updateAlphaLabelWithValue:alpha];
+    self.alphaSlider.autoresizingMask = mark;
+    self.alphaSlider.center = CGRectGetCenter(frame);
+    [self addSubview:self.alphaSlider];
+    [self reloadView];
+}
+
 + (id)drawLayerPanelWithDrawLayerManager:(DrawLayerManager *)dlManager
 {
     DrawLayerPanel *panel = [DrawLayerPanel createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:1];
     panel.dlManager = dlManager;
-    [panel reloadView];
-    panel.recognizer = [panel.tableView enableGestureTableViewWithDelegate:panel];
+    [panel updateView];
     return panel;
 }
 
@@ -135,6 +177,8 @@
     [_add release];
     PPRelease(_grabbedObject);
     PPRelease(_recognizer);
+    [_alphaSlider release];
+    [_alphaLabel release];
     [super dealloc];
 }
 
@@ -190,6 +234,8 @@
         DrawLayer *layer = [self layerOfIndexPath:indexPath];
         if (!layer.isHidden) {
             [_dlManager setSelectedLayer:layer];
+            [[self alphaSlider] setValue:layer.opacity];
+            [self updateAlphaLabelWithValue:layer.opacity];
             [self.tableView reloadData];
         }else{
             [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kHidenLayerCannotBeSelected") title:nil];
@@ -225,7 +271,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 {
  
     CMPopTipView *superView = (id)self.superview;
-    CGFloat height = [[_dlManager layers] count] * CELL_HEIGHT + (CELL_HEIGHT * 2);
+    CGFloat height = [[_dlManager layers] count] * CELL_HEIGHT + (CELL_HEIGHT * 3);
     
     CGFloat x = height - CGRectGetHeight(self.bounds);
     

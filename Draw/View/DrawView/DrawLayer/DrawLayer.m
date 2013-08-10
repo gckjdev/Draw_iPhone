@@ -47,6 +47,7 @@
                                                  tag:layer.layerTag
                                                 name:layer.layerName
                                          suportCache:layer.supportCache];
+    dl.opacity = layer.opacity;
     return [dl autorelease];
 }
 
