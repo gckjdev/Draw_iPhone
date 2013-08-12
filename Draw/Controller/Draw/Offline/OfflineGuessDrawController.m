@@ -588,6 +588,7 @@
     [self initPickToolView];
     
     [self checkDrawDataVersion];
+    self.view.backgroundColor = [shareImageManager drawBGColor];    
 }
 
 - (void)viewDidDisappear:(BOOL)animated

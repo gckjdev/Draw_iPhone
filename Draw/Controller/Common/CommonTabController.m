@@ -165,7 +165,10 @@
         [button.titleLabel setFont:BUTTON_FONT];
         [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
         [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
-        
+        [button setTitleColor:COLOR_WHITE forState:UIControlStateHighlighted];
+       
+        //shadow offset
+        [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:nil];
         
         [button setBackgroundColor:COLOR_ORANGE];
         [button setImage:nil forState:UIControlStateNormal|UIControlStateSelected|UIControlStateHighlighted];
