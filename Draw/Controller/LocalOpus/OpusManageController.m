@@ -271,8 +271,6 @@ typedef enum {
 
 - (void)initTabButtons
 {
-    [super initTabButtons];
-    
     if ([GameApp showPaintCategory] == NO){
         UIButton *mineButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
         UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeFavorite];
@@ -284,6 +282,7 @@ typedef enum {
         [self.dataTableView updateOriginY:self.dataTableView.frame.origin.y - mineButton.frame.size.height];
         [self.dataTableView updateHeight:self.dataTableView.frame.size.height + mineButton.frame.size.height];
     }
+    [super initTabButtons];    
 }
 
 - (void)viewDidLoad

@@ -127,20 +127,32 @@
     [[_tabManager tabAtIndex:currentTabIndex] setCurrentTab:YES];
 }
 
-#define BUTTON_DEFAULT_COLOR [UIColor colorWithRed:62/255. green:42/255. blue:23/255. alpha:1]
-#define BUTTON_SELETED_COLOR [UIColor whiteColor]
 #define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
-
+#define SPLIT_WIDTH (ISIPAD ? 2 : 1)
 
 - (void)initTabButtons
 {
     NSArray* tabList = [_tabManager tabList];
     NSInteger index = 0;
-    NSInteger start = 0;
-    NSInteger end = [tabList count] - 1;
+    
+    NSUInteger count = [tabList count];
+    CGFloat width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
+
+    CGFloat split = SPLIT_WIDTH;
+    CGFloat btnWidth = (width - ((count-1) * split)) / count;
+    CGFloat step = btnWidth + split;
+    
+    NSInteger i = 0;
     for(TableTab *tab in tabList){
         UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
-        ShareImageManager *imageManager = [ShareImageManager defaultManager];
+
+        CGRect rect = button.frame;
+        CGFloat x = i * step;
+        rect.origin.x = x;
+        rect.size.width = btnWidth;
+        button.frame = rect;
+        i ++;
+        
         
         //title
         [button setTitle:tab.title forState:UIControlStateNormal];
@@ -152,31 +164,19 @@
         UIColor *nomalTextColor = [self tabButtonTitleColorForNormal:index];
         UIColor *selectedTextColor = [self tabButtonTitleColorForSelected:index];
         if (nomalTextColor == nil) {
-            [button setTitleColor:BUTTON_DEFAULT_COLOR forState:UIControlStateNormal];
+            [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
         }else{
             [button setTitleColor:nomalTextColor forState:UIControlStateNormal];
         }
         
         if (selectedTextColor == nil) {
-            [button setTitleColor:BUTTON_SELETED_COLOR forState:UIControlStateSelected];
+            [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
         }else{
             [button setTitleColor:selectedTextColor forState:UIControlStateSelected];
         }
         
-        
-        
-        //bg image
-        if (index == start) {
-            [button setBackgroundImage:[imageManager myFoucsImage] forState:UIControlStateNormal];
-            [button setBackgroundImage:[imageManager myFoucsSelectedImage] forState:UIControlStateSelected];
-        }else if(index == end){
-            [button setBackgroundImage:[imageManager focusMeImage] forState:UIControlStateNormal];
-            [button setBackgroundImage:[imageManager focusMeSelectedImage] forState:UIControlStateSelected];
-        }else{
-            [button setBackgroundImage:[imageManager middleTabImage] forState:UIControlStateNormal];
-            [button setBackgroundImage:[imageManager middleTabSelectedImage] forState:UIControlStateSelected];
-        }
-        
+        [button setBackgroundColor:COLOR_ORANGE];
+        [button setImage:nil forState:UIControlStateNormal|UIControlStateSelected|UIControlStateHighlighted];
         index++;
     }
     [self clickTabButton:self.currentTabButton];
@@ -247,6 +247,8 @@
     UIButton *button = (UIButton *)sender;
     UIButton *currentButton = self.currentTabButton;
     [currentButton setSelected:NO];
+    [currentButton setBackgroundColor:COLOR_ORANGE];
+    [button setBackgroundColor:COLOR_DARK_ORANGE];
     [button setSelected:YES];
     [self clickTab:button.tag];
 }
