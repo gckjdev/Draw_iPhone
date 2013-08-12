@@ -129,6 +129,7 @@
 
 #define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
+#define SHADOW_OFFSET (ISIPAD ? CGSizeMake(0, 2) : CGSizeMake(0, 1))
 
 - (void)initTabButtons
 {
@@ -159,21 +160,11 @@
         
         //font
         [button.titleLabel setFont:BUTTON_FONT];
+        [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+        [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
+        [button.titleLabel setShadowOffset:SHADOW_OFFSET];
+        [button.titleLabel setShadowColor:COLOR_DARK_BLUE];
         
-        //text color
-        UIColor *nomalTextColor = [self tabButtonTitleColorForNormal:index];
-        UIColor *selectedTextColor = [self tabButtonTitleColorForSelected:index];
-        if (nomalTextColor == nil) {
-            [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-        }else{
-            [button setTitleColor:nomalTextColor forState:UIControlStateNormal];
-        }
-        
-        if (selectedTextColor == nil) {
-            [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
-        }else{
-            [button setTitleColor:selectedTextColor forState:UIControlStateSelected];
-        }
         
         [button setBackgroundColor:COLOR_ORANGE];
         [button setImage:nil forState:UIControlStateNormal|UIControlStateSelected|UIControlStateHighlighted];
@@ -247,8 +238,10 @@
     UIButton *button = (UIButton *)sender;
     UIButton *currentButton = self.currentTabButton;
     [currentButton setSelected:NO];
-    [currentButton setBackgroundColor:COLOR_ORANGE];
-    [button setBackgroundColor:COLOR_DARK_ORANGE];
+    [UIView animateWithDuration:0.5 animations:^{
+        [currentButton setBackgroundColor:COLOR_ORANGE];
+        [button setBackgroundColor:COLOR_DARK_ORANGE];        
+    }];
     [button setSelected:YES];
     [self clickTab:button.tag];
 }
