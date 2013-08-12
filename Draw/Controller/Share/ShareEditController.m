@@ -56,6 +56,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_titleView);
     [shareTitleLabel release];
     [_imageFilePath release];
     [_text release];
@@ -494,6 +495,11 @@ enum {
     [self initShareText];
         
     // Do any additional setup after loading the view from its nib.
+    [self.titleView setTitle:NSLS(@"kShareWeiboTitle")];
+    [self.titleView setRightButtonTitle:NSLS(@"kShareSend")];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButon:)];
+    [self.titleView setRightButtonSelector:@selector(publish:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
