@@ -143,7 +143,7 @@
     [cell setCellInfo:arr];
     [cell setIndexPath:indexPath];
     if (_mode == PBUserGuessModeGuessModeGenius) {
-        [cell setCurrentGuessIndex:[[GuessManager defaultManager] guessIndex:self.currentTab.dataList]];
+        [cell setCurrentGuessIndex:[GuessManager guessIndex:self.currentTab.dataList]];
     }
     return cell;
 }
@@ -217,7 +217,7 @@
     if (_mode == PBUserGuessModeGuessModeGenius) {
         if (pbOpus.guessInfo.isCorrect == YES) {
             [self gotoOpusDetailController:pbOpus];
-        }else if (pbOpus.guessInfo.isCorrect == NO && index == [[GuessManager defaultManager] guessIndex:self.currentTab.dataList]) {
+        }else if (pbOpus.guessInfo.isCorrect == NO && index == [GuessManager guessIndex:self.currentTab.dataList]) {
             [self gotoOpusGuessController:pbOpus];
         }else{
             [self popupHappyMessage:NSLS(@"kGuessPreviousOpusFirst") title:nil];
@@ -249,9 +249,9 @@
     
     [self refreshData];
 
-    int count = [[GuessManager defaultManager] passCount:self.currentTab.dataList] + 1;
+    int count = [GuessManager passCount:self.currentTab.dataList] + 1;
     
-    if ([[GuessManager defaultManager] canAwardNow:count mode:_mode]) {
+    if ([GuessManager canAwardNow:count mode:_mode]) {
         [self awardWithCount:count];
     }else{
         [self showTipsWithCount:count];
@@ -289,7 +289,7 @@
 
 - (void)awardWithCount:(int)count{
     
-    int awardCoins = [[GuessManager defaultManager] awardCoins:count mode:_mode];
+    int awardCoins = [GuessManager awardCoins:count mode:_mode];
 
     if (_mode == PBUserGuessModeGuessModeHappy) {
         
@@ -318,7 +318,7 @@
     
     if (resultCode == 0) {
         
-        if ([[GuessManager defaultManager] countNeedToGuessToAward:rank.pass mode:_mode] == 0) {
+        if ([GuessManager countNeedToGuessToAward:rank.pass mode:_mode] == 0) {
             [self showTipInContestModeWhenContestOver:rank];
         }else{
             [self showTipInContestMode:rank];
@@ -380,8 +380,8 @@
 
 - (void)showTipInHappyMode:(int)count{
     
-    int predictAwardCoins = [[GuessManager defaultManager] predictAwardCoins:count mode:_mode];
-    int needToGuess = [[GuessManager defaultManager] countNeedToGuessToAward:count mode:_mode];
+    int predictAwardCoins = [GuessManager predictAwardCoins:count mode:_mode];
+    int needToGuess = [GuessManager countNeedToGuessToAward:count mode:_mode];
     
     NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeTips"), count, needToGuess, predictAwardCoins];
@@ -400,8 +400,8 @@
 
 - (void)showTipInGeniusMode:(int)count{
     
-    int predictAwardCoins = [[GuessManager defaultManager] predictAwardCoins:count mode:_mode];
-    int needToGuess = [[GuessManager defaultManager] countNeedToGuessToAward:count mode:_mode];
+    int predictAwardCoins = [GuessManager predictAwardCoins:count mode:_mode];
+    int needToGuess = [GuessManager countNeedToGuessToAward:count mode:_mode];
     
     NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), count, needToGuess, predictAwardCoins];

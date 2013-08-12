@@ -7,17 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Opus.pb.h"
 
 @interface GuessManager : NSObject
 
-+ (id)defaultManager;
++ (int)passCount:(NSArray *)opuses;
++ (int)guessIndex:(NSArray *)opuses;
 
-- (int)passCount:(NSArray *)opuses;
-- (int)guessIndex:(NSArray *)opuses;
++ (BOOL)canAwardNow:(int)passCount mode:(int)mode;
++ (int)awardCoins:(int)passCount mode:(int)mode;
++ (int)predictAwardCoins:(int)passCount mode:(int)mode;
++ (int)countNeedToGuessToAward:(int)count mode:(int)mode;
 
-- (BOOL)canAwardNow:(int)passCount mode:(int)mode;
-- (int)awardCoins:(int)passCount mode:(int)mode;
-- (int)predictAwardCoins:(int)passCount mode:(int)mode;
-- (int)countNeedToGuessToAward:(int)count mode:(int)mode;
-
++ (BOOL)isContestOver:(PBGuessContest *)contest;
++ (BOOL)isContestNotStart:(PBGuessContest *)contest;
++ (BOOL)isContestBeing:(PBGuessContest *)contest;
+    
 @end
