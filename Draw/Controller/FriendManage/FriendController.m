@@ -149,11 +149,6 @@ typedef enum{
 {
     [super initTabButtons];
     
-//    for (TableTab *tab in [_tabManager tabList]) {
-//        UIButton *button = [self tabButtonWithTabID:tab.tabID];
-//        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:(ISIPAD ? 26 : 13)]];
-//    }
-    
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
 
     switch (_type) {

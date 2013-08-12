@@ -807,21 +807,8 @@ typedef enum{
 
 - (void)initTabButtons
 {
-    
-//    switch ([self currentTab].tabID) {
-//        case TabTypeDraft:
-//            //
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    [self loadDrafts];
-//    [self loadPaintsOnlyMine:YES];
-//    [self loadPaintsOnlyMine:NO];
     [super initTabButtons];
     [[MyPaintManager defaultManager] countAllPaintsAndDrafts:self];
-    
     if ([GameApp showPaintCategory] == NO){
         UIButton *mineButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
         UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
@@ -833,6 +820,7 @@ typedef enum{
         [self.dataTableView updateOriginY:self.dataTableView.frame.origin.y - mineButton.frame.size.height];
         [self.dataTableView updateHeight:self.dataTableView.frame.size.height + mineButton.frame.size.height];
     }
+
 }
 
 
