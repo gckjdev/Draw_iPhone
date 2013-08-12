@@ -11,6 +11,7 @@
 #import "GuessRankListController.h"
 #import "CommonMessageCenter.h"
 #import "JDDateCountdownFlipView.h"
+#import "GuessManager.h"
 
 @interface GuessModesController (){
     int _countDown;
@@ -204,16 +205,15 @@
 - (IBAction)clickContestModeButton:(id)sender {
     
 #if DEBUG == 0
-    int time = [[NSDate date] timeIntervalSince1970];
-    if (time < _contest.startTime) {
+    if ([GuessManager isContestNotStart:_contest]) {
         [self showContestIsNotStartTip];
         return;
     }
-    if (time > _contest.endTime) {
+    if (time > [GuessManager isContestOver:_contest]) {
         [self showContestIsOverTip];
         return;
     }
-#endif
+#endif   
     
     GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
     [self.navigationController pushViewController:vc animated:YES];

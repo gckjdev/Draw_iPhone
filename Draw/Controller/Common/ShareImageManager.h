@@ -13,13 +13,14 @@
 #import "GameBasic.pb.h"
 #import "HPThemeManager.h"
 
-#define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82)
-#define COLOR_DARK_ORANGE OPAQUE_COLOR(211, 59, 55)
+#define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82) // normal
+#define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) // selected
+#define COLOR_ORANGE2 OPAQUE_COLOR(224, 80, 67) // hightlight
 
-#define COLOR_GRAY OPAQUE_COLOR(245, 245, 245)
-#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140)
+#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
 
-#define COLOR_WHITE [UIColor whiteColor]
+#define COLOR_WHITE [UIColor whiteColor] //Cell
+#define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
 
 
 #define SET_CELL_BG                     \

@@ -25,7 +25,6 @@
 
 @interface GuessSelectController (){
     PBUserGuessMode _mode;
-    BOOL _isRefreshData;
 }
 @property (retain, nonatomic) NSArray *opuses;
 @property (retain, nonatomic) PBGuessContest *contest;
@@ -144,7 +143,7 @@
     [cell setCellInfo:arr];
     [cell setIndexPath:indexPath];
     if (_mode == PBUserGuessModeGuessModeGenius) {
-        [cell setCurrentGuessIndex:[[GuessManager defaultManager] guessIndex:self.currentTab.dataList]];
+        [cell setCurrentGuessIndex:[GuessManager guessIndex:self.currentTab.dataList]];
     }
     return cell;
 }
@@ -162,17 +161,15 @@
     
 }
 
-- (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode{
+- (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode isStartNew:(BOOL)isStartNew{
     
     PPDebug(@"count = %d", [opuses count]);
     [self hideActivity];
 
     if (resultCode == 0) {
-        if (_isRefreshData) {
-            _isRefreshData = NO;
-            [self.currentTab.dataList removeAllObjects];
-        }
+        
         [self finishLoadDataForTabID:TABID resultList:opuses];
+        
     }else{
         [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
     }
@@ -184,7 +181,7 @@
     CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint") info:NSLS(@"kRestartGuessWarnning") hasCloseButton:NO buttonTitles:titles];
     [infoView setActionBlock:^(UIButton *button, UIView *view){
         if ([button titleForState:UIControlStateNormal] == NSLS(@"kOK")) {
-            [self restart];
+            [self startNew];
         }
         [infoView dismiss];
     }];
@@ -199,9 +196,9 @@
                                                delegate:self];
 }
 
-- (void)restart{
-    [self loadData:0 limit:LIMIT startNew:YES];
-    [self.currentTab.dataList removeAllObjects];
+- (void)startNew{
+    self.currentTab.offset = 0;
+    [self loadData:self.currentTab.offset limit:LIMIT startNew:YES];
 }
 
 - (IBAction)clickShareButton:(id)sender {
@@ -220,7 +217,7 @@
     if (_mode == PBUserGuessModeGuessModeGenius) {
         if (pbOpus.guessInfo.isCorrect == YES) {
             [self gotoOpusDetailController:pbOpus];
-        }else if (pbOpus.guessInfo.isCorrect == NO && index == [[GuessManager defaultManager] guessIndex:self.currentTab.dataList]) {
+        }else if (pbOpus.guessInfo.isCorrect == NO && index == [GuessManager guessIndex:self.currentTab.dataList]) {
             [self gotoOpusGuessController:pbOpus];
         }else{
             [self popupHappyMessage:NSLS(@"kGuessPreviousOpusFirst") title:nil];
@@ -252,9 +249,9 @@
     
     [self refreshData];
 
-    int count = [[GuessManager defaultManager] passCount:self.currentTab.dataList] + 1;
+    int count = [GuessManager passCount:self.currentTab.dataList] + 1;
     
-    if ([[GuessManager defaultManager] canAwardNow:count mode:_mode]) {
+    if ([GuessManager canAwardNow:count mode:_mode]) {
         [self awardWithCount:count];
     }else{
         [self showTipsWithCount:count];
@@ -282,7 +279,7 @@
             [self clickRestartButton:nil];
             [infoView dismiss];
         }else{
-            [self restart];
+            [self startNew];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
@@ -292,7 +289,7 @@
 
 - (void)awardWithCount:(int)count{
     
-    int awardCoins = [[GuessManager defaultManager] awardCoins:count mode:_mode];
+    int awardCoins = [GuessManager awardCoins:count mode:_mode];
 
     if (_mode == PBUserGuessModeGuessModeHappy) {
         
@@ -321,7 +318,7 @@
     
     if (resultCode == 0) {
         
-        if ([[GuessManager defaultManager] countNeedToGuessToAward:rank.pass mode:_mode] == 0) {
+        if ([GuessManager countNeedToGuessToAward:rank.pass mode:_mode] == 0) {
             [self showTipInContestModeWhenContestOver:rank];
         }else{
             [self showTipInContestMode:rank];
@@ -347,8 +344,7 @@
     [infoView setActionBlock:^(UIButton *button, UIView *view){
         if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kGoOn")]) {
             if (passCount >= 20) {
-                [self loadData:0 limit:LIMIT startNew:YES];
-                [self.currentTab.dataList removeAllObjects];
+                [self startNew];
             }
         }else{
             [self.navigationController popViewControllerAnimated:YES];
@@ -384,8 +380,8 @@
 
 - (void)showTipInHappyMode:(int)count{
     
-    int predictAwardCoins = [[GuessManager defaultManager] predictAwardCoins:count mode:_mode];
-    int needToGuess = [[GuessManager defaultManager] countNeedToGuessToAward:count mode:_mode];
+    int predictAwardCoins = [GuessManager predictAwardCoins:count mode:_mode];
+    int needToGuess = [GuessManager countNeedToGuessToAward:count mode:_mode];
     
     NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeTips"), count, needToGuess, predictAwardCoins];
@@ -404,8 +400,8 @@
 
 - (void)showTipInGeniusMode:(int)count{
     
-    int predictAwardCoins = [[GuessManager defaultManager] predictAwardCoins:count mode:_mode];
-    int needToGuess = [[GuessManager defaultManager] countNeedToGuessToAward:count mode:_mode];
+    int predictAwardCoins = [GuessManager predictAwardCoins:count mode:_mode];
+    int needToGuess = [GuessManager countNeedToGuessToAward:count mode:_mode];
     
     NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), count, needToGuess, predictAwardCoins];
@@ -455,9 +451,9 @@
 
 - (void)refreshData{
     
+    self.currentTab.offset = 0;
     int count = [self.currentTab.dataList count];
-    [self loadData:0 limit:count startNew:NO];
-    _isRefreshData = YES;
+    [self loadData:self.currentTab.offset limit:count startNew:NO];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index{

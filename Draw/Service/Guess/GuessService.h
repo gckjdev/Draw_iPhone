@@ -16,7 +16,7 @@
 @protocol GuessServiceDelegate <NSObject>
 
 @optional
-- (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode;
+- (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode isStartNew:(BOOL)isStartNew;
 - (void)didGuessOpus:(PBOpus *)opus resultCode:(int)resultCode;
 - (void)didGetGuessRank:(PBGuessRank *)rank resultCode:(int)resultCode;
 - (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode;

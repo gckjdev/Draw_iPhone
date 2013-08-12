@@ -127,9 +127,9 @@
     [[_tabManager tabAtIndex:currentTabIndex] setCurrentTab:YES];
 }
 
-#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
+//#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
+#define BUTTON_FONT (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
-#define SHADOW_OFFSET (ISIPAD ? CGSizeMake(0, 2) : CGSizeMake(0, 1))
 
 - (void)initTabButtons
 {
@@ -154,6 +154,9 @@
         button.frame = rect;
         i ++;
         
+        [button addTarget:self action:@selector(clickTabDown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(clickTabUp:) forControlEvents:UIControlEventAllEvents^UIControlEventTouchDown];
+        
         
         //title
         [button setTitle:tab.title forState:UIControlStateNormal];
@@ -162,8 +165,6 @@
         [button.titleLabel setFont:BUTTON_FONT];
         [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
         [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
-        [button.titleLabel setShadowOffset:SHADOW_OFFSET];
-        [button.titleLabel setShadowColor:COLOR_DARK_BLUE];
         
         
         [button setBackgroundColor:COLOR_ORANGE];
@@ -238,13 +239,34 @@
     UIButton *button = (UIButton *)sender;
     UIButton *currentButton = self.currentTabButton;
     [currentButton setSelected:NO];
-    [UIView animateWithDuration:0.5 animations:^{
-        [currentButton setBackgroundColor:COLOR_ORANGE];
-        [button setBackgroundColor:COLOR_DARK_ORANGE];        
-    }];
+
+    [currentButton setBackgroundColor:COLOR_ORANGE];
+    [button setBackgroundColor:COLOR_ORANGE1];
+
     [button setSelected:YES];
     [self clickTab:button.tag];
 }
+
+//highlight
+- (IBAction)clickTabDown:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (self.currentTabButton != button) {
+        [button setBackgroundColor:COLOR_ORANGE2];
+    }
+}
+
+//selected
+- (IBAction)clickTabUp:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    if (self.currentTabButton == button) {
+        [button setBackgroundColor:COLOR_ORANGE1];
+    }else{
+        [button setBackgroundColor:COLOR_ORANGE];
+    }
+}
+
 
 - (IBAction)clickRefreshButton:(id)sender
 {
