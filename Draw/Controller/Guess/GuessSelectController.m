@@ -25,7 +25,6 @@
 
 @interface GuessSelectController (){
     PBUserGuessMode _mode;
-    BOOL _isRefreshData;
 }
 @property (retain, nonatomic) NSArray *opuses;
 @property (retain, nonatomic) PBGuessContest *contest;
@@ -162,17 +161,15 @@
     
 }
 
-- (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode{
+- (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode isStartNew:(BOOL)isStartNew{
     
     PPDebug(@"count = %d", [opuses count]);
     [self hideActivity];
 
     if (resultCode == 0) {
-        if (_isRefreshData) {
-            _isRefreshData = NO;
-            [self.currentTab.dataList removeAllObjects];
-        }
+        
         [self finishLoadDataForTabID:TABID resultList:opuses];
+        
     }else{
         [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
     }
@@ -184,7 +181,7 @@
     CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint") info:NSLS(@"kRestartGuessWarnning") hasCloseButton:NO buttonTitles:titles];
     [infoView setActionBlock:^(UIButton *button, UIView *view){
         if ([button titleForState:UIControlStateNormal] == NSLS(@"kOK")) {
-            [self restart];
+            [self startNew];
         }
         [infoView dismiss];
     }];
@@ -199,9 +196,9 @@
                                                delegate:self];
 }
 
-- (void)restart{
-    [self loadData:0 limit:LIMIT startNew:YES];
-    [self.currentTab.dataList removeAllObjects];
+- (void)startNew{
+    self.currentTab.offset = 0;
+    [self loadData:self.currentTab.offset limit:LIMIT startNew:YES];
 }
 
 - (IBAction)clickShareButton:(id)sender {
@@ -282,7 +279,7 @@
             [self clickRestartButton:nil];
             [infoView dismiss];
         }else{
-            [self restart];
+            [self startNew];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
@@ -347,8 +344,7 @@
     [infoView setActionBlock:^(UIButton *button, UIView *view){
         if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kGoOn")]) {
             if (passCount >= 20) {
-                [self loadData:0 limit:LIMIT startNew:YES];
-                [self.currentTab.dataList removeAllObjects];
+                [self startNew];
             }
         }else{
             [self.navigationController popViewControllerAnimated:YES];
@@ -455,9 +451,9 @@
 
 - (void)refreshData{
     
+    self.currentTab.offset = 0;
     int count = [self.currentTab.dataList count];
-    [self loadData:0 limit:count startNew:NO];
-    _isRefreshData = YES;
+    [self loadData:self.currentTab.offset limit:count startNew:NO];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
