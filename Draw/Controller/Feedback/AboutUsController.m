@@ -34,6 +34,14 @@
     [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
     
     [self.aboutTitle setText:NSLS(@"kAbout_us_title")];
+
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kAbout_us_title")];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBack:)];
+
+    
     NSString *infoString =  @"Program By\n\
 -------------------------------\n\
 PIPI Peng\n\

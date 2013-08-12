@@ -12,7 +12,7 @@
 #import "TimeUtils.h"
 #import "Opus.pb.h"
 #import "ShareImageManager.h"
-
+#import "GuessManager.h"
 
 #define GENIUS_WEEK NSLS(@"kGeniusRankWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusRankYear")
@@ -56,12 +56,11 @@
 
     [self initTabButtons];
     
+    _geniusButton.backgroundColor = COLOR_ORANGE;
+    _contestButton.backgroundColor = COLOR_ORANGE;
+    
     [[GuessService defaultService] getRecentGuessContestListWithDelegate:self];
     
-    [_geniusButton setBackgroundColor:COLOR_ORANGE];
-    [_contestButton setBackgroundColor:COLOR_ORANGE];
-    
-    self.currentSelect = WEEK;
     [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
 }
 
@@ -78,18 +77,28 @@
     _currentSelect = [currentSelect copy];
     
     if ([_currentSelect isEqualToString:WEEK]) {
+        [_geniusButton setBackgroundColor:COLOR_ORANGE1];
+        [_contestButton setBackgroundColor:COLOR_ORANGE];
         [_geniusButton setTitle:GENIUS_WEEK forState:UIControlStateNormal];
         [self clickTab:TabTypeGeniusHot];
     }else if ([_currentSelect isEqualToString:YEAR]) {
+        [_geniusButton setBackgroundColor:COLOR_ORANGE1];
+        [_contestButton setBackgroundColor:COLOR_ORANGE];
         [_geniusButton setTitle:GENIUS_YEAR forState:UIControlStateNormal];
         [self clickTab:TabTypeGeniusAllTime];
     }else if ([_currentSelect isEqualToString:TODAY]) {
+        [_geniusButton setBackgroundColor:COLOR_ORANGE];
+        [_contestButton setBackgroundColor:COLOR_ORANGE1];
         [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
         [self clickTab:TabTypeContestToday];
     }else if ([_currentSelect isEqualToString:YESTERDAY]) {
+        [_geniusButton setBackgroundColor:COLOR_ORANGE];
+        [_contestButton setBackgroundColor:COLOR_ORANGE1];
         [_contestButton setTitle:CONTEST_YESTODAY forState:UIControlStateNormal];
         [self clickTab:TabTypeContestYestoday];
     }else if ([_currentSelect isEqualToString:BEFOREYESTERDAY]) {
+        [_geniusButton setBackgroundColor:COLOR_ORANGE];
+        [_contestButton setBackgroundColor:COLOR_ORANGE1];
         [_contestButton setTitle:CONTEST_BEFOREYESTODAY forState:UIControlStateNormal];
         [self clickTab:TabTypeContestBeforeYestoday];
     }
@@ -120,8 +129,6 @@
 
 - (IBAction)clickGeniusButton:(UIButton *)sender {
     
-    _geniusButton.selected = YES;
-    _contestButton.selected = NO;
     if ([[sender titleForState:UIControlStateNormal] isEqualToString:GENIUS_WEEK]) {
         self.currentSelect = WEEK;
     }else{
@@ -130,9 +137,6 @@
 }
 
 - (IBAction)clickContestSelectButton:(UIButton *)sender {
-    
-    _geniusButton.selected = NO;
-    _contestButton.selected = YES;
     
     NSArray *menuItems =
     @[
@@ -280,6 +284,12 @@ typedef enum{
     
     if (resultCode == 0) {
         self.contests = list;
+        PBGuessContest *contest = [_contests objectAtIndex:0];
+        if ([GuessManager isContestOver:contest]) {
+            self.currentSelect = TODAY;
+        }else{
+            self.currentSelect = WEEK;
+        }
     }else{
         [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
     }

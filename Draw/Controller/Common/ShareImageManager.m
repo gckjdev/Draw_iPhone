@@ -47,6 +47,21 @@ static UIImage* _whitePaperImage;
     return self;
 }
 
+- (UIImage*)greenButtonImage:(NSString*)text
+{
+    return [self greenButtonImage];
+}
+
+- (UIImage*)greenButtonImage
+{
+    if (ISIPAD){
+        return [UIThemeImageNamed(@"button_green@2x.png") defaultStretchableImage];
+    }
+    else{
+        return [UIThemeImageNamed(@"button_green@2x.png") defaultStretchableImage];
+    }
+}
+
 - (UIImage*)woodImage
 {
     if (_woodButtonImage == nil){        

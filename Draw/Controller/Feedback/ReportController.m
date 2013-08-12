@@ -222,9 +222,11 @@
     [self.tips.titleLabel setNumberOfLines:2];
     [self.contentText becomeFirstResponder];
     
+    NSString* title = @"";
     switch (_reportType) {
         case SUBMIT_BUG: {
             [self.reporterTitle setText:NSLS(@"kReport_bug")];
+            title = NSLS(@"kReport_bug");
             [self.contentText setText:NSLS(@"kHave_problems?")];
             
             [self.tips setTitle:[GameApp feedbackTips] forState:UIControlStateNormal];
@@ -234,6 +236,8 @@
         } break;
         case SUBMIT_FEEDBACK: {
             [self.reporterTitle setText:NSLS(@"kAdvices")];
+            title = NSLS(@"kAdvices");
+
             [self.contentText setText:NSLS(@"kSay something...")];
             [self.tips setTitle:[GameApp feedbackTips] forState:UIControlStateNormal];
 //            if (isDrawApp()) {
@@ -244,6 +248,8 @@
         } break;
         case ADD_WORD: {
             [self.reporterTitle setText:NSLS(@"kAddWords")];
+            title = NSLS(@"kAddWords");
+            
             [self.contactBackground setHidden:YES];
             [self.contactText setHidden:YES];
             [self.tips setTitle:NSLS(@"kAddWordsTips") forState:UIControlStateNormal];   
@@ -287,7 +293,13 @@
         default:
             break;
     }
+    
     // Do any additional setup after loading the view from its nib.
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:title];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBack:)];
 }
 
 

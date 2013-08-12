@@ -9,6 +9,21 @@
 
 #import <UIKit/UIKit.h>
 
+
+/*
+ 
+ sample usage, add the following code in viewDidLoad
+ 
+ [CommonTitleView createTitleView:self.view];
+ CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+ [titleView setTitle:NSLS(@"kFeed")];
+ [titleView setRightButtonAsRefresh];
+ [titleView setTarget:self];
+ [titleView setBackButtonSelector:@selector(clickBackButton:)];
+ [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+ 
+ */
+
 typedef void (^NavigationButtonActionBlock)(UIButton *button);
 
 @interface CommonTitleView : UIView
@@ -25,7 +40,7 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 - (void)hideRightButton;
 - (void)showRightButton;
 
-+ (UIView*)createTitleView:(UIView*)superView;
++ (CommonTitleView*)createTitleView:(UIView*)superView;
 + (CommonTitleView*)titleView:(UIView*)superView;
 
 @end

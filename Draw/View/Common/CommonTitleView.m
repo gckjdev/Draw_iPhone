@@ -9,6 +9,8 @@
 #import "CommonTitleView.h"
 #import "HPThemeManager.h"
 #import "UIButton+Extend.h"
+#import "ShareImageManager.h"
+#import "UIImageExt.h"
 
 #define COMMON_TITLE_VIEW_TAG   2013081218
 
@@ -17,15 +19,19 @@
 
 #define LEFT_GAP (ISIPAD ? 4 : 2)
 
-#define BACK_BUTTON_WIDTH (ISIPAD ? 78 : 36)
+#define BACK_BUTTON_WIDTH (ISIPAD ? 76 : 30)
 #define BACK_BUTTON_HEIGHT BACK_BUTTON_WIDTH
-#define RIGHT_BUTTON_WIDTH (ISIPAD ? 78 : 36)
+#define RIGHT_BUTTON_WIDTH (ISIPAD ? 76 : 25)
 #define RIGHT_BUTTON_HEIGHT RIGHT_BUTTON_WIDTH
+
+//// for right button icon image
+//#define RIGHT_BUTTON_IMAGE_HEIGHT (RIGHT_BUTTON_HEIGHT - (ISIPAD ? 20 : 10))
+//#define RIGHT_BUTTON_IMAGE_WIDTH  (RIGHT_BUTTON_IMAGE_HEIGHT)
 
 #define TITLE_LABEL_WIDTH (ISIPAD ? 450 : 200)
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 78 : 36)
 
-#define TITLE_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:36] : [UIFont boldSystemFontOfSize:18])
+#define TITLE_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:36] : [UIFont boldSystemFontOfSize:20])
 #define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:30] : [UIFont boldSystemFontOfSize:15])
 
 
@@ -55,9 +61,17 @@
     [super dealloc];
 }
 
-+ (UIView*)createTitleView:(UIView*)superView
+
+
++ (CommonTitleView*)createTitleView:(UIView*)superView
 {
-    CommonTitleView* titleView = [[CommonTitleView alloc] init];
+    CommonTitleView* titleView = [self titleView:superView];
+    if (titleView != nil){
+        PPDebug(@"<createTitleView> but title view exist, return");
+        return titleView;
+    }
+    
+    titleView = [[CommonTitleView alloc] init];
     [superView addSubview:titleView];
     [titleView release];
     return titleView;
@@ -87,7 +101,7 @@
     self.backButton = [[[UIButton alloc] initWithFrame:CGRectZero] autorelease];
     [_backButton updateWidth:BACK_BUTTON_WIDTH];
     [_backButton updateHeight:BACK_BUTTON_HEIGHT];
-    [_backButton updateOriginX:LEFT_GAP];
+    [_backButton updateOriginX:4 * LEFT_GAP];
     [_backButton updateCenterY:_centerY];
     
     [_backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -104,8 +118,8 @@
     _titleLabel.font = TITLE_FONT;
     _titleLabel.textAlignment = UITextAlignmentCenter;
     _titleLabel.textColor = [UIColor whiteColor];
-    _titleLabel.shadowOffset = CGSizeMake(1, 1);
-    _titleLabel.shadowColor = [UIColor blackColor];
+    _titleLabel.shadowOffset = CGSizeMake(0, 1);
+    _titleLabel.shadowColor = COLOR_DARK_BLUE;
     
     [self addSubview:_bgImageView];
     [self addSubview:_titleLabel];
@@ -144,7 +158,7 @@
     [_rightButton removeFromSuperview];
     _rightButton = nil;
     
-    self.rightButton = [self rightButtonWithImage:UIThemeImageNamed(@"navigation_right_button_refresh@2x.png")];
+    self.rightButton = [self rightButtonWithImage:UIThemeImageNamed(@"button_refresh@2x.png")];
     [self addSubview:_rightButton];
 }
 
@@ -163,12 +177,14 @@
     
     CGRect frame = CGRectMake(0, 0, RIGHT_BUTTON_WIDTH, RIGHT_BUTTON_HEIGHT);
     UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
+    
+//    UIImage* buttonImage = [image imageByScalingAndCroppingForSize:CGSizeMake(RIGHT_BUTTON_IMAGE_WIDTH, RIGHT_BUTTON_IMAGE_WIDTH)];
     [button setImage:image forState:UIControlStateNormal];
     
     [button addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    int originX = (WIDTH - LEFT_GAP - button.frame.size.width);
-    [button updateCenterX:originX];
+    int originX = (WIDTH - 3 * LEFT_GAP - button.frame.size.width);
+    [button updateOriginX:originX];
     [button updateCenterY:_centerY];
 
     return button;
@@ -181,15 +197,17 @@
     [button setTitle:title forState:UIControlStateNormal];
     button.titleLabel.font = BUTTON_FONT;
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.shadowOffset = CGSizeMake(1, 1);
-    [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setBackgroundImage:UIThemeImageNamed(@"") forState:UIControlStateNormal];
-    [button wrapTitle];
+//    button.titleLabel.shadowOffset = CGSizeMake(1, 1);
+//    [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setBackgroundImage:[[ShareImageManager defaultManager] greenButtonImage:title]
+                      forState:UIControlStateNormal];
     
+    [button sizeToFit];
+    button.frame = CGRectInset(button.frame, -10, -5);
     
     [button addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
 
-    int originX = (WIDTH - LEFT_GAP - button.frame.size.width);
+    int originX = (WIDTH - 3 * LEFT_GAP - button.frame.size.width);
     [button updateOriginX:originX];
     [button updateCenterY:_centerY];
     

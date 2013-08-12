@@ -73,6 +73,17 @@
         [self.titleLabel setText:NSLS(@"kComment")];
     }
     [self.contentView becomeFirstResponder];
+    
+    
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    if (self.commentFeed) {
+        [titleView setTitle:NSLS(@"kReplyComment")];
+    }else{
+        [titleView setTitle:NSLS(@"kComment")];
+    }
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBack:)];
 }
 
 - (void)viewDidUnload

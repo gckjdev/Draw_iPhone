@@ -34,8 +34,6 @@
 - (IBAction)clickToolBoxButton:(id)sender;
 - (IBAction)clickOpusButton:(id)sender;
 
-- (void)submitWords;
-
 // optional - implemented in your sub-class
 - (void)didGuessWrong:(NSString *)word;
 - (void)didGuessCorrect:(NSString *)word;

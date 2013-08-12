@@ -57,8 +57,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([delegate respondsToSelector:@selector(didGetOpuses:resultCode:)]) {
-                [delegate didGetOpuses:opuses resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetOpuses:resultCode:isStartNew:)]) {
+                [delegate didGetOpuses:opuses resultCode:resultCode isStartNew:isStartNew];
             }
         });
     });

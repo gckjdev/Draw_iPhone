@@ -7,8 +7,6 @@
 //
 
 #import "GuessManager.h"
-#import "SynthesizeSingleton.h"
-#import "Opus.pb.h"
 #import "ConfigManager.h"
 
 #define NUM_COUNT_AWARD_ONCE 10
@@ -17,15 +15,13 @@
 
 @implementation GuessManager
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(GuessManager);
-
 - (void)dealloc{
     
     [super dealloc];
 }
 
 
-- (int)passCount:(NSArray *)opuses{
++ (int)passCount:(NSArray *)opuses{
 
     int count = 0;
     for (int index = 0; index < [opuses count]; index++) {
@@ -37,7 +33,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessManager);
     return count;
 }
 
-- (int)guessIndex:(NSArray *)opuses{
++ (int)guessIndex:(NSArray *)opuses{
 
     int index = 0;
     for (; index < [opuses count]; index ++) {
@@ -51,7 +47,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessManager);
     return index;
 }
 
-- (BOOL)canAwardNow:(int)passCount mode:(int)mode{
++ (BOOL)canAwardNow:(int)passCount mode:(int)mode{
 
     if (mode == PBUserGuessModeGuessModeHappy
         || mode == PBUserGuessModeGuessModeGenius) {
@@ -68,7 +64,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessManager);
     return NO;
 }
 
-- (int)awardCoins:(int)passCount mode:(int)mode{
++ (int)awardCoins:(int)passCount mode:(int)mode{
 
     int award = 0;
     
@@ -88,7 +84,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessManager);
     return award;
 }
 
-- (int)predictAwardCoins:(int)passCount mode:(int)mode{
++ (int)predictAwardCoins:(int)passCount mode:(int)mode{
     
     int count = 0;
     if (passCount % NUM_COUNT_AWARD_ONCE == 0) {
@@ -100,7 +96,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessManager);
     return [self awardCoins:count mode:mode];
 }
 
-- (int)countNeedToGuessToAward:(int)count mode:(int)mode{
++ (int)countNeedToGuessToAward:(int)count mode:(int)mode{
     
     switch (mode) {
         case PBUserGuessModeGuessModeHappy:
@@ -119,5 +115,31 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessManager);
     }
 }
 
++ (BOOL)isContestOver:(PBGuessContest *)contest{
+
+    int time = [[NSDate date] timeIntervalSince1970];
+    if (time > contest.endTime){
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)isContestNotStart:(PBGuessContest *)contest{
+    
+    int time = [[NSDate date] timeIntervalSince1970];
+    if (time < contest.startTime) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)isContestBeing:(PBGuessContest *)contest{
+    
+    int time = [[NSDate date] timeIntervalSince1970];
+    if (time >= contest.startTime && time <= contest.endTime) {
+        return YES;
+    }
+    return NO;
+}
 
 @end

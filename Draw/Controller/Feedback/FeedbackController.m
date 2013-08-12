@@ -476,6 +476,11 @@ enum {
     [super viewDidLoad];
     [self.TitleLabel setText:NSLS(@"kMore")];
     
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kMore")];
+    [titleView setTarget:self];
+    
     
     [self initRowNumber];
     if ([LocaleUtils isChina]) {
