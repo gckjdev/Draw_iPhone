@@ -38,7 +38,7 @@ typedef enum {
     BOOL isLoading;
 }
 
-
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;
@@ -46,7 +46,10 @@ typedef enum {
 @property (retain, nonatomic) ShareAction *shareAction;
 @property (assign, nonatomic, getter = isFromWeiXin) BOOL fromWeiXin;
 
+// to be removed later
 - (IBAction)deleteAll:(id)sender;
+
+- (IBAction)clickClearButton:(id)sender;
 
 + (void)shareFromWeiXin:(UIViewController*)superController;
 @end

@@ -80,15 +80,15 @@
     if (_mode == PBUserGuessModeGuessModeHappy) {
         [_titleView setTitle:NSLS(@"kHappGuessMode")];
         [_titleView setRightButtonTitle:NSLS(@"kRestart")];
-        [_titleView setRightButtonSelctor:@selector(clickRestartButton:)];
+        [_titleView setRightButtonSelector:@selector(clickRestartButton:)];
     }else if(_mode == PBUserGuessModeGuessModeGenius){
         [_titleView setTitle:NSLS(@"kGeniusGuessMode")];
         [_titleView setRightButtonTitle:NSLS(@"kRestart")];
-        [_titleView setRightButtonSelctor:@selector(clickRestartButton:)];
+        [_titleView setRightButtonSelector:@selector(clickRestartButton:)];
     }else if(_mode == PBUserGuessModeGuessModeContest){
         [_titleView setTitle:NSLS(@"kContestGuessMode")];
         [_titleView setRightButtonTitle:NSLS(@"kRanking")];
-        [_titleView setRightButtonSelctor:@selector(clickRankingButton:)];
+        [_titleView setRightButtonSelector:@selector(clickRankingButton:)];
     }
 }
 

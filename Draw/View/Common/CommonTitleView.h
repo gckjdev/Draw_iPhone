@@ -14,10 +14,15 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 @interface CommonTitleView : UIView
 
 @property (assign, nonatomic) id target;
-@property (assign, nonatomic) SEL rightButtonSelctor;
+@property (assign, nonatomic) SEL rightButtonSelector;
+@property (assign, nonatomic) SEL backButtonSelector;
 
 - (void)setTitle:(NSString *)title;
 - (void)setRightButtonAsRefresh;
 - (void)setRightButtonTitle:(NSString *)title;
+- (void)hideBackButton;
+- (void)showBackButton;
+- (void)hideRightButton;
+- (void)showRightButton;
 
 @end

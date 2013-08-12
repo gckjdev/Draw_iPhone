@@ -78,6 +78,7 @@ typedef enum{
 @synthesize fromWeiXin = _fromWeiXin;
 
 - (void)dealloc {
+    PPRelease(_titleView);
     PPRelease(_shareAction);
     PPRelease(_gifImages);
     PPRelease(_selectedPaint);
@@ -93,12 +94,13 @@ typedef enum{
 {
     [self.dataTableView reloadData];
     if ([self.paints count] != 0) {
-//        self.awardCoinTips.text = [NSString stringWithFormat:NSLS(@"kShareAwardCoinTips"),[ConfigManager getShareWeiboReward]];
         self.awardCoinTips.text = @"";
         [self.clearButton setHidden:NO];
+        [self.titleView showRightButton];
     }else{
         self.awardCoinTips.text = NSLS(@"kNoDrawings");
         [self.clearButton setHidden:YES];
+        [self.titleView hideRightButton];
     }
 }
 
@@ -688,6 +690,11 @@ typedef enum{
 
 - (IBAction)deleteAll:(id)sender
 {
+    [self clickClearButton:sender];    
+}
+
+- (IBAction)clickClearButton:(id)sender
+{
     if (self.isFromWeiXin) {
         
         ShowMessageFromWXResp* resp = [[[ShowMessageFromWXResp alloc] init] autorelease];
@@ -695,9 +702,9 @@ typedef enum{
         [self.navigationController popViewControllerAnimated:NO];
         return;
     }
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAttention") 
-                                                       message:NSLS(@"kDeleteAllWarning") 
-                                                         style:CommonDialogStyleDoubleButton 
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAttention")
+                                                       message:NSLS(@"kDeleteAllWarning")
+                                                         style:CommonDialogStyleDoubleButton
                                                       delegate:self];
     if ([self isMineTab]) {
         dialog.tag = DELETE_ALL_MINE;
@@ -707,7 +714,6 @@ typedef enum{
         dialog.tag = DELETE_ALL;
     }
     [dialog showInView:self.view];
-    
 }
 
 -(IBAction)clickBackButton:(id)sender
@@ -844,6 +850,10 @@ typedef enum{
         self.backButton.hidden = YES;
         self.awardCoinTips.hidden = YES;
         self.titleLabel.text = NSLS(@"kShareToWeiXinTitle");
+
+        [self.titleView setTitle:NSLS(@"kShareToWeiXinTitle")];
+        [self.titleView setRightButtonTitle:NSLS(@"kCancel")];
+        [self.titleView hideBackButton];
         
         //update the table view frame
         CGFloat x = self.dataTableView.frame.origin.x;
@@ -857,10 +867,16 @@ typedef enum{
         
         [self showChooseWeixinOptionActionSheet];
     }else{
-//        [self.clearButton setBackgroundImage:[imageManager redImage] forState:UIControlStateNormal];
         [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
         self.titleLabel.text = NSLS(@"kShareTitle");
+        
+        [self.titleView setTitle:NSLS(@"kShareTitle")];
+        [self.titleView setRightButtonTitle:NSLS(@"kClear")];
     }
+    
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setRightButtonSelector:@selector(clickClearButton:)];
 
     
 }

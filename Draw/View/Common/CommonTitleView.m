@@ -32,7 +32,7 @@
     CGFloat _centerY;
 }
 
-@property (assign, nonatomic) SEL backButtonSelctor;
+//@property (assign, nonatomic) SEL backButtonSelector;
 
 @property (retain, nonatomic) UIImageView *bgImageView;
 @property (retain, nonatomic) UIButton *backButton;
@@ -90,8 +90,7 @@
         [self addSubview:_titleLabel];
         [self addSubview:_backButton];
         
-        
-        self.backButtonSelctor = @selector(clickBack:);
+        self.backButtonSelector = @selector(clickBack:);
     }
     
     return self;
@@ -163,16 +162,36 @@
 
 - (void)clickBackButton:(UIButton *)button{
     
-    if ([_target respondsToSelector:_backButtonSelctor]) {
-        [_target performSelector:_backButtonSelctor withObject:button];
+    if ([_target respondsToSelector:_backButtonSelector]) {
+        [_target performSelector:_backButtonSelector withObject:button];
     }
 }
 
 - (void)clickRightButton:(UIButton *)button{
     
-    if ([_target respondsToSelector:_rightButtonSelctor] ) {
-        [_target performSelector:_rightButtonSelctor withObject:button];
+    if ([_target respondsToSelector:_rightButtonSelector] ) {
+        [_target performSelector:_rightButtonSelector withObject:button];
     }
+}
+
+- (void)hideBackButton
+{
+    [_backButton setHidden:YES];
+}
+
+- (void)showBackButton
+{
+    [_backButton setHidden:NO];
+}
+
+- (void)hideRightButton
+{
+    [_rightButton setHidden:YES];
+}
+
+- (void)showRightButton
+{
+    [_rightButton setHidden:NO];
 }
 
 @end
