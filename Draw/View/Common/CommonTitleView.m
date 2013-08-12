@@ -10,6 +10,8 @@
 #import "HPThemeManager.h"
 #import "UIButton+Extend.h"
 
+#define COMMON_TITLE_VIEW_TAG   2013081218
+
 #define WIDTH (ISIPAD ? 768 : 320)
 #define HEIGH (ISIPAD ? 98 : 45)
 
@@ -32,7 +34,7 @@
     CGFloat _centerY;
 }
 
-@property (assign, nonatomic) SEL backButtonSelctor;
+//@property (assign, nonatomic) SEL backButtonSelector;
 
 @property (retain, nonatomic) UIImageView *bgImageView;
 @property (retain, nonatomic) UIButton *backButton;
@@ -49,49 +51,82 @@
     [_backButton release];
     [_bgImageView release];
     [_titleLabel release];
+    self.target = nil;
     [super dealloc];
+}
+
++ (UIView*)createTitleView:(UIView*)superView
+{
+    CommonTitleView* titleView = [[CommonTitleView alloc] init];
+    [superView addSubview:titleView];
+    [titleView release];
+    return titleView;
+}
+
++ (CommonTitleView*)titleView:(UIView*)superView
+{
+    UIView* view = [superView viewWithTag:COMMON_TITLE_VIEW_TAG];
+    if ([view isKindOfClass:[CommonTitleView class]]){
+        return (CommonTitleView*)view;
+    }
+    else{
+        PPDebug(@"<Warning> Title View Not Found or Title View is Not CommonTitleView");
+        return nil;
+    }
+}
+
+- (void)initData
+{
+    self.frame = CGRectMake(0, 0, WIDTH, HEIGH);
+    _centerX = (self.bounds.size.width/2);
+    _centerY = (self.bounds.size.height/2);
+    
+    self.bgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
+    _bgImageView.image = UIThemeImageNamed(@"navigation_bg@2x.jpg");
+    
+    self.backButton = [[[UIButton alloc] initWithFrame:CGRectZero] autorelease];
+    [_backButton updateWidth:BACK_BUTTON_WIDTH];
+    [_backButton updateHeight:BACK_BUTTON_HEIGHT];
+    [_backButton updateOriginX:LEFT_GAP];
+    [_backButton updateCenterY:_centerY];
+    
+    [_backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.png") forState:UIControlStateNormal];
+    
+    self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+    [_titleLabel updateWidth:TITLE_LABEL_WIDTH];
+    [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
+    [_titleLabel updateCenterX:_centerX];
+    [_titleLabel updateCenterY:_centerY];
+    
+    _titleLabel.backgroundColor = [UIColor clearColor];
+    _titleLabel.font = TITLE_FONT;
+    _titleLabel.textAlignment = UITextAlignmentCenter;
+    _titleLabel.textColor = [UIColor whiteColor];
+    _titleLabel.shadowOffset = CGSizeMake(1, 1);
+    _titleLabel.shadowColor = [UIColor blackColor];
+    
+    [self addSubview:_bgImageView];
+    [self addSubview:_titleLabel];
+    [self addSubview:_backButton];
+    
+    self.backButtonSelector = @selector(clickBack:);
+    self.tag = COMMON_TITLE_VIEW_TAG;
+    
+}
+
+- (id)init
+{
+    self = [super init];
+    [self initData];
+    return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
     
     if (self = [super initWithCoder:aDecoder]) {
-    
-        self.frame = CGRectMake(0, 0, WIDTH, HEIGH);
-        _centerX = (self.bounds.size.width/2);
-        _centerY = (self.bounds.size.height/2);
-        
-        self.bgImageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        _bgImageView.image = UIThemeImageNamed(@"navigation_bg@2x.jpg");
-    
-        self.backButton = [[[UIButton alloc] initWithFrame:CGRectZero] autorelease];
-        [_backButton updateWidth:BACK_BUTTON_WIDTH];
-        [_backButton updateHeight:BACK_BUTTON_HEIGHT];
-        [_backButton updateOriginX:LEFT_GAP];
-        [_backButton updateCenterY:_centerY];
-        
-        [_backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [_backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.png") forState:UIControlStateNormal];
-        
-        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        [_titleLabel updateWidth:TITLE_LABEL_WIDTH];
-        [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
-        [_titleLabel updateCenterX:_centerX];
-        [_titleLabel updateCenterY:_centerY];
-        
-        _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.font = TITLE_FONT;
-        _titleLabel.textAlignment = UITextAlignmentCenter;
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.shadowOffset = CGSizeMake(1, 1);
-        _titleLabel.shadowColor = [UIColor blackColor];
-        
-        [self addSubview:_bgImageView];
-        [self addSubview:_titleLabel];
-        [self addSubview:_backButton];
-        
-        
-        self.backButtonSelctor = @selector(clickBack:);
+        [self initData];
     }
     
     return self;
@@ -163,16 +198,36 @@
 
 - (void)clickBackButton:(UIButton *)button{
     
-    if ([_target respondsToSelector:_backButtonSelctor]) {
-        [_target performSelector:_backButtonSelctor withObject:button];
+    if ([_target respondsToSelector:_backButtonSelector]) {
+        [_target performSelector:_backButtonSelector withObject:button];
     }
 }
 
 - (void)clickRightButton:(UIButton *)button{
     
-    if ([_target respondsToSelector:_rightButtonSelctor] ) {
-        [_target performSelector:_rightButtonSelctor withObject:button];
+    if ([_target respondsToSelector:_rightButtonSelector] ) {
+        [_target performSelector:_rightButtonSelector withObject:button];
     }
+}
+
+- (void)hideBackButton
+{
+    [_backButton setHidden:YES];
+}
+
+- (void)showBackButton
+{
+    [_backButton setHidden:NO];
+}
+
+- (void)hideRightButton
+{
+    [_rightButton setHidden:YES];
+}
+
+- (void)showRightButton
+{
+    [_rightButton setHidden:NO];
 }
 
 @end

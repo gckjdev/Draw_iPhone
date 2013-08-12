@@ -27,6 +27,8 @@ FeedCellDelegate, UIActionSheetDelegate, CommonDialogDelegate>
     NSInteger indexOfCommentReply;
     
 }
+
+
 + (void)enterControllerWithIndex:(NSInteger)index
                   fromController:(UIViewController *)controller 
                         animated:(BOOL)animated;

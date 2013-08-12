@@ -112,6 +112,14 @@ typedef enum{
         //load opus count
         [[FeedService defaultService] getOpusCount:_userId delegete:self];
     }
+    
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kFeed")];
+    [titleView setRightButtonAsRefresh];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
 }
 
 - (void)viewDidUnload

@@ -13,9 +13,15 @@
 #import "GameBasic.pb.h"
 
 
-#define COLOR_ORANGE [UIColor colorWithRed:238/255.0 green:94/255.0 blue:82/255.0 alpha:1]
-#define COLOR_WHITE [UIColor whiteColor]
-#define COLOR_GRAY [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
+#define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82) //正常
+#define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) //选中
+#define COLOR_ORANGE2 OPAQUE_COLOR(224, 80, 67) //按下
+
+#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
+
+#define COLOR_WHITE [UIColor whiteColor] //Cell
+#define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
+
 
 #define SET_CELL_BG                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \

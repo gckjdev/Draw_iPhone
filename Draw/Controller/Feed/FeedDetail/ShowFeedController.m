@@ -1080,4 +1080,15 @@ enum{
         [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
     }
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    for (ReplayView *rv in [self.view subviews]) {
+        if ([rv isKindOfClass:[ReplayView class]]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 @end

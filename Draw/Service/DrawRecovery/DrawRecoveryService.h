@@ -23,15 +23,31 @@
 
 @property (nonatomic, retain) MyPaint* currentPaint;
 @property (nonatomic, retain) PBUserBasicInfo *drawToUser;
+@property (nonatomic, retain) NSArray * layers;
+@property (nonatomic, retain) NSString * targetUid;
+@property (nonatomic, retain) NSString * contestId;
+@property (nonatomic, retain) NSString * userId;
+@property (nonatomic, retain) NSString * nickName;
+@property (nonatomic, retain) Word * word;
+@property (nonatomic, retain) NSArray* drawActionList;
+@property (nonatomic, retain) NSString * bgImageName;
+@property (nonatomic, retain) UIImage * bgImage;
+
+@property (nonatomic, assign) NSInteger language;
 @property (nonatomic, assign) CGSize canvasSize;
-@property (nonatomic, assign) NSArray * layers;
-//@property (nonatomic, retain) MyPaint* currentPaint;
-//@property (nonatomic, retain) MyPaint* currentPaint;
+
 
 + (DrawRecoveryService*)defaultService;
-- (void)changeCanvasSize:(CGSize)canvasSize;
 - (int)recoveryDrawCount;
+- (void)backup;
+- (void)start;
+- (void)stop;
+- (int)backupInterval;
+- (void)handleNewPaintDrawed:(NSArray*)drawActionList;
+- (BOOL)needBackup;
 
+//- (void)changeCanvasSize:(CGSize)canvasSize;
+/*
 - (void)start:(NSString *)targetUid
      contestId:(NSString *)contestId
         userId:(NSString *)userId
@@ -42,17 +58,14 @@
 drawActionList:(NSArray*)drawActionList
   bgImageName:(NSString *)bgImageName
       bgImage:(UIImage *)bgImage;
+*/
 
 //- (void)backup:(PBNoCompressDrawData*)drawData;
-- (void)backup:(NSArray*)drawActionList;
-- (void)stop;
-
-- (int)backupInterval;
-
+/*
 - (void)handleTimer:(NSArray*)drawActionList;
 - (void)handleNewPaintDrawed:(NSArray*)drawActionList;
 
 - (void)updateTargetUid:(NSString *)tUid;
-
+*/
 
 @end

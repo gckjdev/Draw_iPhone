@@ -17,23 +17,26 @@
 
 @interface DrawRecoveryService()
 
-@property (retain, nonatomic) UIImage *bgImage;
+//@property (retain, nonatomic) UIImage *bgImage;
 
 @end
 
 @implementation DrawRecoveryService
 
-
-- (void)changeCanvasSize:(CGSize)canvasSize
-{
-    self.canvasSize = canvasSize;
-    [self backup:[NSMutableArray arrayWithCapacity:1]];
-}
-
 - (void)dealloc
 {
+
+    PPRelease(_currentPaint);
     PPRelease(_drawToUser);
+    PPRelease(_layers);
+    PPRelease(_targetUid);
+    PPRelease(_contestId);
+    PPRelease(_userId);
+    PPRelease(_nickName);
+    PPRelease(_word);
+    PPRelease(_drawActionList);
     PPRelease(_bgImage);
+    PPRelease(_bgImageName);
     [super dealloc];
 }
 
@@ -61,19 +64,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     }
 }
 
-- (void)start:(NSString *)targetUid
-    contestId:(NSString *)contestId
-       userId:(NSString *)userId
-     nickName:(NSString *)nickName
-         word:(Word *)word
-     language:(NSInteger)language
-   canvasSize:(CGSize)canvasSize
-drawActionList:(NSArray*)drawActionList
-  bgImageName:(NSString *)bgImageName
-      bgImage:(UIImage *)bgImage
+- (void)start
 {
-    self.canvasSize = canvasSize;
-    
     if (_currentPaint != nil){
         [self stop];
     }
@@ -87,17 +79,16 @@ drawActionList:(NSArray*)drawActionList
     }    
     
     @try {
-        self.currentPaint = [[MyPaintManager defaultManager] createDraftForRecovery:targetUid
-                                                                      contestId:contestId
-                                                                         userId:userId
-                                                                       nickName:nickName
-                                                                           word:word
-                                                                       language:language
-                                                                        bgImageName:bgImageName];
+        self.currentPaint = [[MyPaintManager defaultManager] createDraftForRecovery:self.targetUid
+                                                                      contestId:self.contestId
+                                                                         userId:self.userId
+                                                                       nickName:self.nickName
+                                                                           word:self.word
+                                                                       language:self.language
+                                                                        bgImageName:self.bgImageName];
 
-        PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(canvasSize));
-        [self backup:drawActionList];
-        
+        PPDebug(@"<start> file name=%@ size=%@", _currentPaint.dataFilePath, NSStringFromCGSize(_canvasSize));
+        [self backup];        
         [[MyPaintManager defaultManager] saveBgImage:_bgImage name:_currentPaint.bgImageName];
     }
     @catch (NSException *exception) {
@@ -108,28 +99,19 @@ drawActionList:(NSArray*)drawActionList
     
 }
 
-- (void)backup:(NSArray*)drawActionList
+- (void)backup
 {    
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
-    NSString* dataPath = [[MyPaintManager defaultManager] fullDataPath:dataFileName];
-    
-    if ([drawActionList count] == 0){
-        // don't backup empty file
-        PPDebug(@"<backup> but draw action list count is zero");
-        return;
-    }
-    
-    if (drawActionList == nil){
-        drawActionList = [NSMutableArray arrayWithCapacity:1];
-    }
-    
-    NSMutableArray* arrayList=[[NSMutableArray alloc] initWithArray:drawActionList copyItems:NO];
-    
+    NSString* dataPath = [[[MyPaintManager defaultManager] fullDataPath:dataFileName] copy];
+   
+    NSMutableArray *snapshotList = nil;
+    if ([self.drawActionList count] == 0){
+        snapshotList = [[NSMutableArray alloc] init]; 
+    }else{
+        snapshotList = [[NSMutableArray alloc] initWithArray:_drawActionList copyItems:NO];
     // remove last paint to make it safe
-    if ([arrayList count] > 0){
-        [arrayList removeLastObject];
+        [snapshotList removeLastObject];
     }
-    
     __block DrawRecoveryService *cp = self;
     
     dispatch_async(workingQueue, ^{
@@ -138,13 +120,12 @@ drawActionList:(NSArray*)drawActionList
         
         
         // TODO check difference of two methods
-        NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:arrayList
+        NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:snapshotList
                                                                       size:cp.canvasSize
                                                                   opusDesc:nil
                                                                 drawToUser:cp.drawToUser
                                                            bgImageFileName:cp.currentPaint.bgImageName
                                                                     layers:cp.layers];
-                        
 
         PPDebug(@"<backup> file path=%@", dataPath);
         
@@ -157,7 +138,8 @@ drawActionList:(NSArray*)drawActionList
         [subPool drain];
     });
     
-    [arrayList release];
+    [dataPath release];
+    [snapshotList release];
     [dataFileName release];
     
     _lastBackupTime = time(0);
@@ -225,8 +207,9 @@ drawActionList:(NSArray*)drawActionList
 - (void)handleNewPaintDrawed:(NSArray*)drawActionList
 {
 //    PPDebug(@"<handleNewPaintDrawed> accumulate paint count =%d", _newPaintCount+1);
+    self.drawActionList = drawActionList;
     if ([self needBackup]){
-        [self backup:drawActionList];
+        [self backup];
     }
     else{
         _newPaintCount ++;
@@ -237,18 +220,33 @@ drawActionList:(NSArray*)drawActionList
 {
 //    PPDebug(@"<handleTimer> accumulate paint count =%d", _newPaintCount);
     if ([self needBackup]){
-        [self backup:drawActionList];
+        [self backup];
     }
 }
 
-
-- (void)updateTargetUid:(NSString *)tUid
+-(void)setTargetUid:(NSString *)targetUid
 {
-    if (self.currentPaint) {
-        CoreDataManager* dataManager = GlobalGetCoreDataManager();
-        [self.currentPaint setTargetUserId:tUid];
-        [dataManager save];
+    if(targetUid != _targetUid){
+        PPRelease(_targetUid);
+        _targetUid = targetUid;
+        [_targetUid retain];
+
+        if (self.currentPaint) {
+            CoreDataManager* dataManager = GlobalGetCoreDataManager();
+            [self.currentPaint setTargetUserId:targetUid];
+            [dataManager save];
+        }
     }
 }
+
+- (void)setCanvasSize:(CGSize)canvasSize
+{
+    if (CGSizeEqualToSize(_canvasSize, canvasSize)) {
+        return;
+    }
+    _canvasSize = canvasSize;
+    [self backup];
+}
+
 
 @end

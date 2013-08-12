@@ -47,6 +47,8 @@ typedef enum {
 @property (assign, nonatomic) BOOL isDrawByMe;
 @property (retain, nonatomic) NSString* drawUserId;
 @property (assign, nonatomic) id<ShareEditControllerDelegate>delegate;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
+
 
 - (id)initWithImageFile:(NSString*)imageFile
                    text:(NSString*)text 
