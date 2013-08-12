@@ -107,7 +107,7 @@
     _playingActionIndex = index;
     _playingPointIndex = 0;
     if (index < [self.drawActionList count]) {
-        _currentAction = [self.drawActionList objectAtIndex:index];        
+        _currentAction = [self.drawActionList objectAtIndex:index];
         self.status = Playing;
         [self playCurrentFrame];
         return YES;
@@ -122,7 +122,6 @@
 {
     PPDebug(@"<ShowDrawView> play");
     [self resetView];
-    [self setNeedsDisplay];
     [self playFromDrawActionIndex:0];
 
 }
@@ -196,10 +195,12 @@
 - (void)addDrawAction:(DrawAction *)action play:(BOOL)play
 {
     [self.drawActionList addObject:action];
+
     if (play) {
         if (self.status == Playing) {
             return;
         }else if(self.status == Stop){
+            _currentAction = action;
             [self playFromDrawActionIndex:[self.drawActionList count] -1];
         }
     }else{
@@ -369,7 +370,6 @@
         [self.delegate didPlayDrawView:self AtActionIndex:_playingActionIndex pointIndex:_playingPointIndex];
     }    
     if(_playingActionIndex >= [self.drawActionList count]-1){
-        [self setNeedsDisplay];
         if(self.delegate && [self.delegate respondsToSelector:@selector(didPlayDrawView:)]){
             [self.delegate didPlayDrawView:self];
             
@@ -488,15 +488,6 @@
     [super drawRect:rect];
 }
 
-- (void)setNeedsDisplay
-{
-    [super setNeedsDisplay];
-}
-
-- (void)setNeedsDisplayInRect:(CGRect)rect
-{
-    [super setNeedsDisplayInRect:rect];
-}
 
 #define LEVEL_TIMES 2000
 
@@ -527,7 +518,6 @@
     self.frame = rect;
 
     [(DrawHolderView *)self.superview updateContentScale];
-    [self setNeedsDisplay];
 }
 @end
 
