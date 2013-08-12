@@ -50,6 +50,13 @@
     [self.backgroundImageView setImage:[UIImage imageNamed:[GameApp background]]];
     [self.titleLabel setText:NSLS(@"kMore_apps")];
     
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kMore_apps")];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBack:)];
+
+    
     self.mTableView = [[[UMUFPTableView alloc] initWithFrame:TABLE_VIEW_FRAME style:UITableViewStylePlain appkey:@"4e2d3cc0431fe371c3000029" slotId:@"" currentViewController:self] autorelease];
     self.mTableView.dataSource = self;
     self.mTableView.delegate = self;
