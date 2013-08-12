@@ -14,9 +14,11 @@
 
 
 #define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82)
-#define COLOR_WHITE [UIColor whiteColor]
+#define COLOR_DARK_ORANGE OPAQUE_COLOR(211, 59, 55)
+
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245)
-#define COLOR_DARK_ORANGE OPAQUE_COLOR(178, 75, 56)
+
+#define COLOR_WHITE [UIColor whiteColor]
 
 
 #define SET_CELL_BG                     \
