@@ -109,7 +109,17 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
-    [self.titleLabel setText:NSLS(@"kRank")];
+
+//    [self.titleLabel setText:NSLS(@"kRank")];
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kRank")];
+    [titleView setRightButtonAsRefresh];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
+    
     [self setSwipeToBack:YES];
 }
 
