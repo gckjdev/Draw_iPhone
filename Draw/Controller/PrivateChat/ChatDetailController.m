@@ -1156,11 +1156,16 @@
     if (self.loadingActivityView == nil){
         self.loadingActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
         self.loadingActivityView.frame = self.refreshButton.frame;
+        
+        self.loadingActivityView.frame = [[CommonTitleView titleView:self.view] rightButtonFrame];
+
     }
     [self.view addSubview:self.loadingActivityView];
     [self.loadingActivityView startAnimating];
 
     self.refreshButton.hidden = YES;
+    
+    [[CommonTitleView titleView:self.view] hideRightButton];
 }
 
 - (void)clearTitleForLoading
@@ -1171,6 +1176,9 @@
     [self.loadingActivityView removeFromSuperview];
 
     self.refreshButton.hidden = NO;
+
+    [[CommonTitleView titleView:self.view] showRightButton];
+
 }
 
 - (void)loadNewMessage:(BOOL)showActivity

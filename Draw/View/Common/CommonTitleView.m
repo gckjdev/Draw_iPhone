@@ -250,5 +250,10 @@
     [_rightButton setHidden:NO];
 }
 
+- (CGRect)rightButtonFrame
+{
+    return [_rightButton frame];
+}
+
 @end
 
