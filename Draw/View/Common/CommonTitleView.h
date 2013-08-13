@@ -39,6 +39,11 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 - (void)showBackButton;
 - (void)hideRightButton;
 - (void)showRightButton;
+- (CGRect)rightButtonFrame;
+
+- (void)showLoading;
+- (void)showLoading:(NSString*)loadingText;
+- (void)hideLoading;
 
 + (CommonTitleView*)createTitleView:(UIView*)superView;
 + (CommonTitleView*)titleView:(UIView*)superView;

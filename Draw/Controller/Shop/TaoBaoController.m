@@ -44,6 +44,11 @@
         [UIUtils alert:NSLS(@"无法打开网页")];
     }
     
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:self.customTitle];
+    [titleView setTarget:self];
+    
     [self updateButtonsState];
 }
 

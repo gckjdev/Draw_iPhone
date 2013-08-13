@@ -84,6 +84,12 @@
     
     
     [inputTextField becomeFirstResponder];
+    
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kSearchUser")];
+    [titleView setTarget:self];
+    
 }
 
 

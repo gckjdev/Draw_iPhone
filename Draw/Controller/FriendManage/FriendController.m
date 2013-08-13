@@ -73,7 +73,6 @@ typedef enum{
     PPRelease(_invitedFidSet);
     PPRelease(_inviteText);
     PPRelease(inviteButton);
-    [_newFanNumber release];
     [super dealloc];
 }
 
@@ -151,9 +150,11 @@ typedef enum{
     
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
 
+    NSString* title = @"";
     switch (_type) {
         case ControllerTypeInviteFriend:
             [self.titleLabel setText:NSLS(@"kInviteFriendsTitle")];
+            title = NSLS(@"kInviteFriendsTitle");
             editButton.hidden = YES;
             [editButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
             [editButton setTitle:NSLS(@"kInvite") forState:UIControlStateNormal];
@@ -166,12 +167,14 @@ typedef enum{
             break;
         case ControllerTypeSelectFriend:
             [self.titleLabel setText:NSLS(@"kSelectContacts")];
+            title = NSLS(@"kSelectContacts");
             [editButton setHidden:YES];
             [self hideBottomButtons];
             break;
         case ControllerTypeShowFriend:
         default:
             [self.titleLabel setText:NSLS(@"kMyFriends")];    
+            title = NSLS(@"kMyFriends");
             [searchUserButton setTitle:NSLS(@"kSearchUser") forState:UIControlStateNormal];
             [inviteButton setTitle:NSLS(@"kInviteFriends") forState:UIControlStateNormal];
             editButton.hidden = YES;
@@ -182,29 +185,29 @@ typedef enum{
     
     [self.searchUserButton setTitleColor:[GameApp buttonTitleColor] forState:UIControlStateNormal];
     [self.inviteButton setTitleColor:[GameApp buttonTitleColor] forState:UIControlStateNormal];
+    
+    
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:title];
+    [titleView setTarget:self];
 
 }
 
 - (void)updateBadge
 {
-    long badge = [[StatisticManager defaultManager] fanCount];
-    NSString *string = [StatisticManager badgeStringFromLongValue:badge];
-    if (string) {
-        [self.newFanNumber setHidden:NO];
-        [self.newFanNumber setTitle:string forState:UIControlStateNormal];
-    }else{
-        [self.newFanNumber setHidden:YES];
-    }
+    NSInteger badge = [[StatisticManager defaultManager] fanCount];
+    [self setBadge:badge onTab:TabTypeFan];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initTabButton];
-    self.newFanNumber.hidden = YES;
     [[FriendService defaultService] getRelationCount:self];
     [self clickTabButton:self.currentTabButton];
     
+
     
 }
 
@@ -222,7 +225,6 @@ typedef enum{
     [self setTipsLabel:nil];
     [self setInviteButton:nil];
     [_selectedSet removeAllObjects];
-    [self setNewFanNumber:nil];
     [super viewDidUnload];
 
     // Release any retained subviews of the main view.

@@ -49,7 +49,9 @@
 @property (retain, nonatomic) UIButton *backButton;
 @property (retain, nonatomic) UILabel *titleLabel;
 @property (retain, nonatomic) UIButton *rightButton;
-
+@property (retain, nonatomic) UIActivityIndicatorView* loadingActivityView;
+@property (retain, nonatomic) NSString* titleText;
+@property (assign, nonatomic) BOOL rightButtonBeforeLoadingHiddenState;
 
 @end
 
@@ -57,6 +59,8 @@
 
 - (void)dealloc{
     
+    PPRelease(_titleText);
+    PPRelease(_loadingActivityView);
     [_backButton release];
     [_bgImageView release];
     [_titleLabel release];
@@ -151,6 +155,7 @@
 
 - (void)setTitle:(NSString *)title{
     
+    self.titleText = title;
     _titleLabel.text = title;
 }
 
@@ -252,6 +257,51 @@
 {
     [_rightButton setHidden:NO];
 }
+
+- (CGRect)rightButtonFrame
+{
+    return [_rightButton frame];
+}
+
+- (void)showLoading:(NSString*)loadingText
+{
+    if (loadingText){
+        self.titleLabel.text = loadingText; 
+    }
+    else{
+        self.titleLabel.text = NSLS(@"kLoading");
+    }
+    
+    if (self.loadingActivityView == nil){
+        self.loadingActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+        self.loadingActivityView.frame = self.rightButton.frame;
+    }
+
+    [self addSubview:self.loadingActivityView];
+    [self.loadingActivityView startAnimating];
+    
+    // save right button state and then hide it
+    self.rightButtonBeforeLoadingHiddenState = self.rightButton.hidden;
+    [self hideRightButton];
+}
+
+- (void)showLoading
+{
+    [self showLoading:nil];
+}
+
+- (void)hideLoading
+{
+    // set back title
+    [self setTitle:self.titleText];
+    
+    [self.loadingActivityView stopAnimating];
+    [self.loadingActivityView removeFromSuperview];
+    
+    // restore right button state
+    _rightButton.hidden = self.rightButtonBeforeLoadingHiddenState;
+}
+
 
 @end
 

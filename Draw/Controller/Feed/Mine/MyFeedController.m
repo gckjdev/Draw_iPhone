@@ -514,10 +514,10 @@ typedef enum{
 - (void)updateAllBadge
 {
     StatisticManager * manager = [StatisticManager defaultManager];
-    [self updateBadge:FeedListTypeTimelineOpus count:manager.timelineOpusCount];
-    [self updateBadge:FeedListTypeTimelineGuess count:manager.timelineGuessCount];
-    [self updateBadge:FeedListTypeComment count:manager.commentCount];
-    [self updateBadge:FeedListTypeDrawToMe count:manager.drawToMeCount];
+    [self setBadge:manager.timelineOpusCount onTab:MyTypeTimelineOpus];
+    [self setBadge:manager.timelineGuessCount onTab:MyTypeTimelineGuess];
+    [self setBadge:manager.commentCount onTab:MyTypeComment];
+    [self setBadge:manager.drawToMeCount onTab:MyTypeDrawToMe];
 }
 
 - (void)clearBadge:(FeedListType)type

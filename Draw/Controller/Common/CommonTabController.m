@@ -65,6 +65,7 @@
         self.pullRefreshType = PullRefreshTypeBoth;
         _tabManager = [[TableTabManager alloc] init];
         self.unReloadDataWhenViewDidAppear = YES;
+        self.autoResizeTabButton = YES;
     }
     return self;
 }
@@ -129,7 +130,11 @@
 
 //#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
 #define BUTTON_FONT (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
+#define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
+
+#define BUTTON_Y (ISIPAD ? 108 : 42)
+#define BUTTON_HEIGHT (ISIPAD ? 65 : 30)
 
 - (void)initTabButtons
 {
@@ -151,9 +156,15 @@
         CGFloat x = i * step;
         rect.origin.x = x;
         rect.size.width = btnWidth;
+
+        if ([self isAutoResizeTabButton]) {
+            rect.origin.y = BUTTON_Y;
+            rect.size.height = BUTTON_HEIGHT;
+        }
+        
         button.frame = rect;
         i ++;
-        
+                
         [button addTarget:self action:@selector(clickTabDown:) forControlEvents:UIControlEventTouchDown];
         [button addTarget:self action:@selector(clickTabUp:) forControlEvents:UIControlEventAllEvents^UIControlEventTouchDown];
         
@@ -470,4 +481,49 @@
 //    }
 }
 
+#define BadgeTagOffset 20130813
+#define BadgeSize (ISIPAD ?  40: 25)
+#define PositionOffset 0.8
+
+- (UIButton *)badgeButtonForTab:(NSInteger) tabID
+{
+    NSInteger tag = tabID + BadgeTagOffset;
+    UIButton *button = [self tabButtonWithTabID:tabID];
+    UIButton *badge = (id)[button viewWithTag:tag];
+    if(badge == nil){
+        badge = [UIButton buttonWithType:UIButtonTypeCustom];
+        badge.tag = tag;
+        badge.userInteractionEnabled = NO;
+        badge.frame = CGRectMake(CGRectGetWidth(button.bounds) - BadgeSize*PositionOffset,
+                                 - BadgeSize*(1-PositionOffset), BadgeSize, BadgeSize);
+
+//        badge.autoresizingMask = UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin;
+        [badge.titleLabel setFont:BADGE_FONT];
+        [badge setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [badge setBackgroundImage:[[ShareImageManager defaultManager] badgeImage]
+                         forState:UIControlStateNormal];
+        [button addSubview:badge];
+        [button setClipsToBounds:NO];
+        [badge setClipsToBounds:NO];
+        
+    }
+//    [button bringSubviewToFront:badge];
+    return badge;
+
+}
+
+- (void)setBadge:(NSInteger)badge onTab:(NSInteger)tabID
+{
+    UIButton *badgeButton = [self badgeButtonForTab:tabID];
+    badgeButton.hidden = NO;
+    if (badge <= 0) {
+        badgeButton.hidden = YES;
+    }else if(badge < 99){
+        [badgeButton setTitle:[@(badge) stringValue] forState:UIControlStateNormal];
+    }else{
+        [badgeButton setTitle:@"N" forState:UIControlStateNormal];
+    }
+//    [badgeButton sizeToFit];
+//    CGRect frame = badgeButton.frame;
+}
 @end

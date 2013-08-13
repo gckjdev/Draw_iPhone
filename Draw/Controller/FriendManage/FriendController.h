@@ -43,7 +43,6 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *searchUserButton;
 @property (retain, nonatomic) IBOutlet UIButton *inviteButton;
-@property (retain, nonatomic) IBOutlet UIButton *newFanNumber;
 
 - (void)setDefaultTabIndex:(FriendTabIndexType)tabIndex;
 
