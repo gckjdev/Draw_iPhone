@@ -306,5 +306,6 @@
 - (UIImage *)pathSelectorImage;
 - (UIImage *)ellipseSelectorImage;
 - (UIImage *)rectangeSelectorImage;
+- (UIColor *)drawBGColor;
 
 @end

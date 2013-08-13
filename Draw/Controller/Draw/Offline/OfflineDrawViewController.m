@@ -559,6 +559,7 @@
     [self initBgImage];
     
     [self initRecovery];
+    self.view.backgroundColor = [shareImageManager drawBGColor];
 }
 
 

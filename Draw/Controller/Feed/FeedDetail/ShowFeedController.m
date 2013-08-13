@@ -488,6 +488,8 @@ enum{
     }
     
     [self.titleLabel setText:title];
+    
+    [[CommonTitleView titleView:self.view] setTitle:title];
 }
 
 - (void)updateUserInfo
@@ -852,6 +854,14 @@ enum{
     
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
+    
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setRightButtonAsRefresh];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
     [self initTabButtons];
     [self addSwipe];
     [self reloadView];

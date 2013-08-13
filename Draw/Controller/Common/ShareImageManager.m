@@ -1232,5 +1232,11 @@ static UIImage* _whitePaperImage;
 }
 
 
+- (UIColor *)drawBGColor
+{
+    UIImage *image = [UIImage imageNamed:@"draw_main_bg@2x.jpg"];
+    return [UIColor colorWithPatternImage:image];
+}
+
 @end
 
