@@ -73,7 +73,6 @@ typedef enum{
     PPRelease(_invitedFidSet);
     PPRelease(_inviteText);
     PPRelease(inviteButton);
-    [_newFanNumber release];
     [super dealloc];
 }
 
@@ -197,21 +196,14 @@ typedef enum{
 
 - (void)updateBadge
 {
-    long badge = [[StatisticManager defaultManager] fanCount];
-    NSString *string = [StatisticManager badgeStringFromLongValue:badge];
-    if (string) {
-        [self.newFanNumber setHidden:NO];
-        [self.newFanNumber setTitle:string forState:UIControlStateNormal];
-    }else{
-        [self.newFanNumber setHidden:YES];
-    }
+    NSInteger badge = [[StatisticManager defaultManager] fanCount];
+    [self setBadge:badge onTab:TabTypeFan];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self initTabButton];
-    self.newFanNumber.hidden = YES;
     [[FriendService defaultService] getRelationCount:self];
     [self clickTabButton:self.currentTabButton];
     
@@ -233,7 +225,6 @@ typedef enum{
     [self setTipsLabel:nil];
     [self setInviteButton:nil];
     [_selectedSet removeAllObjects];
-    [self setNewFanNumber:nil];
     [super viewDidUnload];
 
     // Release any retained subviews of the main view.

@@ -52,6 +52,7 @@ typedef enum{
 @property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
 @property(nonatomic, assign)PullRefreshType pullRefreshType;
 @property(nonatomic, assign, getter = canSwipeToBack)BOOL swipeToBack;
+@property(nonatomic, assign, getter = isAutoResizeTabButton)BOOL autoResizeTabButton;
 //@property(nonatomic, assign)BOOL cleanFrontDataWhenViewDisappear;
 
 
@@ -79,6 +80,7 @@ typedef enum{
 - (UIButton *)currentTabButton;
 - (UIButton *)tabButtonWithTabID:(NSInteger)tabID;
 - (void)startToLoadDataForTabID:(NSInteger)tabID;
+- (void)setBadge:(NSInteger)badge onTab:(NSInteger)tabID;
 
 - (void)finishLoadDataForTabID:(NSInteger)tabID resultList:(NSArray *)list;
 - (void)failLoadDataForTabID:(NSInteger)tabID;
