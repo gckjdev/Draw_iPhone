@@ -23,6 +23,9 @@
 #define BACK_BUTTON_HEIGHT BACK_BUTTON_WIDTH
 #define RIGHT_BUTTON_WIDTH (ISIPAD ? 50 : 25)
 #define RIGHT_BUTTON_HEIGHT RIGHT_BUTTON_WIDTH
+#define RIGHT_BUTTON_INSET_X (ISIPAD ? -20 : -10)
+#define RIGHT_BUTTON_INSET_Y (ISIPAD ? -10 : -5)
+
 
 //// for right button icon image
 //#define RIGHT_BUTTON_IMAGE_HEIGHT (RIGHT_BUTTON_HEIGHT - (ISIPAD ? 20 : 10))
@@ -205,7 +208,7 @@
                       forState:UIControlStateNormal];
     
     [button sizeToFit];
-    button.frame = CGRectInset(button.frame, -10, -5);
+    button.frame = CGRectInset(button.frame, RIGHT_BUTTON_INSET_X, RIGHT_BUTTON_INSET_Y);
     
     [button addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
 
