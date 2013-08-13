@@ -19,9 +19,9 @@
 
 #define LEFT_GAP (ISIPAD ? 4 : 2)
 
-#define BACK_BUTTON_WIDTH (ISIPAD ? 76 : 30)
+#define BACK_BUTTON_WIDTH (ISIPAD ? 60 : 30)
 #define BACK_BUTTON_HEIGHT BACK_BUTTON_WIDTH
-#define RIGHT_BUTTON_WIDTH (ISIPAD ? 76 : 25)
+#define RIGHT_BUTTON_WIDTH (ISIPAD ? 50 : 25)
 #define RIGHT_BUTTON_HEIGHT RIGHT_BUTTON_WIDTH
 
 //// for right button icon image
@@ -31,7 +31,7 @@
 #define TITLE_LABEL_WIDTH (ISIPAD ? 450 : 200)
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 78 : 36)
 
-#define TITLE_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:36] : [UIFont boldSystemFontOfSize:20])
+#define TITLE_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:40] : [UIFont boldSystemFontOfSize:20])
 #define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:30] : [UIFont boldSystemFontOfSize:15])
 
 
@@ -179,7 +179,9 @@
     UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
     
 //    UIImage* buttonImage = [image imageByScalingAndCroppingForSize:CGSizeMake(RIGHT_BUTTON_IMAGE_WIDTH, RIGHT_BUTTON_IMAGE_WIDTH)];
-    [button setImage:image forState:UIControlStateNormal];
+//    [button setImage:image forState:UIControlStateNormal];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+
     
     [button addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
     
