@@ -1894,10 +1894,10 @@
 		A4ADB61717B9FA0B00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A4ADB61817B9FA0C00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
-		A4ADB62217BA1E4800EBF418 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* AudioPlayer.m */; };
-		A4ADB62317BA1E4800EBF418 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* AudioPlayer.m */; };
-		A4ADB62417BA1E4800EBF418 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* AudioPlayer.m */; };
-		A4ADB62517BA1E4800EBF418 /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* AudioPlayer.m */; };
+		A4ADB62217BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */; };
+		A4ADB62317BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */; };
+		A4ADB62417BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */; };
+		A4ADB62517BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */; };
 		A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
 		A4B3B38616EB28E000EBF8DA /* shop_item_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */; };
@@ -7967,8 +7967,8 @@
 		A4A2E7B416E72B7800445888 /* GameItemPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemPriceView.m; sourceTree = "<group>"; };
 		A4ADB61117B9D45400EBF418 /* WQPlaySound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQPlaySound.h; sourceTree = "<group>"; };
 		A4ADB61217B9D45400EBF418 /* WQPlaySound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQPlaySound.m; sourceTree = "<group>"; };
-		A4ADB62017BA1E4700EBF418 /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
-		A4ADB62117BA1E4700EBF418 /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		A4ADB62017BA1E4700EBF418 /* BackgroundMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundMusicPlayer.h; sourceTree = "<group>"; };
+		A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundMusicPlayer.m; sourceTree = "<group>"; };
 		A4B1C4A9171688BE002C83C1 /* BuyItemSpecialHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyItemSpecialHandler.h; sourceTree = "<group>"; };
 		A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyItemSpecialHandler.m; sourceTree = "<group>"; };
 		A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_item_Draw.pb; sourceTree = "<group>"; };
@@ -11706,8 +11706,8 @@
 		A4B6C652176C0F4400C72E17 /* Component-Audio */ = {
 			isa = PBXGroup;
 			children = (
-				A4ADB62017BA1E4700EBF418 /* AudioPlayer.h */,
-				A4ADB62117BA1E4700EBF418 /* AudioPlayer.m */,
+				A4ADB62017BA1E4700EBF418 /* BackgroundMusicPlayer.h */,
+				A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */,
 				A4B6C697176C548400C72E17 /* VoiceChanger.h */,
 				A4B6C698176C548400C72E17 /* VoiceChanger.m */,
 				A4B6C699176C548400C72E17 /* VoiceRecorder.h */,
@@ -23120,7 +23120,7 @@
 				A489C01E17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02517B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61517B9D45400EBF418 /* WQPlaySound.m in Sources */,
-				A4ADB62417BA1E4800EBF418 /* AudioPlayer.m in Sources */,
+				A4ADB62417BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23917,7 +23917,7 @@
 				A489C01D17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02417B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61417B9D45400EBF418 /* WQPlaySound.m in Sources */,
-				A4ADB62317BA1E4800EBF418 /* AudioPlayer.m in Sources */,
+				A4ADB62317BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24722,7 +24722,7 @@
 				A489C01C17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02317B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61317B9D45400EBF418 /* WQPlaySound.m in Sources */,
-				A4ADB62217BA1E4800EBF418 /* AudioPlayer.m in Sources */,
+				A4ADB62217BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25499,7 +25499,7 @@
 				A489C01F17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02617B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61617B9D45400EBF418 /* WQPlaySound.m in Sources */,
-				A4ADB62517BA1E4800EBF418 /* AudioPlayer.m in Sources */,
+				A4ADB62517BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
