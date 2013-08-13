@@ -1892,6 +1892,9 @@
 		A4ADB61417B9D45400EBF418 /* WQPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* WQPlaySound.m */; };
 		A4ADB61517B9D45400EBF418 /* WQPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* WQPlaySound.m */; };
 		A4ADB61617B9D45400EBF418 /* WQPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* WQPlaySound.m */; };
+		A4ADB61717B9FA0B00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
+		A4ADB61817B9FA0C00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
+		A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
 		A4B3B38616EB28E000EBF8DA /* shop_item_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4B3B38416EB28E000EBF8DA /* shop_item_Draw.pb */; };
@@ -19220,6 +19223,7 @@
 				A489C00617B5D39F003E5150 /* heart@2x.png in Resources */,
 				A489C01617B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8917B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
+				A4ADB61817B9FA0C00EBF418 /* Themes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20279,6 +20283,7 @@
 				A489C00517B5D39F003E5150 /* heart@2x.png in Resources */,
 				A489C01517B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8817B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
+				A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22297,6 +22302,7 @@
 				A489C00717B5D39F003E5150 /* heart@2x.png in Resources */,
 				A489C01717B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8A17B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
+				A4ADB61717B9FA0B00EBF418 /* Themes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
