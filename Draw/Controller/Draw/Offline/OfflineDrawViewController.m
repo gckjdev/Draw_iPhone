@@ -419,6 +419,9 @@
     if(_opusDesc != opusDesc){
         PPRelease(_opusDesc);
         _opusDesc = [opusDesc retain];
+        if ([self supportRecovery]) {
+            [[DrawRecoveryService defaultService] setDesc:opusDesc];
+        }
     }
 }
 
@@ -447,7 +450,8 @@
     drs.canvasSize = drawView.bounds.size;
     drs.drawActionList = drawView.drawActionList;
     drs.targetUid = self.targetUid;
-    drs.layers = [[drawView layers] mutableCopy];
+    drs.desc = self.opusDesc;
+    drs.layers = [[[drawView layers] mutableCopy] autorelease];
 }
 
 - (void)initRecovery
@@ -846,7 +850,7 @@
                                       language:languageType
                                           size:drawView.bounds.size
                                   isCompressed:NO
-                                        layers:[drawView.layers mutableCopy]
+                                        layers:[[drawView.layers mutableCopy] autorelease]
                                           info:nil];
 
     PBDraw *pbDraw = [PBDraw parseFromData:data];
@@ -866,7 +870,7 @@
                                                               opusDesc:self.opusDesc
                                                             drawToUser:nil
                                                        bgImageFileName:_bgImageName
-                                                                layers:[drawView.layers mutableCopy]];
+                                                                layers:[[drawView.layers mutableCopy] autorelease]];
     return data;
 }
 
@@ -1078,6 +1082,7 @@
     return self.opusDesc;
 }
 
+
 - (void)commitOpus:(NSSet *)share
 {
     self.opusDesc = self.inputAlert.contentText;
@@ -1123,7 +1128,7 @@
                                               contestId:contestId
                                                    desc:text//@"元芳，你怎么看？"
                                                    size:drawView.bounds.size
-                                                 layers:[drawView.layers mutableCopy]
+                                                 layers:[[drawView.layers mutableCopy] autorelease]
                                                    info:nil
                                                delegate:self];
 
