@@ -12,7 +12,7 @@
 #import "CommonMessageCenter.h"
 #import "JDDateCountdownFlipView.h"
 #import "GuessManager.h"
-#import "WQPlaySound.h"
+#import "SoundPlayer.h"
 
 @interface GuessModesController (){
     int _countDown;
@@ -227,16 +227,19 @@
 
 
 - (IBAction)clickRuleButton:(id)sender {
-    static int i = 0;
-    if (i % 3 == 0) {
-        [WQPlaySound playVibrate];
-    }else if (i % 3 == 1){
-        [WQPlaySound playSystemSoundEffectWithName:nil];
-    }else{
-        [WQPlaySound playSoundEffectWithName:nil];
-    }
-    
-    i++;
+//    static int i = 0;
+//    [WQPlaySound playVibrate];
+//    [WQPlaySound playSystemSoundEffectWithName:nil loopCount:5];
+//    [SoundPlayer playAlertSoundEffectWithName:nil loopCount:3];
+//    if (i % 3 == 0) {
+//        [WQPlaySound playVibrate];
+//    }else if (i % 3 == 1){
+//        [WQPlaySound playSystemSoundEffectWithName:nil];
+//    }else{
+//        [WQPlaySound playSoundEffectWithName:nil];
+//    }
+//    
+//    i++;
 
 }
 

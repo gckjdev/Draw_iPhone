@@ -37,6 +37,7 @@
     PPRelease(_drawActionList);
     PPRelease(_bgImage);
     PPRelease(_bgImageName);
+    PPRelease(_desc);
     [super dealloc];
 }
 
@@ -122,7 +123,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         // TODO check difference of two methods
         NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:snapshotList
                                                                       size:cp.canvasSize
-                                                                  opusDesc:nil
+                                                                  opusDesc:cp.desc
                                                                 drawToUser:cp.drawToUser
                                                            bgImageFileName:cp.currentPaint.bgImageName
                                                                     layers:cp.layers];
@@ -246,6 +247,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
     }
     _canvasSize = canvasSize;
     [self backup];
+}
+- (void)setDesc:(NSString *)desc
+{
+    if (_desc != desc) {
+        PPRelease(_desc);
+        _desc = desc;
+        [_desc retain];
+        [self backup];
+    }
 }
 
 

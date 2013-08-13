@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSString * userId;
 @property (nonatomic, retain) NSString * nickName;
 @property (nonatomic, retain) Word * word;
+@property (nonatomic, retain) NSString *desc;
 @property (nonatomic, retain) NSArray* drawActionList;
 @property (nonatomic, retain) NSString * bgImageName;
 @property (nonatomic, retain) UIImage * bgImage;

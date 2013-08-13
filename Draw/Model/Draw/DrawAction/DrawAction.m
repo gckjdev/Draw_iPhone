@@ -164,13 +164,15 @@
     return rect;
 }
 
+#define DEFAULT_LAYER_TAG 2
+
 - (id)initWithPBDrawAction:(PBDrawAction *)action
 {
     self = [super init];
     if (self) {
         self.type = action.type;
         self.clipTag = (action.hasClipTag ? action.clipTag : 0);
-        self.layerTag = (action.hasLayerTag ? action.layerTag : 0);
+        self.layerTag = (action.hasLayerTag && action.layerTag != 0 ) ? action.layerTag : DEFAULT_LAYER_TAG;
         if ([action hasShadowOffsetX] && [action hasShadowColor]) {
             self.shadow = [Shadow shadowWithIntColor:action.shadowColor
                                               offset:CGSizeMake(action.shadowOffsetX,
@@ -181,7 +183,7 @@
     return self;
 }
 
-#define DEFAULT_LAYER_TAG 2
+
 
 - (id)initWithPBDrawActionC:(Game__PBDrawAction *)action
 {

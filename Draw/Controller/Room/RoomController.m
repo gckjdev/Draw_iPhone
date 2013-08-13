@@ -31,7 +31,6 @@
 #import "StableView.h"
 #import "ChatMessageView.h"
 #import "WordManager.h"
-#import "DrawSoundManager.h"
 
 #define MAX_CHANGE_ROOM_PER_DAY     5
 #define AVATAR_HOLDER_VIEW_TAG_OFFSET 120130301
@@ -523,7 +522,7 @@
 
 - (void)didNewUserJoinGame:(GameMessage *)message
 {
-    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].someoneEnterRoomSound];
+    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_DING_DING];
     [self updateGameUsers]; 
     [self updateOnlineUserLabel];
 
