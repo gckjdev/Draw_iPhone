@@ -49,7 +49,8 @@
 @property (retain, nonatomic) UIButton *backButton;
 @property (retain, nonatomic) UILabel *titleLabel;
 @property (retain, nonatomic) UIButton *rightButton;
-
+@property (retain, nonatomic) UIActivityIndicatorView* loadingActivityView;
+@property (retain, nonatomic) NSString* titleText;
 
 @end
 
@@ -57,6 +58,8 @@
 
 - (void)dealloc{
     
+    PPRelease(_titleText);
+    PPRelease(_loadingActivityView);
     [_backButton release];
     [_bgImageView release];
     [_titleLabel release];
@@ -151,6 +154,7 @@
 
 - (void)setTitle:(NSString *)title{
     
+    self.titleText = title;
     _titleLabel.text = title;
 }
 
@@ -257,6 +261,43 @@
 {
     return [_rightButton frame];
 }
+
+- (void)showLoading:(NSString*)loadingText
+{
+    if (loadingText){
+        self.titleLabel.text = loadingText; 
+    }
+    else{
+        self.titleLabel.text = NSLS(@"kLoading");
+    }
+    
+    if (self.loadingActivityView == nil){
+        self.loadingActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+        self.loadingActivityView.frame = self.rightButton.frame;
+    }
+
+    [self addSubview:self.loadingActivityView];
+    [self.loadingActivityView startAnimating];
+    
+    [self hideRightButton];
+}
+
+- (void)hideLoading:(BOOL)isShowRightButton
+{
+    // set back title
+    [self setTitle:self.titleText];
+    
+    [self.loadingActivityView stopAnimating];
+    [self.loadingActivityView removeFromSuperview];
+    
+    if (isShowRightButton){
+        [self showRightButton];
+    }
+    else{
+        [self hideRightButton];
+    }
+}
+
 
 @end
 

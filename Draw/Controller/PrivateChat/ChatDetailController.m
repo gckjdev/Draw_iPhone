@@ -1151,6 +1151,9 @@
 
 - (void)updateTitleForLoading
 {
+    [[CommonTitleView titleView:self.view] showLoading:NSLS(@"kLoadingMessage")];
+    
+    /*
     self.titleLabel.text = NSLS(@"kLoadingMessage");
     
     if (self.loadingActivityView == nil){
@@ -1166,18 +1169,21 @@
     self.refreshButton.hidden = YES;
     
     [[CommonTitleView titleView:self.view] hideRightButton];
+     */
 }
 
 - (void)clearTitleForLoading
 {
-    self.titleLabel.text = self.messageStat.friendNickName;
+    [[CommonTitleView titleView:self.view] hideLoading:YES];
     
-    [self.loadingActivityView stopAnimating];
-    [self.loadingActivityView removeFromSuperview];
-
-    self.refreshButton.hidden = NO;
-
-    [[CommonTitleView titleView:self.view] showRightButton];
+//    self.titleLabel.text = self.messageStat.friendNickName;
+//    
+//    [self.loadingActivityView stopAnimating];
+//    [self.loadingActivityView removeFromSuperview];
+//
+//    self.refreshButton.hidden = NO;
+//
+//    [[CommonTitleView titleView:self.view] showRightButton];
 
 }
 
