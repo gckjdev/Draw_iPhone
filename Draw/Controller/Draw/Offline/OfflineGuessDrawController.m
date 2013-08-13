@@ -33,7 +33,6 @@
 #import "Draw.h"
 #import "AccountManager.h"
 #import "ShowFeedController.h"
-//#import "DrawUserInfoView.h"
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
 #import "FeedService.h"
@@ -41,7 +40,6 @@
 #import "UIImageExt.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
-#import "DrawSoundManager.h"
 #import "UserGameItemService.h"
 #import "FlowerItem.h"
 #import "UserGameItemManager.h"
@@ -312,7 +310,7 @@
 
 - (void)clickPickingButton:(UIButton *)button target:(UIButton *)target text:(NSString *)text
 {
-    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].clickWordSound];
+    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_DING];
     if ([text length] != 0) {
         if (target) {
             [self setButton:target title:text enabled:YES];
@@ -667,37 +665,15 @@
     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kOfflineGuessCorrect"), [ConfigManager offlineGuessAwardScore] ,[ConfigManager getOffLineGuessExp]] delayTime:1 isHappy:YES];
     [[LevelService defaultService] addExp:[ConfigManager getOffLineGuessExp] delegate:nil];
     [[AccountService defaultService] chargeCoin:[ConfigManager offlineGuessAwardScore] source:GuessRewardType];
-    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
+    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_YY];
     [self setWordButtonsEnabled:NO];
-    
-    // rem by Benson
-    // NSInteger score = [_draw.word score]; // * [ConfigManager guessDifficultLevel];
     
     UIImage *image = self.feed.largeImage;
     if (image == nil) {
         [self.showView show];
         image = [showView createImage];
-        
-        // Don't compress data
-        /*
-         NSData *data = [image data];
-         image = [UIImage imageWithData:data];
-         */
+
     }
-    
-    
-    
-//    int guessScore = [ConfigManager offlineGuessAwardScore];
-//    ResultController *result = [[ResultController alloc] initWithImage:image
-//                                                            drawUserId:_draw.userId
-//                                                      drawUserNickName:_draw.nickName
-//                                                              wordText:_draw.word.text
-//                                                                 score:guessScore
-//                                                               correct:YES
-//                                                             isMyPaint:NO
-//                                                        drawActionList:_draw.drawActionList
-//                                                                  feed:self.feed
-//                                                                 scene:[UseItemScene createSceneByType:UseSceneTypeOfflineGuess feed:self.feed]];
     
     //send http request.
     [[DrawDataService defaultService] guessDraw:_guessWords
@@ -710,8 +686,6 @@
     
     //store locally.
     [[UserManager defaultManager] guessCorrectOpus:_opusId];
-//    [self.navigationController pushViewController:result animated:YES];
-//    [result release];
     [self jumpToFeedController];
     [self.showView stop];
 }
@@ -729,7 +703,7 @@
 
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
-        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessWrongSound];
+        [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_OO];
     }
 }
 
