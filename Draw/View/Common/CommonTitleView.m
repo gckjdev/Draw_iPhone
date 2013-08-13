@@ -51,6 +51,7 @@
 @property (retain, nonatomic) UIButton *rightButton;
 @property (retain, nonatomic) UIActivityIndicatorView* loadingActivityView;
 @property (retain, nonatomic) NSString* titleText;
+@property (assign, nonatomic) BOOL rightButtonBeforeLoadingHiddenState;
 
 @end
 
@@ -279,10 +280,17 @@
     [self addSubview:self.loadingActivityView];
     [self.loadingActivityView startAnimating];
     
+    // save right button state and then hide it
+    self.rightButtonBeforeLoadingHiddenState = self.rightButton.hidden;
     [self hideRightButton];
 }
 
-- (void)hideLoading:(BOOL)isShowRightButton
+- (void)showLoading
+{
+    [self showLoading:nil];
+}
+
+- (void)hideLoading
 {
     // set back title
     [self setTitle:self.titleText];
@@ -290,12 +298,8 @@
     [self.loadingActivityView stopAnimating];
     [self.loadingActivityView removeFromSuperview];
     
-    if (isShowRightButton){
-        [self showRightButton];
-    }
-    else{
-        [self hideRightButton];
-    }
+    // restore right button state
+    _rightButton.hidden = self.rightButtonBeforeLoadingHiddenState;
 }
 
 

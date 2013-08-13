@@ -1174,7 +1174,7 @@
 
 - (void)clearTitleForLoading
 {
-    [[CommonTitleView titleView:self.view] hideLoading:YES];
+    [[CommonTitleView titleView:self.view] hideLoading];
     
 //    self.titleLabel.text = self.messageStat.friendNickName;
 //    
