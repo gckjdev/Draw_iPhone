@@ -1887,10 +1887,10 @@
 		A49D82F6172E355700C4001F /* PBIAPProduct+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82F5172E355600C4001F /* PBIAPProduct+Utils.m */; };
 		A4A0CED016D8A2A6004AC167 /* frames.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CECF16D8A2A6004AC167 /* frames.pb */; };
 		A4A2E7A716E71DE900445888 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2E7A416E71DE900445888 /* JRSwizzle.m */; };
-		A4ADB61317B9D45400EBF418 /* WQPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* WQPlaySound.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		A4ADB61417B9D45400EBF418 /* WQPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* WQPlaySound.m */; };
-		A4ADB61517B9D45400EBF418 /* WQPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* WQPlaySound.m */; };
-		A4ADB61617B9D45400EBF418 /* WQPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* WQPlaySound.m */; };
+		A4ADB61317B9D45400EBF418 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* SoundPlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4ADB61417B9D45400EBF418 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* SoundPlayer.m */; };
+		A4ADB61517B9D45400EBF418 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* SoundPlayer.m */; };
+		A4ADB61617B9D45400EBF418 /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB61217B9D45400EBF418 /* SoundPlayer.m */; };
 		A4ADB61717B9FA0B00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A4ADB61817B9FA0C00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
@@ -7965,8 +7965,8 @@
 		A4A2E7B116E7223F00445888 /* LocalizableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalizableLabel.m; sourceTree = "<group>"; };
 		A4A2E7B316E72B7700445888 /* GameItemPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemPriceView.h; sourceTree = "<group>"; };
 		A4A2E7B416E72B7800445888 /* GameItemPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemPriceView.m; sourceTree = "<group>"; };
-		A4ADB61117B9D45400EBF418 /* WQPlaySound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQPlaySound.h; sourceTree = "<group>"; };
-		A4ADB61217B9D45400EBF418 /* WQPlaySound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQPlaySound.m; sourceTree = "<group>"; };
+		A4ADB61117B9D45400EBF418 /* SoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPlayer.h; sourceTree = "<group>"; };
+		A4ADB61217B9D45400EBF418 /* SoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPlayer.m; sourceTree = "<group>"; };
 		A4ADB62017BA1E4700EBF418 /* BackgroundMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundMusicPlayer.h; sourceTree = "<group>"; };
 		A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundMusicPlayer.m; sourceTree = "<group>"; };
 		A4B1C4A9171688BE002C83C1 /* BuyItemSpecialHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyItemSpecialHandler.h; sourceTree = "<group>"; };
@@ -11679,8 +11679,8 @@
 		A4ADB60B17B9D43900EBF418 /* Component-Sound */ = {
 			isa = PBXGroup;
 			children = (
-				A4ADB61117B9D45400EBF418 /* WQPlaySound.h */,
-				A4ADB61217B9D45400EBF418 /* WQPlaySound.m */,
+				A4ADB61117B9D45400EBF418 /* SoundPlayer.h */,
+				A4ADB61217B9D45400EBF418 /* SoundPlayer.m */,
 			);
 			path = "Component-Sound";
 			sourceTree = "<group>";
@@ -23119,7 +23119,7 @@
 				A489C01A17B5D942003E5150 /* JDFlipNumberView.m in Sources */,
 				A489C01E17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02517B5E46A003E5150 /* GuessManager.m in Sources */,
-				A4ADB61517B9D45400EBF418 /* WQPlaySound.m in Sources */,
+				A4ADB61517B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62417BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -23916,7 +23916,7 @@
 				A489C01917B5D942003E5150 /* JDFlipNumberView.m in Sources */,
 				A489C01D17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02417B5E46A003E5150 /* GuessManager.m in Sources */,
-				A4ADB61417B9D45400EBF418 /* WQPlaySound.m in Sources */,
+				A4ADB61417B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62317BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -24721,7 +24721,7 @@
 				A489C01817B5D942003E5150 /* JDFlipNumberView.m in Sources */,
 				A489C01C17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02317B5E46A003E5150 /* GuessManager.m in Sources */,
-				A4ADB61317B9D45400EBF418 /* WQPlaySound.m in Sources */,
+				A4ADB61317B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62217BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -25498,7 +25498,7 @@
 				A489C01B17B5D942003E5150 /* JDFlipNumberView.m in Sources */,
 				A489C01F17B5D942003E5150 /* JDGroupedFlipNumberView.m in Sources */,
 				A489C02617B5E46A003E5150 /* GuessManager.m in Sources */,
-				A4ADB61617B9D45400EBF418 /* WQPlaySound.m in Sources */,
+				A4ADB61617B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62517BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
