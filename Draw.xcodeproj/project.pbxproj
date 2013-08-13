@@ -1719,7 +1719,7 @@
 		A4834DFA1716AD5400190347 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DC81716AD5400190347 /* openssl_wrapper.m */; };
 		A4834DFF1716AD5400190347 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCA1716AD5400190347 /* RSADataSigner.m */; };
 		A4834E041716AD5400190347 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCC1716AD5400190347 /* RSADataVerifier.m */; };
-		A489BFE617B4F100003E5150 /* Draw-Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Draw-Themes.plist */; };
+		A489BFE617B4F100003E5150 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A489BFF017B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
 		A489BFF117B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
 		A489BFF217B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
@@ -7860,7 +7860,7 @@
 		A4834E111716AEB600190347 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		A4834E131716AEB600190347 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		A4834E151716AEB600190347 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		A489BFE517B4F0FF003E5150 /* Draw-Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Draw-Themes.plist"; sourceTree = "<group>"; };
+		A489BFE517B4F0FF003E5150 /* Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Themes.plist; sourceTree = "<group>"; };
 		A489BFEF17B4F694003E5150 /* shoes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoes@2x.png"; sourceTree = "<group>"; };
 		A489BFF917B5D39F003E5150 /* angel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angel@2x.png"; sourceTree = "<group>"; };
 		A489BFFA17B5D39F003E5150 /* foot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foot@2x.png"; sourceTree = "<group>"; };
@@ -15574,7 +15574,7 @@
 		CA745D291503B1B500600024 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A489BFE517B4F0FF003E5150 /* Draw-Themes.plist */,
+				A489BFE517B4F0FF003E5150 /* Themes.plist */,
 				EA411F2D17606A6700DA72D0 /* AskPs-Info.plist */,
 				A461B079174CBA490088B061 /* Sing-Info.plist */,
 				C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */,
@@ -21321,7 +21321,7 @@
 				A4E1D23717B2241000E13728 /* round_dot_no@2x.png in Resources */,
 				A4E1D23B17B2241000E13728 /* spend_time@2x.png in Resources */,
 				A4E1D24C17B3582500E13728 /* little_triangle@2x.png in Resources */,
-				A489BFE617B4F100003E5150 /* Draw-Themes.plist in Resources */,
+				A489BFE617B4F100003E5150 /* Themes.plist in Resources */,
 				A489BFF017B4F694003E5150 /* shoes@2x.png in Resources */,
 				A489BFFC17B5D39F003E5150 /* angel@2x.png in Resources */,
 				A489C00017B5D39F003E5150 /* foot@2x.png in Resources */,

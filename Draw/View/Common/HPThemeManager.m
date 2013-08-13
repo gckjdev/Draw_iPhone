@@ -8,7 +8,6 @@
 
 #import "HPThemeManager.h"
 #import "SynthesizeSingleton.h"
-#import "GameApp.h"
 
 #define CURRENT_THEME @"CURRENT_THEME"
 
@@ -29,7 +28,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HPThemeManager);
 {
     if(self = [super init])
     {
-        NSString *themeFile = [[GameApp gameId] stringByAppendingString:@"-Themes"];
+        NSString *themeFile = @"Themes";
         NSString *path = [[NSBundle mainBundle] pathForResource:themeFile ofType:@"plist"];
         _themeDictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
         
