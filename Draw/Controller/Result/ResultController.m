@@ -39,7 +39,6 @@
 #import "DrawFeed.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
-#import "DrawSoundManager.h"
 #import "ShareAction.h"
 #import "DrawUtils.h"
 #import "UIViewUtils.h"
@@ -345,7 +344,7 @@
         PPDebug(@"<award guess> coins=%d", self.score);
         BalanceSourceType type = (_isMyPaint) ? DrawRewardType : GuessRewardType;
         [[AccountService defaultService] chargeCoin:self.score source:type];
-        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].congratulationsSound];
+        [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_CONGRATULATIONS];
     }
 
     //init experience.

@@ -34,7 +34,6 @@
 #import "GameConstants.h"
 #import "AccountManager.h"
 #import "UseItemScene.h"
-#import "DrawSoundManager.h"
 #import "AccountService.h"
 #import "Item.h"
 #import "CanvasRect.h"
@@ -242,7 +241,7 @@
 
 - (void)clickPickingButton:(UIButton *)button target:(UIButton *)target text:(NSString *)text
 {
-    [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].clickWordSound];
+    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_DING];
     if ([text length] != 0) {
         if (target) {
             [self setButton:target title:text enabled:YES];
@@ -657,12 +656,12 @@
     //alter if the word is correct
     if ([answer isEqualToString:self.word.text]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
-        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessCorrectSound];
+        [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_YY];
         _guessCorrect = YES;
         [self setWordButtonsEnabled:NO];
     }else{
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
-        [[AudioManager defaultManager] playSoundByName:[DrawSoundManager defaultManager].guessWrongSound];
+        [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_OO];
     }
     [drawGameService guess:answer guessUserId:drawGameService.session.userId];
 }
