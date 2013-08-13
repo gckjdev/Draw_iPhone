@@ -102,6 +102,14 @@
     }
      */
     
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kChatListTitle")];
+    [titleView setRightButtonTitle:NSLS(@"kAddChat")];
+    [titleView setTarget:self];
+    [titleView setRightButtonSelector:@selector(clickAddChatButton:)];
+    
+    
     TableTab *tab = [self currentTab];    
     [self clickTab:tab.tabID];
 }

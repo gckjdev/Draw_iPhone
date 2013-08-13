@@ -112,6 +112,20 @@
     }
     [self.restoreButton setTitle:NSLS(@"kRestore") forState:UIControlStateNormal];
     
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:NSLS(@"kChargeTitle")];
+    [titleView setRightButtonTitle:NSLS(@"kRestore")];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [titleView setRightButtonSelector:@selector(clickRestoreButton:)];
+
+    if ([ConfigManager showRestoreButton]) {
+        [titleView showRightButton];
+    } else {
+        [titleView hideRightButton];
+    }
+    
     self.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:_saleCurrency];
     
     if (_saleCurrency == PBGameCurrencyCoin) {

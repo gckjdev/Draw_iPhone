@@ -182,6 +182,14 @@
     inputTextView.returnKeyType = UIReturnKeySend;
     [self.inputTextBackgroundImage setImage:
      [[ShareImageManager defaultManager] inputImage]];
+
+    [CommonTitleView createTitleView:self.view];
+    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [titleView setTitle:self.messageStat.friendNickName];
+    [titleView setRightButtonAsRefresh];
+    [titleView setTarget:self];
+    [titleView setRightButtonSelector:@selector(clickRefresh:)];
+
 }
 
 

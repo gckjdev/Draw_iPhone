@@ -102,6 +102,8 @@
     }
     [self.titleLabel setText:title];
     
+    
+    
     [self initMap];
     if (_type == LocationTypeFind) {        
         [self findMyLocation];
