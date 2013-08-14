@@ -1697,6 +1697,10 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A467892017BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
+		A467892117BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
+		A467892217BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
+		A467892317BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
 		A467BBAC177844DB00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBC417798CA500455E3A /* ItemUseRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBC317798CA500455E3A /* ItemUseRecorder.m */; };
 		A467BBCA17798DC900455E3A /* DrawToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */; };
@@ -7748,6 +7752,7 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A467891F17BB1BD1007C546A /* short_double_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_double_low.mp3; sourceTree = "<group>"; };
 		A467BBAA177844DB00455E3A /* OpusDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusDownloadService.h; sourceTree = "<group>"; };
 		A467BBAB177844DB00455E3A /* OpusDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusDownloadService.m; sourceTree = "<group>"; };
 		A467BBC217798CA500455E3A /* ItemUseRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemUseRecorder.h; sourceTree = "<group>"; };
@@ -15953,6 +15958,7 @@
 		CA7D4286168D7588009F43F7 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				A467891F17BB1BD1007C546A /* short_double_low.mp3 */,
 				CA7D4287168D7588009F43F7 /* cannon.mp3 */,
 				CA7D4288168D7588009F43F7 /* clickWord.mp3 */,
 				CA7D4289168D7588009F43F7 /* congratulations.mp3 */,
@@ -19216,6 +19222,7 @@
 				A489C01617B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8917B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
 				A4ADB61817B9FA0C00EBF418 /* Themes.plist in Resources */,
+				A467892217BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20276,6 +20283,7 @@
 				A489C01517B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8817B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
 				A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */,
+				A467892117BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21325,6 +21333,7 @@
 				A489C00417B5D39F003E5150 /* heart@2x.png in Resources */,
 				A489C01417B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8717B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
+				A467892017BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22295,6 +22304,7 @@
 				A489C01717B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8A17B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
 				A4ADB61717B9FA0B00EBF418 /* Themes.plist in Resources */,
+				A467892317BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
