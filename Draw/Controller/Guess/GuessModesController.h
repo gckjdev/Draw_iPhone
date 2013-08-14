@@ -22,6 +22,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *minusLabel;
 @property (retain, nonatomic) IBOutlet UILabel *secondLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *countDownImageView;
-
+@property (retain, nonatomic) IBOutlet UIButton *happyModeButton;
+@property (retain, nonatomic) IBOutlet UIButton *geniusModeButton;
+@property (retain, nonatomic) IBOutlet UIButton *rankButton;
+@property (retain, nonatomic) IBOutlet UIButton *rulesButton;
 
 @end

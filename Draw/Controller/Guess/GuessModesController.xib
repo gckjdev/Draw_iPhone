@@ -564,6 +564,38 @@
 					<int key="connectionID">47</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">happyModeButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="357260501"/>
+					</object>
+					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">geniusModeButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="999632586"/>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">rankButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="44318886"/>
+					</object>
+					<int key="connectionID">50</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">rulesButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="50059980"/>
+					</object>
+					<int key="connectionID">51</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickHappyModeButton:</string>
 						<reference key="source" ref="357260501"/>
@@ -782,7 +814,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">47</int>
+			<int key="maxID">51</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

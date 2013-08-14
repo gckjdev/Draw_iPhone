@@ -316,9 +316,6 @@ enum {
     } else if (section == SECTION_ACCOUNT){
         return rowsInSectionAccount;
     }
-//    else if (section == SECTION_REMOVE_AD){
-//        return (isDrawApp())?0:1;
-//    }
     else{
         return 0;
     }
