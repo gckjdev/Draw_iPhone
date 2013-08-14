@@ -1696,6 +1696,18 @@
 		A461C9281565E3700076FD9C /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A461C9271565E3700076FD9C /* ChatMessageView.m */; };
 		A461C94115662BC30076FD9C /* ChatController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C93F15662BC30076FD9C /* ChatController~ipad.xib */; };
 		A461C94215662BC30076FD9C /* MessageCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A461C94015662BC30076FD9C /* MessageCell~ipad.xib */; };
+		A467892017BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
+		A467892117BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
+		A467892217BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
+		A467892317BB1BD1007C546A /* short_double_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A467891F17BB1BD1007C546A /* short_double_low.mp3 */; };
+		A467892B17BB1CEF007C546A /* UIButton+Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = A467892A17BB1CEF007C546A /* UIButton+Sound.m */; };
+		A467892C17BB1CEF007C546A /* UIButton+Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = A467892A17BB1CEF007C546A /* UIButton+Sound.m */; };
+		A467892D17BB1CEF007C546A /* UIButton+Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = A467892A17BB1CEF007C546A /* UIButton+Sound.m */; };
+		A467892E17BB1CEF007C546A /* UIButton+Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = A467892A17BB1CEF007C546A /* UIButton+Sound.m */; };
+		A467893117BB21FE007C546A /* UISoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A467893017BB21FE007C546A /* UISoundButton.m */; };
+		A467893217BB21FE007C546A /* UISoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A467893017BB21FE007C546A /* UISoundButton.m */; };
+		A467893317BB21FE007C546A /* UISoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A467893017BB21FE007C546A /* UISoundButton.m */; };
+		A467893417BB21FE007C546A /* UISoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A467893017BB21FE007C546A /* UISoundButton.m */; };
 		A467BBAC177844DB00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBC417798CA500455E3A /* ItemUseRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBC317798CA500455E3A /* ItemUseRecorder.m */; };
 		A467BBCA17798DC900455E3A /* DrawToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */; };
@@ -1927,10 +1939,6 @@
 		A4B78826179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
 		A4B78827179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
 		A4B78828179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
-		A4B78996179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
-		A4B78998179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
-		A4B78999179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
-		A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
 		A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
 		A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
 		A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
@@ -7744,6 +7752,11 @@
 		A461C9271565E3700076FD9C /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
 		A461C93F15662BC30076FD9C /* ChatController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChatController~ipad.xib"; sourceTree = "<group>"; };
 		A461C94015662BC30076FD9C /* MessageCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MessageCell~ipad.xib"; sourceTree = "<group>"; };
+		A467891F17BB1BD1007C546A /* short_double_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = short_double_low.mp3; sourceTree = "<group>"; };
+		A467892917BB1CEF007C546A /* UIButton+Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Sound.h"; sourceTree = "<group>"; };
+		A467892A17BB1CEF007C546A /* UIButton+Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Sound.m"; sourceTree = "<group>"; };
+		A467892F17BB21FD007C546A /* UISoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISoundButton.h; sourceTree = "<group>"; };
+		A467893017BB21FE007C546A /* UISoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISoundButton.m; sourceTree = "<group>"; };
 		A467BBAA177844DB00455E3A /* OpusDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusDownloadService.h; sourceTree = "<group>"; };
 		A467BBAB177844DB00455E3A /* OpusDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusDownloadService.m; sourceTree = "<group>"; };
 		A467BBC217798CA500455E3A /* ItemUseRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemUseRecorder.h; sourceTree = "<group>"; };
@@ -8003,8 +8016,6 @@
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
 		A4B763A515C25218003B4E72 /* Draw.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.pb.m; sourceTree = "<group>"; };
 		A4B78823179E2E3C0008E21B /* Theme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Theme; sourceTree = "<group>"; };
-		A4B7898B179E2E890008E21B /* CommonBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonBgView.h; sourceTree = "<group>"; };
-		A4B7898C179E2E890008E21B /* CommonBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonBgView.m; sourceTree = "<group>"; };
 		A4B7898D179E2E890008E21B /* CommonTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTitleView.h; sourceTree = "<group>"; };
 		A4B7898E179E2E890008E21B /* CommonTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTitleView.m; sourceTree = "<group>"; };
 		A4B7898F179E2E890008E21B /* HPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPThemeManager.h; sourceTree = "<group>"; };
@@ -11797,12 +11808,14 @@
 		A4B78987179E2E890008E21B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A4B7898B179E2E890008E21B /* CommonBgView.h */,
-				A4B7898C179E2E890008E21B /* CommonBgView.m */,
 				A4B7898D179E2E890008E21B /* CommonTitleView.h */,
 				A4B7898E179E2E890008E21B /* CommonTitleView.m */,
 				A4B7898F179E2E890008E21B /* HPThemeManager.h */,
 				A4B78990179E2E890008E21B /* HPThemeManager.m */,
+				A467892917BB1CEF007C546A /* UIButton+Sound.h */,
+				A467892A17BB1CEF007C546A /* UIButton+Sound.m */,
+				A467892F17BB21FD007C546A /* UISoundButton.h */,
+				A467893017BB21FE007C546A /* UISoundButton.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -15947,6 +15960,7 @@
 		CA7D4286168D7588009F43F7 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				A467891F17BB1BD1007C546A /* short_double_low.mp3 */,
 				CA7D4287168D7588009F43F7 /* cannon.mp3 */,
 				CA7D4288168D7588009F43F7 /* clickWord.mp3 */,
 				CA7D4289168D7588009F43F7 /* congratulations.mp3 */,
@@ -19209,6 +19223,7 @@
 				A489C01617B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8917B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
 				A4ADB61817B9FA0C00EBF418 /* Themes.plist in Resources */,
+				A467892217BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20268,6 +20283,7 @@
 				A489C01517B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8817B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
 				A4ADB61917B9FA0C00EBF418 /* Themes.plist in Resources */,
+				A467892117BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21316,6 +21332,7 @@
 				A489C00417B5D39F003E5150 /* heart@2x.png in Resources */,
 				A489C01417B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8717B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
+				A467892017BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22285,6 +22302,7 @@
 				A489C01717B5D942003E5150 /* JDFlipNumberView.bundle in Resources */,
 				CA7B3C8A17B8E2E3009A07AA /* draw_layer_btn@2x.png in Resources */,
 				A4ADB61717B9FA0B00EBF418 /* Themes.plist in Resources */,
+				A467892317BB1BD1007C546A /* short_double_low.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23084,7 +23102,6 @@
 				CABEC6FB17969462006F89BB /* FreeIngotController.m in Sources */,
 				CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B78999179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A3179E2E890008E21B /* HPThemeManager.m in Sources */,
 				CA51834D179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
@@ -23111,6 +23128,8 @@
 				A489C02517B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61517B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62417BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
+				A467892D17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
+				A467893317BB21FE007C546A /* UISoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23874,7 +23893,6 @@
 				A4E254D11796CC5D00767506 /* GuessService.m in Sources */,
 				CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B78998179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A2179E2E890008E21B /* HPThemeManager.m in Sources */,
 				A4B789B5179E36C40008E21B /* WordInputView.m in Sources */,
@@ -23908,6 +23926,8 @@
 				A489C02417B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61417B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62317BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
+				A467892C17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
+				A467893217BB21FE007C546A /* UISoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24682,7 +24702,6 @@
 				A4E254D01796CC5D00767506 /* GuessService.m in Sources */,
 				CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B78996179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A0179E2E890008E21B /* HPThemeManager.m in Sources */,
 				A4B789A8179E2F040008E21B /* DrawGuessController.m in Sources */,
@@ -24713,6 +24732,8 @@
 				A489C02317B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61317B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62217BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
+				A467892B17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
+				A467893117BB21FE007C546A /* UISoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25466,7 +25487,6 @@
 				CABEC6FC17969462006F89BB /* FreeIngotController.m in Sources */,
 				CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899F179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */,
 				CA51834E179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
@@ -25490,6 +25510,8 @@
 				A489C02617B5E46A003E5150 /* GuessManager.m in Sources */,
 				A4ADB61617B9D45400EBF418 /* SoundPlayer.m in Sources */,
 				A4ADB62517BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */,
+				A467892E17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
+				A467893417BB21FE007C546A /* UISoundButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

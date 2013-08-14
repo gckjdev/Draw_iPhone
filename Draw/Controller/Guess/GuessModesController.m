@@ -13,6 +13,8 @@
 #import "JDDateCountdownFlipView.h"
 #import "GuessManager.h"
 #import "SoundPlayer.h"
+#import "UIButton+Sound.h"
+#import "ShareImageManager.h"
 
 @interface GuessModesController (){
     int _countDown;
@@ -26,6 +28,11 @@
 
 
 - (void)dealloc {
+    [_happyModeButton unregisterSound];
+    [_geniusModeButton unregisterSound];
+    [_contestModeButton unregisterSound];
+    [_rankButton unregisterSound];
+    [_rulesButton unregisterSound];
     [_contest release];
     [_happyModeLabel release];
     [_contestModeLabel release];
@@ -38,6 +45,10 @@
     [_countDownImageView release];
     [_contestModeButton release];
     [_titleView release];
+    [_happyModeButton release];
+    [_geniusModeButton release];
+    [_rankButton release];
+    [_rulesButton release];
     [super dealloc];
 }
 
@@ -56,7 +67,15 @@
     _rankListLabel.text = NSLS(@"kGuessRank");
     _rulesLabel.text = NSLS(@"kGuessRules");
     
+    [_happyModeButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
+    [_geniusModeButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
+    [_contestModeButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
+    [_rankButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
+    [_rulesButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
+    
     [[GuessService defaultService] getGuessContestListWithDelegate:self];
+    
+    SET_VIEW_BG(self.view);
 }
 
 - (void)viewDidUnload {
@@ -72,6 +91,10 @@
     [self setCountDownImageView:nil];
     [self setContestModeButton:nil];
     [self setTitleView:nil];
+    [self setHappyModeButton:nil];
+    [self setGeniusModeButton:nil];
+    [self setRankButton:nil];
+    [self setRulesButton:nil];
     [super viewDidUnload];
 }
 

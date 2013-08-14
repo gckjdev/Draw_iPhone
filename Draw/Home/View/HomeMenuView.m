@@ -11,6 +11,7 @@
 #import "ConfigManager.h"
 #import "ShareImageManager.h"
 #import "StatisticManager.h"
+#import "UIButton+Sound.h"
 
 @implementation HomeMenuView
 @synthesize button = _button;
@@ -396,7 +397,6 @@
     }
     HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
     view.delegate = delegate;
-//    [view updateView];
     
     return view;
 }
@@ -424,6 +424,7 @@
         HomeMenuView *menu = [HomeMenuView createView:delegate identifier:identifier];
         NSString *title = [HomeMenuView titleForType:type];
         UIImage *image = [HomeMenuView imageForType:type];
+        [menu.button registerSound:SOUND_EFFECT_BUTTON_DOWN];
         [menu updateIcon:image title:title type:type];
         [menu updateBadge:badge];
         [menu setType:type];
@@ -435,6 +436,7 @@
 }
 
 - (void)dealloc {
+    [_button unregisterSound];
     PPRelease(_button);
     [_badge release];
     [_title release];

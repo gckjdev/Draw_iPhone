@@ -9,6 +9,7 @@
 #import "CommonTabController.h"
 #import "CommonMessageCenter.h"
 #import "ShareImageManager.h"
+#import "UIButton+Sound.h"
 
 @implementation CommonTabController
 @synthesize titleLabel = _titleLabel;
@@ -80,6 +81,11 @@
 
 - (void)dealloc
 {
+    for(TableTab *tab in _tabManager.tabList){
+        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
+        [button unregisterSound];
+    }
+    
     PPRelease(_tabManager);
     PPRelease(_titleLabel);
     PPRelease(_noDataTipLabl);
@@ -152,6 +158,8 @@
     for(TableTab *tab in tabList){
         UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
 
+        [button registerSound:SOUND_EFFECT_BUTTON_DOWN];
+        
         CGRect rect = button.frame;
         CGFloat x = i * step;
         rect.origin.x = x;

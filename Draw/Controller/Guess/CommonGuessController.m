@@ -23,11 +23,11 @@
 #import "OpusGuessRecorder.h"
 #import "GameItemManager.h"
 #import "OpusGuessRecorder.h"
-#import "CommonBgView.h"
 #import "UIButtonExt.h"
 #import "HPThemeManager.h"
 #import "CustomInfoView.h"
 #import "TimeUtils.h"
+#import "ShareImageManager.h"
 
 @interface CommonGuessController (){
     PBUserGuessMode _mode;
@@ -102,9 +102,7 @@
 
     
     // Set bgView
-    UIView *bgView = [CommonBgView create];
-    [self.view addSubview:bgView];
-    [self.view sendSubviewToBack:bgView];
+    SET_VIEW_BG(self.view);
     
     // Set answer
     self.wordInputView.answer = self.opus.pbOpus.name;

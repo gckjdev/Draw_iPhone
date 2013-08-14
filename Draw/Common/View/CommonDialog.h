@@ -57,27 +57,12 @@ typedef void (^DialogSelectionBlock)(void);
                                   style:(CommonDialogStyle)aStyle 
                                delegate:(id<CommonDialogDelegate>)aDelegate;
 
-//+ (CommonDialog *)createDialogWithTitle:(NSString *)title 
-//                                message:(NSString *)message 
-//                                  style:(CommonDialogStyle)aStyle 
-//                               delegate:(id<CommonDialogDelegate>)aDelegate 
-//                                  theme:(CommonDialogTheme)theme;
-
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message
                                   style:(CommonDialogStyle)aStyle
                                delegate:(id<CommonDialogDelegate>)aDelegate
                            clickOkBlock:(DialogSelectionBlock)block1
                        clickCancelBlock:(DialogSelectionBlock)block2;
-
-//+ (CommonDialog *)createDialogWithTitle:(NSString *)title
-//                                message:(NSString *)message
-//                                  style:(CommonDialogStyle)aStyle
-//                               delegate:(id<CommonDialogDelegate>)aDelegate
-//                                  theme:(CommonDialogTheme)theme
-//                           clickOkBlock:(DialogSelectionBlock)block1
-//                       clickCancelBlock:(DialogSelectionBlock)block2;
-
 
 - (void)setTitle:(NSString *)title;
 - (void)setMessage:(NSString *)message;

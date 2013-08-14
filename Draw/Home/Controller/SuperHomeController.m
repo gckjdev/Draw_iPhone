@@ -80,7 +80,6 @@
 {
     self.homeMainMenuPanel = [HomeMainMenuPanel createView:self];
     [self.view addSubview:self.homeMainMenuPanel];
-//    self.mainMenuPanel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight;
 
     //TODO update frame
     [self updateView:self.homeMainMenuPanel originY:[self getMainMenuOriginY]];
@@ -108,30 +107,25 @@
     if (!ISIPAD) {
         self.view.frame = CGRectMake(0, 0, 320, 460);
     }
-/*
-    if (isLearnDrawApp()) {
-        [self addBottomMenuView];
-    }else{
- */
-        [self addMainMenuView];
-        [self addHeaderView];
-        [self addBottomMenuView];
-        [self adjustView];
-        
-        [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-            [self updateAllBadge];
-        }];
 
-        
-        [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
-        
-        
-        [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
-        [[AudioManager defaultManager] setVolume:[ConfigManager getBGMVolume]];
-        if ([[AudioManager defaultManager] isMusicOn]) {
-            [[AudioManager defaultManager] backgroundMusicPlay];
-        }        
-//    }
+    [self addMainMenuView];
+    [self addHeaderView];
+    [self addBottomMenuView];
+    [self adjustView];
+    
+    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
+        [self updateAllBadge];
+    }];
+
+    
+    [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
+    
+    
+    [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
+    [[AudioManager defaultManager] setVolume:[ConfigManager getBGMVolume]];
+    if ([[AudioManager defaultManager] isMusicOn]) {
+        [[AudioManager defaultManager] backgroundMusicPlay];
+    }        
     
     if (!ISIPAD) {
         self.view.frame = [[UIScreen mainScreen] bounds];

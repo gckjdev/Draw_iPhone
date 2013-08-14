@@ -297,8 +297,6 @@ CommonMessageViewTheme globalGetTheme() {
 		return;
 	}
 	
-//	_active = YES;
-
 	NSArray *ar = [_messages objectAtIndex:0];
 	
 	UIImage *img = nil;
@@ -355,7 +353,6 @@ CommonMessageViewTheme globalGetTheme() {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:0.15];
         [UIView setAnimationDelegate:self];
-//        [UIView setAnimationDidStopSelector:@selector(animationStep2)];
         
         _messageView.transform = CGAffineTransformMakeRotation(degrees * M_PI / 180);
         _messageView.frame = CGRectMake((int)_messageView.frame.origin.x, (int)_messageView.frame.origin.y, _messageView.frame.size.width, _messageView.frame.size.height);
@@ -367,16 +364,9 @@ CommonMessageViewTheme globalGetTheme() {
 	
 }
 - (void) animationStep2{
-	[UIView beginAnimations:nil context:nil];
     
-	// depending on how many words are in the text
-	// change the animation duration accordingly
-	// avg person reads 200 words per minute
-	//NSArray * words = [[[_messages objectAtIndex:0] objectAtIndex:0] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-//    NSNumber* delayTime = [[_messages objectAtIndex:0] objectAtIndex:INDEX_OF_DELAY_TIME];
-	//double duration = MAX(((double)[words count]*60.0/200.0),1);
-//    double duration = delayTime.floatValue;
-	
+	[UIView beginAnimations:nil context:nil];
+    	
 	[UIView setAnimationDelay:0];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationStep3)];
@@ -392,6 +382,7 @@ CommonMessageViewTheme globalGetTheme() {
 	_messageView.alpha = 0;
 	[UIView commitAnimations];
 }
+
 - (void) animationStep3{
 	
 	[_messageView removeFromSuperview];
@@ -402,9 +393,8 @@ CommonMessageViewTheme globalGetTheme() {
         [self.delegate didShowedAlert];
     }
     _active = NO;
-//	[self showAlertsAtHorizon:_horizon];
-	
 }
+
 - (void)postMessageWithText:(NSString *)text 
                       image:(UIImage *)image
             messageViewType:(MessageViewType)type
@@ -412,6 +402,7 @@ CommonMessageViewTheme globalGetTheme() {
 	[_messages setObject:[NSArray arrayWithObjects:text, [NSNumber numberWithFloat:delayTime], [NSNumber numberWithInt:type], image, nil] atIndexedSubscript:0];
 	[self showAlertsAtHorizon:0];
 }
+
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime{
 	[self postMessageWithText:text 
@@ -563,9 +554,6 @@ CGRect subtractMessageRect(CGRect wf,CGRect kf){
 	NSDictionary *userInfo = [notification userInfo];
 	NSNumber *v = [userInfo objectForKey:UIApplicationStatusBarOrientationUserInfoKey];
 	UIInterfaceOrientation o = [v intValue];
-	
-	
-	
 	
 	CGFloat degrees = 0;
 	if(o == UIInterfaceOrientationLandscapeLeft ) degrees = -90;

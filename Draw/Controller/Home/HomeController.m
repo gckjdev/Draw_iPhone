@@ -172,23 +172,12 @@
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
-//    [[DrawGameService defaultService] setUserId:[[UserManager defaultManager] userId]];
-//    [[DrawGameService defaultService] setNickName:[[UserManager defaultManager] nickName]];    
-//    [[DrawGameService defaultService] setAvatar:[[UserManager defaultManager] avatarURL]];    
-    
-    // sync bulletin
-//    [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-//        [self updateAllBadge];
-//    }];  --do it in superHomeContoller-viewDidLoad
     
     [self enterNextControllerWityType:self.notificationType];
 
     [self registerUIApplicationNotification];
     
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
-    
-//    [self.view bringSubviewToFront:self.testBulletin];
-//    [self.view bringSubviewToFront:self.testCreateWallBtn];
     
 #ifdef DEBUG
     [self createBtnForTest];
@@ -299,13 +288,10 @@
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
-    
 }
 
 - (void)viewDidUnload
 {
-//    [[AdService defaultService] clearAdView:_adView];
-//    [self setAdView:nil];    
     
     [self setRecommendButton:nil];
     [self setFacetimeButton:nil];
@@ -354,24 +340,6 @@
     }
 }
 
-//- (void)playBackgroundMusic
-//{
-//    MusicItemManager* musicManager = [MusicItemManager defaultManager];
-//    NSString* musicURL = musicManager.currentMusicItem.localPath;
-//    if (musicURL == nil){
-//        PPDebug(@"<playBackgroundMusic> but music url is nil");
-//        return;
-//    }
-//    
-//    NSURL *url = [NSURL fileURLWithPath:musicURL];
-//    AudioManager *audioManager = [AudioManager defaultManager];
-//    
-//    [audioManager setBackGroundMusicWithURL:url];
-////    [audioManager backgroundMusicStart];
-//
-//}
-
-
 - (void)didJoinGame:(GameMessage *)message
 {
     [self hideActivity];
@@ -382,8 +350,6 @@
         NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
         [self popupUnhappyMessage:text title:@""];
         [[DrawGameService defaultService] disconnectServer];
-//        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
-//                                                          port:[[DrawGameService defaultService] serverPort]];
         return;
     }
 
@@ -461,26 +427,10 @@
         address = [ConfigManager defaultEnglishServer];
         port = [ConfigManager defaultEnglishPort];
     }
-    
-    
-//    if (server != nil){        
-//        address = [server address];
-//        port = [server.port intValue];            
-//    }
 
 
     [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];    
-
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.101"];
-//    [[DrawGameService defaultService] setServerPort:8080];   
-
-//    [[DrawGameService defaultService] setServerAddress:@"192.168.1.198"];
-//    [[DrawGameService defaultService] setServerPort:8080];   
-
-
-//    [[DrawGameService defaultService] setServerAddress:@"58.215.188.215"];
-//    [[DrawGameService defaultService] setServerPort:8080];    
+    [[DrawGameService defaultService] setServerPort:port];      
 
     [[DrawGameService defaultService] connectServer:self];
     _isTryJoinGame = YES;
@@ -529,7 +479,6 @@
     if (viewController) {        
         HomeController *home = [HomeController defaultInstance];
         [viewController.navigationController popToViewController:home animated:NO];
-//        SelectWordController *sc = [[SelectWordController alloc] initWithType:OfflineDraw];
         SelectHotWordController *sc = [[SelectHotWordController alloc] init];
         [home.navigationController pushViewController:sc animated:NO];
         [sc release];
@@ -543,7 +492,6 @@
     if (viewController) {        
         HomeController *home = [HomeController defaultInstance];
         [viewController.navigationController popToViewController:home animated:NO];
-//        SelectWordController *sc = [[SelectWordController alloc] initWithTargetUid:uid];
         SelectHotWordController *sc = [[SelectHotWordController alloc] initWithTargetUid:uid];
         [home.navigationController pushViewController:sc animated:NO];
         sc.superController = home;
@@ -567,10 +515,7 @@
 
 - (IBAction)clickRecommend:(id)sender
 {
-    /* rem by Benson to disable the feature
-    RecommendedAppsController* vc = [[[RecommendedAppsController alloc] init] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-    */
+
 }
 
 
@@ -659,7 +604,6 @@
         }
             break;
         case HomeMenuTypeDrawBigShop:
-//        case HomeMenuTypeDrawShop:
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
             
