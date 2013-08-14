@@ -84,6 +84,18 @@
     }
     return nil;
 }
+- (NSInteger)indexOfTabID:(NSInteger)tabID
+{
+    NSInteger i = 0;
+    for (TableTab *tab in _tabList) {
+        if ([tab tabID] == tabID) {
+            return i;
+        }
+        i ++;
+    }
+    return NSNotFound;
+}
+
 - (TableTab *)currentTab
 {
     for (TableTab *tab in _tabList) {

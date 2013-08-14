@@ -22,6 +22,10 @@
 #define COLOR_WHITE [UIColor whiteColor] //Cell
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
 
+#define COLOR_COFFEE OPAQUE_COLOR(60, 40, 20)
+#define COLOR_YELLOW OPAQUE_COLOR(249, 183, 66)
+
+
 
 #define SET_CELL_BG                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \

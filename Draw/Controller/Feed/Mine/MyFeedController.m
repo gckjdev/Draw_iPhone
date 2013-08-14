@@ -493,23 +493,6 @@ typedef enum{
     }
 }
 
-- (void)updateBadge:(FeedListType)type count:(NSInteger)count
-{
-    UIButton *badgeButton = (UIButton *)[self.view viewWithTag:1000 + type];
-    NSString* title = @"";
-    if (count > 99){
-        title = @"N";
-    }
-    else{
-        title = [NSString stringWithFormat:@"%d",count];
-    }
-    [badgeButton setTitle:title forState:UIControlStateNormal];
-    if (count == 0) {
-        badgeButton.hidden = YES;
-    } else {
-        badgeButton.hidden = NO;
-    }
-}
 
 - (void)updateAllBadge
 {
@@ -571,8 +554,6 @@ typedef enum{
     }else{
         [self failLoadDataForTabID:type];
     }
-    
-    [self updateBadge:type count:0];
 }
 
 - (void)didGetMyCommentList:(NSArray *)commentList resultCode:(NSInteger)resultCode
@@ -593,7 +574,7 @@ typedef enum{
 {
     if (resultCode == 0) {
         if (count != 0) {
-            
+
         }
     }
 }

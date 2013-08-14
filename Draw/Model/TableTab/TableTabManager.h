@@ -28,6 +28,7 @@
 - (NSArray *)tabList;
 - (TableTab *)tabAtIndex:(NSInteger)index;
 - (TableTab *)tabForID:(NSInteger)tabID;
+- (NSInteger)indexOfTabID:(NSInteger)tabID;
 
 - (TableTab *)currentTab;
 - (void)setCurrentTab:(TableTab *)tab;

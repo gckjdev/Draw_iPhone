@@ -36,6 +36,8 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 - (void)setRightButtonAsRefresh;
 - (void)setRightButtonTitle:(NSString *)title;
 
+- (void)setBgImage:(UIImage *)image;
+
 // 按钮的显示和隐藏控制
 - (void)hideBackButton;
 - (void)showBackButton;

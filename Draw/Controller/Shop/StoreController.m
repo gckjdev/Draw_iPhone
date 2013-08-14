@@ -114,6 +114,15 @@ typedef enum{
     [self updateBalance];
 }
 
+- (BOOL)needHideTaoboTab
+{
+    if ([ConfigManager isInReviewVersion] ||
+        ([LocaleUtils isChina] || [LocaleUtils isChinese]) == NO) {
+        return YES;
+    }
+    return NO;
+}
+
 #define ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON (ISIPAD ? 80 : 40)
 - (void)viewDidLoad
 {
@@ -153,11 +162,9 @@ typedef enum{
     [self updateBalance];
     [self updateItemData];
     
-    if ([ConfigManager isInReviewVersion] ||
-        ([LocaleUtils isChina] || [LocaleUtils isChinese]) == NO) {
+    if ([self needHideTaoboTab]) {
         [self hideTaoBaoTab];
     }
-
 #ifdef DEBUG
     [GameItemService createTestDataFile];
 #endif
@@ -170,6 +177,9 @@ typedef enum{
 
 - (void)hideTaoBaoTab
 {
+    [[self tabButtonWithTabID:TabIDTaoBao] setHidden:YES];
+    return;
+    //origin code below
     UIButton *normalButton = [self tabButtonWithTabID:TabIDNormal];
     UIButton *toolButton = [self tabButtonWithTabID:TabIDTool];
     UIButton *promotionButton = [self tabButtonWithTabID:TabIDPromotion];
@@ -261,7 +271,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 4;
+    return [self needHideTaoboTab] ? 3 : 4;
 }
 - (NSInteger)currentTabIndex
 {
