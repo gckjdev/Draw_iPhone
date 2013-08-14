@@ -91,7 +91,9 @@
         return (CommonTitleView*)view;
     }
     else{
-        PPDebug(@"<Warning> Title View Not Found or Title View is Not CommonTitleView");
+        if (view != nil){
+            PPDebug(@"<Warning> Title View Not Found or Title View is Not CommonTitleView");
+        }
         return nil;
     }
 }

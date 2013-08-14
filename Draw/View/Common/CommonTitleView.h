@@ -35,12 +35,14 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 - (void)setTitle:(NSString *)title;
 - (void)setRightButtonAsRefresh;
 - (void)setRightButtonTitle:(NSString *)title;
+
+// 按钮的显示和隐藏控制
 - (void)hideBackButton;
 - (void)showBackButton;
 - (void)hideRightButton;
 - (void)showRightButton;
-- (CGRect)rightButtonFrame;
 
+// 在标题栏显示加载进度
 - (void)showLoading;
 - (void)showLoading:(NSString*)loadingText;
 - (void)hideLoading;
