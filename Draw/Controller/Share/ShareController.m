@@ -143,18 +143,10 @@ typedef enum{
 - (void)didGetAllPaintCount:(NSInteger)allPaintCount
                myPaintCount:(NSInteger)myPaintCount
                  draftCount:(NSInteger)draftCount
-{
-    UIButton *draftButton = (UIButton *)[self.view viewWithTag:TabTypeDraft];
-    NSString *draftTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kDraft"), draftCount];
-    [draftButton setTitle:draftTitle forState:UIControlStateNormal];
-    
-    UIButton *myButton = (UIButton *)[self.view viewWithTag:TabTypeMine];
-    NSString *myTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kMine"), myPaintCount];
-    [myButton setTitle:myTitle forState:UIControlStateNormal];
-    
-    UIButton *allButton = (UIButton *)[self.view viewWithTag:TabTypeAll];
-    NSString *allTitle = [NSString stringWithFormat:@"%@(%d)", NSLS(@"kAll"), allPaintCount];
-    [allButton setTitle:allTitle forState:UIControlStateNormal];
+{    
+    [self setTab:TabTypeMine titleNumber:myPaintCount];
+    [self setTab:TabTypeAll titleNumber:allPaintCount];
+    [self setTab:TabTypeDraft titleNumber:draftCount];
 }
 
 - (void)performLoadMyPaints

@@ -174,23 +174,26 @@
         i ++;
                 
         [button addTarget:self action:@selector(clickTabDown:) forControlEvents:UIControlEventTouchDown];
-        [button addTarget:self action:@selector(clickTabUp:) forControlEvents:UIControlEventAllEvents^UIControlEventTouchDown];
+        [button addTarget:self action:@selector(clickTabUp:) forControlEvents:UIControlEventAllEvents^UIControlEventTouchDown];        
         
-        
-        //title
-        [button setTitle:tab.title forState:UIControlStateNormal];
         
         //font
         [button.titleLabel setFont:BUTTON_FONT];
-        [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-        [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
-        [button setTitleColor:COLOR_WHITE forState:UIControlStateHighlighted];
+        
+        NSArray *states = @[@(UIControlStateNormal),@(UIControlStateSelected),@(UIControlStateHighlighted)];
+        
+        for (NSNumber *state in states) {
+            [button setTitleColor:COLOR_WHITE forState:[state integerValue]];
+            [button setImage:nil forState:[state integerValue]];
+            [button setBackgroundImage:nil forState:[state integerValue]];
+            //title
+            [button setTitle:tab.title forState:[state integerValue]];
+            
+        }
        
         //shadow offset
-        [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:nil];
-        
+        [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:nil];        
         [button setBackgroundColor:COLOR_ORANGE];
-        [button setImage:nil forState:UIControlStateNormal|UIControlStateSelected|UIControlStateHighlighted];
         index++;
     }
     [self clickTabButton:self.currentTabButton];
@@ -533,5 +536,18 @@
     }
 //    [badgeButton sizeToFit];
 //    CGRect frame = badgeButton.frame;
+}
+
+- (void)setTab:(NSInteger)tabID titleNumber:(NSInteger)number
+{
+    NSInteger index = [_tabManager indexOfTabID:tabID];
+    if (index != NSNotFound) {
+        NSString *title = [self tabTitleforIndex:index];
+        title = [NSString stringWithFormat:@"%@(%d)", title, number];
+        UIButton *button = [self tabButtonWithTabID:tabID];
+        [button setTitle:title forState:UIControlStateNormal];
+        [button setTitle:title forState:UIControlStateHighlighted];
+        [button setTitle:title forState:UIControlStateSelected];
+    }
 }
 @end

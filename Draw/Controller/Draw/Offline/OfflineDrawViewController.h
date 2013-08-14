@@ -67,6 +67,7 @@
 @property (retain, nonatomic) NSString *bgImageName;
 @property (retain, nonatomic) UIImage* copyPaintImage;
 
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 - (id)initWithTargetType:(TargetType)aTargetType 
                 delegate:(id<OfflineDrawDelegate>)aDelegate;

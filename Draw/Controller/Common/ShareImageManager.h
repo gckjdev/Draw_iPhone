@@ -27,14 +27,17 @@
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog
 #define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
 
-#define SET_VIEW_ROUND_CORNER(view) \
-{           \
-    [view.layer setCornerRadius:4];       \
-    [view.layer setMasksToBounds:YES];    \
-}
+//#define SET_VIEW_ROUND_CORNER(view) \
+//{           \
+//    [view.layer setCornerRadius:4];       \
+//    [view.layer setMasksToBounds:YES];    \
+//}
 
 #define COLOR_WHITE [UIColor whiteColor] //Cell
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
+
+#define COLOR_COFFEE OPAQUE_COLOR(60, 40, 20)
+
 
 #define SET_VIEW_BG(view) (view.backgroundColor = COLOR_LIGHT_GRAY)
 

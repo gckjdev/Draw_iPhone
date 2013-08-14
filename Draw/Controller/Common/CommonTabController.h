@@ -87,5 +87,7 @@ typedef enum{
 - (void)finishDeleteData:(NSObject *)data ForTabID:(NSInteger)tabID;
 - (void)cleanFrontData;
 
+- (void)setTab:(NSInteger)tabID titleNumber:(NSInteger)number;
+
 //- (void)startToLoadNewDataForTabID:(NSInteger)tabID;
 @end

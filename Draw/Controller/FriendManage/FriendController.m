@@ -611,19 +611,9 @@ typedef enum{
 {
     if (resultCode == 0) {
         //update fan Count and follow count
-        
-        UIButton *fButton = (UIButton *)[self.view viewWithTag:TabTypeFan];
-        NSString *fTitle = [NSString stringWithFormat:NSLS(@"kFansNumber"), fanCount];
-        [fButton setTitle:fTitle forState:UIControlStateNormal];
-        
-        fButton = (UIButton *)[self.view viewWithTag:TabTypeFollow];
-        fTitle = [NSString stringWithFormat:NSLS(@"kFollowNumber"), followCount];
-
-        [fButton setTitle:fTitle forState:UIControlStateNormal];
-        
-        fButton = (UIButton *)[self.view viewWithTag:TabTypeBlackList];
-        fTitle = [NSString stringWithFormat:NSLS(@"kBlackListNumber"), blackCount];
-        [fButton setTitle:fTitle forState:UIControlStateNormal];
+        [self setTab:TabTypeFan titleNumber:fanCount];
+        [self setTab:TabTypeFollow titleNumber:followCount];
+        [self setTab:TabTypeBlackList titleNumber:blackCount];
     }
 }
 

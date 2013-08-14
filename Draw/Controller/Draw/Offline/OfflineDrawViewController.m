@@ -214,6 +214,7 @@
     PPRelease(_currentDialog);
     PPRelease(_copyPaintImage);
     [_upPanelButton release];
+    [_titleView release];
     [super dealloc];
 }
 
@@ -564,6 +565,11 @@
     
     [self initRecovery];
     self.view.backgroundColor = [shareImageManager drawBGColor];
+    
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setBgImage:nil];
+    [self.titleView setBackgroundColor:[UIColor clearColor]];
 }
 
 
@@ -584,6 +590,7 @@
     [self setSubmitButton:nil];
     [self setDraftButton:nil];
     [self setUpPanelButton:nil];
+    [self setTitleView:nil];
     [super viewDidUnload];
 }
 
@@ -1225,6 +1232,7 @@
     }else{
         DrawLayerPanel *layerPanel = [DrawLayerPanel drawLayerPanelWithDrawLayerManager:drawView.dlManager];
         self.layerPanelPopView = [[[CMPopTipView alloc] initWithCustomView:layerPanel] autorelease];
+        [self.layerPanelPopView setBackgroundColor:COLOR_YELLOW];
         [self.layerPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
         self.layerPanelPopView.delegate = self;
     }

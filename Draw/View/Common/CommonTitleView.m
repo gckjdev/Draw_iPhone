@@ -183,6 +183,11 @@
     [self addSubview:_rightButton];
 }
 
+- (void)setBgImage:(UIImage *)image
+{
+    [self.bgImageView setImage:image];
+}
+
 - (UIButton *)rightButtonWithImage:(UIImage *)image{
     
     CGRect frame = CGRectMake(0, 0, RIGHT_BUTTON_WIDTH, RIGHT_BUTTON_HEIGHT);

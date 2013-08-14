@@ -656,10 +656,7 @@ typedef enum{
 {
     if (resultCode == 0) {
         if (count != 0) {
-            //update opus count
-            UIButton * button = [self tabButtonWithTabID:UserTypeOpus];
-            NSString *title = [NSString stringWithFormat:NSLS(@"kOpusCount"),count];
-            [button setTitle:title forState:UIControlStateNormal];
+            [self setTab:UserTypeOpus titleNumber:count];
         }
     }
 }

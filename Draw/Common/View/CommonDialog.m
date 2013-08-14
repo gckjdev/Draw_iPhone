@@ -81,8 +81,10 @@
 #define RED_LINE_WIDTH (ISIPAD ? 15 : 7.5)
 
 #define GAP_Y (ISIPAD ? 10 : 5)
-
-//- (id)initWithTitle:(NSString *)title message:(NSString *)message{
+//
+//- (id)initWithTitle:(NSString *)title
+//            message:(NSString *)message
+//              style:(CommonDialogStyle)style{
 //    
 //    if (self = [super init]) {
 //        
@@ -109,11 +111,23 @@
 //            self.messageLabel.text = message;
 //            [self.messageLabel sizeToFit];
 //            
-//            self.messageLabel updateCenterX:
+//            [self.messageLabel updateCenterX:CGRectGetMidX(self.contentView.bounds)];
 //        }
 //        
-//        
-//
+//        switch (style) {
+//            case CommonDialogStyleSingleButton:
+//                
+//                break;
+//                
+//            case CommonDialogStyleDoubleButton:
+//                break;
+//                
+//                case CommonDialogStyleDoubleButtonWithCross:
+//                break;
+//                
+//            default:
+//                break;
+//        }
 //    }
 //    
 //    return self;
