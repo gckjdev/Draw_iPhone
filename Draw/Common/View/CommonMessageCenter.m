@@ -33,12 +33,7 @@ CommonMessageViewTheme globalGetTheme() {
     if (isDrawApp()) {
         return CommonMessageViewThemeDraw;
     }
-/*
-    if (isDiceApp()) {
-        return CommonMessageViewThemeDice;
-    }
-*/
-    //TODO Check For ZJH    
+ 
     return CommonMessageViewThemeDraw;
 }
 

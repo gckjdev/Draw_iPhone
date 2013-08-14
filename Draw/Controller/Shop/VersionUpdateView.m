@@ -15,14 +15,6 @@
 
 + (id)createView
 {
-//    CustomInfoView *view = [CustomInfoView createWithTitle:NSLS(@"kUpdateTips") info:NSLS(@"kVersionIsOld") hasCloseButton:NO buttonTitles:[NSArray arrayWithObjects:NSLS(@"kCancel"), NSLS(@"kOK"), nil]];
-//    [view setActionBlock:^(UIButton *button, UIView *infoView){
-//        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kOK")]) {
-//            [UIUtils openApp:[GameApp appId]];
-//        }
-//        [view dismiss];
-//    }];
-
     CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kUpdateTips") message:NSLS(@"kVersionIsOld") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
         [UIUtils openApp:[GameApp appId]];
     } clickCancelBlock:^{

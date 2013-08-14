@@ -66,10 +66,14 @@ typedef void (^DialogSelectionBlock)(void);
 
 - (void)setTitle:(NSString *)title;
 - (void)setMessage:(NSString *)message;
-- (void)initButtonsWithTheme:(CommonDialogTheme)theme;
 + (CommonDialogTheme)globalGetTheme;
 
 - (void)setClickOkBlock:(DialogSelectionBlock)block;
 - (void)setClickBackBlock:(DialogSelectionBlock)block;
+
+@end
+
+
+@interface DialogBGView : UIView
 
 @end

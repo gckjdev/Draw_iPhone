@@ -847,41 +847,14 @@
 }
 
 - (IBAction)clickWallButton:(id)sender {
-//    OpusSelectController *vc = [[[OpusSelectController alloc] init] autorelease];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    [[WallService sharedWallService] getWall:[[UserManager defaultManager] userId] wallId:@"512adcf603640c23106a8479" delegate:self];
-    
-    
-    
-//    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" info:@"test"];
-//    UIView *infoView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 140)] autorelease];
-//    infoView.backgroundColor = [UIColor blueColor];
-//    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" infoView:infoView];
-//    CustomInfoView *customInfoView = [CustomInfoView createWithTitle:@"test" infoView:infoView hasCloseButton:YES buttonTitles:@"购买", @"赠送",  nil];
-//    [customInfoView setActionBlock:^(UIButton *button, UIView *infoView){
-//        PPDebug(@"%@", [button titleForState:UIControlStateNormal]);
-//        
-//    }];
-//    [customInfoView showInView:self.view];
     
     [VersionUpdateView showInView:self.view];
 }
-
-/* rem by Benson to disable wall
-- (void)didGetWall:(int)resultCode wall:(PBWall *)pbWall
-{
-    PPDebug(@"resultCode = %d", resultCode);
-    Wall *wall = [[[Wall alloc] initWithPBWall:pbWall] autorelease];
-    OpusWallController *vc = [[[OpusWallController alloc] initWithWall:wall] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-*/
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
 {
     [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
     UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-    //    UserSettingController *us = [[UserSettingController alloc] init];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
 }

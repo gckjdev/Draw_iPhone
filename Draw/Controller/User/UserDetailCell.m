@@ -27,6 +27,7 @@
 #import "UIViewUtils.h"
 #import "GameApp.h"
 #import "UIImageView+Extend.h"
+#import "CommonDialog.h"
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -464,7 +465,12 @@
 }
 
 - (IBAction)clickSignButton:(id)sender {
-    [[CustomInfoView createWithTitle:NSLS(@"kSignature") info:[[self.detail getUser] signature]] showInView:self];
+//    [[CustomInfoView createWithTitle:NSLS(@"kSignature") info:[[self.detail getUser] signature]] showInView:self];
+    
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSignature") message:[[self.detail getUser] signature] style:CommonDialogStyleSingleButton delegate:nil];
+    
+    [dialog showInView:self];
 }
 
 

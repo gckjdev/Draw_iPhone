@@ -12,6 +12,7 @@
 #import "ImageManagerProtocol.h"
 #import "GameBasic.pb.h"
 #import "HPThemeManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82) // normal
 #define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) // selected
@@ -19,8 +20,18 @@
 
 #define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
 
-#define COLOR_LIGHT_GRAY OPAQUE_COLOR(234, 231, 225)
+#define COLOR_LIGHT_GRAY OPAQUE_COLOR(234, 231, 225) // controller bg
 
+#define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) // common dialog
+#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
+#define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog
+#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
+
+#define SET_VIEW_ROUND_CORNER(view) \
+{           \
+    [view.layer setCornerRadius:4];       \
+    [view.layer setMasksToBounds:YES];    \
+}
 
 #define COLOR_WHITE [UIColor whiteColor] //Cell
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell

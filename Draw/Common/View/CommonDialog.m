@@ -15,6 +15,7 @@
 #import "UIImageUtil.h"
 #import "ZJHImageManager.h"
 #import "GameApp.h"
+#import "ShareImageManager.h"
 
 #define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
 #define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
@@ -46,13 +47,10 @@
     if (isDrawApp()) {
         return CommonDialogThemeDraw;
     }
-    /*
-    if (isDiceApp()) {
-        return CommonDialogThemeDice;
-    }
-     */
+
     return CommonDialogThemeDraw;
 }
+
 - (void)dealloc
 {
     self.clickBackBlock = nil;
@@ -70,33 +68,80 @@
     [super dealloc];
 }
 
-- (void)initStarryTheme
+#define FRAME CGRectMake(0, 0, 320, 480)
+#define CONTENT_VIEW_FRAME CGRectMake(0, 0, 320, 480)
+#define TITLE_LABEL_FRAME CGRectMake(0, 0, 320, 480)
+
+#define TITLE_LABEL_WIDTH (ISIPAD ? 69 : 34.5)
+#define TITLE_LABEL_HEIGHT (ISIPAD ? 69 : 34.5)
+
+#define MESSAGE_LABEL_WIDTH TITLE_LABEL_WIDTH
+#define MESSAGE_LABEL_HEIGHT TITLE_LABEL_HEIGHT
+
+#define RED_LINE_WIDTH (ISIPAD ? 15 : 7.5)
+
+#define GAP_Y (ISIPAD ? 10 : 5)
+
+//- (id)initWithTitle:(NSString *)title message:(NSString *)message{
+//    
+//    if (self = [super init]) {
+//        
+//        self.frame = FRAME;
+//        
+//        self.contentView = [[[DialogBGView alloc] initWithFrame:CONTENT_VIEW_FRAME] autorelease];
+//        
+//        if (title != nil) {
+//            CGRect frame = CGRectMake(RED_LINE_WIDTH, RED_LINE_WIDTH, TITLE_LABEL_WIDTH, TITLE_LABEL_HEIGHT);
+//            self.titleLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
+//            self.titleLabel.backgroundColor = [UIColor clearColor];
+//            self.titleLabel.textColor = COLOR_WHITE;
+//            self.titleLabel.textAlignment = UITextAlignmentCenter;
+//            self.titleLabel.text = title;
+//        }
+//        
+//        if (message != nil) {
+//            CGRect frame = CGRectMake(RED_LINE_WIDTH, CGRectGetMaxY(self.titleLabel.frame) + GAP_Y, MESSAGE_LABEL_WIDTH, MESSAGE_LABEL_HEIGHT);
+//            self.messageLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
+//            self.messageLabel.backgroundColor = [UIColor clearColor];
+//            self.messageLabel.textColor = COLOR_BROWN;
+//            self.titleLabel.textAlignment = UITextAlignmentLeft;
+//            
+//            self.messageLabel.text = message;
+//            [self.messageLabel sizeToFit];
+//            
+//            self.messageLabel updateCenterX:
+//        }
+//        
+//        
+//
+//    }
+//    
+//    return self;
+//}
+
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                                message:(NSString *)message
+                                  style:(CommonDialogStyle)aStyle
+                               delegate:(id<CommonDialogDelegate>)aDelegate
 {
-    _shouldResize = YES;
-    [self.contentBackground setImage:[CommonImageManager defaultManager].starryDialogBackgroundImage];
-    [self.frontBackgroundImageView setImage:[CommonImageManager defaultManager].starryDialogBackgroundSideImage];
-    [self.oKButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
-    [self.backButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
-    [self.oKButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogClickImage withRate:0.8] forState:UIControlStateNormal];
-    [self.backButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogCrossImage withRate:0.8] forState:UIControlStateNormal];
-    
+    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
+    view.delegate = aDelegate;
+    [view setTitle:title];
+    [view setMessage:message];
+    return view;
 }
 
-- (void)initTitlesWithTheme:(CommonDialogTheme)theme
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                                message:(NSString *)message
+                                  style:(CommonDialogStyle)aStyle
+                               delegate:(id<CommonDialogDelegate>)aDelegate
+                           clickOkBlock:(DialogSelectionBlock)block1
+                       clickCancelBlock:(DialogSelectionBlock)block2
 {
-
-}
-
-- (void)initViewByTheme:(CommonDialogTheme)theme
-{
-    switch (theme) {
-        case CommonDialogThemeStarry:
-            [self initStarryTheme];
-            break;
-            
-        default:
-            break;
-    }
+    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate];
+    [dialog setClickOkBlock:block1];
+    [dialog setClickBackBlock:block2];
+    return dialog;
 }
 
 - (CGSize) calculateHeightOfTextFromWidth:(NSString*)text font: (UIFont*)withFont width:(float)width linebreak:(UILineBreakMode)lineBreakMode{
@@ -124,37 +169,6 @@
     [self.backButton setCenter:CGPointMake(self.backButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.backButton.frame.size.height/2)];
 }
 
-- (void)initButtonsWithTheme:(CommonDialogTheme)theme
-{
-    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
-    ShareImageManager* imgManager = [ShareImageManager defaultManager];
-    switch (theme) {
-        case CommonDialogThemeDice: {
-            //init the button
-            [self.messageLabel setNumberOfLines:5];
-            
-            if ([LocaleUtils isChinese]) {
-                [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
-            }else {
-                [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
-            }
- 
-            [self.backButton.titleLabel setText:NSLS(@"kCancel")];
-            [self.oKButton.titleLabel setText:NSLS(@"kOK")];
-
-            [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
-        } break;
-   
-        case CommonDialogThemeDraw:
-            [self.oKButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
-            [self.backButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
-            [self.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-            [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-        default:
-            break;
-    }
-}
-
 - (void)initView
 {
     [self.messageLabel setNumberOfLines:5];
@@ -170,14 +184,13 @@
     
     [self.contentBackground setImage:[[GameApp getImageManager] commonDialogBgImage]];
     
-    [self.oKButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
-    [self.backButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+//    [self.oKButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
+//    [self.backButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
     [self.dialogHeader setImage:[[GameApp getImageManager] commonDialogHeaderImage]];
 }
 
 - (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
 {
-//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     self.style = aStyle;
     switch (aStyle) {
         case CommonDialogStyleSingleButton: {
@@ -206,84 +219,27 @@
     [view initView];
     [view appear];
     view.tag = 0;
+    
+    view.oKButton.backgroundColor = COLOR_YELLOW;
+    SET_VIEW_ROUND_CORNER(view.oKButton);
+    view.backButton.backgroundColor = COLOR_YELLOW;
+    SET_VIEW_ROUND_CORNER(view.backButton);
+    
+    view.titleLabel.textColor = COLOR_WHITE;
+    view.messageLabel.textColor = COLOR_BROWN;
+    [view.backButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    [view.oKButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    
+
     return view;
     
-}
-
-+ (CommonDialog *)createDialogWithTheme:(CommonDialogTheme)theme
-{
-    CommonDialog* view;
-    switch (theme) {
-/*        case CommonDialogThemeDice: {
-            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DICE]; 
-        } break;
-
-        case CommonDialogThemeZJH: {
-            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_ZJH];
-            [view.contentBackground setImage:[ZJHImageManager defaultManager].ZJHUserInfoBackgroundImage];
-        } break;
- */
-            
-        case CommonDialogThemeDraw: {
-            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
-        } break;
-        case CommonDialogThemeStarry: {
-            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_STARRY];
-        } break;
-        default:
-            PPDebug(@"<CommonDialog> theme %d do not exist",theme);
-            view = nil;
-    }   
-    return view;
-}
-
-+ (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle 
-                                  theme:(CommonDialogTheme)theme
-{
-
-    CommonDialog* view = [self createDialogWithTheme:theme];
-    if (view) {
-        [view initButtonsWithStyle:aStyle];
-        [view initButtonsWithTheme:theme];
-        [view initTitlesWithTheme:theme];
-        [view initViewByTheme:theme];
-        view.tag = 0;
-    }
-    return view;
-    
-}
-
-
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title 
-                                message:(NSString *)message 
-                                  style:(CommonDialogStyle)aStyle 
-                               delegate:(id<CommonDialogDelegate>)aDelegate
-{
-    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle];
-    view.delegate = aDelegate;
-    [view setTitle:title];
-    [view setMessage:message];
-    return view;
-    
-}
-
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title 
-                                message:(NSString *)message 
-                                  style:(CommonDialogStyle)aStyle 
-                               delegate:(id<CommonDialogDelegate>)aDelegate 
-                                  theme:(CommonDialogTheme)theme
-{
-    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle theme:theme];
-    view.delegate = aDelegate;
-    [view setTitle:title];
-    [view setMessage:message];
-    return view;
 }
 
 - (void)setTitle:(NSString *)title
 {
     [self.titleLabel setText:title];
 }
+
 - (void)setMessage:(NSString *)message
 {
     CGSize size = [message sizeWithFont:_messageLabel.font];
@@ -316,9 +272,6 @@
         [_delegate clickBack:self];
     }
     [self disappear];
-    
-    
-
 }
 
 - (IBAction)clickMask:(id)sender {
@@ -330,63 +283,160 @@
 }
 
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-//- (void)setClickOkBlock:(DialogSelectionBlock)block
+//+ (CommonDialog *)createDialogWithTitle:(NSString *)title
+//                                message:(NSString *)message
+//                                  style:(CommonDialogStyle)aStyle
+//                               delegate:(id<CommonDialogDelegate>)aDelegate
+//                                  theme:(CommonDialogTheme)theme
+//                           clickOkBlock:(DialogSelectionBlock)block1
+//                       clickCancelBlock:(DialogSelectionBlock)block2
 //{
-//    [_clickOkBlock release];
-//    _clickOkBlock = [block copy];
-//}
-//- (void)setClickBackBlock:(DialogSelectionBlock)block
-//{
-//    self.clickBackBlock = block;
-//    
-////    [_clickBackBlock release];
-////    _clickBackBlock = [block copy];
+//    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate theme:theme];
+//    [dialog setClickOkBlock:block1];
+//    [dialog setClickBackBlock:block2];
+//    return dialog;
 //}
 
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title
-                                message:(NSString *)message
-                                  style:(CommonDialogStyle)aStyle
-                               delegate:(id<CommonDialogDelegate>)aDelegate
-                           clickOkBlock:(DialogSelectionBlock)block1
-                       clickCancelBlock:(DialogSelectionBlock)block2
+
+//+ (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle
+//                                  theme:(CommonDialogTheme)theme
+//{
+//
+//    CommonDialog* view = [self createDialogWithTheme:theme];
+//    if (view) {
+//        [view initButtonsWithStyle:aStyle];
+//        [view initButtonsWithTheme:theme];
+//        [view initTitlesWithTheme:theme];
+//        [view initViewByTheme:theme];
+//        view.tag = 0;
+//    }
+//    return view;
+//
+//}
+
+//+ (CommonDialog *)createDialogWithTitle:(NSString *)title
+//                                message:(NSString *)message
+//                                  style:(CommonDialogStyle)aStyle
+//                               delegate:(id<CommonDialogDelegate>)aDelegate
+//                                  theme:(CommonDialogTheme)theme
+//{
+//    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle theme:theme];
+//    view.delegate = aDelegate;
+//    [view setTitle:title];
+//    [view setMessage:message];
+//    return view;
+//}
+
+//+ (CommonDialog *)createDialogWithTheme:(CommonDialogTheme)theme
+//{
+//    CommonDialog* view;
+//    switch (theme) {
+//
+//        case CommonDialogThemeDraw: {
+//            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
+//        } break;
+//        case CommonDialogThemeStarry: {
+//            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_STARRY];
+//        } break;
+//        default:
+//            PPDebug(@"<CommonDialog> theme %d do not exist",theme);
+//            view = nil;
+//    }
+//    return view;
+//}
+
+//- (void)initButtonsWithTheme:(CommonDialogTheme)theme
+//{
+//    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
+//    ShareImageManager* imgManager = [ShareImageManager defaultManager];
+//    switch (theme) {
+//        case CommonDialogThemeDice: {
+//            //init the button
+//            [self.messageLabel setNumberOfLines:5];
+//
+//            if ([LocaleUtils isChinese]) {
+//                [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+//            }else {
+//                [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
+//            }
+//
+//            [self.backButton.titleLabel setText:NSLS(@"kCancel")];
+//            [self.oKButton.titleLabel setText:NSLS(@"kOK")];
+//
+//            [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
+//        } break;
+//
+//        case CommonDialogThemeDraw:
+//            [self.oKButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
+//            [self.backButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
+//            [self.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+//            [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+//        default:
+//            break;
+//    }
+//}
+
+
+//- (void)initStarryTheme
+//{
+//    _shouldResize = YES;
+//    [self.contentBackground setImage:[CommonImageManager defaultManager].starryDialogBackgroundImage];
+//    [self.frontBackgroundImageView setImage:[CommonImageManager defaultManager].starryDialogBackgroundSideImage];
+//    [self.oKButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
+//    [self.backButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
+//    [self.oKButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogClickImage withRate:0.8] forState:UIControlStateNormal];
+//    [self.backButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogCrossImage withRate:0.8] forState:UIControlStateNormal];
+//
+//}
+
+//- (void)initTitlesWithTheme:(CommonDialogTheme)theme
+//{
+//
+//}
+//
+//- (void)initViewByTheme:(CommonDialogTheme)theme
+//{
+//    switch (theme) {
+//        case CommonDialogThemeStarry:
+//            [self initStarryTheme];
+//            break;
+//
+//        default:
+//            break;
+//    }
+//}
+
+@end
+
+@implementation DialogBGView
+
+- (void)awakeFromNib
 {
-    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate];
-    [dialog setClickOkBlock:block1];
-    [dialog setClickBackBlock:block2];
-    return dialog;
+    [self.layer setCornerRadius:15];
+    [self.layer setMasksToBounds:YES];
+    self.backgroundColor = [UIColor clearColor];
+    [self setNeedsDisplay];
 }
-+ (CommonDialog *)createDialogWithTitle:(NSString *)title
-                                message:(NSString *)message
-                                  style:(CommonDialogStyle)aStyle
-                               delegate:(id<CommonDialogDelegate>)aDelegate
-                                  theme:(CommonDialogTheme)theme
-                           clickOkBlock:(DialogSelectionBlock)block1
-                       clickCancelBlock:(DialogSelectionBlock)block2
+
+- (void)drawRect:(CGRect)rect
 {
-    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate theme:theme];
-    [dialog setClickOkBlock:block1];
-    [dialog setClickBackBlock:block2];
-    return dialog;
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    [COLOR_WHITE setFill];
+    CGContextFillRect(ctx, self.bounds);
+
+    
+    [COLOR_GREEN setFill];
+    CGRect r = CGRectMake(0, 0, CGRectGetWidth(self.bounds), TITLE_LABEL_HEIGHT + RED_LINE_WIDTH);
+    CGContextFillRect(ctx, r);
+
+    
+    [COLOR_RED setStroke];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15];
+    CGContextAddPath(ctx, path.CGPath);
+    CGContextSetLineWidth(ctx, RED_LINE_WIDTH * 2);
+    CGContextStrokePath(ctx);
+
 }
-
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
-
 
 @end

@@ -1235,7 +1235,7 @@
 {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:nil style:CommonDialogStyleDoubleButton delegate:self];
     
-    if (_isNewDraft || [drawView.drawActionList count] == 0 /*|| !_isAutoSave*/) {
+    if (_isNewDraft || [drawView.drawActionList count] == 0) {
         [dialog setTitle:NSLS(@"kQuitGameAlertTitle")];
         [dialog setMessage:NSLS(@"kQuitGameAlertMessage")];
         dialog.tag = DIALOG_TAG_ESCAPE;
