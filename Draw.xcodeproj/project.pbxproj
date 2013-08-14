@@ -1940,10 +1940,6 @@
 		A4B78826179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
 		A4B78827179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
 		A4B78828179E2E3C0008E21B /* Theme in Resources */ = {isa = PBXBuildFile; fileRef = A4B78823179E2E3C0008E21B /* Theme */; };
-		A4B78996179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
-		A4B78998179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
-		A4B78999179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
-		A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898C179E2E890008E21B /* CommonBgView.m */; };
 		A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
 		A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
 		A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B7898E179E2E890008E21B /* CommonTitleView.m */; };
@@ -8024,8 +8020,6 @@
 		A4B763A415C25218003B4E72 /* Draw.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw.pb.h; sourceTree = "<group>"; };
 		A4B763A515C25218003B4E72 /* Draw.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw.pb.m; sourceTree = "<group>"; };
 		A4B78823179E2E3C0008E21B /* Theme */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Theme; sourceTree = "<group>"; };
-		A4B7898B179E2E890008E21B /* CommonBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonBgView.h; sourceTree = "<group>"; };
-		A4B7898C179E2E890008E21B /* CommonBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonBgView.m; sourceTree = "<group>"; };
 		A4B7898D179E2E890008E21B /* CommonTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTitleView.h; sourceTree = "<group>"; };
 		A4B7898E179E2E890008E21B /* CommonTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTitleView.m; sourceTree = "<group>"; };
 		A4B7898F179E2E890008E21B /* HPThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPThemeManager.h; sourceTree = "<group>"; };
@@ -11819,8 +11813,6 @@
 		A4B78987179E2E890008E21B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A4B7898B179E2E890008E21B /* CommonBgView.h */,
-				A4B7898C179E2E890008E21B /* CommonBgView.m */,
 				A4B7898D179E2E890008E21B /* CommonTitleView.h */,
 				A4B7898E179E2E890008E21B /* CommonTitleView.m */,
 				A4B7898F179E2E890008E21B /* HPThemeManager.h */,
@@ -23120,7 +23112,6 @@
 				CABEC6FB17969462006F89BB /* FreeIngotController.m in Sources */,
 				CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB82C179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B78999179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899E179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A3179E2E890008E21B /* HPThemeManager.m in Sources */,
 				CA51834D179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
@@ -23912,7 +23903,6 @@
 				A4E254D11796CC5D00767506 /* GuessService.m in Sources */,
 				CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB82B179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B78998179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899D179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A2179E2E890008E21B /* HPThemeManager.m in Sources */,
 				A4B789B5179E36C40008E21B /* WordInputView.m in Sources */,
@@ -24722,7 +24712,6 @@
 				A4E254D01796CC5D00767506 /* GuessService.m in Sources */,
 				CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB829179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B78996179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899B179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A0179E2E890008E21B /* HPThemeManager.m in Sources */,
 				A4B789A8179E2F040008E21B /* DrawGuessController.m in Sources */,
@@ -25508,7 +25497,6 @@
 				CABEC6FC17969462006F89BB /* FreeIngotController.m in Sources */,
 				CA4FB826179E240B00A57387 /* DrawLayer.m in Sources */,
 				CA4FB82D179E24A100A57387 /* DrawLayerManager.m in Sources */,
-				A4B7899A179E2E890008E21B /* CommonBgView.m in Sources */,
 				A4B7899F179E2E890008E21B /* CommonTitleView.m in Sources */,
 				A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */,
 				CA51834E179F79570033AA95 /* GetNewNumberViewController.m in Sources */,

@@ -14,6 +14,7 @@
 #import "GuessManager.h"
 #import "SoundPlayer.h"
 #import "UIButton+Sound.h"
+#import "ShareImageManager.h"
 
 @interface GuessModesController (){
     int _countDown;
@@ -73,6 +74,8 @@
     [_rulesButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
     
     [[GuessService defaultService] getGuessContestListWithDelegate:self];
+    
+    SET_VIEW_BG(self.view);
 }
 
 - (void)viewDidUnload {

@@ -28,22 +28,29 @@
 @property(nonatomic, assign)id<CommonMessageCenterDelegate>delegate;
 
 + (CommonMessageCenter*) defaultCenter;
+
 - (void)clearMessages;
+
 - (void)postMessageWithText:(NSString *)text 
                     delayTime:(float)delayTime;
+
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
                     isHappy:(BOOL)isHappy;
+
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime
                isSuccessful:(BOOL)isSuccessful;
+
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
                   atHorizon:(int)horizon;
+
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
                     isHappy:(BOOL)isHappy 
                   atHorizon:(int)horizon;
+
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime
                isSuccessful:(BOOL)isSuccessful 

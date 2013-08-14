@@ -19,9 +19,13 @@
 
 #define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
 
+#define COLOR_LIGHT_GRAY OPAQUE_COLOR(234, 231, 225)
+
+
 #define COLOR_WHITE [UIColor whiteColor] //Cell
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
 
+#define SET_VIEW_BG(view) (view.backgroundColor = COLOR_LIGHT_GRAY)
 
 #define SET_CELL_BG                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
