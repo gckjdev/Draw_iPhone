@@ -11,6 +11,7 @@
 #import "PPViewController.h"
 #import "CommonDialog.h"
 #import "InputDialog.h"
+#import "ShareImageManager.h"
 
 #define CELL_ID @"DrawLayerPanelCell"
 
@@ -72,7 +73,7 @@
     if (selected) {
         [self.layerName setTextColor:[UIColor redColor]];
     }else{
-        [self.layerName setTextColor:OPAQUE_COLOR(62, 43, 23)];
+        [self.layerName setTextColor:COLOR_COFFEE];
     }
 }
 
