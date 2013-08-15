@@ -46,7 +46,8 @@
 
 + (id)cell:(id<DrawLayerPanelCellDelegate>)delegate
 {
-    DrawLayerPanelCell* cell = [DrawLayerPanelCell createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:0];
+    NSInteger index = (ISIPAD ? 1: 0);
+    DrawLayerPanelCell* cell = [DrawLayerPanelCell createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:index];
     cell.delegate = delegate;
     [cell updateView];
     return cell;
@@ -70,10 +71,11 @@
     [self.layerName setText:layer.layerName];
     [self.showFlag setSelected:self.drawLayer.isHidden];
     [self.remove setHidden:![layer canBeRemoved]];
+    [self.layerName setTextColor:COLOR_COFFEE];
     if (selected) {
-        [self.layerName setTextColor:[UIColor redColor]];
+        [self.bgView setBackgroundColor:COLOR_GREEN1];
     }else{
-        [self.layerName setTextColor:COLOR_COFFEE];
+        [self.bgView setBackgroundColor:COLOR_WHITE];
     }
 }
 
@@ -83,6 +85,7 @@
     [_showFlag release];
     [_layerName release];
     [_remove release];
+    [_bgView release];
     [super dealloc];
 }
 - (IBAction)clickShowFlag:(id)sender {
@@ -149,10 +152,15 @@
 
 - (void)updateView
 {
+    
+    self.layer.cornerRadius = 8;
+    [self.layer setMasksToBounds:YES];
+    
     self.recognizer = [self.tableView enableGestureTableViewWithDelegate:self];
     CGRect frame = self.alphaSlider.frame;
     CGFloat alpha = [[_dlManager selectedLayer] opacity];
     UIViewAutoresizing mark = self.alphaSlider.autoresizingMask;
+    [self.alphaTitle setText:NSLS(@"kColorAlpha")];
     [self.alphaSlider removeFromSuperview];
     self.alphaSlider = [DrawSlider sliderWithMaxValue:1 minValue:0 defaultValue:alpha delegate:self];
     [self updateAlphaLabelWithValue:alpha];
@@ -164,7 +172,8 @@
 
 + (id)drawLayerPanelWithDrawLayerManager:(DrawLayerManager *)dlManager
 {
-    DrawLayerPanel *panel = [DrawLayerPanel createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:1];
+    NSInteger index = (ISIPAD ?  3 : 2);
+    DrawLayerPanel *panel = [DrawLayerPanel createViewWithXibIdentifier:@"DrawLayerPanel" ofViewIndex:index];
     panel.dlManager = dlManager;
     [panel updateView];
     return panel;
@@ -180,6 +189,7 @@
     PPRelease(_recognizer);
     [_alphaSlider release];
     [_alphaLabel release];
+    [_alphaTitle release];
     [super dealloc];
 }
 
@@ -220,7 +230,7 @@
 
 }
 
-#define CELL_HEIGHT 45
+#define CELL_HEIGHT (ISIPAD ? 80 : 40)
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

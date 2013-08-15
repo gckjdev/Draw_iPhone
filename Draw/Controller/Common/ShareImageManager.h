@@ -27,6 +27,8 @@
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog
 #define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
 
+#define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog
+
 #define SET_VIEW_ROUND_CORNER(view) \
 {           \
     [view.layer setCornerRadius:4];       \

@@ -882,7 +882,7 @@
 				<real value="1" key="18.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="19.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="1" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="19.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="200.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="200.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<real value="1" key="200.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
@@ -926,17 +926,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">DrawToolPanel</string>
 					<string key="superclassName">UIView</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickTool:</string>
-						<string key="NS.object.0">UIButton</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickTool:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickTool:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/DrawToolPanel.h</string>
@@ -945,20 +934,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">DrawToolUpPanel</string>
 					<string key="superclassName">DrawToolPanel</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickShowCopyPaint:">id</string>
-						<string key="clickTool:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickShowCopyPaint:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickShowCopyPaint:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickShowCopyPaint:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">clickShowCopyPaint:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="clickTool:">
-							<string key="name">clickTool:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="backgroundImageView">UIImageView</string>
 						<string key="canvasSize">UIButton</string>
