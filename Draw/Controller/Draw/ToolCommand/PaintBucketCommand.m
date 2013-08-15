@@ -35,7 +35,7 @@
                                clickOkBlock:^{
             [self changeBG];
         } clickCancelBlock:NULL]
-         showInView:[self.control theTopView]];
+         showInView:[self.controller view]];
         
     }else{
         [self changeBG];        

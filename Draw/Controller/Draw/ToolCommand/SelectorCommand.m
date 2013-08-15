@@ -82,7 +82,7 @@
     
     [info.mainView updateCenterY:(info.mainView.center.y - (ISIPAD ? 40 : 20))];
     
-    [info showInView:[self.control theTopView]];
+    [info showInView:[self.controller view]];
 
 }
 

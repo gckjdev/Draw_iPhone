@@ -34,7 +34,7 @@
 {
     
     ShapeBox *view = [ShapeBox shapeBoxWithDelegate:self];
-    UIView *spView = [[self.control theViewController] view];
+    UIView *spView = [[self controller] view];
     view.center = spView.center;
     [view showInView:spView];
     self.box = view;

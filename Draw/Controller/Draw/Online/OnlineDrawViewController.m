@@ -120,6 +120,7 @@
 
     [self.drawToolPanel setPanelForOnline:YES];
     [self.drawToolPanel setTimerDuration:60];
+    [self.drawToolPanel bindController:self];
     [self.drawToolPanel startTimer];
 }
 

@@ -150,6 +150,8 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 
 - (void)updateView
 {
+    self.layer.cornerRadius = 8;
+    self.layer.masksToBounds = YES;
     [self registerToolCommands];
     [self.grid setSelected:NO];
     [self.canvasSize setTitle:NSLS(@"kSize") forState:UIControlStateNormal];
@@ -164,12 +166,19 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 }
 - (IBAction)clickTool:(id)sender
 {
-//    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
     [toolCmdManager hideAllPopTipViews];
     [[toolCmdManager commandForControl:sender] execute];
     
     if (sender != self.canvasSize) {
         [self disappear];
+    }
+}
+
+- (void)disappear
+{
+    CMPopTipView *pop = (CMPopTipView *)[self superview];
+    if ([pop isKindOfClass:[CMPopTipView class]]) {
+        [pop dismissAnimated:YES];
     }
 }
 
@@ -186,65 +195,6 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     
 }
 
-#define TOP_WOOD_HEIGHT    (ISIPAD?85:33)
-- (void)appear:(UIViewController*)parentController
-         title:(NSString*)title
-   isLeftArrow:(BOOL)isLeftArrow
-{
-    self.layer.opacity = 0;
-    self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
-    self.center = CGPointMake(self.center.x, TOP_WOOD_HEIGHT);
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    
-    self.layer.opacity = 1;
-    self.layer.transform = CATransform3DMakeScale(1, 1, 1);
-    self.center = CGPointMake(self.center.x, self.frame.size.height/2+TOP_WOOD_HEIGHT);
-    [UIView commitAnimations];
-    self.isVisable = YES;
-    self.hidden = NO;
-    [self.titleLabel setText:title];
-    
-    if (isLeftArrow) {
-        [self.backgroundImageView setImage:[[ShareImageManager defaultManager] drawToolUpPanelLeftArrowBg]];
-    } else {
-        [self.backgroundImageView setImage:[[ShareImageManager defaultManager] drawToolUpPanelRightArrowBg]];
-    }
-    
-    [self addMask:parentController];
-}
-
-- (void)addMask:(UIViewController*)parentController
-{
-    _mask= [[[UIControl alloc] initWithFrame:parentController.view.bounds] autorelease];
-    [parentController.view insertSubview:_mask belowSubview:self];
-    [_mask addTarget:self action:@selector(clickMask:) forControlEvents:UIControlEventTouchUpInside];
-    
-}
-
-- (void)clickMask:(id)sender
-{
-    UIControl* control = (UIControl*)sender;
-    [self disappear];
-    [control removeFromSuperview];
-}
-- (void)disappear
-{
-    [_mask removeFromSuperview];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.3];
-    self.center = CGPointMake(self.center.x, -self.frame.size.height/2);
-    self.layer.opacity = 0;
-    self.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
-    [UIView commitAnimations];
-    self.isVisable = NO;
-    self.hidden = YES;
-    [self.superview sendSubviewToBack:self];
-    
-    
-}
-
 - (void)updateCopyPaint:(UIImage*)aPhoto
 {
     UIImage* image = [UIImage shrinkImage:aPhoto withRate:0.8];
@@ -252,13 +202,5 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     [self.copyPaintPicker setHidden:NO];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
