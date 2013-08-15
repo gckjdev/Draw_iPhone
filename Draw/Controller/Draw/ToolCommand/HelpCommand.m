@@ -9,6 +9,7 @@
 #import "HelpCommand.h"
 #import "CustomInfoView.h"
 #import "UIColor+UIColorExt.h"
+#import "ShareImageManager.h"
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 #define WIDTH ([LocaleUtils isChinese] ? VALUE(180) : VALUE(230))
@@ -23,7 +24,7 @@
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)] autorelease];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setNumberOfLines:0];
-    [label setTextColor:OPAQUE_COLOR(62, 43, 23)];
+    [label setTextColor:COLOR_COFFEE];
     UIFont *font = [UIFont boldSystemFontOfSize:FONT_SIZE];
     [label setFont:font];
     [label setText:NSLS(@"kGestureExplainContent")];

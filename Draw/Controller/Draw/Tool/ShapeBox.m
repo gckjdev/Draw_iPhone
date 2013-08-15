@@ -20,6 +20,7 @@
 #import "LocaleUtils.h"
 #import "CustomInfoView.h"
 #import "UserGameItemManager.h"
+#import "ShareImageManager.h"
 
 @interface ShapeBox()
 {
@@ -308,8 +309,8 @@ CGPoint contentOffset;
         [layer setValue:SHAPE_LAYER_TAG forKey:SHAPE_LAYER_TAG];
         
         layer.frame = button.bounds;//CGRectMake(0, 0, SHAPE_SIZE, SHAPE_SIZE);
-        [layer setFillColor:OPAQUE_COLOR(62, 43, 23).CGColor];
-        [layer setStrokeColor:OPAQUE_COLOR(62, 43, 23).CGColor];
+        [layer setFillColor:COLOR_COFFEE.CGColor];
+        [layer setStrokeColor:COLOR_COFFEE.CGColor];
         [layer setPath:cgPath];
         [layer setLineWidth:2];
         [button.layer addSublayer:layer];
