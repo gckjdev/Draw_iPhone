@@ -81,9 +81,12 @@
 
 - (void)dealloc
 {
-    for(TableTab *tab in _tabManager.tabList){
-        UIButton *button = (UIButton *)[self.view viewWithTag:tab.tabID];
-        [button unregisterSound];
+    NSArray* subviews = [self.view subviews];
+    for (UIView* view in subviews){
+        if ([view isKindOfClass:[UIButton class]] &&
+            [view respondsToSelector:@selector(unregisterSound)]){
+            [view performSelector:@selector(unregisterSound)];
+        }
     }
     
     PPRelease(_tabManager);
