@@ -1231,7 +1231,6 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"selector_rectangle@2x.png"];
 }
 
-
 - (UIColor *)drawBGColor
 {
     UIImage *image = [UIImage imageNamed:@"draw_main_bg@2x.jpg"];

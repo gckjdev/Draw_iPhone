@@ -142,7 +142,7 @@
 #define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
 
-#define BUTTON_Y (ISIPAD ? 108 : 42)
+#define BUTTON_Y (ISIPAD ? 100 : 45)
 #define BUTTON_HEIGHT (ISIPAD ? 65 : 30)
 
 - (void)initTabButtons
