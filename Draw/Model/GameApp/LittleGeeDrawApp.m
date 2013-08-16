@@ -151,7 +151,7 @@
     PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:2000 rewardCurrency:PBGameCurrencyCoin];
     
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
-//    PBRewardWall* youmi = [GameConfigDataManager youmiWall];
+    PBRewardWall* youmi = [GameConfigDataManager youmiWall];
 //    PBRewardWall* ader = [GameConfigDataManager aderWall];
     //    PBRewardWall* domod = [GameConfigDataManager domodWall];
     //    PBRewardWall* tapjoy = [GameConfigDataManager tapjoyWall];
@@ -161,7 +161,7 @@
     [builder addAppRewards:diceApp];
     
     [builder addRewardWalls:limei];
-//    [builder addRewardWalls:youmi];
+    [builder addRewardWalls:youmi];
 //    [builder addRewardWalls:ader];
     //    [builder addRewardWalls:domod];
     //    [builder addRewardWalls:tapjoy];
