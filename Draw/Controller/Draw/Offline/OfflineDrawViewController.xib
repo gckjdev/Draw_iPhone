@@ -49,8 +49,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{275, 3}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="604127123"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -83,7 +81,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{235, 3}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="604127123"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="362739228"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -107,7 +104,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{195, 3}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="604127123"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="172150538"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -134,7 +130,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{155, 3}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="604127123"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="567240881"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -160,7 +155,6 @@
 						</object>
 						<string key="NSFrameSize">{320, 45}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="864590208"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -175,7 +169,6 @@
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="604127123"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>

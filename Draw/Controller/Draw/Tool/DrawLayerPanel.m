@@ -94,14 +94,14 @@
         [self.drawLayer setHidden:!self.drawLayer.isHidden];
         [sender setSelected:self.drawLayer.isHidden];
     }else{
-        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kMainLayerCannotHiden") title:nil];
+        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kCurrentLayerCannotHiden") title:nil];
     }
     
 }
 
 - (IBAction)clickRemove:(id)sender {
     
-    [[CommonDialog createDialogWithTitle:NSLS(@"kTips") message:NSLS(@"kDeleteDrawLayer") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+    [[CommonDialog createDialogWithTitle:NSLS(@"kWarning") message:NSLS(@"kDeleteDrawLayer") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
         [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
     } clickCancelBlock:NULL] showInView:[self theTopView]];
     
@@ -249,7 +249,7 @@
             [self updateAlphaLabelWithValue:layer.opacity];
             [self.tableView reloadData];
         }else{
-            [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kHidenLayerCannotBeSelected") title:nil];
+            [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kHiddenLayerCannotBeSelected") title:nil];
         }
     }
 }

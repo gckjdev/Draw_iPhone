@@ -1892,6 +1892,13 @@
 "kBGLayer" = "BG";
 "kMainLayer" = "Main";
 "kNumLayerName" = "Layer %d";
+
+"kNewLayerName" = "New Layer";
+"kEditLayerName" = "Edit Layer Name";
+"kCurrentLayerCannotHiden" = "Current layer can't be hidden.";
+"kDeleteDrawLayer" = "Are you going to delete the layer?";
+"kHiddenLayerCannotBeSelected" = "Hidden layer can't be current layer.";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 

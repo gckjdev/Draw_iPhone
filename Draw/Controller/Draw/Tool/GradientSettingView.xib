@@ -41,7 +41,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{4, 0}, {312, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="27867052"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUITag">201304051</int>
@@ -57,8 +56,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{275, 6}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="169069331">
 							<int key="NSColorSpace">1</int>
@@ -93,7 +90,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{55, 6}, {30, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="134038515"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="169069331"/>
@@ -114,7 +110,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{13, 4}, {34, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="64555665"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -150,7 +145,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{-10, 0}, {380, 42}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="740551627"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="36126850">
@@ -180,7 +174,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 42}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="791596624"/>
 				<reference key="IBUIBackgroundColor" ref="36126850"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -459,7 +452,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_color_bg@2x.png">{622, 84}</string>
-			<string key="gradient_division@2x.png">{39, 79}</string>
+			<string key="gradient_division@2x.png">{17, 69}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

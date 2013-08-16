@@ -1231,12 +1231,20 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"selector_rectangle@2x.png"];
 }
 
-
 - (UIColor *)drawBGColor
 {
     UIImage *image = [UIImage imageNamed:@"draw_main_bg@2x.jpg"];
     return [UIColor colorWithPatternImage:image];
 }
 
+- (UIImage *)drawBackImage
+{
+    return [UIImage imageNamed:@"draw_page_back@2x.png"];
+}
+
+- (UIImage *)runAwayImage
+{
+    return [UIImage imageNamed:@"run@2x.png"];
+}
 @end
 
