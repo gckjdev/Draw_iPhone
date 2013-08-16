@@ -30,7 +30,7 @@
 
 - (UIView *)showInView
 {
-    UIViewController *vc = [self.control theViewController];
+    UIViewController *vc = [self controller];
     return vc.view;
 }
 
@@ -67,7 +67,7 @@
 - (void)showPopTipView
 {
 //    self.showing = YES;
-    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self.control theViewController];
+    OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
     if (isLittleGeeAPP()) {
         self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO hasSubject:YES];
         [self.inputAlertView setSubjectText:oc.word.text];

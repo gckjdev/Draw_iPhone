@@ -26,11 +26,6 @@
     return [[UserGameItemManager defaultManager] hasItem:type];
 }
 
-- (id)controller
-{
-    return [self.control theViewController];
-}
-
 - (id)initWithControl:(UIControl *)control itemType:(ItemType)itemType
 {
     self = [super init];
@@ -48,7 +43,7 @@
 
 - (BOOL)canUseItem:(ItemType)type
 {
-    if ([[UserService defaultService] checkAndAskLogin:[self.control theTopView]] == YES){
+    if ([[UserService defaultService] checkAndAskLogin:[self.controller view]] == YES){
         return NO;
     }    
     
@@ -58,7 +53,7 @@
     
     __block typeof(self) cp = self;
     
-    [BuyItemView showOnlyBuyItemView:type inView:[self.control theTopView]
+    [BuyItemView showOnlyBuyItemView:type inView:[self.controller view]
                        resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
         if (resultCode == ERROR_SUCCESS) {
             [cp buyItemSuccessfully:type];
@@ -104,7 +99,7 @@
         _showing = YES;
         self.popTipView = [[[CMPopTipView alloc] initWithCustomView:contentView] autorelease];
         self.popTipView.delegate = self;
-        [self.popTipView presentPointingAtView:self.control inView:[self.control theTopView] animated:YES];
+        [self.popTipView presentPointingAtView:self.control inView:[self.controller view] animated:YES];
         [self updatePopTipView:self.popTipView];
     }
 }
@@ -245,6 +240,13 @@ NSUInteger _ManagerVersion = 1;
 {
     for (ToolCommand *command in commandList) {
         [command setToolPanel:panel];
+    }
+}
+
+- (void)bindController:(PPViewController *)controller
+{
+    for (ToolCommand *command in commandList) {
+        [command setController:controller];
     }
 }
 

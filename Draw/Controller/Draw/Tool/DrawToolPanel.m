@@ -332,6 +332,11 @@
 
 }
 
+- (void)bindController:(PPViewController *)controller
+{
+    [[ToolCommandManager defaultManager] bindController:controller];
+}
+
 
 - (void)exchangeCenterView1:(UIView *)v1 view2:(UIView *)v2
 {

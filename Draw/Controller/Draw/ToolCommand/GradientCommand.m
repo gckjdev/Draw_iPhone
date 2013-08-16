@@ -104,7 +104,7 @@
                                     clickOkBlock:^{
                                         [self showPopTipView];
                                     } clickCancelBlock:NULL]
-             showInView:[self.control theTopView]];
+             showInView:[self.controller view]];
             
         }else{
             [self showPopTipView];

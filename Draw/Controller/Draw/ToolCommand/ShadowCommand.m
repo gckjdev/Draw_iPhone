@@ -32,7 +32,7 @@
         Shadow *shadow = [Shadow shadowWithShadow:self.drawInfo.shadow];
         
         ShadowBox *view  = [ShadowBox shadowBoxWithShadow:shadow];
-        UIView *spView = [[self.control theViewController] view];
+        UIView *spView = [[self controller] view];
         view.center = spView.center;
         [view showInView:spView];
         view.delegate = self;

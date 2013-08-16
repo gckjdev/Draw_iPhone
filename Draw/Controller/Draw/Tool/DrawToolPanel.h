@@ -38,7 +38,7 @@
 
 ////
 
-
+- (void)bindController:(PPViewController *)controller;
 - (void)updateView;
 - (void)setPanelForOnline:(BOOL)isOnline;
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel;
