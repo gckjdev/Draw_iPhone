@@ -114,6 +114,7 @@ typedef enum{
     }
     
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
     
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];

@@ -15,7 +15,7 @@
 #define COMMON_TITLE_VIEW_TAG   2013081218
 
 #define WIDTH (ISIPAD ? 768 : 320)
-#define HEIGH (ISIPAD ? 98 : 45)
+#define HEIGH (ISIPAD ? 100 : 45)
 
 #define LEFT_GAP (ISIPAD ? 4 : 2)
 

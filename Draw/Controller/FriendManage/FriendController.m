@@ -209,6 +209,9 @@ typedef enum{
     
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.dataTableView.separatorColor = [UIColor clearColor];
+    
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+
 
     
 }
