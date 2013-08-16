@@ -84,6 +84,10 @@
 - (void)viewDidLoad
 {
     [self setPullRefreshType:PullRefreshTypeBoth];
+    
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.dataTableView.separatorColor = [UIColor clearColor];
+
     [super viewDidLoad];
 
     //use local data
@@ -112,6 +116,8 @@
     
     TableTab *tab = [self currentTab];    
     [self clickTab:tab.tabID];
+    
+
 }
 
 
@@ -214,6 +220,7 @@
 
 #pragma mark - table methods
 
+
 - (MessageStat *)messageStatOfIndex:(NSInteger)index
 {
     NSArray *list = [self tabDataList];
@@ -241,6 +248,9 @@
 //        self.noMoreData = YES;
 //    }
 //}
+
+SET_CELL_BG
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -113,6 +113,8 @@ typedef enum{
         [[FeedService defaultService] getOpusCount:_userId delegete:self];
     }
     
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:NSLS(@"kFeed")];
@@ -135,6 +137,8 @@ typedef enum{
 
 
 #pragma mark - table view delegate
+
+SET_CELL_BG
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
