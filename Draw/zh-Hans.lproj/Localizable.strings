@@ -1898,6 +1898,11 @@
 "kMainLayer" = "主图层";
 "kNumLayerName" = "图层 %d";
 
+"kNewLayerName" = "新图层";
+"kEditLayerName" = "修改图层名字";
+"kCurrentLayerCannotHiden" = "当前图层不能被隐藏。";
+"kDeleteDrawLayer" = "确定要删除图层吗？";
+"kHiddenLayerCannotBeSelected" = "隐藏的图层不能设成当前图层。";
 
 /*********************小吉画画国际化字符串结束 ************************/
 

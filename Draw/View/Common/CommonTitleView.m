@@ -188,6 +188,11 @@
     [self.bgImageView setImage:image];
 }
 
+- (void)setLeftButtonImage:(UIImage *)image
+{
+    [_backButton setBackgroundImage:image forState:UIControlStateNormal];
+}
+
 - (UIButton *)rightButtonWithImage:(UIImage *)image{
     
     CGRect frame = CGRectMake(0, 0, RIGHT_BUTTON_WIDTH, RIGHT_BUTTON_HEIGHT);

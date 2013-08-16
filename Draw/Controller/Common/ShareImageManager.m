@@ -1238,5 +1238,9 @@ static UIImage* _whitePaperImage;
     return [UIColor colorWithPatternImage:image];
 }
 
+- (UIImage *)drawBackImage
+{
+    return [UIImage imageNamed:@"draw_page_back@2x.png"];
+}
 @end
 

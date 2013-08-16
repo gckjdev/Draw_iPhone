@@ -327,5 +327,6 @@
 - (UIImage *)ellipseSelectorImage;
 - (UIImage *)rectangeSelectorImage;
 - (UIColor *)drawBGColor;
+- (UIImage *)drawBackImage;
 
 @end

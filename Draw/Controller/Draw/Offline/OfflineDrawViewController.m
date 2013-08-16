@@ -571,6 +571,7 @@
     
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
     [self.titleView setBgImage:nil];
     [self.titleView setBackgroundColor:[UIColor clearColor]];
 }
