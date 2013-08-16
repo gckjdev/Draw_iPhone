@@ -182,7 +182,6 @@
 {
     drawView.delegate = nil;
     [self setWord:nil];
-    [self setPopupButton:nil];
     [self setTurnNumberButton:nil];
     [_drawToolPanel stopTimer];
     [self setDrawToolPanel:nil];
@@ -298,7 +297,7 @@
 #pragma mark - Actions
 
 
-- (IBAction)clickChangeRoomButton:(id)sender {
+- (IBAction)clickRunAway:(id)sender {
     
     CommonDialogStyle style;
     NSString *message = nil;

@@ -40,8 +40,8 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
 - (IBAction)clickToolBox:(id)sender;
+- (IBAction)clickGroupChatButton:(id)sender;
 
-- (IBAction)clickRunAway:(id)sender;
 - (void)commitAnswer:(NSString *)answer;
 
 - (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;

@@ -29,8 +29,8 @@
 
 #define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog
 
-#define COLOR_BLUE  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
-#define COLOR_RED OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
+#define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
+#define COLOR_RED1 OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
 
 
 #define SET_VIEW_ROUND_CORNER(view) \
@@ -332,5 +332,6 @@
 - (UIImage *)rectangeSelectorImage;
 - (UIColor *)drawBGColor;
 - (UIImage *)drawBackImage;
+- (UIImage *)runAwayImage;
 
 @end

@@ -27,6 +27,7 @@
 #import "UseItemScene.h"
 #import "UserGameItemManager.h"
 #import "DrawHolderView.h"
+#import "CMPopTipView.h"
 
 #define ITEM_FRAME  ([DeviceDetection isIPAD]?CGRectMake(0, 0, 122, 122):CGRectMake(0, 0, 61, 61))
 
@@ -35,6 +36,8 @@
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title message:(NSString*)message;
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression;
 
+@property(nonatomic, retain) UILabel *popLabel;
+@property(nonatomic, retain) CMPopTipView *popView;
 
 @end
 
@@ -71,6 +74,9 @@
     PPRelease(avatarArray);
     PPRelease(_privateChatController);
     PPRelease(_groupChatController);
+    PPRelease(_titleView);
+    PPRelease(_popLabel);
+    PPRelease(_popView);
     [super dealloc];
 }
 
@@ -88,10 +94,21 @@
     return self;
 }
 
+- (void)initTitleView
+{
+    [self.titleView setLeftButtonImage:[shareImageManager runAwayImage]];
+    [self.titleView setTarget:self];
+    [self.titleView setBgImage:nil];
+    [self.titleView setBackgroundColor:[UIColor clearColor]];
+    [self.titleView setBackButtonSelector:@selector(clickRunAway:)];
+}
+
+
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
+    [self initTitleView];
     [self initRoundNumber];
     [self initAvatars];
     [self initPopButton];
@@ -103,6 +120,7 @@
 {
     [drawGameService unregisterObserver:self];
     [super viewDidUnload];
+    [self setTitleView:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -239,36 +257,37 @@
 
 #pragma mark - pop up message
 
+#define POP_WIDTH (ISIPAD ? 450 : 200)
+#define POP_FONT (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
 
 - (void)popGuessMessage:(NSString *)message userId:(NSString *)userId onLeftTop:(BOOL)onLeftTop
 {
+    
     AvatarView *player = [self avatarViewForUserId:userId];
-
-    if (player == nil) {
+    if (message == nil || player == nil) {
         return;
     }
-    CGFloat x = player.frame.origin.x;
-    CGFloat y = player.frame.origin.y + player.frame.size.height;
-    if (onLeftTop) {
-        if ([DeviceDetection isIPAD]) {
-            x = 10 * 2;//player.frame.origin.x;
-            y = 55 * 2;//player.frame.origin.y + player.frame.size.height;            
-        }else{
-            x = 10;//player.frame.origin.x;
-            y = 50;//player.frame.origin.y + player.frame.size.height;                        
-        }
-    }
-    CGSize size = [message sizeWithFont:self.popupButton.titleLabel.font];
     
-    if ([DeviceDetection isIPAD]) {
-        [self.popupButton setFrame:CGRectMake(x, y, size.width + 20 * 2, size.height + 15 * 2)];
+    CGSize size = [message sizeWithFont:POP_FONT constrainedToSize:CGSizeMake(POP_WIDTH, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
+    
+    if (self.popLabel == nil) {
+        self.popLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)] autorelease];
+        self.popLabel.backgroundColor = [UIColor clearColor];
+        self.popLabel.font = POP_FONT;
+        self.popLabel.numberOfLines = 0;
+        self.popLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        self.popLabel.textColor = [UIColor whiteColor];
     }else{
-        [self.popupButton setFrame:CGRectMake(x, y, size.width + 20, size.height + 15)];
+        self.popLabel.frame = CGRectMake(0, 0, size.width, size.height);
     }
-    [self.popupButton setTitle:message forState:UIControlStateNormal];
-    [self.popupButton setHidden:NO];
-    CAAnimation *animation = [AnimationManager disappearAnimationWithDuration:5];
-    [self.popupButton.layer addAnimation:animation forKey:@"DismissAnimation"];
+    self.popLabel.text = message;
+
+    [CMPopTipView cancelPreviousPerformRequestsWithTarget:self.popView selector:@selector(dismissAnimated:) object:@(YES)];    
+    [self.popView dismissAnimated:YES];
+    self.popView = [[[CMPopTipView alloc] initWithCustomView:self.popLabel] autorelease];
+    self.popView.backgroundColor = onLeftTop ? COLOR_RED1 : COLOR_BLUE1;
+    [self.popView presentPointingAtView:player inView:self.view animated:YES pointDirection:PointDirectionUp];
+    [self.popView performSelector:@selector(dismissAnimated:) withObject:@(YES) afterDelay:5];
     
 }
 
@@ -457,4 +476,8 @@
     [DrawGameAnimationManager showReceiveTomato:item animaitonInController:self];    
 }
 
+- (IBAction)clickRunAway:(id)sender
+{
+    
+}
 @end
