@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
+#import "PPTableViewController.h"
 
-@interface FeedbackController : PPViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
+@interface FeedbackController : PPTableViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate> {
     NSInteger buttonIndexSMS;
     NSInteger buttonIndexEmail;
     NSInteger buttonIndexSinaWeibo;
     NSInteger buttonIndexQQWeibo;
     NSInteger buttonIndexFacebook;
 }
-@property (retain, nonatomic) IBOutlet UITableView *dataTableView;
+
 @property (retain, nonatomic) IBOutlet UILabel *TitleLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UILabel *qqGroupLabel;

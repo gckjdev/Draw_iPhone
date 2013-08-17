@@ -46,6 +46,9 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 
 - (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount
 {
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
+    
+    /*
     ShareImageManager* imgManager = [ShareImageManager defaultManager];
     if (rowCount == 1) {
         [self.backgroundImageView setImage:[imgManager settingCellOneBgImage]];
@@ -68,6 +71,7 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
         [self.backgroundImageView setImage:[imgManager settingCellMiddleBgImage]];
         return;
     }
+    */
     
     
 }
