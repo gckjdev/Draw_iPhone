@@ -90,7 +90,8 @@
 
 
     self.gradientLayer = [CAGradientLayer layer];
-    
+    self.gradientLayer.cornerRadius = 8;
+    [self.gradientLayer setMasksToBounds:YES];
     self.gradientLayer.frame = GRADIENT_LAYER_FRAME;
     [self.layer addSublayer:self.gradientLayer];
 //    self.gradientLayer.transform = CATransform3DMakeRotation(M_PI, 0, 0, 1);
@@ -102,6 +103,9 @@
     }
     _degree = _gradient.degree;
     [self.degreeButton setTitle:[@((int)_degree) stringValue] forState:UIControlStateNormal];
+    [self.degreeButton setBackgroundColor:COLOR_COFFEE];
+    [self.degreeButton.layer setCornerRadius:8];
+    [self.degreeButton.layer setMasksToBounds:YES];
     [self updateLayer];
     [self updateDivisionButton];
 }

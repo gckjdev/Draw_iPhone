@@ -451,21 +451,22 @@
     PBConfig_Builder* builder = [PBConfig builder];
     
 //    PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:3 rewardCurrency:PBGameCurrencyIngot];
-//    PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:5 rewardCurrency:PBGameCurrencyIngot];
+    PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
     //    PBAppReward* drawApp = [self drawAppWithRewardAmount:8 rewardCurrency:PBGameCurrencyIngot];
     PBAppReward* xiaojiDrawApp = [GameConfigDataManager xiaojiDrawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
     
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
-//    PBRewardWall* youmi = [GameConfigDataManager youmiWall];
+    PBRewardWall* youmi = [GameConfigDataManager youmiWall];
 //    PBRewardWall* ader = [GameConfigDataManager aderWall];
 //    PBRewardWall* domod = [GameConfigDataManager domodWall];
 //    PBRewardWall* tapjoy = [GameConfigDataManager tapjoyWall];
     
     [builder addAppRewards:xiaojiDrawApp];
+    [builder addAppRewards:zjhApp];
 //    [builder addAppRewards:diceApp];
     
     [builder addRewardWalls:limei];
-//    [builder addRewardWalls:youmi];
+    [builder addRewardWalls:youmi];
 //    [builder addRewardWalls:ader];
 //    [builder addRewardWalls:domod];
 //    [builder addRewardWalls:tapjoy];
@@ -476,7 +477,7 @@
     BOOL result = [data writeToFile:path atomically:YES];
     PPDebug(@"<createConfigFile> data file result=%d, file=%@", result, path);
     
-    NSString* version = @"1.2";
+    NSString* version = @"2.2";
     NSError* error = nil;
     result = [version writeToFile:versionPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
     PPDebug(@"<createConfigFile> version txt file result=%d error=%@ file=%@", result, [error description], versionPath);

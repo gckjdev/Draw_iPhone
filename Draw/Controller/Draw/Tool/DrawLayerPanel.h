@@ -26,7 +26,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *showFlag;
 @property (retain, nonatomic) IBOutlet UILabel *layerName;
 @property (retain, nonatomic) IBOutlet UIButton *remove;
-
+@property (retain, nonatomic) IBOutlet UIView *bgView;
 
 
 @property (assign, nonatomic) id<DrawLayerPanelCellDelegate> delegate;
@@ -35,6 +35,7 @@
 
 - (IBAction)clickShowFlag:(id)sender;
 - (IBAction)clickRemove:(id)sender;
+
 
 
 @end
@@ -53,6 +54,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *add;
 @property (retain, nonatomic) IBOutlet UILabel *alphaLabel;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
+@property (retain, nonatomic) IBOutlet UILabel *alphaTitle;
 @property (retain, nonatomic) DrawLayer *grabbedObject;
 @property (retain, nonatomic) JTTableViewGestureRecognizer *recognizer;
 

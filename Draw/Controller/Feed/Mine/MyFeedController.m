@@ -160,6 +160,11 @@ typedef enum{
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.dataTableView.separatorColor = [UIColor clearColor];
+    
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -178,6 +183,8 @@ typedef enum{
 }
 
 #pragma mark - table view delegate
+
+SET_CELL_BG
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

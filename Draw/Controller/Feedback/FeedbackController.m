@@ -26,6 +26,7 @@
 #import "CacheManager.h"
 #import "CommonDialog.h"
 #import "UserSettingCell.h"
+#import "PPTableViewController.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -51,7 +52,7 @@
 
 
 @implementation FeedbackController
-@synthesize dataTableView;
+
 @synthesize TitleLabel;
 @synthesize backgroundImageView;
 
@@ -73,6 +74,8 @@
 
 #define DRAW_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 380)
 #define DICE_TABLE_HEIGHT   ([DeviceDetection isIPAD] ? 790 : 350)
+
+
 
 - (void)initRowNumber
 {
@@ -409,6 +412,8 @@ enum {
     return  numberOfRows;
 }
 
+SET_CELL_BG
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    if ([DeviceDetection isIPhone5]) {
@@ -487,7 +492,12 @@ enum {
     }
 
     // Do any additional setup after loading the view from its nib.
+    self.dataTableView.separatorColor = [UIColor clearColor];
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
+
+
 
 - (void)viewDidUnload
 {

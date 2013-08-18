@@ -16,7 +16,7 @@
 #define GAME_TIME 60
 @class AvatarView;
 @class Word;
-
+@class CMPopTipView;
 
 @interface SuperGameViewController : PPViewController<DrawGameServiceDelegate, ChatControllerDelegate, AvatarViewDelegate>
 {
@@ -34,9 +34,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *turnNumberButton;
 @property (retain, nonatomic) IBOutlet UIButton *popupButton;
 @property (retain, nonatomic) IBOutlet UIButton *clockButton;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
+
 @property (retain, nonatomic) ChatController *privateChatController;
 @property (retain, nonatomic) ChatController *groupChatController;
 @property (retain, nonatomic) Word *word;
+
 
 - (void)resetTimer;
 - (void)updateClockButton;
@@ -68,5 +71,7 @@
 - (void)showAnimationThrowTool:(ToolView*)toolView isBuy:(BOOL)isBuy;
 - (void)recieveFlower;
 - (void)recieveTomato;
+
+- (IBAction)clickRunAway:(id)sender;
 
 @end

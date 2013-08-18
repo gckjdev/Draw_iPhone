@@ -332,6 +332,11 @@
 
 }
 
+- (void)bindController:(PPViewController *)controller
+{
+    [[ToolCommandManager defaultManager] bindController:controller];
+}
+
 
 - (void)exchangeCenterView1:(UIView *)v1 view2:(UIView *)v2
 {
@@ -510,12 +515,13 @@
 
 - (void)updateShapeWithDrawInfo:(DrawInfo *)drawInfo
 {
-    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:drawInfo.shapeType];
-    UIColor *color = ISIPHONE5 ? OPAQUE_COLOR(62, 43, 23) : [UIColor whiteColor];
-    UIImage *image = nil;
     if(drawInfo.shapeType == ShapeTypeNone){
         return;
-    }else if (drawInfo.strokeShape || drawInfo.shapeType == ShapeTypeBeeline) {
+    }
+    UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:drawInfo.shapeType];
+    UIColor *color = ISIPHONE5 ? COLOR_COFFEE : [UIColor whiteColor];
+    UIImage *image = nil;
+    if (drawInfo.strokeShape || drawInfo.shapeType == ShapeTypeBeeline) {
         image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
     }else{
         image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];

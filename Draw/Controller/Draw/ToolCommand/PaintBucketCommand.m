@@ -37,6 +37,7 @@
         }];
         
         [dialog showInView:[self.control theTopView]];
+
         
     }else{
         [self changeBG];        

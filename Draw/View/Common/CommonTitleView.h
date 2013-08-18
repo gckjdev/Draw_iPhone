@@ -22,6 +22,7 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 - (void)setRightButtonTitle:(NSString *)title;
 
 - (void)setBgImage:(UIImage *)image;
+- (void)setLeftButtonImage:(UIImage *)image;
 
 // 按钮的显示和隐藏控制
 - (void)hideBackButton;

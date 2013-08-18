@@ -90,6 +90,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{120, 13}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView" ref="134038515"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="169069331"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -111,6 +112,10 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="791596624"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4yMzUyOTQxMTc2IDAuMTU2ODYyNzQ1MSAwLjA3ODQzMTM3MjU1AA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="IBUIContentStretch">{{0.5, 0.5}, {1, 1}}</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -121,21 +126,16 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC40MjM1Mjk0MTE4IDAuMjY2NjY2NjY2NyAwLjA5MDE5NjA3ODQzAA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="3898120"/>
 						<reference key="IBUINormalTitleShadowColor" ref="132257946"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">draw_tool_button_bg@2x.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<int key="type">2</int>
+							<string key="name">Avenir-Heavy</string>
+							<string key="family">Avenir</string>
+							<int key="traits">2</int>
 							<double key="pointSize">30</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica-Bold</string>
+							<string key="NSName">Avenir-Heavy</string>
 							<double key="NSSize">30</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -382,8 +382,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="draw_color_bg@2x.png">{622, 84}</string>
-			<string key="draw_tool_button_bg@2x.png">{69, 68}</string>
-			<string key="gradient_division@2x.png">{39, 79}</string>
+			<string key="gradient_division@2x.png">{17, 69}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

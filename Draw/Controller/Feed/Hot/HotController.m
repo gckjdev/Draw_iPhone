@@ -121,6 +121,13 @@ typedef enum{
     
     
     [self setSwipeToBack:YES];
+    
+//    self.dataTableView.frame = CGRectMake(self.dataTableView.frame.origin.x,
+//                                          COMMON_TAB_TABLE_VIEW_Y,
+//                                          self.dataTableView.frame.size.width,
+//                                          self.dataTableView.frame.size.height);
+//    
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
 }
 
 - (void)viewDidUnload

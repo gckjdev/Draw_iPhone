@@ -502,7 +502,6 @@
 - (void)viewDidUnload
 {
     [self setClockButton:nil];
-    [self setPopupButton:nil];
     [self setTurnNumberButton:nil];
     [self setShowView:nil];
     [self setDrawBackground:nil];

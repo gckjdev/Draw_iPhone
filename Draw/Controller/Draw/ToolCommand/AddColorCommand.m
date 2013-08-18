@@ -53,7 +53,7 @@
 
 - (void)didClickMoreButtonOnColorBox:(ColorBox *)colorBox
 {
-    UIView *topView = [self.control theTopView];
+    UIView *topView = [self.controller view];
     ColorShopView *colorShop = [ColorShopView colorShopViewWithFrame:topView.bounds];
     colorShop.delegate  = self;
     [colorShop showInView:topView animated:YES];

@@ -23,10 +23,10 @@
     DrawView *drawView;
 }
 
-- (IBAction)clickChangeRoomButton:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UILabel *wordLabel;
 @property (retain, nonatomic) GameMessage *gameCompleteMessage;
+
 
 
 + (void)startDraw:(Word *)word fromController:(UIViewController*)fromController;

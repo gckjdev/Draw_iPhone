@@ -9,6 +9,7 @@
 #import "HelpCommand.h"
 #import "CommonDialog.h"
 #import "UIColor+UIColorExt.h"
+#import "ShareImageManager.h"
 
 #define VALUE(X) (ISIPAD ? 2*X : X)
 #define WIDTH ([LocaleUtils isChinese] ? VALUE(180) : VALUE(230))

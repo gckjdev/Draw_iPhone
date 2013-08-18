@@ -166,6 +166,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
 - (UIBezierPath *)pathWithType:(ShapeType)type
 {
+    if (type == ShapeTypeNone) {
+        return nil;
+    }
     if (_bezierPathDict == nil) {
         _bezierPathDict = [[NSMutableDictionary alloc] init];
     }

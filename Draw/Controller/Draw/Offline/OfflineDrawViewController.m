@@ -122,6 +122,7 @@
 
 @property (retain, nonatomic) CommonDialog* currentDialog;
 @property (retain, nonatomic) CMPopTipView *layerPanelPopView;
+@property (retain, nonatomic) CMPopTipView *upPanelPopView;
 //@property (assign, nonatomic) CGRect canvasRect;
 
 - (void)initDrawView;
@@ -213,6 +214,8 @@
     PPRelease(_bgImageName);
     PPRelease(_currentDialog);
     PPRelease(_copyPaintImage);
+    PPRelease(_layerPanelPopView);
+    PPRelease(_upPanelPopView);
     [_upPanelButton release];
     [_titleView release];
     [super dealloc];
@@ -393,25 +396,25 @@
 - (void)initDrawToolPanel
 {
     self.drawToolPanel = [DrawToolPanel createViewWithDrawView:drawView];
-    
-    self.drawToolUpPanel = [DrawToolUpPanel createViewWithDrawView:drawView];
-    
     CGFloat x = self.view.center.x;
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.drawToolPanel.bounds) / 2.0 - STATUSBAR_HEIGHT;
     self.drawToolPanel.center = CGPointMake(x, y);
-    [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
-    [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
-    
     [self.view addSubview:self.drawToolPanel];
-    [self.view addSubview:self.drawToolUpPanel];
-    
-    [self.drawToolPanel setPanelForOnline:NO];
-    [self.drawToolUpPanel setPanelForOnline:NO];
-    
-    [self.drawToolUpPanel.titleLabel setText:(self.word.text && self.word.text.length > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
-    
+    [self.drawToolPanel setPanelForOnline:NO];    
+    [self.drawToolPanel setBackgroundColor:[UIColor clearColor]];
     self.drawToolPanel.delegate = self;
+    [self.drawToolPanel bindController:self];
+    
+    self.drawToolUpPanel = [DrawToolUpPanel createViewWithDrawView:drawView];
+    [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
+    [self.view addSubview:self.drawToolUpPanel];
+
+//    [self.drawToolUpPanel setPanelForOnline:NO];
+    
+    [self.drawToolUpPanel.titleLabel setText:([self.word.text length] > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
+
     [drawView.dlManager setDelegate:self];
+    [self.drawToolUpPanel bindController:self];
 }
 
 
@@ -568,6 +571,7 @@
     
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
     [self.titleView setBgImage:nil];
     [self.titleView setBackgroundColor:[UIColor clearColor]];
 }
@@ -745,11 +749,13 @@
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
 {
     [self.layerPanelPopView dismissAnimated:YES];
+    [self.upPanelPopView dismissAnimated:YES];
     if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
         [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
     }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
-    [self.layerPanelPopView dismissAnimated:NO];
+    [self.layerPanelPopView dismissAnimated:YES];
+    [self.upPanelPopView dismissAnimated:YES];    
     _isNewDraft = NO;
 
 }
@@ -992,6 +998,7 @@
 
 - (IBAction)clickDraftButton:(id)sender {
     [self.layerPanelPopView dismissAnimated:YES];
+    [self.upPanelPopView dismissAnimated:YES];
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
     }
@@ -1169,6 +1176,7 @@
 
 - (IBAction)clickSubmitButton:(id)sender {
     [self.layerPanelPopView dismissAnimated:YES];
+    [self.upPanelPopView dismissAnimated:YES];
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
     }    
@@ -1217,15 +1225,22 @@
 - (IBAction)clickUpPanel:(id)sender
 {
     [self.layerPanelPopView dismissAnimated:YES];
-    if (![self.drawToolUpPanel isVisable]) {
-        [self.view bringSubviewToFront: self.drawToolUpPanel];
-        [self.drawToolUpPanel appear:self title:self.word.text isLeftArrow:!self.draftButton.hidden];
-    } else {
-        [self.drawToolUpPanel disappear];
+    
+    if (self.upPanelPopView) {
+        [self.upPanelPopView dismissAnimated:YES];
+    }else{
+        self.upPanelPopView = [[[CMPopTipView alloc] initWithCustomView:self.drawToolUpPanel] autorelease];
+        [self.upPanelPopView setBackgroundColor:COLOR_YELLOW];
+        if ([[self.word text] length] != 0) {
+            [self.drawToolUpPanel.titleLabel setText:self.word.text];
+        }
+        [self.upPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
+        self.upPanelPopView.delegate = self;
     }
 }
 
 - (IBAction)clickLayerButton:(id)sender {
+    [self.upPanelPopView dismissAnimated:YES];
     if (self.layerPanelPopView) {
         [self.layerPanelPopView dismissAnimated:YES];
     }else{
@@ -1257,6 +1272,7 @@
 
 - (void)clickBackButton:(id)sender
 {
+    [self.upPanelPopView dismissAnimated:YES];
     [self.layerPanelPopView dismissAnimated:YES];
     if ([[UserManager defaultManager] hasUser] == NO){
         [self quit];
@@ -1370,16 +1386,27 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 #pragma mark- CMPopTipView Delegate
 - (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
 {
-    self.layerPanelPopView = nil;
+    if (popTipView == self.layerPanelPopView) {
+        self.layerPanelPopView = nil;
+    }else if(self.upPanelPopView == popTipView){
+        self.upPanelPopView = nil;
+    }
+
+    
 }
 - (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
 {
-    self.layerPanelPopView = nil;
+    if (popTipView == self.layerPanelPopView) {
+        self.layerPanelPopView = nil;
+    }else if(self.upPanelPopView == popTipView){
+        self.upPanelPopView = nil;
+    }
 }
 
 #pragma mark- DrawToolPanel Delegate
 - (void)drawToolPanel:(DrawToolPanel *)panel didClickTool:(UIButton *)toolButton
 {
     [self.layerPanelPopView dismissAnimated:YES];
+    [self.upPanelPopView dismissAnimated:YES];
 }
 @end
