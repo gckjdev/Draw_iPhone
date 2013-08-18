@@ -17,7 +17,7 @@
 #import "CustomUITextField.h"
 #import "AutoCreateViewByXib.h"
 
-#define GAP (ISIPAD ? 24 : 12)
+#define GAP (ISIPAD ? 26 : 12)
 
 @implementation PassWordDialog
 

@@ -11,14 +11,20 @@
 #import "ShareImageManager.h"
 #import "UILabel+Extend.h"
 
-#define CONTENT_VIEW_INSERT (ISIPAD ? 15 : 7.5)
-#define TITLE_LABEL_HEIGHT (ISIPAD ? 68 : 34)
-#define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 600 : 300)
+#define CONTENT_VIEW_INSERT (ISIPAD ? 16 : 7.5)
+#define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
+#define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 654 : 300)
 
-#define GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW (ISIPAD ? 20 : 10)
-#define GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON (ISIPAD ? 20 : 10)
-#define GAP_Y_BETWEEN_BUTTON_AND_BOTTOM (ISIPAD ? 20 : 10)
+#define GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW (ISIPAD ? 22 : 10)
+#define GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON (ISIPAD ? 22 : 10)
+#define GAP_Y_BETWEEN_BUTTON_AND_BOTTOM (ISIPAD ? 22 : 10)
 
+
+#define FONT_TITLE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 36 : 18)]
+#define FONT_MESSAGE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+#define FONT_INPUT_TEXT_FIELD [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
+
+#define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
 
 @interface CommonDialog()<UITextFieldDelegate>
 
@@ -29,6 +35,7 @@
 
 - (void)dealloc
 {
+
     self.clickCancelBlock = nil;
     self.clickOkBlock = nil;
     self.delegate = nil;
@@ -63,6 +70,7 @@
     [view setTitle:title];
     [view setMessage:message];
     view.type = CommonDialogTypeLabel;
+    [view layout];
     return view;
 }
 
@@ -82,6 +90,7 @@
     [view.inputTextField becomeFirstResponder];
     view.inputTextField.delegate = view;
     view.allowInputEmpty = YES;
+    [view layout];
     return view;
 }
 
@@ -100,21 +109,21 @@
 
 - (void)layout
 {    
-    // layout buttons
     CGFloat centerX = self.contentView.frame.size.width/2;
     CGFloat originY = CONTENT_VIEW_INSERT;
     
     [_titleLabel updateCenterX:centerX];
     [_titleLabel updateOriginY:originY];
+    [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
     
     originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
     UIView *infoView = [self infoView];
     [infoView updateCenterX:centerX];
-    [infoView updateOriginY:originY];
+    [infoView updateOriginY:(originY)];
     
     originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
     [self.oKButton updateOriginY:originY];
-    [self.cancelButton updateOriginY:originY];
+    [self.cancelButton updateOriginY:(originY)];
     
     // update content view height
     CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
@@ -238,14 +247,21 @@
     view.oKButton.backgroundColor = COLOR_YELLOW;
     [view.oKButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     SET_VIEW_ROUND_CORNER(view.oKButton);
+    view.oKButton.titleLabel.font = FONT_BUTTON;
     
     [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];    [view appear];
     view.cancelButton.backgroundColor = COLOR_YELLOW;
     [view.cancelButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     SET_VIEW_ROUND_CORNER(view.cancelButton);
+    view.cancelButton.titleLabel.font = FONT_BUTTON;
     
-    view.titleLabel.textColor = COLOR_WHITE;    
+    view.titleLabel.textColor = COLOR_WHITE;
+    view.titleLabel.font = FONT_TITLE_LABEL;
+    
     view.messageLabel.textColor = COLOR_BROWN;
+    view.messageLabel.font = FONT_MESSAGE_LABEL;
+    
+    view.inputTextField.font = FONT_INPUT_TEXT_FIELD;
 
     return view;
 }
@@ -293,8 +309,6 @@
     CGSize cSize = CGSizeMake(_messageLabel.frame.size.width, MESSAGE_LABEL_MAX_HEIGHT);
     [_messageLabel wrapTextWithConstrainedSize:cSize];
     [_messageLabel updateCenterX:self.contentView.bounds.size.width/2];
-    
-    [self layout];
 }
 
 - (IBAction)clickOkButton:(id)sender

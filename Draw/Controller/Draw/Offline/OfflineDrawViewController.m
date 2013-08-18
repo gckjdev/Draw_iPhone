@@ -1255,7 +1255,7 @@
 
 - (void)alertExit
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:nil style:CommonDialogStyleDoubleButton delegate:self];
+    CommonDialog *dialog = nil;
     
     if (_isNewDraft || [drawView.drawActionList count] == 0) {
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
