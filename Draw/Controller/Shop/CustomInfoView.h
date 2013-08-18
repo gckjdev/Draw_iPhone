@@ -24,15 +24,6 @@ typedef void(^CloseHandler)();
 @property (retain, nonatomic) NSMutableDictionary *notifications;
 @property (retain, nonatomic) IBOutlet UIImageView *mainBgImageView;
 
-
-+ (id)createWithTitle:(NSString *)title
-                 info:(NSString *)info;
-
-+ (id)createWithTitle:(NSString *)title
-                 info:(NSString *)info
-       hasCloseButton:(BOOL)hasCloseButton
-         buttonTitles:(NSArray *)buttonTitles;
-
 + (id)createWithTitle:(NSString *)title
              infoView:(UIView *)infoView;
 

@@ -636,7 +636,7 @@ typedef enum{
 
 }
 
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     if (_seletedFeed) {
         [self showActivityWithText:NSLS(@"kDeleting")];
@@ -644,7 +644,7 @@ typedef enum{
     }
     _seletedFeed = nil;
 }
-- (void)clickBack:(CommonDialog *)dialog
+- (void)didClickCancel:(CommonDialog *)dialog
 {
     _seletedFeed = nil;
 }
@@ -700,29 +700,24 @@ typedef enum{
             case ActionSheetIndexRefuse:
             {
                 _seletedFeed = feed;
-                CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kAskSureRefuse") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                    __block MyFeedController* cp = self;
-                    
-                    [[FeedService defaultService] rejectOpusDrawToMe:feed.feedId resultBlock:^(int resultCode) {
-                        if (resultCode == 0) {
-                            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusSuccess") delayTime:1.5];
-                            [cp clickRefreshButton:nil];
-                        } else {
-                            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusFail") delayTime:1.5];
-                        }
-                    }];
-                    
-//                    [[FeedService defaultService] rejectOpusDrawToMe:feed.feedId successBlock:^{
-//                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusSuccess") delayTime:1.5];
-//                        [cp clickRefreshButton:nil];
-//                        
-//                    } failBlock:^{
-//                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusFail") delayTime:1.5];
-//                    }];
-                    
-                } clickCancelBlock:^{
-                    //
-                }];
+                
+                CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil
+                                                                   message:NSLS(@"kAskSureRefuse")
+                                                                     style:CommonDialogStyleDoubleButton];
+                __block MyFeedController* cp = self;
+
+                [dialog setClickOkBlock:^(UILabel *label){
+                      
+                      [[FeedService defaultService] rejectOpusDrawToMe:feed.feedId resultBlock:^(int resultCode) {
+                          if (resultCode == 0) {
+                              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusSuccess") delayTime:1.5];
+                              [cp clickRefreshButton:nil];
+                          } else {
+                              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kRefuseOpusFail") delayTime:1.5];
+                          }
+                      }];                      
+                 }];
+                                
                 [dialog showInView:self.view];
             }
                 break;

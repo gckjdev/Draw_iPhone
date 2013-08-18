@@ -664,7 +664,7 @@
          
 #pragma mark - Dialog Delegates
 
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     switch (dialog.tag) {
         case ROOM_DIALOG_CHANGE_ROOM:
@@ -688,11 +688,6 @@
         default:
             break;
     }
-}
-
-- (void)clickBack:(CommonDialog *)dialog
-{
-    
 }
 
 
@@ -782,6 +777,7 @@
         [dialog showInView:self.view];
     }
     
+
 }
 
 #pragma mark - Room Enter/Return

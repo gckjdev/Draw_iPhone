@@ -113,78 +113,52 @@
 
 + (void)askRebindQQ:(UIViewController*)viewController
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindQQ") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
-        } failure:^{
-            //
-        }];
-    } clickCancelBlock:^{
-        //
-    }];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kRebindQQ")
+                                                         style:CommonDialogStyleDoubleButton];
+     [dialog setClickOkBlock:^(UILabel *label){
+          [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo) {
+              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
+          } failure:^{
+              //
+          }];
+     }];
+    
     [dialog showInView:viewController.view];
 }
 
 + (void)askRebindSina:(UIViewController*)viewController
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindSina") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
-        } failure:^{
-            //
-        }];
-    } clickCancelBlock:^{
-        //
-    }];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kRebindSina")
+                                                         style:CommonDialogStyleDoubleButton];
+     [dialog setClickOkBlock:^(UILabel *label){
+          [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
+              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
+          } failure:^{
+              //
+          }];
+     }];
+    
     [dialog showInView:viewController.view];
 }
 
 + (void)askRebindFacebook:(UIViewController*)viewController
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kRebindFacebook") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kRebindFacebook")
+                                                         style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
         [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
+          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
         } failure:^{
-            
+          
         }];
-    } clickCancelBlock:^{
-        //
     }];
+    
     [dialog showInView:viewController.view];
 }
-
-
-//+ (void)bindSNS:(int)snsType viewController:(PPViewController<UserServiceDelegate>*)viewController
-//{
-//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-//    NSString* name = [service snsName];
-//    
-//    [service logout];
-//    
-//    [service login:^(NSDictionary *userInfo) {
-//        PPDebug(@"%@ Login Success", name);
-//        
-//        [viewController showActivityWithText:NSLS(@"Loading")];
-//        
-//        [service readMyUserInfo:^(NSDictionary *userInfo) {
-//            [viewController hideActivity];
-//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-//            UserManager* userManager = [UserManager defaultManager];
-//            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
-//                                                           userInfo:userInfo
-//                                                     viewController:viewController];
-//            
-//            // ask follow official weibo account here
-//            [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
-//            
-//        } failureBlock:^(NSError *error) {
-//            [viewController hideActivity];
-//            PPDebug(@"%@ readMyUserInfo Failure", name);
-//        }];
-//        
-//    } failureBlock:^(NSError *error) {
-//        PPDebug(@"%@ Login Failure", name);
-//    }];
-//}
 
 @end

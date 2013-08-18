@@ -97,14 +97,14 @@
         
         if (lastDrawAction && ![lastDrawAction isChangeBGAction] && ![lastDrawAction isClipAction] && lastDrawAction.clipAction == nil)
         {
-            [[CommonDialog createDialogWithTitle:NSLS(@"kUseGradientTitle")
+            CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kUseGradientTitle")
                                          message:NSLS(@"kUseGradientMessage")
-                                           style:CommonDialogStyleDoubleButton
-                                        delegate:nil
-                                    clickOkBlock:^{
-                                        [self showPopTipView];
-                                    } clickCancelBlock:NULL]
-             showInView:[self.control theTopView]];
+                                           style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(UILabel *label){
+                [self showPopTipView];
+            }];
+            
+            [dialog showInView:[self.control theTopView]];
             
         }else{
             [self showPopTipView];

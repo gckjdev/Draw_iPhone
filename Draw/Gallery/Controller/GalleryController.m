@@ -12,10 +12,8 @@
 #import "MKBlockActionSheet.h"
 #import "Photo.pb.h"
 #import "StorageManager.h"
-//#import "SearchResultView.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
-#import "InputDialog.h"
 #import "SearchPhotoController.h"
 
 @interface GalleryController () <SearchPhotoResultControllerDelegate>{
@@ -85,55 +83,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//#define IMAGE_PER_LINE 2
-//#define IMAGE_HEIGHT  (ISIPAD?384:160)
-//#define RESULT_IMAGE_TAG_OFFSET 9999
-//- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell* cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"] autorelease];
-//        [cell setAutoresizingMask:UIViewAutoresizingNone];
-//        [cell setAccessoryType:UITableViewCellAccessoryNone];
-//        for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-//            UserPhotoView* photoView = [UserPhotoView createViewWithPhoto:nil delegate:self];
-//            
-//            photoView.tag = RESULT_IMAGE_TAG_OFFSET + i;
-////            resultView.delegate = self;
-//            
-//            [cell.contentView addSubview:photoView];
-//            [photoView setFrame:CGRectMake(i*self.dataTableView.frame.size.width/IMAGE_PER_LINE, 0, self.dataTableView.frame.size.width/IMAGE_PER_LINE, IMAGE_HEIGHT)];
-//        }
-//    }
-//    for (int i = 0; i < IMAGE_PER_LINE; i ++) {
-//        NSArray* list = [self tabDataList];
-//        UserPhotoView* photoView = (UserPhotoView*)[cell viewWithTag:RESULT_IMAGE_TAG_OFFSET+i];
-//        if (list.count > IMAGE_PER_LINE*indexPath.row+i) {
-//            
-//            PBUserPhoto* result = (PBUserPhoto*)[list objectAtIndex:IMAGE_PER_LINE*indexPath.row+i];
-//            PPDebug(@"<ComomnSearchImageController>did search image %@",result.url);
-//            [photoView updateWithUserPhoto:result];
-//            photoView.hidden = NO;
-//        } else {
-//            photoView.hidden = YES;
-//        }
-//        
-//    }
-//    
-//    return cell;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return IMAGE_HEIGHT;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    [super tableView:tableView numberOfRowsInSection:section];
-//    return ([[self tabDataList] count]+(IMAGE_PER_LINE-1))/IMAGE_PER_LINE ;
-//}
-
 - (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView viewAtIndex:(NSInteger)index {
     UserPhotoView* cell = (UserPhotoView*)[self.dataTableView dequeueReusableView];
     if (cell == nil) {
@@ -161,22 +110,11 @@
 
 #pragma mark tab controller delegate
 
-//- (NSInteger)tabCount
-//{
-//    return 1;
-//}
-//- (NSInteger)currentTabIndex
-//{
-//    return _defaultTabIndex;
-//}
 - (NSInteger)loadMoreLimit
 {
     return 8;
 }
-//- (NSInteger)tabIDforIndex:(NSInteger)index
-//{
-//    return index;
-//}
+
 
 - (void)loadTestData
 {
@@ -194,8 +132,6 @@
     [super serviceLoadData];
     [[GalleryService defaultService] getUserPhotoWithTagSet:self.tagSet usage:[GameApp photoUsage] offset:self.dataListOffset limit:[self loadMoreLimit] resultBlock:^(int resultCode, NSArray *resultArray) {
         [self didFinishLoadData:resultArray];
-//        [self currentTab].status = TableTabStatusLoaded;
-//        [self loadTestData];
     }];
     
 }
@@ -273,11 +209,13 @@ enum {
 - (void)editName:(PBUserPhoto*)photo atIndex:(int)photoIndex
 {
     __block GalleryController* cp = self;
-    InputDialog* dialog = [InputDialog dialogWith:NSLS(@"kEnterNewName") clickOK:^(NSString *inputStr) {
-        [cp editPhoto:photo withName:inputStr atIndex:photoIndex];
-    } clickCancel:^(NSString *inputStr) {
-        //
+    
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kEnterNewName")];
+    
+    [dialog setClickOkBlock:^(UITextField *tf) {
+        [cp editPhoto:photo withName:tf.text atIndex:photoIndex];
     }];
+   
     [dialog showInView:self.view];
 }
 
@@ -307,28 +245,30 @@ enum {
             atIndex:(int)photoIndex
 {
     __block GalleryController* cp = self;
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDelete") message:NSLS(@"kAre_you_sure") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [self showActivityWithText:NSLS(@"kDeleting")];
-        [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId
-                                                   usage:[GameApp photoUsage]
-                                             resultBlock:^(int resultCode) {
-                                                 [self hideActivity];
-            if (resultCode == 0) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
-//                [cp reloadTableViewDataSource];
-                if (photoIndex < cp.dataList.count) {
-                    [cp.dataList removeObjectAtIndex:photoIndex];
-                    [cp.dataTableView reloadData];
-                }
-            } else {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoFail") delayTime:2];
-                PPDebug(@"<deletePhoto> err code = %d", resultCode);
-            }
-            
-        }];
-    } clickCancelBlock:^{
-        //
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDelete")
+                                                       message:NSLS(@"kAre_you_sure")
+                                                         style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
+      [self showActivityWithText:NSLS(@"kDeleting")];
+      [[GalleryService defaultService] deleteUserPhoto:photo.userPhotoId
+                                                 usage:[GameApp photoUsage]
+                                           resultBlock:^(int resultCode) {
+                                               [self hideActivity];
+                                               if (resultCode == 0) {
+                                                   [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoSucc") delayTime:2];
+                                                   if (photoIndex < cp.dataList.count) {
+                                                       [cp.dataList removeObjectAtIndex:photoIndex];
+                                                       [cp.dataTableView reloadData];
+                                                   }
+                                               } else {
+                                                   [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kDeletePhotoFail") delayTime:2];
+                                                   PPDebug(@"<deletePhoto> err code = %d", resultCode);
+                                               }
+                                               
+                                           }];
     }];
+    
     [dialog showInView:self.view];
 }
 

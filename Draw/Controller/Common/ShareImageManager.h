@@ -26,6 +26,8 @@
 #define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog
 #define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
+#define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
+
 
 #define SET_VIEW_ROUND_CORNER(view) \
 {           \

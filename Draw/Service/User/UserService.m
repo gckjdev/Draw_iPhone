@@ -15,7 +15,6 @@
 #import "UIImageExt.h"
 #import "PPSNSConstants.h"
 #import "AccountManager.h"
-#import "InputDialog.h"
 #import "RegisterUserController.h"
 #import "AccountService.h"
 #import "FriendService.h"
@@ -56,7 +55,7 @@ static UserService* _defaultUserService;
 
 - (void)registerUser:(NSString*)email 
             password:(NSString*)password 
-      viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
+      viewController:(PPViewController<UserServiceDelegate, CommonDialogDelegate>*)viewController
 {
     
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
@@ -104,9 +103,10 @@ static UserService* _defaultUserService;
             else if (output.resultCode == ERROR_EMAIL_EXIST) {
                 // @"对不起，该电子邮件已经被注册"
                 [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
-                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:viewController];
-                [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+                CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUserLogin") delegate:viewController];
+                [dialog.inputTextField setPlaceholder:NSLS(@"kEnterPassword")];
                 [dialog showInView:viewController.view];
+                
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
                 // @"对不起，该电子邮件格式不正确，请重新输入"
@@ -669,7 +669,7 @@ static UserService* _defaultUserService;
 
 - (void)loginUserByEmail:(NSString*)email
                 password:(NSString*)password
-          viewController:(PPViewController<UserServiceDelegate, InputDialogDelegate>*)viewController
+          viewController:(PPViewController<UserServiceDelegate, CommonDialogDelegate>*)viewController
 {
     NSString* appId = [ConfigManager appId];
     NSString* gameId = [ConfigManager gameId];
@@ -703,8 +703,8 @@ static UserService* _defaultUserService;
             else if (output.resultCode == ERROR_PASSWORD_NOT_MATCH) {
                 // @"密码错误 "
                 [viewController popupUnhappyMessage:NSLS(@"kPsdNotMatch") title:nil];
-                InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kUserLogin") delegate:viewController];
-                [dialog.targetTextField setPlaceholder:NSLS(@"kEnterPassword")];
+                CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUserLogin") delegate:viewController];
+                [dialog.inputTextField setPlaceholder:NSLS(@"kEnterPassword")];
                 [dialog showInView:viewController.view];
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
@@ -1461,89 +1461,6 @@ static UserService* _defaultUserService;
     return YES;
 }
 
-// return NO if don't need show login view
-// return YES if need
-/*
-- (BOOL)checkAndAskLogin:(UIView*)view
-{
-    if ([[UserManager defaultManager] hasUser] == NO){
-        
-        
-        // auto register firstly
-        NSString* appId = [ConfigManager appId];
-        NSString* gameId = [ConfigManager gameId];
-        NSString* deviceToken = [[UserManager defaultManager] deviceToken];
-        NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
-        
-        
-//        [homeController showActivityWithText:NSLS(@"kConnectingServer")];
-
-        dispatch_async(workingQueue, ^{
-            
-            CommonNetworkOutput* output =
-            [GameNetworkRequest newLoginUser:SERVER_URL
-                                       appId:appId
-                                      gameId:gameId
-                                    deviceId:deviceId
-                                 deviceToken:deviceToken
-                                autoRegister:YES];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-//                [homeController hideActivity];
-                if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
-                    [self createLocalUserAccount:output.responseData appId:appId];
-                    
-                    // auto registration OK
-                    [self checkAndAskXiaojiNumber:view];
-                }
-                else if (output.resultCode == ERROR_NETWORK) {
-//                    [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
-                }
-                else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
-                    
-                }
-                else {
-                    // @"登录失败，稍后尝试"
-//                    [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
-                }
-            });
-        });
-        
-        
-//        if ([GameApp isAutoRegister] == YES){
-//            [self autoRegisteration:nil];
-//            return NO;
-//        }
-//        
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskLoginTitle") message:NSLS(@"kAskLoginMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-//            
-//            // goto RegisterUserController
-//            RegisterUserController *ruc = [[RegisterUserController alloc] init];
-//            UIViewController* rootController = ((DrawAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
-//            if ([rootController respondsToSelector:@selector(pushViewController:animated:)]){
-//                // this warning is OK
-//                // leave this warning to check when home controller is changed
-//                [rootController pushViewController:ruc animated:YES];
-//            }
-//            else{
-//                [rootController.navigationController pushViewController:ruc animated:YES];
-//            }
-//            [ruc release];
-//            
-//        } clickCancelBlock:^{
-//            
-//        }];
-//        
-//        [dialog showInView:view];
-        return [self checkAndAskXiaojiNumber:view];
-    }
-    else{
-        return [self checkAndAskXiaojiNumber:view];
-    }
-}
- */
-
 - (BOOL)checkAndAskLogin:(UIView*)view
 {
     if ([[UserManager defaultManager] hasUser] == NO){
@@ -1553,24 +1470,24 @@ static UserService* _defaultUserService;
             return NO;
         }
         
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskLoginTitle") message:NSLS(@"kAskLoginMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-            
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskLoginTitle") message:NSLS(@"kAskLoginMessage") style:CommonDialogStyleDoubleButton];
+        
+        [dialog setClickOkBlock:^(UILabel *label){
             // goto RegisterUserController
             RegisterUserController *ruc = [[RegisterUserController alloc] init];
             UIViewController* rootController = ((DrawAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
             if ([rootController respondsToSelector:@selector(pushViewController:animated:)]){
-                // this warning is OK
-                // leave this warning to check when home controller is changed
+            // this warning is OK
+            // leave this warning to check when home controller is changed
                 [rootController pushViewController:ruc animated:YES];
             }
             else{
                 [rootController.navigationController pushViewController:ruc animated:YES];
             }
             [ruc release];
-            
-        } clickCancelBlock:^{
-            
+
         }];
+
         
         [dialog showInView:view];
         return YES;

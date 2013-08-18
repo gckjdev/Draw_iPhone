@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "RoomService.h"
-#import "InputDialog.h"
+#import "CommonDialog.h"
 #import "DrawGameService.h"
 
 @class ShareImageManager;
 @class Room;
-@interface SearchRoomController : PPTableViewController<RoomServiceDelegate,UITextFieldDelegate, InputDialogDelegate,DrawGameServiceDelegate>
+@interface SearchRoomController : PPTableViewController<RoomServiceDelegate,UITextFieldDelegate, CommonDialogDelegate,DrawGameServiceDelegate>
 {
     ShareImageManager *imageManager;
     RoomService *roomService;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CommonDialog.h"
-#import "InputDialog.h"
+#import "CommonDialog.h"
 
 @class SelectCustomWordView;
 
@@ -21,7 +21,7 @@
 @end
 
 
-@interface SelectCustomWordView : UIView<UITableViewDataSource,UITableViewDelegate, CommonDialogDelegate, InputDialogDelegate>
+@interface SelectCustomWordView : UIView<UITableViewDataSource,UITableViewDelegate, CommonDialogDelegate, CommonDialogDelegate>
 @property (retain, nonatomic) IBOutlet UIButton *bgButton;
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;

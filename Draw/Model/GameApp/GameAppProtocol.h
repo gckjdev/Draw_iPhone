@@ -66,10 +66,6 @@
 
 
 - (id<ImageManagerProtocol>)getImageManager;
-- (NSString*)getCommonDialogXibName;
-- (NSString*)getInputDialogXibName;
-- (NSString*)getPasswordDialogXibName;
-- (NSString*)getRoomPasswordDialogXibName;
 
 
 

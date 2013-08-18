@@ -211,7 +211,7 @@
 "kQuitGameConfirm" = "退出當前房間系統會扣除您%d個金幣哦，請問是否要退出？";
 
 "kOldPasswordHolder" = "請輸入舊密碼";
-"kNewPasswordHolder" = "請輸入新密碼（長度不少於6）";
+"kNewPasswordHolder" = "請輸入新密碼（長度>=6）";
 "kConfirmPasswordHolder" = "請再次輸入新密碼";
 "kNicknameHolder" = "請輸入新暱稱";
 

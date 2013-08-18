@@ -7,131 +7,51 @@
 //
 
 #import "CommonDialog.h"
-#import "ShareImageManager.h"
 #import "LocaleUtils.h"
-#import "DiceImageManager.h"
-#import "LocaleUtils.h"
-#import "CommonImageManager.h"
-#import "UIImageUtil.h"
-#import "ZJHImageManager.h"
-#import "GameApp.h"
 #import "ShareImageManager.h"
+#import "UILabel+Extend.h"
 
-#define COMMON_DIALOG_THEME_DRAW    @"CommonDialog"
-#define COMMON_DIALOG_THEME_DICE    @"CommonDiceDialog"
-#define COMMON_DIALOG_THEME_STARRY    @"CommonStarryDialog"
-#define COMMON_DIALOG_THEME_ZJH    @"CommonZJHDialog"
+#define CONTENT_VIEW_INSERT (ISIPAD ? 15 : 7.5)
+#define TITLE_LABEL_HEIGHT (ISIPAD ? 68 : 34)
+#define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 600 : 300)
 
-#define FONT_OF_TITLE_IPHONE [UIFont boldSystemFontOfSize:18]
-#define FONT_OF_TITLE_IPAD [UIFont boldSystemFontOfSize:18*2]
-#define FONT_OF_TITLE ([DeviceDetection isIPAD] ? (FONT_OF_TITLE_IPAD) : (FONT_OF_TITLE_IPHONE))
+#define GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW (ISIPAD ? 20 : 10)
+#define GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON (ISIPAD ? 20 : 10)
+#define GAP_Y_BETWEEN_BUTTON_AND_BOTTOM (ISIPAD ? 20 : 10)
 
-#define FONT_OF_MESSAGE_IPHONE [UIFont systemFontOfSize:14]
-#define FONT_OF_MESSAGE_IPAD [UIFont systemFontOfSize:14*2]
-#define FONT_OF_MESSAGE ([DeviceDetection isIPAD] ? (FONT_OF_MESSAGE_IPAD) : (FONT_OF_MESSAGE_IPHONE))
 
-#define UP_SEPERATOR    ([DeviceDetection isIPAD]?14:7)
-#define DOWN_SEPERATOR  ([DeviceDetection isIPAD]?52:26)
+@interface CommonDialog()<UITextFieldDelegate>
+
+@end
 
 @implementation CommonDialog
-@synthesize oKButton = _OKButton;
-@synthesize backButton = _backButton;
-@synthesize messageLabel = _messageLabel;
-@synthesize titleLabel = _titleLabel;
-@synthesize delegate = _delegate;
-@synthesize contentBackground = _contentBackground;
-@synthesize style = _style;
 
-+ (CommonDialogTheme)globalGetTheme
-{
-    if (isDrawApp()) {
-        return CommonDialogThemeDraw;
-    }
-
-    return CommonDialogThemeDraw;
-}
 
 - (void)dealloc
 {
-    self.clickBackBlock = nil;
+    self.clickCancelBlock = nil;
     self.clickOkBlock = nil;
+    self.delegate = nil;
     
-    _delegate = nil;
-    [_OKButton release];
-    [_backButton release];
-    [_messageLabel release];
     [_titleLabel release];
-    [_contentBackground release];
-    [_frontBackgroundImageView release];
+    [_messageLabel release];
+    
+    [_oKButton release];
+    [_cancelButton release];
     [_closeButton release];
-    [_dialogHeader release];
+    [_inputTextField release];
+    [_inputTextView release];
+    [_customView release];
     [super dealloc];
 }
 
-#define FRAME CGRectMake(0, 0, 320, 480)
-#define CONTENT_VIEW_FRAME CGRectMake(0, 0, 320, 480)
-#define TITLE_LABEL_FRAME CGRectMake(0, 0, 320, 480)
 
-#define TITLE_LABEL_WIDTH (ISIPAD ? 69 : 34.5)
-#define TITLE_LABEL_HEIGHT (ISIPAD ? 69 : 34.5)
-
-#define MESSAGE_LABEL_WIDTH TITLE_LABEL_WIDTH
-#define MESSAGE_LABEL_HEIGHT TITLE_LABEL_HEIGHT
-
-#define RED_LINE_WIDTH (ISIPAD ? 15 : 7.5)
-
-#define GAP_Y (ISIPAD ? 10 : 5)
-//
-//- (id)initWithTitle:(NSString *)title
-//            message:(NSString *)message
-//              style:(CommonDialogStyle)style{
-//    
-//    if (self = [super init]) {
-//        
-//        self.frame = FRAME;
-//        
-//        self.contentView = [[[DialogBGView alloc] initWithFrame:CONTENT_VIEW_FRAME] autorelease];
-//        
-//        if (title != nil) {
-//            CGRect frame = CGRectMake(RED_LINE_WIDTH, RED_LINE_WIDTH, TITLE_LABEL_WIDTH, TITLE_LABEL_HEIGHT);
-//            self.titleLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-//            self.titleLabel.backgroundColor = [UIColor clearColor];
-//            self.titleLabel.textColor = COLOR_WHITE;
-//            self.titleLabel.textAlignment = UITextAlignmentCenter;
-//            self.titleLabel.text = title;
-//        }
-//        
-//        if (message != nil) {
-//            CGRect frame = CGRectMake(RED_LINE_WIDTH, CGRectGetMaxY(self.titleLabel.frame) + GAP_Y, MESSAGE_LABEL_WIDTH, MESSAGE_LABEL_HEIGHT);
-//            self.messageLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-//            self.messageLabel.backgroundColor = [UIColor clearColor];
-//            self.messageLabel.textColor = COLOR_BROWN;
-//            self.titleLabel.textAlignment = UITextAlignmentLeft;
-//            
-//            self.messageLabel.text = message;
-//            [self.messageLabel sizeToFit];
-//            
-//            [self.messageLabel updateCenterX:CGRectGetMidX(self.contentView.bounds)];
-//        }
-//        
-//        switch (style) {
-//            case CommonDialogStyleSingleButton:
-//                
-//                break;
-//                
-//            case CommonDialogStyleDoubleButton:
-//                break;
-//                
-//                case CommonDialogStyleDoubleButtonWithCross:
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//    }
-//    
-//    return self;
-//}
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                                message:(NSString *)message
+                                  style:(CommonDialogStyle)style{
+    
+    return [self createDialogWithTitle:title message:message style:style delegate:nil];
+}
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message
@@ -142,111 +62,217 @@
     view.delegate = aDelegate;
     [view setTitle:title];
     [view setMessage:message];
+    view.type = CommonDialogTypeLabel;
+    return view;
+}
+
++ (CommonDialog *)createInputFieldDialogWith:(NSString *)title{
+    
+    CommonDialog *view = [self createInputFieldDialogWith:title delegate:nil];
+    return view;
+}
+
++ (CommonDialog *)createInputFieldDialogWith:(NSString *)title
+                                    delegate:(id<CommonDialogDelegate>)delegate{
+    
+    CommonDialog* view = [CommonDialog createDialogWithStyle:CommonDialogStyleDoubleButton];
+    [view setTitle:title];
+    view.delegate = delegate;
+    view.type = CommonDialogTypeInputField;
+    [view.inputTextField becomeFirstResponder];
+    view.inputTextField.delegate = view;
+    view.allowInputEmpty = YES;
     return view;
 }
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
-                                message:(NSString *)message
-                                  style:(CommonDialogStyle)aStyle
-                               delegate:(id<CommonDialogDelegate>)aDelegate
-                           clickOkBlock:(DialogSelectionBlock)block1
-                       clickCancelBlock:(DialogSelectionBlock)block2
-{
-    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate];
-    [dialog setClickOkBlock:block1];
-    [dialog setClickBackBlock:block2];
-    return dialog;
+                             customView:(UIView *)customView
+                                  style:(CommonDialogStyle)style{
+    
+    CommonDialog *view = [CommonDialog createDialogWithStyle:style];
+    [view setTitle:title];
+    view.type = CommonDialogTypeCustomView;
+    view.customView = customView;
+    [view.contentView addSubview:view.customView];
+    [view layout];
+    return view;
 }
 
-- (CGSize) calculateHeightOfTextFromWidth:(NSString*)text font: (UIFont*)withFont width:(float)width linebreak:(UILineBreakMode)lineBreakMode{
-	return [text sizeWithFont:withFont
-			constrainedToSize:CGSizeMake(width, 960)
-				lineBreakMode:lineBreakMode];
+- (void)layout
+{    
+    // layout buttons
+    CGFloat centerX = self.contentView.frame.size.width/2;
+    CGFloat originY = CONTENT_VIEW_INSERT;
+    
+    [_titleLabel updateCenterX:centerX];
+    [_titleLabel updateOriginY:originY];
+    
+    originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
+    UIView *infoView = [self infoView];
+    [infoView updateCenterX:centerX];
+    [infoView updateOriginY:originY];
+    
+    originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+    [self.oKButton updateOriginY:originY];
+    [self.cancelButton updateOriginY:originY];
+    
+    // update content view height
+    CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
+    [self.contentView updateHeight:height];
 }
 
-- (void)resize
-{
-    if (!_shouldResize) {
-        return;
+- (UIView *)infoView{
+    
+    switch (_type) {
+        case CommonDialogTypeLabel:
+            return _messageLabel;
+            
+        case CommonDialogTypeInputField:
+            return _inputTextField;
+            
+        case CommonDialogTypeInputTextView:
+            return _inputTextView;
+            
+        case CommonDialogTypeCustomView:
+            return _customView;
+            
+        default:
+            return nil;
     }
-    CGSize titleSize = [self calculateHeightOfTextFromWidth:self.titleLabel.text font:FONT_OF_TITLE width:self.titleLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
-    CGSize messageSize = [self calculateHeightOfTextFromWidth:self.messageLabel.text font:FONT_OF_TITLE width:self.messageLabel.frame.size.width linebreak:UILineBreakModeWordWrap];
-    
-    [self.contentView setFrame:CGRectMake(0, 0, self.contentView.frame.size.width, UP_SEPERATOR + DOWN_SEPERATOR + titleSize.height + messageSize.height + self.oKButton.frame.size.height)];
-    [self.contentView setCenter:CGPointMake(self.frame.size.width/2, self.frame.size.height/2)];
-    
-    [self.titleLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - titleSize.width/2, UP_SEPERATOR, titleSize.width, titleSize.height)];
-    [self.messageLabel setFrame:CGRectMake(self.contentView.frame.size.width/2 - messageSize.width/2, UP_SEPERATOR + titleSize.height, messageSize.width, messageSize.height)];
-    [self.messageLabel setFont:FONT_OF_MESSAGE];
-    
-    [self.oKButton setCenter:CGPointMake(self.oKButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.oKButton.frame.size.height/2)];
-    [self.backButton setCenter:CGPointMake(self.backButton.center.x, self.contentView.frame.size.height - DOWN_SEPERATOR - self.backButton.frame.size.height/2)];
 }
 
-- (void)initView
-{
-    [self.messageLabel setNumberOfLines:5];
+- (void)setType:(CommonDialogType)type{
     
-    if ([LocaleUtils isChinese]) {
-        [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
-    }else {
-        [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
-    }
+    _type = type;
     
-    [self.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    
-    [self.contentBackground setImage:[[GameApp getImageManager] commonDialogBgImage]];
-    
-//    [self.oKButton setBackgroundImage:[[GameApp getImageManager] commonDialogRightBtnImage] forState:UIControlStateNormal];
-//    [self.backButton setBackgroundImage:[[GameApp getImageManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
-    [self.dialogHeader setImage:[[GameApp getImageManager] commonDialogHeaderImage]];
-}
+    switch (type) {
+        case CommonDialogTypeLabel:
+            self.messageLabel.hidden = NO;
+            
+            [self.inputTextField removeFromSuperview];
+            self.inputTextField = nil;
+            [self.inputTextView removeFromSuperview];
+            self.inputTextView = nil;
+            
+            break;
+            
+        case CommonDialogTypeInputField:
+            
+            self.inputTextField.hidden = NO;
+            
+            [self.messageLabel removeFromSuperview];
+            self.messageLabel = nil;
+            [self.inputTextView removeFromSuperview];
+            self.inputTextView = nil;
+            
+            break;
+            
+        case CommonDialogTypeInputTextView:
+            
+            self.inputTextView.hidden = NO;
+            
+            [self.messageLabel removeFromSuperview];
+            self.messageLabel = nil;
+            [self.inputTextField removeFromSuperview];
+            self.inputTextField = nil;            
+            
+            break;
+            
+        case CommonDialogTypeCustomView:
+            
+            [self.inputTextView removeFromSuperview];
+            self.inputTextView = nil;
+            [self.messageLabel removeFromSuperview];
+            self.messageLabel = nil;
+            [self.inputTextField removeFromSuperview];
+            self.inputTextField = nil;
+            
+            break;
 
-- (void)initButtonsWithStyle:(CommonDialogStyle)aStyle
-{
-    self.style = aStyle;
-    switch (aStyle) {
-        case CommonDialogStyleSingleButton: {
-            [self.oKButton setFrame:CGRectMake(self.oKButton.frame.origin.x, self.oKButton.frame.origin.y, self.oKButton.frame.size.width*2, self.oKButton.frame.size.height)];
-            [self.oKButton setCenter:CGPointMake(self.contentView.frame.size.width/2, self.oKButton.frame.origin.y)];
-            [self.backButton setHidden:YES];
-            self.closeButton.hidden = YES;
-        }
-            break;
-        case CommonDialogStyleDoubleButton: {
-            self.closeButton.hidden = YES;
-        }
-            break;
-        case CommonDialogStyleDoubleButtonWithCross: {
-            self.closeButton.hidden = NO;
-        } break;
+            
         default:
             break;
     }
 }
 
+- (void)setStyle:(CommonDialogStyle)style{
+    
+    _style = style;
+        
+    switch (style) {
+        case CommonDialogStyleSingleButton:
+            [self.oKButton updateCenterX:self.contentView.frame.size.width/2];
+            
+            [_cancelButton removeFromSuperview];
+            self.cancelButton = nil;
+            [_closeButton removeFromSuperview];
+            self.closeButton = nil;
+            break;
+            
+        case CommonDialogStyleDoubleButton:
+            [_closeButton removeFromSuperview];
+            self.closeButton = nil;
+            break;
+                        
+        case CommonDialogStyleCross:
+            [_oKButton removeFromSuperview];
+            self.oKButton = nil;
+            [_cancelButton removeFromSuperview];
+            self.cancelButton = nil;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+
 + (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle
 {
-    CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:[GameApp getCommonDialogXibName]];
-    [view initButtonsWithStyle:aStyle];
-    [view initView];
-    [view appear];
-    view.tag = 0;
+    CommonDialog* view =  (CommonDialog*)[self createInfoViewByXibName:@"CommonDialog"];
+
+    [view setStyle:aStyle];
     
+    [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     view.oKButton.backgroundColor = COLOR_YELLOW;
-    SET_VIEW_ROUND_CORNER(view.oKButton);
-    view.backButton.backgroundColor = COLOR_YELLOW;
-    SET_VIEW_ROUND_CORNER(view.backButton);
-    
-    view.titleLabel.textColor = COLOR_WHITE;
-    view.messageLabel.textColor = COLOR_BROWN;
-    [view.backButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     [view.oKButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    SET_VIEW_ROUND_CORNER(view.oKButton);
     
+    [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];    [view appear];
+    view.cancelButton.backgroundColor = COLOR_YELLOW;
+    [view.cancelButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    SET_VIEW_ROUND_CORNER(view.cancelButton);
+    
+    view.titleLabel.textColor = COLOR_WHITE;    
+    view.messageLabel.textColor = COLOR_BROWN;
 
     return view;
+}
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (self.maxInputLen > 0 && range.location >= self.maxInputLen) {
+        return NO;
+    }
     
+    if (_allowInputEmpty == NO) {
+        int len = range.location - range.length + 1;
+        BOOL enabled = (len <= 0) ? NO : YES;
+        [self enableOkButton:enabled];
+    }
+    
+    return YES;
+}
+
+- (void)enableOkButton:(BOOL)enabled{
+    self.oKButton.enabled = enabled;
+    if (enabled) {
+        [self.oKButton setBackgroundColor:COLOR_YELLOW];
+    }else{
+        [self.oKButton setBackgroundColor:COLOR_LIGHT_YELLOW];
+    }
 }
 
 - (void)setTitle:(NSString *)title
@@ -254,171 +280,53 @@
     [self.titleLabel setText:title];
 }
 
-- (void)setMessage:(NSString *)message
-{
-    CGSize size = [message sizeWithFont:_messageLabel.font];
-    if (size.width > _messageLabel.frame.size.width) {
-        [self.messageLabel setTextAlignment:UITextAlignmentLeft];
-    }else{
-        [self.messageLabel setTextAlignment:UITextAlignmentCenter];
+- (void)setMessage:(NSString *)message{
+    
+    if ([LocaleUtils isChinese]) {
+        [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
+    }else {
+        [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
     }
-    [self.messageLabel setText:message];
-    [self resize];
+    
+    _messageLabel.text = message;
+    _messageLabel.numberOfLines = 0;
+    CGSize cSize = CGSizeMake(_messageLabel.frame.size.width, MESSAGE_LABEL_MAX_HEIGHT);
+    [_messageLabel wrapTextWithConstrainedSize:cSize];
+    [_messageLabel updateCenterX:self.contentView.bounds.size.width/2];
+    
+    [self layout];
 }
 
-- (IBAction)clickOk:(id)sender
+- (IBAction)clickOkButton:(id)sender
 {
     if (_clickOkBlock != nil) {
-        _clickOkBlock();
+        _clickOkBlock([self infoView]);
         self.clickOkBlock = nil;
-    } else if (_delegate && [_delegate respondsToSelector:@selector(clickOk:)]) {
-        [_delegate clickOk:self];
+    } else if (_delegate && [_delegate respondsToSelector:@selector(didClickOk:infoView:)]) {
+        [_delegate didClickOk:self infoView:[self infoView]];
     }
     [self disappear];
 }
 
-- (IBAction)clickBack:(id)sender
+- (IBAction)clickCancelButton:(id)sender
 {
-    if (_clickBackBlock != nil) {
-        _clickBackBlock();
-        self.clickBackBlock = nil;
-    } else if (_delegate && [_delegate respondsToSelector:@selector(clickBack:)]) {
-        [_delegate clickBack:self];
+    if (_clickCancelBlock != nil) {
+        _clickCancelBlock([self infoView]);
+        self.clickCancelBlock = nil;
+    } else if (_delegate && [_delegate respondsToSelector:@selector(didClickCancel:)]) {
+        [_delegate didClickCancel:self];
     }
     [self disappear];
 }
 
-- (IBAction)clickMask:(id)sender {
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(clickMask:)]) {
-        [_delegate clickMask:self];
-    }
+- (IBAction)clickCloseButton:(id)sender {
+
     [self disappear];
 }
 
+@end
 
-//+ (CommonDialog *)createDialogWithTitle:(NSString *)title
-//                                message:(NSString *)message
-//                                  style:(CommonDialogStyle)aStyle
-//                               delegate:(id<CommonDialogDelegate>)aDelegate
-//                                  theme:(CommonDialogTheme)theme
-//                           clickOkBlock:(DialogSelectionBlock)block1
-//                       clickCancelBlock:(DialogSelectionBlock)block2
-//{
-//    CommonDialog* dialog = [self createDialogWithTitle:title message:message style:aStyle delegate:aDelegate theme:theme];
-//    [dialog setClickOkBlock:block1];
-//    [dialog setClickBackBlock:block2];
-//    return dialog;
-//}
-
-
-//+ (CommonDialog *)createDialogWithStyle:(CommonDialogStyle)aStyle
-//                                  theme:(CommonDialogTheme)theme
-//{
-//
-//    CommonDialog* view = [self createDialogWithTheme:theme];
-//    if (view) {
-//        [view initButtonsWithStyle:aStyle];
-//        [view initButtonsWithTheme:theme];
-//        [view initTitlesWithTheme:theme];
-//        [view initViewByTheme:theme];
-//        view.tag = 0;
-//    }
-//    return view;
-//
-//}
-
-//+ (CommonDialog *)createDialogWithTitle:(NSString *)title
-//                                message:(NSString *)message
-//                                  style:(CommonDialogStyle)aStyle
-//                               delegate:(id<CommonDialogDelegate>)aDelegate
-//                                  theme:(CommonDialogTheme)theme
-//{
-//    CommonDialog* view = [CommonDialog createDialogWithStyle:aStyle theme:theme];
-//    view.delegate = aDelegate;
-//    [view setTitle:title];
-//    [view setMessage:message];
-//    return view;
-//}
-
-//+ (CommonDialog *)createDialogWithTheme:(CommonDialogTheme)theme
-//{
-//    CommonDialog* view;
-//    switch (theme) {
-//
-//        case CommonDialogThemeDraw: {
-//            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_DRAW];
-//        } break;
-//        case CommonDialogThemeStarry: {
-//            view = (CommonDialog*)[self createInfoViewByXibName:COMMON_DIALOG_THEME_STARRY];
-//        } break;
-//        default:
-//            PPDebug(@"<CommonDialog> theme %d do not exist",theme);
-//            view = nil;
-//    }
-//    return view;
-//}
-
-//- (void)initButtonsWithTheme:(CommonDialogTheme)theme
-//{
-//    DiceImageManager* diceImgManager = [DiceImageManager defaultManager];
-//    ShareImageManager* imgManager = [ShareImageManager defaultManager];
-//    switch (theme) {
-//        case CommonDialogThemeDice: {
-//            //init the button
-//            [self.messageLabel setNumberOfLines:5];
-//
-//            if ([LocaleUtils isChinese]) {
-//                [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
-//            }else {
-//                [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
-//            }
-//
-//            [self.backButton.titleLabel setText:NSLS(@"kCancel")];
-//            [self.oKButton.titleLabel setText:NSLS(@"kOK")];
-//
-//            [self.contentBackground setImage:[diceImgManager popupBackgroundImage]];
-//        } break;
-//
-//        case CommonDialogThemeDraw:
-//            [self.oKButton setBackgroundImage:[imgManager redImage] forState:UIControlStateNormal];
-//            [self.backButton setBackgroundImage:[imgManager greenImage] forState:UIControlStateNormal];
-//            [self.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-//            [self.backButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-//        default:
-//            break;
-//    }
-//}
-
-
-//- (void)initStarryTheme
-//{
-//    _shouldResize = YES;
-//    [self.contentBackground setImage:[CommonImageManager defaultManager].starryDialogBackgroundImage];
-//    [self.frontBackgroundImageView setImage:[CommonImageManager defaultManager].starryDialogBackgroundSideImage];
-//    [self.oKButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
-//    [self.backButton setBackgroundImage:[CommonImageManager defaultManager].starryDialogButtonBackgroundImage forState:UIControlStateNormal];
-//    [self.oKButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogClickImage withRate:0.8] forState:UIControlStateNormal];
-//    [self.backButton setImage:[UIImage shrinkImage:[CommonImageManager defaultManager].starryDialogCrossImage withRate:0.8] forState:UIControlStateNormal];
-//
-//}
-
-//- (void)initTitlesWithTheme:(CommonDialogTheme)theme
-//{
-//
-//}
-//
-//- (void)initViewByTheme:(CommonDialogTheme)theme
-//{
-//    switch (theme) {
-//        case CommonDialogThemeStarry:
-//            [self initStarryTheme];
-//            break;
-//
-//        default:
-//            break;
-//    }
-//}
+@interface DialogBGView : UIView
 
 @end
 
@@ -441,16 +349,15 @@
 
     
     [COLOR_GREEN setFill];
-    CGRect r = CGRectMake(0, 0, CGRectGetWidth(self.bounds), TITLE_LABEL_HEIGHT + RED_LINE_WIDTH);
+    CGRect r = CGRectMake(0, 0, CGRectGetWidth(self.bounds), TITLE_LABEL_HEIGHT + CONTENT_VIEW_INSERT);
     CGContextFillRect(ctx, r);
 
     
     [COLOR_RED setStroke];
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15];
     CGContextAddPath(ctx, path.CGPath);
-    CGContextSetLineWidth(ctx, RED_LINE_WIDTH * 2);
+    CGContextSetLineWidth(ctx, CONTENT_VIEW_INSERT * 2);
     CGContextStrokePath(ctx);
-
 }
 
 @end

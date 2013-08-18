@@ -123,13 +123,19 @@
     if (![[AccountManager defaultManager] hasEnoughBalance:group.price currency:PBGameCurrencyCoin]) {
 
         NSString *message = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"), group.price];
-        CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle") message:message style:CommonDialogStyleSingleButton delegate:self];
+        CommonDialog *noMoneyDialog = [CommonDialog createDialogWithTitle:NSLS(@"kCoinsNotEnoughTitle")
+                                                                  message:message
+                                                                    style:CommonDialogStyleSingleButton
+                                                                 delegate:self];
         noMoneyDialog.tag = NO_COIN_TAG;
         [noMoneyDialog showInView:self];
     }else{
         willBuyGroup = group;
         NSString *message = [NSString stringWithFormat:NSLS(@"kBuyColorDialogMessage"),group.price];
-        CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyColorDialogTitle") message:message style:CommonDialogStyleDoubleButton delegate:self];
+        CommonDialog *buyConfirmDialog = [CommonDialog createDialogWithTitle:NSLS(@"kBuyColorDialogTitle")
+                                                                     message:message
+                                                                       style:CommonDialogStyleDoubleButton
+                                                                    delegate:self];
         buyConfirmDialog.tag = BUY_CONFIRM_TAG;
         [buyConfirmDialog showInView:self];
     }
@@ -215,7 +221,7 @@
     self.backButton.enabled = YES;
 }
 
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     if (dialog.tag == BUY_CONFIRM_TAG && willBuyGroup) {
             
@@ -263,7 +269,9 @@
 
 - (void)buyColorFailed
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:NSLS(@"kBuyColorFailed") style:CommonDialogStyleSingleButton delegate:nil];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil
+                                                       message:NSLS(@"kBuyColorFailed")
+                                                         style:CommonDialogStyleSingleButton];
     [dialog showInView:self];
 }
 

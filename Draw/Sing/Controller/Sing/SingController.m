@@ -18,6 +18,7 @@
 #import "UserManager.h"
 #import "UITextView+WebCache.h"
 #import "SingImageManager.h"
+#import "CommonDialog.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -473,12 +474,10 @@ enum{
 - (IBAction)clickDescButton:(id)sender {
 
     PPDebug(@"clickDescButton");
-    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kEditOpusDesc") clickOK:^(NSString *inputStr) {
-
-        [_singOpus setDesc:inputStr];
-        
-    } clickCancel:^(NSString *inputStr) {
-        
+    
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kEditOpusDesc")];
+    [dialog setClickOkBlock:^(UITextField *tf) {
+        [_singOpus setDesc:tf.text];
     }];
     
     [dialog showInView:self.view];

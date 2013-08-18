@@ -7,7 +7,6 @@
 //
 
 #import "CommonCommentHeader.h"
-#import "UIButton+Extend.h"
 #import "PBOpus+Extend.h"
 
 @interface CommonCommentHeader()

@@ -58,13 +58,8 @@
 #define MAX_WIDTH_SEX_LABEL_IPAD 100/RATIO_LABEL_WIDTH_DIVIDE_TEXT_LENGTH
 #define MAX_WIDTH_SEX_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_SEX_LABEL_IPAD):(MAX_WIDTH_SEX_LABEL_IPHONE))
 
-//#define MAX_WIDTH_CITY_LABEL_IPHONE 
-//#define MAX_WIDTH_CITY_LABEL_IPAD 226
-//#define MAX_WIDTH_CITY_LABEL (([DeviceDetection isIPAD])?(MAX_WIDTH_CITY_LABEL_IPAD):(MAX_WIDTH_CITY_LABEL_IPHONE))
-
 #define MAX_SIZE_NAME_LABEL CGSizeMake(MAX_WIDTH_NAME_LABEL, CGFLOAT_MAX)
 #define MAX_SIZE_SEX_LABEL CGSizeMake(MAX_WIDTH_SEX_LABEL, CGFLOAT_MAX)
-//#define MAX_SIZE_CITY_LABEL CGSizeMake(MAX_WIDTH_CITY_LABEL, CGFLOAT_MAX)
 
 #define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE 4
 #define EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPAD EDGE_BETWEEN_NAME_LABEL_AND_MICRO_BLOG_VIEW_IPHONE*2
@@ -78,11 +73,10 @@
 {
     NSString *_selectedUserId;
     GameChatType _chatType;
-    InputDialog *_inputDialog;
 }
 
 @property (retain, nonatomic) NSString *selectedUserId;
-@property (retain, nonatomic) InputDialog *inputDialog;
+@property (retain, nonatomic) CommonDialog *inputDialog;
 
 - (void)configureExpressionScrollView;
 - (NSArray*)messages:(MessagesType)type;
@@ -105,7 +99,6 @@
 @synthesize chatInfoView;
 @synthesize chatInfoViewBgImageView;
 @synthesize selectedUserId = _selectedUserId;
-@synthesize inputDialog = _inputDialog;
 
 @synthesize avatarHolderView;
 @synthesize avatarView;
@@ -332,18 +325,18 @@
 - (void)showChatInputDialog
 {
     NSString *title = [NSString stringWithFormat:NSLS(@"kChatDialogTitle"), [self getUserNickName:_chatType userId:_selectedUserId]];
-    self.inputDialog = [InputDialog dialogWith:title delegate:self];
-    _inputDialog.targetTextField.placeholder = NSLS(@"kInputWhatYouWantToSay");
+    self.inputDialog = [CommonDialog createInputFieldDialogWith:title delegate:self];
+    _inputDialog.inputTextField.placeholder = NSLS(@"kInputWhatYouWantToSay");
     [_inputDialog showInView:self.view];
 }
 
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(CommonDialog *)dialog infoView:(UITextField *)infoView
 {
     [_inputDialog removeFromSuperview];
-    [self handleChatMessage:targetText];
+    [self handleChatMessage:infoView.text];
 }
 
-- (void)didClickCancel:(InputDialog *)dialog
+- (void)didClickCancel:(CommonDialog *)dialog
 {
     [_inputDialog removeFromSuperview];
 }

@@ -130,10 +130,12 @@
     updateRow = indexPath.row;
     CustomWord *customWord = [dataList objectAtIndex:updateRow];
     
-    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kUpdateWord") delegate:self];
+    
+    CommonDialog *inputDialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUpdateWord") delegate:self];
     inputDialog.tag = INPUTDIALOG_UPDATE_TAG;
-    inputDialog.targetTextField.text = customWord.word;
-    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    inputDialog.inputTextField.text = customWord.word;
+    inputDialog.inputTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    
     [inputDialog showInView:self.view];
 }
 
@@ -144,9 +146,11 @@
 
 
 - (IBAction)clickAddWordButton:(id)sender {    
-    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kInputWord") delegate:self];
+    
+    CommonDialog *inputDialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputWord") delegate:self];
     inputDialog.tag = INPUTDIALOG_ADD_TAG;
-    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    inputDialog.inputTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    
     [inputDialog showInView:self.view];
 }
 
@@ -160,44 +164,44 @@
 }
 
 #pragma mark - InputDialogDelegate
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(CommonDialog *)dialog infoView:(UITextField *)tf
 {
-    if ([targetText length] == 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kInputWordEmpty"),targetText] delayTime:2 isHappy:NO];
+    if ([tf.text length] == 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kInputWordEmpty"),tf.text] delayTime:2 isHappy:NO];
         return;
     }
     
-    if ([targetText length] > 7) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),targetText] delayTime:2 isHappy:NO];
+    if ([tf.text length] > 7) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kWordTooLong"),tf.text] delayTime:2 isHappy:NO];
         return;
     }
     
-    if (!NSStringIsValidChinese(targetText)){
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),targetText] delayTime:2 isHappy:NO];
+    if (!NSStringIsValidChinese(tf.text)){
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kIllegalCharacter"),tf.text] delayTime:2 isHappy:NO];
         return;
     }
     
     
     if (dialog.tag == INPUTDIALOG_ADD_TAG) {
-        if ([[CustomWordManager defaultManager] isExist:targetText]) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),targetText] delayTime:2 isHappy:NO];
+        if ([[CustomWordManager defaultManager] isExist:tf.text]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),tf.text] delayTime:2 isHappy:NO];
             return;
         }
-        [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:PBWordTypeCustom] word:targetText language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
+        [[CustomWordManager defaultManager] createCustomWordWithType:[NSNumber numberWithInt:PBWordTypeCustom] word:tf.text language:[NSNumber numberWithInt:ChineseType] level:[NSNumber numberWithInt:WordLeveLMedium]];
         
-        [[UserService defaultService] commitWords:targetText viewController:nil];
+        [[UserService defaultService] commitWords:tf.text viewController:nil];
     }
     else if (dialog.tag == INPUTDIALOG_UPDATE_TAG){
         CustomWord *customWord = [dataList objectAtIndex:updateRow];
-        if ([targetText isEqualToString:customWord.word]) {
+        if ([tf.text isEqualToString:customWord.word]) {
             return ;
-        }else  if ([[CustomWordManager defaultManager] isExist:targetText]) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),targetText] delayTime:2 isHappy:NO];
+        }else  if ([[CustomWordManager defaultManager] isExist:tf.text]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kExistWord"),tf.text] delayTime:2 isHappy:NO];
             return;
         }
-        [[CustomWordManager defaultManager] update:customWord.word newWord:targetText];
+        [[CustomWordManager defaultManager] update:customWord.word newWord:tf.text];
         
-        [[UserService defaultService] commitWords:targetText viewController:nil];
+        [[UserService defaultService] commitWords:tf.text viewController:nil];
     }
     
     self.dataList = [[CustomWordManager defaultManager] findAllWords];

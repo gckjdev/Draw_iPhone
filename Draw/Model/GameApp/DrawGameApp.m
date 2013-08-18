@@ -200,22 +200,7 @@
     return @"DrawHomeHeaderPanel";
 }
 
-- (NSString*)getCommonDialogXibName
-{
-    return @"CommonDialog";
-}
-- (NSString*)getInputDialogXibName
-{
-    return @"InputDialog";
-}
-- (NSString*)getPasswordDialogXibName
-{
-    return @"PassWordDialog";
-}
-- (NSString*)getRoomPasswordDialogXibName
-{
-    return @"RoomPasswordDialog";
-}
+
 
 - (id<ImageManagerProtocol>)getImageManager
 {

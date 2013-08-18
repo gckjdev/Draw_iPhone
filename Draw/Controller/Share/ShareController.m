@@ -550,7 +550,7 @@ typedef enum{
 
 
 #pragma mark - Common Dialog Delegate
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     
     TableTab *myTab = [_tabManager tabForID:TabTypeMine];
@@ -600,11 +600,6 @@ typedef enum{
         [self loadDrafts];
     }
     [self reloadView];
-}
-
-- (void)clickBack:(CommonDialog *)dialog
-{
-    
 }
 
 #pragma mark - table view delegate

@@ -398,13 +398,7 @@ enum {
         [fc hideActivity];
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCleanCache")
                                                            message:[NSString stringWithFormat:NSLS(@"kCleanCacheSucc"), fileSize/(1024.0*1024)]
-                                                             style:CommonDialogStyleSingleButton
-                                                          delegate:nil
-                                                      clickOkBlock:^{
-                                                      }
-                                                  clickCancelBlock:^{
-                                                      //
-                                                  }];
+                                                             style:CommonDialogStyleSingleButton];
         [dialog showInView:self.view];
     }];
 }

@@ -15,9 +15,9 @@
 
 + (id)createView
 {
-    CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kUpdateTips") message:NSLS(@"kVersionIsOld") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [UIUtils openApp:[GameApp appId]];
-    } clickCancelBlock:^{
+    CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kUpdateTips") message:NSLS(@"kVersionIsOld") style:CommonDialogStyleDoubleButton];
+    [view setClickOkBlock:^(UILabel *label){
+            [UIUtils openApp:[GameApp appId]];
     }];
     
     return view;
