@@ -44,7 +44,7 @@
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, InputAlertViewDelegate, MWPhotoBrowserDelegate, DrawLayerManagerDelegate, CMPopTipViewDelegate, DrawToolPanelDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, MWPhotoBrowserDelegate, DrawLayerManagerDelegate, CMPopTipViewDelegate, DrawToolPanelDelegate> {
     
 }
 

@@ -29,7 +29,6 @@ typedef enum{
     DrawFeed* _selectedFeed;
     BOOL canSellOpus;
 }
-//@property (retain, nonatomic) InputAlertView* inputAlert;
 @property (retain, nonatomic) DrawFeed* currentSelectFeed;
 
 @end
