@@ -41,6 +41,12 @@
     [view.layer setMasksToBounds:YES];    \
 }
 
+#define SET_VIEW_ROUND_CORNER_WIDTH(view, width) \
+{           \
+[view.layer setCornerRadius:width];       \
+[view.layer setMasksToBounds:YES];    \
+}
+
 #define COLOR_WHITE [UIColor whiteColor] //Cell
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
 
