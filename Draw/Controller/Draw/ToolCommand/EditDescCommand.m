@@ -7,7 +7,6 @@
 //
 
 #import "EditDescCommand.h"
-//#import "InputAlertView.h"
 #import "OfflineDrawViewController.h"
 #import "CommonDialog.h"
 
@@ -53,28 +52,11 @@
     AnalyticsReport(DRAW_CLICK_EDIT_DESC);
 }
 
-//- (void)comfirm:(id)msg
-//{
-//    if (isLittleGeeAPP() && [self.inputAlertView hasSubjectText]) {
-//        [self changeDrawWord:self.inputAlertView.subjectText];
-//    }
-//    [self changeDesc:self.inputAlertView.contentText];
-//    [self performSelector:@selector(hidePopTipView) withObject:nil afterDelay:0.1];
-//}
-
-//- (void)cancel
-//{
-////    [self changeDesc:self.inputAlertView.contentText];
-//    [self performSelector:@selector(hidePopTipView) withObject:nil afterDelay:0.1];
-//}
-
 - (void)showPopTipView
 {
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
     CommonDialog *dialog = nil;
     if (isLittleGeeAPP()) {
-//        self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc") content:oc.opusDesc target:self commitSeletor:@selector(comfirm:) cancelSeletor:@selector(cancel) hasSNS:NO hasSubject:YES];
-//        [self.inputAlertView setSubjectText:oc.word.text];
         
         InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
         v.titleInputField.text = oc.word.text;

@@ -23,7 +23,7 @@
 #import "WordFilterService.h"
 #import "AutoCreateViewByXib.h"
 
-#define GAP (ISIPAD ? 24 : 12)
+#define GAP (ISIPAD ? 15 : 8)
 
 @interface InputAlertView ()
 
@@ -71,6 +71,14 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
     
     [self.shareToSinaLabel setText:NSLS(@"kSinaWeibo")];
     [self.shareToQQLabel setText:NSLS(@"kTencentWeibo")];
+    
+    SET_VIEW_ROUND_CORNER(self.titleInputField);
+    [self.titleInputField.layer setBorderWidth:TEXT_VIEW_BORDER_WIDTH];
+    [self.titleInputField.layer setBorderColor:[COLOR_YELLOW CGColor]];
+    
+    SET_VIEW_ROUND_CORNER(self.contentInputView);
+    [self.contentInputView.layer setBorderWidth:TEXT_VIEW_BORDER_WIDTH];
+    [self.contentInputView.layer setBorderColor:[COLOR_YELLOW CGColor]];
     
     CGFloat originY;
     switch (_type) {

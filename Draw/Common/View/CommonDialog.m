@@ -27,15 +27,8 @@
 #define FONT_INPUT_TEXT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
 
 #define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
-#define BUTTON_WIDTH (ISIPAD ? 185 : 85)
-#define BUTTON_HEIGHT (ISIPAD ? 65 : 30)
 
 #define DIALOG_CORNER_RADIUS    (ISIPAD ? 30 : 15)
-#define TEXTVIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
-#define BUTTON_CORNER_RADIUS    TEXTVIEW_CORNER_RADIUS
-
-#define TEXTVIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
-
 
 @interface CommonDialog()<UITextFieldDelegate, UITextViewDelegate>
 
@@ -134,7 +127,6 @@
 {    
     CGFloat centerX = self.contentView.frame.size.width/2;
     
-    CGFloat originX = 0;
     CGFloat originY = CONTENT_VIEW_INSERT;
 
     [_titleLabel updateCenterX:centerX];
@@ -147,20 +139,13 @@
     [infoView updateOriginY:(originY)];
     
     originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
-    [self.oKButton updateWidth:BUTTON_WIDTH];
-    [self.cancelButton updateWidth:BUTTON_WIDTH];
-    [self.oKButton updateHeight:BUTTON_HEIGHT];
-    [self.cancelButton updateHeight:BUTTON_HEIGHT];
+
     [self.oKButton updateOriginY:originY];
     [self.cancelButton updateOriginY:(originY)];
     
-    CGFloat gap = (CGRectGetWidth(self.contentView.frame)-2*CONTENT_VIEW_INSERT-2*BUTTON_WIDTH)/4;
-    originX = CONTENT_VIEW_INSERT + gap;
-    [self.cancelButton updateOriginX:originX];
-    originX = CONTENT_VIEW_INSERT + gap + BUTTON_WIDTH + 2 * gap;
-    [self.oKButton updateOriginX:originX];
-    
-    [infoView updateWidth:(CGRectGetMaxX(self.oKButton.frame) - CGRectGetMinX(self.cancelButton.frame))];
+    if (_style == CommonDialogStyleSingleButton) {
+        [self.oKButton updateCenterX:centerX];
+    }
     
     // update content view height
     CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
@@ -298,13 +283,13 @@
     view.messageLabel.font = FONT_MESSAGE_LABEL;
     
     view.inputTextField.font = FONT_INPUT_TEXT_FIELD;
-    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextField, TEXTVIEW_CORNER_RADIUS);
-    view.inputTextField.layer.borderWidth = TEXTVIEW_BORDER_WIDTH;
+    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextField, TEXT_VIEW_CORNER_RADIUS);
+    view.inputTextField.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     view.inputTextField.layer.borderColor = [COLOR_YELLOW CGColor];
     
     view.inputTextView.font = FONT_INPUT_TEXT_VIEW;
-    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextView, TEXTVIEW_CORNER_RADIUS);
-    view.inputTextView.layer.borderWidth = TEXTVIEW_BORDER_WIDTH;
+    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextView, TEXT_VIEW_CORNER_RADIUS);
+    view.inputTextView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     view.inputTextView.layer.borderColor = [COLOR_YELLOW CGColor];
 
     return view;

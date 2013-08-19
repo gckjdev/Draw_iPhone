@@ -1165,7 +1165,7 @@
         v = [InputAlertView createWithType:type];
                      
     } else {
-        v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
+        v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContentWithSNS];
     }
     
     [v.titleInputField setText:self.word.text];
@@ -1173,8 +1173,6 @@
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
     
-//    dialog.tag = DIALOG_TAG_COMPOSE_DIALOG;
-//    dialog.delegate = self;
     [dialog showInView:self.view];
     
     [dialog setClickOkBlock:^(id infoView){
@@ -1269,7 +1267,7 @@
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_ESCAPE;
     }else{
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButtonWithCross delegate:self];
         [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
         [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
         dialog.tag = DIALOG_TAG_SAVETIP;
