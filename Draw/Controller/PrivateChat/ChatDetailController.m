@@ -78,21 +78,7 @@
 @synthesize delegate = _delegate;
 
 - (void)reloadTableView
-{
-    /*
-    NSArray *temp = [self.messageList sortedArrayUsingComparator:^(id obj1,id obj2){
-        NSDate *date1 = [(PPMessage *)obj1 createDate];
-        NSDate *date2 = [(PPMessage *)obj2 createDate];
-        if ([date1 timeIntervalSince1970] > [date2 timeIntervalSince1970]) {
-            return NSOrderedDescending;
-        }
-        return NSOrderedAscending;
-        
-    } ];
-    self.messageList = [NSMutableArray arrayWithArray:temp];
-    temp = nil;
-    */
-    
+{    
     self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
     [[self dataTableView] reloadData];
 }
@@ -102,36 +88,9 @@
     return self.messageStat.friendId;
 }
 
-/*
-- (void)appendMessageList:(NSArray *)list
-{
-    if ([list count] == 0) {
-        return;
-    }
-    if ([_messageList count] == 0) {
-        [_messageList addObjectsFromArray:list];
-        return;
-    }
-    NSMutableArray *repeatList = [NSMutableArray array];
-    for (PPMessage *nMessage in list) {
-        for (PPMessage *message in _messageList) {
-            if ([message.messageId isEqualToString:nMessage.messageId]) {
-                [repeatList addObject:nMessage];
-                break;
-            }
-        }
-    }
-    PPDebug(@"repeatList count = %d", [repeatList count]);
-    [_messageList addObjectsFromArray:list];
-    [_messageList removeObjectsInArray:repeatList];
-}
-*/
-
 #define GROUP_INTERVAL 60 * 5
 - (BOOL)messageShowTime:(PPMessage *)message row:(int)row
 {
-//    NSInteger index = [self.messageList indexOfObject:message];
-//    if (index == 0) {
     if (row == 0 || (row-1) < ([_messageList count] -1) ){
         return YES;
     }
@@ -196,41 +155,6 @@
 
 #pragma mark read && write data into files
 
-- (void)initListWithLocalData
-{
-    // TODO check
-//    NSArray* list =  //[PPMessageManager messageListForFriendId:self.fid];
-//    PPDebug(@"<initListWithLocalData> list count = %d", [list count]);
-//    if ([list count] != 0) {
-//        [self appendMessageList:list];
-
-//        [self reloadTableView];
-        [self tableViewScrollToBottom];
-        
-        //reSend the sendding messages...
-        // TODO resent sending message, move to chat service
-        /*
-        for (PPMessage *message in list) {
-            if (message.status == MessageStatusSending) {
-                [[ChatService defaultService] sendMessage:message delegate:self];
-            }
-        }
-        */
-//    }
-}
-
-//- (void)bgRunBlock:(dispatch_block_t)block
-//{
-//    block();
-//
-//}
-//- (void)bgSaveMessageList
-//{
-//    [PPMessageManager saveFriend:self.fid messageList:self.messageList];
-//}
-
-//235 - 68 
-
 #define RECT_INPUT_TEXT_VIEW        ([DeviceDetection isIPAD] ? CGRectMake(167, 20, 579, 50) : CGRectMake(75, 8, 232, 30))
 #define RECT_INPUT_TEXT_BACKGROUND   ([DeviceDetection isIPAD] ? CGRectMake(158, 11, 597, 68) : CGRectMake(69, 5, 245, 36))
 
@@ -290,7 +214,6 @@
     [super viewDidLoad];
 
     [self initViews];
-    [self initListWithLocalData];
     self.unReloadDataWhenViewDidAppear = YES;
     [self updateLocateButton];
     
@@ -568,117 +491,6 @@
     [self updateTableView:self.dataTableView withBottomLine:yLine];
 
 }
-
-
-#pragma mark sendMessage
-/*
-- (void)constructMessage:(PPMessage *)message
-{
-    [message setFriendId:_messageStat.friendId];
-    [message setStatus:MessageStatusSending];
-    [message setSourceType:SourceTypeSend];
-    [message setCreateDate:[NSDate date]];    
-}
-
-- (void)sendTextMessage:(NSString *)text
-{
-    // load new message to avoid missing new message while staying in send message mode
-    [self loadNewMessage:NO];
-    
-    TextMessage *message = [[TextMessage alloc] init];
-    [self constructMessage:message];
-    [message setText:text];
-    [message setMessageType:MessageTypeText];
-    [[ChatService defaultService] sendMessage:message delegate:self];
-    [self.messageList addObject:message];
-    [message release];
-    [self.dataTableView reloadData];
-    [self tableViewScrollToBottom];
-}
-- (void)sendDrawMessage:(NSMutableArray *)drawActionList canvasSize:(CGSize)size
-{
-    // load new message to avoid missing new message while staying in send message mode
-    [self loadNewMessage:NO];
-
-    DrawMessage *message = [[[DrawMessage alloc] init] autorelease];
-    [self constructMessage:message];
-    [message setMessageType:MessageTypeDraw];
-    [message setDrawActionList:drawActionList];
-    [message setCanvasSize:size];
-    [[ChatService defaultService] sendMessage:message delegate:self];    
-    [self.messageList addObject:message];
-    [self.dataTableView reloadData];
-    [self tableViewScrollToBottom];
-}
-
-
-- (void)sendImage:(UIImage *)image
-{
-    [self loadNewMessage:NO];
-    
-    ImageMessage *message = [[[ImageMessage alloc] init] autorelease];
-    [self constructMessage:message];
-    [message setMessageType:MessageTypeImage];
-    [message setText:NSLS(@"kImageMessage")];
-    [message setImage:image];
-    
-    //when fail or sending, url save local path, thumburl save key
-    [message setThumbImageUrl:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]];
-    [PPMessageManager saveImageToLocal:message.image key:message.thumbImageUrl];
-    [message setImageUrl:[PPMessageManager path:message.thumbImageUrl]];
-    
-    [[ChatService defaultService] sendMessage:message delegate:self];
-    [self.messageList addObject:message];
-    [self.dataTableView reloadData];
-    [self tableViewScrollToBottom];
-}
-
-
-- (void)sendAskLocationMessage:(double)latitude
-                     longitude:(double)longitude
-{
-    [self loadNewMessage:NO];
-    
-    LocationAskMessage *message = [[[LocationAskMessage alloc] init] autorelease];
-    [message setText:NSLS(@"kAskLocationMessage")];
-    [message setLatitude:latitude];
-    [message setLongitude:longitude];
-    [message setMessageType:MessageTypeLocationRequest];
-    [self constructMessage:message];
-    [[ChatService defaultService] sendMessage:message delegate:self];
-    [self.messageList addObject:message];
-    
-    [self.dataTableView reloadData];
-    [self tableViewScrollToBottom];
-}
-
-- (void)sendReplyLocationMessage:(double)latitude
-                       longitude:(double)longitude
-                    reqMessageId:(NSString *)reqMessageId
-                     replyResult:(NSInteger)replyResult
-{
-    [self loadNewMessage:NO];    
-    LocationReplyMessage *message = [[[LocationReplyMessage alloc] init] autorelease];
-    [message setMessageType:MessageTypeLocationResponse];
-    [message setReqMessageId:reqMessageId];
-    [message setReplyResult:replyResult];
-    
-    if (replyResult == ACCEPT_ASK_LOCATION) {
-        [message setText:NSLS(@"kReplyLocationMessage")];
-        [(LocationReplyMessage*)message setLatitude:latitude];
-        [(LocationReplyMessage*)message setLongitude:longitude];
-    } else {
-        [message setText:NSLS(@"kRejectLocationMessage")];
-    }
-    
-    [self constructMessage:message];
-    [[ChatService defaultService] sendMessage:message delegate:self];
-    [self.messageList addObject:message];
-    
-    [self.dataTableView reloadData];
-    [self tableViewScrollToBottom];
-}
-*/
 
 #pragma mark - OfflineDrawDelegate methods
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
@@ -1062,18 +874,7 @@
     _showingActionSheet = NO;
     if (_asIndexDelete == buttonIndex) {
         
-        [[ChatService defaultService] deleteMessage:_selectedMessage];
-        
-//        [[ChatService defaultService] deleteMessage:self
-//                                      messageList:[NSArray arrayWithObject:_selectedMessage]];
-
-        
-//        NSInteger row = [self.messageList indexOfObject:_selectedMessage];
-//        NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:0];
-//        NSArray *indexPaths = [NSArray arrayWithObject:path];
-//        [self.messageList removeObject:_selectedMessage];
-//        [self.dataTableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-        
+        [[ChatService defaultService] deleteMessage:_selectedMessage];                
         [self reloadTableView];
         
     }else if(_asIndexCopy == buttonIndex && _selectedMessage.messageType == MessageTypeText)
@@ -1089,9 +890,6 @@
         [self showLocation:_selectedMessage];
     }else if(_asIndexResend == buttonIndex){
         
-        // TODO change status shall be in chat service
-//        [[ChatService defaultService] sendMessage:_selectedMessage delegate:self];
-
         [[ChatService defaultService] sendMessage:_selectedMessage];
         
         [self reloadTableView];
@@ -1112,18 +910,6 @@
 {
     return 10;
 }
-
-//#define LAST_MESSAGE_ID_KEY     @"LAST_MESSAGE_ID_KEY"
-//
-//- (void)saveLastMessageId:(NSString*)messageId
-//{
-//    [[NSUserDefaults standardUserDefaults] setObject:messageId forKey:LAST_MESSAGE_ID_KEY];
-//}
-//
-//- (NSString*)loadLastMessageId
-//{
-//    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_MESSAGE_ID_KEY];
-//}
 
 - (NSString *)lastMessageId
 {
@@ -1152,46 +938,15 @@
 - (void)updateTitleForLoading
 {
     [[CommonTitleView titleView:self.view] showLoading:NSLS(@"kLoadingMessage")];
-    
-    /*
-    self.titleLabel.text = NSLS(@"kLoadingMessage");
-    
-    if (self.loadingActivityView == nil){
-        self.loadingActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        self.loadingActivityView.frame = self.refreshButton.frame;
-        
-        self.loadingActivityView.frame = [[CommonTitleView titleView:self.view] rightButtonFrame];
-
-    }
-    [self.view addSubview:self.loadingActivityView];
-    [self.loadingActivityView startAnimating];
-
-    self.refreshButton.hidden = YES;
-    
-    [[CommonTitleView titleView:self.view] hideRightButton];
-     */
 }
 
 - (void)clearTitleForLoading
 {
     [[CommonTitleView titleView:self.view] hideLoading];
-    
-//    self.titleLabel.text = self.messageStat.friendNickName;
-//    
-//    [self.loadingActivityView stopAnimating];
-//    [self.loadingActivityView removeFromSuperview];
-//
-//    self.refreshButton.hidden = NO;
-//
-//    [[CommonTitleView titleView:self.view] showRightButton];
-
 }
 
 - (void)loadNewMessage:(BOOL)showActivity
 {
-//    if (showActivity) {
-////        [self showActivityWithText:NSLS(@"kLoading")];
-//    }
     
     [self updateTitleForLoading];
     
@@ -1200,13 +955,7 @@
                                           forward:YES
                                             limit:[self loadNewDataCount]];
     
-    /*
-    [[ChatService defaultService] getMessageList:self
-                                    friendUserId:self.fid
-                                 offsetMessageId:self.lastMessageId 
-                                         forward:YES 
-                                           limit:[self loadNewDataCount]];
-    */
+ 
 }
 - (void)loadMoreMessage
 {
@@ -1217,11 +966,6 @@
                                           forward:NO
                                             limit:[self loadMoreDataCount]];
     
-//    [[ChatService defaultService] getMessageList:self 
-//                                    friendUserId:self.fid
-//                                 offsetMessageId:self.firstMessageId 
-//                                         forward:NO 
-//                                           limit:[self loadMoreDataCount]];
 }
 
 - (void)tableViewScrollToTop

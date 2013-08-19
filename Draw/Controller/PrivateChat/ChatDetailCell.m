@@ -250,7 +250,6 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
             {
                 message.thumbImageSize = image.size;
                 message.hasCalSize = YES;
-//                [self.delegate didMessage:message loadImage:image];
             }
             [self.contentButton setImage:image forState:UIControlStateNormal];            
 
@@ -259,14 +258,7 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
 
         }];
         
-//        [self.contentButton setImageWithURL:url
-//                           placeholderImage:[[ShareImageManager defaultManager] placeholderPhoto]
-//                                    success:^(UIImage *image, BOOL cached) {
-//                                        
-//                                        
-//                                    }
-//                                    failure:^(NSError *error) {
-//                                    }];
+
     }
 }
 
