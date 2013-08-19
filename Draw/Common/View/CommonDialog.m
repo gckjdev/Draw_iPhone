@@ -15,18 +15,19 @@
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
 #define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 654 : 300)
 
-#define GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW (ISIPAD ? 22 : 10)
-#define GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON (ISIPAD ? 22 : 10)
+#define GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW (ISIPAD ? 30 : 10)
+#define GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON (ISIPAD ? 30 : 10)
 #define GAP_Y_BETWEEN_BUTTON_AND_BOTTOM (ISIPAD ? 22 : 10)
 
 
 #define FONT_TITLE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 36 : 18)]
 #define FONT_MESSAGE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
 #define FONT_INPUT_TEXT_FIELD [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
+#define FONT_INPUT_TEXT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
 
 #define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
 
-@interface CommonDialog()<UITextFieldDelegate>
+@interface CommonDialog()<UITextFieldDelegate, UITextViewDelegate>
 
 @end
 
@@ -89,6 +90,18 @@
     view.type = CommonDialogTypeInputField;
     [view.inputTextField becomeFirstResponder];
     view.inputTextField.delegate = view;
+    view.allowInputEmpty = YES;
+    [view layout];
+    return view;
+}
+
++ (CommonDialog *)createInputViewDialogWith:(NSString *)title{
+    
+    CommonDialog* view = [CommonDialog createDialogWithStyle:CommonDialogStyleDoubleButton];
+    [view setTitle:title];
+    view.type = CommonDialogTypeInputTextView;
+    view.inputTextView.delegate = view;
+    [view.inputTextView becomeFirstResponder];
     view.allowInputEmpty = YES;
     [view layout];
     return view;
@@ -198,7 +211,6 @@
             
             break;
 
-            
         default:
             break;
     }
@@ -262,6 +274,14 @@
     view.messageLabel.font = FONT_MESSAGE_LABEL;
     
     view.inputTextField.font = FONT_INPUT_TEXT_FIELD;
+    SET_VIEW_ROUND_CORNER(view.inputTextField);
+    view.inputTextField.layer.borderWidth = (ISIPAD ? 8 : 4);
+    view.inputTextField.layer.borderColor = [COLOR_YELLOW CGColor];
+    
+    view.inputTextView.font = FONT_INPUT_TEXT_VIEW;
+    SET_VIEW_ROUND_CORNER(view.inputTextView);
+    view.inputTextView.layer.borderWidth = (ISIPAD ? 8 : 4);
+    view.inputTextView.layer.borderColor = [COLOR_YELLOW CGColor];
 
     return view;
 }
@@ -281,6 +301,23 @@
     
     return YES;
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    
+    if (self.maxInputLen > 0 && range.location >= self.maxInputLen) {
+        return NO;
+    }
+    
+    if (_allowInputEmpty == NO) {
+        int len = range.location - range.length + 1;
+        BOOL enabled = (len <= 0) ? NO : YES;
+        [self enableOkButton:enabled];
+    }
+    
+    return YES;
+}
+
+
 
 - (void)enableOkButton:(BOOL)enabled{
     self.oKButton.enabled = enabled;

@@ -1071,6 +1071,9 @@
     return [MobClickUtils getBoolValueByKey:@"ENABLE_WORD_FILTER" defaultValue:YES];
 }
 
++ (int)getMaxLengthOfDrawDesc{
+    return [MobClickUtils getIntValueByKey:@"MAX_LENGTH_OF_DRAW_DESC" defaultValue:4096];
+}
 
 
 @end

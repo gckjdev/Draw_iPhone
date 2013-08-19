@@ -23,7 +23,6 @@
 #import "MWPhotoBrowser.h"
 #import "CMPopTipView.h"
 #import "DrawToolPanel.h"
-//#import "CommonItemInfoView.h"
 
 @class Word;
 @class ShareImageManager;

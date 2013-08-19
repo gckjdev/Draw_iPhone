@@ -74,6 +74,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
 + (CommonDialog *)createInputFieldDialogWith:(NSString *)title
                                     delegate:(id<CommonDialogDelegate>)delegate;
 
++ (CommonDialog *)createInputViewDialogWith:(NSString *)title;
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                              customView:(UIView *)customView

@@ -209,16 +209,15 @@
     }
     if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:NO atHorizon:POP_MESSAGE_HORIZON_OFFSET];
-        //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
         
     }
     if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
-        //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+
     }
     if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
-        //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] title:nil];
+
         
     }
 

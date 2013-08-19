@@ -32,14 +32,12 @@
 #import "TimeUtils.h"
 #import "UIImageView+WebCache.h"
 #import "CommonMessageCenter.h"
-#import "InputAlertView.h"
 #import "GeographyService.h"
 #import "UserSettingCell.h"
 
 
 enum{
     SECTION_USER = 0,
-//    SECTION_REMOVE_AD,
     SECTION_ACCOUNT,
     SECTION_GUESSWORD,
     SECTION_SOUND,
@@ -66,6 +64,7 @@ enum {
 #define DIALOG_TAG_REBIND_QQ        201206281
 #define DIALOG_TAG_REBIND_SINA      201206282
 #define DIALOG_TAG_REBIND_FACEBOOK  201206283
+#define DIALOG_TAG_SIGNATURE  201206284
 
 @interface UserSettingController()<PassWordDialogDelegate>
 
@@ -75,8 +74,6 @@ enum {
 - (void)askRebindFacebook;
 - (void)askRebindQQ;
 - (void)askRebindSina;
-
-@property (retain, nonatomic) InputAlertView* inputAlertView;
 
 @end
 
@@ -101,7 +98,6 @@ enum {
     PPRelease(nicknameLabel);
     PPRelease(expAndLevelLabel);
     PPRelease(backgroundImage);
-    PPRelease(_inputAlertView);
     [super dealloc];
 }
 
@@ -732,9 +728,14 @@ enum {
         }else if (row == rowOfBloodGroup) {
             [self askSetBloodGroup];
         } else if (row == rowOfSignature) {
-            self.inputAlertView = [InputAlertView inputAlertViewWith:NSLS(@"kInputSignature") content:_pbUserBuilder.signature target:self commitSeletor:@selector(inputSignatureFinish) cancelSeletor:nil hasSNS:NO];
-            [self.inputAlertView setMaxInputLen:[ConfigManager getSignatureMaxLen]];
-            [self.inputAlertView showInView:self.view animated:YES];
+            
+            CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kInputSignature")];
+            dialog.inputTextView.text = _pbUserBuilder.signature;
+            dialog.delegate = self;
+            [dialog setMaxInputLen:[ConfigManager getSignatureMaxLen]];
+            [dialog showInView:self.view];
+            dialog.tag = DIALOG_TAG_SIGNATURE;
+            
         }else if (row == rowOfPrivacy) {
             [self askSetPrivacy];
         }else if (row == rowOfCustomBg) {
@@ -758,15 +759,14 @@ enum {
     }
     else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage){
+            
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLanguageSelection" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kChinese") otherButtonTitles:NSLS(@"kEnglish"), nil];
-            //        LanguageType type = [userManager getLanguageType];
             [actionSheet setDestructiveButtonIndex:_pbUserBuilder.guessWordLanguage - 1];
             [actionSheet showInView:self.view];
             actionSheet.tag = LANGUAGE_TAG;
             [actionSheet release]; 
         }else if(row == rowOfLevel){
 
-            
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) 
                                                                      delegate:self 
                                                             cancelButtonTitle:NSLS(@"kCancel") 
@@ -778,12 +778,14 @@ enum {
             actionSheet.tag = LEVEL_TAG;
             [actionSheet release];    
         }else if(row == rowOfCustomWord){
+            
             MyWordsController *controller = [[MyWordsController alloc] init];
             [self.navigationController pushViewController:controller animated:YES];
             [controller release];
         }
     }
     else if (section == SECTION_SOUND) {
+        
         if(row == rowOfSoundSwitcher) {
             //no action
         }else if (row == rowOfMusicSettings) {
@@ -958,13 +960,6 @@ enum {
         [actionSheet setDestructiveButtonIndex:_pbUserBuilder.openInfoType];
     }
     [actionSheet showInView:self.view];
-}
-
-- (void)inputSignatureFinish
-{
-    [_pbUserBuilder setSignature:self.inputAlertView.contentText];
-    hasEdited = YES;
-    [self.dataTableView reloadData];
 }
 
 #define FOLLOW_SINA_KEY @"FOLLOW_SINA_KEY"
@@ -1294,6 +1289,13 @@ enum {
             }
             [self.dataTableView reloadData];
             break;
+            
+        case DIALOG_TAG_SIGNATURE:
+            
+            [_pbUserBuilder setSignature:dialog.inputTextView.text];
+            hasEdited = YES;
+            [self.dataTableView reloadData];
+            break;
 
             
         default:
@@ -1332,14 +1334,6 @@ enum {
 }
 
 #pragma mark - location delegate
-
-- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
-{
-    if (!ISIPAD) {
-        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
-        [self.inputAlertView adjustWithKeyBoardRect:keyboardRect];
-    }
-}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     [self hideActivity];

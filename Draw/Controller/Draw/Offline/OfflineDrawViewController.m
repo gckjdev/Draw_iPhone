@@ -1311,17 +1311,7 @@
 - (BOOL)isSubjectValid:(NSString *)subjectText
 {
     if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
-//        if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
-//            if (!NSStringIsValidChinese(subjectText)) {
-//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-//                return NO;
-//            }
-//        } else if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-//            if(!NSStringISValidEnglish(subjectText)) {
-//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyEnglishTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-//                return NO;
-//            }
-//        }
+
         if (!NSStringIsValidChinese(subjectText)) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
             return NO;
