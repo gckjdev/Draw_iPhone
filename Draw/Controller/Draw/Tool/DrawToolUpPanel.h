@@ -9,37 +9,47 @@
 #import "DrawToolPanel.h"
 #import "DrawView.h"
 #import "MyFriend.h"
+#import "PPTableViewCell.h"
 
-@interface DrawToolUpPanel : DrawToolPanel
+@class DrawToolUpPanelCell;
 
-@property (assign, nonatomic) BOOL isVisable;
+@protocol DrawToolUpPanelCellDelegate <NSObject>
 
+- (void)didClickCellControl:(UIControl *)control atCell:(DrawToolUpPanelCell *)cell;
+- (void)didClickAccessor:(UIButton *)accessor atCell:(DrawToolUpPanelCell *)cell;
 
-@property (retain, nonatomic) IBOutlet UIButton* copyPaint;
+@end
+
+@interface DrawToolUpPanelCell : PPTableViewCell
+{
+    
+}
+@property (retain, nonatomic) IBOutlet UIControl *control;
+@property (retain, nonatomic) IBOutlet UIImageView *icon;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UIButton *copyPaintPicker;
-@property (retain, nonatomic) IBOutlet UILabel *drawToUserNickNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *copyPaintLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (retain, nonatomic) IBOutlet UIButton *accessButton;
+@property (assign, nonatomic) int type;
+@property (retain, nonatomic) IBOutlet UILabel *subject;
+- (IBAction)clickAccessButton:(id)sender;
+- (IBAction)clickControl:(id)sender;
 
-@property (retain, nonatomic) IBOutlet UIButton *canvasSize;
-@property (retain, nonatomic) IBOutlet UIButton *grid;
-@property (retain, nonatomic) IBOutlet UIButton *opusDesc;
-@property (retain, nonatomic) IBOutlet UIButton *drawToUser;
-@property (retain, nonatomic) IBOutlet UIButton *help;
-@property (retain, nonatomic) IBOutlet UIButton *drawBg;
-
-@property (retain, nonatomic) IBOutlet UIButton *subject;
+@end
 
 
 
-- (IBAction)clickShowCopyPaint:(id)sender;
+@interface DrawToolUpPanel : DrawToolPanel<UITableViewDataSource, UITableViewDelegate, DrawToolUpPanelCellDelegate>
+{
+    NSMutableDictionary *cellDict;
+}
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
 
-- (void)appear:(UIViewController*)parentController
-         title:(NSString*)title
-   isLeftArrow:(BOOL)isLeftArrow;
+
+//- (IBAction)clickShowCopyPaint:(id)sender;
+
+
 - (void)disappear;
 - (void)updateDrawToUser:(MyFriend *)user;
 - (void)registerToolCommands;
 - (void)updateCopyPaint:(UIImage*)aPhoto;
+- (void)updateSubject:(NSString *)subject;
 @end

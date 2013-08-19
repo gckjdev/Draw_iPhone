@@ -88,11 +88,11 @@ enum {
         }
         switch (buttonIndex) {
             case selectPhotoFromAlbum: {
-                [self selectImageFromAlbum:[self.toolPanel theViewController]];
+                [self selectImageFromAlbum:[self controller]];
             } break;
             case selectPhotoFromGallery: {
                 GalleryController *fc = [[GalleryController alloc] initWithDelegate:self title:NSLS(@"kSelectPhoto")];
-                [[[self.toolPanel theViewController] navigationController] pushViewController:fc animated:YES];
+                [[[self controller] navigationController] pushViewController:fc animated:YES];
                 [fc release];
             } break;
             default:
