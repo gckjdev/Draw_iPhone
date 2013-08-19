@@ -152,18 +152,9 @@ enum {
 {
     if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
         
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDownloadAppTitle") message:NSLS(@"kDownloadAppMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
 
-            PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];            
-            [self openApp:appReward.app.appId];
-            
-//            [UIUtils openURL:appReward.app.downloadUrl];
-            
-//        } clickCancelBlock:^{
-//            
-//        }];
-        
-//        [dialog showInView:self.view];
+        PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];            
+        [self openApp:appReward.app.appId];
         
     } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
         PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];

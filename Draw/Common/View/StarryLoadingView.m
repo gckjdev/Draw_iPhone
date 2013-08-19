@@ -314,7 +314,6 @@
 	_message = [str copy];
     [self.messageLabel setText:str];
     [self adjustSize];
-//	[self setNeedsDisplay];
 }
 - (NSString*) message{
 	return _message;

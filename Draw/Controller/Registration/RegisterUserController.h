@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "UserService.h"
 #import "PPViewController.h"
-#import "PassWordDialog.h"
+#import "CommonDialog.h"
 
-@interface RegisterUserController : PPViewController<UserServiceDelegate, UITextFieldDelegate, InputDialogDelegate>
+@interface RegisterUserController : PPViewController<UserServiceDelegate, UITextFieldDelegate, CommonDialogDelegate>
 {
     int _currentLoginType;
 }

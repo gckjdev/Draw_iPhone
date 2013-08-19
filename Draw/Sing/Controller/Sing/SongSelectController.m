@@ -12,7 +12,7 @@
 #import "SingController.h"
 #import "OpusManager.h"
 #import "SongCategoryView.h"
-#import "InputDialog.h"
+#import "CommonDialog.h"
 #import "StringUtil.h"
 #import "SongTagCell.h"
 
@@ -87,17 +87,17 @@
 - (IBAction)clickSelfDefineButton:(id)sender {
     
     PPDebug(@"clickSelfDefine");
-    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kInputSingName") clickOK:^(NSString *inputStr) {
+    
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputSingName")];
+    [dialog setClickOkBlock:^(UITextField *tf) {
         
-        if ([inputStr isBlank]) {
+        if ([tf.text isBlank]) {
             [self popupUnhappyMessage:NSLS(@"kSingNameCannotBeBlankStr") title:nil];
             return;
         }
         
-        SingController *vc = [[[SingController alloc] initWithName:inputStr] autorelease];
+        SingController *vc = [[[SingController alloc] initWithName:tf.text] autorelease];
         [self.navigationController pushViewController:vc animated:YES];
-        
-    } clickCancel:^(NSString *inputStr) {
         
     }];
     

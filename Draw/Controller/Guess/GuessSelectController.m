@@ -17,7 +17,6 @@
 #import "CustomInfoView.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
-#import "CustomInfoView.h"
 #import "GuessManager.h"
 
 #define TABID 1
@@ -177,16 +176,12 @@
 
 - (IBAction)clickRestartButton:(id)sender {
     
-    NSArray *titles = @[NSLS(@"kOK"), NSLS(@"kCancel")];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint") info:NSLS(@"kRestartGuessWarnning") hasCloseButton:NO buttonTitles:titles];
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        if ([button titleForState:UIControlStateNormal] == NSLS(@"kOK")) {
-            [self startNew];
-        }
-        [infoView dismiss];
-    }];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:NSLS(@"kRestartGuessWarnning") style:CommonDialogStyleDoubleButton];
+    [dialog showInView:self.view];
     
-    [infoView showInView:self.view];
+    [dialog setClickOkBlock:^(UILabel *label){
+        [self startNew];
+    }];
 }
 
 - (void)clickRankingButton:(id)sender{
@@ -266,25 +261,21 @@
 }
 
 - (void)guessWrongInGenuisMode{
-
-    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kQuit"),
-                       NSLS(@"kRestart"), nil];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kGuessWrong")
-                                                          info:NSLS(@"kGuessGenuisFail")
-                                                hasCloseButton:NO
-                                                  buttonTitles:titles];
-
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kRestart")]) {
-            [self clickRestartButton:nil];
-            [infoView dismiss];
-        }else{
-            [self startNew];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessWrong") message:NSLS(@"kGuessGenuisFail") style:CommonDialogStyleDoubleButton];
+    [dialog.oKButton setTitle:NSLS(@"kRestart") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kQuit") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(UILabel *label){
+        [self clickRestartButton:nil];
     }];
-
-    [infoView showInView:self.view];
+    
+    [dialog setClickCancelBlock:^(NSString *inputStr){
+        [self startNew];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)awardWithCount:(int)count{
@@ -333,26 +324,23 @@
     [[AccountService defaultService] chargeCoin:award source:AwardCoinType];
     
     // tip
-    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kQuit"), NSLS(@"kGoOn"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeAwardTips"), passCount, award];
     
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kAward")
-                                                          info:info
-                                                hasCloseButton:NO
-                                                  buttonTitles:titles];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAward") message:info style:CommonDialogStyleDoubleButton];
+    [dialog.oKButton setTitle:NSLS(@"kGoOn") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kQuit") forState:UIControlStateNormal];
     
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kGoOn")]) {
-            if (passCount >= 20) {
-                [self startNew];
-            }
-        }else{
-            [self.navigationController popViewControllerAnimated:YES];
+    [dialog setClickOkBlock:^(UILabel *label){
+        if (passCount >= 20) {
+            [self startNew];
         }
-        [infoView dismiss];
     }];
     
-    [infoView showInView:self.view];
+    [dialog setClickCancelBlock:^(NSString *inputStr){
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)awardInGeniusMode:(int)passCount
@@ -360,22 +348,17 @@
     
     [[AccountService defaultService] chargeCoin:award source:AwardCoinType];
     
-    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeAwardTips"), passCount,award];    
-    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kQuit"), NSLS(@"kGoOn"), nil];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kAward")
-                                                          info:info
-                                                hasCloseButton:NO
-                                                  buttonTitles:titles];
+    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeAwardTips"), passCount,award];
     
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kQuit")]) {
-            [self.navigationController popViewControllerAnimated:YES];
-
-        }
-        [infoView dismiss];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAward") message:info style:CommonDialogStyleDoubleButton];
+    [dialog.oKButton setTitle:NSLS(@"kGoOn") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kQuit") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(NSString *inputStr){
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     
-    [infoView showInView:self.view];
+    [dialog showInView:self.view];
 }
 
 - (void)showTipInHappyMode:(int)count{
@@ -383,18 +366,11 @@
     int predictAwardCoins = [GuessManager predictAwardCoins:count mode:_mode];
     int needToGuess = [GuessManager countNeedToGuessToAward:count mode:_mode];
     
-    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeTips"), count, needToGuess, predictAwardCoins];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
-                                                          info:info
-                                                hasCloseButton:NO
-                                                  buttonTitles:titles];
     
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        [infoView dismiss];
-    }];
-    
-    [infoView showInView:self.view];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+    [dialog showInView:self.view];
 }
 
 
@@ -403,50 +379,29 @@
     int predictAwardCoins = [GuessManager predictAwardCoins:count mode:_mode];
     int needToGuess = [GuessManager countNeedToGuessToAward:count mode:_mode];
     
-    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), count, needToGuess, predictAwardCoins];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
-                                                          info:info
-                                                hasCloseButton:NO
-                                                  buttonTitles:titles];
     
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        [infoView dismiss];
-    }];
-    
-    [infoView showInView:self.view];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+    [dialog showInView:self.view];
 }
 
 - (void)showTipInContestMode:(PBGuessRank *)rank{
     
-    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeTips"), rank.pass, rank.ranking, rank.earn, rank.totalPlayer];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
-                                                          info:info
-                                                hasCloseButton:NO
-                                                  buttonTitles:titles];
-    
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        [infoView dismiss];
-    }];
-    
-    [infoView showInView:self.view];
+
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+    [dialog showInView:self.view];
 }
 
 - (void)showTipInContestModeWhenContestOver:(PBGuessRank *)rank{
     
-    NSArray *titles = [NSArray arrayWithObjects:NSLS(@"kIGotIt"), nil];
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeOverTips"), rank.totalPlayer, rank.ranking, rank.earn];
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kHint")
-                                                          info:info
-                                                hasCloseButton:NO
-                                                  buttonTitles:titles];
     
-    [infoView setActionBlock:^(UIButton *button, UIView *view){
-        [infoView dismiss];
-    }];
-    
-    [infoView showInView:self.view];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+    [dialog showInView:self.view];
 }
 
 - (void)refreshData{

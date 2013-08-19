@@ -234,8 +234,10 @@
     if (room == nil)
         return;
     if (room.myStatus == UserUnInvited) {
-        InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNotice") delegate:self];
-        dialog.targetTextField.placeholder = NSLS(@"kInputRoomPassword");
+        
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kNotice") delegate:self]; 
+        dialog.inputTextField.placeholder = NSLS(@"kInputRoomPassword");
+        
         [dialog showInView:self.view];
     }else{
         [self startGame];
@@ -249,9 +251,9 @@
 }
 
 
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(CommonDialog *)dialog infoView:(UITextField *)tf
 {
-    if ([targetText isEqualToString:_currentSelectRoom.password]) {
+    if ([tf.text isEqualToString:_currentSelectRoom.password]) {
         if (_currentSelectRoom) {
             [roomService joinNewRoom:_currentSelectRoom delegate:self];           
             [self showActivityWithText:NSLS(@"kConnectingServer")];
@@ -260,10 +262,6 @@
     }else{
         [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
     }
-}
-- (void)didClickCancel:(InputDialog *)dialog
-{
-    
 }
 
 - (void)didJoinNewRoom:(int)resultCode

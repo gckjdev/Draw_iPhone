@@ -834,45 +834,12 @@
 #define SHOP_DIALOG_TAG 20120406
 
 
-- (void)clickOk:(CommonDialog *)dialog
-{
-    switch (dialog.tag) {
-//        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
-//        } break;
-//        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item flower] infoInView:self];
-//        } break;
-//        case (ItemTypeTips + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item tips] infoInView:self];
-//        } break;
-        default:
-            break;
-    }
-
-}
-- (void)clickBack:(CommonDialog *)dialog
-{
-    
-}
-
 #pragma mark - commonItemInfoView delegate
 - (void)didBuyItem:(int)itemId
             result:(int)result
 {
     if (result == 0) {
         [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
-//        ToolView* toolview = nil;
-//        switch (itemId) {
-//            case ItemTypeFlower: {
-//                toolview = (ToolView*)[self.view viewWithTag:FLOWER_TOOLVIEW_TAG];
-//            } break;
-//            case ItemTypeTomato: {
-//                toolview = (ToolView*)[self.view viewWithTag:TOMATO_TOOLVIEW_TAG];
-//            } break;
-//            default:
-//                break;
-//        }
     }
     if (result == ERROR_BALANCE_NOT_ENOUGH)
     {

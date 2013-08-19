@@ -27,4 +27,6 @@
 + (void)showBuyItemView:(int)itemId
                  inView:(UIView *)inView
           resultHandler:(BuyItemResultHandler)resultHandler;
+
+
 @end

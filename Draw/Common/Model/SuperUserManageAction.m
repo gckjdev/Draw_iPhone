@@ -7,7 +7,6 @@
 //
 
 #import "SuperUserManageAction.h"
-#import "InputDialog.h"
 #import "CommonDialog.h"
 #import "AccountService.h"
 #import "CommonMessageCenter.h"
@@ -83,26 +82,28 @@ typedef enum
     
     switch (buttonIndex) {
         case SuperUserManageActionIndexCharge: {
-            InputDialog* dialog = [InputDialog dialogWith:@"请输入要充值的金币数" clickOK:^(NSString *inputStr) {
-                if ([self isInputValid:inputStr]) {
-                    [[AccountService defaultService] chargeCoin:inputStr.intValue toUser:_targetUserId source:SuperUserCharge];
+
+            CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的金币数"];
+            [dialog setClickOkBlock:^(UITextField *tf) {
+                if ([self isInputValid:tf.text]) {
+                    [[AccountService defaultService] chargeCoin:tf.text.intValue toUser:_targetUserId source:SuperUserCharge];
                 }
-            } clickCancel:^(NSString *inputStr) {
-                //
             }];
-            [dialog.targetTextField setPlaceholder:@"请输入要充值的金币数"];
+                                    
+            [dialog.inputTextField setPlaceholder:@"请输入要充值的金币数"];
             [dialog showInView:_superController.view];
         } break;
         case SuperUserManageActionIndexChargeIngot: {
-            InputDialog* dialog = [InputDialog dialogWith:@"请输入要充值的元宝数" clickOK:^(NSString *inputStr) {
-                if ([self isInputValid:inputStr]) {
-                    [[AccountService defaultService] chargeIngot:inputStr.intValue toUser:_targetUserId source:SuperUserCharge];
+            
+            CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入要充值的元宝数"];
+            [dialog setClickOkBlock:^(UITextField *tf) {
+                if ([self isInputValid:tf.text]) {
+                    [[AccountService defaultService] chargeIngot:tf.text.intValue toUser:_targetUserId source:SuperUserCharge];
                 }
-            } clickCancel:^(NSString *inputStr) {
-                //
             }];
-            dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
-            [dialog.targetTextField setPlaceholder:@"请输入要充值的元宝数"];
+            
+            dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+            [dialog.inputTextField setPlaceholder:@"请输入要充值的元宝数"];
             [dialog showInView:_superController.view];
         } break;
         
@@ -139,43 +140,47 @@ typedef enum
             break;
             
         case SuperUserManageActionIndexBlackUserId: {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户加入黑名单吗？" style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(UILabel *label){
                 [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
                 }];
-            } clickCancelBlock:^{
-                //
             }];
+            
             [dialog showInView:_superController.view];
         } break;
         case SuperUserManageActionIndexBlackDevice: {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户的设备加入黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-                [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
-                }];
-            } clickCancelBlock:^{
-                //
-            }];
+
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要将该用户的设备加入黑名单吗？" style:CommonDialogStyleDoubleButton];
+           [dialog setClickOkBlock:^(UILabel *label){
+                    [[UserService defaultService] superBlackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
+                        [[CommonMessageCenter defaultCenter] postMessageWithText:@"加入黑名单成功" delayTime:1];
+                    }];
+           }];
+            
             [dialog showInView:_superController.view];
         } break;
         case SuperUserManageActionIndexUnblackUserId: {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定解除该用户黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定解除该用户黑名单吗？" style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(UILabel *label){
                 [[UserService defaultService] superUnblackUser:_targetUserId type:BLACK_USER_TYPE_USERID successBlock:^{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"解除黑名单成功" delayTime:1];
                 }];
-            } clickCancelBlock:^{
-                //
             }];
+            
             [dialog showInView:_superController.view];
         } break;
         case SuperUserManageActionIndexUnblackDevice: {
-            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要解除该用户的设备黑名单吗？" style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+            
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:nil message:@"确定要解除该用户的设备黑名单吗？" style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(UILabel *label){
                 [[UserService defaultService] superUnblackUser:_targetUserId type:BLACK_USER_TYPE_DEVICEID successBlock:^{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"解除黑名单成功" delayTime:1];
                 }];
-            } clickCancelBlock:^{
-                //
             }];
+            
             [dialog showInView:_superController.view];
         } break;
         case SuperUserManageActionIndexRecoverOpus: {

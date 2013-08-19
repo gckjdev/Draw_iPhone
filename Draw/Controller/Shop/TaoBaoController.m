@@ -56,10 +56,9 @@
 {
     __block TaoBaoController* vc = self;
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kQuitTaoBaoTips") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [vc.navigationController popViewControllerAnimated:YES];
-    } clickCancelBlock:^{
-        
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kQuitTaoBaoTips") style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
+            [vc.navigationController popViewControllerAnimated:YES];
     }];
     
     [dialog showInView:self.view];

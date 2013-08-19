@@ -497,26 +497,6 @@
           AtActionIndex:(NSInteger)actionIndex
              pointIndex:(NSInteger)pointIndex
 {
-    /*
-    if (isLearnDrawApp() && actionIndex > self.endIndex && self.endIndex != 0) {
-//        [showDrawView stop];
-        [self.playButton setEnabled:YES];
-        [self clickPlay:self.playButton];
-        [self.playButton setEnabled:NO];
-        ReplayView *cp = self;
-        
-        [[CommonDialog createDialogWithTitle:NSLS(@"kBuyToPlayTitle") message:NSLS(@"kBuyToPlayMesaage")
-                                       style:CommonDialogStyleDoubleButton
-                                    delegate:nil
-                                clickOkBlock:^{
-                                    [cp buyAndPlayDraw:cp.drawFeed];
-            
-        } clickCancelBlock:^{
-            [cp clickCloseButton:nil];
-        }] showInView:[self theTopView]];
-         
-    }
-     */
     //move progress
     if (curPlayIndex != actionIndex) {
         curPlayIndex = actionIndex;

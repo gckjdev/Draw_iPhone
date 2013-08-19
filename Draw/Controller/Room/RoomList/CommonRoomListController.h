@@ -30,7 +30,7 @@ typedef enum {
 @class PBGameSession;
 @class CommonSearchView;
 
-@interface CommonRoomListController : PPTableViewController</*CommonGameServiceDelegate, */InputDialogDelegate, CommonDialogDelegate, CommonSearchViewDelegate, CommonInfoViewDelegate> {
+@interface CommonRoomListController : PPTableViewController<RoomPasswordDialogDelegate, CommonDialogDelegate, CommonSearchViewDelegate, CommonInfoViewDelegate> {
     BOOL _isJoiningGame;
     PBGameSession* _currentSession;
     NSTimer* _refreshRoomTimer;

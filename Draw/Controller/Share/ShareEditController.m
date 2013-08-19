@@ -212,93 +212,12 @@ enum {
     }
     
     return;
-    
-    /*
-     [[PPSNSIntegerationService defaultService] publishWeiboToAll:text
-     imageFilePath:imagePath
-     successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
-     PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-     
-     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-     
-     int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
-     if (earnCoins > 0){
-     NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-     [self popupMessage:msg title:nil];
-     }
-     else{
-     //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
-     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-     }
-     [self.navigationController popViewControllerAnimated:YES];
-     
-     }
-     failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
-     
-     PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
-     
-     }];
-     */
 }
 
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     
     [self publishWeibo:self.shareTextField.text imagePath:self.imageFilePath];
-
-    
-//    [self hideActivity];
-//    if (result == 0){
-//        int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
-//        if (earnCoins > 0){
-//            NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-//            [self popupMessage:msg title:nil];
-//        }
-//        else{
-//            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-//        }
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
-//    else{
-//        //[self popupMessage:NSLS(@"kPublishWeiboFail") title:nil];
-//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboFail") delayTime:1 isHappy:NO];
-//    }
-    
-    /*
-    if ([[UserManager defaultManager] hasBindQQWeibo] && _snsType == QQ_WEIBO){
-//        [self showActivityWithText:NSLS(@"kSendingRequest")];
-        PPDebug(@"publish to qq!");
-        [[QQWeiboService defaultService] publishWeibo:self.shareTextField.text
-                                        imageFilePath:self.imageFilePath 
-                                             delegate:nil];        
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-        
-    }
-    
-    if ([[UserManager defaultManager] hasBindSinaWeibo] && _snsType == SINA_WEIBO){
-//        [self showActivityWithText:NSLS(@"kSendingRequest")];
-        PPDebug(@"publish to sina!");
-        [[SinaSNSService defaultService] publishWeibo:self.shareTextField.text 
-                                        imageFilePath:self.imageFilePath  
-                                             delegate:nil];
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-        
-    }
-    
-    if ([[UserManager defaultManager] hasBindFacebook] && _snsType == FACEBOOK){
-        [[FacebookSNSService defaultService] publishWeibo:self.shareTextField.text 
-                                            imageFilePath:self.imageFilePath  
-                                                 delegate:self];        
-        
-        //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
-        PPDebug(@"publish to facebook!");
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    }
-     */
 }
 
 - (IBAction)publish:(id)sender

@@ -21,7 +21,6 @@
 #import "CommonUserInfoView.h"
 #import "MyFriend.h"
 #import "PPViewController+StarryLoadingView.h"
-#import "CommonDialog.h"
 #import "GameApp.h"
 #import "FXLabel.h"
 
@@ -109,7 +108,6 @@
 
 - (void)handleUpdateOnlineUserCount
 {
-//    NSString* userCount = [NSString stringWithFormat:NSLS(@"kOnlineUser"),[_gameService onlineUserCount]];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@(%d)", [GameApp roomTitle], [_gameService onlineUserCount]]];
 }
 
@@ -169,7 +167,6 @@
 - (void)refreshRooms:(id)sender
 {
     [_gameService getRoomList:0 count:ROOMS_COUNT_PER_PAGE];
-//    [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
 
 - (void)clearRefreshRoomsTimer
@@ -212,9 +209,6 @@
     [self hideActivity];
     self.dataList = [NSArray arrayWithArray:_gameService.roomList];
     [self.dataTableView reloadData];
-    //[[DiceGameService defaultService] registerRoomsNotification:service.roomList]; //don register room notification here
-    //self.noMoreData = YES;
-    //[self dataSourceDidFinishLoadingMoreData];
     if (_isRefreshing) {
         [self startRefreshRoomsTimer];
     }
@@ -294,14 +288,6 @@
                                 [self didConnected];
                             }];
     
-    //    [self registerNotificationWithName:UIApplicationWillEnterForegroundNotification
-    //                            usingBlock:^(NSNotification *note) {
-    //        PPDebug(@"<DiceRoomListController> Disconnected from server");
-    //        if (![[DiceGameService defaultService] isConnected]) {
-    //            [self didBroken];
-    //        }
-    //    }];
-    
 }
 
 - (void)unregisterRoomNotification
@@ -351,11 +337,7 @@
     [self handleUpdateOnlineUserCount];
     
     [self initView];
-    
-    //    [[NSNotificationCenter defaultCenter] addObserver:self
-    //                                             selector:@selector(roomsDidUpdate:)
-    //                                                 name:ROOMS_DID_UPDATE
-    //                                               object:nil];
+
 }
 
 - (void)viewDidUnload {
@@ -407,14 +389,19 @@
 }
 
 - (void)showCreateRoomView
-{ 
-    RoomPasswordDialog *inputDialog = [RoomPasswordDialog dialogWith:NSLS(@"kCreateRoom")
-                                                            delegate:self];
-    inputDialog.targetTextField.text = [[UserManager defaultManager] defaultUserRoomName];
-    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
-    inputDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
-    [inputDialog showInView:self.view];
-    inputDialog.tag = CREATE_ROOM_DIALOG_TAG;
+{
+    RoomPasswordDialog *rpDialog = [RoomPasswordDialog create];
+    rpDialog.delegate = self;
+    
+    rpDialog.roomNameField.text = [[UserManager defaultManager] defaultUserRoomName];
+    rpDialog.roomNameField.placeholder = NSLS(@"kInputWordPlaceholder");
+    rpDialog.passwordField.placeholder = NSLS(@"kDiceEnterPassword");
+    [rpDialog.passwordField becomeFirstResponder];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kCreateRoom") customView:rpDialog style:CommonDialogStyleDoubleButton];
+    dialog.delegate = self;
+    dialog.tag = CREATE_ROOM_DIALOG_TAG;
+    [dialog showInView:self.view];
 }
 
 
@@ -422,10 +409,11 @@
 - (void)refreshRoomsByFilter:(CommonRoomFilter)filter
 {
     [_gameService getRoomList:0
-                                            count:ROOMS_COUNT_PER_PAGE
-                                         roomType:filter
-                                          keyword:nil
-                                           gameId:[ConfigManager gameId]];
+                        count:ROOMS_COUNT_PER_PAGE
+                     roomType:filter
+                      keyword:nil
+                       gameId:[ConfigManager gameId]];
+    
     _currentRoomType = filter;
 }
 
@@ -446,43 +434,51 @@
     PPDebug(@"%@ <didBroken>", [self description]);
     [self hideActivity];
     
-    //    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popToRootViewControllerAnimated:NO];
     
 }
 
 - (void)showPasswordDialog
 {
-    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kPassword")
-                                              delegate:self
-                                                 ];
-    inputDialog.targetTextField.text = nil;
-    inputDialog.targetTextField.placeholder = NSLS(@"kEnterPassword");
+    CommonDialog *inputDialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kPassword")
+                                                                delegate:self];
+    inputDialog.inputTextField.text = nil;
+    inputDialog.inputTextField.placeholder = NSLS(@"kEnterPassword");
     [inputDialog showInView:self.view];
     inputDialog.tag = ENTER_ROOM_DIALOG_TAG;
 }
 
-#pragma makr - inputDialog delegate
-- (void)didClickOk:(InputDialog *)dialog
-        targetText:(NSString *)targetText
+#pragma mark - common dialog delegate
+
+- (void)didClickOk:(CommonDialog *)dialog
+          infoView:(id)infoView
 {
     if (dialog.tag == CREATE_ROOM_DIALOG_TAG) {
-        NSString *password = ((RoomPasswordDialog *)dialog).passwordField.text;
-        [self createRoomWithName:targetText
-                        password:password];
-    }
-    
-    if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {
-        if ([self.currentSession.password isEqualToString:targetText]) {
+        
+        RoomPasswordDialog *v = (RoomPasswordDialog *)infoView;
+        if([v isRoomNameIllegal]){
+            [self roomNameIsIllegal];
+        }else{
+            [self createRoomWithName:v.roomNameField.text
+                            password: v.passwordField.text];
+        }
+        
+    }else if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {
+        NSString *password = ((UITextField *)dialog).text;
+
+        if ([self.currentSession.password isEqualToString:password]) {
             [self checkAndJoinGame:self.currentSession.sessionId];
         } else {
             [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
         }
+    }else{
+        if ([ConfigManager wallEnabled]) {
+            [self showWall];
+        }else {
+            ChargeController* controller = [[[ChargeController alloc] init] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     }
-}
-- (void)didClickCancel:(InputDialog *)dialog
-{
-    
 }
 
 #pragma mark - load more delegate
@@ -491,21 +487,7 @@
     [_gameService getRoomList:_gameService.roomList.count count:ROOMS_COUNT_PER_PAGE];
 }
 
-#pragma mark - common dialog delegate
-- (void)clickOk:(CommonDialog *)dialog
-{
-    if ([ConfigManager wallEnabled]) {
-        [self showWall];
-    }else {
-        ChargeController* controller = [[[ChargeController alloc] init] autorelease];
-        [self.navigationController pushViewController:controller animated:YES];
-    }
-}
 
-- (void)clickBack:(CommonDialog *)dialog
-{
-    
-}
 
 - (void)showWall
 {
@@ -520,10 +502,6 @@
     if (_currentRoomType == CommonRoomFilterAllRoom) {
         [self continueRefreshingRooms];
     }
-    if (_currentRoomType == CommonRoomFilterFriendRoom) {
-//        [self clickFriendRoom:nil];
-    }
-    
 }
 
 #pragma mark - CommonSearchViewDelegate
@@ -594,6 +572,17 @@
     [self refreshRoomsByFilter:_currentRoomType];
     [self showActivityWithText:NSLS(@"kRefreshingRoomList")];
 }
+
+- (void)passwordIsIllegal
+{
+    [self popupMessage:NSLS(@"kRoomPasswordIllegal") title:nil];
+}
+
+- (void)roomNameIsIllegal
+{
+    [self popupMessage:NSLS(@"kRoomNameIllegal") title:nil];
+}
+
 
 
 @end

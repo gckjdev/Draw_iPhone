@@ -34,13 +34,14 @@
 @synthesize dataList;
 @synthesize delegate;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+- (void)dealloc {
+    PPRelease(dataTableView);
+    PPRelease(dataList);
+    PPRelease(closeButton);
+    [_titleLabel release];
+    [_addWordButton release];
+    [_bgButton release];
+    [super dealloc];
 }
 
 + (SelectCustomWordView *)createView:(id<SelectCustomWordViewDelegate>)aDelegate;
@@ -126,7 +127,7 @@
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
     selectedRow = indexPath.row;
-    [self clickOk:nil];
+    [self didClickOk:nil infoView:nil];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -137,44 +138,35 @@
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(UITextField *)tf
 {
-    [self startRunOutAnimation];
-    Word *customWord = [dataList objectAtIndex:selectedRow];
-    NSString *word = customWord.text;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelecCustomWord:)]) {
-        [self.delegate didSelecCustomWord:word];
+    if (dialog.tag == INPUTDIALOG_ADD_WORD_TAG) {
+        if ([CustomWordManager isValidWord:tf.text]) {
+            [[CustomWordManager defaultManager] createCustomWord:tf.text];
+            [[UserService defaultService] commitWords:tf.text viewController:nil];
+            Word *word = [Word cusWordWithText:tf.text];
+            [self.dataList addObject:word];
+            [dataTableView reloadData];
+        }
+    }else{
+        [self startRunOutAnimation];
+        Word *customWord = [dataList objectAtIndex:selectedRow];
+        NSString *word = customWord.text;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didSelecCustomWord:)]) {
+            [self.delegate didSelecCustomWord:word];
+        }
     }
 }
 
-- (void)dealloc {
-    PPRelease(dataTableView);
-    PPRelease(dataList);
-    PPRelease(closeButton);
-    [_titleLabel release];
-    [_addWordButton release];
-    [_bgButton release];
-    [super dealloc];
-}
-
-
 - (IBAction)clickAddWordButton:(id)sender {
-    InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kInputWord") delegate:self];
+    
+    CommonDialog *inputDialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputWord") delegate:self];
     inputDialog.tag = INPUTDIALOG_ADD_WORD_TAG;
-    inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    inputDialog.inputTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+    
     [inputDialog showInView:self];
 }
 
-#pragma mark - InputDialogDelegate
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
-{
-    if ([CustomWordManager isValidWord:targetText]) {
-        [[CustomWordManager defaultManager] createCustomWord:targetText];
-        [[UserService defaultService] commitWords:targetText viewController:nil];
-        Word *word = [Word cusWordWithText:targetText];
-        [self.dataList addObject:word];
-        [dataTableView reloadData];
-    }
-}
+
 
 @end

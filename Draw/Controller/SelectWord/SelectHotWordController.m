@@ -176,8 +176,8 @@
     if (word == nil) {
         [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_ADD_CUSTOM_WORD];
 
-        InputDialog *inputDialog = [InputDialog dialogWith:NSLS(@"kInputWord") delegate:self];
-        inputDialog.targetTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+        CommonDialog *inputDialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputWord") delegate:self];
+        inputDialog.inputTextField.placeholder = NSLS(@"kInputWordPlaceholder");
         [inputDialog showInView:self.view];
     }else{
         if (word.wordType == PBWordTypeHot) {
@@ -211,11 +211,11 @@
 }
 
 #pragma mark - InputDialogDelegate
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(CommonDialog *)dialog infoView:(UITextField *)tf
 {
-    if ([CustomWordManager isValidWord:targetText]) {
-        [[CustomWordManager defaultManager] createCustomWord:targetText];
-        [[UserService defaultService] commitWords:targetText viewController:nil];
+    if ([CustomWordManager isValidWord:tf.text]) {
+        [[CustomWordManager defaultManager] createCustomWord:tf.text];
+        [[UserService defaultService] commitWords:tf.text viewController:nil];
         [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
     }
 }

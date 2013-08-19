@@ -11,7 +11,7 @@
 #import "GameItemDetailView.h"
 #import "PBGameItem+Extend.h"
 #import "ShareImageManager.h"
-#import "InputDialog.h"
+#import "CommonDialog.h"
 #import "UIViewUtils.h"
 #import "CustomInfoView.h"
 #import "VersionUpdateView.h"
@@ -121,19 +121,21 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 
 
 - (IBAction)clickCountButton:(id)sender {
-    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kInputCount") clickOK:^(NSString *inputStr) {
-        int count = [inputStr intValue];
-        if (count < MIN_COUNT) {
-            return;
-        }
-        
-        self.count = MIN(count, MAX_COUNT);
-        [self update];
-        
-    } clickCancel:^(NSString *inputStr) {
-        
+    
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputCount")];
+    dialog.inputTextField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    [dialog setClickOkBlock:^(UITextField *tf) {
+            int count = [tf.text intValue];
+            if (count < MIN_COUNT) {
+                return;
+            }
+
+            self.count = MIN(count, MAX_COUNT);
+            [self update];
+
     }];
-    dialog.targetTextField.keyboardType = UIKeyboardTypeNumberPad;
+    
     [dialog showInView:[self PPRootView]];
 }
 
@@ -177,8 +179,10 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
         PBGameItem *item = ((BuyItemView *)infoView).item;
         
         if ([[button titleForState:UIControlStateNormal] isEqualToString:NSLS(@"kBuy")]) {
+        
             PPDebug(@"you buy %d %@", count, NSLS(item.name));
             [button setTitle:NSLS(@"kBuying...") forState:UIControlStateNormal];
+            
             [cusInfoView showActivity];
             [[UserGameItemService defaultService] buyItem:itemId count:count handler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                 

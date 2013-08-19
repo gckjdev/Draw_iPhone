@@ -465,10 +465,8 @@
 }
 
 - (IBAction)clickSignButton:(id)sender {
-//    [[CustomInfoView createWithTitle:NSLS(@"kSignature") info:[[self.detail getUser] signature]] showInView:self];
     
-    
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSignature") message:[[self.detail getUser] signature] style:CommonDialogStyleSingleButton delegate:nil];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSignature") message:[[self.detail getUser] signature] style:CommonDialogStyleCross];
     
     [dialog showInView:self];
 }

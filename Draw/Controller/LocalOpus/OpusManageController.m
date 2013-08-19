@@ -234,14 +234,13 @@ typedef enum {
     
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAttention")
                                                        message:NSLS(@"kDeleteAllWarning")
-                                                         style:CommonDialogStyleDoubleButton
-                                                      delegate:nil clickOkBlock:^{
-                                                          OpusManager* manager = [cp managerForTab:[cp currentTab].tabID];
-                                                          [manager deleteAllOpus];
-                                                          [cp reloadTableViewDataSource];
-                                                      } clickCancelBlock:^{
-                                                          //
-                                                      }];
+                                                         style:CommonDialogStyleDoubleButton];
+    
+    [dialog setClickOkBlock:^(UILabel *label){
+        OpusManager* manager = [cp managerForTab:[cp currentTab].tabID];
+        [manager deleteAllOpus];
+        [cp reloadTableViewDataSource];
+    }];
     [dialog showInView:self.view];
 }
 
@@ -488,20 +487,18 @@ typedef enum {
             [_currentSelectOpus replayInController:self];
         } break;
         case OpusOptionDelete: {
+            
             CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
                                                                message:NSLS(@"kAre_you_sure")
-                                                                 style:CommonDialogStyleDoubleButton
-                                                              delegate:nil
-                                                          clickOkBlock:^{
-                                                              [[cp currentOpusManager] deleteOpus:_currentSelectOpus.pbOpus.opusId];
-                                                              [cp reloadTableViewDataSource];
-                                                              }
-                                                      clickCancelBlock:^{
-                                                                  //
-                                                              }];
-            
-            [dialog showInView:self.view];
-        } break;
+                                                                 style:CommonDialogStyleDoubleButton];
+            [dialog setClickOkBlock:^(UILabel *label){
+                [[cp currentOpusManager] deleteOpus:_currentSelectOpus.pbOpus.opusId];
+                [cp reloadTableViewDataSource];
+            }];
+
+                
+                [dialog showInView:self.view];
+            } break;
         default:
             break;
     }

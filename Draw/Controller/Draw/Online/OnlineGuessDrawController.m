@@ -620,19 +620,10 @@
 #define ITEM_TAG_OFFSET 20120728
 
 
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     //run away
     switch (dialog.tag) {
-//        case (ItemTypeTomato + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item tomato] infoInView:self];
-//        } break;
-//        case (ItemTypeFlower + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item flower] infoInView:self];
-//        } break;
-//        case (ItemTypeTips + ITEM_TAG_OFFSET): {
-//            [CommonItemInfoView showItem:[Item tips] infoInView:self];
-//        } break;
         default:
             [drawGameService quitGame];
             [HomeController returnRoom:self];
@@ -642,10 +633,6 @@
             break;
     }
 
-}
-- (void)clickBack:(CommonDialog *)dialog
-{
-    
 }
 
 #pragma mark - Actions

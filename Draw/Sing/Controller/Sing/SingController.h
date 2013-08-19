@@ -10,7 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "PPViewController.h"
-#import "InputDialog.h"
 #import "ChangeAvatar.h"
 #import "Sing.pb.h"
 #import "OpusService.h"

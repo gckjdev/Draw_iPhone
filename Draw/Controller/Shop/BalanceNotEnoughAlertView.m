@@ -17,29 +17,30 @@
 
 + (id)createView:(UIViewController *)controller;
 {
-    CommonDialog *view = [CommonDialog createDialogWithTitle:NSLS(@"kBalanceNotEnoughTitle") message:NSLS(@"kBalanceNotEnoughDesc") style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
-        
-        if (![ConfigManager isInReviewVersion]) {
-            FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
-            [controller.navigationController pushViewController:vc animated:YES];
-        }
-
-    } clickCancelBlock:^{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBalanceNotEnoughTitle") message:NSLS(@"kBalanceNotEnoughDesc") style:CommonDialogStyleDoubleButtonWithCross];
+    
+    [dialog setClickOkBlock:^(UILabel *label){
+            
+            if (![ConfigManager isInReviewVersion]) {
+                FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
+                [controller.navigationController pushViewController:vc animated:YES];
+            }
+    }];
+    [dialog setClickCancelBlock:^(UILabel *label){
         
         ChargeController *vc = [[[ChargeController alloc] init] autorelease];
         [controller.navigationController pushViewController:vc animated:YES];
-        
     }];
     
     if ([ConfigManager isInReviewVersion]) {
-        [view.oKButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+        [dialog.oKButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     }else{
-        [view.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
+        [dialog.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];
     }
     
-    [view.backButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
 
-    return view;
+    return dialog;
 }
 
 + (void)showInController:(UIViewController *)controller
