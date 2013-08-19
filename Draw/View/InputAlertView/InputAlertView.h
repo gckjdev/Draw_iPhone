@@ -8,55 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-
-//return yes to dismiss the view, and no to stay the view.
-
-@protocol InputAlertViewDelegate <NSObject>
-@optional
-- (BOOL)isSubjectValid:(NSString*)subjectText;
-- (NSInteger)maxSubjectLen;
-@end
-
-
-@interface InputAlertView : UIControl<UITextViewDelegate, UITextFieldDelegate>
-{
+typedef enum {
+    ComposeInputDialogTypeContent,
+    ComposeInputDialogTypeTitleAndContent,
+    ComposeInputDialogTypeTitleAndContentWithSNS,
+    ComposeInputDialogTypeContentWithSNS,
     
-}
+} ComposeInputDialogType;
 
-@property (assign, nonatomic) NSInteger maxInputLen;
-@property (assign, nonatomic) id<InputAlertViewDelegate>delegate;
+@interface InputAlertView : UIView
 
-+ (id)inputAlertViewWith:(NSString *)title
-                 content:(NSString *)content
-                  target:(id)target
-           commitSeletor:(SEL)commitSeletor
-           cancelSeletor:(SEL)cancelSeletor;
+@property (retain, nonatomic) IBOutlet UITextView *contentInputView;
+@property (retain, nonatomic) IBOutlet UITextField *titleInputField;
 
-+ (id)inputAlertViewWith:(NSString *)title
-                 content:(NSString *)content
-                  target:(id)target
-           commitSeletor:(SEL)commitSeletor
-           cancelSeletor:(SEL)cancelSeletor
-                  hasSNS:(BOOL)hasSNS;
-+ (id)inputAlertViewWith:(NSString *)title
-                 content:(NSString *)content
-                  target:(id)target
-           commitSeletor:(SEL)commitSeletor
-           cancelSeletor:(SEL)cancelSeletor
-                  hasSNS:(BOOL)hasSNS
-              hasSubject:(BOOL)hasSubject;
-
-- (NSString *)contentText;
-- (NSString *)setContentText:(NSString *)text;
-- (void)showInView:(UIView *)view animated:(BOOL)animated;
-- (void)dismiss:(BOOL)animated;
-- (void)adjustWithKeyBoardRect:(CGRect)rect;
-- (void)setCanClickCommitButton:(BOOL)can;
-- (void)clickConfirm;
-
-- (BOOL)hasSubjectText;
-- (NSString*)subjectText;
-- (NSString*)setSubjectText:(NSString*)text;
-- (BOOL)canEditSubject;
++ (id)createWithType:(ComposeInputDialogType)type;
+- (NSSet *)shareSet;
 
 @end

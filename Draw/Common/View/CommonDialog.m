@@ -12,6 +12,7 @@
 #import "UILabel+Extend.h"
 
 #define CONTENT_VIEW_INSERT (ISIPAD ? 16 : 7.5)
+
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
 #define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 654 : 300)
 
@@ -26,6 +27,8 @@
 #define FONT_INPUT_TEXT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
 
 #define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+#define BUTTON_WIDTH (ISIPAD ? 185 : 85)
+#define BUTTON_HEIGHT (ISIPAD ? 65 : 30)
 
 @interface CommonDialog()<UITextFieldDelegate, UITextViewDelegate>
 
@@ -123,8 +126,9 @@
 - (void)layout
 {    
     CGFloat centerX = self.contentView.frame.size.width/2;
+    CGFloat originX = 0;
     CGFloat originY = CONTENT_VIEW_INSERT;
-    
+
     [_titleLabel updateCenterX:centerX];
     [_titleLabel updateOriginY:originY];
     [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
@@ -135,8 +139,20 @@
     [infoView updateOriginY:(originY)];
     
     originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+    [self.oKButton updateWidth:BUTTON_WIDTH];
+    [self.cancelButton updateWidth:BUTTON_WIDTH];
+    [self.oKButton updateHeight:BUTTON_HEIGHT];
+    [self.cancelButton updateHeight:BUTTON_HEIGHT];
     [self.oKButton updateOriginY:originY];
     [self.cancelButton updateOriginY:(originY)];
+    
+    CGFloat gap = (CGRectGetWidth(self.contentView.frame)-2*CONTENT_VIEW_INSERT-2*BUTTON_WIDTH)/4;
+    originX = CONTENT_VIEW_INSERT + gap;
+    [self.cancelButton updateOriginX:originX];
+    originX = CONTENT_VIEW_INSERT + gap + BUTTON_WIDTH + 2 * gap;
+    [self.oKButton updateOriginX:originX];
+    
+    [infoView updateWidth:(CGRectGetMaxX(self.oKButton.frame) - CGRectGetMinX(self.cancelButton.frame))];
     
     // update content view height
     CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
