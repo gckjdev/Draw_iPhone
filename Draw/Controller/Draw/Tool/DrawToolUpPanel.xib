@@ -869,7 +869,7 @@
 				<real value="1" key="212.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="214.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="214.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="1" key="214.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="214.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="217.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="219.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="221.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

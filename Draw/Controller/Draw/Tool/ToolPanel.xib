@@ -611,7 +611,6 @@
 								<string key="NSFrame">{{503, 9}, {37, 37}}</string>
 								<reference key="NSSuperview" ref="1000692843"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1261,7 +1260,6 @@
 						<string key="NSFrame">{{216, 181}, {95, 22}}</string>
 						<reference key="NSSuperview" ref="496277411"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="499369265"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -6245,7 +6243,6 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 								<string key="NSFrame">{{1252, 14}, {66, 66}}</string>
 								<reference key="NSSuperview" ref="332607129"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -6333,7 +6330,6 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 						<string key="NSFrame">{{72, 0}, {68, 69}}</string>
 						<reference key="NSSuperview" ref="909741536"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">201307301</int>
@@ -8344,8 +8340,8 @@ AAgAAAAIAAIACAACAAAAAgAAAAEAAQABAAE</bytes>
 			<string key="draw_switch@2x.png">{50, 45}</string>
 			<string key="draw_text@2x.png">{72, 71}</string>
 			<string key="draw_tool_bg@2x.png">{237, 100}</string>
-			<string key="draw_tool_button_bg@2x.png">{69, 68}</string>
-			<string key="draw_tool_button_selected_bg@2x.png">{75, 74}</string>
+			<string key="draw_tool_button_bg@2x.png">{16, 16}</string>
+			<string key="draw_tool_button_selected_bg@2x.png">{16, 16}</string>
 			<string key="draw_undo_normal@2x.png">{64, 67}</string>
 			<string key="group_message@2x.png">{86, 66}</string>
 			<string key="pen_pencil@2x.png">{122, 122}</string>
