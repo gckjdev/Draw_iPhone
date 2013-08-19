@@ -16931,13 +16931,13 @@
 		CAC9022917B34EB7009AF8E1 /* Panels */ = {
 			isa = PBXGroup;
 			children = (
-				CAF4897817AA736900F015AB /* ToolPanel.xib */,
 				CA5328E016A3E1E000E9E96B /* DrawToolPanel.h */,
 				CA5328E116A3E1E000E9E96B /* DrawToolPanel.m */,
+				CAF4897817AA736900F015AB /* ToolPanel.xib */,
+				C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */,
+				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
 				C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */,
 				C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */,
-				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
-				C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */,
 				CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */,
 				CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */,
 				CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */,
