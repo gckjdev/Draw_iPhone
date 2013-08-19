@@ -108,14 +108,6 @@ typedef enum{
 
 + (int)maxCacheBulletinCount;
 
-/*
-+ (NSString*)getRecommendAppLinkZh;
-+ (NSString*)getRecommendAppLinkZht;
-+ (NSString*)getRecommendAppLinkEn;
-+ (NSString*)getRecommendAppLink;
- + (NSString*)getFacetimeServerListString;
-*/
-
 + (BOOL)isShowRecommendApp;
 + (NSString *)currentVersion;
 
@@ -279,5 +271,7 @@ typedef enum{
 
 + (NSString*)getLimeiWallId;
 + (BOOL)enableWordFilter;
+
++ (int)getMaxLengthOfDrawDesc;
 
 @end

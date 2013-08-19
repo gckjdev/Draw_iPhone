@@ -12,13 +12,10 @@
 #import "ShowFeedController.h"
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
-//#import "DrawUserInfoView.h"
 #import "UseItemScene.h"
 #import "ConfigManager.h"
 #import "UserManager.h"
 #import "MKBlockActionSheet.h"
-//#import "AddLearnDrawView.h"
-#import "InputAlertView.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
 
 typedef enum{
@@ -32,7 +29,7 @@ typedef enum{
     DrawFeed* _selectedFeed;
     BOOL canSellOpus;
 }
-@property (retain, nonatomic) InputAlertView* inputAlert;
+//@property (retain, nonatomic) InputAlertView* inputAlert;
 @property (retain, nonatomic) DrawFeed* currentSelectFeed;
 
 @end
@@ -46,7 +43,7 @@ typedef enum{
 {
     PPRelease(_userId);
     PPRelease(_nickName);
-    PPRelease(_inputAlert);
+//    PPRelease(_inputAlert);
     PPRelease(_currentSelectFeed);
     [super dealloc];
 }
@@ -393,19 +390,23 @@ SET_CELL_BG
         return;
     }
     self.currentSelectFeed = feed;
-    self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kEditOpusDesc")
-                                                      content:feed.opusDesc
-                                                       target:self
-                                                commitSeletor:@selector(commitDesc)
-                                                cancelSeletor:nil
-                                                       hasSNS:NO
-                                                   hasSubject:NO];
-    [self.inputAlert  showInView:self.view animated:YES];
-    PPDebug(@"<editDescOfFeed> edit desc of feed: <%@>",feed.wordText);
+    
+    CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kEditOpusDesc")];
+    dialog.inputTextView.text = feed.opusDesc;
+    dialog.delegate = self;
+    [dialog setMaxInputLen:[ConfigManager getMaxLengthOfDrawDesc]];
+    
+    [dialog showInView:self.view];
 }
 
-- (void)commitDesc{
-    [[FeedService defaultService] updateOpus:self.currentSelectFeed.feedId image:nil description:self.inputAlert.contentText resultHandler:^(int resultCode) {
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView{
+    
+    UITextView *tv = (UITextView *)infoView;
+    [self commitDesc:tv.text];
+}
+
+- (void)commitDesc:(NSString *)desc{
+    [[FeedService defaultService] updateOpus:self.currentSelectFeed.feedId image:nil description:desc resultHandler:^(int resultCode) {
         if (resultCode == 0) {
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateSucc") delayTime:2];
         } else {

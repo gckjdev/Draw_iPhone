@@ -58,4 +58,5 @@
 - (NSString*)subjectText;
 - (NSString*)setSubjectText:(NSString*)text;
 - (BOOL)canEditSubject;
+
 @end

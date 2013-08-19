@@ -162,6 +162,8 @@ AUTO_CREATE_VIEW_BY_XIB(PassWordDialog);
     UserManager *userManager = [UserManager defaultManager];
     if ([userManager isPasswordEmpty]) {
         [view hideOldPasswordTextField];
+    }else{
+        [view.oldPasswordTextField becomeFirstResponder];
     }
     
     return view;
@@ -228,6 +230,8 @@ AUTO_CREATE_VIEW_BY_XIB(PassWordDialog);
 {
     [self.oldPasswordTextField removeFromSuperview];
     self.oldPasswordTextField = nil;
+    
+    [self.passwordTextField becomeFirstResponder];
     
     CGFloat originY = 0;
     [self.passwordTextField updateOriginY:0];
