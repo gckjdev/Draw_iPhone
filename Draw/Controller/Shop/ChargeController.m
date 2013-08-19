@@ -61,7 +61,9 @@
         PBGameCurrency currency = [IAPProductManager currencyWithIAPProductType:product.type];
         [[AccountService defaultService] chargeBalance:currency count:product.count source:ChargeViaAlipay order:order];
     }else{
-        [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:msg style:CommonDialogStyleSingleButton delegate:nil];
+        [CommonDialog createDialogWithTitle:NSLS(@"kGifTips")
+                                    message:msg
+                                      style:CommonDialogStyleSingleButton];
     }
 }
 
@@ -359,8 +361,7 @@
     url = [url stringByAddQueryParameter:PARA_TYPE intValue:product.type];
     url = [url stringByAddQueryParameter:PARA_COUNT intValue:product.count];
     
-//    NSString* url = [NSString stringWithFormat:[ConfigManager getAlipayWebUrl],
-//                     [order.productName encodedURLParameterString], order.amount];
+
     NSString* title = [NSString stringWithFormat:@"充值 - %@", order.productName];
     TaoBaoController* vc = [[TaoBaoController alloc] initWithURL:url title:title];
     [self.navigationController pushViewController:vc animated:YES];
@@ -373,10 +374,10 @@
         
         __block typeof (self)bself = self;
         
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:NSLS(@"kJailBrokenUserIAPTips") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-            [bself showActivityWithText:NSLS(@"kBuying")];
-            [[AccountService defaultService] buyProduct:product];
-        } clickCancelBlock:^{
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:NSLS(@"kJailBrokenUserIAPTips") style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(UILabel *label){
+                [bself showActivityWithText:NSLS(@"kBuying")];
+                [[AccountService defaultService] buyProduct:product];
         }];
         
         [dialog showInView:self.view];

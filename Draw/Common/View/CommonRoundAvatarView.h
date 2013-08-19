@@ -27,8 +27,6 @@ typedef enum {
 
 @interface CommonRoundAvatarView : UIView
 {
-//    NSInteger _score;
-//    UIButton *markButton;
     UIImageView *imageView;
     DACircularProgressView* progressView;
     NSString *_userId;

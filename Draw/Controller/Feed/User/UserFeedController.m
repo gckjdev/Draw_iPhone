@@ -113,6 +113,9 @@ typedef enum{
         [[FeedService defaultService] getOpusCount:_userId delegete:self];
     }
     
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+    
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:NSLS(@"kFeed")];
@@ -135,6 +138,8 @@ typedef enum{
 
 
 #pragma mark - table view delegate
+
+SET_CELL_BG
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -340,18 +345,18 @@ typedef enum{
 {
     CommonDialog* dialog = nil;
     NSString *title = [[UserManager defaultManager] isSuperUser] ? [NSString stringWithFormat:@"%@［超级管理员权限模式］", NSLS(@"kSure_delete")] : NSLS(@"kSure_delete");
+    
     dialog = [CommonDialog createDialogWithTitle:title
-                                             message:NSLS(@"kAre_you_sure")
-                                               style:CommonDialogStyleDoubleButton
-                                            delegate:nil clickOkBlock:^{
-                                                if (_selectedFeed) {
-                                                    [self showActivityWithText:NSLS(@"kDeleting")];
-                                                    [[FeedService defaultService] deleteFeed:_selectedFeed delegate:self];
-                                                }
-                                                _selectedFeed = nil;
-                                            } clickCancelBlock:^{
-                                                //
-                                            }];
+                                         message:NSLS(@"kAre_you_sure")
+                                           style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
+        if (_selectedFeed) {
+            [self showActivityWithText:NSLS(@"kDeleting")];
+            [[FeedService defaultService] deleteFeed:_selectedFeed delegate:self];
+        }
+        _selectedFeed = nil;
+    }];
+    
     [dialog showInView:self.view];
 }
 
@@ -359,25 +364,25 @@ typedef enum{
 {
     CommonDialog* dialog = nil;
     __block typeof (self) bself = self;
+    
     dialog = [CommonDialog createDialogWithTitle:NSLS(@"kUnFavorite")
                                          message:NSLS(@"kAre_you_sure_to_unfavorite")
-                                           style:CommonDialogStyleDoubleButton
-                                        delegate:nil clickOkBlock:^{
-                                            if (_selectedFeed) {
-                                                [self showActivityWithText:NSLS(@"kUnFavoriting")];
-                                                [[FeedService defaultService] removeOpusFromFavorite:_selectedFeed.feedId resultBlock:^(int resultCode) {
-                                                    [bself hideActivity];
-                                                    if (resultCode != 0) {
-                                                        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfavoriteFail") delayTime:1.5 isHappy:NO];
-                                                        return;
-                                                    }
-                                                    [bself finishDeleteData:_selectedFeed ForTabID:bself.currentTab.tabID];
-                                                    _selectedFeed = nil;
-                                                }];
-                                            }
-                                        } clickCancelBlock:^{
-                                            //
-                                        }];
+                                           style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
+        if (_selectedFeed) {
+            [self showActivityWithText:NSLS(@"kUnFavoriting")];
+            [[FeedService defaultService] removeOpusFromFavorite:_selectedFeed.feedId resultBlock:^(int resultCode) {
+                [bself hideActivity];
+                if (resultCode != 0) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfavoriteFail") delayTime:1.5 isHappy:NO];
+                    return;
+                }
+                [bself finishDeleteData:_selectedFeed ForTabID:bself.currentTab.tabID];
+                _selectedFeed = nil;
+            }];
+        }
+    }];
+    
     [dialog showInView:self.view];
 }
 

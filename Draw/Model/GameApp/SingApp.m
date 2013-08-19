@@ -146,10 +146,6 @@
     return NO;
 }
 
-- (NSString *)getInputDialogXibName{
-    return @"SingInputDialog";
-}
-
 - (NSString *)iapResourceFileName{
     return [self appId];
 }

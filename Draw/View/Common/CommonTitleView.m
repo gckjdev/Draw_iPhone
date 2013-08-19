@@ -8,14 +8,13 @@
 
 #import "CommonTitleView.h"
 #import "HPThemeManager.h"
-#import "UIButton+Extend.h"
 #import "ShareImageManager.h"
 #import "UIImageExt.h"
 
 #define COMMON_TITLE_VIEW_TAG   2013081218
 
 #define WIDTH (ISIPAD ? 768 : 320)
-#define HEIGH (ISIPAD ? 98 : 45)
+#define HEIGH (ISIPAD ? 100 : 45)
 
 #define LEFT_GAP (ISIPAD ? 4 : 2)
 
@@ -25,11 +24,6 @@
 #define RIGHT_BUTTON_HEIGHT RIGHT_BUTTON_WIDTH
 #define RIGHT_BUTTON_INSET_X (ISIPAD ? -20 : -10)
 #define RIGHT_BUTTON_INSET_Y (ISIPAD ? -10 : -5)
-
-
-//// for right button icon image
-//#define RIGHT_BUTTON_IMAGE_HEIGHT (RIGHT_BUTTON_HEIGHT - (ISIPAD ? 20 : 10))
-//#define RIGHT_BUTTON_IMAGE_WIDTH  (RIGHT_BUTTON_IMAGE_HEIGHT)
 
 #define TITLE_LABEL_WIDTH (ISIPAD ? 450 : 200)
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 78 : 36)

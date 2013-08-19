@@ -7,7 +7,7 @@
 //
 
 #import "HelpCommand.h"
-#import "CustomInfoView.h"
+#import "CommonDialog.h"
 #import "UIColor+UIColorExt.h"
 #import "ShareImageManager.h"
 
@@ -20,19 +20,7 @@
 
 - (BOOL)execute
 {
-    
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT)] autorelease];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [label setNumberOfLines:0];
-    [label setTextColor:COLOR_COFFEE];
-    UIFont *font = [UIFont boldSystemFontOfSize:FONT_SIZE];
-    [label setFont:font];
-    [label setText:NSLS(@"kGestureExplainContent")];
-    CustomInfoView *info = [CustomInfoView createWithTitle:NSLS(@"kGestureExplain") infoView:label];
-    
-    [info.mainView updateCenterY:(info.mainView.center.y - (ISIPAD ? 40 : 20))];
-    
-    [info showInView:[self.controller view]];
+    [[CommonDialog createDialogWithTitle:NSLS(@"kGestureExplain") message:NSLS(@"kGestureExplainContent") style:CommonDialogStyleCross] showInView:[self.control theTopView]];
     
     [self sendAnalyticsReport];
     

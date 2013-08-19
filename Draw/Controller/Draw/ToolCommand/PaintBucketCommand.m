@@ -29,13 +29,15 @@
     DrawAction *lastDrawAction = [self.drawView lastAction];
     
     if (lastDrawAction && ![lastDrawAction isChangeBGAction] && ![lastDrawAction isClipAction] && lastDrawAction.clipAction == nil) {
-        [[CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
-                                      style:CommonDialogStyleDoubleButton
-                                   delegate:nil
-                               clickOkBlock:^{
-            [self changeBG];
-        } clickCancelBlock:NULL]
-         showInView:[self.controller view]];
+
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
+                                       style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(UILabel *label){
+                [self changeBG];
+        }];
+        
+        [dialog showInView:[self.control theTopView]];
+
         
     }else{
         [self changeBG];        

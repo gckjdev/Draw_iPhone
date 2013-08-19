@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PPTableViewController.h"
 #import "ChangeAvatar.h"
-#import "InputDialog.h"
 #import "UserService.h"
 #import "UserManager.h"
 #import "CommonDialog.h"
@@ -18,7 +17,7 @@
 
 @class UserManager;
 @class HJManagedImageV;
-@interface UserSettingController : PPTableViewController<UIActionSheetDelegate, InputDialogDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate, GeographyServiceDelegate>
+@interface UserSettingController : PPTableViewController<UIActionSheetDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate, GeographyServiceDelegate>
 {    
     NSInteger rowOfPassword;
     NSInteger rowOfGender;

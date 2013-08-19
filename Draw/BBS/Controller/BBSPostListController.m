@@ -132,7 +132,6 @@
     
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
     [BBSViewManager updateDefaultBackButton:self.backButton];
-//    [BBSViewManager updateDefaultTableView:self.dataTableView];
     
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];

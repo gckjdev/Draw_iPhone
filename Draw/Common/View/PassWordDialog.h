@@ -6,27 +6,29 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "InputDialog.h"
-@class CustomUITextField;
-//@class PassWordDialog;
-
-//@protocol PassWordDialog : InputDialog
-//
-//
-//@end
 #define PASSWORD_DIALOG @"PassWordDialog"
 #define DICE_PASSWORD_DIALOG    @"DicePassWordDialog"
 
-@interface PassWordDialog : InputDialog
-{
-    
-}
+@protocol PassWordDialogDelegate <NSObject>
+
+- (void)passwordIsWrong;
+- (void)passwordIsIllegal;
+- (void)twoInputDifferent;
+
+@end
+
+@interface PassWordDialog : UIView
+
+@property (assign, nonatomic) id<PassWordDialogDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITextField *oldPasswordTextField;
+@property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (retain, nonatomic) IBOutlet UITextField *anotherPasswordTextField;
-+ (PassWordDialog *)dialogWith:(NSString *)title 
-                      delegate:(id<InputDialogDelegate>)delegate;
-+ (PassWordDialog *)dialogWith:(NSString *)title 
-                      delegate:(id<InputDialogDelegate>)delegate 
-                         theme:(CommonInputDialogTheme)theme;
-- (void)hideOldPasswordTextField;
+
++ (PassWordDialog *)create;
+
+- (BOOL)isPasswordWrong;
+- (BOOL)isTwoInputDifferent;
+- (BOOL)isPasswordIllegal;
+- (void)textFieldsResignFirstResponder;
+
 @end

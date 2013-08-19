@@ -7,9 +7,9 @@
 //
 
 #import "PPTableViewController.h"
-#import "InputDialog.h"
+#import "CommonDialog.h"
 
-@interface MyWordsController : PPTableViewController<InputDialogDelegate>
+@interface MyWordsController : PPTableViewController<CommonDialogDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UIButton *addWordButton;

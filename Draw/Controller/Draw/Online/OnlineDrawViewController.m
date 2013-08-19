@@ -33,7 +33,6 @@
 #import "DrawUtils.h"
 #import "DeviceDetection.h"
 #import "CommonMessageCenter.h"
-#import "FriendRoomController.h"
 #import "GameConstants.h"
 #import "DrawColorManager.h"
 #import "PointNode.h"
@@ -260,7 +259,7 @@
 
 
 #pragma mark - Common Dialog Delegate
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1 currency:PBGameCurrencyCoin]) {
         [drawGameService quitGame];
@@ -269,11 +268,6 @@
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
     }
-}
-
-- (void)clickBack:(CommonDialog *)dialog
-{
-    //    [dialog removeFromSuperview];
 }
 
 

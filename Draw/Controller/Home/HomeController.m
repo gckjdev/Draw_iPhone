@@ -27,7 +27,6 @@
 #import "StringUtil.h"
 #import "ConfigManager.h"
 #import "ChatController.h"
-#import "FriendRoomController.h"
 #import "CommonMessageCenter.h"
 #import "SearchRoomController.h"
 #import "AudioManager.h"
@@ -207,19 +206,19 @@
 
 - (void)clickSetAPI
 {
-    InputDialog* dialog = [InputDialog dialogWith:nil clickOK:^(NSString *inputStr) {
+    CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:nil];
+    [dialog setClickOkBlock:^(UITextField *tf) {
         NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
-        [userdefault setObject:inputStr forKey:@"api_server"];
+        [userdefault setObject:tf.text forKey:@"api_server"];
         [userdefault synchronize];
-    } clickCancel:^(NSString *inputStr) {
-        //
     }];
+    
     NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
     NSString* str = [userdefault objectForKey:@"api_server"];
     if (str && str.length > 5) {
-        [dialog.targetTextField setText:str];
+        [dialog.inputTextField setText:str];
     } else {
-        [dialog.targetTextField setText:@"192.168.1.198:8000"];
+        [dialog.inputTextField setText:@"192.168.1.198:8000"];
     }
     
     [dialog showInView:self.view];
@@ -227,19 +226,19 @@
 
 - (void)clickSetTraffic
 {
-    InputDialog* dialog = [InputDialog dialogWith:nil clickOK:^(NSString *inputStr) {
+    CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:nil];
+    [dialog setClickOkBlock:^(UITextField *tf) {
         NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
-        [userdefault setObject:inputStr forKey:@"traffic_server"];
+        [userdefault setObject:tf.text forKey:@"traffic_server"];
         [userdefault synchronize];
-    } clickCancel:^(NSString *inputStr) {
-        //
     }];
+    
     NSUserDefaults* userdefault = [NSUserDefaults standardUserDefaults];
     NSString* str = [userdefault objectForKey:@"traffic_server"];
     if (str && str.length > 5) {
-        [dialog.targetTextField setText:str];
+        [dialog.inputTextField setText:str];
     } else {
-        [dialog.targetTextField setText:@"192.168.1.198:8100"];
+        [dialog.inputTextField setText:@"192.168.1.198:8100"];
     }
     [dialog showInView:self.view];
 }
@@ -460,9 +459,9 @@
             viewController = vc;
             break;
         }
-        if (viewController == nil && [vc isKindOfClass:[FriendRoomController class]]) {
-            viewController = vc;
-        }
+//        if (viewController == nil && [vc isKindOfClass:[FriendRoomController class]]) {
+//            viewController = vc;
+//        }
     }
     
     if (viewController != nil) {
@@ -659,10 +658,10 @@
             
             case HomeMenuTypeDrawPlayWithFriend:
         {
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_PLAY_WITH_FRIEDN];
-            
-            FriendRoomController *vc = [[[FriendRoomController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
+//            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_PLAY_WITH_FRIEDN];
+//            
+//            FriendRoomController *vc = [[[FriendRoomController alloc] init] autorelease];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
             
         case HomeMenuTypeDrawMore:

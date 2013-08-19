@@ -786,24 +786,29 @@
     CommonDialog* dialog;
     __block OfflineGuessDrawController* cp = self;
     if ([[AccountService defaultService] hasEnoughBalance:[ConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross delegate:nil clickOkBlock:^{
+        
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross];
+    
+        [dialog setClickOkBlock:^(UILabel *label){
             [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
             [_guessWords addObject:cp.word.text];
             [cp commitCorrectAnswer];
-        } clickCancelBlock:^{
+        }];
+        
+        [dialog setClickCancelBlock:^(NSString *inputStr){
             [cp quitGameDirectly];
         }];
-        [dialog.backButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
+        
+        
+        [dialog.cancelButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
     } else {
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(UILabel *label){
             [cp quitGameDirectly];
-        } clickCancelBlock:^{
-            //
         }];
     }
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
-   
-//    dialog.tag = QUIT_DIALOG_TAG;
+
     [dialog showInView:self.view];
 }
 

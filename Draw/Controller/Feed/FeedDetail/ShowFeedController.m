@@ -628,7 +628,7 @@ enum{
 }
 
 
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     if ([ConfigManager wallEnabled]) {
         [LmWallService showWallOnController:self];
@@ -636,11 +636,6 @@ enum{
         ChargeController* controller = [[[ChargeController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     }
-}
-
-- (void)clickBack:(CommonDialog *)dialog
-{
-    
 }
 
 - (void)setProgress:(CGFloat)progress

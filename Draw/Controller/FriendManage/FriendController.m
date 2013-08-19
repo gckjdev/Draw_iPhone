@@ -207,6 +207,11 @@ typedef enum{
     [[FriendService defaultService] getRelationCount:self];
     [self clickTabButton:self.currentTabButton];
     
+    self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.dataTableView.separatorColor = [UIColor clearColor];
+    
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+
 
     
 }
@@ -315,6 +320,9 @@ typedef enum{
 }
 
 #pragma mark - table view delegate
+
+SET_CELL_BG
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [FriendCell getCellHeight];

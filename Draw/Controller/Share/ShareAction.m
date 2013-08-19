@@ -435,12 +435,13 @@
     [vc showActivityWithText:NSLS(@"kFavoriting")];
     [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId resultBlock:^(int resultCode) {
         [vc hideActivity];
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"KSaveToLocalTitle") message:NSLS(@"kSaveToLocalMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+        
+        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"KSaveToLocalTitle") message:NSLS(@"kSaveToLocalMsg") style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(UILabel *label){
             [ac saveToLocal];
-        } clickCancelBlock:^{
-            //
         }];
-        [dialog.backButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
+        
+        [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
         [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
         [dialog showInView:vc.view];
     }];

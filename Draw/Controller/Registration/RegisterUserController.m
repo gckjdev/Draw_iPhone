@@ -462,19 +462,13 @@
 }
 
 #pragma mark - input idalog delegate
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
+- (void)didClickOk:(CommonDialog *)dialog infoView:(UITextField *)tf
 {
     _currentLoginType = LOGIN_USER_BY_EMAIL;
     [[UserService defaultService] loginUserByEmail:userIdTextField.text 
-                                          password:[targetText encodeMD5Base64:PASSWORD_KEY]
+                                          password:[tf.text encodeMD5Base64:PASSWORD_KEY]
                                     viewController:self];
 }
-
-- (void)didClickCancel:(InputDialog *)dialog
-{
-    
-}
-
 
 #define DRAW_VIEW_COUNT 6
 #define DRAW_VIEW_START_Y_IPHONE 210

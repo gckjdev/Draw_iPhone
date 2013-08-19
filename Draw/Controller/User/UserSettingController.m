@@ -13,19 +13,16 @@
 #import "ShareImageManager.h"
 #import "HJManagedImageV.h"
 #import "PPApplication.h"
-#import "InputDialog.h"
 #import "PassWordDialog.h"
 #import "StringUtil.h"
 #import "DeviceDetection.h"
 #import "AudioManager.h"
 #import "DeviceDetection.h"
-//#import "MusicSettingController.h"
 #import "LevelService.h"
 #import "MyWordsController.h"
 #import "StringUtil.h"
 #import "GameNetworkConstants.h"
 #import "AdService.h"
-//#import "CustomDiceSettingViewController.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSCommonService.h"
 #import "PPSNSConstants.h"
@@ -70,7 +67,7 @@ enum {
 #define DIALOG_TAG_REBIND_SINA      201206282
 #define DIALOG_TAG_REBIND_FACEBOOK  201206283
 
-@interface UserSettingController()
+@interface UserSettingController()<PassWordDialogDelegate>
 
 - (void)bindFacebook;
 - (void)bindSina;
@@ -182,7 +179,6 @@ enum {
 
 - (void)updateBackground:(UIImage*)image
 {
-//    [self.backgroundImage setImage:image];
 }
 
 - (void)updateNicknameLabel
@@ -192,11 +188,13 @@ enum {
 
 - (void)askInputEmail:(NSString*)text
 {
-    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kInputEmail") delegate:self];
+    
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputEmail") delegate:self]; 
     dialog.tag = DIALOG_TAG_EMAIL;
-    [dialog setTargetText:text];
-    [dialog.targetTextField setPlaceholder:NSLS(@"kInputEmail")];
-    [dialog showInView:self.view];                    
+    dialog.inputTextField.text = text;
+    [dialog.inputTextField setPlaceholder:NSLS(@"kInputEmail")];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)updateInfoFromUserManager
@@ -694,8 +692,12 @@ enum {
     
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
-            PassWordDialog *dialog = [PassWordDialog dialogWith:NSLS(@"kPassword") delegate:self];
+            
+            PassWordDialog *infoView = [PassWordDialog create];
+            infoView.delegate = self;
+            CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kPassword") customView:infoView style:CommonDialogStyleDoubleButton];
             dialog.tag = DIALOG_TAG_PASSWORD;
+            dialog.delegate = self;
             [dialog showInView:self.view];
             
         }else if (row == rowOfGender){
@@ -707,10 +709,11 @@ enum {
             [actionSheet release];
             
         }else if(row == rowOfNickName){
-            InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kNickname") delegate:self];
+            CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kNickname") delegate:self];
             dialog.tag = DIALOG_TAG_NICKNAME;
-            [dialog setTargetText:nicknameLabel.text];
+            dialog.inputTextField.text = nicknameLabel.text;
             [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
+            
             [dialog showInView:self.view];
         } else if (row == rowOfCustomDice){
             Class class = NSClassFromString(@"CustomDiceSettingViewController");
@@ -762,11 +765,7 @@ enum {
             actionSheet.tag = LANGUAGE_TAG;
             [actionSheet release]; 
         }else if(row == rowOfLevel){
-//       UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) 
-//                                                                delegate:self 
-//                                                       cancelButtonTitle:NSLS(@"kCancel") 
-//                                                  destructiveButtonTitle:NSLS(@"kEasyLevel") 
-//                                                       otherButtonTitles:NSLS(@"kNormalLevel"),NSLS(@"kHardLevel"), nil];
+
             
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kLevelSelection" ) 
                                                                      delegate:self 
@@ -788,11 +787,6 @@ enum {
         if(row == rowOfSoundSwitcher) {
             //no action
         }else if (row == rowOfMusicSettings) {
-            /*
-            MusicSettingController *controller = [[MusicSettingController alloc] init];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-             */
         } else if (row == rowOfVolumeSetting) {
             //no action
         } 
@@ -843,12 +837,6 @@ enum {
                 break;
         }
     }    
-//    else if (section == SECTION_REMOVE_AD) {
-//        if ([ConfigManager isProVersion]){            
-//        }
-//        else{
-//        }
-//    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -858,13 +846,14 @@ enum {
 - (void)askUpdateLocation
 {
     __block UserSettingController* uc = self;
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
-        [uc startUpdatingLocation];
-        [uc showActivityWithText:NSLS(@"kGetingLocation")];
-
-    } clickCancelBlock:^{
-        //
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGetLocationTitle") message:NSLS(@"kGetLocationMsg") style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
+            [uc startUpdatingLocation];
+            [uc showActivityWithText:NSLS(@"kGetingLocation")];
+            
     }];
+    
     [dialog showInView:self.view];
 }
 
@@ -1239,93 +1228,94 @@ enum {
     }
 }
 
-
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     switch (dialog.tag) {
         case DIALOG_TAG_REBIND_FACEBOOK:
             [self bindFacebook];
+            [self.navigationController popViewControllerAnimated:YES];
             return;
-
+            
         case DIALOG_TAG_REBIND_QQ:
             [self bindQQ];
+            [self.navigationController popViewControllerAnimated:YES];
             return;
             
         case DIALOG_TAG_REBIND_SINA:
             [self bindSina];
+            [self.navigationController popViewControllerAnimated:YES];
             return;
+            
+        case DIALOG_TAG_NICKNAME:
+            if ([((UITextField *)infoView).text length] > 0){
+                [_pbUserBuilder setNickName:((UITextField *)infoView).text];
+                [self updateNicknameLabel];
+                hasEdited = YES;
+            }
+            [self.dataTableView reloadData];
+            break;
+            
+        case DIALOG_TAG_PASSWORD:
+                
+                if ([(PassWordDialog *)infoView isPasswordWrong])
+                {
+                    [[(PassWordDialog *)infoView oldPasswordTextField] becomeFirstResponder];
+                    [self passwordIsWrong];
+                    
+                }else if([(PassWordDialog *)infoView isPasswordIllegal])
+                {
+                    [[(PassWordDialog *)infoView anotherPasswordTextField] becomeFirstResponder];
+                    [self passwordIsIllegal];
+                    
+                }else if([(PassWordDialog *)infoView isTwoInputDifferent])
+                {
+                    [[(PassWordDialog *)infoView passwordTextField] becomeFirstResponder];
+                    [self twoInputDifferent];
+                    
+                }else{
+                    
+                    if ([((PassWordDialog *)infoView).passwordTextField.text length] > 0){
+                        [_pbUserBuilder setPassword:[((PassWordDialog *)infoView).passwordTextField.text encodeMD5Base64:PASSWORD_KEY]];
+                        hasEdited = YES;
+                    }
+                    [self.dataTableView reloadData];
+                }
+            
+            break;
+            
+        case DIALOG_TAG_EMAIL:
+            
+            if (NSStringIsValidEmail(((UITextField *)infoView).text)){
+                [_pbUserBuilder setEmail:((UITextField *)infoView).text];
+                hasEdited = YES;
+            }else{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEmailNotValid") delayTime:1.5];
+                [self askInputEmail:((UITextField *)infoView).text];
+            }
+            [self.dataTableView reloadData];
+            break;
+
             
         default:
             break;
     }
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)clickBack:(CommonDialog *)dialog
-{
-//    [dialog removeFromSuperview];    
-}
-
-
-
-//- (void)didImageSelected:(UIImage*)image
-//{
-////    [self updateAvatar:image];
-//    [self uploadUserAvatar:image];
-//}
-
-
-- (void)didClickOk:(InputDialog *)dialog targetText:(NSString *)targetText
-{
-    if (dialog.tag == DIALOG_TAG_NICKNAME) {
-        if ([targetText length] > 0){
-            [_pbUserBuilder setNickName:targetText];
-            [self updateNicknameLabel];
-            hasEdited = YES;
-        }
-        else{
-            
-        }
-    }
-    else if(dialog.tag == DIALOG_TAG_PASSWORD)
-    {
-        if ([targetText length] > 0){
-            [_pbUserBuilder setPassword:[targetText encodeMD5Base64:PASSWORD_KEY]];
-            hasEdited = YES;
-        }
-    }
-    else if (dialog.tag == DIALOG_TAG_EMAIL){
-        if (NSStringIsValidEmail(targetText)){
-            [_pbUserBuilder setEmail:targetText];
-            hasEdited = YES;
-        }
-        else{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEmailNotValid") delayTime:1.5];            
-            [self askInputEmail:targetText];
-        }
-    }
-    
-    [self.dataTableView reloadData];
-
-}
-- (void)didClickCancel:(InputDialog *)dialog
+- (void)didClickCancel:(CommonDialog *)dialog
 {
     [self.dataTableView reloadData];
 }
 
-#pragma mark - Password Dialog Delegate
-- (void)passwordIsWrong:(NSString *)password
+- (void)passwordIsWrong
 {
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPasswordWrong") delayTime:1.5];
-    
 }
 - (void)twoInputDifferent
 {
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPasswordDifferent") delayTime:1.5];
 }
 
-- (void)passwordIsIllegal:(NSString *)password
+- (void)passwordIsIllegal
 {
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPasswordIllegal") delayTime:1.5];
 }
@@ -1360,28 +1350,12 @@ enum {
 
 - (void)reverseGeocodeCurrentLocation:(CLLocation *)location
 {
-//    self.reverseGeocoder = [[[MKReverseGeocoder alloc] initWithCoordinate:location.coordinate] autorelease];
-//    reverseGeocoder.delegate = self;
-//    [reverseGeocoder start];
     [[GeographyService defaultService] findCityWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude delegate:self];
     [_pbUserBuilder setLatitude:location.coordinate.latitude];
     [_pbUserBuilder setLongitude:location.coordinate.longitude];
     
 }
 
-//- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
-//{
-//    NSLog(@"MKReverseGeocoder has failed.");
-//}
-//
-//- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
-//{
-//	self.currentPlacemark = placemark;
-//	[_pbUserBuilder setLocation:[NSString stringWithFormat:@"%@ %@", self.currentPlacemark.administrativeArea, self.currentPlacemark.locality]];
-//    hasEdited = YES;
-//    PPDebug(@"<UserSettingController>update location succ, new location is %@", self.currentPlacemark.locality);
-//    [self.dataTableView reloadData];
-//}
 
 - (void)didImageSelected:(UIImage *)image
 {

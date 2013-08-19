@@ -654,7 +654,7 @@
         [HomeController returnRoom:self];
     }
 }
-- (void)clickOk:(CommonDialog *)dialog
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
     if (dialog.tag == DIALOG_TAG_ESCAPE ){
         [self quit];
@@ -669,8 +669,7 @@
         [self showInputAlertViewWithSubject:YES];
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
-//        self.currentDialog = dialog;
-        // Save Image Locally
+
         [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
                                                         image:drawView.createImage
                                                      delegate:self];
@@ -714,7 +713,7 @@
     }
 }
 
-- (void)clickBack:(CommonDialog *)dialog
+- (void)didClickCancel:(CommonDialog *)dialog
 {
     if(dialog.tag == DIALOG_TAG_SUBMIT){
 
@@ -911,7 +910,7 @@
     
     BOOL isBlank = ([drawView.drawActionList count] == 0);
     if (isBlank && targetType != TypePhoto) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDraftMessage") style:CommonDialogStyleSingleButton delegate:nil];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDraftMessage") style:CommonDialogStyleSingleButton];
         [dialog showInView:self.view];
         return;
     }
@@ -1187,7 +1186,7 @@
     BOOL isBlank = ([drawView.drawActionList count] == 0);
     
     if (isBlank && targetType != TypePhoto) {
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton delegate:nil];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBlankDrawTitle") message:NSLS(@"kBlankDrawMessage") style:CommonDialogStyleSingleButton];
         [dialog showInView:self.view];
         return;
     }
@@ -1256,18 +1255,15 @@
 
 - (void)alertExit
 {
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil message:nil style:CommonDialogStyleDoubleButton delegate:self];
+    CommonDialog *dialog = nil;
     
     if (_isNewDraft || [drawView.drawActionList count] == 0) {
-        [dialog setTitle:NSLS(@"kQuitGameAlertTitle")];
-        [dialog setMessage:NSLS(@"kQuitGameAlertMessage")];
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_ESCAPE;
     }else{
-        [dialog setTitle:NSLS(@"kQuitDrawAlertTitle")];
-        [dialog setMessage:NSLS(@"kQuitDrawAlertMessage")];
-        [dialog.backButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
         [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
-
         dialog.tag = DIALOG_TAG_SAVETIP;
     }
     

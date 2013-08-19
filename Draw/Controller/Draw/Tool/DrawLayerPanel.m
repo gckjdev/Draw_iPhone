@@ -10,7 +10,6 @@
 #import "CMPopTipView.h"
 #import "PPViewController.h"
 #import "CommonDialog.h"
-#import "InputDialog.h"
 #import "ShareImageManager.h"
 
 #define CELL_ID @"DrawLayerPanelCell"
@@ -20,14 +19,17 @@
 - (void)handleDoubleTap:(UITapGestureRecognizer *)tap
 {
     PPDebug(@"<handleDoubleTap> layer name = %@", _drawLayer.layerName);
-    InputDialog *dialog = [InputDialog dialogWith:NSLS(@"kEditLayerName") defaultText:_drawLayer.layerName placeHolderText:nil clickOK:^(NSString *inputStr) {
-        self.drawLayer.layerName = inputStr;
-        [self.layerName setText:inputStr];
-    } clickCancel:NULL];
-    [dialog setAllowEmpty:NO];
-    dialog.maxInputLen = 10;
-    [dialog showInView:[self theTopView]];
+
+    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kEditLayerName")];
+    dialog.inputTextField.text = _drawLayer.layerName;
+    [dialog setClickOkBlock:^(UITextField *tf) {
+        self.drawLayer.layerName = tf.text;
+        [self.layerName setText:tf.text];
+    }];
     
+    [dialog setMaxInputLen:10];
+    [dialog setAllowInputEmpty:NO];
+    [dialog showInView:[self theTopView]];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -101,11 +103,13 @@
 
 - (IBAction)clickRemove:(id)sender {
     
-    [[CommonDialog createDialogWithTitle:NSLS(@"kWarning") message:NSLS(@"kDeleteDrawLayer") style:CommonDialogStyleDoubleButton delegate:nil clickOkBlock:^{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kTips")
+                                 message:NSLS(@"kDeleteDrawLayer")
+                                   style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
         [self.delegate drawLayerPanelCell:self didClickRemoveAtDrawLayer:self.drawLayer];
-    } clickCancelBlock:NULL] showInView:[self theTopView]];
-    
-
+    }];
+    [dialog showInView:[self theTopView]];
 }
 
 
@@ -141,13 +145,6 @@
     [[_dlManager selectedLayer] setOpacity:value];
     [self updateAlphaLabelWithValue:value];
 }
-/*
-- (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
-{
-    [[_dlManager selectedLayer] setOpacity:value];
-    [self updateAlphaLabelWithValue:value];
-}
- */
 
 
 - (void)updateView

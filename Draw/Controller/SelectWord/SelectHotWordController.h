@@ -10,9 +10,9 @@
 #import "WordSelectCell.h"
 #import "SelectCustomWordView.h"
 #import "DraftsView.h"
-#import "InputDialog.h"
+#import "CommonDialog.h"
 
-@interface SelectHotWordController : UIViewController <WordSelectCellDelegate, SelectCustomWordViewDelegate, DraftsViewDelegate, InputDialogDelegate>
+@interface SelectHotWordController : UIViewController <WordSelectCellDelegate, SelectCustomWordViewDelegate, DraftsViewDelegate, CommonDialogDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 

@@ -15,65 +15,72 @@ typedef enum {
     CommonDialogStyleSingleButton = 0,
     CommonDialogStyleDoubleButton,
     CommonDialogStyleDoubleButtonWithCross,
+    CommonDialogStyleCross,
 }CommonDialogStyle;
 
 typedef enum {
-    CommonDialogThemeDraw = 0,
-    CommonDialogThemeDice = 1,
-    CommonDialogThemeZJH,
-    CommonDialogThemeStarry,
-}CommonDialogTheme;
+    CommonDialogTypeLabel,
+    CommonDialogTypeInputField,
+    CommonDialogTypeInputTextView,
+    CommonDialogTypeCustomView,
+}CommonDialogType;
 
-typedef void (^DialogSelectionBlock)(void);
+typedef void (^DialogSelectionBlock)(id infoView);
 
 @protocol CommonDialogDelegate <NSObject>
  @optional
-- (void)clickOk:(CommonDialog *)dialog;
-- (void)clickBack:(CommonDialog *)dialog;
-- (void)clickMask:(CommonDialog *)dialog;
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView;
+- (void)didClickCancel:(CommonDialog *)dialog;
+
 @end
 
-@interface CommonDialog : CommonInfoView {
-    BOOL    _shouldResize;
-}
-@property (retain, nonatomic) IBOutlet UIButton *closeButton;
+@interface CommonDialog : CommonInfoView
+
+@property (assign, nonatomic) CommonDialogStyle style;
+@property (assign, nonatomic) CommonDialogType type;
+
+// 最大输入长度，为0时表示不限制
+@property (assign, nonatomic) int maxInputLen;
+@property (assign, nonatomic) BOOL allowInputEmpty;
+
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
+@property (retain, nonatomic) IBOutlet UITextField *inputTextField;
+@property (retain, nonatomic) IBOutlet UITextView *inputTextView;
+@property (retain, nonatomic) UIView *customView;
 
 @property (retain, nonatomic) IBOutlet UIButton *oKButton;
-@property (retain, nonatomic) IBOutlet UIButton *backButton;
-@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (assign, nonatomic) CommonDialogStyle style;
-@property (retain, nonatomic) IBOutlet UIImageView *frontBackgroundImageView;
+@property (retain, nonatomic) IBOutlet UIButton *cancelButton;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
+
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
-@property (retain, nonatomic) IBOutlet UIImageView *contentBackground;
 
-@property (retain, nonatomic) IBOutlet UIImageView *dialogHeader;
 @property (copy, nonatomic) DialogSelectionBlock clickOkBlock;
-@property (copy, nonatomic) DialogSelectionBlock clickBackBlock;
+@property (copy, nonatomic) DialogSelectionBlock clickCancelBlock;
 
+- (void)setTitle:(NSString *)title;
+
++ (CommonDialog *)createDialogWithTitle:(NSString *)title
+                                message:(NSString *)message
+                                  style:(CommonDialogStyle)aStyle;
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title 
                                 message:(NSString *)message 
                                   style:(CommonDialogStyle)aStyle 
                                delegate:(id<CommonDialogDelegate>)aDelegate;
 
+
++ (CommonDialog *)createInputFieldDialogWith:(NSString *)title;
++ (CommonDialog *)createInputFieldDialogWith:(NSString *)title
+                                    delegate:(id<CommonDialogDelegate>)delegate;
+
+
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
-                                message:(NSString *)message
-                                  style:(CommonDialogStyle)aStyle
-                               delegate:(id<CommonDialogDelegate>)aDelegate
-                           clickOkBlock:(DialogSelectionBlock)block1
-                       clickCancelBlock:(DialogSelectionBlock)block2;
+                             customView:(UIView *)customView
+                                  style:(CommonDialogStyle)style;
 
-- (void)setTitle:(NSString *)title;
-- (void)setMessage:(NSString *)message;
-+ (CommonDialogTheme)globalGetTheme;
-
-- (void)setClickOkBlock:(DialogSelectionBlock)block;
-- (void)setClickBackBlock:(DialogSelectionBlock)block;
 
 @end
 
 
-@interface DialogBGView : UIView
 
-@end
