@@ -11,8 +11,8 @@
 #import "ShareImageManager.h"
 #import "UILabel+Extend.h"
 
-//#define CONTENT_VIEW_INSERT (ISIPAD ? 16 : 7.5)
-#define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
+#define CONTENT_VIEW_FRAME_WIDTH (ISIPAD ? 10 : 5)
+
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
 #define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 654 : 300)
 
@@ -131,7 +131,7 @@
 - (void)layout
 {    
     CGFloat centerX = self.contentView.frame.size.width/2;
-    CGFloat originY = CONTENT_VIEW_INSERT;
+    CGFloat originY = CONTENT_VIEW_FRAME_WIDTH;
     
     [_titleLabel updateCenterX:centerX];
     [_titleLabel updateOriginY:originY];
@@ -147,7 +147,7 @@
     [self.cancelButton updateOriginY:(originY)];
     
     // update content view height
-    CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
+    CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_FRAME_WIDTH;
     [self.contentView updateHeight:height];
 }
 
@@ -409,14 +409,14 @@
 
     
     [COLOR_GREEN setFill];
-    CGRect r = CGRectMake(0, 0, CGRectGetWidth(self.bounds), TITLE_LABEL_HEIGHT + CONTENT_VIEW_INSERT);
+    CGRect r = CGRectMake(0, 0, CGRectGetWidth(self.bounds), TITLE_LABEL_HEIGHT + CONTENT_VIEW_FRAME_WIDTH);
     CGContextFillRect(ctx, r);
 
     
     [COLOR_RED setStroke];
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:DIALOG_CORNER_RADIUS];
     CGContextAddPath(ctx, path.CGPath);
-    CGContextSetLineWidth(ctx, CONTENT_VIEW_INSERT * 2);
+    CGContextSetLineWidth(ctx, CONTENT_VIEW_FRAME_WIDTH * 2);
     CGContextStrokePath(ctx);
 }
 
