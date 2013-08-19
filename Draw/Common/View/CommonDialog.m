@@ -11,7 +11,8 @@
 #import "ShareImageManager.h"
 #import "UILabel+Extend.h"
 
-#define CONTENT_VIEW_INSERT (ISIPAD ? 16 : 7.5)
+//#define CONTENT_VIEW_INSERT (ISIPAD ? 16 : 7.5)
+#define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
 #define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 654 : 300)
 
@@ -26,6 +27,13 @@
 #define FONT_INPUT_TEXT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
 
 #define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+
+#define DIALOG_CORNER_RADIUS    (ISIPAD ? 30 : 15)
+#define TEXTVIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
+#define BUTTON_CORNER_RADIUS    TEXTVIEW_CORNER_RADIUS
+
+#define TEXTVIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
+
 
 @interface CommonDialog()<UITextFieldDelegate, UITextViewDelegate>
 
@@ -258,13 +266,13 @@
     [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
     view.oKButton.backgroundColor = COLOR_YELLOW;
     [view.oKButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    SET_VIEW_ROUND_CORNER(view.oKButton);
+    SET_VIEW_ROUND_CORNER_WIDTH(view.oKButton, BUTTON_CORNER_RADIUS);
     view.oKButton.titleLabel.font = FONT_BUTTON;
     
     [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];    [view appear];
     view.cancelButton.backgroundColor = COLOR_YELLOW;
     [view.cancelButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    SET_VIEW_ROUND_CORNER(view.cancelButton);
+    SET_VIEW_ROUND_CORNER_WIDTH(view.cancelButton, BUTTON_CORNER_RADIUS);
     view.cancelButton.titleLabel.font = FONT_BUTTON;
     
     view.titleLabel.textColor = COLOR_WHITE;
@@ -274,13 +282,13 @@
     view.messageLabel.font = FONT_MESSAGE_LABEL;
     
     view.inputTextField.font = FONT_INPUT_TEXT_FIELD;
-    SET_VIEW_ROUND_CORNER(view.inputTextField);
-    view.inputTextField.layer.borderWidth = (ISIPAD ? 8 : 4);
+    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextField, TEXTVIEW_CORNER_RADIUS);
+    view.inputTextField.layer.borderWidth = TEXTVIEW_BORDER_WIDTH;
     view.inputTextField.layer.borderColor = [COLOR_YELLOW CGColor];
     
     view.inputTextView.font = FONT_INPUT_TEXT_VIEW;
-    SET_VIEW_ROUND_CORNER(view.inputTextView);
-    view.inputTextView.layer.borderWidth = (ISIPAD ? 8 : 4);
+    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextView, TEXTVIEW_CORNER_RADIUS);
+    view.inputTextView.layer.borderWidth = TEXTVIEW_BORDER_WIDTH;
     view.inputTextView.layer.borderColor = [COLOR_YELLOW CGColor];
 
     return view;
@@ -383,9 +391,10 @@
 
 @implementation DialogBGView
 
+
 - (void)awakeFromNib
 {
-    [self.layer setCornerRadius:15];
+    [self.layer setCornerRadius:DIALOG_CORNER_RADIUS];
     [self.layer setMasksToBounds:YES];
     self.backgroundColor = [UIColor clearColor];
     [self setNeedsDisplay];
@@ -405,7 +414,7 @@
 
     
     [COLOR_RED setStroke];
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15];
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:DIALOG_CORNER_RADIUS];
     CGContextAddPath(ctx, path.CGPath);
     CGContextSetLineWidth(ctx, CONTENT_VIEW_INSERT * 2);
     CGContextStrokePath(ctx);
