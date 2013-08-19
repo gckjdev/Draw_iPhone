@@ -14,6 +14,10 @@
 #import "HPThemeManager.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
+#define TEXT_VIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
+#define BUTTON_CORNER_RADIUS    TEXT_VIEW_CORNER_RADIUS
+
 #define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82) // normal
 #define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) // selected
 #define COLOR_ORANGE2 OPAQUE_COLOR(224, 80, 67) // hightlight
@@ -37,7 +41,7 @@
 
 #define SET_VIEW_ROUND_CORNER(view) \
 {           \
-    [view.layer setCornerRadius:4];       \
+    [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];  \
     [view.layer setMasksToBounds:YES];    \
 }
 

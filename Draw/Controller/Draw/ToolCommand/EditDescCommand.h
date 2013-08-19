@@ -12,6 +12,6 @@
 
 @interface EditDescCommand : ToolCommand
 
-@property(nonatomic, retain) InputAlertView *inputAlertView;
+//@property(nonatomic, retain) InputAlertView *inputAlertView;
 
 @end

@@ -1702,7 +1702,7 @@
 		A467894317BC7782007C546A /* UILabel+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A467893F17BC7782007C546A /* UILabel+Extend.m */; };
 		A467BBAC177844DB00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBC417798CA500455E3A /* ItemUseRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBC317798CA500455E3A /* ItemUseRecorder.m */; };
-		A467BBCA17798DC900455E3A /* DrawToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */; };
+		A467BBCA17798DC900455E3A /* ToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* ToolUpPanel.xib */; };
 		A467BBCB17798DC900455E3A /* DrawToolUpPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */; };
 		A467BBCC17798E0500455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
 		A467BBCE17798E0C00455E3A /* OpusDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = A467BBAB177844DB00455E3A /* OpusDownloadService.m */; };
@@ -2435,8 +2435,6 @@
 		C27E6914176EAD370019F41B /* SearchPhotoResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27E6910176EAD370019F41B /* SearchPhotoResultController.xib */; };
 		C27E6916176EAD650019F41B /* SearchPhotoResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27E6915176EAD650019F41B /* SearchPhotoResultController~ipad.xib */; };
 		C27E6917176EAD650019F41B /* SearchPhotoResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27E6915176EAD650019F41B /* SearchPhotoResultController~ipad.xib */; };
-		C2800203177C39F7007A80CF /* DrawToolUpPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */; };
-		C2800209177C39F7007A80CF /* DrawToolUpPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C282D00C1728DD6E00F8C610 /* TapjoyAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D00B1728DD6E00F8C610 /* TapjoyAdWallService.m */; };
 		C282E74B172BC53300F8C610 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C282E5A2172BC53200F8C610 /* libGoogleAdMobAds.a */; };
@@ -4127,8 +4125,8 @@
 		C2BD7A7917167A2F0079B7F6 /* user_setting_cell_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */; };
 		C2BD7A7D17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */; };
 		C2BD7A8117167A2F0079B7F6 /* user_setting_cell_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */; };
-		C2C09DDC17797EF3009408EB /* DrawToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */; };
-		C2C09DE317797EF3009408EB /* DrawToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */; };
+		C2C09DDC17797EF3009408EB /* ToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* ToolUpPanel.xib */; };
+		C2C09DE317797EF3009408EB /* ToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* ToolUpPanel.xib */; };
 		C2C09DE417797EF3009408EB /* DrawToolUpPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */; };
 		C2C09DEB17797EF3009408EB /* DrawToolUpPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */; };
 		C2C09DFF17797F1B009408EB /* draw_commit_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DF117797F1B009408EB /* draw_commit_btn@2x.png */; };
@@ -5148,6 +5146,7 @@
 		CA89748316087BE2003A95F7 /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
 		CA89748416087BE2003A95F7 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
 		CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */; };
+		CA8C471217C2214A00BA6A15 /* ToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* ToolUpPanel.xib */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
@@ -5360,18 +5359,6 @@
 		CAC3EDAB17C201A20098E168 /* draw_up_panel_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9B17C201A20098E168 /* draw_up_panel_background@2x.png */; };
 		CAC3EDAC17C201A20098E168 /* draw_up_panel_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9B17C201A20098E168 /* draw_up_panel_background@2x.png */; };
 		CAC3EDAD17C201A20098E168 /* draw_up_panel_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9B17C201A20098E168 /* draw_up_panel_background@2x.png */; };
-		CAC3EDAE17C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9C17C201A20098E168 /* draw_up_panel_bg@2x.png */; };
-		CAC3EDAF17C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9C17C201A20098E168 /* draw_up_panel_bg@2x.png */; };
-		CAC3EDB017C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9C17C201A20098E168 /* draw_up_panel_bg@2x.png */; };
-		CAC3EDB117C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9C17C201A20098E168 /* draw_up_panel_bg@2x.png */; };
-		CAC3EDB217C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9D17C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png */; };
-		CAC3EDB317C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9D17C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png */; };
-		CAC3EDB417C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9D17C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png */; };
-		CAC3EDB517C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9D17C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png */; };
-		CAC3EDB617C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9E17C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png */; };
-		CAC3EDB717C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9E17C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png */; };
-		CAC3EDB817C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9E17C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png */; };
-		CAC3EDB917C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9E17C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png */; };
 		CAC3EDBA17C201A20098E168 /* draw_up_panel_blocks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9F17C201A20098E168 /* draw_up_panel_blocks@2x.png */; };
 		CAC3EDBB17C201A20098E168 /* draw_up_panel_blocks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9F17C201A20098E168 /* draw_up_panel_blocks@2x.png */; };
 		CAC3EDBC17C201A20098E168 /* draw_up_panel_blocks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9F17C201A20098E168 /* draw_up_panel_blocks@2x.png */; };
@@ -5396,10 +5383,6 @@
 		CAC3EDCF17C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3EDA417C201A20098E168 /* draw_up_panel_help_btn_@2x.png */; };
 		CAC3EDD017C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3EDA417C201A20098E168 /* draw_up_panel_help_btn_@2x.png */; };
 		CAC3EDD117C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3EDA417C201A20098E168 /* draw_up_panel_help_btn_@2x.png */; };
-		CAC3EDD217C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3EDA517C201A20098E168 /* draw_up_panel_sep_line@2x.png */; };
-		CAC3EDD317C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3EDA517C201A20098E168 /* draw_up_panel_sep_line@2x.png */; };
-		CAC3EDD417C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3EDA517C201A20098E168 /* draw_up_panel_sep_line@2x.png */; };
-		CAC3EDD517C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3EDA517C201A20098E168 /* draw_up_panel_sep_line@2x.png */; };
 		CAC44909168C4DCC004441EB /* UIColor+GetHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */; };
 		CAC4490C168C4DCC004441EB /* ILColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44902168C4DCC004441EB /* ILColorPickerView.m */; };
 		CAC4490F168C4DCC004441EB /* ILHuePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44904168C4DCC004441EB /* ILHuePickerView.m */; };
@@ -8466,7 +8449,6 @@
 		C27E690F176EAD360019F41B /* SearchPhotoResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPhotoResultController.m; sourceTree = "<group>"; };
 		C27E6910176EAD370019F41B /* SearchPhotoResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchPhotoResultController.xib; sourceTree = "<group>"; };
 		C27E6915176EAD650019F41B /* SearchPhotoResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchPhotoResultController~ipad.xib"; sourceTree = "<group>"; };
-		C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawToolUpPanel~ipad.xib"; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
 		C282D00A1728DD6E00F8C610 /* TapjoyAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyAdWallService.h; sourceTree = "<group>"; };
@@ -8652,7 +8634,7 @@
 		C2BD7A6E17167A2F0079B7F6 /* user_setting_cell_one@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_one@2x.png"; sourceTree = "<group>"; };
 		C2BD7A6F17167A2F0079B7F6 /* user_setting_cell_seperator_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_seperator_line@2x.png"; sourceTree = "<group>"; };
 		C2BD7A7017167A2F0079B7F6 /* user_setting_cell_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_setting_cell_up@2x.png"; sourceTree = "<group>"; };
-		C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawToolUpPanel.xib; sourceTree = "<group>"; };
+		C2C09DD917797EF3009408EB /* ToolUpPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolUpPanel.xib; sourceTree = "<group>"; };
 		C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawToolUpPanel.m; sourceTree = "<group>"; };
 		C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawToolUpPanel.h; sourceTree = "<group>"; };
 		C2C09DF117797F1B009408EB /* draw_commit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_commit_btn@2x.png"; sourceTree = "<group>"; };
@@ -10127,16 +10109,12 @@
 		CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatementView~ipad.xib"; sourceTree = "<group>"; };
 		CAC3ED9A17C201A20098E168 /* draw_up_panel_accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_accessory@2x.png"; sourceTree = "<group>"; };
 		CAC3ED9B17C201A20098E168 /* draw_up_panel_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_background@2x.png"; sourceTree = "<group>"; };
-		CAC3ED9C17C201A20098E168 /* draw_up_panel_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_bg@2x.png"; sourceTree = "<group>"; };
-		CAC3ED9D17C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_bg_left_arrow@2x.png"; sourceTree = "<group>"; };
-		CAC3ED9E17C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_bg_right_arrow@2x.png"; sourceTree = "<group>"; };
 		CAC3ED9F17C201A20098E168 /* draw_up_panel_blocks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_blocks@2x.png"; sourceTree = "<group>"; };
 		CAC3EDA017C201A20098E168 /* draw_up_panel_canvas_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_canvas_btn@2x.png"; sourceTree = "<group>"; };
 		CAC3EDA117C201A20098E168 /* draw_up_panel_copy_paint_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_copy_paint_btn@2x.png"; sourceTree = "<group>"; };
 		CAC3EDA217C201A20098E168 /* draw_up_panel_draw_to_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_draw_to_btn@2x.png"; sourceTree = "<group>"; };
 		CAC3EDA317C201A20098E168 /* draw_up_panel_edit_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_edit_btn@2x.png"; sourceTree = "<group>"; };
 		CAC3EDA417C201A20098E168 /* draw_up_panel_help_btn_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_help_btn_@2x.png"; sourceTree = "<group>"; };
-		CAC3EDA517C201A20098E168 /* draw_up_panel_sep_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_sep_line@2x.png"; sourceTree = "<group>"; };
 		CAC448FE168C4DCC004441EB /* UIColor+GetHSB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GetHSB.h"; sourceTree = "<group>"; };
 		CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GetHSB.m"; sourceTree = "<group>"; };
 		CAC44901168C4DCC004441EB /* ILColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILColorPickerView.h; sourceTree = "<group>"; };
@@ -16671,16 +16649,12 @@
 			children = (
 				CAC3ED9A17C201A20098E168 /* draw_up_panel_accessory@2x.png */,
 				CAC3ED9B17C201A20098E168 /* draw_up_panel_background@2x.png */,
-				CAC3ED9C17C201A20098E168 /* draw_up_panel_bg@2x.png */,
-				CAC3ED9D17C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png */,
-				CAC3ED9E17C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png */,
 				CAC3ED9F17C201A20098E168 /* draw_up_panel_blocks@2x.png */,
 				CAC3EDA017C201A20098E168 /* draw_up_panel_canvas_btn@2x.png */,
 				CAC3EDA117C201A20098E168 /* draw_up_panel_copy_paint_btn@2x.png */,
 				CAC3EDA217C201A20098E168 /* draw_up_panel_draw_to_btn@2x.png */,
 				CAC3EDA317C201A20098E168 /* draw_up_panel_edit_btn@2x.png */,
 				CAC3EDA417C201A20098E168 /* draw_up_panel_help_btn_@2x.png */,
-				CAC3EDA517C201A20098E168 /* draw_up_panel_sep_line@2x.png */,
 			);
 			path = UpPanel;
 			sourceTree = "<group>";
@@ -16906,8 +16880,7 @@
 				CAF4897817AA736900F015AB /* ToolPanel.xib */,
 				C2C09DDB17797EF3009408EB /* DrawToolUpPanel.h */,
 				C2C09DDA17797EF3009408EB /* DrawToolUpPanel.m */,
-				C2C09DD917797EF3009408EB /* DrawToolUpPanel.xib */,
-				C2800202177C39F7007A80CF /* DrawToolUpPanel~ipad.xib */,
+				C2C09DD917797EF3009408EB /* ToolUpPanel.xib */,
 				CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */,
 				CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */,
 				CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */,
@@ -19094,7 +19067,7 @@
 				A499733117783E3F00B01EBE /* CommonSearchImageFilterView.xib in Resources */,
 				CA3D4B0517794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B1717794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
-				A467BBCA17798DC900455E3A /* DrawToolUpPanel.xib in Resources */,
+				A467BBCA17798DC900455E3A /* ToolUpPanel.xib in Resources */,
 				A41174B31779948500D3FE23 /* shop_item_660557448.pb in Resources */,
 				A4117523177AD09900D3FE23 /* SingOpusDetailController.xib in Resources */,
 				A4117525177AD09900D3FE23 /* SingOpusInfoCell.xib in Resources */,
@@ -19181,16 +19154,12 @@
 				CA0E987617BDD584009BD4F5 /* draw_page_back@2x.png in Resources */,
 				CAC3EDA817C201A20098E168 /* draw_up_panel_accessory@2x.png in Resources */,
 				CAC3EDAC17C201A20098E168 /* draw_up_panel_background@2x.png in Resources */,
-				CAC3EDB017C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */,
-				CAC3EDB417C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */,
-				CAC3EDB817C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */,
 				CAC3EDBC17C201A20098E168 /* draw_up_panel_blocks@2x.png in Resources */,
 				CAC3EDC017C201A20098E168 /* draw_up_panel_canvas_btn@2x.png in Resources */,
 				CAC3EDC417C201A20098E168 /* draw_up_panel_copy_paint_btn@2x.png in Resources */,
 				CAC3EDC817C201A20098E168 /* draw_up_panel_draw_to_btn@2x.png in Resources */,
 				CAC3EDCC17C201A20098E168 /* draw_up_panel_edit_btn@2x.png in Resources */,
 				CAC3EDD017C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
-				CAC3EDD417C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20127,7 +20096,7 @@
 				A49972431778349000B01EBE /* HomeController~ipad.xib in Resources */,
 				CA3D4B0217794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B1417794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
-				C2C09DE317797EF3009408EB /* DrawToolUpPanel.xib in Resources */,
+				C2C09DE317797EF3009408EB /* ToolUpPanel.xib in Resources */,
 				C2C09E0617797F1B009408EB /* draw_commit_btn@2x.png in Resources */,
 				C2C09E0E17797F1B009408EB /* draw_save_btn@2x.png in Resources */,
 				C2C09E1617797F1B009408EB /* draw_setting_btn@2x.png in Resources */,
@@ -20135,7 +20104,6 @@
 				CA13B870177C1832003B7368 /* line.svg in Resources */,
 				CA13B882177C1832003B7368 /* path.svg in Resources */,
 				CA13B894177C1832003B7368 /* rect.svg in Resources */,
-				C2800209177C39F7007A80CF /* DrawToolUpPanel~ipad.xib in Resources */,
 				C2EAA87E178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
 				CA9C129B178275B9004372B6 /* gradient_bg_left@2x.png in Resources */,
 				CA9C12AD178275B9004372B6 /* gradient_bg_mid@2x.png in Resources */,
@@ -20233,16 +20201,12 @@
 				CA0E987517BDD584009BD4F5 /* draw_page_back@2x.png in Resources */,
 				CAC3EDA717C201A20098E168 /* draw_up_panel_accessory@2x.png in Resources */,
 				CAC3EDAB17C201A20098E168 /* draw_up_panel_background@2x.png in Resources */,
-				CAC3EDAF17C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */,
-				CAC3EDB317C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */,
-				CAC3EDB717C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */,
 				CAC3EDBB17C201A20098E168 /* draw_up_panel_blocks@2x.png in Resources */,
 				CAC3EDBF17C201A20098E168 /* draw_up_panel_canvas_btn@2x.png in Resources */,
 				CAC3EDC317C201A20098E168 /* draw_up_panel_copy_paint_btn@2x.png in Resources */,
 				CAC3EDC717C201A20098E168 /* draw_up_panel_draw_to_btn@2x.png in Resources */,
 				CAC3EDCB17C201A20098E168 /* draw_up_panel_edit_btn@2x.png in Resources */,
 				CAC3EDCF17C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
-				CAC3EDD317C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21164,7 +21128,7 @@
 				C2CA7E5817782BC30086D0FD /* CommonRoomListController~ipad.xib in Resources */,
 				CA3D4AF517794748000A8FC7 /* ShadowBox.xib in Resources */,
 				CA3D4B0717794748000A8FC7 /* ShadowBox~ipad.xib in Resources */,
-				C2C09DDC17797EF3009408EB /* DrawToolUpPanel.xib in Resources */,
+				C2C09DDC17797EF3009408EB /* ToolUpPanel.xib in Resources */,
 				C2C09DFF17797F1B009408EB /* draw_commit_btn@2x.png in Resources */,
 				C2C09E0717797F1B009408EB /* draw_save_btn@2x.png in Resources */,
 				C2C09E0F17797F1B009408EB /* draw_setting_btn@2x.png in Resources */,
@@ -21172,7 +21136,6 @@
 				CA13B863177C1832003B7368 /* line.svg in Resources */,
 				CA13B875177C1832003B7368 /* path.svg in Resources */,
 				CA13B887177C1832003B7368 /* rect.svg in Resources */,
-				C2800203177C39F7007A80CF /* DrawToolUpPanel~ipad.xib in Resources */,
 				C217C84A177D96AA000241BB /* draw_home_user_photo@2x.png in Resources */,
 				C2EAA878178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
 				CA9C128E178275B9004372B6 /* gradient_bg_left@2x.png in Resources */,
@@ -21274,16 +21237,12 @@
 				CA0E987417BDD584009BD4F5 /* draw_page_back@2x.png in Resources */,
 				CAC3EDA617C201A20098E168 /* draw_up_panel_accessory@2x.png in Resources */,
 				CAC3EDAA17C201A20098E168 /* draw_up_panel_background@2x.png in Resources */,
-				CAC3EDAE17C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */,
-				CAC3EDB217C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */,
-				CAC3EDB617C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */,
 				CAC3EDBA17C201A20098E168 /* draw_up_panel_blocks@2x.png in Resources */,
 				CAC3EDBE17C201A20098E168 /* draw_up_panel_canvas_btn@2x.png in Resources */,
 				CAC3EDC217C201A20098E168 /* draw_up_panel_copy_paint_btn@2x.png in Resources */,
 				CAC3EDC617C201A20098E168 /* draw_up_panel_draw_to_btn@2x.png in Resources */,
 				CAC3EDCA17C201A20098E168 /* draw_up_panel_edit_btn@2x.png in Resources */,
 				CAC3EDCE17C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
-				CAC3EDD217C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22248,16 +22207,13 @@
 				CA0E987717BDD584009BD4F5 /* draw_page_back@2x.png in Resources */,
 				CAC3EDA917C201A20098E168 /* draw_up_panel_accessory@2x.png in Resources */,
 				CAC3EDAD17C201A20098E168 /* draw_up_panel_background@2x.png in Resources */,
-				CAC3EDB117C201A20098E168 /* draw_up_panel_bg@2x.png in Resources */,
-				CAC3EDB517C201A20098E168 /* draw_up_panel_bg_left_arrow@2x.png in Resources */,
-				CAC3EDB917C201A20098E168 /* draw_up_panel_bg_right_arrow@2x.png in Resources */,
 				CAC3EDBD17C201A20098E168 /* draw_up_panel_blocks@2x.png in Resources */,
 				CAC3EDC117C201A20098E168 /* draw_up_panel_canvas_btn@2x.png in Resources */,
 				CAC3EDC517C201A20098E168 /* draw_up_panel_copy_paint_btn@2x.png in Resources */,
 				CAC3EDC917C201A20098E168 /* draw_up_panel_draw_to_btn@2x.png in Resources */,
 				CAC3EDCD17C201A20098E168 /* draw_up_panel_edit_btn@2x.png in Resources */,
 				CAC3EDD117C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
-				CAC3EDD517C201A20098E168 /* draw_up_panel_sep_line@2x.png in Resources */,
+				CA8C471217C2214A00BA6A15 /* ToolUpPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

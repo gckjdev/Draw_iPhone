@@ -111,8 +111,7 @@
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
 
-@property (retain, nonatomic) InputAlertView *inputAlert;
-//@property (retain, nonatomic) TKProgressBarView *progressView;
+//@property (retain, nonatomic) InputAlertView *inputAlert;
 
 
 @property (retain, nonatomic) NSString *tempImageFilePath;
@@ -409,10 +408,6 @@
     [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
     [self.view addSubview:self.drawToolUpPanel];
 
-//    [self.drawToolUpPanel setPanelForOnline:NO];
-    
-    [self.drawToolUpPanel.titleLabel setText:([self.word.text length] > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
-
     [drawView.dlManager setDelegate:self];
     [self.drawToolUpPanel bindController:self];
 }
@@ -429,13 +424,13 @@
     }
 }
 
-- (NSString *)opusDesc
-{
-    if (_opusDesc == nil) {
-        return  self.inputAlert.contentText;
-    }
-    return _opusDesc;
-}
+//- (NSString *)opusDesc
+//{
+//    if (_opusDesc == nil) {
+//        return  self.inputAlert.contentText;
+//    }
+//    return _opusDesc;
+//}
 
 #pragma mark - Auto Recovery Service Methods
 
@@ -624,7 +619,7 @@
 #define DIALOG_TAG_CHANGE_BACK 201207281
 #define DIALOG_TAG_COMMIT_OPUS 201208111
 #define DIALOG_TAG_COMMIT_AS_NORMAL_OPUS 201302231
-
+//#define DIALOG_TAG_COMPOSE_DIALOG 201302250
 
 
 #define NO_COIN_TAG 201204271
@@ -711,6 +706,11 @@
         }
         
     }
+//    else if (dialog.tag == DIALOG_TAG_COMPOSE_DIALOG){
+//        
+//        InputAlertView *v = (InputAlertView *)infoView;
+//        [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
+//    }
 }
 
 - (void)didClickCancel:(CommonDialog *)dialog
@@ -791,9 +791,9 @@
     [self hideProgressView];
     
     self.submitButton.userInteractionEnabled = YES;
-    [self.inputAlert setCanClickCommitButton:YES];
+//    [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
-        [self.inputAlert dismiss:NO];
+//        [self.inputAlert dismiss:NO];
         CommonDialog *dialog = nil;
         if (self.contest) {
             if (!_commitAsNormal) {
@@ -829,12 +829,7 @@
         [dialog showInView:self.view];
         
         [[LevelService defaultService] addExp:OFFLINE_DRAW_EXP delegate:self];
-//        if (self.draft) {
-//            [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
-//            self.draft = nil;
-//        }
-        
-        // share weibo after submit opus success
+
         [self shareToWeibo];
 
     }else if(resultCode == ERROR_CONTEST_END){
@@ -1096,9 +1091,9 @@
 }
 
 
-- (void)commitOpus:(NSSet *)share
+- (void)commitOpus:(NSString *)opusName desc:(NSString *)desc share:(NSSet *)share
 {
-    self.opusDesc = self.inputAlert.contentText;
+    self.opusDesc = desc;
     
     UIImage *image = [drawView createImage];
     if(image == nil){
@@ -1109,7 +1104,6 @@
     [self showProgressViewWithMessage:NSLS(@"kSending")];
     
     self.submitButton.userInteractionEnabled = NO;
-    [self.inputAlert setCanClickCommitButton:NO];
 
     // create temp file for weibo sharing
     [self writeTempFile:image];
@@ -1117,8 +1111,8 @@
 
     NSString *text = self.opusDesc;
     
-    if ([self.inputAlert hasSubjectText]) {
-        [self.word setText:self.inputAlert.subjectText];
+    if (opusName != nil) {
+        [self.word setText:opusName];
     }
     
     NSString *contestId = (_commitAsNormal ? nil : _contest.contestId);
@@ -1147,31 +1141,39 @@
 
 }
 
-- (void)cancelAlerView
-{
-    self.opusDesc = self.inputAlert.contentText;
-}
-
 - (void)showInputAlertViewWithSubject:(BOOL)hasSubject
 {
-    if (self.inputAlert == nil) {
-        if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
-            BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
-
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView) hasSNS:hasSNS hasSubject:hasSubject];
-            self.inputAlert.delegate = self;
-            PPDebug(@"you are playing little in chinese , so show subject");
-            
-        } else {
-            self.inputAlert = [InputAlertView inputAlertViewWith:NSLS(@"kAddOpusDesc") content:self.opusDesc target:self commitSeletor:@selector(commitOpus:) cancelSeletor:@selector(cancelAlerView)];
+    InputAlertView *v = nil;
+    if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
+        BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
+        
+        ComposeInputDialogType type = 0;
+        if (hasSubject == YES && hasSNS == YES) {
+            type = ComposeInputDialogTypeTitleAndContentWithSNS;
+        }else if (hasSubject == YES && hasSNS == NO){
+            type = ComposeInputDialogTypeTitleAndContent;
+        }else if (hasSubject == NO && hasSNS == YES){
+            type = ComposeInputDialogTypeContentWithSNS;
+        }else{
+            type = ComposeInputDialogTypeContent;
         }
         
+        v = [InputAlertView createWithType:type];
+                     
+    } else {
+        v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContentWithSNS];
     }
-    if ([self.inputAlert canEditSubject]) {
-        [self.inputAlert setSubjectText:self.word.text];
-    }
-    self.inputAlert.contentText = self.opusDesc;
-    [self.inputAlert showInView:self.view animated:YES];
+    
+    [v.titleInputField setText:self.word.text];
+    [v.contentInputView setText:self.opusDesc];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
+    
+    [dialog showInView:self.view];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
+    }];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -1232,7 +1234,7 @@
         self.upPanelPopView = [[[CMPopTipView alloc] initWithCustomView:self.drawToolUpPanel] autorelease];
         [self.upPanelPopView setBackgroundColor:COLOR_YELLOW];
         if ([[self.word text] length] != 0) {
-            [self.drawToolUpPanel.titleLabel setText:self.word.text];
+            [self.drawToolUpPanel updateSubject:self.word.text];
         }
         [self.upPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
         self.upPanelPopView.delegate = self;
@@ -1261,7 +1263,7 @@
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.tag = DIALOG_TAG_ESCAPE;
     }else{
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitDrawAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButtonWithCross delegate:self];
         [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
         [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
         dialog.tag = DIALOG_TAG_SAVETIP;
@@ -1298,14 +1300,14 @@
 
 #pragma mark -- super method
 
-- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
-{
-    if (!ISIPAD) {
-        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
-        [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
-        [[[ToolCommandManager defaultManager] inputAlertView] adjustWithKeyBoardRect:keyboardRect];
-    }
-}
+//- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
+//{
+//    if (!ISIPAD) {
+//        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
+//        [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
+//        [[[ToolCommandManager defaultManager] inputAlertView] adjustWithKeyBoardRect:keyboardRect];
+//    }
+//}
 
 #pragma mark - input alert view delegate
 - (BOOL)isSubjectValid:(NSString *)subjectText

@@ -11,7 +11,7 @@
 #import "ShareImageManager.h"
 #import "UILabel+Extend.h"
 
-#define CONTENT_VIEW_FRAME_WIDTH (ISIPAD ? 10 : 5)
+#define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
 #define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 654 : 300)
@@ -29,11 +29,6 @@
 #define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
 
 #define DIALOG_CORNER_RADIUS    (ISIPAD ? 30 : 15)
-#define TEXTVIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
-#define BUTTON_CORNER_RADIUS    TEXTVIEW_CORNER_RADIUS
-
-#define TEXTVIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
-
 
 @interface CommonDialog()<UITextFieldDelegate, UITextViewDelegate>
 
@@ -131,8 +126,9 @@
 - (void)layout
 {    
     CGFloat centerX = self.contentView.frame.size.width/2;
-    CGFloat originY = CONTENT_VIEW_FRAME_WIDTH;
     
+    CGFloat originY = CONTENT_VIEW_INSERT;
+
     [_titleLabel updateCenterX:centerX];
     [_titleLabel updateOriginY:originY];
     [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
@@ -143,11 +139,16 @@
     [infoView updateOriginY:(originY)];
     
     originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+
     [self.oKButton updateOriginY:originY];
     [self.cancelButton updateOriginY:(originY)];
     
+    if (_style == CommonDialogStyleSingleButton) {
+        [self.oKButton updateCenterX:centerX];
+    }
+    
     // update content view height
-    CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_FRAME_WIDTH;
+    CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
     [self.contentView updateHeight:height];
 }
 
@@ -282,13 +283,13 @@
     view.messageLabel.font = FONT_MESSAGE_LABEL;
     
     view.inputTextField.font = FONT_INPUT_TEXT_FIELD;
-    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextField, TEXTVIEW_CORNER_RADIUS);
-    view.inputTextField.layer.borderWidth = TEXTVIEW_BORDER_WIDTH;
+    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextField, TEXT_VIEW_CORNER_RADIUS);
+    view.inputTextField.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     view.inputTextField.layer.borderColor = [COLOR_YELLOW CGColor];
     
     view.inputTextView.font = FONT_INPUT_TEXT_VIEW;
-    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextView, TEXTVIEW_CORNER_RADIUS);
-    view.inputTextView.layer.borderWidth = TEXTVIEW_BORDER_WIDTH;
+    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextView, TEXT_VIEW_CORNER_RADIUS);
+    view.inputTextView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     view.inputTextView.layer.borderColor = [COLOR_YELLOW CGColor];
 
     return view;
@@ -409,14 +410,14 @@
 
     
     [COLOR_GREEN setFill];
-    CGRect r = CGRectMake(0, 0, CGRectGetWidth(self.bounds), TITLE_LABEL_HEIGHT + CONTENT_VIEW_FRAME_WIDTH);
+    CGRect r = CGRectMake(0, 0, CGRectGetWidth(self.bounds), TITLE_LABEL_HEIGHT + CONTENT_VIEW_INSERT);
     CGContextFillRect(ctx, r);
 
     
     [COLOR_RED setStroke];
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:DIALOG_CORNER_RADIUS];
     CGContextAddPath(ctx, path.CGPath);
-    CGContextSetLineWidth(ctx, CONTENT_VIEW_FRAME_WIDTH * 2);
+    CGContextSetLineWidth(ctx, CONTENT_VIEW_INSERT * 2);
     CGContextStrokePath(ctx);
 }
 

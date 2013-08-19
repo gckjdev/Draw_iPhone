@@ -1,3 +1,4 @@
+
 //
 //  DrawToolUpPanel.m
 //  Draw
@@ -46,13 +47,133 @@
 #import "CopyPaintCommand.h"
 #import "ShowCopyPaintCommand.h"
 
+typedef enum{
+    UPPanelCellTypeSize = 0,
+    UPPanelCellTypeBG,
+    UPPanelCellTypeCopy,
+    UPPanelCellTypeDesc,
+    UPPanelCellTypeDrawTo,
+    UPPanelCellTypeGrid,
+    UPPanelCellTypeHelp,
+    UPPanelCellTypeSubject,
+    UPPanelCellTypeNumber
+    
+}UPPanelCellType;
+
+@implementation DrawToolUpPanelCell
+
++ (id)createCell:(id)delegate
+{
+    NSInteger index = (ISIPAD ? 2 : 1);
+    DrawToolUpPanelCell * cell = [UIView createViewWithXibIdentifier:@"ToolUpPanel" ofViewIndex:index];
+    cell.delegate = delegate;
+    cell.accessButton.hidden = YES;
+    return cell;
+}
+
++ (NSString*)getCellIdentifier
+{
+    return @"DrawToolUpPanelCell";
+}
+
+#define IMAGE(x) [UIImage imageNamed:x]
+#define KEY(x) (@(x))
+
++ (UIImage *)imageForType:(UPPanelCellType)type
+{
+     NSDictionary *imageNameDict =
+  @{KEY(UPPanelCellTypeSize): @"draw_up_panel_canvas_btn@2x.png",
+    KEY(UPPanelCellTypeBG): @"draw_up_panel_background@2x.png",
+    KEY(UPPanelCellTypeCopy): @"draw_up_panel_copy_paint_btn@2x.png",
+    KEY(UPPanelCellTypeDesc): @"draw_up_panel_edit_btn@2x.png",
+    KEY(UPPanelCellTypeDrawTo): @"draw_up_panel_draw_to_btn@2x.png",
+    KEY(UPPanelCellTypeGrid): @"draw_up_panel_blocks@2x.png",
+    KEY(UPPanelCellTypeHelp): @"draw_up_panel_help_btn_@2x.png",
+    };
+    NSString *name = [imageNameDict objectForKey:@(type)];
+    return name ? IMAGE(name) : nil;
+    
+}
++ (NSString *)titleForType:(UPPanelCellType)type
+{
+        NSDictionary *titleDict = @{KEY(UPPanelCellTypeSize): NSLS(@"kSize"),
+      KEY(UPPanelCellTypeBG): NSLS(@"kBackground"),
+      KEY(UPPanelCellTypeCopy): NSLS(@"kCopyPaint"),
+      KEY(UPPanelCellTypeDesc): NSLS(@"kDescription"),
+      KEY(UPPanelCellTypeDrawTo): NSLS(@"kDrawTo"),
+      KEY(UPPanelCellTypeGrid): NSLS(@"kGrid"),
+      KEY(UPPanelCellTypeHelp): NSLS(@"kScaleHelp"),
+//      KEY(UPPanelCellTypeSubject): NSLS(@"kSubject"),
+      KEY(UPPanelCellTypeSubject): NSLS(@"kDefaultDrawWord")
+      };
+    return [titleDict objectForKey:@(type)];
+}
+
+- (void)updateIcon:(UIImage *)image
+{
+    [self.icon setImage:image];
+}
+
+-(void)updateTitle:(NSString *)title
+{
+    [self.titleLabel setText:title];
+}
+
+
+- (void)updateWithType:(UPPanelCellType)type
+{
+    self.type = type;
+    [self updateIcon:[DrawToolUpPanelCell imageForType:type]];
+    [self updateTitle:[DrawToolUpPanelCell titleForType:type]];
+    if (type == UPPanelCellTypeSubject) {
+        [self.icon setHidden:YES];
+        [self.subject setHidden:NO];
+        [self.subject setText:NSLS(@"kSubject")];
+
+    }else{
+        [self.icon setHidden:NO];
+        [self.subject setHidden:YES];
+    }
+}
+
++ (DrawToolUpPanelCell *)cellForType:(UPPanelCellType)type delegate:(id)delegate
+{
+    DrawToolUpPanelCell *cell = [DrawToolUpPanelCell createCell:delegate];
+    [cell updateWithType:type];
+    return cell;
+}
+
+- (void)dealloc {
+    [_control release];
+    [_icon release];
+    [_titleLabel release];
+    [_accessButton release];
+    [_subject release];
+    [super dealloc];
+}
+- (IBAction)clickAccessButton:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(didClickAccessor:atCell:)]) {
+        [self.delegate didClickAccessor:sender
+                                   atCell:self];
+    }
+}
+
+- (IBAction)clickControl:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(didClickCellControl:atCell:)]) {
+        [self.delegate didClickCellControl:sender
+                               atCell:self];
+    }
+}
+
+
+
+@end
+
 @interface DrawToolUpPanel () {
     NSInteger _retainTime;
     DrawColorManager *drawColorManager;
     ToolCommandManager *toolCmdManager;
     NSUInteger _commandVersion;
-    
-    UIControl* _mask;
 }
 
 @property (retain, nonatomic) NSTimer *timer;
@@ -72,47 +193,49 @@
 
 - (void)dealloc
 {
-    [_copyPaint release];
-    [_titleLabel release];
-    [_drawToUserNickNameLabel release];
-    [_copyPaintPicker release];
-    [_copyPaintLabel release];
-    [_backgroundImageView release];
-    
-    PPRelease(_drawBg);
-    PPRelease(_canvasSize);
-    PPRelease(_grid);
-    PPRelease(_opusDesc);
-    PPRelease(_drawToUser);
-    PPRelease(_help);
-
-    
-    [_subject release];
+    PPRelease(cellDict);
+    PPRelease(_tableView);
     [super dealloc];
 }
 
-#define ADD_COMMAND(cmd, cls, button, it)\
-cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
+#define ADD_COMMAND(cmd, cls, cellType, it)\
+control = [self controlForType:cellType];\
+cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 [toolCmdManager registerCommand:command];\
 [cmd setToolPanel:self];
 
 
+- (UIControl *)controlForType:(UPPanelCellType)type
+{
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(type)];
+    return cell.control;
+}
+
+
 - (void)registerToolCommands
 {
+
     toolCmdManager = [ToolCommandManager defaultManager];
     
-    
     ToolCommand *command;
-
-    ADD_COMMAND(command, DrawBgCommand, self.drawBg, ItemTypeNo);
-    ADD_COMMAND(command, CanvasSizeCommand, self.canvasSize, ItemTypeNo);
-    ADD_COMMAND(command, GridCommand, self.grid, ItemTypeGrid);
-    ADD_COMMAND(command, EditDescCommand, self.opusDesc, ItemTypeNo);
-    ADD_COMMAND(command, DrawToCommand, self.drawToUser, ItemTypeNo);
-    ADD_COMMAND(command, HelpCommand, self.help, ItemTypeNo);
-    ADD_COMMAND(command, CopyPaintCommand, self.copyPaintPicker, ItemTypeCopyPaint);
-    ADD_COMMAND(command, ShowCopyPaintCommand, self.copyPaint, ItemTypeCopyPaint);
+    UIControl *control;
+    ADD_COMMAND(command, DrawBgCommand, UPPanelCellTypeBG, ItemTypeNo);
+    ADD_COMMAND(command, CanvasSizeCommand, UPPanelCellTypeSize, ItemTypeNo);
+    ADD_COMMAND(command, GridCommand, UPPanelCellTypeGrid, ItemTypeGrid);
+    ADD_COMMAND(command, EditDescCommand, UPPanelCellTypeDesc, ItemTypeNo);
+    ADD_COMMAND(command, DrawToCommand, UPPanelCellTypeDrawTo, ItemTypeNo);
+    ADD_COMMAND(command, HelpCommand, UPPanelCellTypeHelp, ItemTypeNo);
+    ADD_COMMAND(command, CopyPaintCommand, UPPanelCellTypeCopy, ItemTypeCopyPaint);
     
+
+    //TODO register Show copy paint command
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeCopy)];
+    control = cell.accessButton;
+    command = [[[ShowCopyPaintCommand alloc] initWithControl:control itemType:ItemTypeCopyPaint] autorelease];
+    [toolCmdManager registerCommand:command];
+    [command setToolPanel:self];
+    
+
     [toolCmdManager updateDrawInfo:self.drawView.drawInfo];
     [toolCmdManager updateDrawView:self.drawView];
     
@@ -125,7 +248,11 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 
 + (id)createViewWithDrawView:(DrawView *)drawView
 {
-    DrawToolUpPanel *panel = [UIView createViewWithXibIdentifier:@"DrawToolUpPanel"];
+    DrawToolUpPanel *panel = [self createViewWithXibIdentifier:@"ToolUpPanel" ofViewIndex:0];
+    if (ISIPAD) {
+        CGRect frame = panel.frame;
+        frame.size = CGSizeMake(CGRectGetWidth(frame)/2, CGRectGetHeight(frame)/2);
+    }
     panel.drawView = drawView;
     [panel updateView];
     [panel updateWithDrawInfo:drawView.drawInfo];
@@ -136,42 +263,42 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
 
 - (void)updateDrawToUser:(MyFriend *)user
 {
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeDrawTo)];
     NSURL *URL = [NSURL URLWithString:user.avatar];
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
         image = [UIImage shrinkImage:image withRate:0.8];
-        [self.drawToUser setImage:image forState:UIControlStateNormal];
-        [self.drawToUser setTitle:user.nickName forState:UIControlStateNormal];
-    } failure:^(NSError *error) {
-        
-    }];
+        [cell updateIcon:image];
+    } failure:NULL];
+    [cell updateTitle:user.nickName];
+    
+}
 
-    [self.drawToUserNickNameLabel setText:user.nickName];
+- (void)updateTableView
+{
+    if ([cellDict count] == 0) {
+        cellDict = [[NSMutableDictionary alloc] initWithCapacity:UPPanelCellTypeNumber];
+        for (int i = 0; i < UPPanelCellTypeNumber; ++ i) {
+            DrawToolUpPanelCell *cell = [DrawToolUpPanelCell cellForType:i delegate:self];
+            if (cell) {
+                [cellDict setObject:cell forKey:@(i)];
+            }
+        }
+    }
 }
 
 - (void)updateView
 {
     self.layer.cornerRadius = 8;
     self.layer.masksToBounds = YES;
+
+    [self updateTableView];
     [self registerToolCommands];
-    [self.grid setSelected:NO];
-    [self.canvasSize setTitle:NSLS(@"kSize") forState:UIControlStateNormal];
-    [self.drawBg setTitle:NSLS(@"kBackground") forState:UIControlStateNormal];
-    [self.copyPaintLabel setText:NSLS(@"kCopyPaint")];
-    [self.opusDesc setTitle:NSLS(@"kDescription") forState:UIControlStateNormal];
-    [self.drawToUserNickNameLabel setText:NSLS(@"kDrawTo")];
-    [self.grid setTitle:NSLS(@"kGrid") forState:UIControlStateNormal];
-    [self.help setTitle:NSLS(@"kScaleHelp") forState:UIControlStateNormal];
-    [self.subject setTitle:NSLS(@"kSubject") forState:UIControlStateNormal];
-    
+    [self.tableView reloadData];
 }
 - (IBAction)clickTool:(id)sender
 {
     [toolCmdManager hideAllPopTipViews];
     [[toolCmdManager commandForControl:sender] execute];
-    
-    if (sender != self.canvasSize) {
-        [self disappear];
-    }
 }
 
 - (void)disappear
@@ -182,24 +309,54 @@ cmd = [[[cls alloc] initWithControl:button itemType:it] autorelease];\
     }
 }
 
-- (IBAction)clickShowCopyPaint:(id)sender
-{
-    if (self.copyPaintPicker.hidden) {
-        [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:self.copyPaintPicker]];
-        [[toolCmdManager commandForControl:self.copyPaintPicker] execute];
-    } else {
-        [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
-        [[toolCmdManager commandForControl:sender] execute];
-        [self disappear];
-    }
-    
-}
 
 - (void)updateCopyPaint:(UIImage*)aPhoto
 {
     UIImage* image = [UIImage shrinkImage:aPhoto withRate:0.8];
-    [self.copyPaint setImage:image forState:UIControlStateNormal];
-    [self.copyPaintPicker setHidden:NO];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeCopy)];
+    [cell updateIcon:image];
+    [cell.accessButton setHidden:(image == nil)];
+}
+
+
+- (void)updateSubject:(NSString *)subject
+{
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeSubject)];
+    [cell updateTitle:subject];
+}
+
+#pragma mark- tableView delegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [cellDict count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [cellDict objectForKey:@(indexPath.row)];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return (ISIPAD ? 62 : 31);
+}
+
+#pragma mark- Cell Delegate
+
+
+
+- (void)didClickCellControl:(UIControl *)control atCell:(DrawToolUpPanelCell *)cell{
+    NSArray *list = @[@(UPPanelCellTypeSize), @(UPPanelCellTypeSubject)];
+    if (![list containsObject:@(cell.type)]) {
+        [self disappear];
+    }
+    [[toolCmdManager commandForControl:control] execute];    
+}
+
+- (void)didClickAccessor:(UIButton *)accessor atCell:(DrawToolUpPanelCell *)cell{
+    [self disappear];
+    [[toolCmdManager commandForControl:accessor] execute];
 }
 
 

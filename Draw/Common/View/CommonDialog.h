@@ -11,6 +11,8 @@
 
 @class CommonDialog;
 
+
+
 typedef enum {
     CommonDialogStyleSingleButton = 0,
     CommonDialogStyleDoubleButton,
