@@ -97,6 +97,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *fx;
 @property (retain, nonatomic) IBOutlet UIButton *text;
 
+//@property (retain, nonatomic) IBOutlet UIView *colorHolderView;
 @property (retain, nonatomic) NSTimer *timer;
 
 @property (retain, nonatomic) UIView *closeSelector;
@@ -115,9 +116,9 @@
 #define MAX_COLOR_NUMBER 7
 #define VALUE(x) (ISIPAD ? x*2 : x)
 
-#define SPACE_COLOR_LEFT (ISIPAD ? 40 : 10)
+#define SPACE_COLOR_LEFT (ISIPAD ? 65 : 23)
 #define SPACE_COLOR_COLOR (ISIPAD ? 14 : ((ISIPHONE5) ? 7 :2))
-#define SPACE_COLOR_UP (ISIPHONE5 ? 20 : VALUE(13))
+#define SPACE_COLOR_UP (ISIPHONE5 ? 20 : VALUE(22))
 
 
 #define TIMESET_FONT_SIZE VALUE(15.0)
@@ -179,6 +180,13 @@
 
 }
 
+#define COLOR_HOLDER_VIEW_TAG 20130819
+
+- (UIView *)colorHolderView
+{
+    return [self viewWithTag:COLOR_HOLDER_VIEW_TAG];
+}
+
 - (void)updateRecentColorViewWithColor:(DrawColor *)color updateModel:(BOOL)updateModel
 {
     color = [DrawColor colorWithColor:color];
@@ -189,7 +197,7 @@
     }
 
     
-    for (ColorPoint *p in self.subviews) {
+    for (ColorPoint *p in self.colorHolderView.subviews) {
         if ([p isKindOfClass:[ColorPoint class]]) {
             [p removeFromSuperview];
         }
@@ -198,14 +206,14 @@
     NSInteger i = 0;
     ColorPoint *selectedPoint = nil;
     
+    [self.colorHolderView setBackgroundColor:[UIColor clearColor]];
+    
     for (DrawColor *c in [drawColorManager recentColorList]) {
         ColorPoint *point = [ColorPoint pointWithColor:c];
-        CGRect frame = point.frame;
         CGFloat x = SPACE_COLOR_LEFT + i * (CGRectGetWidth(point.frame) + SPACE_COLOR_COLOR);
-        frame.origin = CGPointMake(x, SPACE_COLOR_UP);
-        point.frame = frame;
+        point.center = CGPointMake(x, self.addColor.center.y);
         point.delegate = self;
-        [self insertSubview:point belowSubview:self.scrollView];
+        [self.colorHolderView addSubview:point];
         [point setSelected:NO];
         if (i == 0 ||  [color isEqual:c]) {
             selectedPoint = point;

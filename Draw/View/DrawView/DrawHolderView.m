@@ -80,9 +80,11 @@
 {
     CGRect frame = [CanvasRect defaultRect];
     if (ISIPAD) {
-        frame.origin = CGPointMake((768-frame.size.width)/2, 100);
-    }else{
+        frame.origin = CGPointMake((768-frame.size.width)/2, 98);
+    }else if(ISIPHONE5){
         frame.origin = CGPointMake((320-frame.size.width)/2, 50);
+    }else{
+        frame.origin = CGPointMake((320-frame.size.width)/2, 42);
     }
     return [DrawHolderView drawHolderViewWithFrame:frame contentView:contentView];
 }
