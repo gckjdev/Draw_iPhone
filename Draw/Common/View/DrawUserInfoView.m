@@ -17,7 +17,6 @@
 #import "CommonMessageCenter.h"
 #import "UserFeedController.h"
 #import "ChatDetailController.h"
-//#import "SelectWordController.h"
 #import "LocaleUtils.h"
 #import "WordManager.h"
 #import "CommonSnsInfoView.h"
@@ -316,7 +315,6 @@
 
 - (IBAction)drawToHim:(id)sender
 {
-//    [SelectWordController startSelectWordFrom:self.superViewController targetUid:targetFriend.friendUserId];
     SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:targetFriend.friendUserId] autorelease];
     vc.superController = self.superViewController;
     [self.superViewController.navigationController pushViewController:vc animated:YES];

@@ -21,8 +21,8 @@ typedef enum {
 }MessageViewType;
 
 //#define MESSAGE_FONT_SIZE ([DeviceDetection isIPAD] ? 24 : 12)
-#define MESSAGE_LABEL_WIDTH (ISIPAD ? 545 : 250)
-#define MIN_SIZE (ISIPAD ? CGSizeMake(610, 142) : CGSizeMake(280, 65))
+#define MESSAGE_LABEL_WIDTH (ISIPAD ? 450 : 185)
+#define MIN_SIZE (ISIPAD ? CGSizeMake(475, 142) : CGSizeMake(198, 65))
 
 
 @interface CommonMessageView : UIView 
