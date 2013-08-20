@@ -28,7 +28,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 86 * ([DeviceDetection isIPAD] ? 2 : 1);
+    return 82 * ([DeviceDetection isIPAD] ? 2 : 1);
 }
 
 + (NSString *)getCellIdentifier

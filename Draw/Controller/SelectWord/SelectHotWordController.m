@@ -21,6 +21,7 @@
 #import "PBGameItem+Extend.h"
 #import "BuyItemView.h"
 #import "BalanceNotEnoughAlertView.h"
+#import "CommonTitleView.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 #define DIALOG_TAG_INPUT_WORD_VIEW 102
@@ -43,8 +44,6 @@
     PPRelease(_hotWordsView);
     PPRelease(_systemWordsView);
     PPRelease(_myWordsView);
-    PPRelease(_titleLabel);
-    PPRelease(_draftsBoxButton);
     PPRelease(_hotWordsLabel);
     PPRelease(_hotWordsNoteLabel);
     PPRelease(_systemWordsLabel);
@@ -86,13 +85,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self initWordCells];
-    self.titleLabel.text = NSLS(@"kIWantToDraw...");
+    
+    CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
+    [titleView setTitle:NSLS(@"kIWantToDraw...")];
+    [titleView setRightButtonTitle:NSLS(@"kDraftsBox")];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [titleView setRightButtonSelector:@selector(clickDraftButton:)];
+    [titleView setTarget:self];
+
     self.hotWordsLabel.text = NSLS(@"kHotWords");
     self.hotWordsNoteLabel.text = NSLS(@"kHotWordsNote");
     self.systemWordsLabel.text = NSLS(@"kSystemWords");
     self.myWordsLabel.text = NSLS(@"kMyWords");
-
-    [self.draftsBoxButton setTitle:NSLS(@"kDraftsBox") forState:UIControlStateNormal];
     
     if (isLittleGeeAPP()) {
         [self didSelectWord:[Word cusWordWithText:@""]];
@@ -116,8 +120,6 @@
     [self setHotWordsView:nil];
     [self setSystemWordsView:nil];
     [self setMyWordsView:nil];
-    [self setTitleLabel:nil];
-    [self setDraftsBoxButton:nil];
     [self setHotWordsLabel:nil];
     [self setHotWordsNoteLabel:nil];
     [self setSystemWordsLabel:nil];
@@ -148,7 +150,11 @@
 
 - (IBAction)clickDraftButton:(id)sender {
     [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_LOAD_DRAFTS];
-    [DraftsView showInView:self.view delegate:self];
+    
+    DraftsView *view = [DraftsView createWithdelegate:self];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kDraftsBox") customView:view style:CommonDialogStyleCross];
+    [dialog showInView:self.view];
 }
 
 - (void)payForHotWord:(Word *)word
