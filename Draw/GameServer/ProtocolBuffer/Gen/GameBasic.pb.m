@@ -1284,6 +1284,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property (retain) NSString* signature;
 @property int32_t featureOpus;
 @property (retain) NSString* friendMemo;
+@property int32_t emailVerifyStatus;
 @property int32_t singRecordLimit;
 @end
 
@@ -1592,6 +1593,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasFriendMemo_ = !!value;
 }
 @synthesize friendMemo;
+- (BOOL) hasEmailVerifyStatus {
+  return !!hasEmailVerifyStatus_;
+}
+- (void) setHasEmailVerifyStatus:(BOOL) value {
+  hasEmailVerifyStatus_ = !!value;
+}
+@synthesize emailVerifyStatus;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -1667,6 +1675,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.signature = @"";
     self.featureOpus = 0;
     self.friendMemo = @"";
+    self.emailVerifyStatus = 0;
     self.singRecordLimit = 30;
   }
   return self;
@@ -1858,6 +1867,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasFriendMemo) {
     [output writeString:102 value:self.friendMemo];
   }
+  if (self.hasEmailVerifyStatus) {
+    [output writeInt32:103 value:self.emailVerifyStatus];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -1998,6 +2010,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasFriendMemo) {
     size += computeStringSize(102, self.friendMemo);
+  }
+  if (self.hasEmailVerifyStatus) {
+    size += computeInt32Size(103, self.emailVerifyStatus);
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2215,6 +2230,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasFriendMemo) {
     [self setFriendMemo:other.friendMemo];
   }
+  if (other.hasEmailVerifyStatus) {
+    [self setEmailVerifyStatus:other.emailVerifyStatus];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -2420,6 +2438,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 818: {
         [self setFriendMemo:[input readString]];
+        break;
+      }
+      case 824: {
+        [self setEmailVerifyStatus:[input readInt32]];
         break;
       }
       case 1600: {
@@ -3154,6 +3176,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearFriendMemo {
   result.hasFriendMemo = NO;
   result.friendMemo = @"";
+  return self;
+}
+- (BOOL) hasEmailVerifyStatus {
+  return result.hasEmailVerifyStatus;
+}
+- (int32_t) emailVerifyStatus {
+  return result.emailVerifyStatus;
+}
+- (PBGameUser_Builder*) setEmailVerifyStatus:(int32_t) value {
+  result.hasEmailVerifyStatus = YES;
+  result.emailVerifyStatus = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearEmailVerifyStatus {
+  result.hasEmailVerifyStatus = NO;
+  result.emailVerifyStatus = 0;
   return self;
 }
 - (BOOL) hasSingRecordLimit {
