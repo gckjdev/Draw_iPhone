@@ -791,6 +791,10 @@
 //    [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
 //        [self.inputAlert dismiss:NO];
+        
+        // stop recovery while the opus is commit successfully
+        [self stopRecovery];
+        
         CommonDialog *dialog = nil;
         if (self.contest) {
             if (!_commitAsNormal) {
@@ -1211,9 +1215,7 @@
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
     }    
-
-    [self stopRecovery];
-
+    
     BOOL isBlank = ([drawView.drawActionList count] == 0);
     
     if (isBlank && targetType != TypePhoto) {
