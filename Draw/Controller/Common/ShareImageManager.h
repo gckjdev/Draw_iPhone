@@ -14,7 +14,12 @@
 #import "HPThemeManager.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define FONT_TITLE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 36 : 18)]
+#define FONT_MESSAGE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+#define FONT_INPUT_TEXT_FIELD [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
+#define FONT_INPUT_TEXT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
 
+#define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
 
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
 #define TEXT_VIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)

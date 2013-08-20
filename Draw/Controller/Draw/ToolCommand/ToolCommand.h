@@ -84,6 +84,6 @@
 
 
 
-- (InputAlertView *)inputAlertView;
+//- (InputAlertView *)inputAlertView;
 @end
 

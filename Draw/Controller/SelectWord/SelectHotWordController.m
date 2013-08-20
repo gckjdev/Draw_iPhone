@@ -23,6 +23,7 @@
 #import "BalanceNotEnoughAlertView.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
+#define DIALOG_TAG_INPUT_WORD_VIEW 102
 
 @interface SelectHotWordController ()
 @property (copy, nonatomic) NSString *targetUid;
@@ -84,7 +85,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    [HotWordManager createTestData];
     [self initWordCells];
     self.titleLabel.text = NSLS(@"kIWantToDraw...");
     self.hotWordsLabel.text = NSLS(@"kHotWords");
@@ -131,9 +131,10 @@
 
 - (IBAction)clickAllMyWordsButton:(id)sender {
     [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_MORE_CUSTOM_WORDS];
-
+    
     SelectCustomWordView *customWordView = [SelectCustomWordView createView:self];
-    [customWordView showInView:self.view];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMyWords") customView:customWordView style:CommonDialogStyleCross];
+    [dialog showInView:self.view];
 }
 
 - (void)didSelecCustomWord:(NSString *)word
@@ -143,10 +144,7 @@
     [OfflineDrawViewController startDraw:myWord fromController:self startController:self.superController targetUid:_targetUid];
 }
 
-- (void)didCloseSelectCustomWordView:(SelectCustomWordView *)view
-{
-    [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
-}
+
 
 - (IBAction)clickDraftButton:(id)sender {
     [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_LOAD_DRAFTS];
@@ -176,9 +174,10 @@
     if (word == nil) {
         [[AnalyticsManager sharedAnalyticsManager] reportSelectWord:SELECT_WORD_CLICK_TYPE_ADD_CUSTOM_WORD];
 
-        CommonDialog *inputDialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputWord") delegate:self];
-        inputDialog.inputTextField.placeholder = NSLS(@"kInputWordPlaceholder");
-        [inputDialog showInView:self.view];
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputWord") delegate:self];
+        dialog.tag = DIALOG_TAG_INPUT_WORD_VIEW;
+        dialog.inputTextField.placeholder = NSLS(@"kInputWordPlaceholder");
+        [dialog showInView:self.view];
     }else{
         if (word.wordType == PBWordTypeHot) {
             PPDebug(@"Hot Word Selected!");
@@ -211,13 +210,21 @@
 }
 
 #pragma mark - InputDialogDelegate
-- (void)didClickOk:(CommonDialog *)dialog infoView:(UITextField *)tf
+- (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
-    if ([CustomWordManager isValidWord:tf.text]) {
-        [[CustomWordManager defaultManager] createCustomWord:tf.text];
-        [[UserService defaultService] commitWords:tf.text viewController:nil];
-        [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
+    if (dialog.tag == DIALOG_TAG_INPUT_WORD_VIEW) {
+        UITextField *tf = (UITextField *)infoView;
+        if ([CustomWordManager isValidWord:tf.text]) {
+            [[CustomWordManager defaultManager] createCustomWord:tf.text];
+            [[UserService defaultService] commitWords:tf.text viewController:nil];
+            [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
+        }
     }
+}
+
+- (void)didClickCancel:(CommonDialog *)dialog{
+
+    [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
 }
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import "SelectCustomWordCell.h"
+#import "ShareImageManager.h"
 
 @implementation SelectCustomWordCell
 
 + (CGFloat)getCellHeight
 {
-    return 45 * ([DeviceDetection isIPAD] ? 2 : 1);
+    return 35 * ([DeviceDetection isIPAD] ? 2.18 : 1);
 }
 
 + (NSString *)getCellIdentifier
@@ -25,6 +26,8 @@
 {
     PPDebug(@"des: %@", self.wordLabel.description);
     self.wordLabel.text = word;
+    self.wordLabel.font = FONT_MESSAGE_LABEL;
+    self.wordLabel.textColor = COLOR_BROWN;
 }
 
 

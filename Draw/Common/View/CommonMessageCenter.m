@@ -20,10 +20,8 @@ typedef enum {
     MessageViewTypeWithUnhappyFace,
 }MessageViewType;
 
-#define MESSAGE_FONT_SIZE ([DeviceDetection isIPAD] ? 24 : 12)
-#define MESSAGE_LABEL_WIDTH (ISIPAD ? 500 : 250)
-
-
+//#define MESSAGE_FONT_SIZE ([DeviceDetection isIPAD] ? 24 : 12)
+#define MESSAGE_LABEL_WIDTH (ISIPAD ? 545 : 250)
 #define MIN_SIZE (ISIPAD ? CGSizeMake(610, 142) : CGSizeMake(280, 65))
 
 
@@ -53,7 +51,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
     [self.messageLabel setTextColor:[GameApp popupMessageDialogFontColor]];
 	[self.messageLabel setText:text];
     [self.messageLabel setTextAlignment:UITextAlignmentLeft];
-    [self.messageLabel setFont:[UIFont systemFontOfSize:MESSAGE_FONT_SIZE]];
+    [self.messageLabel setFont:FONT_MESSAGE_LABEL];
     if ([LocaleUtils isChinese]) {
         [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
     } else {
@@ -62,6 +60,7 @@ AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
     CGSize size = CGSizeMake(MESSAGE_LABEL_WIDTH, 300);
     [self.messageLabel wrapTextWithConstrainedSize:size];
     
+    [self updateWidth:MIN_SIZE.width];
     [self updateHeight:MAX(self.messageLabel.frame.size.height, MIN_SIZE.height)];
     
     [self.messageLabel updateCenterX:self.frame.size.width/2];
