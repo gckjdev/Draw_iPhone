@@ -159,7 +159,8 @@
 #define METHOD_SEND_PASSWORD            @"sendPassword"
 #define METHOD_SET_USER_NUMBER          @"setUserNumber"
 #define METHOD_SET_FRIEND_MEMO          @"setFriendMemo"
-
+#define METHOD_VERIFY_ACCOUNT           @"verifyAccount"
+#define METHOD_SEND_VERFICATION         @"sendVerification"
 
 
 #define PARA_REMOVE_OLD_NUMBER          @"removeOldNumber"
@@ -308,6 +309,7 @@
 #define PARA_MOBILE @"mb"
 #define PARA_EMAIL @"em"
 #define PARA_NEW_APPID  @"napp"
+#define PARA_VERIFYCODE @"code"
 
 #define PARA_IS_DATA_ZIP            @"idz"
 #define PARA_IS_DATA_COMPRESSED     @"idc"
@@ -689,6 +691,8 @@
 #define ERROR_PARAMETER_PASSWORD_NULL 	10021
 #define ERROR_PARAMETER_EMAIL_NULL      10064
 #define ERROR_PARAMETER_EMAIL_EMPTY     10065
+#define ERROR_PARAMETER_VERIFYCODE_NULL  10066
+#define ERROR_PARAMETER_VERIFYCODE_EMPTY 10067
 
 #define ERROR_BBS_TEXT_TOO_SHORT        30001
 #define ERROR_BBS_TEXT_TOO_LONG         30002
