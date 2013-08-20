@@ -146,8 +146,8 @@ typedef enum{
 
 - (void)initTabButton
 {
-    [super initTabButtons];
     
+    [super initTabButtons];
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
 
     NSString* title = @"";
@@ -191,6 +191,7 @@ typedef enum{
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:title];
     [titleView setTarget:self];
+    
 
 }
 
@@ -205,8 +206,6 @@ typedef enum{
     [super viewDidLoad];
     [self initTabButton];
     [[FriendService defaultService] getRelationCount:self];
-    [self clickTabButton:self.currentTabButton];
-    
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.dataTableView.separatorColor = [UIColor clearColor];
     

@@ -34,9 +34,11 @@
 
 
 #define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog
-
 #define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
 #define COLOR_RED1 OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
+
+#define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
+#define COLOR_COFFEE1 OPAQUE_COLOR(126, 49, 46) // common tab selected text
 
 
 #define SET_VIEW_ROUND_CORNER(view) \

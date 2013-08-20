@@ -5147,6 +5147,10 @@
 		CA89748416087BE2003A95F7 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
 		CA8A6ACC16E5AE0C0052BFFA /* FeedDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */; };
 		CA8C471217C2214A00BA6A15 /* ToolUpPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C09DD917797EF3009408EB /* ToolUpPanel.xib */; };
+		CA8C471A17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
+		CA8C471B17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
+		CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
+		CA8C471D17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
 		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
@@ -9906,6 +9910,8 @@
 		CA89748216087BE2003A95F7 /* ContestController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestController.xib; sourceTree = "<group>"; };
 		CA8A6ACA16E5AE0C0052BFFA /* FeedDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDownloadService.h; sourceTree = "<group>"; };
 		CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDownloadService.m; sourceTree = "<group>"; };
+		CA8C471817C3175C00BA6A15 /* PanelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelUtil.h; sourceTree = "<group>"; };
+		CA8C471917C3175C00BA6A15 /* PanelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelUtil.m; sourceTree = "<group>"; };
 		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
 		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
 		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
@@ -16884,6 +16890,8 @@
 				CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */,
 				CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */,
 				CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */,
+				CA8C471817C3175C00BA6A15 /* PanelUtil.h */,
+				CA8C471917C3175C00BA6A15 /* PanelUtil.m */,
 			);
 			name = Panels;
 			sourceTree = "<group>";
@@ -23040,6 +23048,7 @@
 				A467892D17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893317BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894217BC7782007C546A /* UILabel+Extend.m in Sources */,
+				CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23837,6 +23846,7 @@
 				A467892C17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893217BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894117BC7782007C546A /* UILabel+Extend.m in Sources */,
+				CA8C471B17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24641,6 +24651,7 @@
 				A467892B17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893117BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894017BC7782007C546A /* UILabel+Extend.m in Sources */,
+				CA8C471A17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25418,6 +25429,7 @@
 				A467892E17BB1CEF007C546A /* UIButton+Sound.m in Sources */,
 				A467893417BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894317BC7782007C546A /* UILabel+Extend.m in Sources */,
+				CA8C471D17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

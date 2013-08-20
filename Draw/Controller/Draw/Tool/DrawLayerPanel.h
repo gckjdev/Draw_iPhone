@@ -10,6 +10,7 @@
 #import "DrawLayerManager.h"
 #import "JTTableViewGestureRecognizer.h"
 #import "DrawSlider.h"
+#import "PanelUtil.h"
 
 @class DrawLayerPanelCell;
 

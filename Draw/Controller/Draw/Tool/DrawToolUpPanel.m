@@ -47,18 +47,7 @@
 #import "CopyPaintCommand.h"
 #import "ShowCopyPaintCommand.h"
 
-typedef enum{
-    UPPanelCellTypeSize = 0,
-    UPPanelCellTypeBG,
-    UPPanelCellTypeCopy,
-    UPPanelCellTypeDesc,
-    UPPanelCellTypeDrawTo,
-    UPPanelCellTypeGrid,
-    UPPanelCellTypeHelp,
-    UPPanelCellTypeSubject,
-    UPPanelCellTypeNumber
-    
-}UPPanelCellType;
+
 
 @implementation DrawToolUpPanelCell
 
@@ -76,38 +65,7 @@ typedef enum{
     return @"DrawToolUpPanelCell";
 }
 
-#define IMAGE(x) [UIImage imageNamed:x]
-#define KEY(x) (@(x))
 
-+ (UIImage *)imageForType:(UPPanelCellType)type
-{
-     NSDictionary *imageNameDict =
-  @{KEY(UPPanelCellTypeSize): @"draw_up_panel_canvas_btn@2x.png",
-    KEY(UPPanelCellTypeBG): @"draw_up_panel_background@2x.png",
-    KEY(UPPanelCellTypeCopy): @"draw_up_panel_copy_paint_btn@2x.png",
-    KEY(UPPanelCellTypeDesc): @"draw_up_panel_edit_btn@2x.png",
-    KEY(UPPanelCellTypeDrawTo): @"draw_up_panel_draw_to_btn@2x.png",
-    KEY(UPPanelCellTypeGrid): @"draw_up_panel_blocks@2x.png",
-    KEY(UPPanelCellTypeHelp): @"draw_up_panel_help_btn_@2x.png",
-    };
-    NSString *name = [imageNameDict objectForKey:@(type)];
-    return name ? IMAGE(name) : nil;
-    
-}
-+ (NSString *)titleForType:(UPPanelCellType)type
-{
-        NSDictionary *titleDict = @{KEY(UPPanelCellTypeSize): NSLS(@"kSize"),
-      KEY(UPPanelCellTypeBG): NSLS(@"kBackground"),
-      KEY(UPPanelCellTypeCopy): NSLS(@"kCopyPaint"),
-      KEY(UPPanelCellTypeDesc): NSLS(@"kDescription"),
-      KEY(UPPanelCellTypeDrawTo): NSLS(@"kDrawTo"),
-      KEY(UPPanelCellTypeGrid): NSLS(@"kGrid"),
-      KEY(UPPanelCellTypeHelp): NSLS(@"kScaleHelp"),
-//      KEY(UPPanelCellTypeSubject): NSLS(@"kSubject"),
-      KEY(UPPanelCellTypeSubject): NSLS(@"kDefaultDrawWord")
-      };
-    return [titleDict objectForKey:@(type)];
-}
 
 - (void)updateIcon:(UIImage *)image
 {
@@ -120,12 +78,12 @@ typedef enum{
 }
 
 
-- (void)updateWithType:(UPPanelCellType)type
+- (void)updateWithType:(DrawToolType)type
 {
     self.type = type;
-    [self updateIcon:[DrawToolUpPanelCell imageForType:type]];
-    [self updateTitle:[DrawToolUpPanelCell titleForType:type]];
-    if (type == UPPanelCellTypeSubject) {
+    [self updateIcon:[PanelUtil imageForType:type]];
+    [self updateTitle:[PanelUtil titleForType:type]];
+    if (type == DrawToolTypeSubject) {
         [self.icon setHidden:YES];
         [self.subject setHidden:NO];
         [self.subject setText:NSLS(@"kSubject")];
@@ -136,7 +94,7 @@ typedef enum{
     }
 }
 
-+ (DrawToolUpPanelCell *)cellForType:(UPPanelCellType)type delegate:(id)delegate
++ (DrawToolUpPanelCell *)cellForType:(DrawToolType)type delegate:(id)delegate
 {
     DrawToolUpPanelCell *cell = [DrawToolUpPanelCell createCell:delegate];
     [cell updateWithType:type];
@@ -205,7 +163,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 [cmd setToolPanel:self];
 
 
-- (UIControl *)controlForType:(UPPanelCellType)type
+- (UIControl *)controlForType:(DrawToolType)type
 {
     DrawToolUpPanelCell *cell = [cellDict objectForKey:@(type)];
     return cell.control;
@@ -219,17 +177,17 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
     
     ToolCommand *command;
     UIControl *control;
-    ADD_COMMAND(command, DrawBgCommand, UPPanelCellTypeBG, ItemTypeNo);
-    ADD_COMMAND(command, CanvasSizeCommand, UPPanelCellTypeSize, ItemTypeNo);
-    ADD_COMMAND(command, GridCommand, UPPanelCellTypeGrid, ItemTypeGrid);
-    ADD_COMMAND(command, EditDescCommand, UPPanelCellTypeDesc, ItemTypeNo);
-    ADD_COMMAND(command, DrawToCommand, UPPanelCellTypeDrawTo, ItemTypeNo);
-    ADD_COMMAND(command, HelpCommand, UPPanelCellTypeHelp, ItemTypeNo);
-    ADD_COMMAND(command, CopyPaintCommand, UPPanelCellTypeCopy, ItemTypeCopyPaint);
+    ADD_COMMAND(command, DrawBgCommand, DrawToolTypeBG, ItemTypeNo);
+    ADD_COMMAND(command, CanvasSizeCommand, DrawToolTypeSize, ItemTypeNo);
+    ADD_COMMAND(command, GridCommand, DrawToolTypeGrid, ItemTypeGrid);
+    ADD_COMMAND(command, EditDescCommand, DrawToolTypeDesc, ItemTypeNo);
+    ADD_COMMAND(command, DrawToCommand, DrawToolTypeDrawTo, ItemTypeNo);
+    ADD_COMMAND(command, HelpCommand, DrawToolTypeHelp, ItemTypeNo);
+    ADD_COMMAND(command, CopyPaintCommand, DrawToolTypeCopy, ItemTypeCopyPaint);
     
 
     //TODO register Show copy paint command
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeCopy)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeCopy)];
     control = cell.accessButton;
     command = [[[ShowCopyPaintCommand alloc] initWithControl:control itemType:ItemTypeCopyPaint] autorelease];
     [toolCmdManager registerCommand:command];
@@ -263,7 +221,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 - (void)updateDrawToUser:(MyFriend *)user
 {
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeDrawTo)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeDrawTo)];
     NSURL *URL = [NSURL URLWithString:user.avatar];
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
         image = [UIImage shrinkImage:image withRate:0.8];
@@ -276,8 +234,8 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 - (void)updateTableView
 {
     if ([cellDict count] == 0) {
-        cellDict = [[NSMutableDictionary alloc] initWithCapacity:UPPanelCellTypeNumber];
-        for (int i = 0; i < UPPanelCellTypeNumber; ++ i) {
+        cellDict = [[NSMutableDictionary alloc] initWithCapacity:DrawToolTypeNumber];
+        for (int i = 0; i < DrawToolTypeNumber; ++ i) {
             DrawToolUpPanelCell *cell = [DrawToolUpPanelCell cellForType:i delegate:self];
             if (cell) {
                 [cellDict setObject:cell forKey:@(i)];
@@ -313,7 +271,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 - (void)updateCopyPaint:(UIImage*)aPhoto
 {
     UIImage* image = [UIImage shrinkImage:aPhoto withRate:0.8];
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeCopy)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeCopy)];
     [cell updateIcon:image];
     [cell.accessButton setHidden:(image == nil)];
 }
@@ -321,7 +279,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 - (void)updateSubject:(NSString *)subject
 {
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(UPPanelCellTypeSubject)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeSubject)];
     [cell updateTitle:subject];
 }
 
@@ -347,7 +305,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 
 - (void)didClickCellControl:(UIControl *)control atCell:(DrawToolUpPanelCell *)cell{
-    NSArray *list = @[@(UPPanelCellTypeSize), @(UPPanelCellTypeSubject)];
+    NSArray *list = @[@(DrawToolTypeSize), @(DrawToolTypeSubject)];
     if (![list containsObject:@(cell.type)]) {
         [self disappear];
     }

@@ -193,13 +193,14 @@
             [button setTitle:tab.title forState:[state integerValue]];
             
         }
-       
+        [button setTitleColor:COLOR_COFFEE1 forState:UIControlStateSelected];       
         //shadow offset
         [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:nil];        
         [button setBackgroundColor:COLOR_ORANGE];
         index++;
     }
     [self clickTabButton:self.currentTabButton];
+    [self clickTabUp:self.currentTabButton];
 }
 
 #pragma mark - View lifecycle
@@ -289,7 +290,7 @@
 {
     UIButton *button = (UIButton *)sender;
     if (self.currentTabButton == button) {
-        [button setBackgroundColor:COLOR_ORANGE1];
+        [button setBackgroundColor:COLOR_YELLOW1];
     }else{
         [button setBackgroundColor:COLOR_ORANGE];
     }

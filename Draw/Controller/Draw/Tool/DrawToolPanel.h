@@ -13,6 +13,7 @@
 #import "Palette.h"
 #import "DrawInfo.h"
 #import "DrawView.h"
+#import "PanelUtil.h"
 
 @class DrawToolPanel;
 
