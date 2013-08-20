@@ -33,8 +33,6 @@
 #define ANIM_KEY_THROW_TOMATO   @"ThrowTomato"
 #define ANIM_KEY_SEND_FLOWER    @"SendFlower"
 
-#define POP_MESSAGE_HORIZON_OFFSET  (0)
-
 #define ANIM_GROUP @"AnimationGroup"
 
 @implementation DrawGameAnimationManager
@@ -105,7 +103,7 @@
     [AnimationPlayer showView:tomatoImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
         completion(finished);
         if (shouldShowTips) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES];
         }
     }];
 }
@@ -132,15 +130,12 @@
         animationGroup = [AnimationManager scaleMissAnimation:MISSING_TIME scale:4 delegate:superController];
     }
     
-    //    [animationGroup setValue:ANIM_KEY_SEND_FLOWER forKey:DRAW_ANIM];
     [AnimationPlayer showView:flowerImageView inView:superController.view animation:animationGroup completion:^(BOOL finished) {
         completion(finished);
         if (shouldShowTips) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+            [[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:2 isHappy:YES];
         }
-     
     }];
-    
 }
 
 
@@ -204,19 +199,19 @@
 {
     NSString* key = [anim valueForKey:DRAW_ANIM];
     if ([key isEqualToString:ANIM_KEY_RECEIVE_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES];
         //        [self popupMessage:[NSString stringWithFormat:NSLS(@"kReceiveFlowerMessage"),REWARD_EXP, REWARD_COINS] title:nil];
     }
     if ([key isEqualToString:ANIM_KEY_RECEIVE_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:NO atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kReceiveTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:NO];
         
     }
     if ([key isEqualToString:ANIM_KEY_SEND_FLOWER]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES];
 
     }
     if ([key isEqualToString:ANIM_KEY_THROW_TOMATO]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES atHorizon:POP_MESSAGE_HORIZON_OFFSET];
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),REWARD_EXP, REWARD_COINS] delayTime:2 isHappy:YES];
 
         
     }

@@ -133,6 +133,8 @@
     [_titleLabel updateOriginY:originY];
     [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
     
+    [_closeButton updateOriginY:originY];
+    
     originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
     UIView *infoView = [self infoView];
     [infoView updateCenterX:centerX];

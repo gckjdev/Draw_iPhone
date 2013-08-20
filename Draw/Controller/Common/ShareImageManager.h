@@ -14,6 +14,8 @@
 #import "HPThemeManager.h"
 #import <QuartzCore/QuartzCore.h>
 
+
+
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
 #define TEXT_VIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
 #define BUTTON_CORNER_RADIUS    TEXT_VIEW_CORNER_RADIUS
@@ -37,6 +39,8 @@
 
 #define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
 #define COLOR_RED1 OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
+
+#define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 
 
 #define SET_VIEW_ROUND_CORNER(view) \
