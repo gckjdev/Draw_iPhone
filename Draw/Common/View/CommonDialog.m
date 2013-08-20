@@ -11,6 +11,8 @@
 #import "ShareImageManager.h"
 #import "UILabel+Extend.h"
 
+#define FONT_TITLE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 36 : 18)]
+
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
@@ -259,33 +261,23 @@
 
     [view setStyle:aStyle];
     
-    [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    view.oKButton.backgroundColor = COLOR_YELLOW;
-    [view.oKButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    SET_VIEW_ROUND_CORNER_WIDTH(view.oKButton, BUTTON_CORNER_RADIUS);
-    view.oKButton.titleLabel.font = FONT_BUTTON;
-    
-    [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];    [view appear];
-    view.cancelButton.backgroundColor = COLOR_YELLOW;
-    [view.cancelButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    SET_VIEW_ROUND_CORNER_WIDTH(view.cancelButton, BUTTON_CORNER_RADIUS);
-    view.cancelButton.titleLabel.font = FONT_BUTTON;
-    
     view.titleLabel.textColor = COLOR_WHITE;
     view.titleLabel.font = FONT_TITLE_LABEL;
     
-    view.messageLabel.textColor = COLOR_BROWN;
-    view.messageLabel.font = FONT_MESSAGE_LABEL;
+    SET_MESSAGE_LABEL_STYLE(view.messageLabel);
     
-    view.inputTextField.font = FONT_INPUT_TEXT_FIELD;
-    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextField, TEXT_VIEW_CORNER_RADIUS);
-    view.inputTextField.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
-    view.inputTextField.layer.borderColor = [COLOR_YELLOW CGColor];
+    SET_INPUT_VIEW_STYLE(view.inputTextField);
     
-    view.inputTextView.font = FONT_INPUT_TEXT_VIEW;
-    SET_VIEW_ROUND_CORNER_WIDTH(view.inputTextView, TEXT_VIEW_CORNER_RADIUS);
-    view.inputTextView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
-    view.inputTextView.layer.borderColor = [COLOR_YELLOW CGColor];
+    SET_INPUT_VIEW_STYLE(view.inputTextView);
+    
+    [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
+    SET_BUTTON_STYLE(view.oKButton);
+    
+    
+    [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    SET_BUTTON_STYLE(view.cancelButton);
+    
+    [view appear];
 
     return view;
 }

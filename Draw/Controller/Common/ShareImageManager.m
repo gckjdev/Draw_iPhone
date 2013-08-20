@@ -380,7 +380,8 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)pencilImage
 {
-    return [UIImage imageNamed:@"pen_pencil@2x"];    
+    return [UIImage imageNamed:@"pen_pencil@2x"];
+
 }
 - (UIImage *)waterPenImage
 {
