@@ -1,0 +1,16 @@
+iphone
+
+scrollView w=275 
+btn 37*37
+undo(208) redo(250)
+space 5
+
+166
+
+scrollView w=275
+btn 66*66
+undo(523) redo(617)
+space 5
+
+
+

@@ -36,7 +36,7 @@
                 [self changeBG];
         }];
         
-        [dialog showInView:[self.control theTopView]];
+        [dialog showInView:[self.controller view]];
 
         
     }else{

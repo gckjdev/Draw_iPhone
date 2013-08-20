@@ -63,6 +63,7 @@
     DrawColorManager *drawColorManager;
     ToolCommandManager *toolCmdManager;
     NSUInteger _commandVersion;
+    NSMutableDictionary *buttonDict;
 }
 
 #pragma mark - click actions
@@ -73,29 +74,35 @@
 @property (retain, nonatomic) IBOutlet UIImageView *colorBGImageView;
 @property (retain, nonatomic) IBOutlet DrawSlider *widthSlider;
 @property (retain, nonatomic) IBOutlet DrawSlider *alphaSlider;
+
 @property (retain, nonatomic) IBOutlet UIButton *penWidth;
 @property (retain, nonatomic) IBOutlet UIButton *colorAlpha;
-@property (retain, nonatomic) IBOutlet UIButton *pen;
+
+
 @property (retain, nonatomic) IBOutlet UIButton *chat;
 @property (retain, nonatomic) IBOutlet UIButton *timeSet;
-@property (retain, nonatomic) IBOutlet UIButton *redo;
-@property (retain, nonatomic) IBOutlet UIButton *undo;
-@property (retain, nonatomic) IBOutlet UIButton *palette;
-@property (retain, nonatomic) IBOutlet UIButton *eraser;
-@property (retain, nonatomic) IBOutlet UIButton *straw;
-//@property (retain, nonatomic) WidthView *widthView;
+
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIButton *addColor;
 @property (retain, nonatomic) IBOutlet UIButton *switchPage;
 
-@property (retain, nonatomic) IBOutlet UIButton *paintBucket;
-@property (retain, nonatomic) IBOutlet UIButton *shape;
+@property (retain, nonatomic) IBOutlet UIButton *pen;
+@property (retain, nonatomic) IBOutlet UIButton *palette;
+@property (retain, nonatomic) IBOutlet UIButton *eraser;
+@property (retain, nonatomic) IBOutlet UIButton *straw;
 
-@property (retain, nonatomic) IBOutlet UIButton *shadow;
-@property (retain, nonatomic) IBOutlet UIButton *gradient;
-@property (retain, nonatomic) IBOutlet UIButton *selector;
-@property (retain, nonatomic) IBOutlet UIButton *fx;
-@property (retain, nonatomic) IBOutlet UIButton *text;
+
+//@property (retain, nonatomic) IBOutlet UIButton *redo;
+//@property (retain, nonatomic) IBOutlet UIButton *undo;
+
+//@property (retain, nonatomic) IBOutlet UIButton *paintBucket;
+//@property (retain, nonatomic) IBOutlet UIButton *shape;
+
+//@property (retain, nonatomic) IBOutlet UIButton *shadow;
+//@property (retain, nonatomic) IBOutlet UIButton *gradient;
+//@property (retain, nonatomic) IBOutlet UIButton *selector;
+//@property (retain, nonatomic) IBOutlet UIButton *fx;
+//@property (retain, nonatomic) IBOutlet UIButton *text;
 
 //@property (retain, nonatomic) IBOutlet UIView *colorHolderView;
 @property (retain, nonatomic) NSTimer *timer;
@@ -133,8 +140,6 @@
 
 #define POP_POINTER_SIZE VALUE(8.0)
 
-//#define COLOR_BG_TAG 201304051
-//#define TOOL_BG_TAG 201304052
 
 #pragma mark - setter methods
 
@@ -143,8 +148,9 @@
 - (IBAction)clickTool:(id)sender
 {
     [self.delegate drawToolPanel:self didClickTool:sender];
-    [toolCmdManager hideAllPopTipViewsExcept:[toolCmdManager commandForControl:sender]];
-    [[toolCmdManager commandForControl:sender] execute];
+    ToolCommand *cmd = [toolCmdManager commandForControl:sender];
+    [toolCmdManager hideAllPopTipViewsExcept:cmd];
+    [cmd execute];
 }
 
 - (void)updateSliders
@@ -226,6 +232,16 @@
     [selectedPoint setSelected:YES];
 }
 
+#define REG_CMD_CTRL(cls, ctrl, tp)\
+command = [[[cls alloc] initWithControl:ctrl itemType:tp] autorelease];\
+[toolCmdManager registerCommand:command];\
+[command setToolPanel:self];\
+[command setDrawInfo:self.drawView.drawInfo];\
+[command setDrawView:self.drawView];
+
+
+#define REG_CMD(cls, dt, tp)\
+REG_CMD_CTRL(cls, [self buttonForType:dt], tp)
 
 - (void)registerToolCommands
 {
@@ -234,77 +250,143 @@
     [toolCmdManager setVersion:_commandVersion];
     [toolCmdManager removeAllCommand:_commandVersion];
     
-    ToolCommand *command = [[[AddColorCommand alloc] initWithControl:self.addColor itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[PaletteCommand alloc] initWithControl:self.palette itemType:PaletteItem] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[SelectPenCommand alloc] initWithControl:self.pen itemType:Pencil] autorelease];
-    [toolCmdManager registerCommand:command];
+    ToolCommand *command = nil;
+    REG_CMD(AddColorCommand, DrawToolTypeAddColor, ItemTypeNo);
+    REG_CMD(PaletteCommand, DrawToolTypePalette, PaletteItem);
 
-    command = [[[EraserCommand alloc] initWithControl:self.eraser itemType:Eraser] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    command = [[[PaintBucketCommand alloc] initWithControl:self.paintBucket itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-
+    REG_CMD(SelectPenCommand, DrawToolTypeAddColor, ItemTypeNo);
+    REG_CMD(AddColorCommand, DrawToolTypePalette, PaletteItem);
+        
+    REG_CMD(SelectPenCommand, DrawToolTypePen, Pencil);
+    REG_CMD(EraserCommand, DrawToolTypeEraser, Eraser);
+    REG_CMD(PaintBucketCommand, DrawToolTypeBucket, ItemTypeNo);
+    REG_CMD(ShapeCommand, DrawToolTypeShape, ItemTypeNo);
+    REG_CMD(StrawCommand, DrawToolTypeStraw, ColorStrawItem);
+    REG_CMD(WidthPickCommand, DrawToolTypeWidthPicker, ItemTypeNo);
+    REG_CMD(TextCommand, DrawToolTypeText, ItemTypeNo);
+    REG_CMD(SelectorCommand, DrawToolTypeSelector, ItemTypeSelector);
+    REG_CMD(FXCommand, DrawToolTypeFX, ItemTypeFX);
+    REG_CMD(GradientCommand, DrawToolTypeGradient, ItemTypeGradient);
+    REG_CMD(ShadowCommand, DrawToolTypeShadow, ItemTypeShadow);
+    REG_CMD(RedoCommand, DrawToolTypeRedo, ItemTypeNo);
+    REG_CMD(UndoCommand, DrawToolTypeUndo, ItemTypeNo);
+    REG_CMD(ChatCommand, DrawToolTypeChat, ItemTypeNo);
     
-    command = [[[ShapeCommand alloc] initWithControl:self.shape itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[StrawCommand alloc] initWithControl:self.straw itemType:ColorStrawItem] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    
-    command = [[[WidthPickCommand alloc] initWithControl:self.penWidth itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    
-    command = [[[WidthSliderCommand alloc] initWithControl:self.widthSlider itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    command = [[[AlphaSliderCommand alloc] initWithControl:self.alphaSlider itemType:ColorAlphaItem] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    command = [[[TextCommand alloc] initWithControl:self.text itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[SelectorCommand alloc] initWithControl:self.selector itemType:ItemTypeSelector] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    command = [[[FXCommand alloc] initWithControl:self.fx itemType:ItemTypeGrid] autorelease];
-    [toolCmdManager registerCommand:command];
+    REG_CMD(DrawBgCommand, DrawToolTypeCanvaseBG, ItemTypeNo);
+    REG_CMD(GridCommand, DrawToolTypeBlock, ItemTypeGrid);
 
     
-    command = [[[GradientCommand alloc] initWithControl:self.gradient itemType:ItemTypeGradient] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    
-    command = [[[ShadowCommand alloc] initWithControl:self.shadow itemType:ItemTypeShadow] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    
-    command = [[[RedoCommand alloc] initWithControl:self.redo itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-
-    command = [[[UndoCommand alloc] initWithControl:self.undo itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    command = [[[ChatCommand alloc] initWithControl:self.chat itemType:ItemTypeNo] autorelease];
-    [toolCmdManager registerCommand:command];
-    
-    [toolCmdManager updatePanel:self];
-    [toolCmdManager updateDrawInfo:self.drawView.drawInfo];
-    [toolCmdManager updateDrawView:self.drawView];
+    REG_CMD_CTRL(WidthSliderCommand, self.widthSlider, ItemTypeNo);
+    REG_CMD_CTRL(AlphaSliderCommand, self.alphaSlider, ColorAlphaItem);
 }
 
+
+- (UIButton *)buttonForType:(DrawToolType)type
+{
+    return [buttonDict objectForKey:KEY(type)];
+}
+
+
+#define EDGE (ISIPAD ? 12 : 5)
+#define BUTTON_WDITH (ISIPAD ? 66 : 37)
+
+- (UIButton *)createButtonWithType:(DrawToolType)type
+{
+    if ([buttonDict objectForKey:KEY(type)]) {
+        PPDebug(@"<createButtonWithType> button is existed!! type =%d", type);
+        return [buttonDict objectForKey:KEY(type)];
+    }
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, BUTTON_WDITH, BUTTON_WDITH);
+    UIImage *image = [PanelUtil imageForType:type];
+    if (image) {
+        [button setImage:image forState:UIControlStateNormal];
+    }
+    image = [PanelUtil bgImageForType:type state:UIControlStateNormal];
+    if (image) {
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    image = [PanelUtil bgImageForType:type state:UIControlStateSelected];
+    
+    if (image) {
+        [button setBackgroundImage:image forState:UIControlStateSelected];
+    }
+    [buttonDict setObject:button forKey:KEY(type)];
+    [button addTarget:self action:@selector(clickTool:) forControlEvents:UIControlEventTouchUpInside];
+    return button;
+    
+}
+#define UNDO_CENTER_X (ISIPAD ? 523 : (ISIPHONE5 ? 200 : 208))
+#define REDO_CENTER_X (ISIPAD ? 617 : 250)
+#define SHAPE_CENTER_X (150) //only for iphone 5
+
+#define MAP_BUTTON(btn, tp)\
+if (btn == nil) {\
+btn = [self buttonForType:tp];\
+}\
+if (btn) {\
+    [buttonDict setObject:btn forKey:@(tp)];\
+}
+
+
+- (void)mapToolButtons
+{
+    MAP_BUTTON(self.pen, DrawToolTypePen);
+    MAP_BUTTON(self.palette, DrawToolTypePalette);
+    MAP_BUTTON(self.eraser, DrawToolTypeEraser);
+    MAP_BUTTON(self.straw, DrawToolTypeStraw);
+    MAP_BUTTON(self.addColor, DrawToolTypeAddColor);
+    MAP_BUTTON(self.penWidth, DrawToolTypeWidthPicker);
+}
+
+- (void)updateDrawToolButtons
+{
+    buttonDict = [[NSMutableDictionary dictionary] retain];
+    CGFloat y = CGRectGetMidY(self.scrollView.bounds);
+    CGFloat length = CGRectGetWidth(self.scrollView.bounds);
+    UIButton *toolButton = nil;
+    DrawToolType *types = [PanelUtil belowToolList];
+    
+    CGFloat start = length;
+
+    toolButton = [self createButtonWithType:DrawToolTypeUndo];
+    toolButton.center = CGPointMake(UNDO_CENTER_X, y);
+    [self.scrollView addSubview:toolButton];
+    toolButton = [self createButtonWithType:DrawToolTypeRedo];
+    toolButton.center = CGPointMake(REDO_CENTER_X, y);
+    [self.scrollView addSubview:toolButton];
+    
+
+    
+    if (!ISIPHONE5) {
+        types += 2;
+    }else{
+        toolButton = [self createButtonWithType:DrawToolTypeShape];
+        toolButton.center = CGPointMake(SHAPE_CENTER_X, y);
+        [self.scrollView addSubview:toolButton];
+
+//        start = 0;
+//        length *= 2;
+        types += 3;
+    }
+    NSArray *xs = [PanelUtil xsForTypes:types edge:EDGE width:BUTTON_WDITH start:start length:length];
+    
+    NSInteger index = 0;
+    for (DrawToolType *type = types; type != NULL && (*type) != DrawToolTypeEnd; ++ type, ++ index) {
+        toolButton = [self createButtonWithType:(*type)];
+        toolButton.center = CGPointMake([[xs objectAtIndex:index] floatValue], y);
+        [self.scrollView addSubview:toolButton];        
+    }
+    
+    //map it
+    [self mapToolButtons];
+}
 
 
 - (void)updateView
 {
     [self.scrollView setDelegate:self];
-    
+    [self updateDrawToolButtons];
     [self updateSliders];
     
     [self registerToolCommands];
@@ -359,13 +441,13 @@
     self.timeSet.hidden = self.chat.hidden = !isOnline;
     
     if(isOnline){
-        [self exchangeCenterView1:self.redo view2:self.paintBucket];
-        [self exchangeCenterView1:self.undo view2:self.chat];
-        
-        self.redo.hidden = self.undo.hidden = YES;
-//        self.grid.hidden = self.drawBg.hidden =
-//        self.canvasSize.hidden = self.help.hidden =
-//        self.opusDesc.hidden = self.drawToUser.hidden = YES;
+        UIButton *redo = [self buttonForType:DrawToolTypeRedo];
+        UIButton *undo = [self buttonForType:DrawToolTypeUndo];
+        UIButton *chat = [self buttonForType:DrawToolTypeChat];
+        UIButton *bucket = [self buttonForType:DrawToolTypeBucket];
+        [self exchangeCenterView1:redo view2:bucket];
+        [self exchangeCenterView1:undo view2:chat];
+        redo.hidden = undo.hidden = YES;
     }
     
     CGRect frame = self.scrollView.frame;
@@ -376,16 +458,16 @@
     PPDebug(@"Content Size = %@",NSStringFromCGSize(_scrollView.contentSize));
 }
 
+- (void)showGradientSettingView:(UIView *)gradientSettingView
+{
+    gradientSettingView.center = [self colorHolderView].center;
+    [self addSubview:gradientSettingView];
+}
+
 #define COLOR_PANEL_TAG 123
 - (void)hideColorPanel:(BOOL)hide
 {
-    UIView *view = [self viewWithTag:COLOR_PANEL_TAG];
-    [view setHidden:hide];
-    for (ColorPoint *cp in self.subviews) {
-        if ([cp isKindOfClass:[ColorPoint class]]) {
-            [cp setHidden:hide];
-        }
-    }
+    [[self colorHolderView] setHidden:hide];
 }
 
 - (void)dealloc {
@@ -393,6 +475,10 @@
     PPDebug(@"%@ dealloc",self);
     [toolCmdManager removeAllCommand:_commandVersion];
     [drawColorManager syncRecentList];
+
+    [buttonDict removeAllObjects];
+    PPRelease(buttonDict);
+    
     PPRelease(_widthSlider);
     PPRelease(_alphaSlider);
     PPRelease(_penWidth);
@@ -402,8 +488,6 @@
     PPRelease(_pen);
     PPRelease(_chat);
     PPRelease(_timeSet);
-    PPRelease(_redo);
-    PPRelease(_undo);
     PPRelease(_colorBGImageView);
     PPRelease(_palette);
 
@@ -413,15 +497,7 @@
     PPRelease(_straw);
     PPRelease(_scrollView);
     PPRelease(_addColor);
-    
-    PPRelease(_shape);
-    PPRelease(_paintBucket);
-    
-    PPRelease(_shadow);
-    PPRelease(_gradient);
-    PPRelease(_selector);
-    PPRelease(_fx);
-    PPRelease(_text);
+
     
     PPRelease(_toolBGImageView);
     [super dealloc];
@@ -521,30 +597,37 @@
 
 /////new methods
 
+#define INSET (ISIPAD ? 8 : 5)
+
 - (void)updateShapeWithDrawInfo:(DrawInfo *)drawInfo
 {
     if(drawInfo.shapeType == ShapeTypeNone){
         return;
     }
     UIBezierPath *path = [[ImageShapeManager defaultManager] pathWithType:drawInfo.shapeType];
-    UIColor *color = ISIPHONE5 ? COLOR_COFFEE : [UIColor whiteColor];
+    UIColor *color = [UIColor whiteColor];
     UIImage *image = nil;
+    CGSize size = [ImageShapeInfo defaultImageShapeSize];
+    
     if (drawInfo.strokeShape || drawInfo.shapeType == ShapeTypeBeeline) {
-        image = [path toStrokeImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+        image = [path toStrokeImageWithColor:color size:size];
     }else{
-        image = [path toFillImageWithColor:color size:[ImageShapeInfo defaultImageShapeSize]];
+        image = [path toFillImageWithColor:color size:size];
     }
-    [self.shape.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [self.shape setImage:image forState:UIControlStateNormal];
-
+    UIButton *shape = [self buttonForType:DrawToolTypeShape];
+    [shape.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [shape setImage:image forState:UIControlStateNormal];
+    
+    [shape setContentEdgeInsets:UIEdgeInsetsMake(INSET, INSET, INSET, INSET)];
 }
 
 - (void)updateSelectorWithDrawInfo:(DrawInfo *)drawInfo
 {
     UIImage *image = [DrawInfo imageForClipActionType:drawInfo.touchType];
-    [self.selector setImage:image forState:UIControlStateNormal];
-    [self.selector setImage:image forState:UIControlStateSelected];
-    [self.selector setSelected:[drawInfo isSelectorMode]];
+    UIButton *selector = [self buttonForType:DrawToolTypeSelector];
+    [selector setImage:image forState:UIControlStateNormal];
+    [selector setImage:image forState:UIControlStateSelected];
+    [selector setSelected:[drawInfo isSelectorMode]];
 }
 
 - (void)updatePenWithDrawInfo:(DrawInfo *)drawInfo
@@ -563,8 +646,10 @@
     }
     [toolCmdManager updateDrawInfo:drawInfo];
     
-    NSArray *buttons = @[self.pen, self.straw, self.shape, self.eraser];
-    for (UIButton *button in buttons) {
+    NSArray *types = @[KEY(DrawToolTypePen), KEY(DrawToolTypeStraw), KEY(DrawToolTypeShape), KEY(DrawToolTypeEraser)];
+    
+    for (NSNumber *type in types) {
+        UIButton *button = [self buttonForType:type.integerValue];
         [button setSelected:NO];
     }
     
@@ -582,7 +667,7 @@
             break;
             
         case TouchActionTypeShape:
-            [self.shape setSelected:YES];
+            [[self buttonForType:DrawToolTypeShape] setSelected:YES];
             
         default:
             break;
@@ -597,8 +682,8 @@
     [self.widthSlider setValue:drawInfo.penWidth];
 
 
-    NSArray *array = @[@(TouchActionTypeClipEllipse), @(TouchActionTypeClipPath), @(TouchActionTypeClipPolygon), @(TouchActionTypeClipRectangle)];
-    [self setCloseSelectorHidden:_drawView.currentClip == nil &&![array containsObject:@(drawInfo.touchType)]];
+    NSArray *array = @[KEY(TouchActionTypeClipEllipse), KEY(TouchActionTypeClipPath), KEY(TouchActionTypeClipPolygon), KEY(TouchActionTypeClipRectangle)];
+    [self setCloseSelectorHidden:_drawView.currentClip == nil &&![array containsObject:KEY(drawInfo.touchType)]];
     
     DrawColor *color = [DrawColor colorWithColor:drawInfo.penColor];
     [color setAlpha:1];

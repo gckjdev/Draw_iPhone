@@ -65,7 +65,10 @@
     return @"DrawToolUpPanelCell";
 }
 
-
++ (CGFloat)getCellHeight
+{
+    return (ISIPAD ? 62 : 31);
+}
 
 - (void)updateIcon:(UIImage *)image
 {
@@ -158,14 +161,16 @@
 
 #define ADD_COMMAND(cmd, cls, cellType, it)\
 control = [self controlForType:cellType];\
-cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
-[toolCmdManager registerCommand:command];\
-[cmd setToolPanel:self];
+if(control){\
+    cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
+    [toolCmdManager registerCommand:command];\
+    [cmd setToolPanel:self];\
+}
 
 
 - (UIControl *)controlForType:(DrawToolType)type
 {
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(type)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(type)];
     return cell.control;
 }
 
@@ -186,8 +191,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
     ADD_COMMAND(command, CopyPaintCommand, DrawToolTypeCopy, ItemTypeCopyPaint);
     
 
-    //TODO register Show copy paint command
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeCopy)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(DrawToolTypeCopy)];
     control = cell.accessButton;
     command = [[[ShowCopyPaintCommand alloc] initWithControl:control itemType:ItemTypeCopyPaint] autorelease];
     [toolCmdManager registerCommand:command];
@@ -207,10 +211,15 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 + (id)createViewWithDrawView:(DrawView *)drawView
 {
     DrawToolUpPanel *panel = [self createViewWithXibIdentifier:@"ToolUpPanel" ofViewIndex:0];
-    if (ISIPAD) {
-        CGRect frame = panel.frame;
-        frame.size = CGSizeMake(CGRectGetWidth(frame)/2, CGRectGetHeight(frame)/2);
-    }
+
+    
+    CGRect frame = panel.frame;
+    NSUInteger number = [PanelUtil numberOfTypeList:[PanelUtil upToolList]];
+    CGFloat height = (number + 0.2) *[DrawToolUpPanelCell getCellHeight];
+    CGFloat width = ISIPAD ? CGRectGetWidth(frame)*2 : CGRectGetWidth(frame);
+    frame.size = CGSizeMake(width, height);
+    panel.frame = frame;
+    
     panel.drawView = drawView;
     [panel updateView];
     [panel updateWithDrawInfo:drawView.drawInfo];
@@ -221,7 +230,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 - (void)updateDrawToUser:(MyFriend *)user
 {
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeDrawTo)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(DrawToolTypeDrawTo)];
     NSURL *URL = [NSURL URLWithString:user.avatar];
     [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
         image = [UIImage shrinkImage:image withRate:0.8];
@@ -233,12 +242,14 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 - (void)updateTableView
 {
+    self.tableView.bounces = NO;
     if ([cellDict count] == 0) {
-        cellDict = [[NSMutableDictionary alloc] initWithCapacity:DrawToolTypeNumber];
-        for (int i = 0; i < DrawToolTypeNumber; ++ i) {
-            DrawToolUpPanelCell *cell = [DrawToolUpPanelCell cellForType:i delegate:self];
+        cellDict = [[NSMutableDictionary alloc] init];
+        DrawToolType *types = [PanelUtil upToolList];
+        for (DrawToolType *i = types; i != NULL &&  (*i) != DrawToolTypeEnd; ++ i) {
+            DrawToolUpPanelCell *cell = [DrawToolUpPanelCell cellForType:(*i) delegate:self];
             if (cell) {
-                [cellDict setObject:cell forKey:@(i)];
+                [cellDict setObject:cell forKey:KEY(*i)];
             }
         }
     }
@@ -271,7 +282,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 - (void)updateCopyPaint:(UIImage*)aPhoto
 {
     UIImage* image = [UIImage shrinkImage:aPhoto withRate:0.8];
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeCopy)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(DrawToolTypeCopy)];
     [cell updateIcon:image];
     [cell.accessButton setHidden:(image == nil)];
 }
@@ -279,7 +290,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 - (void)updateSubject:(NSString *)subject
 {
-    DrawToolUpPanelCell *cell = [cellDict objectForKey:@(DrawToolTypeSubject)];
+    DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(DrawToolTypeSubject)];
     [cell updateTitle:subject];
 }
 
@@ -292,7 +303,7 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [cellDict objectForKey:@(indexPath.row)];
+    return [cellDict objectForKey:KEY([PanelUtil upToolList][indexPath.row])];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -305,8 +316,8 @@ cmd = [[[cls alloc] initWithControl:control itemType:it] autorelease];\
 
 
 - (void)didClickCellControl:(UIControl *)control atCell:(DrawToolUpPanelCell *)cell{
-    NSArray *list = @[@(DrawToolTypeSize), @(DrawToolTypeSubject)];
-    if (![list containsObject:@(cell.type)]) {
+    NSArray *list = @[KEY(DrawToolTypeSize), KEY(DrawToolTypeSubject)];
+    if (![list containsObject:KEY(cell.type)]) {
         [self disappear];
     }
     [[toolCmdManager commandForControl:control] execute];    
