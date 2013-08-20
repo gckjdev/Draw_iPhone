@@ -51,13 +51,10 @@
     
     [titleLabel setText:NSLS(@"kCustomWordManage")];
     
-//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     [editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
     [editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
     
-//    [addWordButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     [addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
-    
     
     self.dataList = [[CustomWordManager defaultManager] findAllWords];
 }

@@ -1507,6 +1507,7 @@
 "kNoRank" = "No rank data";
 "kRanking" = "Ranking";
 
+"kOpusNameInvaild" = "Opus name can not blank";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

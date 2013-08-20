@@ -24,4 +24,7 @@ typedef enum {
 + (id)createWithType:(ComposeInputDialogType)type;
 - (NSSet *)shareSet;
 
+- (void)setMaxTitleLength:(int)maxTitleLeng;
+- (void)setMaxContentLength:(int)maxContentLen;
+
 @end

@@ -267,14 +267,15 @@ NSUInteger _ManagerVersion = 1;
     return NO;
 }
 
-- (InputAlertView *)inputAlertView
-{
-    for (ToolCommand *command in commandList) {
-        if ([command isKindOfClass:[EditDescCommand class]]) {
-            return [(EditDescCommand *)command inputAlertView];
-        }
-    }
-    
-    return nil;
-}
+//- (InputAlertView *)inputAlertView
+//{
+//    for (ToolCommand *command in commandList) {
+//        if ([command isKindOfClass:[EditDescCommand class]]) {
+//            return [(EditDescCommand *)command inputAlertView];
+//        }
+//    }
+//    
+//    return nil;
+//}
+
 @end

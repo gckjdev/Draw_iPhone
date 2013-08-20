@@ -278,8 +278,10 @@
     if ([[[CustomWordManager defaultManager] findAllWords] count] == 0) {
         [self popupUnhappyMessage:NSLS(@"kNoCustomWords") title:nil];
     }else {
+
         SelectCustomWordView *customWordView = [SelectCustomWordView createView:self];
-        [customWordView showInView:self.view];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMyWords") customView:customWordView style:CommonDialogStyleCross];
+        [dialog showInView:self.view];
     }
 }
 

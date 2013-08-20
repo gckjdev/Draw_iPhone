@@ -158,6 +158,18 @@ AUTO_CREATE_VIEW_BY_XIB(PassWordDialog);
     [view.oldPasswordTextField setPlaceholder:NSLS(@"kOldPasswordHolder")];
     [view.passwordTextField setPlaceholder:NSLS(@"kNewPasswordHolder")];
     [view.anotherPasswordTextField setPlaceholder:NSLS(@"kConfirmPasswordHolder")];
+    
+    SET_VIEW_ROUND_CORNER(view.oldPasswordTextField);
+    view.oldPasswordTextField.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
+    view.oldPasswordTextField.layer.borderColor = [COLOR_YELLOW CGColor];
+    
+    SET_VIEW_ROUND_CORNER(view.passwordTextField);
+    view.passwordTextField.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
+    view.passwordTextField.layer.borderColor = [COLOR_YELLOW CGColor];
+    
+    SET_VIEW_ROUND_CORNER(view.anotherPasswordTextField);
+    view.anotherPasswordTextField.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
+    view.anotherPasswordTextField.layer.borderColor = [COLOR_YELLOW CGColor];
 
     UserManager *userManager = [UserManager defaultManager];
     if ([userManager isPasswordEmpty]) {

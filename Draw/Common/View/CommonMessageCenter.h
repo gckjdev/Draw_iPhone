@@ -8,31 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CommonMessageCenterDelegate <NSObject>
+//@protocol CommonMessageCenterDelegate <NSObject>
+//
+//- (void)didShowedAlert;
+//
+//@end
 
-- (void)didShowedAlert;
-
-@end
-
-@class CommonMessageView;
 @interface CommonMessageCenter : NSObject
-{
-	NSMutableArray *_messages;
-	BOOL _active;
-	CommonMessageView *_messageView;
-	CGRect _messageFrame;
-    int _horizon;
-    NSTimer* _dismissTimer;
-}
-@property(nonatomic, retain)NSMutableArray *messages;
-@property(nonatomic, assign)id<CommonMessageCenterDelegate>delegate;
 
 + (CommonMessageCenter*) defaultCenter;
 
-- (void)clearMessages;
-
 - (void)postMessageWithText:(NSString *)text 
-                    delayTime:(float)delayTime;
+                  delayTime:(float)delayTime;
 
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime 
@@ -41,20 +28,6 @@
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime
                isSuccessful:(BOOL)isSuccessful;
-
-- (void)postMessageWithText:(NSString *)text 
-                  delayTime:(float)delayTime 
-                  atHorizon:(int)horizon;
-
-- (void)postMessageWithText:(NSString *)text 
-                  delayTime:(float)delayTime 
-                    isHappy:(BOOL)isHappy 
-                  atHorizon:(int)horizon;
-
-- (void)postMessageWithText:(NSString *)text 
-                  delayTime:(float)delayTime
-               isSuccessful:(BOOL)isSuccessful 
-                  atHorizon:(int)horizon;
 
 @end
 

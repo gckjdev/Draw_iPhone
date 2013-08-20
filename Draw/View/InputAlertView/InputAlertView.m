@@ -23,9 +23,14 @@
 #import "WordFilterService.h"
 #import "AutoCreateViewByXib.h"
 
+
+
 #define GAP (ISIPAD ? 15 : 8)
 
-@interface InputAlertView ()
+@interface InputAlertView ()<UITextFieldDelegate, UITextViewDelegate>{
+    int _maxTitleLength;
+    int _maxContentLength;
+}
 
 @property (assign, nonatomic) ComposeInputDialogType type;
 
@@ -75,10 +80,12 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
     SET_VIEW_ROUND_CORNER(self.titleInputField);
     [self.titleInputField.layer setBorderWidth:TEXT_VIEW_BORDER_WIDTH];
     [self.titleInputField.layer setBorderColor:[COLOR_YELLOW CGColor]];
+    self.titleInputField.delegate = self;
     
     SET_VIEW_ROUND_CORNER(self.contentInputView);
     [self.contentInputView.layer setBorderWidth:TEXT_VIEW_BORDER_WIDTH];
     [self.contentInputView.layer setBorderColor:[COLOR_YELLOW CGColor]];
+    self.contentInputView.delegate = self;
     
     CGFloat originY;
     switch (_type) {
@@ -160,7 +167,31 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 }
 
 
+- (void)setMaxTitleLength:(int)maxTitleLeng{
+    _maxTitleLength = maxTitleLeng;
+}
 
+- (void)setMaxContentLength:(int)maxContentLen{
+    _maxContentLength = maxContentLen;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (_maxTitleLength > 0 && range.location >= _maxTitleLength) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    
+    if (_maxContentLength > 0 && range.location >= _maxContentLength) {
+        return NO;
+    }
+    
+    return YES;
+}
 
 
 //+ (id)inputAlertViewWith:(NSString *)title

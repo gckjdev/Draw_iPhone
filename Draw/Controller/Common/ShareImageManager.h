@@ -14,6 +14,13 @@
 #import "HPThemeManager.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define FONT_TITLE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 36 : 18)]
+#define FONT_MESSAGE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+#define FONT_INPUT_TEXT_FIELD [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
+#define FONT_INPUT_TEXT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
+
+#define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
 #define TEXT_VIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
 #define BUTTON_CORNER_RADIUS    TEXT_VIEW_CORNER_RADIUS
@@ -37,6 +44,7 @@
 #define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
 #define COLOR_RED1 OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
 
+#define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 #define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
 #define COLOR_COFFEE1 OPAQUE_COLOR(126, 49, 46) // common tab selected text
 

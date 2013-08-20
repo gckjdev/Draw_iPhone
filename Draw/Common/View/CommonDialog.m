@@ -21,13 +21,6 @@
 #define GAP_Y_BETWEEN_BUTTON_AND_BOTTOM (ISIPAD ? 22 : 10)
 
 
-#define FONT_TITLE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 36 : 18)]
-#define FONT_MESSAGE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
-#define FONT_INPUT_TEXT_FIELD [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
-#define FONT_INPUT_TEXT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
-
-#define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
-
 #define DIALOG_CORNER_RADIUS    (ISIPAD ? 30 : 15)
 
 @interface CommonDialog()<UITextFieldDelegate, UITextViewDelegate>
@@ -132,6 +125,8 @@
     [_titleLabel updateCenterX:centerX];
     [_titleLabel updateOriginY:originY];
     [_titleLabel updateHeight:TITLE_LABEL_HEIGHT];
+    
+    [_closeButton updateOriginY:originY];
     
     originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
     UIView *infoView = [self infoView];
