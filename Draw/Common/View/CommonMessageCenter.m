@@ -48,15 +48,10 @@ AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
 - (void)setWithImage:(UIImage *)image
                 text:(NSString *)text
 {
-    [self.messageLabel setTextColor:[GameApp popupMessageDialogFontColor]];
 	[self.messageLabel setText:text];
-    [self.messageLabel setTextAlignment:UITextAlignmentLeft];
-    [self.messageLabel setFont:FONT_MESSAGE_LABEL];
-    if ([LocaleUtils isChinese]) {
-        [self.messageLabel setLineBreakMode:UILineBreakModeCharacterWrap];
-    } else {
-        [self.messageLabel setLineBreakMode:UILineBreakModeWordWrap];
-    }
+    
+    SET_MESSAGE_LABEL_STYLE(self.messageLabel);
+    
     CGSize size = CGSizeMake(MESSAGE_LABEL_WIDTH, 300);
     [self.messageLabel wrapTextWithConstrainedSize:size];
     

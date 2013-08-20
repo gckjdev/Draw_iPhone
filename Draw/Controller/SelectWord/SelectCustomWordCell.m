@@ -26,8 +26,8 @@
 {
     PPDebug(@"des: %@", self.wordLabel.description);
     self.wordLabel.text = word;
-    self.wordLabel.font = FONT_MESSAGE_LABEL;
-    self.wordLabel.textColor = COLOR_BROWN;
+    
+    SET_MESSAGE_LABEL_STYLE(self.wordLabel);
 }
 
 

@@ -77,14 +77,10 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
     [self.shareToSinaLabel setText:NSLS(@"kSinaWeibo")];
     [self.shareToQQLabel setText:NSLS(@"kTencentWeibo")];
     
-    SET_VIEW_ROUND_CORNER(self.titleInputField);
-    [self.titleInputField.layer setBorderWidth:TEXT_VIEW_BORDER_WIDTH];
-    [self.titleInputField.layer setBorderColor:[COLOR_YELLOW CGColor]];
+    SET_INPUT_VIEW_STYLE(self.titleInputField);
     self.titleInputField.delegate = self;
     
-    SET_VIEW_ROUND_CORNER(self.contentInputView);
-    [self.contentInputView.layer setBorderWidth:TEXT_VIEW_BORDER_WIDTH];
-    [self.contentInputView.layer setBorderColor:[COLOR_YELLOW CGColor]];
+    SET_INPUT_VIEW_STYLE(self.contentInputView);
     self.contentInputView.delegate = self;
     
     CGFloat originY;
