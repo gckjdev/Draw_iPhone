@@ -1890,11 +1890,12 @@
 "kMainLayer" = "主圖層";
 "kNumLayerName" = "圖層 %d";
 
-"kNewLayerName" = "新圖層";
+"kNewLayerName" = "圖層";
 "kEditLayerName" = "修改圖層名字";
 "kCurrentLayerCannotHiden" = "當前圖層不能被隱藏。";
 "kDeleteDrawLayer" = "確定要刪除圖層嗎？";
 "kHiddenLayerCannotBeSelected" = "隱藏的圖層不能設成當前圖層。";
+"kRearchMaxLayerCount" = "對不起，不能再增加圖層了。";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
