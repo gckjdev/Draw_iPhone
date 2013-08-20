@@ -149,6 +149,18 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 - (void)setUserFeatureOpus:(NSString*)targetUserId
                featureOpus:(int)featureOpus
-              successBlock:(void (^)(void))successBlock;;
+              successBlock:(void (^)(void))successBlock;
+
+- (void)sendPassword:(NSString*)email
+         resultBlock:(void(^)(int resultCode))resultBlock;
+
+- (void)sendVerificationRequest:(void(^)(int resultCode))resultBlock;
+
+- (void)verifyAccount:(NSString*)code
+          resultBlock:(void(^)(int resultCode))resultBlock;
+
+
+
+
 
 @end

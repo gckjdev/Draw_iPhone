@@ -405,10 +405,6 @@
     [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
     [self.view addSubview:self.drawToolUpPanel];
 
-//    [self.drawToolUpPanel setPanelForOnline:NO];
-    
-    [self.drawToolUpPanel.titleLabel setText:([self.word.text length] > 0)?self.word.text:NSLS(@"kDefaultDrawWord")];
-
     [drawView.dlManager setDelegate:self];
     [self.drawToolUpPanel bindController:self];
 }
@@ -1267,7 +1263,7 @@
         self.upPanelPopView = [[[CMPopTipView alloc] initWithCustomView:self.drawToolUpPanel] autorelease];
         [self.upPanelPopView setBackgroundColor:COLOR_YELLOW];
         if ([[self.word text] length] != 0) {
-            [self.drawToolUpPanel.titleLabel setText:self.word.text];
+            [self.drawToolUpPanel updateSubject:self.word.text];
         }
         [self.upPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
         self.upPanelPopView.delegate = self;

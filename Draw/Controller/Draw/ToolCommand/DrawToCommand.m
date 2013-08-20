@@ -11,6 +11,7 @@
 #import "UIImageUtil.h"
 #import "OfflineDrawViewController.h"
 #import "UIButton+WebCache.h"
+#import "DrawToolUpPanel.h"
 
 @implementation DrawToCommand
 
@@ -25,7 +26,7 @@
         PPDebug(@"<changeDrawToFriend> nick = %@", aFriend.nickName);
         OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
         [oc setTargetUid:aFriend.friendUserId];
-        [(UIButton *)self.control setImageWithURL:[NSURL URLWithString:aFriend.avatar]];
+        [(DrawToolUpPanel *)self.toolPanel updateDrawToUser:aFriend];
     }
 }
 

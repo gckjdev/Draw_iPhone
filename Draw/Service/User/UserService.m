@@ -1520,16 +1520,95 @@ static UserService* _defaultUserService;
     
     dispatch_async(workingQueue, ^{
         GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_MANAGE_USER_INFO parameters:para isReturnArray:NO];
-        if (output.resultCode == 0){
-            if (successBlock){
-                successBlock();
+        dispatch_async(dispatch_get_main_queue(), ^{        
+            if (output.resultCode == 0){
+                if (successBlock){
+                    successBlock();
+                }
             }
-        }
+        });
     });
     
     
 }
 
+#define VERIFY_TYPE_EMAIL       1
+
+- (void)sendPassword:(NSString*)email
+         resultBlock:(void(^)(int resultCode))resultBlock
+{
+
+    if ([email length] == 0){
+        EXECUTE_BLOCK(resultBlock, ERROR_EMAIL_NOT_VALID);
+        return;
+    }
+    
+    NSDictionary* para = @{ PARA_TYPE : @(VERIFY_TYPE_EMAIL),
+                            PARA_EMAIL : email};
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_SEND_PASSWORD
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+    
+    
+}
+
+- (void)sendVerificationRequest:(void(^)(int resultCode))resultBlock
+{
+    NSString* email = [[UserManager defaultManager] email];
+    if ([email length] == 0){
+        EXECUTE_BLOCK(resultBlock, ERROR_EMAIL_NOT_VALID);
+        return;
+    }
+    
+    NSDictionary* para = @{ PARA_TYPE : @(VERIFY_TYPE_EMAIL),
+                            PARA_EMAIL : email};
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_SEND_VERFICATION
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
+
+- (void)verifyAccount:(NSString*)code
+          resultBlock:(void(^)(int resultCode))resultBlock
+{
+    NSString* email = [[UserManager defaultManager] email];
+    if ([email length] == 0){
+        EXECUTE_BLOCK(resultBlock, ERROR_EMAIL_NOT_VALID);
+        return;
+    }
+
+    if ([code length] == 0){
+        EXECUTE_BLOCK(resultBlock, ERROR_PARAMETER_VERIFYCODE_EMPTY);
+        return;
+    }
+    
+    NSDictionary* para = @{ PARA_TYPE : @(VERIFY_TYPE_EMAIL),
+                            PARA_EMAIL : email,
+                            PARA_VERIFYCODE : code};
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_VERIFY_ACCOUNT
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+}
 
 @end
 
