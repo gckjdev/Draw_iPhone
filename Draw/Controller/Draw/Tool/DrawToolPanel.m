@@ -638,6 +638,50 @@ if (btn) {\
     }
 }
 
+#define SHOW_INFO_HEIGHT (ISIPAD ? 25 : 12)
+#define SHOW_INFO_Y (ISIPAD ? 6 : 4)
+
+- (UIView *)infoPointWithTag:(NSInteger)tag x:(CGFloat)x
+{
+    UIView *view = [self viewWithTag:tag];
+    if (view == nil) {
+        view = [[[UIView alloc] initWithFrame:CGRectMake(x, SHOW_INFO_Y, SHOW_INFO_HEIGHT, SHOW_INFO_HEIGHT)] autorelease];
+        [view setBackgroundColor:COLOR_GREEN];
+        view.layer.cornerRadius = SHOW_INFO_HEIGHT/2;
+        view.layer.masksToBounds = YES;
+        view.tag = tag;
+        [self addSubview:view];
+    }
+    return view;
+}
+#define INFO_FONT_SIZE (ISIPAD ? 20: 12)
+- (UILabel *)infoLabelWithTag:(NSInteger)tag x:(CGFloat)x
+{
+    UILabel *label = (id)[self viewWithTag:tag];
+    if (label == nil) {
+        label = [[[UILabel alloc] initWithFrame:CGRectMake(x, SHOW_INFO_Y, SHOW_INFO_HEIGHT, SHOW_INFO_HEIGHT)] autorelease];
+        [label setBackgroundColor:[UIColor clearColor]];
+        [label setFont:[UIFont systemFontOfSize:INFO_FONT_SIZE]];
+        label.tag = tag;
+        [self addSubview:label];
+    }
+    return label;
+}
+#define POINT_LAYER_TAG 201308201
+#define LABEL_LAYER_TAG 201308202
+
+#define INFO_SPACE (ISIPAD ? 34 : 5)
+
+- (void)updateShowInfoWithDrawInfo:(DrawInfo *)drawInfo
+{
+    NSString *layerName = [[self.drawView currentLayer] layerName];
+    UIView *p = [self infoPointWithTag:POINT_LAYER_TAG x:INFO_SPACE];
+    UILabel *label = [self infoLabelWithTag:LABEL_LAYER_TAG x:CGRectGetMaxX(p.frame)+INFO_SPACE/2];
+    [label setText:layerName];
+    [label sizeToFit];
+}
+
+
 - (void)updateWithDrawInfo:(DrawInfo *)drawInfo
 {
     if (drawInfo == nil) {
@@ -677,7 +721,7 @@ if (btn) {\
     [self updatePenWithDrawInfo:drawInfo];
     [self updateShapeWithDrawInfo:drawInfo];
     [self updateSelectorWithDrawInfo:drawInfo];
-    
+    [self updateShowInfoWithDrawInfo:drawInfo];
     [self.alphaSlider setValue:drawInfo.alpha];
     [self.widthSlider setValue:drawInfo.penWidth];
 
