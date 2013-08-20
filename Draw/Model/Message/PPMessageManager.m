@@ -241,6 +241,8 @@ static PPMessageManager* globalDefaultMessageManager;
     
     NSMutableArray* list = [_friendMessageDict objectForKey:friendUserId];
     if (list == nil){
+        PPDebug(@"<getMessageList> try to load local message for user %@", friendUserId);
+        
         // try to load from local cache
         NSArray* localCacheList = [PPMessageManager messageListForFriendId:friendUserId];
         
@@ -262,6 +264,7 @@ static PPMessageManager* globalDefaultMessageManager;
         [_friendMessageDict setObject:list forKey:friendUserId];
     }
     
+    PPDebug(@"<getMessageList> total %d message for user %@", [list count], friendUserId);
     return list;
 }
 
