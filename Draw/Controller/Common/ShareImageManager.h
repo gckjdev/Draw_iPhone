@@ -58,8 +58,8 @@
 
 #define SET_INPUT_VIEW_STYLE(view)                          \
 {                                                           \
-    view.textColor = COLOR_WHITE;                           \
-    view.font = FONT_INPUT_VIEW;                      \
+    view.textColor = COLOR_BROWN;                           \
+    view.font = FONT_INPUT_VIEW;                            \
                                                             \
     [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];   \
     [view.layer setMasksToBounds:YES];                      \
