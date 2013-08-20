@@ -101,7 +101,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 }
 
 - (void)backup
-{    
+{
+    // add by Benson 2013-08-20 for protection
+    if (self.currentPaint == nil || CGSizeEqualToSize(self.canvasSize, CGSizeZero)){
+        PPDebug(@"<backup> but current paint is nil or canvas size is zero");
+        return;
+    }
+    
     NSString* dataFileName = [_currentPaint.dataFilePath copy];
     NSString* dataPath = [[[MyPaintManager defaultManager] fullDataPath:dataFileName] copy];
    

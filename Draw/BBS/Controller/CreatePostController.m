@@ -63,7 +63,7 @@
 @end
 
 //#define ISIPAD [DeviceDetection isIPAD]
-#define BUTTON_CORNER_RADIUS ISIPAD ? 4 : 2
+#define BUTTON_CORNER_RADIUS_INNER ISIPAD ? 4 : 2
 
 @implementation CreatePostController
 @synthesize bbsBoard = _bbsBoard;
@@ -180,7 +180,7 @@
     if (self.drawImage) {
         [self.graffitiButton setImage:self.drawImage
                              forState:UIControlStateNormal];
-        [self roundToolButton:self.graffitiButton cornerRadius:BUTTON_CORNER_RADIUS];
+        [self roundToolButton:self.graffitiButton cornerRadius:BUTTON_CORNER_RADIUS_INNER];
 
     }else{
         [self.graffitiButton setImage:[imageManager bbsCreateDrawEnable]
@@ -190,7 +190,7 @@
     if (self.image) {
         [self.imageButton setImage:self.image
                           forState:UIControlStateNormal];
-        [self roundToolButton:self.imageButton cornerRadius:BUTTON_CORNER_RADIUS];
+        [self roundToolButton:self.imageButton cornerRadius:BUTTON_CORNER_RADIUS_INNER];
         [self.imageButton setBackgroundColor:[UIColor whiteColor]];
     }else{
         [self.imageButton setImage:[imageManager bbsCreateImageEnable]

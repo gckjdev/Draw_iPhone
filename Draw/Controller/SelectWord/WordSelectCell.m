@@ -9,6 +9,7 @@
 #import "WordSelectCell.h"
 #import "AutoCreateViewByXib.h"
 #import "DeviceDetection.h"
+#import "ShareImageManager.h"
 
 #define SMALL_FONT [UIFont systemFontOfSize:([DeviceDetection isIPAD] ? 28 : 14)]
 #define LAG_FONT [UIFont systemFontOfSize:([DeviceDetection isIPAD] ? 40 : 20)]
@@ -71,7 +72,19 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     _words = nil;
     _words = [words retain];
     
+    
+    for (int i = 0; i < WORD_MAX_COUNT; i ++) {
+        
+        UIButton *button = [self wordButton:i];
+        
+        button.backgroundColor = COLOR_ORANGE;
+        SET_VIEW_ROUND_CORNER(button);
+        button.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
+        button.layer.borderColor = [COLOR_YELLOW CGColor];
+    }
+    
     int index = 0;
+
     for (; index < [words count] && index < WORD_MAX_COUNT; index ++) {
         [self setWord:[words objectAtIndex:index] index:index];
     }

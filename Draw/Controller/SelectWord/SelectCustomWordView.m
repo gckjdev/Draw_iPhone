@@ -29,18 +29,11 @@
 @end
 
 @implementation SelectCustomWordView
-@synthesize dataTableView;
-@synthesize closeButton;
-@synthesize dataList;
-@synthesize delegate;
 
 - (void)dealloc {
-    PPRelease(dataTableView);
-    PPRelease(dataList);
-    PPRelease(closeButton);
-    [_titleLabel release];
+    PPRelease(_dataTableView);
+    PPRelease(_dataList);
     [_addWordButton release];
-    [_bgButton release];
     [super dealloc];
 }
 
@@ -52,22 +45,17 @@
         return nil;
     }
     SelectCustomWordView* view =  (SelectCustomWordView*)[topLevelObjects objectAtIndex:0];
-    view.titleLabel.text = NSLS(@"kMyWords");
     [view.addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
+
+    SET_VIEW_ROUND_CORNER(view.addWordButton);
+    view.addWordButton.backgroundColor = COLOR_YELLOW;
+    [view.addWordButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    
     view.delegate = aDelegate;
     
     view.dataList = [NSMutableArray arrayWithArray:[[CustomWordManager defaultManager] wordsFromCustomWords]];
     
-    [view.bgButton setBackgroundImage:[[ShareImageManager defaultManager] draftsBoxBgImage] forState:UIControlStateNormal];
     return view;
-}
-
-- (void)showInView:(UIView *)superview
-{
-    self.frame = superview.bounds;
-    [superview addSubview:self];
-    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:0.2 delegate:self removeCompeleted:NO];
-    [self.layer addAnimation:runIn forKey:@"runIn"];
 }
 
 
@@ -88,15 +76,18 @@
     [self.layer removeAllAnimations];
 }
 
-- (IBAction)clickCloseButton:(id)sender {
-    if ([delegate respondsToSelector:@selector(didCloseSelectCustomWordView:)]) {
-        [delegate didCloseSelectCustomWordView:self];
-    }
-
-    [self startRunOutAnimation];
-}
-
 #pragma mark -  UITableViewDataSource
+
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row % 2 == 0) {                       
+        cell.backgroundColor = COLOR_GRAY;              
+    }else{                                              
+        cell.backgroundColor = COLOR_WHITE;             
+    }                                                   
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [SelectCustomWordCell getCellHeight];
@@ -104,7 +95,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataList count];
+    return [_dataList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,7 +106,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    Word *word = [dataList objectAtIndex:[indexPath row]];
+    Word *word = [_dataList objectAtIndex:[indexPath row]];
     
     [cell setWord:word.text];
     
@@ -131,10 +122,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    Word *word = [dataList objectAtIndex:indexPath.row];
+    Word *word = [_dataList objectAtIndex:indexPath.row];
     [[CustomWordManager defaultManager] deleteWord:word.text];
     
-    [dataList removeObjectAtIndex:indexPath.row];
+    [_dataList removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -146,11 +137,11 @@
             [[UserService defaultService] commitWords:tf.text viewController:nil];
             Word *word = [Word cusWordWithText:tf.text];
             [self.dataList addObject:word];
-            [dataTableView reloadData];
+            [_dataTableView reloadData];
         }
     }else{
         [self startRunOutAnimation];
-        Word *customWord = [dataList objectAtIndex:selectedRow];
+        Word *customWord = [_dataList objectAtIndex:selectedRow];
         NSString *word = customWord.text;
         if (self.delegate && [self.delegate respondsToSelector:@selector(didSelecCustomWord:)]) {
             [self.delegate didSelecCustomWord:word];
@@ -164,9 +155,7 @@
     inputDialog.tag = INPUTDIALOG_ADD_WORD_TAG;
     inputDialog.inputTextField.placeholder = NSLS(@"kInputWordPlaceholder");
     
-    [inputDialog showInView:self];
+    [inputDialog showInView:[UIApplication sharedApplication].keyWindow];
 }
-
-
 
 @end

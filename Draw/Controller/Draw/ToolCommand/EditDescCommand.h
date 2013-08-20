@@ -8,7 +8,6 @@
 
 #import "ToolCommand.h"
 
-@class InputAlertView;
 
 @interface EditDescCommand : ToolCommand
 

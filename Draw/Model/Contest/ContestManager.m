@@ -83,6 +83,8 @@ static ContestManager *_staticContestManager;
     NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
     [userDefault setObject:data forKey:KEY_ONGOING_CONTEST_LIST];
     [userDefault synchronize];
+    
+    PPDebug(@"<saveOngoingContestList> total %d contest added", [newList count]);
 }
 
 - (NSArray *)parseContestList:(NSArray *)jsonArray

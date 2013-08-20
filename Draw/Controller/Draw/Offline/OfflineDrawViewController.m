@@ -111,9 +111,6 @@
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
 
-//@property (retain, nonatomic) InputAlertView *inputAlert;
-
-
 @property (retain, nonatomic) NSString *tempImageFilePath;
 @property (retain, nonatomic) NSSet *shareWeiboSet;
 
@@ -794,6 +791,10 @@
 //    [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
 //        [self.inputAlert dismiss:NO];
+        
+        // stop recovery while the opus is commit successfully
+        [self stopRecovery];
+        
         CommonDialog *dialog = nil;
         if (self.contest) {
             if (!_commitAsNormal) {
@@ -1150,29 +1151,61 @@
         ComposeInputDialogType type = 0;
         if (hasSubject == YES && hasSNS == YES) {
             type = ComposeInputDialogTypeTitleAndContentWithSNS;
+            [v.titleInputField becomeFirstResponder];
+            v = [InputAlertView createWithType:type];
+
         }else if (hasSubject == YES && hasSNS == NO){
             type = ComposeInputDialogTypeTitleAndContent;
+            [v.titleInputField becomeFirstResponder];
+            v = [InputAlertView createWithType:type];
+
         }else if (hasSubject == NO && hasSNS == YES){
             type = ComposeInputDialogTypeContentWithSNS;
+            [v.contentInputView becomeFirstResponder];
+            v = [InputAlertView createWithType:type];
+
         }else{
             type = ComposeInputDialogTypeContent;
+            [v.contentInputView becomeFirstResponder];
+            v = [InputAlertView createWithType:type];
         }
         
-        v = [InputAlertView createWithType:type];
-                     
     } else {
-        v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContentWithSNS];
+        v = [InputAlertView createWithType:ComposeInputDialogTypeContentWithSNS];
+        [v.contentInputView becomeFirstResponder];
     }
     
     [v.titleInputField setText:self.word.text];
     [v.contentInputView setText:self.opusDesc];
+    
+    
+    if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
+        [v setMaxTitleLength:[ConfigManager maxDrawEnglishTitleLen]];
+    }else{
+        [v setMaxTitleLength:[ConfigManager maxDrawChineseTitleLen]];
+    }
+    
+    [v setMaxContentLength:[ConfigManager getMaxLengthOfDrawDesc]];
+
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
     
     [dialog showInView:self.view];
     
     [dialog setClickOkBlock:^(id infoView){
-        [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
+        
+        if (hasSubject && [v.titleInputField.text length] <= 0) {            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOpusNameInvaild") delayTime:1.5];
+        }else if (hasSubject
+                  && [GameApp forceChineseOpus]
+                  && [[UserManager defaultManager] getLanguageType] == ChineseType
+                  && !NSStringIsValidChinese(v.titleInputField.text)){
+            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2];            
+            
+        }else{
+            [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
+        }
     }];
 }
 
@@ -1182,9 +1215,7 @@
     if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
         return;
     }    
-
-    [self stopRecovery];
-
+    
     BOOL isBlank = ([drawView.drawActionList count] == 0);
     
     if (isBlank && targetType != TypePhoto) {
@@ -1294,40 +1325,6 @@
 - (void)levelUp:(int)level
 {
 
-}
-
-
-
-#pragma mark -- super method
-
-//- (void)keyboardWillShowWithRect:(CGRect)keyboardRect
-//{
-//    if (!ISIPAD) {
-//        PPDebug(@"keyboardWillShowWithRect rect = %@", NSStringFromCGRect(keyboardRect));
-//        [self.inputAlert adjustWithKeyBoardRect:keyboardRect];
-//        [[[ToolCommandManager defaultManager] inputAlertView] adjustWithKeyBoardRect:keyboardRect];
-//    }
-//}
-
-#pragma mark - input alert view delegate
-- (BOOL)isSubjectValid:(NSString *)subjectText
-{
-    if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
-
-        if (!NSStringIsValidChinese(subjectText)) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2 atHorizon:(ISIPAD?0:(-60))];
-            return NO;
-        }
-    }
-    return YES;
-}
-
-- (NSInteger)maxSubjectLen
-{
-    if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-        return [ConfigManager maxDrawEnglishTitleLen];
-    }
-    return [ConfigManager maxDrawChineseTitleLen];
 }
 
 - (void)showCopyPaint

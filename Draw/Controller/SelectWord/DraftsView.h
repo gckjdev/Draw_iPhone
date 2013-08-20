@@ -20,12 +20,11 @@
 
 
 @interface DraftsView : UIView<UITableViewDataSource, UITableViewDelegate, MyPaintManagerDelegate, DraftCellDelegate>
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (assign, nonatomic) id<DraftsViewDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) NSArray *drafts;
-@property (retain, nonatomic) IBOutlet UIButton *bgButton;
 
-+ (void)showInView:(UIView *)view delegate:(id<DraftsViewDelegate>)delegate;
++ (id)createWithdelegate:(id<DraftsViewDelegate>)delegate;
 
 @end

@@ -158,6 +158,12 @@ AUTO_CREATE_VIEW_BY_XIB(PassWordDialog);
     [view.oldPasswordTextField setPlaceholder:NSLS(@"kOldPasswordHolder")];
     [view.passwordTextField setPlaceholder:NSLS(@"kNewPasswordHolder")];
     [view.anotherPasswordTextField setPlaceholder:NSLS(@"kConfirmPasswordHolder")];
+    
+    SET_INPUT_VIEW_STYLE(view.oldPasswordTextField);
+    
+    SET_INPUT_VIEW_STYLE(view.passwordTextField);
+    
+    SET_INPUT_VIEW_STYLE(view.anotherPasswordTextField);
 
     UserManager *userManager = [UserManager defaultManager];
     if ([userManager isPasswordEmpty]) {

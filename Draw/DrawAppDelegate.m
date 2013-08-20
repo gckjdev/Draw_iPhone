@@ -93,7 +93,7 @@ NSString* GlobalGetServerURL()
 
 //    return @"http://58.215.160.100:8888/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
-
+//
 //    NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
 //    NSString* str = [def objectForKey:@"api_server"];
 //    if (str && str.length > 5) {
@@ -120,7 +120,7 @@ NSString* GlobalGetTrafficServerURL()
 #ifdef DEBUG
 
 //    return @"http://localhost:8100/api/i?";
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8699/api/i?";
 
@@ -449,6 +449,11 @@ NSString* GlobalGetBoardServerURL()
     
     
 #if DEBUG
+    
+//    [[UserService defaultService] sendPassword:@"29356050@qq.com" resultBlock:nil];
+//    [[UserService defaultService] sendVerificationRequest:nil];
+//    [[UserService defaultService] verifyAccount:@"233149" resultBlock:nil];
+    
 #endif
 }
 
@@ -469,6 +474,8 @@ NSString* GlobalGetBoardServerURL()
     [self.networkDetector start];
     
     [[UserStatusService defaultService] start];
+    
+    [[ContestService defaultService] syncOngoingContestList];
     
     [GameApp HandleWithDidBecomeActive];
 }

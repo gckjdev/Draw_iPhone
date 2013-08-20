@@ -65,7 +65,7 @@ enum {
 #define DIALOG_TAG_REBIND_SINA      201206282
 #define DIALOG_TAG_REBIND_FACEBOOK  201206283
 #define DIALOG_TAG_SIGNATURE        201206284
-#define DIALOG_TAG_SAVE_INFO        201206285
+#define DIALOG_TAG_BACK_INFO        201206285
 @interface UserSettingController()<PassWordDialogDelegate>
 
 - (void)bindFacebook;
@@ -1218,7 +1218,7 @@ enum {
     if (hasEdited) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNotice") message:NSLS(@"kInfoUnSaved") style:CommonDialogStyleDoubleButton delegate:self];
         dialog.delegate = self;
-        dialog.tag = DIALOG_TAG_SAVE_INFO;
+        dialog.tag = DIALOG_TAG_BACK_INFO;
         [dialog showInView:self.view];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
@@ -1299,8 +1299,8 @@ enum {
             [self.dataTableView reloadData];
             break;
             
-        case DIALOG_TAG_SAVE_INFO:
-            [self clickSaveButton:nil];
+        case DIALOG_TAG_BACK_INFO:
+            [self.navigationController popViewControllerAnimated:YES];
             break;
 
             
@@ -1311,11 +1311,8 @@ enum {
 
 - (void)didClickCancel:(CommonDialog *)dialog
 {
-    if (dialog.tag == DIALOG_TAG_SAVE_INFO) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        [self.dataTableView reloadData];
-    }
+
+    [self.dataTableView reloadData];
 }
 
 - (void)passwordIsWrong

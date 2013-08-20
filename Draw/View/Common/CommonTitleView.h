@@ -35,7 +35,10 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 - (void)showLoading:(NSString*)loadingText;
 - (void)hideLoading;
 
+// 创建一个title view
 + (CommonTitleView*)createTitleView:(UIView*)superView;
+
+// 获取一个title view
 + (CommonTitleView*)titleView:(UIView*)superView;
 
 @end

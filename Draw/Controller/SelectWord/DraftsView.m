@@ -23,28 +23,19 @@ AUTO_CREATE_VIEW_BY_XIB(DraftsView);
 - (void)dealloc {
     [_tableView release];
     [_drafts release];
-    [_titleLabel release];
-    [_bgButton release];
     [super dealloc];
 }
 
-+ (void)showInView:(UIView *)view delegate:(id<DraftsViewDelegate>)delegate
++ (id)createWithdelegate:(id<DraftsViewDelegate>)delegate
 {
     DraftsView *draftsView = [self createView];
-    draftsView.titleLabel.text = NSLS(@"kDraftsBox");
-    draftsView.frame = view.frame;
     draftsView.delegate = delegate;
     draftsView.tableView.delegate = draftsView;
     draftsView.tableView.dataSource = draftsView;
     
     [[MyPaintManager defaultManager] findAllDraftsFrom:0 limit:INT_MAX delegate:draftsView];
-
-    // Animation
-    CAAnimation *ani = [AnimationManager moveVerticalAnimationFrom:(view.frame.size.height + draftsView.frame.size.height/2) to:view.center.y duration:0.3];
-    [draftsView.layer addAnimation:ani forKey:nil];
-    [draftsView.bgButton setBackgroundImage:[[ShareImageManager defaultManager] draftsBoxBgImage] forState:UIControlStateNormal];
     
-    [view addSubview:draftsView];
+    return draftsView;
 }
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -78,20 +69,11 @@ AUTO_CREATE_VIEW_BY_XIB(DraftsView);
     [_tableView reloadData];
 }
 
-- (IBAction)clickCloseButton:(id)sender {
-    [self removeFromSuperview];
-}
-
 - (void)didClickDraft:(MyPaint *)draft
 {
     if([_delegate respondsToSelector:@selector(didSelectDraft:)])
     {
         [_delegate didSelectDraft:draft];
-
-        self.drafts = nil;
-        self.tableView = nil;
-        [self removeFromSuperview];
-
     }
 }
 
