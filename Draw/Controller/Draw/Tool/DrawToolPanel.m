@@ -53,6 +53,8 @@
 #import "Item.h"
 #import "ImageShapeManager.h"
 #import "UIBezierPath+Ext.h"
+#import "NotificationCenterManager.h"
+
 
 #define AnalyticsReport(x) [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:x]
 
@@ -387,6 +389,12 @@ if (btn) {\
 
 - (void)updateView
 {
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:DRAW_VIEW_UPDATED_SCACLE object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+          PPDebug(@"<MARK>%f", [(NSNumber *)note.object floatValue]);
+          [self updateShowInfoWithDrawInfo:self.drawView.drawInfo];
+
+    }];
     [self.scrollView setDelegate:self];
     [self updateDrawToolButtons];
     [self updateSliders];
@@ -475,6 +483,9 @@ if (btn) {\
 - (void)dealloc {
     
     PPDebug(@"%@ dealloc",self);
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [toolCmdManager removeAllCommand:_commandVersion];
     [drawColorManager syncRecentList];
 
@@ -640,8 +651,8 @@ if (btn) {\
     }
 }
 
-#define SHOW_INFO_HEIGHT (ISIPAD ? 25 : 12)
-#define SHOW_INFO_Y (ISIPAD ? 6 : 4)
+#define SHOW_INFO_HEIGHT (ISIPAD ? 20 : 11)
+#define SHOW_INFO_Y (ISIPAD ? 9 : 6)
 
 - (UIView *)infoPointWithTag:(NSInteger)tag x:(CGFloat)x
 {
@@ -654,9 +665,10 @@ if (btn) {\
         view.tag = tag;
         [self addSubview:view];
     }
+    [view updateOriginX:x];    
     return view;
 }
-#define INFO_FONT_SIZE (ISIPAD ? 20: 12)
+#define INFO_FONT_SIZE (ISIPAD ? 16: 10)
 - (UILabel *)infoLabelWithTag:(NSInteger)tag
                             x:(CGFloat)x
                          text:(NSString *)text
@@ -669,20 +681,65 @@ if (btn) {\
         label.tag = tag;
         [self addSubview:label];
     }
+    [label updateOriginX:x];
     [label setText:text];
     [label sizeToFit];
     return label;
 }
-#define POINT_LAYER_TAG 201308201
-#define LABEL_LAYER_TAG 201308202
+#define SHOW_INFO_TAG_BASE 1308200
 
-#define INFO_SPACE (ISIPAD ? 34 : 5)
+//#define POINT_LAYER_TAG 201308201
+//#define LABEL_LAYER_TAG 201308202
+//
+//#define POINT_SIZE_TAG 201308203
+//#define LABEL_SIZE_TAG 201308204
+//
+//#define POINT_MODE_TAG 201308205
+//#define LABEL_MODE_TAG 201308206
+
+#define INFO_LEFT (ISIPAD ? 34 : 6)
+#define INFO_ITEM_SPACE (ISIPAD ? 30 : 10)
+#define INFO_INNER_SPACE (ISIPAD ? 8 : 4)
+
+- (void)updateInfo:(NSString *)info atIndex:(NSInteger)index
+{
+    CGFloat x = INFO_LEFT;
+    NSInteger tag = SHOW_INFO_TAG_BASE + index * 2;
+    UIView *p;    UILabel *l;
+    if (index != 0) {
+        l = (id)[self viewWithTag:tag-1];
+        x = CGRectGetMaxX(l.frame) + INFO_ITEM_SPACE;
+    }
+    p = [self infoPointWithTag:tag x:x];
+    l = [self infoLabelWithTag:tag+1 x:CGRectGetMaxX(p.frame)+INFO_INNER_SPACE text:info];
+}
+
+- (NSString *)modeNameForType:(TouchActionType)type
+{
+    NSDictionary *nameDict = @{
+    KEY(TouchActionTypeDraw) : NSLS(@"kDrawPen"),
+    KEY(TouchActionTypeGetColor) : NSLS(@"kStraw"),
+    KEY(TouchActionTypeShape) : NSLS(@"kShape"),
+    KEY(TouchActionTypeClipPath) : NSLS(@"kSelector"),
+    KEY(TouchActionTypeClipPolygon) : NSLS(@"kSelector"),
+    KEY(TouchActionTypeClipEllipse) : NSLS(@"kSelector"),
+    KEY(TouchActionTypeClipRectangle) : NSLS(@"kSelector")};
+    return [nameDict objectForKey:KEY(type)];
+}
 
 - (void)updateShowInfoWithDrawInfo:(DrawInfo *)drawInfo
 {
     NSString *layerName = [[self.drawView currentLayer] layerName];
-    UIView *p = [self infoPointWithTag:POINT_LAYER_TAG x:INFO_SPACE];
-    [self infoLabelWithTag:LABEL_LAYER_TAG x:CGRectGetMaxX(p.frame)+INFO_SPACE/2 text:layerName];
+    [self updateInfo:layerName atIndex:0];
+    
+    CGFloat scale = self.drawView.scale;
+    [self updateInfo:[NSString stringWithFormat:@"%.0f %%", scale * 100] atIndex:1];
+
+    NSString *mode = [self modeNameForType:drawInfo.touchType];
+    if (drawInfo.touchType == TouchActionTypeDraw && drawInfo.penType == Eraser) {
+        mode = NSLS(@"kEraser");
+    }
+    [self updateInfo:mode atIndex:2];
 }
 
 

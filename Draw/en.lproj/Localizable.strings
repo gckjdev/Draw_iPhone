@@ -1902,6 +1902,10 @@
 "kHiddenLayerCannotBeSelected" = "Hidden layer can't be current layer.";
 "kRearchMaxLayerCount" = "Reach max layer count!";
 
+"kDrawPen" = "Stroke";
+"kShape" = "Shape";
+"kSelector" = "Selector";
+"kEraser" = "Eraser";
 /*********************小吉画画国际化字符串结束 ************************/
 
 
