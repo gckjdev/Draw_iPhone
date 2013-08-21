@@ -219,7 +219,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 #define FONT_SIZE_BUTTON_TITLE ([DeviceDetection isIPAD] ? 30 : 15)
 + (UIButton *)createButtonWithTitle:(NSString *)title{
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
-//    [button setBackgroundImage:[[ShareImageManager defaultManager] dialogButtonBackgroundImage] forState:UIControlStateNormal];
+ 
     [button setBackgroundColor:COLOR_YELLOW];
     [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     SET_VIEW_ROUND_CORNER(button);

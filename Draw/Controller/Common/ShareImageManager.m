@@ -11,6 +11,9 @@
 #import "FileUtil.h"
 #import "PPResourceService.h"
 
+
+
+
 @interface ShareImageManager () {
     PPResourceService *_resService;
 }
@@ -381,7 +384,6 @@ static UIImage* _whitePaperImage;
 - (UIImage *)pencilImage
 {
     return [UIImage imageNamed:@"pen_pencil@2x"];
-
 }
 - (UIImage *)waterPenImage
 {
@@ -1247,5 +1249,36 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"run@2x.png"];
 }
+
+- (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGSize size = CGSizeMake(2, 2);
+    UIImage *image;
+    UIGraphicsBeginImageContext(size);
+    [color setFill];
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, size.width, size.height));
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
+}
+
+- (void)setButtonStyle:(UIButton *)button
+            titleColor:(UIColor *)titleColor
+                  font:(UIFont *)font
+           normalColor:(UIColor *)normalColor
+         selectedColor:(UIColor *)selectedColor
+      highlightedColor:(UIColor *)highlightedColor;
+{                                                           
+    [button setTitleColor:titleColor
+               forState:UIControlStateNormal];              
+    button.titleLabel.font = font;                     
+    
+    [button.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];   
+    [button.layer setMasksToBounds:YES];                      
+    [button setBackgroundImage:IMAGE_FROM_COLOR(normalColor) forState:UIControlStateNormal];           
+    [button setBackgroundImage:IMAGE_FROM_COLOR(selectedColor) forState:UIControlStateSelected];        
+    [button setBackgroundImage:IMAGE_FROM_COLOR(highlightedColor) forState:UIControlStateHighlighted];    
+}
+
 @end
 

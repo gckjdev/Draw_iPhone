@@ -26,24 +26,29 @@
 #define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) // selected
 #define COLOR_ORANGE2 OPAQUE_COLOR(224, 80, 67) // hightlight
 
-#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
+#define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
+#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
+#define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
+#define COLOR_YELLOW2 OPAQUE_COLOR(204, 131, 24) // common tab selected bg
 
 #define COLOR_LIGHT_GRAY OPAQUE_COLOR(234, 231, 225) // controller bg
 
-#define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) // common dialog
-#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog
-#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
-#define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
-
-
-#define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog
-#define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
 #define COLOR_RED1 OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
 
+#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
+
+#define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) // common dialog
+#define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog
+
+#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
+#define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
+
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
-#define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
 #define COLOR_COFFEE1 OPAQUE_COLOR(126, 49, 46) // common tab selected text
+  
+
+#define IMAGE_FROM_COLOR(color) ([[ShareImageManager defaultManager] imageWithColor:color])
 
 #define SET_MESSAGE_LABEL_STYLE(view)               \
 {                                                   \
@@ -68,16 +73,10 @@
     view.layer.borderColor = [COLOR_YELLOW CGColor];        \
 }                                                           
 
-#define SET_BUTTON_STYLE(view)                              \
+#define SET_BUTTON_STYLE_YELLOW(view)                              \
 {                                                           \
-    [view setTitleColor:COLOR_WHITE                         \
-               forState:UIControlStateNormal];              \
-    view.titleLabel.font = FONT_BUTTON;                     \
-                                                            \
-    [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];   \
-    [view.layer setMasksToBounds:YES];                      \
-    view.backgroundColor = COLOR_YELLOW;                    \
-}
+    [[ShareImageManager defaultManager] setButtonStyle:view titleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2];         \
+} 
 
 
 #define SET_VIEW_ROUND_CORNER(view) \
@@ -386,5 +385,14 @@
 - (UIColor *)drawBGColor;
 - (UIImage *)drawBackImage;
 - (UIImage *)runAwayImage;
+
+- (UIImage *)imageWithColor:(UIColor *)color;
+
+- (void)setButtonStyle:(UIButton *)button
+            titleColor:(UIColor *)titleColor
+                  font:(UIFont *)font
+           normalColor:(UIColor *)normalColor
+         selectedColor:(UIColor *)selectedColor
+      highlightedColor:(UIColor *)highlightedColor;
 
 @end

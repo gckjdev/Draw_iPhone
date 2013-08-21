@@ -8,10 +8,8 @@
 
 #import "PPTableViewController.h"
 #import "TableTabManager.h"
+#import "CommonViewConstants.h"
 
-//#define COMMON_TAB_TABLE_VIEW_Y    (ISIPAD ? 100+65 : 45+30)
-
-#define SET_COMMON_TAB_TABLE_VIEW_Y(t)     ( t.frame = CGRectMake(t.frame.origin.x, ISIPAD ? (100+65) : (45+30), t.frame.size.width, t.frame.size.height) )
 
 @protocol CommonTabControllerDelegate <NSObject>
 

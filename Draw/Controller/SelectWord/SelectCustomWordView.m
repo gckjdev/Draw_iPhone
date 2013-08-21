@@ -47,13 +47,14 @@
     SelectCustomWordView* view =  (SelectCustomWordView*)[topLevelObjects objectAtIndex:0];
     [view.addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
 
-    SET_VIEW_ROUND_CORNER(view.addWordButton);
-    view.addWordButton.backgroundColor = COLOR_YELLOW;
-    [view.addWordButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    SET_BUTTON_STYLE_YELLOW(view.addWordButton);
     
     view.delegate = aDelegate;
     
-    view.dataList = [NSMutableArray arrayWithArray:[[CustomWordManager defaultManager] wordsFromCustomWords]];
+    NSArray *words = [[CustomWordManager defaultManager] wordsFromCustomWords];
+    view.dataList = [NSMutableArray arrayWithArray:words];
+    
+    [view.dataTableView reloadData];
     
     return view;
 }

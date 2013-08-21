@@ -33,6 +33,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
  @optional
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView;
 - (void)didClickCancel:(CommonDialog *)dialog;
+- (void)didClickClose:(CommonDialog *)dialog;
 
 @end
 
@@ -59,6 +60,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
 
 @property (copy, nonatomic) DialogSelectionBlock clickOkBlock;
 @property (copy, nonatomic) DialogSelectionBlock clickCancelBlock;
+@property (copy, nonatomic) DialogSelectionBlock clickCloseBlock;
 
 - (void)setTitle:(NSString *)title;
 

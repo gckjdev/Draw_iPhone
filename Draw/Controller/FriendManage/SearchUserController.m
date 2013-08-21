@@ -14,9 +14,8 @@
 #import "TimeUtils.h"
 #import "CommonDialog.h"
 #import "FriendCell.h"
-//#import "DrawUserInfoView.h"
-//#import "DiceUserInfoView.h"
 #import "CommonUserInfoView.h"
+#import "ShareImageManager.h"
 
 @interface SearchUserController () {
     ControllerType _type;
@@ -71,16 +70,20 @@
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kSearchUser")];
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     
-    [inputImageView setImage:[imageManager inputImage]];
+//    [inputImageView setImage:[imageManager inputImage]];
     [inputTextField setPlaceholder:NSLS(@"kSearchUserPlaceholder")];
     inputTextField.delegate = self;
     inputTextField.returnKeyType = UIReturnKeyDone;
+    [inputTextField becomeFirstResponder];
+    inputTextField.textAlignment = UITextAlignmentCenter;
+    SET_INPUT_VIEW_STYLE(inputTextField);
     
-//    [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+
     [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     searchButton.tag = SEARCH_BUTTON_TAG;
+    SET_BUTTON_STYLE_YELLOW(searchButton);
     
     
     [inputTextField becomeFirstResponder];
@@ -115,6 +118,7 @@
     return nil;
 }
 
+SET_CELL_BG;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

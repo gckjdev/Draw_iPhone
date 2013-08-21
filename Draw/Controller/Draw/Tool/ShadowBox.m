@@ -111,9 +111,13 @@
 - (void)updateButtonBG
 {
     for (UIButton *button in self.subviews) {
+        UIImage *defaultImage = IMAGE_FROM_COLOR(COLOR_YELLOW);
+        UIImage *selectedImage = IMAGE_FROM_COLOR(COLOR_YELLOW2);
         if ([button isKindOfClass:[UIButton class]]) {
-            [button setBackgroundImage:[[ShareImageManager defaultManager] drawToolButtonBG] forState:UIControlStateNormal];
-            [button setBackgroundImage:[[ShareImageManager defaultManager]drawToolButtonSelectedBG] forState:UIControlStateSelected];
+            button.layer.cornerRadius = 4;
+            button.layer.masksToBounds = YES;
+            [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
+            [button setBackgroundImage:selectedImage forState:UIControlStateSelected];
         }
     }
 }
@@ -187,10 +191,11 @@
         NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
         [UIView animateWithDuration:interval animations:^{
             frame.size.height += SPAN_HEIGHT;
-//            self.frame = frame;
             self.infoView.mainView.frame = frame;
+//            [self.infoView.mainView setNeedsDisplay];
         } completion:^(BOOL finished) {
             [settingView.superview setClipsToBounds:NO];
+//            [self.infoView.mainView setNeedsDisplay];
         }];
     }
 
@@ -205,12 +210,13 @@
 //        __block CGRect frame = self.frame;
         __block CGRect frame = self.infoView.mainView.frame;
         NSTimeInterval interval = animated ? ANIMATION_INTERVAL : 0;
-        
         [UIView animateWithDuration:interval animations:^{
             frame.size.height -= SPAN_HEIGHT;
 //            self.frame = frame;
             self.infoView.mainView.frame = frame;            
-        } completion:NULL];
+        } completion:^(BOOL finished) {
+//            [self.infoView.mainView setNeedsDisplay];
+        }];
     }
 }
 

@@ -31,7 +31,6 @@
 
 @implementation CommonDialog
 
-
 - (void)dealloc
 {
 
@@ -271,11 +270,11 @@
     SET_INPUT_VIEW_STYLE(view.inputTextView);
     
     [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    SET_BUTTON_STYLE(view.oKButton);
+    SET_BUTTON_STYLE_YELLOW(view.oKButton);
     
     
     [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    SET_BUTTON_STYLE(view.cancelButton);
+    SET_BUTTON_STYLE_YELLOW(view.cancelButton);
     
     [view appear];
 
@@ -368,6 +367,12 @@
 
 - (IBAction)clickCloseButton:(id)sender {
 
+    if (_clickCloseBlock != nil) {
+        _clickCloseBlock([self infoView]);
+        self.clickCancelBlock = nil;
+    } else if (_delegate && [_delegate respondsToSelector:@selector(didClickClose:)]) {
+        [_delegate didClickClose:self];
+    }
     [self disappear];
 }
 
@@ -385,6 +390,13 @@
     [self.layer setCornerRadius:DIALOG_CORNER_RADIUS];
     [self.layer setMasksToBounds:YES];
     self.backgroundColor = [UIColor clearColor];
+    [self setNeedsDisplay];
+}
+
+- (void)layoutSubviews
+{
+    PPDebug(@"<DialogBGView> layoutSubviews");
+    [super layoutSubviews];
     [self setNeedsDisplay];
 }
 

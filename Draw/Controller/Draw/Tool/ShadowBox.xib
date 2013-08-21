@@ -123,10 +123,6 @@
 								<int key="NSID">2</int>
 							</object>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="329725193">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">common_dialog_btn_bg@2x.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="302024840">
 							<int key="type">2</int>
 							<double key="pointSize">17</double>
@@ -143,6 +139,7 @@
 						<string key="NSFrame">{{150.5, 327}, {80, 33}}</string>
 						<reference key="NSSuperview" ref="547314671"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="IBUIContentStretch">{{0.5, 0.5}, {0.5, 0.5}}</string>
@@ -153,7 +150,6 @@
 						<reference key="IBUIHighlightedTitleColor" ref="308809294"/>
 						<reference key="IBUINormalTitleColor" ref="908776593"/>
 						<reference key="IBUINormalTitleShadowColor" ref="277081969"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="302024840"/>
 						<reference key="IBUIFont" ref="426990206"/>
 					</object>
@@ -186,7 +182,6 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_tool_button_selected_bg@2x.png</string>
 						</object>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="819484039">
 							<int key="type">2</int>
 							<double key="pointSize">12</double>
@@ -216,7 +211,6 @@
 						<reference key="IBUINormalTitleColor" ref="326608156"/>
 						<reference key="IBUINormalTitleShadowColor" ref="449068434"/>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -246,7 +240,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -269,7 +262,6 @@
 						<reference key="IBUINormalTitleColor" ref="643983767"/>
 						<reference key="IBUINormalTitleShadowColor" ref="629709078"/>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -299,7 +291,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -329,7 +320,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -352,7 +342,6 @@
 						<reference key="IBUINormalTitleColor" ref="41381302"/>
 						<reference key="IBUINormalTitleShadowColor" ref="653161024"/>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -382,7 +371,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -405,7 +393,6 @@
 						<reference key="IBUINormalTitleColor" ref="687430238"/>
 						<reference key="IBUINormalTitleShadowColor" ref="949648265"/>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUINormalBackgroundImage" ref="329725193"/>
 						<reference key="IBUIFontDescription" ref="819484039"/>
 						<reference key="IBUIFont" ref="432186826"/>
 					</object>
@@ -605,6 +592,7 @@
 						<string key="NSFrame">{{140, 119}, {95, 22}}</string>
 						<reference key="NSSuperview" ref="932700216"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="387891399"/>
 						<reference key="IBUISimulatedDestinationMetrics" ref="900124035"/>
@@ -1291,10 +1279,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="common_dialog_btn_bg@2x.png">{166, 59}</string>
-			<string key="draw_tool_button_selected_bg@2x.png">{75, 74}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">draw_tool_button_selected_bg@2x.png</string>
+			<string key="NS.object.0">{75, 74}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

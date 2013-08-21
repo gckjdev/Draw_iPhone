@@ -10,9 +10,6 @@
 #import "ItemType.h"
 
 
-//@class HJManagedImageV;
-
-
 @interface ToolView : UIButton
 {
     NSInteger _number;

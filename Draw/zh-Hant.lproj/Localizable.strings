@@ -408,12 +408,13 @@
 
 "kMyFriends" = "我的好友";
 "kFollow" = "關注";
+
 "kFans" = "粉絲";
 "kFollowNumber" = "關注(%d)";
 "kFansNumber" = "粉絲(%d)";
+"kNoFans" = "暫無粉絲";
 
 "kNoFollow" = "還沒有關注任何好友，點擊下面的搜索用戶按鈕查找和關注你的好友吧。";
-"kNoFans" = "暫未有粉絲";
 "kEdit" = "編輯";
 "kSearchUser" = "搜索用戶";
 "kSMSInvite" = "短信邀請";
@@ -1174,6 +1175,7 @@
 "kUnblackUserSuccess" = "解除黑名單成功!";
 "kBlackList" = "黑名單";
 "kBlackListNumber" = "黑名單(%d)";
+"kNoBlackList" = "暫無黑名單用戶";
 "kCleanCacheSucc" = "奮力為你清理了%.2f MB 緩存!";
 "kCleanCache" = "清理緩存";
 

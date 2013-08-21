@@ -63,8 +63,7 @@ typedef enum {
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime;
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime 
            fromProgress:(float)progress;
-//- (void)setAvatarSelected:(BOOL)selected;
-//- (void)setAvatarSelected:(BOOL)selected level:(int)level;
+
 - (void)setUrlString:(NSString *)urlString 
               userId:(NSString*)userId
               gender:(BOOL)gender 
