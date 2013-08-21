@@ -387,14 +387,18 @@ if (btn) {\
 }
 
 
-- (void)updateView
+- (void)handleNotification:(NSNotification *)note
 {
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:DRAW_VIEW_UPDATED_SCACLE object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-          PPDebug(@"<MARK>%f", [(NSNumber *)note.object floatValue]);
-          [self updateShowInfoWithDrawInfo:self.drawView.drawInfo];
+    [self updateShowInfoWithDrawInfo:self.drawView.drawInfo];
+}
 
-    }];
+- (void)updateView
+{    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleNotification:)
+                                                 name:DRAW_VIEW_UPDATED_SCACLE
+                                               object:nil];
+    
     [self.scrollView setDelegate:self];
     [self updateDrawToolButtons];
     [self updateSliders];
