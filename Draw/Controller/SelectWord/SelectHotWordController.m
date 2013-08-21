@@ -137,6 +137,7 @@
     SelectCustomWordView *customWordView = [SelectCustomWordView createView:self];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMyWords") customView:customWordView style:CommonDialogStyleCross];
     [dialog showInView:self.view];
+    dialog.delegate = self;
 }
 
 - (void)didSelecCustomWord:(NSString *)word
@@ -230,6 +231,11 @@
 
 - (void)didClickCancel:(CommonDialog *)dialog{
 
+    [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
+}
+
+- (void)didClickClose:(CommonDialog *)dialog{
+    
     [_myWordsCell setWords:[[CustomWordManager defaultManager] wordsFromCustomWords]];
 }
 

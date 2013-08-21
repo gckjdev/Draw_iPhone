@@ -13,9 +13,6 @@
 
 #define COMMON_TITLE_VIEW_TAG   2013081218
 
-#define WIDTH (ISIPAD ? 768 : 320)
-#define HEIGH (ISIPAD ? 100 : 45)
-
 #define LEFT_GAP (ISIPAD ? 4 : 2)
 
 #define BACK_BUTTON_WIDTH (ISIPAD ? 60 : 30)
@@ -94,7 +91,7 @@
 
 - (void)initData
 {
-    self.frame = CGRectMake(0, 0, WIDTH, HEIGH);
+    self.frame = CGRectMake(0, 0, COMMON_TITLE_VIEW_WIDTH, COMMON_TITLE_VIEW_HEIGHT);
     _centerX = (self.bounds.size.width/2);
     _centerY = (self.bounds.size.height/2);
     
@@ -199,7 +196,7 @@
     
     [button addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    int originX = (WIDTH - 3 * LEFT_GAP - button.frame.size.width);
+    int originX = (COMMON_TITLE_VIEW_WIDTH - 3 * LEFT_GAP - button.frame.size.width);
     [button updateOriginX:originX];
     [button updateCenterY:_centerY];
 
@@ -223,7 +220,7 @@
     
     [button addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
 
-    int originX = (WIDTH - 3 * LEFT_GAP - button.frame.size.width);
+    int originX = (COMMON_TITLE_VIEW_WIDTH - 3 * LEFT_GAP - button.frame.size.width);
     [button updateOriginX:originX];
     [button updateCenterY:_centerY];
     

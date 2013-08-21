@@ -368,6 +368,12 @@
 
 - (IBAction)clickCloseButton:(id)sender {
 
+    if (_clickCloseBlock != nil) {
+        _clickCloseBlock([self infoView]);
+        self.clickCancelBlock = nil;
+    } else if (_delegate && [_delegate respondsToSelector:@selector(didClickClose:)]) {
+        [_delegate didClickClose:self];
+    }
     [self disappear];
 }
 
