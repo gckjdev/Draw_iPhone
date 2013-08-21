@@ -105,7 +105,7 @@
 
 - (IBAction)clickRemove:(id)sender {
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kTips")
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint")
                                  message:NSLS(@"kDeleteDrawLayer")
                                    style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(UILabel *label){
