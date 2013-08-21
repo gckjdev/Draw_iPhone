@@ -274,7 +274,7 @@ REG_CMD_CTRL(cls, [self buttonForType:dt], tp)
     
     REG_CMD(DrawBgCommand, DrawToolTypeCanvaseBG, ItemTypeNo);
     REG_CMD(GridCommand, DrawToolTypeBlock, ItemTypeGrid);
-
+    REG_CMD(ChatCommand, DrawToolTypeChat, ItemTypeNo);
     
     REG_CMD_CTRL(WidthSliderCommand, self.widthSlider, ItemTypeNo);
     REG_CMD_CTRL(AlphaSliderCommand, self.alphaSlider, ColorAlphaItem);
@@ -337,6 +337,8 @@ if (btn) {\
     MAP_BUTTON(self.straw, DrawToolTypeStraw);
     MAP_BUTTON(self.addColor, DrawToolTypeAddColor);
     MAP_BUTTON(self.penWidth, DrawToolTypeWidthPicker);
+    MAP_BUTTON(self.timeSet, DrawToolTypeTimeset);
+    MAP_BUTTON(self.chat, DrawToolTypeChat);
 }
 
 - (void)updateDrawToolButtons
@@ -655,7 +657,9 @@ if (btn) {\
     return view;
 }
 #define INFO_FONT_SIZE (ISIPAD ? 20: 12)
-- (UILabel *)infoLabelWithTag:(NSInteger)tag x:(CGFloat)x
+- (UILabel *)infoLabelWithTag:(NSInteger)tag
+                            x:(CGFloat)x
+                         text:(NSString *)text
 {
     UILabel *label = (id)[self viewWithTag:tag];
     if (label == nil) {
@@ -665,6 +669,8 @@ if (btn) {\
         label.tag = tag;
         [self addSubview:label];
     }
+    [label setText:text];
+    [label sizeToFit];
     return label;
 }
 #define POINT_LAYER_TAG 201308201
@@ -676,9 +682,7 @@ if (btn) {\
 {
     NSString *layerName = [[self.drawView currentLayer] layerName];
     UIView *p = [self infoPointWithTag:POINT_LAYER_TAG x:INFO_SPACE];
-    UILabel *label = [self infoLabelWithTag:LABEL_LAYER_TAG x:CGRectGetMaxX(p.frame)+INFO_SPACE/2];
-    [label setText:layerName];
-    [label sizeToFit];
+    [self infoLabelWithTag:LABEL_LAYER_TAG x:CGRectGetMaxX(p.frame)+INFO_SPACE/2 text:layerName];
 }
 
 
