@@ -8,8 +8,9 @@
 
 
 #import <UIKit/UIKit.h>
+#import "CommonViewConstants.h"
 
-typedef void (^NavigationButtonActionBlock)(UIButton *button);
+//typedef void (^NavigationButtonActionBlock)(UIButton *button);
 
 @interface CommonTitleView : UIView
 
@@ -38,7 +39,7 @@ typedef void (^NavigationButtonActionBlock)(UIButton *button);
 // 创建一个title view
 + (CommonTitleView*)createTitleView:(UIView*)superView;
 
-// 获取一个title view
+// 获取当前view里面已有的title view
 + (CommonTitleView*)titleView:(UIView*)superView;
 
 @end

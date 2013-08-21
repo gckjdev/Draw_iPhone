@@ -142,8 +142,7 @@
 #define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
 
-#define BUTTON_Y (ISIPAD ? 100 : 45)
-#define BUTTON_HEIGHT (ISIPAD ? 65 : 30)
+
 
 - (void)initTabButtons
 {
@@ -169,8 +168,8 @@
         rect.size.width = btnWidth;
 
         if ([self isAutoResizeTabButton]) {
-            rect.origin.y = BUTTON_Y;
-            rect.size.height = BUTTON_HEIGHT;
+            rect.origin.y = COMMON_TAB_BUTTON_Y;
+            rect.size.height = COMMON_TAB_BUTTON_HEIGHT;
         }
         
         button.frame = rect;
