@@ -140,8 +140,6 @@ typedef enum{
 {
     self.inviteButton.hidden = YES;
     [self.searchUserButton setCenter:CGPointMake(self.view.bounds.size.width/2, self.searchUserButton.center.y)];
-//    [self.dataTableView updateHeight:(OFFSET + CGRectGetHeight(self.dataTableView.bounds))];
-//    [self.paper updateHeight:(OFFSET + CGRectGetHeight(self.paper.bounds))];
 }
 
 - (void)initTabButton
@@ -669,6 +667,12 @@ enum {
 
 
 #pragma mark - Common tab delegate
+
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
+    
+    NSString *titles[] = {NSLS(@"kNoFollow"),NSLS(@"kNoFans"),NSLS(@"kNoBlackList")};
+    return titles[index];
+}
 
 - (NSInteger)tabCount
 {
