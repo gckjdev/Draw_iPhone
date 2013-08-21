@@ -412,6 +412,7 @@ message PBUserAward
     optional int32 rank = 3;                        // 奖励结果名次，如：第一名1，第二名2，第三名3
     optional float score = 4;                       // 用户得分，可选
     optional int32 coins = 5;                       // 赢取的金币
+    optional string opusId = 6;                     // 奖励的作品ID
     
     optional int32 createDate = 11;                 // 获得奖励日期
 
