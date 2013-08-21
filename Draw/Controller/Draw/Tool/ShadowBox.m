@@ -114,6 +114,8 @@
         UIImage *defaultImage = IMAGE_FROM_COLOR(COLOR_YELLOW);
         UIImage *selectedImage = IMAGE_FROM_COLOR(COLOR_YELLOW2);
         if ([button isKindOfClass:[UIButton class]]) {
+            button.layer.cornerRadius = 4;
+            button.layer.masksToBounds = YES;
             [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
             [button setBackgroundImage:selectedImage forState:UIControlStateSelected];
         }
