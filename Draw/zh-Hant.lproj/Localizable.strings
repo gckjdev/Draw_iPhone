@@ -1888,8 +1888,8 @@
 "kScrollToFirst" = "這已經是第壹張了。";
 "kScrollToEnd" = "這已經是最後壹張了。";
 
-"kBGLayer" = "背景層";
-"kMainLayer" = "主圖層";
+"kBGLayer" = "描邊層";
+"kMainLayer" = "上色層";
 "kNumLayerName" = "圖層 %d";
 
 "kNewLayerName" = "圖層";
