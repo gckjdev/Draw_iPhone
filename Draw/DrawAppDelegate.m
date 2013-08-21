@@ -81,6 +81,7 @@
 #import "WordFilterService.h"
 #import "GuessService.h"
 #import "CPMotionRecognizingWindow.h"
+#import "LocalNotificationManager.h"
 
 NSString* GlobalGetServerURL()
 {
@@ -351,6 +352,12 @@ NSString* GlobalGetBoardServerURL()
     [[BBSService defaultService] getBBSPrivilegeList];  //kira:get bbs permission first, for super user manage
     
     [UIUtils checkAppVersion];
+    
+#if DEBUG
+    
+    [LocalNotificationManager registerWithFireDate:[NSDate dateWithTimeIntervalSinceNow:15] alertBody:@"hi, this is a test local notification" repeatInterval:nil];
+    
+#endif
     
         
     return YES;
