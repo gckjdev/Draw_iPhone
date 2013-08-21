@@ -117,7 +117,7 @@
     TableTab *tab = [self currentTab];    
     [self clickTab:tab.tabID];
     
-
+    SET_NORMAL_TABLE_VIEW_Y(self.dataTableView);
 }
 
 
