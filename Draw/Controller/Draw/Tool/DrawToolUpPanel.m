@@ -46,7 +46,7 @@
 #import "UIImageUtil.h"
 #import "CopyPaintCommand.h"
 #import "ShowCopyPaintCommand.h"
-
+#import "ChangePageBGCommand.h"
 
 
 @implementation DrawToolUpPanelCell
@@ -189,7 +189,7 @@ if(control){\
     ADD_COMMAND(command, DrawToCommand, DrawToolTypeDrawTo, ItemTypeNo);
     ADD_COMMAND(command, HelpCommand, DrawToolTypeHelp, ItemTypeNo);
     ADD_COMMAND(command, CopyPaintCommand, DrawToolTypeCopy, ItemTypeCopyPaint);
-    
+    ADD_COMMAND(command, ChangePageBGCommand, DrawToolTypePageBG, ItemTypeNo);
 
     DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(DrawToolTypeCopy)];
     control = cell.accessButton;

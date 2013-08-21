@@ -87,7 +87,8 @@
                                 KEY(DrawToolTypeDrawTo): NSLS(@"kDrawTo"),
                                 KEY(DrawToolTypeGrid): NSLS(@"kGrid"),
                                 KEY(DrawToolTypeHelp): NSLS(@"kScaleHelp"),
-                                KEY(DrawToolTypeSubject): NSLS(@"kDefaultDrawWord")
+                                KEY(DrawToolTypeSubject): NSLS(@"kDefaultDrawWord"),
+                                KEY(DrawToolTypePageBG) : NSLS(@"kChangePageBG")
                                 };
     return [titleDict objectForKey:@(type)];
 }
@@ -151,6 +152,7 @@
             DrawToolTypeCopy,
             DrawToolTypeDesc,
             DrawToolTypeDrawTo,
+            DrawToolTypePageBG,
             DrawToolTypeHelp,
             DrawToolTypeSubject,
             DrawToolTypeEnd,
@@ -163,6 +165,7 @@
             DrawToolTypeCopy,
             DrawToolTypeDesc,
             DrawToolTypeDrawTo,
+            DrawToolTypePageBG,            
             DrawToolTypeHelp,
             DrawToolTypeSubject,            
             DrawToolTypeEnd,

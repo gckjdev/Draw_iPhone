@@ -1906,6 +1906,8 @@
 "kShape" = "Shape";
 "kSelector" = "Selector";
 "kEraser" = "Eraser";
+
+"kChangePageBG" = "Change Page BG";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

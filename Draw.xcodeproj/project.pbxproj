@@ -5600,6 +5600,10 @@
 		CAF9B71116AA3CA200865CCE /* SmoothCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71016AA3CA200865CCE /* SmoothCurvePen.m */; };
 		CAF9B71416AA3CBD00865CCE /* SmoothQuadCurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */; };
 		CAF9B71716AA3E9B00865CCE /* CurvePen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF9B71616AA3E9B00865CCE /* CurvePen.m */; };
+		CAFC036D17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
+		CAFC036E17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
+		CAFC036F17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
+		CAFC037017C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
 		CAFCAAB816BF520F00641A85 /* input_alert_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */; };
 		CAFCAAC016BF520F00641A85 /* input_alert_uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */; };
 		CAFCAACA16BF589000641A85 /* input_alert_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */; };
@@ -10311,6 +10315,8 @@
 		CAF9B71316AA3CBD00865CCE /* SmoothQuadCurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmoothQuadCurvePen.m; sourceTree = "<group>"; };
 		CAF9B71516AA3E9B00865CCE /* CurvePen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurvePen.h; sourceTree = "<group>"; };
 		CAF9B71616AA3E9B00865CCE /* CurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurvePen.m; sourceTree = "<group>"; };
+		CAFC036B17C4CAA100A11DE3 /* ChangePageBGCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePageBGCommand.h; sourceTree = "<group>"; };
+		CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePageBGCommand.m; sourceTree = "<group>"; };
 		CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_check@2x.png"; sourceTree = "<group>"; };
 		CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_uncheck@2x.png"; sourceTree = "<group>"; };
 		CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_close@2x.png"; sourceTree = "<group>"; };
@@ -17177,6 +17183,8 @@
 				CAC85BF51791179100827C20 /* TextCommand.m */,
 				CAC85C0D179117B100827C20 /* FXCommand.h */,
 				CAC85C0E179117B100827C20 /* FXCommand.m */,
+				CAFC036B17C4CAA100A11DE3 /* ChangePageBGCommand.h */,
+				CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */,
 			);
 			path = ToolCommand;
 			sourceTree = "<group>";
@@ -22898,6 +22906,7 @@
 				A467894217BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				A484D31D17C49AB9008185F8 /* LocalNotificationManager.m in Sources */,
+				CAFC036F17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23697,6 +23706,7 @@
 				A467894117BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471B17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				A484D31C17C49AB9008185F8 /* LocalNotificationManager.m in Sources */,
+				CAFC036E17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24503,6 +24513,7 @@
 				A467894017BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471A17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				A484D31B17C49AB9008185F8 /* LocalNotificationManager.m in Sources */,
+				CAFC036D17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25282,6 +25293,7 @@
 				A467894317BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471D17C3175C00BA6A15 /* PanelUtil.m in Sources */,
 				A484D31E17C49AB9008185F8 /* LocalNotificationManager.m in Sources */,
+				CAFC037017C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
