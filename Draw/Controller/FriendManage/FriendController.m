@@ -210,9 +210,10 @@ typedef enum{
     self.dataTableView.separatorColor = [UIColor clearColor];
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
-
-
     
+    
+    SET_BUTTON_STYLE_YELLOW(searchUserButton);
+    SET_BUTTON_STYLE_YELLOW(inviteButton);
 }
 
 - (void)viewDidAppear:(BOOL)animated

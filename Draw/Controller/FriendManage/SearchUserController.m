@@ -70,17 +70,19 @@
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kSearchUser")];
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
     
-    [inputImageView setImage:[imageManager inputImage]];
+//    [inputImageView setImage:[imageManager inputImage]];
     [inputTextField setPlaceholder:NSLS(@"kSearchUserPlaceholder")];
     inputTextField.delegate = self;
     inputTextField.returnKeyType = UIReturnKeyDone;
+    [inputTextField becomeFirstResponder];
+    inputTextField.textAlignment = UITextAlignmentCenter;
+    SET_INPUT_VIEW_STYLE(inputTextField);
     
-//    [searchButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
+
+//    [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     searchButton.tag = SEARCH_BUTTON_TAG;
-    
     
     [inputTextField becomeFirstResponder];
     
