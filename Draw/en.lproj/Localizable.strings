@@ -386,9 +386,10 @@
 "kFans" = "Fans";
 "kFollowNumber" = "Followers(%d)";
 "kFansNumber" = "Fans(%d)";
+"kNoFans" = "No Fans";
+
 
 "kNoFollow" = "No follower yet. Click 'Search User' button below to follow your friends.";
-"kNoFans" = "No fan";
 "kEdit" = "Edit";
 "kSearchUser" = "Search";
 "kSMSInvite" = "SMS Invite";
@@ -1148,7 +1149,7 @@
 "kUnblackUserSuccess" = "Remove friend from black list successfully!";
 "kBlackList" = "Black";
 "kBlackListNumber" = "Black(%d)";
-
+"kNoBlackList" = "No Black User";
 "kPromotion:" = "Disc:";
 "kPrice:" = "Price:";
 "kDesc:" = "Desc:";

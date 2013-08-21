@@ -48,7 +48,7 @@
 #define COLOR_COFFEE1 OPAQUE_COLOR(126, 49, 46) // common tab selected text
   
 
-#define IMAGE_FROM_COLOR(color) [[ShareImageManager defaultManager] imageWithColor:color]
+#define IMAGE_FROM_COLOR(color) ([[ShareImageManager defaultManager] imageWithColor:color])
 
 #define SET_MESSAGE_LABEL_STYLE(view)               \
 {                                                   \
@@ -73,16 +73,10 @@
     view.layer.borderColor = [COLOR_YELLOW CGColor];        \
 }                                                           
 
-#define SET_BUTTON_STYLE(view)                              \
+#define SET_BUTTON_STYLE_YELLOW(view)                              \
 {                                                           \
-    [view setTitleColor:COLOR_WHITE                         \
-               forState:UIControlStateNormal];              \
-    view.titleLabel.font = FONT_BUTTON;                     \
-                                                            \
-    [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];   \
-    [view.layer setMasksToBounds:YES];                      \
-    view.backgroundColor = COLOR_YELLOW;                    \
-}
+    [[ShareImageManager defaultManager] setButtonStyle:view titleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2];         \
+} 
 
 
 #define SET_VIEW_ROUND_CORNER(view) \
@@ -393,5 +387,12 @@
 - (UIImage *)runAwayImage;
 
 - (UIImage *)imageWithColor:(UIColor *)color;
+
+- (void)setButtonStyle:(UIButton *)button
+            titleColor:(UIColor *)titleColor
+                  font:(UIFont *)font
+           normalColor:(UIColor *)normalColor
+         selectedColor:(UIColor *)selectedColor
+      highlightedColor:(UIColor *)highlightedColor;
 
 @end

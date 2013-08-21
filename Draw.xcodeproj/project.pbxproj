@@ -1702,6 +1702,10 @@
 		A4834DFA1716AD5400190347 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DC81716AD5400190347 /* openssl_wrapper.m */; };
 		A4834DFF1716AD5400190347 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCA1716AD5400190347 /* RSADataSigner.m */; };
 		A4834E041716AD5400190347 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCC1716AD5400190347 /* RSADataVerifier.m */; };
+		A484D31417C49084008185F8 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A484D31317C49084008185F8 /* LocalNotificationManager.m */; };
+		A484D31517C49084008185F8 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A484D31317C49084008185F8 /* LocalNotificationManager.m */; };
+		A484D31617C49084008185F8 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A484D31317C49084008185F8 /* LocalNotificationManager.m */; };
+		A484D31717C49084008185F8 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A484D31317C49084008185F8 /* LocalNotificationManager.m */; };
 		A489BFE617B4F100003E5150 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A489BFF017B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
 		A489BFF117B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
@@ -7781,6 +7785,8 @@
 		A4834E131716AEB600190347 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		A4834E151716AEB600190347 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		A484D2FD17C45ACB008185F8 /* CommonViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewConstants.h; sourceTree = "<group>"; };
+		A484D31217C49084008185F8 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalNotificationManager.h; path = ../LocalNotificationManager.h; sourceTree = "<group>"; };
+		A484D31317C49084008185F8 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalNotificationManager.m; path = ../LocalNotificationManager.m; sourceTree = "<group>"; };
 		A489BFE517B4F0FF003E5150 /* Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Themes.plist; sourceTree = "<group>"; };
 		A489BFEF17B4F694003E5150 /* shoes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoes@2x.png"; sourceTree = "<group>"; };
 		A489BFF917B5D39F003E5150 /* angel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angel@2x.png"; sourceTree = "<group>"; };
@@ -11386,6 +11392,15 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		A484D30A17C49010008185F8 /* Core-Utils-Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A484D31217C49084008185F8 /* LocalNotificationManager.h */,
+				A484D31317C49084008185F8 /* LocalNotificationManager.m */,
+			);
+			path = "Core-Utils-Notification";
+			sourceTree = "<group>";
+		};
 		A489C00817B5D942003E5150 /* JDFlipNumberView */ = {
 			isa = PBXGroup;
 			children = (
@@ -13205,6 +13220,7 @@
 		CA103B391509A56000F60C03 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A484D30A17C49010008185F8 /* Core-Utils-Notification */,
 				CADD263F168841ED00BDCDCF /* Core-Utils-DataStructure */,
 				C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */,
 				C2A3CC04161590FF00663271 /* Core-Utils-Animation */,
@@ -22881,6 +22897,7 @@
 				A467893317BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894217BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */,
+				A484D31617C49084008185F8 /* LocalNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23679,6 +23696,7 @@
 				A467893217BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894117BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471B17C3175C00BA6A15 /* PanelUtil.m in Sources */,
+				A484D31517C49084008185F8 /* LocalNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24484,6 +24502,7 @@
 				A467893117BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894017BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471A17C3175C00BA6A15 /* PanelUtil.m in Sources */,
+				A484D31417C49084008185F8 /* LocalNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25262,6 +25281,7 @@
 				A467893417BB21FE007C546A /* UISoundButton.m in Sources */,
 				A467894317BC7782007C546A /* UILabel+Extend.m in Sources */,
 				CA8C471D17C3175C00BA6A15 /* PanelUtil.m in Sources */,
+				A484D31717C49084008185F8 /* LocalNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

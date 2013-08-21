@@ -397,9 +397,9 @@
 "kFans" = "粉丝";
 "kFollowNumber" = "关注(%d)";
 "kFansNumber" = "粉丝(%d)";
+"kNoFans" = "暂无粉丝";
 
 "kNoFollow" = "还没有关注任何好友，点击下面的搜索用户按钮查找和关注你的好友。";
-"kNoFans" = "暂未有粉丝";
 "kEdit" = "编辑";
 "kSearchUser" = "搜索用户";
 "kSMSInvite" = "短信邀请";
@@ -1186,6 +1186,8 @@
 "kUnblackUserSuccess" = "解除黑名单成功!";
 "kBlackList" = "黑名单";
 "kBlackListNumber" = "黑名单(%d)";
+"kNoBlackList" = "暂无黑名单用户";
+
 "kCleanCacheSucc" = "奋力为你清理了 %.2f MB 缓存！";
 "kCleanCache" = "清理缓存";
 

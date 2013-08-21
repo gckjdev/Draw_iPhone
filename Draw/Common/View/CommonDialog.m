@@ -270,11 +270,11 @@
     SET_INPUT_VIEW_STYLE(view.inputTextView);
     
     [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    SET_BUTTON_STYLE(view.oKButton);
+    SET_BUTTON_STYLE_YELLOW(view.oKButton);
     
     
     [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    SET_BUTTON_STYLE(view.cancelButton);
+    SET_BUTTON_STYLE_YELLOW(view.cancelButton);
     
     [view appear];
 
