@@ -34,8 +34,8 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UITextField *inputTextField;
 @property (assign, nonatomic) id<SearchUserControllerDelegate> delegate;
 
-- (IBAction)clickBack:(id)sender;
 - (IBAction)clickSearch:(id)sender;
 - (IBAction)backgroundTap:(id)sender;
 - (id)initWithType:(ControllerType)type;
+
 @end

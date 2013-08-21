@@ -14,9 +14,8 @@
 #import "TimeUtils.h"
 #import "CommonDialog.h"
 #import "FriendCell.h"
-//#import "DrawUserInfoView.h"
-//#import "DiceUserInfoView.h"
 #import "CommonUserInfoView.h"
+#import "ShareImageManager.h"
 
 @interface SearchUserController () {
     ControllerType _type;
@@ -115,6 +114,7 @@
     return nil;
 }
 
+SET_CELL_BG;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
