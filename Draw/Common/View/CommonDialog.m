@@ -31,7 +31,6 @@
 
 @implementation CommonDialog
 
-
 - (void)dealloc
 {
 
@@ -391,6 +390,13 @@
     [self.layer setCornerRadius:DIALOG_CORNER_RADIUS];
     [self.layer setMasksToBounds:YES];
     self.backgroundColor = [UIColor clearColor];
+    [self setNeedsDisplay];
+}
+
+- (void)layoutSubviews
+{
+    PPDebug(@"<DialogBGView> layoutSubviews");
+    [super layoutSubviews];
     [self setNeedsDisplay];
 }
 

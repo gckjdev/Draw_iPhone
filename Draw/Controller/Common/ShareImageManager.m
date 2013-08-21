@@ -1247,5 +1247,18 @@ static UIImage* _whitePaperImage;
 {
     return [UIImage imageNamed:@"run@2x.png"];
 }
+
+- (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGSize size = CGSizeMake(2, 2);
+    UIImage *image;
+    UIGraphicsBeginImageContext(size);
+    [color setFill];
+    CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, size.width, size.height));
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
+}
+
 @end
 
