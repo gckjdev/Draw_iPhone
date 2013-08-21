@@ -12311,6 +12311,7 @@ static PBOpusRank* defaultPBOpusRankInstance = nil;
 @property int32_t rank;
 @property Float32 score;
 @property int32_t coins;
+@property (retain) NSString* opusId;
 @property int32_t createDate;
 @property (retain) NSString* contestId;
 @end
@@ -12352,6 +12353,13 @@ static PBOpusRank* defaultPBOpusRankInstance = nil;
   hasCoins_ = !!value;
 }
 @synthesize coins;
+- (BOOL) hasOpusId {
+  return !!hasOpusId_;
+}
+- (void) setHasOpusId:(BOOL) value {
+  hasOpusId_ = !!value;
+}
+@synthesize opusId;
 - (BOOL) hasCreateDate {
   return !!hasCreateDate_;
 }
@@ -12369,6 +12377,7 @@ static PBOpusRank* defaultPBOpusRankInstance = nil;
 - (void) dealloc {
   self.awardType = nil;
   self.user = nil;
+  self.opusId = nil;
   self.contestId = nil;
   [super dealloc];
 }
@@ -12379,6 +12388,7 @@ static PBOpusRank* defaultPBOpusRankInstance = nil;
     self.rank = 0;
     self.score = 0;
     self.coins = 0;
+    self.opusId = @"";
     self.createDate = 0;
     self.contestId = @"";
   }
@@ -12427,6 +12437,9 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
   if (self.hasCoins) {
     [output writeInt32:5 value:self.coins];
   }
+  if (self.hasOpusId) {
+    [output writeString:6 value:self.opusId];
+  }
   if (self.hasCreateDate) {
     [output writeInt32:11 value:self.createDate];
   }
@@ -12456,6 +12469,9 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
   }
   if (self.hasCoins) {
     size += computeInt32Size(5, self.coins);
+  }
+  if (self.hasOpusId) {
+    size += computeStringSize(6, self.opusId);
   }
   if (self.hasCreateDate) {
     size += computeInt32Size(11, self.createDate);
@@ -12553,6 +12569,9 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
   if (other.hasCoins) {
     [self setCoins:other.coins];
   }
+  if (other.hasOpusId) {
+    [self setOpusId:other.opusId];
+  }
   if (other.hasCreateDate) {
     [self setCreateDate:other.createDate];
   }
@@ -12608,6 +12627,10 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
       }
       case 40: {
         [self setCoins:[input readInt32]];
+        break;
+      }
+      case 50: {
+        [self setOpusId:[input readString]];
         break;
       }
       case 88: {
@@ -12727,6 +12750,22 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
 - (PBUserAward_Builder*) clearCoins {
   result.hasCoins = NO;
   result.coins = 0;
+  return self;
+}
+- (BOOL) hasOpusId {
+  return result.hasOpusId;
+}
+- (NSString*) opusId {
+  return result.opusId;
+}
+- (PBUserAward_Builder*) setOpusId:(NSString*) value {
+  result.hasOpusId = YES;
+  result.opusId = value;
+  return self;
+}
+- (PBUserAward_Builder*) clearOpusId {
+  result.hasOpusId = NO;
+  result.opusId = @"";
   return self;
 }
 - (BOOL) hasCreateDate {

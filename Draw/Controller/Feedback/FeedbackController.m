@@ -495,6 +495,7 @@ SET_CELL_BG
     self.dataTableView.separatorColor = [UIColor clearColor];
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    SET_NORMAL_TABLE_VIEW_Y(self.dataTableView);
 }
 
 
