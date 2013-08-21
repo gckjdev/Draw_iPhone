@@ -1702,10 +1702,6 @@
 		A4834DFA1716AD5400190347 /* openssl_wrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DC81716AD5400190347 /* openssl_wrapper.m */; };
 		A4834DFF1716AD5400190347 /* RSADataSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCA1716AD5400190347 /* RSADataSigner.m */; };
 		A4834E041716AD5400190347 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCC1716AD5400190347 /* RSADataVerifier.m */; };
-		A484D30617C4844D008185F8 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A484D30517C4844D008185F8 /* search@2x.png */; };
-		A484D30717C4844D008185F8 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A484D30517C4844D008185F8 /* search@2x.png */; };
-		A484D30817C4844D008185F8 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A484D30517C4844D008185F8 /* search@2x.png */; };
-		A484D30917C4844D008185F8 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A484D30517C4844D008185F8 /* search@2x.png */; };
 		A489BFE617B4F100003E5150 /* Themes.plist in Resources */ = {isa = PBXBuildFile; fileRef = A489BFE517B4F0FF003E5150 /* Themes.plist */; };
 		A489BFF017B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
 		A489BFF117B4F694003E5150 /* shoes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A489BFEF17B4F694003E5150 /* shoes@2x.png */; };
@@ -7785,7 +7781,6 @@
 		A4834E131716AEB600190347 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		A4834E151716AEB600190347 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		A484D2FD17C45ACB008185F8 /* CommonViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewConstants.h; sourceTree = "<group>"; };
-		A484D30517C4844D008185F8 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		A489BFE517B4F0FF003E5150 /* Themes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Themes.plist; sourceTree = "<group>"; };
 		A489BFEF17B4F694003E5150 /* shoes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoes@2x.png"; sourceTree = "<group>"; };
 		A489BFF917B5D39F003E5150 /* angel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "angel@2x.png"; sourceTree = "<group>"; };
@@ -15564,7 +15559,6 @@
 		CA7D41F6168D7588009F43F7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A484D30517C4844D008185F8 /* search@2x.png */,
 				A4B78A06179F78BA0008E21B /* Guess */,
 				C2C09DF117797F1B009408EB /* draw_commit_btn@2x.png */,
 				CA7B3C8617B8E2E3009A07AA /* draw_layer_btn@2x.png */,
@@ -19057,7 +19051,6 @@
 				CAC3EDD017C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
 				CA8C472217C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472617C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
-				A484D30817C4844D008185F8 /* search@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20088,7 +20081,6 @@
 				CAC3EDCF17C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
 				CA8C472117C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472517C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
-				A484D30717C4844D008185F8 /* search@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21108,7 +21100,6 @@
 				CAC3EDCE17C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
 				CA8C472017C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472417C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
-				A484D30617C4844D008185F8 /* search@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22063,7 +22054,6 @@
 				CA8C471217C2214A00BA6A15 /* ToolUpPanel.xib in Resources */,
 				CA8C472317C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472717C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
-				A484D30917C4844D008185F8 /* search@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
