@@ -71,7 +71,7 @@
 {
     [self hidePopTipView];
     
-    [[CommonDialog createDialogWithTitle:NSLS(@"kHelp") message:NSLS(@"kSelectorHelp") style:CommonDialogStyleCross] showInView:[self.control theTopView]];
+    [[CommonDialog createDialogWithTitle:NSLS(@"kHelp") message:NSLS(@"kSelectorHelp") style:CommonDialogStyleCross] showInView:[self.controller view]];
 }
 
 @end

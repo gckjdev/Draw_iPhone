@@ -20,7 +20,7 @@
 
 - (BOOL)execute
 {
-    [[CommonDialog createDialogWithTitle:NSLS(@"kGestureExplain") message:NSLS(@"kGestureExplainContent") style:CommonDialogStyleCross] showInView:[self.control theTopView]];
+    [[CommonDialog createDialogWithTitle:NSLS(@"kGestureExplain") message:NSLS(@"kGestureExplainContent") style:CommonDialogStyleCross] showInView:[self.controller view]];
     
     [self sendAnalyticsReport];
     

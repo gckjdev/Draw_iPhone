@@ -273,5 +273,6 @@ typedef enum{
 + (BOOL)enableWordFilter;
 
 + (int)getMaxLengthOfDrawDesc;
++ (int)getMaxLayerNumber;
 
 @end

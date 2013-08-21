@@ -11,6 +11,8 @@
 #import "PPViewController.h"
 #import "CommonDialog.h"
 #import "ShareImageManager.h"
+#import "ConfigManager.h"
+#import "PPViewController.h"
 
 #define CELL_ID @"DrawLayerPanelCell"
 
@@ -260,12 +262,18 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 }
 
 - (IBAction)clickAdd:(id)sender {
+    if ([[_dlManager layers] count] >= [ConfigManager getMaxLayerNumber]) {
+        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kRearchMaxLayerCount") title:nil];
+        return;
+    }
+//    [[_dlManager layers] count] 
     PPDebug(@"<didClickAddAtCell>");
     DrawLayer *layer = [DrawLayer layerWithLayer:[_dlManager selectedLayer]
                                            frame:[[_dlManager selectedLayer] bounds]];
 
     [_dlManager genLayerTagAndName:layer];
     [_dlManager addLayer:layer];
+    [_dlManager setSelectedLayer:layer];
     [self reloadView];
 }
 

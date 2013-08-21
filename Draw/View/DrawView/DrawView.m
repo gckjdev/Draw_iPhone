@@ -295,6 +295,14 @@
     self.drawActionList = draft.drawActionList;
     [self changeRect:CGRectFromCGSize(draft.canvasSize)];
     [self show];
+ 
+    if ([self.drawActionList count] != 0) {
+        DrawAction *action = [self.drawActionList lastObject];
+        DrawLayer *layer = [dlManager layerWithTag:action.layerTag];
+        if (layer) {
+            [dlManager setSelectedLayer:layer];
+        }
+    }
 }
 
 - (DrawAction *)lastAction

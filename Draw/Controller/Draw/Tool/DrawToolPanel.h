@@ -48,6 +48,8 @@
 - (IBAction)clickTool:(UIButton *)sender;
 - (void)hideColorPanel:(BOOL)hide;
 
+- (void)showGradientSettingView:(UIView *)gradientSettingView;
+
 #pragma mark - Timer
 
 - (void)startTimer;

@@ -1075,5 +1075,8 @@
     return [MobClickUtils getIntValueByKey:@"MAX_LENGTH_OF_DRAW_DESC" defaultValue:4096];
 }
 
-
++ (int)getMaxLayerNumber
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:5];
+}
 @end

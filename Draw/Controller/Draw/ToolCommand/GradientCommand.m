@@ -54,9 +54,8 @@
     }else if(ISIPAD){
         center = CGPointMake(384, 53);
     }
-    self.gradientSettingView.center = center;
     self.gradientSettingView.delegate = self;
-    [self.toolPanel addSubview:self.gradientSettingView];
+    [self.toolPanel showGradientSettingView:self.gradientSettingView];
     self.gradientSettingView.alpha = 0;
     [UIView animateWithDuration:0.5 animations:^{
         self.gradientSettingView.alpha = 1;
@@ -104,7 +103,7 @@
                 [self showPopTipView];
             }];
             
-            [dialog showInView:[self.control theTopView]];
+            [dialog showInView:[self.controller view]];
             
         }else{
             [self showPopTipView];

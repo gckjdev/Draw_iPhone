@@ -314,7 +314,7 @@
 - (void)genLayerTagAndName:(DrawLayer *)layer
 {
     layer.layerTag = [self nextTag];
-    NSInteger index = 0;
+    NSInteger index = 1;
     for (DrawLayer *l in _layerList) {
         if ([l.layerName hasPrefix:NSLS(@"kNewLayerName")]) {
             NSArray *array = [l.layerName componentsSeparatedByString:@" "];
@@ -325,11 +325,7 @@
             }
         }
     }
-    if (index < 1) {
-        layer.layerName = NSLS(@"kNewLayerName");
-    }else{
-      layer.layerName = [NSString stringWithFormat:@"%@ %d", NSLS(@"kNewLayerName"), index];
-    }
+    layer.layerName = [NSString stringWithFormat:@"%@ %d", NSLS(@"kNewLayerName"), index];
 }
 
 @end
