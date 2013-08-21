@@ -1339,21 +1339,12 @@
 		A461B648174CBAA70088B061 /* unloadbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF45D1697C94E004ABCFA /* unloadbg@2x.png */; };
 		A461B649174CBAA70088B061 /* hot_word.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4DE140E1697DB7B00841940 /* hot_word.pb */; };
 		A461B64A174CBAA70088B061 /* hot_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14111697DBA900841940 /* hot_words_bg@2x.png */; };
-		A461B64B174CBAA70088B061 /* load_from_draft_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */; };
 		A461B64C174CBAA70088B061 /* more_words_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14131697DBA900841940 /* more_words_btn@2x.png */; };
 		A461B64D174CBAA70088B061 /* my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14141697DBA900841940 /* my_words_bg@2x.png */; };
-		A461B64E174CBAA70088B061 /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
-		A461B64F174CBAA70088B061 /* select_word_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14161697DBA900841940 /* select_word_cell_bg@2x.png */; };
-		A461B650174CBAA70088B061 /* selected_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14171697DBA900841940 /* selected_words_bg@2x.png */; };
 		A461B651174CBAA70088B061 /* system_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14181697DBA900841940 /* system_words_bg@2x.png */; };
-		A461B652174CBAA70088B061 /* word_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14191697DBA900841940 /* word_bg@2x.png */; };
 		A461B653174CBAA70088B061 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		A461B654174CBAA70088B061 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		A461B655174CBAA70088B061 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
-		A461B656174CBAA70088B061 /* add_new_word_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */; };
-		A461B657174CBAA70088B061 /* all_my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147F169A776700841940 /* all_my_words_bg@2x.png */; };
-		A461B658174CBAA70088B061 /* all_my_words_seprator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */; };
-		A461B659174CBAA70088B061 /* close_all_my_words_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */; };
 		A461B65A174CBAA70088B061 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
 		A461B65B174CBAA70088B061 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
 		A461B65C174CBAA70088B061 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
@@ -1504,10 +1495,6 @@
 		A461B70D174CBAA70088B061 /* paint_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D416316D602A8006A0AA3 /* paint_bg@2x.png */; };
 		A461B70E174CBAA70088B061 /* paint_name_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C21D416416D602A8006A0AA3 /* paint_name_bg@2x.jpg */; };
 		A461B710174CBAA70088B061 /* frames.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CECF16D8A2A6004AC167 /* frames.pb */; };
-		A461B711174CBAA70088B061 /* select_word_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3216DB63FE00F04872 /* select_word_header@2x.png */; };
-		A461B712174CBAA70088B061 /* all_my_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3316DB63FE00F04872 /* all_my_words_bg@2x.jpg */; };
-		A461B713174CBAA70088B061 /* all_my_words_table_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3416DB63FE00F04872 /* all_my_words_table_bg@2x.png */; };
-		A461B714174CBAA70088B061 /* selected_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3516DB63FE00F04872 /* selected_words_bg@2x.jpg */; };
 		A461B715174CBAA70088B061 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		A461B716174CBAA70088B061 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		A461B71D174CBAA70088B061 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
@@ -2147,23 +2134,14 @@
 		A4DC4EA5175C44EA00CB5841 /* SingImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DC4EA3175C44EA00CB5841 /* SingImageManager.m */; };
 		A4DE140F1697DB7B00841940 /* hot_word.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4DE140E1697DB7B00841940 /* hot_word.pb */; };
 		A4DE141B1697DBA900841940 /* hot_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14111697DBA900841940 /* hot_words_bg@2x.png */; };
-		A4DE141C1697DBA900841940 /* load_from_draft_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */; };
 		A4DE141D1697DBA900841940 /* more_words_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14131697DBA900841940 /* more_words_btn@2x.png */; };
 		A4DE141E1697DBA900841940 /* my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14141697DBA900841940 /* my_words_bg@2x.png */; };
-		A4DE141F1697DBA900841940 /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
-		A4DE14201697DBA900841940 /* select_word_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14161697DBA900841940 /* select_word_cell_bg@2x.png */; };
-		A4DE14211697DBA900841940 /* selected_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14171697DBA900841940 /* selected_words_bg@2x.png */; };
 		A4DE14221697DBA900841940 /* system_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14181697DBA900841940 /* system_words_bg@2x.png */; };
-		A4DE14231697DBA900841940 /* word_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14191697DBA900841940 /* word_bg@2x.png */; };
 		A4DE142C1697DBC000841940 /* SelectHotWordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE14261697DBC000841940 /* SelectHotWordController.m */; };
 		A4DE142D1697DBC000841940 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		A4DE142F1697DBC000841940 /* WordSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE142A1697DBC000841940 /* WordSelectCell.m */; };
 		A4DE14301697DBC000841940 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
-		A4DE1482169A776700841940 /* add_new_word_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */; };
-		A4DE1483169A776700841940 /* all_my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147F169A776700841940 /* all_my_words_bg@2x.png */; };
-		A4DE1484169A776700841940 /* all_my_words_seprator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */; };
-		A4DE1485169A776700841940 /* close_all_my_words_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */; };
 		A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
 		A4DE148D169AB41C00841940 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
 		A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
@@ -2373,10 +2351,6 @@
 		C244DA2616B25304004F0F8C /* draw_tab_right_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C244DA1716B25304004F0F8C /* draw_tab_right_selected@2x.png */; };
 		C244DA2716B25304004F0F8C /* draw_tab_right_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C244DA1816B25304004F0F8C /* draw_tab_right_unselected@2x.png */; };
 		C246F3581577633B003C284F /* LevelService.m in Sources */ = {isa = PBXBuildFile; fileRef = C246F3571577633B003C284F /* LevelService.m */; };
-		C24A0F3616DB63FE00F04872 /* select_word_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3216DB63FE00F04872 /* select_word_header@2x.png */; };
-		C24A0F3816DB63FE00F04872 /* all_my_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3316DB63FE00F04872 /* all_my_words_bg@2x.jpg */; };
-		C24A0F3A16DB63FE00F04872 /* all_my_words_table_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3416DB63FE00F04872 /* all_my_words_table_bg@2x.png */; };
-		C24A0F3C16DB63FE00F04872 /* selected_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3516DB63FE00F04872 /* selected_words_bg@2x.jpg */; };
 		C24E621816BF6575003132E6 /* common_round_avatar_waiting_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24E621716BF6575003132E6 /* common_round_avatar_waiting_user@2x.png */; };
 		C250787716F710B7009B7ED2 /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C250787516F710B7009B7ED2 /* UserDetailViewController.m */; };
 		C250787B16F710B7009B7ED2 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C250787616F710B7009B7ED2 /* UserDetailViewController.xib */; };
@@ -3666,21 +3640,12 @@
 		C28A9F2A1738F04B007A819F /* unloadbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF45D1697C94E004ABCFA /* unloadbg@2x.png */; };
 		C28A9F2B1738F04B007A819F /* hot_word.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4DE140E1697DB7B00841940 /* hot_word.pb */; };
 		C28A9F2C1738F04B007A819F /* hot_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14111697DBA900841940 /* hot_words_bg@2x.png */; };
-		C28A9F2D1738F04B007A819F /* load_from_draft_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */; };
 		C28A9F2E1738F04B007A819F /* more_words_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14131697DBA900841940 /* more_words_btn@2x.png */; };
 		C28A9F2F1738F04B007A819F /* my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14141697DBA900841940 /* my_words_bg@2x.png */; };
-		C28A9F301738F04B007A819F /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
-		C28A9F311738F04B007A819F /* select_word_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14161697DBA900841940 /* select_word_cell_bg@2x.png */; };
-		C28A9F321738F04B007A819F /* selected_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14171697DBA900841940 /* selected_words_bg@2x.png */; };
 		C28A9F331738F04B007A819F /* system_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14181697DBA900841940 /* system_words_bg@2x.png */; };
-		C28A9F341738F04B007A819F /* word_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14191697DBA900841940 /* word_bg@2x.png */; };
 		C28A9F351738F04B007A819F /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		C28A9F361738F04B007A819F /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		C28A9F371738F04B007A819F /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
-		C28A9F381738F04B007A819F /* add_new_word_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */; };
-		C28A9F391738F04B007A819F /* all_my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147F169A776700841940 /* all_my_words_bg@2x.png */; };
-		C28A9F3A1738F04B007A819F /* all_my_words_seprator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */; };
-		C28A9F3B1738F04B007A819F /* close_all_my_words_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */; };
 		C28A9F3C1738F04B007A819F /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
 		C28A9F3D1738F04B007A819F /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
 		C28A9F3E1738F04B007A819F /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
@@ -3831,10 +3796,6 @@
 		C28A9FEF1738F04B007A819F /* paint_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D416316D602A8006A0AA3 /* paint_bg@2x.png */; };
 		C28A9FF01738F04B007A819F /* paint_name_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C21D416416D602A8006A0AA3 /* paint_name_bg@2x.jpg */; };
 		C28A9FF21738F04B007A819F /* frames.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CECF16D8A2A6004AC167 /* frames.pb */; };
-		C28A9FF31738F04B007A819F /* select_word_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3216DB63FE00F04872 /* select_word_header@2x.png */; };
-		C28A9FF41738F04B007A819F /* all_my_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3316DB63FE00F04872 /* all_my_words_bg@2x.jpg */; };
-		C28A9FF51738F04B007A819F /* all_my_words_table_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3416DB63FE00F04872 /* all_my_words_table_bg@2x.png */; };
-		C28A9FF61738F04B007A819F /* selected_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3516DB63FE00F04872 /* selected_words_bg@2x.jpg */; };
 		C28A9FF71738F04B007A819F /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		C28A9FF81738F04B007A819F /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		C28A9FFF1738F04B007A819F /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
@@ -6991,21 +6952,12 @@
 		EA411D72176066F500DA72D0 /* unloadbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA1BF45D1697C94E004ABCFA /* unloadbg@2x.png */; };
 		EA411D73176066F500DA72D0 /* hot_word.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4DE140E1697DB7B00841940 /* hot_word.pb */; };
 		EA411D74176066F500DA72D0 /* hot_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14111697DBA900841940 /* hot_words_bg@2x.png */; };
-		EA411D75176066F500DA72D0 /* load_from_draft_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */; };
 		EA411D76176066F500DA72D0 /* more_words_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14131697DBA900841940 /* more_words_btn@2x.png */; };
 		EA411D77176066F500DA72D0 /* my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14141697DBA900841940 /* my_words_bg@2x.png */; };
-		EA411D78176066F500DA72D0 /* select_word_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */; };
-		EA411D79176066F500DA72D0 /* select_word_cell_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14161697DBA900841940 /* select_word_cell_bg@2x.png */; };
-		EA411D7A176066F500DA72D0 /* selected_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14171697DBA900841940 /* selected_words_bg@2x.png */; };
 		EA411D7B176066F500DA72D0 /* system_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14181697DBA900841940 /* system_words_bg@2x.png */; };
-		EA411D7C176066F500DA72D0 /* word_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14191697DBA900841940 /* word_bg@2x.png */; };
 		EA411D7D176066F500DA72D0 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		EA411D7E176066F500DA72D0 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		EA411D7F176066F500DA72D0 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
-		EA411D80176066F500DA72D0 /* add_new_word_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */; };
-		EA411D81176066F500DA72D0 /* all_my_words_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE147F169A776700841940 /* all_my_words_bg@2x.png */; };
-		EA411D82176066F500DA72D0 /* all_my_words_seprator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */; };
-		EA411D83176066F500DA72D0 /* close_all_my_words_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */; };
 		EA411D84176066F500DA72D0 /* SelectCustomWordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */; };
 		EA411D85176066F500DA72D0 /* SelectCustomWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE148E169ABF0000841940 /* SelectCustomWordCell~ipad.xib */; };
 		EA411D86176066F500DA72D0 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
@@ -7156,10 +7108,6 @@
 		EA411E37176066F500DA72D0 /* paint_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C21D416316D602A8006A0AA3 /* paint_bg@2x.png */; };
 		EA411E38176066F500DA72D0 /* paint_name_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C21D416416D602A8006A0AA3 /* paint_name_bg@2x.jpg */; };
 		EA411E3A176066F500DA72D0 /* frames.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4A0CECF16D8A2A6004AC167 /* frames.pb */; };
-		EA411E3B176066F500DA72D0 /* select_word_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3216DB63FE00F04872 /* select_word_header@2x.png */; };
-		EA411E3C176066F500DA72D0 /* all_my_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3316DB63FE00F04872 /* all_my_words_bg@2x.jpg */; };
-		EA411E3D176066F500DA72D0 /* all_my_words_table_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3416DB63FE00F04872 /* all_my_words_table_bg@2x.png */; };
-		EA411E3E176066F500DA72D0 /* selected_words_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C24A0F3516DB63FE00F04872 /* selected_words_bg@2x.jpg */; };
 		EA411E3F176066F500DA72D0 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		EA411E40176066F500DA72D0 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
 		EA411E45176066F500DA72D0 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
@@ -8169,14 +8117,9 @@
 		A4DC4EA3175C44EA00CB5841 /* SingImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingImageManager.m; sourceTree = "<group>"; };
 		A4DE140E1697DB7B00841940 /* hot_word.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = hot_word.pb; sourceTree = "<group>"; };
 		A4DE14111697DBA900841940 /* hot_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot_words_bg@2x.png"; sourceTree = "<group>"; };
-		A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "load_from_draft_btn@2x.png"; sourceTree = "<group>"; };
 		A4DE14131697DBA900841940 /* more_words_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more_words_btn@2x.png"; sourceTree = "<group>"; };
 		A4DE14141697DBA900841940 /* my_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my_words_bg@2x.png"; sourceTree = "<group>"; };
-		A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_word_back_btn@2x.png"; sourceTree = "<group>"; };
-		A4DE14161697DBA900841940 /* select_word_cell_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_word_cell_bg@2x.png"; sourceTree = "<group>"; };
-		A4DE14171697DBA900841940 /* selected_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_words_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE14181697DBA900841940 /* system_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "system_words_bg@2x.png"; sourceTree = "<group>"; };
-		A4DE14191697DBA900841940 /* word_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "word_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE14251697DBC000841940 /* SelectHotWordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectHotWordController.h; sourceTree = "<group>"; };
 		A4DE14261697DBC000841940 /* SelectHotWordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectHotWordController.m; sourceTree = "<group>"; };
 		A4DE14271697DBC000841940 /* SelectHotWordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectHotWordController.xib; sourceTree = "<group>"; };
@@ -8184,10 +8127,6 @@
 		A4DE14291697DBC000841940 /* WordSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSelectCell.h; sourceTree = "<group>"; };
 		A4DE142A1697DBC000841940 /* WordSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSelectCell.m; sourceTree = "<group>"; };
 		A4DE142B1697DBC000841940 /* WordSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordSelectCell.xib; sourceTree = "<group>"; };
-		A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_new_word_btn_bg@2x.png"; sourceTree = "<group>"; };
-		A4DE147F169A776700841940 /* all_my_words_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_my_words_bg@2x.png"; sourceTree = "<group>"; };
-		A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_my_words_seprator@2x.png"; sourceTree = "<group>"; };
-		A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_all_my_words_btn_bg@2x.png"; sourceTree = "<group>"; };
 		A4DE1489169AB1B000841940 /* SelectCustomWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCustomWordCell.h; sourceTree = "<group>"; };
 		A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomWordCell.m; sourceTree = "<group>"; };
 		A4DE148C169AB41800841940 /* SelectCustomWordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCustomWordCell.xib; sourceTree = "<group>"; };
@@ -8383,10 +8322,6 @@
 		C244DA1816B25304004F0F8C /* draw_tab_right_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_tab_right_unselected@2x.png"; sourceTree = "<group>"; };
 		C246F3561577633B003C284F /* LevelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelService.h; sourceTree = "<group>"; };
 		C246F3571577633B003C284F /* LevelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelService.m; sourceTree = "<group>"; };
-		C24A0F3216DB63FE00F04872 /* select_word_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_word_header@2x.png"; sourceTree = "<group>"; };
-		C24A0F3316DB63FE00F04872 /* all_my_words_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "all_my_words_bg@2x.jpg"; sourceTree = "<group>"; };
-		C24A0F3416DB63FE00F04872 /* all_my_words_table_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "all_my_words_table_bg@2x.png"; sourceTree = "<group>"; };
-		C24A0F3516DB63FE00F04872 /* selected_words_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "selected_words_bg@2x.jpg"; sourceTree = "<group>"; };
 		C24E621716BF6575003132E6 /* common_round_avatar_waiting_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "common_round_avatar_waiting_user@2x.png"; sourceTree = "<group>"; };
 		C250787416F710B7009B7ED2 /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		C250787516F710B7009B7ED2 /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
@@ -12120,24 +12055,11 @@
 		A4DE14101697DBA900841940 /* wordSelected */ = {
 			isa = PBXGroup;
 			children = (
-				C24A0F3216DB63FE00F04872 /* select_word_header@2x.png */,
-				C24A0F3316DB63FE00F04872 /* all_my_words_bg@2x.jpg */,
-				C24A0F3416DB63FE00F04872 /* all_my_words_table_bg@2x.png */,
-				C24A0F3516DB63FE00F04872 /* selected_words_bg@2x.jpg */,
 				A4FA546516A6823A001883CC /* plus_image@2x.png */,
-				A4DE147E169A776700841940 /* add_new_word_btn_bg@2x.png */,
-				A4DE147F169A776700841940 /* all_my_words_bg@2x.png */,
-				A4DE1480169A776700841940 /* all_my_words_seprator@2x.png */,
-				A4DE1481169A776700841940 /* close_all_my_words_btn_bg@2x.png */,
 				A4DE14111697DBA900841940 /* hot_words_bg@2x.png */,
-				A4DE14121697DBA900841940 /* load_from_draft_btn@2x.png */,
 				A4DE14131697DBA900841940 /* more_words_btn@2x.png */,
 				A4DE14141697DBA900841940 /* my_words_bg@2x.png */,
-				A4DE14151697DBA900841940 /* select_word_back_btn@2x.png */,
-				A4DE14161697DBA900841940 /* select_word_cell_bg@2x.png */,
-				A4DE14171697DBA900841940 /* selected_words_bg@2x.png */,
 				A4DE14181697DBA900841940 /* system_words_bg@2x.png */,
-				A4DE14191697DBA900841940 /* word_bg@2x.png */,
 			);
 			path = wordSelected;
 			sourceTree = "<group>";
@@ -18608,21 +18530,12 @@
 				A461B648174CBAA70088B061 /* unloadbg@2x.png in Resources */,
 				A461B649174CBAA70088B061 /* hot_word.pb in Resources */,
 				A461B64A174CBAA70088B061 /* hot_words_bg@2x.png in Resources */,
-				A461B64B174CBAA70088B061 /* load_from_draft_btn@2x.png in Resources */,
 				A461B64C174CBAA70088B061 /* more_words_btn@2x.png in Resources */,
 				A461B64D174CBAA70088B061 /* my_words_bg@2x.png in Resources */,
-				A461B64E174CBAA70088B061 /* select_word_back_btn@2x.png in Resources */,
-				A461B64F174CBAA70088B061 /* select_word_cell_bg@2x.png in Resources */,
-				A461B650174CBAA70088B061 /* selected_words_bg@2x.png in Resources */,
 				A461B651174CBAA70088B061 /* system_words_bg@2x.png in Resources */,
-				A461B652174CBAA70088B061 /* word_bg@2x.png in Resources */,
 				A461B653174CBAA70088B061 /* SelectHotWordController.xib in Resources */,
 				A461B654174CBAA70088B061 /* SelectHotWordController~ipad.xib in Resources */,
 				A461B655174CBAA70088B061 /* WordSelectCell.xib in Resources */,
-				A461B656174CBAA70088B061 /* add_new_word_btn_bg@2x.png in Resources */,
-				A461B657174CBAA70088B061 /* all_my_words_bg@2x.png in Resources */,
-				A461B658174CBAA70088B061 /* all_my_words_seprator@2x.png in Resources */,
-				A461B659174CBAA70088B061 /* close_all_my_words_btn_bg@2x.png in Resources */,
 				A461B65A174CBAA70088B061 /* SelectCustomWordCell.xib in Resources */,
 				A461B65B174CBAA70088B061 /* SelectCustomWordCell~ipad.xib in Resources */,
 				A461B65C174CBAA70088B061 /* DrawPro-Info.plist in Resources */,
@@ -18773,10 +18686,6 @@
 				A461B70D174CBAA70088B061 /* paint_bg@2x.png in Resources */,
 				A461B70E174CBAA70088B061 /* paint_name_bg@2x.jpg in Resources */,
 				A461B710174CBAA70088B061 /* frames.pb in Resources */,
-				A461B711174CBAA70088B061 /* select_word_header@2x.png in Resources */,
-				A461B712174CBAA70088B061 /* all_my_words_bg@2x.jpg in Resources */,
-				A461B713174CBAA70088B061 /* all_my_words_table_bg@2x.png in Resources */,
-				A461B714174CBAA70088B061 /* selected_words_bg@2x.jpg in Resources */,
 				A461B715174CBAA70088B061 /* ShapeBox.xib in Resources */,
 				A461B716174CBAA70088B061 /* ShapeBox~ipad.xib in Resources */,
 				A461B71D174CBAA70088B061 /* Draw-Info.plist in Resources */,
@@ -19669,21 +19578,12 @@
 				C28A9F2A1738F04B007A819F /* unloadbg@2x.png in Resources */,
 				C28A9F2B1738F04B007A819F /* hot_word.pb in Resources */,
 				C28A9F2C1738F04B007A819F /* hot_words_bg@2x.png in Resources */,
-				C28A9F2D1738F04B007A819F /* load_from_draft_btn@2x.png in Resources */,
 				C28A9F2E1738F04B007A819F /* more_words_btn@2x.png in Resources */,
 				C28A9F2F1738F04B007A819F /* my_words_bg@2x.png in Resources */,
-				C28A9F301738F04B007A819F /* select_word_back_btn@2x.png in Resources */,
-				C28A9F311738F04B007A819F /* select_word_cell_bg@2x.png in Resources */,
-				C28A9F321738F04B007A819F /* selected_words_bg@2x.png in Resources */,
 				C28A9F331738F04B007A819F /* system_words_bg@2x.png in Resources */,
-				C28A9F341738F04B007A819F /* word_bg@2x.png in Resources */,
 				C28A9F351738F04B007A819F /* SelectHotWordController.xib in Resources */,
 				C28A9F361738F04B007A819F /* SelectHotWordController~ipad.xib in Resources */,
 				C28A9F371738F04B007A819F /* WordSelectCell.xib in Resources */,
-				C28A9F381738F04B007A819F /* add_new_word_btn_bg@2x.png in Resources */,
-				C28A9F391738F04B007A819F /* all_my_words_bg@2x.png in Resources */,
-				C28A9F3A1738F04B007A819F /* all_my_words_seprator@2x.png in Resources */,
-				C28A9F3B1738F04B007A819F /* close_all_my_words_btn_bg@2x.png in Resources */,
 				C28A9F3C1738F04B007A819F /* SelectCustomWordCell.xib in Resources */,
 				C28A9F3D1738F04B007A819F /* SelectCustomWordCell~ipad.xib in Resources */,
 				C28A9F3E1738F04B007A819F /* DrawPro-Info.plist in Resources */,
@@ -19834,10 +19734,6 @@
 				C28A9FEF1738F04B007A819F /* paint_bg@2x.png in Resources */,
 				C28A9FF01738F04B007A819F /* paint_name_bg@2x.jpg in Resources */,
 				C28A9FF21738F04B007A819F /* frames.pb in Resources */,
-				C28A9FF31738F04B007A819F /* select_word_header@2x.png in Resources */,
-				C28A9FF41738F04B007A819F /* all_my_words_bg@2x.jpg in Resources */,
-				C28A9FF51738F04B007A819F /* all_my_words_table_bg@2x.png in Resources */,
-				C28A9FF61738F04B007A819F /* selected_words_bg@2x.jpg in Resources */,
 				C28A9FF71738F04B007A819F /* ShapeBox.xib in Resources */,
 				C28A9FF81738F04B007A819F /* ShapeBox~ipad.xib in Resources */,
 				C28A9FFF1738F04B007A819F /* Draw-Info.plist in Resources */,
@@ -20716,21 +20612,12 @@
 				CA1BF45E1697C94E004ABCFA /* unloadbg@2x.png in Resources */,
 				A4DE140F1697DB7B00841940 /* hot_word.pb in Resources */,
 				A4DE141B1697DBA900841940 /* hot_words_bg@2x.png in Resources */,
-				A4DE141C1697DBA900841940 /* load_from_draft_btn@2x.png in Resources */,
 				A4DE141D1697DBA900841940 /* more_words_btn@2x.png in Resources */,
 				A4DE141E1697DBA900841940 /* my_words_bg@2x.png in Resources */,
-				A4DE141F1697DBA900841940 /* select_word_back_btn@2x.png in Resources */,
-				A4DE14201697DBA900841940 /* select_word_cell_bg@2x.png in Resources */,
-				A4DE14211697DBA900841940 /* selected_words_bg@2x.png in Resources */,
 				A4DE14221697DBA900841940 /* system_words_bg@2x.png in Resources */,
-				A4DE14231697DBA900841940 /* word_bg@2x.png in Resources */,
 				A4DE142D1697DBC000841940 /* SelectHotWordController.xib in Resources */,
 				A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */,
 				A4DE14301697DBC000841940 /* WordSelectCell.xib in Resources */,
-				A4DE1482169A776700841940 /* add_new_word_btn_bg@2x.png in Resources */,
-				A4DE1483169A776700841940 /* all_my_words_bg@2x.png in Resources */,
-				A4DE1484169A776700841940 /* all_my_words_seprator@2x.png in Resources */,
-				A4DE1485169A776700841940 /* close_all_my_words_btn_bg@2x.png in Resources */,
 				A4DE148D169AB41C00841940 /* SelectCustomWordCell.xib in Resources */,
 				A4DE148F169ABF0400841940 /* SelectCustomWordCell~ipad.xib in Resources */,
 				CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */,
@@ -20881,10 +20768,6 @@
 				C21D416916D602A8006A0AA3 /* paint_bg@2x.png in Resources */,
 				C21D416D16D602A8006A0AA3 /* paint_name_bg@2x.jpg in Resources */,
 				A4A0CED016D8A2A6004AC167 /* frames.pb in Resources */,
-				C24A0F3616DB63FE00F04872 /* select_word_header@2x.png in Resources */,
-				C24A0F3816DB63FE00F04872 /* all_my_words_bg@2x.jpg in Resources */,
-				C24A0F3A16DB63FE00F04872 /* all_my_words_table_bg@2x.png in Resources */,
-				C24A0F3C16DB63FE00F04872 /* selected_words_bg@2x.jpg in Resources */,
 				CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */,
 				CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */,
 				A454207816E060BA0073A431 /* Draw-Info.plist in Resources */,
@@ -21734,21 +21617,12 @@
 				EA411D72176066F500DA72D0 /* unloadbg@2x.png in Resources */,
 				EA411D73176066F500DA72D0 /* hot_word.pb in Resources */,
 				EA411D74176066F500DA72D0 /* hot_words_bg@2x.png in Resources */,
-				EA411D75176066F500DA72D0 /* load_from_draft_btn@2x.png in Resources */,
 				EA411D76176066F500DA72D0 /* more_words_btn@2x.png in Resources */,
 				EA411D77176066F500DA72D0 /* my_words_bg@2x.png in Resources */,
-				EA411D78176066F500DA72D0 /* select_word_back_btn@2x.png in Resources */,
-				EA411D79176066F500DA72D0 /* select_word_cell_bg@2x.png in Resources */,
-				EA411D7A176066F500DA72D0 /* selected_words_bg@2x.png in Resources */,
 				EA411D7B176066F500DA72D0 /* system_words_bg@2x.png in Resources */,
-				EA411D7C176066F500DA72D0 /* word_bg@2x.png in Resources */,
 				EA411D7D176066F500DA72D0 /* SelectHotWordController.xib in Resources */,
 				EA411D7E176066F500DA72D0 /* SelectHotWordController~ipad.xib in Resources */,
 				EA411D7F176066F500DA72D0 /* WordSelectCell.xib in Resources */,
-				EA411D80176066F500DA72D0 /* add_new_word_btn_bg@2x.png in Resources */,
-				EA411D81176066F500DA72D0 /* all_my_words_bg@2x.png in Resources */,
-				EA411D82176066F500DA72D0 /* all_my_words_seprator@2x.png in Resources */,
-				EA411D83176066F500DA72D0 /* close_all_my_words_btn_bg@2x.png in Resources */,
 				EA411D84176066F500DA72D0 /* SelectCustomWordCell.xib in Resources */,
 				EA411D85176066F500DA72D0 /* SelectCustomWordCell~ipad.xib in Resources */,
 				EA411D86176066F500DA72D0 /* DrawPro-Info.plist in Resources */,
@@ -21899,10 +21773,6 @@
 				EA411E37176066F500DA72D0 /* paint_bg@2x.png in Resources */,
 				EA411E38176066F500DA72D0 /* paint_name_bg@2x.jpg in Resources */,
 				EA411E3A176066F500DA72D0 /* frames.pb in Resources */,
-				EA411E3B176066F500DA72D0 /* select_word_header@2x.png in Resources */,
-				EA411E3C176066F500DA72D0 /* all_my_words_bg@2x.jpg in Resources */,
-				EA411E3D176066F500DA72D0 /* all_my_words_table_bg@2x.png in Resources */,
-				EA411E3E176066F500DA72D0 /* selected_words_bg@2x.jpg in Resources */,
 				EA411E3F176066F500DA72D0 /* ShapeBox.xib in Resources */,
 				EA411E40176066F500DA72D0 /* ShapeBox~ipad.xib in Resources */,
 				EA411E45176066F500DA72D0 /* Draw-Info.plist in Resources */,
