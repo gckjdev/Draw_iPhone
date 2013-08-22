@@ -102,6 +102,18 @@
 		A440354E17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */; };
 		A440354F17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */; };
 		A440355017C5A9C900301EDD /* LocalNotificationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */; };
+		A440355717C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355617C5C6CF00301EDD /* GuessModesController~ipad.xib */; };
+		A440355817C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355617C5C6CF00301EDD /* GuessModesController~ipad.xib */; };
+		A440355917C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355617C5C6CF00301EDD /* GuessModesController~ipad.xib */; };
+		A440355A17C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355617C5C6CF00301EDD /* GuessModesController~ipad.xib */; };
+		A440355D17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355B17C5C96B00301EDD /* GuessSelectCell~ipad.xib */; };
+		A440355E17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355B17C5C96B00301EDD /* GuessSelectCell~ipad.xib */; };
+		A440355F17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355B17C5C96B00301EDD /* GuessSelectCell~ipad.xib */; };
+		A440356017C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355B17C5C96B00301EDD /* GuessSelectCell~ipad.xib */; };
+		A440356117C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355C17C5C96B00301EDD /* GuessSelectController~ipad.xib */; };
+		A440356217C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355C17C5C96B00301EDD /* GuessSelectController~ipad.xib */; };
+		A440356317C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355C17C5C96B00301EDD /* GuessSelectController~ipad.xib */; };
+		A440356417C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440355C17C5C96B00301EDD /* GuessSelectController~ipad.xib */; };
 		A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44B48FD1713EFAC00404D73 /* iap_product_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
@@ -7614,6 +7626,9 @@
 		A43E85F216227E06003A57F1 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		A440354B17C5A9C900301EDD /* LocalNotificationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationUtil.h; sourceTree = "<group>"; };
 		A440354C17C5A9C900301EDD /* LocalNotificationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationUtil.m; sourceTree = "<group>"; };
+		A440355617C5C6CF00301EDD /* GuessModesController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessModesController~ipad.xib"; sourceTree = "<group>"; };
+		A440355B17C5C96B00301EDD /* GuessSelectCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessSelectCell~ipad.xib"; sourceTree = "<group>"; };
+		A440355C17C5C96B00301EDD /* GuessSelectController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessSelectController~ipad.xib"; sourceTree = "<group>"; };
 		A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		A44B38A4171CFE13001968E2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Draw.pb; sourceTree = "<group>"; };
@@ -11533,6 +11548,8 @@
 		A49971F9177831E100B01EBE /* Guess */ = {
 			isa = PBXGroup;
 			children = (
+				A440355B17C5C96B00301EDD /* GuessSelectCell~ipad.xib */,
+				A440355C17C5C96B00301EDD /* GuessSelectController~ipad.xib */,
 				A4E1D21617B2236800E13728 /* GuessSelectCell.h */,
 				A4E1D21717B2236800E13728 /* GuessSelectCell.m */,
 				A4E1D21817B2236800E13728 /* GuessSelectCell.xib */,
@@ -11542,6 +11559,7 @@
 				A4B789AA179E2F120008E21B /* GuessModesController.h */,
 				A4B789AB179E2F120008E21B /* GuessModesController.m */,
 				A4B789AC179E2F120008E21B /* GuessModesController.xib */,
+				A440355617C5C6CF00301EDD /* GuessModesController~ipad.xib */,
 				A4B789AD179E2F120008E21B /* GuessSelectController.h */,
 				A4B789AE179E2F120008E21B /* GuessSelectController.m */,
 				A4B789AF179E2F120008E21B /* GuessSelectController.xib */,
@@ -19075,6 +19093,9 @@
 				CAC3EDD017C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
 				CA8C472217C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472617C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
+				A440355917C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */,
+				A440355F17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */,
+				A440356317C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20105,6 +20126,9 @@
 				CAC3EDCF17C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
 				CA8C472117C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472517C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
+				A440355817C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */,
+				A440355E17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */,
+				A440356217C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21124,6 +21148,9 @@
 				CAC3EDCE17C201A20098E168 /* draw_up_panel_help_btn_@2x.png in Resources */,
 				CA8C472017C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472417C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
+				A440355717C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */,
+				A440355D17C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */,
+				A440356117C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22078,6 +22105,9 @@
 				CA8C471217C2214A00BA6A15 /* ToolUpPanel.xib in Resources */,
 				CA8C472317C3403A00BA6A15 /* draw_canvas_bg_selected@2x.png in Resources */,
 				CA8C472717C3403A00BA6A15 /* draw_grid_selected@2x.png in Resources */,
+				A440355A17C5C6CF00301EDD /* GuessModesController~ipad.xib in Resources */,
+				A440356017C5C96B00301EDD /* GuessSelectCell~ipad.xib in Resources */,
+				A440356417C5C96B00301EDD /* GuessSelectController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
