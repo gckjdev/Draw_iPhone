@@ -126,6 +126,10 @@
 		A440357117C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */; };
 		A440357217C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */; };
 		A440357317C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */; };
+		A440357517C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
+		A440357617C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
+		A440357717C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
+		A440357817C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
 		A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44B48FD1713EFAC00404D73 /* iap_product_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
@@ -5628,10 +5632,10 @@
 		CAFC036E17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
 		CAFC036F17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
 		CAFC037017C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
-		CAFC039317C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
-		CAFC039417C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
-		CAFC039517C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
-		CAFC039617C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
+		CAFC03A017C62B9700A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC039F17C62B9700A11DE3 /* contest_report@2x.png */; };
+		CAFC03A117C62B9700A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC039F17C62B9700A11DE3 /* contest_report@2x.png */; };
+		CAFC03A217C62B9700A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC039F17C62B9700A11DE3 /* contest_report@2x.png */; };
+		CAFC03A317C62B9700A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC039F17C62B9700A11DE3 /* contest_report@2x.png */; };
 		CAFCAAB816BF520F00641A85 /* input_alert_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */; };
 		CAFCAAC016BF520F00641A85 /* input_alert_uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */; };
 		CAFCAACA16BF589000641A85 /* input_alert_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */; };
@@ -7648,6 +7652,7 @@
 		A440356517C5CC9700301EDD /* DrawGuessController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawGuessController~ipad.xib"; sourceTree = "<group>"; };
 		A440356617C5CC9700301EDD /* GuessRankCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessRankCell~ipad.xib"; sourceTree = "<group>"; };
 		A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessRankListController~ipad.xib"; sourceTree = "<group>"; };
+		A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WordSelectCell~ipad.xib"; sourceTree = "<group>"; };
 		A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		A44B38A4171CFE13001968E2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Draw.pb; sourceTree = "<group>"; };
@@ -10351,7 +10356,7 @@
 		CAF9B71616AA3E9B00865CCE /* CurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurvePen.m; sourceTree = "<group>"; };
 		CAFC036B17C4CAA100A11DE3 /* ChangePageBGCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePageBGCommand.h; sourceTree = "<group>"; };
 		CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePageBGCommand.m; sourceTree = "<group>"; };
-		CAFC038A17C6159300A11DE3 /* contest_report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contest_report@2x.png"; sourceTree = "<group>"; };
+		CAFC039F17C62B9700A11DE3 /* contest_report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contest_report@2x.png"; sourceTree = "<group>"; };
 		CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_check@2x.png"; sourceTree = "<group>"; };
 		CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_uncheck@2x.png"; sourceTree = "<group>"; };
 		CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_close@2x.png"; sourceTree = "<group>"; };
@@ -14367,6 +14372,7 @@
 				A4DE14291697DBC000841940 /* WordSelectCell.h */,
 				A4DE142A1697DBC000841940 /* WordSelectCell.m */,
 				A4DE142B1697DBC000841940 /* WordSelectCell.xib */,
+				A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */,
 				CAA754BA150A02EA00B9391E /* SelectWordController.h */,
 				CAA754BB150A02EA00B9391E /* SelectWordController.m */,
 				CAA754BC150A02EA00B9391E /* SelectWordController.xib */,
@@ -15724,7 +15730,7 @@
 		CA7D4223168D7588009F43F7 /* contest */ = {
 			isa = PBXGroup;
 			children = (
-				CAFC038A17C6159300A11DE3 /* contest_report@2x.png */,
+				CAFC039F17C62B9700A11DE3 /* contest_report@2x.png */,
 				CA7D4224168D7588009F43F7 /* contest_agree@2x.png */,
 				CA7D4225168D7588009F43F7 /* contest_bg@2x.png */,
 				CA7D4226168D7588009F43F7 /* contest_detail@2x.png */,
@@ -19123,7 +19129,8 @@
 				A440356A17C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356E17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357217C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
-				CAFC039517C6159300A11DE3 /* contest_report@2x.png in Resources */,
+				A440357717C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
+				CAFC03A217C62B9700A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20160,7 +20167,8 @@
 				A440356917C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356D17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357117C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
-				CAFC039417C6159300A11DE3 /* contest_report@2x.png in Resources */,
+				A440357617C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
+				CAFC03A117C62B9700A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21186,7 +21194,8 @@
 				A440356817C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356C17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357017C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
-				CAFC039317C6159300A11DE3 /* contest_report@2x.png in Resources */,
+				A440357517C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
+				CAFC03A017C62B9700A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22147,7 +22156,8 @@
 				A440356B17C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356F17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357317C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
-				CAFC039617C6159300A11DE3 /* contest_report@2x.png in Resources */,
+				A440357817C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
+				CAFC03A317C62B9700A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

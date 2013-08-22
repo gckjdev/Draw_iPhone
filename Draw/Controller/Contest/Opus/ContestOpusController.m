@@ -16,6 +16,7 @@
 #import "Contest.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
+#import "FeedCell.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -71,6 +72,8 @@ typedef enum{
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
 }
 
 - (void)viewDidUnload
@@ -87,7 +90,10 @@ typedef enum{
 {
     NSInteger type = self.currentTab.tabID;
     
-    if (type == OpusTypeRank) {
+    if (type == OpusTypeReport){
+        return [FeedCell getCellHeight];
+    }
+    else if (type == OpusTypeRank) {
         if (indexPath.row == 0) {
             return [RankView heightForRankViewType:RankViewTypeFirst]+1;
         }else if(indexPath.row == 1){
@@ -194,10 +200,23 @@ typedef enum{
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     TableTab *tab = [self currentTab];
+
     if (tab.tabID == OpusTypeReport) {
+        
         //TODO update reportCell
-        return nil;
+        NSString *CellIdentifier = [FeedCell getCellIdentifier];
+        FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [FeedCell createCell:self];
+        }
+        cell.indexPath = indexPath;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+        [feed updateDesc];
+        [cell setCellInfo:feed];
+        return cell;
     }
     
     NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
@@ -319,6 +338,13 @@ typedef enum{
     if (tab) {
         if (tabID == OpusTypeReport) {
             //TODO get contest report
+            
+            [[FeedService defaultService] getContestCommentFeedList:self.contest.contestId
+                                                             offset:tab.offset
+                                                              limit:tab.limit
+                                                           delegate:self];
+             
+            
         }else{
             [[FeedService defaultService] getContestOpusList:tabID
                                                    contestId:self.contest.contestId
@@ -341,6 +367,20 @@ typedef enum{
         [self finishLoadDataForTabID:type resultList:feedList];
     }else{
         [self failLoadDataForTabID:type];
+    }
+}
+
+// for report feed list
+- (void)didGetFeedList:(NSArray *)feedList
+          feedListType:(FeedListType)type
+            resultCode:(NSInteger)resultCode
+{
+    PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:OpusTypeReport resultList:feedList];
+    }else{
+        [self failLoadDataForTabID:OpusTypeReport];
     }
 }
 
