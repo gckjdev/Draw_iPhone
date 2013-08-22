@@ -71,6 +71,8 @@ typedef enum{
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
 }
 
 - (void)viewDidUnload
