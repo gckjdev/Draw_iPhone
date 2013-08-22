@@ -99,12 +99,7 @@
                                targetUid:(NSString *)targetUid
                                    photo:(UIImage *)photo;
 
-/*
-+ (OfflineDrawViewController *)startDraw:(Word *)word fromController:(UIViewController*)fromController;
+- (void)setPageBGImage:(UIImage *)image;
 
-+ (OfflineDrawViewController *)startDraw:(Word *)word
-   fromController:(UIViewController*)fromController
-        targetUid:(NSString *)targetUid;
-*/
 @end
 

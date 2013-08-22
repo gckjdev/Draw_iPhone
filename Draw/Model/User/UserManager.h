@@ -195,6 +195,11 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)resetBbsBackground;
 - (UIImage*)bbsBackground;
 
+- (BOOL)setDrawBackground:(UIImage*)image;
+- (BOOL)resetDrawBackground;
+- (UIImage*)drawBackground;
+
+
 - (BOOL)canFeatureDrawOpus;
 - (void)setFeatureOpus:(NSInteger)flag;
 @end

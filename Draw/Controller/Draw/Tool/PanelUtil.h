@@ -18,6 +18,7 @@ typedef enum{
     DrawToolTypeCopy,
     DrawToolTypeDesc,
     DrawToolTypeDrawTo,
+    DrawToolTypePageBG,
     DrawToolTypeGrid,
     DrawToolTypeHelp,
     DrawToolTypeSubject,

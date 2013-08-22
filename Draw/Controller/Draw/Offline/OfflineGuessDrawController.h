@@ -94,6 +94,8 @@
 //+ (void)startOfflineGuess:(UIViewController *)fromController;
 + (OfflineGuessDrawController *)startOfflineGuess:(DrawFeed *)feed 
                                    fromController:(UIViewController *)fromController;
+
+
 @end
 
 

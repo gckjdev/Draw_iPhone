@@ -542,6 +542,11 @@
     }
 }
 
+- (void)initPageBG
+{
+    [self setPageBGImage:[[UserManager defaultManager] drawBackground]];
+}
+
 
 - (void)viewDidLoad
 {
@@ -550,17 +555,16 @@
     [self initDrawToolPanel];
     [self initWordLabel];
     [self initSubmitButton];
-//    _unDraftPaintCount = 0;
-//    _lastSaveTime = time(0);
+
     _isAutoSave = NO;               // set by Benson, disable this due to complicate multi-thread issue
 
     [self updateTargetFriend];
 
     [self initBgImage];
-    
+    [self initPageBG];
+
     [self initRecovery];
-    self.view.backgroundColor = [shareImageManager drawBGColor];
-    
+
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
@@ -1397,5 +1401,23 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
 {
     [self.layerPanelPopView dismissAnimated:YES];
     [self.upPanelPopView dismissAnimated:YES];
+}
+
+
+#define PAGE_BG_TAG 12802101
+- (void)setPageBGImage:(UIImage *)image
+{
+    UIImageView *iv = (id)[self.view viewWithTag:PAGE_BG_TAG];
+    if (iv == nil) {
+        iv = [[[UIImageView alloc] initWithFrame:self.view.bounds] autorelease];
+        iv.tag = PAGE_BG_TAG;
+        [self.view insertSubview:iv atIndex:0];
+    }
+    [iv setImage:image];
+    if (image) {
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+    }else{
+        self.view.backgroundColor = [shareImageManager drawBGColor];        
+    }
 }
 @end

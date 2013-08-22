@@ -1898,8 +1898,8 @@
 "kScrollToFirst" = "这已经是第一张了。";
 "kScrollToEnd" = "这已经是最后一张了。";
 
-"kBGLayer" = "背景层";
-"kMainLayer" = "主图层";
+"kBGLayer" = "描边层";
+"kMainLayer" = "上色层";
 "kNumLayerName" = "图层 %d";
 
 "kNewLayerName" = "图层";
@@ -1909,6 +1909,11 @@
 "kHiddenLayerCannotBeSelected" = "隐藏的图层不能设成当前图层。";
 "kRearchMaxLayerCount" = "对不起，不能再增加图层了。";
 
+"kDrawPen" = "笔";
+"kShape" = "形状";
+"kSelector" = "选择器";
+"kEraser" = "橡皮擦";
+"kChangePageBG" = "自定义背景";
 /*********************小吉画画国际化字符串结束 ************************/
 
 /*********************你唱我猜国际化字符串开始 ************************/

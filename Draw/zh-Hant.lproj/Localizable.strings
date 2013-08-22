@@ -1888,8 +1888,8 @@
 "kScrollToFirst" = "這已經是第壹張了。";
 "kScrollToEnd" = "這已經是最後壹張了。";
 
-"kBGLayer" = "背景層";
-"kMainLayer" = "主圖層";
+"kBGLayer" = "描邊層";
+"kMainLayer" = "上色層";
 "kNumLayerName" = "圖層 %d";
 
 "kNewLayerName" = "圖層";
@@ -1899,6 +1899,12 @@
 "kHiddenLayerCannotBeSelected" = "隱藏的圖層不能設成當前圖層。";
 "kRearchMaxLayerCount" = "對不起，不能再增加圖層了。";
 
+"kDrawPen" = "筆";
+"kShape" = "形狀";
+"kSelector" = "選擇器";
+"kEraser" = "橡皮擦";
+
+"kChangePageBG" = "自定義背景";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

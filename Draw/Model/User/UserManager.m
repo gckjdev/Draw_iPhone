@@ -21,7 +21,7 @@
 #import "PPSNSConstants.h"
 #import "BBSPermissionManager.h"
 #import "StorageManager.h"
-
+#import "UIImage+Scale.h"
 
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
@@ -1233,6 +1233,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 #define BBS_BG_IMAGE_KEY    @"bbs_bg.png"
 #define BBS_BG_DIR          @"BBS_BG"
+
 - (BOOL)setBbsBackground:(UIImage*)image
 {
     if (image) {
@@ -1254,6 +1255,52 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:BBS_BG_DIR] autorelease];
     return [manager imageForKey:BBS_BG_IMAGE_KEY];
 }
+
+#define DRAW_BG_IMAGE_KEY    @"draw_bg.png"
+#define DRAW_BG_DIR          @"DRAW_BG"
+
+- (BOOL)setDrawBackground:(UIImage*)image
+{
+    if (image) {
+        CGSize size = image.size;
+        size.width *= image.scale;
+        size.height *= image.scale;
+        CGFloat r = size.width / size.height;
+        BOOL  needScale = NO;
+        if (size.width > CGRectGetWidth([[UIScreen mainScreen] bounds])) {
+            size.width = CGRectGetWidth([[UIScreen mainScreen] bounds]);
+            size.height = size.width / r;
+            needScale = YES;
+        }
+        if(size.height > CGRectGetHeight([[UIScreen mainScreen] bounds])){
+            size.height = CGRectGetHeight([[UIScreen mainScreen] bounds]);
+            size.width = size.height * r;
+            needScale = YES;
+        }
+        if (needScale) {
+            image = [image scaleToSize:size];
+        }
+        StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_BG_DIR] autorelease];
+        return [manager saveImage:image forKey:DRAW_BG_IMAGE_KEY];
+    }
+    
+    return NO;
+}
+
+- (BOOL)resetDrawBackground
+{
+    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_BG_DIR] autorelease];
+    
+    return [manager removeDataForKey:DRAW_BG_IMAGE_KEY];
+}
+- (UIImage*)drawBackground
+{
+    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_BG_DIR] autorelease];
+    return [manager imageForKey:DRAW_BG_IMAGE_KEY];
+}
+
+
+
 
 - (int)deviceType
 {

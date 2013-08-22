@@ -154,6 +154,8 @@
         GameSessionUser *user = [session.userList objectAtIndex:0];
         self.selectedUserId = user.userId;
     }
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
