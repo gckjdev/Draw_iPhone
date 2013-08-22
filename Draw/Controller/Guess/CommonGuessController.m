@@ -110,7 +110,7 @@
     self.wordInputView.answerColor = [UIColor whiteColor];
     
     
-    [self.toolBoxButton setImage:UIThemeImageNamed(@"item_box@2x.png") forState:UIControlStateNormal];
+    [self.toolBoxButton setBackgroundImage:UIThemeImageNamed(@"item_box@2x.png") forState:UIControlStateNormal];
 }
 
 

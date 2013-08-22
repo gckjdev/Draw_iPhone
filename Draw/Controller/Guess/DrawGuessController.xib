@@ -98,42 +98,43 @@
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIButton" id="165006266">
-								<reference key="NSNextResponder" ref="981071703"/>
-								<int key="NSvFlags">301</int>
-								<string key="NSFrame">{{271, 0}, {37, 36}}</string>
-								<reference key="NSSuperview" ref="981071703"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="467558590"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="203971421"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">item_box@2x.png</string>
-								</object>
-								<reference key="IBUIFontDescription" ref="871507782"/>
-								<reference key="IBUIFont" ref="35660185"/>
-							</object>
 						</array>
 						<string key="NSFrame">{{0, 302}, {320, 158}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView" ref="659337472"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="782159461"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+					</object>
+					<object class="IBUIButton" id="165006266">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">301</int>
+						<string key="NSFrame">{{273, 303}, {37, 36}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIHighlightedTitleColor" ref="467558590"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="203971421"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">item_box@2x.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="871507782"/>
+						<reference key="IBUIFont" ref="35660185"/>
 					</object>
 					<object class="IBUIView" id="34736239">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 45}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="659337472"/>
+						<reference key="NSNextKeyView" ref="981071703"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -232,6 +233,7 @@
 							<reference ref="637185735"/>
 							<reference ref="34736239"/>
 							<reference ref="981071703"/>
+							<reference ref="165006266"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -266,7 +268,6 @@
 						<reference key="object" ref="981071703"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="659337472"/>
-							<reference ref="165006266"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -278,7 +279,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
 						<reference key="object" ref="165006266"/>
-						<reference key="parent" ref="981071703"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
 			</object>
