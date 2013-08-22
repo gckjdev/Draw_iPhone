@@ -37,7 +37,7 @@
 
 + (CGFloat)getCellHeight{
     
-    return 60;
+    return 60 * (ISIPAD ? 2.18 : 1);
 }
 
 - (void)setCellInfo:(PBGuessRank *)rank {
