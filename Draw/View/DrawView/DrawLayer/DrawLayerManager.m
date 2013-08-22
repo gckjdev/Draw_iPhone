@@ -75,7 +75,7 @@
     }
     if (self.selectedLayer == nil) {
         for (DrawLayer *layer in _layerList) {
-            if ([layer isBGLayer]) {
+            if ([layer isMainLayer]) {
                 [self setSelectedLayer:layer];
                 return;
             }
@@ -242,7 +242,7 @@
         [layers reversEnumWithHandler:^(id object) {
             DrawLayer *layer = object;
             [self addLayer:layer];
-            if ([layer isMainLayer]) {
+            if ([layer isBGLayer]) {
                 [self setSelectedLayer:layer];
             }
         }];
