@@ -33,7 +33,7 @@
 }
 
 + (CGFloat)getCellHeight{
-    return 408;
+    return 408 * (ISIPAD ? 2.18 : 1);
 }
 
 - (void)setCellInfo:(NSArray *)opuses{
