@@ -126,6 +126,10 @@
 		A440357117C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */; };
 		A440357217C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */; };
 		A440357317C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */; };
+		A440357517C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
+		A440357617C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
+		A440357717C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
+		A440357817C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */; };
 		A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44B48FD1713EFAC00404D73 /* iap_product_Draw.pb in Resources */ = {isa = PBXBuildFile; fileRef = A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
@@ -7644,6 +7648,7 @@
 		A440356517C5CC9700301EDD /* DrawGuessController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawGuessController~ipad.xib"; sourceTree = "<group>"; };
 		A440356617C5CC9700301EDD /* GuessRankCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessRankCell~ipad.xib"; sourceTree = "<group>"; };
 		A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GuessRankListController~ipad.xib"; sourceTree = "<group>"; };
+		A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WordSelectCell~ipad.xib"; sourceTree = "<group>"; };
 		A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		A44B38A4171CFE13001968E2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		A44B48FC1713EFAC00404D73 /* iap_product_Draw.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_Draw.pb; sourceTree = "<group>"; };
@@ -14362,6 +14367,7 @@
 				A4DE14291697DBC000841940 /* WordSelectCell.h */,
 				A4DE142A1697DBC000841940 /* WordSelectCell.m */,
 				A4DE142B1697DBC000841940 /* WordSelectCell.xib */,
+				A440357417C5FD3000301EDD /* WordSelectCell~ipad.xib */,
 				CAA754BA150A02EA00B9391E /* SelectWordController.h */,
 				CAA754BB150A02EA00B9391E /* SelectWordController.m */,
 				CAA754BC150A02EA00B9391E /* SelectWordController.xib */,
@@ -19117,6 +19123,7 @@
 				A440356A17C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356E17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357217C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				A440357717C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20153,6 +20160,7 @@
 				A440356917C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356D17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357117C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				A440357617C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21178,6 +21186,7 @@
 				A440356817C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356C17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357017C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				A440357517C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22138,6 +22147,7 @@
 				A440356B17C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356F17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357317C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				A440357817C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
