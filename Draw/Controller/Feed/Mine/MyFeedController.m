@@ -153,13 +153,11 @@ typedef enum{
                                           delegete:self];
     }
     
-    [CommonTitleView createTitleView:self.view];
-    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:NSLS(@"kFeed")];
-    [titleView setRightButtonAsRefresh];
-    [titleView setTarget:self];
-    [titleView setBackButtonSelector:@selector(clickBackButton:)];
-    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    [self.titleView setTitle:NSLS(@"kFeed")];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.dataTableView.separatorColor = [UIColor clearColor];

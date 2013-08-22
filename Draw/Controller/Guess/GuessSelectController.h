@@ -13,7 +13,7 @@
 
 @interface GuessSelectController : CommonTabController<GuessServiceDelegate, CommonGuessControllerDelegate>
 
-@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
+//@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 - (id)initWithMode:(PBUserGuessMode)mode contest:(PBGuessContest *)contest;
 

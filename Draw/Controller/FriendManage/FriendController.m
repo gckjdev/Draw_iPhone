@@ -184,11 +184,8 @@ typedef enum{
     [self.searchUserButton setTitleColor:[GameApp buttonTitleColor] forState:UIControlStateNormal];
     [self.inviteButton setTitleColor:[GameApp buttonTitleColor] forState:UIControlStateNormal];
     
-    
-    [CommonTitleView createTitleView:self.view];
-    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:title];
-    [titleView setTarget:self];
+    [self.titleView setTitle:title];
+    [self.titleView setTarget:self];
     
 
 }

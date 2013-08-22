@@ -152,11 +152,11 @@ typedef enum{
     // Do any additional setup after loading the view from its nib.
     self.titleLabel.text = NSLS(@"kStore");
     
-    [CommonTitleView createTitleView:self.view];
-    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
-    [titleView setTitle:NSLS(@"kStore")];
-    [titleView setTarget:self];
-    [titleView setBackButtonSelector:@selector(clickBackButton:)];
+//    [CommonTitleView createTitleView:self.view];
+//    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
+    [self.titleView setTitle:NSLS(@"kStore")];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];

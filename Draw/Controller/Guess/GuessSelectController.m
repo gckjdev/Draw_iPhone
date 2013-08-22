@@ -35,7 +35,6 @@
 
 - (void)dealloc{
     [_opuses release];
-    [_titleView release];
     [_contest release];
     [super dealloc];
 }
@@ -73,20 +72,20 @@
     [self clickTab:TABID];
     
     
-    [_titleView setTarget:self];
+    [self.titleView setTarget:self];
     
     if (_mode == PBUserGuessModeGuessModeHappy) {
-        [_titleView setTitle:NSLS(@"kHappGuessMode")];
-        [_titleView setRightButtonTitle:NSLS(@"kRestart")];
-        [_titleView setRightButtonSelector:@selector(clickRestartButton:)];
+        [self.titleView setTitle:NSLS(@"kHappGuessMode")];
+        [self.titleView setRightButtonTitle:NSLS(@"kRestart")];
+        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
     }else if(_mode == PBUserGuessModeGuessModeGenius){
-        [_titleView setTitle:NSLS(@"kGeniusGuessMode")];
-        [_titleView setRightButtonTitle:NSLS(@"kRestart")];
-        [_titleView setRightButtonSelector:@selector(clickRestartButton:)];
+        [self.titleView setTitle:NSLS(@"kGeniusGuessMode")];
+        [self.titleView setRightButtonTitle:NSLS(@"kRestart")];
+        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
     }else if(_mode == PBUserGuessModeGuessModeContest){
-        [_titleView setTitle:NSLS(@"kContestGuessMode")];
-        [_titleView setRightButtonTitle:NSLS(@"kRanking")];
-        [_titleView setRightButtonSelector:@selector(clickRankingButton:)];
+        [self.titleView setTitle:NSLS(@"kContestGuessMode")];
+        [self.titleView setRightButtonTitle:NSLS(@"kRanking")];
+        [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
     }
 }
 

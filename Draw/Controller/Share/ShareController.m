@@ -78,7 +78,7 @@ typedef enum{
 @synthesize fromWeiXin = _fromWeiXin;
 
 - (void)dealloc {
-    PPRelease(_titleView);
+//    PPRelease(_titleView);
     PPRelease(_shareAction);
     PPRelease(_gifImages);
     PPRelease(_selectedPaint);
