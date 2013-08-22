@@ -275,4 +275,6 @@ typedef enum{
 + (int)getMaxLengthOfDrawDesc;
 + (int)getMaxLayerNumber;
 
++ (NSString *)getContestBeginTimeString;
+
 @end

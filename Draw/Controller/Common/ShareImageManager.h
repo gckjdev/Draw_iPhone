@@ -73,10 +73,16 @@
     view.layer.borderColor = [COLOR_YELLOW CGColor];        \
 }                                                           
 
-#define SET_BUTTON_STYLE_YELLOW(view)                              \
+#define SET_BUTTON_ROUND_STYLE_YELLOW(view)                              \
 {                                                           \
-    [[ShareImageManager defaultManager] setButtonStyle:view titleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2];         \
+    [[ShareImageManager defaultManager] setButtonStyle:view titleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:YES];         \
 } 
+
+#define SET_BUTTON_SQUARE_STYLE_YELLOW(view)                              \
+{                                                           \
+[[ShareImageManager defaultManager] setButtonStyle:view titleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:NO];         \
+}
+
 
 
 #define SET_VIEW_ROUND_CORNER(view) \
@@ -393,6 +399,7 @@
                   font:(UIFont *)font
            normalColor:(UIColor *)normalColor
          selectedColor:(UIColor *)selectedColor
-      highlightedColor:(UIColor *)highlightedColor;
+      highlightedColor:(UIColor *)highlightedColor
+                 round:(BOOL)round;
 
 @end
