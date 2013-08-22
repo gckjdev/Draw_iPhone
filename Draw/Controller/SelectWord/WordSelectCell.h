@@ -18,6 +18,8 @@
 
 @interface WordSelectCell : UIView
 
+@property (retain, nonatomic) UIColor *textColor;
+@property (assign, nonatomic) int style; // 0表示内红外黄，1表示内黄外红
 @property (assign, nonatomic) id<WordSelectCellDelegate> delegate;
 
 + (WordSelectCell *)createViewWithFrame:(CGRect)frame;

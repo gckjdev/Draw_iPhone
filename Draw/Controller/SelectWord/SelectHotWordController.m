@@ -22,6 +22,7 @@
 #import "BuyItemView.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "CommonTitleView.h"
+#import "ShareImageManager.h"
 
 #define CONVERT_VIEW_FRAME_TO_TOP_VIEW(v) [[v superview] convertRect:v.frame toView:self.view]
 #define DIALOG_TAG_INPUT_WORD_VIEW 102
@@ -66,6 +67,8 @@
     self.hotWordsCell = [WordSelectCell createViewWithFrame:_hotWordsCellPlaceHolder.frame];
     self.systemWordsCell = [WordSelectCell createViewWithFrame:_systemWordsCellPlaceHolder.frame];
     self.myWordsCell =  [WordSelectCell createViewWithFrame:_myWordsCellPlaceHolder.frame];
+    self.myWordsCell.textColor = COLOR_BROWN;
+    self.myWordsCell.style = 1;
     
     [self.hotWordsView addSubview:_hotWordsCell];
     [self.systemWordsView addSubview:_systemWordsCell];
@@ -97,6 +100,11 @@
     self.hotWordsNoteLabel.text = NSLS(@"kHotWordsNote");
     self.systemWordsLabel.text = NSLS(@"kSystemWords");
     self.myWordsLabel.text = NSLS(@"kMyWords");
+    
+    self.hotWordsLabel.textColor = COLOR_BROWN;
+    self.hotWordsNoteLabel.textColor = COLOR_BROWN;
+    self.systemWordsLabel.textColor = COLOR_BROWN;
+    self.myWordsLabel.textColor = COLOR_BROWN;
     
     if (isLittleGeeAPP()) {
         [self didSelectWord:[Word cusWordWithText:@""]];

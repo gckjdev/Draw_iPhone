@@ -34,7 +34,7 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
 
 - (void)dealloc {
     [_words release];
-    
+    [_textColor release];
     [super dealloc];
 }
 
@@ -42,6 +42,7 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
 {
     WordSelectCell *view = [self createView];
     view.frame = frame;
+    view.textColor = COLOR_WHITE;
     return view;
 }
 
@@ -64,6 +65,9 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     [self coinImageView:index].hidden = NO;
     [self wordScoreLabel:index].text = [NSString stringWithFormat:@"x %d", word.score];
     [self plusImageView:index].hidden = YES;
+    
+    [[self wordLabel:index] setTextColor:_textColor];
+    [[self wordScoreLabel:index] setTextColor:_textColor];
 }
 
 - (void)setWords:(NSArray *)words
@@ -76,11 +80,16 @@ AUTO_CREATE_VIEW_BY_XIB(WordSelectCell)
     for (int i = 0; i < WORD_MAX_COUNT; i ++) {
         
         UIButton *button = [self wordButton:i];
-        
-        button.backgroundColor = COLOR_ORANGE;
         SET_VIEW_ROUND_CORNER(button);
         button.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
-        button.layer.borderColor = [COLOR_YELLOW CGColor];
+
+        if (_style == 0) {
+            button.backgroundColor = COLOR_ORANGE;
+            button.layer.borderColor = [COLOR_YELLOW CGColor];
+        }else{
+            button.backgroundColor = COLOR_YELLOW;
+            button.layer.borderColor = [COLOR_ORANGE CGColor];
+        }
     }
     
     int index = 0;
