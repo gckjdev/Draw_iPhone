@@ -26,12 +26,15 @@
 @property(nonatomic, assign)id delegate;
 @property(nonatomic, retain)DrawFeed *feed;
 - (IBAction)clickButton:(id)sender;
-- (void)setSeletType:(CommentType)type;
-- (CommentType)seletedType;
-+ (id)createCommentHeaderView:(id)delegate;
+- (void)setSelectedType:(CommentType)type;
+- (CommentType)selectedType;
 - (void)setViewInfo:(DrawFeed *)feed;
-+ (CGFloat)getHeight;
+
 - (void)updateTimes:(DrawFeed *)feed;
+
++ (CGFloat)getHeight;
++ (id)createCommentHeaderView:(id)delegate;
+
 
 @end
 

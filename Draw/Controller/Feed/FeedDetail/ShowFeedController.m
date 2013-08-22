@@ -613,7 +613,7 @@ enum{
                 [bself clickRefreshButton:nil];
                    PPDebug(@"<test2> complete 10");
                 }];
-                [bself.commentHeader setSeletType:CommentTypeFlower];
+                [bself.commentHeader setSelectedType:CommentTypeFlower];
                 [bself.feed incTimesForType:FeedTimesTypeFlower];
                 PPDebug(@"<test2> complete 2");
             }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
@@ -698,7 +698,7 @@ enum{
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
         [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
-        [cp.commentHeader setSeletType:CommentTypeGuess];
+        [cp.commentHeader setSelectedType:CommentTypeGuess];
         [cp hideActivity];        
     }];
 }
@@ -734,7 +734,7 @@ enum{
         CommentController *cc = [[CommentController alloc] initWithFeed:self.feed];
         [self presentModalViewController:cc animated:YES];
         [cc release];
-        [_commentHeader setSeletType:CommentTypeComment];       
+        [_commentHeader setSelectedType:CommentTypeComment];       
     }else if(button == self.saveButton){
 
         UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
@@ -829,7 +829,7 @@ enum{
     [super initTabButtons];
     self.commentHeader = [CommentHeaderView createCommentHeaderView:self];
     [self.commentHeader setViewInfo:self.feed];
-    [self.commentHeader setSeletType:CommentTypeComment];
+    [self.commentHeader setSelectedType:CommentTypeComment];
 }
 
 
