@@ -114,12 +114,18 @@
         UIImage *defaultImage = IMAGE_FROM_COLOR(COLOR_YELLOW);
         UIImage *selectedImage = IMAGE_FROM_COLOR(COLOR_YELLOW2);
         if ([button isKindOfClass:[UIButton class]]) {
-            button.layer.cornerRadius = 4;
-            button.layer.masksToBounds = YES;
-            [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
-            [button setBackgroundImage:selectedImage forState:UIControlStateSelected];
+            SET_BUTTON_ROUND_STYLE_YELLOW(button);
+//            SET_BUTTON_ROUND_STYLE_YELLOW(self.cancelButton);
+            
+//            button.layer.cornerRadius = 4;
+//            button.layer.masksToBounds = YES;
+//            [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
+//            [button setBackgroundImage:selectedImage forState:UIControlStateSelected];
         }
     }
+//    SET_BUTTON_ROUND_STYLE_YELLOW(self.applyButton);
+//    SET_BUTTON_ROUND_STYLE_YELLOW(self.cancelButton);
+
 }
 
 - (void)updateView
