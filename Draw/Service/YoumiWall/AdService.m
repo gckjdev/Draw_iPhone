@@ -47,19 +47,11 @@ static AdService* _defaultService;
     [super dealloc];
 }
 
-//- (void)initWappuAdSDK
-//{
-//    // init Wanpu Ad
-////    [AppConnect getConnect:[GameApp wanpuAdPublisherId] pid:[ConfigManager getChannelId]];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectSuccess:) name:WAPS_CONNECT_SUCCESS object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onWanpuConnectFailed:) name:WAPS_CONNECT_FAILED object:nil];        
-//}
 
 - (id)init
 {
     self = [super init];
 
-//    [self initWappuAdSDK];
     
      _isShowAd = ([[UserGameItemManager defaultManager] hasItem:ItemTypeRemoveAd] == NO);
     

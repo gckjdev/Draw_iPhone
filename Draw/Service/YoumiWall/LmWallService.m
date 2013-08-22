@@ -48,10 +48,6 @@ static LmWallService* _defaultService;
 - (void)prepareWallService
 {
     [AdService defaultService]; // Call This To Init WANPU SDK
-
-    // init WANPU SDK Wall Notification
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPoints:) name:WAPS_GET_POINTS_SUCCESS object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getUpdatedPointsFailed:) name:WAPS_GET_POINTS_FAILED object:nil];
     
     PPDebug(@"<LmmobAdWallSDK> init with ID %@", [GameApp lmwallId]);
 
