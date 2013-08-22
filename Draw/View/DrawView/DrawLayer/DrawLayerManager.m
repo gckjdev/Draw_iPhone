@@ -75,7 +75,7 @@
     }
     if (self.selectedLayer == nil) {
         for (DrawLayer *layer in _layerList) {
-            if ([layer isMainLayer]) {
+            if ([layer isBGLayer]) {
                 [self setSelectedLayer:layer];
                 return;
             }

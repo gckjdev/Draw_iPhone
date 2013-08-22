@@ -34,7 +34,7 @@
     self = [super init];
     if (self) {
         self.drawInfo = [[[DrawInfo alloc] init]autorelease];
-        _supportCache = NO;
+        _supportCache = YES;
         _cachedCount = [ConfigManager minUndoActionCount];
     }
     return self;
@@ -321,6 +321,11 @@
     return ![retainTags containsObject:@(self.layerTag)];
 }
 
+- (BOOL)isBGLayer
+{
+    return BG_LAYER_TAG == self.layerTag;
+}
+
 - (BOOL)isMainLayer
 {
     return self.layerTag == MAIN_LAYER_TAG || self.layerTag == DEFAULT_LAYER_TAG;
@@ -334,7 +339,7 @@
                                                   drawInfo:drawInfo
                                                        tag:BG_LAYER_TAG
                                                       name:NSLS(@"kBGLayer")
-                                               suportCache:NO] autorelease];
+                                               suportCache:YES] autorelease];
      
     DrawLayer *mainLayer = [[[DrawLayer alloc] initWithFrame:frame
                                                   drawInfo:drawInfo
@@ -356,7 +361,7 @@
                                                   drawInfo:drawInfo
                                                        tag:BG_LAYER_TAG
                                                       name:NSLS(@"kBGLayer")
-                                               suportCache:NO] autorelease];
+                                               suportCache:YES] autorelease];
     
     DrawLayer *defaultLayer = [[[DrawLayer alloc] initWithFrame:frame
                                                     drawInfo:drawInfo
