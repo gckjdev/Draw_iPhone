@@ -21,6 +21,7 @@ typedef enum{
     OpusTypeMy = 1,
     OpusTypeRank = 2,
     OpusTypeNew = 3,
+    OpusTypeReport = 4,
 }OpusType;
 
 #define  HISTORY_RANK_NUMBER 120
@@ -64,7 +65,12 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
-    [self.titleLabel setText:NSLS(@"kContestRank")];
+//    [self.titleLabel setText:NSLS(@"kContestRank")];
+    [self.titleView setTitle:NSLS(@"kContestRank")];
+    [self.titleView setTarget:self];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
 }
 
 - (void)viewDidUnload
@@ -188,7 +194,11 @@ typedef enum{
 }
 
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    TableTab *tab = [self currentTab];
+    if (tab.tabID == OpusTypeReport) {
+        //TODO update reportCell
+        return nil;
+    }
     
     NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
     UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -201,7 +211,7 @@ typedef enum{
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
-    TableTab *tab = [self currentTab];
+
     if (tab.tabID == OpusTypeRank) {
         if (indexPath.row == 0) {
             DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
@@ -241,8 +251,10 @@ typedef enum{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
-    
     NSInteger type = self.currentTab.tabID;
+    if (type == OpusTypeReport) {
+        return count;
+    }
     if (type == OpusTypeRank) {
         if (HISTORY_RANK_NUMBER <= count) {
             self.noMoreData = YES;            
@@ -275,7 +287,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 3;
+    return 4;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -283,7 +295,7 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {OpusTypeMy,OpusTypeRank,OpusTypeNew};
+    NSInteger tabId[] = {OpusTypeReport,OpusTypeRank,OpusTypeNew,OpusTypeMy};
     return tabId[index];
 }
 
@@ -294,7 +306,7 @@ typedef enum{
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kOpusMy"),NSLS(@"kOpusRank"),NSLS(@"kOpusNew")};
+    NSString *tabTitle[] = {NSLS(@"kOpusReport"), NSLS(@"kOpusRank"),NSLS(@"kOpusNew"),NSLS(@"kOpusMy")};
     return tabTitle[index];
 
 }
@@ -305,11 +317,15 @@ typedef enum{
     [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
-        [[FeedService defaultService] getContestOpusList:tabID 
-                                               contestId:self.contest.contestId
-                                                  offset:tab.offset
-                                                   limit:tab.limit
-                                                delegate:self];
+        if (tabID == OpusTypeReport) {
+            //TODO get contest report
+        }else{
+            [[FeedService defaultService] getContestOpusList:tabID
+                                                   contestId:self.contest.contestId
+                                                      offset:tab.offset
+                                                       limit:tab.limit
+                                                    delegate:self];
+        }
     }
 }
 

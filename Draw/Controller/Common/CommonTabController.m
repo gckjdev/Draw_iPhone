@@ -92,6 +92,7 @@
     PPRelease(_tabManager);
     PPRelease(_titleLabel);
     PPRelease(_noDataTipLabl);
+    PPRelease(_titleView);
     [super dealloc];
 }
 
@@ -238,6 +239,7 @@
 {
     [self setTitleLabel:nil];
     [self setNoDataTipLabl:nil];
+    [self setTitleView:nil];
     [_tabManager cleanData];
     [super viewDidUnload];
 

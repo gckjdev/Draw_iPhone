@@ -38,7 +38,7 @@ typedef enum {
     BOOL isLoading;
 }
 
-@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
+//@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 @property (retain, nonatomic) IBOutlet UIButton *clearButton;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinTips;

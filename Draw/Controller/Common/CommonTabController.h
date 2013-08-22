@@ -9,7 +9,7 @@
 #import "PPTableViewController.h"
 #import "TableTabManager.h"
 #import "CommonViewConstants.h"
-
+#import "CommonTitleView.h"
 
 @protocol CommonTabControllerDelegate <NSObject>
 
@@ -49,6 +49,7 @@ typedef enum{
 
 
 //common xib and action
+@property(nonatomic, retain)IBOutlet CommonTitleView *titleView;
 @property(nonatomic, retain)IBOutlet UILabel *titleLabel;
 @property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
 @property(nonatomic, assign)PullRefreshType pullRefreshType;

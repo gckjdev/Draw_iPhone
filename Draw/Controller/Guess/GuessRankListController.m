@@ -40,7 +40,7 @@
     
     [_geniusButton release];
     [_contestButton release];
-    [_titleView release];
+//    [_titleView release];
     [_contests release];
     [_currentSelect release];
     [super dealloc];
@@ -51,8 +51,8 @@
 
     [super viewDidLoad];
     
-    [_titleView setTitle:NSLS(@"kGuessRank")];
-    [_titleView setTarget:self];
+    [self.titleView setTitle:NSLS(@"kGuessRank")];
+    [self.titleView setTarget:self];
 
     [self initTabButtons];
     
