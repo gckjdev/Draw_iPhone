@@ -242,7 +242,7 @@
         [layers reversEnumWithHandler:^(id object) {
             DrawLayer *layer = object;
             [self addLayer:layer];
-            if ([layer isMainLayer]) {
+            if ([layer isBGLayer]) {
                 [self setSelectedLayer:layer];
             }
         }];

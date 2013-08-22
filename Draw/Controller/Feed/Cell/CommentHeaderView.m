@@ -41,7 +41,7 @@
 
 - (IBAction)clickButton:(id)sender {
     UIButton *button = (UIButton *)sender;
-    [self setSeletType:button.tag];
+    [self setSelectedType:button.tag];
 }
 
 
@@ -59,7 +59,7 @@
     view.delegate = delegate;
     return view;
 }
-- (void)setSeletType:(CommentType)type
+- (void)setSelectedType:(CommentType)type
 {
     if (_currentType == type) {
         return;
@@ -79,7 +79,7 @@
         [self.delegate didSelectCommentType:_currentType];
     }
 }
-- (CommentType)seletedType
+- (CommentType)selectedType
 {
     return _currentType;
 }

@@ -45,6 +45,7 @@
 
 - (BOOL)canBeRemoved;
 - (BOOL)isMainLayer;
+- (BOOL)isBGLayer;
 
 - (void)reset;
 - (void)updateWithDrawActions:(NSArray *)actionList;
