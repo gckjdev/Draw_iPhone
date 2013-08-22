@@ -47,7 +47,7 @@
     SelectCustomWordView* view =  (SelectCustomWordView*)[topLevelObjects objectAtIndex:0];
     [view.addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
 
-    SET_BUTTON_STYLE_YELLOW(view.addWordButton);
+    SET_BUTTON_ROUND_STYLE_YELLOW(view.addWordButton);
     
     view.delegate = aDelegate;
     

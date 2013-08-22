@@ -1267,14 +1267,18 @@ static UIImage* _whitePaperImage;
                   font:(UIFont *)font
            normalColor:(UIColor *)normalColor
          selectedColor:(UIColor *)selectedColor
-      highlightedColor:(UIColor *)highlightedColor;
+      highlightedColor:(UIColor *)highlightedColor
+                 round:(BOOL)round;
 {                                                           
     [button setTitleColor:titleColor
                forState:UIControlStateNormal];              
     button.titleLabel.font = font;                     
     
-    [button.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];   
-    [button.layer setMasksToBounds:YES];                      
+    if (round) {
+        [button.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
+        [button.layer setMasksToBounds:YES];
+    }
+    
     [button setBackgroundImage:IMAGE_FROM_COLOR(normalColor) forState:UIControlStateNormal];           
     [button setBackgroundImage:IMAGE_FROM_COLOR(selectedColor) forState:UIControlStateSelected];        
     [button setBackgroundImage:IMAGE_FROM_COLOR(highlightedColor) forState:UIControlStateHighlighted];    

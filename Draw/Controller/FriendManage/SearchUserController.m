@@ -83,7 +83,7 @@
 
     [searchButton setTitle:NSLS(@"kSearch") forState:UIControlStateNormal];
     searchButton.tag = SEARCH_BUTTON_TAG;
-    SET_BUTTON_STYLE_YELLOW(searchButton);
+    SET_BUTTON_ROUND_STYLE_YELLOW(searchButton);
     
     
     [inputTextField becomeFirstResponder];

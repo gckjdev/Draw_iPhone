@@ -73,6 +73,7 @@ typedef enum{
     PPRelease(_invitedFidSet);
     PPRelease(_inviteText);
     PPRelease(inviteButton);
+    [_buttonBgImageView release];
     [super dealloc];
 }
 
@@ -207,11 +208,14 @@ typedef enum{
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.dataTableView.separatorColor = [UIColor clearColor];
     
-    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
     
     
-    SET_BUTTON_STYLE_YELLOW(searchUserButton);
-    SET_BUTTON_STYLE_YELLOW(inviteButton);
+    [self.dataTableView updateOriginY:(COMMON_TAB_BUTTON_Y + COMMON_TAB_BUTTON_HEIGHT)];
+    
+    
+    SET_BUTTON_ROUND_STYLE_YELLOW(searchUserButton);
+    SET_BUTTON_ROUND_STYLE_YELLOW(inviteButton);
+    [_buttonBgImageView setBackgroundColor:COLOR_GRAY];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -228,6 +232,7 @@ typedef enum{
     [self setTipsLabel:nil];
     [self setInviteButton:nil];
     [_selectedSet removeAllObjects];
+    [self setButtonBgImageView:nil];
     [super viewDidUnload];
 
     // Release any retained subviews of the main view.

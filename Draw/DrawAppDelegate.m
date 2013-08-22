@@ -82,6 +82,9 @@
 #import "GuessService.h"
 #import "CPMotionRecognizingWindow.h"
 
+#import "LocalNotificationUtil.h"
+#import "TimeUtils.h"
+
 NSString* GlobalGetServerURL()
 {
 
@@ -354,12 +357,25 @@ NSString* GlobalGetBoardServerURL()
     
 #if DEBUG
     
-
+    [LocalNotificationUtil cancelAllLocalNotifications];
+    
+    // 比赛的local notification通知
+    [self scheduleLocalNotificationForGuessContest];
     
 #endif
     
         
     return YES;
+}
+
+- (void)scheduleLocalNotificationForGuessContest{
+    
+    NSString *today = dateToStringByFormat([NSDate date], @"yyyyMMdd");// yyyyMMddHHmmss
+    NSString *beginTime = [today stringByAppendingString:[ConfigManager getContestBeginTimeString]];
+    NSDate *date = dateFromStringByFormat(@"yyyyMMddHHmmss", beginTime);
+    
+    [LocalNotificationUtil scheduleLocalNotificationWithFireDate:date alertBody:NSLS(@"kGuessContestBeginTip") repeatInterval:kCFCalendarUnitDay userInfo:@{
+     }];
 }
 
 - (void)reviewDone
