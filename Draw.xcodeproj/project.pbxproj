@@ -5628,6 +5628,10 @@
 		CAFC036E17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
 		CAFC036F17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
 		CAFC037017C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */; };
+		CAFC039317C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
+		CAFC039417C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
+		CAFC039517C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
+		CAFC039617C6159300A11DE3 /* contest_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFC038A17C6159300A11DE3 /* contest_report@2x.png */; };
 		CAFCAAB816BF520F00641A85 /* input_alert_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */; };
 		CAFCAAC016BF520F00641A85 /* input_alert_uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */; };
 		CAFCAACA16BF589000641A85 /* input_alert_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */; };
@@ -10347,6 +10351,7 @@
 		CAF9B71616AA3E9B00865CCE /* CurvePen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurvePen.m; sourceTree = "<group>"; };
 		CAFC036B17C4CAA100A11DE3 /* ChangePageBGCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePageBGCommand.h; sourceTree = "<group>"; };
 		CAFC036C17C4CAA100A11DE3 /* ChangePageBGCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePageBGCommand.m; sourceTree = "<group>"; };
+		CAFC038A17C6159300A11DE3 /* contest_report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contest_report@2x.png"; sourceTree = "<group>"; };
 		CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_check@2x.png"; sourceTree = "<group>"; };
 		CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_uncheck@2x.png"; sourceTree = "<group>"; };
 		CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_close@2x.png"; sourceTree = "<group>"; };
@@ -15719,6 +15724,7 @@
 		CA7D4223168D7588009F43F7 /* contest */ = {
 			isa = PBXGroup;
 			children = (
+				CAFC038A17C6159300A11DE3 /* contest_report@2x.png */,
 				CA7D4224168D7588009F43F7 /* contest_agree@2x.png */,
 				CA7D4225168D7588009F43F7 /* contest_bg@2x.png */,
 				CA7D4226168D7588009F43F7 /* contest_detail@2x.png */,
@@ -19117,6 +19123,7 @@
 				A440356A17C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356E17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357217C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				CAFC039517C6159300A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20153,6 +20160,7 @@
 				A440356917C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356D17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357117C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				CAFC039417C6159300A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21178,6 +21186,7 @@
 				A440356817C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356C17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357017C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				CAFC039317C6159300A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22138,6 +22147,7 @@
 				A440356B17C5CC9800301EDD /* DrawGuessController~ipad.xib in Resources */,
 				A440356F17C5CC9800301EDD /* GuessRankCell~ipad.xib in Resources */,
 				A440357317C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
+				CAFC039617C6159300A11DE3 /* contest_report@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

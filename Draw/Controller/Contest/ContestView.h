@@ -21,6 +21,10 @@
 
 - (void)didClickContestView:(ContestView *)contestView
              onDetailButton:(Contest *)contest;
+
+- (void)didClickContestView:(ContestView *)contestView
+             onReportButton:(Contest *)contest;
+
 @end
 
 @interface ContestView : UIView<UIWebViewDelegate>
@@ -38,6 +42,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *opusLabel;
 @property (retain, nonatomic) IBOutlet UILabel *detailLabel;
 @property (retain, nonatomic) IBOutlet UILabel *joinLabel;
+@property (retain, nonatomic) IBOutlet UILabel *reportLabel;
 
 + (id)createContestView:(id)delegate;
 + (CGFloat)getViewWidth;
@@ -45,6 +50,7 @@
 - (IBAction)clickOpusButton:(id)sender;
 - (IBAction)clickDetailButton:(id)sender;
 - (IBAction)clickJoinButton:(id)sender;
+- (IBAction)clickReportButton:(id)sender;
 - (void)setViewInfo:(Contest *)contest;
 - (void)refreshCount;
 - (void)refreshRequest;

@@ -642,6 +642,7 @@ if (btn) {\
 {
     UIImage *image = [DrawInfo imageForClipActionType:drawInfo.touchType];
     UIButton *selector = [self buttonForType:DrawToolTypeSelector];
+    [selector setContentEdgeInsets:UIEdgeInsetsMake(INSET, INSET, INSET, INSET)];
     [selector setImage:image forState:UIControlStateNormal];
     [selector setImage:image forState:UIControlStateSelected];
     [selector setSelected:[drawInfo isSelectorMode]];

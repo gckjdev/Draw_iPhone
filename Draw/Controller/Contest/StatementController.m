@@ -15,14 +15,12 @@
 @synthesize contentView = _contentView;
 @synthesize declineLabel = _declineLabel;
 @synthesize acceptLabel = _acceptLabel;
-@synthesize titleLabel = _titleLabel;
 @synthesize contest = _contest;
 @synthesize superController = _superController;
 
 - (void)dealloc
 {
     PPRelease(_contest);
-    PPRelease(_titleLabel);
     PPRelease(_acceptLabel);
     PPRelease(_declineLabel);
     PPRelease(_contentView);
@@ -59,9 +57,13 @@
 
 - (void)initViews
 {
-    [self.titleLabel setText:NSLS(@"kStatement")];
     [self.declineLabel setText:NSLS(@"kDecline")];
     [self.acceptLabel setText:NSLS(@"kAccept")];
+
+    CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
+    [titleView setTarget:self];
+    [titleView setTitle:NSLS(@"kStatement")];
+    [titleView setBackButtonSelector:@selector(clickDeclineButton:)];
 }
 
 - (void)loadWebView
@@ -79,7 +81,6 @@
 
 - (void)viewDidUnload
 {
-    [self setTitleLabel:nil];
     [self setContentView:nil];
     [self setDeclineLabel:nil];
     [self setAcceptLabel:nil];
