@@ -7,10 +7,12 @@
 //
 
 #import "CommonRoomListCell.h"
-#import "DiceAvatarView.h"
+//#import "DiceAvatarView.h"
+#import "StableView.h"
+
 @class FXLabel;
 
-@interface DrawRoomListCell : CommonRoomListCell <DiceAvatarViewDelegate>
+@interface DrawRoomListCell : CommonRoomListCell <AvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet FXLabel *roomNameLabel;
 - (void)setCellInfo:(PBGameSession *)session roomListTitile:(NSString *)roomListTitile;

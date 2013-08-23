@@ -39,8 +39,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="766749353">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 955}, {748, 49}}</string>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{0, 955}, {768, 49}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="354352831"/>

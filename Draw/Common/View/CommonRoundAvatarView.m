@@ -1,5 +1,4 @@
 //
-//  DiceAvatarView.m
 //  Draw
 //
 //  Created by Orange on 12-7-30.
