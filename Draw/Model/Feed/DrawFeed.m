@@ -287,6 +287,21 @@
 {
     return [self timesForType:FeedTimesTypeTomato];
 }
+- (NSInteger)contesetReportTimes
+{
+    if ([self isContestFeed]) {
+        return [self timesForType:FeedTimesTypeContestReport];
+    }
+    return 0;
+}
+- (NSInteger)contestCommentTimes
+{
+    if ([self isContestFeed]) {
+        return [self timesForType:FeedTimesTypeContestComment];
+    }
+    return 0;
+}
+
 
 - (ActionType)actionType
 {

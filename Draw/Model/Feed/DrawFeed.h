@@ -83,6 +83,8 @@ typedef enum{
 - (NSInteger)correctTimes;
 - (NSInteger)flowerTimes;
 - (NSInteger)tomatoTimes;
+- (NSInteger)contestReportTimes;
+- (NSInteger)contestCommentTimes;
 - (ActionType)actionType;
 
 - (BOOL)isContestFeed;

@@ -937,6 +937,7 @@
 "kFlowerTimes" = "鲜花 (%d)";
 "kTomatoTimes" = "番茄 (%d)";
 "kCollectTimes" = "收藏 (%d)";
+"kReportTimes" = "点评 (%d)";
 
 "kNoComments" = "咦！还没人评论，赶紧抢沙发！";
 "kNoGuesses" = "咦！还没人猜，赶紧抢沙发！";

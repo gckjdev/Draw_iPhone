@@ -937,6 +937,7 @@
 "kFlowerTimes" = "鮮花 (%d)";
 "kTomatoTimes" = "番茄 (%d)";
 "kCollectTimes" = "收藏 (%d)";
+"kReportTimes" = "點評 (%d)";
 
 "kNoComments" = "咦！還沒人評論，趕緊搶沙發！";
 "kNoGuesses" = "咦！還沒人猜，趕緊搶沙發！";

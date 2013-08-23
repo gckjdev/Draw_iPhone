@@ -22,6 +22,7 @@
 {
     NSInteger _currentType;
     DrawFeed *_feed;
+    BOOL _hasCreateButton;
 }
 @property(nonatomic, assign)id delegate;
 @property(nonatomic, retain)DrawFeed *feed;

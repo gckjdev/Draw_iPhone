@@ -217,6 +217,7 @@
     [self initTabs];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setSwipeToBack:NO];
+    SET_VIEW_BG(self.view);
 }
 
 
