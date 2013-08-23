@@ -23,6 +23,9 @@
 @property (retain, nonatomic) CommentFeed *commentFeed;
 
 - (id)initWithFeed:(DrawFeed *)feed;
+- (id)initWithFeed:(DrawFeed *)feed forContestReport:(BOOL)forContestReport;
+
 - (IBAction)clickBack:(id)sender;
 - (id)initWithFeed:(DrawFeed *)feed commentFeed:(CommentFeed *)commentFeed;
+
 @end

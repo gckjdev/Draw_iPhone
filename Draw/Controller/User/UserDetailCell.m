@@ -8,7 +8,6 @@
 
 #import "UserDetailCell.h"
 #import "GameBasic.pb.h"
-#import "CommonRoundAvatarView.h"
 #import "ShareImageManager.h"
 #import "UserDetailProtocol.h"
 #import "UserSettingController.h"
@@ -83,7 +82,7 @@
     [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
     [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
 
-    [self.avatarView setAvatarUrl:pbUser.avatar gender:pbUser.gender];
+//    [self.avatarView setAvatarUrl:pbUser.avatar gender:pbUser.gender];
     
     self.basicDetailView.hidden = YES;
     
@@ -106,13 +105,11 @@
     [self.blackListBtn setTitle:[detail blackUserBtnTitle] forState:UIControlStateNormal];
     
     [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
-//    [self adjustView:self.levelLabel toLabel:self.signLabel];
     
     [self.segmentedControl setHidden:![detail hasFeedTab]];
     
     [self.noSNSTipsLabel setHidden:!(self.sinaBtn.hidden && self.qqBtn.hidden && self.facebookBtn.hidden)];
     
-//    [self.customBackgroundImageView setImageWithURL:[NSURL URLWithString:[[detail getUser] backgroundUrl]]];
 
     [self.customBackgroundImageView setImageWithUrl:[NSURL URLWithString:[[detail getUser] backgroundUrl]] placeholderImage:nil showLoading:NO animated:YES];
     
@@ -141,6 +138,14 @@
     [self adaptSNSButton];
     
     [self handleInSecureSmsApp];
+    
+    
+    PBGameUser *user = [detail getUser];
+    self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level] autorelease];
+    [_avatarView setAsRound];
+    _avatarView.delegate = self;
+    
+    [self.avatarHolderView addSubview:_avatarView];
 }
 
 
@@ -307,6 +312,7 @@
     [_specialTitleLabel release];
     [_specialSepLine release];
     [_exploreBbsPostBtn release];
+    [_avatarHolderView release];
     [super dealloc];
 }
 
@@ -365,8 +371,8 @@
     }
 }
 
-- (void)didClickOnAvatar:(CommonRoundAvatarView*)view
-{
+- (void)didClickOnAvatar:(NSString *)userId{
+    
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickAvatar)]) {
         [_detailDelegate didClickAvatar];
     }

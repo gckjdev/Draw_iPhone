@@ -76,6 +76,7 @@
         self.deviceType = pbFeed.deviceType;
         self.opusDesc = pbFeed.opusDesc;
         self.drawDataUrl = pbFeed.drawDataUrl;
+        self.contestId = pbFeed.contestId;
         if ([pbFeed hasLearnDraw]) {
             self.learnDraw = pbFeed.learnDraw;    
         }
@@ -160,7 +161,8 @@
            signature:(NSString *)signature
         drawImageUrl:(NSString *)drawImageUrl 
               pbDraw:(PBDraw *)pbDraw 
-            wordText:(NSString *)wordText 
+            wordText:(NSString *)wordText
+           contestId:(NSString *)contestId
           timesArray:(NSArray *)timesArray;
 {
     self = [super init];
@@ -172,6 +174,7 @@
                                               gender:gender
                                            signature:signature];
         self.wordText = wordText;
+        self.contestId = contestId;
         [self initTimeList:timesArray];
         [self initDrawInfo:drawImageUrl data:nil];  // ignore PBDraw here because it's NOT loaded
     }
@@ -494,6 +497,7 @@
     
     
     PPDebug(@"%@ dealloc", [self description]);
+    PPRelease(_contestId);
     PPRelease(_pbDrawData);
     PPRelease(_drawImage);    
     PPRelease(_drawData);

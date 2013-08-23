@@ -344,7 +344,8 @@
                           commentId:(NSString *)commentId 
                      commentSummary:(NSString *)commentSummary
                       commentUserId:(NSString *)commentUserId 
-                    commentNickName:(NSString *)commentNickName;
+                    commentNickName:(NSString *)commentNickName
+                          contestId:(NSString*)contestId;
 
 + (CommonNetworkOutput*)getOpusCount:(NSString*)baseURL
                                appId:(NSString*)appId

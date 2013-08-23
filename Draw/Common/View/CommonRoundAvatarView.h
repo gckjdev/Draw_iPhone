@@ -1,5 +1,4 @@
 //
-//  DiceAvatarView.h
 //  Draw
 //
 //  Created by Orange on 12-7-30.
@@ -44,17 +43,8 @@ typedef enum {
     
 }
 
-//- (void)setUrlString:(NSString *)urlString;
-//- (id)initWithUrlString:(NSString *)urlString 
-//                 gender:(BOOL)gender 
-//                  level:(int)level;
-//- (id)initWithUrlString:(NSString *)urlString 
-//                  frame:(CGRect)frame 
-//                 gender:(BOOL)gender 
-//                  level:(int)level;
 
 - (void)setImage:(UIImage *)image;
-//- (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setCurrentProgress:(CGFloat)progress;
 - (void)setProgressBarWidth:(CGFloat)width;

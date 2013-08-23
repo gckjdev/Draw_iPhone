@@ -698,6 +698,7 @@ static FeedService *_staticFeedService = nil;
      commentSummary:(NSString *)commentSummary
       commentUserId:(NSString *)commentUserId 
     commentNickName:(NSString *)commentNickName
+          contestId:(NSString *)contestId
            delegate:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -721,7 +722,8 @@ static FeedService *_staticFeedService = nil;
                                                             commentId:commentId 
                                                        commentSummary:commentSummary 
                                                         commentUserId:commentUserId
-                                                      commentNickName:commentNickName];
+                                                      commentNickName:commentNickName
+                                                            contestId:contestId];
         
         NSString *commentId = nil;
         if (output.resultCode == 0) {

@@ -157,6 +157,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
      commentSummary:(NSString *)commentSummary
       commentUserId:(NSString *)commentUserId 
     commentNickName:(NSString *)commentNickName
+          contestId:(NSString *)contestId
            delegate:(id<FeedServiceDelegate>)delegate;
 
 

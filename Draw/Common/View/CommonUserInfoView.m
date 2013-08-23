@@ -88,13 +88,7 @@
 
 - (void)initAvatar
 {
-//    CGRect rect = AVATAR_FRAME;
-//    AvatarView* view = [[[AvatarView alloc] initWithUrlString:_targetFriend.avatar
-//                                                       frame:rect
-//                                                      gender:_targetFriend.isMale
-//                                                       level:_targetFriend.level] autorelease];
-//    view.tag = SUBVIEW_AVATAR_TAG;
-//    [self.contentView addSubview:view];
+
     [self.avatarView setUrlString:_targetFriend.avatar
                            userId:_targetFriend.friendUserId
                            gender:[@"m" isEqualToString:_targetFriend.gender ]

@@ -62,15 +62,19 @@ typedef enum {
     UIImageView *bgView;
 }
 
-- (void)setUrlString:(NSString *)urlString;
+
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
 - (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
+
+- (void)setUrlString:(NSString *)urlString;
 
 - (void)setImage:(UIImage *)image;
 - (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setAvatarSelected:(BOOL)selected;
 - (void)setAvatarSelected:(BOOL)selected level:(int)level;
+- (void)setAsRound;
+
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, assign) BOOL gender;
 @property(nonatomic, retain) NSString *userId;

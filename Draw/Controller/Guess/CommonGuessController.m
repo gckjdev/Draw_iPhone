@@ -88,17 +88,16 @@
     self.opusButton.backgroundColor = [UIColor clearColor];
     NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
     NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
-//    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
     
+    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
     
-    
-    [self showActivityWithText:NSLS(@"kImageLoading")];
-    __block typeof (self) bself = self;
-    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-        [bself hideActivity];
-    } failure:^(NSError *error) {
-        [bself hideActivity];
-    }];
+//    [self showActivityWithText:NSLS(@"kImageLoading")];
+//    __block typeof (self) bself = self;
+//    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+//        [bself hideActivity];
+//    } failure:^(NSError *error) {
+//        [bself hideActivity];
+//    }];
 
     
     // Set bgView

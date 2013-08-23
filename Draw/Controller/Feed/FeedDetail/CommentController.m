@@ -16,6 +16,8 @@
     BOOL canSend;
 }
 
+@property (nonatomic, assign) BOOL forContestReport;
+
 @end
 
 @implementation CommentController
@@ -37,9 +39,15 @@
 
 - (id)initWithFeed:(DrawFeed *)feed
 {
+    return [self initWithFeed:feed forContestReport:NO];
+}
+
+- (id)initWithFeed:(DrawFeed *)feed forContestReport:(BOOL)forContestReport
+{
     self = [super init];
     if (self) {
         self.feed = feed;
+        self.forContestReport = forContestReport;
     }
     return self;
 }
@@ -155,10 +163,16 @@
             commentUserId = author;
             commentNickName = _feed.feedUser.nickName;
         }
+        
         if ([commentSummary length] > ACTION_SUMMARY_MAX_LENGTH) {
             PPDebug(@"<sendComment> summary length = %d", [commentSummary length]);
             commentSummary = [commentSummary substringToIndex:ACTION_SUMMARY_MAX_LENGTH];
         }
+        
+        if (_forContestReport){
+            commentType = CommentTypeContestComment;
+        }
+        
         [_feedService commentOpus:opusId 
                            author:author
                           comment:comment 
@@ -166,7 +180,8 @@
                         commentId:commentId 
                    commentSummary:commentSummary 
                     commentUserId:commentUserId
-                  commentNickName:commentNickName 
+                  commentNickName:commentNickName
+                        contestId:self.feed.contestId
                          delegate:self];        
     }
 
