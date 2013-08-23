@@ -948,7 +948,7 @@
 
 
 "kOpusCount" = "作品 (%d)";
-"kJoinCount" = "參加 (%d)";
+"kJoinCount" = "參加";
 
 
 "kContest" = "畫畫比賽";
@@ -1047,7 +1047,7 @@
 "kReplyLocationAlert" = "確定回复定位請求，並且發送你的位置嗎?";
 
 
-"kContestPassed" = "已結束(%d)";
+"kContestPassed" = "已結束";
 "kContestPending" = "未開始";
 "kNoContestTips" = "不好意思，目前沒有適合您的比賽。";
 "kContestFeedDetail" = "作品詳情";
@@ -1905,7 +1905,7 @@
 "kEraser" = "橡皮擦";
 
 "kChangePageBG" = "自定義背景";
-"kOpusReport" = "報道";
+"kContestReport" = "報道";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

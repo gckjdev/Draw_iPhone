@@ -947,7 +947,7 @@
 "kPickBGColor" = "选择背景颜色";
 
 "kOpusCount" = "作品 (%d)";
-"kJoinCount" = "参加 (%d)";
+"kJoinCount" = "参加";
 
 "kContest" = "画画大赛";
 "kRank" = "画榜";
@@ -1041,7 +1041,7 @@
 "kReplyLocationAlert" = "确定回复定位请求?";
 
 
-"kContestPassed" = "已结束(%d)";
+"kContestPassed" = "已结束";
 "kContestPending" = "未开始";
 "kNoContestTips" = "不好意思，目前没有适合您的比赛。";
 
@@ -1914,7 +1914,7 @@
 "kSelector" = "选择器";
 "kEraser" = "橡皮擦";
 "kChangePageBG" = "自定义背景";
-"kOpusReport" = "报道";
+"kContestReport" = "报道";
 /*********************小吉画画国际化字符串结束 ************************/
 
 /*********************你唱我猜国际化字符串开始 ************************/

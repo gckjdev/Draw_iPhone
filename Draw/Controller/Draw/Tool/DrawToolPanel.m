@@ -642,6 +642,7 @@ if (btn) {\
 {
     UIImage *image = [DrawInfo imageForClipActionType:drawInfo.touchType];
     UIButton *selector = [self buttonForType:DrawToolTypeSelector];
+    [selector setContentEdgeInsets:UIEdgeInsetsMake(INSET, INSET, INSET, INSET)];
     [selector setImage:image forState:UIControlStateNormal];
     [selector setImage:image forState:UIControlStateSelected];
     [selector setSelected:[drawInfo isSelectorMode]];
@@ -660,16 +661,11 @@ if (btn) {\
 
 - (UIView *)infoPointWithTag:(NSInteger)tag x:(CGFloat)x
 {
-    UIView *view = [self viewWithTag:tag];
-    if (view == nil) {
-        view = [[[UIView alloc] initWithFrame:CGRectMake(x, SHOW_INFO_Y, SHOW_INFO_HEIGHT, SHOW_INFO_HEIGHT)] autorelease];
-        [view setBackgroundColor:COLOR_GREEN];
-        view.layer.cornerRadius = SHOW_INFO_HEIGHT/2;
-        view.layer.masksToBounds = YES;
-        view.tag = tag;
-        [self addSubview:view];
-    }
-    [view updateOriginX:x];    
+    UIView *view = [self reuseViewWithTag:tag viewClass:[UIView class] frame:CGRectMake(x, SHOW_INFO_Y, SHOW_INFO_HEIGHT, SHOW_INFO_HEIGHT)];
+    [view setBackgroundColor:COLOR_GREEN];
+    view.layer.cornerRadius = SHOW_INFO_HEIGHT/2;
+    view.layer.masksToBounds = YES;
+    
     return view;
 }
 #define INFO_FONT_SIZE (ISIPAD ? 16: 10)
@@ -677,30 +673,17 @@ if (btn) {\
                             x:(CGFloat)x
                          text:(NSString *)text
 {
-    UILabel *label = (id)[self viewWithTag:tag];
-    if (label == nil) {
-        label = [[[UILabel alloc] initWithFrame:CGRectMake(x, SHOW_INFO_Y, SHOW_INFO_HEIGHT, SHOW_INFO_HEIGHT)] autorelease];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [label setFont:[UIFont systemFontOfSize:INFO_FONT_SIZE]];
-        label.tag = tag;
-        [self addSubview:label];
-    }
-    [label updateOriginX:x];
-    [label setText:text];
-    [label sizeToFit];
+    UILabel *label = [self reuseLabelWithTag:tag
+                                       frame:CGRectMake(x, SHOW_INFO_Y, SHOW_INFO_HEIGHT, SHOW_INFO_HEIGHT)
+                                        font:[UIFont systemFontOfSize:INFO_FONT_SIZE]
+                                        text:text];
+
+    [label setBackgroundColor:[UIColor clearColor]];
+//    [label setFont:[UIFont systemFontOfSize:INFO_FONT_SIZE]];
     return label;
 }
+
 #define SHOW_INFO_TAG_BASE 1308200
-
-//#define POINT_LAYER_TAG 201308201
-//#define LABEL_LAYER_TAG 201308202
-//
-//#define POINT_SIZE_TAG 201308203
-//#define LABEL_SIZE_TAG 201308204
-//
-//#define POINT_MODE_TAG 201308205
-//#define LABEL_MODE_TAG 201308206
-
 #define INFO_LEFT (ISIPAD ? 34 : 6)
 #define INFO_ITEM_SPACE (ISIPAD ? 30 : 10)
 #define INFO_INNER_SPACE (ISIPAD ? 8 : 4)

@@ -940,7 +940,7 @@
 
 
 "kOpusCount" = "Opus(%d)";
-"kJoinCount" = "Join(%d)";
+"kJoinCount" = "Join";
 
 
 "kContest" = "Contest";
@@ -1023,7 +1023,7 @@
 "kReplyLocationAlert" = "Reply with your current location?";
 
 
-"kContestPassed" = "Passed(%d)";
+"kContestPassed" = "Passed";
 "kContestPending" = "Pending";
 "kNoContestTips" = "No Contest Now.";
 "kContestFeedDetail" = "Contest Opus";
@@ -1908,7 +1908,7 @@
 "kEraser" = "Eraser";
 
 "kChangePageBG" = "Change Page BG";
-"kOpusReport" = "Report";
+"kContestReport" = "Report";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

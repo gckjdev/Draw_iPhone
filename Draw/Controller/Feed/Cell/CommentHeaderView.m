@@ -8,6 +8,7 @@
 
 #import "CommentHeaderView.h"
 #import "PPViewController.h"
+#import "UIViewUtils.h"
 
 @implementation CommentHeaderView
 @synthesize delegate = _delegate;

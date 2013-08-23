@@ -16,7 +16,7 @@
 
 @property(nonatomic, retain)Contest *contest;
 - (id)initWithContest:(Contest *)contest;
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+
 @property (retain, nonatomic) IBOutlet UIWebView *contentView;
 @property (retain, nonatomic) IBOutlet UILabel *declineLabel;
 @property (retain, nonatomic) IBOutlet UILabel *acceptLabel;

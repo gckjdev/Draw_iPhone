@@ -40,6 +40,7 @@
         }
     }
     [self.detailLabel setText:NSLS(@"kContestRule")];
+    [self.reportLabel setText:NSLS(@"kContestReport")];
 }
 
 + (id)createContestView:(id)delegate
@@ -67,6 +68,7 @@
     PPRelease(_bgView);
     [_activity release];
     [_imageView release];
+    [_reportLabel release];
     [super dealloc];
 }
 
@@ -88,6 +90,13 @@
     }
 }
 
+- (IBAction)clickReportButton:(id)sender
+{    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickContestView:onReportButton:)]) {
+        [self.delegate didClickContestView:self onReportButton:self.contest];
+    }
+    
+}
 
 //- ()
 
@@ -148,15 +157,13 @@
     NSString *joinTitle = nil;
     
     if ([_contest isPassed]) {
-        joinTitle = [NSString stringWithFormat:NSLS(@"kContestPassed"),
-                     _contest.participantCount];        
+        joinTitle = NSLS(@"kContestPassed");        
         
     }else if([_contest isPending]){
         joinTitle = NSLS(@"kContestPending");        
         
     }else{
-        joinTitle = [NSString stringWithFormat:NSLS(@"kJoinCount"),
-                     _contest.participantCount];        
+        joinTitle = NSLS(@"kJoinCount");        
     }
     
     [self.joinLabel setText:joinTitle];

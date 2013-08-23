@@ -87,6 +87,13 @@
     [self getContestList];
     [self.noContestTipLabel setHidden:YES];
     [self.noContestTipLabel setText:NSLS(@"kNoContestTips")];
+    
+    CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
+    [titleView setTarget:self];
+    [titleView setTitle:NSLS(@"kContest")];
+    [titleView setRightButtonAsRefresh];
+    [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
 }
 
 - (void)viewDidUnload
@@ -198,6 +205,15 @@
 
 
 #pragma mark contest view delegate
+
+- (void)didClickContestView:(ContestView *)contestView
+             onReportButton:(Contest *)contest
+{
+    ContestOpusController *coc = [[ContestOpusController alloc] initWithContest:contest];
+    [coc setDefaultTabIndex:0];
+    [self.navigationController pushViewController:coc animated:YES];
+    [coc release];
+}
 
 - (void)didClickContestView:(ContestView *)contestView 
                onOpusButton:(Contest *)contest
