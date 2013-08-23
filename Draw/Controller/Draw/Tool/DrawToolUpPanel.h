@@ -42,10 +42,11 @@
     NSMutableDictionary *cellDict;
 }
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
-
+@property (assign, nonatomic, getter = isBriefStyle) BOOL briefStyle;
 
 //- (IBAction)clickShowCopyPaint:(id)sender;
-
++ (id)createViewWithDrawView:(DrawView *)drawView
+                  briefStyle:(BOOL)briefStyle;
 
 - (void)disappear;
 - (void)updateDrawToUser:(MyFriend *)user;

@@ -107,6 +107,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *draftButton;
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIButton *upPanelButton;
+@property (retain, nonatomic) IBOutlet UIButton *layerButton;
 
 @property (retain, nonatomic) DrawToolPanel *drawToolPanel;
 @property (retain, nonatomic) DrawToolUpPanel *drawToolUpPanel;
@@ -214,6 +215,7 @@
     PPRelease(_upPanelPopView);
     [_upPanelButton release];
     [_titleView release];
+    [_layerButton release];
     [super dealloc];
 }
 
@@ -380,11 +382,17 @@
         return;
     }
     
-    if (targetType == TypeGraffiti || targetType == TypePhoto) {
+    if ([self isBriefStyle]) {
         self.draftButton.hidden = YES;
+        self.layerButton.hidden = YES;
         [self.upPanelButton setCenter:self.draftButton.center];
     }
     
+}
+
+- (BOOL)isBriefStyle
+{
+    return (targetType == TypeGraffiti || targetType == TypePhoto);
 }
 
 #define STATUSBAR_HEIGHT 20.0
@@ -401,10 +409,8 @@
     self.drawToolPanel.delegate = self;
     [self.drawToolPanel bindController:self];
     
-    self.drawToolUpPanel = [DrawToolUpPanel createViewWithDrawView:drawView];
-    [self.drawToolUpPanel setCenter:CGPointMake(self.view.bounds.size.width-self.drawToolUpPanel.frame.size.width/2, -self.drawToolUpPanel.frame.size.height/2)];
-    [self.view addSubview:self.drawToolUpPanel];
-
+    self.drawToolUpPanel = [DrawToolUpPanel createViewWithDrawView:drawView
+                                                        briefStyle:[self isBriefStyle]];
     [drawView.dlManager setDelegate:self];
     [self.drawToolUpPanel bindController:self];
 }
@@ -433,11 +439,7 @@
 
 - (BOOL)supportRecovery
 {
-    if (targetType == TypeGraffiti || targetType == TypePhoto){
-        return NO;
-    }
-    
-    return YES;
+    return ![self isBriefStyle];
 }
 
 - (void)updateDrawRecoveryService
@@ -591,6 +593,7 @@
     [self setDraftButton:nil];
     [self setUpPanelButton:nil];
     [self setTitleView:nil];
+    [self setLayerButton:nil];
     [super viewDidUnload];
 }
 
@@ -904,7 +907,7 @@
 
 - (void)saveDraft:(BOOL)showResult
 {
-    if (targetType == TypeGraffiti || targetType == TypePhoto) {
+    if ([self isBriefStyle]) {
         return;
     }
     

@@ -61,7 +61,7 @@ typedef enum{
                       state:(UIControlState)state;
 + (NSString *)titleForType:(DrawToolType)type;
 + (DrawToolType *)belowToolList;
-+ (DrawToolType *)upToolList;
++ (DrawToolType *)upToolList:(BOOL)isBriefStyle;
 + (NSUInteger)numberOfTypeList:(DrawToolType *)types;
 
 + (NSArray *)xsForTypes:(DrawToolType *)types
