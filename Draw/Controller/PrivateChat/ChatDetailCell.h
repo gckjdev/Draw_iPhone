@@ -39,7 +39,7 @@
     
 }
 
-@property (retain, nonatomic) IBOutlet UIImageView *avatarView;
+@property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UIButton *timeButton;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIButton *contentButton;

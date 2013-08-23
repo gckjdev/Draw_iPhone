@@ -1,5 +1,4 @@
 //
-//  CommonUserInfoView.h
 //  Draw
 //
 //  Created by Orange on 12-6-25.
@@ -11,7 +10,6 @@
 #import "UserService.h"
 #import "MWPhotoBrowser.h"
 #import "StableView.h"
-#import "CommonUserInfoView.h"
 
 @class PPViewController;
 @class MyFriend;

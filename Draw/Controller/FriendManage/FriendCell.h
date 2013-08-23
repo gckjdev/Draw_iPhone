@@ -7,7 +7,7 @@
 //
 
 #import "PPTableViewCell.h"
-#import "UIImageView+WebCache.h"
+#import "StableView.h"
 typedef enum{
     FromFriendList = 1,
     FromInviteList = 2,
@@ -38,7 +38,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UILabel *areaLabel;
 @property (retain, nonatomic) IBOutlet UILabel *statusLabel;
 @property (retain, nonatomic) IBOutlet UILabel* levelLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *avatarView;
+@property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 
 @property (assign, nonatomic) id<FollowDelegate> followDelegate;
 @property (retain, nonatomic) MyFriend *myFriend;

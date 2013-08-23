@@ -5265,10 +5265,6 @@
 		CAB978E516C23EC6008C2901 /* draw_tab_mid_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB978E016C23EC5008C2901 /* draw_tab_mid_unselected@2x.png */; };
 		CAB978EB16C2456E008C2901 /* topwood@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAB978E916C2456B008C2901 /* topwood@2x.jpg */; };
 		CAB978EF16C2456E008C2901 /* wood_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CAB978EA16C2456C008C2901 /* wood_bg@2x.jpg */; };
-		CABEC69017965021006F89BB /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEC68F1796501F006F89BB /* DiceAvatarView.m */; };
-		CABEC69217965021006F89BB /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEC68F1796501F006F89BB /* DiceAvatarView.m */; };
-		CABEC69317965021006F89BB /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEC68F1796501F006F89BB /* DiceAvatarView.m */; };
-		CABEC69417965021006F89BB /* DiceAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEC68F1796501F006F89BB /* DiceAvatarView.m */; };
 		CABEC6971796505A006F89BB /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEC6961796505A006F89BB /* DiceImageManager.m */; };
 		CABEC6991796505A006F89BB /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEC6961796505A006F89BB /* DiceImageManager.m */; };
 		CABEC69A1796505A006F89BB /* DiceImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEC6961796505A006F89BB /* DiceImageManager.m */; };
@@ -10035,8 +10031,6 @@
 		CAB978E016C23EC5008C2901 /* draw_tab_mid_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_tab_mid_unselected@2x.png"; sourceTree = "<group>"; };
 		CAB978E916C2456B008C2901 /* topwood@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "topwood@2x.jpg"; sourceTree = "<group>"; };
 		CAB978EA16C2456C008C2901 /* wood_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "wood_bg@2x.jpg"; sourceTree = "<group>"; };
-		CABEC68E1796501E006F89BB /* DiceAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceAvatarView.h; sourceTree = "<group>"; };
-		CABEC68F1796501F006F89BB /* DiceAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceAvatarView.m; sourceTree = "<group>"; };
 		CABEC6951796505A006F89BB /* DiceImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceImageManager.h; sourceTree = "<group>"; };
 		CABEC6961796505A006F89BB /* DiceImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceImageManager.m; sourceTree = "<group>"; };
 		CABEC69D17965093006F89BB /* CommonHelpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelpManager.h; sourceTree = "<group>"; };
@@ -12792,8 +12786,6 @@
 			isa = PBXGroup;
 			children = (
 				CABEC6AB17968F09006F89BB /* CommonView */,
-				CABEC68E1796501E006F89BB /* DiceAvatarView.h */,
-				CABEC68F1796501F006F89BB /* DiceAvatarView.m */,
 				EABD0FF917376A9B00A2F930 /* PhotoDrawSheet.h */,
 				EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */,
 				C2F1DEC016786E1B002D8408 /* CommonSettingView.h */,
@@ -22946,7 +22938,6 @@
 				CAC85C061791179100827C20 /* TextCommand.m in Sources */,
 				CAC85C1F179117B100827C20 /* FXCommand.m in Sources */,
 				CA2614ED1793B0FF007D5462 /* WordFilterService.m in Sources */,
-				CABEC69317965021006F89BB /* DiceAvatarView.m in Sources */,
 				CABEC69A1796505A006F89BB /* DiceImageManager.m in Sources */,
 				CABEC6A217965093006F89BB /* CommonHelpManager.m in Sources */,
 				CABEC6A917968DFD006F89BB /* ZJHImageManager.m in Sources */,
@@ -23738,7 +23729,6 @@
 				A4ECE9C21792A036006DD933 /* NonCyclePageScrollView.m in Sources */,
 				A4ECE9C41792A036006DD933 /* PageScrollView.m in Sources */,
 				CA2614EA1793B0FF007D5462 /* WordFilterService.m in Sources */,
-				CABEC69217965021006F89BB /* DiceAvatarView.m in Sources */,
 				CABEC6991796505A006F89BB /* DiceImageManager.m in Sources */,
 				CABEC6A117965093006F89BB /* CommonHelpManager.m in Sources */,
 				CABEC6A817968DFD006F89BB /* ZJHImageManager.m in Sources */,
@@ -24548,7 +24538,6 @@
 				A4ECE9C11792A036006DD933 /* NonCyclePageScrollView.m in Sources */,
 				A4ECE9C31792A036006DD933 /* PageScrollView.m in Sources */,
 				CA2614DE1793B0FD007D5462 /* WordFilterService.m in Sources */,
-				CABEC69017965021006F89BB /* DiceAvatarView.m in Sources */,
 				CABEC6971796505A006F89BB /* DiceImageManager.m in Sources */,
 				CABEC69F17965093006F89BB /* CommonHelpManager.m in Sources */,
 				CABEC6A617968DFD006F89BB /* ZJHImageManager.m in Sources */,
@@ -25336,7 +25325,6 @@
 				CAC85C071791179100827C20 /* TextCommand.m in Sources */,
 				CAC85C20179117B100827C20 /* FXCommand.m in Sources */,
 				CA2614EE1793B0FF007D5462 /* WordFilterService.m in Sources */,
-				CABEC69417965021006F89BB /* DiceAvatarView.m in Sources */,
 				CABEC69B1796505A006F89BB /* DiceImageManager.m in Sources */,
 				CABEC6A317965093006F89BB /* CommonHelpManager.m in Sources */,
 				CABEC6AA17968DFD006F89BB /* ZJHImageManager.m in Sources */,

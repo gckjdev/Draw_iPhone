@@ -1,5 +1,4 @@
 //
-//  CommonUserInfoView.m
 //  Draw
 //
 //  Created by Orange on 12-6-25.

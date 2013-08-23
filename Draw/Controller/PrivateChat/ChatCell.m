@@ -27,7 +27,6 @@
 
 @implementation ChatCell
 
-@synthesize avatarImage;
 @synthesize nickNameLabel;
 @synthesize textLabel;
 @synthesize timeLabel;
@@ -38,12 +37,12 @@
 
 - (void)dealloc {
     PPRelease(_messageStat);
-    PPRelease(avatarImage);
     PPRelease(nickNameLabel);
     PPRelease(timeLabel);
     PPRelease(textLabel);
     PPRelease(countLabel);
     PPRelease(countBackground);
+    [_avatarView release];
     [super dealloc];
 }
 
@@ -84,11 +83,14 @@
 
 - (void)updateAvatar
 {
-    NSString *avatar = self.messageStat.friendAvatar;
-    BOOL isMale = self.messageStat.friendGender;
-    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:isMale];
-    NSURL *url = [NSURL URLWithString:avatar];
-    [self.avatarImage setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
+//    NSString *avatar = self.messageStat.friendAvatar;
+//    BOOL isMale = self.messageStat.friendGender;
+//    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:isMale];
+//    NSURL *url = [NSURL URLWithString:avatar];
+    
+    [self.avatarView setAvatarUrl:self.messageStat.friendAvatar gender:self.messageStat.friendGender];
+    self.avatarView.delegate = self;
+
 }
 
 - (void)updateBadge
@@ -147,12 +149,21 @@
     [self updateTime];
 }
 
-- (IBAction)clickAvatar:(id)sender
-{
+
+
+- (void)didClickOnAvatar:(NSString*)userId{
     if (chatCellDelegate && [chatCellDelegate respondsToSelector:@selector(didClickAvatar:)]){
         //PPDebug(@"%d",[self.indexPath row]);
         [chatCellDelegate didClickAvatar:self.indexPath];
     }
 }
+
+//- (IBAction)clickAvatar:(id)sender
+//{
+//    if (chatCellDelegate && [chatCellDelegate respondsToSelector:@selector(didClickAvatar:)]){
+//        //PPDebug(@"%d",[self.indexPath row]);
+//        [chatCellDelegate didClickAvatar:self.indexPath];
+//    }
+//}
 
 @end
