@@ -24,13 +24,13 @@
 #import "ShareImageManager.h"
 #import "UIImageView+Extend.h"
 
-@interface HomeHeaderPanel ()
+@interface HomeHeaderPanel ()<AvatarViewDelegate>
 {
     NSMutableArray *_feedList;
     NSTimer *_scrollTimer;
 }
 @property (retain, nonatomic) IBOutlet UIImageView *displayBG;
-@property (retain, nonatomic) IBOutlet UIImageView *avatar;
+@property (retain, nonatomic) IBOutlet AvatarView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 @property (retain, nonatomic) IBOutlet UILabel *level;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
@@ -46,12 +46,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *friendCountBackgroundImageView;
 
 @property (retain, nonatomic) NSMutableArray *feedList;
-
-- (IBAction)clickFreeCoinButton:(id)sender;
-- (IBAction)clickChargeButton:(id)sender;
-- (IBAction)clickAvatarButton:(id)sender;
-- (IBAction)clickBulletinButton:(id)sender;
-- (IBAction)clickFriendButton:(id)sender;
 
 @end
 
@@ -292,15 +286,13 @@
 {
     self.backgroundColor = [UIColor clearColor];
     
-    //avatar
-    [self.avatar.layer setMasksToBounds:YES];
-    [self.avatar.layer setCornerRadius:(self.avatar.frame.size.width / 2)];
-    
     if (isSingApp()) {
+        [self.avatar setAsRound];
         [self.avatar.layer setBorderWidth:6];
         [self.avatar.layer setBorderColor:[UIColor whiteColor].CGColor];
         [self.nickName setTextColor:[UIColor blackColor]];
     } else {
+        [self.avatar setAsRound];
         [self.avatar.layer setBorderWidth:3];
         UIColor *borderColor = [UIColor colorWithRed:108/225 green:223./225 blue:187./225 alpha:1];
         [self.avatar.layer setBorderColor:borderColor.CGColor];
@@ -309,14 +301,9 @@
     
     UserManager *userManager = [UserManager defaultManager];
     
-    NSURL* url = [NSURL URLWithString:[userManager avatarURL]];
-    UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:[userManager gender]];
-    [self.avatar setImageWithUrl:url placeholderImage:placeHolderImage showLoading:YES animated:YES];    
+    [self.avatar setAvatarUrl:[userManager avatarURL] gender:[userManager gender]];
+    self.avatar.delegate = self;
     
-    UIButton *mask = [UIButton buttonWithType:UIControlStateNormal];
-    mask.frame = self.avatar.frame;
-    [self addSubview:mask];
-    [mask addTarget:self action:@selector(clickAvatarButton:) forControlEvents:UIControlEventTouchUpInside];
     
     //nick
     [self.nickName setText:userManager.nickName];
@@ -420,9 +407,10 @@
         [self.delegate homeHeaderPanel:self didClickChargeButton:sender];
     }
 }
-- (IBAction)clickAvatarButton:(id)sender {
+
+- (void)didClickOnAvatar:(NSString*)userId{
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickAvatarButton:)]) {
-        [self.delegate homeHeaderPanel:self didClickAvatarButton:sender];
+        [self.delegate homeHeaderPanel:self didClickAvatarButton:nil];
     }
 }
 

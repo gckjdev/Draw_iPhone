@@ -7,7 +7,6 @@
 //
 
 #import "CommonRoomListCell.h"
-//#import "DiceAvatarView.h"
 #import "StableView.h"
 
 @class FXLabel;

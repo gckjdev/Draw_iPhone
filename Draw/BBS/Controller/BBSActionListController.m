@@ -13,7 +13,6 @@
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"
-#import "CommonUserInfoView.h"
 #import "MKBlockActionSheet.h"
 
 
@@ -24,7 +23,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIButton *refreshButton;
-//- (IBAction)clickRefreshButton:(id)sender;
 @end
 
 #define TAB_ID 100

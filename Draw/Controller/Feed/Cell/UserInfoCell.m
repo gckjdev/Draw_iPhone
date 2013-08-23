@@ -52,10 +52,9 @@
     BOOL gender =  feed.author.gender;
     
     self.avatarView = [[[AvatarView alloc] initWithUrlString:avatar frame:frame gender:gender level:0] autorelease];
-    [(AvatarView *)self.avatarView setUserId:userId];
+    [self.avatarView setUserId:userId];
     [self.avatarView setUserInteractionEnabled:NO];
     [self addSubview:self.avatarView];
-//    self.avatarView.delegate = self;
     
     //name
     if ([feed.author.signature length] > 0) {

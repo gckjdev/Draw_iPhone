@@ -11,7 +11,6 @@
 #import "BBSPostDetailCell.h"
 #import "ReplayView.h"
 #import "GameNetworkConstants.h"
-#import "CommonUserInfoView.h"
 #import "BBSPostCommand.h"
 #import "BBSPostCommandPanel.h"
 #import "BBSPermissionManager.h"

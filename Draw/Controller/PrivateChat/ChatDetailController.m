@@ -220,6 +220,7 @@
     [self registerAllChatNotification];
     [self loadNewMessage:YES];
     
+    self.view.backgroundColor = COLOR_GRAY;
 }
 
 - (void)viewDidUnload

@@ -9,7 +9,6 @@
 #import "PPTableViewCell.h"
 #import "DrawFeed.h"
 #import "StableView.h"
-//#import "FeedService.h"
 
 @interface UserInfoCell : PPTableViewCell
 {
@@ -17,7 +16,7 @@
 }
 
 @property (retain, nonatomic) IBOutlet UILabel *nickLabel;
-@property (retain, nonatomic) IBOutlet UIView *avatarView;
+@property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *signLabel;
 

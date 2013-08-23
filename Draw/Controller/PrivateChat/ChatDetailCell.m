@@ -18,12 +18,9 @@
 #import "PPMessage.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
-//#import "DrawUserInfoView.h"
-//#import "DiceUserInfoView.h"
 #import "GameApp.h"
 #import "MyFriend.h"
 #import "MessageStat.h"
-#import "CommonUserInfoView.h"
 #import "DrawHolderView.h"
 #import "UIImageExt.h"
 #import "UIImageView+Extend.h"
@@ -423,9 +420,10 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
     }
         
-    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:isMale];
-    NSURL *url = [NSURL URLWithString:avatar];
-    [self.avatarView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
+//    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:isMale];
+//    NSURL *url = [NSURL URLWithString:avatar];
+//    [self.avatarView setImageWithUrl:url placeholderImage:defaultImage showLoading:YES animated:YES];
+    [self.avatarView setAvatarUrl:avatar gender:isMale];
     
 }
 

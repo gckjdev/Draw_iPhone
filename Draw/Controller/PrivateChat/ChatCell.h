@@ -7,7 +7,7 @@
 //
 
 #import "PPTableViewCell.h"
-#import "UIImageView+WebCache.h"
+#import "StableView.h"
 
 @protocol ChatCellDelegate <NSObject>
 
@@ -17,12 +17,11 @@
 
 
 @class MessageStat;
-@interface ChatCell : PPTableViewCell
+@interface ChatCell : PPTableViewCell <AvatarViewDelegate>
 {
     MessageStat *_messageStat;
 }
 
-@property (retain, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *textLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
@@ -30,6 +29,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *countBackground;
 @property (assign, nonatomic) id<ChatCellDelegate> chatCellDelegate;
 @property (retain, nonatomic) MessageStat *messageStat;
+@property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 
 + (id)createCell:(id)delegate;
 + (NSString*)getCellIdentifier;

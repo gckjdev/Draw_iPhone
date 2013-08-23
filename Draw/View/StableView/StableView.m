@@ -190,6 +190,7 @@
     
     self.layer.cornerRadius = self.frame.size.width/2;
     self.layer.masksToBounds = YES;
+    [bgView setImage:nil];
 }
 
 - (void)addTapGuesture
@@ -216,10 +217,12 @@
     if (self = [super initWithCoder:aDecoder]) {
         self.backgroundColor = [UIColor clearColor];
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
+        [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
         [self addSubview:bgView];
         [self setAvatarSelected:NO];
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:imageView];
+        
         [self addTapGuesture];
     }
     
@@ -235,6 +238,7 @@
         self.backgroundColor = [UIColor clearColor];
         type = aType;
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
+        [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
         [self addSubview:bgView];
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:imageView];
