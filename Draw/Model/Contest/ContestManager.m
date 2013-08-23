@@ -121,4 +121,33 @@ static ContestManager *_staticContestManager;
     [userDefault setObject:self.oldContestIdList forKey:OLD_CONTEST_LIST];
     [userDefault synchronize];
 }
+
+- (BOOL)isUser:(NSString *)userId judgeAtContest:(NSString *)contestId
+{
+    for (PBContest *contest in _ongoingContestList) {
+        if ([contest.contestId isEqualToString:contestId]) {
+            for (PBGameUser *user in contest.judgesList) {
+                if ([user.userId isEqualToString:userId]) {
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;
+}
+- (BOOL)isUser:(NSString *)userId reporterAtContest:(NSString *)contestId
+{
+    for (PBContest *contest in _ongoingContestList) {
+        if ([contest.contestId isEqualToString:contestId]) {
+            for (PBGameUser *user in contest.reportersList) {
+                if ([user.userId isEqualToString:userId]) {
+                    return YES;
+                }
+            }
+        }
+    }
+    return NO;    
+}
+
+
 @end

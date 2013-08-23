@@ -21,4 +21,7 @@
 
 - (void)saveOngoingContestList:(NSArray*)newList;
 
+- (BOOL)isUser:(NSString *)userId judgeAtContest:(NSString *)contestId;
+- (BOOL)isUser:(NSString *)userId reporterAtContest:(NSString *)contestId;
+
 @end
