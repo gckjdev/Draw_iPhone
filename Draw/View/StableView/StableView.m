@@ -211,6 +211,21 @@
     return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    
+    if (self = [super initWithCoder:aDecoder]) {
+        self.backgroundColor = [UIColor clearColor];
+        bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
+        [self addSubview:bgView];
+        [self setAvatarSelected:NO];
+        imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        [self addSubview:imageView];
+        [self addTapGuesture];
+    }
+    
+    return self;
+}
+
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
 {
     

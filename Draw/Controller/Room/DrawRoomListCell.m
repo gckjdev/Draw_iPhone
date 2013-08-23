@@ -76,6 +76,7 @@
 //        [avatar setHidden:YES];
         
         AvatarView* avatar = (AvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
+        [avatar setAsRound];
         avatar.delegate = nil;
         [avatar setUrlString:nil];
         [avatar setUserId:nil];
@@ -91,6 +92,7 @@
         
         
         AvatarView* avatar = (AvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
+        [avatar setAsRound];
         PBGameUser* user = [session.usersList objectAtIndex:i];
         [avatar setUserId:user.userId];
         [avatar setAvatarUrl:user.avatar gender:user.gender];
