@@ -73,7 +73,8 @@
                           signature:pbFeed.signature
                           drawImageUrl:pbFeed.opusImage 
                           pbDraw:pbFeed.drawData 
-                          wordText:pbFeed.opusWord 
+                          wordText:pbFeed.opusWord
+                          contestId:pbFeed.contestId
                           timesArray:pbFeed.feedTimesList] autorelease];
         
         [self.drawFeed setFeedType:FeedTypeDraw];
