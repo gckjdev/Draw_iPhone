@@ -34,7 +34,7 @@
 @end
 
 
-@interface ChatDetailCell : PPTableViewCell<ShowDrawViewDelegate>
+@interface ChatDetailCell : PPTableViewCell<ShowDrawViewDelegate, SDWebImageManagerDelegate>
 {
     
 }

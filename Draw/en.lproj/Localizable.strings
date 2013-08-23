@@ -928,7 +928,7 @@
 "kGuessTimes" = "Guessed(%d)";
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
-"kCollectTimes" = "Favorite(%d)";
+"kReportTimes" = "Report(%d)";
 
 "kNoComments" = "No comment yet, be the first one?";
 "kNoGuesses" = "No one has guessed it yet, be the first one?";

@@ -937,6 +937,7 @@
 "kFlowerTimes" = "鲜花 (%d)";
 "kTomatoTimes" = "番茄 (%d)";
 "kCollectTimes" = "收藏 (%d)";
+"kReportTimes" = "点评 (%d)";
 
 "kNoComments" = "咦！还没人评论，赶紧抢沙发！";
 "kNoGuesses" = "咦！还没人猜，赶紧抢沙发！";
@@ -1913,7 +1914,7 @@
 "kShape" = "形状";
 "kSelector" = "选择器";
 "kEraser" = "橡皮擦";
-"kChangePageBG" = "自定义背景";
+"kChangePageBG" = "画板背景";
 "kContestReport" = "报道";
 /*********************小吉画画国际化字符串结束 ************************/
 

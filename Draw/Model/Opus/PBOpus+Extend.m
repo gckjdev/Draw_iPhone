@@ -51,6 +51,7 @@
                                 drawImageUrl:self.image
                                       pbDraw:nil
                                     wordText:self.name
+                                   contestId:self.contestId
                                   timesArray:nil] autorelease];
     
 }

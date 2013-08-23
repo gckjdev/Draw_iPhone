@@ -242,17 +242,18 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         [self.contentButton setImage:message.image forState:UIControlStateNormal];
     }else{
         
+        [[SDWebImageManager sharedManager] cancelForDelegate:self];
+        
         [[SDWebImageManager sharedManager] downloadWithURL:url delegate:self options:SDWebImageRetryFailed success:^(UIImage *image, BOOL cached) {
-            if (!message.hasCalSize && self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)])
+            if (!message.hasCalSize) // && self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)])
             {
                 message.thumbImageSize = image.size;
                 message.hasCalSize = YES;
             }
-            [self.contentButton setImage:image forState:UIControlStateNormal];            
-
+            [self.contentButton setImage:image forState:UIControlStateNormal];
+            
         } failure:^(NSError *error) {
             [self.contentButton setImage:[[ShareImageManager defaultManager] splitPhoto] forState:UIControlStateNormal];
-
         }];
         
 

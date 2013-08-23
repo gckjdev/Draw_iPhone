@@ -43,6 +43,7 @@ typedef enum{
 @property (nonatomic, retain) NSData *pbDrawData;
 @property (nonatomic, assign) DeviceType deviceType;
 @property (nonatomic, retain) NSString *opusDesc;
+@property (nonatomic, retain) NSString *contestId;
 @property (nonatomic, retain) NSString *drawDataUrl;
 @property (nonatomic, retain) PBLearnDraw *learnDraw;
 
@@ -60,7 +61,8 @@ typedef enum{
            signature:(NSString *)signature
         drawImageUrl:(NSString *)drawImageUrl 
               pbDraw:(PBDraw *)pbDraw 
-            wordText:(NSString *)wordText 
+            wordText:(NSString *)wordText
+           contestId:(NSString *)contestId
           timesArray:(NSArray *)timesArray;
 
 
@@ -83,6 +85,8 @@ typedef enum{
 - (NSInteger)correctTimes;
 - (NSInteger)flowerTimes;
 - (NSInteger)tomatoTimes;
+- (NSInteger)contestReportTimes;
+- (NSInteger)contestCommentTimes;
 - (ActionType)actionType;
 
 - (BOOL)isContestFeed;
