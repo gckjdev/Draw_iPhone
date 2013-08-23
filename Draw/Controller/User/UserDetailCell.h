@@ -8,13 +8,13 @@
 
 #import "PPTableViewCell.h"
 #import "UserDetailProtocol.h"
-#import "CommonRoundAvatarView.h"
+#import "StableView.h"
 #import "iCarousel.h"
 #import "CustomSegmentedControl.h"
 #import "FeedCarousel.h"
 
 @class PBGameUser;
-@class CommonRoundAvatarView;
+@class AvatarView;
 @class LocalizableLabel;
 @class PPViewController;
 @class UserDetailRoundButton;
@@ -43,7 +43,7 @@
 - (void)didClickUserActionButtonAtIndex:(NSInteger)index;
 @end
 
-@interface UserDetailCell : PPTableViewCell <CommonRoundAvatarViewDelegate, CustomSegmentedControlDelegate, FeedCarouselProtocol>
+@interface UserDetailCell : PPTableViewCell <AvatarViewDelegate, CustomSegmentedControlDelegate, FeedCarouselProtocol>
 @property (retain, nonatomic) IBOutlet UIControl *customBackgroundControl;
 
 @property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
@@ -58,7 +58,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *bloodTypeLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *customBackgroundImageView;
 @property (retain, nonatomic) IBOutlet UILabel *locationLabel;
-@property (retain, nonatomic) IBOutlet CommonRoundAvatarView *avatarView;
+@property (retain, nonatomic) IBOutlet UIView *avatarHolderView;
+@property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UIView *basicDetailView;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *editButton;

@@ -46,17 +46,7 @@ typedef enum {
     
 }
 
-//- (void)setUrlString:(NSString *)urlString;
-//- (id)initWithUrlString:(NSString *)urlString 
-//                 gender:(BOOL)gender 
-//                  level:(int)level;
-//- (id)initWithUrlString:(NSString *)urlString 
-//                  frame:(CGRect)frame 
-//                 gender:(BOOL)gender 
-//                  level:(int)level;
-
 - (void)setImage:(UIImage *)image;
-//- (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setCurrentProgress:(CGFloat)progress;
 - (void)setProgressBarWidth:(CGFloat)width;
@@ -65,8 +55,7 @@ typedef enum {
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime;
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime 
            fromProgress:(float)progress;
-//- (void)setAvatarSelected:(BOOL)selected;
-//- (void)setAvatarSelected:(BOOL)selected level:(int)level;
+
 - (void)setUrlString:(NSString *)urlString 
               userId:(NSString*)userId
               gender:(BOOL)gender 

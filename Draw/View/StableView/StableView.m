@@ -186,6 +186,12 @@
 @synthesize delegate = _delegate;
 @synthesize hasPen = _hasPen;
 
+- (void)setAsRound{
+    
+    self.layer.cornerRadius = self.frame.size.width/2;
+    self.layer.masksToBounds = YES;
+}
+
 - (void)addTapGuesture
 {
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];    
@@ -215,7 +221,6 @@
         type = aType;
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
         [self addSubview:bgView];
-//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:imageView];
         [self setAvatarUrl:urlString gender:gender];
@@ -252,7 +257,6 @@
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
         [self addSubview:bgView];
         [self setAvatarSelected:NO];
-//        imageView = [[HJManagedImageV alloc] initWithFrame:self.bounds];
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [self addSubview:imageView];
         [self setAvatarUrl:urlString gender:gender];
@@ -264,11 +268,7 @@
 }
 
 
-- (void)setUrlString:(NSString *)urlString
-{
-    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:self.gender];
-    [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:defaultImage showLoading:YES animated:YES];        
-}
+
 
 - (void)dealloc
 {
@@ -315,13 +315,19 @@
     imageView.frame = self.bounds;
 //    imageView.frame = frame;//CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
+
+- (void)setUrlString:(NSString *)urlString
+{
+    UIImage *defaultImage = [[ShareImageManager defaultManager] avatarImageByGender:self.gender];
+    [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:defaultImage showLoading:YES animated:YES];
+}
+
 - (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender
 {
     UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:gender];
     [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
-    
-    
 }
+
 - (void)setAvatarSelected:(BOOL)selected
 {
     if (selected) {

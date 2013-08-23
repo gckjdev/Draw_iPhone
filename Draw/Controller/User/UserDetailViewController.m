@@ -22,7 +22,6 @@
 #import "UserService.h"
 #import "SuperUserManageAction.h"
 #import "PPSNSCommonService.h"
-#import "CommonRoundAvatarView.h"
 #import "SNSUtils.h"
 #import "PPSNSIntegerationService.h"
 #import "CommonMessageCenter.h"

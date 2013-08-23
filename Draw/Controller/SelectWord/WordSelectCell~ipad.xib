@@ -207,7 +207,7 @@
 					<object class="IBUILabel" id="226756458">
 						<reference key="NSNextResponder" ref="277753504"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{24, 19}, {154, 80}}</string>
+						<string key="NSFrame">{{26, 19}, {150, 80}}</string>
 						<reference key="NSSuperview" ref="277753504"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="136595294"/>
@@ -238,12 +238,12 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<double key="preferredMaxLayoutWidth">154</double>
+						<double key="preferredMaxLayoutWidth">150</double>
 					</object>
 					<object class="IBUILabel" id="58160763">
 						<reference key="NSNextResponder" ref="277753504"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{205, 19}, {154, 80}}</string>
+						<string key="NSFrame">{{207, 19}, {150, 80}}</string>
 						<reference key="NSSuperview" ref="277753504"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="739756735"/>
@@ -274,12 +274,12 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<double key="preferredMaxLayoutWidth">154</double>
+						<double key="preferredMaxLayoutWidth">150</double>
 					</object>
 					<object class="IBUILabel" id="379144981">
 						<reference key="NSNextResponder" ref="277753504"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{390, 19}, {157, 80}}</string>
+						<string key="NSFrame">{{393.5, 19}, {150, 80}}</string>
 						<reference key="NSSuperview" ref="277753504"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="557133511"/>
@@ -303,7 +303,7 @@
 						<reference key="IBUIFontDescription" ref="323909409"/>
 						<reference key="IBUIFont" ref="990640394"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<double key="preferredMaxLayoutWidth">157</double>
+						<double key="preferredMaxLayoutWidth">150</double>
 					</object>
 					<object class="IBUILabel" id="922356568">
 						<reference key="NSNextResponder" ref="277753504"/>
