@@ -34,6 +34,7 @@
       KEY(DrawToolTypeText): @"draw_text@2x.png",
       KEY(DrawToolTypeFX) :@"draw_fx@2x.png",
       KEY(DrawToolTypeShape): @"draw_shape_image@2x.png",
+      KEY(DrawToolTypePageBG): @"draw_up_panel_page_bg_btn@2x.png",
       
       
       KEY(DrawToolTypeChat):@"group_message@2x.png",

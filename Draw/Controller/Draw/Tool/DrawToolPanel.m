@@ -669,6 +669,7 @@ if (btn) {\
     return view;
 }
 #define INFO_FONT_SIZE (ISIPAD ? 16: 10)
+
 - (UILabel *)infoLabelWithTag:(NSInteger)tag
                             x:(CGFloat)x
                          text:(NSString *)text
@@ -679,7 +680,8 @@ if (btn) {\
                                         text:text];
 
     [label setBackgroundColor:[UIColor clearColor]];
-//    [label setFont:[UIFont systemFontOfSize:INFO_FONT_SIZE]];
+    [label setShadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(VALUE(1), VALUE(1)) blur:0 shadowColor:[UIColor whiteColor]];
     return label;
 }
 
