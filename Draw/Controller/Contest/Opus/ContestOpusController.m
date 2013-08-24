@@ -91,7 +91,7 @@ typedef enum{
     NSInteger type = self.currentTab.tabID;
     
     if (type == OpusTypeReport){
-        return [FeedCell getCellHeight];
+        return [FeedCell getCellHeight:[self.tabDataList objectAtIndex:indexPath.row]];
     }
     else if (type == OpusTypeRank) {
         if (indexPath.row == 0) {

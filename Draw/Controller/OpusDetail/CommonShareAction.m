@@ -35,14 +35,9 @@
 #import "TimeUtils.h"
 #import "Opus.h"
 
-
-
-
-
 @interface CommonShareAction ()
 {
     CustomActionSheet* _customActionSheet;
-    
 }
 
 @property (nonatomic, assign) PPViewController* superViewController;
@@ -53,6 +48,7 @@
 
 @property (retain, nonatomic) NSArray *allActions;
 @property (retain, nonatomic) NSArray *actionTags;
+@property (copy, nonatomic) NSString * shareText;
 
 @end
 
@@ -66,6 +62,7 @@
     [_customActionSheet release];
     [_allActions release];
     [_actionTags release];
+    [_shareText release];
     [super dealloc];
 }
 
@@ -126,6 +123,7 @@
                            onView:(UIView*)onView{
     
     NSArray *tags = @[@(ShareActionTagSinaWeibo), @(ShareActionTagQQWeibo), @(ShareActionTagFacebook), @(ShareActionTagWxTimeline), @(ShareActionTagWxFriend), @(ShareActionTagEmail), @(ShareActionTagAlbum), @(ShareActionTagFavorite)];
+    
     [self displayActionTags:tags
              viewController:viewController
                      onView:onView];
@@ -134,7 +132,24 @@
 - (void)displayActionTags:(NSArray *)actionTags
            viewController:(PPViewController *)viewController
                    onView:(UIView *)onView{
-        
+    
+    [self displayActionTags:actionTags
+                  shareText:nil
+             viewController:viewController
+                     onView:onView];
+}
+
+- (void)displayActionTags:(NSArray *)actionTags
+                shareText:(NSString *)shareText
+           viewController:(PPViewController *)viewController
+                   onView:(UIView *)onView{
+    
+    self.actionTags = actionTags;
+    
+    self.superViewController = viewController;
+    
+    self.shareText = shareText;
+    
     if (_customActionSheet == nil) {
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
@@ -153,9 +168,7 @@
         }
     }
     
-    self.actionTags = actionTags;
-    
-    self.superViewController = viewController;
+
 
     if (!_customActionSheet.isVisable) {
         [_customActionSheet showInView:viewController.view onView:onView];
@@ -216,8 +229,9 @@
 
 - (void)shareViaSNS:(SnsType)type
 {
+    NSString *text = [_shareText length] > 0 ? _shareText : [_opus shareTextWithSNSType:type];
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-                                                                                text:[_opus shareTextWithSNSType:type]
+                                                                                text:text
                                                                           drawUserId:_opus.pbOpus.author.userId
                                                                              snsType:type];
     controller.delegate = self;

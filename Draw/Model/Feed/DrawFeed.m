@@ -354,7 +354,9 @@
 
 - (BOOL)isContestFeed
 {
-    return self.feedType == FeedTypeDrawToContest;
+//    return self.feedType == FeedTypeDrawToContest;
+
+    return [self.contestId length] > 0;
 }
 
 //user action limit 

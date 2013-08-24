@@ -68,7 +68,6 @@ FeedManager *_staticFeedManager = nil;
                 feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             case FeedTypeGuess:
-            case FeedTypeContestComment: // TODO check later
                 feed = [[[GuessFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             case FeedTypeDrawToUser:
@@ -76,6 +75,9 @@ FeedManager *_staticFeedManager = nil;
                 break;
             case FeedTypeDrawToContest:
                 feed = [[[ContestFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                break;
+            case FeedTypeContestComment:
+                feed = [[[CommentFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             default:
                 break;

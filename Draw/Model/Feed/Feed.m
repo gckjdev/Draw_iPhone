@@ -151,4 +151,11 @@
 {
     return NO;
 }
+
+
+- (NSString*)displayText
+{
+    return self.desc;
+}
+
 @end

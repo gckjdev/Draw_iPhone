@@ -28,9 +28,8 @@ typedef enum{
     FeedTypeOnlyComment = 8,
     FeedTypeDrawToContest = 9,
     
-    FeedTypeContestComment = 105
-    
-    
+    FeedTypeContestComment = 105,
+        
 }FeedType;
 
 typedef enum{
@@ -99,4 +98,6 @@ typedef enum {
 //should override
 - (void)updateDesc;
 - (FeedUser *)author;
+- (NSString*)displayText;
+
 @end
