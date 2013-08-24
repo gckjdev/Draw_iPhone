@@ -39,7 +39,6 @@
 @property (retain, nonatomic) UIImageView *bgImageView;
 @property (retain, nonatomic) UIButton *backButton;
 @property (retain, nonatomic) UILabel *titleLabel;
-@property (retain, nonatomic) UIButton *rightButton;
 @property (retain, nonatomic) UIActivityIndicatorView* loadingActivityView;
 @property (retain, nonatomic) NSString* titleText;
 @property (assign, nonatomic) BOOL rightButtonBeforeLoadingHiddenState;

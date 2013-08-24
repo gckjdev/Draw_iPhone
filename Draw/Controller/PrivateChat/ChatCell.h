@@ -31,9 +31,6 @@
 @property (retain, nonatomic) MessageStat *messageStat;
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 
-+ (id)createCell:(id)delegate;
-+ (NSString*)getCellIdentifier;
-+ (CGFloat)getCellHeight;
 - (void)setCellByMessageStat:(MessageStat *)messageStat indexPath:(NSIndexPath *)aIndexPath;
 
 

@@ -59,12 +59,12 @@
 #define REPLY_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 
 #define COMMENT_SPACE ([DeviceDetection isIPAD] ? 10 : 5)
-#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 110 : 44)
+#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 126 : 52)
 #define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
 
 #define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
 
-#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(12, 10, 74, 77) : CGRectMake(5, 9, 31, 32)
+#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(16, 10, 88, 88) : CGRectMake(8, 9, 36, 36)
 
 #define COMMENT_PAN ([DeviceDetection isIPAD] ? 10 : 6)
 #define REPLY_PAN ([DeviceDetection isIPAD] ? 42 : 22)

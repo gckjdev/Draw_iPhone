@@ -1511,6 +1511,8 @@
 "kRanking" = "Ranking";
 
 "kOpusNameInvaild" = "Opus name can not blank";
+
+"kAskForHelp" = "Help";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
