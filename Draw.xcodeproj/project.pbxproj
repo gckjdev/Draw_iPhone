@@ -5631,6 +5631,10 @@
 		CAFC03B717C84CC600A11DE3 /* DetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03B517C84CC600A11DE3 /* DetailFooterView.m */; };
 		CAFC03B817C84CC600A11DE3 /* DetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03B517C84CC600A11DE3 /* DetailFooterView.m */; };
 		CAFC03B917C84CC600A11DE3 /* DetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03B517C84CC600A11DE3 /* DetailFooterView.m */; };
+		CAFC03C417C887C200A11DE3 /* PPPopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03C317C887C100A11DE3 /* PPPopTableView.m */; };
+		CAFC03C517C887C200A11DE3 /* PPPopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03C317C887C100A11DE3 /* PPPopTableView.m */; };
+		CAFC03C617C887C200A11DE3 /* PPPopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03C317C887C100A11DE3 /* PPPopTableView.m */; };
+		CAFC03C717C887C200A11DE3 /* PPPopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFC03C317C887C100A11DE3 /* PPPopTableView.m */; };
 		CAFCAAB816BF520F00641A85 /* input_alert_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */; };
 		CAFCAAC016BF520F00641A85 /* input_alert_uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */; };
 		CAFCAACA16BF589000641A85 /* input_alert_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */; };
@@ -10347,6 +10351,8 @@
 		CAFC03A917C7591200A11DE3 /* draw_up_panel_page_bg_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_page_bg_btn@2x.png"; sourceTree = "<group>"; };
 		CAFC03B417C84CC600A11DE3 /* DetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailFooterView.h; sourceTree = "<group>"; };
 		CAFC03B517C84CC600A11DE3 /* DetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailFooterView.m; sourceTree = "<group>"; };
+		CAFC03C217C887BF00A11DE3 /* PPPopTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPopTableView.h; sourceTree = "<group>"; };
+		CAFC03C317C887C100A11DE3 /* PPPopTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPopTableView.m; sourceTree = "<group>"; };
 		CAFCAAB516BF520F00641A85 /* input_alert_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_check@2x.png"; sourceTree = "<group>"; };
 		CAFCAAB716BF520F00641A85 /* input_alert_uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_uncheck@2x.png"; sourceTree = "<group>"; };
 		CAFCAAC916BF589000641A85 /* input_alert_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "input_alert_close@2x.png"; sourceTree = "<group>"; };
@@ -11191,6 +11197,8 @@
 			children = (
 				A45E8CE115C780570089E240 /* CMPopTipView.h */,
 				A45E8CE215C780570089E240 /* CMPopTipView.m */,
+				CAFC03C217C887BF00A11DE3 /* PPPopTableView.h */,
+				CAFC03C317C887C100A11DE3 /* PPPopTableView.m */,
 			);
 			path = CMPopTipView;
 			sourceTree = "<group>";
@@ -22967,6 +22975,7 @@
 				CAFC036F17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440354F17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
 				CAFC03B817C84CC600A11DE3 /* DetailFooterView.m in Sources */,
+				CAFC03C617C887C200A11DE3 /* PPPopTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23767,6 +23776,7 @@
 				CAFC036E17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440354E17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
 				CAFC03B717C84CC600A11DE3 /* DetailFooterView.m in Sources */,
+				CAFC03C517C887C200A11DE3 /* PPPopTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24574,6 +24584,7 @@
 				CAFC036D17C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440354D17C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
 				CAFC03B617C84CC600A11DE3 /* DetailFooterView.m in Sources */,
+				CAFC03C417C887C200A11DE3 /* PPPopTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25354,6 +25365,7 @@
 				CAFC037017C4CAA100A11DE3 /* ChangePageBGCommand.m in Sources */,
 				A440355017C5A9C900301EDD /* LocalNotificationUtil.m in Sources */,
 				CAFC03B917C84CC600A11DE3 /* DetailFooterView.m in Sources */,
+				CAFC03C717C887C200A11DE3 /* PPPopTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
