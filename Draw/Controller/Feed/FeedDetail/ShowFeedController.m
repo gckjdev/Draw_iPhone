@@ -1022,14 +1022,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-<<<<<<< HEAD
     return [CommentHeaderView getTypeCountByFeed:self.feed];
-=======
-    if ([_feed isContestFeed]) {
-        return 3;
-    }
-    return 3;
->>>>>>> 05a900fe5cf3b89c42249e7ca77743f5a6ae5d28
 }
 
 - (NSInteger)currentTabIndex
