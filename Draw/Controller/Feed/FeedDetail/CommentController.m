@@ -73,6 +73,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    SET_VIEW_BG(self.view);
     ShareImageManager *manager = [ShareImageManager defaultManager];
     [self.inputBGView setImage:[manager inputImage]];
     if (self.commentFeed) {

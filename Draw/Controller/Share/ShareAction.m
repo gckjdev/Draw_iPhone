@@ -307,19 +307,13 @@
             } else {
                 text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
             }
-//            text = [NSString stringWithFormat:NSLS(@"kShareOtherText"), snsOfficialNick];
         }
     }
-    // removed by Benson 2013-4-5
-//    NSArray* array = [[WordManager defaultManager] randGuessWordList:(rand()%10 == 0)?nil:self.feed.wordText];
-//    if (array.count >= 4) {
-//        text = self.feed.opusDesc;
-//        if (text == nil || text.length == 0) {
-//            text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array objectAtIndex:0]).text, ((Word*)[array objectAtIndex:1]).text, ((Word*)[array objectAtIndex:2]).text, ((Word*)[array objectAtIndex:3]).text];
-//        }
-//    }
+
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-                                                                                text:text drawUserId:self.drawUserId snsType:type];
+                                                                                text:text
+                                                                          drawUserId:self.drawUserId
+                                                                             snsType:type];
     controller.delegate = self;
     [self.superViewController.navigationController pushViewController:controller animated:YES];
     [controller release];    

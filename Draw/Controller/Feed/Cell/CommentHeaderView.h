@@ -35,7 +35,7 @@
 
 + (CGFloat)getHeight;
 + (id)createCommentHeaderView:(id)delegate;
-
-
++ (CommentType *)getTypeCountByFeed:(DrawFeed *)feed;
++ (CommentType *)getTypeListByFeed:(DrawFeed *)feed;
 @end
 

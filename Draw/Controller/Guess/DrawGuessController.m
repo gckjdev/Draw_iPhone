@@ -51,12 +51,14 @@
 }
 
 - (void)clickAskForHelpButton{
+    
     PPDebug(@"clickAskForHelpButton");
     
     if (_shareAction == nil) {
         _shareAction = [[CommonShareAction alloc] initWithOpus:self.opus];
     }
-//    [_shareAction displayHelpWithViewController:self onView:_titleView.rightButton];
+    
+    [_shareAction displayActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxFriend)] shareText:NSLS(@"kLookWhatHeDraw") viewController:self onView:_titleView.rightButton];
 }
 
 @end
