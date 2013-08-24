@@ -38,4 +38,10 @@ typedef enum {
            viewController:(PPViewController *)viewController
                    onView:(UIView *)onView;
 
+
+- (void)displayActionTags:(NSArray *)actionTags
+                shareText:(NSString *)shareText
+           viewController:(PPViewController *)viewController
+                   onView:(UIView *)onView;
+
 @end
