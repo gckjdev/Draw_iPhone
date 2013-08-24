@@ -1036,18 +1036,7 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-<<<<<<< HEAD
-    return [CommentHeaderView getTypeListByFeed:self.feed][index];    
-=======
-    if ([_feed isContestFeed]) {
-        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment, CommentTypeSave};
-        return tabIDs[index];
-    }else{
-        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave};
-        return tabIDs[index];
-    }
-    
->>>>>>> 05a900fe5cf3b89c42249e7ca77743f5a6ae5d28
+    return [CommentHeaderView getTypeListByFeed:self.feed][index];   
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
