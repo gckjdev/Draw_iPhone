@@ -119,10 +119,13 @@
 }
 - (BOOL)isCommentType
 {
-    return self.feedType == FeedTypeComment ||
-    self.feedType == ItemTypeFlower || 
-    self.feedType == ItemTypeTomato || 
-    self.feedType == FeedTypeGuess;
+    return IS_OPUS_ACTION(self.feedType);
+    
+//    return self.feedType == FeedTypeComment ||
+//    self.feedType == ItemTypeFlower || 
+//    self.feedType == ItemTypeTomato || 
+//    self.feedType == FeedTypeGuess ||
+//    self.feedType == FeedTypeContestComment;
 }
 
 //need to override

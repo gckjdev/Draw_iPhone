@@ -50,11 +50,10 @@
 
 - (NSString *)commentInFeedDeatil
 {
-    if (self.feedType == FeedTypeComment && self.commentInfo) {
+    if (IS_OPUS_COMMENT_ACTION(self.feedType) && self.commentInfo) {
         FeedType type = self.commentInfo.type;
-        if (type == FeedTypeComment || type == FeedTypeFlower || type == FeedTimesTypeTomato || type ==FeedTypeGuess) {
+        if (IS_OPUS_ACTION(type)) {
             NSString *cmt = [NSString stringWithFormat:NSLS(@"kReplyCommentDesc"),self.commentInfo.actionNick,self.comment];
-//            self.comment = cmt;
             return cmt;
         }
     }
@@ -96,6 +95,7 @@
     
     switch (self.feedType) {
         case FeedTypeComment:
+        case FeedTypeContestComment:
             if ([pbFeed hasCommentInfo]) {
                 self.commentInfo = [[[CommentInfo alloc] initWithPBCommentInfo:
                                     pbFeed.commentInfo] autorelease];
@@ -301,6 +301,16 @@
             } else
             {
                 desc = [NSString stringWithFormat:NSLS(@"kSummaryOfComment"),nick,self.summary];
+            }
+            
+            return desc;
+
+        case FeedTypeContestComment: // TODO Benson Contest Comment
+            if (isMe) {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfContestComment_Me"), self.summary];
+            } else
+            {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfContestComment"),nick,self.summary];
             }
             
             return desc;

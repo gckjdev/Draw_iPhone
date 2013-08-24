@@ -148,15 +148,17 @@
         NSString *commentNickName = nil;
         
         if (self.commentFeed) {
+            // 回复评论/鲜花/点评等的操作
             commentType = _commentFeed.feedType;
             commentId = _commentFeed.feedId;
-            if (_commentFeed.feedType == FeedTypeComment) {
+            if (IS_OPUS_COMMENT_ACTION(_commentFeed.feedType)) {
                 commentSummary = _commentFeed.comment;
-            }       
+            }
             commentUserId = _commentFeed.feedUser.userId;
             commentNickName = _commentFeed.feedUser.nickName;
             
         }else{
+            // 评论 或者 点评 作品本身
             commentType = self.feed.feedType;
             commentId = opusId;
             commentSummary = self.feed.wordText;
@@ -169,10 +171,6 @@
             commentSummary = [commentSummary substringToIndex:ACTION_SUMMARY_MAX_LENGTH];
         }
         
-        if (_forContestReport){
-            commentType = CommentTypeContestComment;
-        }
-        
         [_feedService commentOpus:opusId 
                            author:author
                           comment:comment 
@@ -182,6 +180,7 @@
                     commentUserId:commentUserId
                   commentNickName:commentNickName
                         contestId:self.feed.contestId
+                 forContestReport:_forContestReport
                          delegate:self];        
     }
 

@@ -67,7 +67,7 @@ typedef enum{
     [super viewDidLoad];    
     [self initTabButtons];
 //    [self.titleLabel setText:NSLS(@"kContestRank")];
-    [self.titleView setTitle:NSLS(@"kContestRank")];
+    [self.titleView setTitle:self.contest.title]; //NSLS(@"kContestRank")];
     [self.titleView setTarget:self];
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];

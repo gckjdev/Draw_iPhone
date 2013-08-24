@@ -995,12 +995,14 @@
 "kSummaryOfGuess" = "Reply %@'s guessing.";
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
+"kSummaryOfContestComment" = "Reply %@'s comment: %@.";
 
 "kSummaryOfDraw_Me" = "Comment my opus: [%@].";
 "kSummaryOfDrawNoWord_Me" = "Comment my opus.";
 "kSummaryOfGuess_Me" = "Reply to my guessing.";
 "kSummaryOfSendItem_Me" = "Reply to my expression.";
 "kSummaryOfComment_Me" = "Reply to my comment: %@.";
+"kSummaryOfContestComment" = "Reply %@'s comment: %@.";
 
 "kAskLocationTitle" = "Location Request";
 "kReplyLocationTitle" = "Reply Request";

@@ -116,7 +116,7 @@
         if (self.commentFeed) {
             commentType = _commentFeed.feedType;
             commentId = _commentFeed.feedId;
-            if (_commentFeed.feedType == FeedTypeComment) {
+            if (IS_OPUS_COMMENT_ACTION(_commentFeed.feedType)) {
                 commentSummary = _commentFeed.comment;
             }
             commentUserId = _commentFeed.feedUser.userId;
