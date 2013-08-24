@@ -334,6 +334,7 @@ typedef enum{
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
     
 {
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     if (indexPath.section == SectionCommentInfo) {
         cell.backgroundColor = COLOR_WHITE;
     }
@@ -351,11 +352,13 @@ typedef enum{
         case SectionDrawInfo:
             return 1;
         case SectionCommentInfo:
-            self.noMoreData = ![[_tabManager currentTab] hasMoreData];
-            if ([self.dataList count] < SPACE_CELL_COUNT) {
+        {
+            NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+            if (count < SPACE_CELL_COUNT) {
                 return SPACE_CELL_COUNT;
             }
-            return [self.dataList count];
+            return count;
+        }
         default:
             return 0;
     }
@@ -726,6 +729,7 @@ typedef enum{
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
 {
+    PPDebug(@"<NO MORE> = %d", self.noMoreData);
     switch (type) {
         case FooterTypeGuess:
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
