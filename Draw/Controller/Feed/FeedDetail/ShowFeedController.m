@@ -731,7 +731,8 @@ enum{
         [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
     }else if(button == self.commentButton){
         //enter comment controller
-        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed];
+        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+//        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed];
         [self presentModalViewController:cc animated:YES];
         [cc release];
         [_commentHeader setSelectedType:CommentTypeComment];       
@@ -1033,7 +1034,7 @@ enum{
 - (NSInteger)tabCount
 {
     if ([_feed isContestFeed]) {
-        return 2;
+        return 3;
     }
     return 3;
 }
@@ -1050,7 +1051,7 @@ enum{
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     if ([_feed isContestFeed]) {
-        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower, CommentTypeSave};
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment, CommentTypeSave};
         return tabIDs[index];
     }else{
         NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave};

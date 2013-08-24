@@ -202,7 +202,7 @@
 #define ACTION_TYPE_RECOMMEND_OPUS          102
 #define ACTION_TYPE_UNRECOMMEND_OPUS        103
 #define ACTION_TYPE_REJECT_DRAW_TO_ME_OPUS  104
-
+#define ACTION_TYPE_CONTEST_COMMENT         105
 // for item
 #define METHOD_BUY_ITEM @"buyItem"
 #define METHOD_CONSUME_ITEM @"consumeItem"

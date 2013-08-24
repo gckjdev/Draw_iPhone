@@ -1828,7 +1828,68 @@
     
 }
 
++ (CommonNetworkOutput*)contestCommentOpus:(NSString*)baseURL
+                              appId:(NSString*)appId
+                             userId:(NSString*)userId
+                               nick:(NSString*)nick
+                             avatar:(NSString*)avatar
+                             gender:(NSString*)gender
+                             opusId:(NSString*)opusId
+                     opusCreatorUId:(NSString*)opusCreatorUId
+                            comment:(NSString*)comment
+                        commentType:(int)commentType //comment info
+                          commentId:(NSString *)commentId
+                     commentSummary:(NSString *)commentSummary
+                      commentUserId:(NSString *)commentUserId
+                    commentNickName:(NSString *)commentNickName
+                          contestId:(NSString*)contestId
 
+{
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_ACTION_ON_OPUS];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
+        str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
+        str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
+        str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_CONTENT value:comment];
+        
+        //Comment info
+        str = [str stringByAddQueryParameter:PARA_COMMENT_TYPE intValue:commentType];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_ID value:commentId];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_SUMMARY value:commentSummary];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_USERID value:commentUserId];
+        str = [str stringByAddQueryParameter:PARA_COMMENT_NICKNAME value:commentNickName];
+        str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
+        
+        //TODO use type at Action Class. due to no Action Class, hard code now!
+        str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:ACTION_TYPE_CONTEST_COMMENT];
+        
+        //action type
+        return str;
+    };
+    
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        output.jsonDataDict = [dict objectForKey:RET_DATA];
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                                  output:output];
+    
+    
+}
 
 + (CommonNetworkOutput*)commentOpus:(NSString*)baseURL
                             appId:(NSString*)appId

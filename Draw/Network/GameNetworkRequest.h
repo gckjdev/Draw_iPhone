@@ -347,6 +347,22 @@
                     commentNickName:(NSString *)commentNickName
                           contestId:(NSString*)contestId;
 
++ (CommonNetworkOutput*)contestCommentOpus:(NSString*)baseURL
+                                     appId:(NSString*)appId
+                                    userId:(NSString*)userId
+                                      nick:(NSString*)nick
+                                    avatar:(NSString*)avatar
+                                    gender:(NSString*)gender
+                                    opusId:(NSString*)opusId
+                            opusCreatorUId:(NSString*)opusCreatorUId
+                                   comment:(NSString*)comment
+                               commentType:(int)commentType //comment info
+                                 commentId:(NSString *)commentId
+                            commentSummary:(NSString *)commentSummary
+                             commentUserId:(NSString *)commentUserId
+                           commentNickName:(NSString *)commentNickName
+                                 contestId:(NSString*)contestId;
+
 + (CommonNetworkOutput*)getOpusCount:(NSString*)baseURL
                                appId:(NSString*)appId
                               userId:(NSString*)userId
