@@ -131,6 +131,7 @@
         return nil;
     }
     CommentHeaderView *view = [topLevelObjects objectAtIndex:0];
+    SET_VIEW_BG(view);
     view.delegate = delegate;
     return view;
 }

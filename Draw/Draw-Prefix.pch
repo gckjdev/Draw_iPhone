@@ -20,6 +20,7 @@
     #import "UIViewUtils.h"
     #import "UIColor+UIColorExt.h"
     #import "CommonTitleView.h"
+    #import "ShareImageManager.h"
     #define ISIPAD [DeviceDetection isIPAD]
     #define ISIPHONE5 [DeviceDetection isIPhone5]
 #endif

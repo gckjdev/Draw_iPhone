@@ -34,6 +34,7 @@
       KEY(DrawToolTypeText): @"draw_text@2x.png",
       KEY(DrawToolTypeFX) :@"draw_fx@2x.png",
       KEY(DrawToolTypeShape): @"draw_shape_image@2x.png",
+      KEY(DrawToolTypePageBG): @"draw_up_panel_page_bg_btn@2x.png",
       
       
       KEY(DrawToolTypeChat):@"group_message@2x.png",
@@ -144,34 +145,63 @@
         return ipList;
     }
 }
-+ (DrawToolType *)upToolList
++ (DrawToolType *)upToolList:(BOOL)isBriefStyle
 {
+    DrawToolType *list = NULL;
     if (ISIPAD || ISIPHONE5) {
-        static int ipadList[] = {
-            DrawToolTypeSize,
-            DrawToolTypeCopy,
-            DrawToolTypeDesc,
-            DrawToolTypeDrawTo,
-            DrawToolTypePageBG,
-            DrawToolTypeHelp,
-            DrawToolTypeSubject,
-            DrawToolTypeEnd,
-        };
-        return ipadList;
+        if (isBriefStyle) {
+            static int ipadList1[] = {
+                DrawToolTypeSize,
+                DrawToolTypeCopy,
+                DrawToolTypeDesc,
+                DrawToolTypePageBG,
+                DrawToolTypeHelp,
+                DrawToolTypeSubject,
+                DrawToolTypeEnd,
+            };
+            list = ipadList1;
+        }else{
+            static int ipadList[] = {
+                DrawToolTypeSize,
+                DrawToolTypeCopy,
+                DrawToolTypeDesc,
+                DrawToolTypeDrawTo,
+                DrawToolTypePageBG,
+                DrawToolTypeHelp,
+                DrawToolTypeSubject,
+                DrawToolTypeEnd,
+            };
+            list = ipadList;
+        }
     }else{
-        static int ipList[] = {
-            DrawToolTypeSize,
-            DrawToolTypeBG,
-            DrawToolTypeCopy,
-            DrawToolTypeDesc,
-            DrawToolTypeDrawTo,
-            DrawToolTypePageBG,            
-            DrawToolTypeHelp,
-            DrawToolTypeSubject,            
-            DrawToolTypeEnd,
-        };
-        return ipList;
+        if (isBriefStyle) {
+            static int ipList1[] = {
+                DrawToolTypeSize,
+                DrawToolTypeBG,
+                DrawToolTypeCopy,
+                DrawToolTypeDesc,
+                DrawToolTypePageBG,
+                DrawToolTypeHelp,
+                DrawToolTypeSubject,
+                DrawToolTypeEnd,
+            };
+            list = ipList1;
+        }else{
+            static int ipList[] = {
+                DrawToolTypeSize,
+                DrawToolTypeBG,
+                DrawToolTypeCopy,
+                DrawToolTypeDesc,
+                DrawToolTypeDrawTo,
+                DrawToolTypePageBG,
+                DrawToolTypeHelp,
+                DrawToolTypeSubject,
+                DrawToolTypeEnd,
+            };
+            list = ipList;            
+        }
     }
+    return list;
 }
 
 

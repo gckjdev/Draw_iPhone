@@ -209,12 +209,14 @@ if(control){\
 }
 
 + (id)createViewWithDrawView:(DrawView *)drawView
+                  briefStyle:(BOOL)briefStyle
 {
     DrawToolUpPanel *panel = [self createViewWithXibIdentifier:@"ToolUpPanel" ofViewIndex:0];
-
+    
     
     CGRect frame = panel.frame;
-    NSUInteger number = [PanelUtil numberOfTypeList:[PanelUtil upToolList]];
+    panel.briefStyle = briefStyle;
+    NSUInteger number = [PanelUtil numberOfTypeList:[PanelUtil upToolList:briefStyle]];
     CGFloat height = (number + 0.2) *[DrawToolUpPanelCell getCellHeight];
     CGFloat width = ISIPAD ? CGRectGetWidth(frame)*2 : CGRectGetWidth(frame);
     frame.size = CGSizeMake(width, height);
@@ -225,6 +227,12 @@ if(control){\
     [panel updateWithDrawInfo:drawView.drawInfo];
     return panel;
     
+}
+
+
++ (id)createViewWithDrawView:(DrawView *)drawView
+{
+    [self createViewWithDrawView:drawView briefStyle:NO];
 }
 
 
@@ -245,7 +253,7 @@ if(control){\
     self.tableView.bounces = NO;
     if ([cellDict count] == 0) {
         cellDict = [[NSMutableDictionary alloc] init];
-        DrawToolType *types = [PanelUtil upToolList];
+        DrawToolType *types = [PanelUtil upToolList:self.isBriefStyle];
         for (DrawToolType *i = types; i != NULL &&  (*i) != DrawToolTypeEnd; ++ i) {
             DrawToolUpPanelCell *cell = [DrawToolUpPanelCell cellForType:(*i) delegate:self];
             if (cell) {
@@ -303,7 +311,7 @@ if(control){\
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [cellDict objectForKey:KEY([PanelUtil upToolList][indexPath.row])];
+    return [cellDict objectForKey:KEY([PanelUtil upToolList:self.isBriefStyle][indexPath.row])];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
