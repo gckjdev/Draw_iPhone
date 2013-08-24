@@ -37,21 +37,6 @@
 - (IBAction)clickGuessActionButton:(UIButton *)button;
 - (IBAction)clickCommentActionButton:(UIButton *)button;
 - (IBAction)clickShareActionButton:(UIButton *)button;
-- (IBAction)clickSaveActionButton:(UIButton *)button;
 
-// implemente in sub-class
-- (void)shareToSinaWeibo;
-- (void)shareToTencentWeibo;
-- (void)shareToFacebook;
-- (void)shareToWeChatTimeline;
-- (void)shareToWeChatFriends;
-- (void)shareViaEmail;
-- (void)saveToAlbum;
-- (void)saveAsFavorite;
-
-- (void)bindSNS:(int)snsType;
-- (void)shareViaSNS:(SnsType)type
-               text:(NSString *)text
-      imageFilePath:(NSString *)imageFilePath;
 
 @end

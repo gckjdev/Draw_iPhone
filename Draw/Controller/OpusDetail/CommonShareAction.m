@@ -36,17 +36,7 @@
 #import "Opus.h"
 
 
-typedef enum {
-    ActionTagAlbum = 100,
-    ActionTagEmail = 101,
-    ActionTagWxTimeline = 102,
-    ActionTagWxFriend = 103,
-    ActionTagSinaWeibo = 104,
-    ActionTagQQWeibo = 105,
-    ActionTagFacebook = 106,
-    ActionTagFavorite = 107,
-    
-}ActionTag;
+
 
 
 @interface CommonShareAction ()
@@ -106,24 +96,24 @@ typedef enum {
             
         CommonImageManager *manager = [CommonImageManager defaultManager];
                 
-        self.allActions = @[@[@(ActionTagAlbum), NSLS(@"kAlbum"), manager.albumImage],
-                            @[@(ActionTagEmail), NSLS(@"kEmail"), manager.emailImage],
-                            @[@(ActionTagWxTimeline), NSLS(@"kWeChatTimeline"), manager.wechatImage],
-                            @[@(ActionTagWxFriend), NSLS(@"kWeChatFriends"), manager.wechatFriendsImage],
-                            @[@(ActionTagSinaWeibo), NSLS(@"sinaImage"), manager.sinaImage],
-                            @[@(ActionTagQQWeibo), NSLS(@"kTencentWeibo"), manager.qqWeiboImage],
-                            @[@(ActionTagFacebook), NSLS(@"kFacebook"), manager.facebookImage],
-                            @[@(ActionTagFavorite), NSLS(@"kFavorite"), manager.favoriteImage]];
+        self.allActions = @[@[@(ShareActionTagAlbum), NSLS(@"kAlbum"), manager.albumImage],
+                            @[@(ShareActionTagEmail), NSLS(@"kEmail"), manager.emailImage],
+                            @[@(ShareActionTagWxTimeline), NSLS(@"kWeChatTimeline"), manager.wechatImage],
+                            @[@(ShareActionTagWxFriend), NSLS(@"kWeChatFriends"), manager.wechatFriendsImage],
+                            @[@(ShareActionTagSinaWeibo), NSLS(@"kSinaWeibo"), manager.sinaImage],
+                            @[@(ShareActionTagQQWeibo), NSLS(@"kTencentWeibo"), manager.qqWeiboImage],
+                            @[@(ShareActionTagFacebook), NSLS(@"kFacebook"), manager.facebookImage],
+                            @[@(ShareActionTagFavorite), NSLS(@"kFavorite"), manager.favoriteImage]];
     }
     
     return self;
 }
 
-- (NSArray *)actionWithTag:(ActionTag)tag{
+- (NSArray *)actionWithTag:(ShareActionTag)tag{
     
     for (NSArray *action in _allActions) {
         
-        ActionTag actionTag = [[action objectAtIndex:0] intValue];
+        ShareActionTag actionTag = [[action objectAtIndex:0] intValue];
         if (actionTag == tag) {
             return action;
         }
@@ -134,7 +124,9 @@ typedef enum {
 
 - (void)displayWithViewController:(PPViewController*)viewController
                            onView:(UIView*)onView{
-    [self displayActionTags:_allActions
+    
+    NSArray *tags = @[@(ShareActionTagSinaWeibo), @(ShareActionTagQQWeibo), @(ShareActionTagFacebook), @(ShareActionTagWxTimeline), @(ShareActionTagWxFriend), @(ShareActionTagEmail), @(ShareActionTagAlbum), @(ShareActionTagFavorite)];
+    [self displayActionTags:tags
              viewController:viewController
                      onView:onView];
 }
@@ -151,7 +143,7 @@ typedef enum {
         
         for (NSNumber *nstag in actionTags) {
             
-            ActionTag tag = [nstag intValue];
+            ShareActionTag tag = [nstag intValue];
             
             NSArray *action = [self actionWithTag:tag];
             NSString *title = [action objectAtIndex:1];
@@ -160,6 +152,8 @@ typedef enum {
                                              image:image];
         }
     }
+    
+    self.actionTags = actionTags;
     
     self.superViewController = viewController;
 
@@ -380,44 +374,44 @@ typedef enum {
 
 - (void)actionByButtonIndex:(NSInteger)buttonIndex
 {
-    ActionTag tag = [[_actionTags objectAtIndex:buttonIndex] intValue];
+    ShareActionTag tag = [[_actionTags objectAtIndex:buttonIndex] intValue];
     
-    if (tag == ActionTagAlbum){
+    if (tag == ShareActionTagAlbum){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_ALBUM];
         [[MyPaintManager defaultManager] savePhoto:_imageFilePath delegate:self];
         [self.superViewController showActivityWithText:NSLS(@"kSaving")];
     }
-    else if (tag == ActionTagEmail) {
+    else if (tag == ShareActionTagEmail) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_EMAIL];
         [self shareViaEmail];
     }
-    else if (tag == ActionTagWxTimeline){
+    else if (tag == ShareActionTagWxTimeline){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_TIMELINE];
         [self shareViaWeixin:WXSceneTimeline];
     }
-    else if (tag == ActionTagWxFriend){
+    else if (tag == ShareActionTagWxFriend){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_FRIEND];
         [self shareViaWeixin:WXSceneSession];
     }
-    else if (tag == ActionTagSinaWeibo)
+    else if (tag == ShareActionTagSinaWeibo)
     {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SINA];
         [self actionOnShareSina];
-    } else if (tag == ActionTagQQWeibo) {
+    } else if (tag == ShareActionTagQQWeibo) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
         if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
             [self bindQQWeibo];
         } else {
             [self shareViaSNS:TYPE_QQ];
         }
-    } else if (tag == ActionTagFacebook) {
+    } else if (tag == ShareActionTagFacebook) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
         if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
             [self bindFacebook];
         } else {
             [self shareViaSNS:TYPE_FACEBOOK];
         }
-    } else if (tag == ActionTagFavorite) {
+    } else if (tag == ShareActionTagFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
     }
 }
