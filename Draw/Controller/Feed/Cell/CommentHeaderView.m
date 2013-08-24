@@ -21,9 +21,17 @@
     [super dealloc];
 }
 
-- (CommentType *)getTypeListByFeed:(DrawFeed *)feed {
++ (CommentType *)getTypeCountByFeed:(DrawFeed *)feed
+{
+    CommentType *types = [self getTypeListByFeed:feed];
+    int i = 0;
+    for (; types[i] != CommentTypeNO; ++ i);
+    return i;
+}
+
++ (CommentType *)getTypeListByFeed:(DrawFeed *)feed {
     if([feed isContestFeed]){
-        static CommentType contestFeedTypes[] = {CommentTypeComment, CommentTypeFlower, CommentTypeSave,CommentTypeContestComment,CommentTypeNO};
+        static CommentType contestFeedTypes[] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment,CommentTypeSave, CommentTypeNO};
         return contestFeedTypes;
     }else{
         static CommentType normalFeedTypes[] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave, CommentTypeNO};
@@ -59,7 +67,7 @@
 }
 
 - (void)enumCommentTypeWithBlock:(void (^)(CommentType commentType, NSInteger index))handler{
-    CommentType *types = [self getTypeListByFeed:self.feed];
+    CommentType *types = [CommentHeaderView getTypeListByFeed:self.feed];
     NSInteger currentIndex = 0;
     for (CommentType *type = types; type != NULL && (*type) != CommentTypeNO; type++) {
         if(handler){
@@ -119,21 +127,21 @@
     [self setSelectedType:button.tag];
 }
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        SET_VIEW_BG(self);
+    }
+    return self;
+}
 
 + (id)createCommentHeaderView:(id)delegate
 {
-    NSString* identifier = @"CommentHeaderView";
-    //    NSLog(@"cellId = %@", cellId);
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find view object from Nib", identifier);
-        return nil;
-    }
-    CommentHeaderView *view = [topLevelObjects objectAtIndex:0];
-    SET_VIEW_BG(view);
-    view.delegate = delegate;
-    return view;
+    CGRect frame = CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), TAB_HEIGHT);
+    CommentHeaderView *headerView = [[[CommentHeaderView alloc] initWithFrame:frame] autorelease];
+    headerView.delegate = delegate;
+    return headerView;
 }
 - (void)setSelectedType:(CommentType)type
 {

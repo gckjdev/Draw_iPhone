@@ -1007,8 +1007,6 @@
 		A461B4AB174CBAA70088B061 /* run@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D354115F72215004DC293 /* run@2x.png */; };
 		A461B4AC174CBAA70088B061 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
 		A461B4AD174CBAA70088B061 /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
-		A461B4AE174CBAA70088B061 /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */; };
-		A461B4AF174CBAA70088B061 /* CommentHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */; };
 		A461B4B0174CBAA70088B061 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
 		A461B4B1174CBAA70088B061 /* DrawInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974021607230E003A95F7 /* DrawInfoCell~ipad.xib */; };
 		A461B4B2174CBAA70088B061 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974051607230E003A95F7 /* FeedCell.xib */; };
@@ -3305,8 +3303,6 @@
 		C28A9D8A1738F04B007A819F /* run@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D354115F72215004DC293 /* run@2x.png */; };
 		C28A9D8B1738F04B007A819F /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
 		C28A9D8C1738F04B007A819F /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
-		C28A9D8D1738F04B007A819F /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */; };
-		C28A9D8E1738F04B007A819F /* CommentHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */; };
 		C28A9D8F1738F04B007A819F /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
 		C28A9D901738F04B007A819F /* DrawInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974021607230E003A95F7 /* DrawInfoCell~ipad.xib */; };
 		C28A9D911738F04B007A819F /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974051607230E003A95F7 /* FeedCell.xib */; };
@@ -5096,8 +5092,6 @@
 		CA89742A1607230E003A95F7 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
 		CA89742B1607230E003A95F7 /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
 		CA89742C1607230E003A95F7 /* CommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8973FC1607230E003A95F7 /* CommentHeaderView.m */; };
-		CA89742D1607230E003A95F7 /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */; };
-		CA89742E1607230E003A95F7 /* CommentHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */; };
 		CA89742F1607230E003A95F7 /* DrawInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8974001607230E003A95F7 /* DrawInfoCell.m */; };
 		CA8974301607230E003A95F7 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
 		CA8974311607230E003A95F7 /* DrawInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974021607230E003A95F7 /* DrawInfoCell~ipad.xib */; };
@@ -6629,8 +6623,6 @@
 		EA411BF7176066F500DA72D0 /* run@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D354115F72215004DC293 /* run@2x.png */; };
 		EA411BF8176066F500DA72D0 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
 		EA411BF9176066F500DA72D0 /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
-		EA411BFA176066F500DA72D0 /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */; };
-		EA411BFB176066F500DA72D0 /* CommentHeaderView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */; };
 		EA411BFC176066F500DA72D0 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
 		EA411BFD176066F500DA72D0 /* DrawInfoCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974021607230E003A95F7 /* DrawInfoCell~ipad.xib */; };
 		EA411BFE176066F500DA72D0 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974051607230E003A95F7 /* FeedCell.xib */; };
@@ -9839,8 +9831,6 @@
 		CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentCell~ipad.xib"; sourceTree = "<group>"; };
 		CA8973FB1607230E003A95F7 /* CommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentHeaderView.h; sourceTree = "<group>"; };
 		CA8973FC1607230E003A95F7 /* CommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentHeaderView.m; sourceTree = "<group>"; };
-		CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentHeaderView.xib; sourceTree = "<group>"; };
-		CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentHeaderView~ipad.xib"; sourceTree = "<group>"; };
 		CA8973FF1607230E003A95F7 /* DrawInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawInfoCell.h; sourceTree = "<group>"; };
 		CA8974001607230E003A95F7 /* DrawInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawInfoCell.m; sourceTree = "<group>"; };
 		CA8974011607230E003A95F7 /* DrawInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawInfoCell.xib; sourceTree = "<group>"; };
@@ -15933,10 +15923,6 @@
 				CA8973F81607230E003A95F7 /* CommentCell.m */,
 				CA8973F91607230E003A95F7 /* CommentCell.xib */,
 				CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */,
-				CA8973FB1607230E003A95F7 /* CommentHeaderView.h */,
-				CA8973FC1607230E003A95F7 /* CommentHeaderView.m */,
-				CA8973FD1607230E003A95F7 /* CommentHeaderView.xib */,
-				CA8973FE1607230E003A95F7 /* CommentHeaderView~ipad.xib */,
 				CA8973FF1607230E003A95F7 /* DrawInfoCell.h */,
 				CA8974001607230E003A95F7 /* DrawInfoCell.m */,
 				CA8974011607230E003A95F7 /* DrawInfoCell.xib */,
@@ -15949,6 +15935,8 @@
 				CA8974081607230E003A95F7 /* UserInfoCell.m */,
 				CA8974091607230E003A95F7 /* UserInfoCell.xib */,
 				CA89740A1607230E003A95F7 /* UserInfoCell~ipad.xib */,
+				CA8973FB1607230E003A95F7 /* CommentHeaderView.h */,
+				CA8973FC1607230E003A95F7 /* CommentHeaderView.m */,
 				CAFC03B417C84CC600A11DE3 /* DetailFooterView.h */,
 				CAFC03B517C84CC600A11DE3 /* DetailFooterView.m */,
 			);
@@ -18240,8 +18228,6 @@
 				A461B4AB174CBAA70088B061 /* run@2x.png in Resources */,
 				A461B4AC174CBAA70088B061 /* CommentCell.xib in Resources */,
 				A461B4AD174CBAA70088B061 /* CommentCell~ipad.xib in Resources */,
-				A461B4AE174CBAA70088B061 /* CommentHeaderView.xib in Resources */,
-				A461B4AF174CBAA70088B061 /* CommentHeaderView~ipad.xib in Resources */,
 				A461B4B0174CBAA70088B061 /* DrawInfoCell.xib in Resources */,
 				A461B4B1174CBAA70088B061 /* DrawInfoCell~ipad.xib in Resources */,
 				A461B4B2174CBAA70088B061 /* FeedCell.xib in Resources */,
@@ -19294,8 +19280,6 @@
 				C28A9D8A1738F04B007A819F /* run@2x.png in Resources */,
 				C28A9D8B1738F04B007A819F /* CommentCell.xib in Resources */,
 				C28A9D8C1738F04B007A819F /* CommentCell~ipad.xib in Resources */,
-				C28A9D8D1738F04B007A819F /* CommentHeaderView.xib in Resources */,
-				C28A9D8E1738F04B007A819F /* CommentHeaderView~ipad.xib in Resources */,
 				C28A9D8F1738F04B007A819F /* DrawInfoCell.xib in Resources */,
 				C28A9D901738F04B007A819F /* DrawInfoCell~ipad.xib in Resources */,
 				C28A9D911738F04B007A819F /* FeedCell.xib in Resources */,
@@ -20336,8 +20320,6 @@
 				CA6D354215F72216004DC293 /* run@2x.png in Resources */,
 				CA89742A1607230E003A95F7 /* CommentCell.xib in Resources */,
 				CA89742B1607230E003A95F7 /* CommentCell~ipad.xib in Resources */,
-				CA89742D1607230E003A95F7 /* CommentHeaderView.xib in Resources */,
-				CA89742E1607230E003A95F7 /* CommentHeaderView~ipad.xib in Resources */,
 				CA8974301607230E003A95F7 /* DrawInfoCell.xib in Resources */,
 				CA8974311607230E003A95F7 /* DrawInfoCell~ipad.xib in Resources */,
 				CA8974331607230E003A95F7 /* FeedCell.xib in Resources */,
@@ -21351,8 +21333,6 @@
 				EA411BF7176066F500DA72D0 /* run@2x.png in Resources */,
 				EA411BF8176066F500DA72D0 /* CommentCell.xib in Resources */,
 				EA411BF9176066F500DA72D0 /* CommentCell~ipad.xib in Resources */,
-				EA411BFA176066F500DA72D0 /* CommentHeaderView.xib in Resources */,
-				EA411BFB176066F500DA72D0 /* CommentHeaderView~ipad.xib in Resources */,
 				EA411BFC176066F500DA72D0 /* DrawInfoCell.xib in Resources */,
 				EA411BFD176066F500DA72D0 /* DrawInfoCell~ipad.xib in Resources */,
 				EA411BFE176066F500DA72D0 /* FeedCell.xib in Resources */,

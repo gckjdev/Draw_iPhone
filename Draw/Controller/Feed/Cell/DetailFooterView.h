@@ -37,6 +37,7 @@ typedef enum{
 
 - (void)setButtonsWithTypes:(NSArray *)types;
 - (void)setButton:(FooterType)type enabled:(BOOL)enabled;
-
+- (UIButton *)buttonWithType:(FooterType)type;
++ (DetailFooterView *)footerViewWithDelegate:(id<DetailFooterViewDelegate>)delegate;
 
 @end

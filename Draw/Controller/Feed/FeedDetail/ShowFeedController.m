@@ -12,7 +12,6 @@
 #import "CommentCell.h"
 #import "CommentFeed.h"
 #import "TableTabManager.h"
-//#import "DrawUserInfoView.h"
 #import "ViewUserDetail.h"
 #import "UserDetailViewController.h"
 #import "OfflineGuessDrawController.h"
@@ -49,19 +48,14 @@
 
 #import "MWPhotoBrowser.h"
 #import "UIButton+WebCache.h"
+#import "ContestManager.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
     ShareAction *_shareAction;
 }
-@property (retain, nonatomic) IBOutlet UIButton *guessButton;
-@property (retain, nonatomic) IBOutlet UIButton *saveButton;
-@property (retain, nonatomic) IBOutlet UIButton *commentButton;
-@property (retain, nonatomic) IBOutlet UIButton *flowerButton;
-@property (retain, nonatomic) IBOutlet UIButton *replayButton;
-@property (retain, nonatomic) IBOutlet UIButton *navigatorRightButton;
-@property (retain, nonatomic) IBOutlet UIButton *backButton;
+
 
 
 @property(nonatomic, retain) UserInfoCell *userCell;
@@ -69,9 +63,9 @@
 @property(nonatomic, retain) CommentHeaderView *commentHeader;
 @property(nonatomic, retain) DrawFeed *feed;
 @property (nonatomic, retain) UseItemScene* useItemScene;
+@property(nonatomic, retain) DetailFooterView *footerView;;
 
-
-- (IBAction)clickActionButton:(id)sender;
+//- (IBAction)clickActionButton:(id)sender;
 
 
 @end
@@ -101,15 +95,8 @@ typedef enum{
     PPRelease(_userCell);
     PPRelease(_tabManager);
     PPRelease(_commentHeader);
-    PPRelease(_guessButton);
-    PPRelease(_saveButton);
-    PPRelease(_commentButton);
-    PPRelease(_flowerButton);
-    PPRelease(_replayButton);
     PPRelease(_useItemScene);
     PPRelease(_feedScene);
-    PPRelease(_navigatorRightButton);
-    PPRelease(_backButton);
     [super dealloc];
 }
 
@@ -212,32 +199,42 @@ typedef enum{
 
 }
 
-
-enum{
-  ActionTagGuess = 100,
-  ActionTagComment, 
-  ActionTagSave,
-  ActionTagFlower,
-  ActionTagTomato,
-  ActionTagRplay,
-  ActionTagEnd,
-};
-
-#define SCREEN_WIDTH ([DeviceDetection isIPAD] ? 768 : 320)
-#define ACTION_BUTTON_Y ([DeviceDetection isIPAD] ? 921 : 422)
-
-
-
-
+- (void)updateFlowerButton
+{
+    BOOL enable = [_useItemScene canThrowFlower];
+    [self.footerView setButton:FooterTypeFlower enabled:enable];
+}
 - (void)updateActionButtons
 {
-    self.guessButton.hidden = [self.feed showAnswer] || [self.feed isContestFeed] || ([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType);
-    self.replayButton.hidden = !self.guessButton.hidden;
-
-    for (NSInteger tag = ActionTagGuess; tag < ActionTagEnd; ++ tag) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag];            
-        button.enabled = YES;
+    NSMutableArray *types = [NSMutableArray array];
+    if ([self.feed showAnswer] || [self.feed isContestFeed] || ([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType)) {
+        [types addObject:@(FooterTypeReplay)];
+    }else{
+        [types addObject:@(FooterTypeGuess)];
     }
+    [types addObjectsFromArray:@[@(FooterTypeComment), @(FooterTypeShare)]];
+    
+    if ([self.feed isContestFeed]) {
+        ContestManager *cm = [ContestManager defaultManager];
+        NSString *uid = [[UserManager defaultManager] userId];
+        ContestFeed *cf = (ContestFeed *)self.feed;
+        BOOL canThrowFlower = YES;
+        if([cm isUser:uid reporterAtContest:cf.contestId]){
+            [types addObject:@(FooterTypeReport)];
+            canThrowFlower = NO;
+        }
+        if ([cm isUser:uid judgeAtContest:cf.contestId]) {
+            [types addObject:@(FooterTypeJudge)];
+            canThrowFlower = NO;
+        }
+        if (canThrowFlower && ![self.feed isMyOpus]) {
+            [types addObject:@(FooterTypeFlower)];
+        }        
+    }else if(![self.feed isMyOpus]){
+        [types addObject:@(FooterTypeFlower)];
+    }
+    [self.footerView setButtonsWithTypes:types];
+    [self updateFlowerButton];
 }
 
 - (void)reloadCommentSection
@@ -502,9 +499,7 @@ enum{
     //update the action buttons
     [self updateActionButtons];
     [self updateTitle];
-    
     [self.dataTableView reloadData];
-    
 }
 
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
@@ -563,22 +558,8 @@ enum{
 
 - (void)throwItem:(int)itemId
 {
-    if ([self.feed isMyOpus]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCanotSendToSelf") delayTime:1.5 isHappy:YES];
-        return;
-    }
-    if ((itemId == ItemTypeTomato && ![_useItemScene canThrowTomato]) || (itemId == ItemTypeFlower && ![_useItemScene canThrowFlower])) {
-        UseItemScene * sence = self.useItemScene;
-        
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[sence unavailableItemMessage] delayTime:1.5 isHappy:YES];
-        return;
-    }
-
-//    BOOL isFree = [_useItemScene isItemFree:itemId];
     BOOL isFree = [_feed isContestFeed];
-    BOOL itemEnough = YES;
-    
-    
+    BOOL itemEnough = YES;        
     [self showItemAnimation:itemId isFree:isFree itemEnough:itemEnough];
 }
 
@@ -601,7 +582,9 @@ enum{
         {
             if (resultCode == ERROR_SUCCESS){
                 ShareImageManager *imageManager = [ShareImageManager defaultManager];
-                UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:bself.flowerButton.frame] autorelease];
+                CGRect frame = [bself.footerView buttonWithType:FooterTypeFlower].frame;
+                frame = [self.view convertRect:frame fromView:self.footerView];
+                UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:frame] autorelease];
                 [throwItem setImage:[imageManager flower]];
                 PPDebug(@"<test2> complete 1");                
                 [DrawGameAnimationManager showThrowFlower:throwItem
@@ -724,40 +707,59 @@ enum{
     }];
     
 }
-
-- (IBAction)clickActionButton:(id)sender {
-    UIButton *button = (UIButton *)sender;
-    if (button == self.guessButton) {
-        [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
-    }else if(button == self.commentButton){
-        //enter comment controller
-        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed];
-        [self presentModalViewController:cc animated:YES];
-        [cc release];
-        [_commentHeader setSelectedType:CommentTypeComment];       
-    }else if(button == self.saveButton){
-
-        UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
-        if (image == nil){
-            image = self.feed.largeImage;
+- (void)detailFooterView:(DetailFooterView *)footer
+        didClickAtButton:(UIButton *)button
+                    type:(FooterType)type
+{
+    switch (type) {
+        case FooterTypeGuess:
+            [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
+            break;
+        case FooterTypeReplay:
+            [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
+            break;
+        case FooterTypeComment:
+        {
+            CommentController *cc = [[[CommentController alloc] initWithFeed:self.feed] autorelease];
+            [self presentModalViewController:cc animated:YES];
+            [_commentHeader setSelectedType:CommentTypeComment];
+            break;
         }
-        if (_shareAction == nil) {
-            _shareAction = [[ShareAction alloc] initWithFeed:_feed
-                                                       image:image];
+        case FooterTypeShare:
+        {
+            UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
+            if (image == nil){
+                image = self.feed.largeImage;
+            }
+            if (_shareAction == nil) {
+                _shareAction = [[ShareAction alloc] initWithFeed:_feed
+                                                           image:image];
+            }
+            [_shareAction displayWithViewController:self onView:button];
+            break;
         }
-        [_shareAction displayWithViewController:self onView:self.saveButton];
-        
-    }else if(button == self.flowerButton){
-        [self throwItem:ItemTypeFlower];
-    }else if(button == self.replayButton){
-        [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
-    }else if (button == self.navigatorRightButton) {
-        [self.feedScene didClickNaviatorRightBtn:self];
-    }else {
-        //NO action
+        case FooterTypeFlower:
+        {
+            [self throwItem:ItemTypeFlower];
+            [self updateFlowerButton];
+            break;
+        }
+        case FooterTypeReport:
+        {
+            //TODO report
+            break;
+        }
+         
+        case FooterTypeJudge:
+        {
+            //TODO pop up judge box
+            break;
+        }            
+        default:
+            break;
     }
-    
 }
+
 
 //override super clickBlackButton method
 - (IBAction)clickBackButton:(id)sender
@@ -777,9 +779,6 @@ enum{
 
 - (void)didClickAvatar:(MyFriend *)myFriend
 {
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
-    
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName] inViewController:self];
 }
 
@@ -837,13 +836,19 @@ enum{
 {
     [self updateActionButtons];
     [self updateTitle];
-    [self.feedScene initNavitgatorRightBtn:self.navigatorRightButton];
     [[FeedService defaultService] getFeedByFeedId:_feed.feedId
                                          delegate:self];
     [self.dataTableView reloadData];
     [_commentHeader setViewInfo:self.feed];
-
 }
+
+- (void)initFooterView
+{
+    self.footerView = [DetailFooterView footerViewWithDelegate:self];
+    [self.view addSubview:self.footerView];
+    
+}
+
 - (void)viewDidLoad
 {
     
@@ -857,6 +862,7 @@ enum{
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
+    [self initFooterView];    
     [self initTabButtons];
     [self addSwipe];
     [self reloadView];
@@ -865,13 +871,6 @@ enum{
 
 - (void)viewDidUnload
 {
-    [self setTitleLabel:nil];
-    [self setGuessButton:nil];
-    [self setSaveButton:nil];
-    [self setCommentButton:nil];
-    [self setFlowerButton:nil];
-    [self setReplayButton:nil];
-
     [self.feed setDrawData:nil];
     [self setFeed:nil];
     [self setDrawCell:nil];
@@ -968,21 +967,11 @@ enum{
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         if (buttonIndex == indexOfGuess) {
-            [self clickActionButton:self.guessButton];
+            [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
         }else if (buttonIndex == indexOfPhoto){
-            //TODO show photo
-//            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//            browser.canSave = YES;
-//            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-//            nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//            [self presentModalViewController:nc animated:YES];
-//            [browser release];
-//            [nc release];
-            
             [self showPhotoBrower];
-            
         }else if (buttonIndex == indexOfPlay){
-            [self clickActionButton:self.replayButton];
+            [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
         }else if (buttonIndex == indexOfFeature){
             [[FeedService defaultService] recommendOpus:self.feed.feedId resultBlock:^(int resultCode) {
                 if (resultCode == 0){
@@ -1032,10 +1021,7 @@ enum{
 
 - (NSInteger)tabCount
 {
-    if ([_feed isContestFeed]) {
-        return 2;
-    }
-    return 3;
+    return [CommentHeaderView getTypeCountByFeed:self.feed];
 }
 
 - (NSInteger)currentTabIndex
@@ -1049,14 +1035,7 @@ enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    if ([_feed isContestFeed]) {
-        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower, CommentTypeSave};
-        return tabIDs[index];
-    }else{
-        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave};
-        return tabIDs[index];
-    }
-    
+    return [CommentHeaderView getTypeListByFeed:self.feed][index];    
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {

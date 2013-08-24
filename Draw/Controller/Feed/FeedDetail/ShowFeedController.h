@@ -18,6 +18,7 @@
 #import "CommonTabController.h"
 #import "ShowFeedSceneProtocol.h"
 #import "MWPhotoBrowser.h"
+#import "DetailFooterView.h"
 
 @class Feed;
 @class DrawFeed;
@@ -29,7 +30,7 @@
 @class UseItemScene;
 //@class ToolView;
 
-@interface ShowFeedController : CommonTabController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, DrawInfoCellDelegate, UserServiceDelegate, MWPhotoBrowserDelegate>
+@interface ShowFeedController : CommonTabController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, DrawInfoCellDelegate, UserServiceDelegate, MWPhotoBrowserDelegate, DetailFooterViewDelegate>
 {
     time_t timestamp;
 }

@@ -232,7 +232,7 @@ if(control){\
 
 + (id)createViewWithDrawView:(DrawView *)drawView
 {
-    [self createViewWithDrawView:drawView briefStyle:NO];
+    return [self createViewWithDrawView:drawView briefStyle:NO];
 }
 
 
