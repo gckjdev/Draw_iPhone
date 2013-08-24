@@ -14,19 +14,12 @@
 #import "MyPaintManager.h"
 @class Opus;
 
-//typedef enum {
-//    ShareContentTypeTextAndImage = 1,
-//    SHareContentTypeOnlyText = 2
-//    
-//} ShareContentType;
-
 @interface CommonShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, ShareEditControllerDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
 
 - (id)initWithOpus:(Opus*)opus;
 
-- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController;
+- (void)displayWithViewController:(PPViewController*)viewController
+                           onView:(UIView*)onView;
 
-- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view;
 
-- (void)saveToLocal;
 @end

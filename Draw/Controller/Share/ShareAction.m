@@ -185,10 +185,9 @@
 }
 
 
+
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view
 {
-    
-    
     CommonImageManager* imageManager = [CommonImageManager defaultManager];
     
     if (_customActionSheet == nil) {
@@ -201,8 +200,6 @@
         buttonIndexEmail = 5;
         buttonIndexAlbum = 6;
         buttonIndexFavorite = 7;
-//        buttonIndexUseAsAvatar = 8;
-//        buttonIndexUseAsContactAvatar = 9;
         
         _customActionSheet = [[CustomActionSheet alloc] initWithTitle:NSLS(@"kShareTo")
                                                              delegate:self
@@ -214,16 +211,9 @@
         [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatTimeline") image:imageManager.wechatImage];
         [_customActionSheet addButtonWithTitle:NSLS(@"kWeChatFriends") image:imageManager.wechatFriendsImage];
         [_customActionSheet addButtonWithTitle:NSLS(@"kEmail") image:imageManager.emailImage];
-//        
-//        [_customActionSheet setImage:imageManager.albumImage forTitle:NSLS(@"kAlbum")];
-//        [_customActionSheet setImage:imageManager.emailImage forTitle:NSLS(@"kEmail")];
+
         [_customActionSheet addButtonWithTitle:NSLS(@"kAlbum") image:imageManager.albumImage];
         [_customActionSheet addButtonWithTitle:NSLS(@"kFavorite") image:imageManager.favoriteImage];
-        
-        //TODO: finish it later, still need icon , use as contact not start.
-//        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsAvatar") image:nil];
-//        [_customActionSheet addButtonWithTitle:NSLS(@"kUseAsContact") image:nil];
-
     }
     
     self.superViewController = superViewController;
@@ -232,7 +222,6 @@
     } else {
         [_customActionSheet hideActionSheet];
     }
-    
 }
 
 - (void)reportActionToServer:(NSString*)actionName

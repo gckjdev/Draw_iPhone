@@ -287,12 +287,12 @@
     self.backgroundColor = [UIColor clearColor];
     
     if (isSingApp()) {
-        [self.avatar setAsRound];
+//        [self.avatar setAsRound];
         [self.avatar.layer setBorderWidth:6];
         [self.avatar.layer setBorderColor:[UIColor whiteColor].CGColor];
         [self.nickName setTextColor:[UIColor blackColor]];
     } else {
-        [self.avatar setAsRound];
+//        [self.avatar setAsRound];
         [self.avatar.layer setBorderWidth:3];
         UIColor *borderColor = [UIColor colorWithRed:108/225 green:223./225 blue:187./225 alpha:1];
         [self.avatar.layer setBorderColor:borderColor.CGColor];

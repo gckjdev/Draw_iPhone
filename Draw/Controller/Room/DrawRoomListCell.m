@@ -71,7 +71,7 @@
     for (int i = 0; i < 6; i ++) {
         
         AvatarView* avatar = (AvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
-        [avatar setAsRound];
+//        [avatar setAsRound];
         avatar.delegate = nil;
         [avatar setUrlString:nil];
         [avatar setUserId:nil];
@@ -81,7 +81,7 @@
     for (int i = 0; i < session.usersList.count; i ++) {
         
         AvatarView* avatar = (AvatarView*)[self viewWithTag:(i + TAG_USER_VIEW)];
-        [avatar setAsRound];
+//        [avatar setAsRound];
         PBGameUser* user = [session.usersList objectAtIndex:i];
         [avatar setUserId:user.userId];
         [avatar setAvatarUrl:user.avatar gender:user.gender];

@@ -118,7 +118,11 @@
 								<int key="NSvFlags">289</int>
 								<string key="NSFrame">{{676, 57}, {72, 72}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="1029197967"/>
+								<object class="NSColor" key="IBUIBackgroundColor" id="506682412">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -173,11 +177,12 @@
 									<string key="NSResourceName">wrong@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUIView" id="735761983">
+							<object class="IBUIView" id="1029197967">
 								<reference key="NSNextResponder" ref="128332022"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{676, 57}, {72, 72}}</string>
+								<string key="NSFrame">{{678, 57}, {72, 72}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -192,10 +197,7 @@
 						<string key="NSFrameSize">{768, 219}</string>
 						<reference key="NSSuperview" ref="661876673"/>
 						<reference key="NSNextKeyView" ref="11710769"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="506682412">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="506682412"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -259,7 +261,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">avatarView</string>
 						<reference key="source" ref="661876673"/>
-						<reference key="destination" ref="735761983"/>
+						<reference key="destination" ref="1029197967"/>
 					</object>
 					<int key="connectionID">48</int>
 				</object>
@@ -310,7 +312,7 @@
 							<reference ref="120807257"/>
 							<reference ref="240726313"/>
 							<reference ref="148413260"/>
-							<reference ref="735761983"/>
+							<reference ref="1029197967"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -336,7 +338,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="735761983"/>
+						<reference key="object" ref="1029197967"/>
 						<reference key="parent" ref="661876673"/>
 					</object>
 					<object class="IBObjectRecord">

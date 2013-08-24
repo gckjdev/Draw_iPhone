@@ -123,6 +123,7 @@
 								<string key="NSFrame">{{281, 27}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
 								<reference key="NSNextKeyView"/>
+								<reference key="IBUIBackgroundColor" ref="506682412"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -173,10 +174,10 @@
 									<string key="NSResourceName">wrong@2x.png</string>
 								</object>
 							</object>
-							<object class="IBUIView" id="176369101">
+							<object class="IBUIView" id="381727048">
 								<reference key="NSNextResponder" ref="128332022"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{281, 27}, {32, 32}}</string>
+								<string key="NSFrame">{{282, 27}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
@@ -256,7 +257,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">avatarView</string>
 						<reference key="source" ref="661876673"/>
-						<reference key="destination" ref="176369101"/>
+						<reference key="destination" ref="381727048"/>
 					</object>
 					<int key="connectionID">49</int>
 				</object>
@@ -307,7 +308,7 @@
 							<reference ref="120807257"/>
 							<reference ref="681481782"/>
 							<reference ref="537223662"/>
-							<reference ref="176369101"/>
+							<reference ref="381727048"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -333,7 +334,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">48</int>
-						<reference key="object" ref="176369101"/>
+						<reference key="object" ref="381727048"/>
 						<reference key="parent" ref="661876673"/>
 					</object>
 					<object class="IBObjectRecord">

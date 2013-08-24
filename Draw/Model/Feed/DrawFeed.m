@@ -23,7 +23,6 @@
 @synthesize drawData = _drawData;
 @synthesize wordText = _wordText;
 @synthesize largeImage = _largeImage;
-//@synthesize pbDraw = _pbDraw;
 @synthesize deviceType = _deviceType;
 
 - (void)initTimeList:(NSArray *)feedTimesList

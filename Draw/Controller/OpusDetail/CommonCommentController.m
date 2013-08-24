@@ -143,7 +143,6 @@
                   commentNickName:commentNickName
                          delegate:self];
     }
-    
 }
 
 #pragma mark feed service delegate

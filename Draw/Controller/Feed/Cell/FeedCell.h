@@ -27,9 +27,6 @@
                 gender:(BOOL)gender
            atIndexPath:(NSIndexPath *)indexPath;
 
-//- (void)didClickGuessButtonAtIndexPath:(NSIndexPath *)indexPath;
-//- (void)didClickFollowButtonAtIndexPath:(NSIndexPath *)indexPath;
-
 @end
 
 @interface FeedCell : PPTableViewCell<AvatarViewDelegate, FeedManagerDelegate>

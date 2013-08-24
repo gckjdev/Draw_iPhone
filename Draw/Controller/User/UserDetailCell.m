@@ -142,7 +142,7 @@
     
     PBGameUser *user = [detail getUser];
     self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level] autorelease];
-    [_avatarView setAsRound];
+//    [_avatarView setAsRound];
     _avatarView.delegate = self;
     
     [self.avatarHolderView addSubview:_avatarView];
