@@ -331,6 +331,13 @@ typedef enum{
             return nil;
     }
 }
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+    
+{
+    if (indexPath.section == SectionCommentInfo) {
+        cell.backgroundColor = COLOR_WHITE;
+    }
+}
 
 - (NSArray *)dataList
 {

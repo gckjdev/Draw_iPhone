@@ -1261,6 +1261,10 @@ static UIImage* _whitePaperImage;
     UIGraphicsEndImageContext();
     return [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
 }
+- (UIImage *)detailHeaderBG
+{
+    return [UIImage imageNamed:@"detail_header_bg@2x.png"];
+}
 
 - (void)setButtonStyle:(UIButton *)button
             titleColor:(UIColor *)titleColor
