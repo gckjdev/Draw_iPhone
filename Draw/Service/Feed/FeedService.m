@@ -147,7 +147,7 @@ static FeedService *_staticFeedService = nil;
         // add by Benson
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
-        NSDictionary* para = @{ PARA_TYPE : @(FeedTypeContestComment),
+        NSDictionary* para = @{ PARA_TYPE : @(FeedListTypeContestComment),
                                 PARA_CONTESTID : contestId,
                                 PARA_OFFSET : @(offset),
                                 PARA_COUNT : @(limit)
