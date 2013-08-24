@@ -19,6 +19,7 @@
 #import "DeviceDetection.h"
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
+#import "CommentCell.h"
 
 @implementation FeedCell
 @synthesize guessStatLabel;
@@ -34,6 +35,7 @@
 #define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  228 : 100)
 #define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 181)
 #define DESC_HEIGHT ([DeviceDetection isIPAD] ?  120 : 43)
+#define NON_DESC_HEIGHT (FEED_CELL_HEIGHT - DESC_HEIGHT)
 
 #define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:12])
 
@@ -61,6 +63,26 @@
 + (CGFloat)getCellHeight
 {
     return FEED_CELL_HEIGHT;
+}
+
++ (CGFloat)getCellHeight:(Feed *)feed
+{
+    if ([Feed isKindOfClass:[CommentFeed class]]){
+        NSString *comment = [feed desc];
+        UIFont *font = DESC_FONT; //[UIFont systemFontOfSize:DESC_FONT];
+//        PPDebug(@"start to cal height, comment = %@",comment);
+        CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(DESC_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGFloat height = NON_DESC_HEIGHT + commentSize.height;
+        if (height <= FEED_CELL_HEIGHT){
+            height = FEED_CELL_HEIGHT;
+        }
+        
+//        PPDebug(@"comment = %@,height = %f", comment,height);
+        return height;
+    }
+    else{
+        return FEED_CELL_HEIGHT;
+    }
     
 }
 
