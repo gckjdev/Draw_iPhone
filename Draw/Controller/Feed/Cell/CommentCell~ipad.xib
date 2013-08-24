@@ -135,7 +135,7 @@
 							<object class="IBUIView" id="905327152">
 								<reference key="NSNextResponder" ref="153973212"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{10, 109}, {693, 1}}</string>
+								<string key="NSFrame">{{10, 108.5}, {693, 1}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -170,7 +170,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSColor" key="IBUIHighlightedTitleColor" id="346812218">
+								<object class="NSColor" key="IBUIHighlightedTitleColor" id="694331838">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
@@ -216,7 +216,7 @@
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="153973212"/>
-				<reference key="IBUIBackgroundColor" ref="346812218"/>
+				<reference key="IBUIBackgroundColor" ref="694331838"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="153973212"/>
 				<string key="IBUIReuseIdentifier">CommentCell</string>
