@@ -132,9 +132,8 @@ typedef enum {
     return nil;
 }
 
-
-- (void)displayHelpWithViewController:(PPViewController*)viewController onView:(UIView*)onView{
-    
+- (void)displayWithViewController:(PPViewController*)viewController
+                           onView:(UIView*)onView{
     [self displayActionTags:_allActions
              viewController:viewController
                      onView:onView];
