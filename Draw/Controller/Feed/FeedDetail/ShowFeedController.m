@@ -720,10 +720,11 @@ typedef enum{
             break;
         case FooterTypeComment:
         {
-            CommentController *cc = [[[CommentController alloc] initWithFeed:self.feed] autorelease];
+            CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
             [self presentModalViewController:cc animated:YES];
             [_commentHeader setSelectedType:CommentTypeComment];
             break;
+
         }
         case FooterTypeShare:
         {
@@ -1021,7 +1022,14 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
+<<<<<<< HEAD
     return [CommentHeaderView getTypeCountByFeed:self.feed];
+=======
+    if ([_feed isContestFeed]) {
+        return 3;
+    }
+    return 3;
+>>>>>>> 05a900fe5cf3b89c42249e7ca77743f5a6ae5d28
 }
 
 - (NSInteger)currentTabIndex
@@ -1035,7 +1043,18 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
+<<<<<<< HEAD
     return [CommentHeaderView getTypeListByFeed:self.feed][index];    
+=======
+    if ([_feed isContestFeed]) {
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment, CommentTypeSave};
+        return tabIDs[index];
+    }else{
+        NSInteger tabIDs [] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave};
+        return tabIDs[index];
+    }
+    
+>>>>>>> 05a900fe5cf3b89c42249e7ca77743f5a6ae5d28
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {

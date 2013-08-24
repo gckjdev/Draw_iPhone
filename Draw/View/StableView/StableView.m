@@ -224,6 +224,8 @@
         [self addSubview:imageView];
         
         [self addTapGuesture];
+        
+        [self setAsRound];
     }
     
     return self;
@@ -262,6 +264,8 @@
             [self setScore:0];
         }
         [self setAvatarSelected:NO level:level];
+        
+        [self setAsRound];
     }
     
     return self;
@@ -281,6 +285,8 @@
         [self setAvatarUrl:urlString gender:gender];
         [self addTapGuesture];
         [self setAvatarSelected:NO level:level];
+        
+        [self setAsRound];
     }
     
     return self;

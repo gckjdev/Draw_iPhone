@@ -158,6 +158,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
       commentUserId:(NSString *)commentUserId 
     commentNickName:(NSString *)commentNickName
           contestId:(NSString *)contestId
+   forContestReport:(BOOL)forContestReport
            delegate:(id<FeedServiceDelegate>)delegate;
 
 
@@ -195,9 +196,7 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
              image:(UIImage *)image
        description:(NSString*)description
      resultHandler:(void(^)(int resultCode))resultHandler;
-//- (void)rejectOpusDrawToMe:(NSString *)opusId
-//              successBlock:(void (^)(void))successBlock
-//                 failBlock:(void (^)(void))failBlock;
+
 
 - (void)unRecommendOpus:(NSString *)opusId
             resultBlock:(FeedActionResultBlock)resultBlock;

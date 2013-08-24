@@ -212,7 +212,6 @@
             [btn addTarget:self
                     action:@selector(subCateBtnAction:)
           forControlEvents:UIControlEventTouchUpInside];
-//            [btn setCenter:CGPointMake(actionViewWidth/2, actionViewHeight/2)];
             
             [btn setImage:(UIImage*)[self.buttonImagesDict objectForKey:[self.buttonTitles objectAtIndex:i]]
                            forState:UIControlStateNormal];
@@ -301,7 +300,6 @@
     }
     self.menu = [[[HGQuadCurveMenu alloc] initWithFrame:onView.frame menus:itemArray nearRadius:radius*0.9 endRadius:radius farRadius:radius*1.1 startPoint:CGPointMake(onView.bounds.size.width/2, onView.bounds.size.height*0.8) timeOffset:0.036 rotateAngle:fromAngle menuWholeAngle:(toAngle - fromAngle) buttonImage:nil buttonHighLightImage:nil contentImage:nil contentHighLightImage:nil] autorelease];
     _menu.delegate = self;
-//    [view addSubview:_menu];
     
     [view insertSubview:_menu belowSubview:onView];
     [self.menu expandItems];

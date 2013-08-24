@@ -50,6 +50,14 @@ typedef enum {
 } OpusStatus;
 
 
+#define IS_OPUS_ACTION(type)          (type == FeedTypeComment || \
+                                        type == FeedTypeContestComment || \
+                                        type == FeedTypeFlower || \
+                                        type == FeedTimesTypeTomato || \
+                                        type ==FeedTypeGuess)
+
+#define IS_OPUS_COMMENT_ACTION(type)  (type == FeedTypeComment || type == FeedTypeContestComment)
+
 
 @class Draw;
 @class PBFeed;
@@ -58,8 +66,8 @@ typedef enum {
 @interface Feed : NSObject<NSCoding>
 {
     
-    NSString *_feedId;    
-    FeedType _feedType;    
+    NSString *_feedId;
+    FeedType _feedType;
     NSDate *_createDate;
     FeedUser *_feedUser;
     OpusStatus _opusStatus;

@@ -12,21 +12,30 @@
 #import "ShareEditController.h"
 #import "DrawDataService.h"
 #import "MyPaintManager.h"
-@class Opus;
 
-//typedef enum {
-//    ShareContentTypeTextAndImage = 1,
-//    SHareContentTypeOnlyText = 2
-//    
-//} ShareContentType;
+typedef enum {
+    ShareActionTagAlbum = 100,
+    ShareActionTagEmail = 101,
+    ShareActionTagWxTimeline = 102,
+    ShareActionTagWxFriend = 103,
+    ShareActionTagSinaWeibo = 104,
+    ShareActionTagQQWeibo = 105,
+    ShareActionTagFacebook = 106,
+    ShareActionTagFavorite = 107,
+    
+}ShareActionTag;
+
+@class Opus;
 
 @interface CommonShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, ShareEditControllerDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
 
 - (id)initWithOpus:(Opus*)opus;
 
-- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController;
+- (void)displayWithViewController:(PPViewController*)viewController
+                           onView:(UIView*)onView;
 
-- (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view;
+- (void)displayActionTags:(NSArray *)actionTags
+           viewController:(PPViewController *)viewController
+                   onView:(UIView *)onView;
 
-- (void)saveToLocal;
 @end

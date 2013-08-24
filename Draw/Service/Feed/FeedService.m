@@ -425,11 +425,11 @@ static FeedService *_staticFeedService = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
             @try{
-                PPDebug(@"<getOpusCommentList> result=%d", resultCode);
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
                 NSArray *pbFeedList = [response feedList];
                 list = [FeedManager parsePbCommentFeedList:pbFeedList];
+                PPDebug(@"<getOpusCommentList> result=%d, total %d comments", resultCode, [list count]);
             }
             @catch (NSException *exception) {
                 PPDebug(@"<getOpusCommentList> catch exception =%@", [exception description]);
@@ -699,6 +699,7 @@ static FeedService *_staticFeedService = nil;
       commentUserId:(NSString *)commentUserId 
     commentNickName:(NSString *)commentNickName
           contestId:(NSString *)contestId
+   forContestReport:(BOOL)forContestReport
            delegate:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -709,21 +710,42 @@ static FeedService *_staticFeedService = nil;
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest commentOpus:TRAFFIC_SERVER_URL 
-                                                                appId:appId 
-                                                               userId:userId 
-                                                                 nick:nick 
-                                                               avatar:avatar 
-                                                               gender:gender
-                                                               opusId:opusId
-                                                       opusCreatorUId:author
-                                                              comment:comment
-                                                          commentType:commentType 
-                                                            commentId:commentId 
-                                                       commentSummary:commentSummary 
-                                                        commentUserId:commentUserId
-                                                      commentNickName:commentNickName
-                                                            contestId:contestId];
+        CommonNetworkOutput* output = nil;
+        if (forContestReport){
+            output = [GameNetworkRequest contestCommentOpus:TRAFFIC_SERVER_URL
+                                               appId:appId
+                                              userId:userId
+                                                nick:nick
+                                              avatar:avatar
+                                              gender:gender
+                                              opusId:opusId
+                                      opusCreatorUId:author
+                                             comment:comment
+                                         commentType:commentType
+                                           commentId:commentId
+                                      commentSummary:commentSummary
+                                       commentUserId:commentUserId
+                                     commentNickName:commentNickName
+                                           contestId:contestId];
+
+        }
+        else{
+            output = [GameNetworkRequest commentOpus:TRAFFIC_SERVER_URL
+                                                                    appId:appId
+                                                                   userId:userId
+                                                                     nick:nick
+                                                                   avatar:avatar 
+                                                                   gender:gender
+                                                                   opusId:opusId
+                                                           opusCreatorUId:author
+                                                                  comment:comment
+                                                              commentType:commentType 
+                                                                commentId:commentId 
+                                                           commentSummary:commentSummary 
+                                                            commentUserId:commentUserId
+                                                          commentNickName:commentNickName
+                                                                contestId:contestId];
+        }
         
         NSString *commentId = nil;
         if (output.resultCode == 0) {

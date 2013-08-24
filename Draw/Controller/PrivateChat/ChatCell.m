@@ -20,8 +20,6 @@
 
 @interface ChatCell()
 
-- (IBAction)clickAvatar:(id)sender;
-
 @end
 
 
@@ -153,17 +151,8 @@
 
 - (void)didClickOnAvatar:(NSString*)userId{
     if (chatCellDelegate && [chatCellDelegate respondsToSelector:@selector(didClickAvatar:)]){
-        //PPDebug(@"%d",[self.indexPath row]);
         [chatCellDelegate didClickAvatar:self.indexPath];
     }
 }
-
-//- (IBAction)clickAvatar:(id)sender
-//{
-//    if (chatCellDelegate && [chatCellDelegate respondsToSelector:@selector(didClickAvatar:)]){
-//        //PPDebug(@"%d",[self.indexPath row]);
-//        [chatCellDelegate didClickAvatar:self.indexPath];
-//    }
-//}
 
 @end

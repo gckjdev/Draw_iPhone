@@ -25,13 +25,20 @@
 @property (nonatomic, retain) DrawFeed* feed;
 @property (nonatomic, retain) UIImage* image;
 
-- (id)initWithDrawImageFile:(NSString*)imageFilePath isGIF:(BOOL)isGIF drawWord:(NSString*)drawWord isMe:(BOOL)isDrawByMe;
+- (id)initWithDrawImageFile:(NSString*)imageFilePath
+                      isGIF:(BOOL)isGIF
+                   drawWord:(NSString*)drawWord
+                       isMe:(BOOL)isDrawByMe;
+
 - (id)initWithDrawImageFile:(NSString*)imageFilePath 
                       isGIF:(BOOL)isGIF 
                    drawWord:(NSString*)drawWord 
                  drawUserId:(NSString*)drawUserId;
+
 - (id)initWithFeed:(DrawFeed*)feed
              image:(UIImage*)image;
+
+
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController;
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view;
 

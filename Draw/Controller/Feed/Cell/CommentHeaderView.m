@@ -31,7 +31,7 @@
 
 + (CommentType *)getTypeListByFeed:(DrawFeed *)feed {
     if([feed isContestFeed]){
-        static CommentType contestFeedTypes[] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment,CommentTypeSave, CommentTypeNO};
+        static CommentType contestFeedTypes[] = {CommentTypeComment, CommentTypeFlower, CommentTypeContestComment,CommentTypeSave,CommentTypeNO};
         return contestFeedTypes;
     }else{
         static CommentType normalFeedTypes[] = {CommentTypeComment, CommentTypeGuess, CommentTypeFlower, CommentTypeSave, CommentTypeNO};

@@ -71,13 +71,6 @@ enum{
     [self initTabButtons];
     // Do any additional setup after loading the view from its nib.
     
-//    self.commonCommentHeader = [[_actionHeaderClass class] createHeader:self];
-//    [_commonCommentHeader setDelegate:self];
-//    [_commonCommentHeader setViewInfo:_opus.pbOpus];
-//    [_commonCommentHeader setSeletType:CommentTypeComment];
-//    
-//    self.shareAction = [[[CommonShareAction alloc] initWithOpus:_opus] autorelease];
-    
     [[OpusService defaultService] getOpusWithOpusId:_opus.pbOpus.opusId delegate:self];
 }
 
@@ -421,7 +414,7 @@ enum{
 
 - (IBAction)clickGuessActionButton:(UIButton *)button{
     
-    PPViewController *vc = [[[[_guessControllerClass class] alloc] initWithOpus:_opus] autorelease];
+    PPViewController *vc = [[[[_guessControllerClass class] alloc] initWithOpus:_opus.pbOpus] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
