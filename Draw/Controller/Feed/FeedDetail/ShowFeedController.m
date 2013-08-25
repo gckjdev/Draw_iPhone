@@ -881,7 +881,7 @@ typedef enum{
     
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
-    
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setRightButtonAsRefresh];
