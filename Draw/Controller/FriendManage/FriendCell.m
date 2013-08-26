@@ -39,6 +39,7 @@
     PPRelease(statusLabel);
     PPRelease(_levelLabel);
     PPRelease(_myFriend);
+    [_genderImageView release];
     [super dealloc];
 }
 
@@ -172,6 +173,12 @@
     [self updateAuthImageView:aFriend];
     
     [self updateStatusLabel:statusText];
+    
+    self.levelLabel.textColor = COLOR_GREEN;
+    self.areaLabel.textColor = COLOR_ORANGE;
+    
+    NSString *imageName = aFriend.isMale ? @"user_detail_gender_male@2x.png" : @"user_detail_gender_female@2x.png";
+    [self.genderImageView setImage:[UIImage imageNamed:imageName]];
 }
 
 
