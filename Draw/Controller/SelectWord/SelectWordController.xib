@@ -124,7 +124,7 @@
 						<reference key="IBUIFontDescription" ref="454500915"/>
 						<reference key="IBUIFont" ref="627449391"/>
 					</object>
-					<object class="IBUIView" id="669845670">
+					<object class="IBUIView" id="488782972">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 44}</string>
@@ -134,7 +134,7 @@
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="754605526">
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="721015386">
 								<int key="NSID">2</int>
 							</object>
 						</object>
@@ -189,7 +189,7 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="754605526"/>
+					<reference key="NSCustomColorSpace" ref="721015386"/>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -249,7 +249,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="669845670"/>
+						<reference key="destination" ref="488782972"/>
 					</object>
 					<int key="connectionID">37</int>
 				</object>
@@ -305,7 +305,7 @@
 							<reference ref="874746751"/>
 							<reference ref="729666686"/>
 							<reference ref="180582363"/>
-							<reference ref="669845670"/>
+							<reference ref="488782972"/>
 							<reference ref="870511405"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -348,7 +348,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
-						<reference key="object" ref="669845670"/>
+						<reference key="object" ref="488782972"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -386,9 +386,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="timeset@2x.png">{76, 74}</string>
-			<string key="wood_pallets@2x.png">{608, 111}</string>
-			<string key="word_input_seperator@2x.png">{737, 39}</string>
+			<string key="timeset@2x.png">{16, 16}</string>
+			<string key="wood_pallets@2x.png">{16, 16}</string>
+			<string key="word_input_seperator@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

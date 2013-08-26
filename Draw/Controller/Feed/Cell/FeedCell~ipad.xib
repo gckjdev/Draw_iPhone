@@ -69,11 +69,11 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="70443213">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="819030648">
 									<int key="type">1</int>
 									<double key="pointSize">20</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="338657020">
+								<object class="NSFont" key="IBUIFont" id="781531435">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">20</double>
 									<int key="NSfFlags">16</int>
@@ -162,8 +162,8 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<reference key="IBUIFontDescription" ref="70443213"/>
-								<reference key="IBUIFont" ref="338657020"/>
+								<reference key="IBUIFontDescription" ref="819030648"/>
+								<reference key="IBUIFont" ref="781531435"/>
 							</object>
 							<object class="IBUILabel" id="579725245">
 								<reference key="NSNextResponder" ref="703497056"/>
@@ -180,8 +180,8 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
-								<reference key="IBUIFontDescription" ref="70443213"/>
-								<reference key="IBUIFont" ref="338657020"/>
+								<reference key="IBUIFontDescription" ref="819030648"/>
+								<reference key="IBUIFont" ref="781531435"/>
 							</object>
 							<object class="IBUIView" id="594969052">
 								<reference key="NSNextResponder" ref="703497056"/>
@@ -430,8 +430,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="correct@2x.png">{25, 20}</string>
-			<string key="question@2x.png">{25, 20}</string>
+			<string key="correct@2x.png">{16, 16}</string>
+			<string key="question@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

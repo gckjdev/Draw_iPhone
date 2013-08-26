@@ -106,6 +106,8 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
               limit:(NSInteger)limit 
            delegate:(id<FeedServiceDelegate>)delegate;
 
+- (void)getFeedListByIds:(NSArray*)idList
+                delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getContestCommentFeedList:(NSString*)contestId
                            offset:(NSInteger)offset
