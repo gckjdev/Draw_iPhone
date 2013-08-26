@@ -729,6 +729,7 @@ typedef enum{
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
 {
+    PPDebug(@"<NO MORE> = %d", self.noMoreData);
     switch (type) {
         case FooterTypeGuess:
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
