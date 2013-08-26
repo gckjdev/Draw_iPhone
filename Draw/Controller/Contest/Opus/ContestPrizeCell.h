@@ -14,7 +14,7 @@ typedef enum{
     ContestPrizeFirst = 1,
     ContestPrizeSecond,
     ContestPrizeThird,
-    ContestPrizeSpectial,
+    ContestPrizeSpecial,
 }ContestPrize;
 
 @interface ContestPrizeCell : PPTableViewCell
@@ -23,6 +23,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIImageView *prizeIcon;
 @property (retain, nonatomic) IBOutlet AvatarView *avatar;
 @property (retain, nonatomic) IBOutlet UIButton *nickButton;
+@property (retain, nonatomic) IBOutlet UILabel *prizeLabel;
 
 - (IBAction)clickNickButton:(id)sender;
 

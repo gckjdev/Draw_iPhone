@@ -7,6 +7,9 @@
 //
 
 #import "ContestPrizeCell.h"
+#import "UIImageView+Extend.h"
+
+#define VALUE(X) (ISIPAD ? 2*(X) : (X))
 
 @implementation ContestPrizeCell
 
@@ -24,7 +27,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return (ISIPAD ? 280: 140);
+    return VALUE(140);
 }
 
 
@@ -34,17 +37,53 @@
     [_prizeIcon release];
     [_nickButton release];
     [_avatar release];
+    [_prizeLabel release];
     [super dealloc];
 }
 - (IBAction)clickNickButton:(id)sender {
     
 }
 
+#define TOP_PRIZE_SIZE CGSizeMake(VALUE(42), VALUE(56))
+#define SPECIAL_PRIZE_SIZE CGSizeMake(VALUE(114), VALUE(47))
+
+- (void)updatePrizeImageWithPrize:(ContestPrize)prize
+                            title:(NSString *)title
+{
+    if (prize == ContestPrizeSpecial) {
+        [self.prizeIcon updateWidth:SPECIAL_PRIZE_SIZE.width];
+        [self.prizeIcon updateHeight:SPECIAL_PRIZE_SIZE.height];
+        [self.prizeLabel setHidden:NO];
+        [self.prizeLabel setText:title];
+    }else{
+        [self.prizeIcon updateWidth:TOP_PRIZE_SIZE.width];
+        [self.prizeIcon updateHeight:TOP_PRIZE_SIZE.height];
+        [self.prizeLabel setHidden:YES];
+    }
+    
+}
+
+- (void)updateUserInfo:(ContestFeed *)opus
+{
+    [self.avatar setGender:opus.feedUser.gender];
+    [self.avatar setUrlString:opus.feedUser.avatar];
+    [self.avatar setUserId:opus.feedUser.userId];
+    [self.nickButton setTitle:opus.feedUser.nickName forState:UIControlStateNormal];
+    
+}
+
+- (void)updateOpus:(ContestFeed *)opus
+{
+    [self.opusImage setImageWithUrl:opus.thumbURL placeholderImage:[[ShareImageManager defaultManager] unloadBg] showLoading:YES animated:YES];
+}
+
 - (void)setPrize:(ContestPrize)prize
            title:(NSString *)title
             opus:(ContestFeed *)opus
 {
-    
+    [self updatePrizeImageWithPrize:prize title:title];
+    [self updateUserInfo:opus];
+    [self updateOpus:opus];
 }
 
 @end
