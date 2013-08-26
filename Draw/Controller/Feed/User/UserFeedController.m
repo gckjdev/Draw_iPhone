@@ -118,6 +118,8 @@ typedef enum{
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
+    self.view.backgroundColor = COLOR_WHITE;
 }
 
 - (void)viewDidUnload
@@ -127,14 +129,9 @@ typedef enum{
     // e.g. self.myOutlet = nil;
 }
 
-
-
-
-
-
 #pragma mark - table view delegate
 
-SET_CELL_BG
+//SET_CELL_BG
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

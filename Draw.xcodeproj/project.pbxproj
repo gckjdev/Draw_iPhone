@@ -1784,6 +1784,18 @@
 		A48C7DDF17CB3662006DA1F3 /* hot_word.txt in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DDD17CB3662006DA1F3 /* hot_word.txt */; };
 		A48C7DE017CB3662006DA1F3 /* hot_word.txt in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DDD17CB3662006DA1F3 /* hot_word.txt */; };
 		A48C7DE117CB3662006DA1F3 /* hot_word.txt in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DDD17CB3662006DA1F3 /* hot_word.txt */; };
+		A48C7DE617CB452C006DA1F3 /* bubble_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE317CB452C006DA1F3 /* bubble_bg@2x.png */; };
+		A48C7DE717CB452C006DA1F3 /* bubble_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE317CB452C006DA1F3 /* bubble_bg@2x.png */; };
+		A48C7DE817CB452C006DA1F3 /* bubble_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE317CB452C006DA1F3 /* bubble_bg@2x.png */; };
+		A48C7DE917CB452C006DA1F3 /* bubble_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE317CB452C006DA1F3 /* bubble_bg@2x.png */; };
+		A48C7DEA17CB452C006DA1F3 /* correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE417CB452C006DA1F3 /* correct@2x.png */; };
+		A48C7DEB17CB452C006DA1F3 /* correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE417CB452C006DA1F3 /* correct@2x.png */; };
+		A48C7DEC17CB452C006DA1F3 /* correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE417CB452C006DA1F3 /* correct@2x.png */; };
+		A48C7DED17CB452C006DA1F3 /* correct@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE417CB452C006DA1F3 /* correct@2x.png */; };
+		A48C7DEE17CB452C006DA1F3 /* question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE517CB452C006DA1F3 /* question@2x.png */; };
+		A48C7DEF17CB452C006DA1F3 /* question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE517CB452C006DA1F3 /* question@2x.png */; };
+		A48C7DF017CB452C006DA1F3 /* question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE517CB452C006DA1F3 /* question@2x.png */; };
+		A48C7DF117CB452C006DA1F3 /* question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48C7DE517CB452C006DA1F3 /* question@2x.png */; };
 		A491423616E6E13500106265 /* gray_coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423316E6E13500106265 /* gray_coin@2x.png */; };
 		A491423716E6E13500106265 /* gray_ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423416E6E13500106265 /* gray_ingot@2x.png */; };
 		A491423816E6E13500106265 /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A491423516E6E13500106265 /* ingot@2x.png */; };
@@ -7878,6 +7890,9 @@
 		A48B09CE169FAAC500B56975 /* UMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMWebViewController.m; sourceTree = "<group>"; };
 		A48C7DD817CB026C006DA1F3 /* button_down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_down.wav; sourceTree = "<group>"; };
 		A48C7DDD17CB3662006DA1F3 /* hot_word.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hot_word.txt; sourceTree = "<group>"; };
+		A48C7DE317CB452C006DA1F3 /* bubble_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_bg@2x.png"; sourceTree = "<group>"; };
+		A48C7DE417CB452C006DA1F3 /* correct@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "correct@2x.png"; sourceTree = "<group>"; };
+		A48C7DE517CB452C006DA1F3 /* question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question@2x.png"; sourceTree = "<group>"; };
 		A491415416E47ECF00106265 /* StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCell.h; sourceTree = "<group>"; };
 		A491415516E47ECF00106265 /* StoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCell.m; sourceTree = "<group>"; };
 		A491415616E47ECF00106265 /* StoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreCell.xib; sourceTree = "<group>"; };
@@ -11564,6 +11579,16 @@
 				A48B09CE169FAAC500B56975 /* UMWebViewController.m */,
 			);
 			path = Wap;
+			sourceTree = "<group>";
+		};
+		A48C7DE217CB452C006DA1F3 /* timeline */ = {
+			isa = PBXGroup;
+			children = (
+				A48C7DE317CB452C006DA1F3 /* bubble_bg@2x.png */,
+				A48C7DE417CB452C006DA1F3 /* correct@2x.png */,
+				A48C7DE517CB452C006DA1F3 /* question@2x.png */,
+			);
+			path = timeline;
 			sourceTree = "<group>";
 		};
 		A499068F174DB949005AF334 /* Component-Advertise */ = {
@@ -15631,6 +15656,7 @@
 		CA7D41F6168D7588009F43F7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A48C7DE217CB452C006DA1F3 /* timeline */,
 				A4B78A06179F78BA0008E21B /* Guess */,
 				C2C09DF117797F1B009408EB /* draw_commit_btn@2x.png */,
 				CA7B3C8617B8E2E3009A07AA /* draw_layer_btn@2x.png */,
@@ -19134,6 +19160,9 @@
 				CAFC03D017C8AF9800A11DE3 /* detail_header_bg@2x.png in Resources */,
 				A48C7DDB17CB026C006DA1F3 /* button_down.wav in Resources */,
 				A48C7DE017CB3662006DA1F3 /* hot_word.txt in Resources */,
+				A48C7DE817CB452C006DA1F3 /* bubble_bg@2x.png in Resources */,
+				A48C7DEC17CB452C006DA1F3 /* correct@2x.png in Resources */,
+				A48C7DF017CB452C006DA1F3 /* question@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20171,6 +20200,9 @@
 				CAFC03CF17C8AF9800A11DE3 /* detail_header_bg@2x.png in Resources */,
 				A48C7DDA17CB026C006DA1F3 /* button_down.wav in Resources */,
 				A48C7DDF17CB3662006DA1F3 /* hot_word.txt in Resources */,
+				A48C7DE717CB452C006DA1F3 /* bubble_bg@2x.png in Resources */,
+				A48C7DEB17CB452C006DA1F3 /* correct@2x.png in Resources */,
+				A48C7DEF17CB452C006DA1F3 /* question@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21197,6 +21229,9 @@
 				CAFC03CE17C8AF9800A11DE3 /* detail_header_bg@2x.png in Resources */,
 				A48C7DD917CB026C006DA1F3 /* button_down.wav in Resources */,
 				A48C7DDE17CB3662006DA1F3 /* hot_word.txt in Resources */,
+				A48C7DE617CB452C006DA1F3 /* bubble_bg@2x.png in Resources */,
+				A48C7DEA17CB452C006DA1F3 /* correct@2x.png in Resources */,
+				A48C7DEE17CB452C006DA1F3 /* question@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22158,6 +22193,9 @@
 				CAFC03D117C8AF9800A11DE3 /* detail_header_bg@2x.png in Resources */,
 				A48C7DDC17CB026C006DA1F3 /* button_down.wav in Resources */,
 				A48C7DE117CB3662006DA1F3 /* hot_word.txt in Resources */,
+				A48C7DE917CB452C006DA1F3 /* bubble_bg@2x.png in Resources */,
+				A48C7DED17CB452C006DA1F3 /* correct@2x.png in Resources */,
+				A48C7DF117CB452C006DA1F3 /* question@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

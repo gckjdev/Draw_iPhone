@@ -163,6 +163,7 @@ typedef enum{
     self.dataTableView.separatorColor = [UIColor clearColor];
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+    self.view.backgroundColor = COLOR_WHITE;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -182,7 +183,7 @@ typedef enum{
 
 #pragma mark - table view delegate
 
-SET_CELL_BG
+//SET_CELL_BG
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

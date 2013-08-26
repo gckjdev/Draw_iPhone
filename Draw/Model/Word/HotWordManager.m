@@ -14,7 +14,7 @@
 #import "ConfigManager.h"
 #import "StringUtil.h"
 
-#define SEPERATOR @"&"
+#define SEPERATOR @"\n"
 
 //#define HOT_WORD_FILE @"hot_word.pb"
 

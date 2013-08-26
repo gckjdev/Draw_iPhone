@@ -34,7 +34,11 @@
     AvatarView *_avatarView;
     ShowDrawView *_showView;
 }
-@property (retain, nonatomic) IBOutlet UILabel *guessStatLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *correctImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *guessImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UILabel *correctLabel;
+@property (retain, nonatomic) IBOutlet UILabel *guessLabel;
 @property (retain, nonatomic) IBOutlet UILabel *descLabel;
 @property (retain, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;

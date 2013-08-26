@@ -45,6 +45,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{47, 27}, {235, 37}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
+								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="IBUIContentStretch">{{0, 0}, {0, 0}}</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -87,6 +88,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{107, 6}, {106, 17}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="845961539"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="IBUIContentStretch">{{0.5, 0.5}, {1, 1}}</string>
@@ -115,7 +117,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{7, 27}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSWindow"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="506682412">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -130,10 +132,6 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="340319056"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">man1@2x.png</string>
-								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
 									<double key="pointSize">15</double>
@@ -149,6 +147,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{5, 27}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="128332022"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -162,6 +161,7 @@
 						</array>
 						<string key="NSFrameSize">{320, 106}</string>
 						<reference key="NSSuperview" ref="661876673"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="11710769"/>
 						<reference key="IBUIBackgroundColor" ref="506682412"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -173,6 +173,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 107}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="128332022"/>
 				<reference key="IBUIBackgroundColor" ref="506682412"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -305,15 +306,111 @@
 			<nil key="sourceID"/>
 			<int key="maxID">45</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">AvatarView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AvatarView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ChatDetailCell</string>
+					<string key="superclassName">PPTableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickAvatarButton:">id</string>
+						<string key="clickContentButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickAvatarButton:">
+							<string key="name">clickAvatarButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickContentButton:">
+							<string key="name">clickContentButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="avatarButton">UIButton</string>
+						<string key="avatarView">AvatarView</string>
+						<string key="contentButton">UIButton</string>
+						<string key="failureView">UIImageView</string>
+						<string key="loadingView">UIActivityIndicatorView</string>
+						<string key="showDrawView">ShowDrawView</string>
+						<string key="timeButton">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="avatarButton">
+							<string key="name">avatarButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="avatarView">
+							<string key="name">avatarView</string>
+							<string key="candidateClassName">AvatarView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="contentButton">
+							<string key="name">contentButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="failureView">
+							<string key="name">failureView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="loadingView">
+							<string key="name">loadingView</string>
+							<string key="candidateClassName">UIActivityIndicatorView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="showDrawView">
+							<string key="name">showDrawView</string>
+							<string key="candidateClassName">ShowDrawView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="timeButton">
+							<string key="name">timeButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ChatDetailCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ShowDrawView</string>
+					<string key="superclassName">SuperDrawView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ShowDrawView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SuperDrawView</string>
+					<string key="superclassName">UIControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SuperDrawView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="man1@2x.png">{128, 125}</string>
-			<string key="receive_message@2x.png">{142, 52}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">receive_message@2x.png</string>
+			<string key="NS.object.0">{142, 52}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
