@@ -23,6 +23,7 @@ typedef enum{
     OpusTypeRank = 2,
     OpusTypeNew = 3,
     OpusTypeReport = 4,
+    OpusTypePrize = 5,
 }OpusType;
 
 #define  HISTORY_RANK_NUMBER 120
@@ -315,6 +316,9 @@ typedef enum{
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     NSInteger tabId[] = {OpusTypeReport,OpusTypeRank,OpusTypeNew,OpusTypeMy};
+    if ([self.contest isPassed]) {
+        tabId[2] = OpusTypePrize;
+    }
     return tabId[index];
 }
 
@@ -326,6 +330,10 @@ typedef enum{
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
     NSString *tabTitle[] = {NSLS(@"kContestReport"), NSLS(@"kOpusRank"),NSLS(@"kOpusNew"),NSLS(@"kOpusMy")};
+
+    if ([self.contest isPassed]) {
+        tabTitle[2] = NSLS(@"kContestPrize");
+    }
     return tabTitle[index];
 
 }
@@ -336,7 +344,10 @@ typedef enum{
     [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
-        if (tabID == OpusTypeReport) {
+        if (tabID == OpusTypePrize) {
+            //TODO get reward
+            PPDebug(@"get contest reward.");
+        }else if (tabID == OpusTypeReport) {
             //TODO get contest report
             
             [[FeedService defaultService] getContestCommentFeedList:self.contest.contestId
