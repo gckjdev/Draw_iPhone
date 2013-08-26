@@ -35,32 +35,60 @@ static ContestService *_staticContestService;
                          limit:(NSInteger)limit
                       delegate:(id<ContestServiceDelegate>)delegate
 {
+    
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        NSString *userId =[[UserManager defaultManager] userId];
-        int language = [[UserManager defaultManager] getLanguageType];
         
-        CommonNetworkOutput *output = [GameNetworkRequest getContests:TRAFFIC_SERVER_URL
-                                                                appId:appId
-                                                               userId:userId 
-                                                                 type:type 
-                                                               offset:offset
-                                                                limit:limit 
-                                                             language:language];
-        NSInteger errorCode = output.resultCode;
-        NSArray *contestList = nil;
-
-        if (errorCode == ERROR_SUCCESS) {
-            contestList = [[ContestManager defaultManager] parseContestList:output.jsonDataArray];
-        }
+        NSDictionary* para = @{ PARA_LANGUAGE : @(ChineseType),
+                                PARA_TYPE : @(type),
+                                PARA_OFFSET : @(offset),
+                                PARA_COUNT : @(limit)
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_CONTEST_LIST
+                                                                                parameters:para];
+        
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
-                [delegate didGetContestList:contestList type:type resultCode:errorCode];
+            
+             NSArray *contestList = nil;
+            if (output.resultCode == 0 && output.pbResponse.contestListList){
+                 contestList = [[ContestManager defaultManager] parseContestList:output.pbResponse.contestListList];
             }
-        });        
+            
+            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+                [delegate didGetContestList:contestList type:type resultCode:output.resultCode];
+            }
+            
+        });
         
     });
+    
+//    dispatch_async(workingQueue, ^{
+//        NSString *appId = [ConfigManager appId];
+//        NSString *userId =[[UserManager defaultManager] userId];
+//        int language = [[UserManager defaultManager] getLanguageType];
+//        
+//        CommonNetworkOutput *output = [GameNetworkRequest getContests:TRAFFIC_SERVER_URL
+//                                                                appId:appId
+//                                                               userId:userId 
+//                                                                 type:type 
+//                                                               offset:offset
+//                                                                limit:limit 
+//                                                             language:language];
+//        NSInteger errorCode = output.resultCode;
+//        NSArray *contestList = nil;
+//
+//        if (errorCode == ERROR_SUCCESS) {
+//            contestList = [[ContestManager defaultManager] parseContestList:output.jsonDataArray];
+//        }
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            if (delegate && [delegate respondsToSelector:@selector(didGetContestList:type:resultCode:)]) {
+//                [delegate didGetContestList:contestList type:type resultCode:errorCode];
+//            }
+//        });        
+//        
+//    });
 
 }
 
@@ -100,6 +128,7 @@ static ContestService *_staticContestService;
         
     });
 }
+
 
 
 

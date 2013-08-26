@@ -739,7 +739,7 @@ typedef enum{
             break;
         case FooterTypeComment:
         {
-            CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+            CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:NO];
             [self presentModalViewController:cc animated:YES];
             [_commentHeader setSelectedType:CommentTypeComment];
             break;
