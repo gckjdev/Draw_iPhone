@@ -8,62 +8,20 @@
 
 #import "ChatMessageView.h"
 #import "ShareImageManager.h"
-#import "AnimationManager.h"
-
-#import "LocaleUtils.h"
-#import "DeviceDetection.h"
-#import "PPDebug.h"
-
-#define WIDTH_SCREEN ([DeviceDetection isIPAD] ? (768):(320))
-
-#define TEXT_COLOR [UIColor colorWithRed:61.0/255.0 green:61.0/255.0 blue:61.0/255.0 alpha:1];
+#import "CMPopTipView.h"
 
 
-#define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE 90
-#define MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE*2
-#define MAX_WIDTH_CHAT_MESSAGE_VIEW ([DeviceDetection isIPAD] ? (MAX_WIDTH_CHAT_MESSAGE_VIEW_IPAD):(MAX_WIDTH_CHAT_MESSAGE_VIEW_IPHONE))
+#define TEXT_COLOR COLOR_WHITE
+#define VALUE(X) (ISIPAD ? 2*(X): (X))
+#define WIDTH_EXPRESSION_VIEW VALUE(24)
+#define FONT_MESSAGE [UIFont systemFontOfSize:VALUE(14)]
+#define SHOW_TIME (5)
 
-#define MIN_WIDTH_CHAT_MESSAGE_VIEW_IPHONE 60
-#define MIN_WIDTH_CHAT_MESSAGE_VIEW_IPAD MIN_WIDTH_CHAT_MESSAGE_VIEW_IPHONE*2
-#define MIN_WIDTH_CHAT_MESSAGE_VIEW ([DeviceDetection isIPAD] ? (MIN_WIDTH_CHAT_MESSAGE_VIEW_IPAD):(MIN_WIDTH_CHAT_MESSAGE_VIEW_IPHONE))
-
-#define WIDTH_EXPRESSION_VIEW_IPHONE 24
-#define WIDTH_EXPRESSION_VIEW_IPAD WIDTH_EXPRESSION_VIEW_IPHONE*2
-#define WIDTH_EXPRESSION_VIEW ([DeviceDetection isIPAD] ? (WIDTH_EXPRESSION_VIEW_IPAD):(WIDTH_EXPRESSION_VIEW_IPHONE))
-
-#define HEIGHT_EXPRESSION_VIEW WIDTH_EXPRESSION_VIEW
-
-#define FONT_MESSAGE_TITLE_IPHONE [UIFont systemFontOfSize:14]
-#define FONT_MESSAGE_TITLE_IPAD [UIFont systemFontOfSize:14*2]
-#define FONT_MESSAGE_TITLE ([DeviceDetection isIPAD] ? (FONT_MESSAGE_TITLE_IPAD):(FONT_MESSAGE_TITLE_IPHONE))
-
-
-#define FONT_CHAT_MESSAGE_TEXT_IPHONE [UIFont systemFontOfSize:13]
-#define FONT_CHAT_MESSAGE_TEXT_IPAD [UIFont systemFontOfSize:13*2]
-#define FONT_CHAT_MESSAGE_TEXT ([DeviceDetection isIPAD] ? (FONT_CHAT_MESSAGE_TEXT_IPAD):(FONT_CHAT_MESSAGE_TEXT_IPHONE))
-
-#define WIDTH_EDGE_IPHONE 5
-#define WIDTH_EDGE_IPAD WIDTH_EDGE_IPHONE*2
-#define WIDTH_EDGE ([DeviceDetection isIPAD] ? (WIDTH_EDGE_IPAD):(WIDTH_EDGE_IPHONE))
-
-#define HEIGHT_EDGE_IPHONE 2
-#define HEIGHT_EDGE_IPAD HEIGHT_EDGE_IPHONE*2
-#define HEIGHT_EDGE ([DeviceDetection isIPAD] ? (HEIGHT_EDGE_IPAD):(HEIGHT_EDGE_IPHONE))
-
-#define HEIGHT_ONE_LINE_TITLE ([DeviceDetection isIPAD] ? (19 * 2):(19))
-
-
-#define RATE (18.0/60.0)
+#define MSG_SPACE VALUE(4)
 
 @interface ChatMessageView ()
 
-- (void)showInSuperView:(UIView*)superView origin:(CGPoint)origin;
-- (void)addBgImage:(UIImage*)image;
-
-- (UILabel *)genLabelWithText:(NSString*)text 
-                         font:(UIFont*)font 
-                   withinSize:(CGSize)withinSize 
-                lineBreakMode:(UILineBreakMode)lineBreakMode;
+@property(nonatomic, retain)CMPopTipView *popView;
 
 @end
 
@@ -74,180 +32,71 @@
     [super dealloc];
 }
 
-- (ChatMessageView*)initWithChatMessage:(NSString*)chatMessage 
-                                  title:(NSString*)title
-//                                 origin:(CGPoint)origin
+- (void)showAtView:(UIView *)atView
+            inView:(UIView *)inView
 {
-    CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
-    UILabel *titleLabel = [self genLabelWithText:title font:FONT_MESSAGE_TITLE withinSize:withinSize lineBreakMode:UILineBreakModeMiddleTruncation];
-    titleLabel.numberOfLines = 1;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width, HEIGHT_ONE_LINE_TITLE);
-    titleLabel.textColor = TEXT_COLOR;
-    
-    UILabel *messageLable = [self genLabelWithText:chatMessage 
-                                              font:FONT_CHAT_MESSAGE_TEXT 
-                                        withinSize:withinSize 
-                                     lineBreakMode:UILineBreakModeWordWrap];
-    messageLable.backgroundColor = [UIColor clearColor];    
-    messageLable.textColor = TEXT_COLOR;
-    
-    float width = MAX(titleLabel.frame.size.width, messageLable.frame.size.width) + WIDTH_EDGE*2;
-    float height = (titleLabel == nil) ? (messageLable.frame.size.height+HEIGHT_EDGE*2) : (titleLabel.frame.size.height+messageLable.frame.size.height+HEIGHT_EDGE*3);
-    
-    self = [super initWithFrame:CGRectMake(0, 0, width, height/2*3)];
-    if (self) {
-//        UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-//        UIImage *bgImage = ((origin.x+self.frame.size.width+WIDTH_EDGE) > WIDTH_SCREEN) ? [[ShareImageManager defaultManager] popupChatImageLeft] : [[ShareImageManager defaultManager] popupChatImageRight];
-//        [bgImageView setImage:bgImage];
-//        [self addSubview:bgImageView];
-//        [bgImageView release];
-        
-        titleLabel.frame = CGRectMake(WIDTH_EDGE, 
-                                      self.frame.size.height*RATE, 
-                                      titleLabel.frame.size.width,
-                                      titleLabel.frame.size.height);
-        [self addSubview:titleLabel];
-    
-        float originY = (titleLabel == nil) ? (self.frame.size.height*RATE) : (titleLabel.frame.origin.y + titleLabel.frame.size.height + HEIGHT_EDGE);
-        messageLable.frame = CGRectMake(WIDTH_EDGE,
-                                        originY,
-                                        messageLable.frame.size.width, 
-                                        messageLable.frame.size.height);
-        [self addSubview:messageLable];
-        
-        self.hidden = YES;
+    if (!self.popView) {
+        self.popView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
     }
-    
-    return self;
+    self.popView.delegate = self;
+    [self.popView presentPointingAtView:atView inView:inView animated:YES];
+    [self performSelector:@selector(hide) withObject:@(YES) afterDelay:SHOW_TIME];
+}
+- (void)hide
+{
+    [self.popView dismissAnimated:YES];
 }
 
-
-- (ChatMessageView*)initWithChatExpression:(UIImage*)expression
-                                     title:(NSString*)title
-//                                    origin:(CGPoint)origin
-{    
-    CGSize withinSize = CGSizeMake(MAX_WIDTH_CHAT_MESSAGE_VIEW, CGFLOAT_MAX);
-    UILabel *titleLabel = [self genLabelWithText:title font:FONT_MESSAGE_TITLE withinSize:withinSize lineBreakMode:UILineBreakModeMiddleTruncation];
-    titleLabel.numberOfLines = 1;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.frame = CGRectMake(0, 0, titleLabel.frame.size.width, 19);
-    titleLabel.textColor = TEXT_COLOR;
-
-    CGRect expressionViewRect = CGRectMake(0, 0, WIDTH_EXPRESSION_VIEW, HEIGHT_EXPRESSION_VIEW);
-    UIImageView *expressionView = [[[UIImageView alloc] initWithFrame:expressionViewRect] autorelease];
-    [expressionView setImage:expression];
-    
-    float width = MAX(titleLabel.frame.size.width, expressionView.frame.size.width) + WIDTH_EDGE*2;
-    float height = (titleLabel == nil) ? (expressionView.frame.size.height+HEIGHT_EDGE*2) : (titleLabel.frame.size.height+expressionView.frame.size.height+HEIGHT_EDGE*3);
-    
-    self = [super initWithFrame:CGRectMake(0, 0, width, height/2*3)];
-    if (self) {        
-//        UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-//        UIImage *bgImage = ((origin.x+self.frame.size.width+WIDTH_EDGE) > WIDTH_SCREEN) ? [[ShareImageManager defaultManager] popupChatImageLeft] : [[ShareImageManager defaultManager] popupChatImageRight];
-//        [bgImageView setImage:bgImage];
-//        [self addSubview:bgImageView];
-//        [bgImageView release];
-        
-        titleLabel.frame = CGRectMake(WIDTH_EDGE, 
-                                      self.frame.size.height*RATE, 
-                                      titleLabel.frame.size.width,
-                                      titleLabel.frame.size.height);
-        [self addSubview:titleLabel];
-        
-        float originY = (titleLabel == nil) ? (self.frame.size.height*RATE) : (titleLabel.frame.origin.y + titleLabel.frame.size.height + HEIGHT_EDGE);
-        expressionView.frame = CGRectMake(WIDTH_EDGE,
-                                        originY,
-                                        expressionView.frame.size.width, 
-                                        expressionView.frame.size.height);
-        [self addSubview:expressionView];
-        
-        self.hidden = YES;
-    }
-    
-    return self;
-}
-
-- (UILabel *)genLabelWithText:(NSString*)text 
-                         font:(UIFont*)font 
-                   withinSize:(CGSize)withinSize 
-                lineBreakMode:(UILineBreakMode)lineBreakMode
+#define LABEL_TAG 123
+#define IMAGE_TAG 124
+- (UILabel *)createLabelWithText:(NSString *)txt
 {
-    if (text == nil) {
-        return nil;
-    }
-    
-    CGSize size = [text sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
-    CGRect rect = CGRectMake(0, 0, size.width/0.8, size.height);
-    
-    [text drawInRect:rect withFont:font lineBreakMode:UILineBreakModeCharacterWrap];
-    
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
-    label.text = text;
-    label.font = font;
-    label.lineBreakMode = lineBreakMode;
-    label.numberOfLines = 0;
-    
+    UILabel *label = [self reuseLabelWithTag:LABEL_TAG frame:CGRectMake(0, 0, 1, 1) font:FONT_MESSAGE text:txt];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextColor:TEXT_COLOR];
+    [label setNumberOfLines:0];
+    [label sizeToFit];
+    [label updateHeight:MSG_SPACE+(CGRectGetHeight(label.frame))];
     return label;
 }
 
-- (void)addBgImage:(UIImage*)image
++ (void)showMessage:(NSString*)chatMessage
+              title:(NSString*)title
+             atView:(UIView *)atView
+             inView:(UIView *)inView
 {
-    UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    [bgImageView setImage:image];
-    [self addSubview:bgImageView];
-    [self sendSubviewToBack:bgImageView];
-    [bgImageView release];
+    ChatMessageView *cv = [[[ChatMessageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)] autorelease];
+    NSString *msg = [NSString stringWithFormat:@"%@ \n%@", title, chatMessage];
+    UILabel *label = [cv createLabelWithText:msg];
+    //update cv frame
+    cv.frame = label.frame;
+    [cv showAtView:atView inView:inView];    
 }
 
-+ (void)showMessage:(NSString*)chatMessage title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView
++ (void)showExpression:(UIImage*)expression
+                 title:(NSString*)title
+                atView:(UIView *)atView
+                inView:(UIView *)inView
 {
-    ChatMessageView *view = [[ChatMessageView alloc] initWithChatMessage:chatMessage title:title];
+    ChatMessageView *cv = [[[ChatMessageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)] autorelease];
     
-    UIImage *bgImage = ((origin.x+view.frame.size.width+WIDTH_EDGE) > WIDTH_SCREEN) ? [[ShareImageManager defaultManager] popupChatImageLeft] : [[ShareImageManager defaultManager] popupChatImageRight];
-    [view addBgImage:bgImage];
-    
-    origin = ((origin.x+view.frame.size.width+WIDTH_EDGE) > WIDTH_SCREEN) ? CGPointMake(origin.x-view.frame.size.width*3/4, origin.y) : origin;
-    
-    [view showInSuperView:superView origin:origin];
-    [superView bringSubviewToFront:view];
-    [view release];
+    UILabel *label = [cv createLabelWithText:title];
+    UIImageView *iv = (id)[cv reuseViewWithTag:IMAGE_TAG
+               viewClass:[UIImageView class]
+                   frame:CGRectMake(CGRectGetMinX(label.frame), CGRectGetMaxY(label.frame), WIDTH_EXPRESSION_VIEW, WIDTH_EXPRESSION_VIEW)];
+    [iv setImage:expression];
+    CGFloat width = MAX(CGRectGetWidth(iv.frame), CGRectGetWidth(label.frame));
+    CGFloat height = CGRectGetMaxY(iv.frame);    
+    cv.frame = CGRectMake(0, 0, width, height);
+    [cv showAtView:atView inView:inView];
 }
 
-
-
-+ (void)showExpression:(UIImage*)expression title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
 {
-    ChatMessageView *view = [[ChatMessageView alloc] initWithChatExpression:expression title:title];
-    
-    UIImage *bgImage = ((origin.x+view.frame.size.width+WIDTH_EDGE) > WIDTH_SCREEN) ? [[ShareImageManager defaultManager] popupChatImageLeft] : [[ShareImageManager defaultManager] popupChatImageRight];
-    [view addBgImage:bgImage];
-    
-    origin = ((origin.x+view.frame.size.width+WIDTH_EDGE) > WIDTH_SCREEN) ? CGPointMake(origin.x-view.frame.size.width*3/4, origin.y) : origin;
-    
-    [view showInSuperView:superView origin:origin];
-    [superView bringSubviewToFront:view];
-    [view release];
+    self.popView = nil;
 }
-
-- (void)showInSuperView:(UIView*)superView origin:(CGPoint)origin
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
 {
-    self.frame = CGRectMake(origin.x, origin.y, self.frame.size.width, self.frame.size.height);    
-    [superView addSubview:self];
-    self.alpha = 0;
-    self.hidden = NO;
-
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseInOut animations:^{
-        self.alpha = 1;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationCurveEaseInOut animations:^{
-            self.alpha = 0;
-        } completion:^(BOOL finished) {
-            self.hidden = YES;
-            [self removeFromSuperview];
-        }];
-    }];
+    self.popView = nil;    
 }
-            
-
 @end
