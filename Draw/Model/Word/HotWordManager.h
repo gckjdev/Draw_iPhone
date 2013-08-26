@@ -14,7 +14,7 @@
 @interface HotWordManager : NSObject
 
 // return an array containing PBHotWord objects.
-@property (nonatomic, retain, readonly) NSArray *words;
+//@property (nonatomic, retain, readonly) NSArray *words;
 
 + (HotWordManager*)sharedHotWordManager;
 + (void)createTestData;

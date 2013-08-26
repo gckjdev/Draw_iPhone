@@ -1085,4 +1085,9 @@
     return [MobClickUtils getStringValueByKey:@"CONTEST_BEGIN_TIME_STRING" defaultValue:@"220000"];
 }
 
++ (int)getHotWordAwardCoins{
+    return [MobClickUtils getIntValueByKey:@"HOT_WORD_AWARD_COINS" defaultValue:5];
+
+}
+
 @end
