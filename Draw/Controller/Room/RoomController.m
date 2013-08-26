@@ -208,6 +208,7 @@
         int holderViewTag = i-imageStartTag+AVATAR_HOLDER_VIEW_TAG_OFFSET;
         UIView* holderView = [self.view viewWithTag:holderViewTag];
         AvatarView* avatarView = [[AvatarView alloc] initWithUrlString:@"" frame:holderView.frame gender:NO level:0];
+        [avatarView setAsSquare];
         avatarView.tag = i;
         [avatarView setImage:nil];
         avatarView.hidden = YES;

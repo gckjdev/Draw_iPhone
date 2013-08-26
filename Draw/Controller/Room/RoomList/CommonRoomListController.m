@@ -464,7 +464,7 @@
         }
         
     }else if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {
-        NSString *password = ((UITextField *)dialog).text;
+        NSString *password = ((CommonDialog *)dialog).inputTextField.text;
 
         if ([self.currentSession.password isEqualToString:password]) {
             [self checkAndJoinGame:self.currentSession.sessionId];
