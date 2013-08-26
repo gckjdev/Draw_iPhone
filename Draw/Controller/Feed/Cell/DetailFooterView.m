@@ -19,7 +19,7 @@
     return self;
 }
 
-#define FOOTER_HEIGHT (ISIPAD ? 100 : 45)
+#define FOOTER_HEIGHT (ISIPAD ? 88 : 44)
 + (DetailFooterView *)footerViewWithDelegate:(id<DetailFooterViewDelegate>)delegate
 {
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] applicationFrame]) - FOOTER_HEIGHT;
