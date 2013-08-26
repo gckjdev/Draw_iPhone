@@ -2288,7 +2288,7 @@
                                          feedListType:(NSInteger)feedListType
                                                offset:(NSInteger)offset
                                                 limit:(NSInteger)limit 
-                                                 lang:(NSInteger)lang;
+                                                 lang:(NSInteger)lang
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
