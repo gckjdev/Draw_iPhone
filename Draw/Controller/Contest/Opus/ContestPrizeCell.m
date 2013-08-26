@@ -24,7 +24,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return 44.0f;
+    return (ISIPAD ? 280: 140);
 }
 
 
@@ -37,5 +37,14 @@
     [super dealloc];
 }
 - (IBAction)clickNickButton:(id)sender {
+    
 }
+
+- (void)setPrize:(ContestPrize)prize
+           title:(NSString *)title
+            opus:(ContestFeed *)opus
+{
+    
+}
+
 @end
