@@ -193,6 +193,12 @@
     [bgView setImage:nil];
 }
 
+- (void)setAsSquare{
+    self.layer.cornerRadius = 0;
+    self.layer.masksToBounds = NO;
+    [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
+}
+
 - (void)addTapGuesture
 {
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];    

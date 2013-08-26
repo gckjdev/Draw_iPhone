@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -38,7 +38,7 @@
 					<object class="IBUITableView" id="745717694">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{21, 100}, {724, 802}}</string>
+						<string key="NSFrame">{{26.5, 100}, {713, 802}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -63,6 +63,7 @@
 				<string key="NSFrameSize">{768, 1004}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="745717694"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -166,6 +167,8 @@
 						<string key="clickBackButton:">id</string>
 						<string key="clickRefreshButton:">id</string>
 						<string key="clickTabButton:">id</string>
+						<string key="clickTabDown:">id</string>
+						<string key="clickTabUp:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="clickBackButton:">
@@ -178,6 +181,14 @@
 						</object>
 						<object class="IBActionInfo" key="clickTabButton:">
 							<string key="name">clickTabButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTabDown:">
+							<string key="name">clickTabDown:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTabUp:">
+							<string key="name">clickTabUp:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -254,17 +265,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ShowFeedController</string>
 					<string key="superclassName">CommonTabController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickActionButton:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickActionButton:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="clickActionButton:">id</string>
+						<string key="clickBackButton:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="clickActionButton:">
 							<string key="name">clickActionButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+						<object class="IBActionInfo" key="clickBackButton:">
+							<string key="name">clickBackButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="commentButton">UIButton</string>
 						<string key="flowerButton">UIButton</string>

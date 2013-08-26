@@ -33,14 +33,10 @@
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        return nil;
-    }
-    
-    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
-    
-    return [topLevelObjects objectAtIndex:0];
+    CommentCell *cell = [CommentCell createViewWithXibIdentifier:cellId];
+    cell.delegate = delegate;
+    cell.backgroundColor = [UIColor whiteColor];
+    return cell;
 }
 
 + (NSString*)getCellIdentifier

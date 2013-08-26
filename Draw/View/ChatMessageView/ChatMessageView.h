@@ -7,12 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HJManagedImageV;
+#import "CMPopTipView.h"
 
-@interface ChatMessageView : UIView
+@interface ChatMessageView : UIView<CMPopTipViewDelegate>
 
-+ (void)showMessage:(NSString*)chatMessage title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView;
-+ (void)showExpression:(UIImage*)expression title:(NSString*)title origin:(CGPoint)origin superView:(UIView*)superView;
+//+ (id)defaultView;
+
++ (void)showMessage:(NSString*)chatMessage
+              title:(NSString*)title
+             atView:(UIView *)atView
+             inView:(UIView *)inView;
+
++ (void)showExpression:(UIImage*)expression
+                 title:(NSString*)title
+                atView:(UIView *)atView
+                inView:(UIView *)inView;
 
 @end
 

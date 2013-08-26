@@ -25,6 +25,7 @@
 #import "AdService.h"
 #import "UserGameItemManager.h"
 #import "UserGameItemService.h"
+#import "CommonTitleView.h"
 
 @implementation SelectWordController
 @synthesize clockLabel = _clockLabel;
@@ -152,13 +153,6 @@
     [self.clockLabel setText:[NSString stringWithFormat:@"%d",retainCount]];
 }
 
-- (void)localeViewText
-{
-    [self.titleLabel setText:NSLS(@"kPickWordTitle")];
-    [self.changeWordButton setTitle:NSLS(@"kChangeWords") forState:UIControlStateNormal];
-    [self.myWordsButton setTitle:NSLS(@"kMyWords") forState:UIControlStateNormal];
-}
-
 
 - (BOOL)hasClock
 {
@@ -171,6 +165,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.titleView = [CommonTitleView createTitleView:self.view];
+    [_titleView setTitle:NSLS(@"kPickWordTitle")];
+    [_titleView hideBackButton];
+    
+    SET_VIEW_BG(self.view);
+    
     toolView = [[ToolView alloc] initWithNumber:0];
     toolView.center = TOOLVIEW_CENTER;
     toolView.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
@@ -183,7 +183,8 @@
     [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
     [self.myWordsButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     
-    [self localeViewText];
+    [self.changeWordButton setTitle:NSLS(@"kChangeWords") forState:UIControlStateNormal];
+    [self.myWordsButton setTitle:NSLS(@"kMyWords") forState:UIControlStateNormal];
     
     if ([self hasClock]) {
         retainCount = PICK_WORD_TIME;
@@ -241,6 +242,7 @@
     [self setTitleLabel:nil];
     [self setTimeBg:nil];
     [self setMyWordsButton:nil];
+    [self setTitleView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -259,6 +261,7 @@
     PPRelease(_myWordsButton);
     PPRelease(_timeBg);
     PPRelease(_targetUid);
+    [_titleView release];
     [super dealloc];
 }
 - (IBAction)clickChangeWordButton:(id)sender {

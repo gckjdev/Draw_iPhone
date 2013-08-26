@@ -14,12 +14,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = COLOR_YELLOW;
     }
     return self;
 }
 
-#define FOOTER_HEIGHT (ISIPAD ? 100 : 50)
+#define FOOTER_HEIGHT (ISIPAD ? 100 : 45)
 + (DetailFooterView *)footerViewWithDelegate:(id<DetailFooterViewDelegate>)delegate
 {
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] applicationFrame]) - FOOTER_HEIGHT;
@@ -75,8 +75,8 @@
         UIButton * button = [self reuseButtonWithTag:type frame:CGRectMake(x, 0, width, width) font:nil text:nil];
         x += width + space;
         [button setImage:[self imageForType:type] forState:UIControlStateNormal];
-        CGFloat inset = width*0.1;
-        [button setContentEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
+//        CGFloat inset = width*0.1;
+//        [button setContentEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
         [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     }
 }

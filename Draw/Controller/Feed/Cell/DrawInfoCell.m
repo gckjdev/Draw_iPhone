@@ -34,14 +34,7 @@
 + (id)createCell:(id<DrawInfoCellDelegate>)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-    //    NSLog(@"cellId = %@", cellId);
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
-    DrawInfoCell *cell = [topLevelObjects objectAtIndex:0];
+    DrawInfoCell *cell = [DrawInfoCell createViewWithXibIdentifier:cellId];
     cell.delegate = delegate;
     return cell;
 }
@@ -50,12 +43,6 @@
 {
     return @"DrawInfoCell";
 }
-//+ (void)
-
-//+ (CGSize)labelSizeWithText:(NSString *)text font:(UIFont *)font width:(CGFloat)width
-//{
-//    [text sizeWithFont:font forWidth:width lineBreakMode:<#(NSLineBreakMode)#>
-//}
 
 + (CGSize)labelSizeWithText:(NSString *)desc
 {
@@ -176,16 +163,11 @@
 #define MASKVIEW_TAG 20130130
 - (void)addMaskView
 {
-//    UIControl *mask = (UIControl *)[self viewWithTag:MASKVIEW_TAG];
     if (mask == nil) {
         mask = [[UIControl alloc] initWithFrame:self.drawImage.frame];
         [mask setBackgroundColor:[UIColor clearColor]];
         [mask addTarget:self action:@selector(clickDrawImageMask:) forControlEvents:UIControlEventTouchUpInside];
-//        [mask addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchDown];
-//        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpOutside];
-//        [mask addTarget:self action:@selector(removeColor:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:mask];
-//        PPRelease(mask);
     }
 }
 
