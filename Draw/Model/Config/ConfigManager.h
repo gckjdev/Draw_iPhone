@@ -276,5 +276,6 @@ typedef enum{
 + (int)getMaxLayerNumber;
 
 + (NSString *)getContestBeginTimeString;
++ (int)getHotWordAwardCoins;
 
 @end
