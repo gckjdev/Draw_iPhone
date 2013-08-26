@@ -102,8 +102,10 @@
 }
 
 #define SPLIT_TAG_PLUS 10000
-#define TAB_HEIGHT (ISIPAD ? 50 : 25)
-#define START_X ([DeviceDetection isIPAD] ? 6 : 2)
+#define TAB_HEIGHT (ISIPAD ? 75 : 37)
+#define TAB_WIDTH (ISIPAD ? 713 : 299)
+#define BUTTON_HEIGHT (ISIPAD ? 50 : 25) 
+#define START_X ([DeviceDetection isIPAD] ? 8 : 4)
 #define TAB_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:11])
 
 - (NSInteger)splitLineTagWithType:(CommentType)type
@@ -132,13 +134,18 @@
     self = [super initWithFrame:frame];
     if (self) {
         SET_VIEW_BG(self);
+        UIView *view = [[UIView alloc] initWithFrame:self.bounds];
+        UIColor *color = [UIColor colorWithPatternImage:[[ShareImageManager defaultManager] detailHeaderBG]];
+        [self addSubview:view];        
+        [view setBackgroundColor:color];
+        [view release];
     }
     return self;
 }
 
 + (id)createCommentHeaderView:(id)delegate
 {
-    CGRect frame = CGRectMake(0, 0, CGRectGetWidth([[UIScreen mainScreen] bounds]), TAB_HEIGHT);
+    CGRect frame = CGRectMake(0, 0, TAB_WIDTH, TAB_HEIGHT);
     CommentHeaderView *headerView = [[[CommentHeaderView alloc] initWithFrame:frame] autorelease];
     headerView.delegate = delegate;
     return headerView;
@@ -174,7 +181,7 @@
                       format:(NSString *)format
 {
     NSString *title = [NSString stringWithFormat:format,times];
-    [self reuseButtonWithTag:type frame:CGRectMake(0, 0, 1, TAB_HEIGHT) font:TAB_FONT text:title];
+    [self reuseButtonWithTag:type frame:CGRectMake(0, TAB_HEIGHT-BUTTON_HEIGHT, 1, BUTTON_HEIGHT) font:TAB_FONT text:title];
 }
 - (void)setViewInfo:(DrawFeed *)feed
 {
@@ -189,7 +196,8 @@
 
 #define SPACE (ISIPAD ? 12 : 5)
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
-#define SPLIT_HEIGHT (TAB_HEIGHT*0.5)
+#define SPLIT_HEIGHT (BUTTON_HEIGHT*0.5)
+
 
 - (void)updateTimes:(DrawFeed *)feed
 {
@@ -199,11 +207,13 @@
             //set split line
             NSInteger tag = [self splitLineTagWithType:commentType];
             CommentType prevType = [self commentTypeForIndex:index - 1];
-            UIButton *btn = [self buttonWithType:prevType];            
-            CGRect frame = CGRectMake(CGRectGetMaxX(btn.frame) + SPACE, (TAB_HEIGHT - SPLIT_HEIGHT)/2, 1, SPLIT_HEIGHT);
+            UIButton *btn = [self buttonWithType:prevType];
+            CGFloat y = TAB_HEIGHT - BUTTON_HEIGHT - SPLIT_HEIGHT/2;
+            CGRect frame = CGRectMake(CGRectGetMaxX(btn.frame) + SPACE, y, 1, SPLIT_HEIGHT);
             UIView *split = [self reuseViewWithTag:tag viewClass:[UIView class] frame:frame];
             [split setBackgroundColor:[UIColor grayColor]];
             x = CGRectGetMaxX(split.frame) + SPACE;
+            [split updateCenterY:btn.center.y];
         }
 
         NSInteger count = [self countForType:commentType];
@@ -212,7 +222,7 @@
         UIButton *btn = [self buttonWithType:commentType];
 //        btn.alpha = 0.4;
         [btn updateOriginX:x];
-        [btn updateHeight:TAB_HEIGHT];
+        [btn updateHeight:BUTTON_HEIGHT];
         if (!_hasCreateButton) {
             [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];

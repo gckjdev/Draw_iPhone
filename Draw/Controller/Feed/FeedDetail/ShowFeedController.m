@@ -54,6 +54,7 @@
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
     ShareAction *_shareAction;
+//    BOOL isJudgerPopupShowing;
 }
 
 
@@ -63,7 +64,8 @@
 @property(nonatomic, retain) CommentHeaderView *commentHeader;
 @property(nonatomic, retain) DrawFeed *feed;
 @property (nonatomic, retain) UseItemScene* useItemScene;
-@property(nonatomic, retain) DetailFooterView *footerView;;
+@property(nonatomic, retain) DetailFooterView *footerView;
+@property(nonatomic, retain) PPPopTableView *judgerPopupView;
 
 //- (IBAction)clickActionButton:(id)sender;
 
@@ -97,6 +99,7 @@ typedef enum{
     PPRelease(_commentHeader);
     PPRelease(_useItemScene);
     PPRelease(_feedScene);
+    PPRelease(_judgerPopupView);
     [super dealloc];
 }
 
@@ -223,7 +226,12 @@ typedef enum{
             [types addObject:@(FooterTypeReport)];
             canThrowFlower = NO;
         }
-        if ([cm isUser:uid judgeAtContest:cf.contestId]) {
+        
+#if DEBUG
+        if (YES || [cm isUser:uid judgeAtContest:cf.contestId]) {
+#else
+        if([cm isUser:uid judgeAtContest:cf.contestId]) {
+#endif
             [types addObject:@(FooterTypeJudge)];
             canThrowFlower = NO;
         }
@@ -323,6 +331,14 @@ typedef enum{
             return nil;
     }
 }
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+    
+{
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    if (indexPath.section == SectionCommentInfo) {
+        cell.backgroundColor = COLOR_WHITE;
+    }
+}
 
 - (NSArray *)dataList
 {
@@ -336,11 +352,13 @@ typedef enum{
         case SectionDrawInfo:
             return 1;
         case SectionCommentInfo:
-            self.noMoreData = ![[_tabManager currentTab] hasMoreData];
-            if ([self.dataList count] < SPACE_CELL_COUNT) {
+        {
+            NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+            if (count < SPACE_CELL_COUNT) {
                 return SPACE_CELL_COUNT;
             }
-            return [self.dataList count];
+            return count;
+        }
         default:
             return 0;
     }
@@ -711,6 +729,7 @@ typedef enum{
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
 {
+    PPDebug(@"<NO MORE> = %d", self.noMoreData);
     switch (type) {
         case FooterTypeGuess:
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
@@ -753,7 +772,14 @@ typedef enum{
          
         case FooterTypeJudge:
         {
-            //TODO pop up judge box
+            if (self.judgerPopupView == nil) {
+                self.judgerPopupView = [PPPopTableView popTableViewWithDelegate:self];
+            }
+            if(![self.judgerPopupView isShowing]){
+                [self.judgerPopupView showInView:self.view atView:button animated:YES];
+            }else{
+                [self.judgerPopupView dismiss:YES];
+            }
             break;
         }            
         default:
@@ -1035,8 +1061,7 @@ typedef enum{
     return 12;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
-{
-    return [CommentHeaderView getTypeListByFeed:self.feed][index];   
+{    return [CommentHeaderView getTypeListByFeed:self.feed][index];   
 }
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
@@ -1074,6 +1099,36 @@ typedef enum{
         }
     }
     return YES;
+}
+
+
+- (NSInteger)numberOfRowsInPopTableView:(PPPopTableView *)tableView
+{
+    return 2;
+}
+- (UIImage *)popTableView:(PPPopTableView *)tableView iconForRow:(NSInteger)row
+{
+    if (row == 0) {
+        return [UIImage imageNamed:@"detail_comment@2x.png"];
+    }
+    return [UIImage imageNamed:@"detail_replay@2x.png"];    
+}
+- (NSString *)popTableView:(PPPopTableView *)tableView titleForRow:(NSInteger)row
+{
+    return @[@"kJudgerComment",NSLS(@"kJudgerScore")][row];
+}
+
+- (void)popTableView:(PPPopTableView *)tableView didSelectedAtRow:(NSInteger)row
+{
+    PPDebug(@"<popTableView:didSelectedAtRow:> %d", row);
+
+    if (row == 0) {
+    //TODO for judger comment
+        
+    }else if(row == 1){
+    //TODO for judger score
+    }
+    [tableView dismiss:YES];
 }
 
 @end

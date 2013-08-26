@@ -19,6 +19,7 @@
 #import "DeviceDetection.h"
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
+#import "CommentCell.h"
 
 @implementation FeedCell
 @synthesize guessStatLabel;
@@ -34,6 +35,7 @@
 #define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  228 : 100)
 #define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 181)
 #define DESC_HEIGHT ([DeviceDetection isIPAD] ?  120 : 43)
+#define NON_DESC_HEIGHT (FEED_CELL_HEIGHT - DESC_HEIGHT)
 
 #define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:12])
 
@@ -61,9 +63,43 @@
 + (CGFloat)getCellHeight
 {
     return FEED_CELL_HEIGHT;
+}
+
++ (CGFloat)getCellHeight:(Feed *)feed
+{
+    if ([Feed isKindOfClass:[CommentFeed class]]){
+        NSString *comment = [feed desc];
+        UIFont *font = DESC_FONT; //[UIFont systemFontOfSize:DESC_FONT];
+//        PPDebug(@"start to cal height, comment = %@",comment);
+        CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(DESC_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
+        CGFloat height = NON_DESC_HEIGHT + commentSize.height;
+        if (height <= FEED_CELL_HEIGHT){
+            height = FEED_CELL_HEIGHT;
+        }
+        
+//        PPDebug(@"comment = %@,height = %f", comment,height);
+        return height;
+    }
+    else{
+        return FEED_CELL_HEIGHT;
+    }
     
 }
 
+- (DrawFeed*)drawFeed:(Feed *)feed
+{
+    if ([feed isKindOfClass:[DrawFeed class]]) {
+        return (DrawFeed*)feed;
+    }else if(feed.isGuessType){
+        return [(GuessFeed *)feed drawFeed];
+    }
+    else if ([feed respondsToSelector:@selector(drawFeed)]){
+        return [feed performSelector:@selector(drawFeed)];
+    }
+    else{
+        return nil;
+    }
+}
 
 - (void)updateTime:(Feed *)feed
 {
@@ -81,7 +117,9 @@
          lineBreakMode:UILineBreakModeCharacterWrap];
     CGRect rect = CGRectMake(origin.x, origin.y, DESC_WIDTH, labelSize.height);
     self.descLabel.frame = rect;
-    [self.descLabel setText:feed.desc];
+    
+    [self.descLabel setText:[feed displayText]];
+    
     PPDebug(@"rect = %@, desc = %@", NSStringFromCGRect(rect),feed.desc);
 }
 
@@ -113,19 +151,26 @@
 - (void)updateGuessDesc:(Feed *)feed
 {
     NSInteger guessTimes = 0;
+    DrawFeed* drawFeed = [self drawFeed:feed];
     if (feed.isDrawType) {
-        guessTimes = [(DrawFeed *)feed guessTimes];
+        guessTimes = [drawFeed guessTimes];
     }else if(feed.isGuessType){
-        guessTimes = [[(GuessFeed *)feed drawFeed] guessTimes];
+        guessTimes = [drawFeed guessTimes];
     }
-    if (guessTimes == 0) {
-        [self.guessStatLabel setText:NSLS(@"kNoGuess")];
+    
+    if ([drawFeed isContestFeed]){
+        // for contest, no display
+        [self.guessStatLabel setText:@""];
+    }
+    else if (guessTimes == 0) {
+//        [self.guessStatLabel setText:NSLS(@"kNoGuess")];
+        [self.guessStatLabel setText:@""];
     }else{
         NSInteger correctTimes = 0;
         if (feed.isDrawType) {
-            correctTimes = [(DrawFeed *)feed correctTimes];
+            correctTimes = [drawFeed correctTimes];
         }else if(feed.feedType == FeedTypeGuess){
-            correctTimes = [[(GuessFeed *)feed drawFeed] correctTimes];
+            correctTimes = [drawFeed correctTimes];
         }
         NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessStat"),guessTimes, correctTimes];
         [self.guessStatLabel setText:desc];        
@@ -134,12 +179,18 @@
 
 - (NSString *)opusIdForFeed:(Feed *)feed
 {
-    if (feed.isDrawType) {
-        return feed.feedId;
-    }else if(feed.isGuessType){
-        return [[(GuessFeed *)feed drawFeed] feedId];
-    }
-    return nil;
+    DrawFeed* drawFeed = [self drawFeed:feed];
+    return [drawFeed feedId];
+    
+//    if (feed.isDrawType) {
+//        return drawFeed.feedId;        
+//    }else if(feed.isGuessType){
+//        return [[(GuessFeed *)feed drawFeed] feedId];
+//    }
+//    else if ([feed respondsToSelector:@selector(drawFeed)]){
+//        return [[feed performSelector:@selector(drawFeed)] feedId];
+//    }
+//    return nil;
 }
 
 - (void)cleanShowView
@@ -150,13 +201,16 @@
 }
 - (void)updateDrawView:(Feed *)feed
 {
-    DrawFeed *drawFeed = nil;
-    if (feed.isDrawType) {
-        drawFeed = (DrawFeed *)feed;
-    }else if(feed.feedType == FeedTypeGuess)
-    {
-        drawFeed = [(GuessFeed *) feed drawFeed];
-    }
+    DrawFeed *drawFeed = [self drawFeed:feed];
+//    if (feed.isDrawType) {
+//        drawFeed = (DrawFeed *)feed;
+//    }else if(feed.feedType == FeedTypeGuess)
+//    {
+//        drawFeed = [(GuessFeed *) feed drawFeed];
+//    }
+//    else if ([feed respondsToSelector:@selector(drawFeed)]){
+//        drawFeed = [feed performSelector:@selector(drawFeed)];
+//    }
 
     if (drawFeed) {
         NSString *imageUrl = drawFeed.drawImageUrl;

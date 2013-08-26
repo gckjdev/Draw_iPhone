@@ -394,6 +394,8 @@
 
 - (UIImage *)imageWithColor:(UIColor *)color;
 
+- (UIImage *)detailHeaderBG;
+
 - (void)setButtonStyle:(UIButton *)button
             titleColor:(UIColor *)titleColor
                   font:(UIFont *)font

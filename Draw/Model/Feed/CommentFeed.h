@@ -10,6 +10,7 @@
 
 
 @class CommentInfo;
+@class DrawFeed;
 
 @interface CommentFeed : Feed
 {
@@ -20,6 +21,7 @@
 @property(nonatomic, retain)CommentInfo *commentInfo;
 @property(nonatomic, retain)NSString *opusId;
 @property(nonatomic, retain)NSString *opusCreator;
+@property(nonatomic,retain)  DrawFeed *drawFeed;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 - (NSString *)commentInFeedDeatil;

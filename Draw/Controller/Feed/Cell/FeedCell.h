@@ -43,4 +43,7 @@
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) Feed *feed;
 - (void)setCellInfo:(Feed *)feed;
+
++ (CGFloat)getCellHeight:(Feed *)feed;
+
 @end

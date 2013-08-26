@@ -9,6 +9,7 @@
 #import "CommentFeed.h"
 #import "ItemType.h"
 #import "WordManager.h"
+#import "DrawFeed.h"
 
 @implementation CommentFeed
 @synthesize comment = _comment;
@@ -101,6 +102,7 @@
                                     pbFeed.commentInfo] autorelease];
             }
             self.comment = pbFeed.comment;
+            self.desc = self.comment;
             break;
         case FeedTypeFlower:
             self.comment = NSLS(@"kSendAFlower");            
@@ -162,6 +164,23 @@
 {
     self = [super initWithPBFeed:pbFeed];
     if (self) {
+        self.drawFeed = [[[DrawFeed alloc]
+                          initWithFeedId:pbFeed.opusId
+                          userId:pbFeed.opusCreatorUserId
+                          nickName:pbFeed.opusCreatorNickName
+                          avatar:pbFeed.opusCreatorAvatar
+                          gender:pbFeed.opusCreatorGender
+                          signature:pbFeed.signature
+                          drawImageUrl:pbFeed.opusImage
+                          pbDraw:pbFeed.drawData
+                          wordText:pbFeed.opusWord
+                          contestId:pbFeed.contestId
+                          timesArray:pbFeed.feedTimesList] autorelease];
+        
+        [self.drawFeed setFeedType:FeedTypeDraw];
+        [self.drawFeed setFeedId:pbFeed.opusId];
+        
+        
         [self initComment:pbFeed];
     }
     return self;
@@ -169,6 +188,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_drawFeed);
     PPRelease(_opusCreator);
     PPRelease(_opusId);
     PPRelease(_comment);
@@ -320,4 +340,10 @@
     }
     return self.summary;
 }
+
+- (NSString*)displayText
+{
+    return self.comment;
+}
+
 @end
