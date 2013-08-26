@@ -87,20 +87,36 @@ static ContestManager *_staticContestManager;
     PPDebug(@"<saveOngoingContestList> total %d contest added", [newList count]);
 }
 
-- (NSArray *)parseContestList:(NSArray *)jsonArray
+- (NSArray *)parseContestList:(NSArray *)pbContestArray
 {
-    if ([jsonArray count] != 0) {
+    if ([pbContestArray count] != 0) {
         NSMutableArray *list = [NSMutableArray array];
-        for (NSDictionary *dict in jsonArray) {
-            if ([dict isKindOfClass:[NSDictionary class]]) {
-                Contest *contest = [Contest contestWithDict:dict];
+        for (PBContest* pbContest in pbContestArray) {
+            if ([pbContest isKindOfClass:[PBContest class]]) {
+                Contest *contest = [[Contest alloc] initWithPBContest:pbContest];
                 [list addObject:contest];
+                [contest release];
             }
         }
         return list;
     }
     return nil;
 }
+
+//- (NSArray *)parseContestList:(NSArray *)jsonArray
+//{
+//    if ([jsonArray count] != 0) {
+//        NSMutableArray *list = [NSMutableArray array];
+//        for (NSDictionary *dict in jsonArray) {
+//            if ([dict isKindOfClass:[NSDictionary class]]) {
+//                Contest *contest = [Contest contestWithDict:dict];
+//                [list addObject:contest];
+//            }
+//        }
+//        return list;
+//    }
+//    return nil;
+//}
 
 - (int)calNewContestCount:(NSArray*)contestList
 {
@@ -149,5 +165,41 @@ static ContestManager *_staticContestManager;
     return NO;    
 }
 
+- (PBContest*)ongoingPBContestById:(NSString*)contestId
+{
+    if (contestId == nil)
+        return nil;
+    
+    for (PBContest* contest in _ongoingContestList){
+        if ([contestId isEqualToString:contest.contestId]){
+            return contest;
+        }
+    }
+    
+    return nil;
+}
+
+- (Contest*)ongoingContestById:(NSString*)contestId
+{
+    PBContest* pbContest = [self ongoingPBContestById:contestId];
+    if (pbContest == nil)
+        return nil;
+    
+    return [[[Contest alloc] initWithPBContest:pbContest] autorelease];
+}
+
+- (BOOL)displayContestAnonymous:(NSString*)contestId
+{
+    if ([contestId length] == 0)
+        return NO;
+    
+    for (PBContest* contest in _ongoingContestList){
+        if ([contest.contestId isEqualToString:contestId]){
+            return contest.isAnounymous;
+        }
+    }
+    
+    return NO;
+}
 
 @end

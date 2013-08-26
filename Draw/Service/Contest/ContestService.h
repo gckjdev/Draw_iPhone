@@ -45,4 +45,5 @@ typedef enum{
 - (NSArray*)getOngoingContestList;
 - (void)syncOngoingContestList;
 
+
 @end
