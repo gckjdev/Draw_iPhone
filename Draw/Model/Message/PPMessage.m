@@ -309,6 +309,14 @@
 //    return self;
 //}
 
+- (void)setThumbImage:(UIImage *)thumbImage
+{
+    if (thumbImage != _thumbImage) {
+        PPRelease(_thumbImage);
+        _thumbImage = [thumbImage retain];
+    }
+
+}
 
 @end
 
