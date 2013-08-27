@@ -443,7 +443,6 @@
 		A461B1DF174CBAA70088B061 /* ContestService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89747D16087699003A95F7 /* ContestService.m */; };
 		A461B1E0174CBAA70088B061 /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
 		A461B1E1174CBAA70088B061 /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
-		A461B1E3174CBAA70088B061 /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
 		A461B1E4174CBAA70088B061 /* StatementController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED01609B3350059667B /* StatementController.m */; };
 		A461B1E5174CBAA70088B061 /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
 		A461B1E6174CBAA70088B061 /* CommonTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F1D1609BDCA0059667B /* CommonTabController.m */; };
@@ -1021,7 +1020,6 @@
 		A461B4BD174CBAA70088B061 /* UserFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */; };
 		A461B4BF174CBAA70088B061 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
 		A461B4C1174CBAA70088B061 /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
-		A461B4C4174CBAA70088B061 /* StatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ECC1609B3050059667B /* StatementView.xib */; };
 		A461B4C5174CBAA70088B061 /* StatementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED11609B3350059667B /* StatementController.xib */; };
 		A461B4C6174CBAA70088B061 /* ContestOpusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */; };
 		A461B4CB174CBAA70088B061 /* RankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1656FE160C032700E433BE /* RankView.xib */; };
@@ -1037,7 +1035,6 @@
 		A461B4D5174CBAA70088B061 /* ContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714C1611E869002CB837 /* ContestController~ipad.xib */; };
 		A461B4D6174CBAA70088B061 /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		A461B4D7174CBAA70088B061 /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
-		A461B4D8174CBAA70088B061 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
 		A461B4D9174CBAA70088B061 /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		A461B4DA174CBAA70088B061 /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
 		A461B4DB174CBAA70088B061 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
@@ -2748,7 +2745,6 @@
 		C28A9AC71738F04B007A819F /* ContestService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89747D16087699003A95F7 /* ContestService.m */; };
 		C28A9AC81738F04B007A819F /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
 		C28A9AC91738F04B007A819F /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
-		C28A9ACB1738F04B007A819F /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
 		C28A9ACC1738F04B007A819F /* StatementController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED01609B3350059667B /* StatementController.m */; };
 		C28A9ACD1738F04B007A819F /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
 		C28A9ACE1738F04B007A819F /* CommonTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F1D1609BDCA0059667B /* CommonTabController.m */; };
@@ -3333,7 +3329,6 @@
 		C28A9D9C1738F04B007A819F /* UserFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */; };
 		C28A9D9E1738F04B007A819F /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
 		C28A9DA01738F04B007A819F /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
-		C28A9DA31738F04B007A819F /* StatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ECC1609B3050059667B /* StatementView.xib */; };
 		C28A9DA41738F04B007A819F /* StatementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED11609B3350059667B /* StatementController.xib */; };
 		C28A9DA51738F04B007A819F /* ContestOpusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */; };
 		C28A9DAA1738F04B007A819F /* RankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1656FE160C032700E433BE /* RankView.xib */; };
@@ -3349,7 +3344,6 @@
 		C28A9DB41738F04B007A819F /* ContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714C1611E869002CB837 /* ContestController~ipad.xib */; };
 		C28A9DB51738F04B007A819F /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		C28A9DB61738F04B007A819F /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
-		C28A9DB71738F04B007A819F /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
 		C28A9DB81738F04B007A819F /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		C28A9DB91738F04B007A819F /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
 		C28A9DBA1738F04B007A819F /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
@@ -4700,8 +4694,6 @@
 		CA3EB93D16B927B300660FE7 /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
 		CA3F2EA8160967B80059667B /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
 		CA3F2EA9160967B80059667B /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
-		CA3F2ECD1609B3050059667B /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
-		CA3F2ECE1609B3050059667B /* StatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ECC1609B3050059667B /* StatementView.xib */; };
 		CA3F2ED21609B3360059667B /* StatementController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED01609B3350059667B /* StatementController.m */; };
 		CA3F2ED31609B3360059667B /* StatementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED11609B3350059667B /* StatementController.xib */; };
 		CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
@@ -5369,7 +5361,6 @@
 		CAC371501611E86B002CB837 /* ContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714C1611E869002CB837 /* ContestController~ipad.xib */; };
 		CAC371511611E86B002CB837 /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		CAC371521611E86B002CB837 /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
-		CAC371531611E86B002CB837 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
 		CAC3EDA617C201A20098E168 /* draw_up_panel_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9A17C201A20098E168 /* draw_up_panel_accessory@2x.png */; };
 		CAC3EDA717C201A20098E168 /* draw_up_panel_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9A17C201A20098E168 /* draw_up_panel_accessory@2x.png */; };
 		CAC3EDA817C201A20098E168 /* draw_up_panel_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC3ED9A17C201A20098E168 /* draw_up_panel_accessory@2x.png */; };
@@ -6076,7 +6067,6 @@
 		EA411951176066F500DA72D0 /* ContestService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89747D16087699003A95F7 /* ContestService.m */; };
 		EA411952176066F500DA72D0 /* ContestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA89748116087BE2003A95F7 /* ContestController.m */; };
 		EA411953176066F500DA72D0 /* ContestView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2EA6160967B80059667B /* ContestView.m */; };
-		EA411955176066F500DA72D0 /* StatementView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ECB1609B3040059667B /* StatementView.m */; };
 		EA411956176066F500DA72D0 /* StatementController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED01609B3350059667B /* StatementController.m */; };
 		EA411957176066F500DA72D0 /* ContestOpusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2ED61609BCFB0059667B /* ContestOpusController.m */; };
 		EA411958176066F500DA72D0 /* CommonTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3F2F1D1609BDCA0059667B /* CommonTabController.m */; };
@@ -6684,7 +6674,6 @@
 		EA411C09176066F500DA72D0 /* UserFeedController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974281607230E003A95F7 /* UserFeedController~ipad.xib */; };
 		EA411C0A176066F500DA72D0 /* ContestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA89748216087BE2003A95F7 /* ContestController.xib */; };
 		EA411C0B176066F500DA72D0 /* ContestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2EA7160967B80059667B /* ContestView.xib */; };
-		EA411C0E176066F500DA72D0 /* StatementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ECC1609B3050059667B /* StatementView.xib */; };
 		EA411C0F176066F500DA72D0 /* StatementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED11609B3350059667B /* StatementController.xib */; };
 		EA411C10176066F500DA72D0 /* ContestOpusController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3F2ED71609BCFB0059667B /* ContestOpusController.xib */; };
 		EA411C11176066F500DA72D0 /* RankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1656FE160C032700E433BE /* RankView.xib */; };
@@ -6700,7 +6689,6 @@
 		EA411C1B176066F500DA72D0 /* ContestController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714C1611E869002CB837 /* ContestController~ipad.xib */; };
 		EA411C1C176066F500DA72D0 /* ContestView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714D1611E869002CB837 /* ContestView~ipad.xib */; };
 		EA411C1D176066F500DA72D0 /* StatementController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */; };
-		EA411C1E176066F500DA72D0 /* StatementView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */; };
 		EA411C1F176066F500DA72D0 /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0621615A01700EE1C1C /* MyCommentCell.xib */; };
 		EA411C20176066F500DA72D0 /* MyCommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA65C0631615A01700EE1C1C /* MyCommentCell~ipad.xib */; };
 		EA411C21176066F500DA72D0 /* HotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9D5F491616F2040082E258 /* HotController~ipad.xib */; };
@@ -9424,9 +9412,6 @@
 		CA3F2EA5160967B80059667B /* ContestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestView.h; sourceTree = "<group>"; };
 		CA3F2EA6160967B80059667B /* ContestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestView.m; sourceTree = "<group>"; };
 		CA3F2EA7160967B80059667B /* ContestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestView.xib; sourceTree = "<group>"; };
-		CA3F2ECA1609B3040059667B /* StatementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementView.h; sourceTree = "<group>"; };
-		CA3F2ECB1609B3040059667B /* StatementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementView.m; sourceTree = "<group>"; };
-		CA3F2ECC1609B3050059667B /* StatementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatementView.xib; sourceTree = "<group>"; };
 		CA3F2ECF1609B3350059667B /* StatementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatementController.h; sourceTree = "<group>"; };
 		CA3F2ED01609B3350059667B /* StatementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatementController.m; sourceTree = "<group>"; };
 		CA3F2ED11609B3350059667B /* StatementController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatementController.xib; sourceTree = "<group>"; };
@@ -10126,7 +10111,6 @@
 		CAC3714C1611E869002CB837 /* ContestController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContestController~ipad.xib"; sourceTree = "<group>"; };
 		CAC3714D1611E869002CB837 /* ContestView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContestView~ipad.xib"; sourceTree = "<group>"; };
 		CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatementController~ipad.xib"; sourceTree = "<group>"; };
-		CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StatementView~ipad.xib"; sourceTree = "<group>"; };
 		CAC3ED9A17C201A20098E168 /* draw_up_panel_accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_accessory@2x.png"; sourceTree = "<group>"; };
 		CAC3ED9B17C201A20098E168 /* draw_up_panel_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_background@2x.png"; sourceTree = "<group>"; };
 		CAC3ED9F17C201A20098E168 /* draw_up_panel_blocks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_up_panel_blocks@2x.png"; sourceTree = "<group>"; };
@@ -16108,19 +16092,15 @@
 				CA51419D17CB41F100883CAA /* ContestPrizeCell.xib */,
 				CAC3714E1611E86A002CB837 /* StatementController~ipad.xib */,
 				CAC3714C1611E869002CB837 /* ContestController~ipad.xib */,
-				CAC3714F1611E86A002CB837 /* StatementView~ipad.xib */,
 				CAC3714D1611E869002CB837 /* ContestView~ipad.xib */,
 				CA3F2ED11609B3350059667B /* StatementController.xib */,
 				CA89748216087BE2003A95F7 /* ContestController.xib */,
-				CA3F2ECC1609B3050059667B /* StatementView.xib */,
 				CA3F2EA7160967B80059667B /* ContestView.xib */,
 				CA3F2ED41609BCC90059667B /* Opus */,
 				CA89748016087BE2003A95F7 /* ContestController.h */,
 				CA89748116087BE2003A95F7 /* ContestController.m */,
 				CA3F2EA5160967B80059667B /* ContestView.h */,
 				CA3F2EA6160967B80059667B /* ContestView.m */,
-				CA3F2ECA1609B3040059667B /* StatementView.h */,
-				CA3F2ECB1609B3040059667B /* StatementView.m */,
 				CA3F2ECF1609B3350059667B /* StatementController.h */,
 				CA3F2ED01609B3350059667B /* StatementController.m */,
 			);
@@ -18322,7 +18302,6 @@
 				A461B4BD174CBAA70088B061 /* UserFeedController~ipad.xib in Resources */,
 				A461B4BF174CBAA70088B061 /* ContestController.xib in Resources */,
 				A461B4C1174CBAA70088B061 /* ContestView.xib in Resources */,
-				A461B4C4174CBAA70088B061 /* StatementView.xib in Resources */,
 				A461B4C5174CBAA70088B061 /* StatementController.xib in Resources */,
 				A461B4C6174CBAA70088B061 /* ContestOpusController.xib in Resources */,
 				A461B4CB174CBAA70088B061 /* RankView.xib in Resources */,
@@ -18338,7 +18317,6 @@
 				A461B4D5174CBAA70088B061 /* ContestController~ipad.xib in Resources */,
 				A461B4D6174CBAA70088B061 /* ContestView~ipad.xib in Resources */,
 				A461B4D7174CBAA70088B061 /* StatementController~ipad.xib in Resources */,
-				A461B4D8174CBAA70088B061 /* StatementView~ipad.xib in Resources */,
 				A461B4D9174CBAA70088B061 /* MyCommentCell.xib in Resources */,
 				A461B4DA174CBAA70088B061 /* MyCommentCell~ipad.xib in Resources */,
 				A461B4DB174CBAA70088B061 /* HotController~ipad.xib in Resources */,
@@ -19385,7 +19363,6 @@
 				C28A9D9C1738F04B007A819F /* UserFeedController~ipad.xib in Resources */,
 				C28A9D9E1738F04B007A819F /* ContestController.xib in Resources */,
 				C28A9DA01738F04B007A819F /* ContestView.xib in Resources */,
-				C28A9DA31738F04B007A819F /* StatementView.xib in Resources */,
 				C28A9DA41738F04B007A819F /* StatementController.xib in Resources */,
 				C28A9DA51738F04B007A819F /* ContestOpusController.xib in Resources */,
 				C28A9DAA1738F04B007A819F /* RankView.xib in Resources */,
@@ -19401,7 +19378,6 @@
 				C28A9DB41738F04B007A819F /* ContestController~ipad.xib in Resources */,
 				C28A9DB51738F04B007A819F /* ContestView~ipad.xib in Resources */,
 				C28A9DB61738F04B007A819F /* StatementController~ipad.xib in Resources */,
-				C28A9DB71738F04B007A819F /* StatementView~ipad.xib in Resources */,
 				C28A9DB81738F04B007A819F /* MyCommentCell.xib in Resources */,
 				C28A9DB91738F04B007A819F /* MyCommentCell~ipad.xib in Resources */,
 				C28A9DBA1738F04B007A819F /* HotController~ipad.xib in Resources */,
@@ -20434,7 +20410,6 @@
 				CA89744A1607230E003A95F7 /* UserFeedController~ipad.xib in Resources */,
 				CA89748416087BE2003A95F7 /* ContestController.xib in Resources */,
 				CA3F2EA9160967B80059667B /* ContestView.xib in Resources */,
-				CA3F2ECE1609B3050059667B /* StatementView.xib in Resources */,
 				CA3F2ED31609B3360059667B /* StatementController.xib in Resources */,
 				CA3F2ED91609BCFB0059667B /* ContestOpusController.xib in Resources */,
 				CA165700160C032800E433BE /* RankView.xib in Resources */,
@@ -20450,7 +20425,6 @@
 				CAC371501611E86B002CB837 /* ContestController~ipad.xib in Resources */,
 				CAC371511611E86B002CB837 /* ContestView~ipad.xib in Resources */,
 				CAC371521611E86B002CB837 /* StatementController~ipad.xib in Resources */,
-				CAC371531611E86B002CB837 /* StatementView~ipad.xib in Resources */,
 				CA65C0651615A01700EE1C1C /* MyCommentCell.xib in Resources */,
 				CA65C0661615A01700EE1C1C /* MyCommentCell~ipad.xib in Resources */,
 				CA9D5F4A1616F2040082E258 /* HotController~ipad.xib in Resources */,
@@ -21454,7 +21428,6 @@
 				EA411C09176066F500DA72D0 /* UserFeedController~ipad.xib in Resources */,
 				EA411C0A176066F500DA72D0 /* ContestController.xib in Resources */,
 				EA411C0B176066F500DA72D0 /* ContestView.xib in Resources */,
-				EA411C0E176066F500DA72D0 /* StatementView.xib in Resources */,
 				EA411C0F176066F500DA72D0 /* StatementController.xib in Resources */,
 				EA411C10176066F500DA72D0 /* ContestOpusController.xib in Resources */,
 				EA411C11176066F500DA72D0 /* RankView.xib in Resources */,
@@ -21470,7 +21443,6 @@
 				EA411C1B176066F500DA72D0 /* ContestController~ipad.xib in Resources */,
 				EA411C1C176066F500DA72D0 /* ContestView~ipad.xib in Resources */,
 				EA411C1D176066F500DA72D0 /* StatementController~ipad.xib in Resources */,
-				EA411C1E176066F500DA72D0 /* StatementView~ipad.xib in Resources */,
 				EA411C1F176066F500DA72D0 /* MyCommentCell.xib in Resources */,
 				EA411C20176066F500DA72D0 /* MyCommentCell~ipad.xib in Resources */,
 				EA411C21176066F500DA72D0 /* HotController~ipad.xib in Resources */,
@@ -22548,7 +22520,6 @@
 				A461B1DF174CBAA70088B061 /* ContestService.m in Sources */,
 				A461B1E0174CBAA70088B061 /* ContestController.m in Sources */,
 				A461B1E1174CBAA70088B061 /* ContestView.m in Sources */,
-				A461B1E3174CBAA70088B061 /* StatementView.m in Sources */,
 				A461B1E4174CBAA70088B061 /* StatementController.m in Sources */,
 				A461B1E5174CBAA70088B061 /* ContestOpusController.m in Sources */,
 				A461B1E6174CBAA70088B061 /* CommonTabController.m in Sources */,
@@ -23381,7 +23352,6 @@
 				C28A9AC71738F04B007A819F /* ContestService.m in Sources */,
 				C28A9AC81738F04B007A819F /* ContestController.m in Sources */,
 				C28A9AC91738F04B007A819F /* ContestView.m in Sources */,
-				C28A9ACB1738F04B007A819F /* StatementView.m in Sources */,
 				C28A9ACC1738F04B007A819F /* StatementController.m in Sources */,
 				C28A9ACD1738F04B007A819F /* ContestOpusController.m in Sources */,
 				C28A9ACE1738F04B007A819F /* CommonTabController.m in Sources */,
@@ -24186,7 +24156,6 @@
 				CA89747E16087699003A95F7 /* ContestService.m in Sources */,
 				CA89748316087BE2003A95F7 /* ContestController.m in Sources */,
 				CA3F2EA8160967B80059667B /* ContestView.m in Sources */,
-				CA3F2ECD1609B3050059667B /* StatementView.m in Sources */,
 				CA3F2ED21609B3360059667B /* StatementController.m in Sources */,
 				CA3F2ED81609BCFB0059667B /* ContestOpusController.m in Sources */,
 				CA3F2F1F1609BDCA0059667B /* CommonTabController.m in Sources */,
@@ -24988,7 +24957,6 @@
 				EA411951176066F500DA72D0 /* ContestService.m in Sources */,
 				EA411952176066F500DA72D0 /* ContestController.m in Sources */,
 				EA411953176066F500DA72D0 /* ContestView.m in Sources */,
-				EA411955176066F500DA72D0 /* StatementView.m in Sources */,
 				EA411956176066F500DA72D0 /* StatementController.m in Sources */,
 				EA411957176066F500DA72D0 /* ContestOpusController.m in Sources */,
 				EA411958176066F500DA72D0 /* CommonTabController.m in Sources */,

@@ -9,7 +9,6 @@
 #import "ContestController.h"
 #import "Contest.h"
 #import "ConfigManager.h"
-#import "StatementView.h"
 #import "StatementController.h"
 #import "CommonMessageCenter.h"
 #import "ContestOpusController.h"
