@@ -1069,4 +1069,36 @@ static FeedService *_staticFeedService = nil;
     
 }
 
+- (void)rankOpus:(NSString*)opusId
+       contestId:(NSString*)contestId
+        rankType:(int)rankType
+       rankValue:(int)rankValue
+     resultBlock:(void (^)(int resultCode))resultBlock
+{
+
+    if (opusId == nil || contestId == nil){
+        EXECUTE_BLOCK(resultBlock, ERROR_OPUS_ID_NULL);
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_OPUS_ID    : opusId,
+                                PARA_CONTESTID  : contestId,
+                                PARA_RANGETYPE  : @(rankType),
+                                PARA_VALUE      : @(rankValue)
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_RANK_OPUS parameters:para isReturnArray:NO];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+            
+        });
+    });
+    
+    
+}
+
 @end
