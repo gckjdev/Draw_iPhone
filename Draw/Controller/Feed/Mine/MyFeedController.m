@@ -183,7 +183,6 @@ typedef enum{
 
 #pragma mark - table view delegate
 
-//SET_CELL_BG
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

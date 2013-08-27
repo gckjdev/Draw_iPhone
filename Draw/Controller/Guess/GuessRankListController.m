@@ -13,6 +13,7 @@
 #import "Opus.pb.h"
 #import "ShareImageManager.h"
 #import "GuessManager.h"
+#import "PPPopTableView.h"
 
 #define GENIUS_WEEK NSLS(@"kGeniusRankWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusRankYear")
@@ -62,6 +63,8 @@
     [[GuessService defaultService] getRecentGuessContestListWithDelegate:self];
     
     [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
+    
+    
 }
 
 - (void)viewDidUnload {
@@ -108,23 +111,38 @@
     
     // TODO: set pull down list to select
     
-    NSArray *menuItems =
-    @[
-      
-      [KxMenuItem menuItem:WEEK
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)],
-      
-      [KxMenuItem menuItem:YEAR
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)]
-      ];
+//    NSArray *menuItems =
+//    @[
+//      
+//      [KxMenuItem menuItem:WEEK
+//                     image:nil
+//                    target:self
+//                    action:@selector(pushMenuItem:)],
+//      
+//      [KxMenuItem menuItem:YEAR
+//                     image:nil
+//                    target:self
+//                    action:@selector(pushMenuItem:)]
+//      ];
+//    
+//    [KxMenu showMenuInView:self.view
+//                  fromRect:sender.frame
+//                 menuItems:menuItems];
     
-    [KxMenu showMenuInView:self.view
-                  fromRect:sender.frame
-                 menuItems:menuItems];
+    
+    __block typeof (self)bself = self;
+    PPPopTableView *v = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:WEEK, YEAR, nil] icons:nil selectedHandler:^(NSInteger row) {
+        
+        if (row == 0) {
+            bself.currentSelect = WEEK;
+        }else{
+            bself.currentSelect = YEAR;
+        }
+        
+        [v dismiss:YES];
+    }];
+    
+    [v showInView:self.view atView:sender animated:YES];
 }
 
 - (IBAction)clickGeniusButton:(UIButton *)sender {
@@ -138,27 +156,42 @@
 
 - (IBAction)clickContestSelectButton:(UIButton *)sender {
     
-    NSArray *menuItems =
-    @[
-      [KxMenuItem menuItem:TODAY
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)],
-      
-      [KxMenuItem menuItem:YESTERDAY
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)],
-      
-      [KxMenuItem menuItem:BEFOREYESTERDAY
-                     image:nil
-                    target:self
-                    action:@selector(pushMenuItem:)]
-      ];
+//    NSArray *menuItems =
+//    @[
+//      [KxMenuItem menuItem:TODAY
+//                     image:nil
+//                    target:self
+//                    action:@selector(pushMenuItem:)],
+//      
+//      [KxMenuItem menuItem:YESTERDAY
+//                     image:nil
+//                    target:self
+//                    action:@selector(pushMenuItem:)],
+//      
+//      [KxMenuItem menuItem:BEFOREYESTERDAY
+//                     image:nil
+//                    target:self
+//                    action:@selector(pushMenuItem:)]
+//      ];
+//    
+//    [KxMenu showMenuInView:self.view
+//                  fromRect:sender.frame
+//                 menuItems:menuItems];
     
-    [KxMenu showMenuInView:self.view
-                  fromRect:sender.frame
-                 menuItems:menuItems];
+    __block typeof(self) bself = self;
+    PPPopTableView *v = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:TODAY, YESTERDAY, BEFOREYESTERDAY, nil] icons:nil selectedHandler:^(NSInteger row) {
+        
+        if (row == 0) {
+            bself.currentSelect = TODAY;
+        }else if(row == 1){
+            bself.currentSelect = YESTERDAY;
+        }else{
+            bself.currentSelect = BEFOREYESTERDAY;
+        }
+        [v dismiss:YES];
+    }];
+    
+    [v showInView:self.view atView:sender animated:YES];
 }
 
 - (IBAction)clickContestButton:(id)sender {
@@ -204,7 +237,7 @@
     return cell;
 }
 
-SET_CELL_BG
+SET_CELL_BG_IN_CONTROLLER;
 
 
 #pragma mark - CommonTabController delegate

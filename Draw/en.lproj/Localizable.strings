@@ -1433,6 +1433,11 @@
 "kCustomBBSBgSucc" = "Customize BBS background successfully!";
 "kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";
 "kCustomBBSBg" = "Custom BBS Background";
+
+"kCustomChatBgSucc" = "Customize chat background successfully!";
+"kResetCustomChatBgSucc" = "Reset custom chat background successfully!";
+"kCustomChatBg" = "Custom chat Background";
+
 "kSize" = "Size";
 "kBackground" = "Background";
 "kCopyPaint" = "Copy";
@@ -1915,6 +1920,8 @@
 "kChangePageBG" = "Change Page BG";
 "kContestReport" = "Report";
 "kContestPrize" = "Prize";
+"kJudgerComment" = "Comment";
+"kJudgerScore" = "Score";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

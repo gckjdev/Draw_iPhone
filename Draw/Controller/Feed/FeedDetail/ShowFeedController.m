@@ -732,7 +732,6 @@ typedef enum{
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
 {
-    PPDebug(@"<NO MORE> = %d", self.noMoreData);
     switch (type) {
         case FooterTypeGuess:
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
@@ -776,7 +775,20 @@ typedef enum{
         case FooterTypeJudge:
         {
             if (self.judgerPopupView == nil) {
-                self.judgerPopupView = [PPPopTableView popTableViewWithDelegate:self];
+                NSArray *titles = @[NSLS(@"kJudgerComment"),NSLS(@"kJudgerScore")];
+                NSArray *icons = @[[UIImage imageNamed:@"detail_comment@2x.png"],[UIImage imageNamed:@"detail_replay@2x.png"]];
+                
+                self.judgerPopupView = [PPPopTableView popTableViewWithTitles:titles icons:icons selectedHandler:^(NSInteger row) {
+                    PPDebug(@"<popTableView:didSelectedAtRow:> %d", row);
+                    
+                    if (row == 0) {
+                        //TODO for judger comment
+                        
+                    }else if(row == 1){
+                        //TODO for judger score
+                    }
+                    [self.judgerPopupView dismiss:YES];
+                }];
             }
             if(![self.judgerPopupView isShowing]){
                 [self.judgerPopupView showInView:self.view atView:button animated:YES];
@@ -884,7 +896,7 @@ typedef enum{
     
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
-    
+    [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setRightButtonAsRefresh];
@@ -1103,35 +1115,4 @@ typedef enum{
     }
     return YES;
 }
-
-
-- (NSInteger)numberOfRowsInPopTableView:(PPPopTableView *)tableView
-{
-    return 2;
-}
-- (UIImage *)popTableView:(PPPopTableView *)tableView iconForRow:(NSInteger)row
-{
-    if (row == 0) {
-        return [UIImage imageNamed:@"detail_comment@2x.png"];
-    }
-    return [UIImage imageNamed:@"detail_replay@2x.png"];    
-}
-- (NSString *)popTableView:(PPPopTableView *)tableView titleForRow:(NSInteger)row
-{
-    return @[@"kJudgerComment",NSLS(@"kJudgerScore")][row];
-}
-
-- (void)popTableView:(PPPopTableView *)tableView didSelectedAtRow:(NSInteger)row
-{
-    PPDebug(@"<popTableView:didSelectedAtRow:> %d", row);
-
-    if (row == 0) {
-    //TODO for judger comment
-        
-    }else if(row == 1){
-    //TODO for judger score
-    }
-    [tableView dismiss:YES];
-}
-
 @end

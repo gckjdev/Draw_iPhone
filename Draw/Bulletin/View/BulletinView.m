@@ -11,8 +11,11 @@
 #import "BulletinCell.h"
 #import "Bulletin.h"
 #import "JumpHandler.h"
+#import "AutoCreateViewByXib.h"
 
 @implementation BulletinView
+
+AUTO_CREATE_VIEW_BY_XIB(BulletinView);
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,21 +37,33 @@
     [self.closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
 }
 
-+ (void)showBulletinInController:(PPViewController*)controller
-{
-    BulletinView* view = (BulletinView*)[BulletinView createInfoViewByXibName:@"BulletinView"];
++ (id)createWithSuperController:(PPViewController *)controller{
+    
+    BulletinView* view = (BulletinView*)[BulletinView createView];
     [view initView];
     view.superController = controller;
-    [view showInView:controller.view];
     [[BulletinService defaultService] readAllBulletins];
+    
+    return view;
 }
 
-- (IBAction)clickClose:(id)sender
-{
-    [self disappear];
-}
+//+ (void)showBulletinInController:(PPViewController*)controller
+//{
+//    BulletinView* view = (BulletinView*)[BulletinView createInfoViewByXibName:@"BulletinView"];
+//    [view initView];
+//    view.superController = controller;
+//    [view showInView:controller.view];
+//    [[BulletinService defaultService] readAllBulletins];
+//}
+
+//- (IBAction)clickClose:(id)sender
+//{
+//    [self disappear];
+//}
 
 #pragma mark - tableView delegate and dataSource
+
+SET_CELL_BG_IN_VIEW;
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

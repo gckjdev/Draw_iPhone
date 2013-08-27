@@ -1381,6 +1381,12 @@
 "kCustomBBSBgSucc" = "成功自定義論壇背景！";
 "kResetCustomBBSBgSucc" = "成功重設論壇背景!";
 "kCustomBBSBg" = "自定義論壇背景";
+
+"kCustomChatBgSucc" = "成功自定義聊天背景！";
+"kResetCustomChatBgSucc" = "成功重設聊天背景!";
+"kCustomChatBg" = "自定義聊天背景";
+
+
 "kSize" = "畫布尺寸";
 "kBackground" = "畫畫背景";
 "kCopyPaint" = "臨摹圖片";
@@ -1914,6 +1920,8 @@
 "kChangePageBG" = "畫板背景";
 "kContestReport" = "報道";
 "kContestPrize" = "賽果";
+"kJudgerComment" = "點評";
+"kJudgerScore" = "評分";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

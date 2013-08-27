@@ -13,6 +13,7 @@
 #import "AnimationManager.h"
 #import "BlockUtils.h"
 #import "UIImageUtil.h"
+#import "CommonDialog.h"
 
 @interface CustomInfoView()
 @property (retain, nonatomic) UIActivityIndicatorView *indicator;
@@ -78,9 +79,21 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 
 + (id)createWithTitle:(NSString *)title
              infoView:(UIView *)infoView
+         hasEdgeSpace:(BOOL)hasEdgeSpace
+{
+    return [self createWithTitle:title infoView:infoView hasCloseButton:YES closeHandler:NULL buttonTitles:nil hasEdgeSpace:hasEdgeSpace];
+}
+
++ (id)createWithTitle:(NSString *)title
+             infoView:(UIView *)infoView
          closeHandler:(CloseHandler)closeHandler
 {
-    return [self createWithTitle:title infoView:infoView hasCloseButton:YES closeHandler:closeHandler buttonTitles:nil];
+    return [self createWithTitle:title
+                        infoView:infoView
+                  hasCloseButton:YES
+                    closeHandler:closeHandler
+                    buttonTitles:nil
+                    hasEdgeSpace:YES];
 }
 
 + (id)createWithTitle:(NSString *)title
@@ -88,7 +101,12 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
        hasCloseButton:(BOOL)hasCloseButton
          buttonTitles:(NSArray *)buttonTitles
 {
-    return [self createWithTitle:title infoView:infoView hasCloseButton:hasCloseButton closeHandler:NULL buttonTitles:buttonTitles];
+    return [self createWithTitle:title
+                        infoView:infoView
+                  hasCloseButton:hasCloseButton
+                    closeHandler:NULL
+                    buttonTitles:buttonTitles
+                    hasEdgeSpace:YES];
 }
 
 + (id)createWithTitle:(NSString *)title
@@ -96,6 +114,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
        hasCloseButton:(BOOL)hasCloseButton
          closeHandler:(CloseHandler)closeHandler
          buttonTitles:(NSArray *)buttonTitles
+         hasEdgeSpace:(BOOL)hasEdgeSpace
 {
     CustomInfoView *view = [self createView];
     
@@ -104,9 +123,12 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     view.infoView = infoView;
     COPY_BLOCK(view.closeHandler, closeHandler);
     
+    CGFloat SpaceHorizonal = (hasEdgeSpace ? SPACE_HORIZONTAL : [CommonDialog edgeWidth]);
+    CGFloat SpaceVertical = (hasEdgeSpace ? SPACE_VERTICAL : [CommonDialog edgeWidth]);
     // set mainView size
-    CGFloat width = SPACE_HORIZONTAL + infoView.frame.size.width + SPACE_HORIZONTAL;
-    CGFloat height = TITLE_HEIGHT + SPACE_VERTICAL + infoView.frame.size.height + SPACE_VERTICAL;
+     CGFloat width = SpaceHorizonal*2 + infoView.frame.size.width;
+     CGFloat height = TITLE_HEIGHT + SpaceVertical*2 + infoView.frame.size.height;
+    
     [view.mainView updateWidth:width];
     [view.mainView updateHeight:height];
     [view.mainBgImageView setImage:[[ShareImageManager defaultManager] customInfoViewMainBgImage]];
@@ -116,18 +138,18 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     view.titleLabel.textColor = COLOR_WHITE;
     
     // add info view
-    [infoView updateOriginX:SPACE_HORIZONTAL];
-    [infoView updateOriginY:(TITLE_HEIGHT + SPACE_VERTICAL)];
+    [infoView updateOriginX:SpaceHorizonal];
+    [infoView updateOriginY:(TITLE_HEIGHT + SpaceVertical)];
     [view.mainView addSubview:infoView];
     
     // set close button
     view.closeButton.hidden = !hasCloseButton;
     
     
-    CGFloat originY = TITLE_HEIGHT + SPACE_VERTICAL + infoView.frame.size.height + SPACE_VERTICAL;
+    CGFloat originY = TITLE_HEIGHT + SpaceVertical*2 + infoView.frame.size.height;
 
     if ([buttonTitles count] != 0) {
-        [view.mainView updateHeight:(view.mainView.frame.size.height + SPACE_VERTICAL + BUTTON_HEIGHT)];
+        [view.mainView updateHeight:(view.mainView.frame.size.height + SpaceVertical + BUTTON_HEIGHT)];
     }
     
     if ([buttonTitles count] == 1) {

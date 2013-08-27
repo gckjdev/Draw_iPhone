@@ -75,7 +75,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
 + (float)getCellHeight
 {
-    return 84;
+    return (ISIPAD ? 175 : 84);
 }
 
 - (void)setCellByBulletin:(Bulletin *)bulletin
@@ -83,8 +83,12 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     [self.messageLabel setText:bulletin.message];
     [self.newBulletinFlag setHidden:bulletin.hasRead];
 
-    [self.dateLabel setText:dateToLocaleStringWithFormat(bulletin.date, @"yyyy.MM.dd")];
-    [self.timeButton setTitle:dateToLocaleStringWithFormat(bulletin.date, @"HH:mm") forState:UIControlStateNormal];
+    NSString *str = [NSString stringWithFormat:@"%@  %@", dateToLocaleStringWithFormat(bulletin.date, @"yyyy.MM.dd"), dateToLocaleStringWithFormat(bulletin.date, @"HH:mm")];
+    [self.dateLabel setText:str];
+    
+    self.dateLabel.textColor = COLOR_ORANGE;
+    self.messageLabel.textColor = COLOR_BROWN;
+    
     [self.customAccessoryImageView setHidden:!([JumpHandler canJump:bulletin.type])];
     [self initView];
 }

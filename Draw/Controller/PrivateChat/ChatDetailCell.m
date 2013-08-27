@@ -221,8 +221,8 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         CGRect frame = CGRectFromCGSize(message.canvasSize);
         self.showDrawView = [ShowDrawView showViewWithFrame:frame drawActionList:message.drawActionList delegate:self];
         [self.showDrawView updateLayers:[DrawLayer defaultOldLayersWithFrame:frame]];
-        [self.showDrawView show];
-        message.thumbImage = [self.showDrawView createImageWithSize:size];        
+        message.thumbImage = [self.showDrawView createImageWithSize:size];
+        self.showDrawView = nil;
     }
     [self updateContentButtonFrame:size];
     [self.contentButton setImage:message.thumbImage forState:UIControlStateNormal];
@@ -245,10 +245,11 @@ CGRect CGRectFrom(CGPoint origin, CGSize size){
         [[SDWebImageManager sharedManager] cancelForDelegate:self];
         
         [[SDWebImageManager sharedManager] downloadWithURL:url delegate:self options:SDWebImageRetryFailed success:^(UIImage *image, BOOL cached) {
-            if (!message.hasCalSize) // && self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)])
+            if (!message.hasCalSize&& self.delegate && [self.delegate respondsToSelector:@selector(didMessage:loadImage:)])
             {
                 message.thumbImageSize = image.size;
                 message.hasCalSize = YES;
+                [self.delegate didMessage:message loadImage:image];
             }
             [self.contentButton setImage:image forState:UIControlStateNormal];
             

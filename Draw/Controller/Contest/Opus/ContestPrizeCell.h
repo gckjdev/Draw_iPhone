@@ -17,13 +17,14 @@ typedef enum{
     ContestPrizeSpecial,
 }ContestPrize;
 
-@interface ContestPrizeCell : PPTableViewCell
+@interface ContestPrizeCell : PPTableViewCell<AvatarViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImage;
 @property (retain, nonatomic) IBOutlet UIImageView *prizeIcon;
 @property (retain, nonatomic) IBOutlet AvatarView *avatar;
 @property (retain, nonatomic) IBOutlet UIButton *nickButton;
 @property (retain, nonatomic) IBOutlet UILabel *prizeLabel;
+@property (retain, nonatomic) ContestFeed *opus;
 
 - (IBAction)clickNickButton:(id)sender;
 
@@ -31,5 +32,6 @@ typedef enum{
            title:(NSString *)title
             opus:(ContestFeed *)opus;
 
+- (void)setShowBg:(BOOL)show;
 
 @end

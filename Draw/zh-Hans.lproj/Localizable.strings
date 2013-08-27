@@ -1399,6 +1399,11 @@
 "kCustomBBSBgSucc" = "成功自定义论坛背景！";
 "kResetCustomBBSBgSucc" = "成功重设论坛背景!";
 "kCustomBBSBg" = "自定义论坛背景";
+
+"kCustomChatBgSucc" = "成功自定义聊天背景！";
+"kResetCustomChatBgSucc" = "成功重设聊天背景!";
+"kCustomChatBg" = "自定义聊天背景";
+
 "kSize" = "画布尺寸";
 "kBackground" = "画画背景";
 "kCopyPaint" = "临摹图片";
@@ -1924,6 +1929,9 @@
 "kChangePageBG" = "画板背景";
 "kContestReport" = "报道";
 "kContestPrize" = "赛果";
+"kJudgerComment" = "点评";
+"kJudgerScore" = "评分";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 /*********************你唱我猜国际化字符串开始 ************************/
