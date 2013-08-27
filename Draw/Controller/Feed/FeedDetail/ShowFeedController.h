@@ -31,7 +31,7 @@
 @class UseItemScene;
 //@class ToolView;
 
-@interface ShowFeedController : CommonTabController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, DrawInfoCellDelegate, UserServiceDelegate, MWPhotoBrowserDelegate, DetailFooterViewDelegate, PPPopTableViewDelegate>
+@interface ShowFeedController : CommonTabController<FeedServiceDelegate, DrawDataServiceDelegate,CommonDialogDelegate, CommentHeaderViewDelegate, CommentCellDelegate, DrawInfoCellDelegate, UserServiceDelegate, MWPhotoBrowserDelegate, DetailFooterViewDelegate>
 {
     time_t timestamp;
 }
