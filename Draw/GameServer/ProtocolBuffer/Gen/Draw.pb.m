@@ -2040,6 +2040,266 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 }
 @end
 
+@interface PBUserRankOpus ()
+@property (retain) NSString* userId;
+@property int32_t rankType;
+@property int32_t score;
+@end
+
+@implementation PBUserRankOpus
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+  hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasRankType {
+  return !!hasRankType_;
+}
+- (void) setHasRankType:(BOOL) value {
+  hasRankType_ = !!value;
+}
+@synthesize rankType;
+- (BOOL) hasScore {
+  return !!hasScore_;
+}
+- (void) setHasScore:(BOOL) value {
+  hasScore_ = !!value;
+}
+@synthesize score;
+- (void) dealloc {
+  self.userId = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.userId = @"";
+    self.rankType = 0;
+    self.score = 0;
+  }
+  return self;
+}
+static PBUserRankOpus* defaultPBUserRankOpusInstance = nil;
++ (void) initialize {
+  if (self == [PBUserRankOpus class]) {
+    defaultPBUserRankOpusInstance = [[PBUserRankOpus alloc] init];
+  }
+}
++ (PBUserRankOpus*) defaultInstance {
+  return defaultPBUserRankOpusInstance;
+}
+- (PBUserRankOpus*) defaultInstance {
+  return defaultPBUserRankOpusInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (!self.hasRankType) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeString:1 value:self.userId];
+  }
+  if (self.hasRankType) {
+    [output writeInt32:2 value:self.rankType];
+  }
+  if (self.hasScore) {
+    [output writeInt32:3 value:self.score];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUserId) {
+    size += computeStringSize(1, self.userId);
+  }
+  if (self.hasRankType) {
+    size += computeInt32Size(2, self.rankType);
+  }
+  if (self.hasScore) {
+    size += computeInt32Size(3, self.score);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBUserRankOpus*) parseFromData:(NSData*) data {
+  return (PBUserRankOpus*)[[[PBUserRankOpus builder] mergeFromData:data] build];
+}
++ (PBUserRankOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserRankOpus*)[[[PBUserRankOpus builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBUserRankOpus*) parseFromInputStream:(NSInputStream*) input {
+  return (PBUserRankOpus*)[[[PBUserRankOpus builder] mergeFromInputStream:input] build];
+}
++ (PBUserRankOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserRankOpus*)[[[PBUserRankOpus builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBUserRankOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBUserRankOpus*)[[[PBUserRankOpus builder] mergeFromCodedInputStream:input] build];
+}
++ (PBUserRankOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserRankOpus*)[[[PBUserRankOpus builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBUserRankOpus_Builder*) builder {
+  return [[[PBUserRankOpus_Builder alloc] init] autorelease];
+}
++ (PBUserRankOpus_Builder*) builderWithPrototype:(PBUserRankOpus*) prototype {
+  return [[PBUserRankOpus builder] mergeFrom:prototype];
+}
+- (PBUserRankOpus_Builder*) builder {
+  return [PBUserRankOpus builder];
+}
+@end
+
+@interface PBUserRankOpus_Builder()
+@property (retain) PBUserRankOpus* result;
+@end
+
+@implementation PBUserRankOpus_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBUserRankOpus alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBUserRankOpus_Builder*) clear {
+  self.result = [[[PBUserRankOpus alloc] init] autorelease];
+  return self;
+}
+- (PBUserRankOpus_Builder*) clone {
+  return [PBUserRankOpus builderWithPrototype:result];
+}
+- (PBUserRankOpus*) defaultInstance {
+  return [PBUserRankOpus defaultInstance];
+}
+- (PBUserRankOpus*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBUserRankOpus*) buildPartial {
+  PBUserRankOpus* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBUserRankOpus_Builder*) mergeFrom:(PBUserRankOpus*) other {
+  if (other == [PBUserRankOpus defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasRankType) {
+    [self setRankType:other.rankType];
+  }
+  if (other.hasScore) {
+    [self setScore:other.score];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBUserRankOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBUserRankOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setUserId:[input readString]];
+        break;
+      }
+      case 16: {
+        [self setRankType:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setScore:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return result.hasUserId;
+}
+- (NSString*) userId {
+  return result.userId;
+}
+- (PBUserRankOpus_Builder*) setUserId:(NSString*) value {
+  result.hasUserId = YES;
+  result.userId = value;
+  return self;
+}
+- (PBUserRankOpus_Builder*) clearUserId {
+  result.hasUserId = NO;
+  result.userId = @"";
+  return self;
+}
+- (BOOL) hasRankType {
+  return result.hasRankType;
+}
+- (int32_t) rankType {
+  return result.rankType;
+}
+- (PBUserRankOpus_Builder*) setRankType:(int32_t) value {
+  result.hasRankType = YES;
+  result.rankType = value;
+  return self;
+}
+- (PBUserRankOpus_Builder*) clearRankType {
+  result.hasRankType = NO;
+  result.rankType = 0;
+  return self;
+}
+- (BOOL) hasScore {
+  return result.hasScore;
+}
+- (int32_t) score {
+  return result.score;
+}
+- (PBUserRankOpus_Builder*) setScore:(int32_t) value {
+  result.hasScore = YES;
+  result.score = value;
+  return self;
+}
+- (PBUserRankOpus_Builder*) clearScore {
+  result.hasScore = NO;
+  result.score = 0;
+  return self;
+}
+@end
+
 @interface PBFeed ()
 @property (retain) NSString* feedId;
 @property (retain) NSString* userId;
@@ -2082,6 +2342,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property Float64 contestScore;
 @property (retain) NSMutableArray* mutableRankInfoList;
 @property (retain) PBLearnDraw* learnDraw;
+@property (retain) NSMutableArray* mutableUserRankOpusList;
 @end
 
 @implementation PBFeed
@@ -2370,6 +2631,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasLearnDraw_ = !!value;
 }
 @synthesize learnDraw;
+@synthesize mutableUserRankOpusList;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2398,6 +2660,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.contestId = nil;
   self.mutableRankInfoList = nil;
   self.learnDraw = nil;
+  self.mutableUserRankOpusList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2476,6 +2739,13 @@ static PBFeed* defaultPBFeedInstance = nil;
   id value = [mutableRankInfoList objectAtIndex:index];
   return value;
 }
+- (NSArray*) userRankOpusList {
+  return mutableUserRankOpusList;
+}
+- (PBUserRankOpus*) userRankOpusAtIndex:(int32_t) index {
+  id value = [mutableUserRankOpusList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasFeedId) {
     return NO;
@@ -2511,6 +2781,11 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     if (!self.learnDraw.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBUserRankOpus* element in self.userRankOpusList) {
+    if (!element.isInitialized) {
       return NO;
     }
   }
@@ -2639,6 +2914,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     [output writeMessage:100 value:self.learnDraw];
+  }
+  for (PBUserRankOpus* element in self.userRankOpusList) {
+    [output writeMessage:110 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2776,6 +3054,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasLearnDraw) {
     size += computeMessageSize(100, self.learnDraw);
+  }
+  for (PBUserRankOpus* element in self.userRankOpusList) {
+    size += computeMessageSize(110, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2984,6 +3265,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasLearnDraw) {
     [self mergeLearnDraw:other.learnDraw];
   }
+  if (other.mutableUserRankOpusList.count > 0) {
+    if (result.mutableUserRankOpusList == nil) {
+      result.mutableUserRankOpusList = [NSMutableArray array];
+    }
+    [result.mutableUserRankOpusList addObjectsFromArray:other.mutableUserRankOpusList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -3186,6 +3473,12 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setLearnDraw:[subBuilder buildPartial]];
+        break;
+      }
+      case 882: {
+        PBUserRankOpus_Builder* subBuilder = [PBUserRankOpus builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUserRankOpus:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3928,6 +4221,35 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearLearnDraw {
   result.hasLearnDraw = NO;
   result.learnDraw = [PBLearnDraw defaultInstance];
+  return self;
+}
+- (NSArray*) userRankOpusList {
+  if (result.mutableUserRankOpusList == nil) { return [NSArray array]; }
+  return result.mutableUserRankOpusList;
+}
+- (PBUserRankOpus*) userRankOpusAtIndex:(int32_t) index {
+  return [result userRankOpusAtIndex:index];
+}
+- (PBFeed_Builder*) replaceUserRankOpusAtIndex:(int32_t) index with:(PBUserRankOpus*) value {
+  [result.mutableUserRankOpusList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllUserRankOpus:(NSArray*) values {
+  if (result.mutableUserRankOpusList == nil) {
+    result.mutableUserRankOpusList = [NSMutableArray array];
+  }
+  [result.mutableUserRankOpusList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearUserRankOpusList {
+  result.mutableUserRankOpusList = nil;
+  return self;
+}
+- (PBFeed_Builder*) addUserRankOpus:(PBUserRankOpus*) value {
+  if (result.mutableUserRankOpusList == nil) {
+    result.mutableUserRankOpusList = [NSMutableArray array];
+  }
+  [result.mutableUserRankOpusList addObject:value];
   return self;
 }
 @end

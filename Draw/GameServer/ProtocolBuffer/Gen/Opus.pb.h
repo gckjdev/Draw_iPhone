@@ -132,6 +132,8 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
+@class PBUserRankOpus;
+@class PBUserRankOpus_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBWall;
