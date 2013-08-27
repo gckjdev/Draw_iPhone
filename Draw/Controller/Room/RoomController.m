@@ -977,15 +977,14 @@
 {
     AvatarView *player = [self userAvatarForUserId:userId avatarList:[self getAvatarList]];
     CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
-    [ChatMessageView showMessage:message title:title origin:origin superView:self.view];
+    [ChatMessageView showMessage:message title:title atView:player inView:self.view];
 }
 
 - (void)showChatMessageViewOnUser:(NSString*)userId title:(NSString*)title expression:(UIImage*)expression
 {
     AvatarView *player = [self userAvatarForUserId:userId avatarList:[self getAvatarList]];
     CGPoint origin = CGPointMake(player.frame.origin.x, player.frame.origin.y+player.frame.size.height);
-    
-    [ChatMessageView showExpression:expression title:title origin:origin superView:self.view];
+    [ChatMessageView showExpression:expression title:title atView:player inView:self.view];
 }
 
 @end
