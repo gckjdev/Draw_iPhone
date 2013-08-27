@@ -105,7 +105,7 @@
 
 #define SET_VIEW_BG(view) (view.backgroundColor = COLOR_LIGHT_GRAY)
 
-#define SET_CELL_BG                     \
+#define SET_CELL_BG_IN_CONTROLLER                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
     if (indexPath.row % 2 == 0) {                       \
         cell.backgroundColor = COLOR_GRAY;              \
@@ -113,6 +113,15 @@
         cell.backgroundColor = COLOR_WHITE;             \
     }                                                   \
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath]; \
+}
+
+#define SET_CELL_BG_IN_VIEW                     \
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
+if (indexPath.row % 2 == 0) {                       \
+cell.backgroundColor = COLOR_GRAY;              \
+}else{                                              \
+cell.backgroundColor = COLOR_WHITE;             \
+}                                                   \
 }
 
 #define SETTING_BUTTON_IMAGE    @"home_setting.png"

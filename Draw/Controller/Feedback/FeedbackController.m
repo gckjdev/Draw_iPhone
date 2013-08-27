@@ -412,7 +412,8 @@ enum {
     return  numberOfRows;
 }
 
-SET_CELL_BG
+SET_CELL_BG_IN_CONTROLLER;
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
