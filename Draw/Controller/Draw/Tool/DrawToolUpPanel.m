@@ -11,7 +11,6 @@
 #import "DrawColor.h"
 #import "ShareImageManager.h"
 #import "ItemType.h"
-#import "DrawColorManager.h"
 #import "AccountService.h"
 #import "ConfigManager.h"
 #import "DrawSlider.h"
@@ -132,7 +131,6 @@
 
 @interface DrawToolUpPanel () {
     NSInteger _retainTime;
-    DrawColorManager *drawColorManager;
     ToolCommandManager *toolCmdManager;
     NSUInteger _commandVersion;
 }

@@ -732,7 +732,6 @@ typedef enum{
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
 {
-    PPDebug(@"<NO MORE> = %d", self.noMoreData);
     switch (type) {
         case FooterTypeGuess:
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
@@ -776,7 +775,7 @@ typedef enum{
         case FooterTypeJudge:
         {
             if (self.judgerPopupView == nil) {
-                NSArray *titles = @[@"kJudgerComment",NSLS(@"kJudgerScore")];
+                NSArray *titles = @[NSLS(@"kJudgerComment"),NSLS(@"kJudgerScore")];
                 NSArray *icons = @[[UIImage imageNamed:@"detail_comment@2x.png"],[UIImage imageNamed:@"detail_replay@2x.png"]];
                 
                 self.judgerPopupView = [PPPopTableView popTableViewWithTitles:titles icons:icons selectedHandler:^(NSInteger row) {
