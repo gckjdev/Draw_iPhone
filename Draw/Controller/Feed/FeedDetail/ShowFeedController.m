@@ -175,7 +175,10 @@ typedef enum{
             self.feed = feed;
             self.useItemScene.feed = self.feed;
             self.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
+            [_tabManager reset];
             [self reloadView];
+            [self clickTab:self.currentTab.tabID];
+
             self.dataTableView.alpha = 0.3;
             [UIView animateWithDuration:0.8 animations:^{
                 self.dataTableView.alpha = 1;

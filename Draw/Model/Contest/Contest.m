@@ -115,6 +115,7 @@
 - (void)dealloc
 {
     PPRelease(_pbContest);
+    PPRelease(awardDict);
 //    PPRelease(_contestId);
 //    PPRelease(_startDate);
 //    PPRelease(_endDate);
@@ -303,6 +304,66 @@
 - (BOOL)joined
 {
     return [self commitCount] > 0;
+}
+
+- (NSArray *)awardList
+{
+    NSArray *winners = [self.pbContest winnerUsersList];
+    NSArray *awards = [self.pbContest winnerUsersList];
+    NSMutableArray *was = [NSMutableArray array];
+    [was addObjectsFromArray:winners];
+    [was addObjectsFromArray:awards];
+    return was;
+}
+
+- (NSArray *)awardOpusIdList
+{
+    NSArray *winners = [self.pbContest winnerUsersList];
+    NSArray *awards = [self.pbContest winnerUsersList];
+    NSMutableArray *was = [NSMutableArray array];
+    [was addObjectsFromArray:winners];
+    [was addObjectsFromArray:awards];
+    NSMutableArray *ret = [NSMutableArray array];
+    for (PBUserAward *awd in was) {
+        if ([awd.opusId length] != 0) {
+            [ret addObject:[[awd.opusId copy] autorelease]];
+        }
+    }
+    return ret;
+}
+
+#define KEY(x,y) [NSString stringWithFormat:@"key_%d_%d",x,y]
+
+- (ContestFeed *)findFeedById:(NSArray *)opusList opusId:(NSString *)opusId
+{
+    for (ContestFeed *feed in opusList) {
+        if ([feed.feedId isEqualToString:opusId]) {
+            return feed;
+        }
+    }
+    return nil;
+}
+
+- (void)setAwardOpusList:(NSArray *)opusList
+{
+    if (awardDict == nil) {
+        awardDict = [[NSMutableDictionary dictionary] retain];
+    }else{
+        [awardDict removeAllObjects];
+    }
+    NSArray *was = [self awardList];
+    for (PBUserAward *awd in was) {
+        NSString *key = KEY(awd.awardType.key, awd.rank);
+        ContestFeed *opus = [self findFeedById:opusList opusId:awd.opusId];
+        if (opus) {
+            [awardDict setObject:opus forKey:key];
+        }
+    }
+}
+
+- (ContestFeed *)getOpusWithAwardType:(NSInteger)type rank:(NSInteger)rank
+{
+    return [awardDict objectForKey:KEY(type, rank)];
 }
 
 @end

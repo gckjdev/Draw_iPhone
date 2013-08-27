@@ -43,6 +43,17 @@
 - (IBAction)clickNickButton:(id)sender {
     
 }
+#define KEY(X) @(X)
+- (UIImage *)imageForPrize:(ContestPrize)prize
+{
+    NSDictionary *dict = @{KEY(ContestPrizeFirst): @"contest_prize_1@2x.png",
+                           KEY(ContestPrizeSecond): @"contest_prize_2@2x.png",
+                           KEY(ContestPrizeThird): @"contest_prize_3@2x.png",
+                           KEY(ContestPrizeSpecial): @"contest_prize_special@2x.png",
+                           };
+    NSString *name = [dict objectForKey:KEY(prize)];
+    return name ? [UIImage imageNamed:name] : nil;
+}
 
 #define TOP_PRIZE_SIZE CGSizeMake(VALUE(42), VALUE(56))
 #define SPECIAL_PRIZE_SIZE CGSizeMake(VALUE(114), VALUE(47))
@@ -60,6 +71,7 @@
         [self.prizeIcon updateHeight:TOP_PRIZE_SIZE.height];
         [self.prizeLabel setHidden:YES];
     }
+    [self.prizeIcon setImage:[self imageForPrize:prize]];
     
 }
 

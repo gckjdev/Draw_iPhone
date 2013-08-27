@@ -17,13 +17,14 @@
 #import "UseItemScene.h"
 #import "MyFriend.h"
 #import "FeedCell.h"
+#import "ContestPrizeCell.h"
 
 typedef enum{
     OpusTypeMy = 1,
     OpusTypeRank = 2,
     OpusTypeNew = 3,
     OpusTypeReport = 4,
-    OpusTypePrize = 5,
+    OpusTypePrize = 21,//FeedListTypeIdList
 }OpusType;
 
 #define  HISTORY_RANK_NUMBER 120
@@ -93,6 +94,8 @@ typedef enum{
     
     if (type == OpusTypeReport){
         return [FeedCell getCellHeight:[self.tabDataList objectAtIndex:indexPath.row]];
+    }else if(type == OpusTypePrize){
+        return [ContestPrizeCell getCellHeight];
     }
     else if (type == OpusTypeRank) {
         if (indexPath.row == 0) {
@@ -200,13 +203,20 @@ typedef enum{
     return [list objectAtIndex:index];
 }
 
+- (ContestPrize)prizeFromAward:(PBUserAward *)award
+{
+    if (award.awardType.key == 1) {
+        return award.rank;
+    }else {
+        return ContestPrizeSpecial;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TableTab *tab = [self currentTab];
 
     if (tab.tabID == OpusTypeReport) {
-        
-        //TODO update reportCell
         NSString *CellIdentifier = [FeedCell getCellIdentifier];
         FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
@@ -218,6 +228,19 @@ typedef enum{
         [feed updateDesc];
         [cell setCellInfo:feed];
         return cell;
+    }else if(tab.tabID == OpusTypePrize){
+        NSString *CellIdentifier = [ContestPrizeCell getCellIdentifier];
+        ContestPrizeCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [ContestPrizeCell createCell:self];
+        }
+        cell.indexPath = indexPath;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        PBUserAward *aw = [self.tabDataList objectAtIndex:indexPath.row];
+        ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
+        [cell setPrize:[self prizeFromAward:aw] title:aw.awardType.value opus:opus];
+        return cell;
+        
     }
     
     NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
@@ -272,7 +295,7 @@ typedef enum{
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
     NSInteger type = self.currentTab.tabID;
-    if (type == OpusTypeReport) {
+    if (type == OpusTypeReport || type == OpusTypePrize) {
         return count;
     }
     if (type == OpusTypeRank) {
@@ -317,6 +340,7 @@ typedef enum{
 {
     NSInteger tabId[] = {OpusTypeReport,OpusTypeRank,OpusTypeNew,OpusTypeMy};
     if ([self.contest isPassed]) {
+        [[self.view viewWithTag:OpusTypeNew] setTag:OpusTypePrize];
         tabId[2] = OpusTypePrize;
     }
     return tabId[index];
@@ -338,6 +362,8 @@ typedef enum{
 
 }
 
+//- ()
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
     
@@ -347,6 +373,8 @@ typedef enum{
         if (tabID == OpusTypePrize) {
             //TODO get reward
             PPDebug(@"get contest reward.");
+            NSArray *list = [_contest awardOpusIdList];
+            [[FeedService defaultService] getFeedListByIds:list delegate:self];
         }else if (tabID == OpusTypeReport) {
             //TODO get contest report
             
@@ -375,7 +403,18 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        [self finishLoadDataForTabID:type resultList:feedList];
+        if (type == OpusTypeReport) {
+            [self finishLoadDataForTabID:OpusTypeReport resultList:feedList];
+        }else if(type == OpusTypePrize){
+            [_contest setAwardOpusList:feedList];
+            NSMutableArray *list = [_tabManager dataListForTabID:OpusTypePrize];
+            [list removeAllObjects];
+            TableTab *tab = [_tabManager tabForID:OpusTypePrize];
+            tab.offset = 0;
+            [self finishLoadDataForTabID:OpusTypePrize resultList:_contest.awardList];
+        }else{
+            [self finishLoadDataForTabID:type resultList:feedList];
+        }
     }else{
         [self failLoadDataForTabID:type];
     }
@@ -389,9 +428,9 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        [self finishLoadDataForTabID:OpusTypeReport resultList:feedList];
+        [self finishLoadDataForTabID:type resultList:feedList];
     }else{
-        [self failLoadDataForTabID:OpusTypeReport];
+        [self failLoadDataForTabID:type];
     }
 }
 

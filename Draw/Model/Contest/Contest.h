@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ContestFeed.h"
 
 typedef enum{
     
@@ -38,6 +38,7 @@ typedef enum{
 //    NSString *_contestUrl;
 //    NSString *_statementUrl;
 //    NSInteger _canSummitCount;
+    NSMutableDictionary *awardDict;
 }
 
 //basic info
@@ -70,4 +71,8 @@ typedef enum{
 - (BOOL)isPassed;
 - (BOOL)isPending;
 - (BOOL)isRunning;
+- (NSArray *)awardList;
+- (NSArray *)awardOpusIdList;
+- (void)setAwardOpusList:(NSArray *)opusList;
+- (ContestFeed *)getOpusWithAwardType:(NSInteger)type rank:(NSInteger)rank;
 @end
