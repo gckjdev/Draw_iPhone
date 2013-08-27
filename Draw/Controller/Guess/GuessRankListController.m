@@ -204,7 +204,7 @@
     return cell;
 }
 
-SET_CELL_BG
+SET_CELL_BG_IN_CONTROLLER;
 
 
 #pragma mark - CommonTabController delegate

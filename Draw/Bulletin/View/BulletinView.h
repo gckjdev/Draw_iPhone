@@ -6,10 +6,9 @@
 //
 //
 
-#import "CommonInfoView.h"
 #import "PPViewController.h"
 
-@interface BulletinView : CommonInfoView <UITableViewDataSource, UITableViewDelegate>
+@interface BulletinView : UIView <UITableViewDataSource, UITableViewDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *bulletinsTableView;
 @property (retain, nonatomic) IBOutlet UIButton *downCloseButton;
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
@@ -19,6 +18,7 @@
 @property (assign, nonatomic) UIViewController* superController;
 @property (retain, nonatomic) IBOutlet UILabel *noBulletinTips;
 
-+ (void)showBulletinInController:(PPViewController*)controller;
+//+ (void)showBulletinInController:(PPViewController*)controller;
++ (id)createWithSuperController:(PPViewController *)controller;
 
 @end
