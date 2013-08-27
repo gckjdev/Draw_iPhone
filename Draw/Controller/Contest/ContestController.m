@@ -234,7 +234,7 @@
 //    return;
     
     //not running
-#if !DEBUG
+//#if !DEBUG
     
     if (![contest isRunning]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
@@ -246,7 +246,7 @@
                                                          isHappy:NO];        
         return;
     }
-#endif
+//#endif
     
     if ([contest joined]) {
         [OfflineDrawViewController startDrawWithContest:contest
