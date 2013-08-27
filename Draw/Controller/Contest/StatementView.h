@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomInfoView.h"
 
 @class Contest;
 @interface StatementView : UIView

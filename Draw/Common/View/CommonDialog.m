@@ -376,6 +376,11 @@
     [self disappear];
 }
 
++ (CGFloat)edgeWidth
+{
+    return CONTENT_VIEW_INSERT;
+}
+
 @end
 
 @interface DialogBGView : UIView
