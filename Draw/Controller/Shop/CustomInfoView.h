@@ -29,6 +29,11 @@ typedef void(^CloseHandler)();
 
 + (id)createWithTitle:(NSString *)title
              infoView:(UIView *)infoView
+         hasEdgeSpace:(BOOL)hasEdgeSpace;
+
+
++ (id)createWithTitle:(NSString *)title
+             infoView:(UIView *)infoView
          closeHandler:(CloseHandler)closeHandler;
 
 + (id)createWithTitle:(NSString *)title

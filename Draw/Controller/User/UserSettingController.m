@@ -129,7 +129,8 @@ enum {
     rowOfPrivacy = 8;
     rowOfCustomBg = 9;
     rowOfCustomBBSBg = 10,
-    rowsInSectionUser = 11;
+    rowOfCustomChatBg = 11,
+    rowsInSectionUser = 12;
     
     //section guessword
     if (isDrawApp()) {
@@ -502,7 +503,10 @@ enum {
             [cell.customTextLabel setText:NSLS(@"kCustomBg")];
         } else if (row == rowOfCustomBBSBg) {
             [cell.customTextLabel setText:NSLS(@"kCustomBBSBg")];
+        }else if (row == rowOfCustomChatBg) {
+            [cell.customTextLabel setText:NSLS(@"kCustomChatBg")];
         }
+        
     }else if (section == SECTION_GUESSWORD) {
         if(row == rowOfLanguage)
         {
@@ -755,6 +759,20 @@ enum {
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomBBSBgSucc") delayTime:2];
                 }
             } title:NSLS(@"kCustomBBSBg") hasRemoveOption:YES];
+        }
+        else if (row == rowOfCustomChatBg) {
+
+#define CHAT_PAGE_BG_KEY @"chat_bg.png"
+            
+            [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
+                if ([[UserManager defaultManager] setPageBg:image forKey:CHAT_PAGE_BG_KEY]) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomChatBgSucc") delayTime:2];
+                }
+            } didSetDefaultBlock:^{
+                if ([[UserManager defaultManager] resetPageBgforKey:CHAT_PAGE_BG_KEY]) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomChatBgSucc") delayTime:2];
+                }
+            } title:NSLS(@"kCustomChatBg") hasRemoveOption:YES];
         }
     }
     else if (section == SECTION_GUESSWORD) {

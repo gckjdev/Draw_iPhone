@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ContestFeed.h"
 
 typedef enum{
     
@@ -25,36 +25,45 @@ typedef enum{
 
 @interface Contest : NSObject
 {
-    NSString *_contestId;
-    NSDate *_startDate;
-    NSDate *_endDate;
-    NSString *_version;
-    ContestType _type;
-    ContestStatus _status;
-    NSInteger _participantCount;
-    NSInteger _opusCount;
-
-    NSString *_title;
-    NSString *_contestUrl;
-    NSString *_statementUrl;
-    NSInteger _canSummitCount;
+//    NSString *_contestId;
+//    NSDate *_startDate;
+//    NSDate *_endDate;
+//    NSString *_version;
+//    ContestType _type;
+//    ContestStatus _status;
+//    NSInteger _participantCount;
+//    NSInteger _opusCount;
+//
+//    NSString *_title;
+//    NSString *_contestUrl;
+//    NSString *_statementUrl;
+//    NSInteger _canSummitCount;
+    NSMutableDictionary *awardDict;
 }
 
 //basic info
-@property(nonatomic, retain) NSString *contestId;
-@property(nonatomic, retain) NSDate *startDate;
-@property(nonatomic, retain) NSDate *endDate;
-@property(nonatomic, retain) NSString *version;
-@property(nonatomic, assign) ContestType type;
-@property(nonatomic, assign) ContestStatus status;
-@property(nonatomic, assign) NSInteger participantCount;
-@property(nonatomic, assign) NSInteger opusCount;
-@property(nonatomic, retain) NSString *title;
-@property(nonatomic, retain) NSString *contestUrl;
-@property(nonatomic, retain) NSString *statementUrl;
-@property(nonatomic, assign) NSInteger canSubmitCount;
-- (id)initWithDict:(NSDictionary *)dict;
-+ (Contest *)contestWithDict:(NSDictionary *)dict;
+@property(nonatomic, retain) PBContest *pbContest;
+
+@property(nonatomic, readonly) NSString *contestId;
+@property(nonatomic, readonly) NSDate *startDate;
+@property(nonatomic, readonly) NSDate *endDate;
+@property(nonatomic, readonly) NSDate *voteStartDate;
+@property(nonatomic, readonly) NSDate *voteEndDate;
+//@property(nonatomic, readonly, retain) NSString *version;
+//@property(nonatomic, readonly, assign) ContestType type;
+@property(nonatomic, readonly) ContestStatus status;
+@property(nonatomic, readonly) NSInteger participantCount;
+@property(nonatomic, readonly) NSInteger opusCount;
+@property(nonatomic, readonly) NSString *title;
+@property(nonatomic, readonly) NSString *contestUrl;
+@property(nonatomic, readonly) NSString *statementUrl;
+@property(nonatomic, readonly) NSInteger canSubmitCount;
+
+//- (id)initWithDict:(NSDictionary *)dict;
+//+ (Contest *)contestWithDict:(NSDictionary *)dict;
+
+- (id)initWithPBContest:(PBContest*)pbContest;
+
 - (void)incCommitCount;
 - (BOOL)commitCountEnough;
 - (NSInteger)retainCommitChance;
@@ -62,4 +71,8 @@ typedef enum{
 - (BOOL)isPassed;
 - (BOOL)isPending;
 - (BOOL)isRunning;
+- (NSArray *)awardList;
+- (NSArray *)awardOpusIdList;
+- (void)setAwardOpusList:(NSArray *)opusList;
+- (ContestFeed *)getOpusWithAwardType:(NSInteger)type rank:(NSInteger)rank;
 @end

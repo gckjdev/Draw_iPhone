@@ -9,7 +9,6 @@
 #import "ContestController.h"
 #import "Contest.h"
 #import "ConfigManager.h"
-#import "StatementView.h"
 #import "StatementController.h"
 #import "CommonMessageCenter.h"
 #import "ContestOpusController.h"
@@ -19,6 +18,7 @@
 #import "OfflineDrawViewController.h"
 #import "ContestManager.h"
 #import "StatisticManager.h"
+#import "CustomInfoView.h"
 
 @implementation ContestController
 @synthesize noContestTipLabel = _noContestTipLabel;
@@ -234,6 +234,7 @@
 //    return;
     
     //not running
+//#if !DEBUG
     
     if (![contest isRunning]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
@@ -245,7 +246,8 @@
                                                          isHappy:NO];        
         return;
     }
-
+//#endif
+    
     if ([contest joined]) {
         [OfflineDrawViewController startDrawWithContest:contest
                                          fromController:self
@@ -259,12 +261,21 @@
     }
 }
 
+#define StatementViewSize (ISIPAD ? CGSizeMake(690,874) : CGSizeMake(300,380))
+
 - (void)didClickContestView:(ContestView *)contestView
              onDetailButton:(Contest *)contest
 {
-    StatementView *state = [StatementView createStatementView:self];
-    [state setViewInfo:contest];
-    [state showInView:self.view];
+    UIWebView *webView = [[[UIWebView alloc] initWithFrame:CGRectFromCGSize(StatementViewSize)] autorelease];
+    webView.scalesPageToFit = YES;
+    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kContestRule") infoView:webView hasEdgeSpace:NO];
+    [infoView showInView:self.view];
+//    [webView updateHeight:(StatementViewSize.height - (ISIPAD ? 10 : 5))];    
+    NSURLRequest *request = [NSURLRequest requestWithURL:
+                             [NSURL URLWithString:contest.statementUrl]];
+    
+    [webView loadRequest:request];
+
 }
 
 - (void)dealloc {

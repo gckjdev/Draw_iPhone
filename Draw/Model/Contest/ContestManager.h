@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Contest;
+
 @interface ContestManager : NSObject {
 }
 
@@ -23,5 +25,11 @@
 
 - (BOOL)isUser:(NSString *)userId judgeAtContest:(NSString *)contestId;
 - (BOOL)isUser:(NSString *)userId reporterAtContest:(NSString *)contestId;
+
+// 比赛是否匿名显示
+- (BOOL)displayContestAnonymous:(NSString*)contestId;
+
+// 根据contestId返回正在进行中的contest
+- (Contest*)ongoingContestById:(NSString*)contestId;
 
 @end

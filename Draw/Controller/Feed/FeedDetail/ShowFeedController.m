@@ -175,7 +175,10 @@ typedef enum{
             self.feed = feed;
             self.useItemScene.feed = self.feed;
             self.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
+            [_tabManager reset];
             [self reloadView];
+            [self clickTab:self.currentTab.tabID];
+
             self.dataTableView.alpha = 0.3;
             [UIView animateWithDuration:0.8 animations:^{
                 self.dataTableView.alpha = 1;
@@ -729,7 +732,6 @@ typedef enum{
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
 {
-    PPDebug(@"<NO MORE> = %d", self.noMoreData);
     switch (type) {
         case FooterTypeGuess:
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
@@ -739,7 +741,7 @@ typedef enum{
             break;
         case FooterTypeComment:
         {
-            CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+            CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:NO];
             [self presentModalViewController:cc animated:YES];
             [_commentHeader setSelectedType:CommentTypeComment];
             break;
@@ -773,7 +775,20 @@ typedef enum{
         case FooterTypeJudge:
         {
             if (self.judgerPopupView == nil) {
-                self.judgerPopupView = [PPPopTableView popTableViewWithDelegate:self];
+                NSArray *titles = @[NSLS(@"kJudgerComment"),NSLS(@"kJudgerScore")];
+                NSArray *icons = @[[UIImage imageNamed:@"detail_comment@2x.png"],[UIImage imageNamed:@"detail_replay@2x.png"]];
+                
+                self.judgerPopupView = [PPPopTableView popTableViewWithTitles:titles icons:icons selectedHandler:^(NSInteger row) {
+                    PPDebug(@"<popTableView:didSelectedAtRow:> %d", row);
+                    
+                    if (row == 0) {
+                        //TODO for judger comment
+                        
+                    }else if(row == 1){
+                        //TODO for judger score
+                    }
+                    [self.judgerPopupView dismiss:YES];
+                }];
             }
             if(![self.judgerPopupView isShowing]){
                 [self.judgerPopupView showInView:self.view atView:button animated:YES];
@@ -1100,35 +1115,4 @@ typedef enum{
     }
     return YES;
 }
-
-
-- (NSInteger)numberOfRowsInPopTableView:(PPPopTableView *)tableView
-{
-    return 2;
-}
-- (UIImage *)popTableView:(PPPopTableView *)tableView iconForRow:(NSInteger)row
-{
-    if (row == 0) {
-        return [UIImage imageNamed:@"detail_comment@2x.png"];
-    }
-    return [UIImage imageNamed:@"detail_replay@2x.png"];    
-}
-- (NSString *)popTableView:(PPPopTableView *)tableView titleForRow:(NSInteger)row
-{
-    return @[@"kJudgerComment",NSLS(@"kJudgerScore")][row];
-}
-
-- (void)popTableView:(PPPopTableView *)tableView didSelectedAtRow:(NSInteger)row
-{
-    PPDebug(@"<popTableView:didSelectedAtRow:> %d", row);
-
-    if (row == 0) {
-    //TODO for judger comment
-        
-    }else if(row == 1){
-    //TODO for judger score
-    }
-    [tableView dismiss:YES];
-}
-
 @end

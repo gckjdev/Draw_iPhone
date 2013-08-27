@@ -20,9 +20,10 @@
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
 #import "CommentCell.h"
+#import "UIImageUtil.h"
 
 @implementation FeedCell
-@synthesize guessStatLabel;
+@synthesize guessLabel;
 @synthesize descLabel;
 @synthesize userNameLabel;
 @synthesize timeLabel;
@@ -31,8 +32,8 @@
 @synthesize showView = _showView;
 @synthesize feed = _feed;
 
-#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(16, 18, 88, 88) : CGRectMake(8, 9, 36, 36))
-#define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  228 : 100)
+#define AVATAR_VIEW_FRAME ([DeviceDetection isIPAD] ?  CGRectMake(16, 20, 88, 88) : CGRectMake(8, 10, 36, 36))
+#define FEED_CELL_HEIGHT ([DeviceDetection isIPAD] ?  235 : 108)
 #define DESC_WIDTH ([DeviceDetection isIPAD] ?  400 : 181)
 #define DESC_HEIGHT ([DeviceDetection isIPAD] ?  120 : 43)
 #define NON_DESC_HEIGHT (FEED_CELL_HEIGHT - DESC_HEIGHT)
@@ -158,13 +159,20 @@
         guessTimes = [drawFeed guessTimes];
     }
     
+    self.guessImageView.hidden = NO;
+    self.correctImageView.hidden = NO;
+    
     if ([drawFeed isContestFeed]){
         // for contest, no display
-        [self.guessStatLabel setText:@""];
+        [self.guessLabel setText:@""];
+        [self.correctLabel setText:@""];
+        self.guessImageView.hidden = YES;
+        self.correctImageView.hidden = YES;
     }
     else if (guessTimes == 0) {
 //        [self.guessStatLabel setText:NSLS(@"kNoGuess")];
-        [self.guessStatLabel setText:@""];
+        [self.guessLabel setText:@"0"];
+        [self.correctLabel setText:@"0"];
     }else{
         NSInteger correctTimes = 0;
         if (feed.isDrawType) {
@@ -172,8 +180,11 @@
         }else if(feed.feedType == FeedTypeGuess){
             correctTimes = [drawFeed correctTimes];
         }
-        NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessStat"),guessTimes, correctTimes];
-        [self.guessStatLabel setText:desc];        
+//        NSString *desc = [NSString stringWithFormat:NSLS(@"kGuessStat"),guessTimes, correctTimes];
+//        [self.guessLabel setText:desc];
+        
+        [self.guessLabel setText:[NSString stringWithFormat:@"%d", guessTimes]];
+        [self.correctLabel setText:[NSString stringWithFormat:@"%d", correctTimes]];
     }
 }
 
@@ -267,8 +278,28 @@
     [self updateUser:feed];
     [self updateGuessDesc:feed];
     [self updateDrawView:feed];
+
+    [self setCellAppearance];
+
 }
 
+- (void)setCellAppearance{
+
+    self.userNameLabel.textColor = COLOR_BROWN;
+    self.descLabel.textColor = COLOR_ORANGE;
+    self.timeLabel.textColor = COLOR_YELLOW;
+    self.guessLabel.textColor = COLOR_GREEN;
+    self.correctLabel.textColor = COLOR_GREEN;
+    
+    SET_VIEW_ROUND_CORNER(self.drawImageView);
+    self.avatarView.layer.borderWidth = (ISIPAD ? 4 : 2);
+    self.avatarView.layer.borderColor = [COLOR_GREEN CGColor];
+    
+    NSString *imageName = (ISIPAD ? @"bubble_bg@2x.png" : @"bubble_bg.png");
+    UIImage *bg = [UIImage imageNamed:imageName];
+    
+    [self.bgImageView setImage:[bg stretchableImageWithLeftCapWidth:bg.size.width*2/3 topCapHeight:bg.size.height*2/3]];
+}
 
 
 - (void)didClickOnAvatar:(NSString*)userId
@@ -287,11 +318,15 @@
     PPRelease(timeLabel);
     PPRelease(descLabel);
     PPRelease(userNameLabel);
-    PPRelease(guessStatLabel);
+    PPRelease(guessLabel);
     PPRelease(_avatarView);
     PPRelease(_feed);
     PPRelease(drawImageView);
     PPRelease(_showView);
+    [_correctLabel release];
+    [_bgImageView release];
+    [_guessImageView release];
+    [_correctImageView release];
     [super dealloc];
 }
 @end

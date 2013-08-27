@@ -167,6 +167,8 @@
 						<string key="clickBackButton:">id</string>
 						<string key="clickRefreshButton:">id</string>
 						<string key="clickTabButton:">id</string>
+						<string key="clickTabDown:">id</string>
+						<string key="clickTabUp:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="clickBackButton:">
@@ -179,6 +181,14 @@
 						</object>
 						<object class="IBActionInfo" key="clickTabButton:">
 							<string key="name">clickTabButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTabDown:">
+							<string key="name">clickTabDown:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTabUp:">
+							<string key="name">clickTabUp:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

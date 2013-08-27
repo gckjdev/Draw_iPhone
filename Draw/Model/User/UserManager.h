@@ -191,9 +191,14 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (UIImage*)defaultAvatarImage;
 
+
 - (BOOL)setBbsBackground:(UIImage*)image;
 - (BOOL)resetBbsBackground;
 - (UIImage*)bbsBackground;
+
+- (BOOL)setPageBg:(UIImage *)bg forKey:(NSString *)key;
+- (BOOL)resetPageBgforKey:(NSString *)key;
+- (UIImage*)pageBgForKey:(NSString *)key;
 
 - (BOOL)setDrawBackground:(UIImage*)image;
 - (BOOL)resetDrawBackground;

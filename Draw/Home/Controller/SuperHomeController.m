@@ -258,7 +258,10 @@
 {
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_BULLETIN];
     
-    [BulletinView showBulletinInController:self];
+//    [BulletinView showBulletinInController:self];
+    BulletinView *v = [BulletinView createWithSuperController:self];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBulletin") customView:v style:CommonDialogStyleCross];
+    [dialog showInView:self.view];
 }
 
 #pragma mark register

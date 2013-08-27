@@ -39,6 +39,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIButton *myWordsButton;
 @property (retain, nonatomic) NSString *targetUid;
 @property (retain, nonatomic) UIView  *adView;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 - (IBAction)clickChangeWordButton:(id)sender;
 + (void)startSelectWordFrom:(UIViewController *)controller gameType:(GameType)gameType;

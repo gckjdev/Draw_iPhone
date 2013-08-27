@@ -116,6 +116,8 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
+@class PBUserRankOpus;
+@class PBUserRankOpus_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBWall;
@@ -608,87 +610,154 @@
 - (PBLearnDraw_Builder*) clearBoughtCount;
 @end
 
+@interface PBUserRankOpus : PBGeneratedMessage {
+@private
+  BOOL hasRankType_:1;
+  BOOL hasScore_:1;
+  BOOL hasUserId_:1;
+  int32_t rankType;
+  int32_t score;
+  NSString* userId;
+}
+- (BOOL) hasUserId;
+- (BOOL) hasRankType;
+- (BOOL) hasScore;
+@property (readonly, retain) NSString* userId;
+@property (readonly) int32_t rankType;
+@property (readonly) int32_t score;
+
++ (PBUserRankOpus*) defaultInstance;
+- (PBUserRankOpus*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBUserRankOpus_Builder*) builder;
++ (PBUserRankOpus_Builder*) builder;
++ (PBUserRankOpus_Builder*) builderWithPrototype:(PBUserRankOpus*) prototype;
+
++ (PBUserRankOpus*) parseFromData:(NSData*) data;
++ (PBUserRankOpus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserRankOpus*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserRankOpus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserRankOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserRankOpus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBUserRankOpus_Builder : PBGeneratedMessage_Builder {
+@private
+  PBUserRankOpus* result;
+}
+
+- (PBUserRankOpus*) defaultInstance;
+
+- (PBUserRankOpus_Builder*) clear;
+- (PBUserRankOpus_Builder*) clone;
+
+- (PBUserRankOpus*) build;
+- (PBUserRankOpus*) buildPartial;
+
+- (PBUserRankOpus_Builder*) mergeFrom:(PBUserRankOpus*) other;
+- (PBUserRankOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserRankOpus_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasUserId;
+- (NSString*) userId;
+- (PBUserRankOpus_Builder*) setUserId:(NSString*) value;
+- (PBUserRankOpus_Builder*) clearUserId;
+
+- (BOOL) hasRankType;
+- (int32_t) rankType;
+- (PBUserRankOpus_Builder*) setRankType:(int32_t) value;
+- (PBUserRankOpus_Builder*) clearRankType;
+
+- (BOOL) hasScore;
+- (int32_t) score;
+- (PBUserRankOpus_Builder*) setScore:(int32_t) value;
+- (PBUserRankOpus_Builder*) clearScore;
+@end
+
 @interface PBFeed : PBGeneratedMessage {
 @private
   BOOL hasIsCorrect_:1;
   BOOL hasOpusCreatorGender_:1;
   BOOL hasGender_:1;
-  BOOL hasContestScore_:1;
   BOOL hasHistoryScore_:1;
+  BOOL hasContestScore_:1;
   BOOL hasOpusStatus_:1;
+  BOOL hasMatchTimes_:1;
+  BOOL hasScore_:1;
+  BOOL hasCorrectTimes_:1;
+  BOOL hasGuessTimes_:1;
+  BOOL hasCommentTimes_:1;
   BOOL hasActionType_:1;
   BOOL hasCreateDate_:1;
   BOOL hasDeviceType_:1;
-  BOOL hasScore_:1;
-  BOOL hasMatchTimes_:1;
-  BOOL hasCorrectTimes_:1;
-  BOOL hasCommentTimes_:1;
-  BOOL hasGuessTimes_:1;
-  BOOL hasContestId_:1;
-  BOOL hasDataUrl_:1;
-  BOOL hasOpusCreatorUserId_:1;
   BOOL hasOpusCreatorNickName_:1;
+  BOOL hasOpusCreatorUserId_:1;
+  BOOL hasContestId_:1;
   BOOL hasOpusCreatorAvatar_:1;
   BOOL hasOpusWord_:1;
   BOOL hasOpusImage_:1;
   BOOL hasOpusThumbImage_:1;
-  BOOL hasComment_:1;
-  BOOL hasOpusId_:1;
-  BOOL hasDrawDataUrl_:1;
-  BOOL hasOpusDesc_:1;
-  BOOL hasTargetUserNickName_:1;
-  BOOL hasTargetUserId_:1;
-  BOOL hasSignature_:1;
-  BOOL hasAvatar_:1;
-  BOOL hasNickName_:1;
-  BOOL hasGameId_:1;
-  BOOL hasDeviceName_:1;
-  BOOL hasUserId_:1;
+  BOOL hasDataUrl_:1;
   BOOL hasFeedId_:1;
-  BOOL hasLearnDraw_:1;
-  BOOL hasCommentInfo_:1;
+  BOOL hasUserId_:1;
+  BOOL hasDeviceName_:1;
+  BOOL hasGameId_:1;
+  BOOL hasNickName_:1;
+  BOOL hasAvatar_:1;
+  BOOL hasSignature_:1;
+  BOOL hasTargetUserId_:1;
+  BOOL hasTargetUserNickName_:1;
+  BOOL hasOpusDesc_:1;
+  BOOL hasDrawDataUrl_:1;
+  BOOL hasOpusId_:1;
+  BOOL hasComment_:1;
   BOOL hasDrawData_:1;
+  BOOL hasCommentInfo_:1;
+  BOOL hasLearnDraw_:1;
   BOOL isCorrect_:1;
   BOOL opusCreatorGender_:1;
   BOOL gender_:1;
-  Float64 contestScore;
   Float64 historyScore;
+  Float64 contestScore;
   int32_t opusStatus;
+  int32_t matchTimes;
+  int32_t score;
+  int32_t correctTimes;
+  int32_t guessTimes;
+  int32_t commentTimes;
   int32_t actionType;
   int32_t createDate;
   int32_t deviceType;
-  int32_t score;
-  int32_t matchTimes;
-  int32_t correctTimes;
-  int32_t commentTimes;
-  int32_t guessTimes;
-  NSString* contestId;
-  NSString* dataUrl;
-  NSString* opusCreatorUserId;
   NSString* opusCreatorNickName;
+  NSString* opusCreatorUserId;
+  NSString* contestId;
   NSString* opusCreatorAvatar;
   NSString* opusWord;
   NSString* opusImage;
   NSString* opusThumbImage;
-  NSString* comment;
-  NSString* opusId;
-  NSString* drawDataUrl;
-  NSString* opusDesc;
-  NSString* targetUserNickName;
-  NSString* targetUserId;
-  NSString* signature;
-  NSString* avatar;
-  NSString* nickName;
-  NSString* gameId;
-  NSString* deviceName;
-  NSString* userId;
+  NSString* dataUrl;
   NSString* feedId;
-  PBLearnDraw* learnDraw;
-  PBCommentInfo* commentInfo;
+  NSString* userId;
+  NSString* deviceName;
+  NSString* gameId;
+  NSString* nickName;
+  NSString* avatar;
+  NSString* signature;
+  NSString* targetUserId;
+  NSString* targetUserNickName;
+  NSString* opusDesc;
+  NSString* drawDataUrl;
+  NSString* opusId;
+  NSString* comment;
   PBDraw* drawData;
+  PBCommentInfo* commentInfo;
+  PBLearnDraw* learnDraw;
   NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableFeedTimesList;
   NSMutableArray* mutableRankInfoList;
+  NSMutableArray* mutableUserRankOpusList;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -772,6 +841,8 @@
 - (PBFeedTimes*) feedTimesAtIndex:(int32_t) index;
 - (NSArray*) rankInfoList;
 - (PBOpusRank*) rankInfoAtIndex:(int32_t) index;
+- (NSArray*) userRankOpusList;
+- (PBUserRankOpus*) userRankOpusAtIndex:(int32_t) index;
 
 + (PBFeed*) defaultInstance;
 - (PBFeed*) defaultInstance;
@@ -1023,6 +1094,13 @@
 - (PBFeed_Builder*) setLearnDrawBuilder:(PBLearnDraw_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeLearnDraw:(PBLearnDraw*) value;
 - (PBFeed_Builder*) clearLearnDraw;
+
+- (NSArray*) userRankOpusList;
+- (PBUserRankOpus*) userRankOpusAtIndex:(int32_t) index;
+- (PBFeed_Builder*) replaceUserRankOpusAtIndex:(int32_t) index with:(PBUserRankOpus*) value;
+- (PBFeed_Builder*) addUserRankOpus:(PBUserRankOpus*) value;
+- (PBFeed_Builder*) addAllUserRankOpus:(NSArray*) values;
+- (PBFeed_Builder*) clearUserRankOpusList;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

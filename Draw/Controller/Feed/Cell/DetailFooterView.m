@@ -14,12 +14,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = COLOR_YELLOW1;//[UIColor clearColor];
+        self.backgroundColor = COLOR_YELLOW;
     }
     return self;
 }
 
-#define FOOTER_HEIGHT (ISIPAD ? 100 : 40)
+#define FOOTER_HEIGHT (ISIPAD ? 88 : 44)
 + (DetailFooterView *)footerViewWithDelegate:(id<DetailFooterViewDelegate>)delegate
 {
     CGFloat y = CGRectGetHeight([[UIScreen mainScreen] applicationFrame]) - FOOTER_HEIGHT;

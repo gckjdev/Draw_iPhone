@@ -12,9 +12,14 @@
 #import "PPSmartUpdateDataUtils.h"
 #import "Word.h"
 #import "ConfigManager.h"
+#import "StringUtil.h"
 
-#define HOT_WORD_FILE @"hot_word.pb"
-#define BUNDLE_PATH @"hot_word.pb"
+#define SEPERATOR @"\n"
+
+//#define HOT_WORD_FILE @"hot_word.pb"
+
+#define HOT_WORD_FILE @"hot_word.txt"
+#define BUNDLE_PATH HOT_WORD_FILE
 #define HOT_WORD_VERSION_KEY @"1.0"
 
 @interface HotWordManager() {
@@ -22,6 +27,7 @@
 
 @property (nonatomic, retain) PPSmartUpdateData* smartData;
 @property (nonatomic, retain, readwrite) NSArray *words;
+
 @end
 
 @implementation HotWordManager
@@ -40,7 +46,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
     if (self = [super init]) {
         
         //load data
-        self.smartData = [[[PPSmartUpdateData alloc] initWithName:HOT_WORD_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:HOT_WORD_VERSION_KEY] autorelease];
+//        self.smartData = [[[PPSmartUpdateData alloc] initWithName:HOT_WORD_FILE type:SMART_UPDATE_DATA_TYPE_PB bundlePath:BUNDLE_PATH initDataVersion:HOT_WORD_VERSION_KEY] autorelease];
+        self.smartData = [[[PPSmartUpdateData alloc] initWithName:HOT_WORD_FILE type:SMART_UPDATE_DATA_TYPE_TXT bundlePath:BUNDLE_PATH initDataVersion:HOT_WORD_VERSION_KEY] autorelease];
+
         
         [_smartData checkUpdateAndDownload:^(BOOL isAlreadyExisted, NSString *dataFilePath) {
             PPDebug(@"checkUpdateAndDownload successfully");
@@ -80,12 +88,50 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
     [[[wordLister build] data] writeToFile:@"/Users/Linruin/gitdata/Draw_iPhone/Draw/Draw/Resource/hot_word.pb" atomically:YES];
 }
 
+//- (void)readData
+//{
+//    PPDebug(@"hot word file path : %@", _smartData.dataFilePath);
+//    @try {
+//        
+//        NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];
+//        self.words = [[PBHotWordList parseFromData:data] wordsList];        
+//    }
+//    @catch (NSException *exception) {
+//        PPDebug(@"<readData>exception: %@",[exception description]);
+//    }
+//    @finally {
+//        
+//    }
+//}
+
 - (void)readData
 {
     PPDebug(@"hot word file path : %@", _smartData.dataFilePath);
     @try {
-        NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];
-        self.words = [[PBHotWordList parseFromData:data] wordsList];        
+        
+//        NSData *data = [NSData dataWithContentsOfFile:_smartData.dataFilePath];
+//        self.words = [[PBHotWordList parseFromData:data] wordsList];
+        
+        NSError *error;
+        NSString *string = [NSString stringWithContentsOfFile:_smartData.dataFilePath encoding:NSUTF8StringEncoding error:&error];
+        NSString *trimedString = [string stringByTrimmingBlankCharactersAtBothEnds];
+        
+        NSArray *arr = [trimedString componentsSeparatedByString:SEPERATOR];
+        NSMutableArray *wordList = [NSMutableArray array];
+        for (NSString *word in arr) {
+            NSString *trimedWord = [word stringByTrimmingBlankCharactersAtBothEnds];
+            if ([trimedWord length] > 0) {
+                [wordList addObject:trimedWord];
+            }
+        }
+        
+        NSMutableArray *pbWordList = [NSMutableArray array];
+        for (NSString *word in wordList) {
+            [pbWordList addObject:[self hotWordFromString:word]];
+        }
+        
+        self.words = pbWordList;
+        
     }
     @catch (NSException *exception) {
         PPDebug(@"<readData>exception: %@",[exception description]);
@@ -94,6 +140,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
         
     }
 }
+
+- (PBHotWord *)hotWordFromString:(NSString *)word{
+    PBHotWord_Builder *builder = [[[PBHotWord_Builder alloc] init] autorelease];
+    [builder setWordId:word];
+    [builder setWord:word];
+    [builder setCoins:[ConfigManager getHotWordAwardCoins]];
+    
+    return [builder build];
+}
+
 
 
 - (NSArray *)wordsFromPBHotWords;

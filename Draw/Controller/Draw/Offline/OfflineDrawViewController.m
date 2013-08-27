@@ -60,6 +60,7 @@
 #import "GameItemManager.h"
 #import "CanvasRect.h"
 #import "UserManager.h"
+#import "ContestManager.h"
 
 
 #import "ToolCommand.h"
@@ -274,9 +275,12 @@
             self.targetUid = [NSString stringWithFormat:@"%@",draft.targetUserId];    
         }
         if ([draft.contestId length] != 0) {
-            self.contest = [[[Contest alloc] init] autorelease];
-            [self.contest setContestId:draft.contestId];
-            [self.contest setCanSubmitCount:1];
+            
+            self.contest = [[ContestManager defaultManager] ongoingContestById:draft.contestId];
+            
+//            self.contest = [[[Contest alloc] init] autorelease];
+//            [self.contest setContestId:draft.contestId];
+//            [self.contest setCanSubmitCount:1];
         }
         self.opusDesc = draft.opusDesc;
         
@@ -805,9 +809,11 @@
         CommonDialog *dialog = nil;
         if (self.contest) {
             if (!_commitAsNormal) {
-                self.contest.opusCount ++;
+                // TODO contest rem by Benson for contest changed
+//                self.contest.opusCount ++;
                 if (![self.contest joined]) {
-                    self.contest.participantCount ++;
+                    // TODO contest rem by Benson for contest changed                    
+//                    self.contest.participantCount ++;
                 }
                 [self.contest incCommitCount];
             }

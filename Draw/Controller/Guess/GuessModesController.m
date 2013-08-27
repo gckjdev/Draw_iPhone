@@ -15,6 +15,7 @@
 #import "SoundPlayer.h"
 #import "UIButton+Sound.h"
 #import "ShareImageManager.h"
+#import "CommonDialog.h"
 
 @interface GuessModesController (){
     int _countDown;
@@ -263,7 +264,10 @@
 //    }
 //    
 //    i++;
-
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessRules") message:NSLS(@"kGuessRulesDetail") style:CommonDialogStyleCross];
+    dialog.messageLabel.font = [UIFont systemFontOfSize:14];
+    [dialog showInView:self.view];
 }
 
 - (void)clickBack:(id)sender{
