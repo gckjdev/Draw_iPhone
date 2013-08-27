@@ -171,7 +171,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{292, 83}, {18, 19}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -191,10 +190,7 @@
 								<string key="NSFrame">{{242, 9}, {70, 70}}</string>
 								<reference key="NSSuperview" ref="703497056"/>
 								<reference key="NSNextKeyView" ref="571946735"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
+								<reference key="IBUIBackgroundColor" ref="311797530"/>
 								<int key="IBUIContentMode">1</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -434,8 +430,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="correct@2x.png">{16, 16}</string>
-			<string key="question@2x.png">{16, 16}</string>
+			<string key="correct@2x.png">{25, 20}</string>
+			<string key="question@2x.png">{25, 20}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
