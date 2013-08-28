@@ -242,6 +242,8 @@ typedef enum{
             PBUserAward *aw = [tab.dataList objectAtIndex:indexPath.row];
             ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
             [cell setPrize:[self prizeFromAward:aw] title:aw.awardType.value opus:opus];
+        }else{
+            cell.opus = nil;
         }
         [cell setShowBg:!(indexPath.row & 0x1)];
         return cell;
@@ -301,6 +303,10 @@ typedef enum{
     if (self.currentTab.tabID == OpusTypePrize) {        
         PBUserAward *aw = [self.currentTab.dataList objectAtIndex:indexPath.row];
         ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
+        if (opus == nil) {
+            PPDebug(@"<didSelectRowAtIndexPath> opus is nil");
+            return;
+        }
         UseItemScene* scene ;
         if ([self.contest isRunning]) {
             scene = [UseItemScene createSceneByType:UseSceneTypeDrawMatch feed:opus];
@@ -308,7 +314,6 @@ typedef enum{
             scene = [UseItemScene createSceneByType:UseSceneTypeMatchRank feed:opus];
         }
         ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:scene];
-        sc.feedList = [[self currentTab] dataList];
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
