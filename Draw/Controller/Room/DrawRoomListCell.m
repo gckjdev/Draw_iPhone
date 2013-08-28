@@ -61,6 +61,9 @@
     [super setCellInfo:session];
     [self initCell];
     
+    self.backgroundImageView.image = [ShareImageManager bubleImage];
+    self.roomNameLabel.textColor = COLOR_ORANGE;
+    
     if (session.name == nil || session.name.length <= 0) {
         [self.roomNameLabel setText:[roomListTitile stringByAppendingString:[NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), session.sessionId]]];
     } else {

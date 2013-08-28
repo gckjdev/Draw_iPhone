@@ -7353,6 +7353,14 @@
 		EA411F541763165F00DA72D0 /* AskPsHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA411F521763165F00DA72D0 /* AskPsHomeController.m */; };
 		EA411F551763165F00DA72D0 /* AskPsHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA411F531763165F00DA72D0 /* AskPsHomeController.xib */; };
 		EA41242B1767137E00FC13C2 /* AskPs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41242A1767137E00FC13C2 /* AskPs.m */; };
+		EA433E1617CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */; };
+		EA433E1717CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */; };
+		EA433E1817CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */; };
+		EA433E1917CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */; };
+		EA433E2017CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
+		EA433E2117CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
+		EA433E2217CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
+		EA433E2317CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
 		EA46F3941778537C00D8D349 /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4317782BC30086D0FD /* CommonRoomListController.m */; };
 		EA46F39A177853F500D8D349 /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4117782BC30086D0FD /* CommonRoomListCell.m */; };
 		EA46F39B1778551500D8D349 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C18AA31761873500DE933B /* GalleryController.m */; };
@@ -10585,6 +10593,9 @@
 		EA411F531763165F00DA72D0 /* AskPsHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskPsHomeController.xib; sourceTree = "<group>"; };
 		EA4124291767137E00FC13C2 /* AskPs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPs.h; sourceTree = "<group>"; };
 		EA41242A1767137E00FC13C2 /* AskPs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPs.m; sourceTree = "<group>"; };
+		EA433E1417CDDA2E006E6FA7 /* JudgerScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgerScoreView.h; sourceTree = "<group>"; };
+		EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgerScoreView.m; sourceTree = "<group>"; };
+		EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JudgerScoreView.xib; sourceTree = "<group>"; };
 		EA49C86017093CD200843B6B /* TaoBaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoBaoController.h; sourceTree = "<group>"; };
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
@@ -16103,6 +16114,9 @@
 				CA3F2EA6160967B80059667B /* ContestView.m */,
 				CA3F2ECF1609B3350059667B /* StatementController.h */,
 				CA3F2ED01609B3350059667B /* StatementController.m */,
+				EA433E1417CDDA2E006E6FA7 /* JudgerScoreView.h */,
+				EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */,
+				EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */,
 			);
 			path = Contest;
 			sourceTree = "<group>";
@@ -19184,6 +19198,7 @@
 				A48C7DFB17CB5A49006DA1F3 /* bubble_bg@2x.png in Resources */,
 				A48C7DFF17CB5A49006DA1F3 /* correct@2x.png in Resources */,
 				A48C7E0317CB5A49006DA1F3 /* question@2x.png in Resources */,
+				EA433E2217CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20227,6 +20242,7 @@
 				A48C7DFA17CB5A49006DA1F3 /* bubble_bg@2x.png in Resources */,
 				A48C7DFE17CB5A49006DA1F3 /* correct@2x.png in Resources */,
 				A48C7E0217CB5A49006DA1F3 /* question@2x.png in Resources */,
+				EA433E2117CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21259,6 +21275,7 @@
 				A48C7DF917CB5A49006DA1F3 /* bubble_bg@2x.png in Resources */,
 				A48C7DFD17CB5A49006DA1F3 /* correct@2x.png in Resources */,
 				A48C7E0117CB5A49006DA1F3 /* question@2x.png in Resources */,
+				EA433E2017CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22226,6 +22243,7 @@
 				A48C7DFC17CB5A49006DA1F3 /* bubble_bg@2x.png in Resources */,
 				A48C7E0017CB5A49006DA1F3 /* correct@2x.png in Resources */,
 				A48C7E0417CB5A49006DA1F3 /* question@2x.png in Resources */,
+				EA433E2317CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23056,6 +23074,7 @@
 				CAFC03B817C84CC600A11DE3 /* DetailFooterView.m in Sources */,
 				CAFC03C617C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA51419617CB419F00883CAA /* ContestPrizeCell.m in Sources */,
+				EA433E1817CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23858,6 +23877,7 @@
 				CAFC03C517C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA5519F817CAFA1000855225 /* CommonShareAction.m in Sources */,
 				CA51419517CB419F00883CAA /* ContestPrizeCell.m in Sources */,
+				EA433E1717CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24666,6 +24686,7 @@
 				CAFC03B617C84CC600A11DE3 /* DetailFooterView.m in Sources */,
 				CAFC03C417C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA51419417CB419F00883CAA /* ContestPrizeCell.m in Sources */,
+				EA433E1617CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25448,6 +25469,7 @@
 				CAFC03C717C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA5519F917CAFA1100855225 /* CommonShareAction.m in Sources */,
 				CA51419717CB419F00883CAA /* ContestPrizeCell.m in Sources */,
+				EA433E1917CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -25822,7 +25844,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -25871,7 +25893,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = LittleGeeDraw;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

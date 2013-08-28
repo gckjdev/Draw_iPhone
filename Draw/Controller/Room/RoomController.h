@@ -43,6 +43,7 @@ enum{
 @property (retain, nonatomic) IBOutlet UIButton *changeRoomButton;
 @property (retain, nonatomic) ChatController *privateChatController;
 @property (retain, nonatomic) ChatController *groupChatController;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 
 - (IBAction)clickStart:(id)sender;

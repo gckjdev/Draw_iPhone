@@ -20,13 +20,13 @@
 
 - (void)dealloc {
     [_rank release];
-    [_avatarImageView release];
     [_nickNameLabel release];
     [_signatureLable release];
     [_guessCountLabel release];
     [_costTimeLabel release];
     [_awardLabel release];
     [_rankLabel release];
+    [_avatarView release];
     [super dealloc];
 }
 
@@ -54,7 +54,8 @@
     _costTimeLabel.textColor = COLOR_ORANGE;
     _awardLabel.textColor = COLOR_ORANGE;
     
-    [_avatarImageView setImageWithURL:[NSURL URLWithString:rank.user.avatar]];
+    [_avatarView setUrlString:rank.user.avatar];
+    [_avatarView setAsSquare];
     _nickNameLabel.text = rank.user.nickName;
     _signatureLable.text = rank.user.signature;
     

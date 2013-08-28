@@ -66,7 +66,7 @@
              inView:(UIView *)inView
 {
     ChatMessageView *cv = [[[ChatMessageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)] autorelease];
-    NSString *msg = [NSString stringWithFormat:@"%@ \n%@", title, chatMessage];
+    NSString *msg = (title == nil) ? chatMessage : [NSString stringWithFormat:@"%@ \n%@", title, chatMessage];
     UILabel *label = [cv createLabelWithText:msg];
     //update cv frame
     cv.frame = label.frame;

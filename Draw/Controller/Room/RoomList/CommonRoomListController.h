@@ -56,6 +56,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *emptyListTips;
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 - (void)showPasswordDialog;
 - (void)checkAndJoinGame:(int)sessionId;

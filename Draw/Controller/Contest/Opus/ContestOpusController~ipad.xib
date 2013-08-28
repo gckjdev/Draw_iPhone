@@ -79,7 +79,10 @@
 						<string key="NSFrame">{{0, 108}, {70, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+<<<<<<< HEAD
 						<reference key="NSNextKeyView" ref="616059709"/>
+=======
+>>>>>>> 228eb1cc34257c58367cb8268ebe91d87caea5fa
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">105</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -159,7 +162,6 @@
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
 						<reference key="IBUISeparatorColor" ref="410568485"/>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-						<bool key="IBUIAllowsSelection">NO</bool>
 						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 						<float key="IBUIRowHeight">44</float>
 						<float key="IBUISectionHeaderHeight">22</float>

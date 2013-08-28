@@ -1433,6 +1433,7 @@
 "kGuessContestModeTips" = "你已經猜對了%d副作品，目前排名是第%d名，預計可獲得%d金幣獎勵，目前總共有%d玩家參與";
 
 "kHint" = "提示";
+"kGiveUpComment" = "是否退出評論?";
 "kGuessWrong" =  "猜错了";
 
 "kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";

@@ -42,16 +42,12 @@
 					<object class="IBUIImageView" id="594883497">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{8, 101}, {305, 382}}</string>
+						<string key="NSFrame">{{8, 101}, {305, 360}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="422428427"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage" id="315831447">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">wood_bg@2x.jpg</string>
-						</object>
 					</object>
 					<object class="IBUIView" id="846355833">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -60,13 +56,12 @@
 							<object class="IBUIImageView" id="306244290">
 								<reference key="NSNextResponder" ref="846355833"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{305, 270}</string>
+								<string key="NSFrameSize">{305, 240}</string>
 								<reference key="NSSuperview" ref="846355833"/>
 								<reference key="NSNextKeyView" ref="352374685"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIImage" ref="315831447"/>
 							</object>
 							<object class="IBUILabel" id="352374685">
 								<reference key="NSNextResponder" ref="846355833"/>
@@ -145,7 +140,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{105, 200}, {95, 33}}</string>
 								<reference key="NSSuperview" ref="846355833"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -302,7 +296,7 @@
 									<object class="IBUILabel" id="1004384965">
 										<reference key="NSNextResponder" ref="876821904"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{63, 41}, {45, 18}}</string>
+										<string key="NSFrame">{{63, 41}, {44.5, 18}}</string>
 										<reference key="NSSuperview" ref="876821904"/>
 										<reference key="NSNextKeyView" ref="637224567"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -330,7 +324,7 @@
 									<object class="IBUILabel" id="637224567">
 										<reference key="NSNextResponder" ref="876821904"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{115.5, 41}, {66, 18}}</string>
+										<string key="NSFrame">{{108.5, 41}, {73, 18}}</string>
 										<reference key="NSSuperview" ref="876821904"/>
 										<reference key="NSNextKeyView" ref="831755793"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -361,7 +355,7 @@
 									<object class="IBUILabel" id="831755793">
 										<reference key="NSNextResponder" ref="876821904"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{181, 40}, {29, 21}}</string>
+										<string key="NSFrame">{{183, 40}, {29, 21}}</string>
 										<reference key="NSSuperview" ref="876821904"/>
 										<reference key="NSNextKeyView" ref="996479208"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -641,8 +635,8 @@
 							<reference ref="878386842"/>
 							<reference ref="923374262"/>
 							<reference ref="996479208"/>
-							<reference ref="1004384965"/>
 							<reference ref="831755793"/>
+							<reference ref="1004384965"/>
 						</array>
 						<reference key="parent" ref="422428427"/>
 					</object>
@@ -767,10 +761,6 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">wood_bg@2x.jpg</string>
-			<string key="NS.object.0">{640, 960}</string>
-		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

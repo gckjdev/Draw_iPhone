@@ -1451,6 +1451,7 @@
 "kGuessGenuisFail" = "你猜错了，不能再继续玩下去了，重新开始？";
 
 "kHint" = "提示";
+"kGiveUpComment" = "是否退出评论?";
 "kGuessWrong" =  "猜错了";
 
 "kRestartGuessWarnning" = "重新开始将清空本次成绩，重新来过，是否确定？";

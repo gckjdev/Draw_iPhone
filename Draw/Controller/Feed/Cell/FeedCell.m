@@ -295,10 +295,7 @@
     self.avatarView.layer.borderWidth = (ISIPAD ? 4 : 2);
     self.avatarView.layer.borderColor = [COLOR_GREEN CGColor];
     
-    NSString *imageName = (ISIPAD ? @"bubble_bg@2x.png" : @"bubble_bg.png");
-    UIImage *bg = [UIImage imageNamed:imageName];
-    
-    [self.bgImageView setImage:[bg stretchableImageWithLeftCapWidth:bg.size.width*2/3 topCapHeight:bg.size.height*2/3]];
+    [self.bgImageView setImage:[ShareImageManager bubleImage]];
 }
 
 
