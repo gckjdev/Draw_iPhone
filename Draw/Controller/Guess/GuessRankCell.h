@@ -8,10 +8,11 @@
 
 #import "PPTableViewCell.h"
 #import "Opus.pb.h"
+#import "StableView.h"
 
 @interface GuessRankCell : PPTableViewCell
 
-@property (retain, nonatomic) IBOutlet UIImageView *avatarImageView;
+@property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *signatureLable;
 @property (retain, nonatomic) IBOutlet UILabel *guessCountLabel;

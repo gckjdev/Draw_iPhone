@@ -324,6 +324,19 @@ typedef enum{
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if([self currentTab].tabID == MyTypeComment){
+        if (indexPath.row % 2 == 0) {
+            cell.backgroundColor = COLOR_GRAY;
+        }else{
+            cell.backgroundColor = COLOR_WHITE;
+        }
+    }
+    
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath]; 
+}
+
 - (void)updateSeparator:(NSInteger)dataCount
 {
     MyType type = self.currentTab.tabID;

@@ -35,6 +35,9 @@ AUTO_CREATE_VIEW_BY_XIB(RoomPasswordDialog)
     [view.roomNameField setPlaceholder:NSLS(@"kRoomNameHolder")];
     view.roomNameLabel.text = NSLS(@"kRoomNameLabel");
     view.passwordLabel.text = NSLS(@"kRoomPasswordLabel");
+    
+    SET_INPUT_VIEW_STYLE(view.passwordField);
+    SET_INPUT_VIEW_STYLE(view.roomNameField);
     return view;
 }
 

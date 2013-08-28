@@ -16,6 +16,11 @@
 #import "UIButton+Sound.h"
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
+#import "UIViewUtils.h"
+
+
+
+#define TAG_COUNT_DOWN_VIEW 101
 
 @interface GuessModesController (){
     int _countDown;
@@ -50,6 +55,7 @@
     [_geniusModeButton release];
     [_rankButton release];
     [_rulesButton release];
+    [_contentModeHolderView release];
     [super dealloc];
 }
 
@@ -96,6 +102,7 @@
     [self setGeniusModeButton:nil];
     [self setRankButton:nil];
     [self setRulesButton:nil];
+    [self setContentModeHolderView:nil];
     [super viewDidUnload];
 }
 
@@ -152,9 +159,6 @@
         self.hourLabel.text = [NSString stringWithFormat:@"%02d", hour];
         self.minusLabel.text = [NSString stringWithFormat:@"%02d", minus];
         self.secondLabel.text = [NSString stringWithFormat:@"%02d", second];
-        
-        
-
     }
 }
 
@@ -162,15 +166,17 @@
     
     [UIView animateWithDuration:1 animations:^{
         _contestModeLabel.center = _contestModeButton.center;
-        self.countDownImageView.alpha = 0;
-        self.hourLabel.alpha = 0;
-        self.minusLabel.alpha = 0;
-        self.secondLabel.alpha = 0;
+        
+        [[self.contentModeHolderView viewWithTag:TAG_COUNT_DOWN_VIEW] setAlpha:0];
+//        self.countDownImageView.alpha = 0;
+//        self.hourLabel.alpha = 0;
+//        self.minusLabel.alpha = 0;
+//        self.secondLabel.alpha = 0;
     } completion:^(BOOL finished) {
         
     }];
     
-    [self killTimer];
+//    [self killTimer];
 }
 
 - (void)contesting{
@@ -178,10 +184,11 @@
     [UIView animateWithDuration:1 animations:^{
         self.contestModeLabel.center = _contestModeButton.center;
         
-        self.countDownImageView.alpha = 0;
-        self.hourLabel.alpha = 0;
-        self.minusLabel.alpha = 0;
-        self.secondLabel.alpha = 0;
+        [[self.contentModeHolderView viewWithTag:TAG_COUNT_DOWN_VIEW] setAlpha:0];
+//        self.countDownImageView.alpha = 0;
+//        self.hourLabel.alpha = 0;
+//        self.minusLabel.alpha = 0;
+//        self.secondLabel.alpha = 0;
     } completion:^(BOOL finished) {
 
     }];
@@ -197,15 +204,12 @@
 
     }];
     
-//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_contest.endTime];
-//    JDDateCountdownFlipView *flipView = [[JDDateCountdownFlipView alloc] initWithTargetDate: date];
-//    [self.view addSubview: flipView];
-//    
-//    flipView.frame = CGRectMake(0, 0, self.view.frame.size.width-180, self.view.frame.size.height-1800);
-//    flipView.center = CGPointMake(self.view.frame.size.width /2,
-//                              (self.view.frame.size.height/2)*0.9);
-    
-    [self startTimer];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_contest.endTime];
+    JDDateCountdownFlipView *flipView = [[JDDateCountdownFlipView alloc] initWithHMSTargetDate:date];
+    [self.contentModeHolderView addSubview:flipView];
+    flipView.frame = (ISIPAD ? CGRectMake(34,152,172,48) : CGRectMake(17,77,87,24));
+    flipView.tag = TAG_COUNT_DOWN_VIEW;
+//    [self startTimer];
 }
 
 - (IBAction)clickHappyModeButton:(id)sender {

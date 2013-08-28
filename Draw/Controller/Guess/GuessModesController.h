@@ -26,5 +26,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *geniusModeButton;
 @property (retain, nonatomic) IBOutlet UIButton *rankButton;
 @property (retain, nonatomic) IBOutlet UIButton *rulesButton;
+@property (retain, nonatomic) IBOutlet UIView *contentModeHolderView;
 
 @end

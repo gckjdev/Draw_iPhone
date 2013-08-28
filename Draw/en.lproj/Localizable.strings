@@ -1485,6 +1485,7 @@
 
 
 "kHint" = "Hint";
+"kGiveUpComment" = "Do you want to exit without commit comment?";
 "kGuessWrong" =  "Guess Wrong";
 
 "kRestartGuessWarnning" = "Will you restart game?";
