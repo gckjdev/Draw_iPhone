@@ -188,6 +188,8 @@ static ContestManager *_staticContestManager;
     return [[[Contest alloc] initWithPBContest:pbContest] autorelease];
 }
 
+
+
 - (BOOL)displayContestAnonymous:(NSString*)contestId
 {
     if ([contestId length] == 0)

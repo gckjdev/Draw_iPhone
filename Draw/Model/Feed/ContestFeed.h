@@ -16,6 +16,10 @@
 
 @property(nonatomic, retain)NSString *contestId;
 @property(nonatomic, assign)double contestScore;
+@property(nonatomic, retain)NSArray *rankInfoList;
+
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
+
+
 
 @end

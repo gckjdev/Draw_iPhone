@@ -49,6 +49,7 @@
 #import "MWPhotoBrowser.h"
 #import "UIButton+WebCache.h"
 #import "ContestManager.h"
+#import "JudgerScoreView.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
@@ -790,6 +791,11 @@ typedef enum{
                         [cc release];
                     }else if(row == 1){
                         //TODO for judger score
+                        Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
+                        if (contest) {
+                            JudgerScoreView *scoreView = [JudgerScoreView judgerScoreViewWithContest:contest opus:(id)self.feed];
+                            [scoreView showInView:self.view];
+                        }
                     }
                     [self.judgerPopupView dismiss:YES];
                 }];
