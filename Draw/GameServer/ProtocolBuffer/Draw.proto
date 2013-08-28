@@ -64,13 +64,6 @@ message PBLearnDraw{
     optional int32 boughtCount = 4;
 }
 
-
-message PBUserRankOpus{
-  required string userId = 1;
-  required int32  rankType = 2;
-  optional int32  score = 3;
-}
-
 message PBFeed {
   required string feedId = 1;
   required string userId = 2;           // 用户Id
@@ -138,7 +131,6 @@ message PBFeed {
   optional PBLearnDraw learnDraw = 100;
 //  optional PBSing sing = 101;                 // 具体作品
 
-  repeated PBUserRankOpus userRankOpus = 110;   // 用户对作品的打分
 
 }
 

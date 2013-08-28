@@ -242,8 +242,6 @@
 @class PBUserPhotoList;
 @class PBUserPhotoList_Builder;
 @class PBUserPhoto_Builder;
-@class PBUserRankOpus;
-@class PBUserRankOpus_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBWall;

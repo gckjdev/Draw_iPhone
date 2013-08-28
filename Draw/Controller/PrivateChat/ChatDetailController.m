@@ -221,6 +221,15 @@
     [self loadNewMessage:YES];
     
     self.view.backgroundColor = COLOR_GRAY;
+    UIImage *image = [[UserManager defaultManager] pageBgForKey:@"chat_bg.png"];
+    if (image) {
+        UIImageView *iv = (id)[self.view reuseViewWithTag:21233
+                                                viewClass:[UIImageView class]
+                                                    frame:self.view.bounds];
+        [iv setImage:image];
+        [self.view sendSubviewToBack:iv];
+    }
+    
 }
 
 - (void)viewDidUnload

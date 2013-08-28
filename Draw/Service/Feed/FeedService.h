@@ -206,4 +206,9 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 - (void)rejectOpusDrawToMe:(NSString *)opusId
                resultBlock:(FeedActionResultBlock)resultBlock;
 
+- (void)rankOpus:(NSString*)opusId
+       contestId:(NSString*)contestId
+        rankType:(int)rankType
+       rankValue:(int)rankValue;
+
 @end

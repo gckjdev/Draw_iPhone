@@ -309,7 +309,7 @@
 - (NSArray *)awardList
 {
     NSArray *winners = [self.pbContest winnerUsersList];
-    NSArray *awards = [self.pbContest winnerUsersList];
+    NSArray *awards = [self.pbContest awardUsersList];
     NSMutableArray *was = [NSMutableArray array];
     [was addObjectsFromArray:winners];
     [was addObjectsFromArray:awards];
@@ -319,7 +319,7 @@
 - (NSArray *)awardOpusIdList
 {
     NSArray *winners = [self.pbContest winnerUsersList];
-    NSArray *awards = [self.pbContest winnerUsersList];
+    NSArray *awards = [self.pbContest awardUsersList];
     NSMutableArray *was = [NSMutableArray array];
     [was addObjectsFromArray:winners];
     [was addObjectsFromArray:awards];

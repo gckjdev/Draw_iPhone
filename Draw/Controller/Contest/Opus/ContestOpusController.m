@@ -76,6 +76,8 @@ typedef enum{
     [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+    self.view.backgroundColor = COLOR_WHITE;
+    self.dataTableView.allowsSelection = YES;
 }
 
 - (void)viewDidUnload
@@ -235,10 +237,13 @@ typedef enum{
             cell = [ContestPrizeCell createCell:self];
         }
         cell.indexPath = indexPath;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        PBUserAward *aw = [self.tabDataList objectAtIndex:indexPath.row];
-        ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
-        [cell setPrize:[self prizeFromAward:aw] title:aw.awardType.value opus:opus];
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+        if (indexPath.row < [tab.dataList count]) {
+            PBUserAward *aw = [tab.dataList objectAtIndex:indexPath.row];
+            ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
+            [cell setPrize:[self prizeFromAward:aw] title:aw.awardType.value opus:opus];
+        }
+        [cell setShowBg:!(indexPath.row & 0x1)];
         return cell;
         
     }
@@ -252,7 +257,7 @@ typedef enum{
         [self clearCellSubViews:cell];
     }
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     if (tab.tabID == OpusTypeRank) {
@@ -289,6 +294,24 @@ typedef enum{
     }
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.currentTab.tabID == OpusTypePrize) {        
+        PBUserAward *aw = [self.currentTab.dataList objectAtIndex:indexPath.row];
+        ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
+        UseItemScene* scene ;
+        if ([self.contest isRunning]) {
+            scene = [UseItemScene createSceneByType:UseSceneTypeDrawMatch feed:opus];
+        } else {
+            scene = [UseItemScene createSceneByType:UseSceneTypeMatchRank feed:opus];
+        }
+        ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:scene];
+        sc.feedList = [[self currentTab] dataList];
+        [self.navigationController pushViewController:sc animated:YES];
+        [sc release];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -403,16 +426,7 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        if (type == OpusTypeReport) {
-            [self finishLoadDataForTabID:OpusTypeReport resultList:feedList];
-        }else if(type == OpusTypePrize){
-            [_contest setAwardOpusList:feedList];
-            NSMutableArray *list = [_tabManager dataListForTabID:OpusTypePrize];
-            [list removeAllObjects];
-            TableTab *tab = [_tabManager tabForID:OpusTypePrize];
-            tab.offset = 0;
-            [self finishLoadDataForTabID:OpusTypePrize resultList:_contest.awardList];
-        }else{
+        if (type == OpusTypeMy || type == OpusTypeNew || type == OpusTypeRank) {
             [self finishLoadDataForTabID:type resultList:feedList];
         }
     }else{
@@ -428,11 +442,25 @@ typedef enum{
     PPDebug(@"<didGetFeedList> list count = %d ", [feedList count]);
     [self hideActivity];
     if (resultCode == 0) {
-        [self finishLoadDataForTabID:type resultList:feedList];
+        if(type == OpusTypeReport){
+            [self finishLoadDataForTabID:OpusTypeReport resultList:feedList];
+        }else if(type == OpusTypePrize){
+            [_contest setAwardOpusList:feedList];
+            NSMutableArray *list = [_tabManager dataListForTabID:OpusTypePrize];
+            [list removeAllObjects];
+            TableTab *tab = [_tabManager tabForID:OpusTypePrize];
+            [self finishLoadDataForTabID:OpusTypePrize resultList:_contest.awardList];
+            tab.offset = 0;
+            tab.hasMoreData = NO;
+            [self.dataTableView reloadData];
+        }else{
+            [self finishLoadDataForTabID:type resultList:feedList];
+        }
     }else{
         [self failLoadDataForTabID:type];
     }
 }
+
 
 #pragma mark Rank View delegate
 - (void)didClickRankView:(RankView *)rankView

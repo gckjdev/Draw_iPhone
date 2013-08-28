@@ -126,6 +126,7 @@
 - (void)updateLayers:(NSArray *)layers
 {
     [dlManager updateLayers:layers];
+    [dlManager arrangeActions:self.drawActionList];
 }
 //start to add a new draw action
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show

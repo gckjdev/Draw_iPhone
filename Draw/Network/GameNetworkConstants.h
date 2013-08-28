@@ -24,6 +24,7 @@
 #define PARA_SUB_CATEGORY @"subCategory"
 #define METHOD_RECOVERY_OPUS @"constructIndex"
 #define METHOD_GET_OPUS @"getOpus"
+#define METHOD_RANK_OPUS @"rankOpus"
 
 // for guess
 #define METHOD_GET_USER_GUESS_OPUSES @"getUserGuessOpus"
@@ -292,6 +293,7 @@
 #define PARA_QQ_ID @"qid"
 
 #define PARA_USER_COINS @"ucn"
+
 
 #define PARA_FACEBOOKID @"fid"
 #define PARA_RENRENID @"rid"
@@ -716,6 +718,7 @@
 
 #define ERROR_XIAOJI_NUMBER_NULL        320004
 #define ERROR_USER_DATA_NULL            320005
+#define ERROR_OPUS_ID_NULL              320006
 
 
 #define REJECT_ASK_LOCATION             1

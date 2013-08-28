@@ -1257,11 +1257,12 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 }
 
 #define DRAW_BG_IMAGE_KEY    @"draw_bg.png"
-#define DRAW_BG_DIR          @"DRAW_BG"
+#define PAGE_BG_DIR          @"PAGE_BG"
 
-- (BOOL)setDrawBackground:(UIImage*)image
+- (BOOL)setPageBg:(UIImage *)bg forKey:(NSString *)key
 {
-    if (image) {
+    UIImage *image = bg;
+    if (image && key) {
         CGSize size = image.size;
         size.width *= image.scale;
         size.height *= image.scale;
@@ -1280,23 +1281,35 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         if (needScale) {
             image = [image scaleToSize:size];
         }
-        StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_BG_DIR] autorelease];
-        return [manager saveImage:image forKey:DRAW_BG_IMAGE_KEY];
+        StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PAGE_BG_DIR] autorelease];
+        return [manager saveImage:image forKey:key];
     }
-    
     return NO;
 }
+- (BOOL)resetPageBgforKey:(NSString *)key
+{
+    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PAGE_BG_DIR] autorelease];
+    
+    return [manager removeDataForKey:key];
+}
+- (UIImage*)pageBgForKey:(NSString *)key
+{
+    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:PAGE_BG_DIR] autorelease];
+    return [manager imageForKey:key];
+}
 
+
+- (BOOL)setDrawBackground:(UIImage*)image
+{
+    [self setPageBg:image forKey:DRAW_BG_IMAGE_KEY];
+}
 - (BOOL)resetDrawBackground
 {
-    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_BG_DIR] autorelease];
-    
-    return [manager removeDataForKey:DRAW_BG_IMAGE_KEY];
+    return [self resetPageBgforKey:DRAW_BG_IMAGE_KEY];
 }
 - (UIImage*)drawBackground
 {
-    StorageManager* manager = [[[StorageManager alloc] initWithStoreType:StorageTypePersistent directoryName:DRAW_BG_DIR] autorelease];
-    return [manager imageForKey:DRAW_BG_IMAGE_KEY];
+    return [self pageBgForKey:DRAW_BG_IMAGE_KEY];
 }
 
 
