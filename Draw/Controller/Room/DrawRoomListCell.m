@@ -62,7 +62,7 @@
     self.backgroundImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
     self.backgroundImageView.layer.borderColor = [COLOR_YELLOW CGColor];
     SET_VIEW_ROUND_CORNER(self.backgroundImageView);
-    self.roomNameLabel.textColor = COLOR_ORANGE;
+    self.roomNameLabel.textColor = COLOR_BROWN;
     
     if (session.name == nil || session.name.length <= 0) {
         [self.roomNameLabel setText:[roomListTitile stringByAppendingString:[NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), session.sessionId]]];
