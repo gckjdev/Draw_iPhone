@@ -938,8 +938,6 @@
 		A461B458174CBAA70088B061 /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
 		A461B45A174CBAA70088B061 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		A461B45B174CBAA70088B061 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
-		A461B4A4174CBAA70088B061 /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
-		A461B4A5174CBAA70088B061 /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
 		A461B4AC174CBAA70088B061 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
 		A461B4AD174CBAA70088B061 /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
 		A461B4B0174CBAA70088B061 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
@@ -4213,8 +4211,6 @@
 		C28A9D371738F04B007A819F /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
 		C28A9D391738F04B007A819F /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		C28A9D3A1738F04B007A819F /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
-		C28A9D831738F04B007A819F /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
-		C28A9D841738F04B007A819F /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
 		C28A9D8B1738F04B007A819F /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
 		C28A9D8C1738F04B007A819F /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
 		C28A9D8F1738F04B007A819F /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
@@ -5223,8 +5219,6 @@
 		CA67B87D15E89FB0002050DB /* GameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87C15E89FB0002050DB /* GameApp.m */; };
 		CA67B8A815EB2928002050DB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A715EB2928002050DB /* MediaPlayer.framework */; };
 		CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA67B8A915EB292E002050DB /* EventKitUI.framework */; };
-		CA6D353415F71918004DC293 /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
-		CA6D353615F71921004DC293 /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
 		CA745D231503B1B500600024 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
 		CA745D251503B1B500600024 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
 		CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
@@ -6557,8 +6551,6 @@
 		EA411BB0176066F500DA72D0 /* SelectChatFriendController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A387F096158853EF00DC7C5D /* SelectChatFriendController~ipad.xib */; };
 		EA411BB2176066F500DA72D0 /* Draw.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A015C25208003B4E72 /* Draw.proto */; };
 		EA411BB3176066F500DA72D0 /* Dice.proto in Resources */ = {isa = PBXBuildFile; fileRef = A4B763A115C25208003B4E72 /* Dice.proto */; };
-		EA411BF0176066F500DA72D0 /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
-		EA411BF1176066F500DA72D0 /* clean_ad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D353215F71918004DC293 /* clean_ad@2x.png */; };
 		EA411BF8176066F500DA72D0 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973F91607230E003A95F7 /* CommentCell.xib */; };
 		EA411BF9176066F500DA72D0 /* CommentCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8973FA1607230E003A95F7 /* CommentCell~ipad.xib */; };
 		EA411BFC176066F500DA72D0 /* DrawInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8974011607230E003A95F7 /* DrawInfoCell.xib */; };
@@ -17185,8 +17177,6 @@
 				A461B458174CBAA70088B061 /* SelectChatFriendController~ipad.xib in Resources */,
 				A461B45A174CBAA70088B061 /* Draw.proto in Resources */,
 				A461B45B174CBAA70088B061 /* Dice.proto in Resources */,
-				A461B4A4174CBAA70088B061 /* clean_ad@2x.png in Resources */,
-				A461B4A5174CBAA70088B061 /* clean_ad@2x.png in Resources */,
 				A461B4AC174CBAA70088B061 /* CommentCell.xib in Resources */,
 				A461B4AD174CBAA70088B061 /* CommentCell~ipad.xib in Resources */,
 				A461B4B0174CBAA70088B061 /* DrawInfoCell.xib in Resources */,
@@ -18115,8 +18105,6 @@
 				C28A9D371738F04B007A819F /* SelectChatFriendController~ipad.xib in Resources */,
 				C28A9D391738F04B007A819F /* Draw.proto in Resources */,
 				C28A9D3A1738F04B007A819F /* Dice.proto in Resources */,
-				C28A9D831738F04B007A819F /* clean_ad@2x.png in Resources */,
-				C28A9D841738F04B007A819F /* clean_ad@2x.png in Resources */,
 				C28A9D8B1738F04B007A819F /* CommentCell.xib in Resources */,
 				C28A9D8C1738F04B007A819F /* CommentCell~ipad.xib in Resources */,
 				C28A9D8F1738F04B007A819F /* DrawInfoCell.xib in Resources */,
@@ -19004,8 +18992,6 @@
 				CA50A01715BA5BF400CAB603 /* ResultController~ipad.xib in Resources */,
 				A4B763A215C25208003B4E72 /* Draw.proto in Resources */,
 				A4B763A315C25208003B4E72 /* Dice.proto in Resources */,
-				CA6D353415F71918004DC293 /* clean_ad@2x.png in Resources */,
-				CA6D353615F71921004DC293 /* clean_ad@2x.png in Resources */,
 				CA89742A1607230E003A95F7 /* CommentCell.xib in Resources */,
 				CA89742B1607230E003A95F7 /* CommentCell~ipad.xib in Resources */,
 				CA8974301607230E003A95F7 /* DrawInfoCell.xib in Resources */,
@@ -19858,8 +19844,6 @@
 				EA411BB0176066F500DA72D0 /* SelectChatFriendController~ipad.xib in Resources */,
 				EA411BB2176066F500DA72D0 /* Draw.proto in Resources */,
 				EA411BB3176066F500DA72D0 /* Dice.proto in Resources */,
-				EA411BF0176066F500DA72D0 /* clean_ad@2x.png in Resources */,
-				EA411BF1176066F500DA72D0 /* clean_ad@2x.png in Resources */,
 				EA411BF8176066F500DA72D0 /* CommentCell.xib in Resources */,
 				EA411BF9176066F500DA72D0 /* CommentCell~ipad.xib in Resources */,
 				EA411BFC176066F500DA72D0 /* DrawInfoCell.xib in Resources */,
@@ -23953,14 +23937,6 @@
 			);
 			name = "LittleGeeDefault@2x~ipad.png";
 			sourceTree = "<group>";
-		};
-		CA6D353215F71918004DC293 /* clean_ad@2x.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = "clean_ad@2x.png";
-			path = /Users/Linruin/gitdata/Draw_iPhone/Draw/CommonResource/Images;
-			sourceTree = "<absolute>";
 		};
 		CA745D2B1503B1B500600024 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
