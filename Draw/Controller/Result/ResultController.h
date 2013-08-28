@@ -12,8 +12,8 @@
 #import "LevelService.h"
 #import "DrawDataService.h"
 #import "CommonDialog.h"
-//#import "CommonItemInfoView.h"
 #import "UserService.h"
+#import "CommonTitleView.h"
 
 @class DrawFeed;
 @class UseItemScene;
@@ -60,6 +60,7 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UILabel *upLabel;
 @property (retain, nonatomic) IBOutlet UILabel *downLabel;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
 - (IBAction)clickUpButton:(id)sender;
 - (IBAction)clickDownButton:(id)sender;

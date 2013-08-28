@@ -10,6 +10,7 @@
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
 #import "WordFilterService.h"
+#import "CommonDialog.h"
 
 @interface CommentController ()
 {
@@ -116,7 +117,16 @@
     [super dealloc];
 }
 - (IBAction)clickBack:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    
+    if ([self.contentView.text length] > 0) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:NSLS(@"kGiveUpComment") style:CommonDialogStyleDoubleButton];
+        [dialog showInView:self.view];
+        [dialog setClickOkBlock:^(id infoView){
+            [self dismissModalViewControllerAnimated:YES];
+        }];
+    }else{
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 #define ACTION_SUMMARY_MAX_LENGTH 60

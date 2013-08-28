@@ -183,6 +183,17 @@
     [_backButton setBackgroundImage:image forState:UIControlStateNormal];
 }
 
+- (void)setRightButtonImage:(UIImage *)image{
+    
+    // Remove the previos one.
+    [_rightButton removeFromSuperview];
+    _rightButton = nil;
+    
+    self.rightButton = [self rightButtonWithImage:image];
+    [self addSubview:_rightButton];
+}
+
+
 - (UIButton *)rightButtonWithImage:(UIImage *)image{
     
     CGRect frame = CGRectMake(0, 0, RIGHT_BUTTON_WIDTH, RIGHT_BUTTON_HEIGHT);

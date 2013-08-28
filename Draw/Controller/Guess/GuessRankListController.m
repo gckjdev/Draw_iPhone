@@ -32,6 +32,7 @@
 
 @property (retain, nonatomic) NSArray *contests;
 @property (copy, nonatomic) NSString *currentSelect;
+@property (retain, nonatomic) PPPopTableView *popView;
 
 @end
 
@@ -44,6 +45,7 @@
 //    [_titleView release];
     [_contests release];
     [_currentSelect release];
+    [_popView release];
     [super dealloc];
 }
 
@@ -131,18 +133,16 @@
     
     
     __block typeof (self)bself = self;
-    PPPopTableView *v = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:WEEK, YEAR, nil] icons:nil selectedHandler:^(NSInteger row) {
+    self.popView = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:WEEK, YEAR, nil] icons:nil selectedHandler:^(NSInteger row) {
         
         if (row == 0) {
             bself.currentSelect = WEEK;
         }else{
             bself.currentSelect = YEAR;
-        }
-        
-        [v dismiss:YES];
+        }        
     }];
     
-    [v showInView:self.view atView:sender animated:YES];
+    [_popView showInView:self.view atView:sender animated:YES];
 }
 
 - (IBAction)clickGeniusButton:(UIButton *)sender {
@@ -179,7 +179,7 @@
 //                 menuItems:menuItems];
     
     __block typeof(self) bself = self;
-    PPPopTableView *v = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:TODAY, YESTERDAY, BEFOREYESTERDAY, nil] icons:nil selectedHandler:^(NSInteger row) {
+    self.popView = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:TODAY, YESTERDAY, BEFOREYESTERDAY, nil] icons:nil selectedHandler:^(NSInteger row) {
         
         if (row == 0) {
             bself.currentSelect = TODAY;
@@ -188,10 +188,9 @@
         }else{
             bself.currentSelect = BEFOREYESTERDAY;
         }
-        [v dismiss:YES];
     }];
     
-    [v showInView:self.view atView:sender animated:YES];
+    [_popView showInView:self.view atView:sender animated:YES];
 }
 
 - (IBAction)clickContestButton:(id)sender {

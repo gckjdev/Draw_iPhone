@@ -82,6 +82,7 @@
     PPRelease(_privateChatController);
     PPRelease(_groupChatController);
     [_titleLabel release];
+    [_titleView release];
     [super dealloc];
 }
 
@@ -139,6 +140,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@",[GameApp roomTitle]]];
     
+    
+    self.titleView = [CommonTitleView createTitleView:self.view];
+    [self.titleView setTitle:[NSString stringWithFormat:@"%@",[GameApp roomTitle]]];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickMenu:)];
+    self.roomNameLabel.layer.borderWidth = 2;
+    self.roomNameLabel.layer.borderColor = [COLOR_GREEN CGColor];
+    
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.startGameButton);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -154,8 +164,8 @@
     [self updateStartButton];
         
     [self.prolongButton setBackgroundImage:[[ShareImageManager defaultManager] orangeImage] forState:UIControlStateNormal];
-    [self.startGameButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
-    [self.startGameButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateDisabled];    
+//    [self.startGameButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+//    [self.startGameButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateDisabled];    
     
     [super viewDidAppear:animated];
 }
@@ -185,6 +195,7 @@
     [self setPrivateChatController:nil];
     [self setGroupChatController:nil];
     [self setTitleLabel:nil];
+    [self setTitleView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

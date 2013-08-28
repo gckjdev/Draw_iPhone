@@ -297,9 +297,9 @@
 - (void)initTitleLabel
 {
     if (_resultType == OnlineDraw || _resultType == OnlineDraw) {
-        [titleLabel setText:NSLS(@"kOnlineResultTitle")];
+        [_titleView setTitle:NSLS(@"kOnlineResultTitle")];
     }else{
-        [titleLabel setText:NSLS(@"kOfflineResultTitle")];        
+        [_titleView setTitle:NSLS(@"kOfflineResultTitle")];        
     }
 }
 
@@ -489,6 +489,17 @@
 {        
     
     [super viewDidLoad];
+    
+    self.titleView = [CommonTitleView createTitleView:self.view];
+    [self.titleView setTarget:self];
+    [self.titleView hideBackButton];
+    [self.titleView setRightButtonImage:[UIImage imageNamed:@"run@2x.png"]];
+    [self.titleView setRightButtonSelector:@selector(clickExitButton:)];
+    
+    self.wordLabel.textColor = COLOR_BROWN;
+    self.drawImage.layer.borderWidth = 2;
+    self.drawImage.layer.borderColor = [COLOR_GREEN CGColor];
+    
     [self initResultType];
     [self initTitleLabel];
     [self initDrawImage];
@@ -546,6 +557,7 @@
     [self setUpLabel:nil];
     [self setDownLabel:nil];
     [self setBackButton:nil];
+    [self setTitleView:nil];
     [super viewDidUnload];
     
     // Release any retained subviews of the main view.
@@ -577,6 +589,7 @@
     PPRelease(upLabel);
     PPRelease(downLabel);
     PPRelease(backButton);
+    [_titleView release];
     [super dealloc];
 }
 
