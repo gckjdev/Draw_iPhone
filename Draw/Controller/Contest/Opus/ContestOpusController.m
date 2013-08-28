@@ -23,7 +23,7 @@ typedef enum{
     OpusTypeMy = 1,
     OpusTypeRank = 2,
     OpusTypeNew = 3,
-    OpusTypeReport = 4,
+    OpusTypeReport = CommentTypeContestComment,
     OpusTypePrize = 21,//FeedListTypeIdList
 }OpusType;
 
