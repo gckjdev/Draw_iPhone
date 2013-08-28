@@ -232,6 +232,9 @@
         [self addTapGuesture];
         
         [self setAsRound];
+        
+        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderColor = [COLOR_GREEN CGColor];
     }
     
     return self;
@@ -272,6 +275,8 @@
         [self setAvatarSelected:NO level:level];
         
         [self setAsRound];
+        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderColor = [COLOR_GREEN CGColor];
     }
     
     return self;
@@ -293,6 +298,8 @@
         [self setAvatarSelected:NO level:level];
         
         [self setAsRound];
+        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderColor = [COLOR_GREEN CGColor];
     }
     
     return self;

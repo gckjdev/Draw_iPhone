@@ -24,7 +24,7 @@
 
 - (void)setCellInfo:(PBGameSession *)session
 {
-    [self.backgroundImageView setImage:[[GameApp getImageManager] roomListCellBgImage]];
+//    [self.backgroundImageView setImage:[[GameApp getImageManager] roomListCellBgImage]];
 }
 
 - (void)dealloc {

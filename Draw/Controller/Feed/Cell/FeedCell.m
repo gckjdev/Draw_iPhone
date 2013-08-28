@@ -292,8 +292,8 @@
     self.correctLabel.textColor = COLOR_GREEN;
     
     SET_VIEW_ROUND_CORNER(self.drawImageView);
-    self.avatarView.layer.borderWidth = (ISIPAD ? 4 : 2);
-    self.avatarView.layer.borderColor = [COLOR_GREEN CGColor];
+//    self.avatarView.layer.borderWidth = (ISIPAD ? 4 : 2);
+//    self.avatarView.layer.borderColor = [COLOR_GREEN CGColor];
     
     [self.bgImageView setImage:[ShareImageManager bubleImage]];
 }
