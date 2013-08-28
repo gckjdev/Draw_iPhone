@@ -2,7 +2,7 @@
 //  JudgerScoreView.h
 //  Draw
 //
-//  Created by old13 on 13-8-28.
+//  Created by Gamy on 13-8-28.
 //
 //
 

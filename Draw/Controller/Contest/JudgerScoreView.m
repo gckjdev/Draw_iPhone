@@ -2,11 +2,17 @@
 //  JudgerScoreView.m
 //  Draw
 //
-//  Created by old13 on 13-8-28.
+//  Created by Gamy on 13-8-28.
 //
 //
 
 #import "JudgerScoreView.h"
+
+@interface StarView : UIControl
+//@property(nonatomic, assign)
+
+
+@end
 
 @implementation JudgerScoreView
 
