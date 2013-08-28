@@ -744,6 +744,7 @@ typedef enum{
             CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:NO];
             [self presentModalViewController:cc animated:YES];
             [_commentHeader setSelectedType:CommentTypeComment];
+            [cc release];
             break;
 
         }
@@ -782,8 +783,11 @@ typedef enum{
                     PPDebug(@"<popTableView:didSelectedAtRow:> %d", row);
                     
                     if (row == 0) {
-                        //TODO for judger comment
-                        
+                        // for judger comment
+                        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+                        [self presentModalViewController:cc animated:YES];
+                        [_commentHeader setSelectedType:CommentTypeComment];
+                        [cc release];
                     }else if(row == 1){
                         //TODO for judger score
                     }
