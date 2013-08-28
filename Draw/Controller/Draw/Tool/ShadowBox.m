@@ -113,7 +113,9 @@
     for (UIButton *button in self.subviews) {
         if ([button isKindOfClass:[UIButton class]]) {
             [[ShareImageManager defaultManager] setButtonStyle:button
-                                                    titleColor:COLOR_COFFEE
+                                              normalTitleColor:COLOR_COFFEE
+                                            selectedTitleColor:COLOR_COFFEE
+                                         highlightedTitleColor:COLOR_COFFEE
                                                           font:button.titleLabel.font
                                                    normalColor:COLOR_YELLOW
                                                  selectedColor:COLOR_YELLOW2

@@ -71,6 +71,7 @@
     [_searchButton release];
     [_headerBackgroundImageView release];
     [_titleLabel release];
+    [_titleView release];
     [super dealloc];
 }
 
@@ -108,7 +109,8 @@
 
 - (void)handleUpdateOnlineUserCount
 {
-    [self.titleLabel setText:[NSString stringWithFormat:@"%@(%d)", [GameApp roomTitle], [_gameService onlineUserCount]]];
+    [_titleView setTitle:[NSString stringWithFormat:@"%@(%d)", [GameApp roomTitle], [_gameService onlineUserCount]]];
+//    [self.titleLabel setText:[NSString stringWithFormat:@"%@(%d)", [GameApp roomTitle], [_gameService onlineUserCount]]];
 }
 
 - (void)handleDidConnectServer
@@ -337,7 +339,20 @@
     [self handleUpdateOnlineUserCount];
     
     [self initView];
-
+    
+    self.titleView = [CommonTitleView createTitleView:self.view];
+    [_titleView setTarget:self];
+    [_titleView setBackButtonSelector:@selector(clickBackButton:)];
+    
+    [_titleView setRightButtonAsRefresh];
+    [_titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+    
+    SET_BUTTON_AS_COMMON_TAB_STYLE(_leftTabButton);
+    SET_BUTTON_AS_COMMON_TAB_STYLE(_centerTabButton);
+    SET_BUTTON_AS_COMMON_TAB_STYLE(_rightTabButton);
+    
+    SET_BUTTON_ROUND_STYLE_YELLOW(_createRoomButton);
+    SET_BUTTON_ROUND_STYLE_YELLOW(_fastEntryButton);
 }
 
 - (void)viewDidUnload {
@@ -345,6 +360,7 @@
     [self setSearchButton:nil];
     [self setHeaderBackgroundImageView:nil];
     [self setTitleLabel:nil];
+    [self setTitleView:nil];
     [super viewDidUnload];
 }
 

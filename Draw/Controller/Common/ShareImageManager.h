@@ -71,16 +71,21 @@
                                                             \
     view.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;        \
     view.layer.borderColor = [COLOR_YELLOW CGColor];        \
-}                                                           
+}  
+
+#define SET_BUTTON_AS_COMMON_TAB_STYLE(view)                              \
+{                                                           \
+[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_YELLOW highlightedColor:COLOR_ORANGE1 round:NO];         \
+}
 
 #define SET_BUTTON_ROUND_STYLE_YELLOW(view)                              \
 {                                                           \
-    [[ShareImageManager defaultManager] setButtonStyle:view titleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:YES];         \
+    [[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:YES];         \
 } 
 
 #define SET_BUTTON_SQUARE_STYLE_YELLOW(view)                              \
 {                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view titleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:NO];         \
+[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:NO];         \
 }
 
 
@@ -405,8 +410,12 @@ cell.backgroundColor = COLOR_WHITE;             \
 
 - (UIImage *)detailHeaderBG;
 
++ (UIImage *)bubleImage;
+
 - (void)setButtonStyle:(UIButton *)button
-            titleColor:(UIColor *)titleColor
+      normalTitleColor:(UIColor *)normalTitleColor
+    selectedTitleColor:(UIColor *)selectedTitleColor
+ highlightedTitleColor:(UIColor *)highlightedTitleColor
                   font:(UIFont *)font
            normalColor:(UIColor *)normalColor
          selectedColor:(UIColor *)selectedColor

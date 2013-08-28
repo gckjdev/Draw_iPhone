@@ -391,7 +391,9 @@
     int i = 0;
     for (NSString *key in expressions) {
         UIImage *image = [[ExpressionManager defaultManager] pngExpressionForKey:key];
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(edge+(WIDTH_EXPRESSION+edge)*i, expressionScrollView.frame.size.height/2-HEIGHT_EXPRESSION/2, WIDTH_EXPRESSION, HEIGHT_EXPRESSION)];
+        
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(edge+(WIDTH_EXPRESSION+edge)*i + (i/5) * edge, expressionScrollView.frame.size.height/2-HEIGHT_EXPRESSION/2, WIDTH_EXPRESSION, HEIGHT_EXPRESSION)];
         button.tag = TAG_EXPRESSION_BUTTON+i++;
         [button setBackgroundImage:image forState:UIControlStateNormal];
 

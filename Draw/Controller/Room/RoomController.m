@@ -669,7 +669,6 @@
 - (void)quitRoom
 {
     [[DrawGameService defaultService] quitGame];
-//    [self.navigationController popViewControllerAnimatedWithTransition:UIViewAnimationTransitionCurlUp];
     [self.navigationController popViewControllerAnimated:YES];
 }
          
@@ -814,8 +813,7 @@
     [[app.roomController.view viewWithTag:ROOM_DIALOG_QUIT_ROOM] removeFromSuperview];
     [[app.roomController.view viewWithTag:ROOM_DIALOG_CHANGE_ROOM] removeFromSuperview];
 
-    [superController.navigationController pushViewController:app.roomController 
-                           animatedWithTransition:UIViewAnimationTransitionCurlUp];
+    [superController.navigationController pushViewController:app.roomController animated:YES];
     
     // update 
     if ([app.roomController userCount] > 1) {

@@ -1266,17 +1266,31 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"detail_header_bg@2x.png"];
 }
 
++ (UIImage *)bubleImage{
+    
+    NSString *imageName = (ISIPAD ? @"bubble_bg@2x.png" : @"bubble_bg.png");
+    UIImage *bg = [UIImage imageNamed:imageName];
+    
+    return [bg stretchableImageWithLeftCapWidth:bg.size.width*2/3 topCapHeight:bg.size.height*2/3];
+}
+
 - (void)setButtonStyle:(UIButton *)button
-            titleColor:(UIColor *)titleColor
+      normalTitleColor:(UIColor *)normalTitleColor
+    selectedTitleColor:(UIColor *)selectedTitleColor
+ highlightedTitleColor:(UIColor *)highlightedTitleColor
                   font:(UIFont *)font
            normalColor:(UIColor *)normalColor
          selectedColor:(UIColor *)selectedColor
       highlightedColor:(UIColor *)highlightedColor
                  round:(BOOL)round;
 {                                                           
-    [button setTitleColor:titleColor
-               forState:UIControlStateNormal];              
-    button.titleLabel.font = font;                     
+    [button setTitleColor:normalTitleColor
+               forState:UIControlStateNormal];
+    [button setTitleColor:selectedTitleColor
+                 forState:UIControlStateSelected];
+    [button setTitleColor:highlightedTitleColor
+                 forState:UIControlStateHighlighted];
+    button.titleLabel.font = font;
     
     if (round) {
         [button.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
