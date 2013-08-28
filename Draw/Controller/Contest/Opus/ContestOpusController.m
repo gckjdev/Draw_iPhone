@@ -77,6 +77,7 @@ typedef enum{
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
     self.view.backgroundColor = COLOR_WHITE;
+    self.dataTableView.allowsSelection = YES;
 }
 
 - (void)viewDidUnload
@@ -256,7 +257,7 @@ typedef enum{
         [self clearCellSubViews:cell];
     }
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
 
     if (tab.tabID == OpusTypeRank) {
