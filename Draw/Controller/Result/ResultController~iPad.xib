@@ -322,7 +322,7 @@
 						<reference key="IBUIFontDescription" ref="566463730"/>
 						<reference key="IBUIFont" ref="43191968"/>
 					</object>
-					<object class="IBUIView" id="114814143">
+					<object class="IBUIView" id="579161665">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{768, 88}</string>
@@ -331,7 +331,7 @@
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="699392104">
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="558969995">
 								<int key="NSID">2</int>
 							</object>
 						</object>
@@ -344,7 +344,7 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="699392104"/>
+					<reference key="NSCustomColorSpace" ref="558969995"/>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">2</int>
@@ -446,7 +446,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="114814143"/>
+						<reference key="destination" ref="579161665"/>
 					</object>
 					<int key="connectionID">49</int>
 				</object>
@@ -511,7 +511,7 @@
 							<reference ref="659204735"/>
 							<reference ref="725607441"/>
 							<reference ref="148176846"/>
-							<reference ref="114814143"/>
+							<reference ref="579161665"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -588,7 +588,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">48</int>
-						<reference key="object" ref="114814143"/>
+						<reference key="object" ref="579161665"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -631,8 +631,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="coin@2x.png">{64, 64}</string>
-			<string key="draw_share@2x.png">{82, 86}</string>
-			<string key="experience@2x.png">{82, 86}</string>
+			<string key="draw_share@2x.png">{16, 16}</string>
+			<string key="experience@2x.png">{16, 16}</string>
 			<string key="flower_result@2x.png">{82, 86}</string>
 			<string key="playagain@2x.png">{82, 86}</string>
 			<string key="tomato_result@2x.png">{82, 86}</string>

@@ -50,7 +50,7 @@
 							<string key="NSResourceName">draw_main_bg@2x.jpg</string>
 						</object>
 					</object>
-					<object class="IBUIView" id="1063297553">
+					<object class="IBUIView" id="251030601">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{768, 88}</string>
@@ -96,7 +96,7 @@
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="303226920">
+						<object class="NSFont" key="IBUIFont" id="433196104">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -124,7 +124,7 @@
 							<string key="NSResourceName">room_seat_bg_2@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
-						<reference key="IBUIFont" ref="303226920"/>
+						<reference key="IBUIFont" ref="433196104"/>
 					</object>
 					<object class="IBUIButton" id="65272128">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -148,7 +148,7 @@
 							<string key="NSResourceName">room_seat_bg_3@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
-						<reference key="IBUIFont" ref="303226920"/>
+						<reference key="IBUIFont" ref="433196104"/>
 					</object>
 					<object class="IBUIButton" id="734641050">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -172,7 +172,7 @@
 							<string key="NSResourceName">room_seat_bg_4@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
-						<reference key="IBUIFont" ref="303226920"/>
+						<reference key="IBUIFont" ref="433196104"/>
 					</object>
 					<object class="IBUIButton" id="114674505">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -196,7 +196,7 @@
 							<string key="NSResourceName">room_seat_bg_5@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
-						<reference key="IBUIFont" ref="303226920"/>
+						<reference key="IBUIFont" ref="433196104"/>
 					</object>
 					<object class="IBUIButton" id="878148696">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -250,7 +250,7 @@
 							<string key="NSResourceName">changeroom@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
-						<reference key="IBUIFont" ref="303226920"/>
+						<reference key="IBUIFont" ref="433196104"/>
 					</object>
 					<object class="IBUIButton" id="281166593">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -274,7 +274,7 @@
 							<string key="NSResourceName">room_seat_bg_6@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
-						<reference key="IBUIFont" ref="303226920"/>
+						<reference key="IBUIFont" ref="433196104"/>
 					</object>
 					<object class="IBUILabel" id="32341589">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -485,7 +485,7 @@
 							<string key="NSResourceName">group_message@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="298077694"/>
-						<reference key="IBUIFont" ref="303226920"/>
+						<reference key="IBUIFont" ref="433196104"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
@@ -537,7 +537,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1063297553"/>
+						<reference key="destination" ref="251030601"/>
 					</object>
 					<int key="connectionID">60</int>
 				</object>
@@ -598,7 +598,7 @@
 							<reference ref="160853903"/>
 							<reference ref="889541159"/>
 							<reference ref="32341589"/>
-							<reference ref="1063297553"/>
+							<reference ref="251030601"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -700,7 +700,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">59</int>
-						<reference key="object" ref="1063297553"/>
+						<reference key="object" ref="251030601"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -745,7 +745,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="changeroom@2x.png">{74, 74}</string>
 			<string key="draw_main_bg@2x.jpg">{6, 6}</string>
-			<string key="group_message@2x.png">{86, 66}</string>
+			<string key="group_message@2x.png">{16, 16}</string>
 			<string key="room_seat_bg_1@2x.png">{142, 142}</string>
 			<string key="room_seat_bg_2@2x.png">{142, 142}</string>
 			<string key="room_seat_bg_3@2x.png">{142, 142}</string>
