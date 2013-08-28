@@ -17,7 +17,8 @@
 
 + (id)createCell:(id)delegate
 {
-    ContestPrizeCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier]];
+    NSInteger index = (ISIPAD ? 1 : 0);
+    ContestPrizeCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier] ofViewIndex:index];
     cell.delegate = delegate;
     return cell;
 }
@@ -29,7 +30,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return VALUE(140);
+    return ISIPAD ? 340: 140;
 }
 
 
