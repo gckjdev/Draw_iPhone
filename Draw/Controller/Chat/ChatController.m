@@ -134,7 +134,8 @@
     [chatTitleLabel setText:NSLS(@"kChatTitle")];
     [closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     
-    [closeButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(closeButton);
+//    [closeButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
     
     [self configureExpressionScrollView];
     
@@ -155,7 +156,17 @@
         self.selectedUserId = user.userId;
     }
     
+//    self.chatInfoViewBgImageView.layer.borderWidth = 2;
+//    self.chatInfoViewBgImageView.layer.borderColor = [COLOR_GREEN CGColor];
+    self.chatInfoViewBgImageView.backgroundColor = COLOR_GREEN;
+
+//    self.viewBgImageView.layer.borderWidth = 2;
+//    self.viewBgImageView.layer.borderColor = [COLOR_GREEN CGColor];
+    self.viewBgImageView.backgroundColor = COLOR_GREEN;
+
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.payAttentionButton);
     
+    self.nameLabel.textColor = COLOR_ORANGE;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -369,9 +380,13 @@
     float edge = (expressionScrollView.frame.size.width - NUM_EXPRESSION_IN_ONE_PAGE*WIDTH_EXPRESSION)/6;
     
     NSArray *expressions = [[ExpressionManager defaultManager] allPngKeys];
-    [expressionScrollView setContentSize:CGSizeMake(expressionScrollView.frame.size.width+1, 0)];
+    
+    int count = ceil([expressions count] / (double)NUM_EXPRESSION_IN_ONE_PAGE);
+    
+    [expressionScrollView setContentSize:CGSizeMake(expressionScrollView.frame.size.width * count, 0)];
     expressionScrollView.showsVerticalScrollIndicator = NO;
     expressionScrollView.showsHorizontalScrollIndicator = NO;
+    expressionScrollView.pagingEnabled = YES;
     
     int i = 0;
     for (NSString *key in expressions) {

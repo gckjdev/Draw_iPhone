@@ -951,10 +951,6 @@
 
 - (void)didSelectMessage:(NSString *)message toUser:(NSString *)userNickName
 {
-    //add by haodong
-//    BOOL gender = [[UserManager defaultManager] isUserMale];
-//    [[SpeechService defaultService] play:message gender:gender];
-    
     if ([message isEqualToString:NSLS(@"kWaitABit")] || [message isEqualToString:NSLS(@"kQuickQuick")]){
         [self clickProlongStart:nil];
     }else {
