@@ -6817,6 +6817,10 @@
 		EA433E4217CF051C006E6FA7 /* ChatDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E4017CF051B006E6FA7 /* ChatDetailCell.xib */; };
 		EA433E4317CF051C006E6FA7 /* ChatDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E4017CF051B006E6FA7 /* ChatDetailCell.xib */; };
 		EA433E4417CF051C006E6FA7 /* ChatDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E4017CF051B006E6FA7 /* ChatDetailCell.xib */; };
+		EA433E5917CF5B8B006E6FA7 /* wrong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */; };
+		EA433E5A17CF5B8B006E6FA7 /* wrong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */; };
+		EA433E5B17CF5B8B006E6FA7 /* wrong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */; };
+		EA433E5C17CF5B8B006E6FA7 /* wrong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */; };
 		EA46F3941778537C00D8D349 /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4317782BC30086D0FD /* CommonRoomListController.m */; };
 		EA46F39A177853F500D8D349 /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4117782BC30086D0FD /* CommonRoomListCell.m */; };
 		EA46F39B1778551500D8D349 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C18AA31761873500DE933B /* GalleryController.m */; };
@@ -9846,6 +9850,7 @@
 		EA433E2717CDE500006E6FA7 /* DJQStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJQStartView.h; sourceTree = "<group>"; };
 		EA433E2817CDE500006E6FA7 /* DJQStartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJQStartView.m; sourceTree = "<group>"; };
 		EA433E4017CF051B006E6FA7 /* ChatDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailCell.xib; sourceTree = "<group>"; };
+		EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wrong@2x.png"; sourceTree = "<group>"; };
 		EA49C86017093CD200843B6B /* TaoBaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoBaoController.h; sourceTree = "<group>"; };
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
@@ -11868,6 +11873,7 @@
 			isa = PBXGroup;
 			children = (
 				A4DDDF4917CE05CF0029E562 /* guessed@2x.png */,
+				EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */,
 				A4DDDF4A17CE05CF0029E562 /* no_s@2x.png */,
 			);
 			path = flag;
@@ -17984,6 +17990,7 @@
 				A4DDE28517CE05D00029E562 /* plus_image@2x.png in Resources */,
 				A4DDE28917CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4317CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
+				EA433E5B17CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18864,6 +18871,7 @@
 				A4DDE28417CE05D00029E562 /* plus_image@2x.png in Resources */,
 				A4DDE28817CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4217CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
+				EA433E5A17CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19725,6 +19733,7 @@
 				A4DDE28317CE05D00029E562 /* plus_image@2x.png in Resources */,
 				A4DDE28717CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4117CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
+				EA433E5917CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20556,6 +20565,7 @@
 				A4DDE28617CE05D00029E562 /* plus_image@2x.png in Resources */,
 				A4DDE28A17CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4417CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
+				EA433E5C17CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

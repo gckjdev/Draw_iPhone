@@ -49,9 +49,9 @@
 #define TEXT_WIDTH_MAX    ((ISIPAD)?(470.0):(190.0))
 #define TEXT_HEIGHT_MAX   MAXFLOAT
 
-#define TEXT_EDGE_SPACE VALUE(8)
+#define TEXT_EDGE_SPACE VALUE(ISIPAD?10:8)
 
-#define TIME_FRAME (ISIPAD ? CGRectMake(10,6,300,17) : CGRectMake(10,6,300,17))
+#define TIME_FRAME (ISIPAD ? CGRectMake(34,14,700,40) : CGRectMake(10,6,300,17))
 
 #define TEXT_FONT [UIFont systemFontOfSize:VALUE(14)]
 #define LINE_BREAK_MODE NSLineBreakByWordWrapping
@@ -69,7 +69,7 @@
 + (id)createCell:(id<ChatDetailCellDelegate>)delegate
 
 {
-    ChatDetailCell *cell = [ChatDetailCell createViewWithXibIdentifier:@"ChatDetailCell"];
+    ChatDetailCell *cell = [ChatDetailCell createViewWithXibIdentifier:@"ChatDetailCell" ofViewIndex:ISIPAD];
     SET_VIEW_ROUND_CORNER(cell.holderView);
     cell.delegate = delegate;
     cell.isReceive = NO;
@@ -90,7 +90,7 @@
 {
     time_t minus = time(0) - _lastClickDown;
     
-    if (minus > 1) {
+    if (minus >= 1) {
         //long click
         [self.delegate didLongClickMessage:self.message];
     }else{
