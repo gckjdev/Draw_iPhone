@@ -57,7 +57,7 @@
 - (NSInteger)loadNewDataCount;
 - (NSInteger)loadMoreDataCount;
 - (void)tableViewScrollToTop;
-- (void)tableViewScrollToBottom;
+- (void)tableViewScrollToBottom:(BOOL)animated;
 - (BOOL)messageShowTime:(PPMessage *)message row:(int)row;
 //- (void)appendMessageList:(NSArray *)list;
 @end
@@ -208,6 +208,21 @@
     }];
 }
 
+- (void)updateBG
+{
+    UIImage *image = [[UserManager defaultManager] pageBgForKey:@"chat_bg.png"];
+    if (image) {
+        UIImageView *iv = (id)[self.view reuseViewWithTag:21233
+                                                viewClass:[UIImageView class]
+                                                    frame:self.view.bounds];
+        [iv setImage:image];
+        [self.view sendSubviewToBack:iv];
+    }else{
+        self.view.backgroundColor = [[ShareImageManager defaultManager] drawBGColor];
+    }
+
+}
+
 - (void)viewDidLoad
 {
     [self setSupportRefreshHeader:YES];
@@ -219,17 +234,8 @@
     
     [self registerAllChatNotification];
     [self loadNewMessage:YES];
-    
-    self.view.backgroundColor = COLOR_GRAY;
-    UIImage *image = [[UserManager defaultManager] pageBgForKey:@"chat_bg.png"];
-    if (image) {
-        UIImageView *iv = (id)[self.view reuseViewWithTag:21233
-                                                viewClass:[UIImageView class]
-                                                    frame:self.view.bounds];
-        [iv setImage:image];
-        [self.view sendSubviewToBack:iv];
-    }
-    
+    [self updateBG];
+    [self scrollToBottom:NO];
 }
 
 - (void)viewDidUnload
@@ -286,7 +292,7 @@
 
         [self reloadTableView];
         if (forward || insertMiddle) {
-            [self tableViewScrollToBottom];
+            [self tableViewScrollToBottom:YES];
         }else{
             [self tableViewScrollToTop];
         }
@@ -369,14 +375,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PPMessage *message = [self messageOfIndex:indexPath.row];
-    BOOL isReceive = (message.sourceType != SourceTypeSend);
-    NSString *indentifier = [ChatDetailCell getCellIdentifierIsReceive:isReceive];
+    
+    
+    NSString *indentifier = [ChatDetailCell getCellIdentifier];
     ChatDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:indentifier];
     if (cell == nil) {
-        cell = [ChatDetailCell createCell:self isReceive:isReceive];
+        cell = [ChatDetailCell createCell:self];        
     }
     BOOL flag = [self messageShowTime:message row:indexPath.row];
-    [cell setCellWithMessageStat:self.messageStat 
+    [cell setCellWithMessageStat:self.messageStat
                          message:message
                        indexPath:indexPath 
                         showTime:flag];
@@ -445,8 +452,8 @@
     frame.size.height = yLine - CGRectGetMinY(frame);
     tableView.frame = frame;
     [tableView reloadData];
-    [self tableViewScrollToBottom];
-//    [self performSelector:@selector(tableViewScrollToBottom) withObject:nil afterDelay:0.2];
+    [self tableViewScrollToBottom:YES];
+//    [self performSelector:@selector(tableViewScrollToBottom:YES) withObject:nil afterDelay:0.2];
 }
 
 //设定view底部，整个view保持起始点不变，整个view膨胀
@@ -515,20 +522,16 @@
 {
     [controller dismissModalViewControllerAnimated:YES];
     [[ChatService defaultService]  sendDrawMessage:drawActionList canvasSize:size friendUserId:self.fid];
-    [self tableViewScrollToBottom];
+    [self tableViewScrollToBottom:YES];
 }
 
 - (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
 {
     [controller dismissModalViewControllerAnimated:YES];
     [[ChatService defaultService]  sendImage:image friendUserId:self.fid];
-    [self tableViewScrollToBottom];
+    [self tableViewScrollToBottom:YES];
 }
 
-- (void)showFriendProfile:(MyFriend *)aFriend
-{
-    [CommonUserInfoView showFriend:aFriend inController:self needUpdate:YES canChat:YES];
-}
 
 #pragma mark textview delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text  
@@ -541,7 +544,7 @@
             }            
             
             [[ChatService defaultService] sendTextMessage:textView.text friendUserId:self.fid];
-            [self tableViewScrollToBottom];
+            [self tableViewScrollToBottom:YES];
             textView.text = nil;            
         }
         return NO;  
@@ -669,11 +672,6 @@
 
 
 #pragma mark - 
-- (void)clickMessage:(PPMessage *)message 
-  withDrawActionList:(NSArray *)drawActionList
-{
-    [self enterReplayController:(DrawMessage *)message];
-}
 
 
 - (void)clickMessage:(PPMessage *)message
@@ -686,7 +684,7 @@
             [self showActionOptionsForMessage:message];
             break;
         case MessageTypeDraw:
-            [self clickMessage:message withDrawActionList:[(DrawMessage *)message drawActionList]];
+            [self enterReplayController:(DrawMessage *)message];
             break;
         case MessageTypeLocationRequest:
         {
@@ -863,6 +861,8 @@
 {
     if (message.messageType != MessageTypeText) {
         [self showActionOptionsForMessage:message];
+    }else{
+        [self clickMessage:message];
     }
 }
 
@@ -903,7 +903,7 @@
         [[ChatService defaultService] sendMessage:_selectedMessage];
         
         [self reloadTableView];
-        [self tableViewScrollToBottom];
+        [self tableViewScrollToBottom:YES];
     }
     _selectedMessage = nil;
 }
@@ -988,14 +988,14 @@
                                           animated:YES];        
     }    
 }
-- (void)tableViewScrollToBottom
+- (void)tableViewScrollToBottom:(BOOL)animated
 {
     if ([self.messageList count] > 0) {
         NSInteger row = [self.messageList count] - 1;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.dataTableView scrollToRowAtIndexPath:indexPath 
                                   atScrollPosition:UITableViewScrollPositionBottom 
-                                          animated:YES];        
+                                          animated:animated];
     }
 }
 
