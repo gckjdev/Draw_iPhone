@@ -429,7 +429,13 @@ typedef enum{
 //            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
 //            [self.navigationController pushViewController:uc animated:YES];
             
-            [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName] inViewController:self];
+            
+            if ([[ContestManager defaultManager] displayContestAnonymousForFeed:self.feed] == NO){
+                [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId
+                                                                                              avatar:feedUser.avatar
+                                                                                            nickName:feedUser.nickName]
+                                           inViewController:self];
+            }
             
         }
             break;

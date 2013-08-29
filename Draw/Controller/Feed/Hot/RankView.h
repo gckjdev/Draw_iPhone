@@ -48,7 +48,7 @@ typedef enum{
 
 - (void)updateViewInfoForMyOpus;
 - (void)updateViewInfoForUserOpus;
-- (void)updateViewInfoForContestOpus;
+- (void)updateViewInfoForContestOpus:(DrawFeed*)feed;
 - (IBAction)clickMaskView:(id)sender;
 - (void)setRankViewSelected:(BOOL)selected;
 

@@ -33,6 +33,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *itemImage;
 @property (retain, nonatomic) IBOutlet UIView *splitLine;
+@property (retain, nonatomic) IBOutlet UIButton *replyButton;
 @property (retain, nonatomic) CommentFeed *feed;
 //@property (retain, nonatomic) PPViewController *superViewController;
 
