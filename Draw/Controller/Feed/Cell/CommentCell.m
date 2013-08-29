@@ -15,7 +15,7 @@
 #import "ShareImageManager.h"
 #import "CommentFeed.h"
 #import "MyFriend.h"
-
+#import "ContestManager.h"
 
 @implementation CommentCell
 @synthesize commentLabel;
@@ -24,7 +24,7 @@
 @synthesize itemImage;
 @synthesize splitLine;
 @synthesize feed = _feed;
-
+@synthesize replyButton;
 
 
 
@@ -163,6 +163,14 @@
         [self.commentLabel setText:comment];
     }
     
+    if ([[ContestManager defaultManager] displayContestAnonymousForFeed:feed.drawFeed] &&
+        [[UserManager defaultManager] isMe:feed.author.userId]){
+        self.replyButton.hidden = YES;
+    }
+    else{
+        self.replyButton.hidden = NO;
+    }
+    
 }
 
 
@@ -173,6 +181,7 @@
     PPRelease(nickNameLabel);
     PPRelease(itemImage);
     PPRelease(splitLine);
+    PPRelease(replyButton);
 //    PPRelease(_superViewController);
     [super dealloc];
 }

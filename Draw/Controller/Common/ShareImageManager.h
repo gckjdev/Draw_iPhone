@@ -31,6 +31,8 @@
 #define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
 #define COLOR_YELLOW2 OPAQUE_COLOR(204, 131, 24) // common tab selected bg
 
+#define COLOR_LIGHT_GRAY1 OPAQUE_COLOR(210, 165, 41)    
+
 #define COLOR_LIGHT_GRAY OPAQUE_COLOR(234, 231, 225) // controller bg
 
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog

@@ -23,6 +23,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *discountButton;
 @property (retain, nonatomic) IBOutlet UIButton *buyButton;
 @property (retain, nonatomic) IBOutlet UIImageView *productImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *cellBgImageView;
 
 - (void)setCellWith:(PBIAPProduct *)saleIngot indexPath:(NSIndexPath *)oneIndexPath;
 

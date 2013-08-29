@@ -27,6 +27,7 @@
     [_discountButton release];
     [_buyButton release];
     [_productImageView release];
+    [_cellBgImageView release];
     [super dealloc];
 }
 
@@ -35,7 +36,7 @@
     return @"ChargeCell";
 }
 
-#define CHARGE_CELL_HEIHT ([DeviceDetection isIPAD] ? (140) : (70))
+#define CHARGE_CELL_HEIHT ([DeviceDetection isIPAD] ? (153) : (70))
 + (CGFloat)getCellHeight
 {
     return CHARGE_CELL_HEIHT;
@@ -70,6 +71,20 @@
     }
     
     [self.buyButton setTitle:NSLS(@"kBuy") forState:UIControlStateNormal];
+    
+    self.cellBgImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
+    self.cellBgImageView.layer.borderColor = [COLOR_YELLOW CGColor];
+    self.cellBgImageView.backgroundColor = COLOR_GRAY;
+    SET_VIEW_ROUND_CORNER(self.cellBgImageView);
+        
+    self.discountButton.backgroundColor = COLOR_GREEN;
+    SET_VIEW_ROUND_CORNER(self.discountButton);
+    
+    self.buyButton.backgroundColor = COLOR_ORANGE;
+    SET_VIEW_ROUND_CORNER(self.buyButton);
+    
+    [self.buyButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    
 }
 
 - (IBAction)clickBuyButton:(id)sender {

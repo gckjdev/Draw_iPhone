@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -138,7 +138,6 @@
 								<string key="NSFrame">{{10, 108.5}, {693, 1}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC44MTQ2OTU0ODM2AA</bytes>
@@ -266,6 +265,14 @@
 					<int key="connectionID">21</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">replyButton</string>
+						<reference key="source" ref="786630657"/>
+						<reference key="destination" ref="1067762314"/>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickReplyButton:</string>
 						<reference key="source" ref="1067762314"/>
@@ -364,7 +371,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">23</int>
+			<int key="maxID">25</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -386,6 +393,7 @@
 						<string key="commentLabel">UILabel</string>
 						<string key="itemImage">UIImageView</string>
 						<string key="nickNameLabel">UILabel</string>
+						<string key="replyButton">UIButton</string>
 						<string key="splitLine">UIView</string>
 						<string key="timeLabel">UILabel</string>
 					</dictionary>
@@ -401,6 +409,10 @@
 						<object class="IBToOneOutletInfo" key="nickNameLabel">
 							<string key="name">nickNameLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="replyButton">
+							<string key="name">replyButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="splitLine">
 							<string key="name">splitLine</string>

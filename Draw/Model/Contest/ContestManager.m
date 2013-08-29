@@ -204,4 +204,9 @@ static ContestManager *_staticContestManager;
     return NO;
 }
 
+- (BOOL)displayContestAnonymousForFeed:(DrawFeed*)drawFeed
+{
+    return [self displayContestAnonymous:drawFeed.contestId];
+}
+
 @end

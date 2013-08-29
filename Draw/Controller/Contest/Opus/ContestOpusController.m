@@ -124,7 +124,7 @@ typedef enum{
     [view.cupFlag setImage:[ShareImageManager defaultManager].goldenCupImage];
     view.cupFlag.hidden = NO;
     [cell.contentView addSubview:view];
-    [view updateViewInfoForContestOpus];
+    [view updateViewInfoForContestOpus:feed];
     [view.title setHidden:YES];
 }
 
@@ -143,8 +143,8 @@ typedef enum{
     [view2 setViewInfo:feed2];
     [view2.cupFlag setImage:[ShareImageManager defaultManager].copperCupImage];
     view2.cupFlag.hidden = NO;
-    [view1 updateViewInfoForContestOpus];
-    [view2 updateViewInfoForContestOpus];
+    [view1 updateViewInfoForContestOpus:feed1];
+    [view2 updateViewInfoForContestOpus:feed2];
     [cell.contentView addSubview:view1];
     [cell.contentView addSubview:view2];
     
@@ -169,7 +169,7 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
-        [rankView updateViewInfoForContestOpus];
+        [rankView updateViewInfoForContestOpus:feed];
         [rankView.title setHidden:YES];
     }
 }
