@@ -16,6 +16,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *promotionImageView;
 @property (retain, nonatomic) IBOutlet UIButton *countButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (retain, nonatomic) IBOutlet UIImageView *cellBgImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *itemBgImageView;
 
 - (void)setCellInfo:(PBGameItem *)item;
 

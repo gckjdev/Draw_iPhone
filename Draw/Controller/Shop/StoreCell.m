@@ -30,7 +30,7 @@
     return @"StoreCell";
 }
 
-#define CELL_HEIHT ([DeviceDetection isIPAD] ? (148) : (83))
+#define CELL_HEIHT ([DeviceDetection isIPAD] ? (181) : (83))
 + (CGFloat)getCellHeight
 {
     return CELL_HEIHT;
@@ -97,6 +97,22 @@
     self.itemDescLabel.text = NSLS(item.desc);
 
     [self addPriceView];
+    
+    self.cellBgImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
+    self.cellBgImageView.layer.borderColor = [COLOR_YELLOW CGColor];
+    self.cellBgImageView.backgroundColor = COLOR_GRAY;
+    SET_VIEW_ROUND_CORNER(self.cellBgImageView);
+    
+    self.itemBgImageView.backgroundColor = COLOR_WHITE;
+    self.itemBgImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
+    self.itemBgImageView.layer.borderColor = [COLOR_ORANGE CGColor];
+    SET_VIEW_ROUND_CORNER(self.itemBgImageView);
+    
+    self.itemNameLabel.textColor = COLOR_BROWN;
+    self.itemDescLabel.textColor = COLOR_BROWN;
+    
+    self.countButton.backgroundColor = COLOR_BROWN;
+    SET_VIEW_ROUND_CORNER(self.countButton);
 }
 
 - (void)setItem:(PBGameItem *)item
@@ -142,6 +158,8 @@
     [_promotionImageView release];
     [_countButton release];
     [_indicatorView release];
+    [_cellBgImageView release];
+    [_itemBgImageView release];
     [super dealloc];
 }
 @end
