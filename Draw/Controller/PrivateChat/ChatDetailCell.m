@@ -75,6 +75,7 @@
     cell.isReceive = NO;
     [cell.msgLabel setFont:TEXT_FONT];
     [cell.msgLabel setLineBreakMode:LINE_BREAK_MODE];
+    cell.holderView.backgroundColor = [UIColor clearColor];
     [cell.holderView addTarget:cell action:@selector(clickDown:) forControlEvents:UIControlEventTouchDown];
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpInside];
     [cell.holderView addTarget:cell action:@selector(clickUp:) forControlEvents:UIControlEventTouchUpOutside];
@@ -305,20 +306,25 @@
     self.imgView.hidden = self.msgLabel.hidden = YES;
     if(message.messageType == MessageTypeDraw){
         [self updateDrawMessageView:(DrawMessage *)message];
+        [self.holderView setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.holderView setBackgroundImage:nil forState:UIControlStateHighlighted];
     } else if(message.messageType == MessageTypeImage){
         [self updateImageMessageView:(ImageMessage*)message];
     }else{
         [self updateTextMessageView:(TextMessage *)message];
+        if (!self.isReceive) {
+            SET_BUTTON_ROUND_STYLE_ORANGE(self.holderView);
+            [self.msgLabel setTextColor:COLOR_WHITE];
+        }else{
+            SET_BUTTON_ROUND_STYLE_YELLOW(self.holderView);
+            [self.msgLabel setTextColor:COLOR_COFFEE];
+        }
     }
     //如果是发送的消息就靠右
     if (!self.isReceive) {
         [self.holderView.superview reverseViewHorizontalContent];
-        SET_BUTTON_ROUND_STYLE_ORANGE(self.holderView);
-        [self.msgLabel setTextColor:COLOR_WHITE];
-    }else{
-        SET_BUTTON_ROUND_STYLE_YELLOW(self.holderView);
-        [self.msgLabel setTextColor:COLOR_COFFEE];
     }
+
     [self updateSendingFlag];
 }
 
