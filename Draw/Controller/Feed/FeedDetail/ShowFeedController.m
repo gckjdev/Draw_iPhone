@@ -67,6 +67,7 @@
 @property (nonatomic, retain) UseItemScene* useItemScene;
 @property(nonatomic, retain) DetailFooterView *footerView;
 @property(nonatomic, retain) PPPopTableView *judgerPopupView;
+//@property(nonatomic, assign) BOOL swipeEnable;
 
 //- (IBAction)clickActionButton:(id)sender;
 
@@ -135,9 +136,18 @@ typedef enum{
 }
 
 
+- (BOOL)swipeDisable
+{
+    return [self.view containsSubViewWithClass:[JudgerScoreView class]];
+}
+
 #pragma mark-- Swip action
 - (void)handleSwipe:(UISwipeGestureRecognizer *)swp
 {
+    if ([self swipeDisable]) {
+        PPDebug(@"swipeDisable!!!");
+        return;
+    }
     if ([self.feedList count] != 0 && swp.state == UIGestureRecognizerStateRecognized) {
         NSInteger currentIndex = NSNotFound;
         //[self.feedList indexOfObject:self.feed];
@@ -790,7 +800,6 @@ typedef enum{
                         [_commentHeader setSelectedType:CommentTypeComment];
                         [cc release];
                     }else if(row == 1){
-                        //TODO for judger score
                         Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
                         if (contest) {
                             JudgerScoreView *scoreView = [JudgerScoreView judgerScoreViewWithContest:contest opus:(id)self.feed];
