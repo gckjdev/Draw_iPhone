@@ -18,6 +18,7 @@
 #import "UIViewUtils.h"
 //#import "LearnDrawManager.h"
 #import "UIImageExt.h"
+#import "ContestManager.h"
 
 @interface RankView ()
 @property (retain, nonatomic) IBOutlet UILabel *costLabel;
@@ -191,6 +192,8 @@
     if (feed.learnDraw) {
         [self updateLearnDraw:feed.learnDraw];
     }
+    
+
 
 }
 
@@ -213,10 +216,16 @@
     [self.title setTextAlignment:UITextAlignmentCenter];
 }
 
-- (void)updateViewInfoForContestOpus
+- (void)updateViewInfoForContestOpus:(DrawFeed*)feed
 {
     [self.title setHidden:YES];
-    [self.author setHidden:NO];
+    
+    if ([[ContestManager defaultManager] displayContestAnonymousForFeed:feed]){
+        self.author.hidden = YES;
+    }
+    else{
+        self.author.hidden = NO;
+    }    
 }
 
 - (void)setRankViewSelected:(BOOL)selected

@@ -6821,6 +6821,14 @@
 		EA433E2117CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
 		EA433E2217CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
 		EA433E2317CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
+		EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2617CDE500006E6FA7 /* DJQRateView.m */; };
+		EA433E2A17CDE500006E6FA7 /* DJQRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2617CDE500006E6FA7 /* DJQRateView.m */; };
+		EA433E2B17CDE500006E6FA7 /* DJQRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2617CDE500006E6FA7 /* DJQRateView.m */; };
+		EA433E2C17CDE500006E6FA7 /* DJQRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2617CDE500006E6FA7 /* DJQRateView.m */; };
+		EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2817CDE500006E6FA7 /* DJQStartView.m */; };
+		EA433E2E17CDE500006E6FA7 /* DJQStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2817CDE500006E6FA7 /* DJQStartView.m */; };
+		EA433E2F17CDE500006E6FA7 /* DJQStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2817CDE500006E6FA7 /* DJQStartView.m */; };
+		EA433E3017CDE500006E6FA7 /* DJQStartView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2817CDE500006E6FA7 /* DJQStartView.m */; };
 		EA46F3941778537C00D8D349 /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4317782BC30086D0FD /* CommonRoomListController.m */; };
 		EA46F39A177853F500D8D349 /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4117782BC30086D0FD /* CommonRoomListCell.m */; };
 		EA46F39B1778551500D8D349 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C18AA31761873500DE933B /* GalleryController.m */; };
@@ -9849,6 +9857,10 @@
 		EA433E1417CDDA2E006E6FA7 /* JudgerScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgerScoreView.h; sourceTree = "<group>"; };
 		EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgerScoreView.m; sourceTree = "<group>"; };
 		EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JudgerScoreView.xib; sourceTree = "<group>"; };
+		EA433E2517CDE500006E6FA7 /* DJQRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJQRateView.h; sourceTree = "<group>"; };
+		EA433E2617CDE500006E6FA7 /* DJQRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJQRateView.m; sourceTree = "<group>"; };
+		EA433E2717CDE500006E6FA7 /* DJQStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJQStartView.h; sourceTree = "<group>"; };
+		EA433E2817CDE500006E6FA7 /* DJQStartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJQStartView.m; sourceTree = "<group>"; };
 		EA49C86017093CD200843B6B /* TaoBaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoBaoController.h; sourceTree = "<group>"; };
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
@@ -13138,6 +13150,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				EA433E2417CDE500006E6FA7 /* RateView */,
 				A489C00817B5D942003E5150 /* JDFlipNumberView */,
 				A4ECE9B71792A036006DD933 /* PageScrollView */,
 				A40EE81D170043A9003B8FFC /* ReflectionView */,
@@ -15224,6 +15237,7 @@
 				CA3F2ED11609B3350059667B /* StatementController.xib */,
 				CA89748216087BE2003A95F7 /* ContestController.xib */,
 				CA3F2EA7160967B80059667B /* ContestView.xib */,
+				EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */,
 				CA3F2ED41609BCC90059667B /* Opus */,
 				CA89748016087BE2003A95F7 /* ContestController.h */,
 				CA89748116087BE2003A95F7 /* ContestController.m */,
@@ -15233,7 +15247,6 @@
 				CA3F2ED01609B3350059667B /* StatementController.m */,
 				EA433E1417CDDA2E006E6FA7 /* JudgerScoreView.h */,
 				EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */,
-				EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */,
 			);
 			path = Contest;
 			sourceTree = "<group>";
@@ -16877,6 +16890,17 @@
 				EA41242A1767137E00FC13C2 /* AskPs.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EA433E2417CDE500006E6FA7 /* RateView */ = {
+			isa = PBXGroup;
+			children = (
+				EA433E2517CDE500006E6FA7 /* DJQRateView.h */,
+				EA433E2617CDE500006E6FA7 /* DJQRateView.m */,
+				EA433E2717CDE500006E6FA7 /* DJQStartView.h */,
+				EA433E2817CDE500006E6FA7 /* DJQStartView.m */,
+			);
+			path = RateView;
 			sourceTree = "<group>";
 		};
 		EA6FE5D7176B334500AB4E56 /* Service */ = {
@@ -21393,6 +21417,8 @@
 				CAFC03C617C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA51419617CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1817CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
+				EA433E2B17CDE500006E6FA7 /* DJQRateView.m in Sources */,
+				EA433E2F17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22196,6 +22222,8 @@
 				CA5519F817CAFA1000855225 /* CommonShareAction.m in Sources */,
 				CA51419517CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1717CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
+				EA433E2A17CDE500006E6FA7 /* DJQRateView.m in Sources */,
+				EA433E2E17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23005,6 +23033,8 @@
 				CAFC03C417C887C200A11DE3 /* PPPopTableView.m in Sources */,
 				CA51419417CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1617CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
+				EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */,
+				EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23788,6 +23818,8 @@
 				CA5519F917CAFA1100855225 /* CommonShareAction.m in Sources */,
 				CA51419717CB419F00883CAA /* ContestPrizeCell.m in Sources */,
 				EA433E1917CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
+				EA433E2C17CDE500006E6FA7 /* DJQRateView.m in Sources */,
+				EA433E3017CDE500006E6FA7 /* DJQStartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,8 +7,13 @@
 //
 
 #import "UserInfoCell.h"
+#import "ContestManager.h"
 //#import "FeedService.h"
 //#import "ShareImageManager.h"
+
+#define DEFAULT_ANOUNYMOUS_AVATAR   @""
+
+
 @implementation UserInfoCell
 @synthesize nickLabel;
 @synthesize avatarView;
@@ -41,13 +46,27 @@
     return 45.0f;
 }
 
+- (BOOL)isAnounymous:(DrawFeed*)feed
+{
+    NSString* contestId = [feed contestId];
+    if (contestId && [[ContestManager defaultManager] displayContestAnonymous:contestId]){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 - (void)setCellInfo:(DrawFeed *)feed
 {
+    BOOL isAnounymous = [self isAnounymous:feed];
+    
     CGRect frame = self.avatarView.frame;
     [self.avatarView removeFromSuperview];
     NSString *userId = feed.author.userId;
-    NSString *avatar = feed.author.avatar;
-    NSString *nickName = feed.author.nickName;
+    NSString *avatar = isAnounymous ? DEFAULT_ANOUNYMOUS_AVATAR : feed.author.avatar;
+    NSString *nickName = isAnounymous ? NSLS(@"kAnounymousContestNick") : feed.author.nickName;
+    NSString *sign = isAnounymous ? @"" : feed.author.signature;
     
     BOOL gender =  feed.author.gender;
     
@@ -57,18 +76,20 @@
     [self addSubview:self.avatarView];
     
     //name
-    if ([feed.author.signature length] > 0) {
+    if ([sign length] > 0) {
         self.nickNameLabel.hidden = NO;
         self.signLabel.hidden = NO;
         self.nickLabel.hidden = YES;
         self.nickNameLabel.text = nickName;
-        self.signLabel.text = feed.author.signature;
+        self.signLabel.text = sign;
     }else{
         self.nickNameLabel.hidden = YES;
         self.signLabel.hidden = YES;
         self.nickLabel.hidden = NO;
         [self.nickLabel setText:nickName];
     }
+    
+    self.accessoryType = isAnounymous ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (void)dealloc {

@@ -49,6 +49,7 @@
 #import "MWPhotoBrowser.h"
 #import "UIButton+WebCache.h"
 #import "ContestManager.h"
+#import "JudgerScoreView.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
@@ -66,6 +67,7 @@
 @property (nonatomic, retain) UseItemScene* useItemScene;
 @property(nonatomic, retain) DetailFooterView *footerView;
 @property(nonatomic, retain) PPPopTableView *judgerPopupView;
+//@property(nonatomic, assign) BOOL swipeEnable;
 
 //- (IBAction)clickActionButton:(id)sender;
 
@@ -134,9 +136,18 @@ typedef enum{
 }
 
 
+- (BOOL)swipeDisable
+{
+    return [self.view containsSubViewWithClass:[JudgerScoreView class]];
+}
+
 #pragma mark-- Swip action
 - (void)handleSwipe:(UISwipeGestureRecognizer *)swp
 {
+    if ([self swipeDisable]) {
+        PPDebug(@"swipeDisable!!!");
+        return;
+    }
     if ([self.feedList count] != 0 && swp.state == UIGestureRecognizerStateRecognized) {
         NSInteger currentIndex = NSNotFound;
         //[self.feedList indexOfObject:self.feed];
@@ -429,7 +440,13 @@ typedef enum{
 //            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
 //            [self.navigationController pushViewController:uc animated:YES];
             
-            [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName] inViewController:self];
+            
+            if ([[ContestManager defaultManager] displayContestAnonymousForFeed:self.feed] == NO){
+                [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId
+                                                                                              avatar:feedUser.avatar
+                                                                                            nickName:feedUser.nickName]
+                                           inViewController:self];
+            }
             
         }
             break;
@@ -789,7 +806,11 @@ typedef enum{
                         [_commentHeader setSelectedType:CommentTypeComment];
                         [cc release];
                     }else if(row == 1){
-                        //TODO for judger score
+                        Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
+                        if (contest) {
+                            JudgerScoreView *scoreView = [JudgerScoreView judgerScoreViewWithContest:contest opus:(id)self.feed];
+                            [scoreView showInView:self.view];
+                        }
                     }
                     [self.judgerPopupView dismiss:YES];
                 }];

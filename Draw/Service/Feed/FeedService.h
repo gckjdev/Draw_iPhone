@@ -209,6 +209,13 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 - (void)rankOpus:(NSString*)opusId
        contestId:(NSString*)contestId
         rankType:(int)rankType
-       rankValue:(int)rankValue;
+       rankValue:(int)rankValue
+     resultBlock:(FeedActionResultBlock)resultBlock;
+
+- (void)rankOpus:(NSString*)opusId
+       contestId:(NSString*)contestId
+            rank:(NSDictionary*)rankDict
+     resultBlock:(FeedActionResultBlock)resultBlock;
+
 
 @end

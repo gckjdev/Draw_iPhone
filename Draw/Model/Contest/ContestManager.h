@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Contest;
+@class DrawFeed;
 
 @interface ContestManager : NSObject {
 }
@@ -28,6 +29,7 @@
 
 // 比赛是否匿名显示
 - (BOOL)displayContestAnonymous:(NSString*)contestId;
+- (BOOL)displayContestAnonymousForFeed:(DrawFeed*)drawFeed;
 
 // 根据contestId返回正在进行中的contest
 - (Contest*)ongoingContestById:(NSString*)contestId;
