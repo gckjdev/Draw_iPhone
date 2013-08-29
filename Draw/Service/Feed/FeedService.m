@@ -1071,6 +1071,14 @@ static FeedService *_staticFeedService = nil;
 
 - (void)rankOpus:(NSString*)opusId
        contestId:(NSString*)contestId
+            rank:(NSDictionary*)rankDict
+     resultBlock:(FeedActionResultBlock)resultBlock
+{
+    
+}
+
+- (void)rankOpus:(NSString*)opusId
+       contestId:(NSString*)contestId
         rankType:(int)rankType
        rankValue:(int)rankValue
      resultBlock:(void (^)(int resultCode))resultBlock
