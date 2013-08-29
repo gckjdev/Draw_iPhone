@@ -47,8 +47,9 @@
 
 - (NSInteger)currentRateForType:(NSInteger)type
 {
-    if (type == 1) {
-        return self.normalRateView.rate;
+    DJQRateView *rateView = (id)[self viewWithTag:type];
+    if ([rateView isKindOfClass:[DJQRateView class]]) {
+        return rateView.rate;
     }
     return 0;
 }
@@ -71,10 +72,30 @@
             }
         }];
     };
-    self.normalRateView.rate = [self rateForType:1];
-
+    
+    [self updateRateViews];
 }
 
+- (void)updateRateViews
+{
+    CGFloat lx = 20, ly = 10;
+    CGFloat space = 20;
+    CGFloat rx = 100;
+    //140 40
+    for (PBIntKeyValue *rankTypeValue in _contest.pbContest.rankTypesList) {
+        NSInteger type = rankTypeValue.key;
+        NSString *title = rankTypeValue.value;
+        NSInteger rate = [self myRateWithType:type];
+        [self reuseLabelWithTag:type+100
+                                           frame:CGRectMake(lx, ly, 1, 30)
+                                            font:[UIFont systemFontOfSize:15]
+                                            text:title];
+        DJQRateView *rateView = (id)[self reuseViewWithTag:type viewClass:[DJQRateView class] frame:CGRectMake(rx, ly+10, 140, 40)];
+        rateView.rate = rate;
+        ly += CGRectGetMaxY(rateView.frame) + space;
+        
+    }
+}
 
 + (id)judgerScoreViewWithContest:(Contest *)contest opus:(ContestFeed *)opus
 {
