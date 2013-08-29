@@ -48,6 +48,10 @@ typedef enum  {
     
     ChargeLearnDraw = 450,
     
+    DeductInHappyGuessMode = 460,
+    DeductInGeniusGuessMode = 470,
+    DeductInContestGuessMode = 480
+    
 }BalanceSourceType;
 
 @interface UserAccount : NSObject

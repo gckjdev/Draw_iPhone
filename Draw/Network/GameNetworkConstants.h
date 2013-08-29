@@ -627,6 +627,9 @@
 #define PARA_BONUS @"bn"
 #define PARA_RANGETYPE @"rt"
 
+#define PARA_RANKTYPES @"rts"
+#define PARA_RANVALUES @"rvs"
+
 #define METHOD_GET_CONTEST_TOP_OPUS @"gcto"
 #define PARA_ACTIONID @"aid"
 #define PARA_THUMB_IMAGE @"timg"

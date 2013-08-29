@@ -1069,13 +1069,60 @@ static FeedService *_staticFeedService = nil;
     
 }
 
+#define RANK_SEPERATOR @"$"
+//#define RANK_VALUE_SEPERATOR @":"
+
+- (void)rankOpus:(NSString*)opusId
+       contestId:(NSString*)contestId
+            rank:(NSDictionary*)rankDict
+     resultBlock:(FeedActionResultBlock)resultBlock
+{
+    if (opusId == nil || contestId == nil){
+        EXECUTE_BLOCK(resultBlock, ERROR_OPUS_ID_NULL);
+        return;
+    }
+    dispatch_async(workingQueue, ^{
+        NSMutableString *rankTypes = [[[NSMutableString alloc] initWithString:@""] autorelease];
+        NSMutableString *rankValues = [[[NSMutableString alloc] initWithString:@""] autorelease];
+
+        NSInteger index = 0;
+        for (NSNumber *key in [rankDict allKeys]) {
+            NSInteger rank = [key integerValue];
+            NSInteger value = [[rankDict objectForKey:key] integerValue];
+            if (index++ == 0) {
+                [rankTypes appendFormat:@"%d",rank];
+                [rankValues appendFormat:@"%d",value];
+            }else{
+                [rankTypes appendFormat:@"%@%d",RANK_SEPERATOR, rank];
+                [rankValues appendFormat:@"%@%d",RANK_SEPERATOR, value]; 
+            }
+        }
+        
+        NSDictionary* para = @{ PARA_OPUS_ID    : opusId,
+                                PARA_CONTESTID  : contestId,
+                                PARA_RANKTYPES  : rankTypes,
+                                PARA_RANVALUES  : rankValues,
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_RANK_OPUS parameters:para isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+            
+        });
+    });
+
+}
+
 - (void)rankOpus:(NSString*)opusId
        contestId:(NSString*)contestId
         rankType:(int)rankType
        rankValue:(int)rankValue
      resultBlock:(void (^)(int resultCode))resultBlock
 {
-
+    [self rankOpus:opusId contestId:contestId rank:@{@(rankType):@(rankValue)} resultBlock:resultBlock];
+    /*
     if (opusId == nil || contestId == nil){
         EXECUTE_BLOCK(resultBlock, ERROR_OPUS_ID_NULL);
         return;
@@ -1098,7 +1145,7 @@ static FeedService *_staticFeedService = nil;
         });
     });
     
-    
+    */
 }
 
 @end

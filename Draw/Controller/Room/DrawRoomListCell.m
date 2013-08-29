@@ -47,8 +47,6 @@
 - (void)initCell
 {
     [self.roomNameLabel setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
-//    [self.roomNameLabel setShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48]];
-//    [self.roomNameLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
     
     self.roomNameLabel.shadowColor = [UIColor whiteColor];
     self.roomNameLabel.shadowOffset = CGSizeZero;
@@ -61,8 +59,10 @@
     [super setCellInfo:session];
     [self initCell];
     
-    self.backgroundImageView.image = [ShareImageManager bubleImage];
-    self.roomNameLabel.textColor = COLOR_ORANGE;
+    self.backgroundImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
+    self.backgroundImageView.layer.borderColor = [COLOR_YELLOW CGColor];
+    SET_VIEW_ROUND_CORNER(self.backgroundImageView);
+    self.roomNameLabel.textColor = COLOR_BROWN;
     
     if (session.name == nil || session.name.length <= 0) {
         [self.roomNameLabel setText:[roomListTitile stringByAppendingString:[NSString stringWithFormat:NSLS(@"kDrawRoomCellTitle"), session.sessionId]]];

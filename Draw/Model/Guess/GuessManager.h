@@ -22,5 +22,8 @@
 + (BOOL)isContestOver:(PBGuessContest *)contest;
 + (BOOL)isContestNotStart:(PBGuessContest *)contest;
 + (BOOL)isContestBeing:(PBGuessContest *)contest;
-    
+
++ (void)deductCoins:(int)mode
+          contestId:(NSString *)contestId
+              force:(BOOL)force;
 @end

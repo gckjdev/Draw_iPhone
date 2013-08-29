@@ -270,7 +270,7 @@
 //    i++;
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessRules") message:NSLS(@"kGuessRulesDetail") style:CommonDialogStyleCross];
-    dialog.messageLabel.font = [UIFont systemFontOfSize:14];
+    dialog.messageLabel.font = [UIFont systemFontOfSize:(ISIPAD ? 28 : 14)];
     [dialog showInView:self.view];
 }
 

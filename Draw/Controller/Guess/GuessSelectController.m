@@ -87,6 +87,10 @@
         [self.titleView setRightButtonTitle:NSLS(@"kRanking")];
         [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
     }
+    
+    self.view.backgroundColor = COLOR_WHITE;
+    
+    [GuessManager deductCoins:_mode contestId:_contest.contestId force:NO];
 }
 
 - (void)viewDidUnload {
@@ -191,6 +195,8 @@
 }
 
 - (void)startNew{
+    [GuessManager deductCoins:_mode contestId:_contest.contestId force:YES];
+    
     self.currentTab.offset = 0;
     [self loadData:self.currentTab.offset limit:LIMIT startNew:YES];
 }

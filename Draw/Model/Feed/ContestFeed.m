@@ -20,6 +20,7 @@
         self.contestScore = [pbFeed contestScore];
         self.contestId = [pbFeed contestId];
         self.wordText = NSLS(@"kContestOpus");
+        self.rankInfoList = pbFeed.rankInfoList;
     }
     return self;
 }
@@ -46,6 +47,7 @@
 - (void)dealloc
 {
     PPRelease(_contestId);
+    PPRelease(_rankInfoList);
     [super dealloc];
 }
 

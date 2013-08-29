@@ -94,6 +94,7 @@
     [titleView setRightButtonAsRefresh];
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [[ContestService defaultService] syncOngoingContestList];
 }
 
 - (void)viewDidUnload

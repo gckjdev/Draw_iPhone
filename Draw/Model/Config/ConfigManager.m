@@ -352,7 +352,7 @@
 
 + (int)getAwardInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_IN_HAPPY_MODE" defaultValue:1000];
+    return [MobClickUtils getIntValueByKey:@"AWARD_IN_HAPPY_MODE" defaultValue:100];
 }
 
 
