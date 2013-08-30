@@ -26,7 +26,7 @@
 #import "ChatListController.h"
 #import "MessageStat.h"
 #import "CommonUserInfoView.h"
-#import "ReplayView.h"
+#import "DrawPlayer.h"
 #import "CanvasRect.h"
 #import "StringUtil.h"
 #import "MKBlockActionSheet.h"
@@ -624,7 +624,6 @@
 #pragma mark enter replay controller
 - (void)enterReplayController:(DrawMessage *)message
 {
-    ReplayView *replayView = [ReplayView createReplayView];
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
     
     ReplayObject *obj = [ReplayObject obj];
@@ -633,7 +632,8 @@
     obj.canvasSize = [message canvasSize];
     
     obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(message.canvasSize)];
-    [replayView showInController:self object:obj];
+    DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
+    [player showInController:self];
 
 }
 

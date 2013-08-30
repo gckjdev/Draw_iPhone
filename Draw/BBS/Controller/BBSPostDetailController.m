@@ -9,7 +9,6 @@
 #import "BBSPostDetailController.h"
 #import "BBSPostActionCell.h"
 #import "BBSPostDetailCell.h"
-#import "ReplayView.h"
 #import "GameNetworkConstants.h"
 #import "BBSPostCommand.h"
 #import "BBSPostCommandPanel.h"

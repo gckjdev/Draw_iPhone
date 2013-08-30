@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomSlider.h"
-#import "ReplayView.h"
 #import "ShowDrawView.h"
 
 @interface DrawPlayer : UIView<ShowDrawViewDelegate>

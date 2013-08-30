@@ -731,7 +731,6 @@ typedef enum{
     __block ShowFeedController * cp = self;
 
     [self loadDrawDataWithHanlder:^{
-//        ReplayView *replay = [ReplayView createReplayView];
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
         }
@@ -744,7 +743,6 @@ typedef enum{
     
         DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
         [player showInController:cp];
-//        [replay showInController:cp object:obj];
 
     }];
     
@@ -1135,13 +1133,4 @@ typedef enum{
     }
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    for (ReplayView *rv in [self.view subviews]) {
-        if ([rv isKindOfClass:[ReplayView class]]) {
-            return NO;
-        }
-    }
-    return YES;
-}
 @end

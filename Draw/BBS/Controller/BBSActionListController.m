@@ -9,7 +9,6 @@
 #import "BBSActionListController.h"
 #import "UserManager.h"
 #import "BBSUserActionCell.h"
-#import "ReplayView.h"
 #import "CreatePostController.h"
 #import "BBSPostDetailController.h"
 #import "BBSManager.h"

@@ -13,7 +13,6 @@
 #import "DrawAction.h"
 #import "ShareCell.h"
 #import "UserManager.h"
-#import "ReplayController.h"
 #import "GifView.h"
 #import "PPDebug.h"
 #import "ShareImageManager.h"
@@ -27,8 +26,7 @@
 #import "TableTabManager.h"
 #import "UIImageExt.h"
 #import "OfflineDrawViewController.h"
-#import "ReplayView.h"
-//#import "SaveToContactPickerView.h"
+
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -329,17 +327,6 @@ typedef enum{
 }
 
 
-#define SHARE_GIF_DRAW_VIEW_TAG 20120409
-- (void)shareAsGif
-{
-    [_gifImages removeAllObjects];
-    
-    MyPaint* currentPaint = _selectedPaint;
-    ReplayController* replayController = [[ReplayController alloc] initWithPaint:currentPaint];
-    [replayController setReplayForCreateGif:YES];    
-    [self.navigationController pushViewController:replayController animated:YES];
-    [replayController release];        
-}
 
 #pragma mark - offline draw delegate
 - (void)didControllerClickBack:(OfflineDrawViewController *)controller
@@ -391,7 +378,7 @@ typedef enum{
 - (void)performReplay
 {
     MyPaint* currentPaint = _selectedPaint;
-    ReplayView *replayView = [ReplayView createReplayView];
+
     
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
     
@@ -402,8 +389,9 @@ typedef enum{
     obj.layers = currentPaint.layers;
     obj.canvasSize = [currentPaint canvasSize];
     
-    [replayView showInController:self object:obj];
-    
+    DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
+    [player showInController:self];
+
     [self hideActivity];
 }
 
@@ -442,10 +430,6 @@ typedef enum{
             [_shareAction displayWithViewController:self];
         }
     }
-//    else if (buttonIndex == SHARE_AS_GIF)
-//    {
-//        [self shareAsGif];
-//    }
     else if (buttonIndex == REPLAY){
         [self showActivityWithText:NSLS(@"kLoading")];
         [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];

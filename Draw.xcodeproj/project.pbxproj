@@ -341,7 +341,6 @@
 		A461B13D174CBAA70088B061 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		A461B13E174CBAA70088B061 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		A461B13F174CBAA70088B061 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
-		A461B140174CBAA70088B061 /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		A461B141174CBAA70088B061 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		A461B142174CBAA70088B061 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		A461B143174CBAA70088B061 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
@@ -670,7 +669,6 @@
 		A461B309174CBAA70088B061 /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
 		A461B30A174CBAA70088B061 /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */; };
 		A461B30D174CBAA70088B061 /* BoardAdminListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA853C0116B3A45A006FC155 /* BoardAdminListView.m */; };
-		A461B313174CBAA70088B061 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
 		A461B318174CBAA70088B061 /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A461B319174CBAA70088B061 /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
 		A461B31B174CBAA70088B061 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
@@ -880,7 +878,6 @@
 		A461B40D174CBAA70088B061 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		A461B40E174CBAA70088B061 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		A461B410174CBAA70088B061 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
-		A461B411174CBAA70088B061 /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		A461B412174CBAA70088B061 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		A461B413174CBAA70088B061 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		A461B414174CBAA70088B061 /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
@@ -897,7 +894,6 @@
 		A461B420174CBAA70088B061 /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		A461B421174CBAA70088B061 /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		A461B423174CBAA70088B061 /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		A461B424174CBAA70088B061 /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A461B426174CBAA70088B061 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
@@ -1129,8 +1125,6 @@
 		A461B6B7174CBAA70088B061 /* bbs_post_detail_untop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA853BFB16B3830B006FC155 /* bbs_post_detail_untop@2x.png */; };
 		A461B6B8174CBAA70088B061 /* BoardAdminListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0616B3A472006FC155 /* BoardAdminListView.xib */; };
 		A461B6B9174CBAA70088B061 /* BoardAdminListView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */; };
-		A461B6BB174CBAA70088B061 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
-		A461B6BC174CBAA70088B061 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
 		A461B701174CBAA70088B061 /* DrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */; };
 		A461B702174CBAA70088B061 /* DrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */; };
 		A461B715174CBAA70088B061 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
@@ -3600,7 +3594,6 @@
 		C28A9A251738F04B007A819F /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		C28A9A261738F04B007A819F /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		C28A9A271738F04B007A819F /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
-		C28A9A281738F04B007A819F /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		C28A9A291738F04B007A819F /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		C28A9A2A1738F04B007A819F /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C28A9A2B1738F04B007A819F /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
@@ -3934,7 +3927,6 @@
 		C28A9BF11738F04B007A819F /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
 		C28A9BF21738F04B007A819F /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */; };
 		C28A9BF51738F04B007A819F /* BoardAdminListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA853C0116B3A45A006FC155 /* BoardAdminListView.m */; };
-		C28A9BFB1738F04B007A819F /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
 		C28A9C001738F04B007A819F /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		C28A9C011738F04B007A819F /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
 		C28A9C031738F04B007A819F /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
@@ -4141,7 +4133,6 @@
 		C28A9CEC1738F04B007A819F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		C28A9CED1738F04B007A819F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C28A9CEF1738F04B007A819F /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
-		C28A9CF01738F04B007A819F /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		C28A9CF11738F04B007A819F /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C28A9CF21738F04B007A819F /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
@@ -4158,7 +4149,6 @@
 		C28A9CFF1738F04B007A819F /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		C28A9D001738F04B007A819F /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		C28A9D021738F04B007A819F /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		C28A9D031738F04B007A819F /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		C28A9D041738F04B007A819F /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		C28A9D051738F04B007A819F /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
@@ -4400,8 +4390,6 @@
 		C28A9F991738F04B007A819F /* bbs_post_detail_untop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA853BFB16B3830B006FC155 /* bbs_post_detail_untop@2x.png */; };
 		C28A9F9A1738F04B007A819F /* BoardAdminListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0616B3A472006FC155 /* BoardAdminListView.xib */; };
 		C28A9F9B1738F04B007A819F /* BoardAdminListView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */; };
-		C28A9F9D1738F04B007A819F /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
-		C28A9F9E1738F04B007A819F /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
 		C28A9FE31738F04B007A819F /* DrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */; };
 		C28A9FE41738F04B007A819F /* DrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */; };
 		C28A9FF71738F04B007A819F /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
@@ -4485,7 +4473,6 @@
 		C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		C2B538231677712300725802 /* CommonImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537EB1677712300725802 /* CommonImageManager.m */; };
 		C2B538241677712300725802 /* CommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537EE1677712300725802 /* CommonDialog.m */; };
@@ -5283,8 +5270,6 @@
 		CA8C471B17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
 		CA8C471C17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
 		CA8C471D17C3175C00BA6A15 /* PanelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8C471917C3175C00BA6A15 /* PanelUtil.m */; };
-		CA8D60631531EC5500E016ED /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
-		CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		CA913A521653532000B6387F /* Bbs.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA913A511653532000B6387F /* Bbs.pb.m */; };
 		CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -5427,9 +5412,6 @@
 		CABEC70417969462006F89BB /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */; };
 		CABEC70517969462006F89BB /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */; };
 		CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */; };
-		CABEDD2016B64C5900BB9060 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
-		CABEDD2416B64C5900BB9060 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
-		CABEDD2816B64C5900BB9060 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
 		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
 		CAC371421611E6C4002CB837 /* RankFirstView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */; };
 		CAC371431611E6C4002CB837 /* RankSecondView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */; };
@@ -5912,7 +5894,6 @@
 		EA4118D1176066F500DA72D0 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		EA4118D2176066F500DA72D0 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		EA4118D3176066F500DA72D0 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
-		EA4118D4176066F500DA72D0 /* ReplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8D60611531EC5500E016ED /* ReplayController.m */; };
 		EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
 		EA4118D6176066F500DA72D0 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		EA4118D7176066F500DA72D0 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
@@ -6241,7 +6222,6 @@
 		EA411A45176066F500DA72D0 /* PointNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CA507F5716AF923700CCB00F /* PointNode.m */; };
 		EA411A46176066F500DA72D0 /* BBSPermissionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CADECC5E16B02BB6001D414C /* BBSPermissionManager.m */; };
 		EA411A49176066F500DA72D0 /* BoardAdminListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA853C0116B3A45A006FC155 /* BoardAdminListView.m */; };
-		EA411A4F176066F500DA72D0 /* ReplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = CABEDD1D16B64C5900BB9060 /* ReplayView.m */; };
 		EA411A54176066F500DA72D0 /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		EA411A55176066F500DA72D0 /* StrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3EB93C16B927B300660FE7 /* StrawView.m */; };
 		EA411A57176066F500DA72D0 /* WidthBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CAF7E82816BB662B00F09584 /* WidthBox.m */; };
@@ -6481,7 +6461,6 @@
 		EA411B65176066F500DA72D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		EA411B66176066F500DA72D0 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		EA411B68176066F500DA72D0 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
-		EA411B69176066F500DA72D0 /* ReplayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8D60621531EC5500E016ED /* ReplayController.xib */; };
 		EA411B6A176066F500DA72D0 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		EA411B6B176066F500DA72D0 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
 		EA411B6C176066F500DA72D0 /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
@@ -6498,7 +6477,6 @@
 		EA411B78176066F500DA72D0 /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		EA411B79176066F500DA72D0 /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		EA411B7B176066F500DA72D0 /* ReplayController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */; };
 		EA411B7C176066F500DA72D0 /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		EA411B7E176066F500DA72D0 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
@@ -6730,8 +6708,6 @@
 		EA411DE1176066F500DA72D0 /* bbs_post_detail_untop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA853BFB16B3830B006FC155 /* bbs_post_detail_untop@2x.png */; };
 		EA411DE2176066F500DA72D0 /* BoardAdminListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0616B3A472006FC155 /* BoardAdminListView.xib */; };
 		EA411DE3176066F500DA72D0 /* BoardAdminListView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA853C0B16B3A48C006FC155 /* BoardAdminListView~ipad.xib */; };
-		EA411DE5176066F500DA72D0 /* ReplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1E16B64C5900BB9060 /* ReplayView.xib */; };
-		EA411DE6176066F500DA72D0 /* ReplayView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */; };
 		EA411E2B176066F500DA72D0 /* DrawSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073916BFFE2E004A64C4 /* DrawSlider.xib */; };
 		EA411E2C176066F500DA72D0 /* DrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */; };
 		EA411E3F176066F500DA72D0 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
@@ -8207,7 +8183,6 @@
 		C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareEditController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareCell~ipad.xib"; sourceTree = "<group>"; };
-		C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9931555175B00CCF52C /* DrawConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawConstants.h; sourceTree = "<group>"; };
 		C2B537EA1677712300725802 /* CommonImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonImageManager.h; sourceTree = "<group>"; };
@@ -9257,9 +9232,6 @@
 		CA8A6ACB16E5AE0C0052BFFA /* FeedDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDownloadService.m; sourceTree = "<group>"; };
 		CA8C471817C3175C00BA6A15 /* PanelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelUtil.h; sourceTree = "<group>"; };
 		CA8C471917C3175C00BA6A15 /* PanelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelUtil.m; sourceTree = "<group>"; };
-		CA8D60601531EC5500E016ED /* ReplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayController.h; sourceTree = "<group>"; };
-		CA8D60611531EC5500E016ED /* ReplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayController.m; sourceTree = "<group>"; };
-		CA8D60621531EC5500E016ED /* ReplayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayController.xib; sourceTree = "<group>"; };
 		CA913A2F1653432C00B6387F /* GameResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameResource.h; sourceTree = "<group>"; };
 		CA913A501653532000B6387F /* Bbs.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Bbs.pb.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CA913A511653532000B6387F /* Bbs.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bbs.pb.m; sourceTree = "<group>"; };
@@ -9416,10 +9388,6 @@
 		CABEC6D717969462006F89BB /* FreeIngotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeIngotController.m; sourceTree = "<group>"; };
 		CABEC6D817969462006F89BB /* FreeIngotController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeIngotController.xib; sourceTree = "<group>"; };
 		CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeIngotController~ipad.xib"; sourceTree = "<group>"; };
-		CABEDD1C16B64C5900BB9060 /* ReplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplayView.h; sourceTree = "<group>"; };
-		CABEDD1D16B64C5900BB9060 /* ReplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplayView.m; sourceTree = "<group>"; };
-		CABEDD1E16B64C5900BB9060 /* ReplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplayView.xib; sourceTree = "<group>"; };
-		CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReplayView~ipad.xib"; sourceTree = "<group>"; };
 		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		CAC13245154C28C8000A8C8F /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
 		CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RankFirstView~ipad.xib"; sourceTree = "<group>"; };
@@ -14024,10 +13992,6 @@
 				C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */,
 				C29C12DF152AE2A6009B9E5F /* ShareCell.h */,
 				C29C12E0152AE2A7009B9E5F /* ShareCell.m */,
-				CA8D60601531EC5500E016ED /* ReplayController.h */,
-				CA8D60611531EC5500E016ED /* ReplayController.m */,
-				CA8D60621531EC5500E016ED /* ReplayController.xib */,
-				C2B3E93F1553740400CCF52C /* ReplayController~ipad.xib */,
 				CACC084C1532B02600D9F8E9 /* ShareAction.h */,
 				CACC084D1532B02600D9F8E9 /* ShareAction.m */,
 				C20E7152168AE0A400E37127 /* CustomActionSheet.h */,
@@ -15753,10 +15717,6 @@
 		CABEDD1B16B64C5900BB9060 /* ReplayView */ = {
 			isa = PBXGroup;
 			children = (
-				CABEDD1C16B64C5900BB9060 /* ReplayView.h */,
-				CABEDD1D16B64C5900BB9060 /* ReplayView.m */,
-				CABEDD1E16B64C5900BB9060 /* ReplayView.xib */,
-				CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */,
 				EA7100B317D05FB000451A38 /* DrawPlayer.h */,
 				EA7100B417D05FB000451A38 /* DrawPlayer.m */,
 				EA7100B917D05FC300451A38 /* DrawPlayer.xib */,
@@ -17137,7 +17097,6 @@
 				A461B40D174CBAA70088B061 /* Localizable.strings in Resources */,
 				A461B40E174CBAA70088B061 /* ShareCell.xib in Resources */,
 				A461B410174CBAA70088B061 /* AboutUsController.xib in Resources */,
-				A461B411174CBAA70088B061 /* ReplayController.xib in Resources */,
 				A461B412174CBAA70088B061 /* UFPController.xib in Resources */,
 				A461B413174CBAA70088B061 /* MyPaintButton.xib in Resources */,
 				A461B414174CBAA70088B061 /* ColorShopView.xib in Resources */,
@@ -17154,7 +17113,6 @@
 				A461B420174CBAA70088B061 /* ShareEditController~ipad.xib in Resources */,
 				A461B421174CBAA70088B061 /* ShareController~ipad.xib in Resources */,
 				A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */,
-				A461B423174CBAA70088B061 /* ReplayController~ipad.xib in Resources */,
 				A461B424174CBAA70088B061 /* MyPaintButton~ipad.xib in Resources */,
 				A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */,
 				A461B426174CBAA70088B061 /* ChatController.xib in Resources */,
@@ -17386,8 +17344,6 @@
 				A461B6B7174CBAA70088B061 /* bbs_post_detail_untop@2x.png in Resources */,
 				A461B6B8174CBAA70088B061 /* BoardAdminListView.xib in Resources */,
 				A461B6B9174CBAA70088B061 /* BoardAdminListView~ipad.xib in Resources */,
-				A461B6BB174CBAA70088B061 /* ReplayView.xib in Resources */,
-				A461B6BC174CBAA70088B061 /* ReplayView~ipad.xib in Resources */,
 				A461B701174CBAA70088B061 /* DrawSlider.xib in Resources */,
 				A461B702174CBAA70088B061 /* DrawSlider~ipad.xib in Resources */,
 				A461B715174CBAA70088B061 /* ShapeBox.xib in Resources */,
@@ -18056,7 +18012,6 @@
 				C28A9CEC1738F04B007A819F /* Localizable.strings in Resources */,
 				C28A9CED1738F04B007A819F /* ShareCell.xib in Resources */,
 				C28A9CEF1738F04B007A819F /* AboutUsController.xib in Resources */,
-				C28A9CF01738F04B007A819F /* ReplayController.xib in Resources */,
 				C28A9CF11738F04B007A819F /* UFPController.xib in Resources */,
 				C28A9CF21738F04B007A819F /* MyPaintButton.xib in Resources */,
 				C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */,
@@ -18073,7 +18028,6 @@
 				C28A9CFF1738F04B007A819F /* ShareEditController~ipad.xib in Resources */,
 				C28A9D001738F04B007A819F /* ShareController~ipad.xib in Resources */,
 				C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */,
-				C28A9D021738F04B007A819F /* ReplayController~ipad.xib in Resources */,
 				C28A9D031738F04B007A819F /* MyPaintButton~ipad.xib in Resources */,
 				C28A9D041738F04B007A819F /* ColorShopView~ipad.xib in Resources */,
 				C28A9D051738F04B007A819F /* ChatController.xib in Resources */,
@@ -18315,8 +18269,6 @@
 				C28A9F991738F04B007A819F /* bbs_post_detail_untop@2x.png in Resources */,
 				C28A9F9A1738F04B007A819F /* BoardAdminListView.xib in Resources */,
 				C28A9F9B1738F04B007A819F /* BoardAdminListView~ipad.xib in Resources */,
-				C28A9F9D1738F04B007A819F /* ReplayView.xib in Resources */,
-				C28A9F9E1738F04B007A819F /* ReplayView~ipad.xib in Resources */,
 				C28A9FE31738F04B007A819F /* DrawSlider.xib in Resources */,
 				C28A9FE41738F04B007A819F /* DrawSlider~ipad.xib in Resources */,
 				C28A9FF71738F04B007A819F /* ShapeBox.xib in Resources */,
@@ -18939,7 +18891,6 @@
 				CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */,
 				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
-				CA8D60641531EC5500E016ED /* ReplayController.xib in Resources */,
 				C2F947D31533D91E0034C895 /* UFPController.xib in Resources */,
 				C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */,
 				CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */,
@@ -18957,7 +18908,6 @@
 				C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */,
 				C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */,
 				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
-				C2B3E9401553740400CCF52C /* ReplayController~ipad.xib in Resources */,
 				C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
 				A454CB701558F5CE00896761 /* ChatController.xib in Resources */,
@@ -19201,8 +19151,6 @@
 				CA853BFC16B3830B006FC155 /* bbs_post_detail_untop@2x.png in Resources */,
 				CA853C0716B3A472006FC155 /* BoardAdminListView.xib in Resources */,
 				CA853C0C16B3A48C006FC155 /* BoardAdminListView~ipad.xib in Resources */,
-				CABEDD2416B64C5900BB9060 /* ReplayView.xib in Resources */,
-				CABEDD2816B64C5900BB9060 /* ReplayView~ipad.xib in Resources */,
 				CA5B073A16BFFE30004A64C4 /* DrawSlider.xib in Resources */,
 				CA5B073F16C0106A004A64C4 /* DrawSlider~ipad.xib in Resources */,
 				CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */,
@@ -19801,7 +19749,6 @@
 				EA411B65176066F500DA72D0 /* Localizable.strings in Resources */,
 				EA411B66176066F500DA72D0 /* ShareCell.xib in Resources */,
 				EA411B68176066F500DA72D0 /* AboutUsController.xib in Resources */,
-				EA411B69176066F500DA72D0 /* ReplayController.xib in Resources */,
 				EA411B6A176066F500DA72D0 /* UFPController.xib in Resources */,
 				EA411B6B176066F500DA72D0 /* MyPaintButton.xib in Resources */,
 				EA411B6C176066F500DA72D0 /* ColorShopView.xib in Resources */,
@@ -19818,7 +19765,6 @@
 				EA411B78176066F500DA72D0 /* ShareEditController~ipad.xib in Resources */,
 				EA411B79176066F500DA72D0 /* ShareController~ipad.xib in Resources */,
 				EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */,
-				EA411B7B176066F500DA72D0 /* ReplayController~ipad.xib in Resources */,
 				EA411B7C176066F500DA72D0 /* MyPaintButton~ipad.xib in Resources */,
 				EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */,
 				EA411B7E176066F500DA72D0 /* ChatController.xib in Resources */,
@@ -20050,8 +19996,6 @@
 				EA411DE1176066F500DA72D0 /* bbs_post_detail_untop@2x.png in Resources */,
 				EA411DE2176066F500DA72D0 /* BoardAdminListView.xib in Resources */,
 				EA411DE3176066F500DA72D0 /* BoardAdminListView~ipad.xib in Resources */,
-				EA411DE5176066F500DA72D0 /* ReplayView.xib in Resources */,
-				EA411DE6176066F500DA72D0 /* ReplayView~ipad.xib in Resources */,
 				EA411E2B176066F500DA72D0 /* DrawSlider.xib in Resources */,
 				EA411E2C176066F500DA72D0 /* DrawSlider~ipad.xib in Resources */,
 				EA411E3F176066F500DA72D0 /* ShapeBox.xib in Resources */,
@@ -20797,7 +20741,6 @@
 				A461B13D174CBAA70088B061 /* RouterTrafficServer.m in Sources */,
 				A461B13E174CBAA70088B061 /* PriceModel.m in Sources */,
 				A461B13F174CBAA70088B061 /* AboutUsController.m in Sources */,
-				A461B140174CBAA70088B061 /* ReplayController.m in Sources */,
 				A461B141174CBAA70088B061 /* ShareAction.m in Sources */,
 				A461B142174CBAA70088B061 /* UFPController.m in Sources */,
 				A461B143174CBAA70088B061 /* MyPaintButton.m in Sources */,
@@ -21126,7 +21069,6 @@
 				A461B309174CBAA70088B061 /* PointNode.m in Sources */,
 				A461B30A174CBAA70088B061 /* BBSPermissionManager.m in Sources */,
 				A461B30D174CBAA70088B061 /* BoardAdminListView.m in Sources */,
-				A461B313174CBAA70088B061 /* ReplayView.m in Sources */,
 				A461B318174CBAA70088B061 /* WallService.m in Sources */,
 				A461B319174CBAA70088B061 /* StrawView.m in Sources */,
 				A461B31B174CBAA70088B061 /* WidthBox.m in Sources */,
@@ -21629,7 +21571,6 @@
 				C28A9A251738F04B007A819F /* RouterTrafficServer.m in Sources */,
 				C28A9A261738F04B007A819F /* PriceModel.m in Sources */,
 				C28A9A271738F04B007A819F /* AboutUsController.m in Sources */,
-				C28A9A281738F04B007A819F /* ReplayController.m in Sources */,
 				C28A9A291738F04B007A819F /* ShareAction.m in Sources */,
 				C28A9A2A1738F04B007A819F /* UFPController.m in Sources */,
 				C28A9A2B1738F04B007A819F /* MyPaintButton.m in Sources */,
@@ -21963,7 +21904,6 @@
 				C28A9BF11738F04B007A819F /* PointNode.m in Sources */,
 				C28A9BF21738F04B007A819F /* BBSPermissionManager.m in Sources */,
 				C28A9BF51738F04B007A819F /* BoardAdminListView.m in Sources */,
-				C28A9BFB1738F04B007A819F /* ReplayView.m in Sources */,
 				C28A9C001738F04B007A819F /* WallService.m in Sources */,
 				C28A9C011738F04B007A819F /* StrawView.m in Sources */,
 				C28A9C031738F04B007A819F /* WidthBox.m in Sources */,
@@ -22437,7 +22377,6 @@
 				CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
-				CA8D60631531EC5500E016ED /* ReplayController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
 				C2F947D21533D91E0034C895 /* UFPController.m in Sources */,
 				C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */,
@@ -22772,7 +22711,6 @@
 				CA507F5816AF923700CCB00F /* PointNode.m in Sources */,
 				CADECC5F16B02BB6001D414C /* BBSPermissionManager.m in Sources */,
 				CA853C0216B3A45A006FC155 /* BoardAdminListView.m in Sources */,
-				CABEDD2016B64C5900BB9060 /* ReplayView.m in Sources */,
 				A41D2B5616B910E30094BA7C /* WallService.m in Sources */,
 				CA3EB93D16B927B300660FE7 /* StrawView.m in Sources */,
 				CAF7E82916BB662B00F09584 /* WidthBox.m in Sources */,
@@ -23249,7 +23187,6 @@
 				EA4118D1176066F500DA72D0 /* RouterTrafficServer.m in Sources */,
 				EA4118D2176066F500DA72D0 /* PriceModel.m in Sources */,
 				EA4118D3176066F500DA72D0 /* AboutUsController.m in Sources */,
-				EA4118D4176066F500DA72D0 /* ReplayController.m in Sources */,
 				EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */,
 				EA4118D6176066F500DA72D0 /* UFPController.m in Sources */,
 				EA4118D7176066F500DA72D0 /* MyPaintButton.m in Sources */,
@@ -23578,7 +23515,6 @@
 				EA411A45176066F500DA72D0 /* PointNode.m in Sources */,
 				EA411A46176066F500DA72D0 /* BBSPermissionManager.m in Sources */,
 				EA411A49176066F500DA72D0 /* BoardAdminListView.m in Sources */,
-				EA411A4F176066F500DA72D0 /* ReplayView.m in Sources */,
 				EA411A54176066F500DA72D0 /* WallService.m in Sources */,
 				EA411A55176066F500DA72D0 /* StrawView.m in Sources */,
 				EA411A57176066F500DA72D0 /* WidthBox.m in Sources */,
