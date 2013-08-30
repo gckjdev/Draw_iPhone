@@ -1100,8 +1100,8 @@ static FeedService *_staticFeedService = nil;
         
         NSDictionary* para = @{ PARA_OPUS_ID    : opusId,
                                 PARA_CONTESTID  : contestId,
-                                PARA_RANKTYPES  : rankTypes,
-                                PARA_RANVALUES  : rankValues,
+                                PARA_TYPE  : rankTypes,
+                                PARA_VALUE  : rankValues,
                                 };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_RANK_OPUS parameters:para isReturnArray:NO];

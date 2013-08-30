@@ -54,6 +54,16 @@
     return 0;
 }
 
+- (NSDictionary *)currentRateDict
+{
+    NSArray *rankTypes = _contest.pbContest.rankTypesList;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (PBIntKeyValue *rankType in rankTypes) {
+        [dict setObject:@([self currentRateForType:rankType.key]) forKey:@(rankType.key)];
+    }
+    return dict;
+}
+
 - (void)updateView
 {
     self.infoView = [CustomInfoView createWithTitle:NSLS(@"kContestScore") infoView:self hasCloseButton:YES buttonTitles:@[NSLS(@"kConfirm")]];
@@ -62,7 +72,11 @@
         //TODO send rate request
         PPDebug(@"Rate feed = %@, in contset = %@", cp.opus.feedId, cp.contest.contestId);
         [(PPViewController *)[cp theViewController] showActivityWithText:NSLS(@"kScoring")];
-        [[FeedService defaultService] rankOpus:cp.opus.feedId contestId:cp.contest.contestId rankType:1 rankValue:[cp currentRateForType:1] resultBlock:^(int resultCode) {
+        
+        [[FeedService defaultService] rankOpus:cp.opus.feedId
+                                     contestId:cp.contest.contestId
+                                          rank:[cp currentRateDict]
+                                   resultBlock:^(int resultCode) {
             [(PPViewController *)[cp theViewController] hideActivity];
             if (resultCode == 0) {
                 [cp updateRankInfoList];
@@ -79,20 +93,21 @@
 - (void)updateRateViews
 {
     CGFloat lx = 20, ly = 10;
-    CGFloat space = 20;
+    CGFloat space = 30;
     CGFloat rx = 100;
     //140 40
     for (PBIntKeyValue *rankTypeValue in _contest.pbContest.rankTypesList) {
         NSInteger type = rankTypeValue.key;
         NSString *title = rankTypeValue.value;
-        NSInteger rate = [self myRateWithType:type];
-        [self reuseLabelWithTag:type+100
+        NSInteger rate = [[self myRateWithType:type] value];
+        UILabel *name = [self reuseLabelWithTag:type+100
                                            frame:CGRectMake(lx, ly, 1, 30)
                                             font:[UIFont systemFontOfSize:15]
                                             text:title];
         DJQRateView *rateView = (id)[self reuseViewWithTag:type viewClass:[DJQRateView class] frame:CGRectMake(rx, ly+10, 140, 40)];
+        rateView.center = CGPointMake(rateView.center.x, name.center.y);
         rateView.rate = rate;
-        ly += CGRectGetMaxY(rateView.frame) + space;
+        ly +=  space;
         
     }
 }
