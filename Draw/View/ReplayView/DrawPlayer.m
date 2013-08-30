@@ -62,8 +62,8 @@
     self.playSlider.maxValue = [[_replayObj actionList] count];
     self.playSlider.value = 0;
     self.playPanel.backgroundColor = COLOR255(0, 0, 0, 60);
-    self.playSlider.bgColor = self.speedSlider.loaderColor = COLOR255(0, 0, 0, 45);
-    self.playSlider.loaderColor = self.speedSlider.bgColor = COLOR255(28, 243, 230, 80);
+    self.playSlider.bgColor = self.speedSlider.bgColor = COLOR255(0, 0, 0, 45);
+    self.playSlider.loaderColor = self.speedSlider.loaderColor = COLOR255(28, 243, 230, 80);
     self.playSlider.pointColor = self.speedSlider.pointColor = COLOR_YELLOW;
     
     self.playSlider.pointImage = [[ShareImageManager defaultManager] playProgressPoint];
