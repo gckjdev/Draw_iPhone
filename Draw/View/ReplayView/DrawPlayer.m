@@ -61,16 +61,20 @@
     self.playSlider.minValue = 0;
     self.playSlider.maxValue = [[_replayObj actionList] count];
     self.playSlider.value = 0;
-
-    self.playSlider.loaderColor = self.speedSlider.loaderColor = OPAQUE_COLOR(0, 195, 190);
-    self.playSlider.bgColor = self.speedSlider.bgColor = OPAQUE_COLOR(54, 54, 54);
+    self.playPanel.backgroundColor = COLOR255(0, 0, 0, 60);
+    self.playSlider.bgColor = self.speedSlider.loaderColor = COLOR255(0, 0, 0, 45);
+    self.playSlider.loaderColor = self.speedSlider.bgColor = COLOR255(28, 243, 230, 80);
     self.playSlider.pointColor = self.speedSlider.pointColor = COLOR_YELLOW;
     
+    self.playSlider.pointImage = [[ShareImageManager defaultManager] playProgressPoint];
+
+    self.speedSlider.pointImage = [[ShareImageManager defaultManager] speedProgressPoint];
+
     self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
  
     //update close button
-    [self updateCloseButton];
-    [self updatePlayButton];
+//    [self updateCloseButton];
+//    [self updatePlayButton];
 }
 
 - (void)drawRoundAtContext:(CGContextRef)context inRect:(CGRect)rect

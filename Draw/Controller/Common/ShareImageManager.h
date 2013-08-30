@@ -303,8 +303,8 @@ cell.backgroundColor = COLOR_WHITE;             \
 
 //player
 
-- (UIImage *)playProgressLoader;//draw_player_progress_load@2x.png
-- (UIImage *)speedProgressLoader;
+- (UIImage *)playProgressPoint;
+- (UIImage *)speedProgressPoint;
 
 //top player cup
 
