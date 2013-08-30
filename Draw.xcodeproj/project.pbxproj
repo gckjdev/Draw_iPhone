@@ -6867,6 +6867,10 @@
 		EA6FE5CE176B32C300AB4E56 /* AskPsListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA6FE5CC176B32C300AB4E56 /* AskPsListController.xib */; };
 		EA6FE5D6176B332900AB4E56 /* AskPsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FE5D5176B332900AB4E56 /* AskPsManager.m */; };
 		EA6FE5DA176B334500AB4E56 /* AskPsService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6FE5D9176B334500AB4E56 /* AskPsService.m */; };
+		EA7100AA17D04B2C00451A38 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100A917D04B2C00451A38 /* CustomSlider.m */; };
+		EA7100AB17D04B2C00451A38 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100A917D04B2C00451A38 /* CustomSlider.m */; };
+		EA7100AC17D04B2C00451A38 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100A917D04B2C00451A38 /* CustomSlider.m */; };
+		EA7100AD17D04B2C00451A38 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100A917D04B2C00451A38 /* CustomSlider.m */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
 		EA92B895174E124500F273B5 /* Sing.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A461B06D174CADF10088B061 /* Sing.pb.m */; };
@@ -9883,6 +9887,8 @@
 		EA6FE5D5176B332900AB4E56 /* AskPsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPsManager.m; sourceTree = "<group>"; };
 		EA6FE5D8176B334500AB4E56 /* AskPsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPsService.h; sourceTree = "<group>"; };
 		EA6FE5D9176B334500AB4E56 /* AskPsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPsService.m; sourceTree = "<group>"; };
+		EA7100A817D04B2C00451A38 /* CustomSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSlider.h; sourceTree = "<group>"; };
+		EA7100A917D04B2C00451A38 /* CustomSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
@@ -13138,6 +13144,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				EA7100A717D04B2C00451A38 /* CustomSlider */,
 				EA433E2417CDE500006E6FA7 /* RateView */,
 				A489C00817B5D942003E5150 /* JDFlipNumberView */,
 				A4ECE9B71792A036006DD933 /* PageScrollView */,
@@ -16898,6 +16905,15 @@
 				EA6FE5D9176B334500AB4E56 /* AskPsService.m */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		EA7100A717D04B2C00451A38 /* CustomSlider */ = {
+			isa = PBXGroup;
+			children = (
+				EA7100A817D04B2C00451A38 /* CustomSlider.h */,
+				EA7100A917D04B2C00451A38 /* CustomSlider.m */,
+			);
+			path = CustomSlider;
 			sourceTree = "<group>";
 		};
 		EAAFC5441615A4AB00C72BAB /* Statistic */ = {
@@ -21399,6 +21415,7 @@
 				EA433E1817CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 				EA433E2B17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2F17CDE500006E6FA7 /* DJQStartView.m in Sources */,
+				EA7100AC17D04B2C00451A38 /* CustomSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22204,6 +22221,7 @@
 				EA433E1717CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 				EA433E2A17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2E17CDE500006E6FA7 /* DJQStartView.m in Sources */,
+				EA7100AB17D04B2C00451A38 /* CustomSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23015,6 +23033,7 @@
 				EA433E1617CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 				EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */,
+				EA7100AA17D04B2C00451A38 /* CustomSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23800,6 +23819,7 @@
 				EA433E1917CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */,
 				EA433E2C17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E3017CDE500006E6FA7 /* DJQStartView.m in Sources */,
+				EA7100AD17D04B2C00451A38 /* CustomSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
