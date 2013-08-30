@@ -740,7 +740,7 @@
 {    
     // send request for item usage and award
     __block typeof (self) bself = self;
-    [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES feedOpusId:_opusId feedAuthor:_authorId forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
+    [[FlowerItem sharedFlowerItem] useItem:_draw.userId isOffline:YES drawFeed:self.feed forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [self showAnimationThrowTool:toolView isBuy:isBuy];
             [_scene throwAFlower];

@@ -1302,6 +1302,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)setDrawBackground:(UIImage*)image
 {
     [self setPageBg:image forKey:DRAW_BG_IMAGE_KEY];
+    return YES;
 }
 - (BOOL)resetDrawBackground
 {

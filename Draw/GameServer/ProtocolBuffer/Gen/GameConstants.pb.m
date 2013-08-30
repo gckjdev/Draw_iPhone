@@ -242,9 +242,9 @@ BOOL PBMessageTypeIsValidValue(PBMessageType value) {
 }
 BOOL PBContestStatusIsValidValue(PBContestStatus value) {
   switch (value) {
-    case PBContestStatusNotStarted:
-    case PBContestStatusOngoing:
-    case PBContestStatusCompleted:
+    case PBContestStatusPending:
+    case PBContestStatusRunning:
+    case PBContestStatusPassed:
     case PBContestStatusDeleted:
       return YES;
     default:

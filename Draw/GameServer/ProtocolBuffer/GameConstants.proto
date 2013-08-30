@@ -286,10 +286,12 @@ enum PBMessageType{
     Voice = 6;
 }
 
-enum PBContestStatus{
-    NotStarted      = 0;
-    Ongoing         = 1;
-    Completed       = 2;
-    Deleted         = 3;
+enum PBContestStatus
+{
+    Pending = 1;
+    Running = 2;
+    Passed = 3;
+    Deleted = 4;
+
 }
 

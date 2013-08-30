@@ -507,7 +507,9 @@ typedef enum{
         }
         case SuperActionSheetIndexAddToRecommend: {
             PPDebug(@"<handleActionSheet> ActionSheetIndexAddToRecommend" );
-            [[FeedService defaultService] recommendOpus:feed.feedId resultBlock:^(int resultCode) {
+            [[FeedService defaultService] recommendOpus:feed.feedId
+                                              contestId:feed.contestId
+                                            resultBlock:^(int resultCode) {
                 if (resultCode == 0) {
                     [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功推荐" delayTime:2];
                 } else {

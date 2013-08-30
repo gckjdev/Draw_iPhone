@@ -378,7 +378,8 @@
                          opusCreatorUId:(NSString*)opusCreatorUId  
                                itemType:(int)itemType
                            awardBalance:(int)awardBalance
-                               awardExp:(int)awardExp;
+                               awardExp:(int)awardExp
+                              contestId:(NSString*)contestId;
 
 
 + (CommonNetworkOutput*)getMessageList:(NSString*)baseURL
@@ -516,7 +517,8 @@
                                   userId:(NSString*)userId
                               actionType:(int)actionType
                               actionName:(NSString*)actionName
-                                  opusId:(NSString*)opusId;
+                                  opusId:(NSString*)opusId
+                               contestId:(NSString *)contestId;
 
 + (CommonNetworkOutput*)reportStatus:(NSString*)baseURL 
                                appId:(NSString *)appId                                

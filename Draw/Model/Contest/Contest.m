@@ -111,6 +111,17 @@
     return value;
 }
 
+#define DEFAULT_MAX_FLOWER_PER_OPUS 3
+
+- (NSInteger)maxFlowerPerOpus
+{
+    int value = _pbContest.maxFlowerPerOpus;
+    if (value <= 0) {
+        return DEFAULT_MAX_FLOWER_PER_OPUS;
+    }
+    
+    return value;
+}
 
 - (void)dealloc
 {
