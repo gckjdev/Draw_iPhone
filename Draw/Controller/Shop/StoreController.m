@@ -59,6 +59,9 @@ typedef enum{
     [_ingotBalanceBgImageView release];
     [_coinHolderView release];
     [_ingotHolderView release];
+    [_bottomBarImageView release];
+    [_coinBalanceBgImageView release];
+    [_balanceTipLabel release];
     [super dealloc];
 }
 
@@ -73,6 +76,9 @@ typedef enum{
     [self setIngotBalanceBgImageView:nil];
     [self setCoinHolderView:nil];
     [self setIngotHolderView:nil];
+    [self setBottomBarImageView:nil];
+    [self setCoinBalanceBgImageView:nil];
+    [self setBalanceTipLabel:nil];
     [super viewDidUnload];
 }
 
@@ -173,6 +179,15 @@ typedef enum{
         [self updateBalance];
     }];
     
+    self.bottomBarImageView.backgroundColor = COLOR_YELLOW;
+    self.coinBalanceBgImageView.backgroundColor = COLOR_LIGHT_GRAY1;
+    self.ingotBalanceBgImageView.backgroundColor = COLOR_LIGHT_GRAY1;
+    SET_VIEW_ROUND_CORNER(self.coinBalanceBgImageView);
+    SET_VIEW_ROUND_CORNER(self.ingotBalanceBgImageView);
+    self.chargeButton.backgroundColor = COLOR_ORANGE;
+    [self.chargeButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    self.balanceTipLabel.textColor = COLOR_ORANGE;
+    SET_VIEW_ROUND_CORNER(self.chargeButton);
 }
 
 - (void)hideTaoBaoTab

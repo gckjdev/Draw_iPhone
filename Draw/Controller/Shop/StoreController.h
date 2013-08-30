@@ -10,6 +10,7 @@
 #import "CommonTabController.h"
 #import "ColorShopView.h"
 #import "AccountService.h"
+#import "LocalizableLabel.h"
 
 @interface StoreController : CommonTabController <ColorShopViewDelegate, AccountServiceDelegate>
 
@@ -22,5 +23,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *ingotBalanceBgImageView;
 @property (retain, nonatomic) IBOutlet UIView *coinHolderView;
 @property (retain, nonatomic) IBOutlet UIView *ingotHolderView;
+@property (retain, nonatomic) IBOutlet UIImageView *bottomBarImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *coinBalanceBgImageView;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *balanceTipLabel;
 
 @end

@@ -42,7 +42,10 @@
     [_taobaoLinkView release];
     [_currencyImageView release];
     [_countBgImageView release];
-    [_restoreButton release];
+    [_balanceBgImageView release];
+    [_taobaoButton release];
+    [_balanceTipLabel release];
+    [_taobaoLabel release];
     [super dealloc];
 }
 
@@ -107,13 +110,6 @@
 {
     [super viewDidLoad];
     
-    if ([ConfigManager showRestoreButton]) {
-        self.restoreButton.hidden = NO;
-    } else {
-        self.restoreButton.hidden = YES;
-    }
-    [self.restoreButton setTitle:NSLS(@"kRestore") forState:UIControlStateNormal];
-    
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:NSLS(@"kChargeTitle")];
@@ -121,6 +117,16 @@
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [titleView setRightButtonSelector:@selector(clickRestoreButton:)];
+    
+    if ([ConfigManager showRestoreButton]) {
+        
+        [titleView showRightButton];
+    } else {
+        
+        [titleView hideRightButton];
+    }
+    
+
 
     if ([ConfigManager showRestoreButton]) {
         [titleView showRightButton];
@@ -134,7 +140,6 @@
         [self.countLabel updateWidth:COIN_COUNT_LABEL_WIDTH];
         [self.countBgImageView updateWidth:COIN_COUNT_BG_IMAGE_VIEW_WIDTH];
         self.countLabel.center = self.countBgImageView.center;
-        self.countBgImageView.image = [UIImage imageNamed:@"coin_count_bg@2x.png"];
     }
 
     [self updateBalance];
@@ -154,6 +159,18 @@
 #ifdef DEBUG
     [IAPProductService createTestDataFile];
 #endif
+    
+    
+    self.balanceBgImageView.backgroundColor = COLOR_YELLOW;
+    self.countBgImageView.backgroundColor = COLOR_LIGHT_GRAY1;
+    SET_VIEW_ROUND_CORNER(self.countBgImageView);
+    
+    [self.taobaoButton setBackgroundColor:COLOR_YELLOW];
+    
+    self.balanceTipLabel.textColor = COLOR_ORANGE;
+    
+    self.taobaoLabel.textColor = COLOR_ORANGE;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -177,7 +194,10 @@
     [self setTaobaoLinkView:nil];
     [self setCurrencyImageView:nil];
     [self setCountBgImageView:nil];
-    [self setRestoreButton:nil];
+    [self setBalanceBgImageView:nil];
+    [self setTaobaoButton:nil];
+    [self setBalanceTipLabel:nil];
+    [self setTaobaoLabel:nil];
     [super viewDidUnload];
 }
 

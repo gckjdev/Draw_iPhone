@@ -75,6 +75,7 @@
 
 - (void)movePen
 {
+    
     if (pen.superview == nil) {
         [self.superview addSubview:pen];
     }
@@ -82,6 +83,7 @@
     if ([_currentAction isKindOfClass:[PaintAction class]]) {
         pen.hidden = NO;
         PaintAction *paintAction = (PaintAction *)_currentAction;
+        
         if (_playingPointIndex == 0 && pen.penType != paintAction.paint.penType) {
             //reset pen type
             ItemType penType = paintAction.paint.penType;
@@ -489,7 +491,7 @@
 }
 
 
-#define LEVEL_TIMES 2000
+#define LEVEL_TIMES 1500
 
 - (void)setDrawActionList:(NSMutableArray *)drawActionList
 {

@@ -20,14 +20,10 @@
 
 @optional
 
-- (void)clickMessage:(PPMessage *)message 
-         withDrawActionList:(NSArray *)drawActionList;
 
 - (void)clickMessage:(PPMessage *)message;
 
 - (void)didLongClickMessage:(PPMessage *)message;
-
-- (void)showFriendProfile:(MyFriend *)aFriend;
 
 - (void)didMessage:(PPMessage *)message loadImage:(UIImage *)image;
 
@@ -41,24 +37,18 @@
 
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UIButton *timeButton;
-@property (retain, nonatomic) IBOutlet UIButton *avatarButton;
-@property (retain, nonatomic) IBOutlet UIButton *contentButton;
-@property (retain, nonatomic) IBOutlet ShowDrawView *showDrawView;
-//@property (retain, nonatomic) PPViewController *superController;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingView;
 @property (retain, nonatomic) IBOutlet UIImageView *failureView;
+@property (retain, nonatomic) IBOutlet UIImageView *imgView;
+@property (retain, nonatomic) IBOutlet UILabel *msgLabel;
+@property (retain, nonatomic) IBOutlet UIButton *holderView;
 
-+ (id)createCell:(id<ChatDetailCellDelegate>)delegate isReceive:(BOOL)isRecevie;
-+ (NSString*)getCellIdentifierIsReceive:(BOOL)isRecevie;
-
-- (IBAction)clickContentButton:(id)sender;
-- (IBAction)clickAvatarButton:(id)sender;
-
-
-
++ (id)createCell:(id<ChatDetailCellDelegate>)delegate;
++ (NSString *)getCellIdentifier;
 
 + (CGFloat)getCellHeight:(PPMessage *)message 
                 showTime:(BOOL)showTime;
+
 - (void)setCellWithMessageStat:(MessageStat *)messageStat 
                        message:(PPMessage *)message 
                      indexPath:(NSIndexPath *)indexPath 

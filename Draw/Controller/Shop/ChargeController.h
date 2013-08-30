@@ -10,6 +10,7 @@
 #import "PPTableViewController.h"
 #import "ChargeCell.h"
 #import "AccountService.h"
+#import "LocalizableLabel.h"
 
 @interface ChargeController : PPTableViewController<ChargeCellDelegate, AccountServiceDelegate>
 {
@@ -20,6 +21,9 @@
 @property (retain, nonatomic) IBOutlet UIImageView *countBgImageView;
 @property (retain, nonatomic) IBOutlet UILabel *countLabel;
 @property (retain, nonatomic) IBOutlet UIView *taobaoLinkView;
-@property (retain, nonatomic) IBOutlet UIButton *restoreButton;
+@property (retain, nonatomic) IBOutlet UIImageView *balanceBgImageView;
+@property (retain, nonatomic) IBOutlet UIButton *taobaoButton;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *balanceTipLabel;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *taobaoLabel;
 
 @end
