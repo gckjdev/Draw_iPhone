@@ -12,6 +12,8 @@
 #import "BBSPostCell.h"
 #import "BBSPostDetailController.h"
 #import "BoardAdminListView.h"
+#import "DrawPlayer.h"
+#import "AdService.h"
 
 #define ADMINLISTVIEW_ORIGIN (ISIPAD ? CGPointMake(0,110) : CGPointMake(0,49))
 

@@ -11,6 +11,24 @@
 #import "ShowDrawView.h"
 #import "ConfigManager.h"
 
+@implementation ReplayObject
+
++ (id)obj
+{
+    return [[ReplayObject alloc] autorelease];
+}
+
+- (void)dealloc
+{
+    PPRelease(_actionList);
+    PPRelease(_bgImage);
+    PPRelease(_layers);
+    [super dealloc];
+}
+
+@end
+
+
 @implementation DrawPlayer
 
 

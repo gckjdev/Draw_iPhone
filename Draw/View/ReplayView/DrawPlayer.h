@@ -10,6 +10,23 @@
 #import "CustomSlider.h"
 #import "ShowDrawView.h"
 
+@interface ReplayObject : NSObject
+{
+    
+}
+
++ (id)obj;
+
+@property(nonatomic, assign) BOOL *isNewVersion;
+@property(nonatomic, assign) CGSize canvasSize;
+
+@property(nonatomic, retain) NSMutableArray *actionList;
+@property(nonatomic, retain) UIImage *bgImage;
+@property(nonatomic, retain) NSArray *layers;
+
+@end
+
+
 @interface DrawPlayer : UIView<ShowDrawViewDelegate>
 
 @property (retain, nonatomic) ShowDrawView *showView;
