@@ -432,6 +432,8 @@
 
 - (NSInteger)itemLimit
 {
+    // TODO contest
+    
     return [ConfigManager numberOfItemCanUsedOnNormalOpus];
 }
 

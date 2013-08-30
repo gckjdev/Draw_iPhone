@@ -652,6 +652,7 @@
 {
     if (_isMyPaint == NO){
         [[FeedService defaultService] actionSaveOpus:_feed.feedId
+                                           contestId:_feed.contestId
                                           actionName:DB_FIELD_ACTION_SAVE_TIMES];
     }
     
@@ -765,8 +766,9 @@
         __block typeof (self) bself = self;
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
                                      isOffline:[self isOffline]
-                                    feedOpusId:_feed.feedId
-                                    feedAuthor:_feed.author.userId
+                                      drawFeed:_feed
+//                                    feedOpusId:_feed.feedId
+//                                    feedAuthor:_feed.author.userId
                                        forFree:NO
                                  resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
                                      if (resultCode == ERROR_SUCCESS) {

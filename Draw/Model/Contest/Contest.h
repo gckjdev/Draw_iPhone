@@ -11,9 +11,10 @@
 
 typedef enum{
     
-    ContestStatusPending = 1,
-    ContestStatusRunning = 2,
-    ContestStatusPassed = 3,    
+    ContestStatusPending = PBContestStatusPending,
+    ContestStatusRunning = PBContestStatusRunning,
+    ContestStatusPassed = PBContestStatusPassed,
+    ContestStatusDeleted = PBContestStatusDeleted
 }ContestStatus;
 
 typedef enum{    
@@ -58,6 +59,10 @@ typedef enum{
 @property(nonatomic, readonly) NSString *contestUrl;
 @property(nonatomic, readonly) NSString *statementUrl;
 @property(nonatomic, readonly) NSInteger canSubmitCount;
+@property(nonatomic, readonly) NSInteger maxFlowerPerOpus;
+
+@property(nonatomic, readonly) BOOL canSubmit;
+@property(nonatomic, readonly) BOOL canVote;
 
 //- (id)initWithDict:(NSDictionary *)dict;
 //+ (Contest *)contestWithDict:(NSDictionary *)dict;

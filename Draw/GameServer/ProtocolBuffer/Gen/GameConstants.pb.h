@@ -208,10 +208,10 @@ typedef enum {
 BOOL PBMessageTypeIsValidValue(PBMessageType value);
 
 typedef enum {
-  PBContestStatusNotStarted = 0,
-  PBContestStatusOngoing = 1,
-  PBContestStatusCompleted = 2,
-  PBContestStatusDeleted = 3,
+  PBContestStatusPending = 1,
+  PBContestStatusRunning = 2,
+  PBContestStatusPassed = 3,
+  PBContestStatusDeleted = 4,
 } PBContestStatus;
 
 BOOL PBContestStatusIsValidValue(PBContestStatus value);

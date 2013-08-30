@@ -242,11 +242,11 @@ typedef enum{
             canThrowFlower = NO;
         }
         
-#if DEBUG
-        if (YES || [cm isUser:uid judgeAtContest:cf.contestId]) {
-#else
+//#if DEBUG
+//        if (YES || [cm isUser:uid judgeAtContest:cf.contestId]) {
+//#else
         if([cm isUser:uid judgeAtContest:cf.contestId]) {
-#endif
+//#endif
             [types addObject:@(FooterTypeJudge)];
             canThrowFlower = NO;
         }
@@ -614,8 +614,9 @@ typedef enum{
         __block typeof (self) bself = self;
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
                                      isOffline:YES
-                                    feedOpusId:_feed.feedId
-                                    feedAuthor:_feed.author.userId
+                                      drawFeed:_feed
+//                                    feedOpusId:_feed.feedId
+//                                    feedAuthor:_feed.author.userId
                                        forFree:isFree
                                  resultHandler:^(int resultCode, int itemId, BOOL isBuy)
         {
@@ -746,6 +747,15 @@ typedef enum{
     }];
     
 }
+
+- (void)gotoContestComment
+{
+    CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+    [self presentModalViewController:cc animated:YES];
+    [_commentHeader setSelectedType:CommentTypeComment];
+    [cc release];    
+}
+
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
@@ -787,7 +797,7 @@ typedef enum{
         }
         case FooterTypeReport:
         {
-            //TODO report
+            [self gotoContestComment];
             break;
         }
          
@@ -802,10 +812,11 @@ typedef enum{
                     
                     if (row == 0) {
                         // for judger comment
-                        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
-                        [self presentModalViewController:cc animated:YES];
-                        [_commentHeader setSelectedType:CommentTypeComment];
-                        [cc release];
+                        [self gotoContestComment];
+//                        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+//                        [self presentModalViewController:cc animated:YES];
+//                        [_commentHeader setSelectedType:CommentTypeComment];
+//                        [cc release];
                     }else if(row == 1){
                         Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
                         if (contest) {
@@ -1041,7 +1052,9 @@ typedef enum{
         }else if (buttonIndex == indexOfPlay){
             [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
         }else if (buttonIndex == indexOfFeature){
-            [[FeedService defaultService] recommendOpus:self.feed.feedId resultBlock:^(int resultCode) {
+            [[FeedService defaultService] recommendOpus:self.feed.feedId
+                                              contestId:self.feed.contestId
+                                            resultBlock:^(int resultCode) {
                 if (resultCode == 0){
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFeatureSucc") delayTime:2];
                 }                

@@ -681,7 +681,7 @@
 
 - (void)throwFlower:(ToolView *)toolView
 {    
-    [[FlowerItem sharedFlowerItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO feedOpusId:nil feedAuthor:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
+    [[FlowerItem sharedFlowerItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO drawFeed:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [self showAnimationThrowTool:toolView isBuy:isBuy];
             [_scene throwAFlower];

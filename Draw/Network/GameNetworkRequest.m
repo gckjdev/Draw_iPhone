@@ -2001,6 +2001,7 @@
                                itemType:(int)itemType
                            awardBalance:(int)awardBalance
                                awardExp:(int)awardExp
+                              contestId:(NSString*)contestId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -2025,6 +2026,10 @@
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_ACCOUNT_BALANCE intValue:awardBalance];
         str = [str stringByAddQueryParameter:PARA_EXP intValue:awardExp];
+        
+        if ([contestId length] > 0){
+            str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
+        }
 
         //action type
         return str;
@@ -2049,7 +2054,8 @@
                                   userId:(NSString*)userId
                               actionType:(int)actionType
                               actionName:(NSString*)actionName
-                                  opusId:(NSString*)opusId                        
+                                  opusId:(NSString*)opusId
+                               contestId:(NSString *)contestId
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -2065,7 +2071,8 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusId];        
         str = [str stringByAddQueryParameter:PARA_ACTION_NAME value:actionName];
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
-        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:[[UserManager defaultManager] getLanguageType]];        
+        str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:[[UserManager defaultManager] getLanguageType]];
+        str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
         return str;
     };
     

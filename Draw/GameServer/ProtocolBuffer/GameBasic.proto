@@ -419,13 +419,14 @@ message PBUserAward
     optional string contestId = 20;                 
 }
 
+
 message PBContest
 {
     required string contestId = 1;
     optional int32  startDate = 2;
     optional int32  endDate = 3;
     optional int32  type = 4;
-    optional int32  status = 5;
+    optional int32  status = 5;                         // 参见PBContestStatus 
     optional int32  participantCount = 6;
     optional int32  opusCount = 7;
     optional string title = 8;
@@ -435,8 +436,13 @@ message PBContest
     optional int32  voteEndDate = 12;
     optional bool   isAnounymous = 13;
 
+
     optional int32  canSubmitCount = 31 [default=1];
-    optional int32  flowerPerUser = 32 [default=20];
+    optional int32  maxFlowerPerUser = 32 [default=20];
+    optional int32  maxFlowerPerOpus = 33 [default=3];
+
+    optional bool   canSubmit = 41;                         // 是否可以提交作品
+    optional bool   canVote = 42;                           // 是否可以投票
 
     repeated PBGameUser judges = 51;
     repeated PBGameUser reporters = 52;

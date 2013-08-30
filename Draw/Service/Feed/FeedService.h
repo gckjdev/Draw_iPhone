@@ -169,7 +169,8 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
           delegate:(id<FeedServiceDelegate>)delegate;
 
 
-- (void)actionSaveOpus:(NSString *)opusId 
+- (void)actionSaveOpus:(NSString *)opusId
+             contestId:(NSString *)contestId
             actionName:(NSString*)actionName;
 
 // user favorite methods
@@ -178,15 +179,16 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
                           limit:(NSInteger)limit
                        delegate:(id<FeedServiceDelegate>)delegate;
 
-- (void)addOpusIntoFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
+- (void)addOpusIntoFavorite:(NSString *)opusId contestId:(NSString *)contestId resultBlock:(FeedActionResultBlock)resultBlock;
 - (void)removeOpusFromFavorite:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
-- (void)recommendOpus:(NSString *)opusId resultBlock:(FeedActionResultBlock)resultBlock;
+- (void)recommendOpus:(NSString *)opusId contestId:(NSString *)contestId resultBlock:(FeedActionResultBlock)resultBlock;
 
 - (void)throwItem:(ItemType)itemType
            toOpus:(NSString *)opusId
            author:(NSString *)author
      awardBalance:(int)awardBalance
          awardExp:(int)awardExp
+        contestId:(NSString *)contestId
          delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)updateFeedTimes:(DrawFeed *)feed

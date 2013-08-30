@@ -181,6 +181,7 @@
 {
     if (![[UserManager defaultManager] isMe:_opus.pbOpus.author.userId]) {
         [[FeedService defaultService] actionSaveOpus:_opus.pbOpus.opusId
+                                           contestId:_opus.pbOpus.contestId
                                           actionName:actionName];
     }
 }
