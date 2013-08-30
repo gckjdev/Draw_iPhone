@@ -50,6 +50,7 @@
 #import "UIButton+WebCache.h"
 #import "ContestManager.h"
 #import "JudgerScoreView.h"
+#import "DrawPlayer.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
@@ -138,7 +139,8 @@ typedef enum{
 
 - (BOOL)swipeDisable
 {
-    return [self.view containsSubViewWithClass:[JudgerScoreView class]];
+    return [self.view containsSubViewWithClass:[JudgerScoreView class]] ||
+    [self.view containsSubViewWithClass:[DrawPlayer class]];
 }
 
 #pragma mark-- Swip action
@@ -729,7 +731,7 @@ typedef enum{
     __block ShowFeedController * cp = self;
 
     [self loadDrawDataWithHanlder:^{
-        ReplayView *replay = [ReplayView createReplayView];
+//        ReplayView *replay = [ReplayView createReplayView];
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
         }
@@ -739,8 +741,10 @@ typedef enum{
         obj.isNewVersion = [cp.feed.drawData isNewVersion];
         obj.canvasSize = cp.feed.drawData.canvasSize;
         obj.layers = cp.feed.drawData.layers;
-        
-        [replay showInController:cp object:obj];
+    
+        DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+        [player showInController:cp];
+//        [replay showInController:cp object:obj];
 
     }];
     

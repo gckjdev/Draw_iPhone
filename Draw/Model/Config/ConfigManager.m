@@ -448,7 +448,7 @@
 }
 + (double)getMaxPlayDrawSpeed
 {
-    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_MAX_SPEED" defaultValue:0.05];
+    return [MobClickUtils getDoubleValueByKey:@"PLAY_DRAW_MAX_SPEED" defaultValue:0.1];
 }
 + (double)getMinPlayDrawSpeed
 {

@@ -6871,6 +6871,14 @@
 		EA7100AB17D04B2C00451A38 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100A917D04B2C00451A38 /* CustomSlider.m */; };
 		EA7100AC17D04B2C00451A38 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100A917D04B2C00451A38 /* CustomSlider.m */; };
 		EA7100AD17D04B2C00451A38 /* CustomSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100A917D04B2C00451A38 /* CustomSlider.m */; };
+		EA7100B517D05FB000451A38 /* DrawPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100B417D05FB000451A38 /* DrawPlayer.m */; };
+		EA7100B617D05FB000451A38 /* DrawPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100B417D05FB000451A38 /* DrawPlayer.m */; };
+		EA7100B717D05FB000451A38 /* DrawPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100B417D05FB000451A38 /* DrawPlayer.m */; };
+		EA7100B817D05FB000451A38 /* DrawPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100B417D05FB000451A38 /* DrawPlayer.m */; };
+		EA7100BA17D05FC400451A38 /* DrawPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7100B917D05FC300451A38 /* DrawPlayer.xib */; };
+		EA7100BB17D05FC400451A38 /* DrawPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7100B917D05FC300451A38 /* DrawPlayer.xib */; };
+		EA7100BC17D05FC400451A38 /* DrawPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7100B917D05FC300451A38 /* DrawPlayer.xib */; };
+		EA7100BD17D05FC400451A38 /* DrawPlayer.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7100B917D05FC300451A38 /* DrawPlayer.xib */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
 		EA92B895174E124500F273B5 /* Sing.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A461B06D174CADF10088B061 /* Sing.pb.m */; };
@@ -9889,6 +9897,9 @@
 		EA6FE5D9176B334500AB4E56 /* AskPsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPsService.m; sourceTree = "<group>"; };
 		EA7100A817D04B2C00451A38 /* CustomSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSlider.h; sourceTree = "<group>"; };
 		EA7100A917D04B2C00451A38 /* CustomSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSlider.m; sourceTree = "<group>"; };
+		EA7100B317D05FB000451A38 /* DrawPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawPlayer.h; sourceTree = "<group>"; };
+		EA7100B417D05FB000451A38 /* DrawPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawPlayer.m; sourceTree = "<group>"; };
+		EA7100B917D05FC300451A38 /* DrawPlayer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawPlayer.xib; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
@@ -15746,6 +15757,9 @@
 				CABEDD1D16B64C5900BB9060 /* ReplayView.m */,
 				CABEDD1E16B64C5900BB9060 /* ReplayView.xib */,
 				CABEDD1F16B64C5900BB9060 /* ReplayView~ipad.xib */,
+				EA7100B317D05FB000451A38 /* DrawPlayer.h */,
+				EA7100B417D05FB000451A38 /* DrawPlayer.m */,
+				EA7100B917D05FC300451A38 /* DrawPlayer.xib */,
 			);
 			path = ReplayView;
 			sourceTree = "<group>";
@@ -18007,6 +18021,7 @@
 				A4DDE28917CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4317CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
 				EA433E5B17CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
+				EA7100BC17D05FC400451A38 /* DrawPlayer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18888,6 +18903,7 @@
 				A4DDE28817CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4217CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
 				EA433E5A17CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
+				EA7100BB17D05FC400451A38 /* DrawPlayer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19750,6 +19766,7 @@
 				A4DDE28717CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4117CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
 				EA433E5917CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
+				EA7100BA17D05FC400451A38 /* DrawPlayer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20582,6 +20599,7 @@
 				A4DDE28A17CE05D00029E562 /* system_words_bg@2x.png in Resources */,
 				EA433E4417CF051C006E6FA7 /* ChatDetailCell.xib in Resources */,
 				EA433E5C17CF5B8B006E6FA7 /* wrong@2x.png in Resources */,
+				EA7100BD17D05FC400451A38 /* DrawPlayer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21416,6 +21434,7 @@
 				EA433E2B17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2F17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				EA7100AC17D04B2C00451A38 /* CustomSlider.m in Sources */,
+				EA7100B717D05FB000451A38 /* DrawPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22222,6 +22241,7 @@
 				EA433E2A17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2E17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				EA7100AB17D04B2C00451A38 /* CustomSlider.m in Sources */,
+				EA7100B617D05FB000451A38 /* DrawPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23034,6 +23054,7 @@
 				EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E2D17CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				EA7100AA17D04B2C00451A38 /* CustomSlider.m in Sources */,
+				EA7100B517D05FB000451A38 /* DrawPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23820,6 +23841,7 @@
 				EA433E2C17CDE500006E6FA7 /* DJQRateView.m in Sources */,
 				EA433E3017CDE500006E6FA7 /* DJQStartView.m in Sources */,
 				EA7100AD17D04B2C00451A38 /* CustomSlider.m in Sources */,
+				EA7100B817D05FB000451A38 /* DrawPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

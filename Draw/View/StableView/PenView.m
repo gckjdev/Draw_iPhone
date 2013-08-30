@@ -82,10 +82,12 @@
 
 - (void) setPenType:(ItemType)penType
 {
-    if (penType < PenStartType || (penType >= PenCount && penType != Eraser)) {
-        _penType = Pencil;
-    }else{
+    _penType = penType;
+
+    if (penType == Eraser || penType == DeprecatedEraser) {
         _penType = penType;
+    }else if (penType < PenStartType || penType >= PenCount) {
+        _penType = Pencil;
     }
     UIImage *image = [self penImageForType:penType];
     [self setBackgroundImage:image forState:UIControlStateNormal];

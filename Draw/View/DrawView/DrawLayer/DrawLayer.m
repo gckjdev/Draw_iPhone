@@ -247,7 +247,7 @@
         int count = [_drawActionList count];
         [self.offscreen clear];
         if(count - self.offscreen.actionCount >= _cachedCount * 2){
-            PPDebug(@"<updateWithDrawActions> action count = %d, reach cached count", count);
+//            PPDebug(@"<updateWithDrawActions> action count = %d, reach cached count", count);
             int endIndex = count - _cachedCount;
             for(int i = _offscreen.actionCount; i < endIndex; ++ i){
                 DrawAction *drawAction = [_drawActionList objectAtIndex:i];
