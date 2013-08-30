@@ -170,6 +170,7 @@
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
     }
     [self start];
+    [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:2];
 }
 
 
@@ -257,7 +258,7 @@
 {
     CGFloat alpha = (hidden ? 0 : 1);
     if (animated) {
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.8 animations:^{
             self.playPanel.alpha = alpha;
             self.closeButton.hidden = hidden;
         } completion:^(BOOL finished) {
@@ -280,12 +281,17 @@
           AtActionIndex:(NSInteger)actionIndex
              pointIndex:(NSInteger)pointIndex
 {
-    [self.playSlider setValue:actionIndex];
+    if (![self.playSlider isOnTouch]) {
+        [self.playSlider setValue:actionIndex];
+    }
+
 }
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
 {
-    [self.playSlider setValue:self.playSlider.maxValue];    
+    if (![self.playSlider isOnTouch]) {
+        [self.playSlider setValue:self.playSlider.maxValue];
+    }
     [self hidePanel:NO animated:NO];
     [self.playButton setSelected:NO];
 }
@@ -297,6 +303,11 @@
     }else{
         [self hidePanel:YES animated:YES];
     }
+}
+
+- (void)autoHidePanel
+{
+    [self hidePanel:YES animated:YES];    
 }
 
 @end
