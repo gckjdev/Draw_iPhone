@@ -10,7 +10,7 @@
 
 
 #import "DrawAppDelegate.h"
-
+#import "MLNavigationController.h"
 #import "OnlineDrawViewController.h"
 #import "GameNetworkClient.h"
 #import "DrawGameService.h"
@@ -317,7 +317,7 @@ NSString* GlobalGetBoardServerURL()
     PPDebug(@"<AppDelegate> notification type = %d", type);
     _homeController.notificationType = type;
     
-    UINavigationController* navigationController = [[[UINavigationController alloc] 
+    MLNavigationController* navigationController = [[[MLNavigationController alloc] 
                                                      initWithRootViewController:rootController] 
                                                     autorelease];
     navigationController.navigationBarHidden = YES;

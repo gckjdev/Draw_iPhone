@@ -67,7 +67,7 @@
 @property (nonatomic, retain) UseItemScene* useItemScene;
 @property(nonatomic, retain) DetailFooterView *footerView;
 @property(nonatomic, retain) PPPopTableView *judgerPopupView;
-//@property(nonatomic, assign) BOOL swipeEnable;
+
 
 //- (IBAction)clickActionButton:(id)sender;
 
@@ -133,88 +133,6 @@ typedef enum{
         self.feedScene = feedScene;
     }
     return self;
-}
-
-
-- (BOOL)swipeDisable
-{
-    return [self.view containsSubViewWithClass:[JudgerScoreView class]] ||
-    [self.view containsSubViewWithClass:[DrawPlayer class]];
-}
-
-#pragma mark-- Swip action
-- (void)handleSwipe:(UISwipeGestureRecognizer *)swp
-{
-    if ([self swipeDisable]) {
-        PPDebug(@"swipeDisable!!!");
-        return;
-    }
-    if ([self.feedList count] != 0 && swp.state == UIGestureRecognizerStateRecognized) {
-        NSInteger currentIndex = NSNotFound;
-        //[self.feedList indexOfObject:self.feed];
-        NSInteger i = 0;
-        for (DrawFeed *feed in self.feedList) {
-            if ([feed.feedId isEqualToString:self.feed.feedId]) {
-                currentIndex = i;
-                break;
-            }
-            i ++;
-        }
-        if (currentIndex == NSNotFound) {
-            return;
-        }
-        DrawFeed *feed = nil;
-        if (swp.direction == UISwipeGestureRecognizerDirectionRight) {
-            currentIndex --;
-            if (currentIndex >= 0) {
-                feed = [self.feedList objectAtIndex:currentIndex];
-            }else{
-                [self popupUnhappyMessage:NSLS(@"kScrollToFirst") title:nil];
-            }
-        }else if(swp.direction == UISwipeGestureRecognizerDirectionLeft){
-            currentIndex ++;
-            if (currentIndex < [self.feedList count]) {
-                feed = [self.feedList objectAtIndex:currentIndex];
-            }else{
-                [self popupUnhappyMessage:NSLS(@"kScrollToEnd") title:nil];
-            }
-        }
-        
-#define TIME_INTERVAL 0.35
-        
-        if (feed  && (time(0) - timestamp) > TIME_INTERVAL) {
-            timestamp = time(0);
-            self.feed = feed;
-            self.useItemScene.feed = self.feed;
-            self.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
-            [_tabManager reset];
-            [self reloadView];
-            [self clickTab:self.currentTab.tabID];
-
-            self.dataTableView.alpha = 0.3;
-            [UIView animateWithDuration:0.8 animations:^{
-                self.dataTableView.alpha = 1;
-            }];
-            
-        }
-    }
-}
-
-- (void)addSwipe
-{
-    [self setSwipeToBack:NO];
-    UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    [self.view addGestureRecognizer:left];
-    left.direction = UISwipeGestureRecognizerDirectionLeft;
-    left.delegate = self;
-    [left release];
-    
-    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    [self.view addGestureRecognizer:right];
-    right.direction = UISwipeGestureRecognizerDirectionRight;
-    right.delegate = self;
-    [right release];
-
 }
 
 - (void)updateFlowerButton
@@ -943,7 +861,6 @@ typedef enum{
     
     [self initFooterView];    
     [self initTabButtons];
-    [self addSwipe];
     [self reloadView];
 }
 

@@ -42,7 +42,6 @@ typedef enum{
 {
     TableTabManager *_tabManager;
     NSInteger _defaultTabIndex;
-    UISwipeGestureRecognizer *swipe;
 }
 
 
@@ -53,7 +52,6 @@ typedef enum{
 @property(nonatomic, retain)IBOutlet UILabel *titleLabel;
 @property(nonatomic, retain)IBOutlet UILabel *noDataTipLabl;
 @property(nonatomic, assign)PullRefreshType pullRefreshType;
-@property(nonatomic, assign, getter = canSwipeToBack)BOOL swipeToBack;
 @property(nonatomic, assign, getter = isAutoResizeTabButton)BOOL autoResizeTabButton;
 //@property(nonatomic, assign)BOOL cleanFrontDataWhenViewDisappear;
 
