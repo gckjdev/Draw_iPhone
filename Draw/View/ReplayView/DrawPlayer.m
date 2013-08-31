@@ -10,6 +10,8 @@
 #import "DrawHolderView.h"
 #import "ShowDrawView.h"
 #import "ConfigManager.h"
+#import "MLNavigationController.h"
+
 
 @implementation ReplayObject
 
@@ -103,6 +105,7 @@
     }
     [self start];
     [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:4];
+    [(MLNavigationController *)[[self theViewController] navigationController] setCanDragBack:NO];
 }
 
 
@@ -119,6 +122,7 @@
 
 - (IBAction)close:(id)sender {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [(MLNavigationController *)[[self theViewController] navigationController] setCanDragBack:YES];
     self.showView.delegate = nil;
     [self.showView stop];
     [self.showView removeFromSuperview];
