@@ -68,6 +68,7 @@
 #import "MKBlockActionSheet.h"
 #import "DrawToolUpPanel.h"
 #import "DrawLayerPanel.h"
+#import "MLNavigationController.h"
 
 @interface OfflineDrawViewController()
 {
@@ -601,6 +602,12 @@
     [super viewDidUnload];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [(MLNavigationController *)self.navigationController setCanDragBack:YES];    
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self stopBackupTimer];
@@ -609,14 +616,11 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [(MLNavigationController *)self.navigationController setCanDragBack:NO];
     [super viewDidAppear:animated];
     [self startBackupTimer];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
 
 
 #define ESCAPE_DEDUT_COIN 1
