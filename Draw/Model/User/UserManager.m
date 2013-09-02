@@ -1342,6 +1342,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSString* key = [self flowerUsedKey:contestId];
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setInteger:flowers forKey:key];
+    PPDebug(@"<setUserContestFlowers> %@=%d", key, flowers);
 }
 
 - (int)flowersUsed:(NSString*)contestId
@@ -1349,6 +1350,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSString* key = [self flowerUsedKey:contestId];
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSNumber* value = [userDefaults objectForKey:key];
+    PPDebug(@"<flowersUsed> %@=%d", key, [value intValue]);
     return [value integerValue];
 }
 

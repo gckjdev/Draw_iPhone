@@ -34,4 +34,7 @@
 // 根据contestId返回正在进行中的contest
 - (Contest*)ongoingContestById:(NSString*)contestId;
 
+// 检查比赛是否可以丢花
+- (BOOL)canThrowFlower:(Contest*)contest defaultValue:(BOOL)defaultValue;
+
 @end

@@ -864,13 +864,19 @@ static FeedService *_staticFeedService = nil;
         CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType awardBalance:awardBalance awardExp:awardExp contestId:contestId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // update user local contest flower times
+            if (itemType == ItemTypeFlower){
+                if (contestId != nil){
+                    int totalContestFlowerByUser = [[output.jsonDataDict objectForKey:PARA_FLOWER_TIMES] intValue];
+                    [[UserManager defaultManager] setUserContestFlowers:contestId flowers:totalContestFlowerByUser];
+                }
+            }
+            
             if (itemType == ItemTypeFlower && delegate && [delegate respondsToSelector:@selector(didThrowFlowerToOpus:resultCode:)]) {
                 [delegate didThrowFlowerToOpus:opusId resultCode:output.resultCode];
                 
-                int totalContestFlowerByUser = [[output.jsonDataDict objectForKey:PARA_MAX_FLOWER_TIMES] intValue];
-                if (contestId != nil){
-                    [[UserManager defaultManager] setUserContestFlowers:contestId flowers:totalContestFlowerByUser];
-                }
+
                 
                 
             }else if(itemType == ItemTypeTomato && delegate && [delegate respondsToSelector:@selector(didThrowTomatoToOpus:resultCode:)]){
