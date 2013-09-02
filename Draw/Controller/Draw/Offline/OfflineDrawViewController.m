@@ -1260,7 +1260,12 @@
                 NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitEnoughCommitAsNormal"),_contest.canSubmitCount];
                 [self alertCommitContestOpusAsNormalOpus:title];
                 return;
-            }else if([self.contest isPassed]){
+            }
+            else if([self.contest canSubmit] == NO){
+                [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestSubmitEndSubmitNormal")];
+                return;
+            }
+            else if([self.contest isPassed]){
                 [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
                 return;
             }

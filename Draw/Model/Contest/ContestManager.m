@@ -209,4 +209,25 @@ static ContestManager *_staticContestManager;
     return [self displayContestAnonymous:drawFeed.contestId];
 }
 
+- (BOOL)canThrowFlower:(Contest*)contest defaultValue:(BOOL)defaultValue
+{
+    if (contest == nil){
+        return defaultValue;
+    }
+    
+    if ([contest canVote] == NO){
+        PPDebug(@"contest cannot vote(send flower), time exceed");
+        return NO;
+    }
+    
+    int flowerUsed = [[UserManager defaultManager] flowersUsed:contest.contestId];
+    if ([contest maxFlowerPerContest] <= flowerUsed){
+        PPDebug(@"used flower times (%d) reach max flower per contest (%d) for contest (%@)",
+                flowerUsed, [contest maxFlowerPerContest], contest.contestId);
+        return NO;
+    }
+    
+    return YES;    
+}
+
 @end

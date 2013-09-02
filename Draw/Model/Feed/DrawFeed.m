@@ -419,7 +419,8 @@
 }
 - (NSInteger)localFlowerTimes
 {
-    return [self actionTimesForKey:self.flowerKey];
+    int value = [self actionTimesForKey:self.flowerKey];
+    return value;
 }
 - (NSInteger)localTomatoTimes
 {

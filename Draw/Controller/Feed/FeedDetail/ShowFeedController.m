@@ -142,7 +142,11 @@ typedef enum{
 {
     BOOL enable = [_useItemScene canThrowFlower];
     
-    if (self.contest && [self.contest canVote] == NO){
+//    if (self.contest && [self.contest canVote] == NO){
+//        enable = NO;
+//    }
+    
+    if (self.contest && [[ContestManager defaultManager] canThrowFlower:self.contest defaultValue:enable] == NO){
         enable = NO;
     }
     
