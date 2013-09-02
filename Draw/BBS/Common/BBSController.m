@@ -37,7 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setSwipeToBack:YES];
 }
 
 - (void)didReceiveMemoryWarning

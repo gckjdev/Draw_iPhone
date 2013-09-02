@@ -739,14 +739,14 @@ static UIImage* _whitePaperImage;
     return [self fixedImageNamed:@"selector_close"];    
 }
 
-- (UIImage *)playProgressLoader
+- (UIImage *)playProgressPoint
 {
-    return [self fixedAndStrectchableImageNamed:@"draw_player_progress_load"];
+    return [UIImage imageNamed:@"draw_player_progress_point@2x.png"];
 }
-
-- (UIImage *)speedProgressLoader
+- (UIImage *)speedProgressPoint
 {
-    return [self fixedAndStrectchableImageNamed:@"draw_player_speed_load"];
+    return [UIImage imageNamed:@"draw_player_speed_button@2x.png"];
+    
 }
 
 //for dice main menu

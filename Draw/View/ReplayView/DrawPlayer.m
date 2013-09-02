@@ -10,6 +10,8 @@
 #import "DrawHolderView.h"
 #import "ShowDrawView.h"
 #import "ConfigManager.h"
+#import "MLNavigationController.h"
+
 
 @implementation ReplayObject
 
@@ -61,92 +63,21 @@
     self.playSlider.minValue = 0;
     self.playSlider.maxValue = [[_replayObj actionList] count];
     self.playSlider.value = 0;
-
-    self.playSlider.loaderColor = self.speedSlider.loaderColor = OPAQUE_COLOR(0, 195, 190);
-    self.playSlider.bgColor = self.speedSlider.bgColor = OPAQUE_COLOR(54, 54, 54);
+    self.playPanel.backgroundColor = COLOR255(0, 0, 0, 0.6*255);
+    self.playSlider.bgColor = self.speedSlider.bgColor = COLOR255(0, 0, 0, 0.45*255);
+    self.playSlider.loaderColor = self.speedSlider.loaderColor = COLOR255(28, 243, 230, 0.8*255);
     self.playSlider.pointColor = self.speedSlider.pointColor = COLOR_YELLOW;
     
+    self.playSlider.pointImage = [[ShareImageManager defaultManager] playProgressPoint];
+
+    self.speedSlider.pointImage = [[ShareImageManager defaultManager] speedProgressPoint];
+
     self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
  
     //update close button
-    [self updateCloseButton];
-    [self updatePlayButton];
+//    [self updateCloseButton];
+//    [self updatePlayButton];
 }
-
-- (void)drawRoundAtContext:(CGContextRef)context inRect:(CGRect)rect
-{
-    [COLOR_YELLOW setFill];
-    [[UIBezierPath bezierPathWithOvalInRect:rect] fill];    
-    rect = CGRectInset(rect, CGRectGetWidth(rect)/8, CGRectGetHeight(rect)/8);
-    [COLOR_ORANGE setFill];
-    [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
-    CGContextSetLineWidth(context, CGRectGetWidth(rect)/8);
-    [COLOR_WHITE setStroke];
-    [COLOR_WHITE setFill];
-}
-
-
-- (void)updatePlayButton
-{
-    UIImage *image = nil;
-    UIImage *image1 = nil;
-    [self.playButton setImage:nil forState:UIControlStateNormal];
-    UIGraphicsBeginImageContext(self.playButton.bounds.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rect = self.playButton.bounds;
-    [self drawRoundAtContext:context inRect:rect];
-    rect = CGRectInset(rect, CGRectGetWidth(rect)/3.3, CGRectGetHeight(rect)/3.3);
-    rect = CGRectOffset(rect, CGRectGetWidth(rect)/7, 0);
-    
-    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMidY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
-    CGContextClosePath(context);
-    CGContextFillPath(context);
-    image = UIGraphicsGetImageFromCurrentImageContext();
-
-    rect = self.playButton.bounds;
-    [self drawRoundAtContext:context inRect:rect];
-    rect = CGRectInset(rect, CGRectGetWidth(rect)/2.8, CGRectGetWidth(rect)/2.8);
-    CGPoint points[] = {
-        CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect)),
-        CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect)),
-        
-        CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect)),
-        CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect)),
-        
-    };
-    CGContextStrokeLineSegments(context, points, 4);
-
-    image1 = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    [self.playButton setImage:image forState:UIControlStateNormal];
-    [self.playButton setImage:image1 forState:UIControlStateSelected];
-}
-
-- (void)updateCloseButton
-{
-    UIImage *image = nil;
-    [self.closeButton setImage:nil forState:UIControlStateNormal];
-    UIGraphicsBeginImageContext(self.closeButton.bounds.size);
-    CGRect rect = self.closeButton.bounds;
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [self drawRoundAtContext:context inRect:rect];
-    rect = CGRectInset(rect, CGRectGetWidth(rect)/3, CGRectGetHeight(rect)/3);
-    CGPoint points[] = {CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect)),
-                        CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect)),
-                        CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect)),
-                        CGPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect)),
-    };
-    CGContextStrokeLineSegments(context, points, 4);
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self.closeButton setImage:image forState:UIControlStateNormal];
-    
-}
-
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj
 {
     DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];
@@ -159,7 +90,10 @@
 
 - (void)showInController:(PPViewController *)controller
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    self.frame = CGRectOffset([[UIScreen mainScreen] bounds], 0, -20);
     DrawHolderView *holderView = (id)self.showView.superview;
+    holderView.autoresizingMask = (1<<6)-1;
     if (holderView == nil) {
         holderView = [DrawHolderView drawHolderViewWithFrame:self.bounds contentView:self.showView];
     }
@@ -170,6 +104,8 @@
         [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
     }
     [self start];
+    [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:4];
+    [(MLNavigationController *)[[self theViewController] navigationController] setCanDragBack:NO];
 }
 
 
@@ -185,6 +121,8 @@
 }
 
 - (IBAction)close:(id)sender {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [(MLNavigationController *)[[self theViewController] navigationController] setCanDragBack:YES];
     self.showView.delegate = nil;
     [self.showView stop];
     [self.showView removeFromSuperview];
@@ -257,7 +195,7 @@
 {
     CGFloat alpha = (hidden ? 0 : 1);
     if (animated) {
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.8 animations:^{
             self.playPanel.alpha = alpha;
             self.closeButton.hidden = hidden;
         } completion:^(BOOL finished) {
@@ -280,12 +218,17 @@
           AtActionIndex:(NSInteger)actionIndex
              pointIndex:(NSInteger)pointIndex
 {
-    [self.playSlider setValue:actionIndex];
+    if (![self.playSlider isOnTouch]) {
+        [self.playSlider setValue:actionIndex];
+    }
+
 }
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView
 {
-    [self.playSlider setValue:self.playSlider.maxValue];    
+    if (![self.playSlider isOnTouch]) {
+        [self.playSlider setValue:self.playSlider.maxValue];
+    }
     [self hidePanel:NO animated:NO];
     [self.playButton setSelected:NO];
 }
@@ -297,6 +240,11 @@
     }else{
         [self hidePanel:YES animated:YES];
     }
+}
+
+- (void)autoHidePanel
+{
+    [self hidePanel:YES animated:YES];    
 }
 
 @end

@@ -24,34 +24,6 @@
 {
     return (gestureRecognizer.view == self.view);    
 }
-
-- (void)handleSwipe:(UISwipeGestureRecognizer *)swp
-{
-    PPDebug(@"<handleSwipe> STATA = %d, DIRECTION = %d", swp.state, swp.direction);
-    
-    if (swp.state == UIGestureRecognizerStateRecognized) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-
-- (void)setSwipeToBack:(BOOL)swipeToBack
-{
-    if (swipeToBack) {
-        if (swipe == nil) {
-            swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-            swipe.delegate = self;
-            [self.view addGestureRecognizer:swipe];
-            swipe.direction = UISwipeGestureRecognizerDirectionLeft;//|UISwipeGestureRecognizerDirectionRight|UISwipeGestureRecognizerDirectionUp|UISwipeGestureRecognizerDirectionDown;
-            [swipe release];
-        }
-    }else{
-        if (swipe){
-            [self.view removeGestureRecognizer:swipe];
-            swipe = nil;
-        }
-    }
-}
-
 - (void)setDefaultTabIndex:(int)tabIndex
 {
     _defaultTabIndex = tabIndex;
@@ -216,7 +188,6 @@
     [super viewDidLoad];
     [self initTabs];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setSwipeToBack:NO];
     SET_VIEW_BG(self.view);
 }
 
