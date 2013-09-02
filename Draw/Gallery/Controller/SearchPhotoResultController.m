@@ -11,7 +11,6 @@
 #import "GoogleCustomSearchService.h"
 #import "MWPhotoBrowser.h"
 #import "SearchResultView.h"
-#import "CommonSearchImageFilterView.h"
 #import "PhotoEditView.h"
 
 #import "UIImageView+WebCache.h"
@@ -29,6 +28,7 @@
 
 #import "StorageManager.h"
 #import "UserManager.h"
+#import "CommonDialog.h"
 
 @interface SearchPhotoResultController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, GoogleCustomSearchServiceDelegate, MWPhotoBrowserDelegate, SearchResultViewDelegate> {
 
@@ -67,6 +67,11 @@
     [self didFinishLoadData:self.initArray];
 //    [self finishLoadDataForTabID:[self currentTab].tabID resultList:self.initArray];
     // Do any additional setup after loading the view from its nib.
+    
+    CommonTitleView *v = [CommonTitleView createTitleView:self.view];
+    [v setTitle:NSLS(@"kSearchResult")];
+    [v setTarget:self];
+    [v setBackButtonSelector:@selector(clickBack:)];
 }
 
 - (id)initWithKeyword:(NSString*)keyword
@@ -251,15 +256,26 @@
 
 - (void)saveSearchResult:(ImageSearchResult*)searchResult
 {
+    PhotoEditView *v = [PhotoEditView createViewWithPhoto:nil];
+    
+    CommonDialog *dialog =[CommonDialog createDialogWithTitle:NSLS(@"kFilter") customView:v style:CommonDialogStyleDoubleButtonWithCross];
+    [dialog setManualClose:YES];
+    [dialog.cancelButton setTitle:NSLS(@"kReset") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(PhotoEditView * infoView){
+        [infoView reset];
+    }];
+    
     __block SearchPhotoResultController* cp = self;
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:nil title:NSLS(@"kSetTag") confirmTitle:NSLS(@"kConfirm") resultBlock:^( NSSet *tagSet) {
-        [cp didEditPictureInfo:tagSet
+    [dialog setClickOkBlock:^(PhotoEditView* infoView){
+        [cp didEditPictureInfo:infoView.tagSet
                           name:cp.searchText
                       imageUrl:searchResult.url
                          width:searchResult.width
                         height:searchResult.height];
     }];
-    [view showInView:self.view];
+    
+    [dialog showInView:self.view];
 }
 
 #pragma mark - mwPhotoBrowserDelegate

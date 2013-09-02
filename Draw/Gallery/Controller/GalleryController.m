@@ -61,12 +61,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.title && self.title.length > 0) {
-        [self.titleLabel setText:self.title];
-    }
+    CommonTitleView *v = [CommonTitleView createTitleView:self.view];
+    [self.view sendSubviewToBack:v];
+    [v setTitle:NSLS(@"kGallery")];
+    [v setTarget:self];
+    [v setBackButtonSelector:@selector(clickBack:)];
+    
     self.dataTableView.numColsPortrait = 2;
     [((UIButton*)self.noDataTipLabel) setTitle:NSLS(@"kNoPhoto") forState:UIControlStateNormal];
     [self reloadTableViewDataSource];
+    
+    
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
@@ -274,33 +279,43 @@ enum {
 
 - (void)editPhoto:(PBUserPhoto*)photo atIndex:(int)photoIndex
 {
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:photo
-                                                       title:NSLS(@"kSetTag")
-                                                confirmTitle:NSLS(@"kConfirm")
-                                                 resultBlock:^(NSSet *tagSet) {
-                                                     [self showActivityWithText:NSLS(@"kUpdating")];
-                                                     [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url
-                                                                                                 name:photo.name
-                                                                                               tagSet:tagSet
-                                                                                                usage:[GameApp photoUsage]
-                                                                                           protoPhoto:photo
-                                                                                          resultBlock:^(int resultCode, PBUserPhoto* photo) {
-                                                                                              [self hideActivity];
-            if (resultCode == 0) {
-                PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [tagSet description]);
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
-//                [self reloadTableViewDataSource];
-                if (photoIndex < self.dataList.count) {
-                    [self.dataList setObject:photo atIndexedSubscript:photoIndex];
-                    [self.dataTableView reloadData];
-                }
-            } else {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoFail") delayTime:2];
-                PPDebug(@"<deletePhoto> err code = %d", resultCode);
-            }
-        }];
+    PhotoEditView *v = [PhotoEditView createViewWithPhoto:photo];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSetTag") customView:v style:CommonDialogStyleDoubleButtonWithCross];
+    [dialog setManualClose:YES];
+    [dialog.cancelButton setTitle:NSLS(@"kReset") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(PhotoEditView * infoView){
+        
+        [infoView reset];
     }];
-    [view showInView:self.view];
+    
+    [dialog setClickOkBlock:^(PhotoEditView * infoView){
+        [self showActivityWithText:NSLS(@"kUpdating")];
+        [dialog disappear];
+        [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url
+                                                    name:photo.name
+                                                  tagSet:infoView.tagSet
+                                                   usage:[GameApp photoUsage]
+                                              protoPhoto:photo
+                                             resultBlock:^(int resultCode, PBUserPhoto* photo) {
+                                                 [self hideActivity];
+                                                 if (resultCode == 0) {
+                                                     PPDebug(@"<editPhoto> photo id = %@, name = %@, tags = <%@>", photo.userPhotoId, photo.name, [infoView.tagSet description]);
+                                                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoSucc") delayTime:2];
+                                                     if (photoIndex < self.dataList.count) {
+                                                         [self.dataList setObject:photo atIndexedSubscript:photoIndex];
+                                                         [self.dataTableView reloadData];
+                                                     }
+                                                 } else {
+                                                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kEditPhotoFail") delayTime:2];
+                                                     PPDebug(@"<deletePhoto> err code = %d", resultCode);
+                                                 }
+                                             }];
+    
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 
@@ -318,16 +333,28 @@ enum {
         [builder setUrl:@""];
         tempPhoto = [builder build];
     }
+
     
     __block GalleryController* cp = self;
-    PhotoEditView* view = [PhotoEditView createViewWithPhoto:tempPhoto
-                                                       title:NSLS(@"kFilter")
-                                                confirmTitle:NSLS(@"kConfirm")
-                                                 resultBlock:^(NSSet *tagSet) {
-        cp.tagSet = tagSet;
-        [cp reloadTableViewDataSource];
+
+    PhotoEditView *v = [PhotoEditView createViewWithPhoto:tempPhoto];
+    
+    CommonDialog *dialog =[CommonDialog createDialogWithTitle:NSLS(@"kFilter") customView:v style:CommonDialogStyleDoubleButtonWithCross];
+    [dialog setManualClose:YES];
+    [dialog.cancelButton setTitle:NSLS(@"kReset") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(PhotoEditView * infoView){
+        
+        [infoView reset];
     }];
-    [view showInView:self.view];
+    
+    [dialog setClickOkBlock:^(PhotoEditView* infoView){
+        cp.tagSet = infoView.tagSet;
+        [cp reloadTableViewDataSource];
+        [dialog disappear];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 
@@ -337,13 +364,7 @@ enum {
     sc.delegate = self;
     [self.navigationController pushViewController:sc animated:YES];
 }
-//#pragma mark - PhotoEditView delegate
-//- (void)didEditPictureInfo:(NSSet *)tagSet name:(NSString *)name imageUrl:(NSString *)url
-//{
-//    [[GalleryService defaultService] favorImage:url name:name tagSet:tagSet resultBlock:^(int resultCode) {
-//        PPDebug(@"<didEditPictureInfo> favor image %@ with tag <%@>succ !", url, [tagSet description]);
-//    }];
-//}
+
 
 - (void)didAddUserPhoto:(PBUserPhoto *)photo
 {

@@ -12695,7 +12695,6 @@
 		C2C18A7A1760A7B400DE933B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */,
 				C2773FE6176998F200929AE3 /* UserPhotoView~ipad.xib */,
 				C2773FE8176998F200929AE3 /* PhotoEditView~ipad.xib */,
 				C2C18AD11762C2C400DE933B /* PhotoEditView.h */,
@@ -12711,6 +12710,7 @@
 				C2C18A7B1760A7B400DE933B /* CommonSearchImageFilterView.h */,
 				C2C18A7C1760A7B400DE933B /* CommonSearchImageFilterView.m */,
 				C2C18A7D1760A7B400DE933B /* CommonSearchImageFilterView.xib */,
+				C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */,
 				C2C18A811760A7B400DE933B /* SearchResultView.h */,
 				C2C18A821760A7B400DE933B /* SearchResultView.m */,
 			);

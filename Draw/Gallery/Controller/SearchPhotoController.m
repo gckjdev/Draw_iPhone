@@ -15,10 +15,12 @@
 #import "PPSmartUpdateData.h"
 #import "GalleryController.h"
 #import "UIColor+UIColorExt.h"
+#import "CommonTitleView.h"
+#import "CommonDialog.h"
 
 #define SEARCH_HISTORY @"searchHistory"
 
-@interface SearchPhotoController () <CommonSearchImageFilterViewDelegate, GoogleCustomSearchServiceDelegate, AutocompletionTableViewDelegate> {
+@interface SearchPhotoController () <GoogleCustomSearchServiceDelegate, AutocompletionTableViewDelegate> {
     UIControl* _mask;
 }
 
@@ -61,6 +63,13 @@
     [self.searchTextField addTarget:self.autoCompleter action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
     self.searchTextField.delegate = self;
     self.autoCompleter.completeDelegate = self;
+    
+    CommonTitleView *v = [CommonTitleView createTitleView:self.view];
+    [v setTitle:NSLS(@"kImageSearch")];
+    [v setTarget:self];
+    [v setBackButtonSelector:@selector(clickBack:)];
+
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -208,11 +217,23 @@
 
 - (IBAction)clickOptions:(id)sender
 {
-    CommonSearchImageFilterView* view = [CommonSearchImageFilterView createViewWithFilter:self.options
-                                                                                 delegate:self];
-    [view showInView:self.view];
-    [self.searchTextField resignFirstResponder];
+//    CommonSearchImageFilterView* view = [CommonSearchImageFilterView createViewWithFilter:self.options
+//                                                                                 delegate:self];
+//    [view showInView:self.view];
+//    [self.searchTextField resignFirstResponder];
     
+    
+    CommonSearchImageFilterView* view = [CommonSearchImageFilterView createViewWithFilter:self.options];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil customView:view style:CommonDialogStyleDoubleButton];
+    
+    [dialog showInView:self.view];
+    
+    [dialog setClickOkBlock:^(CommonSearchImageFilterView* infoView){
+        [self.options removeAllObjects];
+        [self.options setDictionary:infoView.filter];
+    }];
+    [self.searchTextField resignFirstResponder];
 }
 
 - (IBAction)clickGallery:(id)sender
@@ -222,13 +243,13 @@
 }
 
 
-#pragma mark - commonSearchImageFilterViewDelegate
-
-- (void)didConfirmFilter:(NSDictionary *)filter
-{
-    [self.options removeAllObjects];
-    [self.options setDictionary:filter];
-}
+//#pragma mark - commonSearchImageFilterViewDelegate
+//
+//- (void)didConfirmFilter:(NSDictionary *)filter
+//{
+//    [self.options removeAllObjects];
+//    [self.options setDictionary:filter];
+//}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

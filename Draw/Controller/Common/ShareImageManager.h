@@ -26,8 +26,12 @@
 #define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) // selected
 #define COLOR_ORANGE2 OPAQUE_COLOR(224, 80, 67) // hightlight
 
+//#define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
+//#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
+
 #define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
-#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
+#define COLOR_YELLOW COLOR_YELLOW1 // common dialog
+
 #define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
 #define COLOR_YELLOW2 OPAQUE_COLOR(204, 131, 24) // common tab selected bg
 
@@ -38,7 +42,8 @@
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog
 #define COLOR_RED1 OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
 
-#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
+//#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
+#define COLOR_BROWN COLOR_COFFEE1 // common dialog
 
 #define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) // common dialog
 #define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog

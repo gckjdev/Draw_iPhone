@@ -17,7 +17,7 @@
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
 #import "UIViewUtils.h"
-
+#import "AnimationManager.h"
 
 
 #define TAG_COUNT_DOWN_VIEW 101
@@ -193,6 +193,16 @@
 
     }];
     
+    CABasicAnimation * animation = [CABasicAnimation
+                                    animationWithKeyPath:@"opacity"];
+    animation.fromValue = [NSNumber numberWithInt:1];
+    animation.toValue = [NSNumber numberWithInt:0];
+    animation.duration = 0.5 ;    
+    animation.autoreverses = YES;
+    animation.repeatCount = HUGE_VAL;
+    
+    [self.contestModeLabel.layer addAnimation:animation forKey:nil];
+    
     [self killTimer];
 }
 
@@ -209,7 +219,7 @@
     [self.contentModeHolderView addSubview:flipView];
     flipView.frame = (ISIPAD ? CGRectMake(34,152,172,48) : CGRectMake(17,77,87,24));
     flipView.tag = TAG_COUNT_DOWN_VIEW;
-//    [self startTimer];
+    [self startTimer];
 }
 
 - (IBAction)clickHappyModeButton:(id)sender {
