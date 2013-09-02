@@ -56,7 +56,7 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="311268072">
+							<object class="IBUIImageView" id="724831820">
 								<reference key="NSNextResponder" ref="660571735"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 42}, {266, 123}}</string>
@@ -364,7 +364,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">bgImageView</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="311268072"/>
+						<reference key="destination" ref="724831820"/>
 					</object>
 					<int key="connectionID">67</int>
 				</object>
@@ -441,7 +441,7 @@
 							<reference ref="932105447"/>
 							<reference ref="136130484"/>
 							<reference ref="167182492"/>
-							<reference ref="311268072"/>
+							<reference ref="724831820"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -482,7 +482,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">65</int>
-						<reference key="object" ref="311268072"/>
+						<reference key="object" ref="724831820"/>
 						<reference key="parent" ref="660571735"/>
 					</object>
 				</array>

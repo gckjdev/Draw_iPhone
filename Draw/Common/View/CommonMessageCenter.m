@@ -20,10 +20,12 @@ typedef enum {
     MessageViewTypeWithUnhappyFace,
 }MessageViewType;
 
-//#define MESSAGE_FONT_SIZE ([DeviceDetection isIPAD] ? 24 : 12)
 #define MESSAGE_LABEL_WIDTH (ISIPAD ? 450 : 185)
-#define MIN_SIZE (ISIPAD ? CGSizeMake(475, 142) : CGSizeMake(198, 65))
 
+#define MESSAGE_LABEL_MIN_HEIGHT (ISIPAD ? 120 : 55)
+
+#define GAP_X (ISIPAD ? 30 : 15)
+#define GAP_Y (ISIPAD ? 30 : 15)
 
 @interface CommonMessageView : UIView 
 
@@ -49,14 +51,21 @@ AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
                 text:(NSString *)text
 {
 	[self.messageLabel setText:text];
-    
     SET_MESSAGE_LABEL_STYLE(self.messageLabel);
     
-    CGSize size = CGSizeMake(MESSAGE_LABEL_WIDTH, 300);
+    CGSize size = CGSizeMake(MESSAGE_LABEL_WIDTH, (ISIPAD ? 600 : 300));
     [self.messageLabel wrapTextWithConstrainedSize:size];
+
+//    if (_messageLabel.frame.size.width < MESSAGE_LABEL_WIDTH) {
+//        [_messageLabel updateWidth:MESSAGE_LABEL_WIDTH];
+//    }
     
-    [self updateWidth:MIN_SIZE.width];
-    [self updateHeight:MAX(self.messageLabel.frame.size.height, MIN_SIZE.height)];
+    if (_messageLabel.frame.size.height < MESSAGE_LABEL_MIN_HEIGHT) {
+        [_messageLabel updateHeight:MESSAGE_LABEL_MIN_HEIGHT];
+    }
+    
+    [self updateWidth:(2 * GAP_X + MESSAGE_LABEL_WIDTH)];    
+    [self updateHeight:(2 * GAP_Y + MESSAGE_LABEL_MIN_HEIGHT)];
     
     [self.messageLabel updateCenterX:self.frame.size.width/2];
     [self.messageLabel updateCenterY:self.frame.size.height/2];
@@ -65,7 +74,6 @@ AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
     SET_VIEW_ROUND_CORNER(self.bgView);
     self.bgView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     self.bgView.layer.borderColor = [COLOR_ORANGE CGColor];
-    
     self.backgroundColor = [UIColor clearColor];
 }
 
