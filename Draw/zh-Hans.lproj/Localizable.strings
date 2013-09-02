@@ -1053,6 +1053,8 @@
 "kReachMaxFlowerPerContest" = "你已经用完本次比赛的所有鲜花，不能再送花了，下次请珍惜花花";
 "kReachContestVoteEndDate" = "比赛送花时间已经截止，下次记得及时送花";
 "kContestSubmitEndSubmitNormal" = "很遗憾，比赛提交作品时间已经截止了，你是否要提交为普通作品？";
+"kContestNotForUser" = "你不是本次比赛的指定参赛选手，无法参加比赛";
+"kContestNotForUserSubmitNormal" = "你不是本次比赛的指定参赛选手，是否要提交为普通作品？";
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";

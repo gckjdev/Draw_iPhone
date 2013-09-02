@@ -1265,6 +1265,10 @@
                 [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestSubmitEndSubmitNormal")];
                 return;
             }
+            else if (![self.contest canUserJoined:[[UserManager defaultManager] userId]]) {
+                [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestNotForUserSubmitNormal")];
+                return;
+            }                
             else if([self.contest isPassed]){
                 [self alertCommitContestOpusAsNormalOpus:NSLS(@"kContestEnd")];
                 return;
