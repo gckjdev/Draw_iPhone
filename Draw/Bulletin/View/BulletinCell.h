@@ -13,10 +13,6 @@
 
 @interface BulletinCell : PPTableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *messageLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (retain, nonatomic) IBOutlet UILabel *contentLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *dateBgView;
-@property (retain, nonatomic) IBOutlet UIButton *timeButton;
 @property (retain, nonatomic) IBOutlet UILabel *dateLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *newBulletinFlag;
 @property (retain, nonatomic) IBOutlet UIImageView *customAccessoryImageView;

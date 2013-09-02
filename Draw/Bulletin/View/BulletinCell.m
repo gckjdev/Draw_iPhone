@@ -13,7 +13,7 @@
 #import "TimeUtils.h"
 #import "JumpHandler.h"
 
-#define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?90:45)
+#define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?80:40)
 #define MAX_CONTENT_LABEL_HEIGHT    ([DeviceDetection isIPAD]?900:450)
 #define CONTENT_FONT_SIZE   ([DeviceDetection isIPAD]?26:13)
 #define CONTENT_LABEL_WIDTH ([DeviceDetection isIPAD]?330:165)
@@ -42,22 +42,21 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 {
     CGSize size = [content sizeWithFont:[UIFont systemFontOfSize:CONTENT_FONT_SIZE]
                                      constrainedToSize:CGSizeMake(CONTENT_LABEL_WIDTH, MAX_CONTENT_LABEL_HEIGHT)
-                                         lineBreakMode:UILineBreakModeWordWrap];
+                                         lineBreakMode:UILineBreakModeTailTruncation];
+
     return CGSizeMake(size.width, size.height + TOTAL_SEPERATOR);
 }
 
 - (void)resize
 {
-    CGSize size = [BulletinCell cellSizeForContent:self.contentLabel.text];
-
+    CGSize size = [BulletinCell cellSizeForContent:self.messageLabel.text];
+    
+    [self.messageLabel updateHeight:(size.height - TOTAL_SEPERATOR)];
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, size.height)];
 }
 
 - (void)initView
 {
-    
-    [self.backgroundImageView setImage:[[GameApp getImageManager] bulletinBackgroundImage]];
-//    [self setAccessoryView:[[[UIImageView alloc] initWithImage:[[GameApp getImageManager] bulletinAccessoryImage]] autorelease]];
     [self setAccessoryType:UITableViewCellAccessoryNone];
     [self.customAccessoryImageView setImage:[[GameApp getImageManager] bulletinAccessoryImage]];
     [self resize];
@@ -81,6 +80,10 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 - (void)setCellByBulletin:(Bulletin *)bulletin
 {
     [self.messageLabel setText:bulletin.message];
+    SET_VIEW_ROUND_CORNER(self);
+    self.layer.borderWidth = (ISIPAD ? 4 : 2);
+    self.layer.borderColor = [COLOR_YELLOW CGColor];
+    
     [self.newBulletinFlag setHidden:bulletin.hasRead];
 
     NSString *str = [NSString stringWithFormat:@"%@  %@", dateToLocaleStringWithFormat(bulletin.date, @"yyyy.MM.dd"), dateToLocaleStringWithFormat(bulletin.date, @"HH:mm")];
@@ -95,10 +98,6 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
 - (void)dealloc {
     [_messageLabel release];
-    [_backgroundImageView release];
-    [_contentLabel release];
-    [_dateBgView release];
-    [_timeButton release];
     [_dateLabel release];
     [_newBulletinFlag release];
     [_customAccessoryImageView release];

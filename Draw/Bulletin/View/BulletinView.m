@@ -63,7 +63,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinView);
 
 #pragma mark - tableView delegate and dataSource
 
-SET_CELL_BG_IN_VIEW;
+//SET_CELL_BG_IN_VIEW;
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

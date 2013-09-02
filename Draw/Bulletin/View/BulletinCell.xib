@@ -66,7 +66,7 @@
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
-								<int key="IBUINumberOfLines">30</int>
+								<int key="IBUINumberOfLines">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">13</double>
@@ -82,7 +82,7 @@
 							<object class="IBUILabel" id="639061381">
 								<reference key="NSNextResponder" ref="746065400"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{68, 7}, {108, 14}}</string>
+								<string key="NSFrame">{{68, 8}, {108, 14}}</string>
 								<reference key="NSSuperview" ref="746065400"/>
 								<reference key="NSNextKeyView" ref="882086406"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -171,14 +171,6 @@
 						<reference key="destination" ref="882086406"/>
 					</object>
 					<int key="connectionID">5</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">contentLabel</string>
-						<reference key="source" ref="928862198"/>
-						<reference key="destination" ref="882086406"/>
-					</object>
-					<int key="connectionID">12</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
