@@ -162,14 +162,15 @@
     
     
     self.balanceBgImageView.backgroundColor = COLOR_YELLOW;
-    self.countBgImageView.backgroundColor = COLOR_LIGHT_GRAY1;
-    SET_VIEW_ROUND_CORNER(self.countBgImageView);
+//    self.countBgImageView.backgroundColor = COLOR_LIGHT_GRAY1;
+//    SET_VIEW_ROUND_CORNER(self.countBgImageView);
     
     [self.taobaoButton setBackgroundColor:COLOR_YELLOW];
     
-    self.balanceTipLabel.textColor = COLOR_ORANGE;
+    self.balanceTipLabel.textColor = COLOR_BROWN;
+    self.countLabel.textColor = COLOR_BROWN;
     
-    self.taobaoLabel.textColor = COLOR_ORANGE;
+    self.taobaoLabel.textColor = COLOR_BROWN;
 
 }
 

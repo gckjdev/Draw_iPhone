@@ -310,7 +310,6 @@
 								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">12</float>
-								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="852428039">
 									<int key="type">1</int>
 									<double key="pointSize">28</double>
@@ -376,7 +375,6 @@
 								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumFontSize">12</float>
-								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="852428039"/>
 								<reference key="IBUIFont" ref="610222731"/>
 							</object>
