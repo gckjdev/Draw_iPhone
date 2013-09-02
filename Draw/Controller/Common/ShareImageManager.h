@@ -85,6 +85,12 @@
     [[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:YES];         \
 } 
 
+#define SET_BUTTON_ROUND_STYLE_ORANGE(view) \
+{                                                           \
+[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_YELLOW highlightedColor:COLOR_ORANGE1 round:YES];         \
+}
+
+
 #define SET_BUTTON_SQUARE_STYLE_YELLOW(view)                              \
 {                                                           \
 [[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:NO];         \
@@ -297,8 +303,8 @@ cell.backgroundColor = COLOR_WHITE;             \
 
 //player
 
-- (UIImage *)playProgressLoader;//draw_player_progress_load@2x.png
-- (UIImage *)speedProgressLoader;
+- (UIImage *)playProgressPoint;
+- (UIImage *)speedProgressPoint;
 
 //top player cup
 

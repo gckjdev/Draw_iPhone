@@ -47,6 +47,7 @@
 #import "ContestManager.h"
 #import "DrawAppDelegate.h"
 #import "SearchPhotoController.h"
+#import "UINavigationController+UINavigationControllerAdditions.h"
 
 #define POP_OPTION_SHEET_TAG    120130511
 #define DRAW_OPTION_SHEET_TAG   220130511

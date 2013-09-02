@@ -263,7 +263,7 @@
     __block typeof (self) bself = self;
     NSString *opusId = _opus.pbOpus.opusId;
     NSString *authorId = _opus.pbOpus.author.userId;
-    [[FlowerItem sharedFlowerItem] useItem:authorId isOffline:YES feedOpusId:opusId feedAuthor:authorId forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
+    [[FlowerItem sharedFlowerItem] useItem:authorId isOffline:YES opus:_opus forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [self showAnimationThrowTool:toolView isBuy:isBuy];
             [ItemUseRecorder increaseItemTimes:ItemTypeFlower onOpus:opusId];

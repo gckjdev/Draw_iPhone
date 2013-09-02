@@ -8,6 +8,7 @@
 
 #import "ContestFeed.h"
 #import "ConfigManager.h"
+#import "ContestManager.h"
 
 @implementation ContestFeed
 @synthesize contestId = _contestId;
@@ -44,6 +45,7 @@
     [aCoder encodeObject:self.contestId forKey:KEY_CONTEST_ID];
     [aCoder encodeInteger:self.contestScore forKey:KEY_CONTEST_SCORE];
 }
+
 - (void)dealloc
 {
     PPRelease(_contestId);
@@ -53,7 +55,13 @@
 
 - (NSInteger)itemLimit
 {
-    return [ConfigManager numberOfItemCanUsedOnContestOpus];
+    Contest* contest = [[ContestManager defaultManager] ongoingContestById:self.contestId];    
+    if (contest == nil){
+        return 0;
+    }
+    else{
+        return [contest maxFlowerPerOpus];
+    }
 }
 
 

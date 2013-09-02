@@ -204,7 +204,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)resetDrawBackground;
 - (UIImage*)drawBackground;
 
-
 - (BOOL)canFeatureDrawOpus;
 - (void)setFeatureOpus:(NSInteger)flag;
+
+- (void)setUserContestFlowers:(NSString*)contestId flowers:(int)flowers;
+- (int)flowersUsed:(NSString*)contestId;
+
 @end

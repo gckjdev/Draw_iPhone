@@ -240,7 +240,14 @@
     if (![contest isRunning]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
         return;
-    }else if([contest commitCountEnough]){
+    }
+    
+    if (![contest canSubmit]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestSubmitEnd") delayTime:1.5 isHappy:NO];
+        return;
+    }
+    
+    if([contest commitCountEnough]){
         NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitCountEnough"),contest.canSubmitCount];
         [[CommonMessageCenter defaultCenter] postMessageWithText:title 
                                                        delayTime:1.5 

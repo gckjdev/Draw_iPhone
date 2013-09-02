@@ -133,6 +133,8 @@
             PPDebug(@"<sendComment> summary length = %d", [commentSummary length]);
             commentSummary = [commentSummary substringToIndex:ACTION_SUMMARY_MAX_LENGTH];
         }
+        
+        // TODO change to new interface
         [_feedService commentOpus:opusId
                            author:author
                           comment:comment

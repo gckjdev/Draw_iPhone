@@ -21,7 +21,6 @@
 #import "StableView.h"
 #import "ShareImageManager.h"
 #import "CommonMessageCenter.h"
-#import "ReplayView.h"
 
 #import "UseItemScene.h"
 
@@ -50,6 +49,7 @@
 #import "UIButton+WebCache.h"
 #import "ContestManager.h"
 #import "JudgerScoreView.h"
+#import "DrawPlayer.h"
 
 @interface ShowFeedController () {
     BOOL _didLoadDrawPicture;
@@ -67,6 +67,8 @@
 @property (nonatomic, retain) UseItemScene* useItemScene;
 @property(nonatomic, retain) DetailFooterView *footerView;
 @property(nonatomic, retain) PPPopTableView *judgerPopupView;
+@property(nonatomic, retain) Contest *contest;
+
 //@property(nonatomic, assign) BOOL swipeEnable;
 
 //- (IBAction)clickActionButton:(id)sender;
@@ -94,6 +96,7 @@ typedef enum{
     _feed.pbDrawData = nil;
 //    [_brower release];
     
+    PPRelease(_contest);
     PPRelease(_feed);
     PPRelease(_drawCell);
     PPRelease(_userCell);
@@ -110,7 +113,7 @@ typedef enum{
     self = [super init];
     if(self)
     {
-        self.feed = feed;
+        self.feed = feed;        
     }
     return self;
 }
@@ -135,90 +138,14 @@ typedef enum{
     return self;
 }
 
-
-- (BOOL)swipeDisable
-{
-    return [self.view containsSubViewWithClass:[JudgerScoreView class]];
-}
-
-#pragma mark-- Swip action
-- (void)handleSwipe:(UISwipeGestureRecognizer *)swp
-{
-    if ([self swipeDisable]) {
-        PPDebug(@"swipeDisable!!!");
-        return;
-    }
-    if ([self.feedList count] != 0 && swp.state == UIGestureRecognizerStateRecognized) {
-        NSInteger currentIndex = NSNotFound;
-        //[self.feedList indexOfObject:self.feed];
-        NSInteger i = 0;
-        for (DrawFeed *feed in self.feedList) {
-            if ([feed.feedId isEqualToString:self.feed.feedId]) {
-                currentIndex = i;
-                break;
-            }
-            i ++;
-        }
-        if (currentIndex == NSNotFound) {
-            return;
-        }
-        DrawFeed *feed = nil;
-        if (swp.direction == UISwipeGestureRecognizerDirectionRight) {
-            currentIndex --;
-            if (currentIndex >= 0) {
-                feed = [self.feedList objectAtIndex:currentIndex];
-            }else{
-                [self popupUnhappyMessage:NSLS(@"kScrollToFirst") title:nil];
-            }
-        }else if(swp.direction == UISwipeGestureRecognizerDirectionLeft){
-            currentIndex ++;
-            if (currentIndex < [self.feedList count]) {
-                feed = [self.feedList objectAtIndex:currentIndex];
-            }else{
-                [self popupUnhappyMessage:NSLS(@"kScrollToEnd") title:nil];
-            }
-        }
-        
-#define TIME_INTERVAL 0.35
-        
-        if (feed  && (time(0) - timestamp) > TIME_INTERVAL) {
-            timestamp = time(0);
-            self.feed = feed;
-            self.useItemScene.feed = self.feed;
-            self.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
-            [_tabManager reset];
-            [self reloadView];
-            [self clickTab:self.currentTab.tabID];
-
-            self.dataTableView.alpha = 0.3;
-            [UIView animateWithDuration:0.8 animations:^{
-                self.dataTableView.alpha = 1;
-            }];
-            
-        }
-    }
-}
-
-- (void)addSwipe
-{
-    [self setSwipeToBack:NO];
-    UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    [self.view addGestureRecognizer:left];
-    left.direction = UISwipeGestureRecognizerDirectionLeft;
-    left.delegate = self;
-    [left release];
-    
-    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    [self.view addGestureRecognizer:right];
-    right.direction = UISwipeGestureRecognizerDirectionRight;
-    right.delegate = self;
-    [right release];
-
-}
-
 - (void)updateFlowerButton
 {
     BOOL enable = [_useItemScene canThrowFlower];
+    
+    if (self.contest && [self.contest canVote] == NO){
+        enable = NO;
+    }
+    
     [self.footerView setButton:FooterTypeFlower enabled:enable];
 }
 - (void)updateActionButtons
@@ -241,11 +168,11 @@ typedef enum{
             canThrowFlower = NO;
         }
         
-#if DEBUG
-        if (YES || [cm isUser:uid judgeAtContest:cf.contestId]) {
-#else
+//#if DEBUG
+//        if (YES || [cm isUser:uid judgeAtContest:cf.contestId]) {
+//#else
         if([cm isUser:uid judgeAtContest:cf.contestId]) {
-#endif
+//#endif
             [types addObject:@(FooterTypeJudge)];
             canThrowFlower = NO;
         }
@@ -613,18 +540,28 @@ typedef enum{
         __block typeof (self) bself = self;
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
                                      isOffline:YES
-                                    feedOpusId:_feed.feedId
-                                    feedAuthor:_feed.author.userId
+                                      drawFeed:_feed
+//                                    feedOpusId:_feed.feedId
+//                                    feedAuthor:_feed.author.userId
                                        forFree:isFree
                                  resultHandler:^(int resultCode, int itemId, BOOL isBuy)
         {
+            
+            
             if (resultCode == ERROR_SUCCESS){
+
+                // TODO contest show flower total left
+                if (self.contest != nil){
+                    int userCurrentFlowers = [[UserManager defaultManager] flowersUsed:self.contest.contestId];
+                    int maxFlowerPerContest = [self.contest maxFlowerPerContest ];
+                    PPDebug(@"<throwFlow> userCurrentFlowers=%d maxFlowerPerContest=%d", userCurrentFlowers, maxFlowerPerContest);
+                }
+                
                 ShareImageManager *imageManager = [ShareImageManager defaultManager];
                 CGRect frame = [bself.footerView buttonWithType:FooterTypeFlower].frame;
                 frame = [self.view convertRect:frame fromView:self.footerView];
                 UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:frame] autorelease];
                 [throwItem setImage:[imageManager flower]];
-                PPDebug(@"<test2> complete 1");                
                 [DrawGameAnimationManager showThrowFlower:throwItem
                                          animInController:bself
                                                   rolling:YES
@@ -632,18 +569,24 @@ typedef enum{
                                            shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType]
                                                completion:^(BOOL finished) {
                 [bself clickRefreshButton:nil];
-                   PPDebug(@"<test2> complete 10");
                 }];
                 [bself.commentHeader setSelectedType:CommentTypeFlower];
                 [bself.feed incTimesForType:FeedTimesTypeFlower];
-                PPDebug(@"<test2> complete 2");
             }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
                 [BalanceNotEnoughAlertView showInController:bself];
                 [bself.feed decreaseLocalFlowerTimes];
-            }else if (resultCode == ERROR_NETWORK){
+            }else if (resultCode == ERROR_CONTEST_REACH_MAX_FLOWER){
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kReachMaxFlowerPerContest") delayTime:2 isHappy:NO];
+                [bself.feed decreaseLocalFlowerTimes];
+            }else if (resultCode == ERROR_CONTEST_EXCEED_THROW_FLOWER_DATE){
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kReachContestVoteEndDate") delayTime:2 isHappy:NO];
+                [bself.feed decreaseLocalFlowerTimes];
+            }else{
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
                 [bself.feed decreaseLocalFlowerTimes];
             }
+            
+            
         }];
     }
 }
@@ -729,7 +672,6 @@ typedef enum{
     __block ShowFeedController * cp = self;
 
     [self loadDrawDataWithHanlder:^{
-        ReplayView *replay = [ReplayView createReplayView];
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
         }
@@ -739,12 +681,22 @@ typedef enum{
         obj.isNewVersion = [cp.feed.drawData isNewVersion];
         obj.canvasSize = cp.feed.drawData.canvasSize;
         obj.layers = cp.feed.drawData.layers;
-        
-        [replay showInController:cp object:obj];
+    
+        DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+        [player showInController:cp];
 
     }];
     
 }
+
+- (void)gotoContestComment
+{
+    CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+    [self presentModalViewController:cc animated:YES];
+    [_commentHeader setSelectedType:CommentTypeComment];
+    [cc release];    
+}
+
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
@@ -786,7 +738,7 @@ typedef enum{
         }
         case FooterTypeReport:
         {
-            //TODO report
+            [self gotoContestComment];
             break;
         }
          
@@ -801,10 +753,11 @@ typedef enum{
                     
                     if (row == 0) {
                         // for judger comment
-                        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
-                        [self presentModalViewController:cc animated:YES];
-                        [_commentHeader setSelectedType:CommentTypeComment];
-                        [cc release];
+                        [self gotoContestComment];
+//                        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
+//                        [self presentModalViewController:cc animated:YES];
+//                        [_commentHeader setSelectedType:CommentTypeComment];
+//                        [cc release];
                     }else if(row == 1){
                         Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
                         if (contest) {
@@ -918,6 +871,7 @@ typedef enum{
 
 - (void)viewDidLoad
 {
+    self.contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
     
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
@@ -931,7 +885,6 @@ typedef enum{
     
     [self initFooterView];    
     [self initTabButtons];
-    [self addSwipe];
     [self reloadView];
 }
 
@@ -1040,7 +993,9 @@ typedef enum{
         }else if (buttonIndex == indexOfPlay){
             [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
         }else if (buttonIndex == indexOfFeature){
-            [[FeedService defaultService] recommendOpus:self.feed.feedId resultBlock:^(int resultCode) {
+            [[FeedService defaultService] recommendOpus:self.feed.feedId
+                                              contestId:self.feed.contestId
+                                            resultBlock:^(int resultCode) {
                 if (resultCode == 0){
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFeatureSucc") delayTime:2];
                 }                
@@ -1131,13 +1086,4 @@ typedef enum{
     }
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    for (ReplayView *rv in [self.view subviews]) {
-        if ([rv isKindOfClass:[ReplayView class]]) {
-            return NO;
-        }
-    }
-    return YES;
-}
 @end

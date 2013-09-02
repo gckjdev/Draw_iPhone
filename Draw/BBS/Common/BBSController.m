@@ -9,7 +9,7 @@
 #import "BBSController.h"
 #import "CommonUserInfoView.h"
 #import "ConfigManager.h"
-#import "ReplayView.h"
+#import "DrawPlayer.h"
 
 @interface BBSController ()
 
@@ -37,7 +37,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setSwipeToBack:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,16 +109,14 @@
 {
     [self hideActivity];
     if (resultCode == 0) {
-        ReplayView *replayView = [ReplayView createReplayView];
-        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;
-        
+        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;        
         ReplayObject *obj = [ReplayObject obj];
         obj.actionList = drawActionList;
         obj.isNewVersion = isNewVersion;
         obj.canvasSize = canvasSize;
         obj.layers = [DrawLayer defaultOldLayersWithFrame:CGRectFromCGSize(canvasSize)];
-        
-        [replayView showInController:self object:obj];
+        DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
+        [player showInController:self];
         
     }else{
         PPDebug(@"<didGetBBSDrawActionList> fail!, resultCode = %d",resultCode);

@@ -10,6 +10,8 @@
 #import "CommonItem.h"
 
 @class BlockArray;
+@class DrawFeed;
+@class Opus;
 
 #define PARA_KEY_USER_ID @"PARA_KEY_USER_ID"
 #define PARA_KEY_OPUS_ID @"PARA_KEY_OPUS_ID"
@@ -20,9 +22,14 @@
 
 - (void)useItem:(NSString*)toUserId
       isOffline:(BOOL)isOffline
-     feedOpusId:(NSString*)feedOpusId
-     feedAuthor:(NSString*)feedAuthor
+       drawFeed:(DrawFeed*)drawFeed
         forFree:(BOOL)isFree
   resultHandler:(ConsumeItemResultHandler)resultHandler;
+
+- (void)useItem:(NSString*)toUserId
+      isOffline:(BOOL)isOffline
+           opus:(Opus*)opus
+        forFree:(BOOL)isFree
+  resultHandler:(ConsumeItemResultHandler)handler;
 
 @end

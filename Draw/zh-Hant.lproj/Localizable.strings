@@ -1026,6 +1026,11 @@
 "kContestCommitCountEnough" = "對不起，妳已經提交了%d幅作品了，不能再參加了。";
 "kContestCommitEnoughCommitAsNormal" = "對不起，妳已經提交了%d幅作品了，不能再提交了。把作品提交為普通作品？";
 
+// TODO contest 繁体
+"kContestSubmitEnd" = "比赛提交作品时间已经截止了，下次记得准时参加";
+"kReachMaxFlowerPerContest" = "你已经用完本次比赛的所有鲜花，不能再送花了，下次请珍惜花花";
+"kReachContestVoteEndDate" = "比赛送花时间已经截止，下次记得及时送花";
+
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";

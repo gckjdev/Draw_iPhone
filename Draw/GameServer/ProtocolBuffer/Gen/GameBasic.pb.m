@@ -12817,7 +12817,10 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
 @property int32_t voteEndDate;
 @property BOOL isAnounymous;
 @property int32_t canSubmitCount;
-@property int32_t flowerPerUser;
+@property int32_t maxFlowerPerContest;
+@property int32_t maxFlowerPerOpus;
+@property BOOL canSubmit;
+@property BOOL canVote;
 @property (retain) NSMutableArray* mutableJudgesList;
 @property (retain) NSMutableArray* mutableReportersList;
 @property (retain) NSMutableArray* mutableWinnerUsersList;
@@ -12930,13 +12933,44 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
   hasCanSubmitCount_ = !!value;
 }
 @synthesize canSubmitCount;
-- (BOOL) hasFlowerPerUser {
-  return !!hasFlowerPerUser_;
+- (BOOL) hasMaxFlowerPerContest {
+  return !!hasMaxFlowerPerContest_;
 }
-- (void) setHasFlowerPerUser:(BOOL) value {
-  hasFlowerPerUser_ = !!value;
+- (void) setHasMaxFlowerPerContest:(BOOL) value {
+  hasMaxFlowerPerContest_ = !!value;
 }
-@synthesize flowerPerUser;
+@synthesize maxFlowerPerContest;
+- (BOOL) hasMaxFlowerPerOpus {
+  return !!hasMaxFlowerPerOpus_;
+}
+- (void) setHasMaxFlowerPerOpus:(BOOL) value {
+  hasMaxFlowerPerOpus_ = !!value;
+}
+@synthesize maxFlowerPerOpus;
+- (BOOL) hasCanSubmit {
+  return !!hasCanSubmit_;
+}
+- (void) setHasCanSubmit:(BOOL) value {
+  hasCanSubmit_ = !!value;
+}
+- (BOOL) canSubmit {
+  return !!canSubmit_;
+}
+- (void) setCanSubmit:(BOOL) value {
+  canSubmit_ = !!value;
+}
+- (BOOL) hasCanVote {
+  return !!hasCanVote_;
+}
+- (void) setHasCanVote:(BOOL) value {
+  hasCanVote_ = !!value;
+}
+- (BOOL) canVote {
+  return !!canVote_;
+}
+- (void) setCanVote:(BOOL) value {
+  canVote_ = !!value;
+}
 @synthesize mutableJudgesList;
 @synthesize mutableReportersList;
 @synthesize mutableWinnerUsersList;
@@ -12970,7 +13004,10 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
     self.voteEndDate = 0;
     self.isAnounymous = NO;
     self.canSubmitCount = 1;
-    self.flowerPerUser = 20;
+    self.maxFlowerPerContest = 20;
+    self.maxFlowerPerOpus = 3;
+    self.canSubmit = NO;
+    self.canVote = NO;
   }
   return self;
 }
@@ -13095,8 +13132,17 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasCanSubmitCount) {
     [output writeInt32:31 value:self.canSubmitCount];
   }
-  if (self.hasFlowerPerUser) {
-    [output writeInt32:32 value:self.flowerPerUser];
+  if (self.hasMaxFlowerPerContest) {
+    [output writeInt32:32 value:self.maxFlowerPerContest];
+  }
+  if (self.hasMaxFlowerPerOpus) {
+    [output writeInt32:33 value:self.maxFlowerPerOpus];
+  }
+  if (self.hasCanSubmit) {
+    [output writeBool:41 value:self.canSubmit];
+  }
+  if (self.hasCanVote) {
+    [output writeBool:42 value:self.canVote];
   }
   for (PBGameUser* element in self.judgesList) {
     [output writeMessage:51 value:element];
@@ -13164,8 +13210,17 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasCanSubmitCount) {
     size += computeInt32Size(31, self.canSubmitCount);
   }
-  if (self.hasFlowerPerUser) {
-    size += computeInt32Size(32, self.flowerPerUser);
+  if (self.hasMaxFlowerPerContest) {
+    size += computeInt32Size(32, self.maxFlowerPerContest);
+  }
+  if (self.hasMaxFlowerPerOpus) {
+    size += computeInt32Size(33, self.maxFlowerPerOpus);
+  }
+  if (self.hasCanSubmit) {
+    size += computeBoolSize(41, self.canSubmit);
+  }
+  if (self.hasCanVote) {
+    size += computeBoolSize(42, self.canVote);
   }
   for (PBGameUser* element in self.judgesList) {
     size += computeMessageSize(51, element);
@@ -13299,8 +13354,17 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasCanSubmitCount) {
     [self setCanSubmitCount:other.canSubmitCount];
   }
-  if (other.hasFlowerPerUser) {
-    [self setFlowerPerUser:other.flowerPerUser];
+  if (other.hasMaxFlowerPerContest) {
+    [self setMaxFlowerPerContest:other.maxFlowerPerContest];
+  }
+  if (other.hasMaxFlowerPerOpus) {
+    [self setMaxFlowerPerOpus:other.maxFlowerPerOpus];
+  }
+  if (other.hasCanSubmit) {
+    [self setCanSubmit:other.canSubmit];
+  }
+  if (other.hasCanVote) {
+    [self setCanVote:other.canVote];
   }
   if (other.mutableJudgesList.count > 0) {
     if (result.mutableJudgesList == nil) {
@@ -13410,7 +13474,19 @@ static PBContest* defaultPBContestInstance = nil;
         break;
       }
       case 256: {
-        [self setFlowerPerUser:[input readInt32]];
+        [self setMaxFlowerPerContest:[input readInt32]];
+        break;
+      }
+      case 264: {
+        [self setMaxFlowerPerOpus:[input readInt32]];
+        break;
+      }
+      case 328: {
+        [self setCanSubmit:[input readBool]];
+        break;
+      }
+      case 336: {
+        [self setCanVote:[input readBool]];
         break;
       }
       case 410: {
@@ -13670,20 +13746,68 @@ static PBContest* defaultPBContestInstance = nil;
   result.canSubmitCount = 1;
   return self;
 }
-- (BOOL) hasFlowerPerUser {
-  return result.hasFlowerPerUser;
+- (BOOL) hasMaxFlowerPerContest {
+  return result.hasMaxFlowerPerContest;
 }
-- (int32_t) flowerPerUser {
-  return result.flowerPerUser;
+- (int32_t) maxFlowerPerContest {
+  return result.maxFlowerPerContest;
 }
-- (PBContest_Builder*) setFlowerPerUser:(int32_t) value {
-  result.hasFlowerPerUser = YES;
-  result.flowerPerUser = value;
+- (PBContest_Builder*) setMaxFlowerPerContest:(int32_t) value {
+  result.hasMaxFlowerPerContest = YES;
+  result.maxFlowerPerContest = value;
   return self;
 }
-- (PBContest_Builder*) clearFlowerPerUser {
-  result.hasFlowerPerUser = NO;
-  result.flowerPerUser = 20;
+- (PBContest_Builder*) clearMaxFlowerPerContest {
+  result.hasMaxFlowerPerContest = NO;
+  result.maxFlowerPerContest = 20;
+  return self;
+}
+- (BOOL) hasMaxFlowerPerOpus {
+  return result.hasMaxFlowerPerOpus;
+}
+- (int32_t) maxFlowerPerOpus {
+  return result.maxFlowerPerOpus;
+}
+- (PBContest_Builder*) setMaxFlowerPerOpus:(int32_t) value {
+  result.hasMaxFlowerPerOpus = YES;
+  result.maxFlowerPerOpus = value;
+  return self;
+}
+- (PBContest_Builder*) clearMaxFlowerPerOpus {
+  result.hasMaxFlowerPerOpus = NO;
+  result.maxFlowerPerOpus = 3;
+  return self;
+}
+- (BOOL) hasCanSubmit {
+  return result.hasCanSubmit;
+}
+- (BOOL) canSubmit {
+  return result.canSubmit;
+}
+- (PBContest_Builder*) setCanSubmit:(BOOL) value {
+  result.hasCanSubmit = YES;
+  result.canSubmit = value;
+  return self;
+}
+- (PBContest_Builder*) clearCanSubmit {
+  result.hasCanSubmit = NO;
+  result.canSubmit = NO;
+  return self;
+}
+- (BOOL) hasCanVote {
+  return result.hasCanVote;
+}
+- (BOOL) canVote {
+  return result.canVote;
+}
+- (PBContest_Builder*) setCanVote:(BOOL) value {
+  result.hasCanVote = YES;
+  result.canVote = value;
+  return self;
+}
+- (PBContest_Builder*) clearCanVote {
+  result.hasCanVote = NO;
+  result.canVote = NO;
   return self;
 }
 - (NSArray*) judgesList {

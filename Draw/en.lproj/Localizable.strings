@@ -1030,6 +1030,10 @@
 "kNoContestTips" = "No Contest Now.";
 "kContestFeedDetail" = "Contest Opus";
 
+"kContestSubmitEnd" = "Contest is closed for submit.";
+"kReachMaxFlowerPerContest" = "You have used up flowers for the contest.";
+"kReachContestVoteEndDate" = "Contest is ended. Cannot throw flower any more.";
+
 "kDrawToUserByUser" = "drew to %@";
 "kQQGroup" = "";
 "kCopy" = "Copy";

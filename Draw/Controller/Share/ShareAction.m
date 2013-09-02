@@ -228,6 +228,7 @@
 {
     if (![[UserManager defaultManager] isMe:_feed.author.userId]) {
         [[FeedService defaultService] actionSaveOpus:_feed.feedId
+                                           contestId:_feed.contestId
                                           actionName:actionName];
     }
 }
@@ -416,7 +417,9 @@
     __block PPViewController* vc = self.superViewController;
     __block ShareAction* ac = self;
     [vc showActivityWithText:NSLS(@"kFavoriting")];
-    [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId resultBlock:^(int resultCode) {
+    [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId
+                                            contestId:self.feed.contestId
+                                          resultBlock:^(int resultCode) {
         [vc hideActivity];
         
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"KSaveToLocalTitle") message:NSLS(@"kSaveToLocalMsg") style:CommonDialogStyleDoubleButton];
