@@ -34,13 +34,15 @@
 #import "StringUtil.h"
 #import "TimeUtils.h"
 #import "Opus.h"
+#import "PPPopTableView.h"
 
 @interface CommonShareAction ()
 {
-    CustomActionSheet* _customActionSheet;
+    CustomActionSheet *_customActionSheet;
 }
 
 @property (nonatomic, assign) PPViewController* superViewController;
+@property (retain, nonatomic) PPPopTableView *popTableView;
 
 @property (nonatomic, retain) Opus* opus;
 @property (nonatomic, retain) UIImage* image;
@@ -167,14 +169,39 @@
                                              image:image];
         }
     }
-    
-
 
     if (!_customActionSheet.isVisable) {
         [_customActionSheet showInView:viewController.view onView:onView];
     } else {
         [_customActionSheet hideActionSheet];
     }
+}
+
+- (void)popActionTags:(NSArray *)actionTags shareText:(NSString *)shareText viewController:(PPViewController *)viewController onView:(UIView *)onView{
+    
+    self.actionTags = actionTags;
+    self.superViewController = viewController;
+    self.shareText = shareText;
+        
+    NSMutableArray *arr = [NSMutableArray array];
+    for (NSNumber *nstag in actionTags) {
+        
+        ShareActionTag tag = [nstag intValue];
+        NSArray *action = [self actionWithTag:tag];
+        NSString *title = [action objectAtIndex:1];
+//        UIImage *image = [action objectAtIndex:2];
+        
+        [arr addObject:title];
+    }
+    
+    __block typeof(self) bself = self;
+    self.popTableView = [PPPopTableView popTableViewWithTitles:arr icons:nil selectedHandler:^(NSInteger row) {
+        
+        ShareActionTag tag = [[actionTags objectAtIndex:row] intValue];
+        [bself handleWithShareActionTag:tag];
+    }];
+    
+    [_popTableView showInView:viewController.view atView:onView animated:YES];
 }
 
 - (void)reportActionToServer:(NSString*)actionName
@@ -387,9 +414,7 @@
     }
 }
 
-- (void)actionByButtonIndex:(NSInteger)buttonIndex
-{
-    ShareActionTag tag = [[_actionTags objectAtIndex:buttonIndex] intValue];
+- (void)handleWithShareActionTag:(ShareActionTag)tag{
     
     if (tag == ShareActionTagAlbum){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_ALBUM];
@@ -429,6 +454,12 @@
     } else if (tag == ShareActionTagFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
     }
+}
+
+- (void)actionByButtonIndex:(NSInteger)buttonIndex
+{
+    ShareActionTag tag = [[_actionTags objectAtIndex:buttonIndex] intValue];
+    [self handleWithShareActionTag:tag];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

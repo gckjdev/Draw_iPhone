@@ -10,6 +10,7 @@
 #import "WordManager.h"
 #import "CommonShareAction.h"
 #import "SDImageCache.h"
+#import "PPPopTableView.h"
 
 @interface DrawGuessController ()
 @property (retain, nonatomic) CommonShareAction *shareAction;
@@ -31,7 +32,7 @@
     [_titleView setTitle:NSLS(@"kGuess")];
     [_titleView setRightButtonTitle:NSLS(@"kAskForHelp")];
     [_titleView setTarget:self];
-    [_titleView setRightButtonSelector:@selector(clickAskForHelpButton)];
+    [_titleView setRightButtonSelector:@selector(clickAskForHelpButton:)];
     
     // Set candidates
     NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
@@ -50,7 +51,7 @@
     [super viewDidUnload];
 }
 
-- (void)clickAskForHelpButton{
+- (void)clickAskForHelpButton:(UIButton *)button{
     
     PPDebug(@"clickAskForHelpButton");
     
@@ -58,7 +59,7 @@
         _shareAction = [[CommonShareAction alloc] initWithOpus:self.opus];
     }
     
-    [_shareAction displayActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxFriend)] shareText:NSLS(@"kLookWhatHeDraw") viewController:self onView:_titleView.rightButton];
+    [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxFriend)] shareText:NSLS(@"kLookWhatHeDraw") viewController:self onView:_titleView.rightButton];
 }
 
 @end
