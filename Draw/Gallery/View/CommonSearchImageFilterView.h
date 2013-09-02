@@ -9,20 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CommonInfoView.h"
 
-@protocol CommonSearchImageFilterViewDelegate <NSObject>
+@interface CommonSearchImageFilterView : UIView
 
-- (void)didConfirmFilter:(NSDictionary*)filter;
++ (CommonSearchImageFilterView*)createViewWithFilter:(NSMutableDictionary*)filter;
 
-@end
-
-@interface CommonSearchImageFilterView : CommonInfoView
-
-- (IBAction)clickFilterBtn:(id)sender;
-- (IBAction)clickConfirmBtn:(id)sender;
-
-+ (CommonSearchImageFilterView*)createViewWithFilter:(NSMutableDictionary*)filter
-                                            delegate:(id<CommonSearchImageFilterViewDelegate>)delegate;
-@property (retain, nonatomic) IBOutlet UIButton *confirmBtn;
-@property (retain, nonatomic) IBOutlet UIButton *cancelBtn;
+@property (retain, nonatomic) NSMutableDictionary* filter;
 
 @end

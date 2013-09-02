@@ -6,24 +6,16 @@
 //
 //
 
-#import "CommonInfoView.h"
-
 @class PBUserPhoto;
 
 typedef void(^PhotoEditResultBLock)(NSSet* tagSet);
 
-@interface PhotoEditView : CommonInfoView <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface PhotoEditView : UIView <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
-@property (copy, nonatomic) PhotoEditResultBLock resultBlock;
-@property (retain, nonatomic) IBOutlet UIButton *confirmBtn;
-@property (retain, nonatomic) IBOutlet UIButton *cancelBtn;
+@property (retain, nonatomic) NSMutableSet* tagSet;
 
-+ (PhotoEditView*)createViewWithPhoto:(PBUserPhoto*)photo
-                                title:(NSString*)title
-                         confirmTitle:(NSString*)confirmTitle
-                          resultBlock:(PhotoEditResultBLock)resultBlock;
++ (PhotoEditView*)createViewWithPhoto:(PBUserPhoto*)photo;
 
-- (IBAction)clickConfirm:(id)sender;
-- (IBAction)clickCancel:(id)sender;
-- (IBAction)clickReset:(id)sender;
+- (void)reset;
+
 @end

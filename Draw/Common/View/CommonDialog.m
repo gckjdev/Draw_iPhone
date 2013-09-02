@@ -25,6 +25,9 @@
 
 #define DIALOG_CORNER_RADIUS    (ISIPAD ? 30 : 15)
 
+#define BUTTON_WIDTH (ISIPAD ? 185 : 85)
+#define BUTTON_HEIGHT (ISIPAD ? 65 : 30)
+
 @interface CommonDialog()<UITextFieldDelegate, UITextViewDelegate>
 
 @end
@@ -47,6 +50,7 @@
     [_inputTextField release];
     [_inputTextView release];
     [_customView release];
+    [_bgImageView release];
     [super dealloc];
 }
 
@@ -114,11 +118,23 @@
     view.customView = customView;
     [view.contentView addSubview:view.customView];
     [view layout];
+    
     return view;
 }
 
 - (void)layout
-{    
+{
+    UIView *infoView = [self infoView];
+
+    if (_type == CommonDialogTypeCustomView &&
+        infoView.frame.size.width > (self.contentView.frame.size.width - 2 * (ISIPAD ? 8 : 4) - CONTENT_VIEW_INSERT)) {
+        
+        CGFloat width = infoView.frame.size.width + 2 * (ISIPAD ? 16 : 8) + CONTENT_VIEW_INSERT;
+        [self.contentView updateWidth:width];
+        [self.contentView updateCenterX:self.center.x];
+        [self.contentView setNeedsDisplay];
+    }
+    
     CGFloat centerX = self.contentView.frame.size.width/2;
     
     CGFloat originY = CONTENT_VIEW_INSERT;
@@ -130,7 +146,6 @@
     [_closeButton updateOriginY:originY];
     
     originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
-    UIView *infoView = [self infoView];
     [infoView updateCenterX:centerX];
     [infoView updateOriginY:(originY)];
     
@@ -141,6 +156,11 @@
     
     if (_style == CommonDialogStyleSingleButton) {
         [self.oKButton updateCenterX:centerX];
+    }else{
+        CGFloat gapX = (self.contentView.frame.size.width - 2 * BUTTON_WIDTH) / 4;
+        
+        [self.cancelButton updateOriginX:gapX];
+        [self.oKButton updateOriginX:(gapX * 3 + BUTTON_WIDTH)];
     }
     
     // update content view height
@@ -347,32 +367,34 @@
 {
     if (_clickOkBlock != nil) {
         _clickOkBlock([self infoView]);
-        self.clickOkBlock = nil;
     } else if (_delegate && [_delegate respondsToSelector:@selector(didClickOk:infoView:)]) {
         [_delegate didClickOk:self infoView:[self infoView]];
     }
-    [self disappear];
+    if (!_manualClose) {
+        [self disappear];
+    }
 }
 
 - (IBAction)clickCancelButton:(id)sender
 {
     if (_clickCancelBlock != nil) {
         _clickCancelBlock([self infoView]);
-        self.clickCancelBlock = nil;
     } else if (_delegate && [_delegate respondsToSelector:@selector(didClickCancel:)]) {
         [_delegate didClickCancel:self];
     }
-    [self disappear];
+    if (!_manualClose) {
+        [self disappear];
+    }
 }
 
 - (IBAction)clickCloseButton:(id)sender {
 
     if (_clickCloseBlock != nil) {
         _clickCloseBlock([self infoView]);
-        self.clickCancelBlock = nil;
     } else if (_delegate && [_delegate respondsToSelector:@selector(didClickClose:)]) {
         [_delegate didClickClose:self];
     }
+    
     [self disappear];
 }
 

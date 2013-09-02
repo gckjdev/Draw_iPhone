@@ -55,12 +55,14 @@ typedef void (^DialogSelectionBlock)(id infoView);
 @property (retain, nonatomic) IBOutlet UIButton *oKButton;
 @property (retain, nonatomic) IBOutlet UIButton *cancelButton;
 @property (retain, nonatomic) IBOutlet UIButton *closeButton;
+@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @property (assign, nonatomic) id<CommonDialogDelegate> delegate;
 
 @property (copy, nonatomic) DialogSelectionBlock clickOkBlock;
 @property (copy, nonatomic) DialogSelectionBlock clickCancelBlock;
 @property (copy, nonatomic) DialogSelectionBlock clickCloseBlock;
+@property (assign, nonatomic) BOOL manualClose;
 
 - (void)setTitle:(NSString *)title;
 

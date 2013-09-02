@@ -19,10 +19,6 @@
 @interface CommonSearchImageFilterView () {
     
 }
-@property (retain, nonatomic) NSMutableDictionary* filter;
-@property (assign, nonatomic) id<CommonSearchImageFilterViewDelegate>delegate;
-
-- (IBAction)clickCancelBtn:(id)sender;
 
 @end
 
@@ -108,10 +104,9 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
 }
 
 
-+ (CommonSearchImageFilterView*)createViewWithFilter:(NSMutableDictionary*)filter delegate:(id<CommonSearchImageFilterViewDelegate>)delegate
++ (CommonSearchImageFilterView*)createViewWithFilter:(NSMutableDictionary*)filter
 {
     CommonSearchImageFilterView* view = [self createView];
-    view.delegate = delegate;
     view.filter = [[[NSMutableDictionary alloc] initWithDictionary:filter]  autorelease];
     for (NSString* key in [filter allKeys]) {
         [view initViewWithKey:key filter:filter];
@@ -122,9 +117,6 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
 
 - (void)initBtns
 {
-    [self.confirmBtn setTitle:NSLS(@"kConfirm") forState:UIControlStateNormal];
-    [self.cancelBtn setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
-    
     [self initGroupForKey:PARA_IMAGE_GRAY];
     [self initGroupForKey:PARA_IMAGE_SIZE];
     [self initGroupForKey:PARA_IMAGE_TYPE];
@@ -276,28 +268,5 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
     
     
 }
-
-- (IBAction)clickConfirmBtn:(id)sender
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(didConfirmFilter:)]) {
-        [_delegate didConfirmFilter:self.filter];
-    }
-    [self disappear];
-}
-
-- (IBAction)clickCancelBtn:(id)sender
-{
-    [self disappear];
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
- 
-}
-*/
 
 @end
