@@ -60,6 +60,7 @@ typedef enum{
 @property(nonatomic, readonly) NSString *statementUrl;
 @property(nonatomic, readonly) NSInteger canSubmitCount;
 @property(nonatomic, readonly) NSInteger maxFlowerPerOpus;
+@property(nonatomic, readonly) NSInteger maxFlowerPerContest;
 
 @property(nonatomic, readonly) BOOL canSubmit;
 @property(nonatomic, readonly) BOOL canVote;

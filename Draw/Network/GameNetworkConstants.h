@@ -334,6 +334,7 @@
 #define PARA_OPUS_IMAGE_DATA @"image"
 #define PARA_OPUS_DATA @"data"
 #define PARA_UPLOAD_DATA_TYPE @"dataType"
+#define PARA_MAX_FLOWER_TIMES @"maxFlowerTimes"
 
 #define PARA_DRAW_IMAGE @"photo"
 #define PARA_FEED_ID @"fid"
@@ -710,6 +711,10 @@
 
 //contest
 #define ERROR_CONTEST_END               110004
+
+#define ERROR_CONTEST_REACH_MAX_FLOWER          110006
+#define ERROR_CONTEST_EXCEED_THROW_FLOWER_DATE  110007
+
 
 #define ERROR_BALANCE_NOT_ENOUGH        200002
 #define ERROR_BAD_PARAMETER             200003

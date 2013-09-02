@@ -867,6 +867,12 @@ static FeedService *_staticFeedService = nil;
             if (itemType == ItemTypeFlower && delegate && [delegate respondsToSelector:@selector(didThrowFlowerToOpus:resultCode:)]) {
                 [delegate didThrowFlowerToOpus:opusId resultCode:output.resultCode];
                 
+                int totalContestFlowerByUser = [[output.jsonDataDict objectForKey:PARA_MAX_FLOWER_TIMES] intValue];
+                if (contestId != nil){
+                    [[UserManager defaultManager] setUserContestFlowers:contestId flowers:totalContestFlowerByUser];
+                }
+                
+                
             }else if(itemType == ItemTypeTomato && delegate && [delegate respondsToSelector:@selector(didThrowTomatoToOpus:resultCode:)]){
                 [delegate didThrowTomatoToOpus:opusId resultCode:output.resultCode];
                 

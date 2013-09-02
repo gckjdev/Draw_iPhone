@@ -438,7 +438,7 @@ message PBContest
 
 
     optional int32  canSubmitCount = 31 [default=1];
-    optional int32  maxFlowerPerUser = 32 [default=20];
+    optional int32  maxFlowerPerContest = 32 [default=20];
     optional int32  maxFlowerPerOpus = 33 [default=3];
 
     optional bool   canSubmit = 41;                         // 是否可以提交作品

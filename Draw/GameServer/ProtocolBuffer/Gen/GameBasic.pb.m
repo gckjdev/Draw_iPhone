@@ -12817,7 +12817,7 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
 @property int32_t voteEndDate;
 @property BOOL isAnounymous;
 @property int32_t canSubmitCount;
-@property int32_t maxFlowerPerUser;
+@property int32_t maxFlowerPerContest;
 @property int32_t maxFlowerPerOpus;
 @property BOOL canSubmit;
 @property BOOL canVote;
@@ -12933,13 +12933,13 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
   hasCanSubmitCount_ = !!value;
 }
 @synthesize canSubmitCount;
-- (BOOL) hasMaxFlowerPerUser {
-  return !!hasMaxFlowerPerUser_;
+- (BOOL) hasMaxFlowerPerContest {
+  return !!hasMaxFlowerPerContest_;
 }
-- (void) setHasMaxFlowerPerUser:(BOOL) value {
-  hasMaxFlowerPerUser_ = !!value;
+- (void) setHasMaxFlowerPerContest:(BOOL) value {
+  hasMaxFlowerPerContest_ = !!value;
 }
-@synthesize maxFlowerPerUser;
+@synthesize maxFlowerPerContest;
 - (BOOL) hasMaxFlowerPerOpus {
   return !!hasMaxFlowerPerOpus_;
 }
@@ -13004,7 +13004,7 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
     self.voteEndDate = 0;
     self.isAnounymous = NO;
     self.canSubmitCount = 1;
-    self.maxFlowerPerUser = 20;
+    self.maxFlowerPerContest = 20;
     self.maxFlowerPerOpus = 3;
     self.canSubmit = NO;
     self.canVote = NO;
@@ -13132,8 +13132,8 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasCanSubmitCount) {
     [output writeInt32:31 value:self.canSubmitCount];
   }
-  if (self.hasMaxFlowerPerUser) {
-    [output writeInt32:32 value:self.maxFlowerPerUser];
+  if (self.hasMaxFlowerPerContest) {
+    [output writeInt32:32 value:self.maxFlowerPerContest];
   }
   if (self.hasMaxFlowerPerOpus) {
     [output writeInt32:33 value:self.maxFlowerPerOpus];
@@ -13210,8 +13210,8 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasCanSubmitCount) {
     size += computeInt32Size(31, self.canSubmitCount);
   }
-  if (self.hasMaxFlowerPerUser) {
-    size += computeInt32Size(32, self.maxFlowerPerUser);
+  if (self.hasMaxFlowerPerContest) {
+    size += computeInt32Size(32, self.maxFlowerPerContest);
   }
   if (self.hasMaxFlowerPerOpus) {
     size += computeInt32Size(33, self.maxFlowerPerOpus);
@@ -13354,8 +13354,8 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasCanSubmitCount) {
     [self setCanSubmitCount:other.canSubmitCount];
   }
-  if (other.hasMaxFlowerPerUser) {
-    [self setMaxFlowerPerUser:other.maxFlowerPerUser];
+  if (other.hasMaxFlowerPerContest) {
+    [self setMaxFlowerPerContest:other.maxFlowerPerContest];
   }
   if (other.hasMaxFlowerPerOpus) {
     [self setMaxFlowerPerOpus:other.maxFlowerPerOpus];
@@ -13474,7 +13474,7 @@ static PBContest* defaultPBContestInstance = nil;
         break;
       }
       case 256: {
-        [self setMaxFlowerPerUser:[input readInt32]];
+        [self setMaxFlowerPerContest:[input readInt32]];
         break;
       }
       case 264: {
@@ -13746,20 +13746,20 @@ static PBContest* defaultPBContestInstance = nil;
   result.canSubmitCount = 1;
   return self;
 }
-- (BOOL) hasMaxFlowerPerUser {
-  return result.hasMaxFlowerPerUser;
+- (BOOL) hasMaxFlowerPerContest {
+  return result.hasMaxFlowerPerContest;
 }
-- (int32_t) maxFlowerPerUser {
-  return result.maxFlowerPerUser;
+- (int32_t) maxFlowerPerContest {
+  return result.maxFlowerPerContest;
 }
-- (PBContest_Builder*) setMaxFlowerPerUser:(int32_t) value {
-  result.hasMaxFlowerPerUser = YES;
-  result.maxFlowerPerUser = value;
+- (PBContest_Builder*) setMaxFlowerPerContest:(int32_t) value {
+  result.hasMaxFlowerPerContest = YES;
+  result.maxFlowerPerContest = value;
   return self;
 }
-- (PBContest_Builder*) clearMaxFlowerPerUser {
-  result.hasMaxFlowerPerUser = NO;
-  result.maxFlowerPerUser = 20;
+- (PBContest_Builder*) clearMaxFlowerPerContest {
+  result.hasMaxFlowerPerContest = NO;
+  result.maxFlowerPerContest = 20;
   return self;
 }
 - (BOOL) hasMaxFlowerPerOpus {

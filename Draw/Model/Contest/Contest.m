@@ -8,6 +8,7 @@
 
 #import "Contest.h"
 #import "GameNetworkConstants.h"
+#import "TimeUtils.h"
 
 @implementation Contest
 //@synthesize contestId = _contestId;
@@ -42,12 +43,22 @@
 
 - (NSDate *)voteStartDate
 {
-    return [NSDate dateWithTimeIntervalSince1970:_pbContest.voteStartDate];
+    if (_pbContest.voteStartDate > 0){
+        return [NSDate dateWithTimeIntervalSince1970:_pbContest.voteStartDate];
+    }
+    else{
+        return self.startDate;
+    }
 }
 
 - (NSDate *)voteEndDate
 {
-    return [NSDate dateWithTimeIntervalSince1970:_pbContest.voteEndDate];
+    if (_pbContest.voteEndDate > 0){
+        return [NSDate dateWithTimeIntervalSince1970:_pbContest.voteEndDate];
+    }
+    else{
+        return self.endDate;
+    }
 }
 
 //- (NSString *)version
@@ -111,7 +122,8 @@
     return value;
 }
 
-#define DEFAULT_MAX_FLOWER_PER_OPUS 3
+#define DEFAULT_MAX_FLOWER_PER_OPUS         3
+#define DEFAULT_MAX_FLOWER_PER_CONTEST      10000
 
 - (NSInteger)maxFlowerPerOpus
 {
@@ -121,6 +133,53 @@
     }
     
     return value;
+}
+
+- (NSInteger)maxFlowerPerContest
+{
+    int value = _pbContest.maxFlowerPerContest;
+    if (value <= 0) {
+        return DEFAULT_MAX_FLOWER_PER_CONTEST;
+    }
+    
+    return value;
+}
+
+- (BOOL)canSubmit
+{
+    if (_pbContest == nil){
+        return NO;
+    }
+    
+    if ([_pbContest canSubmit] == NO){
+        return NO;
+    }
+    
+    if (nowInDateRange(self.startDate, self.endDate) == 0){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
+- (BOOL)canVote
+{
+    if (_pbContest == nil){
+        return NO;
+    }
+    
+    if ([_pbContest canVote] == NO){
+        return NO;
+    }
+
+    if (nowInDateRange(self.voteStartDate, self.voteEndDate) == 0){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+    
 }
 
 - (void)dealloc
@@ -206,6 +265,7 @@
 }
 
 
+
 //- (void)setCanSubmitCount:(NSInteger)value
 //{
 //    _userCurrentCanSubmitCount = value;
@@ -255,18 +315,22 @@
 
 - (BOOL)isPassed
 {
-    return ([self.endDate timeIntervalSinceNow] <= 0 && [self.voteEndDate timeIntervalSinceNow] <= 0);
+//    return ([self.endDate timeIntervalSinceNow] <= 0 && [self.voteEndDate timeIntervalSinceNow] <= 0);
+
+    return (_pbContest.status == ContestStatusPassed);
+
 }
 
 - (BOOL)isPending
 {
-    return ([self.startDate timeIntervalSinceNow] > 0);
+    return (_pbContest.status == ContestStatusPending || _pbContest.status == ContestStatusDeleted);
 }
 
 - (BOOL)isRunning
 {
-    return ![self isPassed] && ![self isPending];
+    return (_pbContest.status == ContestStatusRunning);
 }
+
 //
 //- (ContestStatus)status
 //{

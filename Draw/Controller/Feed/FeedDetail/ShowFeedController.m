@@ -67,6 +67,8 @@
 @property (nonatomic, retain) UseItemScene* useItemScene;
 @property(nonatomic, retain) DetailFooterView *footerView;
 @property(nonatomic, retain) PPPopTableView *judgerPopupView;
+@property(nonatomic, retain) Contest *contest;
+
 //@property(nonatomic, assign) BOOL swipeEnable;
 
 //- (IBAction)clickActionButton:(id)sender;
@@ -94,6 +96,7 @@ typedef enum{
     _feed.pbDrawData = nil;
 //    [_brower release];
     
+    PPRelease(_contest);
     PPRelease(_feed);
     PPRelease(_drawCell);
     PPRelease(_userCell);
@@ -110,7 +113,7 @@ typedef enum{
     self = [super init];
     if(self)
     {
-        self.feed = feed;
+        self.feed = feed;        
     }
     return self;
 }
@@ -220,6 +223,11 @@ typedef enum{
 - (void)updateFlowerButton
 {
     BOOL enable = [_useItemScene canThrowFlower];
+    
+    if (self.contest && [self.contest canVote] == NO){
+        enable = NO;
+    }
+    
     [self.footerView setButton:FooterTypeFlower enabled:enable];
 }
 - (void)updateActionButtons
@@ -620,13 +628,22 @@ typedef enum{
                                        forFree:isFree
                                  resultHandler:^(int resultCode, int itemId, BOOL isBuy)
         {
+            
+            
             if (resultCode == ERROR_SUCCESS){
+
+                // TODO contest show flower total left
+                if (self.contest != nil){
+                    int userCurrentFlowers = [[UserManager defaultManager] flowersUsed:self.contest.contestId];
+                    int maxFlowerPerContest = [self.contest maxFlowerPerContest ];
+                    PPDebug(@"<throwFlow> userCurrentFlowers=%d maxFlowerPerContest=%d", userCurrentFlowers, maxFlowerPerContest);
+                }
+                
                 ShareImageManager *imageManager = [ShareImageManager defaultManager];
                 CGRect frame = [bself.footerView buttonWithType:FooterTypeFlower].frame;
                 frame = [self.view convertRect:frame fromView:self.footerView];
                 UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:frame] autorelease];
                 [throwItem setImage:[imageManager flower]];
-                PPDebug(@"<test2> complete 1");                
                 [DrawGameAnimationManager showThrowFlower:throwItem
                                          animInController:bself
                                                   rolling:YES
@@ -634,18 +651,24 @@ typedef enum{
                                            shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType]
                                                completion:^(BOOL finished) {
                 [bself clickRefreshButton:nil];
-                   PPDebug(@"<test2> complete 10");
                 }];
                 [bself.commentHeader setSelectedType:CommentTypeFlower];
                 [bself.feed incTimesForType:FeedTimesTypeFlower];
-                PPDebug(@"<test2> complete 2");
             }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
                 [BalanceNotEnoughAlertView showInController:bself];
                 [bself.feed decreaseLocalFlowerTimes];
-            }else if (resultCode == ERROR_NETWORK){
+            }else if (resultCode == ERROR_CONTEST_REACH_MAX_FLOWER){
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kReachMaxFlowerPerContest") delayTime:2 isHappy:NO];
+                [bself.feed decreaseLocalFlowerTimes];
+            }else if (resultCode == ERROR_CONTEST_EXCEED_THROW_FLOWER_DATE){
+                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kReachContestVoteEndDate") delayTime:2 isHappy:NO];
+                [bself.feed decreaseLocalFlowerTimes];
+            }else{
                 [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSystemFailure") delayTime:2 isHappy:NO];
                 [bself.feed decreaseLocalFlowerTimes];
             }
+            
+            
         }];
     }
 }
@@ -930,6 +953,7 @@ typedef enum{
 
 - (void)viewDidLoad
 {
+    self.contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
     
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];

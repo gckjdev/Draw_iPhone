@@ -1331,4 +1331,25 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return ([self.pbUser featureOpus] & CAN_REATURE_DRAW_OPUS);
 }
 
+- (NSString*)flowerUsedKey:(NSString*)contestId
+{
+    NSString* key = [NSString stringWithFormat:@"FLOWER_USED_CONTEST_%@_%@", self.userId, contestId];
+    return key;
+}
+
+- (void)setUserContestFlowers:(NSString*)contestId flowers:(int)flowers
+{
+    NSString* key = [self flowerUsedKey:contestId];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:flowers forKey:key];
+}
+
+- (int)flowersUsed:(NSString*)contestId
+{
+    NSString* key = [self flowerUsedKey:contestId];
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber* value = [userDefaults objectForKey:key];
+    return [value integerValue];
+}
+
 @end

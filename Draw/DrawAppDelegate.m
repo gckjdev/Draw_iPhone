@@ -459,6 +459,10 @@ NSString* GlobalGetBoardServerURL()
     
     [[UserStatusService defaultService] stop];
     
+    // store user defaults
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults synchronize];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
