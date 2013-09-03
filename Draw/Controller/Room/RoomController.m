@@ -147,6 +147,7 @@
     [self.titleView setBackButtonSelector:@selector(clickMenu:)];
     self.roomNameLabel.layer.borderWidth = 2;
     self.roomNameLabel.layer.borderColor = [COLOR_GREEN CGColor];
+    [self setCanDragBack:NO];    
     
     SET_BUTTON_ROUND_STYLE_YELLOW(self.startGameButton);
 }

@@ -94,6 +94,7 @@
     }
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBack:)];
+    [self setCanDragBack:NO];    
 }
 
 - (void)viewDidUnload
