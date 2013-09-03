@@ -38,6 +38,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
 @property (retain, nonatomic) IBOutlet UIButton *completeUserInfoButton;
 
+@property (retain, nonatomic) IBOutlet UIView *bottomView;
 
 - (IBAction)clickForgot:(id)sender;
 - (IBAction)clickSubmitLogin:(id)sender;

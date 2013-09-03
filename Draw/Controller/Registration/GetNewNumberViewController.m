@@ -14,7 +14,16 @@
 #import "GameNetworkConstants.h"
 #import "UserManager.h"
 
-#define SUBVIEW_FRAME CGRectMake(0, 307, 320, 480-307)
+#define SUBVIEW_FRAME CGRectMake(0, 205, 320, 480-205)
+
+
+
+#define SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(view)                              \
+{                                                           \
+[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_BROWN selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:LOGIN_FONT_BUTTON normalColor:COLOR_YELLOW2 selectedColor:COLOR_YELLOW highlightedColor:COLOR_YELLOW round:YES];         \
+[view.layer setCornerRadius:(ISIPAD ? 40 : 21)];  \
+[view.layer setMasksToBounds:YES];    \
+}
 
 @interface GetNewNumberViewController ()
 
@@ -25,7 +34,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self) { 
         // Custom initialization
     }
     return self;
@@ -36,9 +45,19 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-        
+    
+    
+    
     self.getNumberMainView.frame = SUBVIEW_FRAME;
+    SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.takeNumberButton);
+    SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.loginButton);
+    self.getNumberTipsLabel.textColor = COLOR_GREEN3;
+    
     [self.view addSubview:self.getNumberMainView];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.bottomView.backgroundColor = COLOR_GREEN2;
+    self.bottomView.frame = SUBVIEW_FRAME;
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +88,7 @@
     [_loginView release];
     [_takeNumberView release];
     [_getNumberTipsLabel release];
+    [_bottomView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -91,6 +111,7 @@
     [self setLoginView:nil];
     [self setTakeNumberView:nil];
     [self setGetNumberTipsLabel:nil];
+    [self setBottomView:nil];
     [super viewDidUnload];
 }
 
@@ -102,11 +123,31 @@
     [self.view addSubview:self.loginView];
 }
 
+- (NSString*)textFromNumber:(NSString*)number
+{
+    int minLen = 3;
+    if ([number length] < minLen){
+        return number;
+    }
+    
+    NSString* first3 = [number substringToIndex:minLen];
+    NSString* left = [number substringFromIndex:minLen];
+    
+    return [NSString stringWithFormat:@"%@ %@", first3, left];
+}
+
 - (void)showTakeNumberView
 {
     self.getNumberMainView.hidden = YES;
     
-    self.numberLabel.text = [[UserManager defaultManager] xiaojiNumber];
+    self.showNumberTipsLabel.textColor = COLOR_GREEN3;
+    self.numberLabel.textColor = COLOR_BROWN;
+    SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.okButton);
+    
+    
+    NSString* text = [self textFromNumber:[[UserManager defaultManager] xiaojiNumber]];
+    
+    self.numberLabel.text = text;
     self.takeNumberView.frame = SUBVIEW_FRAME;
     [self.view addSubview:self.takeNumberView];    
 }

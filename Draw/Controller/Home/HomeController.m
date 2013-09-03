@@ -845,6 +845,12 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
 {
     [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
+    
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+        return;
+    }
+    
     UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
     [self.navigationController pushViewController:us animated:YES];
     [us release];

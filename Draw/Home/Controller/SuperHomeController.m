@@ -246,10 +246,7 @@
 {
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];
     
-    if ([self isRegistered] == NO) {
-        [self toRegister];
-        return;
-    }
+
     
 }
 
