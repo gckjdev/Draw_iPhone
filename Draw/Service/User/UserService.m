@@ -835,7 +835,7 @@ static UserService* _defaultUserService;
                                gameId:gameId
                              deviceId:deviceId
                           deviceToken:deviceToken];                
-        
+ 
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [homeController hideActivity];
@@ -1461,41 +1461,112 @@ static UserService* _defaultUserService;
     return YES;
 }
 
+// return NO if don't need show login view
+// return YES if need
+//- (BOOL)checkAndAskXiaojiNumber:(UIView*)view
+//{
+//    if ([[UserManager defaultManager] hasXiaojiNumber] == YES)
+//        return NO;
+//    
+//    // display xiaoji number controller
+//    if (self.getNewNumberController == nil){
+//        GetNewNumberViewController *vc = [[GetNewNumberViewController alloc] init];
+//        self.getNewNumberController = vc;
+//        [vc release];
+//    }
+//    [self.getNewNumberController.view removeFromSuperview];
+//    [view addSubview:self.getNewNumberController.view];
+//    return YES;
+//}
+
+// return NO if don't need show login view
+// return YES if need
 - (BOOL)checkAndAskLogin:(UIView*)view
 {
     if ([[UserManager defaultManager] hasUser] == NO){
+                
+        // auto register firstly
+        NSString* appId = [ConfigManager appId];
+        NSString* gameId = [ConfigManager gameId];
+        NSString* deviceToken = [[UserManager defaultManager] deviceToken];
+        NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
         
-        if ([GameApp isAutoRegister] == YES){
-            [self autoRegisteration:nil];
-            return NO;
-        }
         
-        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskLoginTitle") message:NSLS(@"kAskLoginMessage") style:CommonDialogStyleDoubleButton];
+        // [homeController showActivityWithText:NSLS(@"kConnectingServer")];
         
-        [dialog setClickOkBlock:^(UILabel *label){
-            // goto RegisterUserController
-            RegisterUserController *ruc = [[RegisterUserController alloc] init];
-            UIViewController* rootController = ((DrawAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
-            if ([rootController respondsToSelector:@selector(pushViewController:animated:)]){
-            // this warning is OK
-            // leave this warning to check when home controller is changed
-                [rootController pushViewController:ruc animated:YES];
-            }
-            else{
-                [rootController.navigationController pushViewController:ruc animated:YES];
-            }
-            [ruc release];
-
-        }];
-
+        dispatch_async(workingQueue, ^{
+            
+            CommonNetworkOutput* output =
+            [GameNetworkRequest newLoginUser:SERVER_URL
+                                       appId:appId
+                                      gameId:gameId
+                                    deviceId:deviceId
+                                 deviceToken:deviceToken
+                                autoRegister:YES];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                //                [homeController hideActivity];
+                if (output.resultCode == ERROR_SUCCESS && output.responseData != nil){
+                    [self createLocalUserAccount:output.responseData appId:appId];
+                    
+                    // auto registration OK
+                    [self checkAndAskXiaojiNumber:view];
+                }
+                else if (output.resultCode == ERROR_NETWORK) {
+                    // [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                }
+                else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
+                    
+                }
+                else {
+                    // [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+                }
+            });
+        });
         
-        [dialog showInView:view];
-        return YES;
+        return YES; // [self checkAndAskXiaojiNumber:view];
     }
     else{
-        return NO;
+        return [self checkAndAskXiaojiNumber:view];
     }
 }
+
+//- (BOOL)checkAndAskLogin:(UIView*)view
+//{
+//    if ([[UserManager defaultManager] hasUser] == NO){
+//        
+//        if ([GameApp isAutoRegister] == YES){
+//            [self autoRegisteration:nil];
+//            return NO;
+//        }
+//        
+//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAskLoginTitle") message:NSLS(@"kAskLoginMessage") style:CommonDialogStyleDoubleButton];
+//        
+//        [dialog setClickOkBlock:^(UILabel *label){
+//            // goto RegisterUserController
+//            RegisterUserController *ruc = [[RegisterUserController alloc] init];
+//            UIViewController* rootController = ((DrawAppDelegate*)([UIApplication sharedApplication].delegate)).window.rootViewController;
+//            if ([rootController respondsToSelector:@selector(pushViewController:animated:)]){
+//            // this warning is OK
+//            // leave this warning to check when home controller is changed
+//                [rootController pushViewController:ruc animated:YES];
+//            }
+//            else{
+//                [rootController.navigationController pushViewController:ruc animated:YES];
+//            }
+//            [ruc release];
+//
+//        }];
+//
+//        
+//        [dialog showInView:view];
+//        return YES;
+//    }
+//    else{
+//        return NO;
+//    }
+//}
 
 
 - (BOOL)autoRegisteration:(AutoResgistrationResultBlock)resultBlock
