@@ -6757,10 +6757,6 @@
 		EA433E1717CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */; };
 		EA433E1817CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */; };
 		EA433E1917CDDA2F006E6FA7 /* JudgerScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */; };
-		EA433E2017CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
-		EA433E2117CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
-		EA433E2217CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
-		EA433E2317CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */; };
 		EA433E2917CDE500006E6FA7 /* DJQRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2617CDE500006E6FA7 /* DJQRateView.m */; };
 		EA433E2A17CDE500006E6FA7 /* DJQRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2617CDE500006E6FA7 /* DJQRateView.m */; };
 		EA433E2B17CDE500006E6FA7 /* DJQRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA433E2617CDE500006E6FA7 /* DJQRateView.m */; };
@@ -9815,7 +9811,6 @@
 		EA41242A1767137E00FC13C2 /* AskPs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPs.m; sourceTree = "<group>"; };
 		EA433E1417CDDA2E006E6FA7 /* JudgerScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JudgerScoreView.h; sourceTree = "<group>"; };
 		EA433E1517CDDA2E006E6FA7 /* JudgerScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JudgerScoreView.m; sourceTree = "<group>"; };
-		EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JudgerScoreView.xib; sourceTree = "<group>"; };
 		EA433E2517CDE500006E6FA7 /* DJQRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJQRateView.h; sourceTree = "<group>"; };
 		EA433E2617CDE500006E6FA7 /* DJQRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJQRateView.m; sourceTree = "<group>"; };
 		EA433E2717CDE500006E6FA7 /* DJQStartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJQStartView.h; sourceTree = "<group>"; };
@@ -15209,7 +15204,6 @@
 				CA3F2ED11609B3350059667B /* StatementController.xib */,
 				CA89748216087BE2003A95F7 /* ContestController.xib */,
 				CA3F2EA7160967B80059667B /* ContestView.xib */,
-				EA433E1F17CDDA54006E6FA7 /* JudgerScoreView.xib */,
 				CA3F2ED41609BCC90059667B /* Opus */,
 				CA89748016087BE2003A95F7 /* ContestController.h */,
 				CA89748116087BE2003A95F7 /* ContestController.m */,
@@ -17560,7 +17554,6 @@
 				A440357217C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
 				A440357717C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 				CA5141A017CB41F100883CAA /* ContestPrizeCell.xib in Resources */,
-				EA433E2217CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 				A4DDD13717CDFD7B0029E562 /* draw_bg.zip in Resources */,
 				A4DDD13B17CDFD7B0029E562 /* frames.pb in Resources */,
 				A4DDD13F17CDFD7B0029E562 /* hot_word.pb in Resources */,
@@ -18436,7 +18429,6 @@
 				A440357117C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
 				A440357617C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 				CA51419F17CB41F100883CAA /* ContestPrizeCell.xib in Resources */,
-				EA433E2117CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 				A4DDD13617CDFD7B0029E562 /* draw_bg.zip in Resources */,
 				A4DDD13A17CDFD7B0029E562 /* frames.pb in Resources */,
 				A4DDD13E17CDFD7B0029E562 /* hot_word.pb in Resources */,
@@ -19293,7 +19285,6 @@
 				A440357017C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
 				A440357517C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 				CA51419E17CB41F100883CAA /* ContestPrizeCell.xib in Resources */,
-				EA433E2017CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 				A4DDD13517CDFD7B0029E562 /* draw_bg.zip in Resources */,
 				A4DDD13917CDFD7B0029E562 /* frames.pb in Resources */,
 				A4DDD13D17CDFD7B0029E562 /* hot_word.pb in Resources */,
@@ -20120,7 +20111,6 @@
 				A440357317C5CC9800301EDD /* GuessRankListController~ipad.xib in Resources */,
 				A440357817C5FD3000301EDD /* WordSelectCell~ipad.xib in Resources */,
 				CA5141A117CB41F100883CAA /* ContestPrizeCell.xib in Resources */,
-				EA433E2317CDDA54006E6FA7 /* JudgerScoreView.xib in Resources */,
 				A4DDD13817CDFD7B0029E562 /* draw_bg.zip in Resources */,
 				A4DDD13C17CDFD7B0029E562 /* frames.pb in Resources */,
 				A4DDD14017CDFD7B0029E562 /* hot_word.pb in Resources */,

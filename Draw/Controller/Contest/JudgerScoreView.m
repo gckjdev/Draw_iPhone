@@ -115,11 +115,12 @@
 
 + (id)judgerScoreViewWithContest:(Contest *)contest opus:(ContestFeed *)opus
 {
-    JudgerScoreView *view = [self createViewWithXibIdentifier:@"JudgerScoreView"];
+    CGRect frame = CGRectMake(0, 0, V(260), V(300));
+    JudgerScoreView *view = [[JudgerScoreView alloc] initWithFrame:frame];
     view.contest = contest;
     view.opus = opus;
     [view updateView];
-    return view;
+    return [view autorelease];
 }
 
 - (void)showInView:(UIView *)view
@@ -136,8 +137,8 @@
 - (void)dealloc {
     PPRelease(_opus);
     PPRelease(_contest);
-    PPRelease(_normalRateView);
-    PPRelease(_infoView);    
+//    PPRelease(_normalRateView);
+    PPRelease(_infoView);
     [super dealloc];
 }
 @end
