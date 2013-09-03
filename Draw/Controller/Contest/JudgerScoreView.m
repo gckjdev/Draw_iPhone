@@ -105,7 +105,7 @@
                                            frame:CGRectMake(lx, ly, 1, V(30))
                                             font:[UIFont systemFontOfSize:V(15)]
                                             text:title];
-        DJQRateView *rateView = (id)[self reuseViewWithTag:type viewClass:[DJQRateView class] frame:CGRectMake(rx, ly+v(10), V(140), V(40))];
+        DJQRateView *rateView = (id)[self reuseViewWithTag:type viewClass:[DJQRateView class] frame:CGRectMake(rx, ly+V(10), V(140), V(40))];
         rateView.center = CGPointMake(rateView.center.x, name.center.y);
         rateView.rate = rate;
         ly +=  space;
