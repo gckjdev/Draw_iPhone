@@ -12819,8 +12819,11 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
 @property int32_t canSubmitCount;
 @property int32_t maxFlowerPerContest;
 @property int32_t maxFlowerPerOpus;
+@property int32_t judgeRankWeight;
 @property BOOL canSubmit;
 @property BOOL canVote;
+@property BOOL contestantsOnly;
+@property (retain) NSMutableArray* mutableContestantsList;
 @property (retain) NSMutableArray* mutableJudgesList;
 @property (retain) NSMutableArray* mutableReportersList;
 @property (retain) NSMutableArray* mutableWinnerUsersList;
@@ -12947,6 +12950,13 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
   hasMaxFlowerPerOpus_ = !!value;
 }
 @synthesize maxFlowerPerOpus;
+- (BOOL) hasJudgeRankWeight {
+  return !!hasJudgeRankWeight_;
+}
+- (void) setHasJudgeRankWeight:(BOOL) value {
+  hasJudgeRankWeight_ = !!value;
+}
+@synthesize judgeRankWeight;
 - (BOOL) hasCanSubmit {
   return !!hasCanSubmit_;
 }
@@ -12971,6 +12981,19 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
 - (void) setCanVote:(BOOL) value {
   canVote_ = !!value;
 }
+- (BOOL) hasContestantsOnly {
+  return !!hasContestantsOnly_;
+}
+- (void) setHasContestantsOnly:(BOOL) value {
+  hasContestantsOnly_ = !!value;
+}
+- (BOOL) contestantsOnly {
+  return !!contestantsOnly_;
+}
+- (void) setContestantsOnly:(BOOL) value {
+  contestantsOnly_ = !!value;
+}
+@synthesize mutableContestantsList;
 @synthesize mutableJudgesList;
 @synthesize mutableReportersList;
 @synthesize mutableWinnerUsersList;
@@ -12981,6 +13004,7 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
   self.title = nil;
   self.contestUrl = nil;
   self.statementUrl = nil;
+  self.mutableContestantsList = nil;
   self.mutableJudgesList = nil;
   self.mutableReportersList = nil;
   self.mutableWinnerUsersList = nil;
@@ -13006,8 +13030,10 @@ static PBUserAward* defaultPBUserAwardInstance = nil;
     self.canSubmitCount = 1;
     self.maxFlowerPerContest = 20;
     self.maxFlowerPerOpus = 3;
+    self.judgeRankWeight = 0;
     self.canSubmit = NO;
     self.canVote = NO;
+    self.contestantsOnly = NO;
   }
   return self;
 }
@@ -13022,6 +13048,13 @@ static PBContest* defaultPBContestInstance = nil;
 }
 - (PBContest*) defaultInstance {
   return defaultPBContestInstance;
+}
+- (NSArray*) contestantsList {
+  return mutableContestantsList;
+}
+- (PBGameUser*) contestantsAtIndex:(int32_t) index {
+  id value = [mutableContestantsList objectAtIndex:index];
+  return value;
 }
 - (NSArray*) judgesList {
   return mutableJudgesList;
@@ -13061,6 +13094,11 @@ static PBContest* defaultPBContestInstance = nil;
 - (BOOL) isInitialized {
   if (!self.hasContestId) {
     return NO;
+  }
+  for (PBGameUser* element in self.contestantsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
   for (PBGameUser* element in self.judgesList) {
     if (!element.isInitialized) {
@@ -13138,11 +13176,20 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasMaxFlowerPerOpus) {
     [output writeInt32:33 value:self.maxFlowerPerOpus];
   }
+  if (self.hasJudgeRankWeight) {
+    [output writeInt32:34 value:self.judgeRankWeight];
+  }
   if (self.hasCanSubmit) {
     [output writeBool:41 value:self.canSubmit];
   }
   if (self.hasCanVote) {
     [output writeBool:42 value:self.canVote];
+  }
+  if (self.hasContestantsOnly) {
+    [output writeBool:49 value:self.contestantsOnly];
+  }
+  for (PBGameUser* element in self.contestantsList) {
+    [output writeMessage:50 value:element];
   }
   for (PBGameUser* element in self.judgesList) {
     [output writeMessage:51 value:element];
@@ -13216,11 +13263,20 @@ static PBContest* defaultPBContestInstance = nil;
   if (self.hasMaxFlowerPerOpus) {
     size += computeInt32Size(33, self.maxFlowerPerOpus);
   }
+  if (self.hasJudgeRankWeight) {
+    size += computeInt32Size(34, self.judgeRankWeight);
+  }
   if (self.hasCanSubmit) {
     size += computeBoolSize(41, self.canSubmit);
   }
   if (self.hasCanVote) {
     size += computeBoolSize(42, self.canVote);
+  }
+  if (self.hasContestantsOnly) {
+    size += computeBoolSize(49, self.contestantsOnly);
+  }
+  for (PBGameUser* element in self.contestantsList) {
+    size += computeMessageSize(50, element);
   }
   for (PBGameUser* element in self.judgesList) {
     size += computeMessageSize(51, element);
@@ -13360,11 +13416,23 @@ static PBContest* defaultPBContestInstance = nil;
   if (other.hasMaxFlowerPerOpus) {
     [self setMaxFlowerPerOpus:other.maxFlowerPerOpus];
   }
+  if (other.hasJudgeRankWeight) {
+    [self setJudgeRankWeight:other.judgeRankWeight];
+  }
   if (other.hasCanSubmit) {
     [self setCanSubmit:other.canSubmit];
   }
   if (other.hasCanVote) {
     [self setCanVote:other.canVote];
+  }
+  if (other.hasContestantsOnly) {
+    [self setContestantsOnly:other.contestantsOnly];
+  }
+  if (other.mutableContestantsList.count > 0) {
+    if (result.mutableContestantsList == nil) {
+      result.mutableContestantsList = [NSMutableArray array];
+    }
+    [result.mutableContestantsList addObjectsFromArray:other.mutableContestantsList];
   }
   if (other.mutableJudgesList.count > 0) {
     if (result.mutableJudgesList == nil) {
@@ -13481,12 +13549,26 @@ static PBContest* defaultPBContestInstance = nil;
         [self setMaxFlowerPerOpus:[input readInt32]];
         break;
       }
+      case 272: {
+        [self setJudgeRankWeight:[input readInt32]];
+        break;
+      }
       case 328: {
         [self setCanSubmit:[input readBool]];
         break;
       }
       case 336: {
         [self setCanVote:[input readBool]];
+        break;
+      }
+      case 392: {
+        [self setContestantsOnly:[input readBool]];
+        break;
+      }
+      case 402: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addContestants:[subBuilder buildPartial]];
         break;
       }
       case 410: {
@@ -13778,6 +13860,22 @@ static PBContest* defaultPBContestInstance = nil;
   result.maxFlowerPerOpus = 3;
   return self;
 }
+- (BOOL) hasJudgeRankWeight {
+  return result.hasJudgeRankWeight;
+}
+- (int32_t) judgeRankWeight {
+  return result.judgeRankWeight;
+}
+- (PBContest_Builder*) setJudgeRankWeight:(int32_t) value {
+  result.hasJudgeRankWeight = YES;
+  result.judgeRankWeight = value;
+  return self;
+}
+- (PBContest_Builder*) clearJudgeRankWeight {
+  result.hasJudgeRankWeight = NO;
+  result.judgeRankWeight = 0;
+  return self;
+}
 - (BOOL) hasCanSubmit {
   return result.hasCanSubmit;
 }
@@ -13808,6 +13906,51 @@ static PBContest* defaultPBContestInstance = nil;
 - (PBContest_Builder*) clearCanVote {
   result.hasCanVote = NO;
   result.canVote = NO;
+  return self;
+}
+- (BOOL) hasContestantsOnly {
+  return result.hasContestantsOnly;
+}
+- (BOOL) contestantsOnly {
+  return result.contestantsOnly;
+}
+- (PBContest_Builder*) setContestantsOnly:(BOOL) value {
+  result.hasContestantsOnly = YES;
+  result.contestantsOnly = value;
+  return self;
+}
+- (PBContest_Builder*) clearContestantsOnly {
+  result.hasContestantsOnly = NO;
+  result.contestantsOnly = NO;
+  return self;
+}
+- (NSArray*) contestantsList {
+  if (result.mutableContestantsList == nil) { return [NSArray array]; }
+  return result.mutableContestantsList;
+}
+- (PBGameUser*) contestantsAtIndex:(int32_t) index {
+  return [result contestantsAtIndex:index];
+}
+- (PBContest_Builder*) replaceContestantsAtIndex:(int32_t) index with:(PBGameUser*) value {
+  [result.mutableContestantsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBContest_Builder*) addAllContestants:(NSArray*) values {
+  if (result.mutableContestantsList == nil) {
+    result.mutableContestantsList = [NSMutableArray array];
+  }
+  [result.mutableContestantsList addObjectsFromArray:values];
+  return self;
+}
+- (PBContest_Builder*) clearContestantsList {
+  result.mutableContestantsList = nil;
+  return self;
+}
+- (PBContest_Builder*) addContestants:(PBGameUser*) value {
+  if (result.mutableContestantsList == nil) {
+    result.mutableContestantsList = [NSMutableArray array];
+  }
+  [result.mutableContestantsList addObject:value];
   return self;
 }
 - (NSArray*) judgesList {

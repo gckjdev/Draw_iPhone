@@ -630,7 +630,8 @@ typedef enum{
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                       destructiveButtonTitle:NSLS(@"kOpusDetail") 
                                       otherButtonTitles:NSLS(@"kDelete"), nil];
-    }else if(type == MyTypeComment)
+    }
+    else if(type == MyTypeComment)
     {
         [self updateCommentIndexes:NO];
         actionSheet = [[UIActionSheet alloc]

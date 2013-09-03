@@ -73,6 +73,7 @@ typedef enum{
 - (void)incCommitCount;
 - (BOOL)commitCountEnough;
 - (NSInteger)retainCommitChance;
+- (BOOL)canUserJoined:(NSString*)userId;
 - (BOOL)joined;
 - (BOOL)isPassed;
 - (BOOL)isPending;

@@ -440,16 +440,20 @@ message PBContest
     optional int32  canSubmitCount = 31 [default=1];
     optional int32  maxFlowerPerContest = 32 [default=20];
     optional int32  maxFlowerPerOpus = 33 [default=3];
+    optional int32  judgeRankWeight = 34;                   // 评委评分的权重
 
     optional bool   canSubmit = 41;                         // 是否可以提交作品
     optional bool   canVote = 42;                           // 是否可以投票
 
+    optional bool   contestantsOnly = 49 [default=false];   // 是否只有在contestants列表里的用户才可以参赛，默认对所有选手开放
+    repeated PBGameUser contestants = 50;                   // 指定的参赛选手列表
     repeated PBGameUser judges = 51;
     repeated PBGameUser reporters = 52;
     repeated PBUserAward winnerUsers = 53;
     repeated PBUserAward awardUsers = 54;
     repeated PBIntKeyValue rankTypes = 55;         // 奖励类型，key为类型整数值，value为类型名字，如最佳创意奖
     
+
 }
 
 message PBContestList

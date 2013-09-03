@@ -246,6 +246,11 @@
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestSubmitEnd") delayTime:1.5 isHappy:NO];
         return;
     }
+
+    if (![contest canUserJoined:[[UserManager defaultManager] userId]]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotForUser") delayTime:1.5 isHappy:NO];
+        return;
+    }    
     
     if([contest commitCountEnough]){
         NSString *title = [NSString stringWithFormat:NSLS(@"kContestCommitCountEnough"),contest.canSubmitCount];

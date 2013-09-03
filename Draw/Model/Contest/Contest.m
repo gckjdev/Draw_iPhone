@@ -163,6 +163,25 @@
     }
 }
 
+- (BOOL)canUserJoined:(NSString*)userId
+{
+    if (_pbContest == nil){
+        return YES;
+    }
+    
+    if (_pbContest.contestantsOnly == NO){
+        return YES;
+    }
+    
+    for (PBGameUser* contestant in _pbContest.contestantsList){
+        if ([contestant.userId isEqualToString:userId]){
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
 - (BOOL)canVote
 {
     if (_pbContest == nil){
