@@ -12,7 +12,7 @@
 @class DrawView;
 @class ShowDrawView;
 
-@interface DrawHolderView : UIView
+@interface DrawHolderView : UIControl
 {
     SuperDrawView *_contentView;
 }

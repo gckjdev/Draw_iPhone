@@ -507,7 +507,7 @@
     [self initResultLabel];
     [self initActionButton];
     [self initAnswer];   
-    
+    [self setCanDragBack:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

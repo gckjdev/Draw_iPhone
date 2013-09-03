@@ -504,8 +504,12 @@ int getPopOptionCount()
                 [self.navigationController pushViewController:us animated:YES];
                 [us release];
             } break;
-            case PopOptionNotice: {
-                [BulletinView showBulletinInController:self];
+            case PopOptionNotice: {                
+                
+                BulletinView *v = [BulletinView createWithSuperController:self];
+                CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBulletin") customView:v style:CommonDialogStyleCross];
+                [dialog showInView:self.view];
+                
                 [self updateAllBadge];
             } break;
             case PopOptionBbs: {

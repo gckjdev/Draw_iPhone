@@ -1929,7 +1929,8 @@
 "kContestReport" = "Report";
 "kContestPrize" = "Prize";
 "kJudgerComment" = "Comment";
-"kJudgerScore" = "Score";
+"kJudgerScore" = "Rate";
+"kRating" = "Rating...";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

@@ -199,6 +199,7 @@
     if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
         self.myWordsButton.hidden = YES;
     }
+    [self setCanDragBack:NO];
 }
 
 

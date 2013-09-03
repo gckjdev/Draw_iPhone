@@ -334,7 +334,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setCanDragBack:NO];
     _isRefreshing = YES;
     [self handleUpdateOnlineUserCount];
     

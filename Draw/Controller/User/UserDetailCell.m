@@ -62,7 +62,6 @@
     PBGameUser* pbUser = [detail getUser];
     [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d", [detail getUser].level]];
     [self.nickNameLabel setText:pbUser.nickName];
-//    [self.signLabel setText:pbUser.signature];
     [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
     
     if ([detail isPrivacyVisable]) {
@@ -146,6 +145,8 @@
     _avatarView.delegate = self;
     
     [self.avatarHolderView addSubview:_avatarView];
+    
+    [self.customBackgroundControl setBackgroundColor:COLOR_GREEN];
 }
 
 
@@ -199,8 +200,6 @@
     } else {
         [label setFrame:MAX_SIGN_FRAME];
     }
-    
-    
 }
 
 + (float)getCellHeight

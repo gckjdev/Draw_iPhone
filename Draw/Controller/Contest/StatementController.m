@@ -66,7 +66,6 @@
     [titleView setBackButtonSelector:@selector(clickDeclineButton:)];
     [titleView setRightButtonTitle:NSLS(@"kAccept")];
     [titleView setRightButtonSelector:@selector(acceptButton:)];
-    [titleView setBackButtonSelector:@selector(clickDeclineButton:)];
 }
 
 - (void)loadWebView

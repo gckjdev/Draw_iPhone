@@ -77,6 +77,7 @@ typedef enum{
 
 - (void)dealloc {
 //    PPRelease(_titleView);
+    self.shareAction = nil;
     PPRelease(_shareAction);
     PPRelease(_gifImages);
     PPRelease(_selectedPaint);
@@ -470,16 +471,7 @@ typedef enum{
         [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:nil];
         [self performSelector:@selector(hideActivity) withObject:nil afterDelay:1.5];
         
-    } /*else if ([buttonTitle isEqualToString:TITLE_SAVE_TO_CONTACT]) {
-        if (_saveToContactPickerView == nil) {
-            self.saveToContactPickerView = [SaveToContactPickerView createWithSuperController:self];
-        }
-        
-        UIImage* image = [[UIImage alloc] initWithContentsOfFile:_selectedPaint.imageFilePath];
-        [_saveToContactPickerView saveToContact:image];
-        [image release];
-       
-    }*/ else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
+    } else if ([buttonTitle isEqualToString:TITLE_DELETE]) {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
                                                            message:NSLS(@"kAre_you_sure")
                                                              style:CommonDialogStyleDoubleButton

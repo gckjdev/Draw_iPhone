@@ -576,6 +576,7 @@ typedef enum{
                 }];
                 [bself.commentHeader setSelectedType:CommentTypeFlower];
                 [bself.feed incTimesForType:FeedTimesTypeFlower];
+                [bself.commentHeader updateTimes:bself.feed];
             }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
                 [BalanceNotEnoughAlertView showInController:bself];
                 [bself.feed decreaseLocalFlowerTimes];
@@ -915,6 +916,7 @@ typedef enum{
         feed.largeImage = self.feed.largeImage;
         feed.wordText = self.feed.wordText;
         self.feed = feed;
+        [_commentHeader setViewInfo:self.feed];
         [self.dataTableView reloadData];
     }else{
         PPDebug(@"<didGetFeed> Failed!!!");
@@ -1059,12 +1061,25 @@ typedef enum{
 {
     return 12;
 }
+
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {    return [CommentHeaderView getTypeListByFeed:self.feed][index];   
 }
+
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
     return nil;
+}
+
+- (NSString *)tabNoDataTipsforIndex:(NSInteger)index
+{
+    NSDictionary *dict = @{@(CommentTypeComment) : NSLS(@"kNoComments"),
+                           @(CommentTypeGuess) : NSLS(@"kNoGuesses"),
+                           @(CommentTypeFlower) : NSLS(@"kNoFlowers"),
+//                           @(CommentTypeContestComment) : NSLS(@"kNoData")
+                           };
+    CommentType type = [self tabIDforIndex:index];
+    return dict[@(type)] ? dict[@(type)] : NSLS(@"kNoData");
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {

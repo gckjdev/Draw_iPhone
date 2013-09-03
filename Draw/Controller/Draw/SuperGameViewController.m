@@ -114,6 +114,7 @@
     [self initPopButton];
     [UIApplication sharedApplication].idleTimerDisabled=YES;
     self.view.backgroundColor = [shareImageManager drawBGColor];
+    [self setCanDragBack:NO];
 }
 
 - (void)viewDidUnload
