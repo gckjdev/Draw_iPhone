@@ -52,6 +52,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     CGSize size = [BulletinCell cellSizeForContent:self.messageLabel.text];
     
     [self.messageLabel updateHeight:(size.height - TOTAL_SEPERATOR)];
+        
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, size.height)];
 }
 
@@ -79,6 +80,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 
 - (void)setCellByBulletin:(Bulletin *)bulletin
 {
+    PPDebug(@"bulletin: %@", bulletin.message);
     [self.messageLabel setText:bulletin.message];
     SET_VIEW_ROUND_CORNER(self);
     self.layer.borderWidth = (ISIPAD ? 4 : 2);

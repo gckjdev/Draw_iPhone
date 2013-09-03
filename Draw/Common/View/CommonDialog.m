@@ -17,6 +17,7 @@
 
 #define TITLE_LABEL_HEIGHT (ISIPAD ? 74 : 34)
 #define MESSAGE_LABEL_MAX_HEIGHT (ISIPAD ? 850 : 390)
+#define MESSAGE_LABEL_MIN_HEIGHT (ISIPAD ? 110 : 55)
 
 #define GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW (ISIPAD ? 30 : 10)
 #define GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON (ISIPAD ? 30 : 10)
@@ -360,6 +361,11 @@
     _messageLabel.numberOfLines = 0;
     CGSize cSize = CGSizeMake(_messageLabel.frame.size.width, MESSAGE_LABEL_MAX_HEIGHT);
     [_messageLabel wrapTextWithConstrainedSize:cSize];
+    
+    if (_messageLabel.frame.size.height < MESSAGE_LABEL_MIN_HEIGHT) {
+        [_messageLabel updateHeight:MESSAGE_LABEL_MIN_HEIGHT];
+    }
+    
     [_messageLabel updateCenterX:self.contentView.bounds.size.width/2];
 }
 
