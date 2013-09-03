@@ -16,7 +16,7 @@
 #import "Contest.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
-#import "FeedCell.h"
+#import "ReportFeedCell.h"
 #import "ContestPrizeCell.h"
 
 typedef enum{
@@ -95,7 +95,7 @@ typedef enum{
     NSInteger type = self.currentTab.tabID;
     
     if (type == OpusTypeReport){
-        return [FeedCell getCellHeight:[self.tabDataList objectAtIndex:indexPath.row]];
+        return [ReportFeedCell getCellHeightWithFeed:[self.tabDataList objectAtIndex:indexPath.row]];
     }else if(type == OpusTypePrize){
         return [ContestPrizeCell getCellHeight];
     }
@@ -219,14 +219,14 @@ typedef enum{
     TableTab *tab = [self currentTab];
 
     if (tab.tabID == OpusTypeReport) {
-        NSString *CellIdentifier = [FeedCell getCellIdentifier];
-        FeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        NSString *CellIdentifier = [ReportFeedCell getCellIdentifier];
+        ReportFeedCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [FeedCell createCell:self];
+            cell = [ReportFeedCell createCell:self];
         }
         cell.indexPath = indexPath;
         cell.accessoryType = UITableViewCellAccessoryNone;
-        Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
+        CommentFeed *feed = [self.tabDataList objectAtIndex:indexPath.row];
         [feed updateDesc];
         [cell setCellInfo:feed];
         return cell;
@@ -300,13 +300,19 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ContestFeed *opus = nil;
     if (self.currentTab.tabID == OpusTypePrize) {        
         PBUserAward *aw = [self.currentTab.dataList objectAtIndex:indexPath.row];
-        ContestFeed *opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
-        if (opus == nil) {
-            PPDebug(@"<didSelectRowAtIndexPath> opus is nil");
-            return;
-        }
+        opus = [_contest getOpusWithAwardType:aw.awardType.key rank:aw.rank];
+        
+    }else if(self.currentTab.tabID == OpusTypeReport){
+        CommentFeed *feed  = self.currentTab.dataList[indexPath.row];
+        opus = (ContestFeed *)feed.drawFeed;
+    }
+    if (opus == nil) {
+        PPDebug(@"<didSelectRowAtIndexPath> opus is nil");
+        return;
+    }else{
         UseItemScene* scene ;
         if ([self.contest isRunning]) {
             scene = [UseItemScene createSceneByType:UseSceneTypeDrawMatch feed:opus];
@@ -317,6 +323,7 @@ typedef enum{
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -405,12 +412,14 @@ typedef enum{
             [[FeedService defaultService] getFeedListByIds:list delegate:self];
         }else if (tabID == OpusTypeReport) {
             //TODO get contest report
-            
+//#if DEBUG
+//            [[FeedService defaultService] getOpusCommentList:@"51d312c2e4b0240d146a72d1" type:CommentTypeComment offset:0 limit:12 delegate:self];
+//#elif
             [[FeedService defaultService] getContestCommentFeedList:self.contest.contestId
                                                              offset:tab.offset
                                                               limit:tab.limit
                                                            delegate:self];
-             
+//#endif
             
         }else{
             [[FeedService defaultService] getContestOpusList:tabID
@@ -439,6 +448,20 @@ typedef enum{
     }
 }
 
+//for test
+- (void)didGetFeedCommentList:(NSArray *)feedList
+                       opusId:(NSString *)opusId
+                         type:(int)type
+                   resultCode:(NSInteger)resultCode
+                       offset:(int)offset
+{
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:OpusTypeReport resultList:feedList];        
+    }
+
+}
+
+
 // for report feed list
 - (void)didGetFeedList:(NSArray *)feedList
           feedListType:(FeedListType)type
@@ -459,7 +482,7 @@ typedef enum{
             tab.hasMoreData = NO;
             [self.dataTableView reloadData];
         }else{
-            [self finishLoadDataForTabID:type resultList:feedList];
+            [self finishLoadDataForTabID:OpusTypeReport resultList:feedList];
         }
     }else{
         [self failLoadDataForTabID:type];

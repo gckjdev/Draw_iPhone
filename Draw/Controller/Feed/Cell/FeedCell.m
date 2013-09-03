@@ -17,7 +17,7 @@
 #import "WordManager.h"
 #import "Word.h"
 #import "DeviceDetection.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+Extend.h"
 #import "UIViewUtils.h"
 #import "CommentCell.h"
 #import "UIImageUtil.h"
@@ -213,58 +213,19 @@
 - (void)updateDrawView:(Feed *)feed
 {
     DrawFeed *drawFeed = [self drawFeed:feed];
-//    if (feed.isDrawType) {
-//        drawFeed = (DrawFeed *)feed;
-//    }else if(feed.feedType == FeedTypeGuess)
-//    {
-//        drawFeed = [(GuessFeed *) feed drawFeed];
-//    }
-//    else if ([feed respondsToSelector:@selector(drawFeed)]){
-//        drawFeed = [feed performSelector:@selector(drawFeed)];
-//    }
-
     if (drawFeed) {
         NSString *imageUrl = drawFeed.drawImageUrl;
-        UIImage *image = drawFeed.drawImage;
         [self.drawImageView setImage:[[ShareImageManager defaultManager] 
                                       unloadBg]];
         if ([imageUrl length] != 0) {
             NSURL *url = [NSURL URLWithString:imageUrl];
             UIImage *defaultImage = [[ShareImageManager defaultManager] unloadBg];
             
-            [self.drawImageView setImageWithURL:url placeholderImage:defaultImage success:^(UIImage *image, BOOL cached) {
-                if (!cached) {
-//                    self.drawImageView setImageW
-//                    [self.drawImageView scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];
-                    self.drawImageView.alpha = 0;
-                    [UIView animateWithDuration:1 animations:^{
-                    self.drawImageView.alpha = 1.0;
-                    }];
-                }else{
-                    //                self.drawImage.alpha = 1.0;
-                }
-            } failure:^(NSError *error) {
-
-            }];
-            drawFeed.drawImage = nil;
-        }else if(image){
-//            [self.drawImageView scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];            
-            [self.drawImageView setImage:image];
-        }else {
-            
-            //TODO Show View with Data
-//            [self cleanShowView];
-//            [self addSubview:self.showView];
-//            [self.showView show];
-//            drawFeed.drawImage = [self.showView createImage];
-//
-//            [self.drawImageView setImage:drawFeed.drawImage];
-//            
-//            [self cleanShowView];
-//
-//            drawFeed.drawData = nil;
-//
-//            [[FeedManager defaultManager] saveFeed:[self opusIdForFeed:feed] largeImage:drawFeed.drawImage];
+            [self.drawImageView setImageWithUrl:url
+                               placeholderImage:defaultImage
+                                    showLoading:YES
+                                       animated:YES];
+//            drawFeed.drawImage = self.drawImageView.image;
         }
     }
 }
@@ -292,9 +253,6 @@
     self.correctLabel.textColor = COLOR_GREEN;
     
     SET_VIEW_ROUND_CORNER(self.drawImageView);
-//    self.avatarView.layer.borderWidth = (ISIPAD ? 4 : 2);
-//    self.avatarView.layer.borderColor = [COLOR_GREEN CGColor];
-    
     [self.bgImageView setImage:[ShareImageManager bubleImage]];
 }
 

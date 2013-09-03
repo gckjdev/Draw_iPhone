@@ -102,7 +102,6 @@
 								<string key="NSFrame">{{290, 43}, {20, 20}}</string>
 								<reference key="NSSuperview" ref="670884085"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage" id="38282870">
@@ -262,7 +261,6 @@
 								<string key="NSFrame">{{290, 43}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="395036108"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUIImage" ref="38282870"/>

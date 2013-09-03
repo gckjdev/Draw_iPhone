@@ -1284,6 +1284,7 @@
     }else{
         self.upPanelPopView = [[[CMPopTipView alloc] initWithCustomView:self.drawToolUpPanel] autorelease];
         [self.upPanelPopView setBackgroundColor:COLOR_YELLOW];
+        self.upPanelPopView.cornerRadius = (ISIPAD ? 8 :4);        
         if ([[self.word text] length] != 0) {
             [self.drawToolUpPanel updateSubject:self.word.text];
         }
@@ -1301,6 +1302,7 @@
         self.layerPanelPopView = [[[CMPopTipView alloc] initWithCustomView:layerPanel] autorelease];
         [self.layerPanelPopView setBackgroundColor:COLOR_YELLOW];
         [self.layerPanelPopView presentPointingAtView:sender inView:self.view animated:YES];
+        self.layerPanelPopView.cornerRadius = (ISIPAD ? 8 :4);
         self.layerPanelPopView.delegate = self;
     }
 }
