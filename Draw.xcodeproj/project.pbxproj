@@ -5452,6 +5452,14 @@
 		CAE58A12175EF45E009149E9 /* Opus.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CAE58A00175EF45E009149E9 /* Opus.pb-c.c */; };
 		CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
+		CAE6985517D620130076C0D2 /* pad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985317D620130076C0D2 /* pad@2x.png */; };
+		CAE6985617D620130076C0D2 /* pad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985317D620130076C0D2 /* pad@2x.png */; };
+		CAE6985717D620130076C0D2 /* pad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985317D620130076C0D2 /* pad@2x.png */; };
+		CAE6985817D620130076C0D2 /* pad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985317D620130076C0D2 /* pad@2x.png */; };
+		CAE6985917D620130076C0D2 /* shake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985417D620130076C0D2 /* shake@2x.png */; };
+		CAE6985A17D620130076C0D2 /* shake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985417D620130076C0D2 /* shake@2x.png */; };
+		CAE6985B17D620130076C0D2 /* shake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985417D620130076C0D2 /* shake@2x.png */; };
+		CAE6985C17D620130076C0D2 /* shake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAE6985417D620130076C0D2 /* shake@2x.png */; };
 		CAE74B7017AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
 		CAE74B7117AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
 		CAE74B7217AF834D00E73875 /* DrawLayerPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */; };
@@ -9440,6 +9448,8 @@
 		CAE58A01175EF45E009149E9 /* Opus.pb-c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Opus.pb-c.h"; sourceTree = "<group>"; };
 		CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawOnCell.xib; sourceTree = "<group>"; };
 		CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawOnCell~ipad.xib"; sourceTree = "<group>"; };
+		CAE6985317D620130076C0D2 /* pad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pad@2x.png"; sourceTree = "<group>"; };
+		CAE6985417D620130076C0D2 /* shake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shake@2x.png"; sourceTree = "<group>"; };
 		CAE74B6E17AF834D00E73875 /* DrawLayerPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawLayerPanel.h; sourceTree = "<group>"; };
 		CAE74B6F17AF834D00E73875 /* DrawLayerPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawLayerPanel.m; sourceTree = "<group>"; };
 		CAE74B7917AF83D500E73875 /* DrawLayerPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawLayerPanel.xib; sourceTree = "<group>"; };
@@ -12756,6 +12766,8 @@
 		CA04628217D58A940072A934 /* register */ = {
 			isa = PBXGroup;
 			children = (
+				CAE6985317D620130076C0D2 /* pad@2x.png */,
+				CAE6985417D620130076C0D2 /* shake@2x.png */,
 				CA04628817D58AC20072A934 /* line@2x.png */,
 				CA04628917D58AC20072A934 /* logo@2x.png */,
 			);
@@ -17855,6 +17867,8 @@
 				A4A967F517D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967F917D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FE17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				CAE6985717D620130076C0D2 /* pad@2x.png in Resources */,
+				CAE6985B17D620130076C0D2 /* shake@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18712,6 +18726,8 @@
 				A4A967F417D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967F817D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FD17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				CAE6985617D620130076C0D2 /* pad@2x.png in Resources */,
+				CAE6985A17D620130076C0D2 /* shake@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19550,6 +19566,8 @@
 				A4A967F317D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967F717D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FC17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				CAE6985517D620130076C0D2 /* pad@2x.png in Resources */,
+				CAE6985917D620130076C0D2 /* shake@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20358,6 +20376,8 @@
 				A4A967F617D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967FA17D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FF17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				CAE6985817D620130076C0D2 /* pad@2x.png in Resources */,
+				CAE6985C17D620130076C0D2 /* shake@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -119,6 +119,8 @@
 {
     self.getNumberMainView.hidden = YES;
 
+    SET_VIEW_ROUND_CORNER(self.inputNumberTextField);
+    SET_VIEW_ROUND_CORNER(self.inputPasswordTextField);
     self.loginView.frame = SUBVIEW_FRAME;
     [self.view addSubview:self.loginView];
 }
