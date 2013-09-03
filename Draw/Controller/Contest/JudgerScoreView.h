@@ -14,7 +14,7 @@
 
 @interface JudgerScoreView : UIScrollView
 
-@property (retain, nonatomic) IBOutlet DJQRateView *normalRateView;
+//@property (retain, nonatomic) IBOutlet DJQRateView *normalRateView;
 @property (retain, nonatomic) CustomInfoView *infoView;
 
 @property (retain, nonatomic) Contest *contest;
