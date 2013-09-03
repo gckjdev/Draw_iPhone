@@ -45,7 +45,10 @@
     self = [super initWithFrame:PICK_TOOLVIEW_FRAME];
     if (self) {
 
-        [self setImage:[[ShareImageManager defaultManager] pickToolBackground]];
+//        [self setImage:[[ShareImageManager defaultManager] pickToolBackground]];
+        [self setBackgroundColor:[UIColor blackColor]];
+        [self setAlpha:0.3];
+
         self.tools = tools;
         [self updateToolViews];
     }
@@ -85,6 +88,7 @@
 
         [tool addTarget:self action:@selector(clickToolView:)];
         [self addSubview:tool];
+        [tool setAlpha:1];
         y += ySpace + toolHeight;
     }
 }

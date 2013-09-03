@@ -30,10 +30,12 @@
 //#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
 
 #define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
-#define COLOR_YELLOW COLOR_YELLOW1 // common dialog
 
+#define COLOR_YELLOW COLOR_YELLOW1 // common dialog
 #define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
-#define COLOR_YELLOW2 OPAQUE_COLOR(204, 131, 24) // common tab selected bg
+//#define COLOR_YELLOW2 OPAQUE_COLOR(204, 131, 24) // common tab selected bg
+#define COLOR_YELLOW2 COLOR_YELLOW1 // common tab selected bg
+
 
 #define COLOR_LIGHT_GRAY1 OPAQUE_COLOR(210, 165, 41)    
 
