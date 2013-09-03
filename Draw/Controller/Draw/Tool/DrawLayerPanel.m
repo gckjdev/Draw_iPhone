@@ -152,7 +152,7 @@
 - (void)updateView
 {
     
-    self.layer.cornerRadius = 8;
+    self.layer.cornerRadius = (ISIPAD?8:4);
     [self.layer setMasksToBounds:YES];
     
     self.recognizer = [self.tableView enableGestureTableViewWithDelegate:self];

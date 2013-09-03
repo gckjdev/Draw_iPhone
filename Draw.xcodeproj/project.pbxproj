@@ -6701,6 +6701,14 @@
 		EA433E5A17CF5B8B006E6FA7 /* wrong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */; };
 		EA433E5B17CF5B8B006E6FA7 /* wrong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */; };
 		EA433E5C17CF5B8B006E6FA7 /* wrong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */; };
+		EA46AD5717D5E6CD0066E914 /* ReportFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */; };
+		EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */; };
+		EA46AD5917D5E6CD0066E914 /* ReportFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */; };
+		EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */; };
+		EA46AD6117D5E6E60066E914 /* ReportFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */; };
+		EA46AD6217D5E6E60066E914 /* ReportFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */; };
+		EA46AD6317D5E6E60066E914 /* ReportFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */; };
+		EA46AD6417D5E6E60066E914 /* ReportFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */; };
 		EA46F3941778537C00D8D349 /* CommonRoomListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4317782BC30086D0FD /* CommonRoomListController.m */; };
 		EA46F39A177853F500D8D349 /* CommonRoomListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CA7E4117782BC30086D0FD /* CommonRoomListCell.m */; };
 		EA46F39B1778551500D8D349 /* GalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C18AA31761873500DE933B /* GalleryController.m */; };
@@ -9727,6 +9735,9 @@
 		EA433E2817CDE500006E6FA7 /* DJQStartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJQStartView.m; sourceTree = "<group>"; };
 		EA433E4017CF051B006E6FA7 /* ChatDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatDetailCell.xib; sourceTree = "<group>"; };
 		EA433E5817CF5B8A006E6FA7 /* wrong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wrong@2x.png"; sourceTree = "<group>"; };
+		EA46AD5517D5E6CD0066E914 /* ReportFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportFeedCell.h; sourceTree = "<group>"; };
+		EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportFeedCell.m; sourceTree = "<group>"; };
+		EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportFeedCell.xib; sourceTree = "<group>"; };
 		EA49C86017093CD200843B6B /* TaoBaoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoBaoController.h; sourceTree = "<group>"; };
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
@@ -15002,6 +15013,9 @@
 				CA8973FC1607230E003A95F7 /* CommentHeaderView.m */,
 				CAFC03B417C84CC600A11DE3 /* DetailFooterView.h */,
 				CAFC03B517C84CC600A11DE3 /* DetailFooterView.m */,
+				EA46AD5517D5E6CD0066E914 /* ReportFeedCell.h */,
+				EA46AD5617D5E6CD0066E914 /* ReportFeedCell.m */,
+				EA46AD6017D5E6E60066E914 /* ReportFeedCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -17855,6 +17869,7 @@
 				A4A967F517D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967F917D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FE17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				EA46AD6317D5E6E60066E914 /* ReportFeedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18712,6 +18727,7 @@
 				A4A967F417D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967F817D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FD17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				EA46AD6217D5E6E60066E914 /* ReportFeedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19550,6 +19566,7 @@
 				A4A967F317D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967F717D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FC17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				EA46AD6117D5E6E60066E914 /* ReportFeedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20358,6 +20375,7 @@
 				A4A967F617D5C99800B3E271 /* user_detail_qq@2x.png in Resources */,
 				A4A967FA17D5C99800B3E271 /* user_detail_sina@2x.png in Resources */,
 				A4A967FF17D5CD5F00B3E271 /* user_detail_round_avatar_bg@2x.png in Resources */,
+				EA46AD6417D5E6E60066E914 /* ReportFeedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21192,6 +21210,7 @@
 				EA7100AC17D04B2C00451A38 /* CustomSlider.m in Sources */,
 				EA7100B717D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */,
+				EA46AD5917D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21998,6 +22017,7 @@
 				EA7100AB17D04B2C00451A38 /* CustomSlider.m in Sources */,
 				EA7100B617D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */,
+				EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22810,6 +22830,7 @@
 				EA7100AA17D04B2C00451A38 /* CustomSlider.m in Sources */,
 				EA7100B517D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D017D197DA00451A38 /* MLNavigationController.m in Sources */,
+				EA46AD5717D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23596,6 +23617,7 @@
 				EA7100AD17D04B2C00451A38 /* CustomSlider.m in Sources */,
 				EA7100B817D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */,
+				EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
