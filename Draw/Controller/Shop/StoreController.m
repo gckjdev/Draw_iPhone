@@ -49,7 +49,7 @@ typedef enum{
 - (void)dealloc {
     
     [self unregisterAllNotifications];
-    
+    [[AccountService defaultService] setDelegate:nil];
     [_selectedButton release];
     [_backButton release];
     [_chargeButton release];

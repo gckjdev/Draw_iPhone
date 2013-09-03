@@ -273,6 +273,7 @@ enum {
     
     // init table view
     [dataTableView setBackgroundView:nil];
+    [self setCanDragBack:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated

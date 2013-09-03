@@ -69,7 +69,6 @@
     self.infoView = [CustomInfoView createWithTitle:NSLS(@"kContestScore") infoView:self hasCloseButton:YES buttonTitles:@[NSLS(@"kConfirm")]];
     __block JudgerScoreView *cp = self;
     self.infoView.actionBlock = ^(UIButton*button, UIView *infoView){
-        //TODO send rate request
         PPDebug(@"Rate feed = %@, in contset = %@", cp.opus.feedId, cp.contest.contestId);
         [(PPViewController *)[cp theViewController] showActivityWithText:NSLS(@"kScoring")];
         
@@ -90,21 +89,23 @@
     [self updateRateViews];
 }
 
+#define V(X) (ISIPAD?2*X:X)
+
 - (void)updateRateViews
 {
-    CGFloat lx = 20, ly = 10;
-    CGFloat space = 30;
-    CGFloat rx = 100;
+    CGFloat lx = V(20), ly = V(10);
+    CGFloat space = V(30);
+    CGFloat rx = V(100);
     //140 40
     for (PBIntKeyValue *rankTypeValue in _contest.pbContest.rankTypesList) {
         NSInteger type = rankTypeValue.key;
         NSString *title = rankTypeValue.value;
         NSInteger rate = [[self myRateWithType:type] value];
         UILabel *name = [self reuseLabelWithTag:type+100
-                                           frame:CGRectMake(lx, ly, 1, 30)
-                                            font:[UIFont systemFontOfSize:15]
+                                           frame:CGRectMake(lx, ly, 1, V(30))
+                                            font:[UIFont systemFontOfSize:V(15)]
                                             text:title];
-        DJQRateView *rateView = (id)[self reuseViewWithTag:type viewClass:[DJQRateView class] frame:CGRectMake(rx, ly+10, 140, 40)];
+        DJQRateView *rateView = (id)[self reuseViewWithTag:type viewClass:[DJQRateView class] frame:CGRectMake(rx, ly+V(10), V(140), V(40))];
         rateView.center = CGPointMake(rateView.center.x, name.center.y);
         rateView.rate = rate;
         ly +=  space;

@@ -109,7 +109,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setCanDragBack:NO];
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:NSLS(@"kChargeTitle")];

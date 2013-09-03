@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setCanDragBack:NO];
     self.titleLabel.text = self.customTitle;
     
     NSURL *url = [NSURL URLWithString:_url];
@@ -48,7 +48,6 @@
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setTitle:self.customTitle];
     [titleView setTarget:self];
-    
     [self updateButtonsState];
 }
 

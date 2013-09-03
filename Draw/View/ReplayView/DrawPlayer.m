@@ -74,9 +74,7 @@
 
     self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
  
-    //update close button
-//    [self updateCloseButton];
-//    [self updatePlayButton];
+
 }
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj
 {
@@ -96,6 +94,7 @@
     holderView.autoresizingMask = (1<<6)-1;
     if (holderView == nil) {
         holderView = [DrawHolderView drawHolderViewWithFrame:self.bounds contentView:self.showView];
+        [holderView addTarget:self action:@selector(clickHolderView:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self insertSubview:holderView atIndex:0];
     [controller.view addSubview:self];
@@ -235,12 +234,18 @@
 
 - (void)didClickShowDrawView:(ShowDrawView *)showDrawView
 {
+    [self clickHolderView:nil];
+}
+
+- (void)clickHolderView:(id)sender
+{
     if (self.playPanel.alpha < 1) {
         [self hidePanel:NO animated:NO];
     }else{
         [self hidePanel:YES animated:YES];
     }
 }
+
 
 - (void)autoHidePanel
 {

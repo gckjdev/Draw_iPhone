@@ -278,11 +278,10 @@
 - (void)pageScrollView:(PageScrollView *)csView didClickOnPage:(UIView *)view atIndex:(NSInteger)index{
     
     if ([_delegate respondsToSelector:@selector(brower:didSelecteFeed:)]) {
-        
-        DrawFeed *feed = [_feedList objectAtIndex:index];
-        
-        [_delegate brower:self didSelecteFeed:feed];
         [self removeFromSuperview];
+        DrawFeed *feed = [_feedList objectAtIndex:index];
+        [_delegate brower:self didSelecteFeed:feed];
+
     }
 }
 

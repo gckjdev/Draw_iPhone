@@ -577,6 +577,7 @@
     [self.titleView setLeftButtonImage:[shareImageManager drawBackImage]];
     [self.titleView setBgImage:nil];
     [self.titleView setBackgroundColor:[UIColor clearColor]];
+    [self setCanDragBack:NO];
 }
 
 
@@ -602,12 +603,6 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [(MLNavigationController *)self.navigationController setCanDragBack:YES];    
-}
-
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self stopBackupTimer];
@@ -616,7 +611,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [(MLNavigationController *)self.navigationController setCanDragBack:NO];
     [super viewDidAppear:animated];
     [self startBackupTimer];
 }

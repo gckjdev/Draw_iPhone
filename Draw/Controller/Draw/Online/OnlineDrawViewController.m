@@ -163,21 +163,12 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [(MLNavigationController *)self.navigationController setCanDragBack:NO];
-
     [super viewDidAppear:animated];
     if (self.gameCompleteMessage != nil) {
         [self didGameTurnComplete:self.gameCompleteMessage];
         self.gameCompleteMessage = nil;
     }
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [(MLNavigationController *)self.navigationController setCanDragBack:YES];
-}
-
 
 - (void)viewDidDisappear:(BOOL)animated
 {

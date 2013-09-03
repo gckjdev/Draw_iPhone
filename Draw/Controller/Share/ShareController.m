@@ -77,6 +77,7 @@ typedef enum{
 
 - (void)dealloc {
 //    PPRelease(_titleView);
+    self.shareAction = nil;
     PPRelease(_shareAction);
     PPRelease(_gifImages);
     PPRelease(_selectedPaint);
