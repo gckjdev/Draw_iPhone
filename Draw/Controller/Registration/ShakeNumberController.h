@@ -21,8 +21,13 @@
 @property (retain, nonatomic) IBOutlet UIButton *reshakeButton;
 @property (retain, nonatomic) IBOutlet UIButton *takeNumberButton;
 
+@property (retain, nonatomic) IBOutlet UIImageView *padImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *leftShakeImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *rightShakeImageView;
+@property (retain, nonatomic) IBOutlet UIView *bgView;
 
 @property (retain, nonatomic) NSString* currentNumber;
+@property (retain, nonatomic) IBOutlet UILabel *chanceLeftLabel;
 
 - (IBAction)clickShakeButton:(id)sender;
 - (IBAction)clickTakeNumberButton:(id)sender;

@@ -45,7 +45,6 @@ typedef enum{
     FeedTimesTypeFlower = 5,
     FeedTimesTypeTomato = 6,//
     FeedTimesTypeSave = 7,
-    FeedTimesTypeContestReport = 8,
     FeedTimesTypeContestComment = 9,
 }FeedTimesType;
 

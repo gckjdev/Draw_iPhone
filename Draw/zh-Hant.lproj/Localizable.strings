@@ -175,6 +175,7 @@
 "kConnectingServer" = "連接服務器中...";
 "kJoiningGame" = "正在加入遊戲會話中...";
 "kNetworkFailure" = "網絡錯誤，請檢查手機是否正確連接到互聯網。";
+"kOperationFailed" = "操作失敗，請稍後再試";
 
 "kJoinGameSucc" = "成功進入遊戲房間";
 "kJoinGameFailure" = "加入遊戲失敗，請稍候再試";
@@ -1033,6 +1034,22 @@
 "kContestSubmitEndSubmitNormal" = "很遗憾，比赛提交作品时间已经截止了，你是否要提交为普通作品？";
 "kContestNotForUser" = "你不是本次比赛的指定参赛选手，无法参加比赛";
 "kContestNotForUserSubmitNormal" = "你不是本次比赛的指定参赛选手，是否要提交为普通作品？";
+
+"kLoginXiaoji" = "小吉登录";
+"kLoginXiaojiPlaceHolder" = "请输入小吉号码";
+"kLoginPasswordPlaceHolder" = "请输入密码";
+"kXiaojiNumberCannotEmpty" = "小吉号码不能为空";
+"kXiaojiPasswordCannotEmpty" = "密码不能为空";
+"kXiaojiNumberNotFound" = "小吉号码不存在";
+"kXiaojiPasswordIncorrect" = "密码不正确，请检查";
+
+"kGetNumberTipsLabelText" = "首次使用，请领取小吉号码\n或使用已有号码登录";
+"kTakeNumberButtonTitle" = "领            取";
+"kLoginButtonTitle" = "登            录";
+"kShowNumberTipsLabelText" = "你的小吉号码是";
+"kOkButtonTitle" = "确            定";
+
+
 
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
@@ -1931,6 +1948,7 @@
 "kContestPrize" = "賽果";
 "kJudgerComment" = "點評";
 "kJudgerScore" = "評分";
+"kRating" = "評分中...";
 /*********************小吉画画国际化字符串结束 ************************/
 
 

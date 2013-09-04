@@ -17,6 +17,7 @@
 #define FONT_MESSAGE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
 #define FONT_INPUT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
 #define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+#define LOGIN_FONT_BUTTON [UIFont systemFontOfSize:(ISIPAD ? 36 : 19)]
 
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
 #define TEXT_VIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
@@ -25,6 +26,7 @@
 #define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82) // normal
 #define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) // selected
 #define COLOR_ORANGE2 OPAQUE_COLOR(224, 80, 67) // hightlight
+
 
 //#define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
 //#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
@@ -47,13 +49,14 @@
 //#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
 #define COLOR_BROWN COLOR_COFFEE1 // common dialog
 
-#define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) // common dialog
-#define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog
-
-
+#define COLOR_GREEN OPAQUE_COLOR(0, 190, 177)       // common dialog
+#define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225)    // common dialog
+#define COLOR_GREEN2 OPAQUE_COLOR(139, 234, 204)    // 登录背景
+#define COLOR_GREEN3 OPAQUE_COLOR(52, 136, 112)    // 登录背景
 
 #define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
 #define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
+
 
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 #define COLOR_COFFEE1 OPAQUE_COLOR(126, 49, 46) // common tab selected text
@@ -104,7 +107,6 @@
 {                                                           \
 [[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:NO];         \
 }
-
 
 
 #define SET_VIEW_ROUND_CORNER(view) \

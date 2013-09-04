@@ -412,7 +412,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickAvatarButton:)]) {
         [self.delegate homeHeaderPanel:self didClickAvatarButton:nil];
     }
-}
+} 
 
 - (IBAction)clickBulletinButton:(id)sender
 {

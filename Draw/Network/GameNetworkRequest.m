@@ -879,6 +879,7 @@
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:[UIDevice currentDevice].model];
         str = [str stringByAddQueryParameter:PARA_DEVICEOS value:deviceOS];
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:DEVICE_TYPE_IOS];
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:[UIUtils getUserDeviceName]];
         
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FORMAT_PROTOCOLBUFFER];
         

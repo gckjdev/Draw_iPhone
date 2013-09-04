@@ -1184,8 +1184,28 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)hasXiaojiNumber
 {
     return YES;
-//    return ([[self.pbUser xiaojiNumber] length] > 0);
+    return ([[self.pbUser xiaojiNumber] length] > 0);
 }
+
+- (void)setCanShakeXiaojiNumber:(BOOL)value
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setCanShakeNumber:value];
+    self.pbUser = [builder build];
+}
+
+- (BOOL)canShakeXiaojiNumber
+{
+    if ([self hasXiaojiNumber]){
+        return NO;
+    }
+    
+    return _pbUser.canShakeNumber;
+}
+
 
 
 - (PBGameUser*)toPBGameUser

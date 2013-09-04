@@ -66,11 +66,11 @@
 
 - (void)updateView
 {
-    self.infoView = [CustomInfoView createWithTitle:NSLS(@"kContestScore") infoView:self hasCloseButton:YES buttonTitles:@[NSLS(@"kConfirm")]];
+    self.infoView = [CustomInfoView createWithTitle:NSLS(@"kJudgerScore") infoView:self hasCloseButton:YES buttonTitles:@[NSLS(@"kConfirm")]];
     __block JudgerScoreView *cp = self;
     self.infoView.actionBlock = ^(UIButton*button, UIView *infoView){
         PPDebug(@"Rate feed = %@, in contset = %@", cp.opus.feedId, cp.contest.contestId);
-        [(PPViewController *)[cp theViewController] showActivityWithText:NSLS(@"kScoring")];
+        [(PPViewController *)[cp theViewController] showActivityWithText:NSLS(@"kRating")];
         
         [[FeedService defaultService] rankOpus:cp.opus.feedId
                                      contestId:cp.contest.contestId

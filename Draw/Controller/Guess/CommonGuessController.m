@@ -110,6 +110,8 @@
     
     
     [self.toolBoxButton setBackgroundImage:UIThemeImageNamed(@"item_box@2x.png") forState:UIControlStateNormal];
+
+    [self setCanDragBack:NO];
 }
 
 

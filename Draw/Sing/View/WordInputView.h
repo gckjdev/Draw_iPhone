@@ -40,6 +40,8 @@ typedef enum _WordInputViewAlignment{
 @property (retain, nonatomic) UIColor *candidateColor;
 @property (retain, nonatomic) UIColor *answerColor;
 
+- (NSArray *)guessedWords;
+
 - (void)setCandidates:(NSString *)characters
                column:(int)column;
 - (void)bomb:(int)count;

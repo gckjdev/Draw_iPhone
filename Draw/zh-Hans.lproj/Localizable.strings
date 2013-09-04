@@ -175,7 +175,7 @@
 "kConnectingServer" = "连接服务器中...";
 "kJoiningGame" = "正在加入游戏会话中...";
 "kNetworkFailure" = "网络错误，请检查手机是否正确连接到互联网。";
-
+"kOperationFailed" = "操作失败，请稍后再试";
 "kJoinGameSucc" = "成功进入游戏房间";
 "kJoinGameFailure" = "加入游戏失败，请稍候再试";
 
@@ -1055,6 +1055,21 @@
 "kContestSubmitEndSubmitNormal" = "很遗憾，比赛提交作品时间已经截止了，你是否要提交为普通作品？";
 "kContestNotForUser" = "你不是本次比赛的指定参赛选手，无法参加比赛";
 "kContestNotForUserSubmitNormal" = "你不是本次比赛的指定参赛选手，是否要提交为普通作品？";
+
+"kLoginXiaoji" = "小吉登录";
+"kLoginXiaojiPlaceHolder" = "请输入小吉号码";
+"kLoginPasswordPlaceHolder" = "请输入密码";
+"kXiaojiNumberCannotEmpty" = "小吉号码不能为空";
+"kXiaojiPasswordCannotEmpty" = "密码不能为空";
+"kXiaojiNumberNotFound" = "小吉号码不存在";
+"kXiaojiPasswordIncorrect" = "密码不正确，请检查";
+
+"kGetNumberTipsLabelText" = "首次使用，请领取小吉号码\n或使用已有号码登录";
+"kTakeNumberButtonTitle" = "领            取";
+"kLoginButtonTitle" = "登            录";
+"kShowNumberTipsLabelText" = "你的小吉号码是";
+"kOkButtonTitle" = "确            定";
+
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
@@ -1940,7 +1955,7 @@
 "kContestPrize" = "赛果";
 "kJudgerComment" = "点评";
 "kJudgerScore" = "评分";
-
+"kRating" = "评分中...";
 /*********************小吉画画国际化字符串结束 ************************/
 
 /*********************你唱我猜国际化字符串开始 ************************/

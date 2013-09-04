@@ -289,13 +289,6 @@
 {
     return [self timesForType:FeedTimesTypeTomato];
 }
-- (NSInteger)contestReportTimes
-{
-    if ([self isContestFeed]) {
-        return [self timesForType:FeedTimesTypeContestReport];
-    }
-    return 0;
-}
 - (NSInteger)contestCommentTimes
 {
     if ([self isContestFeed]) {

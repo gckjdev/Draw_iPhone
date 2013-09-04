@@ -696,10 +696,10 @@ typedef enum{
 
 - (void)gotoContestComment
 {
+    [_commentHeader setSelectedType:CommentTypeContestComment];
     CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
     [self presentModalViewController:cc animated:YES];
-    [_commentHeader setSelectedType:CommentTypeComment];
-    [cc release];    
+    [cc release];
 }
 
 - (void)detailFooterView:(DetailFooterView *)footer
@@ -759,10 +759,6 @@ typedef enum{
                     if (row == 0) {
                         // for judger comment
                         [self gotoContestComment];
-//                        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
-//                        [self presentModalViewController:cc animated:YES];
-//                        [_commentHeader setSelectedType:CommentTypeComment];
-//                        [cc release];
                     }else if(row == 1){
                         Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
                         if (contest) {
@@ -1093,16 +1089,5 @@ typedef enum{
                                             delegate:self];
 }
 
-#pragma mark - draw data service delegate
-- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0 && feed) {
-        [HomeController startOfflineGuessDraw:feed from:self];
-    }else{
-        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
-        [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
-    }
-}
 
 @end

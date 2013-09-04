@@ -53,9 +53,6 @@
 + (void)startOfflineDrawFrom:(UIViewController *)viewController 
                       uid:(NSString *)uid;
 
-+ (void)startOfflineGuessDraw:(DrawFeed *)feed
-                         from:(UIViewController *)viewController;
-
 - (void)enterShareFromWeixin;
 
 @end
