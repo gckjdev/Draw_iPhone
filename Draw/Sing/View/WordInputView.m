@@ -30,6 +30,7 @@
 @interface WordInputView(){
     int _column;
     int _row;
+    NSMutableArray *_guessWords;
 }
 
 // 候选字
@@ -67,6 +68,7 @@
     [_clickSound release];
     [_wrongSound release];
     [_correctSound release];
+    [_guessWords release];
     [super dealloc];
 }
 
@@ -118,6 +120,7 @@
         self.clickSound = @"ding.m4a";
         self.wrongSound = @"oowrong.mp3";
         self.correctSound = @"correct.mp3";
+        _guessWords = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -344,7 +347,7 @@
         [[AudioManager defaultManager] playSoundByName:_wrongSound];
         PPDebug(@"Wrong word: %@", word);
     }
-    
+    [_guessWords addObject:word];
     if ([_delegate respondsToSelector:@selector(wordInputView:didGetWord:isCorrect:)]) {
         [_delegate wordInputView:self didGetWord:word isCorrect:isCorrect];
     }
@@ -586,6 +589,12 @@
         }
     }
     return count;
+}
+
+
+- (NSArray *)guessedWords
+{
+    return _guessWords;
 }
 
 @end

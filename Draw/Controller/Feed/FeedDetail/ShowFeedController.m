@@ -1089,16 +1089,5 @@ typedef enum{
                                             delegate:self];
 }
 
-#pragma mark - draw data service delegate
-- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0 && feed) {
-        [HomeController startOfflineGuessDraw:feed from:self];
-    }else{
-        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
-        [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
-    }
-}
 
 @end

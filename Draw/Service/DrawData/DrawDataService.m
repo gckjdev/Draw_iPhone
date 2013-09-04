@@ -365,6 +365,10 @@ static DrawDataService* _defaultDrawDataService = nil;
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController
 {
     
+    if (isCorrect) {
+        [[UserManager defaultManager] guessCorrectOpus:opusId];        
+    }
+    
     NSString* userId = [[UserManager defaultManager] userId];
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];

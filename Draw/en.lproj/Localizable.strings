@@ -115,6 +115,7 @@
 "kSaving" = "Saving...";
 "kSaved" = "Saved";
 "kFailed" = "Failed";
+"kOperationFailed" = "Operation failed, please try it again later.";
 "kTurnResult" = "Result of turn";
 "kMoreColor" = "Buy More";
 "kColor" = "Color";

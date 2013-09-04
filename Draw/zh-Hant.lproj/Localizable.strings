@@ -175,6 +175,7 @@
 "kConnectingServer" = "連接服務器中...";
 "kJoiningGame" = "正在加入遊戲會話中...";
 "kNetworkFailure" = "網絡錯誤，請檢查手機是否正確連接到互聯網。";
+"kOperationFailed" = "操作失敗，請稍後再試";
 
 "kJoinGameSucc" = "成功進入遊戲房間";
 "kJoinGameFailure" = "加入遊戲失敗，請稍候再試";

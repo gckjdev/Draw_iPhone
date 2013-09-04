@@ -444,12 +444,12 @@ WordManager *GlobalGetWordManager()
     return wordArray;
 }
 
-- (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count
+- (NSString *)randEnglishCandidateStringWithWord:(NSString *)word count:(NSInteger)count
 {
-    if (word == nil || [word.text length] == 0) {
+    if ([word length] == 0) {
         return nil;
     }
-    NSInteger length = word.text.length;
+    NSInteger length = word.length;
     NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:count];
     for (int i = 0; i < count - length; ++i) {
         NSInteger index = rand() % 26;
@@ -458,12 +458,19 @@ WordManager *GlobalGetWordManager()
     }
     for (int i = 0; i < length; ++ i) {
         NSInteger index = rand() % [array count];
-        NSString *string = [word.text substringWithRange:NSMakeRange(i, 1)];
+        NSString *string = [word substringWithRange:NSMakeRange(i, 1)];
         [array insertObject:string atIndex:index];
     }
     NSString* retString = [array componentsJoinedByString:@""];
     [array release];
     return retString;
+    
+}
+
+
+- (NSString *)randEnglishStringWithWord:(Word *)word count:(NSInteger)count
+{
+    return [self randEnglishCandidateStringWithWord:word.text count:count];
 }
 
 

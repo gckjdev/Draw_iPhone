@@ -512,32 +512,6 @@
 
 
 
-#pragma mark - draw data service delegate
-- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0 && feed) {
-        [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
-    }else{
-        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
-        [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
-    }
-}
-
-+ (void)startOfflineGuessDraw:(DrawFeed *)feed from:(UIViewController *)viewController
-{
-    
-    if (viewController) {        
-        HomeController *home = [HomeController defaultInstance];
-        [viewController.navigationController popToViewController:home animated:NO];
-        [OfflineGuessDrawController startOfflineGuess:feed fromController:home];
-    }    
-
-}
-
-
-
-
 
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
              didClickMenu:(HomeMenuView *)menu
@@ -572,17 +546,8 @@
         case HomeMenuTypeDrawGuess:
         {
 
-#ifdef DEBUG
-        GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-#endif
-            
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_GUESS];
-            
-            [self showActivityWithText:NSLS(@"kLoading")];
-            [[DrawDataService defaultService] matchDraw:self];
-                                    
+            GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
