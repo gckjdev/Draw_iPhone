@@ -14,6 +14,7 @@
 #import "GameNetworkConstants.h"
 #import "UserManager.h"
 #import "UserService.h"
+#import "StringUtil.h"
 
 #define SUBVIEW_FRAME CGRectMake(0, 205, 320, 480-205)
 
