@@ -35,7 +35,7 @@
 
 @interface OfflineGuessDrawController()
 {
-    
+    CommonTitleView *_titleView;
 }
 @property (nonatomic, retain)ShowDrawView *showView;
 
@@ -124,10 +124,6 @@
     }
     
     [self.wordInputView setCandidates:candidates column:9];
-    
-    [self.wordInputView setSeperatorYOffset:-4];
-    [self.wordInputView setCandidateYOffset:-4];
-    [self.wordInputView  setAnswerViewXOffset:8];
     
     [self.wordInputView setCandidateColor:[UIColor whiteColor]];
 
@@ -252,6 +248,7 @@
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBack:)];
     [titleView setTitle:NSLS(@"kGuessing")];
+    _titleView = titleView;
 }
 
 - (void)initShowView
@@ -265,6 +262,7 @@
     [self.showView setDrawActionList:_feed.drawData.drawActionList];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:_showView];
     [self.view insertSubview:holder atIndex:0];
+    [holder updateOriginY:COMMON_TITLE_VIEW_HEIGHT];
     [self.showView play];
 }
 @end

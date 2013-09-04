@@ -49,9 +49,10 @@ typedef enum _WordInputViewAlignment{
 
 - (void)reset;
 
-- (void)setAnswerViewXOffset:(CGFloat)XOffset;
-- (void)setSeperatorYOffset:(CGFloat)YOffset;
-- (void)setCandidateYOffset:(CGFloat)YOffset;
+//- (void)setAnswerViewXOffset:(CGFloat)XOffset;
+//- (void)setAnswerViewYOffset:(CGFloat)YOffset;
+//- (void)setSeperatorYOffset:(CGFloat)YOffset;
+//- (void)setCandidateYOffset:(CGFloat)YOffset;
 
 @end
 
