@@ -392,36 +392,26 @@
             NSString *title = nil;
             title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
             
-            /*
-            if (isSecureSmsAPP()) {
-                title = NSLS(@"kGraffiti");
-            } else if (isCallTrackAPP()) {
-                title = NSLS(@"kGetLocationTitle");
-                if ([self relation] != RelationTypeFriend) {
-                    button.enabled = NO;
-                } else {
-                    button.enabled = YES;
-                }
-            } else {
-                title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
-            }
-             */
-            
             [button.downLabel setText:title];
         } break;
+            
         case UserDetailActionFollow: {
+            
             BOOL hasFollow = [MyFriend hasFollow:[self relation]];
             [button.downLabel setText:(hasFollow?NSLS(@"kUnfollow"):[NSString stringWithFormat:NSLS(@"kDetailFollow"), heStr])];
             UIImage* followBtnBg = hasFollow?[[ShareImageManager defaultManager] userDetailUnfollowUserBtnBg]:[[ShareImageManager defaultManager] userDetailFollowUserBtnBg];
             [button setBackgroundImage:followBtnBg forState:UIControlStateNormal];
         } break;
+            
         case UserDetailActionChatTo: {
             [button.downLabel setText:[NSString stringWithFormat:NSLS(@"kDetailChat"), heStr]];
         } break;
+            
         case UserDetailActionFanCount: {
             [button.upLabel setText:[NSString stringWithFormat:@"%d", user.fanCount]];
             [button.downLabel setText:NSLS(@"kFans")];
         } break;
+            
         default:
             break;
     }

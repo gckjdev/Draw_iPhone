@@ -19,8 +19,8 @@ typedef enum {
 }DetailTabAction;
 
 @interface UserDetailViewController : PPTableViewController <UserDetailCellDelegate, FriendServiceDelegate, ChangeAvatarDelegate, FeedServiceDelegate>
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (retain, nonatomic) NSObject<UserDetailProtocol>* detail;
+ @property (retain, nonatomic) NSObject<UserDetailProtocol>* detail;
+@property (retain, nonatomic) IBOutlet UIButton *backButton;
 
 - (id)initWithUserDetail:(id<UserDetailProtocol>)detail;
 + (void)presentUserDetail:(NSObject<UserDetailProtocol>*)detail

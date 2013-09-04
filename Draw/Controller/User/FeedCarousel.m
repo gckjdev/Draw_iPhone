@@ -47,12 +47,8 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     FeedCarousel *view = [self createView];
     view.carousel.delegate = view;
     view.carousel.dataSource = view;
-    view.carousel.type = iCarouselTypeInvertedCylinder;
-    
-//    CGSize offset = CGSizeMake(0.0f, -190);
-//    view.carousel.viewpointOffset = offset;
-//    offset = CGSizeMake(0.0f, -155);
-//    view.carousel.contentOffset = offset;
+    view.carousel.type = iCarouselTypeCoverFlow2;
+
     return view;
 }
 

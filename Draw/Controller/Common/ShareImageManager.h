@@ -54,9 +54,9 @@
 #define COLOR_GREEN2 OPAQUE_COLOR(139, 234, 204)    // 登录背景
 #define COLOR_GREEN3 OPAQUE_COLOR(52, 136, 112)    // 登录背景
 
+#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
+#define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
 
-#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140)  //阴影
-#define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197)      //在线猜聊天
 
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 #define COLOR_COFFEE1 OPAQUE_COLOR(126, 49, 46) // common tab selected text
