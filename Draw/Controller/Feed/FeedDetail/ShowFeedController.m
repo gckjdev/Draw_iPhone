@@ -696,10 +696,10 @@ typedef enum{
 
 - (void)gotoContestComment
 {
+    [_commentHeader setSelectedType:CommentTypeContestComment];
     CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
     [self presentModalViewController:cc animated:YES];
-    [_commentHeader setSelectedType:CommentTypeComment];
-    [cc release];    
+    [cc release];
 }
 
 - (void)detailFooterView:(DetailFooterView *)footer
@@ -759,10 +759,6 @@ typedef enum{
                     if (row == 0) {
                         // for judger comment
                         [self gotoContestComment];
-//                        CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:YES];
-//                        [self presentModalViewController:cc animated:YES];
-//                        [_commentHeader setSelectedType:CommentTypeComment];
-//                        [cc release];
                     }else if(row == 1){
                         Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
                         if (contest) {
