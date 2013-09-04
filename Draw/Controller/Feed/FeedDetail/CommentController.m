@@ -211,7 +211,11 @@
     canSend = YES;
     if (resultCode == 0) {
         [self.contentView setText:nil];
-        [self.feed incTimesForType:FeedTimesTypeComment];
+        if (_forContestReport) {
+            [self.feed incTimesForType:FeedTimesTypeContestComment];
+        }else{
+            [self.feed incTimesForType:FeedTimesTypeComment];
+        }
         [self dismissModalViewControllerAnimated:YES];
         
     }else{

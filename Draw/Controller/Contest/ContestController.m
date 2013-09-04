@@ -162,19 +162,14 @@
 #pragma mark - Scroll view delegate
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    PPDebug(@"<scrollViewDidEndDragging>");
     [self updatePage];
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    PPDebug(@"<scrollViewDidEndDecelerating>");
     [self updatePage];    
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    PPDebug(@"<scrollViewDidScroll>:offset = %@",NSStringFromCGPoint(scrollView.contentOffset));
-}
+
 
 #pragma mark contest service delegate
 

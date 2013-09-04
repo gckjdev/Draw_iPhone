@@ -10,6 +10,8 @@
 #import "UIImageView+Extend.h"
 #import "DrawFeed.h"
 #import "TimeUtils.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 @implementation ReportFeedCell
 
@@ -41,8 +43,8 @@
 
 #define DESC_FONT (ISIPAD ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:12])
 
-#define DESC_WIDTH (ISIPAD ? 630 : 250)
-#define BASE_HEIGHT (ISIPAD ? 280 : 130)
+#define DESC_WIDTH (ISIPAD ? 590 : 245)
+#define BASE_HEIGHT (ISIPAD ? 300 : 140)
 
 - (void)setCellAppearance{    
     self.userNameLabel.textColor = COLOR_BROWN;
@@ -115,6 +117,13 @@
     [self.descLabel setText:[feed displayText]];
 }
 
+- (void)updateMaskNickControl
+{
+    UIControl *control = [[[UIControl alloc] initWithFrame:self.userNameLabel.frame] autorelease];
+    [self addSubview:control];
+    [control addTarget:self action:@selector(clickAtNick:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)setCellInfo:(CommentFeed *)feed
 {
     self.feed = feed;
@@ -123,9 +132,27 @@
     [self updateTime:feed];
     [self updateUser:feed];
     [self updateDrawView:feed];
-    
+//    [self updateMaskNickControl];
 }
 
+- (void)enterUserDetailController
+{
+    FeedUser *user = self.feed.feedUser;
+    ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:user.userId
+                                                               avatar:user.avatar
+                                                             nickName:user.nickName];
+    [UserDetailViewController presentUserDetail:detail
+                               inViewController:(id)[self theViewController]];
+}
 
+- (void)didClickOnAvatar:(NSString*)userId
+{
+    [self enterUserDetailController];
+}
+
+- (void)clickAtNick:(id)sender
+{
+    [self enterUserDetailController];
+}
 
 @end
