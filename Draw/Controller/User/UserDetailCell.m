@@ -28,6 +28,10 @@
 #import "UIImageView+Extend.h"
 #import "CommonDialog.h"
 
+#define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
+#define TEXT_COLOR OPAQUE_COLOR(16, 147, 137)
+
+
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
 
@@ -80,8 +84,6 @@
     
     [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
     [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
-
-//    [self.avatarView setAvatarUrl:pbUser.avatar gender:pbUser.gender];
     
     self.basicDetailView.hidden = YES;
     
@@ -122,8 +124,8 @@
         [self.exploreBbsPostBtn setHidden:YES];
     }
     
-    [self.specialSepLine setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden && self.exploreBbsPostBtn.hidden)];
-    [self.specialTitleLabel setHidden:self.specialSepLine.hidden];
+    [self.seperator3 setHidden:(self.blackListBtn.hidden && self.superBlackBtn.hidden && self.exploreBbsPostBtn.hidden)];
+    [self.specialTitleLabel setHidden:self.seperator3.hidden];
     
     if (self.blackListBtn.hidden && !self.exploreBbsPostBtn.hidden) {
         [self.exploreBbsPostBtn setCenter:CGPointMake(self.bounds.size.width/2, self.exploreBbsPostBtn.center.y)];
@@ -141,12 +143,41 @@
     
     PBGameUser *user = [detail getUser];
     self.avatarView = [[[AvatarView alloc] initWithUrlString:[user avatar] frame:self.avatarHolderView.bounds gender:user.gender level:user.level] autorelease];
-//    [_avatarView setAsRound];
     _avatarView.delegate = self;
+    _avatarView.layer.borderWidth = 0;
     
     [self.avatarHolderView addSubview:_avatarView];
     
-    [self.customBackgroundControl setBackgroundColor:COLOR_GREEN];
+    [self.customBackgroundControl setBackgroundColor:BG_COLOR];
+    
+    self.levelLabel.textColor = TEXT_COLOR;
+    self.signLabel.textColor = TEXT_COLOR;
+    
+    [self.seperator1 setBackgroundColor:BG_COLOR];
+    [self.seperator2 setBackgroundColor:COLOR_ORANGE];
+    [self.seperator3 setBackgroundColor:COLOR_YELLOW];
+    
+    SET_VIEW_ROUND_CORNER(self.hisOpusLabel);
+    [self.hisOpusLabel setBackgroundColor:BG_COLOR];
+    self.hisOpusLabel.textColor = [UIColor whiteColor];
+    
+    SET_VIEW_ROUND_CORNER(self.snsTipLabel);
+    [self.snsTipLabel setBackgroundColor:COLOR_ORANGE];
+    self.snsTipLabel.textColor = [UIColor whiteColor];
+    
+    SET_VIEW_ROUND_CORNER(self.specialTitleLabel);
+    [self.specialTitleLabel setBackgroundColor:COLOR_YELLOW];
+    self.specialTitleLabel.textColor = COLOR_BROWN;
+    
+    
+    [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+    [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
 }
 
 
@@ -190,45 +221,52 @@
 }
 #define MAX_HEIGHT (ISIPAD?81:36)
 #define MAX_CONSTRAIN_HEIGHT 99999
-#define MAX_SIGN_FRAME (ISIPAD?CGRectMake(84, 70, 600, 81):CGRectMake(46, 31, 229, 36))
+//#define MAX_SIGN_FRAME (ISIPAD?CGRectMake(84, 70, 600, 81):CGRectMake(46, 31, 229, 36))
+
+#define MAX_SIGN_HEIGHT (ISIPAD?81:36)
+
 - (void)adjustSignatureLabel:(UILabel*)label WithText:(NSString*)signatureText
 {
     [label setText:signatureText];
     CGSize size = [signatureText sizeWithFont:label.font constrainedToSize:CGSizeMake(label.frame.size.width, MAX_CONSTRAIN_HEIGHT) lineBreakMode:UILineBreakModeCharacterWrap];
     if (size.height < MAX_HEIGHT) {
-        [label setFrame:CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height)];
+//        [label setFrame:CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height)];
+        [label updateHeight:size.height];
     } else {
-        [label setFrame:MAX_SIGN_FRAME];
+//        [label setFrame:MAX_SIGN_FRAME];
+        [label updateHeight:MAX_SIGN_HEIGHT];
     }
 }
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1469:706);
+    return ([DeviceDetection isIPAD]?1694:706);
 }
 
 + (NSString*)getCellIdentifier
 {
     return @"UserDetailCell";
+    
 }
 
-#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 930) : CGPointMake(160, 455))
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 1092) : ([DeviceDetection isIPhone5] ? CGPointMake(160, 460) : CGPointMake(160, 455)))
 
-#define TAB_FONT    (ISIPAD?24:12)
+#define TAB_FONT    (ISIPAD?22:11)
 
 + (id)createCell:(id)delegate
 {
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
     cell.avatarView.delegate = cell;
+    
     cell.segmentedControl = [[[CustomSegmentedControl alloc]
                               initWithSegmentTitles:@[NSLS(@"kUserOpus"), NSLS(@"kFavorite")]
                               frame:cell.feedTabHolder.frame
-                              unpressedImage:[ShareImageManager defaultManager].userDetailTabBgImage
-                              pressedImage:[ShareImageManager defaultManager].userDetailTabBgPressedImage
+                              unpressedImage:[[ShareImageManager defaultManager] imageWithColor:BG_COLOR]
+                              pressedImage:[[ShareImageManager defaultManager] imageWithColor:COLOR_GREEN]
                               delegate:cell] autorelease];
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
-    [cell.segmentedControl setTitleColor:OPAQUE_COLOR(100, 72, 40) forState:UIControlStateNormal];
+    [cell.segmentedControl setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cell.segmentedControl setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [cell.segmentedControl setTitleFont:[UIFont systemFontOfSize:TAB_FONT]];
     
@@ -240,8 +278,7 @@
     [cell.carousel startScrolling];
     [cell.carousel enabaleWrap:YES];
     [cell.carousel showActivity];
-    
-    
+    cell.carousel.backgroundColor = [UIColor blackColor];
     
     return cell;
 }
@@ -249,33 +286,9 @@
 #define TAG_WILL_HIDE   400
 - (void)handleInSecureSmsApp
 {
-    /*
-    if (isSecureSmsAPP() || isCallTrackAPP()) {
-        NSArray *contentSubViewList = self.contentView.subviews;
-        for (UIView *subView in contentSubViewList) {
-            if (subView.tag == TAG_WILL_HIDE){
-                subView.hidden = YES;
-            }
-        }
-        
-        NSArray *subViewList = self.subviews;
-        for (UIView *subView in subViewList) {
-            if (subView.tag == TAG_WILL_HIDE){
-                subView.hidden = YES;
-            }
-        }
-    }
-     */
+
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 - (void)dealloc {
     [_carousel release];
@@ -309,9 +322,13 @@
     [_customBackgroundControl release];
     [_customBackgroundImageView release];
     [_specialTitleLabel release];
-    [_specialSepLine release];
     [_exploreBbsPostBtn release];
     [_avatarHolderView release];
+    [_seperator1 release];
+    [_seperator2 release];
+    [_seperator3 release];
+    [_hisOpusLabel release];
+    [_snsTipLabel release];
     [super dealloc];
 }
 

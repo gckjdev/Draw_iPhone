@@ -50,6 +50,8 @@
 #define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) // common dialog
 #define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225) // common dialog
 
+
+
 #define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
 #define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
 

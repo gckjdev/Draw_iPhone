@@ -32,6 +32,7 @@
 #import "ShowFeedController.h"
 #import "UIImageView+WebCache.h"
 #import "UseItemScene.h"
+#import "HPThemeManager.h"
 
 #define    ROW_COUNT 1
 
@@ -67,7 +68,7 @@
 {
     [self.detail loadUser:self];
     [super viewDidLoad];
-    
+    [self.backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.png") forState:UIControlStateNormal];
     // Do any additional setup after loading the view from its nib.
     
 }
@@ -87,13 +88,13 @@
 }
 
 - (void)dealloc {
-    [_backgroundImageView release];
     [_detail release];
     PPRelease(_detailCell);
+    [_backButton release];
     [super dealloc];
 }
 - (void)viewDidUnload {
-    [self setBackgroundImageView:nil];
+    [self setBackButton:nil];
     [super viewDidUnload];
 }
 
