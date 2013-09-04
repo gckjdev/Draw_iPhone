@@ -216,9 +216,34 @@
 
 - (IBAction)clickBack:(id)sender
 {
-#warning ask if force to guess && send try request.
+    CommonDialog* dialog;
+    __block OfflineGuessDrawController* cp = self;
+    if ([[AccountService defaultService] hasEnoughBalance:[ConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
+        
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross];
+        
+        [dialog setClickOkBlock:^(UILabel *label){
+            [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
+            [(NSMutableArray *)cp.wordInputView.guessedWords addObject:cp.feed.wordText];
+            [cp quit:YES];
+        }];
+        
+        [dialog setClickCancelBlock:^(NSString *inputStr){
+            [cp quit:NO];
+        }];
+        
+        
+        [dialog.cancelButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
+    } else {
+        
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(UILabel *label){
+            [cp quit:NO];
+        }];
+    }
+    
+    [dialog showInView:self.view];
 
-    [self quit:NO];
 }
 
 - (void)initTitleView
