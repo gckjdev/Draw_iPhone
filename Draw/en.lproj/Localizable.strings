@@ -1037,6 +1037,22 @@
 "kContestNotForUser" = "You are not in the contestant list for this contest. Cannot submit opus.";
 "kContestNotForUserSubmitNormal" = "You are not in the contestant list for this contest. Do you want to submit as normal opus?";
 
+"kLoginXiaoji" = "Login";
+"kLoginXiaojiPlaceHolder" = "Enter Littlegee Number";
+"kLoginPasswordPlaceHolder" = "Enter Password";
+"kXiaojiNumberCannotEmpty" = "Littlegee number cannot be empty";
+"kXiaojiPasswordCannotEmpty" = "Password cannot be empty";
+"kXiaojiNumberNotFound" = "Littlegee number doesn't exist";
+"kXiaojiPasswordIncorrect" = "Password incorrect. Please check.";
+
+"kGetNumberTipsLabelText" = "Take one littlegee number\nor login with number.";
+"kTakeNumberButtonTitle" = "Take Number";
+"kLoginButtonTitle" = "Login";
+"kShowNumberTipsLabelText" = "Your Littlegee Number is";
+"kOkButtonTitle" = "OK";
+
+
+
 "kDrawToUserByUser" = "drew to %@";
 "kQQGroup" = "";
 "kCopy" = "Copy";

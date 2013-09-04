@@ -10,6 +10,12 @@
 #import "UIResponder+MotionRecognizers.h"
 #import "UserNumberService.h"
 
+#define SET_BUTTON_ROUND_STYLE_USE_BUTTON(view)                              \
+{                                                           \
+[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_BROWN font:LOGIN_FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_ORANGE highlightedColor:COLOR_ORANGE round:YES];         \
+}
+
+
 @interface ShakeNumberController ()
 {
     BOOL _enableShake;
@@ -38,6 +44,15 @@
     self.shakeMainView.frame = self.view.bounds;
     [self.view addSubview:self.shakeMainView];
     
+    SET_VIEW_ROUND_CORNER(self.bgView);
+    self.view.backgroundColor = COLOR_GREEN;
+
+    self.shakeMainTipsLabel.textColor = COLOR_RED;
+    self.shakeResultTipsLabel.textColor = COLOR_RED;
+    self.shakeResultNumberLabel.textColor = COLOR_BROWN;
+    self.chanceLeftLabel.textColor = COLOR_BROWN;
+    
+    SET_BUTTON_ROUND_STYLE_USE_BUTTON(self.takeNumberButton);
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,6 +77,11 @@
     [_shakeMainView release];
     [_shakeResultView release];
     [_currentNumber release];
+    [_padImageView release];
+    [_leftShakeImageView release];
+    [_rightShakeImageView release];
+    [_chanceLeftLabel release];
+    [_bgView release];
     [super dealloc];
 }
 
@@ -82,6 +102,11 @@
     [self setTakeNumberButton:nil];
     [self setShakeMainView:nil];
     [self setShakeResultView:nil];
+    [self setPadImageView:nil];
+    [self setLeftShakeImageView:nil];
+    [self setRightShakeImageView:nil];
+    [self setChanceLeftLabel:nil];
+    [self setBgView:nil];
     [super viewDidUnload];
 }
 

@@ -40,6 +40,7 @@
 #import "PPGameNetworkRequest.h"
 #import "UserNumberService.h"
 #import "GetNewNumberViewController.h"
+#import "ShakeNumberController.h"
 
 @implementation UserService
 
@@ -1445,20 +1446,68 @@ static UserService* _defaultUserService;
 
 // return NO if don't need show login view
 // return YES if need
+
+#define MOVE_OFFSET [[UIScreen mainScreen] bounds].size.width
+
 - (BOOL)checkAndAskXiaojiNumber:(UIView*)view
 {
     if ([[UserManager defaultManager] hasXiaojiNumber] == YES)
         return NO;
     
-    // display xiaoji number controller
-    if (self.getNewNumberController == nil){
-        GetNewNumberViewController *vc = [[GetNewNumberViewController alloc] init];
-        self.getNewNumberController = vc;
-        [vc release];
+    if ([[UserManager defaultManager] canShakeXiaojiNumber]){
+        // display xiaoji number controller
+        if (self.shakeNumberController == nil){
+            ShakeNumberController *vc = [[ShakeNumberController alloc] init];
+            self.shakeNumberController = vc;
+            [vc release];
+        }
+        [self.shakeNumberController.view removeFromSuperview];
+        [view addSubview:self.shakeNumberController.view];
+        
+        CGFloat x = CGRectGetMidX(self.shakeNumberController.view.frame);
+        
+        [self.shakeNumberController.view updateCenterX:x-MOVE_OFFSET];
+        
+        [UIView animateWithDuration:1 animations:^{
+            [self.shakeNumberController.view updateCenterX:x];
+        } completion:^(BOOL finished) {
+            [self.shakeNumberController.view updateCenterX:x];
+        }];
     }
-    [self.getNewNumberController.view removeFromSuperview];
-    [view addSubview:self.getNewNumberController.view];
+    else{
+        // display xiaoji number controller
+        if (self.getNewNumberController == nil){
+            GetNewNumberViewController *vc = [[GetNewNumberViewController alloc] init];
+            self.getNewNumberController = vc;
+            [vc release];
+        }
+        [self.getNewNumberController.view removeFromSuperview];
+        [view addSubview:self.getNewNumberController.view];
+
+        CGFloat x = CGRectGetMidX(self.getNewNumberController.view.frame);
+        
+        [self.getNewNumberController.view updateCenterX:x-MOVE_OFFSET];
+        
+        [UIView animateWithDuration:1 animations:^{
+            [self.getNewNumberController.view updateCenterX:x];
+        } completion:^(BOOL finished) {
+            [self.getNewNumberController.view updateCenterX:x];
+        }];
+    }
     return YES;
+}
+
+- (void)dismissGetNumberView
+{
+    CGFloat x = CGRectGetMidX(self.getNewNumberController.view.frame);
+    
+    [UIView animateWithDuration:1 animations:^{
+        [self.getNewNumberController.view updateCenterX:x+MOVE_OFFSET];
+    } completion:^(BOOL finished) {
+        [self.getNewNumberController.view removeFromSuperview];
+        self.getNewNumberController = nil;        
+    }];
+    
 }
 
 // return NO if don't need show login view

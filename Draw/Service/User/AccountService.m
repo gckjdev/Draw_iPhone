@@ -172,6 +172,9 @@ static AccountService* _defaultAccountService;
                     // update user feature opus flag
                     [[UserManager defaultManager] setFeatureOpus:user.featureOpus];
 
+                    // set user can shake xiaoji number flag
+                    [[UserManager defaultManager] setCanShakeXiaojiNumber:user.canShakeNumber];
+                    
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
                     [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];

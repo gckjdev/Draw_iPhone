@@ -1056,6 +1056,21 @@
 "kContestNotForUser" = "你不是本次比赛的指定参赛选手，无法参加比赛";
 "kContestNotForUserSubmitNormal" = "你不是本次比赛的指定参赛选手，是否要提交为普通作品？";
 
+"kLoginXiaoji" = "小吉登录";
+"kLoginXiaojiPlaceHolder" = "请输入小吉号码";
+"kLoginPasswordPlaceHolder" = "请输入密码";
+"kXiaojiNumberCannotEmpty" = "小吉号码不能为空";
+"kXiaojiPasswordCannotEmpty" = "密码不能为空";
+"kXiaojiNumberNotFound" = "小吉号码不存在";
+"kXiaojiPasswordIncorrect" = "密码不正确，请检查";
+
+"kGetNumberTipsLabelText" = "首次使用，请领取小吉号码\n或使用已有号码登录";
+"kTakeNumberButtonTitle" = "领            取";
+"kLoginButtonTitle" = "登            录";
+"kShowNumberTipsLabelText" = "你的小吉号码是";
+"kOkButtonTitle" = "确            定";
+
+
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
 "kQQGroup" = "官方Q群：228119679";

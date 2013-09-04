@@ -27,6 +27,7 @@ typedef enum {
 @class MyFriend;
 @class PBGameUser;
 @class GetNewNumberViewController;
+@class ShakeNumberController;
 
 typedef void(^AutoResgistrationResultBlock)(BOOL isAlreadyRegistered, int resultCode, PBGameUser* user);
 typedef void(^GetUserInfoResultBlock)(int resultCode, PBGameUser* user, int relation);
@@ -60,6 +61,7 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 }
 
 @property (nonatomic, retain) GetNewNumberViewController* getNewNumberController;
+@property (nonatomic, retain) ShakeNumberController* shakeNumberController;
 
 + (UserService*)defaultService;
 
@@ -137,6 +139,7 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 
 - (BOOL)checkAndAskLogin:(UIView*)view;
+- (void)dismissGetNumberView;
 
 - (BOOL)autoRegisteration:(AutoResgistrationResultBlock)resultBlock;
 
