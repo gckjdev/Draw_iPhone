@@ -102,6 +102,8 @@ typedef enum {
 - (void)setXiaojiNumber:(NSString*)number;
 - (NSString*)xiaojiNumber;
 - (BOOL)hasXiaojiNumber;
+- (void)setCanShakeXiaojiNumber:(BOOL)value;
+- (BOOL)canShakeXiaojiNumber;
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;

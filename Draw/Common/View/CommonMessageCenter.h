@@ -31,3 +31,4 @@
 
 @end
 
+#define POSTMSG(msg)    ([[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:1.5])

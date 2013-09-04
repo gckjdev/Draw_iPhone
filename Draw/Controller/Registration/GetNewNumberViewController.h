@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "PPViewController.h"
+#import "RoomPasswordDialog.h"
+#import "CommonDialog.h"
 
 @class LoginByNumberController;
 @class ShowNumberController;
 
-@interface GetNewNumberViewController : PPViewController
+@interface GetNewNumberViewController : PPViewController<RoomPasswordDialogDelegate, CommonDialogDelegate>
 
 @property (retain, nonatomic) IBOutlet UIView *getNumberMainView;
 @property (retain, nonatomic) IBOutlet UILabel *getNumberTipsLabel;
@@ -22,6 +24,10 @@
 
 @property (retain, nonatomic) LoginByNumberController *loginController;
 @property (retain, nonatomic) ShowNumberController *showNumberController;
+
+@property (retain, nonatomic) NSString *xiaojiNumber;
+@property (retain, nonatomic) NSString *password;
+
 
 @property (retain, nonatomic) IBOutlet UIView *loginView;
 
@@ -45,5 +51,7 @@
 
 - (IBAction)clickLogin:(id)sender;
 - (IBAction)clickTakeNumber:(id)sender;
+
+- (IBAction)dismiss:(id)sender;
 
 @end

@@ -1285,6 +1285,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property int32_t featureOpus;
 @property (retain) NSString* friendMemo;
 @property int32_t emailVerifyStatus;
+@property BOOL canShakeNumber;
 @property int32_t singRecordLimit;
 @end
 
@@ -1600,6 +1601,18 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasEmailVerifyStatus_ = !!value;
 }
 @synthesize emailVerifyStatus;
+- (BOOL) hasCanShakeNumber {
+  return !!hasCanShakeNumber_;
+}
+- (void) setHasCanShakeNumber:(BOOL) value {
+  hasCanShakeNumber_ = !!value;
+}
+- (BOOL) canShakeNumber {
+  return !!canShakeNumber_;
+}
+- (void) setCanShakeNumber:(BOOL) value {
+  canShakeNumber_ = !!value;
+}
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -1676,6 +1689,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.featureOpus = 0;
     self.friendMemo = @"";
     self.emailVerifyStatus = 0;
+    self.canShakeNumber = NO;
     self.singRecordLimit = 30;
   }
   return self;
@@ -1870,6 +1884,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasEmailVerifyStatus) {
     [output writeInt32:103 value:self.emailVerifyStatus];
   }
+  if (self.hasCanShakeNumber) {
+    [output writeBool:104 value:self.canShakeNumber];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -2013,6 +2030,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasEmailVerifyStatus) {
     size += computeInt32Size(103, self.emailVerifyStatus);
+  }
+  if (self.hasCanShakeNumber) {
+    size += computeBoolSize(104, self.canShakeNumber);
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2233,6 +2253,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasEmailVerifyStatus) {
     [self setEmailVerifyStatus:other.emailVerifyStatus];
   }
+  if (other.hasCanShakeNumber) {
+    [self setCanShakeNumber:other.canShakeNumber];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -2442,6 +2465,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 824: {
         [self setEmailVerifyStatus:[input readInt32]];
+        break;
+      }
+      case 832: {
+        [self setCanShakeNumber:[input readBool]];
         break;
       }
       case 1600: {
@@ -3192,6 +3219,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearEmailVerifyStatus {
   result.hasEmailVerifyStatus = NO;
   result.emailVerifyStatus = 0;
+  return self;
+}
+- (BOOL) hasCanShakeNumber {
+  return result.hasCanShakeNumber;
+}
+- (BOOL) canShakeNumber {
+  return result.canShakeNumber;
+}
+- (PBGameUser_Builder*) setCanShakeNumber:(BOOL) value {
+  result.hasCanShakeNumber = YES;
+  result.canShakeNumber = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearCanShakeNumber {
+  result.hasCanShakeNumber = NO;
+  result.canShakeNumber = NO;
   return self;
 }
 - (BOOL) hasSingRecordLimit {
