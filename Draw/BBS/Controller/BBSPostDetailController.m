@@ -579,9 +579,9 @@ typedef enum{
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupUnhappyMessage:NSLS(@"kEditPostFailed") title:nil];
+        POSTMSG(NSLS(@"kEditPostFailed"));
     }else{
-        [self popupHappyMessage:NSLS(@"kEditPostSucced") title:nil];
+        POSTMSG(NSLS(@"kEditPostSucced"));
         if ([[BBSManager defaultManager] replacePost:self.post withPost:post]) {
             self.post = post;
             [self.dataTableView reloadData];
@@ -594,9 +594,9 @@ typedef enum{
 {
     [self hideActivity];
     if (resultCode != 0) {
-        [self popupUnhappyMessage:NSLS(@"kDeletePostFailed") title:nil];
+        POSTMSG(NSLS(@"kDeletePostFailed"));
     }else{
-        [self popupUnhappyMessage:NSLS(@"kDeletePostSucceed") title:nil];
+        POSTMSG(NSLS(@"kDeletePostSucceed"));
         [[[BBSManager defaultManager] tempPostList] removeObject:post];
         [self.navigationController popViewControllerAnimated:YES];
 

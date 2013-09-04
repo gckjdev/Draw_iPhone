@@ -150,7 +150,7 @@
 
 - (IBAction)clickCreateWallButton:(id)sender {
     if ([_opuses count] < 4) {
-        [self popupMessage:@"请选够四张作品！" title:@"作品数不够"];
+        POSTMSG(@"请选够四张作品！");
         return;
     }
     

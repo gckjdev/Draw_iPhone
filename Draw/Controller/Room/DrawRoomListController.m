@@ -145,17 +145,6 @@
 - (void)handleDidJoinGame
 {
     [self hideActivity];
-//    if ([message resultCode] == 0){
-//        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
-//    }
-//    else{
-//        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
-//        [self popupUnhappyMessage:text title:@""];
-//        [[DrawGameService defaultService] disconnectServer];
-//        //        [[RouterService defaultService] putServerInFailureList:[[DrawGameService defaultService] serverAddress]
-//        //                                                          port:[[DrawGameService defaultService] serverPort]];
-//        return;
-//    }
     [RoomController enterRoom:self isFriendRoom:YES];
 }
 - (PrejoinGameErrorCode)handlePrejoinGameCheck

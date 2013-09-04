@@ -1022,13 +1022,10 @@ enum {
 - (void)didUserRegistered:(int)resultCode
 {
     if (resultCode == 0){
-//        [self popupMessage:NSLS(@"kUserBindSucc") title:nil];
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindSucc") delayTime:1.5];
-        
+        POSTMSG(NSLS(@"kUserBindSucc"));
     }
     else{
-//        [self popupMessage:NSLS(@"kUserBindFail") title:nil];
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindFail") delayTime:1.5];
+        POSTMSG(NSLS(@"kUserBindFail"));        
     }
     
     self.navigationController.navigationBarHidden = YES;    

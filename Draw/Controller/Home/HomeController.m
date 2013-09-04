@@ -248,7 +248,7 @@
         if (_connectState && [[DrawGameService defaultService] isConnected] == NO) {
             [[DrawGameService defaultService] setSession:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];
-            [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+            POSTMSG(NSLS(@"kNetworkBroken"));
         }
         
         [[BulletinService defaultService] syncBulletins:^(int resultCode) {
@@ -335,11 +335,10 @@
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
+        POSTMSG(NSLS(@"kJoinGameSucc"));
     }
     else{
-        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
-        [self popupUnhappyMessage:text title:@""];
+        POSTMSG(NSLS(@"kJoinGameFailure"));
         [[DrawGameService defaultService] disconnectServer];
         return;
     }
@@ -798,7 +797,7 @@
     if (error != nil) {
         [[DrawGameService defaultService] setSession:nil];
         [self.navigationController popToRootViewControllerAnimated:YES];
-        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+        POSTMSG(NSLS(@"kNetworkBroken"));
     }
 }
 

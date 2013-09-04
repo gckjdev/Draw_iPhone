@@ -345,9 +345,7 @@
 - (void) didPolygonClipTouchHandler:(PolygonClipTouchHandler *)handler finishAddPointsToAction:(ClipAction *)action
 {
     self.touchHandler = nil;
-    PPDebug(@"<didPolygonClipTouchHandler> finish!!!");
-    PPViewController *vc = (id)[self theViewController];
-    [vc popupHappyMessage:NSLS(@"kPolygonJoined") title:nil];
+    POSTMSG(NSLS(@"kPolygonJoined"));
 }
 
 

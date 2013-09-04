@@ -323,7 +323,7 @@ typedef enum{
             self.currentSelect = WEEK;
         }
     }else{
-        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
+        POSTMSG(NSLS(@"kLoadFailed"));        
     }
 }
 

@@ -72,12 +72,12 @@
         if (resultCode == ERROR_SUCCESS) {
             [_wordInputView bombHalf];
             if (isBuy) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+                POSTMSG(([NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price]));
             }
         }else if (ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
         }else{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOperationFailed") delayTime:2];
+            POSTMSG(NSLS(@"kOperationFailed"));
         }
     }];
 }
@@ -139,10 +139,10 @@
             isCorrect:(BOOL)isCorrect
 {
     if (isCorrect) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1.5 isHappy:YES];
+        POSTMSG(NSLS(@"kGuessCorrect"));
         [self quit:YES];
     }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
+        POSTMSG(NSLS(@"kGuessWrong"));
     }
 }
 
@@ -166,7 +166,7 @@
 - (void)checkDrawDataVersion
 {
     if ([self.feed.drawData isNewVersion]) {
-        [self popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
+        POSTMSG(NSLS(@"kNewDrawVersionTip"));
     }
 }
 - (void)viewDidLoad

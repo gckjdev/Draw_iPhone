@@ -568,7 +568,7 @@
     [self popUpRunAwayMessage:userId];
     [self adjustPlayerAvatars:userId];
     if ([self userCount] <= 1) {
-        [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
+        POSTMSG(NSLS(@"kAllUserQuit"));
     }
 }
 - (void)didGameTurnComplete:(GameMessage *)message

@@ -301,12 +301,11 @@
 - (void)didFollowUser:(int)resultCode
 {
     if (resultCode == 0) {
-        [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
-
+        POSTMSG(NSLS(@"kFollowSuccessfully"));
         payAttentionButton.hidden = YES;
         alreadPayAttentionLabel.hidden = NO;
     } else {
-        [self popupMessage:NSLS(@"kFollowFailed") title:nil];
+        POSTMSG(NSLS(@"kFollowFailed"));
     }
 }
 
@@ -496,7 +495,7 @@
         // Add to superview.
         NSArray *otherUsers = [self getOtherUsers];
         if ([otherUsers count] == 0) {
-            [self popupMessage:NSLS(@"kNobodyInRoom") title:nil];
+            POSTMSG(NSLS(@"kNobodyInRoom"));
             return;
         }
 

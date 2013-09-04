@@ -177,13 +177,15 @@ SET_CELL_BG_IN_CONTROLLER;
     [inputTextField resignFirstResponder];
     
     if ([inputTextField.text length] == 0) {
-        [self popupMessage:NSLS(@"kEnterWords") title:nil];
+        POSTMSG(NSLS(@"kEnterWords"));
+        
     }else {
         NSInteger tabID = self.currentTab.tabID;
         self.currentTab.offset = 0;
         [self startToLoadDataForTabID:tabID];
         [self serviceLoadDataForTabID:tabID];
         [self showActivityWithText:NSLS(@"kSearching")];
+        
     }
 }
 
@@ -199,7 +201,7 @@ SET_CELL_BG_IN_CONTROLLER;
         PPDebug(@"<didSearchUsers> count = %d", [userList count]);
         [self finishLoadDataForTabID:self.currentTab.tabID resultList:userList];
     }else {
-        [self popupMessage:NSLS(@"kSearchFailed") title:nil];
+        POSTMSG(NSLS(@"kSearchFailed"));
         [self failLoadDataForTabID:self.currentTab.tabID];
     }
     
@@ -209,9 +211,10 @@ SET_CELL_BG_IN_CONTROLLER;
 - (void)didFollowUser:(int)resultCode
 {
     if (resultCode == 0) {
-        [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
+        POSTMSG(NSLS(@"kFollowSuccessfully"));
+
     } else {
-        [self popupMessage:NSLS(@"kFollowFailed") title:nil];
+        POSTMSG(NSLS(@"kFollowFailed"));
     }
 }
 

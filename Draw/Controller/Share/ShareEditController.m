@@ -188,11 +188,10 @@ enum {
             int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
             if (earnCoins > 0){
                 NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-                [self popupMessage:msg title:nil];
+                POSTMSG(msg);
             }
             else{
-                //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil];
-                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+                POSTMSG(NSLS(@"kPublishWeiboSucc"));
             }
             
             // report action, doesn't work here, need to fix later
@@ -314,11 +313,10 @@ enum {
         int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
         if (earnCoins > 0){
             NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-            [self popupMessage:msg title:nil]; 
+            POSTMSG(msg);
         }
         else{
-            //[self popupMessage:NSLS(@"kPublishWeiboSucc") title:nil]; 
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kPublishWeiboSucc") delayTime:1 isHappy:YES];
+            POSTMSG(NSLS(@"kPublishWeiboSucc"));
         }
         [self.navigationController popViewControllerAnimated:YES];
         if (_delegate && [_delegate respondsToSelector:@selector(didPublishSnsMessage:)]) {

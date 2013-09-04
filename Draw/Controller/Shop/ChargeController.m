@@ -415,7 +415,8 @@
     [self hideActivity];
     
     if (resultCode != ERROR_SUCCESS && resultCode != PAYMENT_CANCEL){
-        [self popupMessage:NSLS(@"kFailToConnectIAPServer") title:nil];
+        POSTMSG(NSLS(@"kFailToConnectIAPServer"));
+        
         return;
     }
     else if (resultCode == PAYMENT_CANCEL){
@@ -432,9 +433,9 @@
     [self hideActivity];
     if (resultCode == ERROR_SUCCESS) {
         [self updateBalance];
-        [self popupMessage:NSLS(@"kChargIngotSuccess") title:nil];
+        POSTMSG(NSLS(@"kChargIngotSuccess"));
     }else{
-        [self popupMessage:NSLS(@"kChargIngotFailure") title:nil];
+        POSTMSG(NSLS(@"kChargIngotFailure"));
     }
 }
 

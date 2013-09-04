@@ -566,9 +566,9 @@ enum{
     [self hideProgressView];
 
     if (resultCode == ERROR_SUCCESS) {
-        [self popupMessage:@"成功" title:nil];
+        POSTMSG(NSLS(@"kSuccess"));
     }else{
-        [self popupMessage:@"失败" title:nil];
+        POSTMSG(NSLS(@"kFailed"));
     }
 }
 
