@@ -14,8 +14,7 @@
 
 - (BOOL)execute
 {
-    PPViewController *vc = (id)[self controller];
-    [vc popupHappyMessage:NSLS(@"kFurtureFunction") title:nil];
+    POSTMSG(NSLS(@"kFurtureFunction"));
     return YES;
 }
 

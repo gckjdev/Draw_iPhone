@@ -314,14 +314,16 @@ enum {
             [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] followUser:[GameApp sinaWeiboId]
                                                                                         userId:nil
                                                                                   successBlock:^(NSDictionary *userInfo) {
-                [self popupMessage:@"谢谢，你已经成功关注了新浪微博官方帐号" title:nil];
+                                                                                      
+            POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
+
             } failureBlock:^(NSError *error) {
                 if (error.code == 20506){
                     //already follow
-                    [self popupMessage:@"谢谢，你已经成功关注了新浪微博官方帐号" title:nil];
+                    POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
                 }
                 else{
-                    [self popupMessage:@"你未绑定新浪微博或者新浪微博授权已经过期，请到个人设置页面进行新浪微博授权" title:@""];                    
+                    POSTMSG(@"你未绑定新浪微博或者新浪微博授权已经过期，请到个人设置页面进行新浪微博授权");
                 }
             }];
             
@@ -332,11 +334,10 @@ enum {
             [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] followUser:nil
                                                                                       userId:[GameApp qqWeiboId]
                                                                                 successBlock:^(NSDictionary *userInfo) {
-                                                                                    
-                                                                                    [self popupMessage:@"谢谢，你已经成功关注了腾讯官方微博帐号" title:nil];
+                                                                                    POSTMSG(@"谢谢，你已经成功关注了腾讯官方微博帐号");
                                                                                     
                                                                                 } failureBlock:^(NSError *error) {
-                                                                                    [self popupMessage:@"你未绑定腾讯微博或者腾讯微博授权已经过期，请到个人设置页面进行腾讯微博授权" title:@""];
+                                                                                    POSTMSG(@"你未绑定腾讯微博或者腾讯微博授权已经过期，请到个人设置页面进行腾讯微博授权");                                                                                    
                                                                                 }];
         }
     }
@@ -377,7 +378,7 @@ enum {
         if ([UIUtils checkAppHasUpdateVersion]) {
             [UIUtils openApp:[GameApp appId]];
         }else{
-            [self popupMessage:NSLS(@"kAlreadLastVersion") title:nil];
+            POSTMSG(NSLS(@"kAlreadLastVersion"));
         }
     }
     

@@ -1048,7 +1048,7 @@ int getPopOptionCount()
     if (error != nil) {
         [[DrawGameService defaultService] setSession:nil];
         [self.navigationController popToRootViewControllerAnimated:YES];
-        [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
+        POSTMSG(NSLS(@"kNetworkBroken"));
     }
 }
 

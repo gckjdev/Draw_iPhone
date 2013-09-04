@@ -120,7 +120,7 @@
         _currentStartIndex = 0;
         [self updateRoomList];
     }else{
-        [self popupMessage:NSLS(@"kContentNull") title:nil];
+        POSTMSG(NSLS(@"kContentNull"));
     }
 }
 
@@ -157,7 +157,7 @@
     [self dataSourceDidFinishLoadingMoreData];
     
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kSearhRoomListFail") title:nil];
+        POSTMSG(NSLS(@"kSearhRoomListFail"));
     }else{
         if (_currentStartIndex == 0) {
                 self.dataList = roomList;
@@ -260,7 +260,7 @@
         }
 
     }else{
-        [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
+        POSTMSG(NSLS(@"kPsdNotMatch"));
     }
 }
 
@@ -270,7 +270,7 @@
     if (resultCode == 0) {
         [self startGame];
     }else{
-        [self popupMessage:NSLS(@"kJoinGameFailure") title:nil];
+        POSTMSG(NSLS(@"kJoinGameFailure"));
     }
 }
 
@@ -283,7 +283,7 @@
     _isTryJoinGame = NO;
     PPDebug(@"<didBroken> Friend Room");
     [self hideActivity];
-    [self popupUnhappyMessage:NSLS(@"kNetworkFailure") title:@""];
+    POSTMSG(NSLS(@"kNetworkFailure"));
 }
 
 - (void)didConnected
@@ -322,11 +322,10 @@
     
     [self hideActivity];
     if ([message resultCode] == 0){
-        [self popupHappyMessage:NSLS(@"kJoinGameSucc") title:@""];
+        POSTMSG(NSLS(@"kJoinGameSucc"));        
     }
     else{
-        NSString* text = [NSString stringWithFormat:NSLS(@"kJoinGameFailure")];
-        [self popupUnhappyMessage:text title:@""];
+        POSTMSG(NSLS(@"kJoinGameFailure"));
         [[DrawGameService defaultService] disconnectServer];
         return;
     }

@@ -515,7 +515,7 @@
     }else{
         NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughTips"),bonus];
         if(ISIPAD){
-            [self popupUnhappyMessage:msg title:nil];
+            POSTMSG(msg);
         }else{
             [UIUtils alert:msg];
         }
@@ -559,8 +559,8 @@
             msg = NSLS(@"kNetworkError");
             break;
     }
-    if(ISIPAD){
-        [self popupUnhappyMessage:msg title:nil];
+    if(ISIPAD){        
+        POSTMSG(msg);
     }else{
         [UIUtils alert:msg];
     }

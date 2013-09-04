@@ -25,13 +25,11 @@
 @end
 
 @implementation MyWordsController
-@synthesize titleLabel;
-@synthesize editButton;
+
 @synthesize addWordButton;
 
 - (void)dealloc {
-    PPRelease(titleLabel);
-    PPRelease(editButton);
+
     PPRelease(addWordButton);
     [super dealloc];
 }
@@ -49,20 +47,24 @@
 {
     [super viewDidLoad];
     
-    [titleLabel setText:NSLS(@"kCustomWordManage")];
-    
-    [editButton setTitle:NSLS(@"kEdit") forState:UIControlStateNormal];
-    [editButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
-    
     [addWordButton setTitle:NSLS(@"kAddCustomWord") forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(addWordButton);
+    
     
     self.dataList = [[CustomWordManager defaultManager] findAllWords];
+    
+    CommonTitleView *v = [CommonTitleView createTitleView:self.view];
+    [v setTitle:NSLS(@"kCustomWordManage")];
+    
+    [v setTarget:self];
+    [v setBackButtonSelector:@selector(clickBack:)];
+    [v setRightButtonTitle:NSLS(@"kEdit")];
+    [v.rightButton setTitle:NSLS(@"kDone") forState:UIControlStateSelected];
+    [v setRightButtonSelector:@selector(clickEditButton:)];
 }
 
 - (void)viewDidUnload
 {
-    [self setTitleLabel:nil];
-    [self setEditButton:nil];
     [self setAddWordButton:nil];
     [super viewDidUnload];
 }
@@ -80,6 +82,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    if ([self.dataList count] == 0) {
+        [self showTipsOnTableView:NSLS(@"kNoData")];
+    }else{
+        [self hideTipsOnTableView];
+    }
+    
     return [dataList count];
 }
 
@@ -93,8 +102,11 @@
     
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
     cell.textLabel.text = word.word;
-    cell.textLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
+    cell.textLabel.textAlignment = UITextAlignmentCenter;
+//    cell.textLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
     
+    cell.textLabel.textColor = COLOR_BROWN;
+
     if ([DeviceDetection isIPAD]) {
         [cell.textLabel setFont:[UIFont systemFontOfSize:36]];
     }else {
@@ -136,6 +148,7 @@
     [inputDialog showInView:self.view];
 }
 
+SET_CELL_BG_IN_CONTROLLER;
 
 - (IBAction)clickBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -151,7 +164,7 @@
     [inputDialog showInView:self.view];
 }
 
-- (IBAction)clickEditButton:(id)sender {
+- (IBAction)clickEditButton:(UIButton *)editButton {
     editButton.selected = !editButton.selected;
     if (editButton.selected) {
         [dataTableView setEditing:YES animated:YES];
@@ -203,6 +216,7 @@
     
     self.dataList = [[CustomWordManager defaultManager] findAllWords];
     [dataTableView reloadData];
+
 }
 
 

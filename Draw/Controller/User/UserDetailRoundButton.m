@@ -35,6 +35,8 @@
 {
     self.upLabel = [self labelWithFontSize:self.titleLabel.font];
     self.downLabel = [self labelWithFontSize:self.titleLabel.font];
+    [_upLabel setFont:[UIFont systemFontOfSize:(ISIPAD ? 22 : 11)]];
+    [_downLabel setFont:[UIFont systemFontOfSize:(ISIPAD ? 22 : 11)]];
     [_upLabel setFrame:CGRectMake(self.frame.size.width*0.15, self.frame.size.height*0.15, self.frame.size.width*0.7, self.frame.size.height*0.35)];
     [_downLabel setFrame:CGRectMake(self.frame.size.width*0.15, self.frame.size.height/2, self.frame.size.width*0.7, self.frame.size.height*0.35)];
     [self addSubview:_upLabel];

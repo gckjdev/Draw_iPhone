@@ -98,7 +98,7 @@
         [self.drawLayer setHidden:!self.drawLayer.isHidden];
         [sender setSelected:self.drawLayer.isHidden];
     }else{
-        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kCurrentLayerCannotHiden") title:nil];
+        POSTMSG(NSLS(@"kCurrentLayerCannotHiden"));
     }
     
 }
@@ -248,7 +248,7 @@
             [self updateAlphaLabelWithValue:layer.opacity];
             [self.tableView reloadData];
         }else{
-            [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kHiddenLayerCannotBeSelected") title:nil];
+            POSTMSG(NSLS(@"kHiddenLayerCannotBeSelected"));
         }
     }
 }
@@ -263,7 +263,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 
 - (IBAction)clickAdd:(id)sender {
     if ([[_dlManager layers] count] >= [ConfigManager getMaxLayerNumber]) {
-        [(PPViewController *)[self theViewController] popupUnhappyMessage:NSLS(@"kRearchMaxLayerCount") title:nil];
+        POSTMSG(NSLS(@"kRearchMaxLayerCount"));
         return;
     }
 //    [[_dlManager layers] count] 

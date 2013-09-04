@@ -12,6 +12,7 @@
 #import "iCarousel.h"
 #import "CustomSegmentedControl.h"
 #import "FeedCarousel.h"
+#import "LocalizableLabel.h"
 
 @class PBGameUser;
 @class AvatarView;
@@ -76,15 +77,18 @@
 @property (retain, nonatomic) IBOutlet UIButton *superBlackBtn;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *noSNSTipsLabel;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *specialTitleLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *specialSepLine;
 @property (retain, nonatomic) IBOutlet UIButton *exploreBbsPostBtn;
+@property (retain, nonatomic) IBOutlet UIImageView *seperator1;
+@property (retain, nonatomic) IBOutlet UIImageView *seperator2;
+@property (retain, nonatomic) IBOutlet UIImageView *seperator3;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *hisOpusLabel;
+@property (retain, nonatomic) IBOutlet LocalizableLabel *snsTipLabel;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;
 - (void)clearDrawFeedList;
 
 - (void)setIsLoadingFeed:(BOOL)isLoading;
-
 - (IBAction)clickBBSPost:(id)sender;
 
 @end

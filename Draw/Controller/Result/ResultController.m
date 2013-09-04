@@ -26,7 +26,6 @@
 #import "DrawConstants.h"
 #import "AnimationManager.h"
 #import "CommonMessageCenter.h"
-#import "OfflineGuessDrawController.h"
 #import "DrawDataService.h"
 #import "ShareService.h"
 #import "AdService.h"
@@ -269,21 +268,11 @@
     return [self hasSuperViewControllerForClass:[ShowFeedController class]];
 }
 
-- (BOOL)fromOfflineGuessController
-{
-    return [self hasSuperViewControllerForClass:[OfflineGuessDrawController class]];
-}
 
 - (void)initResultType
 {
     if([self fromShowFeedController]){
         _resultType = FeedGuess;
-        [self.backButton setImage:[ShareImageManager defaultManager].backButtonImage forState:UIControlStateNormal];
-        [self.backButton setCenter:CGPointMake(self.view.frame.size.width - self.backButton.center.x, self.backButton.center.y)];
-    }
-    else if ([self fromOfflineGuessController]) 
-    {
-        _resultType = OfflineGuess;
         [self.backButton setImage:[ShareImageManager defaultManager].backButtonImage forState:UIControlStateNormal];
         [self.backButton setCenter:CGPointMake(self.view.frame.size.width - self.backButton.center.x, self.backButton.center.y)];
     }else if(_isMyPaint){
@@ -616,8 +605,8 @@
     
     
     if (_resultType == OfflineGuess) {
-        [self showActivityWithText:NSLS(@"kLoading")];
-        [[DrawDataService defaultService] matchDraw:self];
+//        [self showActivityWithText:NSLS(@"kLoading")];
+//        [[DrawDataService defaultService] matchDraw:self];
     }else{
         [self resetTimer];
         if ([drawGameService sessionStatus] == SESSION_WAITING) {
@@ -694,9 +683,9 @@
 - (void)didSaveOpus:(BOOL)succ
 {
     if (succ) {
-        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+        POSTMSG(NSLS(@"kSaveOpusOK"));
     }else{
-        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+        POSTMSG(NSLS(@"kSaveImageFail"));
     }
 }
 
@@ -737,17 +726,6 @@
 }
 
 
-#pragma mark - draw data service delegate
-- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
-{
-    [self hideActivity];
-    if (resultCode == 0 && feed) {
-        [HomeController startOfflineGuessDraw:feed from:self];
-    }else{
-        CommonMessageCenter *center = [CommonMessageCenter defaultCenter];
-        [center postMessageWithText:NSLS(@"kMathOpusFail") delayTime:1.5 isHappy:NO];
-    }
-}
 
 #pragma mark - throw item animation
 #define ITEM_TAG_OFFSET 20120728

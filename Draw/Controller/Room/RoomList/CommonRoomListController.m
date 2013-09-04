@@ -143,7 +143,7 @@
         _isJoiningGame = YES;
         [_gameService joinGameRequest:sessionId];
     } else {
-        [self popupMessage:NSLS(@"kJoinGameError") title:nil];
+        POSTMSG(NSLS(@"kJoinGameError"));
         [self handleJoinGameError:[self handlePrejoinGameCheck]];
     }
 }
@@ -486,7 +486,7 @@
         if ([self.currentSession.password isEqualToString:password]) {
             [self checkAndJoinGame:self.currentSession.sessionId];
         } else {
-            [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
+            POSTMSG(NSLS(@"kPsdNotMatch"));
         }
     }else{
         if ([ConfigManager wallEnabled]) {
@@ -592,12 +592,12 @@
 
 - (void)passwordIsIllegal
 {
-    [self popupMessage:NSLS(@"kRoomPasswordIllegal") title:nil];
+    POSTMSG(NSLS(@"kRoomPasswordIllegal"));
 }
 
 - (void)roomNameIsIllegal
 {
-    [self popupMessage:NSLS(@"kRoomNameIllegal") title:nil];
+    POSTMSG(NSLS(@"kRoomNameIllegal"));
 }
 
 

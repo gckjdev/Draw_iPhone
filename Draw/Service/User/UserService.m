@@ -95,15 +95,15 @@ static UserService* _defaultUserService;
                 }
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                POSTMSG(NSLS(@"kSystemFailure"));
             }
             else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
                 // @"对不起，用户注册无法完成，请联系我们的技术支持以便解决问题"
-                [viewController popupUnhappyMessage:NSLS(@"kUnknownRegisterFailure") title:nil];
+                POSTMSG(NSLS(@"kUnknownRegisterFailure"));
             }
             else if (output.resultCode == ERROR_EMAIL_EXIST) {
                 // @"对不起，该电子邮件已经被注册"
-                [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
+                POSTMSG(NSLS(@"kEmailUsed"));
                 CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUserLogin") delegate:viewController];
                 [dialog.inputTextField setPlaceholder:NSLS(@"kEnterPassword")];
                 [dialog showInView:viewController.view];
@@ -111,11 +111,11 @@ static UserService* _defaultUserService;
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
                 // @"对不起，该电子邮件格式不正确，请重新输入"
-                [viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
+                POSTMSG(NSLS(@"kEmailNotValid"));
             }
             else {
                 // @"对不起，注册失败，请稍候再试"
-                [viewController popupUnhappyMessage:NSLS(@"kGeneralFailure") title:nil];
+                POSTMSG(NSLS(@"kGeneralFailure"));
             }
         });
     });    
@@ -287,11 +287,11 @@ static UserService* _defaultUserService;
                 [[UserManager defaultManager] storeUserData];
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                POSTMSG(NSLS(@"kSystemFailure"));
             }
             else {
                 // @"对不起，注册失败，请稍候再试"
-                [viewController popupUnhappyMessage:NSLS(@"kGeneralFailure") title:nil];
+                POSTMSG(NSLS(@"kGeneralFailure"));
             }
             
             if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
@@ -381,23 +381,23 @@ static UserService* _defaultUserService;
                 [[AccountManager defaultManager] updateBalance:coinBalance currency:PBGameCurrencyCoin];
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                POSTMSG(NSLS(@"kSystemFailure"));
             }
             else if (output.resultCode == ERROR_USERID_NOT_FOUND) {
                 // @"对不起，用户注册无法完成，请联系我们的技术支持以便解决问题"
-                [viewController popupUnhappyMessage:NSLS(@"kUnknownRegisterFailure") title:nil];
+                POSTMSG(NSLS(@"kUnknownRegisterFailure"));
             }
             else if (output.resultCode == ERROR_EMAIL_EXIST) {
                 // @"对不起，该电子邮件已经被注册"
-                [viewController popupUnhappyMessage:NSLS(@"kEmailUsed") title:nil];
+                POSTMSG(NSLS(@"kEmailUsed"));
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
                 // @"对不起，该电子邮件格式不正确，请重新输入"
-                [viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
+                POSTMSG(NSLS(@"kEmailNotValid"));
             }
             else {
                 // @"对不起，注册失败，请稍候再试"
-                [viewController popupUnhappyMessage:NSLS(@"kGeneralFailure") title:nil];
+                POSTMSG(NSLS(@"kGeneralFailure"));
             }
             
             if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
@@ -445,8 +445,7 @@ static UserService* _defaultUserService;
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
-                [viewController popupHappyMessage:NSLS(@"kUpdateUserSucc") title:@""];
-                
+                POSTMSG(NSLS(@"kUpdateUserSucc"));
                 // update avatar
                 NSString* retURL = [[output jsonDataDict] objectForKey:PARA_AVATAR];
                 [[UserManager defaultManager] setAvatar:retURL];
@@ -454,7 +453,7 @@ static UserService* _defaultUserService;
                 
             }
             else{
-                [viewController popupUnhappyMessage:NSLS(@"kUpdateUserFail") title:@""];
+                POSTMSG(NSLS(@"kUpdateUserFail"));
             }
             
             if ([viewController respondsToSelector:@selector(didUserUpdated:)]){
@@ -502,10 +501,10 @@ static UserService* _defaultUserService;
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
-                [viewController popupHappyMessage:NSLS(@"kFeedbackSucc") title:@""];
+                POSTMSG(NSLS(@"kFeedbackSucc"));
             }
             else{
-                [viewController popupUnhappyMessage:NSLS(@"kFeedbackFail") title:@""];
+                POSTMSG(NSLS(@"kFeedbackFail"));
             }
             
             if ([viewController respondsToSelector:@selector(didSendFeedback::)]){
@@ -533,10 +532,10 @@ static UserService* _defaultUserService;
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
-                [viewController popupHappyMessage:NSLS(@"kFeedbackSucc") title:@""];
+                POSTMSG(NSLS(@"kFeedbackSucc"));
             }
             else{
-                [viewController popupUnhappyMessage:NSLS(@"kFeedbackFail") title:@""];
+                POSTMSG(NSLS(@"kFeedbackFail"));                                
             }
             
             if ([viewController respondsToSelector:@selector(didSendFeedback::)]){
@@ -561,10 +560,10 @@ static UserService* _defaultUserService;
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController hideActivity];
             if (output.resultCode == ERROR_SUCCESS){
-                [viewController popupHappyMessage:NSLS(@"kAddWordsSucc") title:@""];
+                POSTMSG(NSLS(@"kAddWordsSucc"));
             }
             else{
-                [viewController popupUnhappyMessage:NSLS(@"kAddWordsFail") title:@""];
+                POSTMSG(NSLS(@"kAddWordsFail"));
             }
         });
     });
@@ -695,26 +694,26 @@ static UserService* _defaultUserService;
                 output.resultCode = [self createLocalUserAccount:output.responseData appId:appId];
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                [viewController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                POSTMSG(NSLS(@"kSystemFailure"));
             }
             else if (output.resultCode == ERROR_USER_EMAIL_NOT_FOUND) {
                 // @"该邮箱地址尚未注册"
-                [viewController popupUnhappyMessage:NSLS(@"kEmailNotFound") title:nil];
+                POSTMSG(NSLS(@"kEmailNotFound"));
             }
             else if (output.resultCode == ERROR_PASSWORD_NOT_MATCH) {
                 // @"密码错误 "
-                [viewController popupUnhappyMessage:NSLS(@"kPsdNotMatch") title:nil];
+                POSTMSG(NSLS(@"kPsdNotMatch"));
                 CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kUserLogin") delegate:viewController];
                 [dialog.inputTextField setPlaceholder:NSLS(@"kEnterPassword")];
                 [dialog showInView:viewController.view];
             }
             else if (output.resultCode == ERROR_EMAIL_NOT_VALID) {
                 // @"对不起，该电子邮件格式不正确，请重新输入"
-                [viewController popupUnhappyMessage:NSLS(@"kEmailNotValid") title:nil];
+                POSTMSG(NSLS(@"kEmailNotValid"));
             }
             else {
                 // @"登录失败，稍后尝试"
-                [viewController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+                POSTMSG(NSLS(@"kLoginFailure"));
             }
             
             if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
@@ -760,7 +759,7 @@ static UserService* _defaultUserService;
                 [self createLocalUserAccount:output.responseData appId:appId];
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                POSTMSG(NSLS(@"kSystemFailure"));
             }
             else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
                 // @"设备未绑定任何用户"
@@ -769,7 +768,7 @@ static UserService* _defaultUserService;
             }
             else {
                 // @"登录失败，稍后尝试"
-                [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+                POSTMSG(NSLS(@"kLoginFailure"));
             }
             
             EXECUTE_BLOCK(resultBlock, NO, 0, [[UserManager defaultManager] pbUser]);
@@ -805,14 +804,14 @@ static UserService* _defaultUserService;
 //                [self createLocalUserAccount:output.responseData appId:appId];
 //            }
 //            else if (output.resultCode == ERROR_NETWORK) {
-//                [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+//POSTMSG(NSLS(@"kSystemFailure"));
 //            }
 //            else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
 //                // @"设备未绑定任何用户"
 //            }
 //            else {
 //                // @"登录失败，稍后尝试"
-//                [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+//POSTMSG(NSLS(@"kLoginFailure"));
 //            }
 //        });
 //    });
@@ -942,7 +941,7 @@ static UserService* _defaultUserService;
 
             }
             else if (output.resultCode == ERROR_NETWORK) {
-                [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+POSTMSG(NSLS(@"kSystemFailure"));
             }
             else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
                 // @"设备未绑定任何用户"
@@ -951,7 +950,7 @@ static UserService* _defaultUserService;
             }
             else {
                 // @"登录失败，稍后尝试"
-                [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+POSTMSG(NSLS(@"kLoginFailure"));
             }
         }); 
     });
@@ -1563,13 +1562,13 @@ static UserService* _defaultUserService;
                     [self checkAndAskXiaojiNumber:view];
                 }
                 else if (output.resultCode == ERROR_NETWORK) {
-                    // [homeController popupUnhappyMessage:NSLS(@"kSystemFailure") title:nil];
+                    POSTMSG(NSLS(@"kSystemFailure"));
                 }
                 else if (output.resultCode == ERROR_DEVICE_NOT_BIND) {
                     
                 }
                 else {
-                    // [homeController popupUnhappyMessage:NSLS(@"kLoginFailure") title:nil];
+                    POSTMSG(NSLS(@"kLoginFailure"));
                 }
             });
         });

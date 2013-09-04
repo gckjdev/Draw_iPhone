@@ -615,7 +615,7 @@
                resultCode:(int)resultCode
 {
     if (resultCode != 0) {
-        [self popupMessage:NSLS(@"kDeleteFail") title:nil];
+        POSTMSG(NSLS(@"kDeleteFail"));
     }else{
         
     }

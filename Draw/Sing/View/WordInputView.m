@@ -10,10 +10,10 @@
 #import "AudioManager.h"
 #import "HPThemeManager.h"
 
-#define BUTTON_WIDTH (ISIPAD ? 65 : 30)
+#define BUTTON_WIDTH (ISIPAD ? 70 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
-#define BUTTON_WIDTH_GAP (ISIPAD ? 9 : 4)
-#define BUTTON_HEIGHT_GAP (ISIPAD ? 9 : 4)
+#define BUTTON_WIDTH_GAP (ISIPAD ? 12 : 4)
+#define BUTTON_HEIGHT_GAP (ISIPAD ? 8 : 4)
 
 #define DEFAULT_COLOR [UIColor blackColor]
 
@@ -30,6 +30,7 @@
 @interface WordInputView(){
     int _column;
     int _row;
+    NSMutableArray *_guessWords;
 }
 
 // 候选字
@@ -67,20 +68,21 @@
     [_clickSound release];
     [_wrongSound release];
     [_correctSound release];
+    [_guessWords release];
     [super dealloc];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
     
     if (self = [super initWithCoder:aDecoder]) {
-        
+                
         self.candidateSize = self.answerSize = CGSizeMake(BUTTON_WIDTH, BUTTON_HEIGHT);
         
         CGRect frame1 = CGRectMake(0, 0, self.frame.size.width, _answerSize.width);
         self.answerView = [[[UIView alloc] initWithFrame:frame1] autorelease];
         
         UIImage *seperator = UIThemeImageNamed(@"word_input_seperator@2x.png");
-        CGFloat originY = CGRectGetMaxY(_answerView.frame) + BUTTON_HEIGHT_GAP;
+        CGFloat originY = CGRectGetMaxY(_answerView.frame) - BUTTON_HEIGHT_GAP * 2;
 
         if (seperator != nil) {
             
@@ -98,13 +100,15 @@
             [_sepertorImageView updateOriginY:originY];
         }
         
-        originY = CGRectGetMaxY(_sepertorImageView.frame) + BUTTON_HEIGHT_GAP;
+        originY = CGRectGetMaxY(_sepertorImageView.frame) + BUTTON_HEIGHT_GAP * 2;
         CGRect frame3 = CGRectMake(0, originY, self.frame.size.width, self.frame.size.height - originY);
         self.candidateView = [[[UIView alloc] initWithFrame:frame3] autorelease];
         
         [self addSubview:_answerView];
         [self addSubview:_sepertorImageView];
         [self addSubview:_candidateView];
+        
+        [self sendSubviewToBack:_sepertorImageView];
         
         self.candidateColor = self.answerColor = DEFAULT_COLOR;
         self.alignment = WordInputViewStyleAlignmentLeft;
@@ -118,6 +122,8 @@
         self.clickSound = @"ding.m4a";
         self.wrongSound = @"oowrong.mp3";
         self.correctSound = @"correct.mp3";
+        _guessWords = [[NSMutableArray alloc] init];
+        
     }
     
     return self;
@@ -151,6 +157,11 @@
     _alignment = WordInputViewStyleAlignmentCustom;
     _wGap = XOffset;
     [self relayout];
+}
+
+- (void)setAnswerViewYOffset:(CGFloat)YOffset{
+    
+    [_answerView updateOriginY:YOffset];
 }
 
 - (void)setSeperatorYOffset:(CGFloat)YOffset{
@@ -277,6 +288,7 @@
     [_candidateView updateHeight:height];
     
     [self relayout];
+    [self setBottomAlignment];
 }
 
 - (void)clickCandidateButton:(UIButton *)button{
@@ -344,7 +356,7 @@
         [[AudioManager defaultManager] playSoundByName:_wrongSound];
         PPDebug(@"Wrong word: %@", word);
     }
-    
+    [_guessWords addObject:word];
     if ([_delegate respondsToSelector:@selector(wordInputView:didGetWord:isCorrect:)]) {
         [_delegate wordInputView:self didGetWord:word isCorrect:isCorrect];
     }
@@ -511,6 +523,29 @@
         default:
             break;
     }
+    
+}
+
+- (void)setBottomAlignment{
+    
+    CGFloat bottomGap = 1.5 * BUTTON_HEIGHT_GAP;
+
+    CGFloat  bottomY = CGRectGetMaxY(self.frame);
+    
+    CGFloat height =  CGRectGetMaxY(_candidateView.frame) - CGRectGetMinY(_answerView.frame) + bottomGap;
+    [self updateHeight:height];
+    
+    CGFloat currentGap = self.frame.size.height - CGRectGetMaxY(_candidateView.frame);
+    
+    CGFloat delta = bottomGap - currentGap;
+    
+    [self setAnswerViewYOffset:-delta];
+    [self setSeperatorYOffset:-delta];
+    [self setCandidateYOffset:-delta];
+    
+    delta = CGRectGetMaxY(self.frame) - bottomY;
+    self.frame = CGRectOffset(self.frame, 0, -delta);
+    
 }
 
 - (void)bomb:(int)count{
@@ -586,6 +621,12 @@
         }
     }
     return count;
+}
+
+
+- (NSArray *)guessedWords
+{
+    return _guessWords;
 }
 
 @end

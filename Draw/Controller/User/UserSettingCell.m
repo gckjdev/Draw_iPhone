@@ -47,55 +47,7 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 - (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount
 {
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
-    
-    /*
-    ShareImageManager* imgManager = [ShareImageManager defaultManager];
-    if (rowCount == 1) {
-        [self.backgroundImageView setImage:[imgManager settingCellOneBgImage]];
-        return;
-    }
-    if (row == 0) {
-        [self.backgroundImageView setImage:[imgManager settingCellTopBgImage]];
-        [self.customAccessory setCenter:CGPointMake(self.customAccessory.center.x, self.bounds.size.height/2 + Y_OFFSET)];
-        [self.customTextLabel setCenter:CGPointMake(self.customTextLabel.center.x, self.bounds.size.height/2 + Y_OFFSET)];
-        [self.customDetailLabel setCenter:CGPointMake(self.customDetailLabel.center.x, self.bounds.size.height/2 + Y_OFFSET)];
-        return;
-    } else if (row == rowCount-1) {
-        [self.backgroundImageView setImage:[imgManager settingCellBottomBgImage]];
-        [self.customAccessory setCenter:CGPointMake(self.customAccessory.center.x, self.bounds.size.height/2 - Y_OFFSET)];
-        [self.customTextLabel setCenter:CGPointMake(self.customTextLabel.center.x, self.bounds.size.height/2 - Y_OFFSET)];
-        [self.customDetailLabel setCenter:CGPointMake(self.customDetailLabel.center.x, self.bounds.size.height/2 - Y_OFFSET)];
-//        [self.customSeparatorLine setHidden:YES];
-        return;
-    } else {
-        [self.backgroundImageView setImage:[imgManager settingCellMiddleBgImage]];
-        return;
-    }
-    */
-    
-    
 }
-
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//    if (selected) {
-//        [self.backgroundImageView setBackgroundColor:[UIColor blueColor]];
-//    } else {
-//        [self.backgroundImageView setBackgroundColor:[UIColor clearColor]];
-//    }
-//}
-
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 - (void)dealloc {
 

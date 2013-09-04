@@ -34,6 +34,7 @@
 #import "CommonMessageCenter.h"
 #import "GeographyService.h"
 #import "UserSettingCell.h"
+#import "CommonTitleView.h"
 
 
 enum{
@@ -81,18 +82,14 @@ enum {
 
 @synthesize backgroundImage;
 @synthesize expAndLevelLabel;
-@synthesize saveButton;
-@synthesize titleLabel;
 @synthesize avatarButton;
 @synthesize tableViewBG;
 @synthesize nicknameLabel;
 
 - (void)dealloc {
     PPRelease(_pbUserBuilder);
-    PPRelease(titleLabel);
     PPRelease(tableViewBG);
     PPRelease(avatarButton);
-    PPRelease(saveButton);
     PPRelease(_avatarImageView);
     PPRelease(imageUploader);
     PPRelease(nicknameLabel);
@@ -237,6 +234,8 @@ enum {
 
 #pragma mark - View lifecycle
 
+SET_CELL_BG_IN_CONTROLLER;
+
 - (void)viewDidLoad
 {
     // set data for table view
@@ -252,9 +251,7 @@ enum {
     [self.backgroundImage setImage:[UIImage imageNamed:[GameApp background]]];
     
     // init SAVE button
-    [titleLabel setText:NSLS(@"kSettings")];
     [tableViewBG setImage:[imageManager whitePaperImage]];
-    [saveButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     
     // init avatar image view and button
     self.avatarImageView = [[[UIImageView alloc] initWithFrame:avatarButton.bounds] autorelease];
@@ -274,6 +271,13 @@ enum {
     // init table view
     [dataTableView setBackgroundView:nil];
     [self setCanDragBack:NO];
+    
+    CommonTitleView *v = [CommonTitleView createTitleView:self.view];
+    [v setTitle:NSLS(@"kSettings")];
+    [v setTarget:self];
+    [v setBackButtonSelector:@selector(clickBackButton:)];
+    [v setRightButtonTitle:NSLS(@"kSave")];
+    [v setRightButtonSelector:@selector(clickSaveButton:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -284,10 +288,8 @@ enum {
 
 - (void)viewDidUnload
 {
-    [self setTitleLabel:nil];
     [self setTableViewBG:nil];
     [self setAvatarButton:nil];
-    [self setSaveButton:nil];
     [self setNicknameLabel:nil];
     [self setExpAndLevelLabel:nil];
     [self setBackgroundImage:nil];
@@ -1022,13 +1024,10 @@ enum {
 - (void)didUserRegistered:(int)resultCode
 {
     if (resultCode == 0){
-//        [self popupMessage:NSLS(@"kUserBindSucc") title:nil];
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindSucc") delayTime:1.5];
-        
+        POSTMSG(NSLS(@"kUserBindSucc"));
     }
     else{
-//        [self popupMessage:NSLS(@"kUserBindFail") title:nil];
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindFail") delayTime:1.5];
+        POSTMSG(NSLS(@"kUserBindFail"));        
     }
     
     self.navigationController.navigationBarHidden = YES;    
