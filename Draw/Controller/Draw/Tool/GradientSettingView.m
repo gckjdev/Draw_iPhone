@@ -187,7 +187,7 @@
         slider.tag = DEGREE_TAG;
         self.popColorView = [[[CMPopTipView alloc] initWithCustomView:slider] autorelease];
         self.popColorView.delegate = self;
-        [self.popColorView setBackgroundColor:[UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.95]];
+        [self.popColorView setBackgroundColor:COLOR_YELLOW];
 
         [self.popColorView presentPointingAtView:sender inView:self.theTopView animated:NO];
     }
@@ -272,14 +272,19 @@
     [self updateDegreeWithValue:value slider:drawSlider];
 }
 
+#define V(X) (ISIPAD?(2*X):X)
+
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     if (DEGREE_TAG != drawSlider.tag) {
         [self dismissPopView];
     }
-    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 30)] autorelease];
-    [drawSlider popupWithContenView:label];
+    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, V(40), V(30))] autorelease];
+    [label setFont:[UIFont systemFontOfSize:V(14)]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    [label setTextColor:COLOR_WHITE];    
     [label setTextAlignment:NSTextAlignmentCenter];
+    [drawSlider popupWithContenView:label];
     [self updateDegreeWithValue:value slider:drawSlider];
 }
 

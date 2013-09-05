@@ -277,17 +277,17 @@
         CGContextSaveGState(ctx);
 
         ClipAction *clip = [layer clipAction];
-        BOOL grid = [[layer drawInfo] grid];
-        if (clip != nil || !grid) {
+        NSInteger gridLineNumber = [[layer drawInfo] gridLineNumber];
+        if (clip != nil || gridLineNumber != 0) {
             layer.clipAction = nil;
-            layer.drawInfo.grid = NO;
+            layer.drawInfo.gridLineNumber = 0;
             [layer setNeedsDisplay];
             
             [layer renderInContext:ctx];
             
             [layer setClipAction:clip];
             
-            [layer.drawInfo setGrid:grid];
+            [layer.drawInfo setGridLineNumber:gridLineNumber];
             [layer setNeedsDisplay];
         }else{
             [layer renderInContext:ctx];

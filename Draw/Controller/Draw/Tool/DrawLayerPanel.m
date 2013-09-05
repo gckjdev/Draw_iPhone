@@ -270,7 +270,8 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     PPDebug(@"<didClickAddAtCell>");
     DrawLayer *layer = [DrawLayer layerWithLayer:[_dlManager selectedLayer]
                                            frame:[[_dlManager selectedLayer] bounds]];
-
+    layer.opacity = 1.0f;
+    [self.alphaSlider setValue:1.0f];
     [_dlManager genLayerTagAndName:layer];
     [_dlManager addLayer:layer];
     [_dlManager setSelectedLayer:layer];
