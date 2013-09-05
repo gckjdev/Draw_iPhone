@@ -128,6 +128,7 @@
     return view;
 }
 
+
 - (void)layout
 {
     UIView *infoView = [self infoView];

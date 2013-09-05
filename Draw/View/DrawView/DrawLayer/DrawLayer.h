@@ -34,7 +34,6 @@
 @property(nonatomic, assign)ClipAction *clipAction;
 
 @property(nonatomic, assign)NSUInteger layerTag;
-//@property(nonatomic, assign)BOOL grid;
 
 //CACHED
 //supported cached

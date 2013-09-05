@@ -18,7 +18,6 @@
 #import "DrawUtils.h"
 #import "GameBasic.pb-c.h"
 #import "Draw.pb-c.h"
-#import "ConfigManager.h"
 
 @interface DrawLayer()
 @property(nonatomic, retain) NSString *drawBgId;
@@ -107,9 +106,7 @@
 {
     [self showCleanDataInContext:ctx];
     [self.clipAction showClipInContext:ctx inRect:self.bounds];
-    if (self.drawInfo.grid) {
-        [DrawLayer drawGridInContext:ctx rect:self.bounds];
-    }
+    [DrawLayer drawGridInContext:ctx rect:self.bounds lineNumber:self.drawInfo.gridLineNumber];
 }
 
 
@@ -370,16 +367,19 @@
                                                  suportCache:YES] autorelease];
     
     return [NSMutableArray arrayWithObjects: defaultLayer, bgLayer, nil];
+   
 }
 
-+ (void)drawGridInContext:(CGContextRef)context rect:(CGRect)rect
+#define VALUE(X) (ISIPAD?(2*X):X)
+
++ (void)drawGridInContext:(CGContextRef)context
+                     rect:(CGRect)rect
+               lineNumber:(NSInteger)lineNumber
 {
-    
-#ifndef GRID
-#define LINE_SPACE [ConfigManager getDrawGridLineSpace]
-#define VALUE(X) (ISIPAD ? 2*X : X)
-#define GRID
-#endif
+    if (lineNumber <= 0) {
+        return;
+    }
+    CGFloat LINE_SPACE = rect.size.width/lineNumber;
     
     CGContextSaveGState(context);
     

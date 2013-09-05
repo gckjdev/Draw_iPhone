@@ -23,9 +23,8 @@ static int *getDefaultItemTypeList()
         DeprecatedEraser,
         CanvasRectiPadDefault,
         CanvasRectiPhoneDefault,
-        
         ItemTypeCustomDiceDefaultDice,
-        
+        ItemTypeGrid,        
         ItemTypeListEndFlag
     };
     

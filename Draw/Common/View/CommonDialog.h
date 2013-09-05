@@ -11,8 +11,6 @@
 
 @class CommonDialog;
 
-
-
 typedef enum {
     CommonDialogStyleSingleButton = 0,
     CommonDialogStyleDoubleButton,
@@ -90,6 +88,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
 
 
 + (CGFloat)edgeWidth;
+
 @end
 
 

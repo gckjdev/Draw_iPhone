@@ -362,9 +362,9 @@ SET_CELL_BG_IN_CONTROLLER;
 
 - (void)initSwitcher:(UIButton*)btn
 {
-    [btn setBackgroundImage:[UIImage imageNamed:@"volume_on.png"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"volume_on@2x.png"] forState:UIControlStateNormal];
     [btn setTitle:NSLS(@"kON") forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@"volume_off.png"] forState:UIControlStateSelected];
+    [btn setBackgroundImage:[UIImage imageNamed:@"volume_off@2x.png"] forState:UIControlStateSelected];
     [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
     [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -390,6 +390,7 @@ SET_CELL_BG_IN_CONTROLLER;
     [self clearSwitchInCell:cell];
     [cell.customAccessory setHidden:YES];
     UIButton* btn = [[UIButton alloc] initWithFrame:SW_FRAME];
+    [btn setBackgroundColor:[UIColor redColor]];
     [cell.contentView addSubview:btn];
     [self initSwitcher:btn];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:SW_FONT]];
@@ -564,17 +565,6 @@ SET_CELL_BG_IN_CONTROLLER;
             [btn addTarget:self action:@selector(clickMusicSwitcher:) forControlEvents:UIControlEventTouchUpInside];
             [btn setSelected:!isMusicOn];            
         } 
-//        else if (row == rowOfChatVoice) {
-//            [cell.textLabel setText:NSLS(@"kChatVoice")];
-//            if (chatVoice == EnableAlways) {
-//                [cell.detailTextLabel setText:NSLS(@"kEnableAlways")];
-//            } else if (chatVoice == EnableWifi) {
-//                [cell.detailTextLabel setText:NSLS(@"kEnableWifi")];
-//            }else if (chatVoice == EnableNot){
-//                [cell.detailTextLabel setText:NSLS(@"kEnableNot")];
-//            }
-//            [cell.detailTextLabel setHidden:NO];
-//        }
     }
     else if (section == SECTION_ACCOUNT){
                         

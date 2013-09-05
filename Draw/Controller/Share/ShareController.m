@@ -109,7 +109,6 @@ typedef enum{
         self.currentTab.hasMoreData = NO;
     }
     isLoading = NO;   
-    self.noDataTipLabl.hidden = NO;
 }
 
 #pragma mark - MyPaintManager Delegate
@@ -910,7 +909,6 @@ typedef enum{
     TableTab *tab = [_tabManager tabForID:tabID];
     if (tab) {
         isLoading = YES;
-        self.noDataTipLabl.hidden = YES;
         switch (tabID) {
             case TabTypeMine:
                 [self loadPaintsOnlyMine:YES];

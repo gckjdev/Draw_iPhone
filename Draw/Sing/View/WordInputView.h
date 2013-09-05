@@ -39,6 +39,8 @@ typedef enum _WordInputViewAlignment{
 
 @property (retain, nonatomic) UIColor *candidateColor;
 @property (retain, nonatomic) UIColor *answerColor;
+@property (assign, nonatomic, getter = isDisable) BOOL disable;
+
 
 - (NSArray *)guessedWords;
 
@@ -48,6 +50,8 @@ typedef enum _WordInputViewAlignment{
 - (void)bombHalf;
 
 - (void)reset;
+
+
 
 //- (void)setAnswerViewXOffset:(CGFloat)XOffset;
 //- (void)setAnswerViewYOffset:(CGFloat)YOffset;
