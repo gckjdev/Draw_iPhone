@@ -41,6 +41,8 @@
 #import "UserNumberService.h"
 #import "GetNewNumberViewController.h"
 #import "ShakeNumberController.h"
+#import "MyPaintManager.h"
+#import "UserDeviceService.h"
 
 @implementation UserService
 
@@ -1753,6 +1755,56 @@ POSTMSG(NSLS(@"kLoginFailure"));
         });
     });
 }
+
+- (void)executeLogout:(BOOL)keepDraft viewController:(UIViewController*)viewController
+{
+    // clear device binding information
+    [[UserDeviceService defaultService] removeUserDevice];
+
+    // clear user data
+    [[UserManager defaultManager] cleanUserData];
+    
+    // clear draft
+    if (keepDraft == NO){
+        [[MyPaintManager defaultManager] removeAllDraft];
+    }
+    
+    [viewController.navigationController popToRootViewControllerAnimated:YES];
+    POSTMSG(NSLS(@"kLogoutDone"));
+}
+
+- (void)askKeepDraft:(UIViewController*)viewController
+{
+//    int draftCount = [[MyPaintManager defaultManager] countAllDrafts];
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kLogout") message:NSLS(@"kAskKeepDraft") style:CommonDialogStyleDoubleButton];
+
+    [dialog.oKButton setTitle:NSLS(@"kKeepDraft") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kNotKeepDraft") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(id infoView){                
+        [self executeLogout:YES viewController:viewController];
+    }];
+
+    [dialog setClickCancelBlock:^(id infoView){
+        [self executeLogout:NO viewController:viewController];
+    }];
+    
+    [dialog showInView:viewController.view];
+}
+
+- (void)logout:(UIViewController*)viewController
+{
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kConfirmLogout") style:CommonDialogStyleDoubleButton];
+
+    [dialog setClickOkBlock:^(id infoView){
+        [self askKeepDraft:viewController];
+    }];
+    
+    [dialog showInView:viewController.view];
+}
+
 
 @end
 

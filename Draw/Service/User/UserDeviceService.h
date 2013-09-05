@@ -14,4 +14,6 @@
 
 - (void)uploadUserDeviceInfo:(BOOL)forceUpload;
 
+- (void)removeUserDevice;
+
 @end

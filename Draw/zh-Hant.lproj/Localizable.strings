@@ -1064,6 +1064,14 @@
 "kTryTakeNumber" = "马上领取";
 "kViewMyProfile" = "稍后再说";
 
+"kConfirmLogout" = "是否确定要退出当前帐号？";
+"kAskKeepDraft" = "是否要保留当前草稿箱中的所有草稿？如果不保留，退出帐号也将删除所有本地草稿。";
+"kKeepDraft" = "保留草稿";
+"kNotKeepDraft" = "不保留";
+"kLogoutDone" = "已经成功退出当前帐号";
+"kExceedMaxTakeNumber" = "你已经领取太多小吉号码，无法领取更多号码，如有问题请联系管理员";
+"kLogoutAccount" = "退出当前帐号";
+"kLogout" = "退出帐号";
 
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";

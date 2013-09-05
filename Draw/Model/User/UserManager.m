@@ -22,6 +22,7 @@
 #import "BBSPermissionManager.h"
 #import "StorageManager.h"
 #import "UIImage+Scale.h"
+#import "ConfigManager.h"
 
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
@@ -170,6 +171,16 @@ static UserManager* _defaultManager;
     [userDefaults setObject:data forKey:KEY_ALL_USER_PB_DATA];
     [userDefaults synchronize];
     PPDebug(@"<storeUserData> store user data success!");
+}
+
+- (void)cleanUserData
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:KEY_ALL_USER_PB_DATA];
+    [userDefaults synchronize];
+    PPDebug(@"<cleanUserData> clean user data success!");
+    
+    self.pbUser = nil;
 }
 
 - (NSString*)userId
@@ -1480,6 +1491,23 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setEmailVerifyStatus:status];
     self.pbUser = [builder build];    
+}
+
+- (BOOL)incAndCheckIsExceedMaxTakeNumber
+{
+    NSString* key = @"CURRENT_TAKE_NUMBER_COUNT";
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    int count = [[userDefaults objectForKey:key] intValue];
+    
+    PPDebug(@"max take number count = %d", count);
+    if (count >= [ConfigManager maxTakeNumberCount]){
+        return YES;
+    }
+    else{
+        count ++;
+        [userDefaults setInteger:count forKey:key];
+        return NO;
+    }
 }
 
 @end
