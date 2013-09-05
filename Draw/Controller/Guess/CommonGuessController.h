@@ -22,10 +22,11 @@
 
 @interface CommonGuessController : PPViewController <WordInputViewDelegate, PickViewDelegate, GuessServiceDelegate>
 @property (assign, nonatomic) id<CommonGuessControllerDelegate> delegate;
-@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
 @property (retain, nonatomic) IBOutlet UIButton *opusButton;
 @property (retain, nonatomic) IBOutlet UIButton *toolBoxButton;
+@property (retain, nonatomic) IBOutlet UIButton *tipButton;
+
 
 @property (retain, nonatomic) Opus *opus;
 @property (retain, nonatomic) NSMutableArray *guessWords;
@@ -33,6 +34,7 @@
 - (id)initWithOpus:(Opus *)opus mode:(PBUserGuessMode)mode contest:(PBGuessContest *)contest;
 - (IBAction)clickToolBoxButton:(id)sender;
 - (IBAction)clickOpusButton:(id)sender;
+- (IBAction)clickTipButton:(id)sender;
 
 // optional - implemented in your sub-class
 - (void)didGuessWrong:(NSString *)word;
