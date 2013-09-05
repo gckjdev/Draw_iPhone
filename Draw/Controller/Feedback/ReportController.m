@@ -127,17 +127,17 @@
 - (IBAction)submit:(id)sender
 {
     if ([self.contentText.text length] == 0) {
-        [self popupMessage:NSLS(@"kContentNull") title:nil];
+        POSTMSG(NSLS(@"kContentNull"));
         [self.contentText becomeFirstResponder];
         return;
     }
     if ([self.contactText.text length] == 0 && _reportType != ADD_WORD) {
-        [self popupMessage:NSLS(@"kContactNull") title:nil];
+        POSTMSG(NSLS(@"kContactNull"));
         [self.contactText becomeFirstResponder];
         return;
     }
     if ([self.contentText.text isEqualToString:_lastReport]) {
-        [self popupMessage:NSLS(@"kContentRepeat") title:nil];
+        POSTMSG(NSLS(@"kContentRepeat"));
         return;
     }
     switch (_reportType) {   

@@ -202,7 +202,7 @@
     PPDebug(@"<UserLocationController>  get location fail:%@",error);
     [self hideActivity];
     [manager stopUpdatingLocation];
-    [self popupHappyMessage:NSLS(@"kGetLocationFail") title:nil];
+    POSTMSG(NSLS(@"kGetLocationFail"));
 }
 
 - (void)locationManager:(CLLocationManager *)manager

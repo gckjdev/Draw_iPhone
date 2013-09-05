@@ -441,7 +441,7 @@ enum{
         self.shareAction = [[[CommonShareAction alloc] initWithOpus:_opus] autorelease];
         
     }else{
-        [self popupUnhappyMessage:NSLS(@"kLoadFail") title:nil];
+        POSTMSG(NSLS(@"kLoadFail"));
     }
 }
 

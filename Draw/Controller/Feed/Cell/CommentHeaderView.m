@@ -157,7 +157,7 @@
     }
     
     if (type == CommentTypeSave) {
-        [(PPViewController *)[self theViewController] popupHappyMessage:NSLS(@"kNoSaveList") title:nil];
+        POSTMSG(NSLS(@"kNoSaveList"));
         return;
     }
     UIButton *button = [self buttonWithType:type];

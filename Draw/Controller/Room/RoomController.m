@@ -455,7 +455,6 @@
     [self hideActivity];
     [self resetStartTimer];
     
-//    [self popupUnhappyMessage:NSLS(@"kNetworkBroken") title:@""];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -463,10 +462,10 @@
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        [self popupMessage:NSLS(@"kJoinGameSucc") title:nil];
+        POSTMSG(NSLS(@"kJoinGameSucc"));
     }
     else{
-        [self popupMessage:NSLS(@"kJoinGameFailure") title:nil];
+        POSTMSG(NSLS(@"kJoinGameFailure"));
     }
 
     // update 
@@ -488,12 +487,12 @@
     
     if ([message resultCode] != 0){
         PPDebug(@"Start Game Failure Code=%d", [message resultCode]);
-        [self popupHappyMessage:NSLS(@"kFailStartGame") title:@""];
+        POSTMSG(NSLS(@"kFailStartGame"));
         [self quitRoom];
         return;
     }
     
-    [self popupHappyMessage:@"Start Game OK!" title:@""];
+    POSTMSG(NSLS(@"Start Game OK!"));
     [self resetStartTimer];
     
     SelectWordController *sw = [[SelectWordController alloc] init];
@@ -556,17 +555,6 @@
     }
    
 }
-
-//just for the wait and quit message
-//- (void)userId:(NSString *)userId says:(NSString *)message
-//{
-//    NSString *nickName = [[[DrawGameService defaultService] session] getNickNameByUserId:userId];
-//    NSString *text = [NSString stringWithFormat:message,nickName];
-//    [self popupUnhappyMessage:text title:nil];    
-//    [self popupMessage:message title:userId];
-//    [self userId:userId popupMessage:message];
-    //NSLS("kQuickMessage")
-//}
 
 - (void)didGameAskQuick:(GameMessage *)message
 {  
@@ -646,7 +634,7 @@
 - (void)startGame
 {
     if ([[DrawGameService defaultService] isConnected] == NO){
-        [self popupMessage:NSLS(@"kNetworkBroken") title:nil];
+        POSTMSG(NSLS(@"kNetworkBroken"));
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
@@ -749,7 +737,7 @@
             [self showChatMessageViewOnUser:[[DrawGameService defaultService] userId] title:nil message:NSLS(@"kWaitMessage")];
         }
         else{
-            [self popupMessage:NSLS(@"kExceedMaxProlongTimes") title:nil];
+            POSTMSG(NSLS(@"kExceedMaxProlongTimes"));
         }
     }
     else{

@@ -9,6 +9,8 @@
 #import "ShakeNumberController.h"
 #import "UIResponder+MotionRecognizers.h"
 #import "UserNumberService.h"
+#import "CPMotionRecognizingWindow.h"
+#import "StringUtil.h"
 
 #define SET_BUTTON_ROUND_STYLE_USE_BUTTON(view)                              \
 {                                                           \
@@ -38,6 +40,12 @@
 
 - (void)viewDidLoad
 {
+//    self.motionWindow = [[[CPMotionRecognizingWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+//    self.motionWindow.rootViewController = self;
+//    [self.view addSubview:self.motionWindow];
+//    
+//    [self.view sendSubviewToBack:self.motionWindow];
+    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
@@ -53,6 +61,13 @@
     self.chanceLeftLabel.textColor = COLOR_BROWN;
     
     SET_BUTTON_ROUND_STYLE_USE_BUTTON(self.takeNumberButton);
+    
+    [self becomeFirstResponder];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,6 +82,7 @@
         [self removeMotionRecognizer];
     }
     
+//    PPRelease(_motionWindow);
     [_shakeButton release];
     [_shakeMainTipsLabel release];
     [_mainShakeButton release];
@@ -82,6 +98,7 @@
     [_rightShakeImageView release];
     [_chanceLeftLabel release];
     [_bgView release];
+    [_shakeImageHolderView release];
     [super dealloc];
 }
 
@@ -107,7 +124,14 @@
     [self setRightShakeImageView:nil];
     [self setChanceLeftLabel:nil];
     [self setBgView:nil];
+    [self setShakeImageHolderView:nil];
     [super viewDidUnload];
+}
+
+- (void) motionEnded:(UIEventSubtype)motion withEvent:(UIEvent*)event {
+	if (event.type == UIEventTypeMotion && event.subtype == UIEventSubtypeMotionShake) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"CPDeviceShaken" object:self];
+	}
 }
 
 - (void)enableShake
@@ -136,16 +160,16 @@
         [self.view addSubview:self.shakeResultView];
     }
 
-    self.shakeResultNumberLabel.text = number;    
+    self.shakeResultNumberLabel.text = [number formatNumber];
 }
 
 - (void)getOneNumber
 {
     
-    [self showActivityWithText:NSLS(@"kLoading")];
+//    [self showActivityWithText:NSLS(@"kLoading")];
     [[UserNumberService defaultService] getOneNumber:^(int resultCode, NSString *number) {
 
-        [self hideActivity];
+//        [self hideActivity];
         
         // update view and show new view
         if (resultCode == 0){
@@ -159,22 +183,36 @@
 }
 
 - (void) motionWasRecognized:(NSNotification*)notif {
+    
+    PPDebug(@"<motionWasRecognized> %@", [notif description]);
+    
 //	CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
 //	shake.fromValue = [NSNumber numberWithFloat:-M_PI/32];
 //	shake.toValue   = [NSNumber numberWithFloat:+M_PI/32];
 //	shake.duration = 0.1;
 //	shake.autoreverses = YES;
 //	shake.repeatCount = 4;
-//	[self.shakeFeedbackOverlay.layer addAnimation:shake forKey:@"shakeAnimation"];
-//	
-//	self.shakeFeedbackOverlay.alpha = 1.0;
-//	[UIView animateWithDuration:2.0 delay:0.0
-//						options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionAllowUserInteraction
-//					 animations:^{
-//                         self.shakeFeedbackOverlay.alpha = 0.0;
-//                     } completion:nil];
+//	[self.shakeImageHolderView.layer addAnimation:shake forKey:@"shakeAnimation"];
+//    
+//    shake.delegate = self;
+
+    self.shakeImageHolderView.transform = CGAffineTransformMakeRotation(-M_PI/32);
+    [UIView animateWithDuration:0.8 animations:^{
+        [UIView setAnimationDuration:0.1];
+        [UIView setAnimationRepeatAutoreverses:YES];
+        [UIView setAnimationRepeatCount:4];
+        self.shakeImageHolderView.transform = CGAffineTransformMakeRotation(M_PI/32);
+    } completion:^(BOOL finished) {
+        self.shakeImageHolderView.transform = CGAffineTransformIdentity;
+        [self clickShakeButton:nil];
+    }];
+    
 }
 
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+{
+    
+}
 
 - (IBAction)clickShakeButton:(id)sender {
     

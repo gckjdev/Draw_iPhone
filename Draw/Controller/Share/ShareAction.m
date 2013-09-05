@@ -401,8 +401,7 @@
                                                                 image:cp.image
                                                              delegate:cp];
             }else{
-                PPDebug(@"Save Failed!!");
-                [cp.superViewController popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
+                POSTMSG(NSLS(@"kFailLoad"));
             }
 
             [cp.superViewController hideActivity];
@@ -492,7 +491,7 @@
      
     } failureBlock:^(NSError *error) {
         PPDebug(@"%@ Login Failure", name);
-        [viewController popupMessage:NSLS(@"kUserBindFail") title:nil];
+        POSTMSG(NSLS(@"kUserBindFail"));
     }];
 }
 

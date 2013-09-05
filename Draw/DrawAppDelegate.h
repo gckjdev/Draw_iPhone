@@ -20,6 +20,7 @@
 @class NetworkDetector;
 @class ChatDetailController;
 @class HomeController;
+@class CPMotionRecognizingWindow;
 
 @interface DrawAppDelegate : PPApplication <UIApplicationDelegate, CommonNetworkClientDelegate, WXApiDelegate, ReviewRequestDelegate> {
 

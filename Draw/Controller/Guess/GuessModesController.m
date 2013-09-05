@@ -111,7 +111,7 @@
         self.contest = [list objectAtIndex:0];
         [self reload];
     }else{
-        [self popupHappyMessage:NSLS(@"kLoadFailed") title:nil];
+        POSTMSG(NSLS(@"kLoadFailed"));
     }
 }
 

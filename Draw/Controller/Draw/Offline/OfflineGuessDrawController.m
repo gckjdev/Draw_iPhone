@@ -35,7 +35,7 @@
 
 @interface OfflineGuessDrawController()
 {
-    
+    CommonTitleView *_titleView;
 }
 @property (nonatomic, retain)ShowDrawView *showView;
 
@@ -72,12 +72,12 @@
         if (resultCode == ERROR_SUCCESS) {
             [_wordInputView bombHalf];
             if (isBuy) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+                POSTMSG(([NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price]));
             }
         }else if (ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
         }else{
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOperationFailed") delayTime:2];
+            POSTMSG(NSLS(@"kOperationFailed"));
         }
     }];
 }
@@ -125,10 +125,6 @@
     
     [self.wordInputView setCandidates:candidates column:9];
     
-    [self.wordInputView setSeperatorYOffset:-4];
-    [self.wordInputView setCandidateYOffset:-4];
-    [self.wordInputView  setAnswerViewXOffset:8];
-    
     [self.wordInputView setCandidateColor:[UIColor whiteColor]];
 
 }
@@ -139,10 +135,10 @@
             isCorrect:(BOOL)isCorrect
 {
     if (isCorrect) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1.5 isHappy:YES];
+        POSTMSG(NSLS(@"kGuessCorrect"));
         [self quit:YES];
     }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
+        POSTMSG(NSLS(@"kGuessWrong"));
     }
 }
 
@@ -166,7 +162,7 @@
 - (void)checkDrawDataVersion
 {
     if ([self.feed.drawData isNewVersion]) {
-        [self popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
+        POSTMSG(NSLS(@"kNewDrawVersionTip"));
     }
 }
 - (void)viewDidLoad
@@ -216,9 +212,34 @@
 
 - (IBAction)clickBack:(id)sender
 {
-#warning ask if force to guess && send try request.
+    CommonDialog* dialog;
+    __block OfflineGuessDrawController* cp = self;
+    if ([[AccountService defaultService] hasEnoughBalance:[ConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
+        
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross];
+        
+        [dialog setClickOkBlock:^(UILabel *label){
+            [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
+            [(NSMutableArray *)cp.wordInputView.guessedWords addObject:cp.feed.wordText];
+            [cp quit:YES];
+        }];
+        
+        [dialog setClickCancelBlock:^(NSString *inputStr){
+            [cp quit:NO];
+        }];
+        
+        
+        [dialog.cancelButton setTitle:NSLS(@"kQuitDirectly") forState:UIControlStateNormal];
+    } else {
+        
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(UILabel *label){
+            [cp quit:NO];
+        }];
+    }
+    
+    [dialog showInView:self.view];
 
-    [self quit:NO];
 }
 
 - (void)initTitleView
@@ -227,6 +248,7 @@
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBack:)];
     [titleView setTitle:NSLS(@"kGuessing")];
+    _titleView = titleView;
 }
 
 - (void)initShowView
@@ -240,6 +262,7 @@
     [self.showView setDrawActionList:_feed.drawData.drawActionList];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:_showView];
     [self.view insertSubview:holder atIndex:0];
+    [holder updateOriginY:COMMON_TITLE_VIEW_HEIGHT];
     [self.showView play];
 }
 @end

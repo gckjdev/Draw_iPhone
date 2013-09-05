@@ -650,8 +650,7 @@ typedef enum{
             cp.feed.pbDrawData = pbDrawData;
             handler();
         }else{
-            
-            [cp popupUnhappyMessage:NSLS(@"kFailLoad") title:nil];
+            POSTMSG(NSLS(@"kFailLoad"));
         }
 
         [cp hideProgressView];

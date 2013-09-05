@@ -92,7 +92,7 @@
     [dialog setClickOkBlock:^(UITextField *tf) {
         
         if ([tf.text isBlank]) {
-            [self popupUnhappyMessage:NSLS(@"kSingNameCannotBeBlankStr") title:nil];
+            POSTMSG(NSLS(@"kSingNameCannotBeBlankStr"));
             return;
         }
         

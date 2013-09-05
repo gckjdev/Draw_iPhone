@@ -245,7 +245,12 @@ NSString* GlobalGetBoardServerURL()
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
+    
+    // Show Root View
+//    self.window = [[CPMotionRecognizingWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    
     srand(time(0));
     
 #ifdef DEBUG
@@ -332,8 +337,6 @@ NSString* GlobalGetBoardServerURL()
     
     
 
-    // Show Root View
-//    self.window = [[CPMotionRecognizingWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = navigationController;
     
     // Init SNS service

@@ -173,7 +173,7 @@
         [self finishLoadDataForTabID:TABID resultList:opuses];
         
     }else{
-        [self popupUnhappyMessage:NSLS(@"kLoadFailed") title:nil];
+       POSTMSG(NSLS(@"kLoadFailed"));
     }
 }
 
@@ -220,7 +220,7 @@
         }else if (pbOpus.guessInfo.isCorrect == NO && index == [GuessManager guessIndex:self.currentTab.dataList]) {
             [self gotoOpusGuessController:pbOpus];
         }else{
-            [self popupHappyMessage:NSLS(@"kGuessPreviousOpusFirst") title:nil];
+            POSTMSG(NSLS(@"kGuessPreviousOpusFirst"));
         }
     }else{
         if (pbOpus.guessInfo.isCorrect == YES) {

@@ -274,13 +274,13 @@
         [self.wordTableView reloadData];
         [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:NO handler:NULL];
     }else{
-        [self popupUnhappyMessage:NSLS(@"kNoTipItem") title:nil];
-    }    
+        POSTMSG(NSLS(@"kNoTipItem"));
+    }
 }
 
 - (IBAction)clickMyWordsButton:(id)sender {
     if ([[[CustomWordManager defaultManager] findAllWords] count] == 0) {
-        [self popupUnhappyMessage:NSLS(@"kNoCustomWords") title:nil];
+        POSTMSG(NSLS(@"kNoCustomWords"));
     }else {
 
         SelectCustomWordView *customWordView = [SelectCustomWordView createView:self];
@@ -326,7 +326,7 @@
 
 - (void)didGameTurnComplete:(GameMessage *)message
 {
-    [self popupUnhappyMessage:NSLS(@"kAllUserQuit") title:nil];
+    POSTMSG(NSLS(@"kAllUserQuit"));
     [RoomController returnRoom:self startNow:NO];
 }
 

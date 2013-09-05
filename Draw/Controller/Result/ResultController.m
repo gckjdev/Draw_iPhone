@@ -683,9 +683,9 @@
 - (void)didSaveOpus:(BOOL)succ
 {
     if (succ) {
-        [self popupMessage:NSLS(@"kSaveOpusOK") title:nil];
+        POSTMSG(NSLS(@"kSaveOpusOK"));
     }else{
-        [self popupMessage:NSLS(@"kSaveImageFail") title:nil];
+        POSTMSG(NSLS(@"kSaveImageFail"));
     }
 }
 

@@ -385,7 +385,7 @@
      
     } failureBlock:^(NSError *error) {
         PPDebug(@"%@ Login Failure", name);
-        [viewController popupMessage:NSLS(@"kUserBindFail") title:nil];
+        POSTMSG(NSLS(@"kUserBindFail"));
     }];
 }
 

@@ -15,7 +15,7 @@
 {
     [self sendAnalyticsReport];
     if (![self.drawView undo]) {
-        [(PPViewController *)[self controller] popupHappyMessage:NSLS(@"kCannotRevoke") title:nil];
+        POSTMSG(NSLS(@"kCannotRevoke"));
     }
     [self updateToolPanel];
     return YES;

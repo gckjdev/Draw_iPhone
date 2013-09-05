@@ -48,10 +48,11 @@
 - (void)updateView
 {
     self.showView = [ShowDrawView showViewWithFrame:CGRectFromCGSize(_replayObj.canvasSize)
-                                     drawActionList:_replayObj.actionList
+                                     drawActionList:nil
                                            delegate:self];
     
     [self.showView updateLayers:_replayObj.layers];
+    [self.showView setDrawActionList:_replayObj.actionList];
     
     if (_replayObj.bgImage) {
         [self.showView setBGImage:_replayObj.bgImage];
@@ -100,7 +101,7 @@
     [controller.view addSubview:self];
 
     if (_replayObj.isNewVersion) {
-        [controller popupMessage:NSLS(@"kNewDrawVersionTip") title:nil];
+        POSTMSG(NSLS(@"kNewDrawVersionTip"));
     }
     [self start];
     [self performSelector:@selector(autoHidePanel) withObject:nil afterDelay:4];

@@ -422,8 +422,8 @@ SET_CELL_BG_IN_CONTROLLER;
                     if (userCount >= _capacity) {
                         NSString *string = [NSString stringWithFormat:NSLS(@"kInviteFull"),
                                             _capacity,
-                                            userCount];                    
-                        [self popupMessage:string title:nil];
+                                            userCount];
+                        POSTMSG(string);
                         return;
                     }
                     [_selectedSet addObject:friend];
@@ -538,7 +538,7 @@ SET_CELL_BG_IN_CONTROLLER;
 {
     [self hideActivity];
     if (resultCode == 0) {
-        [self popupMessage:NSLS(@"kFollowSuccessfully") title:nil];
+        POSTMSG(NSLS(@"kFollowSuccessfully"));
         //change the friend relation
         [myFriend setRelation:(myFriend.relation | FriendTypeFollow)];
         
@@ -549,14 +549,14 @@ SET_CELL_BG_IN_CONTROLLER;
             [self.dataTableView reloadData];
         }
     } else {
-        [self popupMessage:NSLS(@"kFollowFailed") title:nil];
+        POSTMSG(NSLS(@"kFollowFailed"));
     }
 }
 - (void)didUnFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode
 {
     [self hideActivity];
     if (resultCode == 0) {
-        [self popupMessage:NSLS(@"kUnfollowSuccessfully") title:nil];
+        POSTMSG(NSLS(@"kUnfollowSuccessfully"));
         TableTab *tab = [_tabManager tabForID:TabTypeFollow];
         
         //change the friend relation in fan list
@@ -567,7 +567,7 @@ SET_CELL_BG_IN_CONTROLLER;
         [tab.dataList removeObject:myFriend];
         [self.dataTableView reloadData];
     }else {
-        [self popupMessage:NSLS(@"kUnfollowFailed") title:nil];
+        POSTMSG(NSLS(@"kUnfollowFailed"));
     }
 
 }
@@ -576,14 +576,14 @@ SET_CELL_BG_IN_CONTROLLER;
 {
     [self hideActivity];
     if (resultCode == 0) {
-        [self popupMessage:NSLS(@"kRemoveSuccessfully") title:nil];
+        POSTMSG(NSLS(@"kRemoveSuccessfully"));
         TableTab *tab = [_tabManager tabForID:TabTypeFan];
         
         //remove the frined from the follow list
         [tab.dataList removeObject:fan];
         [self.dataTableView reloadData];
     }else {
-        [self popupMessage:NSLS(@"kRemoveFailed") title:nil];
+        POSTMSG(NSLS(@"kRemoveFailed"));        
     }
     
 }
