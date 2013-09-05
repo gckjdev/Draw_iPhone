@@ -128,8 +128,8 @@ enum {
     rowOfPrivacy = 8;
     rowOfCustomBg = 9;
     rowOfCustomBBSBg = 10,
-    rowOfCustomChatBg = 11,
-    rowsInSectionUser = 12;
+//    rowOfCustomChatBg = 11,
+    rowsInSectionUser = 11;
     
     //section guessword
     if (isDrawApp()) {
@@ -876,17 +876,6 @@ SET_CELL_BG_IN_CONTROLLER;
         }
         else if (row == rowOfCustomChatBg) {
 
-#define CHAT_PAGE_BG_KEY @"chat_bg.png"
-            
-            [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
-                if ([[UserManager defaultManager] setPageBg:image forKey:CHAT_PAGE_BG_KEY]) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomChatBgSucc") delayTime:2];
-                }
-            } didSetDefaultBlock:^{
-                if ([[UserManager defaultManager] resetPageBgforKey:CHAT_PAGE_BG_KEY]) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomChatBgSucc") delayTime:2];
-                }
-            } title:NSLS(@"kCustomChatBg") hasRemoveOption:YES];
         }
     }
     else if (section == SECTION_GUESSWORD) {

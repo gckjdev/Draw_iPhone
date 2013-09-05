@@ -6828,6 +6828,10 @@
 		EADEDC8117D882780010EAD7 /* detail_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC7B17D882780010EAD7 /* detail_report@2x.png */; };
 		EADEDC8217D882780010EAD7 /* detail_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC7B17D882780010EAD7 /* detail_report@2x.png */; };
 		EADEDC8317D882780010EAD7 /* detail_report@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC7B17D882780010EAD7 /* detail_report@2x.png */; };
+		EADEDC8A17D890540010EAD7 /* chat_change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */; };
+		EADEDC8B17D890540010EAD7 /* chat_change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */; };
+		EADEDC8C17D890540010EAD7 /* chat_change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */; };
+		EADEDC8D17D890540010EAD7 /* chat_change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 		EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */; };
 /* End PBXBuildFile section */
@@ -9839,6 +9843,7 @@
 		EACAB8C9173B804E0059B1C7 /* default_config_DreamLockscreenFree.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config_DreamLockscreenFree.pb; sourceTree = "<group>"; };
 		EADEDC7A17D882780010EAD7 /* detail_rate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_rate@2x.png"; sourceTree = "<group>"; };
 		EADEDC7B17D882780010EAD7 /* detail_report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_report@2x.png"; sourceTree = "<group>"; };
+		EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_change_bg@2x.png"; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_badge@2x.png"; sourceTree = "<group>"; };
@@ -10328,6 +10333,7 @@
 		A42BA85B17D71F58007FB11B /* button */ = {
 			isa = PBXGroup;
 			children = (
+				EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */,
 				A42BA85C17D71F58007FB11B /* changeroom@2x.png */,
 				A42BA85D17D71F58007FB11B /* playagain@2x.png */,
 			);
@@ -17926,6 +17932,7 @@
 				A42BAFC817D71F74007FB11B /* wood_pallets@2x.png in Resources */,
 				EADEDC7E17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8217D882780010EAD7 /* detail_report@2x.png in Resources */,
+				EADEDC8C17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18792,6 +18799,7 @@
 				A42BAFC717D71F74007FB11B /* wood_pallets@2x.png in Resources */,
 				EADEDC7D17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8117D882780010EAD7 /* detail_report@2x.png in Resources */,
+				EADEDC8B17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19639,6 +19647,7 @@
 				A42BAFC617D71F74007FB11B /* wood_pallets@2x.png in Resources */,
 				EADEDC7C17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8017D882780010EAD7 /* detail_report@2x.png in Resources */,
+				EADEDC8A17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20456,6 +20465,7 @@
 				A42BAFC917D71F74007FB11B /* wood_pallets@2x.png in Resources */,
 				EADEDC7F17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8317D882780010EAD7 /* detail_report@2x.png in Resources */,
+				EADEDC8D17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

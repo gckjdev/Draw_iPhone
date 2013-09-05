@@ -120,6 +120,7 @@
     PPRelease(_messageList);
     PPRelease(_photoDrawSheet);
     PPRelease(_locateButton);
+    PPRelease(imageUploader);
     [super dealloc];
 }
 
@@ -133,6 +134,35 @@
 //        _messageList = [[NSMutableArray alloc] init];
     }
     return self;
+}
+
+#define CHAT_PAGE_BG_KEY @"chat_bg.png"
+
+- (ChangeAvatar*)backgroundPicker
+{
+    if (imageUploader == nil) {
+        imageUploader = [[ChangeAvatar alloc] init];
+        imageUploader.autoRoundRect = NO;
+        imageUploader.isCompressImage = NO;
+    }
+    return imageUploader;
+}
+
+
+- (IBAction)clickChangeBGButton:(id)sender {
+    
+    [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
+        if ([[UserManager defaultManager] setPageBg:image forKey:CHAT_PAGE_BG_KEY]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomChatBgSucc") delayTime:2];
+        }
+        [self updateBG];        
+    } didSetDefaultBlock:^{
+        if ([[UserManager defaultManager] resetPageBgforKey:CHAT_PAGE_BG_KEY]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomChatBgSucc") delayTime:2];
+        }
+        [self updateBG];
+    } title:NSLS(@"kCustomChatBg") hasRemoveOption:YES];
+    
 }
 
 - (void)initViews
