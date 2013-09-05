@@ -353,6 +353,8 @@
     
     SET_BUTTON_ROUND_STYLE_YELLOW(_createRoomButton);
     SET_BUTTON_ROUND_STYLE_YELLOW(_fastEntryButton);
+
+    [self.view setBackgroundColor:COLOR_WHITE];
     
 }
 

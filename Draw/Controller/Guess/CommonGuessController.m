@@ -49,9 +49,9 @@
     [_opus release];
     [_pickToolView release];
     [_opusButton release];
-    [_bgImageView release];
     [_toolBoxButton release];
     [_contest release];
+    [_tipButton release];
     [super dealloc];
 }
 
@@ -119,8 +119,8 @@
     
     [self setWordInputView:nil];
     [self setOpusButton:nil];
-    [self setBgImageView:nil];
     [self setToolBoxButton:nil];
+    [self setTipButton:nil];
     [super viewDidUnload];
 }
 
@@ -169,6 +169,13 @@
     [self.view bringSubviewToFront:_pickToolView];
     [_pickToolView setHidden:!_pickToolView.hidden animated:YES];
 }
+
+- (IBAction)clickTipButton:(id)sender
+{
+    [self bomb:sender];
+}
+
+
 
 - (IBAction)clickOpusButton:(id)sender {
     
@@ -238,12 +245,12 @@
     }
 }
 
-- (void)bomb:(ToolView *)toolView
+- (void)bomb:(UIButton *)toolView
 {
     int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
 
     __block typeof (self) bself = self;
-    [[UserGameItemService defaultService] consumeItem:toolView.itemType count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
+    [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [_wordInputView bombHalf];
             toolView.enabled = NO;

@@ -55,6 +55,11 @@
     [super dealloc];
 }
 
++ (void)showSimpleDialog:(NSString*)msg inView:(UIView*)view
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:msg style:CommonDialogStyleSingleButton];
+    [dialog showInView:view];
+}
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message

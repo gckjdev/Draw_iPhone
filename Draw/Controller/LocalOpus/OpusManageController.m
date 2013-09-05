@@ -111,7 +111,6 @@ typedef enum {
         self.currentTab.hasMoreData = NO;
     }
     isLoading = NO;   
-    self.noDataTipLabl.hidden = NO;
 }
 
 

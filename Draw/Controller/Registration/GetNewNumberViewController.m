@@ -189,7 +189,14 @@
     
     self.numberLabel.text = text;
     self.takeNumberView.frame = SUBVIEW_FRAME;
-    [self.view addSubview:self.takeNumberView];    
+    [self.view addSubview:self.takeNumberView];
+    
+    self.takeNumberView.alpha = 0.0f;
+    [UIView animateWithDuration:1.5 animations:^{
+        self.takeNumberView.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        self.takeNumberView.alpha = 1.0f;
+    }];
 }
 
 
@@ -207,9 +214,9 @@
             [self showTakeNumberView];
         }
         else{
-            // TODO show error information
+            [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberFail")  inView:self.view];
         }
-    }];      
+    }];
 }
 
 - (IBAction)clickForgot:(id)sender
@@ -300,27 +307,7 @@
         RoomPasswordDialog *v = (RoomPasswordDialog *)infoView;
         [self processLogin:v.roomNameField.text password:v.passwordField.text];
     }
-    
-//            [self createRoomWithName:v.roomNameField.text
-//                            password: v.passwordField.text];
-
-//    }else if (dialog.tag == ENTER_ROOM_DIALOG_TAG) {
-//        NSString *password = ((CommonDialog *)dialog).inputTextField.text;
-//        
-//        if ([self.currentSession.password isEqualToString:password]) {
-//            [self checkAndJoinGame:self.currentSession.sessionId];
-//        } else {
-//            [self popupMessage:NSLS(@"kPsdNotMatch") title:nil];
-//        }
-//    }else{
-//        if ([ConfigManager wallEnabled]) {
-//            [self showWall];
-//        }else {
-//            ChargeController* controller = [[[ChargeController alloc] init] autorelease];
-//            [self.navigationController pushViewController:controller animated:YES];
-//        }
-//    }
-}
+    }
 
 - (void)didClickCancel:(CommonDialog *)dialog
 {
@@ -334,8 +321,8 @@
 
 - (IBAction)dismiss:(id)sender
 {
+    [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberSuccess")  inView:self.view.superview];
     [[UserService defaultService] dismissGetNumberView];
-    
 }
 
 @end

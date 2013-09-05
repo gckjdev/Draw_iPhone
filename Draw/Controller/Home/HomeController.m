@@ -806,12 +806,48 @@
     [VersionUpdateView showInView:self.view];
 }
 
+- (void)gotoMyDetail
+{
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
+}
+
+
+- (void)askShake
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kTryShakeXiaoji")
+                                                         style:CommonDialogStyleDoubleButtonWithCross];
+    
+    [dialog.oKButton setTitle:NSLS(@"kTryTakeNumber") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kViewMyProfile") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [[UserService defaultService] showXiaojiNumberView:self.view];
+    }];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+        [self gotoMyDetail];
+    }];
+    
+    [dialog showInView:self.view];
+}
+
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
 {
     [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
     
-    if ([self isRegistered] == NO) {
-        [self toRegister];
+//    if ([self isRegistered] == NO) {
+
+    if ([self toRegister]){
+        return;
+    }
+    
+    
+    
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+        [self askShake];
         return;
     }
     

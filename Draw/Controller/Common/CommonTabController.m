@@ -13,7 +13,6 @@
 
 @implementation CommonTabController
 @synthesize titleLabel = _titleLabel;
-@synthesize noDataTipLabl = _noDataTipLabl;
 
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
@@ -63,8 +62,8 @@
     
     PPRelease(_tabManager);
     PPRelease(_titleLabel);
-    PPRelease(_noDataTipLabl);
     PPRelease(_titleView);
+    PPRelease(_noDataTipLabl);
     [super dealloc];
 }
 
@@ -190,6 +189,7 @@
     [self initTabs];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     SET_VIEW_BG(self.view);
+    [self.noDataTipLabl removeFromSuperview];
 }
 
 
@@ -211,7 +211,6 @@
 - (void)viewDidUnload
 {
     [self setTitleLabel:nil];
-    [self setNoDataTipLabl:nil];
     [self setTitleView:nil];
     [_tabManager cleanData];
     [super viewDidUnload];
@@ -379,11 +378,9 @@
     }
     
     if (count == 0 && tab.status == TableTabStatusLoaded) {
-        self.noDataTipLabl.hidden = NO;
-        [self.noDataTipLabl setText:tab.noDataDesc];
-        [self.view bringSubviewToFront:self.noDataTipLabl];
+        [self showTipsOnTableView:tab.noDataDesc];
     }else{
-        self.noDataTipLabl.hidden = YES;
+        [self hideTipsOnTableView];
     }
     
     self.noMoreData = !tab.hasMoreData;

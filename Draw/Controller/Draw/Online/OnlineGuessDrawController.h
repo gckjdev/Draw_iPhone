@@ -12,47 +12,27 @@
 #import "CommonDialog.h"
 #import "SuperGameViewController.h"
 #import "LevelService.h"
-#import "PickToolView.h"
-//#import "CommonItemInfoView.h"
-#import "StoreController.h"
+#import "WordInputView.h"
+#import "CMPopTipView.h"
 
-
-@class Word;
 @class ShowDrawView;
-@class ShareImageManager;
 @class UseItemScene;
 
-@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,UIScrollViewDelegate,LevelServiceDelegate,PickViewDelegate>
+@interface OnlineGuessDrawController : SuperGameViewController<CommonDialogDelegate,LevelServiceDelegate, WordInputViewDelegate, CMPopTipViewDelegate>
 {
-    ShowDrawView *showView;
-    NSString *_candidateString;
-//    VendingController *_shopController;
     BOOL _guessCorrect;
-    UIButton *moveButton;
-    UIButton *lastScaleTarget;
-    PickToolView *_pickToolView;
-
     UseItemScene* _scene;
+
     
 }
-@property (retain, nonatomic) NSString *candidateString;
 @property (retain, nonatomic) ShowDrawView *showView;
-
-@property (retain, nonatomic) IBOutlet UIImageView *drawBackground;
+@property (retain, nonatomic) CMPopTipView *popView;
+@property (retain, nonatomic) UIView *toolView;
+@property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
 - (IBAction)clickToolBox:(id)sender;
 - (IBAction)clickGroupChatButton:(id)sender;
 
-- (void)commitAnswer:(NSString *)answer;
 
-- (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled;
-- (NSString *)realValueForButton:(UIButton *)button;
-- (void)initShowView;
-
-
-- (void)initTargetViews;
-- (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang;
-- (void)updateTargetViews:(Word *)word;
-- (void)initWithCacheData;
 
 
 

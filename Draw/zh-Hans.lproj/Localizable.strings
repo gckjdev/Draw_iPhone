@@ -1070,6 +1070,21 @@
 "kShowNumberTipsLabelText" = "你的小吉号码是";
 "kOkButtonTitle" = "确            定";
 
+"kChanceLeftShake" = "还可再摇%d次";
+"kTakeNumberSuccess" = "领取号码成功，希望在这里玩的开心！也请设置一下邮件和密码等重要信息";
+"kTakeNumberFail" = "领取号码失败，请检查网络，稍后再试";
+"kShakeNumberFail" = "摇一摇获取号码失败，请检查网络，稍后再试";
+
+"kNoEmailForResetPassword" = "你还未设置邮件，无法重置密码";
+"kResetPasswordSucc" = "密码已经重置，并发送到你的邮箱，请检查邮件";
+"kFailResetPassword" = "重置密码失败，请检查网络或者稍后再试";
+"kModifyPassword" = "修改密码";
+"kResetPassword" = "重置密码";
+
+"kTryShakeXiaoji" = "新推出小吉号码，支持多帐号登录/注销功能，现在就领取一个小吉号码吗？";
+"kTryTakeNumber" = "马上领取";
+"kViewMyProfile" = "稍后再说";
+
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";

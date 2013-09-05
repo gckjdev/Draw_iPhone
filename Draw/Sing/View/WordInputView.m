@@ -138,7 +138,6 @@
     if (_answer == answer) {
         return;
     }
-    
     [_answer release];
     _answer = [answer copy];
     
@@ -627,6 +626,13 @@
 - (NSArray *)guessedWords
 {
     return _guessWords;
+}
+
+#define TAG_DISABLE_VIEW 20130905
+- (void)setDisable:(BOOL)disable
+{
+    UIControl *control = (id)[self reuseViewWithTag:TAG_DISABLE_VIEW viewClass:[UIControl class] frame:self.bounds];
+    control.userInteractionEnabled = disable;
 }
 
 @end

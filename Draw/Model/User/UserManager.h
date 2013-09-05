@@ -21,6 +21,13 @@ typedef enum {
     EnglishType = 2
 }LanguageType;
 
+typedef enum {
+    StatusNotVerified = 0,
+    StatusVerified = 1,
+    StatusVerifying = 2
+} UserVerifyStatus;
+
+
 #define MALE @"m"
 #define FEMALE @"f"
 
@@ -102,8 +109,13 @@ typedef enum {
 - (void)setXiaojiNumber:(NSString*)number;
 - (NSString*)xiaojiNumber;
 - (BOOL)hasXiaojiNumber;
+
 - (void)setCanShakeXiaojiNumber:(BOOL)value;
+- (void)setMaxShakeXiaojiNumberTimes:(int)value;
 - (BOOL)canShakeXiaojiNumber;
+- (void)incShakeTimes;
+- (int)currentShakeTimes;
+- (int)shakeTimesLeft;
 
 - (BOOL)hasUser;
 - (BOOL)isUserMale;
@@ -211,5 +223,13 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)setUserContestFlowers:(NSString*)contestId flowers:(int)flowers;
 - (int)flowersUsed:(NSString*)contestId;
+
+
+// user badge handling
+- (int)getUserBadgeCount;
+- (BOOL)isOldUserWithoutXiaoji;
+
+- (int)emailVerifyStatus;
+- (void)setEmailVerifyStatus:(int)status;
 
 @end

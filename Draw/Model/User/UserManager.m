@@ -1183,22 +1183,31 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)hasXiaojiNumber
 {
-    return YES;
-//    return ([[self.pbUser xiaojiNumber] length] > 0);
+//    return YES;
+    return ([[self.pbUser xiaojiNumber] length] > 0);
 }
 
 - (void)setCanShakeXiaojiNumber:(BOOL)value
 {
     if (self.pbUser == nil)
-        return;
-    
-    
-    
+        return;            
     
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
     [builder setCanShakeNumber:value];
     self.pbUser = [builder build];
 }
+
+- (void)setMaxShakeXiaojiNumberTimes:(int)value
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setShakeNumberTimes:value];
+    self.pbUser = [builder build];
+}
+
+
 
 - (BOOL)canShakeXiaojiNumber
 {
@@ -1206,10 +1215,58 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         return NO;
     }
     
-    return _pbUser.canShakeNumber;
+    if (_pbUser.canShakeNumber == NO){
+        return NO;
+    }
+    
+    if ([self shakeTimesLeft] > 0){
+        return YES;
+    }
+    else{
+        return NO;
+    }
 }
 
+- (NSString*)shakeTimesKey
+{
+    NSString* key = [NSString stringWithFormat:@"SHAKE_TIMES_%@", self.userId];
+    return key;    
+}
 
+- (NSString*)shakeNumberKey
+{
+    NSString* key = [NSString stringWithFormat:@"SHAKE_NUMBER_%@", self.userId];
+    return key;
+}
+
+- (void)incShakeTimes
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    int currentShakeTimes = [[ud objectForKey:[self shakeTimesKey]] intValue];
+    currentShakeTimes ++;
+    [ud setInteger:currentShakeTimes forKey:[self shakeTimesKey]];
+    [ud synchronize];
+    
+    PPDebug(@"<incShakeTimes> times=%d", currentShakeTimes);
+}
+
+- (int)currentShakeTimes
+{
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    int currentShakeTimes = [[ud objectForKey:[self shakeTimesKey]] intValue];
+    return currentShakeTimes;
+}
+
+- (int)shakeTimesLeft
+{
+    int current = [self currentShakeTimes];
+    if (_pbUser.shakeNumberTimes - current <= 0){
+        return 0;
+    }
+    else{
+        return _pbUser.shakeNumberTimes - current;
+    }
+}
 
 - (PBGameUser*)toPBGameUser
 {
@@ -1375,6 +1432,54 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     NSNumber* value = [userDefaults objectForKey:key];
     PPDebug(@"<flowersUsed> %@=%d", key, [value intValue]);
     return [value integerValue];
+}
+
+- (BOOL)isOldUserWithoutXiaoji
+{
+    if (_pbUser && [_pbUser.userId length] > 0 && [_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
+- (int)getUserBadgeCount
+{
+    if (_pbUser == nil){
+        return 0;
+    }
+    
+    int count = 0;
+    
+    if ([_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){
+        count ++;
+    }
+    
+    if ([_pbUser.password length] == 0){
+        count ++;
+    }
+    
+    if ([_pbUser.email length] == 0){ // || [_pbUser emailVerifyStatus] == StatusNotVerified){
+        count ++;
+    }
+    
+    return count;
+}
+
+- (int)emailVerifyStatus
+{
+    return _pbUser.emailVerifyStatus;
+}
+
+- (void)setEmailVerifyStatus:(int)status
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setEmailVerifyStatus:status];
+    self.pbUser = [builder build];    
 }
 
 @end

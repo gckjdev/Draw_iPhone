@@ -53,7 +53,8 @@ typedef enum{
 
 @property(nonatomic, assign) BOOL strokeShape;
 
-@property(nonatomic, assign) BOOL grid;
+
+@property(nonatomic, assign)NSInteger gridLineNumber;
 
 + (UIImage *)imageForClipActionType:(TouchActionType)type;
 + (id)defaultDrawInfo;

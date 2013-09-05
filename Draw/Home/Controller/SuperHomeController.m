@@ -267,17 +267,17 @@
 {
 //    return [[UserManager defaultManager] hasUser];
     
-    return [[UserManager defaultManager] hasUser] && [[UserManager defaultManager] hasXiaojiNumber];
+    return [[UserManager defaultManager] hasUser]; //  && [[UserManager defaultManager] hasXiaojiNumber];
 }
 
-- (void)toRegister
+- (BOOL)toRegister
 {
 //    RegisterUserController *ruc = [[RegisterUserController alloc] init];
 //    [self.navigationController pushViewController:ruc animated:YES];
 //    [ruc release];
 
     // change by Benson for new xiaoji number login and logout
-    [[UserService defaultService] checkAndAskLogin:self.view];
+    return [[UserService defaultService] checkAndAskLogin:self.view];
 }
 
 #pragma mark - network listen
