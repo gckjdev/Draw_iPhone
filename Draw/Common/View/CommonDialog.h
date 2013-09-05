@@ -66,6 +66,8 @@ typedef void (^DialogSelectionBlock)(id infoView);
 
 - (void)setTitle:(NSString *)title;
 
++ (void)showSimpleDialog:(NSString*)msg inView:(UIView*)view;
+
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message
                                   style:(CommonDialogStyle)aStyle;
@@ -89,6 +91,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
 
 + (CGFloat)edgeWidth;
 @end
+
 
 
 

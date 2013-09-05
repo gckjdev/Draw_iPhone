@@ -67,6 +67,8 @@ enum {
 #define DIALOG_TAG_REBIND_FACEBOOK  201206283
 #define DIALOG_TAG_SIGNATURE        201206284
 #define DIALOG_TAG_BACK_INFO        201206285
+#define DIALOG_TAG_VERIFY_EMAIL     201309041
+
 @interface UserSettingController()<PassWordDialogDelegate>
 
 - (void)bindFacebook;
@@ -687,6 +689,130 @@ SET_CELL_BG_IN_CONTROLLER;
 #define GENDER_TAG 125
 #define CHAT_VOICE_TAG 126
 
+- (void)modifyPassword
+{
+    PassWordDialog *infoView = [PassWordDialog create];
+    infoView.delegate = self;
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kPassword") customView:infoView style:CommonDialogStyleDoubleButton];
+    dialog.tag = DIALOG_TAG_PASSWORD;
+    dialog.delegate = self;
+    [dialog showInView:self.view];
+}
+
+- (void)resetPassword
+{
+    NSString* email = [_pbUserBuilder email];
+    if ([email length] == 0){
+        POSTMSG(NSLS(@"kNoEmailForResetPassword"));
+        return;
+    }
+    
+    [self showActivityWithText:NSLS(@"kSendingRequest")];
+    [[UserService defaultService] sendPassword:email resultBlock:^(int resultCode) {
+        [self hideActivity];
+        if (resultCode == 0){
+            POSTMSG(NSLS(@"kResetPasswordSucc"));
+            [[AccountService defaultService] syncAccountWithResultHandler:nil];
+        }
+        else{
+            POSTMSG(NSLS(@"kFailResetPassword"));
+        }
+    }];
+}
+
+- (void)clickPasswordRow
+{        
+    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption") delegate:nil cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kModifyPassword"), NSLS(@"kResetPassword"), nil] autorelease];
+    
+    [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex != actionSheet.cancelButtonIndex && buttonIndex != actionSheet.destructiveButtonIndex){
+
+            if (buttonIndex == 0){
+                [self modifyPassword];
+            }
+            else if (buttonIndex == 1){
+                [self resetPassword];
+            }
+        }
+    }];
+    
+    [actionSheet showInView:self.view];
+}
+
+- (void)modifyEmail
+{
+    [self askInputEmail:_pbUserBuilder.email];    
+}
+
+- (void)verifyEmail
+{
+    if ([[UserManager defaultManager] emailVerifyStatus] == StatusVerified){
+        POSTMSG(NSLS(@"kEmailVerified"));
+        return;
+    }
+    
+    NSString* email = [_pbUserBuilder email];
+    if ([email length] == 0){
+        POSTMSG(NSLS(@"kEmailNotSetForVerify"));
+        return;
+    }
+    
+    [[UserService defaultService] sendVerificationRequest:email resultBlock:^(int resultCode) {
+
+        if (resultCode == 0){                        
+            
+            CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kInputVerifyCode") delegate:self];
+            dialog.tag = DIALOG_TAG_VERIFY_EMAIL;
+            dialog.inputTextField.text = @"";
+            [dialog.inputTextField setPlaceholder:NSLS(@"kInputVerifyCode")];
+            
+            [dialog showInView:self.view];
+        }
+        else{
+            POSTMSG(NSLS(@"kEmailVerifyFailure"));
+        }
+    }];
+    
+    
+}
+
+- (void)verifyEmailCode:(NSString*)code
+{
+    [[UserService defaultService] verifyAccount:code resultBlock:^(int resultCode) {
+        
+        if (resultCode == 0){
+            POSTMSG(NSLS(@"kEmailVerifySuccess"));
+            [[UserManager defaultManager] setEmailVerifyStatus:StatusVerified];
+            return;
+        }
+        
+    }];
+    
+}
+
+
+
+- (void)clickEmailRow
+{
+    [self modifyEmail];
+    
+//    MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption") delegate:nil cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kModifyEmail"), NSLS(@"kVerifyEmail"), nil] autorelease];
+//    
+//    [actionSheet setActionBlock:^(NSInteger buttonIndex) {
+//        if (buttonIndex != actionSheet.cancelButtonIndex && buttonIndex != actionSheet.destructiveButtonIndex){
+//            
+//            if (buttonIndex == 0){
+//                [self modifyEmail];
+//            }
+//            else if (buttonIndex == 1){
+//                [self verifyEmail];
+//            }
+//        }
+//    }];
+//    
+//    [actionSheet showInView:self.view];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -696,12 +822,7 @@ SET_CELL_BG_IN_CONTROLLER;
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
             
-            PassWordDialog *infoView = [PassWordDialog create];
-            infoView.delegate = self;
-            CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kPassword") customView:infoView style:CommonDialogStyleDoubleButton];
-            dialog.tag = DIALOG_TAG_PASSWORD;
-            dialog.delegate = self;
-            [dialog showInView:self.view];
+            [self clickPasswordRow];
             
         }else if (row == rowOfGender){
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLS(@"kGender" ) delegate:self cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kMale") otherButtonTitles:NSLS(@"kFemale"), nil];
@@ -819,7 +940,8 @@ SET_CELL_BG_IN_CONTROLLER;
         switch (row) {
             case ROW_EMAIL:
             {
-                [self askInputEmail:_pbUserBuilder.email];
+                [self clickEmailRow];
+//                [self askInputEmail:_pbUserBuilder.email];
             }
                 break;
             case ROW_SINA_WEIBO:
@@ -1295,7 +1417,7 @@ SET_CELL_BG_IN_CONTROLLER;
                     }
                     [self.dataTableView reloadData];
                 }
-            
+                        
             break;
             
         case DIALOG_TAG_EMAIL:
@@ -1321,6 +1443,9 @@ SET_CELL_BG_IN_CONTROLLER;
             [self.navigationController popViewControllerAnimated:YES];
             break;
 
+        case DIALOG_TAG_VERIFY_EMAIL:
+            [self verifyEmailCode:dialog.inputTextView.text];
+            break;
             
         default:
             break;

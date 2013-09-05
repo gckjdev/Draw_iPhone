@@ -12,7 +12,7 @@
 @protocol DrawHomeControllerProtocol <NSObject>
 
 - (BOOL)isRegistered;
-- (void)toRegister;
+- (BOOL)toRegister;
 - (void)updateAllBadge;
 @property (nonatomic, assign) NotificationType notificationType; 
 @end

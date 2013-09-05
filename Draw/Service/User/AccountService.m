@@ -174,6 +174,9 @@ static AccountService* _defaultAccountService;
 
                     // set user can shake xiaoji number flag
                     [[UserManager defaultManager] setCanShakeXiaojiNumber:user.canShakeNumber];
+                    [[UserManager defaultManager] setMaxShakeXiaojiNumberTimes:user.shakeNumberTimes];
+                    [[UserManager defaultManager] setPassword:user.password];
+                    [[UserManager defaultManager] setEmailVerifyStatus:user.emailVerifyStatus];
                     
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];

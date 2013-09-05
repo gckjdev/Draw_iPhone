@@ -140,6 +140,8 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 - (BOOL)checkAndAskLogin:(UIView*)view;
 - (void)dismissGetNumberView;
+- (void)dismissShakeNumberView;
+- (void)showXiaojiNumberView:(UIView*)view;
 
 - (BOOL)autoRegisteration:(AutoResgistrationResultBlock)resultBlock;
 
@@ -157,7 +159,7 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)sendPassword:(NSString*)email
          resultBlock:(void(^)(int resultCode))resultBlock;
 
-- (void)sendVerificationRequest:(void(^)(int resultCode))resultBlock;
+- (void)sendVerificationRequest:(NSString*)email resultBlock:(void(^)(int resultCode))resultBlock;
 
 - (void)verifyAccount:(NSString*)code
           resultBlock:(void(^)(int resultCode))resultBlock;
