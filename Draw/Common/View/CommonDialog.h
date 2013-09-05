@@ -88,6 +88,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
 
 
 + (CGFloat)edgeWidth;
+
 @end
 
 
