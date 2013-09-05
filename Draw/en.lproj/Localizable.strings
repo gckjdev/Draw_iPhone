@@ -1052,6 +1052,20 @@
 "kShowNumberTipsLabelText" = "Your Littlegee Number is";
 "kOkButtonTitle" = "OK";
 
+"kChanceLeftShake" = "%d Shake Left";
+"kTakeNumberSuccess" = "Take number successfully";
+"kTakeNumberFail" = "Fail to take number. Please check your network and try again.";
+"kShakeNumberFail" = "Fail to shake and get number. Please check your network and try again.";
+
+"kNoEmailForResetPassword" = "Email is not set yet. Cannot reset your password.";
+"kResetPasswordSucc" = "Password has been reset and sent to your email.";
+"kFailResetPassword" = "Fail to send reset request, please check your network and try again.";
+"kModifyPassword" = "Modify Password";
+"kResetPassword" = "Reset Password";
+
+"kTryShakeXiaoji" = "Try to take a littlegee number now for login/logout?";
+"kTryTakeNumber" = "Take Now";
+"kViewMyProfile" = "Later";
 
 
 "kDrawToUserByUser" = "drew to %@";

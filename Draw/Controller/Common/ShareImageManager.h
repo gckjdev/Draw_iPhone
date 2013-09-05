@@ -14,120 +14,82 @@
 #import "HPThemeManager.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define FONT_MESSAGE_LABEL [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
-#define FONT_INPUT_VIEW [UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]
-#define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
-#define LOGIN_FONT_BUTTON [UIFont systemFontOfSize:(ISIPAD ? 36 : 19)]
+
+#define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
 #define TEXT_VIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
 #define BUTTON_CORNER_RADIUS    TEXT_VIEW_CORNER_RADIUS
-
-#define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82) // normal
-#define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) // selected
-#define COLOR_ORANGE2 OPAQUE_COLOR(224, 80, 67) // hightlight
-
+#define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
+#define LOGIN_FONT_BUTTON [UIFont systemFontOfSize:(ISIPAD ? 36 : 19)]
 
 //#define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
 //#define COLOR_YELLOW OPAQUE_COLOR(255, 187, 85) // common dialog
-
-#define COLOR_LIGHT_YELLOW OPAQUE_COLOR(75, 63, 50) // common dialog
-
-#define COLOR_YELLOW COLOR_YELLOW1 // common dialog
-#define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
+//#define COLOR_YELLOW1 OPAQUE_COLOR(254, 198, 48) // common tab selected bg
 //#define COLOR_YELLOW2 OPAQUE_COLOR(204, 131, 24) // common tab selected bg
-#define COLOR_YELLOW2 COLOR_YELLOW1 // common tab selected bg
+
+// (浅)橙黄色按钮，用于normal状态。
+#define COLOR_ORANGE OPAQUE_COLOR(238, 94, 82) 
+// (深)橙黄色按钮，用于select/hightlight状态。
+#define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) 
+
+// 统一一种黄色，用在按钮上，也用在一些背景设置上。
+#define COLOR_YELLOW OPAQUE_COLOR(254, 198, 48) 
+
+// CommonDialog 边框的颜色。
+#define COLOR_RED OPAQUE_COLOR(235, 83, 48)    
+
+// CommonDialog 标题栏背景颜色。
+#define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) 
+
+// 黄色按钮上的字体颜色。其他颜色的按钮上的字体为白色。
+#define COLOR_COFFEE OPAQUE_COLOR(126, 49, 46)
+
+// 普通label上的字体颜色。
+#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50)
+
+// cell的背景颜色
+#define COLOR_WHITE [UIColor whiteColor] //Cell
+#define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
 
 
-#define COLOR_LIGHT_GRAY1 OPAQUE_COLOR(210, 165, 41)    
-
-#define COLOR_LIGHT_GRAY OPAQUE_COLOR(234, 231, 225) // controller bg
-
-#define COLOR_RED OPAQUE_COLOR(235, 83, 48) // common dialog
-#define COLOR_RED1 OPAQUE_COLOR(240, 78, 104)  //在线猜逃跑
-
-//#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50) // common dialog
-#define COLOR_BROWN COLOR_COFFEE1 // common dialog
-
-#define COLOR_GREEN OPAQUE_COLOR(0, 190, 177)       // common dialog
-#define COLOR_GREEN1 OPAQUE_COLOR(211, 242, 225)    // common dialog
-#define COLOR_GREEN2 OPAQUE_COLOR(139, 234, 204)    // 登录背景
-#define COLOR_GREEN3 OPAQUE_COLOR(52, 136, 112)    // 登录背景
-
-#define COLOR_DARK_BLUE OPAQUE_COLOR(92, 158, 140) //阴影
-#define COLOR_BLUE1  OPAQUE_COLOR(54, 77, 197) //在线猜聊天
 
 
-#define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
-#define COLOR_COFFEE1 OPAQUE_COLOR(126, 49, 46) // common tab selected text
-  
+#define IMAGE_FROM_COLOR(color) ([ShareImageManager imageWithColor:color])
 
-#define IMAGE_FROM_COLOR(color) ([[ShareImageManager defaultManager] imageWithColor:color])
+#define SET_VIEW_BG(view) (view.backgroundColor = COLOR_WHITE)
 
-#define SET_MESSAGE_LABEL_STYLE(view)               \
-{                                                   \
-    view.textColor = COLOR_BROWN;                   \
-    view.font = FONT_MESSAGE_LABEL;                 \
-    if ([LocaleUtils isChinese]) {                  \
-        [view setLineBreakMode:UILineBreakModeCharacterWrap];              \
-    } else {                                        \
-        [view setLineBreakMode:UILineBreakModeWordWrap];               \
-    }                                               \
+
+#define SET_MESSAGE_LABEL_STYLE(view)                       \
+{                                                           \
+    [ShareImageManager setMessageLabelStyle:view];          \
 }
 
 #define SET_INPUT_VIEW_STYLE(view)                          \
 {                                                           \
-    view.textColor = COLOR_BROWN;                           \
-    view.font = FONT_INPUT_VIEW;                            \
-                                                            \
-    [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];   \
-    [view.layer setMasksToBounds:YES];                      \
-                                                            \
-    view.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;        \
-    view.layer.borderColor = [COLOR_YELLOW CGColor];        \
-}  
-
-#define SET_BUTTON_AS_COMMON_TAB_STYLE(view)                              \
-{                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_YELLOW highlightedColor:COLOR_ORANGE1 round:NO];         \
+    [ShareImageManager setInputViewStyle:view];             \
 }
 
-#define SET_BUTTON_ROUND_STYLE_YELLOW(view)                              \
+#define SET_BUTTON_AS_COMMON_TAB_STYLE(view)                \
 {                                                           \
-    [[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:YES];         \
-} 
-
-#define SET_BUTTON_ROUND_STYLE_ORANGE(view) \
-{                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_YELLOW highlightedColor:COLOR_ORANGE1 round:YES];         \
+    [ShareImageManager setButtonCommonTabStyle:view];       \
 }
 
-
-#define SET_BUTTON_SQUARE_STYLE_YELLOW(view)                              \
+#define SET_BUTTON_ROUND_STYLE_YELLOW(view)                 \
 {                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW2 highlightedColor:COLOR_YELLOW2 round:NO];         \
-}
+    [ShareImageManager setButtonYellowRoundStyle:view];     \
+}       
 
+#define SET_BUTTON_ROUND_STYLE_ORANGE(view)                 \
+{                                                           \
+    [ShareImageManager setButtonOrangeRoundStyle:view];     \
+}
 
 #define SET_VIEW_ROUND_CORNER(view) \
 {           \
     [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];  \
     [view.layer setMasksToBounds:YES];    \
 }
-
-#define SET_VIEW_ROUND_CORNER_WIDTH(view, width) \
-{           \
-    [view.layer setCornerRadius:width];       \
-    [view.layer setMasksToBounds:YES];    \
-}
-
-#define COLOR_WHITE [UIColor whiteColor] //Cell
-#define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
-
-#define COLOR_COFFEE OPAQUE_COLOR(60, 40, 20)
-
-
-#define SET_VIEW_BG(view) (view.backgroundColor = COLOR_LIGHT_GRAY)
 
 #define SET_CELL_BG_IN_CONTROLLER                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
@@ -141,12 +103,17 @@
 
 #define SET_CELL_BG_IN_VIEW                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
-if (indexPath.row % 2 == 0) {                       \
-cell.backgroundColor = COLOR_GRAY;              \
-}else{                                              \
-cell.backgroundColor = COLOR_WHITE;             \
-}                                                   \
+    if (indexPath.row % 2 == 0) {                       \
+    cell.backgroundColor = COLOR_GRAY;              \
+    }else{                                              \
+    cell.backgroundColor = COLOR_WHITE;             \
+    }                                                   \
 }
+
+
+
+
+
 
 #define SETTING_BUTTON_IMAGE    @"home_setting.png"
 #define FEEDBACK_BUTTON_IMAGE   @"feedback.png"
@@ -177,24 +144,11 @@ cell.backgroundColor = COLOR_WHITE;             \
 - (UIImage *)coinImage;
 - (UIImage *)toolImage;
 - (UIImage *)popupImage;
-- (UIImage *)popupChatImageLeft;
-- (UIImage *)popupChatImageRight;
 
 - (UIImage *)whitePaperImage;
 - (UIImage *)pickEasyWordCellImage;
 - (UIImage *)pickNormakWordCellImage;
 - (UIImage *)pickHardWordCellImage;
-
-//- (UIImage *)blackColorImage;
-//- (UIImage *)redColorImage;
-//- (UIImage *)greenColorImage;
-//- (UIImage *)blueColorImage;
-//- (UIImage *)yellowColorImage;
-//- (UIImage *)orangeColorImage;
-//- (UIImage *)pinkColorImage;
-//- (UIImage *)brownColorImage;
-//- (UIImage *)skyColorImage;
-//- (UIImage *)whiteColorImage;
 
 - (UIImage *)addColorImage;
 
@@ -231,7 +185,6 @@ cell.backgroundColor = COLOR_WHITE;             \
 - (UIImage *)qqWeiboImage;
 - (UIImage *)facebookImage;
 - (UIImage *)messageImage;
-//- (UIImage *)snowImage;
 
 - (UIImage *)penImage;
 - (UIImage *)pencilImage;
@@ -270,14 +223,7 @@ cell.backgroundColor = COLOR_WHITE;             \
 - (UIImage *)removeAd;
 - (UIImage *)flower;
 
-//- (UIImage *)brushPen;
-//- (UIImage *)icePen;
 - (UIImage *)printOil;
-//- (UIImage *)quillPen;
-//- (UIImage*)waterPen;
-
-
-//shape image
 
 - (UIImage *)shapeLine;
 - (UIImage *)shapeRectangle;
@@ -402,7 +348,6 @@ cell.backgroundColor = COLOR_WHITE;             \
 - (UIImage*)selfDetailIngotBtnBg;
 - (UIImage*)selfDetailExpBtnBg;
 
-- (UIImage*)customInfoViewMainBgImage;
 - (UIImage *)draftsBoxBgImage;
 
 - (UIImage*)settingCellTopBgImage;
@@ -425,13 +370,13 @@ cell.backgroundColor = COLOR_WHITE;             \
 - (UIImage *)drawBackImage;
 - (UIImage *)runAwayImage;
 
-- (UIImage *)imageWithColor:(UIColor *)color;
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 - (UIImage *)detailHeaderBG;
 
 + (UIImage *)bubleImage;
 
-- (void)setButtonStyle:(UIButton *)button
++ (void)setButtonStyle:(UIButton *)button
       normalTitleColor:(UIColor *)normalTitleColor
     selectedTitleColor:(UIColor *)selectedTitleColor
  highlightedTitleColor:(UIColor *)highlightedTitleColor
@@ -440,5 +385,13 @@ cell.backgroundColor = COLOR_WHITE;             \
          selectedColor:(UIColor *)selectedColor
       highlightedColor:(UIColor *)highlightedColor
                  round:(BOOL)round;
+
+     
++ (void)setMessageLabelStyle:(UILabel *)label;
++ (void)setInputViewStyle:(id)iv;
+
++ (void)setButtonYellowRoundStyle:(UIButton *)button;
++ (void)setButtonCommonTabStyle:(UIButton *)button;
++ (void)setButtonOrangeRoundStyle:(UIButton *)button;
 
 @end

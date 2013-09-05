@@ -103,10 +103,9 @@
     CustomWord *word = [dataList objectAtIndex:[indexPath row]];
     cell.textLabel.text = word.word;
     cell.textLabel.textAlignment = UITextAlignmentCenter;
-//    cell.textLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:50.0/255.0 blue:12.0/255.0 alpha:1.0];
     
     cell.textLabel.textColor = COLOR_BROWN;
-
+    
     if ([DeviceDetection isIPAD]) {
         [cell.textLabel setFont:[UIFont systemFontOfSize:36]];
     }else {

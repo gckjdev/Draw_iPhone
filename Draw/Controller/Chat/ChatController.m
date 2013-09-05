@@ -135,16 +135,13 @@
     [closeButton setTitle:NSLS(@"kClose") forState:UIControlStateNormal];
     
     SET_BUTTON_ROUND_STYLE_YELLOW(closeButton);
-//    [closeButton setBackgroundImage:[[ShareImageManager defaultManager] commonDialogLeftBtnImage] forState:UIControlStateNormal];
     
     [self configureExpressionScrollView];
     
-//    UIImage *bgImage = [[ShareImageManager defaultManager] messageImage];
     
     if (_chatType == GameChatTypeChatGroup) {
         viewBgImageView.hidden = YES;
         userView.hidden = YES;
-//        [chatInfoViewBgImageView setImage:bgImage];
     }
      
     if (_chatType == GameChatTypeChatPrivate) {

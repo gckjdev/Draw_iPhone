@@ -26,7 +26,7 @@
 
 - (void)updateAllBadge;
 - (BOOL)isRegistered;
-- (void)toRegister;
+- (BOOL)toRegister;
 
 - (void)handleJoinGameResponse;
 - (void)handleConnectedResponse;

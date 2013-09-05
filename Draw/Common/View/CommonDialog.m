@@ -55,6 +55,11 @@
     [super dealloc];
 }
 
++ (void)showSimpleDialog:(NSString*)msg inView:(UIView*)view
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:msg style:CommonDialogStyleSingleButton];
+    [dialog showInView:view];
+}
 
 + (CommonDialog *)createDialogWithTitle:(NSString *)title
                                 message:(NSString *)message
@@ -296,7 +301,9 @@
     
     
     [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
+    
     SET_BUTTON_ROUND_STYLE_YELLOW(view.cancelButton);
+    SET_BUTTON_ROUND_STYLE_YELLOW(view.oKButton);
     
     [view appear];
 
@@ -338,11 +345,6 @@
 
 - (void)enableOkButton:(BOOL)enabled{
     self.oKButton.enabled = enabled;
-    if (enabled) {
-        [self.oKButton setBackgroundColor:COLOR_YELLOW];
-    }else{
-        [self.oKButton setBackgroundColor:COLOR_LIGHT_YELLOW];
-    }
 }
 
 - (void)setTitle:(NSString *)title

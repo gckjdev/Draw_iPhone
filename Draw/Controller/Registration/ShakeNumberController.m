@@ -11,10 +11,11 @@
 #import "UserNumberService.h"
 #import "CPMotionRecognizingWindow.h"
 #import "StringUtil.h"
+#import "UserService.h"
 
 #define SET_BUTTON_ROUND_STYLE_USE_BUTTON(view)                              \
 {                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_BROWN font:LOGIN_FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_ORANGE highlightedColor:COLOR_ORANGE round:YES];         \
+    [ShareImageManager setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_BROWN font:LOGIN_FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_ORANGE highlightedColor:COLOR_ORANGE round:YES];         \
 }
 
 
@@ -49,7 +50,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    self.shakeMainView.frame = self.view.bounds;
+//    self.shakeMainView.frame = self.view.bounds;
     [self.view addSubview:self.shakeMainView];
     
     SET_VIEW_ROUND_CORNER(self.bgView);
@@ -63,6 +64,8 @@
     SET_BUTTON_ROUND_STYLE_USE_BUTTON(self.takeNumberButton);
     
     [self becomeFirstResponder];
+    
+    [self updateChanceLeftLabel];
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -152,15 +155,37 @@
     }
 }
 
+- (void)updateChanceLeftLabel
+{
+    int times = [[UserManager defaultManager] shakeTimesLeft];
+    NSString* text = [NSString stringWithFormat:NSLS(@"kChanceLeftShake"), times];
+    
+    self.chanceLeftLabel.text = text;
+    
+    if (times <= 0){
+        [self disableShake];
+        self.shakeButton.enabled = NO;
+    }
+}
+
 - (void)showOrUpdateShakeResultView:(NSString*)number
 {
     self.shakeMainView.hidden = YES;
     if (self.shakeResultView.superview == nil){
-        self.shakeResultView.frame = self.view.bounds;
+//        self.shakeResultView.frame = self.view.bounds;
         [self.view addSubview:self.shakeResultView];
     }
 
+    self.shakeResultView.alpha = 0.0f;
     self.shakeResultNumberLabel.text = [number formatNumber];
+    [self updateChanceLeftLabel];
+
+    [UIView animateWithDuration:1.5 animations:^{
+        self.shakeResultView.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        self.shakeResultView.alpha = 1.0f;
+    }];
+    
 }
 
 - (void)getOneNumber
@@ -172,12 +197,13 @@
 //        [self hideActivity];
         
         // update view and show new view
-        if (resultCode == 0){
+        if (resultCode == 0 && [number length] > 0){
+            [[UserManager defaultManager] incShakeTimes];
             self.currentNumber = number;
             [self showOrUpdateShakeResultView:number];
         }
         else{
-            // TODO
+            POSTMSG(NSLS(@"kShakeNumberFail"));
         }
     }];
 }
@@ -185,16 +211,6 @@
 - (void) motionWasRecognized:(NSNotification*)notif {
     
     PPDebug(@"<motionWasRecognized> %@", [notif description]);
-    
-//	CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//	shake.fromValue = [NSNumber numberWithFloat:-M_PI/32];
-//	shake.toValue   = [NSNumber numberWithFloat:+M_PI/32];
-//	shake.duration = 0.1;
-//	shake.autoreverses = YES;
-//	shake.repeatCount = 4;
-//	[self.shakeImageHolderView.layer addAnimation:shake forKey:@"shakeAnimation"];
-//    
-//    shake.delegate = self;
 
     self.shakeImageHolderView.transform = CGAffineTransformMakeRotation(-M_PI/32);
     [UIView animateWithDuration:0.8 animations:^{
@@ -209,10 +225,6 @@
     
 }
 
-- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
-{
-    
-}
 
 - (IBAction)clickShakeButton:(id)sender {
     
@@ -222,7 +234,7 @@
 - (IBAction)clickTakeNumberButton:(id)sender {
     
     if ([self.currentNumber length] == 0){
-        // TODO show error
+        [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberFail")  inView:self.view];
         return;
     }
     
@@ -233,10 +245,12 @@
         
         // update view and show new view
         if (resultCode == 0){
-            [self showOrUpdateShakeResultView:number];
+            
+            [[UserService defaultService] dismissShakeNumberView];
+            [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberSuccess")  inView:self.view.superview];
         }
         else{
-            // TODO
+            [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberFail")  inView:self.view];
         }
     }];
 }

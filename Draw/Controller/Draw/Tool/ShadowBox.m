@@ -112,15 +112,16 @@
 {
     for (UIButton *button in self.subviews) {
         if ([button isKindOfClass:[UIButton class]]) {
-            [[ShareImageManager defaultManager] setButtonStyle:button
-                                              normalTitleColor:COLOR_COFFEE
-                                            selectedTitleColor:COLOR_COFFEE
-                                         highlightedTitleColor:COLOR_COFFEE
-                                                          font:button.titleLabel.font
-                                                   normalColor:COLOR_YELLOW
-                                                 selectedColor:COLOR_YELLOW2
-                                              highlightedColor:COLOR_YELLOW2
-                                                         round:YES];
+            [ShareImageManager setButtonStyle:button
+                             normalTitleColor:COLOR_COFFEE
+                           selectedTitleColor:COLOR_COFFEE
+                        highlightedTitleColor:COLOR_COFFEE
+                                         font:button.titleLabel.font
+                                  normalColor:COLOR_YELLOW
+                                selectedColor:COLOR_YELLOW
+                             highlightedColor:COLOR_YELLOW
+                                        round:YES];
+            
             [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
         }
     }

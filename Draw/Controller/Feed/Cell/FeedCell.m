@@ -245,7 +245,7 @@
 }
 
 - (void)setCellAppearance{
-
+    
     self.userNameLabel.textColor = COLOR_BROWN;
     self.descLabel.textColor = COLOR_ORANGE;
     self.timeLabel.textColor = COLOR_YELLOW;

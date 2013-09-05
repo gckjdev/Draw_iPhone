@@ -46,7 +46,7 @@
 #define DESC_WIDTH (ISIPAD ? 590 : 245)
 #define BASE_HEIGHT (ISIPAD ? 300 : 140)
 
-- (void)setCellAppearance{    
+- (void)setCellAppearance{
     self.userNameLabel.textColor = COLOR_BROWN;
     self.descLabel.textColor = COLOR_ORANGE;
     self.timeLabel.textColor = COLOR_YELLOW;

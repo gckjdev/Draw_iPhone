@@ -1453,6 +1453,27 @@ POSTMSG(NSLS(@"kLoginFailure"));
     if ([[UserManager defaultManager] hasXiaojiNumber] == YES)
         return NO;
     
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji] == YES)
+        return NO;
+    
+    [self showXiaojiNumberView:view];
+    return YES;
+}
+
+- (void)dismissGetNumberView
+{
+    CGFloat x = CGRectGetMidX(self.getNewNumberController.view.frame);
+    
+    [UIView animateWithDuration:1 animations:^{
+        [self.getNewNumberController.view updateCenterX:x+MOVE_OFFSET];
+    } completion:^(BOOL finished) {
+        [self.getNewNumberController.view removeFromSuperview];
+        self.getNewNumberController = nil;        
+    }];
+}
+
+- (void)showXiaojiNumberView:(UIView*)view
+{
     if ([[UserManager defaultManager] canShakeXiaojiNumber]){
         // display xiaoji number controller
         if (self.shakeNumberController == nil){
@@ -1482,7 +1503,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
         }
         [self.getNewNumberController.view removeFromSuperview];
         [view addSubview:self.getNewNumberController.view];
-
+        
         CGFloat x = CGRectGetMidX(self.getNewNumberController.view.frame);
         
         [self.getNewNumberController.view updateCenterX:x-MOVE_OFFSET];
@@ -1493,20 +1514,18 @@ POSTMSG(NSLS(@"kLoginFailure"));
             [self.getNewNumberController.view updateCenterX:x];
         }];
     }
-    return YES;
 }
 
-- (void)dismissGetNumberView
+- (void)dismissShakeNumberView
 {
-    CGFloat x = CGRectGetMidX(self.getNewNumberController.view.frame);
+    CGFloat x = CGRectGetMidX(self.shakeNumberController.view.frame);
     
     [UIView animateWithDuration:1 animations:^{
-        [self.getNewNumberController.view updateCenterX:x+MOVE_OFFSET];
+        [self.shakeNumberController.view updateCenterX:x+MOVE_OFFSET];
     } completion:^(BOOL finished) {
-        [self.getNewNumberController.view removeFromSuperview];
-        self.getNewNumberController = nil;        
-    }];
-    
+        [self.shakeNumberController.view removeFromSuperview];
+        self.shakeNumberController = nil;
+    }];    
 }
 
 // return NO if don't need show login view
@@ -1678,9 +1697,9 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
 }
 
-- (void)sendVerificationRequest:(void(^)(int resultCode))resultBlock
+- (void)sendVerificationRequest:(NSString*)email resultBlock:(void(^)(int resultCode))resultBlock
 {
-    NSString* email = [[UserManager defaultManager] email];
+//    NSString* email = [[UserManager defaultManager] email];
     if ([email length] == 0){
         EXECUTE_BLOCK(resultBlock, ERROR_EMAIL_NOT_VALID);
         return;
@@ -1695,6 +1714,12 @@ POSTMSG(NSLS(@"kLoginFailure"));
                                                                         isReturnArray:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == 0){
+                [[UserManager defaultManager] setEmail:email];
+                [[UserManager defaultManager] storeUserData];
+            }
+            
             EXECUTE_BLOCK(resultBlock, output.resultCode);
         });
     });

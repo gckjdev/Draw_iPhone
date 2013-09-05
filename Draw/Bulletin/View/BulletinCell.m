@@ -93,7 +93,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     
     self.dateLabel.textColor = COLOR_ORANGE;
     self.messageLabel.textColor = COLOR_BROWN;
-    
+
     [self.customAccessoryImageView setHidden:!([JumpHandler canJump:bulletin.type])];
     [self initView];
 }

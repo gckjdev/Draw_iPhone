@@ -167,17 +167,17 @@
     
     SET_VIEW_ROUND_CORNER(self.specialTitleLabel);
     [self.specialTitleLabel setBackgroundColor:COLOR_YELLOW];
-    self.specialTitleLabel.textColor = COLOR_BROWN;
+    self.specialTitleLabel.textColor = COLOR_WHITE;
     
     
     [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [self.exploreBbsPostBtn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     
     [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [self.superBlackBtn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     
     [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [self.blackListBtn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
 }
 
 
@@ -261,8 +261,8 @@
     cell.segmentedControl = [[[CustomSegmentedControl alloc]
                               initWithSegmentTitles:@[NSLS(@"kUserOpus"), NSLS(@"kFavorite")]
                               frame:cell.feedTabHolder.frame
-                              unpressedImage:[[ShareImageManager defaultManager] imageWithColor:BG_COLOR]
-                              pressedImage:[[ShareImageManager defaultManager] imageWithColor:COLOR_GREEN]
+                              unpressedImage:[ShareImageManager imageWithColor:BG_COLOR]
+                              pressedImage:[ShareImageManager imageWithColor:COLOR_GREEN]
                               delegate:cell] autorelease];
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];

@@ -8,11 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-//@protocol CommonMessageCenterDelegate <NSObject>
-//
-//- (void)didShowedAlert;
-//
-//@end
 
 @interface CommonMessageCenter : NSObject
 

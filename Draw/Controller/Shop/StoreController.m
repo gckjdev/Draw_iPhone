@@ -180,10 +180,7 @@ typedef enum{
     }];
     
     self.bottomBarImageView.backgroundColor = COLOR_YELLOW;
-//    self.coinBalanceBgImageView.backgroundColor = COLOR_LIGHT_GRAY1;
-//    self.ingotBalanceBgImageView.backgroundColor = COLOR_LIGHT_GRAY1;
-//    SET_VIEW_ROUND_CORNER(self.coinBalanceBgImageView);
-//    SET_VIEW_ROUND_CORNER(self.ingotBalanceBgImageView);
+
     self.chargeButton.backgroundColor = COLOR_ORANGE;
     [self.chargeButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     self.balanceTipLabel.textColor = COLOR_BROWN;
