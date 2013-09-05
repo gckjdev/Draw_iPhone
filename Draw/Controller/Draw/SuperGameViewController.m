@@ -96,7 +96,7 @@
 
 - (void)initTitleView
 {
-    [self.titleView setLeftButtonImage:[shareImageManager runAwayImage]];
+//    [self.titleView setLeftButtonImage:[shareImageManager runAwayImage]];
     [self.titleView setTarget:self];
     [self.titleView setBgImage:nil];
     [self.titleView setBackgroundColor:[UIColor clearColor]];

@@ -8,24 +8,18 @@
 
 #import "OnlineGuessDrawController.h"
 #import "ShowDrawView.h"
-#import "Paint.h"
 #import "GameSessionUser.h"
 #import "GameSession.h"
 #import "Word.h"
 #import "WordManager.h"
-#import "LocaleUtils.h"
 #import "AnimationManager.h"
 #import "GameTurn.h"
 #import "ResultController.h"
-#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "HomeController.h"
-#import "DrawAction.h"
 #import "StableView.h"
-#import "ShareImageManager.h"
 #import "RoomController.h"
 #import "GameMessage.pb.h"
-#import "PPDebug.h"
 #import "AccountService.h"
 #import "DrawConstants.h"
 #import "AudioManager.h"
@@ -43,40 +37,29 @@
 #import "UserGameItemManager.h"
 #import "DrawHolderView.h"
 #import "TomatoItem.h"
-
-#define PAPER_VIEW_TAG 20120403
-#define TOOLVIEW_CENTER (([DeviceDetection isIPAD]) ? CGPointMake(695, 920):CGPointMake(284, 424))
-#define MOVE_BUTTON_FONT_SIZE (([DeviceDetection isIPAD]) ? 36.0 : 18.0)
+#import "WordInputView.h"
+#import "BalanceNotEnoughAlertView.h"
 
 #define MAX_TOMATO_CAN_THROW 3
 #define MAX_FLOWER_CAN_SEND 10
 
-#define TOOLVIEW_TAG_TIPS   120120730
-#define TOOLVIEW_TAG_FLOWER 220120730
-#define TOOLVIEW_TAG_TOMATO 320120730
+
 
 
 @implementation OnlineGuessDrawController
 @synthesize showView;
-@synthesize candidateString = _candidateString;
-@synthesize drawBackground;
-
-
 
 
 - (void)dealloc
 {
     [drawGameService setShowDelegate:nil];
     
-    moveButton = nil;
-//    _shopController = nil;
-    lastScaleTarget = nil;
     [showView stop];
-    PPRelease(_candidateString);
     PPRelease(showView);
-    PPRelease(drawBackground);
-    PPRelease(_pickToolView);
     PPRelease(_scene);
+    PPRelease(_wordInputView);
+    PPRelease(_toolView);
+    PPRelease(_popView);
     [super dealloc];
 }
 
@@ -95,6 +78,7 @@
     self = [super init];
     if (self) {
         _scene = [[UseItemScene createSceneByType:UseSceneTypeOnlineGuess feed:nil] retain];
+        _guessCorrect = NO;        
     }
     return self;
 }
@@ -109,342 +93,6 @@
     [[WordManager defaultManager] clearWordBaseDictionary];
 }
 
-
-#pragma mark - init the buttons
-
-#define TARGET_BASE_TAG 11
-#define TARGET_END_TAG 18
-#define CANDIDATE_BASE_TAG 21
-#define CANDIDATE_END_TAG 39
-
-#define RowNumber 2
-#define WORD_BASE_X (([DeviceDetection isIPAD])? 26 : 5)
-//#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : 390)
-//#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : 425)
-#define WORD_BASE_Y_1 (([DeviceDetection isIPAD])? 855 : (CGRectGetHeight(self.view.frame) - 90 + 20))
-#define WORD_BASE_Y_2 (([DeviceDetection isIPAD])? 930 : (CGRectGetHeight(self.view.frame) - 55 + 20))
-
-#define WORD_SPACE_X (([DeviceDetection isIPAD])? 22 : 4)
-
-
-#define WORD_FONT (([DeviceDetection isIPAD])? [UIFont systemFontOfSize:18 * 2]: [UIFont systemFontOfSize:18])
-
-#define WORD_BUTTON_WIDTH (([DeviceDetection isIPAD])? 30 * 2: 30)
-#define WORD_BUTTON_HEIGHT (([DeviceDetection isIPAD])? 30 * 2: 30)
-
-#define ZOOM_SCALE 1.2
-
-
-
-- (void)resetWordButtons:(NSInteger)count
-{
-    int tag = CANDIDATE_BASE_TAG;
-    
-    CGFloat x,y;
-    for (int i = 0; i < count; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag ++];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setBackgroundImage:[shareImageManager woodImage]
-                          forState:UIControlStateNormal];
-        [button.titleLabel setFont:WORD_FONT];                
-        NSInteger rowCount = count / RowNumber;
-        NSInteger row = i / rowCount;
-        NSInteger num = i % rowCount;
-        
-        x = WORD_BASE_X + (WORD_BUTTON_WIDTH + WORD_SPACE_X) * num; 
-        y = (row == 0) ? WORD_BASE_Y_1 : WORD_BASE_Y_2;
-        
-        button.frame = CGRectMake(x, y, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
- 
-        button.hidden = NO;
-        button.enabled = NO;
-    }
-    
-    for (; tag <= CANDIDATE_END_TAG; ++ tag) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
-        [button setTitle:nil forState:UIControlStateNormal];
-        button.hidden = YES;
-    }
-}
-
-- (UIButton *)targetButton:(CGPoint)point
-{
-    
-    for (int tag = TARGET_BASE_TAG; tag <= TARGET_END_TAG; ++ tag) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
-        //can write
-        if (button.hidden == NO && [[button titleForState:UIControlStateNormal] length] == 0) {
-            //distance
-            if ([DrawUtils distanceBetweenPoint:point point2:button.center] < button.frame.size.width) {
-                return button;
-            }
-        }
-    }
-    return nil;
-}
-
-
-- (UIButton *)candidateButtonForText:(NSString *)text
-{
-    for (int i = 0; i < [self.candidateString length]; ++ i) {
-        NSString *sub = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
-        if ([sub isEqualToString:text]) {
-            UIButton *button = (UIButton *)[self.view viewWithTag:CANDIDATE_BASE_TAG + i];
-            if ([[button titleForState:UIControlStateNormal] length] == 0) {
-                return button;
-            }
-        }
-    }
-    return nil;
-}
-
-- (void)clickWriteButton:(UIButton *)button
-{
-    NSString *text = [self realValueForButton:button];
-    if ([text length] != 0) {
-        UIButton *pButton = [self candidateButtonForText:text];
-        if (pButton) {
-            [self setButton:pButton title:text enabled:YES];
-            [self setButton:button title:nil enabled:NO];
-        }
-        
-    }
-}
-
-
-- (NSString *)getAnswer
-{
-    //get the word
-    NSString *answer = @"";
-    NSInteger endIndex = TARGET_END_TAG;
-    for (int i = TARGET_BASE_TAG; i <= endIndex; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        NSString *text = [self realValueForButton:button];
-        if ([text length] == 1 && ![text isEqualToString:@" "]) {
-            answer = [NSString stringWithFormat:@"%@%@",answer,text];
-        }
-    }
-    return answer;
-}
-
-- (UIButton *)getTheFirstEmptyButton
-{
-    NSInteger endIndex = TARGET_END_TAG;//(languageType == ChineseType) ? (TARGET_END_TAG - 1) : TARGET_END_TAG;
-    for (int i = TARGET_BASE_TAG; i <= endIndex; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        if (button.hidden == NO && [[button titleForState:UIControlStateNormal] length] == 0) {
-            return button;
-        }
-    }
-    return nil;
-}
-
-- (void)clickPickingButton:(UIButton *)button target:(UIButton *)target text:(NSString *)text
-{
-    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_DING];
-    if ([text length] != 0) {
-        if (target) {
-            [self setButton:target title:text enabled:YES];
-            [self setButton:button title:nil enabled:NO];
-            
-            NSString *ans = [self getAnswer];
-            if ([ans length] == [self.word.text length]) {
-                [self commitAnswer:ans];
-            } 
-        }
-    }
-}
-
-- (void) dragBegan: (UIControl *) c withEvent:ev
-{
-    
-    UIButton *bt = (UIButton *)c;
-    NSString *title = [self realValueForButton:bt];
-    moveButton.hidden = NO;
-    [self setButton:moveButton title:title enabled:YES];
-    [self setButton:bt title:nil enabled:NO];
-    moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
-    
-}
-- (void) dragMoving: (UIControl *) c withEvent:ev
-{
-    moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
-    UIButton *targetButton = [self targetButton:moveButton.center];
-    if (targetButton != lastScaleTarget) {
-        //scale
-        lastScaleTarget.layer.transform = CATransform3DMakeScale(1, 1, 1);
-        targetButton.layer.transform = CATransform3DMakeScale(ZOOM_SCALE, ZOOM_SCALE, 1);
-        lastScaleTarget = targetButton;
-    }
-}
-- (void) dragEnded: (UIControl *) c withEvent:ev
-{
-    moveButton.center = [[[ev allTouches] anyObject] locationInView:self.view];
-    CGPoint touchPoint = [[[ev allTouches] anyObject] locationInView:self.view]; 
-    NSString *title = [self realValueForButton:moveButton];
-    UIButton *targetButton = [self targetButton:moveButton.center];
-    UIButton *bt = (UIButton *)c;    
-    
-    lastScaleTarget.layer.transform = CATransform3DMakeScale(1, 1, 1);
-    lastScaleTarget = nil;
-    
-    
-    if (targetButton != nil) {
-        [self clickPickingButton:bt target:targetButton text:title];
-    }else{ 
-        NSInteger distance = [DrawUtils distanceBetweenPoint:touchPoint point2:c.center];
-        if(distance < c.frame.size.width / 2 && 
-           (targetButton = [self getTheFirstEmptyButton]) != nil)
-        {
-            [self clickPickingButton:bt target:targetButton text:title];            
-        }else{
-            [self setButton:bt title:title enabled:YES];
-        }
-    }
-    [self setButton:moveButton title:nil enabled:NO];
-    moveButton.hidden = YES;
-}
-
-- (void)addDragActions:(UIButton *)button
-{
-    [button addTarget:self action:@selector(dragBegan:withEvent: )
-     forControlEvents: UIControlEventTouchDown];
-    [button addTarget:self action:@selector(dragMoving:withEvent: )
-     forControlEvents: UIControlEventTouchDragInside];
-    [button addTarget:self action:@selector(dragMoving:withEvent: )
-     forControlEvents: UIControlEventTouchDragOutside];
-    
-    [button addTarget:self action:@selector(dragEnded:withEvent: )
-     forControlEvents: UIControlEventTouchUpInside | 
-     UIControlEventTouchUpOutside];
-    [button addTarget:self action:@selector(dragEnded:withEvent:) forControlEvents:UIControlEventTouchCancel];
-    
-}
-
-- (void)initMoveButton
-{
-    moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [moveButton setBackgroundImage:[UIImage imageNamed:@"wood_button.png"] forState:UIControlStateNormal];
-    moveButton.hidden = YES;
-    [moveButton.titleLabel setFont:[UIFont systemFontOfSize:MOVE_BUTTON_FONT_SIZE]];
-    moveButton.frame = CGRectMake(0, 0, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
-    moveButton.layer.transform = CATransform3DMakeScale(ZOOM_SCALE, ZOOM_SCALE, 1);
-    [self.view addSubview:moveButton];
-}
-
-- (void)initCandidateButton:(UIButton *)button
-{
-    
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setBackgroundImage:[shareImageManager woodImage]
-                      forState:UIControlStateNormal];
-    button.enabled = NO;
-    button.frame = CGRectMake(0, 0, WORD_BUTTON_WIDTH, WORD_BUTTON_HEIGHT);
-    [self addDragActions:button];
-    
-}
-- (void)initWordViews
-{
-    
-    for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-
-        button.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
-
-        
-        [button setTag:i];
-        [self initCandidateButton:button];
-
-        [self.view addSubview:button];
-    }
-    [self resetWordButtons:CANDIDATE_WORD_NUMBER];
-    [self initMoveButton];
-}
-
-- (void)initPickToolView
-{
-    NSMutableArray *array = [NSMutableArray array];
-    ToolView *tips = [ToolView tipsViewWithNumber:0];
-    tips.tag = TOOLVIEW_TAG_TIPS;
-    ToolView *flower = [ToolView flowerViewWithNumber:0];
-    flower.tag = TOOLVIEW_TAG_FLOWER;
-    ToolView *tomato = [ToolView tomatoViewWithNumber:0];
-    tomato.tag = TOOLVIEW_TAG_TOMATO;
-    [array addObject:tips];
-    [array addObject:flower];
-    [array addObject:tomato];
-    _pickToolView = [[PickToolView alloc] initWithTools:array];
-    _pickToolView.hidden = YES;
-    _pickToolView.delegate = self;
-    [self.view addSubview:_pickToolView];
-}
-
-
-#pragma mark - Word && Word Views
-
-
-- (void)updateCandidateViewsWithText:(NSString *)text
-{
-    self.candidateString = text;
-    NSInteger tag = CANDIDATE_BASE_TAG;
-    
-    for (int i = 0; i < text.length; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag ++];
-        NSString *title = [self.candidateString substringWithRange:NSMakeRange(i, 1)];
-        if ([title isEqualToString:@" "]) {
-            [self setButton:button title:nil enabled:NO];
-        }else{
-            [self setButton:button title:title enabled:YES];
-        }
-//        [self.view bringSubviewToFront:button];
-//        PPDebug(@"<updateCandidateViewsWithText> superView = %@, title = %@, frame = %@, hide = %d",button.superview, title, NSStringFromCGRect(button.frame), button.isHidden);
-        
-    }
-    for (; tag <= CANDIDATE_END_TAG; ++ tag) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:tag];
-        [self setButton:button title:nil enabled:NO];
-        button.hidden = YES;
-
-        PPDebug(@"<updateCandidateViewsWithText> title = %@, frame = %@, hide = %d",[button titleForState:UIControlStateNormal], NSStringFromCGRect(button.frame), button.isHidden);
-        
-    }
-}
-- (void)updateCandidateViews:(Word *)word lang:(LanguageType)lang
-{
-    self.word = word;
-    languageType = lang;
-    if (lang == EnglishType) {
-        NSString *upperString = [WordManager upperText:word.text];
-        self.word.text = upperString;        
-    }
-    NSString *text = nil;
-    if (languageType == ChineseType) {
-        text = [[WordManager defaultManager] randChinesStringWithWord:
-                self.word count:CANDIDATE_WORD_NUMBER];
-    }else{
-        text = [[WordManager defaultManager] randEnglishStringWithWord:
-                self.word count:CANDIDATE_WORD_NUMBER];        
-    }
-    [self resetWordButtons:CANDIDATE_WORD_NUMBER];
-    [self updateCandidateViewsWithText:text];
-}
-
-
-
-- (void)setWordButtonsEnabled:(BOOL)enabled
-{
-    for (int i = TARGET_BASE_TAG; i <= TARGET_END_TAG; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button setEnabled:enabled];
-    }
-    
-    for (int i = CANDIDATE_BASE_TAG; i <= CANDIDATE_END_TAG; ++ i) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i];
-        [button setEnabled:enabled];
-    }
-    //    [toolView setEnabled:enabled];
-}
 
 
 #pragma makr - Timer Handle
@@ -461,9 +109,23 @@
 }
 
 
+- (void)initPickToolView
+{
+    
+}
 
-
-
+- (void)initWordInputView
+{
+//    self.wordInputView.answer = self.feed.wordText;
+    self.wordInputView.delegate = self;
+    self.wordInputView.answerColor = [UIColor whiteColor];
+    
+    
+    NSString *candidates = @"                  "; //18 space.
+    [self.wordInputView setCandidates:candidates column:9];
+    [self.wordInputView setCandidateColor:[UIColor whiteColor]];
+    [self.wordInputView setDisable:YES];
+}
 
 #pragma mark - View lifecycle
 
@@ -473,15 +135,9 @@
     [drawGameService setShowDelegate:self];
     
     [self initShowView];
-    
-    [self initWordViews];
-    [self initTargetViews];
     [self initPickToolView];
-    _guessCorrect = NO;
+    [self initWordInputView];
     [self initWithCacheData];
-
-//    [self performSelector:@selector(initWithCacheData)];
-//    _shopController = nil;
     
 }
 
@@ -492,33 +148,48 @@
 }
 
 
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-//    _shopController = nil;
-}
-
 - (void)viewDidUnload
 {
     [self setClockButton:nil];
     [self setTurnNumberButton:nil];
     [self setShowView:nil];
-    [self setDrawBackground:nil];
+    [self setWordInputView:nil];
     [super viewDidUnload];
     [self setWord:nil];
 }
 
+#pragma mark- word input view delegate
 
+- (void)wordInputView:(WordInputView *)wordInputView
+           didGetWord:(NSString *)word
+            isCorrect:(BOOL)isCorrect
+{
+    if (isCorrect) {
+        POSTMSG(NSLS(@"kGuessCorrect"));
+        [wordInputView setDisable:YES];
+        _guessCorrect = YES;
+    }else{
+        POSTMSG(NSLS(@"kGuessWrong"));
+    }
+    [drawGameService guess:word guessUserId:drawGameService.session.userId];
+}
 #pragma mark - Draw Game Service Delegate
 
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language
 {
     if (wordText) {
-        PPDebug(@"<ShowDrawController> ReceiveWord:%@", wordText);
-        Word *word = [Word wordWithText:wordText level:wordLevel];
-        [self updateTargetViews:word];
-        [self updateCandidateViews:word lang:language];
+        [self.wordInputView setDisable:NO];
+        [self.wordInputView setAnswer:wordText];
+        NSString *candidates = nil;
+        if (language == EnglishType) {
+            candidates = [[WordManager defaultManager] randEnglishCandidateStringWithWord:wordText count:18];
+        }else{
+            candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:wordText count:18];
+        }
+        [self.wordInputView setCandidates:candidates column:9];
+        [self.wordInputView setCandidateColor:[UIColor whiteColor]];
+        self.wordInputView.delegate = self;
+        //Add animations?
     }else{
         PPDebug(@"warn:<ShowDrawController> word is nil");
     }
@@ -593,16 +264,9 @@
                                                          isMyPaint:NO 
                                                     drawActionList:showView.drawActionList
                                                              scene:[UseItemScene createSceneByType:UseSceneTypeOnlineGuess feed:nil]];
-//    if (_shopController) {
-//        [_shopController.topNavigationController popToViewController:self animated:NO];
-//        [self.navigationController pushViewController:rc animated:NO];
-//    }else{
-    
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
     
-//    }
-//    [rc release]; 
 }
 
 - (void)didReceiveRank:(NSNumber*)rank fromUserId:(NSString*)userId
@@ -616,9 +280,6 @@
 }
 
 #pragma mark - Common Dialog Delegate
-#define SHOP_DIALOG_TAG 20120406
-#define ITEM_TAG_OFFSET 20120728
-
 
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
@@ -635,52 +296,9 @@
 
 }
 
-#pragma mark - Actions
-
-- (void)commitAnswer:(NSString *)answer
-{
-    //alter if the word is correct
-    if ([answer isEqualToString:self.word.text]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessCorrect") delayTime:1 isHappy:YES];
-        [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_YY];
-        _guessCorrect = YES;
-        [self setWordButtonsEnabled:NO];
-    }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1 isHappy:NO];
-        [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_OO];
-    }
-    [drawGameService guess:answer guessUserId:drawGameService.session.userId];
-}
-
-- (void)bomb:(ToolView *)toolView
-{
-    if ([self.candidateString length] == 0) {
-        return;
-    }
-    
-    int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
-    
-    __block typeof (self) bself = self;
-    [[UserGameItemService defaultService] consumeItem:toolView.itemType count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
-        if (resultCode == ERROR_SUCCESS) {
-            [bself updateTargetViews:bself.word];
-            NSString *result  = [WordManager bombCandidateString:bself.candidateString word:bself.word];
-            [bself updateCandidateViewsWithText:result];
-            [toolView setEnabled:NO];
-            if (isBuy) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
-            }
-
-        }else if (ERROR_BALANCE_NOT_ENOUGH){
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-        }else{
-            
-        }
-    }];
-}
-
 - (void)throwFlower:(ToolView *)toolView
-{    
+{
+    [self.popView dismissAnimated:YES];    
     [[FlowerItem sharedFlowerItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO drawFeed:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [self showAnimationThrowTool:toolView isBuy:isBuy];
@@ -700,8 +318,7 @@
 
 - (void)throwTomato:(ToolView *)toolView
 {
-
-    // TODO: add throw tomato code here
+    [self.popView dismissAnimated:YES];    
     [[TomatoItem sharedTomatoItem] useItem:[[[drawGameService session] currentTurn] currentPlayUserId] isOffline:NO feedOpusId:nil feedAuthor:nil forFree:NO resultHandler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [self showAnimationThrowTool:toolView isBuy:isBuy];
@@ -718,59 +335,11 @@
     
 
 }
-#pragma mark - click tool delegate
-- (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView
-{
-    if (toolView.itemType == ItemTypeTips) {
-        [self bomb:toolView];
-    }else if(toolView.itemType == ItemTypeFlower)
-    {
-        [self throwFlower:toolView];
-    }else if(toolView.itemType == ItemTypeTomato)
-    {
-        [self throwTomato:toolView];
-    }
-    
-    [toolView decreaseNumber];
-    
-}
-- (IBAction)clickToolBox:(id)sender {
-    [self.view bringSubviewToFront:_pickToolView];
-    [_pickToolView setHidden:!_pickToolView.hidden animated:YES];
-}
-
 - (IBAction)clickRunAway:(id)sender {
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitGameAlertMessage") style:CommonDialogStyleDoubleButton delegate:self];
     [dialog showInView:self.view];
 }
 
-
-
-
-- (void)initTargetViews
-{
-    NSInteger tag = TARGET_BASE_TAG;
-    for (int i = TARGET_BASE_TAG; i <= TARGET_END_TAG; ++ i)
-    {
-        UIButton *button = (UIButton *)[self.view viewWithTag: tag ++];
-        [button addTarget:self action:@selector(clickWriteButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view bringSubviewToFront:button];
-        button.hidden = YES;
-    }    
-}
-
-- (void)updateTargetViews:(Word *)word
-{
-
-    NSInteger tag = TARGET_BASE_TAG;
-    for (int i = 0; i < word.length; ++ i)
-    {
-        UIButton *button = (UIButton *)[self.view viewWithTag: tag ++];
-        [self setButton:button title:nil enabled:NO];
-        button.hidden = NO;
-    }
-    
-}
 
 
 - (void)initShowView
@@ -786,7 +355,7 @@
     
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
-    [self.view insertSubview:holder atIndex:4];
+    [self.view insertSubview:holder atIndex:0];
     
 }
 
@@ -809,57 +378,82 @@
     }
 }
 
-- (void)setButton:(UIButton *)button title:(NSString *)title enabled:(BOOL)enabled
+- (void)bomb:(ToolView *)tip
 {
-    [button setTitle:title forState:UIControlStateSelected];
-    [button setEnabled:enabled];
-    if (languageType == ChineseType && [LocaleUtils isTraditionalChinese]) {
-        NSString *realValue = [WordManager changeToTraditionalChinese:title];
-        [button setTitle:realValue forState:UIControlStateNormal];
-    }else{
-        [button setTitle:title forState:UIControlStateNormal];
-    }
-}
-- (NSString *)realValueForButton:(UIButton *)button
-{
-    return [button titleForState:UIControlStateSelected];
+    [self.popView dismissAnimated:YES];
+    [tip setEnabled:NO];
+    int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
+    
+    __block typeof (self) bself = self;
+    [[UserGameItemService defaultService] consumeItem:ItemTypeTips
+                                                count:1
+                                             forceBuy:YES
+                                              handler:^(int resultCode, int itemId, BOOL isBuy) {
+                                                  if (resultCode == ERROR_SUCCESS) {
+                                                      [_wordInputView bombHalf];
+                                                      if (isBuy) {
+                                                          POSTMSG(([NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price]));
+                                                      }
+                                                  }else if (ERROR_BALANCE_NOT_ENOUGH){
+                                                      [BalanceNotEnoughAlertView showInController:bself];
+                                                  }else{
+                                                      POSTMSG(NSLS(@"kOperationFailed"));
+                                                  }
+                                              }];
+
 }
 
 - (IBAction)clickGroupChatButton:(id)sender {
     [super showGroupChatView];
 }
 
-#pragma mark - levelServiceDelegate
-- (void)levelDown:(int)level
+#define TOOL_VIEW_SPACE (ISIPAD?15:8)
+- (IBAction)clickToolBox:(id)sender
 {
-//    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kDegradeMsg"),level] delayTime:2 isHappy:NO];
+    if (_toolView == nil) {
+        CGFloat width = (ISIPAD?80:40);
+        CGFloat height = width * 3 + TOOL_VIEW_SPACE * 2;
+        _toolView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+
+        //add button
+        ToolView *tip = [ToolView tipsViewWithNumber:0];
+        ToolView *flower = [ToolView flowerViewWithNumber:0];
+        ToolView *tomato = [ToolView tomatoViewWithNumber:0];
+
+        flower.frame = tomato.frame = tip.frame = CGRectMake(0, 0, width, width);
+        
+        [tip addTarget:self action:@selector(bomb:)];
+        [flower addTarget:self action:@selector(throwFlower:)];
+        [tomato addTarget:self action:@selector(throwTomato:)];
+        [flower updateOriginY:(width+TOOL_VIEW_SPACE)];
+        [tomato updateOriginY:(width+TOOL_VIEW_SPACE)*2];
+        
+
+
+        [_toolView addSubview:tip];
+        [_toolView addSubview:flower];
+        [_toolView addSubview:tomato];
+    }
+    if (self.popView == nil) {
+        self.popView = [[[CMPopTipView alloc] initWithCustomView:_toolView] autorelease];
+        self.popView.delegate = self;
+        [self.popView presentPointingAtView:sender inView:self.view animated:YES];
+        [self.popView setBackgroundColor:COLOR_WHITE];
+        
+    }else{
+        [self.popView dismissAnimated:YES];
+        self.popView = nil;
+    }
+}
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    self.popView = nil;
+}
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    self.popView = nil;
+    
 }
 
-#pragma mark - commonItemInfoView delegate
-- (void)didBuyItem:(int)itemId
-            result:(int)result
-{
-    if (result == 0) {
-        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kBuySuccess") delayTime:1 isHappy:YES];
-//        ToolView* toolview = nil;
-//        switch (itemId) {
-//            case ItemTypeTips: {
-//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TIPS];
-//            } break;
-//            case ItemTypeFlower: {
-//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_FLOWER];
-//            } break;
-//            case ItemTypeTomato: {
-//                toolview = (ToolView*)[self.view viewWithTag:TOOLVIEW_TAG_TOMATO];
-//            } break;
-//            default:
-//                break;
-//        }
-    }
-    if (result == ERROR_BALANCE_NOT_ENOUGH)
-    {
-        [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kNotEnoughCoin") delayTime:1 isHappy:NO];
-    }
-}
 
 @end
