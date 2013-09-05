@@ -1093,6 +1093,7 @@
 "kExceedMaxTakeNumber" = "你已经领取太多小吉号码，无法领取更多号码，如有问题请联系管理员";
 "kLogoutAccount" = "退出当前帐号";
 "kLogout" = "退出帐号";
+"kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";

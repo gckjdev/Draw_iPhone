@@ -1580,7 +1580,9 @@ POSTMSG(NSLS(@"kLoginFailure"));
                     [self createLocalUserAccount:output.responseData appId:appId];
                     
                     // auto registration OK
-                    [self checkAndAskXiaojiNumber:view];
+                    if ([self checkAndAskXiaojiNumber:view] == NO){
+                        [CommonDialog showSimpleDialog:NSLS(@"kAutoGetUserSucc") inView:view];
+                    }
                 }
                 else if (output.resultCode == ERROR_NETWORK) {
                     POSTMSG(NSLS(@"kSystemFailure"));

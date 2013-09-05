@@ -1075,6 +1075,7 @@
 "kExceedMaxTakeNumber" = "You took too many littlegee numbers. Cannot take more numbers. Please contact support.";
 "kLogoutAccount" = "Logout";
 "kLogout" = "Logout";
+"kAutoGetUserSucc" = "Get user information successfully.";
 
 "kDrawToUserByUser" = "drew to %@";
 "kQQGroup" = "";
