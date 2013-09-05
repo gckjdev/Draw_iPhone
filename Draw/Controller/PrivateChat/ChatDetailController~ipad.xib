@@ -192,7 +192,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="828717309">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="477422000">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
@@ -221,10 +221,10 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
-					<object class="IBUIButton" id="605073352">
+					<object class="IBUIButton" id="349113173">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{558, 4}, {80, 80}}</string>
+						<string key="NSFrame">{{604, 4}, {80, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="750304340"/>
@@ -238,7 +238,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="828717309"/>
+						<reference key="IBUINormalTitleShadowColor" ref="477422000"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">chat_change_bg@2x.png</string>
@@ -257,7 +257,7 @@
 				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="605073352"/>
+				<reference key="NSNextKeyView" ref="349113173"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC41NzY0NzA1ODgyIDAuNjAzOTIxNTY4NiAwLjY0NzA1ODgyMzUgMC4yMwA</bytes>
@@ -372,7 +372,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickChangeBGButton:</string>
-						<reference key="source" ref="605073352"/>
+						<reference key="source" ref="349113173"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -393,7 +393,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="750304340"/>
 							<reference ref="912043675"/>
-							<reference ref="605073352"/>
+							<reference ref="349113173"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -452,7 +452,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">62</int>
-						<reference key="object" ref="605073352"/>
+						<reference key="object" ref="349113173"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
