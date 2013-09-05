@@ -13,6 +13,7 @@
 #import "UserLocationController.h"
 #import "PhotoDrawSheet.h"
 #import "MWPhotoBrowser.h"
+#import "ChangeAvatar.h"
 
 @class MessageStat;
 @class PPMessage;
@@ -24,9 +25,9 @@
 
 @end
 
-@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate, PhotoDrawSheetDelegate, MWPhotoBrowserDelegate>
+@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate, PhotoDrawSheetDelegate, MWPhotoBrowserDelegate,ChangeAvatarDelegate>
 {
-    
+        ChangeAvatar *imageUploader;
 }
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 @property (retain, nonatomic) IBOutlet UIView *inputBackgroundView;
@@ -42,5 +43,6 @@
 - (IBAction)clickLocateButton:(id)sender;
 - (void)loadNewMessage:(BOOL)showActivity;
 - (id)initWithMessageStat:(MessageStat *)messageStat;
+- (IBAction)clickChangeBGButton:(id)sender;
 - (NSString *)fid;
 @end

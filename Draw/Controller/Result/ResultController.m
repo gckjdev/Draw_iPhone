@@ -486,6 +486,7 @@
     [self.titleView setRightButtonSelector:@selector(clickExitButton:)];
     
     self.wordLabel.textColor = COLOR_BROWN;
+
     self.drawImage.layer.borderWidth = 2;
     self.drawImage.layer.borderColor = [COLOR_GREEN CGColor];
     

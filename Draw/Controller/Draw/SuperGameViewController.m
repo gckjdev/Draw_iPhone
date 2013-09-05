@@ -286,7 +286,10 @@
     [CMPopTipView cancelPreviousPerformRequestsWithTarget:self.popView selector:@selector(dismissAnimated:) object:@(YES)];    
     [self.popView dismissAnimated:YES];
     self.popView = [[[CMPopTipView alloc] initWithCustomView:self.popLabel] autorelease];
-    self.popView.backgroundColor = onLeftTop ? COLOR_RED1 : COLOR_BLUE1;
+    
+    self.popView.backgroundColor = onLeftTop ? OPAQUE_COLOR(240, 78, 104) : OPAQUE_COLOR(54, 77, 197);
+    
+    
     [self.popView presentPointingAtView:player inView:self.view animated:YES pointDirection:PointDirectionUp];
     [self.popView performSelector:@selector(dismissAnimated:) withObject:@(YES) afterDelay:5];
     

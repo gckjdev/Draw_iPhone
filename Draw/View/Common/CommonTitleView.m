@@ -118,7 +118,7 @@
     _titleLabel.textAlignment = UITextAlignmentCenter;
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.shadowOffset = CGSizeMake(0, 1);
-    _titleLabel.shadowColor = COLOR_DARK_BLUE;
+    _titleLabel.shadowColor = OPAQUE_COLOR(92, 158, 140);
     
     [self addSubview:_bgImageView];
     [self addSubview:_titleLabel];
@@ -220,8 +220,7 @@
     [button setTitle:title forState:UIControlStateNormal];
     button.titleLabel.font = BUTTON_FONT;
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    button.titleLabel.shadowOffset = CGSizeMake(1, 1);
-//    [button setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+
     [button setBackgroundImage:[[ShareImageManager defaultManager] greenButtonImage:title]
                       forState:UIControlStateNormal];
     

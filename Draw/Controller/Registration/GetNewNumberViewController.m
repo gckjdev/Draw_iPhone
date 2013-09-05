@@ -22,14 +22,14 @@
 
 #define SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(view)                              \
 {                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_BROWN selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:LOGIN_FONT_BUTTON normalColor:COLOR_YELLOW2 selectedColor:COLOR_YELLOW highlightedColor:COLOR_YELLOW round:YES];         \
-[view.layer setCornerRadius:(ISIPAD ? 40 : 21)];  \
+    [ShareImageManager setButtonStyle:view normalTitleColor:COLOR_BROWN selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:LOGIN_FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW highlightedColor:COLOR_YELLOW round:YES];         \
+    [view.layer setCornerRadius:(ISIPAD ? 40 : 21)];  \
 [view.layer setMasksToBounds:YES];    \
 }
 
 #define SET_BUTTON_ROUND_STYLE_SMALL_LOGIN_BUTTON(view)                              \
 {                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_BROWN selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW2 selectedColor:COLOR_YELLOW highlightedColor:COLOR_YELLOW round:YES];         \
+    [ShareImageManager setButtonStyle:view normalTitleColor:COLOR_BROWN selectedTitleColor:COLOR_WHITE highlightedTitleColor:COLOR_WHITE font:FONT_BUTTON normalColor:COLOR_YELLOW selectedColor:COLOR_YELLOW highlightedColor:COLOR_YELLOW round:YES];         \
 }
 
 @interface GetNewNumberViewController ()
@@ -58,7 +58,7 @@
     self.getNumberMainView.frame = SUBVIEW_FRAME;
     SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.takeNumberButton);
     SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.loginButton);
-    self.getNumberTipsLabel.textColor = COLOR_GREEN3;
+    self.getNumberTipsLabel.textColor = OPAQUE_COLOR(52, 136, 112);
     
     self.getNumberTipsLabel.text = NSLS(@"kGetNumberTipsLabelText");
     [self.takeNumberButton setTitle:NSLS(@"kTakeNumberButtonTitle") forState:UIControlStateNormal];
@@ -67,7 +67,7 @@
     [self.view addSubview:self.getNumberMainView];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.bottomView.backgroundColor = COLOR_GREEN2;
+    self.bottomView.backgroundColor = OPAQUE_COLOR(139, 234, 204);
     self.bottomView.frame = SUBVIEW_FRAME;
 }
 
@@ -149,7 +149,7 @@
 //    SET_BUTTON_ROUND_STYLE_SMALL_LOGIN_BUTTON(self.forgotPasswordButton);
 //
 //    self.loginView.frame = self.view.frame;
-//    self.loginView.backgroundColor = COLOR_GREEN2;
+//    self.loginView.backgroundColor = OPAQUE_COLOR(139, 234, 204);
 //    [self.view addSubview:self.loginView];
 //    
 //    [self.inputNumberTextField becomeFirstResponder];
@@ -177,8 +177,9 @@
     self.showNumberTipsLabel.text = NSLS(@"kShowNumberTipsLabelText");
     [self.okButton setTitle:NSLS(@"kOkButtonTitle") forState:UIControlStateNormal];
     
-    self.showNumberTipsLabel.textColor = COLOR_GREEN3;
+    self.showNumberTipsLabel.textColor = OPAQUE_COLOR(52, 136, 112);    
     self.numberLabel.textColor = COLOR_BROWN;
+
     SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.okButton);
     
     

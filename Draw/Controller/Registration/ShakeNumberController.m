@@ -15,7 +15,7 @@
 
 #define SET_BUTTON_ROUND_STYLE_USE_BUTTON(view)                              \
 {                                                           \
-[[ShareImageManager defaultManager] setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_BROWN font:LOGIN_FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_ORANGE highlightedColor:COLOR_ORANGE round:YES];         \
+    [ShareImageManager setButtonStyle:view normalTitleColor:COLOR_WHITE selectedTitleColor:COLOR_BROWN highlightedTitleColor:COLOR_BROWN font:LOGIN_FONT_BUTTON normalColor:COLOR_ORANGE selectedColor:COLOR_ORANGE highlightedColor:COLOR_ORANGE round:YES];         \
 }
 
 

@@ -17,7 +17,7 @@ typedef enum{
     FooterTypeFlower,
     FooterTypeTomato,
     FooterTypeReport,
-    FooterTypeJudge
+    FooterTypeRate
     
 }FooterType;
 

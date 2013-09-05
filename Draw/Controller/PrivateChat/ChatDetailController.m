@@ -120,6 +120,7 @@
     PPRelease(_messageList);
     PPRelease(_photoDrawSheet);
     PPRelease(_locateButton);
+    PPRelease(imageUploader);
     [super dealloc];
 }
 
@@ -135,6 +136,35 @@
     return self;
 }
 
+#define CHAT_PAGE_BG_KEY @"chat_bg.png"
+
+- (ChangeAvatar*)backgroundPicker
+{
+    if (imageUploader == nil) {
+        imageUploader = [[ChangeAvatar alloc] init];
+        imageUploader.autoRoundRect = NO;
+        imageUploader.isCompressImage = NO;
+    }
+    return imageUploader;
+}
+
+
+- (IBAction)clickChangeBGButton:(id)sender {
+    
+    [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
+        if ([[UserManager defaultManager] setPageBg:image forKey:CHAT_PAGE_BG_KEY]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomChatBgSucc") delayTime:2];
+        }
+        [self updateBG];        
+    } didSetDefaultBlock:^{
+        if ([[UserManager defaultManager] resetPageBgforKey:CHAT_PAGE_BG_KEY]) {
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomChatBgSucc") delayTime:2];
+        }
+        [self updateBG];
+    } title:NSLS(@"kCustomChatBg") hasRemoveOption:YES];
+    
+}
+
 - (void)initViews
 {
     self.titleLabel.text = self.messageStat.friendNickName;
@@ -148,6 +178,7 @@
     [titleView setRightButtonAsRefresh];
     [titleView setTarget:self];
     [titleView setRightButtonSelector:@selector(clickRefresh:)];
+    [self.view sendSubviewToBack:titleView];
 
 }
 
@@ -207,18 +238,20 @@
         [self clearTitleForLoading];
     }];
 }
+#define BG_IMAGE_TAG 21233
 
 - (void)updateBG
 {
     UIImage *image = [[UserManager defaultManager] pageBgForKey:@"chat_bg.png"];
     if (image) {
-        UIImageView *iv = (id)[self.view reuseViewWithTag:21233
+        UIImageView *iv = (id)[self.view reuseViewWithTag:BG_IMAGE_TAG
                                                 viewClass:[UIImageView class]
                                                     frame:self.view.bounds];
         [iv setImage:image];
         [self.view sendSubviewToBack:iv];
     }else{
         self.view.backgroundColor = [[ShareImageManager defaultManager] drawBGColor];
+        [[self.view viewWithTag:BG_IMAGE_TAG] removeFromSuperview];
     }
 
 }
