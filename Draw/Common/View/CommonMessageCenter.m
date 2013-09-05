@@ -55,10 +55,6 @@ AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
     
     CGSize size = CGSizeMake(MESSAGE_LABEL_WIDTH, (ISIPAD ? 600 : 300));
     [self.messageLabel wrapTextWithConstrainedSize:size];
-
-//    if (_messageLabel.frame.size.width < MESSAGE_LABEL_WIDTH) {
-//        [_messageLabel updateWidth:MESSAGE_LABEL_WIDTH];
-//    }
     
     if (_messageLabel.frame.size.height < MESSAGE_LABEL_MIN_HEIGHT) {
         [_messageLabel updateHeight:MESSAGE_LABEL_MIN_HEIGHT];

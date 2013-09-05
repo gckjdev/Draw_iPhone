@@ -51,7 +51,6 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     [_closeButton release];
     RELEASE_BLOCK(_actionBlock);
     RELEASE_BLOCK(_closeHandler);
-    [_mainBgImageView release];
     [super dealloc];
 }
 
@@ -131,7 +130,6 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     
     [view.mainView updateWidth:width];
     [view.mainView updateHeight:height];
-    [view.mainBgImageView setImage:[[ShareImageManager defaultManager] customInfoViewMainBgImage]];
     
     // set title
     view.titleLabel.text = title;

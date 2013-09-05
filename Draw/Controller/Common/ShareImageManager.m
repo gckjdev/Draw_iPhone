@@ -12,8 +12,6 @@
 #import "PPResourceService.h"
 
 
-
-
 @interface ShareImageManager () {
     PPResourceService *_resService;
 }
@@ -269,15 +267,15 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"guess_popup.png" leftCapWidth:20];
 }
 
-- (UIImage *)popupChatImageLeft
-{
-    return [UIImage strectchableImageName:@"message_popup.png" leftCapWidth:10];
-}
-
-- (UIImage *)popupChatImageRight
-{
-    return [UIImage strectchableImageName:@"message_popup.png" leftCapWidth:20];
-}
+//- (UIImage *)popupChatImageLeft
+//{
+//    return [UIImage strectchableImageName:@"message_popup.png" leftCapWidth:10];
+//}
+//
+//- (UIImage *)popupChatImageRight
+//{
+//    return [UIImage strectchableImageName:@"message_popup.png" leftCapWidth:20];
+//}
 
 - (UIImage *)drawingMarkSmallImage
 {
@@ -1161,11 +1159,6 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"self_detail_exp_btn_bg.png"];
 }
 
-- (UIImage*)customInfoViewMainBgImage;
-{
-    return [[self fixedImageNamed:@"common_dialog_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:60];
-}
-
 - (UIImage *)draftsBoxBgImage
 {
     return [[self fixedImageNamed:@"all_my_words_bg"] stretchableImageWithLeftCapWidth:0 topCapHeight:240];
@@ -1250,7 +1243,7 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"run@2x.png"];
 }
 
-- (UIImage *)imageWithColor:(UIColor *)color
++ (UIImage *)imageWithColor:(UIColor *)color
 {
     CGSize size = CGSizeMake(2, 2);
     UIImage *image;
@@ -1261,6 +1254,7 @@ static UIImage* _whitePaperImage;
     UIGraphicsEndImageContext();
     return [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
 }
+
 - (UIImage *)detailHeaderBG
 {
     return [UIImage imageNamed:@"detail_header_bg@2x.png"];
@@ -1274,7 +1268,92 @@ static UIImage* _whitePaperImage;
     return [bg stretchableImageWithLeftCapWidth:bg.size.width*2/3 topCapHeight:bg.size.height*2/3];
 }
 
-- (void)setButtonStyle:(UIButton *)button
+
+
+
+
+
++ (void)setLabelStyle:(UILabel *)label
+            textColor:(UIColor *)textColor
+                 font:(UIFont *)font
+{
+    
+    label.textColor = textColor;
+    label.font = font;
+    
+    label.shadowColor = [UIColor clearColor];
+    label.shadowOffset = CGSizeZero;
+    
+    if ([LocaleUtils isChinese]) {
+        [label setLineBreakMode:UILineBreakModeCharacterWrap];
+    } else {
+        [label setLineBreakMode:UILineBreakModeWordWrap];
+    }
+}
+
++ (void)setMessageLabelStyle:(UILabel *)label{
+    
+    [self setLabelStyle:label
+              textColor:COLOR_BROWN
+                   font:FONT_BUTTON];
+}
+
+
+
++ (void)setInputViewStyle:(id)iv{
+    
+    [iv setTextColor:COLOR_BROWN];
+    [iv setFont:[UIFont boldSystemFontOfSize:(ISIPAD ? 28 : 14)]];
+    
+    [[iv layer] setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
+    [[iv layer] setMasksToBounds:YES];
+    
+    [iv layer].borderWidth = TEXT_VIEW_BORDER_WIDTH;
+    [iv layer].borderColor = [COLOR_YELLOW CGColor];
+}
+
++ (void)setButtonYellowRoundStyle:(UIButton *)button{
+    
+    [self setButtonStyle:button
+        normalTitleColor:COLOR_COFFEE
+      selectedTitleColor:COLOR_COFFEE
+   highlightedTitleColor:COLOR_COFFEE
+                    font:FONT_BUTTON
+             normalColor:COLOR_YELLOW
+           selectedColor:COLOR_YELLOW
+        highlightedColor:COLOR_YELLOW
+                   round:YES];
+}
+
++ (void)setButtonCommonTabStyle:(UIButton *)button{
+    
+    [self setButtonStyle:button
+        normalTitleColor:COLOR_WHITE
+      selectedTitleColor:COLOR_BROWN
+   highlightedTitleColor:COLOR_WHITE
+                    font:FONT_BUTTON
+             normalColor:COLOR_ORANGE
+           selectedColor:COLOR_YELLOW
+        highlightedColor:COLOR_ORANGE1
+                   round:NO];
+}
+
+
++ (void)setButtonOrangeRoundStyle:(UIButton *)button{
+    
+    [self setButtonStyle:button
+        normalTitleColor:COLOR_WHITE
+      selectedTitleColor:COLOR_BROWN
+   highlightedTitleColor:COLOR_WHITE
+                    font:FONT_BUTTON
+             normalColor:COLOR_ORANGE
+           selectedColor:COLOR_YELLOW
+        highlightedColor:COLOR_ORANGE1
+                   round:YES];
+}
+
+
++ (void)setButtonStyle:(UIButton *)button
       normalTitleColor:(UIColor *)normalTitleColor
     selectedTitleColor:(UIColor *)selectedTitleColor
  highlightedTitleColor:(UIColor *)highlightedTitleColor
@@ -1283,23 +1362,26 @@ static UIImage* _whitePaperImage;
          selectedColor:(UIColor *)selectedColor
       highlightedColor:(UIColor *)highlightedColor
                  round:(BOOL)round;
-{                                                           
+{
+    button.titleLabel.font = font;
+    
+    [button setShadowOffset:CGSizeZero blur:0 shadowColor:[UIColor clearColor]];
+    
     [button setTitleColor:normalTitleColor
-               forState:UIControlStateNormal];
+                 forState:UIControlStateNormal];
     [button setTitleColor:selectedTitleColor
                  forState:UIControlStateSelected];
     [button setTitleColor:highlightedTitleColor
                  forState:UIControlStateHighlighted];
-    button.titleLabel.font = font;
+    
+    [button setBackgroundImage:IMAGE_FROM_COLOR(normalColor) forState:UIControlStateNormal];
+    [button setBackgroundImage:IMAGE_FROM_COLOR(selectedColor) forState:UIControlStateSelected];
+    [button setBackgroundImage:IMAGE_FROM_COLOR(highlightedColor) forState:UIControlStateHighlighted];
     
     if (round) {
-        [button.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];
+        [button.layer setCornerRadius:BUTTON_CORNER_RADIUS];
         [button.layer setMasksToBounds:YES];
     }
-    
-    [button setBackgroundImage:IMAGE_FROM_COLOR(normalColor) forState:UIControlStateNormal];           
-    [button setBackgroundImage:IMAGE_FROM_COLOR(selectedColor) forState:UIControlStateSelected];        
-    [button setBackgroundImage:IMAGE_FROM_COLOR(highlightedColor) forState:UIControlStateHighlighted];    
 }
 
 @end

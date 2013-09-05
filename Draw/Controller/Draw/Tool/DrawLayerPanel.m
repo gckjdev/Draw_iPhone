@@ -77,7 +77,7 @@
     [self.remove setHidden:![layer canBeRemoved]];
     [self.layerName setTextColor:COLOR_COFFEE];
     if (selected) {
-        [self.bgView setBackgroundColor:COLOR_GREEN1];
+        [self.bgView setBackgroundColor:OPAQUE_COLOR(211, 242, 225)];
     }else{
         [self.bgView setBackgroundColor:COLOR_WHITE];
     }
