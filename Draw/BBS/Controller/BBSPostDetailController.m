@@ -225,6 +225,7 @@ typedef enum{
 //                                                   iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2, self.view.bounds.size.height-100, 320, 50)
 //                                                     useLmAd:YES];
     [self customBbsBg];
+    [self setShowTipsDisable:YES];    
 }
 
 - (void)didReceiveMemoryWarning

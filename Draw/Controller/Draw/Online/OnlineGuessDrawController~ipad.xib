@@ -52,9 +52,9 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIView" id="768399499">
+					<object class="IBUIView" id="1054218910">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">269</int>
+						<int key="NSvFlags">268</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{0, 751}, {768, 253}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
@@ -149,7 +149,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{667, 195}, {86, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView" ref="768399499"/>
+						<reference key="NSNextKeyView" ref="1054218910"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -250,7 +250,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">wordInputView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="768399499"/>
+						<reference key="destination" ref="1054218910"/>
 					</object>
 					<int key="connectionID">109</int>
 				</object>
@@ -290,7 +290,7 @@
 							<reference ref="922263673"/>
 							<reference ref="883635359"/>
 							<reference ref="903400176"/>
-							<reference ref="768399499"/>
+							<reference ref="1054218910"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -333,7 +333,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">108</int>
-						<reference key="object" ref="768399499"/>
+						<reference key="object" ref="1054218910"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
