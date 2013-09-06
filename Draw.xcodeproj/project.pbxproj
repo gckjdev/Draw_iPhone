@@ -1580,18 +1580,18 @@
 		A42BAFC717D71F74007FB11B /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */; };
 		A42BAFC817D71F74007FB11B /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */; };
 		A42BAFC917D71F74007FB11B /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */; };
-		A42BB01017D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
-		A42BB01117D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
-		A42BB01217D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
-		A42BB01317D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
-		A42BB01A17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
-		A42BB01B17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
-		A42BB01C17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
-		A42BB01D17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
-		A42BB01F17D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
-		A42BB02017D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
-		A42BB02117D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
-		A42BB02217D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
+		A42BB02A17D9735A007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB02717D9735A007FB11B /* TwoInputFieldView.m */; };
+		A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB02717D9735A007FB11B /* TwoInputFieldView.m */; };
+		A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB02717D9735A007FB11B /* TwoInputFieldView.m */; };
+		A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB02717D9735A007FB11B /* TwoInputFieldView.m */; };
+		A42BB02E17D9735A007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02817D9735A007FB11B /* TwoInputFieldView.xib */; };
+		A42BB02F17D9735A007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02817D9735A007FB11B /* TwoInputFieldView.xib */; };
+		A42BB03017D9735A007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02817D9735A007FB11B /* TwoInputFieldView.xib */; };
+		A42BB03117D9735A007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02817D9735A007FB11B /* TwoInputFieldView.xib */; };
+		A42BB03217D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02917D9735A007FB11B /* TwoInputFieldView~ipad.xib */; };
+		A42BB03317D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02917D9735A007FB11B /* TwoInputFieldView~ipad.xib */; };
+		A42BB03417D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02917D9735A007FB11B /* TwoInputFieldView~ipad.xib */; };
+		A42BB03517D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB02917D9735A007FB11B /* TwoInputFieldView~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
@@ -5055,22 +5055,6 @@
 		CA518356179F79A80033AA95 /* UserNumberService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518354179F79A80033AA95 /* UserNumberService.m */; };
 		CA518357179F79A80033AA95 /* UserNumberService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518354179F79A80033AA95 /* UserNumberService.m */; };
 		CA518358179F79A80033AA95 /* UserNumberService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518354179F79A80033AA95 /* UserNumberService.m */; };
-		CA518365179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
-		CA518366179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
-		CA518367179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
-		CA518368179FB5D50033AA95 /* LoginByNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518363179FB5D50033AA95 /* LoginByNumberController.m */; };
-		CA518369179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
-		CA51836A179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
-		CA51836B179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
-		CA51836C179FB5D50033AA95 /* LoginByNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518364179FB5D50033AA95 /* LoginByNumberController.xib */; };
-		CA518375179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
-		CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
-		CA518377179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
-		CA518378179FB6010033AA95 /* ShowNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA518373179FB6000033AA95 /* ShowNumberController.m */; };
-		CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
-		CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
-		CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
-		CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA518374179FB6000033AA95 /* ShowNumberController.xib */; };
 		CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51837E179FB6340033AA95 /* ShakeNumberController.m */; };
 		CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51837E179FB6340033AA95 /* ShakeNumberController.m */; };
 		CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51837E179FB6340033AA95 /* ShakeNumberController.m */; };
@@ -5250,6 +5234,14 @@
 		CA988ACC16A6B7E70050AC78 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CA98890C16A6B7E40050AC78 /* MBProgressHUD.m */; };
 		CA988AD016A6B7E70050AC78 /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = CA98890D16A6B7E40050AC78 /* README.mdown */; };
 		CA988AFC16A6B7E70050AC78 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA98892516A6B7E50050AC78 /* MWPhotoBrowser.bundle */; };
+		CA9900C317D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C117D96E84000148E0 /* GetNewNumberViewController~ipad.xib */; };
+		CA9900C417D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C117D96E84000148E0 /* GetNewNumberViewController~ipad.xib */; };
+		CA9900C517D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C117D96E84000148E0 /* GetNewNumberViewController~ipad.xib */; };
+		CA9900C617D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C117D96E84000148E0 /* GetNewNumberViewController~ipad.xib */; };
+		CA9900C717D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C217D96E84000148E0 /* ShakeNumberController~ipad.xib */; };
+		CA9900C817D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C217D96E84000148E0 /* ShakeNumberController~ipad.xib */; };
+		CA9900C917D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C217D96E84000148E0 /* ShakeNumberController~ipad.xib */; };
+		CA9900CA17D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9900C217D96E84000148E0 /* ShakeNumberController~ipad.xib */; };
 		CA9A274D1655E9DE00B7A0DA /* CreatePostController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */; };
 		CA9A274E1655E9DE00B7A0DA /* CreatePostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */; };
 		CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7EC216DC57B10089BD51 /* ShapeBox.m */; };
@@ -7397,10 +7389,10 @@
 		A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
 		A42BAC8817D71F74007FB11B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
 		A42BAC8917D71F74007FB11B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
-		A42BB00E17D96B64007FB11B /* TwoInputFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoInputFieldView.h; sourceTree = "<group>"; };
-		A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoInputFieldView.m; sourceTree = "<group>"; };
-		A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoInputFieldView.xib; sourceTree = "<group>"; };
-		A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TwoInputFieldView~ipad.xib"; sourceTree = "<group>"; };
+		A42BB02617D9735A007FB11B /* TwoInputFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoInputFieldView.h; sourceTree = "<group>"; };
+		A42BB02717D9735A007FB11B /* TwoInputFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoInputFieldView.m; sourceTree = "<group>"; };
+		A42BB02817D9735A007FB11B /* TwoInputFieldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoInputFieldView.xib; sourceTree = "<group>"; };
+		A42BB02917D9735A007FB11B /* TwoInputFieldView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TwoInputFieldView~ipad.xib"; sourceTree = "<group>"; };
 		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
 		A4348C581717C0FA004AFB26 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
@@ -9001,12 +8993,6 @@
 		CA51834A179F79570033AA95 /* GetNewNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetNewNumberViewController.xib; sourceTree = "<group>"; };
 		CA518353179F79A80033AA95 /* UserNumberService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNumberService.h; sourceTree = "<group>"; };
 		CA518354179F79A80033AA95 /* UserNumberService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNumberService.m; sourceTree = "<group>"; };
-		CA518362179FB5D50033AA95 /* LoginByNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginByNumberController.h; sourceTree = "<group>"; };
-		CA518363179FB5D50033AA95 /* LoginByNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginByNumberController.m; sourceTree = "<group>"; };
-		CA518364179FB5D50033AA95 /* LoginByNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginByNumberController.xib; sourceTree = "<group>"; };
-		CA518372179FB6000033AA95 /* ShowNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowNumberController.h; sourceTree = "<group>"; };
-		CA518373179FB6000033AA95 /* ShowNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowNumberController.m; sourceTree = "<group>"; };
-		CA518374179FB6000033AA95 /* ShowNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowNumberController.xib; sourceTree = "<group>"; };
 		CA51837D179FB6340033AA95 /* ShakeNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeNumberController.h; sourceTree = "<group>"; };
 		CA51837E179FB6340033AA95 /* ShakeNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeNumberController.m; sourceTree = "<group>"; };
 		CA51837F179FB6340033AA95 /* ShakeNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShakeNumberController.xib; sourceTree = "<group>"; };
@@ -9240,6 +9226,8 @@
 		CA98892416A6B7E50050AC78 /* MWPhotoBrowser-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MWPhotoBrowser-Prefix.pch"; sourceTree = "<group>"; };
 		CA98892516A6B7E50050AC78 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		CA98892616A6B7E50050AC78 /* MWPhotoBrowser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MWPhotoBrowser.xcodeproj; sourceTree = "<group>"; };
+		CA9900C117D96E84000148E0 /* GetNewNumberViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GetNewNumberViewController~ipad.xib"; sourceTree = "<group>"; };
+		CA9900C217D96E84000148E0 /* ShakeNumberController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShakeNumberController~ipad.xib"; sourceTree = "<group>"; };
 		CA9A274A1655E9DE00B7A0DA /* CreatePostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatePostController.h; sourceTree = "<group>"; };
 		CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatePostController.m; sourceTree = "<group>"; };
 		CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatePostController.xib; sourceTree = "<group>"; };
@@ -11680,6 +11668,10 @@
 		A4B78987179E2E890008E21B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A42BB02617D9735A007FB11B /* TwoInputFieldView.h */,
+				A42BB02717D9735A007FB11B /* TwoInputFieldView.m */,
+				A42BB02817D9735A007FB11B /* TwoInputFieldView.xib */,
+				A42BB02917D9735A007FB11B /* TwoInputFieldView~ipad.xib */,
 				A4B7898D179E2E890008E21B /* CommonTitleView.h */,
 				A4B7898E179E2E890008E21B /* CommonTitleView.m */,
 				A4B7898F179E2E890008E21B /* HPThemeManager.h */,
@@ -11689,10 +11681,6 @@
 				A467892F17BB21FD007C546A /* UISoundButton.h */,
 				A467893017BB21FE007C546A /* UISoundButton.m */,
 				A484D2FD17C45ACB008185F8 /* CommonViewConstants.h */,
-				A42BB00E17D96B64007FB11B /* TwoInputFieldView.h */,
-				A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */,
-				A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */,
-				A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -14018,15 +14006,11 @@
 				CA518348179F79570033AA95 /* GetNewNumberViewController.h */,
 				CA518349179F79570033AA95 /* GetNewNumberViewController.m */,
 				CA51834A179F79570033AA95 /* GetNewNumberViewController.xib */,
-				CA518362179FB5D50033AA95 /* LoginByNumberController.h */,
-				CA518363179FB5D50033AA95 /* LoginByNumberController.m */,
-				CA518364179FB5D50033AA95 /* LoginByNumberController.xib */,
-				CA518372179FB6000033AA95 /* ShowNumberController.h */,
-				CA518373179FB6000033AA95 /* ShowNumberController.m */,
-				CA518374179FB6000033AA95 /* ShowNumberController.xib */,
+				CA9900C117D96E84000148E0 /* GetNewNumberViewController~ipad.xib */,
 				CA51837D179FB6340033AA95 /* ShakeNumberController.h */,
 				CA51837E179FB6340033AA95 /* ShakeNumberController.m */,
 				CA51837F179FB6340033AA95 /* ShakeNumberController.xib */,
+				CA9900C217D96E84000148E0 /* ShakeNumberController~ipad.xib */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -17517,8 +17501,6 @@
 				A4B78A5E179F7C570008E21B /* GuessModesController.xib in Resources */,
 				A4B78A62179F7C600008E21B /* GuessSelectController.xib in Resources */,
 				A4B78A66179F7C680008E21B /* DrawGuessController.xib in Resources */,
-				CA51836B179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
-				CA51837B179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518386179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03B17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897B17AA736900F015AB /* ToolPanel.xib in Resources */,
@@ -17953,8 +17935,10 @@
 				EADEDC7E17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8217D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8C17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
-				A42BB01C17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
-				A42BB02117D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				CA9900C517D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */,
+				CA9900C917D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
+				A42BB03017D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB03417D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18386,8 +18370,6 @@
 				A4B78A60179F7C5E0008E21B /* GuessSelectController.xib in Resources */,
 				A4B78A64179F7C660008E21B /* DrawGuessController.xib in Resources */,
 				A4B78A6E179FA6F10008E21B /* GuessRankListController.xib in Resources */,
-				CA51836A179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
-				CA51837A179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518385179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03A17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897A17AA736900F015AB /* ToolPanel.xib in Resources */,
@@ -18822,8 +18804,10 @@
 				EADEDC7D17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8117D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8B17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
-				A42BB01B17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
-				A42BB02017D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				CA9900C417D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */,
+				CA9900C817D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
+				A42BB02F17D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB03317D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19236,8 +19220,6 @@
 				A4B789B3179E2F120008E21B /* GuessSelectController.xib in Resources */,
 				CA51834F179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
 				A4B78A6D179FA6F10008E21B /* GuessRankListController.xib in Resources */,
-				CA518369179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
-				CA518379179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518384179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03917A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897917AA736900F015AB /* ToolPanel.xib in Resources */,
@@ -19672,8 +19654,10 @@
 				EADEDC7C17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8017D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8A17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
-				A42BB01A17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
-				A42BB01F17D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				CA9900C317D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */,
+				CA9900C717D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
+				A42BB02E17D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB03217D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20055,8 +20039,6 @@
 				CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */,
 				A4B78828179E2E3C0008E21B /* Theme in Resources */,
 				CA518352179F79570033AA95 /* GetNewNumberViewController.xib in Resources */,
-				CA51836C179FB5D50033AA95 /* LoginByNumberController.xib in Resources */,
-				CA51837C179FB6010033AA95 /* ShowNumberController.xib in Resources */,
 				CA518387179FB6340033AA95 /* ShakeNumberController.xib in Resources */,
 				A4C9E03C17A61B4200DE982F /* GuessRankCell.xib in Resources */,
 				CAF4897C17AA736900F015AB /* ToolPanel.xib in Resources */,
@@ -20492,8 +20474,10 @@
 				EADEDC7F17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8317D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8D17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
-				A42BB01D17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
-				A42BB02217D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				CA9900C617D96E84000148E0 /* GetNewNumberViewController~ipad.xib in Resources */,
+				CA9900CA17D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
+				A42BB03117D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB03517D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21294,8 +21278,6 @@
 				A4B78A5D179F7C570008E21B /* GuessModesController.m in Sources */,
 				A4B78A61179F7C600008E21B /* GuessSelectController.m in Sources */,
 				A4B78A65179F7C680008E21B /* DrawGuessController.m in Sources */,
-				CA518367179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
-				CA518377179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518382179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				CA766D5C17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6417A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
@@ -21329,7 +21311,7 @@
 				EA7100B717D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5917D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
-				A42BB01217D96B64007FB11B /* TwoInputFieldView.m in Sources */,
+				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22099,8 +22081,6 @@
 				A4B78A5F179F7C5E0008E21B /* GuessSelectController.m in Sources */,
 				A4B78A63179F7C660008E21B /* DrawGuessController.m in Sources */,
 				A4B78A67179F7C6D0008E21B /* CommonGuessController.m in Sources */,
-				CA518366179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
-				CA518376179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518381179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8717A046520008E21B /* PageScrollViewFactory.m in Sources */,
 				CA766D5B17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
@@ -22137,7 +22117,7 @@
 				EA7100B617D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
-				A42BB01117D96B64007FB11B /* TwoInputFieldView.m in Sources */,
+				A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22915,8 +22895,6 @@
 				CA518355179F79A80033AA95 /* UserNumberService.m in Sources */,
 				A4B78A5B179F7C350008E21B /* SingOpus.m in Sources */,
 				A4B78A6B179FA6F10008E21B /* GuessRankListController.m in Sources */,
-				CA518365179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
-				CA518375179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */,
 				CA766D5A17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
@@ -22951,7 +22929,7 @@
 				EA7100B517D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D017D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5717D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
-				A42BB01017D96B64007FB11B /* TwoInputFieldView.m in Sources */,
+				A42BB02A17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23703,8 +23681,6 @@
 				A4B789A4179E2E890008E21B /* HPThemeManager.m in Sources */,
 				CA51834E179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518358179F79A80033AA95 /* UserNumberService.m in Sources */,
-				CA518368179FB5D50033AA95 /* LoginByNumberController.m in Sources */,
-				CA518378179FB6010033AA95 /* ShowNumberController.m in Sources */,
 				CA518383179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				CA766D5D17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */,
 				CA766D6517A15EB600D60E3D /* UIResponder+MotionRecognizers.m in Sources */,
@@ -23739,7 +23715,7 @@
 				EA7100B817D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
-				A42BB01317D96B64007FB11B /* TwoInputFieldView.m in Sources */,
+				A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
