@@ -239,14 +239,10 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 #define FONT_SIZE_BUTTON_TITLE ([DeviceDetection isIPAD] ? 30 : 15)
 + (UIButton *)createButtonWithTitle:(NSString *)title{
     UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, BUTTON_WIDTH, BUTTON_HEIGHT)] autorelease];
- 
-    [button setBackgroundColor:COLOR_YELLOW];
-    [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    SET_VIEW_ROUND_CORNER(button);
+    
+    SET_BUTTON_ROUND_STYLE_YELLOW(button);
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:FONT_SIZE_BUTTON_TITLE];
-    button.titleLabel.shadowOffset = CGSizeMake(0, 1);
+
     
     return button;
 }

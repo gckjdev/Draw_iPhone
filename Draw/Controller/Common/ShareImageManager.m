@@ -1320,10 +1320,24 @@ static UIImage* _whitePaperImage;
    highlightedTitleColor:COLOR_COFFEE
                     font:FONT_BUTTON
              normalColor:COLOR_YELLOW
-           selectedColor:COLOR_YELLOW
-        highlightedColor:COLOR_YELLOW
+           selectedColor:COLOR_YELLOW1
+        highlightedColor:COLOR_YELLOW1
                    round:YES];
 }
+
++ (void)setButtonYellowSquareStyle:(UIButton *)button{
+    
+    [self setButtonStyle:button
+        normalTitleColor:COLOR_COFFEE
+      selectedTitleColor:COLOR_COFFEE
+   highlightedTitleColor:COLOR_COFFEE
+                    font:FONT_BUTTON
+             normalColor:COLOR_YELLOW
+           selectedColor:COLOR_YELLOW1
+        highlightedColor:COLOR_YELLOW1
+                   round:NO];
+}
+
 
 + (void)setButtonCommonTabStyle:(UIButton *)button{
     

@@ -3813,10 +3813,10 @@
 		<string>午睡</string>
 		<string>睡眼</string>
 	</array>
-	<key>哦</key>
+	<key></key>
 	<array>
-		<string>吟哦</string>
-		<string>哦哦</string>
+		<string>吟</string>
+		<string></string>
 	</array>
 	<key>皆</key>
 	<array>
@@ -9023,7 +9023,7 @@
 	</array>
 	<key>吟</key>
 	<array>
-		<string>吟哦</string>
+		<string>吟</string>
 		<string>呻吟</string>
 		<string>歌吟</string>
 		<string>低吟</string>
