@@ -13,12 +13,13 @@
 #import "GameBasic.pb.h"
 #import "HPThemeManager.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "UIImageUtil.h"
 
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
 #define TEXT_VIEW_CORNER_RADIUS  (ISIPAD ? 15 : 8)
+#define DEFAULT_CORNER_RADIUS  (ISIPAD ? 15 : 8)
 #define BUTTON_CORNER_RADIUS    TEXT_VIEW_CORNER_RADIUS
 #define FONT_BUTTON [UIFont boldSystemFontOfSize:(ISIPAD ? 30 : 15)]
 #define LOGIN_FONT_BUTTON [UIFont systemFontOfSize:(ISIPAD ? 36 : 19)]
@@ -58,6 +59,11 @@
 
 
 #define IMAGE_FROM_COLOR(color) ([ShareImageManager imageWithColor:color])
+
+#define TOP_ROUND_CORNER_IMAGE_FROM_COLOR(color) ([UIImage imageFromColor:color corner:CornerLeftTop|CornerRightTop radius:DEFAULT_CORNER_RADIUS])
+
+#define BOTTOM_ROUND_CORNER_IMAGE_FROM_COLOR(color) ([UIImage imageFromColor:color corner:CornerLeftBottom|CornerRightBottom radius:DEFAULT_CORNER_RADIUS])
+
 
 #define SET_VIEW_BG(view) (view.backgroundColor = COLOR_WHITE)
 
