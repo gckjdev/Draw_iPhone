@@ -110,9 +110,9 @@
 
 - (void)updateButtonBG
 {
-    for (UIButton *button in self.subviews) {
-        SET_BUTTON_ROUND_STYLE_YELLOW(button);
-    }
+    [self enumSubviewsWithClass:[UIButton class] handler:^(id view) {
+        SET_BUTTON_ROUND_STYLE_YELLOW(view);
+    }];
     SET_BUTTON_ROUND_STYLE_YELLOW(self.applyButton);
     SET_BUTTON_ROUND_STYLE_YELLOW(self.cancelButton);
 }
@@ -297,7 +297,7 @@
     CGContextSetLineWidth(context, 4);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
-    UIColor *color = OPAQUE_COLOR(149, 239, 238);
+    UIColor *color = COLOR_GREEN;
     [color setFill];
     [color setStroke];
     UIBezierPath *line = [PocketSVG bezierPathWithSVGFileNamed:@"line"];
@@ -381,7 +381,9 @@ SLIDER.tag = TAG;\
     [self.distanceLabel setText:NSLS(@"kDistance")];
     [self.degreeLabel setText:NSLS(@"kDegree")];
     [self.blurLabel setText:NSLS(@"kBlur")];
-    
+    [self enumSubviewsWithClass:[UILabel class] handler:^(id view) {
+        [view setTextColor:COLOR_BROWN];
+    }];
 }
 
 - (void)updateSliders
@@ -458,8 +460,8 @@ SLIDER.tag = TAG;\
     [drawSlider popupWithContenView:label];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setFont:[UIFont boldSystemFontOfSize:ALPHA_FONT_SIZE]];
-    UIColor *textColor = [UIColor colorWithRed:23./255. green:21./255. blue:20./255. alpha:1];
-    [label setTextColor:textColor];
+//    UIColor *textColor = [UIColor colorWithRed:23./255. green:21./255. blue:20./255. alpha:1];
+    [label setTextColor:COLOR_BROWN];
     if (drawSlider == self.degreeSlider) {
         [self updateLabel:label value:value format:@"%.0f°"];
     }else{

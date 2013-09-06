@@ -237,10 +237,9 @@ CGPoint boxContentOffset;
     }else{
         name = [self nameInList:list language:@"en"];
     }
-    CGSize withinSize = CGSizeMake(MAX_WITH_ITEM_NAME, 19);
     [[self nameLabel] setText:name];
-    CGSize size = [name sizeWithFont:[self nameLabel].font constrainedToSize:withinSize lineBreakMode:[self nameLabel].lineBreakMode];
-    [[self nameLabel] updateWidth:size.width];
+    [[self nameLabel] setTextColor:COLOR_BROWN];
+    [[self nameLabel] sizeToFit];
     
     if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
         CGFloat originX = CGRectGetMaxX([self nameLabel].frame) + 3;
