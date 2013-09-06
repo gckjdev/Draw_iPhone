@@ -13,6 +13,7 @@
 #import "UserManager.h"
 #import "UserService.h"
 #import "StringUtil.h"
+#import "TwoInputFieldView.h"
 
 #define SUBVIEW_FRAME CGRectMake(0, 205, 320, 480-205)
 
@@ -284,39 +285,42 @@
 
 - (void)showLoginDialog
 {
-    RoomPasswordDialog *rpDialog = [RoomPasswordDialog create];
-    rpDialog.delegate = self;
+//    RoomPasswordDialog *rpDialog = [RoomPasswordDialog create];
+//    rpDialog.delegate = self;
+//    
+//    rpDialog.roomNameField.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
+//    rpDialog.passwordField.placeholder = NSLS(@"kLoginPasswordPlaceHolder");
+//    
+//    rpDialog.roomNameField.text = self.xiaojiNumber;
+//    rpDialog.passwordField.text = self.password;
+//    
+//    rpDialog.passwordField.secureTextEntry = YES;
+////    rpDialog.roomNameLabel.text = NSLS(@"kLoginXiaojiLabel");
+////    rpDialog.passwordLabel.text = NSLS(@"kLoginPasswordLabel");
+//    rpDialog.roomNameField.keyboardType = UIKeyboardTypeNumberPad;
+//    [rpDialog.roomNameField becomeFirstResponder];
     
-    rpDialog.roomNameField.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
-    rpDialog.passwordField.placeholder = NSLS(@"kLoginPasswordPlaceHolder");
+    TwoInputFieldView *rpDialog = [TwoInputFieldView create];
     
-    rpDialog.roomNameField.text = self.xiaojiNumber;
-    rpDialog.passwordField.text = self.password;
+    rpDialog.textField1.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
+    rpDialog.textField2.placeholder = NSLS(@"kLoginPasswordPlaceHolder");
     
-    rpDialog.passwordField.secureTextEntry = YES;
-//    rpDialog.roomNameLabel.text = NSLS(@"kLoginXiaojiLabel");
-//    rpDialog.passwordLabel.text = NSLS(@"kLoginPasswordLabel");
-    rpDialog.roomNameField.keyboardType = UIKeyboardTypeNumberPad;
-    [rpDialog.roomNameField becomeFirstResponder];
+    rpDialog.textField1.text = self.xiaojiNumber;
+    rpDialog.textField2.text = self.password;
+    
+    rpDialog.textField2.secureTextEntry = YES;
+
+    rpDialog.textField1.keyboardType = UIKeyboardTypeNumberPad;
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kLoginXiaoji") customView:rpDialog style:CommonDialogStyleDoubleButtonWithCross];
     dialog.delegate = self;
     dialog.tag = LOGIN_DIALOG_TAG;
     [dialog showInView:self.view];
-}
-
-- (void)didClickOk:(CommonDialog *)dialog
-          infoView:(id)infoView
-{
-    if (dialog.tag == LOGIN_DIALOG_TAG) {        
-        RoomPasswordDialog *v = (RoomPasswordDialog *)infoView;
-        [self processLogin:v.roomNameField.text password:v.passwordField.text];
-    }
-    }
-
-- (void)didClickCancel:(CommonDialog *)dialog
-{
     
+    [dialog setClickOkBlock:^(TwoInputFieldView *infoView){
+        
+        [self processLogin:infoView.textField1.text password:infoView.textField2.text];
+    }];
 }
 
 - (void)roomNameIsIllegal

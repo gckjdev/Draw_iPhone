@@ -132,7 +132,17 @@
 - (void)layout
 {
     UIView *infoView = [self infoView];
+    
+    // update content view height
+//    CGFloat height = CONTENT_VIEW_INSERT + TITLE_LABEL_HEIGHT
+//    + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW
+//    + infoView.frame.size.height
+//    + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON
+//    + self.oKButton.frame.size.height
+//    + GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
+    
 
+    
     if (_type == CommonDialogTypeCustomView &&
         infoView.frame.size.width > (self.contentView.frame.size.width - 2 * (ISIPAD ? 8 : 4) - CONTENT_VIEW_INSERT)) {
         
@@ -152,11 +162,15 @@
     
     [_closeButton updateOriginY:originY];
     
-    originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
+//    originY += _titleLabel.frame.size.height + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
+    originY = CGRectGetMaxY(_titleLabel.frame) + GAP_Y_BETWEEN_TITLE_LABEL_AND_INFO_VIEW;
+
     [infoView updateCenterX:centerX];
     [infoView updateOriginY:(originY)];
     
     originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+    originY = CGRectGetMaxY(infoView.frame) + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+
 
     [self.oKButton updateOriginY:originY];
     [self.cancelButton updateOriginY:(originY)];
@@ -171,8 +185,13 @@
     }
     
     // update content view height
-    CGFloat height = originY + _oKButton.frame.size.height +  GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
+    CGFloat height = CGRectGetMaxY(infoView.frame)
+    + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON
+    + self.oKButton.frame.size.height
+    + GAP_Y_BETWEEN_BUTTON_AND_BOTTOM + CONTENT_VIEW_INSERT;
+    
     [self.contentView updateHeight:height];
+    [self.contentView setNeedsDisplay];
 }
 
 - (UIView *)infoView{
