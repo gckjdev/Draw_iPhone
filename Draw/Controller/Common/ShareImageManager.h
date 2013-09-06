@@ -41,8 +41,9 @@
 // CommonDialog 边框的颜色。
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48)    
 
-// CommonDialog 标题栏背景颜色。
+// 通用绿色。
 #define COLOR_GREEN OPAQUE_COLOR(0, 190, 177) 
+
 
 // 黄色按钮上的字体颜色。其他颜色的按钮上的字体为白色。
 #define COLOR_COFFEE OPAQUE_COLOR(126, 49, 46)

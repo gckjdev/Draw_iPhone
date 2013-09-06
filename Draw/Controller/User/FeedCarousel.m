@@ -11,6 +11,7 @@
 #import "ReflectionView.h"
 #import "UIButton+WebCache.h"
 #import "UIViewUtils.h"
+#import "ConfigManager.h"
 
 #define FEED_VIEW_FRAME (ISIPAD ? CGRectMake(0.0f, 0.0f, 240.0f, 240.0f) : CGRectMake(0.0f, 0.0f, 120.0f, 120.0f))
 
@@ -47,7 +48,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     FeedCarousel *view = [self createView];
     view.carousel.delegate = view;
     view.carousel.dataSource = view;
-    view.carousel.type = iCarouselTypeCoverFlow2;
+    view.carousel.type = [ConfigManager getFeedCarouselType];
 
     return view;
 }
@@ -75,6 +76,9 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
                 tipText:(NSString *)tipText
 {
     self.drawFeeds = drawFeeds;
+    self.tipLable.backgroundColor = [UIColor clearColor];
+    self.tipLable.textColor = COLOR_BROWN;
+    
     [self.carousel reloadData];
     
     if ([drawFeeds count] > 0) {
@@ -152,63 +156,211 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
 {
+//    switch (option)
+//    {
+//        case iCarouselOptionWrap:
+//            return _wrap;
+////        case iCarouselOptionShowBackfaces:
+////            return -0.2;
+////        case iCarouselOptionOffsetMultiplier:
+////            return -0.2;
+//        case iCarouselOptionVisibleItems:
+//            return value;
+//;
+////        case iCarouselOptionCount:
+////            return -0.2;
+//
+//        case iCarouselOptionArc:
+//            return value * (ISIPAD ? 0.8 : 1.0);
+//
+//            return value;
+//        case iCarouselOptionAngle:
+//            return value;
+//
+//        case iCarouselOptionRadius:
+//            return value;
+//
+//        case iCarouselOptionTilt:
+//        {
+//            if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
+//                return value * (ISIPAD ? 0.5 : 0.9);
+//            }else{
+//                return value;
+//            }
+//        }
+//            
+//        case iCarouselOptionSpacing:
+//        {
+//            if (carousel.type == iCarouselTypeRotary || carousel.type == iCarouselTypeInvertedRotary) {
+//                return value * (ISIPAD ? 1.1 : 1.1);
+//            }else if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
+//                return 0.36;
+//            }else if (carousel.type == iCarouselTypeTimeMachine || carousel.type == iCarouselTypeInvertedTimeMachine){
+//                return value * 0.5;
+//            }else{
+//                return value * 1.05f;
+//            }
+//        }
+//
+//        case iCarouselOptionFadeMin:
+//            return -0.1;
+//        case iCarouselOptionFadeMax:
+//            return 0.1;
+//        case iCarouselOptionFadeRange:
+//            return 2.0;
+//        default:
+//            return value;
+//    }
+//    return value;
+    
     switch (option)
     {
         case iCarouselOptionWrap:
+        {
+//            NSLog(@"iCarouselOptionWrap : %d", _wrap);
             return _wrap;
-//        case iCarouselOptionShowBackfaces:
-//            return -0.2;
-//        case iCarouselOptionOffsetMultiplier:
-//            return -0.2;
-        case iCarouselOptionVisibleItems:
+        }
+        case iCarouselOptionFadeMax:
+        {
+            if (carousel.type == iCarouselTypeCustom)
+            {
+                return 0.0f;
+            }
+//            NSLog(@"iCarouselOptionFadeMax : %f", value);
             return value;
-;
-//        case iCarouselOptionCount:
-//            return -0.2;
-
+        }
         case iCarouselOptionArc:
-            return value * (ISIPAD ? 0.8 : 1.0);
-
-            return value;
-        case iCarouselOptionAngle:
-            return value;
-
+        {
+            if (carousel.type == iCarouselTypeCylinder
+                || carousel.type == iCarouselTypeInvertedCylinder) {
+                
+                return 2 * M_PI * 0.73;
+            }else if (carousel.type == iCarouselTypeCoverFlow
+                      || carousel.type == iCarouselTypeCoverFlow2){
+                
+                return 2 * M_PI * 1;
+            }else if (carousel.type == iCarouselTypeTimeMachine
+                      || carousel.type == iCarouselTypeInvertedTimeMachine){
+                
+                return 2 * M_PI * 1;
+            }else if (carousel.type == iCarouselTypeRotary
+                      || carousel.type == iCarouselTypeInvertedRotary){
+                
+                return 2 * M_PI * 1;
+            }else if (carousel.type == iCarouselTypeWheel
+                      || carousel.type == iCarouselTypeInvertedWheel){
+                
+                return 2 * M_PI * 0.33;
+            }else if(carousel.type == iCarouselTypeLinear){
+                
+                return 2 * M_PI * 1;
+            }else{
+                
+                return 2 * M_PI;
+            }
+//            NSLog(@"iCarouselOptionArc : %f", 2 * M_PI * _arcSlider.value);
+        }
         case iCarouselOptionRadius:
-            return value;
-
+        {
+            if (carousel.type == iCarouselTypeCylinder
+                || carousel.type == iCarouselTypeInvertedCylinder) {
+                
+                return value * 1.14;
+            }else if (carousel.type == iCarouselTypeCoverFlow
+                      || carousel.type == iCarouselTypeCoverFlow2){
+                
+                return value * 1;
+            }else if (carousel.type == iCarouselTypeTimeMachine
+                      || carousel.type == iCarouselTypeInvertedTimeMachine){
+                
+                return value * 1;
+            }else if (carousel.type == iCarouselTypeRotary
+                      || carousel.type == iCarouselTypeInvertedRotary){
+                
+                return value * 1.62;
+            }else if (carousel.type == iCarouselTypeWheel
+                      || carousel.type == iCarouselTypeInvertedWheel){
+                
+                return value * 1.62;
+            }else if(carousel.type == iCarouselTypeLinear){
+                
+                return value * 1;
+            }else{
+                
+                return value;
+            }
+//            NSLog(@"iCarouselOptionRadius : %f", value * _radiusSlider.value);
+        }
         case iCarouselOptionTilt:
         {
-            if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
-                return value * (ISIPAD ? 0.4 : 0.8);
-//                return value * 0.8;
+//            NSLog(@"iCarouselOptionTilt : %f", _tiltSlider.value);
+            
+            if (carousel.type == iCarouselTypeCylinder
+                || carousel.type == iCarouselTypeInvertedCylinder) {
+                
+                return value * 0.9;
+            }else if (carousel.type == iCarouselTypeCoverFlow
+                      || carousel.type == iCarouselTypeCoverFlow2){
+                
+                return value * 0.95;
+            }else if (carousel.type == iCarouselTypeTimeMachine
+                      || carousel.type == iCarouselTypeInvertedTimeMachine){
+                
+                return value * 0.77;
+            }else if (carousel.type == iCarouselTypeRotary
+                      || carousel.type == iCarouselTypeInvertedRotary){
+    
+                return value * 0.9;
+            }else if (carousel.type == iCarouselTypeWheel
+                      || carousel.type == iCarouselTypeInvertedWheel){
+                
+                return value * 0.9;
+            }else if(carousel.type == iCarouselTypeLinear){
+                
+                return value * 0.9;
             }else{
+                
                 return value;
             }
         }
-            
         case iCarouselOptionSpacing:
         {
-            if (carousel.type == iCarouselTypeRotary || carousel.type == iCarouselTypeInvertedRotary) {
-                return value * (ISIPAD ? 1.1 : 1.1);
-            }else if(carousel.type == iCarouselTypeCoverFlow || carousel.type == iCarouselTypeCoverFlow2){
-                return value * 2;
-            }else if (carousel.type == iCarouselTypeTimeMachine || carousel.type == iCarouselTypeInvertedTimeMachine){
-                return value * 0.5;
+//            NSLog(@"iCarouselOptionSpacing : %f", value * _spacingSlider.value);
+            if (carousel.type == iCarouselTypeCylinder
+                || carousel.type == iCarouselTypeInvertedCylinder) {
+                
+                return value * 0.95;
+            }else if (carousel.type == iCarouselTypeCoverFlow
+                      || carousel.type == iCarouselTypeCoverFlow2){
+                
+                return value * 1.28;
+            }else if (carousel.type == iCarouselTypeTimeMachine
+                      || carousel.type == iCarouselTypeInvertedTimeMachine){
+                
+                return value * 0.54;
+            }else if (carousel.type == iCarouselTypeRotary
+                      || carousel.type == iCarouselTypeInvertedRotary){
+    
+                return value * 0.86;
+            }else if (carousel.type == iCarouselTypeWheel
+                      || carousel.type == iCarouselTypeInvertedWheel){
+                
+                return value * 0.85;
+            }else if(carousel.type == iCarouselTypeLinear){
+                
+                return value * 1.1;
             }else{
-                return value * 1.05f;
+                
+                return value;
             }
+            
         }
-
-        case iCarouselOptionFadeMin:
-            return -0.1;
-        case iCarouselOptionFadeMax:
-            return 0.1;
-        case iCarouselOptionFadeRange:
-            return 2.0;
         default:
+        {
             return value;
+        }
     }
-    return value;
+
 }
 
 //- (void)clickFeedButton:(id)sender
