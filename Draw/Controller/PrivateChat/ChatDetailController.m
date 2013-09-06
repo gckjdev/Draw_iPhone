@@ -246,7 +246,8 @@
     if (image) {
         UIImageView *iv = (id)[self.view reuseViewWithTag:BG_IMAGE_TAG
                                                 viewClass:[UIImageView class]
-                                                    frame:self.view.bounds];
+                                                    frame:self.dataTableView.bounds];
+        iv.contentMode = UIViewContentModeCenter;
         [iv setImage:image];
         [self.view sendSubviewToBack:iv];
     }else{

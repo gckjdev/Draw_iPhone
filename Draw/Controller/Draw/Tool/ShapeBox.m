@@ -74,6 +74,10 @@ CGPoint contentOffset;
     [self setStroke:staticStroke];
     [[self fillButton] setTitle:NSLS(@"kFill") forState:UIControlStateNormal];
     [[self strokeButton] setTitle:NSLS(@"kStroke") forState:UIControlStateNormal];
+    
+    [[[self strokeButton] titleLabel] setTextColor:COLOR_BROWN];
+   [[[self fillButton] titleLabel] setTextColor:COLOR_BROWN];
+    
     [self.tableView setContentOffset:contentOffset animated:YES];
 }
 
@@ -263,11 +267,9 @@ CGPoint contentOffset;
     }else{
         name = [self nameInList:list language:@"en"];
     }
-    CGSize withinSize = CGSizeMake(MAX_WITH_ITEM_NAME, 19);
     [[self nameLabel] setText:name];
-    CGSize size = [name sizeWithFont:[self nameLabel].font constrainedToSize:withinSize lineBreakMode:[self nameLabel].lineBreakMode];
-    [[self nameLabel] updateWidth:size.width];
-    
+    [[self nameLabel] setTextColor:COLOR_BROWN];
+    [[self nameLabel] sizeToFit];;
     if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
         CGFloat originX = CGRectGetMaxX([self nameLabel].frame) + 3;
         
@@ -309,8 +311,8 @@ CGPoint contentOffset;
         [layer setValue:SHAPE_LAYER_TAG forKey:SHAPE_LAYER_TAG];
         
         layer.frame = button.bounds;//CGRectMake(0, 0, SHAPE_SIZE, SHAPE_SIZE);
-        [layer setFillColor:COLOR_COFFEE.CGColor];
-        [layer setStrokeColor:COLOR_COFFEE.CGColor];
+        [layer setFillColor:COLOR_BROWN.CGColor];
+        [layer setStrokeColor:COLOR_BROWN.CGColor];
         [layer setPath:cgPath];
         [layer setLineWidth:2];
         [button.layer addSublayer:layer];
