@@ -1481,6 +1481,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
         if (self.shakeNumberController == nil){
             ShakeNumberController *vc = [[ShakeNumberController alloc] init];
             self.shakeNumberController = vc;
+            self.shakeNumberController.view.frame = view.bounds;
             [vc release];
         }
         [self.shakeNumberController.view removeFromSuperview];
@@ -1501,6 +1502,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
         if (self.getNewNumberController == nil){
             GetNewNumberViewController *vc = [[GetNewNumberViewController alloc] init];
             self.getNewNumberController = vc;
+            self.getNewNumberController.view.frame = view.bounds;            
             [vc release];
         }
         [self.getNewNumberController.view removeFromSuperview];
