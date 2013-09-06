@@ -8,8 +8,6 @@
 
 #import "GetNewNumberViewController.h"
 #import "UserNumberService.h"
-#import "LoginByNumberController.h"
-#import "ShowNumberController.h"
 #import "UserNumberService.h"
 #import "GameNetworkConstants.h"
 #import "UserManager.h"
