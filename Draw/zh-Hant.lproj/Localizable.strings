@@ -1506,7 +1506,7 @@
 
 "kRanking" = "排名";
 
-"kOpusNameInvaild" = "作品名稱不能未空";
+"kOpusNameInvaild" = "作品名稱不能为空";
 
 "kAskForHelp" = "吐槽";
 "kLookWhatHeDraw" = "大家來看看他/她到底畫的是什麽呀？怎麽猜都猜不出來，坑爹啊～";
