@@ -136,7 +136,8 @@ static MyPaintManager* _defaultManager;
     }
     if (needSave) {
         PPDebug(@"<transferDrawDataToPath> save data.");
-        [[CoreDataManager defaultManager] save];        
+        [self save];
+//        [[CoreDataManager defaultManager] save];        
     }
     PPDebug(@"<transferDrawDataToPath> end");
 }
@@ -228,6 +229,48 @@ static MyPaintManager* _defaultManager;
     }
 }
 
+- (int)countAllDrafts
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    NSArray *draftArray = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+
+    return [draftArray count];
+}
+
+- (void)removeAllDraft
+{
+    PPDebug(@"removeAllDraftPaints");
+
+    CoreDataManager* dataManager =[CoreDataManager defaultManager];
+    NSArray *draftArray = [dataManager execute:@"findAllDrafts" sortBy:@"createDate" returnFields:nil ascending:NO offset:0 limit:HUGE_VAL];
+
+    @try {
+        for (MyPaint* paint in draftArray){
+            [paint setDeleteFlag:[NSNumber numberWithBool:YES]];
+            
+            //delete image
+            [FileUtil removeFile:paint.imageFilePath];
+            
+            //delete thumb
+            
+            [FileUtil removeFile:[self thumbPathFromImagePath:paint.imageFilePath]];
+            
+            //delete data
+            [self deletePaintData:paint.dataFilePath];
+            
+            [dataManager del:paint];
+        }
+        [dataManager save];
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception: %@, reason: %@",[exception description], [exception reason]);
+    }
+    @finally {
+        
+    }
+    
+}
 
 - (void)removeAlldeletedPaints
 {

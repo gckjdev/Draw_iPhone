@@ -130,4 +130,41 @@ static UserDeviceService* _defaultUserService;
     });
 }
 
+- (void)removeUserDevice
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    if (queue == NULL)
+        return;
+    
+    if ([[UserManager defaultManager] hasUser] == NO){
+        return;
+    }
+    
+    NSString* userId = [[UserManager defaultManager] userId];
+    PPDebug(@"<removeUserDevice> user %@", userId);
+    
+    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+    NSString* deviceToken = [[[UserManager defaultManager] pbUser] deviceToken];
+    
+    dispatch_async(queue, ^{
+        
+        NSDictionary* para = @{
+                                PARA_DEVICEID : (deviceId == nil) ? @"" : deviceId,
+                                PARA_DEVICETOKEN : (deviceToken == nil) ? @"" : deviceToken
+                                };
+        
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_REMOVE_USER_DEVICE
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
+                
+        if (output.resultCode == ERROR_SUCCESS){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // do nothing
+            });
+        }
+        
+    });
+}
+
 @end

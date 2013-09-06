@@ -47,9 +47,8 @@
     KEY(FooterTypeReplay): @"detail_replay@2x.png",
     KEY(FooterTypeShare): @"detail_share@2x.png",
     KEY(FooterTypeTomato): @"detail_tomato@2x.png",
-    //TODO change it!!
-    KEY(FooterTypeReport): @"detail_tomato@2x.png",
-    KEY(FooterTypeJudge): @"detail_tomato@2x.png",
+    KEY(FooterTypeReport): @"detail_report@2x.png",
+    KEY(FooterTypeRate): @"detail_rate@2x.png",
     };
     NSString *name = [dict objectForKey:KEY(type)];
     return name ? [UIImage imageNamed:name] : nil;

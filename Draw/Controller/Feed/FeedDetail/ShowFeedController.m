@@ -55,7 +55,6 @@
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
     ShareAction *_shareAction;
-//    BOOL isJudgerPopupShowing;
 }
 
 
@@ -66,7 +65,6 @@
 @property(nonatomic, retain) DrawFeed *feed;
 @property (nonatomic, retain) UseItemScene* useItemScene;
 @property(nonatomic, retain) DetailFooterView *footerView;
-@property(nonatomic, retain) PPPopTableView *judgerPopupView;
 @property(nonatomic, retain) Contest *contest;
 
 //@property(nonatomic, assign) BOOL swipeEnable;
@@ -104,7 +102,6 @@ typedef enum{
     PPRelease(_commentHeader);
     PPRelease(_useItemScene);
     PPRelease(_feedScene);
-    PPRelease(_judgerPopupView);
     [super dealloc];
 }
 
@@ -141,11 +138,6 @@ typedef enum{
 - (void)updateFlowerButton
 {
     BOOL enable = [_useItemScene canThrowFlower];
-    
-//    if (self.contest && [self.contest canVote] == NO){
-//        enable = NO;
-//    }
-    
     if (self.contest && [[ContestManager defaultManager] canThrowFlower:self.contest defaultValue:enable] == NO){
         enable = NO;
     }
@@ -161,31 +153,26 @@ typedef enum{
         [types addObject:@(FooterTypeGuess)];
     }
     [types addObjectsFromArray:@[@(FooterTypeComment), @(FooterTypeShare)]];
-    
+
     if ([self.feed isContestFeed]) {
-        ContestManager *cm = [ContestManager defaultManager];
-        NSString *uid = [[UserManager defaultManager] userId];
-        ContestFeed *cf = (ContestFeed *)self.feed;
-        BOOL canThrowFlower = YES;
-        if([cm isUser:uid reporterAtContest:cf.contestId]){
-            [types addObject:@(FooterTypeReport)];
-            canThrowFlower = NO;
+        Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
+        if (contest != nil && [contest isRunning]) {
+            ContestManager *cm = [ContestManager defaultManager];
+            NSString *uid = [[UserManager defaultManager] userId];
+            ContestFeed *cf = (ContestFeed *)self.feed;
+            if([cm isUser:uid judgeAtContest:cf.contestId]) {
+                [types addObject:@(FooterTypeReport)];
+                [types addObject:@(FooterTypeRate)];
+            }else if([cm isUser:uid reporterAtContest:cf.contestId]){
+                [types addObject:@(FooterTypeReport)];
+            }else if (![self.feed isMyOpus]) {
+                [types addObject:@(FooterTypeFlower)];
+            }
         }
-        
-//#if DEBUG
-//        if (YES || [cm isUser:uid judgeAtContest:cf.contestId]) {
-//#else
-        if([cm isUser:uid judgeAtContest:cf.contestId]) {
-//#endif
-            [types addObject:@(FooterTypeJudge)];
-            canThrowFlower = NO;
-        }
-        if (canThrowFlower && ![self.feed isMyOpus]) {
-            [types addObject:@(FooterTypeFlower)];
-        }        
     }else if(![self.feed isMyOpus]){
         [types addObject:@(FooterTypeFlower)];
     }
+    
     [self.footerView setButtonsWithTypes:types];
     [self updateFlowerButton];
 }
@@ -746,32 +733,12 @@ typedef enum{
             break;
         }
          
-        case FooterTypeJudge:
+        case FooterTypeRate:
         {
-            if (self.judgerPopupView == nil) {
-                NSArray *titles = @[NSLS(@"kJudgerComment"),NSLS(@"kJudgerScore")];
-                NSArray *icons = @[[UIImage imageNamed:@"detail_comment@2x.png"],[UIImage imageNamed:@"detail_replay@2x.png"]];
-                
-                self.judgerPopupView = [PPPopTableView popTableViewWithTitles:titles icons:icons selectedHandler:^(NSInteger row) {
-                    PPDebug(@"<popTableView:didSelectedAtRow:> %d", row);
-                    
-                    if (row == 0) {
-                        // for judger comment
-                        [self gotoContestComment];
-                    }else if(row == 1){
-                        Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
-                        if (contest) {
-                            JudgerScoreView *scoreView = [JudgerScoreView judgerScoreViewWithContest:contest opus:(id)self.feed];
-                            [scoreView showInView:self.view];
-                        }
-                    }
-                    [self.judgerPopupView dismiss:YES];
-                }];
-            }
-            if(![self.judgerPopupView isShowing]){
-                [self.judgerPopupView showInView:self.view atView:button animated:YES];
-            }else{
-                [self.judgerPopupView dismiss:YES];
+            Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
+            if (contest) {
+                JudgerScoreView *scoreView = [JudgerScoreView judgerScoreViewWithContest:contest opus:(id)self.feed];
+                [scoreView showInView:self.view];
             }
             break;
         }            
@@ -886,6 +853,7 @@ typedef enum{
     [self initFooterView];    
     [self initTabButtons];
     [self reloadView];
+    [self setShowTipsDisable:YES];
 }
 
 

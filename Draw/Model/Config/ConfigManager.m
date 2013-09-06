@@ -19,6 +19,11 @@
 
 @implementation ConfigManager
 
++ (int)maxTakeNumberCount
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:10];
+}
+
 + (NSString*)getLimeiWallId
 {
     return [MobClickUtils getStringValueByKey:@"LIMEI_WALL_ID" defaultValue:@"69ac217d7a8a8da8f7a90f424f3c9e9f"];   // new wall ID for coins

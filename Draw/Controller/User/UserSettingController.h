@@ -43,11 +43,14 @@
     NSInteger rowOfVolumeSetting;
     //NSInteger rowOfChatVoice;
     NSInteger rowOfCustomDice;
+    NSInteger rowOfLogout;
     
     NSInteger rowsInSectionUser;
     NSInteger rowsInSectionGuessWord;
     NSInteger rowsInSectionSound;
     NSInteger rowsInSectionAccount;
+    NSInteger rowsInSectionLogout;
+    
     
     ChangeAvatar *imageUploader;
     

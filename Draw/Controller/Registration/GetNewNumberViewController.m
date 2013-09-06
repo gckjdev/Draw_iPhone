@@ -207,6 +207,11 @@
 
 - (IBAction)clickTakeNumber:(id)sender
 {
+    if ([[UserManager defaultManager] incAndCheckIsExceedMaxTakeNumber] == YES){
+        POSTMSG(@"kExceedMaxTakeNumber");
+        return;
+    }
+    
     [self showActivityWithText:NSLS(@"kLoading")];
     [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
         [self hideActivity];

@@ -42,6 +42,7 @@ enum{
     SECTION_ACCOUNT,
     SECTION_GUESSWORD,
     SECTION_SOUND,
+    SECTION_LOGOUT,
     SECTION_COUNT
 };
 
@@ -128,8 +129,8 @@ enum {
     rowOfPrivacy = 8;
     rowOfCustomBg = 9;
     rowOfCustomBBSBg = 10,
-    rowOfCustomChatBg = 11,
-    rowsInSectionUser = 12;
+//    rowOfCustomChatBg = 11,
+    rowsInSectionUser = 11;
     
     //section guessword
     if (isDrawApp()) {
@@ -166,6 +167,9 @@ enum {
     rowsInSectionSound = isLittleGeeAPP()?1:2;//isDrawApp()?3:2;//TODO:hide background music in dice, fix it later
     
     rowsInSectionAccount = ROW_ACCOUNT_COUNT;
+    
+    rowOfLogout = 0;
+    rowsInSectionLogout = 1;
 }
 
 - (void)updateAvatar:(UIImage *)image
@@ -315,6 +319,8 @@ SET_CELL_BG_IN_CONTROLLER;
         return rowsInSectionSound;
     } else if (section == SECTION_ACCOUNT){
         return rowsInSectionAccount;
+    } else if (section == SECTION_LOGOUT){
+        return rowsInSectionLogout;
     }
     else{
         return 0;
@@ -636,6 +642,12 @@ SET_CELL_BG_IN_CONTROLLER;
                 break;
         }
     }
+    else if (section == SECTION_LOGOUT) {
+        if (row == rowOfLogout){
+            [cell.customTextLabel setText:NSLS(@"kLogoutAccount")];
+        }
+    }
+    
 //    else if (section == SECTION_REMOVE_AD) {
 //        cell.textLabel.text = NSLS(@"kRemoveAd");
 //        cell.detailTextLabel.hidden = NO;
@@ -876,17 +888,6 @@ SET_CELL_BG_IN_CONTROLLER;
         }
         else if (row == rowOfCustomChatBg) {
 
-#define CHAT_PAGE_BG_KEY @"chat_bg.png"
-            
-            [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
-                if ([[UserManager defaultManager] setPageBg:image forKey:CHAT_PAGE_BG_KEY]) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomChatBgSucc") delayTime:2];
-                }
-            } didSetDefaultBlock:^{
-                if ([[UserManager defaultManager] resetPageBgforKey:CHAT_PAGE_BG_KEY]) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomChatBgSucc") delayTime:2];
-                }
-            } title:NSLS(@"kCustomChatBg") hasRemoveOption:YES];
         }
     }
     else if (section == SECTION_GUESSWORD) {
@@ -971,7 +972,13 @@ SET_CELL_BG_IN_CONTROLLER;
             default:
                 break;
         }
-    }    
+    }
+    else if (section == SECTION_LOGOUT) {
+        if (row == rowOfLogout){
+            [[UserService defaultService] logout:self];
+        }
+    }
+
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
