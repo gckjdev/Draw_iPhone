@@ -122,6 +122,8 @@ static ContestService *_staticContestService;
             
             if (output.resultCode == 0 && output.pbResponse.contestListList){
                 [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestListList];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_CONTEST_DATA_CHANGE object:nil];
             }
             
         });

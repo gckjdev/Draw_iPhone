@@ -8,6 +8,8 @@
 
 #import "CommonService.h"
 
+#define NOTIFCATION_CONTEST_DATA_CHANGE     @"NOTIFCATION_CONTEST_DATA_CHANGE"
+
 typedef enum{
     ContestListTypeAll = 0,
     ContestListTypePassed = 1,

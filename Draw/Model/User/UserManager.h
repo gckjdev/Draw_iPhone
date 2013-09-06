@@ -11,7 +11,8 @@
 #define DEFAULT_AVATAR          @"http://tp4.sinaimg.cn/2198792115/180/0/1"
 #define TEMP_AVATAR_LOCAL_PATH  @"avatar"
 
-#define CAN_REATURE_DRAW_OPUS       0x000001
+#define CAN_REATURE_DRAW_OPUS           0x000001
+#define NOTIFCATION_USER_DATA_CHANGE    @"NOTIFCATION_USER_DATA_CHANGE"
 
 @class PBGameUser;
 

@@ -8,6 +8,7 @@
 
 #import "StatisticManager.h"
 #import "BulletinManager.h"
+#import "ContestManager.h"
 
 static StatisticManager *_globalStatisticManager;
 
@@ -58,6 +59,11 @@ static StatisticManager *_globalStatisticManager;
 - (int)bulletinCount
 {
     return [[BulletinManager defaultManager] unreadBulletinCount];
+}
+
+- (long)newContestCount
+{
+    return [[[ContestManager defaultManager] ongoingContestList] count];
 }
 
 @end
