@@ -28,15 +28,14 @@
     id<ColorShopViewDelegate> _delegate;
     BOOL showAnimated;
 }
-@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
+@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 @property (retain, nonatomic) IBOutlet UILabel *coinCountLabel;
 @property (retain, nonatomic) IBOutlet UITableView *dataTableView;
 @property (retain, nonatomic) NSMutableArray *colorGroups;
 @property (assign, nonatomic) id<ColorShopViewDelegate> delegate;
-@property (retain, nonatomic) IBOutlet UIButton *backButton;
+
 + (ColorShopView *)colorShopViewWithFrame:(CGRect)frame ;
 - (void)showInView:(UIView *)view animated:(BOOL)animated;
-- (IBAction)clickBack:(id)sender;
 - (void)updateBalanceLabel;
 
 @end
