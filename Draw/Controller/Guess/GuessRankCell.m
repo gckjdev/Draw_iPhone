@@ -42,9 +42,6 @@
 
 - (void)setCellInfo:(PBGuessRank *)rank {
     
-//    self.backgroundColor = COLOR_ORANGE;
-//    self.contentView.backgroundColor = COLOR_ORANGE;
-    
     self.backgroundColor = [UIColor clearColor];
     
     self.rank = rank;

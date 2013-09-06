@@ -278,4 +278,6 @@ typedef enum{
 + (NSString *)getContestBeginTimeString;
 + (int)getHotWordAwardCoins;
 
++ (int)maxTakeNumberCount;
+
 @end

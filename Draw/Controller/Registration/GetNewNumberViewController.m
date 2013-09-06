@@ -53,9 +53,13 @@
     
     // Do any additional setup after loading the view from its nib.
     
-    
-    
-    self.getNumberMainView.frame = SUBVIEW_FRAME;
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.bottomView.backgroundColor = OPAQUE_COLOR(139, 234, 204);
+//    self.bottomView.frame = SUBVIEW_FRAME;
+
+        
+//    self.getNumberMainView.frame = SUBVIEW_FRAME;
+    self.getNumberMainView.center = self.bottomView.center;
     SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.takeNumberButton);
     SET_BUTTON_ROUND_STYLE_LOGIN_BUTTON(self.loginButton);
     self.getNumberTipsLabel.textColor = OPAQUE_COLOR(52, 136, 112);
@@ -66,9 +70,6 @@
     
     [self.view addSubview:self.getNumberMainView];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.bottomView.backgroundColor = OPAQUE_COLOR(139, 234, 204);
-    self.bottomView.frame = SUBVIEW_FRAME;
 }
 
 
@@ -188,7 +189,8 @@
     NSString* text = [self textFromNumber:[[UserManager defaultManager] xiaojiNumber]];
     
     self.numberLabel.text = text;
-    self.takeNumberView.frame = SUBVIEW_FRAME;
+//    self.takeNumberView.frame = SUBVIEW_FRAME;
+    self.takeNumberView.center = self.bottomView.center;
     [self.view addSubview:self.takeNumberView];
     
     self.takeNumberView.alpha = 0.0f;
@@ -207,6 +209,11 @@
 
 - (IBAction)clickTakeNumber:(id)sender
 {
+    if ([[UserManager defaultManager] incAndCheckIsExceedMaxTakeNumber] == YES){
+        POSTMSG(@"kExceedMaxTakeNumber");
+        return;
+    }
+    
     [self showActivityWithText:NSLS(@"kLoading")];
     [[UserNumberService defaultService] getAndRegisterNumber:^(int resultCode, NSString *number) {
         [self hideActivity];

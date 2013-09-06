@@ -130,6 +130,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData;
                           feed:(DrawFeed*)feed;
 
 - (void)countAllPaintsAndDrafts:(id<MyPaintManagerDelegate>)delegate;
-
+- (int)countAllDrafts;
+- (void)removeAllDraft;
 
 @end

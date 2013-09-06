@@ -181,12 +181,12 @@ typedef enum{
     
     self.bottomBarImageView.backgroundColor = COLOR_YELLOW;
 
-    self.chargeButton.backgroundColor = COLOR_ORANGE;
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.chargeButton);
+
     [self.chargeButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     self.balanceTipLabel.textColor = COLOR_BROWN;
     self.ingotBalanceLabel.textColor = COLOR_BROWN;
     self.coinBalanceLabel.textColor = COLOR_BROWN;
-    SET_VIEW_ROUND_CORNER(self.chargeButton);
 }
 
 - (void)hideTaoBaoTab

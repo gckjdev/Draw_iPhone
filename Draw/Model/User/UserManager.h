@@ -156,6 +156,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)storeUserData;
 - (void)storeUserData:(PBGameUser*)user;
+- (void)cleanUserData;
 
 //- (void)saveUserId:(NSString*)userId 
 //             email:(NSString*)email
@@ -231,5 +232,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (int)emailVerifyStatus;
 - (void)setEmailVerifyStatus:(int)status;
+
+- (BOOL)incAndCheckIsExceedMaxTakeNumber;
 
 @end

@@ -1067,6 +1067,15 @@
 "kTryTakeNumber" = "Take Now";
 "kViewMyProfile" = "Later";
 
+"kConfirmLogout" = "Do you want to logout this account?";
+"kAskKeepDraft" = "Do you want to keep all your local drafts?";
+"kKeepDraft" = "Yes";
+"kNotKeepDraft" = "No";
+"kLogoutDone" = "Logout successfully";
+"kExceedMaxTakeNumber" = "You took too many littlegee numbers. Cannot take more numbers. Please contact support.";
+"kLogoutAccount" = "Logout";
+"kLogout" = "Logout";
+"kAutoGetUserSucc" = "Get user information successfully.";
 
 "kDrawToUserByUser" = "drew to %@";
 "kQQGroup" = "";

@@ -108,8 +108,8 @@
 "kQuitDrawAlertTitle" = "退出绘画";
 
 
-"kDedutCoinQuitGameAlertMessage" = "游戏进行中，如果这时退出游戏，系统将会扣除%d个金币哦。";
-"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金币，你的账户余额不足，现在不能退出游戏哦！";
+"kDedutCoinQuitGameAlertMessage" = "游戏进行中，如果这时退出游戏，系统将会扣除%d个金币。";
+"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金币，你的账户余额不足，现在不能退出游戏！";
 
 
 "kContinue" = "继续 [%d]";
@@ -145,7 +145,7 @@
 
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日签到获得了%d个金币，记得明天再来!";
-"kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来哦!";
+"kCheckInAlreadyToday" = "你今天已经签到过了，记得明天再来!";
 
 "kRegisterToEnter" = "马上注册\“%@\"进入游戏";
 "kRegisterPromptLabel" = "使用微博账号玩";
@@ -205,10 +205,10 @@
 
 "kChangeRoomMaxTimes" = "你换房间次数已经超过限制，现在换房间需要花费你一个金币，确定吗？";
 "kChangeRoomTitle" = "更换房间";
-"kChangeRoomConfirm" = "换房间会影响当前一起玩的玩家哦，同时需要花费你一个金币，确定换个房间吗？";
-"kChangeRoomConfirm" = "换房间会影响当前一起玩的用户哦，一天只能更换5次房间，确定换个房间吗？";
+"kChangeRoomConfirm" = "换房间会影响当前一起玩的玩家，同时需要花费你一个金币，确定换个房间吗？";
+"kChangeRoomConfirm" = "换房间会影响当前一起玩的用户，一天只能更换5次房间，确定换个房间吗？";
 "kQuitGameTitle" = "退出房间";
-"kQuitGameConfirm" = "退出当前房间系统会扣除您%d个金币哦，请问是否要退出？";
+"kQuitGameConfirm" = "退出当前房间系统会扣除您%d个金币，请问是否要退出？";
 
 "kOldPasswordHolder" = "请输入旧密码";
 "kNewPasswordHolder" = "请输入新密码（长度>=6）";
@@ -554,9 +554,9 @@
 "kAddWordsTips" = "词之间用空格或者换行分开，如\“大地 中国\”";
 "kAddWordsSucc" = "提交成功，感谢贡献";
 "kAddWordsFail" = "提交失败，请稍后再试";
-"kContentFormatError" = "格式错误，词之间的分隔符号只能是空格或者换行，仔细检查一下哦";
+"kContentFormatError" = "格式错误，词之间的分隔符号只能是空格或者换行，仔细检查一下";
 "kWordTooLong" = "\"%@\"太长了，一次词最多只能有7个字";
-"kIllegalCharacter" = "\"%@\"有非法字符哦，字只能是中文，不能包括字母、数字和标点符号";
+"kIllegalCharacter" = "\"%@\"有非法字符，字只能是中文，不能包括字母、数字和标点符号";
 
 "kFakeIAPPurchase" = "验证您的购买收据失败，请确认您通过了正确的途径进行购买";
 "kNetworkBroken" = "您太久没有操作，自动退出房间，或者您的网络连接中断了";
@@ -600,7 +600,7 @@
 "kContestCommitCountEnough" = "对不起，你已经提交了%d幅作品了，不能再参加了。";
 "kContestCommitEnoughCommitAsNormal" = "对不起，你已经提交了%d幅作品了，不能再提交了。把作品提交为普通作品？";
 
-//"kDedutCoinChangeOpusAlertMessage" = "如果更换一幅作品，系统将会扣除1个金币哦。";
+//"kDedutCoinChangeOpusAlertMessage" = "如果更换一幅作品，系统将会扣除1个金币。";
 //"kNoCoinChangeOpusMessage" = "更换作品需要扣除1个金币，你的账户余额不足，是不是现在购买一些金币？";
 //"kChangeOpusTitle" = "更换作品";
 
@@ -1085,6 +1085,15 @@
 "kTryTakeNumber" = "马上领取";
 "kViewMyProfile" = "稍后再说";
 
+"kConfirmLogout" = "是否确定要退出当前帐号？";
+"kAskKeepDraft" = "是否要保留当前草稿箱中的所有草稿？如果不保留，退出帐号也将删除所有本地草稿。";
+"kKeepDraft" = "保留草稿";
+"kNotKeepDraft" = "不保留";
+"kLogoutDone" = "已经成功退出当前帐号";
+"kExceedMaxTakeNumber" = "你已经领取太多小吉号码，无法领取更多号码，如有问题请联系管理员";
+"kLogoutAccount" = "退出当前帐号";
+"kLogout" = "退出帐号";
+"kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
@@ -1341,7 +1350,7 @@
 "kHisOpus" = "作品";
 "kNicknameOutofRange" = "昵称最长不可超过%d个字母或者%d个汉字。";
 "kSignatureOutofRange" = "个性签名最长不可超过%d个字母或者%d个汉字。";
-"kNoBindNoFollow" = "你还没绑定%@或者帐号已过期，你需要再绑定才能关注哦。";
+"kNoBindNoFollow" = "你还没绑定%@或者帐号已过期，你需要再绑定才能关注。";
 
 "kLoginSucc" = "登录成功";
 "kLoginFail" = "登录失败，请检查邮件地址或者密码是否正确";
@@ -1461,7 +1470,7 @@
 "kAwardIs:%d" = "奖励: %d金币";
 
 "kIGotIt" = "我知道了";
-"kRestart" = "重开";
+"kRestart" = "重新开始";
 "kSelectGuessMode" = "选择猜画模式";
 
 "kHappGuessMode" = "欢乐模式";
@@ -1481,8 +1490,8 @@
 "kGuessHappyModeAwardTips" = "恭喜你顺利猜中%d副作品，系统奖励你%d金币，是否还想继续欢乐模式？";
 "kGuessGenuisModeAwardTips" = "恭喜你连续猜中%d副作品，系统奖励你%d金币，是否还想继续天才模式？";
 
-"kGuessHappyModeTips" = "你已经猜对了%d副作品，还要再猜%d副作品就可以获得%d奖励哦!";
-"kGuessGenuisModeTips" = "你已经连续猜对了%d副作品，还要再猜%d副作品就可以获得%d奖励哦!";
+"kGuessHappyModeTips" = "你已经猜对了%d副作品，还要再猜%d副作品就可以获得%d奖励!";
+"kGuessGenuisModeTips" = "你已经连续猜对了%d副作品，还要再猜%d副作品就可以获得%d奖励!";
 "kGuessContestModeOverTips" = "恭喜你完成比赛啦，目前有%d位玩家参加比赛，你目前的排名是第%d名，预计可获得%d金币奖励";
 "kGuessContestModeTips" = "你已经猜对了%d副作品，目前排名是第%d名，预计可获得%d金币奖励，目前总共有%d玩家参与";
 
@@ -1699,19 +1708,19 @@
 
 "kItemBlueDiamondDice" = "蓝宝石骰";
 "kBlueDiamondDice" = "蓝宝石骰";
-"kBlueDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+"kBlueDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有～";
 
 "kItemPinkDiamondDice" = "粉宝石骰";
 "kPinkDiamondDice" = "粉宝石骰";
-"kPinkDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+"kPinkDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有～";
 
 "kItemGreenDiamondDice" = "绿宝石骰";
 "kGreenDiamondDice" = "绿宝石骰";
-"kGreenDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+"kGreenDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有～";
 
 "kItemPurpleDiamondDice" = "紫宝石骰";
 "kPurpleDiamondDice" = "紫宝石骰";
-"kPurpleDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有哦～";
+"kPurpleDiamondDiceDescription" = "至坚至美者，非宝石莫属，象征瑰丽祥瑞，意义隽永，人人值得拥有～";
 
 "kNoMoreShowIt" = "不再提醒";
 "kItemTips" = "道具提示";
@@ -1775,7 +1784,7 @@
 "kILeaveForAMoment" = "我先离开一会";
 "kIWantToGoNow" = "我要走啦，下次再玩";
 "kShutUp" = "别吵啦，专心游戏";
-"kLevelUpAwardMessage" = "恭喜升级到%d级! 我们给您奖励了%d个金币哦!";
+"kLevelUpAwardMessage" = "恭喜升级到%d级! 我们给您奖励了%d个金币!";
 "kZJHShopTitle" = "炸金花商店";
 /*********************** 炸金花国际化字符串结束 *************************/
 
