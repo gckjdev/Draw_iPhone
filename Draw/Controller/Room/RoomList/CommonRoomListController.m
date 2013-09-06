@@ -110,7 +110,6 @@
 - (void)handleUpdateOnlineUserCount
 {
     [_titleView setTitle:[NSString stringWithFormat:@"%@(%d)", [GameApp roomTitle], [_gameService onlineUserCount]]];
-//    [self.titleLabel setText:[NSString stringWithFormat:@"%@(%d)", [GameApp roomTitle], [_gameService onlineUserCount]]];
 }
 
 - (void)handleDidConnectServer

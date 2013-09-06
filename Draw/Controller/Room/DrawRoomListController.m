@@ -48,39 +48,47 @@
 
 - (void)initLabels
 {
-    [self.titleLabel setGradientStartColor:[UIColor colorWithRed:52/255.0 green:30/255.0 blue:10/255.0 alpha:1.0]];
-    [self.titleLabel setGradientEndColor:[UIColor colorWithRed:88/255.0 green:56/255.0 blue:22/255.0 alpha:1.0]];
-    [self.titleLabel setShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48]];
-    [self.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+//    [self.titleLabel setGradientStartColor:[UIColor colorWithRed:52/255.0 green:30/255.0 blue:10/255.0 alpha:1.0]];
+//    [self.titleLabel setGradientEndColor:[UIColor colorWithRed:88/255.0 green:56/255.0 blue:22/255.0 alpha:1.0]];
+//    [self.titleLabel setShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48]];
+//    [self.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+
+    SET_BUTTON_AS_COMMON_TAB_STYLE(self.leftTabButton);
+//    [self.leftTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+//    [self.leftTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
+//    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
+//    [self.leftTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
     
-    [self.leftTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.leftTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
-    [self.leftTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
-    [self.leftTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
-    [self.rightTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.rightTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
-    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
-    [self.rightTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    SET_BUTTON_AS_COMMON_TAB_STYLE(self.rightTabButton);
+//    [self.rightTabButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+//    [self.rightTabButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48] forState:UIControlStateNormal];
+//    [self.rightTabButton setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.68] forState:UIControlStateSelected];
+//    [self.rightTabButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+
     
-    [self.fastEntryButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.fastEntryButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
-    [self.fastEntryButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
-    [self.createRoomButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
-    [self.createRoomButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
-    [self.createRoomButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.fastEntryButton);
+//    [self.fastEntryButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+//    [self.fastEntryButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
+//    [self.fastEntryButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
     
-    [self.emptyListTips setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
-    [self.emptyListTips setShadowOffset:CGSizeMake(-0.5, 0.5)];
-    [self.emptyListTips setShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48]];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.createRoomButton);
+//    [self.createRoomButton setTitleColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0] forState:UIControlStateNormal];
+//    [self.createRoomButton setTitleShadowColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.48] forState:UIControlStateNormal];
+//    [self.createRoomButton.titleLabel setShadowOffset:CGSizeMake(-0.5, 0.5)];
+
+    self.emptyListTips.textColor = COLOR_COFFEE;
+//    [self.emptyListTips setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
+//    [self.emptyListTips setShadowOffset:CGSizeMake(-0.5, 0.5)];
+//    [self.emptyListTips setShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.48]];
     
-    [self.leftTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
-    [self.leftTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
-    [self.centerTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
-    [self.centerTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
-    [self.rightTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
-    [self.rightTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+//    [self.leftTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
+//    [self.leftTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+//    [self.centerTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
+//    [self.centerTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+//    [self.rightTabButton.titleLabel setShadowColor:[UIColor whiteColor]];
+//    [self.rightTabButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
     
 }
 

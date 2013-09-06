@@ -42,7 +42,6 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrameSize">{784, 1004}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -234,7 +233,6 @@
 						<int key="NSvFlags">-2147483329</int>
 						<string key="NSFrame">{{665, 6}, {88, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -745,7 +743,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="changeroom@2x.png">{74, 74}</string>
 			<string key="draw_main_bg@2x.jpg">{6, 6}</string>
-			<string key="group_message@2x.png">{16, 16}</string>
+			<string key="group_message@2x.png">{86, 66}</string>
 			<string key="room_seat_bg_1@2x.png">{142, 142}</string>
 			<string key="room_seat_bg_2@2x.png">{142, 142}</string>
 			<string key="room_seat_bg_3@2x.png">{142, 142}</string>
