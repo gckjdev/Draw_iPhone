@@ -419,6 +419,7 @@
 
 #define BadgeSize (ISIPAD ?  40: 25)
 #define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
+#define DEFAULT_MAX_NUMBER 99
 
 + (id)badgeViewWithNumber:(NSInteger)number
 {
@@ -431,6 +432,7 @@
     
     [badge setBGImage:[[ShareImageManager defaultManager] badgeImage]];
     [badge setNumber:number];
+    [badge setMaxNumber:DEFAULT_MAX_NUMBER];
     return badge;
 }
 

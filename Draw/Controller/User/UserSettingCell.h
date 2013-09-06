@@ -18,5 +18,5 @@
 @property (retain, nonatomic) IBOutlet UIView *customAccessory;
 
 - (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount;
-
+- (void)setBadge:(int)number;
 @end

@@ -114,10 +114,9 @@
 							<object class="IBUIView" id="307585830">
 								<reference key="NSNextResponder" ref="90952881"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{695, 25}, {36, 38}}</string>
+								<string key="NSFrame">{{691, 24}, {36, 38}}</string>
 								<reference key="NSSuperview" ref="90952881"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="97285631"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -126,7 +125,6 @@
 						<string key="NSFrameSize">{768, 87}</string>
 						<reference key="NSSuperview" ref="1070159519"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="97285631"/>
 						<bool key="IBUIOpaque">NO</bool>

@@ -188,7 +188,7 @@
 
 "kEnglish" = "英语";
 "kChinese" = "中文";
-"kLanguageSettings" = "选择猜词语言";
+"kLanguageSettings" = "猜词语言";
 "kLanguageSelection" = "语言选择";
 
 "kPassword" = "密码";
@@ -388,7 +388,7 @@
 "kOnlineUserCount" = "在线用户共%d人";
 "kContactNull" = "联系方式不能为空。";
 "kFailStartGame" = "房间已经开始玩了，请选择另一个房间。";
-"kSound" = "音效";
+"kSound" = "系统音效";
 "kON" = "开 ";
 "kOFF" = " 关";
 
@@ -583,7 +583,7 @@
 
 "kUpgradeMsg" = "恭喜！您刚刚升到第 %d级, 鲜花+%d";
 "kDegradeMsg" = "你画画不认真，都降到第%d级了";
-"kLevelInfo" = "等级:%d    经验值:%d/%d";
+"kLevelInfo" = "等级 : %d    经验值 : %d/%d";
 
 "kDrawing" = "画画中";
 "kGuessing" = "猜画中";
@@ -702,7 +702,7 @@
 
 // For Weibo Settings
 "kSetEmail" = "电子邮件";
-"kEmailNotSet" = "";
+"kEmailNotSet" = "未设置";
 "kSetSinaWeibo" = "新浪微博";
 "kWeiboSet" = "已绑定";
 "kNotSet" = "未绑定";
@@ -1091,9 +1091,12 @@
 "kNotKeepDraft" = "不保留";
 "kLogoutDone" = "已经成功退出当前帐号";
 "kExceedMaxTakeNumber" = "你已经领取太多小吉号码，无法领取更多号码，如有问题请联系管理员";
-"kLogoutAccount" = "退出当前帐号";
+"kLogoutAccount" = "退出帐号";
 "kLogout" = "退出帐号";
 "kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
+
+"kNoXiaojiNumber" = "未有小吉号码";
+"kXiaoji" = "小吉";
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
@@ -1270,10 +1273,10 @@
 "kZodiac" = "星座";
 "kBirthday" = "生日";
 "kBloodGroup" = "血型";
-"kLocation" = "所在地";
+"kLocation" = "位置";
 "kOther" = "其他";
 "kInputLocation" = "输入你所在的位置";
-"kSignature" = "个性签名";
+"kSignature" = "签名";
 
 "kUpdateAvatarSucc" = "头像已经成功上传并且更新";
 "kUpdateAvatarFail" = "头像上传失败，请稍候重试";
@@ -1304,7 +1307,7 @@
 "kNoSNSTips" = "该玩家未绑定任何社交帐号";
 
 "kPrivacy" = "隐私";
-"kPrivacyToFriend" = "仅对相互关注好友可见";
+"kPrivacyToFriend" = "相互关注好友可见";
 "kPrivacyToNone" = "所有人不可见";
 "kPrivacyToAll" = "所有人可见";
 
@@ -1336,7 +1339,7 @@
 
 "kCannotRevoke" = "不能继续撤销了！如果需要继续撤销可以尝试先保存，然后从草稿箱重新打开。";
 
-"kCustomBg" = "自定义用户资料背景";
+"kCustomBg" = "自定义个人背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失败，稍后再试。";
 "kBlackUserMsg" = "将该玩家列入黑名单之后，他/她将无法看到你的动态，无法给你发消息和画画，确定吗？";
