@@ -1152,7 +1152,7 @@
 "kSaveToLocalSuccess" = "成功保存到本地，您可以在作品頁面查看該作品。";
 
 
-"kPenWidth" = "粗細";
+"kPenWidth" =   "粗細";
 "kColorAlpha" = "透明度";
 "kMoreColor" = "更多";
 "kDonotSave" = "不保存";
