@@ -6836,6 +6836,10 @@
 		EADEDC8B17D890540010EAD7 /* chat_change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */; };
 		EADEDC8C17D890540010EAD7 /* chat_change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */; };
 		EADEDC8D17D890540010EAD7 /* chat_change_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */; };
+		EADEDC9517D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */; };
+		EADEDC9617D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */; };
+		EADEDC9717D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */; };
+		EADEDC9817D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 		EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */; };
 /* End PBXBuildFile section */
@@ -9848,6 +9852,7 @@
 		EADEDC7A17D882780010EAD7 /* detail_rate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_rate@2x.png"; sourceTree = "<group>"; };
 		EADEDC7B17D882780010EAD7 /* detail_report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_report@2x.png"; sourceTree = "<group>"; };
 		EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_change_bg@2x.png"; sourceTree = "<group>"; };
+		EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "old_draw_bg@2x.jpg"; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_badge@2x.png"; sourceTree = "<group>"; };
@@ -10713,6 +10718,7 @@
 		A42BABB117D71F73007FB11B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */,
 				A42BABB217D71F73007FB11B /* draw_main_bg@2x.jpg */,
 				A42BABB317D71F73007FB11B /* draw_page_back@2x.png */,
 			);
@@ -17939,6 +17945,7 @@
 				CA9900C917D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
 				A42BB03017D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
 				A42BB03417D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				EADEDC9717D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18808,6 +18815,7 @@
 				CA9900C817D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
 				A42BB02F17D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
 				A42BB03317D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				EADEDC9617D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19658,6 +19666,7 @@
 				CA9900C717D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
 				A42BB02E17D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
 				A42BB03217D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				EADEDC9517D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20478,6 +20487,7 @@
 				CA9900CA17D96E84000148E0 /* ShakeNumberController~ipad.xib in Resources */,
 				A42BB03117D9735A007FB11B /* TwoInputFieldView.xib in Resources */,
 				A42BB03517D9735A007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
+				EADEDC9817D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

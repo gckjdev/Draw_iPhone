@@ -71,7 +71,7 @@
     [drawSlider popupWithContenView:label];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setFont:[UIFont boldSystemFontOfSize:ALPHA_FONT_SIZE]];
-    UIColor *textColor = [UIColor colorWithRed:23./255. green:21./255. blue:20./255. alpha:1];
+    UIColor *textColor = COLOR_BROWN;
     [label setTextColor:textColor];
     [self updateLabel:label value:value];
 

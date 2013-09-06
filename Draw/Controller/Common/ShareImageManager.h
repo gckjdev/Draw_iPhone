@@ -48,7 +48,9 @@
 #define COLOR_COFFEE OPAQUE_COLOR(126, 49, 46)
 
 // 普通label上的字体颜色。
-#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50)
+//#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50)
+#define COLOR_BROWN COLOR_COFFEE
+
 
 // cell的背景颜色
 #define COLOR_WHITE [UIColor whiteColor] //Cell
@@ -373,6 +375,7 @@
 - (UIImage *)ellipseSelectorImage;
 - (UIImage *)rectangeSelectorImage;
 - (UIColor *)drawBGColor;
+- (UIImage *)oldDrawBGImage;
 - (UIImage *)drawBackImage;
 - (UIImage *)runAwayImage;
 

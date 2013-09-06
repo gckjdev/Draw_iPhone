@@ -83,3 +83,13 @@ typedef enum {
 
 @end
 
+
+@interface BadgeView : UIButton
+
++ (id)badgeViewWithNumber:(NSInteger)number;
+
+@property(nonatomic, assign) NSInteger maxNumber; //default is 99
+@property(nonatomic, assign) NSInteger number; //default is 99
+- (void)setBGImage:(UIImage *)image;
+
+@end
