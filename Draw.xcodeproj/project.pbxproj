@@ -1580,6 +1580,18 @@
 		A42BAFC717D71F74007FB11B /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */; };
 		A42BAFC817D71F74007FB11B /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */; };
 		A42BAFC917D71F74007FB11B /* wood_pallets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */; };
+		A42BB01017D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
+		A42BB01117D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
+		A42BB01217D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
+		A42BB01317D96B64007FB11B /* TwoInputFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */; };
+		A42BB01A17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
+		A42BB01B17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
+		A42BB01C17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
+		A42BB01D17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */; };
+		A42BB01F17D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
+		A42BB02017D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
+		A42BB02117D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
+		A42BB02217D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */; };
 		A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
@@ -7385,6 +7397,10 @@
 		A42BAC8717D71F74007FB11B /* wood_pallets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wood_pallets@2x.png"; sourceTree = "<group>"; };
 		A42BAC8817D71F74007FB11B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "zh-Hans.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
 		A42BAC8917D71F74007FB11B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hant"; path = "zh-Hant.lproj/clean_ad@2x.png"; sourceTree = "<group>"; };
+		A42BB00E17D96B64007FB11B /* TwoInputFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoInputFieldView.h; sourceTree = "<group>"; };
+		A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoInputFieldView.m; sourceTree = "<group>"; };
+		A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoInputFieldView.xib; sourceTree = "<group>"; };
+		A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TwoInputFieldView~ipad.xib"; sourceTree = "<group>"; };
 		A42D90401553803D0023AF32 /* ColorShopCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopCell~ipad.xib"; sourceTree = "<group>"; };
 		A42D9047155380760023AF32 /* ColorShopView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ColorShopView~ipad.xib"; sourceTree = "<group>"; };
 		A4348C581717C0FA004AFB26 /* AlixPayOrderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlixPayOrderManager.h; sourceTree = "<group>"; };
@@ -11673,6 +11689,10 @@
 				A467892F17BB21FD007C546A /* UISoundButton.h */,
 				A467893017BB21FE007C546A /* UISoundButton.m */,
 				A484D2FD17C45ACB008185F8 /* CommonViewConstants.h */,
+				A42BB00E17D96B64007FB11B /* TwoInputFieldView.h */,
+				A42BB00F17D96B64007FB11B /* TwoInputFieldView.m */,
+				A42BB01917D96BBB007FB11B /* TwoInputFieldView.xib */,
+				A42BB01E17D96DDD007FB11B /* TwoInputFieldView~ipad.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -17933,6 +17953,8 @@
 				EADEDC7E17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8217D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8C17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
+				A42BB01C17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB02117D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18800,6 +18822,8 @@
 				EADEDC7D17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8117D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8B17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
+				A42BB01B17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB02017D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19648,6 +19672,8 @@
 				EADEDC7C17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8017D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8A17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
+				A42BB01A17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB01F17D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20466,6 +20492,8 @@
 				EADEDC7F17D882780010EAD7 /* detail_rate@2x.png in Resources */,
 				EADEDC8317D882780010EAD7 /* detail_report@2x.png in Resources */,
 				EADEDC8D17D890540010EAD7 /* chat_change_bg@2x.png in Resources */,
+				A42BB01D17D96BBB007FB11B /* TwoInputFieldView.xib in Resources */,
+				A42BB02217D96DDD007FB11B /* TwoInputFieldView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21301,6 +21329,7 @@
 				EA7100B717D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5917D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
+				A42BB01217D96B64007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22108,6 +22137,7 @@
 				EA7100B617D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
+				A42BB01117D96B64007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22921,6 +22951,7 @@
 				EA7100B517D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D017D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5717D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
+				A42BB01017D96B64007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23708,6 +23739,7 @@
 				EA7100B817D05FB000451A38 /* DrawPlayer.m in Sources */,
 				EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
+				A42BB01317D96B64007FB11B /* TwoInputFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
