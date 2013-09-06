@@ -164,6 +164,7 @@
     SET_BUTTON_ROUND_STYLE_YELLOW(self.payAttentionButton);
     
     self.nameLabel.textColor = COLOR_ORANGE;
+    [self.view setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -37,7 +37,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIButton" id="637185735">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">293</int>
+						<int key="NSvFlags">276</int>
 						<string key="NSFrame">{{2, 88}, {768, 620}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -326,6 +326,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">DrawGuessController</string>
 					<string key="superclassName">CommonGuessController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">titleView</string>
+						<string key="NS.object.0">CommonTitleView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">titleView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">titleView</string>
+							<string key="candidateClassName">CommonTitleView</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/DrawGuessController.h</string>

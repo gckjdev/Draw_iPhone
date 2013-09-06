@@ -111,7 +111,9 @@
 - (void)updateButtonBG
 {
     [self enumSubviewsWithClass:[UIButton class] handler:^(id view) {
-        SET_BUTTON_ROUND_STYLE_YELLOW(view);
+        UIButton *btn = view;
+        SET_BUTTON_ROUND_STYLE_YELLOW(btn);
+        btn.layer.cornerRadius = btn.layer.cornerRadius/2;
     }];
     SET_BUTTON_ROUND_STYLE_YELLOW(self.applyButton);
     SET_BUTTON_ROUND_STYLE_YELLOW(self.cancelButton);

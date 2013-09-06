@@ -247,7 +247,7 @@
         UIImageView *iv = (id)[self.view reuseViewWithTag:BG_IMAGE_TAG
                                                 viewClass:[UIImageView class]
                                                     frame:self.dataTableView.bounds];
-        iv.contentMode = UIViewContentModeCenter;
+        iv.contentMode = UIViewContentModeScaleAspectFill;
         [iv setImage:image];
         [self.view sendSubviewToBack:iv];
     }else{
