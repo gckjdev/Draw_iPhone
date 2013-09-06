@@ -33,7 +33,7 @@
 }
 - (void)didClickBackBtn:(PPViewController*)controller
 {
-    [controller.navigationController popToViewController:[HomeController defaultInstance] animated:YES];
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 #define LABEL_HEIGHT (ISIPAD?40:20)
 #define LABEL_FONT_SIZE  (ISIPAD?30:15)
@@ -48,7 +48,7 @@
         [label setTextAlignment:UITextAlignmentCenter];
         [label setCenter:CGPointMake(view.frame.size.width/2, label.center.y)];
         label.tag = LABEL_TAG;
-        [label setText:feed.drawData.word.text];
+        [label setText:feed.wordText];
         [label setFont:[UIFont systemFontOfSize:LABEL_FONT_SIZE]];
         [view addSubview:label];
     }
