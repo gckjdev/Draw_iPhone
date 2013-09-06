@@ -574,7 +574,7 @@
 
 "kUpgradeMsg" = "Congratulations!You upgraded to level %d, flower +%d";
 "kDegradeMsg" = "You draw terribly, now degrade to level %d";
-"kLevelInfo" = "Level:%d    Exp:%d/%d";
+"kLevelInfo" = "Level : %d    Exp : %d/%d";
 
 "kDrawing" = "Drawing";
 "kGuessing" = "Guessing";
@@ -1076,6 +1076,9 @@
 "kLogoutAccount" = "Logout";
 "kLogout" = "Logout";
 "kAutoGetUserSucc" = "Get user information successfully.";
+
+"kNoXiaojiNumber" = "No Littlegee Number";
+"kXiaoji" = "Littlegee";
 
 "kDrawToUserByUser" = "drew to %@";
 "kQQGroup" = "";

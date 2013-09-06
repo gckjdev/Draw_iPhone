@@ -10,6 +10,7 @@
 #import "AutoCreateViewByXib.h"
 #import "PPTableViewController.h"
 #import "ShareImageManager.h"
+#import "StableView.h"
 
 @implementation UserSettingCell
 
@@ -24,9 +25,20 @@
 
 AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 
+#define USER_SETTING_BADGE_VIEW_TAG     2013090501
+
 + (id)createCell:(id)delegate
 {
     UserSettingCell* cell = [UserSettingCell createView];
+    
+    cell.customDetailLabel.textColor = COLOR_RED;
+    cell.customTextLabel.textColor = COLOR_BROWN;
+    
+    BadgeView* badgeView = [BadgeView badgeViewWithNumber:0];
+    badgeView.tag = USER_SETTING_BADGE_VIEW_TAG;
+    
+    [cell.badgeHolderView addSubview:badgeView];
+    
 //    cell.selectedBackgroundView = [[[UIView alloc] initWithFrame:cell.frame] autorelease];
 //    cell.selectedBackgroundView.backgroundColor = [UIColor redColor];
     return cell;
@@ -47,6 +59,12 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 - (void)setCellWithRow:(int)row inSectionRowCount:(int)rowCount
 {
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;            
+}
+
+- (void)setBadge:(int)number
+{
+    BadgeView* badgeView = (BadgeView*)[self.badgeHolderView viewWithTag:USER_SETTING_BADGE_VIEW_TAG];
+    [badgeView setNumber:number];    
 }
 
 - (void)dealloc {

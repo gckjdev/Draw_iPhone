@@ -602,7 +602,7 @@
 
 "kUpgradeMsg" = "恭喜！您剛剛升到第 %d級，鮮花＋%d";
 "kDegradeMsg" = "你畫畫不認真，都降到第%d級了";
-"kLevelInfo" = "等級:%d    經驗值:%d/%d";
+"kLevelInfo" = "等級 : %d    經驗值 : %d/%d";
 
 "kDrawing" = "畫畫中";
 "kGuessing" = "猜畫中";
@@ -705,7 +705,8 @@
 
 // For Weibo Settings
 "kSetEmail" = "電子郵件";
-"kEmailNotSet" = "";
+//"kEmailNotSet" = "";
+"kEmailNotSet" = "未设置";
 "kSetSinaWeibo" = "新浪微博";
 "kWeiboSet" = "已綁定";
 "kNotSet" = "未綁定";
@@ -1070,6 +1071,9 @@
 "kLogoutAccount" = "退出当前帐号";
 "kLogout" = "退出帐号";
 "kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
+
+"kNoXiaojiNumber" = "未有小吉号码";
+"kXiaoji" = "小吉";
 
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
