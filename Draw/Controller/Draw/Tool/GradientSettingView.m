@@ -103,7 +103,7 @@
     }
     _degree = _gradient.degree;
     [self.degreeButton setTitle:[@((int)_degree) stringValue] forState:UIControlStateNormal];
-    [self.degreeButton setBackgroundColor:COLOR_COFFEE];
+    [self.degreeButton setBackgroundColor:COLOR_BROWN];
     [self.degreeButton.layer setCornerRadius:8];
     [self.degreeButton.layer setMasksToBounds:YES];
     [self updateLayer];

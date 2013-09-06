@@ -602,7 +602,7 @@
 
 "kUpgradeMsg" = "恭喜！您剛剛升到第 %d級，鮮花＋%d";
 "kDegradeMsg" = "你畫畫不認真，都降到第%d級了";
-"kLevelInfo" = "等級:%d    經驗值:%d/%d";
+"kLevelInfo" = "等級 : %d    經驗值 : %d/%d";
 
 "kDrawing" = "畫畫中";
 "kGuessing" = "猜畫中";
@@ -705,7 +705,8 @@
 
 // For Weibo Settings
 "kSetEmail" = "電子郵件";
-"kEmailNotSet" = "";
+//"kEmailNotSet" = "";
+"kEmailNotSet" = "未设置";
 "kSetSinaWeibo" = "新浪微博";
 "kWeiboSet" = "已綁定";
 "kNotSet" = "未綁定";
@@ -1071,6 +1072,9 @@
 "kLogout" = "退出帐号";
 "kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
 
+"kNoXiaojiNumber" = "未有小吉号码";
+"kXiaoji" = "小吉";
+
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
@@ -1318,7 +1322,7 @@
 "kFill" = "填充";
 "kCannotRevoke" = "不能繼續撤銷了！如果需要繼續撤銷可以嘗試先保存，然後從草稿箱重新打開。";
 
-"kCustomBg" = "自定義背景";
+"kCustomBg" = "自定義用戶資料背景";
 "kUpdateBackgroundSucc" = "更新背景成功!";
 "kUpdateBackgroundFail" = "背景更新失敗，稍後再試。";
 "kBlackUserMsg" = "將該玩家列入黑名單之後，他/她將無法看到你的動態，無法給你發消息和畫畫，確定嗎？";
@@ -1502,7 +1506,7 @@
 
 "kRanking" = "排名";
 
-"kOpusNameInvaild" = "作品名稱不能未空";
+"kOpusNameInvaild" = "作品名稱不能为空";
 
 "kAskForHelp" = "吐槽";
 "kLookWhatHeDraw" = "大家來看看他/她到底畫的是什麽呀？怎麽猜都猜不出來，坑爹啊～";

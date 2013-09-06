@@ -56,6 +56,8 @@
     DrawToolUpPanelCell * cell = [UIView createViewWithXibIdentifier:@"ToolUpPanel" ofViewIndex:index];
     cell.delegate = delegate;
     cell.accessButton.hidden = YES;
+    [cell.subject setTextColor:COLOR_BROWN];
+    [cell.titleLabel setTextColor:COLOR_BROWN];
     return cell;
 }
 

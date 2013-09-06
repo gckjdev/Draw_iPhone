@@ -28,7 +28,6 @@
 @end
 
 @implementation ColorShopView
-@synthesize titleLabel;
 @synthesize coinCountLabel;
 @synthesize dataTableView;
 @synthesize colorGroups;
@@ -44,14 +43,10 @@
     ColorShopView* view =  (ColorShopView*)[topLevelObjects objectAtIndex:0];
     
     //init the coin count and title 
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    UIImageView *tableBg = [[UIImageView alloc] 
-                            initWithFrame:view.dataTableView.bounds];
     
-    [tableBg setImage:[imageManager showcaseBackgroundImage]];
-    [view.dataTableView setBackgroundView:tableBg];
-    [tableBg release];
-    [view.titleLabel setText:NSLS(@"kColorShop")];
+    [view.titleView setTitle:NSLS(@"kColorShop")];
+    [view.titleView setTarget:view];
+    [view.titleView setBackButtonSelector:@selector(clickBack:)];
     view.dataTableView.delegate = view;
     view.dataTableView.dataSource = view;
     //get the datalist
@@ -210,7 +205,6 @@
     self.indicator.hidden = NO;
     [self.indicator startAnimating];
     self.dataTableView.userInteractionEnabled = NO;
-    self.backButton.enabled = NO;
 }
 
 - (void)hideActivity
@@ -218,7 +212,6 @@
     [self.indicator stopAnimating];
     self.indicator.hidden = YES;
     self.dataTableView.userInteractionEnabled = YES;
-    self.backButton.enabled = YES;
 }
 
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
@@ -279,11 +272,10 @@
 - (void)dealloc {
     PPDebug(@"%@ dealloc",self);
     PPRelease(_indicator);
-    PPRelease(titleLabel);
     PPRelease(coinCountLabel);
     PPRelease(dataTableView);
     PPRelease(colorGroups);
-    [_backButton release];
+    [_titleView release];
     [super dealloc];
 }
 @end

@@ -90,6 +90,7 @@ enum {
 @synthesize nicknameLabel;
 
 - (void)dealloc {
+    PPRelease(_xiaojiNumberLabel);
     PPRelease(_pbUserBuilder);
     PPRelease(tableViewBG);
     PPRelease(avatarButton);
@@ -247,6 +248,7 @@ SET_CELL_BG_IN_CONTROLLER;
     
     expAndLevelLabel.textColor = COLOR_BROWN;
     nicknameLabel.textColor = COLOR_BROWN;
+    self.xiaojiNumberLabel.textColor = COLOR_BROWN;
     
     // set data for table view
     _userManager = [UserManager defaultManager];
@@ -273,6 +275,16 @@ SET_CELL_BG_IN_CONTROLLER;
     
     // init nick name
     [self updateNicknameLabel];
+    
+    NSString* number = [[UserManager defaultManager] xiaojiNumber];
+    if ([number length] == 0){
+        NSString* text = [NSString stringWithFormat:@"%@ : %@", NSLS(@"kXiaoji"), NSLS(@"kNone")];
+        self.xiaojiNumberLabel.text = text;
+    }
+    else{
+        NSString* text = [NSString stringWithFormat:@"%@ : %@", NSLS(@"kXiaoji"), number];
+        self.xiaojiNumberLabel.text = text;
+    }
     
     // init level and exp info label
     LevelService* svc = [LevelService defaultService];
@@ -467,14 +479,22 @@ SET_CELL_BG_IN_CONTROLLER;
     [cell setCellWithRow:indexPath.row inSectionRowCount:rowNumber];
     
     [cell.customDetailLabel setText:nil];
+    [cell.customDetailLabel setTextColor:COLOR_RED];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    [cell setBadge:1];
+    
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     if (section == SECTION_USER) {
         if (row == rowOfPassword) {
             [cell.customTextLabel setText:NSLS(@"kPassword")];      
             if ([_pbUserBuilder.password length] == 0) {
                 [cell.customDetailLabel setText:NSLS(@"kUnset")];
+                
+                [cell.customDetailLabel setTextColor:COLOR_GREEN];
+                [cell setBadge:1];
+                
             }
             else{
                 [cell.customDetailLabel setText:NSLS(@"kPasswordSet")];
@@ -588,6 +608,9 @@ SET_CELL_BG_IN_CONTROLLER;
                 }
                 else{
                     [cell.customDetailLabel setText:NSLS(@"kEmailNotSet")];
+
+                    [cell setBadge:1];
+                    [cell.customDetailLabel setTextColor:COLOR_GREEN];
                 }
             }
                 break;

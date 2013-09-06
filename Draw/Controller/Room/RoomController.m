@@ -150,6 +150,7 @@
     [self setCanDragBack:NO];    
     
     SET_BUTTON_ROUND_STYLE_YELLOW(self.startGameButton);
+    [self.view setBackgroundColor:COLOR_WHITE];
 }
 
 - (void)viewDidAppear:(BOOL)animated

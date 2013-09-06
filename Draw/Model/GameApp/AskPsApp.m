@@ -137,7 +137,7 @@
 
 - (NSString*)askFollowMessage
 {
-    return @"关注和收听猜猜画画官方微博，第一时间可以看到唯美的猜猜画画作品";
+    return @"关注和收听官方微博，第一时间可以看到唯美的画画作品";
 }
 
 - (NSString*)sinaWeiboId

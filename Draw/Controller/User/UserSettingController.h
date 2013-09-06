@@ -71,6 +71,7 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (retain, nonatomic) IBOutlet UILabel *expAndLevelLabel;
+@property (retain, nonatomic) IBOutlet UILabel *xiaojiNumberLabel;
 @property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
