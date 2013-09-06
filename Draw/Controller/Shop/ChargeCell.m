@@ -80,8 +80,7 @@
     self.discountButton.backgroundColor = COLOR_GREEN;
     SET_VIEW_ROUND_CORNER(self.discountButton);
     
-    self.buyButton.backgroundColor = COLOR_ORANGE;
-    SET_VIEW_ROUND_CORNER(self.buyButton);
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.buyButton);
     
     [self.buyButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     

@@ -33,8 +33,10 @@
 // (深)橙黄色按钮，用于select/hightlight状态。
 #define COLOR_ORANGE1 OPAQUE_COLOR(209, 66, 53) 
 
-// 统一一种黄色，用在按钮上，也用在一些背景设置上。
-#define COLOR_YELLOW OPAQUE_COLOR(254, 198, 48) 
+// (浅)黄色，用在按钮上(normal)，也用在一些背景设置上。
+#define COLOR_YELLOW OPAQUE_COLOR(254, 198, 48)
+// (深)黄色，用在按钮上(hightlight/select)
+#define COLOR_YELLOW1 OPAQUE_COLOR(204, 131, 24)
 
 // CommonDialog 边框的颜色。
 #define COLOR_RED OPAQUE_COLOR(235, 83, 48)    
@@ -53,8 +55,6 @@
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
 
 
-
-
 #define IMAGE_FROM_COLOR(color) ([ShareImageManager imageWithColor:color])
 
 #define SET_VIEW_BG(view) (view.backgroundColor = COLOR_WHITE)
@@ -65,21 +65,31 @@
     [ShareImageManager setMessageLabelStyle:view];          \
 }
 
+// 输入框风格。
 #define SET_INPUT_VIEW_STYLE(view)                          \
 {                                                           \
     [ShareImageManager setInputViewStyle:view];             \
 }
 
+// CommonTab 按钮风格。
 #define SET_BUTTON_AS_COMMON_TAB_STYLE(view)                \
 {                                                           \
     [ShareImageManager setButtonCommonTabStyle:view];       \
 }
 
+// 黄色圆角按钮风格。
 #define SET_BUTTON_ROUND_STYLE_YELLOW(view)                 \
 {                                                           \
     [ShareImageManager setButtonYellowRoundStyle:view];     \
-}       
+}    
 
+// 黄色方角按钮风格。
+#define SET_BUTTON_SQUARE_STYLE_YELLOW(view)                 \
+{                                                           \
+    [ShareImageManager setButtonYellowSquareStyle:view];     \
+}
+
+// 红色圆角按钮风格。
 #define SET_BUTTON_ROUND_STYLE_ORANGE(view)                 \
 {                                                           \
     [ShareImageManager setButtonOrangeRoundStyle:view];     \
@@ -109,10 +119,6 @@
     cell.backgroundColor = COLOR_WHITE;             \
     }                                                   \
 }
-
-
-
-
 
 
 #define SETTING_BUTTON_IMAGE    @"home_setting.png"
@@ -391,6 +397,8 @@
 + (void)setInputViewStyle:(id)iv;
 
 + (void)setButtonYellowRoundStyle:(UIButton *)button;
++ (void)setButtonYellowSquareStyle:(UIButton *)button;
+
 + (void)setButtonCommonTabStyle:(UIButton *)button;
 + (void)setButtonOrangeRoundStyle:(UIButton *)button;
 

@@ -108,8 +108,8 @@
 "kQuitDrawAlertMessage" = "是否保存對作品所作的更改？";
 "kQuitDrawAlertTitle" = "退出繪畫";
 
-"kDedutCoinQuitGameAlertMessage" = "遊戲進行中，如果這時退出遊戲，系統將會扣除%d個金幣哦。";
-"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金幣，你的賬戶餘額不足，現在不能退出遊戲哦！";
+"kDedutCoinQuitGameAlertMessage" = "遊戲進行中，如果這時退出遊戲，系統將會扣除%d個金幣。";
+"kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金幣，你的賬戶餘額不足，現在不能退出遊戲！";
 
 "kBalanceNotEnoughTitle" = "余額不足";
 "kBalanceNotEnoughDesc" = "不好意思，你的余額不夠了，你可以通過以下途徑來增加您的余額。";
@@ -146,7 +146,7 @@
 
 "kCheckInTitle" = "消息";
 "kCheckInMessage" = "哇，你今日簽到獲得了%d個金幣，記得明天再來!";
-"kCheckInAlreadyToday" = "你今天已經簽到過了，記得明天再來哦!";
+"kCheckInAlreadyToday" = "你今天已經簽到過了，記得明天再來!";
 
 "kRegisterToEnter" = "馬上註冊\"%@\"進入遊戲吧";
 "kRegisterPromptLabel" = "使用微博賬號玩";
@@ -206,10 +206,10 @@
 
 "kChangeRoomMaxTimes" = "你換房間次數已經超過限制，現在換房間需要花費你一個金幣，確定嗎？";
 "kChangeRoomTitle" = "更換房間";
-"kChangeRoomConfirm" = "換房間會影響當前一起玩的玩家哦，同時需要花費你一個金幣，確定換個房間嗎？";
-"kChangeRoomConfirm" = "換房間會影響當前一起玩的用戶哦，一天只能更換5次房間，確定換個房間嗎？";
+"kChangeRoomConfirm" = "換房間會影響當前一起玩的玩家，同時需要花費你一個金幣，確定換個房間嗎？";
+"kChangeRoomConfirm" = "換房間會影響當前一起玩的用戶，一天只能更換5次房間，確定換個房間嗎？";
 "kQuitGameTitle" = "退出房間";
-"kQuitGameConfirm" = "退出當前房間系統會扣除您%d個金幣哦，請問是否要退出？";
+"kQuitGameConfirm" = "退出當前房間系統會扣除您%d個金幣，請問是否要退出？";
 
 "kOldPasswordHolder" = "請輸入舊密碼";
 "kNewPasswordHolder" = "請輸入新密碼（長度>=6）";
@@ -366,7 +366,7 @@
 "kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片。";
 "kGifTips" = "溫馨提示";
 
-"kContentRepeat" = "不要重複提交哦!";
+"kContentRepeat" = "不要重複提交!";
 
 "kWordForbidden" = "文本內容中包含了敏感詞，請檢查";
 
@@ -401,7 +401,7 @@
 "kPublishWeiboSuccAndEarnCoins" = "微博已發送，你獲得了%d金幣！";
 "guest" = "路人甲";
 "kOnlineUserCount" = "在線用戶共%d人";
-"kContactNull" = "聯繫方式不能為空哦。";
+"kContactNull" = "聯繫方式不能為空。";
 "kFailStartGame" = "房間已經開始玩了，請選擇另一個房間吧。";
 "kSound" = "音效";
 "kON" = "開 ";
@@ -573,9 +573,9 @@
 "kAddWordsTips" = "詞之間用空格或者換行分開，如\"大地中國\"";
 "kAddWordsSucc" = "提交成功，感謝貢獻";
 "kAddWordsFail" = "提交失敗，請稍後再試";
-"kContentFormatError" = "格式錯誤，詞之間的分隔符號只能是空格或者換行，仔細檢查一下哦";
+"kContentFormatError" = "格式錯誤，詞之間的分隔符號只能是空格或者換行，仔細檢查一下";
 "kWordTooLong" = "\"%@\"太長了，一次詞最多只能有7個字";
-"kIllegalCharacter" = "\"%@\"有非法字符哦，字只能是中文，不能包括字母、數字和標點符號";
+"kIllegalCharacter" = "\"%@\"有非法字符，字只能是中文，不能包括字母、數字和標點符號";
 
 "kFakeIAPPurchase" = "驗證您的IAP購買失敗，請確認您通過了正確的途徑進行購買";
 "kNetworkBroken" = "您太久沒有操作，自動退出房間，或者您的網絡連接中斷了";
@@ -614,9 +614,6 @@
 "kContestSubmitSuccMsg" = "謝謝您的參與，還可以提交%d幅作品，再來一幅？";
 "kContestSubmitSuccQuitMsg" = "謝謝您的參與！";
 
-//"kDedutCoinChangeOpusAlertMessage" = "如果更換一副作品，系統將會扣除1個金幣哦。";
-//"kNoCoinChangeOpusMessage" = "更換作品需要扣除1個金幣，你的賬戶餘額不足，是不是現在購買一些金幣？";
-//"kChangeOpusTitle" = "更換作品";
 "kQuit" = "放棄";
 
 "kGuessDraw" = "猜畫中";
@@ -786,7 +783,7 @@
 "kWaterPen" = "麥克筆";
 
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
-"kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗哦。僅用於在線遊戲。";
+"kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗。僅用於在線遊戲。";
 "kRemoveAdDescription" = "攔截並且不顯示所有廣告";
 "kTipsDescription" = "錦囊可用於猜畫時炸詞，或者畫畫時更換詞語，威力無窮！";
 "kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";
@@ -998,7 +995,7 @@
 "kFailLoad" = "獲取數據失敗，請稍後再試。";
 "kContestOpus" = "參賽作品";
 "kTop" = "排行榜";
-"kCanotSendToSelf" = "不能為自己的作品送鮮花或者扔番茄哦。";
+"kCanotSendToSelf" = "不能為自己的作品送鮮花或者扔番茄。";
 "kAutoSave" = "自動保存";
 "kReplyCommentDesc" = "回複%@: %@";
 
@@ -1325,7 +1322,7 @@
 "kHisOpus" = "作品";
 "kNicknameOutofRange" = "暱稱最長不可超過%d個字母或者%d個漢字。";
 "kSignatureOutofRange" = "個性簽名最長不可超過%d個字母或者%d個漢字。";
-"kNoBindNoFollow" = "你還沒綁定%@或者帳號已過期，你需要再綁定才能關注哦。";
+"kNoBindNoFollow" = "你還沒綁定%@或者帳號已過期，你需要再綁定才能關注。";
 
 "kLoginSucc" = "登錄成功";
 "kLoginFail" = "登錄失敗，請檢查郵件地址或者密碼是否正確";
@@ -1446,7 +1443,7 @@
 "kAwardIs:%d" = "獎勵: %d金幣";
 
 "kIGotIt" = "我知道了";
-"kRestart" = "重開";
+"kRestart" = "重新開始";
 "kSelectGuessMode" = "選擇猜畫模式";
 
 "kHappGuessMode" = "歡樂模式";
@@ -1465,8 +1462,8 @@
 "kGuessHappyModeAwardTips" = "恭喜你順利猜中%d副作品，系統獎勵你%d金幣，是否還想繼續歡樂模式？";
 "kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d副作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
 
-"kGuessHappyModeTips" = "你已經猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵哦!";
-"kGuessGenuisModeTips" = "你已經連續猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵哦!";
+"kGuessHappyModeTips" = "你已經猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵!";
+"kGuessGenuisModeTips" = "你已經連續猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵!";
 "kGuessGenuisFail" = "你猜錯了，不能再繼續玩下去了，重新開始？";
 "kGuessContestModeOverTips" = "恭喜你完成比賽啦，目前有%d位玩家參加比賽，你目前的排名是第%d名，預計可獲得%d金幣獎勵";
 "kGuessContestModeTips" = "你已經猜對了%d副作品，目前排名是第%d名，預計可獲得%d金幣獎勵，目前總共有%d玩家參與";
@@ -1685,19 +1682,19 @@
 
 "kItemBlueDiamondDice" = "藍寶石骰";
 "kBlueDiamondDice" = "藍寶石骰";
-"kBlueDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+"kBlueDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有～";
 
 "kItemPinkDiamondDice" = "粉寶石骰";
 "kPinkDiamondDice" = "粉寶石骰";
-"kPinkDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+"kPinkDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有～";
 
 "kItemGreenDiamondDice" = "綠寶石骰";
 "kGreenDiamondDice" = "綠寶石骰";
-"kGreenDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+"kGreenDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有～";
 
 "kItemPurpleDiamondDice" = "紫寶石骰";
 "kPurpleDiamondDice" = "紫寶石骰";
-"kPurpleDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有哦～";
+"kPurpleDiamondDiceDescription" = "至堅至美者，非寶石莫屬，象徵瑰麗祥瑞，意義雋永，人人值得擁有～";
 
 "kNoMoreShowIt" = "不再提醒";
 "kItemTips" = "道具提示";
@@ -1710,7 +1707,7 @@
 "kSearchEmpty" = "找不到匹配的房間";
 "kNoFriendRoom" = "暫時沒有好友在線";
 "kOnlineUser" = "在線%d人";
-"kCanotSendItemToOverContestOpus" = "比賽已經結束， 不能再丟東西了哦！";
+"kCanotSendItemToOverContestOpus" = "比賽已經結束， 不能再丟東西了！";
 
 
 /*********************** 大话骰子国际化字符串结束 *************************/
@@ -1763,7 +1760,7 @@
 "kShutUp" = "別吵啦，專心遊戲";
 "kZJHFreeCoinsAwardNote" = "恭喜你獲得%d金幣";
 "kDrawFreeCoinsAwardNote" = "恭喜你獲得%d金幣 + %d鮮花 + %d錦囊(剩余次數:%d)";
-"kLevelUpAwardMessage" = "恭喜升到%d級! 我們給您獎勵了%d個金幣哦!";
+"kLevelUpAwardMessage" = "恭喜升到%d級! 我們給您獎勵了%d個金幣!";
 "kZJHShopTitle" = "炸金花商店";
 /*********************** 炸金花国际化字符串结束 *************************/
 
@@ -1791,11 +1788,11 @@
 "kCommentMyPost" = "評論我的帖子: %@";
 "kReplyMyComment" = "回復我: %@";
 
-"kTextTooShot" = "帖子的字數不能少於%d個字哦。";
-"kTextTooLong" = "帖子的字數不能多於%d個字哦。";
-"kTextTooFrequent" = "妳發帖太頻繁了，時間間隔不能小於 %d 秒哦。";
+"kTextTooShot" = "帖子的字數不能少於%d個字。";
+"kTextTooLong" = "帖子的字數不能多於%d個字。";
+"kTextTooFrequent" = "妳發帖太頻繁了，時間間隔不能小於 %d 秒。";
 "kNetworkError" = "網絡連接錯誤，請檢查網絡設置。";
-"kSupportTimesLimit" = "每張帖子最多只能頂 %d 次哦。";
+"kSupportTimesLimit" = "每張帖子最多只能頂 %d 次。";
 
 "kWarning" = "警告";
 "kClearImageData" = "之前選擇的圖像將被清除，妳要繼續嗎？";
