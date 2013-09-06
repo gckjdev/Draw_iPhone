@@ -412,3 +412,54 @@
     }
 }
 @end
+
+
+@implementation BadgeView
+
+
+#define BadgeSize (ISIPAD ?  40: 25)
+#define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
+
++ (id)badgeViewWithNumber:(NSInteger)number
+{
+    BadgeView *badge = [[[BadgeView alloc] initWithFrame:CGRectMake(0, 0, BadgeSize, BadgeSize)] autorelease];
+    badge.userInteractionEnabled = NO;
+    
+    [badge.titleLabel setFont:BADGE_FONT];
+    
+    [badge setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [badge setBGImage:[[ShareImageManager defaultManager] badgeImage]];
+    [badge setNumber:number];
+    return badge;
+}
+
+- (void)setNumber:(NSInteger)number
+{
+    _number = number;
+    [self setHidden:NO];
+    if (_number > self.maxNumber) {
+        [self setTitle:@"N" forState:UIControlStateNormal];
+    }else if(_number <= 0){
+        //hide it
+        [self setTitle:nil forState:UIControlStateNormal];
+        [self setHidden:YES];
+    }else{
+        [self setTitle:[@(number) stringValue] forState:UIControlStateNormal];
+    }
+    
+}
+
+- (void)setMaxNumber:(NSInteger)maxNumber
+{
+    _maxNumber = maxNumber;
+    [self setNumber:self.number];
+}
+
+- (void)setBGImage:(UIImage *)image
+{
+    [self setBackgroundImage:image forState:UIControlStateNormal];
+}
+
+
+@end

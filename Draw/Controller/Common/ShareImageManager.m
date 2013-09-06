@@ -1233,6 +1233,11 @@ static UIImage* _whitePaperImage;
     return [UIColor colorWithPatternImage:image];
 }
 
+- (UIImage *)oldDrawBGImage
+{
+    return [UIImage imageNamed:@"old_draw_bg@2x.jpg"];
+}
+
 - (UIImage *)drawBackImage
 {
     return [UIImage imageNamed:@"draw_page_back@2x.png"];

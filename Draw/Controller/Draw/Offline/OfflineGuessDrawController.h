@@ -22,13 +22,13 @@
 }
 @property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
-
+@property (assign, nonatomic) PPViewController *fromController;
 - (IBAction)bomb:(id)sender;
 
 - (id)initWithFeed:(DrawFeed *)feed;
 
 + (OfflineGuessDrawController *)startOfflineGuess:(DrawFeed *)feed
-                                   fromController:(UIViewController *)fromController;
+                                   fromController:(PPViewController *)fromController;
 
 
 @end

@@ -31,6 +31,7 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "AccountService.h"
 #import "WordInputView.h"
+#import "FeedSceneGuessResult.h"
 
 
 @interface OfflineGuessDrawController()
@@ -49,7 +50,8 @@
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc]
                                             initWithFeed:feed];
     [fromController.navigationController pushViewController:offGuess animated:YES];
-    [offGuess release];        
+    [offGuess release];
+    offGuess.fromController = fromController;
     return offGuess;
 }
 
@@ -206,6 +208,10 @@
         [_feed incGuessTimes];
     }
     [self cleanData];
+    if ([self.fromController isKindOfClass:[ShowFeedController class]]) {
+        [(ShowFeedController *)self.fromController setFeedScene:[[[FeedSceneGuessResult alloc] init] autorelease]];
+    } 
+    
     [self.navigationController popViewControllerAnimated:YES];
 
 }

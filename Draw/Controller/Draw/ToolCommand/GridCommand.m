@@ -56,7 +56,7 @@
 {
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, V(40), V(30))] autorelease];
     [label setFont:[UIFont systemFontOfSize:V(14)]];
-    [label setTextColor:COLOR_WHITE];
+    [label setTextColor:COLOR_BROWN];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextAlignment:NSTextAlignmentCenter];
     

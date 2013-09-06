@@ -71,6 +71,7 @@
     [label setFont:[UIFont systemFontOfSize:WIDTH_FONT_SIZE]];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextAlignment:NSTextAlignmentCenter];
+    [label setTextColor:COLOR_BROWN];
     [content addSubview:label];
     
     [self updateValue:value withContentView:content];
