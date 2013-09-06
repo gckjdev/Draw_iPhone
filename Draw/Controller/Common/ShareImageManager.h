@@ -373,6 +373,7 @@
 - (UIImage *)ellipseSelectorImage;
 - (UIImage *)rectangeSelectorImage;
 - (UIColor *)drawBGColor;
+- (UIImage *)oldDrawBGImage;
 - (UIImage *)drawBackImage;
 - (UIImage *)runAwayImage;
 

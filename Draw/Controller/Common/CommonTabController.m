@@ -10,6 +10,7 @@
 #import "CommonMessageCenter.h"
 #import "ShareImageManager.h"
 #import "UIButton+Sound.h"
+#import "StableView.h"
 
 @implementation CommonTabController
 @synthesize titleLabel = _titleLabel;
@@ -111,7 +112,6 @@
 
 //#define BUTTON_FONT (ISIPAD ? [UIFont boldSystemFontOfSize:28] : [UIFont boldSystemFontOfSize:14])
 #define BUTTON_FONT (ISIPAD ? [UIFont systemFontOfSize:28] : [UIFont systemFontOfSize:14])
-#define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
 #define SPLIT_WIDTH (ISIPAD ? 2 : 1)
 
 
@@ -468,50 +468,36 @@
 }
 
 #define BadgeTagOffset 20130813
-#define BadgeSize (ISIPAD ?  40: 25)
 #define PositionOffset 0.8
 
-- (UIButton *)badgeButtonForTab:(NSInteger) tabID
+- (BadgeView *)badgeViewForTab:(NSInteger) tabID
 {
     NSInteger tag = tabID + BadgeTagOffset;
     UIButton *button = [self tabButtonWithTabID:tabID];
     if (button == nil) {
         return nil;
     }
-    UIButton *badge = (id)[self.view viewWithTag:tag];
+    BadgeView *badge = (id)[self.view viewWithTag:tag];
     if(badge == nil){
-        badge = [UIButton buttonWithType:UIButtonTypeCustom];
+        badge = [BadgeView badgeViewWithNumber:0];
         badge.tag = tag;
-        badge.userInteractionEnabled = NO;
-        badge.frame = CGRectMake(CGRectGetWidth(button.bounds) - BadgeSize*PositionOffset,
-                                 - BadgeSize*(1-PositionOffset), BadgeSize, BadgeSize);
+        CGFloat bvWidth = CGRectGetWidth(badge.bounds);
+        CGFloat bvHeight = CGRectGetHeight(badge.bounds);
+        
+        badge.frame = CGRectOffset(badge.frame, CGRectGetWidth(button.bounds) - bvWidth*PositionOffset,
+                                    - bvHeight*(1-PositionOffset));
         
         badge.frame = [self.view convertRect:badge.frame fromView:button];
 
-        [badge.titleLabel setFont:BADGE_FONT];
-        [badge setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [badge setBackgroundImage:[[ShareImageManager defaultManager] badgeImage]
-                         forState:UIControlStateNormal];
-        [self.view addSubview:badge];        
+        [self.view addSubview:badge];
     }
     [self.view bringSubviewToFront:badge];
     return badge;
-
 }
 
 - (void)setBadge:(NSInteger)badge onTab:(NSInteger)tabID
 {
-    UIButton *badgeButton = [self badgeButtonForTab:tabID];
-    if (badgeButton) {
-        badgeButton.hidden = NO;
-        if (badge <= 0) {
-            badgeButton.hidden = YES;
-        }else if(badge < 99){
-            [badgeButton setTitle:[@(badge) stringValue] forState:UIControlStateNormal];
-        }else{
-            [badgeButton setTitle:@"N" forState:UIControlStateNormal];
-        }
-    }
+   [[self badgeViewForTab:tabID] setNumber:badge];
 }
 
 - (void)setTab:(NSInteger)tabID titleNumber:(NSInteger)number
