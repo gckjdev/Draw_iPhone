@@ -265,12 +265,18 @@
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
     cell.avatarView.delegate = cell;
     
+//    cell.segmentedControl = [[[CustomSegmentedControl alloc]
+//                              initWithSegmentTitles:@[NSLS(@"kUserOpus"), NSLS(@"kFavorite")]
+//                              frame:cell.feedTabHolder.frame
+//                              unpressedImage:[ShareImageManager imageWithColor:BG_COLOR]
+//                              pressedImage:[ShareImageManager imageWithColor:COLOR_GREEN]
+//                              delegate:cell] autorelease];
+    
     cell.segmentedControl = [[[CustomSegmentedControl alloc]
                               initWithSegmentTitles:@[NSLS(@"kUserOpus"), NSLS(@"kFavorite")]
                               frame:cell.feedTabHolder.frame
-                              unpressedImage:[ShareImageManager imageWithColor:BG_COLOR]
-                              pressedImage:[ShareImageManager imageWithColor:COLOR_GREEN]
-                              delegate:cell] autorelease];
+                              unpressedColor:BG_COLOR pressedColor:COLOR_GREEN delegate:cell] autorelease];
+    
     [cell addSubview:cell.segmentedControl];
     [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     [cell.segmentedControl setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
