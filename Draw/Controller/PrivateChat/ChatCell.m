@@ -121,7 +121,8 @@
         [dateFormatter setDateFormat:@"yy-MM-dd HH:mm"];
         self.timeLabel.text = [dateFormatter stringFromDate:date];
     }
-    self.timeLabel.textColor = [UIColor colorWithRed:151.0/255.0 green:151.0/255.0 blue:151.0/255.0 alpha:1];
+    
+    self.timeLabel.textColor = COLOR_YELLOW;
 
 }
 
@@ -134,10 +135,11 @@
     
     //set nickname
     self.nickNameLabel.text = messageStat.friendNickName;
-    
+    self.nickNameLabel.textColor = COLOR_BROWN;
     
     //set text
     [self.textLabel setText:self.messageStat.desc];
+    self.textLabel.textColor = COLOR_RED;
     
     //set countLabel
     [self updateBadge];
