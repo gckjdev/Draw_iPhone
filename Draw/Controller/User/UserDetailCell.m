@@ -29,8 +29,6 @@
 #import "CommonDialog.h"
 
 #define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
-#define TEXT_COLOR OPAQUE_COLOR(16, 147, 137)
-
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
 #define NICK_NAME_MAX_WIDTH (ISIPAD?424:181)
@@ -88,7 +86,11 @@
     self.basicDetailView.hidden = YES;
     
     [self.editButton setHidden:![detail canEdit]];
-    [self.customBackgroundControl setHidden:![detail canEdit]];
+//    [self.customBackgroundControl setHidden:![detail canEdit]];
+    
+    [self.customBackgroundControl setUserInteractionEnabled:[detail canEdit]];
+
+
     [self.blackListBtn setHidden:![detail isBlackBtnVisable]];
     [self.superBlackBtn setHidden:![detail isSuperManageBtnVisable]];
     
@@ -113,6 +115,15 @@
     
 
     [self.customBackgroundImageView setImageWithUrl:[NSURL URLWithString:[[detail getUser] backgroundUrl]] placeholderImage:nil showLoading:NO animated:YES];
+
+    
+    if ([[[detail getUser] backgroundUrl] length] == 0) {
+        [self.customBackgroundControl setBackgroundColor:BG_COLOR];
+    }else{
+        [self.customBackgroundControl setBackgroundColor:[UIColor clearColor]];
+    }
+
+    
     
     [self.customBackgroundControl addTarget:self action:@selector(clickCustomBackground:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -148,10 +159,8 @@
     
     [self.avatarHolderView addSubview:_avatarView];
     
-    [self.customBackgroundControl setBackgroundColor:BG_COLOR];
-    
-    self.levelLabel.textColor = TEXT_COLOR;
-    self.signLabel.textColor = TEXT_COLOR;
+    self.levelLabel.textColor = COLOR_WHITE;
+    self.signLabel.textColor = COLOR_WHITE;
     
     [self.seperator1 setBackgroundColor:BG_COLOR];
     [self.seperator2 setBackgroundColor:COLOR_ORANGE];
@@ -167,17 +176,15 @@
     
     SET_VIEW_ROUND_CORNER(self.specialTitleLabel);
     [self.specialTitleLabel setBackgroundColor:COLOR_YELLOW];
-    self.specialTitleLabel.textColor = COLOR_WHITE;
+    self.specialTitleLabel.textColor = COLOR_BROWN;
     
     
     [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.exploreBbsPostBtn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    
+    [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.superBlackBtn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    
+    [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.blackListBtn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
 }
 
 
@@ -278,7 +285,7 @@
     [cell.carousel startScrolling];
     [cell.carousel enabaleWrap:YES];
     [cell.carousel showActivity];
-    cell.carousel.backgroundColor = [UIColor blackColor];
+    cell.carousel.backgroundColor = [UIColor clearColor];
     
     return cell;
 }

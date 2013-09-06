@@ -29,6 +29,7 @@ typedef void(^DidSetDefaultBlock)(void);
 @property (nonatomic, retain) UIPopoverController *popoverController;
 @property (nonatomic, copy) DidSelectedImageBlock selectImageBlock;
 @property (nonatomic, copy) DidSetDefaultBlock setDefaultBlock;
+@property (assign, nonatomic) BOOL userOriginalImage;
 
 - (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController;
 - (void)showEditImageView:(UIImage*)image

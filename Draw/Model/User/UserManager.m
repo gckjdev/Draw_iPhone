@@ -171,6 +171,9 @@ static UserManager* _defaultManager;
     [userDefaults setObject:data forKey:KEY_ALL_USER_PB_DATA];
     [userDefaults synchronize];
     PPDebug(@"<storeUserData> store user data success!");
+    
+    // post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_USER_DATA_CHANGE object:nil];
 }
 
 - (void)cleanUserData
@@ -181,6 +184,8 @@ static UserManager* _defaultManager;
     PPDebug(@"<cleanUserData> clean user data success!");
     
     self.pbUser = nil;
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_USER_DATA_CHANGE object:nil];
 }
 
 - (NSString*)userId

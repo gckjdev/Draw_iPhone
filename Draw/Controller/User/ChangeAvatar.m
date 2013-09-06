@@ -22,7 +22,6 @@
 
 @property (assign, nonatomic) BOOL hasRemoveOption;
 @property (assign, nonatomic) BOOL canTakePhoto;
-@property (assign, nonatomic) BOOL userOriginalImage;
 
 @end
 

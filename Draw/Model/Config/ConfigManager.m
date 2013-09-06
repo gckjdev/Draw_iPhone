@@ -1095,4 +1095,8 @@
 
 }
 
++ (int)getFeedCarouselType{
+    return [MobClickUtils getIntValueByKey:@"FEED_CAROUSEL_TYPE" defaultValue:8];
+}
+
 @end

@@ -151,17 +151,27 @@
 
 - (IBAction)clickChangeBGButton:(id)sender {
     
-    [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
-        if ([[UserManager defaultManager] setPageBg:image forKey:CHAT_PAGE_BG_KEY]) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomChatBgSucc") delayTime:2];
-        }
-        [self updateBG];        
-    } didSetDefaultBlock:^{
-        if ([[UserManager defaultManager] resetPageBgforKey:CHAT_PAGE_BG_KEY]) {
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomChatBgSucc") delayTime:2];
-        }
-        [self updateBG];
-    } title:NSLS(@"kCustomChatBg") hasRemoveOption:YES];
+    [[self backgroundPicker] showSelectionView:self
+                                      delegate:nil
+                            selectedImageBlock:^(UIImage *image) {
+
+                                if ([[UserManager defaultManager] setPageBg:image forKey:CHAT_PAGE_BG_KEY]) {
+                                    POSTMSG(NSLS(@"kCustomChatBgSucc"));
+                                }
+                                [self updateBG];
+                            }
+     
+                            didSetDefaultBlock:^{
+
+                                if ([[UserManager defaultManager] resetPageBgforKey:CHAT_PAGE_BG_KEY]) {
+                                    POSTMSG(NSLS(@"kResetCustomChatBgSucc"));
+                                }
+                                [self updateBG];
+                            }
+                                         title:NSLS(@"kCustomChatBg")
+                               hasRemoveOption:YES
+                                  canTakePhoto:YES
+                             userOriginalImage:YES];
     
 }
 
@@ -246,10 +256,10 @@
     if (image) {
         UIImageView *iv = (id)[self.view reuseViewWithTag:BG_IMAGE_TAG
                                                 viewClass:[UIImageView class]
-                                                    frame:self.dataTableView.bounds];
+                                                    frame:self.dataTableView.frame];
         iv.contentMode = UIViewContentModeScaleAspectFill;
         [iv setImage:image];
-        [self.view sendSubviewToBack:iv];
+        [self.view insertSubview:iv belowSubview:[CommonTitleView titleView:self.view]];
     }else{
         self.view.backgroundColor = [[ShareImageManager defaultManager] drawBGColor];
         [[self.view viewWithTag:BG_IMAGE_TAG] removeFromSuperview];

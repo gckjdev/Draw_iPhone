@@ -69,6 +69,8 @@
 #import "UFPController.h"
 #import "UMGridViewController.h"
 #import "DrawRoomListController.h"
+#import "UserManager.h"
+#import "ContestService.h"
 
 //#import "OpusSelectController.h"
 //#import "Wall.h"
@@ -147,19 +149,9 @@
 
 - (void)viewDidLoad
 {        
-    if ([ConfigManager isShowRecommendApp]){
-        self.recommendButton.hidden = NO;
-    }
-    else{
-        self.recommendButton.hidden = YES;
-    }
-    [[ContestService defaultService] getContestListWithType:ContestListTypeRunning offset:0 limit:HUGE_VAL delegate:self];
     [super viewDidLoad];
     
-    [self initRecommendButton];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    // Do any additional setup after loading the view from its nib.
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
@@ -256,6 +248,16 @@
         }];
         
         [self.homeHeaderPanel updateView];
+    }];
+    
+    [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
+        PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
+        [self.homeHeaderPanel updateView];
+    }];
+    
+    [self registerNotificationWithName:NOTIFCATION_CONTEST_DATA_CHANGE usingBlock:^(NSNotification *note) {
+        PPDebug(@"recv NOTIFCATION_CONTEST_DATA_CHANGE, update header view panel");
+        [self updateAllBadge];
     }];
 }
 
@@ -402,29 +404,29 @@
     
 }
 
-- (void)didServerListFetched:(int)result
-{
-//    RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
-    NSString* address = nil;
-    int port = 9000;
-
-    // update by Benson, to avoid "server full/busy issue"
-    if ([[UserManager defaultManager] getLanguageType] == ChineseType){
-        address = [ConfigManager defaultChineseServer];
-        port = [ConfigManager defaultChinesePort];
-    }
-    else{
-        address = [ConfigManager defaultEnglishServer];
-        port = [ConfigManager defaultEnglishPort];
-    }
-
-
-    [[DrawGameService defaultService] setServerAddress:address];
-    [[DrawGameService defaultService] setServerPort:port];      
-
-    [[DrawGameService defaultService] connectServer:self];
-    _isTryJoinGame = YES;
-}
+//- (void)didServerListFetched:(int)result
+//{
+////    RouterTrafficServer* server = [[RouterService defaultService] assignTrafficServer];
+//    NSString* address = nil;
+//    int port = 9000;
+//
+//    // update by Benson, to avoid "server full/busy issue"
+//    if ([[UserManager defaultManager] getLanguageType] == ChineseType){
+//        address = [ConfigManager defaultChineseServer];
+//        port = [ConfigManager defaultChinesePort];
+//    }
+//    else{
+//        address = [ConfigManager defaultEnglishServer];
+//        port = [ConfigManager defaultEnglishPort];
+//    }
+//
+//
+//    [[DrawGameService defaultService] setServerAddress:address];
+//    [[DrawGameService defaultService] setServerPort:port];      
+//
+//    [[DrawGameService defaultService] connectServer:self];
+//    _isTryJoinGame = YES;
+//}
 
 
 + (HomeController*)defaultInstance
@@ -450,9 +452,6 @@
             viewController = vc;
             break;
         }
-//        if (viewController == nil && [vc isKindOfClass:[FriendRoomController class]]) {
-//            viewController = vc;
-//        }
     }
     
     if (viewController != nil) {
@@ -495,21 +494,10 @@
     PPRelease(_menuPanel);
     PPRelease(_bottomMenuPanel);
     [self.timer invalidate];
-//    PPRelease(_adView);
     [_testBulletin release];
     [_testCreateWallBtn release];
     [super dealloc];
 }
-
-
-
-- (IBAction)clickRecommend:(id)sender
-{
-
-}
-
-
-
 
 
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
@@ -856,13 +844,13 @@
     [us release];
 }
 
-- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
-{
-    if (code == 0) {
-        [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
-    }
-    [self updateAllBadge];
-    
-}
+//- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
+//{
+//    if (code == 0) {
+//        [[StatisticManager defaultManager] setNewContestCount:[[ContestManager defaultManager] calNewContestCount:contestList]];
+//    }
+//    [self updateAllBadge];
+//    
+//}
 
 @end

@@ -279,5 +279,6 @@ typedef enum{
 + (int)getHotWordAwardCoins;
 
 + (int)maxTakeNumberCount;
++ (int)getFeedCarouselType;
 
 @end

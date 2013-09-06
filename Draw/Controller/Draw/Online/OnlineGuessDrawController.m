@@ -438,7 +438,7 @@
         self.popView = [[[CMPopTipView alloc] initWithCustomView:_toolView] autorelease];
         self.popView.delegate = self;
         [self.popView presentPointingAtView:sender inView:self.view animated:YES];
-        [self.popView setBackgroundColor:COLOR_WHITE];
+        [self.popView setBackgroundColor:COLOR_GRAY];
         
     }else{
         [self.popView dismissAnimated:YES];
