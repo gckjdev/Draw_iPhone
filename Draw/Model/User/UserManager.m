@@ -1447,6 +1447,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)isOldUserWithoutXiaoji
 {
+#ifdef DEBUG
+    return YES;
+#endif
+    
     if (_pbUser && [_pbUser.userId length] > 0 && [_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){
         return YES;
     }

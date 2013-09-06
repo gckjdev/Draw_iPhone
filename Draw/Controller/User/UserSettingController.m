@@ -244,6 +244,10 @@ SET_CELL_BG_IN_CONTROLLER;
 
 - (void)viewDidLoad
 {
+    
+    expAndLevelLabel.textColor = COLOR_BROWN;
+    nicknameLabel.textColor = COLOR_BROWN;
+    
     // set data for table view
     _userManager = [UserManager defaultManager];
     self.pbUserBuilder = [PBGameUser builderWithPrototype:[_userManager pbUser]];
