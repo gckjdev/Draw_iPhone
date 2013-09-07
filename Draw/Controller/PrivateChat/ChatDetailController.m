@@ -280,6 +280,9 @@
     [self loadNewMessage:YES];
     [self updateBG];
     [self scrollToBottom:NO];
+    
+    self.inputBackgroundView.backgroundColor = COLOR_BROWN;
+    self.inputTextView.textColor = COLOR_BROWN;
 }
 
 - (void)viewDidUnload

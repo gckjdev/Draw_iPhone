@@ -47,7 +47,8 @@
 
 
 // 黄色按钮上的字体颜色。其他颜色的按钮上的字体为白色。
-#define COLOR_COFFEE OPAQUE_COLOR(126, 49, 46)
+//#define COLOR_COFFEE OPAQUE_COLOR(126, 49, 46)
+#define COLOR_COFFEE OPAQUE_COLOR(115, 86, 68)
 
 // 普通label上的字体颜色。
 //#define COLOR_BROWN OPAQUE_COLOR(75, 63, 50)
@@ -58,13 +59,22 @@
 #define COLOR_WHITE [UIColor whiteColor] //Cell
 #define COLOR_GRAY OPAQUE_COLOR(245, 245, 245) //Cell
 
+// cell上的灰色文字（如时间）
+#define COLOR_GRAY_TEXT     OPAQUE_COLOR(154, 154, 154)
+
+// 用户头像的灰色
+#define COLOR_GRAY_AVATAR   COLOR_GRAY_TEXT
+
+// cell上的灰色背景上的灰色背景（如评论）
+#define COLOR_GRAY_BG   OPAQUE_COLOR(222, 222, 222)
+
 
 #define IMAGE_FROM_COLOR(color) ([ShareImageManager imageWithColor:color])
 
 
 
 
-#define SET_VIEW_BG(view) (view.backgroundColor = COLOR_WHITE)
+#define SET_VIEW_BG(view) (view.backgroundColor = COLOR_GRAY)
 
 
 #define SET_MESSAGE_LABEL_STYLE(view)                       \

@@ -479,7 +479,7 @@ SET_CELL_BG_IN_CONTROLLER;
     [cell setCellWithRow:indexPath.row inSectionRowCount:rowNumber];
     
     [cell.customDetailLabel setText:nil];
-    [cell.customDetailLabel setTextColor:COLOR_RED];
+    [cell.customDetailLabel setTextColor:COLOR_GREEN];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //    [cell setBadge:1];
     
@@ -492,7 +492,7 @@ SET_CELL_BG_IN_CONTROLLER;
             if ([_pbUserBuilder.password length] == 0) {
                 [cell.customDetailLabel setText:NSLS(@"kUnset")];
                 
-                [cell.customDetailLabel setTextColor:COLOR_GREEN];
+                [cell.customDetailLabel setTextColor:COLOR_RED];
                 [cell setBadge:1];
                 
             }
@@ -610,7 +610,7 @@ SET_CELL_BG_IN_CONTROLLER;
                     [cell.customDetailLabel setText:NSLS(@"kEmailNotSet")];
 
                     [cell setBadge:1];
-                    [cell.customDetailLabel setTextColor:COLOR_GREEN];
+                    [cell.customDetailLabel setTextColor:COLOR_RED];
                 }
             }
                 break;

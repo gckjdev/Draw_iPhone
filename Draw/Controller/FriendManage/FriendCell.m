@@ -179,8 +179,9 @@
     
     [self updateStatusLabel:statusText];
     
+    self.nickNameLabel.textColor = COLOR_BROWN;
     self.levelLabel.textColor = COLOR_GREEN;
-    self.areaLabel.textColor = COLOR_ORANGE;
+    self.areaLabel.textColor = COLOR_BROWN;
     
     NSString *imageName = aFriend.isMale ? @"user_detail_gender_male@2x.png" : @"user_detail_gender_female@2x.png";
     [self.genderImageView setImage:[UIImage imageNamed:imageName]];
