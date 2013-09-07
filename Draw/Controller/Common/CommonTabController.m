@@ -146,9 +146,6 @@
         
         button.frame = rect;
         i ++;
-                
-        [button addTarget:self action:@selector(clickTabDown:) forControlEvents:UIControlEventTouchDown];
-        [button addTarget:self action:@selector(clickTabUp:) forControlEvents:UIControlEventAllEvents^UIControlEventTouchDown];        
         
         
         //font
@@ -157,22 +154,25 @@
         NSArray *states = @[@(UIControlStateNormal),@(UIControlStateSelected),@(UIControlStateHighlighted)];
         
         for (NSNumber *state in states) {
-            [button setTitleColor:COLOR_WHITE forState:[state integerValue]];
             [button setImage:nil forState:[state integerValue]];
-            [button setBackgroundImage:nil forState:[state integerValue]];
-            //title
             [button setTitle:tab.title forState:[state integerValue]];
             
         }
-
+        
+        [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_ORANGE) forState:UIControlStateNormal];        
+        [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateSelected];
+        
+        [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+        [button setTitleColor:COLOR_WHITE forState:UIControlStateHighlighted];
+        
         [button setTitleColor:COLOR_COFFEE forState:UIControlStateSelected];
+        
         //shadow offset
         [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:nil];        
-        [button setBackgroundColor:COLOR_ORANGE];
         index++;
     }
     [self clickTabButton:self.currentTabButton];
-    [self clickTabUp:self.currentTabButton];
+
 }
 
 #pragma mark - View lifecycle
@@ -242,32 +242,10 @@
     UIButton *currentButton = self.currentTabButton;
     [currentButton setSelected:NO];
 
-    [currentButton setBackgroundColor:COLOR_ORANGE];
-    [button setBackgroundColor:COLOR_ORANGE1];
-
     [button setSelected:YES];
     [self clickTab:button.tag];
 }
 
-//highlight
-- (IBAction)clickTabDown:(id)sender
-{
-    UIButton *button = (UIButton *)sender;
-    if (self.currentTabButton != button) {
-        [button setBackgroundColor:COLOR_ORANGE1];
-    }
-}
-
-//selected
-- (IBAction)clickTabUp:(id)sender
-{
-    UIButton *button = (UIButton *)sender;
-    if (self.currentTabButton == button) {
-        [button setBackgroundColor:COLOR_YELLOW];
-    }else{
-        [button setBackgroundColor:COLOR_ORANGE];
-    }
-}
 
 
 - (IBAction)clickRefreshButton:(id)sender

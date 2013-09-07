@@ -74,11 +74,13 @@
     
     self.cellBgImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
     self.cellBgImageView.layer.borderColor = [COLOR_YELLOW CGColor];
-    self.cellBgImageView.backgroundColor = COLOR_GRAY;
+    self.cellBgImageView.backgroundColor = COLOR_WHITE;
     SET_VIEW_ROUND_CORNER(self.cellBgImageView);
         
     self.discountButton.backgroundColor = COLOR_GREEN;
+    [self.discountButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     SET_VIEW_ROUND_CORNER(self.discountButton);
+    
     
     SET_BUTTON_ROUND_STYLE_ORANGE(self.buyButton);
     
