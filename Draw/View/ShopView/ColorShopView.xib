@@ -101,7 +101,7 @@
 							<string key="NSResourceName">coin@2x.png</string>
 						</object>
 					</object>
-					<object class="IBUIView" id="689713907">
+					<object class="IBUIView" id="1073073787">
 						<reference key="NSNextResponder" ref="213797105"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 44}</string>
@@ -111,7 +111,7 @@
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="441852317">
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="338484798">
 								<int key="NSID">2</int>
 							</object>
 						</object>
@@ -120,11 +120,11 @@
 				</array>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="689713907"/>
+				<reference key="NSNextKeyView" ref="1073073787"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="441852317"/>
+					<reference key="NSCustomColorSpace" ref="338484798"/>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -151,7 +151,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleView</string>
 						<reference key="source" ref="213797105"/>
-						<reference key="destination" ref="689713907"/>
+						<reference key="destination" ref="1073073787"/>
 					</object>
 					<int key="connectionID">21</int>
 				</object>
@@ -198,7 +198,7 @@
 							<reference ref="436929789"/>
 							<reference ref="427966318"/>
 							<reference ref="659072933"/>
-							<reference ref="689713907"/>
+							<reference ref="1073073787"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -219,7 +219,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
-						<reference key="object" ref="689713907"/>
+						<reference key="object" ref="1073073787"/>
 						<reference key="parent" ref="213797105"/>
 					</object>
 				</array>

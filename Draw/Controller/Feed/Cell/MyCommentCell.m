@@ -42,8 +42,10 @@
     
     [cell.sourceButton.titleLabel setNumberOfLines:3];
     [cell.sourceButton.titleLabel setLineBreakMode:UILineBreakModeCharacterWrap];
-//    [cell.sourceButton.titleLabel sets
-    
+    [cell.timeLabel setTextColor:COLOR_GRAY_TEXT];
+    [cell.nickNameLabel setTextColor:COLOR_BROWN];
+    [cell.commentLabel setTextColor:COLOR_BROWN];
+    [cell.sourceButton.titleLabel setTextColor:COLOR_BROWN];
     return cell;
 }
 
