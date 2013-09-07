@@ -139,7 +139,7 @@
         return;
     }
     [_answer release];
-    _answer = [answer copy];
+    _answer = [[answer uppercaseString] copy];
     
 
     [self retsetAnswerView];
@@ -233,7 +233,7 @@
 
 - (void)setCandidates:(NSString *)candidates
                         column:(int)column{
-    
+    candidates = [candidates uppercaseString];
     if ([_candidates isEqualToString:candidates] || column <= 0) {
         return;
     }
@@ -347,7 +347,7 @@
         word = [word stringByAppendingString:ch];
     }
     
-    BOOL isCorrect = [word isEqualToString:_answer];
+    BOOL isCorrect = [[word uppercaseString] isEqualToString:[_answer uppercaseString]];
     if (isCorrect) {
         [[AudioManager defaultManager] playSoundByName:_correctSound];
         PPDebug(@"You get it: %@", word);

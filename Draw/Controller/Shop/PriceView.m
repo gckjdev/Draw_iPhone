@@ -37,7 +37,7 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:currency];
     
     [view.priceLabel setTextColor:COLOR_BROWN];
-    [view.promotionPriceLabel setTextColor:COLOR_GRAY];
+    [view.promotionPriceLabel setTextColor:COLOR_GRAY_TEXT];
     
     return view;
 }
@@ -86,7 +86,7 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:currency];
     
     [view.priceLabel setTextColor:COLOR_BROWN];
-    [view.promotionPriceLabel setTextColor:COLOR_GRAY];
+    [view.promotionPriceLabel setTextColor:COLOR_GRAY_TEXT];
     
     return view;
 }

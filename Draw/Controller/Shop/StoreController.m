@@ -62,6 +62,7 @@ typedef enum{
     [_bottomBarImageView release];
     [_coinBalanceBgImageView release];
     [_balanceTipLabel release];
+    [_tableViewBgImageView release];
     [super dealloc];
 }
 
@@ -79,6 +80,7 @@ typedef enum{
     [self setBottomBarImageView:nil];
     [self setCoinBalanceBgImageView:nil];
     [self setBalanceTipLabel:nil];
+    [self setTableViewBgImageView:nil];
     [super viewDidUnload];
 }
 
@@ -127,6 +129,35 @@ typedef enum{
         return YES;
     }
     return NO;
+}
+
+
+- (void)initTabButtons
+{
+    [super initTabButtons];
+    UIImage *dImage = TOP_ROUND_CORNER_IMAGE_FROM_COLOR(COLOR_RED);
+    UIImage *sImage = TOP_ROUND_CORNER_IMAGE_FROM_COLOR(COLOR_YELLOW);
+
+    NSInteger count = [self tabCount];
+    for (NSInteger i = 0; i < count; ++i) {
+        NSInteger tabID = [self tabIDforIndex:i];
+        UIButton *button = [self tabButtonWithTabID:tabID];
+        [button setBackgroundImage:dImage forState:UIControlStateNormal];
+        [button setBackgroundImage:sImage forState:UIControlStateSelected];
+        [button setBackgroundColor:nil];
+        
+        if (i==0) {
+            button.frame = CGRectMake(4, 99, 78, 28);
+        }else if (i == 1){
+            button.frame = CGRectMake(82, 99, 78, 28);
+        }else if (i == 2){
+            button.frame = CGRectMake(160, 99, 78, 28);
+        }else if (i == 3){
+            button.frame = CGRectMake(238, 99, 78, 28);
+        }
+    }
+    
+
 }
 
 #define ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON (ISIPAD ? 80 : 40)
@@ -180,6 +211,7 @@ typedef enum{
         [self updateBalance];
     }];
     
+    SET_VIEW_ROUND_CORNER(self.bottomBarImageView);
     self.bottomBarImageView.backgroundColor = COLOR_RED;
 
     SET_BUTTON_ROUND_STYLE_YELLOW(self.chargeButton);
@@ -187,6 +219,11 @@ typedef enum{
     self.balanceTipLabel.textColor = COLOR_WHITE;
     self.ingotBalanceLabel.textColor = COLOR_WHITE;
     self.coinBalanceLabel.textColor = COLOR_WHITE;
+    
+    self.dataTableView.backgroundColor = COLOR_WHITE;
+    SET_VIEW_ROUND_CORNER(self.dataTableView);
+    
+    [self.tableViewBgImageView setBackgroundColor:COLOR_RED];
 }
 
 - (void)hideTaoBaoTab

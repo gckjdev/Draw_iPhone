@@ -90,6 +90,7 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumScaleFactor">0.5</float>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="784666376">
@@ -121,6 +122,7 @@
 									<bytes key="NSRGB">MC41NzI1NDkwMTk2IDAuMzEzNzI1NDkwMiAwAA</bytes>
 								</object>
 								<reference key="IBUIHighlightedColor" ref="499465647"/>
+								<string key="IBUIShadowOffset">{0, 0}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<float key="IBUIMinimumScaleFactor">0.5</float>
 								<int key="IBUITextAlignment">1</int>
@@ -142,14 +144,13 @@
 								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 								<double key="IBUIContentEdgeInsets.left">0.0</double>
 								<double key="IBUIContentEdgeInsets.right">0.0</double>
-								<string key="IBUITitleShadowOffset">{0, 1}</string>
 								<string key="IBUINormalTitle">购买</string>
 								<reference key="IBUIHighlightedTitleColor" ref="499465647"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4yOTAxOTYwNzg0IDAuMjIzNTI5NDExOCAwLjE0MTE3NjQ3MDYAA</bytes>
 								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="499465647"/>
+								<reference key="IBUINormalTitleShadowColor" ref="336187169"/>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
 									<double key="pointSize">14</double>
@@ -305,8 +306,8 @@
 							<reference ref="563873004"/>
 							<reference ref="791529855"/>
 							<reference ref="109221860"/>
-							<reference ref="76260091"/>
 							<reference ref="243298934"/>
+							<reference ref="76260091"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -369,7 +370,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">ingot@2x.png</string>
-			<string key="NS.object.0">{64, 64}</string>
+			<string key="NS.object.0">{50, 50}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

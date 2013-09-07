@@ -16,6 +16,7 @@
 
 typedef void(^DidSelectedImageBlock)(UIImage* image);
 typedef void(^DidSetDefaultBlock)(void);
+typedef void(^CallBackBlock)(NSInteger index);
 
 @class PPViewController;
 
@@ -39,6 +40,7 @@ typedef void(^DidSetDefaultBlock)(void);
        didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock
                     title:(NSString*)title
           hasRemoveOption:(BOOL)hasRemoveOption;
+
 - (void)showSelectionView:(UIViewController*)superViewController
                  delegate:(id<ChangeAvatarDelegate>)delegate
        selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
@@ -47,5 +49,16 @@ typedef void(^DidSetDefaultBlock)(void);
           hasRemoveOption:(BOOL)hasRemoveOption
              canTakePhoto:(BOOL)canTakePhoto
         userOriginalImage:(BOOL)userOriginalImage;
+
+
+//index from 2
+- (void)showSelectionView:(UIViewController*)superViewController
+                    title:(NSString*)title
+              otherTitles:(NSArray*)otherTitles
+                  handler:(CallBackBlock)handler
+       selectImageHanlder:(DidSelectedImageBlock)selectImageHanlder
+             canTakePhoto:(BOOL)canTakePhoto
+        userOriginalImage:(BOOL)userOriginalImage;
+
 
 @end

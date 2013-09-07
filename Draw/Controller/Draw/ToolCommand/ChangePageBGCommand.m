@@ -39,20 +39,26 @@
     [super dealloc];
 }
 
+
 - (BOOL)execute
 {
     OfflineDrawViewController<ChangeAvatarDelegate> *odc = (id)self.controller;
     
-    [[self backgroundPicker] showSelectionView:odc selectedImageBlock:^(UIImage *image) {
+    [[self backgroundPicker] showSelectionView:odc title:NSLS(@"kChangePageBG") otherTitles:@[NSLS(@"kResetDefault"),NSLS(@"kOldDrawBG")] handler:^(NSInteger index) {
+        if (index == 2) {
+            if ([[UserManager defaultManager] resetDrawBackground]) {
+                [odc setPageBGImage:nil];
+            }
+        }else if(index == 3){
+            if ([[UserManager defaultManager] setDrawBackground:[[ShareImageManager defaultManager] oldDrawBGImage]]) {
+                [odc setPageBGImage:[[UserManager defaultManager] drawBackground]];
+            }
+        }
+    } selectImageHanlder:^(UIImage *image) {
         if ([[UserManager defaultManager] setDrawBackground:image]) {
             [odc setPageBGImage:[[UserManager defaultManager] drawBackground]];
         }
-    } didSetDefaultBlock:^{
-        if ([[UserManager defaultManager] resetDrawBackground]) {
-            [odc setPageBGImage:nil];
-        }
-    } title:NSLS(@"kChangePageBG") hasRemoveOption:YES];
-    
+    } canTakePhoto:YES userOriginalImage:YES];
     return YES;
 }
 

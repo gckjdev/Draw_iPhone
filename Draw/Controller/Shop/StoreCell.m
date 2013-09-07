@@ -100,12 +100,12 @@
     
     self.cellBgImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
     self.cellBgImageView.layer.borderColor = [COLOR_YELLOW CGColor];
-    self.cellBgImageView.backgroundColor = COLOR_GRAY;
+    self.cellBgImageView.backgroundColor = COLOR_WHITE;
     SET_VIEW_ROUND_CORNER(self.cellBgImageView);
     
     self.itemBgImageView.backgroundColor = COLOR_WHITE;
     self.itemBgImageView.layer.borderWidth = (ISIPAD ? 4 : 2);
-    self.itemBgImageView.layer.borderColor = [COLOR_ORANGE CGColor];
+    self.itemBgImageView.layer.borderColor = [COLOR_YELLOW CGColor];
     SET_VIEW_ROUND_CORNER(self.itemBgImageView);
     
     self.itemNameLabel.textColor = COLOR_BROWN;

@@ -26,5 +26,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *bottomBarImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *coinBalanceBgImageView;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *balanceTipLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *tableViewBgImageView;
 
 @end
