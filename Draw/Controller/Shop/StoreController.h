@@ -15,7 +15,7 @@
 @interface StoreController : CommonTabController <ColorShopViewDelegate, AccountServiceDelegate>
 
 //@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
-@property (retain, nonatomic) IBOutlet UIButton *backButton;
+//@property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *chargeButton;
 @property (retain, nonatomic) IBOutlet UILabel *coinBalanceLabel;
 @property (retain, nonatomic) IBOutlet UILabel *ingotBalanceLabel;

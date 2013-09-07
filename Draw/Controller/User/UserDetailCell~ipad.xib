@@ -374,7 +374,7 @@
 								<int key="IBUITag">400</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUILabel" id="232298774">
+							<object class="IBUILabel" id="792411824">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{251, 88}, {205, 33}}</string>
@@ -394,7 +394,7 @@
 									<int key="type">1</int>
 									<double key="pointSize">22</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="769679099">
+								<object class="NSFont" key="IBUIFont" id="756836420">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">22</double>
 									<int key="NSfFlags">16</int>
@@ -440,7 +440,7 @@
 								<int key="NSvFlags">319</int>
 								<string key="NSFrame">{{691, 26}, {55, 55}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView" ref="232298774"/>
+								<reference key="NSNextKeyView" ref="792411824"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -491,7 +491,7 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="899379520">
@@ -520,7 +520,7 @@
 								<int key="IBUINumberOfLines">2</int>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<double key="preferredMaxLayoutWidth">549</double>
 							</object>
@@ -624,7 +624,7 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIView" id="404705006">
@@ -687,7 +687,7 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIButton" id="1019354794">
@@ -790,7 +790,7 @@
 								<float key="IBUIMinimumFontSize">6</float>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 							</object>
 							<object class="IBUILabel" id="492713582">
 								<reference key="NSNextResponder" ref="150961201"/>
@@ -816,7 +816,7 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIButton" id="66204532">
@@ -839,7 +839,7 @@
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="176572736"/>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 							</object>
 							<object class="IBUIButton" id="703033034">
 								<reference key="NSNextResponder" ref="150961201"/>
@@ -860,14 +860,13 @@
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="176572736"/>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 							</object>
 							<object class="IBUIButton" id="905471670">
 								<reference key="NSNextResponder" ref="150961201"/>
 								<int key="NSvFlags">-2147483329</int>
 								<string key="NSFrame">{{499, 1568}, {156, 55}}</string>
 								<reference key="NSSuperview" ref="150961201"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -881,7 +880,7 @@
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="176572736"/>
 								<reference key="IBUIFontDescription" ref="460114249"/>
-								<reference key="IBUIFont" ref="769679099"/>
+								<reference key="IBUIFont" ref="756836420"/>
 							</object>
 						</array>
 						<string key="NSFrameSize">{768, 1693}</string>
@@ -1168,7 +1167,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">xiaojiLabel</string>
 						<reference key="source" ref="849259711"/>
-						<reference key="destination" ref="232298774"/>
+						<reference key="destination" ref="792411824"/>
 					</object>
 					<int key="connectionID">135</int>
 				</object>
@@ -1362,7 +1361,7 @@
 							<reference ref="66204532"/>
 							<reference ref="703033034"/>
 							<reference ref="33434113"/>
-							<reference ref="232298774"/>
+							<reference ref="792411824"/>
 							<reference ref="504782501"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -1557,7 +1556,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">134</int>
-						<reference key="object" ref="232298774"/>
+						<reference key="object" ref="792411824"/>
 						<reference key="parent" ref="849259711"/>
 					</object>
 				</array>
