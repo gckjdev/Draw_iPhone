@@ -404,22 +404,22 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">EditTagCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="1" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>

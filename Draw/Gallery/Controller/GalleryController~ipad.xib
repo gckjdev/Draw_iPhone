@@ -39,7 +39,7 @@
 					<object class="IBUIButton" id="535882481">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{562, 19.5}, {78, 62}}</string>
+						<string key="NSFrame">{{595, 11}, {66, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="899426413"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -65,7 +65,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">gallery_search_btn@2x.png</string>
+							<string key="NSResourceName">gallary_search@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="643106852">
 							<int key="type">2</int>
@@ -80,7 +80,7 @@
 					<object class="IBUIButton" id="899426413">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{668, 19}, {80, 62}}</string>
+						<string key="NSFrame">{{682, 11}, {66, 66}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="653945167"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -97,7 +97,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="158626383"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">filter_btn@2x.png</string>
+							<string key="NSResourceName">gallary_filter@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="643106852"/>
 						<reference key="IBUIFont" ref="752840384"/>
@@ -131,11 +131,11 @@
 						<reference key="IBUINormalTitleShadowColor" ref="158626383"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
-							<double key="pointSize">34</double>
+							<double key="pointSize">30</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">34</double>
+							<double key="NSSize">30</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -224,9 +224,9 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="899426413"/>
-							<reference ref="535882481"/>
 							<reference ref="653945167"/>
 							<reference ref="354981531"/>
+							<reference ref="535882481"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -287,8 +287,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="filter_btn@2x.png">{63, 53}</string>
-			<string key="gallery_search_btn@2x.png">{63, 53}</string>
+			<string key="gallary_filter@2x.png">{68, 69}</string>
+			<string key="gallary_search@2x.png">{68, 69}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
