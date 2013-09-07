@@ -76,6 +76,8 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
     
     [self.shareToSinaLabel setText:NSLS(@"kSinaWeibo")];
     [self.shareToQQLabel setText:NSLS(@"kTencentWeibo")];
+    self.shareToSinaLabel.textColor = COLOR_COFFEE;
+    self.shareToQQLabel.textColor = COLOR_COFFEE;
     
     SET_INPUT_VIEW_STYLE(self.titleInputField);
     self.titleInputField.delegate = self;
