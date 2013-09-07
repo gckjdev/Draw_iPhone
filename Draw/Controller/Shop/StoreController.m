@@ -132,6 +132,12 @@ typedef enum{
 }
 
 
+#define FRAME_BUTTON1 (ISIPAD ? CGRectMake(43, 216, 170, 61) : CGRectMake(4, 99, 78, 28))
+#define FRAME_BUTTON2 (ISIPAD ? CGRectMake(213, 216, 170, 61) : CGRectMake(82, 99, 78, 28))
+#define FRAME_BUTTON3 (ISIPAD ? CGRectMake(384, 216, 170, 61) : CGRectMake(160, 99, 78, 28))
+#define FRAME_BUTTON4 (ISIPAD ? CGRectMake(554, 216, 170, 61) : CGRectMake(238, 99, 78, 28))
+
+
 - (void)initTabButtons
 {
     [super initTabButtons];
@@ -147,13 +153,13 @@ typedef enum{
         [button setBackgroundColor:nil];
         
         if (i==0) {
-            button.frame = CGRectMake(4, 99, 78, 28);
+            button.frame = FRAME_BUTTON1;
         }else if (i == 1){
-            button.frame = CGRectMake(82, 99, 78, 28);
+            button.frame = FRAME_BUTTON2;
         }else if (i == 2){
-            button.frame = CGRectMake(160, 99, 78, 28);
+            button.frame = FRAME_BUTTON3;
         }else if (i == 3){
-            button.frame = CGRectMake(238, 99, 78, 28);
+            button.frame = FRAME_BUTTON4;
         }
     }
     
