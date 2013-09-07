@@ -62,9 +62,12 @@
 {
     self.detail = detail;
     PBGameUser* pbUser = [detail getUser];
-    [self.levelLabel setText:[NSString stringWithFormat:@"lv.%d", [detail getUser].level]];
+    [self.levelLabel setText:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
+    self.levelLabel.hidden = NO;
     [self.nickNameLabel setText:pbUser.nickName];
-    [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
+    
+    self.signLabel.text = pbUser.signature;
+//    [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
     
     if ([detail isPrivacyVisable]) {
         [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?pbUser.birthday:@"-")]];
@@ -161,6 +164,20 @@
     
     self.levelLabel.textColor = COLOR_WHITE;
     self.signLabel.textColor = COLOR_WHITE;
+    self.xiaojiLabel.textColor = COLOR_WHITE;
+    
+//    self.levelLabel.shadowColor = [UIColor blackColor];
+//    self.signLabel.shadowColor = [UIColor blackColor];
+//    self.xiaojiLabel.shadowColor = [UIColor blackColor];
+//    
+//    self.levelLabel.shadowOffset = CGSizeMake(1, 1);
+//    self.signLabel.shadowOffset = CGSizeMake(1, 1);
+//    self.xiaojiLabel.shadowOffset = CGSizeMake(1, 1);
+    
+    self.xiaojiLabel.text = [[detail getUser] xiaojiNumber];
+    if ([[[detail getUser] xiaojiNumber] length] == 0) {
+        [self.levelLabel updateCenterX:self.center.x];
+    }
     
     [self.seperator1 setBackgroundColor:BG_COLOR];
     [self.seperator2 setBackgroundColor:COLOR_ORANGE];
@@ -342,6 +359,7 @@
     [_seperator3 release];
     [_hisOpusLabel release];
     [_snsTipLabel release];
+    [_xiaojiLabel release];
     [super dealloc];
 }
 
