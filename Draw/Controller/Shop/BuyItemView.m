@@ -92,8 +92,11 @@ AUTO_CREATE_VIEW_BY_XIB_N(BuyItemView);
 - (void)update
 {
     [self.countButton setTitle:[NSString stringWithFormat:@"%d", self.count] forState:UIControlStateNormal];
+    self.countButton.backgroundColor = COLOR_ORANGE;
+    [self.countButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     
     self.priceLabel.text = [NSString stringWithFormat:@"%d", [self.item promotionPrice] * self.count];
+    self.priceLabel.textColor = COLOR_COFFEE;
 }
 
 - (IBAction)clickIncreaseButton:(id)sender {

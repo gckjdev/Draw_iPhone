@@ -52,6 +52,11 @@ AUTO_CREATE_VIEW_BY_XIB(GiftDetailView);
     UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:[myFriend isMale]];
     [view.avatarImageView setImageWithUrl:[NSURL URLWithString:myFriend.avatar] placeholderImage:placeHolderImage showLoading:YES animated:YES];
     
+    view.itemNameLabel.textColor = COLOR_COFFEE;
+    view.friendNameLabel.textColor = COLOR_COFFEE;
+    view.countLable.textColor = COLOR_GREEN;
+    view.priceLabel.textColor = COLOR_ORANGE;
+    
     return view;
 }
 
