@@ -36,28 +36,23 @@
 
 + (MyPaintButton*)creatMyPaintButton
 {
-    MyPaintButton* button = [self createViewWithXibIdentifier:@"PaintButton"];
+    MyPaintButton* button = [self createViewWithXibIdentifier:@"PaintButton" ofViewIndex:ISIPAD];
     
     [button.holderView setBackgroundColor:COLOR_GRAY];
     [button.drawWord setBackgroundColor:COLOR_YELLOW];
-    if (ISIPAD) {
-        [button.drawWord setFont:[UIFont systemFontOfSize:19]];
-    }
+    [button.drawWord setTextColor:COLOR_BROWN];
     return button;
 }
-/*
-+ (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 
-                                 drawWord:(NSString*)drawWord 
-                              isDrawnByMe:(BOOL)isDrawnByMe 
-                                 delegate:(id<MyPaintButtonDelegate>)delegate
+
+
++ (CGSize)buttonSize
 {
-    MyPaintButton* button = [MyPaintButton creatMyPaintButton];
-    [button.myPrintTag setHidden:!isDrawnByMe];
-    [button.drawWord setText:drawWord];
-    button.delegate = delegate;
-    return button;
+    if (ISIPAD) {
+        return CGSizeMake(160, 200);
+    }
+    return CGSizeMake(75, 100);
 }
-*/
+
 - (void)setInfo:(MyPaint *)paint
 {
     self.paint = paint;

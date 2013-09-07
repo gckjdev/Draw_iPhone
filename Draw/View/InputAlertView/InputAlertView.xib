@@ -206,6 +206,7 @@
 						<int key="NSvFlags">291</int>
 						<string key="NSFrame">{{150, 88}, {66, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -399,8 +400,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="input_alert_check@2x.png">{27, 27}</string>
-			<string key="input_alert_uncheck@2x.png">{26, 27}</string>
+			<string key="input_alert_check@2x.png">{16, 16}</string>
+			<string key="input_alert_uncheck@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -21,6 +21,8 @@
 
 @property (retain, nonatomic) IBOutlet UIView *holderView;
 
++ (CGSize)buttonSize;
 + (MyPaintButton*)creatMyPaintButton;
 - (void)setInfo:(MyPaint *)paint;
+
 @end

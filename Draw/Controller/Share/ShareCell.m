@@ -13,6 +13,7 @@
 #include "CoreDataUtil.h"
 #import "MyPaintManager.h"
 #import "PPDebug.h"
+#import "MyPaintButton.h"
 
 @interface ShareCell() {
         NSArray *_paints;
@@ -30,12 +31,7 @@
 #define BASE_BUTTON_INDEX 10
 + (ShareCell*)creatShareCell
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ShareCell" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <ShareCell> but cannot find cell object from Nib");
-        return nil;
-    }
-    ShareCell* cell =  (ShareCell*)[topLevelObjects objectAtIndex:0];
+    ShareCell* cell = [self createViewWithXibIdentifier:@"ShareCell"];
     return cell;
 }
 
@@ -44,24 +40,16 @@
     ShareCell* cell = [self creatShareCell];
     cell.indexPath = indexPath;
     cell.delegate = aDelegate;
-    float imageButtonHeight;
-    float imageButtonWidth;
-    float seperator;
     
-    if ([DeviceDetection isIPAD]) {
-        imageButtonHeight = 189.4;
-        imageButtonWidth = 150;
-        seperator = 33.6;
-    } else {
-        imageButtonHeight = 94.7;
-        imageButtonWidth = 75;
-        seperator = 4;
-    }
-    
-    for (int i = BASE_BUTTON_INDEX; i < BASE_BUTTON_INDEX + IMAGES_PER_LINE; ++i) {
+    CGFloat width = [MyPaintButton buttonSize].width;
+    CGFloat space = CGRectGetWidth([[UIScreen mainScreen] bounds])/IMAGES_PER_LINE - width;
+    for (int i = 0; i < IMAGES_PER_LINE; ++i) {
         MyPaintButton* button = [MyPaintButton creatMyPaintButton];
-        [button setFrame:CGRectMake((i-BASE_BUTTON_INDEX)*(imageButtonWidth + seperator)+seperator, 2, imageButtonWidth, imageButtonHeight)];
-        button.tag = i;
+
+        [button updateOriginX:space/2+(width+space)*i];
+        [button updateOriginY:[MyPaintButton buttonSize].height*0.025];
+        
+        button.tag = i+BASE_BUTTON_INDEX;
         [cell addSubview:button];
         [button addTarget:cell action:@selector(clickPaintButton:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -70,7 +58,7 @@
 
 + (float)getCellHeight
 {
-    return [DeviceDetection isIPAD]?193.4:98.7;
+    return [MyPaintButton buttonSize].height*1.05;
 }
 
 + (NSString*)getIdentifier
