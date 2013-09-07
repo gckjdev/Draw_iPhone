@@ -19,32 +19,30 @@
 
 @implementation MyPaintButton
 
-@synthesize wordsBackground = _wordsBackground;
 @synthesize drawWord = _drawWord;
-@synthesize background = _background;
 @synthesize myPrintTag = _myPrintTag;
 @synthesize drawImage = _drawImage;
 @synthesize paint = _paint;
 
 - (void)dealloc
 {
-    PPRelease(_background);
     PPRelease(_drawWord);
     PPRelease(_myPrintTag);
-    PPRelease(_wordsBackground);
     PPRelease(_paint);
     PPRelease(_drawImage);
+    [_holderView release];
     [super dealloc];
 }
 
 + (MyPaintButton*)creatMyPaintButton
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MyPaintButton" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <MyPaintButton> but cannot find cell object from Nib");
-        return nil;
+    MyPaintButton* button = [self createViewWithXibIdentifier:@"PaintButton"];
+    
+    [button.holderView setBackgroundColor:COLOR_GRAY];
+    [button.drawWord setBackgroundColor:COLOR_YELLOW];
+    if (ISIPAD) {
+        [button.drawWord setFont:[UIFont systemFontOfSize:19]];
     }
-    MyPaintButton* button =  (MyPaintButton*)[topLevelObjects objectAtIndex:0];
     return button;
 }
 /*

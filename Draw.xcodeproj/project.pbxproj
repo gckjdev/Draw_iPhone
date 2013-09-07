@@ -2407,7 +2407,7 @@
 		A461B40E174CBAA70088B061 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		A461B410174CBAA70088B061 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		A461B412174CBAA70088B061 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
-		A461B413174CBAA70088B061 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
+		A461B413174CBAA70088B061 /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		A461B414174CBAA70088B061 /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		A461B416174CBAA70088B061 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		A461B417174CBAA70088B061 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
@@ -2422,7 +2422,6 @@
 		A461B420174CBAA70088B061 /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		A461B421174CBAA70088B061 /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		A461B424174CBAA70088B061 /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		A461B426174CBAA70088B061 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		A461B427174CBAA70088B061 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
@@ -4110,7 +4109,7 @@
 		C28A9CED1738F04B007A819F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C28A9CEF1738F04B007A819F /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		C28A9CF11738F04B007A819F /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
-		C28A9CF21738F04B007A819F /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
+		C28A9CF21738F04B007A819F /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		C28A9CF51738F04B007A819F /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		C28A9CF61738F04B007A819F /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
@@ -4125,7 +4124,6 @@
 		C28A9CFF1738F04B007A819F /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		C28A9D001738F04B007A819F /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		C28A9D031738F04B007A819F /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		C28A9D041738F04B007A819F /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		C28A9D051738F04B007A819F /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		C28A9D061738F04B007A819F /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
@@ -4449,7 +4447,6 @@
 		C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		C2B538231677712300725802 /* CommonImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537EB1677712300725802 /* CommonImageManager.m */; };
 		C2B538241677712300725802 /* CommonDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B537EE1677712300725802 /* CommonDialog.m */; };
 		C2B538251677712300725802 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537EF1677712300725802 /* CommonDialog.xib */; };
@@ -4610,7 +4607,7 @@
 		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
-		C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
+		C2FA6E721535358100EEB530 /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		C2FE573D175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE5739175DED3000AFD6AA /* GoogleCustomSearchService.m */; };
 		C2FE574A175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE5739175DED3000AFD6AA /* GoogleCustomSearchService.m */; };
 		C2FE574E175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */; };
@@ -6430,7 +6427,7 @@
 		EA411B66176066F500DA72D0 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		EA411B68176066F500DA72D0 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
 		EA411B6A176066F500DA72D0 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
-		EA411B6B176066F500DA72D0 /* MyPaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* MyPaintButton.xib */; };
+		EA411B6B176066F500DA72D0 /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		EA411B6C176066F500DA72D0 /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		EA411B6E176066F500DA72D0 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
 		EA411B6F176066F500DA72D0 /* SelectWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378221553696100CF41E3 /* SelectWordController~ipad.xib */; };
@@ -6445,7 +6442,6 @@
 		EA411B78176066F500DA72D0 /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		EA411B79176066F500DA72D0 /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
-		EA411B7C176066F500DA72D0 /* MyPaintButton~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */; };
 		EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A42D9047155380760023AF32 /* ColorShopView~ipad.xib */; };
 		EA411B7E176066F500DA72D0 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
 		EA411B7F176066F500DA72D0 /* SearchUserController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A329332B15591D4D00621789 /* SearchUserController.xib */; };
@@ -6860,6 +6856,10 @@
 		EADEDC9617D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */; };
 		EADEDC9717D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */; };
 		EADEDC9817D9860A0010EAD7 /* old_draw_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */; };
+		EADEDCA217DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDCA117DAC3630010EAD7 /* my_paint_tag@2x.png */; };
+		EADEDCA317DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDCA117DAC3630010EAD7 /* my_paint_tag@2x.png */; };
+		EADEDCA417DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDCA117DAC3630010EAD7 /* my_paint_tag@2x.png */; };
+		EADEDCA517DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EADEDCA117DAC3630010EAD7 /* my_paint_tag@2x.png */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 		EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */; };
 /* End PBXBuildFile section */
@@ -8170,7 +8170,6 @@
 		C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareEditController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareCell~ipad.xib"; sourceTree = "<group>"; };
-		C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MyPaintButton~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E9931555175B00CCF52C /* DrawConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawConstants.h; sourceTree = "<group>"; };
 		C2B537EA1677712300725802 /* CommonImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonImageManager.h; sourceTree = "<group>"; };
 		C2B537EB1677712300725802 /* CommonImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonImageManager.m; sourceTree = "<group>"; };
@@ -8344,7 +8343,7 @@
 		C2F947D11533D91E0034C895 /* UFPController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UFPController.xib; sourceTree = "<group>"; };
 		C2FA6E6E1535352200EEB530 /* MyPaintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintButton.h; sourceTree = "<group>"; };
 		C2FA6E6F1535352200EEB530 /* MyPaintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintButton.m; sourceTree = "<group>"; };
-		C2FA6E711535358100EEB530 /* MyPaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPaintButton.xib; sourceTree = "<group>"; };
+		C2FA6E711535358100EEB530 /* PaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintButton.xib; sourceTree = "<group>"; };
 		C2FE5738175DED3000AFD6AA /* GoogleCustomSearchNetworkConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleCustomSearchNetworkConstants.h; sourceTree = "<group>"; };
 		C2FE5739175DED3000AFD6AA /* GoogleCustomSearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleCustomSearchService.m; sourceTree = "<group>"; };
 		C2FE573A175DED3000AFD6AA /* GoogleCustomSearchNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleCustomSearchNetworkRequest.m; sourceTree = "<group>"; };
@@ -9878,6 +9877,7 @@
 		EADEDC7B17D882780010EAD7 /* detail_report@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_report@2x.png"; sourceTree = "<group>"; };
 		EADEDC8917D890540010EAD7 /* chat_change_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_change_bg@2x.png"; sourceTree = "<group>"; };
 		EADEDC9417D9860A0010EAD7 /* old_draw_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "old_draw_bg@2x.jpg"; sourceTree = "<group>"; };
+		EADEDCA117DAC3630010EAD7 /* my_paint_tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my_paint_tag@2x.png"; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_badge@2x.png"; sourceTree = "<group>"; };
@@ -10462,6 +10462,7 @@
 			isa = PBXGroup;
 			children = (
 				A42BA88917D71F58007FB11B /* guessed@2x.png */,
+				EADEDCA117DAC3630010EAD7 /* my_paint_tag@2x.png */,
 				A42BA88A17D71F58007FB11B /* no_s@2x.png */,
 				A42BA88B17D71F58007FB11B /* wrong@2x.png */,
 			);
@@ -14004,8 +14005,7 @@
 				C20E7153168AE0A400E37127 /* CustomActionSheet.m */,
 				C2FA6E6E1535352200EEB530 /* MyPaintButton.h */,
 				C2FA6E6F1535352200EEB530 /* MyPaintButton.m */,
-				C2FA6E711535358100EEB530 /* MyPaintButton.xib */,
-				C2B3E9411553741600CCF52C /* MyPaintButton~ipad.xib */,
+				C2FA6E711535358100EEB530 /* PaintButton.xib */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -17112,7 +17112,7 @@
 				A461B40E174CBAA70088B061 /* ShareCell.xib in Resources */,
 				A461B410174CBAA70088B061 /* AboutUsController.xib in Resources */,
 				A461B412174CBAA70088B061 /* UFPController.xib in Resources */,
-				A461B413174CBAA70088B061 /* MyPaintButton.xib in Resources */,
+				A461B413174CBAA70088B061 /* PaintButton.xib in Resources */,
 				A461B414174CBAA70088B061 /* ColorShopView.xib in Resources */,
 				A461B416174CBAA70088B061 /* SelectWordCell~ipad.xib in Resources */,
 				A461B417174CBAA70088B061 /* SelectWordController~ipad.xib in Resources */,
@@ -17127,7 +17127,6 @@
 				A461B420174CBAA70088B061 /* ShareEditController~ipad.xib in Resources */,
 				A461B421174CBAA70088B061 /* ShareController~ipad.xib in Resources */,
 				A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */,
-				A461B424174CBAA70088B061 /* MyPaintButton~ipad.xib in Resources */,
 				A461B425174CBAA70088B061 /* ColorShopView~ipad.xib in Resources */,
 				A461B426174CBAA70088B061 /* ChatController.xib in Resources */,
 				A461B427174CBAA70088B061 /* SearchUserController.xib in Resources */,
@@ -17989,6 +17988,7 @@
 				A41E0A8717D9E40E00B74555 /* 2common_dialog_close_btn@2x.png in Resources */,
 				A41E0A8B17D9E40E00B74555 /* common_dialog_close_btn@2x.png in Resources */,
 				A41E0A8F17D9E40E00B74555 /* common_dialog_close_btn@2x.png_bak.png in Resources */,
+				EADEDCA417DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18024,7 +18024,7 @@
 				C28A9CED1738F04B007A819F /* ShareCell.xib in Resources */,
 				C28A9CEF1738F04B007A819F /* AboutUsController.xib in Resources */,
 				C28A9CF11738F04B007A819F /* UFPController.xib in Resources */,
-				C28A9CF21738F04B007A819F /* MyPaintButton.xib in Resources */,
+				C28A9CF21738F04B007A819F /* PaintButton.xib in Resources */,
 				C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */,
 				C28A9CF51738F04B007A819F /* SelectWordCell~ipad.xib in Resources */,
 				C28A9CF61738F04B007A819F /* SelectWordController~ipad.xib in Resources */,
@@ -18039,7 +18039,6 @@
 				C28A9CFF1738F04B007A819F /* ShareEditController~ipad.xib in Resources */,
 				C28A9D001738F04B007A819F /* ShareController~ipad.xib in Resources */,
 				C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */,
-				C28A9D031738F04B007A819F /* MyPaintButton~ipad.xib in Resources */,
 				C28A9D041738F04B007A819F /* ColorShopView~ipad.xib in Resources */,
 				C28A9D051738F04B007A819F /* ChatController.xib in Resources */,
 				C28A9D061738F04B007A819F /* SearchUserController.xib in Resources */,
@@ -18864,6 +18863,7 @@
 				A41E0A8617D9E40E00B74555 /* 2common_dialog_close_btn@2x.png in Resources */,
 				A41E0A8A17D9E40E00B74555 /* common_dialog_close_btn@2x.png in Resources */,
 				A41E0A8E17D9E40E00B74555 /* common_dialog_close_btn@2x.png_bak.png in Resources */,
+				EADEDCA317DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18900,7 +18900,7 @@
 				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
 				C2F947D31533D91E0034C895 /* UFPController.xib in Resources */,
-				C2FA6E721535358100EEB530 /* MyPaintButton.xib in Resources */,
+				C2FA6E721535358100EEB530 /* PaintButton.xib in Resources */,
 				CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */,
 				CAA361DB15529F530081D3EB /* HomeController~ipad.xib in Resources */,
 				CA0378231553696100CF41E3 /* SelectWordCell~ipad.xib in Resources */,
@@ -18916,7 +18916,6 @@
 				C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */,
 				C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */,
 				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
-				C2B3E9421553741600CCF52C /* MyPaintButton~ipad.xib in Resources */,
 				A42D9048155380760023AF32 /* ColorShopView~ipad.xib in Resources */,
 				A454CB701558F5CE00896761 /* ChatController.xib in Resources */,
 				A329333215591D4D00621789 /* SearchUserController.xib in Resources */,
@@ -19720,6 +19719,7 @@
 				A41E0A8517D9E40E00B74555 /* 2common_dialog_close_btn@2x.png in Resources */,
 				A41E0A8917D9E40E00B74555 /* common_dialog_close_btn@2x.png in Resources */,
 				A41E0A8D17D9E40E00B74555 /* common_dialog_close_btn@2x.png_bak.png in Resources */,
+				EADEDCA217DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19755,7 +19755,7 @@
 				EA411B66176066F500DA72D0 /* ShareCell.xib in Resources */,
 				EA411B68176066F500DA72D0 /* AboutUsController.xib in Resources */,
 				EA411B6A176066F500DA72D0 /* UFPController.xib in Resources */,
-				EA411B6B176066F500DA72D0 /* MyPaintButton.xib in Resources */,
+				EA411B6B176066F500DA72D0 /* PaintButton.xib in Resources */,
 				EA411B6C176066F500DA72D0 /* ColorShopView.xib in Resources */,
 				EA411B6E176066F500DA72D0 /* SelectWordCell~ipad.xib in Resources */,
 				EA411B6F176066F500DA72D0 /* SelectWordController~ipad.xib in Resources */,
@@ -19770,7 +19770,6 @@
 				EA411B78176066F500DA72D0 /* ShareEditController~ipad.xib in Resources */,
 				EA411B79176066F500DA72D0 /* ShareController~ipad.xib in Resources */,
 				EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */,
-				EA411B7C176066F500DA72D0 /* MyPaintButton~ipad.xib in Resources */,
 				EA411B7D176066F500DA72D0 /* ColorShopView~ipad.xib in Resources */,
 				EA411B7E176066F500DA72D0 /* ChatController.xib in Resources */,
 				EA411B7F176066F500DA72D0 /* SearchUserController.xib in Resources */,
@@ -20546,6 +20545,7 @@
 				A41E0A8817D9E40E00B74555 /* 2common_dialog_close_btn@2x.png in Resources */,
 				A41E0A8C17D9E40E00B74555 /* common_dialog_close_btn@2x.png in Resources */,
 				A41E0A9017D9E40E00B74555 /* common_dialog_close_btn@2x.png_bak.png in Resources */,
+				EADEDCA517DAC3630010EAD7 /* my_paint_tag@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
