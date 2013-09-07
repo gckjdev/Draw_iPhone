@@ -19,47 +19,40 @@
 
 @implementation MyPaintButton
 
-@synthesize wordsBackground = _wordsBackground;
 @synthesize drawWord = _drawWord;
-@synthesize background = _background;
 @synthesize myPrintTag = _myPrintTag;
 @synthesize drawImage = _drawImage;
 @synthesize paint = _paint;
 
 - (void)dealloc
 {
-    PPRelease(_background);
     PPRelease(_drawWord);
     PPRelease(_myPrintTag);
-    PPRelease(_wordsBackground);
     PPRelease(_paint);
     PPRelease(_drawImage);
+    [_holderView release];
     [super dealloc];
 }
 
 + (MyPaintButton*)creatMyPaintButton
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MyPaintButton" owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create <MyPaintButton> but cannot find cell object from Nib");
-        return nil;
-    }
-    MyPaintButton* button =  (MyPaintButton*)[topLevelObjects objectAtIndex:0];
+    MyPaintButton* button = [self createViewWithXibIdentifier:@"PaintButton" ofViewIndex:ISIPAD];
+    
+    [button.holderView setBackgroundColor:COLOR_GRAY];
+    [button.drawWord setBackgroundColor:COLOR_YELLOW];
+    [button.drawWord setTextColor:COLOR_BROWN];
     return button;
 }
-/*
-+ (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 
-                                 drawWord:(NSString*)drawWord 
-                              isDrawnByMe:(BOOL)isDrawnByMe 
-                                 delegate:(id<MyPaintButtonDelegate>)delegate
+
+
++ (CGSize)buttonSize
 {
-    MyPaintButton* button = [MyPaintButton creatMyPaintButton];
-    [button.myPrintTag setHidden:!isDrawnByMe];
-    [button.drawWord setText:drawWord];
-    button.delegate = delegate;
-    return button;
+    if (ISIPAD) {
+        return CGSizeMake(160, 200);
+    }
+    return CGSizeMake(75, 100);
 }
-*/
+
 - (void)setInfo:(MyPaint *)paint
 {
     self.paint = paint;
