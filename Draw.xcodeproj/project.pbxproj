@@ -1706,8 +1706,6 @@
 		A461B09A174CBAA70088B061 /* UIHideButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D251509A56100F60C03 /* UIHideButton.m */; };
 		A461B09B174CBAA70088B061 /* UIBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D281509A56100F60C03 /* UIBlankView.m */; };
 		A461B09C174CBAA70088B061 /* UINumberAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2B1509A56100F60C03 /* UINumberAccessoryView.m */; };
-		A461B09D174CBAA70088B061 /* UIRectTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2E1509A56100F60C03 /* UIRectTextView.m */; };
-		A461B09E174CBAA70088B061 /* UISearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D311509A56100F60C03 /* UISearchHistoryView.m */; };
 		A461B09F174CBAA70088B061 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D341509A56100F60C03 /* StatusView.m */; };
 		A461B0A0174CBAA70088B061 /* UISwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D371509A56100F60C03 /* UISwitchCell.m */; };
 		A461B0A1174CBAA70088B061 /* UITextFieldForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D391509A56100F60C03 /* UITextFieldForCell.m */; };
@@ -3406,8 +3404,6 @@
 		C28A99821738F04B007A819F /* UIHideButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D251509A56100F60C03 /* UIHideButton.m */; };
 		C28A99831738F04B007A819F /* UIBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D281509A56100F60C03 /* UIBlankView.m */; };
 		C28A99841738F04B007A819F /* UINumberAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2B1509A56100F60C03 /* UINumberAccessoryView.m */; };
-		C28A99851738F04B007A819F /* UIRectTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2E1509A56100F60C03 /* UIRectTextView.m */; };
-		C28A99861738F04B007A819F /* UISearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D311509A56100F60C03 /* UISearchHistoryView.m */; };
 		C28A99871738F04B007A819F /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D341509A56100F60C03 /* StatusView.m */; };
 		C28A99881738F04B007A819F /* UISwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D371509A56100F60C03 /* UISwitchCell.m */; };
 		C28A99891738F04B007A819F /* UITextFieldForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D391509A56100F60C03 /* UITextFieldForCell.m */; };
@@ -4687,8 +4683,6 @@
 		CA103EC61509A56200F60C03 /* UIHideButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D251509A56100F60C03 /* UIHideButton.m */; };
 		CA103EC71509A56200F60C03 /* UIBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D281509A56100F60C03 /* UIBlankView.m */; };
 		CA103EC81509A56200F60C03 /* UINumberAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2B1509A56100F60C03 /* UINumberAccessoryView.m */; };
-		CA103EC91509A56200F60C03 /* UIRectTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2E1509A56100F60C03 /* UIRectTextView.m */; };
-		CA103ECA1509A56200F60C03 /* UISearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D311509A56100F60C03 /* UISearchHistoryView.m */; };
 		CA103ECB1509A56200F60C03 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D341509A56100F60C03 /* StatusView.m */; };
 		CA103ECC1509A56200F60C03 /* UISwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D371509A56100F60C03 /* UISwitchCell.m */; };
 		CA103ECD1509A56200F60C03 /* UITextFieldForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D391509A56100F60C03 /* UITextFieldForCell.m */; };
@@ -5696,8 +5690,6 @@
 		EA41182E176066F500DA72D0 /* UIHideButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D251509A56100F60C03 /* UIHideButton.m */; };
 		EA41182F176066F500DA72D0 /* UIBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D281509A56100F60C03 /* UIBlankView.m */; };
 		EA411830176066F500DA72D0 /* UINumberAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2B1509A56100F60C03 /* UINumberAccessoryView.m */; };
-		EA411831176066F500DA72D0 /* UIRectTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D2E1509A56100F60C03 /* UIRectTextView.m */; };
-		EA411832176066F500DA72D0 /* UISearchHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D311509A56100F60C03 /* UISearchHistoryView.m */; };
 		EA411833176066F500DA72D0 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D341509A56100F60C03 /* StatusView.m */; };
 		EA411834176066F500DA72D0 /* UISwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D371509A56100F60C03 /* UISwitchCell.m */; };
 		EA411835176066F500DA72D0 /* UITextFieldForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D391509A56100F60C03 /* UITextFieldForCell.m */; };
@@ -8455,10 +8447,6 @@
 		CA103D281509A56100F60C03 /* UIBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBlankView.m; sourceTree = "<group>"; };
 		CA103D2A1509A56100F60C03 /* UINumberAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINumberAccessoryView.h; sourceTree = "<group>"; };
 		CA103D2B1509A56100F60C03 /* UINumberAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINumberAccessoryView.m; sourceTree = "<group>"; };
-		CA103D2D1509A56100F60C03 /* UIRectTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRectTextView.h; sourceTree = "<group>"; };
-		CA103D2E1509A56100F60C03 /* UIRectTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRectTextView.m; sourceTree = "<group>"; };
-		CA103D301509A56100F60C03 /* UISearchHistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISearchHistoryView.h; sourceTree = "<group>"; };
-		CA103D311509A56100F60C03 /* UISearchHistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISearchHistoryView.m; sourceTree = "<group>"; };
 		CA103D331509A56100F60C03 /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
 		CA103D341509A56100F60C03 /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
 		CA103D361509A56100F60C03 /* UISwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwitchCell.h; sourceTree = "<group>"; };
@@ -13145,8 +13133,6 @@
 				CA103D231509A56100F60C03 /* HiddenButton */,
 				CA103D261509A56100F60C03 /* KeyboardCoverView */,
 				CA103D291509A56100F60C03 /* NumberAccessoryView */,
-				CA103D2C1509A56100F60C03 /* RectTextView */,
-				CA103D2F1509A56100F60C03 /* SearchHistoryView */,
 				CA103D321509A56100F60C03 /* StatusView */,
 				CA103D351509A56100F60C03 /* TableViewCell */,
 			);
@@ -13198,24 +13184,6 @@
 				CA103D2B1509A56100F60C03 /* UINumberAccessoryView.m */,
 			);
 			path = NumberAccessoryView;
-			sourceTree = "<group>";
-		};
-		CA103D2C1509A56100F60C03 /* RectTextView */ = {
-			isa = PBXGroup;
-			children = (
-				CA103D2D1509A56100F60C03 /* UIRectTextView.h */,
-				CA103D2E1509A56100F60C03 /* UIRectTextView.m */,
-			);
-			path = RectTextView;
-			sourceTree = "<group>";
-		};
-		CA103D2F1509A56100F60C03 /* SearchHistoryView */ = {
-			isa = PBXGroup;
-			children = (
-				CA103D301509A56100F60C03 /* UISearchHistoryView.h */,
-				CA103D311509A56100F60C03 /* UISearchHistoryView.m */,
-			);
-			path = SearchHistoryView;
 			sourceTree = "<group>";
 		};
 		CA103D321509A56100F60C03 /* StatusView */ = {
@@ -20574,8 +20542,6 @@
 				A461B09A174CBAA70088B061 /* UIHideButton.m in Sources */,
 				A461B09B174CBAA70088B061 /* UIBlankView.m in Sources */,
 				A461B09C174CBAA70088B061 /* UINumberAccessoryView.m in Sources */,
-				A461B09D174CBAA70088B061 /* UIRectTextView.m in Sources */,
-				A461B09E174CBAA70088B061 /* UISearchHistoryView.m in Sources */,
 				A461B09F174CBAA70088B061 /* StatusView.m in Sources */,
 				A461B0A0174CBAA70088B061 /* UISwitchCell.m in Sources */,
 				A461B0A1174CBAA70088B061 /* UITextFieldForCell.m in Sources */,
@@ -21405,8 +21371,6 @@
 				C28A99821738F04B007A819F /* UIHideButton.m in Sources */,
 				C28A99831738F04B007A819F /* UIBlankView.m in Sources */,
 				C28A99841738F04B007A819F /* UINumberAccessoryView.m in Sources */,
-				C28A99851738F04B007A819F /* UIRectTextView.m in Sources */,
-				C28A99861738F04B007A819F /* UISearchHistoryView.m in Sources */,
 				C28A99871738F04B007A819F /* StatusView.m in Sources */,
 				C28A99881738F04B007A819F /* UISwitchCell.m in Sources */,
 				C28A99891738F04B007A819F /* UITextFieldForCell.m in Sources */,
@@ -22211,8 +22175,6 @@
 				CA103EC61509A56200F60C03 /* UIHideButton.m in Sources */,
 				CA103EC71509A56200F60C03 /* UIBlankView.m in Sources */,
 				CA103EC81509A56200F60C03 /* UINumberAccessoryView.m in Sources */,
-				CA103EC91509A56200F60C03 /* UIRectTextView.m in Sources */,
-				CA103ECA1509A56200F60C03 /* UISearchHistoryView.m in Sources */,
 				CA103ECB1509A56200F60C03 /* StatusView.m in Sources */,
 				CA103ECC1509A56200F60C03 /* UISwitchCell.m in Sources */,
 				CA103ECD1509A56200F60C03 /* UITextFieldForCell.m in Sources */,
@@ -23023,8 +22985,6 @@
 				EA41182E176066F500DA72D0 /* UIHideButton.m in Sources */,
 				EA41182F176066F500DA72D0 /* UIBlankView.m in Sources */,
 				EA411830176066F500DA72D0 /* UINumberAccessoryView.m in Sources */,
-				EA411831176066F500DA72D0 /* UIRectTextView.m in Sources */,
-				EA411832176066F500DA72D0 /* UISearchHistoryView.m in Sources */,
 				EA411833176066F500DA72D0 /* StatusView.m in Sources */,
 				EA411834176066F500DA72D0 /* UISwitchCell.m in Sources */,
 				EA411835176066F500DA72D0 /* UITextFieldForCell.m in Sources */,

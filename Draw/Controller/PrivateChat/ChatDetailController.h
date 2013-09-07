@@ -25,7 +25,7 @@
 
 @end
 
-@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate, PhotoDrawSheetDelegate, MWPhotoBrowserDelegate,ChangeAvatarDelegate>
+@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate, PhotoDrawSheetDelegate, MWPhotoBrowserDelegate>
 {
         ChangeAvatar *imageUploader;
 }
