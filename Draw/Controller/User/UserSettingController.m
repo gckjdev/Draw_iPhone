@@ -85,16 +85,17 @@ enum {
 
 @synthesize backgroundImage;
 @synthesize expAndLevelLabel;
-@synthesize avatarButton;
+//@synthesize avatarButton;
 @synthesize tableViewBG;
 @synthesize nicknameLabel;
 
 - (void)dealloc {
+    PPRelease(_avatarView);
     PPRelease(_xiaojiNumberLabel);
     PPRelease(_pbUserBuilder);
     PPRelease(tableViewBG);
-    PPRelease(avatarButton);
-    PPRelease(_avatarImageView);
+//    PPRelease(avatarButton);
+//    PPRelease(_avatarImageView);
     PPRelease(imageUploader);
     PPRelease(nicknameLabel);
     PPRelease(expAndLevelLabel);
@@ -175,7 +176,9 @@ enum {
 
 - (void)updateAvatar:(UIImage *)image
 {
-    [_avatarImageView setImage:image];
+//    [_avatarImageView setImage:image];
+    
+    [self.avatarView setImage:image];
 }
 
 - (void)updateBackground:(UIImage*)image
@@ -208,18 +211,18 @@ enum {
     hasEdited = NO;
 }
 
-- (void)displayAvatarView
-{
-    NSURL* url = [NSURL URLWithString:[_userManager avatarURL]];
-    UIImage* defaultImage = [[UserManager defaultManager] defaultAvatarImage];
-    [_avatarImageView setImageWithURL:url
-                     placeholderImage:defaultImage
-                              success:^(UIImage *image, BOOL cached) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
+//- (void)displayAvatarView
+//{
+//    NSURL* url = [NSURL URLWithString:[_userManager avatarURL]];
+//    UIImage* defaultImage = [[UserManager defaultManager] defaultAvatarImage];
+//    [_avatarImageView setImageWithURL:url
+//                     placeholderImage:defaultImage
+//                              success:^(UIImage *image, BOOL cached) {
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
+//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -266,9 +269,9 @@ SET_CELL_BG_IN_CONTROLLER;
     [tableViewBG setImage:[imageManager whitePaperImage]];
     
     // init avatar image view and button
-    self.avatarImageView = [[[UIImageView alloc] initWithFrame:avatarButton.bounds] autorelease];
-    [avatarButton addSubview:_avatarImageView];
-    [self displayAvatarView];
+//    self.avatarImageView = [[[UIImageView alloc] initWithFrame:avatarButton.bounds] autorelease];
+//    [avatarButton addSubview:_avatarImageView];
+//    [self displayAvatarView];
     
     // init table view row and section
     [self updateRowIndexs];
@@ -300,6 +303,15 @@ SET_CELL_BG_IN_CONTROLLER;
     [v setBackButtonSelector:@selector(clickBackButton:)];
     [v setRightButtonTitle:NSLS(@"kSave")];
     [v setRightButtonSelector:@selector(clickSaveButton:)];
+    
+    [self.avatarView setUrlString:[[UserManager defaultManager] avatarURL]];
+    [self.avatarView setUserId:[[UserManager defaultManager] userId]];
+    [self.avatarView setDelegate:self];
+}
+
+- (void)didClickOnAvatar:(NSString*)userId
+{
+    [self clickAvatar:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -311,7 +323,8 @@ SET_CELL_BG_IN_CONTROLLER;
 - (void)viewDidUnload
 {
     [self setTableViewBG:nil];
-    [self setAvatarButton:nil];
+//    [self setAvatarButton:nil];
+    [self setAvatarView:nil];
     [self setNicknameLabel:nil];
     [self setExpAndLevelLabel:nil];
     [self setBackgroundImage:nil];
@@ -389,8 +402,8 @@ SET_CELL_BG_IN_CONTROLLER;
     [btn setBackgroundImage:[UIImage imageNamed:@"volume_off@2x.png"] forState:UIControlStateSelected];
     [btn setTitle:NSLS(@"kOFF") forState:UIControlStateSelected];
     [btn.titleLabel setTextAlignment:UITextAlignmentCenter];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+    [btn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [btn setTitleColor:COLOR_BROWN forState:UIControlStateSelected];
 }
 
 
