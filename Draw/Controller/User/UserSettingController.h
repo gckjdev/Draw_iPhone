@@ -14,10 +14,11 @@
 #import "CommonDialog.h"
 #import "ConfigManager.h"
 #import "GeographyService.h"
+#import "StableView.h"
 
 @class UserManager;
 @class HJManagedImageV;
-@interface UserSettingController : PPTableViewController<UIActionSheetDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate, GeographyServiceDelegate>
+@interface UserSettingController : PPTableViewController<UIActionSheetDelegate,UserServiceDelegate, CommonDialogDelegate, ChangeAvatarDelegate, GeographyServiceDelegate, AvatarViewDelegate>
 {    
     NSInteger rowOfPassword;
     NSInteger rowOfGender;
@@ -72,11 +73,12 @@
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (retain, nonatomic) IBOutlet UILabel *expAndLevelLabel;
 @property (retain, nonatomic) IBOutlet UILabel *xiaojiNumberLabel;
-@property (retain, nonatomic) IBOutlet UIButton *avatarButton;
+//@property (retain, nonatomic) IBOutlet UIButton *avatarButton;
 @property (retain, nonatomic) IBOutlet UIImageView *tableViewBG;
 @property (retain, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) PBGameUser_Builder *pbUserBuilder;
-@property (retain, nonatomic) UIImageView *avatarImageView;
+//@property (retain, nonatomic) UIImageView *avatarImageView;
 
 - (void)updateRowIndexs;
 @end

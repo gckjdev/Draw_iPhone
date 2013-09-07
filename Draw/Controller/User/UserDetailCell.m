@@ -168,9 +168,12 @@
 //    self.signLabel.shadowOffset = CGSizeMake(1, 1);
 //    self.xiaojiLabel.shadowOffset = CGSizeMake(1, 1);
     
-    self.xiaojiLabel.text = [[detail getUser] xiaojiNumber];
     if ([[[detail getUser] xiaojiNumber] length] == 0) {
         [self.levelLabel updateCenterX:self.center.x];
+        self.xiaojiLabel.text = @"";
+    }
+    else{
+        self.xiaojiLabel.text = [NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[detail getUser] xiaojiNumber]];        
     }
     
     [self.seperator1 setBackgroundColor:BG_COLOR];
