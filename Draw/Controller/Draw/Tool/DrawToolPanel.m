@@ -804,31 +804,30 @@ if (btn) {\
 
 - (void)addCloseSelectorView
 {
-    self.closeSelector = [UIView createViewWithXibIdentifier:@"ToolPanel" ofViewIndex:3];
-//    UIView *_coloseView = self.closeSelector;
+    self.closeSelector = [UIView createViewWithXibIdentifier:@"ToolPanel" ofViewIndex:(3+ISIPAD)];
     
-    if (ISIPAD) {
-        _closeSelector.frame = CGRectMake(CLOSE_VIEW_X, CLOSE_VIEW_Y, IMAGE_VIEW_SIZE, IMAGE_VIEW_SIZE);
-    }else{
-        _closeSelector.frame = CGRectMake(CLOSE_VIEW_X, CLOSE_VIEW_Y, IMAGE_VIEW_SIZE, IMAGE_VIEW_SIZE);
-    }
+    
     
     UIButton *button = (id)[_closeSelector viewWithTag:CLOSE_BUTTON_TAG];
     [button addTarget:self action:@selector(clickCloseSelector:) forControlEvents:UIControlEventTouchUpInside];
-
-    CGFloat x = CLOSE_VIEW_X + CGRectGetMinX(button.frame);
-    CGFloat y = CLOSE_VIEW_Y + CGRectGetMinY(button.frame);
-    [button updateOriginX:x];
-    [button updateOriginY:y];
     
     UIImageView *bg = (id)[_closeSelector viewWithTag:CLOSE_BUTTON_BG_TAG];
-    x = CLOSE_VIEW_X + CGRectGetMinX(bg.frame);
-    y = CLOSE_VIEW_Y + CGRectGetMinY(bg.frame);
-    [bg updateOriginX:x];
-    [bg updateOriginY:y];
+    
     
     [[self.drawView theTopView] addSubview:bg];
-    [[self.drawView theTopView] addSubview:button];    
+    [[self.drawView theTopView] addSubview:button];
+    
+    CGFloat x = CGRectGetMaxX(self.drawView.superview.frame) - CGRectGetWidth(bg.frame);
+    CGFloat y = CGRectGetMinY(self.drawView.superview.frame);
+    
+    [bg updateOriginX:x]; [bg updateOriginY:y];
+
+    x = CGRectGetMaxX(self.drawView.superview.frame) - CGRectGetWidth(button.frame);
+    
+    [button updateOriginX:x]; [button updateOriginY:y];
+    
+    
+
 }
 
 

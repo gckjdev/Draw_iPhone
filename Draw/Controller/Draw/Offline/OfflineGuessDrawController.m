@@ -271,6 +271,10 @@
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:_showView];
     [self.view insertSubview:holder atIndex:0];
     [holder updateOriginY:COMMON_TITLE_VIEW_HEIGHT];
+    if (ISIPHONE5) {
+        [holder updateHeight:CGRectGetHeight(holder.frame) + 108];
+        [holder updateContentScale];        
+    }
     [self.showView play];
 }
 @end
