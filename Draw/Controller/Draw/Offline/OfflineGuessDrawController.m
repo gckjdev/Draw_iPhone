@@ -118,8 +118,10 @@
     
     NSString *candidates = nil;
     if (_feed.drawData.languageType == EnglishType) {
-        candidates = [[WordManager defaultManager] randEnglishCandidateStringWithWord:_feed.wordText
+        NSString *txt = _feed.wordText;
+        candidates = [[WordManager defaultManager] randEnglishCandidateStringWithWord:txt
                                                                                 count:18];
+        
     }else{
         candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:_feed.wordText
                                                                                 count:18];
