@@ -64,8 +64,8 @@
         }
         return result;
     }];
-    
     [view updateBalanceLabel];
+    SET_VIEW_BG(view);
     return view;
     
 }
