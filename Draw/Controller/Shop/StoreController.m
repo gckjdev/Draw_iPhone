@@ -180,7 +180,7 @@ typedef enum{
         [self updateBalance];
     }];
     
-    self.bottomBarImageView.backgroundColor = COLOR_ORANGE;
+    self.bottomBarImageView.backgroundColor = COLOR_RED;
 
     SET_BUTTON_ROUND_STYLE_YELLOW(self.chargeButton);
 
