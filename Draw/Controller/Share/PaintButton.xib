@@ -36,10 +36,10 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="61899345">
+					<object class="IBUIView" id="641584987">
 						<reference key="NSNextResponder" ref="517575855"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrameSize">{160, 160}</string>
+						<int key="NSvFlags">306</int>
+						<string key="NSFrame">{{0, 1}, {160, 160}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="722032973"/>
@@ -52,8 +52,8 @@
 					</object>
 					<object class="IBUILabel" id="465915535">
 						<reference key="NSNextResponder" ref="517575855"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{9.5, 168.5}, {140, 28}}</string>
+						<int key="NSvFlags">282</int>
+						<string key="NSFrame">{{10, 165}, {140, 28}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -84,8 +84,8 @@
 					</object>
 					<object class="IBUIImageView" id="722032973">
 						<reference key="NSNextResponder" ref="517575855"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{9.5, 10}, {140, 140}}</string>
+						<int key="NSvFlags">306</int>
+						<string key="NSFrame">{{10, 11}, {140, 140}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="741618665"/>
@@ -96,7 +96,7 @@
 					<object class="IBUIImageView" id="741618665">
 						<reference key="NSNextResponder" ref="517575855"/>
 						<int key="NSvFlags">315</int>
-						<string key="NSFrame">{{123.5, 123}, {36, 38}}</string>
+						<string key="NSFrame">{{124, 123}, {36, 38}}</string>
 						<reference key="NSSuperview" ref="517575855"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="465915535"/>
@@ -111,7 +111,7 @@
 				<string key="NSFrameSize">{160, 202}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="61899345"/>
+				<reference key="NSNextKeyView" ref="641584987"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MCAwAA</bytes>
@@ -149,7 +149,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">holderView</string>
 						<reference key="source" ref="517575855"/>
-						<reference key="destination" ref="61899345"/>
+						<reference key="destination" ref="641584987"/>
 					</object>
 					<int key="connectionID">22</int>
 				</object>
@@ -180,7 +180,7 @@
 							<reference ref="465915535"/>
 							<reference ref="722032973"/>
 							<reference ref="741618665"/>
-							<reference ref="61899345"/>
+							<reference ref="641584987"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -201,7 +201,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
-						<reference key="object" ref="61899345"/>
+						<reference key="object" ref="641584987"/>
 						<reference key="parent" ref="517575855"/>
 					</object>
 				</array>

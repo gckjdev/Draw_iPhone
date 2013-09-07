@@ -40,6 +40,7 @@
     
     [button.holderView setBackgroundColor:COLOR_GRAY];
     [button.drawWord setBackgroundColor:COLOR_YELLOW];
+    [button.drawWord setTextColor:COLOR_BROWN];
     if (ISIPAD) {
         [button.drawWord setFont:[UIFont systemFontOfSize:19]];
     }
