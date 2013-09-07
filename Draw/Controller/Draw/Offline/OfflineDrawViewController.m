@@ -1428,9 +1428,11 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
     UIImageView *iv = (id)[self.view viewWithTag:PAGE_BG_TAG];
     if (iv == nil) {
         iv = [[[UIImageView alloc] initWithFrame:self.view.bounds] autorelease];
+        iv.autoresizingMask = (1<<6) -1;
         iv.tag = PAGE_BG_TAG;
         [self.view insertSubview:iv atIndex:0];
     }
+//    iv.frame = self.view.bounds;
     [iv setImage:image];
     if (image) {
         [self.view setBackgroundColor:[UIColor whiteColor]];

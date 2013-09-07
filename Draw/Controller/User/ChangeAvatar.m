@@ -11,6 +11,7 @@
 //#import "PPViewController.h"
 #import "UIImageExt.h"
 #import "DeviceDetection.h"
+#import "MKBlockActionSheet.h"
 
 #define DEFAULT_AVATAR_SIZE 320
 
@@ -116,14 +117,58 @@
 }
 
 
-//- (void)setUserAvatar:(UIImage*)image
-//{    
-//    UserService* userService = GlobalGetUserService();
-//    [userService updateUserAvatar:image];    
-//    
-//    // update GUI
-//    [self updateImageView];
-//}
+- (void)showSelectionView:(UIViewController*)superViewController
+                    title:(NSString*)title
+              otherTitles:(NSArray*)otherTitles
+                  handler:(CallBackBlock)handler
+       selectImageHanlder:(DidSelectedImageBlock)selectImageHanlder
+             canTakePhoto:(BOOL)canTakePhoto
+        userOriginalImage:(BOOL)userOriginalImage
+{
+    _buttonIndexAlbum = -1;
+    _buttonIndexCamera = -1;
+    _buttonIndexReset = -1;
+    
+    self.superViewController = superViewController;
+    self.canTakePhoto = canTakePhoto;
+    self.userOriginalImage = userOriginalImage;
+    self.selectImageBlock = selectImageHanlder;
+    
+
+    MKBlockActionSheet *sheet = [[MKBlockActionSheet alloc] initWithTitle:title
+                                                                 delegate:nil
+                                                        cancelButtonTitle:nil
+                                                   destructiveButtonTitle:NSLS(@"kSelectFromAlbum")
+                                                        otherButtonTitles:nil];
+    
+    _buttonIndexAlbum = 0;
+    if (canTakePhoto) {
+        _buttonIndexCamera = [sheet addButtonWithTitle:NSLS(@"kTakePhoto")];
+    }
+    for (NSString *t in otherTitles) {
+        [sheet addButtonWithTitle:t];
+    }
+
+    int index = [sheet addButtonWithTitle:NSLS(@"kCancel")];
+    [sheet setCancelButtonIndex:index];
+    
+    [sheet setActionBlock:^(NSInteger buttonIndex)
+    {
+        if (buttonIndex == _buttonIndexAlbum) {
+            [self selectPhoto];
+        }
+        else if (buttonIndex == _buttonIndexCamera) {
+            [self takePhoto];
+        }else{
+            EXECUTE_BLOCK(handler,buttonIndex);
+        }
+        PPDebug(@"<showSelectionView> click at index = %d", buttonIndex);
+        
+    }];
+    [sheet showInView:[superViewController view]];
+    [sheet release];
+}
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
