@@ -115,7 +115,7 @@
 							<object class="IBUIImageView" id="88626121">
 								<reference key="NSNextResponder" ref="746065400"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{215, 10}, {30, 30}}</string>
+								<string key="NSFrameSize">{30, 30}</string>
 								<reference key="NSSuperview" ref="746065400"/>
 								<reference key="NSNextKeyView" ref="205612503"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -131,6 +131,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{226, 35}, {8, 13}}</string>
 								<reference key="NSSuperview" ref="746065400"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -273,7 +274,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bulletin_accessory@2x.png">{16, 25}</string>
-			<string key="new_bulletin@2x.png">{63, 60}</string>
+			<string key="new_bulletin@2x.png">{115, 115}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

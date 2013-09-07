@@ -88,8 +88,9 @@
     self.opusButton.backgroundColor = [UIColor clearColor];
     NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
     NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
+    UIImage *placeHolderImage = [[ShareImageManager defaultManager] unloadBg];
     
-    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
+    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
     
 //    [self showActivityWithText:NSLS(@"kImageLoading")];
 //    __block typeof (self) bself = self;
