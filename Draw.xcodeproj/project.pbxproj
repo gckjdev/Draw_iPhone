@@ -2131,10 +2131,6 @@
 		A4D8FB8E17DB08170085061F /* balance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98117DB08170085061F /* balance_bg@2x.png */; };
 		A4D8FB8F17DB08170085061F /* balance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98117DB08170085061F /* balance_bg@2x.png */; };
 		A4D8FB9017DB08170085061F /* balance_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98117DB08170085061F /* balance_bg@2x.png */; };
-		A4D8FB9117DB08170085061F /* coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98217DB08170085061F /* coin@2x.png */; };
-		A4D8FB9217DB08170085061F /* coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98217DB08170085061F /* coin@2x.png */; };
-		A4D8FB9317DB08170085061F /* coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98217DB08170085061F /* coin@2x.png */; };
-		A4D8FB9417DB08170085061F /* coin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98217DB08170085061F /* coin@2x.png */; };
 		A4D8FB9517DB08170085061F /* item_promotion_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98317DB08170085061F /* item_promotion_bg@2x.png */; };
 		A4D8FB9617DB08170085061F /* item_promotion_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98317DB08170085061F /* item_promotion_bg@2x.png */; };
 		A4D8FB9717DB08170085061F /* item_promotion_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98317DB08170085061F /* item_promotion_bg@2x.png */; };
@@ -2143,10 +2139,6 @@
 		A4D8FB9A17DB08170085061F /* give_item_detail_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98517DB08170085061F /* give_item_detail_bg@2x.png */; };
 		A4D8FB9B17DB08170085061F /* give_item_detail_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98517DB08170085061F /* give_item_detail_bg@2x.png */; };
 		A4D8FB9C17DB08170085061F /* give_item_detail_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98517DB08170085061F /* give_item_detail_bg@2x.png */; };
-		A4D8FB9D17DB08170085061F /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98617DB08170085061F /* ingot@2x.png */; };
-		A4D8FB9E17DB08170085061F /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98617DB08170085061F /* ingot@2x.png */; };
-		A4D8FB9F17DB08170085061F /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98617DB08170085061F /* ingot@2x.png */; };
-		A4D8FBA017DB08170085061F /* ingot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98617DB08170085061F /* ingot@2x.png */; };
 		A4D8FBA117DB08170085061F /* item_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98717DB08170085061F /* item_add@2x.png */; };
 		A4D8FBA217DB08170085061F /* item_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98717DB08170085061F /* item_add@2x.png */; };
 		A4D8FBA317DB08170085061F /* item_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8F98717DB08170085061F /* item_add@2x.png */; };
@@ -7564,10 +7556,8 @@
 		A4D8F97E17DB08170085061F /* room_seat_bg_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_seat_bg_5@2x.png"; sourceTree = "<group>"; };
 		A4D8F97F17DB08170085061F /* room_seat_bg_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "room_seat_bg_6@2x.png"; sourceTree = "<group>"; };
 		A4D8F98117DB08170085061F /* balance_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "balance_bg@2x.png"; sourceTree = "<group>"; };
-		A4D8F98217DB08170085061F /* coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coin@2x.png"; sourceTree = "<group>"; };
 		A4D8F98417DB08170085061F /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/item_promotion_bg@2x.png"; sourceTree = "<group>"; };
 		A4D8F98517DB08170085061F /* give_item_detail_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "give_item_detail_bg@2x.png"; sourceTree = "<group>"; };
-		A4D8F98617DB08170085061F /* ingot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ingot@2x.png"; sourceTree = "<group>"; };
 		A4D8F98717DB08170085061F /* item_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_add@2x.png"; sourceTree = "<group>"; };
 		A4D8F98817DB08170085061F /* item_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_delete@2x.png"; sourceTree = "<group>"; };
 		A4D8F98917DB08170085061F /* item_detail_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "item_detail_bg@2x.png"; sourceTree = "<group>"; };
@@ -11416,10 +11406,8 @@
 			isa = PBXGroup;
 			children = (
 				A4D8F98117DB08170085061F /* balance_bg@2x.png */,
-				A4D8F98217DB08170085061F /* coin@2x.png */,
 				A4D8F98317DB08170085061F /* item_promotion_bg@2x.png */,
 				A4D8F98517DB08170085061F /* give_item_detail_bg@2x.png */,
-				A4D8F98617DB08170085061F /* ingot@2x.png */,
 				A4D8F98717DB08170085061F /* item_add@2x.png */,
 				A4D8F98817DB08170085061F /* item_delete@2x.png */,
 				A4D8F98917DB08170085061F /* item_detail_bg@2x.png */,
@@ -17640,10 +17628,8 @@
 				A4D8FB8717DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
 				A4D8FB8B17DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
 				A4D8FB8F17DB08170085061F /* balance_bg@2x.png in Resources */,
-				A4D8FB9317DB08170085061F /* coin@2x.png in Resources */,
 				A4D8FB9717DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9B17DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
-				A4D8FB9F17DB08170085061F /* ingot@2x.png in Resources */,
 				A4D8FBA317DB08170085061F /* item_add@2x.png in Resources */,
 				A4D8FBA717DB08170085061F /* item_delete@2x.png in Resources */,
 				A4D8FBAB17DB08170085061F /* item_detail_bg@2x.png in Resources */,
@@ -18506,10 +18492,8 @@
 				A4D8FB8617DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
 				A4D8FB8A17DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
 				A4D8FB8E17DB08170085061F /* balance_bg@2x.png in Resources */,
-				A4D8FB9217DB08170085061F /* coin@2x.png in Resources */,
 				A4D8FB9617DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9A17DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
-				A4D8FB9E17DB08170085061F /* ingot@2x.png in Resources */,
 				A4D8FBA217DB08170085061F /* item_add@2x.png in Resources */,
 				A4D8FBA617DB08170085061F /* item_delete@2x.png in Resources */,
 				A4D8FBAA17DB08170085061F /* item_detail_bg@2x.png in Resources */,
@@ -19354,10 +19338,8 @@
 				A4D8FB8517DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
 				A4D8FB8917DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
 				A4D8FB8D17DB08170085061F /* balance_bg@2x.png in Resources */,
-				A4D8FB9117DB08170085061F /* coin@2x.png in Resources */,
 				A4D8FB9517DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9917DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
-				A4D8FB9D17DB08170085061F /* ingot@2x.png in Resources */,
 				A4D8FBA117DB08170085061F /* item_add@2x.png in Resources */,
 				A4D8FBA517DB08170085061F /* item_delete@2x.png in Resources */,
 				A4D8FBA917DB08170085061F /* item_detail_bg@2x.png in Resources */,
@@ -20172,10 +20154,8 @@
 				A4D8FB8817DB08170085061F /* room_seat_bg_5@2x.png in Resources */,
 				A4D8FB8C17DB08170085061F /* room_seat_bg_6@2x.png in Resources */,
 				A4D8FB9017DB08170085061F /* balance_bg@2x.png in Resources */,
-				A4D8FB9417DB08170085061F /* coin@2x.png in Resources */,
 				A4D8FB9817DB08170085061F /* item_promotion_bg@2x.png in Resources */,
 				A4D8FB9C17DB08170085061F /* give_item_detail_bg@2x.png in Resources */,
-				A4D8FBA017DB08170085061F /* ingot@2x.png in Resources */,
 				A4D8FBA417DB08170085061F /* item_add@2x.png in Resources */,
 				A4D8FBA817DB08170085061F /* item_delete@2x.png in Resources */,
 				A4D8FBAC17DB08170085061F /* item_detail_bg@2x.png in Resources */,
