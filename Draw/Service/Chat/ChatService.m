@@ -14,11 +14,7 @@
 #import "LogUtil.h"
 #import "GameMessage.pb.h"
 #import "GameBasic.pb.h"
-//#import "ChatMessageManager.h"
-//#import "MessageTotalManager.h"
 #import "DrawDataService.h"
-//#import "ChatMessageUtil.h"
-//#import "ChatMessage.h"
 
 #import "CanvasRect.h"
 #import "ConfigManager.h"
@@ -51,7 +47,7 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageStatList:TRAFFIC_SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageStatList:[ConfigManager getBBSServerURL] 
                                                                        appId:[ConfigManager appId] 
                                                                       userId:userId 
                                                                       offset:starOffset 
@@ -100,7 +96,7 @@ static ChatService *_chatService = nil;
     
 //    [queue addOperationWithBlock: ^{
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:[ConfigManager getBBSServerURL]
                                                                    appId:[ConfigManager appId] 
                                                                   userId:userId 
                                                             friendUserId:friendUserId offsetMessageId:offsetMessageId maxCount:limit
@@ -244,7 +240,7 @@ static ChatService *_chatService = nil;
 
         
         
-        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:[ConfigManager getBBSServerURL] 
                                                                 appId:[ConfigManager appId] 
                                                                userId:userId 
                                                          targetUserId:friendId 
@@ -309,7 +305,7 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:TRAFFIC_SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:[ConfigManager getBBSServerURL] 
                                                                        appId:[ConfigManager appId] 
                                                                       userId:userId 
                                                                 friendUserId:friendUserId];
@@ -335,7 +331,7 @@ static ChatService *_chatService = nil;
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest deleteMessageStat:TRAFFIC_SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest deleteMessageStat:[ConfigManager getBBSServerURL] 
                                                                       appId:[ConfigManager appId] 
                                                                      userId:userId 
                                                                targetUserId:friendUserId];
@@ -368,7 +364,7 @@ static ChatService *_chatService = nil;
         for (PPMessage *message in messageList) {
             [messageIdList addObject:message.messageId];
         }
-        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:TRAFFIC_SERVER_URL 
+        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:[ConfigManager getBBSServerURL] 
                                                                   appId:[ConfigManager appId] 
                                                                  userId:userId 
                                                    targetMessageIdArray:messageIdList];
@@ -421,7 +417,7 @@ static ChatService *_chatService = nil;
     
 //    [queue addOperationWithBlock: ^{
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:[ConfigManager getBBSServerURL]
                                                                    appId:[ConfigManager appId]
                                                                   userId:userId
                                                             friendUserId:friendUserId
@@ -677,7 +673,7 @@ static ChatService *_chatService = nil;
                 break;
         }
                         
-        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:[ConfigManager getBBSServerURL]
                                                                 appId:[ConfigManager appId]
                                                                userId:userId
                                                          targetUserId:friendId
@@ -754,9 +750,11 @@ static ChatService *_chatService = nil;
                                 PARA_TARGETUSERID : friendId,
                                };
         
-        CommonNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_DELETE_SINGLE_MESSAGE
-                                                                                    parameters:para
-                                                                                 isReturnArray:NO];
+        CommonNetworkOutput* output = [PPGameNetworkRequest sendGetRequestWithBaseURL:[ConfigManager getMessageServerURL]
+                                                                               method:METHOD_DELETE_SINGLE_MESSAGE                                       
+                                                                           parameters:para
+                                                                             returnPB:NO
+                                                                      returnJSONArray:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
@@ -783,7 +781,7 @@ static ChatService *_chatService = nil;
         });
         
         /* old interface, now use new interface
-        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:TRAFFIC_SERVER_URL
+        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:[ConfigManager getBBSServerURL]
                                                                   appId:[ConfigManager appId]
                                                                  userId:userId
                                                    targetMessageIdArray:messageIdList];

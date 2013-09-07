@@ -66,4 +66,10 @@
                                              postDataDict:(NSDictionary *)dataDict
                                          progressDelegate:(id)progressDelegate;
 
++ (GameNetworkOutput*)sendGetRequestWithBaseURL:(NSString*)baseURL
+                                         method:(NSString *)method
+                                     parameters:(NSDictionary *)parameters
+                                       returnPB:(BOOL)returnPB
+                                returnJSONArray:(BOOL)returnJSONArray;
+
 @end

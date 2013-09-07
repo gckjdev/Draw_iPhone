@@ -27,7 +27,7 @@
 }
 
 #define RUN_OUT_TIME 0.2
-#define RUN_IN_TIME 0.2
+#define PICKVIEW_RUN_IN_TIME 0.2
 
 - (void)startRunOutAnimation
 {
@@ -52,7 +52,7 @@
 - (void)startRunInAnimation
 {
     [super setHidden:NO];
-    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:RUN_IN_TIME delegate:self removeCompeleted:NO];
+    CAAnimation *runIn = [AnimationManager scaleAnimationWithFromScale:0.1 toScale:1 duration:PICKVIEW_RUN_IN_TIME delegate:self removeCompeleted:NO];
     [self.layer addAnimation:runIn forKey:@"runIn"];
     
 }

@@ -45,7 +45,7 @@
 @implementation OfflineGuessDrawController
 
 + (OfflineGuessDrawController *)startOfflineGuess:(DrawFeed *)feed 
-           fromController:(UIViewController *)fromController
+           fromController:(PPViewController *)fromController
 {
     OfflineGuessDrawController *offGuess = [[OfflineGuessDrawController alloc]
                                             initWithFeed:feed];

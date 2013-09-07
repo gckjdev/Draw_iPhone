@@ -9,7 +9,7 @@
 #import "BBSNetwork.h"
 #import "PPNetworkRequest.h"
 #import "StringUtil.h"
-
+#import "ConfigManager.h"
 
 @implementation BBSNetwork
 
@@ -21,6 +21,9 @@
                                  gameId:(NSString *)gameId
                                language:(int)language
 {
+    
+    baseURL = [ConfigManager getBBSServerURL];
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -66,6 +69,9 @@
                          drawImage:(NSData *)drawImage
                              bonus:(NSInteger)bonus
 {
+    
+    baseURL = [ConfigManager getBBSServerURL];
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     if (userId == nil || boardId == nil){
@@ -137,6 +143,9 @@
                               limit:(NSInteger)limit;
 
 {
+    
+    baseURL = [ConfigManager getBBSServerURL];
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -195,6 +204,9 @@
                             drawData:(NSData *)drawData
                            drawImage:(NSData *)drawImage
 {
+    
+    baseURL = [ConfigManager getBBSServerURL];
+
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     
@@ -270,6 +282,9 @@
                                offset:(NSInteger)offset
                                 limit:(NSInteger)limit
 {
+    
+    baseURL = [ConfigManager getBBSServerURL];
+
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -311,6 +326,9 @@
                                postId:(NSString *)postId
                               boardId:(NSString *)boardId
 {
+    baseURL = [ConfigManager getBBSServerURL];
+
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -346,6 +364,8 @@
                                  userId:(NSString *)userId
                                actionId:(NSString *)actionId
 {
+    baseURL = [ConfigManager getBBSServerURL];
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -388,6 +408,9 @@
                      actionGender:(NSString *)actionGender
                      actionAvatar:(NSString *)actionAvatar
 {
+    baseURL = [ConfigManager getBBSServerURL];
+
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -429,6 +452,9 @@
                             userId:(NSString *)userId
                             postId:(NSString *)postId
 {
+    baseURL = [ConfigManager getBBSServerURL];
+
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -463,6 +489,9 @@
                                  deviceType:(NSInteger)deviceType
                                      userId:(NSString *)userId
 {
+    baseURL = [ConfigManager getBBSServerURL];
+
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -501,6 +530,8 @@
                                expireDate:(NSDate *)expireDate
                                      info:(NSDictionary *)info //for the future
 {
+    baseURL = [ConfigManager getBBSServerURL];
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -544,6 +575,8 @@
                                 postId:(NSString *)postId
                               actionId:(NSString *)actionId
 {
+    baseURL = [ConfigManager getBBSServerURL];
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
@@ -584,6 +617,9 @@
                              status:(int)status
                                info:(NSDictionary *)info //for the future
 {
+    baseURL = [ConfigManager getBBSServerURL];
+
+    
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {

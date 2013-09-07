@@ -330,7 +330,7 @@ BBSService *_staticBBSService;
         
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
         
-        CommonNetworkOutput *output = [BBSNetwork getBBSBoardList:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork getBBSBoardList:[ConfigManager getBBSServerURL]
                                                             appId:appId
                                                            userId:userId
                                                        deviceType:1
@@ -422,7 +422,7 @@ BBSService *_staticBBSService;
             NSString *gender = [[UserManager defaultManager] gender];
             NSString *avatar = [[UserManager defaultManager] avatarURL];
             
-            CommonNetworkOutput *output = [BBSNetwork createPost:TRAFFIC_SERVER_URL
+            CommonNetworkOutput *output = [BBSNetwork createPost:[ConfigManager getBBSServerURL]
                                                            appId:appId
                                                       deviceType:deviceType
                                                           userId:userId
@@ -486,7 +486,7 @@ BBSService *_staticBBSService;
         NSString *appId = [ConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
         
-        CommonNetworkOutput *output = [BBSNetwork changeBBSUserRole:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork changeBBSUserRole:[ConfigManager getBBSServerURL]
                                                               appId:appId
                                                          deviceType:deviceType
                                                              userId:userId
@@ -515,7 +515,7 @@ BBSService *_staticBBSService;
     NSString *appId = [ConfigManager appId];
     NSInteger deviceType = [DeviceDetection deviceType];
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput *output = [BBSNetwork getBBSPrivilegeList:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork getBBSPrivilegeList:[ConfigManager getBBSServerURL]
                                                                 appId:appId
                                                            deviceType:deviceType
                                                                userId:userId];
@@ -565,7 +565,7 @@ BBSService *_staticBBSService;
         NSString *appId = [ConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
-        CommonNetworkOutput *output = [BBSNetwork getPostList:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork getPostList:[ConfigManager getBBSServerURL]
                                                         appId:appId
                                                    deviceType:deviceType
                                                        userId:userId
@@ -706,7 +706,7 @@ BBSService *_staticBBSService;
                 briefText = [briefText substringToIndex:BRIEF_TEXT_LENGTH];
             }
             
-            CommonNetworkOutput *output = [BBSNetwork createAction:TRAFFIC_SERVER_URL
+            CommonNetworkOutput *output = [BBSNetwork createAction:[ConfigManager getBBSServerURL]
                                                              appId:appId
                                                         deviceType:deviceType
                                                             userId:userId
@@ -795,7 +795,7 @@ BBSService *_staticBBSService;
         NSString *appId = [ConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
-        CommonNetworkOutput *output = [BBSNetwork getActionList:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork getActionList:[ConfigManager getBBSServerURL]
                                                           appId:appId
                                                      deviceType:deviceType
                                                          userId:userId
@@ -839,7 +839,7 @@ BBSService *_staticBBSService;
         NSString *appId = [ConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
-        CommonNetworkOutput *output = [BBSNetwork getActionList:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork getActionList:[ConfigManager getBBSServerURL]
                                                           appId:appId
                                                      deviceType:deviceType
                                                          userId:userId
@@ -884,7 +884,7 @@ BBSService *_staticBBSService;
         NSInteger deviceType = [DeviceDetection deviceType];
         PBBBSUser *aUser = action.createUser;
         
-        CommonNetworkOutput *output = [BBSNetwork payReward:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork payReward:[ConfigManager getBBSServerURL]
                                                      userId:userId
                                                       appId:appId
                                                  deviceType:deviceType
@@ -949,7 +949,7 @@ BBSService *_staticBBSService;
             NSString *userId = [[UserManager defaultManager] userId];
             NSString *appId = [ConfigManager appId];
         
-            CommonNetworkOutput *output = [BBSNetwork getBBSDrawData:TRAFFIC_SERVER_URL
+            CommonNetworkOutput *output = [BBSNetwork getBBSDrawData:[ConfigManager getBBSServerURL]
                                                                appId:appId
                                                           deviceType:[DeviceDetection deviceType]
                                                               userId:userId
@@ -1001,7 +1001,7 @@ BBSService *_staticBBSService;
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork getBBSPost:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork getBBSPost:[ConfigManager getBBSServerURL]
                                                        appId:appId
                                                   deviceType:deviceType
                                                       userId:userId
@@ -1043,7 +1043,7 @@ BBSService *_staticBBSService;
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork deleteBBSPost:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork deleteBBSPost:[ConfigManager getBBSServerURL]
                                                           appId:appId
                                                      deviceType:deviceType
                                                          userId:userId
@@ -1066,7 +1066,7 @@ BBSService *_staticBBSService;
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork deleteBBSAction:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork deleteBBSAction:[ConfigManager getBBSServerURL]
                                                             appId:appId
                                                        deviceType:deviceType
                                                            userId:userId
@@ -1095,7 +1095,7 @@ BBSService *_staticBBSService;
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *appId = [ConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork editBBSPost:TRAFFIC_SERVER_URL
+        CommonNetworkOutput *output = [BBSNetwork editBBSPost:[ConfigManager getBBSServerURL]
                                                         appId:appId
                                                    deviceType:deviceType
                                                        userId:userId
