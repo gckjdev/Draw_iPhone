@@ -162,8 +162,6 @@ typedef enum{
             button.frame = FRAME_BUTTON4;
         }
     }
-    
-
 }
 
 #define ADDTION_HEIGHT_WHEN_NO_TAB_BUTTON (ISIPAD ? 80 : 40)

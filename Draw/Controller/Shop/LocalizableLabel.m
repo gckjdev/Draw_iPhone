@@ -18,6 +18,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
         [self setText:self.text];
+        [self setTextColor:COLOR_BROWN];
     }
     
     return self;
