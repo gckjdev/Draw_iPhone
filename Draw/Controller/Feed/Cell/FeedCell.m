@@ -247,8 +247,8 @@
 - (void)setCellAppearance{
     
     self.userNameLabel.textColor = COLOR_BROWN;
-    self.descLabel.textColor = COLOR_ORANGE;
-    self.timeLabel.textColor = COLOR_YELLOW;
+    self.descLabel.textColor = COLOR_BROWN;
+    self.timeLabel.textColor = COLOR_GRAY_TEXT;
     self.guessLabel.textColor = COLOR_GREEN;
     self.correctLabel.textColor = COLOR_GREEN;
     

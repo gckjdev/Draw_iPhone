@@ -1112,9 +1112,9 @@ static UIImage* _whitePaperImage;
 - (UIImage*)userDetailGenderImage:(BOOL)isMale
 {
     if (isMale) {
-        return [UIImage imageNamed:@"user_detail_gender_male.png"];
+        return [UIImage imageNamed:@"user_detail_gender_male@2x.png"];
     } else {
-        return [UIImage imageNamed:@"user_detail_gender_female.png"];
+        return [UIImage imageNamed:@"user_detail_gender_female@2x.png"];
     }
 }
 

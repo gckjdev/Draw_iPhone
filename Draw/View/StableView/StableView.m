@@ -234,7 +234,7 @@
         [self setAsRound];
         
         self.layer.borderWidth = (ISIPAD ? 4 : 2);
-        self.layer.borderColor = [COLOR_GREEN CGColor];
+        self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
     return self;
@@ -276,7 +276,7 @@
         
         [self setAsRound];
         self.layer.borderWidth = (ISIPAD ? 4 : 2);
-        self.layer.borderColor = [COLOR_GREEN CGColor];
+        self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
     return self;
@@ -299,7 +299,7 @@
         
         [self setAsRound];
         self.layer.borderWidth = (ISIPAD ? 4 : 2);
-        self.layer.borderColor = [COLOR_GREEN CGColor];
+        self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
     return self;

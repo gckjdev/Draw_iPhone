@@ -51,7 +51,7 @@ typedef enum{
     [self unregisterAllNotifications];
     [[AccountService defaultService] setDelegate:nil];
     [_selectedButton release];
-    [_backButton release];
+//    [_backButton release];
     [_chargeButton release];
     [_coinBalanceLabel release];
     [_ingotBalanceLabel release];
@@ -68,7 +68,7 @@ typedef enum{
 - (void)viewDidUnload {
     [self setSelectedButton:nil];
     [self setTitleLabel:nil];
-    [self setBackButton:nil];
+//    [self setBackButton:nil];
     [self setChargeButton:nil];
     [self setCoinBalanceLabel:nil];
     [self setIngotBalanceLabel:nil];
@@ -160,9 +160,10 @@ typedef enum{
     
 //    [CommonTitleView createTitleView:self.view];
 //    CommonTitleView* titleView = [CommonTitleView titleView:self.view];
-    [self.titleView setTitle:NSLS(@"kStore")];
-    [self.titleView setTarget:self];
-    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    self.titleView.hidden = YES;
+//    [self.titleView setTitle:NSLS(@"kStore")];
+//    [self.titleView setTarget:self];
+//    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
     
     [self.chargeButton setTitle:NSLS(@"kCharge") forState:UIControlStateNormal];
     [self updateBalance];
@@ -179,14 +180,13 @@ typedef enum{
         [self updateBalance];
     }];
     
-    self.bottomBarImageView.backgroundColor = COLOR_YELLOW;
+    self.bottomBarImageView.backgroundColor = COLOR_RED;
 
-    SET_BUTTON_ROUND_STYLE_ORANGE(self.chargeButton);
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.chargeButton);
 
-    [self.chargeButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
-    self.balanceTipLabel.textColor = COLOR_BROWN;
-    self.ingotBalanceLabel.textColor = COLOR_BROWN;
-    self.coinBalanceLabel.textColor = COLOR_BROWN;
+    self.balanceTipLabel.textColor = COLOR_WHITE;
+    self.ingotBalanceLabel.textColor = COLOR_WHITE;
+    self.coinBalanceLabel.textColor = COLOR_WHITE;
 }
 
 - (void)hideTaoBaoTab

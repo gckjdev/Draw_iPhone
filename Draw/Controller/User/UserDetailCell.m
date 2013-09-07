@@ -119,13 +119,7 @@
 
     [self.customBackgroundImageView setImageWithUrl:[NSURL URLWithString:[[detail getUser] backgroundUrl]] placeholderImage:nil showLoading:NO animated:YES];
 
-    
-    if ([[[detail getUser] backgroundUrl] length] == 0) {
-        [self.customBackgroundControl setBackgroundColor:BG_COLOR];
-    }else{
-        [self.customBackgroundControl setBackgroundColor:[UIColor clearColor]];
-    }
-
+    [self.customBackgroundControl setBackgroundColor:BG_COLOR];
     
     
     [self.customBackgroundControl addTarget:self action:@selector(clickCustomBackground:) forControlEvents:UIControlEventTouchUpInside];
