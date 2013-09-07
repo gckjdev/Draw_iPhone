@@ -111,8 +111,10 @@
     self.itemNameLabel.textColor = COLOR_BROWN;
     self.itemDescLabel.textColor = COLOR_BROWN;
     
+    [self.countButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     self.countButton.backgroundColor = COLOR_BROWN;
-    SET_VIEW_ROUND_CORNER(self.countButton);
+    [self.countButton.layer setCornerRadius:(ISIPAD? 4 : 2)];
+    [self.countButton.layer setMasksToBounds:YES];
 }
 
 - (void)setItem:(PBGameItem *)item

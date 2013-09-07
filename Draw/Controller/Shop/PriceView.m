@@ -18,6 +18,7 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
 + (id)createWithPrice:(int)price currency:(PBGameCurrency)currency
 {
     PriceView *view = [self createView];
+
     [view.promotionCurrencyImageView removeFromSuperview];
     [view.promotionPriceLabel removeFromSuperview];
     [view.grayLineImageView removeFromSuperview];
@@ -34,6 +35,9 @@ AUTO_CREATE_VIEW_BY_XIB(PriceView);
     [view updateWidth:(view.priceLabel.frame.origin.x + view.priceLabel.frame.size.width)];
     
     view.currencyImageView.image = [[ShareImageManager defaultManager] currencyImageWithType:currency];
+    
+    [view.priceLabel setTextColor:COLOR_BROWN];
+    [view.promotionPriceLabel setTextColor:COLOR_GRAY];
     
     return view;
 }

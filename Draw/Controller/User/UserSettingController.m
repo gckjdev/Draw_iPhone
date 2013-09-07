@@ -405,18 +405,16 @@ SET_CELL_BG_IN_CONTROLLER;
 }
 
 #define SW_FONT (ISIPAD?24:12)
-#define SW_FRAME (ISIPAD?CGRectMake(246*2, 3.5*2, 70*2, 37*2):CGRectMake(210, 3.5, 70, 37))
+#define SW_FRAME (ISIPAD?CGRectMake(600, 3.5*2, 70*2, 37*2):CGRectMake(240, 3.5, 70, 37))
 
 - (UIButton *)addSwitchButtonWithTag:(NSInteger)tag toCell:(UserSettingCell *)cell
 {
     [self clearSwitchInCell:cell];
     [cell.customAccessory setHidden:YES];
     UIButton* btn = [[UIButton alloc] initWithFrame:SW_FRAME];
-    [btn setBackgroundColor:[UIColor redColor]];
     [cell.contentView addSubview:btn];
     [self initSwitcher:btn];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:SW_FONT]];
-    [btn setCenter:CGPointMake(cell.customAccessory.center.x - btn.frame.size.width/2, cell.customAccessory.center.y)];
     [btn setTag:tag];
     [btn release];
     return btn;
@@ -481,6 +479,7 @@ SET_CELL_BG_IN_CONTROLLER;
     [cell.customDetailLabel setText:nil];
     [cell.customDetailLabel setTextColor:COLOR_GREEN];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 //    [cell setBadge:1];
     
     NSInteger section = indexPath.section;
@@ -577,14 +576,15 @@ SET_CELL_BG_IN_CONTROLLER;
 
         }
     } else if (section == SECTION_SOUND) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
         if(row == rowOfSoundSwitcher) 
         {
             [cell.customTextLabel setText:NSLS(@"kSound")];
             [cell.customDetailLabel setText:nil];
             UIButton *btn = [self addSwitchButtonWithTag:SOUND_SWITCHER_TAG toCell:cell];
             [btn addTarget:self action:@selector(clickSoundSwitcher:) forControlEvents:UIControlEventTouchUpInside];
-            [btn setSelected:!isSoundOn];            
-
+            [btn setSelected:!isSoundOn];
         }else if (row == rowOfMusicSettings) {
             [cell.customTextLabel setText:NSLS(@"kCustomMusic")];
             [cell.customDetailLabel setHidden:YES];
