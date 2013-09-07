@@ -66,6 +66,7 @@ typedef enum{
 @property (nonatomic, assign) long coins;
 @property (nonatomic, assign) RelationType relation;
 @property (nonatomic, retain) NSString * memo;
+@property (nonatomic, retain) NSString * xiaoji;
 
 - (id)initWithDict:(NSDictionary *)dict;
 + (id)friendWithDict:(NSDictionary *)dict;

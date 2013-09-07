@@ -168,7 +168,12 @@
     areaLabel.text = aFriend.location;
     
     //set level
-    [_levelLabel setText:[NSString stringWithFormat:@"LV:%d",aFriend.level]];
+    if ([aFriend.xiaoji length] > 0){
+        [_levelLabel setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), aFriend.xiaoji]];
+    }
+    else{
+        [_levelLabel setText:[NSString stringWithFormat:@"LV:%d",aFriend.level]];
+    }
     
     [self updateAuthImageView:aFriend];
     
