@@ -83,6 +83,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *seperator3;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *hisOpusLabel;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *snsTipLabel;
+@property (retain, nonatomic) IBOutlet UILabel *xiaojiLabel;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;
