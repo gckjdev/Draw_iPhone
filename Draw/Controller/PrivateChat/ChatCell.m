@@ -122,7 +122,7 @@
         self.timeLabel.text = [dateFormatter stringFromDate:date];
     }
     
-    self.timeLabel.textColor = COLOR_YELLOW;
+    self.timeLabel.textColor = COLOR_GRAY_TEXT;
 
 }
 
@@ -139,7 +139,7 @@
     
     //set text
     [self.textLabel setText:self.messageStat.desc];
-    self.textLabel.textColor = COLOR_RED;
+    self.textLabel.textColor = COLOR_BROWN;
     
     //set countLabel
     [self updateBadge];

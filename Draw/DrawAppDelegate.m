@@ -112,7 +112,6 @@ NSString* GlobalGetTrafficServerURL()
 {
 
 //#ifdef DEBUG
-
     NSUserDefaults* def = [NSUserDefaults standardUserDefaults];
     NSString* str = [def objectForKey:@"traffic_server"];
     if (str && str.length > 5) {

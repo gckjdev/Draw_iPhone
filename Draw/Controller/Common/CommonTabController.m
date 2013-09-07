@@ -187,7 +187,7 @@
     }
     [super viewDidLoad];
     [self initTabs];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:COLOR_GRAY];
     SET_VIEW_BG(self.view);
     [self.noDataTipLabl removeFromSuperview];
 }

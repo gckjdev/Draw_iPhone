@@ -31,7 +31,7 @@ AUTO_CREATE_VIEW_BY_XIB(UserSettingCell)
 {
     UserSettingCell* cell = [UserSettingCell createView];
     
-    cell.customDetailLabel.textColor = COLOR_RED;
+    cell.customDetailLabel.textColor = COLOR_GREEN;
     cell.customTextLabel.textColor = COLOR_BROWN;
     
     BadgeView* badgeView = [BadgeView badgeViewWithNumber:0];
