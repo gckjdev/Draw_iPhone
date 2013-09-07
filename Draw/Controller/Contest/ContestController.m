@@ -187,7 +187,7 @@
             [self.pageControl setNumberOfPages:0];
         }
         [[ContestManager defaultManager] updateHasReadContestList:contestList];
-        [[StatisticManager defaultManager] setNewContestCount:0];
+//        [[StatisticManager defaultManager] setNewContestCount:0];
     }else{
 
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFailLoad") delayTime:1.5 isHappy:NO];

@@ -115,6 +115,16 @@
     return [MobClickUtils getStringValueByKey:@"API_SERVER_URL" defaultValue:@"http://www.you100.me:8001/api/i?"];        
 }
 
++ (NSString*)getMessageServerURL
+{
+    return [MobClickUtils getStringValueByKey:@"MESSAGE_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
+}
+
++ (NSString*)getBBSServerURL
+{
+    return [MobClickUtils getStringValueByKey:@"BBS_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
+}
+
 
 + (NSString*)getMusicDownloadHomeURL
 {

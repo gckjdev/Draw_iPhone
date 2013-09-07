@@ -673,7 +673,7 @@ transactionRecepit:(NSString*)transactionRecepit
             product.appleProductId);
     
     SKPayment *payment = nil;
-    if (selectedProduct == nil){
+    if (selectedProduct == nil){        
         payment = [SKPayment paymentWithProductIdentifier:product.appleProductId];
     }
     else{

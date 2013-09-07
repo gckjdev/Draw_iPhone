@@ -137,6 +137,17 @@ NSString* GlobalGetTrafficServerURL()
     return [ConfigManager getTrafficAPIServerURL];
 }
 
+NSString* GlobalGetMessageServerURL()
+{
+    return [ConfigManager getMessageServerURL];
+}
+
+NSString* GlobalGetBBSServerURL()
+{
+    return [ConfigManager getBBSServerURL];
+}
+
+
 NSString* GlobalGetBoardServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
@@ -361,6 +372,7 @@ NSString* GlobalGetBoardServerURL()
     
 #if DEBUG
     
+    // TODO check benson
     [LocalNotificationUtil cancelAllLocalNotifications];
     
     // 比赛的local notification通知

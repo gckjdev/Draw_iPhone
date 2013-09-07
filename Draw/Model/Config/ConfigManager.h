@@ -69,6 +69,8 @@ typedef enum{
 
 + (NSString*)getAPIServerURL;
 + (NSString*)getTrafficAPIServerURL;
++ (NSString*)getBBSServerURL;
++ (NSString*)getMessageServerURL;
 + (NSString*)getMusicDownloadHomeURL;
 
 
