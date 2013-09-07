@@ -45,7 +45,7 @@
     [cell.timeLabel setTextColor:COLOR_GRAY_TEXT];
     [cell.nickNameLabel setTextColor:COLOR_BROWN];
     [cell.commentLabel setTextColor:COLOR_BROWN];
-    [cell.sourceButton.titleLabel setTextColor:COLOR_BROWN];
+    [cell.sourceButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     return cell;
 }
 
