@@ -1037,6 +1037,7 @@
 "kContestSubmitEndSubmitNormal" = "Contest is closed for submit. Do you want to submit as normal opus?";
 "kContestNotForUser" = "You are not in the contestant list for this contest. Cannot submit opus.";
 "kContestNotForUserSubmitNormal" = "You are not in the contestant list for this contest. Do you want to submit as normal opus?";
+"kAnounymousContestNick" = "Anounymous";
 
 "kLoginXiaoji" = "Login";
 "kLoginXiaojiPlaceHolder" = "Enter Littlegee Number";

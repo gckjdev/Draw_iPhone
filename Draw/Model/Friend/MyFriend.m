@@ -58,6 +58,7 @@
         self.level = [[dict objectForKey:PARA_LEVEL] intValue]; 
         self.coins = [[dict objectForKey:PARA_USER_COINS] longValue];
         self.memo = [dict objectForKey:PARA_MEMO];
+        self.xiaoji = [dict objectForKey:PARA_XIAOJI_NUMBER];
         if (self.level < 1) {
             self.level = 1;
         }
@@ -219,6 +220,7 @@
     PPRelease(_lastModifiedDate);
     PPRelease(_location);
     PPRelease(_memo);
+    PPRelease(_xiaoji);
     
     [super dealloc];
 }
