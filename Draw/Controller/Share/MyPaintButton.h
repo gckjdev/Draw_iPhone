@@ -14,13 +14,12 @@
 {
     MyPaint *_paint;
 }
-@property (retain, nonatomic) IBOutlet UIImageView *wordsBackground;
 @property (retain, nonatomic) IBOutlet UILabel *drawWord;
-@property (nonatomic, retain) IBOutlet UIImageView* background;
 @property (retain, nonatomic) IBOutlet UIImageView *myPrintTag;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) IBOutlet MyPaint *paint;
 
+@property (retain, nonatomic) IBOutlet UIView *holderView;
 
 + (MyPaintButton*)creatMyPaintButton;
 - (void)setInfo:(MyPaint *)paint;

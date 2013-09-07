@@ -208,7 +208,7 @@
         [_feed incGuessTimes];
     }
     [self cleanData];
-    if ([self.fromController isKindOfClass:[ShowFeedController class]]) {
+    if (correct && [self.fromController isKindOfClass:[ShowFeedController class]]) {
         [(ShowFeedController *)self.fromController setFeedScene:[[[FeedSceneGuessResult alloc] init] autorelease]];
     } 
     

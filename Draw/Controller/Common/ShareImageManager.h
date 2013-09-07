@@ -61,13 +61,7 @@
 
 #define IMAGE_FROM_COLOR(color) ([ShareImageManager imageWithColor:color])
 
-#define TOP_ROUND_CORNER_IMAGE_FROM_COLOR(color) ([UIImage imageFromColor:color corner:CornerLeftTop|CornerRightTop radius:DEFAULT_CORNER_RADIUS])
 
-#define BOTTOM_ROUND_CORNER_IMAGE_FROM_COLOR(color) ([UIImage imageFromColor:color corner:CornerLeftBottom|CornerRightBottom radius:DEFAULT_CORNER_RADIUS])
-
-#define LEFT_ROUND_CORNER_IMAGE_FROM_COLOR(color) ([UIImage imageFromColor:color corner:CornerLeftBottom|CornerLeftTop radius:DEFAULT_CORNER_RADIUS])
-
-#define RIGHT_ROUND_CORNER_IMAGE_FROM_COLOR(color) ([UIImage imageFromColor:color corner:CornerRightTop|CornerRightBottom radius:DEFAULT_CORNER_RADIUS])
 
 
 #define SET_VIEW_BG(view) (view.backgroundColor = COLOR_WHITE)
