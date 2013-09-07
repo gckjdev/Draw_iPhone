@@ -69,8 +69,8 @@
     [v setTarget:self];
     [v setBackButtonSelector:@selector(clickBack:)];
 
+    SET_INPUT_VIEW_STYLE(self.searchTextField);
     
-    // Do any additional setup after loading the view from its nib.
 }
 
 

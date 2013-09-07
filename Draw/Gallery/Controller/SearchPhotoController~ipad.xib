@@ -13,7 +13,6 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
-			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUITextField</string>
 			<string>IBUIView</string>
@@ -38,38 +37,10 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="218914647">
-						<reference key="NSNextResponder" ref="718983806"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{26, 117}, {715, 83}}</string>
-						<reference key="NSSuperview" ref="718983806"/>
-						<reference key="NSNextKeyView" ref="930438433"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">search_bar_bg@2x.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="930438433">
-						<reference key="NSNextResponder" ref="718983806"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{48, 129}, {564, 62}}</string>
-						<reference key="NSSuperview" ref="718983806"/>
-						<reference key="NSNextKeyView" ref="804305390"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">search_input_bg@2x.png</string>
-						</object>
-					</object>
 					<object class="IBUITextField" id="235943177">
 						<reference key="NSNextResponder" ref="718983806"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{120, 129}, {456, 62}}</string>
+						<string key="NSFrame">{{120, 128}, {494, 62}}</string>
 						<reference key="NSSuperview" ref="718983806"/>
 						<reference key="NSNextKeyView" ref="1042881146"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -104,7 +75,7 @@
 					<object class="IBUIButton" id="1042881146">
 						<reference key="NSNextResponder" ref="718983806"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{638, 127}, {74, 64}}</string>
+						<string key="NSFrame">{{642.5, 126.5}, {65, 65}}</string>
 						<reference key="NSSuperview" ref="718983806"/>
 						<reference key="NSNextKeyView" ref="785258650"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -112,7 +83,6 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Button</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="585409677">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -125,9 +95,9 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">search_setting_btn@2x.png</string>
+							<string key="NSResourceName">gallary_filter2@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -142,7 +112,7 @@
 					<object class="IBUIButton" id="804305390">
 						<reference key="NSNextResponder" ref="718983806"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{67, 138}, {48, 41}}</string>
+						<string key="NSFrame">{{42, 123.5}, {70, 70}}</string>
 						<reference key="NSSuperview" ref="718983806"/>
 						<reference key="NSNextKeyView" ref="235943177"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -150,16 +120,15 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">搜</string>
 						<reference key="IBUIHighlightedTitleColor" ref="585409677"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="395715551"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">search_btn@2x.png</string>
+							<string key="NSResourceName">gallary_search2@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -176,6 +145,7 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrame">{{79, 253}, {225, 69}}</string>
 						<reference key="NSSuperview" ref="718983806"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -203,7 +173,7 @@
 				</array>
 				<string key="NSFrameSize">{768, 1004}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="804305390"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -283,8 +253,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="235943177"/>
 							<reference ref="1042881146"/>
-							<reference ref="218914647"/>
-							<reference ref="930438433"/>
 							<reference ref="804305390"/>
 							<reference ref="785258650"/>
 						</array>
@@ -298,16 +266,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="1042881146"/>
-						<reference key="parent" ref="718983806"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="218914647"/>
-						<reference key="parent" ref="718983806"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">15</int>
-						<reference key="object" ref="930438433"/>
 						<reference key="parent" ref="718983806"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -327,8 +285,6 @@
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.CustomClassName">LocalizableLabel</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -342,89 +298,14 @@
 			<nil key="sourceID"/>
 			<int key="maxID">39</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">LocalizableLabel</string>
-					<string key="superclassName">UILabel</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/LocalizableLabel.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PPViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickBack:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickBack:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickBack:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PPViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">SearchPhotoController</string>
-					<string key="superclassName">PPViewController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickGallery:">id</string>
-						<string key="clickKeywordBtn:">id</string>
-						<string key="clickOptions:">id</string>
-						<string key="clickSearch:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickGallery:">
-							<string key="name">clickGallery:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickKeywordBtn:">
-							<string key="name">clickKeywordBtn:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickOptions:">
-							<string key="name">clickOptions:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickSearch:">
-							<string key="name">clickSearch:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">searchTextField</string>
-						<string key="NS.object.0">UITextField</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">searchTextField</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">searchTextField</string>
-							<string key="candidateClassName">UITextField</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/SearchPhotoController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="search_bar_bg@2x.png">{624, 103}</string>
-			<string key="search_btn@2x.png">{45, 43}</string>
-			<string key="search_input_bg@2x.png">{478, 66}</string>
-			<string key="search_setting_btn@2x.png">{71, 67}</string>
+			<string key="gallary_filter2@2x.png">{68, 69}</string>
+			<string key="gallary_search2@2x.png">{68, 69}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

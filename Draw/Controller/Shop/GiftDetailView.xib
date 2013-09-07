@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1536</int>
+		<int key="IBDocument.SystemTarget">1552</int>
 		<string key="IBDocument.SystemVersion">11E53</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1138.47</string>
 		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -72,6 +72,7 @@
 							<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMTgwMzkyMTU2OSAwLjAzNTI5NDExNzY1AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="707378526">
@@ -104,6 +105,7 @@
 							<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMTgwMzkyMTU2OSAwLjAzNTI5NDExNzY1AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
 						<int key="IBUITextAlignment">1</int>
@@ -129,6 +131,7 @@
 							<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMTgwMzkyMTU2OSAwLjAzNTI5NDExNzY1AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
 						<int key="IBUITextAlignment">1</int>
@@ -154,6 +157,7 @@
 							<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMTgwMzkyMTU2OSAwLjAzNTI5NDExNzY1AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
 						<int key="IBUITextAlignment">1</int>
@@ -179,6 +183,7 @@
 							<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMTgwMzkyMTU2OSAwLjAzNTI5NDExNzY1AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
 						<reference key="IBUIFontDescription" ref="707378526"/>
@@ -203,6 +208,7 @@
 							<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMTgwMzkyMTU2OSAwLjAzNTI5NDExNzY1AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
 						<reference key="IBUIFontDescription" ref="707378526"/>
@@ -227,6 +233,7 @@
 							<bytes key="NSRGB">MC4yOTQxMTc2NDcxIDAuMTgwMzkyMTU2OSAwLjAzNTI5NDExNzY1AA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
 						<reference key="IBUIFontDescription" ref="707378526"/>
@@ -250,6 +257,7 @@
 							<bytes key="NSRGB">MSAwLjQ3ODQzMTM3MjUgMAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 0}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">8</float>
 						<reference key="IBUIFontDescription" ref="707378526"/>
@@ -258,7 +266,7 @@
 					<object class="IBUIImageView" id="351933712">
 						<reference key="NSNextResponder" ref="913848293"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{76, 88}, {18, 18}}</string>
+						<string key="NSFrame">{{72.5, 84.5}, {25, 25}}</string>
 						<reference key="NSSuperview" ref="913848293"/>
 						<reference key="NSNextKeyView" ref="569754871"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -492,9 +500,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{64, 64}</string>
+			<string key="coin@2x.png">{50, 50}</string>
 			<string key="give_item_detail_bg@2x.png">{412, 222}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

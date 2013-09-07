@@ -143,6 +143,7 @@
 						<string key="NSFrame">{{320, 642}, {150, 60}}</string>
 						<reference key="NSSuperview" ref="547314671"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="IBUIContentStretch">{{1, 1}, {0.5, 0.5}}</string>
@@ -186,7 +187,6 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">draw_tool_button_selected_bg@2x.png</string>
 						</object>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="292536055">
 							<int key="type">2</int>
 							<double key="pointSize">23</double>
@@ -223,7 +223,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<reference key="IBUIFontDescription" ref="292536055"/>
 						<reference key="IBUIFont" ref="51555352"/>
 					</object>
@@ -246,7 +245,6 @@
 						<reference key="IBUINormalTitleColor" ref="326608156"/>
 						<reference key="IBUINormalTitleShadowColor" ref="449068434"/>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<reference key="IBUIFontDescription" ref="292536055"/>
 						<reference key="IBUIFont" ref="51555352"/>
 					</object>
@@ -269,7 +267,6 @@
 						<reference key="IBUINormalTitleColor" ref="643983767"/>
 						<reference key="IBUINormalTitleShadowColor" ref="629709078"/>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<reference key="IBUIFontDescription" ref="292536055"/>
 						<reference key="IBUIFont" ref="51555352"/>
 					</object>
@@ -299,7 +296,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<reference key="IBUIFontDescription" ref="292536055"/>
 						<reference key="IBUIFont" ref="51555352"/>
 					</object>
@@ -329,7 +325,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<reference key="IBUIFontDescription" ref="292536055"/>
 						<reference key="IBUIFont" ref="51555352"/>
 					</object>
@@ -352,7 +347,6 @@
 						<reference key="IBUINormalTitleColor" ref="41381302"/>
 						<reference key="IBUINormalTitleShadowColor" ref="653161024"/>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<reference key="IBUIFontDescription" ref="292536055"/>
 						<reference key="IBUIFont" ref="51555352"/>
 					</object>
@@ -382,7 +376,6 @@
 							<reference key="NSCustomColorSpace" ref="705110756"/>
 						</object>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
 						<reference key="IBUIFontDescription" ref="292536055"/>
 						<reference key="IBUIFont" ref="51555352"/>
 					</object>
@@ -405,16 +398,8 @@
 						<reference key="IBUINormalTitleColor" ref="687430238"/>
 						<reference key="IBUINormalTitleShadowColor" ref="949648265"/>
 						<reference key="IBUISelectedBackgroundImage" ref="980650507"/>
-						<reference key="IBUINormalBackgroundImage" ref="1071595119"/>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="370971471">
-							<int key="type">2</int>
-							<double key="pointSize">25</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="166263964">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">25</double>
-							<int key="NSfFlags">16</int>
-						</object>
+						<reference key="IBUIFontDescription" ref="292536055"/>
+						<reference key="IBUIFont" ref="51555352"/>
 					</object>
 					<object class="IBUILabel" id="687087080">
 						<reference key="NSNextResponder" ref="547314671"/>
@@ -502,8 +487,15 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="370971471"/>
-						<reference key="IBUIFont" ref="166263964"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="370971471">
+							<int key="type">2</int>
+							<double key="pointSize">25</double>
+						</object>
+						<object class="NSFont" key="IBUIFont" id="443342968">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">25</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="1006997140">
@@ -527,7 +519,7 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<reference key="IBUIFontDescription" ref="370971471"/>
-						<reference key="IBUIFont" ref="166263964"/>
+						<reference key="IBUIFont" ref="443342968"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="258316411">
@@ -551,7 +543,7 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<reference key="IBUIFontDescription" ref="370971471"/>
-						<reference key="IBUIFont" ref="166263964"/>
+						<reference key="IBUIFont" ref="443342968"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUIView" id="934126428">

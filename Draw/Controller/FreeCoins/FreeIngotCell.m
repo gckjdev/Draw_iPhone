@@ -39,7 +39,16 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
 
 + (id)createCell:(id)delegate
 {
-    return [self createView];
+    FreeIngotCell *cell = [self createView];
+    UIView *bgView = [[[UIView alloc] initWithFrame:cell.contentView.bounds] autorelease];
+    [bgView updateHeight:CGRectGetHeight(bgView.bounds)*0.8];
+    [bgView updateWidth:CGRectGetWidth(bgView.bounds) * 0.9];
+    [bgView setBackgroundColor:COLOR_GRAY_BG];
+    bgView.center = cell.contentView.center;
+    SET_VIEW_ROUND_CORNER(bgView);
+    [cell.contentView insertSubview:bgView atIndex:0];
+    
+    return cell;
 }
 
 - (void)setAppImageWithURLStr:(NSString*)urlStr

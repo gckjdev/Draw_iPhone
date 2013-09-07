@@ -62,7 +62,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{0, 3}, {18, 18}}</string>
 										<reference key="NSSuperview" ref="96598442"/>
-										<reference key="NSNextKeyView" ref="413126314"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -118,24 +118,10 @@
 										<reference key="IBUIFontDescription" ref="866804658"/>
 										<reference key="IBUIFont" ref="616495081"/>
 									</object>
-									<object class="IBUIImageView" id="413126314">
-										<reference key="NSNextResponder" ref="96598442"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{21, 3}, {52, 18}}</string>
-										<reference key="NSSuperview" ref="96598442"/>
-										<reference key="NSNextKeyView" ref="414031541"/>
-										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<object class="NSCustomResource" key="IBUIImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">item_count_bg@2x.png</string>
-										</object>
-									</object>
 									<object class="IBUIButton" id="414031541">
 										<reference key="NSNextResponder" ref="96598442"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{25, 3}, {42, 18}}</string>
+										<string key="NSFrame">{{20, 3}, {52, 18}}</string>
 										<reference key="NSSuperview" ref="96598442"/>
 										<reference key="NSNextKeyView" ref="838112720"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -172,7 +158,7 @@
 									<object class="IBUIImageView" id="152970724">
 										<reference key="NSNextResponder" ref="1060446443"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrame">{{0, 1}, {22, 22}}</string>
+										<string key="NSFrame">{{-1.5, -0.5}, {25, 25}}</string>
 										<reference key="NSSuperview" ref="1060446443"/>
 										<reference key="NSNextKeyView" ref="976070627"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -365,7 +351,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="414031541"/>
 							<reference ref="838112720"/>
-							<reference ref="413126314"/>
 							<reference ref="788683712"/>
 						</array>
 						<reference key="parent" ref="720320977"/>
@@ -378,11 +363,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
 						<reference key="object" ref="838112720"/>
-						<reference key="parent" ref="96598442"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="413126314"/>
 						<reference key="parent" ref="96598442"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -432,7 +412,6 @@
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="12.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
-				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -455,9 +434,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{64, 64}</string>
+			<string key="coin@2x.png">{50, 50}</string>
 			<string key="item_add@2x.png">{36, 36}</string>
-			<string key="item_count_bg@2x.png">{104, 37}</string>
 			<string key="item_delete@2x.png">{36, 36}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
