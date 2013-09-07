@@ -19,7 +19,6 @@
 #import "ShowFeedSceneProtocol.h"
 #import "MWPhotoBrowser.h"
 #import "DetailFooterView.h"
-#import "PPPopTableView.h"
 
 @class Feed;
 @class DrawFeed;
