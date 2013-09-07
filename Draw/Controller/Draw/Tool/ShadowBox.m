@@ -115,6 +115,7 @@
         SET_BUTTON_ROUND_STYLE_YELLOW(btn);
         btn.layer.cornerRadius = btn.layer.cornerRadius/2;
     }];
+    [self.customButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
     SET_BUTTON_ROUND_STYLE_YELLOW(self.applyButton);
     SET_BUTTON_ROUND_STYLE_YELLOW(self.cancelButton);
 }

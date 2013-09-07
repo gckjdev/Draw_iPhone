@@ -18,6 +18,7 @@
 #import "ConfigManager.h"
 #import "CommonDialog.h"
 #import "BBSPostDetailController.h"
+#import "CommonTitleView.h"
 //#import "UIViewController+UIViewController_StoreProductViewController.h"
 
 //#define SECTION_COUNT 2
@@ -43,7 +44,6 @@ enum {
 {
     [_friendAppArray release];
     [_wallArray release];
-    [_titleLabel release];
     [_toBBSHolderView release];
     [super dealloc];
 }
@@ -66,11 +66,18 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.titleLabel.text = [GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ? NSLS(@"kFreeIngots") : NSLS(@"kFreeCoins");
     self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
     self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
     
     self.toBBSHolderView.hidden = ![GameApp hasBBS];
+
+    
+    CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
+    NSString * title = [GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ? NSLS(@"kFreeIngots") : NSLS(@"kFreeCoins");
+    
+    [titleView setTitle:title];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -178,7 +185,6 @@ enum {
 }
 
 - (void)viewDidUnload {
-    [self setTitleLabel:nil];
     [self setToBBSHolderView:nil];
     [super viewDidUnload];
 }
