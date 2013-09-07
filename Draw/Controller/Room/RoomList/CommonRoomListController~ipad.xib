@@ -44,7 +44,7 @@
 						<reference key="NSSuperview" ref="459047160"/>
 						<reference key="NSNextKeyView" ref="472772489"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="61410843">
+						<object class="NSColor" key="IBUIBackgroundColor" id="479284663">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -134,7 +134,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45NDkwMTk2MDc4IDAuOTQ5MDE5NjA3OCAwLjkxMzcyNTQ5MDIAA</bytes>
 						</object>
-						<reference key="IBUISelectedTitleShadowColor" ref="61410843"/>
+						<reference key="IBUISelectedTitleShadowColor" ref="479284663"/>
 						<reference key="IBUINormalTitleShadowColor" ref="562421821"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="858167229">
 							<int key="type">2</int>
@@ -158,7 +158,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIHighlightedTitleColor" ref="562421821"/>
-						<reference key="IBUINormalTitleColor" ref="61410843"/>
+						<reference key="IBUINormalTitleColor" ref="479284663"/>
 						<reference key="IBUINormalTitleShadowColor" ref="562421821"/>
 						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="385456323">
 							<string key="NSClassName">NSImage</string>
@@ -183,7 +183,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC45NDkwMTk2MDc4IDAuOTQ5MDE5NjA3OCAwLjkxMzcyNTQ5MDIAA</bytes>
 						</object>
-						<reference key="IBUINormalTitleColor" ref="61410843"/>
+						<reference key="IBUINormalTitleColor" ref="479284663"/>
 						<reference key="IBUINormalTitleShadowColor" ref="562421821"/>
 						<reference key="IBUISelectedBackgroundImage" ref="385456323"/>
 						<reference key="IBUIFontDescription" ref="858167229"/>
