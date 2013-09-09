@@ -392,8 +392,15 @@
 						<reference key="IBUINormalTitleColor" ref="687430238"/>
 						<reference key="IBUINormalTitleShadowColor" ref="949648265"/>
 						<reference key="IBUISelectedBackgroundImage" ref="528670184"/>
-						<reference key="IBUIFontDescription" ref="713904396"/>
-						<reference key="IBUIFont" ref="92934119"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">2</int>
+							<double key="pointSize">10</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">10</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 					<object class="IBUILabel" id="687087080">
 						<reference key="NSNextResponder" ref="547314671"/>

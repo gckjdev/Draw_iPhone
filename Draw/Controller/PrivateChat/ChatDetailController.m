@@ -78,7 +78,8 @@
 @synthesize delegate = _delegate;
 
 - (void)reloadTableView
-{    
+{
+    PPDebug(@"realod chat detail message table view");
     self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
     [[self dataTableView] reloadData];
 }
@@ -269,6 +270,8 @@
 
 - (void)viewDidLoad
 {
+    self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
+    
     [self setSupportRefreshHeader:YES];
     [super viewDidLoad];
 
@@ -323,12 +326,13 @@
           insertMiddle:(BOOL)insertMiddle
             resultCode:(int)resultCode
 {
-    self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
-    list = self.messageList;
     
     [self hideActivity];
     [self dataSourceDidFinishLoadingNewData];
     if (resultCode == 0) {
+        self.messageList = [[PPMessageManager defaultManager] getMessageList:self.fid];
+        list = self.messageList;
+
         if (!forward && [list count] < [self loadMoreDataCount]) {
             [self.refreshHeaderView setHidden:YES];
             self.dataTableView.tableHeaderView.hidden = YES;

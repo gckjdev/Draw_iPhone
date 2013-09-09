@@ -355,6 +355,10 @@
     
     [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
+    if (ISIPHONE5) {
+        [holder updateHeight:CGRectGetHeight(holder.frame) + 108];
+        [holder updateContentScale];
+    }    
     [self.view insertSubview:holder atIndex:0];
     
 }
