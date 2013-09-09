@@ -15,7 +15,7 @@ typedef enum{
     ContestPrizeSecond,
     ContestPrizeThird,
     ContestPrizeCustomRank,
-    ContestPrizeSpecial,    
+    ContestPrizeSpecial = INT_MAX,
 }ContestPrize;
 
 @interface ContestPrizeCell : PPTableViewCell<AvatarViewDelegate>

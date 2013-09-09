@@ -207,6 +207,7 @@ typedef enum{
 
 - (ContestPrize)prizeFromAward:(PBUserAward *)award
 {
+    PPDebug(@"prize From Award: key = %d, value = %@", award.awardType.key, award.awardType.value);
     if (award.awardType.key == 1) {
         return award.rank;
     }else {

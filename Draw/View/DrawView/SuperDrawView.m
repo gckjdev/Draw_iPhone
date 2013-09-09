@@ -83,8 +83,8 @@
 #pragma mark public method
 
 - (void)setScale:(CGFloat)scale
-{    
-    [[NSNotificationCenter defaultCenter] postNotificationName:DRAW_VIEW_UPDATED_SCACLE object:@(scale)];
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:DRAW_INFO_NEED_UPDATE object:nil];
     
     _scale = scale;
     CGAffineTransform transform = self.transform; //CGAffineTransformScale(self.transform, scale, scale);

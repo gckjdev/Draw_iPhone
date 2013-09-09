@@ -78,6 +78,7 @@
 
 - (void)showTips:(NSString *)tips
 {
+    [[self noContestTipLabel] setTextColor:COLOR_BROWN];
     [[self noContestTipLabel] setHidden:NO];
     [[self noContestTipLabel] setText:tips];
 }
