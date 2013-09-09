@@ -69,8 +69,9 @@
             
             DrawColor *color = [self colorAtPoint:point inContext:_tempBitmapContext];
             _strawView = [StrawView strawViewWithColor:color.color];
-            [self.drawView addSubview:_strawView];
-            _strawView.center = point;
+            [[self.drawView theTopView] addSubview:_strawView];
+            
+            _strawView.center = [[self.drawView theTopView] convertPoint:point fromView:self.drawView];
         }
             break;
         case TouchStateMove:
@@ -78,11 +79,14 @@
         default:
         {
             if (handleFailed) {
+                [self reset];                
                 return;
             }
             DrawColor *color = [self colorAtPoint:point inContext:_tempBitmapContext];
             [_strawView setColor:color.color];
-            _strawView.center = point;
+//            _strawView.center = point;
+            _strawView.center = [[self.drawView theTopView] convertPoint:point fromView:self.drawView];
+            
             break;
         }
     }
