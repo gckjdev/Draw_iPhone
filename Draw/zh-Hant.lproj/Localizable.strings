@@ -1955,6 +1955,8 @@
 "kBGLayer" = "描邊層";
 "kMainLayer" = "上色層";
 "kNumLayerName" = "圖層 %d";
+"kLayerExplain" = "圖層簡單用法";
+"kLayerExplainContent" = "\n1. 描邊層：用於打草稿的描邊，上色完畢可擦除；也可作為繪畫背景。\n\n2. 上色層：不解釋。\n\n\n以上為簡單用法，復雜用法請自行摸索。\n";
 
 "kNewLayerName" = "圖層";
 "kEditLayerName" = "修改圖層名字";

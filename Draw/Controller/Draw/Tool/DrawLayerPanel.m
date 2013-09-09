@@ -279,7 +279,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 }
 
 - (IBAction)clickHelp:(id)sender {
-
+    [[CommonDialog createDialogWithTitle:NSLS(@"kLayerExplain") message:NSLS(@"kLayerExplainContent") style:CommonDialogStyleCross] showInView:[self theTopView]];
 }
 
 

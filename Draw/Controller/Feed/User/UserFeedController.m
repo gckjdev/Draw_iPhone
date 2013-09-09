@@ -258,11 +258,11 @@ typedef enum{
             return count;
         case UserTypeOpus:
         case UserTypeFavorite:
-//            if (count %3 == 0) {
+            if (count %3 == 0) {
                 return count/3;
-//            }else{
-//                return count/3 + 1;
-//            }
+            }else{
+                return count/3 + 1;
+            }
         default:
             return 0;
     }
