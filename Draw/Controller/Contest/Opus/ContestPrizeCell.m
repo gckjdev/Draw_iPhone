@@ -77,22 +77,38 @@
 #define TOP_PRIZE_SIZE CGSizeMake(VALUE(42), VALUE(56))
 #define SPECIAL_PRIZE_SIZE CGSizeMake(VALUE(114), VALUE(47))
 
+#define SPECIAL_PRIZE_TITLE_FRAME (ISIPAD ? CGRectMake(61, 9, 188, 60): CGRectMake(43, 10, 91, 29))
+
+#define CUSTOM_PRIZE_TITLE_FRAME (ISIPAD ? CGRectMake(27, 16, 60, 60) : CGRectMake(15, 14, 30, 30))
+
+#define CUSTOM_PRIZE_FONT_SIZE VALUE(19)
+#define SPECIAL_PRIZE_FONT_SIZE VALUE(14)
+
+
 - (void)updatePrizeImageWithPrize:(ContestPrize)prize
                             title:(NSString *)title
 {
+    [self.prizeLabel setHidden:NO];
+    [self.prizeIcon updateWidth:TOP_PRIZE_SIZE.width];
+    [self.prizeIcon updateHeight:TOP_PRIZE_SIZE.height];
+    [self.prizeIcon setImage:[self imageForPrize:prize]];
+    
+    PPDebug(@"<updatePrizeImageWithPrize> prize = %d, title = %@", prize, title);
+    
     if (prize == ContestPrizeSpecial) {
         [self.prizeIcon updateWidth:SPECIAL_PRIZE_SIZE.width];
         [self.prizeIcon updateHeight:SPECIAL_PRIZE_SIZE.height];
-        [self.prizeLabel setHidden:NO];
-        [self.prizeLabel setText:title];
-    }else if(prize >= ContestPrizeCustomRank){
-        [self.prizeIcon setImage:[self imageForPrize:ContestPrizeCustomRank]];
-
-#warning TODO set title with prize
         
+        [self.prizeLabel setText:title];
+        [self.prizeLabel setFrame:SPECIAL_PRIZE_TITLE_FRAME];
+        [self.prizeLabel setFont:[UIFont boldSystemFontOfSize:SPECIAL_PRIZE_FONT_SIZE]];
+    }else if(prize >= ContestPrizeCustomRank){
+        PPDebug(@"Custom prize = %d", prize);
+        [self.prizeIcon setImage:[self imageForPrize:ContestPrizeCustomRank]];
+        [self.prizeLabel setFrame:CUSTOM_PRIZE_TITLE_FRAME];
+        [self.prizeLabel setText:[@(prize) stringValue]];
+        [self.prizeLabel setFont:[UIFont boldSystemFontOfSize:CUSTOM_PRIZE_FONT_SIZE]];
     }else{
-        [self.prizeIcon updateWidth:TOP_PRIZE_SIZE.width];
-        [self.prizeIcon updateHeight:TOP_PRIZE_SIZE.height];
         [self.prizeLabel setHidden:YES];
     }
 
@@ -136,6 +152,7 @@
            title:(NSString *)title
             opus:(ContestFeed *)opus
 {
+    PPDebug(@"setPrize, opus = %@", opus.feedId);
     [self updatePrizeImageWithPrize:prize title:title];
     [self updateUserInfo:opus];
     [self updateOpus:opus];

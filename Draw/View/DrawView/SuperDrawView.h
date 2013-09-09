@@ -23,7 +23,7 @@
 
 #import "DrawLayerManager.h"
 
-#define DRAW_VIEW_UPDATED_SCACLE @"DRAW_VIEW_UPDATED_SCACLE"
+#define DRAW_INFO_NEED_UPDATE @"DRAW_INFO_NEED_UPDATE"
 
 @interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate, DrawProcessProtocol>
 {
