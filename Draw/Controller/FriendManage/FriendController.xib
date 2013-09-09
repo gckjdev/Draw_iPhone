@@ -50,7 +50,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">Followers(234)</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="75250085">
 							<int key="NSColorSpace">3</int>
@@ -84,7 +83,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">粉丝</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
 						<reference key="IBUISelectedTitleColor" ref="75250085"/>
@@ -112,7 +110,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUITitleShadowOffset">{0, 1}</string>
 						<string key="IBUINormalTitle">黑名单</string>
 						<reference key="IBUIHighlightedTitleColor" ref="75250085"/>
 						<reference key="IBUISelectedTitleColor" ref="75250085"/>
@@ -205,10 +202,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMjU0OTAxOTYxIDAuMjAzOTIxNTY4NiAwLjA3ODQzMTM3MjU1AA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="857487715">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="870777980"/>
 						<reference key="IBUIFontDescription" ref="303299717"/>
 						<reference key="IBUIFont" ref="884450456"/>
 					</object>
@@ -227,7 +221,7 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMjU0OTAxOTYxIDAuMjAzOTIxNTY4NiAwLjA3ODQzMTM3MjU1AA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="857487715"/>
+						<reference key="IBUINormalTitleShadowColor" ref="870777980"/>
 						<reference key="IBUIFontDescription" ref="303299717"/>
 						<reference key="IBUIFont" ref="884450456"/>
 					</object>

@@ -312,13 +312,9 @@
     SET_MESSAGE_LABEL_STYLE(view.messageLabel);
     
     SET_INPUT_VIEW_STYLE(view.inputTextField);
-    
     SET_INPUT_VIEW_STYLE(view.inputTextView);
     
     [view.oKButton setTitle:NSLS(@"kOK") forState:UIControlStateNormal];
-    SET_BUTTON_ROUND_STYLE_YELLOW(view.oKButton);
-    
-    
     [view.cancelButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     
     SET_BUTTON_ROUND_STYLE_YELLOW(view.cancelButton);

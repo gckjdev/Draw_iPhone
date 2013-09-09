@@ -159,7 +159,7 @@
 					<object class="IBUIImageView" id="136595294">
 						<reference key="NSNextResponder" ref="277753504"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{21, 48}, {16, 16}}</string>
+						<string key="NSFrame">{{17, 44}, {24, 24}}</string>
 						<reference key="NSSuperview" ref="277753504"/>
 						<reference key="NSNextKeyView" ref="881695278"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -174,7 +174,7 @@
 					<object class="IBUIImageView" id="739756735">
 						<reference key="NSNextResponder" ref="277753504"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{104, 48}, {16, 16}}</string>
+						<string key="NSFrame">{{100, 44}, {24, 24}}</string>
 						<reference key="NSSuperview" ref="277753504"/>
 						<reference key="NSNextKeyView" ref="917114147"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -186,7 +186,7 @@
 					<object class="IBUIImageView" id="557133511">
 						<reference key="NSNextResponder" ref="277753504"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{189, 48}, {16, 16}}</string>
+						<string key="NSFrame">{{185, 44}, {24, 24}}</string>
 						<reference key="NSSuperview" ref="277753504"/>
 						<reference key="NSNextKeyView" ref="845868737"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -539,7 +539,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="coin@2x.png">{64, 64}</string>
+			<string key="coin@2x.png">{50, 50}</string>
 			<string key="plus_image@2x.png">{85, 85}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

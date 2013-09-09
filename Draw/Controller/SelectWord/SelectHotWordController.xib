@@ -218,7 +218,6 @@
 								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{5, 31.25}, {260, 80}}</string>
 								<reference key="NSSuperview" ref="770831278"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="85341969"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
