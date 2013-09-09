@@ -1384,7 +1384,8 @@ static UIImage* _whitePaperImage;
 {
     button.titleLabel.font = font;
     
-    [button setShadowOffset:CGSizeZero blur:0 shadowColor:[UIColor clearColor]];
+    button.titleLabel.shadowOffset = CGSizeZero;
+    button.titleLabel.shadowColor = [UIColor clearColor];
     
     [button setTitleColor:normalTitleColor
                  forState:UIControlStateNormal];

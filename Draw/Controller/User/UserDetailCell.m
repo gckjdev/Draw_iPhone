@@ -82,6 +82,8 @@
     }
     
     self.signLabel.text = text;
+//    self.signLabel.shadowColor = [UIColor blackColor];
+//    self.signLabel.shadowOffset = CGSizeMake(1, 1);
     
 //    [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
     
