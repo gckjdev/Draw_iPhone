@@ -116,14 +116,10 @@
 
 - (void)initWordInputView
 {
-//    self.wordInputView.answer = self.feed.wordText;
-    self.wordInputView.delegate = self;
-    self.wordInputView.answerColor = [UIColor whiteColor];
-    
+    self.wordInputView.delegate = self;    
     
     NSString *candidates = @"                  "; //18 space.
     [self.wordInputView setCandidates:candidates column:9];
-    [self.wordInputView setCandidateColor:[UIColor whiteColor]];
     [self.wordInputView setDisable:YES];
 }
 
@@ -187,7 +183,6 @@
             candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:wordText count:18];
         }
         [self.wordInputView setCandidates:candidates column:9];
-        [self.wordInputView setCandidateColor:[UIColor whiteColor]];
         self.wordInputView.delegate = self;
         //Add animations?
     }else{

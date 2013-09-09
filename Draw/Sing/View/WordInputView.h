@@ -33,14 +33,10 @@ typedef enum _WordInputViewAlignment{
 // required
 @property (copy, nonatomic) NSString *answer;
 @property (assign, nonatomic) id<WordInputViewDelegate> delegate;
-
 // optional
 @property (assign, nonatomic) WordInputViewAlignment alignment;
 
-@property (retain, nonatomic) UIColor *candidateColor;
-@property (retain, nonatomic) UIColor *answerColor;
 @property (assign, nonatomic, getter = isDisable) BOOL disable;
-
 
 - (NSArray *)guessedWords;
 

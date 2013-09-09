@@ -665,7 +665,10 @@ typedef enum{
     [self loadDrawDataWithHanlder:^{
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
+            cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
         }
+        
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
         
         ReplayObject *obj = [ReplayObject obj];
         obj.actionList = cp.feed.drawData.drawActionList;
@@ -675,7 +678,8 @@ typedef enum{
     
         DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
         [player showInController:cp];
-
+        
+        [pool drain];
     }];
     
 }
@@ -984,6 +988,7 @@ typedef enum{
         [sheet setActionBlock:NULL];
     }];
     [sheet showInView:self.view];
+    [sheet release];
 
 }
 
