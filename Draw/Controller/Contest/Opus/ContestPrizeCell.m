@@ -67,6 +67,8 @@
                            KEY(ContestPrizeSecond): @"contest_prize_2@2x.png",
                            KEY(ContestPrizeThird): @"contest_prize_3@2x.png",
                            KEY(ContestPrizeSpecial): @"contest_prize_special@2x.png",
+                           KEY(ContestPrizeCustomRank):
+                               @"contest_prize_custom@2x.png",
                            };
     NSString *name = [dict objectForKey:KEY(prize)];
     return name ? [UIImage imageNamed:name] : nil;
@@ -83,13 +85,17 @@
         [self.prizeIcon updateHeight:SPECIAL_PRIZE_SIZE.height];
         [self.prizeLabel setHidden:NO];
         [self.prizeLabel setText:title];
+    }else if(prize >= ContestPrizeCustomRank){
+        [self.prizeIcon setImage:[self imageForPrize:ContestPrizeCustomRank]];
+
+#warning TODO set title with prize
+        
     }else{
         [self.prizeIcon updateWidth:TOP_PRIZE_SIZE.width];
         [self.prizeIcon updateHeight:TOP_PRIZE_SIZE.height];
         [self.prizeLabel setHidden:YES];
     }
-    [self.prizeIcon setImage:[self imageForPrize:prize]];
-    
+
 }
 
 - (void)updateUserInfo:(ContestFeed *)opus

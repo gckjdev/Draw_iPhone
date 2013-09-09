@@ -14,7 +14,8 @@ typedef enum{
     ContestPrizeFirst = 1,
     ContestPrizeSecond,
     ContestPrizeThird,
-    ContestPrizeSpecial,
+    ContestPrizeCustomRank,
+    ContestPrizeSpecial,    
 }ContestPrize;
 
 @interface ContestPrizeCell : PPTableViewCell<AvatarViewDelegate>
