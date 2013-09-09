@@ -163,14 +163,20 @@
          ; i ++) {
         UIButton* keywordBtn = [[[UIButton alloc] initWithFrame:CGRectMake(ORG_POINT.x+(i%3)*(KEYWORD_BTN_SIZE.width+SEP_X), ORG_POINT.y+(i/3)*(KEYWORD_BTN_SIZE.height+SEP_Y), KEYWORD_BTN_SIZE.width, KEYWORD_BTN_SIZE.height)] autorelease];
         
-        [keywordBtn setBackgroundImage:[UIImage imageNamed:@"keyword_btn.png"] forState:UIControlStateNormal];
-        [keywordBtn setTitleColor:OPAQUE_COLOR(129, 85, 37) forState:UIControlStateNormal];
+//        [keywordBtn setBackgroundImage:[UIImage imageNamed:@"keyword_btn.png"] forState:UIControlStateNormal];
+//        [keywordBtn setTitleColor:OPAQUE_COLOR(129, 85, 37) forState:UIControlStateNormal];
+        [keywordBtn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+
         [keywordBtn.titleLabel setFont:[UIFont systemFontOfSize:(ISIPAD?28:14)]];
         [keywordBtn addTarget:self action:@selector(clickKeywordBtn:) forControlEvents:UIControlEventTouchUpInside];
         [keywordBtn setTag:(PRE_TEXT_BTN_OFFSET+i)];
+//        [keywordBtn setBackgroundImage:IMAGE_FROM_COLOR(COLOR_GRAY_TEXT) forState:UIControlStateNormal];
+        [keywordBtn setBackgroundImage:IMAGE_FROM_COLOR(COLOR_ORANGE) forState:UIControlStateNormal];
+        
+        SET_VIEW_ROUND_CORNER(keywordBtn);
+        
         [self.view addSubview:keywordBtn];
         
-//        UIButton* btn = (UIButton*)[self.view viewWithTag:(PRE_TEXT_BTN_OFFSET+i)];
         if (i < array.count) {
             NSString* title = [array objectAtIndex:i];
             [keywordBtn setTitle:title forState:UIControlStateNormal];
@@ -225,7 +231,7 @@
     
     CommonSearchImageFilterView* view = [CommonSearchImageFilterView createViewWithFilter:self.options];
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:nil customView:view style:CommonDialogStyleDoubleButton];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kFilter") customView:view style:CommonDialogStyleDoubleButton];
     
     [dialog showInView:self.view];
     

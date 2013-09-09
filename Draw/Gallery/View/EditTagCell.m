@@ -23,6 +23,8 @@ AUTO_CREATE_VIEW_BY_XIB(EditTagCell)
     return self;
 }
 
+#define BTN_TAG 20130608
+
 + (float)getCellHeight
 {
     return ISIPAD?190:98;
@@ -35,7 +37,19 @@ AUTO_CREATE_VIEW_BY_XIB(EditTagCell)
 
 + (EditTagCell*)createCell:(id)delegate
 {
-    return (EditTagCell*)[EditTagCell createView];
+    EditTagCell *cell = [EditTagCell createView];
+    
+    for (int i = BTN_TAG; i < (BTN_TAG+6); i++) {
+        UIButton *btn = (UIButton *)[cell viewWithTag:i];
+        SET_VIEW_ROUND_CORNER(btn);
+        [btn setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateNormal];
+        [btn setBackgroundImage:IMAGE_FROM_COLOR(COLOR_ORANGE) forState:UIControlStateSelected];
+        
+        [btn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+        [btn setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
+
+    }
+    return cell;
 }
 
 /*
