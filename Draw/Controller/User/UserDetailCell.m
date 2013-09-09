@@ -211,12 +211,17 @@
     self.specialTitleLabel.textColor = COLOR_BROWN;
     
     
-    [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+//    [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+//    [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.exploreBbsPostBtn);
+
+//    [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+//    [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.superBlackBtn);
+
+//    [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+//    [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.blackListBtn);
 }
 
 
