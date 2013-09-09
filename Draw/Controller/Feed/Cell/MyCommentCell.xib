@@ -182,15 +182,8 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">reply_bg@2x.png</string>
 								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
-									<double key="pointSize">11</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">11</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="389460976"/>
+								<reference key="IBUIFont" ref="995283015"/>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 115}</string>
