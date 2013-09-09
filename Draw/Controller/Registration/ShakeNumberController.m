@@ -192,7 +192,7 @@
 {
     
 //    [self showActivityWithText:NSLS(@"kLoading")];
-    [[UserNumberService defaultService] getOneNumber:^(int resultCode, NSString *number) {
+    [[UserNumberService defaultService] shakeOneNumber:^(int resultCode, NSString *number) {
 
 //        [self hideActivity];
         

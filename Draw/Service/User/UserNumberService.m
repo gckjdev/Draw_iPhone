@@ -56,11 +56,14 @@ static UserNumberService* _defaultUserService;
     });
 }
 
-- (void)getOneNumber:(UserNumberServiceResultBlock)block
+#define GET_NUMBER_TYPE_NORMAL      1
+#define GET_NUMBER_TYPE_SHAKE       2
+
+- (void)getOneNumber:(int)type block:(UserNumberServiceResultBlock)block
 {
     if ([[UserManager defaultManager] hasXiaojiNumber]){
         PPDebug(@"<getOneNumber> user already has xiaoji number, skip");
-        EXECUTE_BLOCK(block, 0, nil);        
+        EXECUTE_BLOCK(block, 0, nil);
         return;
     }
     
@@ -70,8 +73,8 @@ static UserNumberService* _defaultUserService;
                                 PARA_SET_USER_NUMBER : @(0) };
         
         GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
-                                                                             parameters:para
-                                                                          isReturnArray:NO];
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];
@@ -79,6 +82,38 @@ static UserNumberService* _defaultUserService;
         });
         
     });
+}
+
+- (void)shakeOneNumber:(UserNumberServiceResultBlock)block
+{
+    [self getOneNumber:GET_NUMBER_TYPE_SHAKE block:block];
+}
+
+- (void)getOneNumber:(UserNumberServiceResultBlock)block
+{
+    [self getOneNumber:GET_NUMBER_TYPE_NORMAL block:block];
+    
+//    if ([[UserManager defaultManager] hasXiaojiNumber]){
+//        PPDebug(@"<getOneNumber> user already has xiaoji number, skip");
+//        EXECUTE_BLOCK(block, 0, nil);        
+//        return;
+//    }
+//    
+//    dispatch_async(workingQueue, ^{
+//        
+//        NSDictionary* para = @{ PARA_REMOVE_OLD_NUMBER : @(1),
+//                                PARA_SET_USER_NUMBER : @(0) };
+//        
+//        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
+//                                                                             parameters:para
+//                                                                          isReturnArray:NO];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];
+//            EXECUTE_BLOCK(block, output.resultCode, number);
+//        });
+//        
+//    });
 }
 
 - (void)takeUserNumber:(NSString*)number block:(UserNumberServiceResultBlock)block
