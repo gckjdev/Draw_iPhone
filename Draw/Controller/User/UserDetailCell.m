@@ -252,7 +252,7 @@
     CGSize size = [text sizeWithFont:label.font];
     if (size.width < label.frame.size.width) {
         CGPoint orgPoint = CGPointMake(label.frame.origin.x - view.frame.size.width/2 , label.center.y);
-        orgPoint.x += (label.frame.size.width - size.width)/2;
+        orgPoint.x += (label.frame.size.width - size.width)/2 - (ISIPAD ? 4 : 2);
         [view setCenter:orgPoint];
     } else {
         [view setCenter:CGPointMake(label.frame.origin.x-view.frame.size.width/2, view.center.y)];
