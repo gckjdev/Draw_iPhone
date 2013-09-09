@@ -15,16 +15,17 @@
 #define BUTTON_WIDTH_GAP (ISIPAD ? 12 : 4)
 #define BUTTON_HEIGHT_GAP (ISIPAD ? 8 : 4)
 
-#define DEFAULT_COLOR [UIColor blackColor]
+#define DEFAULT_COLOR [UIColor whiteColor]
 
 #define FONT [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)]
 
 #define BUTTON_TAG_OFFSET 1000
 
 #define BOMB_CHAR ' '
-#define BOMB_CHAR_STRING [NSString stringWithCharacters:BOMB_CHAR length:1]
 
 #define MAX_CANDIDATE_COUNT 50
+
+#define TRANSFORM_SCALE CGAffineTransformMakeScale(1.2, 1.2)
 
 
 @interface WordInputView(){
@@ -50,12 +51,14 @@
 @property (copy, nonatomic) NSString *wrongSound;
 @property (copy, nonatomic) NSString *correctSound;
 
+@property (retain, nonatomic) UIColor *candidateColor;
+@property (retain, nonatomic) UIColor *answerColor;
+
 @end
 
 @implementation WordInputView
 
 - (void)dealloc{
-    
     [_answer release];
     [_sepertorImageView release];
     [_candidates release];
@@ -271,13 +274,18 @@
         [button setTitle:ch forState:UIControlStateNormal];
         button.titleLabel.font = FONT;
         [button setTitleColor:_candidateColor forState:UIControlStateNormal];
+        
         if ([ch characterAtIndex:0] == BOMB_CHAR) {
             button.enabled = NO;
         }
         button.tag = BUTTON_TAG_OFFSET + index;
-        [button addTarget:self action:@selector(clickCandidateButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(candidateButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(candidateButtonTouchDown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(candidateButtonTouchUpOutSide:) forControlEvents:UIControlEventTouchUpOutside];
+
         [button setBackgroundImage:_candidateImage forState:UIControlStateNormal];
-        [_candidateView addSubview:button];
+        
+        [self performSelector:@selector(addCandidateButton:) withObject:button afterDelay:(index * 0.1)];
     }
     
     width = width * _column  + BUTTON_WIDTH_GAP * (_column - 1);
@@ -290,7 +298,26 @@
     [self setBottomAlignment];
 }
 
-- (void)clickCandidateButton:(UIButton *)button{
+- (void)addCandidateButton:(UIButton *)button{
+
+    [_candidateView addSubview:button];
+    
+    float duration = 0.25;
+    button.transform = CGAffineTransformIdentity;
+    [UIView animateWithDuration:duration animations:^{
+        button.transform = TRANSFORM_SCALE;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:duration animations:^{
+            button.transform = CGAffineTransformIdentity;
+        }];
+    }];
+}
+
+- (void)candidateButtonTouchUpInside:(UIButton *)button{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        button.transform = CGAffineTransformIdentity;
+    }];
     
     NSString *ch = [[[button titleForState:UIControlStateNormal] copy] autorelease];
     PPDebug(@"click candidate character: %@", ch);
@@ -335,24 +362,48 @@
     }];    
 }
 
+- (void)candidateButtonTouchUpOutSide:(UIButton *)button{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        button.transform = CGAffineTransformIdentity;
+    }];
+}
+
+- (void)candidateButtonTouchDown:(UIButton *)button{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        button.transform = TRANSFORM_SCALE;
+    }];
+}
+
 - (void)detectWord{
     
     NSString *word = @"";
     for (int index = 0; index < [_answer length]; index ++) {
         UIButton *button = [self answerButtonWithIndex:index];
         NSString *ch = [button titleForState:UIControlStateNormal];
-        if (ch.length == 0) {
-            return;
+//        if (ch.length == 0) {
+//            return;
+//        }
+//        word = [word stringByAppendingString:ch];
+        
+        if (ch != nil) {
+            word = [word stringByAppendingString:ch];
         }
-        word = [word stringByAppendingString:ch];
+    }
+    
+    if ([word length] < [_answer length]) {
+        return;
     }
     
     BOOL isCorrect = [[word uppercaseString] isEqualToString:[_answer uppercaseString]];
     if (isCorrect) {
         [[AudioManager defaultManager] playSoundByName:_correctSound];
+        [self changeAnswerButtonsTitleColor:[UIColor greenColor]];
         PPDebug(@"You get it: %@", word);
     }else{
         [[AudioManager defaultManager] playSoundByName:_wrongSound];
+        [self changeAnswerButtonsTitleColor:[UIColor redColor]];
         PPDebug(@"Wrong word: %@", word);
     }
     [_guessWords addObject:word];
@@ -361,7 +412,41 @@
     }
 }
 
-- (void)clickAnswerButton:(UIButton *)button{
+- (void)changeButtonColor:(NSArray *)array//:(UIButton *)button Color:(UIColor *)color
+{
+    [array[0] setTitleColor:array[1] forState:UIControlStateNormal];
+}
+
+- (void)changeAnswerButtonsTitleColor:(UIColor *)color{
+    
+    for (int index = 0; index < [_answer length]; index ++) {
+        UIButton *button = [self answerButtonWithIndex:index];
+        UIColor *oldColor = [button titleColorForState:UIControlStateNormal];
+        for (NSInteger x = 0; x < 7; x++) {
+            UIColor *cl = (x % 2 == 0) ? color : oldColor;
+            [self performSelector:@selector(changeButtonColor:) withObject:@[button, cl] afterDelay:(x * 0.2)];
+        }
+    }
+}
+
+- (void)resetAnswerButtonsTitleColor{
+    
+    [[self class] cancelPreviousPerformRequestsWithTarget:self];
+    
+    for (int index = 0; index < [_answer length]; index ++) {
+        UIButton *button = [self answerButtonWithIndex:index];
+        [button setTitleColor:_answerColor forState:UIControlStateNormal];
+    }
+}
+
+- (void)answerButtonTouchUpInside:(UIButton *)button{
+    
+    [self resetAnswerButtonsTitleColor];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        button.transform = CGAffineTransformIdentity;
+    }];
+    
     NSString *ch = [[[button titleForState:UIControlStateNormal] copy] autorelease];
     PPDebug(@"click answer character: %@", ch);
     
@@ -400,6 +485,20 @@
         candidateButton.enabled = YES;
     }];
 
+}
+
+- (void)answerButtonTouchUpOutSide:(UIButton *)button{
+
+    [UIView animateWithDuration:0.3 animations:^{
+        button.transform = CGAffineTransformIdentity;
+    }];
+}
+
+- (void)answerButtonTouchDown:(UIButton *)button{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        button.transform = TRANSFORM_SCALE;
+    }];
 }
 
 - (UIButton *)firstNilCandidateButtonWithCharacter:(NSString *)character{
@@ -443,7 +542,7 @@
     
     for (int index = 0; index < [_answer length]; index ++) {
         UIButton *button = [self answerButtonWithIndex:index];
-        [self clickAnswerButton:button];
+        [self answerButtonTouchUpInside:button];
     }
 }
 
@@ -484,7 +583,11 @@
         button.titleLabel.font = FONT;
         button.tag = BUTTON_TAG_OFFSET + index;
         button.enabled = NO;
-        [button addTarget:self action:@selector(clickAnswerButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(answerButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(answerButtonTouchDown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(answerButtonTouchUpOutSide:) forControlEvents:UIControlEventTouchUpOutside];
+
+
         [button setBackgroundImage:_answerImage forState:UIControlStateNormal];
         [_answerView addSubview:button];
     }

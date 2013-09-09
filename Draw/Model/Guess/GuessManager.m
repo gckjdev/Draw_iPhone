@@ -175,6 +175,9 @@
 + (BOOL)hadAlreadDeduct:(int)mode
               contestId:(NSString *)contestId
 {
+    if ([contestId length] == 0) {
+        return YES;
+    }
     if (mode == PBUserGuessModeGuessModeContest) {
         
         BOOL deduct = [[NSUserDefaults standardUserDefaults] boolForKey:contestId];
