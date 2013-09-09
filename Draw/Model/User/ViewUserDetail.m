@@ -83,7 +83,7 @@
 
 - (BOOL)hasFeedTab
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)isPrivacyVisable
