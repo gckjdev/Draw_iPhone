@@ -56,7 +56,7 @@
 							<object class="IBUIImageView" id="446969354">
 								<reference key="NSNextResponder" ref="902032359"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 10}, {114, 47}}</string>
+								<string key="NSFrame">{{9, 10}, {42, 56}}</string>
 								<reference key="NSSuperview" ref="902032359"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="449880978"/>
@@ -64,9 +64,9 @@
 								<int key="IBUIContentMode">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage" id="829180396">
+								<object class="NSCustomResource" key="IBUIImage" id="1049030514">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">contest_prize_special@2x.png</string>
+									<string key="NSResourceName">contest_prize_custom@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="301860788">
@@ -121,7 +121,7 @@
 							<object class="IBUILabel" id="449880978">
 								<reference key="NSNextResponder" ref="902032359"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{34, 10}, {91, 29}}</string>
+								<string key="NSFrame">{{15, 14}, {30, 30}}</string>
 								<reference key="NSSuperview" ref="902032359"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="301860788"/>
@@ -131,18 +131,18 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">最佳创意奖</string>
+								<string key="IBUIText">8</string>
 								<reference key="IBUITextColor" ref="1031685431"/>
 								<reference key="IBUIHighlightedColor" ref="1031685431"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
-									<double key="pointSize">14</double>
+									<double key="pointSize">18</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">14</double>
+									<double key="NSSize">18</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -195,7 +195,7 @@
 							<object class="IBUIImageView" id="377455053">
 								<reference key="NSNextResponder" ref="206717803"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{15, 9}, {228, 94}}</string>
+								<string key="NSFrame">{{15, 9}, {84, 112}}</string>
 								<reference key="NSSuperview" ref="206717803"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="823989427"/>
@@ -203,7 +203,7 @@
 								<int key="IBUIContentMode">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIImage" ref="829180396"/>
+								<reference key="IBUIImage" ref="1049030514"/>
 							</object>
 							<object class="IBUIButton" id="252940738">
 								<reference key="NSNextResponder" ref="206717803"/>
@@ -248,7 +248,7 @@
 							<object class="IBUILabel" id="823989427">
 								<reference key="NSNextResponder" ref="206717803"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{61, 9}, {188, 60}}</string>
+								<string key="NSFrame">{{27, 16}, {60, 60}}</string>
 								<reference key="NSSuperview" ref="206717803"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="252940738"/>
@@ -258,18 +258,18 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">最佳创意奖</string>
+								<string key="IBUIText">8</string>
 								<reference key="IBUITextColor" ref="1031685431"/>
 								<reference key="IBUIHighlightedColor" ref="1031685431"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
-									<double key="pointSize">28</double>
+									<double key="pointSize">36</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">28</double>
+									<double key="NSSize">36</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -459,11 +459,11 @@
 						<int key="objectID">26</int>
 						<reference key="object" ref="967629640"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="823989427"/>
 							<reference ref="377455053"/>
 							<reference ref="603681906"/>
 							<reference ref="646136332"/>
 							<reference ref="252940738"/>
+							<reference ref="823989427"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -521,14 +521,81 @@
 			<nil key="sourceID"/>
 			<int key="maxID">37</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">AvatarView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AvatarView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ContestPrizeCell</string>
+					<string key="superclassName">PPTableViewCell</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickNickButton:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickNickButton:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickNickButton:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="avatar">AvatarView</string>
+						<string key="nickButton">UIButton</string>
+						<string key="opusImage">UIImageView</string>
+						<string key="prizeIcon">UIImageView</string>
+						<string key="prizeLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="avatar">
+							<string key="name">avatar</string>
+							<string key="candidateClassName">AvatarView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="nickButton">
+							<string key="name">nickButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="opusImage">
+							<string key="name">opusImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="prizeIcon">
+							<string key="name">prizeIcon</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="prizeLabel">
+							<string key="name">prizeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ContestPrizeCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PPTableViewCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PPTableViewCell.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">contest_prize_special@2x.png</string>
-			<string key="NS.object.0">{228, 94}</string>
+			<string key="NS.key.0">contest_prize_custom@2x.png</string>
+			<string key="NS.object.0">{81, 125}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

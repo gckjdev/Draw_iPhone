@@ -64,6 +64,7 @@
 
 - (void)didPickedColorView:(ColorView *)colorView{
     [self updateWithColor:colorView.drawColor];
+    [self hidePopTipView];
 }
 
 - (void)didBuyColorList:(NSArray *)colorList groupId:(NSInteger)groupId

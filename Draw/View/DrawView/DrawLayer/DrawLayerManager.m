@@ -260,7 +260,7 @@
     [self.delegate layerManager:self
          didChangeSelectedLayer:selectedLayer
                       lastLayer:oldLayer];
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:DRAW_INFO_NEED_UPDATE object:nil];
 }
 
 - (UIImage *)createImageWithBGImage:(UIImage *)bg

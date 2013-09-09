@@ -61,6 +61,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{0, 42}, {266, 123}}</string>
 								<reference key="NSSuperview" ref="660571735"/>
+								<reference key="NSNextKeyView" ref="556649116"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -140,6 +141,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{157, 120}, {85, 30}}</string>
 								<reference key="NSSuperview" ref="660571735"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -192,7 +194,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{226, 8}, {34, 34}}</string>
 								<reference key="NSSuperview" ref="660571735"/>
-								<reference key="NSNextKeyView" ref="556649116"/>
+								<reference key="NSNextKeyView" ref="724831820"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -502,6 +504,7 @@
 				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="0.0" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="62.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="65.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

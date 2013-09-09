@@ -73,15 +73,17 @@
     }
     
     
-    text = [text stringByAppendingString:@" "];
+    text = [text stringByAppendingString:@"  "];
     text = [text stringByAppendingString:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
 
     if ([pbUser.signature length] > 0) {
-        text = [text stringByAppendingString:@" "];
+        text = [text stringByAppendingString:@"  "];
         text = [text stringByAppendingString:pbUser.signature];
     }
     
     self.signLabel.text = text;
+//    self.signLabel.shadowColor = [UIColor blackColor];
+//    self.signLabel.shadowOffset = CGSizeMake(1, 1);
     
 //    [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
     
@@ -209,12 +211,17 @@
     self.specialTitleLabel.textColor = COLOR_BROWN;
     
     
-    [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
-    [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+//    [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+//    [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.exploreBbsPostBtn);
+
+//    [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+//    [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.superBlackBtn);
+
+//    [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
+//    [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.blackListBtn);
 }
 
 
@@ -250,7 +257,7 @@
     CGSize size = [text sizeWithFont:label.font];
     if (size.width < label.frame.size.width) {
         CGPoint orgPoint = CGPointMake(label.frame.origin.x - view.frame.size.width/2 , label.center.y);
-        orgPoint.x += (label.frame.size.width - size.width)/2;
+        orgPoint.x += (label.frame.size.width - size.width)/2 - (ISIPAD ? 4 : 2);
         [view setCenter:orgPoint];
     } else {
         [view setCenter:CGPointMake(label.frame.origin.x-view.frame.size.width/2, view.center.y)];

@@ -112,7 +112,7 @@ typedef enum{
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
     
     CommonTitleView* titleView = self.titleView;
-    [titleView setTitle:NSLS(@"kFeed")];
+    [titleView setTitle:NSLS(@"kExhibition")];
     [titleView setRightButtonAsRefresh];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
@@ -560,8 +560,8 @@ typedef enum{
 {
 
     NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
-    NSString *noFeed = [NSString stringWithFormat:NSLS(@"kNoFavorite"),self.nickName];
-    NSString *noFavor = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
+    NSString *noFavor= [NSString stringWithFormat:NSLS(@"kNoFavorite"),self.nickName];
+    NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
     NSString *tabDesc[] = {noOpus,noFavor, noFeed};
     return tabDesc[index];
     

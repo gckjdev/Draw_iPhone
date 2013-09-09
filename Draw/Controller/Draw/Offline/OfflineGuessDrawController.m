@@ -114,8 +114,6 @@
     // Set answer
     self.wordInputView.answer = self.feed.wordText;
     self.wordInputView.delegate = self;
-    self.wordInputView.answerColor = [UIColor whiteColor];
-
     
     NSString *candidates = nil;
     if (_feed.drawData.languageType == EnglishType) {
@@ -129,9 +127,6 @@
     }
     
     [self.wordInputView setCandidates:candidates column:9];
-    
-    [self.wordInputView setCandidateColor:[UIColor whiteColor]];
-
 }
 
 

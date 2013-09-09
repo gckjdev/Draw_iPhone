@@ -92,23 +92,12 @@
     
     [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
     
-//    [self showActivityWithText:NSLS(@"kImageLoading")];
-//    __block typeof (self) bself = self;
-//    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-//        [bself hideActivity];
-//    } failure:^(NSError *error) {
-//        [bself hideActivity];
-//    }];
-
-    
     // Set bgView
     SET_VIEW_BG(self.view);
     
     // Set answer
     self.wordInputView.answer = self.opus.pbOpus.name;
-    self.wordInputView.delegate = self;
-    self.wordInputView.answerColor = [UIColor whiteColor];
-    
+    self.wordInputView.delegate = self;    
     
     [self.toolBoxButton setBackgroundImage:UIThemeImageNamed(@"item_box@2x.png") forState:UIControlStateNormal];
 

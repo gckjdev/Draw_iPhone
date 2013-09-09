@@ -396,7 +396,7 @@ if (btn) {\
 {    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleNotification:)
-                                                 name:DRAW_VIEW_UPDATED_SCACLE
+                                                 name:DRAW_INFO_NEED_UPDATE
                                                object:nil];
     
     [self.scrollView setDelegate:self];

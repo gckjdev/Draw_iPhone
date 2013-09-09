@@ -48,6 +48,9 @@
         [self.drawView changeRect:canvasRect.rect];
         [self hidePopTipView];
         [[DrawRecoveryService defaultService] setCanvasSize:canvasRect.rect.size];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:DRAW_INFO_NEED_UPDATE object:nil];
+        
     }else{
         [self hidePopTipView];        
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kChangeCanvasFailed") delayTime:1.5];
