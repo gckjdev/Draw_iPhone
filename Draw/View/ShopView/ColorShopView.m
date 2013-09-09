@@ -64,8 +64,18 @@
         }
         return result;
     }];
+    
     [view updateBalanceLabel];
+    
     SET_VIEW_BG(view);
+    
+    SET_VIEW_ROUND_CORNER(view.dataTableView);
+    SET_VIEW_ROUND_CORNER(view.coinHolderView);
+    
+    view.dataTableView.backgroundColor = COLOR_WHITE;
+    view.coinHolderView.backgroundColor = COLOR_ORANGE;
+    
+    [view.coinCountLabel setTextColor:COLOR_WHITE];
     return view;
     
 }
@@ -276,6 +286,7 @@
     PPRelease(dataTableView);
     PPRelease(colorGroups);
     [_titleView release];
+    [_coinHolderView release];
     [super dealloc];
 }
 @end

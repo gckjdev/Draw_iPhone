@@ -13,10 +13,6 @@
 #import "DeviceDetection.h"
 #import "ShareImageManager.h"
 
-#define CELL_HEIGHT_IPHONE 93.0
-#define CELL_HEIGHT_IPAD ((CELL_HEIGHT_IPHONE)*2.0)
-
-#define CELL_HEIGHT ([DeviceDetection isIPAD] ? (CELL_HEIGHT_IPAD) : (CELL_HEIGHT_IPHONE))
 
 @implementation ColorShopCell
 @synthesize coinImageView;
@@ -25,17 +21,10 @@
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-//    PPDebug(@"<ColorShopCell>cellId = %@", cellId);
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        PPDebug(@"<ColorShopCell>create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
-    
-    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
-    
-    return [topLevelObjects objectAtIndex:0];
+    ColorShopCell *cell = [self createViewWithXibIdentifier:cellId];
+    cell.delegate = delegate;
+    [cell.priceLabel setTextColor:COLOR_COFFEE];
+    return cell;
 }
 
 + (NSString*)getCellIdentifier
@@ -45,7 +34,7 @@
 
 + (CGFloat)getCellHeight
 {
-    return CELL_HEIGHT;
+    return ISIPAD?140:70;
 }
 
 - (void)updatePrice:(NSInteger)price

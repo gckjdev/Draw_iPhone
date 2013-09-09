@@ -198,7 +198,6 @@
         [[ContestManager defaultManager] updateHasReadContestList:contestList];
     }else{
 
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFailLoad") delayTime:1.5 isHappy:NO];
         [self showTips:NSLS(@"kFailLoad")];
     }
     [self hideActivity];

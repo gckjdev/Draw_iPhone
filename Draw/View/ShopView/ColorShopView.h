@@ -33,6 +33,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *dataTableView;
 @property (retain, nonatomic) NSMutableArray *colorGroups;
 @property (assign, nonatomic) id<ColorShopViewDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UIView *coinHolderView;
 
 + (ColorShopView *)colorShopViewWithFrame:(CGRect)frame ;
 - (void)showInView:(UIView *)view animated:(BOOL)animated;
