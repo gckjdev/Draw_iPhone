@@ -91,7 +91,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     NSString *str = [NSString stringWithFormat:@"%@  %@", dateToLocaleStringWithFormat(bulletin.date, @"yyyy.MM.dd"), dateToLocaleStringWithFormat(bulletin.date, @"HH:mm")];
     [self.dateLabel setText:str];
     
-    self.dateLabel.textColor = COLOR_ORANGE;
+    self.dateLabel.textColor = COLOR_GREEN;
     self.messageLabel.textColor = COLOR_BROWN;
 
     [self.customAccessoryImageView setHidden:!([JumpHandler canJump:bulletin.type])];
