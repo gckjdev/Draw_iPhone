@@ -266,9 +266,9 @@
 {
     if ([self.favoriteList count] > 0) {
         [[self detailCell] setDrawFeedList:self.favoriteList tipText:NSLS(@"kNoFavorite")];
-        [[self detailCell] setIsLoadingFeed:NO];
     }else{
         [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+        [[self detailCell] setIsLoadingFeed:YES];
     }
 }
 
@@ -276,16 +276,16 @@
 {
     if ([self.opusList count] > 0) {
         [[self detailCell] setDrawFeedList:self.opusList tipText:NSLS(@"kNoOpus")];
-        [[self detailCell] setIsLoadingFeed:NO];
+    }else{
+        [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
+        [[self detailCell] setIsLoadingFeed:YES];
     }
-    [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
 }
 
 - (void)didClickTabAtIndex:(int)index
 {
     currentTabIndex = index;
     [[self detailCell] clearDrawFeedList];
-    [[self detailCell] setIsLoadingFeed:YES];
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
@@ -323,7 +323,7 @@
                   type:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
-//    [[self detailCell] setIsLoadingFeed:NO];
+    [[self detailCell] setIsLoadingFeed:NO];
     if (resultCode == 0) {
         switch (type) {
             case FeedListTypeUserFavorite: {
