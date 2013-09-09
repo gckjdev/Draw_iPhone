@@ -124,16 +124,30 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
     
 }
 
+- (void)setTagButtonStyle:(UIButton *)button{
+    
+    [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateNormal];
+    [button setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_ORANGE) forState:UIControlStateSelected];
+    [button setTitleColor:COLOR_WHITE forState:UIControlStateSelected];
+    SET_VIEW_ROUND_CORNER(button);
+}
+
 - (void)initGroupForKey:(NSString*)key
 {
     if ([key isEqualToString:PARA_IMAGE_GRAY]) {
         NSArray* nameArray = [CommonSearchImageFilterView NameArrayForKey:key];
         UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_GRAY_OFFSET];
         [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+
+        [self setTagButtonStyle:defBtn];
+        
         for (int i = 1; i <= nameArray.count; i ++) {
             UIButton* btn = (UIButton*)[self viewWithTag:(IMAGE_GRAY_OFFSET+i)];
             NSString* title = [nameArray objectAtIndex:(i-1)];
             [btn setTitle:title forState:UIControlStateNormal];
+            
+            [self setTagButtonStyle:btn];
         }
     }
     
@@ -141,10 +155,15 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
         NSArray* nameArray = [CommonSearchImageFilterView NameArrayForKey:key];
         UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_SIZE_OFFSET];
         [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+        [self setTagButtonStyle:defBtn];
+
+        
+        
         for (int i = 1; i <= nameArray.count; i ++) {
             UIButton* btn = (UIButton*)[self viewWithTag:(IMAGE_SIZE_OFFSET+i)];
             NSString* title = [nameArray objectAtIndex:(i-1)];
             [btn setTitle:title forState:UIControlStateNormal];
+            [self setTagButtonStyle:btn];
         }
     }
     
@@ -152,16 +171,28 @@ AUTO_CREATE_VIEW_BY_XIB(CommonSearchImageFilterView)
         NSArray* nameArray = [CommonSearchImageFilterView NameArrayForKey:key];
         UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_TYPE_OFFSET];
         [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+        [self setTagButtonStyle:defBtn];
+        
         for (int i = 1; i <= nameArray.count; i ++) {
             UIButton* btn = (UIButton*)[self viewWithTag:(IMAGE_TYPE_OFFSET+i)];
             NSString* title = [nameArray objectAtIndex:(i-1)];
             [btn setTitle:title forState:UIControlStateNormal];
+            [self setTagButtonStyle:btn];
+
         }
     }
     
     if ([key isEqualToString:PARA_IMAGE_COLOR]) {
         UIButton* defBtn = (UIButton*)[self viewWithTag:IMAGE_COLOR_OFFSET];
         [defBtn setTitle:NSLS(@"kUnlimit") forState:UIControlStateNormal];
+        [self setTagButtonStyle:defBtn];
+        
+        for (int i = 1; i <=12; i ++) {
+            UIButton* btn = (UIButton*)[self viewWithTag:(IMAGE_COLOR_OFFSET+i)];
+            [btn setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateNormal];
+            [btn setBackgroundImage:IMAGE_FROM_COLOR(COLOR_ORANGE) forState:UIControlStateSelected];
+            SET_VIEW_ROUND_CORNER(btn);
+        }
     }
 }
 
