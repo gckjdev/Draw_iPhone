@@ -72,6 +72,8 @@
     [v setTitle:NSLS(@"kSearchResult")];
     [v setTarget:self];
     [v setBackButtonSelector:@selector(clickBack:)];
+    
+    self.view.backgroundColor = COLOR_WHITE;
 }
 
 - (id)initWithKeyword:(NSString*)keyword
@@ -268,6 +270,7 @@
     
     __block SearchPhotoResultController* cp = self;
     [dialog setClickOkBlock:^(PhotoEditView* infoView){
+        [dialog disappear];
         [cp didEditPictureInfo:infoView.tagSet
                           name:cp.searchText
                       imageUrl:searchResult.url

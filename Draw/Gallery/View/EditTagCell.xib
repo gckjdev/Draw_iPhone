@@ -87,10 +87,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">-3</double>
-								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-								<double key="IBUIContentEdgeInsets.left">8</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
 								<string key="IBUINormalTitle">Button</string>
 								<reference key="IBUIHighlightedTitleColor" ref="277224241"/>
 								<reference key="IBUISelectedTitleColor" ref="277224241"/>
@@ -99,14 +95,6 @@
 									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="827339772"/>
-								<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="1048269485">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">photo_tag_select@2x.png</string>
-								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="984881378">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">photo_tag_unselect@2x.png</string>
-								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="662379815">
 									<int key="type">1</int>
 									<double key="pointSize">12</double>
@@ -129,10 +117,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">-3</double>
-								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-								<double key="IBUIContentEdgeInsets.left">8</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
 								<string key="IBUINormalTitle">Button</string>
 								<reference key="IBUIHighlightedTitleColor" ref="277224241"/>
 								<reference key="IBUISelectedTitleColor" ref="277224241"/>
@@ -141,8 +125,6 @@
 									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="827339772"/>
-								<reference key="IBUISelectedBackgroundImage" ref="1048269485"/>
-								<reference key="IBUINormalBackgroundImage" ref="984881378"/>
 								<reference key="IBUIFontDescription" ref="662379815"/>
 								<reference key="IBUIFont" ref="798304529"/>
 							</object>
@@ -158,10 +140,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">-3</double>
-								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-								<double key="IBUIContentEdgeInsets.left">8</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
 								<string key="IBUINormalTitle">Button</string>
 								<reference key="IBUIHighlightedTitleColor" ref="277224241"/>
 								<reference key="IBUISelectedTitleColor" ref="277224241"/>
@@ -170,8 +148,6 @@
 									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="827339772"/>
-								<reference key="IBUISelectedBackgroundImage" ref="1048269485"/>
-								<reference key="IBUINormalBackgroundImage" ref="984881378"/>
 								<reference key="IBUIFontDescription" ref="662379815"/>
 								<reference key="IBUIFont" ref="798304529"/>
 							</object>
@@ -187,10 +163,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">-3</double>
-								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-								<double key="IBUIContentEdgeInsets.left">8</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
 								<string key="IBUINormalTitle">Button</string>
 								<reference key="IBUIHighlightedTitleColor" ref="277224241"/>
 								<reference key="IBUISelectedTitleColor" ref="277224241"/>
@@ -199,8 +171,6 @@
 									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="827339772"/>
-								<reference key="IBUISelectedBackgroundImage" ref="1048269485"/>
-								<reference key="IBUINormalBackgroundImage" ref="984881378"/>
 								<reference key="IBUIFontDescription" ref="662379815"/>
 								<reference key="IBUIFont" ref="798304529"/>
 							</object>
@@ -216,10 +186,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">-3</double>
-								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-								<double key="IBUIContentEdgeInsets.left">8</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
 								<string key="IBUINormalTitle">Button</string>
 								<reference key="IBUIHighlightedTitleColor" ref="277224241"/>
 								<reference key="IBUISelectedTitleColor" ref="277224241"/>
@@ -228,8 +194,6 @@
 									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="827339772"/>
-								<reference key="IBUISelectedBackgroundImage" ref="1048269485"/>
-								<reference key="IBUINormalBackgroundImage" ref="984881378"/>
 								<reference key="IBUIFontDescription" ref="662379815"/>
 								<reference key="IBUIFont" ref="798304529"/>
 							</object>
@@ -244,10 +208,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<double key="IBUIContentEdgeInsets.top">-3</double>
-								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-								<double key="IBUIContentEdgeInsets.left">8</double>
-								<double key="IBUIContentEdgeInsets.right">0.0</double>
 								<string key="IBUINormalTitle">Button</string>
 								<reference key="IBUIHighlightedTitleColor" ref="277224241"/>
 								<reference key="IBUISelectedTitleColor" ref="277224241"/>
@@ -256,8 +216,6 @@
 									<bytes key="NSRGB">MC41MDU4ODIzNTI5IDAuMzMzMzMzMzMzMyAwLjE0NTA5ODAzOTIAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="827339772"/>
-								<reference key="IBUISelectedBackgroundImage" ref="1048269485"/>
-								<reference key="IBUINormalBackgroundImage" ref="984881378"/>
 								<reference key="IBUIFontDescription" ref="662379815"/>
 								<reference key="IBUIFont" ref="798304529"/>
 							</object>
@@ -342,13 +300,13 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="155139935"/>
 							<reference ref="573246883"/>
-							<reference ref="100817114"/>
 							<reference ref="554436942"/>
 							<reference ref="149847433"/>
 							<reference ref="386160512"/>
 							<reference ref="292961515"/>
 							<reference ref="3763568"/>
 							<reference ref="252623511"/>
+							<reference ref="100817114"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -404,22 +362,22 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.CustomClassName">EditTagCell</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="8.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -433,8 +391,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="photo_tag_select@2x.png">{130, 51}</string>
-			<string key="photo_tag_unselect@2x.png">{130, 51}</string>
 			<string key="tag_title_left@2x.png">{163, 12}</string>
 			<string key="tag_title_right@2x.png">{163, 12}</string>
 		</dictionary>

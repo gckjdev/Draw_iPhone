@@ -76,17 +76,24 @@
     }
 }
 
+- (void)showTips:(NSString *)tips
+{
+    [[self noContestTipLabel] setHidden:NO];
+    [[self noContestTipLabel] setText:tips];
+}
+- (void)hideTips
+{
+    [[self noContestTipLabel] setHidden:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.titleLabel setText:NSLS(@"kContest")];
-        
-    UIColor *bgColor = [UIColor colorWithRed:245.0/255.0 green:240.0/255.0 blue:220./255. alpha:1.0];
-    [self.view setBackgroundColor:bgColor];
+    SET_VIEW_BG(self.view);
     [self initCustomPageControl];
     [self getContestList];
     [self.noContestTipLabel setHidden:YES];
-    [self.noContestTipLabel setText:NSLS(@"kNoContestTips")];
     
     CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
     [titleView setTarget:self];
@@ -95,6 +102,7 @@
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [[ContestService defaultService] syncOngoingContestList];
+    [self hideTips];
 }
 
 - (void)viewDidUnload
@@ -182,15 +190,15 @@
     if (code == 0) {
         if ([contestList count] != 0) {
             [self updateScorollViewWithContestList:contestList];
+            [self hideTips];
         }else{
-            [_noContestTipLabel setHidden:NO];
+            [self showTips:NSLS(@"kNoContestTips")];
             [self.pageControl setNumberOfPages:0];
         }
         [[ContestManager defaultManager] updateHasReadContestList:contestList];
-//        [[StatisticManager defaultManager] setNewContestCount:0];
     }else{
 
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kFailLoad") delayTime:1.5 isHappy:NO];
+        [self showTips:NSLS(@"kFailLoad")];
     }
     [self hideActivity];
 }

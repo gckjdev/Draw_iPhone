@@ -41,13 +41,17 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
 {
     FreeIngotCell *cell = [self createView];
     UIView *bgView = [[[UIView alloc] initWithFrame:cell.contentView.bounds] autorelease];
-    [bgView updateHeight:CGRectGetHeight(bgView.bounds)*0.8];
-    [bgView updateWidth:CGRectGetWidth(bgView.bounds) * 0.9];
-    [bgView setBackgroundColor:COLOR_GRAY_BG];
+    [bgView updateHeight:CGRectGetHeight(bgView.bounds)*0.82];
+    [bgView updateWidth:CGRectGetWidth(bgView.bounds) * 0.92];
     bgView.center = cell.contentView.center;
     SET_VIEW_ROUND_CORNER(bgView);
+    [bgView setBackgroundColor:[UIColor clearColor]];
+    [bgView.layer setBorderWidth:(ISIPAD?4:2)];
+    [bgView.layer setBorderColor:COLOR_YELLOW.CGColor];
     [cell.contentView insertSubview:bgView atIndex:0];
-    
+    cell.appNameLabel.textColor = COLOR_BROWN;
+    cell.appDescriptionLabel.textColor = COLOR_BROWN;
+    cell.rewardCurrencyCountLabel.textColor = COLOR_BROWN;
     return cell;
 }
 

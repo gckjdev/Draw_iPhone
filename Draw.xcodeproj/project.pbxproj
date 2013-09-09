@@ -12639,10 +12639,10 @@
 		C2C18A6C1760A7B400DE933B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C2773FDB176998E300929AE3 /* GalleryController~ipad.xib */,
 				C2C18AA21761873500DE933B /* GalleryController.h */,
 				C2C18AA31761873500DE933B /* GalleryController.m */,
 				C2C18AA41761873500DE933B /* GalleryController.xib */,
+				C2773FDB176998E300929AE3 /* GalleryController~ipad.xib */,
 				C27E68FF176EAC1C0019F41B /* SearchPhotoController.h */,
 				C27E6900176EAC1C0019F41B /* SearchPhotoController.m */,
 				C27E6901176EAC1C0019F41B /* SearchPhotoController.xib */,
@@ -12682,18 +12682,18 @@
 		C2C18A7A1760A7B400DE933B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C2773FE6176998F200929AE3 /* UserPhotoView~ipad.xib */,
-				C2773FE8176998F200929AE3 /* PhotoEditView~ipad.xib */,
 				C2C18AD11762C2C400DE933B /* PhotoEditView.h */,
 				C2C18AD21762C2C400DE933B /* PhotoEditView.m */,
+				C2C18AD31762C2C400DE933B /* PhotoEditView.xib */,
+				C2773FE8176998F200929AE3 /* PhotoEditView~ipad.xib */,
 				C23C336C176B0797004BE236 /* EditTagCell.h */,
 				C23C336D176B0797004BE236 /* EditTagCell.m */,
 				C23C3370176B0803004BE236 /* EditTagCell.xib */,
 				C23C3373176B082B004BE236 /* EditTagCell~ipad.xib */,
-				C2C18AD31762C2C400DE933B /* PhotoEditView.xib */,
+				C2C18AD61762C2C400DE933B /* UserPhotoView.h */,
 				C2C18AD41762C2C400DE933B /* UserPhotoView.m */,
 				C2C18AD51762C2C400DE933B /* UserPhotoView.xib */,
-				C2C18AD61762C2C400DE933B /* UserPhotoView.h */,
+				C2773FE6176998F200929AE3 /* UserPhotoView~ipad.xib */,
 				C2C18A7B1760A7B400DE933B /* CommonSearchImageFilterView.h */,
 				C2C18A7C1760A7B400DE933B /* CommonSearchImageFilterView.m */,
 				C2C18A7D1760A7B400DE933B /* CommonSearchImageFilterView.xib */,

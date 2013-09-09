@@ -72,6 +72,7 @@
     [self reloadTableViewDataSource];
     
     
+    self.view.backgroundColor = COLOR_WHITE;
 //    [self serviceLoadDataForTabID:[self currentTab].tabID];
     // Do any additional setup after loading the view from its nib.
 }
@@ -286,13 +287,12 @@ enum {
     [dialog.cancelButton setTitle:NSLS(@"kReset") forState:UIControlStateNormal];
     
     [dialog setClickCancelBlock:^(PhotoEditView * infoView){
-        
         [infoView reset];
     }];
     
     [dialog setClickOkBlock:^(PhotoEditView * infoView){
-        [self showActivityWithText:NSLS(@"kUpdating")];
         [dialog disappear];
+        [self showActivityWithText:NSLS(@"kUpdating")];
         [[GalleryService defaultService] updateUserPhoto:photo.userPhotoId photoUrl:photo.url
                                                     name:photo.name
                                                   tagSet:infoView.tagSet
@@ -344,14 +344,13 @@ enum {
     [dialog.cancelButton setTitle:NSLS(@"kReset") forState:UIControlStateNormal];
     
     [dialog setClickCancelBlock:^(PhotoEditView * infoView){
-        
         [infoView reset];
     }];
     
     [dialog setClickOkBlock:^(PhotoEditView* infoView){
+        [dialog disappear];
         cp.tagSet = infoView.tagSet;
         [cp reloadTableViewDataSource];
-        [dialog disappear];
     }];
     
     [dialog showInView:self.view];

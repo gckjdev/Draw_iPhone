@@ -104,7 +104,9 @@
 
 - (EGORefreshTableHeaderView*)createRefreshHeaderView
 {
-    EGORefreshTableHeaderView* header =  [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height)] autorelease];
+//    EGORefreshTableHeaderView* header =  [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height)] autorelease];
+    EGORefreshTableHeaderView* header =  [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.dataTableView.bounds.size.height, self.dataTableView.frame.size.width, self.dataTableView.bounds.size.height) backgroundColor:[UIColor clearColor] textColor:COLOR_BROWN] autorelease];
+
     [header setBackgroundColor:[UIColor clearColor]];
     return header;
 }
@@ -127,7 +129,10 @@
 
 - (EGORefreshTableFooterView*)createRefreshFooterView
 {
-    EGORefreshTableFooterView* footer = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650)];
+//    EGORefreshTableFooterView* footer = [[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650)];
+    
+    EGORefreshTableFooterView* footer = [[[EGORefreshTableFooterView alloc] initWithFrame: CGRectMake(0.0f, self.dataTableView.contentSize.height, self.dataTableView.frame.size.width, 650) backgroundColor:[UIColor clearColor] textColor:COLOR_BROWN] autorelease];
+    
     [footer setBackgroundColor:[UIColor clearColor]];
     return footer;
 }

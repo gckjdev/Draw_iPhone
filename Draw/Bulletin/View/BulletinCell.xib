@@ -67,11 +67,11 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUINumberOfLines">0</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="970740358">
 									<int key="type">1</int>
 									<double key="pointSize">13</double>
 								</object>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="360742344">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">13</double>
 									<int key="NSfFlags">16</int>
@@ -82,7 +82,7 @@
 							<object class="IBUILabel" id="639061381">
 								<reference key="NSNextResponder" ref="746065400"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{68, 8}, {108, 14}}</string>
+								<string key="NSFrame">{{68, 10}, {108, 14}}</string>
 								<reference key="NSSuperview" ref="746065400"/>
 								<reference key="NSNextKeyView" ref="882086406"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -101,15 +101,8 @@
 								<string key="IBUIShadowOffset">{1, 1}</string>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">1</int>
-									<double key="pointSize">10</double>
-								</object>
-								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">10</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFontDescription" ref="970740358"/>
+								<reference key="IBUIFont" ref="360742344"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUIImageView" id="88626121">
@@ -131,7 +124,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{226, 35}, {8, 13}}</string>
 								<reference key="NSSuperview" ref="746065400"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

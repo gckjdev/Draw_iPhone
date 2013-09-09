@@ -70,7 +70,7 @@
     
     _happyModeLabel.text = NSLS(@"kHappGuessMode");
     _genuisModeLabel.text = NSLS(@"kGeniusGuessMode");
-    _contestModeLabel.text = NSLS(@"kContestGuessMode");
+    _contestModeLabel.text = NSLS(@"kVS");
     _rankListLabel.text = NSLS(@"kGuessRank");
     _rulesLabel.text = NSLS(@"kGuessRules");
     
