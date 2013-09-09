@@ -114,6 +114,7 @@
         UIButton *btn = view;
         SET_BUTTON_ROUND_STYLE_YELLOW(btn);
         btn.layer.cornerRadius = btn.layer.cornerRadius/2;
+        btn.titleLabel.font = self.recentLabel.font;
     }];
     [self.customButton.titleLabel setAdjustsFontSizeToFitWidth:YES];
     SET_BUTTON_ROUND_STYLE_YELLOW(self.applyButton);

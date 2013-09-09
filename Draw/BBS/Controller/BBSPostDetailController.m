@@ -434,11 +434,9 @@ typedef enum{
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PBBBSAction *action = [self actionForIndexPath:indexPath];
-    return [self actionCanDelete:action];
-//    if (action && (action.canDelete || [[BBSPermissionManager defaultManager] canDeletePost:self.post onBBBoard:self.post.boardId])) {
-//        return YES;
-//    }
-//    return NO;
+    BOOL flag = [self actionCanDelete:action];
+//    [self setCanDragBack:!flag];
+    return flag;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
