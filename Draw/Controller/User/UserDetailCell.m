@@ -73,11 +73,11 @@
     }
     
     
-    text = [text stringByAppendingString:@" "];
+    text = [text stringByAppendingString:@"  "];
     text = [text stringByAppendingString:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
 
     if ([pbUser.signature length] > 0) {
-        text = [text stringByAppendingString:@" "];
+        text = [text stringByAppendingString:@"  "];
         text = [text stringByAppendingString:pbUser.signature];
     }
     
