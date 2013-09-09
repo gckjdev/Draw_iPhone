@@ -66,7 +66,23 @@
     self.levelLabel.hidden = NO;
     [self.nickNameLabel setText:pbUser.nickName];
     
-    self.signLabel.text = pbUser.signature;
+    NSString *text = @"";
+    
+    if ([[[detail getUser] xiaojiNumber] length] > 0) {
+        text = [text stringByAppendingString:[NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[detail getUser] xiaojiNumber]]];
+    }
+    
+    
+    text = [text stringByAppendingString:@" "];
+    text = [text stringByAppendingString:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
+
+    if ([pbUser.signature length] > 0) {
+        text = [text stringByAppendingString:@" "];
+        text = [text stringByAppendingString:pbUser.signature];
+    }
+    
+    self.signLabel.text = text;
+    
 //    [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
     
     if ([detail isPrivacyVisable]) {
