@@ -91,6 +91,7 @@
         self.feed = feed;
         if (_feed.drawData == nil) {
             [_feed parseDrawData];
+            _feed.pbDrawData = nil; // add by Benson to clear the data for memory usage
         }
     }
     return self;

@@ -13,7 +13,6 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
-			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUITableView</string>
 			<string>IBUIView</string>
@@ -43,7 +42,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 99}, {768, 843}}</string>
 						<reference key="NSSuperview" ref="878502605"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="454475792">
 							<int key="NSColorSpace">3</int>
@@ -62,27 +60,11 @@
 						<reference key="NSNextResponder" ref="878502605"/>
 						<int key="NSvFlags">268</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="308580054">
-								<reference key="NSNextResponder" ref="893798723"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrameSize">{768, 61}</string>
-								<reference key="NSSuperview" ref="893798723"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="185143720"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">balance_bg@2x.png</string>
-								</object>
-							</object>
 							<object class="IBUILabel" id="185143720">
 								<reference key="NSNextResponder" ref="893798723"/>
 								<int key="NSvFlags">269</int>
 								<string key="NSFrameSize">{768, 61}</string>
 								<reference key="NSSuperview" ref="893798723"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="858424337"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -91,9 +73,9 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<string key="IBUIText">kGoToBBS4Help</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4zMTc2NDcwNTg4IDAuMTc2NDcwNTg4MiAwLjAyNzQ1MDk4MDM5AA</bytes>
+								<object class="NSColor" key="IBUITextColor" id="893120250">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -114,16 +96,12 @@
 								<int key="NSvFlags">265</int>
 								<string key="NSFrame">{{696, 0}, {60, 61}}</string>
 								<reference key="NSSuperview" ref="893798723"/>
-								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSColor" key="IBUIHighlightedTitleColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-								</object>
+								<reference key="IBUIHighlightedTitleColor" ref="893120250"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
@@ -149,7 +127,6 @@
 						</array>
 						<string key="NSFrame">{{0, 943}, {768, 61}}</string>
 						<reference key="NSSuperview" ref="878502605"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="454475792"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -157,7 +134,6 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -245,16 +221,10 @@
 						<int key="objectID">46</int>
 						<reference key="object" ref="893798723"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="308580054"/>
 							<reference ref="185143720"/>
 							<reference ref="858424337"/>
 						</array>
 						<reference key="parent" ref="878502605"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">42</int>
-						<reference key="object" ref="308580054"/>
-						<reference key="parent" ref="893798723"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
@@ -277,7 +247,6 @@
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="41.CustomClassName">LocalizableLabel</string>
 				<string key="41.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="46.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -363,10 +332,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBIPadFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="balance_bg@2x.png">{640, 73}</string>
-			<string key="more_words_btn@2x.png">{50, 51}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">more_words_btn@2x.png</string>
+			<string key="NS.object.0">{50, 51}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

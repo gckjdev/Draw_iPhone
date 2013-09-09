@@ -89,11 +89,11 @@ typedef enum{
 - (void)initTabButtons
 {
     [super initTabButtons];
-    if ([[UserManager defaultManager] isMe:self.userId]) {
-        [[self.view viewWithTag:UserTypeFeed] removeFromSuperview];
-    }else{
-        [[self.view viewWithTag:UserTypeFavorite] removeFromSuperview];
-    }
+//    if ([[UserManager defaultManager] isMe:self.userId]) {
+//        [[self.view viewWithTag:UserTypeFeed] removeFromSuperview];
+//    }else{
+//        [[self.view viewWithTag:UserTypeFavorite] removeFromSuperview];
+//    }
 }
 
 - (void)viewDidLoad
@@ -258,11 +258,11 @@ typedef enum{
             return count;
         case UserTypeOpus:
         case UserTypeFavorite:
-            if (count %3 == 0) {
+//            if (count %3 == 0) {
                 return count/3;
-            }else{
-                return count/3 + 1;
-            }
+//            }else{
+//                return count/3 + 1;
+//            }
         default:
             return 0;
     }
@@ -544,7 +544,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 2;
+    return 3;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -552,45 +552,25 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    if ([[UserManager defaultManager] isMe:self.userId]) {
-        NSInteger tabId[] = {UserTypeOpus, UserTypeFavorite};
+        NSInteger tabId[] = {UserTypeOpus, UserTypeFavorite, UserTypeFeed};
         return tabId[index];
-    }else{
-        NSInteger tabId[] = {UserTypeOpus, UserTypeFeed};
-        return tabId[index];
-    }
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    if ([[UserManager defaultManager] isMe:self.userId]) {
-//        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
-        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
-//        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFavorite"),self.nickName];
-        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kNoFavorite"),self.nickName];
-        NSString *tabDesc[] = {noOpus,noFeed};
-        
-        return tabDesc[index];
-    }else{
-//        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kUserNoOpus"),self.nickName];
-        NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
-        NSString *noFeed = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
-        NSString *tabDesc[] = {noOpus,noFeed};
-        
-        return tabDesc[index];
-    }
+
+    NSString *noOpus = [NSString stringWithFormat:NSLS(@"kNoOpus"),self.nickName];
+    NSString *noFeed = [NSString stringWithFormat:NSLS(@"kNoFavorite"),self.nickName];
+    NSString *noFavor = [NSString stringWithFormat:NSLS(@"kUserNoFeed"),self.nickName];
+    NSString *tabDesc[] = {noOpus,noFavor, noFeed};
+    return tabDesc[index];
+    
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    if ([[UserManager defaultManager] isMe:self.userId]) {
-        NSString *tabTitle[] = {NSLS(@"kUserOpus"), NSLS(@"kUserFavorite")};
-        return tabTitle[index];
-    }else{
-        NSString *tabTitle[] = {NSLS(@"kUserOpus"),NSLS(@"kUserGuess")};
-        return tabTitle[index];
-
-    }
+    NSString *tabTitle[] = {NSLS(@"kUserOpus"), NSLS(@"kUserFavorite"),NSLS(@"kUserGuess")};
+    return tabTitle[index];
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID

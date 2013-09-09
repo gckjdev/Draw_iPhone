@@ -78,6 +78,12 @@ enum {
     [titleView setTitle:title];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    self.view.backgroundColor = COLOR_WHITE;
+    self.dataTableView.backgroundColor = COLOR_WHITE;
+    self.toBBSHolderView.backgroundColor = COLOR_ORANGE;
+    [self.toBBSHolderView enumSubviewsWithClass:[UILabel class] handler:^(id view) {
+        [(UILabel *)view setTextColor:COLOR_WHITE];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,7 +92,8 @@ enum {
     // Dispose of any resources that can be recreated.
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:
+(NSIndexPath *)indexPath
 {
     return [FreeIngotCell getCellHeight];
 }
@@ -138,10 +145,10 @@ enum {
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIButton* btn = [[[UIButton alloc] initWithFrame:HEADER_FRAME] autorelease];
-    [btn setBackgroundImage:[[ShareImageManager defaultManager] freeIngotHeaderBg] forState:UIControlStateNormal];
     [btn setTitle:[self titleForSection:section] forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont boldSystemFontOfSize:HEADER_FONT]];
-    [btn setTitleColor:[UIColor colorWithRed:81/255.0 green:45/255.0 blue:7/255.0 alpha:1] forState:UIControlStateNormal];
+    [btn setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    [btn setBackgroundColor:COLOR_ORANGE];
     return btn;
 }
 

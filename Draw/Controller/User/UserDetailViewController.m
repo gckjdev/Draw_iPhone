@@ -264,11 +264,20 @@
 
 - (void)updateFavoriteList
 {
-    [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+    if ([self.favoriteList count] > 0) {
+        [[self detailCell] setDrawFeedList:self.favoriteList tipText:NSLS(@"kNoFavorite")];
+        [[self detailCell] setIsLoadingFeed:NO];
+    }else{
+        [[FeedService defaultService] getUserFavoriteOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] delegate:self];
+    }
 }
 
 - (void)updateOpusList
 {
+    if ([self.opusList count] > 0) {
+        [[self detailCell] setDrawFeedList:self.opusList tipText:NSLS(@"kNoOpus")];
+        [[self detailCell] setIsLoadingFeed:NO];
+    }
     [[FeedService defaultService] getUserOpusList:[self.detail getUserId] offset:0 limit:[ConfigManager getDefaultDetailOpusCount] type:FeedListTypeUserOpus delegate:self];
 }
 
@@ -280,17 +289,12 @@
     switch (index) {
         case DetailTabActionClickFavouriate:
         {
-                [self updateFavoriteList];
+            [self updateFavoriteList];
         }
             break;
         case DetailTabActionClickOpus:
         {
-            if (self.favoriteList.count == 0 || [self.detail canEdit]) {
-                [self updateOpusList];
-            } else {
-                [[self detailCell] setDrawFeedList:self.opusList tipText:NSLS(@"kNoOpus")];
-                [[self detailCell] setIsLoadingFeed:NO];
-            }
+            [self updateOpusList];
         }
             break;
         default:
@@ -319,7 +323,7 @@
                   type:(FeedListType)type
             resultCode:(NSInteger)resultCode
 {
-    [[self detailCell] setIsLoadingFeed:NO];
+//    [[self detailCell] setIsLoadingFeed:NO];
     if (resultCode == 0) {
         switch (type) {
             case FeedListTypeUserFavorite: {
