@@ -6834,6 +6834,14 @@
 		EAB94F4E1772D5B10038DB7A /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
 		EABD0FFB17376A9B00A2F930 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC81C0C172B983100ED78DE /* UIImage+fixOrientation.m */; };
+		EAD13B6717DDAF0700764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
+		EAD13B6817DDAF0700764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
+		EAD13B6917DDAF0700764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
+		EAD13B6A17DDAF0800764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
+		EAD13B7117DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */; };
+		EAD13B7217DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */; };
+		EAD13B7317DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */; };
+		EAD13B7417DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */; };
 		EAD67187174E04E200221248 /* LittleGeeHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2051B461739E15E00403DBD /* LittleGeeHomeController.m */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 		EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */; };
@@ -9844,6 +9852,8 @@
 		EACAB8C7173B804E0059B1C7 /* default_config_DreamLockscreen.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config_DreamLockscreen.pb; sourceTree = "<group>"; };
 		EACAB8C8173B804E0059B1C7 /* default_config_DreamLockscreenFree_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_DreamLockscreenFree_version.txt; sourceTree = "<group>"; };
 		EACAB8C9173B804E0059B1C7 /* default_config_DreamLockscreenFree.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config_DreamLockscreenFree.pb; sourceTree = "<group>"; };
+		EAD13B6617DDAF0700764FFB /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right@2x.png"; sourceTree = "<group>"; };
+		EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contest_prize_custom@2x.png"; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_badge@2x.png"; sourceTree = "<group>"; };
@@ -11266,6 +11276,7 @@
 				A4D8F91717DB08160085061F /* contest_prize_2@2x.png */,
 				A4D8F91817DB08160085061F /* contest_prize_3@2x.png */,
 				A4D8F91917DB08160085061F /* contest_prize_special@2x.png */,
+				EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */,
 				A4D8F91A17DB08160085061F /* contest_report@2x.png */,
 				A4D8F91B17DB08160085061F /* guessed@2x.png */,
 			);
@@ -11332,6 +11343,7 @@
 		A4D8F93D17DB08160085061F /* flag */ = {
 			isa = PBXGroup;
 			children = (
+				EAD13B6617DDAF0700764FFB /* right@2x.png */,
 				A49C9CC417DB2F4600C9F39F /* gallary_filter2@2x.png */,
 				A49C9CC517DB2F4600C9F39F /* gallary_search2@2x.png */,
 				A49C9CB517DB2D0700C9F39F /* gallary_filter@2x.png */,
@@ -17926,6 +17938,8 @@
 				A49C9CBD17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
 				A49C9CC817DB2F4600C9F39F /* gallary_filter2@2x.png in Resources */,
 				A49C9CCC17DB2F4600C9F39F /* gallary_search2@2x.png in Resources */,
+				EAD13B6917DDAF0700764FFB /* right@2x.png in Resources */,
+				EAD13B7317DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18796,6 +18810,8 @@
 				A49C9CBC17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
 				A49C9CC717DB2F4600C9F39F /* gallary_filter2@2x.png in Resources */,
 				A49C9CCB17DB2F4600C9F39F /* gallary_search2@2x.png in Resources */,
+				EAD13B6817DDAF0700764FFB /* right@2x.png in Resources */,
+				EAD13B7217DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19648,6 +19664,8 @@
 				A49C9CBB17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
 				A49C9CC617DB2F4600C9F39F /* gallary_filter2@2x.png in Resources */,
 				A49C9CCA17DB2F4600C9F39F /* gallary_search2@2x.png in Resources */,
+				EAD13B6717DDAF0700764FFB /* right@2x.png in Resources */,
+				EAD13B7117DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20470,6 +20488,8 @@
 				A49C9CBE17DB2D0700C9F39F /* gallary_search@2x.png in Resources */,
 				A49C9CC917DB2F4600C9F39F /* gallary_filter2@2x.png in Resources */,
 				A49C9CCD17DB2F4600C9F39F /* gallary_search2@2x.png in Resources */,
+				EAD13B6A17DDAF0800764FFB /* right@2x.png in Resources */,
+				EAD13B7417DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
