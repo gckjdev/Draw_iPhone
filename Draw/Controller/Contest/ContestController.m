@@ -286,13 +286,18 @@
     UIWebView *webView = [[[UIWebView alloc] initWithFrame:CGRectFromCGSize(StatementViewSize)] autorelease];
     webView.scalesPageToFit = YES;
     CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kContestRule") infoView:webView hasEdgeSpace:NO];
+    
     [infoView showInView:self.view];
-//    [webView updateHeight:(StatementViewSize.height - (ISIPAD ? 10 : 5))];    
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:contest.statementUrl]];
     
     [webView loadRequest:request];
-
+    [self setCanDragBack:NO];
+    __block ContestController * cp = self;
+    [infoView setCloseHandler:^{
+        PPDebug(@"close rule info view");
+        [cp setCanDragBack:YES];
+    }];
 }
 
 - (void)dealloc {
