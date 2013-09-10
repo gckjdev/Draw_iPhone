@@ -42,9 +42,12 @@
 @property (retain, nonatomic) IBOutlet UILabel *showNumberTipsLabel;
 @property (retain, nonatomic) IBOutlet UILabel *numberLabel;
 @property (retain, nonatomic) IBOutlet UIButton *okButton;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 @property (retain, nonatomic) IBOutlet UIButton *completeUserInfoButton;
 
 @property (retain, nonatomic) IBOutlet UIView *bottomView;
+
+- (IBAction)clickClose:(id)sender;
 
 - (IBAction)clickForgot:(id)sender;
 - (IBAction)clickSubmitLogin:(id)sender;

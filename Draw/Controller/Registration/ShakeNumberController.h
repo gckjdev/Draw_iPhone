@@ -36,5 +36,6 @@
 
 - (IBAction)clickShakeButton:(id)sender;
 - (IBAction)clickTakeNumberButton:(id)sender;
+- (IBAction)clickClose:(id)sender;
 
 @end

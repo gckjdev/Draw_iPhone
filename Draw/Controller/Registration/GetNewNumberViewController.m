@@ -51,6 +51,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
+    self.closeButton.hidden = YES; // disable this
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.bottomView.backgroundColor = OPAQUE_COLOR(139, 234, 204);
@@ -81,6 +82,7 @@
 
 - (void)dealloc {
     
+    PPRelease(_closeButton);
     PPRelease(_xiaojiNumber);
     PPRelease(_password);
     
@@ -331,6 +333,11 @@
 - (IBAction)dismiss:(id)sender
 {
     [CommonDialog showSimpleDialog:NSLS(@"kTakeNumberSuccess")  inView:self.view.superview];
+    [[UserService defaultService] dismissGetNumberView];
+}
+
+- (IBAction)clickClose:(id)sender
+{
     [[UserService defaultService] dismissGetNumberView];
 }
 
