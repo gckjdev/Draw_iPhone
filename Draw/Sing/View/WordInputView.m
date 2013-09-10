@@ -263,6 +263,9 @@
     float widthGap = BUTTON_WIDTH_GAP;
     float heigtGap = BUTTON_HEIGHT_GAP;
     
+    NSRange range = [_candidates rangeOfString:[NSString stringWithFormat:@"%c", BOMB_CHAR]];
+    BOOL bomb = (range.location != NSNotFound);
+    
     for (int index = 0; index < [_candidates length]; index++) {
         NSString *ch = [_candidates substringWithRange:NSMakeRange(index, 1)];
         
@@ -285,7 +288,12 @@
 
         [button setBackgroundImage:_candidateImage forState:UIControlStateNormal];
         
-        [self performSelector:@selector(addCandidateButton:) withObject:button afterDelay:(index * 0.1)];
+        if (bomb) {
+            [[self class] cancelPreviousPerformRequestsWithTarget:self];
+            [_candidateView addSubview:button];
+        }else{
+            [self performSelector:@selector(addCandidateButton:) withObject:button afterDelay:(index * 0.1)];
+        }
     }
     
     width = width * _column  + BUTTON_WIDTH_GAP * (_column - 1);

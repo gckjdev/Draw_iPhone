@@ -234,4 +234,14 @@
     }
 }
 
++ (int)getCountHappyModeAwardOnce{
+    
+    return NUM_COUNT_AWARD_ONCE;
+}
+
++ (int)getCountGeniusModeAwardOnce{
+    
+    return NUM_COUNT_AWARD_ONCE;
+}
+
 @end

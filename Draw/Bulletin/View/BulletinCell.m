@@ -12,11 +12,12 @@
 #import "GameApp.h"
 #import "TimeUtils.h"
 #import "JumpHandler.h"
+#import "UILabel+Extend.h"
 
 #define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?80:40)
-#define MAX_CONTENT_LABEL_HEIGHT    ([DeviceDetection isIPAD]?900:450)
+#define MAX_CONTENT_LABEL_HEIGHT  ([DeviceDetection isIPAD]?900:450)
 #define CONTENT_FONT_SIZE   ([DeviceDetection isIPAD]?26:13)
-#define CONTENT_LABEL_WIDTH ([DeviceDetection isIPAD]?330:165)
+#define CONTENT_LABEL_WIDTH ([DeviceDetection isIPAD]?426:205)
 
 @implementation BulletinCell
 
@@ -47,20 +48,20 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     return CGSizeMake(size.width, size.height + TOTAL_SEPERATOR);
 }
 
-- (void)resize
-{
-    CGSize size = [BulletinCell cellSizeForContent:self.messageLabel.text];
-    
-    [self.messageLabel updateHeight:(size.height - TOTAL_SEPERATOR)];
-        
-    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, size.height)];
-}
+//- (void)resize
+//{
+//    CGSize size = [BulletinCell cellSizeForContent:self.messageLabel.text];
+//    
+//    [self.messageLabel updateHeight:(size.height - TOTAL_SEPERATOR)];
+//        
+//    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, size.height)];
+//}
 
 - (void)initView
 {
     [self setAccessoryType:UITableViewCellAccessoryNone];
     [self.customAccessoryImageView setImage:[[GameApp getImageManager] bulletinAccessoryImage]];
-    [self resize];
+//    [self resize];
 }
 
 + (NSString*)getCellIdentifier
@@ -82,9 +83,17 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
 {
     PPDebug(@"bulletin: %@", bulletin.message);
     [self.messageLabel setText:bulletin.message];
-    SET_VIEW_ROUND_CORNER(self);
-    self.layer.borderWidth = (ISIPAD ? 4 : 2);
-    self.layer.borderColor = [COLOR_YELLOW CGColor];
+    
+    CGFloat oldHeight = self.messageLabel.frame.size.height;
+    CGSize constrainedSize = CGSizeMake(self.messageLabel.frame.size.width, MAX_CONTENT_LABEL_HEIGHT);
+    [self.messageLabel wrapTextWithConstrainedSize:constrainedSize];
+    
+    CGFloat delta = self.messageLabel.frame.size.height - oldHeight;
+    [self.contentHolderView updateHeight:(self.contentHolderView.frame.size.height + delta)];
+    
+    SET_VIEW_ROUND_CORNER(self.contentHolderView);
+    self.contentHolderView.layer.borderWidth = (ISIPAD ? 4 : 2);
+    self.contentHolderView.layer.borderColor = [COLOR_YELLOW CGColor];
     
     [self.newBulletinFlag setHidden:bulletin.hasRead];
 
@@ -103,6 +112,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     [_dateLabel release];
     [_newBulletinFlag release];
     [_customAccessoryImageView release];
+    [_contentHolderView release];
     [super dealloc];
 }
 @end

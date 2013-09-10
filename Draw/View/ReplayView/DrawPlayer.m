@@ -131,25 +131,25 @@
     [self removeFromSuperview];
 }
 
-- (void)playToIndex:(NSNumber *)index
+- (void)playToIndex:(NSInteger)index
 {
     [(PPViewController *)[self theViewController] hideActivity];
     NSInteger status = self.showView.status;
 //    [self.showView setStatus:Pause];
-    [self.showView showToIndex:[index integerValue]];
+    [self.showView showToIndex:index];
     if (status == Playing) {
         [self play];
     }else{
         [self pause];
     }
     [self.playButton setSelected:(status == Playing)];
-
+    [self.showView performSelector:@selector(setDelegate:) withObject:self afterDelay:0.2];
 }
 
 - (IBAction)changeProcess:(CustomSlider *)sender {
     [(PPViewController *)[self theViewController] showActivityWithText:NSLS(@"kBuffering")];
     NSInteger index = sender.value;
-    [self performSelector:@selector(playToIndex:) withObject:@(index) afterDelay:0.1];
+    [self playToIndex:index];
 }
 
 - (IBAction)changeSpeed:(CustomSlider *)sender {
@@ -220,8 +220,10 @@
 {
     if (![self.playSlider isOnTouch]) {
         [self.playSlider setValue:actionIndex];
+    }else{
+        showDrawView.delegate = nil;
     }
-
+    
 }
 
 - (void)didPlayDrawView:(ShowDrawView *)showDrawView

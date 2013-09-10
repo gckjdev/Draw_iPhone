@@ -279,6 +279,17 @@
 //    
 //    i++;
     
+//    "kGuessRulesDetail" = "欢乐模式\n规则：参加需花%d金币\n奖励：每猜中%d副作品则可以获得%d金币\n\n天才模式\n规则：参加需花%d金币\n奖励：连续猜中%d副作品可获得%d金币奖励，连续猜中%d副可获得%d金币奖励，连续猜中%d副可获得%d金币奖励，以此类推\n\n比赛模式\n规则：参加需花%d金币\n奖励：当天比赛总奖金是70*N，其中N是参赛人数。第1名获得金币＝总奖金*50%，第2到第4名每人获得金币＝总奖金*30%/3，第5名到第10名每人获得金币＝总奖金*10%/6，10名以后前15%的人每人获得的金币＝总奖金*10%/(N*15%-10)";
+    
+//    NSString *message = [NSString stringWithFormat:NSLS(@"kGuessRulesDetail"),
+//                        [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
+//                        [GuessManager getCountHappyModeAwardOnce],
+//                        [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce]
+//                                            mode:PBUserGuessModeGuessModeHappy],
+//                        [GuessManager getDeductCoins:PBUserGuessModeGuessModeGenius],
+//                        [GuessManager getCountGeniusModeAwardOnce],
+//                           ];
+    
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessRules") message:NSLS(@"kGuessRulesDetail") style:CommonDialogStyleCross];
     dialog.messageLabel.font = [UIFont systemFontOfSize:(ISIPAD ? 28 : 14)];
     [dialog showInView:self.view];
