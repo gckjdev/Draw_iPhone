@@ -131,12 +131,12 @@
     [self removeFromSuperview];
 }
 
-- (void)playToIndex:(NSInteger)index
+- (void)playToIndex:(NSNumber *)index
 {
     [(PPViewController *)[self theViewController] hideActivity];
     NSInteger status = self.showView.status;
-//    [self.showView setStatus:Pause];
-    [self.showView showToIndex:index];
+    [self.showView setStatus:Pause];
+    [self.showView showToIndex:[index integerValue]];
     if (status == Playing) {
         [self play];
     }else{
@@ -149,7 +149,9 @@
 - (IBAction)changeProcess:(CustomSlider *)sender {
     [(PPViewController *)[self theViewController] showActivityWithText:NSLS(@"kBuffering")];
     NSInteger index = sender.value;
-    [self playToIndex:index];
+    [self performSelector:@selector(playToIndex:) withObject:@(index) afterDelay:0.01];
+
+//    [self playToIndex:index];
 }
 
 - (IBAction)changeSpeed:(CustomSlider *)sender {

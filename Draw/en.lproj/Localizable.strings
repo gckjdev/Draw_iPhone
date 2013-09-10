@@ -1038,6 +1038,7 @@
 "kContestNotForUser" = "You are not in the contestant list for this contest. Cannot submit opus.";
 "kContestNotForUserSubmitNormal" = "You are not in the contestant list for this contest. Do you want to submit as normal opus?";
 "kAnounymousContestNick" = "Anounymous";
+"kContestThrowFlowerMsg" = "You have sent %d flowers and %d flowers left for this contest.";
 
 "kLoginXiaoji" = "Login";
 "kLoginXiaojiPlaceHolder" = "Enter Littlegee Number";

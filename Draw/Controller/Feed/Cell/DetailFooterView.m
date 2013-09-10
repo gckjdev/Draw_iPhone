@@ -74,7 +74,7 @@
         UIButton * button = [self reuseButtonWithTag:type frame:CGRectMake(x, 0, width, width) font:nil text:nil];
         x += width + space;
         [button setImage:[self imageForType:type] forState:UIControlStateNormal];
-        CGFloat inset = width*0.1;
+        CGFloat inset = width*0.15;
         [button setContentEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
         [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
     }

@@ -955,9 +955,9 @@
 "kContestRank" = "比赛作品";
 "kNoRankPlayer" = "暂时没有达人榜数据。";
 "kNoRankHistory" = "暂时没有总榜数据。";
-"kNoRankHot" = "暂时没有热榜数据。";
-"kNoRankNew" = "暂时没有最新数据。";
-"kNoData" = "暂时没有数据。";
+"kNoRankHot" = "暂时没有热榜数据";
+"kNoRankNew" = "暂时没有最新数据";
+"kNoData" = "暂无数据";
 
 "kRankPlayer" = "达人";
 "kRankHistory" = "年度";
@@ -1055,7 +1055,8 @@
 "kContestSubmitEndSubmitNormal" = "很遗憾，比赛提交作品时间已经截止了，你是否要提交为普通作品？";
 "kContestNotForUser" = "你不是本次比赛的指定参赛选手，无法参加比赛";
 "kContestNotForUserSubmitNormal" = "你不是本次比赛的指定参赛选手，是否要提交为普通作品？";
-"kAnounymousContestNick" = "比赛匿名用户";
+"kAnounymousContestNick" = "就不告诉你";
+"kContestThrowFlowerMsg" = "本次比赛你已送出%d朵鲜花，还剩余%d朵鲜花可以送出";
 
 "kLoginXiaoji" = "小吉登录";
 "kLoginXiaojiPlaceHolder" = "请输入小吉号码";

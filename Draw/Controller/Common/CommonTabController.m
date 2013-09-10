@@ -168,7 +168,8 @@
         [button setTitleColor:COLOR_COFFEE forState:UIControlStateSelected];
         
         //shadow offset
-        [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:nil];        
+        [button setShadowOffset:CGSizeMake(0,0) blur:0 shadowColor:[UIColor clearColor]];
+        [button.titleLabel setShadowOffset:CGSizeMake(0, 0)];
         index++;
     }
     [self clickTabButton:self.currentTabButton];
