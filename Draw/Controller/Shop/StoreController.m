@@ -132,10 +132,10 @@ typedef enum{
 }
 
 
-#define FRAME_BUTTON1 (ISIPAD ? CGRectMake(43, 216, 170, 61) : CGRectMake(4, 99, 78, 28))
-#define FRAME_BUTTON2 (ISIPAD ? CGRectMake(213, 216, 170, 61) : CGRectMake(82, 99, 78, 28))
-#define FRAME_BUTTON3 (ISIPAD ? CGRectMake(384, 216, 170, 61) : CGRectMake(160, 99, 78, 28))
-#define FRAME_BUTTON4 (ISIPAD ? CGRectMake(554, 216, 170, 61) : CGRectMake(238, 99, 78, 28))
+//#define FRAME_BUTTON1 (ISIPAD ? CGRectMake(43, 216, 170, 61) : CGRectMake(4, 99, 78, 28))
+//#define FRAME_BUTTON2 (ISIPAD ? CGRectMake(213, 216, 170, 61) : CGRectMake(82, 99, 78, 28))
+//#define FRAME_BUTTON3 (ISIPAD ? CGRectMake(384, 216, 170, 61) : CGRectMake(160, 99, 78, 28))
+//#define FRAME_BUTTON4 (ISIPAD ? CGRectMake(554, 216, 170, 61) : CGRectMake(238, 99, 78, 28))
 
 
 - (void)initTabButtons
@@ -145,6 +145,12 @@ typedef enum{
     UIImage *sImage = TOP_ROUND_CORNER_IMAGE_FROM_COLOR(COLOR_YELLOW);
 
     NSInteger count = [self tabCount];
+    
+    CGFloat width = self.tableViewBgImageView.frame.size.width/4;
+    CGFloat height = (ISIPAD ? 61 : 28);
+    CGFloat originX = self.tableViewBgImageView.frame.origin.x;
+    CGFloat originY = (ISIPAD ? 216 : 99);
+    CGRect rect;
     for (NSInteger i = 0; i < count; ++i) {
         NSInteger tabID = [self tabIDforIndex:i];
         UIButton *button = [self tabButtonWithTabID:tabID];
@@ -152,15 +158,8 @@ typedef enum{
         [button setBackgroundImage:sImage forState:UIControlStateSelected];
         [button setBackgroundColor:nil];
         
-        if (i==0) {
-            button.frame = FRAME_BUTTON1;
-        }else if (i == 1){
-            button.frame = FRAME_BUTTON2;
-        }else if (i == 2){
-            button.frame = FRAME_BUTTON3;
-        }else if (i == 3){
-            button.frame = FRAME_BUTTON4;
-        }
+        rect = CGRectMake(originX + i * width, originY, width, height);
+        [button setFrame:rect];
     }
 }
 
