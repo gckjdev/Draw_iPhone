@@ -46,11 +46,11 @@
 
 - (void)initCell
 {
-    [self.roomNameLabel setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
+//    [self.roomNameLabel setTextColor:[UIColor colorWithRed:62/255.0 green:43/255.0 blue:23/255.0 alpha:1.0]];
     
-    self.roomNameLabel.shadowColor = [UIColor whiteColor];
-    self.roomNameLabel.shadowOffset = CGSizeZero;
-    self.roomNameLabel.shadowBlur = 5.0f;
+//    self.roomNameLabel.shadowColor = [UIColor whiteColor];
+//    self.roomNameLabel.shadowOffset = CGSizeZero;
+//    self.roomNameLabel.shadowBlur = 5.0f;
 
 }
 

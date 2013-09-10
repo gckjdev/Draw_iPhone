@@ -27,6 +27,7 @@
 #import "GameApp.h"
 #import "UIImageView+Extend.h"
 #import "CommonDialog.h"
+#import "UILabel+Extend.h"
 
 #define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
 
@@ -62,18 +63,27 @@
 {
     self.detail = detail;
     PBGameUser* pbUser = [detail getUser];
-    [self.levelLabel setText:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
-    self.levelLabel.hidden = NO;
+//    [self.levelLabel setText:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
+//    self.levelLabel.hidden = NO;
     [self.nickNameLabel setText:pbUser.nickName];
     
+    CGSize constrainedSize = ISIPAD ? CGSizeMake(468, 45) : CGSizeMake(185, 19);
+    [self.nickNameLabel wrapTextWithConstrainedSize:constrainedSize];
+    [self.nickNameLabel updateCenterX:self.center.x];
+    [self.nickNameLabel updateCenterY:self.genderImageView.center.y];
+    
+    
+    CGFloat originX = self.nickNameLabel.frame.origin.x - (ISIPAD ? 4:2) - self.genderImageView.frame.size.width;
+    [self.genderImageView updateOriginX:originX];
+
     NSString *text = @"";
     
     if ([[[detail getUser] xiaojiNumber] length] > 0) {
         text = [text stringByAppendingString:[NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[detail getUser] xiaojiNumber]]];
+        text = [text stringByAppendingString:@"  "];
     }
     
     
-    text = [text stringByAppendingString:@"  "];
     text = [text stringByAppendingString:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
 
     if ([pbUser.signature length] > 0) {
@@ -82,10 +92,11 @@
     }
     
     self.signLabel.text = text;
-//    self.signLabel.shadowColor = [UIColor blackColor];
-//    self.signLabel.shadowOffset = CGSizeMake(1, 1);
     
-//    [self adjustSignatureLabel:self.signLabel WithText:[NSString stringWithFormat:@"lv.%d %@", pbUser.level, pbUser.signature]];
+    constrainedSize = (ISIPAD ? CGSizeMake(550, 75) : CGSizeMake(230, 42));
+    [self.signLabel wrapTextWithConstrainedSize:constrainedSize];
+    [self.signLabel updateCenterX:self.center.x];
+    [self.signLabel updateOriginY:self.signButton.frame.origin.y];
     
     if ([detail isPrivacyVisable]) {
         [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?pbUser.birthday:@"-")]];
@@ -101,8 +112,8 @@
     
     [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), ([pbUser hasLocation]?pbUser.location:@"-")]];
     
-    [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
-    [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
+//    [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
+//    [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
     
     self.basicDetailView.hidden = YES;
     
@@ -127,8 +138,7 @@
     }
     
     [self.blackListBtn setTitle:[detail blackUserBtnTitle] forState:UIControlStateNormal];
-    
-    [self adjustView:self.genderImageView toLabel:self.nickNameLabel];
+
     
     [self.segmentedControl setHidden:![detail hasFeedTab]];
     
@@ -174,9 +184,9 @@
     
     [self.avatarHolderView addSubview:_avatarView];
     
-    self.levelLabel.textColor = COLOR_WHITE;
+//    self.levelLabel.textColor = COLOR_WHITE;
     self.signLabel.textColor = COLOR_WHITE;
-    self.xiaojiLabel.textColor = COLOR_WHITE;
+//    self.xiaojiLabel.textColor = COLOR_WHITE;
     
 //    self.levelLabel.shadowColor = [UIColor blackColor];
 //    self.signLabel.shadowColor = [UIColor blackColor];
@@ -186,13 +196,13 @@
 //    self.signLabel.shadowOffset = CGSizeMake(1, 1);
 //    self.xiaojiLabel.shadowOffset = CGSizeMake(1, 1);
     
-    if ([[[detail getUser] xiaojiNumber] length] == 0) {
-        [self.levelLabel updateCenterX:self.center.x];
-        self.xiaojiLabel.text = @"";
-    }
-    else{
-        self.xiaojiLabel.text = [NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[detail getUser] xiaojiNumber]];        
-    }
+//    if ([[[detail getUser] xiaojiNumber] length] == 0) {
+//        [self.levelLabel updateCenterX:self.center.x];
+//        self.xiaojiLabel.text = @"";
+//    }
+//    else{
+//        self.xiaojiLabel.text = [NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[detail getUser] xiaojiNumber]];        
+//    }
     
     [self.seperator1 setBackgroundColor:BG_COLOR];
     [self.seperator2 setBackgroundColor:COLOR_ORANGE];
@@ -249,23 +259,6 @@
     }
 }
 
-- (void)adjustView:(UIView*)view
-           toLabel:(UILabel*)label
-{
-    NSString* text = label.text;
-    if (text == nil || text.length == 0) {
-        [view setCenter:label.center];
-        return;
-    }
-    CGSize size = [text sizeWithFont:label.font];
-    if (size.width < label.frame.size.width) {
-        CGPoint orgPoint = CGPointMake(label.frame.origin.x - view.frame.size.width/2 , label.center.y);
-        orgPoint.x += (label.frame.size.width - size.width)/2 - (ISIPAD ? 4 : 2);
-        [view setCenter:orgPoint];
-    } else {
-        [view setCenter:CGPointMake(label.frame.origin.x-view.frame.size.width/2, view.center.y)];
-    }
-}
 #define MAX_HEIGHT (ISIPAD?81:36)
 #define MAX_CONSTRAIN_HEIGHT 99999
 //#define MAX_SIGN_FRAME (ISIPAD?CGRectMake(84, 70, 600, 81):CGRectMake(46, 31, 229, 36))
@@ -287,7 +280,7 @@
 
 + (float)getCellHeight
 {
-    return ([DeviceDetection isIPAD]?1694:706);
+    return ([DeviceDetection isIPAD]?1571:706);
 }
 
 + (NSString*)getCellIdentifier
@@ -296,7 +289,7 @@
     
 }
 
-#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 1092) : ([DeviceDetection isIPhone5] ? CGPointMake(160, 460) : CGPointMake(160, 455)))
+#define CAROUSEL_CENTER (ISIPAD ? CGPointMake(384, 992) : ([DeviceDetection isIPhone5] ? CGPointMake(160, 460) : CGPointMake(160, 455)))
 
 #define TAB_FONT    (ISIPAD?22:11)
 
@@ -347,7 +340,7 @@
     [_carousel release];
     [_nickNameLabel release];
     [_signLabel release];
-    [_levelLabel release];
+//    [_levelLabel release];
     [_birthLabel release];
     [_zodiacLabel release];
     [_bloodTypeLabel release];
@@ -355,9 +348,9 @@
     [_avatarView release];
     [_basicDetailView release];
     [_genderImageView release];
-    [_backgroundImageView release];
-    [_fanCountLabel release];
-    [_followCountLabel release];
+//    [_backgroundImageView release];
+//    [_fanCountLabel release];
+//    [_followCountLabel release];
     [_editButton release];
     [_drawToButton release];
     [_chatButton release];
@@ -382,7 +375,8 @@
     [_seperator3 release];
     [_hisOpusLabel release];
     [_snsTipLabel release];
-    [_xiaojiLabel release];
+//    [_xiaojiLabel release];
+    [_signButton release];
     [super dealloc];
 }
 

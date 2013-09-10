@@ -115,7 +115,7 @@
 
 + (id)judgerScoreViewWithContest:(Contest *)contest opus:(ContestFeed *)opus
 {
-    CGRect frame = CGRectMake(0, 0, V(260), V(300));
+    CGRect frame = CGRectMake(0, 0, V(260), V(270));
     JudgerScoreView *view = [[JudgerScoreView alloc] initWithFrame:frame];
     view.contest = contest;
     view.opus = opus;
@@ -126,10 +126,12 @@
 - (void)showInView:(UIView *)view
 {
     [self.infoView showInView:view];
+    [(PPViewController *) [self theViewController] setCanDragBack:NO];
 }
 
 - (void)dismiss
 {
+    [(PPViewController *) [self theViewController] setCanDragBack:YES];
     [self.infoView dismiss];
 }
 

@@ -14,7 +14,7 @@
 #import "JumpHandler.h"
 #import "UILabel+Extend.h"
 
-#define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?80:40)
+#define TOTAL_SEPERATOR ([DeviceDetection isIPAD]?85:42)
 #define MAX_CONTENT_LABEL_HEIGHT  ([DeviceDetection isIPAD]?900:450)
 #define CONTENT_FONT_SIZE   ([DeviceDetection isIPAD]?26:13)
 #define CONTENT_LABEL_WIDTH ([DeviceDetection isIPAD]?426:205)
@@ -89,7 +89,7 @@ AUTO_CREATE_VIEW_BY_XIB(BulletinCell)
     [self.messageLabel wrapTextWithConstrainedSize:constrainedSize];
     
     CGFloat delta = self.messageLabel.frame.size.height - oldHeight;
-    [self.contentHolderView updateHeight:(self.contentHolderView.frame.size.height + delta)];
+    [self.contentHolderView updateHeight:(self.contentHolderView.frame.size.height + delta + (ISIPAD ? 5 : 2))];
     
     SET_VIEW_ROUND_CORNER(self.contentHolderView);
     self.contentHolderView.layer.borderWidth = (ISIPAD ? 4 : 2);
