@@ -282,5 +282,6 @@ typedef enum{
 
 + (int)maxTakeNumberCount;
 + (int)getFeedCarouselType;
++ (BOOL)getGuessContestLocalNotificationEnabled;
 
 @end

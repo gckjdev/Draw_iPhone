@@ -1114,4 +1114,9 @@
     return [MobClickUtils getIntValueByKey:@"FEED_CAROUSEL_TYPE" defaultValue:8];
 }
 
++ (BOOL)getGuessContestLocalNotificationEnabled{
+    return [MobClickUtils getBoolValueByKey:@"GUESS_CONTEST_LOCAL_NOTIFICATION_ENABLED" defaultValue:YES];
+
+}
+
 @end

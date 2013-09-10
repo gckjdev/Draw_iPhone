@@ -261,10 +261,8 @@ NSString* GlobalGetBoardServerURL()
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    // Show Root View
-//    self.window = [[CPMotionRecognizingWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+    // TODO check benson
+    [LocalNotificationUtil cancelAllLocalNotifications];
     
     srand(time(0));
     
@@ -374,17 +372,11 @@ NSString* GlobalGetBoardServerURL()
     
     [UIUtils checkAppVersion];
     
-#if DEBUG
-    
-    // TODO check benson
-    [LocalNotificationUtil cancelAllLocalNotifications];
-    
     // 比赛的local notification通知
-    [self scheduleLocalNotificationForGuessContest];
+    if ([ConfigManager getGuessContestLocalNotificationEnabled]) {
+        [self scheduleLocalNotificationForGuessContest];
+    }
     
-#endif
-    
-        
     return YES;
 }
 
