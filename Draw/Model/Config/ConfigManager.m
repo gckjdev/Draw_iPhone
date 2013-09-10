@@ -760,6 +760,11 @@
 
 + (BOOL)freeCoinsEnabled
 {
+    
+#if DEBUG
+    return YES;
+#endif
+    
     if ([ConfigManager isInReviewVersion] == NO &&
         ([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){

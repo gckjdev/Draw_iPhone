@@ -1955,7 +1955,7 @@
 "kScrollToFirst" = "You have Scrolled to the first opus!";
 "kScrollToEnd" = "You have Scrolled to the last opus!";
 "kBGLayer" = "Stroke";
-"kMainLayer" = "Fill";
+"kMainLayer" = "Color";
 "kNumLayerName" = "Layer %d";
 
 "kNewLayerName" = "Layer";
@@ -1978,6 +1978,10 @@
 "kRating" = "Rating...";
 "kOldDrawBG" = "Wood style";
 "kExhibition" = "Exhibition";
+
+"kLayerExplain" = "Layer Usage";
+"kLayerExplainContent" = "1. Stroke layer: for the scratch strokes, paint finished can be erased; also available as painting the background. \n2. Colored layer: do not explain. "
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 

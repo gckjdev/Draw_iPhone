@@ -24,8 +24,8 @@
 #import "DrawHolderView.h"
 #import "UIImageExt.h"
 #import "UIImageView+Extend.h"
-
-
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 @interface ChatDetailCell()
 {
@@ -268,9 +268,20 @@
     if (!_isReceive) {
         avatar = [[UserManager defaultManager] avatarURL];
         isMale = [[[UserManager defaultManager] gender] isEqualToString:@"m"];
+        self.avatarView.delegate = nil;
+        self.avatarView.userId = nil;        
+    }else{
+        self.avatarView.delegate = self;
+        self.avatarView.userId = [messageStat friendId];
     }
     [self.avatarView setAvatarUrl:avatar gender:isMale];
-    
+}
+
+- (void)didClickOnAvatar:(NSString*)userId
+{
+    MessageStat *stat = self.messageStat;
+    ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:stat.friendId avatar:stat.friendAvatar nickName:stat.friendNickName];
+    [UserDetailViewController presentUserDetail:detail inViewController:(id)[self theViewController]];
 }
 
 - (void)updateViewsWithShowTime:(BOOL)showTime
