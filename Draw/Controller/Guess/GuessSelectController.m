@@ -74,23 +74,82 @@
     
     [self.titleView setTarget:self];
     
+    NSString *title = nil;
+    NSString *rightButtonTitle = nil;
     if (_mode == PBUserGuessModeGuessModeHappy) {
-        [self.titleView setTitle:NSLS(@"kHappGuessMode")];
-        [self.titleView setRightButtonTitle:NSLS(@"kRestart")];
-        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
+        title = NSLS(@"kHappGuessMode");
+        rightButtonTitle = NSLS(@"kRestart");
+
     }else if(_mode == PBUserGuessModeGuessModeGenius){
-        [self.titleView setTitle:NSLS(@"kGeniusGuessMode")];
-        [self.titleView setRightButtonTitle:NSLS(@"kRestart")];
-        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
+        title = NSLS(@"kGeniusGuessMode");
+        rightButtonTitle = NSLS(@"kRestart");
+        
     }else if(_mode == PBUserGuessModeGuessModeContest){
-        [self.titleView setTitle:NSLS(@"kContestGuessMode")];
-        [self.titleView setRightButtonTitle:NSLS(@"kRanking")];
-        [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
+        title = NSLS(@"kContestGuessMode");
+        rightButtonTitle = NSLS(@"kRanking");
     }
+    
+    [self.titleView setTitle:title];
+    [self.titleView setRightButtonTitle:rightButtonTitle];
+    [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
     
     self.view.backgroundColor = COLOR_WHITE;
     
     [GuessManager deductCoins:_mode contestId:_contest.contestId force:NO];
+    
+    
+    [self showRuleMessageWithTitle:title];
+
+}
+
+#define KEY_NO_REMIND_HAPPY_GUESS_RULE @"KEY_NO_REMIND_HAPPY_GUESS_RULE"
+#define KEY_NO_REMIND_GENIUS_GUESS_RULE @"KEY_NO_REMIND_GENIUS_GUESS_RULE"
+#define KEY_NO_REMIND_CONTEST_GUESS_RULE @"KEY_NO_REMIND_CONTEST_GUESS_RULE"
+
+- (void)showRuleMessageWithTitle:(NSString *)title{
+    
+    NSString *message = @"";
+    NSString *key = @"";
+    if (_mode == PBUserGuessModeGuessModeHappy) {
+        message = [NSString stringWithFormat:NSLS(@"kHappyGuessRulesDetil"),
+                   [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
+                   [GuessManager getCountHappyModeAwardOnce],
+                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy]];
+        key = KEY_NO_REMIND_HAPPY_GUESS_RULE;
+    }else if(_mode == PBUserGuessModeGuessModeGenius){
+        message = [NSString stringWithFormat:NSLS(@"kGeniusGuessRulesDetil"),
+                   [GuessManager getDeductCoins:PBUserGuessModeGuessModeGenius],
+                   [GuessManager getCountGeniusModeAwardOnce],
+                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeGenius],
+                   
+                   [GuessManager getCountGeniusModeAwardOnce] * 2,
+                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 2 mode:PBUserGuessModeGuessModeGenius],
+                   
+                   [GuessManager getCountGeniusModeAwardOnce] * 3,
+                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 3 mode:PBUserGuessModeGuessModeGenius]];
+        key = KEY_NO_REMIND_GENIUS_GUESS_RULE;
+
+    }else if(_mode == PBUserGuessModeGuessModeContest){
+        message = [NSString stringWithFormat:NSLS(@"kContestGuessRulesDetil"),
+                   [GuessManager getDeductCoins:PBUserGuessModeGuessModeContest]];
+        key = KEY_NO_REMIND_CONTEST_GUESS_RULE;
+    }
+    
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:key] != nil) {
+        return;
+    }
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title message:message style:CommonDialogStyleDoubleButton];
+    [dialog.oKButton setTitle:NSLS(@"kNoMoreShowIt") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (void)viewDidUnload {
