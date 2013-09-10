@@ -698,6 +698,7 @@ enum {
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     [[FriendService defaultService] getFriendList:tabID
                                            offset:tab.offset 
