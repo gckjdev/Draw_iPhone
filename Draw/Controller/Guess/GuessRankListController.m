@@ -211,6 +211,7 @@
 
 - (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode{
     
+    [self hideActivity];
     if (resultCode == 0) {
         PPDebug(@"list count = %d", [list count]);
         [self finishLoadDataForTabID:self.currentTab.tabID resultList:list];
@@ -276,7 +277,7 @@ typedef enum{
     
     TableTab *tab = [_tabManager tabForID:tabID];
     NSString *contestId = nil;
-    
+    [self showActivityWithText:NSLS(@"kLoading")];
     switch (tabID) {
         case TabTypeGeniusHot:
             [[GuessService defaultService] getGuessRankListWithType:HOT_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
@@ -302,6 +303,7 @@ typedef enum{
             break;
             
         default:
+            [self hideActivity];
             break;
     }
 }
