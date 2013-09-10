@@ -215,7 +215,7 @@
 - (IBAction)clickTakeNumber:(id)sender
 {
     if ([[UserManager defaultManager] incAndCheckIsExceedMaxTakeNumber] == YES){
-        POSTMSG(@"kExceedMaxTakeNumber");
+        POSTMSG(NSLS(@"kExceedMaxTakeNumber"));
         return;
     }
     
