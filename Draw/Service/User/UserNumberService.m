@@ -12,6 +12,11 @@
 #import "StringUtil.h"
 #import "UIDevice+IdentifierAddition.h"
 
+
+#define GET_NUMBER_TYPE_NORMAL      1
+#define GET_NUMBER_TYPE_SHAKE       2
+
+
 @implementation UserNumberService
 
 static UserNumberService* _defaultUserService;
@@ -32,10 +37,13 @@ static UserNumberService* _defaultUserService;
         return;
     }
     
+    int type = [[UserManager defaultManager] isOldUserWithoutXiaoji] ? GET_NUMBER_TYPE_SHAKE : GET_NUMBER_TYPE_NORMAL;
+    
     dispatch_async(workingQueue, ^{
 
         NSDictionary* para = @{ PARA_REMOVE_OLD_NUMBER : @(0),
-                                PARA_SET_USER_NUMBER : @(1) };
+                                PARA_SET_USER_NUMBER : @(1),
+                                PARA_TYPE : @(type)};
 
         GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
                                                                              parameters:para
@@ -56,8 +64,6 @@ static UserNumberService* _defaultUserService;
     });
 }
 
-#define GET_NUMBER_TYPE_NORMAL      1
-#define GET_NUMBER_TYPE_SHAKE       2
 
 - (void)getOneNumber:(int)type block:(UserNumberServiceResultBlock)block
 {
@@ -70,7 +76,8 @@ static UserNumberService* _defaultUserService;
     dispatch_async(workingQueue, ^{
         
         NSDictionary* para = @{ PARA_REMOVE_OLD_NUMBER : @(1),
-                                PARA_SET_USER_NUMBER : @(0) };
+                                PARA_SET_USER_NUMBER : @(0),
+                                PARA_TYPE : @(type) };
         
         GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
                                                                            parameters:para

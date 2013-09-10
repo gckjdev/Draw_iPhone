@@ -6850,6 +6850,18 @@
 		EAD13B7217DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */; };
 		EAD13B7317DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */; };
 		EAD13B7417DDAF4000764FFB /* contest_prize_custom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */; };
+		EAD13B7B17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */; };
+		EAD13B7C17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */; };
+		EAD13B7D17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */; };
+		EAD13B7E17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */; };
+		EAD13B7F17DECFB700764FFB /* orange_loading_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7A17DECFB700764FFB /* orange_loading_full@2x.png */; };
+		EAD13B8017DECFB700764FFB /* orange_loading_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7A17DECFB700764FFB /* orange_loading_full@2x.png */; };
+		EAD13B8117DECFB700764FFB /* orange_loading_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7A17DECFB700764FFB /* orange_loading_full@2x.png */; };
+		EAD13B8217DECFB700764FFB /* orange_loading_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B7A17DECFB700764FFB /* orange_loading_full@2x.png */; };
+		EAD13B8A17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
+		EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
+		EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
+		EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
 		EAD67187174E04E200221248 /* LittleGeeHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2051B461739E15E00403DBD /* LittleGeeHomeController.m */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 		EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */; };
@@ -9864,6 +9876,10 @@
 		EACAB8C9173B804E0059B1C7 /* default_config_DreamLockscreenFree.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config_DreamLockscreenFree.pb; sourceTree = "<group>"; };
 		EAD13B6617DDAF0700764FFB /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right@2x.png"; sourceTree = "<group>"; };
 		EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contest_prize_custom@2x.png"; sourceTree = "<group>"; };
+		EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_loading_empty@2x.png"; sourceTree = "<group>"; };
+		EAD13B7A17DECFB700764FFB /* orange_loading_full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_loading_full@2x.png"; sourceTree = "<group>"; };
+		EAD13B8817DECFE300764FFB /* OrangeLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeLoadingView.h; sourceTree = "<group>"; };
+		EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeLoadingView.m; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_badge@2x.png"; sourceTree = "<group>"; };
@@ -13493,6 +13509,7 @@
 		CA103D9F1509A56100F60C03 /* Core-Utils-View */ = {
 			isa = PBXGroup;
 			children = (
+				EAD13B7817DECFB700764FFB /* OrangeLoadingView */,
 				A4C9E04217A61B6500DE982F /* KxMenu */,
 				A4EC5ABD178FFE820085031F /* ImageView */,
 				C206FFC1178034450033CF63 /* PSCollectionView */,
@@ -16878,6 +16895,17 @@
 			path = Statistic;
 			sourceTree = "<group>";
 		};
+		EAD13B7817DECFB700764FFB /* OrangeLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */,
+				EAD13B7A17DECFB700764FFB /* orange_loading_full@2x.png */,
+				EAD13B8817DECFE300764FFB /* OrangeLoadingView.h */,
+				EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */,
+			);
+			path = OrangeLoadingView;
+			sourceTree = "<group>";
+		};
 		EAE5718A16FC6ACB000AFADA /* Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -17954,6 +17982,8 @@
 				A457BAEF17DECA5B00964088 /* self_detail_ingot_btn_bg@2x.png in Resources */,
 				A457BAF317DECA5B00964088 /* user_detail_edit1@2x.png in Resources */,
 				A457BAF717DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
+				EAD13B7D17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
+				EAD13B8117DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18828,6 +18858,8 @@
 				A457BAEE17DECA5B00964088 /* self_detail_ingot_btn_bg@2x.png in Resources */,
 				A457BAF217DECA5B00964088 /* user_detail_edit1@2x.png in Resources */,
 				A457BAF617DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
+				EAD13B7C17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
+				EAD13B8017DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19684,6 +19716,8 @@
 				A457BAED17DECA5B00964088 /* self_detail_ingot_btn_bg@2x.png in Resources */,
 				A457BAF117DECA5B00964088 /* user_detail_edit1@2x.png in Resources */,
 				A457BAF517DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
+				EAD13B7B17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
+				EAD13B7F17DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20510,6 +20544,8 @@
 				A457BAF017DECA5B00964088 /* self_detail_ingot_btn_bg@2x.png in Resources */,
 				A457BAF417DECA5B00964088 /* user_detail_edit1@2x.png in Resources */,
 				A457BAF817DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
+				EAD13B7E17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
+				EAD13B8217DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21342,6 +21378,7 @@
 				EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5917D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
+				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22146,6 +22183,7 @@
 				EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
+				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22956,6 +22994,7 @@
 				EA7100D017D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5717D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02A17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
+				EAD13B8A17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23740,6 +23779,7 @@
 				EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */,
 				EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
+				EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24261,8 +24301,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9F759ADB-6119-4EE7-8646-4286ECE3B7DC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9F759ADB-6119-4EE7-8646-4286ECE3B7DC";
+				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -24271,7 +24311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -24322,7 +24362,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9BF68064-1DE4-44C5-A3A6-74D2CA30E46C";
+				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CBDC0CEB-E8B4-44D4-A03E-93B8437A27BD";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

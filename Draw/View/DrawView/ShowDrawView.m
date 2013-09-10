@@ -491,7 +491,7 @@
 }
 
 
-#define LEVEL_TIMES 1500
+#define LEVEL_TIMES 1000
 
 - (void)setDrawActionList:(NSMutableArray *)drawActionList
 {

@@ -255,5 +255,10 @@
     }];
 }
 
+- (IBAction)clickClose:(id)sender
+{
+    [[UserService defaultService] dismissShakeNumberView];    
+}
+
 
 @end

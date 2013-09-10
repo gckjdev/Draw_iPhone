@@ -120,9 +120,8 @@ static ContestService *_staticContestService;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if (output.resultCode == 0 && output.pbResponse.contestListList){
-                [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestListList];
-                
+            if (output.resultCode == 0){
+                [[ContestManager defaultManager] saveOngoingContestList:output.pbResponse.contestListList];                
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_CONTEST_DATA_CHANGE object:nil];
             }
             

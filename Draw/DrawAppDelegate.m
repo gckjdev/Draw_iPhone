@@ -156,7 +156,6 @@ NSString* GlobalGetBBSServerURL()
 NSString* GlobalGetBoardServerURL()
 {
     return [ConfigManager getTrafficAPIServerURL];
-//    return @"http://192.168.1.13:8100/api/i?";
 }
 
 @implementation DrawAppDelegate

@@ -196,7 +196,7 @@ static ContestManager *_staticContestManager;
         return NO;
     
     for (PBContest* contest in _ongoingContestList){
-        if ([contest.contestId isEqualToString:contestId]){
+        if ((contest.status == ContestStatusRunning) && [contest.contestId isEqualToString:contestId]){
             return contest.isAnounymous;
         }
     }
