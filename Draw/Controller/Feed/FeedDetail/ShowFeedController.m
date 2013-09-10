@@ -164,6 +164,7 @@ typedef enum{
                 [types addObject:@(FooterTypeReport)];
                 [types addObject:@(FooterTypeRate)];
             }else if([cm isUser:uid reporterAtContest:cf.contestId]){
+                [types addObject:@(FooterTypeFlower)];
                 [types addObject:@(FooterTypeReport)];
             }else if (![self.feed isMyOpus]) {
                 [types addObject:@(FooterTypeFlower)];
@@ -540,26 +541,34 @@ typedef enum{
             
             
             if (resultCode == ERROR_SUCCESS){
-
-                // TODO contest show flower total left
-                if (self.contest != nil){
-                    int userCurrentFlowers = [[UserManager defaultManager] flowersUsed:self.contest.contestId];
-                    int maxFlowerPerContest = [self.contest maxFlowerPerContest ];
-                    PPDebug(@"<throwFlow> userCurrentFlowers=%d maxFlowerPerContest=%d", userCurrentFlowers, maxFlowerPerContest);
-                }
                 
                 ShareImageManager *imageManager = [ShareImageManager defaultManager];
                 CGRect frame = [bself.footerView buttonWithType:FooterTypeFlower].frame;
                 frame = [self.view convertRect:frame fromView:self.footerView];
                 UIImageView* throwItem = [[[UIImageView alloc] initWithFrame:frame] autorelease];
                 [throwItem setImage:[imageManager flower]];
+                
+                BOOL showTips = [UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType];
                 [DrawGameAnimationManager showThrowFlower:throwItem
                                          animInController:bself
                                                   rolling:YES
                                                itemEnough:!isBuy
-                                           shouldShowTips:[UseItemScene shouldItemMakeEffectInScene:bself.useItemScene.sceneType]
+                                           shouldShowTips:showTips
                                                completion:^(BOOL finished) {
-                [bself clickRefreshButton:nil];
+
+                                                   [bself clickRefreshButton:nil];
+                                                   
+                                                   if (showTips == NO && self.contest != nil){
+                                                       int userCurrentFlowers = 0;
+                                                       int maxFlowerPerContest = 0;
+                                                       
+                                                       userCurrentFlowers = [[UserManager defaultManager] flowersUsed:self.contest.contestId];
+                                                       maxFlowerPerContest = [self.contest maxFlowerPerContest ];
+                                                       PPDebug(@"<throwFlow> userCurrentFlowers=%d maxFlowerPerContest=%d", userCurrentFlowers, maxFlowerPerContest);
+                                                       
+                                                       NSString* msg = [NSString stringWithFormat:NSLS(@"kContestThrowFlowerMsg"), userCurrentFlowers, maxFlowerPerContest - userCurrentFlowers];
+                                                       POSTMSG(msg);
+                                                   }
                 }];
                 [bself.commentHeader setSelectedType:CommentTypeFlower];
                 [bself.feed incTimesForType:FeedTimesTypeFlower];

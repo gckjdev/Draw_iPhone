@@ -1032,7 +1032,8 @@
 "kContestSubmitEndSubmitNormal" = "很遗憾，比赛提交作品时间已经截止了，你是否要提交为普通作品？";
 "kContestNotForUser" = "你不是本次比赛的指定参赛选手，无法参加比赛";
 "kContestNotForUserSubmitNormal" = "你不是本次比赛的指定参赛选手，是否要提交为普通作品？";
-"kAnounymousContestNick" = "比赛匿名用户";
+"kAnounymousContestNick" = "就不告诉你";
+"kContestThrowFlowerMsg" = "本次比赛你已送出%d朵鲜花，还剩余%d朵鲜花可以送出";
 
 "kLoginXiaoji" = "小吉登录";
 "kLoginXiaojiPlaceHolder" = "请输入小吉号码";

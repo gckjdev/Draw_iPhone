@@ -142,11 +142,10 @@
     
     NSInteger count = [contestList count];
     [self.scrollView setContentSize:CGSizeMake(width * count, height)];
-    int showIndex = 0;
     for (Contest *contest in contestList) {
-        if ([contest isRunning] && showIndex == 0) {
-            showIndex = i;
-        }
+//        if ([contest isRunning] && showIndex == 0) {
+//            showIndex = i;
+//        }
         ContestView *contestView = [ContestView createContestView:self];
         contestView.frame = CGRectMake(width * i ++, 0, width, height);
         [self.scrollView addSubview:contestView];
@@ -154,6 +153,8 @@
         [contestView setViewInfo:contest];
     }
     [self.pageControl setNumberOfPages:count];
+
+    int showIndex = 0;  // force the first one as current contest, add by Benson 2013-09-10
     [self.pageControl setCurrentPage:showIndex];
     [self.scrollView setContentOffset:CGPointMake(showIndex * width, 0) animated:YES];
     
