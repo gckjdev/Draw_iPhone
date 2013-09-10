@@ -237,13 +237,13 @@
 
 - (void)bomb:(UIButton *)toolView
 {
+    toolView.enabled = NO;
     int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
 
     __block typeof (self) bself = self;
     [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
             [_wordInputView bombHalf];
-            toolView.enabled = NO;
             if (isBuy) {
                 [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
             }
