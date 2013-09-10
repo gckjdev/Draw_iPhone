@@ -26,4 +26,9 @@
 + (void)deductCoins:(int)mode
           contestId:(NSString *)contestId
               force:(BOOL)force;
+
++ (int)getCountHappyModeAwardOnce;
++ (int)getCountGeniusModeAwardOnce;
++ (int)getDeductCoins:(int)mode;
+
 @end

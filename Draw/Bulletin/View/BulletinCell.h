@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *dateLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *newBulletinFlag;
 @property (retain, nonatomic) IBOutlet UIImageView *customAccessoryImageView;
+@property (retain, nonatomic) IBOutlet UIView *contentHolderView;
 
 + (BulletinCell*)createCell:(id)delegate;
 - (void)setCellByBulletin:(Bulletin*)bulletin;
