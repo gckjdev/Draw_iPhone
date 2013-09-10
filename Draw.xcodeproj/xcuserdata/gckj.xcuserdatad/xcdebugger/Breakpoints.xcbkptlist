@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Draw/Controller/Contest/ContestController.m"
-         timestampString = "400406472.05967"
+         timestampString = "400489584.136713"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "289"
-         endingLineNumber = "289"
+         startingLineNumber = "291"
+         endingLineNumber = "291"
          landmarkName = "-didClickContestView:onDetailButton:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -17,7 +17,6 @@
 
 @interface CustomInfoView()
 @property (retain, nonatomic) UIActivityIndicatorView *indicator;
-@property (assign, nonatomic) CloseHandler closeHandler;
 
 @end
 
@@ -120,7 +119,8 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     view.notifications = [NSMutableDictionary dictionary];
     
     view.infoView = infoView;
-    COPY_BLOCK(view.closeHandler, closeHandler);
+    view.closeHandler = closeHandler;
+//    COPY_BLOCK(view.closeHandler, closeHandler);
     
     CGFloat SpaceHorizonal = (hasEdgeSpace ? SPACE_HORIZONTAL : [CommonDialog edgeWidth]);
     CGFloat SpaceVertical = (hasEdgeSpace ? SPACE_VERTICAL : [CommonDialog edgeWidth]);
@@ -294,8 +294,8 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
 }
 
 - (IBAction)clickCloseButton:(id)sender {
-    [self dismiss];
     EXECUTE_BLOCK(_closeHandler);
+    [self dismiss];
 }
 
 - (void)setTitle:(NSString*)title
