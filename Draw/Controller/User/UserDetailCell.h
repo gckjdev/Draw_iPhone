@@ -48,12 +48,12 @@
 @property (retain, nonatomic) IBOutlet UIControl *customBackgroundControl;
 
 @property (retain, nonatomic) IBOutlet UIView *feedTabHolder;
-@property (retain, nonatomic) IBOutlet UILabel *followCountLabel;
-@property (retain, nonatomic) IBOutlet UILabel *fanCountLabel;
+//@property (retain, nonatomic) IBOutlet UILabel *followCountLabel;
+//@property (retain, nonatomic) IBOutlet UILabel *fanCountLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *signLabel;
-@property (retain, nonatomic) IBOutlet UILabel *levelLabel;
+//@property (retain, nonatomic) IBOutlet UILabel *levelLabel;
 @property (retain, nonatomic) IBOutlet UILabel *birthLabel;
 @property (retain, nonatomic) IBOutlet UILabel *zodiacLabel;
 @property (retain, nonatomic) IBOutlet UILabel *bloodTypeLabel;
@@ -62,7 +62,7 @@
 @property (retain, nonatomic) IBOutlet UIView *avatarHolderView;
 @property (retain, nonatomic) AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UIView *basicDetailView;
-@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
+//@property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIButton *editButton;
 @property (retain, nonatomic) IBOutlet UserDetailRoundButton *drawToButton;
 @property (retain, nonatomic) IBOutlet UserDetailRoundButton *chatButton;
@@ -83,7 +83,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *seperator3;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *hisOpusLabel;
 @property (retain, nonatomic) IBOutlet LocalizableLabel *snsTipLabel;
-@property (retain, nonatomic) IBOutlet UILabel *xiaojiLabel;
+//@property (retain, nonatomic) IBOutlet UILabel *xiaojiLabel;
+@property (retain, nonatomic) IBOutlet UIButton *signButton;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;
