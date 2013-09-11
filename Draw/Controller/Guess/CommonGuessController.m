@@ -87,12 +87,12 @@
     self.opusButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.opusButton.backgroundColor = [UIColor clearColor];
     NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
-    NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
-    UIImage *placeHolderImage = [[ShareImageManager defaultManager] unloadBg];
+//    NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
+//    UIImage *placeHolderImage = [[ShareImageManager defaultManager] unloadBg];
     
 //    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
     
-    [self showActivityWithText:nil];
+    [self showActivityWithText:nil center:self.opusButton.center];
     [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
         [self hideActivity];
     } failure:^(NSError *error) {
