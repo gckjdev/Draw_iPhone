@@ -226,20 +226,7 @@
 
 - (void)changeRect:(CGRect)rect
 {
-    if (CGRectEqualToRect(rect, self.bounds)) {
-        return;
-    }
-    
-    self.transform = CGAffineTransformIdentity;
-    self.bounds = rect;
-    self.frame = rect;
-
-    [dlManager updateLayersRect:rect];
-//    for (DrawLayer *layer in dlManager.layers) {
-//        layer.frame = rect;
-//    }
-    
-    [(DrawHolderView *)self.superview updateContentScale];
+    [super changeRect:rect];
 }
 
 - (void)dealloc

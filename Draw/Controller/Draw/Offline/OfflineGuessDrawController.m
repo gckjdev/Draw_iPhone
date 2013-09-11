@@ -66,7 +66,7 @@
 - (IBAction)bomb:(id)sender {
     int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
     __block typeof (self) bself = self;
-    [tip setEnabled:NO];
+    [sender setEnabled:NO];
     [[UserGameItemService defaultService] consumeItem:ItemTypeTips
                                                 count:1
                                              forceBuy:YES
@@ -78,10 +78,10 @@
             }
         }else if (ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
-            [tip setEnabled:YES];
+            [sender setEnabled:YES];
         }else{
             POSTMSG(NSLS(@"kOperationFailed"));
-            [tip setEnabled:YES];            
+            [sender setEnabled:YES];            
         }
     }];
 }

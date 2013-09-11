@@ -15,6 +15,7 @@
 #import "ImageManagerProtocol.h"
 #import "SmoothQuadCurvePen.h"
 #import "ShowDrawView.h"
+#import "DrawHolderView.h"
 
 #define DEFALT_MIN_SCALE 1
 #define DEFALT_MAX_SCALE 10
@@ -155,7 +156,18 @@
 
 - (void)changeRect:(CGRect)rect
 {
+    if (CGRectEqualToRect(rect, self.bounds)) {
+        return;
+    }
     
+    self.transform = CGAffineTransformIdentity;
+    self.bounds = rect;
+    self.frame = rect;
+    
+    [dlManager updateLayersRect:rect];
+    
+    [(DrawHolderView *)self.superview updateContentScale];
+
 }
 
 - (void)setBGImage:(UIImage *)image
