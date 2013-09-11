@@ -1140,7 +1140,11 @@
 
 + (BOOL)getGuessContestLocalNotificationEnabled{
     return [MobClickUtils getBoolValueByKey:@"GUESS_CONTEST_LOCAL_NOTIFICATION_ENABLED" defaultValue:YES];
-
 }
+
++ (int)getGuessExpireTime{
+    return [MobClickUtils getIntValueByKey:@"GUESS_EXPIRE_TIME" defaultValue:12];
+}
+
 
 @end

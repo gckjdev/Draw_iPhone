@@ -84,6 +84,8 @@
 
 #import "LocalNotificationUtil.h"
 #import "TimeUtils.h"
+#import "BackgroundMusicPlayer.h"
+
 
 NSString* GlobalGetServerURL()
 {
@@ -125,7 +127,7 @@ NSString* GlobalGetTrafficServerURL()
     
 //    return @"http://localhost:8100/api/i?";
 
-//    return @"http://58.215.184.18:8699/api/i?";
+    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -262,6 +264,10 @@ NSString* GlobalGetBoardServerURL()
 {
     // TODO check benson
     [LocalNotificationUtil cancelAllLocalNotifications];
+    
+    
+    // init audio session
+    [BackgroundMusicPlayer setAudioSessionCategory:AVAudioSessionCategoryAmbient];
     
     srand(time(0));
     

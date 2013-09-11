@@ -203,13 +203,13 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<string key="name">MarkerFelt-Wide</string>
-									<string key="family">Marker Felt</string>
+									<string key="name">Verdana-Bold</string>
+									<string key="family">Verdana</string>
 									<int key="traits">2</int>
 									<double key="pointSize">70</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">MarkerFelt-Wide</string>
+									<string key="NSName">Verdana-Bold</string>
 									<double key="NSSize">70</double>
 									<int key="NSfFlags">16</int>
 								</object>
