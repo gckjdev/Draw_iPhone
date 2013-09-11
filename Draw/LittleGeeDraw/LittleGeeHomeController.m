@@ -560,8 +560,10 @@ int getPopOptionCount()
     }
     
     NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
-    [self.progressView setLabelText:progressText];
-    [self.progressView setProgress:progress];
+    [self showProgressViewWithMessage:progressText progress:progress];
+
+//    [self.progressView setLabelText:progressText];
+//    [self.progressView setProgress:progress];
 }
 
 

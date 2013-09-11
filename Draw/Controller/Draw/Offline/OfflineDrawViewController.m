@@ -1025,9 +1025,11 @@
     }
     
     NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
-    [self.progressView setLabelText:progressText];
+    [self showProgressViewWithMessage:progressText progress:progress];
     
-    [self.progressView setProgress:progress];        
+//    [self.progressView setLabelText:progressText];
+//    
+//    [self.progressView setProgress:progress];        
 }
 
 - (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath
