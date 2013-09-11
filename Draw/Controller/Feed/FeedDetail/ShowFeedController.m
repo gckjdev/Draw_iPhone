@@ -619,9 +619,11 @@ typedef enum{
     else{
         progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
     }
-    [self.progressView setLabelText:progressText];
+//    [self.progressView setLabelText:progressText];
+//    
+//    [self.progressView setProgress:progress];
+    [self showProgressViewWithMessage:progressText progress:progress];
     
-    [self.progressView setProgress:progress];
 }
 
 - (void)loadDrawDataWithHanlder:(dispatch_block_t)handler

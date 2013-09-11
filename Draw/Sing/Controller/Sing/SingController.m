@@ -537,9 +537,11 @@ enum{
     PPDebug(@"progress = %f", progress);
     
     NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
-    [self.progressView setLabelText:progressText];
+    [self showProgressViewWithMessage:progressText progress:progress];
     
-    [self.progressView setProgress:progress];
+//    [self.progressView setLabelText:progressText];
+//    
+//    [self.progressView setProgress:progress];
 }
 
 - (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL{

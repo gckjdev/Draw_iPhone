@@ -440,9 +440,11 @@
     }
 
     NSString* progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
-    [self.superViewController.progressView setLabelText:progressText];
-
-    [self.superViewController.progressView setProgress:progress];
+    [[self superViewController] showProgressViewWithMessage:progressText progress:progress];
+    
+//    [self.superViewController.progressView setLabelText:progressText];
+//
+//    [self.superViewController.progressView setProgress:progress];
 }
 
 - (void)bindSNS:(int)snsType

@@ -116,6 +116,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{145, 294}, {70, 30}}</string>
 						<reference key="NSSuperview" ref="547314671"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">101</int>
@@ -297,10 +298,6 @@
 								<reference key="IBUIHighlightedTitleColor" ref="308809294"/>
 								<reference key="IBUINormalTitleColor" ref="308809294"/>
 								<reference key="IBUINormalTitleShadowColor" ref="959990873"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">item_remaind@2x.png</string>
-								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
 									<double key="pointSize">11</double>
@@ -369,6 +366,7 @@
 								<int key="NSvFlags">264</int>
 								<string key="NSFrame">{{0, 73}, {230, 2}}</string>
 								<reference key="NSSuperview" ref="81579057"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -590,9 +588,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="input_alert_check@2x.png">{27, 27}</string>
+			<string key="input_alert_check@2x.png">{25, 25}</string>
 			<string key="input_alert_uncheck@2x.png">{25, 25}</string>
-			<string key="item_remaind@2x.png">{57, 27}</string>
 			<string key="user_detail_seperator_line2@2x.png">{640, 11}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
