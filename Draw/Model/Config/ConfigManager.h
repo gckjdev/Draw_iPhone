@@ -93,8 +93,14 @@ typedef enum{
 
 + (NSInteger)getDrawGridLineSpace;
 
-+ (int)getTomatoAwardExp;
 + (int)getAwardInHappyMode;
++ (int)getAwardInGeniusMode;
++ (int)getDeltaAwardInGeniusMode;
++ (int)getDeductCoinsInHappyMode;
++ (int)getDeductCoinsInGeniusMode;
++ (int)getDeductCoinsInContestMode;
+
++ (int)getTomatoAwardExp;
 + (int)getTomatoAwardAmount;
 + (int)getFlowerAwardExp;
 + (int)getFlowerAwardAmount;

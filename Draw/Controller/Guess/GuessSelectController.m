@@ -79,19 +79,21 @@
     if (_mode == PBUserGuessModeGuessModeHappy) {
         title = NSLS(@"kHappGuessMode");
         rightButtonTitle = NSLS(@"kRestart");
-
+        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
     }else if(_mode == PBUserGuessModeGuessModeGenius){
         title = NSLS(@"kGeniusGuessMode");
         rightButtonTitle = NSLS(@"kRestart");
-        
+        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
+
     }else if(_mode == PBUserGuessModeGuessModeContest){
         title = NSLS(@"kContestGuessMode");
         rightButtonTitle = NSLS(@"kRanking");
+        [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
+
     }
     
     [self.titleView setTitle:title];
     [self.titleView setRightButtonTitle:rightButtonTitle];
-    [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
     
     self.view.backgroundColor = COLOR_WHITE;
     
@@ -331,10 +333,14 @@
     [dialog.cancelButton setTitle:NSLS(@"kQuit") forState:UIControlStateNormal];
     
     [dialog setClickOkBlock:^(UILabel *label){
-        [self clickRestartButton:nil];
+        
+        [self startNew];
+//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:NSLS(@"kRestartGuessWarnning") style:CommonDialogStyleDoubleButton];
+//        [dialog showInView:self.view];
     }];
     
     [dialog setClickCancelBlock:^(NSString *inputStr){
+        
         [self startNew];
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -445,8 +451,14 @@
     
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), count, needToGuess, predictAwardCoins];
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
-    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleDoubleButton];
+    [dialog.oKButton setTitle:NSLS(@"kGoOn") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    
     [dialog showInView:self.view];
 }
 

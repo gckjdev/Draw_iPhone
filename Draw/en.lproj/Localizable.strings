@@ -1564,12 +1564,21 @@
 "kContestRankToday" = "Contest Ranking(Today)";
 "kContestRankYesterday" = "Contest Ranking(Yesterday)";
 "kContestRankBeforeYesterday" = "Contest Ranking(Two day ago)";
+"kContestRankThreeDaysAgo" = "Contest Ranking(Three day ago)";
+"kContestRankFourDaysAgo" = "Contest Ranking(Four day ago)";
+"kContestRankFiveDaysAgo" = "Contest Ranking(Five day ago)";
+"kContestRankSixDaysAgo" = "Contest Ranking(Six day ago)";
+
 
 "kWeek" = "Weekly";
 "kYear" = "Annual";
 "kToday" = "Today";
 "kYesterday" = "Yesterday";
-"kBeforeYesterday" = "Two day ago";
+"kBeforeYesterday" = "Two days ago";
+"kThreeDaysAgo" = "Three days ago";
+"kFourDaysAgo"  = "Four days ago";
+"kFiveDaysAgo" = "Five days ago";
+"kSixDaysAgo" = "Six days ago";
 
 "kContestIsNotStart" = "Contest is not start";
 "kContestIsOver" = "Contest is over";

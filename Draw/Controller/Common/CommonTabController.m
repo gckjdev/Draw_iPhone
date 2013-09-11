@@ -235,8 +235,8 @@
         [self serviceLoadDataForTabID:tab.tabID];
     }
     _defaultTabIndex = tab.index;
-
 }
+
 - (IBAction)clickTabButton:(id)sender
 {
     UIButton *button = (UIButton *)sender;
