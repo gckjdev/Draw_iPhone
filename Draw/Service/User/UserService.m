@@ -1800,7 +1800,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 - (void)logout:(UIViewController*)viewController
 {
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kConfirmLogout") style:CommonDialogStyleDoubleButton];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kConfirmLogout") style:CommonDialogStyleDoubleButtonWithCross];
 
     [dialog setClickOkBlock:^(id infoView){
         [self askKeepDraft:viewController];
