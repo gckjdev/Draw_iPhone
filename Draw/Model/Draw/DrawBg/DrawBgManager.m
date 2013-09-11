@@ -13,6 +13,7 @@
 #import "FileUtil.h"
 #import "ConfigManager.h"
 #import "UIImageExt.h"
+#import "UserGameItemManager.h"
 
 #define DRAW_BG_ZIP_NAME @"draw_bg.zip"
 #define DRAW_BG_VERSION_KEY @"CFDrawBGVersion"
@@ -111,7 +112,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
 
 - (NSArray *)pbDrawBgGroupList
 {
-    return _drawBgGroupList;
+//    return _drawBgGroupList;
+    UserGameItemManager *ugManager = [UserGameItemManager defaultManager];
+    NSArray *ret = [_drawBgGroupList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        PBDrawBgGroup *sg1 = obj1;
+        PBDrawBgGroup *sg2 = obj2;
+        BOOL has1 = [ugManager hasItem:sg1.groupId];
+        BOOL has2 = [ugManager hasItem:sg2.groupId];
+        if (has1 ^ has2) {
+            return has2?NSOrderedDescending:NSOrderedAscending;
+        }else{
+            return sg1.groupId>sg2.groupId?NSOrderedDescending:NSOrderedAscending;
+        }
+    }];
+    return ret;
+    
 }
 
 + (void)createTestData:(NSUInteger)number

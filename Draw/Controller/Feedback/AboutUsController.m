@@ -42,7 +42,7 @@
     [titleView setBackButtonSelector:@selector(clickBack:)];
 
     
-    NSString *infoString =  @"Program By\n\
+    NSString *infoString =  @"\nProgram By\n\
 -------------------------------\n\
 PIPI Peng\n\
 Gamy Huang\n\
@@ -53,8 +53,7 @@ Haodong\n\
 \n\
 Designed By\n\
 -------------------------------\n\
-Roy He\n\
-Old13\n\
+Old\n\
 \n\
 \n\
 ";
@@ -62,6 +61,10 @@ Old13\n\
     infoString = [infoString stringByAppendingFormat:@"App Version : %@" ,[ConfigManager currentVersion]];
     
     contentTextView.text = infoString;
+    contentTextView.textColor = COLOR_BROWN;
+    SET_VIEW_BG(self.view);
+    contentTextView.backgroundColor = COLOR_WHITE;
+    SET_VIEW_ROUND_CORNER(contentTextView);
 }
 
 - (void)viewDidUnload
