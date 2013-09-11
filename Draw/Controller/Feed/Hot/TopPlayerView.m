@@ -9,14 +9,12 @@
 #import "TopPlayerView.h"
 #import "ShareImageManager.h"
 #import "PPApplication.h"
-//#import "HJManagedImageV.h"
 #import "UIImageView+WebCache.h"
 #import "UIImageView+Extend.h"
 
 @implementation TopPlayerView
 @synthesize avatar = _avatar;
 @synthesize nickName = _nickName;
-//@synthesize levelInfo = _levelInfo;
 @synthesize maskControl = _maskControl;
 @synthesize cupImage = _cupImage;
 @synthesize topPlayer = _topPlayer;
@@ -28,7 +26,7 @@
     TopPlayerView *view = [self createViewWithXibIdentifier:identifier];
     [view setClipsToBounds:YES];
     view.maskControl = [[[UIControl alloc] initWithFrame:view.bounds] autorelease];
-    [view.maskControl addTarget:view action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
+    [view.maskControl addTarget:view action:@selector(clickPlayerView:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:view.maskControl];
     view.delegate = delegate;
     return view;
