@@ -515,11 +515,7 @@
 
 - (void)changeRect:(CGRect)rect
 {
-    self.transform = CGAffineTransformIdentity;
-    self.bounds = rect;
-    self.frame = rect;
-
-    [(DrawHolderView *)self.superview updateContentScale];
+    [super changeRect:rect];
 }
 @end
 
