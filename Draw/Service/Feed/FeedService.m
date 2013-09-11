@@ -1157,4 +1157,54 @@ static FeedService *_staticFeedService = nil;
     */
 }
 
+- (void)setHotScore:(NSString*)opusId
+            dataLen:(int)dataLen
+        resultBlock:(FeedActionResultBlock)resultBlock
+{
+    
+    if (opusId == nil){
+        EXECUTE_BLOCK(resultBlock, ERROR_OPUS_ID_NULL);
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{ PARA_OPUS_ID    : opusId,
+                                PARA_DATA_LEN      : @(dataLen)
+                                };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_SET_OPUS_HOT_SCORE parameters:para isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == 0){
+                POSTMSG(@"修改分数成功");
+            }
+            else{
+                NSString* msg = [NSString stringWithFormat:@"修改分数失败，错误码为%d", output.resultCode];
+                POSTMSG(msg);
+            }
+            
+            EXECUTE_BLOCK(resultBlock, output.resultCode);            
+        });
+    });
+
+}
+
+- (void)askSetHotScore:(NSString*)opusId viewController:(UIViewController*)viewController
+{
+    CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"设置分数"];
+    dialog.inputTextField.text = @"1000";
+    
+    [dialog setClickOkBlock:^(id infoView){
+        int dataLen = [dialog.inputTextField.text intValue];
+        [self setHotScore:opusId dataLen:dataLen resultBlock:nil];
+    }];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+    }];
+    
+    [dialog showInView:viewController.view];
+}
+
 @end

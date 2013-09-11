@@ -1797,6 +1797,10 @@ POSTMSG(NSLS(@"kLoginFailure"));
     [dialog showInView:viewController.view];
 }
 
+
+
+
+
 - (void)logout:(UIViewController*)viewController
 {
     
