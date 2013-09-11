@@ -349,10 +349,10 @@ static UIImage* _whitePaperImage;
     return [UIImage strectchableImageName:@"normal_button.png"];
 }
 
-- (UIImage *)highlightMaskImage
-{
-    return [UIImage strectchableImageName:@"highlight_mask.png"];
-}
+//- (UIImage *)highlightMaskImage
+//{
+//    return [UIImage strectchableImageName:@"highlight_mask.png"];
+//}
 
 - (UIImage *)sinaWeiboImage
 {

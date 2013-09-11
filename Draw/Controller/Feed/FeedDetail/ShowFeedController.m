@@ -391,7 +391,9 @@ typedef enum{
     if (indexPath.row < [self.dataList count]) {
         CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
         //can only delete comment feed, but flower and tomato.
-        return [feed isMyFeed]|| ([self.feed isMyOpus] && feed.feedType == FeedTypeComment);        
+        return [feed isMyFeed] ||
+        ([self.feed isMyOpus] && feed.feedType == FeedTypeComment)||
+        [[UserManager defaultManager] isSuperUser];
     }
     return NO;
 }
