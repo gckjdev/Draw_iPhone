@@ -199,6 +199,12 @@ CGPoint boxContentOffset;
             }
         }
     }
+    
+    [[cell flagButton] setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    [[cell flagButton] setBackgroundColor:COLOR_BROWN];
+    [[[cell flagButton] layer] setCornerRadius:(ISIPAD? 4 : 2)];
+    [[[cell flagButton] layer] setMasksToBounds:YES];
+
     return cell;
 }
 
@@ -247,6 +253,9 @@ CGPoint boxContentOffset;
         [[self flagButton] updateOriginX:originX];
         [[self flagButton] setHidden:NO];
         [[self flagButton] setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
+//        [[self flagButton] sizeToFit];
+        [[self flagButton] updateCenterY:[self nameLabel].center.y];
+        
     }else{
         [[self flagButton] setHidden:YES];
     }

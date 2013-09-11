@@ -15,6 +15,7 @@
 #import "ConfigManager.h"
 #import "DrawUtils.h"
 #import "UIBezierPath+Ext.h"
+#import "UserGameItemManager.h"
 
 #define IMAGE_SHAPE_ZIP_NAME @"image_shape.zip"
 #define IMAGE_SHAPE_META_FILE @"meta.pb"
@@ -99,7 +100,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
 
 - (NSArray *)imageShapeGroupList
 {
-    return _imageShapeGroupList;
+    UserGameItemManager *ugManager = [UserGameItemManager defaultManager];
+    NSArray *ret = [_imageShapeGroupList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        PBImageShapeGroup *sg1 = obj1;
+        PBImageShapeGroup *sg2 = obj2;
+        BOOL has1 = [ugManager hasItem:sg1.groupId];
+        BOOL has2 = [ugManager hasItem:sg2.groupId];
+        if (has1 ^ has2) {
+            return has2?NSOrderedDescending:NSOrderedAscending;
+        }else{
+            return sg1.groupId>sg2.groupId?NSOrderedDescending:NSOrderedAscending;
+        }
+    }];
+    return ret;
 }
 
 - (NSString *)fullPathWithShapeType:(ShapeType)type

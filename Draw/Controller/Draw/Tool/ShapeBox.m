@@ -226,9 +226,14 @@ CGPoint contentOffset;
         UIButton *button = (id)[cell viewWithTag:i];
         [button setBackgroundColor:[UIColor clearColor]];
         [button addTarget:cell action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
-        [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
-        
+        [button.imageView setContentMode:UIViewContentModeScaleAspectFit];        
     }
+    
+    [[cell flagButton] setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    [[cell flagButton] setBackgroundColor:COLOR_BROWN];
+    [[[cell flagButton] layer] setCornerRadius:(ISIPAD? 4 : 2)];
+    [[[cell flagButton] layer] setMasksToBounds:YES];
+
     return cell;
 }
 
@@ -271,11 +276,13 @@ CGPoint contentOffset;
     [[self nameLabel] setTextColor:COLOR_BROWN];
     [[self nameLabel] sizeToFit];;
     if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
-        CGFloat originX = CGRectGetMaxX([self nameLabel].frame) + 3;
-        
+        CGFloat originX = CGRectGetMaxX([self nameLabel].frame) + 3;        
         [[self flagButton] updateOriginX:originX];
         [[self flagButton] setHidden:NO];
         [[self flagButton] setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
+//        [[self flagButton] sizeToFit];
+        [[self flagButton] updateCenterY:[self nameLabel].center.y];
+        
     }else{
         [[self flagButton] setHidden:YES];
     }
