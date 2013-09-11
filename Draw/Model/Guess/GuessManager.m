@@ -11,7 +11,6 @@
 #import "AccountService.h"
 
 #define NUM_COUNT_AWARD_ONCE 10
-#define DELTA_AWARD_COIN 100
 #define CONTEST_COUNT 20
 
 @implementation GuessManager
@@ -75,7 +74,7 @@
             break;
             
         case PBUserGuessModeGuessModeGenius:
-            award = (passCount - NUM_COUNT_AWARD_ONCE) / NUM_COUNT_AWARD_ONCE * DELTA_AWARD_COIN + 1000;
+            award = (passCount - NUM_COUNT_AWARD_ONCE) / NUM_COUNT_AWARD_ONCE * [ConfigManager getDeltaAwardInGeniusMode] + [ConfigManager getAwardInGeniusMode];
             break;
             
         default:
@@ -147,17 +146,17 @@
 #define KEY_GUESS_GENIUS_DEDUCT_COINS @"KEY_GUESS_GENIUS_DEDUCT_COINS"
 
 #define DEDUCT_COINS_IN_HAPPY_MODE 20
-#define DEDUCT_COINS_IN_GENIUS_MODE 100
+#define DEDUCT_COINS_IN_GENIUS_MODE 20
 #define DEDUCT_COINS_IN_CONTEST_MODE 100
 
 + (int)getDeductCoins:(int)mode{
     
     if (mode == PBUserGuessModeGuessModeHappy) {
-        return DEDUCT_COINS_IN_HAPPY_MODE;
+        return [ConfigManager getDeductCoinsInHappyMode];
     }else if(mode == PBUserGuessModeGuessModeGenius){
-        return DEDUCT_COINS_IN_GENIUS_MODE;
+        return [ConfigManager getDeductCoinsInGeniusMode];
     }else{
-        return DEDUCT_COINS_IN_CONTEST_MODE;
+        return [ConfigManager getDeductCoinsInContestMode];
     }
 }
 

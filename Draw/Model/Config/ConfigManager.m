@@ -367,9 +367,33 @@
 
 + (int)getAwardInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_IN_HAPPY_MODE" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:100];
 }
 
++ (int)getAwardInGeniusMode
+{
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_GENIUS_MODE" defaultValue:1000];
+}
+
++ (int)getDeltaAwardInGeniusMode
+{
+    return [MobClickUtils getIntValueByKey:@"DELTA_COINS_AWARD_IN_GENIUS_MODE" defaultValue:100];
+}
+
++ (int)getDeductCoinsInHappyMode
+{
+    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_HAPPY_MODE" defaultValue:20];
+}
+
++ (int)getDeductCoinsInGeniusMode
+{
+    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_GENIUS_MODE" defaultValue:20];
+}
+
++ (int)getDeductCoinsInContestMode
+{
+    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_CONTEST_MODE" defaultValue:100];
+}
 
 + (int)getTomatoAwardAmount
 {

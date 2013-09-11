@@ -235,16 +235,16 @@
 }
 
 - (void)showContestIsNotStartTip{
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsNotStart") delayTime:1.5 isHappy:NO];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsNotStart") delayTime:3 isHappy:NO];
 }
 
 - (void)showContestIsOverTip{
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsOver") delayTime:1.5 isHappy:NO];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsOver") delayTime:3 isHappy:NO];
 }
 
 - (IBAction)clickContestModeButton:(id)sender {
     
-#if DEBUG
+#if 0
     
     GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
@@ -255,7 +255,7 @@
         [self showContestIsNotStartTip];
         return;
     }
-    if (time > [GuessManager isContestOver:_contest]) {
+    if ([GuessManager isContestOver:_contest]) {
         [self showContestIsOverTip];
         return;
     }

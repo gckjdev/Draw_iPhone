@@ -1502,12 +1502,22 @@
 "kToday" = "今天";
 "kYesterday" = "昨天";
 "kBeforeYesterday" = "兩天前";
+"kThreeDaysAgo" = "三天前";
+"kFourDaysAgo"  = "四天前";
+"kFiveDaysAgo" = "五天前";
+"kSixDaysAgo" = "六天前";
 
 "kGeniusRankWeek" = "天才榜(每周)";
 "kGeniusRankYear" = "天才榜(年度)";
 "kContestRankToday" = "比賽榜(今天)";
 "kContestRankYesterday" = "比賽榜(昨天)";
 "kContestRankBeforeYesterday" = "比賽榜(兩天前)";
+"kContestRankThreeDaysAgo" = "比賽榜(三天前)";
+"kContestRankFourDaysAgo" = "比賽榜(四天前)";
+"kContestRankFiveDaysAgo" = "比賽榜(五天前)";
+"kContestRankSixDaysAgo" = "比賽榜(六天前)";
+
+
 
 "kContestIsNotStart" = "今天的比賽尚未開始，請先到處逛逛，稍後再來參加比賽吧。";
 "kContestIsOver" = "今天的比賽已經結束啦！請明天同一時間再來參加比賽吧。";

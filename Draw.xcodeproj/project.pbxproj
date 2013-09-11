@@ -1422,6 +1422,7 @@
 		A4ADB62317BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */; };
 		A4ADB62417BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */; };
 		A4ADB62517BA1E4800EBF418 /* BackgroundMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ADB62117BA1E4700EBF418 /* BackgroundMusicPlayer.m */; };
+		A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B78A69179FA6ED0008E21B /* GuessRankListController.m */; };
 		A4B1C4A617168125002C83C1 /* PBGameItem+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB8316F2CD4300248AEA /* PBGameItem+Extend.m */; };
 		A4B1C4AB171688BE002C83C1 /* BuyItemSpecialHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B1C4AA171688BE002C83C1 /* BuyItemSpecialHandler.m */; };
 		A4B6C3D71761DD1F00F99B15 /* SingInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B6C3D51761DD1F00F99B15 /* SingInputDialog.xib */; };
@@ -21379,6 +21380,7 @@
 				EA46AD5917D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
+				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
