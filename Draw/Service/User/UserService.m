@@ -1781,7 +1781,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 {
 //    int draftCount = [[MyPaintManager defaultManager] countAllDrafts];
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kLogout") message:NSLS(@"kAskKeepDraft") style:CommonDialogStyleDoubleButton];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kLogout") message:NSLS(@"kAskKeepDraft") style:CommonDialogStyleDoubleButtonWithCross];
 
     [dialog.oKButton setTitle:NSLS(@"kKeepDraft") forState:UIControlStateNormal];
     [dialog.cancelButton setTitle:NSLS(@"kNotKeepDraft") forState:UIControlStateNormal];
@@ -1800,7 +1800,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 - (void)logout:(UIViewController*)viewController
 {
     
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kConfirmLogout") style:CommonDialogStyleDoubleButton];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kConfirmLogout") style:CommonDialogStyleDoubleButtonWithCross];
 
     [dialog setClickOkBlock:^(id infoView){
         [self askKeepDraft:viewController];

@@ -662,8 +662,9 @@ typedef enum{
     
     MKBlockActionSheet *sheet;
     TableTab *tab = [self currentTab];
+    BOOL isMyFavor = [[UserManager defaultManager] isMe:self.userId];
     if(tab.tabID == UserTypeOpus ){
-        if ([[UserManager defaultManager] isMe:self.userId]) {
+        if ([rankView.feed isMyOpus]) {
             sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kEditOpusDesc"), NSLS(@"kDelete"), nil] autorelease];
             sheet.cancelButtonIndex = ActionSheetIndexCancel;
             [sheet showInView:self.view];
@@ -693,49 +694,20 @@ typedef enum{
             
             int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
             [self showOpusImageBrower:index];
-//            [self enterDetailFeed:_selectedRankView.feed];
         }
     }else if(tab.tabID == UserTypeFavorite){
-        sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kUnFavorite"), nil] autorelease];
-        [sheet showInView:self.view];
-        __block typeof (self) bself  = self;
-        [sheet setActionBlock:^(NSInteger buttonIndex){
-            [bself handleActionSheetForFavorite:buttonIndex];
-        }];
+        if (!isMyFavor) {
+            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
+            [self showOpusImageBrower:index];
+        }else{
+            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kUnFavorite"), nil] autorelease];
+            [sheet showInView:self.view];
+            __block typeof (self) bself  = self;
+            [sheet setActionBlock:^(NSInteger buttonIndex){
+                [bself handleActionSheetForFavorite:buttonIndex];
+            }];
+        }
     }
-
-//    if ([[UserManager defaultManager] isSuperUser]) {
-//        UIActionSheet* actionSheet = [[UIActionSheet alloc]
-//                                      initWithTitle:[NSString stringWithFormat:@"%@<警告！你正在使用超级管理权限>", NSLS(@"kOpusOperation")]
-//                                      delegate:self
-//                                      cancelButtonTitle:NSLS(@"kCancel")
-//                                      destructiveButtonTitle:NSLS(@"kOpusDetail")
-//                                      otherButtonTitles:NSLS(@"kDelete"), nil];
-//        [actionSheet showInView:self.view];
-//        [actionSheet release];
-//    } else {
-//        MKBlockActionSheet *sheet;
-//        TableTab *tab = [self currentTab];
-//        if(tab.tabID == UserTypeOpus ){
-//            if ([[UserManager defaultManager] isMe:self.userId]) {
-//                sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kDelete"), nil] autorelease];
-//                [sheet showInView:self.view];
-//                __block typeof (self) bself  = self;
-//                [sheet setActionBlock:^(NSInteger buttonIndex){
-//                    [bself handleActionSheetForOpus:buttonIndex];
-//                }];
-//            }else{
-//                [self enterDetailFeed:_selectedRankView.feed];
-//            }
-//        }else if(tab.tabID == UserTypeFavorite){
-//            sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kUnFavorite"), nil] autorelease];
-//            [sheet showInView:self.view];
-//            __block typeof (self) bself  = self;
-//            [sheet setActionBlock:^(NSInteger buttonIndex){
-//                [bself handleActionSheetForFavorite:buttonIndex];
-//            }];
-//        }
-//    }
 }
 
 - (void)handleActionSheetForFavorite:(NSInteger)buttonIndex

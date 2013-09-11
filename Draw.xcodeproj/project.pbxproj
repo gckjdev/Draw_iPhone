@@ -372,7 +372,6 @@
 		A461B13E174CBAA70088B061 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		A461B13F174CBAA70088B061 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		A461B141174CBAA70088B061 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
-		A461B142174CBAA70088B061 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		A461B143174CBAA70088B061 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		A461B144174CBAA70088B061 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		A461B145174CBAA70088B061 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
@@ -663,14 +662,6 @@
 		A461B2E4174CBAA70088B061 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
 		A461B2E5174CBAA70088B061 /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
 		A461B2E6174CBAA70088B061 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E916169BE85E00644682 /* DraftsView.m */; };
-		A461B2E8174CBAA70088B061 /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
-		A461B2E9174CBAA70088B061 /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
-		A461B2EA174CBAA70088B061 /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
-		A461B2EB174CBAA70088B061 /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
-		A461B2EC174CBAA70088B061 /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
-		A461B2ED174CBAA70088B061 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
-		A461B2EE174CBAA70088B061 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
-		A461B2EF174CBAA70088B061 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
 		A461B2F0174CBAA70088B061 /* RoundLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C297004D16A1363500A61521 /* RoundLineLabel.m */; };
 		A461B2F1174CBAA70088B061 /* ColorBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328D916A3E1E000E9E96B /* ColorBox.m */; };
 		A461B2F2174CBAA70088B061 /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DD16A3E1E000E9E96B /* ColorPoint.m */; };
@@ -761,7 +752,6 @@
 		A461B359174CBAA70088B061 /* ShapeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2A16F8672100D8E05D /* ShapeAction.m */; };
 		A461B35A174CBAA70088B061 /* CanvasRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF4616F867AC00D8E05D /* CanvasRect.m */; };
 		A461B35B174CBAA70088B061 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
-		A461B35C174CBAA70088B061 /* AderAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderAdWallService.m */; };
 		A461B35D174CBAA70088B061 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		A461B35E174CBAA70088B061 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		A461B35F174CBAA70088B061 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
@@ -817,18 +807,12 @@
 		A461B39A174CBAA70088B061 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCC1716AD5400190347 /* RSADataVerifier.m */; };
 		A461B39B174CBAA70088B061 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		A461B39C174CBAA70088B061 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
-		A461B3A7174CBAA70088B061 /* DomobAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C262E433172695C500D41802 /* DomobAdWallService.m */; };
-		A461B3A8174CBAA70088B061 /* TapjoyAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D00B1728DD6E00F8C610 /* TapjoyAdWallService.m */; };
 		A461B3A9174CBAA70088B061 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC81C0C172B983100ED78DE /* UIImage+fixOrientation.m */; };
 		A461B3AA174CBAA70088B061 /* SKProductService.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82B9172BD53F00C4001F /* SKProductService.m */; };
 		A461B3AB174CBAA70088B061 /* SKProductManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82C9172BD58800C4001F /* SKProductManager.m */; };
 		A461B3AC174CBAA70088B061 /* PBIAPProduct+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82F5172E355600C4001F /* PBIAPProduct+Utils.m */; };
-		A461B3B1174CBAA70088B061 /* CommonSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1D61735540100011AFA /* CommonSplashAdService.m */; };
-		A461B3B2174CBAA70088B061 /* DomobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1E51735542D00011AFA /* DomobSplashAdService.m */; };
-		A461B3B3174CBAA70088B061 /* AdmobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1F41735543E00011AFA /* AdmobSplashAdService.m */; };
 		A461B3B4174CBAA70088B061 /* FeedSceneDetailGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9903173561E6007A819F /* FeedSceneDetailGuessResult.m */; };
 		A461B3B5174CBAA70088B061 /* FeedSceneFeedDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9905173561E6007A819F /* FeedSceneFeedDetail.m */; };
-		A461B3B7174CBAA70088B061 /* GameSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F20917356EDE00011AFA /* GameSplashAdService.m */; };
 		A461B3B8174CBAA70088B061 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		A461B3BD174CBAA70088B061 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */; };
 		A461B3BE174CBAA70088B061 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */; };
@@ -870,17 +854,12 @@
 		A461B3E4174CBAA70088B061 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
 		A461B3E5174CBAA70088B061 /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF89E16606E4800441D77 /* immobSDK.framework */; };
 		A461B3E6174CBAA70088B061 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
-		A461B3E7174CBAA70088B061 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
-		A461B3E8174CBAA70088B061 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
-		A461B3E9174CBAA70088B061 /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
 		A461B3EA174CBAA70088B061 /* libalixpay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D6B1716AD5300190347 /* libalixpay.a */; };
 		A461B3EB174CBAA70088B061 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D711716AD5300190347 /* libcrypto.a */; };
 		A461B3EC174CBAA70088B061 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D721716AD5300190347 /* libssl.a */; };
 		A461B3ED174CBAA70088B061 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
-		A461B3EE174CBAA70088B061 /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C262E4191726757D00D41802 /* libDomobOfferWallSDK.a */; };
 		A461B3EF174CBAA70088B061 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C282E5A2172BC53200F8C610 /* libGoogleAdMobAds.a */; };
 		A461B3F0174CBAA70088B061 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
-		A461B3F1174CBAA70088B061 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F18E1735525400011AFA /* libDomobAdSDK.a */; };
 		A461B3F4174CBAA70088B061 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
 		A461B3F5174CBAA70088B061 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA745D341503B1B500600024 /* MainWindow.xib */; };
 		A461B3F6174CBAA70088B061 /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103CD51509A56100F60C03 /* donedown.png */; };
@@ -908,7 +887,6 @@
 		A461B40D174CBAA70088B061 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		A461B40E174CBAA70088B061 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		A461B410174CBAA70088B061 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
-		A461B412174CBAA70088B061 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		A461B413174CBAA70088B061 /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		A461B414174CBAA70088B061 /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		A461B416174CBAA70088B061 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
@@ -920,7 +898,6 @@
 		A461B41C174CBAA70088B061 /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
 		A461B41D174CBAA70088B061 /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
 		A461B41E174CBAA70088B061 /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
-		A461B41F174CBAA70088B061 /* UFPController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */; };
 		A461B420174CBAA70088B061 /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		A461B421174CBAA70088B061 /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
@@ -1130,8 +1107,6 @@
 		A461B65E174CBAA70088B061 /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
 		A461B65F174CBAA70088B061 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E917169BE85E00644682 /* DraftsView.xib */; };
 		A461B660174CBAA70088B061 /* DraftsView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */; };
-		A461B661174CBAA70088B061 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
-		A461B664174CBAA70088B061 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		A461B667174CBAA70088B061 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
 		A461B66C174CBAA70088B061 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
@@ -1203,9 +1178,7 @@
 		A461B7B8174CBAA70088B061 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
 		A461B7BE174CBAA70088B061 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
-		A461B7CF174CBAA70088B061 /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C262E4181726757D00D41802 /* DomobOfferWallBundle.bundle */; };
 		A461B7D4174CBAA70088B061 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		A461B7D5174CBAA70088B061 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAD9F18D1735525400011AFA /* DomobAdSDKBundle.bundle */; };
 		A461B7D6174CBAA70088B061 /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		A461B7D7174CBAA70088B061 /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
 		A461B7D8174CBAA70088B061 /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
@@ -1268,18 +1241,6 @@
 		A489C02417B5E46A003E5150 /* GuessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C02217B5E46A003E5150 /* GuessManager.m */; };
 		A489C02517B5E46A003E5150 /* GuessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C02217B5E46A003E5150 /* GuessManager.m */; };
 		A489C02617B5E46A003E5150 /* GuessManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A489C02217B5E46A003E5150 /* GuessManager.m */; };
-		A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
-		A48B0982169E664600B56975 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
-		A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
-		A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
-		A48B09CF169FAAC500B56975 /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
-		A48B09D0169FAAC500B56975 /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
-		A48B09D1169FAAC500B56975 /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
-		A48B09D2169FAAC500B56975 /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
-		A48B09D3169FAAC500B56975 /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
-		A48B09D4169FAAC500B56975 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
-		A48B09D5169FAAC500B56975 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
-		A48B09D6169FAAC500B56975 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
 		A491A1CD16F44D02003B638F /* CommonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CA16F44D02003B638F /* CommonItem.m */; };
 		A491A1CE16F44D02003B638F /* FlowerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A1CC16F44D02003B638F /* FlowerItem.m */; };
 		A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20816F6EE64003B638F /* ShoppingCell.m */; };
@@ -3349,9 +3310,6 @@
 		C25C079F15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079B15D5F11700E8DD8D /* UIImage+FiltrrCompositions.m */; };
 		C25C07A015D5F11700E8DD8D /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */; };
 		C260DDDF16D1D2CD0008A243 /* SuperUserManageAction.m in Sources */ = {isa = PBXBuildFile; fileRef = C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */; };
-		C262E41A1726757D00D41802 /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C262E4181726757D00D41802 /* DomobOfferWallBundle.bundle */; };
-		C262E4231726757D00D41802 /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C262E4191726757D00D41802 /* libDomobOfferWallSDK.a */; };
-		C262E434172695C500D41802 /* DomobAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C262E433172695C500D41802 /* DomobAdWallService.m */; };
 		C2773FDE176998E300929AE3 /* GalleryController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2773FDB176998E300929AE3 /* GalleryController~ipad.xib */; };
 		C2773FDF176998E300929AE3 /* GalleryController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2773FDB176998E300929AE3 /* GalleryController~ipad.xib */; };
 		C2773FEB176998F200929AE3 /* UserPhotoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2773FE6176998F200929AE3 /* UserPhotoView~ipad.xib */; };
@@ -3381,7 +3339,6 @@
 		C27E6916176EAD650019F41B /* SearchPhotoResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27E6915176EAD650019F41B /* SearchPhotoResultController~ipad.xib */; };
 		C27E6917176EAD650019F41B /* SearchPhotoResultController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27E6915176EAD650019F41B /* SearchPhotoResultController~ipad.xib */; };
 		C28207E31552D974006FBB0F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
-		C282D00C1728DD6E00F8C610 /* TapjoyAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D00B1728DD6E00F8C610 /* TapjoyAdWallService.m */; };
 		C282E74B172BC53300F8C610 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C282E5A2172BC53200F8C610 /* libGoogleAdMobAds.a */; };
 		C282E754172BC53300F8C610 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
@@ -3579,7 +3536,6 @@
 		C28A9A261738F04B007A819F /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		C28A9A271738F04B007A819F /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C28A9A291738F04B007A819F /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
-		C28A9A2A1738F04B007A819F /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		C28A9A2B1738F04B007A819F /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		C28A9A2C1738F04B007A819F /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		C28A9A2D1738F04B007A819F /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
@@ -3875,14 +3831,6 @@
 		C28A9BCC1738F04B007A819F /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
 		C28A9BCD1738F04B007A819F /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
 		C28A9BCE1738F04B007A819F /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E916169BE85E00644682 /* DraftsView.m */; };
-		C28A9BD01738F04B007A819F /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
-		C28A9BD11738F04B007A819F /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
-		C28A9BD21738F04B007A819F /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
-		C28A9BD31738F04B007A819F /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
-		C28A9BD41738F04B007A819F /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
-		C28A9BD51738F04B007A819F /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
-		C28A9BD61738F04B007A819F /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
-		C28A9BD71738F04B007A819F /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
 		C28A9BD81738F04B007A819F /* RoundLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C297004D16A1363500A61521 /* RoundLineLabel.m */; };
 		C28A9BD91738F04B007A819F /* ColorBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328D916A3E1E000E9E96B /* ColorBox.m */; };
 		C28A9BDA1738F04B007A819F /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DD16A3E1E000E9E96B /* ColorPoint.m */; };
@@ -3973,7 +3921,6 @@
 		C28A9C411738F04B007A819F /* ShapeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2A16F8672100D8E05D /* ShapeAction.m */; };
 		C28A9C421738F04B007A819F /* CanvasRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF4616F867AC00D8E05D /* CanvasRect.m */; };
 		C28A9C431738F04B007A819F /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
-		C28A9C441738F04B007A819F /* AderAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderAdWallService.m */; };
 		C28A9C451738F04B007A819F /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		C28A9C461738F04B007A819F /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		C28A9C471738F04B007A819F /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
@@ -4029,19 +3976,13 @@
 		C28A9C821738F04B007A819F /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCC1716AD5400190347 /* RSADataVerifier.m */; };
 		C28A9C831738F04B007A819F /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		C28A9C841738F04B007A819F /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
-		C28A9C8F1738F04B007A819F /* DomobAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C262E433172695C500D41802 /* DomobAdWallService.m */; };
-		C28A9C901738F04B007A819F /* TapjoyAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D00B1728DD6E00F8C610 /* TapjoyAdWallService.m */; };
 		C28A9C911738F04B007A819F /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC81C0C172B983100ED78DE /* UIImage+fixOrientation.m */; };
 		C28A9C921738F04B007A819F /* SKProductService.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82B9172BD53F00C4001F /* SKProductService.m */; };
 		C28A9C931738F04B007A819F /* SKProductManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82C9172BD58800C4001F /* SKProductManager.m */; };
 		C28A9C941738F04B007A819F /* PBIAPProduct+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82F5172E355600C4001F /* PBIAPProduct+Utils.m */; };
-		C28A9C991738F04B007A819F /* CommonSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1D61735540100011AFA /* CommonSplashAdService.m */; };
-		C28A9C9A1738F04B007A819F /* DomobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1E51735542D00011AFA /* DomobSplashAdService.m */; };
-		C28A9C9B1738F04B007A819F /* AdmobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1F41735543E00011AFA /* AdmobSplashAdService.m */; };
 		C28A9C9C1738F04B007A819F /* FeedSceneDetailGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9903173561E6007A819F /* FeedSceneDetailGuessResult.m */; };
 		C28A9C9D1738F04B007A819F /* FeedSceneFeedDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9905173561E6007A819F /* FeedSceneFeedDetail.m */; };
 		C28A9C9E1738F04B007A819F /* FeedSceneGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9907173561E6007A819F /* FeedSceneGuessResult.m */; };
-		C28A9C9F1738F04B007A819F /* GameSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F20917356EDE00011AFA /* GameSplashAdService.m */; };
 		C28A9CA01738F04B007A819F /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A9935173562A7007A819F /* AddressBookUI.framework */; };
 		C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1B01735531500011AFA /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -4079,17 +4020,12 @@
 		C28A9CC31738F04B007A819F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
 		C28A9CC41738F04B007A819F /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF89E16606E4800441D77 /* immobSDK.framework */; };
 		C28A9CC51738F04B007A819F /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
-		C28A9CC61738F04B007A819F /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
-		C28A9CC71738F04B007A819F /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
-		C28A9CC81738F04B007A819F /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
 		C28A9CC91738F04B007A819F /* libalixpay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D6B1716AD5300190347 /* libalixpay.a */; };
 		C28A9CCA1738F04B007A819F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D711716AD5300190347 /* libcrypto.a */; };
 		C28A9CCB1738F04B007A819F /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D721716AD5300190347 /* libssl.a */; };
 		C28A9CCC1738F04B007A819F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
-		C28A9CCD1738F04B007A819F /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C262E4191726757D00D41802 /* libDomobOfferWallSDK.a */; };
 		C28A9CCE1738F04B007A819F /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C282E5A2172BC53200F8C610 /* libGoogleAdMobAds.a */; };
 		C28A9CCF1738F04B007A819F /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
-		C28A9CD11738F04B007A819F /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F18E1735525400011AFA /* libDomobAdSDK.a */; };
 		C28A9CD31738F04B007A819F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
 		C28A9CD41738F04B007A819F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA745D341503B1B500600024 /* MainWindow.xib */; };
 		C28A9CD51738F04B007A819F /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103CD51509A56100F60C03 /* donedown.png */; };
@@ -4117,7 +4053,6 @@
 		C28A9CEC1738F04B007A819F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		C28A9CED1738F04B007A819F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C28A9CEF1738F04B007A819F /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
-		C28A9CF11738F04B007A819F /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C28A9CF21738F04B007A819F /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		C28A9CF51738F04B007A819F /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
@@ -4129,7 +4064,6 @@
 		C28A9CFB1738F04B007A819F /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
 		C28A9CFC1738F04B007A819F /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
 		C28A9CFD1738F04B007A819F /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
-		C28A9CFE1738F04B007A819F /* UFPController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */; };
 		C28A9CFF1738F04B007A819F /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		C28A9D001738F04B007A819F /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
@@ -4349,8 +4283,6 @@
 		C28A9F401738F04B007A819F /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
 		C28A9F411738F04B007A819F /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E917169BE85E00644682 /* DraftsView.xib */; };
 		C28A9F421738F04B007A819F /* DraftsView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */; };
-		C28A9F431738F04B007A819F /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
-		C28A9F461738F04B007A819F /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		C28A9F491738F04B007A819F /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
 		C28A9F4E1738F04B007A819F /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
@@ -4422,9 +4354,7 @@
 		C28AA09A1738F04B007A819F /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
 		C28AA0A01738F04B007A819F /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		C28AA0A11738F04B007A819F /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
-		C28AA0B11738F04B007A819F /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C262E4181726757D00D41802 /* DomobOfferWallBundle.bundle */; };
 		C28AA0B61738F04B007A819F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		C28AA0B71738F04B007A819F /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAD9F18D1735525400011AFA /* DomobAdSDKBundle.bundle */; };
 		C28AA0C31738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		C28AA0D01738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		C28AA0E01738F406007A819F /* LittleGeeDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C28AA0D21738F405007A819F /* LittleGeeDrawApp.m */; };
@@ -4452,7 +4382,6 @@
 		C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
 		C2B3E934155373CC00CCF52C /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
 		C2B3E936155373D500CCF52C /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
-		C2B3E938155373DB00CCF52C /* UFPController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */; };
 		C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
@@ -4612,8 +4541,6 @@
 		C2F56539173DED2800C8E313 /* little_gee_pop_options_notice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F564AB173DED2800C8E313 /* little_gee_pop_options_notice@2x.png */; };
 		C2F56547173DED2800C8E313 /* little_gee_pop_options_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F564AC173DED2800C8E313 /* little_gee_pop_options_search@2x.png */; };
 		C2F56555173DED2800C8E313 /* little_gee_pop_options_shop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2F564AD173DED2800C8E313 /* little_gee_pop_options_shop@2x.png */; };
-		C2F947D21533D91E0034C895 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
-		C2F947D31533D91E0034C895 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		C2FA6E721535358100EEB530 /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		C2FE573D175DED3000AFD6AA /* GoogleCustomSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FE5739175DED3000AFD6AA /* GoogleCustomSearchService.m */; };
@@ -5319,8 +5246,6 @@
 		CAADF62416F444D10097CFA1 /* GameAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62216F444D10097CFA1 /* GameAdWallService.m */; };
 		CAADF62D16F55E340097CFA1 /* BlockArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF62C16F55E340097CFA1 /* BlockArray.m */; };
 		CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
-		CAADF65A16F977970097CFA1 /* AderAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderAdWallService.m */; };
-		CAADF7B116F977C10097CFA1 /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
 		CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */; };
 		CAAFBEB5165B70DC00E5E1C0 /* PPResourceCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */; };
 		CAB3DBDD1516DACD00E7DBC4 /* SelectWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3DBDB1516DACD00E7DBC4 /* SelectWordCell.m */; };
@@ -5474,14 +5399,8 @@
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
 		CAD9C7131574CCFA00F2C8E1 /* fireworks2.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */; };
 		CAD9C7151574D02A00F2C8E1 /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7141574D02A00F2C8E1 /* snow.png */; };
-		CAD9F18F1735525400011AFA /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAD9F18D1735525400011AFA /* DomobAdSDKBundle.bundle */; };
-		CAD9F19C1735525400011AFA /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F18E1735525400011AFA /* libDomobAdSDK.a */; };
 		CAD9F1AF1735530100011AFA /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1AE1735530100011AFA /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CAD9F1B11735531600011AFA /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F1B01735531500011AFA /* PassKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		CAD9F1D71735540100011AFA /* CommonSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1D61735540100011AFA /* CommonSplashAdService.m */; };
-		CAD9F1E61735542D00011AFA /* DomobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1E51735542D00011AFA /* DomobSplashAdService.m */; };
-		CAD9F1F51735543E00011AFA /* AdmobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1F41735543E00011AFA /* AdmobSplashAdService.m */; };
-		CAD9F20A17356EDE00011AFA /* GameSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F20917356EDE00011AFA /* GameSplashAdService.m */; };
 		CADD26421688421600BDCDCF /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
 		CADD7FCD1510C9700075C739 /* GameConstants.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD7FCB1510C9700075C739 /* GameConstants.pb.m */; };
 		CADD7FCF1510DC530075C739 /* GameConstants.proto in Resources */ = {isa = PBXBuildFile; fileRef = CADD7FCE1510DC530075C739 /* GameConstants.proto */; };
@@ -5864,7 +5783,6 @@
 		EA4118D2176066F500DA72D0 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		EA4118D3176066F500DA72D0 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
-		EA4118D6176066F500DA72D0 /* UFPController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F947D01533D91E0034C895 /* UFPController.m */; };
 		EA4118D7176066F500DA72D0 /* MyPaintButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2FA6E6F1535352200EEB530 /* MyPaintButton.m */; };
 		EA4118D8176066F500DA72D0 /* StoreKitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE115450E8F00A42CF2 /* StoreKitUtils.m */; };
 		EA4118D9176066F500DA72D0 /* TransactionReceiptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC4DCE71545286B00A42CF2 /* TransactionReceiptManager.m */; };
@@ -6155,14 +6073,6 @@
 		EA411A20176066F500DA72D0 /* SelectCustomWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4DE148A169AB1B300841940 /* SelectCustomWordCell.m */; };
 		EA411A21176066F500DA72D0 /* DraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E912169BE85E00644682 /* DraftCell.m */; };
 		EA411A22176066F500DA72D0 /* DraftsView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C1E916169BE85E00644682 /* DraftsView.m */; };
-		EA411A24176066F500DA72D0 /* UMBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BC169FAAC500B56975 /* UMBannerViewController.m */; };
-		EA411A25176066F500DA72D0 /* GridViewCellDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */; };
-		EA411A26176066F500DA72D0 /* UMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C1169FAAC500B56975 /* UMGridViewController.m */; };
-		EA411A27176066F500DA72D0 /* UMHandleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C4169FAAC500B56975 /* UMHandleViewController.m */; };
-		EA411A28176066F500DA72D0 /* UMHandleViewController_New.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */; };
-		EA411A29176066F500DA72D0 /* UMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09C9169FAAC500B56975 /* UMTableViewCell.m */; };
-		EA411A2A176066F500DA72D0 /* UMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CB169FAAC500B56975 /* UMTableViewController.m */; };
-		EA411A2B176066F500DA72D0 /* UMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A48B09CE169FAAC500B56975 /* UMWebViewController.m */; };
 		EA411A2C176066F500DA72D0 /* RoundLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C297004D16A1363500A61521 /* RoundLineLabel.m */; };
 		EA411A2D176066F500DA72D0 /* ColorBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328D916A3E1E000E9E96B /* ColorBox.m */; };
 		EA411A2E176066F500DA72D0 /* ColorPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DD16A3E1E000E9E96B /* ColorPoint.m */; };
@@ -6253,7 +6163,6 @@
 		EA411A94176066F500DA72D0 /* ShapeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2A16F8672100D8E05D /* ShapeAction.m */; };
 		EA411A95176066F500DA72D0 /* CanvasRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF4616F867AC00D8E05D /* CanvasRect.m */; };
 		EA411A96176066F500DA72D0 /* YoumiAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65316F977870097CFA1 /* YoumiAdWallService.m */; };
-		EA411A97176066F500DA72D0 /* AderAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAADF65916F977970097CFA1 /* AderAdWallService.m */; };
 		EA411A98176066F500DA72D0 /* UserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B97A2816F999200037B15B /* UserDetailCell.m */; };
 		EA411A99176066F500DA72D0 /* BBSController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAABB89216F99C41007DCC58 /* BBSController.m */; };
 		EA411A9A176066F500DA72D0 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
@@ -6309,18 +6218,12 @@
 		EA411AD4176066F500DA72D0 /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A4834DCC1716AD5400190347 /* RSADataVerifier.m */; };
 		EA411AD5176066F500DA72D0 /* AlixPayOrderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C591717C0FA004AFB26 /* AlixPayOrderManager.m */; };
 		EA411AD6176066F500DA72D0 /* NotificationCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4348C5B1717C0FA004AFB26 /* NotificationCenterManager.m */; };
-		EA411ADC176066F500DA72D0 /* DomobAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C262E433172695C500D41802 /* DomobAdWallService.m */; };
-		EA411ADD176066F500DA72D0 /* TapjoyAdWallService.m in Sources */ = {isa = PBXBuildFile; fileRef = C282D00B1728DD6E00F8C610 /* TapjoyAdWallService.m */; };
 		EA411ADE176066F500DA72D0 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC81C0C172B983100ED78DE /* UIImage+fixOrientation.m */; };
 		EA411ADF176066F500DA72D0 /* SKProductService.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82B9172BD53F00C4001F /* SKProductService.m */; };
 		EA411AE0176066F500DA72D0 /* SKProductManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82C9172BD58800C4001F /* SKProductManager.m */; };
 		EA411AE1176066F500DA72D0 /* PBIAPProduct+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A49D82F5172E355600C4001F /* PBIAPProduct+Utils.m */; };
-		EA411AE2176066F500DA72D0 /* CommonSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1D61735540100011AFA /* CommonSplashAdService.m */; };
-		EA411AE3176066F500DA72D0 /* DomobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1E51735542D00011AFA /* DomobSplashAdService.m */; };
-		EA411AE4176066F500DA72D0 /* AdmobSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F1F41735543E00011AFA /* AdmobSplashAdService.m */; };
 		EA411AE5176066F500DA72D0 /* FeedSceneDetailGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9903173561E6007A819F /* FeedSceneDetailGuessResult.m */; };
 		EA411AE6176066F500DA72D0 /* FeedSceneFeedDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9905173561E6007A819F /* FeedSceneFeedDetail.m */; };
-		EA411AE8176066F500DA72D0 /* GameSplashAdService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9F20917356EDE00011AFA /* GameSplashAdService.m */; };
 		EA411AE9176066F500DA72D0 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		EA411AEC176066F500DA72D0 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */; };
 		EA411AED176066F500DA72D0 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */; };
@@ -6390,17 +6293,12 @@
 		EA411B3B176066F500DA72D0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D261503B1B500600024 /* CoreGraphics.framework */; };
 		EA411B3C176066F500DA72D0 /* immobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEF89E16606E4800441D77 /* immobSDK.framework */; };
 		EA411B3D176066F500DA72D0 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAFEFAD716606E4800441D77 /* libWeChatSDK.a */; };
-		EA411B3E176066F500DA72D0 /* libUMAppNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B0978169E664600B56975 /* libUMAppNetwork.a */; };
-		EA411B3F176066F500DA72D0 /* TapjoyPublisherLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */; };
-		EA411B40176066F500DA72D0 /* libAderWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAADF79316F977C00097CFA1 /* libAderWallSDK.a */; };
 		EA411B41176066F500DA72D0 /* libalixpay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D6B1716AD5300190347 /* libalixpay.a */; };
 		EA411B42176066F500DA72D0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D711716AD5300190347 /* libcrypto.a */; };
 		EA411B43176066F500DA72D0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4834D721716AD5300190347 /* libssl.a */; };
 		EA411B44176066F500DA72D0 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
-		EA411B45176066F500DA72D0 /* libDomobOfferWallSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C262E4191726757D00D41802 /* libDomobOfferWallSDK.a */; };
 		EA411B46176066F500DA72D0 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C282E5A2172BC53200F8C610 /* libGoogleAdMobAds.a */; };
 		EA411B47176066F500DA72D0 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
-		EA411B48176066F500DA72D0 /* libDomobAdSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD9F18E1735525400011AFA /* libDomobAdSDK.a */; };
 		EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA62C7801756FC5A00C9EF56 /* protolCLib.a */; };
 		EA411B4A176066F500DA72D0 /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
 		EA411B4C176066F500DA72D0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2B1503B1B500600024 /* InfoPlist.strings */; };
@@ -6430,7 +6328,6 @@
 		EA411B65176066F500DA72D0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1377F01525A7CB00B5790B /* Localizable.strings */; };
 		EA411B66176066F500DA72D0 /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		EA411B68176066F500DA72D0 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
-		EA411B6A176066F500DA72D0 /* UFPController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F947D11533D91E0034C895 /* UFPController.xib */; };
 		EA411B6B176066F500DA72D0 /* PaintButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA6E711535358100EEB530 /* PaintButton.xib */; };
 		EA411B6C176066F500DA72D0 /* ColorShopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA051DCD1546808500D0A00A /* ColorShopView.xib */; };
 		EA411B6E176066F500DA72D0 /* SelectWordCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0378211553696100CF41E3 /* SelectWordCell~ipad.xib */; };
@@ -6442,7 +6339,6 @@
 		EA411B74176066F500DA72D0 /* FeedbackController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */; };
 		EA411B75176066F500DA72D0 /* ReportController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */; };
 		EA411B76176066F500DA72D0 /* AboutUsController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */; };
-		EA411B77176066F500DA72D0 /* UFPController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */; };
 		EA411B78176066F500DA72D0 /* ShareEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */; };
 		EA411B79176066F500DA72D0 /* ShareController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */; };
 		EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */; };
@@ -6652,8 +6548,6 @@
 		EA411D88176066F500DA72D0 /* DraftCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E914169BE85E00644682 /* DraftCell~ipad.xib */; };
 		EA411D89176066F500DA72D0 /* DraftsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E917169BE85E00644682 /* DraftsView.xib */; };
 		EA411D8A176066F500DA72D0 /* DraftsView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4C1E918169BE85E00644682 /* DraftsView~ipad.xib */; };
-		EA411D8B176066F500DA72D0 /* UMUFP.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B0979169E664600B56975 /* UMUFP.bundle */; };
-		EA411D8E176066F500DA72D0 /* TapjoyResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A48B099B169EA35C00B56975 /* TapjoyResources.bundle */; };
 		EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
 		EA411D96176066F500DA72D0 /* Palette.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328E716A3E1E000E9E96B /* Palette.xib */; };
@@ -6725,9 +6619,7 @@
 		EA411EDF176066F500DA72D0 /* UserSettingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2BD7A6317165E240079B7F6 /* UserSettingCell~ipad.xib */; };
 		EA411EE5176066F500DA72D0 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		EA411EE6176066F500DA72D0 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
-		EA411EF6176066F500DA72D0 /* DomobOfferWallBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C262E4181726757D00D41802 /* DomobOfferWallBundle.bundle */; };
 		EA411EFB176066F500DA72D0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		EA411EFC176066F500DA72D0 /* DomobAdSDKBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CAD9F18D1735525400011AFA /* DomobAdSDKBundle.bundle */; };
 		EA411EFD176066F500DA72D0 /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		EA411EFE176066F500DA72D0 /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
 		EA411EFF176066F500DA72D0 /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
@@ -7264,35 +7156,6 @@
 		A489C00F17B5D942003E5150 /* JDGroupedFlipNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGroupedFlipNumberView.m; sourceTree = "<group>"; };
 		A489C02117B5E46A003E5150 /* GuessManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessManager.h; sourceTree = "<group>"; };
 		A489C02217B5E46A003E5150 /* GuessManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessManager.m; sourceTree = "<group>"; };
-		A48B0978169E664600B56975 /* libUMAppNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMAppNetwork.a; sourceTree = "<group>"; };
-		A48B0979169E664600B56975 /* UMUFP.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMUFP.bundle; sourceTree = "<group>"; };
-		A48B097A169E664600B56975 /* UMUFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPBannerView.h; sourceTree = "<group>"; };
-		A48B097B169E664600B56975 /* UMUFPGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridCell.h; sourceTree = "<group>"; };
-		A48B097C169E664600B56975 /* UMUFPGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPGridView.h; sourceTree = "<group>"; };
-		A48B097D169E664600B56975 /* UMUFPHandleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPHandleView.h; sourceTree = "<group>"; };
-		A48B097E169E664600B56975 /* UMUFPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPImageView.h; sourceTree = "<group>"; };
-		A48B097F169E664600B56975 /* UMUFPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPTableView.h; sourceTree = "<group>"; };
-		A48B0980169E664600B56975 /* UMUFPWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMUFPWebView.h; sourceTree = "<group>"; };
-		A48B0998169EA35C00B56975 /* TapjoyConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnect.h; sourceTree = "<group>"; };
-		A48B0999169EA35C00B56975 /* TapjoyConnectConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnectConstants.h; sourceTree = "<group>"; };
-		A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TapjoyPublisherLibrary.a; sourceTree = "<group>"; };
-		A48B099B169EA35C00B56975 /* TapjoyResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TapjoyResources.bundle; sourceTree = "<group>"; };
-		A48B09BB169FAAC500B56975 /* UMBannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMBannerViewController.h; sourceTree = "<group>"; };
-		A48B09BC169FAAC500B56975 /* UMBannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMBannerViewController.m; sourceTree = "<group>"; };
-		A48B09BE169FAAC500B56975 /* GridViewCellDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewCellDemo.h; sourceTree = "<group>"; };
-		A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewCellDemo.m; sourceTree = "<group>"; };
-		A48B09C0169FAAC500B56975 /* UMGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMGridViewController.h; sourceTree = "<group>"; };
-		A48B09C1169FAAC500B56975 /* UMGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMGridViewController.m; sourceTree = "<group>"; };
-		A48B09C3169FAAC500B56975 /* UMHandleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMHandleViewController.h; sourceTree = "<group>"; };
-		A48B09C4169FAAC500B56975 /* UMHandleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMHandleViewController.m; sourceTree = "<group>"; };
-		A48B09C5169FAAC500B56975 /* UMHandleViewController_New.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMHandleViewController_New.h; sourceTree = "<group>"; };
-		A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMHandleViewController_New.m; sourceTree = "<group>"; };
-		A48B09C8169FAAC500B56975 /* UMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewCell.h; sourceTree = "<group>"; };
-		A48B09C9169FAAC500B56975 /* UMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewCell.m; sourceTree = "<group>"; };
-		A48B09CA169FAAC500B56975 /* UMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTableViewController.h; sourceTree = "<group>"; };
-		A48B09CB169FAAC500B56975 /* UMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTableViewController.m; sourceTree = "<group>"; };
-		A48B09CD169FAAC500B56975 /* UMWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMWebViewController.h; sourceTree = "<group>"; };
-		A48B09CE169FAAC500B56975 /* UMWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMWebViewController.m; sourceTree = "<group>"; };
 		A491415416E47ECF00106265 /* StoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCell.h; sourceTree = "<group>"; };
 		A491415516E47ECF00106265 /* StoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCell.m; sourceTree = "<group>"; };
 		A491415616E47ECF00106265 /* StoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreCell.xib; sourceTree = "<group>"; };
@@ -8077,11 +7940,6 @@
 		C25C079D15D5F11700E8DD8D /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		C260DDDD16D1D2CD0008A243 /* SuperUserManageAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperUserManageAction.h; sourceTree = "<group>"; };
 		C260DDDE16D1D2CD0008A243 /* SuperUserManageAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperUserManageAction.m; sourceTree = "<group>"; };
-		C262E4161726757D00D41802 /* DMOfferWallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMOfferWallViewController.h; sourceTree = "<group>"; };
-		C262E4181726757D00D41802 /* DomobOfferWallBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobOfferWallBundle.bundle; sourceTree = "<group>"; };
-		C262E4191726757D00D41802 /* libDomobOfferWallSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobOfferWallSDK.a; sourceTree = "<group>"; };
-		C262E432172695C500D41802 /* DomobAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomobAdWallService.h; sourceTree = "<group>"; };
-		C262E433172695C500D41802 /* DomobAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomobAdWallService.m; sourceTree = "<group>"; };
 		C2773FDB176998E300929AE3 /* GalleryController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GalleryController~ipad.xib"; sourceTree = "<group>"; };
 		C2773FE6176998F200929AE3 /* UserPhotoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserPhotoView~ipad.xib"; sourceTree = "<group>"; };
 		C2773FE8176998F200929AE3 /* PhotoEditView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PhotoEditView~ipad.xib"; sourceTree = "<group>"; };
@@ -8100,8 +7958,6 @@
 		C27E6915176EAD650019F41B /* SearchPhotoResultController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SearchPhotoResultController~ipad.xib"; sourceTree = "<group>"; };
 		C28207E11552D974006FBB0F /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
 		C28207E21552D974006FBB0F /* AudioManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioManager.m; sourceTree = "<group>"; };
-		C282D00A1728DD6E00F8C610 /* TapjoyAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyAdWallService.h; sourceTree = "<group>"; };
-		C282D00B1728DD6E00F8C610 /* TapjoyAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapjoyAdWallService.m; sourceTree = "<group>"; };
 		C282E599172BC53200F8C610 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		C282E59A172BC53200F8C610 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		C282E59B172BC53200F8C610 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -8173,7 +8029,6 @@
 		C2B3E931155373C400CCF52C /* FeedbackController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FeedbackController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E933155373CC00CCF52C /* ReportController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ReportController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AboutUsController~ipad.xib"; sourceTree = "<group>"; };
-		C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UFPController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E939155373EB00CCF52C /* ShareEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareEditController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E93B155373F500CCF52C /* ShareController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareController~ipad.xib"; sourceTree = "<group>"; };
 		C2B3E93D155373FD00CCF52C /* ShareCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShareCell~ipad.xib"; sourceTree = "<group>"; };
@@ -8344,9 +8199,6 @@
 		C2F564AB173DED2800C8E313 /* little_gee_pop_options_notice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little_gee_pop_options_notice@2x.png"; sourceTree = "<group>"; };
 		C2F564AC173DED2800C8E313 /* little_gee_pop_options_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little_gee_pop_options_search@2x.png"; sourceTree = "<group>"; };
 		C2F564AD173DED2800C8E313 /* little_gee_pop_options_shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little_gee_pop_options_shop@2x.png"; sourceTree = "<group>"; };
-		C2F947CF1533D91E0034C895 /* UFPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFPController.h; sourceTree = "<group>"; };
-		C2F947D01533D91E0034C895 /* UFPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFPController.m; sourceTree = "<group>"; };
-		C2F947D11533D91E0034C895 /* UFPController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UFPController.xib; sourceTree = "<group>"; };
 		C2FA6E6E1535352200EEB530 /* MyPaintButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaintButton.h; sourceTree = "<group>"; };
 		C2FA6E6F1535352200EEB530 /* MyPaintButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaintButton.m; sourceTree = "<group>"; };
 		C2FA6E711535358100EEB530 /* PaintButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaintButton.xib; sourceTree = "<group>"; };
@@ -9332,11 +9184,6 @@
 		CAADF62C16F55E340097CFA1 /* BlockArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockArray.m; sourceTree = "<group>"; };
 		CAADF65216F977870097CFA1 /* YoumiAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoumiAdWallService.h; sourceTree = "<group>"; };
 		CAADF65316F977870097CFA1 /* YoumiAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoumiAdWallService.m; sourceTree = "<group>"; };
-		CAADF65816F977970097CFA1 /* AderAdWallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AderAdWallService.h; sourceTree = "<group>"; };
-		CAADF65916F977970097CFA1 /* AderAdWallService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AderAdWallService.m; sourceTree = "<group>"; };
-		CAADF79116F977C00097CFA1 /* AderPointWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AderPointWall.h; sourceTree = "<group>"; };
-		CAADF79216F977C00097CFA1 /* AderWallDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AderWallDelegate.h; sourceTree = "<group>"; };
-		CAADF79316F977C00097CFA1 /* libAderWallSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAderWallSDK.a; sourceTree = "<group>"; };
 		CAAE4A8215790F480012F6B8 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CAAFBEB3165B70DB00E5E1C0 /* PPResourceCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPResourceCacheService.h; sourceTree = "<group>"; };
 		CAAFBEB4165B70DB00E5E1C0 /* PPResourceCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPResourceCacheService.m; sourceTree = "<group>"; };
@@ -9467,22 +9314,8 @@
 		CAD9C7101574CCF900F2C8E1 /* fireworks1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks1.png; sourceTree = "<group>"; };
 		CAD9C7111574CCFA00F2C8E1 /* fireworks2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fireworks2.png; sourceTree = "<group>"; };
 		CAD9C7141574D02A00F2C8E1 /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = snow.png; sourceTree = "<group>"; };
-		CAD9F1881735525400011AFA /* DMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAdView.h; sourceTree = "<group>"; };
-		CAD9F1891735525400011AFA /* DMInterstitialAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInterstitialAdController.h; sourceTree = "<group>"; };
-		CAD9F18A1735525400011AFA /* DMSplashAdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSplashAdController.h; sourceTree = "<group>"; };
-		CAD9F18B1735525400011AFA /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
-		CAD9F18D1735525400011AFA /* DomobAdSDKBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DomobAdSDKBundle.bundle; sourceTree = "<group>"; };
-		CAD9F18E1735525400011AFA /* libDomobAdSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDomobAdSDK.a; sourceTree = "<group>"; };
 		CAD9F1AE1735530100011AFA /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		CAD9F1B01735531500011AFA /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
-		CAD9F1D51735540100011AFA /* CommonSplashAdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSplashAdService.h; sourceTree = "<group>"; };
-		CAD9F1D61735540100011AFA /* CommonSplashAdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSplashAdService.m; sourceTree = "<group>"; };
-		CAD9F1E41735542D00011AFA /* DomobSplashAdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomobSplashAdService.h; sourceTree = "<group>"; };
-		CAD9F1E51735542D00011AFA /* DomobSplashAdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomobSplashAdService.m; sourceTree = "<group>"; };
-		CAD9F1F31735543E00011AFA /* AdmobSplashAdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdmobSplashAdService.h; sourceTree = "<group>"; };
-		CAD9F1F41735543E00011AFA /* AdmobSplashAdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdmobSplashAdService.m; sourceTree = "<group>"; };
-		CAD9F20817356EDE00011AFA /* GameSplashAdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSplashAdService.h; sourceTree = "<group>"; };
-		CAD9F20917356EDE00011AFA /* GameSplashAdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSplashAdService.m; sourceTree = "<group>"; };
 		CADD26401688421600BDCDCF /* PPStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPStack.h; sourceTree = "<group>"; };
 		CADD26411688421600BDCDCF /* PPStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPStack.m; sourceTree = "<group>"; };
 		CADD7FCB1510C9700075C739 /* GameConstants.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameConstants.pb.m; sourceTree = "<group>"; };
@@ -9930,17 +9763,12 @@
 				A461B3E4174CBAA70088B061 /* CoreGraphics.framework in Frameworks */,
 				A461B3E5174CBAA70088B061 /* immobSDK.framework in Frameworks */,
 				A461B3E6174CBAA70088B061 /* libWeChatSDK.a in Frameworks */,
-				A461B3E7174CBAA70088B061 /* libUMAppNetwork.a in Frameworks */,
-				A461B3E8174CBAA70088B061 /* TapjoyPublisherLibrary.a in Frameworks */,
-				A461B3E9174CBAA70088B061 /* libAderWallSDK.a in Frameworks */,
 				A461B3EA174CBAA70088B061 /* libalixpay.a in Frameworks */,
 				A461B3EB174CBAA70088B061 /* libcrypto.a in Frameworks */,
 				A461B3EC174CBAA70088B061 /* libssl.a in Frameworks */,
 				A461B3ED174CBAA70088B061 /* libMobClickLibrary.a in Frameworks */,
-				A461B3EE174CBAA70088B061 /* libDomobOfferWallSDK.a in Frameworks */,
 				A461B3EF174CBAA70088B061 /* libGoogleAdMobAds.a in Frameworks */,
 				A461B3F0174CBAA70088B061 /* libYouMi.a in Frameworks */,
-				A461B3F1174CBAA70088B061 /* libDomobAdSDK.a in Frameworks */,
 				CA62C7911756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
 				A4C8D5EC175EEC23007ED7E4 /* libleveldb.a in Frameworks */,
 				A4B6C673176C0F4500C72E17 /* libDIRAC_iOS-fat.a in Frameworks */,
@@ -9988,17 +9816,12 @@
 				C28A9CC31738F04B007A819F /* CoreGraphics.framework in Frameworks */,
 				C28A9CC41738F04B007A819F /* immobSDK.framework in Frameworks */,
 				C28A9CC51738F04B007A819F /* libWeChatSDK.a in Frameworks */,
-				C28A9CC61738F04B007A819F /* libUMAppNetwork.a in Frameworks */,
-				C28A9CC71738F04B007A819F /* TapjoyPublisherLibrary.a in Frameworks */,
-				C28A9CC81738F04B007A819F /* libAderWallSDK.a in Frameworks */,
 				C28A9CC91738F04B007A819F /* libalixpay.a in Frameworks */,
 				C28A9CCA1738F04B007A819F /* libcrypto.a in Frameworks */,
 				C28A9CCB1738F04B007A819F /* libssl.a in Frameworks */,
 				C28A9CCC1738F04B007A819F /* libMobClickLibrary.a in Frameworks */,
-				C28A9CCD1738F04B007A819F /* libDomobOfferWallSDK.a in Frameworks */,
 				C28A9CCE1738F04B007A819F /* libGoogleAdMobAds.a in Frameworks */,
 				C28A9CCF1738F04B007A819F /* libYouMi.a in Frameworks */,
-				C28A9CD11738F04B007A819F /* libDomobAdSDK.a in Frameworks */,
 				CA62C78E1756FC5B00C9EF56 /* protolCLib.a in Frameworks */,
 				EAB94F4E1772D5B10038DB7A /* libleveldb.a in Frameworks */,
 			);
@@ -10047,17 +9870,12 @@
 				CA745D271503B1B500600024 /* CoreGraphics.framework in Frameworks */,
 				CAFEFAFD16606E4900441D77 /* immobSDK.framework in Frameworks */,
 				CAFEFBDA16606E4900441D77 /* libWeChatSDK.a in Frameworks */,
-				A48B0981169E664600B56975 /* libUMAppNetwork.a in Frameworks */,
-				A48B099E169EA35C00B56975 /* TapjoyPublisherLibrary.a in Frameworks */,
-				CAADF7B116F977C10097CFA1 /* libAderWallSDK.a in Frameworks */,
 				A4834DD21716AD5400190347 /* libalixpay.a in Frameworks */,
 				A4834DE11716AD5400190347 /* libcrypto.a in Frameworks */,
 				A4834DE61716AD5400190347 /* libssl.a in Frameworks */,
 				A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */,
-				C262E4231726757D00D41802 /* libDomobOfferWallSDK.a in Frameworks */,
 				C282E74B172BC53300F8C610 /* libGoogleAdMobAds.a in Frameworks */,
 				C2002CD9172CE4F200FD6AE1 /* libYouMi.a in Frameworks */,
-				CAD9F19C1735525400011AFA /* libDomobAdSDK.a in Frameworks */,
 				CA62C7811756FC5A00C9EF56 /* protolCLib.a in Frameworks */,
 				A4C8D5EB175EEC23007ED7E4 /* libleveldb.a in Frameworks */,
 			);
@@ -10106,17 +9924,12 @@
 				EA411B3B176066F500DA72D0 /* CoreGraphics.framework in Frameworks */,
 				EA411B3C176066F500DA72D0 /* immobSDK.framework in Frameworks */,
 				EA411B3D176066F500DA72D0 /* libWeChatSDK.a in Frameworks */,
-				EA411B3E176066F500DA72D0 /* libUMAppNetwork.a in Frameworks */,
-				EA411B3F176066F500DA72D0 /* TapjoyPublisherLibrary.a in Frameworks */,
-				EA411B40176066F500DA72D0 /* libAderWallSDK.a in Frameworks */,
 				EA411B41176066F500DA72D0 /* libalixpay.a in Frameworks */,
 				EA411B42176066F500DA72D0 /* libcrypto.a in Frameworks */,
 				EA411B43176066F500DA72D0 /* libssl.a in Frameworks */,
 				EA411B44176066F500DA72D0 /* libMobClickLibrary.a in Frameworks */,
-				EA411B45176066F500DA72D0 /* libDomobOfferWallSDK.a in Frameworks */,
 				EA411B46176066F500DA72D0 /* libGoogleAdMobAds.a in Frameworks */,
 				EA411B47176066F500DA72D0 /* libYouMi.a in Frameworks */,
-				EA411B48176066F500DA72D0 /* libDomobAdSDK.a in Frameworks */,
 				EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */,
 				EA411B4A176066F500DA72D0 /* libleveldb.a in Frameworks */,
 			);
@@ -10691,97 +10504,6 @@
 				A489C02217B5E46A003E5150 /* GuessManager.m */,
 			);
 			path = Guess;
-			sourceTree = "<group>";
-		};
-		A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */ = {
-			isa = PBXGroup;
-			children = (
-				A48B09B9169FAAC500B56975 /* Demo */,
-				A48B0978169E664600B56975 /* libUMAppNetwork.a */,
-				A48B0979169E664600B56975 /* UMUFP.bundle */,
-				A48B097A169E664600B56975 /* UMUFPBannerView.h */,
-				A48B097B169E664600B56975 /* UMUFPGridCell.h */,
-				A48B097C169E664600B56975 /* UMUFPGridView.h */,
-				A48B097D169E664600B56975 /* UMUFPHandleView.h */,
-				A48B097E169E664600B56975 /* UMUFPImageView.h */,
-				A48B097F169E664600B56975 /* UMUFPTableView.h */,
-				A48B0980169E664600B56975 /* UMUFPWebView.h */,
-			);
-			path = UMAppNetwork_SDK_3.5.2;
-			sourceTree = "<group>";
-		};
-		A48B0997169EA35C00B56975 /* TapjoyPublisherLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				A48B0998169EA35C00B56975 /* TapjoyConnect.h */,
-				A48B0999169EA35C00B56975 /* TapjoyConnectConstants.h */,
-				A48B099A169EA35C00B56975 /* TapjoyPublisherLibrary.a */,
-				A48B099B169EA35C00B56975 /* TapjoyResources.bundle */,
-			);
-			path = TapjoyPublisherLibrary;
-			sourceTree = "<group>";
-		};
-		A48B09B9169FAAC500B56975 /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				A48B09BA169FAAC500B56975 /* Banner */,
-				A48B09BD169FAAC500B56975 /* GridView */,
-				A48B09C2169FAAC500B56975 /* Handle */,
-				A48B09C7169FAAC500B56975 /* TableView */,
-				A48B09CC169FAAC500B56975 /* Wap */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
-		A48B09BA169FAAC500B56975 /* Banner */ = {
-			isa = PBXGroup;
-			children = (
-				A48B09BB169FAAC500B56975 /* UMBannerViewController.h */,
-				A48B09BC169FAAC500B56975 /* UMBannerViewController.m */,
-			);
-			path = Banner;
-			sourceTree = "<group>";
-		};
-		A48B09BD169FAAC500B56975 /* GridView */ = {
-			isa = PBXGroup;
-			children = (
-				A48B09BE169FAAC500B56975 /* GridViewCellDemo.h */,
-				A48B09BF169FAAC500B56975 /* GridViewCellDemo.m */,
-				A48B09C0169FAAC500B56975 /* UMGridViewController.h */,
-				A48B09C1169FAAC500B56975 /* UMGridViewController.m */,
-			);
-			path = GridView;
-			sourceTree = "<group>";
-		};
-		A48B09C2169FAAC500B56975 /* Handle */ = {
-			isa = PBXGroup;
-			children = (
-				A48B09C3169FAAC500B56975 /* UMHandleViewController.h */,
-				A48B09C4169FAAC500B56975 /* UMHandleViewController.m */,
-				A48B09C5169FAAC500B56975 /* UMHandleViewController_New.h */,
-				A48B09C6169FAAC500B56975 /* UMHandleViewController_New.m */,
-			);
-			path = Handle;
-			sourceTree = "<group>";
-		};
-		A48B09C7169FAAC500B56975 /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				A48B09C8169FAAC500B56975 /* UMTableViewCell.h */,
-				A48B09C9169FAAC500B56975 /* UMTableViewCell.m */,
-				A48B09CA169FAAC500B56975 /* UMTableViewController.h */,
-				A48B09CB169FAAC500B56975 /* UMTableViewController.m */,
-			);
-			path = TableView;
-			sourceTree = "<group>";
-		};
-		A48B09CC169FAAC500B56975 /* Wap */ = {
-			isa = PBXGroup;
-			children = (
-				A48B09CD169FAAC500B56975 /* UMWebViewController.h */,
-				A48B09CE169FAAC500B56975 /* UMWebViewController.m */,
-			);
-			path = Wap;
 			sourceTree = "<group>";
 		};
 		A499068F174DB949005AF334 /* Component-Advertise */ = {
@@ -12369,33 +12091,6 @@
 			path = Filtrr;
 			sourceTree = "<group>";
 		};
-		C262E4151726757D00D41802 /* DMOfferWallSDK */ = {
-			isa = PBXGroup;
-			children = (
-				C262E4161726757D00D41802 /* DMOfferWallViewController.h */,
-				C262E4171726757D00D41802 /* DomobOfferWallBundle */,
-				C262E4191726757D00D41802 /* libDomobOfferWallSDK.a */,
-			);
-			path = DMOfferWallSDK;
-			sourceTree = "<group>";
-		};
-		C262E4171726757D00D41802 /* DomobOfferWallBundle */ = {
-			isa = PBXGroup;
-			children = (
-				C262E4181726757D00D41802 /* DomobOfferWallBundle.bundle */,
-			);
-			path = DomobOfferWallBundle;
-			sourceTree = "<group>";
-		};
-		C262E4311726959100D41802 /* Domob */ = {
-			isa = PBXGroup;
-			children = (
-				C262E432172695C500D41802 /* DomobAdWallService.h */,
-				C262E433172695C500D41802 /* DomobAdWallService.m */,
-			);
-			path = Domob;
-			sourceTree = "<group>";
-		};
 		C2773FF117699F2E00929AE3 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -12427,15 +12122,6 @@
 				C28207E21552D974006FBB0F /* AudioManager.m */,
 			);
 			path = Audio;
-			sourceTree = "<group>";
-		};
-		C282D0091728DD4E00F8C610 /* Tapjoy */ = {
-			isa = PBXGroup;
-			children = (
-				C282D00A1728DD6E00F8C610 /* TapjoyAdWallService.h */,
-				C282D00B1728DD6E00F8C610 /* TapjoyAdWallService.m */,
-			);
-			path = Tapjoy;
 			sourceTree = "<group>";
 		};
 		C282E53D172BC53100F8C610 /* GoogleAdMobAdsSDK */ = {
@@ -13959,10 +13645,6 @@
 				C284E87D1531D89800DD5B77 /* AboutUsController.m */,
 				C284E87E1531D89800DD5B77 /* AboutUsController.xib */,
 				C2B3E935155373D500CCF52C /* AboutUsController~ipad.xib */,
-				C2F947CF1533D91E0034C895 /* UFPController.h */,
-				C2F947D01533D91E0034C895 /* UFPController.m */,
-				C2F947D11533D91E0034C895 /* UFPController.xib */,
-				C2B3E937155373DB00CCF52C /* UFPController~ipad.xib */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -15554,23 +15236,11 @@
 		CAADF60A16F444C20097CFA1 /* AdWallService */ = {
 			isa = PBXGroup;
 			children = (
-				C282D0091728DD4E00F8C610 /* Tapjoy */,
-				C262E4311726959100D41802 /* Domob */,
-				CAADF60B16F444C20097CFA1 /* Ader */,
 				CAADF60C16F444C20097CFA1 /* Common */,
 				CAADF60F16F444C20097CFA1 /* Limei */,
 				CAADF61416F444C20097CFA1 /* Youmi */,
 			);
 			path = AdWallService;
-			sourceTree = "<group>";
-		};
-		CAADF60B16F444C20097CFA1 /* Ader */ = {
-			isa = PBXGroup;
-			children = (
-				CAADF65816F977970097CFA1 /* AderAdWallService.h */,
-				CAADF65916F977970097CFA1 /* AderAdWallService.m */,
-			);
-			path = Ader;
 			sourceTree = "<group>";
 		};
 		CAADF60C16F444C20097CFA1 /* Common */ = {
@@ -15600,32 +15270,6 @@
 			path = Youmi;
 			sourceTree = "<group>";
 		};
-		CAADF78D16F977C00097CFA1 /* aderwall-ios-sdk */ = {
-			isa = PBXGroup;
-			children = (
-				CAADF78E16F977C00097CFA1 /* AderWallSDKPackageRelease */,
-			);
-			path = "aderwall-ios-sdk";
-			sourceTree = "<group>";
-		};
-		CAADF78E16F977C00097CFA1 /* AderWallSDKPackageRelease */ = {
-			isa = PBXGroup;
-			children = (
-				CAADF79016F977C00097CFA1 /* lib */,
-			);
-			path = AderWallSDKPackageRelease;
-			sourceTree = "<group>";
-		};
-		CAADF79016F977C00097CFA1 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				CAADF79116F977C00097CFA1 /* AderPointWall.h */,
-				CAADF79216F977C00097CFA1 /* AderWallDelegate.h */,
-				CAADF79316F977C00097CFA1 /* libAderWallSDK.a */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		CAAE4A891579B8180012F6B8 /* Ad */ = {
 			isa = PBXGroup;
 			children = (
@@ -15635,8 +15279,6 @@
 				CAA9C434159CA97100398EC5 /* LmWallService.m */,
 				CAA1AA3D159D78C200504C98 /* AdService.h */,
 				CAA1AA3E159D78C200504C98 /* AdService.m */,
-				CAD9F20817356EDE00011AFA /* GameSplashAdService.h */,
-				CAD9F20917356EDE00011AFA /* GameSplashAdService.m */,
 			);
 			name = Ad;
 			path = YoumiWall;
@@ -16020,40 +15662,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		CAD9F1871735525400011AFA /* DomobAdSDK */ = {
-			isa = PBXGroup;
-			children = (
-				CAD9F1881735525400011AFA /* DMAdView.h */,
-				CAD9F1891735525400011AFA /* DMInterstitialAdController.h */,
-				CAD9F18A1735525400011AFA /* DMSplashAdController.h */,
-				CAD9F18B1735525400011AFA /* DMTools.h */,
-				CAD9F18C1735525400011AFA /* DomobAdSDKBundle */,
-				CAD9F18E1735525400011AFA /* libDomobAdSDK.a */,
-			);
-			path = DomobAdSDK;
-			sourceTree = "<group>";
-		};
-		CAD9F18C1735525400011AFA /* DomobAdSDKBundle */ = {
-			isa = PBXGroup;
-			children = (
-				CAD9F18D1735525400011AFA /* DomobAdSDKBundle.bundle */,
-			);
-			path = DomobAdSDKBundle;
-			sourceTree = "<group>";
-		};
-		CAD9F1D4173553EA00011AFA /* SplashAdService */ = {
-			isa = PBXGroup;
-			children = (
-				CAD9F1D51735540100011AFA /* CommonSplashAdService.h */,
-				CAD9F1D61735540100011AFA /* CommonSplashAdService.m */,
-				CAD9F1E41735542D00011AFA /* DomobSplashAdService.h */,
-				CAD9F1E51735542D00011AFA /* DomobSplashAdService.m */,
-				CAD9F1F31735543E00011AFA /* AdmobSplashAdService.h */,
-				CAD9F1F41735543E00011AFA /* AdmobSplashAdService.m */,
-			);
-			path = SplashAdService;
-			sourceTree = "<group>";
-		};
 		CADD263F168841ED00BDCDCF /* Core-Utils-DataStructure */ = {
 			isa = PBXGroup;
 			children = (
@@ -16307,14 +15915,9 @@
 		CAFEF86B16606E4700441D77 /* 3PP-SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CAD9F1871735525400011AFA /* DomobAdSDK */,
 				C2002C4C172CE4F000FD6AE1 /* YoumiSDK */,
 				C282E53D172BC53100F8C610 /* GoogleAdMobAdsSDK */,
-				C262E4151726757D00D41802 /* DMOfferWallSDK */,
 				A4834D621716AD5300190347 /* AliPaySDK */,
-				CAADF78D16F977C00097CFA1 /* aderwall-ios-sdk */,
-				A48B0997169EA35C00B56975 /* TapjoyPublisherLibrary */,
-				A48B0977169E664600B56975 /* UMAppNetwork_SDK_3.5.2 */,
 				CAFEF87316606E4700441D77 /* FacebookSDK */,
 				CAFEF89D16606E4800441D77 /* LmmobSDK */,
 				CAFEF9F416606E4800441D77 /* MobClick */,
@@ -16622,7 +16225,6 @@
 			children = (
 				CA766D5417A15EB600D60E3D /* CPMotionRecognizer */,
 				C23ED5DB1759A5B500263FB7 /* GoogleSearch */,
-				CAD9F1D4173553EA00011AFA /* SplashAdService */,
 				CAADF60A16F444C20097CFA1 /* AdWallService */,
 				CAFEFD0016606FC100441D77 /* PPSNSService */,
 				CAFEFD1B16606FC100441D77 /* ssziparchive */,
@@ -17105,7 +16707,6 @@
 				A461B40D174CBAA70088B061 /* Localizable.strings in Resources */,
 				A461B40E174CBAA70088B061 /* ShareCell.xib in Resources */,
 				A461B410174CBAA70088B061 /* AboutUsController.xib in Resources */,
-				A461B412174CBAA70088B061 /* UFPController.xib in Resources */,
 				A461B413174CBAA70088B061 /* PaintButton.xib in Resources */,
 				A461B414174CBAA70088B061 /* ColorShopView.xib in Resources */,
 				A461B416174CBAA70088B061 /* SelectWordCell~ipad.xib in Resources */,
@@ -17117,7 +16718,6 @@
 				A461B41C174CBAA70088B061 /* FeedbackController~ipad.xib in Resources */,
 				A461B41D174CBAA70088B061 /* ReportController~ipad.xib in Resources */,
 				A461B41E174CBAA70088B061 /* AboutUsController~ipad.xib in Resources */,
-				A461B41F174CBAA70088B061 /* UFPController~ipad.xib in Resources */,
 				A461B420174CBAA70088B061 /* ShareEditController~ipad.xib in Resources */,
 				A461B421174CBAA70088B061 /* ShareController~ipad.xib in Resources */,
 				A461B422174CBAA70088B061 /* ShareCell~ipad.xib in Resources */,
@@ -17327,8 +16927,6 @@
 				A461B65E174CBAA70088B061 /* DraftCell~ipad.xib in Resources */,
 				A461B65F174CBAA70088B061 /* DraftsView.xib in Resources */,
 				A461B660174CBAA70088B061 /* DraftsView~ipad.xib in Resources */,
-				A461B661174CBAA70088B061 /* UMUFP.bundle in Resources */,
-				A461B664174CBAA70088B061 /* TapjoyResources.bundle in Resources */,
 				A461B667174CBAA70088B061 /* ColorBox.xib in Resources */,
 				A461B668174CBAA70088B061 /* ColorBox~ipad.xib in Resources */,
 				A461B66C174CBAA70088B061 /* Palette.xib in Resources */,
@@ -17400,9 +16998,7 @@
 				A461B7B8174CBAA70088B061 /* UserSettingCell~ipad.xib in Resources */,
 				A461B7BE174CBAA70088B061 /* DrawOnCell.xib in Resources */,
 				A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */,
-				A461B7CF174CBAA70088B061 /* DomobOfferWallBundle.bundle in Resources */,
 				A461B7D4174CBAA70088B061 /* README.txt in Resources */,
-				A461B7D5174CBAA70088B061 /* DomobAdSDKBundle.bundle in Resources */,
 				A461B7D6174CBAA70088B061 /* LittleGeeDraw-Info.plist in Resources */,
 				A461B7D7174CBAA70088B061 /* LittleGeeHomeController.xib in Resources */,
 				A461B7D8174CBAA70088B061 /* LittleGeeHomeController~ipad.xib in Resources */,
@@ -18019,7 +17615,6 @@
 				C28A9CEC1738F04B007A819F /* Localizable.strings in Resources */,
 				C28A9CED1738F04B007A819F /* ShareCell.xib in Resources */,
 				C28A9CEF1738F04B007A819F /* AboutUsController.xib in Resources */,
-				C28A9CF11738F04B007A819F /* UFPController.xib in Resources */,
 				C28A9CF21738F04B007A819F /* PaintButton.xib in Resources */,
 				C28A9CF31738F04B007A819F /* ColorShopView.xib in Resources */,
 				C28A9CF51738F04B007A819F /* SelectWordCell~ipad.xib in Resources */,
@@ -18031,7 +17626,6 @@
 				C28A9CFB1738F04B007A819F /* FeedbackController~ipad.xib in Resources */,
 				C28A9CFC1738F04B007A819F /* ReportController~ipad.xib in Resources */,
 				C28A9CFD1738F04B007A819F /* AboutUsController~ipad.xib in Resources */,
-				C28A9CFE1738F04B007A819F /* UFPController~ipad.xib in Resources */,
 				C28A9CFF1738F04B007A819F /* ShareEditController~ipad.xib in Resources */,
 				C28A9D001738F04B007A819F /* ShareController~ipad.xib in Resources */,
 				C28A9D011738F04B007A819F /* ShareCell~ipad.xib in Resources */,
@@ -18251,8 +17845,6 @@
 				C28A9F401738F04B007A819F /* DraftCell~ipad.xib in Resources */,
 				C28A9F411738F04B007A819F /* DraftsView.xib in Resources */,
 				C28A9F421738F04B007A819F /* DraftsView~ipad.xib in Resources */,
-				C28A9F431738F04B007A819F /* UMUFP.bundle in Resources */,
-				C28A9F461738F04B007A819F /* TapjoyResources.bundle in Resources */,
 				C28A9F491738F04B007A819F /* ColorBox.xib in Resources */,
 				C28A9F4A1738F04B007A819F /* ColorBox~ipad.xib in Resources */,
 				C28A9F4E1738F04B007A819F /* Palette.xib in Resources */,
@@ -18324,9 +17916,7 @@
 				C28AA09A1738F04B007A819F /* UserSettingCell~ipad.xib in Resources */,
 				C28AA0A01738F04B007A819F /* DrawOnCell.xib in Resources */,
 				C28AA0A11738F04B007A819F /* DrawOnCell~ipad.xib in Resources */,
-				C28AA0B11738F04B007A819F /* DomobOfferWallBundle.bundle in Resources */,
 				C28AA0B61738F04B007A819F /* README.txt in Resources */,
-				C28AA0B71738F04B007A819F /* DomobAdSDKBundle.bundle in Resources */,
 				C28AA0D01738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */,
 				C2051B631739E15E00403DBD /* LittleGeeHomeController.xib in Resources */,
 				C2051B721739EAEA00403DBD /* LittleGeeHomeController~ipad.xib in Resources */,
@@ -18896,7 +18486,6 @@
 				CA1377F21525A7CB00B5790B /* Localizable.strings in Resources */,
 				C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */,
 				C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */,
-				C2F947D31533D91E0034C895 /* UFPController.xib in Resources */,
 				C2FA6E721535358100EEB530 /* PaintButton.xib in Resources */,
 				CA051DCF1546808500D0A00A /* ColorShopView.xib in Resources */,
 				CAA361DB15529F530081D3EB /* HomeController~ipad.xib in Resources */,
@@ -18909,7 +18498,6 @@
 				C2B3E932155373C400CCF52C /* FeedbackController~ipad.xib in Resources */,
 				C2B3E934155373CC00CCF52C /* ReportController~ipad.xib in Resources */,
 				C2B3E936155373D500CCF52C /* AboutUsController~ipad.xib in Resources */,
-				C2B3E938155373DB00CCF52C /* UFPController~ipad.xib in Resources */,
 				C2B3E93A155373EB00CCF52C /* ShareEditController~ipad.xib in Resources */,
 				C2B3E93C155373F500CCF52C /* ShareController~ipad.xib in Resources */,
 				C2B3E93E155373FD00CCF52C /* ShareCell~ipad.xib in Resources */,
@@ -19131,8 +18719,6 @@
 				A4C1E91B169BE85E00644682 /* DraftCell~ipad.xib in Resources */,
 				A4C1E91D169BE85E00644682 /* DraftsView.xib in Resources */,
 				A4C1E91E169BE85E00644682 /* DraftsView~ipad.xib in Resources */,
-				A48B0982169E664600B56975 /* UMUFP.bundle in Resources */,
-				A48B099F169EA35C00B56975 /* TapjoyResources.bundle in Resources */,
 				CA5328F116A3E1E000E9E96B /* ColorBox.xib in Resources */,
 				CA5328F516A3E1E000E9E96B /* ColorBox~ipad.xib in Resources */,
 				CA53291516A3E1E000E9E96B /* Palette.xib in Resources */,
@@ -19204,9 +18790,7 @@
 				C2BD7A6417165E250079B7F6 /* UserSettingCell~ipad.xib in Resources */,
 				CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
-				C262E41A1726757D00D41802 /* DomobOfferWallBundle.bundle in Resources */,
 				C282E754172BC53300F8C610 /* README.txt in Resources */,
-				CAD9F18F1735525400011AFA /* DomobAdSDKBundle.bundle in Resources */,
 				C28AA0C31738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */,
 				C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */,
 				C2051B651739EAEA00403DBD /* LittleGeeHomeController~ipad.xib in Resources */,
@@ -19753,7 +19337,6 @@
 				EA411B65176066F500DA72D0 /* Localizable.strings in Resources */,
 				EA411B66176066F500DA72D0 /* ShareCell.xib in Resources */,
 				EA411B68176066F500DA72D0 /* AboutUsController.xib in Resources */,
-				EA411B6A176066F500DA72D0 /* UFPController.xib in Resources */,
 				EA411B6B176066F500DA72D0 /* PaintButton.xib in Resources */,
 				EA411B6C176066F500DA72D0 /* ColorShopView.xib in Resources */,
 				EA411B6E176066F500DA72D0 /* SelectWordCell~ipad.xib in Resources */,
@@ -19765,7 +19348,6 @@
 				EA411B74176066F500DA72D0 /* FeedbackController~ipad.xib in Resources */,
 				EA411B75176066F500DA72D0 /* ReportController~ipad.xib in Resources */,
 				EA411B76176066F500DA72D0 /* AboutUsController~ipad.xib in Resources */,
-				EA411B77176066F500DA72D0 /* UFPController~ipad.xib in Resources */,
 				EA411B78176066F500DA72D0 /* ShareEditController~ipad.xib in Resources */,
 				EA411B79176066F500DA72D0 /* ShareController~ipad.xib in Resources */,
 				EA411B7A176066F500DA72D0 /* ShareCell~ipad.xib in Resources */,
@@ -19975,8 +19557,6 @@
 				EA411D88176066F500DA72D0 /* DraftCell~ipad.xib in Resources */,
 				EA411D89176066F500DA72D0 /* DraftsView.xib in Resources */,
 				EA411D8A176066F500DA72D0 /* DraftsView~ipad.xib in Resources */,
-				EA411D8B176066F500DA72D0 /* UMUFP.bundle in Resources */,
-				EA411D8E176066F500DA72D0 /* TapjoyResources.bundle in Resources */,
 				EA411D91176066F500DA72D0 /* ColorBox.xib in Resources */,
 				EA411D92176066F500DA72D0 /* ColorBox~ipad.xib in Resources */,
 				EA411D96176066F500DA72D0 /* Palette.xib in Resources */,
@@ -20048,9 +19628,7 @@
 				EA411EDF176066F500DA72D0 /* UserSettingCell~ipad.xib in Resources */,
 				EA411EE5176066F500DA72D0 /* DrawOnCell.xib in Resources */,
 				EA411EE6176066F500DA72D0 /* DrawOnCell~ipad.xib in Resources */,
-				EA411EF6176066F500DA72D0 /* DomobOfferWallBundle.bundle in Resources */,
 				EA411EFB176066F500DA72D0 /* README.txt in Resources */,
-				EA411EFC176066F500DA72D0 /* DomobAdSDKBundle.bundle in Resources */,
 				EA411EFD176066F500DA72D0 /* LittleGeeDraw-Info.plist in Resources */,
 				EA411EFE176066F500DA72D0 /* LittleGeeHomeController.xib in Resources */,
 				EA411EFF176066F500DA72D0 /* LittleGeeHomeController~ipad.xib in Resources */,
@@ -20743,7 +20321,6 @@
 				A461B13E174CBAA70088B061 /* PriceModel.m in Sources */,
 				A461B13F174CBAA70088B061 /* AboutUsController.m in Sources */,
 				A461B141174CBAA70088B061 /* ShareAction.m in Sources */,
-				A461B142174CBAA70088B061 /* UFPController.m in Sources */,
 				A461B143174CBAA70088B061 /* MyPaintButton.m in Sources */,
 				A461B144174CBAA70088B061 /* StoreKitUtils.m in Sources */,
 				A461B145174CBAA70088B061 /* TransactionReceiptManager.m in Sources */,
@@ -21034,14 +20611,6 @@
 				A461B2E4174CBAA70088B061 /* SelectCustomWordCell.m in Sources */,
 				A461B2E5174CBAA70088B061 /* DraftCell.m in Sources */,
 				A461B2E6174CBAA70088B061 /* DraftsView.m in Sources */,
-				A461B2E8174CBAA70088B061 /* UMBannerViewController.m in Sources */,
-				A461B2E9174CBAA70088B061 /* GridViewCellDemo.m in Sources */,
-				A461B2EA174CBAA70088B061 /* UMGridViewController.m in Sources */,
-				A461B2EB174CBAA70088B061 /* UMHandleViewController.m in Sources */,
-				A461B2EC174CBAA70088B061 /* UMHandleViewController_New.m in Sources */,
-				A461B2ED174CBAA70088B061 /* UMTableViewCell.m in Sources */,
-				A461B2EE174CBAA70088B061 /* UMTableViewController.m in Sources */,
-				A461B2EF174CBAA70088B061 /* UMWebViewController.m in Sources */,
 				A461B2F0174CBAA70088B061 /* RoundLineLabel.m in Sources */,
 				A461B2F1174CBAA70088B061 /* ColorBox.m in Sources */,
 				A461B2F2174CBAA70088B061 /* ColorPoint.m in Sources */,
@@ -21132,7 +20701,6 @@
 				A461B359174CBAA70088B061 /* ShapeAction.m in Sources */,
 				A461B35A174CBAA70088B061 /* CanvasRect.m in Sources */,
 				A461B35B174CBAA70088B061 /* YoumiAdWallService.m in Sources */,
-				A461B35C174CBAA70088B061 /* AderAdWallService.m in Sources */,
 				A461B35D174CBAA70088B061 /* UserDetailCell.m in Sources */,
 				A461B35E174CBAA70088B061 /* BBSController.m in Sources */,
 				A461B35F174CBAA70088B061 /* BalanceNotEnoughAlertView.m in Sources */,
@@ -21188,18 +20756,12 @@
 				A461B39A174CBAA70088B061 /* RSADataVerifier.m in Sources */,
 				A461B39B174CBAA70088B061 /* AlixPayOrderManager.m in Sources */,
 				A461B39C174CBAA70088B061 /* NotificationCenterManager.m in Sources */,
-				A461B3A7174CBAA70088B061 /* DomobAdWallService.m in Sources */,
-				A461B3A8174CBAA70088B061 /* TapjoyAdWallService.m in Sources */,
 				A461B3A9174CBAA70088B061 /* UIImage+fixOrientation.m in Sources */,
 				A461B3AA174CBAA70088B061 /* SKProductService.m in Sources */,
 				A461B3AB174CBAA70088B061 /* SKProductManager.m in Sources */,
 				A461B3AC174CBAA70088B061 /* PBIAPProduct+Utils.m in Sources */,
-				A461B3B1174CBAA70088B061 /* CommonSplashAdService.m in Sources */,
-				A461B3B2174CBAA70088B061 /* DomobSplashAdService.m in Sources */,
-				A461B3B3174CBAA70088B061 /* AdmobSplashAdService.m in Sources */,
 				A461B3B4174CBAA70088B061 /* FeedSceneDetailGuessResult.m in Sources */,
 				A461B3B5174CBAA70088B061 /* FeedSceneFeedDetail.m in Sources */,
-				A461B3B7174CBAA70088B061 /* GameSplashAdService.m in Sources */,
 				A461B3B8174CBAA70088B061 /* PhotoDrawSheet.m in Sources */,
 				A461B3BD174CBAA70088B061 /* HGQuadCurveMenu.m in Sources */,
 				A461B3BE174CBAA70088B061 /* HGQuadCurveMenuItem.m in Sources */,
@@ -21574,7 +21136,6 @@
 				C28A9A261738F04B007A819F /* PriceModel.m in Sources */,
 				C28A9A271738F04B007A819F /* AboutUsController.m in Sources */,
 				C28A9A291738F04B007A819F /* ShareAction.m in Sources */,
-				C28A9A2A1738F04B007A819F /* UFPController.m in Sources */,
 				C28A9A2B1738F04B007A819F /* MyPaintButton.m in Sources */,
 				C28A9A2C1738F04B007A819F /* StoreKitUtils.m in Sources */,
 				C28A9A2D1738F04B007A819F /* TransactionReceiptManager.m in Sources */,
@@ -21870,14 +21431,6 @@
 				C28A9BCC1738F04B007A819F /* SelectCustomWordCell.m in Sources */,
 				C28A9BCD1738F04B007A819F /* DraftCell.m in Sources */,
 				C28A9BCE1738F04B007A819F /* DraftsView.m in Sources */,
-				C28A9BD01738F04B007A819F /* UMBannerViewController.m in Sources */,
-				C28A9BD11738F04B007A819F /* GridViewCellDemo.m in Sources */,
-				C28A9BD21738F04B007A819F /* UMGridViewController.m in Sources */,
-				C28A9BD31738F04B007A819F /* UMHandleViewController.m in Sources */,
-				C28A9BD41738F04B007A819F /* UMHandleViewController_New.m in Sources */,
-				C28A9BD51738F04B007A819F /* UMTableViewCell.m in Sources */,
-				C28A9BD61738F04B007A819F /* UMTableViewController.m in Sources */,
-				C28A9BD71738F04B007A819F /* UMWebViewController.m in Sources */,
 				C28A9BD81738F04B007A819F /* RoundLineLabel.m in Sources */,
 				C28A9BD91738F04B007A819F /* ColorBox.m in Sources */,
 				C28A9BDA1738F04B007A819F /* ColorPoint.m in Sources */,
@@ -21968,7 +21521,6 @@
 				C28A9C411738F04B007A819F /* ShapeAction.m in Sources */,
 				C28A9C421738F04B007A819F /* CanvasRect.m in Sources */,
 				C28A9C431738F04B007A819F /* YoumiAdWallService.m in Sources */,
-				C28A9C441738F04B007A819F /* AderAdWallService.m in Sources */,
 				C28A9C451738F04B007A819F /* UserDetailCell.m in Sources */,
 				C28A9C461738F04B007A819F /* BBSController.m in Sources */,
 				C28A9C471738F04B007A819F /* BalanceNotEnoughAlertView.m in Sources */,
@@ -22024,19 +21576,13 @@
 				C28A9C821738F04B007A819F /* RSADataVerifier.m in Sources */,
 				C28A9C831738F04B007A819F /* AlixPayOrderManager.m in Sources */,
 				C28A9C841738F04B007A819F /* NotificationCenterManager.m in Sources */,
-				C28A9C8F1738F04B007A819F /* DomobAdWallService.m in Sources */,
-				C28A9C901738F04B007A819F /* TapjoyAdWallService.m in Sources */,
 				C28A9C911738F04B007A819F /* UIImage+fixOrientation.m in Sources */,
 				C28A9C921738F04B007A819F /* SKProductService.m in Sources */,
 				C28A9C931738F04B007A819F /* SKProductManager.m in Sources */,
 				C28A9C941738F04B007A819F /* PBIAPProduct+Utils.m in Sources */,
-				C28A9C991738F04B007A819F /* CommonSplashAdService.m in Sources */,
-				C28A9C9A1738F04B007A819F /* DomobSplashAdService.m in Sources */,
-				C28A9C9B1738F04B007A819F /* AdmobSplashAdService.m in Sources */,
 				C28A9C9C1738F04B007A819F /* FeedSceneDetailGuessResult.m in Sources */,
 				C28A9C9D1738F04B007A819F /* FeedSceneFeedDetail.m in Sources */,
 				C28A9C9E1738F04B007A819F /* FeedSceneGuessResult.m in Sources */,
-				C28A9C9F1738F04B007A819F /* GameSplashAdService.m in Sources */,
 				C28A9CA01738F04B007A819F /* PhotoDrawSheet.m in Sources */,
 				C28AA0E01738F406007A819F /* LittleGeeDrawApp.m in Sources */,
 				C21CD7B1173CA2FF00C699C2 /* HGQuadCurveMenu.m in Sources */,
@@ -22380,7 +21926,6 @@
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
-				C2F947D21533D91E0034C895 /* UFPController.m in Sources */,
 				C2FA6E701535352200EEB530 /* MyPaintButton.m in Sources */,
 				CAC4DCE215450E8F00A42CF2 /* StoreKitUtils.m in Sources */,
 				CAC4DCE81545286C00A42CF2 /* TransactionReceiptManager.m in Sources */,
@@ -22677,14 +22222,6 @@
 				A4DE148B169AB1B600841940 /* SelectCustomWordCell.m in Sources */,
 				A4C1E919169BE85E00644682 /* DraftCell.m in Sources */,
 				A4C1E91C169BE85E00644682 /* DraftsView.m in Sources */,
-				A48B09CF169FAAC500B56975 /* UMBannerViewController.m in Sources */,
-				A48B09D0169FAAC500B56975 /* GridViewCellDemo.m in Sources */,
-				A48B09D1169FAAC500B56975 /* UMGridViewController.m in Sources */,
-				A48B09D2169FAAC500B56975 /* UMHandleViewController.m in Sources */,
-				A48B09D3169FAAC500B56975 /* UMHandleViewController_New.m in Sources */,
-				A48B09D4169FAAC500B56975 /* UMTableViewCell.m in Sources */,
-				A48B09D5169FAAC500B56975 /* UMTableViewController.m in Sources */,
-				A48B09D6169FAAC500B56975 /* UMWebViewController.m in Sources */,
 				C297004E16A1363500A61521 /* RoundLineLabel.m in Sources */,
 				CA5328ED16A3E1E000E9E96B /* ColorBox.m in Sources */,
 				CA5328F916A3E1E000E9E96B /* ColorPoint.m in Sources */,
@@ -22775,7 +22312,6 @@
 				CA35FF3B16F8672200D8E05D /* ShapeAction.m in Sources */,
 				CA35FF4716F867AC00D8E05D /* CanvasRect.m in Sources */,
 				CAADF65416F977870097CFA1 /* YoumiAdWallService.m in Sources */,
-				CAADF65A16F977970097CFA1 /* AderAdWallService.m in Sources */,
 				C2B97A2B16F999200037B15B /* UserDetailCell.m in Sources */,
 				CAABB89316F99C41007DCC58 /* BBSController.m in Sources */,
 				A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */,
@@ -22831,19 +22367,13 @@
 				A4834E041716AD5400190347 /* RSADataVerifier.m in Sources */,
 				A4348C5C1717C0FA004AFB26 /* AlixPayOrderManager.m in Sources */,
 				A4348C611717C0FA004AFB26 /* NotificationCenterManager.m in Sources */,
-				C262E434172695C500D41802 /* DomobAdWallService.m in Sources */,
-				C282D00C1728DD6E00F8C610 /* TapjoyAdWallService.m in Sources */,
 				EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */,
 				A49D82BA172BD53F00C4001F /* SKProductService.m in Sources */,
 				A49D82CA172BD58800C4001F /* SKProductManager.m in Sources */,
 				A49D82F6172E355700C4001F /* PBIAPProduct+Utils.m in Sources */,
-				CAD9F1D71735540100011AFA /* CommonSplashAdService.m in Sources */,
-				CAD9F1E61735542D00011AFA /* DomobSplashAdService.m in Sources */,
-				CAD9F1F51735543E00011AFA /* AdmobSplashAdService.m in Sources */,
 				C28A9909173561E6007A819F /* FeedSceneDetailGuessResult.m in Sources */,
 				C28A9916173561E6007A819F /* FeedSceneFeedDetail.m in Sources */,
 				C28A9923173561E6007A819F /* FeedSceneGuessResult.m in Sources */,
-				CAD9F20A17356EDE00011AFA /* GameSplashAdService.m in Sources */,
 				EABD0FFB17376A9B00A2F930 /* PhotoDrawSheet.m in Sources */,
 				C21CD7A4173CA2FF00C699C2 /* HGQuadCurveMenu.m in Sources */,
 				C21CD7B2173CA2FF00C699C2 /* HGQuadCurveMenuItem.m in Sources */,
@@ -23190,7 +22720,6 @@
 				EA4118D2176066F500DA72D0 /* PriceModel.m in Sources */,
 				EA4118D3176066F500DA72D0 /* AboutUsController.m in Sources */,
 				EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */,
-				EA4118D6176066F500DA72D0 /* UFPController.m in Sources */,
 				EA4118D7176066F500DA72D0 /* MyPaintButton.m in Sources */,
 				EA4118D8176066F500DA72D0 /* StoreKitUtils.m in Sources */,
 				EA4118D9176066F500DA72D0 /* TransactionReceiptManager.m in Sources */,
@@ -23481,14 +23010,6 @@
 				EA411A20176066F500DA72D0 /* SelectCustomWordCell.m in Sources */,
 				EA411A21176066F500DA72D0 /* DraftCell.m in Sources */,
 				EA411A22176066F500DA72D0 /* DraftsView.m in Sources */,
-				EA411A24176066F500DA72D0 /* UMBannerViewController.m in Sources */,
-				EA411A25176066F500DA72D0 /* GridViewCellDemo.m in Sources */,
-				EA411A26176066F500DA72D0 /* UMGridViewController.m in Sources */,
-				EA411A27176066F500DA72D0 /* UMHandleViewController.m in Sources */,
-				EA411A28176066F500DA72D0 /* UMHandleViewController_New.m in Sources */,
-				EA411A29176066F500DA72D0 /* UMTableViewCell.m in Sources */,
-				EA411A2A176066F500DA72D0 /* UMTableViewController.m in Sources */,
-				EA411A2B176066F500DA72D0 /* UMWebViewController.m in Sources */,
 				EA411A2C176066F500DA72D0 /* RoundLineLabel.m in Sources */,
 				EA411A2D176066F500DA72D0 /* ColorBox.m in Sources */,
 				EA411A2E176066F500DA72D0 /* ColorPoint.m in Sources */,
@@ -23579,7 +23100,6 @@
 				EA411A94176066F500DA72D0 /* ShapeAction.m in Sources */,
 				EA411A95176066F500DA72D0 /* CanvasRect.m in Sources */,
 				EA411A96176066F500DA72D0 /* YoumiAdWallService.m in Sources */,
-				EA411A97176066F500DA72D0 /* AderAdWallService.m in Sources */,
 				EA411A98176066F500DA72D0 /* UserDetailCell.m in Sources */,
 				EA411A99176066F500DA72D0 /* BBSController.m in Sources */,
 				EA411A9A176066F500DA72D0 /* BalanceNotEnoughAlertView.m in Sources */,
@@ -23635,18 +23155,12 @@
 				EA411AD4176066F500DA72D0 /* RSADataVerifier.m in Sources */,
 				EA411AD5176066F500DA72D0 /* AlixPayOrderManager.m in Sources */,
 				EA411AD6176066F500DA72D0 /* NotificationCenterManager.m in Sources */,
-				EA411ADC176066F500DA72D0 /* DomobAdWallService.m in Sources */,
-				EA411ADD176066F500DA72D0 /* TapjoyAdWallService.m in Sources */,
 				EA411ADE176066F500DA72D0 /* UIImage+fixOrientation.m in Sources */,
 				EA411ADF176066F500DA72D0 /* SKProductService.m in Sources */,
 				EA411AE0176066F500DA72D0 /* SKProductManager.m in Sources */,
 				EA411AE1176066F500DA72D0 /* PBIAPProduct+Utils.m in Sources */,
-				EA411AE2176066F500DA72D0 /* CommonSplashAdService.m in Sources */,
-				EA411AE3176066F500DA72D0 /* DomobSplashAdService.m in Sources */,
-				EA411AE4176066F500DA72D0 /* AdmobSplashAdService.m in Sources */,
 				EA411AE5176066F500DA72D0 /* FeedSceneDetailGuessResult.m in Sources */,
 				EA411AE6176066F500DA72D0 /* FeedSceneFeedDetail.m in Sources */,
-				EA411AE8176066F500DA72D0 /* GameSplashAdService.m in Sources */,
 				EA411AE9176066F500DA72D0 /* PhotoDrawSheet.m in Sources */,
 				EA411AEC176066F500DA72D0 /* HGQuadCurveMenu.m in Sources */,
 				EA411AED176066F500DA72D0 /* HGQuadCurveMenuItem.m in Sources */,

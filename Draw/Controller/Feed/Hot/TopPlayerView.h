@@ -37,7 +37,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UIImageView *avatar;
 @property (retain, nonatomic) IBOutlet UILabel *nickName;
 //@property (retain, nonatomic) IBOutlet UILabel *levelInfo;
-@property (retain, nonatomic) IBOutlet UIButton *maskButton;
+@property (retain, nonatomic) IBOutlet UIControl *maskControl;
 @property (retain, nonatomic) IBOutlet UIImageView *cupImage;
 @property (retain, nonatomic) IBOutlet UIImageView *genderImageView;
 

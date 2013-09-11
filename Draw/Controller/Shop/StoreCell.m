@@ -113,8 +113,10 @@
     
     [self.countButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     self.countButton.backgroundColor = COLOR_BROWN;
-    [self.countButton.layer setCornerRadius:(ISIPAD? 4 : 2)];
+    [self.countButton.layer setCornerRadius:(ISIPAD? 8 : 4)];
     [self.countButton.layer setMasksToBounds:YES];
+    [[[self countButton] titleLabel] setFont:[UIFont systemFontOfSize:(ISIPAD?18:9)]];
+
 }
 
 - (void)setItem:(PBGameItem *)item

@@ -103,6 +103,7 @@
                                         width:action.width
                                         color:nil];
         [self.shape setPointsWithPointComponent:action.rectComponentList];
+        self.shape.stroke = action.shapeStroke;
         if ([action hasBetterColor]) {
             self.shape.color = [DrawColor colorWithBetterCompressColor:action.betterColor];
         }else{
@@ -132,7 +133,7 @@
 {
     PBDrawAction_Builder *builder = [[[PBDrawAction_Builder alloc] init] autorelease];
     [builder setType:DrawActionTypeShape];
-    [builder setClipTag:self.clipTag];  
+    [builder setClipTag:self.clipTag];
     [self.shape updatePBDrawActionBuilder:builder];
     [self.shadow updatePBDrawActionBuilder:builder];
     return [builder build];

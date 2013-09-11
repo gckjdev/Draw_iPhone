@@ -1026,55 +1026,55 @@
 "kContestCommitEnoughCommitAsNormal" = "對不起，妳已經提交了%d幅作品了，不能再提交了。把作品提交為普通作品？";
 
 // TODO contest 繁体
-"kContestSubmitEnd" = "比赛提交作品时间已经截止了，下次记得准时参加";
-"kReachMaxFlowerPerContest" = "你已经用完本次比赛的所有鲜花，不能再送花了，下次请珍惜花花";
-"kReachContestVoteEndDate" = "比赛送花时间已经截止，下次记得及时送花";
-"kContestSubmitEndSubmitNormal" = "很遗憾，比赛提交作品时间已经截止了，你是否要提交为普通作品？";
-"kContestNotForUser" = "你不是本次比赛的指定参赛选手，无法参加比赛";
-"kContestNotForUserSubmitNormal" = "你不是本次比赛的指定参赛选手，是否要提交为普通作品？";
-"kAnounymousContestNick" = "就不告诉你";
-"kContestThrowFlowerMsg" = "本次比赛你已送出%d朵鲜花，还剩余%d朵鲜花可以送出";
+"kContestSubmitEnd" = "比賽提交作品時間已經截止了，下次記得準時參加";
+"kReachMaxFlowerPerContest" = "你已經用完本次比賽的所有鮮花，不能再送花了，下次請珍惜花花";
+"kReachContestVoteEndDate" = "比賽送花時間已經截止，下次記得及時送花";
+"kContestSubmitEndSubmitNormal" = "很遺憾，比賽提交作品時間已經截止了，你是否要提交為普通作品？";
+"kContestNotForUser" = "你不是本次比賽的指定參賽選手，無法參加比賽";
+"kContestNotForUserSubmitNormal" = "你不是本次比賽的指定參賽選手，是否要提交為普通作品？";
+"kAnounymousContestNick" = "就不告訴你";
+"kContestThrowFlowerMsg" = "本次比賽你已送出%d朵鮮花，還剩餘%d朵鮮花可以送出";
 
-"kLoginXiaoji" = "小吉登录";
-"kLoginXiaojiPlaceHolder" = "请输入小吉号码";
-"kLoginPasswordPlaceHolder" = "请输入密码";
-"kXiaojiNumberCannotEmpty" = "小吉号码不能为空";
-"kXiaojiPasswordCannotEmpty" = "密码不能为空";
-"kXiaojiNumberNotFound" = "小吉号码不存在";
-"kXiaojiPasswordIncorrect" = "密码不正确，请检查";
+"kLoginXiaoji" = "小吉登錄";
+"kLoginXiaojiPlaceHolder" = "請輸入小吉號碼";
+"kLoginPasswordPlaceHolder" = "請輸入密碼";
+"kXiaojiNumberCannotEmpty" = "小吉號碼不能為空";
+"kXiaojiPasswordCannotEmpty" = "密碼不能為空";
+"kXiaojiNumberNotFound" = "小吉號碼不存在";
+"kXiaojiPasswordIncorrect" = "密碼不正確，請檢查";
 
-"kGetNumberTipsLabelText" = "首次使用，请领取小吉号码\n或使用已有号码登录";
-"kTakeNumberButtonTitle" = "领            取";
-"kLoginButtonTitle" = "登            录";
-"kShowNumberTipsLabelText" = "你的小吉号码是";
-"kOkButtonTitle" = "确            定";
+"kGetNumberTipsLabelText" = "首次使用，請領取小吉號碼\n或使用已有號碼登錄";
+"kTakeNumberButtonTitle" = "領 取";
+"kLoginButtonTitle" = "登 錄";
+"kShowNumberTipsLabelText" = "你的小吉號碼是";
+"kOkButtonTitle" = "確 定";
 
-"kChanceLeftShake" = "还可再摇%d次";
-"kTakeNumberSuccess" = "领取号码成功，希望在这里玩的开心！也请设置一下邮件和密码等重要信息";
-"kTakeNumberFail" = "领取号码失败，请检查网络，稍后再试";
-"kShakeNumberFail" = "摇一摇获取号码失败，请检查网络，稍后再试";
+"kChanceLeftShake" = "還可再搖%d次";
+"kTakeNumberSuccess" = "領取號碼成功，希望在這裡玩的開心！也請設置一下郵件和密碼等重要信息";
+"kTakeNumberFail" = "領取號碼失敗，請檢查網絡，稍後再試";
+"kShakeNumberFail" = "搖一搖獲取號碼失敗，請檢查網絡，稍後再試";
 
-"kNoEmailForResetPassword" = "你还未设置邮件，无法重置密码";
-"kResetPasswordSucc" = "密码已经重置，并发送到你的邮箱，请检查邮件";
-"kFailResetPassword" = "重置密码失败，请检查网络或者稍后再试";
-"kModifyPassword" = "修改密码";
-"kResetPassword" = "重置密码";
+"kNoEmailForResetPassword" = "你還未設置郵件，無法重置密碼";
+"kResetPasswordSucc" = "密碼已經重置，並發送到你的郵箱，請檢查郵件";
+"kFailResetPassword" = "重置密碼失敗，請檢查網絡或者稍後再試";
+"kModifyPassword" = "修改密碼";
+"kResetPassword" = "重置密碼";
 
-"kTryShakeXiaoji" = "新推出小吉号码，支持多帐号登录/注销功能，现在就领取一个小吉号码吗？";
-"kTryTakeNumber" = "马上领取";
-"kViewMyProfile" = "稍后再说";
+"kTryShakeXiaoji" = "新推出小吉號碼，支持多帳號登錄/註銷功能，現在就領取一個小吉號碼嗎？";
+"kTryTakeNumber" = "馬上領取";
+"kViewMyProfile" = "稍後再說";
 
-"kConfirmLogout" = "是否确定要退出当前帐号？";
-"kAskKeepDraft" = "是否要保留当前草稿箱中的所有草稿？如果不保留，退出帐号也将删除所有本地草稿。";
+"kConfirmLogout" = "是否確定要退出當前帳號？";
+"kAskKeepDraft" = "是否要保留當前草稿箱中的所有草稿？如果不保留，退出帳號也將刪除所有本地草稿。";
 "kKeepDraft" = "保留草稿";
 "kNotKeepDraft" = "不保留";
-"kLogoutDone" = "已经成功退出当前帐号";
-"kExceedMaxTakeNumber" = "你已经领取太多小吉号码，无法领取更多号码，如有问题请联系管理员";
-"kLogoutAccount" = "退出当前帐号";
-"kLogout" = "退出帐号";
-"kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
+"kLogoutDone" = "已經成功退出當前帳號";
+"kExceedMaxTakeNumber" = "你已經領取太多小吉號碼，無法領取更多號碼，如有問題請聯繫管理員";
+"kLogoutAccount" = "退出當前帳號";
+"kLogout" = "退出帳號";
+"kAutoGetUserSucc" = "已經成功自動獲取之前綁定本設備的用戶資料";
 
-"kNoXiaojiNumber" = "未有小吉号码";
+"kNoXiaojiNumber" = "未有小吉號碼";
 "kXiaoji" = "小吉";
 
 "kOpusMy" = "我的";

@@ -29,7 +29,7 @@
 
 @implementation RankView
 @synthesize drawFlag = _drawFlag;
-@synthesize maskButton = _maskButton;
+@synthesize maskControl = _maskControl;
 @synthesize delegate = _delegate;
 @synthesize title = _title;
 @synthesize author = _author;
@@ -57,23 +57,14 @@
         default:
             return nil;
     }
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find view object from Nib", identifier);
-        return nil;
-    }
-    RankView *view = [topLevelObjects objectAtIndex:0];
+    RankView *view = [self createViewWithXibIdentifier:identifier];
     view.delegate = delegate;
     
-    UIImage *selectedImage = [[ShareImageManager defaultManager] 
-                              highlightMaskImage];
-    [view.maskButton setBackgroundImage:selectedImage 
-                               forState:UIControlStateHighlighted];
-    [view.maskButton setBackgroundImage:selectedImage 
-                               forState:UIControlStateSelected];
-    [view.maskButton setAlpha:0.8];
     [view setClipsToBounds:YES];
     [view.drawImage setContentMode:UIViewContentModeScaleAspectFill];
+    view.maskControl = [[[UIControl alloc] initWithFrame:view.bounds] autorelease];
+    [view.maskControl addTarget:view action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:view.maskControl];
     return view;
 }
 
@@ -85,7 +76,7 @@
     PPRelease(_author);
     PPRelease(_drawImage);
     PPRelease(_drawFlag);
-    PPRelease(_maskButton);
+    PPRelease(_maskControl);
     PPRelease(_cupFlag);
     [_costLabel release];
     [_boughtCountLabel release];
@@ -187,7 +178,7 @@
     [self setRankViewSelected:NO];
     
     self.drawImage.center = self.center;
-    self.maskButton.frame = self.bounds;
+    self.maskControl.frame = self.bounds;
     
     if (feed.learnDraw) {
         [self updateLearnDraw:feed.learnDraw];
@@ -230,7 +221,7 @@
 
 - (void)setRankViewSelected:(BOOL)selected
 {
-    [self.maskButton setSelected:selected];
+    [self.maskControl setSelected:selected];
 }
 
 - (IBAction)clickMaskView:(id)sender

@@ -231,8 +231,9 @@ CGPoint contentOffset;
     
     [[cell flagButton] setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     [[cell flagButton] setBackgroundColor:COLOR_BROWN];
-    [[[cell flagButton] layer] setCornerRadius:(ISIPAD? 4 : 2)];
+    [[[cell flagButton] layer] setCornerRadius:(ISIPAD? 8 : 4)];
     [[[cell flagButton] layer] setMasksToBounds:YES];
+    [[[cell flagButton] titleLabel] setFont:[UIFont systemFontOfSize:(ISIPAD?18:9)]];
 
     return cell;
 }
@@ -276,7 +277,7 @@ CGPoint contentOffset;
     [[self nameLabel] setTextColor:COLOR_BROWN];
     [[self nameLabel] sizeToFit];;
     if ([[UserGameItemManager defaultManager] hasItem:group.groupId]) {
-        CGFloat originX = CGRectGetMaxX([self nameLabel].frame) + 3;        
+        CGFloat originX = CGRectGetMaxX([self nameLabel].frame) + 5;
         [[self flagButton] updateOriginX:originX];
         [[self flagButton] setHidden:NO];
         [[self flagButton] setTitle:NSLS(@"kAlreadyBought") forState:UIControlStateNormal];
