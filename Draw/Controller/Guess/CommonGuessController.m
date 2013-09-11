@@ -90,7 +90,14 @@
     NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
     UIImage *placeHolderImage = [[ShareImageManager defaultManager] unloadBg];
     
-    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
+//    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
+    
+    [self showActivityWithText:nil];
+    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+        [self hideActivity];
+    } failure:^(NSError *error) {
+        [self hideActivity];
+    }];
     
     // Set bgView
     SET_VIEW_BG(self.view);

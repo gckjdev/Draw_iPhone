@@ -290,4 +290,6 @@ typedef enum{
 + (int)getFeedCarouselType;
 + (BOOL)getGuessContestLocalNotificationEnabled;
 
++ (int)getGuessExpireTime;
+
 @end
