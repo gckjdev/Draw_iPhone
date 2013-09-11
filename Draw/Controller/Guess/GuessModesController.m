@@ -18,7 +18,7 @@
 #import "CommonDialog.h"
 #import "UIViewUtils.h"
 #import "AnimationManager.h"
-
+#import "TimeUtils.h"
 
 #define TAG_COUNT_DOWN_VIEW 101
 
@@ -214,8 +214,9 @@
 
     }];
     
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_contest.endTime];
-    JDDateCountdownFlipView *flipView = [[JDDateCountdownFlipView alloc] initWithHMSTargetDate:date];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:_contest.startTime];
+    PPDebug(@"contest start time is: %@", dateToLocaleStringWithFormat(date, @"yy-MM-dd HH:mm:ss"));
+    JDDateCountdownFlipView *flipView = [[[JDDateCountdownFlipView alloc] initWithHMSTargetDate:date] autorelease];
     [self.contentModeHolderView addSubview:flipView];
     flipView.frame = (ISIPAD ? CGRectMake(34,152,172,48) : CGRectMake(17,77,87,24));
     flipView.tag = TAG_COUNT_DOWN_VIEW;
@@ -243,7 +244,13 @@
 
 - (IBAction)clickContestModeButton:(id)sender {
     
-#if DEBUG == 0
+#if DEBUG
+    
+    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+#else
+    
     if ([GuessManager isContestNotStart:_contest]) {
         [self showContestIsNotStartTip];
         return;
@@ -252,10 +259,7 @@
         [self showContestIsOverTip];
         return;
     }
-#endif   
-    
-    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
+#endif
 }
 
 - (IBAction)clickRankButton:(id)sender {
