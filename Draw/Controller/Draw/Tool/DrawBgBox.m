@@ -202,9 +202,9 @@ CGPoint boxContentOffset;
     
     [[cell flagButton] setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     [[cell flagButton] setBackgroundColor:COLOR_BROWN];
-    [[[cell flagButton] layer] setCornerRadius:(ISIPAD? 4 : 2)];
+    [[[cell flagButton] layer] setCornerRadius:(ISIPAD? 8 : 4)];
     [[[cell flagButton] layer] setMasksToBounds:YES];
-
+    [[[cell flagButton] titleLabel] setFont:[UIFont systemFontOfSize:(ISIPAD?18:9)]];
     return cell;
 }
 
