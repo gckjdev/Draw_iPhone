@@ -446,7 +446,6 @@
 #pragma mark - button action
 - (IBAction)clickBack:(id)sender 
 {
-    self.messageList = nil;
     [self unregisterAllNotifications];
     
     NSArray *viewControllers = self.navigationController.viewControllers;
@@ -458,6 +457,8 @@
         }
     }
     [self.navigationController popViewControllerAnimated:YES];
+    
+    self.messageList = nil;    
 }
 
 - (IBAction)clickRefresh:(id)sender {
