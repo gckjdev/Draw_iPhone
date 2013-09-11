@@ -243,4 +243,52 @@
     return NUM_COUNT_AWARD_ONCE;
 }
 
+#define KEY_LAST_HAPPY_GUESS_DATE @"KEY_LAST_HAPPY_GUESS_DATE"
+#define KEY_LAST_GENIUS_GUESS_DATE @"KEY_LAST_GENIUS_GUESS_DATE"
+
++ (NSString *)getGuessDateKey:(int)mode{
+    
+    NSString *key = @"";
+    
+    if (mode == PBUserGuessModeGuessModeHappy) {
+        key = KEY_LAST_HAPPY_GUESS_DATE;
+    }
+    if (mode == PBUserGuessModeGuessModeGenius) {
+        key = KEY_LAST_GENIUS_GUESS_DATE;
+    }
+    
+    return key;
+}
+
++ (int)getGuessExpireTime{
+    
+    return [ConfigManager getGuessExpireTime];
+}
+
++ (void)setLastGuessDateDate:(int)mode{
+    
+    NSString *key = [self getGuessDateKey:mode];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (BOOL)isLastGuessDateExpire:(int)mode{
+    
+    NSString *key = [self getGuessDateKey:mode];
+    
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    
+    if (date == nil) {
+        return NO;
+    }
+    
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
+    if (interval > [self getGuessExpireTime] * 3600) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end

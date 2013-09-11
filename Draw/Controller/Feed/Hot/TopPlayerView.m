@@ -9,15 +9,13 @@
 #import "TopPlayerView.h"
 #import "ShareImageManager.h"
 #import "PPApplication.h"
-//#import "HJManagedImageV.h"
 #import "UIImageView+WebCache.h"
 #import "UIImageView+Extend.h"
 
 @implementation TopPlayerView
 @synthesize avatar = _avatar;
 @synthesize nickName = _nickName;
-//@synthesize levelInfo = _levelInfo;
-@synthesize maskButton = _maskButton;
+@synthesize maskControl = _maskControl;
 @synthesize cupImage = _cupImage;
 @synthesize topPlayer = _topPlayer;
 @synthesize delegate = _delegate;
@@ -25,24 +23,12 @@
 + (id)createTopPlayerView:(id)delegate
 {
     NSString* identifier = @"TopPlayerView";
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find view object from Nib", identifier);
-        return nil;
-    }
-    TopPlayerView *view = [topLevelObjects objectAtIndex:0];
+    TopPlayerView *view = [self createViewWithXibIdentifier:identifier];
+    [view setClipsToBounds:YES];
+    view.maskControl = [[[UIControl alloc] initWithFrame:view.bounds] autorelease];
+    [view.maskControl addTarget:view action:@selector(clickPlayerView:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:view.maskControl];
     view.delegate = delegate;
-    
-    UIImage *selectedImage = [[ShareImageManager defaultManager] 
-                              highlightMaskImage];
-//    view.maskButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    view.maskButton.frame = view.bounds;
-    [view addSubview:view.maskButton];
-    [view.maskButton setBackgroundImage:selectedImage 
-                               forState:UIControlStateHighlighted];
-    [view.maskButton setBackgroundImage:selectedImage 
-                               forState:UIControlStateSelected];
-    [view.maskButton setAlpha:0.8];
     return view;
 }
 
@@ -96,8 +82,8 @@
 
 - (void)setViewSeleted:(BOOL)selected
 {
-    self.maskButton.selected = selected;
-    [self bringSubviewToFront:self.maskButton];
+    self.maskControl.selected = selected;
+    [self bringSubviewToFront:self.maskControl];
 }
 
 - (IBAction)clickPlayerView:(id)sender {
@@ -112,7 +98,7 @@
 }
 
 - (void)dealloc {
-    PPRelease(_maskButton);
+    PPRelease(_maskControl);
     PPRelease(_nickName);
 //    PPRelease(_levelInfo);
     PPRelease(_topPlayer);

@@ -203,7 +203,7 @@
 
 
 - (UIImage *)normalButtonImage;
-- (UIImage *)highlightMaskImage;
+//- (UIImage *)highlightMaskImage;
 - (UIImage *)sinaWeiboImage;
 - (UIImage *)qqWeiboImage;
 - (UIImage *)facebookImage;

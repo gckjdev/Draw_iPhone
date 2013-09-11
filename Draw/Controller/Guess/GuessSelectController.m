@@ -71,7 +71,6 @@
     [self initTabButtons];
     [self clickTab:TABID];
     
-    
     [self.titleView setTarget:self];
     
     NSString *title = nil;
@@ -101,7 +100,18 @@
     
     
     [self showRuleMessageWithTitle:title];
-
+    
+    BOOL startNew = [GuessManager isLastGuessDateExpire:_mode];    
+    if (startNew) {
+        NSString *message = [NSString stringWithFormat:NSLS(@"kGuessDateExpire"), [GuessManager getGuessExpireTime]];
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:message style:CommonDialogStyleSingleButton];
+        [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+        [dialog setClickOkBlock:^(id infoView){
+            [self startNew];
+        }];
+        
+        [dialog showInView:self.view];
+    }
 }
 
 #define KEY_NO_REMIND_HAPPY_GUESS_RULE @"KEY_NO_REMIND_HAPPY_GUESS_RULE"
@@ -116,7 +126,8 @@
         message = [NSString stringWithFormat:NSLS(@"kHappyGuessRulesDetil"),
                    [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
                    [GuessManager getCountHappyModeAwardOnce],
-                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy]];
+                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy],
+                   [GuessManager getGuessExpireTime]];
         key = KEY_NO_REMIND_HAPPY_GUESS_RULE;
     }else if(_mode == PBUserGuessModeGuessModeGenius){
         message = [NSString stringWithFormat:NSLS(@"kGeniusGuessRulesDetil"),
@@ -128,7 +139,9 @@
                    [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 2 mode:PBUserGuessModeGuessModeGenius],
                    
                    [GuessManager getCountGeniusModeAwardOnce] * 3,
-                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 3 mode:PBUserGuessModeGuessModeGenius]];
+                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 3 mode:PBUserGuessModeGuessModeGenius],
+                   
+                   [GuessManager getGuessExpireTime]];
         key = KEY_NO_REMIND_GENIUS_GUESS_RULE;
 
     }else if(_mode == PBUserGuessModeGuessModeContest){
@@ -177,6 +190,7 @@
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
+    
     [self loadData:self.currentTab.offset limit:LIMIT startNew:NO];
 }
 
@@ -214,6 +228,10 @@
 
 - (void)loadData:(int)offset limit:(int)limit startNew:(BOOL)startNew{
     
+    if (startNew) {
+        [GuessManager setLastGuessDateDate:_mode];
+    }
+    
     [self showActivityWithText:NSLS(@"kLoading")];
     [[GuessService defaultService] getOpusesWithMode:_mode
                                            contestId:_contest.contestId
@@ -221,7 +239,6 @@
                                                limit:limit
                                           isStartNew:startNew
                                             delegate:self];
-    
 }
 
 - (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode isStartNew:(BOOL)isStartNew{
@@ -256,8 +273,8 @@
 }
 
 - (void)startNew{
-    [GuessManager deductCoins:_mode contestId:_contest.contestId force:YES];
     
+    [GuessManager deductCoins:_mode contestId:_contest.contestId force:YES];
     self.currentTab.offset = 0;
     [self loadData:self.currentTab.offset limit:LIMIT startNew:YES];
 }
