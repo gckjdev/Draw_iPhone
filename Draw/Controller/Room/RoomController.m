@@ -470,7 +470,7 @@
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        POSTMSG(NSLS(@"kJoinGameSucc"));
+//        POSTMSG(NSLS(@"kJoinGameSucc"));
     }
     else{
         POSTMSG(NSLS(@"kJoinGameFailure"));
@@ -500,7 +500,7 @@
         return;
     }
     
-    POSTMSG(NSLS(@"Start Game OK!"));
+//    POSTMSG(NSLS(@"Start Game OK!"));
     [self resetStartTimer];
     
     SelectWordController *sw = [[SelectWordController alloc] init];
