@@ -11,13 +11,13 @@
 #import "LimeiAdWallService.h"
 //#import "WanpuAdWallService.h"
 #import "YoumiAdWallService.h"
-#import "AderAdWallService.h"
+//#import "AderAdWallService.h"
 #import "UserManager.h"
 #import "ConfigManager.h"
 #import "AccountService.h"
 #import "CommonMessageCenter.h"
-#import "DomobAdWallService.h"
-#import "TapjoyAdWallService.h"
+//#import "DomobAdWallService.h"
+//#import "TapjoyAdWallService.h"
 
 @implementation GameAdWallService
 
@@ -74,30 +74,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                 return wallService;
             }
             
-        case PBRewardWallTypeAder:
-            if ([ConfigManager isEnableAderWall]){
-                CommonAdWallService* wallService = [self createAderWall];
-                if (wallService)
-                    [_wallServiceArray addObject:wallService];
-                
-                return wallService;
-            }
-        case PBRewardWallTypeDomod:
-            if ([ConfigManager isEnableDomodWall]){
-                CommonAdWallService* wallService = [self createDomodWall];
-                if (wallService)
-                    [_wallServiceArray addObject:wallService];
-                
-                return wallService;
-            }
-        case PBRewardWallTypeTapjoy:
-            if ([ConfigManager isEnableTapjoyWall]){
-                CommonAdWallService* wallService = [self createTapjoyWall];
-                if (wallService)
-                    [_wallServiceArray addObject:wallService];
-                
-                return wallService;
-            }
+//        case PBRewardWallTypeAder:
+//            if ([ConfigManager isEnableAderWall]){
+//                CommonAdWallService* wallService = [self createAderWall];
+//                if (wallService)
+//                    [_wallServiceArray addObject:wallService];
+//                
+//                return wallService;
+//            }
+//        case PBRewardWallTypeDomod:
+//            if ([ConfigManager isEnableDomodWall]){
+//                CommonAdWallService* wallService = [self createDomodWall];
+//                if (wallService)
+//                    [_wallServiceArray addObject:wallService];
+//                
+//                return wallService;
+//            }
+//        case PBRewardWallTypeTapjoy:
+//            if ([ConfigManager isEnableTapjoyWall]){
+//                CommonAdWallService* wallService = [self createTapjoyWall];
+//                if (wallService)
+//                    [_wallServiceArray addObject:wallService];
+//                
+//                return wallService;
+//            }
         default:
             break;
     }
@@ -145,7 +145,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                                                   type:PBRewardWallTypeYoumi] autorelease];
 }
 
-
+/*
 - (CommonAdWallService*)createAderWall
 {
     NSString* adUnitId = [GameApp aderWallId];
@@ -179,7 +179,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
                                           adUnitSecret:secret
                                                   type:PBRewardWallTypeTapjoy] autorelease];
 }
-
+*/
+ 
 - (CommonAdWallService*)wallServiceByType:(PBRewardWallType)type forceShowWall:(BOOL)forceShowWall
 {
     for (CommonAdWallService* wallService in _wallServiceArray){

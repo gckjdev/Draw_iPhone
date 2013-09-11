@@ -12,7 +12,7 @@
 #import "DrawAppDelegate.h"
 #import "AboutUsController.h"
 #import "UserManager.h"
-#import "UFPController.h"
+//#import "UFPController.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 #import "ConfigManager.h"
@@ -20,7 +20,7 @@
 #import "AccountService.h"
 #import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
-#import "UMGridViewController.h"
+//#import "UMGridViewController.h"
 #import "UIUtils.h"
 #import "ShareImageManager.h"
 #import "CacheManager.h"
@@ -79,6 +79,8 @@
 
 - (void)initRowNumber
 {
+    rowOfMoreApp = -1;  // useless now
+    
     int count = 0;
     if (isDrawApp()) {
         rowOfShare = count++;
@@ -102,7 +104,7 @@
             rowOfGiveReview = -1;
         }
         rowOfAbout = count++;
-        rowOfMoreApp = count++;
+//        rowOfMoreApp = count++;
         numberOfRows = count;
         
         dataTableView.frame = CGRectMake(dataTableView.frame.origin.x, dataTableView.frame.origin.y, dataTableView.frame.size.width, DRAW_TABLE_HEIGHT);
@@ -112,7 +114,7 @@
         rowOfFollowTencent = count++;
         rowOfReportBug = count++;
         rowOfFeedback = count++;
-        rowOfMoreApp = count++;
+//        rowOfMoreApp = count++;
         rowOfAppUpdate = count++;
         if ([ConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
@@ -355,12 +357,15 @@ enum {
     } 
     
     else if (indexPath.row  == rowOfMoreApp) {
+        
+        // useless now
+        
 //        UFPController* rc = [[UFPController alloc] init];
 //        [self.navigationController pushViewController:rc animated:YES];
 //        [rc release];
-        UMGridViewController *controller = [[UMGridViewController alloc] init];
-        [self.navigationController pushViewController:controller animated:YES];
-        [controller release];
+//        UMGridViewController *controller = [[UMGridViewController alloc] init];
+//        [self.navigationController pushViewController:controller animated:YES];
+//        [controller release];
     }
     
     else if (indexPath.row  == rowOfGiveReview) {
