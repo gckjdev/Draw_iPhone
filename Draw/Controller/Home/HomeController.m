@@ -66,8 +66,8 @@
 #import "SelectHotWordController.h"
 #import "NotificationName.h"
 #import "CommonGameNetworkService.h"
-#import "UFPController.h"
-#import "UMGridViewController.h"
+//#import "UFPController.h"
+//#import "UMGridViewController.h"
 #import "DrawRoomListController.h"
 #import "UserManager.h"
 #import "ContestService.h"
@@ -586,8 +586,8 @@
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_APPS];
             
-            UMGridViewController *vc = [[[UMGridViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
+//            UMGridViewController *vc = [[[UMGridViewController alloc] init] autorelease];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
