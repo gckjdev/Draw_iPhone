@@ -17,15 +17,42 @@
 
 #define GENIUS_WEEK NSLS(@"kGeniusRankWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusRankYear")
+
 #define CONTEST_TODAY NSLS(@"kContestRankToday")
 #define CONTEST_YESTODAY NSLS(@"kContestRankYesterday")
 #define CONTEST_BEFOREYESTODAY NSLS(@"kContestRankBeforeYesterday")
+#define CONTEST_THREE_DAYS_AGO NSLS(@"kContestRankThreeDaysAgo")
+#define CONTEST_FOUR_DAYS_AGO NSLS(@"kContestRankFourDaysAgo")
+#define CONTEST_FIVE_DAYS_AGO NSLS(@"kContestRankFiveDaysAgo")
+#define CONTEST_SIX_DAYS_AGO NSLS(@"kContestRankSixDaysAgo")
 
 #define WEEK NSLS(@"kWeek")
 #define YEAR NSLS(@"kYear")
+
 #define TODAY NSLS(@"kToday")
 #define YESTERDAY NSLS(@"kYesterday")
 #define BEFOREYESTERDAY NSLS(@"kBeforeYesterday")
+#define THREEDAYSAGO NSLS(@"kThreeDaysAgo")
+#define FOURDAYSAGO NSLS(@"kFourDaysAgo")
+#define FIVEDAYSAGO NSLS(@"kFiveDaysAgo")
+#define SIXDAYSAGO NSLS(@"kSixDaysAgo")
+
+typedef enum{
+    TabTypeGeniusHot = 50,
+    TabTypeGeniusAllTime,
+    
+    TabTypeContestToday = 100,
+    TabTypeContestYestoday,
+    TabTypeContestBeforeYestoday,
+    TabTypeContestThreeDaysAgo,
+    TabTypeContestFourDaysAgo,
+    TabTypeContestFiveDaysAgo,
+    TabTypeContestSixDaysAgo,
+}TabType;
+
+//static NSArray * gContestSelectList = @[TODAY, YESTERDAY, BEFOREYESTERDAY, THREEDAYSAGO, FOURDAYSAGO, FIVEDAYSAGO, SIXDAYSAGO, SEVENDAYSAGO];
+
+
 
 
 @interface GuessRankListController ()
@@ -34,6 +61,13 @@
 @property (copy, nonatomic) NSString *currentSelect;
 @property (retain, nonatomic) PPPopTableView *popView;
 
+@property (retain, nonatomic) NSArray *contestDayList;
+@property (retain, nonatomic) NSArray *contestTitleList;
+@property (retain, nonatomic) NSArray *geniusRankTypeList;
+@property (retain, nonatomic) NSArray *geniusTitleList;
+
+//@property (retain, nonatomic) NSArray *geniusTabTypeList;
+//@property (retain, nonatomic) NSArray *contestTabTypeList;
 @end
 
 @implementation GuessRankListController
@@ -42,16 +76,26 @@
     
     [_geniusButton release];
     [_contestButton release];
-//    [_titleView release];
     [_contests release];
     [_currentSelect release];
     [_popView release];
+    [_contestDayList release];
+    [_contestTitleList release];
+    [_geniusRankTypeList release];
+    [_geniusTitleList release];
+//    [_geniusTabTypeList release];
+//    [_contestTabTypeList release];
     [super dealloc];
 }
 
 - (void)viewDidLoad
 {
-
+    self.contestDayList = @[TODAY, YESTERDAY, BEFOREYESTERDAY, THREEDAYSAGO, FOURDAYSAGO, FIVEDAYSAGO, SIXDAYSAGO];
+    self.contestTitleList = @[CONTEST_TODAY, CONTEST_YESTODAY, CONTEST_BEFOREYESTODAY, CONTEST_THREE_DAYS_AGO, CONTEST_FOUR_DAYS_AGO, CONTEST_FIVE_DAYS_AGO, CONTEST_SIX_DAYS_AGO];
+    
+    self.geniusRankTypeList = @[WEEK, YEAR];
+    self.geniusTitleList = @[GENIUS_WEEK, GENIUS_YEAR];
+    
     [super viewDidLoad];
     
     [self.titleView setTitle:NSLS(@"kGuessRank")];
@@ -62,14 +106,11 @@
     _geniusButton.backgroundColor = COLOR_ORANGE;
     _contestButton.backgroundColor = COLOR_ORANGE;
     
-    [[GuessService defaultService] getRecentGuessContestListWithDelegate:self];
-    
-    [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
-    
-    
+    [[GuessService defaultService] getRecentGuessContestListWithDelegate:self];    
 }
 
 - (void)viewDidUnload {
+    
     [self setGeniusButton:nil];
     [self setContestButton:nil];
     [self setTitleView:nil];
@@ -81,65 +122,32 @@
     _currentSelect = nil;
     _currentSelect = [currentSelect copy];
     
-    if ([_currentSelect isEqualToString:WEEK]) {
+    int index = [_geniusRankTypeList indexOfObject:_currentSelect];
+    if (index != NSNotFound) {
         [_geniusButton setBackgroundColor:COLOR_ORANGE1];
         [_contestButton setBackgroundColor:COLOR_ORANGE];
-        [_geniusButton setTitle:GENIUS_WEEK forState:UIControlStateNormal];
-        [self clickTab:TabTypeGeniusHot];
-    }else if ([_currentSelect isEqualToString:YEAR]) {
-        [_geniusButton setBackgroundColor:COLOR_ORANGE1];
-        [_contestButton setBackgroundColor:COLOR_ORANGE];
-        [_geniusButton setTitle:GENIUS_YEAR forState:UIControlStateNormal];
-        [self clickTab:TabTypeGeniusAllTime];
-    }else if ([_currentSelect isEqualToString:TODAY]) {
+        [_geniusButton setTitle:[_geniusTitleList objectAtIndex:index] forState:UIControlStateNormal];
+        [self clickTab:(index + TabTypeGeniusHot)];
+        return;
+    }
+    
+    index = [_contestDayList indexOfObject:_currentSelect];
+    if (index != NSNotFound) {
+
         [_geniusButton setBackgroundColor:COLOR_ORANGE];
         [_contestButton setBackgroundColor:COLOR_ORANGE1];
-        [_contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
-        [self clickTab:TabTypeContestToday];
-    }else if ([_currentSelect isEqualToString:YESTERDAY]) {
-        [_geniusButton setBackgroundColor:COLOR_ORANGE];
-        [_contestButton setBackgroundColor:COLOR_ORANGE1];
-        [_contestButton setTitle:CONTEST_YESTODAY forState:UIControlStateNormal];
-        [self clickTab:TabTypeContestYestoday];
-    }else if ([_currentSelect isEqualToString:BEFOREYESTERDAY]) {
-        [_geniusButton setBackgroundColor:COLOR_ORANGE];
-        [_contestButton setBackgroundColor:COLOR_ORANGE1];
-        [_contestButton setTitle:CONTEST_BEFOREYESTODAY forState:UIControlStateNormal];
-        [self clickTab:TabTypeContestBeforeYestoday];
+        [_contestButton setTitle:[_contestTitleList objectAtIndex:index] forState:UIControlStateNormal];
+        [self clickTab:(index + TabTypeContestToday)];
     }
 }
 
 - (IBAction)clickGeniusSelectButton:(UIButton *)sender {
     
-    // TODO: set pull down list to select
-    
-//    NSArray *menuItems =
-//    @[
-//      
-//      [KxMenuItem menuItem:WEEK
-//                     image:nil
-//                    target:self
-//                    action:@selector(pushMenuItem:)],
-//      
-//      [KxMenuItem menuItem:YEAR
-//                     image:nil
-//                    target:self
-//                    action:@selector(pushMenuItem:)]
-//      ];
-//    
-//    [KxMenu showMenuInView:self.view
-//                  fromRect:sender.frame
-//                 menuItems:menuItems];
-    
-    
     __block typeof (self)bself = self;
-    self.popView = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:WEEK, YEAR, nil] icons:nil selectedHandler:^(NSInteger row) {
+    
+    self.popView = [PPPopTableView popTableViewWithTitles:_geniusRankTypeList icons:nil selectedHandler:^(NSInteger row) {
         
-        if (row == 0) {
-            bself.currentSelect = WEEK;
-        }else{
-            bself.currentSelect = YEAR;
-        }        
+        bself.currentSelect = [_geniusRankTypeList objectAtIndex:row];
     }];
     
     [_popView showInView:self.view atView:sender animated:YES];
@@ -147,47 +155,28 @@
 
 - (IBAction)clickGeniusButton:(UIButton *)sender {
     
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:GENIUS_WEEK]) {
-        self.currentSelect = WEEK;
-    }else{
-        self.currentSelect = YEAR;
+    NSString *title = [sender titleForState:UIControlStateNormal];
+    int index = [_geniusTitleList indexOfObject:title];
+    
+    if (index != NSNotFound) {
+        self.currentSelect = [_geniusRankTypeList objectAtIndex:index];
     }
 }
 
 - (IBAction)clickContestSelectButton:(UIButton *)sender {
     
-//    NSArray *menuItems =
-//    @[
-//      [KxMenuItem menuItem:TODAY
-//                     image:nil
-//                    target:self
-//                    action:@selector(pushMenuItem:)],
-//      
-//      [KxMenuItem menuItem:YESTERDAY
-//                     image:nil
-//                    target:self
-//                    action:@selector(pushMenuItem:)],
-//      
-//      [KxMenuItem menuItem:BEFOREYESTERDAY
-//                     image:nil
-//                    target:self
-//                    action:@selector(pushMenuItem:)]
-//      ];
-//    
-//    [KxMenu showMenuInView:self.view
-//                  fromRect:sender.frame
-//                 menuItems:menuItems];
-    
     __block typeof(self) bself = self;
-    self.popView = [PPPopTableView popTableViewWithTitles:[NSArray arrayWithObjects:TODAY, YESTERDAY, BEFOREYESTERDAY, nil] icons:nil selectedHandler:^(NSInteger row) {
+    
+    
+    NSMutableArray *arr = [NSMutableArray array];
+    for (int i=0; i < [_contests count] && i < [_contestDayList count]; i++ ) {
+        [arr addObject:[_contestDayList objectAtIndex:i]];
+    }
+    
+    
+    self.popView = [PPPopTableView popTableViewWithTitles:arr icons:nil selectedHandler:^(NSInteger row) {
         
-        if (row == 0) {
-            bself.currentSelect = TODAY;
-        }else if(row == 1){
-            bself.currentSelect = YESTERDAY;
-        }else{
-            bself.currentSelect = BEFOREYESTERDAY;
-        }
+        bself.currentSelect = [arr objectAtIndex:row];
     }];
     
     [_popView showInView:self.view atView:sender animated:YES];
@@ -195,12 +184,11 @@
 
 - (IBAction)clickContestButton:(id)sender {
     
-    if ([[sender titleForState:UIControlStateNormal] isEqualToString:CONTEST_TODAY]) {
-        self.currentSelect = TODAY;
-    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CONTEST_YESTODAY]){
-        self.currentSelect = YESTERDAY;
-    }else if ([[sender titleForState:UIControlStateNormal] isEqualToString:CONTEST_BEFOREYESTODAY]){
-        self.currentSelect = BEFOREYESTERDAY;
+    NSString *title = [sender titleForState:UIControlStateNormal];
+    
+    int index = [_contestTitleList indexOfObject:title];
+    if (index != NSNotFound) {
+        self.currentSelect = [_contestDayList objectAtIndex:index];
     }
 }
 
@@ -242,7 +230,9 @@ SET_CELL_BG_IN_CONTROLLER;
 
 #pragma mark - CommonTabController delegate
 - (NSInteger)tabCount{
-    return 5;
+    
+    int count = [_geniusTitleList count] + [_contestTitleList count];
+    return count;
 }
 
 - (NSInteger)currentTabIndex{
@@ -253,18 +243,12 @@ SET_CELL_BG_IN_CONTROLLER;
     return 20;
 }
 
-typedef enum{
-    TabTypeGeniusHot = 100,
-    TabTypeGeniusAllTime = 101,
-    TabTypeContestToday = 102,
-    TabTypeContestYestoday = 103,
-    TabTypeContestBeforeYestoday = 104,
-}TabType;
+
 
 - (NSInteger)tabIDforIndex:(NSInteger)index{
     
     NSInteger tabId[] = {TabTypeGeniusHot, TabTypeGeniusAllTime, TabTypeContestToday,
-    TabTypeContestYestoday, TabTypeContestBeforeYestoday};
+    TabTypeContestYestoday, TabTypeContestBeforeYestoday, TabTypeContestThreeDaysAgo, TabTypeContestFourDaysAgo, TabTypeContestFiveDaysAgo, TabTypeContestSixDaysAgo};
     
     return tabId[index];
 }
@@ -280,25 +264,19 @@ typedef enum{
     [self showActivityWithText:NSLS(@"kLoading")];
     switch (tabID) {
         case TabTypeGeniusHot:
-            [[GuessService defaultService] getGuessRankListWithType:HOT_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
-            break;
-            
         case TabTypeGeniusAllTime:
-            [[GuessService defaultService] getGuessRankListWithType:ALL_TIME_RANK mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:[_geniusRankTypeList objectAtIndex:(tabID-TabTypeGeniusHot)] mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
             break;
             
         case TabTypeContestToday:
-            contestId = [[_contests objectAtIndex:0] contestId];
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
-            break;
-            
         case TabTypeContestYestoday:
-            contestId = [[_contests objectAtIndex:1] contestId];
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
-            break;
-            
         case TabTypeContestBeforeYestoday:
-            contestId = [[_contests objectAtIndex:2] contestId];
+        case TabTypeContestThreeDaysAgo:
+        case TabTypeContestFourDaysAgo:
+        case TabTypeContestFiveDaysAgo:
+        case TabTypeContestSixDaysAgo:
+            
+            contestId = [[_contests objectAtIndex:(tabID-TabTypeContestToday)] contestId];
             [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
             break;
             
@@ -319,7 +297,7 @@ typedef enum{
     if (resultCode == 0) {
         self.contests = list;
         PBGuessContest *contest = [_contests objectAtIndex:0];
-        if ([GuessManager isContestOver:contest]) {
+        if ([GuessManager isContestBeing:contest]) {
             self.currentSelect = TODAY;
         }else{
             self.currentSelect = WEEK;
