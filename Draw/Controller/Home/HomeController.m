@@ -60,7 +60,6 @@
 #import "BBSBoardController.h"
 
 #import "BulletinView.h"
-#import "DrawTestViewController.h"
 
 #import "SynthesizeSingleton.h"
 #import "SelectHotWordController.h"
