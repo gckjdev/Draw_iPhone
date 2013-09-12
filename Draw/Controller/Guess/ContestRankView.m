@@ -31,10 +31,10 @@ AUTO_CREATE_VIEW_BY_XIB(ContestRankView);
     v.costTimeLabel.textColor = COLOR_BROWN;
     v.awardCoinsLabel.textColor = COLOR_BROWN;
     
-    v.rankLabel.text = [NSString stringWithFormat:@"%d", rank.ranking];
-    v.correctCountLabel.text = [NSString stringWithFormat:@"%d", rank.pass];
-    v.costTimeLabel.text = [NSString stringWithFormat:@"%d", rank.spendTime];
-    v.awardCoinsLabel.text = [NSString stringWithFormat:@"%d", rank.earn];
+    v.rankLabel.text = [NSString stringWithFormat:NSLS(@"kContestRanking"), rank.ranking];
+    v.correctCountLabel.text = [NSString stringWithFormat:@"kContestGuessCorrect", rank.pass];
+    v.costTimeLabel.text = [NSString stringWithFormat:@"kContestSpendTime", rank.spendTime];
+    v.awardCoinsLabel.text = [NSString stringWithFormat:@"kContestEarn", rank.earn];
     
     return v;
 }
