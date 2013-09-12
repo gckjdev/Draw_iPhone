@@ -19,6 +19,11 @@
 
 @implementation ConfigManager
 
++ (NSString*)guessContestShareText
+{
+    return [MobClickUtils getStringValueByKey:@"GUESS_CONTEST_SHARE_TEXT" defaultValue:NSLS(@"kLookWhatHeDraw")];
+}
+
 + (int)maxTakeNumberCount
 {
     return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:10];
@@ -1045,7 +1050,7 @@
 
 + (int)getBuyAnswerPrice
 {
-    return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:50];
+    return [MobClickUtils getIntValueByKey:@"BUY_ANSWER_PRICE" defaultValue:30];
 }
 
 + (double)getBGMVolume

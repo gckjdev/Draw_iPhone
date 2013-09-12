@@ -255,9 +255,20 @@
     [compose release];
 }
 
+- (NSString*)shareTextWithWeiboInfo:(NSString*)shareText
+{
+    NSString* weiboId = [GameApp sinaWeiboId];
+    if ([shareText length] > 0){
+        return [shareText stringByAppendingFormat:@" @%@ ", weiboId];
+    }
+    else{
+        return @"";
+    }
+}
+
 - (void)shareViaSNS:(SnsType)type
 {
-    NSString *text = [_shareText length] > 0 ? _shareText : [_opus shareTextWithSNSType:type];
+    NSString *text = [_shareText length] > 0 ? [self shareTextWithWeiboInfo:_shareText] : [_opus shareTextWithSNSType:type];
     ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
                                                                                 text:text
                                                                           drawUserId:_opus.pbOpus.author.userId

@@ -1099,6 +1099,8 @@
 
 "kNoXiaojiNumber" = "未有小吉号码";
 "kXiaoji" = "小吉";
+"kDrawGuessTitle" = "正在猜第%d幅作品";
+"kLoadImage" = "加载作品中...";
 
 "kLevel1" = "初级%@";
 "kLevel2" = "中级%@";
@@ -1171,8 +1173,8 @@
 
 "kShareTo" = "分享到...";
 "kEmail" = "邮件";
-"kWeChatTimeline" = "微信好友";
-"kWeChatFriends" = "微信朋友圈";
+"kWeChatTimeline" = "微信朋友圈";
+"kWeChatFriends" = "微信好友";
 "kFavorite" = "收藏";
 "kAlbum" = "相册";
 "kSinaWeibo" = "新浪微博";
@@ -1583,7 +1585,7 @@
 "kOpusNameInvaild" = "作品名称不能为空";
 
 "kAskForHelp" = "吐槽";
-"kLookWhatHeDraw" = "大家来看看他/她到底画的是什么呀？怎么猜都猜不出来，坑爹啊～";
+"kLookWhatHeDraw" = "这到底画的是什么？";
 /*********************** 画画国际化字符串结束 *************************/
 
 

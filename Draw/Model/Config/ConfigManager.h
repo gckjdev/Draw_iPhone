@@ -293,5 +293,6 @@ typedef enum{
 + (int)getHappyGuessExpireTime;
 + (int)getGeniusGuessExpireTime;
 
++ (NSString*)guessContestShareText;
 
 @end

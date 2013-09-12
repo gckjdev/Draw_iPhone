@@ -48,6 +48,7 @@
 
 + (id)oldMessageWithPBMessage:(PBMessage *)pbMessage
 {
+    PPDebug(@"<oldMessageWithPBMessage> invoke");
     PPMessage *message = nil;
     if ([[pbMessage drawDataList] count] != 0) {
         message = [[[DrawMessage alloc] initWithPBMessage:pbMessage] autorelease];

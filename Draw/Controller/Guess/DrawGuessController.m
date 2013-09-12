@@ -11,6 +11,7 @@
 #import "CommonShareAction.h"
 #import "SDImageCache.h"
 #import "PPPopTableView.h"
+#import "ConfigManager.h"
 
 @interface DrawGuessController ()
 @property (retain, nonatomic) CommonShareAction *shareAction;
@@ -28,8 +29,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
-    [_titleView setTitle:NSLS(@"kGuess")];
+    NSString* title = @"";
+    if (self.index >= 0){
+        title = [NSString stringWithFormat:NSLS(@"kDrawGuessTitle"), self.index+1];
+    }
+    else{
+        title = NSLS(@"kGuess");
+    }
+    
+    [_titleView setTitle:title];
     [_titleView setRightButtonTitle:NSLS(@"kAskForHelp")];
     [_titleView setTarget:self];
     [_titleView setRightButtonSelector:@selector(clickAskForHelpButton:)];
@@ -52,7 +62,8 @@
         _shareAction = [[CommonShareAction alloc] initWithOpus:self.opus];
     }
     
-    [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxFriend)] shareText:NSLS(@"kLookWhatHeDraw") viewController:self onView:_titleView.rightButton];
+    NSString* shareText = [ConfigManager guessContestShareText];    
+    [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxTimeline)] shareText:shareText viewController:self onView:_titleView.rightButton];
 }
 
 @end

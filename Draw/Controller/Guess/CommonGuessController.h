@@ -27,7 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *toolBoxButton;
 @property (retain, nonatomic) IBOutlet UIButton *tipButton;
 
-
+@property (assign, nonatomic) int index;
 @property (retain, nonatomic) Opus *opus;
 @property (retain, nonatomic) NSMutableArray *guessWords;
 

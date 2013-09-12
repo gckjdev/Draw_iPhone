@@ -63,6 +63,7 @@
         _mode = mode;
         self.contest = contest;
         self.startDate = [NSDate date];
+        self.index = -1;
     }
     
     return self;
@@ -92,7 +93,7 @@
     
 //    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
     
-    [self showActivityWithText:nil center:self.opusButton.center];
+    [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusButton.center];
     [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
         [self hideActivity];
     } failure:^(NSError *error) {
