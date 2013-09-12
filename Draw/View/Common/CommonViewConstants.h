@@ -14,7 +14,7 @@
 #define COMMON_TAB_BUTTON_HEIGHT (ISIPAD ? 65 : 30)
 
 // 20 is status bar height
-#define COMMON_TAB_TABLE_VIEW_HEIGHT ([UIScreen mainScreen].bounds.size.height - COMMON_TAB_BUTTON_HEIGHT - COMMON_TITLE_VIEW_HEIGHT - 20)
+#define COMMON_TAB_TABLE_VIEW_HEIGHT ([UIScreen mainScreen].bounds.size.height - COMMON_TAB_BUTTON_HEIGHT - COMMON_TITLE_VIEW_HEIGHT - 20)-(ISIPHONE5?88:0)
 
 #define NORMAL_TABLE_VIEW_HEIGHT ([UIScreen mainScreen].bounds.size.height - COMMON_TITLE_VIEW_HEIGHT - 20)
 
