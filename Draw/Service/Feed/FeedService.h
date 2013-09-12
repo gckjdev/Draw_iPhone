@@ -219,5 +219,10 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
             rank:(NSDictionary*)rankDict
      resultBlock:(FeedActionResultBlock)resultBlock;
 
+- (void)setHotScore:(NSString*)opusId
+            dataLen:(int)dataLen
+        resultBlock:(FeedActionResultBlock)resultBlock;
+
+- (void)askSetHotScore:(NSString*)opusId viewController:(UIViewController*)viewController;
 
 @end

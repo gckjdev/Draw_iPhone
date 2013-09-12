@@ -928,11 +928,22 @@ typedef enum{
     int indexOfPhoto = 2;
     int indexOfFeature = -1;
     int indexOfUnfeature = -1;
+    int indexOfSetScore = -1;
     
     MKBlockActionSheet *sheet = nil;
     BOOL canFeature = [[UserManager defaultManager] canFeatureDrawOpus];
     
-    if (![self.feed showAnswer]) {
+    if ([[UserManager defaultManager] isSuperUser]){
+        sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
+                                                 delegate:nil
+                                        cancelButtonTitle:NSLS(@"kCancel")
+                                   destructiveButtonTitle:NSLS(@"kGuess")
+                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
+        indexOfSetScore =  indexOfPhoto + 1;
+        indexOfFeature = indexOfSetScore + 1;
+        indexOfUnfeature = indexOfFeature + 1;        
+    }
+    else if (![self.feed showAnswer]) {
         if (canFeature){
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
@@ -993,6 +1004,9 @@ typedef enum{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUnfeatureSucc") delayTime:2];
                 }
             }];
+        }
+        else if (buttonIndex == indexOfSetScore){
+            [[FeedService defaultService] askSetHotScore:self.feed.feedId viewController:self];
         }
         else{
             

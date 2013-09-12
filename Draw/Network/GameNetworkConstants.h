@@ -25,6 +25,7 @@
 #define METHOD_RECOVERY_OPUS @"constructIndex"
 #define METHOD_GET_OPUS @"getOpus"
 #define METHOD_RANK_OPUS @"rankOpus"
+#define METHOD_SET_OPUS_HOT_SCORE @"setOpusHotScore"
 
 // for guess
 #define METHOD_GET_USER_GUESS_OPUSES @"getUserGuessOpus"
@@ -395,6 +396,7 @@
 #define PARA_WORD_LIST @"wl"
 #define PARA_OPUS_CREATOR_UID @"opc"
 #define PARA_RETURN_ITEM @"ri"
+#define PARA_DATA_LEN @"dataLen"
 
 #define PARA_RADIUS @"ra"
 #define PARA_POSTTYPE @"pt"

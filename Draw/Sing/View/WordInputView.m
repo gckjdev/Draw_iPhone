@@ -9,6 +9,7 @@
 #import "WordInputView.h"
 #import "AudioManager.h"
 #import "HPThemeManager.h"
+#import "UIImageUtil.h"
 
 #define BUTTON_WIDTH (ISIPAD ? 70 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
@@ -118,8 +119,8 @@
         
         
         // Set appearance of wordInputView
-        self.answerImage = UIThemeImageNamed(@"word_input_answer@2x.png");
-        self.candidateImage = UIThemeImageNamed(@"word_input_candidate@2x.png");
+        self.answerImage = ALL_ROUND_CORNER_IMAGE_FROM_COLOR(COLOR255(62, 62, 62, 0.5*255));     //UIThemeImageNamed(@"word_input_answer@2x.png");
+        self.candidateImage = ALL_ROUND_CORNER_IMAGE_FROM_COLOR(COLOR_ORANGE); // UIThemeImageNamed(@"word_input_candidate@2x.png");
         
         // Set sound.
         self.clickSound = @"ding.m4a";
@@ -407,11 +408,11 @@
     BOOL isCorrect = [[word uppercaseString] isEqualToString:[_answer uppercaseString]];
     if (isCorrect) {
         [[AudioManager defaultManager] playSoundByName:_correctSound];
-        [self changeAnswerButtonsTitleColor:[UIColor greenColor]];
+        [self changeAnswerButtonsTitleColor:COLOR_GREEN];
         PPDebug(@"You get it: %@", word);
     }else{
         [[AudioManager defaultManager] playSoundByName:_wrongSound];
-        [self changeAnswerButtonsTitleColor:[UIColor redColor]];
+        [self changeAnswerButtonsTitleColor:COLOR_RED];
         PPDebug(@"Wrong word: %@", word);
     }
     [_guessWords addObject:word];
