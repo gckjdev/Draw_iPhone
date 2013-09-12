@@ -377,7 +377,7 @@
 
 + (int)getDeltaAwardInGeniusMode
 {
-    return [MobClickUtils getIntValueByKey:@"DELTA_COINS_AWARD_IN_GENIUS_MODE" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"DELTA_COINS_AWARD_IN_GENIUS_MODE" defaultValue:500];
 }
 
 + (int)getDeductCoinsInHappyMode
@@ -1143,7 +1143,7 @@
 }
 
 + (int)getGuessExpireTime{
-    return [MobClickUtils getIntValueByKey:@"GUESS_EXPIRE_TIME" defaultValue:12];
+    return [MobClickUtils getIntValueByKey:@"GUESS_EXPIRE_TIME" defaultValue:24];
 }
 
 

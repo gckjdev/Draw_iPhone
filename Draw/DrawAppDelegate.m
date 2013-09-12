@@ -267,7 +267,7 @@ NSString* GlobalGetBoardServerURL()
     
     
     // init audio session
-    [BackgroundMusicPlayer setAudioSessionCategory:AVAudioSessionCategoryAmbient];
+//    [BackgroundMusicPlayer setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
     
     srand(time(0));
     

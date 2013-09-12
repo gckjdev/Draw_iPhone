@@ -125,8 +125,8 @@
     if (_mode == PBUserGuessModeGuessModeHappy) {
         message = [NSString stringWithFormat:NSLS(@"kHappyGuessRulesDetil"),
                    [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
-                   [GuessManager getCountHappyModeAwardOnce],
                    [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy],
+                   [GuessManager getCountHappyModeAwardOnce],
                    [GuessManager getGuessExpireTime]];
         key = KEY_NO_REMIND_HAPPY_GUESS_RULE;
     }else if(_mode == PBUserGuessModeGuessModeGenius){
