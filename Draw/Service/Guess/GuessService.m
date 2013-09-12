@@ -27,7 +27,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
                     limit:(int)limit
                isStartNew:(BOOL)isStartNew
                  delegate:(id<GuessServiceDelegate>)delegate{
-        
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{
@@ -221,6 +221,93 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
             }
         });
     });
+}
+
+
+
+static NSMutableDictionary* TITLE_DICT;
+
++ (NSString*)geniusTitle:(int)correctCount
+{
+//    NSArray* COUNT_ARRAY = @[@(0), @(10), @(20), @(30), @(40), @(50), @(60), @(70), @(80), @(90)];
+//    NSArray* TITLE_ARRAY = @[NSLS(@"kLevel0"), NSLS(@"kLevel1"), NSLS(@"kLevel2"), NSLS(@"kLevel3"), NSLS(@"kLevel4"), NSLS(@"kLevel5"), NSLS(@"kLevel6"), NSLS(@"kLevel7"), NSLS(@"kLevel8"), NSLS(@"kLevel9")];
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        TITLE_DICT = [NSMutableDictionary dictionary];
+        
+        
+        TITLE_DICT[@(0)] = NSLS(@"kLevelNameFirst");
+        
+        int MAX_TITLE_PER_SEGMENT = 13;
+        int SEGMENT_COUNT = 5;
+        
+        int i=1;
+        for (int segment = 0; segment < SEGMENT_COUNT; segment++){
+            
+            NSString* levelNameKey = [NSString stringWithFormat:@"kLevelName%d", segment];
+            NSString* levelName = NSLS(levelNameKey);
+            
+            for (int titleInSegment = 0; titleInSegment < MAX_TITLE_PER_SEGMENT; titleInSegment++){
+                
+                NSString* key = [NSString stringWithFormat:@"kLevel%d", titleInSegment+1];
+                
+                NSString* desc = [NSString stringWithFormat:NSLS(key), levelName];
+                TITLE_DICT[@(i)] = desc;
+                i++;
+            }
+        }
+        
+        TITLE_DICT[@(i)] = NSLS(@"kLevelNameLast");        
+        
+        int levelCount = [[TITLE_DICT allKeys] count];
+        for (int i=0; i<levelCount; i++){
+            PPDebug(@"level[%d]=%@", i, TITLE_DICT[@(i)]);
+        }
+        
+//        PPDebug(@"TITLE_DICT=%@", [TITLE_DICT allValues]);
+//        POSTMSG(TITLE_DICT[@(16)]);
+    });
+    
+    int levelCount = [[TITLE_DICT allKeys] count];
+    int level = (correctCount / 10);
+    if (level > levelCount){
+        level = levelCount;
+    }
+    else if (level < 0){
+        level = 0;
+    }
+
+    NSString* title = TITLE_DICT[@(level)];
+    if (title == nil)
+        return @"";
+    else
+        return title;
+    
+//    int totalCount = [COUNT_ARRAY count];
+//    int level = -1;
+//    if (correctCount >= [COUNT_ARRAY[totalCount-1] intValue]){
+//        level = totalCount-1;
+//    }
+//    else if (correctCount >= [COUNT_ARRAY[0] intValue]){
+//        for (int i=0; i<totalCount-2; i++){
+//            
+//            int from = [COUNT_ARRAY[i] intValue];
+//            int to = [COUNT_ARRAY[i+1] intValue];
+//            
+//            if (correctCount >= from && correctCount < to){
+//                level = i;
+//                break;
+//            }
+//        }
+//    }
+//    
+//    if (level == -1 || level >= totalCount){
+//        return @"";
+//    }
+//    else{
+//        return TITLE_ARRAY[level];
+//    }        
 }
 
 @end
