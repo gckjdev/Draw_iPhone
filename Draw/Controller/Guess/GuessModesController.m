@@ -302,9 +302,15 @@
                          
                         [GuessManager getDeductCoins:PBUserGuessModeGuessModeContest]];
     
+    __block GuessModesController *cp = self;
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessRules") message:message style:CommonDialogStyleCross];
     dialog.messageLabel.font = [UIFont systemFontOfSize:(ISIPAD ? 28 : 14)];
+    [dialog setClickCloseBlock:^(id infoView){
+        [cp setCanDragBack:YES];
+    }];
+    [self setCanDragBack:NO];
     [dialog showInView:self.view];
+
 }
 
 - (void)clickBack:(id)sender{

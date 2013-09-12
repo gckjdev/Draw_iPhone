@@ -134,7 +134,6 @@
             commentSummary = [commentSummary substringToIndex:ACTION_SUMMARY_MAX_LENGTH];
         }
         
-        // TODO change to new interface
         [_feedService commentOpus:opusId
                            author:author
                           comment:comment
@@ -143,6 +142,8 @@
                    commentSummary:commentSummary
                     commentUserId:commentUserId
                   commentNickName:commentNickName
+                        contestId:nil
+                 forContestReport:NO
                          delegate:self];
     }
 }

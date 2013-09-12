@@ -60,6 +60,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setCanDragBack:NO];
     // Do any additional setup after loading the view from its nib.
     self.supportRefreshHeader = NO;
     if (_mode == PBUserGuessModeGuessModeContest
