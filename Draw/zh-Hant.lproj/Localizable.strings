@@ -346,7 +346,7 @@
 "kPaymentCannotMake" = "對不起，你的設備或者iOS版本未接受應用內程序購買功能。";
 
 "kSharePhotoEmailSubject" = "分享有趣的畫畫";
-"kSharePhotoEmailBody" = "Hi，分享一副有趣的畫，能猜到畫的是什麼嗎？\n\n- 來自%@";
+"kSharePhotoEmailBody" = "Hi，分享一幅有趣的畫，能猜到畫的是什麼嗎？\n\n- 來自%@";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感謝您的反饋";
@@ -607,7 +607,7 @@
 "kDrawing" = "畫畫中";
 "kGuessing" = "猜畫中";
 "kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
-"kSubmitSuccMsg" = "恭喜！提交成功！再來一副？";
+"kSubmitSuccMsg" = "恭喜！提交成功！再來一幅？";
 "kSubmitSuccTitle" = "提交成功";
 
 "kContestEnd" = "很抱歉，比賽已經結束，把作品提交為普通作品？";
@@ -617,7 +617,7 @@
 "kQuit" = "放棄";
 
 "kGuessDraw" = "猜畫中";
-"kOneMore" = "再來一副";
+"kOneMore" = "再來一幅";
 "kGuessUserDraw" = "正在猜%@的畫";
 
 "kFeedTitle" = "動態";
@@ -1468,12 +1468,12 @@
 "kGuessRank" = "遊戲榜單";
 "kGuessRules" = "規則說明";
 
-"kHappyGuessRulesDetil" = "規則：參加需花%d金幣。\n獎勵：猜中%d副作品就可以獲得%d金幣。必須在%d小時內完成，否則系統會強制為你重新開始";
-"kGeniusGuessRulesDetil" = "規則：參加需花%d金幣\n獎勵：連續猜中%d副作品就可以獲得%d金幣，連續猜中%d副可獲得%d金幣，連續猜中%d副可獲得%d金幣，以此類推。中間如果猜錯1副作品就得重新來過。必須在%d小時內完成，否則系統會強制為你重新開始。";
+"kHappyGuessRulesDetil" = "花費:  %d金幣\n\n獎勵:  %d金幣/每%d幅\n\n時限:  %d小時內\n\n";
+"kGeniusGuessRulesDetil" = "花費:  %d金幣\n\n規則:  連續猜中，不得猜錯\n\n獎勵:\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n以此類推\n\n時限:  %d小時內\n\n";
+"kContestGuessRulesDetil" = "花費:  %d金幣\n\n排名:  猜對作品數/耗時\n\n獎勵:\n第1名:  總獎金 * 50%%\n第2~4名:  總獎金*10%%\n第5~10名:  總獎金*1.67%%\n前15%%:  分享剩余獎金\n\n總獎金:  參賽用戶*70\n\n";
 
-"kContestGuessRulesDetil" = "規則：參加需花%d金幣\n獎勵：第1名獎金=W*50%%\n第2~4名每人獎金=W*10%%\n第5~10名每人獎金＝W*10%%/6\n10名以後前15%%的每人獎金=W*10%%/M。\n其中W為當期比賽總獎金，W=70*N，其中N為參加當期比賽總人數。\nM為10名以後前15%%的人數";
 
-"kGuessRulesDetail" = "歡樂模式\n規則：參加需花%d金幣\n獎勵：猜中%d副作品則可以獲得%d金幣\n\n天才模式\n規則：參加需花%d金幣\n獎勵：連續猜中%d副作品可獲得%d金幣，連續猜中%d副可獲得%d金幣，連續猜中%d副可獲得%d金幣，以此類推\n\n比賽模式\n規則：參加需花%d金幣\n獎勵：第1名獎金=W*50%%，第2~4名每人獎金=W*10%%，第5~10名每人獎金＝W*10%%/6，10名以後前15%%的每人獎金=W*10%%/M。其中W為當期比賽總獎金，W=70*N，其中N為參加當期比賽總人數。M為10名以後前15%%的人數";
+"kGuessRulesDetail" = "歡樂模式\n規則：參加需花%d金幣\n獎勵：猜中%d幅作品則可以獲得%d金幣\n\n天才模式\n規則：參加需花%d金幣\n獎勵：連續猜中%d幅作品可獲得%d金幣，連續猜中%d幅可獲得%d金幣，連續猜中%d幅可獲得%d金幣，以此類推\n\n比賽模式\n規則：參加需花%d金幣\n獎勵：第1名獎金=W*50%%，第2~4名每人獎金=W*10%%，第5~10名每人獎金＝W*10%%/6，10名以後前15%%的每人獎金=W*10%%/M。其中W為當期比賽總獎金，W=70*N，其中N為參加當期比賽總人數。M為10名以後前15%%的人數";
 
 "kGuessContestBeginTip" = "今天的猜畫比賽開始啦，快來參加吧！";
 
@@ -1487,14 +1487,14 @@
 
 "kGoOn" = "繼續";
 "kAward" = "獎勵";
-"kGuessHappyModeAwardTips" = "恭喜你順利猜中%d副作品，系統獎勵你%d金幣，是否還想繼續歡樂模式？";
-"kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d副作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
+"kGuessHappyModeAwardTips" = "恭喜你順利猜中%d幅作品，系統獎勵你%d金幣，是否還想繼續歡樂模式？";
+"kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d幅作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
 
-"kGuessHappyModeTips" = "你已經猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵!";
-"kGuessGenuisModeTips" = "你已經連續猜對了%d副作品，還要再猜%d副作品就可以獲得%d獎勵!";
+"kGuessHappyModeTips" = "你已經猜對了%d幅作品，還要再猜%d幅作品就可以獲得%d獎勵!";
+"kGuessGenuisModeTips" = "你已經連續猜對了%d幅作品，還要再猜%d幅作品就可以獲得%d獎勵!";
 "kGuessGenuisFail" = "你猜錯了，不能再繼續玩下去了，重新開始？";
 "kGuessContestModeOverTips" = "恭喜你完成比賽啦，目前有%d位玩家參加比賽，你目前的排名是第%d名，預計可獲得%d金幣獎勵";
-"kGuessContestModeTips" = "猜對作品:     %d副\n當前排名:     第%d名\n預計獎金:     %d金幣\n參賽人數:     %d玩家";
+"kGuessContestModeTips" = "猜對作品:     %d幅\n當前排名:     第%d名\n預計獎金:     %d金幣\n參賽人數:     %d玩家";
 "kHint" = "提示";
 "kGiveUpComment" = "是否退出評論?";
 "kGuessWrong" =  "猜错了";
