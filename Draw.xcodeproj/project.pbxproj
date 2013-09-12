@@ -5590,6 +5590,18 @@
 		EA0D328117E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
 		EA0D328217E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
 		EA0D328317E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
+		EA0D328617E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
+		EA0D328717E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
+		EA0D328817E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
+		EA0D328917E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
+		EA0D328B17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
+		EA0D328C17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
+		EA0D328D17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
+		EA0D328E17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
+		EA0D329117E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
+		EA0D329217E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
+		EA0D329317E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
+		EA0D329417E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
 		EA0FD69C17631C5100FED42E /* PolygenPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244AFA176071F0002C0A37 /* PolygenPen.m */; };
 		EA1176A11779B764008678AC /* askps_charge_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176981779B764008678AC /* askps_charge_button@2x.png */; };
 		EA1176A21779B764008678AC /* askps_default_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176991779B764008678AC /* askps_default_photo@2x.png */; };
@@ -9619,6 +9631,11 @@
 		EA0D327917E1ADB000F7E29A /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
 		EA0D327A17E1ADB000F7E29A /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
 		EA0D327B17E1ADB000F7E29A /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
+		EA0D328417E1AFBE00F7E29A /* HomeDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDisplayView.h; sourceTree = "<group>"; };
+		EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDisplayView.m; sourceTree = "<group>"; };
+		EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDisplayView.xib; sourceTree = "<group>"; };
+		EA0D328F17E1B3E000F7E29A /* LineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineView.h; sourceTree = "<group>"; };
+		EA0D329017E1B3E100F7E29A /* LineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineView.m; sourceTree = "<group>"; };
 		EA1176981779B764008678AC /* askps_charge_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_charge_button@2x.png"; sourceTree = "<group>"; };
 		EA1176991779B764008678AC /* askps_default_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_default_photo@2x.png"; sourceTree = "<group>"; };
 		EA11769A1779B764008678AC /* askps_edit_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_edit_background@2x.png"; sourceTree = "<group>"; };
@@ -16412,6 +16429,11 @@
 				EA0D327917E1ADB000F7E29A /* HomeView.h */,
 				EA0D327A17E1ADB000F7E29A /* HomeView.m */,
 				EA0D327B17E1ADB000F7E29A /* HomeView.xib */,
+				EA0D328417E1AFBE00F7E29A /* HomeDisplayView.h */,
+				EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */,
+				EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */,
+				EA0D328F17E1B3E000F7E29A /* LineView.h */,
+				EA0D329017E1B3E100F7E29A /* LineView.m */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -17611,6 +17633,7 @@
 				A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C617E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 				EA0D328217E1ADB000F7E29A /* HomeView.xib in Resources */,
+				EA0D328D17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18483,6 +18506,7 @@
 				A44F32EE17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C517E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 				EA0D328117E1ADB000F7E29A /* HomeView.xib in Resources */,
+				EA0D328C17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19337,6 +19361,7 @@
 				A44F32ED17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 				EA0D328017E1ADB000F7E29A /* HomeView.xib in Resources */,
+				EA0D328B17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20161,6 +20186,7 @@
 				A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C717E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 				EA0D328317E1ADB000F7E29A /* HomeView.xib in Resources */,
+				EA0D328E17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20980,6 +21006,8 @@
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA0D327E17E1ADB000F7E29A /* HomeView.m in Sources */,
+				EA0D328817E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
+				EA0D329317E1B3E100F7E29A /* LineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21770,6 +21798,8 @@
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA0D327D17E1ADB000F7E29A /* HomeView.m in Sources */,
+				EA0D328717E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
+				EA0D329217E1B3E100F7E29A /* LineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22566,6 +22596,8 @@
 				EAD13B8A17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E817E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA0D327C17E1ADB000F7E29A /* HomeView.m in Sources */,
+				EA0D328617E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
+				EA0D329117E1B3E100F7E29A /* LineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23336,6 +23368,8 @@
 				EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32EB17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 				EA0D327F17E1ADB000F7E29A /* HomeView.m in Sources */,
+				EA0D328917E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
+				EA0D329417E1B3E100F7E29A /* LineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
