@@ -1542,8 +1542,12 @@
 
 "kGuessHappyModeTips" = "You have guessed %d opues, guess %d more opuses will get award: %d";
 "kGuessGenuisModeTips" = "You have guessed %d opues continuous, guess %d more opuses will get award: %d";
-"kGuessContestModeOverTips" = "Congratulations! Now there are %d player join this contest, your ranking is %d and you maybe get %d coins award.";
-"kGuessContestModeTips" = "You have guessed %d opues, your ranking is %d and you maybe get %d coins award, now there are %d player join this contest";
+//"kGuessContestModeOverTips" = "Congratulations! Now there are %d player join this contest, your ranking is %d and you maybe get %d coins award.";
+"kGuessContestModeOverTips" = "Congratulations";
+
+//"kGuessContestModeTips" = "You have guessed %d opues, your ranking is %d and you maybe get %d coins award, now there are %d player join this contest";
+"kGuessContestModeTips" = "Contest Not Complete";
+
 
 "kGuessGenuisFail" = "you guess wrong, can not continue in genius mode, will you restart";
 
@@ -2059,4 +2063,5 @@
 "kReset" = "Reset";
 "kSelectFromUserPhoto" = "Select from gallery";
 "kFurtureFunction" = "Furture function, is coming soon...";
+
 /*********************图库国际化字符串结束 ************************/

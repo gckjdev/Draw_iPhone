@@ -52,7 +52,9 @@
     _awardLabel.textColor = COLOR_ORANGE;
     
     [_avatarView setUrlString:rank.user.avatar];
-    [_avatarView setAsSquare];
+//    [_avatarView setAsSquare];
+    [_avatarView setDelegate:self];
+    
     _nickNameLabel.text = rank.user.nickName;
     _signatureLable.text = rank.user.signature;
     
@@ -61,6 +63,13 @@
     _awardLabel.text = _rank.earnDesc;
     
     _rankLabel.text = [NSString stringWithFormat:@"%d",rank.ranking];
+}
+
+- (void)didClickOnAvatar:(NSString*)userId{
+    
+    if ([delegate respondsToSelector:@selector(didClickAvatar:)]) {
+        [delegate didClickAvatar:_rank];
+    }
 }
 
 @end

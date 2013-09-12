@@ -31,7 +31,7 @@
 + (int)getCountGeniusModeAwardOnce;
 + (int)getDeductCoins:(int)mode;
 
-+ (int)getGuessExpireTime;
++ (int)getGuessExpireTime:(int)mode;
 + (void)setLastGuessDateDate:(int)mode;
 + (BOOL)isLastGuessDateExpire:(int)mode;
 
