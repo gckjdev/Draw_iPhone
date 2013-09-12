@@ -145,6 +145,14 @@
 		A44B38A5171CFE13001968E2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44B38A3171CFE13001968E2 /* libMobClickLibrary.a */; };
 		A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A44E6CC5170D6E910067B647 /* TomatoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A44E6CC4170D6E910067B647 /* TomatoItem.m */; };
+		A44F32E817E16C3500AF9B26 /* ContestRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F32E717E16C3500AF9B26 /* ContestRankView.m */; };
+		A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F32E717E16C3500AF9B26 /* ContestRankView.m */; };
+		A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F32E717E16C3500AF9B26 /* ContestRankView.m */; };
+		A44F32EB17E16C3500AF9B26 /* ContestRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = A44F32E717E16C3500AF9B26 /* ContestRankView.m */; };
+		A44F32ED17E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
+		A44F32EE17E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
+		A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
+		A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */; };
 		A454207816E060BA0073A431 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
 		A454CB6F1558F5CE00896761 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = A454CB6D1558F5CE00896761 /* ChatController.m */; };
 		A454CB701558F5CE00896761 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A454CB6E1558F5CE00896761 /* ChatController.xib */; };
@@ -1522,6 +1530,10 @@
 		A4CD501116F9B56400BE6694 /* BalanceNotEnoughAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD501016F9B56300BE6694 /* BalanceNotEnoughAlertView.m */; };
 		A4D3B15B1560E4B50013C882 /* ExpressionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B1591560E4B50013C882 /* ExpressionManager.m */; };
 		A4D3B15E1560E4F80013C882 /* MessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D3B15D1560E4F80013C882 /* MessageManager.m */; };
+		A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */; };
+		A4D410C517E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */; };
+		A4D410C617E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */; };
+		A4D410C717E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */; };
 		A4D8000017DB089C0085061F /* locate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8FD1A17DB089C0085061F /* locate@2x.png */; };
 		A4D8000117DB089C0085061F /* locate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8FD1A17DB089C0085061F /* locate@2x.png */; };
 		A4D8000217DB089C0085061F /* locate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D8FD1A17DB089C0085061F /* locate@2x.png */; };
@@ -6980,6 +6992,9 @@
 		A44DDF4315C669DF005609F6 /* Dice.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dice.pb.m; sourceTree = "<group>"; };
 		A44E6CC3170D6E900067B647 /* TomatoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TomatoItem.h; sourceTree = "<group>"; };
 		A44E6CC4170D6E910067B647 /* TomatoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TomatoItem.m; sourceTree = "<group>"; };
+		A44F32E617E16C3500AF9B26 /* ContestRankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContestRankView.h; sourceTree = "<group>"; };
+		A44F32E717E16C3500AF9B26 /* ContestRankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContestRankView.m; sourceTree = "<group>"; };
+		A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContestRankView.xib; sourceTree = "<group>"; };
 		A454CB6C1558F5CE00896761 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
 		A454CB6D1558F5CE00896761 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
 		A454CB6E1558F5CE00896761 /* ChatController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatController.xib; sourceTree = "<group>"; };
@@ -7363,6 +7378,7 @@
 		A4D3B1591560E4B50013C882 /* ExpressionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressionManager.m; sourceTree = "<group>"; };
 		A4D3B15C1560E4F80013C882 /* MessageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageManager.h; sourceTree = "<group>"; };
 		A4D3B15D1560E4F80013C882 /* MessageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageManager.m; sourceTree = "<group>"; };
+		A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ContestRankView~ipad.xib"; sourceTree = "<group>"; };
 		A4D8008717DB0B370085061F /* coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coin@2x.png"; sourceTree = "<group>"; };
 		A4D8008817DB0B370085061F /* gray_coin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_coin@2x.png"; sourceTree = "<group>"; };
 		A4D8008917DB0B370085061F /* gray_ingot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_ingot@2x.png"; sourceTree = "<group>"; };
@@ -10544,6 +10560,10 @@
 				A4B78A69179FA6ED0008E21B /* GuessRankListController.m */,
 				A4B78A6A179FA6F00008E21B /* GuessRankListController.xib */,
 				A440356717C5CC9700301EDD /* GuessRankListController~ipad.xib */,
+				A44F32E617E16C3500AF9B26 /* ContestRankView.h */,
+				A44F32E717E16C3500AF9B26 /* ContestRankView.m */,
+				A44F32EC17E16C5000AF9B26 /* ContestRankView.xib */,
+				A4D410C317E1945500DE07C6 /* ContestRankView~ipad.xib */,
 			);
 			path = Guess;
 			sourceTree = "<group>";
@@ -17581,6 +17601,8 @@
 				A457BAF717DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
 				EAD13B7D17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
 				EAD13B8117DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
+				A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
+				A4D410C617E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18451,6 +18473,8 @@
 				A457BAF617DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
 				EAD13B7C17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
 				EAD13B8017DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
+				A44F32EE17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
+				A4D410C517E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19303,6 +19327,8 @@
 				A457BAF517DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
 				EAD13B7B17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
 				EAD13B7F17DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
+				A44F32ED17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
+				A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20125,6 +20151,8 @@
 				A457BAF817DECA5B00964088 /* user_detail_unfollow_bg@2x.png in Resources */,
 				EAD13B7E17DECFB700764FFB /* orange_loading_empty@2x.png in Resources */,
 				EAD13B8217DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
+				A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */,
+				A4D410C717E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20943,6 +20971,7 @@
 				A42BB02C17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
+				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21732,6 +21761,7 @@
 				EA46AD5817D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
+				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22527,6 +22557,7 @@
 				EA46AD5717D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02A17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8A17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
+				A44F32E817E16C3500AF9B26 /* ContestRankView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23296,6 +23327,7 @@
 				EA46AD5A17D5E6CD0066E914 /* ReportFeedCell.m in Sources */,
 				A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
+				A44F32EB17E16C3500AF9B26 /* ContestRankView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

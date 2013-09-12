@@ -14,6 +14,8 @@
 #import "ShareImageManager.h"
 #import "GuessManager.h"
 #import "PPPopTableView.h"
+#import "ViewUserDetail.h"
+#import "UserDetailViewController.h"
 
 #define GENIUS_WEEK NSLS(@"kGeniusRankWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusRankYear")
@@ -221,6 +223,7 @@ typedef enum{
     
     PBGuessRank *rank = [self.currentTab.dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:rank];
+    [cell setDelegate:self];
     
     return cell;
 }
@@ -305,6 +308,15 @@ SET_CELL_BG_IN_CONTROLLER;
     }else{
         POSTMSG(NSLS(@"kLoadFailed"));        
     }
+}
+
+- (void)didClickAvatar:(PBGuessRank *)rank{
+
+    ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:rank.user.userId
+                                                               avatar:rank.user.avatar
+                                                             nickName:rank.user.nickName];
+    [UserDetailViewController presentUserDetail:detail
+                               inViewController:self];
 }
 
 

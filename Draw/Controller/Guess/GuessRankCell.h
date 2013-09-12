@@ -10,7 +10,14 @@
 #import "Opus.pb.h"
 #import "StableView.h"
 
-@interface GuessRankCell : PPTableViewCell
+@protocol GuessRankCellDelegate <NSObject>
+
+@optional
+- (void)didClickAvatar:(PBGuessRank *)rank;
+
+@end
+
+@interface GuessRankCell : PPTableViewCell<AvatarViewDelegate>;
 
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;

@@ -18,6 +18,7 @@
 #import "AccountService.h"
 #import "ConfigManager.h"
 #import "GuessManager.h"
+#import "ContestRankView.h"
 
 #define TABID 1
 #define LIMIT 20
@@ -60,6 +61,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setCanDragBack:NO];
     // Do any additional setup after loading the view from its nib.
     self.supportRefreshHeader = NO;
     if (_mode == PBUserGuessModeGuessModeContest
@@ -103,7 +105,7 @@
     
     BOOL startNew = [GuessManager isLastGuessDateExpire:_mode];    
     if (startNew) {
-        NSString *message = [NSString stringWithFormat:NSLS(@"kGuessDateExpire"), [GuessManager getGuessExpireTime]];
+        NSString *message = [NSString stringWithFormat:NSLS(@"kGuessDateExpire"), [GuessManager getGuessExpireTime:_mode]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:message style:CommonDialogStyleSingleButton];
         [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
         [dialog setClickOkBlock:^(id infoView){
@@ -127,7 +129,7 @@
                    [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
                    [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy],
                    [GuessManager getCountHappyModeAwardOnce],
-                   [GuessManager getGuessExpireTime]];
+                   [GuessManager getGuessExpireTime:_mode]];
         key = KEY_NO_REMIND_HAPPY_GUESS_RULE;
     }else if(_mode == PBUserGuessModeGuessModeGenius){
         message = [NSString stringWithFormat:NSLS(@"kGeniusGuessRulesDetil"),
@@ -141,7 +143,7 @@
                    [GuessManager getCountGeniusModeAwardOnce] * 3,
                    [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 3 mode:PBUserGuessModeGuessModeGenius],
                    
-                   [GuessManager getGuessExpireTime]];
+                   [GuessManager getGuessExpireTime:_mode]];
         key = KEY_NO_REMIND_GENIUS_GUESS_RULE;
 
     }else if(_mode == PBUserGuessModeGuessModeContest){
@@ -352,8 +354,6 @@
     [dialog setClickOkBlock:^(UILabel *label){
         
         [self startNew];
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:NSLS(@"kRestartGuessWarnning") style:CommonDialogStyleDoubleButton];
-//        [dialog showInView:self.view];
     }];
     
     [dialog setClickCancelBlock:^(NSString *inputStr){
@@ -481,18 +481,29 @@
 
 - (void)showTipInContestMode:(PBGuessRank *)rank{
     
-    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeTips"), rank.pass, rank.ranking, rank.earn, rank.totalPlayer];
-
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+//    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeTips"), rank.pass, rank.ranking, rank.earn, rank.totalPlayer];
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+//    [dialog showInView:self.view];
+    
+    ContestRankView *v = [ContestRankView createViewWithRank:rank];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeTips") customView:v style:CommonDialogStyleSingleButton];
     [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
     [dialog showInView:self.view];
 }
 
 - (void)showTipInContestModeWhenContestOver:(PBGuessRank *)rank{
     
-    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeOverTips"), rank.totalPlayer, rank.ranking, rank.earn];
+//    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeOverTips"), rank.totalPlayer, rank.ranking, rank.earn];
+//    
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+//    [dialog showInView:self.view];
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
+    ContestRankView *v = [ContestRankView createViewWithRank:rank];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeOverTips") customView:v style:CommonDialogStyleSingleButton];
     [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
     [dialog showInView:self.view];
 }

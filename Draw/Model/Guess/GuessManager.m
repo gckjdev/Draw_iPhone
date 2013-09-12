@@ -260,9 +260,15 @@
     return key;
 }
 
-+ (int)getGuessExpireTime{
++ (int)getGuessExpireTime:(int)mode{
     
-    return [ConfigManager getGuessExpireTime];
+    if (mode == PBUserGuessModeGuessModeHappy) {
+        return [ConfigManager getHappyGuessExpireTime];
+    }else if(mode == PBUserGuessModeGuessModeGenius){
+        return [ConfigManager getGeniusGuessExpireTime];
+    }else{
+        return INT32_MAX;
+    }
 }
 
 + (void)setLastGuessDateDate:(int)mode{
@@ -284,7 +290,7 @@
     }
     
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
-    if (interval > [self getGuessExpireTime] * 3600) {
+    if (interval > [self getGuessExpireTime:mode] * 3600) {
         return YES;
     }else{
         return NO;
