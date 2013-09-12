@@ -20,17 +20,18 @@
 
 + (id)createCell:(id)delegate
 {
-    NSString* cellId = [self getCellIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
+    SelectWordCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier]];
+    cell.delegate = delegate;
+    cell.wordLabel.textColor = COLOR_BROWN;
+    cell.scoreLabel.textColor = COLOR_BROWN;
+    cell.levelLabel.textColor = COLOR_BROWN;
+    [cell.backgroundImage setImage:nil];
+    SET_VIEW_ROUND_CORNER(cell.backgroundImage);
+    cell.backgroundImage.layer.borderWidth = (ISIPAD ? 4 : 2);
+    cell.backgroundImage.layer.borderColor = [COLOR_YELLOW CGColor];
+    cell.backgroundImage.backgroundColor = [UIColor clearColor];
     
-    ((PPTableViewCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
-    
-    return [topLevelObjects objectAtIndex:0];
+    return cell;
 }
 
 + (NSString*)getCellIdentifier
@@ -38,7 +39,7 @@
     return @"SelectWordCell";
 }
 
-#define CELL_HEIGHT ([DeviceDetection isIPAD] ? 180 : 74)
+#define CELL_HEIGHT ([DeviceDetection isIPAD] ? 180 : 80)
 + (CGFloat)getCellHeight
 {
     return CELL_HEIGHT;
@@ -55,7 +56,9 @@
     
     [self.wordLabel setText:text];
     [self.levelLabel setText:word.levelDesc];
-    [self.scoreLabel setText:score];
+    [self.scoreLabel setText:score];    
+    return;
+    
     ShareImageManager *imageManager = [ShareImageManager defaultManager];
     switch (word.level) {
         case WordLevelLow:

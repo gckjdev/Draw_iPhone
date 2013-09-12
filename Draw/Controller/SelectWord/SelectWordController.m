@@ -161,7 +161,7 @@
 
 #pragma mark - View lifecycle
 
-#define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(615, 780) : CGPointMake(272, 344))
+//#define TOOLVIEW_CENTER ([DeviceDetection isIPAD] ? CGPointMake(615, 770) : CGPointMake(272, 340))
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -171,20 +171,23 @@
     
     SET_VIEW_BG(self.view);
     
-    toolView = [[ToolView alloc] initWithNumber:0];
-    toolView.center = TOOLVIEW_CENTER;
-    toolView.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    toolView = [[ToolView alloc] initWithNumber:0];
+//    toolView.center = TOOLVIEW_CENTER;
+//    toolView.autoresizingMask = !UIViewAutoresizingFlexibleBottomMargin |UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     
-    [self.view addSubview:toolView];
+//    [self.view addSubview:toolView];
 
     self.wordArray = [[WordManager defaultManager]randDrawWordList];
     
-    ShareImageManager *imageManager = [ShareImageManager defaultManager];
-    [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
-    [self.myWordsButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
+//    ShareImageManager *imageManager = [ShareImageManager defaultManager];
+//    [self.changeWordButton setBackgroundImage:[imageManager orangeImage] forState:UIControlStateNormal];
+//    [self.myWordsButton setBackgroundImage:[imageManager greenImage] forState:UIControlStateNormal];
     
     [self.changeWordButton setTitle:NSLS(@"kChangeWords") forState:UIControlStateNormal];
     [self.myWordsButton setTitle:NSLS(@"kMyWords") forState:UIControlStateNormal];
+
+    SET_BUTTON_ROUND_STYLE_YELLOW(self.changeWordButton);
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.myWordsButton);
     
     if ([self hasClock]) {
         retainCount = PICK_WORD_TIME;
@@ -321,7 +324,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [SelectWordCell getCellHeight];
+    return [SelectWordCell getCellHeight] + (ISIPHONE5?28:0);
 }
 
 - (void)didGameTurnComplete:(GameMessage *)message

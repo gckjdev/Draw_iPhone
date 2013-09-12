@@ -122,6 +122,12 @@
     self.roomNameLabel.text = @"";
     
     [super viewDidLoad];
+    
+    [self.view enumSubviewsWithClass:[UILabel class] handler:^(id view) {
+        [(UILabel *)view setTextColor:COLOR_BROWN];
+        [(UILabel *)view setShadowOffset:CGSizeZero];
+    }];
+    
     [self.view addSubview:popupButton];
     popupButton.hidden = YES;
     CGFloat fontSize = 18;    
@@ -147,10 +153,11 @@
     [self.titleView setBackButtonSelector:@selector(clickMenu:)];
     self.roomNameLabel.layer.borderWidth = 2;
     self.roomNameLabel.layer.borderColor = [COLOR_GREEN CGColor];
-    [self setCanDragBack:NO];    
+    [self setCanDragBack:NO];
     
     SET_BUTTON_ROUND_STYLE_YELLOW(self.startGameButton);
     [self.view setBackgroundColor:COLOR_WHITE];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -463,7 +470,7 @@
 {
     [self hideActivity];
     if ([message resultCode] == 0){
-        POSTMSG(NSLS(@"kJoinGameSucc"));
+//        POSTMSG(NSLS(@"kJoinGameSucc"));
     }
     else{
         POSTMSG(NSLS(@"kJoinGameFailure"));
@@ -493,7 +500,7 @@
         return;
     }
     
-    POSTMSG(NSLS(@"Start Game OK!"));
+//    POSTMSG(NSLS(@"Start Game OK!"));
     [self resetStartTimer];
     
     SelectWordController *sw = [[SelectWordController alloc] init];

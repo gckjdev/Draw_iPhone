@@ -88,6 +88,7 @@
 
 #import "GalleryController.h"
 #import "GuessModesController.h"
+#import "SelectWordController.h"
 
 @interface HomeController()
 {
