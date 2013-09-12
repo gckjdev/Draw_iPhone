@@ -298,7 +298,7 @@
         if (pbOpus.guessInfo.isCorrect == YES) {
             [self gotoOpusDetailController:pbOpus];
         }else if (pbOpus.guessInfo.isCorrect == NO && index == [GuessManager guessIndex:self.currentTab.dataList]) {
-            [self gotoOpusGuessController:pbOpus];
+            [self gotoOpusGuessController:pbOpus index:index];
         }else{
             POSTMSG(NSLS(@"kGuessPreviousOpusFirst"));
         }
@@ -306,14 +306,15 @@
         if (pbOpus.guessInfo.isCorrect == YES) {
             [self gotoOpusDetailController:pbOpus];
         }else {
-            [self gotoOpusGuessController:pbOpus];
+            [self gotoOpusGuessController:pbOpus index:index];
         }
     }
 }
 
-- (void)gotoOpusGuessController:(PBOpus *)pbOpus{
+- (void)gotoOpusGuessController:(PBOpus *)pbOpus  index:(int)index{
     Opus *opus = [Opus opusWithPBOpus:pbOpus];
     DrawGuessController *vc = [[[DrawGuessController alloc] initWithOpus:opus mode:_mode contest:_contest] autorelease];
+    vc.index = index;
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
 }

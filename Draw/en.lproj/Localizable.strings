@@ -1081,6 +1081,8 @@
 
 "kNoXiaojiNumber" = "No Littlegee Number";
 "kXiaoji" = "Littlegee";
+"kDrawGuessTitle" = "Guessing...";
+"kLoadImage" = "Loading...";
 
 "kLevel1" = "初级%@";
 "kLevel2" = "中级%@";
@@ -1618,7 +1620,7 @@
 "kOpusNameInvaild" = "Opus name can not blank";
 
 "kAskForHelp" = "Help";
-"kLookWhatHeDraw" = "Look, who can tell me what he/she have draw!";
+"kLookWhatHeDraw" = "OMG! What's this!";
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 
