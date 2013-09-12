@@ -1077,6 +1077,28 @@
 "kNoXiaojiNumber" = "未有小吉號碼";
 "kXiaoji" = "小吉";
 
+"kLevel1" = "初級%@";
+"kLevel2" = "中級%@";
+"kLevel3" = "高級%@";
+"kLevel4" = "資深%@";
+"kLevel5" = "發燒%@";
+"kLevel6" = "骨灰%@";
+"kLevel7" = "%@中的推土機";
+"kLevel8" = "%@中的坦克";
+"kLevel9" = "%@中的直升機";
+"kLevel10" = "%@中的戰鬥機";
+"kLevel11" = "%@中的潛水艇";
+"kLevel12" = "%@中的航母";
+"kLevel13" = "%@中的火箭";
+
+"kLevelNameFirst" = "人才";
+"kLevelName0" = "天才";
+"kLevelName1" = "奇才";
+"kLevelName2" = "怪才";
+"kLevelName3" = "鬼才";
+"kLevelName4" = "神才";
+"kLevelNameLast" = "不是人";
+
 "kOpusMy" = "我的";
 "kOpusRank" = "排行";
 "kOpusNew" = "最新";
