@@ -214,7 +214,7 @@
 
 - (void)didGuessWrong:(NSString *)word{
     
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
+//    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kGuessWrong") delayTime:1.5 isHappy:NO];
 
     if (_mode == PBUserGuessModeGuessModeGenius) {
         
