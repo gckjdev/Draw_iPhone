@@ -161,11 +161,11 @@
             isCorrect:(BOOL)isCorrect
 {
     if (isCorrect) {
-        POSTMSG(NSLS(@"kGuessCorrect"));
+//        POSTMSG(NSLS(@"kGuessCorrect"));
         [wordInputView setDisable:YES];
         _guessCorrect = YES;
     }else{
-        POSTMSG(NSLS(@"kGuessWrong"));
+//        POSTMSG(NSLS(@"kGuessWrong"));
     }
     [drawGameService guess:word guessUserId:drawGameService.session.userId];
 }

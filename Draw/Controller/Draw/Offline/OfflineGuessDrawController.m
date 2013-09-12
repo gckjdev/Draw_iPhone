@@ -137,10 +137,10 @@
             isCorrect:(BOOL)isCorrect
 {
     if (isCorrect) {
-        POSTMSG(NSLS(@"kGuessCorrect"));
+//        POSTMSG(NSLS(@"kGuessCorrect"));
         [self quit:YES];
     }else{
-        POSTMSG(NSLS(@"kGuessWrong"));
+//        POSTMSG(NSLS(@"kGuessWrong"));
     }
 }
 
