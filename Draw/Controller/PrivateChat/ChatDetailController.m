@@ -279,13 +279,20 @@
     self.unReloadDataWhenViewDidAppear = YES;
     [self updateLocateButton];
     
-    [self registerAllChatNotification];
-    [self loadNewMessage:YES];
     [self updateBG];
     [self scrollToBottom:NO];
     
     self.inputBackgroundView.backgroundColor = COLOR_BROWN;
     self.inputTextView.textColor = COLOR_BROWN;
+
+    // make this to avoid message list changed by receiving notification
+    [self performSelector:@selector(loadNewMessageWhileLaunch) withObject:nil afterDelay:0.1f];
+}
+
+- (void)loadNewMessageWhileLaunch
+{
+    [self registerAllChatNotification];
+    [self loadNewMessage:YES];
 }
 
 - (void)viewDidUnload
