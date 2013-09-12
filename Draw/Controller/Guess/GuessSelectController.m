@@ -25,6 +25,7 @@
 
 @interface GuessSelectController (){
     PBUserGuessMode _mode;
+    int _countDown;
 }
 @property (retain, nonatomic) NSArray *opuses;
 @property (retain, nonatomic) PBGuessContest *contest;
@@ -37,6 +38,7 @@
 - (void)dealloc{
     [_opuses release];
     [_contest release];
+    [_countDownLabel release];
     [super dealloc];
 }
 
@@ -46,6 +48,10 @@
     if (self  = [super init]) {
         _mode = mode;
         self.contest = contest;
+        
+        if ([GuessManager getLastGuessDate:mode] == nil) {
+            [GuessManager setLastGuessDateDate:_mode];
+        }
     }
     
     return self;
@@ -70,10 +76,13 @@
         self.supportRefreshHeader = NO;
     }
     
+    _countDownLabel.textColor = COLOR_BROWN;
+    
     [self initTabButtons];
     [self clickTab:TABID];
     
     [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBack)];
     
     NSString *title = nil;
     NSString *rightButtonTitle = nil;
@@ -81,16 +90,18 @@
         title = NSLS(@"kHappGuessMode");
         rightButtonTitle = NSLS(@"kRestart");
         [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
+        [self startCountDown];
     }else if(_mode == PBUserGuessModeGuessModeGenius){
         title = NSLS(@"kGeniusGuessMode");
         rightButtonTitle = NSLS(@"kRestart");
         [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
-
+        [self startCountDown];
     }else if(_mode == PBUserGuessModeGuessModeContest){
+        
         title = NSLS(@"kContestGuessMode");
         rightButtonTitle = NSLS(@"kRanking");
         [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
-
+        [_countDownLabel setHidden:YES];
     }
     
     [self.titleView setTitle:title];
@@ -101,10 +112,12 @@
     [GuessManager deductCoins:_mode contestId:_contest.contestId force:NO];
     
     
-    [self showRuleMessageWithTitle:title];
+    [self showRuleMessage];
+    
+    _countDown = [GuessManager getTimeIntervalUtilExpire:_mode];
     
     BOOL startNew = [GuessManager isLastGuessDateExpire:_mode];    
-    if (startNew) {
+    if (startNew && _mode != PBUserGuessModeGuessModeContest) {
         NSString *message = [NSString stringWithFormat:NSLS(@"kGuessDateExpire"), [GuessManager getGuessExpireTime:_mode]];
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:message style:CommonDialogStyleSingleButton];
         [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
@@ -116,15 +129,42 @@
     }
 }
 
+- (void)startCountDown{
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountDownInfo) userInfo:nil repeats:YES];
+}
+
+- (void)stopCountDown{
+    
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)updateCountDownInfo{
+    
+    _countDown --;
+    if (_countDown < 0) {
+        _countDown = 0;
+    }
+    int hours = _countDown / 3600;
+    int minus = _countDown /60 % 60;
+    int second = _countDown % 60;
+    _countDownLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", hours, minus, second];
+}
+
+
+
 #define KEY_NO_REMIND_HAPPY_GUESS_RULE @"KEY_NO_REMIND_HAPPY_GUESS_RULE"
 #define KEY_NO_REMIND_GENIUS_GUESS_RULE @"KEY_NO_REMIND_GENIUS_GUESS_RULE"
 #define KEY_NO_REMIND_CONTEST_GUESS_RULE @"KEY_NO_REMIND_CONTEST_GUESS_RULE"
 
-- (void)showRuleMessageWithTitle:(NSString *)title{
+- (void)showRuleMessage{
     
+    NSString *title = @"";
     NSString *message = @"";
     NSString *key = @"";
     if (_mode == PBUserGuessModeGuessModeHappy) {
+        title = NSLS(@"kHappyGuessRules");
         message = [NSString stringWithFormat:NSLS(@"kHappyGuessRulesDetil"),
                    [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
                    [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy],
@@ -132,6 +172,7 @@
                    [GuessManager getGuessExpireTime:_mode]];
         key = KEY_NO_REMIND_HAPPY_GUESS_RULE;
     }else if(_mode == PBUserGuessModeGuessModeGenius){
+        title = NSLS(@"kGeniusGuessRules");
         message = [NSString stringWithFormat:NSLS(@"kGeniusGuessRulesDetil"),
                    [GuessManager getDeductCoins:PBUserGuessModeGuessModeGenius],
                    [GuessManager getCountGeniusModeAwardOnce],
@@ -147,6 +188,7 @@
         key = KEY_NO_REMIND_GENIUS_GUESS_RULE;
 
     }else if(_mode == PBUserGuessModeGuessModeContest){
+        title = NSLS(@"kContestGuessRules");
         message = [NSString stringWithFormat:NSLS(@"kContestGuessRulesDetil"),
                    [GuessManager getDeductCoins:PBUserGuessModeGuessModeContest]];
         key = KEY_NO_REMIND_CONTEST_GUESS_RULE;
@@ -171,6 +213,7 @@
 
 - (void)viewDidUnload {
     [self setTitleView:nil];
+    [self setCountDownLabel:nil];
     [super viewDidUnload];
 }
 
@@ -227,11 +270,11 @@
     return cell;
 }
 
-
 - (void)loadData:(int)offset limit:(int)limit startNew:(BOOL)startNew{
     
     if (startNew) {
         [GuessManager setLastGuessDateDate:_mode];
+        _countDown = [GuessManager getTimeIntervalUtilExpire:_mode];
     }
     
     [self showActivityWithText:NSLS(@"kLoading")];
@@ -267,7 +310,8 @@
     }];
 }
 
-- (void)clickRankingButton:(id)sender{
+- (void)clickRankingButton:(UIButton *)button{
+    
     [[GuessService defaultService] getGuessRankWithType:0
                                                    mode:_mode
                                               contestId:_contest.contestId
@@ -517,6 +561,11 @@
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index{
     return NSLS(@"kNoData");
+}
+
+- (void)clickBack{
+    [self stopCountDown];
+    [super clickBack:nil];
 }
 
 @end

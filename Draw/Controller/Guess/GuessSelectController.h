@@ -12,6 +12,7 @@
 #import "DrawGuessController.h"
 
 @interface GuessSelectController : CommonTabController<GuessServiceDelegate, CommonGuessControllerDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *countDownLabel;
 
 //@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 

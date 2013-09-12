@@ -9,6 +9,8 @@
 #import "GuessSelectCell.h"
 #import "Opus.pb.h"
 #import "AnimationManager.h"
+#import "SoundPlayer.h"
+#import "AudioManager.h"
 
 #define OPUS_BUTTON_OFFSET 100
 #define MAX_COUNT_OPUS 20
@@ -44,6 +46,8 @@
 
 - (IBAction)clickOpusButton:(UIButton *)button {
     
+    [SoundPlayer playSoundWithName:SOUND_EFFECT_BUTTON_DOWN];
+    
     if ([delegate respondsToSelector:@selector(didClickOpusWithIndex:)]) {
         
         int index = self.indexPath.row * MAX_COUNT_OPUS + button.tag - OPUS_BUTTON_OFFSET;
@@ -71,13 +75,13 @@
     
     for (; index < 20; index ++) {
         [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"round_dot_no@2x.png"] forState:UIControlStateNormal];
-        [[self opusButtonWithIndex:index].layer removeAllAnimations];
+//        [[self opusButtonWithIndex:index].layer removeAllAnimations];
     }
 }
 
 - (void)setCurrentGuessIndex:(int)index{
     int tag = index - indexPath.row * MAX_COUNT_OPUS + OPUS_BUTTON_OFFSET;
-    if (tag < OPUS_BUTTON_OFFSET && tag > (OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS)) {
+    if (tag < OPUS_BUTTON_OFFSET || tag > (OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS)) {
         return;
     }
     

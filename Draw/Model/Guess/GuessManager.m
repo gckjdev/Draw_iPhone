@@ -271,12 +271,33 @@
     }
 }
 
++ (NSDate *)getLastGuessDate:(int)mode{
+    NSString *key = [self getGuessDateKey:mode];
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    return date;
+}
+
 + (void)setLastGuessDateDate:(int)mode{
     
     NSString *key = [self getGuessDateKey:mode];
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSTimeInterval)getTimeIntervalUtilExpire:(int)mode{
+    
+    NSString *key = [self getGuessDateKey:mode];
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    
+    NSTimeInterval interval = 0;
+    if (date != nil){
+        interval = [[NSDate date] timeIntervalSinceDate:date];
+    }
+    
+    NSTimeInterval left = [self getGuessExpireTime:mode] * 3600 - interval;
+    
+    return left;
 }
 
 + (BOOL)isLastGuessDateExpire:(int)mode{

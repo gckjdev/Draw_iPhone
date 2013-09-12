@@ -32,7 +32,9 @@
 + (int)getDeductCoins:(int)mode;
 
 + (int)getGuessExpireTime:(int)mode;
++ (NSDate *)getLastGuessDate:(int)mode;
 + (void)setLastGuessDateDate:(int)mode;
 + (BOOL)isLastGuessDateExpire:(int)mode;
++ (NSTimeInterval)getTimeIntervalUtilExpire:(int)mode;
 
 @end

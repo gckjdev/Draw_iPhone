@@ -234,7 +234,7 @@ static NSMutableDictionary* TITLE_DICT;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        TITLE_DICT = [NSMutableDictionary dictionary];
+        TITLE_DICT = [[NSMutableDictionary dictionary] retain];
         
         
         TITLE_DICT[@(0)] = NSLS(@"kLevelNameFirst");

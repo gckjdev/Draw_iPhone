@@ -167,6 +167,10 @@ typedef enum{
 
 - (IBAction)clickContestSelectButton:(UIButton *)sender {
     
+    if ([_contests count] == 0) {
+        return;
+    }
+
     __block typeof(self) bself = self;
     
     
@@ -229,6 +233,11 @@ typedef enum{
     if ([self.currentSelect isEqualToString:TODAY] &&
         ![GuessManager isContestOver:[_contests objectAtIndex:0]]) {
         [cell hideAwardInfo];
+    }
+    
+    if (!([self.currentSelect isEqualToString:WEEK]
+         || [self.currentSelect isEqualToString:YEAR])) {
+        cell.geniusTitleLabel.hidden = YES;
     }
     
     return cell;

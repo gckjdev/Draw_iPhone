@@ -28,7 +28,7 @@
     [_awardLabel release];
     [_rankLabel release];
     [_avatarView release];
-    [_guessTitleLabel release];
+    [_geniusTitleLabel release];
     [_awardImageView release];
     [super dealloc];
 }
@@ -53,7 +53,7 @@
     _guessCountLabel.textColor = COLOR_ORANGE;
     _costTimeLabel.textColor = COLOR_ORANGE;
     _awardLabel.textColor = COLOR_ORANGE;
-    _guessTitleLabel.textColor = COLOR_GREEN;
+    _geniusTitleLabel.textColor = COLOR_GREEN;
     
     
     [_avatarView setUrlString:rank.user.avatar];
@@ -69,7 +69,7 @@
     
     _rankLabel.text = [NSString stringWithFormat:@"%d",rank.ranking];    
     
-//    _guessTitleLabel.text = [GuessService guessTitle];
+    _geniusTitleLabel.text = [GuessService geniusTitle:_rank.pass];
 }
 
 - (void)hideAwardInfo{

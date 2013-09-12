@@ -21,7 +21,7 @@
 
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
-@property (retain, nonatomic) IBOutlet UILabel *guessTitleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *geniusTitleLabel;
 @property (retain, nonatomic) IBOutlet UILabel *signatureLable;
 @property (retain, nonatomic) IBOutlet UILabel *guessCountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *costTimeLabel;
