@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "PBGuessRank+Extend.h"
 #import "ShareImageManager.h"
+#import "GuessService.h"
 
 @interface GuessRankCell()
 @property (retain, nonatomic) PBGuessRank *rank;
@@ -27,6 +28,8 @@
     [_awardLabel release];
     [_rankLabel release];
     [_avatarView release];
+    [_guessTitleLabel release];
+    [_awardImageView release];
     [super dealloc];
 }
 
@@ -50,6 +53,8 @@
     _guessCountLabel.textColor = COLOR_ORANGE;
     _costTimeLabel.textColor = COLOR_ORANGE;
     _awardLabel.textColor = COLOR_ORANGE;
+    _guessTitleLabel.textColor = COLOR_GREEN;
+    
     
     [_avatarView setUrlString:rank.user.avatar];
 //    [_avatarView setAsSquare];
@@ -62,7 +67,15 @@
     _costTimeLabel.text = _rank.costTimeDesc;
     _awardLabel.text = _rank.earnDesc;
     
-    _rankLabel.text = [NSString stringWithFormat:@"%d",rank.ranking];
+    _rankLabel.text = [NSString stringWithFormat:@"%d",rank.ranking];    
+    
+//    _guessTitleLabel.text = [GuessService guessTitle];
+}
+
+- (void)hideAwardInfo{
+    
+    _awardImageView.hidden = YES;
+    _awardLabel.hidden = YES;
 }
 
 - (void)didClickOnAvatar:(NSString*)userId{

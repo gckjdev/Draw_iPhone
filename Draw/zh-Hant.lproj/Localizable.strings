@@ -1529,8 +1529,8 @@
 
 "kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";
 
-"kWeek" = "每周";
-"kYear" = "年度";
+"kWeek" = "周榜";
+"kYear" = "年榜";
 "kToday" = "今天";
 "kYesterday" = "昨天";
 "kBeforeYesterday" = "兩天前";
@@ -1539,8 +1539,8 @@
 "kFiveDaysAgo" = "五天前";
 "kSixDaysAgo" = "六天前";
 
-"kGeniusRankWeek" = "天才榜(每周)";
-"kGeniusRankYear" = "天才榜(年度)";
+"kGeniusRankWeek" = "天才周榜";
+"kGeniusRankYear" = "天才年榜";
 "kContestRankToday" = "比賽榜(今天)";
 "kContestRankYesterday" = "比賽榜(昨天)";
 "kContestRankBeforeYesterday" = "比賽榜(兩天前)";
@@ -1553,6 +1553,12 @@
 
 "kContestIsNotStart" = "今天的比賽尚未開始，請先到處逛逛，稍後再來參加比賽吧。";
 "kContestIsOver" = "今天的比賽已經結束啦！請明天同一時間再來參加比賽吧。";
+
+
+"kContestRanking" = "第%d名";
+"kContestGuessCorrect" = "猜中%d幅";
+"kContestSpendTime" = "耗時%d秒";
+"kContestEarn" = "獎勵%d金幣";
 
 "kNoRank" = "暫無排行記錄";
 

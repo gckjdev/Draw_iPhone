@@ -1583,6 +1583,12 @@
 "kRestartGuessWarnning" = "Will you restart game?";
 
 
+"kContestRanking" = "Ranking: %d";
+"kContestGuessCorrect" = "Pass: %d";
+"kContestSpendTime" = "Spend Time: %d seconds";
+"kContestEarn" = "Award: %d coins";
+
+
 
 #define GENIUS_WEEK NSLS(@"kGeniusWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusYear")

@@ -225,6 +225,12 @@ typedef enum{
     [cell setCellInfo:rank];
     [cell setDelegate:self];
     
+    
+    if ([self.currentSelect isEqualToString:TODAY] &&
+        ![GuessManager isContestOver:[_contests objectAtIndex:0]]) {
+        [cell hideAwardInfo];
+    }
+    
     return cell;
 }
 

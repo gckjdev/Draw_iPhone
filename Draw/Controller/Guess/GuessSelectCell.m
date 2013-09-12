@@ -77,16 +77,17 @@
 
 - (void)setCurrentGuessIndex:(int)index{
     int tag = index - indexPath.row * MAX_COUNT_OPUS + OPUS_BUTTON_OFFSET;
-    if (tag < OPUS_BUTTON_OFFSET && tag > OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS) {
+    if (tag < OPUS_BUTTON_OFFSET && tag > (OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS)) {
         return;
     }
     
-    for (int index = OPUS_BUTTON_OFFSET; index < OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS; index ++) {
+    for (int index = OPUS_BUTTON_OFFSET; index < (OPUS_BUTTON_OFFSET + MAX_COUNT_OPUS); index ++) {
         UIButton *button = (UIButton *)[self viewWithTag:tag];
         [button.layer removeAllAnimations];
     }
     
     UIButton *button = (UIButton *)[self viewWithTag:tag];
+    
     [button.layer addAnimation:[AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:0.5 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:0.5 repeatCount:MAXFLOAT] forKey:nil];
 }
 
