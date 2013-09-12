@@ -1100,6 +1100,28 @@
 "kNoXiaojiNumber" = "未有小吉号码";
 "kXiaoji" = "小吉";
 
+"kLevel1" = "初级%@";
+"kLevel2" = "中级%@";
+"kLevel3" = "高级%@";
+"kLevel4" = "资深%@";
+"kLevel5" = "发烧%@";
+"kLevel6" = "骨灰%@";
+"kLevel7" = "%@中的推土机";
+"kLevel8" = "%@中的坦克";
+"kLevel9" = "%@中的直升机";
+"kLevel10" = "%@中的战斗机";
+"kLevel11" = "%@中的潜水艇";
+"kLevel12" = "%@中的航母";
+"kLevel13" = "%@中的火箭";
+
+"kLevelNameFirst" = "人才";
+"kLevelName0" = "天才";
+"kLevelName1" = "奇才";
+"kLevelName2" = "怪才";
+"kLevelName3" = "鬼才";
+"kLevelName4" = "神才";
+"kLevelNameLast" = "不是人";
+
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
 "kQQGroup" = "官方Q群：228119679";

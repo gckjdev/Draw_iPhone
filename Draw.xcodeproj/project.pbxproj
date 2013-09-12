@@ -653,7 +653,6 @@
 		A461B2D1174CBAA70088B061 /* BulletinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D17167F6CB200E012FC /* BulletinManager.m */; };
 		A461B2D3174CBAA70088B061 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
 		A461B2D5174CBAA70088B061 /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
-		A461B2D6174CBAA70088B061 /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
 		A461B2D7174CBAA70088B061 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		A461B2D8174CBAA70088B061 /* UIColor+GetHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */; };
 		A461B2D9174CBAA70088B061 /* ILColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44902168C4DCC004441EB /* ILColorPickerView.m */; };
@@ -1104,7 +1103,6 @@
 		A461B5AB174CBAA70088B061 /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */; };
 		A461B5AC174CBAA70088B061 /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D03167F1BB200E012FC /* BulletinView.xib */; };
 		A461B5AD174CBAA70088B061 /* BulletinView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D04167F1BB200E012FC /* BulletinView~ipad.xib */; };
-		A461B5B6174CBAA70088B061 /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
 		A461B653174CBAA70088B061 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		A461B654174CBAA70088B061 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		A461B655174CBAA70088B061 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
@@ -3826,7 +3824,6 @@
 		C28A9BB91738F04B007A819F /* BulletinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D17167F6CB200E012FC /* BulletinManager.m */; };
 		C28A9BBB1738F04B007A819F /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
 		C28A9BBD1738F04B007A819F /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
-		C28A9BBE1738F04B007A819F /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
 		C28A9BBF1738F04B007A819F /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		C28A9BC01738F04B007A819F /* UIColor+GetHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */; };
 		C28A9BC11738F04B007A819F /* ILColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44902168C4DCC004441EB /* ILColorPickerView.m */; };
@@ -4284,7 +4281,6 @@
 		C28A9E8A1738F04B007A819F /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */; };
 		C28A9E8B1738F04B007A819F /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D03167F1BB200E012FC /* BulletinView.xib */; };
 		C28A9E8C1738F04B007A819F /* BulletinView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D04167F1BB200E012FC /* BulletinView~ipad.xib */; };
-		C28A9E951738F04B007A819F /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
 		C28A9F351738F04B007A819F /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		C28A9F361738F04B007A819F /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		C28A9F371738F04B007A819F /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
@@ -4888,8 +4884,6 @@
 		CA2489091753B97C00848A5F /* LittleGeeDefault-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA2488FB1753B92400848A5F /* LittleGeeDefault-568h@2x.png */; };
 		CA24890A1753B98600848A5F /* LittleGeeDefault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA2488FD1753B92400848A5F /* LittleGeeDefault@2x.png */; };
 		CA24890B1753B98C00848A5F /* LittleGeeDefault@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CA2488FF1753B92400848A5F /* LittleGeeDefault@2x~ipad.png */; };
-		CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
-		CA25C42916899E080064C05D /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
 		CA2614C41793ACD0007D5462 /* filter.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA2614C31793ACD0007D5462 /* filter.txt */; };
 		CA2614D01793ACD1007D5462 /* filter.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA2614C31793ACD0007D5462 /* filter.txt */; };
 		CA2614D31793ACD1007D5462 /* filter.txt in Resources */ = {isa = PBXBuildFile; fileRef = CA2614C31793ACD0007D5462 /* filter.txt */; };
@@ -5588,6 +5582,14 @@
 		CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
+		EA0D327C17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
+		EA0D327D17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
+		EA0D327E17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
+		EA0D327F17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
+		EA0D328017E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
+		EA0D328117E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
+		EA0D328217E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
+		EA0D328317E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
 		EA0FD69C17631C5100FED42E /* PolygenPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244AFA176071F0002C0A37 /* PolygenPen.m */; };
 		EA1176A11779B764008678AC /* askps_charge_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176981779B764008678AC /* askps_charge_button@2x.png */; };
 		EA1176A21779B764008678AC /* askps_default_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176991779B764008678AC /* askps_default_photo@2x.png */; };
@@ -6068,7 +6070,6 @@
 		EA411A0D176066F500DA72D0 /* BulletinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D17167F6CB200E012FC /* BulletinManager.m */; };
 		EA411A0F176066F500DA72D0 /* DrawGameJumpHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C295B90E168571C2005B3559 /* DrawGameJumpHandler.m */; };
 		EA411A11176066F500DA72D0 /* PPStack.m in Sources */ = {isa = PBXBuildFile; fileRef = CADD26411688421600BDCDCF /* PPStack.m */; };
-		EA411A12176066F500DA72D0 /* DrawTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA25C42316899E080064C05D /* DrawTestViewController.m */; };
 		EA411A13176066F500DA72D0 /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C20E7153168AE0A400E37127 /* CustomActionSheet.m */; };
 		EA411A14176066F500DA72D0 /* UIColor+GetHSB.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC448FF168C4DCC004441EB /* UIColor+GetHSB.m */; };
 		EA411A15176066F500DA72D0 /* ILColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC44902168C4DCC004441EB /* ILColorPickerView.m */; };
@@ -6549,7 +6550,6 @@
 		EA411CD5176066F500DA72D0 /* BulletinCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D00167F1BB200E012FC /* BulletinCell~ipad.xib */; };
 		EA411CD6176066F500DA72D0 /* BulletinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D03167F1BB200E012FC /* BulletinView.xib */; };
 		EA411CD7176066F500DA72D0 /* BulletinView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2974D04167F1BB200E012FC /* BulletinView~ipad.xib */; };
-		EA411CE0176066F500DA72D0 /* DrawTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA25C42516899E080064C05D /* DrawTestViewController.xib */; };
 		EA411D7D176066F500DA72D0 /* SelectHotWordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14271697DBC000841940 /* SelectHotWordController.xib */; };
 		EA411D7E176066F500DA72D0 /* SelectHotWordController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE14281697DBC000841940 /* SelectHotWordController~ipad.xib */; };
 		EA411D7F176066F500DA72D0 /* WordSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4DE142B1697DBC000841940 /* WordSelectCell.xib */; };
@@ -8728,9 +8728,6 @@
 		CA2489051753B93800848A5F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "default/zh-Hans.lproj/LittleGeeDefault@2x.png"; sourceTree = "<group>"; };
 		CA2489061753B93E00848A5F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zh-Hans"; path = "default/zh-Hans.lproj/LittleGeeDefault@2x~ipad.png"; sourceTree = "<group>"; };
 		CA2489071753B97300848A5F /* LittleGeeDefault-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LittleGeeDefault-568h@2x.png"; path = "default/LittleGeeDefault-568h@2x.png"; sourceTree = "<group>"; };
-		CA25C42316899E080064C05D /* DrawTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawTestViewController.m; sourceTree = "<group>"; };
-		CA25C42416899E080064C05D /* DrawTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTestViewController.h; sourceTree = "<group>"; };
-		CA25C42516899E080064C05D /* DrawTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawTestViewController.xib; sourceTree = "<group>"; };
 		CA2614C31793ACD0007D5462 /* filter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filter.txt; sourceTree = "<group>"; };
 		CA2614DC1793B0FD007D5462 /* WordFilterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordFilterService.h; sourceTree = "<group>"; };
 		CA2614DD1793B0FD007D5462 /* WordFilterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordFilterService.m; sourceTree = "<group>"; };
@@ -9619,6 +9616,9 @@
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		EA0D327917E1ADB000F7E29A /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
+		EA0D327A17E1ADB000F7E29A /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
+		EA0D327B17E1ADB000F7E29A /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
 		EA1176981779B764008678AC /* askps_charge_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_charge_button@2x.png"; sourceTree = "<group>"; };
 		EA1176991779B764008678AC /* askps_default_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_default_photo@2x.png"; sourceTree = "<group>"; };
 		EA11769A1779B764008678AC /* askps_edit_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_edit_background@2x.png"; sourceTree = "<group>"; };
@@ -13851,9 +13851,7 @@
 		CA1041F41509BC8700F60C03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CA25C42416899E080064C05D /* DrawTestViewController.h */,
-				CA25C42316899E080064C05D /* DrawTestViewController.m */,
-				CA25C42516899E080064C05D /* DrawTestViewController.xib */,
+				EA0D327817E1ADB000F7E29A /* HomeView */,
 				CA1041F51509BC9700F60C03 /* HomeController.h */,
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
@@ -16408,6 +16406,16 @@
 			path = Draw_Common;
 			sourceTree = "<group>";
 		};
+		EA0D327817E1ADB000F7E29A /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				EA0D327917E1ADB000F7E29A /* HomeView.h */,
+				EA0D327A17E1ADB000F7E29A /* HomeView.m */,
+				EA0D327B17E1ADB000F7E29A /* HomeView.xib */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		EA1176961779B764008678AC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -16936,7 +16944,6 @@
 				A461B5AB174CBAA70088B061 /* BulletinCell~ipad.xib in Resources */,
 				A461B5AC174CBAA70088B061 /* BulletinView.xib in Resources */,
 				A461B5AD174CBAA70088B061 /* BulletinView~ipad.xib in Resources */,
-				A461B5B6174CBAA70088B061 /* DrawTestViewController.xib in Resources */,
 				A461B653174CBAA70088B061 /* SelectHotWordController.xib in Resources */,
 				A461B654174CBAA70088B061 /* SelectHotWordController~ipad.xib in Resources */,
 				A461B655174CBAA70088B061 /* WordSelectCell.xib in Resources */,
@@ -17603,6 +17610,7 @@
 				EAD13B8117DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C617E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
+				EA0D328217E1ADB000F7E29A /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -17856,7 +17864,6 @@
 				C28A9E8A1738F04B007A819F /* BulletinCell~ipad.xib in Resources */,
 				C28A9E8B1738F04B007A819F /* BulletinView.xib in Resources */,
 				C28A9E8C1738F04B007A819F /* BulletinView~ipad.xib in Resources */,
-				C28A9E951738F04B007A819F /* DrawTestViewController.xib in Resources */,
 				C28A9F351738F04B007A819F /* SelectHotWordController.xib in Resources */,
 				C28A9F361738F04B007A819F /* SelectHotWordController~ipad.xib in Resources */,
 				C28A9F371738F04B007A819F /* WordSelectCell.xib in Resources */,
@@ -18475,6 +18482,7 @@
 				EAD13B8017DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32EE17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C517E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
+				EA0D328117E1ADB000F7E29A /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18732,7 +18740,6 @@
 				C2974D07167F1BB200E012FC /* BulletinCell~ipad.xib in Resources */,
 				C2974D09167F1BB200E012FC /* BulletinView.xib in Resources */,
 				C2974D0A167F1BB200E012FC /* BulletinView~ipad.xib in Resources */,
-				CA25C42916899E080064C05D /* DrawTestViewController.xib in Resources */,
 				A4DE142D1697DBC000841940 /* SelectHotWordController.xib in Resources */,
 				A4DE142E1697DBC000841940 /* SelectHotWordController~ipad.xib in Resources */,
 				A4DE14301697DBC000841940 /* WordSelectCell.xib in Resources */,
@@ -19329,6 +19336,7 @@
 				EAD13B7F17DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32ED17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
+				EA0D328017E1ADB000F7E29A /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19572,7 +19580,6 @@
 				EA411CD5176066F500DA72D0 /* BulletinCell~ipad.xib in Resources */,
 				EA411CD6176066F500DA72D0 /* BulletinView.xib in Resources */,
 				EA411CD7176066F500DA72D0 /* BulletinView~ipad.xib in Resources */,
-				EA411CE0176066F500DA72D0 /* DrawTestViewController.xib in Resources */,
 				EA411D7D176066F500DA72D0 /* SelectHotWordController.xib in Resources */,
 				EA411D7E176066F500DA72D0 /* SelectHotWordController~ipad.xib in Resources */,
 				EA411D7F176066F500DA72D0 /* WordSelectCell.xib in Resources */,
@@ -20153,6 +20160,7 @@
 				EAD13B8217DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C717E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
+				EA0D328317E1ADB000F7E29A /* HomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20622,7 +20630,6 @@
 				A461B2D1174CBAA70088B061 /* BulletinManager.m in Sources */,
 				A461B2D3174CBAA70088B061 /* DrawGameJumpHandler.m in Sources */,
 				A461B2D5174CBAA70088B061 /* PPStack.m in Sources */,
-				A461B2D6174CBAA70088B061 /* DrawTestViewController.m in Sources */,
 				A461B2D7174CBAA70088B061 /* CustomActionSheet.m in Sources */,
 				A461B2D8174CBAA70088B061 /* UIColor+GetHSB.m in Sources */,
 				A461B2D9174CBAA70088B061 /* ILColorPickerView.m in Sources */,
@@ -20972,6 +20979,7 @@
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
+				EA0D327E17E1ADB000F7E29A /* HomeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21443,7 +21451,6 @@
 				C28A9BB91738F04B007A819F /* BulletinManager.m in Sources */,
 				C28A9BBB1738F04B007A819F /* DrawGameJumpHandler.m in Sources */,
 				C28A9BBD1738F04B007A819F /* PPStack.m in Sources */,
-				C28A9BBE1738F04B007A819F /* DrawTestViewController.m in Sources */,
 				C28A9BBF1738F04B007A819F /* CustomActionSheet.m in Sources */,
 				C28A9BC01738F04B007A819F /* UIColor+GetHSB.m in Sources */,
 				C28A9BC11738F04B007A819F /* ILColorPickerView.m in Sources */,
@@ -21762,6 +21769,7 @@
 				A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
+				EA0D327D17E1ADB000F7E29A /* HomeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22235,7 +22243,6 @@
 				C2974D18167F6CB200E012FC /* BulletinManager.m in Sources */,
 				C295B912168571C2005B3559 /* DrawGameJumpHandler.m in Sources */,
 				CADD26421688421600BDCDCF /* PPStack.m in Sources */,
-				CA25C42616899E080064C05D /* DrawTestViewController.m in Sources */,
 				C20E7154168AE0A400E37127 /* CustomActionSheet.m in Sources */,
 				CAC44909168C4DCC004441EB /* UIColor+GetHSB.m in Sources */,
 				CAC4490C168C4DCC004441EB /* ILColorPickerView.m in Sources */,
@@ -22558,6 +22565,7 @@
 				A42BB02A17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8A17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E817E16C3500AF9B26 /* ContestRankView.m in Sources */,
+				EA0D327C17E1ADB000F7E29A /* HomeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23024,7 +23032,6 @@
 				EA411A0D176066F500DA72D0 /* BulletinManager.m in Sources */,
 				EA411A0F176066F500DA72D0 /* DrawGameJumpHandler.m in Sources */,
 				EA411A11176066F500DA72D0 /* PPStack.m in Sources */,
-				EA411A12176066F500DA72D0 /* DrawTestViewController.m in Sources */,
 				EA411A13176066F500DA72D0 /* CustomActionSheet.m in Sources */,
 				EA411A14176066F500DA72D0 /* UIColor+GetHSB.m in Sources */,
 				EA411A15176066F500DA72D0 /* ILColorPickerView.m in Sources */,
@@ -23328,6 +23335,7 @@
 				A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32EB17E16C3500AF9B26 /* ContestRankView.m in Sources */,
+				EA0D327F17E1ADB000F7E29A /* HomeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

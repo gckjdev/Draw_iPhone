@@ -69,4 +69,6 @@
 // Get recent contest list
 - (void)getRecentGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate;
 
++ (NSString*)geniusTitle:(int)correctCount;
+
 @end
