@@ -142,7 +142,7 @@
 }
 + (NSInteger)getTimelineCountOnce
 {
-    return [MobClickUtils getIntValueByKey:@"TIMELINE_FETCH_LIMIT" defaultValue:12];
+    return [MobClickUtils getIntValueByKey:@"TIMELINE_FETCH_LIMIT" defaultValue:15];
 }
 + (BOOL)showOpusCount
 {
