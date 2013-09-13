@@ -1482,7 +1482,7 @@
 "kAwardIs:%d" = "獎勵: %d金幣";
 
 "kIGotIt" = "我知道了";
-"kRestart" = "重新開始";
+"kRestart" = "重玩";
 "kSelectGuessMode" = "選擇猜畫模式";
 
 "kHappGuessMode" = "歡樂模式";

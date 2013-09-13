@@ -1499,7 +1499,7 @@
 "kAwardIs:%d" = "奖励: %d金币";
 
 "kIGotIt" = "我知道了";
-"kRestart" = "重新开始";
+"kRestart" = "重玩";
 "kSelectGuessMode" = "选择猜画模式";
 
 "kHappGuessMode" = "欢乐模式";
