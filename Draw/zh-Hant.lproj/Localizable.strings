@@ -1532,6 +1532,7 @@
 
 "kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";
 
+"kDay" = "日榜";
 "kWeek" = "周榜";
 "kYear" = "年榜";
 "kToday" = "今天";
@@ -1542,15 +1543,16 @@
 "kFiveDaysAgo" = "五天前";
 "kSixDaysAgo" = "六天前";
 
+"kGeniusRankDay" = "天才日榜";
 "kGeniusRankWeek" = "天才周榜";
 "kGeniusRankYear" = "天才年榜";
-"kContestRankToday" = "比賽榜(今天)";
-"kContestRankYesterday" = "比賽榜(昨天)";
-"kContestRankBeforeYesterday" = "比賽榜(兩天前)";
-"kContestRankThreeDaysAgo" = "比賽榜(三天前)";
-"kContestRankFourDaysAgo" = "比賽榜(四天前)";
-"kContestRankFiveDaysAgo" = "比賽榜(五天前)";
-"kContestRankSixDaysAgo" = "比賽榜(六天前)";
+"kContestRankToday" = "比賽榜 - 今天";
+"kContestRankYesterday" = "比賽榜 - 昨天";
+"kContestRankBeforeYesterday" = "比賽榜 - 兩天前";
+"kContestRankThreeDaysAgo" = "比賽榜 - 三天前";
+"kContestRankFourDaysAgo" = "比賽榜 - 四天前";
+"kContestRankFiveDaysAgo" = "比賽榜 - 五天前";
+"kContestRankSixDaysAgo" = "比賽榜 - 六天前";
 
 
 

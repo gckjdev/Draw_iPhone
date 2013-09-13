@@ -1550,17 +1550,18 @@
 
 "kRestartGuessWarnning" = "重新开始将清空本次成绩，重新来过，是否确定？";
 
-
+"kGeniusRankDay" = "天才日榜";
 "kGeniusRankWeek" = "天才周榜";
 "kGeniusRankYear" = "天才年榜";
-"kContestRankToday" = "比赛榜(今天)";
-"kContestRankYesterday" = "比赛榜(昨天)";
-"kContestRankBeforeYesterday" = "比赛榜(两天前)";
-"kContestRankThreeDaysAgo" = "比赛榜(三天前)";
-"kContestRankFourDaysAgo" = "比赛榜(四天前)";
-"kContestRankFiveDaysAgo" = "比赛榜(五天前)";
-"kContestRankSixDaysAgo" = "比赛榜(六天前)";
+"kContestRankToday" = "比赛榜 - 今天";
+"kContestRankYesterday" = "比赛榜 - 昨天";
+"kContestRankBeforeYesterday" = "比赛榜 - 两天前";
+"kContestRankThreeDaysAgo" = "比赛榜 - 三天前";
+"kContestRankFourDaysAgo" = "比赛榜 - 四天前";
+"kContestRankFiveDaysAgo" = "比赛榜 - 五天前";
+"kContestRankSixDaysAgo" = "比赛榜 - 六天前";
 
+"kDay" = "日榜";
 "kWeek" = "周榜";
 "kYear" = "年榜";
 "kToday" = "今天";

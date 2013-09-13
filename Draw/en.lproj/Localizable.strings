@@ -1600,6 +1600,7 @@
 #define CONTEST_YESTODAY NSLS(@"kContestYesterday")
 #define CONTEST_BEFOREYESTODAY NSLS(@"kContestBeforeYesterday")
 
+"kGeniusRankDay" = "Genius Ranking(Daily)";
 "kGeniusRankWeek" = "Genius Ranking(Weekly)";
 "kGeniusRankYear" = "Genius Ranking(Annual)";
 "kContestRankToday" = "Contest Ranking(Today)";
@@ -1610,7 +1611,7 @@
 "kContestRankFiveDaysAgo" = "Contest Ranking(Five day ago)";
 "kContestRankSixDaysAgo" = "Contest Ranking(Six day ago)";
 
-
+"kDay" = "Daily";
 "kWeek" = "Weekly";
 "kYear" = "Annual";
 "kToday" = "Today";
