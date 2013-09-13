@@ -413,6 +413,7 @@
     }else{
         [[AudioManager defaultManager] playSoundByName:_wrongSound];
         [self changeAnswerButtonsTitleColor:COLOR_RED];
+        [self shakeAnswerButtons];
         PPDebug(@"Wrong word: %@", word);
     }
     [_guessWords addObject:word];
@@ -425,6 +426,7 @@
 {
     [array[0] setTitleColor:array[1] forState:UIControlStateNormal];
 }
+
 
 - (void)changeAnswerButtonsTitleColor:(UIColor *)color{
     
@@ -447,6 +449,22 @@
         [button setTitleColor:_answerColor forState:UIControlStateNormal];
     }
 }
+
+- (void)shakeAnswerButtons{
+    
+    CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    shake.fromValue = [NSNumber numberWithFloat:-M_PI/24];
+    shake.toValue   = [NSNumber numberWithFloat:+M_PI/24];
+    shake.duration = 0.1;//摆动一次耗时
+    shake.autoreverses = YES;
+    shake.repeatCount = 6;//摆动次数
+    
+    for (int index = 0; index < [_answer length]; index ++) {
+        UIButton *button = [self answerButtonWithIndex:index];
+        [button.layer addAnimation:shake forKey:nil];
+    }
+}
+
 
 - (void)answerButtonTouchUpInside:(UIButton *)button{
     

@@ -26,6 +26,7 @@
 @interface GuessSelectController (){
     PBUserGuessMode _mode;
     int _countDown;
+    int _guessIndex;  // 表示当前合法的猜的关卡，仅对天才模式有用，因为天才模式需要一关关闯关，对于其他两种模式，这个值为-1。当这个值为-1时，表示当前合法的猜的关卡是任意的。
 }
 @property (retain, nonatomic) NSArray *opuses;
 @property (retain, nonatomic) PBGuessContest *contest;
@@ -49,9 +50,9 @@
         _mode = mode;
         self.contest = contest;
         
-        if ([GuessManager getLastGuessDate:mode] == nil) {
-            [GuessManager setLastGuessDateDate:_mode];
-        }
+//        if ([GuessManager getLastGuessDate:mode] == nil) {
+//            [GuessManager setLastGuessDateDate:_mode];
+//        }
     }
     
     return self;
@@ -69,63 +70,25 @@
     [super viewDidLoad];
     [self setCanDragBack:NO];
     // Do any additional setup after loading the view from its nib.
+    
     self.supportRefreshHeader = NO;
-    if (_mode == PBUserGuessModeGuessModeContest
-        || _mode == PBUserGuessModeGuessModeHappy) {
-        self.supportRefreshFooter = NO;
-        self.supportRefreshHeader = NO;
-    }
+    self.supportRefreshFooter = [GuessManager isSupportRefreshFooterWithMode:_mode];
     
-    _countDownLabel.textColor = COLOR_BROWN;
-    
-    [self initTabButtons];
-    [self clickTab:TABID];
+    self.countDownLabel.textColor = COLOR_BROWN;
+    self.view.backgroundColor = COLOR_WHITE;
     
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack)];
+    [self.titleView setTitle:[GuessManager getTitleWithMode:_mode]];
+    [self.titleView setRightButtonTitle:[GuessManager getRightButtonTitleWithMode:_mode]];
+    [self.titleView setRightButtonSelector:[GuessManager getRightButtonSelectorWithMode:_mode]];
+
+    [self initTabButtons];
+    [self clickTab:TABID];
     
-    NSString *title = nil;
-    NSString *rightButtonTitle = nil;
-    if (_mode == PBUserGuessModeGuessModeHappy) {
-        title = NSLS(@"kHappGuessMode");
-        rightButtonTitle = NSLS(@"kRestart");
-        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
+    if ([GuessManager getGuessStateWithMode:_mode] == GuessStateBeing) {
+        _countDown = [GuessManager getTimeIntervalUtilExpire:_mode];
         [self startCountDown];
-    }else if(_mode == PBUserGuessModeGuessModeGenius){
-        title = NSLS(@"kGeniusGuessMode");
-        rightButtonTitle = NSLS(@"kRestart");
-        [self.titleView setRightButtonSelector:@selector(clickRestartButton:)];
-        [self startCountDown];
-    }else if(_mode == PBUserGuessModeGuessModeContest){
-        
-        title = NSLS(@"kContestGuessMode");
-        rightButtonTitle = NSLS(@"kRanking");
-        [self.titleView setRightButtonSelector:@selector(clickRankingButton:)];
-        [_countDownLabel setHidden:YES];
-    }
-    
-    [self.titleView setTitle:title];
-    [self.titleView setRightButtonTitle:rightButtonTitle];
-    
-    self.view.backgroundColor = COLOR_WHITE;
-    
-    [GuessManager deductCoins:_mode contestId:_contest.contestId force:NO];
-    
-    
-    [self showRuleMessage];
-    
-    _countDown = [GuessManager getTimeIntervalUtilExpire:_mode];
-    
-    BOOL startNew = [GuessManager isLastGuessDateExpire:_mode];    
-    if (startNew && _mode != PBUserGuessModeGuessModeContest) {
-        NSString *message = [NSString stringWithFormat:NSLS(@"kGuessDateExpire"), [GuessManager getGuessExpireTime:_mode]];
-        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:message style:CommonDialogStyleSingleButton];
-        [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-        [dialog setClickOkBlock:^(id infoView){
-            [self startNew];
-        }];
-        
-        [dialog showInView:self.view];
     }
 }
 
@@ -265,7 +228,7 @@
     [cell setCellInfo:arr];
     [cell setIndexPath:indexPath];
     if (_mode == PBUserGuessModeGuessModeGenius) {
-        [cell setCurrentGuessIndex:[GuessManager guessIndex:self.currentTab.dataList]];
+//        [cell setCurrentGuessIndex:[GuessManager guessIndex:self.currentTab.dataList]];
     }
     return cell;
 }
@@ -292,9 +255,9 @@
     [self hideActivity];
 
     if (resultCode == 0) {
-        
         [self finishLoadDataForTabID:TABID resultList:opuses];
-        
+        _guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
+
     }else{
        POSTMSG(NSLS(@"kLoadFailed"));
     }
@@ -338,20 +301,40 @@
     
     PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
     
-    if (_mode == PBUserGuessModeGuessModeGenius) {
-        if (pbOpus.guessInfo.isCorrect == YES) {
-            [self gotoOpusDetailController:pbOpus];
-        }else if (pbOpus.guessInfo.isCorrect == NO && index == [GuessManager guessIndex:self.currentTab.dataList]) {
+    if (pbOpus.guessInfo.isCorrect) {
+        [self gotoOpusDetailController:pbOpus];
+    }else{
+        if ([self isGuessIndexValid:index]) {
             [self gotoOpusGuessController:pbOpus index:index];
         }else{
             POSTMSG(NSLS(@"kGuessPreviousOpusFirst"));
         }
+    }
+    
+    
+//    if (_mode == PBUserGuessModeGuessModeGenius) {
+//        if (pbOpus.guessInfo.isCorrect == YES) {
+//            [self gotoOpusDetailController:pbOpus];
+//        }else if (pbOpus.guessInfo.isCorrect == NO && index == [GuessManager guessIndex:self.currentTab.dataList]) {
+//            [self gotoOpusGuessController:pbOpus index:index];
+//        }else{
+//            POSTMSG(NSLS(@"kGuessPreviousOpusFirst"));
+//        }
+//    }else{
+//        if (pbOpus.guessInfo.isCorrect == YES) {
+//            [self gotoOpusDetailController:pbOpus];
+//        }else {
+//            [self gotoOpusGuessController:pbOpus index:index];
+//        }
+//    }
+}
+
+- (BOOL)isGuessIndexValid:(int)index{
+    
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        return _guessIndex == index;
     }else{
-        if (pbOpus.guessInfo.isCorrect == YES) {
-            [self gotoOpusDetailController:pbOpus];
-        }else {
-            [self gotoOpusGuessController:pbOpus index:index];
-        }
+        return YES;
     }
 }
 

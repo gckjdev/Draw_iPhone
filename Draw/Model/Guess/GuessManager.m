@@ -33,7 +33,7 @@
     return count;
 }
 
-+ (int)guessIndex:(NSArray *)opuses{
++ (int)guessIndexInGeniusMode:(NSArray *)opuses{
 
     int index = 0;
     for (; index < [opuses count]; index ++) {
@@ -317,5 +317,125 @@
         return NO;
     }
 }
+
+
++ (NSString *)getTitleWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return NSLS(@"kHappGuessMode");
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return NSLS(@"kGeniusGuessMode");
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return NSLS(@"kContestGuessMode");
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
+}
+
++ (NSString *)getRightButtonTitleWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return NSLS(@"kRestart");
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return NSLS(@"kRestart");
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return NSLS(@"kRanking");
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
+}
+
++ (SEL)getRightButtonSelectorWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return @selector(clickRestartButton:);
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return @selector(clickRestartButton:);
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return @selector(clickRankingButton:);
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
++ (BOOL)isSupportRefreshFooterWithMode:(int)mode{
+    
+    if (mode == PBUserGuessModeGuessModeGenius) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+// 表示当前合法的猜的关卡，仅对天才模式有用，因为天才模式需要一关关闯关，对于其他两种模式，这个值为-1。当这个值为-1时，表示当前合法的猜的关卡是任意的。
++ (int)getGuessIndexWithMode:(int)mode
+                   guessList:(NSArray *)guessList{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeGenius:
+            return [self guessIndexInGeniusMode:guessList];
+            break;
+            
+        default:
+            return -1;
+            break;
+    }
+}
+
++ (NSString *)getGuessStateKeyWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return @"KEY_HAPPY_GUESS_STATE";
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return @"KEY_GENIUS_GUESS_STATE";
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
+}
+
++ (void)setGuessState:(GuessState)state
+                 mode:(int)mode{
+    
+    NSString *key = [self getGuessStateKeyWithMode:mode];
+    [[NSUserDefaults standardUserDefaults] setInteger:state forKey:key];
+}
+
++ (GuessState)getGuessStateWithMode:(int)mode{
+    
+    NSString *key = [self getGuessStateKeyWithMode:mode];
+    NSInteger state = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    return state;
+}
+
 
 @end
