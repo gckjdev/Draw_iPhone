@@ -1592,6 +1592,7 @@
 "kContestSpendTime" = "Spend Time: %d seconds";
 "kContestEarn" = "Award: %d coins";
 
+"kShareTextExceedLength" = "Share text too long... current length is %d, shall be less than %d";
 
 
 #define GENIUS_WEEK NSLS(@"kGeniusWeek")

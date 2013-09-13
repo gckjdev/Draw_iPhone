@@ -271,6 +271,12 @@ enum {
         */
     }
     
+    if ([self.shareTextField.text length] > [ConfigManager maxWeiboShareLength]){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kShareTextExceedLength"), [self.shareTextField.text length], [ConfigManager maxWeiboShareLength]];
+        POSTMSG(msg);
+        return;
+    }
+    
     [self publishWeibo:self.shareTextField.text imagePath:path];
     
     /*
