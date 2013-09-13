@@ -453,8 +453,8 @@
 - (void)shakeAnswerButtons{
     
     CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    shake.fromValue = [NSNumber numberWithFloat:-M_PI/32];//45可以修改，越小，摆动的幅度越大
-    shake.toValue   = [NSNumber numberWithFloat:+M_PI/32];
+    shake.fromValue = [NSNumber numberWithFloat:-M_PI/24];
+    shake.toValue   = [NSNumber numberWithFloat:+M_PI/24];
     shake.duration = 0.1;//摆动一次耗时
     shake.autoreverses = YES;
     shake.repeatCount = 6;//摆动次数

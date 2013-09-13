@@ -275,6 +275,26 @@ SET_CELL_BG_IN_CONTROLLER;
     return nil;
 }
 
+
+- (int)getRankTypeWithTabID:(int)tabID{
+    
+    if(tabID == TabTypeGeniusHot){
+        return HOT_RANK;
+    }else{
+        return ALL_TIME_RANK;
+    }
+}
+
+- (NSString *)getContestIdByTabID:(int)tabID{
+    
+    int index = tabID-TabTypeContestToday;
+    if (index < [_contests count]) {
+        return[[_contests objectAtIndex:index] contestId];
+    }
+    
+    return nil;
+}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
     
     TableTab *tab = [_tabManager tabForID:tabID];
@@ -283,7 +303,7 @@ SET_CELL_BG_IN_CONTROLLER;
     switch (tabID) {
         case TabTypeGeniusHot:
         case TabTypeGeniusAllTime:
-            [[GuessService defaultService] getGuessRankListWithType:[_geniusRankTypeList objectAtIndex:(tabID-TabTypeGeniusHot)] mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:[self getRankTypeWithTabID:tabID] mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
             break;
             
         case TabTypeContestToday:
@@ -294,7 +314,7 @@ SET_CELL_BG_IN_CONTROLLER;
         case TabTypeContestFiveDaysAgo:
         case TabTypeContestSixDaysAgo:
             
-            contestId = [[_contests objectAtIndex:(tabID-TabTypeContestToday)] contestId];
+            contestId = [self getContestIdByTabID:tabID];
             [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
             break;
             

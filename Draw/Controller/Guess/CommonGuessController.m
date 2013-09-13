@@ -185,6 +185,7 @@
             isCorrect:(BOOL)isCorrect{
     
     int time = [[NSDate date] timeIntervalSince1970];
+    
     if (_mode == PBUserGuessModeGuessModeContest && time > _contest.endTime) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsOver") delayTime:1.5 isHappy:NO];
         return;
@@ -193,7 +194,6 @@
     [_guessWords addObject:word];
     
     if (isCorrect) {
-
         [self didGuessCorrect:word];
     }else{
         [self didGuessWrong:word];
