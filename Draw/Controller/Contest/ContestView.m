@@ -12,6 +12,7 @@
 #import "ShareImageManager.h"
 #import "UIButtonExt.h"
 #import "UIImageView+WebCache.h"
+#import "TimeUtils.h"
 
 @implementation ContestView
 
@@ -41,6 +42,45 @@
     }
     [self.detailLabel setText:NSLS(@"kContestRule")];
     [self.reportLabel setText:NSLS(@"kContestReport")];
+    
+    self.dateLeftLabel.backgroundColor = [UIColor blackColor];
+    self.dateLeftLabel.alpha = 0.6;
+    self.dateLeftLabel.textColor = COLOR_WHITE;
+    self.dateLeftLabel.hidden = YES;
+}
+
+- (void)refreshDateLeft
+{
+    if ([_contest isRunning] == NO){
+        self.dateLeftLabel.hidden = YES;
+    }
+    else{
+        self.dateLeftLabel.hidden = NO;
+        if ([_contest canSubmit]){
+            NSString* dateLeftStr = dateLeftString([_contest endDate]);
+            if (dateLeftStr == nil){
+                self.dateLeftLabel.hidden = YES;
+            }
+            else{
+                NSString* text = [NSString stringWithFormat:NSLS(@"kSubmitEndTips"), dateLeftStr];
+                self.dateLeftLabel.text = text;
+            }
+        }
+        else if ([_contest canVote]){
+            NSString* dateLeftStr = dateLeftString([_contest voteEndDate]);
+            if (dateLeftStr == nil){
+                self.dateLeftLabel.hidden = YES;
+            }
+            else{
+                NSString* text = [NSString stringWithFormat:NSLS(@"kVoteEndTips"), dateLeftStr];
+                self.dateLeftLabel.text = text;
+            }
+        }
+        else{
+            self.dateLeftLabel.hidden = YES;
+        }
+    }
+    
 }
 
 + (id)createContestView:(id)delegate
@@ -60,6 +100,7 @@
 - (void)dealloc
 {
     self.delegate = nil;
+    PPRelease(_dateLeftLabel);
     PPRelease(_contest);
     PPRelease(_joinLabel);
     PPRelease(_opusLabel);
@@ -121,6 +162,7 @@
         [self refreshRequest];
     }
 
+    [self refreshDateLeft];
 
 }
 

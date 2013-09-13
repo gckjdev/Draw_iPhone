@@ -1593,7 +1593,8 @@
 "kContestEarn" = "Award: %d coins";
 
 "kShareTextExceedLength" = "Share text too long... current length is %d, shall be less than %d";
-
+"kSubmitEndTips" = "";
+"kVoteEndTips" = "";
 
 #define GENIUS_WEEK NSLS(@"kGeniusWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusYear")

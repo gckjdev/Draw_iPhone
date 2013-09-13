@@ -43,6 +43,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *detailLabel;
 @property (retain, nonatomic) IBOutlet UILabel *joinLabel;
 @property (retain, nonatomic) IBOutlet UILabel *reportLabel;
+@property (retain, nonatomic) IBOutlet UILabel *dateLeftLabel;
 
 + (id)createContestView:(id)delegate;
 + (CGFloat)getViewWidth;
