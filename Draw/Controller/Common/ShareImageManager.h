@@ -118,6 +118,12 @@
     [view.layer setMasksToBounds:YES];    \
 }
 
+#define SET_VIEW_ROUND(view) \
+{           \
+[view.layer setCornerRadius:CGRectGetWidth(view.bounds)/2];  \
+[view.layer setMasksToBounds:YES];    \
+}
+
 #define SET_CELL_BG_IN_CONTROLLER                     \
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:       (NSIndexPath *)indexPath {                          \
     if (indexPath.row % 2 == 0) {                       \
