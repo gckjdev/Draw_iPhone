@@ -1481,7 +1481,7 @@
 "kAwardIs:%d" = "獎勵: %d金幣";
 
 "kIGotIt" = "我知道了";
-"kRestart" = "重新開始";
+"kRestart" = "重玩";
 "kSelectGuessMode" = "選擇猜畫模式";
 
 "kHappGuessMode" = "歡樂模式";
@@ -1531,6 +1531,7 @@
 
 "kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";
 
+"kDay" = "日榜";
 "kWeek" = "周榜";
 "kYear" = "年榜";
 "kToday" = "今天";
@@ -1541,15 +1542,16 @@
 "kFiveDaysAgo" = "五天前";
 "kSixDaysAgo" = "六天前";
 
+"kGeniusRankDay" = "天才日榜";
 "kGeniusRankWeek" = "天才周榜";
 "kGeniusRankYear" = "天才年榜";
-"kContestRankToday" = "比賽榜(今天)";
-"kContestRankYesterday" = "比賽榜(昨天)";
-"kContestRankBeforeYesterday" = "比賽榜(兩天前)";
-"kContestRankThreeDaysAgo" = "比賽榜(三天前)";
-"kContestRankFourDaysAgo" = "比賽榜(四天前)";
-"kContestRankFiveDaysAgo" = "比賽榜(五天前)";
-"kContestRankSixDaysAgo" = "比賽榜(六天前)";
+"kContestRankToday" = "比賽榜 - 今天";
+"kContestRankYesterday" = "比賽榜 - 昨天";
+"kContestRankBeforeYesterday" = "比賽榜 - 兩天前";
+"kContestRankThreeDaysAgo" = "比賽榜 - 三天前";
+"kContestRankFourDaysAgo" = "比賽榜 - 四天前";
+"kContestRankFiveDaysAgo" = "比賽榜 - 五天前";
+"kContestRankSixDaysAgo" = "比賽榜 - 六天前";
 
 
 
@@ -1570,6 +1572,11 @@
 
 "kAskForHelp" = "吐槽";
 "kLookWhatHeDraw" = "這到底畫的是什麼？";
+
+"kShareTextExceedLength" = "分享內容超出最大長度，當前字數為%d字，必須在%d字以內";
+"kSubmitEndTips" = "距離提交作品截止%@";
+"kVoteEndTips" = "距離投票送花截止%@";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

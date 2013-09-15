@@ -76,7 +76,7 @@
 					<object class="IBUITableView" id="915378294">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{19, 70}, {283, 255}}</string>
+						<string key="NSFrame">{{18, 70}, {285, 255}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="874746751"/>
@@ -98,7 +98,7 @@
 					<object class="IBUIButton" id="628102471">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{24, 352}, {98, 37}}</string>
+						<string key="NSFrame">{{24, 350}, {98, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="870511405"/>
@@ -134,7 +134,7 @@
 					<object class="IBUIButton" id="870511405">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{138, 352}, {98, 37}}</string>
+						<string key="NSFrame">{{138, 350}, {98, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="729666686"/>
@@ -157,7 +157,7 @@
 					<object class="IBUIImageView" id="729666686">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{259.5, 352}, {37, 38}}</string>
+						<string key="NSFrame">{{259.5, 351}, {37, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="180582363"/>
@@ -171,7 +171,7 @@
 					<object class="IBUILabel" id="180582363">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{259.5, 352}, {37, 38}}</string>
+						<string key="NSFrame">{{259.5, 351}, {37, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>

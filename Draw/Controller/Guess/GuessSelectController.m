@@ -350,6 +350,7 @@
 
 - (void)clickRankingButton:(UIButton *)button{
     
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[GuessService defaultService] getGuessRankWithType:0
                                                    mode:_mode
                                               contestId:_contest.contestId
@@ -561,6 +562,8 @@
 }
 
 - (void)didGetGuessRank:(PBGuessRank *)rank resultCode:(int)resultCode{
+    
+    [self hideActivity];
     
     if (resultCode == 0) {
         

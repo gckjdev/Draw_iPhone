@@ -81,7 +81,6 @@
     self.homeMainMenuPanel = [HomeMainMenuPanel createView:self];
     [self.view addSubview:self.homeMainMenuPanel];
 
-    //TODO update frame
     [self updateView:self.homeMainMenuPanel originY:[self getMainMenuOriginY]];
 }
 

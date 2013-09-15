@@ -1483,7 +1483,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if ([_pbUser.email length] == 0){ // || [_pbUser emailVerifyStatus] == StatusNotVerified){
         count ++;
     }
-    
+        
     return count;
 }
 

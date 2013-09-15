@@ -151,8 +151,11 @@
     [self.titleView setTitle:[NSString stringWithFormat:@"%@",[GameApp roomTitle]]];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickMenu:)];
+    SET_VIEW_ROUND_CORNER(self.roomNameLabel);
     self.roomNameLabel.layer.borderWidth = 2;
-    self.roomNameLabel.layer.borderColor = [COLOR_GREEN CGColor];
+    self.roomNameLabel.layer.borderColor = [COLOR_GREEN CGColor];    
+//    [self.roomNameLabel setBackgroundColor:COLOR_YELLOW];
+    [self.roomNameLabel setTextColor:COLOR_BROWN];
     [self setCanDragBack:NO];
     
     SET_BUTTON_ROUND_STYLE_YELLOW(self.startGameButton);

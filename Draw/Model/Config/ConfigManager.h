@@ -294,5 +294,6 @@ typedef enum{
 + (int)getGeniusGuessExpireTime;
 
 + (NSString*)guessContestShareText;
++ (int)maxWeiboShareLength;
 
 @end

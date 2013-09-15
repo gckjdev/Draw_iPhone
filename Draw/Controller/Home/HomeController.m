@@ -88,6 +88,7 @@
 #import "GalleryController.h"
 #import "GuessModesController.h"
 #import "SelectWordController.h"
+#import "LineView.h"
 
 @interface HomeController()
 {
@@ -146,10 +147,25 @@
     }
 }
 
+#define HOME_DEBUG NO
 
 - (void)viewDidLoad
 {        
     [super viewDidLoad];
+    
+#if HOME_DEBUG
+
+    UIView *view = [[[UIView alloc] initWithFrame:self.view.bounds] autorelease];
+    view.backgroundColor = COLOR_ORANGE;
+    [self.view addSubview:view];
+    LineView *line = [[[LineView alloc] initWithFrame:CGRectZero] autorelease];
+    line.center = view.center;
+    [view addSubview:line];
+    [line performSelector:@selector(startAnimation) withObject:nil afterDelay:3];
+    [line performSelector:@selector(stopAnimation) withObject:nil afterDelay:13];
+    return;
+    
+#endif
     
     self.view.backgroundColor = [UIColor whiteColor];
     

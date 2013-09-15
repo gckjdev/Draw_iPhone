@@ -1591,7 +1591,9 @@
 "kContestSpendTime" = "Spend Time: %d seconds";
 "kContestEarn" = "Award: %d coins";
 
-
+"kShareTextExceedLength" = "Share text too long... current length is %d, shall be less than %d";
+"kSubmitEndTips" = "";
+"kVoteEndTips" = "";
 
 #define GENIUS_WEEK NSLS(@"kGeniusWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusYear")
@@ -1599,6 +1601,7 @@
 #define CONTEST_YESTODAY NSLS(@"kContestYesterday")
 #define CONTEST_BEFOREYESTODAY NSLS(@"kContestBeforeYesterday")
 
+"kGeniusRankDay" = "Genius Ranking(Daily)";
 "kGeniusRankWeek" = "Genius Ranking(Weekly)";
 "kGeniusRankYear" = "Genius Ranking(Annual)";
 "kContestRankToday" = "Contest Ranking(Today)";
@@ -1609,7 +1612,7 @@
 "kContestRankFiveDaysAgo" = "Contest Ranking(Five day ago)";
 "kContestRankSixDaysAgo" = "Contest Ranking(Six day ago)";
 
-
+"kDay" = "Daily";
 "kWeek" = "Weekly";
 "kYear" = "Annual";
 "kToday" = "Today";

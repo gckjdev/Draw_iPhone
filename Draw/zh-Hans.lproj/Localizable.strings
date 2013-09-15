@@ -1498,7 +1498,7 @@
 "kAwardIs:%d" = "奖励: %d金币";
 
 "kIGotIt" = "我知道了";
-"kRestart" = "重新开始";
+"kRestart" = "重玩";
 "kSelectGuessMode" = "选择猜画模式";
 
 "kHappGuessMode" = "欢乐模式";
@@ -1570,17 +1570,18 @@
 
 "kRestartGuessWarnning" = "重新开始将清空本次成绩，重新来过，是否确定？";
 
-
+"kGeniusRankDay" = "天才日榜";
 "kGeniusRankWeek" = "天才周榜";
 "kGeniusRankYear" = "天才年榜";
-"kContestRankToday" = "比赛榜(今天)";
-"kContestRankYesterday" = "比赛榜(昨天)";
-"kContestRankBeforeYesterday" = "比赛榜(两天前)";
-"kContestRankThreeDaysAgo" = "比赛榜(三天前)";
-"kContestRankFourDaysAgo" = "比赛榜(四天前)";
-"kContestRankFiveDaysAgo" = "比赛榜(五天前)";
-"kContestRankSixDaysAgo" = "比赛榜(六天前)";
+"kContestRankToday" = "比赛榜 - 今天";
+"kContestRankYesterday" = "比赛榜 - 昨天";
+"kContestRankBeforeYesterday" = "比赛榜 - 两天前";
+"kContestRankThreeDaysAgo" = "比赛榜 - 三天前";
+"kContestRankFourDaysAgo" = "比赛榜 - 四天前";
+"kContestRankFiveDaysAgo" = "比赛榜 - 五天前";
+"kContestRankSixDaysAgo" = "比赛榜 - 六天前";
 
+"kDay" = "日榜";
 "kWeek" = "周榜";
 "kYear" = "年榜";
 "kToday" = "今天";
@@ -1606,6 +1607,12 @@
 
 "kAskForHelp" = "吐槽";
 "kLookWhatHeDraw" = "这到底画的是什么？";
+
+"kShareTextExceedLength" = "分享内容超出最大长度，当前字数为%d字，必须在%d字以内";
+"kSubmitEndTips" = "距离提交作品截止%@";
+"kVoteEndTips" = "距离投票送花截止%@";
+
+
 /*********************** 画画国际化字符串结束 *************************/
 
 

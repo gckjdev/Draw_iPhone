@@ -286,8 +286,7 @@
     [CMPopTipView cancelPreviousPerformRequestsWithTarget:self.popView selector:@selector(dismissAnimated:) object:@(YES)];    
     [self.popView dismissAnimated:YES];
     self.popView = [[[CMPopTipView alloc] initWithCustomView:self.popLabel] autorelease];
-    
-    self.popView.backgroundColor = onLeftTop ? OPAQUE_COLOR(240, 78, 104) : OPAQUE_COLOR(54, 77, 197);
+    self.popView.backgroundColor = !onLeftTop ? OPAQUE_COLOR(232, 95, 45) : OPAQUE_COLOR(255, 188, 55);
     
     
     [self.popView presentPointingAtView:player inView:self.view animated:YES pointDirection:PointDirectionUp];
@@ -317,6 +316,10 @@
 - (void)initRoundNumber
 {
     [self.turnNumberButton setTitle:[NSString stringWithFormat:@"%d",drawGameService.roundNumber] forState:UIControlStateNormal];
+    [self.turnNumberButton setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+    [self.turnNumberButton.titleLabel setShadowOffset:CGSizeZero];
+    [self.turnNumberButton setEnabled:YES];
+    [self.turnNumberButton setUserInteractionEnabled:NO];
 }
 
 - (void)initPopButton

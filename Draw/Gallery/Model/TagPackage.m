@@ -40,7 +40,7 @@
 + (NSArray*)createPackageArrayFromString:(NSString*)str
 {
     NSArray* strArray = [str componentsSeparatedByString:@"$"];
-    NSMutableArray* array = [[NSMutableArray alloc] initWithCapacity:strArray.count];
+    NSMutableArray* array = [[[NSMutableArray alloc] initWithCapacity:strArray.count] autorelease];
     for (NSString* string in strArray) {
         if (string && string.length > 1) {
             TagPackage* package = [[[TagPackage alloc] initWithString:string] autorelease];

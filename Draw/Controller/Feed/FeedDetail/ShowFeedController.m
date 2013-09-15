@@ -217,6 +217,7 @@ typedef enum{
         UITableViewCell *cell = [self.dataTableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier]autorelease];
+            cell.textLabel.textColor = COLOR_BROWN;
         }
         if (row == 0) {
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
@@ -231,7 +232,7 @@ typedef enum{
             [cell.textLabel setText:nil];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell; 
+        return cell;
     }
 
     NSString * identifier = [CommentCell getCellIdentifier];

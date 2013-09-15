@@ -19,6 +19,11 @@
 
 @implementation ConfigManager
 
++ (int)maxWeiboShareLength
+{
+    return [MobClickUtils getIntValueByKey:@"MAX_WEIBO_SHARE_LENGTH" defaultValue:140];
+}
+
 + (NSString*)guessContestShareText
 {
     return [MobClickUtils getStringValueByKey:@"GUESS_CONTEST_SHARE_TEXT" defaultValue:NSLS(@"kLookWhatHeDraw")];

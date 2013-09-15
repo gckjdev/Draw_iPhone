@@ -211,7 +211,7 @@
             CGFloat y = TAB_HEIGHT - BUTTON_HEIGHT - SPLIT_HEIGHT/2;
             CGRect frame = CGRectMake(CGRectGetMaxX(btn.frame) + SPACE, y, 1, SPLIT_HEIGHT);
             UIView *split = [self reuseViewWithTag:tag viewClass:[UIView class] frame:frame];
-            [split setBackgroundColor:[UIColor grayColor]];
+            [split setBackgroundColor:COLOR_GRAY_TEXT]; //[UIColor grayColor]];
             x = CGRectGetMaxX(split.frame) + SPACE;
             [split updateCenterY:btn.center.y];
         }
@@ -224,8 +224,10 @@
         [btn updateOriginX:x];
         [btn updateHeight:BUTTON_HEIGHT];
         if (!_hasCreateButton) {
-            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            [btn setTitleColor:COLOR_GRAY_TEXT forState:UIControlStateNormal];
+            [btn setTitleColor:COLOR_BROWN forState:UIControlStateSelected];
+//            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
             [btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         }
 

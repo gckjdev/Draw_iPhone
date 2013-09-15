@@ -17,6 +17,7 @@
 #import "ViewUserDetail.h"
 #import "UserDetailViewController.h"
 
+#define GENIUS_DAY NSLS(@"kGeniusRankDay")
 #define GENIUS_WEEK NSLS(@"kGeniusRankWeek")
 #define GENIUS_YEAR NSLS(@"kGeniusRankYear")
 
@@ -28,8 +29,9 @@
 #define CONTEST_FIVE_DAYS_AGO NSLS(@"kContestRankFiveDaysAgo")
 #define CONTEST_SIX_DAYS_AGO NSLS(@"kContestRankSixDaysAgo")
 
-#define WEEK NSLS(@"kWeek")
-#define YEAR NSLS(@"kYear")
+#define RANK_DAY NSLS(@"kDay")
+#define RANK_WEEK NSLS(@"kWeek")                                // not used yet
+#define RANK_YEAR NSLS(@"kYear")
 
 #define TODAY NSLS(@"kToday")
 #define YESTERDAY NSLS(@"kYesterday")
@@ -95,20 +97,26 @@ typedef enum{
     self.contestDayList = @[TODAY, YESTERDAY, BEFOREYESTERDAY, THREEDAYSAGO, FOURDAYSAGO, FIVEDAYSAGO, SIXDAYSAGO];
     self.contestTitleList = @[CONTEST_TODAY, CONTEST_YESTODAY, CONTEST_BEFOREYESTODAY, CONTEST_THREE_DAYS_AGO, CONTEST_FOUR_DAYS_AGO, CONTEST_FIVE_DAYS_AGO, CONTEST_SIX_DAYS_AGO];
     
-    self.geniusRankTypeList = @[WEEK, YEAR];
-    self.geniusTitleList = @[GENIUS_WEEK, GENIUS_YEAR];
+    self.geniusRankTypeList = @[RANK_DAY, RANK_YEAR];
+    self.geniusTitleList = @[GENIUS_DAY, GENIUS_YEAR];
     
     [super viewDidLoad];
     
     [self.titleView setTitle:NSLS(@"kGuessRank")];
     [self.titleView setTarget:self];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
 
     [self initTabButtons];
     
     _geniusButton.backgroundColor = COLOR_ORANGE;
     _contestButton.backgroundColor = COLOR_ORANGE;
     
-    [[GuessService defaultService] getRecentGuessContestListWithDelegate:self];    
+    [[GuessService defaultService] getRecentGuessContestListWithDelegate:self];
+    
+    // set tab title
+    [self.geniusButton setTitle:GENIUS_DAY forState:UIControlStateNormal];
+    [self.contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload {
@@ -235,8 +243,8 @@ typedef enum{
         [cell hideAwardInfo];
     }
     
-    if (!([self.currentSelect isEqualToString:WEEK]
-         || [self.currentSelect isEqualToString:YEAR])) {
+    if (!([self.currentSelect isEqualToString:RANK_DAY]
+         || [self.currentSelect isEqualToString:RANK_YEAR])) {
         cell.geniusTitleLabel.hidden = YES;
     }
     
@@ -338,7 +346,7 @@ SET_CELL_BG_IN_CONTROLLER;
         if ([GuessManager isContestBeing:contest]) {
             self.currentSelect = TODAY;
         }else{
-            self.currentSelect = WEEK;
+            self.currentSelect = RANK_DAY;
         }
     }else{
         POSTMSG(NSLS(@"kLoadFailed"));        
