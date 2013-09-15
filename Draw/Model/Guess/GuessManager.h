@@ -41,10 +41,7 @@ typedef enum{
 + (NSDate *)getLastGuessDate:(int)mode;
 + (void)setLastGuessDateDate:(int)mode;
 + (BOOL)isLastGuessDateExpire:(int)mode;
-+ (NSTimeInterval)getTimeIntervalUtilExpire:(int)mode;
-
-
-
++ (NSTimeInterval)getTimeIntervalUtilExpire:(int)mode contest:(PBGuessContest *)contest;
 
 + (NSString *)getTitleWithMode:(int)mode;
 + (NSString *)getRightButtonTitleWithMode:(int)mode;
@@ -68,6 +65,9 @@ typedef enum{
 + (NSString *)getGuessRulesTitleWithModex:(int)mode;
 
 + (NSString *)getExpireTitleWithMode:(int)mode;
++ (NSString *)getExpireMessageWithMode:(int)mode;
+
+
 + (NSString *)getDeductCoinsPopMessageWithMode:(int)mode;
 
 
