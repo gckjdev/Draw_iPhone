@@ -603,6 +603,8 @@
         default:
             break;
     }
+    
+    return @"";
 }
 
 @end

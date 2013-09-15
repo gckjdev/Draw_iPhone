@@ -37,7 +37,7 @@
 // (浅)黄色，用在按钮上(normal)，也用在一些背景设置上。
 #define COLOR_YELLOW OPAQUE_COLOR(254, 198, 48)
 
-// (浅)黄色，用在按钮上(normal)和背景，如作品详情的按钮，以及背景
+// (浅)黄色，用在按钮上(normal)和背景，如作品详情的按钮，以及背景，这个颜色是特别配合作品详情图标的颜色，请勿更改
 #define COLOR_YELLOW_ICON OPAQUE_COLOR(253, 188, 60)
 
 // (深)黄色，用在按钮上(hightlight/select)
