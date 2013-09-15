@@ -89,6 +89,8 @@
 #import "GuessModesController.h"
 #import "SelectWordController.h"
 #import "LineView.h"
+#import "DrawHomeHeaderPanel.h"
+#import "DrawMainMenuPanel.h"
 
 @interface HomeController()
 {
@@ -147,27 +149,38 @@
     }
 }
 
-#define HOME_DEBUG NO
+- (void)updateAnimation
+{
+    DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
+    DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
+    HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
+    
+    [header setClickRopeHandler:^(BOOL open)
+    {
+        if (open) {
+            [mainPanel closeAnimated:YES completion:^(BOOL finished) {
+                [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+                [header openAnimated:YES completion:NULL];
+                [footer hideAnimated:YES];
+            }];
+        }else{
+            [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+            [footer showAnimated:YES];
+            [header closeAnimated:YES completion:^(BOOL finished) {
+                [mainPanel openAnimated:YES completion:NULL];
+            }];
+
+        }
+    }];
+
+}
 
 - (void)viewDidLoad
 {        
     [super viewDidLoad];
     
-#if HOME_DEBUG
-
-    UIView *view = [[[UIView alloc] initWithFrame:self.view.bounds] autorelease];
-    view.backgroundColor = COLOR_ORANGE;
-    [self.view addSubview:view];
-    LineView *line = [[[LineView alloc] initWithFrame:CGRectZero] autorelease];
-    line.center = view.center;
-    [view addSubview:line];
-    [line performSelector:@selector(startAnimation) withObject:nil afterDelay:3];
-    [line performSelector:@selector(stopAnimation) withObject:nil afterDelay:13];
-    return;
     
-#endif
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = OPAQUE_COLOR(0, 179, 118);
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
@@ -177,6 +190,8 @@
     [self registerUIApplicationNotification];
     
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
+    
+    [self updateAnimation];
     
 //#ifdef DEBUG
 //    [self createBtnForTest];

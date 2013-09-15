@@ -14,12 +14,17 @@ typedef enum{
     DrawHeaderPanelStatusAnimating = 3,
 }DrawHeaderPanelStatus;
 
+typedef void (^HeaderAnimationHandler)(BOOL open);
+#define HEADER_ANIMATION_INTEVAL 1.2
+
 @interface DrawHomeHeaderPanel : HomeHeaderPanel<UITableViewDataSource, UITableViewDelegate>
 {
 
 }
-- (void)openAnimated:(BOOL)animated;
-- (void)closeAnimated:(BOOL)animated;
+- (void)openAnimated:(BOOL)animated
+          completion:(void (^)(BOOL finished))completion;
+- (void)closeAnimated:(BOOL)animated
+           completion:(void (^)(BOOL finished))completion;
 
 @property (assign, nonatomic) DrawHeaderPanelStatus status;
 @property (retain, nonatomic) IBOutlet UIView *holderView;
@@ -28,5 +33,10 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIImageView *displayHolder;
 @property (retain, nonatomic) IBOutlet UIButton *rope;
+
+@property (copy, nonatomic) HeaderAnimationHandler clickRopeHandler;
+//@property (copy, nonatomic) HeaderAnimationHandler startHandler;
+//@property (copy, nonatomic) HeaderAnimationHandler finishHandler;
+
 - (IBAction)clickRope:(id)sender;
 @end

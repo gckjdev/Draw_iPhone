@@ -26,7 +26,7 @@
 #import "HomeMenuView.h"
 #import "DrawImageManager.h"
 #import "DrawHomeHeaderPanel.h"
-
+#import "DrawMainMenuPanel.h"
 
 @interface SuperHomeController ()
 {
@@ -36,7 +36,7 @@
 @end
 
 
-#define MAIN_MENU_ORIGIN_Y ISIPAD ? 365 : 170
+#define MAIN_MENU_ORIGIN_Y ISIPAD ? 365 : 105
 #define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-97) : 422
 
 @implementation SuperHomeController
@@ -71,7 +71,7 @@
 //牛腩河粉 猪手河粉 排骨河粉 
 - (void)addHeaderView
 {
-    self.homeHeaderPanel = (isDrawApp()? [DrawHomeHeaderPanel createView:self] : [HomeHeaderPanel createView:self]);
+    self.homeHeaderPanel = [DrawHomeHeaderPanel createView:self];
     [self.view addSubview:self.homeHeaderPanel];
     [self updateView:self.homeHeaderPanel originY:0];
 }
@@ -80,7 +80,7 @@
 
 - (void)addMainMenuView
 {
-    self.homeMainMenuPanel = [HomeMainMenuPanel createView:self];
+    self.homeMainMenuPanel = ([DrawMainMenuPanel createView:self]);
     [self.view addSubview:self.homeMainMenuPanel];
 
     [self updateView:self.homeMainMenuPanel originY:[self getMainMenuOriginY]];
