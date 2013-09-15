@@ -186,13 +186,16 @@
 @synthesize delegate = _delegate;
 @synthesize hasPen = _hasPen;
 
-#define BORDER_WIDTH    (ISIPAD ? 3 : 2)
+#define BORDER_WIDTH    (ISIPAD ? 4 : 2)
 
 - (void)setAsRound{
     
     self.layer.cornerRadius = (self.frame.size.width) / 2.0f;
     self.layer.masksToBounds = YES;
-    self.clipsToBounds = YES;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+//    self.clipsToBounds = YES;
+    
     [bgView setImage:nil];
 }
 
@@ -214,11 +217,13 @@
 #define EDGE_HEIGHT_TIMES 13
 - (CGRect)calAvatarFrame
 {
-    CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
-    CGFloat wEdge = -3.1;//width / EDGE_WIDTH_TIMES;
-    CGFloat hEdge = -3.1;//height / EDGE_HEIGHT_TIMES;
-    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
+    return self.bounds;
+    
+//    CGFloat width = self.bounds.size.width;
+//    CGFloat height = self.bounds.size.height;
+//    CGFloat wEdge = -3.1;//width / EDGE_WIDTH_TIMES;
+//    CGFloat hEdge = -3.1;//height / EDGE_HEIGHT_TIMES;
+//    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{

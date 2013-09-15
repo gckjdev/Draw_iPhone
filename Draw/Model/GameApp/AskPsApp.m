@@ -86,7 +86,6 @@
 
 - (NSString*)sinaAppRedirectURI
 {
-    //    return @"http://www.drawlively.com/draw";
     return [MobClickUtils getStringValueByKey:@"DRAW_SINA_APP_REDIRECT_URI" defaultValue:@"http://www.drawlively.com/draw"];
 }
 
@@ -143,13 +142,11 @@
 - (NSString*)sinaWeiboId
 {
     return [MobClickUtils getStringValueByKey:@"DRAW_SINA_WEIBO_NICKNAME" defaultValue:@"猜猜画画手机版"];
-    //    return @"猜猜画画手机版";
 }
 
 - (NSString*)qqWeiboId
 {
-    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_WEIBO_ID" defaultValue:@"drawlively"];
-    //    return @"drawlively";
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_WEIBO_ID" defaultValue:@"LittleGee"];
 }
 
 - (NSString*)feedbackTips

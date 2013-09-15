@@ -21,4 +21,6 @@
 - (void)setCellInfo:(NSArray *)guesseds;
 - (void)setCurrentGuessIndex:(int)index;
 - (void)setNotGuessFlash;
+- (void)setNothingFlash;
+
 @end

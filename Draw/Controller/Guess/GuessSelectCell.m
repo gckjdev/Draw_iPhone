@@ -111,6 +111,14 @@
     }
 }
 
+- (void)setNothingFlash{
+    
+    for (int index = 0; index < MAX_COUNT_OPUS; index ++) {
+        UIButton *button = (UIButton *)[self viewWithTag:(index + OPUS_BUTTON_OFFSET)];
+        [button.layer removeAllAnimations];
+    }
+}
+
 - (IBAction)clickAwardButton:(id)sender {
     
 
