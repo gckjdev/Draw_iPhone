@@ -188,4 +188,28 @@
         [self.delegate homeBottomMenuPanel:self didClickMenu:menu menuType:type];
     }
 }
+
+- (void)hideAnimated:(BOOL)animated
+{
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - 20;
+    if (animated) {
+        [UIView animateWithDuration:BOTTOM_ANIMATION_INTERVAL animations:^{
+            [self updateOriginY:y];            
+        }];
+    }else{
+        [self updateOriginY:y];
+    }
+}
+- (void)showAnimated:(BOOL)animated
+{
+    CGFloat y = CGRectGetHeight([[UIScreen mainScreen] bounds]) - CGRectGetHeight(self.bounds) - 20;
+    if (animated) {
+        [UIView animateWithDuration:BOTTOM_ANIMATION_INTERVAL animations:^{
+            [self updateOriginY:y];
+        }];
+    }else{
+        [self updateOriginY:y];
+    }    
+}
+
 @end
