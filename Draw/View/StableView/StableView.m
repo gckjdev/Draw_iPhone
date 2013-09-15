@@ -21,9 +21,9 @@
 
 #define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
 
-#define AVATAR_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 33 * 2, 34 * 2) : CGRectMake(0, 0, 31, 32))
+#define AVATAR_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 34 * 2, 34 * 2) : CGRectMake(0, 0, 32, 32))
 
-#define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(16 * 2,18 * 2,16 * 2,17 * 2) : CGRectMake(16,18,16,17))
+#define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(16 * 2,18 * 2,16 * 2,18 * 2) : CGRectMake(16,18,16,18))
 
 
 #define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
@@ -186,10 +186,16 @@
 @synthesize delegate = _delegate;
 @synthesize hasPen = _hasPen;
 
+#define BORDER_WIDTH    (ISIPAD ? 4 : 2)
+
 - (void)setAsRound{
     
-    self.layer.cornerRadius = self.frame.size.width/2;
+    self.layer.cornerRadius = (self.frame.size.width) / 2.0f;
     self.layer.masksToBounds = YES;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+//    self.clipsToBounds = YES;
+    
     [bgView setImage:nil];
 }
 
@@ -211,11 +217,13 @@
 #define EDGE_HEIGHT_TIMES 13
 - (CGRect)calAvatarFrame
 {
-    CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
-    CGFloat wEdge = -3.1;//width / EDGE_WIDTH_TIMES;
-    CGFloat hEdge = -3.1;//height / EDGE_HEIGHT_TIMES;
-    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
+    return self.bounds;
+    
+//    CGFloat width = self.bounds.size.width;
+//    CGFloat height = self.bounds.size.height;
+//    CGFloat wEdge = -3.1;//width / EDGE_WIDTH_TIMES;
+//    CGFloat hEdge = -3.1;//height / EDGE_HEIGHT_TIMES;
+//    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -233,7 +241,7 @@
         
         [self setAsRound];
         
-        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
@@ -275,7 +283,7 @@
         [self setAvatarSelected:NO level:level];
         
         [self setAsRound];
-        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
@@ -298,7 +306,7 @@
         [self setAvatarSelected:NO level:level];
         
         [self setAsRound];
-        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
@@ -421,18 +429,35 @@
 #define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
 #define DEFAULT_MAX_NUMBER 99
 
+
+- (void)baseInit
+{
+    self.userInteractionEnabled = NO;
+    
+    [self.titleLabel setFont:BADGE_FONT];
+    
+    [self setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self setBGImage:[[ShareImageManager defaultManager] badgeImage]];
+    [self setMaxNumber:DEFAULT_MAX_NUMBER];
+//    [self updateWidth:BadgeSize];
+//    [self updateHeight:BadgeSize];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self baseInit];
+    }
+    return self;
+}
+
 + (id)badgeViewWithNumber:(NSInteger)number
 {
     BadgeView *badge = [[[BadgeView alloc] initWithFrame:CGRectMake(0, 0, BadgeSize, BadgeSize)] autorelease];
-    badge.userInteractionEnabled = NO;
-    
-    [badge.titleLabel setFont:BADGE_FONT];
-    
-    [badge setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    
-    [badge setBGImage:[[ShareImageManager defaultManager] badgeImage]];
-    [badge setNumber:number];
-    [badge setMaxNumber:DEFAULT_MAX_NUMBER];
+    [badge baseInit];
+    [badge setNumber:number];    
     return badge;
 }
 
