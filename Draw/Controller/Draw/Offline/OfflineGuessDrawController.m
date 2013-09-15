@@ -263,7 +263,8 @@
     if (self.feed.drawData) {
         rect = [self.feed.drawData canvasRect];
     }
-    self.showView = [[ShowDrawView alloc] initWithFrame:rect];
+    ShowDrawView* showDrawView = [[ShowDrawView alloc] initWithFrame:rect];
+    self.showView = showDrawView;
     [self.showView updateLayers:self.feed.drawData.layers];
     [self.showView setDrawActionList:_feed.drawData.drawActionList];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:_showView];
@@ -274,5 +275,6 @@
         [holder updateContentScale];        
     }
     [self.showView play];
+    [showDrawView release];
 }
 @end

@@ -124,7 +124,7 @@
 
 - (void)loadTestData
 {
-    StorageManager* manage = [[StorageManager alloc] initWithStoreType:StorageTypeTemp directoryName:@"testPhoto"];
+    StorageManager* manage = [[[StorageManager alloc] initWithStoreType:StorageTypeTemp directoryName:@"testPhoto"] autorelease];
     NSData* data = [manage dataForKey:@"test2"];
     if (data) {
         PBUserPhotoList* list = [PBUserPhotoList parseFromData:data];

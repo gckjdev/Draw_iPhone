@@ -48,12 +48,12 @@
     self.gradientSettingView = [GradientSettingView gradientSettingViewWithGradient: gradient];
 
 
-    CGPoint center = CGPointMake(160, 26);
-    if (ISIPHONE5) {
-        center = CGPointMake(160, 21);
-    }else if(ISIPAD){
-        center = CGPointMake(384, 53);
-    }
+//    CGPoint center = CGPointMake(160, 26);
+//    if (ISIPHONE5) {
+//        center = CGPointMake(160, 21);
+//    }else if(ISIPAD){
+//        center = CGPointMake(384, 53);
+//    }
     self.gradientSettingView.delegate = self;
     [self.toolPanel showGradientSettingView:self.gradientSettingView];
     self.gradientSettingView.alpha = 0;
