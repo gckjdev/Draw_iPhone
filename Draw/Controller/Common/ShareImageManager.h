@@ -63,7 +63,7 @@
 #define COLOR_GRAY_TEXT     OPAQUE_COLOR(154, 154, 154)
 
 // 用户头像的灰色
-#define COLOR_GRAY_AVATAR   COLOR_GRAY_TEXT
+#define COLOR_GRAY_AVATAR   OPAQUE_COLOR(214, 214, 214)
 
 // cell上的灰色背景上的灰色背景（如评论）
 #define COLOR_GRAY_BG   OPAQUE_COLOR(222, 222, 222)
