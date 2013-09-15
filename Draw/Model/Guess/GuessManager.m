@@ -274,12 +274,19 @@
     [[[UserManager defaultManager] userDefaults] synchronize];
 }
 
-+ (NSTimeInterval)getTimeIntervalUtilExpire:(int)mode{
++ (NSTimeInterval)getTimeIntervalUtilExpire:(int)mode contest:(PBGuessContest *)contest{
+    
+    NSTimeInterval interval = 0;
+
+    if (mode == PBUserGuessModeGuessModeContest) {
+
+        interval = [[NSDate dateWithTimeIntervalSince1970:contest.endTime] timeIntervalSinceNow];
+        return interval;
+    }
     
     NSString *key = [self getGuessDateKey:mode];
     NSDate *date = [[[UserManager defaultManager] userDefaults] objectForKey:key];
     
-    NSTimeInterval interval = 0;
     if (date != nil){
         interval = [[NSDate date] timeIntervalSinceDate:date];
     }
@@ -419,27 +426,34 @@
     
     NSString *key = [self getGuessStateKeyWithMode:mode contestId:contestId];
     
-    if (state == GuessStateNotStart
-        || state == GuessStateBeing) {
+    if (mode == PBUserGuessModeGuessModeContest &&
+        (state == GuessStateBeing || state == GuessStateExpire)) {
         
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
     }
     
-    if (state == GuessStateExpire && mode != PBUserGuessModeGuessModeContest) {
+    if (mode == PBUserGuessModeGuessModeHappy && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire)
+        ) {
+        
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
     }
     
-    if (state == GuessStateFail && mode == PBUserGuessModeGuessModeGenius) {
-        
+    if (mode == PBUserGuessModeGuessModeHappy && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire || state == GuessStateFail)
+        ) {
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
+
     }
 }
 
 + (GuessState)getGuessStateWithMode:(int)mode contestId:(NSString *)contestId{
     
-    NSString *key = [self getGuessStateKeyWithMode:mode contestId:contestId];
+    if (mode == PBUserGuessModeGuessModeContest) {
+        return GuessStateBeing;
+    }
     
+    NSString *key = [self getGuessStateKeyWithMode:mode contestId:contestId];
     NSInteger state = [[[UserManager defaultManager] userDefaults] integerForKey:key];
+    
     return state;
 }
 
@@ -561,6 +575,48 @@
     return nil;
 }
 
+//+ (NSString *)getExpireMessageWithMode:(int)mode{
+//    
+//    switch (mode) {
+//        case PBUserGuessModeGuessModeHappy:
+//            return [NSString stringWithFormat:NSLS(@"kHappyModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
+//            break;
+//            
+//        case PBUserGuessModeGuessModeGenius:
+//            return [NSString stringWithFormat:NSLS(@"kGeniusModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
+//            break;
+//            
+//        case PBUserGuessModeGuessModeContest:
+//            return [NSString stringWithFormat:NSLS(@"kContestModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
+
++ (NSString *)getExpireMessageWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return NSLS(@"kHappyModeExpireMessage");
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return NSLS(@"kGeniusModeExpireMessage");
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return NSLS(@"kContestModeExpireMessage");
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
 + (NSString *)getDeductCoinsPopMessageWithMode:(int)mode{
     
     switch (mode) {
@@ -585,24 +641,6 @@
 
 
 
-+ (NSString *)getExpireMessageWithMode:(int)mode{
-    
-    switch (mode) {
-        case PBUserGuessModeGuessModeHappy:
-            return [NSString stringWithFormat:NSLS(@"kHappyModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
-            break;
-            
-        case PBUserGuessModeGuessModeGenius:
-            return [NSString stringWithFormat:NSLS(@"kGeniusModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
-            break;
-            
-        case PBUserGuessModeGuessModeContest:
-            return [NSString stringWithFormat:NSLS(@"kContestModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
-            break;
-            
-        default:
-            break;
-    }
-}
+
 
 @end

@@ -99,7 +99,7 @@
 					<object class="IBUILabel" id="999895757">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{87, 34}, {180, 45}}</string>
+						<string key="NSFrame">{{97, 34}, {170, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="650507138"/>
@@ -117,7 +117,6 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="303333982">
 							<int key="type">1</int>
 							<double key="pointSize">30</double>
@@ -132,7 +131,7 @@
 					<object class="IBUILabel" id="521356824">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{87, 119}, {180, 45}}</string>
+						<string key="NSFrame">{{97, 119}, {170, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="589416301"/>
@@ -146,7 +145,6 @@
 						<reference key="IBUITextColor" ref="967958453"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<reference key="IBUIFontDescription" ref="303333982"/>
 						<reference key="IBUIFont" ref="1029581391"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -154,7 +152,7 @@
 					<object class="IBUILabel" id="9656138">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{87, 196}, {180, 45}}</string>
+						<string key="NSFrame">{{97, 196}, {170, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1021628683"/>
@@ -168,7 +166,6 @@
 						<reference key="IBUITextColor" ref="967958453"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<reference key="IBUIFontDescription" ref="303333982"/>
 						<reference key="IBUIFont" ref="1029581391"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -176,7 +173,7 @@
 					<object class="IBUILabel" id="488962148">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{87, 272}, {180, 45}}</string>
+						<string key="NSFrame">{{97, 272}, {170, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -189,7 +186,6 @@
 						<reference key="IBUITextColor" ref="967958453"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
 						<reference key="IBUIFontDescription" ref="303333982"/>
 						<reference key="IBUIFont" ref="1029581391"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
