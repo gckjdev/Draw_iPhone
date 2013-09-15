@@ -8,6 +8,7 @@
 
 #import "DrawHomeHeaderPanel.h"
 #import "UIButton+WebCache.h"
+#import "ShowFeedController.h"
 
 @interface DrawHomeHeaderPanel()
 {
@@ -230,7 +231,8 @@
     if (index < [self.opusList count]) {
         DrawFeed *opus = self.opusList[index];
         PPDebug(@"click opus, id = %@, word = %@, row = %d", opus.feedId, opus.wordText, indexPath.row);
-        //TODO enter detail?
+        ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:opus];
+        [[[self theViewController] navigationController] pushViewController:sf animated:YES];
     }
 
 }

@@ -1233,6 +1233,12 @@ static UIImage* _whitePaperImage;
     return [UIColor colorWithPatternImage:image];
 }
 
+- (UIImage *)drawBGImage
+{
+  return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"draw_main_bg@2x" ofType:@"jpg"]];
+}
+
+
 - (UIImage *)oldDrawBGImage
 {
     return [UIImage imageNamed:@"old_draw_bg@2x.jpg"];
