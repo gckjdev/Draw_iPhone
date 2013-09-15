@@ -120,7 +120,6 @@
 								<string key="NSFrame">{{235, 20}, {511, 50}}</string>
 								<reference key="NSSuperview" ref="912043675"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="281867986"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>

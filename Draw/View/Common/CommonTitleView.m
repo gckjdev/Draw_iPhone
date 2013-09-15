@@ -285,8 +285,11 @@
     }
     
     if (self.loadingActivityView == nil){
-        self.loadingActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        self.loadingActivityView.frame = self.rightButton.frame;
+        UIActivityIndicatorViewStyle style = (ISIPAD) ? UIActivityIndicatorViewStyleWhiteLarge : UIActivityIndicatorViewStyleWhite;
+        self.loadingActivityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:style] autorelease];
+        CGRect frame = CGRectMake(0, 0, RIGHT_BUTTON_WIDTH, RIGHT_BUTTON_HEIGHT);
+        self.loadingActivityView.frame = frame;
+        self.loadingActivityView.center = self.rightButton.center;
     }
 
     [self addSubview:self.loadingActivityView];
