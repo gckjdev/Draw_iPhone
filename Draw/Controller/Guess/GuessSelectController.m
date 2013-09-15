@@ -65,6 +65,11 @@
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.dataTableView reloadData];
+}
+
 
 - (void)viewDidLoad
 {
@@ -251,7 +256,9 @@
     [cell setIndexPath:indexPath];
     
     if (_mode == PBUserGuessModeGuessModeGenius) {
-//        [cell setCurrentGuessIndex:[GuessManager guessIndex:self.currentTab.dataList]];
+        [cell setCurrentGuessIndex:_guessIndex];
+    }else if(_mode == PBUserGuessModeGuessModeHappy){
+        [cell setNotGuessFlash];
     }
     return cell;
 }
