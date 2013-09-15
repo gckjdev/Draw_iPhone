@@ -254,17 +254,18 @@
 - (void)updateBG
 {
     UIImage *image = [[UserManager defaultManager] pageBgForKey:@"chat_bg.png"];
+    UIImageView *iv = (id)[self.view reuseViewWithTag:BG_IMAGE_TAG
+                                            viewClass:[UIImageView class]
+                                                frame:self.dataTableView.frame];
+    
     if (image) {
-        UIImageView *iv = (id)[self.view reuseViewWithTag:BG_IMAGE_TAG
-                                                viewClass:[UIImageView class]
-                                                    frame:self.dataTableView.frame];
         iv.contentMode = UIViewContentModeScaleAspectFill;
-        [iv setImage:image];
-        [self.view insertSubview:iv belowSubview:[CommonTitleView titleView:self.view]];
     }else{
-        self.view.backgroundColor = [[ShareImageManager defaultManager] drawBGColor];
-        [[self.view viewWithTag:BG_IMAGE_TAG] removeFromSuperview];
+        iv.contentMode = UIViewContentModeScaleToFill;
+        image = [[ShareImageManager defaultManager] drawBGImage];
     }
+    [iv setImage:image];
+    [self.view insertSubview:iv belowSubview:[CommonTitleView titleView:self.view]];
 
 }
 

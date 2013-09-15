@@ -17,7 +17,6 @@
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *previous;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UIButton *next;
 - (IBAction)clickPageButton:(id)sender;
 
@@ -31,13 +30,7 @@
 
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
-    NSString* identifier = [HomeMainMenuPanel getViewIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find view object from Nib", identifier);
-        return nil;
-    }
-    HomeMainMenuPanel<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
+    HomeMainMenuPanel<HomeCommonViewProtocol> *view = [self createViewWithXibIdentifier:[self getViewIdentifier]];
     view.delegate = delegate;
     [view updateView];
     return view;

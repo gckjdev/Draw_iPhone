@@ -397,7 +397,7 @@
 
 + (int)getDeductCoinsInGeniusMode
 {
-    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_GENIUS_MODE" defaultValue:20];
+    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_GENIUS_MODE" defaultValue:30];
 }
 
 + (int)getDeductCoinsInContestMode

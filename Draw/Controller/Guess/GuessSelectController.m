@@ -80,7 +80,7 @@
     self.supportRefreshHeader = NO;
     self.supportRefreshFooter = [GuessManager isSupportRefreshFooterWithMode:_mode];
     
-    self.countDownLabel.textColor = COLOR_BROWN;
+    self.countDownLabel.textColor = COLOR_GREEN;
     self.view.backgroundColor = COLOR_WHITE;
     
     [self.titleView setTarget:self];
@@ -91,6 +91,8 @@
 
     [self initTabButtons];
     [self clickTab:TABID];
+
+
     
     GuessState state = [GuessManager getGuessStateWithMode:_mode contestId:_contest.contestId];
     if (state == GuessStateBeing) {
@@ -98,13 +100,9 @@
     }else if (state == GuessStateExpire) {
         self.countDownLabel.text = NSLS(@"kTimeout");
     }else if (state == GuessStateFail) {
-        self.countDownLabel.text = NSLS(@"kGuessWrong");
+        self.countDownLabel.text = NSLS(@"kContestPassed");
     }else{
-        self.countDownLabel.hidden = YES;
-    }
-    
-    if (_mode == PBUserGuessModeGuessModeContest) {
-        self.countDownLabel.hidden = YES;
+        self.countDownLabel.text = NSLS(@"kNotStart");
     }
 }
 
@@ -112,10 +110,13 @@
     
     [self stopCountDown];
     
-    self.countDownLabel.hidden = NO;
-    _countDown = [GuessManager getTimeIntervalUtilExpire:_mode];
+    _countDown = [GuessManager getTimeIntervalUtilExpire:_mode contest:_contest];
     if (_countDown > 0) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountDownInfo) userInfo:nil repeats:YES];
+    }else{
+        [self stopCountDown];
+        [GuessManager setGuessState:GuessStateExpire mode:_mode contestId:_contest.contestId];
+        self.countDownLabel.text = NSLS(@"kTimeout");
     }
 }
 
@@ -148,58 +149,6 @@
 #define KEY_NO_REMIND_GENIUS_GUESS_RULE @"KEY_NO_REMIND_GENIUS_GUESS_RULE"
 #define KEY_NO_REMIND_CONTEST_GUESS_RULE @"KEY_NO_REMIND_CONTEST_GUESS_RULE"
 
-- (void)showRuleMessage{
-    
-    NSString *title = @"";
-    NSString *message = @"";
-    NSString *key = @"";
-    if (_mode == PBUserGuessModeGuessModeHappy) {
-        title = NSLS(@"kHappyGuessRules");
-        message = [NSString stringWithFormat:NSLS(@"kHappyGuessRulesDetil"),
-                   [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
-                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy],
-                   [GuessManager getCountHappyModeAwardOnce],
-                   [GuessManager getGuessExpireTime:_mode]];
-        key = KEY_NO_REMIND_HAPPY_GUESS_RULE;
-    }else if(_mode == PBUserGuessModeGuessModeGenius){
-        title = NSLS(@"kGeniusGuessRules");
-        message = [NSString stringWithFormat:NSLS(@"kGeniusGuessRulesDetil"),
-                   [GuessManager getDeductCoins:PBUserGuessModeGuessModeGenius],
-                   [GuessManager getCountGeniusModeAwardOnce],
-                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeGenius],
-                   
-                   [GuessManager getCountGeniusModeAwardOnce] * 2,
-                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 2 mode:PBUserGuessModeGuessModeGenius],
-                   
-                   [GuessManager getCountGeniusModeAwardOnce] * 3,
-                   [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 3 mode:PBUserGuessModeGuessModeGenius],
-                   
-                   [GuessManager getGuessExpireTime:_mode]];
-        key = KEY_NO_REMIND_GENIUS_GUESS_RULE;
-
-    }else if(_mode == PBUserGuessModeGuessModeContest){
-        title = NSLS(@"kContestGuessRules");
-        message = [NSString stringWithFormat:NSLS(@"kContestGuessRulesDetil"),
-                   [GuessManager getDeductCoins:PBUserGuessModeGuessModeContest]];
-        key = KEY_NO_REMIND_CONTEST_GUESS_RULE;
-    }
-    
-    
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:key] != nil) {
-        return;
-    }
-    
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:title message:message style:CommonDialogStyleDoubleButton];
-    [dialog.oKButton setTitle:NSLS(@"kNoMoreShowIt") forState:UIControlStateNormal];
-    [dialog.cancelButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-    
-    [dialog setClickOkBlock:^(id infoView){
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:key];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }];
-    
-    [dialog showInView:self.view];
-}
 
 - (void)viewDidUnload {
     [self setTitleView:nil];
@@ -348,7 +297,7 @@
         _guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
         
     }else{
-       POSTMSG2(NSLS(@"kLoadFailed"), 2);
+       POSTMSG2(NSLS(@"kLoadFailed"), 3);
     }
 }
 
@@ -374,6 +323,7 @@
 - (void)startNew{
     
     [GuessManager setGuessState:GuessStateNotStart mode:_mode contestId:_contest.contestId];
+    self.countDownLabel.text = NSLS(@"kNotStart");
     
     self.currentTab.offset = 0;
     [self loadData:self.currentTab.offset limit:LIMIT startNew:YES];
@@ -393,11 +343,11 @@
     if ([self isIndexGuessed:index]) {
         [self gotoOpusDetailControllerWithIndex:index];
     }else{
-        if ([self isGuessIndexValid:index]) {
+//        if ([self isGuessIndexValid:index]) {
             [self handleIndexThatNotGuessed:index];
-        }else{
-            POSTMSG2(NSLS(@"kGuessPreviousOpusFirst"), 2);
-        }
+//        }else{
+//            POSTMSG2(NSLS(@"kGuessPreviousOpusFirst"), 3);
+//        }
     }
 }
 
@@ -411,7 +361,11 @@
             break;
             
         case GuessStateBeing:
-            [self gotoOpusGuessControllerWithIndex:index];
+            if ([self isGuessIndexValid:index]) {
+                [self gotoOpusGuessControllerWithIndex:index];
+            }else{
+                POSTMSG2(NSLS(@"kGuessPreviousOpusFirst"), 3);
+            }
             break;
             
         case GuessStateExpire:
@@ -432,12 +386,14 @@
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getGuessRulesTitleWithModex:_mode] message:[GuessManager getGuessRulesWithModex:_mode] style:CommonDialogStyleDoubleButton];
     
+    [dialog.oKButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
+    
     [dialog setClickOkBlock:^(id infoView){
        
         [GuessManager setGuessState:GuessStateBeing mode:_mode contestId:_contest.contestId];
         [GuessManager setLastGuessDateDate:_mode];
         [GuessManager deductCoins:_mode contestId:_contest.contestId];
-        POSTMSG2([GuessManager getDeductCoinsPopMessageWithMode:_mode], 2);
+        POSTMSG2([GuessManager getDeductCoinsPopMessageWithMode:_mode], 3);
         [self startCountDown];
         
         [self gotoOpusGuessControllerWithIndex:index];
@@ -448,9 +404,13 @@
 
 - (void)handleWithExpire:(int)index{
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getExpireTitleWithMode:_mode] message:NSLS(@"kGuessGameExpire") style:CommonDialogStyleDoubleButtonWithCross];
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getExpireTitleWithMode:_mode] message:NSLS(@"kGuessGameExpire") style:CommonDialogStyleDoubleButtonWithCross];
     
-    [dialog.oKButton setTitle:NSLS(@"kRestart") forState:UIControlStateNormal];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getExpireTitleWithMode:_mode] message:[GuessManager getExpireMessageWithMode:_mode] style:CommonDialogStyleDoubleButtonWithCross];
+
+    if (_mode != PBUserGuessModeGuessModeContest) {
+        [dialog.oKButton setTitle:NSLS(@"kRestart") forState:UIControlStateNormal];
+    }
     [dialog.cancelButton setTitle:NSLS(@"kContestFeedDetail") forState:UIControlStateNormal];
     
     [dialog setClickOkBlock:^(id infoView){
@@ -522,7 +482,6 @@
     [self setIndexAsGuessed:index];
     int count = [self getGuessedCount];
     
-    
     [self.dataTableView reloadData];
     
     if ([GuessManager canAwardNow:count mode:_mode]) {
@@ -536,7 +495,7 @@
     
     [GuessManager setGuessState:GuessStateFail mode:_mode contestId:_contest.contestId];
     [self stopCountDown];
-    self.countDownLabel.text = NSLS(@"kGuessWrong");
+    self.countDownLabel.text = NSLS(@"kContestPassed");
     POSTMSG2(NSLS(@"kGuessWrong"), 3);
 }
 
@@ -634,12 +593,7 @@
     
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeTips"), count, needToGuess, predictAwardCoins];
     
-    POSTMSG2(info, 2);
-    
-//    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
-//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-//    [dialog showInView:self.view];
+    POSTMSG2(info, 3);
 }
 
 
@@ -650,26 +604,10 @@
     
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), count, needToGuess, predictAwardCoins];
     
-    POSTMSG2(info, 2);
-
-    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleDoubleButton];
-//    [dialog.oKButton setTitle:NSLS(@"kGoOn") forState:UIControlStateNormal];
-//    [dialog.cancelButton setTitle:NSLS(@"Back") forState:UIControlStateNormal];
-//    
-//    [dialog setClickCancelBlock:^(id infoView){
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    
-//    [dialog showInView:self.view];
+    POSTMSG2(info, 3);
 }
 
 - (void)showTipInContestMode:(PBGuessRank *)rank{
-    
-//    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeTips"), rank.pass, rank.ranking, rank.earn, rank.totalPlayer];
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
-//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-//    [dialog showInView:self.view];
     
     ContestRankView *v = [ContestRankView createViewWithRank:rank];
     
@@ -679,12 +617,6 @@
 }
 
 - (void)showTipInContestModeWhenContestOver:(PBGuessRank *)rank{
-    
-//    NSString *info = [NSString stringWithFormat:NSLS(@"kGuessContestModeOverTips"), rank.totalPlayer, rank.ranking, rank.earn];
-//    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
-//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-//    [dialog showInView:self.view];
     
     ContestRankView *v = [ContestRankView createViewWithRank:rank];
     

@@ -551,6 +551,10 @@
 
 - (void)initPageBG
 {
+    UIImage *image = [[UserManager defaultManager] drawBackground];
+    if (image == nil) {
+        image = [shareImageManager drawBGImage];        
+    }
     [self setPageBGImage:[[UserManager defaultManager] drawBackground]];
 }
 
@@ -1434,7 +1438,6 @@ didChangeSelectedLayer:(DrawLayer *)selectedLayer
         iv.tag = PAGE_BG_TAG;
         [self.view insertSubview:iv atIndex:0];
     }
-//    iv.frame = self.view.bounds;
     [iv setImage:image];
     if (image) {
         [self.view setBackgroundColor:[UIColor whiteColor]];

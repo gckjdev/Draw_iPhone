@@ -25,6 +25,8 @@
 {
     
 }
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+
 - (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge;
 - (void)animatePageButtons;
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;

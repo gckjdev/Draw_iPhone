@@ -8,6 +8,7 @@
 
 #import "DrawHomeHeaderPanel.h"
 #import "UIButton+WebCache.h"
+#import "ShowFeedController.h"
 
 @interface DrawHomeHeaderPanel()
 {
@@ -99,11 +100,14 @@
 }
 
 - (void)openAnimated:(BOOL)animated
+          completion:(void (^)(BOOL finished))completion
 {
-    
-    void (^completion)(BOOL)  = ^(BOOL finished){
+    void (^innerCompletion)(BOOL)  = ^(BOOL finished){
         self.status = DrawHeaderPanelStatusOpen;
         [self reloadView];
+        if (NULL != completion) {
+            completion(finished);
+        }        
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
@@ -111,27 +115,31 @@
         void (^animation)(void)  = ^{
             [self updateFrameForOpen];
         };
-        [UIView animateWithDuration:2 animations:animation completion:completion];
+        [UIView animateWithDuration:HEADER_ANIMATION_INTEVAL animations:animation completion:innerCompletion];
     }else{
         [self updateFrameForOpen];
-        completion(YES);
+        innerCompletion(YES);
     }
 }
 - (void)closeAnimated:(BOOL)animated
+           completion:(void (^)(BOOL finished))completion
 {
-    void (^completion)(BOOL)  = ^(BOOL finished){
+    void (^innerCompletion)(BOOL)  = ^(BOOL finished){
         self.status = DrawHeaderPanelStatusClose;
         [self reloadView];
+        if (NULL != completion) {
+            completion(finished);
+        }
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
         void (^animation)(void)  = ^{
             [self updateFrameForClose];
         };
-        [UIView animateWithDuration:2 animations:animation completion:completion];
+        [UIView animateWithDuration:HEADER_ANIMATION_INTEVAL animations:animation completion:innerCompletion];
     }else{
         [self updateFrameForClose];
-        completion(YES);
+        innerCompletion(YES);
     }
 }
 
@@ -141,6 +149,9 @@
     [_displayHolder release];
     [_rope release];
     [_holderView release];
+    RELEASE_BLOCK(_clickRopeHandler);
+//    RELEASE_BLOCK(_finishHandler);
+//    RELEASE_BLOCK(_startHandler);
     [super dealloc];
 }
 
@@ -220,18 +231,21 @@
     if (index < [self.opusList count]) {
         DrawFeed *opus = self.opusList[index];
         PPDebug(@"click opus, id = %@, word = %@, row = %d", opus.feedId, opus.wordText, indexPath.row);
-        //TODO enter detail?
+        ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:opus];
+        [[[self theViewController] navigationController] pushViewController:sf animated:YES];
     }
 
 }
 
 - (IBAction)clickRope:(id)sender {
+
     if (self.status == DrawHeaderPanelStatusClose) {
-        [self openAnimated:YES];
+        EXECUTE_BLOCK(self.clickRopeHandler, YES);
     }else if(self.status == DrawHeaderPanelStatusOpen){
-        [self closeAnimated:YES];
+        EXECUTE_BLOCK(self.clickRopeHandler, NO);
     }else{
         PPDebug(@"is animating!!!");
     }
+
 }
 @end

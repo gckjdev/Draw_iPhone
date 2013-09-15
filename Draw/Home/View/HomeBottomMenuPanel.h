@@ -20,6 +20,7 @@
                  menuType:(HomeMenuType)type;
 @end
 
+#define BOTTOM_ANIMATION_INTERVAL 1.2
 
 @interface HomeBottomMenuPanel : HomeCommonView<HomeCommonViewProtocol, HomeMenuViewDelegate>
 {
@@ -28,4 +29,6 @@
 
 - (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge;
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
+- (void)hideAnimated:(BOOL)animated;
+- (void)showAnimated:(BOOL)animated;
 @end
