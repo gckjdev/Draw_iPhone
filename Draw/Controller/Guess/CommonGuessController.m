@@ -63,7 +63,6 @@
         _mode = mode;
         self.contest = contest;
         self.startDate = [NSDate date];
-        self.index = -1;
     }
     
     return self;
@@ -185,7 +184,6 @@
             isCorrect:(BOOL)isCorrect{
     
     int time = [[NSDate date] timeIntervalSince1970];
-    
     if (_mode == PBUserGuessModeGuessModeContest && time > _contest.endTime) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestIsOver") delayTime:1.5 isHappy:NO];
         return;
@@ -194,6 +192,7 @@
     [_guessWords addObject:word];
     
     if (isCorrect) {
+
         [self didGuessCorrect:word];
     }else{
         [self didGuessWrong:word];
@@ -206,8 +205,8 @@
 
     [OpusGuessRecorder setOpusAsGuessed:_opus.pbOpus.opusId];
     
-    if ([_delegate respondsToSelector:@selector(didGuessCorrect)]) {
-        [_delegate didGuessCorrect];
+    if ([_delegate respondsToSelector:@selector(didGuessCorrect:index:)]) {
+        [_delegate didGuessCorrect:self.opus index:self.index];
     }
 
     [self.navigationController popViewControllerAnimated:YES];
@@ -217,8 +216,8 @@
     
     if (_mode == PBUserGuessModeGuessModeGenius) {
         
-        if ([_delegate respondsToSelector:@selector(didGuessWrong)]) {
-            [_delegate didGuessWrong];
+        if ([_delegate respondsToSelector:@selector(didGuessWrong:index:)]) {
+            [_delegate didGuessWrong:self.opus index:self.index];
         }
         [self.navigationController popViewControllerAnimated:YES];
     }

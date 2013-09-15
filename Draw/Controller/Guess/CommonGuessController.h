@@ -14,8 +14,8 @@
 
 @protocol CommonGuessControllerDelegate <NSObject>
 
-- (void)didGuessCorrect;
-- (void)didGuessWrong;
+- (void)didGuessCorrect:(Opus *)opus index:(int)index;
+- (void)didGuessWrong:(Opus *)opus index:(int)index;
 
 
 @end

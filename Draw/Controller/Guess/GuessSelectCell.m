@@ -16,8 +16,8 @@
 #define MAX_COUNT_OPUS 20
 
 @interface GuessSelectCell()
-@property (retain, nonatomic) NSArray *opuses;
-
+//@property (retain, nonatomic) NSArray *opuses;
+@property (retain, nonatomic) NSArray *guesseds;
 @end
 
 
@@ -25,8 +25,9 @@
 
 - (void)dealloc{
     
-    [_opuses release];
+//    [_opuses release];
     [_awardButton release];
+    [_guesseds release];
     [super dealloc];
 }
 
@@ -38,9 +39,11 @@
     return 408 * (ISIPAD ? 2.18 : 1);
 }
 
-- (void)setCellInfo:(NSArray *)opuses{
+- (void)setCellInfo:(NSArray *)guesseds{
+
+//    self.opuses = opuses;
+    self.guesseds = guesseds;
     
-    self.opuses = opuses;
     [self reloadView];
 }
 
@@ -63,9 +66,9 @@
 - (void)reloadView{
     
     int index = 0;
-    for (; index < [_opuses count]; index ++ ) {
-        PBOpus *pbOpus = [_opuses objectAtIndex:index];
-        if (pbOpus.guessInfo.isCorrect) {
+    for (; index < [_guesseds count]; index ++ ) {
+        NSNumber *isGuessed = [_guesseds objectAtIndex:index];
+        if (isGuessed.boolValue == YES) {
             [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"shoes@2x.png"] forState:UIControlStateNormal];
         }else{
             NSString *name = [NSString stringWithFormat:@"round_dot_%d@2x.png", index + 1];
@@ -75,7 +78,6 @@
     
     for (; index < 20; index ++) {
         [[self opusButtonWithIndex:index] setImage:[UIImage imageNamed:@"round_dot_no@2x.png"] forState:UIControlStateNormal];
-//        [[self opusButtonWithIndex:index].layer removeAllAnimations];
     }
 }
 
@@ -93,6 +95,20 @@
     UIButton *button = (UIButton *)[self viewWithTag:tag];
     
     [button.layer addAnimation:[AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:0.5 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:0.5 repeatCount:MAXFLOAT] forKey:nil];
+}
+
+- (void)setNotGuessFlash{
+    
+    for (int index = 0; index < [_guesseds count]; index ++) {
+        UIButton *button = (UIButton *)[self viewWithTag:(index + OPUS_BUTTON_OFFSET)];
+        [button.layer removeAllAnimations];
+        
+        NSNumber *isGuessed = [_guesseds objectAtIndex:index];
+        if (!isGuessed.boolValue) {
+            
+            [button.layer addAnimation:[AnimationManager scaleTo:CATransform3DMakeScale(1.2, 1.2, 1.2) duration:0.5 scaleTo:CATransform3DMakeScale(0.8, 0.8, 0.8) duration:0.5 repeatCount:MAXFLOAT] forKey:nil];
+        }
+    }
 }
 
 - (IBAction)clickAwardButton:(id)sender {

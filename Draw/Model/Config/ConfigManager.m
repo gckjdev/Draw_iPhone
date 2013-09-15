@@ -1154,7 +1154,7 @@
 
 
 + (int)getHappyGuessExpireTime{
-    return [MobClickUtils getIntValueByKey:@"HAPPY_GUESS_EXPIRE_TIME" defaultValue:2];
+    return [MobClickUtils getIntValueByKey:@"HAPPY_GUESS_EXPIRE_TIME" defaultValue:1];
 }
 
 + (int)getGeniusGuessExpireTime{
