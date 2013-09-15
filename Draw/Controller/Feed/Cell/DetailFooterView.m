@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = COLOR_YELLOW;
+        self.backgroundColor = COLOR_YELLOW_ICON;
     }
     return self;
 }
