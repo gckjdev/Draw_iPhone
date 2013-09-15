@@ -183,21 +183,7 @@ static FeedService *_staticFeedService = nil;
                            offset:(NSInteger)offset
                             limit:(NSInteger)limit
                          delegate:(id<FeedServiceDelegate>)delegate
-{
-    NSString *userId = [[UserManager defaultManager] userId];
-    if (userId  == nil){
-        // this is mainly for HOME display
-        userId = [ConfigManager getSystemUserId];
-    }
-    
-    LanguageType lang = UnknowType;
-    lang = [[UserManager defaultManager] getLanguageType];
-    
-    //little gee force chinese opus --kira
-    if ([GameApp forceChineseOpus]) {
-        lang = ChineseType;
-    }
-    
+{    
     dispatch_queue_t getFeedListQueue = [self getQueue:GET_FEEDLIST_QUEUE];
     if (getFeedListQueue == NULL) {
         getFeedListQueue = workingQueue;
