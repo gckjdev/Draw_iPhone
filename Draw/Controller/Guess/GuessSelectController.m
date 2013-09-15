@@ -112,6 +112,7 @@
     
     [self stopCountDown];
     
+    self.countDownLabel.hidden = NO;
     _countDown = [GuessManager getTimeIntervalUtilExpire:_mode];
     if (_countDown > 0) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountDownInfo) userInfo:nil repeats:YES];
@@ -255,11 +256,17 @@
     [cell setCellInfo:arr];
     [cell setIndexPath:indexPath];
     
-    if (_mode == PBUserGuessModeGuessModeGenius) {
-        [cell setCurrentGuessIndex:_guessIndex];
-    }else if(_mode == PBUserGuessModeGuessModeHappy){
-        [cell setNotGuessFlash];
+    
+    if ([GuessManager getGuessStateWithMode:_mode contestId:_contest.contestId] == GuessStateBeing) {
+        if (_mode == PBUserGuessModeGuessModeGenius) {
+            [cell setCurrentGuessIndex:_guessIndex];
+        }else{
+            [cell setNotGuessFlash];
+        }
+    }else{
+        [cell setNothingFlash];
     }
+    
     return cell;
 }
 
@@ -341,7 +348,7 @@
         _guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
         
     }else{
-       POSTMSG(NSLS(@"kLoadFailed"));
+       POSTMSG2(NSLS(@"kLoadFailed"), 2);
     }
 }
 
@@ -366,12 +373,7 @@
 
 - (void)startNew{
     
-    [GuessManager setGuessState:GuessStateBeing mode:_mode contestId:_contest.contestId];
-    [GuessManager setLastGuessDateDate:_mode];
-    [GuessManager deductCoins:_mode contestId:_contest.contestId];
-    POSTMSG([GuessManager getDeductCoinsPopMessageWithMode:_mode]);
-    self.countDownLabel.hidden = NO;
-    [self startCountDown];
+    [GuessManager setGuessState:GuessStateNotStart mode:_mode contestId:_contest.contestId];
     
     self.currentTab.offset = 0;
     [self loadData:self.currentTab.offset limit:LIMIT startNew:YES];
@@ -394,7 +396,7 @@
         if ([self isGuessIndexValid:index]) {
             [self handleIndexThatNotGuessed:index];
         }else{
-            POSTMSG(NSLS(@"kGuessPreviousOpusFirst"));
+            POSTMSG2(NSLS(@"kGuessPreviousOpusFirst"), 2);
         }
     }
 }
@@ -435,8 +437,7 @@
         [GuessManager setGuessState:GuessStateBeing mode:_mode contestId:_contest.contestId];
         [GuessManager setLastGuessDateDate:_mode];
         [GuessManager deductCoins:_mode contestId:_contest.contestId];
-        POSTMSG([GuessManager getDeductCoinsPopMessageWithMode:_mode]);
-        self.countDownLabel.hidden = NO;
+        POSTMSG2([GuessManager getDeductCoinsPopMessageWithMode:_mode], 2);
         [self startCountDown];
         
         [self gotoOpusGuessControllerWithIndex:index];
@@ -536,7 +537,7 @@
     [GuessManager setGuessState:GuessStateFail mode:_mode contestId:_contest.contestId];
     [self stopCountDown];
     self.countDownLabel.text = NSLS(@"kGuessWrong");
-    POSTMSG(NSLS(@"kGuessWrong"));
+    POSTMSG2(NSLS(@"kGuessWrong"), 3);
 }
 
 
@@ -586,7 +587,7 @@
                    award:(int)award{
     
     // chage account
-    [[AccountService defaultService] chargeCoin:award source:AwardCoinType];
+    [[AccountService defaultService] chargeCoin:award source:happyGuessAward];
     
     // tip
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeAwardTips"), passCount, award];
@@ -611,7 +612,7 @@
 - (void)awardInGeniusMode:(int)passCount
                     award:(int)award{
     
-    [[AccountService defaultService] chargeCoin:award source:AwardCoinType];
+    [[AccountService defaultService] chargeCoin:award source:geniusGuessAward];
     
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeAwardTips"), passCount,award];
     
@@ -633,7 +634,7 @@
     
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessHappyModeTips"), count, needToGuess, predictAwardCoins];
     
-    POSTMSG(info);
+    POSTMSG2(info, 2);
     
 //    
 //    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleSingleButton];
@@ -649,7 +650,7 @@
     
     NSString *info = [NSString stringWithFormat:NSLS(@"kGuessGenuisModeTips"), count, needToGuess, predictAwardCoins];
     
-    POSTMSG(info);
+    POSTMSG2(info, 2);
 
     
 //    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:info style:CommonDialogStyleDoubleButton];
