@@ -551,6 +551,10 @@
 
 - (void)initPageBG
 {
+    UIImage *image = [[UserManager defaultManager] drawBackground];
+    if (image == nil) {
+        image = [shareImageManager drawBGImage];        
+    }
     [self setPageBGImage:[[UserManager defaultManager] drawBackground]];
 }
 
