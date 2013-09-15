@@ -21,9 +21,9 @@
 
 #define NUMBER_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(27 * 2, 10 * 2, 24 * 2, 24 * 2) : CGRectMake(27, 10, 24, 24)) 
 
-#define AVATAR_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 33 * 2, 34 * 2) : CGRectMake(0, 0, 31, 32))
+#define AVATAR_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 34 * 2, 34 * 2) : CGRectMake(0, 0, 32, 32))
 
-#define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(16 * 2,18 * 2,16 * 2,17 * 2) : CGRectMake(16,18,16,17))
+#define MARK_VIEW_FRAME (([DeviceDetection isIPAD]) ? CGRectMake(16 * 2,18 * 2,16 * 2,18 * 2) : CGRectMake(16,18,16,18))
 
 
 #define MARK_FONT_SIZE (([DeviceDetection isIPAD]) ? 12 * 2 : 12)
@@ -186,10 +186,13 @@
 @synthesize delegate = _delegate;
 @synthesize hasPen = _hasPen;
 
+#define BORDER_WIDTH    (ISIPAD ? 3 : 2)
+
 - (void)setAsRound{
     
-    self.layer.cornerRadius = self.frame.size.width/2;
+    self.layer.cornerRadius = (self.frame.size.width) / 2.0f;
     self.layer.masksToBounds = YES;
+    self.clipsToBounds = YES;
     [bgView setImage:nil];
 }
 
@@ -233,7 +236,7 @@
         
         [self setAsRound];
         
-        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
@@ -275,7 +278,7 @@
         [self setAvatarSelected:NO level:level];
         
         [self setAsRound];
-        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     
@@ -298,7 +301,7 @@
         [self setAvatarSelected:NO level:level];
         
         [self setAsRound];
-        self.layer.borderWidth = (ISIPAD ? 4 : 2);
+        self.layer.borderWidth = BORDER_WIDTH;
         self.layer.borderColor = [COLOR_GRAY_AVATAR CGColor];
     }
     

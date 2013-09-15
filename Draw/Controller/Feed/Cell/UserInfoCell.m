@@ -30,6 +30,12 @@
     }
     UserInfoCell *cell = [topLevelObjects objectAtIndex:0];
     cell.delegate = delegate;
+    
+    cell.nickNameLabel.textColor = COLOR_BROWN;
+    cell.nickLabel.textColor = COLOR_BROWN;
+    cell.signLabel.textColor = COLOR_BROWN;
+    cell.lineView.backgroundColor = COLOR_GRAY_BG;
+    
     return cell;
 }
 
@@ -89,6 +95,7 @@
         [self.nickLabel setText:nickName];
     }
     
+    
     self.accessoryType = isAnounymous ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -96,6 +103,7 @@
     PPDebug(@"%@ dealloc",self);
     PPRelease(nickLabel);
     PPRelease(avatarView);
+    PPRelease(_lineView);
     [_nickNameLabel release];
     [_signLabel release];
     [super dealloc];

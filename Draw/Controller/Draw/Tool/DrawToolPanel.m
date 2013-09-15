@@ -681,7 +681,7 @@ if (btn) {\
 
     [label setBackgroundColor:[UIColor clearColor]];
     [label setShadowColor:[UIColor whiteColor]];
-    [label setShadowOffset:CGSizeMake(VALUE(1), VALUE(1)) blur:0 shadowColor:[UIColor whiteColor]];
+    [label setShadowOffset:CGSizeMake(VALUE(0), VALUE(1)) blur:0 shadowColor:[UIColor whiteColor]];
     return label;
 }
 

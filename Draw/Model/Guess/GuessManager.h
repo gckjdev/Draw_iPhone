@@ -12,8 +12,8 @@
 typedef enum{
     GuessStateNotStart,
     GuessStateBeing,
-    GuessStateFail,
-    GuessStateExpire
+    GuessStateExpire,
+    GuessStateFail
 }GuessState;
 
 @interface GuessManager : NSObject
@@ -31,8 +31,7 @@ typedef enum{
 + (BOOL)isContestBeing:(PBGuessContest *)contest;
 
 + (void)deductCoins:(int)mode
-          contestId:(NSString *)contestId
-              force:(BOOL)force;
+          contestId:(NSString *)contestId;
 
 + (int)getCountHappyModeAwardOnce;
 + (int)getCountGeniusModeAwardOnce;
@@ -56,14 +55,20 @@ typedef enum{
 + (int)getGuessIndexWithMode:(int)mode
                    guessList:(NSArray *)guessList;
 
+
 + (void)setGuessState:(GuessState)state
-                 mode:(int)mode;
-+ (GuessState)getGuessStateWithMode:(int)mode;
+                 mode:(int)mode
+            contestId:(NSString *)contestId;
+
++ (GuessState)getGuessStateWithMode:(int)mode
+                          contestId:(NSString *)contestId;
 
 
++ (NSString *)getGuessRulesWithModex:(int)mode;
++ (NSString *)getGuessRulesTitleWithModex:(int)mode;
 
-
-
++ (NSString *)getExpireTitleWithMode:(int)mode;
++ (NSString *)getDeductCoinsPopMessageWithMode:(int)mode;
 
 
 @end

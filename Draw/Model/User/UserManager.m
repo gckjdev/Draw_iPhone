@@ -1519,4 +1519,12 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
 }
 
+- (NSUserDefaults *)userDefaults
+{
+    if (self.userId) {
+        return [[[NSUserDefaults alloc] initWithUser:self.userId] autorelease];
+    }
+    return nil;
+}
+
 @end

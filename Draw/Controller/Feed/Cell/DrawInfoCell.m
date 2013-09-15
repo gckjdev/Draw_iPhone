@@ -99,19 +99,24 @@
         [self.drawToButton setTitle:nil forState:UIControlStateNormal];
     }
     
+    [self.drawToButton setTitleColor:COLOR_GRAY_TEXT forState:UIControlStateNormal];
+    
 }
 
 
 - (void)updateTime:(DrawFeed *)feed
 {
     NSString *timeString = dateToTimeLineString(feed.createDate);
-    [self.timeLabel setText:timeString];    
+    [self.timeLabel setText:timeString];
+    
+    self.timeLabel.textColor = COLOR_GRAY_TEXT;
 }
 
 
 - (void)updateDesc:(NSString *)desc
 {
     [self.opusDesc setText:desc];
+    self.opusDesc.textColor = COLOR_BROWN;
 }
 
 - (void)updateDrawImageView:(UIImage *)image

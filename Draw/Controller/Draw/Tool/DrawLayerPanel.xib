@@ -192,7 +192,7 @@
 				<string key="IBUIReuseIdentifier">DrawLayerPanelCell</string>
 			</object>
 			<object class="IBUITableViewCell" id="1013302695">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="165432811">
@@ -315,7 +315,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{360, 80}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="165432811"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -324,7 +323,7 @@
 				<string key="IBUIReuseIdentifier">DrawLayerPanelCell</string>
 			</object>
 			<object class="IBUIView" id="191373211">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUITableView" id="587348435">
@@ -479,7 +478,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{180, 120}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="400397398"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
