@@ -429,18 +429,35 @@
 #define BADGE_FONT (ISIPAD ? [UIFont systemFontOfSize:18] : [UIFont systemFontOfSize:10])
 #define DEFAULT_MAX_NUMBER 99
 
+
+- (void)baseInit
+{
+    self.userInteractionEnabled = NO;
+    
+    [self.titleLabel setFont:BADGE_FONT];
+    
+    [self setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self setBGImage:[[ShareImageManager defaultManager] badgeImage]];
+    [self setMaxNumber:DEFAULT_MAX_NUMBER];
+//    [self updateWidth:BadgeSize];
+//    [self updateHeight:BadgeSize];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self baseInit];
+    }
+    return self;
+}
+
 + (id)badgeViewWithNumber:(NSInteger)number
 {
     BadgeView *badge = [[[BadgeView alloc] initWithFrame:CGRectMake(0, 0, BadgeSize, BadgeSize)] autorelease];
-    badge.userInteractionEnabled = NO;
-    
-    [badge.titleLabel setFont:BADGE_FONT];
-    
-    [badge setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-    
-    [badge setBGImage:[[ShareImageManager defaultManager] badgeImage]];
-    [badge setNumber:number];
-    [badge setMaxNumber:DEFAULT_MAX_NUMBER];
+    [badge baseInit];
+    [badge setNumber:number];    
     return badge;
 }
 

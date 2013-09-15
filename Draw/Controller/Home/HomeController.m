@@ -178,9 +178,9 @@
     
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
-#ifdef DEBUG
-    [self createBtnForTest];
-#endif
+//#ifdef DEBUG
+//    [self createBtnForTest];
+//#endif
 }
 
 #ifdef DEBUG

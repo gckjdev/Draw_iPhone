@@ -7,7 +7,7 @@
 //
 
 #import "HomeCommonView.h"
-
+@class BadgeView;
 @class HomeMenuView;
 
 typedef enum{
@@ -117,7 +117,7 @@ typedef enum{
 
 
 @interface HomeMenuView : HomeCommonView
-@property (retain, nonatomic) IBOutlet UIButton *badge;
+@property (retain, nonatomic) IBOutlet BadgeView *badge;
 @property (retain, nonatomic) IBOutlet UIButton *button;
 @property (assign, nonatomic) HomeMenuType type;
 @property (retain, nonatomic) IBOutlet UILabel *title;
