@@ -12,6 +12,7 @@
 #import "ShareImageManager.h"
 #import "StatisticManager.h"
 #import "UIButton+Sound.h"
+#import "StableView.h"
 
 @implementation HomeMenuView
 @synthesize button = _button;
@@ -36,16 +37,7 @@
 
 - (void)updateBadge:(NSInteger)count
 {
-    if (count <= 0 ) {
-        self.badge.hidden = YES;
-    }else if(count > 99){
-        self.badge.hidden = NO;
-        [self.badge setTitle:@"N" forState:UIControlStateNormal];
-    }else{
-        self.badge.hidden = NO;
-        [self.badge setTitle:[NSString stringWithFormat:@"%d",count]
-                    forState:UIControlStateNormal];
-    }
+    [self.badge setNumber:count];
 }
 
 + (NSString *)titleForType:(HomeMenuType)type

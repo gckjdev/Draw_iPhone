@@ -25,6 +25,7 @@
 #import "SelfUserDetail.h"
 #import "HomeMenuView.h"
 #import "DrawImageManager.h"
+#import "DrawHomeHeaderPanel.h"
 
 
 @interface SuperHomeController ()
@@ -67,9 +68,10 @@
     view.frame = frame;
 }
 
+//牛腩河粉 猪手河粉 排骨河粉 
 - (void)addHeaderView
 {
-    self.homeHeaderPanel = [HomeHeaderPanel createView:self];
+    self.homeHeaderPanel = (isDrawApp()? [DrawHomeHeaderPanel createView:self] : [HomeHeaderPanel createView:self]);
     [self.view addSubview:self.homeHeaderPanel];
     [self updateView:self.homeHeaderPanel originY:0];
 }
