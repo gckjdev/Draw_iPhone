@@ -65,7 +65,9 @@
     
     _guessCountLabel.text = _rank.correctTimesDesc;
     _costTimeLabel.text = _rank.costTimeDesc;
+    
     _awardLabel.text = _rank.earnDesc;
+    
     
     _rankLabel.text = [NSString stringWithFormat:@"%d",rank.ranking];    
     

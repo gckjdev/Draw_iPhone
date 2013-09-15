@@ -27,5 +27,6 @@
 @end
 
 #define POSTMSG(msg)    ([[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:1.5])
+#define POSTMSG2(msg, sec)    ([[CommonMessageCenter defaultCenter] postMessageWithText:msg delayTime:sec])
 
 
