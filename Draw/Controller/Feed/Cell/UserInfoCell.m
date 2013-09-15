@@ -89,6 +89,10 @@
         [self.nickLabel setText:nickName];
     }
     
+    self.nickNameLabel.textColor = COLOR_BROWN;
+    self.nickLabel.textColor = COLOR_BROWN;
+    self.signLabel.textColor = COLOR_BROWN;
+    
     self.accessoryType = isAnounymous ? UITableViewCellAccessoryNone : UITableViewCellAccessoryDisclosureIndicator;
 }
 

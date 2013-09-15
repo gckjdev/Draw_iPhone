@@ -28,7 +28,7 @@
 
 
 
-#define COMMENT_REPLY_COLOR [UIColor lightGrayColor]
+#define COMMENT_REPLY_COLOR COLOR_GRAY_TEXT   // [UIColor lightGrayColor]
 
 + (id)createCell:(id)delegate
 {
@@ -119,7 +119,7 @@
     UIFont *nickFont = [UIFont systemFontOfSize:NICK_FONT_SIZE];
     [self.nickNameLabel setFont:nickFont];
     [self.nickNameLabel setText:author.nickName];
-    [self.nickNameLabel setTextColor:[UIColor darkGrayColor]];
+    [self.nickNameLabel setTextColor:COLOR_BROWN];
     itemImage.hidden = YES;
     commentLabel.hidden = NO;
     if (feed.feedType == ItemTypeFlower) {
@@ -136,7 +136,7 @@
     NSString *comment = [feed commentInFeedDeatil];
     UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
     [self.commentLabel setFont:font];
-//    [self.commentLabel setTextColor:COMMENT_CONTENT_COLOR];
+    [self.commentLabel setTextColor:COLOR_BROWN];
     [self.commentLabel setLineBreakMode:NSLineBreakByCharWrapping];
     if ([DeviceDetection isOS6] && [feed commentInfo] != nil && [comment length] != 0) {
         NSInteger length = [comment length];
