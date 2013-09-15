@@ -9,6 +9,7 @@
 #import "GuessManager.h"
 #import "ConfigManager.h"
 #import "AccountService.h"
+#import "UserManager.h"
 
 #define NUM_COUNT_AWARD_ONCE 10
 #define CONTEST_COUNT 20
@@ -179,17 +180,17 @@
     }
     if (mode == PBUserGuessModeGuessModeContest) {
         
-        BOOL deduct = [[NSUserDefaults standardUserDefaults] boolForKey:contestId];
+        BOOL deduct = [[[UserManager defaultManager] userDefaults] boolForKey:contestId];
         
         return deduct;
     }else if(mode == PBUserGuessModeGuessModeHappy){
         
-        BOOL deduct = [[NSUserDefaults standardUserDefaults] boolForKey:KEY_GUESS_HAPPY_DEDUCT_COINS];
+        BOOL deduct = [[[UserManager defaultManager] userDefaults] boolForKey:KEY_GUESS_HAPPY_DEDUCT_COINS];
         
         return deduct;
     }else{
         
-        BOOL deduct = [[NSUserDefaults standardUserDefaults] boolForKey:KEY_GUESS_GENIUS_DEDUCT_COINS];
+        BOOL deduct = [[[UserManager defaultManager] userDefaults] boolForKey:KEY_GUESS_GENIUS_DEDUCT_COINS];
         
         return deduct;
     }
@@ -201,36 +202,24 @@
     
     if (mode == PBUserGuessModeGuessModeContest) {
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:contestId];
+        [[[UserManager defaultManager] userDefaults] setBool:YES forKey:contestId];
         
     }else if(mode == PBUserGuessModeGuessModeHappy){
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KEY_GUESS_HAPPY_DEDUCT_COINS];
+        [[[UserManager defaultManager] userDefaults] setBool:YES forKey:KEY_GUESS_HAPPY_DEDUCT_COINS];
 
     }else{
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:KEY_GUESS_GENIUS_DEDUCT_COINS];
+        [[[UserManager defaultManager] userDefaults] setBool:YES forKey:KEY_GUESS_GENIUS_DEDUCT_COINS];
     }
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[[UserManager defaultManager] userDefaults] synchronize];
 }
 
 + (void)deductCoins:(int)mode
-          contestId:(NSString *)contestId
-              force:(BOOL)force{
-    
-    if (force) {
+          contestId:(NSString *)contestId{
         
-        [[AccountService defaultService] deductCoin:[self getDeductCoins:mode] source:[self getBalanceSourceType:mode]];
-        [self setHadAlreadDeduct:mode contestId:contestId];
-        return;
-    }
-    
-    if (![self hadAlreadDeduct:mode contestId:contestId]) {
-        
-        [[AccountService defaultService] deductCoin:[self getDeductCoins:mode] source:[self getBalanceSourceType:mode]];
-        [self setHadAlreadDeduct:mode contestId:contestId];
-    }
+    [[AccountService defaultService] deductCoin:[self getDeductCoins:mode] source:[self getBalanceSourceType:mode]];
 }
 
 + (int)getCountHappyModeAwardOnce{
@@ -273,7 +262,7 @@
 
 + (NSDate *)getLastGuessDate:(int)mode{
     NSString *key = [self getGuessDateKey:mode];
-    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    NSDate *date = [[[UserManager defaultManager] userDefaults] objectForKey:key];
     return date;
 }
 
@@ -281,14 +270,14 @@
     
     NSString *key = [self getGuessDateKey:mode];
     
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:key];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[[UserManager defaultManager] userDefaults] setObject:[NSDate date] forKey:key];
+    [[[UserManager defaultManager] userDefaults] synchronize];
 }
 
 + (NSTimeInterval)getTimeIntervalUtilExpire:(int)mode{
     
     NSString *key = [self getGuessDateKey:mode];
-    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    NSDate *date = [[[UserManager defaultManager] userDefaults] objectForKey:key];
     
     NSTimeInterval interval = 0;
     if (date != nil){
@@ -296,7 +285,7 @@
     }
     
     NSTimeInterval left = [self getGuessExpireTime:mode] * 3600 - interval;
-    
+
     return left;
 }
 
@@ -304,7 +293,7 @@
     
     NSString *key = [self getGuessDateKey:mode];
     
-    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    NSDate *date = [[[UserManager defaultManager] userDefaults] objectForKey:key];
     
     if (date == nil) {
         return NO;
@@ -406,7 +395,8 @@
     }
 }
 
-+ (NSString *)getGuessStateKeyWithMode:(int)mode{
++ (NSString *)getGuessStateKeyWithMode:(int)mode
+                             contestId:(NSString *)contestId{
     
     switch (mode) {
         case PBUserGuessModeGuessModeHappy:
@@ -418,24 +408,201 @@
             break;
             
         default:
-            return @"";
+            return [[@"KEY_CONTEST_GUESS_STATE_" stringByAppendingString:contestId] uppercaseString];
             break;
     }
 }
 
 + (void)setGuessState:(GuessState)state
-                 mode:(int)mode{
+                 mode:(int)mode
+            contestId:(NSString *)contestId{
     
-    NSString *key = [self getGuessStateKeyWithMode:mode];
-    [[NSUserDefaults standardUserDefaults] setInteger:state forKey:key];
+    NSString *key = [self getGuessStateKeyWithMode:mode contestId:contestId];
+    
+    if (state == GuessStateNotStart
+        || state == GuessStateBeing) {
+        
+        [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
+    }
+    
+    if (state == GuessStateExpire && mode != PBUserGuessModeGuessModeContest) {
+        [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
+    }
+    
+    if (state == GuessStateFail && mode == PBUserGuessModeGuessModeGenius) {
+        
+        [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
+    }
 }
 
-+ (GuessState)getGuessStateWithMode:(int)mode{
++ (GuessState)getGuessStateWithMode:(int)mode contestId:(NSString *)contestId{
     
-    NSString *key = [self getGuessStateKeyWithMode:mode];
-    NSInteger state = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+    NSString *key = [self getGuessStateKeyWithMode:mode contestId:contestId];
+    
+    NSInteger state = [[[UserManager defaultManager] userDefaults] integerForKey:key];
     return state;
 }
 
++ (NSString *)getGuessRulesWithModex:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return  [self getGuessRulesWithHappyMode];
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return  [self getGuessRulesWithGeniusMode];
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return  [self getGuessRulesWithContestMode];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
++ (NSString *)getGuessRulesWithHappyMode{
+    
+    NSString *message = [NSString stringWithFormat:NSLS(@"kHappyGuessRulesDetil"),
+                         [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],
+                         [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeHappy],
+                         [GuessManager getCountHappyModeAwardOnce],
+                         [GuessManager getGuessExpireTime:PBUserGuessModeGuessModeHappy]];
+
+    return message;
+}
+
++ (NSString *)getGuessRulesWithGeniusMode{
+    
+    NSString *message = [NSString stringWithFormat:NSLS(@"kGeniusGuessRulesDetil"),
+               [GuessManager getDeductCoins:PBUserGuessModeGuessModeGenius],
+               [GuessManager getCountGeniusModeAwardOnce],
+               [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeGenius],
+
+               [GuessManager getCountGeniusModeAwardOnce] * 2,
+               [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 2 mode:PBUserGuessModeGuessModeGenius],
+
+               [GuessManager getCountGeniusModeAwardOnce] * 3,
+               [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 3 mode:PBUserGuessModeGuessModeGenius],
+
+               [GuessManager getGuessExpireTime:PBUserGuessModeGuessModeGenius]];
+    
+    return message;
+}
+
++ (NSString *)getGuessRulesWithContestMode{
+    
+    NSString *message = [NSString stringWithFormat:NSLS(@"kContestGuessRulesDetil"),
+               [GuessManager getDeductCoins:PBUserGuessModeGuessModeContest]];
+    
+    return message;
+}
+
++ (NSString *)getGuessRulesTitleWithModex:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return  [self getGuessRulesTitleWithHappyMode];
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return  [self getGuessRulesTitleWithGeniusMode];
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return  [self getGuessRulesTitleWithContestMode];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
++ (NSString *)getGuessRulesTitleWithHappyMode{
+    
+    return NSLS(@"kHappyGuessRules");
+}
+
++ (NSString *)getGuessRulesTitleWithGeniusMode{
+    
+    return NSLS(@"kGeniusGuessRules");
+}
+
++ (NSString *)getGuessRulesTitleWithContestMode{
+    
+    return NSLS(@"kContestGuessRules");
+}
+
++ (NSString *)getExpireTitleWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return NSLS(@"kHappyModeExpireTitle");
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return NSLS(@"kGeniusModeExpireTitle");
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return NSLS(@"kContestModeExpireTitle");
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
++ (NSString *)getDeductCoinsPopMessageWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return [NSString stringWithFormat:NSLS(@"kHappyModeDeductConisMessage"), [self getDeductCoins:mode]];
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return [NSString stringWithFormat:NSLS(@"kGeniusModeDeductConisMessage"), [self getDeductCoins:mode]];
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return [NSString stringWithFormat:NSLS(@"kContestModeDeductConisMessage"), [self getDeductCoins:mode]];
+            break;
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
+
+
++ (NSString *)getExpireMessageWithMode:(int)mode{
+    
+    switch (mode) {
+        case PBUserGuessModeGuessModeHappy:
+            return [NSString stringWithFormat:NSLS(@"kHappyModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
+            break;
+            
+        case PBUserGuessModeGuessModeGenius:
+            return [NSString stringWithFormat:NSLS(@"kGeniusModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
+            break;
+            
+        case PBUserGuessModeGuessModeContest:
+            return [NSString stringWithFormat:NSLS(@"kContestModeExpireMessage"), [GuessManager getDeductCoins:mode]] ;
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end

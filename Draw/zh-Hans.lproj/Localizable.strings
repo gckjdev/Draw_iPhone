@@ -87,7 +87,6 @@
 "kRunAway" = "%@ 逃跑了!";
 "kGuessCorrect" = "猜对了!";
 "kOfflineGuessCorrect" = "猜对了!金币+%d, 经验+%d";
-"kGuessWrong" = "猜错了!";
 "kAllUserQuit" = "所有玩家都离开了,游戏结束!";
 "kConfirm" = "确定";
 
@@ -1521,6 +1520,27 @@
 
 "kGuessRulesDetail" = "欢乐模式\n规则：参加需花%d金币\n奖励：猜中%d幅作品则可以获得%d金币\n\n天才模式\n规则：参加需花%d金币\n奖励：连续猜中%d幅作品可获得%d金币，连续猜中%d幅可获得%d金币，连续猜中%d幅可获得%d金币，以此类推\n\n比赛模式\n规则：参加需花%d金币\n奖励：第1名奖金=W*50%%，第2~4名每人奖金=W*10%%，第5~10名每人奖金＝W*10%%/6，10名以后前15%%的每人奖金=W*10%%/M。其中W为当期比赛总奖金，W=70*N，其中N为参加当期比赛总人数。M为10名以后前15%%的人数";
 
+
+"kHappyModeExpireTitle" = "超时";
+"kGeniusModeExpireTitle" = "超时";
+"kContestModeExpireTitle" = "超时";
+
+"kHappyModeExpireMessage" = "你已经超时了，是否花费%d金币重新开始？";
+"kGeniusModeExpireMessage" = "你已经超时了，是否花费%d金币重新开始？";
+"kContestModeExpireMessage" = "你已经超时了，是否花费%d金币重新开始？";
+
+
+"kHappyModeDeductConisMessage" = "你花费了%d金币进入欢乐模式";
+"kGeniusModeDeductConisMessage" = "你花费了%d金币进入天才模式";
+"kContestModeDeductConisMessage" = "你花费了%d金币进入比赛模式";
+
+"kGuessGameExpire" = "对不起，你已经超时了，不能再继续猜了，你可以查看作品详情或者重新开始。";
+
+"kGeniusGuessWrongTitle" = "猜错";
+"kGeniusGuessWrongMessage" = "你已经猜错了一幅，不能再继续天才模式了，你可以查看作品详情或重新开始。";
+
+"kTimeout" = "超时";
+
 "kGuessContestBeginTip" = "今天的猜画比赛开始啦，快来参加吧！";
 "kGuessDateExpire" = "距离你上次开始猜画的时间已经超过%d小时，系统为您重新开始一局。";
 
@@ -1540,7 +1560,7 @@
 "kGuessContestModeOverTips" = "恭喜你完成比赛";
 
 //"kGuessContestModeTips" = "猜对作品:     %d幅\n当前排名:     第%d名\n预计奖金:     %d金币\n参赛人数:     %d玩家";
-"kGuessContestModeTips" = "未完成比赛";
+"kGuessContestModeTips" = "预测赛绩";
 
 "kGuessGenuisFail" = "你猜错了，不能再继续玩下去了，重新开始？";
 

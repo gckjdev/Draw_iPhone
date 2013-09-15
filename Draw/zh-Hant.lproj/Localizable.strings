@@ -87,7 +87,6 @@
 "kRunAway" = "%@ 逃跑了!";
 "kGuessCorrect" = "猜對了​​!";
 "kOfflineGuessCorrect" = "猜對了​​!金幣+%d,經驗+%d";
-"kGuessWrong" = "猜錯了!";
 "kAllUserQuit" = "所有玩家都離開了,遊戲結束!";
 "kConfirm" = "確定";
 
@@ -1528,7 +1527,7 @@
 
 "kHint" = "提示";
 "kGiveUpComment" = "是否退出評論?";
-"kGuessWrong" =  "猜错了";
+"kGuessWrong" =  "猜錯了";
 
 "kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";
 
