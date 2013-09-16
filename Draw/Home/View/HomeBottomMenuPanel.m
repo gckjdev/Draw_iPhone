@@ -118,8 +118,6 @@
         line.center = CGPointMake(x, y);
         if (isDrawApp() && !isLittleGeeAPP()) {
             line.image = imageManager.drawHomeSplitline1;
-//        }else if(isLearnDrawApp()){
-//            line.image = imageManager.learnDrawBottomSplit;
         }else if (isLittleGeeAPP()) {
             line.image = [imageManager littleGeeBottomSplit];
         }else if (isSingApp()) {
@@ -135,23 +133,17 @@
 
 - (UIImageView *)bgImageView
 {
-    return (id)[self viewWithTag:1234];
+    UIImageView *iv = (id)[self viewWithTag:1234];
+    return iv;
 }
 
 - (void)updateView
 {
-    if (isDrawApp() || isLittleGeeAPP()) {
-        [[self bgImageView] removeFromSuperview];
-    }
-    
-    /*
-    if (isLearnDrawApp()) {
-        [[self bgImageView] setImage:[[DrawImageManager defaultManager] learnDrawBottomBar]];
-    }
-     */
     
     if (isSingApp()) {
         [[self bgImageView] setImage:[[DrawImageManager defaultManager] singBottomBar]];
+    }else{
+        [[self bgImageView] setImage:[[DrawImageManager defaultManager] drawHomeBottomBarImage]];
     }
     
     //add menu views;
