@@ -29,7 +29,6 @@
     }
     if (self.title) {
         [self.title setText:title];
-        [self.title setTextColor:OPAQUE_COLOR(29, 124, 77)];
     }else{
         [self.button setTitle:title forState:UIControlStateNormal];
     }

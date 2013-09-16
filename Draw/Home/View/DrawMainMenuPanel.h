@@ -10,7 +10,7 @@
 
 typedef void (^MainAnimationHandler)(BOOL open);
 
-#define MAIN_ANIMATION_INTEVAL 1.2
+#define MAIN_ANIMATION_INTEVAL 1.0
 
 @interface DrawMainMenuPanel : HomeMainMenuPanel
 
