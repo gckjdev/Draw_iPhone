@@ -172,49 +172,6 @@
     }
 }
 
-+ (BOOL)hadAlreadDeduct:(int)mode
-              contestId:(NSString *)contestId
-{
-    if ([contestId length] == 0) {
-        return YES;
-    }
-    if (mode == PBUserGuessModeGuessModeContest) {
-        
-        BOOL deduct = [[[UserManager defaultManager] userDefaults] boolForKey:contestId];
-        
-        return deduct;
-    }else if(mode == PBUserGuessModeGuessModeHappy){
-        
-        BOOL deduct = [[[UserManager defaultManager] userDefaults] boolForKey:KEY_GUESS_HAPPY_DEDUCT_COINS];
-        
-        return deduct;
-    }else{
-        
-        BOOL deduct = [[[UserManager defaultManager] userDefaults] boolForKey:KEY_GUESS_GENIUS_DEDUCT_COINS];
-        
-        return deduct;
-    }
-    
-}
-
-+ (void)setHadAlreadDeduct:(int)mode
-                 contestId:(NSString *)contestId{
-    
-    if (mode == PBUserGuessModeGuessModeContest) {
-        
-        [[[UserManager defaultManager] userDefaults] setBool:YES forKey:contestId];
-        
-    }else if(mode == PBUserGuessModeGuessModeHappy){
-        
-        [[[UserManager defaultManager] userDefaults] setBool:YES forKey:KEY_GUESS_HAPPY_DEDUCT_COINS];
-
-    }else{
-        
-        [[[UserManager defaultManager] userDefaults] setBool:YES forKey:KEY_GUESS_GENIUS_DEDUCT_COINS];
-    }
-    
-    [[[UserManager defaultManager] userDefaults] synchronize];
-}
 
 + (void)deductCoins:(int)mode
           contestId:(NSString *)contestId{
@@ -438,7 +395,7 @@
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
     }
     
-    if (mode == PBUserGuessModeGuessModeHappy && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire || state == GuessStateFail)
+    if (mode == PBUserGuessModeGuessModeGenius && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire || state == GuessStateFail)
         ) {
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
 
@@ -446,10 +403,6 @@
 }
 
 + (GuessState)getGuessStateWithMode:(int)mode contestId:(NSString *)contestId{
-    
-    if (mode == PBUserGuessModeGuessModeContest) {
-        return GuessStateBeing;
-    }
     
     NSString *key = [self getGuessStateKeyWithMode:mode contestId:contestId];
     NSInteger state = [[[UserManager defaultManager] userDefaults] integerForKey:key];
