@@ -21,7 +21,7 @@
 {
     DrawMainMenuPanel *panel = [self createViewWithXibIdentifier:[self getViewIdentifier]];
     panel.delegate = delegate;
-    [panel updateView];
+    [panel baseInit];
     return panel;
 }
 + (NSString *)getViewIdentifier
@@ -120,6 +120,9 @@
             for (HomeMenuView *menu in self.menuList) {
                 menu.hidden = NO;
             }
+            [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
+                [(AvatarView *)view setHidden:NO];
+            }];
             EXECUTE_BLOCK(completion,YES);
         }];
     }else{
@@ -135,6 +138,10 @@
     for (HomeMenuView *menu in self.menuList) {
         menu.hidden = (menu.type != type);
     }
+    [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
+        [(AvatarView *)view setHidden:YES];
+    }];
+    
     HomeMenuView *menu = [self getMenuViewWithType:type];
     CGPoint center = [self centerInPage:[self currentPage]];
     CGPoint stopPoint = CGPointMake(center.x, CGRectGetHeight(self.scrollView.bounds)-CGRectGetHeight(menu.bounds)/2);
@@ -157,18 +164,21 @@
 }
 
 
-#define AVATAR_SIZE CGSizeMake(70,70)
+#define AVATAR_SIZE CGSizeMake(67,67)
+#define DEFAULT_AVATAR_SIZE CGSizeMake(76,92)
+
 - (void)addAvatarInPage:(NSInteger)page
 {
     UserManager *me = [UserManager defaultManager];
-    AvatarView *av = [[AvatarView alloc] initWithUrlString:[me avatarURL] frame:CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height) gender:[me gender] level:[me level]];
+    AvatarView *av = [[AvatarView alloc] initWithUrlString:nil frame:CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height) gender:[me gender] level:[me level]];
     [self.scrollView addSubview:av];
+    av.delegate = self;
     [av release];
     av.center = [self centerInPage:page];
     [self.scrollView sendSubviewToBack:av];
 }
 
-- (void)updateView
+- (void)baseInit
 {
     self.menuList = [NSMutableArray array];
     HomeMenuType *types = getMainMenuTypeList();
@@ -197,7 +207,38 @@
         [self addAvatarInPage:page];
         page++;
     }
+    [self updateAvatar];
     [self.scrollView bringSubviewToFront:[self getMenuViewWithType:HomeMenuTypeDrawDraw]];
+}
+
+- (void)updateView
+{
+    [self updateAvatar];
+}
+
+- (void)updateAvatar
+{
+    UserManager *me = [UserManager defaultManager];
+    __block NSInteger index = 0;
+    [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
+        AvatarView *av = view;
+        if (([me.avatarURL length] != 0 || me.avatarImage)) {
+            [av setAsRound];
+            av.layer.borderColor = [COLOR_WHITE CGColor];
+            av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
+            if (me.avatarImage) {
+                [av setImage:me.avatarImage];
+            }else{
+                [av setAvatarUrl:me.avatarURL gender:me.gender];
+            }
+        }else{
+            [av setImage:[[ShareImageManager defaultManager] homeDefaultAvatar]];
+            av.layer.borderWidth = 0;
+            av.frame = CGRectMake(0, 0, DEFAULT_AVATAR_SIZE.width, DEFAULT_AVATAR_SIZE.height);
+            [av setAsSquare];
+        }
+         av.center = [self centerInPage:index++];
+    }];
 }
 
 - (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge
@@ -213,5 +254,14 @@
     return [super getMenuViewWithType:type];
 }
 
-
+- (void)didClickOnAvatar:(NSString *)userId
+{
+    __block AvatarView * avatar = nil;
+    [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
+        avatar = view;
+    }];
+    if ([self.delegate respondsToSelector:@selector(homeMainMenuPanel:didClickAvatarView:)]) {
+        [self.delegate homeMainMenuPanel:self didClickAvatarView:avatar];
+    }
+}
 @end

@@ -38,9 +38,7 @@
 {
     DrawHomeHeaderPanel *panel = [self createViewWithXibIdentifier:[self getViewIdentifier]];
     panel.delegate = delegate;
-    panel.indexDict = [NSMutableDictionary
-                       dictionary];
-    [panel updateView];
+    [panel baseInit];
     return panel;
 }
 + (NSString *)getViewIdentifier
@@ -82,8 +80,11 @@
         [self reloadView];
     }
 }
-- (void)updateView
+
+- (void)baseInit
 {
+    self.indexDict = [NSMutableDictionary
+                       dictionary];    
     [self.rope.imageView setContentMode:UIViewContentModeBottom];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -91,6 +92,12 @@
     [self updateFrameForClose];
     self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
     [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:18 delegate:self];
+    [self updateView];
+}
+
+- (void)updateView
+{
+    
 }
 
 
@@ -114,7 +121,10 @@
         [self reloadView];
         if (NULL != completion) {
             completion(finished);
-        }        
+        }
+        [self.superview addSubview:self.rope];
+        self.rope.hidden = NO;
+        [self.rope updateOriginY:CGRectGetMaxY(self.frame)];
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
@@ -137,6 +147,10 @@
         if (NULL != completion) {
             completion(finished);
         }
+        [self addSubview:self.rope];
+        self.rope.hidden = NO;
+        [self.rope updateOriginY:0];
+        
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
@@ -248,12 +262,14 @@
 
 - (IBAction)clickRope:(id)sender {
 
+    self.rope.hidden = YES;
     if (self.status == DrawHeaderPanelStatusClose) {
         EXECUTE_BLOCK(self.clickRopeHandler, YES);
     }else if(self.status == DrawHeaderPanelStatusOpen){
         EXECUTE_BLOCK(self.clickRopeHandler, NO);
     }else{
         PPDebug(@"is animating!!!");
+        self.rope.hidden = NO;
     }
 
 }

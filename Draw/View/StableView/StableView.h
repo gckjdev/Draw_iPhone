@@ -74,6 +74,7 @@ typedef enum {
 - (void)setAvatarSelected:(BOOL)selected;
 - (void)setAvatarSelected:(BOOL)selected level:(int)level;
 - (void)setAsSquare;
+- (void)setAsRound;
 
 @property(nonatomic, assign) NSInteger score;
 @property(nonatomic, assign) BOOL gender;
