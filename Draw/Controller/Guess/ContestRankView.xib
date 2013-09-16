@@ -95,7 +95,7 @@
 					<object class="IBUILabel" id="999895757">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{48, 16}, {75, 21}}</string>
+						<string key="NSFrame">{{48, 16}, {95, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="650507138"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -126,7 +126,7 @@
 					<object class="IBUILabel" id="521356824">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{48, 55}, {75, 21}}</string>
+						<string key="NSFrame">{{48, 55}, {95, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="589416301"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -146,7 +146,7 @@
 					<object class="IBUILabel" id="9656138">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{48.5, 90}, {75, 21}}</string>
+						<string key="NSFrame">{{48, 90}, {95, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="1021628683"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -166,9 +166,8 @@
 					<object class="IBUILabel" id="488962148">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{48.5, 125}, {75, 21}}</string>
+						<string key="NSFrame">{{48, 125}, {95, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -184,7 +183,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{135, 158}</string>
+				<string key="NSFrameSize">{154, 158}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="733876420"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
