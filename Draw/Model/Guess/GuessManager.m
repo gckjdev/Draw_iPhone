@@ -438,7 +438,7 @@
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
     }
     
-    if (mode == PBUserGuessModeGuessModeHappy && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire || state == GuessStateFail)
+    if (mode == PBUserGuessModeGuessModeGenius && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire || state == GuessStateFail)
         ) {
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
 
