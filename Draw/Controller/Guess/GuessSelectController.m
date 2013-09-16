@@ -653,20 +653,26 @@
 
 - (void)showTipInContestMode:(PBGuessRank *)rank{
     
-    ContestRankView *v = [ContestRankView createViewWithRank:rank];
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeTips") customView:v style:CommonDialogStyleSingleButton];
-    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-    [dialog showInView:self.view];
+    
+    ContestRankView *v = [ContestRankView createViewWithTitle:NSLS(@"kGuessContestModeTips") rank:rank];
+    
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeTips") customView:v style:CommonDialogStyleSingleButton];
+//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+//    [dialog showInView:self.view];
+    
+    POSTVIEW(v, 3);
 }
 
 - (void)showTipInContestModeWhenContestOver:(PBGuessRank *)rank{
     
-    ContestRankView *v = [ContestRankView createViewWithRank:rank];
+    ContestRankView *v = [ContestRankView createViewWithTitle:NSLS(@"kGuessContestModeOverTips") rank:rank];
+
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeOverTips") customView:v style:CommonDialogStyleSingleButton];
+//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+//    [dialog showInView:self.view];
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeOverTips") customView:v style:CommonDialogStyleSingleButton];
-    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-    [dialog showInView:self.view];
+    POSTVIEW(v, 3);
 }
 
 - (void)refreshData{

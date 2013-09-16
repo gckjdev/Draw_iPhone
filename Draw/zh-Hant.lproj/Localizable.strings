@@ -1516,20 +1516,22 @@
 //"kGuessHappyModeAwardTips" = "\n猜中：%d幅作品\n\n獎勵你%d金幣，是否還想繼續歡樂模式？";
 //"kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d幅作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
 
-"kAward" = "闯关金币奖励";
-"kGuessHappyModeAwardTips" = "\n猜中：%d幅作品\n\n奖励：%d金币\n\n";
-"kGuessGenuisModeAwardTips" = "\n猜中：%d幅作品\n\n奖励：%d金币\n级别：%@\n可选择分享得瑟一下，或者继续闯关\n\n";
-"kShareGuessTitle" = "根据大数据云计算显示，本人毫无间断，一次性猜对了%d幅画，现在获赠【%@】称号，好玩好玩 ";
-"kGoShare" = "微博/微信分享";
+"kGoOn" = "繼續";
+"kAward" = "闖關成功";
+"kGuessHappyModeAwardTips" = "\n猜中：%d 幅作品\n\n獎勵：%d 金幣\n\n";
+"kGuessGenuisModeAwardTips" = "\n猜中：%d 幅作品\n\n獎勵：%d 金幣\n\n級別：%@\n\n可選擇分享到微博或微信朋友圈得瑟一下，或者繼續闖關\n\n";
+"kShareGuessTitle" = "據某知名挨踢企業的大數據云計算系統顯示，本人在24小時內不間斷一次性連續猜對了%d幅畫，獲贈【%@】稱號，好玩好玩";
+"kGoShare" = "分享";
 
-"kGuessHappyModeTips" = "你已經猜對了%d幅作品，還要再猜%d幅作品就可以獲得%d獎勵!";
-"kGuessGenuisModeTips" = "你已經連續猜對了%d幅作品，還要再猜%d幅作品就可以獲得%d獎勵!";
+"kGuessHappyModeTips" = "已猜對 %d 幅作品，再猜 %d 幅作品，可獲得 %d 金幣獎勵";
+"kGuessGenuisModeTips" = "已猜對 %d 幅作品，再猜 %d 幅作品，可獲得 %d 金幣獎勵";
+
 "kGuessGenuisFail" = "你猜錯了，不能再繼續玩下去了，重新開始？";
 //"kGuessContestModeOverTips" = "恭喜你完成比賽啦，目前有%d位玩家參加比賽，你目前的排名是第%d名，預計可獲得%d金幣獎勵";
 "kGuessContestModeOverTips" = "恭喜你完成比賽";
 
 //"kGuessContestModeTips" = "猜對作品:     %d幅\n當前排名:     第%d名\n預計獎金:     %d金幣\n參賽人數:     %d玩家";
-"kGuessContestModeTips" = "未完成比赛";
+"kGuessContestModeTips" = "排名和獎金預測";
 
 "kHint" = "提示";
 "kGiveUpComment" = "是否退出評論?";

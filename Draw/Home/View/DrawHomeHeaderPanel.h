@@ -15,7 +15,7 @@ typedef enum{
 }DrawHeaderPanelStatus;
 
 typedef void (^HeaderAnimationHandler)(BOOL open);
-#define HEADER_ANIMATION_INTEVAL 1.2
+#define HEADER_ANIMATION_INTEVAL 1.0
 
 @interface DrawHomeHeaderPanel : HomeHeaderPanel<UITableViewDataSource, UITableViewDelegate>
 {

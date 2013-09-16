@@ -20,7 +20,7 @@
                  menuType:(HomeMenuType)type;
 @end
 
-#define BOTTOM_ANIMATION_INTERVAL 1.2
+#define BOTTOM_ANIMATION_INTERVAL 1.0
 
 @interface HomeBottomMenuPanel : HomeCommonView<HomeCommonViewProtocol, HomeMenuViewDelegate>
 {

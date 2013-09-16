@@ -14,7 +14,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *correctCountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *costTimeLabel;
 @property (retain, nonatomic) IBOutlet UILabel *awardCoinsLabel;
+@property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 
-+ (id)createViewWithRank:(PBGuessRank *)rank;
-
++ (id)createViewWithTitle:(NSString *)title
+                     rank:(PBGuessRank *)rank;
 @end
