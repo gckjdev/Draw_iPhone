@@ -187,6 +187,11 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage strectchableImageName:@"draw_home_displaybg@2x"];
 }
 
+- (UIImage *)drawHomeBottomBarImage
+{
+    return [UIImage imageNamed:@"draw_home_bottom_bg@2x.png"];
+}
+
 - (UIImage *)zjhHomeHelp{
     NSString *imageName = [self fixImageName:@"zjh_home_help"];
     return [UIImage imageNamed:imageName];

@@ -135,6 +135,7 @@ typedef enum{
                           delegate:(id<HomeCommonViewDelegate>)delegate;
 + (NSString *)titleForType:(HomeMenuType)type;
 
+- (void)toBeTitleUpStyle;
 @end
 
 
