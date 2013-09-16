@@ -39,7 +39,7 @@
 					<object class="IBUIButton" id="567641748">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrameSize">{107, 107}</string>
+						<string key="NSFrame">{{5, 3}, {100, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="44812457"/>
@@ -51,6 +51,10 @@
 						<double key="IBUITitleEdgeInsets.bottom">-60</double>
 						<double key="IBUITitleEdgeInsets.left">0.0</double>
 						<double key="IBUITitleEdgeInsets.right">0.0</double>
+						<double key="IBUIImageEdgeInsets.top">15</double>
+						<double key="IBUIImageEdgeInsets.bottom">15</double>
+						<double key="IBUIImageEdgeInsets.left">15</double>
+						<double key="IBUIImageEdgeInsets.right">15</double>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="1002063548">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -80,7 +84,7 @@
 					<object class="IBUIButton" id="44812457">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">297</int>
-						<string key="NSFrame">{{74, 5}, {28, 28}}</string>
+						<string key="NSFrame">{{73, 16}, {28, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="37508010"/>
@@ -119,7 +123,7 @@
 					<object class="IBUILabel" id="37508010">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{0, 75}, {107, 21}}</string>
+						<string key="NSFrame">{{0, 82}, {107, 25}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -133,10 +137,7 @@
 						<int key="IBUIContentMode">7</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Label</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4yMzkyMTU2ODYzIDAuMTY4NjI3NDUxIDAuMDkwMTk2MDc4NDMAA</bytes>
-						</object>
+						<reference key="IBUITextColor" ref="1002063548"/>
 						<nil key="IBUIHighlightedColor"/>
 						<object class="NSColor" key="IBUIShadowColor">
 							<int key="NSColorSpace">3</int>
