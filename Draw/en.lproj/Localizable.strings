@@ -1577,7 +1577,7 @@
 
 //"kGuessContestModeTips" = "You have guessed %d opues, your ranking is %d and you maybe get %d coins award, now there are %d player join this contest";
 "kGuessContestModeTips" = "Ranking Predict";
-
+"kGuessContestModeTipsMessage" = "Ranking： %d\nPass：%d\nTotal time：%d";
 
 "kGuessGenuisFail" = "you guess wrong, can not continue in genius mode, will you restart";
 

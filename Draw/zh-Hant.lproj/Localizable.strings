@@ -1532,6 +1532,7 @@
 
 //"kGuessContestModeTips" = "猜對作品:     %d幅\n當前排名:     第%d名\n預計獎金:     %d金幣\n參賽人數:     %d玩家";
 "kGuessContestModeTips" = "排名和獎金預測";
+"kGuessContestModeTipsMessage" = "當前排名：第 %d 名\n猜中作品：%d 幅\n總耗時：%d 秒";
 
 "kHint" = "提示";
 "kGiveUpComment" = "是否退出評論?";
@@ -1567,10 +1568,10 @@
 "kContestIsOver" = "今天的比賽已經結束啦！請明天同一時間再來參加比賽吧。";
 
 
-"kContestRanking" = "第%d名";
-"kContestGuessCorrect" = "猜中%d幅";
-"kContestSpendTime" = "耗時%d秒";
-"kContestEarn" = "獎勵%d金幣";
+"kContestRanking" = "第 %d 名";
+"kContestGuessCorrect" = "猜中 %d 幅";
+"kContestSpendTime" = "耗時 %d 秒";
+"kContestEarn" = "獎勵 %d 金幣";
 
 "kNoRank" = "暫無排行記錄";
 
