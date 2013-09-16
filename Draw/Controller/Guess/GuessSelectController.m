@@ -595,7 +595,7 @@
     [dialog showInView:self.view];
 }
 
-- (void)clickShareAction:(int)passCount
+- (void)clickShareAction:(int)passCount view:(UIView*)view
 {
     
     PPDebug(@"clickShareAction");
@@ -606,7 +606,10 @@
     
     NSString* string = [ConfigManager guessContestShareTitleText];
     NSString* shareText = [NSString stringWithFormat:string, passCount, [GuessService geniusTitle:passCount]];
-    [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxTimeline)] shareText:shareText viewController:self onView:self.view];
+    [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxTimeline)]
+                      shareText:shareText viewController:self
+                         onView:[CommonTitleView titleView:self.view]
+          allowClickMaskDismiss:NO];
 }
 
 - (void)awardInGeniusMode:(int)passCount
@@ -621,7 +624,7 @@
     [dialog.cancelButton setTitle:NSLS(@"kGoShare") forState:UIControlStateNormal];
     
     [dialog setClickCancelBlock:^(NSString *inputStr){
-        [self clickShareAction:passCount];
+        [self clickShareAction:passCount view:dialog];
     }];
     
     [dialog showInView:self.view];

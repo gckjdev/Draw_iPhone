@@ -177,7 +177,20 @@
     }
 }
 
-- (void)popActionTags:(NSArray *)actionTags shareText:(NSString *)shareText viewController:(PPViewController *)viewController onView:(UIView *)onView{
+- (void)popActionTags:(NSArray *)actionTags
+            shareText:(NSString *)shareText
+       viewController:(PPViewController *)viewController
+               onView:(UIView *)onView
+{    
+    [self popActionTags:actionTags shareText:shareText viewController:viewController onView:onView allowClickMaskDismiss:YES];
+}
+
+- (void)popActionTags:(NSArray *)actionTags
+            shareText:(NSString *)shareText
+       viewController:(PPViewController *)viewController
+               onView:(UIView *)onView
+allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
+{
     
     self.actionTags = actionTags;
     self.superViewController = viewController;
@@ -201,7 +214,7 @@
         [bself handleWithShareActionTag:tag];
     }];
     
-    [_popTableView showInView:viewController.view atView:onView animated:YES];
+    [_popTableView showInView:viewController.view atView:onView animated:YES allowClickMaskDismiss:allowClickMaskDismiss];
 }
 
 - (void)reportActionToServer:(NSString*)actionName
