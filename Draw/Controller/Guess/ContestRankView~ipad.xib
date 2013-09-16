@@ -190,10 +190,10 @@
 						<reference key="IBUIFont" ref="1029581391"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUILabel" id="953098613">
+					<object class="IBUILabel" id="265230653">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{39, 3}, {256, 50}}</string>
+						<string key="NSFrame">{{0, 3}, {335, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -267,7 +267,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">titleLabel</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="953098613"/>
+						<reference key="destination" ref="265230653"/>
 					</object>
 					<int key="connectionID">20</int>
 				</object>
@@ -292,7 +292,7 @@
 							<reference ref="521356824"/>
 							<reference ref="9656138"/>
 							<reference ref="488962148"/>
-							<reference ref="953098613"/>
+							<reference ref="265230653"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -350,7 +350,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
-						<reference key="object" ref="953098613"/>
+						<reference key="object" ref="265230653"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -383,12 +383,27 @@
 					<string key="className">ContestRankView</string>
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="awardCoinsLabel">UILabel</string>
 						<string key="correctCountLabel">UILabel</string>
+						<string key="costTimeLabel">UILabel</string>
+						<string key="rankLabel">UILabel</string>
 						<string key="titleLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="awardCoinsLabel">
+							<string key="name">awardCoinsLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="correctCountLabel">
 							<string key="name">correctCountLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="costTimeLabel">
+							<string key="name">costTimeLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="rankLabel">
+							<string key="name">rankLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="titleLabel">

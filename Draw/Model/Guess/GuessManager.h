@@ -71,4 +71,8 @@ typedef enum{
 + (NSString *)getDeductCoinsPopMessageWithMode:(int)mode;
 
 
++ (void)saveGeniusGuessIndex:(int)index;
++ (int)getGeniusGuessIndex;
+
 @end
+

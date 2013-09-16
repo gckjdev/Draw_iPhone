@@ -32,7 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(ContestRankView);
     v.correctCountLabel.textColor = COLOR_BROWN;
     v.costTimeLabel.textColor = COLOR_BROWN;
     v.awardCoinsLabel.textColor = COLOR_BROWN;
-    v.titleLabel.textColor = COLOR_BROWN;
+    v.titleLabel.textColor = COLOR_GREEN;
     
     v.rankLabel.text = [NSString stringWithFormat:NSLS(@"kContestRanking"), rank.ranking];
     v.correctCountLabel.text = [NSString stringWithFormat:NSLS(@"kContestGuessCorrect"), rank.pass];
