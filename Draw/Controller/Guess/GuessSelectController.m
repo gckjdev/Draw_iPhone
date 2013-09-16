@@ -27,13 +27,12 @@
 @interface GuessSelectController (){
     PBUserGuessMode _mode;
     int _countDown;
-    int _guessIndex;  // 表示当前合法的猜的关卡，仅对天才模式有用，因为天才模式需要一关关闯关，对于其他两种模式，这个值为-1。当这个值为-1时，表示当前合法的猜的关卡是任意的。
-
+    BOOL _firstLoad;
 }
 @property (retain, nonatomic) NSMutableDictionary *guessInfoDic;    // 每幅作品是否被猜过的信息。
 
 @property (retain, nonatomic) PBGuessContest *contest;
-
+@property (assign, nonatomic) int guessIndex;  // 表示当前合法的猜的关卡，仅对天才模式有用，因为天才模式需要一关关闯关，对于其他两种模式，这个值为-1。当这个值为-1时，表示当前合法的猜的关卡是任意的。
 @end
 
 @implementation GuessSelectController
@@ -55,7 +54,7 @@
         self.contest = contest;
         
         self.guessInfoDic = [NSMutableDictionary dictionary];
-
+        _firstLoad = YES;
     }
     
     return self;
@@ -174,7 +173,19 @@
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
     
-    [self loadData:self.currentTab.offset limit:LIMIT startNew:NO];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    
+    if(_firstLoad && _mode == PBUserGuessModeGuessModeGenius){
+        int guessIndex = [GuessManager getGeniusGuessIndex];
+        int limit = (guessIndex / OPUS_COUNT_PER_TIME + 1) * OPUS_COUNT_PER_TIME;
+        tab.limit = limit;
+        [self loadData:self.currentTab.offset limit:limit startNew:NO];
+
+    }else{
+        tab.limit = LIMIT;
+        [self loadData:self.currentTab.offset limit:LIMIT startNew:NO];
+    }
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -292,12 +303,31 @@
 
     if (resultCode == 0) {
         
+
         [self finishLoadDataForTabID:TABID resultList:opuses];
         [self updateGuessInfo];
-        _guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
+        self.guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
+        
+        if(_firstLoad && _mode == PBUserGuessModeGuessModeGenius){
+            _firstLoad = NO;
+            NSInteger row = [self tableView:self.dataTableView numberOfRowsInSection:0];
+            if (row!=0) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:(row-1) inSection:0];
+                [self.dataTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            }
+        }
         
     }else{
        POSTMSG2(NSLS(@"kLoadFailed"), 3);
+    }
+}
+
+- (void)setGuessIndex:(int)guessIndex{
+    
+    _guessIndex = guessIndex;
+    
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        [GuessManager saveGeniusGuessIndex:_guessIndex];
     }
 }
 
@@ -449,6 +479,8 @@
     }
 }
 
+
+
 - (void)gotoOpusGuessControllerWithIndex:(int)index{
     
     PBOpus *pbOpus = [self.currentTab.dataList objectAtIndex:index];
@@ -472,7 +504,7 @@
 
 - (void)didGuessCorrect:(Opus *)opus index:(int)index{
     
-    _guessIndex ++;
+    self.guessIndex ++;
     
     [self setIndexAsGuessed:index];
     int count = [self getGuessedCount];
