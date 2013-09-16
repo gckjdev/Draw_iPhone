@@ -18,6 +18,8 @@ typedef enum{
 
 @interface GuessManager : NSObject
 
++ (NSDate *)getContestBeginTime;
+
 + (int)passCount:(NSArray *)opuses;
 //+ (int)guessIndex:(NSArray *)opuses;
 

@@ -30,6 +30,13 @@
     [super dealloc];
 }
 
++ (NSDate *)getContestBeginTime{
+    
+    NSString *today = dateToStringByFormat([NSDate date], @"yyyyMMdd");// yyyyMMddHHmmss
+    NSString *beginTime = [today stringByAppendingString:[ConfigManager getContestBeginTimeString]];
+    NSDate *date = dateFromStringByFormat(@"yyyyMMddHHmmss", beginTime);
+    return date;
+}
 
 + (int)passCount:(NSArray *)opuses{
 

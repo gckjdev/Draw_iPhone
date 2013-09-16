@@ -85,6 +85,7 @@
 #import "LocalNotificationUtil.h"
 #import "TimeUtils.h"
 #import "BackgroundMusicPlayer.h"
+#import "GuessManager.h"
 
 
 NSString* GlobalGetServerURL()
@@ -387,10 +388,7 @@ NSString* GlobalGetBoardServerURL()
 
 - (void)scheduleLocalNotificationForGuessContest{
     
-    NSString *today = dateToStringByFormat([NSDate date], @"yyyyMMdd");// yyyyMMddHHmmss
-    NSString *beginTime = [today stringByAppendingString:[ConfigManager getContestBeginTimeString]];
-    NSDate *date = dateFromStringByFormat(@"yyyyMMddHHmmss", beginTime);
-    
+    NSDate *date = [GuessManager getContestBeginTime];
     [LocalNotificationUtil scheduleLocalNotificationWithFireDate:date alertBody:NSLS(@"kGuessContestBeginTip") repeatInterval:kCFCalendarUnitDay userInfo:@{
      }];
 }
