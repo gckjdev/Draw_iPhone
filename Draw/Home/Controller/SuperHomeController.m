@@ -68,7 +68,6 @@
     view.frame = frame;
 }
 
-//牛腩河粉 猪手河粉 排骨河粉 
 - (void)addHeaderView
 {
     self.homeHeaderPanel = [DrawHomeHeaderPanel createView:self];
@@ -139,7 +138,7 @@
 {
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
-    [self.homeHeaderPanel updateView];
+//    [self.homeHeaderPanel updateView];
     [[UserService defaultService] getStatistic:self];
     
     [self registerJoinGameResponseNotification];
