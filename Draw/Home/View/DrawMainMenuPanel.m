@@ -59,7 +59,7 @@
 {
     CGPoint center = self.scrollView.center;
     center.x += page * (CGRectGetWidth(self.scrollView.bounds));
-//    center.y += 15;
+    center.y -= 38/2;
     return center;
 }
 
@@ -162,6 +162,9 @@
         PPDebug(@"type = %d",type);
         HomeMenuView *menu = [HomeMenuView menuViewWithType:type badge:0 delegate:self];
         [self.menuList addObject:menu];
+        if (type == HomeMenuTypeDrawDraw) {
+            [menu toBeTitleUpStyle];
+        }
     }
     NSInteger pageNumber = [self.menuList count]/NUMBER_PER_PAGE ;
     if (0 != ([self.menuList count] % NUMBER_PER_PAGE)) {

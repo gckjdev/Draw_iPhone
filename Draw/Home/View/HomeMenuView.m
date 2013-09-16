@@ -29,6 +29,7 @@
     }
     if (self.title) {
         [self.title setText:title];
+        [self.title setTextColor:OPAQUE_COLOR(29, 124, 77)];
     }else{
         [self.button setTitle:title forState:UIControlStateNormal];
     }
@@ -38,6 +39,11 @@
 - (void)updateBadge:(NSInteger)count
 {
     [self.badge setNumber:count];
+}
+
+- (void)toBeTitleUpStyle
+{
+    [self.title updateOriginY:0];
 }
 
 + (NSString *)titleForType:(HomeMenuType)type
@@ -374,6 +380,7 @@
 
 - (void)updateView
 {
+    return;
     if ([DeviceDetection isIPhone5] && [self isHomeMainMenu]) {
         CGFloat y = self.center.y - CENTER_DISTANCE_Y;
         self.badge.center = CGPointMake(self.badge.center.x, y);
@@ -382,12 +389,7 @@
 
 + (id)createView:(id<HomeCommonViewDelegate>)delegate identifier:(NSString *)identifier
 {
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find view object from Nib", identifier);
-        return nil;
-    }
-    HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
+    HomeCommonView<HomeCommonViewProtocol> *view = [self createViewWithXibIdentifier:identifier];
     view.delegate = delegate;
     
     return view;

@@ -97,6 +97,7 @@
 
     
     GuessState state = [GuessManager getGuessStateWithMode:_mode contestId:_contest.contestId];
+    
     if (state == GuessStateBeing) {
         [self startCountDown];
     }else if (state == GuessStateExpire) {
@@ -104,7 +105,7 @@
     }else if (state == GuessStateFail) {
         self.countDownLabel.text = NSLS(@"kContestPassed");
     }else{
-        self.countDownLabel.text = NSLS(@"kNotStart");
+        self.countDownLabel.hidden = YES;
     }
 }
 
@@ -116,9 +117,7 @@
     if (_countDown > 0) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateCountDownInfo) userInfo:nil repeats:YES];
     }else{
-        [self stopCountDown];
-        [GuessManager setGuessState:GuessStateExpire mode:_mode contestId:_contest.contestId];
-        self.countDownLabel.text = NSLS(@"kTimeout");
+        [self changeGuessState:GuessStateExpire];
     }
 }
 
@@ -133,9 +132,7 @@
     _countDown --;
     
     if (_countDown <= 0) {
-        [self stopCountDown];
-        [GuessManager setGuessState:GuessStateExpire mode:_mode contestId:_contest.contestId];
-        self.countDownLabel.text = NSLS(@"kTimeout");
+        [self changeGuessState:GuessStateExpire];
         return;
     }
     
@@ -208,7 +205,8 @@
     [cell setIndexPath:indexPath];
     
     
-    if ([GuessManager getGuessStateWithMode:_mode contestId:_contest.contestId] == GuessStateBeing) {
+    if ([GuessManager getGuessStateWithMode:_mode contestId:_contest.contestId] == GuessStateBeing
+        || [GuessManager getGuessStateWithMode:_mode contestId:_contest.contestId] == GuessStateNotStart) {
         if (_mode == PBUserGuessModeGuessModeGenius) {
             [cell setCurrentGuessIndex:_guessIndex];
         }else{
@@ -324,8 +322,7 @@
 
 - (void)startNew{
     
-    [GuessManager setGuessState:GuessStateNotStart mode:_mode contestId:_contest.contestId];
-    self.countDownLabel.text = NSLS(@"kNotStart");
+    [self changeGuessState:GuessStateNotStart];
     
     self.currentTab.offset = 0;
     [self loadData:self.currentTab.offset limit:LIMIT startNew:YES];
@@ -391,13 +388,9 @@
     [dialog.oKButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
     
     [dialog setClickOkBlock:^(id infoView){
-       
-        [GuessManager setGuessState:GuessStateBeing mode:_mode contestId:_contest.contestId];
-        [GuessManager setLastGuessDateDate:_mode];
-        [GuessManager deductCoins:_mode contestId:_contest.contestId];
-        POSTMSG2([GuessManager getDeductCoinsPopMessageWithMode:_mode], 3);
-        [self startCountDown];
         
+        [self changeGuessState:GuessStateBeing];
+        POSTMSG2([GuessManager getDeductCoinsPopMessageWithMode:_mode], 3);
         [self gotoOpusGuessControllerWithIndex:index];
     }];
     
@@ -495,13 +488,45 @@
 
 - (void)didGuessWrong:(Opus *)opus index:(int)index{
     
-    [GuessManager setGuessState:GuessStateFail mode:_mode contestId:_contest.contestId];
-    [self stopCountDown];
-    self.countDownLabel.text = NSLS(@"kContestPassed");
+    [self changeGuessState:GuessStateFail];
     POSTMSG2(NSLS(@"kGuessWrong"), 3);
 }
 
+- (void)changeGuessState:(GuessState)state{
+    
+    [GuessManager setGuessState:state mode:_mode contestId:_contest.contestId];
 
+    switch (state) {
+        case GuessStateNotStart:
+            [self stopCountDown];
+            self.countDownLabel.hidden = YES;
+            
+            break;
+            
+        case GuessStateBeing:
+            self.countDownLabel.hidden = NO;
+            [GuessManager setLastGuessDateDate:_mode];
+            [GuessManager deductCoins:_mode contestId:_contest.contestId];
+            [self startCountDown];
+            
+            break;
+            
+        case GuessStateExpire:
+            [self stopCountDown];
+            self.countDownLabel.hidden = NO;
+            self.countDownLabel.text = NSLS(@"kTimeout");
+            
+        case GuessStateFail:
+            [self stopCountDown];
+            self.countDownLabel.hidden = NO;
+            self.countDownLabel.text = NSLS(@"kContestPassed");
+            
+        default:
+            break;
+    }
+    
+
+}
 
 - (void)awardWithCount:(int)count{
     

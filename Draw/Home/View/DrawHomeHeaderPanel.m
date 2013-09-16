@@ -9,11 +9,13 @@
 #import "DrawHomeHeaderPanel.h"
 #import "UIButton+WebCache.h"
 #import "ShowFeedController.h"
+#import "UseItemScene.h"
 
 @interface DrawHomeHeaderPanel()
 {
     
 }
+@property(nonatomic, retain)NSMutableDictionary *indexDict;
 
 @end
 
@@ -36,6 +38,8 @@
 {
     DrawHomeHeaderPanel *panel = [self createViewWithXibIdentifier:[self getViewIdentifier]];
     panel.delegate = delegate;
+    panel.indexDict = [NSMutableDictionary
+                       dictionary];
     [panel updateView];
     return panel;
 }
@@ -60,6 +64,8 @@
 
 - (void)reloadView
 {
+    [self.tableView reloadData];
+    return;
     if (self.status == DrawHeaderPanelStatusClose) {
         [self.tableView reloadData];
     }else if(self.status == DrawHeaderPanelStatusOpen){
@@ -89,14 +95,14 @@
 
 - (void)updateFrameForOpen
 {
-    self.frame = CGRectMake(0, 0, 320, 125+3*CELL_HEIGHT);
-    self.holderView.frame = CGRectMake(5, 0, 310, 120+(3*CELL_HEIGHT));
+    self.frame = CGRectMake(0, 0, 320, 100+3*CELL_HEIGHT);
+    self.holderView.frame = CGRectMake(5, 0, 310, 98+(3*CELL_HEIGHT));
 }
 
 - (void)updateFrameForClose
 {
-    self.frame = CGRectMake(0, 0, 320, 105);
-    self.holderView.frame = CGRectMake(35, 0, 250, 100);
+    self.frame = CGRectMake(0, 0, 320, 100);
+    self.holderView.frame = CGRectMake(35, 0, 250, 98);
 }
 
 - (void)openAnimated:(BOOL)animated
@@ -111,7 +117,7 @@
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
-
+        [self reloadView];
         void (^animation)(void)  = ^{
             [self updateFrameForOpen];
         };
@@ -150,8 +156,7 @@
     [_rope release];
     [_holderView release];
     RELEASE_BLOCK(_clickRopeHandler);
-//    RELEASE_BLOCK(_finishHandler);
-//    RELEASE_BLOCK(_startHandler);
+    PPRelease(_indexDict);
     [super dealloc];
 }
 
@@ -166,7 +171,7 @@
 }   
 
 
-
+#define OPUS_INDEX_KEY @"OPUS_INDEX_KEY"
 
 - (void)updateCell:(UITableViewCell *)cell withIndexPath:(NSIndexPath *)indexPath
 {
@@ -182,19 +187,16 @@
             [button addTarget:self action:@selector(clickOpus:) forControlEvents:UIControlEventTouchUpInside];
             SET_VIEW_ROUND_CORNER(button);
             [cell.contentView addSubview:button];
-//            button.autoresizingMask =
-//                                        UIViewAutoresizingFlexibleLeftMargin|
-//                                        UIViewAutoresizingFlexibleWidth|
-//                                        UIViewAutoresizingFlexibleRightMargin|
-//                                        UIViewAutoresizingFlexibleTopMargin|
-//                                        UIViewAutoresizingFlexibleHeight|
-//                                    UIViewAutoresizingFlexibleBottomMargin;
         }
         button.tag = tag;
         button.frame = defaultFrame;
+        
         [button updateOriginX:(SPACE/2+(tag-TAG_BASE)*(SPACE+OPUS_SIZE.width))];
         [button updateOriginY:(CELL_HEIGHT-OPUS_SIZE.height)/2];
         NSInteger index = (NUMBER_PERROW * indexPath.row) + (tag - TAG_BASE);
+        [self.indexDict setObject:button forKey:@(index)];
+        
+        
         if ([self.opusList count] > index) {
             [button setHidden:NO];
             DrawFeed *opus = [self.opusList objectAtIndex:index];
@@ -225,14 +227,20 @@
 
 - (void)clickOpus:(UIButton *)sender
 {
-    CGPoint point = [self.tableView convertPoint:sender.center fromView:sender];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-    NSInteger index = (NUMBER_PERROW * indexPath.row) + (sender.tag - TAG_BASE);
+    __block NSInteger index = 0;
+    [self.indexDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if (obj == sender) {
+            index = [key integerValue];
+            stop = YES;
+        }
+    }];
+    PPDebug(@"click index = %d", index);
     if (index < [self.opusList count]) {
         DrawFeed *opus = self.opusList[index];
-        PPDebug(@"click opus, id = %@, word = %@, row = %d", opus.feedId, opus.wordText, indexPath.row);
-        ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:opus];
-        [[[self theViewController] navigationController] pushViewController:sf animated:YES];
+        ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:opus]];
+        [[[self theViewController] navigationController] pushViewController:sc animated:YES];
+        [sc release];
+
     }
 
 }
