@@ -1523,7 +1523,7 @@
 "kGuessContestModeOverTips" = "恭喜你完成比賽";
 
 //"kGuessContestModeTips" = "猜對作品:     %d幅\n當前排名:     第%d名\n預計獎金:     %d金幣\n參賽人數:     %d玩家";
-"kGuessContestModeTips" = "未完成比赛";
+"kGuessContestModeTips" = "排名和獎金預測";
 
 "kHint" = "提示";
 "kGiveUpComment" = "是否退出評論?";
