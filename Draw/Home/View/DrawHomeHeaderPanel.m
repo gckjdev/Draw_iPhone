@@ -84,6 +84,7 @@
 }
 - (void)updateView
 {
+    [self.rope.imageView setContentMode:UIViewContentModeBottom];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.status = DrawHeaderPanelStatusClose;
