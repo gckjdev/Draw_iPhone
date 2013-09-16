@@ -303,7 +303,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="common_home_front_page@2x.png">{37, 35}</string>
 			<string key="common_home_nextpage@2x.png">{37, 35}</string>
-			<string key="common_home_wood_bg@2x.png">{640, 550}</string>
+			<string key="common_home_wood_bg@2x.png">{16, 16}</string>
 			<string key="draw_home_bottom_line@2x.png">{640, 18}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
