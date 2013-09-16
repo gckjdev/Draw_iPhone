@@ -434,9 +434,7 @@
 }
 
 - (void)handleWithExpire:(int)index{
-    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getExpireTitleWithMode:_mode] message:NSLS(@"kGuessGameExpire") style:CommonDialogStyleDoubleButtonWithCross];
-    
+        
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getExpireTitleWithMode:_mode] message:[GuessManager getExpireMessageWithMode:_mode] style:CommonDialogStyleDoubleButtonWithCross];
 
     if (_mode != PBUserGuessModeGuessModeContest) {
@@ -707,20 +705,6 @@
         [dialog showInView:self.view];
     }
 }
-
-//- (void)showTipInContestModeWhenContestOver:(PBGuessRank *)rank{
-//    
-//    ContestRankView *v = [ContestRankView createViewWithTitle:NSLS(@"kGuessContestModeOverTips") rank:rank];
-//
-//    if (_pop) {
-//        POSTVIEW(v, 3);
-//
-//    }else{
-//        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeOverTips") customView:v style:CommonDialogStyleSingleButton];
-//        [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-//        [dialog showInView:self.view];
-//    }    
-//}
 
 - (void)refreshData{
     

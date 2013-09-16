@@ -1525,11 +1525,6 @@
 "kGeniusModeExpireTitle" = "已超时";
 "kContestModeExpireTitle" = "已超时";
 
-//"kHappyModeExpireMessage" = "你已经超时了，是否花费%d金币重新开始？";
-//"kGeniusModeExpireMessage" = "你已经超时了，是否花费%d金币重新开始？";
-//"kContestModeExpireMessage" = "你已经超时了，是否花费%d金币重新开始？";
-
-
 "kHappyModeDeductConisMessage" = "你花费了%d金币进入欢乐模式";
 "kGeniusModeDeductConisMessage" = "你花费了%d金币进入天才模式";
 "kContestModeDeductConisMessage" = "你花费了%d金币进入比赛模式";
@@ -1542,7 +1537,6 @@
 "kGeniusGuessWrongMessage" = "已经猜错了，不能再继续本次天才模式猜画。可选择查看作品详情或重新开始";
 
 "kTimeout" = "超时";
-"kNotStart" = "未开始";
 
 "kGuessContestBeginTip" = "今天的猜画比赛开始啦，快来参加吧！";
 "kGuessDateExpire" = "距离你上次开始猜画的时间已经超过%d小时，系统为您重新开始一局。";
@@ -1562,10 +1556,6 @@
 "kGuessHappyModeTips" = "已猜对 %d 幅作品，再猜 %d 幅作品，可获得 %d 金币奖励";
 "kGuessGenuisModeTips" = "已猜对 %d 幅作品，再猜 %d 幅作品，可获得 %d 金币奖励";
 
-//"kGuessContestModeOverTips" = "恭喜你完成比赛啦，目前有%d位玩家参加比赛，你目前的排名是第%d名，预计可获得%d金币奖励";
-"kGuessContestModeOverTips" = "恭喜完成比赛";
-
-//"kGuessContestModeTips" = "猜对作品:     %d幅\n当前排名:     第%d名\n预计奖金:     %d金币\n参赛人数:     %d玩家";
 "kGuessContestModeTips" = "排名和奖金预测";
 "kGuessContestModeTipsMessage" = "当前排名：第 %d 名\n猜中作品：%d 幅\n总耗时：%d 秒";
 
