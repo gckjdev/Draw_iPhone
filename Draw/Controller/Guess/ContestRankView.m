@@ -19,10 +19,12 @@ AUTO_CREATE_VIEW_BY_XIB(ContestRankView);
     [_correctCountLabel release];
     [_costTimeLabel release];
     [_awardCoinsLabel release];
+    [_titleLabel release];
     [super dealloc];
 }
 
-+ (id)createViewWithRank:(PBGuessRank *)rank{
++ (id)createViewWithTitle:(NSString *)title
+                     rank:(PBGuessRank *)rank{
     
     ContestRankView *v = [self createView];
     
@@ -30,11 +32,13 @@ AUTO_CREATE_VIEW_BY_XIB(ContestRankView);
     v.correctCountLabel.textColor = COLOR_BROWN;
     v.costTimeLabel.textColor = COLOR_BROWN;
     v.awardCoinsLabel.textColor = COLOR_BROWN;
+    v.titleLabel.textColor = COLOR_BROWN;
     
     v.rankLabel.text = [NSString stringWithFormat:NSLS(@"kContestRanking"), rank.ranking];
     v.correctCountLabel.text = [NSString stringWithFormat:NSLS(@"kContestGuessCorrect"), rank.pass];
     v.costTimeLabel.text = [NSString stringWithFormat:NSLS(@"kContestSpendTime"), rank.spendTime];
     v.awardCoinsLabel.text = [NSString stringWithFormat:NSLS(@"kContestEarn"), rank.earn];
+    v.titleLabel.text = title;
     
     return v;
 }

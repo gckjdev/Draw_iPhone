@@ -1512,9 +1512,15 @@
 "kCompleteGuessContest" = "恭喜你完成比賽，比賽結束後揭曉你的比賽排名";
 
 "kGoOn" = "繼續";
-"kAward" = "獎勵";
-"kGuessHappyModeAwardTips" = "恭喜你順利猜中%d幅作品，系統獎勵你%d金幣，是否還想繼續歡樂模式？";
-"kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d幅作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
+//"kAward" = "獎勵";
+//"kGuessHappyModeAwardTips" = "\n猜中：%d幅作品\n\n獎勵你%d金幣，是否還想繼續歡樂模式？";
+//"kGuessGenuisModeAwardTips" = "恭喜你連續猜中%d幅作品，系統獎勵你%d金幣，是否還想繼續天才模式？";
+
+"kAward" = "闯关金币奖励";
+"kGuessHappyModeAwardTips" = "\n猜中：%d幅作品\n\n奖励：%d金币\n\n";
+"kGuessGenuisModeAwardTips" = "\n猜中：%d幅作品\n\n奖励：%d金币\n级别：%@\n可选择分享得瑟一下，或者继续闯关\n\n";
+"kShareGuessTitle" = "根据大数据云计算显示，本人毫无间断，一次性猜对了%d幅画，现在获赠【%@】称号，好玩好玩 ";
+"kGoShare" = "微博/微信分享";
 
 "kGuessHappyModeTips" = "你已經猜對了%d幅作品，還要再猜%d幅作品就可以獲得%d獎勵!";
 "kGuessGenuisModeTips" = "你已經連續猜對了%d幅作品，還要再猜%d幅作品就可以獲得%d獎勵!";
@@ -1523,7 +1529,7 @@
 "kGuessContestModeOverTips" = "恭喜你完成比賽";
 
 //"kGuessContestModeTips" = "猜對作品:     %d幅\n當前排名:     第%d名\n預計獎金:     %d金幣\n參賽人數:     %d玩家";
-"kGuessContestModeTips" = "未完成比赛";
+"kGuessContestModeTips" = "排名和獎金預測";
 
 "kHint" = "提示";
 "kGiveUpComment" = "是否退出評論?";

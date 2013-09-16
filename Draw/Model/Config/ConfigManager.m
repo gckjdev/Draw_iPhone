@@ -29,6 +29,11 @@
     return [MobClickUtils getStringValueByKey:@"GUESS_CONTEST_SHARE_TEXT" defaultValue:NSLS(@"kLookWhatHeDraw")];
 }
 
++ (NSString*)guessContestShareTitleText
+{
+    return [MobClickUtils getStringValueByKey:@"GUESS_CONTEST_SHARE_TEXT" defaultValue:NSLS(@"kShareGuessTitle")];
+}
+
 + (int)maxTakeNumberCount
 {
     return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:10];

@@ -24,8 +24,8 @@ typedef enum {
 
 #define MESSAGE_LABEL_MIN_HEIGHT (ISIPAD ? 120 : 55)
 
-#define GAP_X (ISIPAD ? 30 : 15)
-#define GAP_Y (ISIPAD ? 30 : 15)
+#define GAP_X (ISIPAD ? 30 : 30)
+#define GAP_Y (ISIPAD ? 30 : 30)
 
 @interface CommonMessageView : UIView 
 
@@ -136,6 +136,32 @@ SINGLETON_DISPATCH_ONE;
                         image:nil
                     delayTime:delayTime];
 }
+
+- (void)postWithCustomView:(UIView *)view
+                 delayTime:(float)delayTime{
+    
+    if (_active) {
+        return;
+    }
+    
+    self.view = [CommonMessageView createView];
+    [_view setWithImage:nil text:nil];
+    self.view.messageLabel.hidden = YES;
+    
+    CGSize size = CGSizeMake(view.frame.size.width + 2 * GAP_X, view.frame.size.height + 2 * GAP_Y);
+    [self.view updateWidth:size.width];
+    [self.view updateHeight:size.height];
+    
+    [self.view.bgView updateWidth:size.width];
+    [self.view.bgView updateHeight:size.height];
+    
+    [view updateOriginX:GAP_X];
+    [view updateOriginY:GAP_Y];
+    [self.view.bgView addSubview:view];
+    
+    [self postView:_view delay:delayTime];
+}
+
 
 - (void)postView:(UIView *)view delay:(int)delay{
     	
