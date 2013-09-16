@@ -138,7 +138,7 @@
 {
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
-//    [self.homeHeaderPanel updateView];
+    [self.homeHeaderPanel updateView];
     [[UserService defaultService] getStatistic:self];
     
     [self registerJoinGameResponseNotification];
@@ -245,10 +245,14 @@
    didClickAvatarButton:(UIButton *)button
 {
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];
-    
-
-    
 }
+
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+       didClickAvatarView:(AvatarView *)avatarView
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];    
+}
+
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
    didClickBulletinButton:(UIButton *)button

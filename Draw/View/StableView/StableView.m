@@ -218,12 +218,6 @@
 - (CGRect)calAvatarFrame
 {
     return self.bounds;
-    
-//    CGFloat width = self.bounds.size.width;
-//    CGFloat height = self.bounds.size.height;
-//    CGFloat wEdge = -3.1;//width / EDGE_WIDTH_TIMES;
-//    CGFloat hEdge = -3.1;//height / EDGE_HEIGHT_TIMES;
-//    return CGRectMake(wEdge, hEdge, width - 2 * wEdge, height - 3 * hEdge);
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -246,6 +240,13 @@
     }
     
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    bgView.frame=self.bounds;
+    imageView.frame=self.bounds;
 }
 
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;

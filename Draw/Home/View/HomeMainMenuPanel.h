@@ -11,6 +11,7 @@
 #import "HomeMenuView.h"
 
 @class HomeMainMenuPanel;
+@class AvatarView;
 
 @protocol HomeMainMenuPanelDelegate <HomeCommonViewDelegate>
 
@@ -18,6 +19,10 @@
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type;
+
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+       didClickAvatarView:(AvatarView *)avatarView;
+
 @end
 
 
