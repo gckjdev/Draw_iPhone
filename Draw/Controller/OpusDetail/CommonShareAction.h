@@ -44,6 +44,11 @@ typedef enum {
                    onView:(UIView *)onView;
 
 
+- (void)popActionTags:(NSArray *)actionTags
+            shareText:(NSString *)shareText
+       viewController:(PPViewController *)viewController
+               onView:(UIView *)onView
+allowClickMaskDismiss:(BOOL)allowClickMaskDismiss;
 
 - (void)popActionTags:(NSArray *)actionTags shareText:(NSString *)shareText viewController:(PPViewController *)viewController onView:(UIView *)onView;
 

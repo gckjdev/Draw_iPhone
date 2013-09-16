@@ -108,16 +108,17 @@
 {
     
     [super viewDidLoad];
+    UIImageView *iv = [[UIImageView alloc] initWithImage:[shareImageManager drawBGImage]];
+    [self.view insertSubview:iv atIndex:0];
+    iv.frame = self.view.bounds;
+    iv.autoresizingMask = (2<<6) - 1;
+    
     [self initTitleView];
     [self initRoundNumber];
     [self initAvatars];
     [self initPopButton];
     [UIApplication sharedApplication].idleTimerDisabled=YES;
 
-    UIImageView *iv = [[UIImageView alloc] initWithImage:[shareImageManager drawBGImage]];
-    [self.view insertSubview:iv atIndex:0];
-    iv.frame = self.view.bounds;
-    iv.autoresizingMask = (2<<6) - 1;
     
     [self setCanDragBack:NO];
 }

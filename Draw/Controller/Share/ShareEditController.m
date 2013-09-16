@@ -475,7 +475,11 @@ enum {
         && _snsType == FACEBOOK){
         //publishText = [publishText stringByAppendingString:facebookId];
     }
-    publishText = [publishText stringByAppendingFormat:NSLS(@"kPaintVia"), authorName];
+    
+    if ([authorName length] > 0){
+        publishText = [publishText stringByAppendingFormat:NSLS(@"kPaintVia"), authorName];
+    }
+    
     self.shareTextField.text = publishText;
 }
 

@@ -354,7 +354,7 @@
         [holder updateHeight:CGRectGetHeight(holder.frame) + 108];
         [holder updateContentScale];
     }    
-    [self.view insertSubview:holder atIndex:0];
+    [self.view insertSubview:holder atIndex:1];
     
 }
 
