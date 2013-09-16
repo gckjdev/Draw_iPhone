@@ -24,8 +24,8 @@ typedef enum {
 
 #define MESSAGE_LABEL_MIN_HEIGHT (ISIPAD ? 120 : 55)
 
-#define GAP_X (ISIPAD ? 30 : 15)
-#define GAP_Y (ISIPAD ? 30 : 15)
+#define GAP_X (ISIPAD ? 30 : 30)
+#define GAP_Y (ISIPAD ? 30 : 30)
 
 @interface CommonMessageView : UIView 
 

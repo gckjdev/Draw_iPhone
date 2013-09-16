@@ -11,7 +11,16 @@
 #import "AccountService.h"
 #import "UserManager.h"
 
+#ifdef DEBUG
+
+#define NUM_COUNT_AWARD_ONCE 3
+
+#else
+
 #define NUM_COUNT_AWARD_ONCE 10
+
+#endif
+
 #define CONTEST_COUNT 20
 
 @implementation GuessManager

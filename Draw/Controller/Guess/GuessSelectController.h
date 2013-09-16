@@ -10,9 +10,12 @@
 #import "GuessService.h"
 #import "CommonTitleView.h"
 #import "DrawGuessController.h"
+#import "CommonShareAction.h"
 
 @interface GuessSelectController : CommonTabController<GuessServiceDelegate, CommonGuessControllerDelegate>
+
 @property (retain, nonatomic) IBOutlet UILabel *countDownLabel;
+@property (retain, nonatomic) CommonShareAction *shareAction;
 
 //@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
