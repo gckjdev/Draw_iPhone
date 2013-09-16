@@ -853,18 +853,12 @@
     [dialog showInView:self.view];
 }
 
-- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
-{
-    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
-    
-//    if ([self isRegistered] == NO) {
 
+- (void)clickAvatarHandler
+{
     if ([self toRegister]){
         return;
     }
-    
-    
-    
     if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
         [self askShake];
         return;
@@ -873,6 +867,21 @@
     UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
     [self.navigationController pushViewController:us animated:YES];
     [us release];
+
+}
+
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+       didClickAvatarView:(AvatarView *)avatarView
+{
+    [super homeMainMenuPanel:mainMenuPanel
+          didClickAvatarView:avatarView];
+    [self clickAvatarHandler];
+}
+
+- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
+{
+    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
+    [self clickAvatarHandler];
 }
 
 //- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code

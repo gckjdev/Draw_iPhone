@@ -404,7 +404,7 @@
 - (UIImage *)oldDrawBGImage;
 - (UIImage *)drawBackImage;
 - (UIImage *)runAwayImage;
-
+- (UIImage *)homeDefaultAvatar;
 + (UIImage *)imageWithColor:(UIColor *)color;
 
 - (UIImage *)detailHeaderBG;

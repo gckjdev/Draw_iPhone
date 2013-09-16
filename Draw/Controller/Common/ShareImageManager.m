@@ -1254,6 +1254,11 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"run@2x.png"];
 }
 
+- (UIImage *)homeDefaultAvatar
+{
+    return [UIImage imageNamed:@"draw_home_default_avatar.png"];
+}
+
 + (UIImage *)imageWithColor:(UIColor *)color
 {
     CGSize size = CGSizeMake(2, 2);
