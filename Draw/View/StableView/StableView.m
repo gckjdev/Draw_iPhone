@@ -437,7 +437,7 @@
     
     [self.titleLabel setFont:BADGE_FONT];
     
-    [self setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    [self setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
     
     [self setBGImage:[[ShareImageManager defaultManager] badgeImage]];
     [self setMaxNumber:DEFAULT_MAX_NUMBER];

@@ -22,16 +22,16 @@
 @implementation DrawHomeHeaderPanel
 
 #define ISCLOSE (DrawHeaderPanelStatusClose==self.status)
+#define VALUE(X) (ISIPAD?(2*X):X)
 
-#define CELL_WIDTH (ISCLOSE?230:290)
-#define SPACE (ISIPAD?14:10)
+#define CELL_WIDTH  (ISIPAD?(ISCLOSE?520:710):(ISCLOSE?230:290))
+#define SPACE (ISIPAD?20:10)
 #define NUMBER_PERROW 3
-#define CELL_HEIGHT (ISCLOSE?70:90)
+#define CELL_HEIGHT (ISIPAD?(ISCLOSE?150:230):(ISCLOSE?70:90))
 
 #define OPUS_WIDTH (CELL_WIDTH-NUMBER_PERROW*SPACE)/NUMBER_PERROW
 #define OPUS_SIZE CGSizeMake(OPUS_WIDTH,OPUS_WIDTH)
 #define TAG_BASE 100
-
 
 
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
@@ -100,17 +100,29 @@
     
 }
 
+#define SELF_WIDTH (ISIPAD?768:320)
+#define SELF_HEIGHT_OPEN (ISIPAD?800:370)
+#define SELF_HEIGHT_CLOSE (ISIPAD?200:100)
+
+#define HOLDER_HEIGHT_OPEN (SELF_HEIGHT_OPEN-VALUE(2))
+#define HOLDER_HEIGHT_CLOSE (SELF_HEIGHT_CLOSE-VALUE(2))
+
+#define HOLDER_WIDTH_OPEN (ISIPAD?730:310)
+#define HOLDER_WIDTH_CLOSE (ISIPAD?540:250)
 
 - (void)updateFrameForOpen
 {
-    self.frame = CGRectMake(0, 0, 320, 100+3*CELL_HEIGHT);
-    self.holderView.frame = CGRectMake(5, 0, 310, 98+(3*CELL_HEIGHT));
+    
+    self.frame = CGRectMake(0, 0,SELF_WIDTH, SELF_HEIGHT_OPEN);
+    CGFloat x = (SELF_WIDTH - HOLDER_WIDTH_OPEN) / 2;
+    self.holderView.frame = CGRectMake(x, 0, HOLDER_WIDTH_OPEN,HOLDER_HEIGHT_OPEN);
 }
 
 - (void)updateFrameForClose
 {
-    self.frame = CGRectMake(0, 0, 320, 100);
-    self.holderView.frame = CGRectMake(35, 0, 250, 98);
+    self.frame = CGRectMake(0, 0, SELF_WIDTH, SELF_HEIGHT_CLOSE);
+    CGFloat x = (SELF_WIDTH - HOLDER_WIDTH_CLOSE) / 2;
+    self.holderView.frame = CGRectMake(x, 0, HOLDER_WIDTH_CLOSE,HOLDER_HEIGHT_CLOSE);
 }
 
 - (void)openAnimated:(BOOL)animated
