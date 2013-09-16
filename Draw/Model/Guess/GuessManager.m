@@ -601,6 +601,19 @@
     return nil;
 }
 
+#define KEY_GENIUS_GUESS_INDEX @"KEY_GENIUS_GUESS_INDEX"
+
++ (void)saveGeniusGuessIndex:(int)index{
+    
+    [[[UserManager defaultManager] userDefaults] setInteger:index forKey:KEY_GENIUS_GUESS_INDEX];
+    [[[UserManager defaultManager] userDefaults] synchronize];
+}
+
++ (int)getGeniusGuessIndex{
+    
+    int index = [[[UserManager defaultManager] userDefaults] integerForKey:KEY_GENIUS_GUESS_INDEX];
+    return index;
+}
 
 
 
