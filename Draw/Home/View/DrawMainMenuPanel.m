@@ -9,7 +9,7 @@
 #import "DrawMainMenuPanel.h"
 #import "HomeMenuView.h"
 #import "AnimationManager.h"
-
+#import "StableView.h"
 
 @interface DrawMainMenuPanel()
 @property(nonatomic, retain)NSMutableArray *menuList;
@@ -79,6 +79,7 @@
 - (void)openAnimated:(BOOL)animated
           completion:(void (^)(BOOL finished))completion
 {
+    [self.scrollView setContentOffset:CGPointMake(0, 0)];
     [self openAnimated:animated completion:completion page:[self currentPage]];
 }
 
@@ -108,6 +109,8 @@
           Animated:(BOOL)animated
         completion:(void (^)(BOOL finished))completion
 {
+    self.scrollView.scrollEnabled = YES;
+    
     HomeMenuView *menu = [self getMenuViewWithType:type];
     CGPoint center = [self centerInPage:[self currentPage]];
     if (animated) {
@@ -128,18 +131,19 @@
                     Animated:(BOOL)animated
                   completion:(void (^)(BOOL finished))completion
 {
+    self.scrollView.scrollEnabled = NO;    
     for (HomeMenuView *menu in self.menuList) {
         menu.hidden = (menu.type != type);
     }
     HomeMenuView *menu = [self getMenuViewWithType:type];
     CGPoint center = [self centerInPage:[self currentPage]];
-    CGPoint stopPoint = CGPointMake(center.x, CGRectGetHeight(self.scrollView.bounds)-CGRectGetHeight(menu.bounds)/5);
+    CGPoint stopPoint = CGPointMake(center.x, CGRectGetHeight(self.scrollView.bounds)-CGRectGetHeight(menu.bounds)/2);
     if (animated) {
         [UIView animateWithDuration:MAIN_ANIMATION_INTEVAL animations:^{
             menu.center = stopPoint;
         } completion:completion];
     }else{
-        menu.center = stopPoint;        
+        menu.center = stopPoint;
     }
 }
 
@@ -148,9 +152,21 @@
            completion:(void (^)(BOOL finished))completion
 
 {
+    [self.scrollView setContentOffset:CGPointMake(0, 0)];
     [self closeAnimated:animated completion:completion page:[self currentPage]];
 }
 
+
+#define AVATAR_SIZE CGSizeMake(70,70)
+- (void)addAvatarInPage:(NSInteger)page
+{
+    UserManager *me = [UserManager defaultManager];
+    AvatarView *av = [[AvatarView alloc] initWithUrlString:[me avatarURL] frame:CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height) gender:[me gender] level:[me level]];
+    [self.scrollView addSubview:av];
+    [av release];
+    av.center = [self centerInPage:page];
+    [self.scrollView sendSubviewToBack:av];
+}
 
 - (void)updateView
 {
@@ -162,7 +178,7 @@
         PPDebug(@"type = %d",type);
         HomeMenuView *menu = [HomeMenuView menuViewWithType:type badge:0 delegate:self];
         [self.menuList addObject:menu];
-        if (type == HomeMenuTypeDrawDraw) {
+        if (menu.type == HomeMenuTypeDrawDraw) {
             [menu toBeTitleUpStyle];
         }
     }
@@ -177,6 +193,8 @@
     NSInteger page = 0;
     while (page<pageNumber) {
         [self openAnimated:NO completion:NULL page:page];
+        //add avatar
+        [self addAvatarInPage:page];
         page++;
     }
     [self.scrollView bringSubviewToFront:[self getMenuViewWithType:HomeMenuTypeDrawDraw]];

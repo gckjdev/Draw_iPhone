@@ -393,7 +393,7 @@
 
 - (UIColor *)homeMenuColor
 {
-    return COLOR_WHITE;
+    return OPAQUE_COLOR(29, 124, 77);
 }
 
 - (BOOL)canSubmitDraw
