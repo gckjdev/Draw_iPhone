@@ -18,6 +18,8 @@ typedef enum{
 typedef void (^HeaderAnimationHandler)(BOOL open);
 #define HEADER_ANIMATION_INTEVAL 1.0
 
+@class BadgeView;
+
 @interface DrawHomeHeaderPanel : HomeHeaderPanel<UITableViewDataSource, UITableViewDelegate>
 {
 
@@ -26,6 +28,8 @@ typedef void (^HeaderAnimationHandler)(BOOL open);
           completion:(void (^)(BOOL finished))completion;
 - (void)closeAnimated:(BOOL)animated
            completion:(void (^)(BOOL finished))completion;
+
+- (IBAction)clickBulletin:(id)sender;
 
 @property (assign, nonatomic) DrawHeaderPanelStatus status;
 @property (retain, nonatomic) IBOutlet UIView *holderView;
@@ -37,4 +41,6 @@ typedef void (^HeaderAnimationHandler)(BOOL open);
 
 @property (copy, nonatomic) HeaderAnimationHandler clickRopeHandler;
 
+@property (retain, nonatomic) IBOutlet UIButton *bulletinButton;
+@property (retain, nonatomic) IBOutlet BadgeView *badgeView;
 @end
