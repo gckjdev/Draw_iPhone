@@ -36,8 +36,8 @@
 @end
 
 
-#define MAIN_MENU_ORIGIN_Y ISIPAD ? 200 : 100
-#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-76) : 422
+#define MAIN_MENU_ORIGIN_Y (ISIPAD ? 200 : 100+(ISIPHONE5?10:0))
+#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-76) : (422+(ISIPHONE5?88:0))
 
 @implementation SuperHomeController
 
@@ -139,6 +139,7 @@
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
     [self.homeHeaderPanel updateView];
+//    [self.homeMainMenuPanel updateView];
     [[UserService defaultService] getStatistic:self];
     
     [self registerJoinGameResponseNotification];

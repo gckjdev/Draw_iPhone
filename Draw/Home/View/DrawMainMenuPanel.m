@@ -17,11 +17,9 @@
 
 @implementation DrawMainMenuPanel
 
-#define SELF_FRAME (ISIPAD?CGRectMake(0, 0, 768, 804):CGRectMake(0, 0, 320, 360))
+#define SELF_FRAME (ISIPAD?CGRectMake(0, 0, 768, 804):CGRectMake(0, 0, 320, 360+(ISIPHONE5?78:0)))
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
-    
-    
     DrawMainMenuPanel *panel = [[[DrawMainMenuPanel alloc] initWithFrame:SELF_FRAME] autorelease];
     panel.delegate = delegate;
     [panel baseInit];
@@ -45,7 +43,7 @@
 }
 
 #define NUMBER_PER_PAGE 6
-#define RADIUS (ISIPAD?250:105)
+#define RADIUS (ISIPAD?250:105+(ISIPHONE5?5:0))
 
 - (NSArray *)menusInPage:(NSInteger)page
 {
@@ -264,7 +262,7 @@
 
 #define MENU_TAG_BASE 10000
 #define PAGE_BUTTON_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(40,40))
-#define PAGE_BUTTON_CENTER_Y (ISIPAD?680:300)
+#define PAGE_BUTTON_CENTER_Y (ISIPAD?680:300+(ISIPHONE5?80:0))
 
 - (void)pageInit
 {
