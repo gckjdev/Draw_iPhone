@@ -10,6 +10,7 @@
 #import "UIButton+WebCache.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
+#import "StableView.h"
 
 @interface DrawHomeHeaderPanel()
 {
@@ -149,6 +150,9 @@
 - (void)openAnimated:(BOOL)animated
           completion:(void (^)(BOOL finished))completion
 {
+    [self.badgeView setHidden:YES];
+    [self.bulletinButton setHidden:YES];
+    
     void (^innerCompletion)(BOOL)  = ^(BOOL finished){
         self.status = DrawHeaderPanelStatusOpen;
         [self reloadView];
@@ -185,6 +189,11 @@
         [self.rope reset];
         [self.rope updateOriginY:0];
         [self.rope updateOriginX:ROPE_X];
+        if (self.badgeView.number > 0) {
+            [self.badgeView setHidden:NO];            
+        }
+        [self.bulletinButton setHidden:NO];
+        
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
@@ -207,6 +216,8 @@
     [_holderView release];
     RELEASE_BLOCK(_clickRopeHandler);
     PPRelease(_indexDict);
+    [_badgeView release];
+    [_bulletinButton release];
     [super dealloc];
 }
 
@@ -296,4 +307,14 @@
 }
 
 
+- (IBAction)clickBulletin:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickBulletinButton:)]) {
+        [self.delegate homeHeaderPanel:self didClickBulletinButton:sender];
+    }
+}
+
+- (void)updateBulletinBadge:(int)count
+{
+    [self.badgeView setNumber:count];
+}
 @end
