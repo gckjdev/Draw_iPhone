@@ -1086,6 +1086,8 @@
 "kTryTakeNumber" = "马上领取";
 "kViewMyProfile" = "稍后再说";
 "kCannotLogoutWithoutPasswordSet" = "当前帐号还没有设置密码，请在退出帐号前先设置密码，密码设置完毕请点击右上角的保存按钮";
+"kTakeCoins" = "目前可领取%d金币，请确认是否马上领取？";
+"kCoinsTakeSucc" = "已成功领取金币";
 
 "kConfirmLogout" = "是否确定要退出当前帐号？";
 "kAskKeepDraft" = "是否要保留当前草稿箱中的所有草稿？如果不保留，退出帐号也将删除所有本地草稿。";
@@ -1537,7 +1539,7 @@
 "kGeniusGuessWrongTitle" = "天才模式结束";
 "kGeniusGuessWrongMessage" = "已经猜错了，不能再继续本次天才模式猜画。可选择查看作品详情或重新开始";
 
-"kTimeout" = "超时";
+"kTimeout" = "已超时";
 
 "kGuessContestBeginTip" = "今天的猜画比赛开始啦，快来参加吧！";
 "kGuessDateExpire" = "距离你上次开始猜画的时间已经超过%d小时，系统为您重新开始一局。";

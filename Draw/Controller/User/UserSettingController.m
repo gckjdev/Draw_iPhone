@@ -307,6 +307,8 @@ SET_CELL_BG_IN_CONTROLLER;
     [self.avatarView setUrlString:[[UserManager defaultManager] avatarURL]];
     [self.avatarView setUserId:[[UserManager defaultManager] userId]];
     [self.avatarView setDelegate:self];
+    
+    [[AccountService defaultService] checkAndAskTakeCoins:self];
 }
 
 - (void)didClickOnAvatar:(NSString*)userId
