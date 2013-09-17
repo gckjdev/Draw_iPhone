@@ -1057,14 +1057,12 @@
 		A461B544174CBAA70088B061 /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		A461B545174CBAA70088B061 /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		A461B546174CBAA70088B061 /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
-		A461B54C174CBAA70088B061 /* HomeBottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */; };
 		A461B54E174CBAA70088B061 /* HomeMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA965167330060078B5A9 /* HomeMainMenuPanel.xib */; };
 		A461B54F174CBAA70088B061 /* HomeMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */; };
 		A461B550174CBAA70088B061 /* HomeBottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */; };
 		A461B551174CBAA70088B061 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
 		A461B554174CBAA70088B061 /* HomeBottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */; };
 		A461B555174CBAA70088B061 /* HomeMainMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */; };
-		A461B556174CBAA70088B061 /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
 		A461B557174CBAA70088B061 /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
 		A461B559174CBAA70088B061 /* DrawHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */; };
 		A461B567174CBAA70088B061 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537EF1677712300725802 /* CommonDialog.xib */; };
@@ -4139,14 +4137,12 @@
 		C28A9E231738F04B007A819F /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		C28A9E241738F04B007A819F /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		C28A9E251738F04B007A819F /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
-		C28A9E2B1738F04B007A819F /* HomeBottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */; };
 		C28A9E2D1738F04B007A819F /* HomeMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA965167330060078B5A9 /* HomeMainMenuPanel.xib */; };
 		C28A9E2E1738F04B007A819F /* HomeMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */; };
 		C28A9E2F1738F04B007A819F /* HomeBottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */; };
 		C28A9E301738F04B007A819F /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
 		C28A9E331738F04B007A819F /* HomeBottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */; };
 		C28A9E341738F04B007A819F /* HomeMainMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */; };
-		C28A9E351738F04B007A819F /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
 		C28A9E361738F04B007A819F /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
 		C28A9E381738F04B007A819F /* DrawHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */; };
 		C28A9E461738F04B007A819F /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537EF1677712300725802 /* CommonDialog.xib */; };
@@ -4724,7 +4720,6 @@
 		CA1DA94E16732E200078B5A9 /* HomeHeaderPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA94D16732E200078B5A9 /* HomeHeaderPanel.m */; };
 		CA1DA95716732ED00078B5A9 /* HomeMainMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA95616732ED00078B5A9 /* HomeMainMenuPanel.m */; };
 		CA1DA95A16732EED0078B5A9 /* HomeBottomMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA95916732EED0078B5A9 /* HomeBottomMenuPanel.m */; };
-		CA1DA96216732FCF0078B5A9 /* HomeBottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */; };
 		CA1DA966167330070078B5A9 /* HomeMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA965167330060078B5A9 /* HomeMainMenuPanel.xib */; };
 		CA1DA9681673301B0078B5A9 /* HomeMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */; };
 		CA1DA96A167330300078B5A9 /* HomeBottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */; };
@@ -5303,7 +5298,6 @@
 		CACEC36E178BCD1600D88643 /* SelectorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CACEC35C178BCD1500D88643 /* SelectorCommand.m */; };
 		CAD082F71676E0E8007B6B65 /* HomeBottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */; };
 		CAD082F81676E0E8007B6B65 /* HomeMainMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */; };
-		CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
 		CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
 		CAD083001676E124007B6B65 /* DrawHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */; };
 		CAD9C7121574CCFA00F2C8E1 /* fireworks1.png in Resources */ = {isa = PBXBuildFile; fileRef = CAD9C7101574CCF900F2C8E1 /* fireworks1.png */; };
@@ -6420,14 +6414,12 @@
 		EA411C74176066F500DA72D0 /* bbs_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA837C2A166CDFAD005718AA /* bbs_refresh@2x.png */; };
 		EA411C75176066F500DA72D0 /* bbs_board_comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB3166E083500513F58 /* bbs_board_comment@2x.png */; };
 		EA411C76176066F500DA72D0 /* bbs_board_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAA27FB4166E083500513F58 /* bbs_board_mine@2x.png */; };
-		EA411C7B176066F500DA72D0 /* HomeBottomMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */; };
 		EA411C7D176066F500DA72D0 /* HomeMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA965167330060078B5A9 /* HomeMainMenuPanel.xib */; };
 		EA411C7E176066F500DA72D0 /* HomeMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */; };
 		EA411C7F176066F500DA72D0 /* HomeBottomMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */; };
 		EA411C80176066F500DA72D0 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
 		EA411C81176066F500DA72D0 /* HomeBottomMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */; };
 		EA411C82176066F500DA72D0 /* HomeMainMenu~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */; };
-		EA411C83176066F500DA72D0 /* HomeBottomMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */; };
 		EA411C84176066F500DA72D0 /* HomeMainMenuPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */; };
 		EA411C86176066F500DA72D0 /* DrawHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */; };
 		EA411C94176066F500DA72D0 /* CommonDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B537EF1677712300725802 /* CommonDialog.xib */; };
@@ -6603,6 +6595,10 @@
 		EA49C86517093CD300843B6B /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
 		EA49C86617093CD300843B6B /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
 		EA59DF6D174DFF3E0039B441 /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
+		EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
+		EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
+		EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
+		EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
 		EA64193617743A3D009FCFD5 /* SingHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA64193517743A3D009FCFD5 /* SingHomeHeaderPanel.xib */; };
 		EA64193D17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA64193C17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib */; };
 		EA64193F17744AAF009FCFD5 /* sing_bottom_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA64193E17744AAF009FCFD5 /* sing_bottom_bar@2x.png */; };
@@ -6729,10 +6725,6 @@
 		EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8EF66C17E593CA003F1AF8 /* DrawMainMenuPanel.m */; };
 		EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8EF66C17E593CA003F1AF8 /* DrawMainMenuPanel.m */; };
 		EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8EF66C17E593CA003F1AF8 /* DrawMainMenuPanel.m */; };
-		EA8EF67217E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67117E593F0003F1AF8 /* DrawMainMenuPanel.xib */; };
-		EA8EF67317E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67117E593F0003F1AF8 /* DrawMainMenuPanel.xib */; };
-		EA8EF67417E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67117E593F0003F1AF8 /* DrawMainMenuPanel.xib */; };
-		EA8EF67517E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67117E593F0003F1AF8 /* DrawMainMenuPanel.xib */; };
 		EA8EF67717E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */; };
 		EA8EF67817E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */; };
 		EA8EF67917E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */; };
@@ -8655,7 +8647,6 @@
 		CA1DA95616732ED00078B5A9 /* HomeMainMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainMenuPanel.m; sourceTree = "<group>"; };
 		CA1DA95816732EEC0078B5A9 /* HomeBottomMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeBottomMenuPanel.h; sourceTree = "<group>"; };
 		CA1DA95916732EED0078B5A9 /* HomeBottomMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeBottomMenuPanel.m; sourceTree = "<group>"; };
-		CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBottomMenuPanel.xib; sourceTree = "<group>"; };
 		CA1DA965167330060078B5A9 /* HomeMainMenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeMainMenuPanel.xib; sourceTree = "<group>"; };
 		CA1DA9671673301A0078B5A9 /* HomeMainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeMainMenu.xib; sourceTree = "<group>"; };
 		CA1DA9691673302E0078B5A9 /* HomeBottomMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeBottomMenu.xib; sourceTree = "<group>"; };
@@ -9296,7 +9287,6 @@
 		CACEC35C178BCD1500D88643 /* SelectorCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectorCommand.m; sourceTree = "<group>"; };
 		CAD082F51676E0E7007B6B65 /* HomeBottomMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeBottomMenu~ipad.xib"; sourceTree = "<group>"; };
 		CAD082F61676E0E7007B6B65 /* HomeMainMenu~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenu~ipad.xib"; sourceTree = "<group>"; };
-		CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeBottomMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HomeMainMenuPanel~ipad.xib"; sourceTree = "<group>"; };
 		CAD082FF1676E123007B6B65 /* DrawHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		CAD18C83156B9125003ADDC0 /* MainDataModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 5.xcdatamodel"; sourceTree = "<group>"; };
@@ -9650,6 +9640,8 @@
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
 		EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaoBaoController~ipad.xib"; sourceTree = "<group>"; };
+		EA5FE1B917E7F5040099754C /* RopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeView.h; sourceTree = "<group>"; };
+		EA5FE1BA17E7F5050099754C /* RopeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeView.m; sourceTree = "<group>"; };
 		EA64193517743A3D009FCFD5 /* SingHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		EA64193C17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
 		EA64193E17744AAF009FCFD5 /* sing_bottom_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_bottom_bar@2x.png"; sourceTree = "<group>"; };
@@ -9710,7 +9702,6 @@
 		EA8EF66617E55F0D003F1AF8 /* DrawHomeHeaderPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawHomeHeaderPanel.m; sourceTree = "<group>"; };
 		EA8EF66B17E593CA003F1AF8 /* DrawMainMenuPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawMainMenuPanel.h; sourceTree = "<group>"; };
 		EA8EF66C17E593CA003F1AF8 /* DrawMainMenuPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawMainMenuPanel.m; sourceTree = "<group>"; };
-		EA8EF67117E593F0003F1AF8 /* DrawMainMenuPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawMainMenuPanel.xib; sourceTree = "<group>"; };
 		EA8EF67617E6AB9E003F1AF8 /* draw_home_bottom_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_bottom_bg@2x.png"; sourceTree = "<group>"; };
 		EA97E92D16E735A600817647 /* CustomInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
 		EAA9E1671622B2A000E8DF1A /* UserLocationController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "UserLocationController~ipad.xib"; sourceTree = "<group>"; };
@@ -14045,8 +14036,6 @@
 				CAD082FA1676E0F7007B6B65 /* HomeMainMenuPanel~ipad.xib */,
 				CA1DA95816732EEC0078B5A9 /* HomeBottomMenuPanel.h */,
 				CA1DA95916732EED0078B5A9 /* HomeBottomMenuPanel.m */,
-				CA1DA96116732FCE0078B5A9 /* HomeBottomMenuPanel.xib */,
-				CAD082F91676E0F6007B6B65 /* HomeBottomMenuPanel~ipad.xib */,
 			);
 			name = Panel;
 			sourceTree = "<group>";
@@ -16552,7 +16541,8 @@
 				EA8EF66617E55F0D003F1AF8 /* DrawHomeHeaderPanel.m */,
 				EA8EF66B17E593CA003F1AF8 /* DrawMainMenuPanel.h */,
 				EA8EF66C17E593CA003F1AF8 /* DrawMainMenuPanel.m */,
-				EA8EF67117E593F0003F1AF8 /* DrawMainMenuPanel.xib */,
+				EA5FE1B917E7F5040099754C /* RopeView.h */,
+				EA5FE1BA17E7F5050099754C /* RopeView.m */,
 			);
 			name = Draw;
 			sourceTree = "<group>";
@@ -16938,14 +16928,12 @@
 				A461B544174CBAA70088B061 /* bbs_refresh@2x.png in Resources */,
 				A461B545174CBAA70088B061 /* bbs_board_comment@2x.png in Resources */,
 				A461B546174CBAA70088B061 /* bbs_board_mine@2x.png in Resources */,
-				A461B54C174CBAA70088B061 /* HomeBottomMenuPanel.xib in Resources */,
 				A461B54E174CBAA70088B061 /* HomeMainMenuPanel.xib in Resources */,
 				A461B54F174CBAA70088B061 /* HomeMainMenu.xib in Resources */,
 				A461B550174CBAA70088B061 /* HomeBottomMenu.xib in Resources */,
 				A461B551174CBAA70088B061 /* DrawHomeHeaderPanel~ipad.xib in Resources */,
 				A461B554174CBAA70088B061 /* HomeBottomMenu~ipad.xib in Resources */,
 				A461B555174CBAA70088B061 /* HomeMainMenu~ipad.xib in Resources */,
-				A461B556174CBAA70088B061 /* HomeBottomMenuPanel~ipad.xib in Resources */,
 				A461B557174CBAA70088B061 /* HomeMainMenuPanel~ipad.xib in Resources */,
 				A461B559174CBAA70088B061 /* DrawHomeHeaderPanel.xib in Resources */,
 				A461B567174CBAA70088B061 /* CommonDialog.xib in Resources */,
@@ -17645,7 +17633,6 @@
 				EA8EF65A17E55D3B003F1AF8 /* draw_home_online_guess@2x.png in Resources */,
 				EA8EF65E17E55D3B003F1AF8 /* draw_home_top@2x.png in Resources */,
 				EA8EF66217E55D3B003F1AF8 /* draw_home_user_photo@2x.png in Resources */,
-				EA8EF67417E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */,
 				EA8EF67917E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -17854,14 +17841,12 @@
 				C28A9E231738F04B007A819F /* bbs_refresh@2x.png in Resources */,
 				C28A9E241738F04B007A819F /* bbs_board_comment@2x.png in Resources */,
 				C28A9E251738F04B007A819F /* bbs_board_mine@2x.png in Resources */,
-				C28A9E2B1738F04B007A819F /* HomeBottomMenuPanel.xib in Resources */,
 				C28A9E2D1738F04B007A819F /* HomeMainMenuPanel.xib in Resources */,
 				C28A9E2E1738F04B007A819F /* HomeMainMenu.xib in Resources */,
 				C28A9E2F1738F04B007A819F /* HomeBottomMenu.xib in Resources */,
 				C28A9E301738F04B007A819F /* DrawHomeHeaderPanel~ipad.xib in Resources */,
 				C28A9E331738F04B007A819F /* HomeBottomMenu~ipad.xib in Resources */,
 				C28A9E341738F04B007A819F /* HomeMainMenu~ipad.xib in Resources */,
-				C28A9E351738F04B007A819F /* HomeBottomMenuPanel~ipad.xib in Resources */,
 				C28A9E361738F04B007A819F /* HomeMainMenuPanel~ipad.xib in Resources */,
 				C28A9E381738F04B007A819F /* DrawHomeHeaderPanel.xib in Resources */,
 				C28A9E461738F04B007A819F /* CommonDialog.xib in Resources */,
@@ -18513,7 +18498,6 @@
 				EA8EF65917E55D3B003F1AF8 /* draw_home_online_guess@2x.png in Resources */,
 				EA8EF65D17E55D3B003F1AF8 /* draw_home_top@2x.png in Resources */,
 				EA8EF66117E55D3B003F1AF8 /* draw_home_user_photo@2x.png in Resources */,
-				EA8EF67317E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */,
 				EA8EF67817E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -18726,14 +18710,12 @@
 				CA837C2B166CDFAD005718AA /* bbs_refresh@2x.png in Resources */,
 				CAA27FB5166E083500513F58 /* bbs_board_comment@2x.png in Resources */,
 				CAA27FB6166E083500513F58 /* bbs_board_mine@2x.png in Resources */,
-				CA1DA96216732FCF0078B5A9 /* HomeBottomMenuPanel.xib in Resources */,
 				CA1DA966167330070078B5A9 /* HomeMainMenuPanel.xib in Resources */,
 				CA1DA9681673301B0078B5A9 /* HomeMainMenu.xib in Resources */,
 				CA1DA96A167330300078B5A9 /* HomeBottomMenu.xib in Resources */,
 				CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */,
 				CAD082F71676E0E8007B6B65 /* HomeBottomMenu~ipad.xib in Resources */,
 				CAD082F81676E0E8007B6B65 /* HomeMainMenu~ipad.xib in Resources */,
-				CAD082FC1676E0F8007B6B65 /* HomeBottomMenuPanel~ipad.xib in Resources */,
 				CAD082FD1676E0F8007B6B65 /* HomeMainMenuPanel~ipad.xib in Resources */,
 				CAD083001676E124007B6B65 /* DrawHomeHeaderPanel.xib in Resources */,
 				C2B538251677712300725802 /* CommonDialog.xib in Resources */,
@@ -19363,7 +19345,6 @@
 				EA8EF65817E55D3B003F1AF8 /* draw_home_online_guess@2x.png in Resources */,
 				EA8EF65C17E55D3B003F1AF8 /* draw_home_top@2x.png in Resources */,
 				EA8EF66017E55D3B003F1AF8 /* draw_home_user_photo@2x.png in Resources */,
-				EA8EF67217E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */,
 				EA8EF67717E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -19562,14 +19543,12 @@
 				EA411C74176066F500DA72D0 /* bbs_refresh@2x.png in Resources */,
 				EA411C75176066F500DA72D0 /* bbs_board_comment@2x.png in Resources */,
 				EA411C76176066F500DA72D0 /* bbs_board_mine@2x.png in Resources */,
-				EA411C7B176066F500DA72D0 /* HomeBottomMenuPanel.xib in Resources */,
 				EA411C7D176066F500DA72D0 /* HomeMainMenuPanel.xib in Resources */,
 				EA411C7E176066F500DA72D0 /* HomeMainMenu.xib in Resources */,
 				EA411C7F176066F500DA72D0 /* HomeBottomMenu.xib in Resources */,
 				EA411C80176066F500DA72D0 /* DrawHomeHeaderPanel~ipad.xib in Resources */,
 				EA411C81176066F500DA72D0 /* HomeBottomMenu~ipad.xib in Resources */,
 				EA411C82176066F500DA72D0 /* HomeMainMenu~ipad.xib in Resources */,
-				EA411C83176066F500DA72D0 /* HomeBottomMenuPanel~ipad.xib in Resources */,
 				EA411C84176066F500DA72D0 /* HomeMainMenuPanel~ipad.xib in Resources */,
 				EA411C86176066F500DA72D0 /* DrawHomeHeaderPanel.xib in Resources */,
 				EA411C94176066F500DA72D0 /* CommonDialog.xib in Resources */,
@@ -20183,7 +20162,6 @@
 				EA8EF65B17E55D3B003F1AF8 /* draw_home_online_guess@2x.png in Resources */,
 				EA8EF65F17E55D3B003F1AF8 /* draw_home_top@2x.png in Resources */,
 				EA8EF66317E55D3B003F1AF8 /* draw_home_user_photo@2x.png in Resources */,
-				EA8EF67517E593F0003F1AF8 /* DrawMainMenuPanel.xib in Resources */,
 				EA8EF67A17E6AB9F003F1AF8 /* draw_home_bottom_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -21008,6 +20986,7 @@
 				EA0D329317E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21802,6 +21781,7 @@
 				EA0D329217E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22602,6 +22582,7 @@
 				EA0D329117E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66717E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23376,6 +23357,7 @@
 				EA0D329417E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66A17E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

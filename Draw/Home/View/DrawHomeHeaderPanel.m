@@ -13,7 +13,7 @@
 
 @interface DrawHomeHeaderPanel()
 {
-    
+    CGFloat lastTouchPoint;
 }
 @property(nonatomic, retain)NSMutableDictionary *indexDict;
 
@@ -33,6 +33,7 @@
 #define OPUS_SIZE CGSizeMake(OPUS_WIDTH,OPUS_WIDTH)
 #define TAG_BASE 100
 
+#define ROPE_X (ISIPAD?666:284)
 
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
@@ -81,14 +82,32 @@
     }
 }
 
+- (void)initRope
+{
+    self.rope = [RopeView ropeView];
+    [self addSubview:self.rope];
+    [self.rope updateOriginX:ROPE_X];
+    [self.rope setFinishHandler:^(RopeView *ropeView){
+        if (self.status == DrawHeaderPanelStatusClose) {
+            EXECUTE_BLOCK(self.clickRopeHandler, YES);
+        }else if(self.status == DrawHeaderPanelStatusOpen){
+            EXECUTE_BLOCK(self.clickRopeHandler, NO);
+        }else{
+            PPDebug(@"is animating!!!");
+        }
+    }];
+}
+
 - (void)baseInit
 {
     self.indexDict = [NSMutableDictionary
                        dictionary];    
-    [self.rope.imageView setContentMode:UIViewContentModeBottom];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.status = DrawHeaderPanelStatusClose;
+    
+    [self initRope];
+    
     [self updateFrameForClose];
     self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
     [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:18 delegate:self];
@@ -125,6 +144,8 @@
     self.holderView.frame = CGRectMake(x, 0, HOLDER_WIDTH_CLOSE,HOLDER_HEIGHT_CLOSE);
 }
 
+
+
 - (void)openAnimated:(BOOL)animated
           completion:(void (^)(BOOL finished))completion
 {
@@ -135,8 +156,9 @@
             completion(finished);
         }
         [self.superview addSubview:self.rope];
-        self.rope.hidden = NO;
+        [self.rope reset];
         [self.rope updateOriginY:CGRectGetMaxY(self.frame)];
+        [self.rope updateOriginX:ROPE_X];
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
@@ -160,9 +182,9 @@
             completion(finished);
         }
         [self addSubview:self.rope];
-        self.rope.hidden = NO;
+        [self.rope reset];
         [self.rope updateOriginY:0];
-        
+        [self.rope updateOriginX:ROPE_X];
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;
@@ -175,6 +197,7 @@
         innerCompletion(YES);
     }
 }
+
 
 - (void)dealloc {
     [_bgView release];
@@ -272,17 +295,5 @@
 
 }
 
-- (IBAction)clickRope:(id)sender {
 
-    self.rope.hidden = YES;
-    if (self.status == DrawHeaderPanelStatusClose) {
-        EXECUTE_BLOCK(self.clickRopeHandler, YES);
-    }else if(self.status == DrawHeaderPanelStatusOpen){
-        EXECUTE_BLOCK(self.clickRopeHandler, NO);
-    }else{
-        PPDebug(@"is animating!!!");
-        self.rope.hidden = NO;
-    }
-
-}
 @end

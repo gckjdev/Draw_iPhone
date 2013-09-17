@@ -136,6 +136,7 @@ typedef enum{
 + (NSString *)titleForType:(HomeMenuType)type;
 
 - (void)toBeTitleUpStyle;
+- (void)toBeTitleDownStyle;
 @end
 
 

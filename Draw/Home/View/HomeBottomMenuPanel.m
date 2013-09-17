@@ -18,24 +18,35 @@
 @interface HomeBottomMenuPanel()
 {
     NSInteger _menuCount;
+    UIImageView *_bgView;
 }
 
 @end
 
+#define SELF_SIZE (ISIPAD?CGSizeMake(768,76):CGSizeMake(320,38))
+
 @implementation HomeBottomMenuPanel
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _bgView = [[UIImageView alloc] initWithFrame:self.bounds];
+        _bgView.autoresizingMask = (0x1<<6)-1;
+        [self addSubview:_bgView];
+        [_bgView release];
+        [self updateView];
+    }
+    return self;
+}
 
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
-    NSString* identifier = [HomeBottomMenuPanel getViewIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find view object from Nib", identifier);
-        return nil;
-    }
-    HomeCommonView<HomeCommonViewProtocol> *view = [topLevelObjects objectAtIndex:0];
+    CGRect frame = CGRectZero;
+    frame.size = SELF_SIZE;
+    HomeCommonView<HomeCommonViewProtocol> *view = [[HomeBottomMenuPanel alloc] initWithFrame:frame];
     view.delegate = delegate;
-    [view updateView];
-    return view;
+    return [view autorelease];
 }
 
 + (NSString *)getViewIdentifier
@@ -89,10 +100,9 @@
         CGFloat width = WIDTH / _menuCount;
         CGFloat x = 0;
         for (HomeMenuView *view in array) {
-            CGRect frame = view.frame;
-            frame.origin = CGPointMake(x, frame.origin.y);
-            frame.size = CGSizeMake(width, frame.size.height);
-            view.frame = frame;
+            [view updateOriginX:x];
+            [view updateWidth:width];
+            [view updateCenterY:CGRectGetMidY(self.bounds)];
             x += width;
         }
     }
@@ -133,8 +143,7 @@
 
 - (UIImageView *)bgImageView
 {
-    UIImageView *iv = (id)[self viewWithTag:1234];
-    return iv;
+    return _bgView;;
 }
 
 - (void)updateView
