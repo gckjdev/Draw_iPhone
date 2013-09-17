@@ -145,7 +145,7 @@
     canSend = NO;
     
     if ([msg length] != 0) {
-        [self showActivityWithText:NSLS(@"kSending")];
+        [self showActivityWithText:NSLS(@"kSending") center:self.contentView.center];
         FeedService *_feedService = [FeedService defaultService];
         
         NSString *opusId = _feed.feedId;

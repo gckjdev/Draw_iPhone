@@ -66,7 +66,7 @@
 
 #define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
 
-#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(16, 10, 88, 88) : CGRectMake(8, 9, 36, 36)
+#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(16, 20, 88, 88) : CGRectMake(8, 9, 36, 36)
 
 #define COMMENT_PAN ([DeviceDetection isIPAD] ? 10 : 6)
 #define REPLY_PAN ([DeviceDetection isIPAD] ? 42 : 22)
@@ -108,7 +108,7 @@
     FeedUser *author = feed.author;
     [_avatarView removeFromSuperview];
     _avatarView = [[AvatarView alloc] initWithUrlString:author.avatar 
-                                                  frame:AVATAR_VIEW_FRAME 
+                                                  frame:AVATAR_VIEW_FRAME
                                                  gender:author.gender 
                                                   level:0];
     _avatarView.delegate = self;
