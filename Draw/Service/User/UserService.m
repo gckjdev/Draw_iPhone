@@ -1803,6 +1803,10 @@ POSTMSG(NSLS(@"kLoginFailure"));
 
 - (void)logout:(UIViewController*)viewController
 {
+    if ([[[UserManager defaultManager] password] length] == 0){
+        POSTMSG2(NSLS(@"kCannotLogoutWithoutPasswordSet"), 3.0f);
+        return;
+    }
     
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kConfirmLogout") style:CommonDialogStyleDoubleButtonWithCross];
 

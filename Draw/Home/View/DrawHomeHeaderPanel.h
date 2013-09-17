@@ -7,6 +7,7 @@
 //
 
 #import "HomeHeaderPanel.h"
+#import "RopeView.h"
 
 typedef enum{
     DrawHeaderPanelStatusClose = 1,
@@ -32,11 +33,8 @@ typedef void (^HeaderAnimationHandler)(BOOL open);
 @property (retain, nonatomic) IBOutlet UIView *bgView;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
 @property (retain, nonatomic) IBOutlet UIImageView *displayHolder;
-@property (retain, nonatomic) IBOutlet UIButton *rope;
+@property (retain, nonatomic) RopeView *rope;
 
 @property (copy, nonatomic) HeaderAnimationHandler clickRopeHandler;
-//@property (copy, nonatomic) HeaderAnimationHandler startHandler;
-//@property (copy, nonatomic) HeaderAnimationHandler finishHandler;
 
-- (IBAction)clickRope:(id)sender;
 @end

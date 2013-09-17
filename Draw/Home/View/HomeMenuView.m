@@ -45,6 +45,12 @@
     [self.title updateOriginY:0];
 }
 
+- (void)toBeTitleDownStyle
+{
+    [self.title updateOriginY:CGRectGetHeight(self.bounds)-CGRectGetHeight(self.title.bounds)];
+}
+
+
 + (NSString *)titleForType:(HomeMenuType)type
 {
 

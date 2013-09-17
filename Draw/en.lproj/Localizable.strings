@@ -1067,6 +1067,7 @@
 "kTryShakeXiaoji" = "Try to take a littlegee number now for login/logout?";
 "kTryTakeNumber" = "Take Now";
 "kViewMyProfile" = "Later";
+"kCannotLogoutWithoutPasswordSet" = "You haven't set password yet. Cannot logout";
 
 "kConfirmLogout" = "Do you want to logout this account?";
 "kAskKeepDraft" = "Do you want to keep all your local drafts?";

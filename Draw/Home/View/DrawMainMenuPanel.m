@@ -17,9 +17,12 @@
 
 @implementation DrawMainMenuPanel
 
+#define SELF_FRAME (ISIPAD?CGRectMake(0, 0, 768, 804):CGRectMake(0, 0, 320, 360))
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
-    DrawMainMenuPanel *panel = [self createViewWithXibIdentifier:[self getViewIdentifier]];
+    
+    
+    DrawMainMenuPanel *panel = [[[DrawMainMenuPanel alloc] initWithFrame:SELF_FRAME] autorelease];
     panel.delegate = delegate;
     [panel baseInit];
     return panel;
@@ -32,8 +35,6 @@
 - (void)dealloc
 {
     PPRelease(_menuList);
-//    RELEASE_BLOCK(_finishHandler);
-//    RELEASE_BLOCK(_startHandler);
     [super dealloc];
 }
 
@@ -43,7 +44,7 @@
 }
 
 #define NUMBER_PER_PAGE 6
-#define RADIUS (ISIPAD?300:105)
+#define RADIUS (ISIPAD?235:105)
 
 - (NSArray *)menusInPage:(NSInteger)page
 {
@@ -55,11 +56,12 @@
     return list;
 }
 
+#define CENTER_OFFSET (ISIPAD?38:17)
 - (CGPoint)centerInPage:(NSInteger)page
 {
     CGPoint center = self.scrollView.center;
     center.x += page * (CGRectGetWidth(self.scrollView.bounds));
-    center.y -= 38/2;
+    center.y -= CENTER_OFFSET;
     return center;
 }
 
@@ -67,6 +69,8 @@
           completion:(void (^)(BOOL finished))completion
                 page:(NSInteger)page
 {
+    NSArray *menus = [self menusInPage:page];
+    [menus[0] toBeTitleUpStyle];
     [AnimationManager showRoundTypeSettingInView:self.scrollView
                                         subViews:[self menusInPage:page]
                                           center:[self centerInPage:page]
@@ -80,7 +84,14 @@
           completion:(void (^)(BOOL finished))completion
 {
     [self.scrollView setContentOffset:CGPointMake(0, 0)];
-    [self openAnimated:animated completion:completion page:[self currentPage]];
+    [self openAnimated:animated completion:^(BOOL finished) {
+        EXECUTE_BLOCK(completion,YES);
+        [self.scrollView enumSubviewsWithClass:[HomeMenuView class] handler:^(id view) {
+            HomeMenuView *menu = view;
+            [menu.title setHidden:NO];
+        }];
+        
+    } page:[self currentPage]];
 }
 
 - (void)closeAnimated:(BOOL)animated
@@ -89,6 +100,10 @@
 {
     NSArray *menus = [self menusInPage:page];
     CGPoint center = [self centerInPage:page];
+    [self.scrollView enumSubviewsWithClass:[HomeMenuView class] handler:^(id view) {
+        HomeMenuView *menu = view;
+        [menu.title setHidden:YES];
+    }];
     if (animated) {
         [UIView animateWithDuration:MAIN_ANIMATION_INTEVAL animations:^{
         
@@ -112,6 +127,7 @@
     self.scrollView.scrollEnabled = YES;
     
     HomeMenuView *menu = [self getMenuViewWithType:type];
+    [menu.title setHidden:YES];
     CGPoint center = [self centerInPage:[self currentPage]];
     if (animated) {
         [UIView animateWithDuration:MAIN_ANIMATION_INTEVAL animations:^{
@@ -143,14 +159,19 @@
     }];
     
     HomeMenuView *menu = [self getMenuViewWithType:type];
+    [menu toBeTitleDownStyle];
     CGPoint center = [self centerInPage:[self currentPage]];
     CGPoint stopPoint = CGPointMake(center.x, CGRectGetHeight(self.scrollView.bounds)-CGRectGetHeight(menu.bounds)/2);
     if (animated) {
         [UIView animateWithDuration:MAIN_ANIMATION_INTEVAL animations:^{
             menu.center = stopPoint;
-        } completion:completion];
+        } completion:^(BOOL finished) {
+            EXECUTE_BLOCK(completion,YES);
+            menu.title.hidden = NO;
+        }];
     }else{
         menu.center = stopPoint;
+        menu.title.hidden = NO;        
     }
 }
 
@@ -164,8 +185,8 @@
 }
 
 
-#define AVATAR_SIZE CGSizeMake(67,67)
-#define DEFAULT_AVATAR_SIZE CGSizeMake(76,92)
+#define AVATAR_SIZE (ISIPAD?CGSizeMake(135,135):CGSizeMake(67,67))
+#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(150,195):CGSizeMake(76,92))
 
 - (void)addAvatarInPage:(NSInteger)page
 {
@@ -180,18 +201,20 @@
 
 - (void)baseInit
 {
+    self.scrollView = [[[UIScrollView alloc] initWithFrame:self.bounds] autorelease];
+    self.scrollView.autoresizingMask = (0x1<<6)-1;
+    [self addSubview:self.scrollView];
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.pagingEnabled = YES;
+    
     self.menuList = [NSMutableArray array];
     HomeMenuType *types = getMainMenuTypeList();
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
     for (HomeMenuType type = (*types); type != HomeMenuTypeEnd; types++,type=(*types)) {
-        PPDebug(@"type = %d",type);
         HomeMenuView *menu = [HomeMenuView menuViewWithType:type badge:0 delegate:self];
-        [self.menuList addObject:menu];
-        if (menu.type == HomeMenuTypeDrawDraw) {
-            [menu toBeTitleUpStyle];
-        }
-    }
+        [self.menuList addObject:menu];    }
     NSInteger pageNumber = [self.menuList count]/NUMBER_PER_PAGE ;
     if (0 != ([self.menuList count] % NUMBER_PER_PAGE)) {
         pageNumber ++;
@@ -224,7 +247,7 @@
         AvatarView *av = view;
         if (([me.avatarURL length] != 0 || me.avatarImage)) {
             [av setAsRound];
-            av.layer.borderColor = [COLOR_WHITE CGColor];
+            av.layer.borderColor = [COLOR_BROWN CGColor];
             av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
             if (me.avatarImage) {
                 [av setImage:me.avatarImage];
