@@ -6603,6 +6603,10 @@
 		EA49C86517093CD300843B6B /* TaoBaoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86217093CD200843B6B /* TaoBaoController.xib */; };
 		EA49C86617093CD300843B6B /* TaoBaoController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */; };
 		EA59DF6D174DFF3E0039B441 /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
+		EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
+		EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
+		EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
+		EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5FE1BA17E7F5050099754C /* RopeView.m */; };
 		EA64193617743A3D009FCFD5 /* SingHomeHeaderPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA64193517743A3D009FCFD5 /* SingHomeHeaderPanel.xib */; };
 		EA64193D17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA64193C17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib */; };
 		EA64193F17744AAF009FCFD5 /* sing_bottom_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA64193E17744AAF009FCFD5 /* sing_bottom_bar@2x.png */; };
@@ -9650,6 +9654,8 @@
 		EA49C86117093CD200843B6B /* TaoBaoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoBaoController.m; sourceTree = "<group>"; };
 		EA49C86217093CD200843B6B /* TaoBaoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoBaoController.xib; sourceTree = "<group>"; };
 		EA49C86317093CD200843B6B /* TaoBaoController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaoBaoController~ipad.xib"; sourceTree = "<group>"; };
+		EA5FE1B917E7F5040099754C /* RopeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RopeView.h; sourceTree = "<group>"; };
+		EA5FE1BA17E7F5050099754C /* RopeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RopeView.m; sourceTree = "<group>"; };
 		EA64193517743A3D009FCFD5 /* SingHomeHeaderPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingHomeHeaderPanel.xib; sourceTree = "<group>"; };
 		EA64193C17743A66009FCFD5 /* SingHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
 		EA64193E17744AAF009FCFD5 /* sing_bottom_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_bottom_bar@2x.png"; sourceTree = "<group>"; };
@@ -16553,6 +16559,8 @@
 				EA8EF66B17E593CA003F1AF8 /* DrawMainMenuPanel.h */,
 				EA8EF66C17E593CA003F1AF8 /* DrawMainMenuPanel.m */,
 				EA8EF67117E593F0003F1AF8 /* DrawMainMenuPanel.xib */,
+				EA5FE1B917E7F5040099754C /* RopeView.h */,
+				EA5FE1BA17E7F5050099754C /* RopeView.m */,
 			);
 			name = Draw;
 			sourceTree = "<group>";
@@ -21008,6 +21016,7 @@
 				EA0D329317E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21802,6 +21811,7 @@
 				EA0D329217E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22602,6 +22612,7 @@
 				EA0D329117E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66717E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23376,6 +23387,7 @@
 				EA0D329417E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66A17E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
+				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
