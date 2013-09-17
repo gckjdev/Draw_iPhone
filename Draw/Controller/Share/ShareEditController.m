@@ -423,6 +423,10 @@ enum {
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButon:)];
     [self.titleView setRightButtonSelector:@selector(publish:)];
+    
+    if (self.myImageView == nil){
+        [self.shareTextField becomeFirstResponder];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

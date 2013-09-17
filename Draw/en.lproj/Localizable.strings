@@ -1080,6 +1080,8 @@
 "kLogoutAccount" = "Logout";
 "kLogout" = "Logout";
 "kAutoGetUserSucc" = "Get user information successfully.";
+"kLogouting" = "Logout...";
+"kLogoutFailure" = "Fail to logout user, please check your network and try again later.";
 
 "kNoXiaojiNumber" = "No Littlegee Number";
 "kXiaoji" = "Littlegee";

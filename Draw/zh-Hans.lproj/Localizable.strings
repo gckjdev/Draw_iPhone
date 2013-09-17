@@ -1089,6 +1089,7 @@
 "kTakeCoins" = "目前可领取%d金币，请确认是否马上领取？";
 "kCoinsTakeSucc" = "已成功领取金币";
 
+
 "kConfirmLogout" = "是否确定要退出当前帐号？";
 "kAskKeepDraft" = "是否要保留当前草稿箱中的所有草稿？如果不保留，退出帐号也将删除所有本地草稿。";
 "kKeepDraft" = "保留草稿";
@@ -1098,6 +1099,9 @@
 "kLogoutAccount" = "退出帐号";
 "kLogout" = "退出帐号";
 "kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
+"kLogouting" = "退出帐号中...";
+"kLogoutFailure" = "退出帐号失败，请检查你的网络或者稍后再试";
+
 
 "kNoXiaojiNumber" = "未有小吉号码";
 "kXiaoji" = "小吉";

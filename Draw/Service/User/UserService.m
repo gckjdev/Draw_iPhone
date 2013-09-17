@@ -1760,25 +1760,35 @@ POSTMSG(NSLS(@"kLoginFailure"));
     });
 }
 
-- (void)executeLogout:(BOOL)keepDraft viewController:(UIViewController*)viewController
+- (void)executeLogout:(BOOL)keepDraft viewController:(PPViewController*)viewController
 {
     // clear device binding information
-    [[UserDeviceService defaultService] removeUserDevice];
+    [viewController showActivityWithText:NSLS(@"kLogouting")];
+    [[UserDeviceService defaultService] removeUserDevice:^(int resultCode){
+        
+        [viewController hideActivity];
+        if (resultCode == 0){
+            // clear draft
+            if (keepDraft == NO){
+                [[MyPaintManager defaultManager] removeAllDraft];
+            }
+
+            // clear user data
+            [[UserManager defaultManager] cleanUserData];
+            
+            [viewController.navigationController popToRootViewControllerAnimated:YES];            
+            
+            POSTMSG(NSLS(@"kLogoutDone"));
+        }
+        else{
+            POSTMSG(NSLS(@"kLogoutFailure"));
+        }
+        
+    }];
     
-    // clear draft
-    if (keepDraft == NO){
-        [[MyPaintManager defaultManager] removeAllDraft];
-    }
-    
-    [viewController.navigationController popToRootViewControllerAnimated:YES];
-    
-    // clear user data
-    [[UserManager defaultManager] cleanUserData];
-    
-    POSTMSG(NSLS(@"kLogoutDone"));        
 }
 
-- (void)askKeepDraft:(UIViewController*)viewController
+- (void)askKeepDraft:(PPViewController*)viewController
 {
 //    int draftCount = [[MyPaintManager defaultManager] countAllDrafts];
     
@@ -1802,7 +1812,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 
 
 
-- (void)logout:(UIViewController*)viewController
+- (void)logout:(PPViewController*)viewController
 {
     if ([[[UserManager defaultManager] password] length] == 0){
         POSTMSG2(NSLS(@"kCannotLogoutWithoutPasswordSet"), 3.0f);
@@ -1818,6 +1828,10 @@ POSTMSG(NSLS(@"kLoginFailure"));
     [dialog showInView:viewController.view];
 }
 
+- (void)forceLogout
+{
+    [self executeLogout:YES viewController:nil];
+}
 
 @end
 
