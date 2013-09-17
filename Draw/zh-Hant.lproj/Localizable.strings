@@ -1525,7 +1525,7 @@
 "kAward" = "闖關成功";
 "kGuessHappyModeAwardTips" = "\n猜中：%d 幅作品\n\n獎勵：%d 金幣\n\n";
 "kGuessGenuisModeAwardTips" = "\n猜中：%d 幅作品\n\n獎勵：%d 金幣\n\n級別：%@\n\n可選擇分享到微博或微信朋友圈得瑟一下，或者繼續闖關\n\n";
-"kShareGuessTitle" = "據某知名挨踢企業的大數據云計算系統顯示，本人在24小時內不間斷一次性連續猜對了%d幅畫，獲贈【%@】稱號，好玩好玩";
+"kShareGuessTitle" = "據某知名挨踢企業的大數據云計算系統顯示，本人在24小時內不間斷一次性連續猜對了%d幅畫，獲贈【%@】稱號，好玩好玩！";
 "kGoShare" = "分享";
 
 "kGuessHappyModeTips" = "已猜對 %d 幅作品，再猜 %d 幅作品，可獲得 %d 金幣獎勵";
