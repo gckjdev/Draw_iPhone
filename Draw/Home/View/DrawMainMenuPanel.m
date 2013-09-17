@@ -65,35 +65,71 @@
     return center;
 }
 
+
+
+#define TAG_OFFSET 1000000
+
+- (void)showAllLinesInCurrentPage
+{
+    NSArray *menus = [self menusInPage:[self currentPage]];
+    for (HomeMenuView *menu in menus) {
+        UIView *line = [self.scrollView viewWithTag:menu.tag+TAG_OFFSET];
+        line.hidden = NO;
+    }
+}
+
+- (void)hideAllLinesInCurrentPage
+{
+    NSArray *menus = [self menusInPage:[self currentPage]];
+    for (HomeMenuView *menu in menus) {
+        UIView *line = [self.scrollView viewWithTag:menu.tag+TAG_OFFSET];
+        line.hidden = YES;
+    }
+}
+
 - (void)openAnimated:(BOOL)animated
           completion:(void (^)(BOOL finished))completion
                 page:(NSInteger)page
 {
     NSArray *menus = [self menusInPage:page];
     [menus[0] toBeTitleUpStyle];
+    
+    UIImage *lineImage = nil;
+    if (ISIPAD) {
+        lineImage = [UIImage imageNamed:@"common_home_join_line@2x.png"];
+    }else{
+        lineImage = [UIImage imageNamed:@"common_home_join_line.png"];
+    }
+    lineImage = [lineImage stretchableImageWithLeftCapWidth:lineImage.size.width/2 topCapHeight:lineImage.size.height/2];
+    
+    [self performSelector:@selector(showAllLinesInCurrentPage) withObject:nil afterDelay:MAIN_ANIMATION_INTEVAL/1.5];
     [AnimationManager showRoundTypeSettingInView:self.scrollView
-                                        subViews:[self menusInPage:page]
-                                            line:nil
+                                        subViews:menus
+                                            line:lineImage
                                           center:[self centerInPage:page]
                                           radius:RADIUS
                                         animated:animated
-                                      completion:completion];
+                                      completion:completion];    
 }
-
 
 - (void)openAnimated:(BOOL)animated
           completion:(void (^)(BOOL finished))completion
 {
     [self.scrollView setContentOffset:CGPointMake(0, 0)];
+    
+    
     [self openAnimated:animated completion:^(BOOL finished) {
         EXECUTE_BLOCK(completion,YES);
         [self.scrollView enumSubviewsWithClass:[HomeMenuView class] handler:^(id view) {
             HomeMenuView *menu = view;
             [menu.title setHidden:NO];
+            
         }];
         
     } page:[self currentPage]];
 }
+
+
 
 - (void)closeAnimated:(BOOL)animated
            completion:(void (^)(BOOL finished))completion
@@ -105,9 +141,10 @@
         HomeMenuView *menu = view;
         [menu.title setHidden:YES];
     }];
+    [self performSelector:@selector(hideAllLinesInCurrentPage) withObject:nil afterDelay:MAIN_ANIMATION_INTEVAL/2.];
+
     if (animated) {
         [UIView animateWithDuration:MAIN_ANIMATION_INTEVAL animations:^{
-        
         for (UIView *menu in menus) {
                 menu.center = center;
             }
@@ -187,18 +224,37 @@
 
 
 #define AVATAR_SIZE (ISIPAD?CGSizeMake(135,135):CGSizeMake(67,67))
-#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(150,195):CGSizeMake(76,92))
+#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(142,172):CGSizeMake(76,92))
 
 - (void)addAvatarInPage:(NSInteger)page
 {
     UserManager *me = [UserManager defaultManager];
     AvatarView *av = [[AvatarView alloc] initWithUrlString:nil frame:CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height) gender:[me gender] level:[me level]];
-    [self.scrollView addSubview:av];
+//    [self.scrollView addSubview:av];
+    [self.scrollView insertSubview:av atIndex:0];
     av.delegate = self;
     [av release];
     av.center = [self centerInPage:page];
-    [self.scrollView sendSubviewToBack:av];
+//    [self.scrollView sendSubviewToBack:av];
+
 }
+
+
+- (void)updateViewLayers
+{
+    __block UIView *topLine = nil;
+    [self.scrollView enumSubviewsWithClass:[UIImageView class] handler:^(id view) {
+        topLine = view;
+    }];
+    
+    [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
+        AvatarView *avatar = view;
+        [self.scrollView insertSubview:avatar aboveSubview:topLine];
+    }];
+
+}
+
+#define MENU_TAG_BASE 10000
 
 - (void)baseInit
 {
@@ -213,9 +269,12 @@
     HomeMenuType *types = getMainMenuTypeList();
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
+    NSInteger tag = MENU_TAG_BASE;
     for (HomeMenuType type = (*types); type != HomeMenuTypeEnd; types++,type=(*types)) {
         HomeMenuView *menu = [HomeMenuView menuViewWithType:type badge:0 delegate:self];
-        [self.menuList addObject:menu];    }
+        menu.tag = tag++;
+        [self.menuList addObject:menu];
+    }
     NSInteger pageNumber = [self.menuList count]/NUMBER_PER_PAGE ;
     if (0 != ([self.menuList count] % NUMBER_PER_PAGE)) {
         pageNumber ++;
@@ -226,12 +285,13 @@
     }
     NSInteger page = 0;
     while (page<pageNumber) {
-        [self openAnimated:NO completion:NULL page:page];
         //add avatar
         [self addAvatarInPage:page];
+        [self openAnimated:NO completion:NULL page:page];
         page++;
     }
     [self updateAvatar];
+    [self updateViewLayers];
     [self.scrollView bringSubviewToFront:[self getMenuViewWithType:HomeMenuTypeDrawDraw]];
 }
 
