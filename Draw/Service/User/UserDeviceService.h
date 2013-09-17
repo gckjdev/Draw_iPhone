@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserService.h"
 
 @interface UserDeviceService : NSObject
 
@@ -14,6 +15,6 @@
 
 - (void)uploadUserDeviceInfo:(BOOL)forceUpload;
 
-- (void)removeUserDevice;
+- (void)removeUserDevice:(UpdateUserResultBlock)resultBlock;
 
 @end

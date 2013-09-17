@@ -505,6 +505,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   NSString* language;
   NSString* countryCode;
   PBOpenInfoType openInfoType;
+  NSMutableArray* mutableBlockDeviceIdsList;
   NSMutableArray* mutableAttributesList;
   NSMutableArray* mutableItemsList;
   NSMutableArray* mutableSnsUsersList;
@@ -605,6 +606,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBKeyValue*) attributesAtIndex:(int32_t) index;
 - (NSArray*) itemsList;
 - (PBUserItem*) itemsAtIndex:(int32_t) index;
+- (NSArray*) blockDeviceIdsList;
+- (NSString*) blockDeviceIdsAtIndex:(int32_t) index;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -805,6 +808,13 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSString*) deviceType;
 - (PBGameUser_Builder*) setDeviceType:(NSString*) value;
 - (PBGameUser_Builder*) clearDeviceType;
+
+- (NSArray*) blockDeviceIdsList;
+- (NSString*) blockDeviceIdsAtIndex:(int32_t) index;
+- (PBGameUser_Builder*) replaceBlockDeviceIdsAtIndex:(int32_t) index with:(NSString*) value;
+- (PBGameUser_Builder*) addBlockDeviceIds:(NSString*) value;
+- (PBGameUser_Builder*) addAllBlockDeviceIds:(NSArray*) values;
+- (PBGameUser_Builder*) clearBlockDeviceIdsList;
 
 - (BOOL) hasBloodGroup;
 - (NSString*) bloodGroup;

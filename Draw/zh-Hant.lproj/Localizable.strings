@@ -1075,6 +1075,8 @@
 "kLogoutAccount" = "退出當前帳號";
 "kLogout" = "退出帳號";
 "kAutoGetUserSucc" = "已經成功自動獲取之前綁定本設備的用戶資料";
+"kLogouting" = "退出帳號中...";
+"kLogoutFailure" = "退出帳號失敗，請檢查你的網絡或者稍後再試";
 
 "kNoXiaojiNumber" = "未有小吉號碼";
 "kXiaoji" = "小吉";

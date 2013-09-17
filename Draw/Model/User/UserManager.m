@@ -1512,6 +1512,16 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     self.pbUser = [builder build];    
 }
 
+- (void)setBlockDevices:(NSArray*)devices
+{
+    if (self.pbUser == nil || [devices count] == 0)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder addAllBlockDeviceIds:devices];
+    self.pbUser = [builder build];    
+}
+
 - (BOOL)canTakeCoins
 {
     return _pbUser.takeCoins > 0;
