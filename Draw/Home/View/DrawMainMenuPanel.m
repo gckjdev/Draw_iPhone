@@ -348,4 +348,7 @@
         [self.delegate homeMainMenuPanel:self didClickAvatarView:avatar];
     }
 }
+
+
+
 @end
