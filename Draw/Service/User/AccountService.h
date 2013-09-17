@@ -99,4 +99,6 @@ typedef void (^SyncAccountResultHandler)(int resultCode);
 
 - (void)restoreIAPPurchase;
 
+- (void)checkAndAskTakeCoins:(PPViewController*)viewController;
+
 @end

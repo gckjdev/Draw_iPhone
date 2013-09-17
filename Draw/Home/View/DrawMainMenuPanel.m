@@ -44,7 +44,7 @@
 }
 
 #define NUMBER_PER_PAGE 6
-#define RADIUS (ISIPAD?235:105)
+#define RADIUS (ISIPAD?250:105)
 
 - (NSArray *)menusInPage:(NSInteger)page
 {
@@ -73,6 +73,7 @@
     [menus[0] toBeTitleUpStyle];
     [AnimationManager showRoundTypeSettingInView:self.scrollView
                                         subViews:[self menusInPage:page]
+                                            line:nil
                                           center:[self centerInPage:page]
                                           radius:RADIUS
                                         animated:animated
