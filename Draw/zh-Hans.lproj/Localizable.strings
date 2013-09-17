@@ -1085,6 +1085,7 @@
 "kTryShakeXiaoji" = "新推出小吉号码，支持多帐号登录/注销功能，现在就领取一个小吉号码吗？";
 "kTryTakeNumber" = "马上领取";
 "kViewMyProfile" = "稍后再说";
+"kCannotLogoutWithoutPasswordSet" = "当前帐号还没有设置密码，如果退出登录，将无法使用当前帐号进行登录，请在退出帐号前先设置密码";
 
 "kConfirmLogout" = "是否确定要退出当前帐号？";
 "kAskKeepDraft" = "是否要保留当前草稿箱中的所有草稿？如果不保留，退出帐号也将删除所有本地草稿。";

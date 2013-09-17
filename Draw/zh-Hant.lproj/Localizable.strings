@@ -1062,6 +1062,7 @@
 "kTryShakeXiaoji" = "新推出小吉號碼，支持多帳號登錄/註銷功能，現在就領取一個小吉號碼嗎？";
 "kTryTakeNumber" = "馬上領取";
 "kViewMyProfile" = "稍後再說";
+"kCannotLogoutWithoutPasswordSet" = "當前帳號還沒有設置密碼，如果退出登錄，將無法使用當前帳號進行登錄，請在退出帳號前先設置密碼";
 
 "kConfirmLogout" = "是否確定要退出當前帳號？";
 "kAskKeepDraft" = "是否要保留當前草稿箱中的所有草稿？如果不保留，退出帳號也將刪除所有本地草稿。";
