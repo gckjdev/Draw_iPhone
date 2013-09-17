@@ -246,8 +246,10 @@
     
 #if DEBUG
     
-    GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([_contest.contestId length] > 0) {
+        GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
 #else
     
