@@ -16,6 +16,7 @@
 #import "PPPopTableView.h"
 #import "ViewUserDetail.h"
 #import "UserDetailViewController.h"
+#import "ConfigManager.h"
 
 #define GENIUS_DAY NSLS(@"kGeniusRankDay")
 #define GENIUS_WEEK NSLS(@"kGeniusRankWeek")
@@ -266,7 +267,7 @@ SET_CELL_BG_IN_CONTROLLER;
 }
 
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index{
-    return 20;
+    return [ConfigManager getGuessRankListCountLoadedAtOnce];
 }
 
 

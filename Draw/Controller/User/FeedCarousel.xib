@@ -40,13 +40,13 @@
 						<int key="NSvFlags">319</int>
 						<string key="NSFrameSize">{320, 150}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="555206801"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="905958389">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
-						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUILabel" id="555206801">
@@ -54,7 +54,7 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{47, 58}, {222, 24}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="905958389"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -85,6 +85,7 @@
 				</array>
 				<string key="NSFrameSize">{320, 150}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="407179433"/>
 				<reference key="IBUIBackgroundColor" ref="905958389"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -171,6 +172,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">FeedCarousel</string>
 					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">changeType:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">changeType:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">changeType:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="carousel">iCarousel</string>
 						<string key="tipLable">UILabel</string>

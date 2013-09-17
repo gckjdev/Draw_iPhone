@@ -244,7 +244,7 @@
 
 - (IBAction)clickContestModeButton:(id)sender {
     
-#if 1
+#if DEBUG
     
     GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
     [self.navigationController pushViewController:vc animated:YES];

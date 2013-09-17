@@ -1166,5 +1166,8 @@
     return [MobClickUtils getIntValueByKey:@"GENIUS_GUESS_EXPIRE_TIME" defaultValue:24];
 }
 
++ (int)getGuessRankListCountLoadedAtOnce{
+    return [MobClickUtils getIntValueByKey:@"GUESS_RANK_LIST_COUNT_LOADED_AT_ONCE" defaultValue:10];
+}
 
 @end
