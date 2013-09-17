@@ -149,6 +149,7 @@ static UserDeviceService* _defaultUserService;
     dispatch_async(queue, ^{
         
         NSDictionary* para = @{
+                                PARA_USERID : userId,
                                 PARA_DEVICEID : (deviceId == nil) ? @"" : deviceId,
                                 PARA_DEVICETOKEN : (deviceToken == nil) ? @"" : deviceToken
                                 };
