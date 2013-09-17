@@ -1141,7 +1141,7 @@
 
 + (NSString *)getContestBeginTimeString{
     
-    return [MobClickUtils getStringValueByKey:@"CONTEST_BEGIN_TIME_STRING" defaultValue:@"220000"];
+    return [MobClickUtils getStringValueByKey:@"CONTEST_BEGIN_TIME_STRING" defaultValue:@"200000"];
 }
 
 + (int)getHotWordAwardCoins{

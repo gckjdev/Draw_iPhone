@@ -17,10 +17,16 @@
 
 @implementation DrawMainMenuPanel
 
+#define SELF_FRAME (ISIPAD?CGRectMake(0, 0, 768, 804):CGRectMake(0, 0, 320, 360))
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
-    DrawMainMenuPanel *panel = [self createViewWithXibIdentifier:[self getViewIdentifier]];
+    
+    
+    DrawMainMenuPanel *panel = [[[DrawMainMenuPanel alloc] initWithFrame:SELF_FRAME] autorelease];
     panel.delegate = delegate;
+    panel.scrollView = [[UIScrollView alloc] initWithFrame:panel.bounds];
+    panel.scrollView.autoresizingMask = (0x1<<6)-1;
+    [panel addSubview:panel.scrollView];
     [panel baseInit];
     return panel;
 }
@@ -32,8 +38,6 @@
 - (void)dealloc
 {
     PPRelease(_menuList);
-//    RELEASE_BLOCK(_finishHandler);
-//    RELEASE_BLOCK(_startHandler);
     [super dealloc];
 }
 
@@ -43,7 +47,7 @@
 }
 
 #define NUMBER_PER_PAGE 6
-#define RADIUS (ISIPAD?300:105)
+#define RADIUS (ISIPAD?235:105)
 
 - (NSArray *)menusInPage:(NSInteger)page
 {
@@ -55,11 +59,12 @@
     return list;
 }
 
+#define CENTER_OFFSET (ISIPAD?49:17)
 - (CGPoint)centerInPage:(NSInteger)page
 {
     CGPoint center = self.scrollView.center;
     center.x += page * (CGRectGetWidth(self.scrollView.bounds));
-    center.y -= 38/2;
+    center.y -= CENTER_OFFSET;
     return center;
 }
 
@@ -164,8 +169,8 @@
 }
 
 
-#define AVATAR_SIZE CGSizeMake(67,67)
-#define DEFAULT_AVATAR_SIZE CGSizeMake(76,92)
+#define AVATAR_SIZE (ISIPAD?CGSizeMake(135,135):CGSizeMake(67,67))
+#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(150,195):CGSizeMake(76,92))
 
 - (void)addAvatarInPage:(NSInteger)page
 {

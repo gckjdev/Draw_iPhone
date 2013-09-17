@@ -873,8 +873,8 @@
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
        didClickAvatarView:(AvatarView *)avatarView
 {
-    [super homeMainMenuPanel:mainMenuPanel
-          didClickAvatarView:avatarView];
+//    [super homeMainMenuPanel:mainMenuPanel
+//          didClickAvatarView:avatarView];
     [self clickAvatarHandler];
 }
 

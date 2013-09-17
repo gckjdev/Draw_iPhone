@@ -39,7 +39,7 @@
 					<object class="IBUIButton" id="567641748">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 26}, {256, 199}}</string>
+						<string key="NSFrame">{{0, 25}, {256, 199}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="44812457"/>
@@ -47,10 +47,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
-						<double key="IBUITitleEdgeInsets.top">0.0</double>
-						<double key="IBUITitleEdgeInsets.bottom">-60</double>
-						<double key="IBUITitleEdgeInsets.left">0.0</double>
-						<double key="IBUITitleEdgeInsets.right">0.0</double>
+						<int key="IBUIContentVerticalAlignment">0</int>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="1002063548">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -80,7 +77,7 @@
 					<object class="IBUIButton" id="44812457">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{155, 20}, {50, 50}}</string>
+						<string key="NSFrame">{{155, 46}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="37508010"/>
@@ -96,10 +93,7 @@
 						<double key="IBUIContentEdgeInsets.right">-2</double>
 						<string key="IBUINormalTitle">8</string>
 						<reference key="IBUIHighlightedTitleColor" ref="1002063548"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="1002063548"/>
 						<reference key="IBUINormalTitleShadowColor" ref="837388397"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
@@ -117,11 +111,10 @@
 					</object>
 					<object class="IBUILabel" id="37508010">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 161}, {256, 53}}</string>
+						<int key="NSvFlags">266</int>
+						<string key="NSFrame">{{0, 189}, {256, 53}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -152,7 +145,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{256, 225}</string>
+				<string key="NSFrameSize">{256, 242}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="567641748"/>
@@ -257,7 +250,7 @@
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="2" key="3.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
+				<real value="1" key="3.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<string key="8.CustomClassName">BadgeView</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -330,7 +323,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="common_home_badge@2x.png">{36, 38}</string>
+			<string key="common_home_badge@2x.png">{38, 38}</string>
 			<string key="draw_home_draw@2x.png">{150, 150}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

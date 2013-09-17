@@ -1062,7 +1062,7 @@
 "kTryShakeXiaoji" = "新推出小吉號碼，支持多帳號登錄/註銷功能，現在就領取一個小吉號碼嗎？";
 "kTryTakeNumber" = "馬上領取";
 "kViewMyProfile" = "稍後再說";
-"kCannotLogoutWithoutPasswordSet" = "當前帳號還沒有設置密碼，如果退出登錄，將無法使用當前帳號進行登錄，請在退出帳號前先設置密碼";
+"kCannotLogoutWithoutPasswordSet" = "當前帳號還沒有設置密碼，請在退出帳號前先設置密碼，密碼設置完畢請點擊右上角的保存按鈕";
 
 "kConfirmLogout" = "是否確定要退出當前帳號？";
 "kAskKeepDraft" = "是否要保留當前草稿箱中的所有草稿？如果不保留，退出帳號也將刪除所有本地草稿。";
@@ -1528,15 +1528,37 @@
 "kGuessGenuisModeTips" = "已猜對 %d 幅作品，再猜 %d 幅作品，可獲得 %d 金幣獎勵";
 
 "kGuessGenuisFail" = "你猜錯了，不能再繼續玩下去了，重新開始？";
-//"kGuessContestModeOverTips" = "恭喜你完成比賽啦，目前有%d位玩家參加比賽，你目前的排名是第%d名，預計可獲得%d金幣獎勵";
-"kGuessContestModeOverTips" = "恭喜你完成比賽";
 
-//"kGuessContestModeTips" = "猜對作品:     %d幅\n當前排名:     第%d名\n預計獎金:     %d金幣\n參賽人數:     %d玩家";
 "kGuessContestModeTips" = "排名和獎金預測";
+"kGuessContestModeTipsMessage" = "當前排名：第 %d 名\n猜中作品：%d 幅\n總耗時：%d 秒";
 
 "kHint" = "提示";
 "kGiveUpComment" = "是否退出評論?";
 "kGuessWrong" =  "猜錯了";
+
+"kHappyModeExpireTitle" = "超時";
+"kGeniusModeExpireTitle" = "超時";
+"kContestModeExpireTitle" = "超時";
+
+"kHappyModeDeductConisMessage" = "你花費了%d金幣進入歡樂模式";
+"kGeniusModeDeductConisMessage" = "你花費了%d金幣進入天才模式";
+"kContestModeDeductConisMessage" = "你花費了%d金幣進入比賽模式";
+
+
+"kGeniusGuessWrongTitle" = "天才模式結束";
+"kGeniusGuessWrongMessage" = "你已經猜錯了一幅，不能再繼續天才模式了，你可以查看作品詳情或重新開始。";
+
+"kGuessContestModeTips" = "預測賽績";
+"kStart" = "開始";
+
+"kHappyModeExpireMessage" = "對不起，已經超時，不能再繼續猜畫，可選擇查看作品詳情或者重新開始";
+"kGeniusModeExpireMessage" = "對不起，已經超時，不能再繼續猜畫，可選擇查看作品詳情或者重新開始";
+"kContestModeExpireMessage" = "對不起，比賽已經結束，不能再繼續猜畫";
+
+"kTimeout" = "超時";
+
+
+
 
 "kRestartGuessWarnning" = "重新開始將清空本次成績，重新來過，是否確定？";
 
@@ -1568,10 +1590,10 @@
 "kContestIsOver" = "今天的比賽已經結束啦！請明天同一時間再來參加比賽吧。";
 
 
-"kContestRanking" = "第%d名";
-"kContestGuessCorrect" = "猜中%d幅";
-"kContestSpendTime" = "耗時%d秒";
-"kContestEarn" = "獎勵%d金幣";
+"kContestRanking" = "第 %d 名";
+"kContestGuessCorrect" = "猜中 %d 幅";
+"kContestSpendTime" = "耗時 %d 秒";
+"kContestEarn" = "獎勵 %d 金幣";
 
 "kNoRank" = "暫無排行記錄";
 

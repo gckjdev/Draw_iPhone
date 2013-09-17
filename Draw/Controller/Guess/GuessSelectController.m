@@ -28,6 +28,7 @@
     PBUserGuessMode _mode;
     int _countDown;
     BOOL _firstLoad;
+    BOOL _pop;
 }
 @property (retain, nonatomic) NSMutableDictionary *guessInfoDic;    // 每幅作品是否被猜过的信息。
 
@@ -344,6 +345,7 @@
 - (void)clickRankingButton:(UIButton *)button{
     
     [self showActivityWithText:NSLS(@"kLoading")];
+    _pop = NO;
     [[GuessService defaultService] getGuessRankWithType:0
                                                    mode:_mode
                                               contestId:_contest.contestId
@@ -351,6 +353,10 @@
 }
 
 - (void)startNew{
+    
+    if (_mode == PBUserGuessModeGuessModeContest) {
+        return;
+    }
     
     [self changeGuessState:GuessStateNotStart];
     
@@ -428,9 +434,7 @@
 }
 
 - (void)handleWithExpire:(int)index{
-    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getExpireTitleWithMode:_mode] message:NSLS(@"kGuessGameExpire") style:CommonDialogStyleDoubleButtonWithCross];
-    
+        
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:[GuessManager getExpireTitleWithMode:_mode] message:[GuessManager getExpireMessageWithMode:_mode] style:CommonDialogStyleDoubleButtonWithCross];
 
     if (_mode != PBUserGuessModeGuessModeContest) {
@@ -583,6 +587,7 @@
         [self showTipInGeniusMode:count];
     }else if (_mode == PBUserGuessModeGuessModeContest){
         // TODO: show tip in contest mode.
+        _pop = YES;
         [[GuessService defaultService] getGuessRankWithType:0 mode:PBUserGuessModeGuessModeContest contestId:_contest.contestId delegate:self];
     }
 }
@@ -593,11 +598,11 @@
     
     if (resultCode == 0) {
         
-        if ([GuessManager countNeedToGuessToAward:rank.pass mode:_mode] == 0) {
-            [self showTipInContestModeWhenContestOver:rank];
-        }else{
+//        if ([GuessManager countNeedToGuessToAward:rank.pass mode:_mode] == 0) {
+//            [self showTipInContestModeWhenContestOver:rank];
+//        }else{
             [self showTipInContestMode:rank];
-        }
+//        }
     }
 }
 
@@ -686,25 +691,19 @@
 - (void)showTipInContestMode:(PBGuessRank *)rank{
     
     
-    
-    ContestRankView *v = [ContestRankView createViewWithTitle:NSLS(@"kGuessContestModeTips") rank:rank];
-    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeTips") customView:v style:CommonDialogStyleSingleButton];
-//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-//    [dialog showInView:self.view];
-    
-    POSTVIEW(v, 3);
-}
+    if (_pop) {
+        
+        NSString *tip = [NSString stringWithFormat:NSLS(@"kGuessContestModeTipsMessage"), rank.ranking, rank.pass, rank.spendTime];
+        
+        POSTMSG2(tip, 3);
+        
+    }else{
+        ContestRankView *v = [ContestRankView createViewWithTitle:NSLS(@"kGuessContestModeTips") rank:rank];
 
-- (void)showTipInContestModeWhenContestOver:(PBGuessRank *)rank{
-    
-    ContestRankView *v = [ContestRankView createViewWithTitle:NSLS(@"kGuessContestModeOverTips") rank:rank];
-
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeOverTips") customView:v style:CommonDialogStyleSingleButton];
-//    [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
-//    [dialog showInView:self.view];
-    
-    POSTVIEW(v, 3);
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGuessContestModeTips") customView:v style:CommonDialogStyleSingleButton];
+        [dialog.oKButton setTitle:NSLS(@"kIGotIt") forState:UIControlStateNormal];
+        [dialog showInView:self.view];
+    }
 }
 
 - (void)refreshData{

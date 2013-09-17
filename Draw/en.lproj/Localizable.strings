@@ -1544,10 +1544,10 @@
 "kGuessRank" = "RANK";
 "kGuessRules" = "RULES";
 
-"kHappyGuessRulesDetil" = "花費:  %d金幣\n\n獎勵:  %d金幣/每%d副\n\n時限:  %d小時內\n\n";
-"kGeniusGuessRulesDetil" = "花費:  %d金幣\n\n規則:  連續猜中，不得猜錯\n\n獎勵:\n連續猜中%d副, 獎勵%d金幣\n連續猜中%d副, 獎勵%d金幣\n連續猜中%d副, 獎勵%d金幣\n以此類推\n\n時限:  %d小時內\n\n";
+"kHappyGuessRulesDetil" = "Cost:  %d coins\n\nAward:  %d coins/%d opuses\n\nTime limit:  %d hours\n\n";
+"kGeniusGuessRulesDetil" = "Cost:  %d coins\n\nRules:  hit wrong will terminal the game\n\nAward:\nguess %d opuses, get %d coins\nguess %d opuses, get %d coins\nguess %d coins, get %d coins\nand so on\n\nTime limit:  %d hours\n\n";
 
-"kContestGuessRulesDetil" = "花費:  %d金幣\n\n排名:  猜對作品數/耗時\n\n獎勵:\n第1名:  總獎金 * 50%%\n第2~4名:  總獎金*10%%\n第5~10名:  總獎金*1.67%%\n前15%%:  分享剩余獎金\n\n總獎金:  參賽用戶*70\n\n";
+"kContestGuessRulesDetil" = "Cost:  %d coins\n\nRanking:  guess/spend time\n\nAward:\nNo.1:  Total Award * 50%%\nNo.2~4:  Total Award * 10%%\nNo.5~10:  Total Award * 1.67%%\nNo.15%%:  share the remainder of total award\n\nTotal Award:  Num of players * 70\n\n";
 
 "kGuessRulesDetail" = "欢乐模式\n规则：参加需花%d金币\n奖励：猜中%d副作品则可以获得%d金币\n\n天才模式\n规则：参加需花%d金币\n奖励：连续猜中%d副作品可获得%d金币，连续猜中%d副可获得%d金币，连续猜中%d副可获得%d金币，以此类推\n\n比赛模式\n规则：参加需花%d金币\n奖励：第1名奖金=W*50%%，第2~4名每人奖金=W*10%%，第5~10名每人奖金＝W*10%%/6，10名以后前15%%的每人奖金=W*10%%/M。其中W为当期比赛总奖金，W=70*N，其中N为参加当期比赛总人数。M为10名以后前15%%的人数";
 
@@ -1573,12 +1573,9 @@
 
 "kGuessHappyModeTips" = "You have guessed %d opues, guess %d more opuses will get award: %d";
 "kGuessGenuisModeTips" = "You have guessed %d opues continuous, guess %d more opuses will get award: %d";
-//"kGuessContestModeOverTips" = "Congratulations! Now there are %d player join this contest, your ranking is %d and you maybe get %d coins award.";
-"kGuessContestModeOverTips" = "Congratulations";
 
-//"kGuessContestModeTips" = "You have guessed %d opues, your ranking is %d and you maybe get %d coins award, now there are %d player join this contest";
 "kGuessContestModeTips" = "Ranking Predict";
-
+"kGuessContestModeTipsMessage" = "Ranking： %d\nPass：%d\nTotal time：%d";
 
 "kGuessGenuisFail" = "you guess wrong, can not continue in genius mode, will you restart";
 
@@ -1637,6 +1634,24 @@
 
 "kAskForHelp" = "Help";
 "kLookWhatHeDraw" = "OMG! What's this!";
+
+
+"kHappyModeExpireTitle" = "Timeout";
+"kGeniusModeExpireTitle" = "Timeout";
+"kContestModeExpireTitle" = "Timeout";
+
+"kHappyModeDeductConisMessage" = "You pay for %d coins to enter happy mode";
+"kGeniusModeDeductConisMessage" = "You pay for %d coins to enter genius mode";
+"kContestModeDeductConisMessage" = "You pay for %d coins to enter contest mode";
+
+"kHappyModeExpireMessage" = "Sorry, it's time out, you can not guess any more, you can pick out to view opus detail or restart game";
+"kGeniusModeExpireMessage" = "Sorry, it's time out, you can not guess any more, you can pick out to view opus detail or restart game";
+"kContestModeExpireMessage" = "Sorry, contest is over";
+
+"kGeniusGuessWrongTitle" = "Over"";
+"kGeniusGuessWrongMessage" = "This game is over, you can view opus detail or restart game";
+"kTimeout" = "Time out";
+
 /*********************** 猜猜画画国际化字符串结束 *************************/
 
 

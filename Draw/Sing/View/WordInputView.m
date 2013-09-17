@@ -123,7 +123,7 @@
         self.candidateImage = ALL_ROUND_CORNER_IMAGE_FROM_COLOR(COLOR_ORANGE); // UIThemeImageNamed(@"word_input_candidate@2x.png");
         
         // Set sound.
-        self.clickSound = @"button_down.mp3";
+        self.clickSound = @"button_down.wav";
         self.wrongSound = @"oowrong.mp3";
         self.correctSound = @"correct.mp3";
         _guessWords = [[NSMutableArray alloc] init];

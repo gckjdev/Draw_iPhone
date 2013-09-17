@@ -36,7 +36,7 @@
 @end
 
 
-#define MAIN_MENU_ORIGIN_Y ISIPAD ? 365 : 100
+#define MAIN_MENU_ORIGIN_Y ISIPAD ? 200 : 100
 #define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-97) : 422
 
 @implementation SuperHomeController
