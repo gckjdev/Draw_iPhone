@@ -455,15 +455,17 @@ int *getDrawMainMenuTypeListHasNewContest()
 {
     int static list[] = {
         HomeMenuTypeDrawDraw,
-        HomeMenuTypeDrawGuess,
         HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawBBS,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawGuess,
+
         HomeMenuTypeDrawBigShop,
-        HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawMore,        
         HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawFreeCoins,
+        
         HomeMenuTypeEnd
     };
     return list;
@@ -489,16 +491,17 @@ int *getDrawMainMenuTypeListNotHasNewContest()
 
 int *getDrawMainMenuTypeListWithoutFreeCoins()
 {
-    int static list[] = {
+    int static list[] = {        
         HomeMenuTypeDrawDraw,
-        HomeMenuTypeDrawGuess,
         HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawGuess,        
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPhoto,
+        
         HomeMenuTypeEnd
     };
     return list;
@@ -507,11 +510,13 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
 int *getDrawMainMenuTypeList()
 {
     if ([ConfigManager freeCoinsEnabled]) {
+        return getDrawMainMenuTypeListHasNewContest();
+        /*
         if ([[StatisticManager defaultManager] newContestCount] > 0) {
             return getDrawMainMenuTypeListHasNewContest();
         } else {
             return getDrawMainMenuTypeListNotHasNewContest();
-        }
+        }*/
     } else {
         return getDrawMainMenuTypeListWithoutFreeCoins();
     }

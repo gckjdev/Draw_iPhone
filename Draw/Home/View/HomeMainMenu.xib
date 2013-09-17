@@ -39,7 +39,7 @@
 					<object class="IBUIButton" id="567641748">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">301</int>
-						<string key="NSFrame">{{12, 7}, {100, 100}}</string>
+						<string key="NSFrame">{{5, 4}, {100, 100}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="44812457"/>
@@ -84,7 +84,7 @@
 					<object class="IBUIButton" id="44812457">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">297</int>
-						<string key="NSFrame">{{78, 19}, {28, 28}}</string>
+						<string key="NSFrame">{{68, 17}, {28, 28}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="37508010"/>
@@ -119,7 +119,7 @@
 					<object class="IBUILabel" id="37508010">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{11, 92}, {107, 25}}</string>
+						<string key="NSFrame">{{2, 85}, {107, 19}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -128,7 +128,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Label</string>
+						<string key="IBUIText">画画</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xMTM3MjU0OTAyIDAuNDg2Mjc0NTA5OCAwLjMwMTk2MDc4NDMAA</bytes>
@@ -146,7 +146,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
-				<string key="NSFrameSize">{117, 117}</string>
+				<string key="NSFrameSize">{107, 107}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="567641748"/>
