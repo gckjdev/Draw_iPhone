@@ -1764,9 +1764,6 @@ POSTMSG(NSLS(@"kLoginFailure"));
 {
     // clear device binding information
     [[UserDeviceService defaultService] removeUserDevice];
-
-    // clear user data
-    [[UserManager defaultManager] cleanUserData];
     
     // clear draft
     if (keepDraft == NO){
@@ -1774,7 +1771,11 @@ POSTMSG(NSLS(@"kLoginFailure"));
     }
     
     [viewController.navigationController popToRootViewControllerAnimated:YES];
-    POSTMSG(NSLS(@"kLogoutDone"));
+    
+    // clear user data
+    [[UserManager defaultManager] cleanUserData];
+    
+    POSTMSG(NSLS(@"kLogoutDone"));        
 }
 
 - (void)askKeepDraft:(UIViewController*)viewController
