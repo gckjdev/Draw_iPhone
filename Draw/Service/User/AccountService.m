@@ -177,6 +177,7 @@ static AccountService* _defaultAccountService;
                     [[UserManager defaultManager] setMaxShakeXiaojiNumberTimes:user.shakeNumberTimes];
                     [[UserManager defaultManager] setPassword:user.password];
                     [[UserManager defaultManager] setEmailVerifyStatus:user.emailVerifyStatus];
+                    [[UserManager defaultManager] setTakeCoins:user.takeCoins];
                     
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
@@ -375,9 +376,16 @@ transactionRecepit:(NSString*)transactionRecepit
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
+                
+                if (source == AwardTakeCoins){
+                    [[UserManager defaultManager] setTakeCoins:0];
+                    POSTMSG(NSLS(@"kCoinsTakeSucc"));
+                }
+
                 // update balance from server
                 int coinBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalance:coinBalance currency:PBGameCurrencyCoin];
+                
             }
             else{
                 PPDebug(@"<chargeAccount> failure, result=%d", output.resultCode);
@@ -864,6 +872,29 @@ transactionRecepit:(NSString*)transactionRecepit
 - (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
     PPDebug(@"<paymentQueueRestoreCompletedTransactionsFinished>");
+}
+
+- (void)takeCoins
+{
+    int amount = [[UserManager defaultManager] getTakeCoins];
+    [self chargeBalance:PBGameCurrencyCoin count:amount source:AwardTakeCoins];
+}
+
+- (void)checkAndAskTakeCoins:(PPViewController*)viewController
+{
+    if ([[UserManager defaultManager] canTakeCoins] == NO){
+        PPDebug(@"<checkAndAskTakeCoins> but user cannot take coins");
+        return;
+    }
+    
+    NSString* msg = [NSString stringWithFormat:NSLS(@"kTakeCoins"), [[UserManager defaultManager] getTakeCoins]];
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:msg style:CommonDialogStyleDoubleButtonWithCross];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [self takeCoins];
+    }];
+    
+    [dialog showInView:viewController.view];
 }
 
 @end

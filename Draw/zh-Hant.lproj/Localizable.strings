@@ -1063,6 +1063,8 @@
 "kTryTakeNumber" = "馬上領取";
 "kViewMyProfile" = "稍後再說";
 "kCannotLogoutWithoutPasswordSet" = "當前帳號還沒有設置密碼，請在退出帳號前先設置密碼，密碼設置完畢請點擊右上角的保存按鈕";
+"kTakeCoins" = "目前可領取%d金幣，請確認是否馬上領取？";
+"kCoinsTakeSucc" = "已成功領取金幣";
 
 "kConfirmLogout" = "是否確定要退出當前帳號？";
 "kAskKeepDraft" = "是否要保留當前草稿箱中的所有草稿？如果不保留，退出帳號也將刪除所有本地草稿。";
@@ -1555,7 +1557,7 @@
 "kGeniusModeExpireMessage" = "對不起，已經超時，不能再繼續猜畫，可選擇查看作品詳情或者重新開始";
 "kContestModeExpireMessage" = "對不起，比賽已經結束，不能再繼續猜畫";
 
-"kTimeout" = "超時";
+"kTimeout" = "已超時";
 
 
 

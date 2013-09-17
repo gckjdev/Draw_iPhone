@@ -1287,6 +1287,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property int32_t emailVerifyStatus;
 @property BOOL canShakeNumber;
 @property int32_t shakeNumberTimes;
+@property int32_t takeCoins;
 @property int32_t singRecordLimit;
 @end
 
@@ -1621,6 +1622,13 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasShakeNumberTimes_ = !!value;
 }
 @synthesize shakeNumberTimes;
+- (BOOL) hasTakeCoins {
+  return !!hasTakeCoins_;
+}
+- (void) setHasTakeCoins:(BOOL) value {
+  hasTakeCoins_ = !!value;
+}
+@synthesize takeCoins;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -1699,6 +1707,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
     self.emailVerifyStatus = 0;
     self.canShakeNumber = NO;
     self.shakeNumberTimes = 0;
+    self.takeCoins = 0;
     self.singRecordLimit = 30;
   }
   return self;
@@ -1899,6 +1908,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasShakeNumberTimes) {
     [output writeInt32:105 value:self.shakeNumberTimes];
   }
+  if (self.hasTakeCoins) {
+    [output writeInt32:106 value:self.takeCoins];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -2048,6 +2060,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasShakeNumberTimes) {
     size += computeInt32Size(105, self.shakeNumberTimes);
+  }
+  if (self.hasTakeCoins) {
+    size += computeInt32Size(106, self.takeCoins);
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2274,6 +2289,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasShakeNumberTimes) {
     [self setShakeNumberTimes:other.shakeNumberTimes];
   }
+  if (other.hasTakeCoins) {
+    [self setTakeCoins:other.takeCoins];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -2491,6 +2509,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 840: {
         [self setShakeNumberTimes:[input readInt32]];
+        break;
+      }
+      case 848: {
+        [self setTakeCoins:[input readInt32]];
         break;
       }
       case 1600: {
@@ -3273,6 +3295,22 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearShakeNumberTimes {
   result.hasShakeNumberTimes = NO;
   result.shakeNumberTimes = 0;
+  return self;
+}
+- (BOOL) hasTakeCoins {
+  return result.hasTakeCoins;
+}
+- (int32_t) takeCoins {
+  return result.takeCoins;
+}
+- (PBGameUser_Builder*) setTakeCoins:(int32_t) value {
+  result.hasTakeCoins = YES;
+  result.takeCoins = value;
+  return self;
+}
+- (PBGameUser_Builder*) clearTakeCoins {
+  result.hasTakeCoins = NO;
+  result.takeCoins = 0;
   return self;
 }
 - (BOOL) hasSingRecordLimit {

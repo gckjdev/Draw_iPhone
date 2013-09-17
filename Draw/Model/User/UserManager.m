@@ -1502,6 +1502,27 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     self.pbUser = [builder build];    
 }
 
+- (void)setTakeCoins:(int)value
+{
+    if (self.pbUser == nil)
+        return;
+    
+    PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:self.pbUser];
+    [builder setTakeCoins:value];
+    self.pbUser = [builder build];    
+}
+
+- (BOOL)canTakeCoins
+{
+    return _pbUser.takeCoins > 0;
+}
+
+- (int)getTakeCoins
+{
+    return self.pbUser.takeCoins;
+}
+
+
 - (BOOL)incAndCheckIsExceedMaxTakeNumber
 {
     NSString* key = @"CURRENT_TAKE_NUMBER_COUNT";

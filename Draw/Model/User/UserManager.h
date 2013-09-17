@@ -238,4 +238,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (BOOL)incAndCheckIsExceedMaxTakeNumber;
 
+- (void)setTakeCoins:(int)value;
+- (BOOL)canTakeCoins;
+- (int)getTakeCoins;
+
 @end

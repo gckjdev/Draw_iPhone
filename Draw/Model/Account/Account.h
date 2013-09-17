@@ -50,10 +50,13 @@ typedef enum  {
     ChargeViaAlipay = 431,
     
     ChargeLearnDraw = 450,
+    AwardTakeCoins = 451,                   // 领取金币，用于7.0道具返还
     
     DeductInHappyGuessMode = 460,
     DeductInGeniusGuessMode = 470,
     DeductInContestGuessMode = 480
+
+    
     
 }BalanceSourceType;
 
