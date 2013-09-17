@@ -12,16 +12,12 @@
 
 @interface HomeMainMenuPanel ()
 {
-    NSInteger _pageCount;
+//    NSInteger _pageCount;
     NSInteger _menuCount;
 }
 
-@property (retain, nonatomic) IBOutlet UIButton *previous;
-@property (retain, nonatomic) IBOutlet UIButton *next;
-- (IBAction)clickPageButton:(id)sender;
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
-- (void)updatePageButton;
 
 
 @end
@@ -205,6 +201,10 @@
     [self.next setHidden:[self isLastPage]];
 }
 
+- (void)hidePageButtons
+{
+    self.next.hidden = self.previous.hidden = YES;
+}
 - (void)scrollToPage:(NSInteger)page
 {
     if (page >= 0 && page < [self pageCount]) {

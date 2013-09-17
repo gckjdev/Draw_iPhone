@@ -31,8 +31,17 @@
     
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UIButton *previous;
+@property (retain, nonatomic) IBOutlet UIButton *next;
+@property (assign, nonatomic) NSInteger pageCount;
+
+- (IBAction)clickPageButton:(id)sender;
+- (void)animatePageButtons;
+- (void)updatePageButton;
+- (void)hidePageButtons;
 
 - (void)updateMenu:(HomeMenuType)type badge:(NSInteger)badge;
-- (void)animatePageButtons;
+
+
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
 @end

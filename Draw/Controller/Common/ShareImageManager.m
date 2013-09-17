@@ -1276,6 +1276,16 @@ static UIImage* _whitePaperImage;
     return [UIImage imageNamed:@"detail_header_bg@2x.png"];
 }
 
+- (UIImage *)nextPage
+{
+    return [self fixedImageNamed:@"common_home_nextpage"];
+}
+- (UIImage *)previousPage
+{
+    return [self fixedImageNamed:@"common_home_front_page"];    
+}
+
+
 + (UIImage *)bubleImage{
     
     NSString *imageName = (ISIPAD ? @"bubble_bg@2x.png" : @"bubble_bg.png");

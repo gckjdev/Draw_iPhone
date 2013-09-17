@@ -51,6 +51,7 @@ typedef enum {
 
 @end
 
+@class BadgeView;
 
 @interface AvatarView : UIView
 {
@@ -82,6 +83,8 @@ typedef enum {
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
 @property(nonatomic, assign) BOOL hasPen;
 
+- (void)setBadge:(NSInteger)number;
+- (BadgeView *)badgeView;
 @end
 
 
