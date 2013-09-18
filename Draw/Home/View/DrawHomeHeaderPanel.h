@@ -43,4 +43,7 @@ typedef void (^HeaderAnimationHandler)(BOOL open);
 
 @property (retain, nonatomic) IBOutlet UIButton *bulletinButton;
 @property (retain, nonatomic) IBOutlet BadgeView *badgeView;
+
+- (void)updateBG;
+
 @end

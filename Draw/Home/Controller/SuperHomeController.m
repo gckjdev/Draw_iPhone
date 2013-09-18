@@ -147,7 +147,7 @@
     
     if (self.adView){
         [self.view bringSubviewToFront:self.adView];
-    }    
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated

@@ -116,19 +116,24 @@
     self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
     [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:18 delegate:self];
     [self updateView];
+    [self updateBG];
+}
+
+- (void)updateBG
+{
+    //set holder view color
+    UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
+    if (homeImage) {
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self.bgView setBackgroundColor:[UIColor clearColor]];
+    }else{
+        [self setBackgroundColor:[UIColor whiteColor]];
+        [self.bgView setBackgroundColor:COLOR_ORANGE];
+    }
 }
 
 - (void)updateView
 {
-    //set holder view color
-    UIImage *homeImage = [[UserManager defaultManager] drawBackground];
-    if (homeImage) {
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self.holderView setBackgroundColor:[UIColor clearColor]];
-    }else{
-        [self setBackgroundColor:[UIColor whiteColor]];
-        [self.holderView setBackgroundColor:COLOR_ORANGE];
-    }
 }
 
 
