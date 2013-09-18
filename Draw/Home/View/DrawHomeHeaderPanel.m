@@ -128,7 +128,7 @@
         [self.bgView setBackgroundColor:[UIColor clearColor]];
     }else{
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self.bgView setBackgroundColor:COLOR_ORANGE];
+        [self.bgView setBackgroundColor:OPAQUE_COLOR(236, 84, 46)];
     }
 }
 
