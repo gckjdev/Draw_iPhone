@@ -213,7 +213,13 @@
     [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
     [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
     
-    [self.badgeView setNumber:[[UserManager defaultManager] getUserBadgeCount]];
+    if ([[UserManager defaultManager] isMe:detail.getUserId]
+        ) {
+        [self.badgeView setNumber:[[UserManager defaultManager] getUserBadgeCount]];
+
+    }else{
+        self.badgeView.hidden = YES;
+    }
 }
 
 
