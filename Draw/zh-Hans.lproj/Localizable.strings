@@ -1075,6 +1075,7 @@
 "kTakeNumberSuccess" = "领取号码成功，希望在这里玩的开心！也请设置一下邮件和密码等重要信息";
 "kTakeNumberFail" = "领取号码失败，请检查网络，稍后再试";
 "kShakeNumberFail" = "摇一摇获取号码失败，请检查网络，稍后再试";
+"kGiveupNumber" = "你已经摇出了一个号码，退出将放弃该号码，是否退出？";
 
 "kNoEmailForResetPassword" = "你还未设置邮件，无法重置密码";
 "kResetPasswordSucc" = "密码已经重置，并发送到你的邮箱，请检查邮件";
