@@ -205,6 +205,25 @@
     [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
 }
 
+#define BADGE_VIEW_TAG 32445
+- (void)setBadge:(NSInteger)number
+{
+    BadgeView *badge = [self badgeView];
+    if (badge == nil) {
+        badge = [BadgeView badgeViewWithNumber:number];
+        badge.tag = BADGE_VIEW_TAG;
+        [self addSubview:badge];
+        [badge updateOriginX:(CGRectGetWidth(self.bounds)-CGRectGetWidth(badge.bounds))];
+        [badge updateOriginY:(CGRectGetHeight(badge.bounds))];
+    }
+}
+
+- (BadgeView *)badgeView
+{
+    BadgeView *badge = (id)[self viewWithTag:BADGE_VIEW_TAG];
+    return badge;
+}
+
 - (void)addTapGuesture
 {
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickOnAvatar)];    
@@ -372,6 +391,18 @@
 - (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender
 {
     UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:gender];
+    [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
+}
+
+- (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender useDefaultLogo:(BOOL)useDefaultLogo
+{
+    UIImage *placeHolderImage = nil;
+    if (useDefaultLogo){
+        placeHolderImage = [[ShareImageManager defaultManager] homeDefaultAvatar];
+    }
+    else{
+        [[ShareImageManager defaultManager] avatarImageByGender:gender];
+    }
     [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
 }
 

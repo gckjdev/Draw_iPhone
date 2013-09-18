@@ -178,6 +178,7 @@ static AccountService* _defaultAccountService;
                     [[UserManager defaultManager] setPassword:user.password];
                     [[UserManager defaultManager] setEmailVerifyStatus:user.emailVerifyStatus];
                     [[UserManager defaultManager] setTakeCoins:user.takeCoins];
+                    [[UserManager defaultManager] setBlockDevices:user.blockDeviceIdsList];
                     
                     // sync balance from server
                     [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
@@ -187,7 +188,21 @@ static AccountService* _defaultAccountService;
                     [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];                    
                     
                     // post notification
-                    [self postNotification:NOTIFICATION_SYNC_ACCOUNT];
+                    [self postNotification:NOTIFICATION_SYNC_ACCOUNT];                    
+                    
+                    if ([user.blockDeviceIdsList count] > 0){
+                        NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
+                        int index = [user.blockDeviceIdsList indexOfObject:deviceId];
+                        if (index == -1){
+                            // not found
+                            PPDebug(@"deviceId not %@ in user block device list, do nothing");
+                        }
+                        else{
+                            // found, force logout
+                            PPDebug(@"deviceId %@ in user block device list, force logout", deviceId);
+                            [[UserService defaultService] forceLogout];
+                        }
+                    }
                 }
             }            
             EXECUTE_BLOCK(tempHandler, output.resultCode);

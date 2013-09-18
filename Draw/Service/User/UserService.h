@@ -165,7 +165,7 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
           resultBlock:(void(^)(int resultCode))resultBlock;
 
 
-- (void)logout:(UIViewController*)viewController;
-
+- (void)logout:(PPViewController*)viewController;
+- (void)forceLogout;
 
 @end

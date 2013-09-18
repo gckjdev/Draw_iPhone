@@ -25,10 +25,13 @@
 #define ISCLOSE (DrawHeaderPanelStatusClose==self.status)
 #define VALUE(X) (ISIPAD?(2*X):X)
 
+#define HEIGHT_MINUS (ISIPHONE5?10:0)
+#define CELL_HEIGHT_MINUS HEIGHT_MINUS
+
 #define CELL_WIDTH  (ISIPAD?(ISCLOSE?520:710):(ISCLOSE?230:290))
 #define SPACE (ISIPAD?20:10)
 #define NUMBER_PERROW 3
-#define CELL_HEIGHT (ISIPAD?(ISCLOSE?150:230):(ISCLOSE?70:90))
+#define CELL_HEIGHT (((ISIPAD?(ISCLOSE?150:230):(ISCLOSE?70:90)))+CELL_HEIGHT_MINUS)
 
 #define OPUS_WIDTH (CELL_WIDTH-NUMBER_PERROW*SPACE)/NUMBER_PERROW
 #define OPUS_SIZE CGSizeMake(OPUS_WIDTH,OPUS_WIDTH)
@@ -120,12 +123,14 @@
     
 }
 
-#define SELF_WIDTH (ISIPAD?768:320)
-#define SELF_HEIGHT_OPEN (ISIPAD?800:370)
-#define SELF_HEIGHT_CLOSE (ISIPAD?200:100)
 
-#define HOLDER_HEIGHT_OPEN (SELF_HEIGHT_OPEN-VALUE(2))
-#define HOLDER_HEIGHT_CLOSE (SELF_HEIGHT_CLOSE-VALUE(2))
+#define OPEN_HEIGHT_OFFSET (ISIPHONE5?62:0)
+#define SELF_WIDTH (ISIPAD?768:320)
+#define SELF_HEIGHT_OPEN ((ISIPAD?800:370)+OPEN_HEIGHT_OFFSET)
+#define SELF_HEIGHT_CLOSE ((ISIPAD?200:100)+HEIGHT_MINUS)
+
+#define HOLDER_HEIGHT_OPEN ((SELF_HEIGHT_OPEN-VALUE(2)))
+#define HOLDER_HEIGHT_CLOSE ((SELF_HEIGHT_CLOSE-VALUE(2)))
 
 #define HOLDER_WIDTH_OPEN (ISIPAD?730:310)
 #define HOLDER_WIDTH_CLOSE (ISIPAD?540:250)
@@ -253,7 +258,7 @@
         button.frame = defaultFrame;
         
         [button updateOriginX:(SPACE/2+(tag-TAG_BASE)*(SPACE+OPUS_SIZE.width))];
-        [button updateOriginY:(CELL_HEIGHT-OPUS_SIZE.height)/2];
+        [button updateCenterY:CELL_HEIGHT/2];
         NSInteger index = (NUMBER_PERROW * indexPath.row) + (tag - TAG_BASE);
         [self.indexDict setObject:button forKey:@(index)];
         

@@ -1,4 +1,5 @@
 
+import "GameConstants.proto";
 
 package game;
 
@@ -86,6 +87,7 @@ message PBGameUser {
   optional string deviceOS = 72;                    // 设备操作系统
   optional string deviceId = 73;                    // 设备唯一ID
   optional string deviceType = 74;                  // 设备类型
+  repeated string blockDeviceIds = 75;              // 禁用的设备ID
 
   optional string bloodGroup = 81;                  // 血型
   optional int32  fanCount = 82;                    // 粉丝数目
@@ -191,7 +193,8 @@ message PBDrawAction {
   optional int32 clipType = 21; //1: Rect, 2: Circle, 3: Multiple Edge Shape 4: Path
 
 
-  optional int32 layerTag = 23; //layer identifier
+  optional int32 layerTag = 23;                     //layer identifier
+  optional float layerAlpha = 24[default=1.0];      //层透明度
 
  //Support gradient
   optional PBGradient gradient = 30;

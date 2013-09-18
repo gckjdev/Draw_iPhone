@@ -275,15 +275,14 @@
         }
         
         [[BulletinService defaultService] syncBulletins:^(int resultCode) {
-            [self updateAllBadge];
+            PPDebug(@"sync bulletin done, update header view panel");
+            [self.homeHeaderPanel updateView];
         }];
-        
-        [self.homeHeaderPanel updateView];
     }];
     
     [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
-        [self.homeHeaderPanel updateView];
+        [self.homeMainMenuPanel updateView];        
     }];
     
     [self registerNotificationWithName:NOTIFCATION_CONTEST_DATA_CHANGE usingBlock:^(NSNotification *note) {

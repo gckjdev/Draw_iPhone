@@ -2,6 +2,8 @@
 
 #import "ProtocolBuffers.h"
 
+#import "GameConstants.pb.h"
+
 @class PBApp;
 @class PBApp_Builder;
 @class PBContest;
@@ -505,6 +507,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   NSString* language;
   NSString* countryCode;
   PBOpenInfoType openInfoType;
+  NSMutableArray* mutableBlockDeviceIdsList;
   NSMutableArray* mutableAttributesList;
   NSMutableArray* mutableItemsList;
   NSMutableArray* mutableSnsUsersList;
@@ -605,6 +608,8 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBKeyValue*) attributesAtIndex:(int32_t) index;
 - (NSArray*) itemsList;
 - (PBUserItem*) itemsAtIndex:(int32_t) index;
+- (NSArray*) blockDeviceIdsList;
+- (NSString*) blockDeviceIdsAtIndex:(int32_t) index;
 
 + (PBGameUser*) defaultInstance;
 - (PBGameUser*) defaultInstance;
@@ -805,6 +810,13 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (NSString*) deviceType;
 - (PBGameUser_Builder*) setDeviceType:(NSString*) value;
 - (PBGameUser_Builder*) clearDeviceType;
+
+- (NSArray*) blockDeviceIdsList;
+- (NSString*) blockDeviceIdsAtIndex:(int32_t) index;
+- (PBGameUser_Builder*) replaceBlockDeviceIdsAtIndex:(int32_t) index with:(NSString*) value;
+- (PBGameUser_Builder*) addBlockDeviceIds:(NSString*) value;
+- (PBGameUser_Builder*) addAllBlockDeviceIds:(NSArray*) values;
+- (PBGameUser_Builder*) clearBlockDeviceIdsList;
 
 - (BOOL) hasBloodGroup;
 - (NSString*) bloodGroup;
@@ -1278,6 +1290,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @interface PBDrawAction : PBGeneratedMessage {
 @private
   BOOL hasShapeStroke_:1;
+  BOOL hasLayerAlpha_:1;
   BOOL hasWidth_:1;
   BOOL hasShadowBlur_:1;
   BOOL hasShadowOffsetY_:1;
@@ -1294,6 +1307,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
   BOOL hasDrawBg_:1;
   BOOL hasGradient_:1;
   BOOL shapeStroke_:1;
+  Float32 layerAlpha;
   Float32 width;
   Float32 shadowBlur;
   Float32 shadowOffsetY;
@@ -1330,6 +1344,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (BOOL) hasClipTag;
 - (BOOL) hasClipType;
 - (BOOL) hasLayerTag;
+- (BOOL) hasLayerAlpha;
 - (BOOL) hasGradient;
 @property (readonly) int32_t type;
 @property (readonly) Float32 width;
@@ -1346,6 +1361,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 @property (readonly) int32_t clipTag;
 @property (readonly) int32_t clipType;
 @property (readonly) int32_t layerTag;
+@property (readonly) Float32 layerAlpha;
 @property (readonly, retain) PBGradient* gradient;
 - (NSArray*) pointsList;
 - (int32_t) pointsAtIndex:(int32_t) index;
@@ -1494,6 +1510,11 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (int32_t) layerTag;
 - (PBDrawAction_Builder*) setLayerTag:(int32_t) value;
 - (PBDrawAction_Builder*) clearLayerTag;
+
+- (BOOL) hasLayerAlpha;
+- (Float32) layerAlpha;
+- (PBDrawAction_Builder*) setLayerAlpha:(Float32) value;
+- (PBDrawAction_Builder*) clearLayerAlpha;
 
 - (BOOL) hasGradient;
 - (PBGradient*) gradient;

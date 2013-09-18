@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_GameMessage_2eproto__INCLUDED
 #define PROTOBUF_C_GameMessage_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include "google/protobuf-c/protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -14,6 +14,8 @@ PROTOBUF_C_BEGIN_DECLS
 #include "ZhaJinHua.pb-c.h"
 #include "BBS.pb-c.h"
 #include "Opus.pb-c.h"
+#include "Photo.pb-c.h"
+#include "Sing.pb-c.h"
 
 typedef struct _Game__GetRoomsRequest Game__GetRoomsRequest;
 typedef struct _Game__GetRoomsResponse Game__GetRoomsResponse;
@@ -892,6 +894,8 @@ struct  _Game__DataQueryResponse
   Game__PBMessageStat **messagestat;
   size_t n_feed;
   Game__PBFeed **feed;
+  size_t n_contestlist;
+  Game__PBContest **contestlist;
   size_t n_bbsboard;
   Game__PBBBSBoard **bbsboard;
   size_t n_bbspost;
@@ -906,16 +910,28 @@ struct  _Game__DataQueryResponse
   size_t n_walllist;
   Game__PBWall **walllist;
   Game__PBWall *wall;
+  Game__PBUserPhoto *userphoto;
+  size_t n_userphotolist;
+  Game__PBUserPhoto **userphotolist;
   Game__PBGameUser *user;
   protobuf_c_boolean has_userrelation;
   int32_t userrelation;
+  Game__PBOpus *opus;
+  size_t n_opuslist;
+  Game__PBOpus **opuslist;
   size_t n_idlist;
   char **idlist;
-  Game__PBOpus *opus;
+  Game__PBSongList *songs;
+  Game__PBGuessRank *guessrank;
+  size_t n_guessranklist;
+  Game__PBGuessRank **guessranklist;
+  Game__PBGuessContest *guesscontest;
+  size_t n_guesscontestlist;
+  Game__PBGuessContest **guesscontestlist;
 };
 #define GAME__DATA_QUERY_RESPONSE__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__data_query_response__descriptor) \
-    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,0, 0,NULL, NULL }
+    , 0, 0,0, 0,0, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, 0,NULL, NULL, 0,NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, NULL, 0,0, NULL, 0,NULL, 0,NULL, NULL, NULL, 0,NULL, NULL, 0,NULL }
 
 
 /* Game__GetRoomsRequest methods */

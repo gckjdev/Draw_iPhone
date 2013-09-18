@@ -12,6 +12,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
   if (self == [GameBasicRoot class]) {
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
+    [GameConstantsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -1273,6 +1274,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property (retain) NSString* deviceOs;
 @property (retain) NSString* deviceId;
 @property (retain) NSString* deviceType;
+@property (retain) NSMutableArray* mutableBlockDeviceIdsList;
 @property (retain) NSString* bloodGroup;
 @property int32_t fanCount;
 @property int32_t followCount;
@@ -1514,6 +1516,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasDeviceType_ = !!value;
 }
 @synthesize deviceType;
+@synthesize mutableBlockDeviceIdsList;
 - (BOOL) hasBloodGroup {
   return !!hasBloodGroup_;
 }
@@ -1657,6 +1660,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.deviceOs = nil;
   self.deviceId = nil;
   self.deviceType = nil;
+  self.mutableBlockDeviceIdsList = nil;
   self.bloodGroup = nil;
   self.signature = nil;
   self.friendMemo = nil;
@@ -1743,6 +1747,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (PBUserItem*) itemsAtIndex:(int32_t) index {
   id value = [mutableItemsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) blockDeviceIdsList {
+  return mutableBlockDeviceIdsList;
+}
+- (NSString*) blockDeviceIdsAtIndex:(int32_t) index {
+  id value = [mutableBlockDeviceIdsList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -1865,6 +1876,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasDeviceType) {
     [output writeString:74 value:self.deviceType];
+  }
+  for (NSString* element in self.mutableBlockDeviceIdsList) {
+    [output writeString:75 value:element];
   }
   if (self.hasBloodGroup) {
     [output writeString:81 value:self.bloodGroup];
@@ -2018,6 +2032,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasDeviceType) {
     size += computeStringSize(74, self.deviceType);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableBlockDeviceIdsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableBlockDeviceIdsList.count;
   }
   if (self.hasBloodGroup) {
     size += computeStringSize(81, self.bloodGroup);
@@ -2247,6 +2269,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasDeviceType) {
     [self setDeviceType:other.deviceType];
   }
+  if (other.mutableBlockDeviceIdsList.count > 0) {
+    if (result.mutableBlockDeviceIdsList == nil) {
+      result.mutableBlockDeviceIdsList = [NSMutableArray array];
+    }
+    [result.mutableBlockDeviceIdsList addObjectsFromArray:other.mutableBlockDeviceIdsList];
+  }
   if (other.hasBloodGroup) {
     [self setBloodGroup:other.bloodGroup];
   }
@@ -2448,6 +2476,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 594: {
         [self setDeviceType:[input readString]];
+        break;
+      }
+      case 602: {
+        [self addBlockDeviceIds:[input readString]];
         break;
       }
       case 650: {
@@ -3071,6 +3103,37 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearDeviceType {
   result.hasDeviceType = NO;
   result.deviceType = @"";
+  return self;
+}
+- (NSArray*) blockDeviceIdsList {
+  if (result.mutableBlockDeviceIdsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableBlockDeviceIdsList;
+}
+- (NSString*) blockDeviceIdsAtIndex:(int32_t) index {
+  return [result blockDeviceIdsAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceBlockDeviceIdsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableBlockDeviceIdsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addBlockDeviceIds:(NSString*) value {
+  if (result.mutableBlockDeviceIdsList == nil) {
+    result.mutableBlockDeviceIdsList = [NSMutableArray array];
+  }
+  [result.mutableBlockDeviceIdsList addObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllBlockDeviceIds:(NSArray*) values {
+  if (result.mutableBlockDeviceIdsList == nil) {
+    result.mutableBlockDeviceIdsList = [NSMutableArray array];
+  }
+  [result.mutableBlockDeviceIdsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearBlockDeviceIdsList {
+  result.mutableBlockDeviceIdsList = nil;
   return self;
 }
 - (BOOL) hasBloodGroup {
@@ -5035,6 +5098,7 @@ static PBGradient* defaultPBGradientInstance = nil;
 @property int32_t clipTag;
 @property int32_t clipType;
 @property int32_t layerTag;
+@property Float32 layerAlpha;
 @property (retain) PBGradient* gradient;
 @end
 
@@ -5154,6 +5218,13 @@ static PBGradient* defaultPBGradientInstance = nil;
   hasLayerTag_ = !!value;
 }
 @synthesize layerTag;
+- (BOOL) hasLayerAlpha {
+  return !!hasLayerAlpha_;
+}
+- (void) setHasLayerAlpha:(BOOL) value {
+  hasLayerAlpha_ = !!value;
+}
+@synthesize layerAlpha;
 - (BOOL) hasGradient {
   return !!hasGradient_;
 }
@@ -5187,6 +5258,7 @@ static PBGradient* defaultPBGradientInstance = nil;
     self.clipTag = 0;
     self.clipType = 0;
     self.layerTag = 0;
+    self.layerAlpha = 1;
     self.gradient = [PBGradient defaultInstance];
   }
   return self;
@@ -5309,6 +5381,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasLayerTag) {
     [output writeInt32:23 value:self.layerTag];
   }
+  if (self.hasLayerAlpha) {
+    [output writeFloat:24 value:self.layerAlpha];
+  }
   if (self.hasGradient) {
     [output writeMessage:30 value:self.gradient];
   }
@@ -5395,6 +5470,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasLayerTag) {
     size += computeInt32Size(23, self.layerTag);
+  }
+  if (self.hasLayerAlpha) {
+    size += computeFloatSize(24, self.layerAlpha);
   }
   if (self.hasGradient) {
     size += computeMessageSize(30, self.gradient);
@@ -5543,6 +5621,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasLayerTag) {
     [self setLayerTag:other.layerTag];
   }
+  if (other.hasLayerAlpha) {
+    [self setLayerAlpha:other.layerAlpha];
+  }
   if (other.hasGradient) {
     [self mergeGradient:other.gradient];
   }
@@ -5651,6 +5732,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 184: {
         [self setLayerTag:[input readInt32]];
+        break;
+      }
+      case 197: {
+        [self setLayerAlpha:[input readFloat]];
         break;
       }
       case 242: {
@@ -6041,6 +6126,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearLayerTag {
   result.hasLayerTag = NO;
   result.layerTag = 0;
+  return self;
+}
+- (BOOL) hasLayerAlpha {
+  return result.hasLayerAlpha;
+}
+- (Float32) layerAlpha {
+  return result.layerAlpha;
+}
+- (PBDrawAction_Builder*) setLayerAlpha:(Float32) value {
+  result.hasLayerAlpha = YES;
+  result.layerAlpha = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearLayerAlpha {
+  result.hasLayerAlpha = NO;
+  result.layerAlpha = 1;
   return self;
 }
 - (BOOL) hasGradient {

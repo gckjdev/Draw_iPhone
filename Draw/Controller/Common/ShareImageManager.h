@@ -15,6 +15,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageUtil.h"
 
+
+#define SIM [ShareImageManager defaultManager]
+
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
 
 #define TEXT_VIEW_BORDER_WIDTH   (ISIPAD ? 6  : 3)
@@ -408,6 +411,9 @@
 + (UIImage *)imageWithColor:(UIColor *)color;
 
 - (UIImage *)detailHeaderBG;
+
+- (UIImage *)nextPage;
+- (UIImage *)previousPage;
 
 + (UIImage *)bubleImage;
 

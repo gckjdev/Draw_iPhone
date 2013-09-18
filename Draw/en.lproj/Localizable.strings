@@ -1071,6 +1071,8 @@
 "kTakeCoins" = "You can take %d coins now. Do you want to take it now?";
 "kCoinsTakeSucc" = "Take coins successfully";
 
+"kDefaultDescInRank" = "The ONE";
+
 "kConfirmLogout" = "Do you want to logout this account?";
 "kAskKeepDraft" = "Do you want to keep all your local drafts?";
 "kKeepDraft" = "Yes";
@@ -1080,6 +1082,8 @@
 "kLogoutAccount" = "Logout";
 "kLogout" = "Logout";
 "kAutoGetUserSucc" = "Get user information successfully.";
+"kLogouting" = "Logout...";
+"kLogoutFailure" = "Fail to logout user, please check your network and try again later.";
 
 "kNoXiaojiNumber" = "No Littlegee Number";
 "kXiaoji" = "Littlegee";

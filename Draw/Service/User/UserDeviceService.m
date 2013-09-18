@@ -130,7 +130,7 @@ static UserDeviceService* _defaultUserService;
     });
 }
 
-- (void)removeUserDevice
+- (void)removeUserDevice:(UpdateUserResultBlock)resultBlock
 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     if (queue == NULL)
@@ -161,7 +161,7 @@ static UserDeviceService* _defaultUserService;
                 
         if (output.resultCode == ERROR_SUCCESS){
             dispatch_async(dispatch_get_main_queue(), ^{
-                // do nothing
+                EXECUTE_BLOCK(resultBlock, output.resultCode);
             });
         }
         

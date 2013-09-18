@@ -17,11 +17,9 @@
 
 @implementation DrawMainMenuPanel
 
-#define SELF_FRAME (ISIPAD?CGRectMake(0, 0, 768, 804):CGRectMake(0, 0, 320, 360))
+#define SELF_FRAME (ISIPAD?CGRectMake(0, 0, 768, 804):CGRectMake(0, 0, 320, 360+(ISIPHONE5?78:0)))
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
-    
-    
     DrawMainMenuPanel *panel = [[[DrawMainMenuPanel alloc] initWithFrame:SELF_FRAME] autorelease];
     panel.delegate = delegate;
     [panel baseInit];
@@ -40,11 +38,12 @@
 
 - (NSInteger)currentPage
 {
-    return (NSInteger)([self.scrollView contentOffset].x / CGRectGetWidth(self.scrollView.bounds));
+    NSInteger page = (NSInteger)([self.scrollView contentOffset].x / CGRectGetWidth(self.scrollView.bounds));
+    return page;
 }
 
 #define NUMBER_PER_PAGE 6
-#define RADIUS (ISIPAD?250:105)
+#define RADIUS (ISIPAD?250:105+(ISIPHONE5?5:0))
 
 - (NSArray *)menusInPage:(NSInteger)page
 {
@@ -125,6 +124,9 @@
             [menu.title setHidden:NO];
             
         }];
+        //show views after open.
+        [self updateAvatar];
+        [self updatePageButton];
         
     } page:[self currentPage]];
 }
@@ -137,10 +139,16 @@
 {
     NSArray *menus = [self menusInPage:page];
     CGPoint center = [self centerInPage:page];
+
+    //hide views before close
+    [self hidePageButtons];
     [self.scrollView enumSubviewsWithClass:[HomeMenuView class] handler:^(id view) {
         HomeMenuView *menu = view;
         [menu.title setHidden:YES];
     }];
+    [[self badgeViewInPage:0] setHidden:YES];
+    [[self badgeViewInPage:1] setHidden:YES];
+    
     [self performSelector:@selector(hideAllLinesInCurrentPage) withObject:nil afterDelay:MAIN_ANIMATION_INTEVAL/2.];
 
     if (animated) {
@@ -205,11 +213,11 @@
             menu.center = stopPoint;
         } completion:^(BOOL finished) {
             EXECUTE_BLOCK(completion,YES);
-            menu.title.hidden = NO;
+//            menu.title.hidden = NO;
         }];
     }else{
         menu.center = stopPoint;
-        menu.title.hidden = NO;        
+//        menu.title.hidden = NO;        
     }
 }
 
@@ -230,13 +238,11 @@
 {
     UserManager *me = [UserManager defaultManager];
     AvatarView *av = [[AvatarView alloc] initWithUrlString:nil frame:CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height) gender:[me gender] level:[me level]];
-//    [self.scrollView addSubview:av];
+    
     [self.scrollView insertSubview:av atIndex:0];
     av.delegate = self;
     [av release];
     av.center = [self centerInPage:page];
-//    [self.scrollView sendSubviewToBack:av];
-
 }
 
 
@@ -255,6 +261,30 @@
 }
 
 #define MENU_TAG_BASE 10000
+#define PAGE_BUTTON_SIZE (ISIPAD?CGSizeMake(80,80):CGSizeMake(40,40))
+#define PAGE_BUTTON_CENTER_Y (ISIPAD?680:300+(ISIPHONE5?80:0))
+
+- (void)pageInit
+{
+    self.previous = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.previous setImage:[SIM previousPage] forState:UIControlStateNormal];
+    self.previous.frame = CGRectMake(0, 0, PAGE_BUTTON_SIZE.width, PAGE_BUTTON_SIZE.height);
+    [self.previous updateCenterY:PAGE_BUTTON_CENTER_Y];
+    [self.previous updateCenterX:PAGE_BUTTON_SIZE.width/2];
+    [self addSubview:self.previous];
+    [self.previous addTarget:self action:@selector(clickPageButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.next = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.next setImage:[SIM nextPage] forState:UIControlStateNormal];
+    self.next.frame = CGRectMake(0, 0, PAGE_BUTTON_SIZE.width, PAGE_BUTTON_SIZE.height);
+    [self.next updateCenterY:PAGE_BUTTON_CENTER_Y];
+    [self.next updateCenterX:(CGRectGetWidth(self.bounds))-PAGE_BUTTON_SIZE.width/2];
+    [self addSubview:self.next];
+    [self.next addTarget:self action:@selector(clickPageButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self updatePageButton];
+    [self animatePageButtons];
+}
 
 - (void)baseInit
 {
@@ -264,6 +294,7 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.pagingEnabled = YES;
+    [self.scrollView setDelegate:self];
     
     self.menuList = [NSMutableArray array];
     HomeMenuType *types = getMainMenuTypeList();
@@ -279,6 +310,7 @@
     if (0 != ([self.menuList count] % NUMBER_PER_PAGE)) {
         pageNumber ++;
     }
+    self.pageCount = pageNumber;
     [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.bounds)*pageNumber, CGRectGetHeight(self.scrollView.bounds))];
     for (HomeMenuView *view in self.menuList) {
         [self.scrollView addSubview: view];
@@ -293,6 +325,7 @@
     [self updateAvatar];
     [self updateViewLayers];
     [self.scrollView bringSubviewToFront:[self getMenuViewWithType:HomeMenuTypeDrawDraw]];
+    [self pageInit];
 }
 
 - (void)updateView
@@ -300,28 +333,50 @@
     [self updateAvatar];
 }
 
+#define AVATAR_VIEW_TAG_BASE 93475
+- (BadgeView *)badgeViewInPage:(NSInteger)page
+{
+    return (id)[self.scrollView viewWithTag:AVATAR_VIEW_TAG_BASE+page];
+}
+
+
 - (void)updateAvatar
 {
     UserManager *me = [UserManager defaultManager];
     __block NSInteger index = 0;
     [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
         AvatarView *av = view;
-        if (([me.avatarURL length] != 0 || me.avatarImage)) {
+        if (([me.avatarURL length] != 0)) {
             [av setAsRound];
             av.layer.borderColor = [COLOR_BROWN CGColor];
             av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
-            if (me.avatarImage) {
-                [av setImage:me.avatarImage];
-            }else{
-                [av setAvatarUrl:me.avatarURL gender:me.gender];
-            }
+            [av setAvatarUrl:me.avatarURL gender:me.gender];
+//            if (me.avatarImage) {
+//                [av setImage:me.avatarImage];
+//            }else{
+//                [av setAvatarUrl:me.avatarURL gender:me.gender];
+//            }
         }else{
             [av setImage:[[ShareImageManager defaultManager] homeDefaultAvatar]];
             av.layer.borderWidth = 0;
             av.frame = CGRectMake(0, 0, DEFAULT_AVATAR_SIZE.width, DEFAULT_AVATAR_SIZE.height);
             [av setAsSquare];
         }
-         av.center = [self centerInPage:index++];
+        
+        av.center = [self centerInPage:index];
+        
+        BadgeView *badgeView = [self badgeViewInPage:index];
+        NSInteger badge = [[UserManager defaultManager] getUserBadgeCount];
+        if (badgeView == nil) {
+            badgeView = [BadgeView badgeViewWithNumber:badge];
+            badgeView.tag = AVATAR_VIEW_TAG_BASE+index;
+            [self.scrollView addSubview:badgeView];;
+        }
+        [badgeView updateOriginX:(CGRectGetMaxX(av.frame)-CGRectGetWidth(badgeView.bounds))];
+        [badgeView updateOriginY:(CGRectGetMinY(av.frame))];
+        [badgeView setNumber:badge];
+        
+        index++;
     }];
 }
 

@@ -51,6 +51,7 @@ typedef enum {
 
 @end
 
+@class BadgeView;
 
 @interface AvatarView : UIView
 {
@@ -71,6 +72,7 @@ typedef enum {
 - (void)setImage:(UIImage *)image;
 - (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
+- (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender useDefaultLogo:(BOOL)useDefaultLogo;
 - (void)setAvatarSelected:(BOOL)selected;
 - (void)setAvatarSelected:(BOOL)selected level:(int)level;
 - (void)setAsSquare;
@@ -82,6 +84,8 @@ typedef enum {
 @property(nonatomic, assign) id<AvatarViewDelegate> delegate;
 @property(nonatomic, assign) BOOL hasPen;
 
+- (void)setBadge:(NSInteger)number;
+- (BadgeView *)badgeView;
 @end
 
 
