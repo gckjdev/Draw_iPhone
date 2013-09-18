@@ -356,7 +356,7 @@
 }
 - (float)getBottomMenuOriginY
 {
-    return BOTTOM_MENU_ORIGIN_Y;
+    return BOTTOM_MENU_ORIGIN_Y+1;
 }
 
 @end
