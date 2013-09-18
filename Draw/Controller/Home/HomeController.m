@@ -172,7 +172,15 @@
 
         }
     }];
-
+    
+    //TODO if is new user
+    if (YES) {
+        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
+            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
+            [header openAnimated:NO completion:NULL];
+            [footer hideAnimated:NO];
+        }];        
+    }
 }
 
 - (void)viewDidLoad
