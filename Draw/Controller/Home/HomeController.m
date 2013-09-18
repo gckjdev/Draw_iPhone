@@ -173,7 +173,6 @@
         }
     }];
     
-    //TODO if is new user
 //#if DEBUG
 //    if (YES) {
 //#else

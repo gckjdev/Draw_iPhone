@@ -51,11 +51,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    self.closeButton.hidden = YES; // disable this
-    
-#ifdef DEBUG
-    self.closeButton.hidden = NO; // disable this
-#endif
+    self.closeButton.hidden = NO;
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.bottomView.backgroundColor = OPAQUE_COLOR(139, 234, 204);

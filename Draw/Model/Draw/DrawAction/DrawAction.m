@@ -140,7 +140,7 @@
 {
     self = [super init];
     if (self) {
-        
+        self.layerAlpha = 1.0f;
     }
     return self;
 }
@@ -149,7 +149,16 @@
 {
     self = [super init];
     if (self) {
+        self.layerAlpha = 1.0f;
+    }
+    return self;
+}
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.layerAlpha = 1.0f;
     }
     return self;
 }
@@ -173,6 +182,7 @@
         self.type = action.type;
         self.clipTag = (action.hasClipTag ? action.clipTag : 0);
         self.layerTag = (action.hasLayerTag && action.layerTag != 0 ) ? action.layerTag : DEFAULT_LAYER_TAG;
+        self.layerAlpha = action.layerAlpha;
         if ([action hasShadowOffsetX] && [action hasShadowColor]) {
             self.shadow = [Shadow shadowWithIntColor:action.shadowColor
                                               offset:CGSizeMake(action.shadowOffsetX,
@@ -192,6 +202,7 @@
         self.type = action->type;
         self.clipTag = action->has_cliptag ? action->cliptag : 0;
         self.layerTag = (action->has_layertag && action->layertag != 0 ) ? action->layertag : DEFAULT_LAYER_TAG;
+        self.layerAlpha = action->layeralpha;
 /*
 #if DEBGU
         if (action->layertag == 2) {
@@ -247,6 +258,8 @@
     }
     pbDrawActionC->layertag = self.layerTag;
     pbDrawActionC->has_layertag = YES;
+    pbDrawActionC->layeralpha = self.layerAlpha;
+    pbDrawActionC->has_layeralpha = YES;
 }
 
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect

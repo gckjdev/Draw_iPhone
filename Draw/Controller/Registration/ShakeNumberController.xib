@@ -159,6 +159,30 @@
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
+							<object class="IBUIButton" id="315086760">
+								<reference key="NSNextResponder" ref="738607901"/>
+								<int key="NSvFlags">301</int>
+								<string key="NSFrame">{{246, 20}, {30, 30}}</string>
+								<reference key="NSSuperview" ref="738607901"/>
+								<string key="NSReuseIdentifierKey">_NS:9</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<string key="IBUINormalTitle">Button</string>
+								<reference key="IBUIHighlightedTitleColor" ref="985825454"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="73241877"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">draw_player_close@2x.png</string>
+								</object>
+								<reference key="IBUIFontDescription" ref="277596734"/>
+								<reference key="IBUIFont" ref="903906716"/>
+							</object>
 						</array>
 						<string key="NSFrame">{{11, 12}, {296, 433}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
@@ -486,6 +510,15 @@
 					</object>
 					<int key="connectionID">64</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickClose:</string>
+						<reference key="source" ref="315086760"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -560,6 +593,7 @@
 							<reference ref="1046338156"/>
 							<reference ref="146619530"/>
 							<reference ref="747090207"/>
+							<reference ref="315086760"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -603,6 +637,11 @@
 						<reference key="object" ref="747090207"/>
 						<reference key="parent" ref="738607901"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">82</int>
+						<reference key="object" ref="315086760"/>
+						<reference key="parent" ref="738607901"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -625,12 +664,13 @@
 				<string key="71.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">81</int>
+			<int key="maxID">83</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -638,8 +678,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="pad@2x.png">{16, 16}</string>
-			<string key="shake@2x.png">{16, 16}</string>
+			<string key="draw_player_close@2x.png">{46, 47}</string>
+			<string key="pad@2x.png">{231, 346}</string>
+			<string key="shake@2x.png">{67, 183}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

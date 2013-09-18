@@ -17,6 +17,7 @@
 #import "UIImageView+WebCache.h"
 //#import "DrawUserInfoView.h"
 #import "UIViewUtils.h"
+#import "UserService.h"
 
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
 #define DESC_WIDTH (ISIPAD ? 481 : 220)
@@ -208,6 +209,8 @@
 
 - (IBAction)clickToUser:(id)sender
 {
+
+    
     if (_targetUser.userId && _delegate && [_delegate respondsToSelector:@selector(didClickDrawToUser:nickName:)]) {
         [_delegate didClickDrawToUser:_targetUser.userId nickName:_targetUser.nickName];
     }

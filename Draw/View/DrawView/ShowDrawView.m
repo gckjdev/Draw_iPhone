@@ -349,6 +349,7 @@
             self.tempAction.shadow = [_currentAction shadow];
             self.tempAction.clipAction = _currentAction.clipAction;
             self.tempAction.layerTag = _currentAction.layerTag;
+            self.tempAction.layerAlpha = _currentAction.layerAlpha;
         }
         NSInteger i = [self.tempAction pointCount];
         for (; i <= _playingPointIndex; ++ i) {
