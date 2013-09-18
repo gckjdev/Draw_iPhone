@@ -694,17 +694,6 @@ SET_CELL_BG_IN_CONTROLLER;
         }
     }
     
-//    else if (section == SECTION_REMOVE_AD) {
-//        cell.textLabel.text = NSLS(@"kRemoveAd");
-//        cell.detailTextLabel.hidden = NO;
-//        if ([ConfigManager isProVersion]){
-//            cell.detailTextLabel.text = @"N/A";
-//        }
-//        else{
-//            cell.detailTextLabel.text = ([[AdService defaultService] isShowAd] ? NSLS(@"kAdNotRemoved") : NSLS(@"kAdRemoved"));
-//        }
-//    }
-    
     return cell;
 }
 

@@ -1474,6 +1474,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
     }];
 }
 
+#define NUMBER_VIEW_ANMIATION_SECONDS       0.5f
+
 - (void)showXiaojiNumberView:(UIView*)view
 {
     if ([[UserManager defaultManager] canShakeXiaojiNumber]){
@@ -1491,7 +1493,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
         
         [self.shakeNumberController.view updateCenterX:x-MOVE_OFFSET];
         
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:NUMBER_VIEW_ANMIATION_SECONDS animations:^{
             [self.shakeNumberController.view updateCenterX:x];
         } completion:^(BOOL finished) {
             [self.shakeNumberController.view updateCenterX:x];
@@ -1512,7 +1514,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
         
         [self.getNewNumberController.view updateCenterX:x-MOVE_OFFSET];
         
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:NUMBER_VIEW_ANMIATION_SECONDS animations:^{
             [self.getNewNumberController.view updateCenterX:x];
         } completion:^(BOOL finished) {
             [self.getNewNumberController.view updateCenterX:x];
@@ -1524,7 +1526,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 {
     CGFloat x = CGRectGetMidX(self.shakeNumberController.view.frame);
     
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:NUMBER_VIEW_ANMIATION_SECONDS animations:^{
         [self.shakeNumberController.view updateCenterX:x+MOVE_OFFSET];
     } completion:^(BOOL finished) {
         [self.shakeNumberController.view removeFromSuperview];
@@ -1831,6 +1833,29 @@ POSTMSG(NSLS(@"kLoginFailure"));
 - (void)forceLogout
 {
     [self executeLogout:YES viewController:nil];
+}
+
+- (BOOL)isRegistered
+{
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        return YES;
+    }
+    
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)gotoRegistration:(UIView*)view
+{
+    if ([self isRegistered]){
+        return NO;
+    }
+    
+    [self checkAndAskLogin:view];
+    return YES;
 }
 
 @end

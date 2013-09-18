@@ -30,6 +30,7 @@
 
 
 @property(nonatomic,retain)NSMutableDictionary *wordDict;
+@property (retain, nonatomic) NSDictionary *basicWordDict;
 @property(nonatomic, assign)LanguageType languageType;
 
 + (WordManager *)defaultManager;
@@ -50,6 +51,11 @@
 + (NSString *)removeSpaceFromString:(NSString *)string;
 - (void)clearWordBaseDictionary;
 //+ (void)unZipFiles;
+
+
+- (void)loadBasicDict;
+- (void)unloadBasicDict;
+
 @end
 
 extern WordManager *GlobalGetWordManager();

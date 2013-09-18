@@ -19,6 +19,7 @@
 #import "UIViewUtils.h"
 #import "AnimationManager.h"
 #import "TimeUtils.h"
+#import "WordManager.h"
 
 #define TAG_COUNT_DOWN_VIEW 101
 
@@ -34,6 +35,7 @@
 
 
 - (void)dealloc {
+    [[WordManager defaultManager] unloadBasicDict];
     [_happyModeButton unregisterSound];
     [_geniusModeButton unregisterSound];
     [_contestModeButton unregisterSound];
