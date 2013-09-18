@@ -1528,7 +1528,7 @@ const ProtobufCMessageDescriptor game__pblearn_draw__descriptor =
   (ProtobufCMessageInit) game__pblearn_draw__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
-static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[40] =
+static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[41] =
 {
   {
     "feedId",
@@ -1999,6 +1999,18 @@ static const ProtobufCFieldDescriptor game__pbfeed__field_descriptors[40] =
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
   {
+    "rankInfo",
+    93,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, n_rankinfo),
+    PROTOBUF_C_OFFSETOF(Game__PBFeed, rankinfo),
+    &game__pbopus_rank__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
     "learnDraw",
     100,
     PROTOBUF_C_LABEL_OPTIONAL,
@@ -2034,7 +2046,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   20,   /* field[20] = guessWords */
   14,   /* field[14] = historyScore */
   18,   /* field[18] = isCorrect */
-  39,   /* field[39] = learnDraw */
+  40,   /* field[40] = learnDraw */
   24,   /* field[24] = matchTimes */
   7,   /* field[7] = nickName */
   32,   /* field[32] = opusCreatorAvatar */
@@ -2047,6 +2059,7 @@ static const unsigned game__pbfeed__field_indices_by_name[] = {
   21,   /* field[21] = opusStatus */
   35,   /* field[35] = opusThumbImage */
   33,   /* field[33] = opusWord */
+  39,   /* field[39] = rankInfo */
   19,   /* field[19] = score */
   10,   /* field[10] = signature */
   12,   /* field[12] = targetUserId */
@@ -2064,8 +2077,8 @@ static const ProtobufCIntRange game__pbfeed__number_ranges[10 + 1] =
   { 71, 29 },
   { 81, 33 },
   { 91, 37 },
-  { 100, 39 },
-  { 0, 40 }
+  { 100, 40 },
+  { 0, 41 }
 };
 const ProtobufCMessageDescriptor game__pbfeed__descriptor =
 {
@@ -2075,7 +2088,7 @@ const ProtobufCMessageDescriptor game__pbfeed__descriptor =
   "Game__PBFeed",
   "game",
   sizeof(Game__PBFeed),
-  40,
+  41,
   game__pbfeed__field_descriptors,
   game__pbfeed__field_indices_by_name,
   10,  game__pbfeed__number_ranges,

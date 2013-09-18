@@ -8,48 +8,138 @@
 PROTOBUF_C_BEGIN_DECLS
 
 #include "GameBasic.pb-c.h"
+#include "GameConstants.pb-c.h"
 #include "Sing.pb-c.h"
+#include "Draw.pb-c.h"
 
+typedef struct _Game__PBDrawOpus Game__PBDrawOpus;
+typedef struct _Game__PBAskPs Game__PBAskPs;
+typedef struct _Game__PBAskPsOpus Game__PBAskPsOpus;
 typedef struct _Game__PBOpus Game__PBOpus;
-typedef struct _Game__PBOpusAction Game__PBOpusAction;
-typedef struct _Game__PBActionComment Game__PBActionComment;
-typedef struct _Game__PBActionFlower Game__PBActionFlower;
-typedef struct _Game__PBActionGuess Game__PBActionGuess;
-typedef struct _Game__PBActionTimes Game__PBActionTimes;
-typedef struct _Game__PBTimeline Game__PBTimeline;
+typedef struct _Game__PBOpusList Game__PBOpusList;
+typedef struct _Game__PBOpusGuess Game__PBOpusGuess;
+typedef struct _Game__PBGuessRank Game__PBGuessRank;
+typedef struct _Game__PBGuessContest Game__PBGuessContest;
 
 
 /* --- enums --- */
 
-typedef enum _Game__PBOpusAim {
-  GAME__PBOPUS_AIM__UNKNOWN = 0,
-  GAME__PBOPUS_AIM__DRAW = 1,
-  GAME__PBOPUS_AIM__GUESS = 2,
-  GAME__PBOPUS_AIM__COMMENT = 3,
-  GAME__PBOPUS_AIM__REPOST = 4,
-  GAME__PBOPUS_AIM__DRAW_TO_USER = 5,
-  GAME__PBOPUS_AIM__FLOWER = 6,
-  GAME__PBOPUS_AIM__TOMATO = 7,
-  GAME__PBOPUS_AIM__ONLY_COMMENT = 8,
-  GAME__PBOPUS_AIM__DRAW_CONTEST = 9,
-  GAME__PBOPUS_AIM__SING = 1000,
-  GAME__PBOPUS_AIM__SING_TO_USER = 1001,
-  GAME__PBOPUS_AIM__SING_CONTEST = 1002
-} Game__PBOpusAim;
+typedef enum _Game__PBOpusCategoryType {
+  GAME__PBOPUS_CATEGORY_TYPE__DRAW_CATEGORY = 0,
+  GAME__PBOPUS_CATEGORY_TYPE__SING_CATEGORY = 1,
+  GAME__PBOPUS_CATEGORY_TYPE__ASK_PS_CATEGORY = 2
+} Game__PBOpusCategoryType;
+typedef enum _Game__PBLanguage {
+  GAME__PBLANGUAGE__CHINESE = 1,
+  GAME__PBLANGUAGE__ENGLISH = 2
+} Game__PBLanguage;
+typedef enum _Game__PBOpusType {
+  GAME__PBOPUS_TYPE__UNKNOWN = 0,
+  GAME__PBOPUS_TYPE__DRAW = 1,
+  GAME__PBOPUS_TYPE__GUESS = 2,
+  GAME__PBOPUS_TYPE__COMMENT = 3,
+  GAME__PBOPUS_TYPE__REPOST = 4,
+  GAME__PBOPUS_TYPE__DRAW_TO_USER = 5,
+  GAME__PBOPUS_TYPE__FLOWER = 6,
+  GAME__PBOPUS_TYPE__TOMATO = 7,
+  GAME__PBOPUS_TYPE__ONLY_COMMENT = 8,
+  GAME__PBOPUS_TYPE__DRAW_CONTEST = 9,
+  GAME__PBOPUS_TYPE__SING = 1000,
+  GAME__PBOPUS_TYPE__SING_TO_USER = 1001,
+  GAME__PBOPUS_TYPE__SING_CONTEST = 1002,
+  GAME__PBOPUS_TYPE__ASK_PS = 1500,
+  GAME__PBOPUS_TYPE__ASK_PS_OPUS = 1501
+} Game__PBOpusType;
+typedef enum _Game__PBOpusStoreType {
+  GAME__PBOPUS_STORE_TYPE__NORMAL_OPUS = 0,
+  GAME__PBOPUS_STORE_TYPE__DRAFT_OPUS = 1,
+  GAME__PBOPUS_STORE_TYPE__SUBMIT_OPUS = 2,
+  GAME__PBOPUS_STORE_TYPE__SAVED_OPUS = 3
+} Game__PBOpusStoreType;
+typedef enum _Game__PBOpusStatus {
+  GAME__PBOPUS_STATUS__OPUS_STATUS_NORMAL = 0,
+  GAME__PBOPUS_STATUS__OPUS_STATUS_DELETE = 1
+} Game__PBOpusStatus;
+typedef enum _Game__PBFeedTimesType {
+  GAME__PBFEED_TIMES_TYPE__FEED_TIMES_TYPE_MATCH = 1,
+  GAME__PBFEED_TIMES_TYPE__FEED_TIMES_TYPE_GUESS = 2,
+  GAME__PBFEED_TIMES_TYPE__FEED_TIMES_TYPE_CORRECT = 3,
+  GAME__PBFEED_TIMES_TYPE__FEED_TIMES_TYPE_COMMENT = 4,
+  GAME__PBFEED_TIMES_TYPE__FEED_TIMES_TYPE_FLOWER = 5,
+  GAME__PBFEED_TIMES_TYPE__FEED_TIMES_TYPE_TOMATO = 6,
+  GAME__PBFEED_TIMES_TYPE__FEED_TIMES_TYPE_SAVE = 7
+} Game__PBFeedTimesType;
+typedef enum _Game__PBRankType {
+  GAME__PBRANK_TYPE__HOT_RANK = 1,
+  GAME__PBRANK_TYPE__ALL_TIME_RANK = 2
+} Game__PBRankType;
+typedef enum _Game__PBUserGuessMode {
+  GAME__PBUSER_GUESS_MODE__GUESS_MODE_HAPPY = 1,
+  GAME__PBUSER_GUESS_MODE__GUESS_MODE_GENIUS = 2,
+  GAME__PBUSER_GUESS_MODE__GUESS_MODE_CONTEST = 3
+} Game__PBUserGuessMode;
+typedef enum _Game__PBGuessContestState {
+  GAME__PBGUESS_CONTEST_STATE__GUESS_CONTEST_STATE_END = 0,
+  GAME__PBGUESS_CONTEST_STATE__GUESS_CONTEST_STATE_ING = 1,
+  GAME__PBGUESS_CONTEST_STATE__GUESS_CONTEST_STATE_NOT_START = 2
+} Game__PBGuessContestState;
 
 /* --- messages --- */
+
+struct  _Game__PBDrawOpus
+{
+  ProtobufCMessage base;
+  protobuf_c_boolean has_level;
+  int32_t level;
+};
+#define GAME__PBDRAW_OPUS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbdraw_opus__descriptor) \
+    , 0,0 }
+
+
+struct  _Game__PBAskPs
+{
+  ProtobufCMessage base;
+  size_t n_requirement;
+  char **requirement;
+  protobuf_c_boolean has_awardcoinsperuser;
+  int32_t awardcoinsperuser;
+  protobuf_c_boolean has_awardcoinsmaxtotal;
+  int32_t awardcoinsmaxtotal;
+  protobuf_c_boolean has_awardingotbestuser;
+  int32_t awardingotbestuser;
+  char *awardbestuserid;
+};
+#define GAME__PBASK_PS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbask_ps__descriptor) \
+    , 0,NULL, 0,0, 0,0, 0,0, NULL }
+
+
+struct  _Game__PBAskPsOpus
+{
+  ProtobufCMessage base;
+  char *askpsid;
+};
+#define GAME__PBASK_PS_OPUS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbask_ps_opus__descriptor) \
+    , NULL }
+
 
 struct  _Game__PBOpus
 {
   ProtobufCMessage base;
   char *opusid;
-  protobuf_c_boolean has_aim;
-  Game__PBOpusAim aim;
+  protobuf_c_boolean has_type;
+  Game__PBOpusType type;
   char *name;
   char *desc;
   char *image;
   char *thumbimage;
   char *dataurl;
+  protobuf_c_boolean has_language;
+  Game__PBLanguage language;
+  protobuf_c_boolean has_category;
+  Game__PBOpusCategoryType category;
   protobuf_c_boolean has_createdate;
   int32_t createdate;
   protobuf_c_boolean has_status;
@@ -61,92 +151,150 @@ struct  _Game__PBOpus
   Game__PBGameUser *author;
   Game__PBGameUser *targetuser;
   char *contestid;
-  size_t n_actiontimes;
-  Game__PBActionTimes **actiontimes;
-  Game__PBSingOpus *singopus;
+  size_t n_feedtimes;
+  Game__PBFeedTimes **feedtimes;
+  Game__PBDrawOpus *draw;
+  Game__PBSingOpus *sing;
+  Game__PBAskPs *askps;
+  Game__PBAskPsOpus *askpsopus;
+  char *localdataurl;
+  char *localimageurl;
+  char *localthumbimageurl;
+  protobuf_c_boolean has_isrecovery;
+  protobuf_c_boolean isrecovery;
+  protobuf_c_boolean has_storetype;
+  Game__PBOpusStoreType storetype;
+  Game__PBOpusGuess *guessinfo;
 };
 #define GAME__PBOPUS__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbopus__descriptor) \
-    , NULL, 0,0, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, NULL, NULL, NULL, NULL, NULL, 0,NULL, NULL }
+    , NULL, 0,0, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,0, NULL, NULL, NULL, NULL, NULL, 0,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,0, NULL }
 
 
-struct  _Game__PBOpusAction
+struct  _Game__PBOpusList
 {
   ProtobufCMessage base;
-  char *actionid;
-  protobuf_c_boolean has_actiontype;
-  int32_t actiontype;
-  char *opusid;
-  Game__PBUserBasicInfo *userinfo;
-  protobuf_c_boolean has_createdate;
-  int32_t createdate;
-  Game__PBOpusAction *sourceaction;
-  Game__PBActionComment *commentaction;
-  Game__PBActionFlower *floweraction;
-  Game__PBActionGuess *guessaction;
+  size_t n_opuses;
+  Game__PBOpus **opuses;
 };
-#define GAME__PBOPUS_ACTION__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbopus_action__descriptor) \
-    , NULL, 0,0, NULL, NULL, 0,0, NULL, NULL, NULL, NULL }
+#define GAME__PBOPUS_LIST__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbopus_list__descriptor) \
+    , 0,NULL }
 
 
-struct  _Game__PBActionComment
+struct  _Game__PBOpusGuess
 {
   ProtobufCMessage base;
-  char *content;
+  protobuf_c_boolean has_iscorrect;
+  protobuf_c_boolean iscorrect;
 };
-#define GAME__PBACTION_COMMENT__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbaction_comment__descriptor) \
-    , NULL }
+#define GAME__PBOPUS_GUESS__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbopus_guess__descriptor) \
+    , 0,0 }
 
 
-struct  _Game__PBActionFlower
+struct  _Game__PBGuessRank
 {
   ProtobufCMessage base;
-  int32_t type;
+  Game__PBGameUser *user;
+  protobuf_c_boolean has_guess;
+  int32_t guess;
+  protobuf_c_boolean has_pass;
+  int32_t pass;
+  protobuf_c_boolean has_spendtime;
+  int32_t spendtime;
+  protobuf_c_boolean has_earn;
+  int32_t earn;
+  protobuf_c_boolean has_currency;
+  Game__PBGameCurrency currency;
+  protobuf_c_boolean has_ranking;
+  int32_t ranking;
+  protobuf_c_boolean has_totalplayer;
+  int32_t totalplayer;
+  protobuf_c_boolean has_starttime;
+  int32_t starttime;
+  protobuf_c_boolean has_endtime;
+  int32_t endtime;
 };
-#define GAME__PBACTION_FLOWER__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbaction_flower__descriptor) \
-    , 0 }
+#define GAME__PBGUESS_RANK__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbguess_rank__descriptor) \
+    , NULL, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0 }
 
 
-struct  _Game__PBActionGuess
+struct  _Game__PBGuessContest
 {
   ProtobufCMessage base;
-  size_t n_words;
-  char **words;
-  protobuf_c_boolean has_correct;
-  protobuf_c_boolean correct;
-};
-#define GAME__PBACTION_GUESS__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbaction_guess__descriptor) \
-    , 0,NULL, 0,0 }
-
-
-struct  _Game__PBActionTimes
-{
-  ProtobufCMessage base;
-  int32_t type;
+  char *contestid;
   char *name;
-  protobuf_c_boolean has_value;
-  int32_t value;
+  protobuf_c_boolean has_state;
+  int32_t state;
+  protobuf_c_boolean has_starttime;
+  int32_t starttime;
+  protobuf_c_boolean has_endtime;
+  int32_t endtime;
 };
-#define GAME__PBACTION_TIMES__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbaction_times__descriptor) \
-    , 0, NULL, 0,0 }
+#define GAME__PBGUESS_CONTEST__INIT \
+ { PROTOBUF_C_MESSAGE_INIT (&game__pbguess_contest__descriptor) \
+    , NULL, NULL, 0,0, 0,0, 0,0 }
 
 
-struct  _Game__PBTimeline
-{
-  ProtobufCMessage base;
-  Game__PBOpus *opus;
-  Game__PBOpusAction *action;
-};
-#define GAME__PBTIMELINE__INIT \
- { PROTOBUF_C_MESSAGE_INIT (&game__pbtimeline__descriptor) \
-    , NULL, NULL }
-
-
+/* Game__PBDrawOpus methods */
+void   game__pbdraw_opus__init
+                     (Game__PBDrawOpus         *message);
+size_t game__pbdraw_opus__get_packed_size
+                     (const Game__PBDrawOpus   *message);
+size_t game__pbdraw_opus__pack
+                     (const Game__PBDrawOpus   *message,
+                      uint8_t             *out);
+size_t game__pbdraw_opus__pack_to_buffer
+                     (const Game__PBDrawOpus   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBDrawOpus *
+       game__pbdraw_opus__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbdraw_opus__free_unpacked
+                     (Game__PBDrawOpus *message,
+                      ProtobufCAllocator *allocator);
+/* Game__PBAskPs methods */
+void   game__pbask_ps__init
+                     (Game__PBAskPs         *message);
+size_t game__pbask_ps__get_packed_size
+                     (const Game__PBAskPs   *message);
+size_t game__pbask_ps__pack
+                     (const Game__PBAskPs   *message,
+                      uint8_t             *out);
+size_t game__pbask_ps__pack_to_buffer
+                     (const Game__PBAskPs   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBAskPs *
+       game__pbask_ps__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbask_ps__free_unpacked
+                     (Game__PBAskPs *message,
+                      ProtobufCAllocator *allocator);
+/* Game__PBAskPsOpus methods */
+void   game__pbask_ps_opus__init
+                     (Game__PBAskPsOpus         *message);
+size_t game__pbask_ps_opus__get_packed_size
+                     (const Game__PBAskPsOpus   *message);
+size_t game__pbask_ps_opus__pack
+                     (const Game__PBAskPsOpus   *message,
+                      uint8_t             *out);
+size_t game__pbask_ps_opus__pack_to_buffer
+                     (const Game__PBAskPsOpus   *message,
+                      ProtobufCBuffer     *buffer);
+Game__PBAskPsOpus *
+       game__pbask_ps_opus__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data);
+void   game__pbask_ps_opus__free_unpacked
+                     (Game__PBAskPsOpus *message,
+                      ProtobufCAllocator *allocator);
 /* Game__PBOpus methods */
 void   game__pbopus__init
                      (Game__PBOpus         *message);
@@ -166,142 +314,107 @@ Game__PBOpus *
 void   game__pbopus__free_unpacked
                      (Game__PBOpus *message,
                       ProtobufCAllocator *allocator);
-/* Game__PBOpusAction methods */
-void   game__pbopus_action__init
-                     (Game__PBOpusAction         *message);
-size_t game__pbopus_action__get_packed_size
-                     (const Game__PBOpusAction   *message);
-size_t game__pbopus_action__pack
-                     (const Game__PBOpusAction   *message,
+/* Game__PBOpusList methods */
+void   game__pbopus_list__init
+                     (Game__PBOpusList         *message);
+size_t game__pbopus_list__get_packed_size
+                     (const Game__PBOpusList   *message);
+size_t game__pbopus_list__pack
+                     (const Game__PBOpusList   *message,
                       uint8_t             *out);
-size_t game__pbopus_action__pack_to_buffer
-                     (const Game__PBOpusAction   *message,
+size_t game__pbopus_list__pack_to_buffer
+                     (const Game__PBOpusList   *message,
                       ProtobufCBuffer     *buffer);
-Game__PBOpusAction *
-       game__pbopus_action__unpack
+Game__PBOpusList *
+       game__pbopus_list__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   game__pbopus_action__free_unpacked
-                     (Game__PBOpusAction *message,
+void   game__pbopus_list__free_unpacked
+                     (Game__PBOpusList *message,
                       ProtobufCAllocator *allocator);
-/* Game__PBActionComment methods */
-void   game__pbaction_comment__init
-                     (Game__PBActionComment         *message);
-size_t game__pbaction_comment__get_packed_size
-                     (const Game__PBActionComment   *message);
-size_t game__pbaction_comment__pack
-                     (const Game__PBActionComment   *message,
+/* Game__PBOpusGuess methods */
+void   game__pbopus_guess__init
+                     (Game__PBOpusGuess         *message);
+size_t game__pbopus_guess__get_packed_size
+                     (const Game__PBOpusGuess   *message);
+size_t game__pbopus_guess__pack
+                     (const Game__PBOpusGuess   *message,
                       uint8_t             *out);
-size_t game__pbaction_comment__pack_to_buffer
-                     (const Game__PBActionComment   *message,
+size_t game__pbopus_guess__pack_to_buffer
+                     (const Game__PBOpusGuess   *message,
                       ProtobufCBuffer     *buffer);
-Game__PBActionComment *
-       game__pbaction_comment__unpack
+Game__PBOpusGuess *
+       game__pbopus_guess__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   game__pbaction_comment__free_unpacked
-                     (Game__PBActionComment *message,
+void   game__pbopus_guess__free_unpacked
+                     (Game__PBOpusGuess *message,
                       ProtobufCAllocator *allocator);
-/* Game__PBActionFlower methods */
-void   game__pbaction_flower__init
-                     (Game__PBActionFlower         *message);
-size_t game__pbaction_flower__get_packed_size
-                     (const Game__PBActionFlower   *message);
-size_t game__pbaction_flower__pack
-                     (const Game__PBActionFlower   *message,
+/* Game__PBGuessRank methods */
+void   game__pbguess_rank__init
+                     (Game__PBGuessRank         *message);
+size_t game__pbguess_rank__get_packed_size
+                     (const Game__PBGuessRank   *message);
+size_t game__pbguess_rank__pack
+                     (const Game__PBGuessRank   *message,
                       uint8_t             *out);
-size_t game__pbaction_flower__pack_to_buffer
-                     (const Game__PBActionFlower   *message,
+size_t game__pbguess_rank__pack_to_buffer
+                     (const Game__PBGuessRank   *message,
                       ProtobufCBuffer     *buffer);
-Game__PBActionFlower *
-       game__pbaction_flower__unpack
+Game__PBGuessRank *
+       game__pbguess_rank__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   game__pbaction_flower__free_unpacked
-                     (Game__PBActionFlower *message,
+void   game__pbguess_rank__free_unpacked
+                     (Game__PBGuessRank *message,
                       ProtobufCAllocator *allocator);
-/* Game__PBActionGuess methods */
-void   game__pbaction_guess__init
-                     (Game__PBActionGuess         *message);
-size_t game__pbaction_guess__get_packed_size
-                     (const Game__PBActionGuess   *message);
-size_t game__pbaction_guess__pack
-                     (const Game__PBActionGuess   *message,
+/* Game__PBGuessContest methods */
+void   game__pbguess_contest__init
+                     (Game__PBGuessContest         *message);
+size_t game__pbguess_contest__get_packed_size
+                     (const Game__PBGuessContest   *message);
+size_t game__pbguess_contest__pack
+                     (const Game__PBGuessContest   *message,
                       uint8_t             *out);
-size_t game__pbaction_guess__pack_to_buffer
-                     (const Game__PBActionGuess   *message,
+size_t game__pbguess_contest__pack_to_buffer
+                     (const Game__PBGuessContest   *message,
                       ProtobufCBuffer     *buffer);
-Game__PBActionGuess *
-       game__pbaction_guess__unpack
+Game__PBGuessContest *
+       game__pbguess_contest__unpack
                      (ProtobufCAllocator  *allocator,
                       size_t               len,
                       const uint8_t       *data);
-void   game__pbaction_guess__free_unpacked
-                     (Game__PBActionGuess *message,
-                      ProtobufCAllocator *allocator);
-/* Game__PBActionTimes methods */
-void   game__pbaction_times__init
-                     (Game__PBActionTimes         *message);
-size_t game__pbaction_times__get_packed_size
-                     (const Game__PBActionTimes   *message);
-size_t game__pbaction_times__pack
-                     (const Game__PBActionTimes   *message,
-                      uint8_t             *out);
-size_t game__pbaction_times__pack_to_buffer
-                     (const Game__PBActionTimes   *message,
-                      ProtobufCBuffer     *buffer);
-Game__PBActionTimes *
-       game__pbaction_times__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   game__pbaction_times__free_unpacked
-                     (Game__PBActionTimes *message,
-                      ProtobufCAllocator *allocator);
-/* Game__PBTimeline methods */
-void   game__pbtimeline__init
-                     (Game__PBTimeline         *message);
-size_t game__pbtimeline__get_packed_size
-                     (const Game__PBTimeline   *message);
-size_t game__pbtimeline__pack
-                     (const Game__PBTimeline   *message,
-                      uint8_t             *out);
-size_t game__pbtimeline__pack_to_buffer
-                     (const Game__PBTimeline   *message,
-                      ProtobufCBuffer     *buffer);
-Game__PBTimeline *
-       game__pbtimeline__unpack
-                     (ProtobufCAllocator  *allocator,
-                      size_t               len,
-                      const uint8_t       *data);
-void   game__pbtimeline__free_unpacked
-                     (Game__PBTimeline *message,
+void   game__pbguess_contest__free_unpacked
+                     (Game__PBGuessContest *message,
                       ProtobufCAllocator *allocator);
 /* --- per-message closures --- */
 
+typedef void (*Game__PBDrawOpus_Closure)
+                 (const Game__PBDrawOpus *message,
+                  void *closure_data);
+typedef void (*Game__PBAskPs_Closure)
+                 (const Game__PBAskPs *message,
+                  void *closure_data);
+typedef void (*Game__PBAskPsOpus_Closure)
+                 (const Game__PBAskPsOpus *message,
+                  void *closure_data);
 typedef void (*Game__PBOpus_Closure)
                  (const Game__PBOpus *message,
                   void *closure_data);
-typedef void (*Game__PBOpusAction_Closure)
-                 (const Game__PBOpusAction *message,
+typedef void (*Game__PBOpusList_Closure)
+                 (const Game__PBOpusList *message,
                   void *closure_data);
-typedef void (*Game__PBActionComment_Closure)
-                 (const Game__PBActionComment *message,
+typedef void (*Game__PBOpusGuess_Closure)
+                 (const Game__PBOpusGuess *message,
                   void *closure_data);
-typedef void (*Game__PBActionFlower_Closure)
-                 (const Game__PBActionFlower *message,
+typedef void (*Game__PBGuessRank_Closure)
+                 (const Game__PBGuessRank *message,
                   void *closure_data);
-typedef void (*Game__PBActionGuess_Closure)
-                 (const Game__PBActionGuess *message,
-                  void *closure_data);
-typedef void (*Game__PBActionTimes_Closure)
-                 (const Game__PBActionTimes *message,
-                  void *closure_data);
-typedef void (*Game__PBTimeline_Closure)
-                 (const Game__PBTimeline *message,
+typedef void (*Game__PBGuessContest_Closure)
+                 (const Game__PBGuessContest *message,
                   void *closure_data);
 
 /* --- services --- */
@@ -309,14 +422,23 @@ typedef void (*Game__PBTimeline_Closure)
 
 /* --- descriptors --- */
 
-extern const ProtobufCEnumDescriptor    game__pbopus_aim__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbopus_category_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pblanguage__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbopus_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbopus_store_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbopus_status__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbfeed_times_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbrank_type__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbuser_guess_mode__descriptor;
+extern const ProtobufCEnumDescriptor    game__pbguess_contest_state__descriptor;
+extern const ProtobufCMessageDescriptor game__pbdraw_opus__descriptor;
+extern const ProtobufCMessageDescriptor game__pbask_ps__descriptor;
+extern const ProtobufCMessageDescriptor game__pbask_ps_opus__descriptor;
 extern const ProtobufCMessageDescriptor game__pbopus__descriptor;
-extern const ProtobufCMessageDescriptor game__pbopus_action__descriptor;
-extern const ProtobufCMessageDescriptor game__pbaction_comment__descriptor;
-extern const ProtobufCMessageDescriptor game__pbaction_flower__descriptor;
-extern const ProtobufCMessageDescriptor game__pbaction_guess__descriptor;
-extern const ProtobufCMessageDescriptor game__pbaction_times__descriptor;
-extern const ProtobufCMessageDescriptor game__pbtimeline__descriptor;
+extern const ProtobufCMessageDescriptor game__pbopus_list__descriptor;
+extern const ProtobufCMessageDescriptor game__pbopus_guess__descriptor;
+extern const ProtobufCMessageDescriptor game__pbguess_rank__descriptor;
+extern const ProtobufCMessageDescriptor game__pbguess_contest__descriptor;
 
 PROTOBUF_C_END_DECLS
 

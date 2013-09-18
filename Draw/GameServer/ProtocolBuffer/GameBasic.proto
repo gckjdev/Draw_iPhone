@@ -1,4 +1,5 @@
 
+import "GameConstants.proto";
 
 package game;
 
@@ -192,7 +193,8 @@ message PBDrawAction {
   optional int32 clipType = 21; //1: Rect, 2: Circle, 3: Multiple Edge Shape 4: Path
 
 
-  optional int32 layerTag = 23; //layer identifier
+  optional int32 layerTag = 23;                     //layer identifier
+  optional float layerAlpha = 24[default=1.0];      //层透明度
 
  //Support gradient
   optional PBGradient gradient = 30;

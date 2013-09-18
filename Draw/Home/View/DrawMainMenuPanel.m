@@ -231,8 +231,8 @@
 }
 
 
-#define AVATAR_SIZE (ISIPAD?CGSizeMake(135,135):CGSizeMake(67,67))
-#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(142,172):CGSizeMake(76,92))
+#define AVATAR_SIZE (ISIPAD?CGSizeMake(150,150):CGSizeMake(75,75))
+#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(162,195):CGSizeMake(76,92))
 
 - (void)addAvatarInPage:(NSInteger)page
 {
@@ -339,6 +339,7 @@
     return (id)[self.scrollView viewWithTag:AVATAR_VIEW_TAG_BASE+page];
 }
 
+#define AVATAR_INSET (ISIPAD?CGSizeMake(12, 12):CGSizeMake(6, 6))
 
 - (void)updateAvatar
 {
@@ -346,27 +347,21 @@
     __block NSInteger index = 0;
     [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
         AvatarView *av = view;
-        if (([me.avatarURL length] != 0 || me.avatarImage)) {
-            av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
-//            av.layer.borderColor = [[UIColor clearColor] CGColor];
+        if (NO&&([me.avatarURL length] != 0)) {
+            [av setAsRound];
+            av.layer.borderColor = [COLOR_BROWN CGColor];
             av.layer.borderWidth = 0;
-            
-            if (me.avatarImage) {
-                [av setImage:me.avatarImage];
-            }else{
-                [av setAvatarUrl:me.avatarURL gender:me.gender];
-            }
-            [av setContentOffset:CGSizeMake(10, 10)];
-            [av setBackgroundImageView:@"draw_home_avatar_bg@2x.png"];
-//            [av setAsRound];
-            
+            av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
+            [av setAvatarUrl:me.avatarURL gender:me.gender];
+            [av setBackgroundImage:[SIM homeDefaultAvatarBG]];
+            [av setContentInset:AVATAR_INSET];
         }else{
             [av setImage:[[ShareImageManager defaultManager] homeDefaultAvatar]];
             av.layer.borderWidth = 0;
             av.frame = CGRectMake(0, 0, DEFAULT_AVATAR_SIZE.width, DEFAULT_AVATAR_SIZE.height);
+            [av setContentInset:CGSizeZero];
+            [av setBackgroundImage:nil];
             [av setAsSquare];
-            [av setContentOffset:CGSizeZero];
-            [av setBackgroundImageView:nil];
         }
         
         av.center = [self centerInPage:index];

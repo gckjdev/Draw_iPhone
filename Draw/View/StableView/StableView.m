@@ -202,24 +202,25 @@
     [bgView setImage:nil];
 }
 
-- (void)setBackgroundImageView:(NSString *)imageName
+- (void)setBackgroundImage:(UIImage *)image
 {
-    [bgView setImage:[UIImage imageNamed:imageName]];
+    [bgView setImage:image];
     [bgView setFrame:self.bounds];
     [self sendSubviewToBack:bgView];
 }
 
-- (void)setContentOffset:(CGSize)contentOffset
+- (void)setContentInset:(CGSize)contentInset
 {
-    _contentOffset = contentOffset;
-    [imageView setFrame:CGRectInset(self.bounds, contentOffset.width, contentOffset.height)];
+    _contentInset = contentInset;
+    [imageView setFrame:CGRectInset(self.bounds, contentInset.width, contentInset.height)];
     bgView.frame = self.bounds;
 }
 
 - (void)setAsSquare{
     self.layer.cornerRadius = 0;
     self.layer.masksToBounds = NO;
-    [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
+    bgView.layer.cornerRadius = 0;
+    imageView.layer.cornerRadius = 0;
 }
 
 #define BADGE_VIEW_TAG 32445
@@ -282,7 +283,7 @@
 {
     [super layoutSubviews];
     bgView.frame=self.bounds;
-    [self setContentOffset:self.contentOffset];
+    [self setContentInset:self.contentInset];
 }
 
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
@@ -408,6 +409,18 @@
 - (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender
 {
     UIImage *placeHolderImage = [[ShareImageManager defaultManager] avatarImageByGender:gender];
+    [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
+}
+
+- (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender useDefaultLogo:(BOOL)useDefaultLogo
+{
+    UIImage *placeHolderImage = nil;
+    if (useDefaultLogo){
+        placeHolderImage = [[ShareImageManager defaultManager] homeDefaultAvatar];
+    }
+    else{
+        [[ShareImageManager defaultManager] avatarImageByGender:gender];
+    }
     [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
 }
 

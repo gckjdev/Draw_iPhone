@@ -1,5 +1,6 @@
 
 import "GameBasic.proto";
+import "GameConstants.proto";
 import "Sing.proto";
 import "Draw.proto";
 
@@ -206,7 +207,7 @@ message PBGuessRank{
    optional int32 spendTime = 7;     // 总耗时
    
    optional int32 earn = 11;         // 赢得了多少
-   optional PBGameCurrency currency = 12 [default = Coin];    // 货币种类
+   optional PBGameCurrency currency = 12;    // 货币种类
 
    optional int32 ranking = 25;         // 排名
    optional int32 totalPlayer = 31;     // 总共参赛人数

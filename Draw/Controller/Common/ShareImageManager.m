@@ -1256,7 +1256,12 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)homeDefaultAvatar
 {
-    return [UIImage imageNamed:@"draw_home_default_avatar.png"];
+    return [self fixedImageNamed:@"draw_home_default_avatar"];
+}
+
+- (UIImage *)homeDefaultAvatarBG
+{
+    return [self fixedImageNamed:@"draw_home_avatar_bg"];
 }
 
 + (UIImage *)imageWithColor:(UIColor *)color

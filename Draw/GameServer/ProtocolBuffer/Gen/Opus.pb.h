@@ -3,6 +3,7 @@
 #import "ProtocolBuffers.h"
 
 #import "GameBasic.pb.h"
+#import "GameConstants.pb.h"
 #import "Sing.pb.h"
 #import "Draw.pb.h"
 

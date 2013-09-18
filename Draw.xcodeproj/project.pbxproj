@@ -4808,6 +4808,10 @@
 		CA3221A9151F65AE0039A384 /* UserSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3221A7151F65AD0039A384 /* UserSettingController.m */; };
 		CA3221AA151F65AE0039A384 /* UserSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA3221A8151F65AE0039A384 /* UserSettingController.xib */; };
 		CA335D5216A90DC400D3BFF2 /* bbs_reward_action_content_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */; };
+		CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
+		CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
+		CA33F67A17E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
+		CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA33F67717E94B67005950EF /* Photo.pb-c.c */; };
 		CA355F00152C03F200A14823 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
 		CA35FF2B16F8672100D8E05D /* ChangeBackAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2216F8672100D8E05D /* ChangeBackAction.m */; };
 		CA35FF2F16F8672200D8E05D /* CleanAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA35FF2416F8672100D8E05D /* CleanAction.m */; };
@@ -8734,6 +8738,7 @@
 		CA3221A7151F65AD0039A384 /* UserSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingController.m; sourceTree = "<group>"; };
 		CA3221A8151F65AE0039A384 /* UserSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingController.xib; sourceTree = "<group>"; };
 		CA335D5116A90DC300D3BFF2 /* bbs_reward_action_content_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_reward_action_content_bg@2x.png"; sourceTree = "<group>"; };
+		CA33F67717E94B67005950EF /* Photo.pb-c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Photo.pb-c.c"; sourceTree = "<group>"; };
 		CA355EFE152C03F000A14823 /* UserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		CA355EFF152C03F100A14823 /* UserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		CA355F01152C296900A14823 /* ItemType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemType.h; sourceTree = "<group>"; };
@@ -11858,6 +11863,7 @@
 		C20030A7172F9E1D00FD6AE1 /* Gen-c */ = {
 			isa = PBXGroup;
 			children = (
+				CA33F67717E94B67005950EF /* Photo.pb-c.c */,
 				CAE58A00175EF45E009149E9 /* Opus.pb-c.c */,
 				CAE58A01175EF45E009149E9 /* Opus.pb-c.h */,
 				CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */,
@@ -21017,6 +21023,7 @@
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
+				CA33F67A17E94B69005950EF /* Photo.pb-c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21812,6 +21819,7 @@
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
+				CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22613,6 +22621,7 @@
 				EA8EF66717E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
+				CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23388,6 +23397,7 @@
 				EA8EF66A17E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,
+				CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
