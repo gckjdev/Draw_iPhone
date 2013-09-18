@@ -1154,7 +1154,7 @@
 }
 
 + (BOOL)getGuessContestLocalNotificationEnabled{
-    return [MobClickUtils getBoolValueByKey:@"GUESS_CONTEST_LOCAL_NOTIFICATION_ENABLED" defaultValue:YES];
+    return [MobClickUtils getBoolValueByKey:@"GUESS_CONTEST_LOCAL_NOTIFICATION_ENABLED" defaultValue:NO]; // set default to no by Benson
 }
 
 
