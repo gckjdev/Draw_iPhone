@@ -3,7 +3,7 @@
 #ifndef PROTOBUF_C_Draw_2eproto__INCLUDED
 #define PROTOBUF_C_Draw_2eproto__INCLUDED
 
-#include "protobuf-c.h"
+#include "google/protobuf-c/protobuf-c.h"
 
 PROTOBUF_C_BEGIN_DECLS
 
@@ -185,11 +185,13 @@ struct  _Game__PBFeed
   char *contestid;
   protobuf_c_boolean has_contestscore;
   double contestscore;
+  size_t n_rankinfo;
+  Game__PBOpusRank **rankinfo;
   Game__PBLearnDraw *learndraw;
 };
 #define GAME__PBFEED__INIT \
  { PROTOBUF_C_MESSAGE_INIT (&game__pbfeed__descriptor) \
-    , NULL, NULL, 0, 0, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, NULL }
+    , NULL, NULL, 0, 0, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, 0,0, NULL, NULL, NULL, 0,0, 0,0, 0,NULL, 0,0, NULL, NULL, 0,0, 0,0, 0,0, 0,0, 0,NULL, NULL, NULL, 0,0, NULL, NULL, NULL, NULL, NULL, NULL, 0,0, 0,NULL, NULL }
 
 
 struct  _Game__PBPoint

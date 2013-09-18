@@ -12,6 +12,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
   if (self == [GameBasicRoot class]) {
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
+    [GameConstantsRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }
@@ -5097,6 +5098,7 @@ static PBGradient* defaultPBGradientInstance = nil;
 @property int32_t clipTag;
 @property int32_t clipType;
 @property int32_t layerTag;
+@property Float32 layerAlpha;
 @property (retain) PBGradient* gradient;
 @end
 
@@ -5216,6 +5218,13 @@ static PBGradient* defaultPBGradientInstance = nil;
   hasLayerTag_ = !!value;
 }
 @synthesize layerTag;
+- (BOOL) hasLayerAlpha {
+  return !!hasLayerAlpha_;
+}
+- (void) setHasLayerAlpha:(BOOL) value {
+  hasLayerAlpha_ = !!value;
+}
+@synthesize layerAlpha;
 - (BOOL) hasGradient {
   return !!hasGradient_;
 }
@@ -5249,6 +5258,7 @@ static PBGradient* defaultPBGradientInstance = nil;
     self.clipTag = 0;
     self.clipType = 0;
     self.layerTag = 0;
+    self.layerAlpha = 1;
     self.gradient = [PBGradient defaultInstance];
   }
   return self;
@@ -5371,6 +5381,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (self.hasLayerTag) {
     [output writeInt32:23 value:self.layerTag];
   }
+  if (self.hasLayerAlpha) {
+    [output writeFloat:24 value:self.layerAlpha];
+  }
   if (self.hasGradient) {
     [output writeMessage:30 value:self.gradient];
   }
@@ -5457,6 +5470,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   }
   if (self.hasLayerTag) {
     size += computeInt32Size(23, self.layerTag);
+  }
+  if (self.hasLayerAlpha) {
+    size += computeFloatSize(24, self.layerAlpha);
   }
   if (self.hasGradient) {
     size += computeMessageSize(30, self.gradient);
@@ -5605,6 +5621,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   if (other.hasLayerTag) {
     [self setLayerTag:other.layerTag];
   }
+  if (other.hasLayerAlpha) {
+    [self setLayerAlpha:other.layerAlpha];
+  }
   if (other.hasGradient) {
     [self mergeGradient:other.gradient];
   }
@@ -5713,6 +5732,10 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
       }
       case 184: {
         [self setLayerTag:[input readInt32]];
+        break;
+      }
+      case 197: {
+        [self setLayerAlpha:[input readFloat]];
         break;
       }
       case 242: {
@@ -6103,6 +6126,22 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 - (PBDrawAction_Builder*) clearLayerTag {
   result.hasLayerTag = NO;
   result.layerTag = 0;
+  return self;
+}
+- (BOOL) hasLayerAlpha {
+  return result.hasLayerAlpha;
+}
+- (Float32) layerAlpha {
+  return result.layerAlpha;
+}
+- (PBDrawAction_Builder*) setLayerAlpha:(Float32) value {
+  result.hasLayerAlpha = YES;
+  result.layerAlpha = value;
+  return self;
+}
+- (PBDrawAction_Builder*) clearLayerAlpha {
+  result.hasLayerAlpha = NO;
+  result.layerAlpha = 1;
   return self;
 }
 - (BOOL) hasGradient {

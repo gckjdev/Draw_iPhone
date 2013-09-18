@@ -529,3 +529,35 @@ const ProtobufCEnumDescriptor game__pbmessage_type__descriptor =
   game__pbmessage_type__value_ranges,
   NULL,NULL,NULL,NULL   /* reserved[1234] */
 };
+const ProtobufCEnumValue game__pbcontest_status__enum_values_by_number[4] =
+{
+  { "Pending", "GAME__PBCONTEST_STATUS__PENDING", 1 },
+  { "Running", "GAME__PBCONTEST_STATUS__RUNNING", 2 },
+  { "Passed", "GAME__PBCONTEST_STATUS__PASSED", 3 },
+  { "Deleted", "GAME__PBCONTEST_STATUS__DELETED", 4 },
+};
+static const ProtobufCIntRange game__pbcontest_status__value_ranges[] = {
+{1, 0},{0, 4}
+};
+const ProtobufCEnumValueIndex game__pbcontest_status__enum_values_by_name[4] =
+{
+  { "Deleted", 3 },
+  { "Passed", 2 },
+  { "Pending", 0 },
+  { "Running", 1 },
+};
+const ProtobufCEnumDescriptor game__pbcontest_status__descriptor =
+{
+  PROTOBUF_C_ENUM_DESCRIPTOR_MAGIC,
+  "game.PBContestStatus",
+  "PBContestStatus",
+  "Game__PBContestStatus",
+  "game",
+  4,
+  game__pbcontest_status__enum_values_by_number,
+  4,
+  game__pbcontest_status__enum_values_by_name,
+  1,
+  game__pbcontest_status__value_ranges,
+  NULL,NULL,NULL,NULL   /* reserved[1234] */
+};

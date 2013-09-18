@@ -13,6 +13,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
     [self registerAllExtensions:registry];
     [GameBasicRoot registerAllExtensions:registry];
+    [GameConstantsRoot registerAllExtensions:registry];
     [SingRoot registerAllExtensions:registry];
     [DrawRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];

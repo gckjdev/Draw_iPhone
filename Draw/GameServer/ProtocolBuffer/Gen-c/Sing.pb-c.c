@@ -6,6 +6,92 @@
 #endif
 
 #include "Sing.pb-c.h"
+void   game__pbsong_category__init
+                     (Game__PBSongCategory         *message)
+{
+  static Game__PBSongCategory init_value = GAME__PBSONG_CATEGORY__INIT;
+  *message = init_value;
+}
+size_t game__pbsong_category__get_packed_size
+                     (const Game__PBSongCategory *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbsong_category__pack
+                     (const Game__PBSongCategory *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbsong_category__pack_to_buffer
+                     (const Game__PBSongCategory *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBSongCategory *
+       game__pbsong_category__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBSongCategory *)
+     protobuf_c_message_unpack (&game__pbsong_category__descriptor,
+                                allocator, len, data);
+}
+void   game__pbsong_category__free_unpacked
+                     (Game__PBSongCategory *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
+void   game__pbsong_category_list__init
+                     (Game__PBSongCategoryList         *message)
+{
+  static Game__PBSongCategoryList init_value = GAME__PBSONG_CATEGORY_LIST__INIT;
+  *message = init_value;
+}
+size_t game__pbsong_category_list__get_packed_size
+                     (const Game__PBSongCategoryList *message)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category_list__descriptor);
+  return protobuf_c_message_get_packed_size ((const ProtobufCMessage*)(message));
+}
+size_t game__pbsong_category_list__pack
+                     (const Game__PBSongCategoryList *message,
+                      uint8_t       *out)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category_list__descriptor);
+  return protobuf_c_message_pack ((const ProtobufCMessage*)message, out);
+}
+size_t game__pbsong_category_list__pack_to_buffer
+                     (const Game__PBSongCategoryList *message,
+                      ProtobufCBuffer *buffer)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category_list__descriptor);
+  return protobuf_c_message_pack_to_buffer ((const ProtobufCMessage*)message, buffer);
+}
+Game__PBSongCategoryList *
+       game__pbsong_category_list__unpack
+                     (ProtobufCAllocator  *allocator,
+                      size_t               len,
+                      const uint8_t       *data)
+{
+  return (Game__PBSongCategoryList *)
+     protobuf_c_message_unpack (&game__pbsong_category_list__descriptor,
+                                allocator, len, data);
+}
+void   game__pbsong_category_list__free_unpacked
+                     (Game__PBSongCategoryList *message,
+                      ProtobufCAllocator *allocator)
+{
+  PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsong_category_list__descriptor);
+  protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
+}
 void   game__pbsong__init
                      (Game__PBSong         *message)
 {
@@ -135,6 +221,96 @@ void   game__pbsing_opus__free_unpacked
   PROTOBUF_C_ASSERT (message->base.descriptor == &game__pbsing_opus__descriptor);
   protobuf_c_message_free_unpacked ((ProtobufCMessage*)message, allocator);
 }
+static const ProtobufCFieldDescriptor game__pbsong_category__field_descriptors[2] =
+{
+  {
+    "name",
+    1,
+    PROTOBUF_C_LABEL_REQUIRED,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSongCategory, name),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "songTags",
+    3,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_STRING,
+    PROTOBUF_C_OFFSETOF(Game__PBSongCategory, n_songtags),
+    PROTOBUF_C_OFFSETOF(Game__PBSongCategory, songtags),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbsong_category__field_indices_by_name[] = {
+  0,   /* field[0] = name */
+  1,   /* field[1] = songTags */
+};
+static const ProtobufCIntRange game__pbsong_category__number_ranges[2 + 1] =
+{
+  { 1, 0 },
+  { 3, 1 },
+  { 0, 2 }
+};
+const ProtobufCMessageDescriptor game__pbsong_category__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBSongCategory",
+  "PBSongCategory",
+  "Game__PBSongCategory",
+  "game",
+  sizeof(Game__PBSongCategory),
+  2,
+  game__pbsong_category__field_descriptors,
+  game__pbsong_category__field_indices_by_name,
+  2,  game__pbsong_category__number_ranges,
+  (ProtobufCMessageInit) game__pbsong_category__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
+static const ProtobufCFieldDescriptor game__pbsong_category_list__field_descriptors[1] =
+{
+  {
+    "categorys",
+    1,
+    PROTOBUF_C_LABEL_REPEATED,
+    PROTOBUF_C_TYPE_MESSAGE,
+    PROTOBUF_C_OFFSETOF(Game__PBSongCategoryList, n_categorys),
+    PROTOBUF_C_OFFSETOF(Game__PBSongCategoryList, categorys),
+    &game__pbsong_category__descriptor,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+};
+static const unsigned game__pbsong_category_list__field_indices_by_name[] = {
+  0,   /* field[0] = categorys */
+};
+static const ProtobufCIntRange game__pbsong_category_list__number_ranges[1 + 1] =
+{
+  { 1, 0 },
+  { 0, 1 }
+};
+const ProtobufCMessageDescriptor game__pbsong_category_list__descriptor =
+{
+  PROTOBUF_C_MESSAGE_DESCRIPTOR_MAGIC,
+  "game.PBSongCategoryList",
+  "PBSongCategoryList",
+  "Game__PBSongCategoryList",
+  "game",
+  sizeof(Game__PBSongCategoryList),
+  1,
+  game__pbsong_category_list__field_descriptors,
+  game__pbsong_category_list__field_indices_by_name,
+  1,  game__pbsong_category_list__number_ranges,
+  (ProtobufCMessageInit) game__pbsong_category_list__init,
+  NULL,NULL,NULL    /* reserved[123] */
+};
 static const ProtobufCFieldDescriptor game__pbsong__field_descriptors[5] =
 {
   {
@@ -189,7 +365,7 @@ static const ProtobufCFieldDescriptor game__pbsong__field_descriptors[5] =
     "tag",
     20,
     PROTOBUF_C_LABEL_REPEATED,
-    PROTOBUF_C_TYPE_INT32,
+    PROTOBUF_C_TYPE_STRING,
     PROTOBUF_C_OFFSETOF(Game__PBSong, n_tag),
     PROTOBUF_C_OFFSETOF(Game__PBSong, tag),
     NULL,
@@ -266,7 +442,8 @@ const ProtobufCMessageDescriptor game__pbsong_list__descriptor =
 };
 static const float game__pbsing_opus__duration__default_value = 1;
 static const float game__pbsing_opus__pitch__default_value = 1;
-static const ProtobufCFieldDescriptor game__pbsing_opus__field_descriptors[4] =
+static const float game__pbsing_opus__formant__default_value = 1;
+static const ProtobufCFieldDescriptor game__pbsing_opus__field_descriptors[6] =
 {
   {
     "song",
@@ -316,17 +493,44 @@ static const ProtobufCFieldDescriptor game__pbsing_opus__field_descriptors[4] =
     0,            /* packed */
     0,NULL,NULL    /* reserved1,reserved2, etc */
   },
+  {
+    "formant",
+    5,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_FLOAT,
+    PROTOBUF_C_OFFSETOF(Game__PBSingOpus, has_formant),
+    PROTOBUF_C_OFFSETOF(Game__PBSingOpus, formant),
+    NULL,
+    &game__pbsing_opus__formant__default_value,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
+  {
+    "localNativeDataURL",
+    100,
+    PROTOBUF_C_LABEL_OPTIONAL,
+    PROTOBUF_C_TYPE_STRING,
+    0,   /* quantifier_offset */
+    PROTOBUF_C_OFFSETOF(Game__PBSingOpus, localnativedataurl),
+    NULL,
+    NULL,
+    0,            /* packed */
+    0,NULL,NULL    /* reserved1,reserved2, etc */
+  },
 };
 static const unsigned game__pbsing_opus__field_indices_by_name[] = {
   2,   /* field[2] = duration */
+  4,   /* field[4] = formant */
+  5,   /* field[5] = localNativeDataURL */
   3,   /* field[3] = pitch */
   0,   /* field[0] = song */
   1,   /* field[1] = voiceType */
 };
-static const ProtobufCIntRange game__pbsing_opus__number_ranges[1 + 1] =
+static const ProtobufCIntRange game__pbsing_opus__number_ranges[2 + 1] =
 {
   { 1, 0 },
-  { 0, 4 }
+  { 100, 5 },
+  { 0, 6 }
 };
 const ProtobufCMessageDescriptor game__pbsing_opus__descriptor =
 {
@@ -336,10 +540,10 @@ const ProtobufCMessageDescriptor game__pbsing_opus__descriptor =
   "Game__PBSingOpus",
   "game",
   sizeof(Game__PBSingOpus),
-  4,
+  6,
   game__pbsing_opus__field_descriptors,
   game__pbsing_opus__field_indices_by_name,
-  1,  game__pbsing_opus__number_ranges,
+  2,  game__pbsing_opus__number_ranges,
   (ProtobufCMessageInit) game__pbsing_opus__init,
   NULL,NULL,NULL    /* reserved[123] */
 };
