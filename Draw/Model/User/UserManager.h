@@ -245,4 +245,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)canTakeCoins;
 - (int)getTakeCoins;
 
+- (BOOL)isShowFullHome;
+- (void)enableShowFullHome;
+
 @end
