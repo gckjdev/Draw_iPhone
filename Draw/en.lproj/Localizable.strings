@@ -1516,6 +1516,10 @@
 "kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";
 "kCustomBBSBg" = "Custom BBS Background";
 
+"kCustomHomeBgSucc" = "Customize home background successfully!";
+"kResetCustomHomeBgSucc" = "Reset home background successfully!";
+"kCustomHomeBg" = "Custom Home Background";
+
 "kCustomChatBgSucc" = "Customize chat background successfully!";
 "kResetCustomChatBgSucc" = "Reset custom chat background successfully!";
 "kCustomChatBg" = "Custom chat Background";

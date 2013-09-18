@@ -100,15 +100,19 @@
         lineImage = [UIImage imageNamed:@"common_home_join_line.png"];
     }
     lineImage = [lineImage stretchableImageWithLeftCapWidth:lineImage.size.width/2 topCapHeight:lineImage.size.height/2];
-    
-    [self performSelector:@selector(showAllLinesInCurrentPage) withObject:nil afterDelay:MAIN_ANIMATION_INTEVAL/1.5];
     [AnimationManager showRoundTypeSettingInView:self.scrollView
                                         subViews:menus
                                             line:lineImage
                                           center:[self centerInPage:page]
                                           radius:RADIUS
                                         animated:animated
-                                      completion:completion];    
+                                      completion:completion];
+    if (animated) {
+        [self hideAllLinesInCurrentPage];
+        [self performSelector:@selector(showAllLinesInCurrentPage) withObject:nil afterDelay:MAIN_ANIMATION_INTEVAL/1.5];
+    }else{
+        [self showAllLinesInCurrentPage];
+    }
 }
 
 - (void)openAnimated:(BOOL)animated
@@ -149,9 +153,10 @@
     [[self badgeViewInPage:0] setHidden:YES];
     [[self badgeViewInPage:1] setHidden:YES];
     
-    [self performSelector:@selector(hideAllLinesInCurrentPage) withObject:nil afterDelay:MAIN_ANIMATION_INTEVAL/2.];
 
     if (animated) {
+        [self performSelector:@selector(hideAllLinesInCurrentPage) withObject:nil afterDelay:MAIN_ANIMATION_INTEVAL/2.];
+
         [UIView animateWithDuration:MAIN_ANIMATION_INTEVAL animations:^{
         for (UIView *menu in menus) {
                 menu.center = center;
@@ -159,6 +164,7 @@
         } completion:completion];
         
     }else{
+        [self hideAllLinesInCurrentPage];
         for (UIView *menu in menus) {
             menu.center = center;
         }
@@ -352,7 +358,7 @@
     __block NSInteger index = 0;
     [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
         AvatarView *av = view;
-        if (([me.avatarURL length] != 0)) {
+        if ([me hasXiaojiNumber] || [me isOldUserWithoutXiaoji]) {
             [av setAsRound];
             av.layer.borderColor = [COLOR_BROWN CGColor];
             av.layer.borderWidth = 0;

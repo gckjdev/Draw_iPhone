@@ -19,6 +19,9 @@
 #import "WallService.h"
 #import "DrawHomeControllerProtocol.h"
 
+
+#define UPDATE_HOME_BG_NOTIFICATION_KEY @"UPDATE_HOME_BG"
+
 @class UserManager;
 @class MenuPanel;
 @class BottomMenuPanel;

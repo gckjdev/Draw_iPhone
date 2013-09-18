@@ -147,7 +147,7 @@
     
     if (self.adView){
         [self.view bringSubviewToFront:self.adView];
-    }    
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -270,9 +270,15 @@
 
 - (BOOL)isRegistered
 {
-//    return [[UserManager defaultManager] hasUser];
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        return YES;
+    }
     
-    return [[UserManager defaultManager] hasUser]; //  && [[UserManager defaultManager] hasXiaojiNumber];
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (BOOL)toRegister

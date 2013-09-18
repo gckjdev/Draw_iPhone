@@ -1470,6 +1470,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
         return 0;
     }
     
+    if ([_pbUser.xiaojiNumber length] == 0 && [self isOldUserWithoutXiaoji] == NO){
+        return 0;
+    }
+    
     int count = 0;
     
     if ([_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){

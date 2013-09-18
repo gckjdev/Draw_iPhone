@@ -1481,6 +1481,11 @@
 "kResetCustomBBSBgSucc" = "成功重设论坛背景!";
 "kCustomBBSBg" = "自定义论坛背景";
 
+"kCustomHomeBgSucc" = "成功自定义首页背景！";
+"kResetCustomHomeBgSucc" = "成功重设首页背景!";
+"kCustomHomeBg" = "自定义首页背景";
+
+
 "kCustomChatBgSucc" = "成功自定义聊天背景！";
 "kResetCustomChatBgSucc" = "成功重设聊天背景!";
 "kCustomChatBg" = "自定义聊天背景";
