@@ -195,8 +195,25 @@
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
 //    self.clipsToBounds = YES;
+    SET_VIEW_ROUND(self);
+    SET_VIEW_ROUND(bgView);
+    SET_VIEW_ROUND(imageView);
     
     [bgView setImage:nil];
+}
+
+- (void)setBackgroundImageView:(NSString *)imageName
+{
+    [bgView setImage:[UIImage imageNamed:imageName]];
+    [bgView setFrame:self.bounds];
+    [self sendSubviewToBack:bgView];
+}
+
+- (void)setContentOffset:(CGSize)contentOffset
+{
+    _contentOffset = contentOffset;
+    [imageView setFrame:CGRectInset(self.bounds, contentOffset.width, contentOffset.height)];
+    bgView.frame = self.bounds;
 }
 
 - (void)setAsSquare{
@@ -244,7 +261,7 @@
     if (self = [super initWithCoder:aDecoder]) {
         self.backgroundColor = [UIColor clearColor];
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
-        [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
+        [bgView setImage:[UIImage imageNamed:@"draw_home_avatar_bg"]];
         [self addSubview:bgView];
         [self setAvatarSelected:NO];
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -265,7 +282,7 @@
 {
     [super layoutSubviews];
     bgView.frame=self.bounds;
-    imageView.frame=self.bounds;
+    [self setContentOffset:self.contentOffset];
 }
 
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;

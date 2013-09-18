@@ -347,19 +347,26 @@
     [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
         AvatarView *av = view;
         if (([me.avatarURL length] != 0 || me.avatarImage)) {
-            [av setAsRound];
-            av.layer.borderColor = [COLOR_BROWN CGColor];
             av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
+//            av.layer.borderColor = [[UIColor clearColor] CGColor];
+            av.layer.borderWidth = 0;
+            
             if (me.avatarImage) {
                 [av setImage:me.avatarImage];
             }else{
                 [av setAvatarUrl:me.avatarURL gender:me.gender];
             }
+            [av setContentOffset:CGSizeMake(10, 10)];
+            [av setBackgroundImageView:@"draw_home_avatar_bg@2x.png"];
+//            [av setAsRound];
+            
         }else{
             [av setImage:[[ShareImageManager defaultManager] homeDefaultAvatar]];
             av.layer.borderWidth = 0;
             av.frame = CGRectMake(0, 0, DEFAULT_AVATAR_SIZE.width, DEFAULT_AVATAR_SIZE.height);
             [av setAsSquare];
+            [av setContentOffset:CGSizeZero];
+            [av setBackgroundImageView:nil];
         }
         
         av.center = [self centerInPage:index];
