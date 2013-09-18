@@ -63,8 +63,7 @@
 {
     self.detail = detail;
     PBGameUser* pbUser = [detail getUser];
-//    [self.levelLabel setText:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
-//    self.levelLabel.hidden = NO;
+
     [self.nickNameLabel setText:pbUser.nickName];
     
     CGSize constrainedSize = ISIPAD ? CGSizeMake(468, 45) : CGSizeMake(185, 19);
@@ -112,13 +111,11 @@
     
     [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), ([pbUser hasLocation]?pbUser.location:@"-")]];
     
-//    [self.followCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.followCount]];
-//    [self.fanCountLabel setText:[NSString stringWithFormat:@"%d", pbUser.fanCount]];
+
     
     self.basicDetailView.hidden = YES;
     
     [self.editButton setHidden:![detail canEdit]];
-//    [self.customBackgroundControl setHidden:![detail canEdit]];
     
     [self.customBackgroundControl setUserInteractionEnabled:[detail canEdit]];
 
@@ -184,25 +181,8 @@
     
     [self.avatarHolderView addSubview:_avatarView];
     
-//    self.levelLabel.textColor = COLOR_WHITE;
     self.signLabel.textColor = COLOR_WHITE;
-//    self.xiaojiLabel.textColor = COLOR_WHITE;
-    
-//    self.levelLabel.shadowColor = [UIColor blackColor];
-//    self.signLabel.shadowColor = [UIColor blackColor];
-//    self.xiaojiLabel.shadowColor = [UIColor blackColor];
-//    
-//    self.levelLabel.shadowOffset = CGSizeMake(1, 1);
-//    self.signLabel.shadowOffset = CGSizeMake(1, 1);
-//    self.xiaojiLabel.shadowOffset = CGSizeMake(1, 1);
-    
-//    if ([[[detail getUser] xiaojiNumber] length] == 0) {
-//        [self.levelLabel updateCenterX:self.center.x];
-//        self.xiaojiLabel.text = @"";
-//    }
-//    else{
-//        self.xiaojiLabel.text = [NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[detail getUser] xiaojiNumber]];        
-//    }
+
     
     [self.seperator1 setBackgroundColor:BG_COLOR];
     [self.seperator2 setBackgroundColor:COLOR_ORANGE];
@@ -223,18 +203,14 @@
     
     [self.exploreBbsPostBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
     [self.exploreBbsPostBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-//    SET_BUTTON_ROUND_STYLE_YELLOW(self.exploreBbsPostBtn);
-//    self.exploreBbsPostBtn.titleLabel.font = self.specialTitleLabel.font;
+
 
     [self.superBlackBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
     [self.superBlackBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-//    SET_BUTTON_ROUND_STYLE_YELLOW(self.superBlackBtn);
-//    self.superBlackBtn.titleLabel.font = self.specialTitleLabel.font;
+
 
     [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
     [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
-//    SET_BUTTON_ROUND_STYLE_YELLOW(self.blackListBtn);
-//    self.blackListBtn.titleLabel.font = self.specialTitleLabel.font;
 }
 
 
@@ -270,10 +246,8 @@
     [label setText:signatureText];
     CGSize size = [signatureText sizeWithFont:label.font constrainedToSize:CGSizeMake(label.frame.size.width, MAX_CONSTRAIN_HEIGHT) lineBreakMode:UILineBreakModeCharacterWrap];
     if (size.height < MAX_HEIGHT) {
-//        [label setFrame:CGRectMake(label.frame.origin.x, label.frame.origin.y, label.frame.size.width, size.height)];
         [label updateHeight:size.height];
     } else {
-//        [label setFrame:MAX_SIGN_FRAME];
         [label updateHeight:MAX_SIGN_HEIGHT];
     }
 }
@@ -297,13 +271,6 @@
 {
     UserDetailCell* cell = (UserDetailCell*)[super createCell:delegate];
     cell.avatarView.delegate = cell;
-    
-//    cell.segmentedControl = [[[CustomSegmentedControl alloc]
-//                              initWithSegmentTitles:@[NSLS(@"kUserOpus"), NSLS(@"kFavorite")]
-//                              frame:cell.feedTabHolder.frame
-//                              unpressedImage:[ShareImageManager imageWithColor:BG_COLOR]
-//                              pressedImage:[ShareImageManager imageWithColor:COLOR_GREEN]
-//                              delegate:cell] autorelease];
     
     cell.segmentedControl = [[[CustomSegmentedControl alloc]
                               initWithSegmentTitles:@[NSLS(@"kUserOpus"), NSLS(@"kFavorite")]
@@ -375,7 +342,6 @@
     [_seperator3 release];
     [_hisOpusLabel release];
     [_snsTipLabel release];
-//    [_xiaojiLabel release];
     [_signButton release];
     [super dealloc];
 }

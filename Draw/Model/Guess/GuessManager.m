@@ -15,7 +15,7 @@
 
 #ifdef DEBUG
 
-#define NUM_COUNT_AWARD_ONCE 3
+#define NUM_COUNT_AWARD_ONCE 10
 
 #else
 
