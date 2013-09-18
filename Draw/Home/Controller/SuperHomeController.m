@@ -37,7 +37,7 @@
 
 
 #define MAIN_MENU_ORIGIN_Y (ISIPAD ? 200 : 100+(ISIPHONE5?10:0))
-#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-76) : (422+(ISIPHONE5?88:0))
+#define BOTTOM_MENU_ORIGIN_Y ISIPAD ? (1004-76) : ((460-38)+(ISIPHONE5?88:0))
 
 @implementation SuperHomeController
 
@@ -94,8 +94,9 @@
 
 - (void)adjustView
 {
-    CGRect mainMenuFrame = self.homeMainMenuPanel.frame;
-    mainMenuFrame.size.height = [self getBottomMenuOriginY] - [self getMainMenuOriginY] + 2; //2 for blur height, without this ,a white line will appear
+//    CGRect mainMenuFrame = self.homeMainMenuPanel.frame;
+//    mainMenuFrame.size.height = [self getBottomMenuOriginY] - [self getMainMenuOriginY] + 2; //2 for blur height, without this ,a white line will appear
+    [self.homeBottomMenuPanel updateHeight:[self getBottomMenuOriginY]+1]
 }
 
 - (void)viewDidLoad
