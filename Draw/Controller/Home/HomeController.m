@@ -188,7 +188,7 @@
     [super viewDidLoad];
     
     
-    self.view.backgroundColor = OPAQUE_COLOR(0, 179, 118);
+//    self.view.backgroundColor = OPAQUE_COLOR(0, 179, 118);
     
     // Start Game Service And Set User Id
     [[DrawGameService defaultService] setHomeDelegate:self];
@@ -200,6 +200,11 @@
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
     [self updateAnimation];
+    
+    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
+        [self updateBGImageView];
+    }];
+    [self updateBGImageView];
     
 //#ifdef DEBUG
 //    [self createBtnForTest];
@@ -304,6 +309,23 @@
     NSUInteger count = [[DrawRecoveryService defaultService] recoveryDrawCount];
     [self.homeBottomMenuPanel updateMenu:HomeMenuTypeDrawOpus badge:count];
     [[StatisticManager defaultManager] setRecoveryCount:count];
+}
+
+- (void)updateBGImageView
+{
+    PPDebug(@"<update bg image view>");
+    UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
+    if (homeImage) {
+        [self.view setBackgroundColor:[UIColor clearColor]];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:123687 viewClass:[UIImageView class] frame:self.view.bounds];
+        [imageView setImage:homeImage];
+        [self.view insertSubview:imageView atIndex:0];
+    }else{
+        [self.view setBackgroundColor:OPAQUE_COLOR(0, 179, 118)];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:123687 viewClass:[UIImageView class] frame:self.view.bounds];
+        [imageView removeFromSuperview];        
+    }
+    [(DrawHomeHeaderPanel *)self.homeHeaderPanel updateBG];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -527,6 +549,7 @@
 
 }
 - (void)dealloc {
+    
     PPRelease(_recommendButton);
     PPRelease(_facetimeButton);
     PPRelease(_menuPanel);

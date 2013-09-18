@@ -35,6 +35,7 @@
 #import "GeographyService.h"
 #import "UserSettingCell.h"
 #import "CommonTitleView.h"
+#import "HomeController.h"
 
 
 enum{
@@ -129,10 +130,11 @@ enum {
     rowOfZodiac = 6;
     rowOfSignature = 7;
     rowOfPrivacy = 8;
-    rowOfCustomBg = 9;
-    rowOfCustomBBSBg = 10,
+    rowOfCustomHomeBg = 9,
+    rowOfCustomBg = 10;
+    rowOfCustomBBSBg = 11,
 //    rowOfCustomChatBg = 11,
-    rowsInSectionUser = 11;
+    rowsInSectionUser = 12;
     
     //section guessword
     if (isDrawApp()) {
@@ -555,6 +557,8 @@ SET_CELL_BG_IN_CONTROLLER;
             [cell.customTextLabel setText:NSLS(@"kCustomBBSBg")];
         }else if (row == rowOfCustomChatBg) {
             [cell.customTextLabel setText:NSLS(@"kCustomChatBg")];
+        }else if (row == rowOfCustomHomeBg) {
+            [cell.customTextLabel setText:NSLS(@"kCustomHomeBg")];
         }
         
     }else if (section == SECTION_GUESSWORD) {
@@ -920,16 +924,26 @@ SET_CELL_BG_IN_CONTROLLER;
         }else if (row == rowOfCustomBBSBg) {            
             [[self backgroundPicker] showSelectionView:self selectedImageBlock:^(UIImage *image) {
                 if ([[UserManager defaultManager] setBbsBackground:image]) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCustomBBSBgSucc") delayTime:2];
+                    POSTMSG(NSLS(@"kCustomBBSBgSucc"));
                 }
             } didSetDefaultBlock:^{
                 if ([[UserManager defaultManager] resetBbsBackground]) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kResetCustomBBSBgSucc") delayTime:2];
+                    POSTMSG(NSLS(@"kResetCustomBBSBgSucc"));
                 }
             } title:NSLS(@"kCustomBBSBg") hasRemoveOption:YES];
         }
-        else if (row == rowOfCustomChatBg) {
-
+        else if (row == rowOfCustomHomeBg) {
+            [[self backgroundPicker]showSelectionView:self delegate:nil selectedImageBlock:^(UIImage *image) {
+                if ([[UserManager defaultManager] setPageBg:image forKey:HOME_BG_KEY]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_HOME_BG_NOTIFICATION_KEY object:nil];                    
+                    POSTMSG(NSLS(@"kCustomHomeBgSucc"));
+                }
+            } didSetDefaultBlock:^{
+                if ([[UserManager defaultManager] resetPageBgforKey:HOME_BG_KEY]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:UPDATE_HOME_BG_NOTIFICATION_KEY object:nil];
+                    POSTMSG(NSLS(@"kResetCustomHomeBgSucc"));
+                }
+            } title:NSLS(@"kCustomHomeBg") hasRemoveOption:YES canTakePhoto:YES userOriginalImage:YES];
         }
     }
     else if (section == SECTION_GUESSWORD) {

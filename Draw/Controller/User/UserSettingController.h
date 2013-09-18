@@ -30,6 +30,7 @@
     NSInteger rowOfSignature;
     NSInteger rowOfPrivacy;
     NSInteger rowOfCustomBg;
+    NSInteger rowOfCustomHomeBg;
     NSInteger rowOfCustomBBSBg;
     NSInteger rowOfCustomChatBg;
     NSInteger rowOfLanguage;
