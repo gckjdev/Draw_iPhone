@@ -799,7 +799,7 @@ BOOL isMainMenuButton(HomeMenuType type)
 
 int *getBottomMenuTypeList()
 {
-    if (isDrawApp() && !isLittleGeeAPP()) {
+    if (isDrawApp()) {
         return getDrawBottomMenuTypeList();
     }/*else if(isZhajinhuaApp()){
         return getZJHBottomMenuTypeList();
@@ -811,9 +811,9 @@ int *getBottomMenuTypeList()
         return getDreamAvatarBottomMenuTypeList();
     }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
         return getDreamLockscreenBottomMenuTypeList();
-    }*/else if (isLittleGeeAPP()) {
+    }else if (isLittleGeeAPP()) {
         return getLittleGeeBottomMenuTypeList();
-    }else if (isSingApp()){
+    }*/else if (isSingApp()){
         return getSingBottomMenuTypeList();
     }
     return NULL;
