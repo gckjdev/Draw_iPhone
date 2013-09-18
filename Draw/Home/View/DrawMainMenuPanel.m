@@ -232,7 +232,7 @@
 
 
 #define AVATAR_SIZE (ISIPAD?CGSizeMake(150,150):CGSizeMake(75,75))
-#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(162,195):CGSizeMake(76,92))
+#define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(142,172):CGSizeMake(76,92))
 
 - (void)addAvatarInPage:(NSInteger)page
 {
@@ -347,7 +347,7 @@
     __block NSInteger index = 0;
     [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
         AvatarView *av = view;
-        if (NO&&([me.avatarURL length] != 0)) {
+        if (([me.avatarURL length] != 0)) {
             [av setAsRound];
             av.layer.borderColor = [COLOR_BROWN CGColor];
             av.layer.borderWidth = 0;
