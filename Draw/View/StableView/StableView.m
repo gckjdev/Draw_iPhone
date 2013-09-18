@@ -195,14 +195,32 @@
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
 //    self.clipsToBounds = YES;
+    SET_VIEW_ROUND(self);
+    SET_VIEW_ROUND(bgView);
+    SET_VIEW_ROUND(imageView);
     
     [bgView setImage:nil];
+}
+
+- (void)setBackgroundImage:(UIImage *)image
+{
+    [bgView setImage:image];
+    [bgView setFrame:self.bounds];
+    [self sendSubviewToBack:bgView];
+}
+
+- (void)setContentInset:(CGSize)contentInset
+{
+    _contentInset = contentInset;
+    [imageView setFrame:CGRectInset(self.bounds, contentInset.width, contentInset.height)];
+    bgView.frame = self.bounds;
 }
 
 - (void)setAsSquare{
     self.layer.cornerRadius = 0;
     self.layer.masksToBounds = NO;
-    [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
+    bgView.layer.cornerRadius = 0;
+    imageView.layer.cornerRadius = 0;
 }
 
 #define BADGE_VIEW_TAG 32445
@@ -244,7 +262,7 @@
     if (self = [super initWithCoder:aDecoder]) {
         self.backgroundColor = [UIColor clearColor];
         bgView = [[UIImageView alloc] initWithFrame:[self calAvatarFrame]];
-        [bgView setImage:[UIImage imageNamed:@"user_picbg.png"]];
+        [bgView setImage:[UIImage imageNamed:@"draw_home_avatar_bg"]];
         [self addSubview:bgView];
         [self setAvatarSelected:NO];
         imageView = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -265,7 +283,7 @@
 {
     [super layoutSubviews];
     bgView.frame=self.bounds;
-    imageView.frame=self.bounds;
+    [self setContentInset:self.contentInset];
 }
 
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;

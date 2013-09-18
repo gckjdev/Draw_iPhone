@@ -408,6 +408,7 @@
 - (UIImage *)drawBackImage;
 - (UIImage *)runAwayImage;
 - (UIImage *)homeDefaultAvatar;
+- (UIImage *)homeDefaultAvatarBG;
 + (UIImage *)imageWithColor:(UIColor *)color;
 
 - (UIImage *)detailHeaderBG;
