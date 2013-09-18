@@ -76,9 +76,9 @@
         [_ropeImage setFrame:IMAGE_FRAME];
     }
     if (pan.state == UIGestureRecognizerStateRecognized) {
-        if (point.y > CGRectGetHeight(IMAGE_FRAME)) {
-            [self dismissAndCallBack];
-        }
+//        if (point.y > CGRectGetHeight(IMAGE_FRAME)) {
+        [self dismissAndCallBack];
+//        }
     }
 
 }

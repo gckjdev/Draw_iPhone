@@ -46,6 +46,7 @@
     
     // Set candidates
     NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
+    
     [self.wordInputView setCandidates:candidates column:9];
 }
 

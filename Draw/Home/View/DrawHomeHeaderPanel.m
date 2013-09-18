@@ -28,12 +28,12 @@
 #define HEIGHT_MINUS (ISIPHONE5?10:0)
 #define CELL_HEIGHT_MINUS HEIGHT_MINUS
 
-#define CELL_WIDTH  (ISIPAD?(ISCLOSE?520:710):(ISCLOSE?230:290))
-#define SPACE (ISIPAD?20:10)
+#define CELL_WIDTH  (ISIPAD?(ISCLOSE?520.0f:710.0f):(ISCLOSE?230.0f:290.0f))
+#define SPACE (ISIPAD?20.0f:10.0f)
 #define NUMBER_PERROW 3
-#define CELL_HEIGHT (((ISIPAD?(ISCLOSE?150:230):(ISCLOSE?70:90)))+CELL_HEIGHT_MINUS)
+#define CELL_HEIGHT (((ISIPAD?(ISCLOSE?150.0f:230.0f):(ISCLOSE?70.0f:90.0f)))+CELL_HEIGHT_MINUS)
 
-#define OPUS_WIDTH (CELL_WIDTH-NUMBER_PERROW*SPACE)/NUMBER_PERROW
+#define OPUS_WIDTH (CELL_WIDTH-(NUMBER_PERROW+1)*SPACE)/NUMBER_PERROW
 #define OPUS_SIZE CGSizeMake(OPUS_WIDTH,OPUS_WIDTH)
 #define TAG_BASE 100
 
@@ -270,8 +270,10 @@
         button.tag = tag;
         button.frame = defaultFrame;
         
-        [button updateOriginX:(SPACE/2+(tag-TAG_BASE)*(SPACE+OPUS_SIZE.width))];
+        [button updateOriginX:(SPACE+(tag-TAG_BASE)*(SPACE+OPUS_SIZE.width))];
         [button updateCenterY:CELL_HEIGHT/2];
+        PPDebug(@"tag = %d, button frame = %@,cell width = %f", tag, NSStringFromCGRect(button.frame),self.tableView.bounds.size.width);
+        
         NSInteger index = (NUMBER_PERROW * indexPath.row) + (tag - TAG_BASE);
         [self.indexDict setObject:button forKey:@(index)];
         

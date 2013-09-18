@@ -59,7 +59,10 @@
         _opusList = [[NSMutableArray alloc] init];
         _guessedList = [[NSMutableArray alloc] init];
         _favoriteList = [[NSMutableArray alloc] init];
-        // Custom initialization
+        
+        [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
+            [self.dataTableView reloadData];
+        }];
     }
     return self;
 }
@@ -75,8 +78,6 @@
     if (!(currentTabIndex == DetailTabActionClickOpus && self.opusList.count != 0)) {
         [self didClickTabAtIndex:currentTabIndex];
     }
-    // Do any additional setup after loading the view from its nib.
-    
 }
 
 //- (void)viewDidAppear:(BOOL)animated
@@ -94,6 +95,7 @@
 }
 
 - (void)dealloc {
+    [self unregisterNotificationWithName:NOTIFCATION_USER_DATA_CHANGE];
     [_detail release];
     PPRelease(_detailCell);
     [_backButton release];
