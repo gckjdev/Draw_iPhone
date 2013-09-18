@@ -41,7 +41,7 @@
 
 @property (retain, nonatomic) SuperUserManageAction* manageAction;
 
-@property (retain, nonatomic) PPTableViewController* superViewController;
+@property (assign, nonatomic) PPTableViewController* superViewController;
 
 @end
 

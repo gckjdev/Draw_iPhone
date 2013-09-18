@@ -95,10 +95,14 @@
 }
 
 - (void)dealloc {
-    [self unregisterNotificationWithName:NOTIFCATION_USER_DATA_CHANGE];
-    [_detail release];
+    PPRelease(_detail);
     PPRelease(_detailCell);
-    [_backButton release];
+    PPRelease(_backButton);
+    PPRelease(_changeAvatar);
+    PPRelease(_opusList);
+    PPRelease(_guessedList);
+    PPRelease(_favoriteList);
+    
     [super dealloc];
 }
 - (void)viewDidUnload {
@@ -355,6 +359,20 @@
                 break;
         }
     } 
+}
+
+- (void)clickBack:(id)sender{
+    
+    PPRelease(_detail);
+    PPRelease(_detailCell);
+    PPRelease(_backButton);
+    PPRelease(_changeAvatar);
+    PPRelease(_opusList);
+    PPRelease(_guessedList);
+    PPRelease(_favoriteList);
+    
+    [self unregisterNotificationWithName:NOTIFCATION_USER_DATA_CHANGE];
+    [super clickBack:sender];
 }
 
 
