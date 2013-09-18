@@ -162,6 +162,7 @@
         for (UIView *menu in menus) {
             menu.center = center;
         }
+        EXECUTE_BLOCK(completion,YES);
     }
 
 }
@@ -208,6 +209,9 @@
     [menu toBeTitleDownStyle];
     CGPoint center = [self centerInPage:[self currentPage]];
     CGPoint stopPoint = CGPointMake(center.x, CGRectGetHeight(self.scrollView.bounds)-CGRectGetHeight(menu.bounds)/2);
+    if (!ISIPAD&&!ISIPHONE5) {
+        stopPoint.y += 10;
+    }
     if (animated) {
         [UIView animateWithDuration:MAIN_ANIMATION_INTEVAL animations:^{
             menu.center = stopPoint;
@@ -217,7 +221,8 @@
         }];
     }else{
         menu.center = stopPoint;
-//        menu.title.hidden = NO;        
+        EXECUTE_BLOCK(completion,YES);        
+//        menu.title.hidden = NO;
     }
 }
 
@@ -231,7 +236,7 @@
 }
 
 
-#define AVATAR_SIZE (ISIPAD?CGSizeMake(150,150):CGSizeMake(75,75))
+#define AVATAR_SIZE (ISIPAD?CGSizeMake(150,150):CGSizeMake(70,70))
 #define DEFAULT_AVATAR_SIZE (ISIPAD?CGSizeMake(142,172):CGSizeMake(76,92))
 
 - (void)addAvatarInPage:(NSInteger)page
