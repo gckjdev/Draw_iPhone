@@ -121,7 +121,7 @@
 - (void)updateView
 {
     //set holder view color
-    UIImage *homeImage = nil;
+    UIImage *homeImage = [[UserManager defaultManager] drawBackground];
     if (homeImage) {
         [self setBackgroundColor:[UIColor clearColor]];
         [self.holderView setBackgroundColor:[UIColor clearColor]];
