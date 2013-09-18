@@ -22,8 +22,6 @@
 {
     BOOL _guessCorrect;
     UseItemScene* _scene;
-
-    
 }
 @property (retain, nonatomic) ShowDrawView *showView;
 @property (retain, nonatomic) CMPopTipView *popView;
@@ -32,6 +30,7 @@
 - (IBAction)clickToolBox:(id)sender;
 - (IBAction)clickGroupChatButton:(id)sender;
 
+@property (retain, nonatomic) IBOutlet UIButton *toolBoxButton;
 
 
 
