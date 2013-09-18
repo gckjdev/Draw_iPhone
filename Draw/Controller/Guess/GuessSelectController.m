@@ -257,6 +257,17 @@
                                             delegate:self];
 }
 
+- (void)appendGuessInfo:(NSArray *)opuses{
+    
+    int offset = [self.guessInfoDic count];
+    int count = [opuses count];
+    for (int index = 0; index < count; index ++) {
+        PBOpus *pbOpus = [opuses objectAtIndex:index];
+        [self.guessInfoDic setObject:@(pbOpus.guessInfo.isCorrect)
+                              forKey:[self getGuessInfoKeyFormIndex:(index+offset)]];
+    }
+}
+
 - (void)updateGuessInfo{
     
     [self.guessInfoDic removeAllObjects];
@@ -306,10 +317,14 @@
 
     if (resultCode == 0) {
         
-
         [self finishLoadDataForTabID:TABID resultList:opuses];
-        [self updateGuessInfo];
-        self.guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
+        
+        if (_firstLoad || isStartNew) {
+            [self updateGuessInfo];
+            self.guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
+        }else{
+            [self appendGuessInfo:opuses];
+        }
         
         if(_firstLoad && _mode == PBUserGuessModeGuessModeGenius){
             _firstLoad = NO;
@@ -511,8 +526,8 @@
 - (void)didGuessCorrect:(Opus *)opus index:(int)index{
     
     self.guessIndex ++;
-    
     [self setIndexAsGuessed:index];
+    
     int count = [self getGuessedCount];
     
     [self.dataTableView reloadData];

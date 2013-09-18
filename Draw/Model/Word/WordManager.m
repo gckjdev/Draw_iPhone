@@ -17,7 +17,7 @@
 
 @interface WordManager() {
     
-    
+
 }
 
 @property (nonatomic, retain) PPSmartUpdateData* smartData;
@@ -170,8 +170,12 @@ WordManager *GlobalGetWordManager()
 
 - (NSDictionary *)getWordBaseDictionary
 {
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[self wordBaseDictPath]];
-    return dict;
+//    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[self wordBaseDictPath]];
+    if (self.basicWordDict == nil) {
+        [self loadBasicDict];
+    }
+    
+    return _basicWordDict;
 }
 
 - (void)clearWordBaseDictionary
@@ -239,6 +243,17 @@ WordManager *GlobalGetWordManager()
         self.wordDict = [self parsePathDict:pathDictionary];
         self.languageType = languageType;
     }
+}
+
+- (void)loadBasicDict{
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[self wordBaseDictPath]];
+    self.basicWordDict = dict;
+}
+
+- (void)unloadBasicDict{
+    
+    self.basicWordDict = nil;
 }
 
 - (id)init
