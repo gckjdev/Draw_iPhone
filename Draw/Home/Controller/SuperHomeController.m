@@ -94,9 +94,9 @@
 
 - (void)adjustView
 {
-//    CGRect mainMenuFrame = self.homeMainMenuPanel.frame;
-//    mainMenuFrame.size.height = [self getBottomMenuOriginY] - [self getMainMenuOriginY] + 2; //2 for blur height, without this ,a white line will appear
-    [self.homeBottomMenuPanel updateHeight:[self getBottomMenuOriginY]+1];
+    CGRect mainMenuFrame = self.homeMainMenuPanel.frame;
+    mainMenuFrame.size.height = [self getBottomMenuOriginY] - [self getMainMenuOriginY] + 2; //2 for blur height, without this ,a white line will appear
+//    [self.homeBottomMenuPanel updateHeight:[self getBottomMenuOriginY]+1];
 }
 
 - (void)viewDidLoad
@@ -356,7 +356,7 @@
 }
 - (float)getBottomMenuOriginY
 {
-    return BOTTOM_MENU_ORIGIN_Y;
+    return BOTTOM_MENU_ORIGIN_Y+1;
 }
 
 @end
