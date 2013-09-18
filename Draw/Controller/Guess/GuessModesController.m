@@ -258,10 +258,14 @@
     if ([GuessManager isContestNotStart:_contest]) {
         [self showContestIsNotStartTip];
         return;
-    }
-    if ([GuessManager isContestOver:_contest]) {
+    }else if ([GuessManager isContestOver:_contest]) {
         [self showContestIsOverTip];
         return;
+    }else{
+        if ([_contest.contestId length] > 0) {
+            GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     
 #endif
