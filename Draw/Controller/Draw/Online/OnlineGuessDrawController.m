@@ -60,6 +60,7 @@
     PPRelease(_wordInputView);
     PPRelease(_toolView);
     PPRelease(_popView);
+    [_toolBoxButton release];
     [super dealloc];
 }
 
@@ -134,6 +135,7 @@
     [self initPickToolView];
     [self initWordInputView];
     [self initWithCacheData];
+    self.toolBoxButton.enabled = NO;
     
 }
 
@@ -150,6 +152,7 @@
     [self setTurnNumberButton:nil];
     [self setShowView:nil];
     [self setWordInputView:nil];
+    [self setToolBoxButton:nil];
     [super viewDidUnload];
     [self setWord:nil];
 }
@@ -163,7 +166,10 @@
     if (isCorrect) {
 //        POSTMSG(NSLS(@"kGuessCorrect"));
         [wordInputView setDisable:YES];
+        self.toolBoxButton.enabled = NO;
+        
         _guessCorrect = YES;
+
     }else{
 //        POSTMSG(NSLS(@"kGuessWrong"));
     }
@@ -174,6 +180,7 @@
 - (void)didReceiveDrawWord:(NSString*)wordText level:(int)wordLevel language:(int)language
 {
     if (wordText) {
+        
         [self.wordInputView setDisable:NO];
         [self.wordInputView setAnswer:wordText];
         NSString *candidates = nil;
@@ -225,6 +232,7 @@
 {
     PPDebug(@"<ShowDrawController>didGameTurnGuessStart");
     [self startTimer];
+    self.toolBoxButton.enabled = YES;
 }
 
 
@@ -253,7 +261,7 @@
     ResultController *rc = [[ResultController alloc] initWithImage:image
                                                         drawUserId:drawUserId
                                                   drawUserNickName:drawUserNickName
-                                                          wordText:self.word.text 
+                                                          wordText:_wordInputView.answer
                                                              score:gainCoin
                                                            correct:_guessCorrect 
                                                          isMyPaint:NO 
@@ -409,6 +417,7 @@
 #define TOOL_VIEW_SPACE (ISIPAD?15:8)
 - (IBAction)clickToolBox:(id)sender
 {
+    
     if (_toolView == nil) {
         CGFloat width = (ISIPAD?80:40);
         CGFloat height = width * 3 + TOOL_VIEW_SPACE * 2;
