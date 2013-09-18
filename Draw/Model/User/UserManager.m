@@ -1562,4 +1562,27 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return nil;
 }
 
+#define SHOW_FULL_HOME_KEY @"SHOW_FULL_HOME_KEY"
+
+- (BOOL)isShowFullHome
+{
+    if ([self hasUser] == NO){
+        return NO;
+    }
+    
+    if ([self isOldUserWithoutXiaoji]){
+        return YES;
+    }
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:SHOW_FULL_HOME_KEY];
+}
+
+- (void)enableShowFullHome
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:YES forKey:SHOW_FULL_HOME_KEY];
+    [userDefaults synchronize];
+}
+
 @end

@@ -171,6 +171,8 @@
             }];
 
         }
+
+        // TODO Benson later
     }];
     
 //#if DEBUG
@@ -324,7 +326,8 @@
         [imageView setImage:homeImage];
         [self.view insertSubview:imageView atIndex:0];
     }else{
-        [self.view setBackgroundColor:OPAQUE_COLOR(0, 179, 118)];
+//        [self.view setBackgroundColor:OPAQUE_COLOR(0, 179, 118)];
+        [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
         UIImageView *imageView = (id)[self.view reuseViewWithTag:123687 viewClass:[UIImageView class] frame:self.view.bounds];
         [imageView removeFromSuperview];        
     }
