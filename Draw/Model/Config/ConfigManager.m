@@ -1125,8 +1125,7 @@
     return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:100];
 }
 
-+ (BOOL)enableWordFilter:wq
-
++ (BOOL)enableWordFilter
 {
     return [MobClickUtils getBoolValueByKey:@"ENABLE_WORD_FILTER" defaultValue:YES];
 }
@@ -1137,7 +1136,7 @@
 
 + (int)getMaxLayerNumber
 {
-    return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:5];
+    return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:3];
 }
 
 + (NSString *)getContestBeginTimeString{

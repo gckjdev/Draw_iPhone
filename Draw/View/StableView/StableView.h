@@ -77,7 +77,7 @@ typedef enum {
 - (void)setAvatarSelected:(BOOL)selected level:(int)level;
 - (void)setAsSquare;
 - (void)setAsRound;
-- (void)setBackgroundImageView:(NSString *)imageName;
+//- (void)setBackgroundImageView:(NSString *)imageName;
 - (void)setBackgroundImage:(UIImage *)image;
 
 @property(nonatomic, assign) NSInteger score;
