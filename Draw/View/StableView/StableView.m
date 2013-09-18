@@ -394,6 +394,18 @@
     [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
 }
 
+- (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender useDefaultLogo:(BOOL)useDefaultLogo
+{
+    UIImage *placeHolderImage = nil;
+    if (useDefaultLogo){
+        placeHolderImage = [[ShareImageManager defaultManager] homeDefaultAvatar];
+    }
+    else{
+        [[ShareImageManager defaultManager] avatarImageByGender:gender];
+    }
+    [imageView setImageWithUrl:[NSURL URLWithString:urlString] placeholderImage:placeHolderImage showLoading:YES animated:YES];
+}
+
 - (void)setAvatarSelected:(BOOL)selected
 {
     if (selected) {

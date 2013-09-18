@@ -346,15 +346,16 @@
     __block NSInteger index = 0;
     [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
         AvatarView *av = view;
-        if (([me.avatarURL length] != 0 || me.avatarImage)) {
+        if (([me.avatarURL length] != 0)) {
             [av setAsRound];
             av.layer.borderColor = [COLOR_BROWN CGColor];
             av.frame = CGRectMake(0, 0, AVATAR_SIZE.width, AVATAR_SIZE.height);
-            if (me.avatarImage) {
-                [av setImage:me.avatarImage];
-            }else{
-                [av setAvatarUrl:me.avatarURL gender:me.gender];
-            }
+            [av setAvatarUrl:me.avatarURL gender:me.gender];
+//            if (me.avatarImage) {
+//                [av setImage:me.avatarImage];
+//            }else{
+//                [av setAvatarUrl:me.avatarURL gender:me.gender];
+//            }
         }else{
             [av setImage:[[ShareImageManager defaultManager] homeDefaultAvatar]];
             av.layer.borderWidth = 0;

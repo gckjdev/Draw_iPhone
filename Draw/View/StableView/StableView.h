@@ -72,6 +72,7 @@ typedef enum {
 - (void)setImage:(UIImage *)image;
 - (void)setAvatarFrame:(CGRect)frame;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
+- (void)setAvatarUrl:(NSString *)urlString gender:(BOOL)gender useDefaultLogo:(BOOL)useDefaultLogo;
 - (void)setAvatarSelected:(BOOL)selected;
 - (void)setAvatarSelected:(BOOL)selected level:(int)level;
 - (void)setAsSquare;
