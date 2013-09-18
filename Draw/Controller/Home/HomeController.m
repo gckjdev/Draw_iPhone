@@ -174,7 +174,7 @@
     }];
     
     //TODO if is new user
-    if (YES) {
+    if (NO) {
         [mainPanel closeAnimated:NO completion:^(BOOL finished) {
             [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
             [header openAnimated:NO completion:NULL];
