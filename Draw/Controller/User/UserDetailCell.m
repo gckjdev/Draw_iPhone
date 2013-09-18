@@ -304,6 +304,7 @@
 
 
 - (void)dealloc {
+    
     [_carousel release];
     [_nickNameLabel release];
     [_signLabel release];
