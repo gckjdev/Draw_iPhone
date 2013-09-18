@@ -19,6 +19,7 @@
 @class LocalizableLabel;
 @class PPViewController;
 @class UserDetailRoundButton;
+@class BadgeView;
 
 @protocol UserDetailCellDelegate <NSObject>
 
@@ -85,6 +86,7 @@
 @property (retain, nonatomic) IBOutlet LocalizableLabel *snsTipLabel;
 //@property (retain, nonatomic) IBOutlet UILabel *xiaojiLabel;
 @property (retain, nonatomic) IBOutlet UIButton *signButton;
+@property (retain, nonatomic) IBOutlet BadgeView *badgeView;
 
 - (void)setCellWithUserDetail:(NSObject<UserDetailProtocol> *)detail;
 - (void)setDrawFeedList:(NSArray*)feedList tipText:(NSString *)tipText;

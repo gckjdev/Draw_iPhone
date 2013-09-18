@@ -299,52 +299,62 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
     {
         [UIUtils alert:NSLS(@"kWeixinNotInstall")];
     }else {
-        WXMediaMessage *message = [WXMediaMessage message];
-        message.title = _opus.pbOpus.opusId;
-        UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
-        
-        CGFloat width = 250.f;
-        CGFloat height = 250.f;
-        CGFloat thumbRate = MAX(250.0f/image.size.width, 250.f/image.size.height);
-        width = image.size.width*thumbRate;
-        height = image.size.height*thumbRate;
-        
-        PPDebug(@"<shareViaWeixin> thumb image widht=%f, height=%f", width, height);
-        UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];;
-        //[image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];        
-        
-        // compress image if it's too big, otherwize it will NOT be shared
-        UIImage *compressImage = image;
-        NSData  *shareData = nil;
-        if (image.size.width > MAX_WEIXIN_IMAGE_WIDTH){
-            // compress image
-            CGFloat width = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
-            CGFloat height = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
-            CGFloat compressRate = MIN(width/image.size.width, width/image.size.height);
-            
-            width = image.size.width * compressRate;
-            height = image.size.height * compressRate;
-
-            PPDebug(@"<shareViaWeixin> compress image widht=%f, height=%f", width, height);
-            compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];
-            shareData = UIImageJPEGRepresentation(compressImage, 1.0f);
-        }
-        else{
-            PPDebug(@"<shareViaWeixin> no compress image");
-            shareData = [NSData dataWithContentsOfFile:_imageFilePath];
-        }
-        
-        [message setThumbImage:thumbImage];
-        WXImageObject *ext = [WXImageObject object];
-        ext.imageData = shareData;
-        
-        message.mediaObject = ext;
         
         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-        req.bText = NO;
-        req.message = message;
         req.scene = scene;
         
+        if (_opus != nil){
+            WXMediaMessage *message = [WXMediaMessage message];
+
+            message.title = _opus.pbOpus.opusId;
+            UIImage *image = [UIImage imageWithContentsOfFile:_imageFilePath];
+            
+            CGFloat width = 250.f;
+            CGFloat height = 250.f;
+            CGFloat thumbRate = MAX(250.0f/image.size.width, 250.f/image.size.height);
+            width = image.size.width*thumbRate;
+            height = image.size.height*thumbRate;
+            
+            PPDebug(@"<shareViaWeixin> thumb image widht=%f, height=%f", width, height);
+            UIImage *thumbImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];;
+            //[image imageByScalingAndCroppingForSize:CGSizeMake(250, 250)];        
+            
+            // compress image if it's too big, otherwize it will NOT be shared
+            UIImage *compressImage = image;
+            NSData  *shareData = nil;
+            if (image.size.width > MAX_WEIXIN_IMAGE_WIDTH){
+                // compress image
+                CGFloat width = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
+                CGFloat height = (CGFloat)MAX_WEIXIN_IMAGE_WIDTH;
+                CGFloat compressRate = MIN(width/image.size.width, width/image.size.height);
+                
+                width = image.size.width * compressRate;
+                height = image.size.height * compressRate;
+
+                PPDebug(@"<shareViaWeixin> compress image widht=%f, height=%f", width, height);
+                compressImage = [image imageByScalingAndCroppingForSize:CGSizeMake(width, height)];
+                shareData = UIImageJPEGRepresentation(compressImage, 1.0f);
+            }
+            else{
+                PPDebug(@"<shareViaWeixin> no compress image");
+                shareData = [NSData dataWithContentsOfFile:_imageFilePath];
+            }
+            
+            [message setThumbImage:thumbImage];
+            WXImageObject *ext = [WXImageObject object];
+            ext.imageData = shareData;
+            
+            message.mediaObject = ext;
+
+            req.bText = NO;
+            req.message = message;
+        }
+        else{
+            PPDebug(@"<shareViaWeixin> share pure text %@", self.shareText);
+            req.bText = YES;
+            req.text = self.shareText;
+        }
+                
         [WXApi sendReq:req];
         [req release];
     }

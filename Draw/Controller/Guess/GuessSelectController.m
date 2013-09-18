@@ -649,7 +649,7 @@
     [dialog showInView:self.view];
 }
 
-- (void)clickShareAction:(int)passCount view:(UIView*)view
+- (void)clickShareAction:(int)passCount
 {
     
     PPDebug(@"clickShareAction");
@@ -663,7 +663,7 @@
     [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxTimeline)]
                       shareText:shareText viewController:self
                          onView:[CommonTitleView titleView:self.view]
-          allowClickMaskDismiss:NO];
+          allowClickMaskDismiss:YES];
 }
 
 - (void)awardInGeniusMode:(int)passCount
@@ -678,7 +678,7 @@
     [dialog.cancelButton setTitle:NSLS(@"kGoShare") forState:UIControlStateNormal];
     
     [dialog setClickCancelBlock:^(NSString *inputStr){
-        [self clickShareAction:passCount view:dialog];
+        [self clickShareAction:passCount];
     }];
     
     [dialog showInView:self.view];

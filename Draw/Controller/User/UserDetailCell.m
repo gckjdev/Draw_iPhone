@@ -29,6 +29,7 @@
 #import "CommonDialog.h"
 #import "UILabel+Extend.h"
 
+
 #define BG_COLOR  OPAQUE_COLOR(56, 208, 186)
 
 #define NICK_NAME_FONT (ISIPAD?30:15)
@@ -211,6 +212,8 @@
 
     [self.blackListBtn setBackgroundImage:[UIImage imageNamed:@"user_detail_button@2x.png"] forState:UIControlStateNormal];
     [self.blackListBtn setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    [self.badgeView setNumber:[[UserManager defaultManager] getUserBadgeCount]];
 }
 
 
@@ -278,7 +281,7 @@
                               unpressedColor:BG_COLOR pressedColor:COLOR_GREEN delegate:cell] autorelease];
     
     [cell addSubview:cell.segmentedControl];
-    [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
+//    [cell.segmentedControl setFrame:cell.feedTabHolder.frame];
     [cell.segmentedControl setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cell.segmentedControl setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [cell.segmentedControl setTitleFont:[UIFont systemFontOfSize:TAB_FONT]];
@@ -344,6 +347,7 @@
     [_hisOpusLabel release];
     [_snsTipLabel release];
     [_signButton release];
+    [_badgeView release];
     [super dealloc];
 }
 
