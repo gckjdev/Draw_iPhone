@@ -248,4 +248,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (BOOL)isShowFullHome;
 - (void)enableShowFullHome;
 
+- (void)setBlockDevices:(NSArray*)devices;
+
 @end
