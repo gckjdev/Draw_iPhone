@@ -298,5 +298,6 @@ typedef enum{
 + (int)maxWeiboShareLength;
 
 + (int)getGuessRankListCountLoadedAtOnce;
++ (BOOL)showAuthorOnOpus;
 
 @end

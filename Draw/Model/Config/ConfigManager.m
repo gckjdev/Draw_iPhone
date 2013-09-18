@@ -1157,7 +1157,6 @@
     return [MobClickUtils getBoolValueByKey:@"GUESS_CONTEST_LOCAL_NOTIFICATION_ENABLED" defaultValue:NO]; // set default to no by Benson
 }
 
-
 + (int)getHappyGuessExpireTime{
     return [MobClickUtils getIntValueByKey:@"HAPPY_GUESS_EXPIRE_TIME" defaultValue:1];
 }
@@ -1168,6 +1167,11 @@
 
 + (int)getGuessRankListCountLoadedAtOnce{
     return [MobClickUtils getIntValueByKey:@"GUESS_RANK_LIST_COUNT_LOADED_AT_ONCE" defaultValue:10];
+}
+
++ (BOOL)showAuthorOnOpus
+{
+    return [MobClickUtils getBoolValueByKey:@"SHOW_AUTHOR_ON_OPUS" defaultValue:YES];
 }
 
 @end

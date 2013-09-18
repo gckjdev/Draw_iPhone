@@ -16,9 +16,9 @@
 #import "FeedManager.h"
 #import "FeedService.h"
 #import "UIViewUtils.h"
-//#import "LearnDrawManager.h"
 #import "UIImageExt.h"
 #import "ContestManager.h"
+#import "ConfigManager.h"
 
 @interface RankView ()
 @property (retain, nonatomic) IBOutlet UILabel *costLabel;
@@ -172,15 +172,19 @@
     }else{
         self.drawFlag.hidden = YES;
     }
-    
-//    NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
-//    [self.author setText:author];
 
-    NSString* desc = feed.opusDesc;
-    if ([desc length] == 0){
-        desc = feed.wordText;
-    }    
-    [self.author setText:desc];
+    if ([ConfigManager showAuthorOnOpus]){
+        NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
+        [self.author setText:author];
+    }
+    else{
+        NSString* desc = feed.opusDesc;
+        if ([desc length] == 0){
+            desc = feed.wordText;
+        }
+        desc = [NSString stringWithFormat:@" %@", desc];
+        [self.author setText:desc];
+    }
     
     [self setRankViewSelected:NO];
     
