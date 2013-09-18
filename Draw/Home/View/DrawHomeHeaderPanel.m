@@ -120,7 +120,15 @@
 
 - (void)updateView
 {
-    
+    //set holder view color
+    UIImage *homeImage = nil;
+    if (homeImage) {
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self.holderView setBackgroundColor:[UIColor clearColor]];
+    }else{
+        [self setBackgroundColor:[UIColor whiteColor]];
+        [self.holderView setBackgroundColor:COLOR_ORANGE];
+    }
 }
 
 
@@ -315,6 +323,7 @@
 - (IBAction)clickBulletin:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(homeHeaderPanel:didClickBulletinButton:)]) {
         [self.delegate homeHeaderPanel:self didClickBulletinButton:sender];
+        [self updateBulletinBadge:0];
     }
 }
 
