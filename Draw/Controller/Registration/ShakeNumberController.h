@@ -31,6 +31,7 @@
 
 @property (retain, nonatomic) NSString* currentNumber;
 @property (retain, nonatomic) IBOutlet UILabel *chanceLeftLabel;
+@property (retain, nonatomic) IBOutlet UIButton *closeButton;
 
 //@property (retain, nonatomic) CPMotionRecognizingWindow* motionWindow;
 

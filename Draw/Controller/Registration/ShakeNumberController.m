@@ -66,6 +66,9 @@
     [self becomeFirstResponder];
     
     [self updateChanceLeftLabel];
+
+    [self.view bringSubviewToFront:self.closeButton];
+    
 }
 
 - (BOOL)canBecomeFirstResponder
@@ -86,6 +89,7 @@
     }
     
 //    PPRelease(_motionWindow);
+    PPRelease(_closeButton);
     [_shakeButton release];
     [_shakeMainTipsLabel release];
     [_mainShakeButton release];
@@ -109,6 +113,7 @@
 {
     [self disableShake];
     [super viewDidDisappear:animated];
+
 }
 
 - (void)viewDidUnload {
@@ -186,6 +191,8 @@
         self.shakeResultView.alpha = 1.0f;
     }];
     
+    [self.view bringSubviewToFront:self.closeButton];
+    
 }
 
 - (void)getOneNumber
@@ -257,7 +264,19 @@
 
 - (IBAction)clickClose:(id)sender
 {
-    [[UserService defaultService] dismissShakeNumberView];    
+    if ([self.currentNumber length] == 0){
+        [[UserService defaultService] dismissShakeNumberView];
+        return;
+    }
+    
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kGiveupNumber") style:CommonDialogStyleDoubleButton];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [[UserService defaultService] dismissShakeNumberView];
+    }];
+    
+    [dialog showInView:self.view];
+    
 }
 
 
