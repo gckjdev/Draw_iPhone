@@ -45,6 +45,7 @@ typedef enum {
 @property(nonatomic, retain) Shadow *shadow;
 @property(nonatomic, retain) ClipAction *clipAction;
 @property(nonatomic, assign) NSUInteger layerTag;
+@property(nonatomic, assign) CGFloat layerAlpha;
 
 //@property(nonatomic, assign)CGSize canvasSize;
 

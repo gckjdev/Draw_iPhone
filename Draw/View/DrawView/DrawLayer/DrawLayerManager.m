@@ -181,6 +181,16 @@
 - (void)addDrawAction:(DrawAction *)drawAction show:(BOOL)show
 {
     DrawLayer *layer = [self layerWithTag:drawAction.layerTag];
+
+    //add from draw view
+    if (drawAction.layerTag == 0) {
+        drawAction.layerAlpha = layer.opacity;
+    }else{
+        //add from show view
+        if (drawAction.layerAlpha != layer.opacity) {
+            layer.opacity = drawAction.layerAlpha;
+        }
+    }
     [layer addDrawAction:drawAction show:show];
 }
 
