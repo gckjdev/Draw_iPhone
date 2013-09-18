@@ -173,8 +173,15 @@
         self.drawFlag.hidden = YES;
     }
     
-    NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
-    [self.author setText:author];
+//    NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
+//    [self.author setText:author];
+
+    NSString* desc = feed.opusDesc;
+    if ([desc length] == 0){
+        desc = feed.wordText;
+    }    
+    [self.author setText:desc];
+    
     [self setRankViewSelected:NO];
     
     self.drawImage.center = self.center;
