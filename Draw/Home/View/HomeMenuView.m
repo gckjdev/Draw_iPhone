@@ -32,6 +32,7 @@
     }else{
         [self.button setTitle:title forState:UIControlStateNormal];
     }
+    [self.title setTextColor:COLOR_GREEN];
 
 }
 
