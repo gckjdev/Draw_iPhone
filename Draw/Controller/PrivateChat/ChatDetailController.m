@@ -137,7 +137,7 @@
     return self;
 }
 
-#define CHAT_PAGE_BG_KEY @"chat_bg.png"
+
 
 - (ChangeAvatar*)backgroundPicker
 {

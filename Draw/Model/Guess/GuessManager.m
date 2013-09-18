@@ -267,7 +267,7 @@
     }
     
     NSTimeInterval left = [self getGuessExpireTime:mode] * 3600 - interval;
-
+    
     return left;
 }
 

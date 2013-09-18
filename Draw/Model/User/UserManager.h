@@ -14,6 +14,9 @@
 #define CAN_REATURE_DRAW_OPUS           0x000001
 #define NOTIFCATION_USER_DATA_CHANGE    @"NOTIFCATION_USER_DATA_CHANGE"
 
+#define HOME_BG_KEY @"home_bg.png"
+#define CHAT_PAGE_BG_KEY @"chat_bg.png"
+
 @class PBGameUser;
 
 typedef enum {

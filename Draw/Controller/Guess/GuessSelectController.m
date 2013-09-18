@@ -176,7 +176,9 @@
     
     TableTab *tab = [_tabManager tabForID:tabID];
     
+    
     if(_firstLoad && _mode == PBUserGuessModeGuessModeGenius){
+
         int guessIndex = [GuessManager getGeniusGuessIndex];
         int limit = (guessIndex / OPUS_COUNT_PER_TIME + 1) * OPUS_COUNT_PER_TIME;
         tab.limit = limit;

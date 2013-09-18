@@ -10,7 +10,7 @@
 
 @implementation RopeView
 
-#define SELF_FRAME (!ISIPAD?CGRectMake(0,0,35,100):CGRectMake(0,0,69,200))
+#define SELF_FRAME (!ISIPAD?CGRectMake(0,0,35,100+(ISIPHONE5?10:0)):CGRectMake(0,0,69,200))
 
 #define IMAGE_FRAME (!ISIPAD?CGRectMake(11,0,13,50):CGRectMake(22,0,25,100))
 
@@ -72,10 +72,15 @@
     CGPoint point = [pan locationInView:self];
     if (point.y > CGRectGetHeight(IMAGE_FRAME)&&point.y<CGRectGetHeight(SELF_FRAME)) {
         [_ropeImage updateHeight:point.y];
+    }else if(point.y < CGRectGetHeight(IMAGE_FRAME)){
+        [_ropeImage setFrame:IMAGE_FRAME];
     }
     if (pan.state == UIGestureRecognizerStateRecognized) {
-        [self dismissAndCallBack];
+        if (point.y > CGRectGetHeight(IMAGE_FRAME)) {
+            [self dismissAndCallBack];
+        }
     }
+
 }
 
 - (void)reset
