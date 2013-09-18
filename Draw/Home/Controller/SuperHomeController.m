@@ -94,8 +94,8 @@
 
 - (void)adjustView
 {
-//    CGRect mainMenuFrame = self.homeMainMenuPanel.frame;
-//    mainMenuFrame.size.height = [self getBottomMenuOriginY] - [self getMainMenuOriginY] + 2; //2 for blur height, without this ,a white line will appear
+    CGRect mainMenuFrame = self.homeMainMenuPanel.frame;
+    mainMenuFrame.size.height = [self getBottomMenuOriginY] - [self getMainMenuOriginY] + 2; //2 for blur height, without this ,a white line will appear
     [self.homeBottomMenuPanel updateHeight:[self getBottomMenuOriginY]+1];
 }
 
