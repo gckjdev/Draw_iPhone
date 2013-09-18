@@ -1474,7 +1474,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     }];
 }
 
-#define NUMBER_VIEW_ANMIATION_SECONDS       0.5f
+#define NUMBER_VIEW_ANMIATION_SECONDS       0.7f
 
 - (void)showXiaojiNumberView:(UIView*)view
 {

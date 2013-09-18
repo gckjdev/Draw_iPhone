@@ -1052,6 +1052,7 @@
 "kTakeNumberSuccess" = "領取號碼成功，希望在這裡玩的開心！也請設置一下郵件和密碼等重要信息";
 "kTakeNumberFail" = "領取號碼失敗，請檢查網絡，稍後再試";
 "kShakeNumberFail" = "搖一搖獲取號碼失敗，請檢查網絡，稍後再試";
+"kGiveupNumber" = "你已經搖出了一個號碼，退出將放棄該號碼，是否退出？";
 
 "kNoEmailForResetPassword" = "你還未設置郵件，無法重置密碼";
 "kResetPasswordSucc" = "密碼已經重置，並發送到你的郵箱，請檢查郵件";

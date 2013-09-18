@@ -1224,6 +1224,9 @@
             [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
         }
     }];
+    [dialog setClickCancelBlock:^(id infoView){
+        [self setOpusDesc:v.contentInputView.text];
+    }];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
