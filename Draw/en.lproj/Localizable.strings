@@ -1071,6 +1071,8 @@
 "kTakeCoins" = "You can take %d coins now. Do you want to take it now?";
 "kCoinsTakeSucc" = "Take coins successfully";
 
+"kDefaultDescInRank" = "The ONE";
+
 "kConfirmLogout" = "Do you want to logout this account?";
 "kAskKeepDraft" = "Do you want to keep all your local drafts?";
 "kKeepDraft" = "Yes";
