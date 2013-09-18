@@ -69,17 +69,23 @@
     [self.detail loadUser:self];
     [super viewDidLoad];
     [self.backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back@2x.png") forState:UIControlStateNormal];
+    self.unReloadDataWhenViewDidAppear = YES;
+    
+    
+    if (!(currentTabIndex == DetailTabActionClickOpus && self.opusList.count != 0)) {
+        [self didClickTabAtIndex:currentTabIndex];
+    }
     // Do any additional setup after loading the view from its nib.
     
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    if (!(currentTabIndex == DetailTabActionClickOpus && self.opusList.count != 0)) {
-        [self didClickTabAtIndex:currentTabIndex];
-    }
-}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    if (!(currentTabIndex == DetailTabActionClickOpus && self.opusList.count != 0)) {
+//        [self didClickTabAtIndex:currentTabIndex];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -123,9 +129,6 @@
 
 - (id)initWithUserDetail:(NSObject<UserDetailProtocol>*)detail
 {
-//    if (![detail shouldShow]) {
-//        return nil;//TODO: temply fix bug:show self and follow self, should optimize later
-//    }
     self = [self init];
     if (self) {
         self.detail = detail;
@@ -178,7 +181,12 @@
             [[UserManager defaultManager] setBackground:imageRemoteURL];
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateBackgroundSucc") delayTime:1.5];
             [self.detail loadUser:self];
+            
             [[self detailCell].customBackgroundImageView setImage:image];
+            [self detailCell].customBackgroundImageView.alpha = 0.5;
+            [UIView animateWithDuration:1 animations:^{
+                [self detailCell].customBackgroundImageView.alpha = 1;
+            }];
         }
         else{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateBackgroundFail") delayTime:1.5];
@@ -186,17 +194,6 @@
     }];
 }
 
-
-//- (void)didClickCustomBackground{
-//    __block UserDetailViewController* uc = self;
-//    if (_changeAvatar == nil) {
-//        _changeAvatar = [[ChangeAvatar alloc] init];
-//        _changeAvatar.autoRoundRect = NO;
-//    }
-//    [_changeAvatar showSelectionView:self selectedImageBlock:^(UIImage *image) {
-//        [uc uploadCustomBg:image];
-//    }];
-//}
 
 - (void)uploadUserAvatar:(UIImage*)image
 {
@@ -206,7 +203,12 @@
         if (resultCode == 0 && [imageRemoteURL length] > 0){
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarSucc") delayTime:1.5];
             [self.detail loadUser:self];
-            [self.detailCell.avatarView setImage:image];            
+            
+            [self.detailCell.avatarView setImage:image];
+            self.detailCell.avatarView.alpha = 0.5;
+            [UIView animateWithDuration:1 animations:^{
+                self.detailCell.avatarView.alpha = 1;
+            }];
         }
         else{
             [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateAvatarFail") delayTime:1.5];

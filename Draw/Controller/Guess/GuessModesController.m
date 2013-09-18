@@ -244,7 +244,7 @@
 
 - (IBAction)clickContestModeButton:(id)sender {
     
-#if DEBUG
+#if 0
     
     if ([_contest.contestId length] > 0) {
         GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeContest contest:_contest] autorelease];
@@ -261,6 +261,7 @@
         [self showContestIsOverTip];
         return;
     }
+    
 #endif
 }
 
