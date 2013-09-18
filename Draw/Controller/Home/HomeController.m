@@ -174,7 +174,7 @@
     }];
     
     //TODO if is new user
-    if (NO) {
+    if ([_userManager hasXiaojiNumber] == NO && [_userManager isOldUserWithoutXiaoji] == NO) {
         [mainPanel closeAnimated:NO completion:^(BOOL finished) {
             [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
             [header openAnimated:NO completion:NULL];

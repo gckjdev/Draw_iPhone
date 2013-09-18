@@ -352,7 +352,7 @@
     __block NSInteger index = 0;
     [self.scrollView enumSubviewsWithClass:[AvatarView class] handler:^(id view) {
         AvatarView *av = view;
-        if (([me.avatarURL length] != 0)) {
+        if ([me hasXiaojiNumber] || [me isOldUserWithoutXiaoji]) {
             [av setAsRound];
             av.layer.borderColor = [COLOR_BROWN CGColor];
             av.layer.borderWidth = 0;
