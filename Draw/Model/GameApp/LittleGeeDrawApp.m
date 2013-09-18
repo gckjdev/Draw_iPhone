@@ -9,12 +9,14 @@
 #import "LittleGeeDrawApp.h"
 #import "LittleGeeHomeController.h"
 #import "IAPProductService.h"
+#import "HomeController.h"
 
 @implementation LittleGeeDrawApp
 
 - (PPViewController*)homeController
 {
-    return [[[LittleGeeHomeController alloc] init] autorelease];
+//    return [[[LittleGeeHomeController alloc] init] autorelease];
+        return [[[HomeController alloc] init] autorelease];
 }
 
 - (NSString*)appId
