@@ -213,11 +213,11 @@
             menu.center = stopPoint;
         } completion:^(BOOL finished) {
             EXECUTE_BLOCK(completion,YES);
-            menu.title.hidden = NO;
+//            menu.title.hidden = NO;
         }];
     }else{
         menu.center = stopPoint;
-        menu.title.hidden = NO;        
+//        menu.title.hidden = NO;        
     }
 }
 
