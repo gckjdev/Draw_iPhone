@@ -144,10 +144,15 @@ typedef enum{
     
     [self.footerView setButton:FooterTypeFlower enabled:enable];
 }
+
 - (void)updateActionButtons
 {
     NSMutableArray *types = [NSMutableArray array];
-    if ([self.feed showAnswer] || [self.feed isContestFeed] || ([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType)) {
+    if ([self.feed showAnswer] ||
+        [self.feed isContestFeed] ||
+        ([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType) ||
+        [[UserService defaultService] isRegistered] == NO
+        ) {
         [types addObject:@(FooterTypeReplay)];
     }else{
         [types addObject:@(FooterTypeGuess)];
@@ -360,6 +365,9 @@ typedef enum{
 //            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
 //            [self.navigationController pushViewController:uc animated:YES];
             
+            if ([[UserService defaultService] isRegistered] == NO){
+                return;
+            }
             
             if ([[ContestManager defaultManager] displayContestAnonymousForFeed:self.feed] == NO){
                 [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId
@@ -472,6 +480,10 @@ typedef enum{
 //    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 //    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
 //    [self.navigationController pushViewController:uc animated:YES];
+    
+    if ([[UserService defaultService] isRegistered] == NO){
+        return;
+    }
     
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName] inViewController:self];
 }
@@ -711,7 +723,11 @@ typedef enum{
                     type:(FooterType)type
 {
     switch (type) {
-        case FooterTypeGuess:
+        case FooterTypeGuess:            
+            if ([[UserService defaultService] gotoRegistration:self.view]){
+                return;
+            }
+            
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
             break;
         case FooterTypeReplay:
@@ -719,6 +735,10 @@ typedef enum{
             break;
         case FooterTypeComment:
         {
+            if ([[UserService defaultService] gotoRegistration:self.view]){
+                return;
+            }
+            
             CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:NO];
             [self presentModalViewController:cc animated:YES];
             [_commentHeader setSelectedType:CommentTypeComment];
@@ -728,6 +748,10 @@ typedef enum{
         }
         case FooterTypeShare:
         {
+            if ([[UserService defaultService] gotoRegistration:self.view]){
+                return;
+            }
+            
             UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
             if (image == nil){
                 image = self.feed.largeImage;
@@ -741,18 +765,30 @@ typedef enum{
         }
         case FooterTypeFlower:
         {
+            if ([[UserService defaultService] gotoRegistration:self.view]){
+                return;
+            }
+            
             [self throwItem:ItemTypeFlower];
             [self updateFlowerButton];
             break;
         }
         case FooterTypeReport:
         {
+            if ([[UserService defaultService] gotoRegistration:self.view]){
+                return;
+            }
+            
             [self gotoContestComment];
             break;
         }
          
         case FooterTypeRate:
         {
+            if ([[UserService defaultService] gotoRegistration:self.view]){
+                return;
+            }
+            
             Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
             if (contest) {
                 JudgerScoreView *scoreView = [JudgerScoreView judgerScoreViewWithContest:contest opus:(id)self.feed];
@@ -784,6 +820,11 @@ typedef enum{
 
 - (void)didClickAvatar:(MyFriend *)myFriend
 {
+    if ([[UserService defaultService] isRegistered] == NO){
+        PPDebug(@"user not registered yet, disable click");
+        return;
+    }
+    
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName] inViewController:self];
 }
 
@@ -924,6 +965,11 @@ typedef enum{
 
 - (void)didClickDrawImageMaskView
 {
+    if ([[UserService defaultService] isRegistered] == NO){
+        [self performReplay];
+        return;
+    }
+    
     int indexOfGuess = 0;
     int indexOfPlay = 1;
     int indexOfPhoto = 2;
