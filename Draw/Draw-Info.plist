@@ -71,10 +71,5 @@
 	<false/>
 	<key>CFConfigVersion</key>
 	<string>1.0</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>accelerometer</string>
-		<string>gyroscope</string>
-	</array>
 </dict>
 </plist>

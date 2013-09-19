@@ -36,7 +36,7 @@
 
 + (int)maxTakeNumberCount
 {
-    return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:10];
+    return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:5];
 }
 
 + (NSString*)getLimeiWallId
@@ -382,17 +382,17 @@
 
 + (int)getAwardInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:50];
 }
 
 + (int)getAwardInGeniusMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_GENIUS_MODE" defaultValue:1000];
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_GENIUS_MODE" defaultValue:500];
 }
 
 + (int)getDeltaAwardInGeniusMode
 {
-    return [MobClickUtils getIntValueByKey:@"DELTA_COINS_AWARD_IN_GENIUS_MODE" defaultValue:500];
+    return [MobClickUtils getIntValueByKey:@"DELTA_COINS_AWARD_IN_GENIUS_MODE" defaultValue:200];
 }
 
 + (int)getDeductCoinsInHappyMode

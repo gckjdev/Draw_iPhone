@@ -269,7 +269,7 @@
     [[UserNumberService defaultService] loginUser:number password:password block:^(int resultCode, NSString *number) {
         [self hideActivity];
         if (resultCode == ERROR_SUCCESS){
-            [self dismiss:nil];
+            [self dismissWithMessage:NSLS(@"kLoginSuccess")];
         }
         else if (resultCode == ERROR_USERID_NOT_FOUND){
             POSTMSG(NSLS(@"kXiaojiNumberNotFound"));
@@ -328,6 +328,14 @@
 - (void)roomNameIsIllegal
 {
     
+}
+
+
+
+- (IBAction)dismissWithMessage:(NSString*)message
+{
+    [CommonDialog showSimpleDialog:message inView:self.view.superview];
+    [[UserService defaultService] dismissGetNumberView];
 }
 
 - (IBAction)dismiss:(id)sender
