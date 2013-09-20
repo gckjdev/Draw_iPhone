@@ -14,6 +14,9 @@
 		<string>new_icon@2x.png</string>
 		<string>new_icon_ipad1.png</string>
 		<string>new_icon_ipad2.png</string>
+		<string>icon76.png</string>
+		<string>icon120.png</string>
+		<string>icon152.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.draw</string>
