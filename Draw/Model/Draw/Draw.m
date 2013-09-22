@@ -111,7 +111,7 @@
         }
 
         
-        self.drawActionList = (([list isKindOfClass:[NSMutableArray class]] || list == nil) ?  list : [NSMutableArray arrayWithArray:list]);
+        self.drawActionList = (id)(([list isKindOfClass:[NSMutableArray class]] || list == nil) ?  list : [NSMutableArray arrayWithArray:list]);
     }
     return self;
     
