@@ -85,6 +85,7 @@
 - (void)startAnimation
 {
     [self finishAnimation];
+    _ropeImage.frame = IMAGE_FRAME;
     [UIView animateWithDuration:MAXFLOAT animations:^{
         [UIView setAnimationRepeatAutoreverses:YES];
         [UIView setAnimationDuration:1];

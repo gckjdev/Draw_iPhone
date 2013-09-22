@@ -12,12 +12,16 @@
 #import "UseItemScene.h"
 #import "StableView.h"
 
-@interface DrawHomeHeaderPanel()
-{
-    CGFloat lastTouchPoint;
-}
-@property(nonatomic, retain)NSMutableDictionary *indexDict;
+@interface OpusButton : UIButton
+@property(nonatomic, assign)DrawFeed *opus;
+@end
 
+@implementation OpusButton
+@end
+
+////////////
+
+@interface DrawHomeHeaderPanel()
 @end
 
 @implementation DrawHomeHeaderPanel
@@ -104,8 +108,6 @@
 
 - (void)baseInit
 {
-    self.indexDict = [NSMutableDictionary
-                       dictionary];    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.status = DrawHeaderPanelStatusClose;
@@ -134,6 +136,7 @@
 
 - (void)updateView
 {
+    [self.rope startAnimation];
 }
 
 
@@ -233,7 +236,6 @@
     [_rope release];
     [_holderView release];
     RELEASE_BLOCK(_clickRopeHandler);
-    PPRelease(_indexDict);
     [_badgeView release];
     [_bulletinButton release];
     [super dealloc];
@@ -259,9 +261,9 @@
     CGRect defaultFrame = CGRectMake(0, 0, OPUS_SIZE.width, OPUS_SIZE.height);
     PPDebug(@"opus size = %@", NSStringFromCGSize(OPUS_SIZE));
     for (NSInteger tag = TAG_BASE; tag < TAG_BASE+NUMBER_PERROW; ++ tag) {
-        UIButton *button = (id)[cell.contentView viewWithTag:tag];
+        OpusButton *button = (id)[cell.contentView viewWithTag:tag];
         if (button == nil) {
-            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button = [OpusButton buttonWithType:UIButtonTypeCustom];
             button.imageView.contentMode = UIViewContentModeScaleAspectFill;
             [button addTarget:self action:@selector(clickOpus:) forControlEvents:UIControlEventTouchUpInside];
             SET_VIEW_ROUND_CORNER(button);
@@ -275,13 +277,14 @@
         PPDebug(@"tag = %d, button frame = %@,cell width = %f", tag, NSStringFromCGRect(button.frame),self.tableView.bounds.size.width);
         
         NSInteger index = (NUMBER_PERROW * indexPath.row) + (tag - TAG_BASE);
-        [self.indexDict setObject:button forKey:@(index)];
-        
+
+        [button setOpus:nil];
         
         if ([self.opusList count] > index) {
             [button setHidden:NO];
             DrawFeed *opus = [self.opusList objectAtIndex:index];
             [button setImageWithURL:opus.thumbURL];
+            [button setOpus:opus];
         }else{
             [button setImage:nil forState:UIControlStateNormal];
             [button setHidden:YES];
@@ -306,24 +309,12 @@
     return CELL_HEIGHT;
 }
 
-- (void)clickOpus:(UIButton *)sender
+- (void)clickOpus:(OpusButton *)sender
 {
-    __block NSInteger index = 0;
-    [self.indexDict enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (obj == sender) {
-            index = [key integerValue];
-            stop = YES;
-        }
-    }];
-    PPDebug(@"click index = %d", index);
-    if (index < [self.opusList count]) {
-        DrawFeed *opus = self.opusList[index];
-        ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:opus]];
-        [[[self theViewController] navigationController] pushViewController:sc animated:YES];
-        [sc release];
-
-    }
-
+    DrawFeed *opus = [sender opus];
+    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:opus]];
+    [[[self theViewController] navigationController] pushViewController:sc animated:YES];
+    [sc release];
 }
 
 
