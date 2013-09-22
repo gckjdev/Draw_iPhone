@@ -976,6 +976,7 @@ typedef enum{
     int indexOfFeature = -1;
     int indexOfUnfeature = -1;
     int indexOfSetScore = -1;
+    int indexOfDelete = -1;
     
     MKBlockActionSheet *sheet = nil;
     BOOL canFeature = [[UserManager defaultManager] canFeatureDrawOpus];
@@ -985,10 +986,11 @@ typedef enum{
                                                  delegate:nil
                                         cancelButtonTitle:NSLS(@"kCancel")
                                    destructiveButtonTitle:NSLS(@"kGuess")
-                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
+                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"), nil];
         indexOfSetScore =  indexOfPhoto + 1;
         indexOfFeature = indexOfSetScore + 1;
-        indexOfUnfeature = indexOfFeature + 1;        
+        indexOfUnfeature = indexOfFeature + 1;
+        indexOfDelete = indexOfUnfeature + 1;
     }
     else if (![self.feed showAnswer]) {
         if (canFeature){
@@ -1055,6 +1057,16 @@ typedef enum{
         else if (buttonIndex == indexOfSetScore){
             [[FeedService defaultService] askSetHotScore:self.feed.feedId viewController:self];
         }
+        else if (buttonIndex == indexOfDelete){
+            
+            CommonDialog* dialog = [CommonDialog createDialogWithTitle:@"消息" message:@"是否确认删除作品？" style:CommonDialogStyleDoubleButton];
+            
+            [dialog setClickOkBlock:^(id dialog){
+                [[FeedService defaultService] deleteFeed:self.feed delegate:self];                
+            }];
+            
+            [dialog showInView:self.view];
+        }
         else{
             
         }
@@ -1065,6 +1077,17 @@ typedef enum{
     [sheet release];
 
 }
+
+//- (void)didDeleteFeed:(Feed *)feed
+//           resultCode:(NSInteger)resultCode
+//{
+//    if (resultCode == 0){
+//        POSTMSG(@"删除作品成功");
+//    }
+//    else{
+//        POSTMSG(@"删除作品失败");
+//    }
+//}
 
 - (void)showPhotoBrower{
     

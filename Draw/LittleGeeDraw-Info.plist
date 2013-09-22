@@ -14,6 +14,9 @@
 		<string>little_gee_icon_114.png</string>
 		<string>little_gee_icon_50.png</string>
 		<string>little_gee_icon_72.png</string>
+		<string>little_gee_icon_76.png</string>
+		<string>little_gee_icon_120.png</string>
+		<string>little_gee_icon_152.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.littlegee</string>
@@ -70,11 +73,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>accelerometer</string>
-		<string>gyroscope</string>
 	</array>
 </dict>
 </plist>

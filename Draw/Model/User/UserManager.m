@@ -1476,9 +1476,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     
     int count = 0;
     
-    if ([_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){
-        count ++;
-    }
+//    if ([_pbUser.xiaojiNumber length] == 0 && [_pbUser canShakeNumber]){
+//        count ++;
+//    }
     
     if ([_pbUser.password length] == 0){
         count ++;

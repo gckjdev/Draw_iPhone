@@ -1053,6 +1053,7 @@
 "kShowNumberTipsLabelText" = "Your Littlegee Number is";
 "kOkButtonTitle" = "OK";
 "kGiveupNumber" = "You have shake one number. Do you want to give up this number?";
+"kLoginSuccess" = "Login successfully";
 
 "kChanceLeftShake" = "%d Shake Left";
 "kTakeNumberSuccess" = "Take number successfully";

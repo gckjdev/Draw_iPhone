@@ -36,7 +36,7 @@
 
 + (int)maxTakeNumberCount
 {
-    return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:10];
+    return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:5];
 }
 
 + (NSString*)getLimeiWallId
@@ -382,17 +382,17 @@
 
 + (int)getAwardInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:50];
 }
 
 + (int)getAwardInGeniusMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_GENIUS_MODE" defaultValue:1000];
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_GENIUS_MODE" defaultValue:500];
 }
 
 + (int)getDeltaAwardInGeniusMode
 {
-    return [MobClickUtils getIntValueByKey:@"DELTA_COINS_AWARD_IN_GENIUS_MODE" defaultValue:500];
+    return [MobClickUtils getIntValueByKey:@"DELTA_COINS_AWARD_IN_GENIUS_MODE" defaultValue:200];
 }
 
 + (int)getDeductCoinsInHappyMode
@@ -1157,7 +1157,6 @@
     return [MobClickUtils getBoolValueByKey:@"GUESS_CONTEST_LOCAL_NOTIFICATION_ENABLED" defaultValue:NO]; // set default to no by Benson
 }
 
-
 + (int)getHappyGuessExpireTime{
     return [MobClickUtils getIntValueByKey:@"HAPPY_GUESS_EXPIRE_TIME" defaultValue:1];
 }
@@ -1168,6 +1167,11 @@
 
 + (int)getGuessRankListCountLoadedAtOnce{
     return [MobClickUtils getIntValueByKey:@"GUESS_RANK_LIST_COUNT_LOADED_AT_ONCE" defaultValue:10];
+}
+
++ (BOOL)showAuthorOnOpus
+{
+    return [MobClickUtils getBoolValueByKey:@"SHOW_AUTHOR_ON_OPUS" defaultValue:YES];
 }
 
 @end
