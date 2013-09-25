@@ -387,6 +387,7 @@ typedef enum{
                 BBSPostDetailCell *cell = [self getTableViewCell:theTableView cellIdentifier:CellIdentifier cellClass:[BBSPostDetailCell class]];
                 [cell updateCellWithBBSPost:self.post];
                 cell.delegate = self;
+                cell.backgroundColor = [UIColor clearColor];
                 return cell;
             }
         case SectionActionList:
@@ -403,6 +404,7 @@ typedef enum{
                 }else{
                     [cell showOption:NO];
                 }
+                cell.backgroundColor = [UIColor clearColor];
                 return cell;
             }
         case SectionAction:
@@ -417,6 +419,7 @@ typedef enum{
                 }
             }
             [_header updateViewWithPost:self.post];
+            _header.backgroundColor = [UIColor clearColor];
             return _header;
         }
         default:

@@ -279,6 +279,7 @@ typedef enum{
         Feed *feed = [self.tabDataList objectAtIndex:indexPath.row];
         [feed updateDesc];
         [cell setCellInfo:feed];
+        cell.backgroundColor = [UIColor clearColor];        
         return cell;
         
     }else if(tab.tabID == MyTypeDrawToMe){
