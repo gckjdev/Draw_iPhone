@@ -298,14 +298,9 @@
     </objects>
     <resources>
         <image name="draw_add.png" width="23" height="23"/>
-        <image name="draw_add.png" width="23" height="23"/>
-        <image name="draw_up_panel_help_btn_.png" width="27" height="27"/>
         <image name="draw_up_panel_help_btn_.png" width="27" height="27"/>
         <image name="drawlayer_delete.png" width="25" height="25"/>
-        <image name="drawlayer_delete.png" width="25" height="25"/>
         <image name="drawlayer_flag_hide.png" width="25" height="25"/>
-        <image name="drawlayer_flag_hide.png" width="25" height="25"/>
-        <image name="drawlayer_flag_show.png" width="25" height="25"/>
         <image name="drawlayer_flag_show.png" width="25" height="25"/>
     </resources>
 </document>

@@ -269,7 +269,7 @@ typedef enum {
             
         }
         [tt setText:txt];
-        tt.numberOfLines = 0;
+        tt.numberOfLines = INT_MAX;
         
         [self addSubview:tt];
     }

@@ -140,6 +140,7 @@
     CGRect frame = self.content.frame;
     frame.size.height = [BBSPostCell heightForContentText:content.text];
     self.content.frame = frame;
+
   
     if (content.hasThumbImage) {
         [self.image setImageWithURL:content.thumbImageURL

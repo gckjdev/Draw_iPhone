@@ -281,7 +281,7 @@
         self.popLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)] autorelease];
         self.popLabel.backgroundColor = [UIColor clearColor];
         self.popLabel.font = POP_FONT;
-        self.popLabel.numberOfLines = 0;
+        self.popLabel.numberOfLines = INT_MAX;
         self.popLabel.lineBreakMode = NSLineBreakByCharWrapping;
         self.popLabel.textColor = [UIColor whiteColor];
     }else{
