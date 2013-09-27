@@ -172,6 +172,12 @@ SINGLETON_DISPATCH_ONE;
     [view updateCenterX:centerX];
     [view updateCenterY:centerY];
     view.alpha = 0;
+    
+    if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationPortraitUpsideDown) {
+        view.transform = CGAffineTransformMakeRotation(M_PI);
+    }else{
+        view.transform = CGAffineTransformIdentity;
+    }
 
     [[UIApplication sharedApplication].keyWindow addSubview:view];
 
