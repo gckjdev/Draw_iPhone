@@ -187,6 +187,7 @@ static UserNumberService* _defaultUserService;
                 PBGameUser* user = [output.pbResponse user];
                 if (user != nil){
                     [[UserManager defaultManager] storeUserData:user];
+                    [UserManager addUser:user];
                 }
                 else{
                     output.resultCode = ERROR_USER_DATA_NULL;

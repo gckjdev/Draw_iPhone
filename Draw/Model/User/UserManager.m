@@ -1587,9 +1587,9 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 #define LOCAL_USERS_KEY @"LOCAL_USERS_KEY"
 
-+ (BOOL)updateLocalUsers:(NSArray *)users
++ (BOOL)updateHistoryUsers:(NSArray *)users
 {
-    PPDebug(@"<updateLocalUsers> users count = %d",[users count]);
+    PPDebug(@"<updateHistoryUsers> users count = %d",[users count]);
     
     NSMutableArray *dataList = [NSMutableArray array];
     @try {
@@ -1608,7 +1608,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return YES;
 }
 
-+ (NSMutableArray *)localUsers
++ (NSMutableArray *)historyUsers
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     NSArray *dataList = [userDefaults objectForKey:LOCAL_USERS_KEY];
@@ -1627,7 +1627,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     PPDebug(@"get localUsers, user count = %d", [users count]);
     return users;
 }
-+ (BOOL)deleteUser:(NSString *)userId
++ (BOOL)deleteUserFromHistoryList:(NSString *)userId
 {
     PPDebug(@"<deleteUser>, uid = %@",userId);
     NSMutableArray *users = [self localUsers];
@@ -1640,11 +1640,11 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
     if (user) {
         [users removeObject:user];
-        return [self updateLocalUsers:users];
+        return [self updateHistoryUsers:users];
     }
     return YES;
 }
-+ (BOOL)addUser:(PBGameUser *)user
++ (BOOL)addUserToHistoryList:(PBGameUser *)user
 {
     PPDebug(@"<addUser>, uid = %@, nick = %@",user.userId,user.nickName);
     if (user == nil) {
@@ -1662,7 +1662,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
     if (index == NSNotFound) {
         [users addObject:user];
-        [self updateLocalUsers:users];
+        [self updateHistoryUsers:users];
     }else{
         [users replaceObjectAtIndex:index withObject:user];
     }
