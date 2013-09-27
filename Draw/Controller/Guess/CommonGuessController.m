@@ -252,7 +252,7 @@
             if (isBuy) {
                 [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
             }
-        }else if (ERROR_BALANCE_NOT_ENOUGH){
+        }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
         }else{
             

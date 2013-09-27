@@ -59,7 +59,6 @@
 								<double key="IBUIContentEdgeInsets.bottom">4</double>
 								<double key="IBUIContentEdgeInsets.left">4</double>
 								<double key="IBUIContentEdgeInsets.right">4</double>
-								<string key="IBUINormalTitle">图层</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="373991744">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>

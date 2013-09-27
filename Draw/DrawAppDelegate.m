@@ -107,7 +107,6 @@ NSString* GlobalGetServerURL()
 //    }
 
 #endif
-
     
     return [ConfigManager getAPIServerURL];
 }

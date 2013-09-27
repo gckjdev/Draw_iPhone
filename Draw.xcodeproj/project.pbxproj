@@ -4976,6 +4976,10 @@
 		CA745D301503B1B500600024 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D2F1503B1B500600024 /* main.m */; };
 		CA745D331503B1B500600024 /* DrawAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D321503B1B500600024 /* DrawAppDelegate.m */; };
 		CA745D361503B1B500600024 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA745D341503B1B500600024 /* MainWindow.xib */; };
+		CA76134517F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
+		CA76134617F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
+		CA76134717F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
+		CA76134817F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
 		CA766D5A17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
 		CA766D5B17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
 		CA766D5C17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
@@ -8939,6 +8943,8 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA76134317F57420007A251E /* HPointList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPointList.h; sourceTree = "<group>"; };
+		CA76134417F57420007A251E /* HPointList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HPointList.mm; sourceTree = "<group>"; };
 		CA766D5517A15EB600D60E3D /* CPMotionRecognizingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMotionRecognizingWindow.h; sourceTree = "<group>"; };
 		CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMotionRecognizingWindow.m; sourceTree = "<group>"; };
 		CA766D5717A15EB600D60E3D /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
@@ -13754,6 +13760,8 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA76134317F57420007A251E /* HPointList.h */,
+				CA76134417F57420007A251E /* HPointList.mm */,
 				CAEFC49616FD64DB00D799B7 /* Shape */,
 				CA35FF4416F867AC00D8E05D /* CanvasRect */,
 				CA35FF2016F8672100D8E05D /* DrawAction */,
@@ -20977,6 +20985,7 @@
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67A17E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134717F57420007A251E /* HPointList.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21773,6 +21782,7 @@
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134617F57420007A251E /* HPointList.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22575,6 +22585,7 @@
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134517F57420007A251E /* HPointList.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23351,6 +23362,7 @@
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134817F57420007A251E /* HPointList.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23744,8 +23756,8 @@
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
+				PROVISIONING_PROFILE = "90954517-754F-4976-BBF0-58802195B7AE";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "90954517-754F-4976-BBF0-58802195B7AE";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";

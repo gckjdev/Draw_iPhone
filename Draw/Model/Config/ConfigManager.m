@@ -382,7 +382,7 @@
 
 + (int)getAwardInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:50];
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:100];
 }
 
 + (int)getAwardInGeniusMode
@@ -397,7 +397,7 @@
 
 + (int)getDeductCoinsInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_HAPPY_MODE" defaultValue:20];
+    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_HAPPY_MODE" defaultValue:10];
 }
 
 + (int)getDeductCoinsInGeniusMode
@@ -1172,6 +1172,11 @@
 + (BOOL)showAuthorOnOpus
 {
     return [MobClickUtils getBoolValueByKey:@"SHOW_AUTHOR_ON_OPUS" defaultValue:YES];
+}
+
++ (int)getHomeHotOpusCount
+{
+    return [MobClickUtils getIntValueByKey:@"HOME_HOT_OPUS_COUNT" defaultValue:12];
 }
 
 @end

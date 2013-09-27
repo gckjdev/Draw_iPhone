@@ -1054,6 +1054,7 @@
 "kShakeNumberFail" = "搖一搖獲取號碼失敗，請檢查網絡，稍後再試";
 "kGiveupNumber" = "你已經搖出了一個號碼，退出將放棄該號碼，是否退出？";
 "kLoginSuccess" = "小吉號碼登錄成功";
+"kQuitTips" = "請注意，你還有%d幅草稿在草稿箱中，草稿是本地保存的，不隨帳號退出變化";
 
 "kNoEmailForResetPassword" = "你還未設置郵件，無法重置密碼";
 "kResetPasswordSucc" = "密碼已經重置，並發送到你的郵箱，請檢查郵件";

@@ -14,12 +14,14 @@
 #import "CanvasRect.h"
 #import "DrawPenFactory.h"
 //#import "DrawPenProtocol.h"
-
+#import "HPointList.h"
 
 @interface Paint()
 {
     
 }
+
+@property (nonatomic, retain) HPointList  *hPointList;
 
 
 @end
@@ -28,8 +30,7 @@
 @synthesize width = _width;
 @synthesize color = _color;
 @synthesize penType = _penType;
-@synthesize pointNodeList = _pointNodeList;
-
+//@synthesize pointNodeList = _pointNodeList;
 
 - (id<PenEffectProtocol>)getPen
 {
@@ -42,41 +43,41 @@
 
 - (void)constructPath
 {
-    [[self getPen] constructPath:self.pointNodeList inRect:self.canvasRect];
+    [[self getPen] constructPath:_hPointList inRect:self.canvasRect];
     return;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super init];
-    if (self) {
-        self.width = [aDecoder decodeFloatForKey:@"width"];
-        self.color = [aDecoder decodeObjectForKey:@"color"];
-        self.pointNodeList = [aDecoder decodeObjectForKey:@"pointNodeList"];
-        self.penType = [aDecoder decodeFloatForKey:@"penType"];
-
-        //old version save value list in "pointList"
-        NSMutableArray *array = [aDecoder decodeObjectForKey:@"pointList"];
-        if ([self.pointNodeList count] == 0 && [array count] != 0) {
-            self.pointNodeList = [NSMutableArray array];
-            for (NSValue *value in array) {
-                CGPoint point = [value CGPointValue];
-                PointNode *node = [PointNode pointWithCGPoint:point];
-                [self.pointNodeList addObject:node];
-            }
-        }
-    }
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
-    [aCoder encodeObject:self.color forKey:@"color"];
-    [aCoder encodeObject:self.pointNodeList forKey:@"pointNodeList"];
-    [aCoder encodeFloat:self.width forKey:@"width"];
-    [aCoder encodeFloat:self.penType forKey:@"penType"];
-    [aCoder encodeObject:nil forKey:@"pointList"];
-}
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super init];
+//    if (self) {
+//        self.width = [aDecoder decodeFloatForKey:@"width"];
+//        self.color = [aDecoder decodeObjectForKey:@"color"];
+//        self.pointNodeList = [aDecoder decodeObjectForKey:@"pointNodeList"];
+//        self.penType = [aDecoder decodeFloatForKey:@"penType"];
+//
+//        //old version save value list in "pointList"
+//        NSMutableArray *array = [aDecoder decodeObjectForKey:@"pointList"];
+//        if ([self.pointNodeList count] == 0 && [array count] != 0) {
+//            self.pointNodeList = [NSMutableArray array];
+//            for (NSValue *value in array) {
+//                CGPoint point = [value CGPointValue];
+//                PointNode *node = [PointNode pointWithCGPoint:point];
+//                [self.pointNodeList addObject:node];
+//            }
+//        }
+//    }
+//    return self;
+//}
+//
+//- (void)encodeWithCoder:(NSCoder *)aCoder
+//{
+//    [aCoder encodeObject:self.color forKey:@"color"];
+//    [aCoder encodeObject:self.pointNodeList forKey:@"pointNodeList"];
+//    [aCoder encodeFloat:self.width forKey:@"width"];
+//    [aCoder encodeFloat:self.penType forKey:@"penType"];
+//    [aCoder encodeObject:nil forKey:@"pointList"];
+//}
 
 - (id)initWithWidth:(CGFloat)width color:(DrawColor*)color
 {
@@ -84,7 +85,8 @@
     if (self) {
         self.width = width;
         self.color = color;
-        _pointNodeList = [[NSMutableArray alloc] init];
+//        _pointNodeList = [[NSMutableArray alloc] init];
+        _hPointList = [[HPointList alloc] init];
     }
     return self;
 }
@@ -92,18 +94,27 @@
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             penType:(ItemType)penType
-          pointList:(NSMutableArray *)pointNodeList
+          pointList:(HPointList*)pointList
+//          pointList:(NSMutableArray *)pointNodeList
 {
     self = [super init];
     if (self) {
         self.width = width;
         self.color = color;
         self.penType = penType;
-        if (pointNodeList == nil) {
-            self.pointNodeList = [NSMutableArray array];
-        }else{
-            self.pointNodeList = pointNodeList;
+        
+        if (pointList == nil){
+            _hPointList = [[HPointList alloc] init];
         }
+        else{
+            self.hPointList = pointList;
+        }
+        
+//        if (pointNodeList == nil) {
+//            self.pointNodeList = [NSMutableArray array];
+//        }else{
+//            self.pointNodeList = pointNodeList;
+//        }
     }
     return self;
 }
@@ -112,9 +123,10 @@
 + (id)paintWithWidth:(CGFloat)width
                color:(DrawColor *)color
              penType:(ItemType)penType
-           pointList:(NSMutableArray *)pointNodeList
+           pointList:(HPointList*)pointList
+//           pointList:(NSMutableArray *)pointNodeList
 {
-    return [[[Paint alloc] initWithWidth:width color:color penType:penType pointList:pointNodeList] autorelease];
+    return [[[Paint alloc] initWithWidth:width color:color penType:penType pointList:pointList] autorelease];
 }
 
 
@@ -129,7 +141,8 @@
 
         self.penType = [[gameMessage notification] penType];
         self.color = [DrawUtils decompressIntDrawColor:intColor];
-        _pointNodeList = [[NSMutableArray alloc] init];
+//        _pointNodeList = [[NSMutableArray alloc] init];
+        _hPointList = [[HPointList alloc] init];
         for (NSNumber *pointNumber in pointList) {
             CGPoint point = [DrawUtils decompressIntPoint:[pointNumber integerValue]];
 
@@ -156,14 +169,20 @@
     return self.width > (BACK_GROUND_WIDTH/10);
 }
 
+
 - (void)updateLastPoint:(CGPoint)point inRect:(CGRect)rect
 {
-    PointNode *pointNode = [self.pointNodeList lastObject];
-    if (!CGPointEqualToPoint(point, pointNode.point)) {
-        pointNode.point = point;
+//    PointNode *pointNode = [self.pointNodeList lastObject];
+    
+    CGPoint lastPoint = [_hPointList lastPoint];
+    
+    if (!CGPointEqualToPoint(point, lastPoint)) {
+//        pointNode.point = point;
         [self constructPath];
     }
 }
+
+
 - (void)addPoint:(CGPoint)point inRect:(CGRect)rect
 {
 
@@ -183,9 +202,12 @@
     }
     
     [[self getPen] addPointIntoPath:point];
-    PointNode* node = [[PointNode alloc] initPointWithX:point.x Y:point.y];
-    [self.pointNodeList addObject:node];
-    [node release];
+    
+    [_hPointList addPoint:point.x y:point.y];
+    
+//    PointNode* node = [[PointNode alloc] initPointWithX:point.x Y:point.y];
+//    [self.pointNodeList addObject:node];
+//    [node release];
 }
 
 
@@ -193,7 +215,8 @@
 {
     id<PenEffectProtocol> pen = [self getPen];
     if (![pen hasPoint]){
-        [pen constructPath:self.pointNodeList inRect:self.canvasRect];
+//        [pen constructPath:self.pointNodeList inRect:self.canvasRect];
+        [pen constructPath:_hPointList inRect:self.canvasRect];
     }
     
     return [pen penPath];
@@ -228,7 +251,9 @@
 
 - (NSInteger)pointCount
 {
-    return [self.pointNodeList count];
+//    return [self.pointNodeList count];
+
+    return [_hPointList count];
 }
 
 - (CGPoint)pointAtIndex:(NSInteger)index
@@ -236,26 +261,32 @@
     if (index < 0 || index >= [self pointCount]) {
         return ILLEGAL_POINT;
     }
-    PointNode *node = [self.pointNodeList objectAtIndex:index];
-    return node.point;
+
+//    PointNode *node = [self.pointNodeList objectAtIndex:index];
+//    return node.point;
+
+    return [_hPointList pointAtIndex:index];
+
 }
 
 
 - (void)createPointXList:(NSMutableArray**)pointXList pointYList:(NSMutableArray**)pointYList
 {
-    if (self.pointCount != 0) {
-        *pointXList = [[[NSMutableArray alloc] init] autorelease];
-        *pointYList = [[[NSMutableArray alloc] init] autorelease];
-        for (PointNode *point in self.pointNodeList) {
-            [*pointXList addObject:@(point.point.x)];
-            [*pointYList addObject:@(point.point.y)];
-        }
-    }
+//    if (self.pointCount != 0) {
+//        *pointXList = [[[NSMutableArray alloc] init] autorelease];
+//        *pointYList = [[[NSMutableArray alloc] init] autorelease];
+//        for (PointNode *point in self.pointNodeList) {
+//            [*pointXList addObject:@(point.point.x)];
+//            [*pointYList addObject:@(point.point.y)];
+//        }
+//    }
+
+    [_hPointList createPointXList:pointXList pointYList:pointYList];
 }
 
 - (void)updatePBDrawActionBuilder:(PBDrawAction_Builder *)builder
 {
-    if ([self.pointNodeList count] != 0) {
+    if ([self pointCount] != 0) {
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         
         NSMutableArray *pointXList = nil;
@@ -273,7 +304,7 @@
 
 - (void)updatePBDrawActionC:(Game__PBDrawAction*)pbDrawActionC
 {
-    int count = [self.pointNodeList count];
+    int count = [self pointCount];
     if (count > 0) {
         
         pbDrawActionC->pointsx = malloc(sizeof(float)*count);
@@ -281,14 +312,17 @@
         
         pbDrawActionC->n_pointsx = count;
         pbDrawActionC->n_pointsy = count;
+
+        [_hPointList createPointFloatXList:pbDrawActionC->pointsx
+                                floatYList:pbDrawActionC->pointsy];
         
-        int i = 0;
-        for (PointNode *point in self.pointNodeList) {
-            pbDrawActionC->pointsx[i] = point.point.x;
-            pbDrawActionC->pointsy[i] = point.point.y;
-            i++;
-        }
-    }    
+//        int i = 0;
+//        for (PointNode *point in self.pointNodeList) {
+//            pbDrawActionC->pointsx[i] = point.point.x;
+//            pbDrawActionC->pointsy[i] = point.point.y;
+//            i++;
+//        }
+    }
     if (self.penType == Eraser) {
         pbDrawActionC->bettercolor = [[DrawColor whiteColor] toBetterCompressColor];
     }else{
@@ -308,7 +342,7 @@
 {
     PPRelease(_color);
     PPRelease(_pen);
-    PPRelease(_pointNodeList);
+    PPRelease(_hPointList);
     PPRelease(_drawPen);
     [super dealloc];
 }

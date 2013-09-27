@@ -294,8 +294,11 @@
         
         [[BulletinService defaultService] syncBulletins:^(int resultCode) {
             PPDebug(@"sync bulletin done, update header view panel");
-            [self.homeHeaderPanel updateView];
+            StatisticManager *manager = [StatisticManager defaultManager];
+            [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
         }];
+        
+        [self.homeHeaderPanel updateView];
     }];
     
     [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {

@@ -187,13 +187,11 @@
 						<string key="NSFrame">{{670, 30}, {60, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Button</string>
 						<reference key="IBUIHighlightedTitleColor" ref="985825454"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -220,7 +218,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="708420648">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUILabel" id="415061058">
@@ -228,6 +226,7 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{78, 174}, {610, 137}}</string>
 						<reference key="NSSuperview" ref="708420648"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="566681027"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -252,6 +251,7 @@
 						<int key="NSvFlags">-2147483347</int>
 						<string key="NSFrame">{{306, 901}, {91, 45}}</string>
 						<reference key="NSSuperview" ref="708420648"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -275,13 +275,15 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 393}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="415061058"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="81371123"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="857356522">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">293</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUILabel" id="427271644">
@@ -289,6 +291,7 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{78, 69}, {610, 45}}</string>
 						<reference key="NSSuperview" ref="857356522"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="621707634"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -317,6 +320,7 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{78, 155}, {610, 45}}</string>
 						<reference key="NSSuperview" ref="857356522"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="789354103"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -345,6 +349,7 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{229, 240}, {309, 96}}</string>
 						<reference key="NSSuperview" ref="857356522"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -370,6 +375,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{768, 393}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="427271644"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="81371123"/>

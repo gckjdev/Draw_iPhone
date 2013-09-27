@@ -300,4 +300,6 @@ typedef enum{
 + (int)getGuessRankListCountLoadedAtOnce;
 + (BOOL)showAuthorOnOpus;
 
++ (int)getHomeHotOpusCount;
+
 @end

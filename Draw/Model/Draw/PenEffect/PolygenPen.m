@@ -43,8 +43,7 @@
     return _hasPoint;
 }
 
-
-- (void)constructPath:(NSArray*)pointList inRect:(CGRect)rect
+- (void)constructPath:(HPointList*)pointList inRect:(CGRect)rect
 {
     
     BOOL checkPoint = !CGRectEqualToRect(rect, CGRectZero);
@@ -56,17 +55,40 @@
     if (pointCount > 0) {
         
         for (int i=0; i<pointCount; i++){
-            PointNode *node = [pointList objectAtIndex:i];
-            if (!checkPoint || [node pointInRect:rect]) {
-                [self addPointIntoPath:node.point];
+            CGPoint nodePoint = [pointList pointAtIndex:i];
+            if (!checkPoint || [DrawUtils pointInRect:rect inputPoint:&nodePoint]) {
+                [self addPointIntoPath:nodePoint];
             }
-            
         }
         
     }
     
     [self finishAddPoint];
 }
+
+//- (void)constructPath:(NSArray*)pointList inRect:(CGRect)rect
+//{
+//    
+//    BOOL checkPoint = !CGRectEqualToRect(rect, CGRectZero);
+//    
+//    [self startAddPoint];
+//    
+//    int pointCount = [pointList count];
+//    
+//    if (pointCount > 0) {
+//        
+//        for (int i=0; i<pointCount; i++){
+//            PointNode *node = [pointList objectAtIndex:i];
+//            if (!checkPoint || [node pointInRect:rect]) {
+//                [self addPointIntoPath:node.point];
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    [self finishAddPoint];
+//}
 
 - (CGPathRef)penPath
 {

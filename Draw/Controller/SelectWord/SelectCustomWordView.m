@@ -59,6 +59,13 @@
     return view;
 }
 
+- (void)reloadWordData
+{
+    NSArray *words = [[CustomWordManager defaultManager] wordsFromCustomWords];
+    self.dataList = [NSMutableArray arrayWithArray:words];
+    
+    [self.dataTableView reloadData];
+}
 
 - (void)startRunOutAnimation
 {
@@ -136,9 +143,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         if ([CustomWordManager isValidWord:tf.text]) {
             [[CustomWordManager defaultManager] createCustomWord:tf.text];
             [[UserService defaultService] commitWords:tf.text viewController:nil];
-            Word *word = [Word cusWordWithText:tf.text];
-            [self.dataList addObject:word];
-            [_dataTableView reloadData];
+            
+            [self reloadWordData];
+            
+//            Word *word = [Word cusWordWithText:tf.text];
+//            [self.dataList addObject:word];
+//            [_dataTableView reloadData];
         }
     }else{
         [self startRunOutAnimation];

@@ -32,7 +32,7 @@
     ChangeAvatar* _changeAvatar;
 }
 
-@property (nonatomic, assign) PPTableViewController* superViewController;
+@property (nonatomic, retain) PPTableViewController* superViewController;
 
 @end
 
@@ -50,7 +50,8 @@
 
 - (void)dealloc
 {
-    PPRelease(_superViewController);
+//    PPRelease(_superViewController);
+    self.superViewController = nil;
     [super dealloc];
 }
 
@@ -350,11 +351,18 @@
         _changeAvatar.autoRoundRect = NO;
         _changeAvatar.isCompressImage = NO;
     }
-    [_changeAvatar showSelectionView:viewController selectedImageBlock:^(UIImage *image) {
-        EXECUTE_BLOCK(aBlock, image);
-    } didSetDefaultBlock:^{
-        EXECUTE_BLOCK(aBlock,  nil);
-    } title:NSLS(@"kCustomBg") hasRemoveOption:YES];
+    [_changeAvatar showSelectionView:viewController
+                            delegate:nil
+                  selectedImageBlock:^(UIImage *image) {
+                      EXECUTE_BLOCK(aBlock, image);
+                  }
+                  didSetDefaultBlock:^{
+                      EXECUTE_BLOCK(aBlock,  nil);
+                  }
+                               title:NSLS(@"kCustomBg")
+                     hasRemoveOption:YES
+                        canTakePhoto:YES
+                   userOriginalImage:YES];
 }
 
 - (void)clickAvatar:(PPTableViewController <ChangeAvatarDelegate>*)viewController didSelectBlock:(void (^)(UIImage *))aBlock

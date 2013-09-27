@@ -49,7 +49,7 @@
 
 - (IBAction)clickOpusButton:(UIButton *)button {
     
-    [SoundPlayer playSoundWithName:SOUND_EFFECT_BUTTON_DOWN];
+    [[AudioManager defaultManager] playSoundByName:SOUND_EFFECT_BUTTON_DOWN];
     
     if ([delegate respondsToSelector:@selector(didClickOpusWithIndex:)]) {
         

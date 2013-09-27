@@ -1103,7 +1103,7 @@
 "kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
 "kLogouting" = "退出帐号中...";
 "kLogoutFailure" = "退出帐号失败，请检查你的网络或者稍后再试";
-
+"kQuitTips" = "请注意，你还有%d幅草稿在草稿箱中，草稿是本地保存的，不随帐号退出变化";
 
 "kNoXiaojiNumber" = "未有小吉号码";
 "kXiaoji" = "小吉";
