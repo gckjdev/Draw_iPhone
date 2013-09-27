@@ -1115,12 +1115,11 @@
 */
     return [MobClickUtils getIntValueByKey:@"CACHED_ACTION_COUNT" defaultValue:700];
 }
-+ (int)minUndoActionCount
-{
++ (int)minUndoActionCount{
 
-#ifdef DEBUG
-    return 10;
-#endif
+//#ifdef DEBUG
+//    return 10;
+//#endif
 
     return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:10];
 }
