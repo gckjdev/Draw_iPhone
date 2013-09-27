@@ -33,6 +33,7 @@
 #import "UIImageView+WebCache.h"
 #import "UseItemScene.h"
 #import "HPThemeManager.h"
+#import "SelfUserDetail.h"
 
 #define    ROW_COUNT 1
 
@@ -58,11 +59,7 @@
     if (self) {
         _opusList = [[NSMutableArray alloc] init];
         _guessedList = [[NSMutableArray alloc] init];
-        _favoriteList = [[NSMutableArray alloc] init];
-        
-        [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
-            [self.dataTableView reloadData];
-        }];
+        _favoriteList = [[NSMutableArray alloc] init];        
     }
     return self;
 }
@@ -78,6 +75,14 @@
     if (!(currentTabIndex == DetailTabActionClickOpus && self.opusList.count != 0)) {
         [self didClickTabAtIndex:currentTabIndex];
     }
+    
+    if ([self.detail isKindOfClass:[SelfUserDetail class]]){
+        [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
+            PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, reload user data");
+            [self.dataTableView reloadData];
+        }];
+    }
+    
 }
 
 //- (void)viewDidAppear:(BOOL)animated
@@ -95,6 +100,9 @@
 }
 
 - (void)dealloc {
+    
+    [self unregisterAllNotifications];
+    
     PPRelease(_detail);
     PPRelease(_detailCell);
     PPRelease(_backButton);
@@ -363,6 +371,8 @@
 
 - (void)clickBack:(id)sender{
     
+    [self unregisterNotificationWithName:NOTIFCATION_USER_DATA_CHANGE];
+
     PPRelease(_detail);
     PPRelease(_detailCell);
     PPRelease(_backButton);
@@ -371,7 +381,6 @@
     PPRelease(_guessedList);
     PPRelease(_favoriteList);
     
-    [self unregisterNotificationWithName:NOTIFCATION_USER_DATA_CHANGE];
     [super clickBack:sender];
 }
 

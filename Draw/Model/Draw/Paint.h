@@ -11,6 +11,8 @@
 #import "ItemType.h"
 #import "PenEffectProtocol.h"
 
+@class HPointList;
+
 #define BACK_GROUND_WIDTH 3000
 
 @class DrawColor;
@@ -21,7 +23,7 @@
 @protocol DrawPenProtocol;
 
 
-@interface Paint : NSObject <NSCoding>
+@interface Paint : NSObject //<NSCoding>
 {
     CGFloat _width;
     DrawColor *_color;
@@ -35,19 +37,21 @@
 @property(nonatomic, assign)CGFloat width;
 @property(nonatomic, assign)ItemType penType;
 @property(nonatomic, retain)DrawColor* color;
-@property(nonatomic, retain)NSMutableArray *pointNodeList;
+//@property(nonatomic, retain)NSMutableArray *pointNodeList;
 @property(nonatomic,retain)id<PenEffectProtocol> pen;
 @property(nonatomic, retain)id<DrawPenProtocol> drawPen;
 
 - (id)initWithWidth:(CGFloat)width
               color:(DrawColor *)color
             penType:(ItemType)penType
-          pointList:(NSMutableArray *)pointNodeList;
+          pointList:(HPointList*)pointList;
+//          pointList:(NSMutableArray *)pointNodeList;
 
 + (id)paintWithWidth:(CGFloat)width
                color:(DrawColor *)color
              penType:(ItemType)penType
-           pointList:(NSMutableArray *)pointNodeList;
+           pointList:(HPointList*)pointList;
+//           pointList:(NSMutableArray *)pointNodeList;
 
 
 - (id)initWithGameMessage:(GameMessage *)gameMessage;

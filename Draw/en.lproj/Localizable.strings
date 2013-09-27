@@ -1054,6 +1054,7 @@
 "kOkButtonTitle" = "OK";
 "kGiveupNumber" = "You have shake one number. Do you want to give up this number?";
 "kLoginSuccess" = "Login successfully";
+"kQuitTips" = "You have %d draft left in draft box after logout.";
 
 "kChanceLeftShake" = "%d Shake Left";
 "kTakeNumberSuccess" = "Take number successfully";

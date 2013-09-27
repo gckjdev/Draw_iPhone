@@ -1811,7 +1811,17 @@ POSTMSG(NSLS(@"kLoginFailure"));
 }
 
 
-
+- (void)quitLogout:(PPViewController*)viewController
+{
+    int draftCount = [[MyPaintManager defaultManager] countAllDrafts];
+    
+    if (draftCount > 0){
+        NSString* msg = [NSString stringWithFormat:NSLS(@"kQuitTips"), draftCount];
+        POSTMSG2(msg, 3);
+    }
+    
+    [self executeLogout:YES viewController:viewController];
+}
 
 
 - (void)logout:(PPViewController*)viewController
@@ -1824,7 +1834,10 @@ POSTMSG(NSLS(@"kLoginFailure"));
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage") message:NSLS(@"kConfirmLogout") style:CommonDialogStyleDoubleButtonWithCross];
 
     [dialog setClickOkBlock:^(id infoView){
-        [self askKeepDraft:viewController];
+//        [self askKeepDraft:viewController];
+        
+        [self quitLogout:viewController];
+    
     }];
     
     [dialog showInView:viewController.view];

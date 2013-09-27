@@ -26,10 +26,13 @@
 
 - (BOOL)execute
 {
-    DrawAction *lastDrawAction = [self.drawView lastAction];
+    [self changeBG];
     
+    /*
+    // rem by Benson 2013-09-23 to support design simple animation
+    DrawAction *lastDrawAction = [self.drawView lastAction];
     if (lastDrawAction && ![lastDrawAction isChangeBGAction] && ![lastDrawAction isClipAction] && lastDrawAction.clipAction == nil) {
-
+        
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChangeBackgroundTitle") message:NSLS(@"kChangeBackgroundMessage")
                                        style:CommonDialogStyleDoubleButton];
         [dialog setClickOkBlock:^(UILabel *label){
@@ -42,6 +45,8 @@
     }else{
         [self changeBG];        
     }
+    */
+    
     return YES;
 }
 

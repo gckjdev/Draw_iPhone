@@ -41,7 +41,7 @@
 
 @property (retain, nonatomic) SuperUserManageAction* manageAction;
 
-@property (assign, nonatomic) PPTableViewController* superViewController;
+@property (retain, nonatomic) PPTableViewController* superViewController;
 
 @end
 
@@ -58,8 +58,9 @@
 
 - (void)dealloc
 {
-    [_pbUser release];
-    PPRelease(_superViewController);
+    PPRelease(_pbUser);
+    self.superViewController = nil;
+//    PPRelease(_superViewController);
     PPRelease(_manageAction);
     [super dealloc];
 }
@@ -510,6 +511,7 @@
     }
     [self setRelation:(([self relation]) | RelationTypeFollow)];
     [self.superViewController.dataTableView reloadData];
+    self.superViewController = nil;
 }
 
 - (void)didUnFollowFriend:(MyFriend *)myFriend resultCode:(int)resultCode
@@ -528,6 +530,7 @@
         [self setRelation:(([self relation]) - RelationTypeFollow)];
     }
     [self.superViewController.dataTableView reloadData];
+    self.superViewController = nil;
 }
 
 - (void)clickAvatar:(PPTableViewController *)viewController didSelectBlock:(void (^)(UIImage *))aBlock

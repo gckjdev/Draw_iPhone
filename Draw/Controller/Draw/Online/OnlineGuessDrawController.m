@@ -401,7 +401,7 @@
                                                       if (isBuy) {
                                                           POSTMSG(([NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price]));
                                                       }
-                                                  }else if (ERROR_BALANCE_NOT_ENOUGH){
+                                                  }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
                                                       [BalanceNotEnoughAlertView showInController:bself];
                                                   }else{
                                                       POSTMSG(NSLS(@"kOperationFailed"));

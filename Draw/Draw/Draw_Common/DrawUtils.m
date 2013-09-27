@@ -12,7 +12,31 @@
 
 @implementation DrawUtils
 
+#define RECT_SPAN_WIDTH 10
 
++ (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
+{
+    rect.origin.x -= RECT_SPAN_WIDTH;
+    rect.origin.y -= RECT_SPAN_WIDTH;
+    rect.size.width += RECT_SPAN_WIDTH*2;
+    rect.size.height += RECT_SPAN_WIDTH*2;
+    return CGRectContainsPoint(rect, point);
+}
+
++ (BOOL)pointInRect:(CGRect)rect inputPoint:(CGPoint*)inputPoint
+{
+    if (!CGRectContainsPoint(rect, *inputPoint)){
+        
+        if (![self spanRect:rect ContainsPoint:*inputPoint]) {
+            return NO;
+        }
+        inputPoint->x = MAX(inputPoint->x, 0);
+        inputPoint->y = MAX(inputPoint->y, 0);
+        inputPoint->x = MIN(inputPoint->x, CGRectGetWidth(rect));
+        inputPoint->y = MIN(inputPoint->y, CGRectGetHeight(rect));
+    }
+    return YES;
+}
 
 + (BOOL)isNotVersion1:(int)dataVersion
 {

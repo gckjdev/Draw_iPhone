@@ -84,6 +84,9 @@
 + (void)decompressColor8:(NSUInteger)intColor red:(CGFloat*)red green:(CGFloat*)green blue:(CGFloat*)blue alpha:(CGFloat*)alpha;
 + (NSUInteger)compressDrawColor8:(DrawColor *)color;
 
+//+ (CGPoint)adjustPointInRect:(CGRect)rect inputPoint:(CGPoint)inputPoint;
++ (BOOL)pointInRect:(CGRect)rect inputPoint:(CGPoint*)inputPoint;
+
 //+ (CGRect)rectForPath1:(CGPathRef)path1 path2:(CGPathRef)path2 withWidth:(CGFloat)width;
 
 /*
