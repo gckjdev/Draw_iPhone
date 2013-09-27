@@ -445,7 +445,7 @@
 "kDrawedWhat" = "What ?!";
 "kHardToGuess" = "Unbelivable";
 "kSelfDefine" = "+";
-"kDontWriteAnswer" = "OH, NO" ;
+"kDontWriteAnswer" = "OH, NO";
 "kGiveAPrompt" = "Prompt me";
 "kWellDone" = "Well done";
 
@@ -778,7 +778,7 @@
 "kTipsDescription" = "Boom away some characters and make it easier for you to guess.";
 "kBrushPenDescription" = "Mao pen from ancient China...";
 "kIcePenDescription" = "Ice cream pen to draw sweetly...";
-"kQuillDescription" = "Quill pen to draw much faster..."; 
+"kQuillDescription" = "Quill pen to draw much faster...";
 "kWaterPenDescription" = "Mike pen from United Kingdom...";
 
 "kItemTypePurse" = "Coins Box";
@@ -1314,7 +1314,6 @@
 "Music Icons" = "Icons, include music, play, etc.";
 
 "Grass" = "Grass";
-//"Grass Iconsn" = "Icons, include a number of leaf.";
 "Grass Icons" = "Icons, include a number of leaf.";
 
 "Leaf" = "Leaf";
@@ -1609,11 +1608,6 @@
 "kSubmitEndTips" = "";
 "kVoteEndTips" = "";
 
-#define GENIUS_WEEK NSLS(@"kGeniusWeek")
-#define GENIUS_YEAR NSLS(@"kGeniusYear")
-#define CONTEST_TODAY NSLS(@"kContestToday")
-#define CONTEST_YESTODAY NSLS(@"kContestYesterday")
-#define CONTEST_BEFOREYESTODAY NSLS(@"kContestBeforeYesterday")
 
 "kGeniusRankDay" = "Genius Ranking(Daily)";
 "kGeniusRankWeek" = "Genius Ranking(Weekly)";
@@ -1661,7 +1655,7 @@
 "kGeniusModeExpireMessage" = "Sorry, it's time out, you can not guess any more, you can pick out to view opus detail or restart game";
 "kContestModeExpireMessage" = "Sorry, contest is over";
 
-"kGeniusGuessWrongTitle" = "Over"";
+"kGeniusGuessWrongTitle" = "Over";
 "kGeniusGuessWrongMessage" = "This game is over, you can view opus detail or restart game";
 "kTimeout" = "Time out";
 
@@ -1775,9 +1769,9 @@
 "kDiceWilds" = " W ";
 
 "kDiceMenuStart" = "Start";
-"kDiceMenuHelp" = "Help"; 
-"kDiceMenuRoom" = "Room"; 
-"kDiceMenuShop" = "Shop"; 
+"kDiceMenuHelp" = "Help";
+"kDiceMenuRoom" = "Room";
+"kDiceMenuShop" = "Shop";
 "kDiceMenuHappyRoom" = "Poor";
 "kDiceMenuHighRoom" = "Carnival";
 "kDiceMenuSuperHighRoom" = "Rich";
@@ -2073,7 +2067,7 @@
 "kExhibition" = "Exhibition";
 
 "kLayerExplain" = "Layer Usage";
-"kLayerExplainContent" = "1. Stroke layer: for the scratch strokes, paint finished can be erased; also available as painting the background. \n2. Colored layer: do not explain. "
+"kLayerExplainContent" = "1. Stroke layer: for the scratch strokes, paint finished can be erased; also available as painting the background. \n2. Colored layer: do not explain.";
 
 /*********************小吉画画国际化字符串结束 ************************/
 
