@@ -387,7 +387,7 @@ NSString* GlobalGetBoardServerURL()
     }
     
     if (ISIOS7) {
-        [application setStatusBarStyle:UIStatusBarStyleLightContent];
+//        [application setStatusBarStyle:UIStatusBarStyleLightContent];
         self.window.clipsToBounds =YES;
         CGRect frame = self.window.frame;
         frame.origin.y = 20;
