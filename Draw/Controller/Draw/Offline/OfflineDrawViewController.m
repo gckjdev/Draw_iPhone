@@ -553,7 +553,7 @@
     if (image == nil) {
         image = [shareImageManager drawBGImage];        
     }
-    [self setPageBGImage:[[UserManager defaultManager] drawBackground]];
+    [self setPageBGImage:image];
 }
 
 

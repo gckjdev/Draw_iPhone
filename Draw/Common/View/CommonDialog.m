@@ -168,7 +168,7 @@
     [infoView updateCenterX:centerX];
     [infoView updateOriginY:(originY)];
     
-    originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+//    originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
     originY = CGRectGetMaxY(infoView.frame) + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
 
 
