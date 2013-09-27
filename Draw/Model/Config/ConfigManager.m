@@ -1119,10 +1119,10 @@
 {
 
 //#ifdef DEBUG
-//    return 10;
+//    return 20;
 //#endif
 
-    return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:10];
+    return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:20];
 }
 
 + (BOOL)enableWordFilter
