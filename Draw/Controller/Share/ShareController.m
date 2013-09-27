@@ -633,6 +633,7 @@ typedef enum{
 
     cell.indexPath = indexPath;
     [cell setPaints:myPaintArray];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

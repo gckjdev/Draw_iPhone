@@ -71,12 +71,23 @@
 
 + (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
 {
-    CGRect rect = textView.frame;
-    [textView setFont:[[BBSFontManager defaultManager] postContentFont]];
-    rect.size = CGSizeMake(CONTENT_WIDTH, 10);
-    textView.frame = rect;
+    UIFont *font = [[BBSFontManager defaultManager] postContentFont];
+    [textView updateWidth:CONTENT_WIDTH];
+    [textView updateHeight:10];
+    [textView setFont:font];
     [textView setText:text];
-    return textView.contentSize.height;
+    CGFloat height = 0;
+    
+    if (ISIOS7) {
+        float fPadding = 16.0*2; // 8.0px x 2
+        CGSize constraint = CGSizeMake(CONTENT_WIDTH - fPadding, CGFLOAT_MAX);
+        CGSize size = [text sizeWithFont:font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+        height = size.height + 20;
+    }else{
+        height = textView.contentSize.height;
+    }
+    [textView updateHeight:height];
+    return height;    
 }
 
 

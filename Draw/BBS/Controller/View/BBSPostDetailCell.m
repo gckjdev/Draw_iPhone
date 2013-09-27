@@ -21,7 +21,7 @@
 
 #define SPACE_CONTENT_BOTTOM_TEXT (ISIPAD ? (2.33 * 40) : 40) //TEXT TYPE
 //#define IMAGE_HEIGHT (ISIPAD ? (2.33 * 80) : 80)
-#define CONTENT_TEXT_LINE (0)
+#define CONTENT_TEXT_LINE (INT_MAX)
 #define CONTENT_WIDTH (ISIPAD ? (2.33 * 206) : 206)
 #define CONTENT_MAX_HEIGHT 99999999
 #define Y_CONTENT_TEXT (ISIPAD ? (2.33 * 5) : 5)
@@ -71,6 +71,7 @@
 {
     BBSPostDetailCell *cell = [BBSTableViewCell createCellWithIdentifier:[self getCellIdentifier] delegate:delegate];
     
+    
     cell.content.numberOfLines = CONTENT_TEXT_LINE;
     [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
     cell.content.font = CONTENT_FONT;
@@ -100,11 +101,30 @@
 
 + (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
 {
+    UIFont *font = textView.font;
+    [textView updateWidth:CONTENT_WIDTH];
+    [textView updateHeight:10];
+    [textView setFont:font];
+    [textView setText:text];
+    CGFloat height = 0;
+    
+    if (ISIOS7) {
+        float fPadding = 16.0*2; // 8.0px x 2
+        CGSize constraint = CGSizeMake(CONTENT_WIDTH - fPadding, CGFLOAT_MAX);
+        CGSize size = [text sizeWithFont:font constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+        height = size.height + 20;
+    }else{
+        height = textView.contentSize.height;
+    }
+    [textView updateHeight:height];
+    return height;
+/*
     CGRect rect = textView.frame;
     rect.size = CGSizeMake(CONTENT_WIDTH, 10);
     textView.frame = rect;
     [textView setText:text];
     return textView.contentSize.height;
+ */
 }
 
 

@@ -51,7 +51,7 @@
     self.descLabel.textColor = COLOR_BROWN;
     self.timeLabel.textColor = COLOR_GRAY_TEXT;
     self.descLabel.font = DESC_FONT;
-    self.descLabel.numberOfLines = 0;
+    self.descLabel.numberOfLines = INT_MAX;
     
     SET_VIEW_ROUND_CORNER(self.drawImageView);
     [self.bgImageView setImage:[ShareImageManager bubleImage]];

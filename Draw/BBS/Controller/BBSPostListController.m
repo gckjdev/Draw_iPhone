@@ -352,6 +352,7 @@
 	}
     PBBBSPost *post = [self postForIndexPath:indexPath];
     [cell updateCellWithBBSPost:post];
+    cell.backgroundColor = [UIColor clearColor];
 	return cell;
 	
 }

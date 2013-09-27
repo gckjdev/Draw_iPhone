@@ -697,6 +697,11 @@ SET_CELL_BG_IN_CONTROLLER;
     return cell;
 }
 
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    return [NSString stringWithFormat:@"Section %d",section];
+//}
+
 - (void)changeVolume:(id)sender
 {
     UISlider* slider = (UISlider*)sender;

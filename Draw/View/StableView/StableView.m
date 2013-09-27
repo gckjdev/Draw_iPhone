@@ -189,12 +189,6 @@
 #define BORDER_WIDTH    (ISIPAD ? 4 : 2)
 
 - (void)setAsRound{
-    
-    self.layer.cornerRadius = (self.frame.size.width) / 2.0f;
-    self.layer.masksToBounds = YES;
-    self.layer.shouldRasterize = YES;
-    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-//    self.clipsToBounds = YES;
     SET_VIEW_ROUND(self);
     SET_VIEW_ROUND(bgView);
     SET_VIEW_ROUND(imageView);
@@ -220,7 +214,9 @@
     self.layer.cornerRadius = 0;
     self.layer.masksToBounds = NO;
     bgView.layer.cornerRadius = 0;
+    bgView.layer.masksToBounds = NO;
     imageView.layer.cornerRadius = 0;
+    imageView.layer.masksToBounds = NO;
 }
 
 #define BADGE_VIEW_TAG 32445

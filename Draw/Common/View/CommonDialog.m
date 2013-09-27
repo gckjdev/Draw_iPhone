@@ -376,7 +376,7 @@
     }
     
     _messageLabel.text = message;
-    _messageLabel.numberOfLines = 0;
+    _messageLabel.numberOfLines = INT_MAX;
     CGSize cSize = CGSizeMake(_messageLabel.frame.size.width, MESSAGE_LABEL_MAX_HEIGHT);
     [_messageLabel wrapTextWithConstrainedSize:cSize];
     

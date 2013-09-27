@@ -61,6 +61,7 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)tap
 {
+//    [self startAnimation];
     if (tap.state == UIGestureRecognizerStateRecognized) {
         [self dismissAndCallBack];
     }
@@ -76,11 +77,26 @@
         [_ropeImage setFrame:IMAGE_FRAME];
     }
     if (pan.state == UIGestureRecognizerStateRecognized) {
-//        if (point.y > CGRectGetHeight(IMAGE_FRAME)) {
         [self dismissAndCallBack];
-//        }
     }
 
+}
+
+- (void)startAnimation
+{
+    [self finishAnimation];
+    _ropeImage.frame = IMAGE_FRAME;
+    [UIView animateWithDuration:MAXFLOAT animations:^{
+        [UIView setAnimationRepeatAutoreverses:YES];
+        [UIView setAnimationDuration:1];
+        [UIView setAnimationRepeatCount:MAXFLOAT];
+        [_ropeImage updateHeight:(CGRectGetHeight(self.bounds)+CGRectGetHeight(_ropeImage.bounds))/2.0];
+    }];
+}
+
+- (void)finishAnimation
+{
+    [_ropeImage.layer removeAllAnimations];
 }
 
 - (void)reset
@@ -88,15 +104,18 @@
     self.frame = SELF_FRAME;    
     _ropeImage.frame = IMAGE_FRAME;
     self.hidden = NO;
+    [self startAnimation];
 }
 + (id)ropeView
 {
     RopeView *rope = [[RopeView alloc] initWithFrame:SELF_FRAME];
+    [rope reset];
     return [rope autorelease];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
+    [self finishAnimation];
     return YES;
 }
 @end

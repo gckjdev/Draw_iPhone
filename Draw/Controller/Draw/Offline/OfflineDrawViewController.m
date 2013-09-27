@@ -373,8 +373,6 @@
 
 - (void)initSubmitButton
 {
-    [self.submitButton setTitle:NSLS(@"kSubmit") forState:UIControlStateNormal];
-    [self.draftButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
     if (![LocaleUtils isChinese]) {
         UIFont *font = [UIFont boldSystemFontOfSize:BUTTON_FONT_SIZE_ENGLISH];
         [self.submitButton.titleLabel setFont:font];

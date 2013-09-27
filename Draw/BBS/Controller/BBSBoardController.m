@@ -287,7 +287,7 @@
     PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
     BOOL flag = [self isIndexPathLastCell:indexPath];
     [cell updateCellWithBoard:sBoard isLastBoard:flag];
-    
+    cell.backgroundColor = [UIColor clearColor];
 	return cell;
 	
 }

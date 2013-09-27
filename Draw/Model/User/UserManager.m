@@ -1585,4 +1585,88 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     [userDefaults synchronize];
 }
 
+#define LOCAL_USERS_KEY @"LOCAL_USERS_KEY"
+
++ (BOOL)updateHistoryUsers:(NSArray *)users
+{
+    PPDebug(@"<updateHistoryUsers> users count = %d",[users count]);
+    
+    NSMutableArray *dataList = [NSMutableArray array];
+    @try {
+        for (PBGameUser *user in users) {
+            if ([user isKindOfClass:[PBGameUser class]]) {
+                [dataList addObject:[user data]];
+            }
+        }
+        NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:dataList forKey:LOCAL_USERS_KEY];
+        [userDefaults synchronize];
+    }
+    @catch (NSException *exception) {
+        return NO;
+    }
+    return YES;
+}
+
++ (NSMutableArray *)historyUsers
+{
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *dataList = [userDefaults objectForKey:LOCAL_USERS_KEY];
+    NSMutableArray *users = [NSMutableArray array];
+    @try {
+        for (NSData *data in dataList) {
+            PBGameUser *user = [PBGameUser parseFromData:data];
+            if (user) {
+                [users addObject:user];
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        return nil;
+    }
+    PPDebug(@"get localUsers, user count = %d", [users count]);
+    return users;
+}
++ (BOOL)deleteUserFromHistoryList:(NSString *)userId
+{
+    PPDebug(@"<deleteUser>, uid = %@",userId);
+    NSMutableArray *users = [self localUsers];
+    PBGameUser *user = nil;
+    for (PBGameUser *u in users) {
+        if ([u.userId isEqualToString:userId]){
+            user = u;
+            break;
+        }
+    }
+    if (user) {
+        [users removeObject:user];
+        return [self updateHistoryUsers:users];
+    }
+    return YES;
+}
++ (BOOL)addUserToHistoryList:(PBGameUser *)user
+{
+    PPDebug(@"<addUser>, uid = %@, nick = %@",user.userId,user.nickName);
+    if (user == nil) {
+        return NO;
+    }
+    NSMutableArray *users = [self localUsers];
+    NSInteger index = NSNotFound;
+    NSInteger i = 0;
+    for (PBGameUser *u in users) {
+        if ([u.userId isEqualToString:user.userId]) {
+            index = i;
+            break;
+        }
+        i ++;
+    }
+    if (index == NSNotFound) {
+        [users addObject:user];
+        [self updateHistoryUsers:users];
+    }else{
+        [users replaceObjectAtIndex:index withObject:user];
+    }
+    return YES;
+}
+
 @end

@@ -51,7 +51,7 @@
 
 #import "PPResourcePackage.h"
 #import "PPResourceService.h"
-#import "PPResourceTestViewController.h"
+//#import "PPResourceTestViewController.h"
 #import "FeedManager.h"
 
 #import "MyPaintManager.h"
@@ -220,8 +220,8 @@ NSString* GlobalGetBoardServerURL()
      [[PPResourceService defaultService] addExplicitResourcePackage:resourcePackages1];
      [[PPResourceService defaultService] addImplicitResourcePackage:resourcePackages2];
      
-     PPResourceTestViewController* resourceTestController = [[[PPResourceTestViewController alloc] init] autorelease];
-     self.window.rootViewController = resourceTestController;
+//     PPResourceTestViewController* resourceTestController = [[[PPResourceTestViewController alloc] init] autorelease];
+//     self.window.rootViewController = resourceTestController;
 }
 
 - (void)initSNSService
@@ -383,6 +383,15 @@ NSString* GlobalGetBoardServerURL()
     // 比赛的local notification通知
     if ([ConfigManager getGuessContestLocalNotificationEnabled]) {
         [self scheduleLocalNotificationForGuessContest];
+    }
+    
+    if (ISIOS7) {
+//        [application setStatusBarStyle:UIStatusBarStyleLightContent];
+        self.window.clipsToBounds =YES;
+        CGRect frame = self.window.frame;
+        frame.origin.y = 20;
+        frame.size.height -= 20;
+        self.window.frame = frame;
     }
     
     return YES;

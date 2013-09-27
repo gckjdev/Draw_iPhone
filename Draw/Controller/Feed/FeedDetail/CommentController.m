@@ -119,6 +119,7 @@
 }
 - (IBAction)clickBack:(id)sender {
     
+    [self.contentView resignFirstResponder];
     if ([self.contentView.text length] > 0) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:NSLS(@"kGiveUpComment") style:CommonDialogStyleDoubleButton];
         [dialog showInView:self.view];

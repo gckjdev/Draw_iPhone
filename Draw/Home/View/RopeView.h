@@ -20,5 +20,5 @@ typedef void (^FinishDragHandler)(RopeView *rope);
 
 - (void)reset;
 + (id)ropeView;
-
+- (void)startAnimation;
 @end

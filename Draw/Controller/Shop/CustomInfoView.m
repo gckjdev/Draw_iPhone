@@ -221,7 +221,7 @@ AUTO_CREATE_VIEW_BY_XIB(CustomInfoView);
     infoLabel.textColor = [UIColor colorWithRed:108.0/255.0 green:70.0/255.0 blue:33.0/255.0 alpha:1];
     [infoLabel setBackgroundColor:[UIColor clearColor]];
     [infoLabel setTextAlignment:NSTextAlignmentCenter];
-    [infoLabel setNumberOfLines:0];
+    [infoLabel setNumberOfLines:INT_MAX];
     infoLabel.text = text;
     
     // set info label height

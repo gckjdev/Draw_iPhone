@@ -25,4 +25,5 @@
     #import "CommonDialog.h"
     #define ISIPAD [DeviceDetection isIPAD]
     #define ISIPHONE5 [DeviceDetection isIPhone5]
+    #define ISIOS7 [DeviceDetection isOS7]
 #endif

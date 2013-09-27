@@ -64,11 +64,11 @@
 
 - (void)initViews
 {
-    self.content.numberOfLines = 0;
+    self.content.numberOfLines = INT_MAX;
     self.content.font = CONTENT_FONT;
     [self.content setLineBreakMode:NSLineBreakByCharWrapping];
 
-    self.source.numberOfLines = 0;
+    self.source.numberOfLines = INT_MAX;
     [self.source setLineBreakMode:NSLineBreakByTruncatingTail];
     self.source.font = SOURCE_FONT;
     [self.source setTextColor:[[BBSColorManager defaultManager]
