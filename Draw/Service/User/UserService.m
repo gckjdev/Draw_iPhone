@@ -1775,8 +1775,11 @@ POSTMSG(NSLS(@"kLoginFailure"));
                 [[MyPaintManager defaultManager] removeAllDraft];
             }
 
+            [UserManager deleteUserFromHistoryList:[[UserManager defaultManager] userId]];
+            
             // clear user data
             [[UserManager defaultManager] cleanUserData];
+
             
             [viewController.navigationController popToRootViewControllerAnimated:YES];            
             

@@ -14,6 +14,8 @@
 #import "PPNetworkRequest.h"
 #import "GameNetworkConstants.h"
 #import "TwoInputFieldView.h"
+#import "UserService.h"
+
 
 @interface AccountManageController ()
 
@@ -38,6 +40,7 @@
 - (void)showLoginViewWithNumber:(NSString *)number
 {
     CommonDialog *logView = [TwoInputFieldView loginViewWithNumber:number passWord:nil];
+//    [logView setManualClose:YES];
     [logView showInView:self.view];
     [logView setClickOkBlock:^(TwoInputFieldView *infoView){
         [self loginWithNumber:infoView.textField1.text passWord:infoView.textField2.text forSelected:NO];
@@ -134,11 +137,19 @@ SET_CELL_BG_IN_CONTROLLER
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PBGameUser *user = self.dataList[indexPath.row];
-    [UserManager deleteUserFromHistoryList:user.userId];
-    self.dataList = [UserManager historyUsers];
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if ([[UserManager defaultManager] isMe:user.userId]) {
+        [[UserService defaultService] executeLogout:YES viewController:self];
+    }else{
+        [UserManager deleteUserFromHistoryList:user.userId];
+        self.dataList = [UserManager historyUsers];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PBGameUser *user = self.dataList[indexPath.row];
+    if ([[UserManager defaultManager] isMe:user.userId]) {
+        return NSLS(@"kLogout");
+    }
     return NSLS(@"kDelete");
 }
 
@@ -196,7 +207,7 @@ SET_CELL_BG_IN_CONTROLLER
     self.user = user;
     [self.avatarView setAvatarUrl:user.avatar gender:user.gender];
     [self.nickName setText:user.nickName];
-    [self.xjNumber setText:user.xiaojiNumber];
+    [self.xjNumber setText:[NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), user.xiaojiNumber]];
 }
 
 + (NSString *)getCellIdentifier
