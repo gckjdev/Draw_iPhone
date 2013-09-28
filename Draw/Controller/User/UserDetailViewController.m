@@ -238,6 +238,7 @@
 
 - (void)didclickBlack
 {
+    CHECK_AND_LOGIN(self.view);
     [self.detail blackUser:self];
     
 }
