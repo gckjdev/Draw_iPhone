@@ -763,7 +763,7 @@ SET_CELL_BG_IN_CONTROLLER;
 {
     NSString* email = [_pbUserBuilder email];
     if ([email length] == 0){
-        POSTMSG(NSLS(@"kNoEmailForResetPassword"));
+        POSTMSG2(NSLS(@"kNoEmailForResetPassword"),3);
         return;
     }
     
