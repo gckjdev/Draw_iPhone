@@ -1068,6 +1068,7 @@ int getPopOptionCount()
     return ([[UserManager defaultManager] hasUser]); // && [[UserManager defaultManager] hasXiaojiNumber]);
 }
 
+
 - (BOOL)toRegister
 {
 //    RegisterUserController *ruc = [[RegisterUserController alloc] init];

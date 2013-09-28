@@ -477,7 +477,7 @@ typedef enum{
 #pragma mark - bbs post action cell delegate
 - (void)didClickReplyButtonWithAction:(PBBBSAction *)action
 {
-
+    CHECK_AND_LOGIN(self.view);
 #ifdef DEBUG
     [BBSActionListController showReplyActions:self postId:self.post.postId postUserId:self.post.postUid sourceAction:action];
     return;

@@ -574,12 +574,20 @@
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type
 {
-    PPDebug(@"<homeMainMenuPanel>, click type = %d", type);
-    if (type != HomeMenuTypeDrawDraw && [self isRegistered] == NO) {
-        [self toRegister];
-        return;
+    
+    NSArray *noCheckedTypes = @[@(HomeMenuTypeDrawDraw),
+                                @(HomeMenuTypeDrawContest),
+                                @(HomeMenuTypeDrawBBS),
+                                @(HomeMenuTypeDrawRank),
+                                @(HomeMenuTypeDrawGuess),
+                                @(HomeMenuTypeDrawMore),
+                                @(HomeMenuTypeDrawPhoto),
+                                ];
+    
+    if (![noCheckedTypes containsObject:@(type)]) {
+        CHECK_AND_LOGIN(self.view);
     }
-
+    
     switch (type) {
         case HomeMenuTypeDrawGame:
         {

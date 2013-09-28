@@ -226,12 +226,13 @@
 }
 
 - (IBAction)clickHappyModeButton:(id)sender {
-    
+    CHECK_AND_LOGIN(self.view);
     GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy contest:nil]  autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickGeniusModeButton:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius contest:nil] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -245,7 +246,7 @@
 }
 
 - (IBAction)clickContestModeButton:(id)sender {
-    
+    CHECK_AND_LOGIN(self.view);
 #if 0
     
     if ([_contest.contestId length] > 0) {

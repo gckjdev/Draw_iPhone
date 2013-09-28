@@ -213,6 +213,7 @@
     [super viewDidUnload];
 }
 - (IBAction)clickCreatePostButton:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     if (self.bbsBoard) {
         [CreatePostController enterControllerWithBoard:self.bbsBoard fromController:self].delegate = self;
     }else{
