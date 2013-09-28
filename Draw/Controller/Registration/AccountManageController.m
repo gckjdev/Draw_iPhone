@@ -57,6 +57,11 @@
 
 - (void)addAccount:(id)sender
 {
+    if ([[[UserManager defaultManager] password] length] == 0){
+        POSTMSG2(NSLS(@"kCannotLogoutWithoutPasswordSet"), 3.0f);
+        return;
+    }
+
     [self showLoginViewWithNumber:self.tempNumber];
 }
 
@@ -147,8 +152,13 @@ SET_CELL_BG_IN_CONTROLLER
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     PBGameUser *user = self.dataList[indexPath.row];
     if ([[UserManager defaultManager] isMe:user.userId]) {
+        if ([[[UserManager defaultManager] password] length] == 0){
+            POSTMSG2(NSLS(@"kCannotLogoutWithoutPasswordSet"), 3.0f);
+            return;
+        }
         [[UserService defaultService] executeLogout:YES viewController:self];
     }else{
         [UserManager deleteUserFromHistoryList:user.userId];
@@ -170,9 +180,6 @@ SET_CELL_BG_IN_CONTROLLER
 }
 
 
-
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PBGameUser *user = self.dataList[indexPath.row];
@@ -180,6 +187,12 @@ SET_CELL_BG_IN_CONTROLLER
         return;
     }
 
+    if ([[[UserManager defaultManager] password] length] == 0){
+        POSTMSG2(NSLS(@"kCannotLogoutWithoutPasswordSet"), 3.0f);
+        return;
+    }
+
+    
     [self loginWithNumber:user.xiaojiNumber passWord:user.password forSelected:YES];
 }
 

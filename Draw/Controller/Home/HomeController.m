@@ -581,7 +581,6 @@
                                 @(HomeMenuTypeDrawRank),
                                 @(HomeMenuTypeDrawGuess),
                                 @(HomeMenuTypeDrawMore),
-                                @(HomeMenuTypeDrawPhoto),
                                 ];
     
     if (![noCheckedTypes containsObject:@(type)]) {
