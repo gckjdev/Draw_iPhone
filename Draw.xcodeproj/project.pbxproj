@@ -5508,6 +5508,18 @@
 		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
 		EA1F283A16F0941E00066E37 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		EA2A7CDE17F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CDF17F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CE217F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CE317F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CE417F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CEC17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
+		EA2A7CED17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
+		EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
+		EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
 		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
@@ -9612,6 +9624,10 @@
 		EA23F5FA16E878070018786B /* ChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeCell.h; sourceTree = "<group>"; };
 		EA23F5FB16E878070018786B /* ChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeCell.m; sourceTree = "<group>"; };
 		EA23F5FC16E878070018786B /* ChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeCell.xib; sourceTree = "<group>"; };
+		EA2A7CDB17F676AB00ED508D /* AccountManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageController.h; sourceTree = "<group>"; };
+		EA2A7CDC17F676AB00ED508D /* AccountManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageController.m; sourceTree = "<group>"; };
+		EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountManageController.xib; sourceTree = "<group>"; };
+		EA2A7CEB17F6958600ED508D /* AccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountCell.xib; sourceTree = "<group>"; };
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreController~ipad.xib"; sourceTree = "<group>"; };
@@ -13698,6 +13714,10 @@
 		CA1041E11509B6E700F60C03 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				EA2A7CDB17F676AB00ED508D /* AccountManageController.h */,
+				EA2A7CDC17F676AB00ED508D /* AccountManageController.m */,
+				EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */,
+				EA2A7CEB17F6958600ED508D /* AccountCell.xib */,
 				CA1041FA1509BF4700F60C03 /* RegisterUserController.h */,
 				CA1041FB1509BF4700F60C03 /* RegisterUserController.m */,
 				CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */,
@@ -17634,6 +17654,8 @@
 				A42F4A2B17E9732C009774FC /* DrawDefault-568h@2x.png in Resources */,
 				A42F4A2F17E9732C009774FC /* DrawDefault-Portrait.png in Resources */,
 				A42F4A3317E9732C009774FC /* DrawDefault@2x.png in Resources */,
+				EA2A7CE417F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18499,6 +18521,8 @@
 				CADB1EF417EDDACA0048698F /* little_gee_icon_76.png in Resources */,
 				CADB1EF517EDDACA0048698F /* little_gee_icon_120.png in Resources */,
 				CADB1EF617EDDACA0048698F /* little_gee_icon_152.png in Resources */,
+				EA2A7CE317F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CED17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19346,6 +19370,8 @@
 				CADB1EEE17EB49CF0048698F /* icon76.png in Resources */,
 				CADB1EEF17EB49D00048698F /* icon120.png in Resources */,
 				CADB1EF017EB49D00048698F /* icon152.png in Resources */,
+				EA2A7CE217F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CEC17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20160,6 +20186,8 @@
 				A42F4A2C17E9732C009774FC /* DrawDefault-568h@2x.png in Resources */,
 				A42F4A3017E9732C009774FC /* DrawDefault-Portrait.png in Resources */,
 				A42F4A3417E9732C009774FC /* DrawDefault@2x.png in Resources */,
+				EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20986,6 +21014,7 @@
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67A17E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134717F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21783,6 +21812,7 @@
 				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134617F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CDF17F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22586,6 +22616,7 @@
 				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134517F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CDE17F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23363,6 +23394,7 @@
 				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134817F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,8 @@ typedef void(^UserNumberServiceResultBlock)(int resultCode, NSString* number);
 - (void)shakeOneNumber:(UserNumberServiceResultBlock)block;
 - (void)takeUserNumber:(NSString*)number block:(UserNumberServiceResultBlock)block;
 - (void)loginUser:(NSString*)number password:(NSString*)password block:(UserNumberServiceResultBlock)block;
+- (void)loginUser:(NSString*)number encodedPassword:(NSString*)password block:(UserNumberServiceResultBlock)block;
+
 
 - (void)askForLogout;
 

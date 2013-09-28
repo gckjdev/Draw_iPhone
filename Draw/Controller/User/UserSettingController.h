@@ -46,6 +46,7 @@
     //NSInteger rowOfChatVoice;
     NSInteger rowOfCustomDice;
     NSInteger rowOfLogout;
+    NSInteger rowOfAccount;
     
     NSInteger rowsInSectionUser;
     NSInteger rowsInSectionGuessWord;

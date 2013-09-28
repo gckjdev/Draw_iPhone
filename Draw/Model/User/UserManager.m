@@ -1630,7 +1630,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 + (BOOL)deleteUserFromHistoryList:(NSString *)userId
 {
     PPDebug(@"<deleteUser>, uid = %@",userId);
-    NSMutableArray *users = [self localUsers];
+    NSMutableArray *users = [self historyUsers];
     PBGameUser *user = nil;
     for (PBGameUser *u in users) {
         if ([u.userId isEqualToString:userId]){
@@ -1650,7 +1650,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     if (user == nil) {
         return NO;
     }
-    NSMutableArray *users = [self localUsers];
+    NSMutableArray *users = [self historyUsers];
     NSInteger index = NSNotFound;
     NSInteger i = 0;
     for (PBGameUser *u in users) {
@@ -1662,10 +1662,10 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
     if (index == NSNotFound) {
         [users addObject:user];
-        [self updateHistoryUsers:users];
     }else{
         [users replaceObjectAtIndex:index withObject:user];
     }
+    [self updateHistoryUsers:users];    
     return YES;
 }
 

@@ -1046,6 +1046,9 @@
 "kXiaojiPasswordCannotEmpty" = "Password cannot be empty";
 "kXiaojiNumberNotFound" = "Littlegee number doesn't exist";
 "kXiaojiPasswordIncorrect" = "Password incorrect. Please check.";
+"kChangeAccount" = "Changing user account...";
+"kAccountManage" = "Account";
+"kAddAccount" = "New";
 
 "kGetNumberTipsLabelText" = "Take one littlegee number\nor login with number.";
 "kTakeNumberButtonTitle" = "Take Number";

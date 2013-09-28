@@ -1041,6 +1041,9 @@
 "kXiaojiPasswordCannotEmpty" = "密碼不能為空";
 "kXiaojiNumberNotFound" = "小吉號碼不存在";
 "kXiaojiPasswordIncorrect" = "密碼不正確，請檢查";
+"kChangeAccount" = "切換賬號中...";
+"kAccountManage" = "賬號管理";
+"kAddAccount" = "新賬號";
 
 "kGetNumberTipsLabelText" = "首次使用，請領取小吉號碼\n或使用已有號碼登錄";
 "kTakeNumberButtonTitle" = "領 取";

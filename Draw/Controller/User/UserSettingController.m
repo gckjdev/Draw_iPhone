@@ -36,6 +36,7 @@
 #import "UserSettingCell.h"
 #import "CommonTitleView.h"
 #import "HomeController.h"
+#import "AccountManageController.h"
 
 
 enum{
@@ -172,8 +173,10 @@ enum {
     
     rowsInSectionAccount = ROW_ACCOUNT_COUNT;
     
-    rowOfLogout = 0;
-    rowsInSectionLogout = 1;
+    //account section
+    rowOfAccount = 0;
+    rowOfLogout = 1;
+    rowsInSectionLogout = 2;
 }
 
 - (void)updateAvatar:(UIImage *)image
@@ -479,6 +482,35 @@ SET_CELL_BG_IN_CONTROLLER;
 //}
 
 
+#define SECTION_HEIGHT (!ISIPAD?2:4)
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return SECTION_HEIGHT;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *info = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), SECTION_HEIGHT)];
+    [info setBackgroundColor:COLOR_ORANGE];
+    return [info autorelease];
+    
+//    UILabel *info = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView), SECTION_HEIGHT)];
+//    [info setBackgroundColor:COLOR_ORANGE];
+//    NSString *text = nil;
+//    switch (section) {
+//        case SECTION_ACCOUNT:
+//            text = NSLS(@"kUserBasicInfo");
+//            break;
+//        case SECTION_GUESSWORD:
+//            text = NSLS(@"kUserBasicInfo");
+//            
+//        default:
+//            break;
+//    }
+//    
+//    return [info autorelease];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = [UserSettingCell getCellIdentifier];
@@ -691,6 +723,8 @@ SET_CELL_BG_IN_CONTROLLER;
     else if (section == SECTION_LOGOUT) {
         if (row == rowOfLogout){
             [cell.customTextLabel setText:NSLS(@"kLogoutAccount")];
+        }else if(row == rowOfAccount){
+            [cell.customTextLabel setText:NSLS(@"kAccountManage")];
         }
     }
     
@@ -1026,6 +1060,11 @@ SET_CELL_BG_IN_CONTROLLER;
     else if (section == SECTION_LOGOUT) {
         if (row == rowOfLogout){
             [[UserService defaultService] logout:self];
+        }else if(row == rowOfAccount){
+            AccountManageController *am = [[AccountManageController alloc] init];
+//            [self presentViewController:am animated:YES completion:NULL];
+            [self.navigationController pushViewController:am animated:YES];
+            [am release];
         }
     }
 

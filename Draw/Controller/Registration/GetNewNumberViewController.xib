@@ -939,6 +939,7 @@ u+W9lQ</string>
 						<string key="clickSubmitLogin:">id</string>
 						<string key="clickTakeNumber:">id</string>
 						<string key="dismiss:">id</string>
+						<string key="dismissWithMessage:">NSString</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="clickClose:">
@@ -964,6 +965,10 @@ u+W9lQ</string>
 						<object class="IBActionInfo" key="dismiss:">
 							<string key="name">dismiss:</string>
 							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="dismissWithMessage:">
+							<string key="name">dismissWithMessage:</string>
+							<string key="candidateClassName">NSString</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">

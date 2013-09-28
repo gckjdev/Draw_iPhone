@@ -7,7 +7,20 @@
 //
 
 #import "PPTableViewController.h"
+#import "PPTableViewCell.h"
 
 @interface AccountManageController : PPTableViewController
+
+@end
+
+
+@class AvatarView;
+@interface AccountCell : PPTableViewCell
+
+@property (nonatomic, retain) PBGameUser *user;
+@property (retain, nonatomic) IBOutlet AvatarView *avatarView;
+@property (retain, nonatomic) IBOutlet UILabel *nickName;
+
+- (void)updateCellWithAccount:(PBGameUser*)user;
 
 @end

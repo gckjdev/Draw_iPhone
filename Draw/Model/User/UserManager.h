@@ -250,8 +250,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)setBlockDevices:(NSArray*)devices;
 
-//+ (NSMutableArray *)historyUsers;
-//+ (BOOL)deleteUserFromHistoryList:(NSString *)userId;
-//+ (BOOL)addUserToHistoryList:(PBGameUser *)user;
++ (NSMutableArray *)historyUsers;
++ (BOOL)deleteUserFromHistoryList:(NSString *)userId;
++ (BOOL)addUserToHistoryList:(PBGameUser *)user;
 
 @end
