@@ -1608,6 +1608,13 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return YES;
 }
 
++ (void)syncHistoryUsers
+{
+    if ([[self defaultManager] hasXiaojiNumber]) {
+        [self addUserToHistoryList:[[self defaultManager] pbUser]];
+    }
+}
+
 + (NSMutableArray *)historyUsers
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];

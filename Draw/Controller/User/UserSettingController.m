@@ -481,7 +481,7 @@ SET_CELL_BG_IN_CONTROLLER;
 //    
 //}
 
-
+/*
 #define SECTION_HEIGHT (!ISIPAD?2:4)
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -493,24 +493,8 @@ SET_CELL_BG_IN_CONTROLLER;
     UIView *info = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), SECTION_HEIGHT)];
     [info setBackgroundColor:COLOR_ORANGE];
     return [info autorelease];
-    
-//    UILabel *info = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView), SECTION_HEIGHT)];
-//    [info setBackgroundColor:COLOR_ORANGE];
-//    NSString *text = nil;
-//    switch (section) {
-//        case SECTION_ACCOUNT:
-//            text = NSLS(@"kUserBasicInfo");
-//            break;
-//        case SECTION_GUESSWORD:
-//            text = NSLS(@"kUserBasicInfo");
-//            
-//        default:
-//            break;
-//    }
-//    
-//    return [info autorelease];
 }
-
+*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellIdentifier = [UserSettingCell getCellIdentifier];

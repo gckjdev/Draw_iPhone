@@ -89,6 +89,8 @@
     [titleView setRightButtonSelector:@selector(addAccount:)];
     
     self.canDragBack = NO;
+    
+    [UserManager syncHistoryUsers];
     self.dataList = [UserManager historyUsers];
     
     [self.dataTableView setBackgroundColor:COLOR_WHITE];
@@ -185,6 +187,8 @@ SET_CELL_BG_IN_CONTROLLER
 - (void)updateView
 {
     [self.nickName setTextColor:COLOR_BROWN];
+    [self.xjNumber setTextColor:COLOR_GREEN];
+    
 }
 
 - (void)updateCellWithAccount:(PBGameUser *)user
@@ -192,6 +196,7 @@ SET_CELL_BG_IN_CONTROLLER
     self.user = user;
     [self.avatarView setAvatarUrl:user.avatar gender:user.gender];
     [self.nickName setText:user.nickName];
+    [self.xjNumber setText:user.xiaojiNumber];
 }
 
 + (NSString *)getCellIdentifier
@@ -201,13 +206,14 @@ SET_CELL_BG_IN_CONTROLLER
 
 + (CGFloat)getCellHeight
 {
-    return (ISIPAD?88:44);
+    return (ISIPAD?132:66);
 }
 
 - (void)dealloc
 {
     [_avatarView release];
     [_nickName release];
+    [_xjNumber release];
     [super dealloc];
 }
 
