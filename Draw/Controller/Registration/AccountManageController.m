@@ -18,10 +18,18 @@
 
 
 @interface AccountManageController ()
+@property (nonatomic, retain) NSString *tempNumber;
+
 
 @end
 
 @implementation AccountManageController
+
+- (void)dealloc
+{
+    PPRelease(_tempNumber);
+    [super dealloc];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,7 +57,7 @@
 
 - (void)addAccount:(id)sender
 {
-    [self showLoginViewWithNumber:nil];
+    [self showLoginViewWithNumber:self.tempNumber];
 }
 
 - (void)loginWithNumber:(NSString *)number passWord:(NSString *)password forSelected:(BOOL)selected
@@ -62,16 +70,19 @@
         }
         else if (resultCode == ERROR_USERID_NOT_FOUND){
             POSTMSG(NSLS(@"kXiaojiNumberNotFound"));
+            self.tempNumber = number;            
         }
         else if (resultCode == ERROR_PASSWORD_NOT_MATCH){
             POSTMSG(NSLS(@"kXiaojiPasswordIncorrect"));
             if (selected) {
-                //TODO alert to input password.
                 [self showLoginViewWithNumber:number];
+            }else{
+                self.tempNumber = number;
             }
         }
         else{
             POSTMSG(NSLS(@"kSystemFailure"));
+            self.tempNumber = number;            
         }
     };
     if (selected) {
@@ -225,6 +236,7 @@ SET_CELL_BG_IN_CONTROLLER
     [_avatarView release];
     [_nickName release];
     [_xjNumber release];
+    PPRelease(_user);
     [super dealloc];
 }
 
