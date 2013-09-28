@@ -174,6 +174,10 @@
 {
 //    PointNode *pointNode = [self.pointNodeList lastObject];
     
+    if ([_hPointList count] <= 0){
+        return;
+    }
+    
     CGPoint lastPoint = [_hPointList lastPoint];
     
     if (!CGPointEqualToPoint(point, lastPoint)) {
