@@ -344,10 +344,12 @@ SET_CELL_BG_IN_CONTROLLER;
     if (resultCode == 0) {
         self.contests = list;
         PBGuessContest *contest = [_contests objectAtIndex:0];
-        if ([GuessManager isContestBeing:contest]) {
+        if ([GuessManager isContestBeing:contest] 
+            || [GuessManager isContestOver:contest]) {
             self.currentSelect = TODAY;
         }else{
             self.currentSelect = RANK_DAY;
+            [self.contestButton setTitle:CONTEST_YESTODAY forState:UIControlStateNormal];
         }
     }else{
         POSTMSG(NSLS(@"kLoadFailed"));        
