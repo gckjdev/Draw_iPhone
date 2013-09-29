@@ -1221,6 +1221,9 @@
 "kRecoveryDraft" = "自動恢復";
 
 "kBuyABagAndUse" = "你剛剛花費了%d個金幣買了個錦囊然後用掉了。";
+"kBuyABagAndUseAndLeftTimes" = "你剛剛花費了%d個金幣買了一個錦囊然後用掉了。\n你還可以使用%d次錦囊";
+"kLeftTipTimes" = "本關卡你還可以使用%d次錦囊";
+
 "kChoseWeixinOption" = "分享到微信";
 "kShareOpus" = "分享一幅作品";
 "kDrawAPicture" = "畫一幅畫";
@@ -1508,7 +1511,7 @@
 "kGuessRules" = "規則說明";
 
 "kHappyGuessRulesDetil" = "花費:  %d金幣\n\n獎勵:  %d金幣/每%d幅\n\n時限:  %d小時內\n\n";
-"kGeniusGuessRulesDetil" = "花費:  %d金幣\n\n規則:  連續猜中，不得猜錯\n\n獎勵:\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n以此類推\n\n時限:  %d小時內\n\n";
+"kGeniusGuessRulesDetil" = "花費:  %d金幣\n\n規則:  連續猜中，不得猜錯，每個關卡限用%d個錦囊\n\n獎勵:\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n以此類推\n\n時限:  %d小時內\n\n確定開始嗎？\n";
 "kContestGuessRulesDetil" = "花費:  %d金幣\n\n排名:  猜對作品數/耗時\n\n獎勵:\n第1名:  總獎金 * 50%%\n第2~4名:  總獎金*10%%\n第5~10名:  總獎金*1.67%%\n前15%%:  分享剩余獎金\n\n總獎金:  參賽用戶*70\n\n";
 
 "kHappyGuessRules" = "歡樂模式幫助";

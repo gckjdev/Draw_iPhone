@@ -257,14 +257,29 @@
     __block typeof (self) bself = self;
     [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
+            
             [_wordInputView bombHalf];
-            if (isBuy) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
-            }
             
             if (_mode == PBUserGuessModeGuessModeGenius) {
                 [GuessManager incTipUseTimes];
             }
+            int leftTipTimes = [ConfigManager getTipUseTimesLimitInGeniusMode] - [GuessManager getTipUseTimes];
+            
+            if (isBuy) {
+                
+                if (_mode == PBUserGuessModeGuessModeGenius) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndLeftTimes"), price, leftTipTimes] delayTime:2];
+                }else{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+                }
+
+            }else{
+                
+                if (_mode == PBUserGuessModeGuessModeGenius) {
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kLeftTipTimes"), leftTipTimes] delayTime:2];
+                }
+            }
+
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
         }else{

@@ -1201,6 +1201,10 @@
 "kRecoveryDraft" = "Recovery";
 
 "kBuyABagAndUse" = "You just bought a tips bag and use it, costing you %d coins.";
+"kBuyABagAndUseAndLeftTimes" = "You just bought a tips bag and use it, costing you %d coins. \nyou can use tip item for %d times";
+
+"kLeftTipTimes" = "You can use tip item for %d times";
+
 "kChoseWeixinOption" = "Share to WeChat";
 "kShareOpus" = "Share a paint";
 "kDrawAPicture" = "Draw a paint";
@@ -1560,7 +1564,7 @@
 "kGuessRules" = "RULES";
 
 "kHappyGuessRulesDetil" = "Cost:  %d coins\n\nAward:  %d coins/%d opuses\n\nTime limit:  %d hours\n\n";
-"kGeniusGuessRulesDetil" = "Cost:  %d coins\n\nRules:  hit wrong will terminal the game\n\nAward:\nguess %d opuses, get %d coins\nguess %d opuses, get %d coins\nguess %d coins, get %d coins\nand so on\n\nTime limit:  %d hours\n\n";
+"kGeniusGuessRulesDetil" = "Cost:  %d coins\n\nRules:  hit wrong will terminal the game, %d tips limit for each round\n\nAward:\nguess %d opuses, get %d coins\nguess %d opuses, get %d coins\nguess %d coins, get %d coins\nand so on\n\nTime limit:  %d hours\n\n";
 
 "kContestGuessRulesDetil" = "Cost:  %d coins\n\nRanking:  guess/spend time\n\nAward:\nNo.1:  Total Award * 50%%\nNo.2~4:  Total Award * 10%%\nNo.5~10:  Total Award * 1.67%%\nNo.15%%:  share the remainder of total award\n\nTotal Award:  Num of players * 70\n\n";
 

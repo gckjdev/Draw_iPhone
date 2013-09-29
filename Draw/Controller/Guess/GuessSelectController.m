@@ -333,6 +333,10 @@
             [self scrollToBottom];
         }
         
+        if (isStartNew && _mode == PBUserGuessModeGuessModeGenius) {
+            [GuessManager clearTipUseTimes];
+        }
+        
     }else{
        POSTMSG2(NSLS(@"kLoadFailed"), 3);
     }
