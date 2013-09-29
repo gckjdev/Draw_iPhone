@@ -99,6 +99,7 @@
     }
     [self insertSubview:holderView atIndex:0];
     [controller.view addSubview:self];
+    self.frame = controller.view.bounds;
 
     if (_replayObj.isNewVersion) {
         POSTMSG(NSLS(@"kNewDrawVersionTip"));

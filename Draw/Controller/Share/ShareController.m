@@ -287,13 +287,23 @@ typedef enum{
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
                                       otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
-        }else{        
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+        }else{
+#if DEBUG
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
+                                               delegate:self
+                                      cancelButtonTitle:NSLS(@"kCancel")
+                                 destructiveButtonTitle:shareString
+                                      otherButtonTitles:
+                    NSLS(@"kReplay"), NSLS(@"kDelete"), NSLS(@"kEdit"), nil];
+            
+#else
+            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                           delegate:self 
                                                  cancelButtonTitle:NSLS(@"kCancel") 
                                             destructiveButtonTitle:shareString 
                                                  otherButtonTitles:
                                                         NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+#endif
         }
     }
     else{
@@ -451,9 +461,15 @@ typedef enum{
                                                           delegate:self];
         dialog.tag = DELETE_ALL;
         [dialog showInView:self.view];
-    }else if(buttonIndex == EDIT && currentPaint.draft.boolValue){
-        [self showActivityWithText:NSLS(@"kLoading")];
-        [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
+    }else if(buttonIndex == EDIT){
+#if DEBUG
+        if (YES) {
+#else
+        if (currentPaint.draft.boolValue) {
+#endif
+            [self showActivityWithText:NSLS(@"kLoading")];
+            [self performSelector:@selector(performEdit) withObject:nil afterDelay:0.1f];
+        }
     }
 }
 
@@ -713,10 +729,19 @@ typedef enum{
 //        SHARE_AS_GIF = index++;
         REPLAY = index++;
         DELETE = index++;
+#if DEBUG
+        if (![self isDraftTab]) {
+            EDIT = index++;
+            CANCEL = index ++;
+        }
+#else
         DELETE_ALL = index++;
         DELETE_ALL_MINE = index++;
         DELETE_ALL_DRAFT = index++;
         CANCEL = index++;
+
+#endif
+
     }
     else{
         if (self.isDraftTab) {
