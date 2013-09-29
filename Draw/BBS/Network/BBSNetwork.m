@@ -180,6 +180,50 @@
 }
 
 
++ (CommonNetworkOutput*)searchPostList:(NSString*)baseURL
+                                 appId:(NSString*)appId
+                            deviceType:(int)deviceType
+                                userId:(NSString*)userId
+                               boardId:(NSString*)boardId
+                               keyWord:(NSString*)keyWord
+                                offset:(NSInteger)offset
+                                 limit:(NSInteger)limit
+{
+    baseURL = [ConfigManager getBBSServerURL];
+    
+    CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
+    
+    ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {
+        
+        // set input parameters
+        NSString* str = [NSString stringWithString:baseURL];
+        
+        str = [str stringByAddQueryParameter:METHOD value:METHOD_SEARCH_BBSPOST_LIST];
+        str = [str stringByAddQueryParameter:PARA_APPID value:appId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
+        str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
+        str = [str stringByAddQueryParameter:PARA_KEYWORD value:keyWord];        
+        str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
+        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
+        str = [str stringByAddQueryParameter:PARA_LIMIT intValue:limit];
+        str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
+        
+        return str;
+    };
+    
+    PPNetworkResponseBlock responseHandler = ^(NSDictionary *dict, CommonNetworkOutput *output) {
+        return;
+    };
+    
+    return [PPNetworkRequest sendRequest:baseURL
+                     constructURLHandler:constructURLHandler
+                         responseHandler:responseHandler
+                            outputFormat:FORMAT_PB
+                                  output:output];
+}
+
+
 + (CommonNetworkOutput*)createAction:(NSString*)baseURL
                                appId:(NSString*)appId
                           deviceType:(int)deviceType

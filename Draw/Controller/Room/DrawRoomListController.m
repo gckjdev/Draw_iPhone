@@ -121,6 +121,7 @@
     PBGameSession* session = [[_gameService roomList] objectAtIndex:indexPath.row];
     [cell setCellInfo:session roomListTitile:@""];
     cell.delegate = self;
+    cell.backgroundColor = [UIColor clearColor];    
     return cell;
 }
 

@@ -301,4 +301,6 @@ typedef enum{
 + (BOOL)showAuthorOnOpus;
 
 + (int)getTipUseTimesLimitInGeniusMode;
++ (int)getHomeHotOpusCount;
+
 @end

@@ -382,7 +382,7 @@
 
 + (int)getAwardInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:50];
+    return [MobClickUtils getIntValueByKey:@"AWARD_COINS_IN_HAPPY_MODE" defaultValue:100];
 }
 
 + (int)getAwardInGeniusMode
@@ -397,7 +397,7 @@
 
 + (int)getDeductCoinsInHappyMode
 {
-    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_HAPPY_MODE" defaultValue:20];
+    return [MobClickUtils getIntValueByKey:@"DEDUCT_COINS_IN_HAPPY_MODE" defaultValue:10];
 }
 
 + (int)getDeductCoinsInGeniusMode
@@ -1115,14 +1115,13 @@
 */
     return [MobClickUtils getIntValueByKey:@"CACHED_ACTION_COUNT" defaultValue:700];
 }
-+ (int)minUndoActionCount
-{
++ (int)minUndoActionCount{
 
-#ifdef DEBUG
-    return 20;
-#endif
+//#ifdef DEBUG
+//    return 10;
+//#endif
 
-    return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"MIN_UNDO_ACTION_COUNT" defaultValue:10];
 }
 
 + (BOOL)enableWordFilter
@@ -1177,6 +1176,11 @@
 + (int)getTipUseTimesLimitInGeniusMode{
     
     return [MobClickUtils getIntValueByKey:@"TIP_USE_TIMES_IN_GENIUS_MODE" defaultValue:5];
+}
+
++ (int)getHomeHotOpusCount
+{
+    return [MobClickUtils getIntValueByKey:@"HOME_HOT_OPUS_COUNT" defaultValue:12];
 }
 
 @end

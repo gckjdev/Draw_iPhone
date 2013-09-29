@@ -294,8 +294,11 @@
         
         [[BulletinService defaultService] syncBulletins:^(int resultCode) {
             PPDebug(@"sync bulletin done, update header view panel");
-            [self.homeHeaderPanel updateView];
+            StatisticManager *manager = [StatisticManager defaultManager];
+            [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
         }];
+        
+        [self.homeHeaderPanel updateView];
     }];
     
     [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
@@ -571,12 +574,19 @@
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type
 {
-    PPDebug(@"<homeMainMenuPanel>, click type = %d", type);
-    if (type != HomeMenuTypeDrawDraw && [self isRegistered] == NO) {
-        [self toRegister];
-        return;
+    
+    NSArray *noCheckedTypes = @[@(HomeMenuTypeDrawDraw),
+                                @(HomeMenuTypeDrawContest),
+                                @(HomeMenuTypeDrawBBS),
+                                @(HomeMenuTypeDrawRank),
+                                @(HomeMenuTypeDrawGuess),
+                                @(HomeMenuTypeDrawMore),
+                                ];
+    
+    if (![noCheckedTypes containsObject:@(type)]) {
+        CHECK_AND_LOGIN(self.view);
     }
-
+    
     switch (type) {
         case HomeMenuTypeDrawGame:
         {

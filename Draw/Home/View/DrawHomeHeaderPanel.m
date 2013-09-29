@@ -11,6 +11,7 @@
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
 #import "StableView.h"
+#import "ConfigManager.h"
 
 @interface OpusButton : UIButton
 @property(nonatomic, assign)DrawFeed *opus;
@@ -43,6 +44,8 @@
 
 #define ROPE_X (ISIPAD?666:284)
 
+#define HEADER_OPUS_COUNT       ([ConfigManager getHomeHotOpusCount])
+
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
     DrawHomeHeaderPanel *panel = [self createViewWithXibIdentifier:[self getViewIdentifier]];
@@ -73,6 +76,8 @@
 {
     [self.tableView reloadData];
     return;
+    
+    /*
     if (self.status == DrawHeaderPanelStatusClose) {
         [self.tableView reloadData];
     }else if(self.status == DrawHeaderPanelStatusOpen){
@@ -80,6 +85,7 @@
     }else {
         [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:2.1];
     }
+     */
 }
 
 - (void)didGetFeedList:(NSArray *)feedList feedListType:(FeedListType)type resultCode:(NSInteger)resultCode
@@ -115,10 +121,20 @@
     [self initRope];
     
     [self updateFrameForClose];
-    self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
-    [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:18 delegate:self];
-    [self updateView];
+    
+    [self reloadLocalCache];
+    [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:HEADER_OPUS_COUNT delegate:self];
     [self updateBG];
+}
+
+#define RELOAD_SECONDS         (60*10)
+
+- (void)reloadLocalCache
+{
+    PPDebug(@"<reloadLocalCache>");
+    self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
+    [self reloadView];
+    [self performSelector:@selector(reloadLocalCache) withObject:nil afterDelay:RELOAD_SECONDS]; // call self to make timer
 }
 
 - (void)updateBG
@@ -136,6 +152,11 @@
 
 - (void)updateView
 {
+    [[FeedService defaultService] getFeedList:FeedListTypeHot
+                                       offset:0
+                                        limit:HEADER_OPUS_COUNT
+                                     delegate:self];
+
     [self.rope startAnimation];
 }
 

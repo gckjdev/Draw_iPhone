@@ -64,7 +64,7 @@ AUTO_CREATE_VIEW_BY_XIB(GameItemDetailView);
     label.backgroundColor = [UIColor clearColor];
     label.font = view.discountLabel.font;
     label.textColor = view.discountLabel.textColor;
-    label.numberOfLines = 0;
+    label.numberOfLines = INT_MAX;
     NSString *desc = [@"          " stringByAppendingString:NSLS(item.desc)];
 
 

@@ -1,0 +1,25 @@
+1. set cell background color.
+
+2. textView contentSize
+
+3. image
+
+4. modules @import  2.3x
+
+
+
+
+
+//    if (ISIOS7) {
+//        [application setStatusBarStyle:UIStatusBarStyleLightContent];
+//        self.window.clipsToBounds =YES;
+//        CGRect frame = self.window.frame;
+//        frame.origin.y = 20;
+//        frame.size.height -= 20;
+//        self.window.frame = frame;
+//    }
+
+UIViewControllerBasedStatusBarAppearance = NO
+
+
+automaticallyAdjustsScrollViewInsets

@@ -1064,6 +1064,9 @@
 "kXiaojiPasswordCannotEmpty" = "密码不能为空";
 "kXiaojiNumberNotFound" = "小吉号码不存在";
 "kXiaojiPasswordIncorrect" = "密码不正确，请检查";
+"kChangeAccount" = "切换账号中...";
+"kAccountManage" = "账号管理";
+"kAddAccount" = "新账号";
 
 "kGetNumberTipsLabelText" = "首次使用，请领取小吉号码\n或使用已有号码登录";
 "kTakeNumberButtonTitle" = "领            取";
@@ -1103,7 +1106,7 @@
 "kAutoGetUserSucc" = "已经成功自动获取之前绑定本设备的用户资料";
 "kLogouting" = "退出帐号中...";
 "kLogoutFailure" = "退出帐号失败，请检查你的网络或者稍后再试";
-
+"kQuitTips" = "请注意，你还有%d幅草稿在草稿箱中，草稿是本地保存的，不随帐号退出变化";
 
 "kNoXiaojiNumber" = "未有小吉号码";
 "kXiaoji" = "小吉";

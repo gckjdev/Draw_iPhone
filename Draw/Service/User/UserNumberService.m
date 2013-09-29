@@ -153,15 +153,13 @@ static UserNumberService* _defaultUserService;
     });
 }
 
-- (void)loginUser:(NSString*)number password:(NSString*)password block:(UserNumberServiceResultBlock)block
+- (void)loginUser:(NSString*)number encodedPassword:(NSString*)password block:(UserNumberServiceResultBlock)block
 {
-    
     if ([number length] == 0 || [password length] == 0){
         EXECUTE_BLOCK(block, ERROR_XIAOJI_NUMBER_NULL, nil);
         return;
     }
-    
-    NSString* encodePassword = [password encodeMD5Base64:PASSWORD_KEY];
+    NSString* encodePassword = password;    
     NSString* deviceModel = [[UIDevice currentDevice] model];
     NSString* deviceOS = [DeviceDetection deviceOS];
     NSString* newDeviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
@@ -182,11 +180,12 @@ static UserNumberService* _defaultUserService;
                                                                          parameters:para];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-
+            
             if (output.resultCode == 0){
                 PBGameUser* user = [output.pbResponse user];
                 if (user != nil){
                     [[UserManager defaultManager] storeUserData:user];
+                    [UserManager addUserToHistoryList:user];
                 }
                 else{
                     output.resultCode = ERROR_USER_DATA_NULL;
@@ -196,6 +195,17 @@ static UserNumberService* _defaultUserService;
             EXECUTE_BLOCK(block, output.resultCode, number);
         });
     });
+
+}
+
+- (void)loginUser:(NSString*)number password:(NSString*)password block:(UserNumberServiceResultBlock)block
+{    
+    if ([number length] == 0 || [password length] == 0){
+        EXECUTE_BLOCK(block, ERROR_XIAOJI_NUMBER_NULL, nil);
+        return;
+    }
+    NSString* encodePassword = [password encodeMD5Base64:PASSWORD_KEY];
+    [self loginUser:number encodedPassword:encodePassword block:block];
 }
 
 - (void)askForLogout

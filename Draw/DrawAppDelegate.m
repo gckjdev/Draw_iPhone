@@ -107,7 +107,6 @@ NSString* GlobalGetServerURL()
 //    }
 
 #endif
-
     
     return [ConfigManager getAPIServerURL];
 }
@@ -384,6 +383,15 @@ NSString* GlobalGetBoardServerURL()
     // 比赛的local notification通知
     if ([ConfigManager getGuessContestLocalNotificationEnabled]) {
         [self scheduleLocalNotificationForGuessContest];
+    }
+    
+    if (ISIOS7) {
+//        [application setStatusBarStyle:UIStatusBarStyleLightContent];
+        self.window.clipsToBounds =YES;
+        CGRect frame = self.window.frame;
+        frame.origin.y = 20;
+        frame.size.height -= 20;
+        self.window.frame = frame;
     }
     
     return YES;

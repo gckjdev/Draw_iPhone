@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6676613E-5634-4ACE-897C-75597B454B29</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Draw</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0F254DD1-9076-468D-9CDA-B9319F790EAF</key>
+		<string>ssh://github.com/gckjdev/Common_iPhone_20.git</string>
+		<key>C1B8A48A-0E9A-46D4-A9DB-9CCAB1F01999</key>
+		<string>ssh://github.com/gckjdev/Draw_iPhone.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Draw.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0F254DD1-9076-468D-9CDA-B9319F790EAF</key>
+		<string>../../../Common_iPhone_20</string>
+		<key>C1B8A48A-0E9A-46D4-A9DB-9CCAB1F01999</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/gckjdev/Draw_iPhone.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C1B8A48A-0E9A-46D4-A9DB-9CCAB1F01999</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0F254DD1-9076-468D-9CDA-B9319F790EAF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Common_iPhone_20</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C1B8A48A-0E9A-46D4-A9DB-9CCAB1F01999</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Draw_iPhone</string>
+		</dict>
+	</array>
+</dict>
+</plist>

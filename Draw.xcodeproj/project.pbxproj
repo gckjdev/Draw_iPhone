@@ -4976,6 +4976,10 @@
 		CA745D301503B1B500600024 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D2F1503B1B500600024 /* main.m */; };
 		CA745D331503B1B500600024 /* DrawAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA745D321503B1B500600024 /* DrawAppDelegate.m */; };
 		CA745D361503B1B500600024 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA745D341503B1B500600024 /* MainWindow.xib */; };
+		CA76134517F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
+		CA76134617F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
+		CA76134717F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
+		CA76134817F57420007A251E /* HPointList.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA76134417F57420007A251E /* HPointList.mm */; };
 		CA766D5A17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
 		CA766D5B17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
 		CA766D5C17A15EB600D60E3D /* CPMotionRecognizingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */; };
@@ -5504,6 +5508,18 @@
 		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
 		EA1F283A16F0941E00066E37 /* PriceView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283916F0941E00066E37 /* PriceView~ipad.xib */; };
+		EA2A7CDE17F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CDF17F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2A7CDC17F676AB00ED508D /* AccountManageController.m */; };
+		EA2A7CE217F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CE317F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CE417F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */; };
+		EA2A7CEC17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
+		EA2A7CED17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
+		EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
+		EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA2A7CEB17F6958600ED508D /* AccountCell.xib */; };
 		EA372344162018DA00FC6F3E /* UserLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA372342162018DA00FC6F3E /* UserLocationController.xib */; };
 		EA3F4D4D16EF298900E9A2FD /* StoreController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */; };
 		EA3F4D5416EF299600E9A2FD /* StoreCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA3F4D5316EF299600E9A2FD /* StoreCell~ipad.xib */; };
@@ -8939,6 +8955,8 @@
 		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
 		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
 		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
+		CA76134317F57420007A251E /* HPointList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPointList.h; sourceTree = "<group>"; };
+		CA76134417F57420007A251E /* HPointList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HPointList.mm; sourceTree = "<group>"; };
 		CA766D5517A15EB600D60E3D /* CPMotionRecognizingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMotionRecognizingWindow.h; sourceTree = "<group>"; };
 		CA766D5617A15EB600D60E3D /* CPMotionRecognizingWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPMotionRecognizingWindow.m; sourceTree = "<group>"; };
 		CA766D5717A15EB600D60E3D /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
@@ -9606,6 +9624,10 @@
 		EA23F5FA16E878070018786B /* ChargeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChargeCell.h; sourceTree = "<group>"; };
 		EA23F5FB16E878070018786B /* ChargeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChargeCell.m; sourceTree = "<group>"; };
 		EA23F5FC16E878070018786B /* ChargeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChargeCell.xib; sourceTree = "<group>"; };
+		EA2A7CDB17F676AB00ED508D /* AccountManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageController.h; sourceTree = "<group>"; };
+		EA2A7CDC17F676AB00ED508D /* AccountManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageController.m; sourceTree = "<group>"; };
+		EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountManageController.xib; sourceTree = "<group>"; };
+		EA2A7CEB17F6958600ED508D /* AccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountCell.xib; sourceTree = "<group>"; };
 		EA372340162018D900FC6F3E /* UserLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationController.h; sourceTree = "<group>"; };
 		EA372342162018DA00FC6F3E /* UserLocationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserLocationController.xib; sourceTree = "<group>"; };
 		EA3F4D4C16EF298900E9A2FD /* StoreController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "StoreController~ipad.xib"; sourceTree = "<group>"; };
@@ -13692,6 +13714,10 @@
 		CA1041E11509B6E700F60C03 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				EA2A7CDB17F676AB00ED508D /* AccountManageController.h */,
+				EA2A7CDC17F676AB00ED508D /* AccountManageController.m */,
+				EA2A7CDD17F676AB00ED508D /* AccountManageController.xib */,
+				EA2A7CEB17F6958600ED508D /* AccountCell.xib */,
 				CA1041FA1509BF4700F60C03 /* RegisterUserController.h */,
 				CA1041FB1509BF4700F60C03 /* RegisterUserController.m */,
 				CA1041FC1509BF4700F60C03 /* RegisterUserController.xib */,
@@ -13754,6 +13780,8 @@
 		CA1041E81509B99A00F60C03 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA76134317F57420007A251E /* HPointList.h */,
+				CA76134417F57420007A251E /* HPointList.mm */,
 				CAEFC49616FD64DB00D799B7 /* Shape */,
 				CA35FF4416F867AC00D8E05D /* CanvasRect */,
 				CA35FF2016F8672100D8E05D /* DrawAction */,
@@ -17626,6 +17654,8 @@
 				A42F4A2B17E9732C009774FC /* DrawDefault-568h@2x.png in Resources */,
 				A42F4A2F17E9732C009774FC /* DrawDefault-Portrait.png in Resources */,
 				A42F4A3317E9732C009774FC /* DrawDefault@2x.png in Resources */,
+				EA2A7CE417F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18491,6 +18521,8 @@
 				CADB1EF417EDDACA0048698F /* little_gee_icon_76.png in Resources */,
 				CADB1EF517EDDACA0048698F /* little_gee_icon_120.png in Resources */,
 				CADB1EF617EDDACA0048698F /* little_gee_icon_152.png in Resources */,
+				EA2A7CE317F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CED17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19338,6 +19370,8 @@
 				CADB1EEE17EB49CF0048698F /* icon76.png in Resources */,
 				CADB1EEF17EB49D00048698F /* icon120.png in Resources */,
 				CADB1EF017EB49D00048698F /* icon152.png in Resources */,
+				EA2A7CE217F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CEC17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20152,6 +20186,8 @@
 				A42F4A2C17E9732C009774FC /* DrawDefault-568h@2x.png in Resources */,
 				A42F4A3017E9732C009774FC /* DrawDefault-Portrait.png in Resources */,
 				A42F4A3417E9732C009774FC /* DrawDefault@2x.png in Resources */,
+				EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */,
+				EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20977,6 +21013,8 @@
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67A17E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134717F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CE017F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21773,6 +21811,8 @@
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67917E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134617F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CDF17F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22575,6 +22615,8 @@
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67817E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134517F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CDE17F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23351,6 +23393,8 @@
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,
 				CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */,
+				CA76134817F57420007A251E /* HPointList.mm in Sources */,
+				EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23744,8 +23788,8 @@
 					"./Draw/GameServer/ProtocolBuffer/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PROVISIONING_PROFILE = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8B18D76F-50BA-471C-B18C-66FEF85EEE8B";
+				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "./Draw/GameServer/ProtocolBuffer/**";
@@ -23759,7 +23803,7 @@
 					armv7,
 					armv6,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COMPRESS_PNG_FILES = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
@@ -23773,7 +23817,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -23847,8 +23891,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lingzhe Peng (LPN7A567X3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -23898,8 +23942,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9BF68064-1DE4-44C5-A3A6-74D2CA30E46C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9BF68064-1DE4-44C5-A3A6-74D2CA30E46C";
+				PROVISIONING_PROFILE = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D3E3C65-E145-47C7-BB9A-53FA7CEA0E6F";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

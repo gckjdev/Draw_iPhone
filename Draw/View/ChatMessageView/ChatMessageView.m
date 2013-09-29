@@ -54,7 +54,7 @@
     UILabel *label = [self reuseLabelWithTag:LABEL_TAG frame:CGRectMake(0, 0, 1, 1) font:FONT_MESSAGE text:txt];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextColor:TEXT_COLOR];
-    [label setNumberOfLines:0];
+    [label setNumberOfLines:INT_MAX];
     [label sizeToFit];
     [label updateHeight:MSG_SPACE+(CGRectGetHeight(label.frame))];
     return label;

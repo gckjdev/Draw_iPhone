@@ -47,4 +47,22 @@ AUTO_CREATE_VIEW_BY_XIB(TwoInputFieldView);
     return YES;
 }
 
+
++ (CommonDialog *)loginViewWithNumber:(NSString *)number passWord:(NSString *)passWord
+{
+    TwoInputFieldView *rpDialog = [TwoInputFieldView create];
+    
+    rpDialog.textField1.placeholder = NSLS(@"kLoginXiaojiPlaceHolder");
+    rpDialog.textField2.placeholder = NSLS(@"kLoginPasswordPlaceHolder");
+    rpDialog.textField1.text = number;
+    rpDialog.textField2.text = passWord;
+    
+    rpDialog.textField2.secureTextEntry = YES;
+    
+    rpDialog.textField1.keyboardType = UIKeyboardTypeNumberPad;
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kLoginXiaoji") customView:rpDialog style:CommonDialogStyleDoubleButtonWithCross];
+    
+    return dialog;
+
+}
 @end

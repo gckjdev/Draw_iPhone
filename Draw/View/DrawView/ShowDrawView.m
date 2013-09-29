@@ -447,7 +447,7 @@
             
             double delay = (CACurrentMediaTime() - _playFrameTime - self.playSpeed);
             delay = MIN(self.playSpeed, delay);
-            delay = MAX(0, self.playSpeed);
+            delay = MAX(0, delay);
             
             [self performSelector:@selector(playNextFrame) withObject:nil afterDelay:delay];
 

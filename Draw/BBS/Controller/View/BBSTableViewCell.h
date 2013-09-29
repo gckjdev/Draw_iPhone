@@ -12,6 +12,8 @@
 //#define ISIPAD [DeviceDetection isIPAD]
 #define IMAGE_HEIGHT (ISIPAD ? 80 * 2.33 : 80)
 
+#define PLACEHOLDER_IMAGE [[ShareImageManager defaultManager] unloadBg]
+
 @protocol BBSTableViewCellDelegate <NSObject>
 
 @optional

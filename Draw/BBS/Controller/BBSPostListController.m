@@ -213,6 +213,7 @@
     [super viewDidUnload];
 }
 - (IBAction)clickCreatePostButton:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     if (self.bbsBoard) {
         [CreatePostController enterControllerWithBoard:self.bbsBoard fromController:self].delegate = self;
     }else{
@@ -352,6 +353,7 @@
 	}
     PBBBSPost *post = [self postForIndexPath:indexPath];
     [cell updateCellWithBBSPost:post];
+    cell.backgroundColor = [UIColor clearColor];
 	return cell;
 	
 }

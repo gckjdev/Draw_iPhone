@@ -153,11 +153,13 @@
 }
 
 - (IBAction)clickMyPostList:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
                                                fromController:self];
 }
 
 - (IBAction)clickMyAction:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     [[StatisticManager defaultManager] setBbsActionCount:0];
     [BBSActionListController enterActionListControllerFromController:self animated:YES];
 }
@@ -287,7 +289,7 @@
     PBBBSBoard *sBoard = [self boardForIndexPath:indexPath];
     BOOL flag = [self isIndexPathLastCell:indexPath];
     [cell updateCellWithBoard:sBoard isLastBoard:flag];
-    
+    cell.backgroundColor = [UIColor clearColor];
 	return cell;
 	
 }

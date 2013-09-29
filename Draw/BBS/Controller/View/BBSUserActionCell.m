@@ -64,11 +64,11 @@
 
 - (void)initViews
 {
-    self.content.numberOfLines = 0;
+    self.content.numberOfLines = INT_MAX;
     self.content.font = CONTENT_FONT;
     [self.content setLineBreakMode:NSLineBreakByCharWrapping];
 
-    self.source.numberOfLines = 0;
+    self.source.numberOfLines = INT_MAX;
     [self.source setLineBreakMode:NSLineBreakByTruncatingTail];
     self.source.font = SOURCE_FONT;
     [self.source setTextColor:[[BBSColorManager defaultManager]
@@ -173,7 +173,7 @@
 
     //set image frame
     if (action.content.hasThumbImage) {
-        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:PLACEHOLDER_IMAGE success:^(UIImage *image, BOOL cached) {
             [self updateImageViewFrameWithImage:image];
         } failure:^(NSError *error) {
             

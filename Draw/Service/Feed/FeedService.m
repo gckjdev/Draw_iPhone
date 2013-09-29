@@ -139,7 +139,7 @@ static FeedService *_staticFeedService = nil;
     
     FeedListType feedListType = FeedListTypeIdList;
     
-    dispatch_async(workingQueue, ^{
+    dispatch_async(getFeedListQueue, ^{
         
         // add by Benson
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];

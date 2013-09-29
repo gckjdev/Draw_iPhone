@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PointNode.h"
+#import "HPointList.h"
 
 #define RELEASE_PATH(p)  PPCGPathRelease(p)
 
@@ -20,7 +21,8 @@
 
 @protocol PenEffectProtocol <NSObject>
 
-- (void)constructPath:(NSArray*)pointList inRect:(CGRect)rect;
+//- (void)constructPath:(NSArray*)pointList inRect:(CGRect)rect;
+- (void)constructPath:(HPointList*)pointList inRect:(CGRect)rect;
 - (CGPathRef)penPath;
 - (BOOL)hasPoint;
 

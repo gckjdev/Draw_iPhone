@@ -23,6 +23,7 @@
 }
 - (void)excute
 {
+    CHECK_AND_LOGIN(self.controller.view);
     PPDebug(@"<BBSPostCommand>excute, no action");
 }
 - (NSString *)name
@@ -47,6 +48,7 @@
 
 @implementation BBSPostSupportCommand
 -(void)excute{
+    CHECK_AND_LOGIN(self.controller.view);
     [[BBSService defaultService] createActionWithPostId:self.post.postId
                                                 PostUid:self.post.postUid
                                                postText:self.post.postText
@@ -77,7 +79,7 @@
 
 @implementation BBSPostReplyCommand
 -(void)excute{
-    
+    CHECK_AND_LOGIN(self.controller.view);
 #ifdef DEBUG
     [BBSActionListController showReplyActions:self.controller postId:self.post.postId postUserId:self.post.postUid sourceAction:nil];
     return;
@@ -142,6 +144,7 @@
 }
 
 -(void)excute{
+    CHECK_AND_LOGIN(self.controller.view);
     NSArray *nameList = [self optionBoardNameList];
     BBSActionSheet *sheet = [[BBSActionSheet alloc] initWithTitles:nameList delegate:self];
     [sheet showInView:self.controller.view
@@ -171,7 +174,7 @@
 
 
 -(void)excute{
-    
+    CHECK_AND_LOGIN(self.controller.view);
     
     BBSPostStatus status = BBSPostStatusTop;
     
@@ -221,6 +224,7 @@
 }
 
 -(void)excute{
+    CHECK_AND_LOGIN(self.controller.view);
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"kDeletePostAlertTitle") message:NSLS(@"kDeletePostAlertMessage") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil];
     [alert show];
     PPRelease(alert);

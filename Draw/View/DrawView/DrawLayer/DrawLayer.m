@@ -183,7 +183,7 @@
     if (_supportCache) {
         int count = [_drawActionList count];
         if(count - self.offscreen.actionCount > _cachedCount * 2){
-//            PPDebug(@"<finishLastAction> action count = %d, reach cached count", count);
+            PPDebug(@"<finishLastAction> action count = %d, reach cached count", count);
             int endIndex = count - _cachedCount;
             for(int i = _offscreen.actionCount; i < endIndex; ++ i){
                 DrawAction *drawAction = [_drawActionList objectAtIndex:i];
@@ -413,7 +413,7 @@
     CGRect rect = CGRectMake(r[0], r[1], r[2], r[3]);
     NSString *name = [NSString stringWithUTF8String:layer->name];
 
-    BOOL cached = (layer->tag == MAIN_LAYER_TAG || layer->tag == DEFAULT_LAYER_TAG);
+    BOOL cached = YES;
     
     DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect drawInfo:nil tag:layer->tag name:name suportCache:cached];
     l.opacity = layer->alpha;

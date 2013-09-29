@@ -170,7 +170,7 @@
 	}
     PBBBSAction *action = [self actionForIndexPath:indexPath];
     [cell updateCellWithBBSAction:action];
-    
+    cell.backgroundColor = [UIColor clearColor];
 	return cell;
 	
 }

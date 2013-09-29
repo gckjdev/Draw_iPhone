@@ -168,7 +168,7 @@
     [infoView updateCenterX:centerX];
     [infoView updateOriginY:(originY)];
     
-    originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
+//    originY += infoView.frame.size.height + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
     originY = CGRectGetMaxY(infoView.frame) + GAP_Y_BETWEEN_INFO_VIEW_AND_BUTTON;
 
 
@@ -376,7 +376,7 @@
     }
     
     _messageLabel.text = message;
-    _messageLabel.numberOfLines = 0;
+    _messageLabel.numberOfLines = INT_MAX;
     CGSize cSize = CGSizeMake(_messageLabel.frame.size.width, MESSAGE_LABEL_MAX_HEIGHT);
     [_messageLabel wrapTextWithConstrainedSize:cSize];
     

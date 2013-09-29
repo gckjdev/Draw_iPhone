@@ -17,7 +17,7 @@
 
 + (id)obj
 {
-    return [[ReplayObject alloc] autorelease];
+    return [[[ReplayObject alloc] init] autorelease];
 }
 
 - (void)dealloc
@@ -89,8 +89,8 @@
 
 - (void)showInController:(PPViewController *)controller
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    self.frame = CGRectOffset([[UIScreen mainScreen] bounds], 0, -20);
+//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+//    self.frame = CGRectOffset([[UIScreen mainScreen] bounds], 0, -20);
     DrawHolderView *holderView = (id)self.showView.superview;
     holderView.autoresizingMask = (1<<6)-1;
     if (holderView == nil) {
@@ -99,6 +99,7 @@
     }
     [self insertSubview:holderView atIndex:0];
     [controller.view addSubview:self];
+    self.frame = controller.view.bounds;
 
     if (_replayObj.isNewVersion) {
         POSTMSG(NSLS(@"kNewDrawVersionTip"));
@@ -121,7 +122,7 @@
 }
 
 - (IBAction)close:(id)sender {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     [(PPViewController *)[self theViewController] setCanDragBack:YES];
     self.showView.delegate = nil;
     [self.showView stop];
