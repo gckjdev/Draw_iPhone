@@ -26,7 +26,6 @@
 
 @interface GuessService : CommonService
 
-//@property (assign, nonatomic) id<GuessServiceDelegate> delegate;
 
 + (GuessService *)defaultService;
 
