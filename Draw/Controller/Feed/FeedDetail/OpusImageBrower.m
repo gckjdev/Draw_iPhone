@@ -31,8 +31,7 @@
 
 @interface OpusImageBrower()
 @property (retain, nonatomic) NSArray *feedList;
-//@property (assign, nonatomic) UIScrollView *scrollView;
-@property (assign, nonatomic) PageScrollView *pageScroller;
+@property (retain, nonatomic) PageScrollView *pageScroller;
 
 @end
 
@@ -40,6 +39,7 @@
 
 - (void)dealloc {
     [_feedList release];
+    [_pageScroller release];
     [super dealloc];
 }
 
@@ -206,6 +206,8 @@
     pageIndicator.text = [NSString stringWithFormat:@"[%d/%d]", index+1, [_feedList count]];
     [view addSubview:pageIndicator];
     
+    pageIndicator.hidden = YES;
+    
     return view;
 }
 
@@ -278,13 +280,11 @@
 - (void)pageScrollView:(PageScrollView *)csView didClickOnPage:(UIView *)view atIndex:(NSInteger)index{
     
     if ([_delegate respondsToSelector:@selector(brower:didSelecteFeed:)]) {
-        [self removeFromSuperview];
         DrawFeed *feed = [_feedList objectAtIndex:index];
         [_delegate brower:self didSelecteFeed:feed];
-
+        [self removeFromSuperview];
     }
 }
-
 
 - (NSInteger)numberOfPagesInPageScrollView:(PageScrollView *)psView{
     

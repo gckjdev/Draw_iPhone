@@ -624,7 +624,30 @@
     return index;
 }
 
+#define KEY_GENIUS_MODE_TIP_USE_TIMES @"KEY_GENIUS_MODE_TIP_USE_TIMES"
 
++ (void)incTipUseTimes{
+    
+    int times = [self getTipUseTimes];
+    times ++;
+    
+    NSString *key = KEY_GENIUS_MODE_TIP_USE_TIMES;
+    [[[UserManager defaultManager] userDefaults] setObject:@(times) forKey:key];
+}
+
++ (void)clearTipUseTimes{
+    
+    NSString *key = KEY_GENIUS_MODE_TIP_USE_TIMES;
+    [[[UserManager defaultManager] userDefaults] setObject:@(0) forKey:key];
+}
+
+
++ (int)getTipUseTimes{
+    
+    NSString *key = KEY_GENIUS_MODE_TIP_USE_TIMES;
+    NSNumber *number = [[[UserManager defaultManager] userDefaults] objectForKey:key];
+    return number.intValue;
+}
 
 
 @end

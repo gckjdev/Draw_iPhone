@@ -50,8 +50,9 @@
 #import "ContestManager.h"
 #import "JudgerScoreView.h"
 #import "DrawPlayer.h"
+#import "OpusImageBrower.h"
 
-@interface ShowFeedController () {
+@interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
     ShareAction *_shareAction;
@@ -913,6 +914,20 @@ typedef enum{
     [self initTabButtons];
     [self reloadView];
     [self setShowTipsDisable:YES];
+    
+    [self showOpusImageBrower];
+}
+
+- (void)showOpusImageBrower{
+    
+    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:@[self.feed]] autorelease];
+    brower.delegate = self;
+    [brower showInView:self.view];
+}
+
+
+- (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed{
+    
 }
 
 

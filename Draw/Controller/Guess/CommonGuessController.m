@@ -28,6 +28,7 @@
 #import "CustomInfoView.h"
 #import "TimeUtils.h"
 #import "ShareImageManager.h"
+#import "GuessManager.h"
 
 @interface CommonGuessController (){
     PBUserGuessMode _mode;
@@ -109,6 +110,10 @@
     [self.toolBoxButton setBackgroundImage:UIThemeImageNamed(@"item_box@2x.png") forState:UIControlStateNormal];
 
     [self setCanDragBack:NO];
+    
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        self.tipButton.enabled = [GuessManager getTipUseTimes] < [ConfigManager getTipUseTimesLimitInGeniusMode];
+    }
 }
 
 
@@ -202,6 +207,10 @@
 - (void)didGuessCorrect:(NSString *)word{
     
     [self submitWords:YES];
+    
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        [GuessManager clearTipUseTimes];
+    }
 
     [OpusGuessRecorder setOpusAsGuessed:_opus.pbOpus.opusId];
     
@@ -252,6 +261,10 @@
             if (isBuy) {
                 [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
             }
+            if (_mode == PBUserGuessModeGuessModeGenius) {
+                [GuessManager incTipUseTimes];
+            }
+            
         }else if (ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
         }else{

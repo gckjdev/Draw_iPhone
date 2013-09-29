@@ -1174,4 +1174,9 @@
     return [MobClickUtils getBoolValueByKey:@"SHOW_AUTHOR_ON_OPUS" defaultValue:YES];
 }
 
++ (int)getTipUseTimesLimitInGeniusMode{
+    
+    return [MobClickUtils getIntValueByKey:@"TIP_USE_TIMES_IN_GENIUS_MODE" defaultValue:5];
+}
+
 @end
