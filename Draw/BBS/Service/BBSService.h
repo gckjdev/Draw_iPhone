@@ -14,6 +14,9 @@ typedef enum{
     RangeTypeHot = 1,
 }RangeType;
 
+
+typedef void (^BBSGetPostResultHandler) (NSInteger resultCode, NSArray *postList, NSInteger tag);
+
 @protocol BBSServiceDelegate <NSObject>
 
 @optional
@@ -114,6 +117,12 @@ typedef enum{
                             limit:(NSInteger)limit
                          delegate:(id<BBSServiceDelegate>)delegate;
 
+- (void)searchPostListWithBoardId:(NSString *)boardId
+                          keyWord:(BOOL)keyWords
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                              tag:(NSInteger)tag
+                          hanlder:(BBSGetPostResultHandler)handler;
 
 
 //- (void)pay
