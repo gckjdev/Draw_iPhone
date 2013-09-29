@@ -268,7 +268,12 @@
             if (isBuy) {
                 
                 if (_mode == PBUserGuessModeGuessModeGenius) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndLeftTimes"), price, leftTipTimes] delayTime:2];
+                    
+                    NSString *message = leftTipTimes <= 0 ?
+                    [NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndNoLeftTips"), price]
+                    :[NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndLeftTipsTimes"), price, leftTipTimes];
+                    
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
                 }else{
                     [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
                 }
@@ -276,7 +281,12 @@
             }else{
                 
                 if (_mode == PBUserGuessModeGuessModeGenius) {
-                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kLeftTipTimes"), leftTipTimes] delayTime:2];
+                    
+                    NSString *message = leftTipTimes <= 0 ?
+                    [NSString stringWithFormat:NSLS(@"kNoLeftTips")]
+                    :[NSString stringWithFormat:NSLS(@"kLeftTipsTimes"), leftTipTimes];
+                    
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
                 }
             }
 

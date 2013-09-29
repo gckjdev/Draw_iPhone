@@ -466,7 +466,6 @@
     NSString *message = [NSString stringWithFormat:NSLS(@"kGeniusGuessRulesDetil"),
                [GuessManager getDeductCoins:PBUserGuessModeGuessModeGenius],
                          
-               [ConfigManager getTipUseTimesLimitInGeniusMode],
                          
                [GuessManager getCountGeniusModeAwardOnce],
                [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] mode:PBUserGuessModeGuessModeGenius],
@@ -477,7 +476,9 @@
                [GuessManager getCountGeniusModeAwardOnce] * 3,
                [GuessManager awardCoins:[GuessManager getCountHappyModeAwardOnce] * 3 mode:PBUserGuessModeGuessModeGenius],
 
-               [GuessManager getGuessExpireTime:PBUserGuessModeGuessModeGenius]];
+               [GuessManager getGuessExpireTime:PBUserGuessModeGuessModeGenius],
+                         
+               [ConfigManager getTipUseTimesLimitInGeniusMode]];
     
     return message;
 }
