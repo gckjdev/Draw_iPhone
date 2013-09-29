@@ -726,21 +726,18 @@ typedef enum{
             EDIT = -1;
         }
         SHARE_AS_PHOTO = index++;
-//        SHARE_AS_GIF = index++;
         REPLAY = index++;
         DELETE = index++;
+        
 #if DEBUG
         if (![self isDraftTab]) {
             EDIT = index++;
-            CANCEL = index ++;
         }
-#else
+#endif
         DELETE_ALL = index++;
         DELETE_ALL_MINE = index++;
         DELETE_ALL_DRAFT = index++;
         CANCEL = index++;
-
-#endif
 
     }
     else{
