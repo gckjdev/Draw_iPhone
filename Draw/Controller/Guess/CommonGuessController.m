@@ -257,14 +257,39 @@
     __block typeof (self) bself = self;
     [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
+            
             [_wordInputView bombHalf];
-            if (isBuy) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
-            }
             
             if (_mode == PBUserGuessModeGuessModeGenius) {
                 [GuessManager incTipUseTimes];
             }
+            int leftTipTimes = [ConfigManager getTipUseTimesLimitInGeniusMode] - [GuessManager getTipUseTimes];
+            
+            if (isBuy) {
+                
+                if (_mode == PBUserGuessModeGuessModeGenius) {
+                    
+                    NSString *message = leftTipTimes <= 0 ?
+                    [NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndNoLeftTips"), price]
+                    :[NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndLeftTipsTimes"), price, leftTipTimes];
+                    
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
+                }else{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+                }
+
+            }else{
+                
+                if (_mode == PBUserGuessModeGuessModeGenius) {
+                    
+                    NSString *message = leftTipTimes <= 0 ?
+                    [NSString stringWithFormat:NSLS(@"kNoLeftTips")]
+                    :[NSString stringWithFormat:NSLS(@"kLeftTipsTimes"), leftTipTimes];
+                    
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
+                }
+            }
+
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
         }else{

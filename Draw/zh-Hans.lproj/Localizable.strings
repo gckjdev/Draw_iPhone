@@ -1234,6 +1234,12 @@
 "kDrawFreeCoinsAwardNote" = "恭喜你获得%d金币 + %d鲜花 + %d锦囊(剩余次数:%d)";
 
 "kBuyABagAndUse" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。";
+"kBuyABagAndUseAndLeftTipsTimes" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。\n\n本关卡你还可以使用%d次锦囊";
+"kBuyABagAndUseAndNoLeftTips" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。\n\n本关卡的锦囊已经用完啦，可以向你的小伙伴求助哦！";
+
+"kLeftTipsTimes" = "本关卡你还可以使用%d次锦囊";
+"kNoLeftTips" = "本关卡的锦囊已经用完啦，可以向你的小伙伴求助哦！";
+
 "kChoseWeixinOption" = "分享到微信";
 "kShareOpus" = "分享一幅作品";
 "kDrawAPicture" = "画一幅画";
@@ -1526,7 +1532,7 @@
 "kGuessRules" = "规则说明";
 
 "kHappyGuessRulesDetil" = "花费:  %d金币\n\n奖励:  %d金币/每%d幅\n\n时限:  %d小时内\n\n确定开始吗？\n";
-"kGeniusGuessRulesDetil" = "花费:  %d金币\n\n规则:  连续猜中，不得猜错\n\n奖励:\n连续猜中%d幅, 奖励%d金币\n连续猜中%d幅, 奖励%d金币\n连续猜中%d幅, 奖励%d金币\n以此类推\n\n时限:  %d小时内\n\n确定开始吗？\n";
+"kGeniusGuessRulesDetil" = "花费:  %d金币\n\n规则:  连续猜中，不得猜错\n\n奖励:\n连续猜中%d幅, 奖励%d金币\n连续猜中%d幅, 奖励%d金币\n连续猜中%d幅, 奖励%d金币\n以此类推\n\n时限:  %d小时内\n\n锦囊:  限用%d个\n\n确定开始吗？\n";
 
 "kContestGuessRulesDetil" = "花费:  %d金币\n\n排名:  猜对作品数/耗时\n\n奖励:\n第1名:  总奖金 * 50%%\n第2~4名:  总奖金*10%%\n第5~10名:  总奖金*1.67%%\n前15%%:  分享剩余奖金\n\n总奖金:  参赛用户*70\n\n确定开始吗？\n";
 

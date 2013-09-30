@@ -382,7 +382,7 @@ NSString* GlobalGetBoardServerURL()
     
     // 比赛的local notification通知
     if ([ConfigManager getGuessContestLocalNotificationEnabled]) {
-        [self scheduleLocalNotificationForGuessContest];
+//        [[GuessService defaultService] getGuessContestListWithDelegate:self];
     }
     
     if (ISIOS7) {
@@ -397,9 +397,15 @@ NSString* GlobalGetBoardServerURL()
     return YES;
 }
 
-- (void)scheduleLocalNotificationForGuessContest{
+- (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode{
     
-    NSDate *date = [GuessManager getContestBeginTime];
+    PBContest *contest = [list objectAtIndex:0];
+    [self scheduleLocalNotificationForGuessContest:contest];
+}
+
+- (void)scheduleLocalNotificationForGuessContest:(PBContest *)contest{
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:contest.startDate];
     [LocalNotificationUtil scheduleLocalNotificationWithFireDate:date alertBody:NSLS(@"kGuessContestBeginTip") repeatInterval:kCFCalendarUnitDay userInfo:@{
      }];
 }
