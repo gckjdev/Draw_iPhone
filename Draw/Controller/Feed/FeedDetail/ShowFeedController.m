@@ -672,9 +672,10 @@ typedef enum{
     __block ShowFeedController * cp = self;
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
+        [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];        
         [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
         [cp.commentHeader setSelectedType:CommentTypeGuess];
-        [cp hideActivity];        
+        [cp hideActivity];
     }];
 }
 
@@ -683,6 +684,7 @@ typedef enum{
     __block ShowFeedController * cp = self;
 
     [self loadDrawDataWithHanlder:^{
+        [[self.footerView buttonWithType:FooterTypeReplay] setUserInteractionEnabled:YES];
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
             cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
@@ -718,13 +720,18 @@ typedef enum{
 {
     switch (type) {
         case FooterTypeGuess:            
-            CHECK_AND_LOGIN(self.view);
-            
+        {
+            CHECK_AND_LOGIN(self.view);            
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
+            button.userInteractionEnabled = NO;
             break;
+        }
         case FooterTypeReplay:
+        {
             [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
+            button.userInteractionEnabled = NO;
             break;
+        }
         case FooterTypeComment:
         {
             CHECK_AND_LOGIN(self.view);
