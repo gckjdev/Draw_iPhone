@@ -10,48 +10,31 @@
 #import "Draw.pb.h"
 #import "DrawUtils.h"
 #include <vector>
+#include <list>
 
 using std::vector;
+using std::list;
 
 @interface HPointList ()
 {
     vector<float> xList;
     vector<float> yList;
+
+//    list<float> xList;
+//    list<float> yList;
+
 }
 
 @end
 
 @implementation HPointList
 
+- (id)init
+{
+    self = [super init];
+    return self;
+}
 
-//#define RECT_SPAN_WIDTH 10
-//- (BOOL)spanRect:(CGRect)rect ContainsPoint:(CGPoint)point
-//{
-//    rect.origin.x -= RECT_SPAN_WIDTH;
-//    rect.origin.y -= RECT_SPAN_WIDTH;
-//    rect.size.width += RECT_SPAN_WIDTH*2;
-//    rect.size.height += RECT_SPAN_WIDTH*2;
-//    return CGRectContainsPoint(rect, point);
-//}
-//
-//
-//- (BOOL)pointInRect:(CGRect)rect
-//{
-//    if (!CGRectContainsPoint(rect, _point)){
-//
-//        if (![self spanRect:rect ContainsPoint:_point]) {
-//            PPDebug(@"<pointInRect> Detect Incorrect Point = %@, Skip It", NSStringFromCGPoint(_point));
-//            return NO;
-//        }
-//        _point.x = MAX(_point.x, 0);
-//        _point.y = MAX(_point.y, 0);
-//        _point.x = MIN(_point.x, CGRectGetWidth(rect));
-//        _point.y = MIN(_point.y, CGRectGetHeight(rect));
-//        PPDebug(@"<pointInRect> Change Point to %@", NSStringFromCGPoint(_point));
-//    }
-//    return YES;
-//}
-//
 - (void)dealloc
 {
     [super dealloc];
@@ -65,17 +48,20 @@ using std::vector;
 
 - (float)getPointX:(int)index
 {
-    return xList.at(index);
+//    return xList.at(index);
+    return xList[index];
 }
 
 - (float)getPointY:(int)index
 {
-    return yList.at(index);
+//    return yList.at(index);
+    return yList[index];
 }
 
 - (CGPoint)pointAtIndex:(int)index
 {
-    return CGPointMake(xList.at(index), yList.at(index));
+//    return CGPointMake(xList.at(index), yList.at(index));
+    return CGPointMake(xList[index], yList[index]);
 }
 
 - (int)count
@@ -93,7 +79,9 @@ using std::vector;
         for (int i=0; i<size; i++){
             [*pointXList addObject:@(xList[i])];
             [*pointYList addObject:@(yList[i])];
-        }        
+//            [*pointXList addObject:@(xList.at(i))];
+//            [*pointYList addObject:@(yList.at(i))];
+        }
     }    
 }
 
@@ -104,137 +92,33 @@ using std::vector;
         for (int i=0; i<size; i++){
             floatXList[i] = xList[i];
             floatYList[i] = yList[i];
+//            floatXList[i] = xList.at(i);
+//            floatYList[i] = yList.at(i);
         }
     }
 }
 
 - (CGPoint)lastPoint
 {
-    int index = xList.size();
-    if (index <= 0){
-        return ILLEGAL_POINT;
-    }
-    return CGPointMake(xList.at(index-1), yList.at(index-1));
+//    int index = xList.size();
+//    if (index <= 0){
+//        return ILLEGAL_POINT;
+//    }
+//    return CGPointMake(xList.at(index-1), yList.at(index-1));
+    return CGPointMake(xList.back(), yList.back());
 }
 
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [aCoder encodeCGPoint:self.point forKey:@"CGPointKey"];
-//}
-//- (id)initWithCoder:(NSCoder *)aDecoder
-//{
-//    self = [super init];
-//    if (self) {
-//        self.point = [aDecoder decodeCGPointForKey:@"CGPointKey"];
-//    }
-//    return self;
-//}
-//
-//- (id)init
-//{
-//    self = [super init];
-//    if (self) {
-//        self.point = CGPointZero;
-//    }
-//    return self;
-//}
-//
-//- (id)initPointWithX:(CGFloat)x Y:(CGFloat)y
-//{
-//    self = [super init];
-//    _point.x = x;
-//    _point.y = y;
-//    return self;
-//}
-//
-//- (CGFloat)x
-//{
-//    return _point.x;
-//}
-//
-//- (CGFloat)y
-//{
-//    return _point.y;
-//}
-//- (void)setX:(CGFloat)x
-//{
-//    _point.x = x;
-//}
-//- (void)setY:(CGFloat)y
-//{
-//    _point.y = y;
-//}
-//
-//+ (id)pointWithCGPoint:(CGPoint)point
-//{
-//    PointNode *node = [[[PointNode alloc] init] autorelease];
-//    [node setPoint:point];
-//    return node ;
-//}
-//
-//+ (id)pointWithPBPoint:(PBPoint *)point
-//{
-//    PointNode *node = [[[PointNode alloc] init] autorelease];
-//    node.x = point.x;
-//    node.y = point.y;
-//    return node ;
-//}
-//
-//- (NSInteger)toCompressPoint
-//{
-//    return [DrawUtils compressPointWithX:self.x y:self.y];
-//}
-//
-//- (NSInteger)toCompressPointWithXScale:(CGFloat)xScale yScale:(CGFloat)yScale
-//{
-//    return [DrawUtils compressPointWithX:self.x * xScale y:self.y * yScale];
-//}
-//
-//- (PBPoint *)toPBPoint
-//{
-//    PBPoint_Builder *builder = [[PBPoint_Builder alloc] init];
-//    [builder setX:self.x];
-//    [builder setY:self.y];
-//    PBPoint *p = [builder build];
-//    PPRelease(builder);
-//    return p;
-//}
-//
-//- (PointNode *)scaleX:(CGFloat)scale
-//{
-//    self.x *= scale;
-//    return self;
-//}
-//- (PointNode *)scaleY:(CGFloat)scale
-//{
-//    self.y *= scale;
-//    return self;
-//}
-//
-//- (id)copy
-//{
-//    return [[PointNode pointWithCGPoint:self.point] retain];
-//}
-//
-//- (BOOL)equalsToPoint:(PointNode *)point
-//{
-//    return self.x == point.x && self.y == point.y;
-//}
-//
-//- (CGFloat)distancWithPoint:(PointNode *)point
-//{
-//    return sqrtf(powf(self.x - point.x, 2) + powf(self.y - point.y, 2));
-//}
-//
-//+ (PointNode *)illegalPoint
-//{
-//    PointNode *illegal = [PointNode pointWithCGPoint:ILLEGAL_POINT];
-//    return illegal;
-//}
-//+ (PointNode *)zeroPoint
-//{
-//    PointNode *zero = [PointNode pointWithCGPoint:CGPointZero];
-//    return zero;
-//}
+- (void)complete
+{
+    
+    // performance vs. memory
+    
+//    vector<float> tmpX(xList);
+//    vector<float> tmpY(yList);
+//    
+//    xList.swap(tmpX);
+//    yList.swap(tmpY);
+    
+}
 
 @end
