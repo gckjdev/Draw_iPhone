@@ -49,7 +49,7 @@
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetLineJoin(context, kCGLineJoinRound);
 
-    if (self.shadow) {
+    if ([self needShowShadow]) {
         CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
         [self.shape drawInContext:context];
@@ -144,7 +144,9 @@
     [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypeShape;
     [self.shape updatePBDrawActionC:pbDrawActionC];
-    [self.shadow updatePBDrawActionC:pbDrawActionC];
+    if ([self needShowShadow]) {
+        [self.shadow updatePBDrawActionC:pbDrawActionC];
+    }
     if (self.clipAction) {
         pbDrawActionC->has_cliptag = 1;
         pbDrawActionC->cliptag = self.clipAction.clipTag;

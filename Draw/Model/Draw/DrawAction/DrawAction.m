@@ -52,7 +52,16 @@
      return [self isKindOfClass:[ChangeBGImageAction class]];
 }
 
-
+- (BOOL)needShowShadow
+{
+    if (self.shadow) {
+        if(CGSizeEqualToSize((self.shadow.offset), CGSizeZero) && _shadow.blur == 0){
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
+}
 
 - (void)setCanvasSize:(CGSize)canvasSize
 {

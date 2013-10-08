@@ -43,7 +43,7 @@
             self.endPoint = CGPointMake(x, y);
 
         }
-        
+        _canUpdatePoints = NO;
     }
     return self;
 }
@@ -69,7 +69,9 @@
 
 - (void)updatePointsWithDegreeAndDivision
 {
-    calGradientPoints(_rect, _degree, &_startPoint, &_endPoint);
+    if (_canUpdatePoints) {
+        calGradientPoints(_rect, _degree, &_startPoint, &_endPoint);        
+    }
 }
 
 - (CGRect)rect
@@ -99,6 +101,7 @@
         self.startColor = sc;
         self.endColor = ec;
         self.division = division;
+        _canUpdatePoints = YES;
         [self updatePointsWithDegreeAndDivision];
     }
     return self;

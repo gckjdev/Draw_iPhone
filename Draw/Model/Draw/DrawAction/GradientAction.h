@@ -13,6 +13,7 @@
 @interface Gradient : NSObject
 {
     CGFloat _degree;
+    BOOL _canUpdatePoints;
 //    CGRect _rect;
 }
 
