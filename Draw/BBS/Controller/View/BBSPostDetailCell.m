@@ -188,12 +188,16 @@
     //reset the size
   
     if (content.hasThumbImage) {
-        [self.image setImageWithURL:content.thumbImageURL
-                   placeholderImage:PLACEHOLDER_IMAGE
-                            success:^(UIImage *image, BOOL cached) {
+//        [self.image setImageWithURL:content.thumbImageURL
+//                   placeholderImage:PLACEHOLDER_IMAGE
+//                            success:^(UIImage *image, BOOL cached) {
+//            [self updateImageViewFrameWithImage:image];
+//        } failure:^(NSError *error) {
+//            
+//        }];
+        
+        [self.image setImageWithURL:content.thumbImageURL placeholderImage:PLACEHOLDER_IMAGE completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             [self updateImageViewFrameWithImage:image];
-        } failure:^(NSError *error) {
-            
         }];
 
         self.image.hidden = NO;

@@ -10,6 +10,7 @@
 #import "AudioManager.h"
 #import "HPThemeManager.h"
 #import "UIImageUtil.h"
+#import "WordManager.h"
 
 #define BUTTON_WIDTH (ISIPAD ? 70 : 30)
 #define BUTTON_HEIGHT BUTTON_WIDTH
@@ -225,7 +226,8 @@
     
     for (int index = 0; index < [_answer length]; index ++) {
         UIButton *button = [self answerButtonWithIndex:index];
-        NSString *ch = [button titleForState:UIControlStateNormal];
+        NSString *ch = [self getButtonTitle:button];
+
         if (ch == nil) {
             return button;
         }
@@ -275,7 +277,7 @@
         
         CGRect frame = CGRectMake(originX, originY, width, height);
         UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
-        [button setTitle:ch forState:UIControlStateNormal];
+        [self setButton:button title:ch];
         button.titleLabel.font = FONT;
         [button setTitleColor:_candidateColor forState:UIControlStateNormal];
         
@@ -328,7 +330,8 @@
         button.transform = CGAffineTransformIdentity;
     }];
     
-    NSString *ch = [[[button titleForState:UIControlStateNormal] copy] autorelease];
+    NSString *ch = [self getButtonTitle:button];
+
     PPDebug(@"click candidate character: %@", ch);
     
     if (ch == nil) {
@@ -340,7 +343,7 @@
         return;
     }
     
-    [button setTitle:nil forState:UIControlStateNormal];
+    [self setButton:button title:nil];
     button.enabled = NO;
     
     [[AudioManager defaultManager] playSoundByName:_clickSound];
@@ -351,24 +354,37 @@
     UIButton *moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
     moveButton.frame = button.bounds;
     moveButton.center = startPoint;
-    [moveButton setTitle:ch forState:UIControlStateNormal];
+    [self setButton:moveButton title:ch];
     moveButton.titleLabel.font = FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self addSubview:moveButton];
 
-    [answerButton setTitle:@"" forState:UIControlStateNormal];
+    [self setButton:answerButton title:@""];
 
     [UIView animateWithDuration:0.3 animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
         moveButton.center = endPoint;
     } completion:^(BOOL finished) {
         [moveButton removeFromSuperview];
-        [answerButton setTitle:ch forState:UIControlStateNormal];
+        [self setButton:answerButton title:ch];
         [answerButton setEnabled:YES];
         
         [self detectWord];
     }];    
+}
+
+- (void)setButton:(UIButton *)button title:(NSString *)title{
+    
+    NSString *ltitle = [LocaleUtils isTraditionalChinese] ? [WordManager changeToTraditionalChinese:title] : title;
+    
+    [button setTitle:ltitle forState:UIControlStateNormal];
+    [button setTitle:title forState:UIControlStateSelected];
+}
+
+- (NSString *)getButtonTitle:(UIButton *)button{
+    
+    return [[[button titleForState:UIControlStateSelected] copy] autorelease];
 }
 
 - (void)candidateButtonTouchUpOutSide:(UIButton *)button{
@@ -390,11 +406,7 @@
     NSString *word = @"";
     for (int index = 0; index < [_answer length]; index ++) {
         UIButton *button = [self answerButtonWithIndex:index];
-        NSString *ch = [button titleForState:UIControlStateNormal];
-//        if (ch.length == 0) {
-//            return;
-//        }
-//        word = [word stringByAppendingString:ch];
+        NSString *ch = [self getButtonTitle:button];
         
         if (ch != nil) {
             word = [word stringByAppendingString:ch];
@@ -474,7 +486,8 @@
         button.transform = CGAffineTransformIdentity;
     }];
     
-    NSString *ch = [[[button titleForState:UIControlStateNormal] copy] autorelease];
+    NSString *ch = [self getButtonTitle:button];
+
     PPDebug(@"click answer character: %@", ch);
     
     if (ch == nil) {
@@ -486,14 +499,14 @@
         return;
     }
 
-    [button setTitle:nil forState:UIControlStateNormal];
+    [self setButton:button title:nil];
     button.enabled = NO;
         
     CGPoint startPoint = [_answerView convertPoint:button.center toView:self];
     CGPoint endPoint = [_candidateView convertPoint:candidateButton.center toView:self];
 
     UIButton *moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [moveButton setTitle:ch forState:UIControlStateNormal];
+    [self setButton:moveButton title:ch];
     moveButton.titleLabel.font = FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
@@ -501,14 +514,14 @@
     moveButton.center = startPoint;
     [self addSubview:moveButton];
     
-    [candidateButton setTitle:@"" forState:UIControlStateNormal];
+    [self setButton:candidateButton title:@""];
     
     [UIView animateWithDuration:0.3 animations:^{
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
         moveButton.center = endPoint;
     } completion:^(BOOL finished) {
         [moveButton removeFromSuperview];
-        [candidateButton setTitle:ch forState:UIControlStateNormal];
+        [self setButton:candidateButton title:ch];
         candidateButton.enabled = YES;
     }];
 
@@ -541,7 +554,7 @@
             button = [self candidateButtonWithIndex:index];
             
             // 找到character对应的button, 把character设置回去。
-            if ([button titleForState:UIControlStateNormal] == nil) {
+            if ([self getButtonTitle:button] == nil) {
                 return button;
             }
             
@@ -577,7 +590,7 @@
     
     for (int index = 0; index < [_answer length]; index ++) {
         UIButton *button = [self answerButtonWithIndex:index];
-        [button setTitle:nil forState:UIControlStateNormal];
+        [self setButton:button title:nil];
         button.enabled = NO;
     }
 }
@@ -589,7 +602,7 @@
         NSString *ch = [_candidates substringWithRange:NSMakeRange(index, 1)];
         
         UIButton *button = [self candidateButtonWithIndex:index];
-        [button setTitle:ch forState:UIControlStateNormal];
+        [self setButton:button title:ch];
         button.enabled = YES;
     }
 }

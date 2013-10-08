@@ -57,21 +57,38 @@
     //        }
     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
     [self setBackgroundColor:OPAQUE_COLOR(231, 231, 231)];
-    [self.imageView setImageWithURL:[NSURL URLWithString:url]
-                   placeholderImage:defaultImage
-                            success:^(UIImage *image, BOOL cached) {
-                                if (!cached) {
-                                    self.imageView.alpha = 0;
-                                }
-                                
-                                [UIView animateWithDuration:1 animations:^{
-                                    self.imageView.alpha = 1.0;
-                                }];
-                                //            feed.largeImage = image;
-                                [self.imageView setImage:image];
-                            } failure:^(NSError *error) {
-                                self.imageView.alpha = 1;
-                            }];
+//    [self.imageView setImageWithURL:[NSURL URLWithString:url]
+//                   placeholderImage:defaultImage
+//                            success:^(UIImage *image, BOOL cached) {
+//                                if (!cached) {
+//                                    self.imageView.alpha = 0;
+//                                }
+//                                
+//                                [UIView animateWithDuration:1 animations:^{
+//                                    self.imageView.alpha = 1.0;
+//                                }];
+//                                //            feed.largeImage = image;
+//                                [self.imageView setImage:image];
+//                            } failure:^(NSError *error) {
+//                                self.imageView.alpha = 1;
+//                            }];
+    
+    
+    [self.imageView setImageWithURL:[NSURL URLWithString:url] placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+       
+        if (error == nil) {
+            if (cacheType == SDImageCacheTypeNone) {
+                self.imageView.alpha = 0;
+            }
+
+            [UIView animateWithDuration:1 animations:^{
+                self.imageView.alpha = 1.0;
+            }];
+            [self.imageView setImage:image];
+        }else{
+            self.imageView.alpha = 1;
+        }
+    }];
 }
 
 

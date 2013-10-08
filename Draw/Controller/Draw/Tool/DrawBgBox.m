@@ -273,10 +273,14 @@ CGPoint boxContentOffset;
         if (image) {
             [button setImage:image forState:UIControlStateNormal];
         }else{
-            [button.imageView setImageWithURL:bg.remoteURL success:^(UIImage *image, BOOL cached) {
+//            [button.imageView setImageWithURL:bg.remoteURL success:^(UIImage *image, BOOL cached) {
+//                [button setImage:image forState:UIControlStateNormal];
+//            } failure:^(NSError *error) {
+//                
+//            }];
+            
+            [button.imageView setImageWithURL:[NSURL URLWithString:bg.remoteUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 [button setImage:image forState:UIControlStateNormal];
-            } failure:^(NSError *error) {
-                
             }];
         }
         ++ i;

@@ -94,9 +94,13 @@
 //    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
     
     [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusButton.center];
-    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-        [self hideActivity];
-    } failure:^(NSError *error) {
+//    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+//        [self hideActivity];
+//    } failure:^(NSError *error) {
+//        [self hideActivity];
+//    }];
+    
+    [self.opusButton setImageWithURL:url forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         [self hideActivity];
     }];
     

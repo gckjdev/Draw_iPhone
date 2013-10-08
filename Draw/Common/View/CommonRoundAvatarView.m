@@ -66,8 +66,10 @@
 {
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
-    CGFloat wEdge = -progressView.progressBarWidth;//width / EDGE_WIDTH_TIMES;
-    CGFloat hEdge = -progressView.progressBarWidth;//height / EDGE_HEIGHT_TIMES;
+//    CGFloat wEdge = -progressView.progressBarWidth;//width / EDGE_WIDTH_TIMES;
+//    CGFloat hEdge = -progressView.progressBarWidth;//height / EDGE_HEIGHT_TIMES;
+    CGFloat wEdge = -width*progressView.thicknessRatio;
+    CGFloat hEdge = -height*progressView.thicknessRatio;
     return CGRectMake(wEdge*2, hEdge*2, width - 4 * wEdge, height - 4 * hEdge);
 }
 
@@ -102,12 +104,14 @@
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
-        progressView.progressBarWidth = width*0.10;
+//        progressView.progressBarWidth = width*0.10;
+        progressView.thicknessRatio = 0.10;
+
         [progressView setFrame:[self calAvatarFrame]];
         progressView.trackTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
         progressView.progressTintColor = [UIColor greenColor];
         progressView.hidden = YES;
-        progressView.clockwise = YES;
+//        progressView.clockwise = YES;
         [self addSubview:progressView];
         
         int pointSize = [DeviceDetection isIPAD]?32:16;
@@ -156,12 +160,13 @@
         [self addSubview:imageView];
         
         progressView = [[DACircularProgressView alloc] init];
-        progressView.progressBarWidth = width*0.10;
+//        progressView.progressBarWidth = width*0.10;
+        progressView.thicknessRatio = 0.10;
         [progressView setFrame:[self calAvatarFrame]];
         progressView.trackTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
         progressView.progressTintColor = [UIColor greenColor];
         progressView.hidden = YES;
-        progressView.clockwise = YES;
+//        progressView.clockwise = YES;
         [self addSubview:progressView];
         
         int pointSize = [DeviceDetection isIPAD]?32:16;
@@ -199,12 +204,12 @@
     _currentProgress = progress;
 }
 
-- (void)setProgressBarWidth:(CGFloat)width
-{
-    progressView.progressBarWidth = MIN(self.bounds.size.width, self.bounds.size.height) * width;
-    [progressView setFrame:[self calAvatarFrame]];
-    
-}
+//- (void)setProgressBarWidth:(CGFloat)width
+//{
+//    progressView.progressBarWidth = MIN(self.bounds.size.width, self.bounds.size.height) * width;
+//    [progressView setFrame:[self calAvatarFrame]];
+//    
+//}
 
 - (void)setProgressHidden:(BOOL)hidden
 {

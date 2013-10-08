@@ -143,12 +143,18 @@
 
   
     if (content.hasThumbImage) {
-        [self.image setImageWithURL:content.thumbImageURL
-                   placeholderImage:PLACEHOLDER_IMAGE
-                            success:^(UIImage *image, BOOL cached) {
-                                [self updateImageViewFrameWithImage:image];
-                            } failure:^(NSError *error) {
-                                
+//        [self.image setImageWithURL:content.thumbImageURL
+//                   placeholderImage:PLACEHOLDER_IMAGE
+//                            success:^(UIImage *image, BOOL cached) {
+//                                [self updateImageViewFrameWithImage:image];
+//                            } failure:^(NSError *error) {
+//                                
+//        }];
+        
+        [self.image setImageWithURL:content.thumbImageURL placeholderImage:PLACEHOLDER_IMAGE completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            if (error == nil) {
+                [self updateImageViewFrameWithImage:image];
+            }
         }];
 
         self.image.hidden = NO;

@@ -78,21 +78,38 @@
         
         __block typeof (self)bself = self;
         
-        [[SDWebImageManager sharedManager] downloadWithURL:url delegate:self options:0 success:^(UIImage *image, BOOL cached) {
+//        [[SDWebImageManager sharedManager] downloadWithURL:url delegate:self options:0 success:^(UIImage *image, BOOL cached) {
+//            
+//            bself.image = image;
+//            NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
+//            
+//            BOOL result=[[image data] writeToFile:path atomically:YES];
+//            if (result) {
+//                self.imageFilePath = path;
+//            }
+//            else{
+//                PPDebug(@"<initWithFeed> fail to create image file at %@", path);
+//            }
+//
+//        } failure:NULL];
+        
+        [[SDWebImageManager sharedManager] downloadWithURL:url options:0 progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
             
-            bself.image = image;
-            NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
-            
-            BOOL result=[[image data] writeToFile:path atomically:YES];
-            if (result) {
-                self.imageFilePath = path;
+            if (finished && error == nil) {
+
+                bself.image = image;
+                NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
+
+                BOOL result=[[image data] writeToFile:path atomically:YES];
+                if (result) {
+                    self.imageFilePath = path;
+                }
+                else{
+                    PPDebug(@"<initWithFeed> fail to create image file at %@", path);
+                }
             }
-            else{
-                PPDebug(@"<initWithFeed> fail to create image file at %@", path);
-            }
-            
-        } failure:NULL];
-            
+        }];
+        
         CommonImageManager *manager = [CommonImageManager defaultManager];
                 
         self.allActions = @[@[@(ShareActionTagAlbum), NSLS(@"kAlbum"), manager.albumImage],

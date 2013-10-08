@@ -142,10 +142,12 @@
         [view addSubview:thumbImageView];
         [thumbImageView release];
         
-        [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-        } failure:^(NSError *error) {
-            
-        }];
+//        [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+//        } failure:^(NSError *error) {
+//            
+//        }];
+        
+        [thumbImageView setImageWithURL:thumbUrl placeholderImage:nil completed:NULL];
         
         indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         indicator.center = CGPointMake(PAGE_WIDTH/2, PAGE_HEIGHT/2);
@@ -155,29 +157,55 @@
     
     if (url != nil) {
         
-        [opusImageView setImageWithURL:url placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-            [opusImageView updateWidth:MIN(image.size.width, PAGE_WIDTH)];
-            [opusImageView updateHeight:MIN(image.size.height, PAGE_HEIGHT)];
-            opusImageView.center = CGRectGetCenter(view.bounds);//CGPointMake(PAGE_WIDTH/2, PAGE_HEIGHT/2);
-            [indicator stopAnimating];
-            
-            if (!cached) {
-                opusImageView.alpha = 0;
-                
-                [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    thumbImageView.frame = opusImageView.frame;
-                    //                thumbImageView.alpha = 0;
-                } completion:^(BOOL finished) {
+//        [opusImageView setImageWithURL:url placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+//            [opusImageView updateWidth:MIN(image.size.width, PAGE_WIDTH)];
+//            [opusImageView updateHeight:MIN(image.size.height, PAGE_HEIGHT)];
+//            opusImageView.center = CGRectGetCenter(view.bounds);//CGPointMake(PAGE_WIDTH/2, PAGE_HEIGHT/2);
+//            [indicator stopAnimating];
+//            
+//            if (!cached) {
+//                opusImageView.alpha = 0;
+//                
+//                [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                    thumbImageView.frame = opusImageView.frame;
+//                    //                thumbImageView.alpha = 0;
+//                } completion:^(BOOL finished) {
+//                    [thumbImageView removeFromSuperview];
+//                    opusImageView.alpha = 1;
+//                }];
+//            }else{
+//                [thumbImageView removeFromSuperview];
+//            }
+//            
+//        } failure:^(NSError *error) {
+//            [indicator stopAnimating];
+//        }];
+        
+        [opusImageView setImageWithURL:url placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+           
+            if (error == nil) {
+                [opusImageView updateWidth:MIN(image.size.width, PAGE_WIDTH)];
+                [opusImageView updateHeight:MIN(image.size.height, PAGE_HEIGHT)];
+                opusImageView.center = CGRectGetCenter(view.bounds);//CGPointMake(PAGE_WIDTH/2, PAGE_HEIGHT/2);
+                [indicator stopAnimating];
+
+                if (cacheType == SDImageCacheTypeNone) {
+                    opusImageView.alpha = 0;
+
+                    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        thumbImageView.frame = opusImageView.frame;
+                    } completion:^(BOOL finished) {
+                        [thumbImageView removeFromSuperview];
+                        opusImageView.alpha = 1;
+                    }];
+                }else{
                     [thumbImageView removeFromSuperview];
-                    opusImageView.alpha = 1;
-                }];
+                }
             }else{
-                [thumbImageView removeFromSuperview];
+                [indicator stopAnimating];
             }
-            
-        } failure:^(NSError *error) {
-            [indicator stopAnimating];
         }];
+        
     }
     
     int yGap = (ISIPAD ? 40 : 20);

@@ -47,7 +47,7 @@ typedef enum {
 - (void)setImage:(UIImage *)image;
 - (void)setAvatarUrl:(NSString *)url gender:(BOOL)gender;
 - (void)setCurrentProgress:(CGFloat)progress;
-- (void)setProgressBarWidth:(CGFloat)width;
+//- (void)setProgressBarWidth:(CGFloat)width;
 - (void)setProgressHidden:(BOOL)hidden;
 - (void)setAvatarStyle:(CommonRoundAvatarViewStyle)style;
 - (void)startReciprocol:(CFTimeInterval)reciprocolTime;

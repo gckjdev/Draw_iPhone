@@ -65,21 +65,6 @@ WordManager *GlobalGetWordManager()
 #define WORD_DIR @"word"
 #define WORD_BASE_ZIP_NAME @"wordbase.zip"
 
-/*
-+ (BOOL)needUnZip
-{
-    NSNumber *plistVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:WORD_BASE_KEY];
-    NSInteger currentVersion = [[NSUserDefaults standardUserDefaults] integerForKey:WORD_BASE_KEY];
-    
-    if (plistVersion.integerValue > currentVersion)
-        return YES;
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[WordManager wordBaseDictPath]] == NO)
-        return YES;
-    
-    return NO;
-}
-*/
 
 + (void)updateWordBaseVersion
 {
@@ -113,64 +98,8 @@ WordManager *GlobalGetWordManager()
     return [[self wordDir] stringByAppendingPathComponent:fileName];
 }
 
-/*
-+ (void)unZipFiles
-{
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    if (queue == NULL) {
-        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-    }
-                                          
-    if (queue == NULL) {
-        PPDebug(@"error:<WordManager> fail to get queue to unzip the word base file");
-        return;
-    }
-    
-    dispatch_async(queue, ^{
-        if ([WordManager needUnZip]) {
-            //get zip path
-            
-            PPDebug(@"start to unzip the word package");
-            //creat dir
-            NSString *dir = [WordManager wordDir];
-            BOOL flag = [FileUtil createDir:dir];
-            
-            if (!flag) {
-                PPDebug(@"<WordManager>:unZipFiles fail, due to failing to creating dir");
-                return;
-            }
-            
-            PPDebug(@"word dir = %@", dir);
-            
-            //copy the zip file to the dir
-            
-            flag = [FileUtil copyFileFromBundleToAppDir:WORD_BASE_ZIP_NAME appDir:dir overwrite:YES];
-            if (!flag) {
-                PPDebug(@"<WordManager>:unZipFiles fail, due to failing to copy word zip package to distination dir");
-            }
-            
-            //unzip to dir
-            NSString *zipPath = [dir stringByAppendingPathComponent:WORD_BASE_ZIP_NAME];
-            PPDebug(@"distination path = %@", zipPath);
-            flag = [SSZipArchive unzipFileAtPath:zipPath toDestination:dir];
-            
-            if (!flag) {
-                PPDebug(@"<WordManager>:unZipFiles fail, due to failing to unzip package to distination dir");
-                return;            
-            }
-            [FileUtil removeFile:zipPath];
-            [WordManager updateWordBaseVersion];
-            
-        }
-    });
-    
-}
-*/
-
-
 - (NSDictionary *)getWordBaseDictionary
 {
-//    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[self wordBaseDictPath]];
     if (self.basicWordDict == nil) {
         [self loadBasicDict];
     }
@@ -355,6 +284,9 @@ WordManager *GlobalGetWordManager()
     }
     NSString* retString = [retArray componentsJoinedByString:@""];
     [retArray release];
+    
+    
+    
     return retString;
 }
 

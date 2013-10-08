@@ -58,8 +58,6 @@
     ShareAction *_shareAction;
 }
 
-
-
 @property(nonatomic, retain) UserInfoCell *userCell;
 @property(nonatomic, retain) DrawInfoCell *drawCell;
 @property(nonatomic, retain) CommentHeaderView *commentHeader;
@@ -740,7 +738,15 @@ typedef enum{
         {
             CHECK_AND_LOGIN(self.view);
             
-            UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
+//            UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
+
+
+            UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
+            if (image == nil) {
+                image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
+            }
+
+            
             if (image == nil){
                 image = self.feed.largeImage;
             }
@@ -1081,7 +1087,7 @@ typedef enum{
 - (void)showPhotoBrower{
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    browser.canSave = YES;
+//    browser.canSave = YES;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:nc animated:YES];

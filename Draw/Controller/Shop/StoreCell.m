@@ -79,11 +79,17 @@
     }
     
     [self startAnimating];
-    [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image] placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-        [self stopAnimating];
-    } failure:^(NSError *error) {
+//    [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image] placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+//        [self stopAnimating];
+//    } failure:^(NSError *error) {
+//        [self stopAnimating];
+//    }];
+    
+    [self.itemImageView setImageWithURL:[NSURL URLWithString:item.image] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+       
         [self stopAnimating];
     }];
+    
     self.itemNameLabel.text = NSLS(item.name);
     
     CGSize withinSize = CGSizeMake(MAX_WITH_ITEM_NAME, 19);
