@@ -93,7 +93,6 @@
     
 //    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
     
-<<<<<<< HEAD
     [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusButton.center];
 //    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
 //        [self hideActivity];
@@ -105,8 +104,6 @@
         [self hideActivity];
     }];
     
-=======
->>>>>>> 8f8695e7f536e178c7559ec23be7df858d17a2f8
     // Set bgView
     SET_VIEW_BG(self.view);
     
