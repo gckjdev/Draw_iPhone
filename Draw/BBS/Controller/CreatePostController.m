@@ -349,7 +349,7 @@
     canCommit = NO;
     
     
-    [self showActivityWithText:NSLS(@"kSending")];
+    [self showActivityWithText:NSLS(@"kSending") center:self.textView.center];
     if ([self.postId length] != 0) {
         
         [[BBSService defaultService] createActionWithPostId:self.postId
@@ -431,7 +431,7 @@
 {
     self.imagePicker = [[[ChangeAvatar alloc] init] autorelease];
     [self.imagePicker setAutoRoundRect:NO];
-    [self.imagePicker setImageSize:CGSizeMake(0, 0)];
+    [self.imagePicker setImageSize:CGSizeMake(640, 960)];
     [self.imagePicker showSelectionView:self
                                delegate:self
                      selectedImageBlock:nil
@@ -439,7 +439,7 @@
                                   title:nil
                         hasRemoveOption:NO
                            canTakePhoto:YES
-                      userOriginalImage:NO];
+                      userOriginalImage:YES];
     [self.textView resignFirstResponder];
 }
 - (IBAction)clickGraffitiButton:(id)sender {
