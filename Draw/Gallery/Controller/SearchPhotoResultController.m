@@ -248,7 +248,7 @@
     _currentResult = searchResult;
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     // Modal
-    browser.canSave = NO;
+//    browser.canSave = NO;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:nc animated:YES];

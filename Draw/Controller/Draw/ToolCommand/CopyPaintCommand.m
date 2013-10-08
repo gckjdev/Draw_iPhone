@@ -51,15 +51,27 @@
 - (void)didGalleryController:(GalleryController *)galleryController SelectedUserPhoto:(PBUserPhoto *)userPhoto
 {
     __block CopyPaintCommand* cp = self;
-    [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:userPhoto.url] delegate:self options:0 success:^(UIImage *image, BOOL cached) {
-        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-        [oc setCopyPaintImage:image];
-        if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
-            [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
+//    [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:userPhoto.url] delegate:self options:0 success:^(UIImage *image, BOOL cached) {
+//        OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+//        [oc setCopyPaintImage:image];
+//        if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
+//            [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
+//        }
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
+    [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:userPhoto.url] options:0 progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+       
+        if (finished && error == nil) {
+            OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
+            [oc setCopyPaintImage:image];
+            if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
+                [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
+            }
         }
-    } failure:^(NSError *error) {
-        
     }];
+    
     [galleryController.navigationController popViewControllerAnimated:YES];
     
 }

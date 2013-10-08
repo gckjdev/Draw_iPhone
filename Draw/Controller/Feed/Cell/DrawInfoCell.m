@@ -140,10 +140,22 @@
         [self addMaskView];
         
         __block UIImage *placeholderImage = nil;
-        [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL delegate:self options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
-            placeholderImage = image;
+//        [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL delegate:self options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
+//            placeholderImage = image;
+//            
+//        } failure:NULL];
+        
+        
+        [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL options:SDWebImageCacheMemoryOnly progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
             
-        } failure:NULL];
+            if (finished && error == nil) {
+                placeholderImage = image;
+            }
+        }];
+        
+        
+        
+        
 
         if (self.feed.largeImage == nil) {
             placeholderImage = [[ShareImageManager defaultManager] unloadBg];
@@ -152,15 +164,25 @@
         }
 
         
-        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage success:^(UIImage *image, BOOL cached) {
+//        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage success:^(UIImage *image, BOOL cached) {
+//            
+//            self.feed.largeImage = image;
+//            [self updateDrawImageView:image];
+//            if (![self isSmallImageUrl:feed.drawImageUrl]) {
+//                [self loadImageFinish];
+//            }
+//
+//        } failure:NULL];
+        
+        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             
             self.feed.largeImage = image;
             [self updateDrawImageView:image];
             if (![self isSmallImageUrl:feed.drawImageUrl]) {
                 [self loadImageFinish];
             }
-
-        } failure:NULL];
+        }];
+        
         return;
     }
 }

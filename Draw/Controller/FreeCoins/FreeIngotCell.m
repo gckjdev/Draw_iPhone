@@ -58,20 +58,40 @@ AUTO_CREATE_VIEW_BY_XIB(FreeIngotCell)
 - (void)setAppImageWithURLStr:(NSString*)urlStr
 {
     self.appImageView.alpha = 0;
-    [self.appImageView setImageWithURL:[NSURL URLWithString:urlStr]
-                      placeholderImage:nil
-                               success:^(UIImage *image, BOOL cached) {
-                                   if (!cached) {
-                                       [UIView animateWithDuration:1 animations:^{
-                                           self.appImageView.alpha = 1.0;
-                                       }];
-                                   }else{
-                                       self.appImageView.alpha = 1.0;
-                                   }
-                               }
-                               failure:^(NSError *error) {
-                                   self.appImageView.alpha = 1;
-                               }];
+    
+//    [self.appImageView setImageWithURL:[NSURL URLWithString:urlStr]
+//                      placeholderImage:nil
+//                               success:^(UIImage *image, BOOL cached) {
+//                                   if (!cached) {
+//                                       [UIView animateWithDuration:1 animations:^{
+//                                           self.appImageView.alpha = 1.0;
+//                                       }];
+//                                   }else{
+//                                       self.appImageView.alpha = 1.0;
+//                                   }
+//                               }
+//                               failure:^(NSError *error) {
+//                                   self.appImageView.alpha = 1;
+//                               }];
+    
+    [self.appImageView setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
+        if (error == nil) {
+            if (cacheType == SDImageCacheTypeNone) {
+               [UIView animateWithDuration:1 animations:^{
+                   self.appImageView.alpha = 1.0;
+               }];
+            }else{
+               self.appImageView.alpha = 1.0;
+            }
+
+        }else{
+            self.appImageView.alpha = 1;
+        }
+    }];
+    
+    
+    
     [self.appImageView.layer setCornerRadius:self.appImageView.frame.size.width*0.1];
     [self.appImageView.layer setMasksToBounds:YES];
 }

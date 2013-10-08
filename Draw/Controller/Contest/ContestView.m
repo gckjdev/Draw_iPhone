@@ -182,10 +182,14 @@
     self.webView.hidden = YES;
     
     NSURL *URL = [NSURL URLWithString:self.contest.contestUrl];
-    [self.imageView setImageWithURL:URL success:^(UIImage *image, BOOL cached) {
+//    [self.imageView setImageWithURL:URL success:^(UIImage *image, BOOL cached) {
+//        [self.activity stopAnimating];
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
+    [self.imageView setImageWithURL:URL placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         [self.activity stopAnimating];
-    } failure:^(NSError *error) {
-        
     }];
 }
 

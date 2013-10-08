@@ -49,21 +49,38 @@ AUTO_CREATE_VIEW_BY_XIB(UserPhotoView)
     if (photo) {
         self.photo = photo;
         [self.nameLabel setText:photo.name];
-        [self.photoImage setImageWithURL:[NSURL URLWithString:photo.url]
-                       placeholderImage:defaultImage
-                                success:^(UIImage *image, BOOL cached) {
-                                    if (!cached) {
-                                        self.photoImage.alpha = 0;
-                                    }
-                                    
-                                    [UIView animateWithDuration:1 animations:^{
-                                        self.photoImage.alpha = 1.0;
-                                    }];
-                                    //            feed.largeImage = image;
-                                    [self.photoImage setImage:image];
-                                } failure:^(NSError *error) {
-                                    self.photoImage.alpha = 1;
-                                }];
+//        [self.photoImage setImageWithURL:[NSURL URLWithString:photo.url]
+//                       placeholderImage:defaultImage
+//                                success:^(UIImage *image, BOOL cached) {
+//                                    if (!cached) {
+//                                        self.photoImage.alpha = 0;
+//                                    }
+//                                    
+//                                    [UIView animateWithDuration:1 animations:^{
+//                                        self.photoImage.alpha = 1.0;
+//                                    }];
+//                                    //            feed.largeImage = image;
+//                                    [self.photoImage setImage:image];
+//                                } failure:^(NSError *error) {
+//                                    self.photoImage.alpha = 1;
+//                                }];
+        
+        [self.photoImage setImageWithURL:[NSURL URLWithString:photo.url] placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+           
+            if (error == nil) {
+                if (cacheType == SDImageCacheTypeNone) {
+                    self.photoImage.alpha = 0;
+                }
+
+                [UIView animateWithDuration:1 animations:^{
+                    self.photoImage.alpha = 1.0;
+                }];
+                [self.photoImage setImage:image];
+            }else{
+                self.photoImage.alpha = 1;
+            }
+        }];
+        
         
         NSDate* date = [NSDate dateWithTimeIntervalSince1970:photo.createDate];
 //        PPDebug(@"create date = %@", [date description]);

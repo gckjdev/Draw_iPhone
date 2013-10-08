@@ -24,7 +24,7 @@ typedef enum{
 
 
 + (id)defaultManager;
-+ (void )imageForRemoteURL:(NSString *)url success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure;
+//+ (void )imageForRemoteURL:(NSString *)url success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure;
 
 - (PBDrawBg *)pbDrawBgWithId:(NSString *)drawBgId;
 - (NSString *)baseDir;

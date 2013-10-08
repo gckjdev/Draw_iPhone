@@ -8,13 +8,12 @@
 
 #import "StableView.h"
 #import "ShareImageManager.h"
-//#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
 #import "UIImageView+WebCache.h"
 #import "GameItemManager.h"
-#import "UIButton+WebCache.h"
+#import "UIButtonExt.h"
 #import "UIImageView+Extend.h"
 
 #define TOOL_VIEW_FRAM (([DeviceDetection isIPAD]) ? CGRectMake(0, 0, 61 * 1.5, 61 * 1.5) : CGRectMake(0, 0, 61, 61))

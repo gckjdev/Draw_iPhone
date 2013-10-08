@@ -136,21 +136,41 @@
 //        else{
         defaultImage = [[ShareImageManager defaultManager] unloadBg];
 //        }
-        [self.drawImage setImageWithURL:url
-                       placeholderImage:defaultImage
-                                success:^(UIImage *image, BOOL cached) {
-            if (!cached) {
-                self.drawImage.alpha = 0;
-            }
+//        [self.drawImage setImageWithURL:url
+//                       placeholderImage:defaultImage
+//                                success:^(UIImage *image, BOOL cached) {
+//            if (!cached) {
+//                self.drawImage.alpha = 0;
+//            }
+//
+//            [UIView animateWithDuration:1 animations:^{
+//                self.drawImage.alpha = 1.0;
+//            }];
+////            feed.largeImage = image;
+//            [self updateImage:image];
+//        } failure:^(NSError *error) {
+//            self.drawImage.alpha = 1;
+//        }];
+       
+       [self.drawImage setImageWithURL:url placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+          
+           if (error != nil) {
+               self.drawImage.alpha = 1;
+           }else{
+               
+                if (cacheType == SDImageCacheTypeNone) {
+                    self.drawImage.alpha = 0;
+                }
 
-            [UIView animateWithDuration:1 animations:^{
-                self.drawImage.alpha = 1.0;
-            }];
-//            feed.largeImage = image;
-            [self updateImage:image];
-        } failure:^(NSError *error) {
-            self.drawImage.alpha = 1;
-        }];
+                [UIView animateWithDuration:1 animations:^{
+                    self.drawImage.alpha = 1.0;
+                }];
+                [self updateImage:image];
+           }
+           
+       }];
+       
+       
     }else{
         PPDebug(@"<setViewInfo> Old Opus, no image to show. feedId=%@,word=%@", 
                 feed.feedId,feed.wordText);

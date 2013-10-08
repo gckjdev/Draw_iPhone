@@ -702,7 +702,7 @@
     _selectedMessage = message;
     
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    browser.canSave = YES;
+//    browser.canSave = YES;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
     nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentModalViewController:nc animated:YES];

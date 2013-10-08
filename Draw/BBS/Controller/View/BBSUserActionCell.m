@@ -173,11 +173,18 @@
 
     //set image frame
     if (action.content.hasThumbImage) {
-        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:PLACEHOLDER_IMAGE success:^(UIImage *image, BOOL cached) {
-            [self updateImageViewFrameWithImage:image];
-        } failure:^(NSError *error) {
-            
+//        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:PLACEHOLDER_IMAGE success:^(UIImage *image, BOOL cached) {
+//            [self updateImageViewFrameWithImage:image];
+//        } failure:^(NSError *error) {
+//            
+//        }];
+        
+        [self.image setImageWithURL:action.content.thumbImageURL placeholderImage:PLACEHOLDER_IMAGE completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            if (error == nil) {
+                [self updateImageViewFrameWithImage:image];
+            }
         }];
+        
         //reset image frame center
         self.image.hidden = NO;
 
