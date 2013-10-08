@@ -79,6 +79,10 @@
 - (BOOL)createMyPaintWithImage:(UIImage*)image
                         pbDraw:(PBDraw*)pbDraw;
 
+- (BOOL)createMyPaintWithImage:(UIImage*)image
+                    pbDrawData:(NSData*)pbDrawData
+                          word:(NSString*)word;
+
 - (MyPaint *)createDraft:(UIImage *)image
     pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                targetUid:(NSString *)targetUid

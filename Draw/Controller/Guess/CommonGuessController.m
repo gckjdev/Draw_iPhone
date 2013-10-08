@@ -93,6 +93,7 @@
     
 //    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
     
+<<<<<<< HEAD
     [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusButton.center];
 //    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
 //        [self hideActivity];
@@ -104,6 +105,8 @@
         [self hideActivity];
     }];
     
+=======
+>>>>>>> 8f8695e7f536e178c7559ec23be7df858d17a2f8
     // Set bgView
     SET_VIEW_BG(self.view);
     
@@ -115,9 +118,20 @@
 
     [self setCanDragBack:NO];
     
+    PPDebug(@"start loading image %@ for guess", self.opus.pbOpus.image);
+    [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusButton.center];
+    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
+        PPDebug(@"load image %@ success", self.opus.pbOpus.image);
+        [self hideActivity];
+    } failure:^(NSError *error) {
+        PPDebug(@"fail to load image %@", self.opus.pbOpus.image);
+        [self hideActivity];
+    }];
+    
     if (_mode == PBUserGuessModeGuessModeGenius) {
         self.tipButton.enabled = [GuessManager getTipUseTimes] < [ConfigManager getTipUseTimesLimitInGeniusMode];
     }
+    
 }
 
 

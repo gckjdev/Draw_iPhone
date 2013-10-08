@@ -339,7 +339,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {        
-
+    [self.homeHeaderPanel reloadLocalCache];
+    
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
     [super viewDidAppear:animated];

@@ -52,6 +52,8 @@
 //            [node release];
         }
     }
+    [pointList complete];
+    
     ItemType penType;
     if (action->cliptype == ClipTypePolygon) {
         penType = PolygonPen;

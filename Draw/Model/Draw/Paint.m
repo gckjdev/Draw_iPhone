@@ -149,6 +149,7 @@
             //this may be wrong, need test.... By Gamy
             [self addPoint:point inRect:[CanvasRect defaultRect]];
         }
+        [_hPointList complete];
     }
     return self;
 }
@@ -240,8 +241,8 @@
     CGContextSaveGState(context);
     
     [self.drawPen updateCGContext:context paint:self];
-    CGPathRef path = self.path;
-    CGContextAddPath(context, path);
+//    CGPathRef path = self.path;
+    CGContextAddPath(context, [self path]);
     CGContextStrokePath(context);
     
     CGContextRestoreGState(context);
@@ -251,6 +252,7 @@
 - (void)finishAddPoint
 {
     [[self getPen] finishAddPoint];
+    [_hPointList complete];
 }
 
 - (NSInteger)pointCount

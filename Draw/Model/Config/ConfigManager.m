@@ -1180,7 +1180,7 @@
 
 + (int)getHomeHotOpusCount
 {
-    return [MobClickUtils getIntValueByKey:@"HOME_HOT_OPUS_COUNT" defaultValue:12];
+    return [MobClickUtils getIntValueByKey:@"HOME_HOT_OPUS_COUNT" defaultValue:18];
 }
 
 @end

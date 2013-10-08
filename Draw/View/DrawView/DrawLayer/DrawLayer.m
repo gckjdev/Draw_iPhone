@@ -47,6 +47,7 @@
                                                 name:layer.layerName
                                          suportCache:layer.supportCache];
     dl.opacity = layer.opacity;
+    [dl updateFinalOpacity:layer.finalOpacity];
     return [dl autorelease];
 }
 
@@ -69,7 +70,7 @@
             self.offscreen = [Offscreen offscreenWithCapacity:0 rect:self.bounds];
         }
         _cachedCount = [ConfigManager minUndoActionCount];
-    
+        _finalOpacity = 1.0f;
     }
     return self;
 }
@@ -242,15 +243,18 @@
     
     if (_supportCache) {
         int count = [_drawActionList count];
+        time_t timestamp = time(0);
         [self.offscreen clear];
         if(count - self.offscreen.actionCount >= _cachedCount * 2){
-//            PPDebug(@"<updateWithDrawActions> action count = %d, reach cached count", count);
             int endIndex = count - _cachedCount;
+
             for(int i = _offscreen.actionCount; i < endIndex; ++ i){
-                DrawAction *drawAction = [_drawActionList objectAtIndex:i];
+                DrawAction *drawAction = _drawActionList[i];
                 [self.offscreen drawAction:drawAction clear:NO];
             }
-        } 
+        }
+
+        PPDebug(@"<updateWithDrawActions>added count = %d, finish to show. spend: %d", _offscreen.actionCount, time(0)-timestamp);
     }
     [self updateClipAction];
 }
@@ -306,6 +310,16 @@
         return action;
     }
     return nil;
+}
+
+- (CGFloat)finalOpacity
+{
+    return _finalOpacity;
+}
+
+- (void)updateFinalOpacity:(CGFloat)opacity
+{
+    _finalOpacity = opacity;
 }
 
 #define BG_LAYER_TAG 1
@@ -417,6 +431,7 @@
     
     DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect drawInfo:nil tag:layer->tag name:name suportCache:cached];
     l.opacity = layer->alpha;
+    [l updateFinalOpacity:layer->alpha];
     return [l autorelease];
 }
 - (void)updatePBLayerC:(Game__PBLayer *)layer

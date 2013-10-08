@@ -184,7 +184,7 @@
 
     //add from draw view
     if (drawAction.layerTag == 0) {
-        drawAction.layerAlpha = layer.opacity;
+        drawAction.layerAlpha = layer.opacity;        
     }else{
         //add from show view
         if (drawAction.layerAlpha != layer.opacity) {
@@ -255,6 +255,7 @@
             if ([layer isBGLayer]) {
                 [self setSelectedLayer:layer];
             }
+            [layer setOpacity:layer.finalOpacity];
         }];
         
         if (self.selectedLayer == nil) {

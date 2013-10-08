@@ -384,6 +384,7 @@
                 if (layer.clipAction) {
                     [layer exitFromClipMode];
                 }
+                [layer setOpacity:layer.finalOpacity];
             }
 
         }

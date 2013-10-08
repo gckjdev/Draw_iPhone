@@ -479,6 +479,44 @@ static MyPaintManager* _defaultManager;
 
 - (void)initMyPaint:(MyPaint *)newMyPaint
               image:(UIImage*)image
+         pbDrawData:(NSData*)pbDrawData
+               word:(NSString*)word
+{
+    NSString *imageFileName = [self imageFileName];
+    NSString *pbDataFileName = [self pbDataFileName];
+    
+    [_imageManager saveImage:image forKey:imageFileName];
+    [self saveImageAsThumb:image path:[self thumbPathFromImagePath:imageFileName]];
+    
+    [_drawDataManager saveData:pbDrawData forKey:pbDataFileName];
+    
+    
+    [newMyPaint setDataFilePath:pbDataFileName];
+    [newMyPaint setImage:imageFileName];
+    
+    BOOL drawByMe = YES; //[[UserManager defaultManager] isMe:pbDraw.userId];
+    NSString* userId = [[UserManager defaultManager] userId];
+    NSString* nickName = [[UserManager defaultManager] nickName];
+    int language = [[UserManager defaultManager] getLanguageType];
+    int level = WordLeveLMedium;
+    
+    [newMyPaint setDrawByMe:[NSNumber numberWithBool:drawByMe]];
+    [newMyPaint setDrawUserId:userId];
+    [newMyPaint setDrawUserNickName:nickName];
+    [newMyPaint setCreateDate:[NSDate date]];
+    [newMyPaint setDrawWord:word];
+    
+    // hard code here, some risk?
+    [newMyPaint setLanguage:@(language)];
+    
+    // hard code here, some risk?
+    [newMyPaint setLevel:@(level)];
+    
+    
+}
+
+- (void)initMyPaint:(MyPaint *)newMyPaint
+              image:(UIImage*)image
            drawData:(NSData*)drawData
              userId:(NSString *)userId
            nickName:(NSString *)nickName
@@ -603,6 +641,25 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     [self initMyPaint:newMyPaint
                 image:image
                pbDraw:pbDraw];
+    
+    [newMyPaint setDraft:[NSNumber numberWithBool:NO]];
+    
+    PPDebug(@"<createMyPaintWithImage> %@", [newMyPaint description]);
+    return [dataManager save];
+    
+}
+
+- (BOOL)createMyPaintWithImage:(UIImage*)image
+                    pbDrawData:(NSData*)pbDrawData
+                          word:(NSString *)word
+{
+    CoreDataManager* dataManager = GlobalGetCoreDataManager();
+    MyPaint* newMyPaint = [dataManager insert:@"MyPaint"];
+    
+    [self initMyPaint:newMyPaint
+                image:image
+           pbDrawData:pbDrawData
+                 word:word];
     
     [newMyPaint setDraft:[NSNumber numberWithBool:NO]];
     
@@ -769,7 +826,12 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
               image:(UIImage *)image
            drawData:(NSData *)drawData
 {
-    BOOL needSave = NO;
+    if ([drawData length] <= 0){
+        PPDebug(@"<updateDraft> but draw data length is 0 or nil???");
+        return NO;
+    }
+    
+    BOOL needSave = YES;  // set to always yes here by Benson 2013-10-08
     if (draft) {
         NSString *imageFileName = [draft image];
         NSString *pbDataFileName = [draft dataFilePath];
@@ -789,6 +851,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
         if ([pbDataFileName length] != 0) {
             if ([self saveDataAsPBNOCompressDrawData:draft]) {
                 [_drawDataManager saveData:drawData forKey:pbDataFileName];
+//                needSave = YES;
             }else{
                 //if old data save as action list, remove old data
                 [_drawDataManager removeDataForKey:pbDataFileName];
@@ -797,19 +860,19 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                 pbDataFileName = [self pbNoCompressDrawDataFileName];
                 [_drawDataManager saveData:drawData forKey:pbDataFileName];
                 [draft setDataFilePath:pbDataFileName];
-                needSave = YES;
+//                needSave = YES;
             }
             
         }else{
             pbDataFileName = [self pbNoCompressDrawDataFileName];
             [_drawDataManager saveData:drawData forKey:pbDataFileName];
             [draft setDataFilePath:pbDataFileName];
-            needSave = YES;
+//            needSave = YES;
         }
         
         if (needSave) {
             [draft setIsRecovery:[NSNumber numberWithBool:NO]];
-            [self save];
+            return [self save];
         }
         
     }

@@ -55,7 +55,8 @@
     if (self.paint.penType == Eraser) {
         CGContextSetBlendMode(context, kCGBlendModeClear);
     }
-    if (self.shadow && self.paint.penType != Eraser && self.paint.penType != DeprecatedEraser) {
+
+    if ([self needShowShadow] && self.paint.penType != Eraser && self.paint.penType != DeprecatedEraser) {
         CGContextBeginTransparencyLayer(context, NULL);
         [self.shadow updateContext:context];
         rect1 = [self.paint drawInContext:context inRect:rect];
@@ -64,7 +65,7 @@
     }else{
         rect1 = [self.paint drawInContext:context inRect:rect];
     }
-    CGContextRestoreGState(context);    
+    CGContextRestoreGState(context);
     return rect1;
 }
 
@@ -118,6 +119,9 @@
             }
         }
         self.type = DrawActionTypePaint;
+        
+        [pointList complete];
+
         self.paint = [Paint paintWithWidth:action->width
                                      color:nil
                                    penType:action->pentype
@@ -175,6 +179,9 @@
             }
         }
         self.type = DrawActionTypePaint;
+        
+        [pointList complete];
+        
         self.paint = [Paint paintWithWidth:action.width
                                      color:nil
                                    penType:action.penType
@@ -233,6 +240,8 @@
                 }
             }
         }
+        
+        [pointList complete];
 
         self.paint = [Paint paintWithWidth:action.width
                                      color:[action drawColor]
@@ -291,6 +300,8 @@
             }
         }
         
+        [pointList complete];
+        
         self.paint = [Paint paintWithWidth:action->width
                                      color:[DrawUtils drawColorFromPBNoCompressDrawActionC:action]  //[action drawColor]
                                    penType:action->pentype
@@ -318,7 +329,9 @@
     [super toPBDrawActionC:pbDrawActionC];
     pbDrawActionC->type = DrawActionTypePaint;
     [self.paint updatePBDrawActionC:pbDrawActionC];
-    [self.shadow updatePBDrawActionC:pbDrawActionC];
+    if ([self needShowShadow]) {
+        [self.shadow updatePBDrawActionC:pbDrawActionC];
+    }
     if (self.clipAction) {
         pbDrawActionC->has_cliptag = 1;
         pbDrawActionC->cliptag = self.clipAction.clipTag;

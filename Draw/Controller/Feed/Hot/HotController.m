@@ -453,10 +453,9 @@ typedef enum{
 
 - (void)didClickRankView:(RankView *)rankView
 {
-//    int index = [[self.currentTab dataList] indexOfObject:rankView.feed];
-//    [self showOpusImageBrower:index];
-//    return;
-
+    [self showFeed:rankView.feed];
+    
+    /* rem by Benson
     if (![[BBSPermissionManager defaultManager] canPutDrawOnCell]) {
         [self showFeed:rankView.feed];
     }else{
@@ -483,6 +482,7 @@ typedef enum{
         [sheet release];
         
     }
+     */
 }
 
 

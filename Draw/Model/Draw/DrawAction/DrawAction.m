@@ -52,7 +52,13 @@
      return [self isKindOfClass:[ChangeBGImageAction class]];
 }
 
-
+- (BOOL)needShowShadow
+{
+    if (_shadow && ![_shadow isEmpty]) {
+        return YES;
+    }
+    return NO;
+}
 
 - (void)setCanvasSize:(CGSize)canvasSize
 {
@@ -210,7 +216,8 @@
         }
 #endif
   */      
-        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {            
+        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor && action->has_shadowblur &&
+            (action->shadowoffsetx != 0 || action->shadowoffsety != 0 || action->shadowblur != 0) ) {
             self.shadow = [Shadow shadowWithIntColor:action->shadowcolor offset:CGSizeMake(action->shadowoffsetx, action->shadowoffsety) blur:action->shadowblur];
         }
     }

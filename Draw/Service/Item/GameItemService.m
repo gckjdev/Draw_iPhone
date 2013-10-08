@@ -123,7 +123,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
     }*/else if (isSingApp()){
         [self createSingTestDataFile];
     }
+    
+    // default version at
+    // [GameItemManager shopItemsFileVersion];
 }
+
+
+
+
 
 + (void)createDiceTestDataFile
 {
@@ -441,7 +448,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemService);
                                      consumeType:PBGameItemConsumeTypeNonConsumable
                                            image:DRAW_URL_ITEM_IMAGE(@"shop_item_clean_ad@2x.png")
                                             type:PBDrawItemTypeDrawNomal
-                                           price:10*1000
+                                           price:5*1000
                                         currency:PBGameCurrencyCoin //]];
                                   promotionPrice:10*1000/discount
                                        startDate:[NSDate date]

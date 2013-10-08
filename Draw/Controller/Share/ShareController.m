@@ -25,7 +25,6 @@
 #import "TableTab.h"
 #import "TableTabManager.h"
 #import "UIImageExt.h"
-#import "OfflineDrawViewController.h"
 #import "DrawPlayer.h"
 
 #define BUTTON_INDEX_OFFSET 20120229

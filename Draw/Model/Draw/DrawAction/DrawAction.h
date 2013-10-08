@@ -121,6 +121,7 @@ typedef enum {
 - (BOOL)isGradientAction;
 - (BOOL)isChangeBGAction;
 - (BOOL)isChangeImageBGAction;
+- (BOOL)needShowShadow;
 
 @end
 

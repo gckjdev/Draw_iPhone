@@ -42,7 +42,7 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 
     self = [super init];
     _path = CGPathCreateMutable();
-    [self clearPoints];
+//    [self clearPoints];               // all data is zero by default, no need to clear? set by Benson
     _startAddPoint = YES;
     return self;
 }
@@ -62,9 +62,11 @@ BOOL threeInOneLine(CGPoint a, CGPoint b, CGPoint c)
 
 - (void)clearPoints
 {
-    for (int i=0; i<SQC_POINT_COUNT; i++){
-        pts[i] = CGPointZero;
-    }
+//    for (int i=0; i<SQC_POINT_COUNT; i++){
+//        pts[i] = CGPointZero;
+//    }
+    
+    memset(pts, 0, sizeof(pts));
     
     ptsCount = 0;
     ptsComplete = NO;
