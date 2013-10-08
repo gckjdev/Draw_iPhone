@@ -28,6 +28,9 @@
 
 - (void)viewDidLoad
 {
+    // Set candidates, move before viewDidLoad to make load image quicker
+    NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
+    
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
@@ -43,9 +46,6 @@
     [_titleView setRightButtonTitle:NSLS(@"kAskForHelp")];
     [_titleView setTarget:self];
     [_titleView setRightButtonSelector:@selector(clickAskForHelpButton:)];
-    
-    // Set candidates
-    NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
     
     [self.wordInputView setCandidates:candidates column:9];
 }

@@ -134,7 +134,6 @@
     PPDebug(@"<reloadLocalCache>");
     self.opusList = [[FeedService defaultService] getCachedFeedList:FeedListTypeHot];
     [self reloadView];
-    [self performSelector:@selector(reloadLocalCache) withObject:nil afterDelay:RELOAD_SECONDS]; // call self to make timer
 }
 
 - (void)updateBG

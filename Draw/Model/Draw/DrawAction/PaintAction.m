@@ -118,6 +118,9 @@
             }
         }
         self.type = DrawActionTypePaint;
+        
+        [pointList complete];
+
         self.paint = [Paint paintWithWidth:action->width
                                      color:nil
                                    penType:action->pentype
@@ -175,6 +178,9 @@
             }
         }
         self.type = DrawActionTypePaint;
+        
+        [pointList complete];
+        
         self.paint = [Paint paintWithWidth:action.width
                                      color:nil
                                    penType:action.penType
@@ -233,6 +239,8 @@
                 }
             }
         }
+        
+        [pointList complete];
 
         self.paint = [Paint paintWithWidth:action.width
                                      color:[action drawColor]
@@ -290,6 +298,8 @@
                 }
             }
         }
+        
+        [pointList complete];
         
         self.paint = [Paint paintWithWidth:action->width
                                      color:[DrawUtils drawColorFromPBNoCompressDrawActionC:action]  //[action drawColor]

@@ -45,5 +45,6 @@ typedef void (^HeaderAnimationHandler)(BOOL open);
 @property (retain, nonatomic) IBOutlet BadgeView *badgeView;
 
 - (void)updateBG;
+- (void)reloadLocalCache;
 
 @end

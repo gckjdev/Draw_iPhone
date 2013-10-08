@@ -289,7 +289,8 @@ if(control){\
 
 - (void)updateCopyPaint:(UIImage*)aPhoto
 {
-    UIImage* image = [UIImage shrinkImage:aPhoto withRate:0.8];
+    UIImage* image = [UIImage shrinkImage:aPhoto withRate:0.5];
+    PPDebug(@"<updateCopyPaint>　image size is %@", NSStringFromCGSize(image.size));
     DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(DrawToolTypeCopy)];
     [cell updateIcon:image];
     [cell.accessButton setHidden:(image == nil)];

@@ -21,6 +21,7 @@
 - (void)createPointXList:(NSMutableArray**)pointXList pointYList:(NSMutableArray**)pointYList;
 - (void)createPointFloatXList:(CGFloat*)floatXList floatYList:(CGFloat*)floatYList;
 
+- (void)complete;
 
 @end
 

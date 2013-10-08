@@ -105,7 +105,8 @@ enum {
 - (void)selectImageFromAlbum:(UIViewController*)superController
 {
     __block CopyPaintCommand* cp = self;
-    self.imagePicker = [[[ChangeAvatar alloc] init] autorelease];
+    ChangeAvatar* ca = [[ChangeAvatar alloc] init];
+    self.imagePicker = ca;
     [self.imagePicker setAutoRoundRect:NO];
     [self.imagePicker setImageSize:CGSizeMake(0, 0)];
     [self.imagePicker setIsCompressImage:NO];
@@ -117,15 +118,18 @@ enum {
                          if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
                              [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
                          }
-                         
                      }
                      didSetDefaultBlock:^{
-                         //
+                         self.imagePicker = nil;
                      }
                                   title:nil
                         hasRemoveOption:NO
                            canTakePhoto:NO
                       userOriginalImage:YES];
+    
+    [ca release];
+    
+    
 }
 
 @end

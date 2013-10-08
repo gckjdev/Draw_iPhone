@@ -149,6 +149,7 @@
             //this may be wrong, need test.... By Gamy
             [self addPoint:point inRect:[CanvasRect defaultRect]];
         }
+        [_hPointList complete];
     }
     return self;
 }
@@ -251,6 +252,7 @@
 - (void)finishAddPoint
 {
     [[self getPen] finishAddPoint];
+    [_hPointList complete];
 }
 
 - (NSInteger)pointCount

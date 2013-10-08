@@ -885,13 +885,14 @@
 
 - (NSData *)newDrawDataSnapshot
 {
-
+    NSArray* copyLayers = [drawView.layers mutableCopy];
     NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:drawView.drawActionList
                                                                   size:drawView.bounds.size
                                                               opusDesc:self.opusDesc
                                                             drawToUser:nil
                                                        bgImageFileName:_bgImageName
-                                                                layers:[[drawView.layers mutableCopy] autorelease]];
+                                                                layers:copyLayers];
+    [copyLayers release];
     return data;
 }
 
@@ -914,6 +915,7 @@
 - (void)saveDraft:(BOOL)showResult
 {
     if ([self isBriefStyle]) {
+        PPDebug(@"<saveDraft＞ but no need, return directly");
         return;
     }
     
@@ -999,11 +1001,11 @@
     [self hideActivity];
 }
 
-- (void)saveDraftAndShowResult
-{
-    [self showActivityWithText:NSLS(@"kSaving")];
-    [self performSelector:@selector(performSaveDraft) withObject:nil afterDelay:0.1f];
-}
+//- (void)saveDraftAndShowResult
+//{
+//    [self showActivityWithText:NSLS(@"kSaving")];
+//    [self performSelector:@selector(performSaveDraft) withObject:nil afterDelay:0.1f];
+//}
 
 - (IBAction)clickDraftButton:(id)sender {
     [self.layerPanelPopView dismissAnimated:YES];
@@ -1013,7 +1015,7 @@
     }
     
     [self showActivityWithText:NSLS(@"kSaving")];
-    [self performSelector:@selector(saveDraftAndShowResult) withObject:nil afterDelay:0.01];
+    [self performSelector:@selector(performSaveDraft) withObject:nil afterDelay:0.01];
     [[AnalyticsManager sharedAnalyticsManager] reportDrawClick:DRAW_CLICK_DRAFT];
 }
 

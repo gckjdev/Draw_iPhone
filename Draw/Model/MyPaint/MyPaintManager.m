@@ -769,7 +769,12 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
               image:(UIImage *)image
            drawData:(NSData *)drawData
 {
-    BOOL needSave = NO;
+    if ([drawData length] <= 0){
+        PPDebug(@"<updateDraft> but draw data length is 0 or nil???");
+        return NO;
+    }
+    
+    BOOL needSave = YES;  // set to always yes here by Benson 2013-10-08
     if (draft) {
         NSString *imageFileName = [draft image];
         NSString *pbDataFileName = [draft dataFilePath];
@@ -789,6 +794,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
         if ([pbDataFileName length] != 0) {
             if ([self saveDataAsPBNOCompressDrawData:draft]) {
                 [_drawDataManager saveData:drawData forKey:pbDataFileName];
+//                needSave = YES;
             }else{
                 //if old data save as action list, remove old data
                 [_drawDataManager removeDataForKey:pbDataFileName];
@@ -797,19 +803,19 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
                 pbDataFileName = [self pbNoCompressDrawDataFileName];
                 [_drawDataManager saveData:drawData forKey:pbDataFileName];
                 [draft setDataFilePath:pbDataFileName];
-                needSave = YES;
+//                needSave = YES;
             }
             
         }else{
             pbDataFileName = [self pbNoCompressDrawDataFileName];
             [_drawDataManager saveData:drawData forKey:pbDataFileName];
             [draft setDataFilePath:pbDataFileName];
-            needSave = YES;
+//            needSave = YES;
         }
         
         if (needSave) {
             [draft setIsRecovery:[NSNumber numberWithBool:NO]];
-            [self save];
+            return [self save];
         }
         
     }
