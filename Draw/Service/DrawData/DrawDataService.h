@@ -39,7 +39,8 @@
 
 - (void)findRecentDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
-- (void)createOfflineDraw:(NSArray*)drawActionList
+// return draw data
+- (NSData*)createOfflineDraw:(NSArray*)drawActionList
                     image:(UIImage *)image
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language 
@@ -76,8 +77,12 @@
                    delegate:(id<DrawDataServiceDelegate>)delegate;
 
 
-- (void)savePaintWithPBDraw:(PBDraw*)pbDraw
+- (BOOL)savePaintWithPBDraw:(PBDraw*)pbDraw
              image:(UIImage*)image
           delegate:(id<DrawDataServiceDelegate>)delegate;
+
+- (BOOL)savePaintWithPBDrawData:(NSData*)pbDrawData
+                          image:(UIImage*)image
+                           word:(NSString*)word;
 
 @end

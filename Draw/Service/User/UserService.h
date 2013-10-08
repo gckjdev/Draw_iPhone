@@ -156,6 +156,10 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
                featureOpus:(int)featureOpus
               successBlock:(void (^)(void))successBlock;
 
+- (void)setUserPassword:(NSString*)targetUserId
+                pasword:(NSString*)password
+            resultBlock:(void(^)(int resultCode))resultBlock;
+
 - (void)sendPassword:(NSString*)email
          resultBlock:(void(^)(int resultCode))resultBlock;
 

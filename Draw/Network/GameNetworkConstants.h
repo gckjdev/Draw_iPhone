@@ -656,6 +656,7 @@
 #define METHOD_REMOVE_LEARN_DRAW @"rld"
 
 #define METHOD_MANAGE_USER_INFO @"manageUserInfo"
+#define METHOD_SET_USER_PASSWORD @"setUserPassword"
 
 
 #define REGISTER_TYPE_EMAIL     1

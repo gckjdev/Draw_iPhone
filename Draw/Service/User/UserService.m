@@ -1680,6 +1680,33 @@ POSTMSG(NSLS(@"kLoginFailure"));
 
 #define VERIFY_TYPE_EMAIL       1
 
+- (void)setUserPassword:(NSString*)targetUserId
+                pasword:(NSString*)password
+         resultBlock:(void(^)(int resultCode))resultBlock
+{
+    
+    if ([targetUserId length] == 0 || [password length] == 0){
+        EXECUTE_BLOCK(resultBlock, ERROR_USER_DATA_NULL);
+        return;
+    }
+    
+    NSDictionary* para = @{ PARA_TARGETUSERID : targetUserId,
+                            PARA_PASSWORD : password};
+    
+    dispatch_async(workingQueue, ^{
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_SET_USER_PASSWORD
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            EXECUTE_BLOCK(resultBlock, output.resultCode);
+        });
+    });
+    
+    
+}
+
+
 - (void)sendPassword:(NSString*)email
          resultBlock:(void(^)(int resultCode))resultBlock
 {

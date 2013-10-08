@@ -13,12 +13,14 @@
 #import "UserService.h"
 #import "GameBasic.pb.h"
 #import "MKBlockActionSheet.h"
+#import "StringUtil.h"
 
 typedef enum
 {
     SuperUserManageActionIndexCharge = 0,
     SuperUserManageActionIndexChargeIngot,
     SuperUserManageActionIndexFeatureOpus,
+    SuperUserManageActionIndexResetUserPassword,
     SuperUserManageActionIndexBlackUserId,
     SuperUserManageActionIndexBlackDevice,
     SuperUserManageActionIndexUnblackUserId,
@@ -57,7 +59,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"用户作品推荐设置", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -135,6 +137,34 @@ typedef enum
             }];
 
             [sheet showInView:_superController.view];
+            
+        }
+            break;
+            
+        case SuperUserManageActionIndexResetUserPassword: {
+            CommonDialog* dialog = [CommonDialog createInputFieldDialogWith:@"请输入要重置的密码(默认111111)"];
+            dialog.inputTextField.text = @"111111";
+            [dialog setClickOkBlock:^(id sender){
+                
+                if ([dialog.inputTextField.text length] == 0){
+                    return;
+                }
+                
+                NSString* encryptPassword = [dialog.inputTextField.text encodeMD5Base64:PASSWORD_KEY];
+                
+                [[UserService defaultService] setUserPassword:_targetUserId
+                                                      pasword:encryptPassword
+                                                  resultBlock:^(int resultCode) {
+                                                      if (resultCode == 0){
+                                                          POSTMSG(@"重置密码成功");
+                                                      }
+                                                      else{
+                                                          POSTMSG(@"重置密码失败");
+                                                      }
+                                                  }];
+            }];
+            
+            [dialog showInView:_superController.view];
             
         }
             break;
