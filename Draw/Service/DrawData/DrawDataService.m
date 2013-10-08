@@ -268,7 +268,7 @@ static DrawDataService* _defaultDrawDataService = nil;
 }
 
 
-- (void)createOfflineDraw:(NSMutableArray*)drawActionList
+- (NSData*)createOfflineDraw:(NSMutableArray*)drawActionList
                     image:(UIImage *)image
                  drawWord:(Word*)drawWord
                  language:(LanguageType)language 
@@ -286,16 +286,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
     NSString* appId = [ConfigManager appId];
-    NSString* signature = [[UserManager defaultManager] signature];
-    
-//    PBDraw *draw = [self buildPBDraw:userId
-//                                nick:nick
-//                              avatar:avatar
-//                      drawActionList:drawActionList
-//                            drawWord:drawWord
-//                            language:language
-//                                size:size
-//                        isCompressed:NO];
+    NSString* signature = [[UserManager defaultManager] signature];    
 
     BOOL isCompressed = NO;
     
@@ -314,7 +305,7 @@ static DrawDataService* _defaultDrawDataService = nil;
         if ([viewController respondsToSelector:@selector(didCreateDraw:)]){
             [viewController didCreateDraw:ERROR_MEMORY];  
         }        
-        return;
+        return nil;
     }
     
     NSData *imageData = nil;
@@ -355,6 +346,8 @@ static DrawDataService* _defaultDrawDataService = nil;
             
         }
     });
+    
+    return drawData;
 }
 
 - (void)guessDraw:(NSArray *)guessWords 
@@ -436,33 +429,43 @@ static DrawDataService* _defaultDrawDataService = nil;
 }
 
 
-- (void)savePaintWithPBDraw:(PBDraw*)pbDraw
+- (BOOL)savePaintWithPBDraw:(PBDraw*)pbDraw
                       image:(UIImage*)image
-                   delegate:(id<DrawDataServiceDelegate>)delegate;
+                   delegate:(id<DrawDataServiceDelegate>)delegate
 {
     if ([pbDraw.drawDataList count] == 0) {
         PPDebug(@"<savePaintWithPBDraw>:actionList has no object");
-        if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
-            [delegate didSaveOpus:NO];
-        }
-        return;
+        return NO;
     }else if(image == nil){
         PPDebug(@"<savePaintWithPBDraw>image is nil.");
-        if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
-            [delegate didSaveOpus:NO];
-        }        
-        return;
+        return NO;
     }
     
-//    dispatch_async(workingQueue, ^{
-        BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
-                                                                   pbDraw:pbDraw];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didSaveOpus:)]) {
-                [delegate didSaveOpus:result];
-            }
-//        });
-//    });
+    PPDebug(@"<savePaintWithPBDraw>");
+    BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
+                                                               pbDraw:pbDraw];
+
+    return result;
+}
+
+- (BOOL)savePaintWithPBDrawData:(NSData*)pbDrawData
+                          image:(UIImage*)image
+                           word:(NSString*)word
+{
+    if (pbDrawData == nil) {
+        PPDebug(@"<savePaintWithPBDrawData>:pbDrawData is nil");
+        return NO;
+    }else if(image == nil){
+        PPDebug(@"<savePaintWithPBDrawData>image is nil.");
+        return NO;
+    }
+    
+    PPDebug(@"<savePaintWithPBDrawData>");
+    BOOL result = [[MyPaintManager defaultManager] createMyPaintWithImage:image
+                                                               pbDrawData:pbDrawData
+                                                                     word:word];
+    
+    return result;
 }
 
 

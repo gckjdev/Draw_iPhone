@@ -196,6 +196,7 @@
     [self stopRecovery];
     self.delegate = nil;
     _draft.drawActionList = nil;
+    PPRelease(_submitOpusFinalImage);
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
     PPRelease(_drawToolPanel);
@@ -673,9 +674,9 @@
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
 
-        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
-                                                        image:drawView.createImage
-                                                     delegate:self];
+//        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
+//                                                        image:drawView.createImage
+//                                                     delegate:self];
         
         if (self.contest) {
             
@@ -725,10 +726,9 @@
 {
     if(dialog.tag == DIALOG_TAG_SUBMIT){
 
-        // Save Image Locally
-        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
-                                                        image:drawView.createImage
-                                                     delegate:self];
+//        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
+//                                                        image:drawView.createImage
+//                                                     delegate:self];
         [self quit];
     }
     else if (dialog.tag == DIALOG_TAG_SAVETIP)
@@ -805,14 +805,33 @@
         
         // stop recovery while the opus is commit successfully
         [self stopRecovery];
+
+        // save as normal opus in draft box
+        BOOL result = [[DrawDataService defaultService] savePaintWithPBDrawData:self.submitOpusDrawData     //[self createPBDraw]         // TODO optimized
+                                                                          image:self.submitOpusFinalImage   // [drawView createImage]      // TODO optimized
+                                                                           word:self.word.text];
+        
+        if (result) {
+            POSTMSG(NSLS(@"kSaveOpusOK"));
+            if (self.draft) {
+                [[MyPaintManager defaultManager] deleteMyPaint:self.draft];
+                self.draft = nil;
+            }
+        }else{
+            POSTMSG(NSLS(@"kSaveImageFail"));
+        }
+        
+        // clean data
+        self.submitOpusFinalImage = nil;
+        self.submitOpusDrawData = nil;
         
         CommonDialog *dialog = nil;
         if (self.contest) {
             if (!_commitAsNormal) {
-                // TODO contest rem by Benson for contest changed
+                // TODO contest rem by Benson for contest changed, total contest info
 //                self.contest.opusCount ++;
                 if (![self.contest joined]) {
-                    // TODO contest rem by Benson for contest changed                    
+                    // TODO contest rem by Benson for contest changed, total contest info
 //                    self.contest.participantCount ++;
                 }
                 [self.contest incCommitCount];
@@ -1111,6 +1130,9 @@
 
 - (void)commitOpus:(NSString *)opusName desc:(NSString *)desc share:(NSSet *)share
 {
+    self.submitOpusDrawData = nil;
+    self.submitOpusFinalImage = nil;
+    
     self.opusDesc = desc;
     
     UIImage *image = [drawView createImage];
@@ -1144,8 +1166,9 @@
         }
     }
     
+    self.submitOpusFinalImage = image;
     
-    [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
+    self.submitOpusDrawData = [[DrawDataService defaultService] createOfflineDraw:drawView.drawActionList
                                                   image:image
                                                drawWord:self.word
                                                language:languageType
@@ -1156,6 +1179,10 @@
                                                  layers:[[drawView.layers mutableCopy] autorelease]
                                                    info:nil
                                                delegate:self];
+    
+    if (self.submitOpusDrawData == nil){
+        self.submitOpusFinalImage = nil;
+    }
 
 }
 

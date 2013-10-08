@@ -65,6 +65,8 @@
 @property (retain, nonatomic) UIImage *bgImage;
 @property (retain, nonatomic) NSString *bgImageName;
 @property (retain, nonatomic) UIImage* copyPaintImage;
+@property (retain, nonatomic) UIImage *submitOpusFinalImage;
+@property (retain, nonatomic) NSData *submitOpusDrawData;
 
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 
