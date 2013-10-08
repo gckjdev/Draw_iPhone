@@ -127,7 +127,7 @@
     [self updateBG];
 }
 
-#define RELOAD_SECONDS         5 //(60*10)
+#define RELOAD_SECONDS         (60*10)
 
 - (void)reloadLocalCache
 {

@@ -379,6 +379,7 @@
 
 - (IBAction)clickFollow:(id)sender
 {
+    CHECK_AND_LOGIN([self theTopView]);
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickFollowButton)]) {
         [_detailDelegate didClickFollowButton];
     }
@@ -400,6 +401,7 @@
 
 - (IBAction)clickChatButton:(id)sender
 {
+    CHECK_AND_LOGIN([self theTopView]);
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickChatButton)]) {
         [_detailDelegate didClickChatButton];
     }
@@ -407,6 +409,7 @@
 
 - (IBAction)clickDrawToButton:(id)sender
 {
+    CHECK_AND_LOGIN([self theTopView]);
     if (_detailDelegate && [_detailDelegate respondsToSelector:@selector(didClickDrawToButton)]) {
         [_detailDelegate didClickDrawToButton];
     }

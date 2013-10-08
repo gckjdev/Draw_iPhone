@@ -612,6 +612,47 @@ BBSService *_staticBBSService;
 }
 
 
+- (void)searchPostListWithBoardId:(NSString *)boardId
+                          keyWord:(BOOL)keyWords
+                           offset:(NSInteger)offset
+                            limit:(NSInteger)limit
+                              tag:(NSInteger)tag
+                          hanlder:(BBSGetPostResultHandler)handler
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+
+        CommonNetworkOutput *output = [BBSNetwork searchPostList:[ConfigManager getBBSServerURL]
+                                                           appId:appId
+                                                      deviceType:deviceType
+                                                          userId:userId
+                                                         boardId:boardId
+                                                         keyWord:keyWords
+                                                          offset:offset
+                                                           limit:limit];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = nil;
+            @try {
+                if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                    DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                    resultCode = [response resultCode];
+                    list = [response bbsPostList];
+                }
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<searchPostListWithBoardId>exception = %@",[exception debugDescription]);
+                list = nil;
+            }
+            EXECUTE_BLOCK(handler, resultCode, list, tag);
+        });
+    });
+}
+
+
 #define BRIEF_TEXT_LENGTH 70
 
 #pragma mark - bbs action methods

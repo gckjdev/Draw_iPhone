@@ -14,4 +14,8 @@
 
 + (id)create;
 
+
++ (CommonDialog *)loginViewWithNumber:(NSString *)number passWord:(NSString *)passWord;
+
+
 @end

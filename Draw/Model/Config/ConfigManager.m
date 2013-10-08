@@ -1173,6 +1173,11 @@
     return [MobClickUtils getBoolValueByKey:@"SHOW_AUTHOR_ON_OPUS" defaultValue:YES];
 }
 
++ (int)getTipUseTimesLimitInGeniusMode{
+    
+    return [MobClickUtils getIntValueByKey:@"TIP_USE_TIMES_IN_GENIUS_MODE" defaultValue:2];
+}
+
 + (int)getHomeHotOpusCount
 {
     return [MobClickUtils getIntValueByKey:@"HOME_HOT_OPUS_COUNT" defaultValue:18];

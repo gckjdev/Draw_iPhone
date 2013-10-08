@@ -28,6 +28,7 @@
 #import "CustomInfoView.h"
 #import "TimeUtils.h"
 #import "ShareImageManager.h"
+#import "GuessManager.h"
 
 @interface CommonGuessController (){
     PBUserGuessMode _mode;
@@ -112,6 +113,10 @@
         PPDebug(@"fail to load image %@", self.opus.pbOpus.image);
         [self hideActivity];
     }];
+    
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        self.tipButton.enabled = [GuessManager getTipUseTimes] < [ConfigManager getTipUseTimesLimitInGeniusMode];
+    }
     
 }
 
@@ -206,6 +211,10 @@
 - (void)didGuessCorrect:(NSString *)word{
     
     [self submitWords:YES];
+    
+    if (_mode == PBUserGuessModeGuessModeGenius) {
+        [GuessManager clearTipUseTimes];
+    }
 
     [OpusGuessRecorder setOpusAsGuessed:_opus.pbOpus.opusId];
     
@@ -252,10 +261,39 @@
     __block typeof (self) bself = self;
     [[UserGameItemService defaultService] consumeItem:ItemTypeTips count:1 forceBuy:YES handler:^(int resultCode, int itemId, BOOL isBuy) {
         if (resultCode == ERROR_SUCCESS) {
+            
             [_wordInputView bombHalf];
-            if (isBuy) {
-                [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+            
+            if (_mode == PBUserGuessModeGuessModeGenius) {
+                [GuessManager incTipUseTimes];
             }
+            int leftTipTimes = [ConfigManager getTipUseTimesLimitInGeniusMode] - [GuessManager getTipUseTimes];
+            
+            if (isBuy) {
+                
+                if (_mode == PBUserGuessModeGuessModeGenius) {
+                    
+                    NSString *message = leftTipTimes <= 0 ?
+                    [NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndNoLeftTips"), price]
+                    :[NSString stringWithFormat:NSLS(@"kBuyABagAndUseAndLeftTipsTimes"), price, leftTipTimes];
+                    
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
+                }else{
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kBuyABagAndUse"), price] delayTime:2];
+                }
+
+            }else{
+                
+                if (_mode == PBUserGuessModeGuessModeGenius) {
+                    
+                    NSString *message = leftTipTimes <= 0 ?
+                    [NSString stringWithFormat:NSLS(@"kNoLeftTips")]
+                    :[NSString stringWithFormat:NSLS(@"kLeftTipsTimes"), leftTipTimes];
+                    
+                    [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2];
+                }
+            }
+
         }else if (resultCode == ERROR_BALANCE_NOT_ENOUGH){
             [BalanceNotEnoughAlertView showInController:bself];
         }else{

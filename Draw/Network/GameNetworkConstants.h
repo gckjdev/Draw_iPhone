@@ -607,6 +607,7 @@
 #pragma mark BBS Constant
 #define METHOD_GET_BBSBOARD_LIST @"gbbl"
 #define METHOD_GET_BBSPOST_LIST @"gbpl"
+#define METHOD_SEARCH_BBSPOST_LIST @"sbpl"
 #define METHOD_GET_BBSACTION_LIST @"gbal"
 #define METHOD_CREATE_POST @"cp"
 

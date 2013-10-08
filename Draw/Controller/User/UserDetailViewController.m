@@ -238,6 +238,7 @@
 
 - (void)didclickBlack
 {
+    CHECK_AND_LOGIN(self.view);
     [self.detail blackUser:self];
     
 }
@@ -330,6 +331,7 @@
 
 - (void)didClickUserActionButtonAtIndex:(NSInteger)index
 {
+    CHECK_AND_LOGIN(self.view);
     [self.detail clickUserActionButtonAtIndex:index viewController:self];
 }
 

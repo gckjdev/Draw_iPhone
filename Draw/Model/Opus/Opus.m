@@ -8,11 +8,11 @@
 
 #import "Opus.h"
 #import "StringUtil.h"
-#import "SingOpus.h"
-#import "AskPs.h"
+//#import "SingOpus.h"
+//#import "AskPs.h"
 #import "FileUtil.h"
 #import "UserManager.h"
-#import "DrawOpus.h"
+//#import "DrawOpus.h"
 
 @interface Opus()
 
@@ -49,20 +49,26 @@
 
 + (Opus*)opusWithCategory:(PBOpusCategoryType)category{
     Opus *opus = nil;
+    Class class;
     switch (category) {
         case PBOpusCategoryTypeSingCategory:
-            opus = [[[SingOpus alloc] init] autorelease];
+            class = NSClassFromString(@"SingOpus");
+//            opus = [[[SingOpus alloc] init] autorelease];
             break;
         case PBOpusCategoryTypeAskPsCategory:
-            opus = [[[AskPs alloc] init] autorelease];
+            class = NSClassFromString(@"AskPs");
+//            opus = [[[AskPs alloc] init] autorelease];
             break;
             
         case PBOpusCategoryTypeDrawCategory:
-            opus = [[[DrawOpus alloc] init] autorelease];
+            class = NSClassFromString(@"DrawOpus");
+//            opus = [[[DrawOpus alloc] init] autorelease];
             break;
         default:
             break;
     }
+    
+    opus = [[[[class class] alloc] init] autorelease];
     
     return opus;
 }

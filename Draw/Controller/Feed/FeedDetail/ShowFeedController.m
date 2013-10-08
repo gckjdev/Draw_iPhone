@@ -50,8 +50,9 @@
 #import "ContestManager.h"
 #import "JudgerScoreView.h"
 #import "DrawPlayer.h"
+#import "OpusImageBrower.h"
 
-@interface ShowFeedController () {
+@interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
     ShareAction *_shareAction;
@@ -365,9 +366,6 @@ typedef enum{
 //            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
 //            [self.navigationController pushViewController:uc animated:YES];
             
-            if ([[UserService defaultService] isRegistered] == NO){
-                return;
-            }
             
             if ([[ContestManager defaultManager] displayContestAnonymousForFeed:self.feed] == NO){
                 [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId
@@ -480,10 +478,6 @@ typedef enum{
 //    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
 //    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
 //    [self.navigationController pushViewController:uc animated:YES];
-    
-    if ([[UserService defaultService] isRegistered] == NO){
-        return;
-    }
     
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName] inViewController:self];
 }
@@ -678,9 +672,10 @@ typedef enum{
     __block ShowFeedController * cp = self;
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
+        [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];        
         [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
         [cp.commentHeader setSelectedType:CommentTypeGuess];
-        [cp hideActivity];        
+        [cp hideActivity];
     }];
 }
 
@@ -689,6 +684,7 @@ typedef enum{
     __block ShowFeedController * cp = self;
 
     [self loadDrawDataWithHanlder:^{
+        [[self.footerView buttonWithType:FooterTypeReplay] setUserInteractionEnabled:YES];
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];
             cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
@@ -724,20 +720,21 @@ typedef enum{
 {
     switch (type) {
         case FooterTypeGuess:            
-            if ([[UserService defaultService] gotoRegistration:self.view]){
-                return;
-            }
-            
+        {
+            CHECK_AND_LOGIN(self.view);            
             [self performSelector:@selector(performGuess) withObject:nil afterDelay:0.1f];
+            button.userInteractionEnabled = NO;
             break;
+        }
         case FooterTypeReplay:
+        {
             [self performSelector:@selector(performReplay) withObject:nil afterDelay:0.1f];
+            button.userInteractionEnabled = NO;
             break;
+        }
         case FooterTypeComment:
         {
-            if ([[UserService defaultService] gotoRegistration:self.view]){
-                return;
-            }
+            CHECK_AND_LOGIN(self.view);
             
             CommentController *cc = [[CommentController alloc] initWithFeed:self.feed forContestReport:NO];
             [self presentModalViewController:cc animated:YES];
@@ -748,9 +745,7 @@ typedef enum{
         }
         case FooterTypeShare:
         {
-            if ([[UserService defaultService] gotoRegistration:self.view]){
-                return;
-            }
+            CHECK_AND_LOGIN(self.view);
             
             UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
             if (image == nil){
@@ -765,9 +760,7 @@ typedef enum{
         }
         case FooterTypeFlower:
         {
-            if ([[UserService defaultService] gotoRegistration:self.view]){
-                return;
-            }
+            CHECK_AND_LOGIN(self.view);
             
             [self throwItem:ItemTypeFlower];
             [self updateFlowerButton];
@@ -775,9 +768,7 @@ typedef enum{
         }
         case FooterTypeReport:
         {
-            if ([[UserService defaultService] gotoRegistration:self.view]){
-                return;
-            }
+            CHECK_AND_LOGIN(self.view);
             
             [self gotoContestComment];
             break;
@@ -785,9 +776,7 @@ typedef enum{
          
         case FooterTypeRate:
         {
-            if ([[UserService defaultService] gotoRegistration:self.view]){
-                return;
-            }
+            CHECK_AND_LOGIN(self.view);
             
             Contest *contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
             if (contest) {
@@ -812,6 +801,7 @@ typedef enum{
 #pragma mark - comment cell delegate
 - (void)didStartToReplyToFeed:(CommentFeed *)feed
 {
+    CHECK_AND_LOGIN(self.view);
     PPDebug(@"<didStartToReplyToFeed>, feed type = %d,comment = %@", feed.feedType,feed.comment);
     CommentController *replyController = [[CommentController alloc] initWithFeed:self.feed commentFeed:feed];
     [self presentModalViewController:replyController animated:YES];
@@ -820,11 +810,6 @@ typedef enum{
 
 - (void)didClickAvatar:(MyFriend *)myFriend
 {
-    if ([[UserService defaultService] isRegistered] == NO){
-        PPDebug(@"user not registered yet, disable click");
-        return;
-    }
-    
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:myFriend.friendUserId avatar:myFriend.avatar nickName:myFriend.nickName] inViewController:self];
 }
 
@@ -913,6 +898,20 @@ typedef enum{
     [self initTabButtons];
     [self reloadView];
     [self setShowTipsDisable:YES];
+    
+    [self showOpusImageBrower];
+}
+
+- (void)showOpusImageBrower{
+    
+    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:@[self.feed]] autorelease];
+    brower.delegate = self;
+    [brower showInView:self.view];
+}
+
+
+- (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed{
+    
 }
 
 
@@ -965,10 +964,7 @@ typedef enum{
 
 - (void)didClickDrawImageMaskView
 {
-    if ([[UserService defaultService] isRegistered] == NO){
-        [self performReplay];
-        return;
-    }
+    CHECK_AND_LOGIN(self.view);
     
     int indexOfGuess = 0;
     int indexOfPlay = 1;

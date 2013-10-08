@@ -309,7 +309,6 @@
 }
 
 
-
 - (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode isStartNew:(BOOL)isStartNew{
     
     PPDebug(@"count = %d", [opuses count]);
@@ -324,19 +323,31 @@
             self.guessIndex = [GuessManager getGuessIndexWithMode:_mode guessList:self.currentTab.dataList];
         }else{
             [self appendGuessInfo:opuses];
+
+            [self scrollToBottom];
         }
         
         if(_firstLoad && _mode == PBUserGuessModeGuessModeGenius){
             _firstLoad = NO;
-            NSInteger row = [self tableView:self.dataTableView numberOfRowsInSection:0];
-            if (row!=0) {
-                NSIndexPath *path = [NSIndexPath indexPathForRow:(row-1) inSection:0];
-                [self.dataTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-            }
+            
+            [self scrollToBottom];
+        }
+        
+        if (isStartNew && _mode == PBUserGuessModeGuessModeGenius) {
+            [GuessManager clearTipUseTimes];
         }
         
     }else{
        POSTMSG2(NSLS(@"kLoadFailed"), 3);
+    }
+}
+
+- (void)scrollToBottom{
+    
+    NSInteger row = [self tableView:self.dataTableView numberOfRowsInSection:0];
+    if (row!=0) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:(row-1) inSection:0];
+        [self.dataTableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 }
 
@@ -666,8 +677,14 @@
           allowClickMaskDismiss:YES];
 }
 
+
+
 - (void)awardInGeniusMode:(int)passCount
                     award:(int)award{
+    
+    if (passCount >= [self.guessInfoDic count]) {
+        [self doManualLoadMore];
+    }
     
     [[AccountService defaultService] chargeCoin:award source:geniusGuessAward];
     

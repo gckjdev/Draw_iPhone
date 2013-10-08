@@ -226,12 +226,13 @@
 }
 
 - (IBAction)clickHappyModeButton:(id)sender {
-    
+    CHECK_AND_LOGIN(self.view);
     GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeHappy contest:nil]  autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)clickGeniusModeButton:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     GuessSelectController *vc = [[[GuessSelectController alloc] initWithMode:PBUserGuessModeGuessModeGenius contest:nil] autorelease];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -245,7 +246,7 @@
 }
 
 - (IBAction)clickContestModeButton:(id)sender {
-    
+    CHECK_AND_LOGIN(self.view);
 #if 0
     
     if ([_contest.contestId length] > 0) {
@@ -278,21 +279,6 @@
 
 
 - (IBAction)clickRuleButton:(id)sender {
-//    static int i = 0;
-//    [WQPlaySound playVibrate];
-//    [WQPlaySound playSystemSoundEffectWithName:nil loopCount:5];
-//    [SoundPlayer playAlertSoundEffectWithName:nil loopCount:3];
-//    if (i % 3 == 0) {
-//        [WQPlaySound playVibrate];
-//    }else if (i % 3 == 1){
-//        [WQPlaySound playSystemSoundEffectWithName:nil];
-//    }else{
-//        [WQPlaySound playSoundEffectWithName:nil];
-//    }
-//    
-//    i++;
-    
-//    "kGuessRulesDetail" = "欢乐模式\n规则：参加需花%d金币\n奖励：每猜中%d幅作品则可以获得%d金币\n\n天才模式\n规则：参加需花%d金币\n奖励：连续猜中%d幅作品可获得%d金币奖励，连续猜中%d幅可获得%d金币奖励，连续猜中%d幅可获得%d金币奖励，以此类推\n\n比赛模式\n规则：参加需花%d金币\n奖励：当天比赛总奖金是70*N，其中N是参赛人数。第1名获得金币＝总奖金*50%，第2到第4名每人获得金币＝总奖金*30%/3，第5名到第10名每人获得金币＝总奖金*10%/6，10名以后前15%的人每人获得的金币＝总奖金*10%/(N*15%-10)";
     
     NSString *message = [NSString stringWithFormat:NSLS(@"kGuessRulesDetail"),
                         [GuessManager getDeductCoins:PBUserGuessModeGuessModeHappy],

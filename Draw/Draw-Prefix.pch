@@ -23,6 +23,8 @@
     #import "ShareImageManager.h"
     #import "CommonMessageCenter.h"
     #import "CommonDialog.h"
+    #import "UserNumberService.h"
+
     #define ISIPAD [DeviceDetection isIPAD]
     #define ISIPHONE5 [DeviceDetection isIPhone5]
     #define ISIOS7 [DeviceDetection isOS7]

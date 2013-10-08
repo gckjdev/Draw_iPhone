@@ -18,7 +18,7 @@
 #import "VoiceChanger.h"
 #import "VoiceProcessor.h"
 
-@interface SingController : PPViewController <InputDialogDelegate, ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
+@interface SingController : PPViewController <ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *originButton;
 @property (retain, nonatomic) IBOutlet UIButton *tomCatButton;

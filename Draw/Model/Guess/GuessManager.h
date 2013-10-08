@@ -76,5 +76,9 @@ typedef enum{
 + (void)saveGeniusGuessIndex:(int)index;
 + (int)getGeniusGuessIndex;
 
++ (void)incTipUseTimes;
++ (void)clearTipUseTimes;
++ (int)getTipUseTimes;
+
 @end
 

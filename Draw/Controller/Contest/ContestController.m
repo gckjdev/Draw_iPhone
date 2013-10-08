@@ -241,7 +241,7 @@
     
     //not running
 //#if !DEBUG
-    
+    CHECK_AND_LOGIN(self.view);
     if (![contest isRunning]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
         return;

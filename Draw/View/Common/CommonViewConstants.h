@@ -26,3 +26,8 @@
 #define SET_NORMAL_TABLE_VIEW_Y(t)     ( \
 t.frame = CGRectMake(t.frame.origin.x, COMMON_TITLE_VIEW_HEIGHT, t.frame.size.width, NORMAL_TABLE_VIEW_HEIGHT) )
 
+#define SET_NORMAL_CONTROLLER_VIEW_FRAME(XXXview)     { \
+CGRect rectxxx = [UIScreen mainScreen].bounds;\
+rectxxx.size.height -= 20; \
+XXXview.frame = rectxxx;}
+

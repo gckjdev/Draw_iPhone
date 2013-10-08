@@ -1041,6 +1041,9 @@
 "kXiaojiPasswordCannotEmpty" = "密碼不能為空";
 "kXiaojiNumberNotFound" = "小吉號碼不存在";
 "kXiaojiPasswordIncorrect" = "密碼不正確，請檢查";
+"kChangeAccount" = "切換賬號中...";
+"kAccountManage" = "賬號管理";
+"kAddAccount" = "新賬號";
 
 "kGetNumberTipsLabelText" = "首次使用，請領取小吉號碼\n或使用已有號碼登錄";
 "kTakeNumberButtonTitle" = "領 取";
@@ -1218,6 +1221,14 @@
 "kRecoveryDraft" = "自動恢復";
 
 "kBuyABagAndUse" = "你剛剛花費了%d個金幣買了個錦囊然後用掉了。";
+
+"kBuyABagAndUseAndLeftTipsTimes" = "你剛剛花費了%d個金幣買了一個錦囊然後用掉了。\n\n本關卡你還可以使用%d次錦囊";
+"kBuyABagAndUseAndNoLeftTips" = "你剛剛花費了%d個金幣買了一個錦囊然後用掉了。\n\n本關卡的錦囊已經用完啦，可以向你的小夥伴求助哦！";
+
+"kLeftTipsTimes" = "本關卡你還可以使用%d次錦囊";
+"kNoLeftTips" = "本關卡的錦囊已經用完啦，可以向你的小夥伴求助哦！";
+
+
 "kChoseWeixinOption" = "分享到微信";
 "kShareOpus" = "分享一幅作品";
 "kDrawAPicture" = "畫一幅畫";
@@ -1505,7 +1516,7 @@
 "kGuessRules" = "規則說明";
 
 "kHappyGuessRulesDetil" = "花費:  %d金幣\n\n獎勵:  %d金幣/每%d幅\n\n時限:  %d小時內\n\n";
-"kGeniusGuessRulesDetil" = "花費:  %d金幣\n\n規則:  連續猜中，不得猜錯\n\n獎勵:\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n以此類推\n\n時限:  %d小時內\n\n";
+"kGeniusGuessRulesDetil" = "花費:  %d金幣\n\n規則:  連續猜中，不得猜錯\n\n獎勵:\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n連續猜中%d幅, 獎勵%d金幣\n以此類推\n\n時限:  %d小時內\n\n錦囊:  限用%d個\n\n確定開始嗎？\n";
 "kContestGuessRulesDetil" = "花費:  %d金幣\n\n排名:  猜對作品數/耗時\n\n獎勵:\n第1名:  總獎金 * 50%%\n第2~4名:  總獎金*10%%\n第5~10名:  總獎金*1.67%%\n前15%%:  分享剩余獎金\n\n總獎金:  參賽用戶*70\n\n";
 
 "kHappyGuessRules" = "歡樂模式幫助";

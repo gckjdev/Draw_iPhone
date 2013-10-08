@@ -300,6 +300,7 @@ typedef enum{
 + (int)getGuessRankListCountLoadedAtOnce;
 + (BOOL)showAuthorOnOpus;
 
++ (int)getTipUseTimesLimitInGeniusMode;
 + (int)getHomeHotOpusCount;
 
 @end

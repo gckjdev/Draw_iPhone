@@ -153,11 +153,13 @@
 }
 
 - (IBAction)clickMyPostList:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
                                                fromController:self];
 }
 
 - (IBAction)clickMyAction:(id)sender {
+    CHECK_AND_LOGIN(self.view);
     [[StatisticManager defaultManager] setBbsActionCount:0];
     [BBSActionListController enterActionListControllerFromController:self animated:YES];
 }

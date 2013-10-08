@@ -17,6 +17,12 @@
 #define SAFE_STRING(x) ((x == nil) ? @"" : (x))
 #define WORD_SPLIT_STRING  @":"
 
+@interface GuessService ()
+@property (retain, nonatomic) PBContest *contest;
+
+
+@end
+
 @implementation GuessService
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
@@ -184,7 +190,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
 }
 
 - (void)getGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate{
+    
+    if (self.contest != nil) {
         
+        if ([delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
+            [delegate didGetGuessContestList:@[self.contest] resultCode:0];
+        }
+        
+        return;
+    }
+    
+    __block typeof (self) bself = self;
     dispatch_async(workingQueue, ^{
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GUESS_CONTEST_LIST parameters:nil];
@@ -192,6 +208,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         NSArray *list = nil;
         if (resultCode == ERROR_SUCCESS){
             list = output.pbResponse.guessContestListList;
+            
+            if ([list count] > 0) {
+                bself.contest = [list objectAtIndex:0];
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
