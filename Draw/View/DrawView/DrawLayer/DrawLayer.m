@@ -70,7 +70,7 @@
             self.offscreen = [Offscreen offscreenWithCapacity:0 rect:self.bounds];
         }
         _cachedCount = [ConfigManager minUndoActionCount];
-    
+        _finalOpacity = 1.0f;
     }
     return self;
 }
