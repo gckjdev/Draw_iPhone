@@ -241,8 +241,8 @@
     CGContextSaveGState(context);
     
     [self.drawPen updateCGContext:context paint:self];
-    CGPathRef path = self.path;
-    CGContextAddPath(context, path);
+//    CGPathRef path = self.path;
+    CGContextAddPath(context, [self path]);
     CGContextStrokePath(context);
     
     CGContextRestoreGState(context);

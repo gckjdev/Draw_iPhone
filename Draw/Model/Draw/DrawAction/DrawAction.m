@@ -54,8 +54,8 @@
 
 - (BOOL)needShowShadow
 {
-    if (self.shadow) {
-        if(CGSizeEqualToSize((self.shadow.offset), CGSizeZero) && _shadow.blur == 0){
+    if (_shadow) {
+        if(CGSizeEqualToSize((_shadow.offset), CGSizeZero) && _shadow.blur == 0){
             return NO;
         }
         return YES;
@@ -219,7 +219,8 @@
         }
 #endif
   */      
-        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor) {            
+        if (action->has_shadowoffsetx && action->has_shadowoffsety && action->has_shadowcolor && action->has_shadowblur &&
+            (action->shadowoffsetx != 0 || action->shadowoffsety != 0 || action->shadowblur != 0) ) {
             self.shadow = [Shadow shadowWithIntColor:action->shadowcolor offset:CGSizeMake(action->shadowoffsetx, action->shadowoffsety) blur:action->shadowblur];
         }
     }
