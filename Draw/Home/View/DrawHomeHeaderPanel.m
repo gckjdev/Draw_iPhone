@@ -42,7 +42,7 @@
 #define OPUS_SIZE CGSizeMake(OPUS_WIDTH,OPUS_WIDTH)
 #define TAG_BASE 100
 
-#define ROPE_X (ISIPAD?666:284)
+#define ROPE_X (ISIPAD?666:280)
 
 #define HEADER_OPUS_COUNT       ([ConfigManager getHomeHotOpusCount])
 
@@ -186,7 +186,7 @@
     self.holderView.frame = CGRectMake(x, 0, HOLDER_WIDTH_CLOSE,HOLDER_HEIGHT_CLOSE);
 }
 
-
+#define ROPE_OFFSET_Y (ISIPAD?14:5)
 
 - (void)openAnimated:(BOOL)animated
           completion:(void (^)(BOOL finished))completion
@@ -200,9 +200,9 @@
         if (NULL != completion) {
             completion(finished);
         }
-        [self.superview addSubview:self.rope];
+        [self.superview insertSubview:self.rope belowSubview:self];
         [self.rope reset];
-        [self.rope updateOriginY:CGRectGetMaxY(self.frame)];
+        [self.rope updateOriginY:CGRectGetMaxY(self.frame)-ROPE_OFFSET_Y];
         [self.rope updateOriginX:ROPE_X];
     };
     if (animated) {

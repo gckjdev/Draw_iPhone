@@ -47,6 +47,7 @@
                                                 name:layer.layerName
                                          suportCache:layer.supportCache];
     dl.opacity = layer.opacity;
+    [dl updateFinalOpacity:layer.finalOpacity];
     return [dl autorelease];
 }
 
@@ -69,7 +70,7 @@
             self.offscreen = [Offscreen offscreenWithCapacity:0 rect:self.bounds];
         }
         _cachedCount = [ConfigManager minUndoActionCount];
-    
+        _finalOpacity = 1.0f;
     }
     return self;
 }
@@ -311,6 +312,16 @@
     return nil;
 }
 
+- (CGFloat)finalOpacity
+{
+    return _finalOpacity;
+}
+
+- (void)updateFinalOpacity:(CGFloat)opacity
+{
+    _finalOpacity = opacity;
+}
+
 #define BG_LAYER_TAG 1
 #define MAIN_LAYER_TAG 2
 #define DEFAULT_LAYER_TAG 2
@@ -420,6 +431,7 @@
     
     DrawLayer *l = [[DrawLayer alloc] initWithFrame:rect drawInfo:nil tag:layer->tag name:name suportCache:cached];
     l.opacity = layer->alpha;
+    [l updateFinalOpacity:layer->alpha];
     return [l autorelease];
 }
 - (void)updatePBLayerC:(Game__PBLayer *)layer

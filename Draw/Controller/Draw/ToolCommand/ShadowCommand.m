@@ -54,7 +54,7 @@
 }
 
 -(void)sendAnalyticsReport{
-    AnalyticsReport(DRAW_CLICK_DRAWBG_BOX);
+    AnalyticsReport(DRAW_CLICK_SHADOW_BOX);
 }
 
 

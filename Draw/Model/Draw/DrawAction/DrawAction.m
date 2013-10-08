@@ -54,10 +54,7 @@
 
 - (BOOL)needShowShadow
 {
-    if (_shadow) {
-        if(CGSizeEqualToSize((_shadow.offset), CGSizeZero) && _shadow.blur == 0){
-            return NO;
-        }
+    if (_shadow && ![_shadow isEmpty]) {
         return YES;
     }
     return NO;
