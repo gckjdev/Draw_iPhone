@@ -16,7 +16,7 @@
 
 @interface DrawLayer : CALayer<DrawProcessProtocol>
 {
-
+    CGFloat _finalOpacity;
 }
 
 + (id)layerWithLayer:(DrawLayer *)layer frame:(CGRect)frame;
@@ -35,12 +35,15 @@
 
 @property(nonatomic, assign)NSUInteger layerTag;
 
+
 //CACHED
 //supported cached
 //only used in draw layer panel.
 @property(nonatomic, readonly)BOOL supportCache;
 @property(nonatomic, assign)NSUInteger cachedCount; //only used when
 
+- (void)updateFinalOpacity:(CGFloat)opacity;
+- (CGFloat)finalOpacity;
 
 - (BOOL)canBeRemoved;
 - (BOOL)isMainLayer;

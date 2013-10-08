@@ -139,12 +139,14 @@
 - (void)drawSlider:(DrawSlider *)drawSlider didValueChange:(CGFloat)value
 {
     [[_dlManager selectedLayer] setOpacity:value];
+    [[_dlManager selectedLayer] updateFinalOpacity:value];
     [self updateAlphaLabelWithValue:value];
 
 }
 - (void)drawSlider:(DrawSlider *)drawSlider didStartToChangeValue:(CGFloat)value
 {
     [[_dlManager selectedLayer] setOpacity:value];
+    [[_dlManager selectedLayer] updateFinalOpacity:value];    
     [self updateAlphaLabelWithValue:value];
 }
 
@@ -271,6 +273,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     DrawLayer *layer = [DrawLayer layerWithLayer:[_dlManager selectedLayer]
                                            frame:[[_dlManager selectedLayer] bounds]];
     layer.opacity = 1.0f;
+    [layer updateFinalOpacity:1.0f];
     [self.alphaSlider setValue:1.0f];
     [_dlManager genLayerTagAndName:layer];
     [_dlManager addLayer:layer];
