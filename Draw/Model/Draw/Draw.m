@@ -17,6 +17,7 @@
 #import "GameBasic.pb-c.h"
 #import "Draw.pb-c.h"
 #import "ClipAction.h"
+#import "DrawUtils.h"
 
 @implementation Draw
 
@@ -37,34 +38,47 @@
 {
     if (array != NULL) {
         
+        
         NSMutableArray *list = [NSMutableArray array];
-//        ClipAction *clipAction = nil;
-        NSMutableDictionary *clipDict = [NSMutableDictionary dictionary];        
-        for (int i=0; i<actionCount; i++){
-            
-            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-            Game__PBDrawAction* pbDrawActionC = array[i];
-            if (pbDrawActionC != NULL){
-                DrawAction* at = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
-                if (at) {
-                    if ([at isKindOfClass:[ClipAction class]]) {
-                        [clipDict setObject:at forKey:@(at.layerTag)];
-                        [at finishAddPoint];
-                    }else{
-                        ClipAction *clipAction = [clipDict objectForKey:@(at.layerTag)];
-                        if (at.clipTag == clipAction.clipTag) {
-                            at.clipAction = clipAction;
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        ClipAction *clipAction = nil;
+            NSMutableDictionary *clipDict = [NSMutableDictionary dictionary];
+//            int progress = 0;
+//            NSMutableDictionary* progressUserInfo = [NSMutableDictionary dictionary];
+            for (int i=0; i<actionCount; i++){
+                
+                NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+                Game__PBDrawAction* pbDrawActionC = array[i];
+                if (pbDrawActionC != NULL){
+                    DrawAction* at = [DrawAction drawActionWithPBDrawActionC:pbDrawActionC];
+                    if (at) {
+                        if ([at isKindOfClass:[ClipAction class]]) {
+                            [clipDict setObject:at forKey:@(at.layerTag)];
+                            [at finishAddPoint];
+                        }else{
+                            ClipAction *clipAction = [clipDict objectForKey:@(at.layerTag)];
+                            if (at.clipTag == clipAction.clipTag) {
+                                at.clipAction = clipAction;
+                            }
                         }
+                        [at setCanvasSize:canvasSize];
+                        [list addObject:at];
+                        at = nil;
                     }
-                    [at setCanvasSize:canvasSize];
-                    [list addObject:at];
-                    at = nil;
                 }
+                
+//                progress = i*1000 / actionCount;
+//                if (progress % 50 == 0){
+//                    [progressUserInfo setObject:@((CGFloat)progress/1000.f) forKey:KEY_DATA_PARSING_PROGRESS];
+//                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_PARSING object:nil userInfo:progressUserInfo];
+//                }
+                
+                [pool drain];
             }
-            
-            [pool drain];
-        }
+//        });
+        
         
         return list;
     }
