@@ -11,6 +11,7 @@
 #import "AccountService.h"
 #import "UserManager.h"
 #import "TimeUtils.h"
+#import "StatisticManager.h"
 
 
 #ifdef DEBUG
@@ -405,6 +406,7 @@
         (state == GuessStateBeing || state == GuessStateExpire)) {
         
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
+        [[StatisticManager defaultManager] setGuessContestNotif:0];
     }
     
     if (mode == PBUserGuessModeGuessModeHappy && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire)
@@ -416,7 +418,6 @@
     if (mode == PBUserGuessModeGuessModeGenius && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire || state == GuessStateFail)
         ) {
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
-
     }
 }
 

@@ -91,8 +91,9 @@
 #import "LineView.h"
 #import "DrawHomeHeaderPanel.h"
 #import "DrawMainMenuPanel.h"
+#import "GuessManager.h"
 
-@interface HomeController()
+@interface HomeController()<GuessServiceDelegate>
 {
 
 }
@@ -211,9 +212,19 @@
     }];
     [self updateBGImageView];
     
-//#ifdef DEBUG
-//    [self createBtnForTest];
-//#endif
+    [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
+}
+
+- (void)didGetGuessContest:(PBGuessContest *)contest resultCode:(int)resultCode{
+    
+    if ([GuessManager isContestBeing:contest]
+        && [GuessManager getGuessStateWithMode:PBUserGuessModeGuessModeContest contestId:contest.contestId] == GuessStateNotStart) {
+        [[StatisticManager defaultManager] setGuessContestNotif:1];
+    }else{
+        [[StatisticManager defaultManager] setGuessContestNotif:0];
+    }
+    
+    [self updateAllBadge];
 }
 
 #ifdef DEBUG

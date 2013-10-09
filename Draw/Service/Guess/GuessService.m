@@ -13,12 +13,14 @@
 #import "ConfigManager.h"
 #import "SynthesizeSingleton.h"
 #import "TimeUtils.h"
+#import "StatisticManager.h"
+#import "GuessManager.h"
 
 #define SAFE_STRING(x) ((x == nil) ? @"" : (x))
 #define WORD_SPLIT_STRING  @":"
 
 @interface GuessService ()
-@property (retain, nonatomic) PBContest *contest;
+@property (retain, nonatomic) PBGuessContest *contest;
 
 
 @end
@@ -194,14 +196,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
     });
 }
 
-- (void)getGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate{
+- (void)getTodayGuessContestInfoWithDelegate:(id<GuessServiceDelegate>)delegate{
     
     if (self.contest != nil) {
         
-        if ([delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
-            [delegate didGetGuessContestList:@[self.contest] resultCode:0];
+        if ([delegate respondsToSelector:@selector(didGetGuessContest:resultCode:)]) {
+            [delegate didGetGuessContest:self.contest resultCode:0];
         }
-        
+                
         return;
     }
     
@@ -221,14 +223,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([delegate respondsToSelector:@selector(didGetGuessContestList:resultCode:)]) {
-                [delegate didGetGuessContestList:list resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetGuessContest:resultCode:)]) {
+                [delegate didGetGuessContest:bself.contest resultCode:0];
             }
         });
     });
 }
 
-- (void)getRecentGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate;{
+- (void)getRecentGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate{
     
     dispatch_async(workingQueue, ^{
         

@@ -202,6 +202,8 @@
     [self updateBadgeWithType:HomeMenuTypeDrawFriend badge:manager.fanCount];
     [self updateBadgeWithType:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
 
+    [self updateBadgeWithType:HomeMenuTypeDrawGuess badge:manager.guessContestNotif];
+    
     long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
     
     [self updateBadgeWithType:HomeMenuTypeDrawTimeline badge:timelineCount];

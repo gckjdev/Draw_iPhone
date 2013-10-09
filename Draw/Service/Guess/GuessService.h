@@ -13,6 +13,8 @@
 #define HOT_RANK 0
 #define ALL_TIME_RANK 1
 
+
+
 @protocol GuessServiceDelegate <NSObject>
 
 @optional
@@ -26,6 +28,8 @@
                  resultCode:(int)resultCode;
 
 - (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode;
+- (void)didGetGuessContest:(PBGuessContest *)contest resultCode:(int)resultCode;
+
 
 @end
 
@@ -66,8 +70,8 @@
 
 
 
-// Get today contest list
-- (void)getGuessContestListWithDelegate:(id<GuessServiceDelegate>)delegate;
+// Get today contest info
+- (void)getTodayGuessContestInfoWithDelegate:(id<GuessServiceDelegate>)delegate;
 
 
 // Get recent contest list
