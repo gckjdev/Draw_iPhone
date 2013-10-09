@@ -45,8 +45,6 @@
 /*********************** Notification end *************************/
 
 
-"kStart" = "在线猜画";
-
 "kShop" = "道具商店";
 
 "kHomeShare" = "作品";
@@ -1234,8 +1232,8 @@
 "kDrawFreeCoinsAwardNote" = "恭喜你获得%d金币 + %d鲜花 + %d锦囊(剩余次数:%d)";
 
 "kBuyABagAndUse" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。";
-"kBuyABagAndUseAndLeftTipsTimes" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。\n\n本关卡你还可以使用%d次锦囊";
-"kBuyABagAndUseAndNoLeftTips" = "你刚刚花费了%d个金币买了一个锦囊然后用掉了。\n\n本关卡的锦囊已经用完啦，可以向你的小伙伴求助哦！";
+"kBuyABagAndUseAndLeftTipsTimes" = "刚花费%d个金币买了个锦囊用掉了，本关卡还可使用%d次锦囊";
+"kBuyABagAndUseAndNoLeftTips" = "刚花费%d个金币买了个锦囊用掉了，本关卡锦囊已用完，可向你的小伙伴求助！";
 
 "kLeftTipsTimes" = "本关卡你还可以使用%d次锦囊";
 "kNoLeftTips" = "本关卡的锦囊已经用完啦，可以向你的小伙伴求助哦！";

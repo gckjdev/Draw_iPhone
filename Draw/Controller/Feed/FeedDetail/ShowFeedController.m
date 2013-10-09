@@ -51,6 +51,7 @@
 #import "JudgerScoreView.h"
 #import "DrawPlayer.h"
 #import "OpusImageBrower.h"
+#import "DrawUtils.h"
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
@@ -65,6 +66,7 @@
 @property (nonatomic, retain) UseItemScene* useItemScene;
 @property(nonatomic, retain) DetailFooterView *footerView;
 @property(nonatomic, retain) Contest *contest;
+@property(nonatomic, assign) BOOL isDownloadingData;
 
 //@property(nonatomic, assign) BOOL swipeEnable;
 
@@ -482,6 +484,15 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+       
+        NSDictionary* userInfo = [note userInfo];
+        CGFloat progress = [[userInfo objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+        PPDebug(@"recv NOTIFICATION_DATA_PARSING, progress = %f", progress);
+        
+        [self setProgress:progress];
+    }];
+    
     [super viewDidAppear:animated];
     if (![self isCurrentTabLoading] || [self.feedScene isKindOfClass:[FeedSceneDetailGuessResult class]]) {
         [self reloadTableViewDataSource];
@@ -491,6 +502,12 @@ typedef enum{
     [self updateActionButtons];
     [self.feed setDrawData:nil];
     [self.feed setPbDrawData:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self unregisterAllNotifications];
 }
 
 #pragma mark - feed service delegate
@@ -621,11 +638,13 @@ typedef enum{
     
     NSString* progressText = nil;    
     if (isDownloadDone){
-        progressText = NSLS(@"kParsingData");
+        progressText = [NSString stringWithFormat:NSLS(@"kParsingData")];
     }
     else{
+//        progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
         progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
     }
+    
 //    [self.progressView setLabelText:progressText];
 //    
 //    [self.progressView setProgress:progress];
@@ -681,7 +700,11 @@ typedef enum{
 {
     __block ShowFeedController * cp = self;
 
+    _isDownloadingData = YES;
     [self loadDrawDataWithHanlder:^{
+        
+        _isDownloadingData = NO;
+        
         [[self.footerView buttonWithType:FooterTypeReplay] setUserInteractionEnabled:YES];
         if (cp.feed.drawData == nil) {
             [cp.feed parseDrawData];

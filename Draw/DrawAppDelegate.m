@@ -130,7 +130,7 @@ NSString* GlobalGetTrafficServerURL()
     
 //    return @"http://localhost:8100/api/i?";
 
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -382,7 +382,7 @@ NSString* GlobalGetBoardServerURL()
     
     // 比赛的local notification通知
     if ([ConfigManager getGuessContestLocalNotificationEnabled]) {
-//        [[GuessService defaultService] getGuessContestListWithDelegate:self];
+
     }
     
     if (ISIOS7) {
@@ -394,13 +394,9 @@ NSString* GlobalGetBoardServerURL()
         self.window.frame = frame;
     }
     
-    return YES;
-}
 
-- (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode{
     
-    PBContest *contest = [list objectAtIndex:0];
-    [self scheduleLocalNotificationForGuessContest:contest];
+    return YES;
 }
 
 - (void)scheduleLocalNotificationForGuessContest:(PBContest *)contest{

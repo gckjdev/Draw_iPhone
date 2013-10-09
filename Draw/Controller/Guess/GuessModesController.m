@@ -20,6 +20,7 @@
 #import "AnimationManager.h"
 #import "TimeUtils.h"
 #import "WordManager.h"
+#import "StatisticManager.h"
 
 #define TAG_COUNT_DOWN_VIEW 101
 
@@ -82,7 +83,7 @@
     [_rankButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
     [_rulesButton registerSound:SOUND_EFFECT_BUTTON_DOWN];
     
-    [[GuessService defaultService] getGuessContestListWithDelegate:self];
+    [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
     
     SET_VIEW_BG(self.view);
 }
@@ -108,9 +109,9 @@
     [super viewDidUnload];
 }
 
-- (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode{
+- (void)didGetGuessContest:(PBGuessContest *)contest resultCode:(int)resultCode{
     if (resultCode == 0) {
-        self.contest = [list objectAtIndex:0];
+        self.contest = contest;
         [self reload];
     }else{
         POSTMSG(NSLS(@"kLoadFailed"));
