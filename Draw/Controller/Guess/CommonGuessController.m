@@ -29,6 +29,7 @@
 #import "TimeUtils.h"
 #import "ShareImageManager.h"
 #import "GuessManager.h"
+#import "UIImageView+ProgressView.h"
 
 @interface CommonGuessController (){
     PBUserGuessMode _mode;
@@ -53,6 +54,7 @@
     [_toolBoxButton release];
     [_contest release];
     [_tipButton release];
+    [_opusImageView release];
     [super dealloc];
 }
 
@@ -63,7 +65,6 @@
         self.opus = opus;
         _mode = mode;
         self.contest = contest;
-        self.startDate = [NSDate date];
     }
     
     return self;
@@ -85,24 +86,8 @@
     }
     
     // Set opus image
-    self.opusButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.opusButton.backgroundColor = [UIColor clearColor];
-    NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
-//    NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
-//    UIImage *placeHolderImage = [[ShareImageManager defaultManager] unloadBg];
-    
-//    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:placeHolderImage];
-    
-    [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusButton.center];
-//    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-//        [self hideActivity];
-//    } failure:^(NSError *error) {
-//        [self hideActivity];
-//    }];
-    
-    [self.opusButton setImageWithURL:url forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        [self hideActivity];
-    }];
+    [self.opusButton setBackgroundColor:[UIColor clearColor]];
+    self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
     
     // Set bgView
     SET_VIEW_BG(self.view);
@@ -115,15 +100,19 @@
 
     [self setCanDragBack:NO];
     
-    PPDebug(@"start loading image %@ for guess", self.opus.pbOpus.image);
-    [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusButton.center];
-    [self.opusButton setImageUrl:url thumbImageUrl:nil placeholderImage:nil success:^(UIImage *image, BOOL cached) {
-        PPDebug(@"load image %@ success", self.opus.pbOpus.image);
+    PPDebug(@"start loading image %@ for guess", self.opus.pbOpus.image);    
+    NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
+//    [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusImageView.center];
+    UIProgressView *progress = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault] autorelease];
+    progress.center = self.opusImageView.center;
+    [self.opusImageView addSubview:progress];
+    [self.opusImageView setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        
         [self hideActivity];
-    } failure:^(NSError *error) {
-        PPDebug(@"fail to load image %@", self.opus.pbOpus.image);
-        [self hideActivity];
-    }];
+        [progress removeFromSuperview];
+        self.startDate = [NSDate date];
+    } usingProgressView:progress];
+
     
     if (_mode == PBUserGuessModeGuessModeGenius) {
         self.tipButton.enabled = [GuessManager getTipUseTimes] < [ConfigManager getTipUseTimesLimitInGeniusMode];
