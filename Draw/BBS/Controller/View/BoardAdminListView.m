@@ -111,6 +111,7 @@
 {
     PPDebug(@"%@ dealloc", self);
     [_adminTitle release];
+    [_splitLine release];
     [super dealloc];
 }
 
@@ -162,6 +163,7 @@
 + (id)adminListViewWithBBSUserList:(NSArray *)userList controller:(PPViewController *)controller
 {
     BoardAdminListView *view = [UIView createViewWithXibIdentifier:@"BoardAdminListView"];
+    view.splitLine.backgroundColor = [[BBSColorManager defaultManager] bbsAdminLineColor];
     view.controller = controller;
     [view updateViewWithUserList:userList];
     return view;
