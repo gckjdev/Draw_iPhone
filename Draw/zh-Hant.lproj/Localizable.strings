@@ -1222,8 +1222,8 @@
 
 "kBuyABagAndUse" = "你剛剛花費了%d個金幣買了個錦囊然後用掉了。";
 
-"kBuyABagAndUseAndLeftTipsTimes" = "你剛剛花費了%d個金幣買了一個錦囊然後用掉了。\n\n本關卡你還可以使用%d次錦囊";
-"kBuyABagAndUseAndNoLeftTips" = "你剛剛花費了%d個金幣買了一個錦囊然後用掉了。\n\n本關卡的錦囊已經用完啦，可以向你的小夥伴求助哦！";
+"kBuyABagAndUseAndLeftTipsTimes" = "花費%d個金幣買了個錦囊用掉了，本關卡你還可以使用%d次錦囊";
+"kBuyABagAndUseAndNoLeftTips" = "花費%d個金幣買了個錦囊用掉了，本關卡錦囊已用完，可向你的小夥伴求助！";
 
 "kLeftTipsTimes" = "本關卡你還可以使用%d次錦囊";
 "kNoLeftTips" = "本關卡的錦囊已經用完啦，可以向你的小夥伴求助哦！";
