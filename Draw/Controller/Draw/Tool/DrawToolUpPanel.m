@@ -340,12 +340,21 @@ if(control){\
     if (![list containsObject:KEY(cell.type)]) {
         [self disappear];
     }
-    [[toolCmdManager commandForControl:control] execute];    
+    if (cell.type == DrawToolTypeCopy && !cell.accessButton.hidden) {
+        [self disappear];
+        [[toolCmdManager commandForControl:cell.accessButton] execute];
+    }else{
+        [[toolCmdManager commandForControl:control] execute];
+    }
 }
 
 - (void)didClickAccessor:(UIButton *)accessor atCell:(DrawToolUpPanelCell *)cell{
     [self disappear];
-    [[toolCmdManager commandForControl:accessor] execute];
+    if (cell.type == DrawToolTypeCopy && !cell.accessButton.hidden) {
+        [[toolCmdManager commandForControl:cell.control] execute];
+    }else{
+        [[toolCmdManager commandForControl:accessor] execute];
+    }
 }
 
 
