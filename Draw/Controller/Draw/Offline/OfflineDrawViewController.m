@@ -12,7 +12,6 @@
 #import "Word.h"
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
-#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "RoomController.h"
 #import "ShareImageManager.h"

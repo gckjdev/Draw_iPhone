@@ -25,7 +25,7 @@
 #import "DeviceDetection.h"
 #import "NetworkDetector.h"
 #import "MobClick.h"
-#import "TKAlertCenter.h"
+//#import "TKAlertCenter.h"
 #import "ConfigManager.h"
 #import "AudioManager.h"
 #import "FriendManager.h"

@@ -77,7 +77,6 @@
 		A4117536177AD09900D3FE23 /* SongSelectController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117520177AD09900D3FE23 /* SongSelectController~ipad.xib */; };
 		A4117541177D986400D3FE23 /* UITextView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117540177D986400D3FE23 /* UITextView+WebCache.m */; };
 		A4117549177E834D00D3FE23 /* OpusGuessRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */; };
-		A41A665915C921DA00066E9B /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
@@ -285,15 +284,6 @@
 		A461B086174CBAA70088B061 /* PPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD11509A56100F60C03 /* PPTableViewController.m */; };
 		A461B087174CBAA70088B061 /* PPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD31509A56100F60C03 /* PPViewController.m */; };
 		A461B088174CBAA70088B061 /* TestPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD91509A56100F60C03 /* TestPPViewController.m */; };
-		A461B08C174CBAA70088B061 /* HJCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CE91509A56100F60C03 /* HJCircularBuffer.m */; };
-		A461B08D174CBAA70088B061 /* HJManagedImageV.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEB1509A56100F60C03 /* HJManagedImageV.m */; };
-		A461B08E174CBAA70088B061 /* HJMOBigFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEE1509A56100F60C03 /* HJMOBigFileCache.m */; };
-		A461B08F174CBAA70088B061 /* HJMOFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF01509A56100F60C03 /* HJMOFileCache.m */; };
-		A461B090174CBAA70088B061 /* HJMOHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF21509A56100F60C03 /* HJMOHandler.m */; };
-		A461B091174CBAA70088B061 /* HJMOPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF41509A56100F60C03 /* HJMOPolicy.m */; };
-		A461B092174CBAA70088B061 /* HJMOUserBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF71509A56100F60C03 /* HJMOUserBase.m */; };
-		A461B093174CBAA70088B061 /* HJObjManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF91509A56100F60C03 /* HJObjManager.m */; };
-		A461B094174CBAA70088B061 /* HJWeakMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CFB1509A56100F60C03 /* HJWeakMutableArray.m */; };
 		A461B095174CBAA70088B061 /* ReviewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D001509A56100F60C03 /* ReviewRequest.m */; };
 		A461B096174CBAA70088B061 /* SearchHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D051509A56100F60C03 /* SearchHistoryManager.m */; };
 		A461B097174CBAA70088B061 /* UIBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D091509A56100F60C03 /* UIBackgroundView.m */; };
@@ -481,7 +471,6 @@
 		A461B193174CBAA70088B061 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		A461B198174CBAA70088B061 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CE215C780570089E240 /* CMPopTipView.m */; };
 		A461B199174CBAA70088B061 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
-		A461B19C174CBAA70088B061 /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		A461B19E174CBAA70088B061 /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		A461B19F174CBAA70088B061 /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
 		A461B1A0174CBAA70088B061 /* GuessFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40415CFB242001B421A /* GuessFeed.m */; };
@@ -635,7 +624,6 @@
 		A461B28D174CBAA70088B061 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		A461B28E174CBAA70088B061 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		A461B28F174CBAA70088B061 /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		A461B290174CBAA70088B061 /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		A461B291174CBAA70088B061 /* BBSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7915B1664AD2C009B4053 /* BBSImageManager.m */; };
 		A461B292174CBAA70088B061 /* BBSFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791701664BCF3009B4053 /* BBSFontManager.m */; };
 		A461B293174CBAA70088B061 /* BBSColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791731664BD09009B4053 /* BBSColorManager.m */; };
@@ -671,7 +659,6 @@
 		A461B2BE174CBAA70088B061 /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5380A1677712300725802 /* DrawUserInfoView.m */; };
 		A461B2C0174CBAA70088B061 /* PassWordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538121677712300725802 /* PassWordDialog.m */; };
 		A461B2C1174CBAA70088B061 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538161677712300725802 /* RoomPasswordDialog.m */; };
-		A461B2C2174CBAA70088B061 /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5381A1677712300725802 /* StarryLoadingView.m */; };
 		A461B2C8174CBAA70088B061 /* CommonSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1DEC116786E1C002D8408 /* CommonSettingView.m */; };
 		A461B2CC174CBAA70088B061 /* BulletinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974CFE167F1BB200E012FC /* BulletinCell.m */; };
 		A461B2CD174CBAA70088B061 /* BulletinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D02167F1BB200E012FC /* BulletinView.m */; };
@@ -3255,15 +3242,6 @@
 		C28A996E1738F04B007A819F /* PPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD11509A56100F60C03 /* PPTableViewController.m */; };
 		C28A996F1738F04B007A819F /* PPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD31509A56100F60C03 /* PPViewController.m */; };
 		C28A99701738F04B007A819F /* TestPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD91509A56100F60C03 /* TestPPViewController.m */; };
-		C28A99741738F04B007A819F /* HJCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CE91509A56100F60C03 /* HJCircularBuffer.m */; };
-		C28A99751738F04B007A819F /* HJManagedImageV.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEB1509A56100F60C03 /* HJManagedImageV.m */; };
-		C28A99761738F04B007A819F /* HJMOBigFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEE1509A56100F60C03 /* HJMOBigFileCache.m */; };
-		C28A99771738F04B007A819F /* HJMOFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF01509A56100F60C03 /* HJMOFileCache.m */; };
-		C28A99781738F04B007A819F /* HJMOHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF21509A56100F60C03 /* HJMOHandler.m */; };
-		C28A99791738F04B007A819F /* HJMOPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF41509A56100F60C03 /* HJMOPolicy.m */; };
-		C28A997A1738F04B007A819F /* HJMOUserBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF71509A56100F60C03 /* HJMOUserBase.m */; };
-		C28A997B1738F04B007A819F /* HJObjManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF91509A56100F60C03 /* HJObjManager.m */; };
-		C28A997C1738F04B007A819F /* HJWeakMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CFB1509A56100F60C03 /* HJWeakMutableArray.m */; };
 		C28A997D1738F04B007A819F /* ReviewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D001509A56100F60C03 /* ReviewRequest.m */; };
 		C28A997E1738F04B007A819F /* SearchHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D051509A56100F60C03 /* SearchHistoryManager.m */; };
 		C28A997F1738F04B007A819F /* UIBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D091509A56100F60C03 /* UIBackgroundView.m */; };
@@ -3455,7 +3433,6 @@
 		C28A9A7B1738F04B007A819F /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		C28A9A801738F04B007A819F /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CE215C780570089E240 /* CMPopTipView.m */; };
 		C28A9A811738F04B007A819F /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
-		C28A9A841738F04B007A819F /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		C28A9A861738F04B007A819F /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		C28A9A871738F04B007A819F /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
 		C28A9A881738F04B007A819F /* GuessFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40415CFB242001B421A /* GuessFeed.m */; };
@@ -3610,7 +3587,6 @@
 		C28A9B751738F04B007A819F /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		C28A9B761738F04B007A819F /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		C28A9B771738F04B007A819F /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		C28A9B781738F04B007A819F /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		C28A9B791738F04B007A819F /* BBSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7915B1664AD2C009B4053 /* BBSImageManager.m */; };
 		C28A9B7A1738F04B007A819F /* BBSFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791701664BCF3009B4053 /* BBSFontManager.m */; };
 		C28A9B7B1738F04B007A819F /* BBSColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791731664BD09009B4053 /* BBSColorManager.m */; };
@@ -3646,7 +3622,6 @@
 		C28A9BA61738F04B007A819F /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5380A1677712300725802 /* DrawUserInfoView.m */; };
 		C28A9BA81738F04B007A819F /* PassWordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538121677712300725802 /* PassWordDialog.m */; };
 		C28A9BA91738F04B007A819F /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538161677712300725802 /* RoomPasswordDialog.m */; };
-		C28A9BAA1738F04B007A819F /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5381A1677712300725802 /* StarryLoadingView.m */; };
 		C28A9BB01738F04B007A819F /* CommonSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1DEC116786E1C002D8408 /* CommonSettingView.m */; };
 		C28A9BB41738F04B007A819F /* BulletinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974CFE167F1BB200E012FC /* BulletinCell.m */; };
 		C28A9BB51738F04B007A819F /* BulletinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D02167F1BB200E012FC /* BulletinView.m */; };
@@ -4246,7 +4221,6 @@
 		C2B538441677712300725802 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538161677712300725802 /* RoomPasswordDialog.m */; };
 		C2B538451677712300725802 /* RoomPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538171677712300725802 /* RoomPasswordDialog.xib */; };
 		C2B538461677712300725802 /* RoomPasswordDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B538181677712300725802 /* RoomPasswordDialog~ipad.xib */; };
-		C2B538471677712300725802 /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5381A1677712300725802 /* StarryLoadingView.m */; };
 		C2B538481677712300725802 /* ZJHInputDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381B1677712300725802 /* ZJHInputDialog.xib */; };
 		C2B538491677712300725802 /* ZJHInputDialog~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381C1677712300725802 /* ZJHInputDialog~ipad.xib */; };
 		C2B5384A1677712300725802 /* ZJHPassWordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B5381D1677712300725802 /* ZJHPassWordDialog.xib */; };
@@ -4349,7 +4323,6 @@
 		C2EAA87E178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */; };
 		C2EAA87F178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */; };
 		C2EB5D071709335F004B7CCB /* UserDetailRoundButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */; };
-		C2EE13E01664839E00ADBE2E /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		C2EE145E1665FE4F00ADBE2E /* UIView+MDCShineEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */; };
 		C2EE14601665FE9300ADBE2E /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EE145F1665FE9300ADBE2E /* CoreImage.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C2F1DEC416786E1C002D8408 /* CommonSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1DEC116786E1C002D8408 /* CommonSettingView.m */; };
@@ -4436,15 +4409,6 @@
 		CA103EA91509A56200F60C03 /* doneup.png in Resources */ = {isa = PBXBuildFile; fileRef = CA103CD61509A56100F60C03 /* doneup.png */; };
 		CA103EAA1509A56200F60C03 /* TestPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD91509A56100F60C03 /* TestPPViewController.m */; };
 		CA103EAB1509A56200F60C03 /* TestPPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA103CDA1509A56100F60C03 /* TestPPViewController.xib */; };
-		CA103EAF1509A56200F60C03 /* HJCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CE91509A56100F60C03 /* HJCircularBuffer.m */; };
-		CA103EB01509A56200F60C03 /* HJManagedImageV.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEB1509A56100F60C03 /* HJManagedImageV.m */; };
-		CA103EB11509A56200F60C03 /* HJMOBigFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEE1509A56100F60C03 /* HJMOBigFileCache.m */; };
-		CA103EB21509A56200F60C03 /* HJMOFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF01509A56100F60C03 /* HJMOFileCache.m */; };
-		CA103EB31509A56200F60C03 /* HJMOHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF21509A56100F60C03 /* HJMOHandler.m */; };
-		CA103EB41509A56200F60C03 /* HJMOPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF41509A56100F60C03 /* HJMOPolicy.m */; };
-		CA103EB51509A56200F60C03 /* HJMOUserBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF71509A56100F60C03 /* HJMOUserBase.m */; };
-		CA103EB61509A56200F60C03 /* HJObjManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF91509A56100F60C03 /* HJObjManager.m */; };
-		CA103EB71509A56200F60C03 /* HJWeakMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CFB1509A56100F60C03 /* HJWeakMutableArray.m */; };
 		CA103EB81509A56200F60C03 /* ReviewRequest.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA103CFD1509A56100F60C03 /* ReviewRequest.strings */; };
 		CA103EB91509A56200F60C03 /* ReviewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D001509A56100F60C03 /* ReviewRequest.m */; };
 		CA103EBA1509A56200F60C03 /* SearchHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D051509A56100F60C03 /* SearchHistoryManager.m */; };
@@ -5424,15 +5388,6 @@
 		EA41181A176066F500DA72D0 /* PPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD11509A56100F60C03 /* PPTableViewController.m */; };
 		EA41181B176066F500DA72D0 /* PPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD31509A56100F60C03 /* PPViewController.m */; };
 		EA41181C176066F500DA72D0 /* TestPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CD91509A56100F60C03 /* TestPPViewController.m */; };
-		EA411820176066F500DA72D0 /* HJCircularBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CE91509A56100F60C03 /* HJCircularBuffer.m */; };
-		EA411821176066F500DA72D0 /* HJManagedImageV.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEB1509A56100F60C03 /* HJManagedImageV.m */; };
-		EA411822176066F500DA72D0 /* HJMOBigFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CEE1509A56100F60C03 /* HJMOBigFileCache.m */; };
-		EA411823176066F500DA72D0 /* HJMOFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF01509A56100F60C03 /* HJMOFileCache.m */; };
-		EA411824176066F500DA72D0 /* HJMOHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF21509A56100F60C03 /* HJMOHandler.m */; };
-		EA411825176066F500DA72D0 /* HJMOPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF41509A56100F60C03 /* HJMOPolicy.m */; };
-		EA411826176066F500DA72D0 /* HJMOUserBase.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF71509A56100F60C03 /* HJMOUserBase.m */; };
-		EA411827176066F500DA72D0 /* HJObjManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CF91509A56100F60C03 /* HJObjManager.m */; };
-		EA411828176066F500DA72D0 /* HJWeakMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103CFB1509A56100F60C03 /* HJWeakMutableArray.m */; };
 		EA411829176066F500DA72D0 /* ReviewRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D001509A56100F60C03 /* ReviewRequest.m */; };
 		EA41182A176066F500DA72D0 /* SearchHistoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D051509A56100F60C03 /* SearchHistoryManager.m */; };
 		EA41182B176066F500DA72D0 /* UIBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA103D091509A56100F60C03 /* UIBackgroundView.m */; };
@@ -5620,7 +5575,6 @@
 		EA411923176066F500DA72D0 /* Dice.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A44DDF4315C669DF005609F6 /* Dice.pb.m */; };
 		EA411925176066F500DA72D0 /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = A45E8CE215C780570089E240 /* CMPopTipView.m */; };
 		EA411926176066F500DA72D0 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
-		EA411928176066F500DA72D0 /* SlideImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41A665815C921DA00066E9B /* SlideImageView.m */; };
 		EA411929176066F500DA72D0 /* FeedClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D3FE15CFACD3001B421A /* FeedClasses.m */; };
 		EA41192A176066F500DA72D0 /* DrawFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40115CFB230001B421A /* DrawFeed.m */; };
 		EA41192B176066F500DA72D0 /* GuessFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = CA18D40415CFB242001B421A /* GuessFeed.m */; };
@@ -5774,7 +5728,6 @@
 		EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
 		EA4119DC176066F500DA72D0 /* BBSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC790FA1663194F009B4053 /* BBSTableViewCell.m */; };
-		EA4119DD176066F500DA72D0 /* PPViewController+StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */; };
 		EA4119DE176066F500DA72D0 /* BBSImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7915B1664AD2C009B4053 /* BBSImageManager.m */; };
 		EA4119DF176066F500DA72D0 /* BBSFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791701664BCF3009B4053 /* BBSFontManager.m */; };
 		EA4119E0176066F500DA72D0 /* BBSColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC791731664BD09009B4053 /* BBSColorManager.m */; };
@@ -5810,7 +5763,6 @@
 		EA411A01176066F500DA72D0 /* DrawUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5380A1677712300725802 /* DrawUserInfoView.m */; };
 		EA411A03176066F500DA72D0 /* PassWordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538121677712300725802 /* PassWordDialog.m */; };
 		EA411A04176066F500DA72D0 /* RoomPasswordDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B538161677712300725802 /* RoomPasswordDialog.m */; };
-		EA411A05176066F500DA72D0 /* StarryLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B5381A1677712300725802 /* StarryLoadingView.m */; };
 		EA411A06176066F500DA72D0 /* CommonSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1DEC116786E1C002D8408 /* CommonSettingView.m */; };
 		EA411A08176066F500DA72D0 /* BulletinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974CFE167F1BB200E012FC /* BulletinCell.m */; };
 		EA411A09176066F500DA72D0 /* BulletinView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D02167F1BB200E012FC /* BulletinView.m */; };
@@ -6740,8 +6692,6 @@
 		A4117540177D986400D3FE23 /* UITextView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WebCache.m"; sourceTree = "<group>"; };
 		A4117547177E834D00D3FE23 /* OpusGuessRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusGuessRecorder.h; sourceTree = "<group>"; };
 		A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusGuessRecorder.m; sourceTree = "<group>"; };
-		A41A665715C921DA00066E9B /* SlideImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideImageView.h; sourceTree = "<group>"; };
-		A41A665815C921DA00066E9B /* SlideImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideImageView.m; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
@@ -7921,8 +7871,6 @@
 		C2B538161677712300725802 /* RoomPasswordDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomPasswordDialog.m; sourceTree = "<group>"; };
 		C2B538171677712300725802 /* RoomPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomPasswordDialog.xib; sourceTree = "<group>"; };
 		C2B538181677712300725802 /* RoomPasswordDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RoomPasswordDialog~ipad.xib"; sourceTree = "<group>"; };
-		C2B538191677712300725802 /* StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarryLoadingView.h; sourceTree = "<group>"; };
-		C2B5381A1677712300725802 /* StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarryLoadingView.m; sourceTree = "<group>"; };
 		C2B5381B1677712300725802 /* ZJHInputDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHInputDialog.xib; sourceTree = "<group>"; };
 		C2B5381C1677712300725802 /* ZJHInputDialog~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ZJHInputDialog~ipad.xib"; sourceTree = "<group>"; };
 		C2B5381D1677712300725802 /* ZJHPassWordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZJHPassWordDialog.xib; sourceTree = "<group>"; };
@@ -8020,8 +7968,6 @@
 		C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSearchImageFilterView~ipad.xib"; sourceTree = "<group>"; };
 		C2EB5D051709335F004B7CCB /* UserDetailRoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailRoundButton.h; sourceTree = "<group>"; };
 		C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailRoundButton.m; sourceTree = "<group>"; };
-		C2EE13DE1664839E00ADBE2E /* PPViewController+StarryLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PPViewController+StarryLoadingView.h"; sourceTree = "<group>"; };
-		C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PPViewController+StarryLoadingView.m"; sourceTree = "<group>"; };
 		C2EE145C1665FE4F00ADBE2E /* UIView+MDCShineEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDCShineEffect.h"; sourceTree = "<group>"; };
 		C2EE145D1665FE4F00ADBE2E /* UIView+MDCShineEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDCShineEffect.m"; sourceTree = "<group>"; };
 		C2EE145F1665FE9300ADBE2E /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -8125,26 +8071,6 @@
 		CA103CD81509A56100F60C03 /* TestPPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPPViewController.h; sourceTree = "<group>"; };
 		CA103CD91509A56100F60C03 /* TestPPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPPViewController.m; sourceTree = "<group>"; };
 		CA103CDA1509A56100F60C03 /* TestPPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestPPViewController.xib; sourceTree = "<group>"; };
-		CA103CE81509A56100F60C03 /* HJCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCircularBuffer.h; sourceTree = "<group>"; };
-		CA103CE91509A56100F60C03 /* HJCircularBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCircularBuffer.m; sourceTree = "<group>"; };
-		CA103CEA1509A56100F60C03 /* HJManagedImageV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJManagedImageV.h; sourceTree = "<group>"; };
-		CA103CEB1509A56100F60C03 /* HJManagedImageV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJManagedImageV.m; sourceTree = "<group>"; };
-		CA103CEC1509A56100F60C03 /* HJManagedImageVDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJManagedImageVDelegate.h; sourceTree = "<group>"; };
-		CA103CED1509A56100F60C03 /* HJMOBigFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMOBigFileCache.h; sourceTree = "<group>"; };
-		CA103CEE1509A56100F60C03 /* HJMOBigFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMOBigFileCache.m; sourceTree = "<group>"; };
-		CA103CEF1509A56100F60C03 /* HJMOFileCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMOFileCache.h; sourceTree = "<group>"; };
-		CA103CF01509A56100F60C03 /* HJMOFileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMOFileCache.m; sourceTree = "<group>"; };
-		CA103CF11509A56100F60C03 /* HJMOHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMOHandler.h; sourceTree = "<group>"; };
-		CA103CF21509A56100F60C03 /* HJMOHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMOHandler.m; sourceTree = "<group>"; };
-		CA103CF31509A56100F60C03 /* HJMOPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMOPolicy.h; sourceTree = "<group>"; };
-		CA103CF41509A56100F60C03 /* HJMOPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMOPolicy.m; sourceTree = "<group>"; };
-		CA103CF51509A56100F60C03 /* HJMOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMOUser.h; sourceTree = "<group>"; };
-		CA103CF61509A56100F60C03 /* HJMOUserBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJMOUserBase.h; sourceTree = "<group>"; };
-		CA103CF71509A56100F60C03 /* HJMOUserBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJMOUserBase.m; sourceTree = "<group>"; };
-		CA103CF81509A56100F60C03 /* HJObjManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJObjManager.h; sourceTree = "<group>"; };
-		CA103CF91509A56100F60C03 /* HJObjManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJObjManager.m; sourceTree = "<group>"; };
-		CA103CFA1509A56100F60C03 /* HJWeakMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJWeakMutableArray.h; sourceTree = "<group>"; };
-		CA103CFB1509A56100F60C03 /* HJWeakMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJWeakMutableArray.m; sourceTree = "<group>"; };
 		CA103CFE1509A56100F60C03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ReviewRequest.strings; sourceTree = "<group>"; };
 		CA103CFF1509A56100F60C03 /* ReviewRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewRequest.h; sourceTree = "<group>"; };
 		CA103D001509A56100F60C03 /* ReviewRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewRequest.m; sourceTree = "<group>"; };
@@ -9875,15 +9801,6 @@
 				A4117540177D986400D3FE23 /* UITextView+WebCache.m */,
 			);
 			path = UITextView;
-			sourceTree = "<group>";
-		};
-		A41A665615C921DA00066E9B /* UISlideImageView */ = {
-			isa = PBXGroup;
-			children = (
-				A41A665715C921DA00066E9B /* SlideImageView.h */,
-				A41A665815C921DA00066E9B /* SlideImageView.m */,
-			);
-			path = UISlideImageView;
 			sourceTree = "<group>";
 		};
 		A41CF588165790380011AE45 /* RRSGlowLabel */ = {
@@ -12185,8 +12102,6 @@
 				C2B538161677712300725802 /* RoomPasswordDialog.m */,
 				C2B538171677712300725802 /* RoomPasswordDialog.xib */,
 				C2B538181677712300725802 /* RoomPasswordDialog~ipad.xib */,
-				C2B538191677712300725802 /* StarryLoadingView.h */,
-				C2B5381A1677712300725802 /* StarryLoadingView.m */,
 				C2B5381B1677712300725802 /* ZJHInputDialog.xib */,
 				C2B5381C1677712300725802 /* ZJHInputDialog~ipad.xib */,
 				C2B5381D1677712300725802 /* ZJHPassWordDialog.xib */,
@@ -12608,38 +12523,10 @@
 				CA12507B1667397F00AFCC04 /* PPConfigData */,
 				CA7AFCF1164E05A10039E07F /* PPResource */,
 				A43E85DE16227E06003A57F1 /* SDWebImage */,
-				CA103CE71509A56100F60C03 /* HJCache */,
 				CA103CFC1509A56100F60C03 /* Review */,
 				CA103D031509A56100F60C03 /* SearchHistoryManager */,
 			);
 			path = "Core-Components-Service";
-			sourceTree = "<group>";
-		};
-		CA103CE71509A56100F60C03 /* HJCache */ = {
-			isa = PBXGroup;
-			children = (
-				CA103CE81509A56100F60C03 /* HJCircularBuffer.h */,
-				CA103CE91509A56100F60C03 /* HJCircularBuffer.m */,
-				CA103CEA1509A56100F60C03 /* HJManagedImageV.h */,
-				CA103CEB1509A56100F60C03 /* HJManagedImageV.m */,
-				CA103CEC1509A56100F60C03 /* HJManagedImageVDelegate.h */,
-				CA103CED1509A56100F60C03 /* HJMOBigFileCache.h */,
-				CA103CEE1509A56100F60C03 /* HJMOBigFileCache.m */,
-				CA103CEF1509A56100F60C03 /* HJMOFileCache.h */,
-				CA103CF01509A56100F60C03 /* HJMOFileCache.m */,
-				CA103CF11509A56100F60C03 /* HJMOHandler.h */,
-				CA103CF21509A56100F60C03 /* HJMOHandler.m */,
-				CA103CF31509A56100F60C03 /* HJMOPolicy.h */,
-				CA103CF41509A56100F60C03 /* HJMOPolicy.m */,
-				CA103CF51509A56100F60C03 /* HJMOUser.h */,
-				CA103CF61509A56100F60C03 /* HJMOUserBase.h */,
-				CA103CF71509A56100F60C03 /* HJMOUserBase.m */,
-				CA103CF81509A56100F60C03 /* HJObjManager.h */,
-				CA103CF91509A56100F60C03 /* HJObjManager.m */,
-				CA103CFA1509A56100F60C03 /* HJWeakMutableArray.h */,
-				CA103CFB1509A56100F60C03 /* HJWeakMutableArray.m */,
-			);
-			path = HJCache;
 			sourceTree = "<group>";
 		};
 		CA103CFC1509A56100F60C03 /* Review */ = {
@@ -13050,7 +12937,6 @@
 				C21D414B16D5B3E5006A0AA3 /* CustomUITextField */,
 				C2EE145B1665FE4F00ADBE2E /* MDCShineEffect */,
 				A45AA836162FC0140030D668 /* UIPlaceholderTextView */,
-				A41A665615C921DA00066E9B /* UISlideImageView */,
 				CA103DA01509A56100F60C03 /* AlertView */,
 				CA103DA31509A56100F60C03 /* BarButtonItem */,
 				CA103DA61509A56100F60C03 /* Button */,
@@ -13299,8 +13185,6 @@
 				CA3F2F1D1609BDCA0059667B /* CommonTabController.m */,
 				C206FFAA178032D10033CF63 /* CommonWaterFlowController.h */,
 				C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */,
-				C2EE13DE1664839E00ADBE2E /* PPViewController+StarryLoadingView.h */,
-				C2EE13DF1664839E00ADBE2E /* PPViewController+StarryLoadingView.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -19866,15 +19750,6 @@
 				A461B086174CBAA70088B061 /* PPTableViewController.m in Sources */,
 				A461B087174CBAA70088B061 /* PPViewController.m in Sources */,
 				A461B088174CBAA70088B061 /* TestPPViewController.m in Sources */,
-				A461B08C174CBAA70088B061 /* HJCircularBuffer.m in Sources */,
-				A461B08D174CBAA70088B061 /* HJManagedImageV.m in Sources */,
-				A461B08E174CBAA70088B061 /* HJMOBigFileCache.m in Sources */,
-				A461B08F174CBAA70088B061 /* HJMOFileCache.m in Sources */,
-				A461B090174CBAA70088B061 /* HJMOHandler.m in Sources */,
-				A461B091174CBAA70088B061 /* HJMOPolicy.m in Sources */,
-				A461B092174CBAA70088B061 /* HJMOUserBase.m in Sources */,
-				A461B093174CBAA70088B061 /* HJObjManager.m in Sources */,
-				A461B094174CBAA70088B061 /* HJWeakMutableArray.m in Sources */,
 				A461B095174CBAA70088B061 /* ReviewRequest.m in Sources */,
 				A461B096174CBAA70088B061 /* SearchHistoryManager.m in Sources */,
 				A461B097174CBAA70088B061 /* UIBackgroundView.m in Sources */,
@@ -20062,7 +19937,6 @@
 				A461B193174CBAA70088B061 /* Dice.pb.m in Sources */,
 				A461B198174CBAA70088B061 /* CMPopTipView.m in Sources */,
 				A461B199174CBAA70088B061 /* CommonGameSession.m in Sources */,
-				A461B19C174CBAA70088B061 /* SlideImageView.m in Sources */,
 				A461B19E174CBAA70088B061 /* FeedClasses.m in Sources */,
 				A461B19F174CBAA70088B061 /* DrawFeed.m in Sources */,
 				A461B1A0174CBAA70088B061 /* GuessFeed.m in Sources */,
@@ -20216,7 +20090,6 @@
 				A461B28D174CBAA70088B061 /* DrawUtils.m in Sources */,
 				A461B28E174CBAA70088B061 /* DrawGameAnimationManager.m in Sources */,
 				A461B28F174CBAA70088B061 /* BBSTableViewCell.m in Sources */,
-				A461B290174CBAA70088B061 /* PPViewController+StarryLoadingView.m in Sources */,
 				A461B291174CBAA70088B061 /* BBSImageManager.m in Sources */,
 				A461B292174CBAA70088B061 /* BBSFontManager.m in Sources */,
 				A461B293174CBAA70088B061 /* BBSColorManager.m in Sources */,
@@ -20252,7 +20125,6 @@
 				A461B2BE174CBAA70088B061 /* DrawUserInfoView.m in Sources */,
 				A461B2C0174CBAA70088B061 /* PassWordDialog.m in Sources */,
 				A461B2C1174CBAA70088B061 /* RoomPasswordDialog.m in Sources */,
-				A461B2C2174CBAA70088B061 /* StarryLoadingView.m in Sources */,
 				A461B2C8174CBAA70088B061 /* CommonSettingView.m in Sources */,
 				A461B2CC174CBAA70088B061 /* BulletinCell.m in Sources */,
 				A461B2CD174CBAA70088B061 /* BulletinView.m in Sources */,
@@ -20654,15 +20526,6 @@
 				C28A996E1738F04B007A819F /* PPTableViewController.m in Sources */,
 				C28A996F1738F04B007A819F /* PPViewController.m in Sources */,
 				C28A99701738F04B007A819F /* TestPPViewController.m in Sources */,
-				C28A99741738F04B007A819F /* HJCircularBuffer.m in Sources */,
-				C28A99751738F04B007A819F /* HJManagedImageV.m in Sources */,
-				C28A99761738F04B007A819F /* HJMOBigFileCache.m in Sources */,
-				C28A99771738F04B007A819F /* HJMOFileCache.m in Sources */,
-				C28A99781738F04B007A819F /* HJMOHandler.m in Sources */,
-				C28A99791738F04B007A819F /* HJMOPolicy.m in Sources */,
-				C28A997A1738F04B007A819F /* HJMOUserBase.m in Sources */,
-				C28A997B1738F04B007A819F /* HJObjManager.m in Sources */,
-				C28A997C1738F04B007A819F /* HJWeakMutableArray.m in Sources */,
 				C28A997D1738F04B007A819F /* ReviewRequest.m in Sources */,
 				C28A997E1738F04B007A819F /* SearchHistoryManager.m in Sources */,
 				C28A997F1738F04B007A819F /* UIBackgroundView.m in Sources */,
@@ -20854,7 +20717,6 @@
 				C28A9A7B1738F04B007A819F /* Dice.pb.m in Sources */,
 				C28A9A801738F04B007A819F /* CMPopTipView.m in Sources */,
 				C28A9A811738F04B007A819F /* CommonGameSession.m in Sources */,
-				C28A9A841738F04B007A819F /* SlideImageView.m in Sources */,
 				C28A9A861738F04B007A819F /* FeedClasses.m in Sources */,
 				C28A9A871738F04B007A819F /* DrawFeed.m in Sources */,
 				C28A9A881738F04B007A819F /* GuessFeed.m in Sources */,
@@ -21009,7 +20871,6 @@
 				C28A9B751738F04B007A819F /* DrawUtils.m in Sources */,
 				C28A9B761738F04B007A819F /* DrawGameAnimationManager.m in Sources */,
 				C28A9B771738F04B007A819F /* BBSTableViewCell.m in Sources */,
-				C28A9B781738F04B007A819F /* PPViewController+StarryLoadingView.m in Sources */,
 				C28A9B791738F04B007A819F /* BBSImageManager.m in Sources */,
 				C28A9B7A1738F04B007A819F /* BBSFontManager.m in Sources */,
 				C28A9B7B1738F04B007A819F /* BBSColorManager.m in Sources */,
@@ -21045,7 +20906,6 @@
 				C28A9BA61738F04B007A819F /* DrawUserInfoView.m in Sources */,
 				C28A9BA81738F04B007A819F /* PassWordDialog.m in Sources */,
 				C28A9BA91738F04B007A819F /* RoomPasswordDialog.m in Sources */,
-				C28A9BAA1738F04B007A819F /* StarryLoadingView.m in Sources */,
 				C28A9BB01738F04B007A819F /* CommonSettingView.m in Sources */,
 				C28A9BB41738F04B007A819F /* BulletinCell.m in Sources */,
 				C28A9BB51738F04B007A819F /* BulletinView.m in Sources */,
@@ -21416,15 +21276,6 @@
 				CA103EA61509A56200F60C03 /* PPTableViewController.m in Sources */,
 				CA103EA71509A56200F60C03 /* PPViewController.m in Sources */,
 				CA103EAA1509A56200F60C03 /* TestPPViewController.m in Sources */,
-				CA103EAF1509A56200F60C03 /* HJCircularBuffer.m in Sources */,
-				CA103EB01509A56200F60C03 /* HJManagedImageV.m in Sources */,
-				CA103EB11509A56200F60C03 /* HJMOBigFileCache.m in Sources */,
-				CA103EB21509A56200F60C03 /* HJMOFileCache.m in Sources */,
-				CA103EB31509A56200F60C03 /* HJMOHandler.m in Sources */,
-				CA103EB41509A56200F60C03 /* HJMOPolicy.m in Sources */,
-				CA103EB51509A56200F60C03 /* HJMOUserBase.m in Sources */,
-				CA103EB61509A56200F60C03 /* HJObjManager.m in Sources */,
-				CA103EB71509A56200F60C03 /* HJWeakMutableArray.m in Sources */,
 				CA103EB91509A56200F60C03 /* ReviewRequest.m in Sources */,
 				CA103EBA1509A56200F60C03 /* SearchHistoryManager.m in Sources */,
 				CA103EBB1509A56200F60C03 /* UIBackgroundView.m in Sources */,
@@ -21618,7 +21469,6 @@
 				A44DDF4415C669E0005609F6 /* Dice.pb.m in Sources */,
 				A45E8CE315C780570089E240 /* CMPopTipView.m in Sources */,
 				CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */,
-				A41A665915C921DA00066E9B /* SlideImageView.m in Sources */,
 				CA18D3FF15CFACD3001B421A /* FeedClasses.m in Sources */,
 				CA18D40215CFB230001B421A /* DrawFeed.m in Sources */,
 				CA18D40515CFB242001B421A /* GuessFeed.m in Sources */,
@@ -21773,7 +21623,6 @@
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
 				CAC790FB1663194F009B4053 /* BBSTableViewCell.m in Sources */,
-				C2EE13E01664839E00ADBE2E /* PPViewController+StarryLoadingView.m in Sources */,
 				CAC7915C1664AD2C009B4053 /* BBSImageManager.m in Sources */,
 				CAC791711664BCF3009B4053 /* BBSFontManager.m in Sources */,
 				CAC791741664BD09009B4053 /* BBSColorManager.m in Sources */,
@@ -21809,7 +21658,6 @@
 				C2B5383B1677712300725802 /* DrawUserInfoView.m in Sources */,
 				C2B538411677712300725802 /* PassWordDialog.m in Sources */,
 				C2B538441677712300725802 /* RoomPasswordDialog.m in Sources */,
-				C2B538471677712300725802 /* StarryLoadingView.m in Sources */,
 				C2F1DEC416786E1C002D8408 /* CommonSettingView.m in Sources */,
 				C2974D05167F1BB200E012FC /* BulletinCell.m in Sources */,
 				C2974D08167F1BB200E012FC /* BulletinView.m in Sources */,
@@ -22184,15 +22032,6 @@
 				EA41181A176066F500DA72D0 /* PPTableViewController.m in Sources */,
 				EA41181B176066F500DA72D0 /* PPViewController.m in Sources */,
 				EA41181C176066F500DA72D0 /* TestPPViewController.m in Sources */,
-				EA411820176066F500DA72D0 /* HJCircularBuffer.m in Sources */,
-				EA411821176066F500DA72D0 /* HJManagedImageV.m in Sources */,
-				EA411822176066F500DA72D0 /* HJMOBigFileCache.m in Sources */,
-				EA411823176066F500DA72D0 /* HJMOFileCache.m in Sources */,
-				EA411824176066F500DA72D0 /* HJMOHandler.m in Sources */,
-				EA411825176066F500DA72D0 /* HJMOPolicy.m in Sources */,
-				EA411826176066F500DA72D0 /* HJMOUserBase.m in Sources */,
-				EA411827176066F500DA72D0 /* HJObjManager.m in Sources */,
-				EA411828176066F500DA72D0 /* HJWeakMutableArray.m in Sources */,
 				EA411829176066F500DA72D0 /* ReviewRequest.m in Sources */,
 				EA41182A176066F500DA72D0 /* SearchHistoryManager.m in Sources */,
 				EA41182B176066F500DA72D0 /* UIBackgroundView.m in Sources */,
@@ -22380,7 +22219,6 @@
 				EA411923176066F500DA72D0 /* Dice.pb.m in Sources */,
 				EA411925176066F500DA72D0 /* CMPopTipView.m in Sources */,
 				EA411926176066F500DA72D0 /* CommonGameSession.m in Sources */,
-				EA411928176066F500DA72D0 /* SlideImageView.m in Sources */,
 				EA411929176066F500DA72D0 /* FeedClasses.m in Sources */,
 				EA41192A176066F500DA72D0 /* DrawFeed.m in Sources */,
 				EA41192B176066F500DA72D0 /* GuessFeed.m in Sources */,
@@ -22534,7 +22372,6 @@
 				EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */,
 				EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */,
 				EA4119DC176066F500DA72D0 /* BBSTableViewCell.m in Sources */,
-				EA4119DD176066F500DA72D0 /* PPViewController+StarryLoadingView.m in Sources */,
 				EA4119DE176066F500DA72D0 /* BBSImageManager.m in Sources */,
 				EA4119DF176066F500DA72D0 /* BBSFontManager.m in Sources */,
 				EA4119E0176066F500DA72D0 /* BBSColorManager.m in Sources */,
@@ -22570,7 +22407,6 @@
 				EA411A01176066F500DA72D0 /* DrawUserInfoView.m in Sources */,
 				EA411A03176066F500DA72D0 /* PassWordDialog.m in Sources */,
 				EA411A04176066F500DA72D0 /* RoomPasswordDialog.m in Sources */,
-				EA411A05176066F500DA72D0 /* StarryLoadingView.m in Sources */,
 				EA411A06176066F500DA72D0 /* CommonSettingView.m in Sources */,
 				EA411A08176066F500DA72D0 /* BulletinCell.m in Sources */,
 				EA411A09176066F500DA72D0 /* BulletinView.m in Sources */,
