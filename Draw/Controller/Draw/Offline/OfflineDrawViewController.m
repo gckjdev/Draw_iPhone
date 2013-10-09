@@ -12,7 +12,6 @@
 #import "Word.h"
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
-#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "RoomController.h"
 #import "ShareImageManager.h"
@@ -197,6 +196,7 @@
     self.delegate = nil;
     _draft.drawActionList = nil;
     PPRelease(_submitOpusFinalImage);
+    PPRelease(_submitOpusDrawData);
     PPRelease(_shareWeiboSet);
     PPRelease(_tempImageFilePath);
     PPRelease(_drawToolPanel);
