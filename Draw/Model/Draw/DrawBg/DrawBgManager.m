@@ -103,12 +103,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
     return nil;
 }
 
-//+ (void )imageForRemoteURL:(NSString *)url success:(SDWebImageSuccessBlock)success failure:(SDWebImageFailureBlock)failure
-//{
-//    NSURL *URL = [NSURL URLWithString:url];
-//    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:success failure:failure];
-//}
-
 
 - (NSArray *)pbDrawBgGroupList
 {

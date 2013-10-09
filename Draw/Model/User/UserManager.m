@@ -786,16 +786,8 @@ static UserManager* _defaultManager;
     }
     
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
-//    [manager downloadWithURL:[NSURL URLWithString:url]
-//                    delegate:self
-//                     options:0
-//                     success:^(UIImage *image, BOOL cached){
-//                         PPDebug(@"download user avatar image from %@, cached=%d", url, cached);
-//                         self.avatarImage = image;
-//                     }
-//                     failure:nil];
     
-    [manager downloadWithURL:[NSURL URLWithString:url] options:0 progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+    [manager downloadWithURL:[NSURL URLWithString:url] options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
         
         if (finished && error == nil) {
             PPDebug(@"download user avatar image from %@, cached=%d", url, cacheType);

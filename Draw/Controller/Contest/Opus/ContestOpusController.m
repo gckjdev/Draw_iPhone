@@ -321,6 +321,7 @@ typedef enum{
             scene = [UseItemScene createSceneByType:UseSceneTypeMatchRank feed:opus];
         }
         ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:scene];
+        [sc showOpusImageBrower];
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
@@ -501,6 +502,7 @@ typedef enum{
         scene = [UseItemScene createSceneByType:UseSceneTypeMatchRank feed:rankView.feed];
     }
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:scene];
+    [sc showOpusImageBrower];
     sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];

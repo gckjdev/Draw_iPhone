@@ -481,7 +481,9 @@
     if (_image != image) {
         PPRelease(_image);
         _image = [image retain];
-        self.thumbImageSize = _image.size;
+        if (_image != nil){
+            self.thumbImageSize = _image.size;
+        }
     }
 }
 

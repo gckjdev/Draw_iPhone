@@ -1228,6 +1228,7 @@
 "kLeftTipsTimes" = "本關卡你還可以使用%d次錦囊";
 "kNoLeftTips" = "本關卡的錦囊已經用完啦，可以向你的小夥伴求助哦！";
 
+"kTotalPlayerCount" = "參加人數: %d";
 
 "kChoseWeixinOption" = "分享到微信";
 "kShareOpus" = "分享一幅作品";

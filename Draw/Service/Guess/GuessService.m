@@ -175,15 +175,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GUESS_RANK_LIST parameters:para];
         int resultCode = output.resultCode;
+        int totalCount = 0;
         NSArray *rankList = nil;
         if (resultCode == ERROR_SUCCESS){
+            totalCount = output.pbResponse.totalCount;
             rankList = output.pbResponse.guessRankListList;
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([delegate respondsToSelector:@selector(didGetGuessRankList:resultCode:)]) {
-                [delegate didGetGuessRankList:rankList resultCode:resultCode];
+            if ([delegate respondsToSelector:@selector(didGetGuessRankList:totalCount:mode:resultCode:)]) {
+                [delegate didGetGuessRankList:rankList
+                                   totalCount:totalCount
+                                         mode:mode
+                                   resultCode:resultCode];
             }
         });
     });

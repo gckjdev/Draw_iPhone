@@ -7,7 +7,6 @@
 //
 
 #import "DrawGuessController.h"
-#import "WordManager.h"
 #import "CommonShareAction.h"
 #import "SDImageCache.h"
 #import "PPPopTableView.h"
@@ -28,8 +27,7 @@
 
 - (void)viewDidLoad
 {
-    // Set candidates, move before viewDidLoad to make load image quicker
-    NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
+
     
     [super viewDidLoad];
     
@@ -47,7 +45,6 @@
     [_titleView setTarget:self];
     [_titleView setRightButtonSelector:@selector(clickAskForHelpButton:)];
     
-    [self.wordInputView setCandidates:candidates column:9];
 }
 
 - (void)viewDidUnload {
