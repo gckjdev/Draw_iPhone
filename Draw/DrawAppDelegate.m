@@ -287,7 +287,7 @@ NSString* GlobalGetBoardServerURL()
                     channelId:[ConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
         
-    [self initImageCacheManager];
+//    [self initImageCacheManager];
     [PPSmartUpdateDataUtils initPaths];
 
 
