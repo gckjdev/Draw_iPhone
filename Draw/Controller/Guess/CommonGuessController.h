@@ -24,6 +24,7 @@
 @property (assign, nonatomic) id<CommonGuessControllerDelegate> delegate;
 @property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
 @property (retain, nonatomic) IBOutlet UIButton *opusButton;
+@property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
 @property (retain, nonatomic) IBOutlet UIButton *toolBoxButton;
 @property (retain, nonatomic) IBOutlet UIButton *tipButton;
 
