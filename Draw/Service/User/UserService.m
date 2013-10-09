@@ -625,6 +625,40 @@ static UserService* _defaultUserService;
     
 }
 
+- (void)createLocalUserAccount:(PBGameUser*)user
+{
+    if (user == nil){
+        return;
+    }
+    
+    @try {
+        if (user != nil){
+            [[UserManager defaultManager] storeUserData:user];
+        }
+        
+        [[LevelService defaultService] setLevel:user.level];
+        [[LevelService defaultService] setExperience:user.experience];
+        
+        [self saveSNSUserData:user];
+        
+        // sync balance from server
+        AccountManager* _accountManager = [AccountManager defaultManager];
+        [_accountManager updateBalance:user.coinBalance currency:PBGameCurrencyCoin];
+        [_accountManager updateBalance:user.ingotBalance currency:PBGameCurrencyIngot];
+        
+        // sync user item from server
+        [[UserGameItemManager defaultManager] setUserItemList:user.itemsList];
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+        
+    }
+    
+    return;
+    
+}
+
 - (int)createLocalUserAccount:(NSData*)data appId:(NSString*)appId
 {
     int resultCode = 0;
@@ -1804,9 +1838,17 @@ POSTMSG(NSLS(@"kLoginFailure"));
 
             [UserManager deleteUserFromHistoryList:[[UserManager defaultManager] userId]];
             
+            // clear user blance info
+            [[AccountManager defaultManager] updateBalance:0 currency:PBGameCurrencyCoin];
+            [[AccountManager defaultManager] updateBalance:0 currency:PBGameCurrencyIngot];
+            
+            [self saveSNSUserData:nil];
+            
+            // sync user item from server
+            [[UserGameItemManager defaultManager] setUserItemList:nil];            
+            
             // clear user data
             [[UserManager defaultManager] cleanUserData];
-
             
             [viewController.navigationController popToRootViewControllerAnimated:YES];            
             

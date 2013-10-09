@@ -176,4 +176,6 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (BOOL)isRegistered;
 - (BOOL)gotoRegistration:(UIView*)view;
 
+- (void)createLocalUserAccount:(PBGameUser*)user;
+
 @end
