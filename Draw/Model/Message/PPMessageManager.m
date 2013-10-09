@@ -234,6 +234,13 @@ static PPMessageManager* globalDefaultMessageManager;
 //    
 //}
 
+- (void)printAllMessage:(NSArray*)messageList
+{
+    for (PPMessage* message in messageList){
+        PPDebug(@"message type(%@, %d) text(%@)", [[message class] description], message.messageType, message.text);
+    }
+}
+
 - (NSMutableArray*)getMessageList:(NSString*)friendUserId
 {
     if (friendUserId == nil)
@@ -265,6 +272,7 @@ static PPMessageManager* globalDefaultMessageManager;
     }
     
     PPDebug(@"<getMessageList> total %d message for user %@", [list count], friendUserId);
+    [self printAllMessage:list];
     return list;
 }
 

@@ -130,7 +130,10 @@
     [self.imgView setImage:image];
     CGSize size = [ChatDetailCell adjustImageSize:image.size];
     [self updateHolderViewSize:size hasEdge:NO];
-    self.imgView.frame = CGRectFromCGSize(size);
+    CGRect frame = CGRectFromCGSize(size);
+    PPDebug(@"<updateCellWithImage> before %@", NSStringFromCGRect(self.imgView.frame));
+    self.imgView.frame = frame;
+    PPDebug(@"<updateCellWithImage> after %@", NSStringFromCGRect(self.imgView.frame));
 }
 
 + (CGSize)sizeWithSize:(CGSize)size maxSize:(CGSize)maxSize
@@ -318,6 +321,10 @@
                      indexPath:(NSIndexPath *)theIndexPath
                       showTime:(BOOL)showTime
 {
+    self.imgView.image = nil;
+    [self.avatarView setImage:nil];
+    [self.avatarView setBackgroundImage:nil];
+    
     self.messageStat = messageStat;
     self.message = message;
     self.showTime = showTime;
