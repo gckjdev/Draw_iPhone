@@ -346,7 +346,10 @@
     return self;
 }
 
-
+- (void)clear
+{
+    
+}
 
 
 - (void)dealloc

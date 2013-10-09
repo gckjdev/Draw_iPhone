@@ -321,7 +321,9 @@
                      indexPath:(NSIndexPath *)theIndexPath
                       showTime:(BOOL)showTime
 {
-    self.imgView.image = nil;    
+    self.imgView.image = nil;
+    [self.avatarView setImage:nil];
+    [self.avatarView setBackgroundImage:nil];
     
     self.messageStat = messageStat;
     self.message = message;
