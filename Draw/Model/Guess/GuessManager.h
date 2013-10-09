@@ -63,6 +63,7 @@ typedef enum{
                           contestId:(NSString *)contestId;
 
 
+
 + (NSString *)getGuessRulesWithModex:(int)mode;
 + (NSString *)getGuessRulesTitleWithModex:(int)mode;
 

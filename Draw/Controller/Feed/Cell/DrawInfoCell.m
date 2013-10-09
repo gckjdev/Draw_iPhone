@@ -140,13 +140,9 @@
         [self addMaskView];
         
         __block UIImage *placeholderImage = nil;
-//        [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL delegate:self options:SDWebImageCacheMemoryOnly success:^(UIImage *image, BOOL cached) {
-//            placeholderImage = image;
-//            
-//        } failure:NULL];
         
         
-        [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL options:SDWebImageCacheMemoryOnly progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+        [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
             
             if (finished && error == nil) {
                 placeholderImage = image;

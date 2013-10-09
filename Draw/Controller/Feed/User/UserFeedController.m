@@ -301,6 +301,7 @@ typedef enum{
 - (void)enterDetailFeed:(DrawFeed *)feed
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [sc showOpusImageBrower];
     sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
@@ -309,6 +310,7 @@ typedef enum{
 - (void)enterDetailFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
 {
     ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
+    [sc showOpusImageBrower];
     sc.feedList = [[self currentTab] dataList];
     [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
     [sc release];
@@ -488,8 +490,10 @@ typedef enum{
         {
 //            PPDebug(@"Detail");
 //            [self enterDetailFeed:feed];
-            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
-            [self showOpusImageBrower:index];
+            
+//            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
+//            [self showOpusImageBrower:index];
+            [self enterDetailFeed:_selectedRankView.feed];
 
         }
             break;
@@ -692,13 +696,16 @@ typedef enum{
                 [sheet release];
         }else{
             
-            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
-            [self showOpusImageBrower:index];
+//            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
+//            [self showOpusImageBrower:index];
+            
+            [self enterDetailFeed:_selectedRankView.feed];
         }
     }else if(tab.tabID == UserTypeFavorite){
         if (!isMyFavor) {
-            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
-            [self showOpusImageBrower:index];
+//            int index = [[self.currentTab dataList] indexOfObject:_selectedRankView.feed];
+//            [self showOpusImageBrower:index];
+            [self enterDetailFeed:_selectedRankView.feed];
         }else{
             sheet = [[[MKBlockActionSheet alloc] initWithTitle:nil delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:NSLS(@"kOpusDetail") otherButtonTitles:NSLS(@"kUnFavorite"), nil] autorelease];
             [sheet showInView:self.view];
@@ -734,13 +741,6 @@ typedef enum{
             break;
     }
 }
-
-//- (void)showRankView:(RankView *)rankView
-//{
-//    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:rankView.feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:rankView.feed]];
-//    [self.navigationController pushViewController:sc animated:YES];
-//    [sc release];
-//}
 
 
 

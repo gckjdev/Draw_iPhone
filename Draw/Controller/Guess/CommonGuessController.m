@@ -30,6 +30,8 @@
 #import "ShareImageManager.h"
 #import "GuessManager.h"
 #import "UIImageView+ProgressView.h"
+#import "WordManager.h"
+#import "OrangeLoadingView.h"
 
 @interface CommonGuessController (){
     PBUserGuessMode _mode;
@@ -74,7 +76,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    // Set candidates, move before viewDidLoad to make load image quicker
+    NSString *candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:self.opus.pbOpus.name count:27];
+        
     // Init guess words
     self.guessWords = [NSMutableArray array];
     
@@ -103,14 +107,21 @@
     PPDebug(@"start loading image %@ for guess", self.opus.pbOpus.image);    
     NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
 //    [self showActivityWithText:NSLS(@"kLoadImage") center:self.opusImageView.center];
-    UIProgressView *progress = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault] autorelease];
+//    UIProgressView *progress = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault] autorelease];
+    
+    OrangeLoadingView *progress = [OrangeLoadingView orageLoadingView];
     progress.center = self.opusImageView.center;
     [self.opusImageView addSubview:progress];
-    [self.opusImageView setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        
+    
+    
+    [self.opusImageView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         [self hideActivity];
         [progress removeFromSuperview];
-        self.startDate = [NSDate date];
+        
+        if (error == nil) {
+            self.startDate = [NSDate date];
+            [self.wordInputView setCandidates:candidates column:9];
+        }
     } usingProgressView:progress];
 
     

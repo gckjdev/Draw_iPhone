@@ -19,7 +19,12 @@
 - (void)didGetOpuses:(NSArray *)opuses resultCode:(int)resultCode isStartNew:(BOOL)isStartNew;
 - (void)didGuessOpus:(PBOpus *)opus resultCode:(int)resultCode;
 - (void)didGetGuessRank:(PBGuessRank *)rank resultCode:(int)resultCode;
-- (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode;
+
+- (void)didGetGuessRankList:(NSArray *)list
+                 totalCount:(int)totalCount
+                       mode:(int)mode
+                 resultCode:(int)resultCode;
+
 - (void)didGetGuessContestList:(NSArray *)list resultCode:(int)resultCode;
 
 @end

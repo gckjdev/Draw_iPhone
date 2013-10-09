@@ -1240,6 +1240,8 @@
 "kLeftTipsTimes" = "本关卡你还可以使用%d次锦囊";
 "kNoLeftTips" = "本关卡的锦囊已经用完啦，可以向你的小伙伴求助哦！";
 
+"kTotalPlayerCount" = "参加人数: %d";
+
 "kChoseWeixinOption" = "分享到微信";
 "kShareOpus" = "分享一幅作品";
 "kDrawAPicture" = "画一幅画";

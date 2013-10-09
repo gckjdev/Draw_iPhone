@@ -55,13 +55,8 @@ typedef enum{
     TabTypeContestSixDaysAgo,
 }TabType;
 
-//static NSArray * gContestSelectList = @[TODAY, YESTERDAY, BEFOREYESTERDAY, THREEDAYSAGO, FOURDAYSAGO, FIVEDAYSAGO, SIXDAYSAGO, SEVENDAYSAGO];
-
-
-
 
 @interface GuessRankListController ()
-
 @property (retain, nonatomic) NSArray *contests;
 @property (copy, nonatomic) NSString *currentSelect;
 @property (retain, nonatomic) PPPopTableView *popView;
@@ -70,9 +65,8 @@ typedef enum{
 @property (retain, nonatomic) NSArray *contestTitleList;
 @property (retain, nonatomic) NSArray *geniusRankTypeList;
 @property (retain, nonatomic) NSArray *geniusTitleList;
+@property (retain, nonatomic) NSMutableDictionary *totalCountDic;
 
-//@property (retain, nonatomic) NSArray *geniusTabTypeList;
-//@property (retain, nonatomic) NSArray *contestTabTypeList;
 @end
 
 @implementation GuessRankListController
@@ -88,8 +82,8 @@ typedef enum{
     [_contestTitleList release];
     [_geniusRankTypeList release];
     [_geniusTitleList release];
-//    [_geniusTabTypeList release];
-//    [_contestTabTypeList release];
+
+    [_totalCountLabel release];
     [super dealloc];
 }
 
@@ -118,6 +112,10 @@ typedef enum{
     // set tab title
     [self.geniusButton setTitle:GENIUS_DAY forState:UIControlStateNormal];
     [self.contestButton setTitle:CONTEST_TODAY forState:UIControlStateNormal];
+    
+    self.totalCountLabel.hidden = YES;
+    self.totalCountLabel.backgroundColor = COLOR_ORANGE;
+    self.totalCountLabel.textColor = COLOR_WHITE;
 }
 
 - (void)viewDidUnload {
@@ -125,6 +123,7 @@ typedef enum{
     [self setGeniusButton:nil];
     [self setContestButton:nil];
     [self setTitleView:nil];
+    [self setTotalCountLabel:nil];
     [super viewDidUnload];
 }
 
@@ -139,6 +138,7 @@ typedef enum{
         [_contestButton setBackgroundColor:COLOR_ORANGE];
         [_geniusButton setTitle:[_geniusTitleList objectAtIndex:index] forState:UIControlStateNormal];
         [self clickTab:(index + TabTypeGeniusHot)];
+//        self.totalCountLabel.hidden = YES;
         return;
     }
     
@@ -149,7 +149,9 @@ typedef enum{
         [_contestButton setBackgroundColor:COLOR_ORANGE1];
         [_contestButton setTitle:[_contestTitleList objectAtIndex:index] forState:UIControlStateNormal];
         [self clickTab:(index + TabTypeContestToday)];
+//        self.totalCountLabel.hidden = NO;
     }
+    
 }
 
 - (IBAction)clickGeniusSelectButton:(UIButton *)sender {
@@ -212,12 +214,17 @@ typedef enum{
     self.currentSelect = item.title;
 }
 
-- (void)didGetGuessRankList:(NSArray *)list resultCode:(int)resultCode{
+- (void)didGetGuessRankList:(NSArray *)list
+                 totalCount:(int)totalCount
+                       mode:(int)mode
+                 resultCode:(int)resultCode{
     
     [self hideActivity];
     if (resultCode == 0) {
         PPDebug(@"list count = %d", [list count]);
+        
         [self finishLoadDataForTabID:self.currentTab.tabID resultList:list];
+        
     }else{
         [self failLoadDataForTabID:self.currentTab.tabID];
     }

@@ -241,12 +241,7 @@ if(control){\
     DrawToolUpPanelCell *cell = [cellDict objectForKey:KEY(DrawToolTypeDrawTo)];
     NSURL *URL = [NSURL URLWithString:user.avatar];
     
-//    [[SDWebImageManager sharedManager] downloadWithURL:URL delegate:URL options:0 success:^(UIImage *image, BOOL cached) {
-//        image = [UIImage shrinkImage:image withRate:0.8];
-//        [cell updateIcon:image];
-//    } failure:NULL];
-    
-    [[SDWebImageManager sharedManager] downloadWithURL:URL options:0 progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+    [[SDWebImageManager sharedManager] downloadWithURL:URL options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
         
         if (error == nil) {
             image = [UIImage shrinkImage:image withRate:0.8];
