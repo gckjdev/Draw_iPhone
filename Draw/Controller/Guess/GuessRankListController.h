@@ -15,5 +15,6 @@
 //@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
 @property (retain, nonatomic) IBOutlet UIButton *geniusButton;
 @property (retain, nonatomic) IBOutlet UIButton *contestButton;
+@property (retain, nonatomic) IBOutlet UILabel *totalCountLabel;
 
 @end

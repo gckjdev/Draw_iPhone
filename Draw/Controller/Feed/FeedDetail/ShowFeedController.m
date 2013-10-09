@@ -904,8 +904,6 @@ typedef enum{
     [self initTabButtons];
     [self reloadView];
     [self setShowTipsDisable:YES];
-    
-    [self showOpusImageBrower];
 }
 
 - (void)showOpusImageBrower{

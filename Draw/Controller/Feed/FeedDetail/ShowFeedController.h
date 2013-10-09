@@ -44,6 +44,8 @@
              scene:(UseItemScene *)scene
          feedScene:(NSObject<ShowFeedSceneProtocol>*)feedScene;
 
+- (void)showOpusImageBrower;
+
 @property (nonatomic, retain) NSObject<ShowFeedSceneProtocol>* feedScene;
 
 @end

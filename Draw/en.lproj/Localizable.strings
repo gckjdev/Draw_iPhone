@@ -1207,6 +1207,8 @@
 "kLeftTipsTimes" = "You can use tip item for %d times";
 "kNoLeftTips" = "You have no tip item to use, you can ask your friends for help";
 
+"kTotalPlayerCount" = "Total player is %d";
+
 
 "kChoseWeixinOption" = "Share to WeChat";
 "kShareOpus" = "Share a paint";
