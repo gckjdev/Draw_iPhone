@@ -117,11 +117,12 @@
 
 - (void)updateBoardList
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[BBSService defaultService] getBBSBoardList:self];
     [[BBSService defaultService] getBBSPrivilegeList];
-    if ([[[BBSManager defaultManager] boardList] count] != 0) {
-        [self showActivityWithText:NSLS(@"kLoading")];
-    }
+//    if ([[[BBSManager defaultManager] boardList] count] != 0) {
+    
+//    }
 }
 
 - (void)customBbsBg

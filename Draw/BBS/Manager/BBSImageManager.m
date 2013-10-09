@@ -71,8 +71,9 @@ static BBSImageManager* _staticBBSImageManager;
 }
 - (UIImage *)bbsBGImage
 {
-    return [_resService imageByName:@"bbs_bg"
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+    return [[ShareImageManager defaultManager] drawBGImage];
+//    return [_resService imageByName:@"bbs_bg"
+//                  inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
 - (UIImage *)bbsActionSheetBG
@@ -121,16 +122,6 @@ static BBSImageManager* _staticBBSImageManager;
                              inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 
-- (UIImage *)bbsButtonLeftImage
-{
-     return [_resService stretchableImageWithImageName:@"bbs_button_left"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
-}
-- (UIImage *)bbsButtonRightImage
-{
-     return [_resService stretchableImageWithImageName:@"bbs_button_right"
-                   inResourcePackage:RESOURCE_PACKAGE_BBS];
-}
 - (UIImage *)bbsSectionBgImage
 {
      return [_resService stretchableImageWithImageName:@"bbs_section_bg"
@@ -210,11 +201,6 @@ static BBSImageManager* _staticBBSImageManager;
 
 //bbs post detail
 #pragma mark - Post Detail image
-- (UIImage*)bbsDetailComment{
-    NSString *imageName = [UIImage fixImageName:@"bbs_detail_comment"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
-}
 - (UIImage*)bbsDetailOptionUp{
     NSString *imageName = [UIImage fixImageName:@"bbs_detail_option_up"];
     return [_resService imageByName:imageName
@@ -231,11 +217,7 @@ static BBSImageManager* _staticBBSImageManager;
     return [_resService imageByName:imageName
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
-- (UIImage*)bbsDetailThumb{
-    NSString *imageName = [UIImage fixImageName:@"bbs_detail_thumb"];
-    return [_resService imageByName:imageName
-                  inResourcePackage:RESOURCE_PACKAGE_BBS];
-}
+
 - (UIImage*)bbsDetailOption{
      return [_resService stretchableImageWithImageName:@"bbs_detail_option"
                               inResourcePackage:RESOURCE_PACKAGE_BBS];
@@ -295,14 +277,8 @@ static BBSImageManager* _staticBBSImageManager;
 }
 
 #pragma mark - Creation Page image
-- (UIImage *)bbsCreateDrawDisable{
-    return [_resService stretchableImageWithImageName:@"bbs_create_draw_disable" inResourcePackage:RESOURCE_PACKAGE_BBS];
-}
 - (UIImage *)bbsCreateDrawEnable{
      return [_resService stretchableImageWithImageName:@"bbs_create_draw_enable" inResourcePackage:RESOURCE_PACKAGE_BBS];
-}
-- (UIImage *)bbsCreateImageDisable{
-     return [_resService stretchableImageWithImageName:@"bbs_create_image_disable" inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
 - (UIImage *)bbsCreateImageEnable{
      return [_resService stretchableImageWithImageName:@"bbs_create_image_enable" inResourcePackage:RESOURCE_PACKAGE_BBS];
