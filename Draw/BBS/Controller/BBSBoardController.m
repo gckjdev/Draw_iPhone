@@ -12,6 +12,7 @@
 #import "BBSPostListController.h"
 #import "BBSActionListController.h"
 #import "StatisticManager.h"
+#import "StableView.h"
 
 @interface BBSBoardController ()
 {
@@ -33,7 +34,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *myPostButton;
 @property (retain, nonatomic) IBOutlet UIButton *myActionButton;
-@property (retain, nonatomic) IBOutlet UIButton *badge;
+@property (retain, nonatomic) IBOutlet BadgeView *badge;
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @end
@@ -67,17 +68,6 @@
     
     [self.myActionButton setImage:[_bbsImageManager bbsBoardCommentImage] forState:UIControlStateNormal];
 
-    //badge
-    [BBSViewManager updateButton:self.badge
-                         bgColor:[UIColor clearColor]
-                         bgImage:[_bbsImageManager bbsBadgeImage]
-                           image:nil
-                            font:[_bbsFontManager indexBadgeFont]
-                      titleColor:[_bbsColorManager badgeColor]
-                           title:nil
-                        forState:UIControlStateNormal];
-    [self.badge setUserInteractionEnabled:NO];
-    [self.badge setHidden:YES];
     //back ground
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
     
@@ -87,13 +77,7 @@
 - (void)updateBadge
 {
     long number = [[StatisticManager defaultManager] bbsActionCount];
-    if (number > 0 ) {
-        [self.badge setTitle:[NSString stringWithFormat:@"%ld",number] forState:UIControlStateNormal];
-        self.badge.hidden = NO;
-    }else{
-        [self.badge setTitle:nil forState:UIControlStateNormal];
-        self.badge.hidden = YES;
-    }
+    [self.badge setNumber:number];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -117,11 +101,12 @@
 
 - (void)updateBoardList
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
     [[BBSService defaultService] getBBSBoardList:self];
     [[BBSService defaultService] getBBSPrivilegeList];
-    if ([[[BBSManager defaultManager] boardList] count] != 0) {
-        [self showActivityWithText:NSLS(@"kLoading")];
-    }
+//    if ([[[BBSManager defaultManager] boardList] count] != 0) {
+    
+//    }
 }
 
 - (void)customBbsBg
@@ -139,6 +124,7 @@
     [self initViews];
     [self updateBoardList];
     [self customBbsBg];
+    [self updateBadge];
 //    // Do any additional setup after loading the view from its nib.
 }
 

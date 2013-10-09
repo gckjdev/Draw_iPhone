@@ -204,8 +204,12 @@
                          range:NSMakeRange(0, length)];
             
             [attr addAttribute:NSForegroundColorAttributeName
-                         value:[UIColor darkGrayColor]
+                         value:COLOR_GRAY_TEXT
                          range:NSMakeRange(0, loc)];
+
+            [attr addAttribute:NSForegroundColorAttributeName
+                         value:COLOR_BROWN
+                         range:NSMakeRange(loc, contentLength)];
             
             if (self.useContentLabel) {
                 [self.content setAttributedText:attr];

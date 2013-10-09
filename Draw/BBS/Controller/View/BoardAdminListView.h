@@ -13,6 +13,7 @@
 @property (nonatomic ,assign)PPViewController *controller;
 @property (retain, nonatomic) IBOutlet UILabel *adminTitle;
 
+@property (retain, nonatomic) IBOutlet UIView *splitLine;
 
 + (id)adminListViewWithBBSUserList:(NSArray *)userList
                         controller:(PPViewController *)controller;

@@ -73,12 +73,12 @@
     [BBSViewManager updateLable:self.content
                         bgColor:[UIColor clearColor]
                            font:[_bbsFontManager postContentFont]
-                      textColor:[UIColor blackColor]
+                      textColor:COLOR_BROWN
                            text:nil];
     
     [self.contentTextView setBackgroundColor:[UIColor clearColor]];
     [self.contentTextView setFont:[_bbsFontManager postContentFont]];
-    [self.contentTextView setTextColor:[UIColor blackColor]];
+    [self.contentTextView setTextColor:COLOR_BROWN];
     [self.contentTextView setText:nil];
     [self.contentTextView setScrollEnabled:NO];
     [self.contentTextView setEditable:NO];

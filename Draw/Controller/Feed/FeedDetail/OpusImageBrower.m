@@ -248,19 +248,36 @@
 //    }
 //}
 
+#define OPUS_VIEW_ANMIATION_SECONDS 0.8f
+#define MOVE_OFFSET [[UIScreen mainScreen] bounds].size.width
+
 - (void)showInView:(UIView *)view{
     
     [view addSubview:self];
 
+    
 //    [self updateOriginY:PAGE_HEIGHT];
+    
+    
     self.alpha = 0;
     __block typeof (self) bself = self;
     
-    [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         bself.alpha = 1;
     } completion:^(BOOL finished) {
         
     }];
+    
+//    self.frame = view.bounds;
+//    CGFloat x = CGRectGetMidX(self.frame);
+//    
+//    [self updateCenterX:x-MOVE_OFFSET];
+//    
+//    [UIView animateWithDuration:OPUS_VIEW_ANMIATION_SECONDS animations:^{
+//        [self updateCenterX:x];
+//    } completion:^(BOOL finished) {
+//        [self updateCenterX:x];
+//    }];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
