@@ -310,6 +310,7 @@ typedef enum{
         CommentFeed *feed  = self.currentTab.dataList[indexPath.row];
         opus = (ContestFeed *)feed.drawFeed;
     }
+    
     if (opus == nil) {
         PPDebug(@"<didSelectRowAtIndexPath> opus is nil");
         return;
@@ -321,7 +322,9 @@ typedef enum{
             scene = [UseItemScene createSceneByType:UseSceneTypeMatchRank feed:opus];
         }
         ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:opus scene:scene];
-        [sc showOpusImageBrower];
+        if (self.currentTab.tabID != OpusTypeReport) {
+            [sc showOpusImageBrower];
+        }
         [self.navigationController pushViewController:sc animated:YES];
         [sc release];
     }
