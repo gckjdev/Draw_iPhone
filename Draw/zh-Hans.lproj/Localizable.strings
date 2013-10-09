@@ -2075,7 +2075,7 @@
 "kNewLayerName" = "图层";
 "kEditLayerName" = "修改图层名字";
 "kCurrentLayerCannotHiden" = "当前图层不能被隐藏。";
-"kDeleteDrawLayer" = "确定要删除图层吗？";
+"kDeleteDrawLayer" = "删除图层后，该图层上的笔迹将全部消失，不能恢复，确定要删除吗？";
 "kHiddenLayerCannotBeSelected" = "隐藏的图层不能设成当前图层。";
 "kRearchMaxLayerCount" = "对不起，不能再增加图层了。";
 

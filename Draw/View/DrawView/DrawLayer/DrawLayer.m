@@ -328,7 +328,7 @@
 
 - (BOOL)canBeRemoved
 {
-    NSArray *retainTags = [NSArray arrayWithObjects:@(BG_LAYER_TAG), @(MAIN_LAYER_TAG), @(DEFAULT_LAYER_TAG), nil];
+    NSArray *retainTags = @[@(DEFAULT_LAYER_TAG)];
     return ![retainTags containsObject:@(self.layerTag)];
 }
 
