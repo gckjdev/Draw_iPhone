@@ -11,7 +11,7 @@
 static BBSColorManager* _staticBBSColorManager;
 @implementation BBSColorManager
 
-
+#define BBS_COLOR_GREEN OPAQUE_COLOR(130, 228, 205)
 
 + (id)defaultManager
 {
@@ -59,7 +59,7 @@ static BBSColorManager* _staticBBSColorManager;
     return COLOR_GRAY_TEXT;//[UIColor colorWithRed:0x70/255.0 green:0x70/255.0 blue:0x70/255.0 alpha:1];
 }
 - (UIColor *)postActionColor{
-    return COLOR_GREEN;//[UIColor colorWithRed:0x73/255.0 green:0x8d/255.0 blue:0xa8/255.0 alpha:1];
+    return BBS_COLOR_GREEN;//[UIColor colorWithRed:0x73/255.0 green:0x8d/255.0 blue:0xa8/255.0 alpha:1];
 }
 - (UIColor *)postAvatarColor{
     return COLOR_WHITE;//[UIColor colorWithRed:0x7c/255.0 green:0xb3/255.0 blue:0xde/255.0 alpha:1];
@@ -74,7 +74,7 @@ static BBSColorManager* _staticBBSColorManager;
     return COLOR_BROWN;//[UIColor colorWithRed:0x6d/255.0 green:0x98/255.0 blue:0xb8/255.0 alpha:1];
 }
 - (UIColor *)bbsAdminLineColor{
-    return COLOR_GREEN;//[UIColor colorWithRed:0x54/255.0 green:0x78/255.0 blue:0x9d/255.0 alpha:1];
+    return BBS_COLOR_GREEN;//[UIColor colorWithRed:0x54/255.0 green:0x78/255.0 blue:0x9d/255.0 alpha:1];
 }
 - (UIColor *)bbsTopPostFlagColor{
     return COLOR_ORANGE;//[UIColor colorWithRed:0xe6/255.0 green:0xec/255.0 blue:0xf2/255.0 alpha:1];
@@ -86,12 +86,12 @@ static BBSColorManager* _staticBBSColorManager;
     return COLOR_GRAY_TEXT;//[UIColor colorWithRed:0x61/255.0 green:0x8d/255.0 blue:0xb4/255.0 alpha:1];
 }
 - (UIColor *)detailHeaderSelectedColor{
-    return COLOR_GREEN;//[UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
+    return BBS_COLOR_GREEN;//[UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
 }
 
 #pragma - mark user action
 - (UIColor *)userActionSplitColor{
-    return COLOR_GREEN;//[UIColor colorWithRed:0x75/255.0 green:0x8b/255.0 blue:0xa2/255.0 alpha:1];
+    return BBS_COLOR_GREEN;//[UIColor colorWithRed:0x75/255.0 green:0x8b/255.0 blue:0xa2/255.0 alpha:1];
 }
 
 - (UIColor *)userActionSourceColor{
