@@ -484,6 +484,9 @@
         if (_image != nil){
             self.thumbImageSize = _image.size;
         }
+        else{
+            self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+        }
     }
 }
 
