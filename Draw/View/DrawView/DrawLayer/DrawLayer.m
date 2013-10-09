@@ -357,11 +357,7 @@
                                                        tag:MAIN_LAYER_TAG
                                                       name:NSLS(@"kMainLayer")
                                                suportCache:YES] autorelease];
-
-//    mainLayer.backgroundColor = [UIColor redColor].CGColor;
-    
-    return [NSArray arrayWithObjects:mainLayer, bgLayer, nil];
-//    return [NSMutableArray arrayWithObjects:mainLayer, nil];
+    return @[bgLayer, mainLayer];
 }
 
 + (NSArray *)defaultOldLayersWithFrame:(CGRect)frame
@@ -380,8 +376,8 @@
                                                         name:NSLS(@"kMainLayer")
                                                  suportCache:YES] autorelease];
     
-    return [NSMutableArray arrayWithObjects: defaultLayer, bgLayer, nil];
-   
+    return @[bgLayer, defaultLayer];
+
 }
 
 #define VALUE(X) (ISIPAD?(2*X):X)
