@@ -17,7 +17,7 @@
 #import "LocaleUtils.h"
 #import "AnimationManager.h"
 #import "ResultController.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "RoomController.h"
 #import "OnlineGuessDrawController.h"

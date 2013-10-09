@@ -13,7 +13,7 @@
 #import "DeviceDetection.h"
 #import "FriendService.h"
 #import "LogUtil.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "GameNetworkConstants.h"
 #import "Room.h"

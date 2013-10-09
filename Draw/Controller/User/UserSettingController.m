@@ -11,7 +11,7 @@
 #import "UserManager.h"
 #import "LocaleUtils.h"
 #import "ShareImageManager.h"
-#import "HJManagedImageV.h"
+//#import "HJManagedImageV.h"
 #import "PPApplication.h"
 #import "PassWordDialog.h"
 #import "StringUtil.h"
