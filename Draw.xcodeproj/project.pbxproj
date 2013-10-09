@@ -4566,6 +4566,14 @@
 		CA1DA96D1673320C0078B5A9 /* HomeCommonView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96C1673320A0078B5A9 /* HomeCommonView.m */; };
 		CA1DA9701673437A0078B5A9 /* HomeMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA96F167343770078B5A9 /* HomeMenuView.m */; };
 		CA1DAA31167583130078B5A9 /* DrawHomeHeaderPanel~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */; };
+		CA1FF8911804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1FF8291804F986003CEAD6 /* NSDate+TKCategory.strings */; };
+		CA1FF8921804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1FF8291804F986003CEAD6 /* NSDate+TKCategory.strings */; };
+		CA1FF8931804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1FF8291804F986003CEAD6 /* NSDate+TKCategory.strings */; };
+		CA1FF8941804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1FF8291804F986003CEAD6 /* NSDate+TKCategory.strings */; };
+		CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1FF82E1804F986003CEAD6 /* NSDate+TKCategory.m */; };
+		CA1FF89A1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1FF82E1804F986003CEAD6 /* NSDate+TKCategory.m */; };
+		CA1FF89B1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1FF82E1804F986003CEAD6 /* NSDate+TKCategory.m */; };
+		CA1FF89C1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1FF82E1804F986003CEAD6 /* NSDate+TKCategory.m */; };
 		CA21FD2D16F2FC49002975C8 /* DrawHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */; };
 		CA22B7AD169BCB3700DAB1C3 /* DrawPro-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */; };
 		CA22DCD2157CAFFD009C95CB /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA22DCCF157CAFFD009C95CB /* ResultController.m */; };
@@ -8355,6 +8363,10 @@
 		CA1DA96E167343740078B5A9 /* HomeMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenuView.h; sourceTree = "<group>"; };
 		CA1DA96F167343770078B5A9 /* HomeMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenuView.m; sourceTree = "<group>"; };
 		CA1DAA30167583120078B5A9 /* DrawHomeHeaderPanel~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "DrawHomeHeaderPanel~ipad.xib"; sourceTree = "<group>"; };
+		CA1FF82A1804F986003CEAD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/NSDate+TKCategory.strings"; sourceTree = "<group>"; };
+		CA1FF82D1804F986003CEAD6 /* NSDate+TKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TKCategory.h"; sourceTree = "<group>"; };
+		CA1FF82E1804F986003CEAD6 /* NSDate+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TKCategory.m"; sourceTree = "<group>"; };
+		CA1FF8901804F986003CEAD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NSDate+TKCategory.strings"; sourceTree = "<group>"; };
 		CA21FD2B16F2FC49002975C8 /* DrawHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawHolderView.h; sourceTree = "<group>"; };
 		CA21FD2C16F2FC49002975C8 /* DrawHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawHolderView.m; sourceTree = "<group>"; };
 		CA22B7AC169BCB3600DAB1C3 /* DrawPro-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DrawPro-Info.plist"; sourceTree = "<group>"; };
@@ -13108,6 +13120,7 @@
 		CA10404D1509A9FD00F60C03 /* TapkuLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				CA1FF8281804F986003CEAD6 /* TapkuLibrary */,
 				CA10404E1509A9FD00F60C03 /* Frameworks */,
 			);
 			path = TapkuLibrary;
@@ -13698,6 +13711,16 @@
 				CA1DA96F167343770078B5A9 /* HomeMenuView.m */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		CA1FF8281804F986003CEAD6 /* TapkuLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				CA1FF8291804F986003CEAD6 /* NSDate+TKCategory.strings */,
+				CA1FF82D1804F986003CEAD6 /* NSDate+TKCategory.h */,
+				CA1FF82E1804F986003CEAD6 /* NSDate+TKCategory.m */,
+			);
+			path = TapkuLibrary;
 			sourceTree = "<group>";
 		};
 		CA22DCCD157CAFFC009C95CB /* Result */ = {
@@ -17202,6 +17225,7 @@
 				EA2A7CEE17F6958600ED508D /* AccountCell.xib in Resources */,
 				A42151841803EA2B007F2EFD /* README.mdown in Resources */,
 				A42151CD18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
+				CA1FF8931804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18068,6 +18092,7 @@
 				EA2A7CED17F6958600ED508D /* AccountCell.xib in Resources */,
 				A42151831803EA2B007F2EFD /* README.mdown in Resources */,
 				A42151CC18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
+				CA1FF8921804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18916,6 +18941,7 @@
 				EA2A7CEC17F6958600ED508D /* AccountCell.xib in Resources */,
 				A42151821803EA2A007F2EFD /* README.mdown in Resources */,
 				A42151CB18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
+				CA1FF8911804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19729,6 +19755,7 @@
 				A42F4A3417E9732C009774FC /* DrawDefault@2x.png in Resources */,
 				EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */,
 				EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */,
+				CA1FF8941804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20508,6 +20535,7 @@
 				A421517E1803EA2A007F2EFD /* DACircularProgressView.m in Sources */,
 				A42151811803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
 				A44D658F18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
+				CA1FF89B1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21258,6 +21286,7 @@
 				A421517D1803EA2A007F2EFD /* DACircularProgressView.m in Sources */,
 				A42151801803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
 				A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
+				CA1FF89A1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22014,6 +22043,7 @@
 				A421517C1803EA2A007F2EFD /* DACircularProgressView.m in Sources */,
 				A421517F1803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
 				A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
+				CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22721,6 +22751,7 @@
 				CA33F67B17E94B69005950EF /* Photo.pb-c.c in Sources */,
 				CA76134817F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */,
+				CA1FF89C1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22785,6 +22816,15 @@
 				CAE57D27153BD77F00C4C63A /* zh-Hant */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		CA1FF8291804F986003CEAD6 /* NSDate+TKCategory.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA1FF82A1804F986003CEAD6 /* en */,
+				CA1FF8901804F986003CEAD6 /* zh-Hans */,
+			);
+			name = "NSDate+TKCategory.strings";
 			sourceTree = "<group>";
 		};
 		CA2488FB1753B92400848A5F /* LittleGeeDefault-568h@2x.png */ = {

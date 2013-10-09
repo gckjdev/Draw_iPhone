@@ -20,7 +20,7 @@
 #import "UserManager.h"
 #import "CommonUserInfoView.h"
 #import "MyFriend.h"
-#import "PPViewController+StarryLoadingView.h"
+//#import "PPViewController+StarryLoadingView.h"
 #import "GameApp.h"
 #import "FXLabel.h"
 

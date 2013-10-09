@@ -155,7 +155,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemManager);
 {
     NSDate *expireDate = [NSDate dateWithTimeIntervalSince1970:userItem.expireDate];
     
-    if ([[NSDate date] isBeforeDay:expireDate]) {
+    if ([[NSDate date]  isBeforeDay:expireDate]) {
         return YES;
     }
     
