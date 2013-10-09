@@ -420,7 +420,11 @@
     GuessState state = [GuessManager getGuessStateWithMode:_mode contestId:_contest.contestId];
     switch (state) {
         case GuessStateNotStart:
-            [self handleWithNotStart:index];
+            if ([self isGuessIndexValid:index]) {
+                [self handleWithNotStart:index];
+            }else{
+                POSTMSG2(NSLS(@"kGuessPreviousOpusFirst"), 3);
+            }
             break;
             
         case GuessStateBeing:

@@ -59,7 +59,7 @@
     [BBSViewManager updateLable:view.timestamp
                         bgColor:[UIColor clearColor]
                            font:[fontManager indexLastPostDateFont]
-                      textColor:[colorManager normalTextColor]
+                      textColor:[colorManager postDateColor]
                            text:nil];
 
 

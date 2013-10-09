@@ -131,9 +131,7 @@
     CGSize size = [ChatDetailCell adjustImageSize:image.size];
     [self updateHolderViewSize:size hasEdge:NO];
     CGRect frame = CGRectFromCGSize(size);
-    PPDebug(@"<updateCellWithImage> before %@", NSStringFromCGRect(self.imgView.frame));
     self.imgView.frame = frame;
-    PPDebug(@"<updateCellWithImage> after %@", NSStringFromCGRect(self.imgView.frame));
 }
 
 + (CGSize)sizeWithSize:(CGSize)size maxSize:(CGSize)maxSize
@@ -195,17 +193,7 @@
     if (message.image && message.status != MessageStatusFail) {
         [self updateCellWithImage:message.image];
     }else{
-        
-        
-//        [self.imgView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] success:^(UIImage *image, BOOL cached) {
-//            message.image = image;
-//            [self updateCellWithImage:message.image];
-//            [self.delegate didMessage:message loadImage:image];
-//        } failure:^(NSError *error) {
-//            [self updateCellWithImage:[[ShareImageManager defaultManager] splitPhoto]];
-//        }];
-        
-        [self.imageView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [self.imgView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (error == nil) {
                 message.image = image;
                 [self updateCellWithImage:message.image];
@@ -342,6 +330,7 @@
         [self updateImageMessageView:(ImageMessage*)message];
     }else{
         [self updateTextMessageView:(TextMessage *)message];
+        self.imgView.hidden = YES;        
         if (!self.isReceive) {
             SET_BUTTON_ROUND_STYLE_ORANGE(self.holderView);
             [self.msgLabel setTextColor:COLOR_WHITE];

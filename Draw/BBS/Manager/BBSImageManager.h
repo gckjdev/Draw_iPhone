@@ -33,8 +33,6 @@
 - (UIImage *)bbsBoardMineImage;
 - (UIImage *)bbsBoardCommentImage;
 
-- (UIImage *)bbsButtonLeftImage;
-- (UIImage *)bbsButtonRightImage;
 - (UIImage *)bbsSectionBgImage;
 - (UIImage *)bbsSwitchBgImage;
 - (UIImage *)bbsSwitchDownImage;
@@ -53,11 +51,8 @@
 - (UIImage *)bbsPostSupportImage;
 
 #pragma mark - Post detail image
-- (UIImage*)bbsDetailComment;
 - (UIImage*)bbsDetailOptionUp;
 - (UIImage*)bbsDetailReply;
-- (UIImage*)bbsDetailSupport;
-- (UIImage*)bbsDetailThumb;
 
 - (UIImage*)bbsDetailOption;
 - (UIImage*)bbsDetailOptionBubble;
@@ -75,9 +70,7 @@
 
 #pragma mark -Creation page image
 
-- (UIImage *)bbsCreateDrawDisable;
 - (UIImage *)bbsCreateDrawEnable;
-- (UIImage *)bbsCreateImageDisable;
 - (UIImage *)bbsCreateImageEnable;
 - (UIImage *)bbsCreateInputBg;
 - (UIImage *)bbsCreateRewardBg;
