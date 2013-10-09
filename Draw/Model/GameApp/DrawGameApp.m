@@ -307,7 +307,7 @@
 
 - (NSArray*)cacheArray
 {
-    return [NSArray arrayWithObjects:@"feed_image", @"feedCache", @"ImageCache", @"imgcache", @"bbs/drawData", @"message", nil];
+    return [NSArray arrayWithObjects:@"feed_image", @"feedCache", @"ImageCache", @"imgcache", @"bbs/drawData", @"message", @"com.hackemist.SDWebImageCache.default", nil];
 }
 
 - (NSString*)getBackgroundMusicName

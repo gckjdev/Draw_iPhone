@@ -309,8 +309,13 @@
     
     if ([_delegate respondsToSelector:@selector(brower:didSelecteFeed:)]) {
         DrawFeed *feed = [_feedList objectAtIndex:index];
-        [_delegate brower:self didSelecteFeed:feed];
-        [self removeFromSuperview];
+        
+        [UIView animateWithDuration:1 animations:^{
+            self.alpha = 0;
+        }completion:^(BOOL finished) {
+            [_delegate brower:self didSelecteFeed:feed];
+            [self removeFromSuperview];
+        }];
     }
 }
 
