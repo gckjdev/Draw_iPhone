@@ -42,7 +42,7 @@
 {
     self.drawImageUrl = drawImageUrl;
     if ([self.drawImageUrl length] == 0) {
-        PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl is nil, load image from local. feedID = %@",self.feedId);        
+        PPDebug(@"<Opus> id(%@) user(%@, %@) word(%@) image(nil), load from local",self.feedId, self.feedUser.userId, self.feedUser.nickName, self.wordText);
         
         //load draw data from local
         self.drawImage = [[FeedManager defaultManager] thumbImageForFeedId:self.feedId];
@@ -53,7 +53,7 @@
         
 
     }else{
-        PPDebug(@"<DrawFeed>initDrawInfo, drawImageUrl = %@,feedID = %@", self.drawImageUrl,self.feedId);
+        PPDebug(@"<Opus> id(%@) user(%@, %@) word(%@)", self.feedId, self.feedUser.userId, self.feedUser.nickName, self.wordText);
     }
 
 }
