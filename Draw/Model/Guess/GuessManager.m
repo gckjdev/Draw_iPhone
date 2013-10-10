@@ -406,7 +406,6 @@
         (state == GuessStateBeing || state == GuessStateExpire)) {
         
         [[[UserManager defaultManager] userDefaults] setInteger:state forKey:key];
-        [[StatisticManager defaultManager] setGuessContestNotif:0];
     }
     
     if (mode == PBUserGuessModeGuessModeHappy && (state == GuessStateNotStart || state == GuessStateBeing || state == GuessStateExpire)

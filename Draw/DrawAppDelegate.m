@@ -394,8 +394,6 @@ NSString* GlobalGetBoardServerURL()
         self.window.frame = frame;
     }
     
-
-    
     return YES;
 }
 

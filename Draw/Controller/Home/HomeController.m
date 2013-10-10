@@ -354,6 +354,8 @@
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
+    [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
+
     [super viewDidAppear:animated];
 }
 
