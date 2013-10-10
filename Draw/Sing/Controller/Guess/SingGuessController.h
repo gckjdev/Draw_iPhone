@@ -10,6 +10,7 @@
 #import "OpusService.h"
 
 @interface SingGuessController : CommonGuessController <OpusServiceDelegate>
+
 @property (retain, nonatomic) IBOutlet UIButton *opusButton;
 
 @end

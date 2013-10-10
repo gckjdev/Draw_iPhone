@@ -7,7 +7,7 @@
 //
 
 #import "SingHomeController.h"
-#import "SongSelectController.h"
+//#import "SongSelectController.h"
 #import "SingOpusDetailController.h"
 #import "SingGuessController.h"
 #import "OpusManageController.h"
@@ -18,6 +18,7 @@
 #import "ChatListController.h"
 #import "BBSBoardController.h"
 #import "StoreController.h"
+#import "SingController.h"
 
 @interface SingHomeController ()
 
@@ -57,8 +58,8 @@
     switch (type) {
 
         case HomeMenuTypeSing: {
-            PPDebug(@"HomeMenuTypeSing");
-            SongSelectController *vc = [[[SongSelectController alloc] init] autorelease];
+
+            SingController *vc = [[[SingController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

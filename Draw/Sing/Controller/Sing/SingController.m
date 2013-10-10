@@ -19,6 +19,7 @@
 #import "UITextView+WebCache.h"
 #import "SingImageManager.h"
 #import "CommonDialog.h"
+#import "CommonTitleView.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -35,14 +36,12 @@ enum{
     double _fileDuration;
     
     int _state;
-    BOOL _newOpus;
+    BOOL _isDraft;
 }
 @property (retain, nonatomic) SingOpus *singOpus;
 @property (retain, nonatomic) VoiceRecorder *recorder;
 @property (retain, nonatomic) VoiceChanger *player;
 @property (retain, nonatomic) VoiceProcessor *processor;
-
-@property (retain, nonatomic) UIButton *selectedButton;
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
 
@@ -53,7 +52,6 @@ enum{
 - (void)dealloc{
     [_picker release];
     [_image release];
-    [_selectedButton release];
     [_singOpus release];
     [_recorder release];
     [_player release];
@@ -67,21 +65,7 @@ enum{
     [_addTimeButton release];
     [_saveButton release];
     [_submitButton release];
-    [_songNameLabel release];
-    [_songNameLabel1 release];
-    [_songAuthorLabel1 release];
-    [_songAuthorLabel1 release];
-    [_lyricTextView release];
-    [_originButton release];
-    [_tagButton release];
-    [_tomCatButton release];
-    [_maleButton release];
-    [_duckButton release];
-    [_femaleButton release];
-    [_childButton release];
     [_opusMainView release];
-    [_opusReview release];
-    [_opusImageButton release];
     [super dealloc];
 }
 
@@ -100,59 +84,40 @@ enum{
     return [_singOpus localDataURL];
 }
 
-- (id)initWithSong:(PBSong *)song{
-    if (self = [super init]) {
-        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpus:song];
-        _newOpus = YES;
-    }
-    
-    return self;
-}
+//- (id)initWithSong:(PBSong *)song{
+//    if (self = [super init]) {
+//        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpus:song];
+//        _newOpus = YES;
+//    }
+//    
+//    return self;
+//}
 
-- (id)initWithName:(NSString *)name{
-    if (self = [super init]) {
-        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpusWithSelfDefineName:name];
-        _newOpus = YES;
-    }
+//- (id)initWithName:(NSString *)name{
+//    if (self = [super init]) {
+//        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpusWithSelfDefineName:name];
+//        _newOpus = YES;
+//    }
+//    
+//    return self;
+//}
+
+- (id)init{
     
+    if (self = [super init]) {
+        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpusWithSelfDefineName:@"小吉话话"];
+    }
+
     return self;
 }
 
 - (id)initWithOpus:(SingOpus *)opus{
     if (self = [super init]) {
         self.singOpus = opus;
-        _newOpus = NO;
+        _isDraft = YES;
     }
     
     return self;
-}
-
-- (void)initSelectedButton{
-    
-    switch (_singOpus.pbOpus.sing.voiceType) {
-        case PBVoiceTypeVoiceTypeOrigin:
-            self.selectedButton = _originButton;
-            break;
-            
-        case PBVoiceTypeVoiceTypeTomCat:
-            self.selectedButton = _tomCatButton;
-            break;
-        case PBVoiceTypeVoiceTypeDuck:
-            self.selectedButton = _duckButton;
-            break;
-        case PBVoiceTypeVoiceTypeMale:
-            self.selectedButton = _maleButton;
-            break;
-        case PBVoiceTypeVoiceTypeChild:
-            self.selectedButton = _childButton;
-            break;
-        case PBVoiceTypeVoiceTypeFemale:
-            self.selectedButton = _femaleButton;
-            break;
-            
-        default:
-            break;
-    }
 }
 
 - (void)viewDidLoad
@@ -160,46 +125,22 @@ enum{
     [super viewDidLoad];
     
     // Do any additional setup after loading the view from its nib.
-    [self initSelectedButton];
     
-    NSString *name = _singOpus.pbOpus.name;
-    NSString *author = _singOpus.pbOpus.sing.song.author;
-    NSString *lyric = _singOpus.pbOpus.sing.song.lyric;
-    NSString *image = _singOpus.pbOpus.image;
-    if ([author length] <= 0) {
-        author = NSLS(@"未知");
-    }
-    
-    self.songNameLabel.text = name;
-    self.songAuthorLabel.text = author;
-    self.songNameLabel1.text = name;
-    self.songAuthorLabel1.text = author;
-    
-    __block typeof (self)bself = self;
-    [self.lyricTextView setTextWithURL:lyric placeHolderText:NSLS(@"kLoadMore") success:^(NSString *text, BOOL cached) {
-        if ([text length] <= 0) {
-            [bself.lyricTextView setText:NSLS(@"暂无歌词")];
-        }
-    } failure:^(NSError *error) {
-        [bself.lyricTextView setText:NSLS(@"暂无歌词")];
-    }];
+    // init title view
+    CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
+    [titleView setTitle:NSLS(@"kGuessing")];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
     
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
-    
-    [_opusImageButton.layer setMasksToBounds:YES];
-    [_opusImageButton.layer setCornerRadius:10.0];
-    
-    NSURL *url = [NSURL URLWithString:image];
-//    [_opusImageButton setImageWithURL:url placeholderImage:[[SingImageManager defaultManager] placeholderImage]];
-    
-    [_opusImageButton setImageWithURL:url forState:UIControlStateNormal placeholderImage:[[SingImageManager defaultManager] placeholderImage] completed:NULL];
-    
-    if (_newOpus) {
-        [self prepareToRecord];
-        [self setState:StateReadyRecord];
-    }else{
+        
+    if (_isDraft) {
         [self prepareToPlay];
         [self setState:StateReadyPlay];
+
+    }else{
+        [self prepareToRecord];
+        [self setState:StateReadyRecord];
     }
     
     [self showMainView];
@@ -218,21 +159,7 @@ enum{
     [self setAddTimeButton:nil];
     [self setSaveButton:nil];
     [self setSubmitButton:nil];
-    [self setSongNameLabel:nil];
-    [self setSongNameLabel1:nil];
-    [self setSongAuthorLabel:nil];
-    [self setSongAuthorLabel1:nil];
-    [self setLyricTextView:nil];
-    [self setOriginButton:nil];
-    [self setTagButton:nil];
-    [self setTomCatButton:nil];
-    [self setDuckButton:nil];
-    [self setMaleButton:nil];
-    [self setFemaleButton:nil];
-    [self setChildButton:nil];
     [self setOpusMainView:nil];
-    [self setOpusReview:nil];
-    [self setOpusImageButton:nil];
     [super viewDidUnload];
 }
 
@@ -240,17 +167,6 @@ enum{
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setSelectedButton:(UIButton *)selectedButton{
-    
-    [_selectedButton setTitleColor:GREEN_COLOR forState:UIControlStateNormal];
-    [_selectedButton release];
-    
-    _selectedButton = [selectedButton retain];
-    [_selectedButton setTitleColor:WHITE_COLOR forState:UIControlStateNormal];
-    
-    [self.tagButton updateCenterX:_selectedButton.center.x];
 }
 
 - (void)recorder:(VoiceRecorder *)recorder didChangeRecordState:(VoiceRecorderState)recordState{
@@ -468,11 +384,6 @@ enum{
                     formant:_singOpus.pbOpus.sing.formant];
 }
 
-- (IBAction)clickVoiceTypeButton:(id)sender {
-    self.selectedButton = (UIButton *)sender;
-    [self changeVoiceType:self.selectedButton.tag];
-}
-
 - (IBAction)clickDescButton:(id)sender {
 
     PPDebug(@"clickDescButton");
@@ -501,7 +412,6 @@ enum{
 
 - (void)didImageSelected:(UIImage*)image{
     self.image = image;    
-    [_opusImageButton setImage:image forState:UIControlStateNormal];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -540,10 +450,6 @@ enum{
     
     NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
     [self showProgressViewWithMessage:progressText progress:progress];
-    
-//    [self.progressView setLabelText:progressText];
-//    
-//    [self.progressView setProgress:progress];
 }
 
 - (void)processor:(VoiceProcessor *)processor doneWithOutURL:(NSURL*)outURL{
@@ -588,12 +494,10 @@ enum{
 
 - (void)showMainView{
     self.opusMainView.hidden = NO;
-    self.opusReview.hidden = YES;
 }
 
 - (void)showReView{
     self.opusMainView.hidden = YES;
-    self.opusReview.hidden = NO;
 }
 
 - (void)voiceChanger:(VoiceChanger *)voiceChanger didGetFileDuration:(double)fileDuration{

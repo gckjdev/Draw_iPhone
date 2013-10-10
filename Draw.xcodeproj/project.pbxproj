@@ -68,13 +68,9 @@
 		A411752D177AD09900D3FE23 /* SingHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117513177AD09900D3FE23 /* SingHomeController~ipad.xib */; };
 		A411752E177AD09900D3FE23 /* SingController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117516177AD09900D3FE23 /* SingController.m */; };
 		A411752F177AD09900D3FE23 /* SingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117517177AD09900D3FE23 /* SingController.xib */; };
-		A4117530177AD09900D3FE23 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117518177AD09900D3FE23 /* SingController~ipad.xib */; };
 		A4117531177AD09900D3FE23 /* SongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A411751A177AD09900D3FE23 /* SongCell.m */; };
 		A4117532177AD09900D3FE23 /* SongCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411751B177AD09900D3FE23 /* SongCell.xib */; };
 		A4117533177AD09900D3FE23 /* SongCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411751C177AD09900D3FE23 /* SongCell~ipad.xib */; };
-		A4117534177AD09900D3FE23 /* SongSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A411751E177AD09900D3FE23 /* SongSelectController.m */; };
-		A4117535177AD09900D3FE23 /* SongSelectController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411751F177AD09900D3FE23 /* SongSelectController.xib */; };
-		A4117536177AD09900D3FE23 /* SongSelectController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4117520177AD09900D3FE23 /* SongSelectController~ipad.xib */; };
 		A4117541177D986400D3FE23 /* UITextView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117540177D986400D3FE23 /* UITextView+WebCache.m */; };
 		A4117549177E834D00D3FE23 /* OpusGuessRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
@@ -6680,15 +6676,10 @@
 		A4117515177AD09900D3FE23 /* SingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingController.h; sourceTree = "<group>"; };
 		A4117516177AD09900D3FE23 /* SingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingController.m; sourceTree = "<group>"; };
 		A4117517177AD09900D3FE23 /* SingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingController.xib; sourceTree = "<group>"; };
-		A4117518177AD09900D3FE23 /* SingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingController~ipad.xib"; sourceTree = "<group>"; };
 		A4117519177AD09900D3FE23 /* SongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongCell.h; sourceTree = "<group>"; };
 		A411751A177AD09900D3FE23 /* SongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongCell.m; sourceTree = "<group>"; };
 		A411751B177AD09900D3FE23 /* SongCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongCell.xib; sourceTree = "<group>"; };
 		A411751C177AD09900D3FE23 /* SongCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SongCell~ipad.xib"; sourceTree = "<group>"; };
-		A411751D177AD09900D3FE23 /* SongSelectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongSelectController.h; sourceTree = "<group>"; };
-		A411751E177AD09900D3FE23 /* SongSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongSelectController.m; sourceTree = "<group>"; };
-		A411751F177AD09900D3FE23 /* SongSelectController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongSelectController.xib; sourceTree = "<group>"; };
-		A4117520177AD09900D3FE23 /* SongSelectController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SongSelectController~ipad.xib"; sourceTree = "<group>"; };
 		A411753F177D986400D3FE23 /* UITextView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WebCache.h"; sourceTree = "<group>"; };
 		A4117540177D986400D3FE23 /* UITextView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WebCache.m"; sourceTree = "<group>"; };
 		A4117547177E834D00D3FE23 /* OpusGuessRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusGuessRecorder.h; sourceTree = "<group>"; };
@@ -9785,15 +9776,10 @@
 				A4117515177AD09900D3FE23 /* SingController.h */,
 				A4117516177AD09900D3FE23 /* SingController.m */,
 				A4117517177AD09900D3FE23 /* SingController.xib */,
-				A4117518177AD09900D3FE23 /* SingController~ipad.xib */,
 				A4117519177AD09900D3FE23 /* SongCell.h */,
 				A411751A177AD09900D3FE23 /* SongCell.m */,
 				A411751B177AD09900D3FE23 /* SongCell.xib */,
 				A411751C177AD09900D3FE23 /* SongCell~ipad.xib */,
-				A411751D177AD09900D3FE23 /* SongSelectController.h */,
-				A411751E177AD09900D3FE23 /* SongSelectController.m */,
-				A411751F177AD09900D3FE23 /* SongSelectController.xib */,
-				A4117520177AD09900D3FE23 /* SongSelectController~ipad.xib */,
 			);
 			path = Sing;
 			sourceTree = "<group>";
@@ -16736,11 +16722,8 @@
 				A411752C177AD09900D3FE23 /* SingHomeController.xib in Resources */,
 				A411752D177AD09900D3FE23 /* SingHomeController~ipad.xib in Resources */,
 				A411752F177AD09900D3FE23 /* SingController.xib in Resources */,
-				A4117530177AD09900D3FE23 /* SingController~ipad.xib in Resources */,
 				A4117532177AD09900D3FE23 /* SongCell.xib in Resources */,
 				A4117533177AD09900D3FE23 /* SongCell~ipad.xib in Resources */,
-				A4117535177AD09900D3FE23 /* SongSelectController.xib in Resources */,
-				A4117536177AD09900D3FE23 /* SongSelectController~ipad.xib in Resources */,
 				C2C09E94177BD8C8009408EB /* gallery_search_btn@2x.png in Resources */,
 				C2EAA87F178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */,
 				A4E649211784288E0063F393 /* CommonCommentController.xib in Resources */,
@@ -20399,7 +20382,6 @@
 				A411752B177AD09900D3FE23 /* SingHomeController.m in Sources */,
 				A411752E177AD09900D3FE23 /* SingController.m in Sources */,
 				A4117531177AD09900D3FE23 /* SongCell.m in Sources */,
-				A4117534177AD09900D3FE23 /* SongSelectController.m in Sources */,
 				CA13B83C177BDB57003B7368 /* Shadow.m in Sources */,
 				CA13B858177BE368003B7368 /* ShadowCommand.m in Sources */,
 				A4117541177D986400D3FE23 /* UITextView+WebCache.m in Sources */,
