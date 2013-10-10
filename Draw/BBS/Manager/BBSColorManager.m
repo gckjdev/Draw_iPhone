@@ -86,7 +86,7 @@ static BBSColorManager* _staticBBSColorManager;
     return COLOR_GRAY_TEXT;//[UIColor colorWithRed:0x61/255.0 green:0x8d/255.0 blue:0xb4/255.0 alpha:1];
 }
 - (UIColor *)detailHeaderSelectedColor{
-    return BBS_COLOR_GREEN;//[UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
+    return COLOR_BROWN;//[UIColor colorWithRed:0xce/255.0 green:0xd7/255.0 blue:0xe1/255.0 alpha:1];
 }
 
 #pragma - mark user action
