@@ -190,7 +190,9 @@ enum{
     [_opusImageButton.layer setCornerRadius:10.0];
     
     NSURL *url = [NSURL URLWithString:image];
-    [_opusImageButton setImageWithURL:url placeholderImage:[[SingImageManager defaultManager] placeholderImage]];
+//    [_opusImageButton setImageWithURL:url placeholderImage:[[SingImageManager defaultManager] placeholderImage]];
+    
+    [_opusImageButton setImageWithURL:url forState:UIControlStateNormal placeholderImage:[[SingImageManager defaultManager] placeholderImage] completed:NULL];
     
     if (_newOpus) {
         [self prepareToRecord];
