@@ -465,9 +465,10 @@
 
 - (void)didClickDrawToButton:(PPTableViewController*)viewController
 {
-    if (isLittleGeeAPP()) {
-        [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
-    }/* else if (isSecureSmsAPP()) {
+//    if (isLittleGeeAPP()) {
+    [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
+//    }
+/* else if (isSecureSmsAPP()) {
         ChatDetailController *controller = [self createChatDetailController];
         [viewController.navigationController pushViewController:controller
                                                        animated:YES];
@@ -478,13 +479,12 @@
                                                        animated:NO];
         [controller clickLocateButton:nil];
     }*/
-    else {
-        SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
-        vc.superController = viewController;
-        [viewController.navigationController pushViewController:vc animated:YES];
-    }
-    
-    
+//    else {
+//        SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
+//        vc.superController = viewController;
+//        [viewController.navigationController pushViewController:vc animated:YES];
+//    }
+        
 }
 
 - (ChatDetailController *)createChatDetailController

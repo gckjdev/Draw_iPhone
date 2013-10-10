@@ -88,7 +88,6 @@
 #import "GalleryController.h"
 #import "GuessModesController.h"
 #import "SelectWordController.h"
-#import "LineView.h"
 #import "DrawHomeHeaderPanel.h"
 #import "DrawMainMenuPanel.h"
 #import "GuessManager.h"
@@ -615,10 +614,12 @@
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
 
-            SelectHotWordController *sc = [[SelectHotWordController alloc] init];
-            [self.navigationController pushViewController:sc animated:YES];
-            sc.superController = self;
-            [sc release];
+            [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:self startController:self targetUid:nil];
+
+//            SelectHotWordController *sc = [[SelectHotWordController alloc] init];
+//            [self.navigationController pushViewController:sc animated:YES];
+//            sc.superController = self;
+//            [sc release];
         }
             break;
         case HomeMenuTypeDrawGuess:
