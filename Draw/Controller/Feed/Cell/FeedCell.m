@@ -121,7 +121,7 @@
     
     [self.descLabel setText:[feed displayText]];
     
-    PPDebug(@"rect = %@, desc = %@", NSStringFromCGRect(rect),feed.desc);
+//    PPDebug(@"rect = %@, desc = %@", NSStringFromCGRect(rect),feed.desc);
 }
 
 

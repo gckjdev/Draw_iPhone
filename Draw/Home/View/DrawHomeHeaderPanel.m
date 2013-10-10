@@ -279,7 +279,7 @@
     
     
     CGRect defaultFrame = CGRectMake(0, 0, OPUS_SIZE.width, OPUS_SIZE.height);
-    PPDebug(@"opus size = %@", NSStringFromCGSize(OPUS_SIZE));
+//    PPDebug(@"opus size = %@", NSStringFromCGSize(OPUS_SIZE));
     for (NSInteger tag = TAG_BASE; tag < TAG_BASE+NUMBER_PERROW; ++ tag) {
         OpusButton *button = (id)[cell.contentView viewWithTag:tag];
         if (button == nil) {
@@ -294,7 +294,7 @@
         
         [button updateOriginX:(SPACE+(tag-TAG_BASE)*(SPACE+OPUS_SIZE.width))];
         [button updateCenterY:CELL_HEIGHT/2];
-        PPDebug(@"tag = %d, button frame = %@,cell width = %f", tag, NSStringFromCGRect(button.frame),self.tableView.bounds.size.width);
+//        PPDebug(@"tag = %d, button frame = %@,cell width = %f", tag, NSStringFromCGRect(button.frame),self.tableView.bounds.size.width);
         
         NSInteger index = (NUMBER_PERROW * indexPath.row) + (tag - TAG_BASE);
 

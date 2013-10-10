@@ -1135,7 +1135,7 @@
 
 + (int)getMaxLayerNumber
 {
-    return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:3];
+    return [MobClickUtils getIntValueByKey:@"MAX_LAYER_NUMBER" defaultValue:4];
 }
 
 + (NSString *)getContestBeginTimeString{
