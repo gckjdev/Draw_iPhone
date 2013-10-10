@@ -99,6 +99,12 @@
     return [MobClickUtils getIntValueByKey:@"HOME_DISPLAY_OPUS_NUMBER" defaultValue:9];
 }
 
++ (int)getHomeSwitchOpusInterval
+{
+    return [MobClickUtils getIntValueByKey:@"HOME_SWITCH_OPUS_INTERVAL" defaultValue:10];
+}
+
+
 + (int)getBalanceDeviation
 {
     return [MobClickUtils getIntValueByKey:@"BALANCE_DEVIATION" defaultValue:4000];
