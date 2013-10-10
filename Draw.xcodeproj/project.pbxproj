@@ -5320,26 +5320,6 @@
 		CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
-		EA0D327C17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
-		EA0D327D17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
-		EA0D327E17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
-		EA0D327F17E1ADB000F7E29A /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D327A17E1ADB000F7E29A /* HomeView.m */; };
-		EA0D328017E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
-		EA0D328117E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
-		EA0D328217E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
-		EA0D328317E1ADB000F7E29A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D327B17E1ADB000F7E29A /* HomeView.xib */; };
-		EA0D328617E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
-		EA0D328717E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
-		EA0D328817E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
-		EA0D328917E1AFBF00F7E29A /* HomeDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */; };
-		EA0D328B17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
-		EA0D328C17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
-		EA0D328D17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
-		EA0D328E17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */; };
-		EA0D329117E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
-		EA0D329217E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
-		EA0D329317E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
-		EA0D329417E1B3E100F7E29A /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0D329017E1B3E100F7E29A /* LineView.m */; };
 		EA0FD69C17631C5100FED42E /* PolygenPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244AFA176071F0002C0A37 /* PolygenPen.m */; };
 		EA1176A11779B764008678AC /* askps_charge_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176981779B764008678AC /* askps_charge_button@2x.png */; };
 		EA1176A21779B764008678AC /* askps_default_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176991779B764008678AC /* askps_default_photo@2x.png */; };
@@ -9256,14 +9236,6 @@
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
-		EA0D327917E1ADB000F7E29A /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
-		EA0D327A17E1ADB000F7E29A /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
-		EA0D327B17E1ADB000F7E29A /* HomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeView.xib; sourceTree = "<group>"; };
-		EA0D328417E1AFBE00F7E29A /* HomeDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDisplayView.h; sourceTree = "<group>"; };
-		EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDisplayView.m; sourceTree = "<group>"; };
-		EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDisplayView.xib; sourceTree = "<group>"; };
-		EA0D328F17E1B3E000F7E29A /* LineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineView.h; sourceTree = "<group>"; };
-		EA0D329017E1B3E100F7E29A /* LineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineView.m; sourceTree = "<group>"; };
 		EA1176981779B764008678AC /* askps_charge_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_charge_button@2x.png"; sourceTree = "<group>"; };
 		EA1176991779B764008678AC /* askps_default_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_default_photo@2x.png"; sourceTree = "<group>"; };
 		EA11769A1779B764008678AC /* askps_edit_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_edit_background@2x.png"; sourceTree = "<group>"; };
@@ -13461,7 +13433,6 @@
 		CA1041F41509BC8700F60C03 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EA0D327817E1ADB000F7E29A /* HomeView */,
 				CA1041F51509BC9700F60C03 /* HomeController.h */,
 				CA1041F61509BC9700F60C03 /* HomeController.m */,
 				CA1041F71509BC9700F60C03 /* HomeController.xib */,
@@ -15949,21 +15920,6 @@
 			path = Draw_Common;
 			sourceTree = "<group>";
 		};
-		EA0D327817E1ADB000F7E29A /* HomeView */ = {
-			isa = PBXGroup;
-			children = (
-				EA0D327917E1ADB000F7E29A /* HomeView.h */,
-				EA0D327A17E1ADB000F7E29A /* HomeView.m */,
-				EA0D327B17E1ADB000F7E29A /* HomeView.xib */,
-				EA0D328417E1AFBE00F7E29A /* HomeDisplayView.h */,
-				EA0D328517E1AFBF00F7E29A /* HomeDisplayView.m */,
-				EA0D328A17E1AFD700F7E29A /* HomeDisplayView.xib */,
-				EA0D328F17E1B3E000F7E29A /* LineView.h */,
-				EA0D329017E1B3E100F7E29A /* LineView.m */,
-			);
-			path = HomeView;
-			sourceTree = "<group>";
-		};
 		EA1176961779B764008678AC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -17157,8 +17113,6 @@
 				EAD13B8117DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32EF17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C617E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
-				EA0D328217E1ADB000F7E29A /* HomeView.xib in Resources */,
-				EA0D328D17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 				EA8EF62217E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62617E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
 				EA8EF62A17E55D3B003F1AF8 /* draw_home_shop@2x.png in Resources */,
@@ -18014,8 +17968,6 @@
 				EAD13B8017DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32EE17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C517E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
-				EA0D328117E1ADB000F7E29A /* HomeView.xib in Resources */,
-				EA0D328C17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 				EA8EF62117E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62517E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
 				EA8EF62917E55D3B003F1AF8 /* draw_home_shop@2x.png in Resources */,
@@ -18856,8 +18808,6 @@
 				EAD13B7F17DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32ED17E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C417E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
-				EA0D328017E1ADB000F7E29A /* HomeView.xib in Resources */,
-				EA0D328B17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 				EA8EF62017E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62417E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
 				EA8EF62817E55D3B003F1AF8 /* draw_home_shop@2x.png in Resources */,
@@ -19668,8 +19618,6 @@
 				EAD13B8217DECFB700764FFB /* orange_loading_full@2x.png in Resources */,
 				A44F32F017E16C5000AF9B26 /* ContestRankView.xib in Resources */,
 				A4D410C717E1945600DE07C6 /* ContestRankView~ipad.xib in Resources */,
-				EA0D328317E1ADB000F7E29A /* HomeView.xib in Resources */,
-				EA0D328E17E1AFD700F7E29A /* HomeDisplayView.xib in Resources */,
 				EA8EF62317E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */,
 				EA8EF62717E55D3B003F1AF8 /* draw_home_opus@2x.png in Resources */,
 				EA8EF62B17E55D3B003F1AF8 /* draw_home_shop@2x.png in Resources */,
@@ -20444,9 +20392,6 @@
 				EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A4AFB7F317E032D60079B165 /* GuessRankListController.m in Sources */,
 				A44F32EA17E16C3500AF9B26 /* ContestRankView.m in Sources */,
-				EA0D327E17E1ADB000F7E29A /* HomeView.m in Sources */,
-				EA0D328817E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
-				EA0D329317E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66917E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66F17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BD17E7F5050099754C /* RopeView.m in Sources */,
@@ -21202,9 +21147,6 @@
 				A42BB02B17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8B17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E917E16C3500AF9B26 /* ContestRankView.m in Sources */,
-				EA0D327D17E1ADB000F7E29A /* HomeView.m in Sources */,
-				EA0D328717E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
-				EA0D329217E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66817E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66E17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BC17E7F5050099754C /* RopeView.m in Sources */,
@@ -21959,9 +21901,6 @@
 				A42BB02A17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8A17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32E817E16C3500AF9B26 /* ContestRankView.m in Sources */,
-				EA0D327C17E1ADB000F7E29A /* HomeView.m in Sources */,
-				EA0D328617E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
-				EA0D329117E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66717E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF66D17E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BB17E7F5050099754C /* RopeView.m in Sources */,
@@ -22690,9 +22629,6 @@
 				A42BB02D17D9735A007FB11B /* TwoInputFieldView.m in Sources */,
 				EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */,
 				A44F32EB17E16C3500AF9B26 /* ContestRankView.m in Sources */,
-				EA0D327F17E1ADB000F7E29A /* HomeView.m in Sources */,
-				EA0D328917E1AFBF00F7E29A /* HomeDisplayView.m in Sources */,
-				EA0D329417E1B3E100F7E29A /* LineView.m in Sources */,
 				EA8EF66A17E55F0D003F1AF8 /* DrawHomeHeaderPanel.m in Sources */,
 				EA8EF67017E593CA003F1AF8 /* DrawMainMenuPanel.m in Sources */,
 				EA5FE1BE17E7F5050099754C /* RopeView.m in Sources */,

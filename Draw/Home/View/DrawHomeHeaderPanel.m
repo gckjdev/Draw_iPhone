@@ -23,6 +23,9 @@
 ////////////
 
 @interface DrawHomeHeaderPanel()
+{
+    NSInteger _showingRow;
+}
 @end
 
 @implementation DrawHomeHeaderPanel
@@ -45,6 +48,7 @@
 #define ROPE_X (ISIPAD?666:280)
 
 #define HEADER_OPUS_COUNT       ([ConfigManager getHomeHotOpusCount])
+#define SWITH_OPUS_INTERVAL ([ConfigManager getHomeSwitchOpusInterval])
 
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {
@@ -56,6 +60,57 @@
 + (NSString *)getViewIdentifier
 {
     return @"DrawHomeHeaderPanel";
+}
+
+- (void)cancelSwith
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(switchOpus) object:nil];
+    _showingRow = 0;
+}
+
+- (void)startSwitchOpus
+{
+    [self performSelector:@selector(switchOpus) withObject:nil afterDelay:SWITH_OPUS_INTERVAL];
+}
+
+- (void)switchOpus
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(switchOpus) object:nil];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    if (cell == nil) {
+        return;
+    }
+    
+    if (++_showingRow >= [[self opusList] count]/NUMBER_PERROW) {
+        _showingRow = 0;
+    }
+    for (NSInteger i = TAG_BASE; i < TAG_BASE+NUMBER_PERROW; ++i) {
+        OpusButton *button = (id)[cell.contentView viewWithTag:i];
+        if ([button isKindOfClass:[OpusButton class]]) {
+            NSInteger index = (NUMBER_PERROW * _showingRow) + (i - TAG_BASE);
+            [button setOpus:nil];            
+            if ([self.opusList count] > index) {
+                [button setHidden:NO];
+                DrawFeed *opus = [self.opusList objectAtIndex:index];
+                [button setOpus:opus];
+                [button setImageWithURL:opus.thumbURL forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                    button.alpha = 0;
+                    if (error == nil) {
+                        [UIView animateWithDuration:1 animations:^{
+                            button.alpha = 1.0f;
+                        } completion:^(BOOL finished) {
+                            button.alpha = 1.0f;
+                        }];
+                    }
+                }];
+            }else{
+                [button setImage:nil forState:UIControlStateNormal];
+                [button setHidden:YES];
+            }
+            
+        }
+    }
+    [self performSelector:@selector(switchOpus) withObject:nil afterDelay:SWITH_OPUS_INTERVAL];
 }
 
 - (UIImage *)createSnapshot
@@ -125,6 +180,7 @@
     [self reloadLocalCache];
     [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:HEADER_OPUS_COUNT delegate:self];
     [self updateBG];
+    [self startSwitchOpus];
 }
 
 #define RELOAD_SECONDS         (60*10)
@@ -191,6 +247,7 @@
 - (void)openAnimated:(BOOL)animated
           completion:(void (^)(BOOL finished))completion
 {
+    [self cancelSwith];
     [self.badgeView setHidden:YES];
     [self.bulletinButton setHidden:YES];
     
@@ -235,6 +292,8 @@
         }
         [self.bulletinButton setHidden:NO];
         
+        //auto swith
+        [self startSwitchOpus];
     };
     if (animated) {
         self.status = DrawHeaderPanelStatusAnimating;

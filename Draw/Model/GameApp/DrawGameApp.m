@@ -517,7 +517,7 @@
 
 - (BOOL)forceChineseOpus
 {
-    return NO;
+    return YES; //edit by gamy 2013.10.10 for skiping choose word.
 }
 - (BOOL)disableEnglishGuess
 {
