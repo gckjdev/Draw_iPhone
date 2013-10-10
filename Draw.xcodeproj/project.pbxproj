@@ -3095,6 +3095,18 @@
 		A4F04B8A180654CD007274BE /* PageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4ECE9BE1792A036006DD933 /* PageScrollView.m */; };
 		A4F04B8B1806550A007274BE /* UserDeviceService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0FC097178FFA6700A72B79 /* UserDeviceService.m */; };
 		A4F04B8C18065920007274BE /* UIImageView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5ABF178FFE820085031F /* UIImageView+Extend.m */; };
+		A4F04B8F180680D1007274BE /* tap-mellow.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B8D180680D1007274BE /* tap-mellow.aif */; };
+		A4F04B90180680D1007274BE /* tap-mellow.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B8D180680D1007274BE /* tap-mellow.aif */; };
+		A4F04B91180680D1007274BE /* tap-mellow.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B8D180680D1007274BE /* tap-mellow.aif */; };
+		A4F04B92180680D2007274BE /* tap-warm.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B8E180680D1007274BE /* tap-warm.aif */; };
+		A4F04B93180680D2007274BE /* tap-warm.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B8E180680D1007274BE /* tap-warm.aif */; };
+		A4F04B94180680D2007274BE /* tap-warm.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B8E180680D1007274BE /* tap-warm.aif */; };
+		A4F04B9718068466007274BE /* beep-shinymetal.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9518068465007274BE /* beep-shinymetal.aif */; };
+		A4F04B9818068467007274BE /* beep-shinymetal.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9518068465007274BE /* beep-shinymetal.aif */; };
+		A4F04B9918068467007274BE /* beep-shinymetal.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9518068465007274BE /* beep-shinymetal.aif */; };
+		A4F04B9A18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4F04B9B18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		C2002CD9172CE4F200FD6AE1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
 		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
@@ -7609,6 +7621,10 @@
 		A4ECE9BC1792A036006DD933 /* PageScrollView+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PageScrollView+Protected.h"; sourceTree = "<group>"; };
 		A4ECE9BD1792A036006DD933 /* PageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageScrollView.h; sourceTree = "<group>"; };
 		A4ECE9BE1792A036006DD933 /* PageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageScrollView.m; sourceTree = "<group>"; };
+		A4F04B8D180680D1007274BE /* tap-mellow.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-mellow.aif"; sourceTree = "<group>"; };
+		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
+		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
+		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
 		C2002C5A172CE4F000FD6AE1 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
 		C2002C5B172CE4F000FD6AE1 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
 		C2002C5C172CE4F000FD6AE1 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
@@ -11511,6 +11527,10 @@
 		A4DDD12517CDFD7B0029E562 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				A4F04B9518068465007274BE /* beep-shinymetal.aif */,
+				A4F04B9618068466007274BE /* beep-timber.aif */,
+				A4F04B8D180680D1007274BE /* tap-mellow.aif */,
+				A4F04B8E180680D1007274BE /* tap-warm.aif */,
 				A4DDD12617CDFD7B0029E562 /* button_down.wav */,
 				A4DDD12717CDFD7B0029E562 /* cannon.mp3 */,
 				A4DDD12817CDFD7B0029E562 /* clickWord.mp3 */,
@@ -17188,6 +17208,10 @@
 				A42151841803EA2B007F2EFD /* README.mdown in Resources */,
 				A42151CD18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
 				CA1FF8931804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
+				A4F04B91180680D1007274BE /* tap-mellow.aif in Resources */,
+				A4F04B94180680D2007274BE /* tap-warm.aif in Resources */,
+				A4F04B9918068467007274BE /* beep-shinymetal.aif in Resources */,
+				A4F04B9C18068467007274BE /* beep-timber.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18048,6 +18072,10 @@
 				A42151831803EA2B007F2EFD /* README.mdown in Resources */,
 				A42151CC18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
 				CA1FF8921804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
+				A4F04B90180680D1007274BE /* tap-mellow.aif in Resources */,
+				A4F04B93180680D2007274BE /* tap-warm.aif in Resources */,
+				A4F04B9818068467007274BE /* beep-shinymetal.aif in Resources */,
+				A4F04B9B18068467007274BE /* beep-timber.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18890,6 +18918,10 @@
 				A42151821803EA2A007F2EFD /* README.mdown in Resources */,
 				A42151CB18040C5F007F2EFD /* MWPhotoBrowser.strings in Resources */,
 				CA1FF8911804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
+				A4F04B8F180680D1007274BE /* tap-mellow.aif in Resources */,
+				A4F04B92180680D2007274BE /* tap-warm.aif in Resources */,
+				A4F04B9718068466007274BE /* beep-shinymetal.aif in Resources */,
+				A4F04B9A18068467007274BE /* beep-timber.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
