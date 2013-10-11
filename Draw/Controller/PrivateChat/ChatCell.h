@@ -25,11 +25,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *nickNameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *textLabel;
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
-@property (retain, nonatomic) IBOutlet UILabel *countLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *countBackground;
 @property (assign, nonatomic) id<ChatCellDelegate> chatCellDelegate;
 @property (retain, nonatomic) MessageStat *messageStat;
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
+@property (retain, nonatomic) IBOutlet BadgeView *badgeView;
 
 - (void)setCellByMessageStat:(MessageStat *)messageStat indexPath:(NSIndexPath *)aIndexPath;
 

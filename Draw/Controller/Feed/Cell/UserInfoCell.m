@@ -21,21 +21,16 @@
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-    //    NSLog(@"cellId = %@", cellId);
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
-    UserInfoCell *cell = [topLevelObjects objectAtIndex:0];
+    UserInfoCell *cell = [self createViewWithXibIdentifier:cellId];
     cell.delegate = delegate;
     
     cell.nickNameLabel.textColor = COLOR_BROWN;
     cell.nickLabel.textColor = COLOR_BROWN;
     cell.signLabel.textColor = COLOR_BROWN;
     cell.lineView.backgroundColor = COLOR_GRAY_BG;
-    
+    cell.nickLabel.font = CELL_NICK_FONT;
+    cell.signLabel.font = CELL_CONTENT_FONT;
+    cell.nickNameLabel.font = CELL_NICK_FONT;
     return cell;
 }
 
