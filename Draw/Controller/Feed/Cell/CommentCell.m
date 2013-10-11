@@ -46,10 +46,7 @@
 }
 
 
-#define NICK_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 12)
-
 #define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
-#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 23 : 12)
 #define COMMENT_CONST_HEIGHT ([DeviceDetection isIPAD] ? 78 : 40)
 //#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
 //#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
@@ -72,7 +69,7 @@
         return COMMENT_ITEM_HEIGHT;
     }
     NSString *comment = [feed commentInFeedDeatil];
-    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
+    UIFont *font = [ShareUIManager commentContentFont];
     PPDebug(@"start to cal height, comment = %@",comment);
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     CGFloat height = COMMENT_CONST_HEIGHT + commentSize.height;
@@ -100,6 +97,8 @@
     [_avatarView release];
     
     //set times
+    self.timeLabel.font = [ShareUIManager commentTimeFont];
+    
     NSString *timeString = nil;
     if ([LocaleUtils isChinese]) {
         timeString = chineseBeforeTime(feed.createDate);
@@ -117,7 +116,7 @@
     
 
     //set user name
-    UIFont *nickFont = [UIFont systemFontOfSize:NICK_FONT_SIZE];
+    UIFont *nickFont = [ShareUIManager commentNickFont];
     [self.nickNameLabel setFont:nickFont];
     [self.nickNameLabel setText:author.nickName];
     [self.nickNameLabel setTextColor:COLOR_BROWN];
@@ -135,7 +134,7 @@
         
     //set comment
     NSString *comment = [feed commentInFeedDeatil];
-    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
+    UIFont *font = [ShareUIManager commentContentFont];
     [self.commentLabel setFont:font];
     [self.commentLabel setTextColor:COLOR_BROWN];
     [self.commentLabel setLineBreakMode:NSLineBreakByCharWrapping];

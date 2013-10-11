@@ -38,7 +38,6 @@
 #define DESC_HEIGHT ([DeviceDetection isIPAD] ?  120 : 43)
 #define NON_DESC_HEIGHT (FEED_CELL_HEIGHT - DESC_HEIGHT)
 
-#define DESC_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:12])
 
 + (id)createCell:(id)delegate
 {
@@ -70,8 +69,7 @@
 {
     if ([Feed isKindOfClass:[CommentFeed class]]){
         NSString *comment = [feed desc];
-        UIFont *font = DESC_FONT; //[UIFont systemFontOfSize:DESC_FONT];
-//        PPDebug(@"start to cal height, comment = %@",comment);
+        UIFont *font = [ShareUIManager timelineContentFont];
         CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(DESC_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
         CGFloat height = NON_DESC_HEIGHT + commentSize.height;
         if (height <= FEED_CELL_HEIGHT){
@@ -112,7 +110,7 @@
 - (void)updateDesc:(Feed *)feed
 {
     CGPoint origin = self.descLabel.frame.origin;
-    UIFont *font = DESC_FONT;
+    UIFont *font = [ShareUIManager timelineContentFont];
     CGSize maxSize = CGSizeMake(DESC_WIDTH, DESC_HEIGHT);
     CGSize labelSize = [feed.desc sizeWithFont:font constrainedToSize:maxSize 
          lineBreakMode:UILineBreakModeCharacterWrap];
@@ -251,6 +249,14 @@
     self.timeLabel.textColor = COLOR_GRAY_TEXT;
     self.guessLabel.textColor = COLOR_GREEN;
     self.correctLabel.textColor = COLOR_GREEN;
+    
+    
+    self.userNameLabel.font = [ShareUIManager timelineNickFont];
+    self.timeLabel.font = [ShareUIManager timelineTimeFont];
+    self.descLabel.font = [ShareUIManager timelineContentFont];
+    self.guessLabel.font = [ShareUIManager timelineStatisticsFont];
+    self.correctLabel.font = [ShareUIManager timelineStatisticsFont];
+
     
     SET_VIEW_ROUND_CORNER(self.drawImageView);
     [self.bgImageView setImage:[ShareImageManager bubleImage]];

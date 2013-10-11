@@ -39,7 +39,7 @@
 
 #define CONTENT_MAX_HEIGHT 99999999
 
-#define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
+#define CONTENT_FONT [[BBSFontManager defaultManager] myActionContentFont]
 #define SOURCE_FONT [[BBSFontManager defaultManager] actionSourceFont]
 
 #define SPACE_TOP_SOURCE_SUPPORT (ISIPAD ? 60 * 2.33 : 60)
@@ -66,6 +66,11 @@
 {
     self.content.numberOfLines = INT_MAX;
     self.content.font = CONTENT_FONT;
+    
+    self.nickName.font = [_bbsFontManager myActionNickFont];
+    self.timestamp.font = [_bbsFontManager myActionDateFont];
+
+    
     [self.content setLineBreakMode:NSLineBreakByCharWrapping];
 
     self.source.numberOfLines = INT_MAX;

@@ -23,7 +23,7 @@
 #define CONTENT_MAX_HEIGHT (99999999)
 
 #define Y_CONTENT_TEXT (ISIPAD ? 5 * 2.33 : 5)
-#define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
+#define CONTENT_FONT [[BBSFontManager defaultManager] actionContentFont]
 
 #define HEIGHT_SUPPORT (ISIPAD ? 80 * 2.33: 80)
 
@@ -47,9 +47,14 @@
     self.content.font = CONTENT_FONT;
     [self.content setLineBreakMode:NSLineBreakByCharWrapping];
     
+    self.nickName.font = [_bbsFontManager actionNickFont];
+    self.timestamp.font = [_bbsFontManager actionDateFont];
+    
     BBSImageManager *imageManager = [BBSImageManager defaultManager];
     [self.option setImage:[imageManager bbsDetailOptionUp]];
+    
     [self.reply setImage:[imageManager bbsDetailReply] forState:UIControlStateNormal];
+    
     [self.supportImage setImage:[[BBSImageManager defaultManager] bbsPostSupportImage]];
     self.useContentLabel = NO;
     self.content.hidden = YES;
@@ -71,7 +76,7 @@
 
 + (CGFloat)heightForContentText:(NSString *)text inTextView:(UITextView *)textView
 {
-    UIFont *font = [[BBSFontManager defaultManager] postContentFont];
+    UIFont *font = [[BBSFontManager defaultManager] actionContentFont];
     [textView updateWidth:CONTENT_WIDTH];
     [textView updateHeight:10];
     [textView setFont:font];
@@ -189,8 +194,6 @@
         self.image.hidden = YES;
     }
     
-//    [self.contentTextView setFont:[[BBSFontManager defaultManager] postContentFont]];
-    
     if ([DeviceDetection isOS6] && [action isReply]) {
         NSInteger length = [text length];
         NSInteger contentLength = [[action.content text] length];
@@ -200,7 +203,7 @@
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:text];
             
             [attr addAttribute:NSFontAttributeName
-                         value:[[BBSFontManager defaultManager] postContentFont]
+                         value:[[BBSFontManager defaultManager] actionContentFont]
                          range:NSMakeRange(0, length)];
             
             [attr addAttribute:NSForegroundColorAttributeName
