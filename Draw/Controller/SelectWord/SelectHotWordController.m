@@ -106,7 +106,7 @@
     self.systemWordsLabel.textColor = COLOR_BROWN;
     self.myWordsLabel.textColor = COLOR_BROWN;
     
-    if (isLittleGeeAPP()) {
+    if (isDrawApp()) {
         [self didSelectWord:[Word cusWordWithText:@""]];
     }
 }

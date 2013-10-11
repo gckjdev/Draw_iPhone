@@ -437,7 +437,7 @@
 "kRemoveSuccessfully" = "成功移除粉絲";
 "kRemoveFailed" = "移除粉絲失敗。";
 "kEnterWords" = "搜索條件不能為空";
-"kSearchUserPlaceholder" = "用戶暱稱/微博暱稱/郵件地址";
+"kSearchUserPlaceholder" = "暱稱/小吉號碼/微博/郵箱";
 "kSearchFailedTitle" = "網絡錯誤";
 "kSearchFailed" = "網絡錯誤，搜索用戶失敗，請檢查網絡是否可用或稍候再試";
 "kSearching" = "搜索中...";
@@ -2053,6 +2053,7 @@
 "kUseGradientTitle" = "提示";
 "kUseGradientMessage" = "使用全局漸變將會導致之前的筆畫都消失，是否繼續？";
 "kSubject" = "主題";
+"kSubjectPlaceholder" = "請輸入主題...";
 "kFurtureFunction" = "神秘功能即將推出，敬請期待...";
 
 "kSelectorItem" = "選擇器";

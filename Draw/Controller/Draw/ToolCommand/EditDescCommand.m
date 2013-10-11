@@ -56,11 +56,12 @@
 {
     OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
     CommonDialog *dialog = nil;
-    if (isLittleGeeAPP()) {
+    if (isDrawApp()) {
         
         InputAlertView *v = [InputAlertView createWithType:ComposeInputDialogTypeTitleAndContent];
         v.titleInputField.text = oc.word.text;
-        
+        v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
+        v.contentInputView.text = oc.opusDesc;
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
         dialog.delegate = self;
         dialog.tag = DIALOG_TAG_OPUS_NAME_AND_OPUS_DESC;

@@ -1221,7 +1221,8 @@
     
     [v.titleInputField setText:self.word.text];
     [v.contentInputView setText:self.opusDesc];
-    
+    v.titleInputField.placeholder = NSLS(@"kSubjectPlaceholder");
+
     
     if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
         [v setMaxTitleLength:[ConfigManager maxDrawEnglishTitleLen]];
