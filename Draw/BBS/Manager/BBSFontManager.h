@@ -41,9 +41,20 @@
 
 #pragma mark post detail font
 - (UIFont *)detailHeaderFont;
-- (UIFont *)detailActionFont;
-- (UIFont *)actionSourceFont;
 
+// post action
+
+- (UIFont *)actionContentFont;
+- (UIFont *)actionNickFont;
+- (UIFont *)actionDateFont;
+
+
+//received action message
+
+- (UIFont *)actionSourceFont;
+- (UIFont *)myActionContentFont;
+- (UIFont *)myActionDateFont;
+- (UIFont *)myActionNickFont;
 
 
 #pragma mark creation font

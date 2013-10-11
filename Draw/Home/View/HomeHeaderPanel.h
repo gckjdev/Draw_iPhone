@@ -35,6 +35,9 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
  didClickFriendButton:(UIButton *)button;
 
+
+
+
 @end
 
 @interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate, FriendServiceDelegate>
@@ -43,5 +46,7 @@
 }
 
 - (void)updateBulletinBadge:(int)count;
+- (void)viewDidAppear;
+- (void)viewDidDisappear;
 
 @end

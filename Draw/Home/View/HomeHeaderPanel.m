@@ -440,4 +440,14 @@
     }
 }
 
+- (void)viewDidAppear
+{
+    PPDebug(@"DidAppear, DEFAULT IMPLEMENTATION");    
+}
+
+- (void)viewDidDisappear
+{
+    PPDebug(@"Disappear, DEFAULT IMPLEMENTATION");
+}
+
 @end

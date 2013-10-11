@@ -2037,7 +2037,7 @@
 "kPolygonJoined" = "Polygon joined!";
 "kUseGradientTitle" = "Warning";
 "kUseGradientMessage" = "Use gradient, the paints will be lost. Continue?";
-"kSubject" = "Subject";
+"kSubjectPlaceholder" = "Input subject...";
 
 "kSelectorItem" = "Selector";
 "kSelectorItemDescription" = "Select an area & draw inside the area";

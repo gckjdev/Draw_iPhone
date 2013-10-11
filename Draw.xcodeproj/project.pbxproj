@@ -6420,6 +6420,10 @@
 		EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100CB17D197DA00451A38 /* MLNavigationController.m */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
+		EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
+		EA8500DD1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
+		EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
+		EA8500DF1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
 		EA8EF62017E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62117E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62217E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
@@ -9341,6 +9345,8 @@
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
+		EA8500DA1807A0420000DE3E /* ShareUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareUIManager.h; sourceTree = "<group>"; };
+		EA8500DB1807A0430000DE3E /* ShareUIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareUIManager.m; sourceTree = "<group>"; };
 		EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_bottom_split@2x.png"; sourceTree = "<group>"; };
 		EA8EF60E17E55D3B003F1AF8 /* draw_home_opus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_opus@2x.png"; sourceTree = "<group>"; };
 		EA8EF60F17E55D3B003F1AF8 /* draw_home_shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_shop@2x.png"; sourceTree = "<group>"; };
@@ -13152,6 +13158,8 @@
 				CA3F2F1D1609BDCA0059667B /* CommonTabController.m */,
 				C206FFAA178032D10033CF63 /* CommonWaterFlowController.h */,
 				C206FFAB178032D20033CF63 /* CommonWaterFlowController.m */,
+				EA8500DA1807A0420000DE3E /* ShareUIManager.h */,
+				EA8500DB1807A0430000DE3E /* ShareUIManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -20443,6 +20451,7 @@
 				A4F04B8A180654CD007274BE /* PageScrollView.m in Sources */,
 				A4F04B8B1806550A007274BE /* UserDeviceService.m in Sources */,
 				A4F04B8C18065920007274BE /* UIImageView+Extend.m in Sources */,
+				EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21191,6 +21200,7 @@
 				A42151801803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
 				A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF89A1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
+				EA8500DD1807A0430000DE3E /* ShareUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21945,6 +21955,7 @@
 				A421517F1803EA2A007F2EFD /* MBProgressHUD.m in Sources */,
 				A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
+				EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22650,6 +22661,7 @@
 				CA76134817F57420007A251E /* HPointList.mm in Sources */,
 				EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */,
 				CA1FF89C1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
+				EA8500DF1807A0430000DE3E /* ShareUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

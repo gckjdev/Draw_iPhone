@@ -408,4 +408,19 @@
 {
     [self.badgeView setNumber:count];
 }
+
+- (void)viewDidAppear
+{
+    [self reloadLocalCache];
+}
+
+- (void)viewDidDisappear
+{
+    self.opusList = nil;
+    [self reloadView];
+    
+    [self updateBG];
+}
+
+
 @end

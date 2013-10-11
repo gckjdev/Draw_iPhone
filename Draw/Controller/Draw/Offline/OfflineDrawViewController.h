@@ -64,7 +64,8 @@
 @property (retain, nonatomic) NSString *opusDesc;
 @property (retain, nonatomic) UIImage *bgImage;
 @property (retain, nonatomic) NSString *bgImageName;
-@property (retain, nonatomic) UIImage* copyPaintImage;
+//@property (retain, nonatomic) UIImage* copyPaintImage;
+//@property (retain, nonatomic) NSString* copyPaintImageURL;
 @property (retain, nonatomic) UIImage *submitOpusFinalImage;
 @property (retain, nonatomic) NSData *submitOpusDrawData;
 
@@ -102,6 +103,9 @@
                                    photo:(UIImage *)photo;
 
 - (void)setPageBGImage:(UIImage *)image;
+- (void)saveCopyPaintImage:(UIImage*)image;
+- (UIImage*)getCopyPaintImage;
++ (UIImage*)getDefaultCopyPaintImage;
 
 @end
 

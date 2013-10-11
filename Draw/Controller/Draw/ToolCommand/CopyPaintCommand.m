@@ -38,7 +38,8 @@
 {
     if (photo) {
         OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-        [oc setCopyPaintImage:photo];
+        [oc saveCopyPaintImage:photo];
+//        [oc setCopyPaintImage:photo];
         if ([self.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
             [(DrawToolUpPanel*)self.toolPanel updateCopyPaint:photo];
         }
@@ -56,7 +57,8 @@
        
         if (finished && error == nil) {
             OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-            [oc setCopyPaintImage:image];
+            [oc saveCopyPaintImage:image];
+//            [oc setCopyPaintImage:image];
             if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
                 [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
             }
@@ -117,7 +119,8 @@ enum {
                                delegate:nil
                      selectedImageBlock:^(UIImage *image) {
                          OfflineDrawViewController *oc = (OfflineDrawViewController *)[self controller];
-                         [oc setCopyPaintImage:image];
+//                         [oc setCopyPaintImage:image];
+                         [oc saveCopyPaintImage:image];
                          if ([cp.toolPanel isKindOfClass:[DrawToolUpPanel class]]) {
                              [(DrawToolUpPanel*)cp.toolPanel updateCopyPaint:image];
                          }

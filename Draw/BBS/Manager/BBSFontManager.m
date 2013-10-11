@@ -73,21 +73,25 @@ static BBSFontManager* _staticBBSFontManager;
 #pragma mark post list page font
 //Post list font
 - (UIFont *)postNickFont{
-   return ISIPHONE ? FONT(15) : FONT(15*2); 
+//   return ISIPHONE ? FONT(15) : FONT(15*2);
+    return [ShareUIManager timelineNickFont];
 }
 - (UIFont *)postContentFont{
 
-    return ISIPHONE ? FONT(14) : FONT(11*2);
-
+//    return ISIPHONE ? FONT(14) : FONT(11*2);
+    return [ShareUIManager timelineContentFont];
 }
 - (UIFont *)postDateFont{
-    return ISIPHONE ? FONT(9) : FONT(9*2);
+//    return ISIPHONE ? FONT(9) : FONT(9*2);
+    return [ShareUIManager timelineTimeFont];
 }
 - (UIFont *)postRewardFont{
-    return ISIPHONE ? FONT(8) : FONT(8*2);
+//    return ISIPHONE ? FONT(8) : FONT(8*2);
+    return [ShareUIManager timelineStatisticsFont];
 }
 - (UIFont *)postActionFont{
-     return ISIPHONE ? FONT(8) : FONT(8*2);
+//     return ISIPHONE ? FONT(8) : FONT(8*2);
+    return [ShareUIManager timelineStatisticsFont];
 }
 - (UIFont *)postTopFont{
     return ISIPHONE ? FONT(9) : FONT(9*2);
@@ -109,13 +113,40 @@ static BBSFontManager* _staticBBSFontManager;
 {
     return ISIPHONE ? BOLDFONT(12) : BOLDFONT(12*2);
 }
-- (UIFont *)detailActionFont
+
+//action
+- (UIFont *)actionContentFont
 {
-    return ISIPHONE ? BOLDFONT(14) : BOLDFONT(14*2);
+    return [ShareUIManager commentContentFont];
 }
+- (UIFont *)actionNickFont
+{
+    return [ShareUIManager commentNickFont];
+}
+- (UIFont *)actionDateFont
+{
+    return [ShareUIManager commentTimeFont];
+}
+
+
 - (UIFont *)actionSourceFont{
-    return ISIPHONE ? FONT(12) : FONT(12*2);
+//    return ISIPHONE ? FONT(12) : FONT(12*2);
+    return [ShareUIManager commentMessageSourceFont];
 }
+
+- (UIFont *)myActionContentFont
+{
+    return [ShareUIManager commentMessageContentFont];
+}
+- (UIFont *)myActionDateFont
+{
+    return [ShareUIManager commentMessageTimeFont];
+}
+- (UIFont *)myActionNickFont
+{
+    return [ShareUIManager commentMessageNickFont];
+}
+
 
 #pragma mark creation font
 - (UIFont *)creationDefaulFont
