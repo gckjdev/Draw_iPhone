@@ -152,6 +152,8 @@
 
 - (void)viewDidLoad
 {
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
+    
     [super viewDidLoad];
     drawGameService.drawDelegate = self;
     [self initWordLabel];

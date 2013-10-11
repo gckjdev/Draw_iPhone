@@ -92,6 +92,8 @@
 #import "DrawMainMenuPanel.h"
 #import "GuessManager.h"
 
+#import "SDWebImageManager.h"
+
 @interface HomeController()<GuessServiceDelegate>
 {
 
@@ -125,6 +127,8 @@
     
     // Release any cached data, images, etc that aren't in use.
     [[WordManager defaultManager] clearWordBaseDictionary];
+    
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
     
 }
 
@@ -209,7 +213,7 @@
     [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
         [self updateBGImageView];
     }];
-    [self updateBGImageView];
+//    [self updateBGImageView];
     
     [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
 }
@@ -329,27 +333,38 @@
     [[StatisticManager defaultManager] setRecoveryCount:count];
 }
 
+#define HOME_BG_IMAGE_VIEW_TAG 123687
+
 - (void)updateBGImageView
 {
     PPDebug(@"<update bg image view>");
     UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
     if (homeImage) {
         [self.view setBackgroundColor:[UIColor clearColor]];
-        UIImageView *imageView = (id)[self.view reuseViewWithTag:123687 viewClass:[UIImageView class] frame:self.view.bounds];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
         [imageView setImage:homeImage];
         [self.view insertSubview:imageView atIndex:0];
     }else{
 //        [self.view setBackgroundColor:OPAQUE_COLOR(0, 179, 118)];
         [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
-        UIImageView *imageView = (id)[self.view reuseViewWithTag:123687 viewClass:[UIImageView class] frame:self.view.bounds];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
         [imageView removeFromSuperview];        
     }
     [(DrawHomeHeaderPanel *)self.homeHeaderPanel updateBG];
 }
 
+- (void)clearBGImageView
+{
+    [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
+    UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+    [imageView setImage:nil];
+    [imageView removeFromSuperview];    
+}
+
 - (void)viewDidAppear:(BOOL)animated
-{        
-    [self.homeHeaderPanel reloadLocalCache];
+{
+    [self updateBGImageView];
+    [self.homeHeaderPanel viewDidAppear];
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [[DrawGameService defaultService] registerObserver:self];
@@ -360,9 +375,13 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self.homeHeaderPanel viewDidDisappear];
+    
     [self hideActivity];
     [[DrawGameService defaultService] unregisterObserver:self];
     [super viewDidDisappear:animated];
+    
+//    [self clearBGImageView];    
 }
 
 - (void)viewDidUnload
