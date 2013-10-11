@@ -192,8 +192,6 @@
 
 - (void)didQueryUser:(NSString *)userId
 {
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nil] inViewController:self];
 }
 

@@ -295,34 +295,11 @@
            canChat:(BOOL)canChat
 {
     if (isDrawApp()) {
-//        UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName]] autorelease];
-//        [superController.navigationController pushViewController:uc animated:YES];
-//        return;
         
         [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName] inViewController:superController];
         return;
     }
-    /*
-    if (isDiceApp()) {
-        [DiceUserInfoView showFriend:afriend
-                          infoInView:superController
-                             canChat:canChat
-                          needUpdate:needUpdate];
-        return;
-    }
-    if (isZhajinhuaApp()) {
-        [ZJHUserInfoView showFriend:afriend
-                         infoInView:superController
-                         needUpdate:needUpdate
-                            canChat:canChat];
-        return;
-    }
-    if (isSecureSmsAPP() || isCallTrackAPP()) {
-        [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName] inViewController:superController];
-        return;
-    }
-    
-    */
+
     [CommonUserInfoView showFriend:afriend
                         infoInView:superController
                         needUpdate:needUpdate];
@@ -338,20 +315,7 @@
                                         avatar:user.avatar
                                         gender:user.gender?@"m":@"f"
                                          level:1];
-//    if (isDiceApp()) {
-//        [DiceUserInfoView showFriend:afriend
-//                          infoInView:superController
-//                             canChat:canChat
-//                          needUpdate:needUpdate];
-//        return;
-//    }
-//    if (isZhajinhuaApp()) {
-//        [ZJHUserInfoView showFriend:afriend
-//                         infoInView:superController
-//                         needUpdate:needUpdate
-//                            canChat:canChat];
-//        return;
-//    }
+
     [CommonUserInfoView showFriend:friend
                       inController:superController
                         needUpdate:needUpdate

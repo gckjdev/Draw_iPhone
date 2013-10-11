@@ -370,14 +370,6 @@ typedef enum{
 
         {
             FeedUser *feedUser = self.feed.author;
-//            MyFriend *friend = [MyFriend friendWithFid:feedUser.userId
-//                                              nickName:feedUser.nickName
-//                                                avatar:feedUser.avatar
-//                                                gender:feedUser.genderString
-//                                                 level:1];
-//            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-//            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
-//            [self.navigationController pushViewController:uc animated:YES];
             
             
             if ([[ContestManager defaultManager] displayContestAnonymousForFeed:self.feed] == NO){
@@ -483,14 +475,6 @@ typedef enum{
 
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
 {
-//    MyFriend *friend = [MyFriend friendWithFid:userId
-//                                      nickName:nickName
-//                                        avatar:nil
-//                                        gender:@"m"
-//                                         level:1];
-//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
     
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName] inViewController:self];
 }

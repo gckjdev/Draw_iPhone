@@ -797,18 +797,6 @@ typedef enum{
            atIndexPath:(NSIndexPath *)indexPath
 {
     
-//    NSString* genderString = gender?@"m":@"f";
-//    MyFriend *friend = [MyFriend friendWithFid:userId
-//                                      nickName:nickName
-//                                        avatar:nil
-//                                        gender:genderString
-//                                         level:1];
-//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-    
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
-//    return;
-    
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName] inViewController:self];
 }
 @end
