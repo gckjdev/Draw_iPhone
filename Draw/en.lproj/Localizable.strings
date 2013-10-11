@@ -2020,6 +2020,11 @@
 "kLittleGeeAppLink" = "";
 "kOnlyChineseTitleAllowed" = "Only chinese title is allowed, please check your title!";
 "kOnlyEnglishTitleAllowed" = "Only english title is allowed, please check your title!";
+
+"kOnlyChineseOrEnglishTitleAllowed" = "Only chinese or english title is allowed, please check your title!";
+
+"kSubjectLengthLimited" = "Subject length could not more than %d";
+
 "kViewPost" = "View Post";
 "kRecent" = "Recent";
 "kCustom" = "Custom";

@@ -9,6 +9,7 @@
 #import "EditDescCommand.h"
 #import "OfflineDrawViewController.h"
 #import "CommonDialog.h"
+#import "StringUtil.h"
 
 #define KEYBOARD_RECT (CGRectMake(0, 228, 328, 252))
 
@@ -76,6 +77,8 @@
     [dialog showInView:oc.view];
 }
 
+#define SUBJECT_MAX_LENGTH 7
+
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView{
     
     if (dialog.tag == DIALOG_TAG_OPUS_DESC) {
@@ -84,10 +87,21 @@
         [self changeDesc:tv.text];
         
     }else if(dialog.tag == DIALOG_TAG_OPUS_NAME_AND_OPUS_DESC){
-        
         InputAlertView *v = (InputAlertView *)infoView;
-        [self changeDrawWord:v.titleInputField.text];
-        [self changeDesc:v.contentInputView.text];
+        if ([v.titleInputField.text length] <= 0) {
+            POSTMSG(NSLS(@"kOpusNameInvaild"));
+        }else if ((!NSStringIsValidChinese(v.titleInputField.text)&&
+                   !NSStringISValidEnglish(v.titleInputField.text)
+                   )){
+                    POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+        }else if([v.titleInputField.text length] > SUBJECT_MAX_LENGTH){
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+                             SUBJECT_MAX_LENGTH];
+            POSTMSG(msg);
+        }else{
+            [self changeDrawWord:v.titleInputField.text];
+            [self changeDesc:v.contentInputView.text];
+        }
     }
 }
 
