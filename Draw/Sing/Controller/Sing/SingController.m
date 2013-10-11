@@ -20,6 +20,8 @@
 #import "SingImageManager.h"
 #import "CommonDialog.h"
 #import "CommonTitleView.h"
+#import "UIImageView+WebCache.h"
+#import "UIViewUtils.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -66,6 +68,7 @@ enum{
     [_saveButton release];
     [_submitButton release];
     [_opusMainView release];
+    [_opusImageView release];
     [super dealloc];
 }
 
@@ -132,7 +135,13 @@ enum{
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     
+    NSURL *url = [NSURL URLWithString:_singOpus.pbOpus.image];
+    [self.opusImageView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+    
+    [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
+    
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
+    
         
     if (_isDraft) {
         [self prepareToPlay];
@@ -160,6 +169,7 @@ enum{
     [self setSaveButton:nil];
     [self setSubmitButton:nil];
     [self setOpusMainView:nil];
+    [self setOpusImageView:nil];
     [super viewDidUnload];
 }
 

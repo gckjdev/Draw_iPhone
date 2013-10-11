@@ -30,6 +30,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *submitButton;
 @property (retain, nonatomic) IBOutlet UIView *opusMainView;
 
+@property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
+
 //// if select a song, load with this.
 //- (id)initWithSong:(PBSong *)song;
 //
