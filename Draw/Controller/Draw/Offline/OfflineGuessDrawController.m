@@ -32,7 +32,7 @@
 #import "AccountService.h"
 #import "WordInputView.h"
 #import "FeedSceneGuessResult.h"
-
+#import "StringUtil.h"
 
 @interface OfflineGuessDrawController()
 {
@@ -118,7 +118,7 @@
     self.wordInputView.delegate = self;
     
     NSString *candidates = nil;
-    if (_feed.drawData.languageType == EnglishType) {
+    if ([self.feed.wordText isEnglishString]) {
         NSString *txt = _feed.wordText;
         candidates = [[WordManager defaultManager] randEnglishCandidateStringWithWord:txt
                                                                                 count:18];

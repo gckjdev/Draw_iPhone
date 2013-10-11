@@ -214,7 +214,7 @@ enum{
 + (void)showReplyActions:(UIViewController*)superController postId:(NSString*)postId postUserId:(NSString*)postUserId sourceAction:(PBBBSAction*)sourceAction
 {
 #ifdef DEBUG
-    if ([[UserManager defaultManager] isSuperUser]){
+//    if ([[UserManager defaultManager] isSuperUser]){
         MKBlockActionSheet* sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"回复选项")
                                                                      delegate:nil
                                                             cancelButtonTitle:NSLS(@"取消")
@@ -251,7 +251,7 @@ enum{
         
         [sheet showInView:superController.view];
 
-    }
+//    }
     
     return;
 #endif

@@ -515,14 +515,6 @@ typedef enum{
 - (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
 {
     TopPlayer *player = topPlayerView.topPlayer;
-//    NSString* genderString = player.gender?@"m":@"f";
-//    MyFriend *friend = [MyFriend friendWithFid:player.userId
-//                                      nickName:player.nickName
-//                                        avatar:player.avatar
-//                                        gender:genderString
-//                                         level:1];
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
 }
 

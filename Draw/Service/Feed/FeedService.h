@@ -23,6 +23,7 @@
 typedef void (^ LoadPBDrawResultHandler) (int resultCode, NSData *pbDrawData, DrawFeed *feed, BOOL fromCache);
 typedef void (^ DownloadProgressHandler) (float progress);
 typedef void (^ FeedActionResultBlock) (int resultCode);
+typedef void (^ GetFeedCompleteBlock)(int resultCode, DrawFeed *feed, BOOL fromCache);
 
 @protocol FeedServiceDelegate <NSObject>
 
@@ -139,6 +140,9 @@ typedef void (^ FeedActionResultBlock) (int resultCode);
 //not return data ...
 - (void)getFeedByFeedId:(NSString *)feedId 
                delegate:(id<FeedServiceDelegate>)delegate;
+- (void)getFeedByFeedId:(NSString *)feedId
+              completed:(GetFeedCompleteBlock)completed;
+
 
 //- (void)getPBDrawByFeed:(DrawFeed *)feed
 //                 delegate:(id<FeedServiceDelegate>)delegate;

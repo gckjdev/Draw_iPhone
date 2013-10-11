@@ -41,5 +41,4 @@
 + (UIViewController *)enterBugReportPostController:(UIViewController *)fromController
                                                  animated:(BOOL)animated;
 
-
 @end

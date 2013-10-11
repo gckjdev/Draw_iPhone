@@ -295,24 +295,6 @@ enum{
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-//- (void)clickAction:(PBOpusActionType)type{
-//    
-//    PPDebug(@"clickAction: %d", type);
-//    if (type == PBOpusActionTypeOpusActionTypeSave) {
-//        [self popupMessage:NSLS(@"kNoSaveList") title:nil];
-//        return;
-//    }
-//    
-//    _type = type;
-//
-//    [self clickTab:3];
-//}
-
-//- (void)didClickActionButton:(PBOpusActionType)type{
-//    
-//    [self clickAction:type];
-//}
-
 
 - (NSArray *)feedList
 {
@@ -328,11 +310,6 @@ enum{
     }
     return 3;
 }
-
-//- (NSInteger)currentTabIndex
-//{
-//    return _defaultTabIndex;
-//}
 
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {

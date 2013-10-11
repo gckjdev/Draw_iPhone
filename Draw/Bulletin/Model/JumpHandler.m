@@ -71,15 +71,19 @@
 + (void)handleGameJump:(UIViewController*)controller
                 gameId:(NSString*)gameId
               function:(NSString*)function
+                  para:(NSString *)para
 {
-    [[GameApp getGameJumpHandler] controllerForGameId:gameId func:function fromController:controller];
+    [[GameApp getGameJumpHandler] controllerForGameId:gameId
+                                                 func:function
+                                                 para:para 
+                                       fromController:controller];
 }
 
 + (void)handleBulletinJump:(UIViewController*)controller
                   bulletin:(Bulletin*)bulletin
 {
     if (bulletin.type == JumpTypeGame) {
-        [JumpHandler handleGameJump:controller gameId:bulletin.gameId function:bulletin.function];
+        [JumpHandler handleGameJump:controller gameId:bulletin.gameId function:bulletin.function para:bulletin.parameter];
         return;
     }
     if (bulletin.type == JumpTypeOfferWall) {

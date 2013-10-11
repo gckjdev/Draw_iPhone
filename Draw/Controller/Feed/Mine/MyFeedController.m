@@ -102,8 +102,11 @@ typedef enum{
 }
 - (void)enterOpusDetail:(CommentFeed *)feed
 {
-    [self showActivityWithText:NSLS(@"kLoading")];
-    [[FeedService defaultService]getFeedByFeedId:feed.opusId delegate:self];
+    ShowFeedController *vc = [[[ShowFeedController alloc] initWithFeedId:feed.opusId] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+//    [self showActivityWithText:NSLS(@"kLoading")];
+//    [[FeedService defaultService]getFeedByFeedId:feed.opusId delegate:self];
 }
 - (void)replyComment:(CommentFeed *)feed
 {
@@ -793,18 +796,6 @@ typedef enum{
                 gender:(BOOL)gender 
            atIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    NSString* genderString = gender?@"m":@"f";
-//    MyFriend *friend = [MyFriend friendWithFid:userId
-//                                      nickName:nickName
-//                                        avatar:nil
-//                                        gender:genderString
-//                                         level:1];
-//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-    
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
-//    return;
     
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName] inViewController:self];
 }

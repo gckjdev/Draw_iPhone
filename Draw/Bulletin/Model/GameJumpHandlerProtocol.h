@@ -12,6 +12,7 @@
 
 - (UIViewController *)controllerForGameId:(NSString *)gameId
                                      func:(NSString *)func
+                                     para:(NSString *)para
                            fromController:(UIViewController*)controller;
-//- (BOOL)isFunctionAvailable:(NSString*)func;
+
 @end

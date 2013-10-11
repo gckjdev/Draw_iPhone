@@ -604,6 +604,57 @@ static FeedService *_staticFeedService = nil;
 }
 
 
+- (void)getFeedByFeedId:(NSString *)feedId
+              completed:(GetFeedCompleteBlock)completed{
+    
+    NSOperationQueue *queue = [self getOperationQueue:GET_FEED_DETAIL_QUEUE];
+    [queue cancelAllOperations];
+    
+    [queue addOperationWithBlock:^{
+        NSInteger resultCode = 0;
+        NSString* userId = [[UserManager defaultManager] userId];
+        CommonNetworkOutput* output = [GameNetworkRequest
+                                       getFeedWithProtocolBuffer:TRAFFIC_SERVER_URL
+                                       userId:userId feedId:feedId];
+        resultCode = [output resultCode];
+        DrawFeed *feed = nil;
+        
+        if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+            
+            @try{
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                
+                if (resultCode == ERROR_SUCCESS) {
+                    NSArray *list = [response feedList];
+                    PBFeed *pbFeed = nil;
+                    pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                    
+                    feed = (DrawFeed*)[FeedManager parsePbFeed:pbFeed];
+                    if ([feed isKindOfClass:[DrawFeed class]]) {
+                        
+                    }else{
+                        feed = nil;
+                    }
+                }
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getFeedByFeedId> catch exception =%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {}
+        }
+        
+        //send back to delegate
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            completed(resultCode, feed, NO);
+        });
+        
+    }];
+}
+
+
 - (void)getPBDrawByFeed:(DrawFeed *)feed
                 handler:(LoadPBDrawResultHandler)handler
        downloadDelegate:(id)downloadDelegate

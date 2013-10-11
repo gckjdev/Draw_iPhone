@@ -28,8 +28,6 @@
 @synthesize nickNameLabel;
 @synthesize textLabel;
 @synthesize timeLabel;
-@synthesize countLabel;
-@synthesize countBackground;
 @synthesize chatCellDelegate;
 @synthesize messageStat = _messageStat;
 
@@ -38,26 +36,26 @@
     PPRelease(nickNameLabel);
     PPRelease(timeLabel);
     PPRelease(textLabel);
-    PPRelease(countLabel);
-    PPRelease(countBackground);
     [_avatarView release];
+    [_badgeView release];
     [super dealloc];
+}
+
+- (void)updateView
+{
+    [self.nickNameLabel setFont:CELL_NICK_FONT];
+    [self.textLabel setFont:CELL_CONTENT_FONT];
+    [self.timeLabel setFont:CELL_SMALLTEXT_FONT];    
 }
 
 
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        PPDebug(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
-    
-    ((ChatCell*)[topLevelObjects objectAtIndex:0]).delegate = delegate;
-    
-    return [topLevelObjects objectAtIndex:0];
+    ChatCell *cell = [self createViewWithXibIdentifier:cellId];
+    cell.delegate = delegate;
+    [cell updateView];
+    return cell;
 }
 
 
@@ -67,15 +65,11 @@
 }
 
 
-#define CELL_HEIGHT_IPHONE  71
-#define CELL_HEIGHT_IPAD    142
+//#define CELL_HEIGHT_IPHONE  71
+//#define CELL_HEIGHT_IPAD    142
 + (CGFloat)getCellHeight
 {
-    if ([DeviceDetection isIPAD]) {
-        return CELL_HEIGHT_IPAD;
-    }else {
-        return CELL_HEIGHT_IPHONE;
-    }
+    return CELL_CONST_HEIGHT;
 }
 
 
@@ -94,14 +88,7 @@
 - (void)updateBadge
 {
     NSInteger count = [self.messageStat numberOfNewMessage];
-    countBackground.hidden = countLabel.hidden = (count <= 0);
-    if (count > 0) {
-        if (count > 99) {
-            countLabel.text = @"N";
-        } else {
-            countLabel.text = [NSString stringWithFormat:@"%d",count];
-        }
-    } 
+    [self.badgeView setNumber:count];
 }
 
 

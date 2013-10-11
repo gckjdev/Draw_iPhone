@@ -67,6 +67,7 @@
 @property(nonatomic, retain) DetailFooterView *footerView;
 @property(nonatomic, retain) Contest *contest;
 @property(nonatomic, assign) BOOL isDownloadingData;
+@property (copy, nonatomic) NSString *feedId;
 
 //@property(nonatomic, assign) BOOL swipeEnable;
 
@@ -103,7 +104,19 @@ typedef enum{
     PPRelease(_commentHeader);
     PPRelease(_useItemScene);
     PPRelease(_feedScene);
+    PPRelease(_feedId);
     [super dealloc];
+}
+
+- (id)initWithFeedId:(NSString *)feedId{
+    
+    if (self = [super init]) {
+        self.feedId = feedId;
+//        self.useItemScene =
+//        self.feedScene = 
+    }
+    
+    return self;
 }
 
 - (id)initWithFeed:(DrawFeed *)feed
@@ -357,14 +370,6 @@ typedef enum{
 
         {
             FeedUser *feedUser = self.feed.author;
-//            MyFriend *friend = [MyFriend friendWithFid:feedUser.userId
-//                                              nickName:feedUser.nickName
-//                                                avatar:feedUser.avatar
-//                                                gender:feedUser.genderString
-//                                                 level:1];
-//            [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-//            UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:feedUser.userId avatar:feedUser.avatar nickName:feedUser.nickName]] autorelease];
-//            [self.navigationController pushViewController:uc animated:YES];
             
             
             if ([[ContestManager defaultManager] displayContestAnonymousForFeed:self.feed] == NO){
@@ -470,14 +475,6 @@ typedef enum{
 
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName
 {
-//    MyFriend *friend = [MyFriend friendWithFid:userId
-//                                      nickName:nickName
-//                                        avatar:nil
-//                                        gender:@"m"
-//                                         level:1];
-//    [DrawUserInfoView showFriend:friend infoInView:self needUpdate:YES];
-//    UserDetailViewController* uc = [[[UserDetailViewController alloc] initWithUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName]] autorelease];
-//    [self.navigationController pushViewController:uc animated:YES];
     
     [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:userId avatar:nil nickName:nickName] inViewController:self];
 }
@@ -909,8 +906,44 @@ typedef enum{
     
 }
 
+- (void)loadFeed
+{
+    if (self.feed == nil) {
+        
+        [self showActivityWithText:NSLS(@"kLoading")];
+        
+        __block typeof (self)bself = self;
+        [[FeedService defaultService] getFeedByFeedId:bself.feedId completed:^(int resultCode, DrawFeed *feed, BOOL fromCache) {
+            
+            [bself hideActivity];
+            if (resultCode == 0) {
+                if (feed) {
+                    bself.feed = feed;
+                    bself.useItemScene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed];
+                    bself.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
+                    [bself loadWhenGetFeed];
+                }else{
+                    [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
+                }
+            }else{
+                [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kLoadFail") delayTime:1.5 isHappy:NO];
+            }
+        }];
+        
+    }else{
+        [self loadWhenGetFeed];
+    }
+
+}
+
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    [self loadFeed];
+}
+
+- (void)loadWhenGetFeed{
+    
     self.contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
     
     [self setPullRefreshType:PullRefreshTypeFooter];
@@ -923,7 +956,7 @@ typedef enum{
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [titleView setRightButtonSelector:@selector(clickRefreshButton:)];
     
-    [self initFooterView];    
+    [self initFooterView];
     [self initTabButtons];
     [self reloadView];
     [self setShowTipsDisable:YES];
