@@ -421,7 +421,7 @@
 "kRemoveSuccessfully" = "成功移除粉丝";
 "kRemoveFailed" = "移除粉丝失败。";
 "kEnterWords" = "搜索条件不能为空";
-"kSearchUserPlaceholder" = "用户昵称/微博昵称/邮件地址";
+"kSearchUserPlaceholder" = "昵称/小吉号码/微博/邮箱";
 "kSearchFailedTitle" = "网络错误";
 "kSearchFailed" = "网络错误，搜索用户失败，请检查网络是否可用或稍候再试";
 "kSearching" = "搜索中...";
@@ -2047,6 +2047,7 @@
 
 "kUseGradientTitle" = "提示";
 "kUseGradientMessage" = "使用全局渐变将会导致之前的笔画都消失，是否继续？";
+"kSubjectPlaceholder" = "请输入主题...";
 "kSubject" = "主题";
 "kFurtureFunction" = "神秘功能即将推出，敬请期待...";
 
