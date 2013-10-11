@@ -17,6 +17,8 @@
 #import "FreeIngotController.h"
 #import "BBSPostDetailController.h"
 #import "ShowFeedController.h"
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 #define FUNC_FEED                       @"feed"
 #define FUNC_CONTEST                    @"contest"
@@ -28,6 +30,8 @@
 #define FUNC_BBS_FEEDBACK               @"bbs_feedback"
 #define FUNC_BBS_BUG_REPORT             @"bbs_bug_report"
 #define FUNC_OPUS_DETAIL                @"opus_detail"
+#define FUNC_USER_DETAIL                @"user_detail"
+
 
 
 @implementation DrawGameJumpHandler
@@ -69,6 +73,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
     }
     else if ([func isEqualToString:FUNC_OPUS_DETAIL ignoreCapital:YES]){
         jumpController = [[[ShowFeedController alloc] initWithFeedId:para] autorelease];
+    }
+    else if ([func isEqualToString:FUNC_USER_DETAIL ignoreCapital:YES]){
+        ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:para avatar:nil nickName:nil];
+        jumpController = [[[UserDetailViewController alloc] initWithUserDetail:detail] autorelease];
     }
     else{
         Class class = NSClassFromString(func);
