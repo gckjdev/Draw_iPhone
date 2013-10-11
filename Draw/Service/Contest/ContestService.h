@@ -47,5 +47,8 @@ typedef enum{
 - (NSArray*)getOngoingContestList;
 - (void)syncOngoingContestList;
 
+- (void)acceptContest:(NSString*)contestId;
+- (long)newContestCount;
+
 
 @end

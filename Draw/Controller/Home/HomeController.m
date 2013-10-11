@@ -213,7 +213,7 @@
     [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
         [self updateBGImageView];
     }];
-//    [self updateBGImageView];
+    [self updateBGImageView];
     
     [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
 }
@@ -363,7 +363,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self updateBGImageView];
+//    [self updateBGImageView];
     [self.homeHeaderPanel viewDidAppear];
     
     [UIApplication sharedApplication].idleTimerDisabled = NO;
