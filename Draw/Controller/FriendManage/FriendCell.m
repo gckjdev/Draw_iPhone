@@ -53,21 +53,24 @@
     return self;
 }
 
+- (void)updateView
+{
+    [self.nickNameLabel setFont:CELL_NICK_FONT];
+
+    genderLabel.font =
+    areaLabel.font =
+    statusLabel.font =
+    _levelLabel.font = CELL_SMALLTEXT_FONT;
+}
 
 + (id)createCell:(id)delegate
 {
     NSString* cellId = [self getCellIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).  
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        PPDebug(@"create %@ but cannot find cell object from Nib", cellId);
-        return nil;
-    }
     
-    FriendCell *cell = (FriendCell*)[topLevelObjects objectAtIndex:0];
+    FriendCell *cell = [self createViewWithXibIdentifier:cellId];
     cell.delegate = delegate;
     
-    
+    [cell updateView];
     return cell;
 }
 
@@ -77,16 +80,9 @@
     return @"FriendCell";
 }
 
-
-#define CELL_HEIGHT_IPHONE  66
-#define CELL_HEIGHT_IPAD    132
 + (CGFloat)getCellHeight
 {
-    if ([DeviceDetection isIPAD]) {
-        return CELL_HEIGHT_IPAD;
-    }else {
-        return CELL_HEIGHT_IPHONE;
-    }
+    return CELL_CONST_HEIGHT;
 }
 
 

@@ -8,66 +8,61 @@
 
 #import "ShareUIManager.h"
 
-#define FONT(x) [UIFont systemFontOfSize:x]
-#define BOLD_FONT(x) [UIFont boldSystemFontOfSize:x]
-
-#define AD_FONT(x,y) (ISIPAD?(FONT(x)):(FONT(y)))
-#define AD_BOLD_FONT(x,y) (ISIPAD?(BOLD_FONT(x)):(BOLD_FONT(y)))
 
 
 @implementation ShareUIManager
 
 + (UIFont *)timelineNickFont
 {
-    return AD_FONT(26, 14);
+    return CELL_NICK_FONT;
 }
 + (UIFont *)timelineContentFont
 {
-    return AD_FONT(25, 12);
+    return CELL_CONTENT_FONT;
 }
 + (UIFont *)timelineTimeFont
 {
-    return AD_FONT(18, 10);
+    return CELL_SMALLTEXT_FONT;
 }
 + (UIFont *)timelineStatisticsFont
 {
-    return AD_FONT(18, 10);    
+    return CELL_SMALLTEXT_FONT;
 }
 
 
 //for comment
 + (UIFont *)commentNickFont
 {
-    return AD_FONT(23, 12);
+    return CELL_NICK_FONT;
 }
 
 + (UIFont *)commentContentFont
 {
-    return AD_FONT(23, 12);
+    return CELL_CONTENT_FONT;
 }
 
 + (UIFont *)commentTimeFont
 {
-    return AD_FONT(18, 10);
+    return CELL_SMALLTEXT_FONT;
 }
 
 
 //for comment message
 + (UIFont *)commentMessageNickFont
 {
-    return AD_FONT(26, 14);
+    return CELL_NICK_FONT;
 }
 + (UIFont *)commentMessageContentFont
 {
-    return AD_FONT(23, 12);
+    return CELL_CONTENT_FONT;
 }
 + (UIFont *)commentMessageTimeFont
 {
-    return AD_FONT(21, 11);
+    return CELL_SMALLTEXT_FONT;
 }
 + (UIFont *)commentMessageSourceFont
 {
-    return AD_FONT(21, 11);
+    return CELL_REPLY_SOURCE_FONT;
 }
 
 
