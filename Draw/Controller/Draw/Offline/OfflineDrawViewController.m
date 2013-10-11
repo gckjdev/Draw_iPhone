@@ -60,7 +60,7 @@
 #import "CanvasRect.h"
 #import "UserManager.h"
 #import "ContestManager.h"
-
+#import "UIImageUtil.h"
 
 #import "ToolCommand.h"
 #import "StringUtil.h"
@@ -195,6 +195,7 @@
     [self stopRecovery];
     self.delegate = nil;
     _draft.drawActionList = nil;
+//    PPRelease(_copyPaintImageURL);
     PPRelease(_submitOpusFinalImage);
     PPRelease(_submitOpusDrawData);
     PPRelease(_shareWeiboSet);
@@ -213,7 +214,7 @@
     PPRelease(_bgImage);
     PPRelease(_bgImageName);
     PPRelease(_currentDialog);
-    PPRelease(_copyPaintImage);
+//    PPRelease(_copyPaintImage);
     PPRelease(_layerPanelPopView);
     PPRelease(_upPanelPopView);
     [_upPanelButton release];
@@ -1405,13 +1406,41 @@
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (self.copyPaintImage) {
-        return [MWPhoto photoWithImage:self.copyPaintImage];
-    }
-    return nil;
+    return [MWPhoto photoWithImage:[self getCopyPaintImage]];
+//    if (self.copyPaintImage) {
+//        return [MWPhoto photoWithImage:self.copyPaintImage];
+//    }
+//    return nil;
     
 }
 
+#pragma mark- Copy Paint Handling
+
++ (NSString*)getCopyPaintFileName
+{
+    NSString* COPY_PAINT_IMAGE_PATH = [FileUtil getFileFullPath:@"copy_paint.png"];
+    return COPY_PAINT_IMAGE_PATH;
+}
+
+- (void)saveCopyPaintImage:(UIImage*)image
+{
+    if (image == nil)
+        return;
+
+    [image saveImageToFile:[OfflineDrawViewController getCopyPaintFileName]];
+}
+
+- (UIImage*)getCopyPaintImage
+{
+    UIImage* image = [UIImage imageWithContentsOfFile:[OfflineDrawViewController getCopyPaintFileName]];
+    return image;
+}
+
++ (UIImage*)getDefaultCopyPaintImage
+{
+    UIImage* image = [UIImage imageWithContentsOfFile:[OfflineDrawViewController getCopyPaintFileName]];
+    return image;
+}
 
 #pragma mark- DrawLayerManager Delegate
 - (void)layerManager:(DrawLayerManager *)manager

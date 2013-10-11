@@ -46,7 +46,7 @@
 #import "CopyPaintCommand.h"
 #import "ShowCopyPaintCommand.h"
 #import "ChangePageBGCommand.h"
-
+#import "OfflineDrawViewController.h"
 
 @implementation DrawToolUpPanelCell
 
@@ -277,6 +277,8 @@ if(control){\
     [self updateTableView];
     [self registerToolCommands];
     [self.tableView reloadData];
+    
+    [self updateCopyPaint:[OfflineDrawViewController getDefaultCopyPaintImage]];
 }
 - (IBAction)clickTool:(id)sender
 {
