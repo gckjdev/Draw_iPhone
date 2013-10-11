@@ -39,6 +39,7 @@
 #import "TomatoItem.h"
 #import "WordInputView.h"
 #import "BalanceNotEnoughAlertView.h"
+#import "StringUtil.h"
 
 #define MAX_TOMATO_CAN_THROW 3
 #define MAX_FLOWER_CAN_SEND 10
@@ -184,7 +185,7 @@
         [self.wordInputView setDisable:NO];
         [self.wordInputView setAnswer:wordText];
         NSString *candidates = nil;
-        if (language == EnglishType) {
+        if ([wordText isEnglishString]) {
             candidates = [[WordManager defaultManager] randEnglishCandidateStringWithWord:wordText count:18];
         }else{
             candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:wordText count:18];
