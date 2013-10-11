@@ -16,6 +16,7 @@
 #import "StoreController.h"
 #import "FreeIngotController.h"
 #import "BBSPostDetailController.h"
+#import "ShowFeedController.h"
 
 #define FUNC_FEED                       @"feed"
 #define FUNC_CONTEST                    @"contest"
@@ -26,6 +27,8 @@
 #define FUNC_BBS_FREE_COIN_HELP         @"bbs_free_ingot"
 #define FUNC_BBS_FEEDBACK               @"bbs_feedback"
 #define FUNC_BBS_BUG_REPORT             @"bbs_bug_report"
+#define FUNC_OPUS_DETAIL                @"opus_detail"
+
 
 @implementation DrawGameJumpHandler
 
@@ -38,6 +41,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
 
 - (UIViewController *)controllerForGameId:(NSString *)gameId
                                      func:(NSString *)func
+                                     para:(NSString *)para
                            fromController:(UIViewController *)controller
 {
     UIViewController* jumpController = nil;
@@ -63,14 +67,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
     else if ([func isEqualToString:FUNC_BBS_FEEDBACK ignoreCapital:YES]){
         return [BBSPostDetailController enterFeedbackPostController:controller animated:YES];
     }
+    else if ([func isEqualToString:FUNC_OPUS_DETAIL ignoreCapital:YES]){
+        jumpController = [[[ShowFeedController alloc] initWithFeedId:para] autorelease];
+    }
     else{
         Class class = NSClassFromString(func);
         if (class != nil && [class isSubclassOfClass:[UIViewController class]]){
             jumpController = [[[class alloc] init] autorelease];
         }
         else{
-            PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@",
-                    gameId, func);
+            PPDebug(@"<controllerForGameId>:warnning:function is unexpected. gameId = %@, func = %@, parameter = %@",
+                    gameId, func, para);
         }
     }
     

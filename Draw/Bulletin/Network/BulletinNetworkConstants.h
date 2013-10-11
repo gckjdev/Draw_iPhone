@@ -19,6 +19,7 @@
 #define PARA_BULLETIN_GAME_ID    @"gid"
 #define PARA_BULLETIN_FUNCTION    @"function"
 #define PARA_BULLETIN_URL       @"url"
+#define PARA_PARA       @"para"
 
 
 #define METHOD_GETBULLETINS @"gblt"

@@ -51,6 +51,7 @@
         self.function = [dict objectForKey:PARA_BULLETIN_FUNCTION];
         self.type = [((NSString*)[dict objectForKey:PARA_BULLETIN_TYPE]) intValue];
         self.url = [dict objectForKey:PARA_BULLETIN_URL];
+        self.parameter = [dict objectForKey:PARA_PARA];
     }
     return self;
 }

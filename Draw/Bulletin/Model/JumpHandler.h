@@ -54,7 +54,9 @@ typedef enum{
 
 + (void)handleGameJump:(UIViewController*)controller
                 gameId:(NSString*)gameId
-              function:(NSString*)function;
+              function:(NSString*)function
+                  para:(NSString *)para;
+
 + (void)handleBulletinJump:(UIViewController*)controller
                   bulletin:(Bulletin*)bulletin;
 + (BOOL)canJump:(JumpType)type;
