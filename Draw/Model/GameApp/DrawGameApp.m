@@ -428,7 +428,7 @@
 
 - (void)HandleWithDidFinishLaunching
 {
-    [WordManager defaultManager];
+//    [WordManager defaultManager];
     [DrawBgManager defaultManager];
     [ImageShapeManager defaultManager];
     
