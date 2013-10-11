@@ -31,13 +31,7 @@
 
 + (id)createCell:(id)delegate
 {
-    NSString* cellId = [self getCellIdentifier];
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellId owner:self options:nil];
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        return nil;
-    }
-    
-    MyCommentCell *cell = ((MyCommentCell*)[topLevelObjects objectAtIndex:0]);
+    MyCommentCell *cell = [self createViewWithXibIdentifier:[self getCellIdentifier]];
     cell.delegate = delegate;
     
     [cell.sourceButton.titleLabel setNumberOfLines:3];
@@ -46,6 +40,13 @@
     [cell.nickNameLabel setTextColor:COLOR_BROWN];
     [cell.commentLabel setTextColor:COLOR_BROWN];
     [cell.sourceButton setTitleColor:COLOR_BROWN forState:UIControlStateNormal];
+    
+    
+    [cell.timeLabel setFont:[ShareUIManager commentMessageTimeFont]];
+    [cell.nickNameLabel setFont:[ShareUIManager commentMessageNickFont]];
+    [cell.sourceButton.titleLabel setFont:[ShareUIManager commentMessageSourceFont]];
+    [cell.commentLabel setFont:[ShareUIManager commentMessageContentFont]];
+    
     return cell;
 }
 
@@ -57,8 +58,6 @@
 
 #define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 590: 260)
 #define REPLY_WIDTH ([DeviceDetection isIPAD] ? 563: 244)
-#define COMMENT_FONT_SIZE ([DeviceDetection isIPAD] ? 12*2 : 12)
-#define REPLY_FONT_SIZE ([DeviceDetection isIPAD] ? 11*2 : 11)
 
 #define COMMENT_SPACE ([DeviceDetection isIPAD] ? 10 : 5)
 #define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 126 : 52)
@@ -76,7 +75,7 @@
 + (CGRect)getCommentRect:(CommentFeed *)feed startY:(CGFloat)startY
 {
     NSString *comment = [feed commentInMyComment];
-    UIFont *font = [UIFont systemFontOfSize:COMMENT_FONT_SIZE];
+    UIFont *font = [ShareUIManager commentMessageContentFont];
     CGSize commentSize = [comment sizeWithFont:font constrainedToSize:CGSizeMake(COMMENT_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + COMMENT_PAN);
@@ -86,7 +85,7 @@
 + (CGRect)getReplyRect:(CommentFeed *)feed startY:(CGFloat)startY
 {
     NSString *reply = [feed replySummary];
-    UIFont *font = [UIFont systemFontOfSize:REPLY_FONT_SIZE];
+    UIFont *font = [ShareUIManager commentMessageSourceFont];
     CGSize commentSize = [reply sizeWithFont:font constrainedToSize:CGSizeMake(REPLY_WIDTH, 10000000) lineBreakMode:UILineBreakModeCharacterWrap];
     return CGRectMake(COMMENT_BASE_X, startY, COMMENT_WIDTH, commentSize.height + REPLY_PAN);    
 }

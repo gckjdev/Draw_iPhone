@@ -41,7 +41,6 @@
     return @"ReportFeedCell";
 }
 
-#define DESC_FONT (ISIPAD ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:12])
 
 #define DESC_WIDTH (ISIPAD ? 590 : 245)
 #define BASE_HEIGHT (ISIPAD ? 300 : 140)
@@ -50,8 +49,12 @@
     self.userNameLabel.textColor = COLOR_BROWN;
     self.descLabel.textColor = COLOR_BROWN;
     self.timeLabel.textColor = COLOR_GRAY_TEXT;
-    self.descLabel.font = DESC_FONT;
+    self.descLabel.font = [ShareUIManager timelineContentFont];
     self.descLabel.numberOfLines = INT_MAX;
+    
+    self.userNameLabel.font = [ShareUIManager timelineNickFont];
+    self.timeLabel.font = [ShareUIManager timelineTimeFont];
+    self.descLabel.font = [ShareUIManager timelineContentFont];
     
     SET_VIEW_ROUND_CORNER(self.drawImageView);
     [self.bgImageView setImage:[ShareImageManager bubleImage]];
@@ -61,7 +64,7 @@
 
 + (CGFloat)getCellHeightWithFeed:(CommentFeed *)feed
 {
-    CGSize size = [[feed displayText] sizeWithFont:DESC_FONT constrainedToSize:CGSizeMake(DESC_WIDTH, MAXFLOAT) lineBreakMode:0];
+    CGSize size = [[feed displayText] sizeWithFont:[ShareUIManager timelineContentFont] constrainedToSize:CGSizeMake(DESC_WIDTH, MAXFLOAT) lineBreakMode:0];
     return BASE_HEIGHT+size.height;
 }
 
