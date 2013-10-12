@@ -13,7 +13,7 @@
 #define HOT_RANK 0
 #define ALL_TIME_RANK 1
 
-
+typedef void (^GetRankListCompletedBlock)(int resultCode, int totalCount, NSArray *list);
 
 @protocol GuessServiceDelegate <NSObject>
 
@@ -61,12 +61,21 @@
                     delegate:(id<GuessServiceDelegate>)delegate;
 
 
+//- (void)getGuessRankListWithType:(int)type
+//                            mode:(PBUserGuessMode)mode
+//                       contestId:(NSString *)contestId
+//                          offset:(int)offset
+//                           limit:(int)limit
+//                        delegate:(id<GuessServiceDelegate>)delegate;
+
+
+
 - (void)getGuessRankListWithType:(int)type
                             mode:(PBUserGuessMode)mode
                        contestId:(NSString *)contestId
                           offset:(int)offset
                            limit:(int)limit
-                        delegate:(id<GuessServiceDelegate>)delegate;
+                       completed:(GetRankListCompletedBlock)completed;
 
 
 

@@ -84,6 +84,7 @@ typedef enum{
     [_geniusTitleList release];
 
     [_totalCountLabel release];
+    [_totalCountDic release];
     [super dealloc];
 }
 
@@ -94,6 +95,8 @@ typedef enum{
     
     self.geniusRankTypeList = @[RANK_DAY, RANK_YEAR];
     self.geniusTitleList = @[GENIUS_DAY, GENIUS_YEAR];
+    
+    self.totalCountDic = [NSMutableDictionary dictionary];
     
     [super viewDidLoad];
     
@@ -138,7 +141,7 @@ typedef enum{
         [_contestButton setBackgroundColor:COLOR_ORANGE];
         [_geniusButton setTitle:[_geniusTitleList objectAtIndex:index] forState:UIControlStateNormal];
         [self clickTab:(index + TabTypeGeniusHot)];
-//        self.totalCountLabel.hidden = YES;
+        self.totalCountLabel.hidden = YES;
         return;
     }
     
@@ -149,9 +152,16 @@ typedef enum{
         [_contestButton setBackgroundColor:COLOR_ORANGE1];
         [_contestButton setTitle:[_contestTitleList objectAtIndex:index] forState:UIControlStateNormal];
         [self clickTab:(index + TabTypeContestToday)];
-//        self.totalCountLabel.hidden = NO;
+        self.totalCountLabel.hidden = NO;
     }
     
+}
+
+- (void)clickTab:(NSInteger)tabID{
+    
+    [super clickTab:tabID];
+    int count = [[self.totalCountDic objectForKey:[NSString stringWithFormat:@"%d", tabID]] intValue];
+    self.totalCountLabel.text = [NSString stringWithFormat:NSLS(@"kTotalPlayerCount"), count];
 }
 
 - (IBAction)clickGeniusSelectButton:(UIButton *)sender {
@@ -214,21 +224,7 @@ typedef enum{
     self.currentSelect = item.title;
 }
 
-- (void)didGetGuessRankList:(NSArray *)list
-                 totalCount:(int)totalCount
-                       mode:(int)mode
-                 resultCode:(int)resultCode{
-    
-    [self hideActivity];
-    if (resultCode == 0) {
-        PPDebug(@"list count = %d", [list count]);
-        
-        [self finishLoadDataForTabID:self.currentTab.tabID resultList:list];
-        
-    }else{
-        [self failLoadDataForTabID:self.currentTab.tabID];
-    }
-}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [GuessRankCell getCellHeight];
@@ -311,15 +307,50 @@ SET_CELL_BG_IN_CONTROLLER;
     return nil;
 }
 
+//- (void)didGetGuessRankList:(NSArray *)list
+//                 totalCount:(int)totalCount
+//                       mode:(int)mode
+//                 resultCode:(int)resultCode{
+//    
+//    [self hideActivity];
+//    if (resultCode == 0) {
+//        PPDebug(@"list count = %d", [list count]);
+//        
+//        self.totalCountDic setObject:@(totalCount) forKey:<#(id<NSCopying>)#>
+//        
+//        [self finishLoadDataForTabID:self.currentTab.tabID resultList:list];
+//        
+//    }else{
+//        [self failLoadDataForTabID:self.currentTab.tabID];
+//    }
+//}
+
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
     
     TableTab *tab = [_tabManager tabForID:tabID];
     NSString *contestId = nil;
     [self showActivityWithText:NSLS(@"kLoading")];
+    
+    GetRankListCompletedBlock completedBlock = ^(int resultCode, int totalCount, NSArray *list){
+        
+        [self hideActivity];
+        if (resultCode == 0) {
+            PPDebug(@"list count = %d", [list count]);
+            [self.totalCountDic setObject:@(totalCount) forKey:[NSString stringWithFormat:@"%d", tabID]];
+            self.totalCountLabel.text = [NSString stringWithFormat:NSLS(@"kTotalPlayerCount"), totalCount];
+            
+            [self finishLoadDataForTabID:self.currentTab.tabID resultList:list];
+            
+        }else{
+            [self failLoadDataForTabID:self.currentTab.tabID];
+        }
+    };
+    
     switch (tabID) {
         case TabTypeGeniusHot:
         case TabTypeGeniusAllTime:
-            [[GuessService defaultService] getGuessRankListWithType:[self getRankTypeWithTabID:tabID] mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit delegate:self];
+            
+            [[GuessService defaultService] getGuessRankListWithType:[self getRankTypeWithTabID:tabID] mode:PBUserGuessModeGuessModeGenius contestId:nil offset:tab.offset limit:tab.limit completed:completedBlock];
             break;
             
         case TabTypeContestToday:
@@ -331,7 +362,7 @@ SET_CELL_BG_IN_CONTROLLER;
         case TabTypeContestSixDaysAgo:
             
             contestId = [self getContestIdByTabID:tabID];
-            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit delegate:self];
+            [[GuessService defaultService] getGuessRankListWithType:0 mode:PBUserGuessModeGuessModeContest contestId:contestId offset:tab.offset limit:tab.limit completed:completedBlock];
             break;
             
         default:

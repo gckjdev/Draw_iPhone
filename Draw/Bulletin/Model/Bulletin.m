@@ -19,7 +19,7 @@
 #define CODE_KEY_FUNCTION   @"function"
 #define CODE_KEY_HAS_READ   @"hasRead"
 #define CODE_KEY_URL        @"url"
-
+#define CODE_KEY_PARA       @"para"
 
 @interface Bulletin (PrivateMethod)
 
@@ -66,6 +66,7 @@
     [aCoder encodeObject:_function forKey:CODE_KEY_FUNCTION];
     [aCoder encodeBool:_hasRead forKey:CODE_KEY_HAS_READ];
     [aCoder encodeObject:_url forKey:CODE_KEY_URL];
+    [aCoder encodeObject:_parameter forKey:CODE_KEY_PARA];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -79,6 +80,7 @@
         self.function = [aDecoder decodeObjectForKey:CODE_KEY_FUNCTION];
         self.hasRead = [aDecoder decodeBoolForKey:CODE_KEY_HAS_READ];
         self.url = [aDecoder decodeObjectForKey:CODE_KEY_URL];
+        self.parameter = [aDecoder decodeObjectForKey:CODE_KEY_PARA];
     }
     return self;
 }
