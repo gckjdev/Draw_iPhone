@@ -10,6 +10,7 @@
 #import "ShareImageManager.h"
 #import "Contest.h"
 #import "OfflineDrawViewController.h"
+#import "ContestService.h"
 
 @implementation StatementController
 @synthesize contentView = _contentView;
@@ -96,6 +97,9 @@
 }
 
 - (IBAction)acceptButton:(id)sender {
+    
+    [[ContestService defaultService] acceptContest:self.contest.contestId];
+    
     [OfflineDrawViewController startDrawWithContest:self.contest
                                      fromController:self startController:self.superController animated:YES];
 }

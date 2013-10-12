@@ -633,7 +633,7 @@
 
 
 #define NO_COIN_TAG 201204271
-
+#define SUBJECT_MAX_LENGTH 7
 
 
 #pragma mark - Common Dialog Delegate
@@ -1187,6 +1187,9 @@
 
 }
 
+
+
+
 - (void)showInputAlertViewWithSubject:(BOOL)hasSubject
 {
     InputAlertView *v = nil;
@@ -1240,16 +1243,20 @@
     
     [dialog setClickOkBlock:^(id infoView){
         
-        if (hasSubject && [v.titleInputField.text length] <= 0) {            
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOpusNameInvaild") delayTime:1.5];
+        if (hasSubject && [v.titleInputField.text length] <= 0) {
+            POSTMSG(NSLS(@"kOpusNameInvaild"));
         }else if (hasSubject
-                  && [GameApp forceChineseOpus]
-                  && [[UserManager defaultManager] getLanguageType] == ChineseType
-                  && !NSStringIsValidChinese(v.titleInputField.text)){
+                  && (!NSStringIsValidChinese(v.titleInputField.text)&&
+                      !NSStringISValidEnglish(v.titleInputField.text)
+                      )){
+          POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
             
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kOnlyChineseTitleAllowed") delayTime:2];            
-            
-        }else{
+          }else if([v.titleInputField.text length] > SUBJECT_MAX_LENGTH){
+              NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+                               SUBJECT_MAX_LENGTH];
+              POSTMSG(msg);
+          }
+        else{
             [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
         }
     }];

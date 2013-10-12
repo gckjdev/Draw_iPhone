@@ -130,7 +130,64 @@ static ContestService *_staticContestService;
     });
 }
 
+- (NSString*)getAccpetContestsKey
+{
+    return [NSString stringWithFormat:@"KEY_ACCEPT_CONTEST_LIST_%@", [[UserManager defaultManager] userId]];
+}
 
+- (BOOL)hasContestAccept:(NSString*)contestId
+{
+    if ([contestId length] == 0){
+        return NO;
+    }
+    
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSArray* acceptContestArray = [ud objectForKey:[self getAccpetContestsKey]];
+    if (acceptContestArray == nil){
+        return NO;
+    }
+    
+    NSUInteger index = [acceptContestArray indexOfObject:contestId];
+    if (index == NSNotFound){
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)acceptContest:(NSString*)contestId
+{
+    if (contestId == nil){
+        return;
+    }
+    
+    NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+    NSArray* acceptContestArray = [ud objectForKey:[self getAccpetContestsKey]];
+    
+    NSMutableArray* newArray = [NSMutableArray array];
+    [newArray addObject:contestId];
+    if (acceptContestArray != nil){
+        [newArray addObjectsFromArray:acceptContestArray];
+    }
+
+    PPDebug(@"<acceptContest> save %@", [newArray description]);
+    [ud setObject:newArray forKey:[self getAccpetContestsKey]];
+    [ud synchronize];
+}
+
+- (long)newContestCount
+{
+    long count = 0;
+    
+    NSArray* ongoingContestList = [[ContestManager defaultManager] ongoingContestList];
+    for (PBContest* contest in ongoingContestList){
+        if ([self hasContestAccept:contest.contestId] == NO){
+            count ++;
+        }
+    }
+    
+    return count;
+}
 
 
 @end

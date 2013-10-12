@@ -9,6 +9,7 @@
 #import "StatisticManager.h"
 #import "BulletinManager.h"
 #import "ContestManager.h"
+#import "ContestService.h"
 
 static StatisticManager *_globalStatisticManager;
 
@@ -63,7 +64,7 @@ static StatisticManager *_globalStatisticManager;
 
 - (long)newContestCount
 {
-    return [[[ContestManager defaultManager] ongoingContestList] count];
+    return [[ContestService defaultService] newContestCount];
 }
 
 @end

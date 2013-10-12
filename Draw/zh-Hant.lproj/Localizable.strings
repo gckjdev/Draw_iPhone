@@ -2031,6 +2031,8 @@
 "kLittleGeeAppLink" = "";
 "kOnlyChineseTitleAllowed" = "作品標題只允許中文字符！";
 "kOnlyEnglishTitleAllowed" = "作品標題只允許英文單詞！";
+"kOnlyChineseOrEnglishTitleAllowed" = "作品標題只允許中文字符或者英文單詞！";
+"kSubjectLengthLimited" = "主題的長度不能超過%d";
 "kViewPost" = "查看帖子";
 
 
