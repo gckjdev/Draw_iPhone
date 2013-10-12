@@ -158,13 +158,51 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
 }
 
 
+//- (void)getGuessRankListWithType:(int)type
+//                            mode:(PBUserGuessMode)mode
+//                       contestId:(NSString *)contestId
+//                          offset:(int)offset
+//                           limit:(int)limit
+//                        delegate:(id<GuessServiceDelegate>)delegate{
+//        
+//    dispatch_async(workingQueue, ^{
+//        
+//        NSDictionary *para = @{
+//                               PARA_TYPE        : @(type),
+//                               PARA_MODE        : @(mode),
+//                               PARA_CONTESTID   : SAFE_STRING(contestId),
+//                               PARA_OFFSET      : @(offset),
+//                               PARA_COUNT       : @(limit),
+//                               };
+//        
+//        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GET_GUESS_RANK_LIST parameters:para];
+//        int resultCode = output.resultCode;
+//        int totalCount = 0;
+//        NSArray *rankList = nil;
+//        if (resultCode == ERROR_SUCCESS){
+//            totalCount = output.pbResponse.totalCount;
+//            rankList = output.pbResponse.guessRankListList;
+//        }
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            if ([delegate respondsToSelector:@selector(didGetGuessRankList:totalCount:mode:resultCode:)]) {
+//                [delegate didGetGuessRankList:rankList
+//                                   totalCount:totalCount
+//                                         mode:mode
+//                                   resultCode:resultCode];
+//            }
+//        });
+//    });
+//}
+
 - (void)getGuessRankListWithType:(int)type
                             mode:(PBUserGuessMode)mode
                        contestId:(NSString *)contestId
                           offset:(int)offset
                            limit:(int)limit
-                        delegate:(id<GuessServiceDelegate>)delegate{
-        
+                       completed:(GetRankListCompletedBlock)completed{
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{
@@ -186,15 +224,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            if ([delegate respondsToSelector:@selector(didGetGuessRankList:totalCount:mode:resultCode:)]) {
-                [delegate didGetGuessRankList:rankList
-                                   totalCount:totalCount
-                                         mode:mode
-                                   resultCode:resultCode];
-            }
+            completed(resultCode, totalCount, rankList);
         });
     });
 }
+
+
+
+
 
 - (void)getTodayGuessContestInfoWithDelegate:(id<GuessServiceDelegate>)delegate{
     
