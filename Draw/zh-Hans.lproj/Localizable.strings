@@ -1366,7 +1366,7 @@
 "kPayViaZhiFuBaoWeb" = "使用支付宝网页购买";
 "kPayViaAppleAccount" = "使用Apple账户购买";
 
-"kEditOpusDesc" = "编辑作品描述";
+"kEditOpusDesc" = "编辑作品主题和描述";
 "kHim" = "他";
 "kHer" = "她";
 "kDetailDrawTo" = "画给%@";
@@ -2049,7 +2049,7 @@
 
 "kUseGradientTitle" = "提示";
 "kUseGradientMessage" = "使用全局渐变将会导致之前的笔画都消失，是否继续？";
-"kSubjectPlaceholder" = "请输入主题...";
+"kSubjectPlaceholder" = "请输入主题";
 "kSubject" = "主题";
 "kFurtureFunction" = "神秘功能即将推出，敬请期待...";
 
