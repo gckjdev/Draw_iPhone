@@ -31,6 +31,7 @@
 @property (retain, nonatomic) IBOutlet UIView *opusMainView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
+@property (retain, nonatomic) IBOutlet UILabel *opusDescLabel;
 
 //// if select a song, load with this.
 //- (id)initWithSong:(PBSong *)song;

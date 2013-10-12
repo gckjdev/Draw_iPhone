@@ -1935,6 +1935,8 @@
 "kPromotion:" = "促銷:";
 "kPrice:" = "價格:";
 "kDesc:" = "描述:";
+"kDesc" = "描述";
+"kDescPlaceholder" = "請輸入描述";
 "kDiscountIs" = "%d%%折扣";
 "kNoDiscount" = "無";
 
@@ -2056,6 +2058,7 @@
 "kUseGradientMessage" = "使用全局漸變將會導致之前的筆畫都消失，是否繼續？";
 "kSubject" = "主題";
 "kSubjectPlaceholder" = "請輸入主題...";
+"kSubjectPlaceCannotBlank" = "主題不能為空";
 "kFurtureFunction" = "神秘功能即將推出，敬請期待...";
 
 "kSelectorItem" = "選擇器";

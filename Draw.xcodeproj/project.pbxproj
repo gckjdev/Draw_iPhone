@@ -3103,6 +3103,12 @@
 		A4F04B9A18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9B18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4F04BA81808FC2B007274BE /* NameAndDescEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */; };
+		A4F04BA91808FC2B007274BE /* NameAndDescEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */; };
+		A4F04BAA1808FC2B007274BE /* NameAndDescEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */; };
+		A4F04BB01808FC9A007274BE /* NameAndDescEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */; };
+		A4F04BB11808FC9A007274BE /* NameAndDescEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */; };
+		A4F04BB21808FC9A007274BE /* NameAndDescEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */; };
 		C2002CD9172CE4F200FD6AE1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
 		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
@@ -7600,6 +7606,9 @@
 		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
 		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
 		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
+		A4F04BA61808FC2B007274BE /* NameAndDescEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameAndDescEditView.h; sourceTree = "<group>"; };
+		A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameAndDescEditView.m; sourceTree = "<group>"; };
+		A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameAndDescEditView.xib; sourceTree = "<group>"; };
 		C2002C5A172CE4F000FD6AE1 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
 		C2002C5B172CE4F000FD6AE1 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
 		C2002C5C172CE4F000FD6AE1 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
@@ -10358,6 +10367,9 @@
 				A404C3E5176AC74D00668676 /* SongTagCell.m */,
 				A404C3E6176AC74D00668676 /* SongTagCell.xib */,
 				A4B6C3D51761DD1F00F99B15 /* SingInputDialog.xib */,
+				A4F04BA61808FC2B007274BE /* NameAndDescEditView.h */,
+				A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */,
+				A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -17157,6 +17169,7 @@
 				A4F04B94180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9918068467007274BE /* beep-shinymetal.aif in Resources */,
 				A4F04B9C18068467007274BE /* beep-timber.aif in Resources */,
+				A4F04BB21808FC9A007274BE /* NameAndDescEditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18019,6 +18032,7 @@
 				A4F04B93180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9818068467007274BE /* beep-shinymetal.aif in Resources */,
 				A4F04B9B18068467007274BE /* beep-timber.aif in Resources */,
+				A4F04BB11808FC9A007274BE /* NameAndDescEditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18863,6 +18877,7 @@
 				A4F04B92180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9718068466007274BE /* beep-shinymetal.aif in Resources */,
 				A4F04B9A18068467007274BE /* beep-timber.aif in Resources */,
+				A4F04BB01808FC9A007274BE /* NameAndDescEditView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20452,6 +20467,7 @@
 				A4F04B8B1806550A007274BE /* UserDeviceService.m in Sources */,
 				A4F04B8C18065920007274BE /* UIImageView+Extend.m in Sources */,
 				EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				A4F04BAA1808FC2B007274BE /* NameAndDescEditView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21201,6 +21217,7 @@
 				A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF89A1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DD1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				A4F04BA91808FC2B007274BE /* NameAndDescEditView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21956,6 +21973,7 @@
 				A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				A4F04BA81808FC2B007274BE /* NameAndDescEditView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
