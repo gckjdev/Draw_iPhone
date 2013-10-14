@@ -44,7 +44,7 @@
 
 
 #define DESC_WIDTH (ISIPAD ? 590 : 245)
-#define BASE_HEIGHT (ISIPAD ? 300 : 140)
+#define BASE_HEIGHT (ISIPAD ? 335 : 140)
 
 - (void)setCellAppearance{
     self.userNameLabel.textColor = COLOR_BROWN;
