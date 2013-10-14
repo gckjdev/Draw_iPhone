@@ -364,8 +364,8 @@ SLIDER.tag = TAG;\
     //add Palette
     Palette *palette = [Palette paletteWithDelegate:self];
     palette.backgroundColor = [UIColor whiteColor];
-    palette.layer.cornerRadius = 10;
-    palette.layer.masksToBounds = YES;
+//    palette.layer.cornerRadius = 10;
+//    palette.layer.masksToBounds = YES;
     
     frame = self.palette.frame;
     CGFloat sx = CGRectGetWidth(self.palette.bounds) / CGRectGetWidth(palette.bounds);

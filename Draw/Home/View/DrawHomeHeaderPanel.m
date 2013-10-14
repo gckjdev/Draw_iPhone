@@ -185,7 +185,7 @@
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    return YES;
+    return self.status == DrawHeaderPanelStatusClose;
 }
 
 - (void)addGestureRecognizers
