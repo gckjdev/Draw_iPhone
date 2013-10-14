@@ -14,6 +14,7 @@
 #import "FeedManager.h"
 #import "Draw.pb-c.h"
 #import "GameBasic.pb-c.h"
+#import "ContestManager.h"
 
 @implementation DrawFeed
 
@@ -426,9 +427,19 @@
 
 - (NSInteger)itemLimit
 {
-    // TODO contest
-    
-    return [ConfigManager numberOfItemCanUsedOnNormalOpus];
+    if ([self.contestId length] > 0){
+        Contest* contest = [[ContestManager defaultManager] ongoingContestById:self.contestId];
+        if (contest == nil){
+            return 0;
+        }
+        else{
+            return [contest maxFlowerPerOpus];
+        }
+        
+    }
+    else{
+        return [ConfigManager numberOfItemCanUsedOnNormalOpus];
+    }
 }
 
 - (NSInteger)saveLimit
@@ -438,6 +449,7 @@
 
 - (BOOL)canSendFlower
 {
+//    PPDebug(@"<canSendFlower> local flower times(%d) VS limit(%d)", [self localFlowerTimes], self.itemLimit);
     return [self localFlowerTimes] < self.itemLimit;
 }
 

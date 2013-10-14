@@ -662,6 +662,7 @@
 "kFeedDetail" = "Drawing Detail";
 "kOpusDetail" = "View";
 "kCommentFail" = "Failed to Comment";
+"kCommentFailOwnOpusContest" = "Cannot comment your own opus in anounymous contest";
 
 "kBlankDrawTitle" = "Blank Drawing";
 "kBlankDrawMessage" = "You can't submit a blank drawing.";
