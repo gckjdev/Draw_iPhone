@@ -1301,18 +1301,24 @@ static UIImage* _whitePaperImage;
 }
 
 
-+ (UIImage *)bubleImage{
-    
-    NSString *imageName = (ISIPAD ? @"bubble_bg@2x.png" : @"bubble_bg.png");
-    UIImage *bg = [UIImage imageNamed:imageName];
-    
-    return [bg stretchableImageWithLeftCapWidth:bg.size.width*2/3 topCapHeight:bg.size.height*2/3];
++ (UIImage *)bubleImage:(NSString *)imageName
+{
+    UIImage *bg = [[ShareImageManager defaultManager] fixedImageNamed:imageName];
+    return [bg stretchableImageWithLeftCapWidth:bg.size.width*2/3 topCapHeight:bg.size.height*2/3];    
 }
 
++ (UIImage *)bubleImage{
+    return [self bubleImage:@"bubble_bg"];
+}
 
-
-
-
++ (UIImage *)redBubleImage
+{
+    return [self bubleImage:@"bubble_bg_red"];
+}
++ (UIImage *)yellowBubleImage
+{
+    return [self bubleImage:@"bubble_bg_yellow"];
+}
 
 + (void)setLabelStyle:(UILabel *)label
             textColor:(UIColor *)textColor

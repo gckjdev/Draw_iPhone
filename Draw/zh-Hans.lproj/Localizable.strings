@@ -666,6 +666,7 @@
 "kFeedDetail" = "画画详情";
 "kOpusDetail" = "查看作品";
 "kCommentFail" = "评论失败";
+"kCommentFailOwnOpusContest" = "在匿名比赛中，不能回复或者评论你自己的参赛作品";
 "kBlankDrawTitle" = "空白的画";
 "kBlankDrawMessage" = "不能提交空白的画，至少得画个几笔的";
 "kBlankDraftMessage" = "不能保存空白的画，至少得画个几笔的";

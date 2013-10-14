@@ -27,7 +27,7 @@
 //@property(nonatomic, retain)UIColor color;
 
 
-
+- (id)initWithColor:(UIColor *)color;
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 - (id)initWithPBColor:(PBColor *)color;
 - (id)initWithPBColorC:(Game__PBColor *)color;

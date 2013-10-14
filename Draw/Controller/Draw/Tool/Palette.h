@@ -1,19 +1,44 @@
-//
-//  ColorPickingBox.h
-//  Draw
-//
-//  Created by gamy on 12-12-27.
-//
-//
 
-#import <UIKit/UIKit.h>
-
-
-#import "ILSaturationBrightnessPickerView.h"
-#import "ILHuePickerView.h"
-
-@class Palette;
+@class InfColorBarView;
+@class InfColorSquareView;
+@class InfColorBarPicker;
+@class InfColorSquarePicker;
 @class DrawColor;
+@class ColorPoint;
+
+@protocol ColorPickingBoxDelegate;
+
+//------------------------------------------------------------------------------
+
+@interface Palette : UIView {
+	float hue;
+	float saturation;
+	float brightness;
+}
+
+// Public API:
+
++ (id) paletteWithDelegate:(id<ColorPickingBoxDelegate>)delegate;
+
+@property( retain, nonatomic ) UIColor* sourceColor;
+@property( retain, nonatomic ) UIColor* resultColor;
+@property( assign, nonatomic ) id< ColorPickingBoxDelegate> delegate;
+
+// IB outlets:
+
+@property( retain, nonatomic ) IBOutlet InfColorBarView* barView;
+@property( retain, nonatomic ) IBOutlet InfColorSquareView* squareView;
+@property( retain, nonatomic ) IBOutlet InfColorBarPicker* barPicker;
+@property( retain, nonatomic ) IBOutlet InfColorSquarePicker* squarePicker;
+@property( retain, nonatomic ) IBOutlet ColorPoint* resultColorView;
+
+- (IBAction) takeBarValue: (id) sender;
+- (IBAction) takeSquareValue: (id) sender;
+
+
+@end
+
+//------------------------------------------------------------------------------
 
 @protocol ColorPickingBoxDelegate <NSObject>
 
@@ -23,13 +48,4 @@
 @end
 
 
-@interface Palette : UIView<ILSaturationBrightnessPickerViewDelegate>
-{
-    
-}
-
-@property(nonatomic, retain)DrawColor *currentColor;
-@property(nonatomic, assign)id<ColorPickingBoxDelegate> delegate;
-
-+ (id)createViewWithdelegate:(id)delegate;
-@end
+//------------------------------------------------------------------------------

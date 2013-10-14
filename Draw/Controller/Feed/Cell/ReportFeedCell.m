@@ -12,6 +12,7 @@
 #import "TimeUtils.h"
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
+#import "ContestManager.h"
 
 @implementation ReportFeedCell
 
@@ -43,7 +44,7 @@
 
 
 #define DESC_WIDTH (ISIPAD ? 590 : 245)
-#define BASE_HEIGHT (ISIPAD ? 300 : 140)
+#define BASE_HEIGHT (ISIPAD ? 335 : 140)
 
 - (void)setCellAppearance{
     self.userNameLabel.textColor = COLOR_BROWN;
@@ -57,7 +58,13 @@
     self.descLabel.font = [ShareUIManager timelineContentFont];
     
     SET_VIEW_ROUND_CORNER(self.drawImageView);
-    [self.bgImageView setImage:[ShareImageManager bubleImage]];
+    
+    if ([[ContestManager defaultManager] isUser:_feed.feedUser.userId judgeAtContest:_contestId]) {
+        [self.bgImageView setImage:[ShareImageManager redBubleImage]];
+    }else if ([[ContestManager defaultManager] isUser:_feed.feedUser.userId reporterAtContest:_contestId]) {
+        [self.bgImageView setImage:[ShareImageManager yellowBubleImage]];
+    }
+//    [self.bgImageView setImage:[ShareImageManager bubleImage]];
     [self.drawImageView setBackgroundColor:[UIColor clearColor]];
 }
 

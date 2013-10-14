@@ -229,6 +229,7 @@ typedef enum{
         cell.accessoryType = UITableViewCellAccessoryNone;
         CommentFeed *feed = [self.tabDataList objectAtIndex:indexPath.row];
         [feed updateDesc];
+        cell.contestId = self.contest.contestId;
         [cell setCellInfo:feed];
         return cell;
     }else if(tab.tabID == OpusTypePrize){

@@ -35,7 +35,10 @@
     [super dealloc];
 }
 
-
+- (void)updateWithUIColor:(UIColor*)color
+{
+    self.color = [[[DrawColor alloc] initWithColor:color] autorelease];
+}
 
 - (id)initWithColor:(DrawColor *)color
 {
@@ -70,6 +73,14 @@
 - (CGColorRef)shadowColor
 {
     return [UIColor colorWithRed:76/255. green:75/255. blue:75/255. alpha:1].CGColor;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    self.backgroundColor = [UIColor clearColor];
+    [self setNeedsDisplay];
+    return self;
 }
 
 - (void)drawRect:(CGRect)rect

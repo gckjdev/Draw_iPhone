@@ -11,6 +11,7 @@
 #import "CommonMessageCenter.h"
 #import "WordFilterService.h"
 #import "CommonDialog.h"
+#import "GameNetworkConstants.h"
 
 @interface CommentController ()
 {
@@ -220,10 +221,15 @@
         [self dismissModalViewControllerAnimated:YES];
         
     }else{
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail") 
-                                                       delayTime:1 
-                                                         isHappy:NO];
-        PPDebug(@"comment fail: opusId = %@, comment = %@", opusId, comment);        
+        if (resultCode == ERROR_USER_COMMENT_OWN_OPUS_CONTEST){
+            POSTMSG(NSLS(@"kCommentFailOwnOpusContest"));
+        }
+        else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kCommentFail")
+                                                           delayTime:1.5
+                                                             isHappy:NO];
+        }
+        PPDebug(@"comment fail: opusId = %@, comment = %@, resultCode = %d", opusId, comment, resultCode);
     }
 }
 

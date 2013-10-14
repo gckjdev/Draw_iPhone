@@ -14,7 +14,7 @@ static BBSFontManager* _staticBBSFontManager;
 
 
 #define ISIPHONE (![DeviceDetection isIPAD])
-#define FONT(x) ([UIFont systemFontOfSize:x])
+//#define FONT(x) ([UIFont systemFontOfSize:x])
 #define BOLDFONT(x) ([UIFont boldSystemFontOfSize:x])
 
 + (id)defaultManager

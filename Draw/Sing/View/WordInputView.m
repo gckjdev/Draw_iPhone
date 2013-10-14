@@ -19,7 +19,7 @@
 
 #define DEFAULT_COLOR [UIColor whiteColor]
 
-#define FONT [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)]
+#define TITLE_FONT [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)]
 
 #define BUTTON_TAG_OFFSET 1000
 
@@ -278,7 +278,7 @@
         CGRect frame = CGRectMake(originX, originY, width, height);
         UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
         [self setButton:button title:ch];
-        button.titleLabel.font = FONT;
+        button.titleLabel.font = TITLE_FONT;
         [button setTitleColor:_candidateColor forState:UIControlStateNormal];
         
         if ([ch characterAtIndex:0] == BOMB_CHAR) {
@@ -355,7 +355,7 @@
     moveButton.frame = button.bounds;
     moveButton.center = startPoint;
     [self setButton:moveButton title:ch];
-    moveButton.titleLabel.font = FONT;
+    moveButton.titleLabel.font = TITLE_FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     [self addSubview:moveButton];
@@ -507,7 +507,7 @@
 
     UIButton *moveButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self setButton:moveButton title:ch];
-    moveButton.titleLabel.font = FONT;
+    moveButton.titleLabel.font = TITLE_FONT;
     [moveButton setTitleColor:[button titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
     [moveButton setBackgroundImage:[button backgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
     moveButton.frame = button.bounds;
@@ -620,7 +620,7 @@
         
         UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(originX, 0, width, height)] autorelease];
         [button setTitleColor:_answerColor forState:UIControlStateNormal];
-        button.titleLabel.font = FONT;
+        button.titleLabel.font = TITLE_FONT;
         button.tag = BUTTON_TAG_OFFSET + index;
         button.enabled = NO;
         [button addTarget:self action:@selector(answerButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
