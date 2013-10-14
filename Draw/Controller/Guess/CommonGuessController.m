@@ -238,9 +238,6 @@
 
 - (void)didGuessWrong:(NSString *)word{
     
-    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"尼玛，猜错了！") delayTime:1.5 isHappy:NO];
-
-    
     if (_mode == PBUserGuessModeGuessModeGenius) {
         
         if ([_delegate respondsToSelector:@selector(didGuessWrong:index:)]) {
