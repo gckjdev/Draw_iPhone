@@ -31,6 +31,8 @@ typedef enum {
 
 typedef void(^AutoResgistrationResultBlock)(BOOL isAlreadyRegistered, int resultCode, PBGameUser* user);
 typedef void(^GetUserInfoResultBlock)(int resultCode, PBGameUser* user, int relation);
+typedef void(^GetUserListResultBlock)(int resultCode, NSArray *userList);
+
 typedef void(^UpdateUserResultBlock)(int resultCode);
 typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
@@ -125,6 +127,12 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 
 // new method, use protocol buffer object for return
 - (void)getUserInfo:(NSString*)userId resultBlock:(GetUserInfoResultBlock)block;
+
+- (void)getTopPlayerWithType:(int)type
+                      offset:(NSInteger)offset
+                       limit:(NSInteger)limit
+                 resultBlock:(GetUserListResultBlock)block;
+
 
 - (void)getTopPlayer:(NSInteger)offset limit:(NSInteger)limit delegate:(id<UserServiceDelegate>)delegate;
 

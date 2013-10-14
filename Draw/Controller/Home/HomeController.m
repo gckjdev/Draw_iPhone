@@ -93,6 +93,7 @@
 #import "GuessManager.h"
 
 #import "SDWebImageManager.h"
+#import "PainterController.h"
 
 @interface HomeController()<GuessServiceDelegate>
 {
@@ -733,6 +734,13 @@
             [self.navigationController pushViewController:vc animated:YES];
         } break;
         case HomeMenuTypeDrawPhoto: {
+            
+#ifdef DEBUG
+            PainterController *pc = [[PainterController alloc] init];
+            [self.navigationController pushViewController:pc animated:YES];
+            [pc release];
+            break;
+#endif
             GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
             [self.navigationController pushViewController:gallery animated:YES];
         } break;
