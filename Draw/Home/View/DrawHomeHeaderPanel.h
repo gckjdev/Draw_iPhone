@@ -20,7 +20,7 @@ typedef void (^HeaderAnimationHandler)(BOOL open);
 
 @class BadgeView;
 
-@interface DrawHomeHeaderPanel : HomeHeaderPanel<UITableViewDataSource, UITableViewDelegate>
+@interface DrawHomeHeaderPanel : HomeHeaderPanel<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 {
 
 }

@@ -1939,6 +1939,8 @@
 "kPromotion:" = "促销:";
 "kPrice:" = "价格:";
 "kDesc:" = "描述:";
+"kDesc" = "描述";
+"kDescPlaceholder" = "请输入描述";
 "kDiscountIs" = "%d%%折扣";
 "kNoDiscount" = "无";
 
@@ -2051,6 +2053,7 @@
 "kUseGradientTitle" = "提示";
 "kUseGradientMessage" = "使用全局渐变将会导致之前的笔画都消失，是否继续？";
 "kSubjectPlaceholder" = "请输入主题";
+"kSubjectPlaceCannotBlank" = "主题不能为空";
 "kSubject" = "主题";
 "kFurtureFunction" = "神秘功能即将推出，敬请期待...";
 

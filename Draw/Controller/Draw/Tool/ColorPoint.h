@@ -29,7 +29,7 @@
 
 - (id)initWithColor:(DrawColor *)color;
 + (id)pointWithColor:(DrawColor *)color;
-
+- (void)updateWithUIColor:(UIColor*)color;
 
 
 @end

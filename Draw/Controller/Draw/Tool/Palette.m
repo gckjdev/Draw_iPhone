@@ -1,97 +1,213 @@
+//==============================================================================
 //
-//  ColorPickingBox.m
-//  Draw
+//  MainViewController.m
+//  InfColorPicker
 //
-//  Created by gamy on 12-12-27.
+//  Created by Troy Gaul on 7 Aug 2010.
 //
+//  Copyright (c) 2011 InfinitApps LLC - http://infinitapps.com
+//	Some rights reserved: http://opensource.org/licenses/MIT
 //
+//==============================================================================
 
+#import <QuartzCore/QuartzCore.h>
+#import "InfColorBarPicker.h"
+#import "InfColorSquarePicker.h"
+#import "InfHSBSupport.h"
 #import "Palette.h"
 #import "DrawColor.h"
 #import "ColorPoint.h"
+//------------------------------------------------------------------------------
 
-@interface Palette ()
+static void HSVFromUIColor( UIColor* color, float* h, float* s, float* v )
 {
-    
+	CGColorRef colorRef = [ color CGColor ];
+	
+	const CGFloat* components = CGColorGetComponents( colorRef );
+	size_t numComponents = CGColorGetNumberOfComponents( colorRef );
+	
+	CGFloat r, g, b;
+	if( numComponents < 3 ) {
+		r = g = b = components[ 0 ];
+	}
+	else {
+		r = components[ 0 ];
+		g = components[ 1 ];
+		b = components[ 2 ];
+	}
+	
+	RGBToHSV( r, g, b, h, s, v, YES );
 }
 
-@property(nonatomic, retain) IBOutlet ColorPoint *colorChip;
-@property(nonatomic, retain) IBOutlet ILSaturationBrightnessPickerView *colorPicker;
-@property(nonatomic, retain) IBOutlet ILHuePickerView *huePicker;
+//==============================================================================
+
+@interface Palette()
+
+- (void) updateResultColor;
+
 
 @end
+
+//==============================================================================
 
 @implementation Palette
 
-- (void)dealloc
+//------------------------------------------------------------------------------
+
+@synthesize delegate, resultColor, sourceColor;
+@synthesize barView, squareView;
+@synthesize barPicker, squarePicker;
+@synthesize resultColorView;
+
+//------------------------------------------------------------------------------
+#pragma mark	Class methods
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+#pragma mark	Memory management
+//------------------------------------------------------------------------------
+
+- (void) dealloc
 {
-    PPDebug(@"%@ dealloc",self);
-    self.delegate = nil;
-    PPRelease(_colorChip);
-    PPRelease(_colorPicker);
-    PPRelease(_huePicker);
-    [super dealloc];
+	[ barView release ];
+	[ squareView release ];
+	[ barPicker release ];
+	[ squarePicker release ];
+	[ resultColorView release ];
+	
+	[ sourceColor release ];
+	[ resultColor release ];
+	
+	[ super dealloc ];
 }
+
 
 - (void)updateView
 {
-    [self setCurrentColor:[DrawColor greenColor]]; //for test
-    [_colorChip setBackgroundColor:[UIColor clearColor]];
-    [self.colorPicker setDelegate:self];
-    [self.huePicker setDelegate:_colorPicker];
+    barPicker.value = hue;
+	squareView.hue = hue;
+	squarePicker.hue = hue;
+	squarePicker.value = CGPointMake( saturation, brightness );
+        
+    self.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)setCurrentColor:(DrawColor *)currentColor
++ (id) paletteWithDelegate:(id)delegate
 {
-    if (_currentColor != currentColor) {
-        PPRelease(_currentColor);
-        _currentColor = [currentColor retain];
-        UIColor *c = [_currentColor color];
-        [_colorChip setColor:currentColor];
-        _colorPicker.color = c;
-        _huePicker.color = c;
-    }
+    Palette *palette = [self createViewWithXibIdentifier:@"Palette"];
+    palette.delegate = delegate;
+    [palette updateView];
+    return palette;
+}
+//------------------------------------------------------------------------------
+
+
+#pragma mark	IB actions
+//------------------------------------------------------------------------------
+
+- (IBAction) takeBarValue: (InfColorBarPicker*) sender
+{
+	hue = sender.value;
+	
+	squareView.hue = hue;
+	squarePicker.hue = hue;
+	
+	[ self updateResultColor ];
 }
 
-+ (id)createViewWithdelegate:(id)delegate
-{
-    NSString *identifier = @"Palette";
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:identifier
-                                                             owner:self options:nil];
+//------------------------------------------------------------------------------
+
+- (IBAction) takeSquareValue: (InfColorSquarePicker*) sender
+{    
+	saturation = sender.value.x;
+	brightness = sender.value.y;
     
-    if (topLevelObjects == nil || [topLevelObjects count] <= 0){
-        NSLog(@"create %@ but cannot find cell object from Nib", identifier);
-        return nil;
-    }
-    
-    Palette  *view = (Palette *)[topLevelObjects objectAtIndex:0];
-    view.delegate = delegate;
-    [view updateView];
-    return view;
-    
+	[ self updateResultColor ];
 }
 
-- (void)updateCurrentColorWithColor:(UIColor *)newColor
+//------------------------------------------------------------------------------
+
+
+//------------------------------------------------------------------------------
+#pragma mark	Properties
+//------------------------------------------------------------------------------
+
+- (void) informDelegateDidChangeColor
 {
-    CGFloat R, G, B;
-    CGColorRef color = [newColor CGColor];
-    int numComponents = CGColorGetNumberOfComponents(color);
-    if (numComponents == 4)
+	if( self.delegate && [ (id) self.delegate respondsToSelector: @selector( palette:didPickColor:) ] )
     {
-        const CGFloat *components = CGColorGetComponents(color);
-        R = components[0];
-        G = components[1];
-        B = components[2];
-        self.currentColor = [DrawColor colorWithRed:R green:G blue:B alpha:1];
+        DrawColor *color = [[[DrawColor alloc] initWithColor:self.resultColor] autorelease];
+        [self.delegate palette:self didPickColor:color];
     }
 }
 
--(void)colorPicked:(UIColor *)newColor forPicker:(ILSaturationBrightnessPickerView *)picker
+//------------------------------------------------------------------------------
+
+- (void) updateResultColor
 {
-    [self updateCurrentColorWithColor:newColor];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(palette:didPickColor:)]) {
-        [self.delegate palette:self didPickColor:self.currentColor];
-    }
+	// This is used when code internally causes the update.  We do this so that
+	// we don't cause push-back on the HSV values in case there are rounding
+	// differences or anything.  However, given protections from hue and sat
+	// changes when not necessary elsewhere it's probably not actually needed.
+	
+	[ self willChangeValueForKey: @"resultColor" ];
+	
+	[ resultColor release ];
+	resultColor = [ [ UIColor colorWithHue: hue saturation: saturation
+								brightness: brightness alpha: 1.0f ] retain ];
+	
+	[ self didChangeValueForKey: @"resultColor" ];
+	
+    [resultColorView updateWithUIColor:resultColor];
+	
+	[ self informDelegateDidChangeColor ];
+}
+
+//------------------------------------------------------------------------------
+
+- (void) setResultColor: (UIColor*) newValue
+{
+	if( ![ resultColor isEqual: newValue ] ) {
+		[ resultColor release ];
+		resultColor = [ newValue retain ];
+		
+		float h = hue;
+		HSVFromUIColor( newValue, &h, &saturation, &brightness );
+		
+		if( h != hue ) {
+			hue = h;
+			
+			barPicker.value = hue;
+			squareView.hue = hue;
+			squarePicker.hue = hue;
+		}
+		
+		squarePicker.value = CGPointMake( saturation, brightness );
+        
+        [resultColorView updateWithUIColor:resultColor];
+        
+		[ self informDelegateDidChangeColor ];
+	}
+}
+
+//------------------------------------------------------------------------------
+
+- (void) setSourceColor: (UIColor*) newValue
+{
+	if( ![ sourceColor isEqual: newValue ] ) {
+		[ sourceColor release ];
+		sourceColor = [ newValue retain ];
+		self.resultColor = newValue;
+	}
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+//    [self informDelegateDidChangeColor];
+    
 }
 
 @end
+
+//==============================================================================

@@ -12,8 +12,8 @@
 @implementation PaletteCommand
 - (UIView *)contentView
 {
-    Palette *pallete = [Palette createViewWithdelegate:self];
-    pallete.currentColor = [DrawColor colorWithColor:self.drawInfo.penColor];
+    Palette *pallete = [Palette paletteWithDelegate:self];
+    pallete.sourceColor = self.drawInfo.penColor.color;
     return pallete;
 }
 

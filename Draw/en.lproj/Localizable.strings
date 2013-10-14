@@ -1253,6 +1253,8 @@
 "kPromotion:" = "Disc:";
 "kPrice:" = "Price:";
 "kDesc:" = "Desc:";
+"kDesc" = "Desc";
+"kDescPlaceholder" = "Please enter description";
 
 
 "kDiscountIs" = "%d%%off";
@@ -2044,6 +2046,7 @@
 "kUseGradientTitle" = "Warning";
 "kUseGradientMessage" = "Use gradient, the paints will be lost. Continue?";
 "kSubjectPlaceholder" = "Input subject...";
+"kSubjectPlaceCannotBlank" = "Subject cannot be blank";
 
 "kSelectorItem" = "Selector";
 "kSelectorItemDescription" = "Select an area & draw inside the area";

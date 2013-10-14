@@ -198,9 +198,9 @@
 {
     [self.popColorView dismissAnimated:NO];
     self.popColorView = nil;
-    Palette *palette = [Palette createViewWithdelegate:self];
+    Palette *palette = [Palette paletteWithDelegate:self];
     palette.tag = (sender == self.leftColorButton) ? LEFT_PALETTE_TAG : RIGHT_PALETTE_TAG;
-    [palette setCurrentColor:color];
+    [palette setSourceColor:color.color];
     self.popColorView = [[[CMPopTipView alloc] initWithCustomView:palette] autorelease];
     self.popColorView.delegate = self;    
     [self.popColorView setBackgroundColor:[UIColor colorWithRed:255./255. green:255./255. blue:255./255. alpha:0.95]];
@@ -278,8 +278,10 @@
 {
     if (DEGREE_TAG != drawSlider.tag) {
         [self dismissPopView];
-    }
+
+    }    
     UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, V(40), V(30))] autorelease];
+    
     [label setFont:[UIFont systemFontOfSize:V(14)]];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextColor:COLOR_BROWN];
@@ -288,8 +290,10 @@
     [self updateDegreeWithValue:value slider:drawSlider];
 }
 
+
 - (void)drawSlider:(DrawSlider *)drawSlider didFinishChangeValue:(CGFloat)value
-{
+
+{    
     [self updateDegreeWithValue:value slider:drawSlider];
     [drawSlider dismissPopupView];
 }

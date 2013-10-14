@@ -3103,6 +3103,12 @@
 		A4F04B9A18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9B18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4F04BA81808FC2B007274BE /* NameAndDescEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */; };
+		A4F04BA91808FC2B007274BE /* NameAndDescEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */; };
+		A4F04BAA1808FC2B007274BE /* NameAndDescEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */; };
+		A4F04BB01808FC9A007274BE /* NameAndDescEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */; };
+		A4F04BB11808FC9A007274BE /* NameAndDescEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */; };
+		A4F04BB21808FC9A007274BE /* NameAndDescEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */; };
 		C2002CD9172CE4F200FD6AE1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
 		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
@@ -5328,6 +5334,34 @@
 		CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
+		EA0C550A180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5508180B89A5008069C1 /* bubble_bg_red@2x.png */; };
+		EA0C550B180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5508180B89A5008069C1 /* bubble_bg_red@2x.png */; };
+		EA0C550C180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5508180B89A5008069C1 /* bubble_bg_red@2x.png */; };
+		EA0C550D180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5508180B89A5008069C1 /* bubble_bg_red@2x.png */; };
+		EA0C550E180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5509180B89A5008069C1 /* bubble_bg_yellow@2x.png */; };
+		EA0C550F180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5509180B89A5008069C1 /* bubble_bg_yellow@2x.png */; };
+		EA0C5510180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5509180B89A5008069C1 /* bubble_bg_yellow@2x.png */; };
+		EA0C5511180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5509180B89A5008069C1 /* bubble_bg_yellow@2x.png */; };
+		EA0C5525180B9203008069C1 /* InfColorBarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5518180B9203008069C1 /* InfColorBarPicker.m */; };
+		EA0C5526180B9203008069C1 /* InfColorBarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5518180B9203008069C1 /* InfColorBarPicker.m */; };
+		EA0C5527180B9203008069C1 /* InfColorBarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5518180B9203008069C1 /* InfColorBarPicker.m */; };
+		EA0C5528180B9203008069C1 /* InfColorBarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5518180B9203008069C1 /* InfColorBarPicker.m */; };
+		EA0C5529180B9203008069C1 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C551A180B9203008069C1 /* InfColorIndicatorView.m */; };
+		EA0C552A180B9203008069C1 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C551A180B9203008069C1 /* InfColorIndicatorView.m */; };
+		EA0C552B180B9203008069C1 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C551A180B9203008069C1 /* InfColorIndicatorView.m */; };
+		EA0C552C180B9203008069C1 /* InfColorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C551A180B9203008069C1 /* InfColorIndicatorView.m */; };
+		EA0C5535180B9203008069C1 /* InfColorSquarePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5520180B9203008069C1 /* InfColorSquarePicker.m */; };
+		EA0C5536180B9203008069C1 /* InfColorSquarePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5520180B9203008069C1 /* InfColorSquarePicker.m */; };
+		EA0C5537180B9203008069C1 /* InfColorSquarePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5520180B9203008069C1 /* InfColorSquarePicker.m */; };
+		EA0C5538180B9203008069C1 /* InfColorSquarePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5520180B9203008069C1 /* InfColorSquarePicker.m */; };
+		EA0C5539180B9203008069C1 /* InfHSBSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5522180B9203008069C1 /* InfHSBSupport.m */; };
+		EA0C553A180B9203008069C1 /* InfHSBSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5522180B9203008069C1 /* InfHSBSupport.m */; };
+		EA0C553B180B9203008069C1 /* InfHSBSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5522180B9203008069C1 /* InfHSBSupport.m */; };
+		EA0C553C180B9203008069C1 /* InfHSBSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5522180B9203008069C1 /* InfHSBSupport.m */; };
+		EA0C553D180B9203008069C1 /* InfSourceColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5524180B9203008069C1 /* InfSourceColorView.m */; };
+		EA0C553E180B9203008069C1 /* InfSourceColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5524180B9203008069C1 /* InfSourceColorView.m */; };
+		EA0C553F180B9203008069C1 /* InfSourceColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5524180B9203008069C1 /* InfSourceColorView.m */; };
+		EA0C5540180B9203008069C1 /* InfSourceColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA0C5524180B9203008069C1 /* InfSourceColorView.m */; };
 		EA0FD69C17631C5100FED42E /* PolygenPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CA244AFA176071F0002C0A37 /* PolygenPen.m */; };
 		EA1176A11779B764008678AC /* askps_charge_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176981779B764008678AC /* askps_charge_button@2x.png */; };
 		EA1176A21779B764008678AC /* askps_default_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA1176991779B764008678AC /* askps_default_photo@2x.png */; };
@@ -7600,6 +7634,9 @@
 		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
 		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
 		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
+		A4F04BA61808FC2B007274BE /* NameAndDescEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameAndDescEditView.h; sourceTree = "<group>"; };
+		A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameAndDescEditView.m; sourceTree = "<group>"; };
+		A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NameAndDescEditView.xib; sourceTree = "<group>"; };
 		C2002C5A172CE4F000FD6AE1 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
 		C2002C5B172CE4F000FD6AE1 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
 		C2002C5C172CE4F000FD6AE1 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
@@ -9247,6 +9284,19 @@
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
 		CAFEFEFA166072AB00441D77 /* DrawUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawUtils.m; sourceTree = "<group>"; };
+		EA0C5508180B89A5008069C1 /* bubble_bg_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_bg_red@2x.png"; sourceTree = "<group>"; };
+		EA0C5509180B89A5008069C1 /* bubble_bg_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_bg_yellow@2x.png"; sourceTree = "<group>"; };
+		EA0C5517180B9203008069C1 /* InfColorBarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfColorBarPicker.h; sourceTree = "<group>"; };
+		EA0C5518180B9203008069C1 /* InfColorBarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfColorBarPicker.m; sourceTree = "<group>"; };
+		EA0C5519180B9203008069C1 /* InfColorIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfColorIndicatorView.h; sourceTree = "<group>"; };
+		EA0C551A180B9203008069C1 /* InfColorIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfColorIndicatorView.m; sourceTree = "<group>"; };
+		EA0C551B180B9203008069C1 /* InfColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfColorPicker.h; sourceTree = "<group>"; };
+		EA0C551F180B9203008069C1 /* InfColorSquarePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfColorSquarePicker.h; sourceTree = "<group>"; };
+		EA0C5520180B9203008069C1 /* InfColorSquarePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfColorSquarePicker.m; sourceTree = "<group>"; };
+		EA0C5521180B9203008069C1 /* InfHSBSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfHSBSupport.h; sourceTree = "<group>"; };
+		EA0C5522180B9203008069C1 /* InfHSBSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfHSBSupport.m; sourceTree = "<group>"; };
+		EA0C5523180B9203008069C1 /* InfSourceColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfSourceColorView.h; sourceTree = "<group>"; };
+		EA0C5524180B9203008069C1 /* InfSourceColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfSourceColorView.m; sourceTree = "<group>"; };
 		EA1176981779B764008678AC /* askps_charge_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_charge_button@2x.png"; sourceTree = "<group>"; };
 		EA1176991779B764008678AC /* askps_default_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_default_photo@2x.png"; sourceTree = "<group>"; };
 		EA11769A1779B764008678AC /* askps_edit_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "askps_edit_background@2x.png"; sourceTree = "<group>"; };
@@ -10358,6 +10408,9 @@
 				A404C3E5176AC74D00668676 /* SongTagCell.m */,
 				A404C3E6176AC74D00668676 /* SongTagCell.xib */,
 				A4B6C3D51761DD1F00F99B15 /* SingInputDialog.xib */,
+				A4F04BA61808FC2B007274BE /* NameAndDescEditView.h */,
+				A4F04BA71808FC2B007274BE /* NameAndDescEditView.m */,
+				A4F04BAF1808FC9A007274BE /* NameAndDescEditView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -10976,6 +11029,8 @@
 		A4D8F98E17DB08170085061F /* timeline */ = {
 			isa = PBXGroup;
 			children = (
+				EA0C5508180B89A5008069C1 /* bubble_bg_red@2x.png */,
+				EA0C5509180B89A5008069C1 /* bubble_bg_yellow@2x.png */,
 				A4D8F98F17DB08170085061F /* bubble_bg@2x.png */,
 				A4D8F99017DB08170085061F /* correct@2x.png */,
 				A4D8F99117DB08170085061F /* question@2x.png */,
@@ -15892,6 +15947,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				EA0C5516180B9203008069C1 /* InfColorPicker */,
 				A42150BF1803EA21007F2EFD /* MWPhotoBrowser */,
 				C2C18ADF1763372400DE933B /* AutocompletionTableView */,
 				C21CD79F173CA2FF00C699C2 /* HGQuadCurveMenu */,
@@ -15932,6 +15988,24 @@
 				CA50D28C1697C6EC00A7BE14 /* DrawColorManager.m */,
 			);
 			path = Draw_Common;
+			sourceTree = "<group>";
+		};
+		EA0C5516180B9203008069C1 /* InfColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				EA0C5517180B9203008069C1 /* InfColorBarPicker.h */,
+				EA0C5518180B9203008069C1 /* InfColorBarPicker.m */,
+				EA0C5519180B9203008069C1 /* InfColorIndicatorView.h */,
+				EA0C551A180B9203008069C1 /* InfColorIndicatorView.m */,
+				EA0C551B180B9203008069C1 /* InfColorPicker.h */,
+				EA0C551F180B9203008069C1 /* InfColorSquarePicker.h */,
+				EA0C5520180B9203008069C1 /* InfColorSquarePicker.m */,
+				EA0C5521180B9203008069C1 /* InfHSBSupport.h */,
+				EA0C5522180B9203008069C1 /* InfHSBSupport.m */,
+				EA0C5523180B9203008069C1 /* InfSourceColorView.h */,
+				EA0C5524180B9203008069C1 /* InfSourceColorView.m */,
+			);
+			path = InfColorPicker;
 			sourceTree = "<group>";
 		};
 		EA1176961779B764008678AC /* Resource */ = {
@@ -17157,6 +17231,9 @@
 				A4F04B94180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9918068467007274BE /* beep-shinymetal.aif in Resources */,
 				A4F04B9C18068467007274BE /* beep-timber.aif in Resources */,
+				A4F04BB21808FC9A007274BE /* NameAndDescEditView.xib in Resources */,
+				EA0C550C180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */,
+				EA0C5510180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18019,6 +18096,9 @@
 				A4F04B93180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9818068467007274BE /* beep-shinymetal.aif in Resources */,
 				A4F04B9B18068467007274BE /* beep-timber.aif in Resources */,
+				A4F04BB11808FC9A007274BE /* NameAndDescEditView.xib in Resources */,
+				EA0C550B180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */,
+				EA0C550F180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18863,6 +18943,9 @@
 				A4F04B92180680D2007274BE /* tap-warm.aif in Resources */,
 				A4F04B9718068466007274BE /* beep-shinymetal.aif in Resources */,
 				A4F04B9A18068467007274BE /* beep-timber.aif in Resources */,
+				A4F04BB01808FC9A007274BE /* NameAndDescEditView.xib in Resources */,
+				EA0C550A180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */,
+				EA0C550E180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19668,6 +19751,8 @@
 				EA2A7CE517F676AB00ED508D /* AccountManageController.xib in Resources */,
 				EA2A7CEF17F6958600ED508D /* AccountCell.xib in Resources */,
 				CA1FF8941804F986003CEAD6 /* NSDate+TKCategory.strings in Resources */,
+				EA0C550D180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */,
+				EA0C5511180B89A5008069C1 /* bubble_bg_yellow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20452,6 +20537,12 @@
 				A4F04B8B1806550A007274BE /* UserDeviceService.m in Sources */,
 				A4F04B8C18065920007274BE /* UIImageView+Extend.m in Sources */,
 				EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				A4F04BAA1808FC2B007274BE /* NameAndDescEditView.m in Sources */,
+				EA0C5527180B9203008069C1 /* InfColorBarPicker.m in Sources */,
+				EA0C552B180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
+				EA0C5537180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
+				EA0C553B180B9203008069C1 /* InfHSBSupport.m in Sources */,
+				EA0C553F180B9203008069C1 /* InfSourceColorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21201,6 +21292,12 @@
 				A44D658E18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF89A1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DD1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				A4F04BA91808FC2B007274BE /* NameAndDescEditView.m in Sources */,
+				EA0C5526180B9203008069C1 /* InfColorBarPicker.m in Sources */,
+				EA0C552A180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
+				EA0C5536180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
+				EA0C553A180B9203008069C1 /* InfHSBSupport.m in Sources */,
+				EA0C553E180B9203008069C1 /* InfSourceColorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21956,6 +22053,12 @@
 				A44D658D18043E9C00DD6B48 /* UIImageView+ProgressView.m in Sources */,
 				CA1FF8991804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				A4F04BA81808FC2B007274BE /* NameAndDescEditView.m in Sources */,
+				EA0C5525180B9203008069C1 /* InfColorBarPicker.m in Sources */,
+				EA0C5529180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
+				EA0C5535180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
+				EA0C5539180B9203008069C1 /* InfHSBSupport.m in Sources */,
+				EA0C553D180B9203008069C1 /* InfSourceColorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22662,6 +22765,11 @@
 				EA2A7CE117F676AB00ED508D /* AccountManageController.m in Sources */,
 				CA1FF89C1804F986003CEAD6 /* NSDate+TKCategory.m in Sources */,
 				EA8500DF1807A0430000DE3E /* ShareUIManager.m in Sources */,
+				EA0C5528180B9203008069C1 /* InfColorBarPicker.m in Sources */,
+				EA0C552C180B9203008069C1 /* InfColorIndicatorView.m in Sources */,
+				EA0C5538180B9203008069C1 /* InfColorSquarePicker.m in Sources */,
+				EA0C553C180B9203008069C1 /* InfHSBSupport.m in Sources */,
+				EA0C5540180B9203008069C1 /* InfSourceColorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

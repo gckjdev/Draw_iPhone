@@ -22,6 +22,7 @@
 #import "CommonTitleView.h"
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
+#import "NameAndDescEditView.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -69,6 +70,7 @@ enum{
     [_submitButton release];
     [_opusMainView release];
     [_opusImageView release];
+    [_opusDescLabel release];
     [super dealloc];
 }
 
@@ -170,6 +172,7 @@ enum{
     [self setSubmitButton:nil];
     [self setOpusMainView:nil];
     [self setOpusImageView:nil];
+    [self setOpusDescLabel:nil];
     [super viewDidUnload];
 }
 
@@ -398,9 +401,30 @@ enum{
 
     PPDebug(@"clickDescButton");
     
-    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kEditOpusDesc")];
-    [dialog setClickOkBlock:^(UITextField *tf) {
-        [_singOpus setDesc:tf.text];
+
+    NameAndDescEditView *v = [NameAndDescEditView createViewWithName:_singOpus.pbOpus.name desc:_singOpus.pbOpus.desc];
+    
+//    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kEditOpusDesc")];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
+    dialog.manualClose = YES;
+    
+    [dialog setClickOkBlock:^(NameAndDescEditView *infoView){
+       
+        if ([infoView.nameTextField.text isBlank]) {
+            
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:2];
+        }else{
+            
+            [dialog disappear];
+            [_singOpus setName:infoView.nameTextField.text];
+            [_singOpus setDesc:infoView.descTextView.text];
+            [_opusDescLabel setText:infoView.descTextView.text];
+        }
+
+    }];
+    
+    [dialog setClickCancelBlock:^(NameAndDescEditView *infoView){
+            [dialog disappear];
     }];
     
     [dialog showInView:self.view];
