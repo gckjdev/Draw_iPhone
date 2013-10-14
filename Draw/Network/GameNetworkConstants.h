@@ -733,6 +733,8 @@
 #define ERROR_USER_DATA_NULL            320005
 #define ERROR_OPUS_ID_NULL              320006
 
+#define ERROR_USER_COMMENT_OWN_OPUS_CONTEST    110009
+
 
 #define REJECT_ASK_LOCATION             1
 #define ACCEPT_ASK_LOCATION             0

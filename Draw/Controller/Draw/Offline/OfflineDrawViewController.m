@@ -192,6 +192,8 @@
 
 - (void)dealloc
 {
+    [UIApplication sharedApplication].idleTimerDisabled = NO; // disable lock screen while in drawing
+    
     [self stopRecovery];
     self.delegate = nil;
     _draft.drawActionList = nil;
@@ -561,6 +563,8 @@
 
 - (void)viewDidLoad
 {
+    [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
+    
     [super viewDidLoad];
     [self initDrawView];
     [self initDrawToolPanel];

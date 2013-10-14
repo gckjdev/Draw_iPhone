@@ -278,7 +278,10 @@ if(control){\
     [self registerToolCommands];
     [self.tableView reloadData];
     
-    [self updateCopyPaint:[OfflineDrawViewController getDefaultCopyPaintImage]];
+    UIImage* image = [OfflineDrawViewController getDefaultCopyPaintImage];
+    if (image != nil){
+        [self updateCopyPaint:image];
+    }
 }
 - (IBAction)clickTool:(id)sender
 {

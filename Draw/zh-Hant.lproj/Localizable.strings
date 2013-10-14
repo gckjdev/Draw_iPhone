@@ -668,6 +668,7 @@
 "kOpusDetail" = "查看作品";
 
 "kCommentFail" = "評論失敗";
+"kCommentFailOwnOpusContest" = "在匿名比賽中，不能回复或者評論你自己的參賽作品";
 
 "kBlankDrawTitle" = "空白的畫";
 "kBlankDrawMessage" = "不能提交空白的畫，至少得畫個幾筆的";

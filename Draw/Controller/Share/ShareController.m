@@ -408,6 +408,8 @@ typedef enum{
 {
     MyPaint* currentPaint = _selectedPaint;
 
+    [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
+    
     OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
     od.startController = self;
     [self.navigationController pushViewController:od animated:YES];
@@ -869,6 +871,7 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    
 //    if (self.isDraftTab) {
 //        TableTab *tab = [self currentTab];
 //        tab.offset = 0;
