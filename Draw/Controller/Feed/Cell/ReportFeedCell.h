@@ -19,6 +19,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *drawImageView;
 @property (retain, nonatomic) IBOutlet AvatarView *avatarView;
 @property (retain, nonatomic) CommentFeed *feed;
+@property (assign, nonatomic) NSString *contestId;
 + (CGFloat)getCellHeightWithFeed:(CommentFeed *)feed;
 - (void)setCellInfo:(CommentFeed *)feed;
 

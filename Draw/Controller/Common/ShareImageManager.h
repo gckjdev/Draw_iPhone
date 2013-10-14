@@ -417,6 +417,8 @@
 - (UIImage *)previousPage;
 
 + (UIImage *)bubleImage;
++ (UIImage *)redBubleImage;
++ (UIImage *)yellowBubleImage;
 
 + (void)setButtonStyle:(UIButton *)button
       normalTitleColor:(UIColor *)normalTitleColor
