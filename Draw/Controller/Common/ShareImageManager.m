@@ -1276,6 +1276,16 @@ static UIImage* _whitePaperImage;
     return [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
 }
 
++ (UIImage *)happyLogo{
+    
+    return [UIImage imageNamed:@"happy_logo@2x.png"];
+ 
+}
+
++ (UIImage *)unhappyLogo{
+    return [UIImage imageNamed:@"unhappy_logo@2x.png"];
+}
+
 - (UIImage *)detailHeaderBG
 {
     return [UIImage imageNamed:@"detail_header_bg@2x.png"];

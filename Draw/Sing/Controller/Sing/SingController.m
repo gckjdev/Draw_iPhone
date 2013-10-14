@@ -23,6 +23,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
 #import "NameAndDescEditView.h"
+#import "UILabel+Extend.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -416,8 +417,11 @@ enum{
         }else{
             
             [dialog disappear];
+            
+            
             [_singOpus setName:infoView.nameTextField.text];
             [_singOpus setDesc:infoView.descTextView.text];
+            
             [_opusDescLabel setText:infoView.descTextView.text];
         }
 
@@ -434,6 +438,11 @@ enum{
     
     [[UserManager defaultManager] setSingLimitTime:(_recordLimitTime + 15)];
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
+}
+
+- (IBAction)clickChangeVoiceButton:(id)sender {
+    
+    
 }
 
 - (IBAction)clickImageButton:(id)sender {
@@ -474,7 +483,6 @@ enum{
     }
     
     [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
-    
     
     [self showProgressViewWithMessage:NSLS(@"kSending")];
 }
