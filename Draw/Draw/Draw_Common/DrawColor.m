@@ -82,6 +82,30 @@
     _alpha = CHANGE_VALUE_255(_alpha);//(int(_alpha * 255)) / 255.0f;
 }
 
+- (id)initWithColor:(UIColor *)color
+{
+    self = [super init];
+    if (self) {
+        CGColorRef colorRef  = color.CGColor;
+        const CGFloat* components = CGColorGetComponents( colorRef );
+        size_t numComponents = CGColorGetNumberOfComponents( colorRef );
+        
+        CGFloat r, g, b, a;
+        if( numComponents < 4 ) {
+            PPDebug(@"invalide color. number of Components == %d", numComponents);
+            return nil;
+        }
+        else {
+            r = components[0];
+            g = components[1];
+            b = components[2];
+            a = components[3];
+            return [self initWithRed:r green:g blue:b alpha:a];
+        }        
+    }
+    return self;
+}
+
 - (id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
     self = [super init];

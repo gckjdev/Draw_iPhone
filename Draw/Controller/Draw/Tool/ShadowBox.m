@@ -362,7 +362,7 @@ SLIDER.tag = TAG;\
     
     
     //add Palette
-    Palette *palette = [Palette createViewWithdelegate:self];
+    Palette *palette = [Palette paletteWithDelegate:self];
     palette.backgroundColor = [UIColor whiteColor];
     palette.layer.cornerRadius = 10;
     palette.layer.masksToBounds = YES;
@@ -377,8 +377,7 @@ SLIDER.tag = TAG;\
     self.palette = palette;
     [self addSubview:palette];
     if (self.shadow.color) {
-//        palette.currentColor = self.shadow.color;
-        self.palette.currentColor = [DrawColor colorWithColor:_shadow.color];
+        self.palette.sourceColor = _shadow.color.color;
     }
     
     //Set Text
@@ -395,7 +394,8 @@ SLIDER.tag = TAG;\
     self.degreeSlider.value = _shadow.degree;
     self.distanceSlider.value = _shadow.distance;
     self.blurSlider.value = _shadow.blur;
-    self.palette.currentColor = [DrawColor colorWithColor:_shadow.color];
+//    self.palette.currentColor = [DrawColor colorWithColor:_shadow.color];
+    self.palette.sourceColor = _shadow.color.color;
 }
 
 

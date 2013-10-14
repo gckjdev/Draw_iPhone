@@ -192,6 +192,10 @@ static ContestManager *_staticContestManager;
 
 - (BOOL)displayContestAnonymous:(NSString*)contestId
 {
+#ifdef DEBUG
+    return YES;
+#endif
+    
     if ([contestId length] == 0)
         return NO;
     

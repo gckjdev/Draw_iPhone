@@ -80,10 +80,13 @@
     if (cell == nil) {
         return;
     }
-    
     if (++_showingRow >= [[self opusList] count]/NUMBER_PERROW) {
         _showingRow = 0;
     }
+    if (_showingRow < 0) {
+        _showingRow = 0;
+    }
+
     for (NSInteger i = TAG_BASE; i < TAG_BASE+NUMBER_PERROW; ++i) {
         OpusButton *button = (id)[cell.contentView viewWithTag:i];
         if ([button isKindOfClass:[OpusButton class]]) {
@@ -167,6 +170,39 @@
     }];
 }
 
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swipe
+{
+    if (swipe.state == UIGestureRecognizerStateRecognized) {
+        NSInteger row = _showingRow;
+        [self cancelSwith];
+        if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+            _showingRow = row;
+        }else{
+            _showingRow = row - 2;
+        }
+        [self switchOpus];
+    }
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
+}
+
+- (void)addGestureRecognizers
+{
+    UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [left setDirection:UISwipeGestureRecognizerDirectionLeft];
+    left.delegate = self;
+    [self.tableView addGestureRecognizer:left];
+    [left release];
+    
+    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [right setDirection:UISwipeGestureRecognizerDirectionRight];
+    right.delegate = self;
+    [self.tableView addGestureRecognizer:right];
+    [right release];
+}
+
 - (void)baseInit
 {
     self.tableView.delegate = self;
@@ -181,6 +217,9 @@
     [[FeedService defaultService] getFeedList:FeedListTypeHot offset:0 limit:HEADER_OPUS_COUNT delegate:self];
     [self updateBG];
     [self startSwitchOpus];
+    
+    [self addGestureRecognizers];
+
 }
 
 #define RELOAD_SECONDS         (60*10)
