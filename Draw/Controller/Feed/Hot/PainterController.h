@@ -7,7 +7,8 @@
 //
 
 #import "CommonTabController.h"
+#import "TopPlayerView.h"
 
-@interface PainterController : CommonTabController
+@interface PainterController : CommonTabController<TopPlayerViewDelegate>
 
 @end
