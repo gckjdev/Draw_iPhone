@@ -31,7 +31,7 @@
 {
     self = [super init];
     if (self) {
-        _layerList = [[NSMutableArray array] retain];
+        _layerList = [[NSMutableArray alloc] init];
         self.view = view;
     }
     
@@ -134,6 +134,7 @@
 {
     PPDebug(@"%@ dealloc", self);
     PPRelease(_layerList);
+    PPDebug(@"layer list retain count = %d", [_layerList retainCount]);
     [super dealloc];
 }
 
@@ -314,12 +315,16 @@
 
 - (void)updateLayersRect:(CGRect)rect
 {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
     NSMutableArray *newLayers = [NSMutableArray arrayWithCapacity:[_layerList count]];
     for (DrawLayer *layer in _layerList) {
         DrawLayer *l = [DrawLayer layerWithLayer:layer frame:rect];
         [newLayers addObject:l];
     }
     [self updateLayers:newLayers];
+    
+    [pool drain];
 }
 
 - (void)genLayerTagAndName:(DrawLayer *)layer

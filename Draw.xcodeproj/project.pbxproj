@@ -109,9 +109,9 @@
 		A4214DEF1803AA4D007F2EFD /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCA1803AA4D007F2EFD /* UIImage+GIF.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4214DF01803AA4D007F2EFD /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCA1803AA4D007F2EFD /* UIImage+GIF.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4214DF11803AA4D007F2EFD /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCA1803AA4D007F2EFD /* UIImage+GIF.m */; };
-		A4214DF21803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCC1803AA4D007F2EFD /* UIImage+MultiFormat.m */; };
-		A4214DF31803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCC1803AA4D007F2EFD /* UIImage+MultiFormat.m */; };
-		A4214DF41803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCC1803AA4D007F2EFD /* UIImage+MultiFormat.m */; };
+		A4214DF21803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCC1803AA4D007F2EFD /* UIImage+MultiFormat.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4214DF31803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCC1803AA4D007F2EFD /* UIImage+MultiFormat.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A4214DF41803AA4D007F2EFD /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCC1803AA4D007F2EFD /* UIImage+MultiFormat.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A4214DF51803AA4D007F2EFD /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCE1803AA4D007F2EFD /* UIImage+WebP.m */; };
 		A4214DF61803AA4D007F2EFD /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCE1803AA4D007F2EFD /* UIImage+WebP.m */; };
 		A4214DF71803AA4D007F2EFD /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = A4214DCE1803AA4D007F2EFD /* UIImage+WebP.m */; };

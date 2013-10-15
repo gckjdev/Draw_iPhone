@@ -65,9 +65,9 @@
         self.layerName = name;
         _supportCache = supporCache;
 
-        self.drawActionList = [NSMutableArray array];
+        _drawActionList = [[NSMutableArray alloc] init];
         if (_supportCache) {
-            self.offscreen = [Offscreen offscreenWithCapacity:0 rect:self.bounds];
+            _offscreen = [[Offscreen alloc] initWithCapacity:0 rect:self.bounds];
         }
         _cachedCount = [ConfigManager minUndoActionCount];
         _finalOpacity = 1.0f;
@@ -77,7 +77,7 @@
 
 - (void)dealloc
 {
-    PPDebug(@"%@ dealloc", self);
+    PPDebug(@"%@ drawlayer dealloc", self);
     PPRelease(_drawActionList);
     PPRelease(_layerName);
     PPRelease(_drawInfo);

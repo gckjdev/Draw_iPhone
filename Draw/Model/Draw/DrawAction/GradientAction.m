@@ -178,7 +178,10 @@
 {
     self = [super initWithPBDrawActionC:action];
     if (self) {
-        self.gradient = [[Gradient alloc] initWithPBGradientC:action->gradient];
+        Gradient* gradienAction = [[Gradient alloc] initWithPBGradientC:action->gradient];
+        self.gradient = gradienAction;
+        [gradienAction release];
+
         self.type = DrawActionTypeGradient;
     }
     return self;

@@ -172,6 +172,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
         // clear current paint
         self.currentPaint = nil;
         self.canvasSize = CGSizeZero;
+        self.layers = nil;
+        self.drawActionList = nil;
+        self.drawToUser = nil;
+        self.bgImage = nil;
         
         // delete file
         dispatch_async(workingQueue, ^{

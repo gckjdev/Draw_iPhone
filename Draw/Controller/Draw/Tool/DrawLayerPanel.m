@@ -270,6 +270,9 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     }
 //    [[_dlManager layers] count] 
     PPDebug(@"<didClickAddAtCell>");
+    
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
     DrawLayer *layer = [DrawLayer layerWithLayer:[_dlManager selectedLayer]
                                            frame:[[_dlManager selectedLayer] bounds]];
     layer.opacity = 1.0f;
@@ -279,6 +282,8 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
     [_dlManager addLayer:layer];
     [_dlManager setSelectedLayer:layer];
     [self reloadView];
+    
+    [pool drain];
 }
 
 - (IBAction)clickHelp:(id)sender {

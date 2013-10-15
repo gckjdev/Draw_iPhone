@@ -57,6 +57,7 @@
 
 - (void)dealloc
 {
+    PPDebug(@"%@ offscreen dealloc", [self description]);
     CGLayerRelease(cacheLayer), cacheLayer = NULL;
     PPRelease(_drawPen);
     [super dealloc];
