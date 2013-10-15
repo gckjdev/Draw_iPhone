@@ -392,12 +392,7 @@ static UserManager* _defaultManager;
 
 - (NSString*)defaultAvatar
 {
-    if ([self isUserMale]){
-        return [LocaleUtils isChina] ? @"man1.png" : @"man2.png";                
-    }
-    else{        
-        return [LocaleUtils isChina] ? @"female1.png" : @"female2.png";
-    }
+    return [self isUserMale] ?  @"man.png" : @"female.png";
 }
 
 - (UIImage*)defaultAvatarImage

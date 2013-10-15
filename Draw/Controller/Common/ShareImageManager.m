@@ -191,12 +191,12 @@ static UIImage* _whitePaperImage;
 
 - (UIImage*)maleDefaultAvatarImage
 {
-    return [LocaleUtils isChina] ? [UIImage imageNamed:@"man1.png"] : [UIImage imageNamed:@"man2.png"];
+    return [UIImage imageNamed:@"man.png"];
 }
 
 - (UIImage*)femaleDefaultAvatarImage
 {
-    return [LocaleUtils isChina] ? [UIImage imageNamed:@"female1.png"] : [UIImage imageNamed:@"female2.png"];
+    return [UIImage imageNamed:@"female.png"];
 }
 
 - (UIImage*)avatarImageByGender:(BOOL)gender
@@ -1274,6 +1274,16 @@ static UIImage* _whitePaperImage;
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return [image stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
+}
+
++ (UIImage *)happyLogo{
+    
+    return [UIImage imageNamed:@"happy_logo@2x.png"];
+ 
+}
+
++ (UIImage *)unhappyLogo{
+    return [UIImage imageNamed:@"unhappy_logo@2x.png"];
 }
 
 - (UIImage *)detailHeaderBG

@@ -2018,6 +2018,13 @@
 "kDefaultDrawWord" = "MyPaint";
 "kNoRunningContest" = "No contest is running!";
 "kPainter" = "Painters";
+
+"kFamousPlayer" = "Famous";
+"kLevelPlayer" = "Level";
+"kPopPlayer" = "Pop";
+"kNewStarPlayer" = "Star";
+
+
 "kLittleGeeFeedbackTips" = "Welcome to join QQ group: 228119679, and follow the official Weibo @小吉画画";
 "kLittleGeeSNSSubject" = "Share Paints";
 "kLittleGeeAppLink" = "";

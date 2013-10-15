@@ -32,6 +32,7 @@ typedef enum {
 @property (retain, nonatomic) UIImage *image;
 @property (retain, nonatomic) IBOutlet UILabel *messageLabel;
 @property (retain, nonatomic) IBOutlet UIView *bgView;
+@property (retain, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -42,15 +43,16 @@ typedef enum {
     [_image release];
     [_messageLabel release];
     [_bgView release];
+    [_imageView release];
 	[super dealloc];
 }
 
-AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
+//AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
+AUTO_CREATE_VIEW_BY_XIB_N(CommonMessageView);
 
-- (void)setWithImage:(UIImage *)image
-                text:(NSString *)text
+- (void)setWithText:(NSString *)text
 {
-	[self.messageLabel setText:text];
+    [self.messageLabel setText:text];
     SET_MESSAGE_LABEL_STYLE(self.messageLabel);
     
     CGSize size = CGSizeMake(MESSAGE_LABEL_WIDTH, (ISIPAD ? 600 : 300));
@@ -60,17 +62,48 @@ AUTO_CREATE_VIEW_BY_XIB(CommonMessageView);
         [_messageLabel updateHeight:MESSAGE_LABEL_MIN_HEIGHT];
     }
     
-    [self updateWidth:(2 * GAP_X + MESSAGE_LABEL_WIDTH)];    
+    [self updateWidth:(2 * GAP_X + MESSAGE_LABEL_WIDTH)];
     [self updateHeight:(2 * GAP_Y + MESSAGE_LABEL_MIN_HEIGHT)];
     
     [self.messageLabel updateCenterX:self.frame.size.width/2];
     [self.messageLabel updateCenterY:self.frame.size.height/2];
-        
+    
     self.bgView.backgroundColor = COLOR_WHITE;
     SET_VIEW_ROUND_CORNER(self.bgView);
     self.bgView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
     self.bgView.layer.borderColor = [COLOR_ORANGE CGColor];
     self.backgroundColor = [UIColor clearColor];
+}
+
+- (void)setWithImage:(UIImage *)image text:(NSString *)text
+{
+    self.imageView.image = image;
+    
+    [self.messageLabel setText:text];
+    SET_MESSAGE_LABEL_STYLE(self.messageLabel);
+    
+    self.bgView.backgroundColor = COLOR_WHITE;
+    SET_VIEW_ROUND_CORNER(self.bgView);
+    self.bgView.layer.borderWidth = TEXT_VIEW_BORDER_WIDTH;
+    self.bgView.layer.borderColor = [COLOR_ORANGE CGColor];
+    self.backgroundColor = [UIColor clearColor];
+    
+    CGSize originSize = self.messageLabel.frame.size;
+    CGSize constrainedSize = CGSizeMake((ISIPAD?446:210), (ISIPAD ? 600 : 300));
+    [self.messageLabel wrapTextWithConstrainedSize:constrainedSize];
+    
+    
+    [self updateWidth:(self.frame.size.width + self.messageLabel.frame.size.width - originSize.width)];
+    
+    if (self.messageLabel.frame.size.height > originSize.height) {
+
+        [self.imageView updateCenterY:self.messageLabel.center.y];
+        [self updateHeight:(self.frame.size.height + self.messageLabel.frame.size.height - originSize.height)];
+    }else{
+        
+        [self.messageLabel updateCenterY:self.imageView.center.y];
+    }
+    
 }
 
 @end
@@ -107,8 +140,18 @@ SINGLETON_DISPATCH_ONE;
         return;
     }
     
-    self.view = [CommonMessageView createView];
-    [_view setWithImage:image text:text];
+    if (image == nil) {
+        
+        self.view = [CommonMessageView createViewWithIndex:0];
+        [_view setWithText:text];
+        
+    }else{
+        
+        self.view = [CommonMessageView createViewWithIndex:1];
+        [_view setWithImage:image text:text];
+    }
+    
+
     [self postView:_view delay:delayTime];
 }
 
@@ -123,17 +166,28 @@ SINGLETON_DISPATCH_ONE;
                   delayTime:(float)delayTime 
                     isHappy:(BOOL)isHappy
 {
-
+    UIImage *image = nil;
+    if (isHappy) {
+        image = [ShareImageManager happyLogo];
+    }else{
+        image = [ShareImageManager unhappyLogo];
+    }
 	[self postMessageWithText:text 
-                        image:nil
+                        image:image
                     delayTime:delayTime];
 }
 - (void)postMessageWithText:(NSString *)text 
                   delayTime:(float)delayTime
                isSuccessful:(BOOL)isSuccessful
 {
+    UIImage *image = nil;
+    if (isSuccessful) {
+        image = [ShareImageManager happyLogo];
+    }else{
+        image = [ShareImageManager unhappyLogo];
+    }
 	[self postMessageWithText:text
-                        image:nil
+                        image:image
                     delayTime:delayTime];
 }
 
@@ -144,8 +198,8 @@ SINGLETON_DISPATCH_ONE;
         return;
     }
     
-    self.view = [CommonMessageView createView];
-    [_view setWithImage:nil text:nil];
+    self.view = [CommonMessageView createViewWithIndex:0];
+    [_view setWithText:nil];
     self.view.messageLabel.hidden = YES;
     
     CGSize size = CGSizeMake(view.frame.size.width + 2 * GAP_X, view.frame.size.height + 2 * GAP_Y);

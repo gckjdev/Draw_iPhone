@@ -411,6 +411,9 @@
 - (UIImage *)homeDefaultAvatarBG;
 + (UIImage *)imageWithColor:(UIColor *)color;
 
++ (UIImage *)happyLogo;
++ (UIImage *)unhappyLogo;
+
 - (UIImage *)detailHeaderBG;
 
 - (UIImage *)nextPage;
