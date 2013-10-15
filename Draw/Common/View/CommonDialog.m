@@ -88,6 +88,8 @@
     return view;
 }
 
+
+
 + (CommonDialog *)createInputFieldDialogWith:(NSString *)title
                                     delegate:(id<CommonDialogDelegate>)delegate{
     
@@ -98,6 +100,13 @@
     [view.inputTextField becomeFirstResponder];
     view.inputTextField.delegate = view;
     view.allowInputEmpty = YES;
+    
+    ///
+    
+    [view.inputTextField addTarget:view action:@selector(didTextChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    ///
+    
     [view layout];
     return view;
 }
@@ -110,6 +119,13 @@
     view.inputTextView.delegate = view;
     [view.inputTextView becomeFirstResponder];
     view.allowInputEmpty = YES;
+    
+    ///
+    
+    [view.inputTextField addTarget:view action:@selector(didTextChange:) forControlEvents:UIControlEventValueChanged];
+    
+    ///
+    
     [view layout];
     return view;
 }
@@ -326,20 +342,45 @@
 }
 
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if (self.maxInputLen > 0 && range.location >= self.maxInputLen) {
-        return NO;
+
+- (void)didTextChange:(id)sender{
+    
+    
+    NSString *text = nil;
+    
+    if ([sender respondsToSelector:@selector(text)]) {
+        text = [sender text];
+    }else{
+        return;
     }
     
-    if (_allowInputEmpty == NO) {
-        int len = range.location - range.length + 1;
-        BOOL enabled = (len <= 0) ? NO : YES;
-        [self enableOkButton:enabled];
-    }
+    PPDebug(@"text lengh = %d", text.length);
     
-    return YES;
+    if (_allowInputEmpty == NO && text.length <= 0) {
+        [self enableOkButton:NO];
+    }else if (self.maxInputLen > 0 && text.length > self.maxInputLen) {
+        [self enableOkButton:NO];
+    }else{
+        [self enableOkButton:YES];
+    }
 }
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    PPDebug(@"range = %@", NSStringFromRange(range));
+//    
+//    if (self.maxInputLen > 0 && range.location >= self.maxInputLen) {
+//        return NO;
+//    }
+//    
+//    if (_allowInputEmpty == NO) {
+//        int len = range.location - range.length + 1;
+//        BOOL enabled = (len <= 0) ? NO : YES;
+//        [self enableOkButton:enabled];
+//    }
+//    
+//    return YES;
+//}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     
