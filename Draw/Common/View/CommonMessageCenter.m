@@ -89,7 +89,7 @@ AUTO_CREATE_VIEW_BY_XIB_N(CommonMessageView);
     self.backgroundColor = [UIColor clearColor];
     
     CGSize originSize = self.messageLabel.frame.size;
-    CGSize constrainedSize = CGSizeMake((ISIPAD?446:210), (ISIPAD ? 600 : 300));
+    CGSize constrainedSize = CGSizeMake((ISIPAD?456:210), (ISIPAD ? 600 : 300));
     [self.messageLabel wrapTextWithConstrainedSize:constrainedSize];
     
     
