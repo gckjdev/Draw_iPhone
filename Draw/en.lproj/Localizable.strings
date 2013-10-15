@@ -1355,6 +1355,7 @@
 
 
 "kLoadingProgress" = "Loading... (%3.f%%)";
+"kDisplayProgress" = "Loading... (%3.f%%)";
 "kParsingData" = "Parsing data...";
 "kZodiac" = "Zodiac";
 "kBirthday" = "Birthday";

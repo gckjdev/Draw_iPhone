@@ -110,11 +110,13 @@
 - (NSMutableArray *)drawActionList
 {
     //set draw action list and set the draw data version
-    if (_drawActionList == nil) {
-        _drawActionList = [[MyPaintManager defaultManager] drawActionListForPaint:self];
-        [_drawActionList retain];
+    @synchronized(self){
+        if (_drawActionList == nil) {
+            _drawActionList = [[MyPaintManager defaultManager] drawActionListForPaint:self];
+            [_drawActionList retain];
+        }
+        return _drawActionList;
     }
-    return _drawActionList;
 }
 - (void)updateDrawData
 {

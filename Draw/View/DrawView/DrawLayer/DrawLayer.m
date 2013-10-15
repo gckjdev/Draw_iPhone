@@ -242,6 +242,7 @@
     }
     
     if (_supportCache) {
+        PPDebug(@"<updateWithDrawActions> start");
         int count = [_drawActionList count];
         time_t timestamp = time(0);
         [self.offscreen clear];

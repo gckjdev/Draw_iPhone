@@ -407,15 +407,43 @@ typedef enum{
 - (void)performEdit
 {
     MyPaint* currentPaint = _selectedPaint;
+    
+    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+//        PPDebug(@"handle data parsing notification, progress = %f", progress);
+        NSString* progressText = @"";
+        if (progress == 1.0f){
+            progress = 0.99f;            
+            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+        }
+        else{
+            progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];            
+        }
+        [self showProgressViewWithMessage:progressText progress:progress];
+    }];
+    
+    dispatch_async(workingQueue, ^{
 
-    [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
+        [currentPaint drawActionList];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
+            
+            OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
+            od.startController = self;
+            [self.navigationController pushViewController:od animated:YES];
+            [od release];
+
+            [self hideActivity];
+            [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];
+            
+            // clear draw action list
+            currentPaint.drawActionList = nil;
+        });
+    });
     
-    OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
-    od.startController = self;
-    [self.navigationController pushViewController:od animated:YES];
-    [od release];
     
-    [self hideActivity];
 }
 
 - (void)imageActionSheet:(UIActionSheet *)actionSheet
