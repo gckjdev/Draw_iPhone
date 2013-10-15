@@ -337,11 +337,20 @@
 
 + (void)freePBLayers:(Game__PBLayer **)pblayers count:(int)count
 {
+    if (pblayers == NULL){
+        return;
+    }
+    
     for (int i = 0; i < count; i ++) {
-        if (pblayers[i]->rectcomponent) {
-            free(pblayers[i]->rectcomponent);
+        if (pblayers[i] != NULL){
+            if (pblayers[i]->rectcomponent) {
+                free(pblayers[i]->rectcomponent);
+            }                
+            free(pblayers[i]);
         }
     }
+    
+    free(pblayers);
 }
 
 + (BOOL)createPBDrawActionC:(Game__PBDrawAction**)pbDrawActionC drawActionList:(NSArray*)drawActionList
@@ -609,6 +618,9 @@
         [DrawAction freePBDrawActionC:pbNoCompressDrawDataC.drawactionlist2 count:pbNoCompressDrawDataC.n_drawactionlist2];
         free(pbNoCompressDrawDataC.drawactionlist2);
         [DrawAction freePBLayers:pbNoCompressDrawDataC.layer count:pbNoCompressDrawDataC.n_layer];
+        
+
+        
         return data;
     }
     

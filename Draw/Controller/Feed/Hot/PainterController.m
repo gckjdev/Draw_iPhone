@@ -10,7 +10,8 @@
 #import "UserService.h"
 #import "FeedService.h"
 #import "TopPlayerView.h"
-
+#import "UserDetailViewController.h"
+#import "ViewUserDetail.h"
 
 typedef enum{
     PainterTypeLevel = 1,
@@ -65,9 +66,6 @@ typedef enum{
     for (TopPlayer *player in players) {
         TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
         [playerView setViewInfo:player];
-        //        if (isFirstRow) {
-        //            [playerView setRankFlag:i++];
-        //        }
         [cell.contentView addSubview:playerView];
         playerView.frame = CGRectMake(x, y, width, height);
         x += width + space;
@@ -146,9 +144,10 @@ typedef enum{
     NSInteger tabIDs[] = {PainterTypeScore,PainterTypeLevel,PainterTypePop,PainterTypePotential};
     return tabIDs[index];
 }
+
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSArray *titles = @[NSLS(@"kPainter"), NSLS(@"kLevel"), NSLS(@"kPopPlayer"), NSLS(@"kPotentialPlayer")];
+    NSArray *titles = @[NSLS(@"kFamousPlayer"), NSLS(@"kLevelPlayer"), NSLS(@"kPopPlayer"), NSLS(@"kNewStarPlayer")];
     return titles[index];
 }
 
@@ -164,4 +163,9 @@ typedef enum{
     }];
 }
 
+- (void)didClickTopPlayerView:(TopPlayerView *)topPlayerView
+{
+    TopPlayer *player = topPlayerView.topPlayer;
+    [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:player.userId avatar:player.avatar nickName:player.nickName] inViewController:self];
+}
 @end
