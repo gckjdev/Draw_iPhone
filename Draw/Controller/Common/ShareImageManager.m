@@ -191,12 +191,12 @@ static UIImage* _whitePaperImage;
 
 - (UIImage*)maleDefaultAvatarImage
 {
-    return [LocaleUtils isChina] ? [UIImage imageNamed:@"man1.png"] : [UIImage imageNamed:@"man2.png"];
+    return [UIImage imageNamed:@"man.png"];
 }
 
 - (UIImage*)femaleDefaultAvatarImage
 {
-    return [LocaleUtils isChina] ? [UIImage imageNamed:@"female1.png"] : [UIImage imageNamed:@"female2.png"];
+    return [UIImage imageNamed:@"female.png"];
 }
 
 - (UIImage*)avatarImageByGender:(BOOL)gender

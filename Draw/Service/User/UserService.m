@@ -1228,7 +1228,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 - (void)getTopPlayerWithType:(int)type
                       offset:(NSInteger)offset
                        limit:(NSInteger)limit
-                    delegate:(id<UserServiceDelegate>)delegate
+                 resultBlock:(GetUserListResultBlock)block
 {
     dispatch_async(workingQueue, ^{
         NSString *appId = [ConfigManager appId];
@@ -1255,12 +1255,25 @@ POSTMSG(NSLS(@"kLoginFailure"));
                     }
                 }
             }
-            if (delegate && [delegate respondsToSelector:@selector(didGetTopPlayerList:resultCode:)]) {
-                [delegate didGetTopPlayerList:topPlayerList
-                                   resultCode:output.resultCode];
-            }
+            EXECUTE_BLOCK(block, output.resultCode,topPlayerList);
         });
     });
+
+}
+
+
+
+- (void)getTopPlayerWithType:(int)type
+                      offset:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    delegate:(id<UserServiceDelegate>)delegate
+{
+    [self getTopPlayerWithType:type offset:offset limit:limit resultBlock:^(int resultCode, NSArray *userList) {
+        if (delegate && [delegate respondsToSelector:@selector(didGetTopPlayerList:resultCode:)]) {
+            [delegate didGetTopPlayerList:userList
+                               resultCode:resultCode];
+        }
+    }];
 }
 
 

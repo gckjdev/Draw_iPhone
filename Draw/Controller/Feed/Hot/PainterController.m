@@ -1,0 +1,167 @@
+//
+//  PainterController.m
+//  Draw
+//
+//  Created by Gamy on 13-10-14.
+//
+//
+
+#import "PainterController.h"
+#import "UserService.h"
+#import "FeedService.h"
+#import "TopPlayerView.h"
+
+
+typedef enum{
+    PainterTypeLevel = 1,
+    PainterTypeScore = 2,
+    PainterTypePop = 3,
+    PainterTypePotential = 4,
+}PainterType;
+
+@interface PainterController ()
+
+@end
+
+@implementation PainterController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initTabButtons];
+
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
+    CGFloat height = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(self.dataTableView.frame);    
+    [self.dataTableView updateHeight:height];
+    [self.titleView setTitle:NSLS(@"kPainter")];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+#define WIDTH_SPACE 1
+- (void)setTopPlayerCell:(UITableViewCell *)cell
+             WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
+{
+    CGFloat width = [TopPlayerView getHeight];
+    CGFloat height = [TopPlayerView getHeight];//[RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat space = WIDTH_SPACE;;
+    CGFloat x = 0;
+    CGFloat y = 0;
+    //    NSInteger i = 0;
+    for (TopPlayer *player in players) {
+        TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
+        [playerView setViewInfo:player];
+        //        if (isFirstRow) {
+        //            [playerView setRankFlag:i++];
+        //        }
+        [cell.contentView addSubview:playerView];
+        playerView.frame = CGRectMake(x, y, width, height);
+        x += width + space;
+    }
+}
+
+- (void)clearCellSubViews:(UITableViewCell *)cell{
+    [cell.contentView enumSubviewsWithClass:[TopPlayerView class] handler:^(id view) {
+        [view removeFromSuperview];
+    }];
+}
+
+- (NSObject *)saveGetObjectForIndex:(NSInteger)index
+{
+    NSArray *list = [self tabDataList];
+    if (index < 0 || index >= [list count]) {
+        return nil;
+    }
+    return [list objectAtIndex:index];
+}
+
+#define NORMAL_CELL_VIEW_NUMBER 3
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    NSString *CellIdentifier = @"RankCell";//[RankFirstCell getCellIdentifier];
+    UITableViewCell *cell = [theTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }else{
+        [self clearCellSubViews:cell];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryNone;
+
+    NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+    NSMutableArray *list = [NSMutableArray array];
+    for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+        NSObject *object = [self saveGetObjectForIndex:i];
+        if (object) {
+            [list addObject:object];
+        }
+    }
+    [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
+
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
+    return count/3;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [TopPlayerView getHeight] + 1;
+}
+
+#pragma mark delegate
+
+- (NSInteger)tabCount
+{
+    return 4;
+}
+
+- (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
+{
+    return 18;
+}
+- (NSInteger)tabIDforIndex:(NSInteger)index
+{
+    NSInteger tabIDs[] = {PainterTypeScore,PainterTypeLevel,PainterTypePop,PainterTypePotential};
+    return tabIDs[index];
+}
+- (NSString *)tabTitleforIndex:(NSInteger)index
+{
+    NSArray *titles = @[NSLS(@"kPainter"), NSLS(@"kLevel"), NSLS(@"kPopPlayer"), NSLS(@"kPotentialPlayer")];
+    return titles[index];
+}
+
+- (void)serviceLoadDataForTabID:(NSInteger)tabID
+{
+    TableTab *tab = [_tabManager tabForID:tabID];
+    [[UserService defaultService] getTopPlayerWithType:tabID offset:tab.offset limit:tab.limit resultBlock:^(int resultCode, NSArray *userList) {
+        if (resultCode == 0) {
+            [self finishLoadDataForTabID:tabID resultList:userList];
+        }else{
+            [self failLoadDataForTabID:tabID];
+        }
+    }];
+}
+
+@end
