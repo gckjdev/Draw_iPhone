@@ -32,7 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(NameAndDescEditView);
     [v.nameTextField becomeFirstResponder];
     v.nameTextField.returnKeyType = UIReturnKeyNext;
     v.nameTextField.delegate = v;
-    
+        
     return v;
 }
 
@@ -43,6 +43,7 @@ AUTO_CREATE_VIEW_BY_XIB(NameAndDescEditView);
     [self.descTextView becomeFirstResponder];
     return YES;
 }
+
 
 - (void)dealloc {
     [_nameLabel release];
