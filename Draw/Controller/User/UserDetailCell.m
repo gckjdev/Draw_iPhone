@@ -64,39 +64,11 @@
 {
     self.detail = detail;
     PBGameUser* pbUser = [detail getUser];
-
-    [self.nickNameLabel setText:pbUser.nickName];
     
-    CGSize constrainedSize = ISIPAD ? CGSizeMake(468, 45) : CGSizeMake(185, 19);
-    [self.nickNameLabel wrapTextWithConstrainedSize:constrainedSize];
-    [self.nickNameLabel updateCenterX:self.center.x];
-    [self.nickNameLabel updateCenterY:self.genderImageView.center.y];
+    [self.nickNameLabel addTapGuestureWithTarget:self selector:@selector(clickNickNameLabel)];
     
-    
-    CGFloat originX = self.nickNameLabel.frame.origin.x - (ISIPAD ? 4:2) - self.genderImageView.frame.size.width;
-    [self.genderImageView updateOriginX:originX];
-
-    NSString *text = @"";
-    
-    if ([[[detail getUser] xiaojiNumber] length] > 0) {
-        text = [text stringByAppendingString:[NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[detail getUser] xiaojiNumber]]];
-        text = [text stringByAppendingString:@"  "];
-    }
-    
-    
-    text = [text stringByAppendingString:[NSString stringWithFormat:@"lv:%d", [detail getUser].level]];
-
-    if ([pbUser.signature length] > 0) {
-        text = [text stringByAppendingString:@"  "];
-        text = [text stringByAppendingString:pbUser.signature];
-    }
-    
-    self.signLabel.text = text;
-    
-    constrainedSize = (ISIPAD ? CGSizeMake(550, 75) : CGSizeMake(230, 42));
-    [self.signLabel wrapTextWithConstrainedSize:constrainedSize];
-    [self.signLabel updateCenterX:self.center.x];
-    [self.signLabel updateOriginY:self.signButton.frame.origin.y];
+    [self updateNickNameLabel];
+    [self updateSignLabel];
     
     if ([detail isPrivacyVisable]) {
         [self.birthLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kBirthday"), ([pbUser hasBirthday]?pbUser.birthday:@"-")]];
@@ -111,9 +83,7 @@
     }
     
     [self.locationLabel setText:[NSString stringWithFormat:@"%@ : %@", NSLS(@"kLocation"), ([pbUser hasLocation]?pbUser.location:@"-")]];
-    
-
-    
+        
     self.basicDetailView.hidden = YES;
     
     [self.editButton setHidden:![detail canEdit]];
@@ -516,9 +486,119 @@
 
 - (IBAction)clickSignButton:(id)sender {
     
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSignature") message:[[self.detail getUser] signature] style:CommonDialogStyleCross];
+    if ([[UserManager defaultManager] isMe:_detail.getUserId]
+        ) {
+        
+        CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kSignature")];
+        dialog.inputTextView.text = [_detail getUser].signature;
+        [dialog setMaxInputLen:[ConfigManager getSignatureMaxLen]];
+
+        [dialog setClickOkBlock:^(UITextView *tv){
+            
+            if ([tv.text isEqualToString:[_detail getUser].signature]) {
+                return ;
+            }
+            
+            [[UserManager defaultManager] setSignature:tv.text];
+            [self saveUserInfo];
+        }];
+        
+        [dialog showInView:self];
+        
+    }else{
+        
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSignature") message:[[self.detail getUser] signature] style:CommonDialogStyleCross];
+        
+        [dialog showInView:self];
+    }
+}
+
+- (void)updateSignLabel{
     
-    [dialog showInView:self];
+    NSString *text = @"";
+    
+    if ([[[_detail getUser] xiaojiNumber] length] > 0) {
+        text = [text stringByAppendingString:[NSString stringWithFormat:@"%@:%@", NSLS(@"kXiaoji"), [[_detail getUser] xiaojiNumber]]];
+        text = [text stringByAppendingString:@"  "];
+    }
+    
+    
+    text = [text stringByAppendingString:[NSString stringWithFormat:@"lv:%d", [_detail getUser].level]];
+    
+    if ([[_detail getUser].signature length] > 0) {
+        text = [text stringByAppendingString:@"  "];
+        text = [text stringByAppendingString:[_detail getUser].signature];
+    }
+    
+    self.signLabel.text = text;
+    
+    CGSize constrainedSize = (ISIPAD ? CGSizeMake(550, 75) : CGSizeMake(230, 42));
+    [self.signLabel wrapTextWithConstrainedSize:constrainedSize];
+    [self.signLabel updateCenterX:self.center.x];
+    [self.signLabel updateOriginY:self.signButton.frame.origin.y];
+}
+
+- (void)saveUserInfo{
+    
+    PBGameUser* user = [[UserManager defaultManager] pbUser];
+    
+    [[UserService defaultService] updateUser:user resultBlock:^(int resultCode) {
+        
+        if (resultCode == 0){
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateUserSucc") delayTime:1.5];
+            
+            [self updateSignLabel];
+            [self updateNickNameLabel];
+        }
+        else{
+            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUpdateUserFail") delayTime:1.5];
+        }
+    }];
+}
+
+- (void)updateNickNameLabel{
+    
+    PBGameUser* pbUser = [_detail getUser];
+    
+    [self.nickNameLabel setText:pbUser.nickName];
+    
+    CGSize constrainedSize = ISIPAD ? CGSizeMake(468, 45) : CGSizeMake(185, 19);
+    [self.nickNameLabel wrapTextWithConstrainedSize:constrainedSize];
+    [self.nickNameLabel updateCenterX:self.center.x];
+    [self.nickNameLabel updateCenterY:self.genderImageView.center.y];
+    
+    
+    CGFloat originX = self.nickNameLabel.frame.origin.x - (ISIPAD ? 4:2) - self.genderImageView.frame.size.width;
+    [self.genderImageView updateOriginX:originX];
+}
+
+- (void)clickNickNameLabel{
+    
+    if ([[UserManager defaultManager] isMe:_detail.getUserId]
+        ) {
+    
+        CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kNickname")];
+        dialog.inputTextField.text = [_detail getUser].nickName;
+        [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
+        [dialog setAllowInputEmpty:NO];
+        
+        [dialog setClickOkBlock:^(UITextField *tf){
+            
+            if ([tf.text isEqualToString:[_detail getUser].nickName]) {
+                return;
+            }
+            [[UserManager defaultManager] setNickName:tf.text];
+            [self saveUserInfo];
+        }];
+        
+        [dialog showInView:self];
+        
+    }else{
+        
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kNickname") message:[[self.detail getUser] nickName] style:CommonDialogStyleCross];
+        
+        [dialog showInView:self];
+    }
 }
 
 

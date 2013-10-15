@@ -42,6 +42,7 @@ typedef void (^DialogSelectionBlock)(id infoView);
 
 // 最大输入长度，为0时表示不限制
 @property (assign, nonatomic) int maxInputLen;
+
 @property (assign, nonatomic) BOOL allowInputEmpty;
 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
