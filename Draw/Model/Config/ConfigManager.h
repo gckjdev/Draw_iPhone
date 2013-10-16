@@ -303,4 +303,6 @@ typedef enum{
 + (int)getTipUseTimesLimitInGeniusMode;
 + (int)getHomeHotOpusCount;
 
++ (BOOL)showAllPainterTags;
+
 @end

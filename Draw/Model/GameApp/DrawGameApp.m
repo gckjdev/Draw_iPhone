@@ -144,7 +144,7 @@
 
 - (NSString*)sinaWeiboId
 {
-    return [MobClickUtils getStringValueByKey:@"DRAW_SINA_WEIBO_NICKNAME" defaultValue:@"猜猜画画手机版"];
+    return [MobClickUtils getStringValueByKey:@"DRAW_SINA_WEIBO_NICKNAME" defaultValue:@"小吉画画"];
 }
 
 - (NSString*)qqWeiboId
