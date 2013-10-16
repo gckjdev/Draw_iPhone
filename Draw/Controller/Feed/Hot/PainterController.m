@@ -12,6 +12,9 @@
 #import "TopPlayerView.h"
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
+#import "ConfigManager.h"
+
+#define SHOW_ALL_TAGS ([ConfigManager showAllPainterTags])
 
 typedef enum{
     PainterTypeLevel = 1,
@@ -46,6 +49,11 @@ typedef enum{
     [self.titleView setTitle:NSLS(@"kPainter")];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    
+    if (!SHOW_ALL_TAGS) {
+        [[self.view viewWithTag:PainterTypePop] removeFromSuperview];
+        [[self.view viewWithTag:PainterTypePotential] removeFromSuperview];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,7 +140,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 4;
+    return (SHOW_ALL_TAGS ? 4 : 2);
 }
 
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
@@ -153,11 +161,14 @@ typedef enum{
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
+    [self showActivityWithText:NSLS(@"kLoading")];
     TableTab *tab = [_tabManager tabForID:tabID];
     [[UserService defaultService] getTopPlayerWithType:tabID offset:tab.offset limit:tab.limit resultBlock:^(int resultCode, NSArray *userList) {
+        [self hideActivity];
         if (resultCode == 0) {
             [self finishLoadDataForTabID:tabID resultList:userList];
         }else{
+            POSTMSG(NSLS(@"kFailLoad"));
             [self failLoadDataForTabID:tabID];
         }
     }];

@@ -1189,4 +1189,9 @@
     return [MobClickUtils getIntValueByKey:@"HOME_HOT_OPUS_COUNT" defaultValue:18];
 }
 
++ (BOOL)showAllPainterTags
+{
+    return [MobClickUtils getBoolValueByKey:@"SHOW_ALL_PAINTER_TAGS" defaultValue:NO];
+}
+
 @end
