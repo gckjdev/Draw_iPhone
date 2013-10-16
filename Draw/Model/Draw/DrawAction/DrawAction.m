@@ -291,7 +291,9 @@
     NSMutableArray *drawActionList = [NSMutableArray array];
 
     if (data->n_drawactionlist2 > 0) {
-        NSMutableDictionary *clipDict = [NSMutableDictionary dictionary];        
+        int progress = 0;
+        NSMutableDictionary* progressUserInfo = [NSMutableDictionary dictionary];
+        NSMutableDictionary *clipDict = [NSMutableDictionary dictionary];
         for (int i=0; i<data->n_drawactionlist2; i++){
             DrawAction *at = [DrawAction drawActionWithPBDrawActionC:data->drawactionlist2[i]];
             if (at) {
@@ -308,6 +310,20 @@
                 [drawActionList addObject:at];
                 at = nil;                
             }
+            
+            progress = i*1000 / data->n_drawactionlist2;
+            if (progress % 50 == 0){
+                [progressUserInfo setObject:@((CGFloat)progress/1000.f) forKey:KEY_DATA_PARSING_PROGRESS];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_PARSING object:nil userInfo:progressUserInfo];
+            }
+            
+//            
+//            if (i % 100 == 0){
+//                progress = i*1.0f/data->n_drawactionlist2;
+//                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_PARSING
+//                                                                    object:nil
+//                                                                  userInfo:@{KEY_DATA_PARSING_PROGRESS : @(progress)}];
+//            }
         }
     }else if(data->n_drawactionlist > 0){
         for (int i=0; i<data->n_drawactionlist; i++){

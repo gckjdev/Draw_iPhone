@@ -39,7 +39,7 @@ typedef enum{
 
 - (CGRect)pathRect;
 
-
+- (BOOL)isLegal;
 
 @end
 

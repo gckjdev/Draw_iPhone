@@ -44,8 +44,8 @@
 //        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 //        ClipAction *clipAction = nil;
             NSMutableDictionary *clipDict = [NSMutableDictionary dictionary];
-//            int progress = 0;
-//            NSMutableDictionary* progressUserInfo = [NSMutableDictionary dictionary];
+            int progress = 0;
+            NSMutableDictionary* progressUserInfo = [NSMutableDictionary dictionary];
             for (int i=0; i<actionCount; i++){
                 
                 NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -69,11 +69,11 @@
                     }
                 }
                 
-//                progress = i*1000 / actionCount;
-//                if (progress % 50 == 0){
-//                    [progressUserInfo setObject:@((CGFloat)progress/1000.f) forKey:KEY_DATA_PARSING_PROGRESS];
-//                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_PARSING object:nil userInfo:progressUserInfo];
-//                }
+                progress = i*1000 / actionCount;
+                if (progress % 50 == 0){
+                    [progressUserInfo setObject:@((CGFloat)progress/1000.f) forKey:KEY_DATA_PARSING_PROGRESS];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_PARSING object:nil userInfo:progressUserInfo];
+                }
                 
                 [pool drain];
             }

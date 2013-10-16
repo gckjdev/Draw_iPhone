@@ -777,7 +777,7 @@ if (btn) {\
 
 
     NSArray *array = @[KEY(TouchActionTypeClipEllipse), KEY(TouchActionTypeClipPath), KEY(TouchActionTypeClipPolygon), KEY(TouchActionTypeClipRectangle)];
-    [self setCloseSelectorHidden:_drawView.currentClip == nil &&![array containsObject:KEY(drawInfo.touchType)]];
+    [self setCloseSelectorHidden:![_drawView.currentClip isLegal] && ![array containsObject:KEY(drawInfo.touchType)]];
     
     DrawColor *color = [DrawColor colorWithColor:drawInfo.penColor];
     [color setAlpha:1];

@@ -154,7 +154,8 @@
     
     if (index >= [self.drawActionList count]) {
         self.status = Stop;
-        for (DrawLayer *layer in [self layers]) {
+        NSArray* layers = [self layers];
+        for (DrawLayer *layer in layers) {
             if (layer.clipAction) {
                 [layer exitFromClipMode];
             }

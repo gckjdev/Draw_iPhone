@@ -122,7 +122,9 @@
     
     if (!redo) {
         drawAction.shadow = [Shadow shadowWithShadow:self.drawInfo.shadow];
-        drawAction.clipAction = self.clipAction;
+        if ([self.clipAction isLegal]) {
+            drawAction.clipAction = self.clipAction;
+        }
         
         if ([drawAction isGradientAction]) {
             if (self.clipAction) {
@@ -133,7 +135,7 @@
             [[(GradientAction *)drawAction gradient] updatePointsWithDegreeAndDivision];
         }
     }else{
-        if (![drawAction isClipAction] && [drawAction clipAction] == nil) {
+        if (![drawAction isClipAction] && ![[drawAction clipAction] isLegal]) {
             self.clipAction = nil;
         }
     }
@@ -192,6 +194,7 @@
             }
         }
     }
+    
     if (refresh) {
         [self setNeedsDisplayInRect:[action redrawRectInRect:self.bounds]];
     }    
@@ -200,7 +203,7 @@
 - (void)updateClipAction
 {
     DrawAction *lastAction = [self.drawActionList lastObject];
-    if ([lastAction isClipAction]) {
+    if ([lastAction isClipAction] && [(ClipAction *)lastAction isLegal]) {
         self.clipAction = (id)lastAction;
     }else{
         self.clipAction = lastAction.clipAction;
@@ -242,6 +245,7 @@
     }
     
     if (_supportCache) {
+        PPDebug(@"<updateWithDrawActions> start");
         int count = [_drawActionList count];
         time_t timestamp = time(0);
         [self.offscreen clear];
