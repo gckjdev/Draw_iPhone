@@ -1641,11 +1641,11 @@
 "kYear" = "Annual";
 "kToday" = "Today";
 "kYesterday" = "Yesterday";
-"kBeforeYesterday" = "Two days ago";
-"kThreeDaysAgo" = "Three days ago";
-"kFourDaysAgo"  = "Four days ago";
-"kFiveDaysAgo" = "Five days ago";
-"kSixDaysAgo" = "Six days ago";
+"kBeforeYesterday" = "2days ago";
+"kThreeDaysAgo" = "3days ago";
+"kFourDaysAgo"  = "4days ago";
+"kFiveDaysAgo" = "5days ago";
+"kSixDaysAgo" = "6days ago";
 
 "kContestIsNotStart" = "Contest is not start";
 "kContestIsOver" = "Contest is over";
