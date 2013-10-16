@@ -351,4 +351,9 @@
     
 }
 
+- (BOOL)isLegal
+{
+    return !CGSizeEqualToSize([self pathRect].size, CGSizeZero);
+}
+
 @end
