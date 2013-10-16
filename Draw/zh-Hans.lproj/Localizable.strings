@@ -198,6 +198,12 @@
 "kFailToConnectIAPServer" = "连接苹果购买服务器失败，请稍候再试。";
 "kExceedMaxProlongTimes" = "不好意思，你已经延时好多次了，不能再延时了。";
 
+"kVoiceTypeOrigin" = "原声";
+"kVoiceTypeTomCat" = "萌猫";
+"kVoiceTypeMale" = "男声";
+"kVoiceTypeFemale" = "女声";
+"kUnkown" = "未知";
+
 "kGotoCoinShop" = "金币充值";
 
 "kChangeRoomMaxTimes" = "你换房间次数已经超过限制，现在换房间需要花费你一个金币，确定吗？";

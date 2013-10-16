@@ -24,6 +24,7 @@
 #import "UIViewUtils.h"
 #import "NameAndDescEditView.h"
 #import "UILabel+Extend.h"
+#import "VoiceTypeSelectView.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -405,7 +406,6 @@ enum{
 
     NameAndDescEditView *v = [NameAndDescEditView createViewWithName:_singOpus.pbOpus.name desc:_singOpus.pbOpus.desc];
     
-//    CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kEditOpusDesc")];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
     dialog.manualClose = YES;
     
@@ -442,7 +442,14 @@ enum{
 
 - (IBAction)clickChangeVoiceButton:(id)sender {
     
+    VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChoseVoiceType") customView:v style:CommonDialogStyleDoubleButton];
     
+    [dialog setClickOkBlock:^(VoiceTypeSelectView *v){
+        [self changeVoiceType:[v getVoiceType]];
+    }];
+    
+    [dialog showInView:self.view];
 }
 
 - (IBAction)clickImageButton:(id)sender {
