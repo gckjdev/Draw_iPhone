@@ -1624,16 +1624,16 @@
 "kVoteEndTips" = "";
 
 
-"kGeniusRankDay" = "Genius Ranking(Daily)";
-"kGeniusRankWeek" = "Genius Ranking(Weekly)";
-"kGeniusRankYear" = "Genius Ranking(Annual)";
-"kContestRankToday" = "Contest Ranking(Today)";
-"kContestRankYesterday" = "Contest Ranking(Yesterday)";
-"kContestRankBeforeYesterday" = "Contest Ranking(Two day ago)";
-"kContestRankThreeDaysAgo" = "Contest Ranking(Three day ago)";
-"kContestRankFourDaysAgo" = "Contest Ranking(Four day ago)";
-"kContestRankFiveDaysAgo" = "Contest Ranking(Five day ago)";
-"kContestRankSixDaysAgo" = "Contest Ranking(Six day ago)";
+"kGeniusRankDay" = "Genius(Daily)";
+"kGeniusRankWeek" = "Genius(Weekly)";
+"kGeniusRankYear" = "Genius(Annual)";
+"kContestRankToday" = "Contest(Today)";
+"kContestRankYesterday" = "Contest(Yesterday)";
+"kContestRankBeforeYesterday" = "Contest(2days ago)";
+"kContestRankThreeDaysAgo" = "Contest(3days ago)";
+"kContestRankFourDaysAgo" = "Contest(4days ago)";
+"kContestRankFiveDaysAgo" = "Contest(5days ago)";
+"kContestRankSixDaysAgo" = "Contest(6days ago)";
 
 "kDay" = "Daily";
 "kWeek" = "Weekly";
@@ -2054,6 +2054,13 @@
 "kUseGradientMessage" = "Use gradient, the paints will be lost. Continue?";
 "kSubjectPlaceholder" = "Input subject...";
 "kSubjectPlaceCannotBlank" = "Subject cannot be blank";
+
+"kVoiceTypeOrigin" = "Origin";
+"kVoiceTypeTomCat" = "TomCat";
+"kVoiceTypeMale" = "Male";
+"kVoiceTypeFemale" = "Female";
+"kUnkown" = "Unkown";
+
 
 "kSelectorItem" = "Selector";
 "kSelectorItemDescription" = "Select an area & draw inside the area";

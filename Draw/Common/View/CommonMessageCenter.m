@@ -167,12 +167,12 @@ SINGLETON_DISPATCH_ONE;
                     isHappy:(BOOL)isHappy
 {
     UIImage *image = nil;
-    if (isHappy) {
-        image = [ShareImageManager happyLogo];
-    }else{
-        image = [ShareImageManager unhappyLogo];
-    }
-	[self postMessageWithText:text 
+//    if (isHappy) {
+//        image = [ShareImageManager happyLogo];
+//    }else{
+//        image = [ShareImageManager unhappyLogo];
+//    }
+	[self postMessageWithText:text
                         image:image
                     delayTime:delayTime];
 }
@@ -181,11 +181,11 @@ SINGLETON_DISPATCH_ONE;
                isSuccessful:(BOOL)isSuccessful
 {
     UIImage *image = nil;
-    if (isSuccessful) {
-        image = [ShareImageManager happyLogo];
-    }else{
-        image = [ShareImageManager unhappyLogo];
-    }
+//    if (isSuccessful) {
+//        image = [ShareImageManager happyLogo];
+//    }else{
+//        image = [ShareImageManager unhappyLogo];
+//    }
 	[self postMessageWithText:text
                         image:image
                     delayTime:delayTime];

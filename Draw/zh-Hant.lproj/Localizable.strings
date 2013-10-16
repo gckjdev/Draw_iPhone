@@ -2066,6 +2066,12 @@
 "kSubjectPlaceCannotBlank" = "主題不能為空";
 "kFurtureFunction" = "神秘功能即將推出，敬請期待...";
 
+"kVoiceTypeOrigin" = "原聲";
+"kVoiceTypeTomCat" = "萌貓";
+"kVoiceTypeMale" = "男聲";
+"kVoiceTypeFemale" = "女聲";
+"kUnkown" = "未知";
+
 "kSelectorItem" = "選擇器";
 "kSelectorItemDescription" = "可建立矩形、橢圓、手繪圖形和多邊形選區。通過選擇特定區域，可以在此區域內繪畫或編輯效果，同時保持未選定區域不會被改動。";
 

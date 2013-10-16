@@ -40,10 +40,10 @@ message PBSongList{
 enum PBVoiceType{
   VoiceTypeOrigin = 0;
   VoiceTypeTomCat = 1;
-  VoiceTypeDuck = 2;
-  VoiceTypeMale = 3;
-  VoiceTypeChild = 4;
-  VoiceTypeFemale = 5;
+  VoiceTypeMale = 2;
+  VoiceTypeFemale = 3;
+  VoiceTypeDuck = 4;
+  VoiceTypeChild = 5;
 }
 
 message PBSingOpus {
