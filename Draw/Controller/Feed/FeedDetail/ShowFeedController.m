@@ -643,7 +643,7 @@ typedef enum{
     }
     
 //    [self.progressView setLabelText:progressText];
-//    
+//
 //    [self.progressView setProgress:progress];
     [self showProgressViewWithMessage:progressText progress:progress];
     
@@ -693,6 +693,40 @@ typedef enum{
     }];
 }
 
+//- (void)performLoadOpus:(SEL)selector
+//{
+//    MyPaint* currentPaint = _selectedPaint;
+//    
+//    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+//        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+//        NSString* progressText = @"";
+//        if (progress == 1.0f){
+//            progress = 0.99f;
+//            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+//        }
+//        else{
+//            progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
+//        }
+//        [self showProgressViewWithMessage:progressText progress:progress];
+//    }];
+//    
+//    dispatch_async(workingQueue, ^{
+//        
+//        [currentPaint drawActionList];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            
+//            [self performSelector:selector];
+//            
+//            [self hideActivity];
+//            [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];
+//            
+//            // clear draw action list
+//            currentPaint.drawActionList = nil;
+//        });
+//    });
+//}
+
 - (void)performReplay
 {
     __block ShowFeedController * cp = self;
@@ -702,24 +736,45 @@ typedef enum{
         
         _isDownloadingData = NO;
         
+        [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+            float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+            NSString* progressText = @"";
+            if (progress == 1.0f){
+                progress = 0.99f;
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+            }
+            else{
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+            }
+            [self showProgressViewWithMessage:progressText progress:progress];
+        }];
+        
         [[self.footerView buttonWithType:FooterTypeReplay] setUserInteractionEnabled:YES];
-        if (cp.feed.drawData == nil) {
-            [cp.feed parseDrawData];
-            cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
-        }
         
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        
-        ReplayObject *obj = [ReplayObject obj];
-        obj.actionList = cp.feed.drawData.drawActionList;
-        obj.isNewVersion = [cp.feed.drawData isNewVersion];
-        obj.canvasSize = cp.feed.drawData.canvasSize;
-        obj.layers = cp.feed.drawData.layers;
-    
-        DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
-        [player showInController:cp];
-        
-        [pool drain];
+        dispatch_async(workingQueue, ^{
+            if (cp.feed.drawData == nil) {
+                [cp.feed parseDrawData];
+                cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
+            }
+                
+            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+                
+                ReplayObject *obj = [ReplayObject obj];
+                obj.actionList = cp.feed.drawData.drawActionList;
+                obj.isNewVersion = [cp.feed.drawData isNewVersion];
+                obj.canvasSize = cp.feed.drawData.canvasSize;
+                obj.layers = cp.feed.drawData.layers;
+                
+                DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+                [player showInController:cp];
+                
+                [pool drain];
+                
+                [self hideActivity];
+            });
+        });
     }];
     
 }
