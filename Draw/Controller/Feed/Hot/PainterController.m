@@ -38,6 +38,15 @@ typedef enum{
     return self;
 }
 
+- (void)updateTitleView
+{
+    [self.titleView setTitle:NSLS(@"kPainter")];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self.titleView setRightButtonAsRefresh];
+    [self.titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,9 +55,7 @@ typedef enum{
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
     CGFloat height = CGRectGetMaxY(self.view.bounds) - CGRectGetMinY(self.dataTableView.frame);    
     [self.dataTableView updateHeight:height];
-    [self.titleView setTitle:NSLS(@"kPainter")];
-    [self.titleView setTarget:self];
-    [self.titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [self updateTitleView];
     
     if (!SHOW_ALL_TAGS) {
         [[self.view viewWithTag:PainterTypePop] removeFromSuperview];

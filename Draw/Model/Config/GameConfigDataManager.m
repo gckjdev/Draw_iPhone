@@ -237,7 +237,7 @@ static dispatch_once_t onceToken;
 
 + (PBAppReward*)drawAppWithRewardAmount:(int)rewardAmount
                          rewardCurrency:(PBGameCurrency)rewardCurrency{
-    PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"猜猜画画"
+    PBAppReward* drawApp = [GameConfigDataManager createAppReward:@"小吉画画"
                                                            nameEn:@"Draw lively"
                                                            descCn:@"一款画画和你画我猜的休闲娱乐应用"
                                                            descEn:@"An awesome & fun draw game for you"
