@@ -481,14 +481,14 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
-       
-        NSDictionary* userInfo = [note userInfo];
-        CGFloat progress = [[userInfo objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
-        PPDebug(@"recv NOTIFICATION_DATA_PARSING, progress = %f", progress);
-        
-        [self setProgress:progress];
-    }];
+//    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+//       
+//        NSDictionary* userInfo = [note userInfo];
+//        CGFloat progress = [[userInfo objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+//        PPDebug(@"recv NOTIFICATION_DATA_PARSING, progress = %f", progress);
+//        
+//        [self setProgress:progress];
+//    }];
     
     [super viewDidAppear:animated];
     if (![self isCurrentTabLoading] || [self.feedScene isKindOfClass:[FeedSceneDetailGuessResult class]]) {
@@ -686,46 +686,36 @@ typedef enum{
     __block ShowFeedController * cp = self;
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
-        [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];        
-        [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
-        [cp.commentHeader setSelectedType:CommentTypeGuess];
-        [cp hideActivity];
+                
+        [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+            float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+            NSString* progressText = @"";
+            if (progress == 1.0f){
+                progress = 0.99f;
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+            }
+            else{
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+            }
+            [self showProgressViewWithMessage:progressText progress:progress];
+        }];
+        
+        [self showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
+        dispatch_async(workingQueue, ^{
+            if (cp.feed.drawData == nil) {
+                [cp.feed parseDrawData];
+                cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{        
+                [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];
+                [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
+                [cp.commentHeader setSelectedType:CommentTypeGuess];
+                [cp hideActivity];
+            });
+        });
     }];
 }
-
-//- (void)performLoadOpus:(SEL)selector
-//{
-//    MyPaint* currentPaint = _selectedPaint;
-//    
-//    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
-//        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
-//        NSString* progressText = @"";
-//        if (progress == 1.0f){
-//            progress = 0.99f;
-//            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
-//        }
-//        else{
-//            progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
-//        }
-//        [self showProgressViewWithMessage:progressText progress:progress];
-//    }];
-//    
-//    dispatch_async(workingQueue, ^{
-//        
-//        [currentPaint drawActionList];
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            
-//            [self performSelector:selector];
-//            
-//            [self hideActivity];
-//            [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];
-//            
-//            // clear draw action list
-//            currentPaint.drawActionList = nil;
-//        });
-//    });
-//}
 
 - (void)performReplay
 {
@@ -751,6 +741,7 @@ typedef enum{
         
         [[self.footerView buttonWithType:FooterTypeReplay] setUserInteractionEnabled:YES];
         
+        [self showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
         dispatch_async(workingQueue, ^{
             if (cp.feed.drawData == nil) {
                 [cp.feed parseDrawData];
