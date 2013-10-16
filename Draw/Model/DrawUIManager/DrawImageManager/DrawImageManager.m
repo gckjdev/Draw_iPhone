@@ -164,6 +164,12 @@ static DrawImageManager * _staticDrawImageManager;
     return [UIImage imageNamed:imageName];
 }
 
+- (UIImage*)drawHomePainter
+{
+    NSString *imageName = [self fixImageName:@"draw_home_painter"];
+    return [UIImage imageNamed:imageName];
+}
+
 - (UIImage *)drawHomeBG
 {
     return [self stretchableImageWithImageName:@"draw_home_bg"

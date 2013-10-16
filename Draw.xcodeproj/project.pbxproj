@@ -6465,6 +6465,10 @@
 		EA7100D117D197DA00451A38 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100CB17D197DA00451A38 /* MLNavigationController.m */; };
 		EA7100D217D197DA00451A38 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100CB17D197DA00451A38 /* MLNavigationController.m */; };
 		EA7100D317D197DA00451A38 /* MLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7100CB17D197DA00451A38 /* MLNavigationController.m */; };
+		EA7203B6180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
+		EA7203B7180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
+		EA7203B8180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
+		EA7203B9180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */; };
 		EA72B4C1162026480022D82D /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C0162026480022D82D /* UserAnnotation.m */; };
 		EA72B4C3162028260022D82D /* UserLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA72B4C2162028260022D82D /* UserLocationController.m */; };
 		EA8500DC1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
@@ -9418,6 +9422,7 @@
 		EA7100C917D197DA00451A38 /* leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftside_shadow_bg@2x.png"; sourceTree = "<group>"; };
 		EA7100CA17D197DA00451A38 /* MLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLNavigationController.h; sourceTree = "<group>"; };
 		EA7100CB17D197DA00451A38 /* MLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLNavigationController.m; sourceTree = "<group>"; };
+		EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_painter@2x.png"; sourceTree = "<group>"; };
 		EA72B4BF162026480022D82D /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
 		EA72B4C0162026480022D82D /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
@@ -16177,6 +16182,7 @@
 				EA8EF61C17E55D3B003F1AF8 /* draw_home_more@2x.png */,
 				EA8EF61D17E55D3B003F1AF8 /* draw_home_online_guess@2x.png */,
 				EA8EF61E17E55D3B003F1AF8 /* draw_home_top@2x.png */,
+				EA7203B5180E9ABD00F0F1C2 /* draw_home_painter@2x.png */,
 				EA8EF61F17E55D3B003F1AF8 /* draw_home_user_photo@2x.png */,
 			);
 			path = Main;
@@ -17269,6 +17275,7 @@
 				EA0C5556180BF0AD008069C1 /* female@2x.png in Resources */,
 				EA0C555A180BF0AD008069C1 /* man@2x.png in Resources */,
 				A4326DB6180D449500D50F0A /* VoiceTypeSelectView.xib in Resources */,
+				EA7203B8180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18136,6 +18143,7 @@
 				EA0C5555180BF0AD008069C1 /* female@2x.png in Resources */,
 				EA0C5559180BF0AD008069C1 /* man@2x.png in Resources */,
 				A4326DB5180D449500D50F0A /* VoiceTypeSelectView.xib in Resources */,
+				EA7203B7180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18986,6 +18994,7 @@
 				EA0C5558180BF0AD008069C1 /* man@2x.png in Resources */,
 				A4326DB4180D449500D50F0A /* VoiceTypeSelectView.xib in Resources */,
 				A4A531BC180E39E700DE36E5 /* DrawDefault-568h@2x.png in Resources */,
+				EA7203B6180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19792,6 +19801,7 @@
 				EA0C554D180BECEB008069C1 /* PainterController.xib in Resources */,
 				EA0C5557180BF0AD008069C1 /* female@2x.png in Resources */,
 				EA0C555B180BF0AD008069C1 /* man@2x.png in Resources */,
+				EA7203B9180E9ABD00F0F1C2 /* draw_home_painter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
