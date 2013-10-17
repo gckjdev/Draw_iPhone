@@ -9,17 +9,21 @@
 #import <Foundation/Foundation.h>
 
 @class Opus;
-@class SingOpus;
 @class PBOpus;
-@class PBSong;
 @class APLevelDB;
+
+
+/*
+ Do not use this class directly, use it's subclass instead.
+ */
 
 @interface OpusManager : NSObject
 
-@property (nonatomic, retain) NSString* dbName;
-@property (nonatomic, retain) APLevelDB* db;
+- (id)initWihtDbName:(NSString *)dbName;
 
-- (id)initWithClass:(Class)class dbName:(NSString*)dbName;
+
+// left for subclass to implementation
+- (Class)opusClass;
 
 // 获取单个作品
 - (Opus*)opusWithOpusId:(NSString *)opusId;
@@ -42,12 +46,10 @@
 // 获得待恢复的草稿总数
 - (int)recoveryOpusCount;
 
-// 创建唱歌草稿
-- (SingOpus*)createDraftSingOpus:(PBSong*)song;
-- (SingOpus*)createDraftSingOpusWithSelfDefineName:(NSString*)name;
+// 创建作品草稿
+- (Opus*)createDraftWithName:(NSString*)name;
+
 
 + (PBOpus *)createTestOpus;
-
-
 
 @end

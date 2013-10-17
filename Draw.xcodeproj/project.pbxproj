@@ -51,6 +51,7 @@
 		A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A40B59B6180FC9C500F68A81 /* SingOpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B59B5180FC9C500F68A81 /* SingOpusManager.m */; };
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
 		A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE81F170043A9003B8FFC /* ReflectionView.m */; };
 		A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
@@ -1447,8 +1448,6 @@
 		A4B78A58179F7A2E0008E21B /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AC179E2F120008E21B /* GuessModesController.xib */; };
 		A4B78A59179F7A700008E21B /* DrawOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D568175EE027007ED7E4 /* DrawOpus.m */; };
 		A4B78A5A179F7A790008E21B /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
-		A4B78A5B179F7C350008E21B /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
-		A4B78A5C179F7C360008E21B /* SingOpus.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56E175EE027007ED7E4 /* SingOpus.m */; };
 		A4B78A5D179F7C570008E21B /* GuessModesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789AB179E2F120008E21B /* GuessModesController.m */; };
 		A4B78A5E179F7C570008E21B /* GuessModesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B789AC179E2F120008E21B /* GuessModesController.xib */; };
 		A4B78A5F179F7C5E0008E21B /* GuessSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B789AE179E2F120008E21B /* GuessSelectController.m */; };
@@ -6688,6 +6687,8 @@
 		A40B599E180E6AB800F68A81 /* ImagePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayer.h; sourceTree = "<group>"; };
 		A40B599F180E6AB800F68A81 /* ImagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayer.m; sourceTree = "<group>"; };
 		A40B59A8180E6F3800F68A81 /* SingletonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonMacros.h; sourceTree = "<group>"; };
+		A40B59B4180FC9C500F68A81 /* SingOpusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingOpusManager.h; sourceTree = "<group>"; };
+		A40B59B5180FC9C500F68A81 /* SingOpusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingOpusManager.m; sourceTree = "<group>"; };
 		A40D71DB16553575000CC598 /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
 		A40D71DC16553575000CC598 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
 		A40EE81E170043A9003B8FFC /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
@@ -10122,6 +10123,8 @@
 				A4DC4EA3175C44EA00CB5841 /* SingImageManager.m */,
 				A46918AD174F52020000FD39 /* SongManager.h */,
 				A46918AE174F52020000FD39 /* SongManager.m */,
+				A40B59B4180FC9C500F68A81 /* SingOpusManager.h */,
+				A40B59B5180FC9C500F68A81 /* SingOpusManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -20604,6 +20607,7 @@
 				EA0C5548180BECEB008069C1 /* PainterController.m in Sources */,
 				A4326DAE180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
 				A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */,
+				A40B59B6180FC9C500F68A81 /* SingOpusManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21279,7 +21283,6 @@
 				A4B78A57179F7A2E0008E21B /* GuessModesController.m in Sources */,
 				A4B78A59179F7A700008E21B /* DrawOpus.m in Sources */,
 				A4B78A5A179F7A790008E21B /* PBOpus+Extend.m in Sources */,
-				A4B78A5C179F7C360008E21B /* SingOpus.m in Sources */,
 				A4B78A5F179F7C5E0008E21B /* GuessSelectController.m in Sources */,
 				A4B78A63179F7C660008E21B /* DrawGuessController.m in Sources */,
 				A4B78A67179F7C6D0008E21B /* CommonGuessController.m in Sources */,
@@ -22047,7 +22050,6 @@
 				A4B789B4179E36C20008E21B /* WordInputView.m in Sources */,
 				CA51834B179F79570033AA95 /* GetNewNumberViewController.m in Sources */,
 				CA518355179F79A80033AA95 /* UserNumberService.m in Sources */,
-				A4B78A5B179F7C350008E21B /* SingOpus.m in Sources */,
 				A4B78A6B179FA6F10008E21B /* GuessRankListController.m in Sources */,
 				CA518380179FB6340033AA95 /* ShakeNumberController.m in Sources */,
 				A4B78A8617A046520008E21B /* PageScrollViewFactory.m in Sources */,

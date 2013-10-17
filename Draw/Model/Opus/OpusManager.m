@@ -7,23 +7,17 @@
 //
 
 #import "OpusManager.h"
-#import "SingOpus.h"
-#import "DrawOpus.h"
 #import "UserManager.h"
-#import "AskPs.h"
 #import "StringUtil.h"
 #import "Opus.h"
-#import "SingOpus.h"
 #import "FileUtil.h"
 #import "LevelDBManager.h"
-
-//static OpusManager* globalSingDraftOpusManager;
-//static OpusManager* globalDrawOpusManager;
-//static OpusManager* globalAskPsManager;
 
 @interface OpusManager()
 @property (assign, nonatomic) Class aClass;
 @property (assign, nonatomic) UserManager* userManager;
+@property (nonatomic, retain) NSString* dbName;
+@property (nonatomic, retain) APLevelDB* db;
 
 @end
 
@@ -36,9 +30,9 @@
     [super dealloc];
 }
 
-- (id)initWithClass:(Class)class dbName:(NSString*)dbName{
+- (id)initWihtDbName:(NSString *)dbName{
     if (self = [super init]) {
-        self.aClass = class;
+        self.aClass = [self opusClass];
         self.dbName = dbName;
         self.userManager = [UserManager defaultManager];
         
@@ -48,6 +42,12 @@
     }
     
     return self;
+}
+
+// left for subclass to implementation
+- (Class)opusClass{
+    
+    return NULL;
 }
 
 - (Opus*)opusWithOpusId:(NSString *)opusId{
@@ -166,48 +166,6 @@
     
     [opus setAuthor:[userBuilder build]];
     [userBuilder release];
-}
-
-- (SingOpus*)createDraftSingOpus:(PBSong*)song
-{
-    SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
-    
-    // set basic info
-    [self setDraftOpusId:singOpus extension:SING_FILE_EXTENSION];
-    [self setCommonOpusInfo:singOpus];
-
-    // set type and category
-    [singOpus setType:PBOpusTypeSing];
-    [singOpus setCategory:PBOpusCategoryTypeSingCategory];
-    [singOpus setName:[song name]];
-    
-    // init song info
-    [singOpus setSong:song];
-    [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
-    [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
-    
-    return singOpus;
-}
-
-- (SingOpus*)createDraftSingOpusWithSelfDefineName:(NSString*)name{
-    
-    SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
-    
-    // set basic info
-    [self setDraftOpusId:singOpus extension:SING_FILE_EXTENSION];
-    [self setCommonOpusInfo:singOpus];
-    
-    // set type and category
-    [singOpus setType:PBOpusTypeSing];
-    [singOpus setCategory:PBOpusCategoryTypeSingCategory];
-    [singOpus setName:name];
-
-    // init song info
-    [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
-    [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
-    [singOpus setLocalImageDataUrl:SING_IMAGE_EXTENSION];
-    
-    return singOpus;
 }
 
 - (NSArray*)reverseSubArray:(NSArray*)array offset:(int)offset limit:(int)limit
@@ -390,5 +348,10 @@
     }
 }
 
+- (Opus*)createDraftWithName:(NSString*)name{
+    
+    PPDebug(@"<%s> is not Implemented in sub-class", __FUNCTION__);
+    return nil;
+}
 
 @end
