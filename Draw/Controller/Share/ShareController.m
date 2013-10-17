@@ -386,6 +386,10 @@ typedef enum{
 
 - (void)performReplay
 {
+    [self performLoadOpus:@selector(gotoReplayView)];
+    return;
+    
+    
     MyPaint* currentPaint = _selectedPaint;
 
     
@@ -404,8 +408,82 @@ typedef enum{
     [self hideActivity];
 }
 
+- (void)gotoReplayView
+{    
+    MyPaint* currentPaint = _selectedPaint;
+    
+    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    
+    ReplayObject *obj = [ReplayObject obj];
+    obj.actionList = [currentPaint drawActionList];
+    obj.isNewVersion = isNewVersion;
+    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
+    obj.layers = currentPaint.layers;
+    obj.canvasSize = [currentPaint canvasSize];
+    
+    DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
+    [player showInController:self];
+}
+
+- (void)gotoEditConroller
+{
+    MyPaint* currentPaint = _selectedPaint;    
+    
+    [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
+    
+    OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
+    od.startController = self;
+    [self.navigationController pushViewController:od animated:YES];
+    [od release];
+    
+//    [self hideActivity];
+//    [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];
+    
+    // clear draw action list
+//    currentPaint.drawActionList = nil;    
+}
+
+- (void)performLoadOpus:(SEL)selector
+{
+    MyPaint* currentPaint = _selectedPaint;
+    
+    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+        float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+        //        PPDebug(@"handle data parsing notification, progress = %f", progress);
+        NSString* progressText = @"";
+        if (progress == 1.0f){
+            progress = 0.99f;
+            progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+        }
+        else{
+            progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+        }
+        [self showProgressViewWithMessage:progressText progress:progress];
+    }];
+    
+    dispatch_async(workingQueue, ^{
+        
+        [currentPaint drawActionList];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self performSelector:selector];
+            
+            [self hideActivity];
+            [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];
+            
+            // clear draw action list
+            currentPaint.drawActionList = nil;
+        });
+    });
+}
+
 - (void)performEdit
 {
+    [self performLoadOpus:@selector(gotoEditConroller)];
+    return;
+    
+    
     MyPaint* currentPaint = _selectedPaint;
     
     [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
@@ -417,7 +495,7 @@ typedef enum{
             progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
         }
         else{
-            progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];            
+            progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];            
         }
         [self showProgressViewWithMessage:progressText progress:progress];
     }];
@@ -427,13 +505,15 @@ typedef enum{
         [currentPaint drawActionList];
         
         dispatch_async(dispatch_get_main_queue(), ^{
+
+            [self gotoEditConroller];
             
-            [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
-            
-            OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
-            od.startController = self;
-            [self.navigationController pushViewController:od animated:YES];
-            [od release];
+//            [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
+//            
+//            OfflineDrawViewController *od = [[OfflineDrawViewController alloc] initWithDraft:currentPaint];
+//            od.startController = self;
+//            [self.navigationController pushViewController:od animated:YES];
+//            [od release];
 
             [self hideActivity];
             [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];

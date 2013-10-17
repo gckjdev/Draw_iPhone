@@ -108,16 +108,22 @@ typedef enum{
     [super dealloc];
 }
 
-- (id)initWithFeedId:(NSString *)feedId{
-    
-    if (self = [super init]) {
-        self.feedId = feedId;
-//        self.useItemScene =
-//        self.feedScene = 
-    }
-    
-    return self;
++ (void) enterWithFeedId:(NSString *)feedId
+          fromController:(PPViewController *)controller
+{
+    [controller showActivityWithText:NSLS(@"kLoading")];
+    [[FeedService defaultService] getFeedByFeedId:feedId completed:^(int resultCode, DrawFeed *feed, BOOL fromCache) {
+        [controller hideActivity];
+        if (resultCode == 0 && feed) {
+            ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:feed];
+            [controller.navigationController pushViewController:sf animated:YES];
+            [sf release];
+        }else{
+            POSTMSG(NSLS(@"kLoadFail"));
+        }
+    }];    
 }
+
 
 - (id)initWithFeed:(DrawFeed *)feed
 {
@@ -481,14 +487,14 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
-       
-        NSDictionary* userInfo = [note userInfo];
-        CGFloat progress = [[userInfo objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
-        PPDebug(@"recv NOTIFICATION_DATA_PARSING, progress = %f", progress);
-        
-        [self setProgress:progress];
-    }];
+//    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+//       
+//        NSDictionary* userInfo = [note userInfo];
+//        CGFloat progress = [[userInfo objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+//        PPDebug(@"recv NOTIFICATION_DATA_PARSING, progress = %f", progress);
+//        
+//        [self setProgress:progress];
+//    }];
     
     [super viewDidAppear:animated];
     if (![self isCurrentTabLoading] || [self.feedScene isKindOfClass:[FeedSceneDetailGuessResult class]]) {
@@ -643,7 +649,7 @@ typedef enum{
     }
     
 //    [self.progressView setLabelText:progressText];
-//    
+//
 //    [self.progressView setProgress:progress];
     [self showProgressViewWithMessage:progressText progress:progress];
     
@@ -686,10 +692,35 @@ typedef enum{
     __block ShowFeedController * cp = self;
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
-        [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];        
-        [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
-        [cp.commentHeader setSelectedType:CommentTypeGuess];
-        [cp hideActivity];
+                
+        [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+            float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+            NSString* progressText = @"";
+            if (progress == 1.0f){
+                progress = 0.99f;
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+            }
+            else{
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+            }
+            [self showProgressViewWithMessage:progressText progress:progress];
+        }];
+        
+        [self showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
+        dispatch_async(workingQueue, ^{
+            if (cp.feed.drawData == nil) {
+                [cp.feed parseDrawData];
+                cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{        
+                [cp unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+                [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];
+                [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
+                [cp.commentHeader setSelectedType:CommentTypeGuess];
+                [cp hideActivity];
+            });
+        });
     }];
 }
 
@@ -702,24 +733,48 @@ typedef enum{
         
         _isDownloadingData = NO;
         
+        [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
+            float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
+            NSString* progressText = @"";
+            if (progress == 1.0f){
+                progress = 0.99f;
+                progressText = [NSString stringWithFormat:NSLS(@"kDisplayProgress"), progress*100];
+            }
+            else{
+                progressText = [NSString stringWithFormat:NSLS(@"kParsingProgress"), progress*100];
+            }
+            [self showProgressViewWithMessage:progressText progress:progress];
+        }];
+        
         [[self.footerView buttonWithType:FooterTypeReplay] setUserInteractionEnabled:YES];
-        if (cp.feed.drawData == nil) {
-            [cp.feed parseDrawData];
-            cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
-        }
         
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        
-        ReplayObject *obj = [ReplayObject obj];
-        obj.actionList = cp.feed.drawData.drawActionList;
-        obj.isNewVersion = [cp.feed.drawData isNewVersion];
-        obj.canvasSize = cp.feed.drawData.canvasSize;
-        obj.layers = cp.feed.drawData.layers;
-    
-        DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
-        [player showInController:cp];
-        
-        [pool drain];
+        [self showProgressViewWithMessage:NSLS(@"kParsingProgress") progress:0.01f];
+        dispatch_async(workingQueue, ^{
+            if (cp.feed.drawData == nil) {
+                [cp.feed parseDrawData];
+                cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
+            }
+                
+            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                [self unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+
+                NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+                
+                ReplayObject *obj = [ReplayObject obj];
+                obj.actionList = cp.feed.drawData.drawActionList;
+                obj.isNewVersion = [cp.feed.drawData isNewVersion];
+                obj.canvasSize = cp.feed.drawData.canvasSize;
+                obj.layers = cp.feed.drawData.layers;
+                
+                DrawPlayer *player = [DrawPlayer playerWithReplayObj:obj];
+                [player showInController:cp];
+                
+                [pool drain];
+                
+                [self hideActivity];
+            });
+        });
     }];
     
 }
@@ -906,49 +961,12 @@ typedef enum{
     
 }
 
-- (void)loadFeed
+- (void)baseInit
 {
-    if (self.feed == nil) {
-        
-        [self showActivityWithText:NSLS(@"kLoading")];
-        
-        __block typeof (self)bself = self;
-        [[FeedService defaultService] getFeedByFeedId:bself.feedId completed:^(int resultCode, DrawFeed *feed, BOOL fromCache) {
-            
-            [bself hideActivity];
-            if (resultCode == 0) {
-                if (feed) {
-                    bself.feed = feed;
-                    bself.useItemScene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed];
-                    bself.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
-                    [bself loadWhenGetFeed];
-                }else{
-                    [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
-                }
-            }else{
-                [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kLoadFail") delayTime:1.5 isHappy:NO];
-            }
-        }];
-        
-    }else{
-        [self loadWhenGetFeed];
-    }
-
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self loadFeed];
-}
-
-- (void)loadWhenGetFeed{
-    
-    self.contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
-    
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setRightButtonAsRefresh];
@@ -958,8 +976,28 @@ typedef enum{
     
     [self initFooterView];
     [self initTabButtons];
-    [self reloadView];
     [self setShowTipsDisable:YES];
+    
+    self.contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
+    
+    if (!self.useItemScene) {
+        UseSceneType type = UseSceneTypeShowFeedDetail;
+        if (_feed.contestId) {
+            type = [_contest isRunning] ? UseSceneTypeDrawMatch : UseSceneTypeMatchRank;
+        }
+        self.useItemScene = [UseItemScene createSceneByType:type feed:_feed];
+    }
+    
+    if (!self.feedScene) {
+        self.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
+    }
+    
+    [self reloadView];
+}
+
+- (void)viewDidLoad
+{
+    [self baseInit];
 }
 
 - (void)showOpusImageBrower{

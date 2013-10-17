@@ -33,6 +33,7 @@
 - (UIImage *)drawHomeMe;
 - (UIImage *)drawHomeFriend;
 - (UIImage*)userPhoto;
+- (UIImage*)drawHomePainter;
 
 //
 - (UIImage *)drawHomeBG;

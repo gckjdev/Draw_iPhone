@@ -116,39 +116,39 @@
 
 - (void)parseDrawData
 {
-
-
-    if (self.drawData == nil && self.pbDrawData != nil) {
-        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        
-        PPDebug(@"<parseDrawData> start to parse DrawData......");
-        int start = time(0);
-        
-        // refactor by using C lib        
-        Game__PBDraw* pbDrawC = NULL;    
-        int dataLen = [self.pbDrawData length];
-        if (dataLen > 0){
-            uint8_t* buf = malloc(dataLen);
-            if (buf != NULL){
-                
-                // TODO PBDRAWC to be optimized since this will duplicate data , double size of memory
-                [self.pbDrawData getBytes:buf length:dataLen];
-                pbDrawC = game__pbdraw__unpack(NULL, dataLen, buf);
-                free(buf);
-                
-                Draw* drawData = [[Draw alloc] initWithPBDrawC:pbDrawC];
-                self.drawData = drawData;
-                
-                game__pbdraw__free_unpacked(pbDrawC, NULL);
-                [drawData release];
+    @synchronized(self){ // add lock here to make it as safe call        
+        if (self.drawData == nil && self.pbDrawData != nil) {
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            
+            PPDebug(@"<parseDrawData> start to parse DrawData......");
+            int start = time(0);
+            
+            // refactor by using C lib        
+            Game__PBDraw* pbDrawC = NULL;    
+            int dataLen = [self.pbDrawData length];
+            if (dataLen > 0){
+                uint8_t* buf = malloc(dataLen);
+                if (buf != NULL){
+                    
+                    // TODO PBDRAWC to be optimized since this will duplicate data , double size of memory
+                    [self.pbDrawData getBytes:buf length:dataLen];
+                    pbDrawC = game__pbdraw__unpack(NULL, dataLen, buf);
+                    free(buf);
+                    
+                    Draw* drawData = [[Draw alloc] initWithPBDrawC:pbDrawC];
+                    self.drawData = drawData;
+                    
+                    game__pbdraw__free_unpacked(pbDrawC, NULL);
+                    [drawData release];
+                }
             }
-        }
 
-        
-        int end = time(0);
-        PPDebug(@"<parseDrawData> parse draw data complete, take %d seconds", end - start);
-        
-        [pool drain];
+            
+            int end = time(0);
+            PPDebug(@"<parseDrawData> parse draw data complete, take %d seconds", end - start);
+            
+            [pool drain];
+        }
     }
 
 }

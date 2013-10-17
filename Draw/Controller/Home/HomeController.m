@@ -734,16 +734,16 @@
             [self.navigationController pushViewController:vc animated:YES];
         } break;
         case HomeMenuTypeDrawPhoto: {
-            
-#ifdef DEBUG
+            GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
+            [self.navigationController pushViewController:gallery animated:YES];
+        } break;
+        case HomeMenuTypeDrawPainter:{
             PainterController *pc = [[PainterController alloc] init];
             [self.navigationController pushViewController:pc animated:YES];
             [pc release];
             break;
-#endif
-            GalleryController* gallery = [[[GalleryController alloc] init] autorelease];
-            [self.navigationController pushViewController:gallery animated:YES];
-        } break;
+        }
+        
         default:
             break;
     }

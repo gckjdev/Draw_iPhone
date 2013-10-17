@@ -106,6 +106,9 @@
         case HomeMenuTypeDrawPhoto: {
             return NSLS(@"kGallery");
         }
+        case HomeMenuTypeDrawPainter: {
+            return NSLS(@"kPainter");
+        }
             
         //ZJH
         case HomeMenuTypeZJHHelp:{
@@ -212,6 +215,10 @@
         }
         case HomeMenuTypeDrawPhoto: {
             return [imageManager userPhoto];
+        }
+            
+        case HomeMenuTypeDrawPainter:{
+            return [imageManager drawHomePainter];
         }
             //draw bottom menu
         case HomeMenuTypeDrawHome :{
@@ -464,31 +471,15 @@ int *getDrawMainMenuTypeListHasNewContest()
 
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,        
-        HomeMenuTypeDrawPhoto,
+        HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawPhoto,
         
         HomeMenuTypeEnd
     };
     return list;
 }
 
-int *getDrawMainMenuTypeListNotHasNewContest()
-{
-    int static list[] = {
-        HomeMenuTypeDrawDraw,
-        HomeMenuTypeDrawGuess,
-        HomeMenuTypeDrawGame,
-        HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawFreeCoins,
-        HomeMenuTypeDrawBBS,
-        HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawBigShop,
-        HomeMenuTypeDrawMore,
-        HomeMenuTypeDrawPhoto,
-        HomeMenuTypeEnd
-    };
-    return list;
-}
 
 int *getDrawMainMenuTypeListWithoutFreeCoins()
 {
@@ -498,11 +489,13 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawBBS,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawGuess,        
+        HomeMenuTypeDrawGuess,
+        
         HomeMenuTypeDrawBigShop,
         HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawPhoto,
-        
+
         HomeMenuTypeEnd
     };
     return list;
@@ -512,12 +505,6 @@ int *getDrawMainMenuTypeList()
 {
     if ([ConfigManager freeCoinsEnabled]) {
         return getDrawMainMenuTypeListHasNewContest();
-        /*
-        if ([[StatisticManager defaultManager] newContestCount] > 0) {
-            return getDrawMainMenuTypeListHasNewContest();
-        } else {
-            return getDrawMainMenuTypeListNotHasNewContest();
-        }*/
     } else {
         return getDrawMainMenuTypeListWithoutFreeCoins();
     }
