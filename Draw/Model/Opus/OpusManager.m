@@ -201,10 +201,11 @@
     [singOpus setType:PBOpusTypeSing];
     [singOpus setCategory:PBOpusCategoryTypeSingCategory];
     [singOpus setName:name];
-    
+
     // init song info
     [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
     [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
+    [singOpus setLocalImageDataUrl:SING_IMAGE_EXTENSION];
     
     return singOpus;
 }

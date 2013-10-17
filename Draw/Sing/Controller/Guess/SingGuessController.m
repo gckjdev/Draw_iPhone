@@ -30,12 +30,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    self.titleLabel.text = NSLS(@"kGuessing");
-//    self.wordInputView.answerImage = [UIImage imageNamed:@"candidate_bg@2x.png"];
-//    self.wordInputView.candidateImage = [UIImage imageNamed:@"candidate_bg@2x.png"];
-//    self.wordInputView.answerImage = IMAGE_FROM_COLOR(COLOR_GRAY);
-//    self.wordInputView.candidateImage = IMAGE_FROM_COLOR(COLOR_ORANGE);
-    
     NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
     NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
     [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];

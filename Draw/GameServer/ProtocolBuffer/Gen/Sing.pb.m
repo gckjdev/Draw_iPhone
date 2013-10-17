@@ -23,10 +23,10 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value) {
   switch (value) {
     case PBVoiceTypeVoiceTypeOrigin:
     case PBVoiceTypeVoiceTypeTomCat:
-    case PBVoiceTypeVoiceTypeDuck:
     case PBVoiceTypeVoiceTypeMale:
-    case PBVoiceTypeVoiceTypeChild:
     case PBVoiceTypeVoiceTypeFemale:
+    case PBVoiceTypeVoiceTypeDuck:
+    case PBVoiceTypeVoiceTypeChild:
       return YES;
     default:
       return NO;

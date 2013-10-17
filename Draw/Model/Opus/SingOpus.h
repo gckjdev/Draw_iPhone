@@ -9,6 +9,7 @@
 #import "Opus.h"
 
 #define SING_FILE_EXTENSION         @"m4a"
+#define SING_IMAGE_EXTENSION        @"png"
 
 @interface SingOpus : Opus
 
@@ -17,5 +18,6 @@
 
 - (NSURL*)localNativeDataURL;
 - (void)setLocalNativeDataUrl:(NSString*)extension;
+- (void)setLocalImageDataUrl:(NSString*)extension;
 
 @end

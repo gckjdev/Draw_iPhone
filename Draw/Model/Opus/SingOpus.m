@@ -13,6 +13,7 @@
 #import "CommonMessageCenter.h"
 #import "ConfigManager.h"
 #import "GameSNSService.h"
+#import "SingController.h"
 
 @interface SingOpus () <MFMailComposeViewControllerDelegate>
 
@@ -98,6 +99,14 @@
     [self.pbOpusBuilder setSing:[builder build]];
 }
 
+- (void)setLocalImageDataUrl:(NSString*)extension
+{
+    NSString* path = [NSString stringWithFormat:@"%@/%@.%@", [[self class] localDataDir], [self opusKey], extension];
+    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+    
+    [self setImage:finalPath];
+}
+
 - (NSString*)dataType
 {
     return @"m4a";
@@ -166,6 +175,8 @@ enum {
 - (void)enterEditFromController:(UIViewController *)controller
 {
     PPDebug(@"<enterEditFromController> no impletement!");
+    SingController *vc = [[[SingController alloc] initWithOpus:self] autorelease];
+    [controller.navigationController pushViewController:vc animated:YES];
 }
 
 

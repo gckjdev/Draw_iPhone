@@ -69,14 +69,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate
 
-{    
-//    if ([opusData length] == 0 || draftOpus == nil){
-//        if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]){
-//            [delegate didSubmitOpus:ERROR_CLIENT_REQUEST_NULL opus:nil];
-//        }
-//        return;
-//    }
-    
+{
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],

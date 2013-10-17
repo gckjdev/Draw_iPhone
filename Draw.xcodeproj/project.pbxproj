@@ -48,6 +48,9 @@
 		A404C3E9176AC74D00668676 /* SongTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A404C3E5176AC74D00668676 /* SongTagCell.m */; };
 		A404C3EA176AC74D00668676 /* SongTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A404C3E6176AC74D00668676 /* SongTagCell.xib */; };
 		A404C3F2176AC78A00668676 /* SongCategoryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A404C3F1176AC78A00668676 /* SongCategoryManager.m */; };
+		A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
 		A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE81F170043A9003B8FFC /* ReflectionView.m */; };
 		A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
@@ -6678,6 +6681,9 @@
 		A404C3E6176AC74D00668676 /* SongTagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongTagCell.xib; sourceTree = "<group>"; };
 		A404C3F0176AC78A00668676 /* SongCategoryManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongCategoryManager.h; sourceTree = "<group>"; };
 		A404C3F1176AC78A00668676 /* SongCategoryManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongCategoryManager.m; sourceTree = "<group>"; };
+		A40B599E180E6AB800F68A81 /* ImagePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayer.h; sourceTree = "<group>"; };
+		A40B599F180E6AB800F68A81 /* ImagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayer.m; sourceTree = "<group>"; };
+		A40B59A8180E6F3800F68A81 /* SingletonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonMacros.h; sourceTree = "<group>"; };
 		A40D71DB16553575000CC598 /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
 		A40D71DC16553575000CC598 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
 		A40EE81E170043A9003B8FFC /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
@@ -12731,6 +12737,8 @@
 		CA103D421509A56100F60C03 /* Core-Utils-Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A40B599E180E6AB800F68A81 /* ImagePlayer.h */,
+				A40B599F180E6AB800F68A81 /* ImagePlayer.m */,
 				EA7100C817D197DA00451A38 /* MLNavigationController */,
 				CA103D431509A56100F60C03 /* PPViewController+NumPadReturn.h */,
 				CA103D441509A56100F60C03 /* PPViewController+NumPadReturn.m */,
@@ -12756,6 +12764,7 @@
 		CA103D4C1509A56100F60C03 /* Core-Utils-Misc */ = {
 			isa = PBXGroup;
 			children = (
+				A40B59A8180E6F3800F68A81 /* SingletonMacros.h */,
 				A467893817BC7761007C546A /* Label */,
 				A411753E177D986400D3FE23 /* UITextView */,
 				C2CBB18717745BE600F64956 /* Mail */,
@@ -20584,6 +20593,7 @@
 				EA0C553F180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				EA0C5548180BECEB008069C1 /* PainterController.m in Sources */,
 				A4326DAE180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
+				A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21341,6 +21351,7 @@
 				EA0C553E180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				EA0C5547180BECEB008069C1 /* PainterController.m in Sources */,
 				A4326DAD180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
+				A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22104,6 +22115,7 @@
 				EA0C553D180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				EA0C5546180BECEB008069C1 /* PainterController.m in Sources */,
 				A4326DAC180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
+				A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23045,8 +23057,8 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Sing;
-				PROVISIONING_PROFILE = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
+				PROVISIONING_PROFILE = "21E9C951-454A-4FE8-9DEF-851D1601E8CA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21E9C951-454A-4FE8-9DEF-851D1601E8CA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
