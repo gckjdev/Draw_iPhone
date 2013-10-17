@@ -708,6 +708,7 @@ typedef enum{
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{        
+                [cp unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
                 [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];
                 [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
                 [cp.commentHeader setSelectedType:CommentTypeGuess];
@@ -750,6 +751,8 @@ typedef enum{
                 
             dispatch_async(dispatch_get_main_queue(), ^{
                                 
+                [self unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
+
                 NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
                 
                 ReplayObject *obj = [ReplayObject obj];
