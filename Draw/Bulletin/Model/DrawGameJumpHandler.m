@@ -72,7 +72,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawGameJumpHandler)
         return [BBSPostDetailController enterFeedbackPostController:controller animated:YES];
     }
     else if ([func isEqualToString:FUNC_OPUS_DETAIL ignoreCapital:YES]){
-        jumpController = [[[ShowFeedController alloc] initWithFeedId:para] autorelease];
+        [ShowFeedController enterWithFeedId:para fromController:controller];
+        return nil;
     }
     else if ([func isEqualToString:FUNC_USER_DETAIL ignoreCapital:YES]){
         ViewUserDetail *detail = [ViewUserDetail viewUserDetailWithUserId:para avatar:nil nickName:nil];

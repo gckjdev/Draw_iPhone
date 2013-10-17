@@ -37,7 +37,6 @@
 
 @property(nonatomic, assign)NSArray *feedList;
 
-- (id)initWithFeedId:(NSString *)feedId;
 - (id)initWithFeed:(DrawFeed *)feed;
 - (id)initWithFeed:(DrawFeed *)feed
              scene:(UseItemScene*)scene;
@@ -46,7 +45,8 @@
          feedScene:(NSObject<ShowFeedSceneProtocol>*)feedScene;
 
 - (void)showOpusImageBrower;
-
++ (void)enterWithFeedId:(NSString *)feedId
+         fromController:(PPViewController *)controller;
 
 @property (nonatomic, retain) NSObject<ShowFeedSceneProtocol>* feedScene;
 

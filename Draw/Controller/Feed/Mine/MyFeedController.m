@@ -102,11 +102,7 @@ typedef enum{
 }
 - (void)enterOpusDetail:(CommentFeed *)feed
 {
-    ShowFeedController *vc = [[[ShowFeedController alloc] initWithFeedId:feed.opusId] autorelease];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-//    [self showActivityWithText:NSLS(@"kLoading")];
-//    [[FeedService defaultService]getFeedByFeedId:feed.opusId delegate:self];
+    [ShowFeedController enterWithFeedId:feed.opusId fromController:self];
 }
 - (void)replyComment:(CommentFeed *)feed
 {
