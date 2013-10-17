@@ -1197,7 +1197,7 @@
 - (void)showInputAlertViewWithSubject:(BOOL)hasSubject
 {
     InputAlertView *v = nil;
-    if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
+    if ([GameApp forceChineseOpus]) {
         BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
         
         ComposeInputDialogType type = 0;
