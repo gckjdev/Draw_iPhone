@@ -108,16 +108,22 @@ typedef enum{
     [super dealloc];
 }
 
-- (id)initWithFeedId:(NSString *)feedId{
-    
-    if (self = [super init]) {
-        self.feedId = feedId;
-//        self.useItemScene =
-//        self.feedScene = 
-    }
-    
-    return self;
++ (void) enterWithFeedId:(NSString *)feedId
+          fromController:(PPViewController *)controller
+{
+    [controller showActivityWithText:NSLS(@"kLoading")];
+    [[FeedService defaultService] getFeedByFeedId:feedId completed:^(int resultCode, DrawFeed *feed, BOOL fromCache) {
+        [controller hideActivity];
+        if (resultCode == 0 && feed) {
+            ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:feed];
+            [controller.navigationController pushViewController:sf animated:YES];
+            [sf release];
+        }else{
+            POSTMSG(NSLS(@"kLoadFail"));
+        }
+    }];    
 }
+
 
 - (id)initWithFeed:(DrawFeed *)feed
 {
@@ -955,49 +961,12 @@ typedef enum{
     
 }
 
-- (void)loadFeed
+- (void)baseInit
 {
-    if (self.feed == nil) {
-        
-        [self showActivityWithText:NSLS(@"kLoading")];
-        
-        __block typeof (self)bself = self;
-        [[FeedService defaultService] getFeedByFeedId:bself.feedId completed:^(int resultCode, DrawFeed *feed, BOOL fromCache) {
-            
-            [bself hideActivity];
-            if (resultCode == 0) {
-                if (feed) {
-                    bself.feed = feed;
-                    bself.useItemScene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed];
-                    bself.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
-                    [bself loadWhenGetFeed];
-                }else{
-                    [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kOpusDelete") delayTime:1.5 isHappy:NO];
-                }
-            }else{
-                [[CommonMessageCenter defaultCenter]postMessageWithText:NSLS(@"kLoadFail") delayTime:1.5 isHappy:NO];
-            }
-        }];
-        
-    }else{
-        [self loadWhenGetFeed];
-    }
-
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self loadFeed];
-}
-
-- (void)loadWhenGetFeed{
-    
-    self.contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
-    
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
+    
     [CommonTitleView createTitleView:self.view];
     CommonTitleView* titleView = [CommonTitleView titleView:self.view];
     [titleView setRightButtonAsRefresh];
@@ -1007,8 +976,28 @@ typedef enum{
     
     [self initFooterView];
     [self initTabButtons];
-    [self reloadView];
     [self setShowTipsDisable:YES];
+    
+    self.contest = [[ContestManager defaultManager] ongoingContestById:self.feed.contestId];
+    
+    if (!self.useItemScene) {
+        UseSceneType type = UseSceneTypeShowFeedDetail;
+        if (_feed.contestId) {
+            type = [_contest isRunning] ? UseSceneTypeDrawMatch : UseSceneTypeMatchRank;
+        }
+        self.useItemScene = [UseItemScene createSceneByType:type feed:_feed];
+    }
+    
+    if (!self.feedScene) {
+        self.feedScene = [[[FeedSceneFeedDetail alloc] init] autorelease];
+    }
+    
+    [self reloadView];
+}
+
+- (void)viewDidLoad
+{
+    [self baseInit];
 }
 
 - (void)showOpusImageBrower{

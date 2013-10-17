@@ -50,7 +50,7 @@
 - (BOOL)isAnounymous:(DrawFeed*)feed
 {
 #ifdef DEBUG
-//    return NO;
+    return NO;
 #endif
     
     NSString* contestId = [feed contestId];
