@@ -566,6 +566,11 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     
     [super viewDidLoad];
+
+    if ([self.word.text length] == 0) {
+        self.word = [Word cusWordWithText:NSLS(@"kDefaultDrawWord")];
+    }
+    
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
@@ -1197,7 +1202,7 @@
 - (void)showInputAlertViewWithSubject:(BOOL)hasSubject
 {
     InputAlertView *v = nil;
-    if ([GameApp forceChineseOpus] && [[UserManager defaultManager] getLanguageType] == ChineseType) {
+    if ([GameApp forceChineseOpus]) {
         BOOL hasSNS = ([LocaleUtils isChina] || [[UserManager defaultManager] hasBindQQWeibo] || [[UserManager defaultManager] hasBindSinaWeibo]);
         
         ComposeInputDialogType type = 0;

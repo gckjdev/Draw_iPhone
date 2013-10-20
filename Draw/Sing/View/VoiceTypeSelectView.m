@@ -28,12 +28,12 @@ AUTO_CREATE_VIEW_BY_XIB(VoiceTypeSelectView);
         }else if (button.tag == PBVoiceTypeVoiceTypeMale){
             [button setTitle:NSLS(@"kVoiceTypeMale") forState:UIControlStateNormal];
         }else if (button.tag == PBVoiceTypeVoiceTypeFemale){
-            [button setTitle:NSLS(@"kVoiceTypeMale") forState:UIControlStateNormal];
+            [button setTitle:NSLS(@"kVoiceTypeFemale") forState:UIControlStateNormal];
         }else{
             [button setTitle:NSLS(@"kUnkown") forState:UIControlStateNormal];
         }
         
-        [button addTarget:self action:@selector(clickVoiceTypeButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:v action:@selector(clickVoiceTypeButton:) forControlEvents:UIControlEventTouchUpInside];
     }];
     
     [v setVoiceType:voiceType];

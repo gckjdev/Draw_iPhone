@@ -15,11 +15,12 @@
 #import "UIImageExt.h"
 #import "SynthesizeSingleton.h"
 #import "PPGameNetworkRequest.h"
-#import "SingOpus.h"
+//#import "SingOpus.h"
 #import "StringUtil.h"
 #import "OpusDownloadService.h"
 #import "FileUtil.h"
 #import "DrawDataService.h"
+#import "Opus.h"
 
 #define SING_MY_OPUS_DB     @"sing_my_opus.db"
 #define SING_FAVORITE_DB    @"sing_favorite.db"
@@ -31,6 +32,9 @@
 
 @interface OpusService()
 
+//@property (nonatomic, retain) OpusManager* singDraftOpusManager;
+//@property (nonatomic, retain) OpusManager* singLocalFavoriteOpusManager;
+//@property (nonatomic, retain) OpusManager* singLocalMyOpusManager;
 
 @end
 
@@ -40,18 +44,21 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 
 - (void)dealloc
 {
-    [_singDraftOpusManager release];
-    [_singLocalFavoriteOpusManager release];
-    [_singLocalMyOpusManager release];
+//    [_singDraftOpusManager release];
+//    [_singLocalFavoriteOpusManager release];
+//    [_singLocalMyOpusManager release];
     [super dealloc];
 }
 
 - (id)init
 {
     self = [super init];
-    _singLocalMyOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class] dbName:SING_MY_OPUS_DB];
-    _singLocalFavoriteOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class] dbName:SING_FAVORITE_DB];
-    _singDraftOpusManager = [[OpusManager alloc] initWithClass:[SingOpus class] dbName:SING_DRAFT_DB];
+    
+//    Class class = NSClassFromString(@"SingOpus");
+    
+//    _singLocalMyOpusManager = [[OpusManager alloc] initWithClass:class dbName:SING_MY_OPUS_DB];
+//    _singLocalFavoriteOpusManager = [[OpusManager alloc] initWithClass:class dbName:SING_FAVORITE_DB];
+//    _singDraftOpusManager = [[OpusManager alloc] initWithClass:class dbName:SING_DRAFT_DB];
     return self;
 }
 
@@ -69,14 +76,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate
 
-{    
-//    if ([opusData length] == 0 || draftOpus == nil){
-//        if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]){
-//            [delegate didSubmitOpus:ERROR_CLIENT_REQUEST_NULL opus:nil];
-//        }
-//        return;
-//    }
-    
+{
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],

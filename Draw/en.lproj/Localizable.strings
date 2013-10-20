@@ -2055,6 +2055,8 @@
 "kUseGradientTitle" = "Warning";
 "kUseGradientMessage" = "Use gradient, the paints will be lost. Continue?";
 "kSubjectPlaceholder" = "Input subject...";
+"kSubject" = "Name";
+
 "kSubjectPlaceCannotBlank" = "Subject cannot be blank";
 
 "kVoiceTypeOrigin" = "Origin";

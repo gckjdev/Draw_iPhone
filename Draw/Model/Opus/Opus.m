@@ -102,6 +102,10 @@
     [_pbOpusBuilder setName:name];
 }
 
+- (void)setImage:(NSString *)image{
+    [_pbOpusBuilder setImage:image];
+}
+
 - (void)setDesc:(NSString *)desc{
     [_pbOpusBuilder setDesc:desc];
 }

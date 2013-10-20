@@ -25,6 +25,10 @@
 #import "NameAndDescEditView.h"
 #import "UILabel+Extend.h"
 #import "VoiceTypeSelectView.h"
+#import "ImagePlayer.h"
+#import "StorageManager.h"
+#import "UIImageExt.h"
+
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -67,10 +71,7 @@ enum{
     [_playImageView release];
     [_pauseImageView release];
     [_rerecordButton release];
-    [_addTimeButton release];
     [_saveButton release];
-    [_submitButton release];
-    [_opusMainView release];
     [_opusImageView release];
     [_opusDescLabel release];
     [super dealloc];
@@ -138,25 +139,28 @@ enum{
     [titleView setTitle:NSLS(@"kGuessing")];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    [titleView setRightButtonTitle:NSLS(@"kSubmit")];
+    [titleView setRightButtonSelector:@selector(clickSubmitButton:)];
     
-    NSURL *url = [NSURL URLWithString:_singOpus.pbOpus.image];
-    [self.opusImageView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg]];
+    
+    UIImage *image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.image];
+    if (image !=nil ) {
+        [self.opusImageView setImage:image];
+    }else{
+        [self.opusImageView setImage:[[ShareImageManager defaultManager] unloadBg]];
+    }
     
     [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
     
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
-    
         
     if (_isDraft) {
         [self prepareToPlay];
         [self setState:StateReadyPlay];
-
     }else{
         [self prepareToRecord];
         [self setState:StateReadyRecord];
     }
-    
-    [self showMainView];
 }
 
 - (BOOL)shouldAutorotate{
@@ -169,10 +173,7 @@ enum{
     [self setPlayImageView:nil];
     [self setPauseImageView:nil];
     [self setRerecordButton:nil];
-    [self setAddTimeButton:nil];
     [self setSaveButton:nil];
-    [self setSubmitButton:nil];
-    [self setOpusMainView:nil];
     [self setOpusImageView:nil];
     [self setOpusDescLabel:nil];
     [super viewDidUnload];
@@ -332,11 +333,8 @@ enum{
     self.pauseImageView.hidden = YES;
     
     self.rerecordButton.hidden = YES;
-    self.addTimeButton.hidden = NO;
     self.saveButton.hidden = YES;
-    self.submitButton.hidden = NO;
-    self.submitButton.enabled = NO;
-    
+       
     [self updateUITime:@(_recordLimitTime)];
 }
 
@@ -347,10 +345,7 @@ enum{
     self.pauseImageView.hidden = YES;
     
     self.rerecordButton.hidden = YES;
-    self.addTimeButton.hidden = YES;
     self.saveButton.hidden = YES;
-    self.submitButton.hidden = YES;
-    self.submitButton.enabled = YES;
     
     [self updateUITime:@(_recordLimitTime)];
 }
@@ -362,9 +357,7 @@ enum{
     self.pauseImageView.hidden = YES;
     
     self.rerecordButton.hidden = NO;
-    self.addTimeButton.hidden = NO;
     self.saveButton.hidden = NO;
-    self.submitButton.hidden = NO;
 }
 
 - (void)uiPlaying{
@@ -374,10 +367,7 @@ enum{
     self.pauseImageView.hidden = NO;
     
     self.rerecordButton.hidden = YES;
-    self.addTimeButton.hidden = YES;
     self.saveButton.hidden = YES;
-    self.submitButton.hidden = YES;
-    self.submitButton.enabled = YES;
 }
 
 - (void)updateUITime:(NSNumber *)time{
@@ -461,7 +451,13 @@ enum{
 }
 
 - (void)didImageSelected:(UIImage*)image{
-    self.image = image;    
+    
+    self.image = image;
+    self.opusImageView.image = image;
+    
+    NSData *data = [self.image data];
+    NSString *path = self.singOpus.pbOpus.image;
+    [data writeToFile:path atomically:YES];
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -533,21 +529,15 @@ enum{
 
 - (IBAction)clickReviewButton:(id)sender {
     
-    [self showReView];
+    
+    [[ImagePlayer defaultPlayer] playWithImage:self.image onViewController:self];
+}
+
+- (IBAction)clickLyricButton:(id)sender {
+    
     
 }
 
-- (IBAction)clickOpusImageButton:(id)sender {
-    [self showMainView];
-}
-
-- (void)showMainView{
-    self.opusMainView.hidden = NO;
-}
-
-- (void)showReView{
-    self.opusMainView.hidden = YES;
-}
 
 - (void)voiceChanger:(VoiceChanger *)voiceChanger didGetFileDuration:(double)fileDuration{
     _fileDuration = fileDuration + 0.5;

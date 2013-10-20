@@ -109,11 +109,16 @@ typedef enum{
 }
 
 + (void) enterWithFeedId:(NSString *)feedId
-          fromController:(PPViewController *)controller
+          fromController:(UIViewController *)controller
 {
-    [controller showActivityWithText:NSLS(@"kLoading")];
+    BOOL isPPViewController = [controller isKindOfClass:[PPViewController class]];
+    if (isPPViewController) {
+        [(PPViewController *)controller showActivityWithText:NSLS(@"kLoading")];
+    }
     [[FeedService defaultService] getFeedByFeedId:feedId completed:^(int resultCode, DrawFeed *feed, BOOL fromCache) {
-        [controller hideActivity];
+        if (isPPViewController) {
+            [(PPViewController *)controller hideActivity];
+        }
         if (resultCode == 0 && feed) {
             ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:feed];
             [controller.navigationController pushViewController:sf animated:YES];

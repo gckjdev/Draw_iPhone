@@ -15,10 +15,10 @@
 typedef enum {
   PBVoiceTypeVoiceTypeOrigin = 0,
   PBVoiceTypeVoiceTypeTomCat = 1,
-  PBVoiceTypeVoiceTypeDuck = 2,
-  PBVoiceTypeVoiceTypeMale = 3,
-  PBVoiceTypeVoiceTypeChild = 4,
-  PBVoiceTypeVoiceTypeFemale = 5,
+  PBVoiceTypeVoiceTypeMale = 2,
+  PBVoiceTypeVoiceTypeFemale = 3,
+  PBVoiceTypeVoiceTypeDuck = 4,
+  PBVoiceTypeVoiceTypeChild = 5,
 } PBVoiceType;
 
 BOOL PBVoiceTypeIsValidValue(PBVoiceType value);

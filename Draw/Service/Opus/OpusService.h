@@ -60,9 +60,7 @@ typedef enum{
 
 @interface OpusService : CommonService
 
-@property (nonatomic, retain) OpusManager* singDraftOpusManager;
-@property (nonatomic, retain) OpusManager* singLocalFavoriteOpusManager;
-@property (nonatomic, retain) OpusManager* singLocalMyOpusManager;
+
 
 + (id)defaultService;
 
@@ -89,10 +87,6 @@ typedef enum{
 - (void)getOpusWithOpusId:(NSString *)opusId
                  delegate:(id<OpusServiceDelegate>)delegate;
 
-//- (void)getOpusList:(OpusListType)opusListType
-//             offset:(NSInteger)offset
-//              limit:(NSInteger)limit
-//           delegate:(id<OpusServiceDelegate>)delegate;
 
 @end
 

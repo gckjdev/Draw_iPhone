@@ -25,6 +25,7 @@
 #import "OpusView.h"
 #import "Opus.h"
 
+
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
 
@@ -86,9 +87,9 @@ typedef enum {
 {
     self = [super init];
     if (self) {
-        self.selfOpusManager = [[[OpusManager alloc] initWithClass:aClass dbName:selfDb] autorelease];
-        self.favoriteManager = [[[OpusManager alloc] initWithClass:aClass dbName:favoriteDb] autorelease];
-        self.draftManager = [[[OpusManager alloc] initWithClass:aClass dbName:draftDb] autorelease];
+//        self.selfOpusManager = [[[OpusManager alloc] initWithClass:aClass dbName:selfDb] autorelease];
+//        self.favoriteManager = [[[OpusManager alloc] initWithClass:aClass dbName:favoriteDb] autorelease];
+//        self.draftManager = [[[OpusManager alloc] initWithClass:aClass dbName:draftDb] autorelease];
     }
     return self;
 }

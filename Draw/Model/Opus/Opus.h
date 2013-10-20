@@ -36,7 +36,8 @@
 
 
 - (void)setType:(PBOpusType)type;
-- (void)setName:(NSString *)name;  
+- (void)setName:(NSString *)name;
+- (void)setImage:(NSString *)image;
 - (void)setDesc:(NSString *)desc;
 - (void)setTargetUser:(PBGameUser *)user;
 

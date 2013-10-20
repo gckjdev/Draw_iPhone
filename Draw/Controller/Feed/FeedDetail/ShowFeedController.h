@@ -46,7 +46,7 @@
 
 - (void)showOpusImageBrower;
 + (void)enterWithFeedId:(NSString *)feedId
-         fromController:(PPViewController *)controller;
+         fromController:(UIViewController *)controller;
 
 @property (nonatomic, retain) NSObject<ShowFeedSceneProtocol>* feedScene;
 
