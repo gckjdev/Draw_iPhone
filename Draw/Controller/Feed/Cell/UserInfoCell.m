@@ -49,9 +49,9 @@
 
 - (BOOL)isAnounymous:(DrawFeed*)feed
 {
-#ifdef DEBUG
-    return NO;
-#endif
+//#ifdef DEBUG
+//    return NO;
+//#endif
     
     NSString* contestId = [feed contestId];
     if (contestId && [[ContestManager defaultManager] displayContestAnonymous:contestId]){
