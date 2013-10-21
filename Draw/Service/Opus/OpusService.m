@@ -21,20 +21,17 @@
 #import "FileUtil.h"
 #import "DrawDataService.h"
 #import "Opus.h"
+#import "OpusManagerFactory.h"
 
-#define SING_MY_OPUS_DB     @"sing_my_opus.db"
-#define SING_FAVORITE_DB    @"sing_favorite.db"
-#define SING_DRAFT_DB       @"sing_draft.db"
+#define MY_OPUS_DB     @"my_opus.db"
+#define FAVORITE_DB    @"favorite.db"
+#define DRAFT_DB       @"draft.db"
 
 #define GET_FEED_DETAIL_QUEUE   @"GET_FEED_DETAIL_QUEUE"
-#define GET_OPUS_DATA_QUEUE        @"GET_OPUS_DATA_QUEUE"
+#define GET_OPUS_DATA_QUEUE     @"GET_OPUS_DATA_QUEUE"
 #define GET_FEED_COMMENT_QUEUE  @"GET_FEED_COMMENT_QUEUE"
 
 @interface OpusService()
-
-//@property (nonatomic, retain) OpusManager* singDraftOpusManager;
-//@property (nonatomic, retain) OpusManager* singLocalFavoriteOpusManager;
-//@property (nonatomic, retain) OpusManager* singLocalMyOpusManager;
 
 @end
 
@@ -44,9 +41,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 
 - (void)dealloc
 {
-//    [_singDraftOpusManager release];
-//    [_singLocalFavoriteOpusManager release];
-//    [_singLocalMyOpusManager release];
+    [_draftOpusManager release];
+    [_favoriteOpusManager release];
+    [_myOpusManager release];
     [super dealloc];
 }
 
@@ -54,11 +51,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 {
     self = [super init];
     
-//    Class class = NSClassFromString(@"SingOpus");
-    
-//    _singLocalMyOpusManager = [[OpusManager alloc] initWithClass:class dbName:SING_MY_OPUS_DB];
-//    _singLocalFavoriteOpusManager = [[OpusManager alloc] initWithClass:class dbName:SING_FAVORITE_DB];
-//    _singDraftOpusManager = [[OpusManager alloc] initWithClass:class dbName:SING_DRAFT_DB];
+    NSString *opusClassName = [GameApp opusClassName];    
+    self.myOpusManager = [OpusManagerFactory createWithOpusClassName:opusClassName dbName:MY_OPUS_DB];
+    self.favoriteOpusManager = [OpusManagerFactory createWithOpusClassName:opusClassName dbName:FAVORITE_DB];
+    self.draftOpusManager = [OpusManagerFactory createWithOpusClassName:opusClassName dbName:DRAFT_DB];
+
     return self;
 }
 

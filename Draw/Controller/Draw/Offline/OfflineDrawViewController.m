@@ -68,6 +68,7 @@
 #import "DrawToolUpPanel.h"
 #import "DrawLayerPanel.h"
 #import "MLNavigationController.h"
+#import "ImagePlayer.h"
 
 @interface OfflineDrawViewController()
 {
@@ -1405,29 +1406,8 @@
 
 - (void)showCopyPaint
 {
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    // Modal
-//    [browser setCanSave:NO];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
-}
-
-
-#pragma mark - mwPhotoBrowserDelegate
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    return [MWPhoto photoWithImage:[self getCopyPaintImage]];
-//    if (self.copyPaintImage) {
-//        return [MWPhoto photoWithImage:self.copyPaintImage];
-//    }
-//    return nil;
-    
+    UIImage *image = [self getCopyPaintImage];
+    [[ImagePlayer defaultPlayer] playWithImage:image onViewController:self];
 }
 
 #pragma mark- Copy Paint Handling

@@ -52,6 +52,9 @@
 		A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59B6180FC9C500F68A81 /* SingOpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B59B5180FC9C500F68A81 /* SingOpusManager.m */; };
+		A40B59BE180FD96200F68A81 /* OpusManagerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */; };
+		A40B59BF180FD96200F68A81 /* OpusManagerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */; };
+		A40B59C0180FD96200F68A81 /* OpusManagerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */; };
 		A40D71DD16553575000CC598 /* FXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40D71DC16553575000CC598 /* FXLabel.m */; };
 		A40EE820170043A9003B8FFC /* ReflectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE81F170043A9003B8FFC /* ReflectionView.m */; };
 		A40EE826170053A5003B8FFC /* FeedCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EE825170053A5003B8FFC /* FeedCarousel.m */; };
@@ -6689,6 +6692,8 @@
 		A40B59A8180E6F3800F68A81 /* SingletonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonMacros.h; sourceTree = "<group>"; };
 		A40B59B4180FC9C500F68A81 /* SingOpusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingOpusManager.h; sourceTree = "<group>"; };
 		A40B59B5180FC9C500F68A81 /* SingOpusManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingOpusManager.m; sourceTree = "<group>"; };
+		A40B59BC180FD96100F68A81 /* OpusManagerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusManagerFactory.h; sourceTree = "<group>"; };
+		A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusManagerFactory.m; sourceTree = "<group>"; };
 		A40D71DB16553575000CC598 /* FXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXLabel.h; sourceTree = "<group>"; };
 		A40D71DC16553575000CC598 /* FXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXLabel.m; sourceTree = "<group>"; };
 		A40EE81E170043A9003B8FFC /* ReflectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflectionView.h; sourceTree = "<group>"; };
@@ -10689,6 +10694,8 @@
 				A4C8D56E175EE027007ED7E4 /* SingOpus.m */,
 				A4C9E05017A651C800DE982F /* PBGuessRank+Extend.h */,
 				A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */,
+				A40B59BC180FD96100F68A81 /* OpusManagerFactory.h */,
+				A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */,
 			);
 			path = Opus;
 			sourceTree = "<group>";
@@ -20608,6 +20615,7 @@
 				A4326DAE180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
 				A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				A40B59B6180FC9C500F68A81 /* SingOpusManager.m in Sources */,
+				A40B59C0180FD96200F68A81 /* OpusManagerFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21365,6 +21373,7 @@
 				EA0C5547180BECEB008069C1 /* PainterController.m in Sources */,
 				A4326DAD180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
 				A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */,
+				A40B59BF180FD96200F68A81 /* OpusManagerFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22128,6 +22137,7 @@
 				EA0C5546180BECEB008069C1 /* PainterController.m in Sources */,
 				A4326DAC180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
 				A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */,
+				A40B59BE180FD96200F68A81 /* OpusManagerFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,6 @@
 #import "BBSController.h"
 #import "BBSService.h"
 #import "BBSActionSheet.h"
-#import "MWPhotoBrowser.h"
 
 @class PBBBSAction;
 

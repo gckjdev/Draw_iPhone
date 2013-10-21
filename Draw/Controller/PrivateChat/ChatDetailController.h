@@ -12,7 +12,6 @@
 #import "ChatDetailCell.h"
 #import "UserLocationController.h"
 #import "PhotoDrawSheet.h"
-#import "MWPhotoBrowser.h"
 #import "ChangeAvatar.h"
 
 @class MessageStat;
@@ -25,7 +24,7 @@
 
 @end
 
-@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate, PhotoDrawSheetDelegate, MWPhotoBrowserDelegate>
+@interface ChatDetailController : PPTableViewController<ChatServiceDelegate, UITextViewDelegate, OfflineDrawDelegate, ChatDetailCellDelegate, UserLocationControllerDelegate, UIActionSheetDelegate, PhotoDrawSheetDelegate>
 {
         ChangeAvatar *imageUploader;
 }

@@ -32,6 +32,7 @@
 #import "BBSPostListController.h"
 #import "BBSService.h"
 #import "GameApp.h"
+#import "ImagePlayer.h"
 
 @interface ViewUserDetail () {
 
@@ -535,14 +536,8 @@
 
 - (void)clickAvatar:(PPTableViewController *)viewController didSelectBlock:(void (^)(UIImage *))aBlock
 {
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    // Modal
-//    browser.canSave = NO;
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [viewController presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
+    NSURL *url = [NSURL URLWithString:[[self getUser] avatar]];
+    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:viewController];
 }
 
 #pragma mark - mwPhotoBrowserDelegate

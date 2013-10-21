@@ -7,7 +7,6 @@
 //
 
 #import "CommonWaterFlowController.h"
-#import "MWPhotoBrowser.h"
 #import "PhotoEditView.h"
 #import "UserPhotoView.h"
 
@@ -20,7 +19,7 @@
 
 @end
 
-@interface GalleryController : CommonWaterFlowController <MWPhotoBrowserDelegate>
+@interface GalleryController : CommonWaterFlowController 
 @property (retain, nonatomic) IBOutlet UILabel *titleLabel;
 - (IBAction)clickFilterUserPhoto:(id)sender;
 

@@ -10,6 +10,7 @@
 #import "CommonUserInfoView.h"
 #import "ConfigManager.h"
 #import "DrawPlayer.h"
+#import "ImagePlayer.h"
 
 @interface BBSController ()
 
@@ -62,13 +63,7 @@
 - (void)didClickImageWithURL:(NSURL *)url
 {
     self.tempURL = url;
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    // Modal
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
+    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
 }
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post
@@ -86,16 +81,6 @@
                                                  actionId:action.actionId
                                                  delegate:self];
 
-}
-
-#pragma mark - MWPhotoBrowserDelegate
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    return [MWPhoto photoWithURL:self.tempURL];
 }
 
 #pragma mark-- BBS Service Delegate

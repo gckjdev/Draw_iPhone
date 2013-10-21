@@ -45,13 +45,13 @@
 #import "HomeController.h"
 #import "MKBlockActionSheet.h"
 
-#import "MWPhotoBrowser.h"
 #import "UIButton+WebCache.h"
 #import "ContestManager.h"
 #import "JudgerScoreView.h"
 #import "DrawPlayer.h"
 #import "OpusImageBrower.h"
 #import "DrawUtils.h"
+#import "ImagePlayer.h"
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
@@ -1189,25 +1189,9 @@ typedef enum{
 //}
 
 - (void)showPhotoBrower{
-    
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//    browser.canSave = YES;
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
+
+    [[ImagePlayer defaultPlayer]  playWithUrl:self.feed.largeImageURL onViewController:self];
 }
-
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    return [MWPhoto photoWithURL:self.feed.largeImageURL];
-}
-
 
 #pragma mark-- Common Tab Controller Delegate
 

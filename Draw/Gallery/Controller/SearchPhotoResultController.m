@@ -9,7 +9,6 @@
 #import "SearchPhotoResultController.h"
 
 #import "GoogleCustomSearchService.h"
-#import "MWPhotoBrowser.h"
 #import "SearchResultView.h"
 #import "PhotoEditView.h"
 
@@ -29,8 +28,9 @@
 #import "StorageManager.h"
 #import "UserManager.h"
 #import "CommonDialog.h"
+#import "ImagePlayer.h"
 
-@interface SearchPhotoResultController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, GoogleCustomSearchServiceDelegate, MWPhotoBrowserDelegate, SearchResultViewDelegate> {
+@interface SearchPhotoResultController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, GoogleCustomSearchServiceDelegate, SearchResultViewDelegate> {
 
     ImageSearchResult* _currentResult;
 }
@@ -246,14 +246,9 @@
 - (void)showSearhResult:(ImageSearchResult*)searchResult
 {
     _currentResult = searchResult;
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    // Modal
-//    browser.canSave = NO;
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
+    
+    NSURL *url = [NSURL URLWithString:_currentResult.url];
+    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
 }
 
 - (void)saveSearchResult:(ImageSearchResult*)searchResult
@@ -279,20 +274,6 @@
     }];
     
     [dialog showInView:self.view];
-}
-
-#pragma mark - mwPhotoBrowserDelegate
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    
-    if (_currentResult) {
-        return [MWPhoto photoWithURL:[NSURL URLWithString:_currentResult.url]];
-    }
-    return nil;
-    
 }
 
 enum {

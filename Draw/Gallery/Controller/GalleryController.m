@@ -8,13 +8,13 @@
 
 #import "GalleryController.h"
 #import "GalleryService.h"
-#import "MWPhotoBrowser.h"
 #import "MKBlockActionSheet.h"
 #import "Photo.pb.h"
 #import "StorageManager.h"
 #import "CommonMessageCenter.h"
 #import "CommonDialog.h"
 #import "SearchPhotoController.h"
+#import "ImagePlayer.h"
 
 @interface GalleryController () <SearchPhotoResultControllerDelegate>{
     NSString* _currentImageUrl;
@@ -145,27 +145,9 @@
 - (void)showPhoto:(PBUserPhoto*)photo
 {
     _currentImageUrl = photo.url;
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    // Modal
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
-}
 
-
-#pragma mark - mwPhotoBrowserDelegate
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (_currentImageUrl) {
-        return [MWPhoto photoWithURL:[NSURL URLWithString:_currentImageUrl]];
-    }
-    return nil;
-    
+    NSURL *url = [NSURL URLWithString:_currentImageUrl];
+    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
 }
 
 enum {

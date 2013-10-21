@@ -22,6 +22,7 @@
 #import "MKBlockActionSheet.h"
 
 #import "OpusManager.h"
+#import "OpusService.h"
 #import "OpusView.h"
 #import "Opus.h"
 
@@ -56,9 +57,9 @@ typedef enum {
     Opus* _currentSelectOpus;
 }
 
-@property (retain, nonatomic) OpusManager* selfOpusManager;
-@property (retain, nonatomic) OpusManager* favoriteManager;
-@property (retain, nonatomic) OpusManager* draftManager;
+@property (assign, nonatomic) OpusManager* selfOpusManager;
+@property (assign, nonatomic) OpusManager* favoriteManager;
+@property (assign, nonatomic) OpusManager* draftManager;
 
 @end
 
@@ -74,9 +75,7 @@ typedef enum {
     PPRelease(clearButton);
     PPRelease(awardCoinTips);
     PPRelease(backButton);
-    PPRelease(_selfOpusManager);
-    PPRelease(_favoriteManager);
-    PPRelease(_draftManager);
+
     [super dealloc];
 }
 
@@ -87,6 +86,9 @@ typedef enum {
 {
     self = [super init];
     if (self) {
+        self.selfOpusManager = [[OpusService defaultService] myOpusManager];
+        self.favoriteManager = [[OpusService defaultService] favoriteOpusManager];
+        self.draftManager = [[OpusService defaultService] draftOpusManager];
 //        self.selfOpusManager = [[[OpusManager alloc] initWithClass:aClass dbName:selfDb] autorelease];
 //        self.favoriteManager = [[[OpusManager alloc] initWithClass:aClass dbName:favoriteDb] autorelease];
 //        self.draftManager = [[[OpusManager alloc] initWithClass:aClass dbName:draftDb] autorelease];
