@@ -173,7 +173,43 @@
     
 }
 
+- (BOOL)isAnounymous:(CommentFeed*)commentFeed;
+{
+    DrawFeed* drawFeed = commentFeed.drawFeed;
+    
+    NSString* contestId = [drawFeed contestId];
+    if (contestId && [[ContestManager defaultManager] displayContestAnonymous:contestId]){
+        
+        if ([drawFeed.author.userId isEqualToString:[commentFeed feedUser].userId]){
+            // comment user is the same as draw feed user, show comment as anounymous
+            return YES;
+        }
+        
+        return NO;
+    }
+    else{
+        return NO;
+    }
+}
 
+- (BOOL)isAnounymousForReplyUser:(CommentFeed*)commentFeed;
+{
+    DrawFeed* drawFeed = commentFeed.drawFeed;
+    
+    NSString* contestId = [drawFeed contestId];
+    if (contestId && [[ContestManager defaultManager] displayContestAnonymous:contestId]){
+        
+        if ([drawFeed.author.userId isEqualToString:[commentFeed commentInfo].actionUid]){
+            // comment reply user is the same as draw feed user, show reply user nick as anounymous
+            return YES;
+        }
+        
+        return NO;
+    }
+    else{
+        return NO;
+    }
+}
 
 - (void)dealloc {
     PPRelease(commentLabel);

@@ -567,6 +567,11 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES; // disable lock screen while in drawing
     
     [super viewDidLoad];
+
+    if ([self.word.text length] == 0) {
+        self.word = [Word cusWordWithText:NSLS(@"kDefaultDrawWord")];
+    }
+    
     [self initDrawView];
     [self initDrawToolPanel];
     [self initWordLabel];
