@@ -20,7 +20,6 @@
 #import "MyFriend.h"
 #import "UserService.h"
 #import "InputAlertView.h"
-#import "MWPhotoBrowser.h"
 #import "CMPopTipView.h"
 #import "DrawToolPanel.h"
 
@@ -44,7 +43,7 @@
 @end
 
 
-@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, MWPhotoBrowserDelegate, DrawLayerManagerDelegate, CMPopTipViewDelegate, DrawToolPanelDelegate> {
+@interface OfflineDrawViewController : PPViewController<DrawViewDelegate,CommonDialogDelegate,DrawDataServiceDelegate,LevelServiceDelegate, UserServiceDelegate, DrawLayerManagerDelegate, CMPopTipViewDelegate, DrawToolPanelDelegate> {
     
 }
 

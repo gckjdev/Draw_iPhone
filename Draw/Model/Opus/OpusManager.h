@@ -49,7 +49,10 @@
 // 创建作品草稿
 - (Opus*)createDraftWithName:(NSString*)name;
 
-
 + (PBOpus *)createTestOpus;
+
+// Call these methods in sub-class
+- (void)setDraftOpusId:(Opus*)opus extension:(NSString*)fileNameExtension;
+- (void)setCommonOpusInfo:(Opus*)opus;
 
 @end

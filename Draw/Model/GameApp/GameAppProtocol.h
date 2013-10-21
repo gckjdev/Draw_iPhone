@@ -172,6 +172,8 @@
 - (NSString*)photoTagsCn;
 - (NSString*)photoTagsEn;
 
+- (NSString *)opusClassName;
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

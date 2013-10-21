@@ -60,7 +60,9 @@ typedef enum{
 
 @interface OpusService : CommonService
 
-
+@property (nonatomic, retain) OpusManager* draftOpusManager;
+@property (nonatomic, retain) OpusManager* favoriteOpusManager;
+@property (nonatomic, retain) OpusManager* myOpusManager;
 
 + (id)defaultService;
 

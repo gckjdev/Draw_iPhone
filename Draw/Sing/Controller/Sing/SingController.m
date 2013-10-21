@@ -29,7 +29,6 @@
 #import "StorageManager.h"
 #import "UIImageExt.h"
 
-
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
 
@@ -113,7 +112,7 @@ enum{
 - (id)init{
     
     if (self = [super init]) {
-        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpusWithSelfDefineName:@"小吉话话"];
+        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:@"小吉话话"];
     }
 
     return self;
@@ -143,14 +142,16 @@ enum{
     [titleView setRightButtonSelector:@selector(clickSubmitButton:)];
     
     
-    UIImage *image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.image];
-    if (image !=nil ) {
-        [self.opusImageView setImage:image];
+    self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.image];
+    if (self.image !=nil ) {
+        [self.opusImageView setImage:self.image];
     }else{
         [self.opusImageView setImage:[[ShareImageManager defaultManager] unloadBg]];
     }
     
     [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
+    
+    [_opusDescLabel setText:_singOpus.pbOpus.desc];
     
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
         
@@ -472,7 +473,7 @@ enum{
 }
 
 - (IBAction)clickSaveButton:(id)sender {
-    [[[OpusService defaultService] singDraftOpusManager] saveOpus:_singOpus];
+    [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -510,8 +511,8 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
-                            opusDraftManager:[[OpusService defaultService] singDraftOpusManager]
-                                 opusManager:[[OpusService defaultService] singLocalMyOpusManager]
+                            opusDraftManager:[[OpusService defaultService] draftOpusManager]
+                                 opusManager:[[OpusService defaultService] myOpusManager]
                             progressDelegate:nil
                                     delegate:self];
 }

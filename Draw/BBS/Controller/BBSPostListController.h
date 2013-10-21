@@ -10,18 +10,16 @@
 #import "BBSService.h"
 #import "BBSPostCell.h"
 #import "CreatePostController.h"
-#import "MWPhotoBrowser.h"
 
 @class PBBBSPost;
 @class PBBBSUser;
 @class PBBBSBoard;
 
-@interface BBSPostListController : BBSController<BBSServiceDelegate, BBSPostCellDelegate, MWPhotoBrowserDelegate, CreatePostControllerDelegate>
+@interface BBSPostListController : BBSController<BBSServiceDelegate, BBSPostCellDelegate, CreatePostControllerDelegate>
 {
     
 }
 
-//@property (retain, nonatomic)  UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *createPostButton;
 @property (retain, nonatomic) IBOutlet UIButton *rankButton;

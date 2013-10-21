@@ -25,6 +25,7 @@
 #import "SelectHotWordController.h"
 #import "SuperUserManageAction.h"
 #import "BBSPermissionManager.h"
+#import "ImagePlayer.h"
 
 #define RUN_OUT_TIME 0.2
 #define RUN_IN_TIME 0.4
@@ -352,25 +353,10 @@
 {
     PPDebug(@"<clickAvatar> url = %@",self.targetFriend.avatar);
     if ([self.targetFriend.avatar length] != 0) {
-        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-        // Modal
-        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-        nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [_superViewController presentModalViewController:nc animated:YES];
-        [browser release];
-        [nc release];
         
+        NSURL *URL = [NSURL URLWithString:self.targetFriend.avatar];
+        [[ImagePlayer defaultPlayer] playWithUrl:URL onViewController:_superViewController];
     }
-}
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
-{
-    return 1;
-}
-- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
-{
-    NSURL *URL = [NSURL URLWithString:self.targetFriend.avatar];
-    return [MWPhoto photoWithURL:URL];
 }
 
 #pragma mark - main process methods.

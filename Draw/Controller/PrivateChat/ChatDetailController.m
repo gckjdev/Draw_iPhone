@@ -32,6 +32,7 @@
 #import "MKBlockActionSheet.h"
 #import "GameApp.h"
 #import "WordFilterService.h"
+#import "ImagePlayer.h"
 
 @interface ChatDetailController ()
 {
@@ -700,38 +701,21 @@
 {
     _selectedMessage = message;
     
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//    browser.canSave = YES;
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:browser];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentModalViewController:nc animated:YES];
-    [browser release];
-    [nc release];
-}
-
-#pragma mark - mwPhotoBrowserDelegate
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    NSURL *url = nil;
     if (_selectedMessage.messageType == MessageTypeImage)
     {
         ImageMessage *imageMessage  = (ImageMessage *)_selectedMessage;
-        NSURL *url = nil;
         if (imageMessage.status == MessageStatusFail) {
             url = [NSURL fileURLWithPath:imageMessage.imageUrl];
         } else {
             url = [NSURL URLWithString:imageMessage.imageUrl];
         }
-        return [MWPhoto photoWithURL:url];
     }
-    return nil;
+    
+    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
 }
 
-
 #pragma mark - 
-
 
 - (void)clickMessage:(PPMessage *)message
 {

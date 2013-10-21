@@ -211,4 +211,9 @@
     return @"photo_tags_en.txt";
 }
 
+- (NSString *)opusClassName{
+    
+    return @"SingOpus";
+}
+
 @end

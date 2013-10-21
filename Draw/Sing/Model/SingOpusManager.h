@@ -12,10 +12,4 @@
 
 @interface SingOpusManager : OpusManager
 
-
-
-// 创建唱歌草稿
-//- (SingOpus*)createDraftSingOpus:(PBSong*)song;
-- (Opus*)createDraftWithName:(NSString*)name;
-
 @end
