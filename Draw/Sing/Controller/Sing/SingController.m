@@ -22,12 +22,13 @@
 #import "CommonTitleView.h"
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
-#import "NameAndDescEditView.h"
+//#import "NameAndDescEditView.h"
 #import "UILabel+Extend.h"
 #import "VoiceTypeSelectView.h"
 #import "ImagePlayer.h"
 #import "StorageManager.h"
 #import "UIImageExt.h"
+#import "SingInfoEditController.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -394,35 +395,38 @@ enum{
 
     PPDebug(@"clickDescButton");
     
-
-    NameAndDescEditView *v = [NameAndDescEditView createViewWithName:_singOpus.pbOpus.name desc:_singOpus.pbOpus.desc];
-    
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-    dialog.manualClose = YES;
-    
-    [dialog setClickOkBlock:^(NameAndDescEditView *infoView){
-       
-        if ([infoView.nameTextField.text isBlank]) {
-            
-            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:2];
-        }else{
-            
-            [dialog disappear];
-            
-            
-            [_singOpus setName:infoView.nameTextField.text];
-            [_singOpus setDesc:infoView.descTextView.text];
-            
-            [_opusDescLabel setText:infoView.descTextView.text];
-        }
-
-    }];
-    
-    [dialog setClickCancelBlock:^(NameAndDescEditView *infoView){
-            [dialog disappear];
-    }];
-    
-    [dialog showInView:self.view];
+    SingInfoEditController *vc = [[[SingInfoEditController alloc] initWithOpus:self.singOpus] autorelease];
+    [self presentViewController:vc animated:YES completion:NULL];
+//
+//
+//    NameAndDescEditView *v = [NameAndDescEditView createViewWithName:_singOpus.pbOpus.name desc:_singOpus.pbOpus.desc];
+//    
+//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
+//    dialog.manualClose = YES;
+//    
+//    [dialog setClickOkBlock:^(NameAndDescEditView *infoView){
+//       
+//        if ([infoView.nameTextField.text isBlank]) {
+//            
+//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:2];
+//        }else{
+//            
+//            [dialog disappear];
+//            
+//            
+//            [_singOpus setName:infoView.nameTextField.text];
+//            [_singOpus setDesc:infoView.descTextView.text];
+//            
+//            [_opusDescLabel setText:infoView.descTextView.text];
+//        }
+//
+//    }];
+//    
+//    [dialog setClickCancelBlock:^(NameAndDescEditView *infoView){
+//            [dialog disappear];
+//    }];
+//    
+//    [dialog showInView:self.view];
 }
 
 - (IBAction)clickAddTimeButton:(id)sender {
@@ -446,6 +450,7 @@ enum{
 - (IBAction)clickImageButton:(id)sender {
     if (_picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
+        _picker.autoRoundRect = NO;
     }
     
     [_picker showSelectionView:self];
@@ -455,7 +460,7 @@ enum{
     
     self.image = image;
     self.opusImageView.image = image;
-    
+    self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
     NSData *data = [self.image data];
     NSString *path = self.singOpus.pbOpus.image;
     [data writeToFile:path atomically:YES];

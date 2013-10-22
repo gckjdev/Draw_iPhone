@@ -90,7 +90,7 @@ typedef void (^ GetFeedCompleteBlock)(int resultCode, DrawFeed *feed, BOOL fromC
 + (FeedService *)defaultService;
 
 - (void)getUserFeedList:(NSString *)userId
-             offset:(NSInteger)offset 
+                 offset:(NSInteger)offset 
               limit:(NSInteger)limit 
            delegate:(id<FeedServiceDelegate>)delegate;
 

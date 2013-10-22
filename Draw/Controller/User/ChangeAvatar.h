@@ -35,6 +35,7 @@ typedef void(^CallBackBlock)(NSInteger index);
 - (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController;
 - (void)showEditImageView:(UIImage*)image
              inController:(UIViewController<ChangeAvatarDelegate>*)superViewController;
+
 - (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController
        selectedImageBlock:(DidSelectedImageBlock)selectedImageBlock
        didSetDefaultBlock:(DidSetDefaultBlock)setDefaultBlock

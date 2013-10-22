@@ -56,6 +56,8 @@
     [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
     [singOpus setLocalImageDataUrl:SING_IMAGE_EXTENSION];
     
+    [singOpus setTags:@[@"唱歌"]];
+    
     return singOpus;
 }
 

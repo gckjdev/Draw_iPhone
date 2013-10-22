@@ -1401,8 +1401,9 @@
 "kPrivacyToNone" = "Public To No One";
 "kPrivacyToAll" = "Public To All";
 "kInvisable" = "(Invisable)";
-"kEditOpusDesc" = "Opus description";
-
+"kEditOpusDesc" = "Opus Description";
+"kEditOpusInfo" = "Opus Info";
+"kCloseKeyboard" = "Close Keyboard";
 "kTaoBaoCharge" = "Taobao Store";
 "kTaoBaoChargeTitle" = "Taobao Store";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
@@ -1411,6 +1412,8 @@
 "kPayViaZhiFuBao" = "Alipay";
 "kPayViaZhiFuBaoWeb" = "Alipay Web";
 "kPayViaAppleAccount" = "Apple iTunes Account";
+
+"kChoseVoiceType" = "Voice Type";
 
 "kHim" = "him";
 "kHer" = "her";
@@ -2056,7 +2059,7 @@
 "kUseGradientMessage" = "Use gradient, the paints will be lost. Continue?";
 "kSubjectPlaceholder" = "Input subject...";
 "kSubject" = "Name";
-
+"kTag" = "Tag";
 "kSubjectPlaceCannotBlank" = "Subject cannot be blank";
 
 "kVoiceTypeOrigin" = "Origin";

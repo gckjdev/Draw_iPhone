@@ -106,6 +106,14 @@
     [_pbOpusBuilder setImage:image];
 }
 
+
+
+- (NSString *)shareTextWithSNSType:(int)type{
+    
+    return nil;
+}
+
+
 - (void)setDesc:(NSString *)desc{
     [_pbOpusBuilder setDesc:desc];
 }
@@ -186,6 +194,13 @@
     NSString* finalPath = [FileUtil filePathInAppDocument:path];
     [_pbOpusBuilder setLocalDataUrl:finalPath];
 }
+
+
+- (void)setTags:(NSArray *)tags{
+    
+    [_pbOpusBuilder addAllTags:tags];
+}
+
 
 - (NSURL*)localDataURL
 {
@@ -288,11 +303,5 @@
 {
     PPDebug(@"<enterEditFromController> no impletement!");
 }
-
-- (NSString *)shareTextWithSNSType:(int)type{
-    
-    return nil;
-}
-
 @end
 

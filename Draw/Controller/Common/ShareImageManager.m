@@ -1413,6 +1413,20 @@ static UIImage* _whitePaperImage;
                    round:YES];
 }
 
++ (void)setButtonGrayRoundStyle:(UIButton *)button{
+    
+    [self setButtonStyle:button
+        normalTitleColor:COLOR_WHITE
+      selectedTitleColor:COLOR_WHITE
+   highlightedTitleColor:COLOR_WHITE
+                    font:FONT_BUTTON
+             normalColor:[UIColor lightGrayColor]
+           selectedColor:COLOR_ORANGE
+        highlightedColor:COLOR_ORANGE
+                   round:YES];
+}
+
+
 
 + (void)setButtonStyle:(UIButton *)button
       normalTitleColor:(UIColor *)normalTitleColor

@@ -502,9 +502,6 @@
 
 - (void)dealloc
 {
-    
-    
-    
     PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_contestId);
     PPRelease(_pbDrawData);
