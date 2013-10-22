@@ -284,13 +284,6 @@
     }
 }
 
-/*
-
- 5.8版本即将发布，先公告一下功能特性给大家：1) 解决了回放作品有竖线的问题； 2) 提供了回放播放器； 3) 画画增加了五种默认粗细，可直接选择； 4) 画画支持取色； 5) 在线猜画可以显示所有房间列表，可以自由选择房间加入； 6) 修复了创建自定义词闪退的问题； 7) 解决了画画比赛保存为草稿后无法提交的问题； 8) 增加画画上传进度的显示，支持直接分享到微博； 9) iPhone和iPod Touch也支持透明度了。
- 
- 
- */
-
 + (GuessLevel)guessDifficultLevel
 {
 //    NSInteger level = [[[NSUserDefaults standardUserDefaults] objectForKey:KEY_GUESS_DIFF_LEVEL] intValue];

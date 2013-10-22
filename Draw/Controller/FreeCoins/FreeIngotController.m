@@ -23,18 +23,23 @@
 
 //#define SECTION_COUNT 2
 
-enum {
-    SECTION_FRIEND_APP = 0,
-    SECTION_WALL    = 1,    
-};
+//enum {
+//    SECTION_FRIEND_APP = 0,
+//    SECTION_WALL    = 1,    
+//};
 
 @interface FreeIngotController ()
 {
     int _sectionCount;
+    
 }
 
 @property (retain, nonatomic) NSArray* friendAppArray;
 @property (retain, nonatomic) NSArray* wallArray;
+
+@property (assign, nonatomic) int friendAppSection;
+@property (assign, nonatomic) int wallSection;
+@property (assign, nonatomic) int taskSection;
 
 @end
 
@@ -52,12 +57,46 @@ enum {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // Custom initialization        
+        self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
+        self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
+        
         if ([ConfigManager wallEnabled]){
-            _sectionCount = 2;
+            
+            if ([self.friendAppArray count] > 0 && [self.wallArray count] > 0){
+                self.friendAppSection = 0;
+                self.wallSection = 1;
+                _sectionCount = 2;
+//                self.taskSection = 2;
+//                _sectionCount = 3;
+            }
+            else if ([self.friendAppArray count] == 0 && [self.wallArray count] > 0){
+                self.friendAppSection = -1;
+                self.wallSection = 0;
+                _sectionCount = 1;
+//                self.taskSection = 1;
+//                _sectionCount = 2;
+            }
+            else if ([self.friendAppArray count] > 0 && [self.wallArray count] == 0){
+                self.friendAppSection = -1;
+                self.wallSection = -1;
+                _sectionCount = 0;
+//                self.taskSection = 0;
+//                _sectionCount = 1;
+            }
+            else{
+                self.friendAppSection = -1;
+                self.wallSection = -1;
+                _sectionCount = 0;
+//                self.taskSection = 0;
+//                _sectionCount = 1;
+            }
         }
         else{
-            _sectionCount = 0;
+            self.friendAppSection = -1;
+            self.wallSection = -1;
+            self.taskSection = 0;
+            _sectionCount = 1;
         }
     }
     return self;
@@ -66,8 +105,6 @@ enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
-    self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
     
     self.toBBSHolderView.hidden = ![GameApp hasBBS];
 
@@ -100,13 +137,17 @@ enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case SECTION_FRIEND_APP:
-            return [self.friendAppArray count];
-        case SECTION_WALL:
-            return [self.wallArray count];
-        default:
-            return 0;
+    if (section == self.friendAppSection){
+        return [self.friendAppArray count];
+    }
+    else if (section == self.wallSection){
+        return [self.wallArray count];
+    }
+    else if (section == self.taskSection){
+        return 0; // TODO
+    }
+    else{
+        return 0;
     }
 }
 
@@ -117,12 +158,15 @@ enum {
     if(cell == nil){
         cell = [FreeIngotCell createCell:self];
     }
-    if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
+    if (indexPath.section == _friendAppSection && indexPath.row < self.friendAppArray.count) {
         PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];
         [cell setCellWithPBAppReward:appReward];
-    } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
+    } else if (indexPath.section == _wallSection && indexPath.row < self.wallArray.count) {
         PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];
         [cell setCellWithPBRewardWall:rewardWall];
+    }
+    else {
+        // TODO
     }
     
     return cell;
@@ -130,12 +174,16 @@ enum {
 
 - (NSString*)titleForSection:(int)section
 {
-    if (section == SECTION_FRIEND_APP) {
+    if (section == _friendAppSection) {
         return ([GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ?NSLS(@"kDownloadRewardIngotAppTips") : NSLS(@"kDownloadRewardCoinAppTips"));
     }
-    if (section == SECTION_WALL) {
+    else if (section == _wallSection) {
         return ([GameApp wallRewardCurrencyType] == PBGameCurrencyIngot ?NSLS(@"kRewardIngotWallTips") : NSLS(@"kRewardCoinWallTips"));
     }
+    else if (section == _wallSection) {
+        return NSLS(@"kTask");  // TODO
+    }
+
     return nil;
 }
 
@@ -164,15 +212,18 @@ enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == SECTION_FRIEND_APP && indexPath.row < self.friendAppArray.count) {
+    if (indexPath.section == _friendAppSection && indexPath.row < self.friendAppArray.count) {
         
 
         PBAppReward* appReward = [self.friendAppArray objectAtIndex:indexPath.row];            
         [self openApp:appReward.app.appId];
         
-    } else if (indexPath.section == SECTION_WALL && indexPath.row < self.wallArray.count) {
+    } else if (indexPath.section == _wallSection && indexPath.row < self.wallArray.count) {
         PBRewardWall* rewardWall = [self.wallArray objectAtIndex:indexPath.row];
         [[GameAdWallService defaultService] showWall:self wallType:rewardWall.type forceShowWall:YES];
+    }
+    else{
+        // TODO
     }
 }
 
