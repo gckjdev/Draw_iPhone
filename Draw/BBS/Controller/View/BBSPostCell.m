@@ -26,7 +26,7 @@
 #define Y_CONTENT_TEXT (ISIPAD ? (2.33 * 5) : 5)
 
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
-
+#define FLAG_RADIUS (ISIPAD ? 6 : 3)
 
 @implementation BBSPostCell
 @synthesize post = _post;
@@ -69,13 +69,26 @@
                            title:nil forState:UIControlStateNormal];
     
     [BBSViewManager updateButton:self.topFlag
-                         bgColor:[UIColor clearColor]
-                         bgImage:[_bbsImageManager bbsPostTopBg]
+                         bgColor:COLOR_ORANGE//[UIColor clearColor]
+                         bgImage:nil//[_bbsImageManager bbsPostTopBg]
                            image:nil
                             font:[_bbsFontManager postTopFont]
                       titleColor:[UIColor whiteColor]
                            title:NSLS(@"kTopPost")
                         forState:UIControlStateNormal];
+    
+    [BBSViewManager updateButton:self.markedFlag
+                         bgColor:COLOR_YELLOW//[UIColor clearColor]
+                         bgImage:nil//[_bbsImageManager bbsPostTopBg]
+                           image:nil
+                            font:[_bbsFontManager postTopFont]
+                      titleColor:COLOR_BROWN
+                           title:NSLS(@"kMarked")
+                        forState:UIControlStateNormal];
+    
+    SET_VIEW_ROUND_CORNER_RADIUS(self.topFlag, FLAG_RADIUS);
+    SET_VIEW_ROUND_CORNER_RADIUS(self.markedFlag, FLAG_RADIUS);
+
     
 }
 
@@ -194,6 +207,8 @@
     }
 }
 
+#define TOP_MARK_SPACE (ISIPAD?70:33)
+
 - (void)updateCellWithBBSPost:(PBBBSPost *)post
 {
     self.post = post;
@@ -203,6 +218,12 @@
     [self updateSupportCount:post.supportCount commentCount:post.replyCount];
     [self updateReward:post];
     [self.topFlag setHidden:![post isTopPost]];
+    [self.markedFlag setHidden:![post marked]];
+    if (![self.topFlag isHidden]) {
+        [self.markedFlag updateCenterX:self.topFlag.center.x + TOP_MARK_SPACE];
+    }else {
+        self.markedFlag.center = self.topFlag.center;
+    }
 }
 
 
@@ -213,6 +234,7 @@
     PPRelease(_post);
     PPRelease(_reward);
     PPRelease(_topFlag);
+    [_markedFlag release];
     [super dealloc];
 }
 - (IBAction)clickSupportButton:(id)sender {

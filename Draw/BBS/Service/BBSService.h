@@ -17,7 +17,7 @@ typedef enum{
 
 typedef void (^BBSGetPostResultHandler) (NSInteger resultCode, NSArray *postList, NSInteger tag);
 
-typedef void (^BBSOperatePostHandler) (NSInteger resultCode);
+typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPost);
 
 
 @protocol BBSServiceDelegate <NSObject>
@@ -130,12 +130,10 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode);
 
 #pragma mark- mark methods 精华帖
 
-- (void)markPost:(NSString *)postId
-         boardId:(NSString *)boardId
+- (void)markPost:(PBBBSPost *)post
          handler:(BBSOperatePostHandler)handler;
 
-- (void)unMarkPost:(NSString *)postId
-         boardId:(NSString *)boardId
+- (void)unmarkPost:(PBBBSPost *)post
          handler:(BBSOperatePostHandler)handler;
 
 - (void)getMarkedPostList:(NSString *)boardId

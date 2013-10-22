@@ -657,10 +657,13 @@ BBSService *_staticBBSService;
 
 #pragma mark- mark methods 精华帖
 
-- (void)markPost:(NSString *)postId
-         boardId:(NSString *)boardId
+- (void)markPost:(PBBBSPost *)post
          handler:(BBSOperatePostHandler)handler
 {
+    if (post.postId == nil || post.boardId == nil) {
+        return;
+    }
+    
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
         NSString *appId = [ConfigManager appId];
@@ -669,23 +672,31 @@ BBSService *_staticBBSService;
         NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
                                 PARA_APPID : appId,
                                 PARA_USERID : userId,
-                                PARA_BOARDID : boardId,
-                                PARA_POSTID : postId
+                                PARA_BOARDID : post.boardId,
+                                PARA_POSTID : post.postId
                                 };
         
         GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:BBS_HOST method:METHOD_MARK_POST parameters:paras returnPB:NO returnJSONArray:YES];        
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSInteger resultCode = [output resultCode];
-            EXECUTE_BLOCK(handler, resultCode);
+            PBBBSPost *editedPost = post;
+            if (resultCode == 0) {
+                PBBBSPost_Builder *editedPostBuilder = [PBBBSPost builderWithPrototype:post];
+                editedPostBuilder.marked = YES;
+                editedPost = [editedPostBuilder build];
+            }
+            EXECUTE_BLOCK(handler, resultCode, editedPost);
         });
     });
 }
 
-- (void)unMarkPost:(NSString *)postId
-           boardId:(NSString *)boardId
-           handler:(BBSOperatePostHandler)handler
+- (void)unmarkPost:(PBBBSPost *)post
+         handler:(BBSOperatePostHandler)handler
 {
+    if (post.postId == nil || post.boardId == nil) {
+        return;
+    }
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
         NSString *appId = [ConfigManager appId];
@@ -694,15 +705,21 @@ BBSService *_staticBBSService;
         NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
                                 PARA_APPID : appId,
                                 PARA_USERID : userId,
-                                PARA_BOARDID : boardId,
-                                PARA_POSTID : postId
+                                PARA_BOARDID : post.boardId,
+                                PARA_POSTID : post.postId
                                 };
         
         GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:BBS_HOST method:METHOD_UNMARK_POST parameters:paras returnPB:NO returnJSONArray:YES];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSInteger resultCode = [output resultCode];
-            EXECUTE_BLOCK(handler, resultCode);
+            PBBBSPost *editedPost = post;
+            if (resultCode == 0) {
+                PBBBSPost_Builder *editedPostBuilder = [PBBBSPost builderWithPrototype:post];
+                editedPostBuilder.marked = NO;
+                editedPost = [editedPostBuilder build];
+            }
+            EXECUTE_BLOCK(handler, resultCode, editedPost);
         });
     });
 }

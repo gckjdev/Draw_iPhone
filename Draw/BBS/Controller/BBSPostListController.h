@@ -27,13 +27,20 @@
 @property (retain, nonatomic) PBBBSUser *bbsUser;
 @property (nonatomic, retain) UIView* adView;
 
+
+
 - (IBAction)clickCreatePostButton:(id)sender;
 - (IBAction)clickRankButton:(id)sender;
 
 + (BBSPostListController *)enterPostListControllerWithBBSBoard:(PBBBSBoard *)board
                                                 fromController:(UIViewController *)fromController;
 
++ (BBSPostListController *)enterMarkedPostListController:(PBBBSBoard *)board
+                                          fromController:(UIViewController *)fromController;
+
 + (BBSPostListController *)enterPostListControllerWithBBSUser:(PBBBSUser *)bbsUser
                                                fromController:(UIViewController *)fromController;
+
+
 
 @end

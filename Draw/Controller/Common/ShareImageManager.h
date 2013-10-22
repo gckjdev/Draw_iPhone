@@ -119,16 +119,22 @@
     [ShareImageManager setButtonOrangeRoundStyle:view];     \
 }
 
-// 红色圆角按钮风格。
+// 灰色圆角按钮风格。
 #define SET_BUTTON_ROUND_STYLE_GRAY(view)                 \
 {                                                           \
 [ShareImageManager setButtonGrayRoundStyle:view];     \
 }
 
+
+#define SET_VIEW_ROUND_CORNER_RADIUS(view, radius) \
+{           \
+[view.layer setCornerRadius:radius];  \
+[view.layer setMasksToBounds:YES];    \
+}
+
 #define SET_VIEW_ROUND_CORNER(view) \
 {           \
-    [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];  \
-    [view.layer setMasksToBounds:YES];    \
+    SET_VIEW_ROUND_CORNER_RADIUS(view, TEXT_VIEW_CORNER_RADIUS)\
 }
 
 #define SET_VIEW_ROUND(view) \
