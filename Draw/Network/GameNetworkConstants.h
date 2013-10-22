@@ -604,12 +604,18 @@
 #define FORMAT_PROTOCOLBUFFER @"pb"
 
 
-#pragma mark BBS Constant
+#pragma mark- BBS Constant
+
 #define METHOD_GET_BBSBOARD_LIST @"gbbl"
 #define METHOD_GET_BBSPOST_LIST @"gbpl"
 #define METHOD_SEARCH_BBSPOST_LIST @"sbpl"
 #define METHOD_GET_BBSACTION_LIST @"gbal"
 #define METHOD_CREATE_POST @"cp"
+
+#define METHOD_MARK_POST @"mp"
+#define METHOD_UNMARK_POST @"ump"
+#define METHOD_GET_MARKED_POSTS @"gmp"
+
 
 #define METHOD_DELETE_BBSPOST @"dbp"
 #define METHOD_DELETE_BBSACTION @"dba"
