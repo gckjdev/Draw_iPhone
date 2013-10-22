@@ -5,7 +5,7 @@ pwd=`pwd`
 SRC_DIR=$pwd"/Draw/GameServer/ProtocolBuffer"
 OBJC_DIR=$SRC_DIR/Gen
 C_DIR=$SRC_DIR/Gen-c
-JAVA_DIR=$pwd"/../Common_Java_Game/src/"
+JAVA_DIR=$pwd"/../../Server/Common_Java_Game/src/"
 
 BUILD_C=true
 if [ z$1 = zc ]
