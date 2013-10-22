@@ -1432,6 +1432,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
 @property (retain) PBBBSReward* reward;
 @property int32_t status;
 @property (retain) NSMutableArray* mutableBoardAdminListList;
+@property BOOL marked;
 @end
 
 @implementation PBBBSPost
@@ -1521,6 +1522,18 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
 }
 @synthesize status;
 @synthesize mutableBoardAdminListList;
+- (BOOL) hasMarked {
+  return !!hasMarked_;
+}
+- (void) setHasMarked:(BOOL) value {
+  hasMarked_ = !!value;
+}
+- (BOOL) marked {
+  return !!marked_;
+}
+- (void) setMarked:(BOOL) value {
+  marked_ = !!value;
+}
 - (void) dealloc {
   self.postId = nil;
   self.boardId = nil;
@@ -1545,6 +1558,7 @@ static PBBBSReward* defaultPBBBSRewardInstance = nil;
     self.content = [PBBBSContent defaultInstance];
     self.reward = [PBBBSReward defaultInstance];
     self.status = 0;
+    self.marked = NO;
   }
   return self;
 }
@@ -1656,6 +1670,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   for (PBBBSUser* element in self.boardAdminListList) {
     [output writeMessage:13 value:element];
   }
+  if (self.hasMarked) {
+    [output writeBool:14 value:self.marked];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -1703,6 +1720,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
   }
   for (PBBBSUser* element in self.boardAdminListList) {
     size += computeMessageSize(13, element);
+  }
+  if (self.hasMarked) {
+    size += computeBoolSize(14, self.marked);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1821,6 +1841,9 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
     }
     [result.mutableBoardAdminListList addObjectsFromArray:other.mutableBoardAdminListList];
   }
+  if (other.hasMarked) {
+    [self setMarked:other.marked];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -1909,6 +1932,10 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
         PBBBSUser_Builder* subBuilder = [PBBBSUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addBoardAdminList:[subBuilder buildPartial]];
+        break;
+      }
+      case 112: {
+        [self setMarked:[input readBool]];
         break;
       }
     }
@@ -2175,6 +2202,22 @@ static PBBBSPost* defaultPBBBSPostInstance = nil;
     result.mutableBoardAdminListList = [NSMutableArray array];
   }
   [result.mutableBoardAdminListList addObject:value];
+  return self;
+}
+- (BOOL) hasMarked {
+  return result.hasMarked;
+}
+- (BOOL) marked {
+  return result.marked;
+}
+- (PBBBSPost_Builder*) setMarked:(BOOL) value {
+  result.hasMarked = YES;
+  result.marked = value;
+  return self;
+}
+- (PBBBSPost_Builder*) clearMarked {
+  result.hasMarked = NO;
+  result.marked = NO;
   return self;
 }
 @end

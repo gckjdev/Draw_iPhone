@@ -134,7 +134,8 @@ typedef enum{
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = [super tableView:tableView numberOfRowsInSection:section];
-    return count/3;
+    NSInteger rows = count/3 + ((count % 3) != 0);
+    return rows;
 }
 
 

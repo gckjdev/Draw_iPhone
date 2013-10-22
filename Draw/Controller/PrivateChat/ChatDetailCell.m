@@ -193,14 +193,20 @@
     if (message.image && message.status != MessageStatusFail) {
         [self updateCellWithImage:message.image];
     }else{
+        id<ChatDetailCellDelegate> cellDelegate = self.delegate;
+        [cellDelegate retain];
+        [message retain];
         [self.imgView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (error == nil) {
                 message.image = image;
                 [self updateCellWithImage:message.image];
-                [self.delegate didMessage:message loadImage:image];
+                [cellDelegate didMessage:message loadImage:image];
             }else{
                 [self updateCellWithImage:[[ShareImageManager defaultManager] splitPhoto]];
             }
+            
+            [cellDelegate release];
+            [message release];
         }];
     }
 }

@@ -425,6 +425,7 @@
 
 @interface PBBBSPost : PBGeneratedMessage {
 @private
+  BOOL hasMarked_:1;
   BOOL hasDeviceType_:1;
   BOOL hasReplyCount_:1;
   BOOL hasSupportCount_:1;
@@ -437,6 +438,7 @@
   BOOL hasCreateUser_:1;
   BOOL hasContent_:1;
   BOOL hasReward_:1;
+  BOOL marked_:1;
   int32_t deviceType;
   int32_t replyCount;
   int32_t supportCount;
@@ -463,6 +465,7 @@
 - (BOOL) hasContent;
 - (BOOL) hasReward;
 - (BOOL) hasStatus;
+- (BOOL) hasMarked;
 @property (readonly, retain) NSString* postId;
 @property (readonly, retain) NSString* boardId;
 @property (readonly, retain) NSString* appId;
@@ -475,6 +478,7 @@
 @property (readonly, retain) PBBBSContent* content;
 @property (readonly, retain) PBBBSReward* reward;
 @property (readonly) int32_t status;
+- (BOOL) marked;
 - (NSArray*) boardAdminListList;
 - (PBBBSUser*) boardAdminListAtIndex:(int32_t) index;
 
@@ -584,6 +588,11 @@
 - (PBBBSPost_Builder*) addBoardAdminList:(PBBBSUser*) value;
 - (PBBBSPost_Builder*) addAllBoardAdminList:(NSArray*) values;
 - (PBBBSPost_Builder*) clearBoardAdminListList;
+
+- (BOOL) hasMarked;
+- (BOOL) marked;
+- (PBBBSPost_Builder*) setMarked:(BOOL) value;
+- (PBBBSPost_Builder*) clearMarked;
 @end
 
 @interface PBBBSPrivilege : PBGeneratedMessage {
