@@ -44,8 +44,11 @@
 - (UIImage *)bbsPostContentBGImage;
 - (UIImage *)bbsRewardActionBGImage;
 - (UIImage *)bbsPostEditImage;
+
 - (UIImage *)bbsPostHotImage;
 - (UIImage *)bbsPostNewImage;
+
+- (UIImage *)bbsPostMarkImage;
 - (UIImage *)bbsPostRewardImage;
 - (UIImage *)bbsPostRewardedImage;
 - (UIImage *)bbsPostSupportImage;
@@ -65,6 +68,10 @@
 - (UIImage *)bbsPostDetailSupport;
 - (UIImage *)bbsPostDetailToTop;
 - (UIImage *)bbsPostDetailUnTop;
+
+- (UIImage *)bbsPostDetailMark;
+- (UIImage *)bbsPostDetailUnmark;
+
 - (UIImage *)bbsPostDetailTransfer;
 - (UIImage *)bbsPostTopBg;
 

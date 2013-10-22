@@ -256,9 +256,9 @@
 - (UIImage *)icon
 {
     if ([self.post marked]) {
-        return [[BBSImageManager defaultManager] bbsPostDetailUnTop];
+        return [[BBSImageManager defaultManager] bbsPostDetailUnmark];
     }
-    return [[BBSImageManager defaultManager] bbsPostDetailToTop];
+    return [[BBSImageManager defaultManager] bbsPostDetailMark];
 }
 
 - (void)dealloc

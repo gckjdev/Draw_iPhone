@@ -124,11 +124,8 @@
     NSString *titleName = self.bbsBoard.name;
     [self.createPostButton setImage:[_bbsImageManager bbsPostEditImage]
                            forState:UIControlStateNormal];
-    [self.rankButton setImage:[_bbsImageManager bbsPostNewImage]
+    [self.rankButton setImage:[_bbsImageManager bbsPostMarkImage]
                      forState:UIControlStateNormal];
-    
-    [self.rankButton setImage:[_bbsImageManager bbsPostHotImage]
-                     forState:UIControlStateSelected];
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
 }
 - (void)setupForUserPosts
@@ -192,12 +189,14 @@
 {
     [super viewDidAppear:animated];
     [self.dataTableView reloadData];
-    
+    [self updateTempPostListWithTabID:self.currentTab.tabID];
+/*
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
                                                    iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2-10, self.view.bounds.size.height-100, 320, 50)
                                                      useLmAd:YES];
-    
+  */
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -252,24 +251,8 @@
 
 - (IBAction)clickRankButton:(id)sender {
 
-#ifdef DEBUG
-    //TODO show mark post list
     [BBSPostListController enterMarkedPostListController:self.bbsBoard fromController:self];
     return;
-    
-#endif
-    
-    if (RangeTypeHot == _rangeType) {
-        _rangeType = RangeTypeNew;
-        self.rankButton.selected = NO;
-    }else{
-        _rangeType = RangeTypeHot;
-        self.rankButton.selected = YES;
-    }
-    NSInteger tabID = [self rangeTypeToTabID:_rangeType];
-    self.rankButton.tag = tabID;
-    [self clickTab:tabID];
-    [self updateTempPostListWithTabID:tabID];
 }
 
 #pragma mark - common tab controller delegate
