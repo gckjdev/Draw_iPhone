@@ -2003,9 +2003,19 @@
 "kRestore" = "Restore";
 
 "kContentRepeatedError" = "Can't send repeated content.";
-"kNoPost" = "No Post";
+"kNoPost" = "No Posts.";
 
 "kBBSQuitTips" = "Are you sure to quit?";
+
+"kToUnmarking" = "Unmarking";
+"kUnmarkSuccess" = "Unmark success.";
+"kUnmarkFailed" = "Unmark failed.";
+"kToMarking" = "Marking...";
+"kMarkSuccess" = "Mark success";
+"kMarkFailed" = "Mark failed";
+"kBBSToMark" = "Mark";
+"kMarked" = "Marked";
+"kMarkedPosts" = "Marked Posts";
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/

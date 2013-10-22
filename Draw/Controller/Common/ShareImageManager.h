@@ -119,10 +119,16 @@
     [ShareImageManager setButtonOrangeRoundStyle:view];     \
 }
 
+#define SET_VIEW_ROUND_CORNER_RADIUS(view, radius) \
+{           \
+[view.layer setCornerRadius:radius];  \
+[view.layer setMasksToBounds:YES];    \
+}
+
+
 #define SET_VIEW_ROUND_CORNER(view) \
 {           \
-    [view.layer setCornerRadius:TEXT_VIEW_CORNER_RADIUS];  \
-    [view.layer setMasksToBounds:YES];    \
+    SET_VIEW_ROUND_CORNER_RADIUS(view, TEXT_VIEW_CORNER_RADIUS)\
 }
 
 #define SET_VIEW_ROUND(view) \

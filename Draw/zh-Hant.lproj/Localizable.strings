@@ -2010,9 +2010,20 @@
 "kNoSupportViewFan" = "暫不支持查看其他用戶的關注";
 
 "kContentRepeatedError" = "請不要發重復的帖子。";
-"kNoPost" = "還沒有發過帖子";
+"kNoPost" = "沒有帖子。";
 
 "kBBSQuitTips" = "内容尚未发出，是否退出？";
+
+"kToUnmarking" = "取消加精中...";
+"kUnmarkSuccess" = "取消加精成功。";
+"kUnmarkFailed" = "取消加精失敗。";
+"kToMarking" = "加精中...";
+"kMarkSuccess" = "加精成功。";
+"kMarkFailed" = "加精失敗。";
+"kBBSToMark" = "加精";
+"kMarked" = "精華";
+"kMarkedPosts" = "精華貼";
+
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";

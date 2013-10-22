@@ -69,6 +69,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BBSPermissionManager)
 {
     return JUDGE_BOARD_PERMISSION(boardId, PermissionToTop);
 }
+
+- (BOOL)canMarkPost:(PBBBSPost *)post onBBBoard:(NSString *)boardId
+{
+    return [self canTopPost:post onBBBoard:boardId];
+}
+
 - (BOOL)canTransferPost:(PBBBSPost *)post fromBBBoard:(NSString *)boardId
 {
     return JUDGE_BOARD_PERMISSION(boardId, PermissionTransfer);

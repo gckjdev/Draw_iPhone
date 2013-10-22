@@ -21,6 +21,8 @@
 @property (nonatomic, retain)PBBBSPost *post;
 @property (nonatomic, retain) UIView* adView;
 
+- (void)updateViewWithPost:(PBBBSPost *)post;
+
 + (BBSPostDetailController *)enterPostDetailControllerWithPost:(PBBBSPost *)post
                                                 fromController:(UIViewController *)fromController
                                                       animated:(BOOL)animated;
@@ -39,5 +41,7 @@
 
 + (UIViewController *)enterBugReportPostController:(UIViewController *)fromController
                                                  animated:(BOOL)animated;
+
+
 
 @end
