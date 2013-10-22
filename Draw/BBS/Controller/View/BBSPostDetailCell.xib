@@ -159,7 +159,7 @@
 					<object class="IBUIImageView" id="388531300">
 						<reference key="NSNextResponder" ref="137148075"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{78, 70}, {85, 80}}</string>
+						<string key="NSFrame">{{85, 70}, {85, 80}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="800979207"/>
@@ -217,7 +217,7 @@
 					<object class="IBUIButton" id="800979207">
 						<reference key="NSNextResponder" ref="137148075"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{78, 155}, {28, 13}}</string>
+						<string key="NSFrame">{{86, 155}, {28, 13}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="98891893"/>
@@ -234,20 +234,20 @@
 						<reference key="IBUIHighlightedTitleColor" ref="873688479"/>
 						<reference key="IBUINormalTitleColor" ref="873688479"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1052942736"/>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="868328174">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="380393104">
 							<int key="type">2</int>
 							<double key="pointSize">10</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="329232982">
+						<object class="NSFont" key="IBUIFont" id="559489474">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">10</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIButton" id="663507378">
+					<object class="IBUIButton" id="748454874">
 						<reference key="NSNextResponder" ref="137148075"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{112, 155}, {28, 13}}</string>
+						<string key="NSFrame">{{120, 155}, {28, 13}}</string>
 						<reference key="NSSuperview" ref="137148075"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -263,8 +263,8 @@
 						<reference key="IBUIHighlightedTitleColor" ref="873688479"/>
 						<reference key="IBUINormalTitleColor" ref="873688479"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1052942736"/>
-						<reference key="IBUIFontDescription" ref="868328174"/>
-						<reference key="IBUIFont" ref="329232982"/>
+						<reference key="IBUIFontDescription" ref="380393104"/>
+						<reference key="IBUIFont" ref="559489474"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{300, 185}</string>
@@ -353,7 +353,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">markedFlag</string>
 						<reference key="source" ref="137148075"/>
-						<reference key="destination" ref="663507378"/>
+						<reference key="destination" ref="748454874"/>
 					</object>
 					<int key="connectionID">44</int>
 				</object>
@@ -389,7 +389,7 @@
 							<reference ref="98891893"/>
 							<reference ref="800979207"/>
 							<reference ref="564755147"/>
-							<reference ref="663507378"/>
+							<reference ref="748454874"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -435,7 +435,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
-						<reference key="object" ref="663507378"/>
+						<reference key="object" ref="748454874"/>
 						<reference key="parent" ref="137148075"/>
 					</object>
 				</array>
@@ -470,20 +470,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">BBSPostDetailCell</string>
 					<string key="superclassName">BBSTableViewCell</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickCommentButton:">id</string>
-						<string key="clickSupportButton:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickCommentButton:">
-							<string key="name">clickCommentButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickSupportButton:">
-							<string key="name">clickSupportButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="markedFlag">UIButton</string>
 						<string key="reward">UIButton</string>
