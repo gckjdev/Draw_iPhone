@@ -55,9 +55,23 @@
 {
     self.superViewController = superViewController;
     self.delegate = superViewController;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:NSLS(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), NSLS(@"kTakePhoto"), nil];
+//    [actionSheet showInView:[superViewController view]];
+//    [actionSheet release];
+    
+    
+    
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kSelectFromAlbum"), nil];
+    _buttonIndexAlbum = 0;
+        _buttonIndexCamera = [actionSheet addButtonWithTitle:NSLS(@"kTakePhoto")];
+    int index = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
+    [actionSheet setCancelButtonIndex:index];
     [actionSheet showInView:[superViewController view]];
-    [actionSheet release];        
+    [actionSheet release];
+    
+    
+    
 }
 
 - (void)showSelectionView:(UIViewController<ChangeAvatarDelegate>*)superViewController

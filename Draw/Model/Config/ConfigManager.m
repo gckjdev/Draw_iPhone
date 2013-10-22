@@ -1194,4 +1194,9 @@
     return [MobClickUtils getBoolValueByKey:@"SHOW_ALL_PAINTER_TAGS" defaultValue:NO];
 }
 
++ (NSString *)getSingTagList{
+    
+    return [MobClickUtils getStringValueByKey:@"SING_TAG_LIST" defaultValue:@"唱歌$搞笑$故事$模仿$方言"];
+}
+
 @end

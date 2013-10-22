@@ -305,4 +305,6 @@ typedef enum{
 
 + (BOOL)showAllPainterTags;
 
++ (NSString *)getSingTagList;
+
 @end

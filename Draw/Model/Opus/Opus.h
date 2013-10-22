@@ -62,6 +62,8 @@
 + (NSString*)localDataDir;
 - (void)setLocalDataUrl:(NSString*)extension;
 
+- (void)setTags:(NSArray *)tags;
+
 - (NSString*)dataType;
 
 //add by kira
@@ -77,6 +79,9 @@
 
 
 - (NSString *)shareTextWithSNSType:(int)type;
+
+
+
 
 @end
 

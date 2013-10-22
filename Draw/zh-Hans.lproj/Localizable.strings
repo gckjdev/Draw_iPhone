@@ -204,6 +204,9 @@
 "kVoiceTypeFemale" = "女声";
 "kUnkown" = "未知";
 
+"kChoseVoiceType" = "音效";
+
+
 "kGotoCoinShop" = "金币充值";
 
 "kChangeRoomMaxTimes" = "你换房间次数已经超过限制，现在换房间需要花费你一个金币，确定吗？";
@@ -1377,6 +1380,8 @@
 "kPayViaAppleAccount" = "使用Apple账户购买";
 
 "kEditOpusDesc" = "编辑作品主题和描述";
+"kEditOpusInfo" = "作品信息";
+"kCloseKeyboard" = "关键盘";
 "kHim" = "他";
 "kHer" = "她";
 "kDetailDrawTo" = "画给%@";
@@ -2071,6 +2076,7 @@
 "kSubjectPlaceholder" = "请输入主题";
 "kSubjectPlaceCannotBlank" = "主题不能为空";
 "kSubject" = "主题";
+"kTag" = "标签";
 "kFurtureFunction" = "神秘功能即将推出，敬请期待...";
 
 "kSelectorItem" = "选择器";

@@ -851,6 +851,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 @property PBOpusCategoryType category;
 @property int32_t createDate;
 @property int32_t status;
+@property (retain) NSMutableArray* mutableTagsList;
 @property int32_t deviceType;
 @property (retain) NSString* deviceName;
 @property (retain) NSString* appId;
@@ -949,6 +950,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   hasStatus_ = !!value;
 }
 @synthesize status;
+@synthesize mutableTagsList;
 - (BOOL) hasDeviceType {
   return !!hasDeviceType_;
 }
@@ -1074,6 +1076,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   self.image = nil;
   self.thumbImage = nil;
   self.dataUrl = nil;
+  self.mutableTagsList = nil;
   self.deviceName = nil;
   self.appId = nil;
   self.author = nil;
@@ -1133,6 +1136,13 @@ static PBOpus* defaultPBOpusInstance = nil;
 }
 - (PBOpus*) defaultInstance {
   return defaultPBOpusInstance;
+}
+- (NSArray*) tagsList {
+  return mutableTagsList;
+}
+- (NSString*) tagsAtIndex:(int32_t) index {
+  id value = [mutableTagsList objectAtIndex:index];
+  return value;
 }
 - (NSArray*) feedTimesList {
   return mutableFeedTimesList;
@@ -1205,6 +1215,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasStatus) {
     [output writeInt32:20 value:self.status];
+  }
+  for (NSString* element in self.mutableTagsList) {
+    [output writeString:21 value:element];
   }
   if (self.hasDeviceType) {
     [output writeInt32:25 value:self.deviceType];
@@ -1298,6 +1311,14 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasStatus) {
     size += computeInt32Size(20, self.status);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableTagsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableTagsList.count;
   }
   if (self.hasDeviceType) {
     size += computeInt32Size(25, self.deviceType);
@@ -1458,6 +1479,12 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (other.hasStatus) {
     [self setStatus:other.status];
   }
+  if (other.mutableTagsList.count > 0) {
+    if (result.mutableTagsList == nil) {
+      result.mutableTagsList = [NSMutableArray array];
+    }
+    [result.mutableTagsList addObjectsFromArray:other.mutableTagsList];
+  }
   if (other.hasDeviceType) {
     [self setDeviceType:other.deviceType];
   }
@@ -1590,6 +1617,10 @@ static PBOpus* defaultPBOpusInstance = nil;
       }
       case 160: {
         [self setStatus:[input readInt32]];
+        break;
+      }
+      case 170: {
+        [self addTags:[input readString]];
         break;
       }
       case 200: {
@@ -1879,6 +1910,37 @@ static PBOpus* defaultPBOpusInstance = nil;
 - (PBOpus_Builder*) clearStatus {
   result.hasStatus = NO;
   result.status = 0;
+  return self;
+}
+- (NSArray*) tagsList {
+  if (result.mutableTagsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableTagsList;
+}
+- (NSString*) tagsAtIndex:(int32_t) index {
+  return [result tagsAtIndex:index];
+}
+- (PBOpus_Builder*) replaceTagsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableTagsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBOpus_Builder*) addTags:(NSString*) value {
+  if (result.mutableTagsList == nil) {
+    result.mutableTagsList = [NSMutableArray array];
+  }
+  [result.mutableTagsList addObject:value];
+  return self;
+}
+- (PBOpus_Builder*) addAllTags:(NSArray*) values {
+  if (result.mutableTagsList == nil) {
+    result.mutableTagsList = [NSMutableArray array];
+  }
+  [result.mutableTagsList addObjectsFromArray:values];
+  return self;
+}
+- (PBOpus_Builder*) clearTagsList {
+  result.mutableTagsList = nil;
   return self;
 }
 - (BOOL) hasDeviceType {
