@@ -32,6 +32,9 @@ BBSService *_staticBBSService;
 
 @end
 
+
+#define BBS_HOST [ConfigManager getBBSServerURL]
+
 @implementation BBSService
 
 - (void)dealloc
@@ -648,6 +651,87 @@ BBSService *_staticBBSService;
                 list = nil;
             }
             EXECUTE_BLOCK(handler, resultCode, list, tag);
+        });
+    });
+}
+
+#pragma mark- mark methods 精华帖
+
+- (void)markPost:(NSString *)postId
+         boardId:(NSString *)boardId
+         handler:(BBSOperatePostHandler)handler
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
+                                PARA_APPID : appId,
+                                PARA_USERID : userId,
+                                PARA_BOARDID : boardId,
+                                PARA_POSTID : postId
+                                };
+        
+        GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:BBS_HOST method:METHOD_MARK_POST parameters:paras returnPB:NO returnJSONArray:YES];        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            EXECUTE_BLOCK(handler, resultCode);
+        });
+    });
+}
+
+- (void)unMarkPost:(NSString *)postId
+           boardId:(NSString *)boardId
+           handler:(BBSOperatePostHandler)handler
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
+                                PARA_APPID : appId,
+                                PARA_USERID : userId,
+                                PARA_BOARDID : boardId,
+                                PARA_POSTID : postId
+                                };
+        
+        GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:BBS_HOST method:METHOD_UNMARK_POST parameters:paras returnPB:NO returnJSONArray:YES];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            EXECUTE_BLOCK(handler, resultCode);
+        });
+    });
+}
+
+- (void)getMarkedPostList:(NSString *)boardId
+                   offset:(NSInteger)offset
+                    limit:(NSInteger)limit
+                  hanlder:(BBSGetPostResultHandler)handler
+{
+    dispatch_async(workingQueue, ^{
+        NSInteger deviceType = [DeviceDetection deviceType];
+        NSString *appId = [ConfigManager appId];
+        NSString *userId = [[UserManager defaultManager] userId];
+        
+        NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
+                                PARA_APPID : appId,
+                                PARA_USERID : userId,
+                                PARA_BOARDID : boardId,
+                                PARA_OFFSET : @(offset),
+                                PARA_LIMIT : @(limit)
+                                };
+        
+        GameNetworkOutput *output = [BBSNetwork sendGetRequestWithBaseURL:BBS_HOST method:METHOD_GET_MARKED_POSTS parameters:paras returnPB:YES returnJSONArray:NO];
+            
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSInteger resultCode = [output resultCode];
+            NSArray *list = [output.pbResponse bbsPostList];
+            EXECUTE_BLOCK(handler, resultCode, list, 0);        
         });
     });
 }

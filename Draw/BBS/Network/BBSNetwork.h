@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "GameNetworkConstants.h"
 #import "PPNetworkConstants.h"
+#import "PPGameNetworkRequest.h"
 @class CommonNetworkOutput;
 
-@interface BBSNetwork : NSObject
+
+@interface BBSNetwork : PPGameNetworkRequest
 
 + (CommonNetworkOutput*)getBBSBoardList:(NSString*)baseURL
                                   appId:(NSString*)appId

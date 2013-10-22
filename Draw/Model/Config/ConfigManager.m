@@ -1189,6 +1189,10 @@
 
 + (BOOL)showAllPainterTags
 {
+#ifdef DEBUG
+    return YES;
+#endif
+    
     return [MobClickUtils getBoolValueByKey:@"SHOW_ALL_PAINTER_TAGS" defaultValue:NO];
 }
 
