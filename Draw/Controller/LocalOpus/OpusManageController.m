@@ -179,20 +179,7 @@ typedef enum {
             [view setHidden:YES];
         }
     }
-//    NSMutableArray* myPaintArray = [NSMutableArray array];
-//
-//    NSAutoreleasePool* loopPool = [[NSAutoreleasePool alloc] init];
-//    for (int lineIndex = 0; lineIndex < VIEW_PER_LINE; lineIndex++) {
-//        int paintIndex = indexPath.row*VIEW_PER_LINE + lineIndex;
-//        if (paintIndex < self.paints.count) {
-//            MyPaint* paint  = [self.paints objectAtIndex:paintIndex]; 
-//            [myPaintArray addObject:paint];                
-//        }
-//    }
-//    [loopPool release];
-//
-//    cell.indexPath = indexPath;
-//    [cell setPaints:myPaintArray];
+
     return cell;
 }
 
@@ -245,8 +232,6 @@ typedef enum {
     [dialog showInView:self.view];
 }
 
-
-
 - (id)init
 {
     self = [super init];
@@ -255,6 +240,7 @@ typedef enum {
     }
     return self;
 }
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -291,30 +277,23 @@ typedef enum {
     [super viewDidLoad]; 
 
     [self initTabButtons];
-    UIButton *allButton = [self tabButtonWithTabID:TabTypeFavorite];
     
+    CommonTitleView *v = [CommonTitleView createTitleView:self.view];
+    [v setTarget:self];
 
     if (self.isFromWeiXin) {
-        [self.clearButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];        
-        self.backButton.hidden = YES;
         self.awardCoinTips.hidden = YES;
-        self.titleLabel.text = NSLS(@"kShareToWeiXinTitle");
-        
-        //update the table view frame
-        CGFloat x = self.dataTableView.frame.origin.x;
-        CGFloat y = self.dataTableView.frame.origin.y;
-        CGFloat width = self.dataTableView.frame.size.width;
-        CGFloat height = self.dataTableView.frame.size.height;
-        CGFloat ny = allButton.frame.origin.y  + allButton.frame.size.height * 1.2 ;
-        CGFloat nHeight = height + (y - ny);
-        
-        [self.dataTableView setFrame:CGRectMake(x, ny, width, nHeight)];
-        
+        [v setRightButtonTitle:NSLS(@"kCancel")];
+        [v setTitle:NSLS(@"kShareToWeiXinTitle")];
         [self showChooseWeixinOptionActionSheet];
     }else{
-        [self.clearButton setTitle:NSLS(@"kClear") forState:UIControlStateNormal];
-        self.titleLabel.text = NSLS(@"kShareTitle");
+        [v setRightButtonTitle:NSLS(@"kClear")];
+        [v setTitle:NSLS(@"kShareTitle")];
+        [v setBackButtonSelector:@selector(clickBackButton:)];
+        [v setRightButtonSelector:@selector(deleteAll:)];
     }
+    
+    SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
 }
 
 - (void)viewDidUnload
@@ -333,7 +312,6 @@ typedef enum {
     [self clickRefreshButton:nil];
 }
 
-
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -347,10 +325,12 @@ typedef enum {
 {
     return 3;
 }
+
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
     return 32;
 }
+
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
     NSInteger tabId[] = {TabTypeMine,TabTypeFavorite,TabTypeDraft};
@@ -478,7 +458,7 @@ typedef enum {
             [actionSheet setCancelButtonIndex:cancelIndex];
             [actionSheet setActionBlock:^(NSInteger buttonIndex){
                 if (buttonIndex == actionSheet.cancelButtonIndex) {
-                    return ;
+                    return;
                 }
                 [_currentSelectOpus handleShareOptionAtIndex:buttonIndex fromController:cp];
             }];
@@ -511,4 +491,5 @@ typedef enum {
     [share setFromWeiXin:YES];
     [superController.navigationController pushViewController:share animated:YES];
 }
+
 @end

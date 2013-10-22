@@ -129,7 +129,7 @@ message PBFeed {
 
   //for learn Draw
   optional PBLearnDraw learnDraw = 100;
-//  optional PBSing sing = 101;                 // 具体作品
+  //  optional PBSing sing = 101;                 // 具体作品
 
 
 }

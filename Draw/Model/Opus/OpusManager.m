@@ -63,7 +63,8 @@
     [self printAllOpus];
 }
 
-- (void)deleteOpus:(NSString *)opusId{
+- (void)deleteOpus:(NSString *)opusId
+{
     PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusId);
     [_db removeKey:opusId];
     

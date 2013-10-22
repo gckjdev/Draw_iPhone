@@ -119,12 +119,18 @@
     [ShareImageManager setButtonOrangeRoundStyle:view];     \
 }
 
+// 灰色圆角按钮风格。
+#define SET_BUTTON_ROUND_STYLE_GRAY(view)                 \
+{                                                           \
+[ShareImageManager setButtonGrayRoundStyle:view];     \
+}
+
+
 #define SET_VIEW_ROUND_CORNER_RADIUS(view, radius) \
 {           \
 [view.layer setCornerRadius:radius];  \
 [view.layer setMasksToBounds:YES];    \
 }
-
 
 #define SET_VIEW_ROUND_CORNER(view) \
 {           \
@@ -448,5 +454,7 @@
 
 + (void)setButtonCommonTabStyle:(UIButton *)button;
 + (void)setButtonOrangeRoundStyle:(UIButton *)button;
++ (void)setButtonGrayRoundStyle:(UIButton *)button;
+
 
 @end
