@@ -21,10 +21,9 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
 
-- (void)randomSongsWithPara:(NSDictionary *)para{
-    
-    __block typeof (self) bself = self;
-    
+- (void)randomSongsWithPara:(NSDictionary *)para
+                  completed:(GetSongsCompleted)completed{
+        
     dispatch_async(workingQueue, ^{
                 
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_RANDOM_GET_SONGS parameters:para];
@@ -43,28 +42,29 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-                        
-            if ([bself.delegate respondsToSelector:@selector(didGetSongs:songs:)]) {
-                [bself.delegate didGetSongs:resultCode songs:songs];
-            }
+            
+            EXECUTE_BLOCK(completed, resultCode, songs);
         });
     });
 }
 
-- (void)randomSongs:(int)count{
+- (void)randomSongs:(int)count
+          completed:(GetSongsCompleted)completed{
     
     NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
                            PARA_APPID : [ConfigManager appId],
                            PARA_COUNT : [NSString stringWithInt:count]
                            };
     
-    [self randomSongsWithPara:para];
+    [self randomSongsWithPara:para completed:completed];
 }
 
-- (void)randomSongsWithTag:(NSString *)tag count:(int)count{
+- (void)randomSongsWithTag:(NSString *)tag
+                     count:(int)count
+                 completed:(GetSongsCompleted)completed{
     
     if (tag == nil) {
-        return [self randomSongs:count];
+        return [self randomSongs:count completed:completed];
     }
     
     NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
@@ -73,7 +73,40 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
                            PARA_SUB_CATEGORY : tag
                            };
     
-    [self randomSongsWithPara:para];
+    [self randomSongsWithPara:para
+                    completed:completed];
+}
+
+- (void)searchSongWithName:(NSString *)name
+                 completed:(GetSongsCompleted)completed{
+        
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary *para = @{
+                               PARA_KEYWORD : (name == nil ? @"" : name)
+                               };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_SEARCH_SONG parameters:para];
+        
+        PPDebug(@"%@", output.description);
+        
+        int resultCode = output.resultCode;
+        
+        NSArray *songs = nil;
+        
+        if (resultCode == ERROR_SUCCESS) {
+            resultCode = output.pbResponse.resultCode;
+            if (resultCode == 0) {
+                songs = output.pbResponse.songs.songsList;
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            EXECUTE_BLOCK(completed, resultCode, songs);
+        });
+    });
+ 
 }
 
 @end

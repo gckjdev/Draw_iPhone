@@ -143,20 +143,24 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
   BOOL hasName_:1;
   BOOL hasAuthor_:1;
   BOOL hasLyric_:1;
+  BOOL hasLyricUrl_:1;
   NSString* songId;
   NSString* name;
   NSString* author;
   NSString* lyric;
+  NSString* lyricUrl;
   NSMutableArray* mutableTagList;
 }
 - (BOOL) hasSongId;
 - (BOOL) hasName;
 - (BOOL) hasAuthor;
 - (BOOL) hasLyric;
+- (BOOL) hasLyricUrl;
 @property (readonly, retain) NSString* songId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* author;
 @property (readonly, retain) NSString* lyric;
+@property (readonly, retain) NSString* lyricUrl;
 - (NSArray*) tagList;
 - (NSString*) tagAtIndex:(int32_t) index;
 
@@ -213,6 +217,11 @@ BOOL PBVoiceTypeIsValidValue(PBVoiceType value);
 - (NSString*) lyric;
 - (PBSong_Builder*) setLyric:(NSString*) value;
 - (PBSong_Builder*) clearLyric;
+
+- (BOOL) hasLyricUrl;
+- (NSString*) lyricUrl;
+- (PBSong_Builder*) setLyricUrl:(NSString*) value;
+- (PBSong_Builder*) clearLyricUrl;
 
 - (NSArray*) tagList;
 - (NSString*) tagAtIndex:(int32_t) index;
