@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "SingOpus.h"
 
+@protocol VoiceTypeSelectViewDelegate <NSObject>
+
+- (void)didSelectVoiceType:(PBVoiceType)voiceType;
+
+@end
+
 @interface VoiceTypeSelectView : UIView
 
+@property (assign, nonatomic) id delegate;
+
 + (id)createWithVoiceType:(PBVoiceType)voiceType;
-- (PBVoiceType)getVoiceType;
 
 @end

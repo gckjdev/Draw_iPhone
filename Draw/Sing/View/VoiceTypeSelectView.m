@@ -54,19 +54,19 @@ AUTO_CREATE_VIEW_BY_XIB(VoiceTypeSelectView);
     }];
 }
 
-- (PBVoiceType)getVoiceType{
-    
-    __block PBVoiceType voiceType;
-    
-    [self enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
-        
-        if (button.selected == YES) {
-            voiceType = button.tag;
-        }
-    }];
-    
-    return voiceType;
-}
+//- (PBVoiceType)getVoiceType{
+//    
+//    __block PBVoiceType voiceType;
+//    
+//    [self enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
+//        
+//        if (button.selected == YES) {
+//            voiceType = button.tag;
+//        }
+//    }];
+//    
+//    return voiceType;
+//}
 
 - (void)clickVoiceTypeButton:(UIButton *)button{
     
@@ -76,6 +76,10 @@ AUTO_CREATE_VIEW_BY_XIB(VoiceTypeSelectView);
     }];
     
     button.selected = YES;
+    
+    if ([_delegate respondsToSelector:@selector(didSelectVoiceType:)]) {
+        [_delegate didSelectVoiceType:button.tag];
+    }
 }
 
 @end
