@@ -10,6 +10,8 @@
 #import "UIPlaceholderTextView.h"
 #import "Opus.h"
 
+#define KEY_NOTIFICATION_SING_INFO_CHANGE @"KEY_NOTIFICATION_SING_INFO_CHANGE"
+
 @interface SingInfoEditController : PPViewController
 
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;

@@ -953,6 +953,10 @@
 "kNoRankNew" = "No data";
 "kNoData" = "No data";
 
+"kInputSongNameForSearch" = "Input song name for search";
+"kSongNameCannotBeBlank" = "Song name can not be blank";
+
+
 "kRankPlayer" = "Player";
 "kRankHistory" = "All Time";
 "kRankHot" = "Hot Now";
@@ -1408,6 +1412,7 @@
 "kTaoBaoChargeTitle" = "Taobao Store";
 "kQuitTaoBaoTips" = "Are you sure to quit?";
 
+
 "kSelectPaymentWay" = "Select payment method";
 "kPayViaZhiFuBao" = "Alipay";
 "kPayViaZhiFuBaoWeb" = "Alipay Web";
@@ -1421,6 +1426,8 @@
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
+
+"kSearchSong" = "Search Song";
 
 "kSelectBGImage" = "Select Background";
 "kSelectShape" = "Select Shape";
