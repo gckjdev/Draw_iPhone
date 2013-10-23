@@ -18,6 +18,8 @@ AUTO_CREATE_VIEW_BY_XIB(VoiceTypeSelectView);
     
     VoiceTypeSelectView *v = [self createView];
     
+    v.backgroundColor = [UIColor whiteColor];
+    
     [v enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
         SET_BUTTON_ROUND_STYLE_YELLOW(button);
         

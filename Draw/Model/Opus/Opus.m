@@ -198,6 +198,7 @@
 
 - (void)setTags:(NSArray *)tags{
     
+    [_pbOpusBuilder clearTagsList];
     [_pbOpusBuilder addAllTags:tags];
 }
 
