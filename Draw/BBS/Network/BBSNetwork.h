@@ -55,7 +55,6 @@
                                 userId:(NSString*)userId
                                boardId:(NSString*)boardId
                                keyWord:(NSString*)keyWord
-                                offset:(NSInteger)offset
                                  limit:(NSInteger)limit;
 
 + (CommonNetworkOutput*)createAction:(NSString*)baseURL

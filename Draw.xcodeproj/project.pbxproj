@@ -6605,6 +6605,14 @@
 		EAD13B8C17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
 		EAD13B8D17DECFE300764FFB /* OrangeLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */; };
 		EAD67187174E04E200221248 /* LittleGeeHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2051B461739E15E00403DBD /* LittleGeeHomeController.m */; };
+		EADC02551817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
+		EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
+		EADC02571817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
+		EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */ = {isa = PBXBuildFile; fileRef = EADC02531817CF8B0038B6A8 /* SearchPostController.m */; };
+		EADC02591817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
+		EADC025A1817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
+		EADC025B1817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
+		EADC025C1817CF8C0038B6A8 /* SearchPostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EADC02541817CF8B0038B6A8 /* SearchPostController.xib */; };
 		EAE5718D16FC6ACB000AFADA /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE5718C16FC6ACB000AFADA /* CacheManager.m */; };
 		EAECD2A417759DB000A5CBD9 /* sing_home_badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */; };
 /* End PBXBuildFile section */
@@ -9510,6 +9518,9 @@
 		EAD13B7A17DECFB700764FFB /* orange_loading_full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_loading_full@2x.png"; sourceTree = "<group>"; };
 		EAD13B8817DECFE300764FFB /* OrangeLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrangeLoadingView.h; sourceTree = "<group>"; };
 		EAD13B8917DECFE300764FFB /* OrangeLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrangeLoadingView.m; sourceTree = "<group>"; };
+		EADC02521817CF8B0038B6A8 /* SearchPostController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPostController.h; sourceTree = "<group>"; };
+		EADC02531817CF8B0038B6A8 /* SearchPostController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPostController.m; sourceTree = "<group>"; };
+		EADC02541817CF8B0038B6A8 /* SearchPostController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchPostController.xib; sourceTree = "<group>"; };
 		EAE5718B16FC6ACB000AFADA /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		EAE5718C16FC6ACB000AFADA /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		EAECD2A317759DB000A5CBD9 /* sing_home_badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_badge@2x.png"; sourceTree = "<group>"; };
@@ -14920,6 +14931,9 @@
 				CA9A274B1655E9DE00B7A0DA /* CreatePostController.m */,
 				CA9A274C1655E9DE00B7A0DA /* CreatePostController.xib */,
 				CA65978D166C7C3500A239E1 /* CreatePostController~ipad.xib */,
+				EADC02521817CF8B0038B6A8 /* SearchPostController.h */,
+				EADC02531817CF8B0038B6A8 /* SearchPostController.m */,
+				EADC02541817CF8B0038B6A8 /* SearchPostController.xib */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -17339,6 +17353,7 @@
 				EA690BED18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF2181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
 				A4F9380018176D030065D707 /* SongSearchController.xib in Resources */,
+				EADC025B1817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18209,6 +18224,7 @@
 				EA690BE318167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BEC18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF1181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
+				EADC025A1817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19062,6 +19078,7 @@
 				EA690BE218167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BEB18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF0181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
+				EADC02591817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19872,6 +19889,7 @@
 				EA690BE518167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BEE18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF3181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
+				EADC025C1817CF8C0038B6A8 /* SearchPostController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20670,6 +20688,7 @@
 				A4A947F218151FB8007A2E26 /* SingHotCell.m in Sources */,
 				A4A947F818162F37007A2E26 /* SingInfoEditController.m in Sources */,
 				A4F937FF18176D030065D707 /* SongSearchController.m in Sources */,
+				EADC02571817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21427,6 +21446,7 @@
 				A4326DAD180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
 				A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				A40B59BF180FD96200F68A81 /* OpusManagerFactory.m in Sources */,
+				EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22190,6 +22210,7 @@
 				A4326DAC180D447700D50F0A /* VoiceTypeSelectView.m in Sources */,
 				A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				A40B59BE180FD96200F68A81 /* OpusManagerFactory.m in Sources */,
+				EADC02551817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22902,6 +22923,7 @@
 				EA0C553C180B9203008069C1 /* InfHSBSupport.m in Sources */,
 				EA0C5540180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				EA0C5549180BECEB008069C1 /* PainterController.m in Sources */,
+				EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

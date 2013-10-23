@@ -283,6 +283,7 @@
     TableTab *tab = [_tabManager tabForID:tabID];
     [self showActivityWithText:NSLS(@"kLoading")];
     if (self.showMarkedPosts) {
+
         [[BBSService defaultService] getMarkedPostList:self.bbsBoard.boardId offset:tab.offset limit:tab.limit hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
             [self hideActivity];
             if (resultCode == 0) {

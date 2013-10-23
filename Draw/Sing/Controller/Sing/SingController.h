@@ -26,6 +26,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *pauseImageView;
 @property (retain, nonatomic) IBOutlet UIButton *rerecordButton;
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;
+@property (retain, nonatomic) IBOutlet UITextView *lyricTextView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
 @property (retain, nonatomic) IBOutlet UILabel *opusDescLabel;

@@ -221,6 +221,9 @@
 "kConfirmPasswordHolder" = "请再次输入新密码";
 "kNicknameHolder" = "请输入新昵称";
 
+"kSearchSong" = "搜索歌曲";
+
+
 "kPasswordWrong" = "旧密码输入不正确";
 "kPasswordDifferent" = "两次输入不一致";
 "kPasswordIllegal" = "密码长度不小于6";
@@ -965,6 +968,8 @@
 "kNoRankHot" = "暂时没有热榜数据";
 "kNoRankNew" = "暂时没有最新数据";
 "kNoData" = "暂无数据";
+"kInputSongNameForSearch" = "请输入歌曲名称";
+"kSongNameCannotBeBlank" = "歌曲名称不能为空";
 
 "kRankPlayer" = "达人";
 "kRankHistory" = "年度";

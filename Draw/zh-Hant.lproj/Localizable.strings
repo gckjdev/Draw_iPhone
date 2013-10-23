@@ -957,6 +957,8 @@
 "kNoRankHot" = "暫時沒有熱榜數據。";
 "kNoRankNew" = "暫時沒有最新數據。";
 "kNoData" = "暫時沒有數據。";
+"kInputSongNameForSearch" = "請輸入歌曲名稱";
+"kSongNameCannotBeBlank" = "歌曲名稱不能為空";
 
 "kRankPlayer" = "達人";
 "kRankHistory" = "總榜";
@@ -1362,6 +1364,8 @@
 "kDetailFollower" = "關注";
 "kDetailFollow" = "關注%@";
 "kDetailChat" = "聊天";
+
+"kSearchSong" = "搜索歌曲";
 
 "kSelectBGImage" = "選擇背景";
 "kBgDownloading" = "背景 (下載:%2.1f%%)";

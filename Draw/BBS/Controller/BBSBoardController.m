@@ -13,6 +13,7 @@
 #import "BBSActionListController.h"
 #import "StatisticManager.h"
 #import "StableView.h"
+#import "SearchPostController.h"
 
 @interface BBSBoardController ()
 {
@@ -139,6 +140,13 @@
 }
 
 - (IBAction)clickMyPostList:(id)sender {
+#ifdef DEBUG
+    SearchPostController *sp = [[SearchPostController alloc] init];
+    [self.navigationController pushViewController:sp animated:YES];
+    [sp release];
+    return;
+#endif
+    
     CHECK_AND_LOGIN(self.view);
     [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
                                                fromController:self];
