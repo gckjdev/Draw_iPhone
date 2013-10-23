@@ -46,6 +46,14 @@
 @class PBGameUser_Builder;
 @class PBGradient;
 @class PBGradient_Builder;
+@class PBGroup;
+@class PBGroupTitle;
+@class PBGroupTitle_Builder;
+@class PBGroupUser;
+@class PBGroupUser_Builder;
+@class PBGroupUsersByTitle;
+@class PBGroupUsersByTitle_Builder;
+@class PBGroup_Builder;
 @class PBHotWord;
 @class PBHotWordList;
 @class PBHotWordList_Builder;

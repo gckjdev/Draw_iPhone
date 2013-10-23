@@ -142,7 +142,7 @@
 }
 
 + (NSString*)getBBSServerURL
-{    
+{
     return [MobClickUtils getStringValueByKey:@"BBS_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
 }
 

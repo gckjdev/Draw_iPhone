@@ -53,6 +53,7 @@
     [v setRightButtonTitle:NSLS(@"kCloseKeyboard")];
     [v setRightButtonSelector:@selector(clickCloseKeyBoard:)];
     [v hideRightButton];
+    [v hideBackButton];
     
     self.nameLabel.text = NSLS(@"kSubject");
     self.descLabel.text = NSLS(@"kDesc");
@@ -177,6 +178,8 @@
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:1.5];
         return;
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
         
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

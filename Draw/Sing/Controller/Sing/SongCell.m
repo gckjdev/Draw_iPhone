@@ -38,6 +38,12 @@ AUTO_CREATE_VIEW_BY_XIB(SongCell);
 - (void)setCellData:(PBSong *)song{
     self.nameLabel.text = song.name;
     self.authorLabel.text = song.author;
+    
+    self.nameLabel.textColor = COLOR_BROWN;
+    self.authorLabel.textColor = COLOR_GREEN;
+    
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.selectButton);
+    
     self.song = song;
 }
 

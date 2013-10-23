@@ -199,17 +199,14 @@ typedef enum{
              WithPlayers:(NSArray *)players isFirstRow:(BOOL)isFirstRow
 {
     CGFloat width = [TopPlayerView getHeight];
-    CGFloat height = [TopPlayerView getHeight];//[RankView heightForRankViewType:RankViewTypeNormal];
+    CGFloat height = [TopPlayerView getHeight];
     CGFloat space = WIDTH_SPACE;;
     CGFloat x = 0;
     CGFloat y = 0;
-//    NSInteger i = 0;
     for (TopPlayer *player in players) {
         TopPlayerView *playerView = [TopPlayerView createTopPlayerView:self];
         [playerView setViewInfo:player];
-//        if (isFirstRow) {
-//            [playerView setRankFlag:i++];
-//        }
+
         [cell.contentView addSubview:playerView];
         playerView.frame = CGRectMake(x, y, width, height);
         x += width + space;

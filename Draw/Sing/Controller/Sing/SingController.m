@@ -31,6 +31,7 @@
 #import "SingInfoEditController.h"
 #import "MKBlockActionSheet.h"
 #import "CMPopTipView.h"
+#import "SongSearchController.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -79,6 +80,7 @@ enum{
     [_opusImageView release];
     [_opusDescLabel release];
     
+    [_lyricTextView release];
     [super dealloc];
 }
 
@@ -137,8 +139,6 @@ enum{
 {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view from its nib.
-    
     // init title view
     CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
     [titleView setTitle:NSLS(@"kGuessing")];
@@ -154,10 +154,15 @@ enum{
     }else{
         [self.opusImageView setImage:[[ShareImageManager defaultManager] unloadBg]];
     }
-    
     [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
     
-    [_opusDescLabel setText:_singOpus.pbOpus.desc];
+    self.opusDescLabel.text = self.singOpus.pbOpus.desc;
+    self.opusDescLabel.textColor = COLOR_BROWN;
+    
+    self.lyricTextView.editable = NO;
+    self.lyricTextView.text = self.singOpus.pbOpus.sing.song.lyric;
+    self.lyricTextView.hidden = YES;
+    self.lyricTextView.textColor = COLOR_BROWN;
     
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
         
@@ -168,7 +173,23 @@ enum{
         [self prepareToRecord];
         [self setState:StateReadyRecord];
     }
+    
+    __block typeof (self) bself = self;
+    [bself registerNotificationWithName:KEY_NOTIFICATION_SELECT_SONG usingBlock:^(NSNotification *note) {
+        
+        bself.lyricTextView.text = bself.singOpus.pbOpus.sing.song.lyric;
+        bself.lyricTextView.hidden = NO;
+        bself.opusDescLabel.hidden = YES;
+    }];
+    
+    [bself registerNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE usingBlock:^(NSNotification *note) {
+        bself.opusDescLabel.text = bself.singOpus.pbOpus.desc;
+        bself.lyricTextView.hidden = YES;
+        bself.opusDescLabel.hidden = NO;
+    }];
 }
+
+
 
 - (BOOL)shouldAutorotate{
     return NO;
@@ -183,6 +204,7 @@ enum{
     [self setSaveButton:nil];
     [self setOpusImageView:nil];
     [self setOpusDescLabel:nil];
+    [self setLyricTextView:nil];
     [super viewDidUnload];
 }
 
@@ -486,7 +508,9 @@ enum{
     _recorder.delegate = nil;
     _player.delegate = nil;
     _processor.delegate = nil;
-    
+    [self unregisterNotificationWithName:KEY_NOTIFICATION_SELECT_SONG];
+    [self unregisterNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE];
+
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -546,17 +570,17 @@ enum{
     }
 }
 
-- (IBAction)clickReviewButton:(id)sender {
-    
-    
-    [[ImagePlayer defaultPlayer] playWithImage:self.image onViewController:self];
+- (IBAction)clickReviewButton:(UIButton *)button {
+
+    self.lyricTextView.hidden = !self.lyricTextView.hidden;
+    self.opusDescLabel.hidden = !self.opusDescLabel.hidden;
 }
 
-- (IBAction)clickLyricButton:(id)sender {
+- (IBAction)clickSearchSongButton:(id)sender {
     
-    
+    SongSearchController *vc = [[[SongSearchController alloc] initWithSingOpus:self.singOpus] autorelease];
+    [self presentViewController:vc animated:YES completion:NULL];
 }
-
 
 - (void)voiceChanger:(VoiceChanger *)voiceChanger didGetFileDuration:(double)fileDuration{
     _fileDuration = fileDuration + 0.5;
