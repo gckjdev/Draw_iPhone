@@ -32,12 +32,6 @@ message PBAskPsOpus {
     required string askPsId = 1;                    // 关联的求PS的ID
 }
 
-enum PBOpusCategoryType{
-    DRAW_CATEGORY = 0;
-    SING_CATEGORY = 1;
-    ASK_PS_CATEGORY = 2;
-}
-
 enum PBLanguage{
     CHINESE = 1;
     ENGLISH = 2;
@@ -130,7 +124,7 @@ message PBOpus {
   optional string localThumbImageUrl = 152;        // 本地图片的小图路径
   optional bool   isRecovery = 153[default=false]; // 是否是自动恢复的草稿
 
-  optional PBOpusStoreType storeType = 200;      // 当前保存类型 
+  optional PBOpusStoreType storeType = 200;      // 当前保存类型
   
   optional PBOpusGuess guessInfo = 250;                 // 用户猜的信息
 }

@@ -13,20 +13,21 @@
 #import "GameBasic.pb.h"
 #import "LocaleUtils.h"
 #import "ItemType.h"
+#import "Opus.pb.h"
 
 typedef enum{
     
 	FeedTypeUnknow = 0,
-	FeedTypeDraw = 1,
-	FeedTypeGuess = 2,
-	FeedTypeComment = 3, 
-	FeedTypeRepost = 4,
-    FeedTypeDrawToUser = 5,
+	FeedTypeDraw = PBOpusTypeDraw,
+	FeedTypeGuess = PBOpusTypeGuess,
+	FeedTypeComment = PBOpusTypeComment,
+	FeedTypeRepost = PBOpusTypeRepost,
+    FeedTypeDrawToUser = PBOpusTypeDrawToUser,
     
 	FeedTypeFlower = ItemTypeFlower,
 	FeedTypeTomato = ItemTypeTomato,
-    FeedTypeOnlyComment = 8,
-    FeedTypeDrawToContest = 9,
+    FeedTypeOnlyComment = PBOpusTypeComment,
+    FeedTypeDrawToContest = PBOpusTypeDrawContest,
     
     FeedTypeContestComment = 105,
         

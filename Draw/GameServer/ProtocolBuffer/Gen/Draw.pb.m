@@ -2048,6 +2048,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property int32_t deviceType;
 @property (retain) NSString* deviceName;
 @property (retain) NSString* gameId;
+@property PBOpusCategoryType category;
 @property (retain) NSString* nickName;
 @property (retain) NSString* avatar;
 @property BOOL gender;
@@ -2058,6 +2059,8 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property Float64 historyScore;
 @property (retain) NSString* opusDesc;
 @property (retain) NSString* drawDataUrl;
+@property (retain) NSMutableArray* mutableTagsList;
+@property int32_t spendTime;
 @property (retain) NSString* opusId;
 @property BOOL isCorrect;
 @property int32_t score;
@@ -2081,7 +2084,9 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property (retain) NSString* contestId;
 @property Float64 contestScore;
 @property (retain) NSMutableArray* mutableRankInfoList;
+@property int32_t rankInTop;
 @property (retain) PBLearnDraw* learnDraw;
+@property (retain) PBSingOpus* sing;
 @end
 
 @implementation PBFeed
@@ -2135,6 +2140,13 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasGameId_ = !!value;
 }
 @synthesize gameId;
+- (BOOL) hasCategory {
+  return !!hasCategory_;
+}
+- (void) setHasCategory:(BOOL) value {
+  hasCategory_ = !!value;
+}
+@synthesize category;
 - (BOOL) hasNickName {
   return !!hasNickName_;
 }
@@ -2210,6 +2222,14 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasDrawDataUrl_ = !!value;
 }
 @synthesize drawDataUrl;
+@synthesize mutableTagsList;
+- (BOOL) hasSpendTime {
+  return !!hasSpendTime_;
+}
+- (void) setHasSpendTime:(BOOL) value {
+  hasSpendTime_ = !!value;
+}
+@synthesize spendTime;
 - (BOOL) hasOpusId {
   return !!hasOpusId_;
 }
@@ -2363,6 +2383,13 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 }
 @synthesize contestScore;
 @synthesize mutableRankInfoList;
+- (BOOL) hasRankInTop {
+  return !!hasRankInTop_;
+}
+- (void) setHasRankInTop:(BOOL) value {
+  hasRankInTop_ = !!value;
+}
+@synthesize rankInTop;
 - (BOOL) hasLearnDraw {
   return !!hasLearnDraw_;
 }
@@ -2370,6 +2397,13 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasLearnDraw_ = !!value;
 }
 @synthesize learnDraw;
+- (BOOL) hasSing {
+  return !!hasSing_;
+}
+- (void) setHasSing:(BOOL) value {
+  hasSing_ = !!value;
+}
+@synthesize sing;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2383,6 +2417,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.targetUserNickName = nil;
   self.opusDesc = nil;
   self.drawDataUrl = nil;
+  self.mutableTagsList = nil;
   self.opusId = nil;
   self.mutableGuessWordsList = nil;
   self.comment = nil;
@@ -2398,6 +2433,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.contestId = nil;
   self.mutableRankInfoList = nil;
   self.learnDraw = nil;
+  self.sing = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2409,6 +2445,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
     self.deviceType = 0;
     self.deviceName = @"";
     self.gameId = @"";
+    self.category = PBOpusCategoryTypeDrawCategory;
     self.nickName = @"";
     self.avatar = @"";
     self.gender = NO;
@@ -2419,6 +2456,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
     self.historyScore = 0;
     self.opusDesc = @"";
     self.drawDataUrl = @"";
+    self.spendTime = 0;
     self.opusId = @"";
     self.isCorrect = NO;
     self.score = 0;
@@ -2439,7 +2477,9 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
     self.dataUrl = @"";
     self.contestId = @"";
     self.contestScore = 0;
+    self.rankInTop = 0;
     self.learnDraw = [PBLearnDraw defaultInstance];
+    self.sing = [PBSingOpus defaultInstance];
   }
   return self;
 }
@@ -2454,6 +2494,13 @@ static PBFeed* defaultPBFeedInstance = nil;
 }
 - (PBFeed*) defaultInstance {
   return defaultPBFeedInstance;
+}
+- (NSArray*) tagsList {
+  return mutableTagsList;
+}
+- (NSString*) tagsAtIndex:(int32_t) index {
+  id value = [mutableTagsList objectAtIndex:index];
+  return value;
 }
 - (NSArray*) guessWordsList {
   return mutableGuessWordsList;
@@ -2514,6 +2561,11 @@ static PBFeed* defaultPBFeedInstance = nil;
       return NO;
     }
   }
+  if (self.hasSing) {
+    if (!self.sing.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -2537,6 +2589,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasGameId) {
     [output writeString:7 value:self.gameId];
+  }
+  if (self.hasCategory) {
+    [output writeEnum:8 value:self.category];
   }
   if (self.hasNickName) {
     [output writeString:21 value:self.nickName];
@@ -2567,6 +2622,12 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasDrawDataUrl) {
     [output writeString:36 value:self.drawDataUrl];
+  }
+  for (NSString* element in self.mutableTagsList) {
+    [output writeString:37 value:element];
+  }
+  if (self.hasSpendTime) {
+    [output writeInt32:38 value:self.spendTime];
   }
   if (self.hasOpusId) {
     [output writeString:41 value:self.opusId];
@@ -2637,8 +2698,14 @@ static PBFeed* defaultPBFeedInstance = nil;
   for (PBOpusRank* element in self.rankInfoList) {
     [output writeMessage:93 value:element];
   }
+  if (self.hasRankInTop) {
+    [output writeInt32:94 value:self.rankInTop];
+  }
   if (self.hasLearnDraw) {
     [output writeMessage:100 value:self.learnDraw];
+  }
+  if (self.hasSing) {
+    [output writeMessage:101 value:self.sing];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2670,6 +2737,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasGameId) {
     size += computeStringSize(7, self.gameId);
   }
+  if (self.hasCategory) {
+    size += computeEnumSize(8, self.category);
+  }
   if (self.hasNickName) {
     size += computeStringSize(21, self.nickName);
   }
@@ -2699,6 +2769,17 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasDrawDataUrl) {
     size += computeStringSize(36, self.drawDataUrl);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableTagsList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableTagsList.count;
+  }
+  if (self.hasSpendTime) {
+    size += computeInt32Size(38, self.spendTime);
   }
   if (self.hasOpusId) {
     size += computeStringSize(41, self.opusId);
@@ -2774,8 +2855,14 @@ static PBFeed* defaultPBFeedInstance = nil;
   for (PBOpusRank* element in self.rankInfoList) {
     size += computeMessageSize(93, element);
   }
+  if (self.hasRankInTop) {
+    size += computeInt32Size(94, self.rankInTop);
+  }
   if (self.hasLearnDraw) {
     size += computeMessageSize(100, self.learnDraw);
+  }
+  if (self.hasSing) {
+    size += computeMessageSize(101, self.sing);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2873,6 +2960,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (other.hasGameId) {
     [self setGameId:other.gameId];
   }
+  if (other.hasCategory) {
+    [self setCategory:other.category];
+  }
   if (other.hasNickName) {
     [self setNickName:other.nickName];
   }
@@ -2902,6 +2992,15 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasDrawDataUrl) {
     [self setDrawDataUrl:other.drawDataUrl];
+  }
+  if (other.mutableTagsList.count > 0) {
+    if (result.mutableTagsList == nil) {
+      result.mutableTagsList = [NSMutableArray array];
+    }
+    [result.mutableTagsList addObjectsFromArray:other.mutableTagsList];
+  }
+  if (other.hasSpendTime) {
+    [self setSpendTime:other.spendTime];
   }
   if (other.hasOpusId) {
     [self setOpusId:other.opusId];
@@ -2981,8 +3080,14 @@ static PBFeed* defaultPBFeedInstance = nil;
     }
     [result.mutableRankInfoList addObjectsFromArray:other.mutableRankInfoList];
   }
+  if (other.hasRankInTop) {
+    [self setRankInTop:other.rankInTop];
+  }
   if (other.hasLearnDraw) {
     [self mergeLearnDraw:other.learnDraw];
+  }
+  if (other.hasSing) {
+    [self mergeSing:other.sing];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3033,6 +3138,15 @@ static PBFeed* defaultPBFeedInstance = nil;
         [self setGameId:[input readString]];
         break;
       }
+      case 64: {
+        int32_t value = [input readEnum];
+        if (PBOpusCategoryTypeIsValidValue(value)) {
+          [self setCategory:value];
+        } else {
+          [unknownFields mergeVarintField:8 value:value];
+        }
+        break;
+      }
       case 170: {
         [self setNickName:[input readString]];
         break;
@@ -3076,6 +3190,14 @@ static PBFeed* defaultPBFeedInstance = nil;
       }
       case 290: {
         [self setDrawDataUrl:[input readString]];
+        break;
+      }
+      case 298: {
+        [self addTags:[input readString]];
+        break;
+      }
+      case 304: {
+        [self setSpendTime:[input readInt32]];
         break;
       }
       case 330: {
@@ -3179,6 +3301,10 @@ static PBFeed* defaultPBFeedInstance = nil;
         [self addRankInfo:[subBuilder buildPartial]];
         break;
       }
+      case 752: {
+        [self setRankInTop:[input readInt32]];
+        break;
+      }
       case 802: {
         PBLearnDraw_Builder* subBuilder = [PBLearnDraw builder];
         if (self.hasLearnDraw) {
@@ -3186,6 +3312,15 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setLearnDraw:[subBuilder buildPartial]];
+        break;
+      }
+      case 810: {
+        PBSingOpus_Builder* subBuilder = [PBSingOpus builder];
+        if (self.hasSing) {
+          [subBuilder mergeFrom:self.sing];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setSing:[subBuilder buildPartial]];
         break;
       }
     }
@@ -3301,6 +3436,22 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearGameId {
   result.hasGameId = NO;
   result.gameId = @"";
+  return self;
+}
+- (BOOL) hasCategory {
+  return result.hasCategory;
+}
+- (PBOpusCategoryType) category {
+  return result.category;
+}
+- (PBFeed_Builder*) setCategory:(PBOpusCategoryType) value {
+  result.hasCategory = YES;
+  result.category = value;
+  return self;
+}
+- (PBFeed_Builder*) clearCategory {
+  result.hasCategory = NO;
+  result.category = PBOpusCategoryTypeDrawCategory;
   return self;
 }
 - (BOOL) hasNickName {
@@ -3475,6 +3626,53 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearDrawDataUrl {
   result.hasDrawDataUrl = NO;
   result.drawDataUrl = @"";
+  return self;
+}
+- (NSArray*) tagsList {
+  if (result.mutableTagsList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableTagsList;
+}
+- (NSString*) tagsAtIndex:(int32_t) index {
+  return [result tagsAtIndex:index];
+}
+- (PBFeed_Builder*) replaceTagsAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableTagsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addTags:(NSString*) value {
+  if (result.mutableTagsList == nil) {
+    result.mutableTagsList = [NSMutableArray array];
+  }
+  [result.mutableTagsList addObject:value];
+  return self;
+}
+- (PBFeed_Builder*) addAllTags:(NSArray*) values {
+  if (result.mutableTagsList == nil) {
+    result.mutableTagsList = [NSMutableArray array];
+  }
+  [result.mutableTagsList addObjectsFromArray:values];
+  return self;
+}
+- (PBFeed_Builder*) clearTagsList {
+  result.mutableTagsList = nil;
+  return self;
+}
+- (BOOL) hasSpendTime {
+  return result.hasSpendTime;
+}
+- (int32_t) spendTime {
+  return result.spendTime;
+}
+- (PBFeed_Builder*) setSpendTime:(int32_t) value {
+  result.hasSpendTime = YES;
+  result.spendTime = value;
+  return self;
+}
+- (PBFeed_Builder*) clearSpendTime {
+  result.hasSpendTime = NO;
+  result.spendTime = 0;
   return self;
 }
 - (BOOL) hasOpusId {
@@ -3900,6 +4098,22 @@ static PBFeed* defaultPBFeedInstance = nil;
   [result.mutableRankInfoList addObject:value];
   return self;
 }
+- (BOOL) hasRankInTop {
+  return result.hasRankInTop;
+}
+- (int32_t) rankInTop {
+  return result.rankInTop;
+}
+- (PBFeed_Builder*) setRankInTop:(int32_t) value {
+  result.hasRankInTop = YES;
+  result.rankInTop = value;
+  return self;
+}
+- (PBFeed_Builder*) clearRankInTop {
+  result.hasRankInTop = NO;
+  result.rankInTop = 0;
+  return self;
+}
 - (BOOL) hasLearnDraw {
   return result.hasLearnDraw;
 }
@@ -3928,6 +4142,36 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearLearnDraw {
   result.hasLearnDraw = NO;
   result.learnDraw = [PBLearnDraw defaultInstance];
+  return self;
+}
+- (BOOL) hasSing {
+  return result.hasSing;
+}
+- (PBSingOpus*) sing {
+  return result.sing;
+}
+- (PBFeed_Builder*) setSing:(PBSingOpus*) value {
+  result.hasSing = YES;
+  result.sing = value;
+  return self;
+}
+- (PBFeed_Builder*) setSingBuilder:(PBSingOpus_Builder*) builderForValue {
+  return [self setSing:[builderForValue build]];
+}
+- (PBFeed_Builder*) mergeSing:(PBSingOpus*) value {
+  if (result.hasSing &&
+      result.sing != [PBSingOpus defaultInstance]) {
+    result.sing =
+      [[[PBSingOpus builderWithPrototype:result.sing] mergeFrom:value] buildPartial];
+  } else {
+    result.sing = value;
+  }
+  result.hasSing = YES;
+  return self;
+}
+- (PBFeed_Builder*) clearSing {
+  result.hasSing = NO;
+  result.sing = [PBSingOpus defaultInstance];
   return self;
 }
 @end

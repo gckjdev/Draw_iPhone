@@ -295,3 +295,9 @@ enum PBContestStatus
 
 }
 
+enum PBOpusCategoryType{
+    DRAW_CATEGORY = 0;
+    SING_CATEGORY = 1;
+    ASK_PS_CATEGORY = 2;
+}
+

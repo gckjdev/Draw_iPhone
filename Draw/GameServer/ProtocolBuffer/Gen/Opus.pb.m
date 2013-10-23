@@ -23,16 +23,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value) {
-  switch (value) {
-    case PBOpusCategoryTypeDrawCategory:
-    case PBOpusCategoryTypeSingCategory:
-    case PBOpusCategoryTypeAskPsCategory:
-      return YES;
-    default:
-      return NO;
-  }
-}
 BOOL PBLanguageIsValidValue(PBLanguage value) {
   switch (value) {
     case PBLanguageChinese:

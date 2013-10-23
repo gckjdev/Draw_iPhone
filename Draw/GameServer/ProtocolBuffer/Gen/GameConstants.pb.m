@@ -251,3 +251,13 @@ BOOL PBContestStatusIsValidValue(PBContestStatus value) {
       return NO;
   }
 }
+BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value) {
+  switch (value) {
+    case PBOpusCategoryTypeDrawCategory:
+    case PBOpusCategoryTypeSingCategory:
+    case PBOpusCategoryTypeAskPsCategory:
+      return YES;
+    default:
+      return NO;
+  }
+}

@@ -140,14 +140,6 @@
 @class PBWallOpus_Builder;
 @class PBWall_Builder;
 typedef enum {
-  PBOpusCategoryTypeDrawCategory = 0,
-  PBOpusCategoryTypeSingCategory = 1,
-  PBOpusCategoryTypeAskPsCategory = 2,
-} PBOpusCategoryType;
-
-BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value);
-
-typedef enum {
   PBLanguageChinese = 1,
   PBLanguageEnglish = 2,
 } PBLanguage;

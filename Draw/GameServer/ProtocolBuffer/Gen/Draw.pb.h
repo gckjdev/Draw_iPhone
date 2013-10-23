@@ -616,23 +616,25 @@
   BOOL hasContestScore_:1;
   BOOL hasHistoryScore_:1;
   BOOL hasOpusStatus_:1;
-  BOOL hasActionType_:1;
-  BOOL hasCreateDate_:1;
-  BOOL hasDeviceType_:1;
   BOOL hasScore_:1;
+  BOOL hasSpendTime_:1;
+  BOOL hasRankInTop_:1;
   BOOL hasMatchTimes_:1;
   BOOL hasCorrectTimes_:1;
-  BOOL hasCommentTimes_:1;
   BOOL hasGuessTimes_:1;
-  BOOL hasContestId_:1;
+  BOOL hasCommentTimes_:1;
+  BOOL hasDeviceType_:1;
+  BOOL hasCreateDate_:1;
+  BOOL hasActionType_:1;
   BOOL hasDataUrl_:1;
   BOOL hasOpusCreatorUserId_:1;
   BOOL hasOpusCreatorNickName_:1;
   BOOL hasOpusCreatorAvatar_:1;
+  BOOL hasContestId_:1;
   BOOL hasOpusWord_:1;
+  BOOL hasComment_:1;
   BOOL hasOpusImage_:1;
   BOOL hasOpusThumbImage_:1;
-  BOOL hasComment_:1;
   BOOL hasOpusId_:1;
   BOOL hasDrawDataUrl_:1;
   BOOL hasOpusDesc_:1;
@@ -646,31 +648,35 @@
   BOOL hasUserId_:1;
   BOOL hasFeedId_:1;
   BOOL hasLearnDraw_:1;
+  BOOL hasSing_:1;
   BOOL hasCommentInfo_:1;
   BOOL hasDrawData_:1;
+  BOOL hasCategory_:1;
   BOOL isCorrect_:1;
   BOOL opusCreatorGender_:1;
   BOOL gender_:1;
   Float64 contestScore;
   Float64 historyScore;
   int32_t opusStatus;
-  int32_t actionType;
-  int32_t createDate;
-  int32_t deviceType;
   int32_t score;
+  int32_t spendTime;
+  int32_t rankInTop;
   int32_t matchTimes;
   int32_t correctTimes;
-  int32_t commentTimes;
   int32_t guessTimes;
-  NSString* contestId;
+  int32_t commentTimes;
+  int32_t deviceType;
+  int32_t createDate;
+  int32_t actionType;
   NSString* dataUrl;
   NSString* opusCreatorUserId;
   NSString* opusCreatorNickName;
   NSString* opusCreatorAvatar;
+  NSString* contestId;
   NSString* opusWord;
+  NSString* comment;
   NSString* opusImage;
   NSString* opusThumbImage;
-  NSString* comment;
   NSString* opusId;
   NSString* drawDataUrl;
   NSString* opusDesc;
@@ -684,9 +690,12 @@
   NSString* userId;
   NSString* feedId;
   PBLearnDraw* learnDraw;
+  PBSingOpus* sing;
   PBCommentInfo* commentInfo;
   PBDraw* drawData;
+  PBOpusCategoryType category;
   NSMutableArray* mutableGuessWordsList;
+  NSMutableArray* mutableTagsList;
   NSMutableArray* mutableFeedTimesList;
   NSMutableArray* mutableRankInfoList;
 }
@@ -697,6 +706,7 @@
 - (BOOL) hasDeviceType;
 - (BOOL) hasDeviceName;
 - (BOOL) hasGameId;
+- (BOOL) hasCategory;
 - (BOOL) hasNickName;
 - (BOOL) hasAvatar;
 - (BOOL) hasGender;
@@ -707,6 +717,7 @@
 - (BOOL) hasHistoryScore;
 - (BOOL) hasOpusDesc;
 - (BOOL) hasDrawDataUrl;
+- (BOOL) hasSpendTime;
 - (BOOL) hasOpusId;
 - (BOOL) hasIsCorrect;
 - (BOOL) hasScore;
@@ -727,7 +738,9 @@
 - (BOOL) hasDataUrl;
 - (BOOL) hasContestId;
 - (BOOL) hasContestScore;
+- (BOOL) hasRankInTop;
 - (BOOL) hasLearnDraw;
+- (BOOL) hasSing;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -735,6 +748,7 @@
 @property (readonly) int32_t deviceType;
 @property (readonly, retain) NSString* deviceName;
 @property (readonly, retain) NSString* gameId;
+@property (readonly) PBOpusCategoryType category;
 @property (readonly, retain) NSString* nickName;
 @property (readonly, retain) NSString* avatar;
 - (BOOL) gender;
@@ -745,6 +759,7 @@
 @property (readonly) Float64 historyScore;
 @property (readonly, retain) NSString* opusDesc;
 @property (readonly, retain) NSString* drawDataUrl;
+@property (readonly) int32_t spendTime;
 @property (readonly, retain) NSString* opusId;
 - (BOOL) isCorrect;
 @property (readonly) int32_t score;
@@ -765,7 +780,11 @@
 @property (readonly, retain) NSString* dataUrl;
 @property (readonly, retain) NSString* contestId;
 @property (readonly) Float64 contestScore;
+@property (readonly) int32_t rankInTop;
 @property (readonly, retain) PBLearnDraw* learnDraw;
+@property (readonly, retain) PBSingOpus* sing;
+- (NSArray*) tagsList;
+- (NSString*) tagsAtIndex:(int32_t) index;
 - (NSArray*) guessWordsList;
 - (NSString*) guessWordsAtIndex:(int32_t) index;
 - (NSArray*) feedTimesList;
@@ -842,6 +861,11 @@
 - (PBFeed_Builder*) setGameId:(NSString*) value;
 - (PBFeed_Builder*) clearGameId;
 
+- (BOOL) hasCategory;
+- (PBOpusCategoryType) category;
+- (PBFeed_Builder*) setCategory:(PBOpusCategoryType) value;
+- (PBFeed_Builder*) clearCategory;
+
 - (BOOL) hasNickName;
 - (NSString*) nickName;
 - (PBFeed_Builder*) setNickName:(NSString*) value;
@@ -893,6 +917,18 @@
 - (NSString*) drawDataUrl;
 - (PBFeed_Builder*) setDrawDataUrl:(NSString*) value;
 - (PBFeed_Builder*) clearDrawDataUrl;
+
+- (NSArray*) tagsList;
+- (NSString*) tagsAtIndex:(int32_t) index;
+- (PBFeed_Builder*) replaceTagsAtIndex:(int32_t) index with:(NSString*) value;
+- (PBFeed_Builder*) addTags:(NSString*) value;
+- (PBFeed_Builder*) addAllTags:(NSArray*) values;
+- (PBFeed_Builder*) clearTagsList;
+
+- (BOOL) hasSpendTime;
+- (int32_t) spendTime;
+- (PBFeed_Builder*) setSpendTime:(int32_t) value;
+- (PBFeed_Builder*) clearSpendTime;
 
 - (BOOL) hasOpusId;
 - (NSString*) opusId;
@@ -1017,12 +1053,24 @@
 - (PBFeed_Builder*) addAllRankInfo:(NSArray*) values;
 - (PBFeed_Builder*) clearRankInfoList;
 
+- (BOOL) hasRankInTop;
+- (int32_t) rankInTop;
+- (PBFeed_Builder*) setRankInTop:(int32_t) value;
+- (PBFeed_Builder*) clearRankInTop;
+
 - (BOOL) hasLearnDraw;
 - (PBLearnDraw*) learnDraw;
 - (PBFeed_Builder*) setLearnDraw:(PBLearnDraw*) value;
 - (PBFeed_Builder*) setLearnDrawBuilder:(PBLearnDraw_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeLearnDraw:(PBLearnDraw*) value;
 - (PBFeed_Builder*) clearLearnDraw;
+
+- (BOOL) hasSing;
+- (PBSingOpus*) sing;
+- (PBFeed_Builder*) setSing:(PBSingOpus*) value;
+- (PBFeed_Builder*) setSingBuilder:(PBSingOpus_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeSing:(PBSingOpus*) value;
+- (PBFeed_Builder*) clearSing;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

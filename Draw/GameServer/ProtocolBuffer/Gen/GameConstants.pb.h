@@ -216,6 +216,14 @@ typedef enum {
 
 BOOL PBContestStatusIsValidValue(PBContestStatus value);
 
+typedef enum {
+  PBOpusCategoryTypeDrawCategory = 0,
+  PBOpusCategoryTypeSingCategory = 1,
+  PBOpusCategoryTypeAskPsCategory = 2,
+} PBOpusCategoryType;
+
+BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value);
+
 
 @interface GameConstantsRoot : NSObject {
 }
