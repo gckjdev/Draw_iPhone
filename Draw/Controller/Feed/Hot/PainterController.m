@@ -34,6 +34,9 @@ typedef enum{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        if (SHOW_ALL_TAGS) {
+            _defaultTabIndex = 2;
+        }
     }
     return self;
 }
