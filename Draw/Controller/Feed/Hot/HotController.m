@@ -47,7 +47,7 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _defaultTabIndex = 2;
+        _defaultTabIndex = 1;
     }
     return self;
 }
@@ -339,7 +339,7 @@ typedef enum{
 
 - (NSInteger)tabCount
 {
-    return 5;
+    return 4;
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
@@ -347,20 +347,20 @@ typedef enum{
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {
-    NSInteger tabId[] = {RankTypePlayer,RankTypeHistory,RankTypeHot,RankTypeNew, RankTypeRecommend};
+    NSInteger tabId[] = {RankTypeHistory, RankTypeHot, RankTypeRecommend, RankTypeNew};
     return tabId[index];
 }
 
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
-    NSString *tabDesc[] = {NSLS(@"kNoRankPlayer"),NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"),NSLS(@"kNoRankNew"), NSLS(@"kNoRecommend")};
+    NSString *tabDesc[] = {NSLS(@"kNoRankHistory"),NSLS(@"kNoRankHot"), NSLS(@"kNoRecommend"),NSLS(@"kNoRankNew")};
     
     return tabDesc[index];
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index
 {
-    NSString *tabTitle[] = {NSLS(@"kPainter"),NSLS(@"kRankHistory"),NSLS(@"kRankHot"),NSLS(@"kRankNew"), NSLS(@"kLittleGeeRecommend")};
+    NSString *tabTitle[] = {NSLS(@"kRankHistory"),NSLS(@"kRankHot"), NSLS(@"kLittleGeeRecommend"),NSLS(@"kRankNew")};
     
     return tabTitle[index];
 

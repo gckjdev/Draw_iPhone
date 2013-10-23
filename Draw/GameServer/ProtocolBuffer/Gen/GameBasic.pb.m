@@ -87,6 +87,27 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value) {
       return NO;
   }
 }
+BOOL PBGroupUserTypeIsValidValue(PBGroupUserType value) {
+  switch (value) {
+    case PBGroupUserTypeGroupUserAdmin:
+    case PBGroupUserTypeGroupUserMember:
+    case PBGroupUserTypeGroupUserGuest:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value) {
+  switch (value) {
+    case PBDefaultGroupTitleGroupTitleAdmin:
+    case PBDefaultGroupTitleGroupTitleMember:
+    case PBDefaultGroupTitleGroupTitleGuest:
+    case PBDefaultGroupTitleGroupTitleCustom:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBKeyValue ()
 @property (retain) NSString* name;
 @property (retain) NSString* value;
@@ -14517,6 +14538,1730 @@ static PBContestList* defaultPBContestListInstance = nil;
     result.mutableContestsList = [NSMutableArray array];
   }
   [result.mutableContestsList addObject:value];
+  return self;
+}
+@end
+
+@interface PBGroupUser ()
+@property (retain) PBGameUser* user;
+@property (retain) NSString* customeTitle;
+@property int32_t permission;
+@property PBGroupUserType type;
+@end
+
+@implementation PBGroupUser
+
+- (BOOL) hasUser {
+  return !!hasUser_;
+}
+- (void) setHasUser:(BOOL) value {
+  hasUser_ = !!value;
+}
+@synthesize user;
+- (BOOL) hasCustomeTitle {
+  return !!hasCustomeTitle_;
+}
+- (void) setHasCustomeTitle:(BOOL) value {
+  hasCustomeTitle_ = !!value;
+}
+@synthesize customeTitle;
+- (BOOL) hasPermission {
+  return !!hasPermission_;
+}
+- (void) setHasPermission:(BOOL) value {
+  hasPermission_ = !!value;
+}
+@synthesize permission;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (void) dealloc {
+  self.user = nil;
+  self.customeTitle = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.user = [PBGameUser defaultInstance];
+    self.customeTitle = @"";
+    self.permission = 0;
+    self.type = PBGroupUserTypeGroupUserAdmin;
+  }
+  return self;
+}
+static PBGroupUser* defaultPBGroupUserInstance = nil;
++ (void) initialize {
+  if (self == [PBGroupUser class]) {
+    defaultPBGroupUserInstance = [[PBGroupUser alloc] init];
+  }
+}
++ (PBGroupUser*) defaultInstance {
+  return defaultPBGroupUserInstance;
+}
+- (PBGroupUser*) defaultInstance {
+  return defaultPBGroupUserInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUser) {
+    return NO;
+  }
+  if (!self.user.isInitialized) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUser) {
+    [output writeMessage:1 value:self.user];
+  }
+  if (self.hasCustomeTitle) {
+    [output writeString:2 value:self.customeTitle];
+  }
+  if (self.hasPermission) {
+    [output writeInt32:3 value:self.permission];
+  }
+  if (self.hasType) {
+    [output writeEnum:4 value:self.type];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasUser) {
+    size += computeMessageSize(1, self.user);
+  }
+  if (self.hasCustomeTitle) {
+    size += computeStringSize(2, self.customeTitle);
+  }
+  if (self.hasPermission) {
+    size += computeInt32Size(3, self.permission);
+  }
+  if (self.hasType) {
+    size += computeEnumSize(4, self.type);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroupUser*) parseFromData:(NSData*) data {
+  return (PBGroupUser*)[[[PBGroupUser builder] mergeFromData:data] build];
+}
++ (PBGroupUser*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUser*)[[[PBGroupUser builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUser*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroupUser*)[[[PBGroupUser builder] mergeFromInputStream:input] build];
+}
++ (PBGroupUser*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUser*)[[[PBGroupUser builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUser*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroupUser*)[[[PBGroupUser builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroupUser*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUser*)[[[PBGroupUser builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUser_Builder*) builder {
+  return [[[PBGroupUser_Builder alloc] init] autorelease];
+}
++ (PBGroupUser_Builder*) builderWithPrototype:(PBGroupUser*) prototype {
+  return [[PBGroupUser builder] mergeFrom:prototype];
+}
+- (PBGroupUser_Builder*) builder {
+  return [PBGroupUser builder];
+}
+@end
+
+@interface PBGroupUser_Builder()
+@property (retain) PBGroupUser* result;
+@end
+
+@implementation PBGroupUser_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroupUser alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroupUser_Builder*) clear {
+  self.result = [[[PBGroupUser alloc] init] autorelease];
+  return self;
+}
+- (PBGroupUser_Builder*) clone {
+  return [PBGroupUser builderWithPrototype:result];
+}
+- (PBGroupUser*) defaultInstance {
+  return [PBGroupUser defaultInstance];
+}
+- (PBGroupUser*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroupUser*) buildPartial {
+  PBGroupUser* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroupUser_Builder*) mergeFrom:(PBGroupUser*) other {
+  if (other == [PBGroupUser defaultInstance]) {
+    return self;
+  }
+  if (other.hasUser) {
+    [self mergeUser:other.user];
+  }
+  if (other.hasCustomeTitle) {
+    [self setCustomeTitle:other.customeTitle];
+  }
+  if (other.hasPermission) {
+    [self setPermission:other.permission];
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroupUser_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroupUser_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasUser) {
+          [subBuilder mergeFrom:self.user];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        [self setCustomeTitle:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setPermission:[input readInt32]];
+        break;
+      }
+      case 32: {
+        int32_t value = [input readEnum];
+        if (PBGroupUserTypeIsValidValue(value)) {
+          [self setType:value];
+        } else {
+          [unknownFields mergeVarintField:4 value:value];
+        }
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUser {
+  return result.hasUser;
+}
+- (PBGameUser*) user {
+  return result.user;
+}
+- (PBGroupUser_Builder*) setUser:(PBGameUser*) value {
+  result.hasUser = YES;
+  result.user = value;
+  return self;
+}
+- (PBGroupUser_Builder*) setUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setUser:[builderForValue build]];
+}
+- (PBGroupUser_Builder*) mergeUser:(PBGameUser*) value {
+  if (result.hasUser &&
+      result.user != [PBGameUser defaultInstance]) {
+    result.user =
+      [[[PBGameUser builderWithPrototype:result.user] mergeFrom:value] buildPartial];
+  } else {
+    result.user = value;
+  }
+  result.hasUser = YES;
+  return self;
+}
+- (PBGroupUser_Builder*) clearUser {
+  result.hasUser = NO;
+  result.user = [PBGameUser defaultInstance];
+  return self;
+}
+- (BOOL) hasCustomeTitle {
+  return result.hasCustomeTitle;
+}
+- (NSString*) customeTitle {
+  return result.customeTitle;
+}
+- (PBGroupUser_Builder*) setCustomeTitle:(NSString*) value {
+  result.hasCustomeTitle = YES;
+  result.customeTitle = value;
+  return self;
+}
+- (PBGroupUser_Builder*) clearCustomeTitle {
+  result.hasCustomeTitle = NO;
+  result.customeTitle = @"";
+  return self;
+}
+- (BOOL) hasPermission {
+  return result.hasPermission;
+}
+- (int32_t) permission {
+  return result.permission;
+}
+- (PBGroupUser_Builder*) setPermission:(int32_t) value {
+  result.hasPermission = YES;
+  result.permission = value;
+  return self;
+}
+- (PBGroupUser_Builder*) clearPermission {
+  result.hasPermission = NO;
+  result.permission = 0;
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (PBGroupUserType) type {
+  return result.type;
+}
+- (PBGroupUser_Builder*) setType:(PBGroupUserType) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBGroupUser_Builder*) clearType {
+  result.hasType = NO;
+  result.type = PBGroupUserTypeGroupUserAdmin;
+  return self;
+}
+@end
+
+@interface PBGroupTitle ()
+@property int32_t titleId;
+@property (retain) NSString* title;
+@property int32_t permission;
+@end
+
+@implementation PBGroupTitle
+
+- (BOOL) hasTitleId {
+  return !!hasTitleId_;
+}
+- (void) setHasTitleId:(BOOL) value {
+  hasTitleId_ = !!value;
+}
+@synthesize titleId;
+- (BOOL) hasTitle {
+  return !!hasTitle_;
+}
+- (void) setHasTitle:(BOOL) value {
+  hasTitle_ = !!value;
+}
+@synthesize title;
+- (BOOL) hasPermission {
+  return !!hasPermission_;
+}
+- (void) setHasPermission:(BOOL) value {
+  hasPermission_ = !!value;
+}
+@synthesize permission;
+- (void) dealloc {
+  self.title = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.titleId = 0;
+    self.title = @"";
+    self.permission = 0;
+  }
+  return self;
+}
+static PBGroupTitle* defaultPBGroupTitleInstance = nil;
++ (void) initialize {
+  if (self == [PBGroupTitle class]) {
+    defaultPBGroupTitleInstance = [[PBGroupTitle alloc] init];
+  }
+}
++ (PBGroupTitle*) defaultInstance {
+  return defaultPBGroupTitleInstance;
+}
+- (PBGroupTitle*) defaultInstance {
+  return defaultPBGroupTitleInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasTitleId) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasTitleId) {
+    [output writeInt32:1 value:self.titleId];
+  }
+  if (self.hasTitle) {
+    [output writeString:2 value:self.title];
+  }
+  if (self.hasPermission) {
+    [output writeInt32:3 value:self.permission];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasTitleId) {
+    size += computeInt32Size(1, self.titleId);
+  }
+  if (self.hasTitle) {
+    size += computeStringSize(2, self.title);
+  }
+  if (self.hasPermission) {
+    size += computeInt32Size(3, self.permission);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroupTitle*) parseFromData:(NSData*) data {
+  return (PBGroupTitle*)[[[PBGroupTitle builder] mergeFromData:data] build];
+}
++ (PBGroupTitle*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupTitle*)[[[PBGroupTitle builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupTitle*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroupTitle*)[[[PBGroupTitle builder] mergeFromInputStream:input] build];
+}
++ (PBGroupTitle*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupTitle*)[[[PBGroupTitle builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupTitle*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroupTitle*)[[[PBGroupTitle builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroupTitle*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupTitle*)[[[PBGroupTitle builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupTitle_Builder*) builder {
+  return [[[PBGroupTitle_Builder alloc] init] autorelease];
+}
++ (PBGroupTitle_Builder*) builderWithPrototype:(PBGroupTitle*) prototype {
+  return [[PBGroupTitle builder] mergeFrom:prototype];
+}
+- (PBGroupTitle_Builder*) builder {
+  return [PBGroupTitle builder];
+}
+@end
+
+@interface PBGroupTitle_Builder()
+@property (retain) PBGroupTitle* result;
+@end
+
+@implementation PBGroupTitle_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroupTitle alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroupTitle_Builder*) clear {
+  self.result = [[[PBGroupTitle alloc] init] autorelease];
+  return self;
+}
+- (PBGroupTitle_Builder*) clone {
+  return [PBGroupTitle builderWithPrototype:result];
+}
+- (PBGroupTitle*) defaultInstance {
+  return [PBGroupTitle defaultInstance];
+}
+- (PBGroupTitle*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroupTitle*) buildPartial {
+  PBGroupTitle* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroupTitle_Builder*) mergeFrom:(PBGroupTitle*) other {
+  if (other == [PBGroupTitle defaultInstance]) {
+    return self;
+  }
+  if (other.hasTitleId) {
+    [self setTitleId:other.titleId];
+  }
+  if (other.hasTitle) {
+    [self setTitle:other.title];
+  }
+  if (other.hasPermission) {
+    [self setPermission:other.permission];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroupTitle_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroupTitle_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setTitleId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setTitle:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setPermission:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasTitleId {
+  return result.hasTitleId;
+}
+- (int32_t) titleId {
+  return result.titleId;
+}
+- (PBGroupTitle_Builder*) setTitleId:(int32_t) value {
+  result.hasTitleId = YES;
+  result.titleId = value;
+  return self;
+}
+- (PBGroupTitle_Builder*) clearTitleId {
+  result.hasTitleId = NO;
+  result.titleId = 0;
+  return self;
+}
+- (BOOL) hasTitle {
+  return result.hasTitle;
+}
+- (NSString*) title {
+  return result.title;
+}
+- (PBGroupTitle_Builder*) setTitle:(NSString*) value {
+  result.hasTitle = YES;
+  result.title = value;
+  return self;
+}
+- (PBGroupTitle_Builder*) clearTitle {
+  result.hasTitle = NO;
+  result.title = @"";
+  return self;
+}
+- (BOOL) hasPermission {
+  return result.hasPermission;
+}
+- (int32_t) permission {
+  return result.permission;
+}
+- (PBGroupTitle_Builder*) setPermission:(int32_t) value {
+  result.hasPermission = YES;
+  result.permission = value;
+  return self;
+}
+- (PBGroupTitle_Builder*) clearPermission {
+  result.hasPermission = NO;
+  result.permission = 0;
+  return self;
+}
+@end
+
+@interface PBGroupUsersByTitle ()
+@property (retain) PBGroupTitle* title;
+@property (retain) NSMutableArray* mutableUsersList;
+@end
+
+@implementation PBGroupUsersByTitle
+
+- (BOOL) hasTitle {
+  return !!hasTitle_;
+}
+- (void) setHasTitle:(BOOL) value {
+  hasTitle_ = !!value;
+}
+@synthesize title;
+@synthesize mutableUsersList;
+- (void) dealloc {
+  self.title = nil;
+  self.mutableUsersList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.title = [PBGroupTitle defaultInstance];
+  }
+  return self;
+}
+static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
++ (void) initialize {
+  if (self == [PBGroupUsersByTitle class]) {
+    defaultPBGroupUsersByTitleInstance = [[PBGroupUsersByTitle alloc] init];
+  }
+}
++ (PBGroupUsersByTitle*) defaultInstance {
+  return defaultPBGroupUsersByTitleInstance;
+}
+- (PBGroupUsersByTitle*) defaultInstance {
+  return defaultPBGroupUsersByTitleInstance;
+}
+- (NSArray*) usersList {
+  return mutableUsersList;
+}
+- (PBGroupUser*) usersAtIndex:(int32_t) index {
+  id value = [mutableUsersList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (self.hasTitle) {
+    if (!self.title.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGroupUser* element in self.usersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasTitle) {
+    [output writeMessage:1 value:self.title];
+  }
+  for (PBGroupUser* element in self.usersList) {
+    [output writeMessage:2 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasTitle) {
+    size += computeMessageSize(1, self.title);
+  }
+  for (PBGroupUser* element in self.usersList) {
+    size += computeMessageSize(2, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroupUsersByTitle*) parseFromData:(NSData*) data {
+  return (PBGroupUsersByTitle*)[[[PBGroupUsersByTitle builder] mergeFromData:data] build];
+}
++ (PBGroupUsersByTitle*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUsersByTitle*)[[[PBGroupUsersByTitle builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUsersByTitle*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroupUsersByTitle*)[[[PBGroupUsersByTitle builder] mergeFromInputStream:input] build];
+}
++ (PBGroupUsersByTitle*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUsersByTitle*)[[[PBGroupUsersByTitle builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUsersByTitle*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroupUsersByTitle*)[[[PBGroupUsersByTitle builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroupUsersByTitle*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupUsersByTitle*)[[[PBGroupUsersByTitle builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupUsersByTitle_Builder*) builder {
+  return [[[PBGroupUsersByTitle_Builder alloc] init] autorelease];
+}
++ (PBGroupUsersByTitle_Builder*) builderWithPrototype:(PBGroupUsersByTitle*) prototype {
+  return [[PBGroupUsersByTitle builder] mergeFrom:prototype];
+}
+- (PBGroupUsersByTitle_Builder*) builder {
+  return [PBGroupUsersByTitle builder];
+}
+@end
+
+@interface PBGroupUsersByTitle_Builder()
+@property (retain) PBGroupUsersByTitle* result;
+@end
+
+@implementation PBGroupUsersByTitle_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroupUsersByTitle alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroupUsersByTitle_Builder*) clear {
+  self.result = [[[PBGroupUsersByTitle alloc] init] autorelease];
+  return self;
+}
+- (PBGroupUsersByTitle_Builder*) clone {
+  return [PBGroupUsersByTitle builderWithPrototype:result];
+}
+- (PBGroupUsersByTitle*) defaultInstance {
+  return [PBGroupUsersByTitle defaultInstance];
+}
+- (PBGroupUsersByTitle*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroupUsersByTitle*) buildPartial {
+  PBGroupUsersByTitle* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroupUsersByTitle_Builder*) mergeFrom:(PBGroupUsersByTitle*) other {
+  if (other == [PBGroupUsersByTitle defaultInstance]) {
+    return self;
+  }
+  if (other.hasTitle) {
+    [self mergeTitle:other.title];
+  }
+  if (other.mutableUsersList.count > 0) {
+    if (result.mutableUsersList == nil) {
+      result.mutableUsersList = [NSMutableArray array];
+    }
+    [result.mutableUsersList addObjectsFromArray:other.mutableUsersList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroupUsersByTitle_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroupUsersByTitle_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        PBGroupTitle_Builder* subBuilder = [PBGroupTitle builder];
+        if (self.hasTitle) {
+          [subBuilder mergeFrom:self.title];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setTitle:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUsers:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasTitle {
+  return result.hasTitle;
+}
+- (PBGroupTitle*) title {
+  return result.title;
+}
+- (PBGroupUsersByTitle_Builder*) setTitle:(PBGroupTitle*) value {
+  result.hasTitle = YES;
+  result.title = value;
+  return self;
+}
+- (PBGroupUsersByTitle_Builder*) setTitleBuilder:(PBGroupTitle_Builder*) builderForValue {
+  return [self setTitle:[builderForValue build]];
+}
+- (PBGroupUsersByTitle_Builder*) mergeTitle:(PBGroupTitle*) value {
+  if (result.hasTitle &&
+      result.title != [PBGroupTitle defaultInstance]) {
+    result.title =
+      [[[PBGroupTitle builderWithPrototype:result.title] mergeFrom:value] buildPartial];
+  } else {
+    result.title = value;
+  }
+  result.hasTitle = YES;
+  return self;
+}
+- (PBGroupUsersByTitle_Builder*) clearTitle {
+  result.hasTitle = NO;
+  result.title = [PBGroupTitle defaultInstance];
+  return self;
+}
+- (NSArray*) usersList {
+  if (result.mutableUsersList == nil) { return [NSArray array]; }
+  return result.mutableUsersList;
+}
+- (PBGroupUser*) usersAtIndex:(int32_t) index {
+  return [result usersAtIndex:index];
+}
+- (PBGroupUsersByTitle_Builder*) replaceUsersAtIndex:(int32_t) index with:(PBGroupUser*) value {
+  [result.mutableUsersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGroupUsersByTitle_Builder*) addAllUsers:(NSArray*) values {
+  if (result.mutableUsersList == nil) {
+    result.mutableUsersList = [NSMutableArray array];
+  }
+  [result.mutableUsersList addObjectsFromArray:values];
+  return self;
+}
+- (PBGroupUsersByTitle_Builder*) clearUsersList {
+  result.mutableUsersList = nil;
+  return self;
+}
+- (PBGroupUsersByTitle_Builder*) addUsers:(PBGroupUser*) value {
+  if (result.mutableUsersList == nil) {
+    result.mutableUsersList = [NSMutableArray array];
+  }
+  [result.mutableUsersList addObject:value];
+  return self;
+}
+@end
+
+@interface PBGroup ()
+@property (retain) NSString* groupId;
+@property (retain) NSString* name;
+@property int32_t level;
+@property int32_t fame;
+@property int64_t balance;
+@property int32_t createDate;
+@property int32_t memberFee;
+@property (retain) NSString* signature;
+@property (retain) NSString* desc;
+@property (retain) NSString* bgImage;
+@property (retain) NSString* medalImage;
+@property (retain) NSMutableArray* mutableTitlesList;
+@property (retain) PBGroupUser* creator;
+@property (retain) NSMutableArray* mutableAdminsList;
+@property (retain) NSMutableArray* mutableUsersList;
+@property (retain) NSMutableArray* mutableGuestsList;
+@end
+
+@implementation PBGroup
+
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
+}
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
+}
+@synthesize groupId;
+- (BOOL) hasName {
+  return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
+}
+@synthesize name;
+- (BOOL) hasLevel {
+  return !!hasLevel_;
+}
+- (void) setHasLevel:(BOOL) value {
+  hasLevel_ = !!value;
+}
+@synthesize level;
+- (BOOL) hasFame {
+  return !!hasFame_;
+}
+- (void) setHasFame:(BOOL) value {
+  hasFame_ = !!value;
+}
+@synthesize fame;
+- (BOOL) hasBalance {
+  return !!hasBalance_;
+}
+- (void) setHasBalance:(BOOL) value {
+  hasBalance_ = !!value;
+}
+@synthesize balance;
+- (BOOL) hasCreateDate {
+  return !!hasCreateDate_;
+}
+- (void) setHasCreateDate:(BOOL) value {
+  hasCreateDate_ = !!value;
+}
+@synthesize createDate;
+- (BOOL) hasMemberFee {
+  return !!hasMemberFee_;
+}
+- (void) setHasMemberFee:(BOOL) value {
+  hasMemberFee_ = !!value;
+}
+@synthesize memberFee;
+- (BOOL) hasSignature {
+  return !!hasSignature_;
+}
+- (void) setHasSignature:(BOOL) value {
+  hasSignature_ = !!value;
+}
+@synthesize signature;
+- (BOOL) hasDesc {
+  return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+  hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasBgImage {
+  return !!hasBgImage_;
+}
+- (void) setHasBgImage:(BOOL) value {
+  hasBgImage_ = !!value;
+}
+@synthesize bgImage;
+- (BOOL) hasMedalImage {
+  return !!hasMedalImage_;
+}
+- (void) setHasMedalImage:(BOOL) value {
+  hasMedalImage_ = !!value;
+}
+@synthesize medalImage;
+@synthesize mutableTitlesList;
+- (BOOL) hasCreator {
+  return !!hasCreator_;
+}
+- (void) setHasCreator:(BOOL) value {
+  hasCreator_ = !!value;
+}
+@synthesize creator;
+@synthesize mutableAdminsList;
+@synthesize mutableUsersList;
+@synthesize mutableGuestsList;
+- (void) dealloc {
+  self.groupId = nil;
+  self.name = nil;
+  self.signature = nil;
+  self.desc = nil;
+  self.bgImage = nil;
+  self.medalImage = nil;
+  self.mutableTitlesList = nil;
+  self.creator = nil;
+  self.mutableAdminsList = nil;
+  self.mutableUsersList = nil;
+  self.mutableGuestsList = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.groupId = @"";
+    self.name = @"";
+    self.level = 0;
+    self.fame = 0;
+    self.balance = 0L;
+    self.createDate = 0;
+    self.memberFee = 0;
+    self.signature = @"";
+    self.desc = @"";
+    self.bgImage = @"";
+    self.medalImage = @"";
+    self.creator = [PBGroupUser defaultInstance];
+  }
+  return self;
+}
+static PBGroup* defaultPBGroupInstance = nil;
++ (void) initialize {
+  if (self == [PBGroup class]) {
+    defaultPBGroupInstance = [[PBGroup alloc] init];
+  }
+}
++ (PBGroup*) defaultInstance {
+  return defaultPBGroupInstance;
+}
+- (PBGroup*) defaultInstance {
+  return defaultPBGroupInstance;
+}
+- (NSArray*) titlesList {
+  return mutableTitlesList;
+}
+- (PBGroupTitle*) titlesAtIndex:(int32_t) index {
+  id value = [mutableTitlesList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) adminsList {
+  return mutableAdminsList;
+}
+- (PBGroupUser*) adminsAtIndex:(int32_t) index {
+  id value = [mutableAdminsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) usersList {
+  return mutableUsersList;
+}
+- (PBGroupUsersByTitle*) usersAtIndex:(int32_t) index {
+  id value = [mutableUsersList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) guestsList {
+  return mutableGuestsList;
+}
+- (PBGroupUser*) guestsAtIndex:(int32_t) index {
+  id value = [mutableGuestsList objectAtIndex:index];
+  return value;
+}
+- (BOOL) isInitialized {
+  if (!self.hasGroupId) {
+    return NO;
+  }
+  if (!self.hasName) {
+    return NO;
+  }
+  for (PBGroupTitle* element in self.titlesList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasCreator) {
+    if (!self.creator.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGroupUser* element in self.adminsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGroupUsersByTitle* element in self.usersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGroupUser* element in self.guestsList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasGroupId) {
+    [output writeString:1 value:self.groupId];
+  }
+  if (self.hasName) {
+    [output writeString:2 value:self.name];
+  }
+  if (self.hasLevel) {
+    [output writeInt32:3 value:self.level];
+  }
+  if (self.hasFame) {
+    [output writeInt32:4 value:self.fame];
+  }
+  if (self.hasBalance) {
+    [output writeInt64:5 value:self.balance];
+  }
+  if (self.hasCreateDate) {
+    [output writeInt32:6 value:self.createDate];
+  }
+  if (self.hasMemberFee) {
+    [output writeInt32:7 value:self.memberFee];
+  }
+  if (self.hasSignature) {
+    [output writeString:10 value:self.signature];
+  }
+  if (self.hasDesc) {
+    [output writeString:11 value:self.desc];
+  }
+  if (self.hasBgImage) {
+    [output writeString:21 value:self.bgImage];
+  }
+  if (self.hasMedalImage) {
+    [output writeString:22 value:self.medalImage];
+  }
+  for (PBGroupTitle* element in self.titlesList) {
+    [output writeMessage:31 value:element];
+  }
+  if (self.hasCreator) {
+    [output writeMessage:40 value:self.creator];
+  }
+  for (PBGroupUser* element in self.adminsList) {
+    [output writeMessage:41 value:element];
+  }
+  for (PBGroupUsersByTitle* element in self.usersList) {
+    [output writeMessage:42 value:element];
+  }
+  for (PBGroupUser* element in self.guestsList) {
+    [output writeMessage:43 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasGroupId) {
+    size += computeStringSize(1, self.groupId);
+  }
+  if (self.hasName) {
+    size += computeStringSize(2, self.name);
+  }
+  if (self.hasLevel) {
+    size += computeInt32Size(3, self.level);
+  }
+  if (self.hasFame) {
+    size += computeInt32Size(4, self.fame);
+  }
+  if (self.hasBalance) {
+    size += computeInt64Size(5, self.balance);
+  }
+  if (self.hasCreateDate) {
+    size += computeInt32Size(6, self.createDate);
+  }
+  if (self.hasMemberFee) {
+    size += computeInt32Size(7, self.memberFee);
+  }
+  if (self.hasSignature) {
+    size += computeStringSize(10, self.signature);
+  }
+  if (self.hasDesc) {
+    size += computeStringSize(11, self.desc);
+  }
+  if (self.hasBgImage) {
+    size += computeStringSize(21, self.bgImage);
+  }
+  if (self.hasMedalImage) {
+    size += computeStringSize(22, self.medalImage);
+  }
+  for (PBGroupTitle* element in self.titlesList) {
+    size += computeMessageSize(31, element);
+  }
+  if (self.hasCreator) {
+    size += computeMessageSize(40, self.creator);
+  }
+  for (PBGroupUser* element in self.adminsList) {
+    size += computeMessageSize(41, element);
+  }
+  for (PBGroupUsersByTitle* element in self.usersList) {
+    size += computeMessageSize(42, element);
+  }
+  for (PBGroupUser* element in self.guestsList) {
+    size += computeMessageSize(43, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroup*) parseFromData:(NSData*) data {
+  return (PBGroup*)[[[PBGroup builder] mergeFromData:data] build];
+}
++ (PBGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroup*)[[[PBGroup builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroup*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroup*)[[[PBGroup builder] mergeFromInputStream:input] build];
+}
++ (PBGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroup*)[[[PBGroup builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroup*)[[[PBGroup builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroup*)[[[PBGroup builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroup_Builder*) builder {
+  return [[[PBGroup_Builder alloc] init] autorelease];
+}
++ (PBGroup_Builder*) builderWithPrototype:(PBGroup*) prototype {
+  return [[PBGroup builder] mergeFrom:prototype];
+}
+- (PBGroup_Builder*) builder {
+  return [PBGroup builder];
+}
+@end
+
+@interface PBGroup_Builder()
+@property (retain) PBGroup* result;
+@end
+
+@implementation PBGroup_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroup alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroup_Builder*) clear {
+  self.result = [[[PBGroup alloc] init] autorelease];
+  return self;
+}
+- (PBGroup_Builder*) clone {
+  return [PBGroup builderWithPrototype:result];
+}
+- (PBGroup*) defaultInstance {
+  return [PBGroup defaultInstance];
+}
+- (PBGroup*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroup*) buildPartial {
+  PBGroup* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroup_Builder*) mergeFrom:(PBGroup*) other {
+  if (other == [PBGroup defaultInstance]) {
+    return self;
+  }
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
+  }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasLevel) {
+    [self setLevel:other.level];
+  }
+  if (other.hasFame) {
+    [self setFame:other.fame];
+  }
+  if (other.hasBalance) {
+    [self setBalance:other.balance];
+  }
+  if (other.hasCreateDate) {
+    [self setCreateDate:other.createDate];
+  }
+  if (other.hasMemberFee) {
+    [self setMemberFee:other.memberFee];
+  }
+  if (other.hasSignature) {
+    [self setSignature:other.signature];
+  }
+  if (other.hasDesc) {
+    [self setDesc:other.desc];
+  }
+  if (other.hasBgImage) {
+    [self setBgImage:other.bgImage];
+  }
+  if (other.hasMedalImage) {
+    [self setMedalImage:other.medalImage];
+  }
+  if (other.mutableTitlesList.count > 0) {
+    if (result.mutableTitlesList == nil) {
+      result.mutableTitlesList = [NSMutableArray array];
+    }
+    [result.mutableTitlesList addObjectsFromArray:other.mutableTitlesList];
+  }
+  if (other.hasCreator) {
+    [self mergeCreator:other.creator];
+  }
+  if (other.mutableAdminsList.count > 0) {
+    if (result.mutableAdminsList == nil) {
+      result.mutableAdminsList = [NSMutableArray array];
+    }
+    [result.mutableAdminsList addObjectsFromArray:other.mutableAdminsList];
+  }
+  if (other.mutableUsersList.count > 0) {
+    if (result.mutableUsersList == nil) {
+      result.mutableUsersList = [NSMutableArray array];
+    }
+    [result.mutableUsersList addObjectsFromArray:other.mutableUsersList];
+  }
+  if (other.mutableGuestsList.count > 0) {
+    if (result.mutableGuestsList == nil) {
+      result.mutableGuestsList = [NSMutableArray array];
+    }
+    [result.mutableGuestsList addObjectsFromArray:other.mutableGuestsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setGroupId:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setLevel:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setFame:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setBalance:[input readInt64]];
+        break;
+      }
+      case 48: {
+        [self setCreateDate:[input readInt32]];
+        break;
+      }
+      case 56: {
+        [self setMemberFee:[input readInt32]];
+        break;
+      }
+      case 82: {
+        [self setSignature:[input readString]];
+        break;
+      }
+      case 90: {
+        [self setDesc:[input readString]];
+        break;
+      }
+      case 170: {
+        [self setBgImage:[input readString]];
+        break;
+      }
+      case 178: {
+        [self setMedalImage:[input readString]];
+        break;
+      }
+      case 250: {
+        PBGroupTitle_Builder* subBuilder = [PBGroupTitle builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addTitles:[subBuilder buildPartial]];
+        break;
+      }
+      case 322: {
+        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        if (self.hasCreator) {
+          [subBuilder mergeFrom:self.creator];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCreator:[subBuilder buildPartial]];
+        break;
+      }
+      case 330: {
+        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addAdmins:[subBuilder buildPartial]];
+        break;
+      }
+      case 338: {
+        PBGroupUsersByTitle_Builder* subBuilder = [PBGroupUsersByTitle builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addUsers:[subBuilder buildPartial]];
+        break;
+      }
+      case 346: {
+        PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addGuests:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
+}
+- (NSString*) groupId {
+  return result.groupId;
+}
+- (PBGroup_Builder*) setGroupId:(NSString*) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
+  return self;
+}
+- (PBGroup_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = @"";
+  return self;
+}
+- (BOOL) hasName {
+  return result.hasName;
+}
+- (NSString*) name {
+  return result.name;
+}
+- (PBGroup_Builder*) setName:(NSString*) value {
+  result.hasName = YES;
+  result.name = value;
+  return self;
+}
+- (PBGroup_Builder*) clearName {
+  result.hasName = NO;
+  result.name = @"";
+  return self;
+}
+- (BOOL) hasLevel {
+  return result.hasLevel;
+}
+- (int32_t) level {
+  return result.level;
+}
+- (PBGroup_Builder*) setLevel:(int32_t) value {
+  result.hasLevel = YES;
+  result.level = value;
+  return self;
+}
+- (PBGroup_Builder*) clearLevel {
+  result.hasLevel = NO;
+  result.level = 0;
+  return self;
+}
+- (BOOL) hasFame {
+  return result.hasFame;
+}
+- (int32_t) fame {
+  return result.fame;
+}
+- (PBGroup_Builder*) setFame:(int32_t) value {
+  result.hasFame = YES;
+  result.fame = value;
+  return self;
+}
+- (PBGroup_Builder*) clearFame {
+  result.hasFame = NO;
+  result.fame = 0;
+  return self;
+}
+- (BOOL) hasBalance {
+  return result.hasBalance;
+}
+- (int64_t) balance {
+  return result.balance;
+}
+- (PBGroup_Builder*) setBalance:(int64_t) value {
+  result.hasBalance = YES;
+  result.balance = value;
+  return self;
+}
+- (PBGroup_Builder*) clearBalance {
+  result.hasBalance = NO;
+  result.balance = 0L;
+  return self;
+}
+- (BOOL) hasCreateDate {
+  return result.hasCreateDate;
+}
+- (int32_t) createDate {
+  return result.createDate;
+}
+- (PBGroup_Builder*) setCreateDate:(int32_t) value {
+  result.hasCreateDate = YES;
+  result.createDate = value;
+  return self;
+}
+- (PBGroup_Builder*) clearCreateDate {
+  result.hasCreateDate = NO;
+  result.createDate = 0;
+  return self;
+}
+- (BOOL) hasMemberFee {
+  return result.hasMemberFee;
+}
+- (int32_t) memberFee {
+  return result.memberFee;
+}
+- (PBGroup_Builder*) setMemberFee:(int32_t) value {
+  result.hasMemberFee = YES;
+  result.memberFee = value;
+  return self;
+}
+- (PBGroup_Builder*) clearMemberFee {
+  result.hasMemberFee = NO;
+  result.memberFee = 0;
+  return self;
+}
+- (BOOL) hasSignature {
+  return result.hasSignature;
+}
+- (NSString*) signature {
+  return result.signature;
+}
+- (PBGroup_Builder*) setSignature:(NSString*) value {
+  result.hasSignature = YES;
+  result.signature = value;
+  return self;
+}
+- (PBGroup_Builder*) clearSignature {
+  result.hasSignature = NO;
+  result.signature = @"";
+  return self;
+}
+- (BOOL) hasDesc {
+  return result.hasDesc;
+}
+- (NSString*) desc {
+  return result.desc;
+}
+- (PBGroup_Builder*) setDesc:(NSString*) value {
+  result.hasDesc = YES;
+  result.desc = value;
+  return self;
+}
+- (PBGroup_Builder*) clearDesc {
+  result.hasDesc = NO;
+  result.desc = @"";
+  return self;
+}
+- (BOOL) hasBgImage {
+  return result.hasBgImage;
+}
+- (NSString*) bgImage {
+  return result.bgImage;
+}
+- (PBGroup_Builder*) setBgImage:(NSString*) value {
+  result.hasBgImage = YES;
+  result.bgImage = value;
+  return self;
+}
+- (PBGroup_Builder*) clearBgImage {
+  result.hasBgImage = NO;
+  result.bgImage = @"";
+  return self;
+}
+- (BOOL) hasMedalImage {
+  return result.hasMedalImage;
+}
+- (NSString*) medalImage {
+  return result.medalImage;
+}
+- (PBGroup_Builder*) setMedalImage:(NSString*) value {
+  result.hasMedalImage = YES;
+  result.medalImage = value;
+  return self;
+}
+- (PBGroup_Builder*) clearMedalImage {
+  result.hasMedalImage = NO;
+  result.medalImage = @"";
+  return self;
+}
+- (NSArray*) titlesList {
+  if (result.mutableTitlesList == nil) { return [NSArray array]; }
+  return result.mutableTitlesList;
+}
+- (PBGroupTitle*) titlesAtIndex:(int32_t) index {
+  return [result titlesAtIndex:index];
+}
+- (PBGroup_Builder*) replaceTitlesAtIndex:(int32_t) index with:(PBGroupTitle*) value {
+  [result.mutableTitlesList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGroup_Builder*) addAllTitles:(NSArray*) values {
+  if (result.mutableTitlesList == nil) {
+    result.mutableTitlesList = [NSMutableArray array];
+  }
+  [result.mutableTitlesList addObjectsFromArray:values];
+  return self;
+}
+- (PBGroup_Builder*) clearTitlesList {
+  result.mutableTitlesList = nil;
+  return self;
+}
+- (PBGroup_Builder*) addTitles:(PBGroupTitle*) value {
+  if (result.mutableTitlesList == nil) {
+    result.mutableTitlesList = [NSMutableArray array];
+  }
+  [result.mutableTitlesList addObject:value];
+  return self;
+}
+- (BOOL) hasCreator {
+  return result.hasCreator;
+}
+- (PBGroupUser*) creator {
+  return result.creator;
+}
+- (PBGroup_Builder*) setCreator:(PBGroupUser*) value {
+  result.hasCreator = YES;
+  result.creator = value;
+  return self;
+}
+- (PBGroup_Builder*) setCreatorBuilder:(PBGroupUser_Builder*) builderForValue {
+  return [self setCreator:[builderForValue build]];
+}
+- (PBGroup_Builder*) mergeCreator:(PBGroupUser*) value {
+  if (result.hasCreator &&
+      result.creator != [PBGroupUser defaultInstance]) {
+    result.creator =
+      [[[PBGroupUser builderWithPrototype:result.creator] mergeFrom:value] buildPartial];
+  } else {
+    result.creator = value;
+  }
+  result.hasCreator = YES;
+  return self;
+}
+- (PBGroup_Builder*) clearCreator {
+  result.hasCreator = NO;
+  result.creator = [PBGroupUser defaultInstance];
+  return self;
+}
+- (NSArray*) adminsList {
+  if (result.mutableAdminsList == nil) { return [NSArray array]; }
+  return result.mutableAdminsList;
+}
+- (PBGroupUser*) adminsAtIndex:(int32_t) index {
+  return [result adminsAtIndex:index];
+}
+- (PBGroup_Builder*) replaceAdminsAtIndex:(int32_t) index with:(PBGroupUser*) value {
+  [result.mutableAdminsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGroup_Builder*) addAllAdmins:(NSArray*) values {
+  if (result.mutableAdminsList == nil) {
+    result.mutableAdminsList = [NSMutableArray array];
+  }
+  [result.mutableAdminsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGroup_Builder*) clearAdminsList {
+  result.mutableAdminsList = nil;
+  return self;
+}
+- (PBGroup_Builder*) addAdmins:(PBGroupUser*) value {
+  if (result.mutableAdminsList == nil) {
+    result.mutableAdminsList = [NSMutableArray array];
+  }
+  [result.mutableAdminsList addObject:value];
+  return self;
+}
+- (NSArray*) usersList {
+  if (result.mutableUsersList == nil) { return [NSArray array]; }
+  return result.mutableUsersList;
+}
+- (PBGroupUsersByTitle*) usersAtIndex:(int32_t) index {
+  return [result usersAtIndex:index];
+}
+- (PBGroup_Builder*) replaceUsersAtIndex:(int32_t) index with:(PBGroupUsersByTitle*) value {
+  [result.mutableUsersList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGroup_Builder*) addAllUsers:(NSArray*) values {
+  if (result.mutableUsersList == nil) {
+    result.mutableUsersList = [NSMutableArray array];
+  }
+  [result.mutableUsersList addObjectsFromArray:values];
+  return self;
+}
+- (PBGroup_Builder*) clearUsersList {
+  result.mutableUsersList = nil;
+  return self;
+}
+- (PBGroup_Builder*) addUsers:(PBGroupUsersByTitle*) value {
+  if (result.mutableUsersList == nil) {
+    result.mutableUsersList = [NSMutableArray array];
+  }
+  [result.mutableUsersList addObject:value];
+  return self;
+}
+- (NSArray*) guestsList {
+  if (result.mutableGuestsList == nil) { return [NSArray array]; }
+  return result.mutableGuestsList;
+}
+- (PBGroupUser*) guestsAtIndex:(int32_t) index {
+  return [result guestsAtIndex:index];
+}
+- (PBGroup_Builder*) replaceGuestsAtIndex:(int32_t) index with:(PBGroupUser*) value {
+  [result.mutableGuestsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGroup_Builder*) addAllGuests:(NSArray*) values {
+  if (result.mutableGuestsList == nil) {
+    result.mutableGuestsList = [NSMutableArray array];
+  }
+  [result.mutableGuestsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGroup_Builder*) clearGuestsList {
+  result.mutableGuestsList = nil;
+  return self;
+}
+- (PBGroup_Builder*) addGuests:(PBGroupUser*) value {
+  if (result.mutableGuestsList == nil) {
+    result.mutableGuestsList = [NSMutableArray array];
+  }
+  [result.mutableGuestsList addObject:value];
   return self;
 }
 @end

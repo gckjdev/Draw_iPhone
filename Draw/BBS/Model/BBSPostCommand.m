@@ -255,7 +255,7 @@
 
 - (UIImage *)icon
 {
-    if ([self.post marked]) {
+    if (![self.post marked]) {
         return [[BBSImageManager defaultManager] bbsPostDetailUnmark];
     }
     return [[BBSImageManager defaultManager] bbsPostDetailMark];
