@@ -481,6 +481,7 @@ static PBSongCategoryList* defaultPBSongCategoryListInstance = nil;
 @property (retain) NSString* name;
 @property (retain) NSString* author;
 @property (retain) NSString* lyric;
+@property (retain) NSString* lyricUrl;
 @property (retain) NSMutableArray* mutableTagList;
 @end
 
@@ -514,12 +515,20 @@ static PBSongCategoryList* defaultPBSongCategoryListInstance = nil;
   hasLyric_ = !!value;
 }
 @synthesize lyric;
+- (BOOL) hasLyricUrl {
+  return !!hasLyricUrl_;
+}
+- (void) setHasLyricUrl:(BOOL) value {
+  hasLyricUrl_ = !!value;
+}
+@synthesize lyricUrl;
 @synthesize mutableTagList;
 - (void) dealloc {
   self.songId = nil;
   self.name = nil;
   self.author = nil;
   self.lyric = nil;
+  self.lyricUrl = nil;
   self.mutableTagList = nil;
   [super dealloc];
 }
@@ -529,6 +538,7 @@ static PBSongCategoryList* defaultPBSongCategoryListInstance = nil;
     self.name = @"";
     self.author = @"";
     self.lyric = @"";
+    self.lyricUrl = @"";
   }
   return self;
 }
@@ -573,6 +583,9 @@ static PBSong* defaultPBSongInstance = nil;
   if (self.hasLyric) {
     [output writeString:4 value:self.lyric];
   }
+  if (self.hasLyricUrl) {
+    [output writeString:5 value:self.lyricUrl];
+  }
   for (NSString* element in self.mutableTagList) {
     [output writeString:20 value:element];
   }
@@ -596,6 +609,9 @@ static PBSong* defaultPBSongInstance = nil;
   }
   if (self.hasLyric) {
     size += computeStringSize(4, self.lyric);
+  }
+  if (self.hasLyricUrl) {
+    size += computeStringSize(5, self.lyricUrl);
   }
   {
     int32_t dataSize = 0;
@@ -692,6 +708,9 @@ static PBSong* defaultPBSongInstance = nil;
   if (other.hasLyric) {
     [self setLyric:other.lyric];
   }
+  if (other.hasLyricUrl) {
+    [self setLyricUrl:other.lyricUrl];
+  }
   if (other.mutableTagList.count > 0) {
     if (result.mutableTagList == nil) {
       result.mutableTagList = [NSMutableArray array];
@@ -733,6 +752,10 @@ static PBSong* defaultPBSongInstance = nil;
       }
       case 34: {
         [self setLyric:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setLyricUrl:[input readString]];
         break;
       }
       case 162: {
@@ -804,6 +827,22 @@ static PBSong* defaultPBSongInstance = nil;
 - (PBSong_Builder*) clearLyric {
   result.hasLyric = NO;
   result.lyric = @"";
+  return self;
+}
+- (BOOL) hasLyricUrl {
+  return result.hasLyricUrl;
+}
+- (NSString*) lyricUrl {
+  return result.lyricUrl;
+}
+- (PBSong_Builder*) setLyricUrl:(NSString*) value {
+  result.hasLyricUrl = YES;
+  result.lyricUrl = value;
+  return self;
+}
+- (PBSong_Builder*) clearLyricUrl {
+  result.hasLyricUrl = NO;
+  result.lyricUrl = @"";
   return self;
 }
 - (NSArray*) tagList {

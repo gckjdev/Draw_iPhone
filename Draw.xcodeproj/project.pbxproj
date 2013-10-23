@@ -3111,6 +3111,8 @@
 		A4F04B9A18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9B18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
 		A4F04B9C18068467007274BE /* beep-timber.aif in Resources */ = {isa = PBXBuildFile; fileRef = A4F04B9618068466007274BE /* beep-timber.aif */; };
+		A4F937FF18176D030065D707 /* SongSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F937FD18176D030065D707 /* SongSearchController.m */; };
+		A4F9380018176D030065D707 /* SongSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F937FE18176D030065D707 /* SongSearchController.xib */; };
 		C2002CD9172CE4F200FD6AE1 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2002C62172CE4F000FD6AE1 /* libYouMi.a */; };
 		C203C47716F309A50028A065 /* RoundPercentageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C203C47616F309A50028A065 /* RoundPercentageView.m */; };
 		C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
@@ -7692,6 +7694,9 @@
 		A4F04B8E180680D1007274BE /* tap-warm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tap-warm.aif"; sourceTree = "<group>"; };
 		A4F04B9518068465007274BE /* beep-shinymetal.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-shinymetal.aif"; sourceTree = "<group>"; };
 		A4F04B9618068466007274BE /* beep-timber.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-timber.aif"; sourceTree = "<group>"; };
+		A4F937FC18176D030065D707 /* SongSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongSearchController.h; sourceTree = "<group>"; };
+		A4F937FD18176D030065D707 /* SongSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongSearchController.m; sourceTree = "<group>"; };
+		A4F937FE18176D030065D707 /* SongSearchController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongSearchController.xib; sourceTree = "<group>"; };
 		C2002C5A172CE4F000FD6AE1 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
 		C2002C5B172CE4F000FD6AE1 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
 		C2002C5C172CE4F000FD6AE1 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
@@ -9881,6 +9886,9 @@
 				A4A947F518162F31007A2E26 /* SingInfoEditController.h */,
 				A4A947F618162F33007A2E26 /* SingInfoEditController.m */,
 				A4A947F718162F35007A2E26 /* SingInfoEditController.xib */,
+				A4F937FC18176D030065D707 /* SongSearchController.h */,
+				A4F937FD18176D030065D707 /* SongSearchController.m */,
+				A4F937FE18176D030065D707 /* SongSearchController.xib */,
 			);
 			path = Sing;
 			sourceTree = "<group>";
@@ -17330,6 +17338,7 @@
 				EA690BE418167F7300DCACCB /* bbs_post_mark@2x.png in Resources */,
 				EA690BED18167F8300DCACCB /* bbs_post_detail_unmark@2x.png in Resources */,
 				EA690BF2181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */,
+				A4F9380018176D030065D707 /* SongSearchController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20660,6 +20669,7 @@
 				A4A947EA18151ED8007A2E26 /* SingHotController.m in Sources */,
 				A4A947F218151FB8007A2E26 /* SingHotCell.m in Sources */,
 				A4A947F818162F37007A2E26 /* SingInfoEditController.m in Sources */,
+				A4F937FF18176D030065D707 /* SongSearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
