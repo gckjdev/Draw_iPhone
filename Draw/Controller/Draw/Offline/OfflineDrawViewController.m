@@ -685,10 +685,6 @@
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
 
-//        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
-//                                                        image:drawView.createImage
-//                                                     delegate:self];
-        
         if (self.contest) {
             
             // ask gamy later, why here use dialog style to decide logic
@@ -726,26 +722,11 @@
         }
         
     }
-//    else if (dialog.tag == DIALOG_TAG_COMPOSE_DIALOG){
-//        
-//        InputAlertView *v = (InputAlertView *)infoView;
-//        [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
-//    }
 }
 
 - (void)didClickCancel:(CommonDialog *)dialog
 {
-    if(dialog.tag == DIALOG_TAG_SUBMIT){
-
-//        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
-//                                                        image:drawView.createImage
-//                                                     delegate:self];
-        [self quit];
-    }
-    else if (dialog.tag == DIALOG_TAG_SAVETIP)
-    {
-        [self quit];
-    }
+    [self quit];
 }
 
 
@@ -810,9 +791,7 @@
     [self hideProgressView];
     
     self.submitButton.userInteractionEnabled = YES;
-//    [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
-//        [self.inputAlert dismiss:NO];
         
         // stop recovery while the opus is commit successfully
         [self stopRecovery];
