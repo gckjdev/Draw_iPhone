@@ -120,12 +120,9 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPo
                             limit:(NSInteger)limit
                          delegate:(id<BBSServiceDelegate>)delegate;
 
-- (void)searchPostListWithBoardId:(NSString *)boardId
-                          keyWord:(BOOL)keyWords
-                           offset:(NSInteger)offset
-                            limit:(NSInteger)limit
-                              tag:(NSInteger)tag
-                          hanlder:(BBSGetPostResultHandler)handler;
+- (void)searchPostListByKeyWord:(NSString *)keyWord
+                          limit:(NSInteger)limit
+                        hanlder:(BBSGetPostResultHandler)handler;
 
 
 #pragma mark- mark methods 精华帖
