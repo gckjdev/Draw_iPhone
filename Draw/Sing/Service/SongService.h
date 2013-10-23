@@ -8,20 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
+#import "Opus.pb.h"
 
-@protocol SongServiceDelegate <NSObject>
-
-@optional
-- (void)didGetSongs:(int)resultCode songs:(NSArray *)songs;
-
-@end
+typedef void (^GetSongsCompleted)(int resultCode, NSArray *songs);
 
 @interface SongService : CommonService
 
-@property (assign, nonatomic) id<SongServiceDelegate> delegate;
-
 + (id)defaultService;
-- (void)randomSongs:(int)count;
-- (void)randomSongsWithTag:(NSString *)tag count:(int)count;
+
+- (void)randomSongs:(int)count
+          completed:(GetSongsCompleted)completed;
+
+- (void)randomSongsWithTag:(NSString *)tag
+                     count:(int)count
+                 completed:(GetSongsCompleted)completed;
+
+- (void)searchSongWithName:(NSString *)name
+                 completed:(GetSongsCompleted)completed;
 
 @end

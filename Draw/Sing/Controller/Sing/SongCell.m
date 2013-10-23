@@ -9,16 +9,23 @@
 #import "SongCell.h"
 #import "AutoCreateViewByXib.h"
 
-//#define COLOR1 ([UIColor colorWithRed:159/255.0 green:56/255.0 blue:14/255.0 alpha:1])
-//#define COLOR2 ([UIColor colorWithRed:13/255.0 green:103/255.0 blue:88/255.0 alpha:1])
-//#define COLOR3 ([UIColor colorWithRed:31/255.0 green:1/255.0 blue:69/255.0 alpha:1])
-//#define COLOR4 ([UIColor colorWithRed:122/255.0 green:12/255.0 blue:34/255.0 alpha:1])
-//#define COLOR5 ([UIColor colorWithRed:53/255.0 green:24/255.0 blue:2/255.0 alpha:1])
+@interface SongCell ()
 
+@property (retain, nonatomic) PBSong *song;
+
+@end
 
 @implementation SongCell
 
 AUTO_CREATE_VIEW_BY_XIB(SongCell);
+
+- (void)dealloc {
+    [_nameLabel release];
+    [_authorLabel release];
+    [_selectButton release];
+    [_song release];
+    [super dealloc];
+}
 
 + (NSString*)getCellIdentifier{
     return @"SongCell";
@@ -28,50 +35,20 @@ AUTO_CREATE_VIEW_BY_XIB(SongCell);
     return (ISIPAD ? 132 : 60);
 }
 
-- (void)setCellData:(PBSong *)song forIndex:(NSIndexPath *)index{
+- (void)setCellData:(PBSong *)song{
     self.nameLabel.text = song.name;
     self.authorLabel.text = song.author;
-    [self setWithRow:index.row];
+    self.song = song;
 }
 
-- (void)setWithRow:(int)row{
-    switch (row) {
-        case 0:
-//            self.costCoinLabel.textColor = COLOR1;
-            self.bgImageView.image = [UIImage imageNamed:@"song_bg1@2x.png"];
-            break;
-            
-        case 1:
-//            self.costCoinLabel.textColor = COLOR2;
-            self.bgImageView.image = [UIImage imageNamed:@"song_bg2@2x.png"];
-            break;
-            
-        case 2:
-//            self.costCoinLabel.textColor = COLOR3;
-            self.bgImageView.image = [UIImage imageNamed:@"song_bg3@2x.png"];
-            break;
-            
-        case 3:
-//            self.costCoinLabel.textColor = COLOR4;
-            self.bgImageView.image = [UIImage imageNamed:@"song_bg4@2x.png"];
-            break;
-            
-        case 4:
-//            self.costCoinLabel.textColor = COLOR5;
-            self.bgImageView.image = [UIImage imageNamed:@"song_bg5@2x.png"];
-            break;
-            
-        default:
-            break;
+- (IBAction)clickSelectButton:(id)sender {
+    
+    if ([delegate respondsToSelector:@selector(didSelectSong:)]) {
+        
+        [delegate didSelectSong:self.song];
     }
 }
 
-- (void)dealloc {
-    [_nameLabel release];
-//    [_costCoinLabel release];
-    [_authorLabel release];
-    [_bgImageView release];
-    [super dealloc];
-}
+
 
 @end

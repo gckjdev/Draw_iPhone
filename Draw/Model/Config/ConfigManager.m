@@ -143,8 +143,6 @@
 
 + (NSString*)getBBSServerURL
 {
-
-    
     return [MobClickUtils getStringValueByKey:@"BBS_SERVER_URL" defaultValue:@"http://www.place100.com:8100/api/i?"];
 }
 
@@ -1188,7 +1186,7 @@
     return YES;
 #endif
     
-    return [MobClickUtils getBoolValueByKey:@"SHOW_ALL_PAINTER_TAGS" defaultValue:NO];
+    return [MobClickUtils getBoolValueByKey:@"SHOW_ALL_PAINTER_TAGS" defaultValue:YES];
 }
 
 + (NSString *)getSingTagList{

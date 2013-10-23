@@ -29,6 +29,8 @@
 #import "StorageManager.h"
 #import "UIImageExt.h"
 #import "SingInfoEditController.h"
+#import "MKBlockActionSheet.h"
+#import "CMPopTipView.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -53,6 +55,7 @@ enum{
 @property (retain, nonatomic) VoiceProcessor *processor;
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
+@property (retain, nonatomic) CMPopTipView *popTipView;
 
 @end
 
@@ -65,6 +68,7 @@ enum{
     [_recorder release];
     [_player release];
     [_processor release];
+    [_popTipView release];
     
     [_micImageView release];
     [_timeLabel release];
@@ -74,6 +78,7 @@ enum{
     [_saveButton release];
     [_opusImageView release];
     [_opusDescLabel release];
+    
     [super dealloc];
 }
 
@@ -435,16 +440,24 @@ enum{
     _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
 }
 
-- (IBAction)clickChangeVoiceButton:(id)sender {
+- (IBAction)clickChangeVoiceButton:(UIButton *)button {
     
-    VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kChoseVoiceType") customView:v style:CommonDialogStyleDoubleButton];
+    if (self.popTipView == nil) {
+        VoiceTypeSelectView *v = [VoiceTypeSelectView createWithVoiceType:_singOpus.pbOpus.sing.voiceType];
+        v.delegate = self;
+        self.popTipView = [[[CMPopTipView alloc] initWithCustomView:v needBubblePath:NO] autorelease];
+        [self.popTipView setBackgroundColor:COLOR_ORANGE];
+        self.popTipView.cornerRadius = 4;
+        self.popTipView.pointerSize = 6;
+    }
     
-    [dialog setClickOkBlock:^(VoiceTypeSelectView *v){
-        [self changeVoiceType:[v getVoiceType]];
-    }];
+    [self.popTipView presentPointingAtView:button inView:self.view animated:YES];
+}
+
+- (void)didSelectVoiceType:(PBVoiceType)voiceType{
     
-    [dialog showInView:self.view];
+    [self changeVoiceType:voiceType];
+    [self.popTipView dismissAnimated:YES];
 }
 
 - (IBAction)clickImageButton:(id)sender {

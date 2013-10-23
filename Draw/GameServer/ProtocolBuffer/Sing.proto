@@ -29,6 +29,7 @@ message PBSong{
 
   optional string author = 3;       // 作者
   optional string lyric = 4;        // 歌词
+  optional string lyricUrl = 5;     // 歌词的URL
 
   repeated string tag = 20;         // 标签，用于分类
 }

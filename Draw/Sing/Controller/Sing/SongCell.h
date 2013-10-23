@@ -10,11 +10,11 @@
 #import "Sing.pb.h"
 
 @interface SongCell : PPTableViewCell
+
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
 @property (retain, nonatomic) IBOutlet UILabel *authorLabel;
-//@property (retain, nonatomic) IBOutlet UILabel *costCoinLabel;
-@property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (retain, nonatomic) IBOutlet UIButton *selectButton;
 
+- (void)setCellData:(PBSong *)song;
 
-- (void)setCellData:(PBSong *)song forIndex:(NSIndexPath *)index;
 @end

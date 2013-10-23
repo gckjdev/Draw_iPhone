@@ -72,7 +72,7 @@
     SET_INPUT_VIEW_STYLE(self.nameTextField);
     SET_INPUT_VIEW_STYLE(self.descTextView);
     
-    [self.nameTextField becomeFirstResponder];
+//    [self.nameTextField becomeFirstResponder];
     self.nameTextField.returnKeyType = UIReturnKeyNext;
     self.nameTextField.delegate = self;
     self.descTextView.delegate = self;
@@ -85,6 +85,11 @@
         NSString *tag = [tagList objectAtIndex:index];
         UIButton *button = [self tagButtonWithTilte:tag tag:index];
         [self.view addSubview:button];
+    }
+    
+    for (int index = 0; index < [self.opus.pbOpus.tagsList count]; index ++) {
+        NSString *tag = [self.opus.pbOpus.tagsList objectAtIndex:index];
+        [self setTagButtonSelectWithTitle:tag];
     }
     
     SET_BUTTON_ROUND_STYLE_YELLOW(self.comfirmButton);
@@ -146,7 +151,8 @@
 
 - (void)textFieldDidChange:(UITextField *)textField{
     
-    if ([textField.text length] <= 0) {
+    
+    if ([self.nameTextField.text length] <= 0) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:1.5];
         return;
     }
@@ -167,6 +173,11 @@
 
 - (IBAction)clickComfirmButton:(id)sender {
     
+    if ([self.nameTextField.text length] <= 0) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:1.5];
+        return;
+    }
+        
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -186,7 +197,6 @@
     UIButton *button = [[[UIButton alloc] initWithFrame:frame] autorelease];
     
     [button setTitle:title forState:UIControlStateNormal];
-    button.tag = tag;
     [button addTarget:self action:@selector(clickTagButton:) forControlEvents:UIControlEventTouchUpInside];
     
     SET_BUTTON_ROUND_STYLE_GRAY(button);
@@ -194,9 +204,34 @@
     return button;
 }
 
+- (void)setTagButtonSelectWithTitle:(NSString *)title{
+    
+    [self.view enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
+        
+        if ([title isEqualToString:[button titleForState:UIControlStateNormal]]) {
+            button.selected = YES;
+        }
+    }];
+}
+
 - (void)clickTagButton:(UIButton *)button{
     
     button.selected = !button.selected;
+    NSString *tag = [button titleForState:UIControlStateNormal];
+    
+    NSMutableArray *tags = [NSMutableArray arrayWithArray:self.opus.pbOpus.tagsList];
+    BOOL contained = [tags containsObject:tag];
+    
+    if (button.selected && !contained) {
+        
+        [tags addObject:tag];
+        [self.opus setTags:tags];
+    }
+    
+    if (!button.selected && contained) {
+        [tags removeObject:tag];
+        [self.opus setTags:tags];
+    }
 }
 
 @end
