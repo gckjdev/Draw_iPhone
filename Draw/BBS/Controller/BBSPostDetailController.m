@@ -141,6 +141,13 @@ typedef enum{
         BBSPostTopCommand *tc = [[[BBSPostTopCommand alloc] initWithPost:post controller:self] autorelease];
         [list addObject:tc];
     }
+    
+    if ([pm canMarkPost:post onBBBoard:post.boardId]) {
+        BBSPostMarkCommand *tc = [[[BBSPostMarkCommand alloc] initWithPost:post controller:self] autorelease];
+        [list addObject:tc];
+    }
+
+    
     return list;
 }
 
@@ -584,11 +591,18 @@ typedef enum{
         POSTMSG(NSLS(@"kEditPostFailed"));
     }else{
         POSTMSG(NSLS(@"kEditPostSucced"));
+        [self updateViewWithPost:post];
+    }
+}
+
+- (void)updateViewWithPost:(PBBBSPost *)post
+{
+    if (post) {
         if ([[BBSManager defaultManager] replacePost:self.post withPost:post]) {
             self.post = post;
             [self.dataTableView reloadData];
             [self updateFooterView];
-        }
+        }        
     }
 }
 

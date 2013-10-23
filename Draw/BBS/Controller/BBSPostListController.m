@@ -27,6 +27,7 @@
 }
 @property (retain, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (retain, nonatomic) IBOutlet UIView *holderView;
+@property (assign, nonatomic) BOOL showMarkedPosts;
 - (void)updateTempPostListWithTabID:(NSInteger)tabID;
 @end
 
@@ -42,6 +43,19 @@
     [pl release];
     return pl;
 }
+
++ (BBSPostListController *)enterMarkedPostListController:(PBBBSBoard *)board
+                                          fromController:(UIViewController *)fromController
+{
+    BBSPostListController *pl = [[BBSPostListController alloc] init];
+    [pl setBbsBoard:board];
+    pl.showMarkedPosts = YES;
+    [fromController.navigationController pushViewController:pl animated:YES];
+    [pl release];
+    return pl;
+
+}
+
 
 + (BBSPostListController *)enterPostListControllerWithBBSUser:(PBBBSUser *)bbsUser
                                                fromController:(UIViewController *)fromController
@@ -71,7 +85,7 @@
 - (BOOL)showBoardAdminList
 {
 //    return NO;
-    return self.bbsBoard != nil;
+    return self.bbsBoard != nil && !self.showMarkedPosts;
 }
 
 - (void)updateTableViewFrame
@@ -104,35 +118,45 @@
 {
     return tabID / 100;
 }
+
+- (void)setupForBoardPosts
+{
+    NSString *titleName = self.bbsBoard.name;
+    [self.createPostButton setImage:[_bbsImageManager bbsPostEditImage]
+                           forState:UIControlStateNormal];
+    [self.rankButton setImage:[_bbsImageManager bbsPostMarkImage]
+                     forState:UIControlStateNormal];
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
+}
+- (void)setupForUserPosts
+{
+    NSString *titleName = [self.bbsUser isMe] ? NSLS(@"kMyPost") : self.bbsUser.nickName;
+    self.createPostButton.hidden = YES;
+    self.rankButton.hidden = YES;
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
+}
+
+- (void)setupForMarkedPosts
+{
+    self.createPostButton.hidden = YES;
+    self.rankButton.hidden = YES;
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kMarkedPosts")];
+}
+
 - (void)initViews
 {
     [self.bgImageView setImage:[_bbsImageManager bbsBGImage]];
-    
-    NSString *titleName = nil;
-    
     if (self.bbsBoard) {
-        titleName = self.bbsBoard.name;
-        [self.createPostButton setImage:[_bbsImageManager bbsPostEditImage]
-                               forState:UIControlStateNormal];
-        [self.rankButton setImage:[_bbsImageManager bbsPostNewImage]
-                         forState:UIControlStateNormal];
-
-        [self.rankButton setImage:[_bbsImageManager bbsPostHotImage]
-                               forState:UIControlStateSelected];
-
-    }else if(self.bbsUser){
-        if ([self.bbsUser isMe]) {
-            titleName = NSLS(@"kMyPost");
+        if (self.showMarkedPosts) {
+            [self setupForMarkedPosts];
         }else{
-            titleName = self.bbsUser.nickName;
+            [self setupForBoardPosts];
         }
-        self.createPostButton.hidden = YES;
-        self.rankButton.hidden = YES;
+    }else if(self.bbsUser){
+        [self setupForUserPosts];
     }
-    
-    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:titleName];
+
     [BBSViewManager updateDefaultBackButton:self.backButton];
-    
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     [self.refreshHeaderView setBackgroundColor:[UIColor clearColor]];
     
@@ -165,12 +189,14 @@
 {
     [super viewDidAppear:animated];
     [self.dataTableView reloadData];
-    
+    [self updateTempPostListWithTabID:self.currentTab.tabID];
+/*
     self.adView = [[AdService defaultService] createAdInView:self
                                                        frame:CGRectMake(0, self.view.bounds.size.height-50, 320, 50)
                                                    iPadFrame:CGRectMake((self.view.bounds.size.width-320)/2-10, self.view.bounds.size.height-100, 320, 50)
                                                      useLmAd:YES];
-    
+  */
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -224,17 +250,9 @@
 
 
 - (IBAction)clickRankButton:(id)sender {
-    if (RangeTypeHot == _rangeType) {
-        _rangeType = RangeTypeNew;
-        self.rankButton.selected = NO;
-    }else{
-        _rangeType = RangeTypeHot;
-        self.rankButton.selected = YES;
-    }
-    NSInteger tabID = [self rangeTypeToTabID:_rangeType];
-    self.rankButton.tag = tabID;
-    [self clickTab:tabID];
-    [self updateTempPostListWithTabID:tabID];
+
+    [BBSPostListController enterMarkedPostListController:self.bbsBoard fromController:self];
+    return;
 }
 
 #pragma mark - common tab controller delegate
@@ -262,15 +280,29 @@
 }
 - (void)serviceLoadDataForTabID:(NSInteger)tabID
 {
-    NSInteger rangeType = [self tabIDToRangeType:tabID];
     TableTab *tab = [_tabManager tabForID:tabID];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    if (self.showMarkedPosts) {
+        [[BBSService defaultService] getMarkedPostList:self.bbsBoard.boardId offset:tab.offset limit:tab.limit hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+            [self hideActivity];
+            if (resultCode == 0) {
+                [self finishLoadDataForTabID:tabID resultList:postList];
+            }else{
+                [self failLoadDataForTabID:tabID];
+            }
+            [self updateTempPostListWithTabID:tabID];
+
+        }];
+        return;
+    }
+    NSInteger rangeType = [self tabIDToRangeType:tabID];
     [[BBSService defaultService] getBBSPostListWithBoardId:_bbsBoard.boardId
                                                  targetUid:_bbsUser.userId
                                                  rangeType:rangeType
                                                     offset:tab.offset
                                                      limit:tab.limit
                                                   delegate:self];
-    [self showActivityWithText:NSLS(@"kLoading")];
+
 }
 
 #pragma mark - bbs service delegate
@@ -279,6 +311,7 @@
              rangeType:(RangeType)rangeType
             resultCode:(NSInteger)resultCode
 {
+    [self hideActivity];
     NSInteger tabID = [self rangeTypeToTabID:rangeType];
     if (resultCode == 0) {
         [self finishLoadDataForTabID:tabID resultList:postList];

@@ -175,6 +175,13 @@ static BBSImageManager* _staticBBSImageManager;
     return [_resService imageByName:imageName
                   inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
+- (UIImage *)bbsPostMarkImage
+{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_mark"];
+    return [_resService imageByName:imageName
+                  inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
 - (UIImage *)bbsPostRewardImage{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_reward"];
     return [_resService imageByName:imageName
@@ -263,6 +270,19 @@ static BBSImageManager* _staticBBSImageManager;
 - (UIImage *)bbsPostDetailUnTop{
     NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_untop"];
     return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+- (UIImage *)bbsPostDetailMark
+{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_mark"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
+}
+- (UIImage *)bbsPostDetailUnmark
+{
+    NSString *imageName = [UIImage fixImageName:@"bbs_post_detail_unmark"];
+    return [_resService imageByName:imageName inResourcePackage:RESOURCE_PACKAGE_BBS];
+    
 }
 
 

@@ -140,14 +140,6 @@
 @class PBWallOpus_Builder;
 @class PBWall_Builder;
 typedef enum {
-  PBOpusCategoryTypeDrawCategory = 0,
-  PBOpusCategoryTypeSingCategory = 1,
-  PBOpusCategoryTypeAskPsCategory = 2,
-} PBOpusCategoryType;
-
-BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value);
-
-typedef enum {
   PBLanguageChinese = 1,
   PBLanguageEnglish = 2,
 } PBLanguage;
@@ -417,8 +409,9 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 @private
   BOOL hasIsRecovery_:1;
   BOOL hasDeviceType_:1;
-  BOOL hasStatus_:1;
+  BOOL hasSpendTime_:1;
   BOOL hasCreateDate_:1;
+  BOOL hasStatus_:1;
   BOOL hasLocalThumbImageUrl_:1;
   BOOL hasLocalImageUrl_:1;
   BOOL hasLocalDataUrl_:1;
@@ -440,12 +433,13 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
   BOOL hasAuthor_:1;
   BOOL hasLanguage_:1;
   BOOL hasType_:1;
-  BOOL hasStoreType_:1;
   BOOL hasCategory_:1;
+  BOOL hasStoreType_:1;
   BOOL isRecovery_:1;
   int32_t deviceType;
-  int32_t status;
+  int32_t spendTime;
   int32_t createDate;
+  int32_t status;
   NSString* localThumbImageUrl;
   NSString* localImageUrl;
   NSString* localDataUrl;
@@ -467,8 +461,8 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
   PBGameUser* author;
   PBLanguage language;
   PBOpusType type;
-  PBOpusStoreType storeType;
   PBOpusCategoryType category;
+  PBOpusStoreType storeType;
   NSMutableArray* mutableTagsList;
   NSMutableArray* mutableFeedTimesList;
 }
@@ -483,6 +477,7 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 - (BOOL) hasCategory;
 - (BOOL) hasCreateDate;
 - (BOOL) hasStatus;
+- (BOOL) hasSpendTime;
 - (BOOL) hasDeviceType;
 - (BOOL) hasDeviceName;
 - (BOOL) hasAppId;
@@ -510,6 +505,7 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 @property (readonly) PBOpusCategoryType category;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t status;
+@property (readonly) int32_t spendTime;
 @property (readonly) int32_t deviceType;
 @property (readonly, retain) NSString* deviceName;
 @property (readonly, retain) NSString* appId;
@@ -626,6 +622,11 @@ BOOL PBGuessContestStateIsValidValue(PBGuessContestState value);
 - (PBOpus_Builder*) addTags:(NSString*) value;
 - (PBOpus_Builder*) addAllTags:(NSArray*) values;
 - (PBOpus_Builder*) clearTagsList;
+
+- (BOOL) hasSpendTime;
+- (int32_t) spendTime;
+- (PBOpus_Builder*) setSpendTime:(int32_t) value;
+- (PBOpus_Builder*) clearSpendTime;
 
 - (BOOL) hasDeviceType;
 - (int32_t) deviceType;

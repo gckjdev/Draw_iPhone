@@ -28,6 +28,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *comment;
 @property (retain, nonatomic) IBOutlet UIButton *reward;
 @property (retain, nonatomic) IBOutlet UIButton *topFlag;
+@property (retain, nonatomic) IBOutlet UIButton *markedFlag;
 @property (retain, nonatomic) PBBBSPost *post;
 
 - (IBAction)clickSupportButton:(id)sender;

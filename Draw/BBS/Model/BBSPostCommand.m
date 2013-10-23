@@ -213,6 +213,62 @@
 
 @end
 
+
+@implementation BBSPostMarkCommand
+
+
+-(void)excute{
+    CHECK_AND_LOGIN(self.controller.view);
+        
+    if (self.post.marked) {
+        [self.controller showActivityWithText:NSLS(@"kToUnmarking")];
+        
+        [[BBSService defaultService] unmarkPost:self.post handler:^(NSInteger resultCode, PBBBSPost *editedPost) {
+            [self.controller hideActivity];
+            if (resultCode == 0) {
+                POSTMSG(NSLS(@"kUnmarkSuccess"));
+                [self.controller updateViewWithPost:editedPost];
+            }else{
+                POSTMSG(NSLS(@"kUnmarkFailed"));                
+            }
+        }];
+        
+    }else{
+        
+        [self.controller showActivityWithText:NSLS(@"kToMarking")];
+        [[BBSService defaultService] markPost:self.post handler:^(NSInteger resultCode, PBBBSPost *editedPost) {
+            [self.controller hideActivity];
+            if (resultCode == 0) {
+                POSTMSG(NSLS(@"kMarkSuccess"));
+                self.post = editedPost;
+                [self.controller updateViewWithPost:editedPost];
+            } else{
+                POSTMSG(NSLS(@"kMarkFailed"));
+            }
+        }];
+    }    
+}
+
+- (NSString *)name{
+    return NSLS(@"kBBSToMark");
+}
+
+- (UIImage *)icon
+{
+    if ([self.post marked]) {
+        return [[BBSImageManager defaultManager] bbsPostDetailUnmark];
+    }
+    return [[BBSImageManager defaultManager] bbsPostDetailMark];
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+
+@end
+
 @implementation BBSPostDeleteCommand
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

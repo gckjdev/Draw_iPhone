@@ -23,16 +23,6 @@ static PBExtensionRegistry* extensionRegistry = nil;
 }
 @end
 
-BOOL PBOpusCategoryTypeIsValidValue(PBOpusCategoryType value) {
-  switch (value) {
-    case PBOpusCategoryTypeDrawCategory:
-    case PBOpusCategoryTypeSingCategory:
-    case PBOpusCategoryTypeAskPsCategory:
-      return YES;
-    default:
-      return NO;
-  }
-}
 BOOL PBLanguageIsValidValue(PBLanguage value) {
   switch (value) {
     case PBLanguageChinese:
@@ -852,6 +842,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 @property int32_t createDate;
 @property int32_t status;
 @property (retain) NSMutableArray* mutableTagsList;
+@property int32_t spendTime;
 @property int32_t deviceType;
 @property (retain) NSString* deviceName;
 @property (retain) NSString* appId;
@@ -951,6 +942,13 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 }
 @synthesize status;
 @synthesize mutableTagsList;
+- (BOOL) hasSpendTime {
+  return !!hasSpendTime_;
+}
+- (void) setHasSpendTime:(BOOL) value {
+  hasSpendTime_ = !!value;
+}
+@synthesize spendTime;
 - (BOOL) hasDeviceType {
   return !!hasDeviceType_;
 }
@@ -1106,6 +1104,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
     self.category = PBOpusCategoryTypeDrawCategory;
     self.createDate = 0;
     self.status = 0;
+    self.spendTime = 0;
     self.deviceType = 0;
     self.deviceName = @"";
     self.appId = @"";
@@ -1219,6 +1218,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   for (NSString* element in self.mutableTagsList) {
     [output writeString:21 value:element];
   }
+  if (self.hasSpendTime) {
+    [output writeInt32:22 value:self.spendTime];
+  }
   if (self.hasDeviceType) {
     [output writeInt32:25 value:self.deviceType];
   }
@@ -1319,6 +1321,9 @@ static PBOpus* defaultPBOpusInstance = nil;
     }
     size += dataSize;
     size += 2 * self.mutableTagsList.count;
+  }
+  if (self.hasSpendTime) {
+    size += computeInt32Size(22, self.spendTime);
   }
   if (self.hasDeviceType) {
     size += computeInt32Size(25, self.deviceType);
@@ -1485,6 +1490,9 @@ static PBOpus* defaultPBOpusInstance = nil;
     }
     [result.mutableTagsList addObjectsFromArray:other.mutableTagsList];
   }
+  if (other.hasSpendTime) {
+    [self setSpendTime:other.spendTime];
+  }
   if (other.hasDeviceType) {
     [self setDeviceType:other.deviceType];
   }
@@ -1621,6 +1629,10 @@ static PBOpus* defaultPBOpusInstance = nil;
       }
       case 170: {
         [self addTags:[input readString]];
+        break;
+      }
+      case 176: {
+        [self setSpendTime:[input readInt32]];
         break;
       }
       case 200: {
@@ -1941,6 +1953,22 @@ static PBOpus* defaultPBOpusInstance = nil;
 }
 - (PBOpus_Builder*) clearTagsList {
   result.mutableTagsList = nil;
+  return self;
+}
+- (BOOL) hasSpendTime {
+  return result.hasSpendTime;
+}
+- (int32_t) spendTime {
+  return result.spendTime;
+}
+- (PBOpus_Builder*) setSpendTime:(int32_t) value {
+  result.hasSpendTime = YES;
+  result.spendTime = value;
+  return self;
+}
+- (PBOpus_Builder*) clearSpendTime {
+  result.hasSpendTime = NO;
+  result.spendTime = 0;
   return self;
 }
 - (BOOL) hasDeviceType {

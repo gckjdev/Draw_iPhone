@@ -73,6 +73,8 @@ message PBFeed {
   optional int32  deviceType = 5;       // deviceType : (1:iPhone/iPod Touch, 2:iPad, 3:Android Phone)
   optional string deviceName = 6;       // 设备名称，如 iPhone4, New iPad, iPhone5, 三星Galaxy 等等
   optional string gameId = 7;           // 来自哪个游戏
+  optional PBOpusCategoryType category = 8;    // 作品大分类
+
 
   // for user info
   optional string nickName = 21;        // 用户昵称
@@ -89,6 +91,8 @@ message PBFeed {
   optional string opusDesc = 35;            // 作品描述
   
   optional string drawDataUrl = 36;         // 新增，用于返回数据文件的URL
+  repeated string tags = 37;                // 作品标签，用于作品分类，如搞笑，故事等。
+  optional int32  spendTime = 38;           // 制作作品花费的时间
 
   // for user guess
   optional string opusId = 41;              // 猜作品的Id
@@ -126,10 +130,11 @@ message PBFeed {
   optional string contestId = 91;               // 参与的比赛的Id
   optional double contestScore = 92;            // 参与的比赛的分数
   repeated PBOpusRank rankInfo = 93;            // 比赛打分
+  optional int32  rankInTop = 94;               // 在排行榜中的排名，比如比赛排名、周榜排名等，用于返回
 
   //for learn Draw
   optional PBLearnDraw learnDraw = 100;
-  //  optional PBSing sing = 101;                 // 具体作品
+  optional PBSingOpus sing = 101;               // 唱歌特有信息
 
 
 }

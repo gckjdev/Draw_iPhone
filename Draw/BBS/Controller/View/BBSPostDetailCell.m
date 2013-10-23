@@ -25,6 +25,7 @@
 #define CONTENT_WIDTH (ISIPAD ? (2.33 * 206) : 206)
 #define CONTENT_MAX_HEIGHT 99999999
 #define Y_CONTENT_TEXT (ISIPAD ? (2.33 * 5) : 5)
+#define FLAG_RADIUS (ISIPAD ? 6 : 3)
 
 #define CONTENT_FONT [[BBSFontManager defaultManager] postContentFont]
 
@@ -56,15 +57,25 @@
                            title:nil forState:UIControlStateSelected];
 
     [BBSViewManager updateButton:self.topFlag
-                         bgColor:[UIColor clearColor]
-                         bgImage:[_bbsImageManager bbsPostTopBg]
+                         bgColor:COLOR_ORANGE//[UIColor clearColor]
+                         bgImage:nil//[_bbsImageManager bbsPostTopBg]
                            image:nil
                             font:[_bbsFontManager postTopFont]
                       titleColor:[UIColor whiteColor]
                            title:NSLS(@"kTopPost")
                         forState:UIControlStateNormal];
 
+    [BBSViewManager updateButton:self.markedFlag
+                         bgColor:COLOR_YELLOW//[UIColor clearColor]
+                         bgImage:nil//[_bbsImageManager bbsPostTopBg]
+                           image:nil
+                            font:[_bbsFontManager postTopFont]
+                      titleColor:COLOR_BROWN
+                           title:NSLS(@"kMarked")
+                        forState:UIControlStateNormal];
 
+    SET_VIEW_ROUND_CORNER_RADIUS(self.topFlag, FLAG_RADIUS);
+    SET_VIEW_ROUND_CORNER_RADIUS(self.markedFlag, FLAG_RADIUS);
 }
 
 + (id)createCell:(id)delegate
@@ -231,6 +242,7 @@
     }
 }
 
+#define TOP_MARK_SPACE (ISIPAD ? 70 : 33)
 
 - (void)updateCellWithBBSPost:(PBBBSPost *)post
 {
@@ -240,6 +252,13 @@
     [self updateTimeStamp:post];
     [self updateReward:post];
     [self.topFlag setHidden:![post isTopPost]];
+    [self.markedFlag setHidden:![post marked]];
+    if (![self.topFlag isHidden]) {
+        [self.markedFlag updateCenterX:self.topFlag.center.x + TOP_MARK_SPACE];
+    }else {
+        self.markedFlag.center = self.topFlag.center;
+    }
+
 }
 
 
@@ -248,6 +267,7 @@
     PPRelease(_post);
     PPRelease(_reward);
     [_topFlag release];
+    [_markedFlag release];
     [super dealloc];
 }
 - (IBAction)clickSupportButton:(id)sender {

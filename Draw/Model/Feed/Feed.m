@@ -109,8 +109,7 @@
 
 - (BOOL) isDrawType
 {
-    return self.feedType == FeedTypeDraw || 
-    self.feedType == FeedTypeDrawToUser;
+    return (self.feedType == FeedTypeDraw) || (self.feedType == FeedTypeDrawToUser);
 }
 
 - (BOOL)isGuessType
