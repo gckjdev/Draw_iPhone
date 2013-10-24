@@ -307,6 +307,7 @@
     PPRelease(_contestViewList);
     PPRelease(_titleLabel);
     PPRelease(_noContestTipLabel);
+    [[ContestManager defaultManager] setAllContestList:nil];
     [super dealloc];
 }
 - (IBAction)clickRefreshButton:(id)sender {
