@@ -186,6 +186,7 @@
         DrawSlider *slider = [DrawSlider sliderWithMaxValue:360 minValue:0 defaultValue:_degree delegate:self];
         slider.tag = DEGREE_TAG;
         self.popColorView = [[[CMPopTipView alloc] initWithCustomView:slider] autorelease];
+        self.popColorView.disableTapToDismiss = YES;
         self.popColorView.delegate = self;
         [self.popColorView setBackgroundColor:COLOR_YELLOW];
 

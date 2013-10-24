@@ -25,6 +25,7 @@
 - (BOOL)execute{
     if ([super execute]) {
         [self showPopTipView];
+        self.popTipView.disableTapToDismiss = YES;
         return YES;
     }else{
         return NO;
