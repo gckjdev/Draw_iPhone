@@ -66,6 +66,7 @@
         dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
         dialog.delegate = self;
         dialog.tag = DIALOG_TAG_OPUS_NAME_AND_OPUS_DESC;
+        dialog.manualClose = YES;
         
     } else {
         dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kEditOpusDesc")];
@@ -78,6 +79,11 @@
 }
 
 #define SUBJECT_MAX_LENGTH 7
+
+- (void)didClickCancel:(CommonDialog *)dialog
+{
+    dialog.manualClose = NO;
+}
 
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView{
     
@@ -101,6 +107,7 @@
         }else{
             [self changeDrawWord:v.titleInputField.text];
             [self changeDesc:v.contentInputView.text];
+            dialog.manualClose = NO;
         }
     }
 }

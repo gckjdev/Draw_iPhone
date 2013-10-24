@@ -460,7 +460,9 @@
         [_delegate didClickClose:self];
     }
     
-    [self disappear];
+    if (!_manualClose) {
+        [self disappear];
+    }
 }
 
 + (CGFloat)edgeWidth

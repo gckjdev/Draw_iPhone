@@ -1229,7 +1229,7 @@
 
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-    
+    dialog.manualClose = YES;
     [dialog showInView:self.view];
     
     [dialog setClickOkBlock:^(id infoView){
@@ -1249,10 +1249,13 @@
           }
         else{
             [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
+            dialog.manualClose = NO;
         }
+
     }];
     [dialog setClickCancelBlock:^(id infoView){
         [self setOpusDesc:v.contentInputView.text];
+        dialog.manualClose = NO;
     }];
 }
 
