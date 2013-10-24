@@ -39,25 +39,6 @@
 }
 
 
-- (void)initDrawInfo:(NSString *)drawImageUrl data:(NSData*)data
-{
-    self.drawImageUrl = drawImageUrl;
-    if ([self.drawImageUrl length] == 0) {
-        PPDebug(@"<Opus> id(%@) user(%@, %@) word(%@) image(nil), load from local",self.feedId, self.feedUser.userId, self.feedUser.nickName, self.wordText);
-        
-        //load draw data from local
-        self.drawImage = [[FeedManager defaultManager] thumbImageForFeedId:self.feedId];
-        self.largeImage = [[FeedManager defaultManager] largeImageForFeedId:self.feedId];
-
-
-        self.pbDrawData = data;
-        
-
-    }else{
-        PPDebug(@"<Opus> id(%@) user(%@, %@) word(%@)", self.feedId, self.feedUser.userId, self.feedUser.nickName, self.wordText);
-    }
-
-}
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed
 {
@@ -72,7 +53,8 @@
 
         //set draw info
         self.wordText = pbFeed.opusWord;
-        [self initDrawInfo:pbFeed.opusImage data:nil];
+        self.drawImageUrl = pbFeed.opusImage;
+//        [self initDrawInfo:pbFeed.opusImage data:nil];
         self.deviceType = pbFeed.deviceType;
         self.opusDesc = pbFeed.opusDesc;
         self.drawDataUrl = pbFeed.drawDataUrl;
@@ -176,7 +158,7 @@
         self.wordText = wordText;
         self.contestId = contestId;
         [self initTimeList:timesArray];
-        [self initDrawInfo:drawImageUrl data:nil];  // ignore PBDraw here because it's NOT loaded
+        self.drawImageUrl = drawImageUrl;
     }
     return self;
 }
@@ -502,7 +484,7 @@
 
 - (void)dealloc
 {
-    PPDebug(@"%@ dealloc", [self description]);
+//    PPDebug(@"%@ dealloc", [self description]);
     PPRelease(_contestId);
     PPRelease(_pbDrawData);
     PPRelease(_drawImage);    
