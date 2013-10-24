@@ -726,7 +726,9 @@
 
 - (void)didClickCancel:(CommonDialog *)dialog
 {
-    [self quit];
+    if (dialog.tag == DIALOG_TAG_SUBMIT || dialog.tag == DIALOG_TAG_SAVETIP){
+        [self quit];
+    }
 }
 
 
