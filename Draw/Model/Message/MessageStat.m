@@ -74,7 +74,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     
-    PPDebug(@"PPMessage<initWithCoder> starts");
+//    PPDebug(@"PPMessage<initWithCoder> starts");
     self = [super init];
     if (self) {
         
@@ -92,9 +92,8 @@
         self.latestCreateDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
         self.latestText = [aDecoder decodeObjectForKey:KEY_TEXT];
     }
-    PPDebug(@"fid = %@\nick = %@\ntype=%d\ntext=%@\n", self.friendId, self.friendNickName,self.messageType,self.latestText);
-    
-    PPDebug(@"PPMessage<initWithCoder> end");
+//    PPDebug(@"fid = %@\nick = %@\ntype=%d\ntext=%@\n", self.friendId, self.friendNickName,self.messageType,self.latestText);    
+//    PPDebug(@"PPMessage<initWithCoder> end");
     return self;
 }
 
