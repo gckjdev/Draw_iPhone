@@ -77,8 +77,7 @@
     if (mask == nil) {
         mask = [[[UIControl alloc] initWithFrame:self.view.bounds] autorelease];
         [mask updateOriginY:CGRectGetMaxY(self.searchTextField.frame)];
-        mask.backgroundColor = [UIColor blackColor];
-        mask.alpha = 0.3;
+        mask.backgroundColor = [UIColor clearColor];
         mask.tag = MASK_VIEW_TAG;
         [mask addTarget:self action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
         [self.view insertSubview:mask belowSubview:self.searchTextField];
