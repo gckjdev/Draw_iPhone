@@ -30,14 +30,13 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeHeader];
+    [self setPullRefreshType:PullRefreshTypeNone];
     [super viewDidLoad];
-//    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kSearch")];
+    [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kSearch")];
     SET_INPUT_VIEW_STYLE(self.searchTextField);
     [self.searchTextField becomeFirstResponder];
     self.searchTextField.text = nil;
-    [self.searchTextField setPlaceholder:NSLS(@"kSearch")];
-    [self.titleView removeFromSuperview];
+    [self.searchTextField setPlaceholder:NSLS(@"kBBSSearchPlaceholder")];
 }
 
 - (void)didReceiveMemoryWarning

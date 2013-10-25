@@ -57,10 +57,10 @@
 					<object class="IBUILabel" id="637587845">
 						<reference key="NSNextResponder" ref="851819397"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{85, 12}, {150, 35}}</string>
+						<string key="NSFrame">{{134, 34}, {500, 60}}</string>
 						<reference key="NSSuperview" ref="851819397"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="756431220"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -92,6 +92,7 @@
 						<string key="NSFrame">{{147, 303}, {475, 104}}</string>
 						<reference key="NSSuperview" ref="851819397"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -110,7 +111,7 @@
 					<object class="IBUITableView" id="330750985">
 						<reference key="NSNextResponder" ref="851819397"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{34, 127}, {700, 877}}</string>
+						<string key="NSFrame">{{34, 206}, {700, 798}}</string>
 						<reference key="NSSuperview" ref="851819397"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="199886475"/>
@@ -131,10 +132,10 @@
 					<object class="IBUITextField" id="647243233">
 						<reference key="NSNextResponder" ref="851819397"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{119, 33}, {530, 62}}</string>
+						<string key="NSFrame">{{119, 119}, {530, 62}}</string>
 						<reference key="NSSuperview" ref="851819397"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="756431220"/>
+						<reference key="NSNextKeyView" ref="330750985"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -165,10 +166,10 @@
 					<object class="IBUIButton" id="756431220">
 						<reference key="NSNextResponder" ref="851819397"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{665, 29}, {70, 70}}</string>
+						<string key="NSFrame">{{678, 115}, {70, 70}}</string>
 						<reference key="NSSuperview" ref="851819397"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="330750985"/>
+						<reference key="NSNextKeyView" ref="647243233"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -183,9 +184,9 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">gallary_search2@2x.png</string>
+							<string key="NSResourceName">bbs_post_search@2x.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -363,12 +364,12 @@
 						<reference key="object" ref="851819397"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="756431220"/>
-							<reference ref="647243233"/>
-							<reference ref="637587845"/>
 							<reference ref="330750985"/>
 							<reference ref="317051374"/>
 							<reference ref="724233112"/>
 							<reference ref="199886475"/>
+							<reference ref="647243233"/>
+							<reference ref="637587845"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -572,8 +573,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bbs_back@2x.png">{60, 53}</string>
+			<string key="bbs_post_search@2x.png">{68, 69}</string>
 			<string key="draw_main_bg@2x.jpg">{768, 1024}</string>
-			<string key="gallary_search2@2x.png">{68, 69}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
