@@ -4650,9 +4650,9 @@
 		CA2614EA1793B0FF007D5462 /* WordFilterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2614DD1793B0FD007D5462 /* WordFilterService.m */; };
 		CA2614ED1793B0FF007D5462 /* WordFilterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2614DD1793B0FD007D5462 /* WordFilterService.m */; };
 		CA2614EE1793B0FF007D5462 /* WordFilterService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2614DD1793B0FD007D5462 /* WordFilterService.m */; };
-		CA27B563176DF0D200310651 /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; };
-		CA27B564176DF0D200310651 /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; };
-		CA27B565176DF0D200310651 /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; };
+		CA27B563176DF0D200310651 /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA27B564176DF0D200310651 /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		CA27B565176DF0D200310651 /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CA27B568176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
 		CA27B569176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
 		CA27B56A176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
@@ -6588,7 +6588,7 @@
 		EAB19CE4174E2A44001126FA /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
 		EAB94F451772D3ED0038DB7A /* OpusManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D56C175EE027007ED7E4 /* OpusManager.m */; };
 		EAB94F4C1772D4A20038DB7A /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
-		EAB94F4D1772D50B0038DB7A /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; };
+		EAB94F4D1772D50B0038DB7A /* APLevelDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA27B562176DF0D200310651 /* APLevelDB.mm */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		EAB94F4E1772D5B10038DB7A /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
 		EABD0FFB17376A9B00A2F930 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC81C0C172B983100ED78DE /* UIImage+fixOrientation.m */; };
