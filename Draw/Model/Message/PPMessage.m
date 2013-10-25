@@ -30,20 +30,22 @@
 #define KEY_REPLY_RESULT @"KEY_REPLY_RESULT"
 #define KEY_REQ_MESSAGEID @"KEY_REQ_MESSAGEID"
 
+#define DEFAULT_IMAGE_SIZE (ISIPAD ?  CGSizeMake(180, 180) : CGSizeMake(80, 80))
+
 #pragma mark ======================= PPMessage =======================
 @implementation PPMessage
-@synthesize messageId = _messageId;
-@synthesize createDate = _createDate;
-@synthesize friendId = _friendId;
-@synthesize status = _status; 
-@synthesize messageType = _messageType;
-@synthesize sourceType = _sourceType;
-@synthesize text = _text;
+//@synthesize messageId = _messageId;
+//@synthesize createDate = _createDate;
+//@synthesize friendId = _friendId;
+//@synthesize status = _status; 
+//@synthesize messageType = _messageType;
+//@synthesize sourceType = _sourceType;
+//@synthesize text = _text;
 
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"id=%@, friendId=%@, status=%d, type=%d, source=%d, text=%@, date=%@",
-            _messageId, _friendId, _status, _messageType, _sourceType, _text, [_createDate description]];
+            self.messageId, self.friendId, self.status, self.messageType, self.sourceType, self.text, [self.createDate description]];
 }
 
 + (id)oldMessageWithPBMessage:(PBMessage *)pbMessage
@@ -51,10 +53,10 @@
     PPDebug(@"<oldMessageWithPBMessage> invoke");
     PPMessage *message = nil;
     if ([[pbMessage drawDataList] count] != 0) {
-        message = [[[DrawMessage alloc] initWithPBMessage:pbMessage] autorelease];
+        message = [[[PPMessage alloc] initWithPBMessage:pbMessage] autorelease];
         message.messageType = MessageTypeDraw;
     }else{
-        message = [[[TextMessage alloc] initWithPBMessage:pbMessage] autorelease];
+        message = [[[PPMessage alloc] initWithPBMessage:pbMessage] autorelease];
         message.messageType = MessageTypeText;
     }
     return message;
@@ -66,76 +68,296 @@
     if ([pbMessage hasType] == NO || [[pbMessage drawDataList] count] != 0) {
         return [PPMessage oldMessageWithPBMessage:pbMessage];
     }
-    
-    switch (pbMessage.type) {
-        case MessageTypeText:
-            return [[[TextMessage alloc] initWithPBMessage:pbMessage] autorelease];
-            
-        case MessageTypeDraw:
-            return [[[DrawMessage alloc] initWithPBMessage:pbMessage] autorelease];
-            
-        case MessageTypeLocationRequest:
-            return [[[LocationAskMessage alloc] initWithPBMessage:pbMessage] autorelease];
-            
-        case MessageTypeLocationResponse:
-            return [[[LocationReplyMessage alloc] initWithPBMessage:pbMessage] autorelease];
-
-        case MessageTypeImage:
-            return [[[ImageMessage alloc] initWithPBMessage:pbMessage] autorelease];
-            
-        case MessageTypeVoice:
-            return [[[VoiceMessage alloc] initWithPBMessage:pbMessage] autorelease];
-
-        default:
-            return nil;
+    else{
+        return [[[PPMessage alloc] initWithPBMessage:pbMessage] autorelease];
     }
 }
 
 - (void)dealloc
 {
 //    PPDebug(@"PPMessage = %@ dealloc", self);
-    PPRelease(_messageId);
-    PPRelease(_createDate);
+//    self.messageId = nil;
+//    self.createDate = nil;
+//    self.text = nil;
     PPRelease(_friendId);
-    PPRelease(_text);
+    
+    PPRelease(_drawActionList);
+    PPRelease(_thumbImage);
+    PPRelease(_thumbFilePath);
+
+//    self.imageUrl = nil;
+//    self.thumbImageUrl = nil;
+    PPRelease(_image);
+
+//    self.reqMessageId = nil;
+    
+    PPRelease(_messageBuilder);
+    
     [super dealloc];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self){
+        _messageBuilder = [[PBMessage_Builder alloc] init];
+
+        PPDebug(@"init empty message");        
+    }
+    return self;
 }
 
 - (id)initWithPBMessage:(PBMessage *)pbMessage
 {
     self = [super init];
     if (self) {
-        self.messageId = pbMessage.messageId;
-        self.createDate = [NSDate dateWithTimeIntervalSince1970:pbMessage.createDate];
-        self.status = pbMessage.status;
-        self.messageType = pbMessage.type;
+//        self.messageId = pbMessage.messageId;
+//        self.createDate = [NSDate dateWithTimeIntervalSince1970:pbMessage.createDate];
+//        self.status = pbMessage.status;
+//        self.messageType = pbMessage.type;
 
-        self.text = pbMessage.text;
+        self.messageBuilder = [PBMessage builderWithPrototype:pbMessage];
+        
+//        self.text = pbMessage.text;
+        
         if ([[UserManager defaultManager] isMe:pbMessage.from]) {
             self.friendId = pbMessage.to;
             self.sourceType = SourceTypeSend;
-            //self.status = MessageStatusSent;
         }else{
             self.friendId = pbMessage.from;
             self.sourceType = SourceTypeReceive;
             self.status = MessageStatusRead;
-        }        
+        }
+        
+        // for draw
+        if ([pbMessage.drawDataList count] > 0){
+            self.drawActionList = [DrawAction drawActionListFromPBMessage:pbMessage];
+        }
+        
+        // for image
+        if (self.messageType == MessageTypeImage){
+            self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+            if (pbMessage.status == MessageStatusFail ||
+                pbMessage.status == MessageStatusSending) {
+                // TODO performance is so so here if load all images???
+                _image = [[UIImage alloc] initWithContentsOfFile:self.imageUrl];    // thumb image
+                if (_image) {
+                    self.thumbImageSize = _image.size;
+                }
+            }
+        }
+        
+        PPDebug(@"init message %@", [self description]);
     }
     return self;
 }
 
-- (void)updatePBMessageBuilder:(PBMessage_Builder *)builder
+- (BOOL)isTextMessage
 {
-    [builder setMessageId:self.messageId];
-    [builder setCreateDate:[self.createDate timeIntervalSince1970]];
-    [builder setStatus:self.status];
-    [builder setType:self.messageType];
-    if (self.text) {
-        [builder setText:self.text];
-    }
-    NSString *from = nil;
-    NSString *to = nil;
+    return [_messageBuilder type] == MessageTypeText;
+}
+
+- (BOOL)isDrawMessage
+{
+    return [_messageBuilder type] == MessageTypeDraw;
+}
+
+- (BOOL)isImageMessage
+{
+    return [_messageBuilder type] == MessageTypeImage;
+}
+
+- (MessageType)messageType
+{
+    return [_messageBuilder type];
+}
+
+- (void)setMessageType:(MessageType)messageType
+{
+    [_messageBuilder setType:messageType];
+}
+
+- (NSString*)messageId
+{
+    return [_messageBuilder messageId];
+}
+
+- (void)setMessageId:(NSString *)messageId
+{
+    [_messageBuilder setMessageId:messageId];
+}
+
+- (NSDate*)createDate
+{
+    return [NSDate dateWithTimeIntervalSince1970:[_messageBuilder createDate]];
+}
+
+- (void)setCreateDate:(NSDate *)createDate
+{
+    [_messageBuilder setCreateDate:[createDate timeIntervalSince1970]];
+}
+
+- (NSString*)text
+{
+    return [_messageBuilder text];
+}
+
+- (void)setText:(NSString *)text
+{
+    if (text == nil)
+        return;
     
+    [_messageBuilder setText:text];
+}
+
+- (NSString*)imageUrl
+{
+    return [_messageBuilder imageUrl];
+}
+
+- (void)setImageUrl:(NSString *)imageUrl
+{
+    if (imageUrl == nil)
+        return;
+    
+    [_messageBuilder setImageUrl:imageUrl];
+}
+
+- (NSString*)thumbImageUrl
+{
+
+    return [_messageBuilder thumbImageUrl];
+}
+
+- (void)setThumbImageUrl:(NSString *)thumbImageUrl
+{
+    if (thumbImageUrl == nil)
+        return;
+
+    [_messageBuilder setThumbImageUrl:thumbImageUrl];
+}
+
+- (NSInteger)drawDataVersion
+{
+    return [_messageBuilder drawDataVersion];
+}
+
+- (void)setDrawDataVersion:(NSInteger)drawDataVersion
+{
+    [_messageBuilder setDrawDataVersion:drawDataVersion];
+}
+
+- (CGSize)canvasSize
+{
+    if ([_messageBuilder hasCanvasSize]) {
+        return CGSizeFromPBSize(_messageBuilder.canvasSize);
+    }else{
+        return [CanvasRect deprecatedIPhoneRect].size;
+    }
+}
+
+- (void)setCanvasSize:(CGSize)canvasSize
+{
+    [_messageBuilder setCanvasSize:CGSizeToPBSize(canvasSize)];
+}
+
+- (double)latitude
+{
+    return [_messageBuilder latitude];
+}
+
+- (void)setLatitude:(double)latitude
+{
+    [_messageBuilder setLatitude:latitude];
+}
+
+- (double)longitude
+{
+    return [_messageBuilder longitude];
+}
+
+- (void)setLongitude:(double)longitude
+{
+    [_messageBuilder setLongitude:longitude];
+}
+
+- (NSString*)reqMessageId
+{
+    return [_messageBuilder reqMessageId];
+}
+
+- (void)setReqMessageId:(NSString *)reqMessageId
+{
+    if (reqMessageId == nil)
+        return;
+    
+    [_messageBuilder setReqMessageId:reqMessageId];
+}
+
+- (NSInteger)replyResult
+{
+    return [_messageBuilder replyResult];
+}
+
+- (void)setReplyResult:(NSInteger)replyResult
+{
+    [_messageBuilder setReplyResult:replyResult];
+}
+
+- (void)setImage:(UIImage *)image
+{
+    if (_image != image) {
+        PPRelease(_image);
+        _image = [image retain];
+        if (_image != nil){
+            self.thumbImageSize = _image.size;
+        }
+        else{
+            self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+        }
+    }
+}
+
+//@property (nonatomic, retain) NSMutableArray * drawActionList;
+//@property (nonatomic, retain) NSString *thumbFilePath;
+//@property (nonatomic, assign) NSInteger drawDataVersion;
+//@property (nonatomic, assign) CGSize canvasSize;
+//
+////@property (nonatomic, retain) NSDate * createDate;
+//@property (nonatomic, retain) NSString * friendId;
+//@property (nonatomic, retain) NSString * text;
+//
+//@property (nonatomic, assign) MessageStatus status; //read or unread //use in the future
+//@property (nonatomic, assign) MessageType messageType; //create message by the type
+//@property (nonatomic, assign) SourceType sourceType; //send receive or system message
+//
+//// for image
+//@property (nonatomic, retain) UIImage *image;
+//@property (nonatomic, retain) NSString *imageUrl;
+//@property (nonatomic, retain) UIImage *thumbImage;
+//@property (nonatomic, retain) NSString *thumbImageUrl;
+//@property (nonatomic, assign) CGSize thumbImageSize;
+//@property (nonatomic, assign) BOOL hasCalSize;
+//
+//// for draw
+//@property (nonatomic, retain) NSMutableArray * drawActionList;
+//@property (nonatomic, retain) NSString *thumbFilePath;
+//@property (nonatomic, assign) NSInteger drawDataVersion;
+//@property (nonatomic, assign) CGSize canvasSize;
+//
+//// for location ask & reply
+//@property (nonatomic, assign) double latitude;
+//@property (nonatomic, assign) double longitude;
+//
+//// for location reply
+//@property (nonatomic, retain) NSString *reqMessageId;
+//@property (nonatomic, assign) NSInteger replyResult;
+
+- (PBMessage*)toPBMessage
+{
+    // set from and to
+    NSString* from;
+    NSString* to;
     if (self.sourceType == SourceTypeSend) {
         from = [[UserManager defaultManager] userId];
         to = self.friendId;
@@ -143,40 +365,60 @@
         from = self.friendId;
         to = [[UserManager defaultManager] userId];
     }
-    if(from) [builder setFrom:from];
-    if(to) [builder setTo:to];
-}
-- (PBMessage *)toPBMessage
-{
-    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
-    [self updatePBMessageBuilder:builder];
-    return [builder build];
+    [_messageBuilder setFrom:from];
+    [_messageBuilder setTo:to];
+    
+    // TODO this may cause some performance issues, to be checked
+    // create draw actions
+    [_messageBuilder clearDrawDataList];
+    if ([self.drawActionList count] != 0) {
+        for (DrawAction *action in self.drawActionList) {
+            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+            
+            NSData *data = [action toData];
+            
+            PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
+            [_messageBuilder addDrawData:pbDrawAction];
+            
+            [pool drain];            
+        }
+    }
+    
+//    PPDebug(@"<toPBMessage> before %@", [self description]);
+    PBMessage* message = [_messageBuilder build];
+    self.messageBuilder = [PBMessage builderWithPrototype:message];
+//    PPDebug(@"<toPBMessage> after %@", [self description]);
+    return message;
 }
 
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [aCoder encodeObject:self.messageId forKey:KEY_MESSAGEID];
-//    [aCoder encodeObject:self.createDate forKey:KEY_CREATE_DATE];
-//    [aCoder encodeObject:self.friendId forKey:KEY_FRIEND_ID];
-//    [aCoder encodeInteger:self.status forKey:KEY_STATUS];
-//    [aCoder encodeInteger:self.messageType forKey:KEY_MESSAGE_TYPE];
-//    [aCoder encodeInteger:self.sourceType forKey:KEY_SOURCE_TYPE];
-//    [aCoder encodeObject:self.text forKey:KEY_TEXT];
-//}
-//
-//- (id)initWithCoder:(NSCoder *)aDecoder
-//{
-//    self = [super init];
-//    if (self) {
-//        self.messageId = [aDecoder decodeObjectForKey:KEY_MESSAGEID];
-//        self.createDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
-//        self.friendId = [aDecoder decodeObjectForKey:KEY_FRIEND_ID];
-//        self.status = [aDecoder decodeIntegerForKey:KEY_STATUS];
-//        self.messageType = [aDecoder decodeIntegerForKey:KEY_MESSAGE_TYPE];
-//        self.sourceType = [aDecoder decodeIntegerForKey:KEY_SOURCE_TYPE];
-//        self.text = [aDecoder decodeObjectForKey:KEY_TEXT];
+//- (void)updatePBMessageBuilder:(PBMessage_Builder *)builder
+//{        
+//    [builder setMessageId:self.messageId];
+//    [builder setCreateDate:[self.createDate timeIntervalSince1970]];
+//    [builder setStatus:self.status];
+//    [builder setType:self.messageType];
+//    if (self.text) {
+//        [builder setText:self.text];
 //    }
-//    return self;
+//    NSString *from = nil;
+//    NSString *to = nil;
+//    
+//    if (self.sourceType == SourceTypeSend) {
+//        from = [[UserManager defaultManager] userId];
+//        to = self.friendId;
+//    }else{
+//        from = self.friendId;
+//        to = [[UserManager defaultManager] userId];
+//    }
+//    if(from) [builder setFrom:from];
+//    if(to) [builder setTo:to];
+//}
+
+//- (PBMessage *)toPBMessage
+//{
+//    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+//    [self updatePBMessageBuilder:builder];
+//    return [builder build];
 //}
 
 - (BOOL)isSendMessage
@@ -195,370 +437,250 @@
 
 @end
 
-#pragma mark TextMessage
-
-@implementation TextMessage
-
-
--(void)dealloc
-{
-    [super dealloc];
-}
-
-- (id)initWithPBMessage:(PBMessage *)pbMessage
-{
-    self = [super initWithPBMessage:pbMessage];
-    if (self) {
-
-    }
-    return self;
-}
-
-- (PBMessage *)toPBMessage
-{
-    return [super toPBMessage];
-}
-
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [super encodeWithCoder:aCoder];
+//#pragma mark TextMessage
 //
+//@implementation TextMessage
+//
+//
+//-(void)dealloc
+//{
+//    [super dealloc];
 //}
 //
-//- (id)initWithCoder:(NSCoder *)aDecoder
+//- (id)initWithPBMessage:(PBMessage *)pbMessage
 //{
-//    self = [super initWithCoder:aDecoder];
+//    self = [super initWithPBMessage:pbMessage];
 //    if (self) {
 //
 //    }
 //    return self;
 //}
-
-
-@end
-
-#pragma mark =======================DrawMessage=======================
-
-@implementation DrawMessage
-@synthesize drawActionList = _drawActionList;
-@synthesize thumbImage = _thumbImage;
-@synthesize thumbFilePath = _thumbFilePath;
-
-
-
-- (void)dealloc
-{
-    PPRelease(_drawActionList);
-    PPRelease(_thumbImage);
-    PPRelease(_thumbFilePath);
-    [super dealloc];
-}
-
-- (id)initWithPBMessage:(PBMessage *)pbMessage
-{
-    self = [super initWithPBMessage:pbMessage];
-    if (self) {
-        
-        _drawActionList = [[DrawAction drawActionListFromPBMessage:pbMessage] retain];
-        
-        self.drawDataVersion = pbMessage.drawDataVersion;
-        if ([pbMessage hasCanvasSize]) {
-            self.canvasSize = CGSizeFromPBSize(pbMessage.canvasSize);
-        }else{
-            self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
-        }
-    }
-    return self;
-}
-
-- (PBMessage *)toPBMessage
-{
-    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
-    [super updatePBMessageBuilder:builder];
-    [builder setCanvasSize:CGSizeToPBSize(self.canvasSize)];
-    [builder setDrawDataVersion:self.drawDataVersion];
-    if ([self.drawActionList count] != 0) {
-        for (DrawAction *action in self.drawActionList) {
-            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
-            NSData *data = [action toData];
-            
-            PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
-            [builder addDrawData:pbDrawAction];
-            
-            [pool drain];
-            
-        }
-    }
-    return [builder build];
-}
-
-//- (void)encodeWithCoder:(NSCoder *)aCoder
+//
+//- (PBMessage *)toPBMessage
 //{
-//    [super encodeWithCoder:aCoder];
-//    [aCoder encodeObject:self.drawActionList forKey:KEY_ACTION_LIST];
-//    [aCoder encodeObject:self.thumbFilePath forKey:KEY_THUMB_PATH];
+//    return [super toPBMessage];
 //}
 //
-//- (id)initWithCoder:(NSCoder *)aDecoder
+//@end
+
+//#pragma mark =======================DrawMessage=======================
+//
+//@implementation DrawMessage
+//@synthesize drawActionList = _drawActionList;
+//@synthesize thumbImage = _thumbImage;
+//@synthesize thumbFilePath = _thumbFilePath;
+//
+//
+//
+//- (void)dealloc
 //{
-//    self = [super initWithCoder:aDecoder];
+//    PPRelease(_drawActionList);
+//    PPRelease(_thumbImage);
+//    PPRelease(_thumbFilePath);
+//    [super dealloc];
+//}
+//
+//- (id)initWithPBMessage:(PBMessage *)pbMessage
+//{
+//    self = [super initWithPBMessage:pbMessage];
 //    if (self) {
-//        self.drawActionList = [aDecoder decodeObjectForKey:KEY_ACTION_LIST];
-//        self.thumbFilePath = [aDecoder decodeObjectForKey:KEY_THUMB_PATH];
+//        
+//        _drawActionList = [[DrawAction drawActionListFromPBMessage:pbMessage] retain];
+//        
+//        self.drawDataVersion = pbMessage.drawDataVersion;
+//        if ([pbMessage hasCanvasSize]) {
+//            self.canvasSize = CGSizeFromPBSize(pbMessage.canvasSize);
+//        }else{
+//            self.canvasSize = [CanvasRect deprecatedIPhoneRect].size;
+//        }
 //    }
 //    return self;
 //}
-
-- (void)setThumbImage:(UIImage *)thumbImage
-{
-    if (thumbImage != _thumbImage) {
-        PPRelease(_thumbImage);
-        _thumbImage = [thumbImage retain];
-    }
-
-}
-
-@end
-
-
-#pragma mark =======================LocationAskMessage=======================
-
-@implementation LocationAskMessage
-@synthesize latitude = _latitude;
-@synthesize longitude = _longitude;
-
-
-- (void)dealloc
-{
-    PPRelease(_text);
-    [super dealloc];
-}
-
-- (id)initWithPBMessage:(PBMessage *)pbMessage
-{
-    self = [super initWithPBMessage:pbMessage];
-    if (self) {
-        self.longitude = pbMessage.longitude;
-        self.latitude = pbMessage.latitude;
-    }
-    return self;
-}
-
-- (PBMessage *)toPBMessage
-{
-    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
-    [super updatePBMessageBuilder:builder];
-    [builder setLatitude:self.latitude];
-    [builder setLongitude:self.longitude];
-    return [builder build];
-}
-
-//- (void)encodeWithCoder:(NSCoder *)aCoder
+//
+//- (PBMessage *)toPBMessage
 //{
-//    [super encodeWithCoder:aCoder];
-//    [aCoder encodeDouble:self.longitude forKey:KEY_LONGITUDE];
-//    [aCoder encodeDouble:self.latitude forKey:KEY_LATITUDE];
+//    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+//    [super updatePBMessageBuilder:builder];
+//    [builder setCanvasSize:CGSizeToPBSize(self.canvasSize)];
+//    [builder setDrawDataVersion:self.drawDataVersion];
+//    if ([self.drawActionList count] != 0) {
+//        for (DrawAction *action in self.drawActionList) {
+//            NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+//
+//            NSData *data = [action toData];
+//            
+//            PBDrawAction* pbDrawAction = [PBDrawAction parseFromData:data];
+//            [builder addDrawData:pbDrawAction];
+//            
+//            [pool drain];
+//            
+//        }
+//    }
+//    return [builder build];
+//}
+
+//
+//
+//- (void)setThumbImage:(UIImage *)thumbImage
+//{
+//    if (thumbImage != _thumbImage) {
+//        PPRelease(_thumbImage);
+//        _thumbImage = [thumbImage retain];
+//    }
+//
 //}
 //
-//- (id)initWithCoder:(NSCoder *)aDecoder
+//@end
+//
+//
+//#pragma mark =======================LocationAskMessage=======================
+//
+//@implementation LocationAskMessage
+//@synthesize latitude = _latitude;
+//@synthesize longitude = _longitude;
+//
+//
+//- (void)dealloc
 //{
-//    self = [super initWithCoder:aDecoder];
+//    PPRelease(_text);
+//    [super dealloc];
+//}
+//
+//- (id)initWithPBMessage:(PBMessage *)pbMessage
+//{
+//    self = [super initWithPBMessage:pbMessage];
 //    if (self) {
-//        self.latitude = [aDecoder decodeDoubleForKey:KEY_LATITUDE];
-//        self.longitude = [aDecoder decodeDoubleForKey:KEY_LONGITUDE];
+//        self.longitude = pbMessage.longitude;
+//        self.latitude = pbMessage.latitude;
 //    }
 //    return self;
 //}
-@end
-
-
-#pragma mark =======================LocationReplyMessage=======================
-
-@implementation LocationReplyMessage
-@synthesize latitude = _latitude;
-@synthesize longitude = _longitude;
-@synthesize replyResult = _replyResult;
-@synthesize reqMessageId = _reqMessageId;
-
-- (void)dealloc
-{
-    PPRelease(_reqMessageId);
-    [super dealloc];
-}
-
-- (id)initWithPBMessage:(PBMessage *)pbMessage
-{
-    self = [super initWithPBMessage:pbMessage];
-    if (self) {
-        self.longitude = pbMessage.longitude;
-        self.latitude = pbMessage.latitude;
-        self.reqMessageId = pbMessage.reqMessageId;
-        self.replyResult = pbMessage.replyResult;
-    }
-    return self;
-}
-
-- (PBMessage *)toPBMessage
-{
-    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
-    [super updatePBMessageBuilder:builder];
-    [builder setLatitude:self.latitude];
-    [builder setLongitude:self.longitude];
-    [builder setReplyResult:self.replyResult];
-    [builder setReqMessageId:self.reqMessageId];
-    return [builder build];
-}
-
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [super encodeWithCoder:aCoder];
-//    
-//    [aCoder encodeObject:self.reqMessageId forKey:KEY_REQ_MESSAGEID];
-//    
-//    [aCoder encodeDouble:self.longitude forKey:KEY_LONGITUDE];
-//    [aCoder encodeDouble:self.latitude forKey:KEY_LATITUDE];
-//    
-//    [aCoder encodeInteger:self.replyResult forKey:KEY_REPLY_RESULT];
 //
-//    
+//- (PBMessage *)toPBMessage
+//{
+//    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+//    [super updatePBMessageBuilder:builder];
+//    [builder setLatitude:self.latitude];
+//    [builder setLongitude:self.longitude];
+//    return [builder build];
+//}
+
+
+//@end
+
+
+//#pragma mark =======================LocationReplyMessage=======================
+//
+//@implementation LocationReplyMessage
+//@synthesize latitude = _latitude;
+//@synthesize longitude = _longitude;
+//@synthesize replyResult = _replyResult;
+//@synthesize reqMessageId = _reqMessageId;
+//
+//- (void)dealloc
+//{
+//    PPRelease(_reqMessageId);
+//    [super dealloc];
 //}
 //
-//- (id)initWithCoder:(NSCoder *)aDecoder
+//- (id)initWithPBMessage:(PBMessage *)pbMessage
 //{
-//    self = [super initWithCoder:aDecoder];
+//    self = [super initWithPBMessage:pbMessage];
 //    if (self) {
-//        self.latitude = [aDecoder decodeDoubleForKey:KEY_LATITUDE];
-//        self.longitude = [aDecoder decodeDoubleForKey:KEY_LONGITUDE];
-//        self.replyResult = [aDecoder decodeIntegerForKey:KEY_REPLY_RESULT];
-//        self.reqMessageId = [aDecoder decodeObjectForKey:KEY_REQ_MESSAGEID];
+//        self.longitude = pbMessage.longitude;
+//        self.latitude = pbMessage.latitude;
+//        self.reqMessageId = pbMessage.reqMessageId;
+//        self.replyResult = pbMessage.replyResult;
 //    }
 //    return self;
 //}
-@end
+//
+//- (PBMessage *)toPBMessage
+//{
+//    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+//    [super updatePBMessageBuilder:builder];
+//    [builder setLatitude:self.latitude];
+//    [builder setLongitude:self.longitude];
+//    [builder setReplyResult:self.replyResult];
+//    [builder setReqMessageId:self.reqMessageId];
+//    return [builder build];
+//}
+
+//@end
 
 
 #pragma mark =======================ImageMessage=======================
 
-#define DEFAULT_IMAGE_SIZE (ISIPAD ?  CGSizeMake(180, 180) : CGSizeMake(80, 80))
-
-@implementation ImageMessage
-@synthesize image = _image;
-@synthesize imageUrl = _imageUrl;
-
-- (id)initWithPBMessage:(PBMessage *)pbMessage
-{
-    self = [super initWithPBMessage:pbMessage];
-    if (self) {
-        self.imageUrl = pbMessage.imageUrl;
-        self.thumbImageUrl = pbMessage.thumbImageUrl;
-        self.thumbImageSize = DEFAULT_IMAGE_SIZE;
-        if (pbMessage.status == MessageStatusFail ||
-            pbMessage.status == MessageStatusSending) {
-            self.image = [UIImage imageWithContentsOfFile:self.imageUrl];
-            if (self.image) {
-                self.thumbImageSize = _image.size;
-            }
-        }
-
-    }
-    return self;
-}
 
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.thumbImageSize = DEFAULT_IMAGE_SIZE;
-        self.messageType = MessageTypeImage;
-    }
-    return self;
-}
-
-- (void)setImage:(UIImage *)image
-{
-    if (_image != image) {
-        PPRelease(_image);
-        _image = [image retain];
-        if (_image != nil){
-            self.thumbImageSize = _image.size;
-        }
-        else{
-            self.thumbImageSize = DEFAULT_IMAGE_SIZE;
-        }
-    }
-}
-
-- (PBMessage *)toPBMessage
-{
-    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
-    [super updatePBMessageBuilder:builder];
-    [builder setImageUrl:self.imageUrl];
-    [builder setThumbImageUrl:self.thumbImageUrl];
-    return [builder build];
-}
-
-
-
-- (void)dealloc
-{
-    PPRelease(_imageUrl);
-    PPRelease(_image);
-    PPRelease(_thumbImage);
-    PPRelease(_thumbImageUrl);
-    [super dealloc];
-}
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [super encodeWithCoder:aCoder];
-//    
-//    [aCoder encodeObject:self.imageUrl forKey:KEY_IMAGE_URL];    
-//    
-//}
+//@implementation ImageMessage
+//@synthesize image = _image;
+//@synthesize imageUrl = _imageUrl;
 //
-//- (id)initWithCoder:(NSCoder *)aDecoder
+//- (id)initWithPBMessage:(PBMessage *)pbMessage
 //{
-//    self = [super initWithCoder:aDecoder];
+//    self = [super initWithPBMessage:pbMessage];
 //    if (self) {
-//        self.imageUrl = [aDecoder decodeObjectForKey:KEY_IMAGE_URL];
+//        self.imageUrl = pbMessage.imageUrl;
+//        self.thumbImageUrl = pbMessage.thumbImageUrl;
+//        self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+//        if (pbMessage.status == MessageStatusFail ||
+//            pbMessage.status == MessageStatusSending) {
+//            self.image = [UIImage imageWithContentsOfFile:self.imageUrl];
+//            if (self.image) {
+//                self.thumbImageSize = _image.size;
+//            }
+//        }
+//
 //    }
 //    return self;
 //}
-
-@end
-
-
-#pragma mark ======================VoiceMessage =======================
-
-@implementation VoiceMessage
-
-- (void)dealloc
-{
-    [super dealloc];
-}
-
-- (id)initWithPBMessage:(PBMessage *)pbMessage
-{
-    self = [super initWithPBMessage:pbMessage];
-    if (self) {
-        //TODO set voice data.
-    }
-    return self;
-}
-
-//- (void)encodeWithCoder:(NSCoder *)aCoder
-//{
-//    [super encodeWithCoder:aCoder];
-//}
 //
-//- (id)initWithCoder:(NSCoder *)aDecoder
+//
+//- (id)init
 //{
-//    self = [super initWithCoder:aDecoder];
+//    self = [super init];
 //    if (self) {
-//        //init the attributes.
+//        self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+//        self.messageType = MessageTypeImage;
 //    }
 //    return self;
 //}
+//
+//- (void)setImage:(UIImage *)image
+//{
+//    if (_image != image) {
+//        PPRelease(_image);
+//        _image = [image retain];
+//        if (_image != nil){
+//            self.thumbImageSize = _image.size;
+//        }
+//        else{
+//            self.thumbImageSize = DEFAULT_IMAGE_SIZE;
+//        }
+//    }
+//}
+//
+//- (PBMessage *)toPBMessage
+//{
+//    PBMessage_Builder *builder = [[[PBMessage_Builder alloc] init] autorelease];
+//    [super updatePBMessageBuilder:builder];
+//    [builder setImageUrl:self.imageUrl];
+//    [builder setThumbImageUrl:self.thumbImageUrl];
+//    return [builder build];
+//}
+//
+//
+//
+//- (void)dealloc
+//{
+//    PPRelease(_imageUrl);
+//    PPRelease(_image);
+//    PPRelease(_thumbImage);
+//    PPRelease(_thumbImageUrl);
+//    [super dealloc];
+//}
 
-@end
+//@end
+
+

@@ -63,9 +63,12 @@
             self.learnDraw = pbFeed.learnDraw;    
         }
         
+        PPDebug(@"<DrawFeed> id(%@) user(%@, %@) text(%@)", pbFeed.feedId, pbFeed.userId, pbFeed.nickName, self.wordText);
+        
     }
     return self;
 }
+
 
 #define KEY_WORD_TEXT @"WORD_TEXT"
 #define KEY_DRAW @"DRAW"
@@ -159,6 +162,8 @@
         self.contestId = contestId;
         [self initTimeList:timesArray];
         self.drawImageUrl = drawImageUrl;
+        
+        PPDebug(@"<DrawFeed> id(%@) user(%@, %@) text(%@)", feedId, userId, nickName, wordText);
     }
     return self;
 }
