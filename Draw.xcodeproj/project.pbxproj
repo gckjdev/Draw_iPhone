@@ -4187,7 +4187,7 @@
 		C2974D18167F6CB200E012FC /* BulletinManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2974D17167F6CB200E012FC /* BulletinManager.m */; };
 		C29C12DE152AE23E009B9E5F /* ShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C12DD152AE23D009B9E5F /* ShareCell.xib */; };
 		C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
-		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
+		C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		C2A3CC1316159AD700663271 /* AnimationPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A3CC1216159AD700663271 /* AnimationPlayer.m */; };
 		C2A403861744D5E3006C689F /* little_gee_icon_114.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A4034B1744D5E3006C689F /* little_gee_icon_114.png */; };
 		C2A403941744D5E3006C689F /* little_gee_icon_50.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A4034C1744D5E3006C689F /* little_gee_icon_50.png */; };
@@ -5209,6 +5209,12 @@
 		CAE9AA6C16D72725008392F9 /* DefaultPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA6B16D72725008392F9 /* DefaultPen.m */; };
 		CAE9AA7A16D72F17008392F9 /* SuperPen.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE9AA7916D72F15008392F9 /* SuperPen.m */; };
 		CAEE45E5165F5590001E02F1 /* GameSNSService.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEE45E4165F5590001E02F1 /* GameSNSService.m */; };
+		CAEEC196181A484F007FD75F /* OpusService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C8D563175EDFC6007ED7E4 /* OpusService.m */; };
+		CAEEC19A181A5DAC007FD75F /* ScreenCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */; };
+		CAEEC19B181A5DAC007FD75F /* ScreenCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */; };
+		CAEEC19C181A5DAC007FD75F /* ScreenCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */; };
+		CAEEC19D181A5DAC007FD75F /* ScreenCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */; };
+		CAEEC19F181A5F19007FD75F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAEEC19E181A5F18007FD75F /* CoreVideo.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		CAEFC4AF16FD64DB00D799B7 /* ShapeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC49E16FD64DB00D799B7 /* ShapeInfo.m */; };
 		CAEFC5371700005400D799B7 /* ToolCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5361700005400D799B7 /* ToolCommand.m */; };
 		CAEFC5431700024300D799B7 /* AddColorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAEFC5421700024200D799B7 /* AddColorCommand.m */; };
@@ -9138,6 +9144,9 @@
 		CAEE45E4165F5590001E02F1 /* GameSNSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameSNSService.m; sourceTree = "<group>"; };
 		CAEE48EB171D32BD00EF2380 /* default_config_Learndraw_version.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config_Learndraw_version.txt; sourceTree = "<group>"; };
 		CAEE48EC171D32BD00EF2380 /* default_config_Learndraw.pb */ = {isa = PBXFileReference; lastKnownFileType = text; path = default_config_Learndraw.pb; sourceTree = "<group>"; };
+		CAEEC198181A5DAC007FD75F /* ScreenCaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenCaptureView.h; sourceTree = "<group>"; };
+		CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenCaptureView.m; sourceTree = "<group>"; };
+		CAEEC19E181A5F18007FD75F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		CAEECCD115DB46AD00FA5A2A /* MainDataModel 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 8.xcdatamodel"; sourceTree = "<group>"; };
 		CAEECCD215DBB0B000FA5A2A /* MainDataModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 9.xcdatamodel"; sourceTree = "<group>"; };
 		CAEFC49D16FD64DB00D799B7 /* ShapeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeInfo.h; sourceTree = "<group>"; };
@@ -9650,6 +9659,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAEEC19F181A5F19007FD75F /* CoreVideo.framework in Frameworks */,
+				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
 				A421503A1803E87C007F2EFD /* AssetsLibrary.framework in Frameworks */,
 				A4990770174DBC61005AF334 /* Accelerate.framework in Frameworks */,
 				A499076E174DBBFE005AF334 /* CoreMedia.framework in Frameworks */,
@@ -9672,7 +9683,6 @@
 				CAA1AF8E159EA86A00504C98 /* CoreTelephony.framework in Frameworks */,
 				CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
-				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
 				CA65C1FD152DD50E00462C96 /* libQWeiboSDK4iOS.a in Frameworks */,
 				CA65C1BE152D9A7E00462C96 /* Security.framework in Frameworks */,
 				CA4216031521973A00FAA008 /* StoreKit.framework in Frameworks */,
@@ -14281,6 +14291,7 @@
 		CA745D131503B1B400600024 = {
 			isa = PBXGroup;
 			children = (
+				CAEEC19E181A5F18007FD75F /* CoreVideo.framework */,
 				CA745D281503B1B500600024 /* Draw */,
 				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
@@ -15550,6 +15561,15 @@
 			path = SNS;
 			sourceTree = "<group>";
 		};
+		CAEEC197181A5D96007FD75F /* ScreenCaptureView */ = {
+			isa = PBXGroup;
+			children = (
+				CAEEC198181A5DAC007FD75F /* ScreenCaptureView.h */,
+				CAEEC199181A5DAC007FD75F /* ScreenCaptureView.m */,
+			);
+			path = ScreenCaptureView;
+			sourceTree = "<group>";
+		};
 		CAEFC49616FD64DB00D799B7 /* Shape */ = {
 			isa = PBXGroup;
 			children = (
@@ -16068,6 +16088,7 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				CAEEC197181A5D96007FD75F /* ScreenCaptureView */,
 				EA0C5516180B9203008069C1 /* InfColorPicker */,
 				A42150BF1803EA21007F2EFD /* MWPhotoBrowser */,
 				C2C18ADF1763372400DE933B /* AutocompletionTableView */,
@@ -20709,6 +20730,7 @@
 				A4A947F818162F37007A2E26 /* SingInfoEditController.m in Sources */,
 				A4F937FF18176D030065D707 /* SongSearchController.m in Sources */,
 				EADC02571817CF8C0038B6A8 /* SearchPostController.m in Sources */,
+				CAEEC19C181A5DAC007FD75F /* ScreenCaptureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21467,6 +21489,8 @@
 				A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				A40B59BF180FD96200F68A81 /* OpusManagerFactory.m in Sources */,
 				EADC02561817CF8C0038B6A8 /* SearchPostController.m in Sources */,
+				CAEEC196181A484F007FD75F /* OpusService.m in Sources */,
+				CAEEC19B181A5DAC007FD75F /* ScreenCaptureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22231,6 +22255,7 @@
 				A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */,
 				A40B59BE180FD96200F68A81 /* OpusManagerFactory.m in Sources */,
 				EADC02551817CF8C0038B6A8 /* SearchPostController.m in Sources */,
+				CAEEC19A181A5DAC007FD75F /* ScreenCaptureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22944,6 +22969,7 @@
 				EA0C5540180B9203008069C1 /* InfSourceColorView.m in Sources */,
 				EA0C5549180BECEB008069C1 /* PainterController.m in Sources */,
 				EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */,
+				CAEEC19D181A5DAC007FD75F /* ScreenCaptureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
