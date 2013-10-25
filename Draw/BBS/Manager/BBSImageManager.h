@@ -31,6 +31,7 @@
 - (UIImage *)bbsBoardLineImage;
 
 - (UIImage *)bbsBoardMineImage;
+- (UIImage *)bbsBoardSearchImage;
 - (UIImage *)bbsBoardCommentImage;
 
 - (UIImage *)bbsSectionBgImage;
@@ -42,6 +43,8 @@
 #pragma mark - Post List image
 - (UIImage *)bbsPostCommentImage;
 - (UIImage *)bbsPostContentBGImage;
+- (UIImage *)bbsPostSearchImage;
+
 - (UIImage *)bbsRewardActionBGImage;
 - (UIImage *)bbsPostEditImage;
 

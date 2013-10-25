@@ -116,6 +116,14 @@ static BBSImageManager* _staticBBSImageManager;
     return [_resService stretchableImageWithImageName:@"bbs_board_mine"
                              inResourcePackage:RESOURCE_PACKAGE_BBS];
 }
+
+- (UIImage *)bbsBoardSearchImage
+{
+    return [_resService stretchableImageWithImageName:@"bbs_board_search"
+                                    inResourcePackage:RESOURCE_PACKAGE_BBS];
+}
+
+
 - (UIImage *)bbsBoardCommentImage
 {
     return [_resService stretchableImageWithImageName:@"bbs_board_comment"

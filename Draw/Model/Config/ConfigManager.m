@@ -315,6 +315,9 @@
 
 + (BOOL)isInReviewVersion
 {
+#if DEBUG
+    return YES;
+#endif
     NSString* currentVersion = [PPApplication getAppVersion];
     NSString* inReviewVersion = [MobClickUtils getStringValueByKey:@"IN_REVIEW_VERSION" defaultValue:@""];
     if ([inReviewVersion length] > 0){

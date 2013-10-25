@@ -65,7 +65,7 @@
     [BBSViewManager updateDefaultTableView:self.dataTableView];
 
     
-    [self.myPostButton setImage:[_bbsImageManager bbsBoardMineImage] forState:UIControlStateNormal];
+    [self.myPostButton setImage:[_bbsImageManager bbsBoardSearchImage] forState:UIControlStateNormal];
     
     [self.myActionButton setImage:[_bbsImageManager bbsBoardCommentImage] forState:UIControlStateNormal];
 

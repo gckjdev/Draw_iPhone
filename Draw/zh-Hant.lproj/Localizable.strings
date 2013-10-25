@@ -2029,7 +2029,7 @@
 "kBBSToMark" = "加精";
 "kMarked" = "精華";
 "kMarkedPosts" = "精華貼";
-
+"kBBSSearchPlaceholder" = "請輸入搜索關鍵字";
 /*********************** BBS国际化字符串结束 *************************/
 
 "kShareByEmailSuccess" = "郵件分享成功";
@@ -2136,6 +2136,7 @@
 "kRating" = "評分中...";
 "kOldDrawBG" = "懷舊木板風";
 "kExhibition" = "作品展";
+"kContestCopyright" = "本次比賽與蘋果公司無關，蘋果公司不承擔任何責任。";
 /*********************小吉画画国际化字符串结束 ************************/
 
 
