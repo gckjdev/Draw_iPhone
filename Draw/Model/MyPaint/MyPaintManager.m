@@ -757,57 +757,6 @@ pbNoCompressDrawData:(PBNoCompressDrawData*)pbNoCompressDrawData
     return newMyPaint;
 }
 
-- (BOOL)updateDraft:(MyPaint *)draft
-              image:(UIImage *)image
-pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
-{
-    return [self updateDraft:draft image:image drawData:[pbNoCompressDrawData data]];
-    
-//    BOOL needSave = NO;
-//    if (draft) {
-//        NSString *imageFileName = [draft image];
-//        NSString *pbDataFileName = [draft dataFilePath];
-//        //update image
-//        if ([imageFileName length] != 0) {
-//            [_imageManager saveImage:image forKey:imageFileName];
-//        }else{
-//            NSString *imageFileName = [self imageFileName];
-//            [_imageManager saveImage:image forKey:imageFileName];
-//            [draft setImage:imageFileName];
-//            needSave = YES;
-//        }
-//        
-//        //update draw data.
-//        if ([pbDataFileName length] != 0) {
-//            if ([self saveDataAsPBNOCompressDrawData:draft]) {
-//                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
-//            }else{
-//                //if old data save as action list, remove old data
-//                [_drawDataManager removeDataForKey:pbDataFileName];
-//                
-//                //save and rename path.
-//                pbDataFileName = [self pbNoCompressDrawDataFileName];
-//                [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
-//                [draft setDataFilePath:pbDataFileName];
-//                needSave = YES;
-//            }
-//
-//        }else{
-//            pbDataFileName = [self pbNoCompressDrawDataFileName];
-//            [_drawDataManager saveData:[pbNoCompressDrawData data] forKey:pbDataFileName];
-//            [draft setDataFilePath:pbDataFileName];
-//            needSave = YES;
-//        }
-//        
-//        if (needSave) {
-//            [draft setIsRecovery:[NSNumber numberWithBool:NO]];
-//            [self save];            
-//        }
-//
-//    }
-//    return YES;
-}
-
 - (NSString *)thumbPathFromImagePath:(NSString *)imagePath
 {
     NSString *path = imagePath;
@@ -825,6 +774,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
            drawData:(NSData *)drawData
+          forceSave:(BOOL)forceSave
 {
     if ([drawData length] <= 0){
         PPDebug(@"<updateDraft> but draw data length is 0 or nil???");
@@ -870,7 +820,7 @@ pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData
 //            needSave = YES;
         }
         
-        if (needSave) {
+        if (needSave||forceSave) {
             [draft setIsRecovery:[NSNumber numberWithBool:NO]];
             return [self save];
         }
