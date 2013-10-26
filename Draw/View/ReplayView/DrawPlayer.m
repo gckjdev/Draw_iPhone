@@ -181,14 +181,20 @@
 {
     [self.showView pause];
     [self.playButton setSelected:NO];
+    
+//    [self stopRecording];
+    
 }
 - (void)stop
 {
     [self.showView stop];
-    [self.playButton setSelected:NO];    
+    [self.playButton setSelected:NO];
+    
 }
 - (void)start
-{
+{    
+//    [self startRecording];
+    
     [self.showView play];
     [self.playButton setSelected:YES];    
 }
