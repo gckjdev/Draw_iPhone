@@ -955,11 +955,21 @@
             }
             else{
                 result = YES;
-                [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
-                [self.draft setOpusDesc:self.opusDesc];
+                [self.draft setIsRecovery:@(NO)];
+                BOOL forceSave = NO;
+                if (![[self.draft opusDesc] isEqualToString:self.opusDesc]) {
+                    forceSave = YES;
+                    [self.draft setOpusDesc:self.opusDesc];
+                }
+                if ((![[self.draft drawWord] isEqualToString:self.word.text])) {
+                    forceSave = YES;
+                    [self.draft setDrawWord:self.word.text];
+                }
+
                 result = [pManager updateDraft:self.draft
                                          image:image
-                                      drawData:data];
+                                      drawData:data
+                                     forceSave:forceSave];
             }
         }else{
             PPDebug(@"<saveDraft> create core data draft");
