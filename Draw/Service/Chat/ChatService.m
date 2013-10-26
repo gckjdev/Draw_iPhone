@@ -724,7 +724,7 @@ static ChatService *_chatService = nil;
 //                }
             }
 
-            [[PPMessageManager defaultManager] updateMessage:message friendUserId:friendId];
+            [[PPMessageManager defaultManager] saveMessageList:message.friendId];
             
             // post notification
             [self postNotification:NOTIFICATION_MESSAGE_SENT
