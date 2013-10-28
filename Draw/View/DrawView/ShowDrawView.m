@@ -18,6 +18,15 @@
 #import "ClipAction.h"
 //#define DEFAULT_PLAY_SPEED  (0.01)
 //#define MIN_PLAY_SPEED      (0.001f)
+typedef enum {
+    PlaySpeedTypeLow = 1, // 1/30.0
+    PlaySpeedTypeNormal = 2, // x2
+    PlaySpeedTypeHigh = 4, //x4
+    PlaySpeedTypeSuper = 6,//x6
+    PlaySpeedTypeMax = 12,//x10
+}PlaySpeedType;
+
+
 
 @interface ShowDrawView ()
 {
@@ -29,7 +38,7 @@
     PenView *pen;
 
 }
-//@property (nonatomic, retain) Paint *tempPaint;
+@property(nonatomic, assign) NSInteger speed; //default is Normal;
 @property (nonatomic, retain) PaintAction *tempAction;
 @end
 
@@ -229,6 +238,7 @@
         pen.userInteractionEnabled = NO;
         
         pen.penType = 0;
+        self.maxPlaySpeed = [ConfigManager getMaxPlayDrawSpeed];
         self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
         
@@ -494,11 +504,22 @@
 }
 
 
-#define LEVEL_TIMES 1000
+- (void)setPlaySpeed:(double)playSpeed
+{
+    _playSpeed = playSpeed;
+    double delta = playSpeed/self.maxPlaySpeed;
+    NSInteger speed = (1-delta) * PlaySpeedTypeMax;
+    speed = MAX(speed, 0);
+    self.speed = speed + PlaySpeedTypeLow;
+
+}
+
+//#define LEVEL_TIMES 500
 
 - (void)setDrawActionList:(NSMutableArray *)drawActionList
 {
     [super setDrawActionList:drawActionList];
+/*
     self.speed = PlaySpeedTypeNormal;
     
     if ([ConfigManager useSpeedLevel]) {
@@ -514,6 +535,7 @@
         }
         PPDebug(@"<setDrawActionList>auto set speed: %d,actionCount = %d",self.speed, count);
     }    
+ */
 }
 
 - (void)changeRect:(CGRect)rect

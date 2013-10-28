@@ -36,7 +36,7 @@
 
 - (CGFloat)speedWithRate:(CGFloat)rate
 {
-    CGFloat maxSpeed = 0.1;//[ConfigManager getMaxPlayDrawSpeed];
+    CGFloat maxSpeed = [ConfigManager getMaxPlayDrawSpeed];
     CGFloat minSpeed = 0;//[ConfigManager getMinPlayDrawSpeed];
     CGFloat speed = maxSpeed -  rate *(maxSpeed - minSpeed);
     PPDebug(@"speed with rate, rate = %f, speed = %f", rate, speed);
@@ -74,6 +74,9 @@
     self.speedSlider.pointImage = [[ShareImageManager defaultManager] speedProgressPoint];
 
     self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
+    
+    self.showView.maxPlaySpeed = [ConfigManager getMaxPlayDrawSpeed];
+    
  
 
 }
