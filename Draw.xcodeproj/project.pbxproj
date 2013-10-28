@@ -3830,7 +3830,7 @@
 		C28A9CB11738F04B007A819F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FAE0E115536F8E008B5827 /* AudioToolbox.framework */; };
 		C28A9CB21738F04B007A819F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F351509A71000F60C03 /* AVFoundation.framework */; };
 		C28A9CB31738F04B007A819F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA103F391509A72100F60C03 /* MobileCoreServices.framework */; };
-		C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; };
+		C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A09761152ECDEA006535F7 /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C28A9CB51738F04B007A819F /* libQWeiboSDK4iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA65C1ED152DD03B00462C96 /* libQWeiboSDK4iOS.a */; };
 		C28A9CB61738F04B007A819F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA65C1BD152D9A7C00462C96 /* Security.framework */; };
 		C28A9CB71738F04B007A819F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4216021521973A00FAA008 /* StoreKit.framework */; };
@@ -4960,6 +4960,8 @@
 		CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7EC216DC57B10089BD51 /* ShapeBox.m */; };
 		CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
+		CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAEEC19E181A5F18007FD75F /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076B174DBB72005AF334 /* CoreMedia.framework */; };
 		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
 		CA9C11C0178135E0004372B6 /* GradientAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C11BF178135E0004372B6 /* GradientAction.m */; };
 		CA9C11CD178135E0004372B6 /* GradientAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9C11BF178135E0004372B6 /* GradientAction.m */; };
@@ -9607,6 +9609,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */,
+				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
+				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
 				A4F04B84180643BD007274BE /* AssetsLibrary.framework in Frameworks */,
 				C28A9CA21738F04B007A819F /* AddressBookUI.framework in Frameworks */,
 				C28A9CA31738F04B007A819F /* PassKit.framework in Frameworks */,
@@ -9626,7 +9631,6 @@
 				C28A9CB11738F04B007A819F /* AudioToolbox.framework in Frameworks */,
 				C28A9CB21738F04B007A819F /* AVFoundation.framework in Frameworks */,
 				C28A9CB31738F04B007A819F /* MobileCoreServices.framework in Frameworks */,
-				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
 				C28A9CB51738F04B007A819F /* libQWeiboSDK4iOS.a in Frameworks */,
 				C28A9CB61738F04B007A819F /* Security.framework in Frameworks */,
 				C28A9CB71738F04B007A819F /* StoreKit.framework in Frameworks */,

@@ -28,7 +28,7 @@
 @end
 
 
-@interface DrawPlayer : ScreenCaptureView<ShowDrawViewDelegate>
+@interface DrawPlayer : UIView<ShowDrawViewDelegate>
 
 @property (retain, nonatomic) ShowDrawView *showView;
 @property (retain, nonatomic) ReplayObject *replayObj;
