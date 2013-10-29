@@ -6203,6 +6203,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property (retain) NSString* to;
 @property int32_t status;
 @property int32_t type;
+@property BOOL isGroup;
 @property (retain) NSString* text;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property int32_t createDate;
@@ -6253,6 +6254,18 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasType_ = !!value;
 }
 @synthesize type;
+- (BOOL) hasIsGroup {
+  return !!hasIsGroup_;
+}
+- (void) setHasIsGroup:(BOOL) value {
+  hasIsGroup_ = !!value;
+}
+- (BOOL) isGroup {
+  return !!isGroup_;
+}
+- (void) setIsGroup:(BOOL) value {
+  isGroup_ = !!value;
+}
 - (BOOL) hasText {
   return !!hasText_;
 }
@@ -6343,6 +6356,7 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.to = @"";
     self.status = 0;
     self.type = 0;
+    self.isGroup = NO;
     self.text = @"";
     self.createDate = 0;
     self.drawDataVersion = 0;
@@ -6408,6 +6422,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (self.hasType) {
     [output writeInt32:5 value:self.type];
   }
+  if (self.hasIsGroup) {
+    [output writeBool:6 value:self.isGroup];
+  }
   if (self.hasText) {
     [output writeString:20 value:self.text];
   }
@@ -6464,6 +6481,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasType) {
     size += computeInt32Size(5, self.type);
+  }
+  if (self.hasIsGroup) {
+    size += computeBoolSize(6, self.isGroup);
   }
   if (self.hasText) {
     size += computeStringSize(20, self.text);
@@ -6588,6 +6608,9 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (other.hasType) {
     [self setType:other.type];
   }
+  if (other.hasIsGroup) {
+    [self setIsGroup:other.isGroup];
+  }
   if (other.hasText) {
     [self setText:other.text];
   }
@@ -6663,6 +6686,10 @@ static PBMessage* defaultPBMessageInstance = nil;
       }
       case 40: {
         [self setType:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setIsGroup:[input readBool]];
         break;
       }
       case 162: {
@@ -6797,6 +6824,22 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (PBMessage_Builder*) clearType {
   result.hasType = NO;
   result.type = 0;
+  return self;
+}
+- (BOOL) hasIsGroup {
+  return result.hasIsGroup;
+}
+- (BOOL) isGroup {
+  return result.isGroup;
+}
+- (PBMessage_Builder*) setIsGroup:(BOOL) value {
+  result.hasIsGroup = YES;
+  result.isGroup = value;
+  return self;
+}
+- (PBMessage_Builder*) clearIsGroup {
+  result.hasIsGroup = NO;
+  result.isGroup = NO;
   return self;
 }
 - (BOOL) hasText {
@@ -7010,6 +7053,7 @@ static PBMessage* defaultPBMessageInstance = nil;
 @property (retain) NSString* friendNickName;
 @property (retain) NSString* friendAvatar;
 @property BOOL friendGender;
+@property BOOL isGroup;
 @property (retain) NSString* messageId;
 @property (retain) NSString* from;
 @property (retain) NSString* to;
@@ -7063,6 +7107,18 @@ static PBMessage* defaultPBMessageInstance = nil;
 }
 - (void) setFriendGender:(BOOL) value {
   friendGender_ = !!value;
+}
+- (BOOL) hasIsGroup {
+  return !!hasIsGroup_;
+}
+- (void) setHasIsGroup:(BOOL) value {
+  hasIsGroup_ = !!value;
+}
+- (BOOL) isGroup {
+  return !!isGroup_;
+}
+- (void) setIsGroup:(BOOL) value {
+  isGroup_ = !!value;
 }
 - (BOOL) hasMessageId {
   return !!hasMessageId_;
@@ -7147,6 +7203,7 @@ static PBMessage* defaultPBMessageInstance = nil;
     self.friendNickName = @"";
     self.friendAvatar = @"";
     self.friendGender = NO;
+    self.isGroup = NO;
     self.messageId = @"";
     self.from = @"";
     self.to = @"";
@@ -7217,6 +7274,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (self.hasFriendGender) {
     [output writeBool:5 value:self.friendGender];
   }
+  if (self.hasIsGroup) {
+    [output writeBool:6 value:self.isGroup];
+  }
   if (self.hasMessageId) {
     [output writeString:10 value:self.messageId];
   }
@@ -7270,6 +7330,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   }
   if (self.hasFriendGender) {
     size += computeBoolSize(5, self.friendGender);
+  }
+  if (self.hasIsGroup) {
+    size += computeBoolSize(6, self.isGroup);
   }
   if (self.hasMessageId) {
     size += computeStringSize(10, self.messageId);
@@ -7391,6 +7454,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (other.hasFriendGender) {
     [self setFriendGender:other.friendGender];
   }
+  if (other.hasIsGroup) {
+    [self setIsGroup:other.isGroup];
+  }
   if (other.hasMessageId) {
     [self setMessageId:other.messageId];
   }
@@ -7463,6 +7529,10 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
       }
       case 40: {
         [self setFriendGender:[input readBool]];
+        break;
+      }
+      case 48: {
+        [self setIsGroup:[input readBool]];
         break;
       }
       case 82: {
@@ -7588,6 +7658,22 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 - (PBMessageStat_Builder*) clearFriendGender {
   result.hasFriendGender = NO;
   result.friendGender = NO;
+  return self;
+}
+- (BOOL) hasIsGroup {
+  return result.hasIsGroup;
+}
+- (BOOL) isGroup {
+  return result.isGroup;
+}
+- (PBMessageStat_Builder*) setIsGroup:(BOOL) value {
+  result.hasIsGroup = YES;
+  result.isGroup = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearIsGroup {
+  result.hasIsGroup = NO;
+  result.isGroup = NO;
   return self;
 }
 - (BOOL) hasMessageId {
