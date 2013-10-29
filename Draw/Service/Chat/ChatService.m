@@ -685,46 +685,46 @@ static ChatService *_chatService = nil;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS){
-                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
-                message.messageId = messageId;
                 
+                PPDebug(@"<ChatService> sendMessage success");
+
+                NSString *messageId = [output.jsonDataDict objectForKey:PARA_MESSAGE_ID];
+                
+                // update message ID
+                message.messageId = messageId;
+                PPDebug(@"sendMessage success, update message ID = %@", message.messageId);
+                
+                // update createDate
                 NSInteger timeValue = [[output.jsonDataDict objectForKey:PARA_CREATE_DATE] intValue];
                 if (timeValue != 0) {
                     message.createDate = [NSDate dateWithTimeIntervalSince1970:timeValue];
-                    PPDebug(@"return date = %@", message.createDate);
+                    PPDebug(@"sendMessage success, update create date = %@", message.createDate);
                 }
-                
+
+                // update image URL
                 if (type == MessageTypeImage) {
+                    [PPMessageManager removeLocalImage:[message thumbImageUrl]];
+
                     imageUrl = [output.jsonDataDict objectForKey:PARA_IMAGE];
                     thumbImageUrl = [output.jsonDataDict objectForKey:PARA_THUMB_IMAGE];
-                }
-                
-                message.status = MessageStatusSent;
-                PPDebug(@"<ChatService> sendMessage success");
-                
-                [self loadMessageList:message.friendId offsetMessageId:message.messageId forward:NO insertMiddle:YES limit:20];
-                
-            }else {
-                
-                message.status = MessageStatusFail;
-                PPDebug(@"<ChatService> sendMessage failed");
-            }
-            
-            if (type == MessageTypeImage) {
-//                if ([message isKindOfClass:[ImageMessage class]]){
-//                    ImageMessage *imageMessage = (ImageMessage *)message;
-                    if (output.resultCode == ERROR_SUCCESS) {
-                        [PPMessageManager removeLocalImage:[message thumbImageUrl]];
-                    }
+                    
                     message.imageUrl = imageUrl;
                     message.thumbImageUrl = thumbImageUrl;
-//                }
-//                else{
-//                    PPDebug(@"<sendMessage> try to update image message but message class(%@) is not ImageMessage", [message class]);
-//                }
-            }
+                    
+                    PPDebug(@"sendMessage success, update image=%@, thumb=%@", imageUrl, thumbImageUrl);
+                }
+                
+                // update status and save locally
+                message.status = MessageStatusSent;
+                [[PPMessageManager defaultManager] saveMessageList:message.friendId];
+                
+                // load message after sending completed
+                [self loadMessageList:message.friendId offsetMessageId:message.messageId forward:NO insertMiddle:YES limit:20];
 
-            [[PPMessageManager defaultManager] saveMessageList:message.friendId];
+            }else {                
+                message.status = MessageStatusFail;
+                PPDebug(@"<ChatService> sendMessage failed, resultCode=%d", output.resultCode);
+            }            
             
             // post notification
             [self postNotification:NOTIFICATION_MESSAGE_SENT
