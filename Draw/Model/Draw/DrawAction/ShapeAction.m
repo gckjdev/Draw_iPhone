@@ -50,7 +50,11 @@
     CGContextSetLineJoin(context, kCGLineJoinRound);
 
     if ([self needShowShadow]) {
-        CGContextBeginTransparencyLayer(context, NULL);
+//        CGContextBeginTransparencyLayer(context, NULL);
+        CGRect transparentLayerRect = self.shape.redrawRect;
+        [self.shadow spanRect:&transparentLayerRect];
+        CGContextBeginTransparencyLayerWithRect(context, transparentLayerRect, NULL);
+        
         [self.shadow updateContext:context];
         [self.shape drawInContext:context];
         returnRect = self.shape.redrawRect;
