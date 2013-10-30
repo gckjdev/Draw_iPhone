@@ -210,6 +210,9 @@ message PBMessage {
   optional int32  type = 5[default=0];              // 消息类型：refer to PBMessageType
   optional bool   isGroup = 6[default=false];       // 是否是群消息
 
+  optional PBGameUser fromUser = 7;                 // 发送消息用户的详细信息，用于群消息
+  optional PBGameUser toUser = 8;                   // 接受消息用户的详细信息，用于群消息
+
   optional string text = 20;
   repeated PBDrawAction drawData = 21;  
   optional int32  createDate = 22;
