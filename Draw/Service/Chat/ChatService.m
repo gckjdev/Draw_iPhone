@@ -472,7 +472,8 @@ static ChatService *_chatService = nil;
 
 #pragma mark sendMessage
 
-- (void)constructMessage:(PPMessage *)message friendUserId:(NSString*)friendUserId
+- (void)constructMessage:(PPMessage *)message
+            friendUserId:(NSString*)friendUserId
 {
     [message setFriendId:friendUserId];
     [message setMessageId:[NSString GetUUID]];  // create a temp message ID
@@ -481,19 +482,25 @@ static ChatService *_chatService = nil;
     [message setCreateDate:[NSDate date]];
 }
 
-- (void)sendTextMessage:(NSString *)text friendUserId:(NSString*)friendUserId
+- (void)sendTextMessage:(NSString *)text
+           friendUserId:(NSString*)friendUserId
+                isGroup:(BOOL)isGroup
 {
     PPMessage *message = [[PPMessage alloc] init];
     [self constructMessage:message friendUserId:friendUserId];
     [message setText:text];
     [message setMessageType:MessageTypeText];
+    [message setIsGroup:isGroup];    
     
     [self sendMessage:message];
     [message release];
 }
 
 
-- (void)sendDrawMessage:(NSMutableArray *)drawActionList canvasSize:(CGSize)size friendUserId:(NSString*)friendUserId
+- (void)sendDrawMessage:(NSMutableArray *)drawActionList
+             canvasSize:(CGSize)size
+           friendUserId:(NSString*)friendUserId
+                isGroup:(BOOL)isGroup
 {
     // TODO check
     // load new message to avoid missing new message while staying in send message mode
@@ -504,19 +511,23 @@ static ChatService *_chatService = nil;
     [message setMessageType:MessageTypeDraw];
     [message setDrawActionList:drawActionList];
     [message setCanvasSize:size];
+    [message setIsGroup:isGroup];    
     
     [self sendMessage:message];
     [message release];
 }
 
 
-- (void)sendImage:(UIImage *)image friendUserId:(NSString*)friendUserId
+- (void)sendImage:(UIImage *)image
+     friendUserId:(NSString*)friendUserId
+          isGroup:(BOOL)isGroup
 {
     PPMessage *message = [[PPMessage alloc] init];
     [self constructMessage:message friendUserId:friendUserId];
     [message setMessageType:MessageTypeImage];
     [message setText:NSLS(@"kImageMessage")];
     [message setImage:image];
+    [message setIsGroup:isGroup];
     
     // when fail or sending, url save local path, thumburl save key
     [message setThumbImageUrl:[NSString stringWithFormat:@"%@.png", [NSString GetUUID]]];
@@ -538,6 +549,7 @@ static ChatService *_chatService = nil;
     [message setLatitude:latitude];
     [message setLongitude:longitude];
     [message setMessageType:MessageTypeLocationRequest];
+    [message setIsGroup:NO];
     [self constructMessage:message friendUserId:friendUserId];
 
     [self sendMessage:message];
@@ -555,6 +567,7 @@ static ChatService *_chatService = nil;
     [message setMessageType:MessageTypeLocationResponse];
     [message setReqMessageId:reqMessageId];
     [message setReplyResult:replyResult];
+    [message setIsGroup:NO];    
     
     if (replyResult == ACCEPT_ASK_LOCATION) {
         [message setText:NSLS(@"kReplyLocationMessage")];

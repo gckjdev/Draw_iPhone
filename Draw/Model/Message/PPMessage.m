@@ -177,6 +177,16 @@
     [_messageBuilder setType:messageType];
 }
 
+- (void)setIsGroup:(BOOL)isGroup
+{
+    [_messageBuilder setIsGroup:isGroup];
+}
+
+- (BOOL)isGroup
+{
+    return [_messageBuilder isGroup];
+}
+
 - (NSString*)messageId
 {
     return [_messageBuilder messageId];

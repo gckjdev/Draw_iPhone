@@ -365,7 +365,7 @@
     }
     
     if (_chatType == GameChatTypeChatPrivate) {
-        [[ChatService defaultService] sendTextMessage:message friendUserId:_selectedUserId];        
+        [[ChatService defaultService] sendTextMessage:message friendUserId:_selectedUserId isGroup:NO];
         [[DrawGameService defaultService] privateChatMessage:[NSArray arrayWithObjects:_selectedUserId, nil] message:message];            
     }else {
         [[DrawGameService defaultService] groupChatMessage:message];            

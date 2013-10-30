@@ -98,6 +98,8 @@ typedef enum {
 - (BOOL)isDrawMessage;
 - (BOOL)isImageMessage;
 
+- (void)setIsGroup:(BOOL)isGroup;
+- (BOOL)isGroup;
 
 @end
 

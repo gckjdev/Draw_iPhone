@@ -21,6 +21,7 @@
 #define KEY_NUMBER_NEW @"KEY_NUMBER_NEW"
 #define KEY_SOURCE_TYPE @"KEY_SOURCE_TYPE"
 #define KEY_MESSAGE_TYPE @"KEY_MESSAGE_TYPE"
+#define KEY_IS_GROUP @"KEY_IS_GROUP"
 
 @implementation MessageStat
 
@@ -51,6 +52,8 @@
     [messageStat setMessageType:MessageTypeText];
     [messageStat setSourceType:SourceTypeSend];
     
+    [messageStat setIsGroup:NO];
+    
     return messageStat;
 }
 
@@ -68,6 +71,8 @@
     [aCoder encodeInteger:self.numberOfNewMessage forKey:KEY_NUMBER_NEW];
     [aCoder encodeInteger:self.messageType forKey:KEY_MESSAGE_TYPE];
     [aCoder encodeInteger:self.sourceType forKey:KEY_SOURCE_TYPE];
+    
+    [aCoder encodeBool:self.isGroup forKey:KEY_IS_GROUP];
 }
 
 
@@ -91,6 +96,8 @@
         
         self.latestCreateDate = [aDecoder decodeObjectForKey:KEY_CREATE_DATE];
         self.latestText = [aDecoder decodeObjectForKey:KEY_TEXT];
+        
+        self.isGroup = [aDecoder decodeBoolForKey:KEY_IS_GROUP];
     }
 //    PPDebug(@"fid = %@\nick = %@\ntype=%d\ntext=%@\n", self.friendId, self.friendNickName,self.messageType,self.latestText);    
 //    PPDebug(@"PPMessage<initWithCoder> end");
@@ -129,6 +136,8 @@
         }else{
             self.messageType = MessageTypeText;
         }
+        
+        self.isGroup = pbMessageStat.isGroup;
 
     }
     return self;

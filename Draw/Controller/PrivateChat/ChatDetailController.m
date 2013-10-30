@@ -138,7 +138,10 @@
     return self;
 }
 
-
+- (BOOL)isGroup
+{
+    return [self.messageStat isGroup];
+}
 
 - (ChangeAvatar*)backgroundPicker
 {
@@ -581,14 +584,20 @@
             drawImage:(UIImage *)drawImage
 {
     [controller dismissModalViewControllerAnimated:YES];
-    [[ChatService defaultService]  sendDrawMessage:drawActionList canvasSize:size friendUserId:self.fid];
+    [[ChatService defaultService]  sendDrawMessage:drawActionList
+                                        canvasSize:size
+                                      friendUserId:self.fid
+                                           isGroup:[self isGroup]];
     [self tableViewScrollToBottom:YES];
 }
 
 - (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
 {
     [controller dismissModalViewControllerAnimated:YES];
-    [[ChatService defaultService]  sendImage:image friendUserId:self.fid];
+    [[ChatService defaultService]  sendImage:image
+                                friendUserId:self.fid
+                                     isGroup:[self isGroup]];
+    
     [self tableViewScrollToBottom:YES];
 }
 
@@ -603,7 +612,9 @@
                 return YES;
             }            
             
-            [[ChatService defaultService] sendTextMessage:textView.text friendUserId:self.fid];
+            [[ChatService defaultService] sendTextMessage:textView.text
+                                             friendUserId:self.fid
+                                                  isGroup:[self isGroup]];
             [self tableViewScrollToBottom:YES];
             textView.text = nil;            
         }

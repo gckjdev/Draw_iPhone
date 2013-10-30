@@ -79,14 +79,17 @@
                   limit:(int)limit;
 
 - (void)sendTextMessage:(NSString *)text
-           friendUserId:(NSString*)friendUserId;
+           friendUserId:(NSString*)friendUserId
+                isGroup:(BOOL)isGroup;
 
 - (void)sendDrawMessage:(NSMutableArray *)drawActionList
              canvasSize:(CGSize)size
-           friendUserId:(NSString*)friendUserId;
+           friendUserId:(NSString*)friendUserId
+                isGroup:(BOOL)isGroup;
 
 - (void)sendImage:(UIImage *)image
-     friendUserId:(NSString*)friendUserId;
+     friendUserId:(NSString*)friendUserId
+          isGroup:(BOOL)isGroup;
 
 - (void)sendAskLocationMessage:(double)latitude
                      longitude:(double)longitude
