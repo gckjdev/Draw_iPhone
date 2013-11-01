@@ -115,12 +115,12 @@
     [super dealloc];
 }
 
-#define HOLDER_IP5_
+#define HOLDER_IP5_ORIGINY 54
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     if (ISIPHONE5) {
-        [self.infoHolderView updateOriginY:54];
+        [self.infoHolderView updateOriginY:HOLDER_IP5_ORIGINY];
     }
 }
 
