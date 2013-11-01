@@ -75,9 +75,11 @@
 
 - (void)switchOpus
 {
+    PPDebug(@"<switchOpus> called. cancel selector.");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(switchOpus) object:nil];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     if (cell == nil) {
+        PPDebug(@"<switchOpus> cell is nil, return");
         return;
     }
     if (++_showingRow >= [[self opusList] count]/NUMBER_PERROW) {
@@ -86,7 +88,9 @@
     if (_showingRow < 0) {
         _showingRow = 0;
     }
-
+    
+    PPDebug(@"<switchOpus> start to switch, row = %d", _showingRow);
+    
     for (NSInteger i = TAG_BASE; i < TAG_BASE+NUMBER_PERROW; ++i) {
         OpusButton *button = (id)[cell.contentView viewWithTag:i];
         if ([button isKindOfClass:[OpusButton class]]) {
@@ -97,14 +101,17 @@
                 DrawFeed *opus = [self.opusList objectAtIndex:index];
                 [button setOpus:opus];
                 [button setImageWithURL:opus.thumbURL forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                    button.alpha = 0;
+
+                    button.alpha = 0.1;
                     if (error == nil) {
-                        [UIView animateWithDuration:1 animations:^{
+                        [UIView animateWithDuration:0.5 animations:^{
+                            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
                             button.alpha = 1.0f;
                         } completion:^(BOOL finished) {
                             button.alpha = 1.0f;
                         }];
                     }
+
                 }];
             }else{
                 [button setImage:nil forState:UIControlStateNormal];
@@ -174,18 +181,25 @@
 {
     if (swipe.state == UIGestureRecognizerStateRecognized) {
         NSInteger row = _showingRow;
-        [self cancelSwith];
+//        [self cancelSwith];
         if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
             _showingRow = row;
         }else{
             _showingRow = row - 2;
         }
+        PPDebug(@"<handleSwipe> called.");
+
         [self switchOpus];
     }
 }
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     return self.status == DrawHeaderPanelStatusClose;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 - (void)addGestureRecognizers
