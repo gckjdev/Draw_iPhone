@@ -262,6 +262,7 @@
                                             viewClass:[UIImageView class]
                                                 frame:self.dataTableView.frame];
     
+    iv.autoresizingMask = self.dataTableView.autoresizingMask;
     if (image) {
         iv.contentMode = UIViewContentModeScaleAspectFill;
     }else{

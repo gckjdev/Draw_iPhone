@@ -110,7 +110,18 @@
     [_activity release];
     [_imageView release];
     [_reportLabel release];
+    [_infoHolderView release];
+    [_actionHolderView release];
     [super dealloc];
+}
+
+#define HOLDER_IP5_
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    if (ISIPHONE5) {
+        [self.infoHolderView updateOriginY:54];
+    }
 }
 
 - (IBAction)clickOpusButton:(id)sender {

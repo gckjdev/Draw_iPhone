@@ -106,6 +106,8 @@
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [[ContestService defaultService] syncOngoingContestList];
     [self hideTips];
+    
+    
 }
 
 - (void)viewDidUnload

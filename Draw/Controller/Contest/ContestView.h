@@ -32,6 +32,11 @@
     id<ContestViewDelegate> _delegate;
     Contest *_contest;
 }
+
+@property (retain, nonatomic) IBOutlet UIView *infoHolderView;
+@property (retain, nonatomic) IBOutlet UIView *actionHolderView;
+
+
 @property(nonatomic, assign)id<ContestViewDelegate>delegate;
 @property(nonatomic, retain)Contest *contest;
 @property (retain, nonatomic) IBOutlet UIWebView *webView;
