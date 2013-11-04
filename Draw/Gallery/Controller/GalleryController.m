@@ -147,7 +147,7 @@
     _currentImageUrl = photo.url;
 
     NSURL *url = [NSURL URLWithString:_currentImageUrl];
-    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
+    [[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:YES onViewController:self];
 }
 
 enum {

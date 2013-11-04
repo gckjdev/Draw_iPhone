@@ -306,5 +306,6 @@ typedef enum{
 + (BOOL)showAllPainterTags;
 
 + (NSString *)getSingTagList;
++ (int)getRecordLimitTime;
 
 @end

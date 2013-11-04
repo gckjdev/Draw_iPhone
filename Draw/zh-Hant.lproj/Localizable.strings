@@ -362,7 +362,7 @@
 "kNone" = "無";
 "kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片。";
 "kGifTips" = "溫馨提示";
-
+"kAskForSelectPhoto" = "你還沒有選擇圖片，是否立刻選擇？";
 "kContentRepeat" = "不要重複提交!";
 
 "kWordForbidden" = "文本內容中包含了敏感詞，請檢查";
@@ -661,6 +661,7 @@
 "kReply" = "回複";
 "kCorrect" = "猜對了！";
 "kSending" = "正在發送中...";
+"kHandlingDataProgress" = "正在處理數據... (%3.f%%)";
 "kSendingProgress" = "正在發送中 (%3.f%%)";
 
 "kNoCommentTips" = "還沒有人評論";

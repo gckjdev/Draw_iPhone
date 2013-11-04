@@ -8,7 +8,6 @@
 
 #import "Feed.h"
 
-
 typedef enum{
     ActionTypeHidden = 0,
     ActionTypeOneMore = 1,
@@ -16,8 +15,6 @@ typedef enum{
     ActionTypeCorrect = 3,
     ActionTypeChallenge = 4
 }ActionType;
-
-
 
 @class PBLearnDraw;
 @interface DrawFeed : Feed<NSCoding>
@@ -32,14 +29,13 @@ typedef enum{
     DeviceType _deviceType;
 }
 
-
 @property (nonatomic, retain) UIImage *drawImage;
 @property (nonatomic, retain) UIImage *largeImage;
+@property (assign, nonatomic) PBOpusCategoryType categoryType;
 @property (nonatomic, retain) NSString *wordText;
 @property (nonatomic, retain) Draw *drawData;
 @property (nonatomic, retain) NSString *drawImageUrl;
 @property (nonatomic, retain) NSSet *timesSet;
-//@property (nonatomic, retain) PBDraw *pbDraw;
 @property (nonatomic, retain) NSData *pbDrawData;
 @property (nonatomic, assign) DeviceType deviceType;
 @property (nonatomic, retain) NSString *opusDesc;
@@ -47,11 +43,8 @@ typedef enum{
 @property (nonatomic, retain) NSString *drawDataUrl;
 @property (nonatomic, retain) PBLearnDraw *learnDraw;
 
-//just an method
 - (NSURL *)thumbURL;
 - (NSURL *)largeImageURL;
-
-//- (id)initWithPBFeed:(PBFeed *)pbFeed;
 
 - (id)initWithFeedId:(NSString *)feedId
               userId:(NSString *)userId 
@@ -100,13 +93,9 @@ typedef enum{
 - (NSInteger)itemLimit;
 - (NSInteger)saveLimit;
 
-//- (NSInteger)localFlowerTimes;
-//- (NSInteger)localTomatoTimes;
-//- (NSInteger)localSaveTimes;
 //user action limit
 - (BOOL)canSendFlower;
 - (BOOL)canThrowTomato;
 - (BOOL)canSave;
-//- (BOOL)hasDrawActions;
 
 @end

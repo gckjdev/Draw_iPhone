@@ -68,12 +68,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 - (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
           opusData:(NSData *)opusData
-  opusDraftManager:(OpusManager*)opusDraftManager
-       opusManager:(OpusManager*)opusManager
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate
 
 {
+    __block OpusManager *myOpusManager = _myOpusManager;
+    __block OpusManager *draftOpusManager = _draftOpusManager;
+    
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
@@ -87,7 +88,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         }
         
         NSMutableDictionary *postDataDict = [NSMutableDictionary dictionary];
-        NSData* draftOpusData = [draftOpus data];
+        
+        NSData* draftOpusData = [draftOpus uploadData];
+        
         if (draftOpusData) {
             [postDataDict setObject:draftOpusData forKey:PARA_OPUS_META_DATA];
         }
@@ -118,10 +121,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
                 
                 // save opus as normal opus locally
                 newOpus = [Opus opusWithPBOpus:pbOpus storeType:PBOpusStoreTypeSubmitOpus];
-                [opusManager saveOpus:newOpus];
+                [myOpusManager saveOpus:newOpus];
                 
                 // delete current draft opus
-                [opusDraftManager deleteOpus:[draftOpus opusKey]];
+                [draftOpusManager deleteOpus:[draftOpus opusKey]];
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {

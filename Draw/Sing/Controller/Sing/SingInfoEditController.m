@@ -27,6 +27,7 @@
     [_tagLabel release];
     [_opus release];
     [_comfirmButton release];
+    [_tagsHolderView release];
     [super dealloc];
 }
 
@@ -85,7 +86,7 @@
     for (int index = 0; index < [tagList count]; index ++) {
         NSString *tag = [tagList objectAtIndex:index];
         UIButton *button = [self tagButtonWithTilte:tag tag:index];
-        [self.view addSubview:button];
+        [self.tagsHolderView addSubview:button];
     }
     
     for (int index = 0; index < [self.opus.pbOpus.tagsList count]; index ++) {
@@ -110,6 +111,7 @@
     [self setDescTextView:nil];
     [self setTagLabel:nil];
     [self setComfirmButton:nil];
+    [self setTagsHolderView:nil];
     [super viewDidUnload];
 }
 
@@ -186,11 +188,11 @@
 
 - (UIButton *)tagButtonWithTilte:(NSString *)title tag:(int)tag{
     
-    CGFloat width = 70;
-    CGFloat height = 35;
+    CGFloat width =  ISIPAD ? 70*2.18 : 70;
+    CGFloat height = ISIPAD ? 35*2.18 : 35;
     
     CGFloat gapX = (self.descTextView.frame.size.width - 3 * width) / 2;
-    CGFloat gapY = 48;
+    CGFloat gapY = ISIPAD ? 48*2.18 : 48;
     
     CGFloat originX = self.descTextView.frame.origin.x + (tag % 3) * (width + gapX);
     CGFloat originY = self.tagLabel.frame.origin.y + (tag / 3) * gapY;
@@ -202,14 +204,22 @@
     [button setTitle:title forState:UIControlStateNormal];
     [button addTarget:self action:@selector(clickTagButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    SET_BUTTON_ROUND_STYLE_GRAY(button);
+    [ShareImageManager setButtonStyle:button
+                     normalTitleColor:COLOR_COFFEE
+                   selectedTitleColor:COLOR_WHITE
+                highlightedTitleColor:COLOR_WHITE
+                                 font:FONT_BUTTON
+                          normalColor:COLOR_YELLOW
+                        selectedColor:COLOR_ORANGE
+                     highlightedColor:COLOR_ORANGE
+                                round:YES];
     
     return button;
 }
 
 - (void)setTagButtonSelectWithTitle:(NSString *)title{
     
-    [self.view enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
+    [self.tagsHolderView enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
         
         if ([title isEqualToString:[button titleForState:UIControlStateNormal]]) {
             button.selected = YES;

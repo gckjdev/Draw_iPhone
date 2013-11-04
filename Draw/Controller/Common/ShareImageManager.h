@@ -15,7 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageUtil.h"
 
-
+@class FXLabel;
 #define SIM [ShareImageManager defaultManager]
 
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
@@ -117,12 +117,6 @@
 #define SET_BUTTON_ROUND_STYLE_ORANGE(view)                 \
 {                                                           \
     [ShareImageManager setButtonOrangeRoundStyle:view];     \
-}
-
-// 灰色圆角按钮风格。
-#define SET_BUTTON_ROUND_STYLE_GRAY(view)                 \
-{                                                           \
-[ShareImageManager setButtonGrayRoundStyle:view];     \
 }
 
 
@@ -454,7 +448,6 @@
 
 + (void)setButtonCommonTabStyle:(UIButton *)button;
 + (void)setButtonOrangeRoundStyle:(UIButton *)button;
-+ (void)setButtonGrayRoundStyle:(UIButton *)button;
 
-
++ (void)setFXLabelStyle:(FXLabel *)label;
 @end

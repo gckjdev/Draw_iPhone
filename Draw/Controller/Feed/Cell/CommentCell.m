@@ -48,12 +48,9 @@
 
 #define COMMENT_WIDTH ([DeviceDetection isIPAD] ? 500 : 204)
 #define COMMENT_CONST_HEIGHT ([DeviceDetection isIPAD] ? 78 : 40)
-//#define COMMENT_BASE_X ([DeviceDetection isIPAD] ? 102 : 44)
-//#define COMMENT_BASE_Y ([DeviceDetection isIPAD] ? 65 : 30)
-
 #define COMMENT_ITEM_HEIGHT ([DeviceDetection isIPAD] ? 110 : 60)
 
-#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(12, 10, 74, 77) : CGRectMake(5, 9, 31, 32)
+#define AVATAR_VIEW_FRAME [DeviceDetection isIPAD] ? CGRectMake(36, 10, 74, 77) : CGRectMake(16, 5, 31, 32)
 
 
 - (IBAction)clickReplyButton:(id)sender {

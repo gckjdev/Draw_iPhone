@@ -9,6 +9,14 @@
 #import "PPTableViewCell.h"
 #import "Sing.pb.h"
 
+
+
+@protocol SongCellDelegate <NSObject>
+
+- (void)didSelectSong:(PBSong *)song;
+
+@end
+
 @interface SongCell : PPTableViewCell
 
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;

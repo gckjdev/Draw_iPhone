@@ -167,7 +167,7 @@
 
 - (UIColor *)homeMenuColor
 {
-    return [UIColor blackColor];
+    return OPAQUE_COLOR(29, 124, 77);
 }
 
 - (NSString *)popupMessageDialogBackgroundImage

@@ -126,14 +126,14 @@
         CGFloat x = space * (i+1);
         CGFloat y = self.center.y;
         line.center = CGPointMake(x, y);
-        if (isDrawApp()) {
+//        if (isDrawApp()) {
             line.image = imageManager.drawHomeSplitline1;
-        }else if (isSingApp()) {
-            line.image = [imageManager drawHomeSplitline1];
-        }
-        else{
-            line.image = imageManager.drawHomeSplitline;
-        }
+//        }else if (isSingApp()) {
+//            line.image = [imageManager drawHomeSplitline1];
+//        }
+//        else{
+//            line.image = imageManager.drawHomeSplitline;
+//        }
         [self addSubview:line];
         [line release];
     }
@@ -147,12 +147,7 @@
 - (void)updateView
 {
     
-    if (isSingApp()) {
-        [[self bgImageView] setImage:[[DrawImageManager defaultManager] singBottomBar]];
-    }else{
-        [[self bgImageView] setImage:[[DrawImageManager defaultManager] drawHomeBottomBarImage]];
-    }
-    
+    [[self bgImageView] setImage:[[DrawImageManager defaultManager] drawHomeBottomBarImage]];
     //add menu views;
     [self addMenuViews];
     //add split lines

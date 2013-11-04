@@ -14,6 +14,9 @@
 @synthesize delegate = _delegate;
 @synthesize feed = _feed;
 
+#define CONTENTVIEW_TAG 2000190
+
+
 - (void)dealloc
 {
     PPDebug(@"%@ dealloc",self);
@@ -103,8 +106,10 @@
 
 #define SPLIT_TAG_PLUS 10000
 #define TAB_HEIGHT (ISIPAD ? 75 : 37)
-#define TAB_WIDTH (ISIPAD ? 713 : 299)
-#define BUTTON_HEIGHT (ISIPAD ? 50 : 25) 
+//#define TAB_WIDTH (ISIPAD ? 713 : 299)
+#define TAB_WIDTH (ISIPAD ? 768 : 320)
+
+#define BUTTON_HEIGHT (ISIPAD ? 50 : 25)
 #define START_X ([DeviceDetection isIPAD] ? 8 : 4)
 #define TAB_FONT ([DeviceDetection isIPAD] ? [UIFont systemFontOfSize:25] : [UIFont systemFontOfSize:11])
 
@@ -116,8 +121,9 @@
 
 - (UIButton *)buttonWithType:(CommentType)type
 {
+    UIView *v = [self viewWithTag:CONTENTVIEW_TAG];
     if ([self indexForCommentType:type] != NSNotFound) {
-        UIButton *b = (UIButton *)[self viewWithTag:type];
+        UIButton *b = (UIButton *)[v viewWithTag:type];
         return b;
     }
     return nil;
@@ -129,15 +135,23 @@
     [self setSelectedType:button.tag];
 }
 
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         SET_VIEW_BG(self);
         UIView *view = [[UIView alloc] initWithFrame:self.bounds];
+        
+        UIView *v = [[[UIView alloc] initWithFrame:CGRectMake((ISIPAD ? 28 : 11), 0, (ISIPAD ? 713 : 299), view.frame.size.height)] autorelease];
         UIColor *color = [UIColor colorWithPatternImage:[[ShareImageManager defaultManager] detailHeaderBG]];
-        [self addSubview:view];        
-        [view setBackgroundColor:color];
+        
+        [v setBackgroundColor:color];
+        v.tag = CONTENTVIEW_TAG;
+
+        [view addSubview:v];
+        
+        [self addSubview:view];
         [view release];
     }
     return self;
@@ -181,7 +195,8 @@
                       format:(NSString *)format
 {
     NSString *title = [NSString stringWithFormat:format,times];
-    [self reuseButtonWithTag:type frame:CGRectMake(0, TAB_HEIGHT-BUTTON_HEIGHT, 1, BUTTON_HEIGHT) font:TAB_FONT text:title];
+    UIView *v = [self viewWithTag:CONTENTVIEW_TAG];
+    [v reuseButtonWithTag:type frame:CGRectMake(0, TAB_HEIGHT-BUTTON_HEIGHT, 1, BUTTON_HEIGHT) font:TAB_FONT text:title];
 }
 - (void)setViewInfo:(DrawFeed *)feed
 {
@@ -210,7 +225,8 @@
             UIButton *btn = [self buttonWithType:prevType];
             CGFloat y = TAB_HEIGHT - BUTTON_HEIGHT - SPLIT_HEIGHT/2;
             CGRect frame = CGRectMake(CGRectGetMaxX(btn.frame) + SPACE, y, 1, SPLIT_HEIGHT);
-            UIView *split = [self reuseViewWithTag:tag viewClass:[UIView class] frame:frame];
+            UIView *v = [self viewWithTag:CONTENTVIEW_TAG];
+            UIView *split = [v reuseViewWithTag:tag viewClass:[UIView class] frame:frame];
             [split setBackgroundColor:COLOR_GRAY_TEXT]; //[UIColor grayColor]];
             x = CGRectGetMaxX(split.frame) + SPACE;
             [split updateCenterY:btn.center.y];
@@ -220,14 +236,11 @@
         NSString *format = [self formatForType:commentType];
         [self updateButtonWithType:commentType times:count format:format];
         UIButton *btn = [self buttonWithType:commentType];
-//        btn.alpha = 0.4;
         [btn updateOriginX:x];
         [btn updateHeight:BUTTON_HEIGHT];
         if (!_hasCreateButton) {
             [btn setTitleColor:COLOR_GRAY_TEXT forState:UIControlStateNormal];
             [btn setTitleColor:COLOR_BROWN forState:UIControlStateSelected];
-//            [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
             [btn addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
         }
 

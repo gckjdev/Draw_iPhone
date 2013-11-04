@@ -8,11 +8,8 @@
 
 #import "Opus.h"
 #import "StringUtil.h"
-//#import "SingOpus.h"
-//#import "AskPs.h"
 #import "FileUtil.h"
 #import "UserManager.h"
-//#import "DrawOpus.h"
 
 @interface Opus()
 
@@ -102,11 +99,9 @@
     [_pbOpusBuilder setName:name];
 }
 
-- (void)setImage:(NSString *)image{
-    [_pbOpusBuilder setImage:image];
+- (void)setLocalImageUrl:(NSString *)image{
+    [_pbOpusBuilder setLocalImageUrl:image];
 }
-
-
 
 - (NSString *)shareTextWithSNSType:(int)type{
     
@@ -219,6 +214,17 @@
     return @"dat";
 }
 
+- (NSData *)uploadData{
+    
+    PBOpus_Builder *builder = [PBOpus builderWithPrototype:self.pbOpus];
+    [builder clearImage];
+    [builder clearLocalDataUrl];
+    [builder clearLocalImageUrl];
+    [builder clearLocalThumbImageUrl];
+    
+    return [[builder build] data];
+}
+
 #pragma mark - Data Generation
 
 - (PBOpus *)pbOpus{
@@ -304,5 +310,6 @@
 {
     PPDebug(@"<enterEditFromController> no impletement!");
 }
+
 @end
 

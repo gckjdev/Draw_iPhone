@@ -20,6 +20,8 @@
 @property (retain, nonatomic) IBOutlet UIPlaceholderTextView *descTextView;
 @property (retain, nonatomic) IBOutlet UILabel *tagLabel;
 @property (retain, nonatomic) IBOutlet UIButton *comfirmButton;
+@property (retain, nonatomic) IBOutlet UIView *tagsHolderView;
+
 
 - (id)initWithOpus:(Opus *)opus;
 

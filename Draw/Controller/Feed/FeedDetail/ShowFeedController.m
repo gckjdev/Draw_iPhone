@@ -52,15 +52,19 @@
 #import "OpusImageBrower.h"
 #import "DrawUtils.h"
 #import "ImagePlayer.h"
+#import "AudioPlayer.h"
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
     UIImageView* _throwingItem;
     ShareAction *_shareAction;
+    BOOL _isDrawInfoFullScreen;
+    AudioPlayer *_audioPlayer;
 }
 
 @property(nonatomic, retain) UserInfoCell *userCell;
 @property(nonatomic, retain) DrawInfoCell *drawCell;
+@property(nonatomic, retain) DrawInfoCell *drawCellFullScreen;
 @property(nonatomic, retain) CommentHeaderView *commentHeader;
 @property(nonatomic, retain) DrawFeed *feed;
 @property (nonatomic, retain) UseItemScene* useItemScene;
@@ -94,8 +98,7 @@ typedef enum{
 
     _feed.drawData = nil;
     _feed.pbDrawData = nil;
-//    [_brower release];
-    
+    [_audioPlayer release];
     PPRelease(_contest);
     PPRelease(_feed);
     PPRelease(_drawCell);
@@ -105,6 +108,8 @@ typedef enum{
     PPRelease(_useItemScene);
     PPRelease(_feedScene);
     PPRelease(_feedId);
+    PPRelease(_drawCellFullScreen);
+    
     [super dealloc];
 }
 
@@ -227,13 +232,24 @@ typedef enum{
 }
 - (UITableViewCell *)cellForDrawInfoSection
 {
-    if (self.drawCell == nil) {
-        self.drawCell = [DrawInfoCell createCell:self];
-        self.drawCell.delegate = self;
-    }
-    [self.drawCell setCellInfo:self.feed feedScene:self.feedScene];
-    return self.drawCell;
+    if (_isDrawInfoFullScreen) {
+        if (self.drawCellFullScreen == nil) {
+            self.drawCellFullScreen = [DrawInfoCell createCellWithFullScreen:self];
+            self.drawCellFullScreen.delegate = self;
+            [self.drawCellFullScreen setCellInfo:self.feed feedScene:self.feedScene];
+            [self.drawCellFullScreen configurePlayerButton];
+            [self.drawCellFullScreen.audioButton addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];
+        }
 
+        return self.drawCellFullScreen;
+    }else{
+        if (self.drawCell == nil) {
+            self.drawCell = [DrawInfoCell createCell:self feed:self.feed];
+            self.drawCell.delegate = self;
+        }
+        [self.drawCell setCellInfo:self.feed feedScene:self.feedScene];
+        return self.drawCell;
+    }
 }
 
 #define SPACE_CELL_FONT_SIZE ([DeviceDetection isIPAD] ? 26 : 13)
@@ -248,6 +264,11 @@ typedef enum{
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier]autorelease];
             cell.textLabel.textColor = COLOR_BROWN;
+            
+            UIView *v = [[[UIView alloc] initWithFrame:CGRectMake(ISIPAD?28:11, 0, ISIPAD?713:299, SPACE_CELL_FONT_HEIGHT)] autorelease];
+            v.backgroundColor = [UIColor whiteColor];
+            [cell.contentView addSubview:v];
+            [cell.contentView sendSubviewToBack:v];
         }
         if (row == 0) {
             [cell.textLabel setTextAlignment:UITextAlignmentCenter];
@@ -299,9 +320,9 @@ typedef enum{
     
 {
     [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
-    if (indexPath.section == SectionCommentInfo) {
-        cell.backgroundColor = COLOR_WHITE;
-    }
+//    if (indexPath.section == SectionCommentInfo) {
+//        cell.backgroundColor = COLOR_WHITE;
+//    }
 }
 
 - (NSArray *)dataList
@@ -339,20 +360,23 @@ typedef enum{
         case SectionUserInfo:
             return [UserInfoCell getCellHeight];
         case SectionDrawInfo:{
-            return [DrawInfoCell cellHeightWithDesc:self.feed.opusDesc];
+            
+            if (_isDrawInfoFullScreen) {
+                return [DrawInfoCell cellHeightWithFullScreen];
+            }else{
+                return [DrawInfoCell cellHeightWithFeed:self.feed];
+            }
         }
-//            return [DrawInfoCell getCellHeight];
         case SectionCommentInfo:
         {
             if (indexPath.row == 0) {
-//                PPDebug(@"row = %d", indexPath.row);
+
             }
             if (indexPath.row >= [self.dataList count]) {
                 return SPACE_CELL_FONT_HEIGHT;
             }
             CommentFeed *feed = [self.dataList objectAtIndex:indexPath.row];
             CGFloat height = [CommentCell getCellHeight:feed];
-//            PPDebug(@"row = %d, height = %f", indexPath.row ,height);
             return height;
         }
         default:
@@ -649,15 +673,10 @@ typedef enum{
         progressText = [NSString stringWithFormat:NSLS(@"kParsingData")];
     }
     else{
-//        progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
         progressText = [NSString stringWithFormat:NSLS(@"kLoadingProgress"), progress*100];
     }
     
-//    [self.progressView setLabelText:progressText];
-//
-//    [self.progressView setProgress:progress];
     [self showProgressViewWithMessage:progressText progress:progress];
-    
 }
 
 - (void)loadDrawDataWithHanlder:(dispatch_block_t)handler
@@ -880,6 +899,7 @@ typedef enum{
 //override super clickBlackButton method
 - (IBAction)clickBackButton:(id)sender
 {
+    [_audioPlayer stop];
     [self.feedScene didClickBackBtn:self];
 }
 
@@ -970,6 +990,8 @@ typedef enum{
 {
     [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
+    
+    
     [self.refreshFooterView setBackgroundColor:[UIColor clearColor]];
     
     [CommonTitleView createTitleView:self.view];
@@ -1003,6 +1025,9 @@ typedef enum{
 - (void)viewDidLoad
 {
     [self baseInit];
+    if (isSingApp()) {
+        self.canDragBack = NO;
+    }
 }
 
 - (void)showOpusImageBrower{
@@ -1039,6 +1064,7 @@ typedef enum{
     if (resultCode == 0 && [feed.feedId isEqualToString:self.feed.feedId]) {
         feed.largeImage = self.feed.largeImage;
         feed.wordText = self.feed.wordText;
+        feed.drawDataUrl = self.feed.drawDataUrl;
         self.feed = feed;
         [_commentHeader setViewInfo:self.feed];
         [self.dataTableView reloadData];
@@ -1190,7 +1216,7 @@ typedef enum{
 
 - (void)showPhotoBrower{
 
-    [[ImagePlayer defaultPlayer]  playWithUrl:self.feed.largeImageURL onViewController:self];
+    [[ImagePlayer defaultPlayer]  playWithUrl:self.feed.largeImageURL displayActionButton:YES onViewController:self];
 }
 
 #pragma mark-- Common Tab Controller Delegate
@@ -1241,5 +1267,59 @@ typedef enum{
                                             delegate:self];
 }
 
+- (void)didClickFullScreenButton{
+
+    _isDrawInfoFullScreen = YES;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    
+    [self.dataTableView beginUpdates];
+    [self.dataTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.dataTableView endUpdates];
+    
+    [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    [self play];
+}
+
+- (void)didClickNonFullScreenButton{
+    
+    _isDrawInfoFullScreen = NO;
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    
+    [self.dataTableView beginUpdates];
+    [self.dataTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.dataTableView endUpdates];
+    
+    [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    
+    [_audioPlayer stop];
+}
+
+- (void)playAudio:(AudioButton *)button
+{
+    [_audioPlayer play];
+}
+
+- (void)play{
+    
+    if (_audioPlayer == nil) {
+        _audioPlayer = [[AudioPlayer alloc] init];
+        _audioPlayer.url = [NSURL URLWithString:self.feed.drawDataUrl];
+        _audioPlayer.button = _drawCellFullScreen.audioButton;
+        
+        [_drawCellFullScreen.slider setValue:0];
+        _audioPlayer.slider = _drawCellFullScreen.slider;
+        [_audioPlayer.slider addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+    }
+    
+    [_audioPlayer play];
+}
+
+- (void)sliderValueChange:(CustomSlider *)slider{
+    
+    [_audioPlayer seekToProgress:slider.value];
+}
 
 @end

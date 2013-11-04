@@ -294,15 +294,15 @@
         needUpdate:(BOOL)needUpdate
            canChat:(BOOL)canChat
 {
-    if (isDrawApp()) {
-        
+//    if (isDrawApp()) {
+    
         [UserDetailViewController presentUserDetail:[ViewUserDetail viewUserDetailWithUserId:afriend.friendUserId avatar:afriend.avatar nickName:afriend.nickName] inViewController:superController];
-        return;
-    }
-
-    [CommonUserInfoView showFriend:afriend
-                        infoInView:superController
-                        needUpdate:needUpdate];
+//        return;
+//    }
+//
+//    [CommonUserInfoView showFriend:afriend
+//                        infoInView:superController
+//                        needUpdate:needUpdate];
 }
 
 + (void)showPBBBSUser:(PBBBSUser *)user

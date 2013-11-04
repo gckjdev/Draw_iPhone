@@ -10,7 +10,7 @@
 #import "UIImageUtil.h"
 #import "FileUtil.h"
 #import "PPResourceService.h"
-
+#import "FXLabel.h"
 
 @interface ShareImageManager () {
     PPResourceService *_resService;
@@ -1458,6 +1458,24 @@ static UIImage* _whitePaperImage;
         [button.layer setCornerRadius:BUTTON_CORNER_RADIUS];
         [button.layer setMasksToBounds:YES];
     }
+}
+
++ (void)setFXLabelStyle:(FXLabel *)label{
+    label.textColor = [UIColor whiteColor];
+    
+    //demonstrate shadow
+    label.shadowColor = nil;
+    label.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    label.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+    label.shadowBlur = 5.0f;
+    
+//    //demonstrate inner shadow
+//    label.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+//    label.shadowOffset = CGSizeMake(1.0f, 1.0f);
+//    label.shadowBlur = 1.0f;
+//    label.innerShadowBlur = 2.0f;
+//    label.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
+//    label.innerShadowOffset = CGSizeMake(1.0f, 1.0f);
 }
 
 @end

@@ -79,6 +79,7 @@ typedef enum{
     HomeMenuTypeSingShop,
     HomeMenuTypeSingChat,
     HomeMenuTypeSingSetting,
+    HomeMenuTypeSingFriend,
     
     //Learn Draw Bottom Menu
     HomeMenuTypeLearnDrawDraw,
@@ -139,17 +140,6 @@ typedef enum{
 - (void)toBeTitleUpStyle;
 - (void)toBeTitleDownStyle;
 @end
-
-
-
-//int *getDrawMainMenuTypeList();
-//int *getZJHMainMenuTypeList();
-//int *getDiceMainMenuTypeList();
-
-//int *getZJHBottomMenuTypeList();
-//int *getDrawBottomMenuTypeList();
-//int *getDiceBottomMenuTypeList();
-//int *getLearnDrawBottomMenuTypeList();
 
 
 int *getBottomMenuTypeList();

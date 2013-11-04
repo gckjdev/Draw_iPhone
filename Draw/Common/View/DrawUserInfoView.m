@@ -355,7 +355,7 @@
     if ([self.targetFriend.avatar length] != 0) {
         
         NSURL *URL = [NSURL URLWithString:self.targetFriend.avatar];
-        [[ImagePlayer defaultPlayer] playWithUrl:URL onViewController:_superViewController];
+        [[ImagePlayer defaultPlayer] playWithUrl:URL displayActionButton:NO onViewController:_superViewController];
     }
 }
 

@@ -103,8 +103,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-//            EXECUTE_BLOCK(completed, resultCode, songs);
-            EXECUTE_BLOCK(completed, 0, [SongService testSongs]);
+            EXECUTE_BLOCK(completed, resultCode, songs);
+//            EXECUTE_BLOCK(completed, 0, [SongService testSongs]);
         });
     });
 }

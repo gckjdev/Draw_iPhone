@@ -77,6 +77,7 @@
  
 
 }
+
 + (DrawPlayer *)playerWithReplayObj:(ReplayObject *)obj
 {
     DrawPlayer *player = [DrawPlayer createViewWithXibIdentifier:@"DrawPlayer" ofViewIndex:ISIPAD];

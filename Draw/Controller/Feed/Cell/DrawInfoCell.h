@@ -11,9 +11,9 @@
 #import "DrawFeed.h"
 #import "FeedService.h"
 #import "ShowFeedSceneProtocol.h"
-
-//#im
-//#import "HJManagedImageV.h"
+#import "AudioButton.h"
+#import "CustomSlider.h"
+#import "FXLabel.h"
 
 @protocol DrawInfoCellDelegate <NSObject>
 
@@ -22,6 +22,9 @@
 - (void)didClickDrawToUser:(NSString *)userId nickName:(NSString *)nickName;
 - (void)didLoadDrawPicture;
 - (void)didClickDrawImageMaskView;
+- (void)didClickFullScreenButton;
+- (void)didClickNonFullScreenButton;
+
 @end
 
 @interface DrawInfoCell : PPTableViewCell<FeedServiceDelegate>//, HJManagedImageVDelegate>
@@ -30,7 +33,7 @@
     DrawFeed *_feed;
     BOOL _isLoading;
     FeedUser *_targetUser;
-    UIControl *mask;
+//    UIControl *mask;
 }
 
 @property (assign, nonatomic) id<DrawInfoCellDelegate> delegate;
@@ -40,8 +43,21 @@
 @property (retain, nonatomic) IBOutlet UIButton *drawToButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivity;
 @property (retain, nonatomic) IBOutlet UILabel *opusDesc;
+@property (retain, nonatomic) IBOutlet CustomSlider *slider;
+@property (retain, nonatomic) AudioButton *audioButton;
+@property (retain, nonatomic) IBOutlet FXLabel *opusDescLabel;
+
++ (id)createCell:(id<DrawInfoCellDelegate>)delegate feed:(DrawFeed *)feed;
++ (id)createCellWithFullScreen:(id<DrawInfoCellDelegate>)delegate;
+
++ (CGFloat)cellHeightWithFeed:(DrawFeed *)feed;
++ (CGFloat)cellHeightWithFullScreen;
+
+
 - (void)setCellInfo:(DrawFeed *)feed feedScene:(id<ShowFeedSceneProtocol>)scene;
 + (NSString*)getCellIdentifier;
-+ (CGFloat)cellHeightWithDesc:(NSString *)desc;
+
+- (void)configurePlayerButton;
+
 @end
 
