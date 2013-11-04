@@ -62,7 +62,7 @@
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="723506984">
+						<object class="NSFont" key="IBUIFont" id="641754004">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -101,7 +101,7 @@
 							<string key="NSResourceName">toolbox@2x.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="581927297"/>
-						<reference key="IBUIFont" ref="723506984"/>
+						<reference key="IBUIFont" ref="641754004"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -251,7 +251,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">toolbox@2x.png</string>
-			<string key="NS.object.0">{67, 69}</string>
+			<string key="NS.object.0">{16, 16}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

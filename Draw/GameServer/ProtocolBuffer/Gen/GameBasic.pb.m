@@ -6203,6 +6203,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
 @property (retain) NSString* to;
 @property int32_t status;
 @property int32_t type;
+@property BOOL isGroup;
+@property (retain) PBGameUser* fromUser;
+@property (retain) PBGameUser* toUser;
 @property (retain) NSString* text;
 @property (retain) NSMutableArray* mutableDrawDataList;
 @property int32_t createDate;
@@ -6253,6 +6256,32 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   hasType_ = !!value;
 }
 @synthesize type;
+- (BOOL) hasIsGroup {
+  return !!hasIsGroup_;
+}
+- (void) setHasIsGroup:(BOOL) value {
+  hasIsGroup_ = !!value;
+}
+- (BOOL) isGroup {
+  return !!isGroup_;
+}
+- (void) setIsGroup:(BOOL) value {
+  isGroup_ = !!value;
+}
+- (BOOL) hasFromUser {
+  return !!hasFromUser_;
+}
+- (void) setHasFromUser:(BOOL) value {
+  hasFromUser_ = !!value;
+}
+@synthesize fromUser;
+- (BOOL) hasToUser {
+  return !!hasToUser_;
+}
+- (void) setHasToUser:(BOOL) value {
+  hasToUser_ = !!value;
+}
+@synthesize toUser;
 - (BOOL) hasText {
   return !!hasText_;
 }
@@ -6328,6 +6357,8 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
   self.messageId = nil;
   self.from = nil;
   self.to = nil;
+  self.fromUser = nil;
+  self.toUser = nil;
   self.text = nil;
   self.mutableDrawDataList = nil;
   self.canvasSize = nil;
@@ -6343,6 +6374,9 @@ static PBDrawAction* defaultPBDrawActionInstance = nil;
     self.to = @"";
     self.status = 0;
     self.type = 0;
+    self.isGroup = NO;
+    self.fromUser = [PBGameUser defaultInstance];
+    self.toUser = [PBGameUser defaultInstance];
     self.text = @"";
     self.createDate = 0;
     self.drawDataVersion = 0;
@@ -6385,6 +6419,16 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (!self.hasTo) {
     return NO;
   }
+  if (self.hasFromUser) {
+    if (!self.fromUser.isInitialized) {
+      return NO;
+    }
+  }
+  if (self.hasToUser) {
+    if (!self.toUser.isInitialized) {
+      return NO;
+    }
+  }
   for (PBDrawAction* element in self.drawDataList) {
     if (!element.isInitialized) {
       return NO;
@@ -6407,6 +6451,15 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasType) {
     [output writeInt32:5 value:self.type];
+  }
+  if (self.hasIsGroup) {
+    [output writeBool:6 value:self.isGroup];
+  }
+  if (self.hasFromUser) {
+    [output writeMessage:7 value:self.fromUser];
+  }
+  if (self.hasToUser) {
+    [output writeMessage:8 value:self.toUser];
   }
   if (self.hasText) {
     [output writeString:20 value:self.text];
@@ -6464,6 +6517,15 @@ static PBMessage* defaultPBMessageInstance = nil;
   }
   if (self.hasType) {
     size += computeInt32Size(5, self.type);
+  }
+  if (self.hasIsGroup) {
+    size += computeBoolSize(6, self.isGroup);
+  }
+  if (self.hasFromUser) {
+    size += computeMessageSize(7, self.fromUser);
+  }
+  if (self.hasToUser) {
+    size += computeMessageSize(8, self.toUser);
   }
   if (self.hasText) {
     size += computeStringSize(20, self.text);
@@ -6588,6 +6650,15 @@ static PBMessage* defaultPBMessageInstance = nil;
   if (other.hasType) {
     [self setType:other.type];
   }
+  if (other.hasIsGroup) {
+    [self setIsGroup:other.isGroup];
+  }
+  if (other.hasFromUser) {
+    [self mergeFromUser:other.fromUser];
+  }
+  if (other.hasToUser) {
+    [self mergeToUser:other.toUser];
+  }
   if (other.hasText) {
     [self setText:other.text];
   }
@@ -6663,6 +6734,28 @@ static PBMessage* defaultPBMessageInstance = nil;
       }
       case 40: {
         [self setType:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setIsGroup:[input readBool]];
+        break;
+      }
+      case 58: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasFromUser) {
+          [subBuilder mergeFrom:self.fromUser];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setFromUser:[subBuilder buildPartial]];
+        break;
+      }
+      case 66: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasToUser) {
+          [subBuilder mergeFrom:self.toUser];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setToUser:[subBuilder buildPartial]];
         break;
       }
       case 162: {
@@ -6797,6 +6890,82 @@ static PBMessage* defaultPBMessageInstance = nil;
 - (PBMessage_Builder*) clearType {
   result.hasType = NO;
   result.type = 0;
+  return self;
+}
+- (BOOL) hasIsGroup {
+  return result.hasIsGroup;
+}
+- (BOOL) isGroup {
+  return result.isGroup;
+}
+- (PBMessage_Builder*) setIsGroup:(BOOL) value {
+  result.hasIsGroup = YES;
+  result.isGroup = value;
+  return self;
+}
+- (PBMessage_Builder*) clearIsGroup {
+  result.hasIsGroup = NO;
+  result.isGroup = NO;
+  return self;
+}
+- (BOOL) hasFromUser {
+  return result.hasFromUser;
+}
+- (PBGameUser*) fromUser {
+  return result.fromUser;
+}
+- (PBMessage_Builder*) setFromUser:(PBGameUser*) value {
+  result.hasFromUser = YES;
+  result.fromUser = value;
+  return self;
+}
+- (PBMessage_Builder*) setFromUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setFromUser:[builderForValue build]];
+}
+- (PBMessage_Builder*) mergeFromUser:(PBGameUser*) value {
+  if (result.hasFromUser &&
+      result.fromUser != [PBGameUser defaultInstance]) {
+    result.fromUser =
+      [[[PBGameUser builderWithPrototype:result.fromUser] mergeFrom:value] buildPartial];
+  } else {
+    result.fromUser = value;
+  }
+  result.hasFromUser = YES;
+  return self;
+}
+- (PBMessage_Builder*) clearFromUser {
+  result.hasFromUser = NO;
+  result.fromUser = [PBGameUser defaultInstance];
+  return self;
+}
+- (BOOL) hasToUser {
+  return result.hasToUser;
+}
+- (PBGameUser*) toUser {
+  return result.toUser;
+}
+- (PBMessage_Builder*) setToUser:(PBGameUser*) value {
+  result.hasToUser = YES;
+  result.toUser = value;
+  return self;
+}
+- (PBMessage_Builder*) setToUserBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setToUser:[builderForValue build]];
+}
+- (PBMessage_Builder*) mergeToUser:(PBGameUser*) value {
+  if (result.hasToUser &&
+      result.toUser != [PBGameUser defaultInstance]) {
+    result.toUser =
+      [[[PBGameUser builderWithPrototype:result.toUser] mergeFrom:value] buildPartial];
+  } else {
+    result.toUser = value;
+  }
+  result.hasToUser = YES;
+  return self;
+}
+- (PBMessage_Builder*) clearToUser {
+  result.hasToUser = NO;
+  result.toUser = [PBGameUser defaultInstance];
   return self;
 }
 - (BOOL) hasText {
@@ -7010,6 +7179,7 @@ static PBMessage* defaultPBMessageInstance = nil;
 @property (retain) NSString* friendNickName;
 @property (retain) NSString* friendAvatar;
 @property BOOL friendGender;
+@property BOOL isGroup;
 @property (retain) NSString* messageId;
 @property (retain) NSString* from;
 @property (retain) NSString* to;
@@ -7063,6 +7233,18 @@ static PBMessage* defaultPBMessageInstance = nil;
 }
 - (void) setFriendGender:(BOOL) value {
   friendGender_ = !!value;
+}
+- (BOOL) hasIsGroup {
+  return !!hasIsGroup_;
+}
+- (void) setHasIsGroup:(BOOL) value {
+  hasIsGroup_ = !!value;
+}
+- (BOOL) isGroup {
+  return !!isGroup_;
+}
+- (void) setIsGroup:(BOOL) value {
+  isGroup_ = !!value;
 }
 - (BOOL) hasMessageId {
   return !!hasMessageId_;
@@ -7147,6 +7329,7 @@ static PBMessage* defaultPBMessageInstance = nil;
     self.friendNickName = @"";
     self.friendAvatar = @"";
     self.friendGender = NO;
+    self.isGroup = NO;
     self.messageId = @"";
     self.from = @"";
     self.to = @"";
@@ -7217,6 +7400,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (self.hasFriendGender) {
     [output writeBool:5 value:self.friendGender];
   }
+  if (self.hasIsGroup) {
+    [output writeBool:6 value:self.isGroup];
+  }
   if (self.hasMessageId) {
     [output writeString:10 value:self.messageId];
   }
@@ -7270,6 +7456,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   }
   if (self.hasFriendGender) {
     size += computeBoolSize(5, self.friendGender);
+  }
+  if (self.hasIsGroup) {
+    size += computeBoolSize(6, self.isGroup);
   }
   if (self.hasMessageId) {
     size += computeStringSize(10, self.messageId);
@@ -7391,6 +7580,9 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
   if (other.hasFriendGender) {
     [self setFriendGender:other.friendGender];
   }
+  if (other.hasIsGroup) {
+    [self setIsGroup:other.isGroup];
+  }
   if (other.hasMessageId) {
     [self setMessageId:other.messageId];
   }
@@ -7463,6 +7655,10 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
       }
       case 40: {
         [self setFriendGender:[input readBool]];
+        break;
+      }
+      case 48: {
+        [self setIsGroup:[input readBool]];
         break;
       }
       case 82: {
@@ -7588,6 +7784,22 @@ static PBMessageStat* defaultPBMessageStatInstance = nil;
 - (PBMessageStat_Builder*) clearFriendGender {
   result.hasFriendGender = NO;
   result.friendGender = NO;
+  return self;
+}
+- (BOOL) hasIsGroup {
+  return result.hasIsGroup;
+}
+- (BOOL) isGroup {
+  return result.isGroup;
+}
+- (PBMessageStat_Builder*) setIsGroup:(BOOL) value {
+  result.hasIsGroup = YES;
+  result.isGroup = value;
+  return self;
+}
+- (PBMessageStat_Builder*) clearIsGroup {
+  result.hasIsGroup = NO;
+  result.isGroup = NO;
   return self;
 }
 - (BOOL) hasMessageId {

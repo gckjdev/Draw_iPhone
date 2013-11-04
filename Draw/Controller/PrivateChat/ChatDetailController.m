@@ -138,7 +138,10 @@
     return self;
 }
 
-
+- (BOOL)isGroup
+{
+    return [self.messageStat isGroup];
+}
 
 - (ChangeAvatar*)backgroundPicker
 {
@@ -259,6 +262,7 @@
                                             viewClass:[UIImageView class]
                                                 frame:self.dataTableView.frame];
     
+    iv.autoresizingMask = self.dataTableView.autoresizingMask;
     if (image) {
         iv.contentMode = UIViewContentModeScaleAspectFill;
     }else{
@@ -417,14 +421,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    PPDebug(@"<numberOfRowsInSection> = %d", [_messageList count]);
+//    PPDebug(@"<numberOfRowsInSection> = %d", [_messageList count]);
     return [_messageList count];
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PPDebug(@"<heightForRowAtIndexPath> index = %d", indexPath.row);
+//    PPDebug(@"<heightForRowAtIndexPath> index = %d", indexPath.row);
     PPMessage *message = [self messageOfIndex:indexPath.row];
     BOOL flag = [self messageShowTime:message row:indexPath.row];
     CGFloat height = [ChatDetailCell getCellHeight:message showTime:flag];
@@ -581,14 +585,20 @@
             drawImage:(UIImage *)drawImage
 {
     [controller dismissModalViewControllerAnimated:YES];
-    [[ChatService defaultService]  sendDrawMessage:drawActionList canvasSize:size friendUserId:self.fid];
+    [[ChatService defaultService]  sendDrawMessage:drawActionList
+                                        canvasSize:size
+                                      friendUserId:self.fid
+                                           isGroup:[self isGroup]];
     [self tableViewScrollToBottom:YES];
 }
 
 - (void)didController:(OfflineDrawViewController *)controller submitImage:(UIImage *)image
 {
     [controller dismissModalViewControllerAnimated:YES];
-    [[ChatService defaultService]  sendImage:image friendUserId:self.fid];
+    [[ChatService defaultService]  sendImage:image
+                                friendUserId:self.fid
+                                     isGroup:[self isGroup]];
+    
     [self tableViewScrollToBottom:YES];
 }
 
@@ -603,7 +613,9 @@
                 return YES;
             }            
             
-            [[ChatService defaultService] sendTextMessage:textView.text friendUserId:self.fid];
+            [[ChatService defaultService] sendTextMessage:textView.text
+                                             friendUserId:self.fid
+                                                  isGroup:[self isGroup]];
             [self tableViewScrollToBottom:YES];
             textView.text = nil;            
         }
@@ -662,7 +674,7 @@
     }else if(message.messageType == MessageTypeLocationRequest){
         _asIndexShowLocation = start ++;
     }else if(message.messageType == MessageTypeLocationResponse){
-        if ([(LocationReplyMessage *)message replyResult] == ACCEPT_ASK_LOCATION) {
+        if ([message replyResult] == ACCEPT_ASK_LOCATION) {
             _asIndexShowLocation = start ++;
         }
     }
@@ -682,7 +694,7 @@
 }
 
 #pragma mark enter replay controller
-- (void)enterReplayController:(DrawMessage *)message
+- (void)enterReplayController:(PPMessage *)message
 {
     BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [message drawDataVersion];
     
@@ -704,7 +716,7 @@
     NSURL *url = nil;
     if (_selectedMessage.messageType == MessageTypeImage)
     {
-        ImageMessage *imageMessage  = (ImageMessage *)_selectedMessage;
+        PPMessage *imageMessage  = _selectedMessage;
         if (imageMessage.status == MessageStatusFail) {
             url = [NSURL fileURLWithPath:imageMessage.imageUrl];
         } else {
@@ -727,7 +739,7 @@
             [self showActionOptionsForMessage:message];
             break;
         case MessageTypeDraw:
-            [self enterReplayController:(DrawMessage *)message];
+            [self enterReplayController:message];
             break;
         case MessageTypeLocationRequest:
         {
@@ -793,15 +805,15 @@
         double latitude;
         double longitude;
         if (message.messageType == MessageTypeLocationRequest) {
-            latitude = [(LocationReplyMessage*)message latitude];
-            longitude = [(LocationReplyMessage*)message longitude];
+            latitude = [message latitude];
+            longitude = [message longitude];
         } else {
-            if ([(LocationReplyMessage*)message replyResult] == REJECT_ASK_LOCATION)
+            if ([message replyResult] == REJECT_ASK_LOCATION)
             {
                 return;
             }
-            latitude = [(LocationReplyMessage*)message latitude];
-            longitude = [(LocationReplyMessage*)message longitude];
+            latitude = [message latitude];
+            longitude = [message longitude];
         }
         
         UserLocationController *controller = [[UserLocationController alloc] initWithType:LocationTypeShow
@@ -843,7 +855,7 @@
         case MessageTypeLocationResponse:
         {
             tag = ACTION_SHEET_TAG_LOCATION_REQUEST;
-            if ([(LocationReplyMessage *)message replyResult] == ACCEPT_ASK_LOCATION) {
+            if ([message replyResult] == ACCEPT_ASK_LOCATION) {
                 otherOperation = NSLS(@"kShowLocation");
             } else {
                 otherOperation = nil;
@@ -935,7 +947,7 @@
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = _selectedMessage.text;         
     }else if(_asIndexReplay == buttonIndex && _selectedMessage.messageType == MessageTypeDraw){
-        [self enterReplayController:(DrawMessage *)_selectedMessage];
+        [self enterReplayController:_selectedMessage];
     }else if(_asIndexLookLarge == buttonIndex && _selectedMessage.messageType == MessageTypeImage){
         [self enterLargeImage:_selectedMessage];
     }else if(_asIndexShowLocation == buttonIndex &&

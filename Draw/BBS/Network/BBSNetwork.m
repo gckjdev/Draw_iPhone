@@ -186,7 +186,6 @@
                                 userId:(NSString*)userId
                                boardId:(NSString*)boardId
                                keyWord:(NSString*)keyWord
-                                offset:(NSInteger)offset
                                  limit:(NSInteger)limit
 {
     baseURL = [ConfigManager getBBSServerURL];
@@ -205,7 +204,6 @@
         str = [str stringByAddQueryParameter:PARA_BOARDID value:boardId];
         str = [str stringByAddQueryParameter:PARA_KEYWORD value:keyWord];        
         str = [str stringByAddQueryParameter:PARA_DEVICETYPE intValue:deviceType];
-        str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_LIMIT intValue:limit];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         

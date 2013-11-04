@@ -153,10 +153,6 @@ NSString* GlobalGetMessageServerURL()
 
 NSString* GlobalGetBBSServerURL()
 {
-#ifdef DEBUG
-    //    return @"http://58.215.184.18:8699/api/i?";
-#endif
-    
     return [ConfigManager getBBSServerURL];
 }
 

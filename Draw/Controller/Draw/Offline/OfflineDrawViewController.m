@@ -685,10 +685,6 @@
     }
     else if(dialog.tag == DIALOG_TAG_SUBMIT){
 
-//        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
-//                                                        image:drawView.createImage
-//                                                     delegate:self];
-        
         if (self.contest) {
             
             // ask gamy later, why here use dialog style to decide logic
@@ -726,24 +722,11 @@
         }
         
     }
-//    else if (dialog.tag == DIALOG_TAG_COMPOSE_DIALOG){
-//        
-//        InputAlertView *v = (InputAlertView *)infoView;
-//        [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
-//    }
 }
 
 - (void)didClickCancel:(CommonDialog *)dialog
 {
-    if(dialog.tag == DIALOG_TAG_SUBMIT){
-
-//        [[DrawDataService defaultService] savePaintWithPBDraw:[self createPBDraw]
-//                                                        image:drawView.createImage
-//                                                     delegate:self];
-        [self quit];
-    }
-    else if (dialog.tag == DIALOG_TAG_SAVETIP)
-    {
+    if (dialog.tag == DIALOG_TAG_SUBMIT || dialog.tag == DIALOG_TAG_SAVETIP){
         [self quit];
     }
 }
@@ -810,9 +793,7 @@
     [self hideProgressView];
     
     self.submitButton.userInteractionEnabled = YES;
-//    [self.inputAlert setCanClickCommitButton:YES];
     if (resultCode == 0) {
-//        [self.inputAlert dismiss:NO];
         
         // stop recovery while the opus is commit successfully
         [self stopRecovery];
@@ -974,11 +955,21 @@
             }
             else{
                 result = YES;
-                [self.draft setIsRecovery:[NSNumber numberWithBool:NO]];
-                [self.draft setOpusDesc:self.opusDesc];
+                [self.draft setIsRecovery:@(NO)];
+                BOOL forceSave = NO;
+                if (![[self.draft opusDesc] isEqualToString:self.opusDesc]) {
+                    forceSave = YES;
+                    [self.draft setOpusDesc:self.opusDesc];
+                }
+                if ((![[self.draft drawWord] isEqualToString:self.word.text])) {
+                    forceSave = YES;
+                    [self.draft setDrawWord:self.word.text];
+                }
+
                 result = [pManager updateDraft:self.draft
                                          image:image
-                                      drawData:data];
+                                      drawData:data
+                                     forceSave:forceSave];
             }
         }else{
             PPDebug(@"<saveDraft> create core data draft");
@@ -1248,7 +1239,7 @@
 
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-    
+    dialog.manualClose = YES;
     [dialog showInView:self.view];
     
     [dialog setClickOkBlock:^(id infoView){
@@ -1268,10 +1259,13 @@
           }
         else{
             [self commitOpus:v.titleInputField.text desc:v.contentInputView.text share:v.shareSet];
+            dialog.manualClose = NO;
         }
+
     }];
     [dialog setClickCancelBlock:^(id infoView){
         [self setOpusDesc:v.contentInputView.text];
+        dialog.manualClose = NO;
     }];
 }
 

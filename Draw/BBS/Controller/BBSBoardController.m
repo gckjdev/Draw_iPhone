@@ -13,6 +13,7 @@
 #import "BBSActionListController.h"
 #import "StatisticManager.h"
 #import "StableView.h"
+#import "SearchPostController.h"
 
 @interface BBSBoardController ()
 {
@@ -64,7 +65,7 @@
     [BBSViewManager updateDefaultTableView:self.dataTableView];
 
     
-    [self.myPostButton setImage:[_bbsImageManager bbsBoardMineImage] forState:UIControlStateNormal];
+    [self.myPostButton setImage:[_bbsImageManager bbsBoardSearchImage] forState:UIControlStateNormal];
     
     [self.myActionButton setImage:[_bbsImageManager bbsBoardCommentImage] forState:UIControlStateNormal];
 
@@ -139,6 +140,13 @@
 }
 
 - (IBAction)clickMyPostList:(id)sender {
+#ifdef DEBUG
+    SearchPostController *sp = [[SearchPostController alloc] init];
+    [self.navigationController pushViewController:sp animated:YES];
+    [sp release];
+    return;
+#endif
+    
     CHECK_AND_LOGIN(self.view);
     [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
                                                fromController:self];

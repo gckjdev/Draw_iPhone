@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, retain) NSMutableArray* ongoingContestList;
+@property (nonatomic, retain) NSArray* allContestList;
 
 + (ContestManager *)defaultManager;
 - (NSArray *)parseContestList:(NSArray *)jsonArray;

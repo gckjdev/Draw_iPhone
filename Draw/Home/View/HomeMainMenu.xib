@@ -266,8 +266,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="common_home_badge@2x.png">{38, 38}</string>
-			<string key="draw_home_draw@2x.png">{151, 150}</string>
+			<string key="common_home_badge@2x.png">{16, 16}</string>
+			<string key="draw_home_draw@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

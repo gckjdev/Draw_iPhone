@@ -207,7 +207,11 @@ message PBMessage {
   required string from = 2;
   required string to = 3;
   optional int32  status = 4;
-  optional int32  type = 5[default=0];      // 消息类型：refer to PBMessageType
+  optional int32  type = 5[default=0];              // 消息类型：refer to PBMessageType
+  optional bool   isGroup = 6[default=false];       // 是否是群消息
+
+  optional PBGameUser fromUser = 7;                 // 发送消息用户的详细信息，用于群消息
+  optional PBGameUser toUser = 8;                   // 接受消息用户的详细信息，用于群消息
 
   optional string text = 20;
   repeated PBDrawAction drawData = 21;  
@@ -229,10 +233,12 @@ message PBMessageStat {
   required string userId = 1;
   
   // latest message user data
-  required string friendUserId = 2;
+  required string friendUserId = 2;             // 如果是群用户，则这个ID就是群ID，下面的昵称、头像等都是群的相关信息
   required string friendNickName = 3;
   optional string friendAvatar = 4;
   optional bool   friendGender = 5;
+  
+  optional bool   isGroup = 6[default=false];   // 是否是群用户
   
   // latest message info
   optional string messageId = 10;

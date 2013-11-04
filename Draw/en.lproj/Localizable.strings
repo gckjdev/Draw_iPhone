@@ -2027,6 +2027,7 @@
 "kBBSToMark" = "Mark";
 "kMarked" = "Marked";
 "kMarkedPosts" = "Marked Posts";
+"kBBSSearchPlaceholder" = "Input keyword";
 /*********************** BBS国际化字符串结束 *************************/
 
 /*********************小吉画画国际化字符串开始 ************************/
@@ -2128,6 +2129,10 @@
 
 "kLayerExplain" = "Layer Usage";
 "kLayerExplainContent" = "1. Stroke layer: for the scratch strokes, paint finished can be erased; also available as painting the background. \n2. Colored layer: do not explain.";
+
+"kContestCopyright" = "Important Notes: 1) Apple is not a sponsor of the contest nor is involved in any way. 2) Contest prizes are not Apple products.";
+
+
 
 /*********************小吉画画国际化字符串结束 ************************/
 

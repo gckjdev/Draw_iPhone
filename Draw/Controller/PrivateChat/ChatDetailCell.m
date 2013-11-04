@@ -36,8 +36,8 @@
 @property(nonatomic, retain)MessageStat *messageStat;
 @property(nonatomic, assign)BOOL isReceive;
 
-- (void)updateTextMessageView:(TextMessage *)message;
-- (void)updateDrawMessageView:(DrawMessage *)message;
+- (void)updateTextMessageView:(PPMessage *)message;
+- (void)updateDrawMessageView:(PPMessage *)message;
 
 @end
 
@@ -116,7 +116,7 @@
     [self.holderView updateHeight:size.height];
 }
 
-- (void)updateTextMessageView:(TextMessage *)message
+- (void)updateTextMessageView:(PPMessage *)message
 {
     self.msgLabel.hidden = NO;
     [self.msgLabel setText:message.text];
@@ -151,14 +151,14 @@
 + (CGSize)contentSizeForMessage:(PPMessage *)message
 {
     UIImage *image;
-    if ([message isKindOfClass:[ImageMessage class]]) {
-        image = [(ImageMessage *)message image];
+    if ([message isImageMessage]) {
+        image = [message image];
         if (image) {
             return [self adjustImageSize:image.size];
         }
         return IMAGE_DEFAULT_SIZE;
-    }else if([message isKindOfClass:[DrawMessage class]]){
-        DrawMessage *drawMessage = (id)message;
+    }else if([message isDrawMessage]){
+        PPMessage *drawMessage = message;
         if (drawMessage.thumbImage == nil) {
             ShowDrawView *show = [ShowDrawView showViewWithFrame:CGRectFromCGSize(drawMessage.canvasSize) drawActionList:drawMessage.drawActionList delegate:nil];
             [show updateLayers:[DrawLayer defaultLayersWithFrame:CGRectFromCGSize(drawMessage.canvasSize)]];
@@ -175,13 +175,13 @@
     }
 }
 
-- (void)updateDrawMessageView:(DrawMessage *)message
+- (void)updateDrawMessageView:(PPMessage *)message
 {
     [self.imgView setHidden:NO];
     [self updateCellWithImage:message.thumbImage];
 }
 
-- (void)updateImageMessageView:(ImageMessage *)message
+- (void)updateImageMessageView:(PPMessage *)message
 {
     [self.imgView setHidden:NO];
     NSURL *url = nil;
@@ -325,13 +325,13 @@
     [self updateTime:message.createDate];
     self.imgView.hidden = self.msgLabel.hidden = YES;
     if(message.messageType == MessageTypeDraw){
-        [self updateDrawMessageView:(DrawMessage *)message];
+        [self updateDrawMessageView:message];
         [self.holderView setBackgroundImage:nil forState:UIControlStateNormal];
         [self.holderView setBackgroundImage:nil forState:UIControlStateHighlighted];
     } else if(message.messageType == MessageTypeImage){
-        [self updateImageMessageView:(ImageMessage*)message];
+        [self updateImageMessageView:message];
     }else{
-        [self updateTextMessageView:(TextMessage *)message];
+        [self updateTextMessageView:message];
         self.imgView.hidden = YES;        
         if (!self.isReceive) {
             SET_BUTTON_ROUND_STYLE_ORANGE(self.holderView);

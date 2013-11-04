@@ -237,7 +237,7 @@ static PPMessageManager* globalDefaultMessageManager;
 - (void)printAllMessage:(NSArray*)messageList
 {
     for (PPMessage* message in messageList){
-        PPDebug(@"message type(%@, %d) text(%@)", [[message class] description], message.messageType, message.text);
+        PPDebug(@"message id(%@) type(%d) text(%@)", message.messageId, message.messageType, message.text);
     }
 }
 
@@ -350,34 +350,46 @@ static PPMessageManager* globalDefaultMessageManager;
     [self save:list friendUserId:[message friendId]];
 }
 
-- (void)updateMessage:(PPMessage*)message friendUserId:(NSString*)friendUserId
+- (void)saveMessageList:(NSString*)friendId
 {
-    NSString* friendId = [message friendId];
-    if (friendId == nil)
-        return;
-    
     NSMutableArray* list = [self getMessageList:friendId];
-    if (list == nil){
+    if (list == nil || [friendId length] == 0){
+        PPDebug(@"<saveMessageList> but list or friendUserId(%@) is null", friendId);
         return;
     }
     
-    BOOL foundMessage = NO;
-    int foundIndex = 0;
-    for (PPMessage* m in list){
-        if ([[m messageId] isEqualToString:[message messageId]]){
-            foundMessage = YES;
-            break;
-        }
-        
-        foundIndex ++;
-    }
-    
-    if (foundMessage){
-        [list replaceObjectAtIndex:foundIndex withObject:message];
-    }
-    
-    [self save:list friendUserId:[message friendId]];
+    [self save:list friendUserId:friendId];
 }
+
+//- (void)updateMessage:(PPMessage*)message friendUserId:(NSString*)friendUserId
+//{
+//    NSString* friendId = [message friendId];
+//    if (friendId == nil)
+//        return;
+//    
+//    NSMutableArray* list = [self getMessageList:friendId];
+//    if (list == nil){
+//        return;
+//    }
+//    
+//    BOOL foundMessage = NO;
+//    int foundIndex = 0;
+//    for (PPMessage* m in list){
+//        if ([[m messageId] isEqualToString:[message messageId]]){
+//            foundMessage = YES;
+//            break;
+//        }
+//        
+//        foundIndex ++;
+//    }
+//    
+//    if (foundMessage){
+//        [list replaceObjectAtIndex:foundIndex withObject:message];
+//        PPDebug(@"<updateMessage>　update message(%@) at index(%d)", [message description], foundIndex);
+//    }
+//    
+//    [self save:list friendUserId:[message friendId]];
+//}
 
 - (BOOL)isMessageInList:(PPMessage*)message list:(NSArray*)list
 {

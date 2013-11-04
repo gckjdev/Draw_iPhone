@@ -18,6 +18,7 @@
 #import "MyFriend.h"
 #import "ReportFeedCell.h"
 #import "ContestPrizeCell.h"
+#import "ConfigManager.h"
 
 typedef enum{
     OpusTypeMy = 1,
@@ -27,7 +28,7 @@ typedef enum{
     OpusTypePrize = 21,//FeedListTypeIdList
 }OpusType;
 
-#define  HISTORY_RANK_NUMBER 120
+#define  HISTORY_RANK_NUMBER [ConfigManager historyRankNumber]
 
 @implementation ContestOpusController
 @synthesize contest = _contest;

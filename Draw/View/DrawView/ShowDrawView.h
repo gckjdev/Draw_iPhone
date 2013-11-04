@@ -15,12 +15,6 @@ typedef enum{
     Pause = 0x1 << 2,
 }DrawViewStatus;
 
-typedef enum {
-    PlaySpeedTypeLow = 1, // 1/30.0
-    PlaySpeedTypeNormal = 2, // x2
-    PlaySpeedTypeHigh = 4, //x2
-    PlaySpeedTypeSuper= 6,//x6
-}PlaySpeedType;
 
 @class ShowDrawView;
 @protocol ShowDrawViewDelegate <NSObject>
@@ -44,11 +38,12 @@ typedef enum {
 
 }
 
-@property(nonatomic, assign) PlaySpeedType speed; //default is Normal;
+
 //@property(nonatomic, assign) double playSpeed; //default is 1/30.0;
 @property(nonatomic, assign) id<ShowDrawViewDelegate>delegate;
 @property(nonatomic, assign) DrawViewStatus status;
 @property(nonatomic, assign) double playSpeed;
+@property(nonatomic, assign) double maxPlaySpeed;
 
 - (void)resetView;
 - (void)play;

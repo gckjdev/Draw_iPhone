@@ -39,7 +39,7 @@
 @property (nonatomic, assign) NSInteger numberOfMessage;
 @property (nonatomic, assign) MessageType messageType;
 @property (nonatomic, assign) SourceType sourceType;
-
+@property (nonatomic, assign) BOOL isGroup;
 
 - (id)initWithPBMessageStat:(PBMessageStat *)pbMessageStat;
 

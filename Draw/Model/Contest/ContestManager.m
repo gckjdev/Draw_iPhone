@@ -28,6 +28,14 @@ static ContestManager *_staticContestManager;
     return _staticContestManager;
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    PPRelease(_oldContestIdList);
+    PPRelease(_allContestList);
+    PPRelease(_ongoingContestList);
+}
+
 - (id)init
 {
     self = [super init];
@@ -140,7 +148,7 @@ static ContestManager *_staticContestManager;
 
 - (BOOL)isUser:(NSString *)userId judgeAtContest:(NSString *)contestId
 {
-    for (PBContest *contest in _ongoingContestList) {
+    for (PBContest *contest in _allContestList) {
         if ([contest.contestId isEqualToString:contestId]) {
             for (PBGameUser *user in contest.judgesList) {
                 if ([user.userId isEqualToString:userId]) {
@@ -153,7 +161,7 @@ static ContestManager *_staticContestManager;
 }
 - (BOOL)isUser:(NSString *)userId reporterAtContest:(NSString *)contestId
 {
-    for (PBContest *contest in _ongoingContestList) {
+    for (PBContest *contest in _allContestList) {
         if ([contest.contestId isEqualToString:contestId]) {
             for (PBGameUser *user in contest.reportersList) {
                 if ([user.userId isEqualToString:userId]) {

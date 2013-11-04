@@ -19,6 +19,8 @@
 #import "ContestManager.h"
 #import "StatisticManager.h"
 #import "CustomInfoView.h"
+#import "ConfigManager.h"
+
 
 @implementation ContestController
 @synthesize noContestTipLabel = _noContestTipLabel;
@@ -104,6 +106,8 @@
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [[ContestService defaultService] syncOngoingContestList];
     [self hideTips];
+    
+    
 }
 
 - (void)viewDidUnload
@@ -209,38 +213,44 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)alertCopyrightStatement:(void (^)(void))block{
+    if (![ConfigManager isInReviewVersion]) {
+        EXECUTE_BLOCK(block);
+        return;
+    }
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:NSLS(@"kContestCopyright") style:CommonDialogStyleSingleButton];
+    [dialog setClickOkBlock:^(id infoView){
+        EXECUTE_BLOCK(block);
+    }];
+    [dialog showInView:self.view];
+}
 
 #pragma mark contest view delegate
 
 - (void)didClickContestView:(ContestView *)contestView
              onReportButton:(Contest *)contest
 {
-    ContestOpusController *coc = [[ContestOpusController alloc] initWithContest:contest];
-    [coc setDefaultTabIndex:0];
-    [self.navigationController pushViewController:coc animated:YES];
-    [coc release];
+    [self alertCopyrightStatement:^{
+        ContestOpusController *coc = [[ContestOpusController alloc] initWithContest:contest];
+        [coc setDefaultTabIndex:0];
+        [self.navigationController pushViewController:coc animated:YES];
+        [coc release];        
+    }];
 }
 
 - (void)didClickContestView:(ContestView *)contestView 
                onOpusButton:(Contest *)contest
 {
-    ContestOpusController *coc = [[ContestOpusController alloc] initWithContest:contest];
-    [self.navigationController pushViewController:coc animated:YES];
-    [coc release];
+    [self alertCopyrightStatement:^{
+        ContestOpusController *coc = [[ContestOpusController alloc] initWithContest:contest];
+        [self.navigationController pushViewController:coc animated:YES];
+        [coc release];
+    }];
 }
 
 - (void)didClickContestView:(ContestView *)contestView
                onJoinButton:(Contest *)contest
 {
-//    Test Code below
-//    StatementController *sc = [[StatementController alloc] initWithContest:contest];
-//    [self.navigationController pushViewController:sc animated:YES];
-//    sc.superController = self;
-//    [sc release];
-//    return;
-    
-    //not running
-//#if !DEBUG
     CHECK_AND_LOGIN(self.view);
     if (![contest isRunning]) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kContestNotRunning") delayTime:1.5 isHappy:NO];
@@ -266,17 +276,19 @@
     }
 //#endif
     
-    if ([contest joined]) {
-        [OfflineDrawViewController startDrawWithContest:contest
-                                         fromController:self
-                                        startController:self
-                                               animated:YES];
-    }else{
-        StatementController *sc = [[StatementController alloc] initWithContest:contest];
-        sc.superController = self;
-        [self.navigationController pushViewController:sc animated:YES];
-        [sc release];        
-    }
+    [self alertCopyrightStatement:^{
+        if ([contest joined]) {
+            [OfflineDrawViewController startDrawWithContest:contest
+                                             fromController:self
+                                            startController:self
+                                                   animated:YES];
+        }else{
+            StatementController *sc = [[StatementController alloc] initWithContest:contest];
+            sc.superController = self;
+            [self.navigationController pushViewController:sc animated:YES];
+            [sc release];        
+        }
+    }];    
 }
 
 #define StatementViewSize (ISIPAD ? CGSizeMake(690,874) : CGSizeMake(300,380))
@@ -284,20 +296,22 @@
 - (void)didClickContestView:(ContestView *)contestView
              onDetailButton:(Contest *)contest
 {
-    UIWebView *webView = [[[UIWebView alloc] initWithFrame:CGRectFromCGSize(StatementViewSize)] autorelease];
-    webView.scalesPageToFit = YES;
-    CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kContestRule") infoView:webView hasEdgeSpace:NO];
-    
-    [infoView showInView:self.view];
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:contest.statementUrl]];
-    
-    [webView loadRequest:request];
-    [self setCanDragBack:NO];
     __block ContestController * cp = self;
-    [infoView setCloseHandler:^{
-        PPDebug(@"close rule info view");
-        [cp setCanDragBack:YES];
+    [self alertCopyrightStatement:^{
+        UIWebView *webView = [[[UIWebView alloc] initWithFrame:CGRectFromCGSize(StatementViewSize)] autorelease];
+        webView.scalesPageToFit = YES;
+        CustomInfoView *infoView = [CustomInfoView createWithTitle:NSLS(@"kContestRule") infoView:webView hasEdgeSpace:NO];
+        
+        [infoView showInView:cp.view];
+        NSURLRequest *request = [NSURLRequest requestWithURL:
+                                 [NSURL URLWithString:contest.statementUrl]];
+        
+        [webView loadRequest:request];
+        [cp setCanDragBack:NO];
+        [infoView setCloseHandler:^{
+            PPDebug(@"close rule info view");
+            [cp setCanDragBack:YES];
+        }];
     }];
 }
 
@@ -307,6 +321,7 @@
     PPRelease(_contestViewList);
     PPRelease(_titleLabel);
     PPRelease(_noContestTipLabel);
+    [[ContestManager defaultManager] setAllContestList:nil];
     [super dealloc];
 }
 - (IBAction)clickRefreshButton:(id)sender {

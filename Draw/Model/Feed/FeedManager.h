@@ -62,11 +62,6 @@ typedef enum{
 + (NSArray *)parsePbCommentFeedList:(NSArray *)pbFeedList;
 
 
-//deprecated method
-- (void)cachePBFeed:(PBFeed *)feed;
-
-//deprecated method
-- (PBFeed *)loadPBFeedWithFeedId:(NSString *)feedId;
 
 //new methods: cache pbdraw after draw version 2.0
 - (void)cachePBDraw:(PBDraw *)pbDraw forFeedId:(NSString *)feedId;
@@ -77,14 +72,6 @@ typedef enum{
 
 - (void)removeOldCache;
 
-- (UIImage *)thumbImageForFeedId:(NSString *)feedId;
-- (UIImage *)largeImageForFeedId:(NSString *)feedId;
-
-//working in the background queue.
-- (void)saveFeed:(NSString *)feedId thumbImage:(UIImage *)image;
-- (void)saveFeed:(NSString *)feedId largeImage:(UIImage *)image;
-
-+ (NSString*)getFeedCacheDir;
 
 - (void)cacheFeedDataQueryResponse:(DataQueryResponse *)response
                             forKey:(NSString *)key;

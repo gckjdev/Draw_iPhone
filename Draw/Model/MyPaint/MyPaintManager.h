@@ -113,13 +113,11 @@
                     language:(NSInteger)language
                  bgImageName:(NSString *)bgImageName;
 
-- (BOOL)updateDraft:(MyPaint *)draft
-              image:(UIImage *)image
-pbNoCompressDrawData:(PBNoCompressDrawData *)pbNoCompressDrawData;
 
 - (BOOL)updateDraft:(MyPaint *)draft
               image:(UIImage *)image
-           drawData:(NSData *)drawData;
+           drawData:(NSData *)drawData
+          forceSave:(BOOL)forceSave;
 
 
 - (NSMutableArray *)drawActionListForPaint:(MyPaint *)paint;

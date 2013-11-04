@@ -20,6 +20,7 @@
 #import "PaintAction.h"
 #import "ShapeAction.h"
 #import "CanvasRect.h"
+#import "ScreenCaptureView.h"
 
 #import "DrawLayerManager.h"
 

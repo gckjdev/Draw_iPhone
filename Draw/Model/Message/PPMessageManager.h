@@ -45,6 +45,6 @@
 //- (void)removeAllMessages;
 - (void)clearMemoryCache;
 - (void)save:(NSArray*)messageList friendUserId:(NSString*)friendUserId;
-- (void)updateMessage:(PPMessage*)message friendUserId:(NSString*)friendUserId;
-
+//- (void)updateMessage:(PPMessage*)message friendUserId:(NSString*)friendUserId;
+- (void)saveMessageList:(NSString*)friendUserId;
 @end

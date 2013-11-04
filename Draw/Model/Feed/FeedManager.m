@@ -54,10 +54,6 @@ FeedManager *_staticFeedManager = nil;
     return _staticFeedManager;
 }
 
-+ (NSString*)getFeedCacheDir
-{
-    return FEED_DIR;
-}
 
 + (Feed *)parsePbFeed:(PBFeed *)pbFeed
 {
@@ -123,51 +119,6 @@ FeedManager *_staticFeedManager = nil;
         [feed release];
     }
     return list;    
-}
-
-- (void)cachePBFeed:(PBFeed *)feed
-{
-    [feed retain];
-
-    @try {
-        PPDebug(@"<cachePBFeed> feed Id = %@",feed.feedId);
-        [_storeManager saveData:[feed data] forKey:feed.feedId];
-    }
-    @catch (NSException *exception) {
-        PPDebug(@"<cachePBFeed> exception : %@",exception);
-    }
-    @finally {
-        
-    }
-
-    [feed release];
-}
-
-//- (void)cachePBFeed:(PBFeed *)feed fileName:(NSString*)fileName
-//{
-//    @try {
-//        [feed retain];
-//        PPDebug(@"<cachePBFeed> feed Id = %@",feed.feedId);
-//        [_storeManager saveData:[feed data] forKey:feed.feedId];
-//        PPRelease(feed);
-//    }
-//    @catch (NSException *exception) {
-//        PPDebug(@"<cachePBFeed> exception : %@",exception);
-//    }
-//    @finally {
-//        
-//    }
-//}
-
-- (PBFeed *)loadPBFeedWithFeedId:(NSString *)feedId
-{
-    NSData *data = [_storeManager dataForKey:feedId];
-    if (data) {
-        PBFeed *pbFeed = [PBFeed parseFromData:data];
-        PPDebug(@"<loadPBFeedWithFeedId>, feed id = %@",pbFeed.feedId);
-        return pbFeed;
-    }
-    return nil;
 }
 
 
@@ -257,44 +208,6 @@ FeedManager *_staticFeedManager = nil;
 - (void)removeOldImages
 {
     [_feedImageManager removeOldFilestimeIntervalSinceNow:FEED_IMAGE_INTERVAL];
-}
-
-- (UIImage *)thumbImageForFeedId:(NSString *)feedId
-{
-    if ([feedId length] != 0) {
-        NSString *key = [NSString stringWithFormat:@"%@%@",feedId,THUMB_IMAGE_SUFFIX];
-        return [_feedImageManager imageForKey:key];
-    }
-    return nil;
-}
-- (UIImage *)largeImageForFeedId:(NSString *)feedId
-{
-    if ([feedId length] != 0) {
-        NSString *key = [NSString stringWithFormat:@"%@%@",feedId,LARGE_IMAGE_SUFFIX];
-        return [_feedImageManager imageForKey:key];
-    }
-    return nil;    
-}
-
-- (void)saveFeed:(NSString *)feedId thumbImage:(UIImage *)image
-{
-    if ([feedId length] != 0 && image != nil) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^{
-            NSString *key = [NSString stringWithFormat:@"%@%@",feedId,THUMB_IMAGE_SUFFIX];
-            [_feedImageManager saveImage:image forKey:key];
-    });
-                        }
-}
-- (void)saveFeed:(NSString *)feedId largeImage:(UIImage *)image
-{
-    if ([feedId length] != 0 && image != nil) {
-        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue, ^{
-            NSString *key = [NSString stringWithFormat:@"%@%@",feedId,LARGE_IMAGE_SUFFIX];
-            [_feedImageManager saveImage:image forKey:key];
-        });
-    }
 }
 
 - (void)removeOldCache

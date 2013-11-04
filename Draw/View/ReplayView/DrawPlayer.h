@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomSlider.h"
 #import "ShowDrawView.h"
+#import "ScreenCaptureView.h"
 
 @interface ReplayObject : NSObject
 {

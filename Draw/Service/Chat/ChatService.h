@@ -78,12 +78,23 @@
                 forward:(BOOL)forward
                   limit:(int)limit;
 
-- (void)sendTextMessage:(NSString *)text friendUserId:(NSString*)friendUserId;
-- (void)sendDrawMessage:(NSMutableArray *)drawActionList canvasSize:(CGSize)size friendUserId:(NSString*)friendUserId;
-- (void)sendImage:(UIImage *)image friendUserId:(NSString*)friendUserId;
+- (void)sendTextMessage:(NSString *)text
+           friendUserId:(NSString*)friendUserId
+                isGroup:(BOOL)isGroup;
+
+- (void)sendDrawMessage:(NSMutableArray *)drawActionList
+             canvasSize:(CGSize)size
+           friendUserId:(NSString*)friendUserId
+                isGroup:(BOOL)isGroup;
+
+- (void)sendImage:(UIImage *)image
+     friendUserId:(NSString*)friendUserId
+          isGroup:(BOOL)isGroup;
+
 - (void)sendAskLocationMessage:(double)latitude
                      longitude:(double)longitude
                   friendUserId:(NSString*)friendUserId;
+
 - (void)sendReplyLocationMessage:(double)latitude
                        longitude:(double)longitude
                     reqMessageId:(NSString *)reqMessageId
