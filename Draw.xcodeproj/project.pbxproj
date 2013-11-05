@@ -6592,6 +6592,18 @@
 		EA8500DD1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
 		EA8500DE1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
 		EA8500DF1807A0430000DE3E /* ShareUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8500DB1807A0430000DE3E /* ShareUIManager.m */; };
+		EA8CADE118288CAF003149FE /* GroupService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE018288CAF003149FE /* GroupService.m */; };
+		EA8CADE218288CAF003149FE /* GroupService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE018288CAF003149FE /* GroupService.m */; };
+		EA8CADE318288CAF003149FE /* GroupService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE018288CAF003149FE /* GroupService.m */; };
+		EA8CADE418288CAF003149FE /* GroupService.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE018288CAF003149FE /* GroupService.m */; };
+		EA8CADE818288D32003149FE /* DrawError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE718288D32003149FE /* DrawError.m */; };
+		EA8CADE918288D32003149FE /* DrawError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE718288D32003149FE /* DrawError.m */; };
+		EA8CADEA18288D32003149FE /* DrawError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE718288D32003149FE /* DrawError.m */; };
+		EA8CADEB18288D32003149FE /* DrawError.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADE718288D32003149FE /* DrawError.m */; };
+		EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADED1828A646003149FE /* GroupPermission.m */; };
+		EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADED1828A646003149FE /* GroupPermission.m */; };
+		EA8CADF01828A646003149FE /* GroupPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADED1828A646003149FE /* GroupPermission.m */; };
+		EA8CADF11828A646003149FE /* GroupPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADED1828A646003149FE /* GroupPermission.m */; };
 		EA8EF62017E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62117E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62217E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
@@ -8854,11 +8866,6 @@
 		CA745D311503B1B500600024 /* DrawAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawAppDelegate.h; sourceTree = "<group>"; };
 		CA745D321503B1B500600024 /* DrawAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawAppDelegate.m; sourceTree = "<group>"; };
 		CA745D351503B1B500600024 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		CA745D4A1503B1B500600024 /* DrawTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DrawTests-Info.plist"; sourceTree = "<group>"; };
-		CA745D4C1503B1B500600024 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTests-Prefix.pch"; sourceTree = "<group>"; };
-		CA745D4F1503B1B500600024 /* DrawTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawTests.h; sourceTree = "<group>"; };
-		CA745D511503B1B500600024 /* DrawTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawTests.m; sourceTree = "<group>"; };
 		CA76134317F57420007A251E /* HPointList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPointList.h; sourceTree = "<group>"; };
 		CA76134417F57420007A251E /* HPointList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HPointList.mm; sourceTree = "<group>"; };
 		CA766D5517A15EB600D60E3D /* CPMotionRecognizingWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMotionRecognizingWindow.h; sourceTree = "<group>"; };
@@ -9578,6 +9585,12 @@
 		EA72B4C2162028260022D82D /* UserLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationController.m; sourceTree = "<group>"; };
 		EA8500DA1807A0420000DE3E /* ShareUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareUIManager.h; sourceTree = "<group>"; };
 		EA8500DB1807A0430000DE3E /* ShareUIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareUIManager.m; sourceTree = "<group>"; };
+		EA8CADDF18288CAF003149FE /* GroupService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupService.h; sourceTree = "<group>"; };
+		EA8CADE018288CAF003149FE /* GroupService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupService.m; sourceTree = "<group>"; };
+		EA8CADE618288D32003149FE /* DrawError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawError.h; sourceTree = "<group>"; };
+		EA8CADE718288D32003149FE /* DrawError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawError.m; sourceTree = "<group>"; };
+		EA8CADEC1828A646003149FE /* GroupPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupPermission.h; sourceTree = "<group>"; };
+		EA8CADED1828A646003149FE /* GroupPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupPermission.m; sourceTree = "<group>"; };
 		EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_bottom_split@2x.png"; sourceTree = "<group>"; };
 		EA8EF60E17E55D3B003F1AF8 /* draw_home_opus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_opus@2x.png"; sourceTree = "<group>"; };
 		EA8EF60F17E55D3B003F1AF8 /* draw_home_shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_shop@2x.png"; sourceTree = "<group>"; };
@@ -9618,6 +9631,7 @@
 		EACAB8C7173B804E0059B1C7 /* default_config_DreamLockscreen.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config_DreamLockscreen.pb; sourceTree = "<group>"; };
 		EACAB8C8173B804E0059B1C7 /* default_config_DreamLockscreenFree_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_DreamLockscreenFree_version.txt; sourceTree = "<group>"; };
 		EACAB8C9173B804E0059B1C7 /* default_config_DreamLockscreenFree.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config_DreamLockscreenFree.pb; sourceTree = "<group>"; };
+		EACDA8491828C44A00C4F414 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EAD13B6617DDAF0700764FFB /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right@2x.png"; sourceTree = "<group>"; };
 		EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contest_prize_custom@2x.png"; sourceTree = "<group>"; };
 		EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_loading_empty@2x.png"; sourceTree = "<group>"; };
@@ -14392,7 +14406,6 @@
 			isa = PBXGroup;
 			children = (
 				CA745D281503B1B500600024 /* Draw */,
-				CA745D481503B1B500600024 /* DrawTests */,
 				CA745D211503B1B500600024 /* Frameworks */,
 				CA745D1F1503B1B500600024 /* Products */,
 			);
@@ -14452,6 +14465,7 @@
 				CA745D221503B1B500600024 /* UIKit.framework */,
 				CA745D241503B1B500600024 /* Foundation.framework */,
 				CA745D261503B1B500600024 /* CoreGraphics.framework */,
+				EACDA8491828C44A00C4F414 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -14459,6 +14473,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				EA8CADD618288C4D003149FE /* Group */,
 				A4B78823179E2E3C0008E21B /* Theme */,
 				EA411F441763050300DA72D0 /* AskPs */,
 				C2C18A6B1760A7B400DE933B /* Gallery */,
@@ -14500,26 +14515,6 @@
 				CA745D2B1503B1B500600024 /* InfoPlist.strings */,
 				CA745D2E1503B1B500600024 /* Draw-Prefix.pch */,
 				CA745D2F1503B1B500600024 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CA745D481503B1B500600024 /* DrawTests */ = {
-			isa = PBXGroup;
-			children = (
-				CA745D4F1503B1B500600024 /* DrawTests.h */,
-				CA745D511503B1B500600024 /* DrawTests.m */,
-				CA745D491503B1B500600024 /* Supporting Files */,
-			);
-			path = DrawTests;
-			sourceTree = "<group>";
-		};
-		CA745D491503B1B500600024 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CA745D4A1503B1B500600024 /* DrawTests-Info.plist */,
-				CA745D4B1503B1B500600024 /* InfoPlist.strings */,
-				CA745D4E1503B1B500600024 /* DrawTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -15618,6 +15613,7 @@
 		CAECE0291503B25500BC2404 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EA8CADE518288D32003149FE /* Error */,
 				A489C02017B5E44E003E5150 /* Guess */,
 				A4C8D566175EE027007ED7E4 /* Opus */,
 				CA16411E16D724B5001C615F /* GameItem */,
@@ -16349,6 +16345,58 @@
 				EA7100CB17D197DA00451A38 /* MLNavigationController.m */,
 			);
 			path = MLNavigationController;
+			sourceTree = "<group>";
+		};
+		EA8CADD618288C4D003149FE /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				EA8CADDB18288C6E003149FE /* Controller */,
+				EA8CADDC18288C6E003149FE /* Model */,
+				EA8CADDD18288C6E003149FE /* Service */,
+				EA8CADDE18288C6E003149FE /* View */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		EA8CADDB18288C6E003149FE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EA8CADDC18288C6E003149FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EA8CADEC1828A646003149FE /* GroupPermission.h */,
+				EA8CADED1828A646003149FE /* GroupPermission.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EA8CADDD18288C6E003149FE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EA8CADDF18288CAF003149FE /* GroupService.h */,
+				EA8CADE018288CAF003149FE /* GroupService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		EA8CADDE18288C6E003149FE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EA8CADE518288D32003149FE /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				EA8CADE618288D32003149FE /* DrawError.h */,
+				EA8CADE718288D32003149FE /* DrawError.m */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		EA8EF60C17E55D3B003F1AF8 /* Bottom */ = {
@@ -20911,6 +20959,9 @@
 				A4B1232818279CED00A0603F /* AudioPlayer.m in Sources */,
 				A4B1232E18279CED00A0603F /* AudioStreamer.m in Sources */,
 				A4B1233718279D4800A0603F /* UITextView+Extend.m in Sources */,
+				EA8CADE318288CAF003149FE /* GroupService.m in Sources */,
+				EA8CADEA18288D32003149FE /* DrawError.m in Sources */,
+				EA8CADF01828A646003149FE /* GroupPermission.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21675,6 +21726,9 @@
 				A4B1232718279CED00A0603F /* AudioPlayer.m in Sources */,
 				A4B1232D18279CED00A0603F /* AudioStreamer.m in Sources */,
 				A4B1233618279D4800A0603F /* UITextView+Extend.m in Sources */,
+				EA8CADE218288CAF003149FE /* GroupService.m in Sources */,
+				EA8CADE918288D32003149FE /* DrawError.m in Sources */,
+				EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22444,6 +22498,9 @@
 				A4B1232618279CED00A0603F /* AudioPlayer.m in Sources */,
 				A4B1232C18279CED00A0603F /* AudioStreamer.m in Sources */,
 				A4B1233518279D4800A0603F /* UITextView+Extend.m in Sources */,
+				EA8CADE118288CAF003149FE /* GroupService.m in Sources */,
+				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
+				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23158,6 +23215,9 @@
 				EA0C5549180BECEB008069C1 /* PainterController.m in Sources */,
 				EADC02581817CF8C0038B6A8 /* SearchPostController.m in Sources */,
 				CAEEC19D181A5DAC007FD75F /* ScreenCaptureView.m in Sources */,
+				EA8CADE418288CAF003149FE /* GroupService.m in Sources */,
+				EA8CADEB18288D32003149FE /* DrawError.m in Sources */,
+				EA8CADF11828A646003149FE /* GroupPermission.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23306,14 +23366,6 @@
 				CA745D351503B1B500600024 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		CA745D4B1503B1B500600024 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA745D4C1503B1B500600024 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		CAFEFAA116606E4800441D77 /* Language.strings */ = {

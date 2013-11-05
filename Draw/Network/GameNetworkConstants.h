@@ -484,11 +484,13 @@
 #define PRAR_START_OFFSET @"so"
 
 #define OPUS_ID_SEPERATOR @"$"
+#define ID_SEPERATOR @"$"
 
 //response parameters
 #define PARA_LOC @"loc"
 #define PARA_IMAGE @"img"
 #define PARA_TITLE @"tt"
+#define PARA_ROLE @"role"
 #define PARA_START_DATE @"sd"
 #define PARA_END_DATE @"ed"
 #define PARA_CAN_SUBMIT_COUNT @"csc"
@@ -655,6 +657,10 @@
 #define METHOD_CREATE_BBS_ACTION @"cba"
 
 
+//group
+
+#define PARA_GROUPID @"gid"
+
 // learn draw
 #define METHOD_GET_LEARNDRAW_LIST @"gldl"
 #define METHOD_GET_USER_LEARNDRAW_LIST @"guldl"
@@ -665,6 +671,24 @@
 
 #define METHOD_MANAGE_USER_INFO @"manageUserInfo"
 #define METHOD_SET_USER_PASSWORD @"setUserPassword"
+
+
+//group
+
+#define METHOD_CREATE_GROUP @"createGroup"
+#define METHOD_GET_GROUP @"getGroup"
+#define METHOD_GET_NEW_GROUPS @"getNewGroups"
+
+#define METHOD_JOIN_GROUP @"joinGroup"
+#define METHOD_ACCEPT_JOIN_REQUEST @"acceptJoinGroup"
+#define METHOD_REJECT_JOIN_REQUEST @"rejectJoinGroup"
+
+#define METHOD_EDIT_GROUP @"editGroup"
+#define METHOD_INVITE_GROUPUSER @"inviteGroupUser"
+#define METHOD_GET_GROUP_MEMBERS @"getGroupMembers"
+
+#define METHOD_EXPEL_GROUPUSER @"expelGroupUser"
+#define METHOD_UPDATE_GROUPUSER_ROLE @"updateUserRole"
 
 
 #define REGISTER_TYPE_EMAIL     1
@@ -742,6 +766,22 @@
 #define ERROR_OPUS_ID_NULL              320006
 
 #define ERROR_USER_COMMENT_OWN_OPUS_CONTEST    110009
+
+
+//group Error Code
+#define ERROR_GROUP_DUPLICATE_NAME  200001
+#define ERROR_PARAMETER_GROUPID_EMPTY  200002
+#define ERROR_PARAMETER_GROUPID_NULL  200003
+#define ERROR_PARAMETER_FROM_EMPTY    200004
+#define ERROR_PARAMETER_FROM_NULL    200005
+#define ERROR_GROUP_MULTIJOINED  200006
+#define ERROR_GROUP_MULTIREQUESTED  200007
+#define ERROR_GROUP_PERMISSION  200008
+#define ERROR_GROUP_FULL  200009
+#define ERROR_GROUP_REJECTED  200010
+
+
+
 
 
 #define REJECT_ASK_LOCATION             1

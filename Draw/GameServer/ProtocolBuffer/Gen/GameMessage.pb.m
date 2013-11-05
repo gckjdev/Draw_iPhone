@@ -17698,6 +17698,9 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) NSMutableArray* mutableGuessRankListList;
 @property (retain) PBGuessContest* guessContest;
 @property (retain) NSMutableArray* mutableGuessContestListList;
+@property (retain) PBGroup* group;
+@property (retain) NSMutableArray* mutableGroupListList;
+@property (retain) NSMutableArray* mutableGroupMemberListList;
 @end
 
 @implementation DataQueryResponse
@@ -17802,6 +17805,15 @@ static GameMessage* defaultGameMessageInstance = nil;
 }
 @synthesize guessContest;
 @synthesize mutableGuessContestListList;
+- (BOOL) hasGroup {
+  return !!hasGroup_;
+}
+- (void) setHasGroup:(BOOL) value {
+  hasGroup_ = !!value;
+}
+@synthesize group;
+@synthesize mutableGroupListList;
+@synthesize mutableGroupMemberListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17827,6 +17839,9 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.mutableGuessRankListList = nil;
   self.guessContest = nil;
   self.mutableGuessContestListList = nil;
+  self.group = nil;
+  self.mutableGroupListList = nil;
+  self.mutableGroupMemberListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -17843,6 +17858,7 @@ static GameMessage* defaultGameMessageInstance = nil;
     self.songs = [PBSongList defaultInstance];
     self.guessRank = [PBGuessRank defaultInstance];
     self.guessContest = [PBGuessContest defaultInstance];
+    self.group = [PBGroup defaultInstance];
   }
   return self;
 }
@@ -17970,6 +17986,20 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableGuessContestListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) groupListList {
+  return mutableGroupListList;
+}
+- (PBGroup*) groupListAtIndex:(int32_t) index {
+  id value = [mutableGroupListList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) groupMemberListList {
+  return mutableGroupMemberListList;
+}
+- (PBGroupUsersByTitle*) groupMemberListAtIndex:(int32_t) index {
+  id value = [mutableGroupMemberListList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -18089,6 +18119,21 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  if (self.hasGroup) {
+    if (!self.group.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGroup* element in self.groupListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBGroupUsersByTitle* element in self.groupMemberListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18175,6 +18220,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGuessContest* element in self.guessContestListList) {
     [output writeMessage:123 value:element];
+  }
+  if (self.hasGroup) {
+    [output writeMessage:150 value:self.group];
+  }
+  for (PBGroup* element in self.groupListList) {
+    [output writeMessage:151 value:element];
+  }
+  for (PBGroupUsersByTitle* element in self.groupMemberListList) {
+    [output writeMessage:152 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18273,6 +18327,15 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGuessContest* element in self.guessContestListList) {
     size += computeMessageSize(123, element);
+  }
+  if (self.hasGroup) {
+    size += computeMessageSize(150, self.group);
+  }
+  for (PBGroup* element in self.groupListList) {
+    size += computeMessageSize(151, element);
+  }
+  for (PBGroupUsersByTitle* element in self.groupMemberListList) {
+    size += computeMessageSize(152, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18481,6 +18544,21 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableGuessContestListList addObjectsFromArray:other.mutableGuessContestListList];
   }
+  if (other.hasGroup) {
+    [self mergeGroup:other.group];
+  }
+  if (other.mutableGroupListList.count > 0) {
+    if (result.mutableGroupListList == nil) {
+      result.mutableGroupListList = [NSMutableArray array];
+    }
+    [result.mutableGroupListList addObjectsFromArray:other.mutableGroupListList];
+  }
+  if (other.mutableGroupMemberListList.count > 0) {
+    if (result.mutableGroupMemberListList == nil) {
+      result.mutableGroupMemberListList = [NSMutableArray array];
+    }
+    [result.mutableGroupMemberListList addObjectsFromArray:other.mutableGroupMemberListList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18682,6 +18760,27 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBGuessContest_Builder* subBuilder = [PBGuessContest builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGuessContestList:[subBuilder buildPartial]];
+        break;
+      }
+      case 1202: {
+        PBGroup_Builder* subBuilder = [PBGroup builder];
+        if (self.hasGroup) {
+          [subBuilder mergeFrom:self.group];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setGroup:[subBuilder buildPartial]];
+        break;
+      }
+      case 1210: {
+        PBGroup_Builder* subBuilder = [PBGroup builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addGroupList:[subBuilder buildPartial]];
+        break;
+      }
+      case 1218: {
+        PBGroupUsersByTitle_Builder* subBuilder = [PBGroupUsersByTitle builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addGroupMemberList:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19455,6 +19554,94 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableGuessContestListList = [NSMutableArray array];
   }
   [result.mutableGuessContestListList addObject:value];
+  return self;
+}
+- (BOOL) hasGroup {
+  return result.hasGroup;
+}
+- (PBGroup*) group {
+  return result.group;
+}
+- (DataQueryResponse_Builder*) setGroup:(PBGroup*) value {
+  result.hasGroup = YES;
+  result.group = value;
+  return self;
+}
+- (DataQueryResponse_Builder*) setGroupBuilder:(PBGroup_Builder*) builderForValue {
+  return [self setGroup:[builderForValue build]];
+}
+- (DataQueryResponse_Builder*) mergeGroup:(PBGroup*) value {
+  if (result.hasGroup &&
+      result.group != [PBGroup defaultInstance]) {
+    result.group =
+      [[[PBGroup builderWithPrototype:result.group] mergeFrom:value] buildPartial];
+  } else {
+    result.group = value;
+  }
+  result.hasGroup = YES;
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGroup {
+  result.hasGroup = NO;
+  result.group = [PBGroup defaultInstance];
+  return self;
+}
+- (NSArray*) groupListList {
+  if (result.mutableGroupListList == nil) { return [NSArray array]; }
+  return result.mutableGroupListList;
+}
+- (PBGroup*) groupListAtIndex:(int32_t) index {
+  return [result groupListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceGroupListAtIndex:(int32_t) index with:(PBGroup*) value {
+  [result.mutableGroupListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllGroupList:(NSArray*) values {
+  if (result.mutableGroupListList == nil) {
+    result.mutableGroupListList = [NSMutableArray array];
+  }
+  [result.mutableGroupListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGroupListList {
+  result.mutableGroupListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addGroupList:(PBGroup*) value {
+  if (result.mutableGroupListList == nil) {
+    result.mutableGroupListList = [NSMutableArray array];
+  }
+  [result.mutableGroupListList addObject:value];
+  return self;
+}
+- (NSArray*) groupMemberListList {
+  if (result.mutableGroupMemberListList == nil) { return [NSArray array]; }
+  return result.mutableGroupMemberListList;
+}
+- (PBGroupUsersByTitle*) groupMemberListAtIndex:(int32_t) index {
+  return [result groupMemberListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceGroupMemberListAtIndex:(int32_t) index with:(PBGroupUsersByTitle*) value {
+  [result.mutableGroupMemberListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllGroupMemberList:(NSArray*) values {
+  if (result.mutableGroupMemberListList == nil) {
+    result.mutableGroupMemberListList = [NSMutableArray array];
+  }
+  [result.mutableGroupMemberListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearGroupMemberListList {
+  result.mutableGroupMemberListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addGroupMemberList:(PBGroupUsersByTitle*) value {
+  if (result.mutableGroupMemberListList == nil) {
+    result.mutableGroupMemberListList = [NSMutableArray array];
+  }
+  [result.mutableGroupMemberListList addObject:value];
   return self;
 }
 @end

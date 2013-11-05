@@ -536,7 +536,9 @@ message PBGroup
     
     optional PBGroupUser creator = 40;          // 家族创建者
     repeated PBGroupUser admins = 41;           // 管理员列表
+
     repeated PBGroupUsersByTitle users = 42;    // 成员列表
+
     repeated PBGroupUser guests = 43;           // 嘉宾列表
 
 }
