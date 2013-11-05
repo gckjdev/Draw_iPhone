@@ -690,13 +690,23 @@
     
 }
 
+- (BOOL)hasWord
+{
+    return [_candidates length] > 0;
+}
+
 - (void)bomb:(int)count{
+    
+    if ([_candidates length] == 0){
+        PPDebug(@"Bomb but candidate string length is 0 or nil");
+        return;
+    }
     
     int nonBombCharCount = [self nonBombCharCountInCandidates];
     int canBombCharCount = nonBombCharCount - [_answer length];
     
     if (canBombCharCount <= 0) {
-        PPDebug(@"You cannot bomb any more!");
+        PPDebug(@"canBombCharCount is 0, You cannot bomb any more!");
     }
     
     if (count > canBombCharCount) {

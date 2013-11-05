@@ -537,7 +537,9 @@
 - (void)clickAvatar:(PPTableViewController *)viewController didSelectBlock:(void (^)(UIImage *))aBlock
 {
     NSURL *url = [NSURL URLWithString:[[self getUser] avatar]];
-    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:viewController];
+    [[ImagePlayer defaultPlayer] playWithUrl:url
+                         displayActionButton:NO
+                            onViewController:viewController];
 }
 
 #pragma mark - mwPhotoBrowserDelegate
