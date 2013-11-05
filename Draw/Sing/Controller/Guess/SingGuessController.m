@@ -8,18 +8,17 @@
 
 #import "SingGuessController.h"
 #import "UIButtonExt.h"
-#import "VoiceChanger.h"
+#import "AudioPlayer.h"
+#import "FeedService.h"
 
 @interface SingGuessController ()
-
-@property (retain, nonatomic) VoiceChanger *player;
+@property (retain, nonatomic) AudioPlayer *player;
 
 @end
 
 @implementation SingGuessController
 
 - (void)dealloc {
-//    [_opusButton release];
     [_player release];
     [super dealloc];
 }
@@ -30,15 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    NSURL *url = [NSURL URLWithString:self.opus.pbOpus.image];
-    NSURL *thumbUrl = [NSURL URLWithString:self.opus.pbOpus.thumbImage];
-    [self.opusButton setImageUrl:url thumbImageUrl:thumbUrl placeholderImage:nil];
-    
-    self.player = [[[VoiceChanger alloc] init] autorelease];
-    
-    [[OpusService defaultService] getOpusDataFile:self.opus progressDelegate:self delegate:self];
-    
-    [self showActivityWithText:@"kLoadingSingData"];
+
 }
 
 - (void)viewDidUnload {
@@ -55,28 +46,14 @@
 
 - (IBAction)clickOpusButton:(id)sender {
     
-    if ([_player isPlaying]) {
-        [_player pausePlaying];
-    }else{
-        [_player startPlaying];
-    }
 }
 
 - (IBAction)clickBack:(id)sender{
-    [_player stopPlaying];
+    [_player stop];
     [super clickBack:sender];
 }
 
-- (void)didGetOpusFile:(int)resultCode
-                  path:(NSString *)path
-                  opus:(Opus *)opus{
-    
-    [self hideActivity];
 
-    NSURL *url = [NSURL fileURLWithPath:path];
-    [_player prepareToPlay:url];
-    [_player startPlaying];
-}
 
 
 @end

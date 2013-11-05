@@ -55,7 +55,7 @@
         case PBVoiceTypeVoiceTypeMale:
             [builder setDuration:1];
             [builder setPitch:0.8];
-            [builder setFormant:0.5];
+            [builder setFormant:1];
             break;
             
         case PBVoiceTypeVoiceTypeChild:
@@ -104,12 +104,32 @@
     NSString* path = [NSString stringWithFormat:@"%@/%@.%@", [[self class] localDataDir], [self opusKey], extension];
     NSString* finalPath = [FileUtil filePathInAppDocument:path];
     
-    [self setImage:finalPath];
+    [self setLocalImageUrl:finalPath];
 }
+
+
+
+
 
 - (NSString*)dataType
 {
-    return @"m4a";
+    return SING_FILE_EXTENSION;
+}
+
+- (NSData *)uploadData{
+    
+    PBOpus_Builder *builder = [PBOpus builderWithPrototype:self.pbOpus];
+    [builder clearImage];
+    [builder clearLocalDataUrl];
+    [builder clearLocalImageUrl];
+    [builder clearLocalThumbImageUrl];
+    
+    PBSingOpus_Builder *singBuilder = [PBSingOpus builderWithPrototype:builder.sing];
+    [singBuilder clearLocalNativeDataUrl];
+    PBSingOpus *sing = [singBuilder build];
+    [builder setSing:sing];
+    
+    return [[builder build] data];
 }
 
 - (void)replayInController:(UIViewController*)controller

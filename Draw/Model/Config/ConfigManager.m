@@ -1203,4 +1203,8 @@
     return [MobClickUtils getStringValueByKey:@"SING_TAG_LIST" defaultValue:@"唱歌$搞笑$故事$模仿$方言"];
 }
 
++ (int)getRecordLimitTime{
+    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_TIME" defaultValue:300];
+}
+
 @end

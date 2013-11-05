@@ -21,7 +21,16 @@ AUTO_CREATE_VIEW_BY_XIB(VoiceTypeSelectView);
     v.backgroundColor = [UIColor whiteColor];
     
     [v enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
-        SET_BUTTON_ROUND_STYLE_YELLOW(button);
+
+        [ShareImageManager setButtonStyle:button
+                         normalTitleColor:COLOR_COFFEE
+                       selectedTitleColor:COLOR_WHITE
+                    highlightedTitleColor:COLOR_WHITE
+                                     font:FONT_BUTTON
+                              normalColor:COLOR_YELLOW
+                            selectedColor:COLOR_ORANGE
+                         highlightedColor:COLOR_ORANGE
+                                    round:YES];
         
         if (button.tag == PBVoiceTypeVoiceTypeOrigin) {
             [button setTitle:NSLS(@"kVoiceTypeOrigin") forState:UIControlStateNormal];

@@ -15,14 +15,24 @@
 #import "TimeUtils.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIImageView+WebCache.h"
-//#import "DrawUserInfoView.h"
 #import "UIViewUtils.h"
 #import "UserService.h"
+//#import "AudioStreamer.h"
+#import "UITextView+Extend.h"
+
+
 
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
 #define DESC_WIDTH (ISIPAD ? 481 : 220)
 #define CELL_HEIGHT_BASE (ISIPAD ? 520 : 252)
 #define DESC_HEIGHT_SPACE (ISIPAD ? 18 : 8)
+
+@interface DrawInfoCell()
+
+//@property (retain, nonatomic) AudioStreamer *player;
+//@property (retain, nonatomic) NSTimer *timer;
+
+@end
 
 @implementation DrawInfoCell
 @synthesize drawImage;
@@ -32,13 +42,49 @@
 @synthesize feed = _feed;
 @synthesize delegate = _delegate;
 
-+ (id)createCell:(id<DrawInfoCellDelegate>)delegate
+
+- (void)dealloc {
+    PPDebug(@"%@ dealloc",self);
+    _feed.largeImage = nil;
+    _feed.drawImage = nil;
+    PPRelease(drawImage);
+    PPRelease(timeLabel);
+    PPRelease(loadingActivity);
+    PPRelease(_feed);
+    PPRelease(_drawToButton);
+    PPRelease(_targetUser);
+    PPRelease(_opusDesc);
+    [_slider release];
+    [_audioButton release];
+    [_opusDescLabel release];
+    [super dealloc];
+}
+
++ (id)createCell:(id<DrawInfoCellDelegate>)delegate feed:(DrawFeed *)feed
 {
     NSString* cellId = [self getCellIdentifier];
-    DrawInfoCell *cell = [DrawInfoCell createViewWithXibIdentifier:cellId];
+
+    int index = 0;
+    if (feed.categoryType == PBOpusCategoryTypeSingCategory) {
+        index = 1;
+    }
+
+    DrawInfoCell *cell = [DrawInfoCell createViewWithXibIdentifier:cellId ofViewIndex:index];
     cell.delegate = delegate;
     return cell;
 }
+
++ (id)createCellWithFullScreen:(id<DrawInfoCellDelegate>)delegate{
+    
+    NSString* cellId = [self getCellIdentifier];
+    
+    DrawInfoCell *cell = [DrawInfoCell createViewWithXibIdentifier:cellId ofViewIndex:2];
+    cell.delegate = delegate;
+    
+    return cell;
+}
+
+
 
 + (NSString*)getCellIdentifier
 {
@@ -55,16 +101,45 @@
     return size;
 }
 
-+ (CGFloat)cellHeightWithDesc:(NSString *)desc
++ (CGFloat)cellHeightWithFeed:(DrawFeed *)feed
 {
-    if ([desc length] == 0) {
-        return CELL_HEIGHT_BASE;
+    NSString *desc = feed.desc;
+    if (feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+        if ([desc length] == 0) {
+            return CELL_HEIGHT_BASE;
+        }else{
+            CGSize size = [DrawInfoCell labelSizeWithText:desc];
+            return CELL_HEIGHT_BASE + size.height;
+        }
+    }else if (feed.categoryType == PBOpusCategoryTypeSingCategory){
+        
+        return ISIPAD ? 606 :278;
     }else{
-        CGSize size = [DrawInfoCell labelSizeWithText:desc];
-        return CELL_HEIGHT_BASE + size.height;
+        
+        return 0;
     }
 }
 
++ (CGFloat)cellHeightWithFullScreen{
+    
+    return ISIPAD ? 858 : 366;
+}
+
+
+- (void)configurePlayerButton
+{
+    if (self.audioButton == nil) {
+        // use initWithFrame to drawRect instead of initWithCoder from xib
+        CGRect frame = ISIPAD ? CGRectMake(50, 763, 69, 69) :CGRectMake(7, 328, 32, 32);
+        self.audioButton = [[[AudioButton alloc] initWithFrame:frame] autorelease];
+        [self.contentView addSubview:self.audioButton];
+        
+        self.slider.bgColor = COLOR255(0, 0, 0, 0.45*255);
+        self.slider.loaderColor = COLOR255(28, 243, 230, 0.8*255);
+        self.slider.pointColor = COLOR_YELLOW;
+        self.slider.pointImage = [[ShareImageManager defaultManager] playProgressPoint];
+    }
+}
 
 - (void)initTargetUser:(NSString *)userId nickName:(NSString *)nickName
 {
@@ -114,16 +189,20 @@
 }
 
 
+
 - (void)updateDesc:(NSString *)desc
 {
     [self.opusDesc setText:desc];
     self.opusDesc.textColor = COLOR_BROWN;
+    
+    self.opusDescLabel.text = desc;
+    
+    [ShareImageManager setFXLabelStyle:self.opusDescLabel];
 }
 
 - (void)updateDrawImageView:(UIImage *)image
 {
     if (image) {
-//        [self.drawImage scaleWithSize:image.size anchorType:AnchorTypeCenter constType:ConstTypeHeight];
         [self.drawImage setImage:image];
     }
 }
@@ -136,8 +215,8 @@
 - (void)updateShowView:(DrawFeed *)feed
 {
     if ([feed.drawImageUrl length] != 0){
-        PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
-        [self addMaskView];
+//        PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
+//        [self addMaskView];
         
         __block UIImage *placeholderImage = nil;
         
@@ -148,27 +227,12 @@
                 placeholderImage = image;
             }
         }];
-        
-        
-        
-        
 
         if (self.feed.largeImage == nil) {
             placeholderImage = [[ShareImageManager defaultManager] unloadBg];
         }else{
             placeholderImage = self.feed.largeImage;
         }
-
-        
-//        [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage success:^(UIImage *image, BOOL cached) {
-//            
-//            self.feed.largeImage = image;
-//            [self updateDrawImageView:image];
-//            if (![self isSmallImageUrl:feed.drawImageUrl]) {
-//                [self loadImageFinish];
-//            }
-//
-//        } failure:NULL];
         
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             
@@ -185,15 +249,6 @@
 
 
 #define MASKVIEW_TAG 20130130
-- (void)addMaskView
-{
-    if (mask == nil) {
-        mask = [[UIControl alloc] initWithFrame:self.drawImage.frame];
-        [mask setBackgroundColor:[UIColor clearColor]];
-        [mask addTarget:self action:@selector(clickDrawImageMask:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:mask];
-    }
-}
 
 - (void)changeColor:(UIControl *)control
 {
@@ -207,7 +262,7 @@
     control.alpha = 1;
 }
 
-- (void)clickDrawImageMask:(UIControl *)control
+- (IBAction)clickDrawImageMask:(UIControl *)control
 {
     [self removeColor:control];
     if (_delegate && [_delegate respondsToSelector:@selector(didClickDrawImageMaskView)]) {
@@ -238,7 +293,6 @@
 {    
     [self setFeed:feed];
     [self updateTime:self.feed];
-    [self updateDesc:feed.opusDesc];
     [self.loadingActivity setCenter:self.drawImage.center];
     [self updateShowView:feed];
     [self updateTime:feed];
@@ -253,17 +307,111 @@
 }
 
 
-- (void)dealloc {
-    PPDebug(@"%@ dealloc",self);
-    _feed.largeImage = nil;
-    _feed.drawImage = nil;
-    PPRelease(drawImage);
-    PPRelease(timeLabel);
-    PPRelease(loadingActivity);
-    PPRelease(_feed);
-    PPRelease(_drawToButton);
-    PPRelease(_targetUser);
-    PPRelease(_opusDesc);
-    [super dealloc];
+- (IBAction)clickFullScreenButton:(id)sender {
+    
+    
+    if ([_delegate respondsToSelector:@selector(didClickFullScreenButton)]) {
+        [_delegate didClickFullScreenButton];
+    }
 }
+
+- (IBAction)clickNonFullScreenButton:(id)sender {
+    
+    
+    if ([_delegate respondsToSelector:@selector(didClickNonFullScreenButton)]) {
+        [_delegate didClickNonFullScreenButton];
+    }
+}
+
+//- (void)play{
+//    
+//    if (self.player == nil) {
+//        self.player = [[[AudioStreamer alloc] initWithURL:[NSURL URLWithString:self.feed.drawDataUrl]] autorelease];
+//        
+//        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1
+//                                                      target:self
+//                                                    selector:@selector(updateProgress)
+//                                                    userInfo:nil
+//                                                     repeats:YES];
+//        
+//        // register the streamer on notification
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(playbackStateChanged:)
+//                                                     name:ASStatusChangedNotification
+//                                                   object:_player];
+//    }
+//    
+//    if (_player.isPlaying) {
+//        [self.player pause];
+//    }else{
+//        [self.player start];
+//    }
+//}
+//
+//- (void)stop
+//{
+//    [self.audioButton setProgress:0];
+//    [self.audioButton stopSpin];
+//    
+//    self.audioButton.image = [UIImage imageNamed:playImage];
+//    self.audioButton = nil; // 避免播放器的闪烁问题
+//    [self.audioButton release];
+//    
+//    // release streamer
+//	if (_player)
+//	{
+//		[_player stop];
+//		[_player release];
+//		_player = nil;
+//        
+//        // remove notification observer for streamer
+//		[[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                        name:ASStatusChangedNotification
+//                                                      object:_player];
+//        [_timer invalidate];
+//        [_timer release];
+//        _timer = nil;
+//	}
+//}
+//
+//
+///*
+// *  observe the notification listener when loading an audio
+// */
+//- (void)playbackStateChanged:(NSNotification *)notification
+//{
+//	if ([_player isWaiting])
+//	{
+//        self.audioButton.image = [UIImage imageNamed:stopImage];
+//        [self.audioButton startSpin];
+//    } else if ([_player isIdle]) {
+//        self.audioButton.image = [UIImage imageNamed:playImage];
+//		[self stop];
+//	} else if ([_player isPaused]) {
+//        self.audioButton.image = [UIImage imageNamed:playImage];
+//        [self.audioButton stopSpin];
+//        [self.audioButton setColourR:0.0 G:0.0 B:0.0 A:0.0];
+//    } else if ([_player isPlaying]) {
+//        self.audioButton.image = [UIImage imageNamed:stopImage];
+//        [self.audioButton stopSpin];
+//	} else {
+//        
+//    }
+//    
+//    [self.audioButton setNeedsLayout];
+//    [self.audioButton setNeedsDisplay];
+//}
+//
+//
+//
+//- (void)updateProgress
+//{
+//    NSLog(@"progress: %f, duration: %f", _player.progress, _player.duration);
+//    if (_player.progress <= _player.duration ) {
+//        [self.slider setValue:_player.progress/_player.duration];
+//    } else {
+//        [self.slider setValue:0];
+//    }
+//}
+
 @end

@@ -17,6 +17,7 @@
 #import "VoiceRecorder.h"
 #import "VoiceChanger.h"
 #import "VoiceProcessor.h"
+#import "FXLabel.h"
 
 @interface SingController : PPViewController <ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
 
@@ -24,12 +25,21 @@
 @property (retain, nonatomic) IBOutlet UILabel *timeLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *playImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *pauseImageView;
-@property (retain, nonatomic) IBOutlet UIButton *rerecordButton;
-@property (retain, nonatomic) IBOutlet UIButton *saveButton;
+
 @property (retain, nonatomic) IBOutlet UITextView *lyricTextView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
-@property (retain, nonatomic) IBOutlet UILabel *opusDescLabel;
+@property (retain, nonatomic) IBOutlet FXLabel *opusDescLabel;
+@property (retain, nonatomic) IBOutlet UIButton *imageButton;
+
+@property (retain, nonatomic) IBOutlet UIButton *saveButton;
+@property (retain, nonatomic) IBOutlet UIButton *submitButton;
+
+@property (retain, nonatomic) IBOutlet UIButton *voiceButton;
+@property (retain, nonatomic) IBOutlet UIButton *rerecordButton;
+@property (retain, nonatomic) IBOutlet UIButton *searchSongButton;
+@property (retain, nonatomic) IBOutlet UIButton *descButton;
+@property (retain, nonatomic) IBOutlet UIButton *reviewButton;
 
 //// if select a song, load with this.
 //- (id)initWithSong:(PBSong *)song;

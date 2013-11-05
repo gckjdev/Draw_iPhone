@@ -8,7 +8,7 @@
 
 #import "SingHomeController.h"
 //#import "SongSelectController.h"
-#import "SingOpusDetailController.h"
+//#import "SingOpusDetailController.h"
 #import "SingGuessController.h"
 #import "OpusManageController.h"
 #import "UserDetailViewController.h"
@@ -19,6 +19,9 @@
 #import "BBSBoardController.h"
 #import "StoreController.h"
 #import "SingController.h"
+#import "HotController.h"
+#import "MyFeedController.h"
+#import "AnalyticsManager.h"
 
 @interface SingHomeController ()
 
@@ -66,9 +69,6 @@
             
         case HomeMenuTypeGuessSing: {
             PPDebug(@"HomeMenuTypeGuessSing");
-            SingOpusDetailController *vc =  [[[SingOpusDetailController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
-            
         }
             break;
             
@@ -78,11 +78,9 @@
             break;
 
         case HomeMenuTypeSingTop: {
-//            PPDebug(@"HomeMenuTypeSingTop");
-//            Opus *opus = [Opus opusWithPBOpus:[OpusManager createTestOpus]];
-//            SingGuessController *vc = [[[SingGuessController alloc] initWithOpus:opus] autorelease];
-//            
-//            [self.navigationController pushViewController:vc animated:YES];
+            
+            HotController *vc = [[[HotController alloc] init] autorelease];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         
@@ -93,9 +91,9 @@
             break;
 
         case HomeMenuTypeSingBBS:{
-//            BBSBoardController *bbs = [[BBSBoardController alloc] init];
-//            [self.navigationController pushViewController:bbs animated:YES];
-//            [bbs release];
+            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+            [self.navigationController pushViewController:bbs animated:YES];
+            [bbs release];
         }
             break;
             
@@ -116,7 +114,10 @@
     switch (type) {
         case HomeMenuTypeSingTimeline:{
             PPDebug(@"HomeMenuTypeSingTimeline");
-
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
+            
+            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
+            [[StatisticManager defaultManager] setTimelineOpusCount:0];
         }
             break;
             
@@ -147,17 +148,21 @@
         }
             break;
             
+        case HomeMenuTypeSingFriend:{
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
+            
+            FriendController *mfc = [[FriendController alloc] init];
+            if ([[StatisticManager defaultManager] fanCount] > 0) {
+                [mfc setDefaultTabIndex:FriendTabIndexFan];
+            }
+            [self.navigationController pushViewController:mfc animated:YES];
+            [mfc release];
+        }
+            break;
+            
         default:
             break;
     }
-}
-
-- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
-{
-    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
-    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-    [self.navigationController pushViewController:us animated:YES];
-    [us release];
 }
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickFriendButton:(UIButton *)button

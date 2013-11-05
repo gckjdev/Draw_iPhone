@@ -211,10 +211,10 @@
     
     [self updateAnimation];
     
-    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
-        [self updateBGImageView];
-    }];
-    [self updateBGImageView];
+//    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
+//        [self updateBGImageView];
+//    }];
+//    [self updateBGImageView];
     
     [[GuessService defaultService] getTodayGuessContestInfoWithDelegate:self];
 }
@@ -316,11 +316,6 @@
         [self.homeHeaderPanel updateView];
     }];
     
-    [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
-        PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
-        [self.homeMainMenuPanel updateView];        
-    }];
-    
     [self registerNotificationWithName:NOTIFCATION_CONTEST_DATA_CHANGE usingBlock:^(NSNotification *note) {
         PPDebug(@"recv NOTIFCATION_CONTEST_DATA_CHANGE, update header view panel");
         [self updateAllBadge];
@@ -334,33 +329,32 @@
     [[StatisticManager defaultManager] setRecoveryCount:count];
 }
 
-#define HOME_BG_IMAGE_VIEW_TAG 123687
-
-- (void)updateBGImageView
-{
-    PPDebug(@"<update bg image view>");
-    UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
-    if (homeImage) {
-        [self.view setBackgroundColor:[UIColor clearColor]];
-        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
-        [imageView setImage:homeImage];
-        [self.view insertSubview:imageView atIndex:0];
-    }else{
-//        [self.view setBackgroundColor:OPAQUE_COLOR(0, 179, 118)];
-        [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
-        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
-        [imageView removeFromSuperview];        
-    }
-    [(DrawHomeHeaderPanel *)self.homeHeaderPanel updateBG];
-}
-
-- (void)clearBGImageView
-{
-    [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
-    UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
-    [imageView setImage:nil];
-    [imageView removeFromSuperview];    
-}
+//#define HOME_BG_IMAGE_VIEW_TAG 123687
+//
+//- (void)updateBGImageView
+//{
+//    PPDebug(@"<update bg image view>");
+//    UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
+//    if (homeImage) {
+//        [self.view setBackgroundColor:[UIColor clearColor]];
+//        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+//        [imageView setImage:homeImage];
+//        [self.view insertSubview:imageView atIndex:0];
+//    }else{
+//        [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
+//        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+//        [imageView removeFromSuperview];
+//    }
+//    [(DrawHomeHeaderPanel *)self.homeHeaderPanel updateBG];
+//}
+//
+//- (void)clearBGImageView
+//{
+//    [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
+//    UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+//    [imageView setImage:nil];
+//    [imageView removeFromSuperview];
+//}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -635,11 +629,6 @@
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_DRAW];
 
             [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:self startController:self targetUid:nil];
-
-//            SelectHotWordController *sc = [[SelectHotWordController alloc] init];
-//            [self.navigationController pushViewController:sc animated:YES];
-//            sc.superController = self;
-//            [sc release];
         }
             break;
         case HomeMenuTypeDrawGuess:
@@ -913,63 +902,62 @@
     [VersionUpdateView showInView:self.view];
 }
 
-- (void)gotoMyDetail
-{
-    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-    [self.navigationController pushViewController:us animated:YES];
-    [us release];
-}
+//- (void)gotoMyDetail
+//{
+//    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+//    [self.navigationController pushViewController:us animated:YES];
+//    [us release];
+//}
 
 
-- (void)askShake
-{
-    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
-                                                       message:NSLS(@"kTryShakeXiaoji")
-                                                         style:CommonDialogStyleDoubleButtonWithCross];
-    
-    [dialog.oKButton setTitle:NSLS(@"kTryTakeNumber") forState:UIControlStateNormal];
-    [dialog.cancelButton setTitle:NSLS(@"kViewMyProfile") forState:UIControlStateNormal];
-    
-    [dialog setClickOkBlock:^(id infoView){
-        [[UserService defaultService] showXiaojiNumberView:self.view];
-    }];
-    
-    [dialog setClickCancelBlock:^(id infoView){
-        [self gotoMyDetail];
-    }];
-    
-    [dialog showInView:self.view];
-}
+//- (void)askShake
+//{
+//    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+//                                                       message:NSLS(@"kTryShakeXiaoji")
+//                                                         style:CommonDialogStyleDoubleButtonWithCross];
+//    
+//    [dialog.oKButton setTitle:NSLS(@"kTryTakeNumber") forState:UIControlStateNormal];
+//    [dialog.cancelButton setTitle:NSLS(@"kViewMyProfile") forState:UIControlStateNormal];
+//    
+//    [dialog setClickOkBlock:^(id infoView){
+//        [[UserService defaultService] showXiaojiNumberView:self.view];
+//    }];
+//    
+//    [dialog setClickCancelBlock:^(id infoView){
+//        [self gotoMyDetail];
+//    }];
+//    
+//    [dialog showInView:self.view];
+//}
 
+//
+//- (void)clickAvatarHandler
+//{
+//    if ([self toRegister]){
+//        return;
+//    }
+//    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+//        [self askShake];
+//        return;
+//    }
+//    
+//    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+//    [self.navigationController pushViewController:us animated:YES];
+//    [us release];
+//}
 
-- (void)clickAvatarHandler
-{
-    if ([self toRegister]){
-        return;
-    }
-    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
-        [self askShake];
-        return;
-    }
-    
-    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
-    [self.navigationController pushViewController:us animated:YES];
-    [us release];
+//- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+//       didClickAvatarView:(AvatarView *)avatarView
+//{
+//
+//    [self clickAvatarHandler];
+//}
 
-}
-
-- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
-       didClickAvatarView:(AvatarView *)avatarView
-{
-
-    [self clickAvatarHandler];
-}
-
-- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
-{
-    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
-    [self clickAvatarHandler];
-}
+//- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickAvatarButton:(UIButton *)button
+//{
+//    [super homeHeaderPanel:headerPanel didClickAvatarButton:button];
+//    [self clickAvatarHandler];
+//}
 
 //- (void)didGetContestList:(NSArray *)contestList type:(ContestListType)type resultCode:(NSInteger)code
 //{

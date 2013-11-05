@@ -247,100 +247,100 @@
         }
         
             
-        //ZJH
-        case HomeMenuTypeZJHHelp:{
-            return [imageManager zjhHomeHelp];
-        }
-        case HomeMenuTypeZJHStart:{
-            return [imageManager zjhHomeStart];
-        }
-        case HomeMenuTypeZJHRichSite:{
-            return [imageManager zjhHomeRichSite];
-        }
-        case HomeMenuTypeZJHNormalSite:{
-            return [imageManager zjhHomeNormalSite];
-        }
-        case HomeMenuTypeZJHVSSite:{
-            return [imageManager zjhHomeVSSite];
-        }
-        case HomeMenuTypeZJHCharge:{
-            return [imageManager zjhHomeCharge];
-        }
-        case HomeMenuTypeZJHShop:{
-            return [imageManager drawHomeShop];
-        }
-        case HomeMenuTypeZJHFreeCoins:
-        {
-            return [imageManager drawFreeCoins];
-        }
-        case HomeMenuTypeZJHMore:
-        {
-            return [imageManager zjhHomeMore];
-        }
-            
-
-     
-        //dice
-        case HomeMenuTypeDiceStart:
-            return [imageManager zjhHomeStart];
-        case HomeMenuTypeDiceShop:
-            return [imageManager diceHomeShop];
-        case HomeMenuTypeDiceHelp:
-            return [imageManager zjhHomeHelp];
-        case HomeMenuTypeDiceHappyRoom:
-            return [imageManager zjhHomeNormalSite];
-        case HomeMenuTypeDiceHighRoom:
-            return [imageManager zjhHomeRichSite];
-        case HomeMenuTypeDiceSuperHighRoom:
-            return [imageManager zjhHomeRichSite];
-        case HomeMenuTypeDiceFreeCoins:
-            return [imageManager drawFreeCoins];
-        case HomeMenuTypeDiceMore:{
-            return [imageManager diceHomeMore];
-        }
-        
-        case HomeMenuTypeLearnDrawDraw:
-            return [imageManager learnDrawDraw];
-            
-        case HomeMenuTypeLearnDrawDraft:
-            return [imageManager learnDrawDraft];
-            
-        case HomeMenuTypeLearnDrawShop:
-            return [imageManager learnDrawShop];
-            
-        case HomeMenuTypeLearnDrawMore:
-            return [imageManager learnDrawMore];
-            
-        
-        //dream avatar
-        case HomeMenuTypeDreamAvatarDraw:
-            return [imageManager dreamAvatarDraw];
-            
-        case HomeMenuTypeDreamAvatarDraft:
-            return [imageManager dreamAvatarDraft];
-        
-        case HomeMenuTypeDreamAvatarShop:
-            return [imageManager dreamAvatarShop];
-            
-        case HomeMenuTypeDreamAvatarFreeIngot:
-            return [imageManager dreamAvatarFreeIngot];
-        
-        case HomeMenuTypeDreamAvatarMore:
-            return [imageManager dreamAvatarMore];
-            
-            
-        //dream lockscreen
-        case HomeMenuTypeDreamLockscreenDraft:
-            return [imageManager dreamLockscreenDraft];
-            
-        case HomeMenuTypeDreamLockscreenShop:
-            return [imageManager dreamLockscreenShop];
-            
-        case HomeMenuTypeDreamLockscreenFreeIngot:
-            return [imageManager dreamLockscreenFreeIngot];
-            
-        case HomeMenuTypeDreamLockscreenMore:
-            return [imageManager dreamLockscreenMore];
+//        //ZJH
+//        case HomeMenuTypeZJHHelp:{
+//            return [imageManager zjhHomeHelp];
+//        }
+//        case HomeMenuTypeZJHStart:{
+//            return [imageManager zjhHomeStart];
+//        }
+//        case HomeMenuTypeZJHRichSite:{
+//            return [imageManager zjhHomeRichSite];
+//        }
+//        case HomeMenuTypeZJHNormalSite:{
+//            return [imageManager zjhHomeNormalSite];
+//        }
+//        case HomeMenuTypeZJHVSSite:{
+//            return [imageManager zjhHomeVSSite];
+//        }
+//        case HomeMenuTypeZJHCharge:{
+//            return [imageManager zjhHomeCharge];
+//        }
+//        case HomeMenuTypeZJHShop:{
+//            return [imageManager drawHomeShop];
+//        }
+//        case HomeMenuTypeZJHFreeCoins:
+//        {
+//            return [imageManager drawFreeCoins];
+//        }
+//        case HomeMenuTypeZJHMore:
+//        {
+//            return [imageManager zjhHomeMore];
+//        }
+//            
+//
+//     
+//        //dice
+//        case HomeMenuTypeDiceStart:
+//            return [imageManager zjhHomeStart];
+//        case HomeMenuTypeDiceShop:
+//            return [imageManager diceHomeShop];
+//        case HomeMenuTypeDiceHelp:
+//            return [imageManager zjhHomeHelp];
+//        case HomeMenuTypeDiceHappyRoom:
+//            return [imageManager zjhHomeNormalSite];
+//        case HomeMenuTypeDiceHighRoom:
+//            return [imageManager zjhHomeRichSite];
+//        case HomeMenuTypeDiceSuperHighRoom:
+//            return [imageManager zjhHomeRichSite];
+//        case HomeMenuTypeDiceFreeCoins:
+//            return [imageManager drawFreeCoins];
+//        case HomeMenuTypeDiceMore:{
+//            return [imageManager diceHomeMore];
+//        }
+//        
+//        case HomeMenuTypeLearnDrawDraw:
+//            return [imageManager learnDrawDraw];
+//            
+//        case HomeMenuTypeLearnDrawDraft:
+//            return [imageManager learnDrawDraft];
+//            
+//        case HomeMenuTypeLearnDrawShop:
+//            return [imageManager learnDrawShop];
+//            
+//        case HomeMenuTypeLearnDrawMore:
+//            return [imageManager learnDrawMore];
+//            
+//        
+//        //dream avatar
+//        case HomeMenuTypeDreamAvatarDraw:
+//            return [imageManager dreamAvatarDraw];
+//            
+//        case HomeMenuTypeDreamAvatarDraft:
+//            return [imageManager dreamAvatarDraft];
+//        
+//        case HomeMenuTypeDreamAvatarShop:
+//            return [imageManager dreamAvatarShop];
+//            
+//        case HomeMenuTypeDreamAvatarFreeIngot:
+//            return [imageManager dreamAvatarFreeIngot];
+//        
+//        case HomeMenuTypeDreamAvatarMore:
+//            return [imageManager dreamAvatarMore];
+//            
+//            
+//        //dream lockscreen
+//        case HomeMenuTypeDreamLockscreenDraft:
+//            return [imageManager dreamLockscreenDraft];
+//            
+//        case HomeMenuTypeDreamLockscreenShop:
+//            return [imageManager dreamLockscreenShop];
+//            
+//        case HomeMenuTypeDreamLockscreenFreeIngot:
+//            return [imageManager dreamLockscreenFreeIngot];
+//            
+//        case HomeMenuTypeDreamLockscreenMore:
+//            return [imageManager dreamLockscreenMore];
             
 
         //little gee
@@ -373,16 +373,17 @@
             
             
         case HomeMenuTypeSingTimeline:
-            return [imageManager singHomeTimeline];
+            return [imageManager drawHomeTimeline];
         case HomeMenuTypeSingDraft:
-            return [imageManager singHomeDraft];
+            return [imageManager drawHomeOpus];
         case HomeMenuTypeSingShop:
-            return [imageManager singHomeShop];
+            return [imageManager drawHomeShop];
         case HomeMenuTypeSingChat:
-            return [imageManager singHomeChat];
+            return [imageManager drawHomeMessage];
         case HomeMenuTypeSingSetting:
-            return [imageManager singHomeSetting];
-
+            return [imageManager drawHomeSetting];
+        case HomeMenuTypeSingFriend:
+            return [imageManager drawHomeFriend];
         default:
             return nil;
     }
@@ -648,9 +649,9 @@ int *getSingBottomMenuTypeList()
     int static list[] = {
         HomeMenuTypeSingTimeline,
         HomeMenuTypeSingDraft,
-        HomeMenuTypeSingShop,
+        HomeMenuTypeSingFriend,
         HomeMenuTypeSingChat,
-        HomeMenuTypeSingSetting,
+        HomeMenuTypeSingShop,
         HomeMenuTypeEnd
     };
     return list;

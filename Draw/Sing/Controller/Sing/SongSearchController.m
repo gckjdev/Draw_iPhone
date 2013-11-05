@@ -11,7 +11,7 @@
 #import "SongCell.h"
 #import "StringUtil.h"
 
-@interface SongSearchController ()
+@interface SongSearchController ()<UITextFieldDelegate>
 
 @property (retain, nonatomic) NSArray *songs;
 @property (retain, nonatomic) SingOpus *singOpus;
@@ -54,6 +54,8 @@
     SET_INPUT_VIEW_STYLE(self.searchTextField);
     
     self.searchTextField.placeholder = NSLS(@"kInputSongNameForSearch");
+    self.searchTextField.returnKeyType = UIReturnKeySearch;
+    self.searchTextField.delegate = self;
 }
 
 SET_CELL_BG_IN_CONTROLLER;
@@ -68,6 +70,12 @@ SET_CELL_BG_IN_CONTROLLER;
 - (void)viewDidUnload {
     [self setSearchTextField:nil];
     [super viewDidUnload];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField;              // called when 'return' key pressed. return NO to ignore.
+{
+    [self clickSearchButton:nil];
+    return YES;
 }
 
 - (IBAction)clickSearchButton:(id)sender {
@@ -85,11 +93,16 @@ SET_CELL_BG_IN_CONTROLLER;
         
         [self hideActivity];
         if (resultCode == 0) {
-            [self hideTipsOnTableView];
             self.songs = songs;
             [self.dataTableView reloadData];
+            
+            if ([self.songs count] == 0) {
+                [self showTipsOnTableView:NSLS(@"kNoData")];
+            }else{
+                [self hideTipsOnTableView];
+            }
         }else{
-            [self showTipsOnTableView:NSLS(@"kNoData")];
+            [self showTipsOnTableView:NSLS(@"kLoadFailed")];
         }
     }];
 }
@@ -97,6 +110,11 @@ SET_CELL_BG_IN_CONTROLLER;
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return [self.songs count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [SongCell getCellHeight];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -114,6 +132,8 @@ SET_CELL_BG_IN_CONTROLLER;
 - (void)didSelectSong:(PBSong *)song{
     
     [self.singOpus setSong:song];
+    [self.singOpus setName:song.name];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SELECT_SONG object:nil];
     
     [self dismissViewControllerAnimated:YES completion:NULL];

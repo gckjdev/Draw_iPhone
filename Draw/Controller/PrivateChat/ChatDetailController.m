@@ -724,7 +724,7 @@
         }
     }
     
-    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
+    [[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:YES onViewController:self];
 }
 
 #pragma mark - 

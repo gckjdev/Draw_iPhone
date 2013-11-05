@@ -54,6 +54,9 @@
         case RankViewTypeDrawOnCell:
             identifier = @"DrawOnCell";
             break;
+        case RankViewTypeWhisper:
+            identifier = @"WhisperView";
+            break;
         default:
             return nil;
     }
@@ -80,24 +83,13 @@
     PPRelease(_cupFlag);
     [_costLabel release];
     [_boughtCountLabel release];
+    [_descLabel release];
     [super dealloc];
 }
 
 
 - (void)updateImage:(UIImage *)image
 {
-    /*
-    if (MIN(image.size.width, image.size.height) > MAX(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))) {
-        
-        CGFloat r = MIN(image.size.width / CGRectGetWidth(self.bounds),
-                        image.size.height / CGRectGetHeight(self.bounds));
-        if (r > 1) {
-            CGSize size = CGSizeMake(image.size.width / r, image.size.height / r);
-            image = [image imageByScalingAndCroppingForSize:size];
-        }
-    }
-    PPDebug(@"<updateImage> image size = %@", NSStringFromCGSize(image.size));
-     */
     [self.drawImage setImage:image];
 }
 
@@ -105,7 +97,6 @@
 {
     [self.costLabel setText:[NSString stringWithFormat:@"%d", learnDraw.price]];
     [self.boughtCountLabel setText:[NSString stringWithFormat:@"%d", learnDraw.boughtCount]];
-//    [self.drawFlag setHidden:![[LearnDrawManager defaultManager] hasBoughtDraw:self.feed.feedId]];
 }
 
 - (void)setViewInfo:(DrawFeed *)feed
@@ -115,8 +106,6 @@
         return;
     }
     self.feed = feed;
-    
-
     
    if ([feed.drawImageUrl length] != 0) {
        NSURL *url = nil;//[NSURL URLWithString:feed.drawImageUrl];
@@ -130,27 +119,7 @@
        
         UIImage *defaultImage = nil;
        
-//        if(feed.largeImage){
-//            defaultImage = feed.largeImage;
-//        }
-//        else{
         defaultImage = [[ShareImageManager defaultManager] unloadBg];
-//        }
-//        [self.drawImage setImageWithURL:url
-//                       placeholderImage:defaultImage
-//                                success:^(UIImage *image, BOOL cached) {
-//            if (!cached) {
-//                self.drawImage.alpha = 0;
-//            }
-//
-//            [UIView animateWithDuration:1 animations:^{
-//                self.drawImage.alpha = 1.0;
-//            }];
-////            feed.largeImage = image;
-//            [self updateImage:image];
-//        } failure:^(NSError *error) {
-//            self.drawImage.alpha = 1;
-//        }];
        
        [self.drawImage setImageWithURL:url placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
           
@@ -215,8 +184,9 @@
         [self updateLearnDraw:feed.learnDraw];
     }
     
-
-
+    [ShareImageManager setFXLabelStyle:self.descLabel];
+    self.descLabel.text = self.feed.opusDesc;
+//    [self.descLabel setNeedsDisplay];
 }
 
 - (void)updateViewInfoForMyOpus
@@ -292,6 +262,8 @@
             return [DeviceDetection isIPAD] ? 256 : 106;
         case RankViewTypeDrawOnCell:            
             return [DeviceDetection isIPAD] ? 245 : 99;
+        case RankViewTypeWhisper:
+            return ISIPAD ? 384 : 159.5;
         default:
             return 0;
     }

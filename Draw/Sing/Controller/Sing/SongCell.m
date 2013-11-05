@@ -32,7 +32,7 @@ AUTO_CREATE_VIEW_BY_XIB(SongCell);
 }
 
 + (CGFloat)getCellHeight{
-    return (ISIPAD ? 132 : 60);
+    return (ISIPAD ? 129 : 60);
 }
 
 - (void)setCellData:(PBSong *)song{
@@ -51,7 +51,7 @@ AUTO_CREATE_VIEW_BY_XIB(SongCell);
     
     if ([delegate respondsToSelector:@selector(didSelectSong:)]) {
         
-        [delegate didSelectSong:self.song];
+        [(id<SongCellDelegate>)delegate didSelectSong:self.song];
     }
 }
 

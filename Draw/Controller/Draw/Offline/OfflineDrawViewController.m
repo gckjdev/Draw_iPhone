@@ -1401,7 +1401,7 @@
 - (void)showCopyPaint
 {
     UIImage *image = [self getCopyPaintImage];
-    [[ImagePlayer defaultPlayer] playWithImage:image onViewController:self];
+    [[ImagePlayer defaultPlayer] playWithImage:image displayActionButton:YES onViewController:self];
 }
 
 #pragma mark- Copy Paint Handling

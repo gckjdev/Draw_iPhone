@@ -540,6 +540,7 @@
     [[ImagePlayer defaultPlayer] playWithUrl:url
                          displayActionButton:NO
                             onViewController:viewController];
+    //[[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:NO onViewController:viewController];
 }
 
 #pragma mark - mwPhotoBrowserDelegate

@@ -32,6 +32,7 @@
 #import "MKBlockActionSheet.h"
 #import "CMPopTipView.h"
 #import "SongSearchController.h"
+#import "ConfigManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -81,6 +82,12 @@ enum{
     [_opusDescLabel release];
     
     [_lyricTextView release];
+    [_voiceButton release];
+    [_searchSongButton release];
+    [_descButton release];
+    [_submitButton release];
+    [_imageButton release];
+    [_reviewButton release];
     [super dealloc];
 }
 
@@ -139,33 +146,39 @@ enum{
 {
     [super viewDidLoad];
     
+    
     // init title view
     CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
     [titleView setTitle:NSLS(@"kGuessing")];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
-    [titleView setRightButtonTitle:NSLS(@"kSubmit")];
-    [titleView setRightButtonSelector:@selector(clickSubmitButton:)];
+    [self.view sendSubviewToBack:titleView];
+//    [titleView setRightButtonTitle:NSLS(@"kSubmit")];
+//    [titleView setRightButtonSelector:@selector(clickSubmitButton:)];
+    
+    self.reviewButton.hidden = YES;
     
     
-    self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.image];
+    [self.opusImageView.layer setCornerRadius:35];
+    [self.opusImageView.layer setMasksToBounds:YES];
+
+    self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.localImageUrl];
     if (self.image !=nil ) {
         [self.opusImageView setImage:self.image];
-    }else{
-        [self.opusImageView setImage:[[ShareImageManager defaultManager] unloadBg]];
+        [self.imageButton setImage:nil forState:UIControlStateNormal];
     }
-    [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
     
+//    [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
+    [ShareImageManager setFXLabelStyle:self.opusDescLabel];
     self.opusDescLabel.text = self.singOpus.pbOpus.desc;
-    self.opusDescLabel.textColor = COLOR_BROWN;
     
     self.lyricTextView.editable = NO;
     self.lyricTextView.text = self.singOpus.pbOpus.sing.song.lyric;
     self.lyricTextView.hidden = YES;
     self.lyricTextView.textColor = COLOR_BROWN;
     
-    _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
-        
+    _recordLimitTime = [ConfigManager getRecordLimitTime];
+
     if (_isDraft) {
         [self prepareToPlay];
         [self setState:StateReadyPlay];
@@ -180,12 +193,17 @@ enum{
         bself.lyricTextView.text = bself.singOpus.pbOpus.sing.song.lyric;
         bself.lyricTextView.hidden = NO;
         bself.opusDescLabel.hidden = YES;
+        bself.imageButton.hidden = YES;
+        bself.opusImageView.hidden = YES;
+        bself.reviewButton.hidden = NO;
     }];
     
     [bself registerNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE usingBlock:^(NSNotification *note) {
         bself.opusDescLabel.text = bself.singOpus.pbOpus.desc;
         bself.lyricTextView.hidden = YES;
         bself.opusDescLabel.hidden = NO;
+        bself.imageButton.hidden = NO;
+        bself.opusImageView.hidden = NO;
     }];
 }
 
@@ -205,6 +223,12 @@ enum{
     [self setOpusImageView:nil];
     [self setOpusDescLabel:nil];
     [self setLyricTextView:nil];
+    [self setVoiceButton:nil];
+    [self setSearchSongButton:nil];
+    [self setDescButton:nil];
+    [self setSubmitButton:nil];
+    [self setImageButton:nil];
+    [self setReviewButton:nil];
     [super viewDidUnload];
 }
 
@@ -236,20 +260,16 @@ enum{
     [self stopPlay];
 }
 
-- (IBAction)clickRerecordButton:(id)sender {
-
-    __block typeof(self) bself = self;
+- (IBAction)clickRerecordButton:(id)sender {    
     
-    MKBlockAlertView *v = [[[MKBlockAlertView alloc] initWithTitle:NSLS(@"kGifTips") message:NSLS(@"kRerecordWarnning") delegate:nil cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kOK"), nil] autorelease];
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:NSLS(@"kRerecordWarnning") style:CommonDialogStyleDoubleButton];
     
-    [v show];
+    [dialog showInView:self.view];
     
-    [v setActionBlock:^(NSInteger buttonIndex){
-        if (buttonIndex == 1) {
-            [bself reset];
-            [bself prepareToRecord];
-            [bself setState:StateReadyRecord];
-        }
+    [dialog setClickOkBlock:^(id view){
+        [self reset];
+        [self prepareToRecord];
+        [self setState:StateReadyRecord];
     }];
 }
 
@@ -363,7 +383,11 @@ enum{
     
     self.rerecordButton.hidden = YES;
     self.saveButton.hidden = YES;
-       
+    self.searchSongButton.hidden = NO;
+    self.voiceButton.hidden = YES;
+    self.descButton.hidden = NO;
+    self.submitButton.hidden = YES;
+    
     [self updateUITime:@(_recordLimitTime)];
 }
 
@@ -375,6 +399,11 @@ enum{
     
     self.rerecordButton.hidden = YES;
     self.saveButton.hidden = YES;
+    self.searchSongButton.hidden = YES;
+    self.voiceButton.hidden = YES;
+    self.descButton.hidden = YES;
+    self.submitButton.hidden = YES;
+    
     
     [self updateUITime:@(_recordLimitTime)];
 }
@@ -387,6 +416,10 @@ enum{
     
     self.rerecordButton.hidden = NO;
     self.saveButton.hidden = NO;
+    self.searchSongButton.hidden = NO;
+    self.voiceButton.hidden = NO;
+    self.descButton.hidden = NO;
+    self.submitButton.hidden = NO;
 }
 
 - (void)uiPlaying{
@@ -397,6 +430,10 @@ enum{
     
     self.rerecordButton.hidden = YES;
     self.saveButton.hidden = YES;
+    self.searchSongButton.hidden = YES;
+    self.voiceButton.hidden = YES;
+    self.descButton.hidden = YES;
+    self.submitButton.hidden = YES;
 }
 
 - (void)updateUITime:(NSNumber *)time{
@@ -424,36 +461,6 @@ enum{
     
     SingInfoEditController *vc = [[[SingInfoEditController alloc] initWithOpus:self.singOpus] autorelease];
     [self presentViewController:vc animated:YES completion:NULL];
-//
-//
-//    NameAndDescEditView *v = [NameAndDescEditView createViewWithName:_singOpus.pbOpus.name desc:_singOpus.pbOpus.desc];
-//    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kEditOpusDesc") customView:v style:CommonDialogStyleDoubleButton];
-//    dialog.manualClose = YES;
-//    
-//    [dialog setClickOkBlock:^(NameAndDescEditView *infoView){
-//       
-//        if ([infoView.nameTextField.text isBlank]) {
-//            
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:2];
-//        }else{
-//            
-//            [dialog disappear];
-//            
-//            
-//            [_singOpus setName:infoView.nameTextField.text];
-//            [_singOpus setDesc:infoView.descTextView.text];
-//            
-//            [_opusDescLabel setText:infoView.descTextView.text];
-//        }
-//
-//    }];
-//    
-//    [dialog setClickCancelBlock:^(NameAndDescEditView *infoView){
-//            [dialog disappear];
-//    }];
-//    
-//    [dialog showInView:self.view];
 }
 
 - (IBAction)clickAddTimeButton:(id)sender {
@@ -493,12 +500,17 @@ enum{
 
 - (void)didImageSelected:(UIImage*)image{
     
-    self.image = image;
-    self.opusImageView.image = image;
-    self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
-    NSData *data = [self.image data];
-    NSString *path = self.singOpus.pbOpus.image;
-    [data writeToFile:path atomically:YES];
+    if (image != nil) {
+        PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
+        self.image = image;
+        self.opusImageView.image = image;
+        self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
+        NSData *data = [self.image data];
+        NSString *path = self.singOpus.pbOpus.localImageUrl;
+        [data writeToFile:path atomically:YES];
+        
+        [self.imageButton setImage:nil forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -515,28 +527,63 @@ enum{
 }
 
 - (IBAction)clickSaveButton:(id)sender {
+    [self showActivityWithText:NSLS(@"kSaving")];
     [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];
+    [self hideActivity];
+    [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaved") delayTime:1.5];
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
-
-    NSURL *inUrl = [self recordURL];
-	NSURL *outUrl = [self finalOpusURL];
-
-    if (_processor == nil) {
-        self.processor = [[[VoiceProcessor alloc] init] autorelease];
-        _processor.delegate = self;
+    
+    if (self.image == nil) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:NSLS(@"kAskForSelectPhoto") style:CommonDialogStyleDoubleButton];
+        [dialog showInView:self.view];
+        
+        [dialog setClickOkBlock:^(id view){
+           
+            [self clickImageButton:self.imageButton];
+        }];
+        
+        return;
     }
     
-    [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
-    
-    [self showProgressViewWithMessage:NSLS(@"kSending")];
+    // 用户如果选择原声，则不需要经过声音处理步骤，直接上传。
+    if (_singOpus.pbOpus.sing.voiceType == PBVoiceTypeVoiceTypeOrigin) {
+        
+        NSString *path = [self recordURL].path;
+        PPDebug(@"path is %@", path);
+
+        NSData *singData = [NSData dataWithContentsOfFile:path];
+        if (singData == nil) {
+            return;
+        }
+
+        [self setProgress:0];
+        [[OpusService defaultService] submitOpus:_singOpus
+                                           image:_image
+                                        opusData:singData
+                                progressDelegate:self
+                                        delegate:self];
+    }else{
+        
+        NSURL *inUrl = [self recordURL];
+        NSURL *outUrl = [self finalOpusURL];
+        
+        if (_processor == nil) {
+            self.processor = [[[VoiceProcessor alloc] init] autorelease];
+            _processor.delegate = self;
+        }
+        
+        [_processor processVoice:inUrl outURL:outUrl duration:_singOpus.pbOpus.sing.duration pitch:_singOpus.pbOpus.sing.pitch formant:_singOpus.pbOpus.sing.formant];
+        
+        [self showProgressViewWithMessage:NSLS(@"kSending")];
+    }
 }
 
 - (void)processor:(VoiceProcessor *)processor progress:(float)progress{
     PPDebug(@"progress = %f", progress);
     
-    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kHandlingDataProgress"), progress*100];
     [self showProgressViewWithMessage:progressText progress:progress];
 }
 
@@ -550,13 +597,18 @@ enum{
         return;
     }
     
+    [self setProgress:0];
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
-                            opusDraftManager:[[OpusService defaultService] draftOpusManager]
-                                 opusManager:[[OpusService defaultService] myOpusManager]
-                            progressDelegate:nil
+                            progressDelegate:self
                                     delegate:self];
+}
+
+- (void)setProgress:(float)progress{
+    
+    NSString* progressText = [NSString stringWithFormat:NSLS(@"kSendingProgress"), progress*100];
+    [self showProgressViewWithMessage:progressText progress:progress];
 }
 
 - (void)didSubmitOpus:(int)resultCode opus:(Opus *)opus{
@@ -565,6 +617,7 @@ enum{
 
     if (resultCode == ERROR_SUCCESS) {
         POSTMSG(NSLS(@"kSuccess"));
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
         POSTMSG(NSLS(@"kFailed"));
     }
@@ -574,6 +627,9 @@ enum{
 
     self.lyricTextView.hidden = !self.lyricTextView.hidden;
     self.opusDescLabel.hidden = !self.opusDescLabel.hidden;
+    self.imageButton.hidden = !self.imageButton.hidden;
+    self.opusImageView.hidden = !self.opusImageView.hidden;
+    button.selected = !button.selected;
 }
 
 - (IBAction)clickSearchSongButton:(id)sender {

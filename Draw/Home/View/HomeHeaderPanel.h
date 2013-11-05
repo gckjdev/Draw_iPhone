@@ -35,10 +35,9 @@
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
  didClickFriendButton:(UIButton *)button;
 
-
-
-
 @end
+
+
 
 @interface HomeHeaderPanel : HomeCommonView<HomeCommonViewProtocol, FeedServiceDelegate, FriendServiceDelegate>
 {

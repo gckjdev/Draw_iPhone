@@ -63,7 +63,7 @@
 - (void)didClickImageWithURL:(NSURL *)url
 {
     self.tempURL = url;
-    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
+    [[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:YES onViewController:self];
 }
 
 - (void)didClickDrawImageWithPost:(PBBBSPost *)post

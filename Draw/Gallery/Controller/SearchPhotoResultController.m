@@ -248,7 +248,7 @@
     _currentResult = searchResult;
     
     NSURL *url = [NSURL URLWithString:_currentResult.url];
-    [[ImagePlayer defaultPlayer] playWithUrl:url onViewController:self];
+    [[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:YES onViewController:self];
 }
 
 - (void)saveSearchResult:(ImageSearchResult*)searchResult

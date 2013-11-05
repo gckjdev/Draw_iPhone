@@ -14,6 +14,9 @@
 #import "UserService.h"
 #import "StatisticManager.h"
 
+#define UPDATE_HOME_BG_NOTIFICATION_KEY @"UPDATE_HOME_BG"
+
+
 @interface SuperHomeController : PPViewController<HomeCommonViewDelegate, UserServiceDelegate>
 {
     
@@ -34,8 +37,10 @@
 - (float)getMainMenuOriginY;
 - (float)getBottomMenuOriginY;
 
-- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
-   didClickAvatarButton:(UIButton *)button;
+//- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+//   didClickAvatarButton:(UIButton *)button;
 
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+       didClickAvatarView:(AvatarView *)avatarView;
 
 @end

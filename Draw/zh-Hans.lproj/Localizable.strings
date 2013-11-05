@@ -365,6 +365,7 @@
 "kGifTips" = "温馨提示";
 
 "kContentRepeat" = "请不要重复提交!";
+"kAskForSelectPhoto" = "你还没有选择图片，是否立刻选择？";
 
 
 
@@ -670,7 +671,7 @@
 "kReply" = "回复";
 "kCorrect" = "猜对了！";
 "kSending" = "正在发送中...";
-
+"kHandlingDataProgress" = "正在处理数据... (%3.f%%)";
 "kSendingProgress" = "正在发送中 (%3.f%%)";
 
 

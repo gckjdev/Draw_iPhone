@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
+#import "FXLabel.h"
 
 @class RankView;
 
@@ -22,6 +23,7 @@ typedef enum{
      RankViewTypeSecond = 2,
      RankViewTypeNormal = 3,
      RankViewTypeDrawOnCell = 4,
+     RankViewTypeWhisper = 5,
 }RankViewType;
 
 @class DrawFeed;
@@ -36,6 +38,7 @@ typedef enum{
 @property(nonatomic, assign)id delegate;
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (retain, nonatomic) IBOutlet UILabel *author;
+@property (retain, nonatomic) IBOutlet FXLabel *descLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) DrawFeed *feed;
 

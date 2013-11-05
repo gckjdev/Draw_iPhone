@@ -7,7 +7,6 @@
 //
 
 #import "LittleGeeDrawApp.h"
-#import "LittleGeeHomeController.h"
 #import "IAPProductService.h"
 #import "HomeController.h"
 
@@ -15,7 +14,6 @@
 
 - (PPViewController*)homeController
 {
-//    return [[[LittleGeeHomeController alloc] init] autorelease];
         return [[[HomeController alloc] init] autorelease];
 }
 

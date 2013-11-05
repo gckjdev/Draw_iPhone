@@ -28,16 +28,13 @@
 + (Opus*)opusWithPBOpus:(PBOpus *)pbOpus storeType:(PBOpusStoreType)storeType;
 + (Opus*)opusWithPBOpus:(PBOpus *)pbOpus;
 
-//+ (Opus*)opusFromPBOpus:(PBOpus *)pbOpus;
-
 // don't change method name, used for Buri Index
 - (NSString*)opusKey;
 - (NSNumber*)opusStoreType;
 
-
 - (void)setType:(PBOpusType)type;
 - (void)setName:(NSString *)name;
-- (void)setImage:(NSString *)image;
+- (void)setLocalImageUrl:(NSString *)image;
 - (void)setDesc:(NSString *)desc;
 - (void)setTargetUser:(PBGameUser *)user;
 
@@ -66,6 +63,9 @@
 
 - (NSString*)dataType;
 
+
+- (NSData *)uploadData;
+
 //add by kira
 - (BOOL)isMyOpus;
 - (NSString*)name;
@@ -79,7 +79,6 @@
 
 
 - (NSString *)shareTextWithSNSType:(int)type;
-
 
 
 

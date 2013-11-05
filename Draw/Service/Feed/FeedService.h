@@ -143,14 +143,9 @@ typedef void (^ GetFeedCompleteBlock)(int resultCode, DrawFeed *feed, BOOL fromC
 - (void)getFeedByFeedId:(NSString *)feedId
               completed:(GetFeedCompleteBlock)completed;
 
-
-//- (void)getPBDrawByFeed:(DrawFeed *)feed
-//                 delegate:(id<FeedServiceDelegate>)delegate;
-
 - (void)getPBDrawByFeed:(DrawFeed *)feed
                  handler:(LoadPBDrawResultHandler)handler
        downloadDelegate:(id)downloadDelegate;
-
 
 - (void)getOpusCount:(NSString *)targetUid
             delegete:(id<FeedServiceDelegate>)delegate;

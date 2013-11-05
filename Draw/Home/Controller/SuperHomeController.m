@@ -28,6 +28,7 @@
 #import "DrawHomeHeaderPanel.h"
 #import "DrawMainMenuPanel.h"
 
+
 @interface SuperHomeController ()
 {
     
@@ -104,10 +105,9 @@
     PPDebug(@"SuperHomeController view did load");
     [super viewDidLoad];
     
-
-    if (!ISIPAD) {
-        self.view.frame = CGRectMake(0, 0, 320, 460);
-    }
+//    if (!ISIPAD) {
+//        self.view.frame = CGRectMake(0, 0, 320, 460);
+//    }
 
     [self addMainMenuView];
     [self addHeaderView];
@@ -117,11 +117,23 @@
     [[BulletinService defaultService] syncBulletins:^(int resultCode) {
         [self updateAllBadge];
     }];
-
     
+    // update avatar view
+    [self registerNotificationWithName:NOTIFCATION_USER_DATA_CHANGE usingBlock:^(NSNotification *note) {
+        PPDebug(@"recv NOTIFCATION_USER_DATA_CHANGE, update header view panel");
+        [self.homeMainMenuPanel updateView];
+    }];
+    
+    // update background view
+    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
+        [self updateBGImageView];
+    }];
+    [self updateBGImageView];
+
+    // pull statistic timer
     [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(handleStaticTimer:) userInfo:nil repeats:YES];
     
-    
+    // play background music
     [[AudioManager defaultManager] setBackGroundMusicWithName:[GameApp getBackgroundMusicName]];
     [[AudioManager defaultManager] setVolume:[ConfigManager getBGMVolume]];
     if ([[AudioManager defaultManager] isMusicOn]) {
@@ -140,7 +152,6 @@
     [super viewDidAppear:animated];
     [self.homeMainMenuPanel animatePageButtons];
     [self.homeHeaderPanel updateView];
-//    [self.homeMainMenuPanel updateView];
     [[UserService defaultService] getStatistic:self];
     
     [self registerJoinGameResponseNotification];
@@ -245,17 +256,12 @@
 
 }
 
-- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
-   didClickAvatarButton:(UIButton *)button
-{
-    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];
-}
+//- (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
+//   didClickAvatarButton:(UIButton *)button
+//{
+//    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];
+//}
 
-- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
-       didClickAvatarView:(AvatarView *)avatarView
-{
-    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];    
-}
 
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel
@@ -263,36 +269,11 @@
 {
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_BULLETIN];
     
-//    [BulletinView showBulletinInController:self];
     BulletinView *v = [BulletinView createWithSuperController:self];
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kBulletin") customView:v style:CommonDialogStyleCross];
     [dialog showInView:self.view];
 }
 
-#pragma mark register
-
-- (BOOL)isRegistered
-{
-    if ([[UserManager defaultManager] hasXiaojiNumber]){
-        return YES;
-    }
-    
-    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
-        return YES;
-    }
-    
-    return NO;
-}
-
-- (BOOL)toRegister
-{
-//    RegisterUserController *ruc = [[RegisterUserController alloc] init];
-//    [self.navigationController pushViewController:ruc animated:YES];
-//    [ruc release];
-
-    // change by Benson for new xiaoji number login and logout
-    return [[UserService defaultService] checkAndAskLogin:self.view];
-}
 
 #pragma mark - network listen
 
@@ -359,6 +340,107 @@
 - (float)getBottomMenuOriginY
 {
     return BOTTOM_MENU_ORIGIN_Y+2;
+}
+
+#pragma mark - Click User Avatar, User Login and Enter Detail 
+
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+       didClickAvatarView:(AvatarView *)avatarView
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_TOP_AVATAR];
+    [self enterUserDetail];
+}
+
+- (BOOL)isRegistered
+{
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        return YES;
+    }
+    
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL)toRegister
+{
+    // change by Benson for new xiaoji number login and logout
+    return [[UserService defaultService] checkAndAskLogin:self.view];
+}
+
+
+- (void)enterUserDetail
+{
+    if ([self toRegister]){
+        return;
+    }
+    if ([[UserManager defaultManager] isOldUserWithoutXiaoji]){
+        [self askShake];
+        return;
+    }
+    
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
+}
+
+
+- (void)askShake
+{
+    CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kTryShakeXiaoji")
+                                                         style:CommonDialogStyleDoubleButtonWithCross];
+    
+    [dialog.oKButton setTitle:NSLS(@"kTryTakeNumber") forState:UIControlStateNormal];
+    [dialog.cancelButton setTitle:NSLS(@"kViewMyProfile") forState:UIControlStateNormal];
+    
+    [dialog setClickOkBlock:^(id infoView){
+        [[UserService defaultService] showXiaojiNumberView:self.view];
+    }];
+    
+    [dialog setClickCancelBlock:^(id infoView){
+        [self gotoMyDetail];
+    }];
+    
+    [dialog showInView:self.view];
+}
+
+- (void)gotoMyDetail
+{
+    UserDetailViewController* us = [[UserDetailViewController alloc] initWithUserDetail:[SelfUserDetail createDetail]];
+    [self.navigationController pushViewController:us animated:YES];
+    [us release];
+}
+
+#pragma mark - Home Background Image Handling
+
+#define HOME_BG_IMAGE_VIEW_TAG 123687
+
+- (void)updateBGImageView
+{
+    PPDebug(@"<update bg image view>");
+    UIImage *homeImage = [[UserManager defaultManager] pageBgForKey:HOME_BG_KEY];
+    if (homeImage) {
+        [self.view setBackgroundColor:[UIColor clearColor]];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+        [imageView setImage:homeImage];
+        [self.view insertSubview:imageView atIndex:0];
+    }else{
+        [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
+        UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+        [imageView removeFromSuperview];
+    }
+    [(DrawHomeHeaderPanel *)self.homeHeaderPanel updateBG];
+}
+
+- (void)clearBGImageView
+{
+    [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
+    UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
+    [imageView setImage:nil];
+    [imageView removeFromSuperview];
 }
 
 @end

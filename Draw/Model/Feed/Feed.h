@@ -30,6 +30,7 @@ typedef enum{
     FeedTypeDrawToContest = PBOpusTypeDrawContest,
     
     FeedTypeContestComment = 105,
+    FeedtypeSing = PBOpusTypeSing,
         
 }FeedType;
 
