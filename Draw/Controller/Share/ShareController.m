@@ -871,7 +871,7 @@ typedef enum{
 {
     self = [super init];
     if (self) {
-        _defaultTabIndex = 1;
+        _defaultTabIndex = 2;
     }
     return self;
 }

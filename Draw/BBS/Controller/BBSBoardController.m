@@ -140,9 +140,15 @@
 }
 
 - (IBAction)clickMyPostList:(id)sender {
+
     SearchPostController *sp = [[SearchPostController alloc] init];
     [self.navigationController pushViewController:sp animated:YES];
     [sp release];
+    return;
+    
+//    CHECK_AND_LOGIN(self.view);
+//    [BBSPostListController enterPostListControllerWithBBSUser:[[BBSService defaultService] myself]
+//                                               fromController:self];
 }
 
 - (IBAction)clickMyAction:(id)sender {

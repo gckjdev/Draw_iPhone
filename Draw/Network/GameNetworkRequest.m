@@ -919,6 +919,7 @@
         str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
         str = [str stringByAddQueryParameter:PARA_DEVICETOKEN value:deviceToken];
+        str = [str stringByAddQueryParameter:PARA_NICKNAME value:[UIUtils getUserDeviceName]];
         
         return str;
     };
