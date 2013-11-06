@@ -45,6 +45,7 @@
 #import "UserDeviceService.h"
 #import "GameSNSService.h"
 
+
 @implementation UserService
 
 static UserService* _defaultUserService;
@@ -142,6 +143,213 @@ static UserService* _defaultUserService;
     
     NSLog(@"<getRegisterType> cannot find SNS type for network name = %@", networkName);
     return -1;
+}
+
+- (int)getRegisterTypeWithShareType:(ShareType)shareType
+{
+    switch (shareType){
+        case ShareTypeSinaWeibo:
+            return REGISTER_TYPE_SINA;
+        case ShareTypeTencentWeibo:
+            return REGISTER_TYPE_QQ;
+        case ShareTypeFacebook:
+            return REGISTER_TYPE_FACEBOOK;
+        default:
+            break;
+    }
+        
+    NSLog(@"<getRegisterType> cannot find SNS type for shareType = %d", shareType);
+    return -1;
+}
+
+- (void)updateUserWithSNSUserInfo:(ShareType)shareType
+                 credentialString:(NSString*)credentialString
+{
+    if (credentialString == nil)
+        return;
+    
+    int loginIdType = [self getRegisterTypeWithShareType:shareType];
+    NSDictionary* para = @{ PARA_TYPE : @(loginIdType),
+                            PARA_CREDENTIAL : credentialString };
+    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_NEW_UPDATE_USER parameters:para isReturnArray:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (output.resultCode == 0){
+                
+            }
+            
+        });
+    });
+}
+
+- (void)updateUserWithSNSUserInfo:(NSString*)userId
+                        shareType:(ShareType)shareType
+                         userInfo:(id<ISSUserInfo>)userInfo
+                       accessInfo:(id<ISSOAuth2Credential>)accessInfo
+                   viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
+    
+    NSString* accessToken = accessInfo.accessToken;
+    NSDate*   expireDate = accessInfo.expiresIn;
+    
+    NSString* appId = [ConfigManager appId];
+    NSString* loginId = userInfo.uid; //[userInfo objectForKey:SNS_USER_ID];
+    int loginIdType = [self getRegisterTypeWithShareType:shareType];
+    
+    NSString* nickName = userInfo.nickname; //[userInfo objectForKey:SNS_NICK_NAME];
+    NSString* gender = [UserManager genderByValue:userInfo.gender]; // [userInfo objectForKey:SNS_GENDER];
+    NSString* location = [userInfo.sourceData objectForKey:@"location"]; // [userInfo objectForKey:SNS_LOCATION];
+    NSString* sinaId = nil;
+    NSString* qqId = nil;
+    NSString* facebookId = nil;
+    NSString* qqNickName = nil;
+    NSString* sinaNickName = nil;
+    NSString* qqToken = nil;
+    NSString* qqTokenSecret = nil;
+    NSString* sinaToken = nil;
+    NSString* sinaRefreshToken = nil;
+    NSDate*   sinaExpireDate = nil;
+    NSString* qqRefreshToken = nil;
+    NSDate*   qqExpireDate = nil;
+    NSString* qqOpenId = nil;
+    NSString* facebookAccessToken = nil;
+    NSDate*   facebookExpireDate = nil;
+    
+    NSString* newNickName = nil;
+    if ([[[UserManager defaultManager] nickName] length] == 0 ||
+        [[[UserManager defaultManager] nickName] rangeOfString:@"Somebody"].location != NSNotFound){
+        newNickName = nickName;
+    }
+    
+    NSString* avatar = nil;
+    if ([[[UserManager defaultManager] avatarURL] length] == 0){
+        avatar = userInfo.icon; // [userInfo objectForKey:SNS_USER_IMAGE_URL];
+        PPDebug(@"<updateUserWithSNSUserInfo> set avatar to %@", avatar);
+    }
+    else{
+        PPDebug(@"<updateUserWithSNSUserInfo> avatar exists, no change");
+    }
+    
+    
+    switch (loginIdType) {
+        case REGISTER_TYPE_SINA:
+            sinaId = loginId;
+            sinaNickName = nickName;
+            sinaToken = accessToken;  //[userInfo objectForKey:SNS_OAUTH_TOKEN];
+            sinaExpireDate = expireDate; // [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            sinaRefreshToken = nil; // [userInfo objectForKey:SNS_REFRESH_TOKEN];
+            break;
+            
+        case REGISTER_TYPE_QQ:
+            qqId = loginId;
+            qqNickName = nickName;
+            qqToken = accessToken; // [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            qqTokenSecret = nil; // [userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET];
+            qqExpireDate = expireDate; // [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            qqRefreshToken = nil; // [userInfo objectForKey:SNS_REFRESH_TOKEN];
+            qqOpenId = nil; // [userInfo objectForKey:SNS_QQ_OPEN_ID];
+            break;
+            
+        case REGISTER_TYPE_FACEBOOK:
+            facebookId = loginId;
+            facebookAccessToken = accessToken; // [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            facebookExpireDate = expireDate; // [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            break;
+            
+        default:
+            break;
+    }
+    
+    PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
+    
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output =
+        [GameNetworkRequest updateUser:SERVER_URL
+                                 appId:appId
+                                userId:userId
+                              deviceId:nil
+                           deviceToken:nil
+                              nickName:newNickName
+                                gender:gender
+                              password:nil
+                                avatar:avatar
+                              location:location
+                                sinaId:sinaId
+                          sinaNickName:sinaNickName
+                             sinaToken:sinaToken
+                            sinaSecret:nil
+                      sinaRefreshToken:sinaRefreshToken
+                        sinaExpireDate:sinaExpireDate
+                                  qqId:qqId
+                            qqNickName:qqNickName
+                               qqToken:qqToken
+                         qqTokenSecret:qqTokenSecret
+                        qqRefreshToken:qqRefreshToken
+                          qqExpireDate:qqExpireDate
+                              qqOpenId:qqOpenId
+                            facebookId:facebookId
+                   facebookAccessToken:facebookAccessToken
+                    facebookExpireDate:facebookExpireDate
+                                 email:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                // save user data locally
+                if (loginIdType == REGISTER_TYPE_SINA){
+                    [[UserManager defaultManager] saveUserId:userId
+                                                      sinaId:loginId
+                                                    password:nil
+                                                    nickName:newNickName
+                                                   avatarURL:avatar
+                                             sinaAccessToken:nil
+                                       sinaAccessTokenSecret:nil
+                                                      gender:gender];
+                }
+                else if (loginIdType == REGISTER_TYPE_QQ) {
+                    [[UserManager defaultManager] saveUserId:userId
+                                                        qqId:loginId
+                                                    password:nil
+                                                    nickName:newNickName
+                                                   avatarURL:avatar
+                                               qqAccessToken:qqToken
+                                         qqAccessTokenSecret:qqTokenSecret
+                                                      gender:gender];
+                }
+                else if (loginIdType == REGISTER_TYPE_FACEBOOK) {
+                    [[UserManager defaultManager] saveUserId:userId
+                                                  facebookId:loginId
+                                                    password:nil
+                                                    nickName:newNickName
+                                                   avatarURL:avatar
+                                                      gender:gender];
+                }
+                
+                // set location
+                [[UserManager defaultManager] setLocation:location];
+                [[UserManager defaultManager] storeUserData];
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                POSTMSG(NSLS(@"kSystemFailure"));
+            }
+            else {
+                // @"对不起，注册失败，请稍候再试"
+                POSTMSG(NSLS(@"kGeneralFailure"));
+            }
+            
+            if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
+                [viewController didUserRegistered:output.resultCode];
+            }
+        });
+    });
+    
 }
 
 - (void)updateUserWithSNSUserInfo:(NSString*)userId

@@ -103,7 +103,7 @@
 
 - (BOOL)isSNSBtnVisable:(int)snsType
 {
-    return [[GameSNSService defaultService] isExpired:snsType];
+    return ([[GameSNSService defaultService] isExpired:snsType] == NO);
     
 //    return [SNSUtils hasSNSType:snsType inpbSnsUserArray:[[self getUser] snsUsersList]] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:snsType] isAuthorizeExpired];
 }

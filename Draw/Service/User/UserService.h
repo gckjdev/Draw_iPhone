@@ -7,6 +7,7 @@
 //
 
 #import "CommonService.h"
+#import <ShareSDK/ShareSDK.h>
 
 typedef enum {
     BLACK_USER_TYPE_USERID = 0,
@@ -115,6 +116,15 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)updateUserWithSNSUserInfo:(NSString*)userId
                          userInfo:(NSDictionary*)userInfo 
                    viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
+- (void)updateUserWithSNSUserInfo:(NSString*)userId
+                        shareType:(ShareType)shareType
+                         userInfo:(id<ISSUserInfo>)userInfo
+                       accessInfo:(id<ISSOAuth2Credential>)accessInfo
+                   viewController:(PPViewController<UserServiceDelegate>*)viewController;
+
+- (void)updateUserWithSNSUserInfo:(ShareType)shareType
+                 credentialString:(NSString*)credentialString;
 
 - (void)getStatistic:(PPViewController<UserServiceDelegate>*)viewController;
 

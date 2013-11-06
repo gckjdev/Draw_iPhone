@@ -357,6 +357,7 @@
 #define PARA_ITEMIDARRAY @"iia"
 #define PARA_REQUIRE_MATCH @"rm"
 #define PARA_TYPE @"tp"
+#define PARA_CREDENTIAL @"credential"
 #define PARA_SELL_CONTENT_TYPE @"sct"
 #define PARA_OPUS_ID_LIST @"opusIdList"
 

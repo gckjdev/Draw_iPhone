@@ -251,6 +251,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 - (void)setBlockDevices:(NSArray*)devices;
 
 
++ (NSString*)genderByValue:(int)value;
+
 + (void)syncHistoryUsers;
 + (NSMutableArray *)historyUsers;
 + (BOOL)deleteUserFromHistoryList:(NSString *)userId;

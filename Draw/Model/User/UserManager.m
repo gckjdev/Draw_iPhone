@@ -1671,4 +1671,18 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     return YES;
 }
 
++ (NSString*)genderByValue:(int)value
+{
+    if (value == 0){
+        return @"m";
+    }
+    else if (value == 1){
+        return @"f";
+    }
+    else{
+        return @"f";
+    }
+        
+}
+
 @end
