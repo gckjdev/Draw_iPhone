@@ -124,7 +124,7 @@
         [self hideActivity];
         [progress removeFromSuperview];
         
-    } usingProgressView:progress];
+    } usingProgressView:progress]; // warning is OK here since OrangeLoadingView has implement setProgress method
 
     
     if (_mode == PBUserGuessModeGuessModeGenius) {
