@@ -149,7 +149,7 @@
 
 - (NSString*)qqWeiboId
 {
-    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_WEIBO_ID" defaultValue:@"LittleGee"];
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_WEIBO_ID" defaultValue:@"drawlively"];
 }
 
 - (NSString*)feedbackTips
@@ -563,6 +563,11 @@
 - (NSString *)opusClassName{
     
     return @"DrawOpus";
+}
+
+- (NSString *)shareSDKDefaultAppId
+{
+    return @"c16e3fe5e0b";
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MessageUI/MessageUI.h>
 #import "CustomActionSheet.h"
-#import "ShareEditController.h"
+//#import "ShareEditController.h"
 #import "DrawDataService.h"
 #import "MyPaintManager.h"
 
@@ -27,7 +27,7 @@ typedef enum {
 
 @class Opus;
 
-@interface CommonShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, ShareEditControllerDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
+@interface CommonShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
 
 - (id)initWithOpus:(Opus*)opus;
 

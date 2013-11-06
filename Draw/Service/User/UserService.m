@@ -15,7 +15,7 @@
 #import "UIImageExt.h"
 #import "PPSNSConstants.h"
 #import "AccountManager.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 #import "AccountService.h"
 #import "FriendService.h"
 #import "FriendManager.h"
@@ -23,9 +23,9 @@
 #import "UserService.h"
 #import "ConfigManager.h"
 #import "TopPlayer.h"
-#import "PPSNSIntegerationService.h"
-#import "PPSNSCommonService.h"
-#import "PPSNSStorageService.h"
+//#import "PPSNSIntegerationService.h"
+//#import "PPSNSCommonService.h"
+//#import "PPSNSStorageService.h"
 #import "PPNetworkRequest.h"
 #import "MyFriend.h"
 #import "StatisticManager.h"
@@ -34,7 +34,7 @@
 #import "GameBasic.pb.h"
 #import "SNSUtils.h"
 #import "UserGameItemManager.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 #import "CommonDialog.h"
 #import "DrawAppDelegate.h"
 #import "PPGameNetworkRequest.h"
@@ -43,6 +43,7 @@
 #import "ShakeNumberController.h"
 #import "MyPaintManager.h"
 #import "UserDeviceService.h"
+#import "GameSNSService.h"
 
 @implementation UserService
 
@@ -601,27 +602,30 @@ static UserService* _defaultUserService;
     if (facebookExpireTime)
         facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
 
+    // TODO
+    [[GameSNSService defaultService] saveSNSInfo:TYPE_SINA];
     
-    PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
-    [sinaSNSService saveAccessToken:sinaAccessToken
-                       refreshToken:sinaRefreshToken
-                         expireDate:sinaExpireDate
-                             userId:sinaId
-                           qqOpenId:nil];
     
-    PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
-    [qqSNSService saveAccessToken:qqAccessToken
-                     refreshToken:qqRefreshToken
-                       expireDate:qqExpireDate
-                           userId:qqId
-                         qqOpenId:qqOpenId];
-    
-    PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
-    [facebookSNSService saveAccessToken:facebookToken
-                           refreshToken:nil
-                             expireDate:facebookExpireDate
-                                 userId:facebookId
-                               qqOpenId:nil];
+//    PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
+//    [sinaSNSService saveAccessToken:sinaAccessToken
+//                       refreshToken:sinaRefreshToken
+//                         expireDate:sinaExpireDate
+//                             userId:sinaId
+//                           qqOpenId:nil];
+//    
+//    PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
+//    [qqSNSService saveAccessToken:qqAccessToken
+//                     refreshToken:qqRefreshToken
+//                       expireDate:qqExpireDate
+//                           userId:qqId
+//                         qqOpenId:qqOpenId];
+//    
+//    PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
+//    [facebookSNSService saveAccessToken:facebookToken
+//                           refreshToken:nil
+//                             expireDate:facebookExpireDate
+//                                 userId:facebookId
+//                               qqOpenId:nil];
     
 }
 

@@ -14,7 +14,7 @@
 #import "ConfigManager.h"
 #import "PPNetworkRequest.h"
 #import "PPSNSConstants.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "GameSNSService.h"
 #import "UIImageExt.h"
 #import "RoundLineLabel.h"
@@ -117,13 +117,22 @@ static ShareService* _defaultService;
             }
             
             NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:nickName drawUserSNSNick:qqId isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:textForQQ imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+
+            [[GameSNSService defaultService] publishWeibo:TYPE_QQ text:textForQQ imageFilePath:imagePath];
+            
+//            [[GameSNSService defaultService] publishWeibo:TYPE_QQ text:textForQQ imageFilePath:imagePath inView:nil];
+            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:textForQQ imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
             
             NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:nickName drawUserSNSNick:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:textForSina imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+            [[GameSNSService defaultService] publishWeibo:TYPE_SINA text:textForSina imageFilePath:imagePath];
+            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:textForSina imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
             
             NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:nickName drawUserSNSNick:nil isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:textForFacebook imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+            [[GameSNSService defaultService] publishWeibo:TYPE_FACEBOOK text:textForFacebook imageFilePath:imagePath];
+            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:textForFacebook imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
 
             /*
             if ([[UserManager defaultManager] hasBindQQWeibo]){

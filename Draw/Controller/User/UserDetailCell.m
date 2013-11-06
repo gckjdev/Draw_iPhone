@@ -15,7 +15,7 @@
 #import "GameSNSService.h"
 #import "SNSUtils.h"
 #import "TimeUtils.h"
-#import "PPSNSCommonService.h"
+//#import "PPSNSCommonService.h"
 #import "CustomSegmentedControl.h"
 #import "ShareImageManager.h"
 #import "FeedCarousel.h"

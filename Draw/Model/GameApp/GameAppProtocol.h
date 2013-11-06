@@ -173,6 +173,7 @@
 - (NSString*)photoTagsEn;
 
 - (NSString *)opusClassName;
+- (NSString *)shareSDKDefaultAppId;
 
 @end
 
