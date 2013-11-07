@@ -163,55 +163,65 @@ GameSNSService* _defaultSNSService;
 //    return [NSString stringWithFormat:@"@%@", [snsService officialWeiboId]];
 //}
 //
-//+ (void)askRebindQQ:(UIViewController*)viewController
-//{
-//    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
-//                                                       message:NSLS(@"kRebindQQ")
-//                                                         style:CommonDialogStyleDoubleButton];
-//     [dialog setClickOkBlock:^(UILabel *label){
+
+- (void)askRebindQQ:(UIViewController*)viewController
+{
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kRebindQQ")
+                                                         style:CommonDialogStyleDoubleButton];
+     [dialog setClickOkBlock:^(UILabel *label){
+         
+         [self autheticate:TYPE_QQ];
+         
 //          [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo) {
 //              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
 //          } failure:^{
 //              //
 //          }];
-//     }];
-//    
-//    [dialog showInView:viewController.view];
-//}
-//
-//+ (void)askRebindSina:(UIViewController*)viewController
-//{
-//    
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
-//                                                       message:NSLS(@"kRebindSina")
-//                                                         style:CommonDialogStyleDoubleButton];
-//     [dialog setClickOkBlock:^(UILabel *label){
+     }];
+    
+    [dialog showInView:viewController.view];
+}
+
+- (void)askRebindSina:(UIViewController*)viewController
+{
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kRebindSina")
+                                                         style:CommonDialogStyleDoubleButton];
+     [dialog setClickOkBlock:^(UILabel *label){
+         
+         [self autheticate:TYPE_SINA];
+         
 //          [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
 //              [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
 //          } failure:^{
 //              //
 //          }];
-//     }];
-//    
-//    [dialog showInView:viewController.view];
-//}
-//
-//+ (void)askRebindFacebook:(UIViewController*)viewController
-//{
-//    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
-//                                                       message:NSLS(@"kRebindFacebook")
-//                                                         style:CommonDialogStyleDoubleButton];
-//    [dialog setClickOkBlock:^(UILabel *label){
+     }];
+    
+    [dialog showInView:viewController.view];
+}
+
+- (void)askRebindFacebook:(UIViewController*)viewController
+{
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kMessage")
+                                                       message:NSLS(@"kRebindFacebook")
+                                                         style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(UILabel *label){
+        
+        [self autheticate:TYPE_FACEBOOK];
+        
 //        [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
 //          [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
 //        } failure:^{
 //          
 //        }];
-//    }];
-//    
-//    [dialog showInView:viewController.view];
-//}
+    }];
+    
+    [dialog showInView:viewController.view];
+}
 
 + (ShareType)shareSDKType:(PPSNSType)snsType
 {
@@ -338,7 +348,7 @@ GameSNSService* _defaultSNSService;
     
     SSUserFieldType fieldType = SSUserFieldTypeUid;
     NSString* field = weiboId;
-    if ([weiboName length] > 0){
+    if ([weiboId length] == 0 && [weiboName length] > 0){
         fieldType = SSUserFieldTypeName;
         field = weiboName;
     }
@@ -348,7 +358,7 @@ GameSNSService* _defaultSNSService;
         return;
     }
     
-    PPDebug(@"<followUser> field(%@) type(%d) shareType(%d)", field, fieldType, shareType);
+    PPDebug(@"<followUser> field(%@) type(%d) shareType(%d) weiboId(%@) weiboNick(%@)", field, fieldType, shareType, weiboId, weiboName);
     
     BOOL needUpdateUserInfo = [self isExpired:snsType];
     
@@ -561,6 +571,31 @@ GameSNSService* _defaultSNSService;
         return [UIUtils getAppName];
     }
 
+}
+
+- (void)cleanSNSInfo:(NSArray*)snsCredentials
+{
+//    for (PBSNSUserCredential* credential in snsCredentials){
+//        
+//        PPDebug(@"<cleanSNSInfo> remove SNS credential, type(%d), credential(%@)", credential.type, credential.credential);
+//        
+//        if ([credential.credential length] == 0){
+//            continue;
+//        }
+//        
+//        // clear local data in Share SDK
+//        ShareType shareType = [GameSNSService shareSDKType:credential.type];
+//        if (shareType == ShareTypeAny){
+//            continue;
+//        }
+//        
+//        
+//    }
+
+    NSArray* shareTypes = @[ @(ShareTypeSinaWeibo), @(ShareTypeTencentWeibo), @(ShareTypeFacebook), @(ShareTypeQQSpace), @(ShareTypeTwitter)];
+    for (NSNumber* shareType in shareTypes){
+        [ShareSDK setCredential:nil type:[shareType intValue]];
+    }
 }
 
 - (void)saveSNSInfo:(NSArray*)snsCredentials

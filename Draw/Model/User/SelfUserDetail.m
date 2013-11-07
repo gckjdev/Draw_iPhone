@@ -175,7 +175,12 @@
 
 - (void)clickSina:(PPTableViewController*)viewController
 {
-    [[GameSNSService defaultService] autheticate:TYPE_SINA];
+    if ([[GameSNSService defaultService] isExpired:TYPE_SINA]){
+        [[GameSNSService defaultService] autheticate:TYPE_SINA];
+    }
+    else{
+        [[GameSNSService defaultService] askRebindSina:viewController];
+    }
     
 //    if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
 //        [GameSNSService askRebindSina:viewController];
@@ -192,7 +197,12 @@
 }
 - (void)clickQQ:(PPTableViewController*)viewController
 {
-    [[GameSNSService defaultService] autheticate:TYPE_QQ];
+    if ([[GameSNSService defaultService] isExpired:TYPE_QQ]){
+        [[GameSNSService defaultService] autheticate:TYPE_QQ];
+    }
+    else{
+        [[GameSNSService defaultService] askRebindQQ:viewController];
+    }
 
     
 //    if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
@@ -207,9 +217,15 @@
 //        }];
 //    }
 }
+
 - (void)clickFacebook:(PPTableViewController*)viewController
 {
-    [[GameSNSService defaultService] autheticate:TYPE_FACEBOOK];
+    if ([[GameSNSService defaultService] isExpired:TYPE_FACEBOOK]){
+        [[GameSNSService defaultService] autheticate:TYPE_FACEBOOK];
+    }
+    else{
+        [[GameSNSService defaultService] askRebindFacebook:viewController];
+    }
 
     
 //    if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {

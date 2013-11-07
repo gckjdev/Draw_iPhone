@@ -784,6 +784,11 @@ static UserService* _defaultUserService;
     });
 }
 
+- (void)cleanSNSUserData:(PBGameUser*)pbUser
+{    
+    [[GameSNSService defaultService] cleanSNSInfo:nil];
+}
+
 - (void)saveSNSUserData:(PBGameUser*)pbUser
 {
     /*
@@ -861,6 +866,7 @@ static UserService* _defaultUserService;
         [[LevelService defaultService] setLevel:user.level];
         [[LevelService defaultService] setExperience:user.experience];
         
+        [self cleanSNSUserData:user];
         [self saveSNSUserData:user];
         
         // sync balance from server
@@ -904,6 +910,7 @@ static UserService* _defaultUserService;
             [self updateNewAppId:appId];
         }
         
+        [self cleanSNSUserData:user];
         [self saveSNSUserData:user];
         
         // sync balance from server
@@ -2077,7 +2084,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
             [[AccountManager defaultManager] updateBalance:0 currency:PBGameCurrencyCoin];
             [[AccountManager defaultManager] updateBalance:0 currency:PBGameCurrencyIngot];
             
-            [self saveSNSUserData:nil];
+            [self cleanSNSUserData:[UserManager defaultManager].pbUser];
             
             // sync user item from server
             [[UserGameItemManager defaultManager] setUserItemList:nil];            
