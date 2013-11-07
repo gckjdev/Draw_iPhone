@@ -1481,6 +1481,7 @@
 "kLookLargeImage" = "查看";
 "kLook" = "查看";
 "kImageMustBeSquare" = "圖片必須是正方形的";
+"kAudioUrlIsBlank" = "音頻文件不存在";
 "kNoRecommend" = "暫無推薦";
 "kCustomBBSBgSucc" = "成功自定義論壇背景！";
 "kResetCustomBBSBgSucc" = "成功重設論壇背景!";

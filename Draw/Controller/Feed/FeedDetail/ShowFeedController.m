@@ -1310,6 +1310,7 @@ typedef enum{
 - (void)play{
     
     if ([self.feed.drawDataUrl length] == 0) {
+        POSTMSG2(NSLS(@"kAudioUrlIsBlank"), 2);
         return;
     }
     
