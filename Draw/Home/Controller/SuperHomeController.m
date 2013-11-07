@@ -11,7 +11,6 @@
 #import "ChargeController.h"
 #import "StatisticManager.h"
 #import "UserManager.h"
-//#import "RegisterUserController.h"
 #import "UserSettingController.h"
 #import "LmWallService.h"
 #import "UIUtils.h"
@@ -105,9 +104,6 @@
     PPDebug(@"SuperHomeController view did load");
     [super viewDidLoad];
     
-//    if (!ISIPAD) {
-//        self.view.frame = CGRectMake(0, 0, 320, 460);
-//    }
 
     [self addMainMenuView];
     [self addHeaderView];
