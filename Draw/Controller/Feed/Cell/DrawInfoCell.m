@@ -103,7 +103,7 @@
 
 + (CGFloat)cellHeightWithFeed:(DrawFeed *)feed
 {
-    NSString *desc = feed.desc;
+    NSString *desc = feed.opusDesc;
     if (feed.categoryType == PBOpusCategoryTypeDrawCategory) {
         if ([desc length] == 0) {
             return CELL_HEIGHT_BASE;
@@ -194,9 +194,10 @@
 {
     [self.opusDesc setText:desc];
     self.opusDesc.textColor = COLOR_BROWN;
+    CGSize size = [DrawInfoCell labelSizeWithText:desc];
+    [self.opusDesc updateHeight:size.height];
     
     self.opusDescLabel.text = desc;
-    
     [ShareImageManager setFXLabelStyle:self.opusDescLabel];
 }
 

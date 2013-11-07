@@ -56,6 +56,7 @@
     self.searchTextField.placeholder = NSLS(@"kInputSongNameForSearch");
     self.searchTextField.returnKeyType = UIReturnKeySearch;
     self.searchTextField.delegate = self;
+    [self.searchTextField becomeFirstResponder];
 }
 
 SET_CELL_BG_IN_CONTROLLER;
@@ -132,7 +133,14 @@ SET_CELL_BG_IN_CONTROLLER;
 - (void)didSelectSong:(PBSong *)song{
     
     [self.singOpus setSong:song];
-    [self.singOpus setName:song.name];
+    
+    if (NSStringIsValidChinese(song.name)
+        || NSStringISValidEnglish(song.name)){
+        
+        NSRange range = NSMakeRange(0, MIN(7, [song.name length]));
+        NSString *name = [song.name substringWithRange:range];
+        [self.singOpus setName:name];
+    }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SELECT_SONG object:nil];
     

@@ -154,44 +154,44 @@
     }
 }
 
-- (void)updateAnimation
-{
-    DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
-    DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
-    HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
-    
-    [header setClickRopeHandler:^(BOOL open)
-    {
-        if (open) {
-            [mainPanel closeAnimated:YES completion:^(BOOL finished) {
-                [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
-                [header openAnimated:YES completion:NULL];
-                [footer hideAnimated:YES];
-            }];
-        }else{
-            [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
-            [footer showAnimated:YES];
-            [header closeAnimated:YES completion:^(BOOL finished) {
-                [mainPanel openAnimated:YES completion:NULL];
-            }];
-
-        }
-
-        // TODO Benson later
-    }];
-    
-//#if DEBUG
-//    if (YES) {
-//#else
-    if ([_userManager hasXiaojiNumber] == NO && [_userManager isOldUserWithoutXiaoji] == NO) {
-//#endif
-        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
-            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
-            [header openAnimated:NO completion:NULL];
-            [footer hideAnimated:NO];
-        }];        
-    }
-}
+//- (void)updateAnimation
+//{
+//    DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
+//    DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
+//    HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
+//    
+//    [header setClickRopeHandler:^(BOOL open)
+//    {
+//        if (open) {
+//            [mainPanel closeAnimated:YES completion:^(BOOL finished) {
+//                [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+//                [header openAnimated:YES completion:NULL];
+//                [footer hideAnimated:YES];
+//            }];
+//        }else{
+//            [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+//            [footer showAnimated:YES];
+//            [header closeAnimated:YES completion:^(BOOL finished) {
+//                [mainPanel openAnimated:YES completion:NULL];
+//            }];
+//
+//        }
+//
+//        // TODO Benson later
+//    }];
+//    
+////#if DEBUG
+////    if (YES) {
+////#else
+//    if ([_userManager hasXiaojiNumber] == NO && [_userManager isOldUserWithoutXiaoji] == NO) {
+////#endif
+//        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
+//            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
+//            [header openAnimated:NO completion:NULL];
+//            [footer hideAnimated:NO];
+//        }];        
+//    }
+//}
 
 - (void)viewDidLoad
 {        
@@ -209,7 +209,7 @@
     
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
-    [self updateAnimation];
+//    [self updateAnimation];
     
 //    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
 //        [self updateBGImageView];

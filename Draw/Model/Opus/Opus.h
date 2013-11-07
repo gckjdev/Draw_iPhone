@@ -37,6 +37,8 @@
 - (void)setLocalImageUrl:(NSString *)image;
 - (void)setDesc:(NSString *)desc;
 - (void)setTargetUser:(PBGameUser *)user;
+- (void)setIsRecovery:(BOOL)value;
+
 
 - (PBOpus *)pbOpus;
 - (NSData *)data;

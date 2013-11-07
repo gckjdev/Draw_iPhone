@@ -29,8 +29,6 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (assign, nonatomic, getter = isFromWeiXin) BOOL fromWeiXin;
 
-- (IBAction)deleteAll:(id)sender;
-
 + (void)shareFromWeiXin:(UIViewController*)superController;
 
 - (id)initWithClass:(Class)aClass

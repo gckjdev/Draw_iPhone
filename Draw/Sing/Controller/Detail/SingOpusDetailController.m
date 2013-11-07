@@ -12,7 +12,6 @@
 #import "OpusManager.h"
 #import "SingGuessController.h"
 #import "UserManager.h"
-#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 
 @interface SingOpusDetailController ()
