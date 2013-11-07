@@ -53,6 +53,8 @@
 #import "DrawUtils.h"
 #import "ImagePlayer.h"
 #import "AudioPlayer.h"
+#import "GameSNSService.h"
+#import "ShareAction.h"
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
@@ -109,6 +111,7 @@ typedef enum{
     PPRelease(_feedScene);
     PPRelease(_feedId);
     PPRelease(_drawCellFullScreen);
+    PPRelease(_shareAction);
     
     [super dealloc];
 }
@@ -820,6 +823,20 @@ typedef enum{
     [cc release];
 }
 
+- (UIImage*)getFeedImage
+{
+    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
+    if (image == nil) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
+    }
+    
+    if (image == nil){
+        image = self.feed.largeImage;
+    }
+
+    return image;
+}
+
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
@@ -853,15 +870,16 @@ typedef enum{
         {
             CHECK_AND_LOGIN(self.view);
 
-            UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
-            if (image == nil) {
-                image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
-            }
-
+//            UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
+//            if (image == nil) {
+//                image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
+//            }
+//            
+//            if (image == nil){
+//                image = self.feed.largeImage;
+//            }
             
-            if (image == nil){
-                image = self.feed.largeImage;
-            }
+            UIImage* image = [self getFeedImage];
             if (_shareAction == nil) {
                 _shareAction = [[ShareAction alloc] initWithFeed:_feed
                                                            image:image];
@@ -1096,17 +1114,34 @@ typedef enum{
     [self updateActionButtons];
 }
 
+- (void)share:(PPSNSType)type
+{
+    NSString* text = [ShareAction shareTextByDrawFeed:self.feed snsType:type];
+    NSString* imagePath = [ShareAction createFeedImagePath:self.feed];
+    
+    [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+                                             text:text
+                                    imageFilePath:imagePath
+                                           inView:self.view
+                                       awardCoins:[ConfigManager getShareWeiboReward]
+                                   successMessage:NSLS(@"kShareWeiboSuccess")
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+    
+}
+
 - (void)didClickDrawImageMaskView
 {
     CHECK_AND_LOGIN(self.view);
     
-    int indexOfGuess = 0;
-    int indexOfPlay = 1;
-    int indexOfPhoto = 2;
+    int index = 0;
+    int indexOfGuess = -1;
+    int indexOfPlay = -1;
+    int indexOfPhoto = -1;
     int indexOfFeature = -1;
     int indexOfUnfeature = -1;
     int indexOfSetScore = -1;
     int indexOfDelete = -1;
+    
     
     MKBlockActionSheet *sheet = nil;
     BOOL canFeature = [[UserManager defaultManager] canFeatureDrawOpus];
@@ -1116,11 +1151,15 @@ typedef enum{
                                                  delegate:nil
                                         cancelButtonTitle:NSLS(@"kCancel")
                                    destructiveButtonTitle:NSLS(@"kGuess")
-                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"), nil];
-        indexOfSetScore =  indexOfPhoto + 1;
-        indexOfFeature = indexOfSetScore + 1;
-        indexOfUnfeature = indexOfFeature + 1;
-        indexOfDelete = indexOfUnfeature + 1;
+                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"),
+                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+        indexOfGuess = index++;
+        indexOfPlay = index++;
+        indexOfPhoto = index++;
+        indexOfSetScore = index++;
+        indexOfFeature = index++;
+        indexOfUnfeature = index++;
+        indexOfDelete = index++;
     }
     else if (![self.feed showAnswer]) {
         if (canFeature){
@@ -1128,38 +1167,54 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
-                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
-            indexOfFeature = indexOfPhoto + 1;
-            indexOfUnfeature = indexOfFeature + 1;
+                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+            indexOfGuess = index++;
+            indexOfPlay = index++;
+            indexOfPhoto = index++;
+            indexOfFeature = index++;
+            indexOfUnfeature = index++;
         }
         else{
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
-                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), nil];
+                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+            indexOfGuess = index++;
+            indexOfPlay = index++;
+            indexOfPhoto = index++;
+
         }
     }else{
-        indexOfGuess = -1;
-        indexOfPlay = 0;
-        indexOfPhoto = 1;
+        indexOfPlay = index++;
+        indexOfPhoto = index++;
 
         if (canFeature){
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
-                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
+                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"),
+                     NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
         
-            indexOfFeature = indexOfPhoto + 1;
-            indexOfUnfeature = indexOfFeature + 1;
+            indexOfFeature = index++;
+            indexOfUnfeature = index++;
         }
         else{
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
-                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), nil];
+                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
         }
     }
+    
+    int indexOfShareSinaWeibo = index++;
+    int indexOfShareWeixinSession = index++;
+    int indexOfShareWeixinTimeline = index++;
+    int indexOfShareQQSpace = index++;
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         if (buttonIndex == indexOfGuess) {
@@ -1197,7 +1252,21 @@ typedef enum{
             
             [dialog showInView:self.view];
         }
-        else{
+        else if (buttonIndex == indexOfShareSinaWeibo){
+            [self share:TYPE_SINA];
+        }
+        else if (buttonIndex == indexOfShareWeixinSession){
+//            [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+//                                                     text:text
+//                                                   inView:self.view
+//                                               awardCoins:[ConfigManager getShareWeiboReward]
+//                                           successMessage:NSLS(@"kShareWeiboSuccess")
+//                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+        }
+        else if (buttonIndex == indexOfShareWeixinTimeline){
+            
+        }
+        else if (buttonIndex == indexOfShareQQSpace){
             
         }
         

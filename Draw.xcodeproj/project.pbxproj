@@ -9518,6 +9518,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A461B3CF174CBAA70088B061 /* libstdc++.dylib in Frameworks */,
 				A4B1233818279ECD00A0603F /* CoreVideo.framework in Frameworks */,
 				A461B3D5174CBAA70088B061 /* ImageIO.framework in Frameworks */,
 				A4F04B851806543C007274BE /* AssetsLibrary.framework in Frameworks */,
@@ -9538,7 +9539,6 @@
 				A461B3CB174CBAA70088B061 /* EventKitUI.framework in Frameworks */,
 				A461B3CD174CBAA70088B061 /* EventKit.framework in Frameworks */,
 				A461B3CE174CBAA70088B061 /* CoreLocation.framework in Frameworks */,
-				A461B3CF174CBAA70088B061 /* libstdc++.dylib in Frameworks */,
 				A461B3D0174CBAA70088B061 /* CoreTelephony.framework in Frameworks */,
 				A461B3D1174CBAA70088B061 /* libsqlite3.dylib in Frameworks */,
 				A461B3D4174CBAA70088B061 /* MobileCoreServices.framework in Frameworks */,
@@ -9596,6 +9596,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C28A9CAE1738F04B007A819F /* libstdc++.dylib in Frameworks */,
 				CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */,
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
 				C28A9CB41738F04B007A819F /* ImageIO.framework in Frameworks */,
@@ -9612,7 +9613,6 @@
 				C28A9CAB1738F04B007A819F /* MediaPlayer.framework in Frameworks */,
 				C28A9CAC1738F04B007A819F /* EventKit.framework in Frameworks */,
 				C28A9CAD1738F04B007A819F /* CoreLocation.framework in Frameworks */,
-				C28A9CAE1738F04B007A819F /* libstdc++.dylib in Frameworks */,
 				C28A9CAF1738F04B007A819F /* CoreTelephony.framework in Frameworks */,
 				C28A9CB01738F04B007A819F /* libsqlite3.dylib in Frameworks */,
 				C28A9CB11738F04B007A819F /* AudioToolbox.framework in Frameworks */,
@@ -9670,6 +9670,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */,
 				C2A09762152ECDEA006535F7 /* ImageIO.framework in Frameworks */,
 				CAEEC19F181A5F19007FD75F /* CoreVideo.framework in Frameworks */,
 				A421503A1803E87C007F2EFD /* AssetsLibrary.framework in Frameworks */,
@@ -9690,7 +9691,6 @@
 				CA67B8AA15EB292E002050DB /* EventKitUI.framework in Frameworks */,
 				CAA1AFC5159EAA9900504C98 /* EventKit.framework in Frameworks */,
 				CA103F2A1509A6CA00F60C03 /* CoreLocation.framework in Frameworks */,
-				CAA1AFC7159EAB1700504C98 /* libstdc++.dylib in Frameworks */,
 				CAA1AF8E159EA86A00504C98 /* CoreTelephony.framework in Frameworks */,
 				CAAE4A8315790F480012F6B8 /* libsqlite3.dylib in Frameworks */,
 				CA103F3A1509A72100F60C03 /* MobileCoreServices.framework in Frameworks */,
@@ -9746,6 +9746,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA411B28176066F500DA72D0 /* libstdc++.dylib in Frameworks */,
 				EA411B17176066F500DA72D0 /* Accelerate.framework in Frameworks */,
 				EA411B18176066F500DA72D0 /* CoreMedia.framework in Frameworks */,
 				EA411B19176066F500DA72D0 /* MediaPlayer.framework in Frameworks */,
@@ -9763,7 +9764,6 @@
 				EA411B25176066F500DA72D0 /* EventKitUI.framework in Frameworks */,
 				EA411B26176066F500DA72D0 /* EventKit.framework in Frameworks */,
 				EA411B27176066F500DA72D0 /* CoreLocation.framework in Frameworks */,
-				EA411B28176066F500DA72D0 /* libstdc++.dylib in Frameworks */,
 				EA411B29176066F500DA72D0 /* CoreTelephony.framework in Frameworks */,
 				EA411B2A176066F500DA72D0 /* libsqlite3.dylib in Frameworks */,
 				EA411B2B176066F500DA72D0 /* MobileCoreServices.framework in Frameworks */,

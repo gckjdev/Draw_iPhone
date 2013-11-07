@@ -34,6 +34,11 @@
 #import "TimeUtils.h"
 #import "GameSNSService.h"
 
+#import "SDImageCache.h"
+#import "SDWebImageManager.h"
+#import "ShareService.h"
+
+
 @interface ShareAction ()
 {
     NSInteger buttonIndexAlbum;
@@ -276,6 +281,58 @@
     [compose release];
 }
 
++ (NSString*)createFeedImagePath:(DrawFeed*)feed
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.drawImageUrl];
+    if (image == nil) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:feed.drawImageUrl];
+    }
+    
+    if (image == nil){
+        image = feed.largeImage;
+    }
+    
+    NSString* path = [[[ShareService defaultService] synthesisImageWithImage:image
+                                                              waterMarkText:[ConfigManager getShareImageWaterMark]] retain];
+    [pool drain];
+
+    PPDebug(@"<createFeedImagePath> create image file at %@ for share", path);
+    return [path autorelease];
+}
+
++ (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type
+{
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+    NSString* text = @"";
+    NSString* drawWord = @"";
+    BOOL isDrawByMe = [[UserManager defaultManager] isMe:feed.feedUser.userId];
+
+    if (feed != nil) {
+        drawWord = feed.wordText;
+    }
+    
+    if (isDrawByMe){
+        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), feed.opusDesc, snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        }
+    }
+    else{
+        NSString* heStr = [feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
+        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), feed.opusDesc, heStr, snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        }
+    }
+    
+    return text;
+}
+
 - (void)shareViaSNS:(SnsType)type
 {
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
@@ -283,49 +340,31 @@
     if (self.feed != nil) {
         _drawWord = self.feed.wordText;
     }
-    if (_isDrawByMe){
-//        if (_isGIF){
-//            text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
-//        }
-//        else{
-        
-            if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
-            } else {
-                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
-            }
-            
-//        }
+    if (_isDrawByMe){        
+        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        }
     }
     else{
-//        if (_isGIF){
-//            text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
-//        }
-//        else{
-            NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
-            if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
+        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
 
-            } else {
-                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
-            }
-//        }
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        }
     }
 
-    [[GameSNSService defaultService] publishWeibo:type text:text
+    [[GameSNSService defaultService] publishWeibo:type
+                                             text:text
                                     imageFilePath:_imageFilePath
                                            inView:self.superViewController.view
                                        awardCoins:[ConfigManager getShareWeiboReward]
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")];
     
-//    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-//                                                                                text:text
-//                                                                          drawUserId:self.drawUserId
-//                                                                             snsType:type];
-//    controller.delegate = self;
-//    [self.superViewController.navigationController pushViewController:controller animated:YES];
-//    [controller release];    
 }
 
 #define MAX_WEIXIN_IMAGE_WIDTH          ([ConfigManager maxWeixinImageWidth])

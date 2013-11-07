@@ -53,8 +53,8 @@ GameSNSService* _defaultSNSService;
                                     redirectUri:[GameApp qqAppRedirectURI]]; // @"http://www.sharesdk.cn"];
         
         //添加QQ空间应用
-//        [ShareSDK connectQZoneWithAppKey:@"100371282"
-//                               appSecret:@"aed9b0303e3ed1e27bae87c33761161d"];
+        [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]     //@"100371282"
+                               appSecret:[GameApp qqSpaceAppKey]];  // @"aed9b0303e3ed1e27bae87c33761161d"];
         
         //添加Facebook应用
         [ShareSDK connectFacebookWithAppKey:[GameApp facebookAppKey]   //@"107704292745179"

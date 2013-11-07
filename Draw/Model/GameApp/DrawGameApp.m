@@ -98,6 +98,17 @@
 //    return @"801123669";
 }
 
+
+- (NSString*)qqSpaceAppId
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_ID" defaultValue:@"100550661"];
+}
+
+- (NSString*)qqSpaceAppKey
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_KEY" defaultValue:@"7687417d49a2a14c3dd9434d05c29662"];
+}
+
 - (NSString*)qqAppSecret
 {
     return [MobClickUtils getStringValueByKey:@"DRAW_QQ_APP_SECRET" defaultValue:@"30169d80923b984109ee24ade9914a5c"];

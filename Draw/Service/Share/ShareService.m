@@ -220,6 +220,11 @@ static ShareService* _defaultService;
     }
     float labelHeight = srcImage.size.height*0.05;
     int labelFontSize = (int)labelHeight;
+    
+    if (labelFontSize > 25){
+        labelFontSize = 25;
+    }
+    
     UIColor* imageShadowColor = [UIColor colorWithRed:112/255.0 green:109/255.0 blue:109/255.0 alpha:1.0];
 //    UIColor* labelShadowColor = [UIColor colorWithRed:108/255.0 green:107/255.0 blue:107/255.0 alpha:1.0];
     
