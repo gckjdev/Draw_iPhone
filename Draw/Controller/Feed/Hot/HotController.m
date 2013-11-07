@@ -132,7 +132,7 @@ typedef enum{
     
     if (type == RankTypeHot || type == RankTypeHistory) {
         
-        if (isDrawApp()) {
+        if (isDrawApp() || isLittleGeeAPP()) {
             if (indexPath.row == 0) {
                 return [RankView heightForRankViewType:RankViewTypeFirst]+1;
             }else if(indexPath.row == 1){
@@ -206,15 +206,14 @@ typedef enum{
 {
     CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
     CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
-    CGFloat space = WIDTH_SPACE;
-    CGFloat x = 0;
+    CGFloat x = 1;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {
         RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
         [rankView setViewInfo:feed];
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
-        x += width + space;
+        x += width;
     }
 }
 
@@ -261,9 +260,11 @@ typedef enum{
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryNone;
     TableTab *tab = [self currentTab];
-    if (tab.tabID == RankTypeHot || tab.tabID == RankTypeHistory) {
+    
+    if (isDrawApp() || isLittleGeeAPP()) {
         
-        if (isDrawApp()) {
+        if (tab.tabID == RankTypeHot || tab.tabID == RankTypeHistory) {
+            
             if (indexPath.row == 0) {
                 DrawFeed *feed = (DrawFeed *)[self saveGetObjectForIndex:0];
                 [self setFirstRankCell:cell WithFeed:feed];
@@ -282,53 +283,54 @@ typedef enum{
                 }
                 [self setNormalRankCell:cell WithFeeds:list];
             }
-        }else if (isSingApp()){
             
-            NSInteger startIndex = indexPath.row * WHISPER_CELL_VIEW_NUMBER;
+        }else if(tab.tabID == RankTypeNew){
+            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
             NSMutableArray *list = [NSMutableArray array];
-            for (NSInteger i = startIndex; i < startIndex+WHISPER_CELL_VIEW_NUMBER; ++ i) {
+            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
                 NSObject *object = [self saveGetObjectForIndex:i];
                 if (object) {
                     [list addObject:object];
                 }
             }
-            [self setWhisperRankCell:cell WithFeeds:list];
+            [self setNormalRankCell:cell WithFeeds:list];
+            
+        }else if(tab.tabID == RankTypePlayer){
+            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+            NSMutableArray *list = [NSMutableArray array];
+            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+                NSObject *object = [self saveGetObjectForIndex:i];
+                if (object) {
+                    [list addObject:object];
+                }
+            }
+            [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
+        }else if(tab.tabID == RankTypeRecommend){
+            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+            NSMutableArray *list = [NSMutableArray array];
+            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+                NSObject *object = [self saveGetObjectForIndex:i];
+                if (object) {
+                    [list addObject:object];
+                }
+            }
+            [self setNormalRankCell:cell WithFeeds:list];
+            
         }
         
-    }else if(tab.tabID == RankTypeNew){
-        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+    } else if (isSingApp()){
+        
+        NSInteger startIndex = indexPath.row * WHISPER_CELL_VIEW_NUMBER;
         NSMutableArray *list = [NSMutableArray array];
-        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+        for (NSInteger i = startIndex; i < startIndex+WHISPER_CELL_VIEW_NUMBER; ++ i) {
             NSObject *object = [self saveGetObjectForIndex:i];
             if (object) {
                 [list addObject:object];
             }
         }
-        [self setNormalRankCell:cell WithFeeds:list];
-        
-    }else if(tab.tabID == RankTypePlayer){
-        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-        NSMutableArray *list = [NSMutableArray array];
-        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-            NSObject *object = [self saveGetObjectForIndex:i];
-            if (object) {
-                [list addObject:object];
-            }
-        }
-        [self setTopPlayerCell:cell WithPlayers:list isFirstRow:(indexPath.row == 0)];
-    }else if(tab.tabID == RankTypeRecommend){
-        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-        NSMutableArray *list = [NSMutableArray array];
-        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-            NSObject *object = [self saveGetObjectForIndex:i];
-            if (object) {
-                [list addObject:object];
-            }
-        }
-        [self setNormalRankCell:cell WithFeeds:list];
-        
+        [self setWhisperRankCell:cell WithFeeds:list];
     }
-    
+        
     return cell;
 }
 
@@ -345,18 +347,31 @@ typedef enum{
     switch (type) {
         case RankTypeHot:
         case RankTypeHistory:
-            if (count <= 1) {
-                return count;
-            }else if(count <= 3){
-                return 2;
-            }else{
-                count = count - (count %3);
-                if (count %3 == 0) {
-                    return count/3 + 1;
+            
+            if (isDrawApp() || isLittleGeeAPP()) {
+                if (count <= 1) {
+                    return count;
+                }else if(count <= 3){
+                    return 2;
                 }else{
-                    return count / 3 + 2;
+                    count = count - (count %3);
+                    if (count %3 == 0) {
+                        return count/3 + 1;
+                    }else{
+                        return count / 3 + 2;
+                    }
                 }
+            }else if (isSingApp()){
+                
+                int remaind = (count % WHISPER_CELL_VIEW_NUMBER) == 0 ? 0 : 1;
+                return count/WHISPER_CELL_VIEW_NUMBER + remaind;
+            }else{
+                
+                return 0;
             }
+            
+            break;
+
         default:
             if (count > 3) {
                 count = count - (count %3);

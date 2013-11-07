@@ -99,6 +99,12 @@
     [_pbOpusBuilder setName:name];
 }
 
+- (void)setIsRecovery:(BOOL)value{
+    
+    [_pbOpusBuilder setIsRecovery:value];
+}
+
+
 - (void)setLocalImageUrl:(NSString *)image{
     [_pbOpusBuilder setLocalImageUrl:image];
 }

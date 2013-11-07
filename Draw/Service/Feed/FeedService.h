@@ -25,6 +25,8 @@ typedef void (^ DownloadProgressHandler) (float progress);
 typedef void (^ FeedActionResultBlock) (int resultCode);
 typedef void (^ GetFeedCompleteBlock)(int resultCode, DrawFeed *feed, BOOL fromCache);
 
+typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
+
 @protocol FeedServiceDelegate <NSObject>
 
 @optional
@@ -91,14 +93,20 @@ typedef void (^ GetFeedCompleteBlock)(int resultCode, DrawFeed *feed, BOOL fromC
 
 - (void)getUserFeedList:(NSString *)userId
                  offset:(NSInteger)offset 
-              limit:(NSInteger)limit 
-           delegate:(id<FeedServiceDelegate>)delegate;
+                  limit:(NSInteger)limit 
+               delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)getUserOpusList:(NSString *)userId
                  offset:(NSInteger)offset 
                   limit:(NSInteger)limit
                    type:(FeedListType)type
                delegate:(id<FeedServiceDelegate>)delegate;
+
+- (void)getUserOpusList:(NSString *)userId
+                 offset:(NSInteger)offset
+                  limit:(NSInteger)limit
+                   type:(FeedListType)type
+              completed:(GetFeedListCompleteBlock)completed;
 
 - (NSArray *)getCachedFeedList:(FeedListType)feedListType;
 

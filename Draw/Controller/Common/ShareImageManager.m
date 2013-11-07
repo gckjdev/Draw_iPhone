@@ -1038,7 +1038,8 @@ static UIImage* _whitePaperImage;
 
 - (UIImage *)autoRecoveryDraftImage
 {
-    return [_resService imageByName:@"auto_recovery" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+//    return [_resService imageByName:@"auto_recovery" inResourcePackage:RESOURCE_PACKAGE_DRAW];
+    return [UIImage imageNamed:@"auto_recovery@2x.png"];
 }
 
 - (UIImage *)paintPlayerImage
@@ -1462,7 +1463,8 @@ static UIImage* _whitePaperImage;
 
 + (void)setFXLabelStyle:(FXLabel *)label{
     label.textColor = [UIColor whiteColor];
-    
+    label.backgroundColor = [UIColor clearColor];
+
     //demonstrate shadow
     label.shadowColor = nil;
     label.shadowOffset = CGSizeMake(0.0f, 2.0f);

@@ -41,7 +41,7 @@ typedef enum{
 @property (retain, nonatomic) IBOutlet FXLabel *descLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) DrawFeed *feed;
-
+@property (retain, nonatomic) IBOutlet UIView *holderView;
 
 + (id)createRankView:(id)delegate type:(RankViewType)type;
 + (CGFloat)heightForRankViewType:(RankViewType)type;

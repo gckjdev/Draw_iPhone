@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12E55</string>
+		<string key="IBDocument.SystemVersion">12F45</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.39</string>
+		<string key="IBDocument.AppKitVersion">1187.40</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -36,53 +36,43 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="433028683">
-						<reference key="NSNextResponder" ref="23548400"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrameSize">{160, 160}</string>
-						<reference key="NSSuperview" ref="23548400"/>
-						<reference key="NSNextKeyView" ref="667827526"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">paint_bg@2x.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="355844025">
 						<reference key="NSNextResponder" ref="23548400"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{10, 5}, {140, 136}}</string>
+						<string key="NSFrame">{{10, 14}, {140, 136}}</string>
 						<reference key="NSSuperview" ref="23548400"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="960049553"/>
 						<int key="IBUIContentMode">1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIImageView" id="502905431">
+					<object class="IBUIImageView" id="960049553">
 						<reference key="NSNextResponder" ref="23548400"/>
-						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{8, 168}, {143, 28}}</string>
+						<int key="NSvFlags">-2147483333</int>
+						<string key="NSFrame">{{121, 128}, {36, 38}}</string>
 						<reference key="NSSuperview" ref="23548400"/>
-						<reference key="NSNextKeyView" ref="794246300"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">paint_name_bg@2x.jpg</string>
+							<string key="NSResourceName">my_paint_tag@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="794246300">
 						<reference key="NSNextResponder" ref="23548400"/>
 						<int key="NSvFlags">319</int>
-						<string key="NSFrame">{{8, 168}, {143, 28}}</string>
+						<string key="NSFrame">{{8, 165}, {143, 28}}</string>
 						<reference key="NSSuperview" ref="23548400"/>
+						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">物品</string>
+						<string key="IBUIText"/>
 						<object class="NSColor" key="IBUITextColor" id="349293233">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -102,24 +92,12 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="960049553">
-						<reference key="NSNextResponder" ref="23548400"/>
-						<int key="NSvFlags">315</int>
-						<string key="NSFrame">{{121, 119}, {36, 38}}</string>
-						<reference key="NSSuperview" ref="23548400"/>
-						<reference key="NSNextKeyView" ref="502905431"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">my_paint_tag@2x.png</string>
-						</object>
-					</object>
 					<object class="IBUIView" id="667827526">
 						<reference key="NSNextResponder" ref="23548400"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{160, 202}</string>
 						<reference key="NSSuperview" ref="23548400"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="355844025"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="819333621">
@@ -131,7 +109,8 @@
 				</array>
 				<string key="NSFrameSize">{160, 202}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="433028683"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="819333621"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -143,22 +122,6 @@
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">background</string>
-						<reference key="source" ref="23548400"/>
-						<reference key="destination" ref="433028683"/>
-					</object>
-					<int key="connectionID">33</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">myOpusTag</string>
-						<reference key="source" ref="23548400"/>
-						<reference key="destination" ref="960049553"/>
-					</object>
-					<int key="connectionID">34</int>
-				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">opusImage</string>
@@ -174,14 +137,6 @@
 						<reference key="destination" ref="794246300"/>
 					</object>
 					<int key="connectionID">36</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">titleBackground</string>
-						<reference key="source" ref="23548400"/>
-						<reference key="destination" ref="502905431"/>
-					</object>
-					<int key="connectionID">37</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -216,11 +171,9 @@
 						<int key="objectID">27</int>
 						<reference key="object" ref="23548400"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="794246300"/>
 							<reference ref="355844025"/>
-							<reference ref="433028683"/>
-							<reference ref="502905431"/>
 							<reference ref="960049553"/>
+							<reference ref="794246300"/>
 							<reference ref="667827526"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -231,11 +184,6 @@
 						<reference key="parent" ref="23548400"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">29</int>
-						<reference key="object" ref="433028683"/>
-						<reference key="parent" ref="23548400"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">30</int>
 						<reference key="object" ref="355844025"/>
 						<reference key="parent" ref="23548400"/>
@@ -243,11 +191,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">31</int>
 						<reference key="object" ref="794246300"/>
-						<reference key="parent" ref="23548400"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
-						<reference key="object" ref="502905431"/>
 						<reference key="parent" ref="23548400"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -265,10 +208,8 @@
 				<string key="27.CustomClassName">OpusView</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="28.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="38.CustomClassName">UIControl</string>
 				<string key="38.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -278,7 +219,53 @@
 			<nil key="sourceID"/>
 			<int key="maxID">39</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">OpusView</string>
+					<string key="superclassName">UIView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clickOpusView:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clickOpusView:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">clickOpusView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="background">UIImageView</string>
+						<string key="opusImage">UIImageView</string>
+						<string key="opusTitle">UILabel</string>
+						<string key="titleBackground">UIImageView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="background">
+							<string key="name">background</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="opusImage">
+							<string key="name">opusImage</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="opusTitle">
+							<string key="name">opusTitle</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="titleBackground">
+							<string key="name">titleBackground</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/OpusView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
@@ -287,11 +274,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="my_paint_tag@2x.png">{36, 38}</string>
-			<string key="paint_bg@2x.png">{159, 161}</string>
-			<string key="paint_name_bg@2x.jpg">{143, 28}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">my_paint_tag@2x.png</string>
+			<string key="NS.object.0">{33, 33}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

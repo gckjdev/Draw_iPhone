@@ -145,7 +145,10 @@
     }
     [self registerNetworkDisconnectedNotification];
     
+    // manage rope animation
+    [self updateAnimation];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -442,5 +445,47 @@
     [imageView setImage:nil];
     [imageView removeFromSuperview];
 }
+
+#pragma mark - manage rope view
+
+- (void)updateAnimation
+{
+    DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
+    DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
+    HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
+    
+    [header setClickRopeHandler:^(BOOL open)
+     {
+         if (open) {
+             [mainPanel closeAnimated:YES completion:^(BOOL finished) {
+                 [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+                 [header openAnimated:YES completion:NULL];
+                 [footer hideAnimated:YES];
+             }];
+         }else{
+             [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+             [footer showAnimated:YES];
+             [header closeAnimated:YES completion:^(BOOL finished) {
+                 [mainPanel openAnimated:YES completion:NULL];
+             }];
+             
+         }
+         
+         // TODO Benson later
+     }];
+    
+    //#if DEBUG
+    //    if (YES) {
+    //#else
+    if ([[UserManager defaultManager] hasXiaojiNumber] == NO && [[UserManager defaultManager] isOldUserWithoutXiaoji] == NO) {
+        //#endif
+        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
+            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
+            [header openAnimated:NO completion:NULL];
+            [footer hideAnimated:NO];
+        }];
+    }
+}
+
 
 @end

@@ -1508,6 +1508,7 @@
 "kNoBulletin" = "暂无公告";
 
 "kLookLargeImage" = "查看";
+"kLook" = "查看";
 "kNoRecommend" = "暂无推荐";
 "kCustomBBSBgSucc" = "成功自定义论坛背景！";
 "kResetCustomBBSBgSucc" = "成功重设论坛背景!";

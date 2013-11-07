@@ -1541,6 +1541,7 @@
 "kNoBulletin" = "No bulletin";
 
 "kLookLargeImage" = "Large Image";
+"kLook" = "Detail";
 "kNoRecommend" = "No recommend";
 "kCustomBBSBgSucc" = "Customize BBS background successfully!";
 "kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";

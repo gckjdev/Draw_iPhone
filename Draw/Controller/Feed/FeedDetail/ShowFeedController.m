@@ -178,12 +178,14 @@ typedef enum{
 - (void)updateActionButtons
 {
     NSMutableArray *types = [NSMutableArray array];
-    if ([self.feed showAnswer] ||
-        [self.feed isContestFeed] ||
-        ([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType) ||
-        [[UserService defaultService] isRegistered] == NO
-        ) {
-        [types addObject:@(FooterTypeReplay)];
+    if ([self.feed showAnswer]
+        || [self.feed isContestFeed]
+        || ([GameApp disableEnglishGuess]
+        && [[UserManager defaultManager] getLanguageType] != ChineseType)
+        || [[UserService defaultService] isRegistered] == NO) {
+        if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+            [types addObject:@(FooterTypeReplay)];
+        }
     }else{
         [types addObject:@(FooterTypeGuess)];
     }
@@ -516,14 +518,6 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
-//       
-//        NSDictionary* userInfo = [note userInfo];
-//        CGFloat progress = [[userInfo objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
-//        PPDebug(@"recv NOTIFICATION_DATA_PARSING, progress = %f", progress);
-//        
-//        [self setProgress:progress];
-//    }];
     
     [super viewDidAppear:animated];
     if (![self isCurrentTabLoading] || [self.feedScene isKindOfClass:[FeedSceneDetailGuessResult class]]) {
@@ -589,8 +583,6 @@ typedef enum{
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
                                      isOffline:YES
                                       drawFeed:_feed
-//                                    feedOpusId:_feed.feedId
-//                                    feedAuthor:_feed.author.userId
                                        forFree:isFree
                                  resultHandler:^(int resultCode, int itemId, BOOL isBuy)
         {
@@ -713,10 +705,19 @@ typedef enum{
 
 - (void)performGuess
 {
+    if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+        [self perFormDrawGuess];
+    }else if (self.feed.categoryType == PBOpusCategoryTypeSingCategory){
+        [self performSingGuess];
+    }
+}
+
+- (void)perFormDrawGuess{
+    
     __block ShowFeedController * cp = self;
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
-                
+        
         [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
             float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
             NSString* progressText = @"";
@@ -737,7 +738,7 @@ typedef enum{
                 cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
             }
             
-            dispatch_async(dispatch_get_main_queue(), ^{        
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [cp unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
                 [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];
                 [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
@@ -746,6 +747,14 @@ typedef enum{
             });
         });
     }];
+}
+
+- (void)performSingGuess{
+
+//    [self showActivityWithText:NSLS(@"kLoading")];
+    [_audioPlayer stop];
+    [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];
+//    [self hideActivity];
 }
 
 - (void)performReplay
@@ -843,9 +852,6 @@ typedef enum{
         case FooterTypeShare:
         {
             CHECK_AND_LOGIN(self.view);
-            
-//            UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
-
 
             UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
             if (image == nil) {
@@ -1064,7 +1070,6 @@ typedef enum{
     if (resultCode == 0 && [feed.feedId isEqualToString:self.feed.feedId]) {
         feed.largeImage = self.feed.largeImage;
         feed.wordText = self.feed.wordText;
-        feed.drawDataUrl = self.feed.drawDataUrl;
         self.feed = feed;
         [_commentHeader setViewInfo:self.feed];
         [self.dataTableView reloadData];
@@ -1303,6 +1308,10 @@ typedef enum{
 }
 
 - (void)play{
+    
+    if ([self.feed.drawDataUrl length] == 0) {
+        return;
+    }
     
     if (_audioPlayer == nil) {
         _audioPlayer = [[AudioPlayer alloc] init];

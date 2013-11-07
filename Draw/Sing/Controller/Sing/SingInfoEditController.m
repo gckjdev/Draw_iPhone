@@ -9,6 +9,7 @@
 #import "SingInfoEditController.h"
 #import "ConfigManager.h"
 #import "CommonMessageCenter.h"
+#import "StringUtil.h"
 
 @interface SingInfoEditController () <UITextFieldDelegate, UITextViewDelegate>
 
@@ -174,10 +175,29 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#define SUBJECT_MAX_LENGTH 7
+
 - (IBAction)clickComfirmButton:(id)sender {
     
     if ([self.nameTextField.text length] <= 0) {
+        
         [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:1.5];
+        return;
+    }
+    
+    if (!NSStringIsValidChinese(self.nameTextField.text)
+        && !NSStringISValidEnglish(self.nameTextField.text)){
+        
+        POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+        return;
+    }
+    
+    
+    if([self.nameTextField.text length] > SUBJECT_MAX_LENGTH){
+        
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+                                   SUBJECT_MAX_LENGTH];
+        POSTMSG(msg);
         return;
     }
     
