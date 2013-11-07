@@ -312,7 +312,12 @@
 //        }
     }
 
-    [[GameSNSService defaultService] publishWeibo:type text:text imageFilePath:_imageFilePath inView:self.superViewController.view];
+    [[GameSNSService defaultService] publishWeibo:type text:text
+                                    imageFilePath:_imageFilePath
+                                           inView:self.superViewController.view
+                                       awardCoins:[ConfigManager getShareWeiboReward]
+                                   successMessage:NSLS(@"kShareWeiboSucc")
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
     
 //    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
 //                                                                                text:text

@@ -30,9 +30,27 @@
 - (void)cancelAuthentication:(PPSNSType)snsType;
 - (void)followUser:(PPSNSType)snsType weiboId:(NSString*)weiboId weiboName:(NSString*)weiboName;
 
-- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imageFilePath inView:(UIView*)view;
-- (void)publishWeiboAtBackground:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imagePath;
-- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text inView:(UIView*)view;
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+       imageFilePath:(NSString*)imageFilePath
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage;
+
+- (void)publishWeiboAtBackground:(PPSNSType)snsType
+                            text:(NSString*)text
+                   imageFilePath:(NSString*)imagePath
+                      awardCoins:(int)awardCoins
+                  successMessage:(NSString*)successMessage
+                  failureMessage:(NSString*)failureMessage;
+
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage;
 //- (void)publishWeiboToAll:(NSString*)text;
 //- (void)saveSNSInfo:(PPSNSType)snsType credentialString:(NSString*)credentialString;
 

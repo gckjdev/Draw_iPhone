@@ -309,5 +309,6 @@ typedef enum{
 + (int)getRecordLimitTime;
 
 + (NSString*)getShareSDKAppId;
++ (int)getCreateOpusWeiboReward;
 
 @end

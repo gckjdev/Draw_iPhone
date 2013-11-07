@@ -239,7 +239,12 @@ enum {
         [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
     } else if (buttonIndex == buttonIndexSinaWeibo) {
         
-        [[GameSNSService defaultService] publishWeibo:TYPE_SINA text:shareBody inView:self.view];
+        [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+                                                 text:shareBody
+                                               inView:self.view         
+                                           awardCoins:[ConfigManager getShareFriendReward]
+                                       successMessage:NSLS(@"kSentWeiboSucc")
+                                       failureMessage:NSLS(@"kSentWeiboFailure")];
         
 //        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:shareBody
 //                                                                               imageFilePath:nil
@@ -249,7 +254,12 @@ enum {
 
     } else if (buttonIndex == buttonIndexQQWeibo) {
         
-        [[GameSNSService defaultService] publishWeibo:TYPE_QQ text:shareBody inView:self.view];
+        [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+                                                 text:shareBody
+                                               inView:self.view
+                                           awardCoins:[ConfigManager getShareFriendReward]
+                                       successMessage:NSLS(@"kSentWeiboSucc")
+                                       failureMessage:NSLS(@"kSentWeiboFailure")];
 
         
 //        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:shareBody
@@ -260,7 +270,12 @@ enum {
 
     } else if (buttonIndex == buttonIndexFacebook) {
         
-        [[GameSNSService defaultService] publishWeibo:TYPE_FACEBOOK text:shareBody inView:self.view];
+        [[GameSNSService defaultService] publishWeibo:TYPE_FACEBOOK
+                                                 text:shareBody
+                                               inView:self.view
+                                           awardCoins:[ConfigManager getShareFriendReward]
+                                       successMessage:NSLS(@"kSentWeiboSucc")
+                                       failureMessage:NSLS(@"kSentWeiboFailure")];
 
         
 //        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:shareBody

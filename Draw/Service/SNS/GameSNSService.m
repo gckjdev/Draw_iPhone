@@ -318,12 +318,12 @@ GameSNSService* _defaultSNSService;
                             // TODO save user weibo bind info, get user infomation here and upload user information to server
                             [self readUserInfoAndUpdateToServer:shareType];
                             
-                            POSTMSG(NSLS(@"授权成功"));
+                            POSTMSG(NSLS(@"kAuthorizeSuccess"));
                             PPDebug(@"autheticate shareType(%d) success", shareType);
                         }
                         else if (state == SSAuthStateFail)
                         {
-                            POSTMSG(NSLS(@"授权失败"));
+                            POSTMSG(NSLS(@"kAuthorizeFailure"));
                             PPDebug(@"autheticate shareType(%d) failure, error=%@", shareType, [error errorDescription]);
                         }
                     }];
@@ -378,18 +378,72 @@ GameSNSService* _defaultSNSService;
                                       [self readUserInfoAndUpdateToServer:shareType];
                                   }
                                   
-                                  POSTMSG(@"已成功关注");
+                                  POSTMSG(NSLS(@"kFollowSuccess"));
                               }
                               else if (state == SSResponseStateFail)
                               {
-                                  POSTMSG(@"呃，关注失败了");
+                                  POSTMSG(NSLS(@"kFollowFailure"));
                                   PPDebug(@"follow user failure, code=%d, error=%@", [error errorCode], error.errorDescription);
                                   
                               }
                           }];
 }
 
-- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imagePath inView:(UIView*)view
+- (void)postWeiboSuccessMessage:(NSString*)successMessage awardCoins:(int)awardCoins
+{
+    NSString* msg = nil;
+    if ([successMessage length] > 0){
+        
+        if (awardCoins > 0){
+            NSString* awardMsg = [NSString stringWithFormat:NSLS(@"kPublishWeiboAwardInfo"), awardCoins];
+            msg = [NSString stringWithFormat:@"%@, %@", successMessage, awardMsg];
+        }
+        else{
+            msg = successMessage;
+        }
+        
+        POSTMSG(msg);
+    }
+}
+
+- (void)handlePublishWeiboSuccess:(ShareType)shareType
+                            state:(SSPublishContentState)state
+                            error:(id<ICMErrorInfo>)error
+               needUpdateUserInfo:(BOOL)needUpdateUserInfo
+                       awardCoins:(int)awardCoins
+                   successMessage:(NSString*)successMessage
+                   failureMessage:(NSString*)failureMessage
+{
+    if (state == SSPublishContentStateSuccess)
+    {
+        PPDebug(@"publish weibo success");
+        
+        // TODO save user weibo bind info, get user infomation here and upload user information to server
+        if (needUpdateUserInfo){
+            [self readUserInfoAndUpdateToServer:shareType];
+        }
+        
+        [[AccountService defaultService] chargeCoin:awardCoins source:ShareWeiboReward];
+        
+        [self postWeiboSuccessMessage:successMessage awardCoins:awardCoins];
+        
+    }
+    else if (state == SSPublishContentStateFail)
+    {
+        POSTMSG(failureMessage);
+        PPDebug(@"publish weibo failure, code=%d, error=%@", [error errorCode], error.errorDescription);
+    }
+}
+
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+       imageFilePath:(NSString*)imagePath
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage
+
+
 {
     ShareType shareType = [GameSNSService shareSDKType:snsType];
     if (shareType == ShareTypeAny){
@@ -442,27 +496,46 @@ GameSNSService* _defaultSNSService;
                                                        friendsViewDelegate:nil //_appDelegate.viewDelegate TODO check
                                                      picViewerViewDelegate:nil]
                              result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                 if (state == SSPublishContentStateSuccess)
-                                 {
-                                     PPDebug(@"publish weibo success");
-                                     
-                                     // TODO save user weibo bind info, get user infomation here and upload user information to server
-                                     if (needUpdateUserInfo){
-                                         [self readUserInfoAndUpdateToServer:shareType];
-                                     }
-                                     
-                                     POSTMSG(@"发表成功");                                     
-                                 }
-                                 else if (state == SSPublishContentStateFail)
-                                 {
-                                     POSTMSG(@"呃，发表失败了");
-                                     PPDebug(@"publish weibo failure, code=%d, error=%@", [error errorCode], error.errorDescription);
-                                 }
+                                 
+                                 
+                                 [self handlePublishWeiboSuccess:shareType
+                                                           state:state
+                                                           error:error
+                                              needUpdateUserInfo:needUpdateUserInfo
+                                                      awardCoins:awardCoins
+                                                  successMessage:successMessage
+                                                  failureMessage:failureMessage];
+                                 
+//                                 if (state == SSPublishContentStateSuccess)
+//                                 {
+//                                     PPDebug(@"publish weibo success");
+//                                     
+//                                     // TODO save user weibo bind info, get user infomation here and upload user information to server
+//                                     if (needUpdateUserInfo){
+//                                         [self readUserInfoAndUpdateToServer:shareType];
+//                                     }
+//                                     
+//                                     [[AccountService defaultService] chargeCoin:awardCoins source:ShareWeiboReward];
+//                                     
+//                                     [self postWeiboSuccessMessage:successMessage awardCoins:awardCoins];
+//                                     
+//                                 }
+//                                 else if (state == SSPublishContentStateFail)
+//                                 {
+//                                     POSTMSG(failureMessage);
+//                                     PPDebug(@"publish weibo failure, code=%d, error=%@", [error errorCode], error.errorDescription);
+//                                 }
                              }];
     
 }
 
-- (void)publishWeiboAtBackground:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imagePath
+- (void)publishWeiboAtBackground:(PPSNSType)snsType
+                            text:(NSString*)text
+                   imageFilePath:(NSString*)imagePath
+                      awardCoins:(int)awardCoins
+                  successMessage:(NSString*)successMessage
+                  failureMessage:(NSString*)failureMessage
+
 {
     ShareType shareType = [GameSNSService shareSDKType:snsType];
     if (shareType == ShareTypeAny){
@@ -489,29 +562,51 @@ GameSNSService* _defaultSNSService;
               shareOptions:nil
              statusBarTips:YES
                     result:^(ShareType type, SSPublishContentState state, id<ISSStatusInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                        if (state == SSPublishContentStateSuccess)
-                        {
-                            NSLog(@"发表成功");
-                            
-                            // TODO save user weibo bind info, get user infomation here and upload user information to server
-                            if (needUpdateUserInfo){
-                                [self readUserInfoAndUpdateToServer:shareType];
-                            }
-                            
-                            POSTMSG(@"发表成功");
-                        }
-                        else if (state == SSPublishContentStateFail)
-                        {
-                            POSTMSG(@"呃，发表失败了");
-                            PPDebug(@"publish weibo failure, code=%d, error=%@", [error errorCode], error.errorDescription);
-                        }
+                        
+                        [self handlePublishWeiboSuccess:shareType
+                                                  state:state
+                                                  error:error
+                                     needUpdateUserInfo:needUpdateUserInfo
+                                             awardCoins:awardCoins
+                                         successMessage:successMessage
+                                         failureMessage:failureMessage];
+
+                        
+//                        if (state == SSPublishContentStateSuccess)
+//                        {
+//                            PPDebug(@"publish weibo success");
+//
+//                            // TODO save user weibo bind info, get user infomation here and upload user information to server
+//                            if (needUpdateUserInfo){
+//                                [self readUserInfoAndUpdateToServer:shareType];
+//                            }
+//                            
+//                            // award
+//                            [[AccountService defaultService] chargeCoin:awardCoins source:ShareWeiboReward];
+//                            
+//                            // post message
+//                            [self postWeiboSuccessMessage:successMessage awardCoins:awardCoins];
+//
+//                        }
+//                        else if (state == SSPublishContentStateFail)
+//                        {
+//                            POSTMSG(failureMessage);
+//                            PPDebug(@"publish weibo failure, code=%d, error=%@", [error errorCode], error.errorDescription);
+//                        }
                         
                     }];
 }
 
-- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text inView:(UIView*)view
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage
+
+
 {
-    [self publishWeibo:snsType text:text imageFilePath:nil inView:view];
+    [self publishWeibo:snsType text:text imageFilePath:nil inView:view awardCoins:awardCoins successMessage:successMessage failureMessage:failureMessage];
 }
 
 - (void)publishWeiboToAll:(NSString*)text

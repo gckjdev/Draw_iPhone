@@ -1074,7 +1074,12 @@
     
     if (imagePath != nil) {
         
-        [[GameSNSService defaultService] publishWeiboAtBackground:type text:text imageFilePath:imagePath];
+        [[GameSNSService defaultService] publishWeiboAtBackground:type
+                                                             text:text
+                                                    imageFilePath:imagePath
+                                                       awardCoins:[ConfigManager getCreateOpusWeiboReward]
+                                                   successMessage:NSLS(@"kSentWeiboSucc")
+                                                   failureMessage:NSLS(@"kSentWeiboFailure")];
         
         
 //        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {

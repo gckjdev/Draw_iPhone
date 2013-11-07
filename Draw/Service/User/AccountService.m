@@ -371,6 +371,11 @@ transactionRecepit:(NSString*)transactionRecepit
 transactionRecepit:(NSString*)transactionRecepit
          alixOrder:(NSString*)alixOrder
 {
+    if (amount == 0){
+        PPDebug(@"charge coint but amount is 0, meaningless");
+        return;
+    }
+    
     dispatch_async(workingQueue, ^{
         
         if ([self checkIAPReceiptBeforeCharge:transactionId

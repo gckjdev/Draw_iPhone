@@ -446,6 +446,14 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_WEIBO" defaultValue:10];
 }
 
++ (int)getCreateOpusWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"CREATE_OPUS_WEIBO" defaultValue:30];
+}
+
+
+
+
 + (int)getFollowWeiboReward
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_FOLLOW_WEIBO" defaultValue:100];
