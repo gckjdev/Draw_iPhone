@@ -330,7 +330,7 @@ typedef enum {
 - (NSString *)tabNoDataTipsforIndex:(NSInteger)index
 {
     
-    return NSLS(@"NoData");
+    return NSLS(@"kNoData");
 }
 
 - (NSString *)tabTitleforIndex:(NSInteger)index

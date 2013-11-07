@@ -510,6 +510,11 @@ enum{
     
     if (image != nil) {
         PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
+        if (image.size.width != image.size.height) {
+            POSTMSG2(NSLS(@"kImageMustBeSquare"), 2);
+            return;
+        }
+        
         self.image = image;
         self.opusImageView.image = image;
         self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
