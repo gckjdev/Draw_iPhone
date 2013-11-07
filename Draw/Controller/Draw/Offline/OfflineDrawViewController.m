@@ -48,7 +48,7 @@
 #import "SelectHotWordController.h"
 #import "MBProgressHUD.h"
 #import "GameSNSService.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "ShareService.h"
 #import "FileUtil.h"
 #import "BuyItemView.h"
@@ -1060,7 +1060,7 @@
 - (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath
 {
 
-    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
+//    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
     
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = nil;
@@ -1073,33 +1073,33 @@
     }
     
     if (imagePath != nil) {
-        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
-            
-            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-//            dispatch_async(dispatch_get_main_queue(), ^{
-                int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
-                if (earnCoins > 0){
-//                    NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-//                    [self popupMessage:msg title:nil];
-                }
-//            });
-            
-            
-        } failureBlock:^(NSError *error) {
-            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-        }];
         
-        // follow weibo if NOT followed
-        if ([GameSNSService hasFollowOfficialWeibo:snsService] == NO){
-            [snsService followUser:[snsService officialWeiboId]
-                         userId:[snsService officialWeiboId]
-                   successBlock:^(NSDictionary *userInfo) {
-                       PPDebug(@"follow official weibo success");
-                       [GameSNSService updateFollowOfficialWeibo:snsService];
-                   } failureBlock:^(NSError *error) {
-                       PPDebug(@"follow weibo but error=%@", [error description]);
-                   }];
-        }
+        [[GameSNSService defaultService] publishWeiboAtBackground:type text:text imageFilePath:imagePath];
+        
+        
+//        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+//            
+//            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+//                int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+//                if (earnCoins > 0){
+//
+//            
+//            
+//        } failureBlock:^(NSError *error) {
+//            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+//        }];
+        
+//        // follow weibo if NOT followed
+//        if ([GameSNSService hasFollowOfficialWeibo:snsService] == NO){
+//            [snsService followUser:[snsService officialWeiboId]
+//                         userId:[snsService officialWeiboId]
+//                   successBlock:^(NSDictionary *userInfo) {
+//                       PPDebug(@"follow official weibo success");
+//                       [GameSNSService updateFollowOfficialWeibo:snsService];
+//                   } failureBlock:^(NSError *error) {
+//                       PPDebug(@"follow weibo but error=%@", [error description]);
+//                   }];
+//        }
         
     }
     

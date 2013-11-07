@@ -20,7 +20,7 @@
 #import "StringUtil.h"
 #import "CustomActionSheet.h"
 #import "CommonImageManager.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
 #import "CommonMessageCenter.h"
@@ -282,16 +282,20 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
     }
 }
 
-- (void)shareViaSNS:(SnsType)type
+- (void)shareViaSNS:(PPSNSType)type
 {
     NSString *text = [_shareText length] > 0 ? [self shareTextWithWeiboInfo:_shareText] : [_opus shareTextWithSNSType:type];
-    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-                                                                                text:text
-                                                                          drawUserId:_opus.pbOpus.author.userId
-                                                                             snsType:type];
-    controller.delegate = self;
-    [self.superViewController.navigationController pushViewController:controller animated:YES];
-    [controller release];    
+
+    // TODO check drawUserId
+    [[GameSNSService defaultService] publishWeibo:type text:text imageFilePath:_imageFilePath inView:self.superViewController.view];
+    
+//    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
+//                                                                                text:text
+//                                                                          drawUserId:_opus.pbOpus.author.userId
+//                                                                             snsType:type];
+//    controller.delegate = self;
+//    [self.superViewController.navigationController pushViewController:controller animated:YES];
+//    [controller release];    
 }
 
 #define MAX_WEIXIN_IMAGE_WIDTH          ([ConfigManager maxWeixinImageWidth])
@@ -379,52 +383,52 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
 
 - (void)bindSNS:(int)snsType
 {
-    PPViewController* viewController = nil;    
-    if ([self.superViewController isKindOfClass:[PPViewController class]]){
-        viewController = (PPViewController*)self.superViewController;
-    }
-    
-    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-    NSString* name = [service snsName];
-    
-    [service logout];
-    
-    [service login:^(NSDictionary *userInfo) {
-        PPDebug(@"%@ Login Success", name);
-        
-        [viewController showActivityWithText:NSLS(@"Loading")];
-        
-        [service readMyUserInfo:^(NSDictionary *userInfo) {
-            [viewController hideActivity];
-            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-            UserManager* userManager = [UserManager defaultManager];
-            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
-                                                           userInfo:userInfo
-                                                     viewController:nil];
-            
-            // share weibo here
-            [self shareViaSNS:snsType];
-            
-        } failureBlock:^(NSError *error) {
-            [viewController hideActivity];
-            PPDebug(@"%@ readMyUserInfo Failure", name);
-        }];
-        
-        // follow weibo if NOT followed
-        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){            
-            [service followUser:[service officialWeiboId]
-                         userId:[service officialWeiboId]
-                   successBlock:^(NSDictionary *userInfo) {
-                [GameSNSService updateFollowOfficialWeibo:service];
-            } failureBlock:^(NSError *error) {
-                PPDebug(@"follow weibo but error=%@", [error description]);
-            }];            
-        }
-     
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"%@ Login Failure", name);
-        POSTMSG(NSLS(@"kUserBindFail"));
-    }];
+//    PPViewController* viewController = nil;    
+//    if ([self.superViewController isKindOfClass:[PPViewController class]]){
+//        viewController = (PPViewController*)self.superViewController;
+//    }
+//    
+//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+//    NSString* name = [service snsName];
+//    
+//    [service logout];
+//    
+//    [service login:^(NSDictionary *userInfo) {
+//        PPDebug(@"%@ Login Success", name);
+//        
+//        [viewController showActivityWithText:NSLS(@"Loading")];
+//        
+//        [service readMyUserInfo:^(NSDictionary *userInfo) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+//            UserManager* userManager = [UserManager defaultManager];
+//            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+//                                                           userInfo:userInfo
+//                                                     viewController:nil];
+//            
+//            // share weibo here
+//            [self shareViaSNS:snsType];
+//            
+//        } failureBlock:^(NSError *error) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Failure", name);
+//        }];
+//        
+//        // follow weibo if NOT followed
+//        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){            
+//            [service followUser:[service officialWeiboId]
+//                         userId:[service officialWeiboId]
+//                   successBlock:^(NSDictionary *userInfo) {
+//                [GameSNSService updateFollowOfficialWeibo:service];
+//            } failureBlock:^(NSError *error) {
+//                PPDebug(@"follow weibo but error=%@", [error description]);
+//            }];            
+//        }
+//     
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"%@ Login Failure", name);
+//        POSTMSG(NSLS(@"kUserBindFail"));
+//    }];
 }
 
 - (void)bindSinaWeibo
@@ -444,12 +448,14 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
 
 - (void)actionOnShareSina
 {
-    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
-        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-        [self bindSinaWeibo];
-    } else {
-        [self shareViaSNS:SINA_WEIBO];
-    }
+    [self shareViaSNS:TYPE_SINA];
+    
+//    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
+//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+//        [self bindSinaWeibo];
+//    } else {
+//        [self shareViaSNS:SINA_WEIBO];
+//    }
 }
 
 - (void)handleWithShareActionTag:(ShareActionTag)tag{
@@ -474,21 +480,23 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
     else if (tag == ShareActionTagSinaWeibo)
     {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SINA];
-        [self actionOnShareSina];
+        [self shareViaSNS:TYPE_SINA];
     } else if (tag == ShareActionTagQQWeibo) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
-        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-            [self bindQQWeibo];
-        } else {
-            [self shareViaSNS:TYPE_QQ];
-        }
+        [self shareViaSNS:TYPE_QQ];
+//        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+//            [self bindQQWeibo];
+//        } else {
+//            [self shareViaSNS:TYPE_QQ];
+//        }
     } else if (tag == ShareActionTagFacebook) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
-        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-            [self bindFacebook];
-        } else {
-            [self shareViaSNS:TYPE_FACEBOOK];
-        }
+        [self shareViaSNS:TYPE_FACEBOOK];
+//        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
+//            [self bindFacebook];
+//        } else {
+//            [self shareViaSNS:TYPE_FACEBOOK];
+//        }
     } else if (tag == ShareActionTagFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
     }
@@ -520,13 +528,13 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
 - (void)didPublishSnsMessage:(int)snsType
 {
     switch (snsType) {
-        case SINA_WEIBO: {
+        case TYPE_SINA: {
             [self reportActionToServer:DB_FIELD_ACTION_SHARE_SINA];
         } break;
-        case QQ_WEIBO: {
+        case TYPE_QQ: {
             [self reportActionToServer:DB_FIELD_ACTION_SHARE_QQ];
         } break;
-        case FACEBOOK: {
+        case TYPE_FACEBOOK: {
             [self reportActionToServer:DB_FIELD_ACTION_SHARE_FACEBOOK];
         } break;
         default:

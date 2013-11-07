@@ -1207,4 +1207,11 @@
     return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_TIME" defaultValue:300];
 }
 
++ (NSString*)getShareSDKAppId
+{
+    NSString* defaultValue = [GameApp shareSDKDefaultAppId];    
+    return [MobClickUtils getStringValueByKey:@"SHARE_SDK_APP_ID" defaultValue:defaultValue];
+}
+
+
 @end

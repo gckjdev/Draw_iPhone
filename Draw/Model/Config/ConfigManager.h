@@ -308,4 +308,6 @@ typedef enum{
 + (NSString *)getSingTagList;
 + (int)getRecordLimitTime;
 
++ (NSString*)getShareSDKAppId;
+
 @end

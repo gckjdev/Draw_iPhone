@@ -16,7 +16,7 @@
 #import "DrawGameService.h"
 #import "UserManager.h"
 #import "HomeController.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 #import "OnlineGuessDrawController.h"
 //#import "RouterService.h"
 #import "AccountManager.h"
@@ -56,10 +56,10 @@
 
 #import "MyPaintManager.h"
 
-#import "PPSNSIntegerationService.h"
-#import "PPSinaWeiboService.h"
-#import "PPTecentWeiboService.h"
-#import "PPFacebookService.h"
+//#import "PPSNSIntegerationService.h"
+//#import "PPSinaWeiboService.h"
+//#import "PPTecentWeiboService.h"
+//#import "PPFacebookService.h"
 
 #import "GameConfigDataManager.h"
 #import "BulletinService.h"
@@ -95,7 +95,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 //    return @"http://192.168.1.13:8001/api/i?";
-//    return @"http://58.215.160.100:8020/api/i?";
+    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 //    return @"http://58.215.160.100:8888/api/i?";
 //
@@ -123,14 +123,12 @@ NSString* GlobalGetTrafficServerURL()
 //    }
 #endif
     
-    
-    
 
 #ifdef DEBUG
     
 //    return @"http://localhost:8100/api/i?";
 
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -185,22 +183,22 @@ NSString* GlobalGetBoardServerURL()
 
 
 
-- (void)weiboTest
-{
-    // test image
-    NSString* imagePath = @"/Users/qqn_pipi/Library/Application Support/iPhone Simulator/6.0/Applications/C9E97DA6-3CAB-4075-9903-B2584730D7E7/Library/Caches/ImageCache/7bfbb47435afe434611f332d56cce462";
-    
-    [[PPSNSIntegerationService defaultService] publishWeiboToAll:[NSString stringWithFormat:@"人生 %d", rand() % 10]
-                                                   imageFilePath:imagePath
-                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
-                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-                                                    }
-                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
-                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-                                                    }];
-    
-    
-}
+//- (void)weiboTest
+//{
+//    // test image
+//    NSString* imagePath = @"/Users/qqn_pipi/Library/Application Support/iPhone Simulator/6.0/Applications/C9E97DA6-3CAB-4075-9903-B2584730D7E7/Library/Caches/ImageCache/7bfbb47435afe434611f332d56cce462";
+//    
+//    [[PPSNSIntegerationService defaultService] publishWeiboToAll:[NSString stringWithFormat:@"人生 %d", rand() % 10]
+//                                                   imageFilePath:imagePath
+//                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
+//                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+//                                                    }
+//                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
+//                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+//                                                    }];
+//    
+//    
+//}
 
 - (void)testResourcePackage
 {
@@ -224,26 +222,26 @@ NSString* GlobalGetBoardServerURL()
 //     self.window.rootViewController = resourceTestController;
 }
 
-- (void)initSNSService
-{
-    PPSinaWeiboService* sinaWeiboService = [[[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
-                                                                            appSecret:[GameApp sinaAppSecret]
-                                                                       appRedirectURI:[GameApp sinaAppRedirectURI]
-                                                                      officialWeiboId:[GameApp sinaWeiboId]] autorelease];
-    PPTecentWeiboService* qqWeiboService = [[[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
-                                                                              appSecret:[GameApp qqAppSecret]
-                                                                         appRedirectURI:[GameApp qqAppRedirectURI]
-                                                                        officialWeiboId:[GameApp qqWeiboId]] autorelease];
-    PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
-                                                                         appSecret:[GameApp facebookAppSecret]
-                                                                    appRedirectURI:nil
-                                                                   officialWeiboId:[UIUtils getAppName]] autorelease];
-    
-    
-    [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
-    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
-    [[PPSNSIntegerationService defaultService] addSNS:facebookService];    
-}
+//- (void)initSNSService
+//{
+//    PPSinaWeiboService* sinaWeiboService = [[[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
+//                                                                            appSecret:[GameApp sinaAppSecret]
+//                                                                       appRedirectURI:[GameApp sinaAppRedirectURI]
+//                                                                      officialWeiboId:[GameApp sinaWeiboId]] autorelease];
+//    PPTecentWeiboService* qqWeiboService = [[[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
+//                                                                              appSecret:[GameApp qqAppSecret]
+//                                                                         appRedirectURI:[GameApp qqAppRedirectURI]
+//                                                                        officialWeiboId:[GameApp qqWeiboId]] autorelease];
+//    PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
+//                                                                         appSecret:[GameApp facebookAppSecret]
+//                                                                    appRedirectURI:nil
+//                                                                   officialWeiboId:[UIUtils getAppName]] autorelease];
+//    
+//    
+//    [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
+//    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
+//    [[PPSNSIntegerationService defaultService] addSNS:facebookService];    
+//}
 
 - (void)initResourceService
 {
@@ -361,7 +359,7 @@ NSString* GlobalGetBoardServerURL()
     self.window.rootViewController = navigationController;
     
     // Init SNS service
-    [self initSNSService];
+//    [self initSNSService];
     
     [self.window makeKeyAndVisible];
     
@@ -553,10 +551,12 @@ NSString* GlobalGetBoardServerURL()
     }else if ([[url absoluteString] hasPrefix:@"alipay"]){
         return [AliPayManager parseURL:url alipayPublicKey:[ConfigManager getAlipayAlipayPublicKey]];
     }
-    else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
-        
-    }
+//    else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
+//        
+//    }
 
+    // TODO add SNS handling here
+    
     return YES;
 }
 

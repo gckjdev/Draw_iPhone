@@ -513,4 +513,11 @@ message DataQueryResponse {
   
   optional PBGuessContest guessContest = 122;
   repeated PBGuessContest guessContestList = 123;
+
+
+  //for group
+  optional PBGroup group = 150;
+  repeated PBGroup groupList = 151;
+  repeated PBGroupUsersByTitle groupMemberList = 152; 
+
 }

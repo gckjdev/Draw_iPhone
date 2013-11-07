@@ -13,16 +13,31 @@
 
 @interface GameSNSService : NSObject
 
-+ (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId;
-+ (void)askFollowOfficialWeibo:(PPSNSType)snsType;
-+ (NSString*)snsOfficialNick:(int)type;
-+ (void)updateFollowOfficialWeibo:(PPSNSCommonService*)snsService;
-+ (BOOL)hasFollowOfficialWeibo:(PPSNSCommonService*)snsService;
-//+ (void)askFollow:(PPSNSType)snsType
-//       snsWeiboId:(NSString*)weiboId
-//            title:(NSString*)title
-//          message:(NSString*)message;
-+ (void)askRebindQQ:(UIViewController*)viewController;
-+ (void)askRebindSina:(UIViewController*)viewController;
-+ (void)askRebindFacebook:(UIViewController*)viewController;
+//+ (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId;
+//+ (void)askFollowOfficialWeibo:(PPSNSType)snsType;
+//+ (NSString*)snsOfficialNick:(int)type;
+//+ (void)updateFollowOfficialWeibo:(PPSNSCommonService*)snsService;
+//+ (BOOL)hasFollowOfficialWeibo:(PPSNSCommonService*)snsService;
+//+ (void)askRebindQQ:(UIViewController*)viewController;
+//+ (void)askRebindSina:(UIViewController*)viewController;
+//+ (void)askRebindFacebook:(UIViewController*)viewController;
+
++ (GameSNSService*)defaultService;
+
+- (BOOL)isAuthenticated:(PPSNSType)snsType;
+- (BOOL)isExpired:(PPSNSType)snsType;
+- (void)autheticate:(PPSNSType)snsType;
+- (void)cancelAuthentication:(PPSNSType)snsType;
+- (void)followUser:(PPSNSType)snsType weiboId:(NSString*)weiboId weiboName:(NSString*)weiboName;
+
+- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imageFilePath inView:(UIView*)view;
+- (void)publishWeiboAtBackground:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imagePath;
+- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text inView:(UIView*)view;
+//- (void)publishWeiboToAll:(NSString*)text;
+//- (void)saveSNSInfo:(PPSNSType)snsType credentialString:(NSString*)credentialString;
+
+- (void)saveSNSInfo:(NSArray*)snsCredentials;
+
++ (NSString*)snsOfficialNick:(PPSNSType)type;
+
 @end

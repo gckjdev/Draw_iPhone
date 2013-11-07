@@ -46,7 +46,7 @@ typedef enum _WordInputViewAlignment{
 - (void)bombHalf;
 
 - (void)reset;
-
+- (BOOL)hasWord;
 
 
 //- (void)setAnswerViewXOffset:(CGFloat)XOffset;

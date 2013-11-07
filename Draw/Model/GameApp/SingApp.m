@@ -216,4 +216,9 @@
     return @"SingOpus";
 }
 
+- (NSString *)shareSDKDefaultAppId
+{
+    return @"c17367be400";
+}
+
 @end

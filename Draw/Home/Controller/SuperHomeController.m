@@ -11,7 +11,7 @@
 #import "ChargeController.h"
 #import "StatisticManager.h"
 #import "UserManager.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 #import "UserSettingController.h"
 #import "LmWallService.h"
 #import "UIUtils.h"

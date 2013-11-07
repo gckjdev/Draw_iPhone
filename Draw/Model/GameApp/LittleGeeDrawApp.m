@@ -144,7 +144,7 @@
     PBConfig_Builder* builder = [PBConfig builder];
     
     PBAppReward* zjhApp = [GameConfigDataManager zjhAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
-    PBAppReward* drawApp = [GameConfigDataManager drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
+//    PBAppReward* drawApp = [GameConfigDataManager drawAppWithRewardAmount:3000 rewardCurrency:PBGameCurrencyCoin];
     PBAppReward* diceApp = [GameConfigDataManager diceAppWithRewardAmount:2000 rewardCurrency:PBGameCurrencyCoin];
     
     PBRewardWall* limei = [GameConfigDataManager limeiWall];
@@ -153,7 +153,7 @@
     //    PBRewardWall* domod = [GameConfigDataManager domodWall];
     //    PBRewardWall* tapjoy = [GameConfigDataManager tapjoyWall];
     
-    [builder addAppRewards:drawApp];
+//    [builder addAppRewards:drawApp];
     [builder addAppRewards:zjhApp];
     [builder addAppRewards:diceApp];
     

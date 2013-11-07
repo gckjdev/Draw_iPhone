@@ -115,14 +115,16 @@
     
     
     [self.opusImageView setImageWithURL:url placeholderImage:[[ShareImageManager defaultManager] unloadBg] options:SDWebImageRetryFailed completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        [self hideActivity];
-        [progress removeFromSuperview];
         
         if (error == nil) {
             self.startDate = [NSDate date];
             [self.wordInputView setCandidates:candidates column:9];
         }
-    } usingProgressView:progress];
+
+        [self hideActivity];
+        [progress removeFromSuperview];
+        
+    } usingProgressView:progress]; // warning is OK here since OrangeLoadingView has implement setProgress method
 
     
     if (_mode == PBUserGuessModeGuessModeGenius) {
@@ -266,6 +268,10 @@
 
 - (void)bomb:(UIButton *)toolView
 {
+    if ([_wordInputView hasWord] == NO){
+        return;
+    }
+    
     toolView.enabled = NO;
     int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeTips];
 

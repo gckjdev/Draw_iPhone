@@ -556,6 +556,7 @@ static PBIntKeyValue* defaultPBIntKeyValueInstance = nil;
 @property (retain) NSString* refreshToken;
 @property int32_t expireTime;
 @property (retain) NSString* qqOpenId;
+@property (retain) NSString* credential;
 @end
 
 @implementation PBSNSUser
@@ -616,6 +617,13 @@ static PBIntKeyValue* defaultPBIntKeyValueInstance = nil;
   hasQqOpenId_ = !!value;
 }
 @synthesize qqOpenId;
+- (BOOL) hasCredential {
+  return !!hasCredential_;
+}
+- (void) setHasCredential:(BOOL) value {
+  hasCredential_ = !!value;
+}
+@synthesize credential;
 - (void) dealloc {
   self.userId = nil;
   self.nickName = nil;
@@ -623,6 +631,7 @@ static PBIntKeyValue* defaultPBIntKeyValueInstance = nil;
   self.accessTokenSecret = nil;
   self.refreshToken = nil;
   self.qqOpenId = nil;
+  self.credential = nil;
   [super dealloc];
 }
 - (id) init {
@@ -635,6 +644,7 @@ static PBIntKeyValue* defaultPBIntKeyValueInstance = nil;
     self.refreshToken = @"";
     self.expireTime = 0;
     self.qqOpenId = @"";
+    self.credential = @"";
   }
   return self;
 }
@@ -687,6 +697,9 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   if (self.hasQqOpenId) {
     [output writeString:8 value:self.qqOpenId];
   }
+  if (self.hasCredential) {
+    [output writeString:20 value:self.credential];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -719,6 +732,9 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   }
   if (self.hasQqOpenId) {
     size += computeStringSize(8, self.qqOpenId);
+  }
+  if (self.hasCredential) {
+    size += computeStringSize(20, self.credential);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -819,6 +835,9 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
   if (other.hasQqOpenId) {
     [self setQqOpenId:other.qqOpenId];
   }
+  if (other.hasCredential) {
+    [self setCredential:other.credential];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -870,6 +889,10 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
       }
       case 66: {
         [self setQqOpenId:[input readString]];
+        break;
+      }
+      case 162: {
+        [self setCredential:[input readString]];
         break;
       }
     }
@@ -1001,6 +1024,241 @@ static PBSNSUser* defaultPBSNSUserInstance = nil;
 - (PBSNSUser_Builder*) clearQqOpenId {
   result.hasQqOpenId = NO;
   result.qqOpenId = @"";
+  return self;
+}
+- (BOOL) hasCredential {
+  return result.hasCredential;
+}
+- (NSString*) credential {
+  return result.credential;
+}
+- (PBSNSUser_Builder*) setCredential:(NSString*) value {
+  result.hasCredential = YES;
+  result.credential = value;
+  return self;
+}
+- (PBSNSUser_Builder*) clearCredential {
+  result.hasCredential = NO;
+  result.credential = @"";
+  return self;
+}
+@end
+
+@interface PBSNSUserCredential ()
+@property int32_t type;
+@property (retain) NSString* credential;
+@end
+
+@implementation PBSNSUserCredential
+
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasCredential {
+  return !!hasCredential_;
+}
+- (void) setHasCredential:(BOOL) value {
+  hasCredential_ = !!value;
+}
+@synthesize credential;
+- (void) dealloc {
+  self.credential = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.type = 0;
+    self.credential = @"";
+  }
+  return self;
+}
+static PBSNSUserCredential* defaultPBSNSUserCredentialInstance = nil;
++ (void) initialize {
+  if (self == [PBSNSUserCredential class]) {
+    defaultPBSNSUserCredentialInstance = [[PBSNSUserCredential alloc] init];
+  }
+}
++ (PBSNSUserCredential*) defaultInstance {
+  return defaultPBSNSUserCredentialInstance;
+}
+- (PBSNSUserCredential*) defaultInstance {
+  return defaultPBSNSUserCredentialInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasType) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasType) {
+    [output writeInt32:1 value:self.type];
+  }
+  if (self.hasCredential) {
+    [output writeString:20 value:self.credential];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasType) {
+    size += computeInt32Size(1, self.type);
+  }
+  if (self.hasCredential) {
+    size += computeStringSize(20, self.credential);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBSNSUserCredential*) parseFromData:(NSData*) data {
+  return (PBSNSUserCredential*)[[[PBSNSUserCredential builder] mergeFromData:data] build];
+}
++ (PBSNSUserCredential*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSNSUserCredential*)[[[PBSNSUserCredential builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBSNSUserCredential*) parseFromInputStream:(NSInputStream*) input {
+  return (PBSNSUserCredential*)[[[PBSNSUserCredential builder] mergeFromInputStream:input] build];
+}
++ (PBSNSUserCredential*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSNSUserCredential*)[[[PBSNSUserCredential builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSNSUserCredential*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBSNSUserCredential*)[[[PBSNSUserCredential builder] mergeFromCodedInputStream:input] build];
+}
++ (PBSNSUserCredential*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBSNSUserCredential*)[[[PBSNSUserCredential builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBSNSUserCredential_Builder*) builder {
+  return [[[PBSNSUserCredential_Builder alloc] init] autorelease];
+}
++ (PBSNSUserCredential_Builder*) builderWithPrototype:(PBSNSUserCredential*) prototype {
+  return [[PBSNSUserCredential builder] mergeFrom:prototype];
+}
+- (PBSNSUserCredential_Builder*) builder {
+  return [PBSNSUserCredential builder];
+}
+@end
+
+@interface PBSNSUserCredential_Builder()
+@property (retain) PBSNSUserCredential* result;
+@end
+
+@implementation PBSNSUserCredential_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBSNSUserCredential alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBSNSUserCredential_Builder*) clear {
+  self.result = [[[PBSNSUserCredential alloc] init] autorelease];
+  return self;
+}
+- (PBSNSUserCredential_Builder*) clone {
+  return [PBSNSUserCredential builderWithPrototype:result];
+}
+- (PBSNSUserCredential*) defaultInstance {
+  return [PBSNSUserCredential defaultInstance];
+}
+- (PBSNSUserCredential*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBSNSUserCredential*) buildPartial {
+  PBSNSUserCredential* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBSNSUserCredential_Builder*) mergeFrom:(PBSNSUserCredential*) other {
+  if (other == [PBSNSUserCredential defaultInstance]) {
+    return self;
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasCredential) {
+    [self setCredential:other.credential];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBSNSUserCredential_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBSNSUserCredential_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 162: {
+        [self setCredential:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBSNSUserCredential_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBSNSUserCredential_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasCredential {
+  return result.hasCredential;
+}
+- (NSString*) credential {
+  return result.credential;
+}
+- (PBSNSUserCredential_Builder*) setCredential:(NSString*) value {
+  result.hasCredential = YES;
+  result.credential = value;
+  return self;
+}
+- (PBSNSUserCredential_Builder*) clearCredential {
+  result.hasCredential = NO;
+  result.credential = @"";
   return self;
 }
 @end
@@ -1273,6 +1531,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property (retain) NSString* facetimeId;
 @property int32_t seatId;
 @property (retain) NSString* xiaojiNumber;
+@property (retain) NSMutableArray* mutableSnsCredentialsList;
 @property BOOL isPlaying;
 @property BOOL isTakenOver;
 @property (retain) NSMutableArray* mutableAttributesList;
@@ -1385,6 +1644,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasXiaojiNumber_ = !!value;
 }
 @synthesize xiaojiNumber;
+@synthesize mutableSnsCredentialsList;
 - (BOOL) hasIsPlaying {
   return !!hasIsPlaying_;
 }
@@ -1668,6 +1928,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.location = nil;
   self.facetimeId = nil;
   self.xiaojiNumber = nil;
+  self.mutableSnsCredentialsList = nil;
   self.mutableAttributesList = nil;
   self.email = nil;
   self.password = nil;
@@ -1756,6 +2017,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   id value = [mutableSnsUsersList objectAtIndex:index];
   return value;
 }
+- (NSArray*) snsCredentialsList {
+  return mutableSnsCredentialsList;
+}
+- (PBSNSUserCredential*) snsCredentialsAtIndex:(int32_t) index {
+  id value = [mutableSnsCredentialsList objectAtIndex:index];
+  return value;
+}
 - (NSArray*) attributesList {
   return mutableAttributesList;
 }
@@ -1785,6 +2053,11 @@ static PBGameUser* defaultPBGameUserInstance = nil;
     return NO;
   }
   for (PBSNSUser* element in self.snsUsersList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
+  for (PBSNSUserCredential* element in self.snsCredentialsList) {
     if (!element.isInitialized) {
       return NO;
     }
@@ -1831,6 +2104,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasXiaojiNumber) {
     [output writeString:10 value:self.xiaojiNumber];
+  }
+  for (PBSNSUserCredential* element in self.snsCredentialsList) {
+    [output writeMessage:11 value:element];
   }
   if (self.hasIsPlaying) {
     [output writeBool:20 value:self.isPlaying];
@@ -1987,6 +2263,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasXiaojiNumber) {
     size += computeStringSize(10, self.xiaojiNumber);
+  }
+  for (PBSNSUserCredential* element in self.snsCredentialsList) {
+    size += computeMessageSize(11, element);
   }
   if (self.hasIsPlaying) {
     size += computeBoolSize(20, self.isPlaying);
@@ -2218,6 +2497,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasXiaojiNumber) {
     [self setXiaojiNumber:other.xiaojiNumber];
   }
+  if (other.mutableSnsCredentialsList.count > 0) {
+    if (result.mutableSnsCredentialsList == nil) {
+      result.mutableSnsCredentialsList = [NSMutableArray array];
+    }
+    [result.mutableSnsCredentialsList addObjectsFromArray:other.mutableSnsCredentialsList];
+  }
   if (other.hasIsPlaying) {
     [self setIsPlaying:other.isPlaying];
   }
@@ -2405,6 +2690,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 82: {
         [self setXiaojiNumber:[input readString]];
+        break;
+      }
+      case 90: {
+        PBSNSUserCredential_Builder* subBuilder = [PBSNSUserCredential builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addSnsCredentials:[subBuilder buildPartial]];
         break;
       }
       case 160: {
@@ -2746,6 +3037,35 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearXiaojiNumber {
   result.hasXiaojiNumber = NO;
   result.xiaojiNumber = @"";
+  return self;
+}
+- (NSArray*) snsCredentialsList {
+  if (result.mutableSnsCredentialsList == nil) { return [NSArray array]; }
+  return result.mutableSnsCredentialsList;
+}
+- (PBSNSUserCredential*) snsCredentialsAtIndex:(int32_t) index {
+  return [result snsCredentialsAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceSnsCredentialsAtIndex:(int32_t) index with:(PBSNSUserCredential*) value {
+  [result.mutableSnsCredentialsList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllSnsCredentials:(NSArray*) values {
+  if (result.mutableSnsCredentialsList == nil) {
+    result.mutableSnsCredentialsList = [NSMutableArray array];
+  }
+  [result.mutableSnsCredentialsList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearSnsCredentialsList {
+  result.mutableSnsCredentialsList = nil;
+  return self;
+}
+- (PBGameUser_Builder*) addSnsCredentials:(PBSNSUserCredential*) value {
+  if (result.mutableSnsCredentialsList == nil) {
+    result.mutableSnsCredentialsList = [NSMutableArray array];
+  }
+  [result.mutableSnsCredentialsList addObject:value];
   return self;
 }
 - (BOOL) hasIsPlaying {
