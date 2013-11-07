@@ -1051,6 +1051,9 @@ SET_CELL_BG_IN_CONTROLLER;
                 if ([[GameSNSService defaultService] isExpired:type] == YES){
                     [[GameSNSService defaultService] autheticate:type];
                 }
+                else{
+                    [self askRebindSina];
+                }
                 
 //                if ([_userManager hasBindSinaWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
 //                    [self bindSina];
@@ -1068,6 +1071,10 @@ SET_CELL_BG_IN_CONTROLLER;
                 if ([[GameSNSService defaultService] isExpired:type] == YES){
                     [[GameSNSService defaultService] autheticate:type];
                 }
+                else{
+                    [self askRebindQQ];
+                }
+                
                 
 //                if ([_userManager hasBindQQWeibo]){
 //                    [self askRebindQQ];                    
@@ -1084,6 +1091,10 @@ SET_CELL_BG_IN_CONTROLLER;
                 if ([[GameSNSService defaultService] isExpired:type] == YES){
                     [[GameSNSService defaultService] autheticate:type];
                 }
+                else{
+                    [self askRebindFacebook];
+                }
+                
                 
 //                if ([_userManager hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
 //                    [self bindFacebook];
@@ -1286,32 +1297,7 @@ SET_CELL_BG_IN_CONTROLLER;
 
 - (void)bindSNS:(int)snsType
 {
-//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-//    NSString* name = [service snsName];
-//
-//    [service logout];
-//    
-//    [service login:^(NSDictionary *userInfo) {
-//        PPDebug(@"%@ Login Success", name);
-//        
-//        [self showActivityWithText:NSLS(@"Loading")];
-//        
-//        [service readMyUserInfo:^(NSDictionary *userInfo) {
-//            [self hideActivity];
-//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-//            [[UserService defaultService] updateUserWithSNSUserInfo:[_pbUserBuilder userId] userInfo:userInfo viewController:self];
-//            
-//            // ask follow official weibo account here
-//            [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
-//            
-//        } failureBlock:^(NSError *error) {
-//            [self hideActivity];
-//            PPDebug(@"%@ readMyUserInfo Failure", name);
-//        }];
-//        
-//    } failureBlock:^(NSError *error) {
-//        PPDebug(@"%@ Login Failure", name);
-//    }];
+    [[GameSNSService defaultService] autheticate:snsType];
 }
 
 - (void)bindQQ

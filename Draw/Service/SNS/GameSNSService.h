@@ -37,6 +37,11 @@
 //- (void)saveSNSInfo:(PPSNSType)snsType credentialString:(NSString*)credentialString;
 
 - (void)saveSNSInfo:(NSArray*)snsCredentials;
+- (void)cleanSNSInfo:(NSArray*)snsCredentials;
+
+- (void)askRebindQQ:(UIViewController*)viewController;
+- (void)askRebindSina:(UIViewController*)viewController;
+- (void)askRebindFacebook:(UIViewController*)viewController;
 
 + (NSString*)snsOfficialNick:(PPSNSType)type;
 
