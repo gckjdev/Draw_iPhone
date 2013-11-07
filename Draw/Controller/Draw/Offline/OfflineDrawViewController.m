@@ -1074,7 +1074,7 @@
     
     if (imagePath != nil) {
         
-        [[GameSNSService defaultService] publishWeibo:type text:text imageFilePath:imagePath];
+        [[GameSNSService defaultService] publishWeiboAtBackground:type text:text imageFilePath:imagePath];
         
         
 //        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {

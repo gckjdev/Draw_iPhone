@@ -239,7 +239,7 @@ enum {
         [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
     } else if (buttonIndex == buttonIndexSinaWeibo) {
         
-        [[GameSNSService defaultService] publishWeibo:TYPE_SINA text:shareBody];
+        [[GameSNSService defaultService] publishWeibo:TYPE_SINA text:shareBody inView:self.view];
         
 //        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:shareBody
 //                                                                               imageFilePath:nil
@@ -249,7 +249,7 @@ enum {
 
     } else if (buttonIndex == buttonIndexQQWeibo) {
         
-        [[GameSNSService defaultService] publishWeibo:TYPE_QQ text:shareBody];
+        [[GameSNSService defaultService] publishWeibo:TYPE_QQ text:shareBody inView:self.view];
 
         
 //        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:shareBody
@@ -260,7 +260,7 @@ enum {
 
     } else if (buttonIndex == buttonIndexFacebook) {
         
-        [[GameSNSService defaultService] publishWeibo:TYPE_FACEBOOK text:shareBody];
+        [[GameSNSService defaultService] publishWeibo:TYPE_FACEBOOK text:shareBody inView:self.view];
 
         
 //        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:shareBody
@@ -324,7 +324,7 @@ enum {
     
     else if (indexPath.row == rowOfFollowSina){
         
-        [[GameSNSService defaultService] followUser:TYPE_SINA weiboId:[GameApp sinaWeiboId] weiboName:nil];
+        [[GameSNSService defaultService] followUser:TYPE_SINA weiboId:nil weiboName:[GameApp sinaWeiboId]];
         
         
 //        if ([[UserManager defaultManager] hasBindSinaWeibo]){
@@ -348,7 +348,7 @@ enum {
 //        }
     }else if (indexPath.row == rowOfFollowTencent){
         
-        [[GameSNSService defaultService] followUser:TYPE_QQ weiboId:[GameApp qqWeiboId] weiboName:nil];
+        [[GameSNSService defaultService] followUser:TYPE_QQ weiboId:nil weiboName:[GameApp qqWeiboId]];
 
         
 //        if ([[UserManager defaultManager] hasBindQQWeibo]){

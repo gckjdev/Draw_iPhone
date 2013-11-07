@@ -31,10 +31,13 @@
 - (void)followUser:(PPSNSType)snsType weiboId:(NSString*)weiboId weiboName:(NSString*)weiboName;
 
 - (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imageFilePath inView:(UIView*)view;
-- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imagePath;
-- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text;
-- (void)publishWeiboToAll:(NSString*)text;
-- (void)saveSNSInfo:(PPSNSType)snsType;
+- (void)publishWeiboAtBackground:(PPSNSType)snsType text:(NSString*)text imageFilePath:(NSString*)imagePath;
+- (void)publishWeibo:(PPSNSType)snsType text:(NSString*)text inView:(UIView*)view;
+//- (void)publishWeiboToAll:(NSString*)text;
+//- (void)saveSNSInfo:(PPSNSType)snsType credentialString:(NSString*)credentialString;
+
+- (void)saveSNSInfo:(NSArray*)snsCredentials;
+
 + (NSString*)snsOfficialNick:(PPSNSType)type;
 
 @end

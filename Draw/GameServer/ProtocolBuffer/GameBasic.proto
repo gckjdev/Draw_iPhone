@@ -58,7 +58,7 @@ message PBGameUser {
      
   optional int32 seatId = 9;                        // 座位号，从1开始
   optional string xiaojiNumber = 10;                // 小吉号码
-  repeated PBSNSUserCredential snsCredentials;      // SNS授权信息
+  repeated PBSNSUserCredential snsCredentials = 11; // SNS授权信息，不含用户的SNS个人资料（如昵称、头像等）
 
   optional bool isPlaying = 20 [default=true];      // 用户是否参与当前游戏，默认为true
   optional bool isTakenOver = 21 [default=false];   // 用户是否被系统接管，默认为false

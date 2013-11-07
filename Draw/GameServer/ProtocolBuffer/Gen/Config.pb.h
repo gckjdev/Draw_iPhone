@@ -70,6 +70,8 @@
 @class PBRewardWall;
 @class PBRewardWall_Builder;
 @class PBSNSUser;
+@class PBSNSUserCredential;
+@class PBSNSUserCredential_Builder;
 @class PBSNSUser_Builder;
 @class PBSize;
 @class PBSize_Builder;

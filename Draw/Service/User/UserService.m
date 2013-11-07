@@ -164,23 +164,27 @@ static UserService* _defaultUserService;
 
 - (void)updateUserWithSNSUserInfo:(ShareType)shareType
                  credentialString:(NSString*)credentialString
+
 {
-    if (credentialString == nil)
+    if ([credentialString length] == 0)
         return;
     
     int loginIdType = [self getRegisterTypeWithShareType:shareType];
+    if (loginIdType == -1){
+        return;
+    }
+    
+    // save into local user
+    [[UserManager defaultManager] saveSNSCredential:loginIdType credential:credentialString];
+    
     NSDictionary* para = @{ PARA_TYPE : @(loginIdType),
                             PARA_CREDENTIAL : credentialString };
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_NEW_UPDATE_USER parameters:para isReturnArray:NO];
+        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_UPDATE_USER_CREDENTIAL parameters:para isReturnArray:NO];
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (output.resultCode == 0){
-                
-            }
-            
+            PPDebug(@"<updateUserWithSNSUserInfo> credential=%@, result=%d", credentialString, output.resultCode);
         });
     });
 }
@@ -781,7 +785,8 @@ static UserService* _defaultUserService;
 }
 
 - (void)saveSNSUserData:(PBGameUser*)pbUser
-{    
+{
+    /*
     PBSNSUser* sinaUser = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:pbUser.snsUsersList];
     PBSNSUser* qqUser = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:pbUser.snsUsersList];
     PBSNSUser* fbUser = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:pbUser.snsUsersList];
@@ -809,9 +814,14 @@ static UserService* _defaultUserService;
     NSDate*   facebookExpireDate = nil;
     if (facebookExpireTime)
         facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
-
-    // TODO
-    [[GameSNSService defaultService] saveSNSInfo:TYPE_SINA];
+    */
+     
+    NSArray* snsCredentials = pbUser.snsCredentialsList;
+    if ([snsCredentials count] == 0){
+        return;
+    }
+    
+    [[GameSNSService defaultService] saveSNSInfo:snsCredentials];
     
     
 //    PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
