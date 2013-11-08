@@ -154,6 +154,8 @@ static UserService* _defaultUserService;
             return REGISTER_TYPE_QQ;
         case ShareTypeFacebook:
             return REGISTER_TYPE_FACEBOOK;
+        case ShareTypeQQSpace:
+            return TYPE_QQSPACE;            
         default:
             break;
     }
@@ -171,6 +173,7 @@ static UserService* _defaultUserService;
     
     int loginIdType = [self getRegisterTypeWithShareType:shareType];
     if (loginIdType == -1){
+        PPDebug(@"<updateUserWithSNSUserInfo＞ but shareType(%d) not supported", shareType);
         return;
     }
     
@@ -203,6 +206,10 @@ static UserService* _defaultUserService;
     NSString* appId = [PPConfigManager appId];
     NSString* loginId = userInfo.uid; //[userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterTypeWithShareType:shareType];
+    if (loginIdType == -1){
+        PPDebug(@"<updateUserWithSNSUserInfo＞ but shareType(%d) not supported", shareType);
+        return;
+    }
     
     NSString* nickName = userInfo.nickname; //[userInfo objectForKey:SNS_NICK_NAME];
     NSString* gender = [UserManager genderByValue:userInfo.gender]; // [userInfo objectForKey:SNS_GENDER];

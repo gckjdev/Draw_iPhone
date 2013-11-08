@@ -32,6 +32,7 @@
 #import "ViewUserDetail.h"
 #import "UserDetailViewController.h"
 #import "UIViewUtils.h"
+#import "GameSNSService.h"
 
 @interface FriendController ()
 {
@@ -642,17 +643,28 @@ enum {
 
 - (void)sendWeixin:(NSString *)message
 {
-    if ([WXApi isWXAppInstalled] == NO || [WXApi isWXAppSupportApi] == NO)
-    {
-        [UIUtils alert:NSLS(@"kWeixinNotInstall")];
-    }else{
-        SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
-        req.bText = YES;
-        req.text = message;
-        req.scene = WXSceneSession;
-        
-        [WXApi sendReq:req];
-    }
+    
+    
+//    if ([WXApi isWXAppInstalled] == NO || [WXApi isWXAppSupportApi] == NO)
+//    {
+//        [UIUtils alert:NSLS(@"kWeixinNotInstall")];
+//    }else{
+//        SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init]autorelease];
+//        req.bText = YES;
+//        req.text = message;
+//        req.scene = WXSceneSession;
+//        
+//        [WXApi sendReq:req];
+//    }
+
+
+    [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
+                                             text:message
+                                           inView:self.view
+                                       awardCoins:0
+                                   successMessage:nil
+                                   failureMessage:nil];
+
 }
 
 

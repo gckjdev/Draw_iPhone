@@ -26,6 +26,7 @@
 #import "TableTabManager.h"
 #import "UIImageExt.h"
 #import "DrawPlayer.h"
+#import "GameSNSService.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -275,53 +276,66 @@ typedef enum{
     
     NSString* editString = [[self.selectedPaint isRecovery] boolValue]?NSLS(@"kRecovery"):NSLS(@"kEdit");
     
+//    NSString *shareString = (![GameApp canShareViaSNS] ? NSLS(@"kSave_to_album") : NSLS(@"kShareAsPhoto"));
     
-    NSString *shareString = (![GameApp canShareViaSNS] ? NSLS(@"kSave_to_album") : NSLS(@"kShareAsPhoto"));
+//    if ([LocaleUtils isChina]){
     
-    if ([LocaleUtils isChina]){
-        
         if (self.isDraftTab) {
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                delegate:self 
                                       cancelButtonTitle:NSLS(@"kCancel") 
                                  destructiveButtonTitle:editString 
-                                      otherButtonTitles:shareString, NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+                                      otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareQQSpace"),
+                    NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
+                    NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
+                    nil];
         }else{
 #if DEBUG
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                delegate:self
                                       cancelButtonTitle:NSLS(@"kCancel")
-                                 destructiveButtonTitle:shareString
+                                 destructiveButtonTitle:NSLS(@"kReplay")
                                       otherButtonTitles:
-                    NSLS(@"kReplay"), NSLS(@"kDelete"), NSLS(@"kEdit"), nil];
+                     NSLS(@"kDelete"), NSLS(@"kEdit"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareQQSpace"),
+                    NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
+                    NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
+
+                    nil];
             
 #else
             tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                                           delegate:self 
                                                  cancelButtonTitle:NSLS(@"kCancel") 
-                                            destructiveButtonTitle:shareString 
+                                            destructiveButtonTitle:NSLS(@"kReplay") 
                                                  otherButtonTitles:
-                                                        NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+                                                         NSLS(@"kDelete"),
+                    NSLS(@"kSaveAsPhoto"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareQQSpace"),
+                    NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"),
+                    NSLS(@"kShareQQWeibo"), NSLS(@"kShareFacebook"),
+
+                    nil];
 #endif
         }
-    }
-    else{
-        if (self.isDraftTab) {
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-                                               delegate:self 
-                                      cancelButtonTitle:NSLS(@"kCancel") 
-                                 destructiveButtonTitle:editString 
-                                      otherButtonTitles:shareString,
-                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
-        }else{           
-            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
-                                               delegate:self 
-                                      cancelButtonTitle:NSLS(@"kCancel") 
-                                 destructiveButtonTitle:shareString 
-                                      otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
-        }
-        
-    }
+//    }
+//    else{
+//        if (self.isDraftTab) {
+//            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+//                                               delegate:self 
+//                                      cancelButtonTitle:NSLS(@"kCancel") 
+//                                 destructiveButtonTitle:editString 
+//                                      otherButtonTitles:shareString,
+//                    NSLS(@"kReplay"), NSLS(@"kDelete"), nil];            
+//        }else{           
+//            tips = [[UIActionSheet alloc] initWithTitle:NSLS(@"kOptions") 
+//                                               delegate:self 
+//                                      cancelButtonTitle:NSLS(@"kCancel") 
+//                                 destructiveButtonTitle:shareString 
+//                                      otherButtonTitles:NSLS(@"kReplay"), NSLS(@"kDelete"), nil];
+//        }
+//        
+//    }
     tips.tag = IMAGE_OPTION;
     [tips showInView:self.view];
     [tips release];
@@ -388,24 +402,6 @@ typedef enum{
 {
     [self performLoadOpus:@selector(gotoReplayView)];
     return;
-    
-    
-    MyPaint* currentPaint = _selectedPaint;
-
-    
-    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
-    
-    ReplayObject *obj = [ReplayObject obj];
-    obj.actionList = [currentPaint drawActionList];
-    obj.isNewVersion = isNewVersion;
-    obj.bgImage = [[MyPaintManager defaultManager] bgImageForPaint:currentPaint];
-    obj.layers = currentPaint.layers;
-    obj.canvasSize = [currentPaint canvasSize];
-    
-    DrawPlayer *player =[DrawPlayer playerWithReplayObj:obj];
-    [player showInController:self];
-
-    [self hideActivity];
 }
 
 - (void)gotoReplayView
@@ -435,12 +431,7 @@ typedef enum{
     od.startController = self;
     [self.navigationController pushViewController:od animated:YES];
     [od release];
-    
-//    [self hideActivity];
-//    [self unregisterNotificationWithName:KEY_DATA_PARSING_PROGRESS];
-    
-    // clear draw action list
-//    currentPaint.drawActionList = nil;    
+   
 }
 
 - (void)performLoadOpus:(SEL)selector
@@ -526,6 +517,26 @@ typedef enum{
     
 }
 
+- (void)share:(PPSNSType)type
+{
+    MyPaint* currentPaint = _selectedPaint;    
+    
+    NSString* text = [ShareAction createShareText:currentPaint.drawWord
+                                             desc:nil
+                                       opusUserId:currentPaint.drawUserId
+                                       userGender:[UserManager defaultManager].pbUser.gender
+                                          snsType:type];
+    
+    [[GameSNSService defaultService] publishWeibo:type
+                                             text:text
+                                    imageFilePath:currentPaint.imageFilePath
+                                           inView:self.view
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
+                                   successMessage:NSLS(@"kShareWeiboSucc")
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+    
+}
+
 - (void)imageActionSheet:(UIActionSheet *)actionSheet
     clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -563,7 +574,28 @@ typedef enum{
         
         [dialog showInView:self.view];
     }
+    else if (buttonIndex == SAVE_INTO_PHOTO){
+    }
+    else if (buttonIndex == SHARE_SINA_WEIBO){
+        [self share:TYPE_SINA];
+    }
+    else if (buttonIndex == SHARE_QQ_ZONE){
+        [self share:TYPE_QQSPACE];
+    }
+    else if (buttonIndex == SHARE_WEIXIN_SESSION){
+        [self share:TYPE_WEIXIN_SESSION];
+    }
+    else if (buttonIndex == SHARE_WEIXIN_TIMELINE){
+        [self share:TYPE_WEIXIN_TIMELINE];
+    }
+    else if (buttonIndex == SHARE_QQ_WEIBO){
+        [self share:TYPE_QQ];
+    }
+    else if (buttonIndex == SHARE_FACEBOOK){
+        [self share:TYPE_FACEBOOK];
+    }
     else if (buttonIndex == DELETE_ALL){
+        
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
                                                            message:NSLS(@"kAre_you_sure")
                                                              style:CommonDialogStyleDoubleButton
@@ -828,41 +860,50 @@ typedef enum{
 {
     int index = 0;
 //    SHARE_AS_GIF = -1;
-    if ([LocaleUtils isChina]){
-        if (self.isDraftTab) {
-            EDIT  = index++;
-        }else{
-            EDIT = -1;
-        }
-        SHARE_AS_PHOTO = index++;
-        REPLAY = index++;
-        DELETE = index++;
+    if (self.isDraftTab) {
+        EDIT  = index++;
+    }else{
+        EDIT = -1;
+    }
+    
+    SHARE_AS_PHOTO = -1;
+//        SHARE_AS_PHOTO = index++;
+    
+    REPLAY = index++;
+    DELETE = index++;
         
 #if DEBUG
-        if (![self isDraftTab]) {
-            EDIT = index++;
-        }
+    if (![self isDraftTab]) {
+        // for super admin test
+        EDIT = index++;
+    }
 #endif
-        DELETE_ALL = index++;
-        DELETE_ALL_MINE = index++;
-        DELETE_ALL_DRAFT = index++;
-        CANCEL = index++;
+    
+    SAVE_INTO_PHOTO = index++;
+    SHARE_SINA_WEIBO = index++;
+    SHARE_QQ_ZONE = index++;
+    SHARE_WEIXIN_SESSION = index++;
+    SHARE_WEIXIN_TIMELINE = index++;
+    SHARE_QQ_WEIBO = index++;
+    SHARE_FACEBOOK = index++;
+    
+    DELETE_ALL = index++;
+    DELETE_ALL_MINE = index++;
+    DELETE_ALL_DRAFT = index++;
+    CANCEL = index++;
 
-    }
-    else{
-        if (self.isDraftTab) {
-            EDIT  = index++;
-        }else{
-            EDIT = -1;
-        }
-        SHARE_AS_PHOTO = index++;
-        REPLAY = index++;
-        DELETE = index++;
-        DELETE_ALL = index++;
-        DELETE_ALL_MINE = index++;
-        DELETE_ALL_DRAFT = index++;
-        CANCEL = index++;            
-    }
+//        if (self.isDraftTab) {
+//            EDIT  = index++;
+//        }else{
+//            EDIT = -1;
+//        }
+//        SHARE_AS_PHOTO = index++;
+//        REPLAY = index++;
+//        DELETE = index++;
+//        DELETE_ALL = index++;
+//        DELETE_ALL_MINE = index++;
+//        DELETE_ALL_DRAFT = index++;
+//        CANCEL = index++;            
     
 }
 

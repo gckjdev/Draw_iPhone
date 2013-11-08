@@ -237,7 +237,7 @@
 "kReplay" = "Replay";
 "kDelete" = "Delete";
 
-"kShareAsPhoto" = "Share As Photo";
+"kShareAsPhoto" = "Share";
 "kShareAsGif" = "Share As Gif";
 "kShare_via" = "Share via";
 "kSave_to_album" = "Save to Album";
@@ -276,6 +276,7 @@
 "kSavePercent" = "SAVE %02d%%";
 
 "kShareTitle" = "My Drawings";
+"kUnknownWord" = "Myth";
 
 "kNickNameEmpty" = "Nick name cannot be empty.";
 "Nick" = "Nick";
@@ -2145,6 +2146,14 @@
 "kFollowSuccess" = "Follow successfully";
 "kAuthorizeSuccess" = "Authorize successfully";
 "kAuthorizeFailure" = "Fail to authorize, please check your account or network";
+
+"kShareSinaWeibo" = "Share Sina Weibo";
+"kShareWeixinSession" = "Share WeChat Friend";
+"kShareWeixinTimeline" = "Share WeChat Timeline";
+"kShareQQSpace" = "Share QQZone";
+"kShareQQWeibo" = "Share QQ Weibo";
+"kShareFacebook" = "Share Facebook";
+"kSaveAsPhoto" = "Save As Photo";
 
 
 /*********************小吉画画国际化字符串结束 ************************/

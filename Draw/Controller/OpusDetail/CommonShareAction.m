@@ -304,6 +304,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
 //    [controller release];    
 }
 
+/*
 #define MAX_WEIXIN_IMAGE_WIDTH          ([PPConfigManager maxWeixinImageWidth])
 
 - (void)shareViaWeixin:(int)scene
@@ -372,6 +373,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
         [req release];
     }
 }
+*/
 
 - (void)setProgress:(CGFloat)progress
 {
@@ -477,11 +479,29 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
     }
     else if (tag == ShareActionTagWxTimeline){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_TIMELINE];
-        [self shareViaWeixin:WXSceneTimeline];
+        
+        [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
+                                                 text:self.shareText
+                                        imageFilePath:_imageFilePath
+                                               inView:self.superViewController.view
+                                           awardCoins:[PPConfigManager getShareWeiboReward]
+                                       successMessage:NSLS(@"kShareWeiboSucc")
+                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+        
+//        [self shareViaWeixin:WXSceneTimeline];
     }
     else if (tag == ShareActionTagWxFriend){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_FRIEND];
-        [self shareViaWeixin:WXSceneSession];
+        
+        [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
+                                                 text:self.shareText
+                                        imageFilePath:_imageFilePath
+                                               inView:self.superViewController.view
+                                           awardCoins:[PPConfigManager getShareWeiboReward]
+                                       successMessage:NSLS(@"kShareWeiboSucc")
+                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+        
+//        [self shareViaWeixin:WXSceneSession];
     }
     else if (tag == ShareActionTagSinaWeibo)
     {

@@ -253,7 +253,7 @@
 "kDelete" = "删除";
 
 "kShare_via" = "分享选项";
-"kShareAsPhoto" = "图片方式分享";
+"kShareAsPhoto" = "分享";
 "kShareAsGif" = "动画方式分享";
 "kShare_Options" = "请选择分享方式";
 "kSave_to_album" = "保存到相册";
@@ -290,6 +290,7 @@
 "kSavePercent" = "节省%02d%%";
 
 "kShareTitle" = "本地作品";
+"kUnknownWord" = "神秘";
 
 "kNickNameEmpty" = "昵称不能为空";
 "Nick" = "昵称";
@@ -2152,6 +2153,14 @@
 "kFollowSuccess" = "已成功关注";
 "kAuthorizeSuccess" = "已成功授权";
 "kAuthorizeFailure" = "授权失败，请检查帐号或者网络";
+
+"kShareSinaWeibo" = "分享到新浪微博";
+"kShareWeixinSession" = "分享给微信好友";
+"kShareWeixinTimeline" = "分享到微信朋友圈";
+"kShareQQSpace" = "分享到QQ空间";
+"kShareQQWeibo" = "分享到腾讯微博";
+"kShareFacebook" = "分享到Facebook";
+"kSaveAsPhoto" = "保存到相册";
 
 
 /*********************小吉画画国际化字符串结束 ************************/

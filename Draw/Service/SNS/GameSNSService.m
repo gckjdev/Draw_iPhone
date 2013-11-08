@@ -24,6 +24,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "GTMBase64.h"
 #import <ShareSDK/ShareSDK.h>
+#import "WBApi.h"
 
 GameSNSService* _defaultSNSService;
 
@@ -43,6 +44,7 @@ GameSNSService* _defaultSNSService;
 {
     self = [super init];
     if (self){
+        
         [ShareSDK registerApp:[PPConfigManager getShareSDKAppId]];
         
         //添加新浪微博应用
@@ -52,13 +54,10 @@ GameSNSService* _defaultSNSService;
         
         //添加腾讯微博应用
         [ShareSDK connectTencentWeiboWithAppKey:[GameApp qqAppKey]          //@"801307650"
-                                      appSecret:[GameApp qqAppSecret] // @"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                                    redirectUri:[GameApp qqAppRedirectURI]]; // @"http://www.sharesdk.cn"];
-        
-        //添加QQ空间应用
-        [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]     //@"100371282"
-                               appSecret:[GameApp qqSpaceAppKey]];  // @"aed9b0303e3ed1e27bae87c33761161d"];
-        
+                                      appSecret:[GameApp qqAppSecret]       // @"ae36f4ee3946e1cbb98d6965b0b2ff5c"
+                                    redirectUri:[GameApp qqAppRedirectURI]  // @"http://www.sharesdk.cn"];
+                                       wbApiCls:[WBApi class]]; 
+                
         //添加Facebook应用
         [ShareSDK connectFacebookWithAppKey:[GameApp facebookAppKey]   //@"107704292745179"
                                   appSecret:[GameApp facebookAppSecret]]; // @"38053202e1a5fe26c80c753071f0b573"];
@@ -67,10 +66,15 @@ GameSNSService* _defaultSNSService;
         [ShareSDK connectWeChatWithAppId:[GameApp weixinId] // @"wx6dd7a9b94f3dd72a"        //此参数为申请的微信AppID
                                wechatCls:[WXApi class]];
         
-        //添加QQ应用
+        //添加QQ应用(QQ空间)
         [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
                          qqApiInterfaceCls:[QQApiInterface class]
                            tencentOAuthCls:[TencentOAuth class]];
+
+        //添加QQ应用(QQ空间)
+        [ShareSDK connectQZoneWithAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
+                               appSecret:[GameApp qqSpaceAppKey]];
+        
     }
     
     return self;
@@ -240,6 +244,15 @@ GameSNSService* _defaultSNSService;
         case TYPE_FACEBOOK:
             return ShareTypeFacebook;
             
+        case TYPE_WEIXIN_SESSION:
+            return ShareTypeWeixiSession;
+
+        case TYPE_WEIXIN_TIMELINE:
+            return ShareTypeWeixiTimeline;
+            
+        case TYPE_QQSPACE:
+            return ShareTypeQQSpace;            
+            
         default:
             PPDebug(@"Warning!!!!!!!!!!! Share SDK Type not match for snsType(%d)", snsType);
             return ShareTypeAny;
@@ -328,6 +341,9 @@ GameSNSService* _defaultSNSService;
                         {
                             POSTMSG(NSLS(@"kAuthorizeFailure"));
                             PPDebug(@"autheticate shareType(%d) failure, error=%@", shareType, [error errorDescription]);
+                        }
+                        else{
+                            PPDebug(@"autheticate shareType(%d) unknown state, error=%@", shareType, [error errorDescription]);
                         }
                     }];
 }
@@ -433,6 +449,10 @@ GameSNSService* _defaultSNSService;
     }
     else if (state == SSPublishContentStateFail)
     {
+//        NSString* msg = failureMessage;
+//        if ([error.errorDescription length] > 0){
+//            msg = [NSString stringWithFormat:@"%@, %@", failureMessage, error.errorDescription];
+//        }
         POSTMSG(failureMessage);
         PPDebug(@"publish weibo failure, code=%d, error=%@", [error errorCode], error.errorDescription);
     }
@@ -455,6 +475,8 @@ GameSNSService* _defaultSNSService;
     
     PPDebug(@"<publishWeibo> sns(%d) text(%@) image(%@)", snsType, text, imagePath);
     
+    SSPublishContentMediaType mediaType = ([imagePath length] > 0) ? SSPublishContentMediaTypeImage : SSPublishContentMediaTypeText;
+    
     //创建分享内容
     id<ISSContent> publishContent = [ShareSDK content:text
                                        defaultContent:@""
@@ -462,7 +484,7 @@ GameSNSService* _defaultSNSService;
                                                 title:nil
                                                   url:nil
                                           description:nil
-                                            mediaType:SSPublishContentMediaTypeText];
+                                            mediaType:mediaType];
     
     //创建弹出菜单容器
     id<ISSContainer> container = [ShareSDK container];
@@ -546,6 +568,7 @@ GameSNSService* _defaultSNSService;
     }
     
     PPDebug(@"<publishWeiboAtBackground> sns(%d) text(%@) image(%@)", snsType, text, imagePath);
+    SSPublishContentMediaType mediaType = ([imagePath length] > 0) ? SSPublishContentMediaTypeImage : SSPublishContentMediaTypeText;
     
     //创建分享内容
     id<ISSContent> publishContent = [ShareSDK content:text
@@ -554,7 +577,7 @@ GameSNSService* _defaultSNSService;
                                                 title:nil
                                                   url:nil
                                           description:nil
-                                            mediaType:SSPublishContentMediaTypeText];
+                                            mediaType:mediaType];
     
     BOOL needUpdateUserInfo = [self isExpired:snsType];
     
@@ -690,7 +713,10 @@ GameSNSService* _defaultSNSService;
 //        
 //    }
 
-    NSArray* shareTypes = @[ @(ShareTypeSinaWeibo), @(ShareTypeTencentWeibo), @(ShareTypeFacebook), @(ShareTypeQQSpace), @(ShareTypeTwitter)];
+    NSArray* shareTypes = @[ @(ShareTypeSinaWeibo), @(ShareTypeTencentWeibo),
+                             @(ShareTypeFacebook), @(ShareTypeQQSpace), @(ShareTypeTwitter),
+                             @(ShareTypeQQ)];
+    
     for (NSNumber* shareType in shareTypes){
         [ShareSDK setCredential:nil type:[shareType intValue]];
     }
