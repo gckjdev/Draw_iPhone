@@ -680,9 +680,7 @@
 #define METHOD_GET_NEW_GROUPS @"getNewGroups"
 
 #define METHOD_JOIN_GROUP @"joinGroup"
-#define METHOD_ACCEPT_JOIN_REQUEST @"acceptJoinGroup"
-#define METHOD_REJECT_JOIN_REQUEST @"rejectJoinGroup"
-
+#define METHOD_HANDLE_JOIN_REQUEST @"handelJoinGroupRequest"
 #define METHOD_EDIT_GROUP @"editGroup"
 #define METHOD_INVITE_GROUPUSER @"inviteGroupUser"
 #define METHOD_GET_GROUP_MEMBERS @"getGroupMembers"
@@ -779,6 +777,7 @@
 #define ERROR_GROUP_PERMISSION  200008
 #define ERROR_GROUP_FULL  200009
 #define ERROR_GROUP_REJECTED  200010
+#define ERROR_GROUP_USER_NOT_REQUESTSTATUS 200011
 
 
 

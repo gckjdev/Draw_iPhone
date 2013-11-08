@@ -6555,6 +6555,7 @@
 		EA690BF1181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA690BEF181680D000DCACCB /* bbs_post_detail_mark@2x.png */; };
 		EA690BF2181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA690BEF181680D000DCACCB /* bbs_post_detail_mark@2x.png */; };
 		EA690BF3181680D000DCACCB /* bbs_post_detail_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA690BEF181680D000DCACCB /* bbs_post_detail_mark@2x.png */; };
+		EA6C0FD91828F2C100430253 /* DrawTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EA6C0FD81828F2C100430253 /* DrawTest.m */; };
 		EA6FE5A71769B9B800AB4E56 /* AskPs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41242A1767137E00FC13C2 /* AskPs.m */; };
 		EA6FE5AD1769B9BD00AB4E56 /* AskPs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41242A1767137E00FC13C2 /* AskPs.m */; };
 		EA6FE5AE1769B9C700AB4E56 /* AskPs.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41242A1767137E00FC13C2 /* AskPs.m */; };
@@ -6702,6 +6703,18 @@
 		EAB94F4E1772D5B10038DB7A /* libleveldb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C8D5E2175EEC23007ED7E4 /* libleveldb.a */; };
 		EABD0FFB17376A9B00A2F930 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
 		EAC81C0D172B983200ED78DE /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC81C0C172B983100ED78DE /* UIImage+fixOrientation.m */; };
+		EACDA8B71828EEB000C4F414 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA8B51828EEB000C4F414 /* GroupHomeController.m */; };
+		EACDA8B81828EEB000C4F414 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA8B51828EEB000C4F414 /* GroupHomeController.m */; };
+		EACDA8B91828EEB000C4F414 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA8B51828EEB000C4F414 /* GroupHomeController.m */; };
+		EACDA8BA1828EEB000C4F414 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACDA8B51828EEB000C4F414 /* GroupHomeController.m */; };
+		EACDA8BB1828EEB000C4F414 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACDA8B61828EEB000C4F414 /* GroupHomeController.xib */; };
+		EACDA8BC1828EEB000C4F414 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACDA8B61828EEB000C4F414 /* GroupHomeController.xib */; };
+		EACDA8BD1828EEB000C4F414 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACDA8B61828EEB000C4F414 /* GroupHomeController.xib */; };
+		EACDA8BE1828EEB000C4F414 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EACDA8B61828EEB000C4F414 /* GroupHomeController.xib */; };
+		EACDA8C91828EFED00C4F414 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACDA8491828C44A00C4F414 /* SenTestingKit.framework */; };
+		EACDA8CA1828EFED00C4F414 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D221503B1B500600024 /* UIKit.framework */; };
+		EACDA8CB1828EFED00C4F414 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA745D241503B1B500600024 /* Foundation.framework */; };
+		EACDA8D11828EFED00C4F414 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACDA8CF1828EFED00C4F414 /* InfoPlist.strings */; };
 		EAD13B6717DDAF0700764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
 		EAD13B6817DDAF0700764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
 		EAD13B6917DDAF0700764FFB /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD13B6617DDAF0700764FFB /* right@2x.png */; };
@@ -6762,6 +6775,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 748F14580FD75E3B000858A9;
 			remoteInfo = CommandLineTests;
+		};
+		EACDA8D91828EFFF00C4F414 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA745D151503B1B400600024 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA745D1D1503B1B400600024;
+			remoteInfo = Draw;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -9564,6 +9584,8 @@
 		EA690BE118167F7200DCACCB /* bbs_post_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_mark@2x.png"; sourceTree = "<group>"; };
 		EA690BEA18167F8300DCACCB /* bbs_post_detail_unmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_detail_unmark@2x.png"; sourceTree = "<group>"; };
 		EA690BEF181680D000DCACCB /* bbs_post_detail_mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbs_post_detail_mark@2x.png"; sourceTree = "<group>"; };
+		EA6C0FD71828F2C100430253 /* DrawTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawTest.h; sourceTree = "<group>"; };
+		EA6C0FD81828F2C100430253 /* DrawTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawTest.m; sourceTree = "<group>"; };
 		EA6FE5CA176B32C300AB4E56 /* AskPsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AskPsListController.h; sourceTree = "<group>"; };
 		EA6FE5CB176B32C300AB4E56 /* AskPsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AskPsListController.m; sourceTree = "<group>"; };
 		EA6FE5CC176B32C300AB4E56 /* AskPsListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AskPsListController.xib; sourceTree = "<group>"; };
@@ -9632,6 +9654,13 @@
 		EACAB8C8173B804E0059B1C7 /* default_config_DreamLockscreenFree_version.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = default_config_DreamLockscreenFree_version.txt; sourceTree = "<group>"; };
 		EACAB8C9173B804E0059B1C7 /* default_config_DreamLockscreenFree.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = default_config_DreamLockscreenFree.pb; sourceTree = "<group>"; };
 		EACDA8491828C44A00C4F414 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		EACDA8B41828EEB000C4F414 /* GroupHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupHomeController.h; sourceTree = "<group>"; };
+		EACDA8B51828EEB000C4F414 /* GroupHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupHomeController.m; sourceTree = "<group>"; };
+		EACDA8B61828EEB000C4F414 /* GroupHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupHomeController.xib; sourceTree = "<group>"; };
+		EACDA8C81828EFEC00C4F414 /* DrawTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DrawTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EACDA8CE1828EFED00C4F414 /* DrawTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DrawTest-Info.plist"; sourceTree = "<group>"; };
+		EACDA8D01828EFED00C4F414 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EACDA8D51828EFED00C4F414 /* DrawTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrawTest-Prefix.pch"; sourceTree = "<group>"; };
 		EAD13B6617DDAF0700764FFB /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right@2x.png"; sourceTree = "<group>"; };
 		EAD13B7017DDAF4000764FFB /* contest_prize_custom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contest_prize_custom@2x.png"; sourceTree = "<group>"; };
 		EAD13B7917DECFB700764FFB /* orange_loading_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orange_loading_empty@2x.png"; sourceTree = "<group>"; };
@@ -9865,6 +9894,16 @@
 				EA411B47176066F500DA72D0 /* libYouMi.a in Frameworks */,
 				EA411B49176066F500DA72D0 /* protolCLib.a in Frameworks */,
 				EA411B4A176066F500DA72D0 /* libleveldb.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EACDA8C41828EFEC00C4F414 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EACDA8C91828EFED00C4F414 /* SenTestingKit.framework in Frameworks */,
+				EACDA8CA1828EFED00C4F414 /* UIKit.framework in Frameworks */,
+				EACDA8CB1828EFED00C4F414 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14406,6 +14445,7 @@
 			isa = PBXGroup;
 			children = (
 				CA745D281503B1B500600024 /* Draw */,
+				EACDA8CC1828EFED00C4F414 /* DrawTest */,
 				CA745D211503B1B500600024 /* Frameworks */,
 				CA745D1F1503B1B500600024 /* Products */,
 			);
@@ -14418,6 +14458,7 @@
 				C28AA0BB1738F04B007A819F /* LittleGeeDraw.app */,
 				A461B7FC174CBAA70088B061 /* Sing.app */,
 				EA411F2B176066F500DA72D0 /* AskPs.app */,
+				EACDA8C81828EFEC00C4F414 /* DrawTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -16361,6 +16402,9 @@
 		EA8CADDB18288C6E003149FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EACDA8B41828EEB000C4F414 /* GroupHomeController.h */,
+				EACDA8B51828EEB000C4F414 /* GroupHomeController.m */,
+				EACDA8B61828EEB000C4F414 /* GroupHomeController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -16464,6 +16508,26 @@
 			path = Statistic;
 			sourceTree = "<group>";
 		};
+		EACDA8CC1828EFED00C4F414 /* DrawTest */ = {
+			isa = PBXGroup;
+			children = (
+				EA6C0FD71828F2C100430253 /* DrawTest.h */,
+				EA6C0FD81828F2C100430253 /* DrawTest.m */,
+				EACDA8CD1828EFED00C4F414 /* Supporting Files */,
+			);
+			path = DrawTest;
+			sourceTree = "<group>";
+		};
+		EACDA8CD1828EFED00C4F414 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EACDA8CE1828EFED00C4F414 /* DrawTest-Info.plist */,
+				EACDA8CF1828EFED00C4F414 /* InfoPlist.strings */,
+				EACDA8D51828EFED00C4F414 /* DrawTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EAD13B7817DECFB700764FFB /* OrangeLoadingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -16555,6 +16619,25 @@
 			productReference = EA411F2B176066F500DA72D0 /* AskPs.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EACDA8C71828EFEC00C4F414 /* DrawTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EACDA8D61828EFED00C4F414 /* Build configuration list for PBXNativeTarget "DrawTest" */;
+			buildPhases = (
+				EACDA8C31828EFEC00C4F414 /* Sources */,
+				EACDA8C41828EFEC00C4F414 /* Frameworks */,
+				EACDA8C51828EFEC00C4F414 /* Resources */,
+				EACDA8C61828EFEC00C4F414 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EACDA8DA1828EFFF00C4F414 /* PBXTargetDependency */,
+			);
+			name = DrawTest;
+			productName = DrawTest;
+			productReference = EACDA8C81828EFEC00C4F414 /* DrawTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -16595,6 +16678,7 @@
 				C28A99641738F04B007A819F /* LittleGeeDraw */,
 				A461B07C174CBAA70088B061 /* Sing */,
 				EA411810176066F500DA72D0 /* AskPs */,
+				EACDA8C71828EFEC00C4F414 /* DrawTest */,
 			);
 		};
 /* End PBXProject section */
@@ -17528,6 +17612,7 @@
 				A4B123E518279F5900A0603F /* song_bg5@2x.png in Resources */,
 				A4B123E818279F5900A0603F /* song_category@2x.png in Resources */,
 				A4B123EB18279F5900A0603F /* song_tag@2x.png in Resources */,
+				EACDA8BD1828EEB000C4F414 /* GroupHomeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18445,6 +18530,7 @@
 				A4B123E418279F5900A0603F /* song_bg5@2x.png in Resources */,
 				A4B123E718279F5900A0603F /* song_category@2x.png in Resources */,
 				A4B123EA18279F5900A0603F /* song_tag@2x.png in Resources */,
+				EACDA8BC1828EEB000C4F414 /* GroupHomeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19344,6 +19430,7 @@
 				A4B123E318279F5900A0603F /* song_bg5@2x.png in Resources */,
 				A4B123E618279F5900A0603F /* song_category@2x.png in Resources */,
 				A4B123E918279F5900A0603F /* song_tag@2x.png in Resources */,
+				EACDA8BB1828EEB000C4F414 /* GroupHomeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20157,10 +20244,35 @@
 				EA2835711818D81D00897765 /* SearchPostController~ipad.xib in Resources */,
 				EAA4ADC4181A195100B3A5DD /* bbs_board_search@2x.png in Resources */,
 				EAA4ADCD181A197A00B3A5DD /* bbs_post_search@2x.png in Resources */,
+				EACDA8BE1828EEB000C4F414 /* GroupHomeController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EACDA8C51828EFEC00C4F414 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EACDA8D11828EFED00C4F414 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EACDA8C61828EFEC00C4F414 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A461B07D174CBAA70088B061 /* Sources */ = {
@@ -20962,6 +21074,7 @@
 				EA8CADE318288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADEA18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF01828A646003149FE /* GroupPermission.m in Sources */,
+				EACDA8B91828EEB000C4F414 /* GroupHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21729,6 +21842,7 @@
 				EA8CADE218288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE918288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */,
+				EACDA8B81828EEB000C4F414 /* GroupHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22501,6 +22615,7 @@
 				EA8CADE118288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
+				EACDA8B71828EEB000C4F414 /* GroupHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23218,10 +23333,27 @@
 				EA8CADE418288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADEB18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF11828A646003149FE /* GroupPermission.m in Sources */,
+				EACDA8BA1828EEB000C4F414 /* GroupHomeController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EACDA8C31828EFEC00C4F414 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA6C0FD91828F2C100430253 /* DrawTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EACDA8DA1828EFFF00C4F414 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA745D1D1503B1B400600024 /* Draw */;
+			targetProxy = EACDA8D91828EFFF00C4F414 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A42151CF18040C5F007F2EFD /* MWPhotoBrowser.strings */ = {
@@ -23376,6 +23508,14 @@
 				CAFEFACA16606E4800441D77 /* zh-Hant */,
 			);
 			name = Language.strings;
+			sourceTree = "<group>";
+		};
+		EACDA8CF1828EFED00C4F414 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EACDA8D01828EFED00C4F414 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -23937,6 +24077,73 @@
 			};
 			name = Release;
 		};
+		EACDA8D71828EFED00C4F414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Draw.app/Draw";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DrawTest/DrawTest-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "DrawTest/DrawTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		EACDA8D81828EFED00C4F414 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Draw.app/Draw";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DrawTest/DrawTest-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "DrawTest/DrawTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -23981,6 +24188,15 @@
 			buildConfigurations = (
 				EA411F29176066F500DA72D0 /* Debug */,
 				EA411F2A176066F500DA72D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EACDA8D61828EFED00C4F414 /* Build configuration list for PBXNativeTarget "DrawTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EACDA8D71828EFED00C4F414 /* Debug */,
+				EACDA8D81828EFED00C4F414 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
