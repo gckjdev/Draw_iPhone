@@ -142,8 +142,6 @@
     _countDownLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", hours, minus, second];
 }
 
-
-
 #define KEY_NO_REMIND_HAPPY_GUESS_RULE @"KEY_NO_REMIND_HAPPY_GUESS_RULE"
 #define KEY_NO_REMIND_GENIUS_GUESS_RULE @"KEY_NO_REMIND_GENIUS_GUESS_RULE"
 #define KEY_NO_REMIND_CONTEST_GUESS_RULE @"KEY_NO_REMIND_CONTEST_GUESS_RULE"

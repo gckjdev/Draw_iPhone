@@ -3108,6 +3108,12 @@
 		A4E1D22017B2236800E13728 /* GuessSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E1D21817B2236800E13728 /* GuessSelectCell.xib */; };
 		A4E254D01796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
 		A4E254D11796CC5D00767506 /* GuessService.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E254CF1796CC5D00767506 /* GuessService.m */; };
+		A4E4AA14182C9CAD0001AFFE /* WhisperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA12182C9CAD0001AFFE /* WhisperView.xib */; };
+		A4E4AA15182C9CAD0001AFFE /* WhisperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA12182C9CAD0001AFFE /* WhisperView.xib */; };
+		A4E4AA16182C9CAD0001AFFE /* WhisperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA12182C9CAD0001AFFE /* WhisperView.xib */; };
+		A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */; };
+		A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */; };
+		A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */; };
 		A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
 		A4E6491A178426310063F393 /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
 		A4E6491E1784288E0063F393 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
@@ -7727,6 +7733,8 @@
 		A4E1D21817B2236800E13728 /* GuessSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuessSelectCell.xib; sourceTree = "<group>"; };
 		A4E254CE1796CC5D00767506 /* GuessService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessService.h; sourceTree = "<group>"; };
 		A4E254CF1796CC5D00767506 /* GuessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessService.m; sourceTree = "<group>"; };
+		A4E4AA12182C9CAD0001AFFE /* WhisperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhisperView.xib; sourceTree = "<group>"; };
+		A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhisperView~ipad.xib"; sourceTree = "<group>"; };
 		A4E64917178426310063F393 /* PBOpus+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBOpus+Extend.h"; sourceTree = "<group>"; };
 		A4E64918178426310063F393 /* PBOpus+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBOpus+Extend.m"; sourceTree = "<group>"; };
 		A4E6491B1784288E0063F393 /* CommonCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCommentController.h; sourceTree = "<group>"; };
@@ -14765,24 +14773,26 @@
 		CA89741C1607230E003A95F7 /* Hot */ = {
 			isa = PBXGroup;
 			children = (
-				CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */,
-				CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */,
-				CAC371401611E6C3002CB837 /* RankView~ipad.xib */,
-				CAC371411611E6C3002CB837 /* TopPlayerView~ipad.xib */,
-				CA9D5F491616F2040082E258 /* HotController~ipad.xib */,
+				A4E4AA12182C9CAD0001AFFE /* WhisperView.xib */,
+				A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */,
 				CA89741D1607230E003A95F7 /* HotController.h */,
 				CA89741E1607230E003A95F7 /* HotController.m */,
 				CA89741F1607230E003A95F7 /* HotController.xib */,
+				CA9D5F491616F2040082E258 /* HotController~ipad.xib */,
 				CA1656FC160C032500E433BE /* RankView.h */,
 				CA1656FD160C032600E433BE /* RankView.m */,
 				CA1656FE160C032700E433BE /* RankView.xib */,
+				CAC371401611E6C3002CB837 /* RankView~ipad.xib */,
+				CA165703160C037600E433BE /* RankFirstView.xib */,
+				CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */,
+				CA165705160C044700E433BE /* RankSecondView.xib */,
+				CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */,
 				CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */,
 				CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */,
-				CA165703160C037600E433BE /* RankFirstView.xib */,
-				CA165705160C044700E433BE /* RankSecondView.xib */,
 				CA0A2CAC1610473800F66400 /* TopPlayerView.h */,
 				CA0A2CAD1610473800F66400 /* TopPlayerView.m */,
 				CA0A2CAA161046D300F66400 /* TopPlayerView.xib */,
+				CAC371411611E6C3002CB837 /* TopPlayerView~ipad.xib */,
 				EA0C5543180BECEB008069C1 /* PainterController.h */,
 				EA0C5544180BECEB008069C1 /* PainterController.m */,
 				EA0C5545180BECEB008069C1 /* PainterController.xib */,
@@ -17383,6 +17393,8 @@
 				A4E14ECC182B8DC00016E8D0 /* song_category@2x.png in Resources */,
 				A4E14ECF182B8DC00016E8D0 /* song_tag@2x.png in Resources */,
 				CA29E710182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				A4E4AA16182C9CAD0001AFFE /* WhisperView.xib in Resources */,
+				A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18292,6 +18304,8 @@
 				A4E14ECB182B8DC00016E8D0 /* song_category@2x.png in Resources */,
 				A4E14ECE182B8DC00016E8D0 /* song_tag@2x.png in Resources */,
 				CA29E70F182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				A4E4AA15182C9CAD0001AFFE /* WhisperView.xib in Resources */,
+				A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19183,6 +19197,8 @@
 				A4E14ECA182B8DC00016E8D0 /* song_category@2x.png in Resources */,
 				A4E14ECD182B8DC00016E8D0 /* song_tag@2x.png in Resources */,
 				CA29E70E182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				A4E4AA14182C9CAD0001AFFE /* WhisperView.xib in Resources */,
+				A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15926,8 +15926,12 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 @property int64_t balance;
 @property int32_t createDate;
 @property int32_t memberFee;
-@property (retain) NSString* signature;
+@property int32_t capacity;
+@property int32_t size;
+@property int32_t guestSize;
+@property int32_t guestCapacity;
 @property (retain) NSString* desc;
+@property (retain) NSString* signature;
 @property (retain) NSString* bgImage;
 @property (retain) NSString* medalImage;
 @property (retain) NSMutableArray* mutableTitlesList;
@@ -15988,13 +15992,34 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   hasMemberFee_ = !!value;
 }
 @synthesize memberFee;
-- (BOOL) hasSignature {
-  return !!hasSignature_;
+- (BOOL) hasCapacity {
+  return !!hasCapacity_;
 }
-- (void) setHasSignature:(BOOL) value {
-  hasSignature_ = !!value;
+- (void) setHasCapacity:(BOOL) value {
+  hasCapacity_ = !!value;
 }
-@synthesize signature;
+@synthesize capacity;
+- (BOOL) hasSize {
+  return !!hasSize_;
+}
+- (void) setHasSize:(BOOL) value {
+  hasSize_ = !!value;
+}
+@synthesize size;
+- (BOOL) hasGuestSize {
+  return !!hasGuestSize_;
+}
+- (void) setHasGuestSize:(BOOL) value {
+  hasGuestSize_ = !!value;
+}
+@synthesize guestSize;
+- (BOOL) hasGuestCapacity {
+  return !!hasGuestCapacity_;
+}
+- (void) setHasGuestCapacity:(BOOL) value {
+  hasGuestCapacity_ = !!value;
+}
+@synthesize guestCapacity;
 - (BOOL) hasDesc {
   return !!hasDesc_;
 }
@@ -16002,6 +16027,13 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   hasDesc_ = !!value;
 }
 @synthesize desc;
+- (BOOL) hasSignature {
+  return !!hasSignature_;
+}
+- (void) setHasSignature:(BOOL) value {
+  hasSignature_ = !!value;
+}
+@synthesize signature;
 - (BOOL) hasBgImage {
   return !!hasBgImage_;
 }
@@ -16030,8 +16062,8 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 - (void) dealloc {
   self.groupId = nil;
   self.name = nil;
-  self.signature = nil;
   self.desc = nil;
+  self.signature = nil;
   self.bgImage = nil;
   self.medalImage = nil;
   self.mutableTitlesList = nil;
@@ -16045,13 +16077,17 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   if ((self = [super init])) {
     self.groupId = @"";
     self.name = @"";
-    self.level = 0;
+    self.level = 1;
     self.fame = 0;
     self.balance = 0L;
     self.createDate = 0;
     self.memberFee = 0;
-    self.signature = @"";
+    self.capacity = 0;
+    self.size = 0;
+    self.guestSize = 0;
+    self.guestCapacity = 0;
     self.desc = @"";
+    self.signature = @"";
     self.bgImage = @"";
     self.medalImage = @"";
     self.creator = [PBGroupUser defaultInstance];
@@ -16154,11 +16190,23 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasMemberFee) {
     [output writeInt32:7 value:self.memberFee];
   }
-  if (self.hasSignature) {
-    [output writeString:10 value:self.signature];
+  if (self.hasCapacity) {
+    [output writeInt32:8 value:self.capacity];
+  }
+  if (self.hasSize) {
+    [output writeInt32:9 value:self.size];
+  }
+  if (self.hasGuestSize) {
+    [output writeInt32:10 value:self.guestSize];
+  }
+  if (self.hasGuestCapacity) {
+    [output writeInt32:11 value:self.guestCapacity];
   }
   if (self.hasDesc) {
-    [output writeString:11 value:self.desc];
+    [output writeString:15 value:self.desc];
+  }
+  if (self.hasSignature) {
+    [output writeString:16 value:self.signature];
   }
   if (self.hasBgImage) {
     [output writeString:21 value:self.bgImage];
@@ -16211,11 +16259,23 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasMemberFee) {
     size += computeInt32Size(7, self.memberFee);
   }
-  if (self.hasSignature) {
-    size += computeStringSize(10, self.signature);
+  if (self.hasCapacity) {
+    size += computeInt32Size(8, self.capacity);
+  }
+  if (self.hasSize) {
+    size += computeInt32Size(9, self.size);
+  }
+  if (self.hasGuestSize) {
+    size += computeInt32Size(10, self.guestSize);
+  }
+  if (self.hasGuestCapacity) {
+    size += computeInt32Size(11, self.guestCapacity);
   }
   if (self.hasDesc) {
-    size += computeStringSize(11, self.desc);
+    size += computeStringSize(15, self.desc);
+  }
+  if (self.hasSignature) {
+    size += computeStringSize(16, self.signature);
   }
   if (self.hasBgImage) {
     size += computeStringSize(21, self.bgImage);
@@ -16334,11 +16394,23 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (other.hasMemberFee) {
     [self setMemberFee:other.memberFee];
   }
-  if (other.hasSignature) {
-    [self setSignature:other.signature];
+  if (other.hasCapacity) {
+    [self setCapacity:other.capacity];
+  }
+  if (other.hasSize) {
+    [self setSize:other.size];
+  }
+  if (other.hasGuestSize) {
+    [self setGuestSize:other.guestSize];
+  }
+  if (other.hasGuestCapacity) {
+    [self setGuestCapacity:other.guestCapacity];
   }
   if (other.hasDesc) {
     [self setDesc:other.desc];
+  }
+  if (other.hasSignature) {
+    [self setSignature:other.signature];
   }
   if (other.hasBgImage) {
     [self setBgImage:other.bgImage];
@@ -16422,12 +16494,28 @@ static PBGroup* defaultPBGroupInstance = nil;
         [self setMemberFee:[input readInt32]];
         break;
       }
-      case 82: {
-        [self setSignature:[input readString]];
+      case 64: {
+        [self setCapacity:[input readInt32]];
         break;
       }
-      case 90: {
+      case 72: {
+        [self setSize:[input readInt32]];
+        break;
+      }
+      case 80: {
+        [self setGuestSize:[input readInt32]];
+        break;
+      }
+      case 88: {
+        [self setGuestCapacity:[input readInt32]];
+        break;
+      }
+      case 122: {
         [self setDesc:[input readString]];
+        break;
+      }
+      case 130: {
+        [self setSignature:[input readString]];
         break;
       }
       case 170: {
@@ -16519,7 +16607,7 @@ static PBGroup* defaultPBGroupInstance = nil;
 }
 - (PBGroup_Builder*) clearLevel {
   result.hasLevel = NO;
-  result.level = 0;
+  result.level = 1;
   return self;
 }
 - (BOOL) hasFame {
@@ -16586,20 +16674,68 @@ static PBGroup* defaultPBGroupInstance = nil;
   result.memberFee = 0;
   return self;
 }
-- (BOOL) hasSignature {
-  return result.hasSignature;
+- (BOOL) hasCapacity {
+  return result.hasCapacity;
 }
-- (NSString*) signature {
-  return result.signature;
+- (int32_t) capacity {
+  return result.capacity;
 }
-- (PBGroup_Builder*) setSignature:(NSString*) value {
-  result.hasSignature = YES;
-  result.signature = value;
+- (PBGroup_Builder*) setCapacity:(int32_t) value {
+  result.hasCapacity = YES;
+  result.capacity = value;
   return self;
 }
-- (PBGroup_Builder*) clearSignature {
-  result.hasSignature = NO;
-  result.signature = @"";
+- (PBGroup_Builder*) clearCapacity {
+  result.hasCapacity = NO;
+  result.capacity = 0;
+  return self;
+}
+- (BOOL) hasSize {
+  return result.hasSize;
+}
+- (int32_t) size {
+  return result.size;
+}
+- (PBGroup_Builder*) setSize:(int32_t) value {
+  result.hasSize = YES;
+  result.size = value;
+  return self;
+}
+- (PBGroup_Builder*) clearSize {
+  result.hasSize = NO;
+  result.size = 0;
+  return self;
+}
+- (BOOL) hasGuestSize {
+  return result.hasGuestSize;
+}
+- (int32_t) guestSize {
+  return result.guestSize;
+}
+- (PBGroup_Builder*) setGuestSize:(int32_t) value {
+  result.hasGuestSize = YES;
+  result.guestSize = value;
+  return self;
+}
+- (PBGroup_Builder*) clearGuestSize {
+  result.hasGuestSize = NO;
+  result.guestSize = 0;
+  return self;
+}
+- (BOOL) hasGuestCapacity {
+  return result.hasGuestCapacity;
+}
+- (int32_t) guestCapacity {
+  return result.guestCapacity;
+}
+- (PBGroup_Builder*) setGuestCapacity:(int32_t) value {
+  result.hasGuestCapacity = YES;
+  result.guestCapacity = value;
+  return self;
+}
+- (PBGroup_Builder*) clearGuestCapacity {
+  result.hasGuestCapacity = NO;
+  result.guestCapacity = 0;
   return self;
 }
 - (BOOL) hasDesc {
@@ -16616,6 +16752,22 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (PBGroup_Builder*) clearDesc {
   result.hasDesc = NO;
   result.desc = @"";
+  return self;
+}
+- (BOOL) hasSignature {
+  return result.hasSignature;
+}
+- (NSString*) signature {
+  return result.signature;
+}
+- (PBGroup_Builder*) setSignature:(NSString*) value {
+  result.hasSignature = YES;
+  result.signature = value;
+  return self;
+}
+- (PBGroup_Builder*) clearSignature {
+  result.hasSignature = NO;
+  result.signature = @"";
   return self;
 }
 - (BOOL) hasBgImage {
