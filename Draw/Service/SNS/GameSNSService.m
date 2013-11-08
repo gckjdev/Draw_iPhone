@@ -19,6 +19,9 @@
 #import "SNSUtils.h"
 #import "CommonMessageCenter.h"
 #import "WXApi.h"
+#import <TencentOpenAPI/QQApi.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 #import "GTMBase64.h"
 #import <ShareSDK/ShareSDK.h>
 
@@ -65,9 +68,9 @@ GameSNSService* _defaultSNSService;
                                wechatCls:[WXApi class]];
         
         //添加QQ应用
-//        [ShareSDK connectQQWithQZoneAppKey:@"100371282"                 //该参数填入申请的QQ AppId
-//                         qqApiInterfaceCls:[QQApiInterface class]
-//                           tencentOAuthCls:[TencentOAuth class]];
+        [ShareSDK connectQQWithQZoneAppKey:[GameApp qqSpaceAppId]                //该参数填入申请的QQ AppId
+                         qqApiInterfaceCls:[QQApiInterface class]
+                           tencentOAuthCls:[TencentOAuth class]];
     }
     
     return self;
@@ -762,5 +765,22 @@ GameSNSService* _defaultSNSService;
     
 }
 
+#pragma mark - Handle Open URL
+
+- (BOOL)handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)handleOpenURL:(NSURL *)url
+    sourceApplication:(NSString *)sourceApplication
+           annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
+}
 
 @end

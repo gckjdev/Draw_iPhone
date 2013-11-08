@@ -87,6 +87,8 @@
 #import "BackgroundMusicPlayer.h"
 #import "GuessManager.h"
 
+#import "GameSNSService.h"
+
 
 NSString* GlobalGetServerURL()
 {
@@ -95,7 +97,7 @@ NSString* GlobalGetServerURL()
 //    return @"http://localhost:8000/api/i?";
 //    return @"http://58.215.160.100:8002/api/i?";
 //    return @"http://192.168.1.13:8001/api/i?";
-    return @"http://58.215.160.100:8020/api/i?";
+//    return @"http://58.215.160.100:8020/api/i?";
 //    return @"http://192.168.1.198:8000/api/i?";
 //    return @"http://58.215.160.100:8888/api/i?";
 //
@@ -265,11 +267,7 @@ NSString* GlobalGetBoardServerURL()
 {
     // TODO check benson
     [LocalNotificationUtil cancelAllLocalNotifications];
-    
-    
-    // init audio session
-//    [BackgroundMusicPlayer setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
-    
+        
     srand(time(0));
     
 #ifdef DEBUG
@@ -542,31 +540,37 @@ NSString* GlobalGetBoardServerURL()
 
 #pragma mark - Device Notification Delegate
 
-- (BOOL)handleURL:(NSURL*)url
-{
-    PPDebug(@"<handleURL> url=%@", url.absoluteString);
-    
-    if ([[url absoluteString] hasPrefix:@"wx"]){
-        return [WXApi handleOpenURL:url delegate:self];;
-    }else if ([[url absoluteString] hasPrefix:@"alipay"]){
-        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
-    }
-//    else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
-//        
+//- (BOOL)handleURL:(NSURL*)url
+//{
+//    PPDebug(@"<handleURL> url=%@", url.absoluteString);
+//    if ([[url absoluteString] hasPrefix:@"alipay"]){
+//        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
 //    }
-
-    // TODO add SNS handling here
-    
-    return YES;
-}
+//
+//    [[GameSNSService defaultService] handleOpenURL:url];
+//    return YES;
+//}
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url { 
-    return [self handleURL:url];
+    PPDebug(@"<handleURL> url=%@", url.absoluteString);
+    if ([[url absoluteString] hasPrefix:@"alipay"]){
+        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+    }
+    
+    [[GameSNSService defaultService] handleOpenURL:url];
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self handleURL:url];
+
+    PPDebug(@"<handleURL> url=%@, sourceApplication=%@, annotation=%@", url.absoluteString, sourceApplication, [annotation description]);
+    if ([[url absoluteString] hasPrefix:@"alipay"]){
+        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+    }
+    
+    [[GameSNSService defaultService] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    return YES;
 }
 
 #pragma mark - Device Notification Delegate

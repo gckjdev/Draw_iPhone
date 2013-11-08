@@ -63,4 +63,10 @@
 
 + (NSString*)snsOfficialNick:(PPSNSType)type;
 
+- (BOOL)handleOpenURL:(NSURL *)url;
+- (BOOL)handleOpenURL:(NSURL *)url
+    sourceApplication:(NSString *)sourceApplication
+           annotation:(id)annotation;
+
+
 @end
