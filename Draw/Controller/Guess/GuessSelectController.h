@@ -17,8 +17,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *countDownLabel;
 @property (retain, nonatomic) CommonShareAction *shareAction;
 
-//@property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
-
 - (id)initWithMode:(PBUserGuessMode)mode contest:(PBGuessContest *)contest;
 
 @end
