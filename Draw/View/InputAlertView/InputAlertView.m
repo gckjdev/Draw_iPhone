@@ -9,9 +9,9 @@
 #import "InputAlertView.h"
 #import "BlockUtils.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserManager.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "PPViewController.h"
 #import "MBProgressHUD.h"
@@ -148,20 +148,25 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 
 - (BOOL)canShareViaSina
 {
-    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
-        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-        return NO;
-    }
-    return YES;
+    return [[GameSNSService defaultService] isExpired:TYPE_SINA] == NO;
+    
+    
+//    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
+//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+//        return NO;
+//    }
+//    return YES;
 }
 
 - (BOOL)canShareViaQQ
 {
-    if ([[UserManager defaultManager] hasBindQQWeibo] == NO ||
-        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-        return NO;
-    }
-    return YES;
+    return [[GameSNSService defaultService] isExpired:TYPE_QQ] == NO;
+
+//    if ([[UserManager defaultManager] hasBindQQWeibo] == NO ||
+//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+//        return NO;
+//    }
+//    return YES;
 }
 
 
@@ -433,7 +438,7 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    NSInteger length = [ConfigManager opusDescMaxLength];
+    NSInteger length = [PPConfigManager opusDescMaxLength];
     if ([textView.text length] > length) {
         textView.text = [textView.text substringToIndex:length];
     }
@@ -442,52 +447,54 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 #pragma mark - Share SNS Control
 
 - (void)bindSNS:(int)snsType sender:(UIControl*)sender
-{    
-    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-    NSString* name = [service snsName];
+{
+    [[GameSNSService defaultService] autheticate:snsType];
     
-    [service logout];    
-    [service login:^(NSDictionary *userInfo) {
-        PPDebug(@"%@ Login Success", name);
-        
-        [MBProgressHUD showHUDAddedTo:self animated:YES];
-        
-        [service readMyUserInfo:^(NSDictionary *userInfo) {
-
-            [MBProgressHUD hideHUDForView:self animated:YES];
-            
-            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-            UserManager* userManager = [UserManager defaultManager];
-            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
-                                                           userInfo:userInfo
-                                                     viewController:nil];
-            
-            
-            
-            
-        } failureBlock:^(NSError *error) {
-
-            [MBProgressHUD hideHUDForView:self animated:YES];            
-            PPDebug(@"%@ readMyUserInfo Failure", name);
-        }];
-        
-        [sender setSelected:YES];
-        
-        // follow weibo if NOT followed
-        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){
-            [service followUser:[service officialWeiboId]
-                         userId:[service officialWeiboId]
-                   successBlock:^(NSDictionary *userInfo) {
-                       [GameSNSService updateFollowOfficialWeibo:service];
-                   } failureBlock:^(NSError *error) {
-                       PPDebug(@"follow weibo but error=%@", [error description]);
-                   }];
-        }
-        
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"%@ Login Failure", name);
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindFail") delayTime:2];
-    }];
+//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+//    NSString* name = [service snsName];
+//    
+//    [service logout];    
+//    [service login:^(NSDictionary *userInfo) {
+//        PPDebug(@"%@ Login Success", name);
+//        
+//        [MBProgressHUD showHUDAddedTo:self animated:YES];
+//        
+//        [service readMyUserInfo:^(NSDictionary *userInfo) {
+//
+//            [MBProgressHUD hideHUDForView:self animated:YES];
+//            
+//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+//            UserManager* userManager = [UserManager defaultManager];
+//            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+//                                                           userInfo:userInfo
+//                                                     viewController:nil];
+//            
+//            
+//            
+//            
+//        } failureBlock:^(NSError *error) {
+//
+//            [MBProgressHUD hideHUDForView:self animated:YES];            
+//            PPDebug(@"%@ readMyUserInfo Failure", name);
+//        }];
+//        
+//        [sender setSelected:YES];
+//        
+//        // follow weibo if NOT followed
+//        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){
+//            [service followUser:[service officialWeiboId]
+//                         userId:[service officialWeiboId]
+//                   successBlock:^(NSDictionary *userInfo) {
+//                       [GameSNSService updateFollowOfficialWeibo:service];
+//                   } failureBlock:^(NSError *error) {
+//                       PPDebug(@"follow weibo but error=%@", [error description]);
+//                   }];
+//        }
+//        
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"%@ Login Failure", name);
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kUserBindFail") delayTime:2];
+//    }];
 }
 
 //- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

@@ -13,7 +13,7 @@
 #import "YoumiAdWallService.h"
 //#import "AderAdWallService.h"
 #import "UserManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "AccountService.h"
 #import "CommonMessageCenter.h"
 //#import "DomobAdWallService.h"
@@ -32,7 +32,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     
     [self createWall:PBRewardWallTypeLimei forceCreate:NO];
     
-    if ([ConfigManager isEnableYoumiWall]){
+    if ([PPConfigManager isEnableYoumiWall]){
         [self createWall:PBRewardWallTypeYoumi forceCreate:NO];
     }
     
@@ -47,7 +47,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     switch (type){
         
         case PBRewardWallTypeLimei:
-            if (forceCreate == YES || [ConfigManager isEnableLimeiWall]){
+            if (forceCreate == YES || [PPConfigManager isEnableLimeiWall]){
                 CommonAdWallService* wallService = [self createLimeiWall];
                 if (wallService)
                     [_wallServiceArray addObject:wallService];
@@ -57,7 +57,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
             break;
             
         case PBRewardWallTypeWanpu:
-            if ([ConfigManager isEnableWanpuWall]){
+            if ([PPConfigManager isEnableWanpuWall]){
 //                CommonAdWallService* wallService = [self createWanpuWall];
 //                if (wallService)
 //                    [_wallServiceArray addObject:wallService];
@@ -66,7 +66,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
             }
             
         case PBRewardWallTypeYoumi:
-            if ([ConfigManager isEnableYoumiWall]){
+            if ([PPConfigManager isEnableYoumiWall]){
                 CommonAdWallService* wallService = [self createYoumiWall];
                 if (wallService)
                     [_wallServiceArray addObject:wallService];
@@ -75,7 +75,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
             }
             
 //        case PBRewardWallTypeAder:
-//            if ([ConfigManager isEnableAderWall]){
+//            if ([PPConfigManager isEnableAderWall]){
 //                CommonAdWallService* wallService = [self createAderWall];
 //                if (wallService)
 //                    [_wallServiceArray addObject:wallService];
@@ -83,7 +83,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
 //                return wallService;
 //            }
 //        case PBRewardWallTypeDomod:
-//            if ([ConfigManager isEnableDomodWall]){
+//            if ([PPConfigManager isEnableDomodWall]){
 //                CommonAdWallService* wallService = [self createDomodWall];
 //                if (wallService)
 //                    [_wallServiceArray addObject:wallService];
@@ -91,7 +91,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
 //                return wallService;
 //            }
 //        case PBRewardWallTypeTapjoy:
-//            if ([ConfigManager isEnableTapjoyWall]){
+//            if ([PPConfigManager isEnableTapjoyWall]){
 //                CommonAdWallService* wallService = [self createTapjoyWall];
 //                if (wallService)
 //                    [_wallServiceArray addObject:wallService];
@@ -203,7 +203,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameAdWallService)
     if ([userId length] == 0)
         return;
     
-    if ([ConfigManager wallEnabled] == NO){
+    if ([PPConfigManager wallEnabled] == NO){
         return;
     }
     

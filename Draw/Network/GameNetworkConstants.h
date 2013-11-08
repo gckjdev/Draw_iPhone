@@ -357,6 +357,7 @@
 #define PARA_ITEMIDARRAY @"iia"
 #define PARA_REQUIRE_MATCH @"rm"
 #define PARA_TYPE @"tp"
+#define PARA_CREDENTIAL @"credential"
 #define PARA_SELL_CONTENT_TYPE @"sct"
 #define PARA_OPUS_ID_LIST @"opusIdList"
 
@@ -687,7 +688,7 @@
 
 #define METHOD_EXPEL_GROUPUSER @"expelGroupUser"
 #define METHOD_UPDATE_GROUPUSER_ROLE @"updateUserRole"
-
+#define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
 
 #define REGISTER_TYPE_EMAIL     1
 #define REGISTER_TYPE_SINA      2

@@ -15,7 +15,7 @@
 #import "LmWallService.h"
 #import "BBSBoardController.h"
 #import "GameAdWallService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonDialog.h"
 #import "BBSPostDetailController.h"
 #import "CommonTitleView.h"
@@ -61,7 +61,7 @@
         self.friendAppArray = [GameConfigDataManager defaultManager].appRewardList;
         self.wallArray = [GameConfigDataManager defaultManager].rewardWallList;
         
-        if ([ConfigManager wallEnabled]){
+        if ([PPConfigManager wallEnabled]){
             
             if ([self.friendAppArray count] > 0 && [self.wallArray count] > 0){
                 self.friendAppSection = 0;

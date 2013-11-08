@@ -13,7 +13,7 @@
 #import "FileUtil.h"
 #import "PPSmartUpdateData.h"
 #import "PPSmartUpdateDataUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface WordManager() {
     
@@ -336,7 +336,7 @@ WordManager *GlobalGetWordManager()
         }
         NSInteger index = rand() % array.count;
         Word *word = [array objectAtIndex:index];
-        word.score = [ConfigManager offlineDrawSystemWordScore];
+        word.score = [PPConfigManager offlineDrawSystemWordScore];
         [wordArray addObject:word];
     }
     return wordArray;

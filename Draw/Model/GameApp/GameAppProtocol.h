@@ -42,6 +42,9 @@
 - (NSString*)qqAppSecret;
 - (NSString*)qqAppRedirectURI;
 
+- (NSString*)qqSpaceAppKey;
+- (NSString*)qqSpaceAppId;
+
 - (NSString*)facebookAppKey;
 - (NSString*)facebookAppSecret;
 
@@ -173,6 +176,7 @@
 - (NSString*)photoTagsEn;
 
 - (NSString *)opusClassName;
+- (NSString *)shareSDKDefaultAppId;
 
 @end
 

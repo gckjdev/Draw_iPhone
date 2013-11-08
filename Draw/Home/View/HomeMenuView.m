@@ -8,7 +8,7 @@
 
 #import "HomeMenuView.h"
 #import "DrawImageManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShareImageManager.h"
 #import "StatisticManager.h"
 #import "UIButton+Sound.h"
@@ -504,7 +504,7 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
 
 int *getDrawMainMenuTypeList()
 {
-    if ([ConfigManager freeCoinsEnabled]) {
+    if ([PPConfigManager freeCoinsEnabled]) {
         return getDrawMainMenuTypeListHasNewContest();
     } else {
         return getDrawMainMenuTypeListWithoutFreeCoins();
@@ -559,7 +559,7 @@ int *getZJHMainMenuTypeListWithoutFreeCoins()
 
 int *getZJHMainMenuTypeList()
 {
-    return ([ConfigManager freeCoinsEnabled] ? getZJHMainMenuTypeListWithFreeCoins() : getZJHMainMenuTypeListWithoutFreeCoins());
+    return ([PPConfigManager freeCoinsEnabled] ? getZJHMainMenuTypeListWithFreeCoins() : getZJHMainMenuTypeListWithoutFreeCoins());
 }
 
 int *getZJHBottomMenuTypeList()
@@ -637,11 +637,11 @@ int *getSingMainMenuTypeListWithoutFreeCoins()
 
 int *getDiceMainMenuTypeList()
 {
-    return ([ConfigManager freeCoinsEnabled] ? getDiceMainMenuTypeListWithFreeCoins() : getDiceMainMenuTypeListWithoutFreeCoins());
+    return ([PPConfigManager freeCoinsEnabled] ? getDiceMainMenuTypeListWithFreeCoins() : getDiceMainMenuTypeListWithoutFreeCoins());
 }
 
 int *getSingMainMenuTypeList(){
-    return ([ConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
+    return ([PPConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
 }
 
 int *getSingBottomMenuTypeList()
@@ -725,7 +725,7 @@ int *getDreamAvatarBottomMenuTypeListtWithoutFreeIngots()
 
 int *getDreamAvatarBottomMenuTypeList()
 {
-    return ([ConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
+    return ([PPConfigManager freeCoinsEnabled] ? getDreamAvatarBottomMenuTypeListtWithFreeIngots() : getDreamAvatarBottomMenuTypeListtWithoutFreeIngots());
 }
 
 int *getDreamLockscreenBottomMenuTypeListtWithFreeIngots()
@@ -753,7 +753,7 @@ int *getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots()
 
 int *getDreamLockscreenBottomMenuTypeList()
 {
-    return ([ConfigManager freeCoinsEnabled] ? getDreamLockscreenBottomMenuTypeListtWithFreeIngots() : getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots());
+    return ([PPConfigManager freeCoinsEnabled] ? getDreamLockscreenBottomMenuTypeListtWithFreeIngots() : getDreamLockscreenBottomMenuTypeListtWithoutFreeIngots());
 }
 
 BOOL typeInList(HomeMenuType type, int *list)

@@ -11,7 +11,7 @@
 #import "ItemType.h"
 #import "AdService.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "GameItemManager.h"
 //#import "CustomDiceManager.h"
 
@@ -27,7 +27,7 @@
             break;
             
         case ItemTypePurse:
-            [[AccountService defaultService] chargeCoin:([ConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeViaBuyPurseItem];
+            [[AccountService defaultService] chargeCoin:([PPConfigManager getCoinsIngotRate] * item.priceInfo.price * count) source:ChargeViaBuyPurseItem];
             break;
             
         case ItemTypeCustomDicePatriotDice:
@@ -56,7 +56,7 @@
     PBGameItem *item = [[GameItemManager defaultManager] itemWithItemId:itemId];
     switch (itemId) {
         case ItemTypePurse:
-            [[AccountService defaultService] chargeCoin:(([ConfigManager getCoinsIngotRate] * item.priceInfo.price) * count) toUser:toUserId source:ChargeAsAGift];
+            [[AccountService defaultService] chargeCoin:(([PPConfigManager getCoinsIngotRate] * item.priceInfo.price) * count) toUser:toUserId source:ChargeAsAGift];
             break;
             
         default:

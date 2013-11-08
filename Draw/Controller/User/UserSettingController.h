@@ -12,7 +12,7 @@
 #import "UserService.h"
 #import "UserManager.h"
 #import "CommonDialog.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "GeographyService.h"
 #import "StableView.h"
 

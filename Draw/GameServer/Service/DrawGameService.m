@@ -19,7 +19,7 @@
 #import "UserManager.h"
 #import "CommonGameNetworkService.h"
 #import "NotificationName.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "LevelService.h"
 #import "PaintAction.h"
 #import "DrawUtils.h"
@@ -1211,7 +1211,7 @@ static DrawGameService* _defaultService;
 
 - (NSString *)getServerListString
 {
-    return [ConfigManager getDrawServerString];
+    return [PPConfigManager getDrawServerString];
 }
 
 - (PBGameSession*)sessionInRoom:(int)index

@@ -12,7 +12,7 @@
 #import "RoomService.h"
 #import "ShareImageManager.h"
 #import "RoomCell.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "StringUtil.h"
 #import "GameMessage.pb.h"
 #import "RoomController.h"
@@ -309,7 +309,7 @@
                                                   gender:[_userManager isUserMale]
                                                 location:[_userManager location]     
                                                userLevel:[[LevelService defaultService] level]         
-                                          guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                          guessDiffLevel:[PPConfigManager guessDifficultLevel]
                                              snsUserData:[_userManager snsUserData]];
     }
     

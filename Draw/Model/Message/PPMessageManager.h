@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
-#define MESSAGE_STAT_MAX_COUNT ([ConfigManager getMessageStatMaxCount])
+#define MESSAGE_STAT_MAX_COUNT ([PPConfigManager getMessageStatMaxCount])
 
 @class PPMessage;
 

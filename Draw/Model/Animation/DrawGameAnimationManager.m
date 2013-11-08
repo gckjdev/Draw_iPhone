@@ -12,7 +12,7 @@
 #import "CommonMessageCenter.h"
 #import "LocaleUtils.h"
 #import "AnimationPlayer.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ItemType.h"
 #import "GameItemManager.h"
 
@@ -88,10 +88,10 @@
 {
     NSString* msg;
     if (enough) {
-        msg = [NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),[ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+        msg = [NSString stringWithFormat:NSLS(@"kThrowTomatoMessage"),[PPConfigManager getFlowerAwardExp], [PPConfigManager getFlowerAwardAmount]];
     } else {
         int price = [[GameItemManager defaultManager] priceWithItemId:ItemTypeFlower];
-        msg = [NSString stringWithFormat:NSLS(@"kThrowTomatoWithCoinsMessage"), price, [ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+        msg = [NSString stringWithFormat:NSLS(@"kThrowTomatoWithCoinsMessage"), price, [PPConfigManager getFlowerAwardExp], [PPConfigManager getFlowerAwardAmount]];
     }
     CAAnimationGroup* animationGroup = nil;
     if (rolling) {
@@ -117,11 +117,11 @@
 {
     NSString* msg;
     if (enough) {
-        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),[ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerMessage"),[PPConfigManager getFlowerAwardExp], [PPConfigManager getFlowerAwardAmount]];
     } else {
         PBGameItem* flower = [[GameItemManager defaultManager] itemWithItemId:ItemTypeFlower];
         int price = [flower promotionPrice];
-        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerWithCoinsMessage"), price, [ConfigManager getFlowerAwardExp], [ConfigManager getFlowerAwardAmount]];
+        msg = [NSString stringWithFormat:NSLS(@"kSendFlowerWithCoinsMessage"), price, [PPConfigManager getFlowerAwardExp], [PPConfigManager getFlowerAwardAmount]];
     }
     CAAnimationGroup* animationGroup = nil;
     if (rolling) {

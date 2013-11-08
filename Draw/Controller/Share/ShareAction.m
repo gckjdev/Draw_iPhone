@@ -19,7 +19,7 @@
 #import "StringUtil.h"
 #import "CustomActionSheet.h"
 #import "CommonImageManager.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
 #import "CommonMessageCenter.h"
@@ -28,10 +28,16 @@
 #import "AnalyticsManager.h"
 #import "StorageManager.h"
 #import "WordManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UIImageUtil.h"
 #import "StringUtil.h"
 #import "TimeUtils.h"
+#import "GameSNSService.h"
+
+#import "SDImageCache.h"
+#import "SDWebImageManager.h"
+#import "ShareService.h"
+
 
 @interface ShareAction ()
 {
@@ -275,6 +281,58 @@
     [compose release];
 }
 
++ (NSString*)createFeedImagePath:(DrawFeed*)feed
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:feed.drawImageUrl];
+    if (image == nil) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:feed.drawImageUrl];
+    }
+    
+    if (image == nil){
+        image = feed.largeImage;
+    }
+    
+    NSString* path = [[[ShareService defaultService] synthesisImageWithImage:image
+                                                              waterMarkText:[PPConfigManager getShareImageWaterMark]] retain];
+    [pool drain];
+
+    PPDebug(@"<createFeedImagePath> create image file at %@ for share", path);
+    return [path autorelease];
+}
+
++ (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type
+{
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+    NSString* text = @"";
+    NSString* drawWord = @"";
+    BOOL isDrawByMe = [[UserManager defaultManager] isMe:feed.feedUser.userId];
+
+    if (feed != nil) {
+        drawWord = feed.wordText;
+    }
+    
+    if (isDrawByMe){
+        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), feed.opusDesc, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        }
+    }
+    else{
+        NSString* heStr = [feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
+        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), feed.opusDesc, heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        }
+    }
+    
+    return text;
+}
+
 - (void)shareViaSNS:(SnsType)type
 {
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
@@ -282,45 +340,34 @@
     if (self.feed != nil) {
         _drawWord = self.feed.wordText;
     }
-    if (_isDrawByMe){
-        if (_isGIF){
-            text = [NSString stringWithFormat:NSLS(@"kShareGIFMeText"), _drawWord];
-        }
-        else{
-             
-            if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
-            } else {
-                text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
-            }
-            
+    if (_isDrawByMe){        
+        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
     else{
-        if (_isGIF){
-            text = [NSString stringWithFormat:NSLS(@"kShareGIFOtherText"), _drawWord];            
-        }
-        else{
-            NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
-            if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
+        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
 
-            } else {
-                text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
-            }
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
 
-    ShareEditController* controller = [[ShareEditController alloc] initWithImageFile:_imageFilePath
-                                                                                text:text
-                                                                          drawUserId:self.drawUserId
-                                                                             snsType:type];
-    controller.delegate = self;
-    [self.superViewController.navigationController pushViewController:controller animated:YES];
-    [controller release];    
+    [[GameSNSService defaultService] publishWeibo:type
+                                             text:text
+                                    imageFilePath:_imageFilePath
+                                           inView:self.superViewController.view
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
+                                   successMessage:NSLS(@"kShareWeiboSucc")
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+    
 }
 
-#define MAX_WEIXIN_IMAGE_WIDTH          ([ConfigManager maxWeixinImageWidth])
+#define MAX_WEIXIN_IMAGE_WIDTH          ([PPConfigManager maxWeixinImageWidth])
 
 - (void)shareViaWeixin:(int)scene
 {
@@ -449,52 +496,52 @@
 
 - (void)bindSNS:(int)snsType
 {
-    PPViewController* viewController = nil;    
-    if ([self.superViewController isKindOfClass:[PPViewController class]]){
-        viewController = (PPViewController*)self.superViewController;
-    }
-    
-    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-    NSString* name = [service snsName];
-    
-    [service logout];
-    
-    [service login:^(NSDictionary *userInfo) {
-        PPDebug(@"%@ Login Success", name);
-        
-        [viewController showActivityWithText:NSLS(@"Loading")];
-        
-        [service readMyUserInfo:^(NSDictionary *userInfo) {
-            [viewController hideActivity];
-            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-            UserManager* userManager = [UserManager defaultManager];
-            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
-                                                           userInfo:userInfo
-                                                     viewController:nil];
-            
-            // share weibo here
-            [self shareViaSNS:snsType];
-            
-        } failureBlock:^(NSError *error) {
-            [viewController hideActivity];
-            PPDebug(@"%@ readMyUserInfo Failure", name);
-        }];
-        
-        // follow weibo if NOT followed
-        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){            
-            [service followUser:[service officialWeiboId]
-                         userId:[service officialWeiboId]
-                   successBlock:^(NSDictionary *userInfo) {
-                [GameSNSService updateFollowOfficialWeibo:service];
-            } failureBlock:^(NSError *error) {
-                PPDebug(@"follow weibo but error=%@", [error description]);
-            }];            
-        }
-     
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"%@ Login Failure", name);
-        POSTMSG(NSLS(@"kUserBindFail"));
-    }];
+//    PPViewController* viewController = nil;    
+//    if ([self.superViewController isKindOfClass:[PPViewController class]]){
+//        viewController = (PPViewController*)self.superViewController;
+//    }
+//    
+//    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
+//    NSString* name = [service snsName];
+//    
+//    [service logout];
+//    
+//    [service login:^(NSDictionary *userInfo) {
+//        PPDebug(@"%@ Login Success", name);
+//        
+//        [viewController showActivityWithText:NSLS(@"Loading")];
+//        
+//        [service readMyUserInfo:^(NSDictionary *userInfo) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
+//            UserManager* userManager = [UserManager defaultManager];
+//            [[UserService defaultService] updateUserWithSNSUserInfo:[userManager userId]
+//                                                           userInfo:userInfo
+//                                                     viewController:nil];
+//            
+//            // share weibo here
+//            [self shareViaSNS:snsType];
+//            
+//        } failureBlock:^(NSError *error) {
+//            [viewController hideActivity];
+//            PPDebug(@"%@ readMyUserInfo Failure", name);
+//        }];
+//        
+//        // follow weibo if NOT followed
+//        if ([GameSNSService hasFollowOfficialWeibo:service] == NO){            
+//            [service followUser:[service officialWeiboId]
+//                         userId:[service officialWeiboId]
+//                   successBlock:^(NSDictionary *userInfo) {
+//                [GameSNSService updateFollowOfficialWeibo:service];
+//            } failureBlock:^(NSError *error) {
+//                PPDebug(@"follow weibo but error=%@", [error description]);
+//            }];            
+//        }
+//     
+//    } failureBlock:^(NSError *error) {
+//        PPDebug(@"%@ Login Failure", name);
+//        POSTMSG(NSLS(@"kUserBindFail"));
+//    }];
 }
 
 - (void)bindSinaWeibo
@@ -514,12 +561,12 @@
 
 - (void)actionOnShareSina
 {
-    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
-        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-        [self bindSinaWeibo];
-    } else {
+//    if ([[UserManager defaultManager] hasBindSinaWeibo] == NO ||
+//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+//        [self bindSinaWeibo];
+//    } else {
         [self shareViaSNS:SINA_WEIBO];
-    }
+//    }
 }
 
 - (void)actionByButtonIndex:(NSInteger)buttonIndex
@@ -544,21 +591,25 @@
     else if (buttonIndex == buttonIndexSinaWeibo)
     {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SINA];
-        [self actionOnShareSina];
+        [self shareViaSNS:TYPE_SINA];
     } else if (buttonIndex == buttonIndexQQWeibo) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_QQ];
-        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
-            [self bindQQWeibo];
-        } else {
-            [self shareViaSNS:TYPE_QQ];
-        }
+        [self shareViaSNS:TYPE_QQ];
+//        if ([[UserManager defaultManager] hasBindQQWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+//            [self bindQQWeibo];
+//        } else {
+//            [self shareViaSNS:TYPE_QQ];
+//        }
     } else if (buttonIndex == buttonIndexFacebook) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_FACEBOOK];
-        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-            [self bindFacebook];
-        } else {
-            [self shareViaSNS:TYPE_FACEBOOK];
-        }
+//        if ([[UserManager defaultManager] hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
+//            [self bindFacebook];
+//        } else {
+//            [self shareViaSNS:TYPE_FACEBOOK];
+//        }
+        [self shareViaSNS:TYPE_FACEBOOK];
+
+        
     } else if (buttonIndex == buttonIndexFavorite) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_SAVE];
         [self favorite];

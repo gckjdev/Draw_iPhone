@@ -1479,6 +1479,9 @@
 "kNoBulletin" = "暫無公告";
 
 "kLookLargeImage" = "查看";
+"kLook" = "查看";
+"kImageMustBeSquare" = "圖片必須是正方形的";
+"kAudioUrlIsBlank" = "音頻文件不存在";
 "kNoRecommend" = "暫無推薦";
 "kCustomBBSBgSucc" = "成功自定義論壇背景！";
 "kResetCustomBBSBgSucc" = "成功重設論壇背景!";
@@ -2138,6 +2141,18 @@
 "kOldDrawBG" = "懷舊木板風";
 "kExhibition" = "作品展";
 "kContestCopyright" = "重要聲明：蘋果公司非本比賽贊助商，也和本次比賽無任何關係，蘋果公司不承擔比賽的任何責任。本比賽不提供任何蘋果公司的相關產品作為獎品";
+
+"kShareWeiboSucc" = "分享作品成功";
+"kShareWeiboFailure" = "分享作品失敗，請檢查帳號或者網絡";
+"kSentWeiboSucc" = "分享作品成功";
+"kSentWeiboFailure" = "分享作品失敗，請檢查帳號或者網絡";
+"kPublishWeiboAwardInfo" = "獲得【%d】金幣";
+
+"kFollowFailure" = "關注失敗，請檢查帳號或者網絡";
+"kFollowSuccess" = "已成功關注";
+"kAuthorizeSuccess" = "已成功授權";
+"kAuthorizeFailure" = "授權失敗，請檢查帳號或者網絡";
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 

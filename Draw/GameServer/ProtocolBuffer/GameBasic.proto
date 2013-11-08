@@ -32,6 +32,12 @@ message PBSNSUser {
   optional string refreshToken = 6;
   optional int32 expireTime = 7;
   optional string qqOpenId  = 8;                // QQ Weibo Only
+  optional string credential = 20;              // Share SDK保存的授权信息，Base64字符串
+}
+
+message PBSNSUserCredential {
+  required int32  type = 1;                     // SNS Type
+  optional string credential = 20;              // Share SDK保存的授权信息，Base64字符串
 }
 
 message PBUserLevel{
@@ -52,6 +58,7 @@ message PBGameUser {
      
   optional int32 seatId = 9;                        // 座位号，从1开始
   optional string xiaojiNumber = 10;                // 小吉号码
+  repeated PBSNSUserCredential snsCredentials = 11; // SNS授权信息，不含用户的SNS个人资料（如昵称、头像等）
 
   optional bool isPlaying = 20 [default=true];      // 用户是否参与当前游戏，默认为true
   optional bool isTakenOver = 21 [default=false];   // 用户是否被系统接管，默认为false
@@ -529,7 +536,7 @@ message PBGroup
     optional int32  capacity = 8;             // 容量
     optional int32  size = 9;                 // 当前人数
     optional int32  guestSize = 10;           // 嘉宾数目
-    optional int32  guestCapacity = 10;       // 嘉宾数目
+    optional int32  guestCapacity = 11;       // 嘉宾数目
     
     optional string desc = 15;                  // 家族说明
     optional string signature = 16;             // 动态签名

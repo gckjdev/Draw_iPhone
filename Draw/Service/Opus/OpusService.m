@@ -9,7 +9,7 @@
 #import "OpusService.h"
 #import "GameNetworkRequest.h"
 #import "CommonNetworkClient.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserManager.h"
 #import "GameMessage.pb.h"
 #import "UIImageExt.h"
@@ -78,7 +78,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
-                               PARA_APPID : [ConfigManager appId],
+                               PARA_APPID : [PPConfigManager appId],
                                PARA_UPLOAD_DATA_TYPE : [draftOpus dataType]
                                };
         
@@ -192,7 +192,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     dispatch_async(workingQueue, ^{
         
         NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
-                               PARA_APPID : [ConfigManager appId],
+                               PARA_APPID : [PPConfigManager appId],
                                PARA_OPUS_ID : opusId
                                };
         

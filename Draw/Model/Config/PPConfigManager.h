@@ -28,7 +28,7 @@ typedef enum{
     WallTypeWanpu = 2
 }WallType;
 
-@interface ConfigManager : NSObject
+@interface PPConfigManager : NSObject
 
 + (int)getHomeDisplayOpusNumber;
 + (int)getHomeSwitchOpusInterval;
@@ -307,5 +307,8 @@ typedef enum{
 
 + (NSString *)getSingTagList;
 + (int)getRecordLimitTime;
+
++ (NSString*)getShareSDKAppId;
++ (int)getCreateOpusWeiboReward;
 
 @end

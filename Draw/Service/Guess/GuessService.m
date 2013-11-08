@@ -10,7 +10,7 @@
 #import "PPGameNetworkRequest.h"
 #import "GameNetworkConstants.h"
 #import "UserManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "SynthesizeSingleton.h"
 #import "TimeUtils.h"
 #import "StatisticManager.h"

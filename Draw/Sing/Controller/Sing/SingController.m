@@ -32,7 +32,7 @@
 #import "MKBlockActionSheet.h"
 #import "CMPopTipView.h"
 #import "SongSearchController.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -142,16 +142,17 @@ enum{
     return self;
 }
 
+#define TAG_TITLE_VIEW 201311061604
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    
     // init title view
     CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
-    [titleView setTitle:NSLS(@"kGuessing")];
+    [titleView setTitle:self.singOpus.name];
     [titleView setTarget:self];
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    titleView.tag = TAG_TITLE_VIEW;
     [self.view sendSubviewToBack:titleView];
 //    [titleView setRightButtonTitle:NSLS(@"kSubmit")];
 //    [titleView setRightButtonSelector:@selector(clickSubmitButton:)];
@@ -177,7 +178,7 @@ enum{
     self.lyricTextView.hidden = YES;
     self.lyricTextView.textColor = COLOR_BROWN;
     
-    _recordLimitTime = [ConfigManager getRecordLimitTime];
+    _recordLimitTime = [PPConfigManager getRecordLimitTime];
 
     if (_isDraft) {
         [self prepareToPlay];
@@ -190,6 +191,7 @@ enum{
     __block typeof (self) bself = self;
     [bself registerNotificationWithName:KEY_NOTIFICATION_SELECT_SONG usingBlock:^(NSNotification *note) {
         
+        [((CommonTitleView*)[bself.view viewWithTag:TAG_TITLE_VIEW]) setTitle:bself.singOpus.name];
         bself.lyricTextView.text = bself.singOpus.pbOpus.sing.song.lyric;
         bself.lyricTextView.hidden = NO;
         bself.opusDescLabel.hidden = YES;
@@ -199,6 +201,8 @@ enum{
     }];
     
     [bself registerNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE usingBlock:^(NSNotification *note) {
+        
+        [((CommonTitleView*)[bself.view viewWithTag:TAG_TITLE_VIEW]) setTitle:bself.singOpus.name];
         bself.opusDescLabel.text = bself.singOpus.pbOpus.desc;
         bself.lyricTextView.hidden = YES;
         bself.opusDescLabel.hidden = NO;
@@ -327,21 +331,25 @@ enum{
         case StateReadyRecord:
             [self setState:StateRecording];
             [self record];
+            [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
             break;
             
         case StateRecording:
             [self setState:StateReadyPlay];
             [self stopRecord];
+            [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
             break;
             
         case StateReadyPlay:
             [self setState:StatePlaying];
             [self play];
+            [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
             break;
             
         case StatePlaying:
             [self setState:StateReadyPlay];
             [self pausePlay];
+            [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
             break;
             
         default:
@@ -502,6 +510,11 @@ enum{
     
     if (image != nil) {
         PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
+        if (image.size.width != image.size.height) {
+            POSTMSG2(NSLS(@"kImageMustBeSquare"), 2);
+            return;
+        }
+        
         self.image = image;
         self.opusImageView.image = image;
         self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -528,6 +541,7 @@ enum{
 
 - (IBAction)clickSaveButton:(id)sender {
     [self showActivityWithText:NSLS(@"kSaving")];
+    [_singOpus setIsRecovery:YES];
     [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];
     [self hideActivity];
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaved") delayTime:1.5];
@@ -616,10 +630,10 @@ enum{
     [self hideProgressView];
 
     if (resultCode == ERROR_SUCCESS) {
-        POSTMSG(NSLS(@"kSuccess"));
+        POSTMSG(NSLS(@"kSubmitSuccTitle"));
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-        POSTMSG(NSLS(@"kFailed"));
+        POSTMSG(NSLS(@"kSubmitFailure"));
     }
 }
 

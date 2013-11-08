@@ -10,7 +10,7 @@
 #import "SynthesizeSingleton.h"
 #import "GameNetworkRequest.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserManager.h"
 #import "Photo.pb.h"
 #import "GameMessage.pb.h"
@@ -48,7 +48,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     PPDebug(@"<addUserPhoto> favor image %@ with name %@ ,tag %@", photoUrl, name, [tagSet description]);
     
     NSString* userId = [[UserManager defaultManager] userId];
-//    NSString* appId = [ConfigManager appId];
+//    NSString* appId = [PPConfigManager appId];
     
     PBUserPhoto_Builder* builder = [PBUserPhoto builder];    
     [builder setName:name];
@@ -112,7 +112,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     PPDebug(@"<getUserPhotoWithTagSet> get image with tag %@,offset = %d, limit = %d", [tagSet description], offset, limit);
     
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
     dispatch_async(workingQueue, ^{
@@ -163,7 +163,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     PPDebug(@"<updateUserPhoto> userPhotoId = %@,  url = %@ with name %@ ,tag %@", userPhotoId, photoUrl, name, [tagSet description]);
     
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
 //    NSString* tagArrayString = [self tagArrayStringBySet:tagSet];
     
     PBUserPhoto_Builder* builder = [PBUserPhoto builderWithPrototype:protoPhoto];
@@ -211,7 +211,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GalleryService)
     PPDebug(@"<deleteUserPhoto> userPhotoId = %@", userPhotoId);
     
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest deleteUserPhoto:SERVER_URL

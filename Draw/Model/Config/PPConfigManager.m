@@ -1,12 +1,12 @@
 //
-//  ConfigManager.m
+//  PPConfigManager.m
 //  Draw
 //
 //  Created by  on 12-4-28.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "LocaleUtils.h"
 #import "PPApplication.h"
 #import "UserManager.h"
@@ -17,7 +17,7 @@
 
 #define ZJH_TIME_INTERVAL 15
 
-@implementation ConfigManager
+@implementation PPConfigManager
 
 + (int)maxWeiboShareLength
 {
@@ -348,7 +348,7 @@
 //    return YES;
 //#endif
     
-    if ([ConfigManager isInReviewVersion] == NO && 
+    if ([PPConfigManager isInReviewVersion] == NO && 
         ([LocaleUtils isChina] == YES || 
          [LocaleUtils isOtherChina] == YES)){   
             
@@ -446,6 +446,14 @@
     return [MobClickUtils getIntValueByKey:@"REWARD_SHARE_WEIBO" defaultValue:10];
 }
 
++ (int)getCreateOpusWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"CREATE_OPUS_WEIBO" defaultValue:30];
+}
+
+
+
+
 + (int)getFollowWeiboReward
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_FOLLOW_WEIBO" defaultValue:100];
@@ -476,11 +484,11 @@
 //+ (NSString*)getRecommendAppLink
 //{
 //    if ([LocaleUtils isChina]) {
-//        return [ConfigManager getRecommendAppLinkZh];
+//        return [PPConfigManager getRecommendAppLinkZh];
 //    } else  if ([LocaleUtils isOtherChina]){
-//        return [ConfigManager getRecommendAppLinkZht];
+//        return [PPConfigManager getRecommendAppLinkZht];
 //    } else {
-//        return [ConfigManager getRecommendAppLinkEn];
+//        return [PPConfigManager getRecommendAppLinkEn];
 //    }
 //}
 
@@ -810,7 +818,7 @@
     return YES;
 #endif
     
-    if ([ConfigManager isInReviewVersion] == NO &&
+    if ([PPConfigManager isInReviewVersion] == NO &&
         ([LocaleUtils isChina] == YES ||
          [LocaleUtils isOtherChina] == YES)){
             
@@ -1206,5 +1214,12 @@
 + (int)getRecordLimitTime{
     return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_TIME" defaultValue:300];
 }
+
++ (NSString*)getShareSDKAppId
+{
+    NSString* defaultValue = [GameApp shareSDKDefaultAppId];    
+    return [MobClickUtils getStringValueByKey:@"SHARE_SDK_APP_ID" defaultValue:defaultValue];
+}
+
 
 @end

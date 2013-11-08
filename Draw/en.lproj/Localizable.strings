@@ -1541,6 +1541,9 @@
 "kNoBulletin" = "No bulletin";
 
 "kLookLargeImage" = "Large Image";
+"kLook" = "Detail";
+"kImageMustBeSquare" = "Image must be square size";
+"kAudioUrlIsBlank" = "Audio is not exist";
 "kNoRecommend" = "No recommend";
 "kCustomBBSBgSucc" = "Customize BBS background successfully!";
 "kResetCustomBBSBgSucc" = "Reset custom BBS background successfully!";
@@ -2132,6 +2135,16 @@
 
 "kContestCopyright" = "Important Notes: 1) Apple is not a sponsor of the contest nor is involved in any way. 2) Contest prizes are not Apple products.";
 
+"kShareWeiboSucc" = "Share successfully";
+"kShareWeiboFailure" = "Fail to share, please check your network";
+"kSentWeiboSucc" = "Share successfully";
+"kSentWeiboFailure" = "Fail to share, please check your network";
+"kPublishWeiboAwardInfo" = "you got %d coins";
+
+"kFollowFailure" = "Fail to follow, please check your network";
+"kFollowSuccess" = "Follow successfully";
+"kAuthorizeSuccess" = "Authorize successfully";
+"kAuthorizeFailure" = "Fail to authorize, please check your account or network";
 
 
 /*********************小吉画画国际化字符串结束 ************************/

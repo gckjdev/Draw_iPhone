@@ -25,6 +25,9 @@
 @property (nonatomic, retain) DrawFeed* feed;
 @property (nonatomic, retain) UIImage* image;
 
++ (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type;
++ (NSString*)createFeedImagePath:(DrawFeed*)feed;
+
 - (id)initWithDrawImageFile:(NSString*)imageFilePath
                       isGIF:(BOOL)isGIF
                    drawWord:(NSString*)drawWord

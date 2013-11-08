@@ -17,7 +17,7 @@
 #import "DrawDataService.h"
 
 #import "CanvasRect.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 #import "PPMessage.h"
 #import "PPMessageManager.h"
@@ -47,8 +47,8 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{            
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageStatList:[ConfigManager getMessageServerURL]
-                                                                       appId:[ConfigManager appId] 
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageStatList:[PPConfigManager getMessageServerURL]
+                                                                       appId:[PPConfigManager appId] 
                                                                       userId:userId 
                                                                       offset:starOffset 
                                                                     maxCount:maxCount];
@@ -96,8 +96,8 @@ static ChatService *_chatService = nil;
     
 //    [queue addOperationWithBlock: ^{
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:[ConfigManager getMessageServerURL]
-                                                                   appId:[ConfigManager appId] 
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:[PPConfigManager getMessageServerURL]
+                                                                   appId:[PPConfigManager appId] 
                                                                   userId:userId 
                                                             friendUserId:friendUserId offsetMessageId:offsetMessageId maxCount:limit
                                                                  forward:forward];
@@ -240,8 +240,8 @@ static ChatService *_chatService = nil;
 //
 //        
 //        
-//        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:[ConfigManager getMessageServerURL] 
-//                                                                appId:[ConfigManager appId] 
+//        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:[PPConfigManager getMessageServerURL] 
+//                                                                appId:[PPConfigManager appId] 
 //                                                               userId:userId 
 //                                                         targetUserId:friendId 
 //                                                                 text:text
@@ -302,8 +302,8 @@ static ChatService *_chatService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:[ConfigManager getMessageServerURL] 
-                                                                       appId:[ConfigManager appId] 
+        CommonNetworkOutput* output = [GameNetworkRequest userHasReadMessage:[PPConfigManager getMessageServerURL] 
+                                                                       appId:[PPConfigManager appId] 
                                                                       userId:userId 
                                                                 friendUserId:friendUserId];
         if (output.resultCode == ERROR_SUCCESS){
@@ -328,8 +328,8 @@ static ChatService *_chatService = nil;
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest deleteMessageStat:[ConfigManager getMessageServerURL] 
-                                                                      appId:[ConfigManager appId] 
+        CommonNetworkOutput* output = [GameNetworkRequest deleteMessageStat:[PPConfigManager getMessageServerURL] 
+                                                                      appId:[PPConfigManager appId] 
                                                                      userId:userId 
                                                                targetUserId:friendUserId];
         if (output.resultCode == ERROR_SUCCESS){
@@ -361,8 +361,8 @@ static ChatService *_chatService = nil;
         for (PPMessage *message in messageList) {
             [messageIdList addObject:message.messageId];
         }
-        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:[ConfigManager getMessageServerURL] 
-                                                                  appId:[ConfigManager appId] 
+        CommonNetworkOutput* output = [GameNetworkRequest deleteMessage:[PPConfigManager getMessageServerURL] 
+                                                                  appId:[PPConfigManager appId] 
                                                                  userId:userId 
                                                    targetMessageIdArray:messageIdList];
         messageIdList = nil;
@@ -414,8 +414,8 @@ static ChatService *_chatService = nil;
     
 //    [queue addOperationWithBlock: ^{
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:[ConfigManager getMessageServerURL]
-                                                                   appId:[ConfigManager appId]
+        CommonNetworkOutput* output = [GameNetworkRequest getMessageList:[PPConfigManager getMessageServerURL]
+                                                                   appId:[PPConfigManager appId]
                                                                   userId:userId
                                                             friendUserId:friendUserId
                                                          offsetMessageId:offsetMessageId
@@ -683,8 +683,8 @@ static ChatService *_chatService = nil;
                 break;
         }
                         
-        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:[ConfigManager getMessageServerURL]
-                                                                appId:[ConfigManager appId]
+        CommonNetworkOutput* output = [GameNetworkRequest sendMessage:[PPConfigManager getMessageServerURL]
+                                                                appId:[PPConfigManager appId]
                                                                userId:userId
                                                          targetUserId:friendId
                                                                  text:text
@@ -766,7 +766,7 @@ static ChatService *_chatService = nil;
                                 PARA_TARGETUSERID : friendId,
                                };
         
-        CommonNetworkOutput* output = [PPGameNetworkRequest sendGetRequestWithBaseURL:[ConfigManager getMessageServerURL]
+        CommonNetworkOutput* output = [PPGameNetworkRequest sendGetRequestWithBaseURL:[PPConfigManager getMessageServerURL]
                                                                                method:METHOD_DELETE_SINGLE_MESSAGE                                       
                                                                            parameters:para
                                                                              returnPB:NO

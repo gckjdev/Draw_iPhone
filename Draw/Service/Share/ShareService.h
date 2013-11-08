@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PPSNSCommonService.h"
+//#import "PPSNSCommonService.h"
 
 @interface ShareService : NSObject
 

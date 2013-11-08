@@ -18,7 +18,7 @@
 #import "UIViewUtils.h"
 #import "UIImageExt.h"
 #import "ContestManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface RankView ()
 @property (retain, nonatomic) IBOutlet UILabel *costLabel;
@@ -68,6 +68,10 @@
     view.maskControl = [[[UIControl alloc] initWithFrame:view.bounds] autorelease];
     [view.maskControl addTarget:view action:@selector(clickMaskView:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:view.maskControl];
+    
+    view.backgroundColor = COLOR_GRAY;
+    view.holderView.layer.cornerRadius = 8;
+    
     return view;
 }
 
@@ -84,6 +88,7 @@
     [_costLabel release];
     [_boughtCountLabel release];
     [_descLabel release];
+    [_holderView release];
     [super dealloc];
 }
 
@@ -162,7 +167,7 @@
         self.drawFlag.hidden = YES;
     }
 
-    if ([ConfigManager showAuthorOnOpus]){
+    if ([PPConfigManager showAuthorOnOpus]){
         NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
         [self.author setText:author];
     }
@@ -177,7 +182,7 @@
     
     [self setRankViewSelected:NO];
     
-    self.drawImage.center = self.center;
+//    self.drawImage.center = self.center;
     self.maskControl.frame = self.bounds;
     
     if (feed.learnDraw) {
@@ -263,7 +268,7 @@
         case RankViewTypeDrawOnCell:            
             return [DeviceDetection isIPAD] ? 245 : 99;
         case RankViewTypeWhisper:
-            return ISIPAD ? 384 : 159.5;
+            return ISIPAD ? 384 : 159;
         default:
             return 0;
     }

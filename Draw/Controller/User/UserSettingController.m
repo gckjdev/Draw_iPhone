@@ -23,8 +23,8 @@
 #import "StringUtil.h"
 #import "GameNetworkConstants.h"
 #import "AdService.h"
-#import "PPSNSIntegerationService.h"
-#import "PPSNSCommonService.h"
+//#import "PPSNSIntegerationService.h"
+//#import "PPSNSCommonService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
 #import "MKBlockActionSheet.h"
@@ -37,7 +37,7 @@
 #import "CommonTitleView.h"
 #import "HomeController.h"
 #import "AccountManageController.h"
-
+#import "GameSNSService.h"
 
 enum{
     SECTION_USER = 0,
@@ -388,7 +388,7 @@ SET_CELL_BG_IN_CONTROLLER;
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
 //    isAutoSave = !btn.selected;
-//    [ConfigManager setAutoSave:isAutoSave];
+//    [PPConfigManager setAutoSave:isAutoSave];
 }
 
 
@@ -652,8 +652,10 @@ SET_CELL_BG_IN_CONTROLLER;
             case ROW_SINA_WEIBO:
             {
                 [cell.customTextLabel setText:NSLS(@"kSetSinaWeibo")];
-                if ([_userManager hasBindSinaWeibo]){
-                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+                
+                PPSNSType type = TYPE_SINA;                
+                if ([[GameSNSService defaultService] isAuthenticated:type]){
+                    if ([[GameSNSService defaultService] isExpired:type]){
                         [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
@@ -662,15 +664,28 @@ SET_CELL_BG_IN_CONTROLLER;
                 }
                 else{
                     [cell.customDetailLabel setText:NSLS(@"kNotSet")];
-                }                
+                }
+                
+//                if ([_userManager hasBindSinaWeibo]){
+//                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
+//                    }
+//                    else{
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
+//                    }
+//                }
+//                else{
+//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
+//                }                
             }
                 break;
                 
             case ROW_QQ_WEIBO:
             {
                 [cell.customTextLabel setText:NSLS(@"kSetQQWeibo")];
-                if ([_userManager hasBindQQWeibo]){
-                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+                PPSNSType type = TYPE_QQ;
+                if ([[GameSNSService defaultService] isAuthenticated:type]){
+                    if ([[GameSNSService defaultService] isExpired:type]){
                         [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
@@ -679,15 +694,29 @@ SET_CELL_BG_IN_CONTROLLER;
                 }
                 else{
                     [cell.customDetailLabel setText:NSLS(@"kNotSet")];
-                }                
+                }
+                
+//                if ([_userManager hasBindQQWeibo]){
+//                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]){
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
+//                    }
+//                    else{
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
+//                    }
+//                }
+//                else{
+//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
+//                }                
             }
                 break;
                 
             case ROW_FACEBOOK:
             {
                 [cell.customTextLabel setText:NSLS(@"kSetFacebook")];
-                if ([_userManager hasBindFacebook]){
-                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
+                
+                PPSNSType type = TYPE_FACEBOOK;
+                if ([[GameSNSService defaultService] isAuthenticated:type]){
+                    if ([[GameSNSService defaultService] isExpired:type]){
                         [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
                     }
                     else{
@@ -696,7 +725,19 @@ SET_CELL_BG_IN_CONTROLLER;
                 }
                 else{
                     [cell.customDetailLabel setText:NSLS(@"kNotSet")];
-                }                
+                }
+                
+//                if ([_userManager hasBindFacebook]){
+//                    if ([[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboExpired")];
+//                    }
+//                    else{
+//                        [cell.customDetailLabel setText:NSLS(@"kWeiboSet")];
+//                    }
+//                }
+//                else{
+//                    [cell.customDetailLabel setText:NSLS(@"kNotSet")];
+//                }                
             }
                 break;
                 
@@ -896,7 +937,7 @@ SET_CELL_BG_IN_CONTROLLER;
             CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kNickname") delegate:self];
             dialog.tag = DIALOG_TAG_NICKNAME;
             dialog.inputTextField.text = nicknameLabel.text;
-            [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
+            [dialog setMaxInputLen:[PPConfigManager getNicknameMaxLen]];
             
             [dialog showInView:self.view];
         } else if (row == rowOfCustomDice){
@@ -920,7 +961,7 @@ SET_CELL_BG_IN_CONTROLLER;
             CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kInputSignature")];
             dialog.inputTextView.text = _pbUserBuilder.signature;
             dialog.delegate = self;
-            [dialog setMaxInputLen:[ConfigManager getSignatureMaxLen]];
+            [dialog setMaxInputLen:[PPConfigManager getSignatureMaxLen]];
             [dialog showInView:self.view];
             dialog.tag = DIALOG_TAG_SIGNATURE;
             
@@ -1005,35 +1046,62 @@ SET_CELL_BG_IN_CONTROLLER;
                 break;
             case ROW_SINA_WEIBO:
             {
-                if ([_userManager hasBindSinaWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
-                    [self bindSina];
+                // TODO ask
+                PPSNSType type = TYPE_SINA;
+                if ([[GameSNSService defaultService] isExpired:type] == YES){
+                    [[GameSNSService defaultService] autheticate:type];
                 }
                 else{
-                    [self askRebindSina];                                        
+                    [self askRebindSina];
                 }
+                
+//                if ([_userManager hasBindSinaWeibo] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]){
+//                    [self bindSina];
+//                }
+//                else{
+//                    [self askRebindSina];                                        
+//                }
             }
                 break;
                 
             case ROW_QQ_WEIBO:
             {
-                if ([_userManager hasBindQQWeibo]){
-                    [self askRebindQQ];                    
+                
+                PPSNSType type = TYPE_QQ;
+                if ([[GameSNSService defaultService] isExpired:type] == YES){
+                    [[GameSNSService defaultService] autheticate:type];
                 }
                 else{
-                    [self bindQQ];                    
+                    [self askRebindQQ];
                 }
+                
+                
+//                if ([_userManager hasBindQQWeibo]){
+//                    [self askRebindQQ];                    
+//                }
+//                else{
+//                    [self bindQQ];                    
+//                }
             }
                 break;
                 
             case ROW_FACEBOOK:
             {
-                
-                if ([_userManager hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
-                    [self bindFacebook];
+                PPSNSType type = TYPE_FACEBOOK;
+                if ([[GameSNSService defaultService] isExpired:type] == YES){
+                    [[GameSNSService defaultService] autheticate:type];
                 }
                 else{
                     [self askRebindFacebook];
                 }
+                
+                
+//                if ([_userManager hasBindFacebook] == NO || [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]){
+//                    [self bindFacebook];
+//                }
+//                else{
+//                    [self askRebindFacebook];
+//                }
             }
                 break;
                 
@@ -1229,32 +1297,7 @@ SET_CELL_BG_IN_CONTROLLER;
 
 - (void)bindSNS:(int)snsType
 {
-    PPSNSCommonService* service = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-    NSString* name = [service snsName];
-
-    [service logout];
-    
-    [service login:^(NSDictionary *userInfo) {
-        PPDebug(@"%@ Login Success", name);
-        
-        [self showActivityWithText:NSLS(@"Loading")];
-        
-        [service readMyUserInfo:^(NSDictionary *userInfo) {
-            [self hideActivity];
-            PPDebug(@"%@ readMyUserInfo Success, userInfo=%@", name, [userInfo description]);
-            [[UserService defaultService] updateUserWithSNSUserInfo:[_pbUserBuilder userId] userInfo:userInfo viewController:self];
-            
-            // ask follow official weibo account here
-            [GameSNSService askFollow:snsType snsWeiboId:[service officialWeiboId]];
-            
-        } failureBlock:^(NSError *error) {
-            [self hideActivity];
-            PPDebug(@"%@ readMyUserInfo Failure", name);
-        }];
-        
-    } failureBlock:^(NSError *error) {
-        PPDebug(@"%@ Login Failure", name);
-    }];
+    [[GameSNSService defaultService] autheticate:snsType];
 }
 
 - (void)bindQQ
@@ -1327,7 +1370,7 @@ SET_CELL_BG_IN_CONTROLLER;
 ////    UISlider* slider = (UISlider*)[self.view viewWithTag:SLIDER_TAG];
 //        
 //    BOOL localChanged = (languageType != [userManager getLanguageType]) 
-//    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]));
+//    || (guessLevel != [PPConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]));
 //    return localChanged;
 //}
 
@@ -1365,12 +1408,12 @@ SET_CELL_BG_IN_CONTROLLER;
 
 - (IBAction)clickSaveButton:(id)sender {
     
-    if (_pbUserBuilder.nickName.length > [ConfigManager getNicknameMaxLen]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kNicknameOutofRange"), [ConfigManager getNicknameMaxLen], [ConfigManager getNicknameMaxLen]/2] delayTime:1.5];
+    if (_pbUserBuilder.nickName.length > [PPConfigManager getNicknameMaxLen]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kNicknameOutofRange"), [PPConfigManager getNicknameMaxLen], [PPConfigManager getNicknameMaxLen]/2] delayTime:1.5];
         return;
     }
-    if (_pbUserBuilder.signature.length > [ConfigManager getSignatureMaxLen]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSignatureOutofRange"), [ConfigManager getSignatureMaxLen], [ConfigManager getSignatureMaxLen]/2] delayTime:1.5];
+    if (_pbUserBuilder.signature.length > [PPConfigManager getSignatureMaxLen]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSignatureOutofRange"), [PPConfigManager getSignatureMaxLen], [PPConfigManager getSignatureMaxLen]/2] delayTime:1.5];
         return;
     }
     

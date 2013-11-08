@@ -15,10 +15,12 @@
 #import "TimeUtils.h"
 #import "AutoCreateViewByXib.h"
 #import "UIImageView+WebCache.h"
+#import "DrawFeed.h"
 
 @interface OpusView ()
 
-- (IBAction)clickOpusView:(id)sender;
+@property (retain, nonatomic) Opus* opus;
+@property (retain, nonatomic) DrawFeed *feed;
 
 @end
 
@@ -30,10 +32,10 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
 {
     PPRelease(_background);
     PPRelease(_opusTitle);
-    PPRelease(_myOpusTag);
     PPRelease(_titleBackground);
     PPRelease(_opus);
     PPRelease(_opusImage);
+    PPRelease(_feed);
     [super dealloc];
 }
 
@@ -41,21 +43,12 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
 {  
     OpusView* view =  [OpusView createView];
     view.delegate = delegate;
+    
+    view.opusTitle.textColor = COLOR_BROWN;
+    view.opusTitle.backgroundColor = COLOR_YELLOW;
+    
     return view;
 }
-/*
-+ (MyPaintButton*)createMypaintButtonWith:(UIImage*)buttonImage 
-                                 drawWord:(NSString*)drawWord 
-                              isDrawnByMe:(BOOL)isDrawnByMe 
-                                 delegate:(id<MyPaintButtonDelegate>)delegate
-{
-    MyPaintButton* button = [MyPaintButton creatMyPaintButton];
-    [button.myPrintTag setHidden:!isDrawnByMe];
-    [button.drawWord setText:drawWord];
-    button.delegate = delegate;
-    return button;
-}
-*/
 
 #define TITLE_FONT_SIZE (ISIPAD?18:9)
 - (void)updateWithOpus:(Opus *)opus
@@ -65,25 +58,44 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     if (title == nil || title.length == 0) {
         title = dateToString(opus.createDate);
     }
-    if ([opus.pbOpus isRecovery]){
-        NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), title];
-        [self.opusTitle setText:name];
-        [self.opusImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
-    }
-    else{
-        [self.opusTitle setText:title];
-        [self.opusImage setImageWithURL:[NSURL URLWithString:opus.pbOpus.thumbImage]];
-    }
 
-    [self.myOpusTag setHidden:![opus isMyOpus]];
+    NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), title];
+    [self.opusTitle setText:name];
+    [self.opusImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
+
+//    [self.myOpusTag setHidden:![opus isMyOpus]];
+    [self.opusTitle setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
+    self.hidden = NO;
+}
+
+- (void)updateWithFeed:(DrawFeed *)feed{
+
+    self.feed = feed;
+    
+    NSString* title = self.feed.wordText;
+    
+    if (title == nil || title.length == 0) {
+        title = dateToString(feed.createDate);
+    }
+    
+    [self.opusTitle setText:title];
+    [self.opusImage setImageWithURL:feed.thumbURL];
+    
+    //    [self.myOpusTag setHidden:![opus isMyOpus]];
     [self.opusTitle setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
     self.hidden = NO;
 }
 
 - (IBAction)clickOpusView:(id)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(didClickOpus:)]) {
-        [_delegate didClickOpus:self.opus];
+    if (_isDraft) {
+        if (_delegate && [_delegate respondsToSelector:@selector(didClickOpus:)]) {
+            [_delegate didClickOpus:self.opus];
+        }
+    }else{
+        if (_delegate && [_delegate respondsToSelector:@selector(didClickFeed:)]) {
+            [_delegate didClickFeed:self.feed];
+        }
     }
 }
 @end

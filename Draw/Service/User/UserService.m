@@ -15,17 +15,17 @@
 #import "UIImageExt.h"
 #import "PPSNSConstants.h"
 #import "AccountManager.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 #import "AccountService.h"
 #import "FriendService.h"
 #import "FriendManager.h"
 #import "LevelService.h"
 #import "UserService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "TopPlayer.h"
-#import "PPSNSIntegerationService.h"
-#import "PPSNSCommonService.h"
-#import "PPSNSStorageService.h"
+//#import "PPSNSIntegerationService.h"
+//#import "PPSNSCommonService.h"
+//#import "PPSNSStorageService.h"
 #import "PPNetworkRequest.h"
 #import "MyFriend.h"
 #import "StatisticManager.h"
@@ -34,7 +34,7 @@
 #import "GameBasic.pb.h"
 #import "SNSUtils.h"
 #import "UserGameItemManager.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 #import "CommonDialog.h"
 #import "DrawAppDelegate.h"
 #import "PPGameNetworkRequest.h"
@@ -43,6 +43,8 @@
 #import "ShakeNumberController.h"
 #import "MyPaintManager.h"
 #import "UserDeviceService.h"
+#import "GameSNSService.h"
+
 
 @implementation UserService
 
@@ -69,7 +71,7 @@ static UserService* _defaultUserService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest registerUserByEmail:SERVER_URL
-                                                   appId:[ConfigManager appId]
+                                                   appId:[PPConfigManager appId]
                                                    email:email
                                                 password:password
                                              deviceToken:deviceToken
@@ -143,13 +145,224 @@ static UserService* _defaultUserService;
     return -1;
 }
 
+- (int)getRegisterTypeWithShareType:(ShareType)shareType
+{
+    switch (shareType){
+        case ShareTypeSinaWeibo:
+            return REGISTER_TYPE_SINA;
+        case ShareTypeTencentWeibo:
+            return REGISTER_TYPE_QQ;
+        case ShareTypeFacebook:
+            return REGISTER_TYPE_FACEBOOK;
+        default:
+            break;
+    }
+        
+    NSLog(@"<getRegisterType> cannot find SNS type for shareType = %d", shareType);
+    return -1;
+}
+
+- (void)updateUserWithSNSUserInfo:(ShareType)shareType
+                 credentialString:(NSString*)credentialString
+
+{
+    if ([credentialString length] == 0)
+        return;
+    
+    int loginIdType = [self getRegisterTypeWithShareType:shareType];
+    if (loginIdType == -1){
+        return;
+    }
+    
+    // save into local user
+    [[UserManager defaultManager] saveSNSCredential:loginIdType credential:credentialString];
+    
+    NSDictionary* para = @{ PARA_TYPE : @(loginIdType),
+                            PARA_CREDENTIAL : credentialString };
+    
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_UPDATE_USER_CREDENTIAL parameters:para isReturnArray:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            PPDebug(@"<updateUserWithSNSUserInfo> credential=%@, result=%d", credentialString, output.resultCode);
+        });
+    });
+}
+
+- (void)updateUserWithSNSUserInfo:(NSString*)userId
+                        shareType:(ShareType)shareType
+                         userInfo:(id<ISSUserInfo>)userInfo
+                       accessInfo:(id<ISSOAuth2Credential>)accessInfo
+                   viewController:(PPViewController<UserServiceDelegate>*)viewController
+{
+    PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
+    
+    NSString* accessToken = accessInfo.accessToken;
+    NSDate*   expireDate = accessInfo.expiresIn;
+    
+    NSString* appId = [PPConfigManager appId];
+    NSString* loginId = userInfo.uid; //[userInfo objectForKey:SNS_USER_ID];
+    int loginIdType = [self getRegisterTypeWithShareType:shareType];
+    
+    NSString* nickName = userInfo.nickname; //[userInfo objectForKey:SNS_NICK_NAME];
+    NSString* gender = [UserManager genderByValue:userInfo.gender]; // [userInfo objectForKey:SNS_GENDER];
+    NSString* location = [userInfo.sourceData objectForKey:@"location"]; // [userInfo objectForKey:SNS_LOCATION];
+    NSString* sinaId = nil;
+    NSString* qqId = nil;
+    NSString* facebookId = nil;
+    NSString* qqNickName = nil;
+    NSString* sinaNickName = nil;
+    NSString* qqToken = nil;
+    NSString* qqTokenSecret = nil;
+    NSString* sinaToken = nil;
+    NSString* sinaRefreshToken = nil;
+    NSDate*   sinaExpireDate = nil;
+    NSString* qqRefreshToken = nil;
+    NSDate*   qqExpireDate = nil;
+    NSString* qqOpenId = nil;
+    NSString* facebookAccessToken = nil;
+    NSDate*   facebookExpireDate = nil;
+    
+    NSString* newNickName = nil;
+    if ([[[UserManager defaultManager] nickName] length] == 0 ||
+        [[[UserManager defaultManager] nickName] rangeOfString:@"Somebody"].location != NSNotFound){
+        newNickName = nickName;
+    }
+    
+    NSString* avatar = nil;
+    if ([[[UserManager defaultManager] avatarURL] length] == 0){
+        avatar = userInfo.icon; // [userInfo objectForKey:SNS_USER_IMAGE_URL];
+        PPDebug(@"<updateUserWithSNSUserInfo> set avatar to %@", avatar);
+    }
+    else{
+        PPDebug(@"<updateUserWithSNSUserInfo> avatar exists, no change");
+    }
+    
+    
+    switch (loginIdType) {
+        case REGISTER_TYPE_SINA:
+            sinaId = loginId;
+            sinaNickName = nickName;
+            sinaToken = accessToken;  //[userInfo objectForKey:SNS_OAUTH_TOKEN];
+            sinaExpireDate = expireDate; // [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            sinaRefreshToken = nil; // [userInfo objectForKey:SNS_REFRESH_TOKEN];
+            break;
+            
+        case REGISTER_TYPE_QQ:
+            qqId = loginId;
+            qqNickName = nickName;
+            qqToken = accessToken; // [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            qqTokenSecret = nil; // [userInfo objectForKey:SNS_OAUTH_TOKEN_SECRET];
+            qqExpireDate = expireDate; // [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            qqRefreshToken = nil; // [userInfo objectForKey:SNS_REFRESH_TOKEN];
+            qqOpenId = nil; // [userInfo objectForKey:SNS_QQ_OPEN_ID];
+            break;
+            
+        case REGISTER_TYPE_FACEBOOK:
+            facebookId = loginId;
+            facebookAccessToken = accessToken; // [userInfo objectForKey:SNS_OAUTH_TOKEN];
+            facebookExpireDate = expireDate; // [userInfo objectForKey:SNS_EXPIRATION_DATE];
+            break;
+            
+        default:
+            break;
+    }
+    
+    PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
+    
+    [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
+    dispatch_async(workingQueue, ^{
+        
+        CommonNetworkOutput* output =
+        [GameNetworkRequest updateUser:SERVER_URL
+                                 appId:appId
+                                userId:userId
+                              deviceId:nil
+                           deviceToken:nil
+                              nickName:newNickName
+                                gender:gender
+                              password:nil
+                                avatar:avatar
+                              location:location
+                                sinaId:sinaId
+                          sinaNickName:sinaNickName
+                             sinaToken:sinaToken
+                            sinaSecret:nil
+                      sinaRefreshToken:sinaRefreshToken
+                        sinaExpireDate:sinaExpireDate
+                                  qqId:qqId
+                            qqNickName:qqNickName
+                               qqToken:qqToken
+                         qqTokenSecret:qqTokenSecret
+                        qqRefreshToken:qqRefreshToken
+                          qqExpireDate:qqExpireDate
+                              qqOpenId:qqOpenId
+                            facebookId:facebookId
+                   facebookAccessToken:facebookAccessToken
+                    facebookExpireDate:facebookExpireDate
+                                 email:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [viewController hideActivity];
+            if (output.resultCode == ERROR_SUCCESS){
+                // save user data locally
+                if (loginIdType == REGISTER_TYPE_SINA){
+                    [[UserManager defaultManager] saveUserId:userId
+                                                      sinaId:loginId
+                                                    password:nil
+                                                    nickName:newNickName
+                                                   avatarURL:avatar
+                                             sinaAccessToken:nil
+                                       sinaAccessTokenSecret:nil
+                                                      gender:gender];
+                }
+                else if (loginIdType == REGISTER_TYPE_QQ) {
+                    [[UserManager defaultManager] saveUserId:userId
+                                                        qqId:loginId
+                                                    password:nil
+                                                    nickName:newNickName
+                                                   avatarURL:avatar
+                                               qqAccessToken:qqToken
+                                         qqAccessTokenSecret:qqTokenSecret
+                                                      gender:gender];
+                }
+                else if (loginIdType == REGISTER_TYPE_FACEBOOK) {
+                    [[UserManager defaultManager] saveUserId:userId
+                                                  facebookId:loginId
+                                                    password:nil
+                                                    nickName:newNickName
+                                                   avatarURL:avatar
+                                                      gender:gender];
+                }
+                
+                // set location
+                [[UserManager defaultManager] setLocation:location];
+                [[UserManager defaultManager] storeUserData];
+            }
+            else if (output.resultCode == ERROR_NETWORK) {
+                POSTMSG(NSLS(@"kSystemFailure"));
+            }
+            else {
+                // @"对不起，注册失败，请稍候再试"
+                POSTMSG(NSLS(@"kGeneralFailure"));
+            }
+            
+            if ([viewController respondsToSelector:@selector(didUserRegistered:)]){
+                [viewController didUserRegistered:output.resultCode];
+            }
+        });
+    });
+    
+}
+
 - (void)updateUserWithSNSUserInfo:(NSString*)userId
                          userInfo:(NSDictionary*)userInfo 
                    viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
     PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
     
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterType:userInfo];
     
@@ -308,7 +521,7 @@ static UserService* _defaultUserService;
 - (void)registerUserWithSNSUserInfo:(NSDictionary*)userInfo 
                      viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
@@ -434,7 +647,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
-                                                               appId:[ConfigManager appId] 
+                                                               appId:[PPConfigManager appId] 
                                                               userId:userId 
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
@@ -494,7 +707,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
-                                                               appId:[ConfigManager appId] 
+                                                               appId:[PPConfigManager appId] 
                                                               userId:userId 
                                                               feedback:feedback 
                                                                contact:contact
@@ -525,7 +738,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
-                                                                 appId:[ConfigManager appId] 
+                                                                 appId:[PPConfigManager appId] 
                                                                 userId:userId 
                                                               feedback:bugDescription 
                                                                contact:contact
@@ -555,7 +768,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest commitWords:SERVER_URL 
-                                                                appId:[ConfigManager appId] 
+                                                                appId:[PPConfigManager appId] 
                                                                userId:userId
                                                                 words:words];
         
@@ -571,8 +784,14 @@ static UserService* _defaultUserService;
     });
 }
 
-- (void)saveSNSUserData:(PBGameUser*)pbUser
+- (void)cleanSNSUserData:(PBGameUser*)pbUser
 {    
+    [[GameSNSService defaultService] cleanSNSInfo:nil];
+}
+
+- (void)saveSNSUserData:(PBGameUser*)pbUser
+{
+    /*
     PBSNSUser* sinaUser = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:pbUser.snsUsersList];
     PBSNSUser* qqUser = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:pbUser.snsUsersList];
     PBSNSUser* fbUser = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:pbUser.snsUsersList];
@@ -600,28 +819,36 @@ static UserService* _defaultUserService;
     NSDate*   facebookExpireDate = nil;
     if (facebookExpireTime)
         facebookExpireDate = [NSDate dateWithTimeIntervalSince1970:facebookExpireTime];
-
+    */
+     
+    NSArray* snsCredentials = pbUser.snsCredentialsList;
+    if ([snsCredentials count] == 0){
+        return;
+    }
     
-    PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
-    [sinaSNSService saveAccessToken:sinaAccessToken
-                       refreshToken:sinaRefreshToken
-                         expireDate:sinaExpireDate
-                             userId:sinaId
-                           qqOpenId:nil];
+    [[GameSNSService defaultService] saveSNSInfo:snsCredentials];
     
-    PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
-    [qqSNSService saveAccessToken:qqAccessToken
-                     refreshToken:qqRefreshToken
-                       expireDate:qqExpireDate
-                           userId:qqId
-                         qqOpenId:qqOpenId];
     
-    PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
-    [facebookSNSService saveAccessToken:facebookToken
-                           refreshToken:nil
-                             expireDate:facebookExpireDate
-                                 userId:facebookId
-                               qqOpenId:nil];
+//    PPSNSCommonService* sinaSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA];
+//    [sinaSNSService saveAccessToken:sinaAccessToken
+//                       refreshToken:sinaRefreshToken
+//                         expireDate:sinaExpireDate
+//                             userId:sinaId
+//                           qqOpenId:nil];
+//    
+//    PPSNSCommonService* qqSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ];
+//    [qqSNSService saveAccessToken:qqAccessToken
+//                     refreshToken:qqRefreshToken
+//                       expireDate:qqExpireDate
+//                           userId:qqId
+//                         qqOpenId:qqOpenId];
+//    
+//    PPSNSCommonService* facebookSNSService = [[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK];
+//    [facebookSNSService saveAccessToken:facebookToken
+//                           refreshToken:nil
+//                             expireDate:facebookExpireDate
+//                                 userId:facebookId
+//                               qqOpenId:nil];
     
 }
 
@@ -639,6 +866,7 @@ static UserService* _defaultUserService;
         [[LevelService defaultService] setLevel:user.level];
         [[LevelService defaultService] setExperience:user.experience];
         
+        [self cleanSNSUserData:user];
         [self saveSNSUserData:user];
         
         // sync balance from server
@@ -677,11 +905,12 @@ static UserService* _defaultUserService;
         [[LevelService defaultService] setLevel:user.level];
         [[LevelService defaultService] setExperience:user.experience];
         
-        if ([ConfigManager isProVersion]){
+        if ([PPConfigManager isProVersion]){
             // update new appId of user
             [self updateNewAppId:appId];
         }
         
+        [self cleanSNSUserData:user];
         [self saveSNSUserData:user];
         
         // sync balance from server
@@ -707,8 +936,8 @@ static UserService* _defaultUserService;
                 password:(NSString*)password
           viewController:(PPViewController<UserServiceDelegate, CommonDialogDelegate>*)viewController
 {
-    NSString* appId = [ConfigManager appId];
-    NSString* gameId = [ConfigManager gameId];
+    NSString* appId = [PPConfigManager appId];
+    NSString* gameId = [PPConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     
     [viewController showActivityWithText:NSLS(@"kLoginUser")];
@@ -772,8 +1001,8 @@ static UserService* _defaultUserService;
                            autoRegister:(BOOL)autoRegister
                             resultBlock:(AutoResgistrationResultBlock)resultBlock
 {
-    NSString* appId = [ConfigManager appId];
-    NSString* gameId = [ConfigManager gameId];
+    NSString* appId = [PPConfigManager appId];
+    NSString* gameId = [PPConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
@@ -817,8 +1046,8 @@ static UserService* _defaultUserService;
 {
     [self loginByDeviceWithViewController:homeController autoRegister:NO resultBlock:nil];
     
-//    NSString* appId = [ConfigManager appId];
-//    NSString* gameId = [ConfigManager gameId];
+//    NSString* appId = [PPConfigManager appId];
+//    NSString* gameId = [PPConfigManager gameId];
 //    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
 //    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
 //
@@ -857,8 +1086,8 @@ static UserService* _defaultUserService;
 /*
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
 {
-    NSString* appId = [ConfigManager appId];
-    NSString* gameId = [ConfigManager gameId];
+    NSString* appId = [PPConfigManager appId];
+    NSString* gameId = [PPConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
@@ -968,7 +1197,7 @@ static UserService* _defaultUserService;
                 [[LevelService defaultService] setLevel:levelSring.integerValue];
                 [[LevelService defaultService] setExperience:expSring.intValue];
                 
-                if ([ConfigManager isProVersion]){
+                if ([PPConfigManager isProVersion]){
                     // update new appId of user
                     [self updateNewAppId:appId];
                 }
@@ -1019,7 +1248,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
-                                                               appId:[ConfigManager appId] 
+                                                               appId:[PPConfigManager appId] 
                                                               userId:userId 
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
@@ -1070,7 +1299,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     _isCallingGetStatistic = YES;
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];        
+        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[PPConfigManager appId] userId:userId];        
         
         dispatch_async(dispatch_get_main_queue(), ^{
                         
@@ -1127,8 +1356,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     CommonNetworkOutput* output = [GameNetworkRequest getUserListSimpleInfo:SERVER_URL
                                                                      userId:fromUserId
-                                                                      appId:[ConfigManager appId]
-                                                                     gameId:[ConfigManager gameId]
+                                                                      appId:[PPConfigManager appId]
+                                                                     gameId:[PPConfigManager gameId]
                                                                   ByUserIds:userIds];
 
     
@@ -1152,8 +1381,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
     NSString *fromUserId = [[UserManager defaultManager] userId];
     CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
                                                                  userId:fromUserId
-                                                                  appId:[ConfigManager appId]
-                                                                 gameId:[ConfigManager gameId]
+                                                                  appId:[PPConfigManager appId]
+                                                                 gameId:[PPConfigManager gameId]
                                                                ByUserId:userId];
     MyFriend *user = nil;
     if (output.resultCode == ERROR_SUCCESS) {
@@ -1170,8 +1399,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
         NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest       getUserInfo:SERVER_URL
                                                                      userId:userId
-                                                                      appId:[ConfigManager appId]
-                                                                     gameId:[ConfigManager gameId]
+                                                                      appId:[PPConfigManager appId]
+                                                                     gameId:[PPConfigManager gameId]
                                                                    ByUserId:targetUserId];
         dispatch_async(dispatch_get_main_queue(), ^{
             PPDebug(@"<getUserInfo> targetUserId=%@, resultCode=%d", targetUserId, output.resultCode);
@@ -1206,8 +1435,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
         NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
                                                                      userId:userId
-                                                                      appId:[ConfigManager appId] 
-                                                                     gameId:[ConfigManager gameId]
+                                                                      appId:[PPConfigManager appId] 
+                                                                     gameId:[PPConfigManager gameId]
                                                                    ByUserId:targetUserId];
         MyFriend *user = nil;
         if (output.resultCode == ERROR_SUCCESS) {
@@ -1231,8 +1460,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
                  resultBlock:(GetUserListResultBlock)block
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest
@@ -1293,8 +1522,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
                       delegate:delegate];
     
 //    dispatch_async(workingQueue, ^{
-//        NSString *appId = [ConfigManager appId];
-//        NSString *gameId = [ConfigManager gameId];
+//        NSString *appId = [PPConfigManager appId];
+//        NSString *gameId = [PPConfigManager gameId];
 //        NSString *userId = [[UserManager defaultManager] userId];
 //        
 //        CommonNetworkOutput* output = [GameNetworkRequest
@@ -1329,8 +1558,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
           successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-//        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+//        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest blackUser:SERVER_URL
@@ -1353,8 +1582,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
             successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        //        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        //        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest blackUser:SERVER_URL
@@ -1399,7 +1628,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest uploadUserImage:SERVER_URL
-                                                                    appId:[ConfigManager appId]
+                                                                    appId:[PPConfigManager appId]
                                                                    userId:userId
                                                                 imageData:data
                                                                 imageType:PARA_AVATAR];
@@ -1430,7 +1659,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest uploadUserImage:SERVER_URL
-                                                                    appId:[ConfigManager appId]
+                                                                    appId:[PPConfigManager appId]
                                                                    userId:userId
                                                                 imageData:data
                                                                 imageType:PARA_BACKGROUND];
@@ -1453,7 +1682,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 - (void)updateUser:(PBGameUser*)pbUser
        resultBlock:(UpdateUserResultBlock)resultBlock
 {
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* userId = [[UserManager defaultManager] userId];
     
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:pbUser];
@@ -1606,8 +1835,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
     if ([[UserManager defaultManager] hasUser] == NO){
                 
         // auto register firstly
-        NSString* appId = [ConfigManager appId];
-        NSString* gameId = [ConfigManager gameId];
+        NSString* appId = [PPConfigManager appId];
+        NSString* gameId = [PPConfigManager gameId];
         NSString* deviceToken = [[UserManager defaultManager] deviceToken];
         NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
         
@@ -1855,7 +2084,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
             [[AccountManager defaultManager] updateBalance:0 currency:PBGameCurrencyCoin];
             [[AccountManager defaultManager] updateBalance:0 currency:PBGameCurrencyIngot];
             
-            [self saveSNSUserData:nil];
+            [self cleanSNSUserData:[UserManager defaultManager].pbUser];
             
             // sync user item from server
             [[UserGameItemManager defaultManager] setUserItemList:nil];            

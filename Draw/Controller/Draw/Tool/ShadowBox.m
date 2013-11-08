@@ -13,7 +13,7 @@
 #import "PocketSVG.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CustomInfoView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShareImageManager.h"
 
 @interface ShadowBox()
@@ -347,8 +347,8 @@ SLIDER.tag = TAG;\
 [self addSubview:SLIDER];
 
 
-#define MAX_SHADOW_DISTANCE [ConfigManager maxShadowDistance]
-#define MAX_SHADOW_BLUR [ConfigManager maxShadowBlur]
+#define MAX_SHADOW_DISTANCE [PPConfigManager maxShadowDistance]
+#define MAX_SHADOW_BLUR [PPConfigManager maxShadowBlur]
 
 
 

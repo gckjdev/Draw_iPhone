@@ -11,10 +11,10 @@
 #import "StringUtil.h"
 #import "GameNetworkRequest.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "PPNetworkRequest.h"
 #import "PPSNSConstants.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "GameSNSService.h"
 #import "UIImageExt.h"
 #import "RoundLineLabel.h"
@@ -56,7 +56,7 @@ static ShareService* _defaultService;
     
     NSString* text = @"";
     if (isDrawByMe){
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"),  appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"),  appNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
     }
     else{
         NSString* nick = nil;
@@ -66,7 +66,7 @@ static ShareService* _defaultService;
         else{
             nick = drawUserNickName;
         }
-        text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"), heStr, appNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"), heStr, appNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         text = [text stringByAppendingFormat:NSLS(@"kPaintVia"), nick];
     }
 //    text = [NSString stringWithFormat:NSLS(@"kWeiboShareMessage"), snsOfficialNick, ((Word*)[array2 objectAtIndex:0]).text, ((Word*)[array2 objectAtIndex:1]).text, ((Word*)[array2 objectAtIndex:2]).text, ((Word*)[array2 objectAtIndex:3]).text];
@@ -93,13 +93,13 @@ static ShareService* _defaultService;
     dispatch_async(queue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
                                                                      userId:[[UserManager defaultManager] userId]
-                                                                      appId:[ConfigManager appId]
-                                                                     gameId:[ConfigManager gameId]
+                                                                      appId:[PPConfigManager appId]
+                                                                     gameId:[PPConfigManager gameId]
                                                                    ByUserId:drawUserId];
         
 //        CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
-//                                                                      appId:[ConfigManager appId] 
-//                                                                     gameId:[ConfigManager gameId]
+//                                                                      appId:[PPConfigManager appId] 
+//                                                                     gameId:[PPConfigManager gameId]
 //                                                                   ByUserId:drawUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -117,13 +117,37 @@ static ShareService* _defaultService;
             }
             
             NSString* textForQQ = [self getWeiboText:TYPE_QQ drawUserNickName:nickName drawUserSNSNick:qqId isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:textForQQ imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+
+            [[GameSNSService defaultService] publishWeiboAtBackground:TYPE_QQ
+                                                                 text:textForQQ
+                                                        imageFilePath:imagePath
+                                                           awardCoins:[PPConfigManager getShareWeiboReward]
+                                                       successMessage:NSLS(@"kShareWeiboSucc")
+                                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+//            [[GameSNSService defaultService] publishWeibo:TYPE_QQ text:textForQQ imageFilePath:imagePath inView:nil];
+            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:textForQQ imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
             
             NSString* textForSina = [self getWeiboText:TYPE_SINA drawUserNickName:nickName drawUserSNSNick:sinaNick isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:textForSina imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+            [[GameSNSService defaultService] publishWeiboAtBackground:TYPE_SINA
+                                                                 text:textForSina
+                                                        imageFilePath:imagePath
+                                                           awardCoins:[PPConfigManager getShareWeiboReward]
+                                                       successMessage:NSLS(@"kShareWeiboSucc")
+                                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:textForSina imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
             
             NSString* textForFacebook = [self getWeiboText:TYPE_FACEBOOK drawUserNickName:nickName drawUserSNSNick:nil isDrawByMe:isDrawByMe drawWord:drawWord drawUserGender:gender];
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:textForFacebook imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
+            [[GameSNSService defaultService] publishWeiboAtBackground:TYPE_FACEBOOK
+                                                                 text:textForFacebook
+                                                        imageFilePath:imagePath
+                                                           awardCoins:[PPConfigManager getShareWeiboReward]
+                                                       successMessage:NSLS(@"kShareWeiboSucc")
+                                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:textForFacebook imageFilePath:imagePath successBlock:NULL failureBlock:NULL];
 
             /*
             if ([[UserManager defaultManager] hasBindQQWeibo]){
@@ -173,7 +197,7 @@ static ShareService* _defaultService;
 //    [label drawTextInRect:CGRectMake(48, 90, 224, 25)];
 //    [image drawInRect:CGRectMake(32, 136, 256, 245)];        
 //    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIImage* resultingImage = [self synthesisImage:image waterMarkText:[ConfigManager getShareImageWaterMark]];
+    UIImage* resultingImage = [self synthesisImage:image waterMarkText:[PPConfigManager getShareImageWaterMark]];
     
     NSData* imageData = UIImagePNGRepresentation(resultingImage);
     NSString* path = [NSString stringWithFormat:@"%@/%@.png", NSTemporaryDirectory(), [NSString GetUUID]];
@@ -196,6 +220,11 @@ static ShareService* _defaultService;
     }
     float labelHeight = srcImage.size.height*0.05;
     int labelFontSize = (int)labelHeight;
+    
+    if (labelFontSize > 25){
+        labelFontSize = 25;
+    }
+    
     UIColor* imageShadowColor = [UIColor colorWithRed:112/255.0 green:109/255.0 blue:109/255.0 alpha:1.0];
 //    UIColor* labelShadowColor = [UIColor colorWithRed:108/255.0 green:107/255.0 blue:107/255.0 alpha:1.0];
     

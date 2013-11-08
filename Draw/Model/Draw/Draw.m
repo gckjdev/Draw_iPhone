@@ -12,7 +12,7 @@
 #import "Draw.pb.h"
 #import "Word.h"
 #import "TimeUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CanvasRect.h"
 #import "GameBasic.pb-c.h"
 #import "Draw.pb-c.h"
@@ -141,6 +141,6 @@
 
 - (BOOL)isNewVersion
 {
-    return [ConfigManager currentDrawDataVersion] < self.version;
+    return [PPConfigManager currentDrawDataVersion] < self.version;
 }
 @end

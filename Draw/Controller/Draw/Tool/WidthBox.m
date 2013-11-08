@@ -8,7 +8,7 @@
 
 #import "WidthBox.h"
 #import "WidthView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface WidthBox()
 {
@@ -76,7 +76,7 @@
 
 + (id)widthBox
 {
-    return [WidthBox widthBoxWithWidthList:[ConfigManager penWidthList]];
+    return [WidthBox widthBoxWithWidthList:[PPConfigManager penWidthList]];
 }
 
 - (void)setWidthSelected:(CGFloat)width

@@ -16,7 +16,7 @@
 #import "FeedService.h"
 #import "Feed.h"
 #import "DrawImageManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "BulletinView.h"
 #import "FriendController.h"
 #import "StatisticManager.h"
@@ -77,7 +77,7 @@
 #define DISPLAY_SIZE (self.displayScrollView.frame.size)
 #define SCROLL_INTERVAL 10
 
-#define TOP_DRAW_NUMBER [ConfigManager getHomeDisplayOpusNumber]
+#define TOP_DRAW_NUMBER [PPConfigManager getHomeDisplayOpusNumber]
 
 #define REFRESH_INTERVAL (3600 * 2)
 
@@ -87,7 +87,7 @@
     
     [[FeedService defaultService] getFeedList:FeedListTypeHot
                                        offset:0
-                                        limit:[ConfigManager getHotOpusCountOnce]
+                                        limit:[PPConfigManager getHotOpusCountOnce]
                                      delegate:self];        
 }
 

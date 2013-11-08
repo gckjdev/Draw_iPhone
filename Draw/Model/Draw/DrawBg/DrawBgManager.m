@@ -11,7 +11,7 @@
 #import "PPSmartUpdateData.h"
 #import "Draw.pb.h"
 #import "FileUtil.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UIImageExt.h"
 #import "UserGameItemManager.h"
 
@@ -66,7 +66,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawBgManager);
         _smartData = [[PPSmartUpdateData alloc] initWithName:DRAW_BG_ZIP_NAME
                                                         type:SMART_UPDATE_DATA_TYPE_ZIP
                                                   bundlePath:DRAW_BG_ZIP_NAME
-                                             initDataVersion:[ConfigManager currentDrawBgVersion]];
+                                             initDataVersion:[PPConfigManager currentDrawBgVersion]];
 
         [self updateDrawBgList];
         

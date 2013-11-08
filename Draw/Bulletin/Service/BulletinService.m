@@ -9,7 +9,7 @@
 #import "BulletinService.h"
 #import "BulletinNetwork.h"
 #import "SynthesizeSingleton.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserManager.h"
 #import "BulletinManager.h"
 #import "BulletinNetworkConstants.h"
@@ -42,8 +42,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(BulletinService)
     }
     
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         NSString *bulletinId = [[BulletinManager defaultManager] latestBulletinId];
         

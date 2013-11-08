@@ -160,6 +160,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
          avatarURL:(NSString*)avatarURL 
             gender:(NSString*)gender;
 
+- (void)saveSNSCredential:(int)type credential:(NSString*)credential;
+
 - (void)storeUserData;
 - (void)storeUserData:(PBGameUser*)user;
 - (void)cleanUserData;
@@ -250,6 +252,8 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 - (void)setBlockDevices:(NSArray*)devices;
 
+
++ (NSString*)genderByValue:(int)value;
 
 + (void)syncHistoryUsers;
 + (NSMutableArray *)historyUsers;

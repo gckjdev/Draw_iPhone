@@ -11,7 +11,7 @@
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
 #import "StableView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface OpusButton : UIButton
 @property(nonatomic, assign)DrawFeed *opus;
@@ -47,8 +47,8 @@
 
 #define ROPE_X (ISIPAD?666:280)
 
-#define HEADER_OPUS_COUNT       ([ConfigManager getHomeHotOpusCount])
-#define SWITH_OPUS_INTERVAL ([ConfigManager getHomeSwitchOpusInterval])
+#define HEADER_OPUS_COUNT       ([PPConfigManager getHomeHotOpusCount])
+#define SWITH_OPUS_INTERVAL ([PPConfigManager getHomeSwitchOpusInterval])
 
 + (id)createView:(id<HomeCommonViewDelegate>)delegate
 {

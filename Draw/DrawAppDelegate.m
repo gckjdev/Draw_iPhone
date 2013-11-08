@@ -16,7 +16,7 @@
 #import "DrawGameService.h"
 #import "UserManager.h"
 #import "HomeController.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 #import "OnlineGuessDrawController.h"
 //#import "RouterService.h"
 #import "AccountManager.h"
@@ -26,7 +26,7 @@
 #import "NetworkDetector.h"
 #import "MobClick.h"
 //#import "TKAlertCenter.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "AudioManager.h"
 #import "FriendManager.h"
 //#import "MusicItemManager.h"
@@ -56,10 +56,10 @@
 
 #import "MyPaintManager.h"
 
-#import "PPSNSIntegerationService.h"
-#import "PPSinaWeiboService.h"
-#import "PPTecentWeiboService.h"
-#import "PPFacebookService.h"
+//#import "PPSNSIntegerationService.h"
+//#import "PPSinaWeiboService.h"
+//#import "PPTecentWeiboService.h"
+//#import "PPFacebookService.h"
 
 #import "GameConfigDataManager.h"
 #import "BulletinService.h"
@@ -87,6 +87,8 @@
 #import "BackgroundMusicPlayer.h"
 #import "GuessManager.h"
 
+#import "GameSNSService.h"
+
 
 NSString* GlobalGetServerURL()
 {
@@ -108,7 +110,7 @@ NSString* GlobalGetServerURL()
 
 #endif
     
-    return [ConfigManager getAPIServerURL];
+    return [PPConfigManager getAPIServerURL];
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -123,14 +125,12 @@ NSString* GlobalGetTrafficServerURL()
 //    }
 #endif
     
-    
-    
 
 #ifdef DEBUG
     
 //    return @"http://localhost:8100/api/i?";
 
-    return @"http://58.215.184.18:8699/api/i?";
+//    return @"http://58.215.184.18:8699/api/i?";
 
 //    return @"http://58.215.184.18:8037/api/i?";
 //    return @"http://192.168.1.198:8100/api/i?";
@@ -143,23 +143,23 @@ NSString* GlobalGetTrafficServerURL()
     
 #endif
     
-    return [ConfigManager getTrafficAPIServerURL];
+    return [PPConfigManager getTrafficAPIServerURL];
 }
 
 NSString* GlobalGetMessageServerURL()
 {
-    return [ConfigManager getMessageServerURL];
+    return [PPConfigManager getMessageServerURL];
 }
 
 NSString* GlobalGetBBSServerURL()
 {
-    return [ConfigManager getBBSServerURL];
+    return [PPConfigManager getBBSServerURL];
 }
 
 
 NSString* GlobalGetBoardServerURL()
 {
-    return [ConfigManager getTrafficAPIServerURL];
+    return [PPConfigManager getTrafficAPIServerURL];
 }
 
 @implementation DrawAppDelegate
@@ -185,22 +185,22 @@ NSString* GlobalGetBoardServerURL()
 
 
 
-- (void)weiboTest
-{
-    // test image
-    NSString* imagePath = @"/Users/qqn_pipi/Library/Application Support/iPhone Simulator/6.0/Applications/C9E97DA6-3CAB-4075-9903-B2584730D7E7/Library/Caches/ImageCache/7bfbb47435afe434611f332d56cce462";
-    
-    [[PPSNSIntegerationService defaultService] publishWeiboToAll:[NSString stringWithFormat:@"人生 %d", rand() % 10]
-                                                   imageFilePath:imagePath
-                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
-                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-                                                    }
-                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
-                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-                                                    }];
-    
-    
-}
+//- (void)weiboTest
+//{
+//    // test image
+//    NSString* imagePath = @"/Users/qqn_pipi/Library/Application Support/iPhone Simulator/6.0/Applications/C9E97DA6-3CAB-4075-9903-B2584730D7E7/Library/Caches/ImageCache/7bfbb47435afe434611f332d56cce462";
+//    
+//    [[PPSNSIntegerationService defaultService] publishWeiboToAll:[NSString stringWithFormat:@"人生 %d", rand() % 10]
+//                                                   imageFilePath:imagePath
+//                                                    successBlock:^(int snsType, PPSNSCommonService *snsService, NSDictionary *userInfo) {
+//                                                        PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+//                                                    }
+//                                                    failureBlock:^(int snsType, PPSNSCommonService *snsService, NSError *error) {
+//                                                        PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+//                                                    }];
+//    
+//    
+//}
 
 - (void)testResourcePackage
 {
@@ -224,26 +224,26 @@ NSString* GlobalGetBoardServerURL()
 //     self.window.rootViewController = resourceTestController;
 }
 
-- (void)initSNSService
-{
-    PPSinaWeiboService* sinaWeiboService = [[[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
-                                                                            appSecret:[GameApp sinaAppSecret]
-                                                                       appRedirectURI:[GameApp sinaAppRedirectURI]
-                                                                      officialWeiboId:[GameApp sinaWeiboId]] autorelease];
-    PPTecentWeiboService* qqWeiboService = [[[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
-                                                                              appSecret:[GameApp qqAppSecret]
-                                                                         appRedirectURI:[GameApp qqAppRedirectURI]
-                                                                        officialWeiboId:[GameApp qqWeiboId]] autorelease];
-    PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
-                                                                         appSecret:[GameApp facebookAppSecret]
-                                                                    appRedirectURI:nil
-                                                                   officialWeiboId:[UIUtils getAppName]] autorelease];
-    
-    
-    [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
-    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
-    [[PPSNSIntegerationService defaultService] addSNS:facebookService];    
-}
+//- (void)initSNSService
+//{
+//    PPSinaWeiboService* sinaWeiboService = [[[PPSinaWeiboService alloc] initWithAppKey:[GameApp sinaAppKey]
+//                                                                            appSecret:[GameApp sinaAppSecret]
+//                                                                       appRedirectURI:[GameApp sinaAppRedirectURI]
+//                                                                      officialWeiboId:[GameApp sinaWeiboId]] autorelease];
+//    PPTecentWeiboService* qqWeiboService = [[[PPTecentWeiboService alloc] initWithAppKey:[GameApp qqAppKey]
+//                                                                              appSecret:[GameApp qqAppSecret]
+//                                                                         appRedirectURI:[GameApp qqAppRedirectURI]
+//                                                                        officialWeiboId:[GameApp qqWeiboId]] autorelease];
+//    PPFacebookService* facebookService = [[[PPFacebookService alloc] initWithAppKey:[GameApp facebookAppKey]
+//                                                                         appSecret:[GameApp facebookAppSecret]
+//                                                                    appRedirectURI:nil
+//                                                                   officialWeiboId:[UIUtils getAppName]] autorelease];
+//    
+//    
+//    [[PPSNSIntegerationService defaultService] addSNS:sinaWeiboService];
+//    [[PPSNSIntegerationService defaultService] addSNS:qqWeiboService];
+//    [[PPSNSIntegerationService defaultService] addSNS:facebookService];    
+//}
 
 - (void)initResourceService
 {
@@ -267,11 +267,7 @@ NSString* GlobalGetBoardServerURL()
 {
     // TODO check benson
     [LocalNotificationUtil cancelAllLocalNotifications];
-    
-    
-    // init audio session
-//    [BackgroundMusicPlayer setAudioSessionCategory:AVAudioSessionCategorySoloAmbient];
-    
+        
     srand(time(0));
     
 #ifdef DEBUG
@@ -284,7 +280,7 @@ NSString* GlobalGetBoardServerURL()
     // init mob click
     [MobClick startWithAppkey:[GameApp umengId]
                  reportPolicy:BATCH
-                    channelId:[ConfigManager getChannelId]];
+                    channelId:[PPConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
         
 //    [self initImageCacheManager];
@@ -324,9 +320,9 @@ NSString* GlobalGetBoardServerURL()
     }
     
     // Ask For Review
-    if ([ConfigManager isInReviewVersion] == NO){
+    if ([PPConfigManager isInReviewVersion] == NO){
         if ([DeviceDetection isOS5]){
-            self.reviewRequest = [ReviewRequest startReviewRequest:[ConfigManager appId] appName:GlobalGetAppName() isTest:YES];
+            self.reviewRequest = [ReviewRequest startReviewRequest:[PPConfigManager appId] appName:GlobalGetAppName() isTest:YES];
             self.reviewRequest.delegate = self;
         }
     }
@@ -361,7 +357,7 @@ NSString* GlobalGetBoardServerURL()
     self.window.rootViewController = navigationController;
     
     // Init SNS service
-    [self initSNSService];
+//    [self initSNSService];
     
     [self.window makeKeyAndVisible];
     
@@ -381,7 +377,7 @@ NSString* GlobalGetBoardServerURL()
     [UIUtils checkAppVersion];
     
     // 比赛的local notification通知
-    if ([ConfigManager getGuessContestLocalNotificationEnabled]) {
+    if ([PPConfigManager getGuessContestLocalNotificationEnabled]) {
 
     }
     
@@ -415,7 +411,7 @@ NSString* GlobalGetBoardServerURL()
         return;
     
     NSString* news = @"";
-    if ([ConfigManager isProVersion]){
+    if ([PPConfigManager isProVersion]){
         news = [MobClick getConfigParams:@"NEWS_PRO"];
     }
     else{
@@ -544,29 +540,37 @@ NSString* GlobalGetBoardServerURL()
 
 #pragma mark - Device Notification Delegate
 
-- (BOOL)handleURL:(NSURL*)url
-{
-    PPDebug(@"<handleURL> url=%@", url.absoluteString);
-    
-    if ([[url absoluteString] hasPrefix:@"wx"]){
-        return [WXApi handleOpenURL:url delegate:self];;
-    }else if ([[url absoluteString] hasPrefix:@"alipay"]){
-        return [AliPayManager parseURL:url alipayPublicKey:[ConfigManager getAlipayAlipayPublicKey]];
-    }
-    else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
-        
-    }
-
-    return YES;
-}
+//- (BOOL)handleURL:(NSURL*)url
+//{
+//    PPDebug(@"<handleURL> url=%@", url.absoluteString);
+//    if ([[url absoluteString] hasPrefix:@"alipay"]){
+//        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+//    }
+//
+//    [[GameSNSService defaultService] handleOpenURL:url];
+//    return YES;
+//}
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url { 
-    return [self handleURL:url];
+    PPDebug(@"<handleURL> url=%@", url.absoluteString);
+    if ([[url absoluteString] hasPrefix:@"alipay"]){
+        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+    }
+    
+    [[GameSNSService defaultService] handleOpenURL:url];
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self handleURL:url];
+
+    PPDebug(@"<handleURL> url=%@, sourceApplication=%@, annotation=%@", url.absoluteString, sourceApplication, [annotation description]);
+    if ([[url absoluteString] hasPrefix:@"alipay"]){
+        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
+    }
+    
+    [[GameSNSService defaultService] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    return YES;
 }
 
 #pragma mark - Device Notification Delegate
@@ -633,7 +637,7 @@ NSString* GlobalGetBoardServerURL()
 {
     if (alertView.tag == CHECK_APP_VERSION_ALERT_VIEW){
         if (buttonIndex == 1){
-            [UIUtils openAppForUpgrade:[ConfigManager appId]];
+            [UIUtils openAppForUpgrade:[PPConfigManager appId]];
         }
     }
 }

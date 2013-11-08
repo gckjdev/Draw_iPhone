@@ -25,7 +25,7 @@
 
 #import "RouterTrafficServer.h"
 #import "StringUtil.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ChatController.h"
 #import "CommonMessageCenter.h"
 #import "SearchRoomController.h"
@@ -33,7 +33,7 @@
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
 #import "WordManager.h"
-#import "RegisterUserController.h"
+//#import "RegisterUserController.h"
 
 #import "OfflineGuessDrawController.h"
 #import "UseItemScene.h"
@@ -154,44 +154,44 @@
     }
 }
 
-- (void)updateAnimation
-{
-    DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
-    DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
-    HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
-    
-    [header setClickRopeHandler:^(BOOL open)
-    {
-        if (open) {
-            [mainPanel closeAnimated:YES completion:^(BOOL finished) {
-                [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
-                [header openAnimated:YES completion:NULL];
-                [footer hideAnimated:YES];
-            }];
-        }else{
-            [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
-            [footer showAnimated:YES];
-            [header closeAnimated:YES completion:^(BOOL finished) {
-                [mainPanel openAnimated:YES completion:NULL];
-            }];
-
-        }
-
-        // TODO Benson later
-    }];
-    
-//#if DEBUG
-//    if (YES) {
-//#else
-    if ([_userManager hasXiaojiNumber] == NO && [_userManager isOldUserWithoutXiaoji] == NO) {
-//#endif
-        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
-            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
-            [header openAnimated:NO completion:NULL];
-            [footer hideAnimated:NO];
-        }];        
-    }
-}
+//- (void)updateAnimation
+//{
+//    DrawHomeHeaderPanel *header = (id)self.homeHeaderPanel;
+//    DrawMainMenuPanel *mainPanel = (id)self.homeMainMenuPanel;
+//    HomeBottomMenuPanel *footer = (id)self.homeBottomMenuPanel;
+//    
+//    [header setClickRopeHandler:^(BOOL open)
+//    {
+//        if (open) {
+//            [mainPanel closeAnimated:YES completion:^(BOOL finished) {
+//                [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+//                [header openAnimated:YES completion:NULL];
+//                [footer hideAnimated:YES];
+//            }];
+//        }else{
+//            [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+//            [footer showAnimated:YES];
+//            [header closeAnimated:YES completion:^(BOOL finished) {
+//                [mainPanel openAnimated:YES completion:NULL];
+//            }];
+//
+//        }
+//
+//        // TODO Benson later
+//    }];
+//    
+////#if DEBUG
+////    if (YES) {
+////#else
+//    if ([_userManager hasXiaojiNumber] == NO && [_userManager isOldUserWithoutXiaoji] == NO) {
+////#endif
+//        [mainPanel closeAnimated:NO completion:^(BOOL finished) {
+//            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
+//            [header openAnimated:NO completion:NULL];
+//            [footer hideAnimated:NO];
+//        }];        
+//    }
+//}
 
 - (void)viewDidLoad
 {        
@@ -209,7 +209,7 @@
     
     [self performSelector:@selector(updateRecoveryDrawCount) withObject:nil afterDelay:0.5f];
     
-    [self updateAnimation];
+//    [self updateAnimation];
     
 //    [self registerNotificationWithName:UPDATE_HOME_BG_NOTIFICATION_KEY usingBlock:^(NSNotification *note) {
 //        [self updateBGImageView];
@@ -491,7 +491,7 @@
                                             gender:[_userManager isUserMale]
                                           location:[_userManager location] 
                                          userLevel:[[LevelService defaultService] level]
-                                    guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                    guessDiffLevel:[PPConfigManager guessDifficultLevel]
                                        snsUserData:[_userManager snsUserData]];    
     }
     
@@ -508,12 +508,12 @@
 //
 //    // update by Benson, to avoid "server full/busy issue"
 //    if ([[UserManager defaultManager] getLanguageType] == ChineseType){
-//        address = [ConfigManager defaultChineseServer];
-//        port = [ConfigManager defaultChinesePort];
+//        address = [PPConfigManager defaultChineseServer];
+//        port = [PPConfigManager defaultChinesePort];
 //    }
 //    else{
-//        address = [ConfigManager defaultEnglishServer];
-//        port = [ConfigManager defaultEnglishPort];
+//        address = [PPConfigManager defaultEnglishServer];
+//        port = [PPConfigManager defaultEnglishPort];
 //    }
 //
 //

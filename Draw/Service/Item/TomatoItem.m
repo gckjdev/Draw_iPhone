@@ -8,7 +8,7 @@
 
 #import "TomatoItem.h"
 #import "FeedService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawGameService.h"
 #import "AccountService.h"
 #import "GameConstants.h"

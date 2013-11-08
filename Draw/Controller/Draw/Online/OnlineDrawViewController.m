@@ -265,7 +265,7 @@
     if (dialog.tag == DIALOG_TAG_ESCAPE && dialog.style == CommonDialogStyleDoubleButton && [[AccountManager defaultManager] hasEnoughBalance:1 currency:PBGameCurrencyCoin]) {
         [drawGameService quitGame];
         [HomeController returnRoom:self];
-        [[AccountService defaultService] deductCoin:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
+        [[AccountService defaultService] deductCoin:[PPConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         [self cleanData];
         [[LevelService defaultService] minusExp:NORMAL_EXP delegate:self];
     }
@@ -298,7 +298,7 @@
     NSString *message = nil;
     if ([[AccountManager defaultManager] hasEnoughBalance:ESCAPE_DEDUT_COIN currency:PBGameCurrencyCoin]) {
         style = CommonDialogStyleDoubleButton;
-        message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [ConfigManager getOnlineDrawFleeCoin]];
+        message =[NSString stringWithFormat:NSLS(@"kDedutCoinQuitGameAlertMessage"), [PPConfigManager getOnlineDrawFleeCoin]];
     }else{
         style = CommonDialogStyleSingleButton;
         message = NSLS(@"kNoCoinQuitGameAlertMessage");

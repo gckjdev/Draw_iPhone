@@ -10,7 +10,7 @@
 //#import "BoardNetworkConstant.h"
 #import "PPNetworkRequest.h"
 #import "ContestManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "GameNetworkRequest.h"
 #import "UserManager.h"
 
@@ -66,7 +66,7 @@ static ContestService *_staticContestService;
     });
     
 //    dispatch_async(workingQueue, ^{
-//        NSString *appId = [ConfigManager appId];
+//        NSString *appId = [PPConfigManager appId];
 //        NSString *userId =[[UserManager defaultManager] userId];
 //        int language = [[UserManager defaultManager] getLanguageType];
 //        

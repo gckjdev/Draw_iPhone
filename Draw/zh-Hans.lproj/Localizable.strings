@@ -1508,6 +1508,9 @@
 "kNoBulletin" = "暂无公告";
 
 "kLookLargeImage" = "查看";
+"kLook" = "查看";
+"kImageMustBeSquare" = "图片必须是正方形的";
+"kAudioUrlIsBlank" = "音频文件不存在";
 "kNoRecommend" = "暂无推荐";
 "kCustomBBSBgSucc" = "成功自定义论坛背景！";
 "kResetCustomBBSBgSucc" = "成功重设论坛背景!";
@@ -2138,6 +2141,19 @@
 "kOldDrawBG" = "怀旧木板风";
 "kExhibition" = "作品展";
 "kContestCopyright" = "重要声明：苹果公司非本比赛赞助商，也和本次比赛无任何关系，苹果公司不承担比赛的任何责任。本比赛不提供任何苹果公司的相关产品作为奖品";
+
+"kShareWeiboSucc" = "分享作品成功";
+"kShareWeiboFailure" = "分享作品失败，请检查帐号或者网络";
+"kSentWeiboSucc" = "分享作品成功";
+"kSentWeiboFailure" = "分享作品失败，请检查帐号或者网络";
+"kPublishWeiboAwardInfo" = "获得【%d】金币";
+
+"kFollowFailure" = "关注失败，请检查帐号或者网络";
+"kFollowSuccess" = "已成功关注";
+"kAuthorizeSuccess" = "已成功授权";
+"kAuthorizeFailure" = "授权失败，请检查帐号或者网络";
+
+
 /*********************小吉画画国际化字符串结束 ************************/
 
 /*********************你唱我猜国际化字符串开始 ************************/

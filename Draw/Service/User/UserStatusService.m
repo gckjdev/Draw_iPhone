@@ -11,7 +11,7 @@
 #import "GameNetworkRequest.h"
 #import "PPNetworkRequest.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "PPDebug.h"
 
 #define REPORT_STATUS_TIMER_INTERVAL       (20*60)     // 20 minutes
@@ -52,7 +52,7 @@ UserStatusService* _defaultService;
     PPDebug(@"<reportStatus> status=%d", status);
     dispatch_async(workingQueue, ^{
         [GameNetworkRequest reportStatus:SERVER_URL 
-                                   appId:[ConfigManager appId] 
+                                   appId:[PPConfigManager appId] 
                                   userId:userId
                                   status:status];        
     });

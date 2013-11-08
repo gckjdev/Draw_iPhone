@@ -7,7 +7,7 @@
 //
 
 #import "AdService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonDialog.h"
 #import "LocaleUtils.h"
 #import "ShoppingManager.h"
@@ -262,10 +262,10 @@ static AdService* _defaultService;
 //    return YES;
 //#endif
     
-    if ([ConfigManager isProVersion])
+    if ([PPConfigManager isProVersion])
         return NO;
     
-    if ([ConfigManager isEnableAd] == NO){
+    if ([PPConfigManager isEnableAd] == NO){
         return NO;
     }
 
@@ -599,7 +599,7 @@ static AdService* _defaultService;
                   
     adView.tag = AD_VIEW_TAG;
     adView.rootViewController = [[UIApplication sharedApplication] delegate].window.rootViewController;
-    adView.adUnitID = [ConfigManager getAdMobId];
+    adView.adUnitID = [PPConfigManager getAdMobId];
     adView.delegate = self;
     
     [self loadAdmobView:adView];

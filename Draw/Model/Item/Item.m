@@ -12,7 +12,7 @@
 #import "ShareImageManager.h"
 #import "ItemManager.h"
 #import "ShoppingManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DiceImageManager.h"
 #import "UIImageUtil.h"
 
@@ -438,7 +438,7 @@
 {
     
     int amount = 0;
-    if ([ConfigManager isProVersion]){
+    if ([PPConfigManager isProVersion]){
         amount = 1;
     }
     else{

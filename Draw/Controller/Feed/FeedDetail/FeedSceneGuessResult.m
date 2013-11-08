@@ -39,22 +39,21 @@
 #define LABEL_FONT_SIZE  (ISIPAD?30:15)
 - (void)initContentImageView:(UIImageView*)view withFeed:(DrawFeed*)feed
 {
-    UILabel* label = (UILabel*)[view viewWithTag:LABEL_TAG];
-    if (label == nil) {
-        float width = view.frame.size.height*view.image.size.width/view.image.size.height;
-        label = [[[UILabel alloc] initWithFrame:CGRectMake(0, view.frame.size.height-LABEL_HEIGHT, width, LABEL_HEIGHT)] autorelease];
-        [label setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
-        [label setTextColor:[UIColor whiteColor]];
-        [label setTextAlignment:UITextAlignmentCenter];
-        [label setCenter:CGPointMake(view.frame.size.width/2, label.center.y)];
-        label.tag = LABEL_TAG;
-        [label setText:feed.wordText];
-        [label setFont:[UIFont systemFontOfSize:LABEL_FONT_SIZE]];
-        [view addSubview:label];
+    if (feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+        UILabel* label = (UILabel*)[view viewWithTag:LABEL_TAG];
+        if (label == nil) {
+            float width = view.frame.size.height*view.image.size.width/view.image.size.height;
+            label = [[[UILabel alloc] initWithFrame:CGRectMake(0, view.frame.size.height-LABEL_HEIGHT, width, LABEL_HEIGHT)] autorelease];
+            [label setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+            [label setTextColor:[UIColor whiteColor]];
+            [label setTextAlignment:UITextAlignmentCenter];
+            [label setCenter:CGPointMake(view.frame.size.width/2, label.center.y)];
+            label.tag = LABEL_TAG;
+            [label setText:feed.wordText];
+            [label setFont:[UIFont systemFontOfSize:LABEL_FONT_SIZE]];
+            [view addSubview:label];
+        }
     }
-    
-    
-    
 }
 
 - (NSString*)showFeedTitle

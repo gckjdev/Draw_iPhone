@@ -23,7 +23,7 @@
 #import "CommentController.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 
 typedef enum{
@@ -146,7 +146,7 @@ typedef enum{
     [super viewDidLoad];    
     [self initTabButtons];
     [self.titleLabel setText:NSLS(@"kFeed")];
-    if ([ConfigManager showOpusCount]) {
+    if ([PPConfigManager showOpusCount]) {
         [[FeedService defaultService] getOpusCount:[[UserManager defaultManager] userId]
                                           delegete:self];
     }
@@ -434,7 +434,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return [ConfigManager getTimelineCountOnce];
+    return [PPConfigManager getTimelineCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

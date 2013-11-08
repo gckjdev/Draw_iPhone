@@ -12,7 +12,7 @@
 #import "UserManager.h"
 #import "CommonMessageCenter.h"
 #import "StringUtil.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface CustomWordManager()
 
@@ -79,7 +79,7 @@ static CustomWordManager *_customWordManager = nil;
     NSMutableArray *words = [NSMutableArray array];
     for (CustomWord *cusWord in [self findAllWords]) {
         Word *word = [Word cusWordWithText:cusWord.word];
-        word.score = [ConfigManager offlineDrawMyWordScore];
+        word.score = [PPConfigManager offlineDrawMyWordScore];
         [words addObject:word];
     }
     

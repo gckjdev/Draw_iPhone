@@ -15,7 +15,7 @@
 #import "GameSNSService.h"
 #import "SNSUtils.h"
 #import "TimeUtils.h"
-#import "PPSNSCommonService.h"
+//#import "PPSNSCommonService.h"
 #import "CustomSegmentedControl.h"
 #import "ShareImageManager.h"
 #import "FeedCarousel.h"
@@ -491,7 +491,7 @@
         
         CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kSignature")];
         dialog.inputTextView.text = [_detail getUser].signature;
-        [dialog setMaxInputLen:[ConfigManager getSignatureMaxLen]];
+        [dialog setMaxInputLen:[PPConfigManager getSignatureMaxLen]];
 
         [dialog setClickOkBlock:^(UITextView *tv){
             
@@ -579,7 +579,7 @@
     
         CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kNickname")];
         dialog.inputTextField.text = [_detail getUser].nickName;
-        [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
+        [dialog setMaxInputLen:[PPConfigManager getNicknameMaxLen]];
         [dialog setAllowInputEmpty:NO];
         
         [dialog setClickOkBlock:^(UITextField *tf){

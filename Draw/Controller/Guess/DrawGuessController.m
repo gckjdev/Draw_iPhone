@@ -10,7 +10,7 @@
 #import "CommonShareAction.h"
 #import "SDImageCache.h"
 #import "PPPopTableView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface DrawGuessController ()
 @property (retain, nonatomic) CommonShareAction *shareAction;
@@ -60,7 +60,7 @@
         _shareAction = [[CommonShareAction alloc] initWithOpus:self.opus];
     }
     
-    NSString* shareText = [ConfigManager guessContestShareText];    
+    NSString* shareText = [PPConfigManager guessContestShareText];    
     [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxTimeline)] shareText:shareText viewController:self onView:_titleView.rightButton];
 }
 

@@ -30,7 +30,7 @@
 #import "SDImageCache.h"
 #import "SDWebImageManager.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ChargeController.h"
 
 #import "LmWallService.h"
@@ -53,6 +53,8 @@
 #import "DrawUtils.h"
 #import "ImagePlayer.h"
 #import "AudioPlayer.h"
+#import "GameSNSService.h"
+#import "ShareAction.h"
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
@@ -109,6 +111,7 @@ typedef enum{
     PPRelease(_feedScene);
     PPRelease(_feedId);
     PPRelease(_drawCellFullScreen);
+    PPRelease(_shareAction);
     
     [super dealloc];
 }
@@ -178,12 +181,14 @@ typedef enum{
 - (void)updateActionButtons
 {
     NSMutableArray *types = [NSMutableArray array];
-    if ([self.feed showAnswer] ||
-        [self.feed isContestFeed] ||
-        ([GameApp disableEnglishGuess] && [[UserManager defaultManager] getLanguageType] != ChineseType) ||
-        [[UserService defaultService] isRegistered] == NO
-        ) {
-        [types addObject:@(FooterTypeReplay)];
+    if ([self.feed showAnswer]
+        || [self.feed isContestFeed]
+        || ([GameApp disableEnglishGuess]
+        && [[UserManager defaultManager] getLanguageType] != ChineseType)
+        || [[UserService defaultService] isRegistered] == NO) {
+        if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+            [types addObject:@(FooterTypeReplay)];
+        }
     }else{
         [types addObject:@(FooterTypeGuess)];
     }
@@ -516,14 +521,6 @@ typedef enum{
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
-//       
-//        NSDictionary* userInfo = [note userInfo];
-//        CGFloat progress = [[userInfo objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
-//        PPDebug(@"recv NOTIFICATION_DATA_PARSING, progress = %f", progress);
-//        
-//        [self setProgress:progress];
-//    }];
     
     [super viewDidAppear:animated];
     if (![self isCurrentTabLoading] || [self.feedScene isKindOfClass:[FeedSceneDetailGuessResult class]]) {
@@ -589,8 +586,6 @@ typedef enum{
         [[FlowerItem sharedFlowerItem] useItem:_feed.author.userId
                                      isOffline:YES
                                       drawFeed:_feed
-//                                    feedOpusId:_feed.feedId
-//                                    feedAuthor:_feed.author.userId
                                        forFree:isFree
                                  resultHandler:^(int resultCode, int itemId, BOOL isBuy)
         {
@@ -651,7 +646,7 @@ typedef enum{
 
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
-    if ([ConfigManager wallEnabled]) {
+    if ([PPConfigManager wallEnabled]) {
         [LmWallService showWallOnController:self];
     }else {
         ChargeController* controller = [[[ChargeController alloc] init] autorelease];
@@ -713,10 +708,19 @@ typedef enum{
 
 - (void)performGuess
 {
+    if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+        [self perFormDrawGuess];
+    }else if (self.feed.categoryType == PBOpusCategoryTypeSingCategory){
+        [self performSingGuess];
+    }
+}
+
+- (void)perFormDrawGuess{
+    
     __block ShowFeedController * cp = self;
     //enter guess controller
     [self loadDrawDataWithHanlder:^{
-                
+        
         [self registerNotificationWithName:NOTIFICATION_DATA_PARSING usingBlock:^(NSNotification *note) {
             float progress = [[[note userInfo] objectForKey:KEY_DATA_PARSING_PROGRESS] floatValue];
             NSString* progressText = @"";
@@ -737,7 +741,7 @@ typedef enum{
                 cp.feed.pbDrawData = nil;   // add by Benson to clear the data for memory usage
             }
             
-            dispatch_async(dispatch_get_main_queue(), ^{        
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [cp unregisterNotificationWithName:NOTIFICATION_DATA_PARSING];
                 [[self.footerView buttonWithType:FooterTypeGuess] setUserInteractionEnabled:YES];
                 [OfflineGuessDrawController startOfflineGuess:cp.feed fromController:cp];
@@ -746,6 +750,14 @@ typedef enum{
             });
         });
     }];
+}
+
+- (void)performSingGuess{
+
+//    [self showActivityWithText:NSLS(@"kLoading")];
+    [_audioPlayer stop];
+    [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];
+//    [self hideActivity];
 }
 
 - (void)performReplay
@@ -811,6 +823,20 @@ typedef enum{
     [cc release];
 }
 
+- (UIImage*)getFeedImage
+{
+    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
+    if (image == nil) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
+    }
+    
+    if (image == nil){
+        image = self.feed.largeImage;
+    }
+
+    return image;
+}
+
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
                     type:(FooterType)type
@@ -843,19 +869,17 @@ typedef enum{
         case FooterTypeShare:
         {
             CHECK_AND_LOGIN(self.view);
+
+//            UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
+//            if (image == nil) {
+//                image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
+//            }
+//            
+//            if (image == nil){
+//                image = self.feed.largeImage;
+//            }
             
-//            UIImage* image = [[SDImageCache sharedImageCache] imageFromKey:self.feed.drawImageUrl];
-
-
-            UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
-            if (image == nil) {
-                image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
-            }
-
-            
-            if (image == nil){
-                image = self.feed.largeImage;
-            }
+            UIImage* image = [self getFeedImage];
             if (_shareAction == nil) {
                 _shareAction = [[ShareAction alloc] initWithFeed:_feed
                                                            image:image];
@@ -1064,7 +1088,6 @@ typedef enum{
     if (resultCode == 0 && [feed.feedId isEqualToString:self.feed.feedId]) {
         feed.largeImage = self.feed.largeImage;
         feed.wordText = self.feed.wordText;
-        feed.drawDataUrl = self.feed.drawDataUrl;
         self.feed = feed;
         [_commentHeader setViewInfo:self.feed];
         [self.dataTableView reloadData];
@@ -1091,17 +1114,34 @@ typedef enum{
     [self updateActionButtons];
 }
 
+- (void)share:(PPSNSType)type
+{
+    NSString* text = [ShareAction shareTextByDrawFeed:self.feed snsType:type];
+    NSString* imagePath = [ShareAction createFeedImagePath:self.feed];
+    
+    [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+                                             text:text
+                                    imageFilePath:imagePath
+                                           inView:self.view
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
+                                   successMessage:NSLS(@"kShareWeiboSuccess")
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+    
+}
+
 - (void)didClickDrawImageMaskView
 {
     CHECK_AND_LOGIN(self.view);
     
-    int indexOfGuess = 0;
-    int indexOfPlay = 1;
-    int indexOfPhoto = 2;
+    int index = 0;
+    int indexOfGuess = -1;
+    int indexOfPlay = -1;
+    int indexOfPhoto = -1;
     int indexOfFeature = -1;
     int indexOfUnfeature = -1;
     int indexOfSetScore = -1;
     int indexOfDelete = -1;
+    
     
     MKBlockActionSheet *sheet = nil;
     BOOL canFeature = [[UserManager defaultManager] canFeatureDrawOpus];
@@ -1111,11 +1151,15 @@ typedef enum{
                                                  delegate:nil
                                         cancelButtonTitle:NSLS(@"kCancel")
                                    destructiveButtonTitle:NSLS(@"kGuess")
-                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"), nil];
-        indexOfSetScore =  indexOfPhoto + 1;
-        indexOfFeature = indexOfSetScore + 1;
-        indexOfUnfeature = indexOfFeature + 1;
-        indexOfDelete = indexOfUnfeature + 1;
+                                        otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"分数处理"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), NSLS(@"删除作品"),
+                 NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+        indexOfGuess = index++;
+        indexOfPlay = index++;
+        indexOfPhoto = index++;
+        indexOfSetScore = index++;
+        indexOfFeature = index++;
+        indexOfUnfeature = index++;
+        indexOfDelete = index++;
     }
     else if (![self.feed showAnswer]) {
         if (canFeature){
@@ -1123,38 +1167,54 @@ typedef enum{
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
-                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
-            indexOfFeature = indexOfPhoto + 1;
-            indexOfUnfeature = indexOfFeature + 1;
+                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+            indexOfGuess = index++;
+            indexOfPlay = index++;
+            indexOfPhoto = index++;
+            indexOfFeature = index++;
+            indexOfUnfeature = index++;
         }
         else{
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
                                        destructiveButtonTitle:NSLS(@"kGuess")
-                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"), nil];
+                                            otherButtonTitles:NSLS(@"kPlay"), NSLS(@"kLargeImage"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
+            indexOfGuess = index++;
+            indexOfPlay = index++;
+            indexOfPhoto = index++;
+
         }
     }else{
-        indexOfGuess = -1;
-        indexOfPlay = 0;
-        indexOfPhoto = 1;
+        indexOfPlay = index++;
+        indexOfPhoto = index++;
 
         if (canFeature){
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
-                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
+                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"),
+                     NSLS(@"kRecommend"), NSLS(@"kUnfeature"), nil];
         
-            indexOfFeature = indexOfPhoto + 1;
-            indexOfUnfeature = indexOfFeature + 1;
+            indexOfFeature = index++;
+            indexOfUnfeature = index++;
         }
         else{
             sheet = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption")
                                                      delegate:nil
                                             cancelButtonTitle:NSLS(@"kCancel")
-                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"), nil];
+                                       destructiveButtonTitle:NSLS(@"kPlay") otherButtonTitles:NSLS(@"kLargeImage"),
+                     NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"), NSLS(@"kShareWeixinTimeline"), NSLS(@"kShareQQSpace"), nil];
         }
     }
+    
+    int indexOfShareSinaWeibo = index++;
+    int indexOfShareWeixinSession = index++;
+    int indexOfShareWeixinTimeline = index++;
+    int indexOfShareQQSpace = index++;
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
         if (buttonIndex == indexOfGuess) {
@@ -1192,7 +1252,21 @@ typedef enum{
             
             [dialog showInView:self.view];
         }
-        else{
+        else if (buttonIndex == indexOfShareSinaWeibo){
+            [self share:TYPE_SINA];
+        }
+        else if (buttonIndex == indexOfShareWeixinSession){
+//            [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+//                                                     text:text
+//                                                   inView:self.view
+//                                               awardCoins:[PPConfigManager getShareWeiboReward]
+//                                           successMessage:NSLS(@"kShareWeiboSuccess")
+//                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+        }
+        else if (buttonIndex == indexOfShareWeixinTimeline){
+            
+        }
+        else if (buttonIndex == indexOfShareQQSpace){
             
         }
         
@@ -1303,6 +1377,11 @@ typedef enum{
 }
 
 - (void)play{
+    
+    if ([self.feed.drawDataUrl length] == 0) {
+        POSTMSG2(NSLS(@"kAudioUrlIsBlank"), 2);
+        return;
+    }
     
     if (_audioPlayer == nil) {
         _audioPlayer = [[AudioPlayer alloc] init];

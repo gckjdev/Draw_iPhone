@@ -13,7 +13,7 @@
 #import "AnimationManager.h"
 #import "AccountService.h"
 #import "AudioManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "Draw.h"
 #import "AccountManager.h"
@@ -33,12 +33,16 @@
 #import "WordInputView.h"
 #import "FeedSceneGuessResult.h"
 #import "StringUtil.h"
+#import "AudioPlayer.h"
+#import "UIImageView+WebCache.h"
+#import "FXLabel.h"
 
 @interface OfflineGuessDrawController()
 {
     CommonTitleView *_titleView;
 }
-@property (nonatomic, retain)ShowDrawView *showView;
+@property (nonatomic, retain) ShowDrawView *showView;
+@property (nonatomic, retain) AudioPlayer *audioPlayer;
 
 @end
 
@@ -51,6 +55,7 @@
                                             initWithFeed:feed];
     [fromController.navigationController pushViewController:offGuess animated:YES];
     [offGuess release];
+    
     offGuess.fromController = fromController;
     return offGuess;
 }
@@ -60,6 +65,7 @@
     PPRelease(_feed);
     PPRelease(_showView);
     PPRelease(_wordInputView);
+    PPRelease(_audioPlayer);
     [super dealloc];
 }
 
@@ -91,9 +97,19 @@
     self = [super init];
     if (self) {
         self.feed = feed;
-        if (_feed.drawData == nil) {
-            [_feed parseDrawData];
-            _feed.pbDrawData = nil; // add by Benson to clear the data for memory usage
+
+        if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+            if (_feed.drawData == nil) {
+                [_feed parseDrawData];
+                _feed.pbDrawData = nil; // add by Benson to clear the data for memory usage
+            }
+        }else if (self.feed.categoryType == PBOpusCategoryTypeSingCategory){
+            
+            // init audio player here.
+            self.audioPlayer = [[[AudioPlayer alloc] init] autorelease];
+            self.audioPlayer.url = [NSURL URLWithString:self.feed.drawDataUrl];
+
+            [self.audioPlayer play];
         }
     }
     return self;
@@ -109,7 +125,6 @@
 }
 
 
-
 - (void)initWordViews
 {
     
@@ -117,18 +132,26 @@
     self.wordInputView.answer = self.feed.wordText;
     self.wordInputView.delegate = self;
     
-    NSString *candidates = nil;
-    if ([self.feed.wordText isEnglishString]) {
-        NSString *txt = _feed.wordText;
-        candidates = [[WordManager defaultManager] randEnglishCandidateStringWithWord:txt
-                                                                                count:18];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-    }else{
-        candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:_feed.wordText
-                                                                                count:18];
-    }
-    
-    [self.wordInputView setCandidates:candidates column:9];
+        NSString *candidates = nil;
+
+        if ([self.feed.wordText isEnglishString]) {
+            NSString *txt = _feed.wordText;
+            candidates = [[WordManager defaultManager] randEnglishCandidateStringWithWord:txt
+                                                                                    count:18];
+            
+        }else{
+            candidates = [[WordManager defaultManager] randChineseCandidateStringWithWord:_feed.wordText
+                                                                                    count:18];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.wordInputView setCandidates:candidates column:9];
+        });
+    });
+
 }
 
 
@@ -172,6 +195,7 @@
     [super viewDidLoad];
     SET_VIEW_BG(self.view);    
     [self initTitleView];
+
     [self initWordViews];
     [self checkDrawDataVersion];
     [self initShowView];
@@ -212,20 +236,23 @@
         [(ShowFeedController *)self.fromController setFeedScene:[[[FeedSceneGuessResult alloc] init] autorelease]];
     } 
     
+    if (self.feed.categoryType == PBOpusCategoryTypeSingCategory) {
+        [self.audioPlayer stop];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
-
 }
 
 - (IBAction)clickBack:(id)sender
 {
     CommonDialog* dialog;
     __block OfflineGuessDrawController* cp = self;
-    if ([[AccountService defaultService] hasEnoughBalance:[ConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
+    if ([[AccountService defaultService] hasEnoughBalance:[PPConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
         
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross];
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [PPConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross];
         
         [dialog setClickOkBlock:^(UILabel *label){
-            [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
+            [[AccountService defaultService] deductCoin:[PPConfigManager getBuyAnswerPrice] source:BuyAnswer];
             [(NSMutableArray *)cp.wordInputView.guessedWords addObject:cp.feed.wordText];
             [cp quit:YES];
         }];
@@ -259,6 +286,15 @@
 
 - (void)initShowView
 {
+    if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+        [self initShowDrawView];
+    }else if (self.feed.categoryType == PBOpusCategoryTypeSingCategory){
+        [self initShowSingView];
+    }
+}
+
+- (void)initShowDrawView
+{
     CGRect rect = [CanvasRect defaultRect];
     if (self.feed.drawData) {
         rect = [self.feed.drawData canvasRect];
@@ -272,9 +308,29 @@
     [holder updateOriginY:COMMON_TITLE_VIEW_HEIGHT];
     if (ISIPHONE5) {
         [holder updateHeight:CGRectGetHeight(holder.frame) + 108];
-        [holder updateContentScale];        
+        [holder updateContentScale];
     }
     [self.showView play];
     [showDrawView release];
 }
+
+- (void)initShowSingView{
+    
+    CGRect rect = CGRectMake(21, 48, 280, 280);
+    
+    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
+    [iv setImageWithURL:[NSURL URLWithString:self.feed.drawImageUrl]];
+    
+    rect = CGRectMake(0, 0, 250, 250);
+    FXLabel *l = [[[FXLabel alloc] initWithFrame:rect] autorelease];
+    [ShareImageManager setFXLabelStyle:l];
+    l.center = CGPointMake(iv.bounds.size.width/2, iv.bounds.size.height/2);
+    l.text = self.feed.opusDesc;
+    l.numberOfLines = 0;
+    l.textAlignment = NSTextAlignmentCenter;
+    [iv addSubview:l];
+    
+    [self.view addSubview:iv];
+}
+
 @end

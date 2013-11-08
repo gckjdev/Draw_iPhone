@@ -11,7 +11,7 @@
 #import "MyPaintManager.h"
 #import "FileUtil.h"
 #import "Draw.pb.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawAction.h"
 #import "CoreDataUtil.h"
 
@@ -50,7 +50,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
 - (BOOL)supportRecovery
 {
-    return [ConfigManager supportRecovery];
+    return [PPConfigManager supportRecovery];
 }
 
 - (int)recoveryDrawCount
@@ -195,17 +195,17 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
 - (int)backupInterval
 {
-    return [ConfigManager recoveryBackupInterval];
+    return [PPConfigManager recoveryBackupInterval];
 }
 
 - (BOOL)needBackup
 {
     time_t nowTime = time(0);
-    if (_newPaintCount >= [ConfigManager drawAutoSavePaintInterval]){
+    if (_newPaintCount >= [PPConfigManager drawAutoSavePaintInterval]){
         PPDebug(@"<needBackup> reach max paint count for save");
         return YES;
     }
-    else if (_newPaintCount > 0 && ((nowTime - _lastBackupTime) >= [ConfigManager drawAutoSavePaintTimeInterval]) ){
+    else if (_newPaintCount > 0 && ((nowTime - _lastBackupTime) >= [PPConfigManager drawAutoSavePaintTimeInterval]) ){
         PPDebug(@"<needBackup> reach max time interval for save");
         return YES;
     }

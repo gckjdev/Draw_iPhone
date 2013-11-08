@@ -11,7 +11,7 @@
 #import "PPSmartUpdateData.h"
 #import "PPSmartUpdateDataUtils.h"
 #import "Word.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "StringUtil.h"
 
 #define SEPERATOR @"\n"
@@ -145,7 +145,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
     PBHotWord_Builder *builder = [[[PBHotWord_Builder alloc] init] autorelease];
     [builder setWordId:word];
     [builder setWord:word];
-    [builder setCoins:[ConfigManager getHotWordAwardCoins]];
+    [builder setCoins:[PPConfigManager getHotWordAwardCoins]];
     
     return [builder build];
 }
@@ -160,7 +160,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HotWordManager)
     for (PBHotWord *hotWord in _words) {
         int coin = hotWord.coins;
         if (coin == 0){
-            coin = [ConfigManager offlineDrawHotWordScore];
+            coin = [PPConfigManager offlineDrawHotWordScore];
         }
         Word *word = [Word hotWordWithId:hotWord.wordId text:hotWord.word score:coin];
         [words addObject:word];

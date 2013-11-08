@@ -27,11 +27,11 @@ enum{
 #import "PBOpus+Extend.h"
 #import "CommonCommentController.h"
 #import "UserManager.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
 #import "UserService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "FeedService.h"
 #import "CommonShareAction.h"
 

@@ -22,7 +22,7 @@
 #import "BBSPermissionManager.h"
 #import "StorageManager.h"
 #import "UIImage+Scale.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
@@ -867,6 +867,58 @@ static UserManager* _defaultManager;
     [newData release];
 }
 
+- (void)saveSNSCredential:(int)type credential:(NSString*)credential
+{
+    if (credential == nil){
+        return;
+    }
+    
+    PPDebug(@"<saveSNSCredential> save SNS user, type(%d), credential(%@)", type, credential);
+    
+    NSArray* currentData = [[[self.pbUser snsCredentialsList] copy] autorelease]; //[[NSUserDefaults standardUserDefaults] objectForKey:KEY_SNS_USER_DATA];
+    NSMutableArray* newData = [[NSMutableArray alloc] init];
+    if (currentData != nil){
+        [newData addObjectsFromArray:currentData];
+    }
+    
+    int index = 0;
+    BOOL found = NO;
+    PBSNSUserCredential* userFound = nil;
+    for (PBSNSUserCredential* snsUser in newData){
+        if (snsUser.type == type){
+            found = YES;
+            userFound = snsUser;
+            break;
+        }
+        index ++;
+    }
+    
+    // create an new user
+    PBSNSUserCredential_Builder* builder = [[PBSNSUserCredential_Builder alloc] init];
+    [builder setType:type];
+    [builder setCredential:credential];
+    
+    PBSNSUserCredential* user = [builder build];
+    if (found){
+        [newData replaceObjectAtIndex:index withObject:user];
+    }
+    else{
+        [newData addObject:user];
+    }
+    
+    if (self.pbUser != nil){
+        // update sns user list
+        PBGameUser_Builder* userBuilder = [PBGameUser builderWithPrototype:self.pbUser];
+        [userBuilder clearSnsCredentialsList];
+        [userBuilder addAllSnsCredentials:newData];
+        self.pbUser = [userBuilder build];
+        [self storeUserData];
+    }
+    
+    [builder release];
+    [newData release];
+}
+
 - (void)saveUserId:(NSString*)userId
             sinaId:(NSString*)loginId
           password:(NSString*)password 
@@ -1543,7 +1595,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     int count = [[userDefaults objectForKey:key] intValue];
     
     PPDebug(@"max take number count = %d", count);
-    if (count >= [ConfigManager maxTakeNumberCount]){
+    if (count >= [PPConfigManager maxTakeNumberCount]){
         return YES;
     }
     else{
@@ -1673,6 +1725,20 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     }
     [self updateHistoryUsers:users];    
     return YES;
+}
+
++ (NSString*)genderByValue:(int)value
+{
+    if (value == 0){
+        return @"m";
+    }
+    else if (value == 1){
+        return @"f";
+    }
+    else{
+        return @"f";
+    }
+        
 }
 
 @end

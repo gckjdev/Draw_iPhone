@@ -10,7 +10,7 @@
 #import "PPStack.h"
 #import <QuartzCore/QuartzCore.h>
 #import "StrawView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 #import "StrawTouchHandler.h"
 #import "DrawTouchHandler.h"
@@ -43,7 +43,7 @@
 @end
 
 
-#define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
+#define LINE_DEFAULT_WIDTH ([PPConfigManager defaultPenWidth])
 
 @implementation DrawView
 

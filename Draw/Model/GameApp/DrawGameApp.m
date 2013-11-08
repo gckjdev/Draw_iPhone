@@ -8,7 +8,7 @@
 
 #import "DrawGameApp.h"
 #import "MobClickUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShareImageManager.h"
 #import "DrawGameJumpHandler.h"
 #import "HomeController.h"
@@ -46,7 +46,7 @@
 
 - (NSString*)lmwallId
 {
-    return [ConfigManager getLimeiWallId];
+    return [PPConfigManager getLimeiWallId];
 }
 
 - (NSString*)lmAdPublisherId
@@ -96,6 +96,17 @@
 {
     return [MobClickUtils getStringValueByKey:@"DRAW_QQ_APP_KEY" defaultValue:@"801123669"];
 //    return @"801123669";
+}
+
+
+- (NSString*)qqSpaceAppId
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_ID" defaultValue:@"100550661"];
+}
+
+- (NSString*)qqSpaceAppKey
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_KEY" defaultValue:@"7687417d49a2a14c3dd9434d05c29662"];
 }
 
 - (NSString*)qqAppSecret
@@ -149,7 +160,7 @@
 
 - (NSString*)qqWeiboId
 {
-    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_WEIBO_ID" defaultValue:@"LittleGee"];
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_WEIBO_ID" defaultValue:@"drawlively"];
 }
 
 - (NSString*)feedbackTips
@@ -169,12 +180,12 @@
 
 - (NSString *)upgradeMessage:(int)newLevel
 {
-    return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+    return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[PPConfigManager flowerAwardFordLevelUp]];
 }
 
 - (NSString *)degradeMessage:(int)newLevel
 {
-    return [NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+    return [NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel,[PPConfigManager flowerAwardFordLevelUp]];
 }
 
 - (NSString *)popupMessageDialogBackgroundImage
@@ -563,6 +574,11 @@
 - (NSString *)opusClassName{
     
     return @"DrawOpus";
+}
+
+- (NSString *)shareSDKDefaultAppId
+{
+    return @"c16e3fe5e0b";
 }
 
 @end

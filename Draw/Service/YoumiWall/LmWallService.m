@@ -13,7 +13,7 @@
 #import "UIUtils.h"
 #import "AdService.h"
 #import "UserManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "NotificationManager.h"
 
 //#define IPHONE_WALL_ID     ([GameApp lmWallId])  //@"ed21340370b99ad5bd2a5e304e3ea6c4"
@@ -80,7 +80,7 @@ static LmWallService* _defaultService;
     
     [self setUserInfo];
      
-    if ([ConfigManager wallType] == WallTypeLimei){
+    if ([PPConfigManager wallType] == WallTypeLimei){
         NSString* userId = [[UserManager defaultManager] userId];
         PPDebug(@"<LmmobAdWallSDK> UserQueryScore");    
         [self.adWallView immobViewQueryScoreWithAdUnitID:[GameApp lmwallId] WithAccountID:userId];
@@ -95,7 +95,7 @@ static LmWallService* _defaultService;
 {
     [self setUserInfo];
     
-    switch ([ConfigManager wallType]) {
+    switch ([PPConfigManager wallType]) {
         case WallTypeLimei:
         {
             [MobClick event:@"SHOW_LM_WALL"];    

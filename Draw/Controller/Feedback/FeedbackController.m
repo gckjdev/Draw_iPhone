@@ -15,10 +15,10 @@
 //#import "UFPController.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "AccountService.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
 //#import "UMGridViewController.h"
 #import "UIUtils.h"
@@ -27,6 +27,7 @@
 #import "CommonDialog.h"
 #import "UserSettingCell.h"
 #import "PPTableViewController.h"
+#import "GameSNSService.h"
 
 #define HEIGHT_FOR_IPHONE   50
 #define HEIGHT_FOR_IPHONE5  60
@@ -97,7 +98,7 @@
         
         rowOfAppUpdate = count++;
         
-        if ([ConfigManager isInReviewVersion] == NO){
+        if ([PPConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
         else{
@@ -116,7 +117,7 @@
         rowOfFeedback = count++;
 //        rowOfMoreApp = count++;
         rowOfAppUpdate = count++;
-        if ([ConfigManager isInReviewVersion] == NO){
+        if ([PPConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
         else{
@@ -139,17 +140,17 @@
     [aCell.customTextLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
     
     if (anIndex == rowOfShare) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [PPConfigManager getShareFriendReward]];
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
         [aCell.customTextLabel setText:message];
     } 
     else if (anIndex == rowOfFollowSina) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];            
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [PPConfigManager getFollowReward]];            
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowSinaWeibo"), message];
         [aCell.customTextLabel setText:message];
     }
     else if (anIndex == rowOfFollowTencent) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [PPConfigManager getFollowReward]];
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowTencentWeibo"), message];
         [aCell.customTextLabel setText:message];
     }
@@ -201,7 +202,7 @@ enum {
         // reward
         if ([[AccountService defaultService] rewardForShareWeibo] > 0){
             // show message
-            NSString* message = [NSString stringWithFormat:NSLS(@"kGetCoinsByShareToFriends"), [ConfigManager getShareFriendReward]];
+            NSString* message = [NSString stringWithFormat:NSLS(@"kGetCoinsByShareToFriends"), [PPConfigManager getShareFriendReward]];
             [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2.0 isHappy:YES];
         }
         
@@ -227,7 +228,7 @@ enum {
 
     NSString *shareBody = [NSString stringWithFormat:shareBodyModel,
                            NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),
-                           [UIUtils getAppLink:[ConfigManager appId]],
+                           [UIUtils getAppLink:[PPConfigManager appId]],
                            weiboId];
     
     if (buttonIndex == buttonIndexSMS) {
@@ -237,24 +238,50 @@ enum {
 
         [self sendEmailTo:nil ccRecipients:nil bccRecipients:nil subject:emailSubject body:shareBody isHTML:NO delegate:self];
     } else if (buttonIndex == buttonIndexSinaWeibo) {
-        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:shareBody
-                                                                               imageFilePath:nil
-                                                                                successBlock:NULL
-                                                                                failureBlock:NULL];
+        
+        [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+                                                 text:shareBody
+                                               inView:self.view         
+                                           awardCoins:[PPConfigManager getShareFriendReward]
+                                       successMessage:NSLS(@"kSentWeiboSucc")
+                                       failureMessage:NSLS(@"kSentWeiboFailure")];
+        
+//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] publishWeibo:shareBody
+//                                                                               imageFilePath:nil
+//                                                                                successBlock:NULL
+//                                                                                failureBlock:NULL];
         
 
     } else if (buttonIndex == buttonIndexQQWeibo) {
-        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:shareBody
-                                                                               imageFilePath:nil
-                                                                                successBlock:NULL
-                                                                                failureBlock:NULL];
+        
+        [[GameSNSService defaultService] publishWeibo:TYPE_QQ
+                                                 text:shareBody
+                                               inView:self.view
+                                           awardCoins:[PPConfigManager getShareFriendReward]
+                                       successMessage:NSLS(@"kSentWeiboSucc")
+                                       failureMessage:NSLS(@"kSentWeiboFailure")];
+
+        
+//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] publishWeibo:shareBody
+//                                                                               imageFilePath:nil
+//                                                                                successBlock:NULL
+//                                                                                failureBlock:NULL];
         
 
     } else if (buttonIndex == buttonIndexFacebook) {
-        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:shareBody
-                                                                               imageFilePath:nil
-                                                                                successBlock:NULL
-                                                                                failureBlock:NULL];
+        
+        [[GameSNSService defaultService] publishWeibo:TYPE_FACEBOOK
+                                                 text:shareBody
+                                               inView:self.view
+                                           awardCoins:[PPConfigManager getShareFriendReward]
+                                       successMessage:NSLS(@"kSentWeiboSucc")
+                                       failureMessage:NSLS(@"kSentWeiboFailure")];
+
+        
+//        [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] publishWeibo:shareBody
+//                                                                               imageFilePath:nil
+//                                                                                successBlock:NULL
+//                                                                                failureBlock:NULL];
 
     }
     
@@ -311,37 +338,45 @@ enum {
     } 
     
     else if (indexPath.row == rowOfFollowSina){
-        if ([[UserManager defaultManager] hasBindSinaWeibo]){
-            
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] followUser:[GameApp sinaWeiboId]
-                                                                                        userId:nil
-                                                                                  successBlock:^(NSDictionary *userInfo) {
-                                                                                      
-            POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
-
-            } failureBlock:^(NSError *error) {
-                if (error.code == 20506){
-                    //already follow
-                    POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
-                }
-                else{
-                    POSTMSG(@"你未绑定新浪微博或者新浪微博授权已经过期，请到个人设置页面进行新浪微博授权");
-                }
-            }];
-            
-        }
+        
+        [[GameSNSService defaultService] followUser:TYPE_SINA weiboId:nil weiboName:[GameApp sinaWeiboId]];
+        
+        
+//        if ([[UserManager defaultManager] hasBindSinaWeibo]){
+//            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] followUser:[GameApp sinaWeiboId]
+//                                                                                        userId:nil
+//                                                                                  successBlock:^(NSDictionary *userInfo) {
+//                                                                                      
+//            POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
+//
+//            } failureBlock:^(NSError *error) {
+//                if (error.code == 20506){
+//                    //already follow
+//                    POSTMSG(@"谢谢，你已经成功关注了新浪微博官方帐号");
+//                }
+//                else{
+//                    POSTMSG(@"你未绑定新浪微博或者新浪微博授权已经过期，请到个人设置页面进行新浪微博授权");
+//                }
+//            }];
+//            
+//        }
     }else if (indexPath.row == rowOfFollowTencent){
-        if ([[UserManager defaultManager] hasBindQQWeibo]){
-            
-            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] followUser:nil
-                                                                                      userId:[GameApp qqWeiboId]
-                                                                                successBlock:^(NSDictionary *userInfo) {
-                                                                                    POSTMSG(@"谢谢，你已经成功关注了腾讯官方微博帐号");
-                                                                                    
-                                                                                } failureBlock:^(NSError *error) {
-                                                                                    POSTMSG(@"你未绑定腾讯微博或者腾讯微博授权已经过期，请到个人设置页面进行腾讯微博授权");                                                                                    
-                                                                                }];
-        }
+        
+        [[GameSNSService defaultService] followUser:TYPE_QQ weiboId:nil weiboName:[GameApp qqWeiboId]];
+
+        
+//        if ([[UserManager defaultManager] hasBindQQWeibo]){
+//            
+//            [[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] followUser:nil
+//                                                                                      userId:[GameApp qqWeiboId]
+//                                                                                successBlock:^(NSDictionary *userInfo) {
+//                                                                                    POSTMSG(@"谢谢，你已经成功关注了腾讯官方微博帐号");
+//                                                                                    
+//                                                                                } failureBlock:^(NSError *error) {
+//                                                                                    POSTMSG(@"你未绑定腾讯微博或者腾讯微博授权已经过期，请到个人设置页面进行腾讯微博授权");                                                                                    
+//                                                                                }];
+//        }
     }
     
     else if (indexPath.row  == rowOfReportBug) {
@@ -369,8 +404,8 @@ enum {
     }
     
     else if (indexPath.row  == rowOfGiveReview) {
-        PPDebug(@"<FeedbackController>appId :%@", [ConfigManager appId]);
-        [UIUtils gotoReview:[ConfigManager appId]];
+        PPDebug(@"<FeedbackController>appId :%@", [PPConfigManager appId]);
+        [UIUtils gotoReview:[PPConfigManager appId]];
     } 
     
     else if (indexPath.row  == rowOfAbout) {
@@ -542,13 +577,13 @@ SET_CELL_BG_IN_CONTROLLER;
     BOOL hasRewardFollowQQ = [userDefaults boolForKey:FOLLOW_QQ_KEY];
     
     if ([[UserManager defaultManager] hasBindSinaWeibo] && hasRewardFollowSina == NO){
-        [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];
+        [[AccountService defaultService] chargeCoin:[PPConfigManager getFollowReward] source:FollowReward];
         [userDefaults setBool:YES forKey:FOLLOW_SINA_KEY];
         [userDefaults synchronize];
     }
     
     if ([[UserManager defaultManager] hasBindQQWeibo] && hasRewardFollowQQ == NO){
-        [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];        
+        [[AccountService defaultService] chargeCoin:[PPConfigManager getFollowReward] source:FollowReward];        
         [userDefaults setBool:YES forKey:FOLLOW_QQ_KEY];
         [userDefaults synchronize];
     }

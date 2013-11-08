@@ -9,7 +9,7 @@
 #import "BBSNetwork.h"
 #import "PPNetworkRequest.h"
 #import "StringUtil.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @implementation BBSNetwork
 
@@ -22,7 +22,7 @@
                                language:(int)language
 {
     
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -70,7 +70,7 @@
                              bonus:(NSInteger)bonus
 {
     
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -144,7 +144,7 @@
 
 {
     
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -188,7 +188,7 @@
                                keyWord:(NSString*)keyWord
                                  limit:(NSInteger)limit
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -247,7 +247,7 @@
                            drawImage:(NSData *)drawImage
 {
     
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
 
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -325,7 +325,7 @@
                                 limit:(NSInteger)limit
 {
     
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
 
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -368,7 +368,7 @@
                                postId:(NSString *)postId
                               boardId:(NSString *)boardId
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
 
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -406,7 +406,7 @@
                                  userId:(NSString *)userId
                                actionId:(NSString *)actionId
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -450,7 +450,7 @@
                      actionGender:(NSString *)actionGender
                      actionAvatar:(NSString *)actionAvatar
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
 
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -494,7 +494,7 @@
                             userId:(NSString *)userId
                             postId:(NSString *)postId
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
 
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -531,7 +531,7 @@
                                  deviceType:(NSInteger)deviceType
                                      userId:(NSString *)userId
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
 
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -572,7 +572,7 @@
                                expireDate:(NSDate *)expireDate
                                      info:(NSDictionary *)info //for the future
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -617,7 +617,7 @@
                                 postId:(NSString *)postId
                               actionId:(NSString *)actionId
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -659,7 +659,7 @@
                              status:(int)status
                                info:(NSDictionary *)info //for the future
 {
-    baseURL = [ConfigManager getBBSServerURL];
+    baseURL = [PPConfigManager getBBSServerURL];
 
     
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];

@@ -17,7 +17,7 @@
 #import "PPDebug.h"
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "FileUtil.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
@@ -393,7 +393,7 @@ typedef enum{
     MyPaint* currentPaint = _selectedPaint;
 
     
-    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject obj];
     obj.actionList = [currentPaint drawActionList];
@@ -412,7 +412,7 @@ typedef enum{
 {    
     MyPaint* currentPaint = _selectedPaint;
     
-    BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
+    BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < [currentPaint drawDataVersion];
     
     ReplayObject *obj = [ReplayObject obj];
     obj.actionList = [currentPaint drawActionList];

@@ -34,7 +34,7 @@
 #import "DeviceDetection.h"
 #import "DrawGameAnimationManager.h"
 #import "AccountManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawFeed.h"
 #import "ShowFeedController.h"
 #import "UseItemScene.h"
@@ -658,7 +658,7 @@
                       drawActionList:self.drawActionList
                       drawWord:[Word wordWithText:self.wordText
                                             level:WordLevelLow
-                                            score:[ConfigManager offlineDrawMyWordScore]]
+                                            score:[PPConfigManager offlineDrawMyWordScore]]
                       language:1
                       size:CGSizeMake(300, 300) //TODO should update the real size, here for test
                       isCompressed:NO];

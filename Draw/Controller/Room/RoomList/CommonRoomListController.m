@@ -13,7 +13,7 @@
 #import "GameConstants.pb.h"
 #import "CommonMessageCenter.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ChargeController.h"
 #import "LmWallService.h"
 #import "CommonRoomListCell.h"
@@ -26,7 +26,7 @@
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"
-#define ROOMS_COUNT_PER_PAGE    ([ConfigManager onlineRoomCountPerPage])
+#define ROOMS_COUNT_PER_PAGE    ([PPConfigManager onlineRoomCountPerPage])
 
 #define REFRESH_ROOMS_TIME_INTERVAL 2
 
@@ -430,7 +430,7 @@
                         count:ROOMS_COUNT_PER_PAGE
                      roomType:filter
                       keyword:nil
-                       gameId:[ConfigManager gameId]];
+                       gameId:[PPConfigManager gameId]];
     
     _currentRoomType = filter;
 }
@@ -490,7 +490,7 @@
             POSTMSG(NSLS(@"kPsdNotMatch"));
         }
     }else{
-        if ([ConfigManager wallEnabled]) {
+        if ([PPConfigManager wallEnabled]) {
             [self showWall];
         }else {
             ChargeController* controller = [[[ChargeController alloc] init] autorelease];
@@ -530,7 +530,7 @@
                                             count:ROOMS_COUNT_PER_PAGE
                                          roomType:_currentRoomType
                                           keyword:keywords
-                                           gameId:[ConfigManager gameId]];
+                                           gameId:[PPConfigManager gameId]];
     [self showActivityWithText:NSLS(@"kSearchingRoom")];
     [self pauseRefreshingRooms];
 }

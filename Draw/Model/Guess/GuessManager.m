@@ -7,7 +7,7 @@
 //
 
 #import "GuessManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "AccountService.h"
 #import "UserManager.h"
 #import "TimeUtils.h"
@@ -36,7 +36,7 @@
 + (NSDate *)getContestBeginTime{
     
     NSString *today = dateToStringByFormat([NSDate date], @"yyyyMMdd");// yyyyMMddHHmmss
-    NSString *beginTime = [today stringByAppendingString:[ConfigManager getContestBeginTimeString]];
+    NSString *beginTime = [today stringByAppendingString:[PPConfigManager getContestBeginTimeString]];
     NSDate *date = dateFromStringByFormat(@"yyyyMMddHHmmss", beginTime);
     return date;
 }
@@ -90,11 +90,11 @@
     
     switch (mode) {
         case PBUserGuessModeGuessModeHappy:
-            award = [ConfigManager getAwardInHappyMode];
+            award = [PPConfigManager getAwardInHappyMode];
             break;
             
         case PBUserGuessModeGuessModeGenius:
-            award = (passCount - NUM_COUNT_AWARD_ONCE) / NUM_COUNT_AWARD_ONCE * [ConfigManager getDeltaAwardInGeniusMode] + [ConfigManager getAwardInGeniusMode];
+            award = (passCount - NUM_COUNT_AWARD_ONCE) / NUM_COUNT_AWARD_ONCE * [PPConfigManager getDeltaAwardInGeniusMode] + [PPConfigManager getAwardInGeniusMode];
             break;
             
         default:
@@ -172,11 +172,11 @@
 + (int)getDeductCoins:(int)mode{
     
     if (mode == PBUserGuessModeGuessModeHappy) {
-        return [ConfigManager getDeductCoinsInHappyMode];
+        return [PPConfigManager getDeductCoinsInHappyMode];
     }else if(mode == PBUserGuessModeGuessModeGenius){
-        return [ConfigManager getDeductCoinsInGeniusMode];
+        return [PPConfigManager getDeductCoinsInGeniusMode];
     }else{
-        return [ConfigManager getDeductCoinsInContestMode];
+        return [PPConfigManager getDeductCoinsInContestMode];
     }
 }
 
@@ -228,9 +228,9 @@
 + (int)getGuessExpireTime:(int)mode{
     
     if (mode == PBUserGuessModeGuessModeHappy) {
-        return [ConfigManager getHappyGuessExpireTime];
+        return [PPConfigManager getHappyGuessExpireTime];
     }else if(mode == PBUserGuessModeGuessModeGenius){
-        return [ConfigManager getGeniusGuessExpireTime];
+        return [PPConfigManager getGeniusGuessExpireTime];
     }else{
         return INT32_MAX;
     }
@@ -478,7 +478,7 @@
 
                [GuessManager getGuessExpireTime:PBUserGuessModeGuessModeGenius],
                          
-               [ConfigManager getTipUseTimesLimitInGeniusMode]];
+               [PPConfigManager getTipUseTimesLimitInGeniusMode]];
     
     return message;
 }

@@ -39,7 +39,7 @@
 #import "Contest.h"
 #import "ContestController.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
 #import "DrawRecoveryService.h"
@@ -48,7 +48,7 @@
 #import "SelectHotWordController.h"
 #import "MBProgressHUD.h"
 #import "GameSNSService.h"
-#import "PPSNSIntegerationService.h"
+//#import "PPSNSIntegerationService.h"
 #import "ShareService.h"
 #import "FileUtil.h"
 #import "BuyItemView.h"
@@ -1060,46 +1060,51 @@
 - (void)shareViaSNS:(SnsType)type imagePath:(NSString*)imagePath
 {
 
-    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
+//    PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:type];
     
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = nil;
     
     if ([[self getOpusComment] length] > 0){
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
     }
     else{
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, self.word.text, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
     }
     
     if (imagePath != nil) {
-        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
-            
-            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
-//            dispatch_async(dispatch_get_main_queue(), ^{
-                int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
-                if (earnCoins > 0){
-//                    NSString* msg = [NSString stringWithFormat:NSLS(@"kPublishWeiboSuccAndEarnCoins"), earnCoins];
-//                    [self popupMessage:msg title:nil];
-                }
-//            });
-            
-            
-        } failureBlock:^(NSError *error) {
-            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
-        }];
         
-        // follow weibo if NOT followed
-        if ([GameSNSService hasFollowOfficialWeibo:snsService] == NO){
-            [snsService followUser:[snsService officialWeiboId]
-                         userId:[snsService officialWeiboId]
-                   successBlock:^(NSDictionary *userInfo) {
-                       PPDebug(@"follow official weibo success");
-                       [GameSNSService updateFollowOfficialWeibo:snsService];
-                   } failureBlock:^(NSError *error) {
-                       PPDebug(@"follow weibo but error=%@", [error description]);
-                   }];
-        }
+        [[GameSNSService defaultService] publishWeiboAtBackground:type
+                                                             text:text
+                                                    imageFilePath:imagePath
+                                                       awardCoins:[PPConfigManager getCreateOpusWeiboReward]
+                                                   successMessage:NSLS(@"kSentWeiboSucc")
+                                                   failureMessage:NSLS(@"kSentWeiboFailure")];
+        
+        
+//        [snsService publishWeibo:text imageFilePath:imagePath successBlock:^(NSDictionary *userInfo) {
+//            
+//            PPDebug(@"%@ publish weibo succ", [snsService snsName]);
+//                int earnCoins = [[AccountService defaultService] rewardForShareWeibo];
+//                if (earnCoins > 0){
+//
+//            
+//            
+//        } failureBlock:^(NSError *error) {
+//            PPDebug(@"%@ publish weibo failure", [snsService snsName]);
+//        }];
+        
+//        // follow weibo if NOT followed
+//        if ([GameSNSService hasFollowOfficialWeibo:snsService] == NO){
+//            [snsService followUser:[snsService officialWeiboId]
+//                         userId:[snsService officialWeiboId]
+//                   successBlock:^(NSDictionary *userInfo) {
+//                       PPDebug(@"follow official weibo success");
+//                       [GameSNSService updateFollowOfficialWeibo:snsService];
+//                   } failureBlock:^(NSError *error) {
+//                       PPDebug(@"follow weibo but error=%@", [error description]);
+//                   }];
+//        }
         
     }
     
@@ -1111,7 +1116,7 @@
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     self.tempImageFilePath = [[ShareService defaultService] synthesisImageWithImage:image
-                                                                      waterMarkText:[ConfigManager getShareImageWaterMark]];
+                                                                      waterMarkText:[PPConfigManager getShareImageWaterMark]];
     [pool drain];
 }
 
@@ -1230,12 +1235,12 @@
 
     
     if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-        [v setMaxTitleLength:[ConfigManager maxDrawEnglishTitleLen]];
+        [v setMaxTitleLength:[PPConfigManager maxDrawEnglishTitleLen]];
     }else{
-        [v setMaxTitleLength:[ConfigManager maxDrawChineseTitleLen]];
+        [v setMaxTitleLength:[PPConfigManager maxDrawChineseTitleLen]];
     }
     
-    [v setMaxContentLength:[ConfigManager getMaxLengthOfDrawDesc]];
+    [v setMaxContentLength:[PPConfigManager getMaxLengthOfDrawDesc]];
 
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];

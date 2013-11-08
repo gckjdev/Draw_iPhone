@@ -14,7 +14,7 @@
 #import "GameBasic.pb.h"
 #import "UserManager.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ItemType.h"
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
@@ -56,7 +56,7 @@ static FeedService *_staticFeedService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     if (userId  == nil){
         // this is mainly for HOME display
-        userId = [ConfigManager getSystemUserId];
+        userId = [PPConfigManager getSystemUserId];
     }
     
     LanguageType lang = UnknowType;
@@ -124,7 +124,7 @@ static FeedService *_staticFeedService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     if (userId  == nil){
         // this is mainly for HOME display
-        userId = [ConfigManager getSystemUserId];
+        userId = [PPConfigManager getSystemUserId];
     }
     
     dispatch_queue_t getFeedListQueue = [self getQueue:GET_FEEDLIST_QUEUE];
@@ -279,96 +279,29 @@ static FeedService *_staticFeedService = nil;
     
 }
 
-- (void)getUserFeedList:(NSString *)userId
-                   type:(FeedListType)type
-                 offset:(NSInteger)offset
-                  limit:(NSInteger)limit
-               delegate:(id<FeedServiceDelegate>)delegate
-{
-    dispatch_async(workingQueue, ^{
-        
-        // add by Benson
-        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
-        
-        CommonNetworkOutput* output = [GameNetworkRequest
-                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL
-                                       userId:userId
-                                       feedListType:type
-                                       offset:offset
-                                       limit:limit
-                                       lang:UnknowType];
-        NSArray *list = nil;
-        NSInteger resultCode = output.resultCode;
-        if (resultCode == ERROR_SUCCESS){
-            PPDebug(@"<FeedService> getUserFeedList type=%d finish, start to parse data.", type);
-            
-            @try{
-                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
-                resultCode = [response resultCode];
-                NSArray *pbFeedList = [response feedList];
-                list = [FeedManager parsePbFeedList:pbFeedList];
-            }
-            @catch (NSException *exception) {
-                PPDebug(@"<getUserFeedList> catch exception =%@", [exception description]);
-                resultCode = ERROR_CLIENT_PARSE_DATA;
-            }
-            @finally {
-            }
-        }
-        
-        PPDebug(@"<FeedService> parse data finish, start display the views.");
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
-                [delegate didGetFeedList:list targetUser:userId type:type resultCode:resultCode];
-            }
-        });
-        
-        [subPool drain];
-    });
-}
-
-- (void)getUserFavoriteOpusList:(NSString *)userId
-                         offset:(NSInteger)offset
-                          limit:(NSInteger)limit
-                       delegate:(id<FeedServiceDelegate>)delegate
-{
-    [self getUserFeedList:userId
-                     type:FeedListTypeUserFavorite
-                   offset:offset
-                    limit:limit
-                 delegate:delegate];
-}
-
-- (void)getUserFeedList:(NSString *)userId
-                 offset:(NSInteger)offset 
-                  limit:(NSInteger)limit 
-               delegate:(id<FeedServiceDelegate>)delegate
-{
-    
-    
-    [self getUserFeedList:userId
-                     type:FeedListTypeUserFeed
-                   offset:offset
-                    limit:limit
-                 delegate:delegate];
-    
+//- (void)getUserFeedList:(NSString *)userId
+//                   type:(FeedListType)type
+//                 offset:(NSInteger)offset
+//                  limit:(NSInteger)limit
+//               delegate:(id<FeedServiceDelegate>)delegate
+//{
 //    dispatch_async(workingQueue, ^{
-//
+//        
 //        // add by Benson
 //        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
 //        
-//        CommonNetworkOutput* output = [GameNetworkRequest 
-//                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL 
-//                                       userId:userId 
-//                                       feedListType:FeedListTypeUserFeed 
-//                                       offset:offset 
-//                                       limit:limit 
+//        CommonNetworkOutput* output = [GameNetworkRequest
+//                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL
+//                                       userId:userId
+//                                       feedListType:type
+//                                       offset:offset
+//                                       limit:limit
 //                                       lang:UnknowType];
 //        NSArray *list = nil;
 //        NSInteger resultCode = output.resultCode;
 //        if (resultCode == ERROR_SUCCESS){
-//            PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
-//
+//            PPDebug(@"<FeedService> getUserFeedList type=%d finish, start to parse data.", type);
+//            
 //            @try{
 //                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
 //                resultCode = [response resultCode];
@@ -382,17 +315,58 @@ static FeedService *_staticFeedService = nil;
 //            @finally {
 //            }
 //        }
-//
+//        
 //        PPDebug(@"<FeedService> parse data finish, start display the views.");
 //        dispatch_async(dispatch_get_main_queue(), ^{
 //            if (delegate && [delegate respondsToSelector:@selector(didGetFeedList:targetUser:type:resultCode:)]) {
-//                [delegate didGetFeedList:list targetUser:userId type:FeedListTypeUserFeed resultCode:resultCode];
+//                [delegate didGetFeedList:list targetUser:userId type:type resultCode:resultCode];
 //            }
 //        });
 //        
 //        [subPool drain];
 //    });
+//}
+
+- (void)getUserFavoriteOpusList:(NSString *)userId
+                         offset:(NSInteger)offset
+                          limit:(NSInteger)limit
+                       delegate:(id<FeedServiceDelegate>)delegate
+{
+//    [self getUserFeedList:userId
+//                     type:FeedListTypeUserFavorite
+//                   offset:offset
+//                    limit:limit
+//                 delegate:delegate];
+    
+    [self getUserOpusList:userId
+                   offset:offset
+                    limit:limit
+                     type:FeedListTypeUserFavorite
+                 delegate:delegate];
 }
+
+- (void)getUserFeedList:(NSString *)userId
+                 offset:(NSInteger)offset 
+                  limit:(NSInteger)limit 
+               delegate:(id<FeedServiceDelegate>)delegate
+{
+    
+    
+//    [self getUserFeedList:userId
+//                     type:FeedListTypeUserFeed
+//                   offset:offset
+//                    limit:limit
+//                 delegate:delegate];
+    
+    [self getUserOpusList:userId
+                   offset:offset
+                    limit:limit
+                     type:FeedListTypeUserFeed
+                 delegate:delegate];
+}
+
+
+
 
 - (void)getUserOpusList:(NSString *)userId
                  offset:(NSInteger)offset 
@@ -415,8 +389,7 @@ static FeedService *_staticFeedService = nil;
         NSArray *list = nil;
         NSInteger resultCode = output.resultCode;
         if (resultCode == ERROR_SUCCESS){
-            PPDebug(@"<FeedService> getUserFeedList finish, start to parse data.");
-//            [delegate showActivityWithText:NSLS(@"kParsingData")];
+            PPDebug(@"<FeedService> getUserOpusList finish, start to parse data.");
             @try{
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 resultCode = [response resultCode];
@@ -444,6 +417,54 @@ static FeedService *_staticFeedService = nil;
         [subPool drain];
     });
 }
+
+- (void)getUserOpusList:(NSString *)userId
+                 offset:(NSInteger)offset
+                  limit:(NSInteger)limit
+                   type:(FeedListType)type
+              completed:(GetFeedListCompleteBlock)completed{
+    
+    dispatch_async(workingQueue, ^{
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest
+                                       getFeedListWithProtocolBuffer:TRAFFIC_SERVER_URL
+                                       userId:userId
+                                       feedListType:type
+                                       offset:offset
+                                       limit:limit
+                                       lang:UnknowType];
+        NSArray *list = nil;
+        NSInteger resultCode = output.resultCode;
+        if (resultCode == ERROR_SUCCESS){
+            PPDebug(@"<FeedService> getUserOpusList finish, start to parse data.");
+            //            [delegate showActivityWithText:NSLS(@"kParsingData")];
+            @try{
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                resultCode = [response resultCode];
+                NSArray *pbFeedList = [response feedList];
+                list = [FeedManager parsePbFeedList:pbFeedList];
+            }
+            @catch (NSException *exception) {
+                PPDebug(@"<getUserOpusList> catch exception =%@", [exception description]);
+                resultCode = ERROR_CLIENT_PARSE_DATA;
+            }
+            @finally {
+            }
+            
+        }
+        PPDebug(@"<FeedService> parse data finish, start display the views.");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            completed(resultCode, list);
+        });
+        
+        [subPool drain];
+    });
+}
+
 
 - (void)getOpusCommentList:(NSString *)opusId 
                       type:(CommentType)type
@@ -507,7 +528,7 @@ static FeedService *_staticFeedService = nil;
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
         
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getMyCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL 
                                        userId:userId 
@@ -553,7 +574,6 @@ static FeedService *_staticFeedService = nil;
     [queue cancelAllOperations];
 
 //    __block DrawFeed *feed = nil;
-    
     
     [queue addOperationWithBlock:^{
         NSInteger resultCode = 0;
@@ -765,7 +785,7 @@ static FeedService *_staticFeedService = nil;
             delegete:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         
@@ -804,7 +824,7 @@ static FeedService *_staticFeedService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         
@@ -866,7 +886,7 @@ static FeedService *_staticFeedService = nil;
           delegate:(id<FeedServiceDelegate>)delegate
 {
         NSString* userId = [[UserManager defaultManager] userId];
-        NSString* appId = [ConfigManager appId];
+        NSString* appId = [PPConfigManager appId];
     
         dispatch_async(workingQueue, ^{
             CommonNetworkOutput* output = [GameNetworkRequest deleteFeed:TRAFFIC_SERVER_URL appId:appId feedId:feed.feedId userId:userId];
@@ -894,7 +914,7 @@ static FeedService *_staticFeedService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     
     dispatch_async(workingQueue, ^{
@@ -952,7 +972,7 @@ static FeedService *_staticFeedService = nil;
            resultBlock:(FeedActionResultBlock)resultBlock
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL
@@ -1052,7 +1072,7 @@ static FeedService *_staticFeedService = nil;
      resultHandler:(void(^)(int resultCode))resultHandler
 {
 //    NSString* userId = [[UserManager defaultManager] userId];
-//    NSString* appId = [ConfigManager appId];
+//    NSString* appId = [PPConfigManager appId];
     
     NSData* imgData = nil;
     if (image) {
@@ -1096,7 +1116,7 @@ static FeedService *_staticFeedService = nil;
                  failBlock:(void (^)(void))failBlock
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
     

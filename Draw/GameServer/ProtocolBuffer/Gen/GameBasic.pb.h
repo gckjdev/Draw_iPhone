@@ -57,6 +57,8 @@
 @class PBPromotionInfo;
 @class PBPromotionInfo_Builder;
 @class PBSNSUser;
+@class PBSNSUserCredential;
+@class PBSNSUserCredential_Builder;
 @class PBSNSUser_Builder;
 @class PBSize;
 @class PBSize_Builder;
@@ -273,6 +275,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasAccessTokenSecret_:1;
   BOOL hasRefreshToken_:1;
   BOOL hasQqOpenId_:1;
+  BOOL hasCredential_:1;
   int32_t type;
   int32_t expireTime;
   NSString* userId;
@@ -281,6 +284,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   NSString* accessTokenSecret;
   NSString* refreshToken;
   NSString* qqOpenId;
+  NSString* credential;
 }
 - (BOOL) hasType;
 - (BOOL) hasUserId;
@@ -290,6 +294,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (BOOL) hasRefreshToken;
 - (BOOL) hasExpireTime;
 - (BOOL) hasQqOpenId;
+- (BOOL) hasCredential;
 @property (readonly) int32_t type;
 @property (readonly, retain) NSString* userId;
 @property (readonly, retain) NSString* nickName;
@@ -298,6 +303,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @property (readonly, retain) NSString* refreshToken;
 @property (readonly) int32_t expireTime;
 @property (readonly, retain) NSString* qqOpenId;
+@property (readonly, retain) NSString* credential;
 
 + (PBSNSUser*) defaultInstance;
 - (PBSNSUser*) defaultInstance;
@@ -372,6 +378,68 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (NSString*) qqOpenId;
 - (PBSNSUser_Builder*) setQqOpenId:(NSString*) value;
 - (PBSNSUser_Builder*) clearQqOpenId;
+
+- (BOOL) hasCredential;
+- (NSString*) credential;
+- (PBSNSUser_Builder*) setCredential:(NSString*) value;
+- (PBSNSUser_Builder*) clearCredential;
+@end
+
+@interface PBSNSUserCredential : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasCredential_:1;
+  int32_t type;
+  NSString* credential;
+}
+- (BOOL) hasType;
+- (BOOL) hasCredential;
+@property (readonly) int32_t type;
+@property (readonly, retain) NSString* credential;
+
++ (PBSNSUserCredential*) defaultInstance;
+- (PBSNSUserCredential*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBSNSUserCredential_Builder*) builder;
++ (PBSNSUserCredential_Builder*) builder;
++ (PBSNSUserCredential_Builder*) builderWithPrototype:(PBSNSUserCredential*) prototype;
+
++ (PBSNSUserCredential*) parseFromData:(NSData*) data;
++ (PBSNSUserCredential*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSNSUserCredential*) parseFromInputStream:(NSInputStream*) input;
++ (PBSNSUserCredential*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBSNSUserCredential*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBSNSUserCredential*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBSNSUserCredential_Builder : PBGeneratedMessage_Builder {
+@private
+  PBSNSUserCredential* result;
+}
+
+- (PBSNSUserCredential*) defaultInstance;
+
+- (PBSNSUserCredential_Builder*) clear;
+- (PBSNSUserCredential_Builder*) clone;
+
+- (PBSNSUserCredential*) build;
+- (PBSNSUserCredential*) buildPartial;
+
+- (PBSNSUserCredential_Builder*) mergeFrom:(PBSNSUserCredential*) other;
+- (PBSNSUserCredential_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBSNSUserCredential_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBSNSUserCredential_Builder*) setType:(int32_t) value;
+- (PBSNSUserCredential_Builder*) clearType;
+
+- (BOOL) hasCredential;
+- (NSString*) credential;
+- (PBSNSUserCredential_Builder*) setCredential:(NSString*) value;
+- (PBSNSUserCredential_Builder*) clearCredential;
 @end
 
 @interface PBUserLevel : PBGeneratedMessage {
@@ -475,17 +543,17 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasFacetimeId_:1;
   BOOL hasXiaojiNumber_:1;
   BOOL hasEmail_:1;
-  BOOL hasPassword_:1;
   BOOL hasBloodGroup_:1;
   BOOL hasDeviceType_:1;
   BOOL hasDeviceId_:1;
   BOOL hasDeviceOs_:1;
   BOOL hasDeviceModel_:1;
+  BOOL hasPassword_:1;
   BOOL hasBirthday_:1;
   BOOL hasBackgroundUrl_:1;
-  BOOL hasDeviceToken_:1;
   BOOL hasLanguage_:1;
   BOOL hasCountryCode_:1;
+  BOOL hasDeviceToken_:1;
   BOOL hasOpenInfoType_:1;
   BOOL gender_:1;
   BOOL canShakeNumber_:1;
@@ -520,20 +588,21 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   NSString* facetimeId;
   NSString* xiaojiNumber;
   NSString* email;
-  NSString* password;
   NSString* bloodGroup;
   NSString* deviceType;
   NSString* deviceId;
   NSString* deviceOs;
   NSString* deviceModel;
+  NSString* password;
   NSString* birthday;
   NSString* backgroundUrl;
-  NSString* deviceToken;
   NSString* language;
   NSString* countryCode;
+  NSString* deviceToken;
   PBOpenInfoType openInfoType;
   NSMutableArray* mutableBlockDeviceIdsList;
   NSMutableArray* mutableAttributesList;
+  NSMutableArray* mutableSnsCredentialsList;
   NSMutableArray* mutableItemsList;
   NSMutableArray* mutableSnsUsersList;
 }
@@ -629,6 +698,8 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @property (readonly) int32_t singRecordLimit;
 - (NSArray*) snsUsersList;
 - (PBSNSUser*) snsUsersAtIndex:(int32_t) index;
+- (NSArray*) snsCredentialsList;
+- (PBSNSUserCredential*) snsCredentialsAtIndex:(int32_t) index;
 - (NSArray*) attributesList;
 - (PBKeyValue*) attributesAtIndex:(int32_t) index;
 - (NSArray*) itemsList;
@@ -721,6 +792,13 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (NSString*) xiaojiNumber;
 - (PBGameUser_Builder*) setXiaojiNumber:(NSString*) value;
 - (PBGameUser_Builder*) clearXiaojiNumber;
+
+- (NSArray*) snsCredentialsList;
+- (PBSNSUserCredential*) snsCredentialsAtIndex:(int32_t) index;
+- (PBGameUser_Builder*) replaceSnsCredentialsAtIndex:(int32_t) index with:(PBSNSUserCredential*) value;
+- (PBGameUser_Builder*) addSnsCredentials:(PBSNSUserCredential*) value;
+- (PBGameUser_Builder*) addAllSnsCredentials:(NSArray*) values;
+- (PBGameUser_Builder*) clearSnsCredentialsList;
 
 - (BOOL) hasIsPlaying;
 - (BOOL) isPlaying;
@@ -3765,24 +3843,32 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasFame_:1;
   BOOL hasCreateDate_:1;
   BOOL hasMemberFee_:1;
-  BOOL hasGroupId_:1;
-  BOOL hasName_:1;
+  BOOL hasCapacity_:1;
+  BOOL hasSize_:1;
+  BOOL hasGuestSize_:1;
+  BOOL hasGuestCapacity_:1;
+  BOOL hasMedalImage_:1;
+  BOOL hasBgImage_:1;
   BOOL hasSignature_:1;
   BOOL hasDesc_:1;
-  BOOL hasBgImage_:1;
-  BOOL hasMedalImage_:1;
+  BOOL hasName_:1;
+  BOOL hasGroupId_:1;
   BOOL hasCreator_:1;
   int64_t balance;
   int32_t level;
   int32_t fame;
   int32_t createDate;
   int32_t memberFee;
-  NSString* groupId;
-  NSString* name;
+  int32_t capacity;
+  int32_t size;
+  int32_t guestSize;
+  int32_t guestCapacity;
+  NSString* medalImage;
+  NSString* bgImage;
   NSString* signature;
   NSString* desc;
-  NSString* bgImage;
-  NSString* medalImage;
+  NSString* name;
+  NSString* groupId;
   PBGroupUser* creator;
   NSMutableArray* mutableTitlesList;
   NSMutableArray* mutableAdminsList;
@@ -3796,8 +3882,12 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (BOOL) hasBalance;
 - (BOOL) hasCreateDate;
 - (BOOL) hasMemberFee;
-- (BOOL) hasSignature;
+- (BOOL) hasCapacity;
+- (BOOL) hasSize;
+- (BOOL) hasGuestSize;
+- (BOOL) hasGuestCapacity;
 - (BOOL) hasDesc;
+- (BOOL) hasSignature;
 - (BOOL) hasBgImage;
 - (BOOL) hasMedalImage;
 - (BOOL) hasCreator;
@@ -3808,8 +3898,12 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @property (readonly) int64_t balance;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t memberFee;
-@property (readonly, retain) NSString* signature;
+@property (readonly) int32_t capacity;
+@property (readonly) int32_t size;
+@property (readonly) int32_t guestSize;
+@property (readonly) int32_t guestCapacity;
 @property (readonly, retain) NSString* desc;
+@property (readonly, retain) NSString* signature;
 @property (readonly, retain) NSString* bgImage;
 @property (readonly, retain) NSString* medalImage;
 @property (readonly, retain) PBGroupUser* creator;
@@ -3891,15 +3985,35 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroup_Builder*) setMemberFee:(int32_t) value;
 - (PBGroup_Builder*) clearMemberFee;
 
-- (BOOL) hasSignature;
-- (NSString*) signature;
-- (PBGroup_Builder*) setSignature:(NSString*) value;
-- (PBGroup_Builder*) clearSignature;
+- (BOOL) hasCapacity;
+- (int32_t) capacity;
+- (PBGroup_Builder*) setCapacity:(int32_t) value;
+- (PBGroup_Builder*) clearCapacity;
+
+- (BOOL) hasSize;
+- (int32_t) size;
+- (PBGroup_Builder*) setSize:(int32_t) value;
+- (PBGroup_Builder*) clearSize;
+
+- (BOOL) hasGuestSize;
+- (int32_t) guestSize;
+- (PBGroup_Builder*) setGuestSize:(int32_t) value;
+- (PBGroup_Builder*) clearGuestSize;
+
+- (BOOL) hasGuestCapacity;
+- (int32_t) guestCapacity;
+- (PBGroup_Builder*) setGuestCapacity:(int32_t) value;
+- (PBGroup_Builder*) clearGuestCapacity;
 
 - (BOOL) hasDesc;
 - (NSString*) desc;
 - (PBGroup_Builder*) setDesc:(NSString*) value;
 - (PBGroup_Builder*) clearDesc;
+
+- (BOOL) hasSignature;
+- (NSString*) signature;
+- (PBGroup_Builder*) setSignature:(NSString*) value;
+- (PBGroup_Builder*) clearSignature;
 
 - (BOOL) hasBgImage;
 - (NSString*) bgImage;

@@ -8,7 +8,7 @@
 
 #import "DrawAction.h"
 #import "DrawColor.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShapeAction.h"
 #import "ChangeBackAction.h"
 #import "PaintAction.h"
@@ -438,7 +438,7 @@
     pbBBSDrawC.canvassize->height = size.height;
     pbBBSDrawC.canvassize->width = size.width;
     
-    pbBBSDrawC.version = [ConfigManager currentDrawDataVersion];
+    pbBBSDrawC.version = [PPConfigManager currentDrawDataVersion];
     pbBBSDrawC.has_version = 1;
     
     int count = [drawActionList count];
@@ -503,7 +503,7 @@
     pbDrawC.canvassize->height = size.height;
     pbDrawC.canvassize->width = size.width;
     
-    pbDrawC.version = [ConfigManager currentDrawDataVersion];
+    pbDrawC.version = [PPConfigManager currentDrawDataVersion];
     pbDrawC.has_version = 1;
     
     pbDrawC.iscompressed = isCompressed;
@@ -594,7 +594,7 @@
         CGSizeToPBSizeC(size, pbNoCompressDrawDataC.canvassize);
 
         // set version
-        pbNoCompressDrawDataC.version = [ConfigManager currentDrawDataVersion];
+        pbNoCompressDrawDataC.version = [PPConfigManager currentDrawDataVersion];
         pbNoCompressDrawDataC.has_version = 1;
 
         // set bg image name

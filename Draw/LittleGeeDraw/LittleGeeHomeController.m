@@ -180,7 +180,7 @@ static int popOptionListWithoutFreeCoinsEn[] = {
 
 static int* getPopOptionList()
 {
-    if ([ConfigManager wallEnabled]) {
+    if ([PPConfigManager wallEnabled]) {
         if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
             return popOptionListWithFreeCoins;
         } else {
@@ -198,7 +198,7 @@ static int* getPopOptionList()
 
 int getPopOptionCount()
 {
-    if ([ConfigManager wallEnabled]) {
+    if ([PPConfigManager wallEnabled]) {
         if ([[UserManager defaultManager] getLanguageType] == ChineseType) {
             return (PopOptionCount);
         } else {
@@ -330,7 +330,7 @@ int getPopOptionCount()
     if ([[UserManager defaultManager] hasUser]) {
         //first enter game, show side bar
         
-        [self showOptionSheetForTime:[ConfigManager littleGeeFirstShowOptionsDuration]];
+        [self showOptionSheetForTime:[PPConfigManager littleGeeFirstShowOptionsDuration]];
     }
 }
 
@@ -418,7 +418,7 @@ int getPopOptionCount()
             if ([_optionSheet isVisable]) {
                 [_optionSheet hideActionSheet];
             } else {
-                [self showOptionSheetForTime:[ConfigManager littleGeeShowOptionsDuration]];
+                [self showOptionSheetForTime:[PPConfigManager littleGeeShowOptionsDuration]];
             }
             return;//don't reset badge
         }break;
@@ -837,7 +837,7 @@ int getPopOptionCount()
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index //default 20
 {
-    return [ConfigManager getHotOpusCountOnce];
+    return [PPConfigManager getHotOpusCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

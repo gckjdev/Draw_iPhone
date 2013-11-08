@@ -19,7 +19,7 @@
 #import "Draw.h"
 #import "FeedManager.h"
 #import "MyPaintManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
 #import "DrawFeed.h"
@@ -168,7 +168,7 @@ static DrawDataService* _defaultDrawDataService = nil;
         PBDrawAction *action = [drawAction toPBDrawAction];
         [builder addDrawData:action];
     }
-    [builder setVersion:[ConfigManager currentDrawDataVersion]];
+    [builder setVersion:[PPConfigManager currentDrawDataVersion]];
     [builder setIsCompressed:isCompressed];
     
     PBDraw* draw = [builder build];        
@@ -195,7 +195,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* signature = [[UserManager defaultManager] signature];
     
     //    PBDraw *draw = [self buildPBDraw:userId
@@ -285,7 +285,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* signature = [[UserManager defaultManager] signature];    
 
     BOOL isCompressed = NO;
@@ -366,7 +366,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     NSString *words = [guessWords componentsJoinedByString:@":"];    
     

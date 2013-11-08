@@ -14,7 +14,7 @@
 #import "LogUtil.h"
 #import "FriendManager.h"
 #import "TimeUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "MyFriend.h"
 #import "UserService.h"
 #import "PPGameNetworkRequest.h"
@@ -43,8 +43,8 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest findFriends:SERVER_URL 
-                                                                appId:[ConfigManager appId] 
-                                                               gameId:[ConfigManager gameId]
+                                                                appId:[PPConfigManager appId] 
+                                                               gameId:[PPConfigManager gameId]
                                                                userId:userId 
                                                                  type:type
                                                            startIndex:0 
@@ -86,8 +86,8 @@ FriendService* globalGetFriendService()
     dispatch_async(workingQueue, ^{         
         NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
-                                                                appId:[ConfigManager appId] 
-                                                               gameId:[ConfigManager gameId]
+                                                                appId:[PPConfigManager appId] 
+                                                               gameId:[PPConfigManager gameId]
                                                                userId:userId
                                                             keyString:searchString 
                                                            startIndex:0 
@@ -119,7 +119,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest followUser:SERVER_URL 
-                                                               appId:[ConfigManager appId]
+                                                               appId:[PPConfigManager appId]
                                                               userId:userId 
                                                    targetUserIdArray:targetList];             
         
@@ -154,7 +154,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
-                                                                 appId:[ConfigManager appId]
+                                                                 appId:[PPConfigManager appId]
                                                                 userId:userId 
                                                      targetUserIdArray:targetList];             
         
@@ -184,7 +184,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest followUser:SERVER_URL 
-                                                               appId:[ConfigManager appId]
+                                                               appId:[PPConfigManager appId]
                                                               userId:userId 
                                                    targetUserIdArray:targetList];             
         
@@ -219,7 +219,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest followUser:SERVER_URL 
-                                                               appId:[ConfigManager appId]
+                                                               appId:[PPConfigManager appId]
                                                               userId:userId 
                                                    targetUserIdArray:targetList];             
         
@@ -249,7 +249,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
-                                                                 appId:[ConfigManager appId]
+                                                                 appId:[PPConfigManager appId]
                                                                 userId:userId 
                                                      targetUserIdArray:targetList];             
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -275,7 +275,7 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest unFollowUser:SERVER_URL 
-                                                                 appId:[ConfigManager appId]
+                                                                 appId:[PPConfigManager appId]
                                                                 userId:fan.friendUserId 
                                                      targetUserIdArray:targetList];             
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -301,8 +301,8 @@ FriendService* globalGetFriendService()
     
     dispatch_async(workingQueue, ^{            
         CommonNetworkOutput* output = [GameNetworkRequest getFriendList:SERVER_URL
-                                                                  appId:[ConfigManager appId] 
-                                                                 gameId:[ConfigManager gameId] 
+                                                                  appId:[PPConfigManager appId] 
+                                                                 gameId:[PPConfigManager gameId] 
                                                                  userId:userId 
                                                                    type:type 
                                                                  offset:offset
@@ -330,8 +330,8 @@ FriendService* globalGetFriendService()
         
         NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest getRelationCount:SERVER_URL
-                                                                     appId:[ConfigManager appId]
-                                                                    gameId:[ConfigManager gameId]
+                                                                     appId:[PPConfigManager appId]
+                                                                    gameId:[PPConfigManager gameId]
                                                                     userId:userId];
         NSInteger resultCode = output.resultCode;
         NSInteger fanCount = 0;
@@ -365,8 +365,8 @@ FriendService* globalGetFriendService()
     dispatch_async(workingQueue, ^{         
         NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest searchUsers:SERVER_URL 
-                                                                appId:[ConfigManager appId] 
-                                                               gameId:[ConfigManager gameId]
+                                                                appId:[PPConfigManager appId] 
+                                                               gameId:[PPConfigManager gameId]
                                                                userId:userId
                                                             keyString:key 
                                                            startIndex:offset 
@@ -396,8 +396,8 @@ FriendService* globalGetFriendService()
        successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        //        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        //        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest blackFriend:SERVER_URL
@@ -417,8 +417,8 @@ FriendService* globalGetFriendService()
          successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        //        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        //        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest blackFriend:SERVER_URL

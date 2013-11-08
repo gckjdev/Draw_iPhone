@@ -11,7 +11,7 @@
 #import "AccountManager.h"
 #import "TaoBaoController.h"
 #import "MobClickUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShareImageManager.h"
 #import "UIViewUtils.h"
 #import "MKBlockActionSheet.h"
@@ -118,7 +118,7 @@
     [titleView setBackButtonSelector:@selector(clickBackButton:)];
     [titleView setRightButtonSelector:@selector(clickRestoreButton:)];
     
-    if ([ConfigManager showRestoreButton]) {
+    if ([PPConfigManager showRestoreButton]) {
         
         [titleView showRightButton];
     } else {
@@ -128,7 +128,7 @@
     
 
 
-    if ([ConfigManager showRestoreButton]) {
+    if ([PPConfigManager showRestoreButton]) {
         [titleView showRightButton];
     } else {
         [titleView hideRightButton];
@@ -206,7 +206,7 @@
 - (void)updateTaobaoLinkView
 {
     if (([LocaleUtils isChina] || [LocaleUtils isChinese])
-        && [ConfigManager isInReviewVersion] == NO) {
+        && [PPConfigManager isInReviewVersion] == NO) {
         self.taobaoLinkView.hidden = NO;
     } else {
         self.taobaoLinkView.hidden = YES;
@@ -236,7 +236,7 @@
     }
     
     if (taobaoUrl == nil || [taobaoUrl length] == 0) {
-        taobaoUrl = [ConfigManager getTaobaoHomeUrl];
+        taobaoUrl = [PPConfigManager getTaobaoHomeUrl];
     }
     [self pushTaobao:taobaoUrl];
 }
@@ -274,7 +274,7 @@
 {
     BOOL isChina = [LocaleUtils isChina];
     BOOL isChinese = [LocaleUtils isChinese];
-    BOOL isInReviewVersion = [ConfigManager isInReviewVersion];
+    BOOL isInReviewVersion = [PPConfigManager isInReviewVersion];
     if ((isChina || isChinese) && isInReviewVersion == NO && [GameApp canPayWithAlipay]) {
         [self showBuyActionSheetWithIndex:indexPath];
     }else{
@@ -300,8 +300,8 @@
     __block typeof (self)bself = self;
     PBIAPProduct *product = [dataList objectAtIndex:indexPath.row];
     AlixPayOrder *order = [[[AlixPayOrder alloc] init] autorelease];
-    order.partner = [ConfigManager getAlipayPartner];
-    order.seller = [ConfigManager getAlipaySeller];
+    order.partner = [PPConfigManager getAlipayPartner];
+    order.seller = [PPConfigManager getAlipaySeller];
     order.tradeNO = [AlixPayOrderManager tradeNoWithProductId:product.alipayProductId];
     order.productName = [NSString stringWithFormat:@"%d个%@", product.count, NSLS(product.name)];
     order.productDescription = [NSString stringWithFormat:@"description: %@", product.desc];
@@ -314,7 +314,7 @@
 
     PPDebug(@"charge price in RMB is %@", [product priceInRMB]);
     
-    order.notifyURL = [ConfigManager getAlipayNotifyUrl]; //回调URL
+    order.notifyURL = [PPConfigManager getAlipayNotifyUrl]; //回调URL
     [[AlixPayOrderManager defaultManager] addOrder:order];
     
     [sheet setActionBlock:^(NSInteger buttonIndex){
@@ -360,14 +360,14 @@
 {
     [AliPayManager payWithOrder:order
                       appScheme:[GameApp alipayCallBackScheme]
-                  rsaPrivateKey:[ConfigManager getAlipayRSAPrivateKey]];
+                  rsaPrivateKey:[PPConfigManager getAlipayRSAPrivateKey]];
     
     
 }
 
 - (void)alipayWebPaymentForOrder:(AlixPayOrder *)order product:(PBIAPProduct*)product
 {
-    NSString* url = [ConfigManager getAlipayWebUrl];
+    NSString* url = [PPConfigManager getAlipayWebUrl];
     url = [url stringByAddQueryParameter:METHOD value:@"charge"];
     url = [url stringByAddQueryParameter:PARA_APPID value:[GameApp appId]];
     url = [url stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
