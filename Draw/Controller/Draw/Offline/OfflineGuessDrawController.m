@@ -13,7 +13,7 @@
 #import "AnimationManager.h"
 #import "AccountService.h"
 #import "AudioManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "Draw.h"
 #import "AccountManager.h"
@@ -247,12 +247,12 @@
 {
     CommonDialog* dialog;
     __block OfflineGuessDrawController* cp = self;
-    if ([[AccountService defaultService] hasEnoughBalance:[ConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
+    if ([[AccountService defaultService] hasEnoughBalance:[PPConfigManager getBuyAnswerPrice] currency:PBGameCurrencyCoin]) {
         
-        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [ConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross];
+        dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:[NSString stringWithFormat:NSLS(@"kQuitGameWithPaidForAnswer"), [PPConfigManager getBuyAnswerPrice]] style:CommonDialogStyleDoubleButtonWithCross];
         
         [dialog setClickOkBlock:^(UILabel *label){
-            [[AccountService defaultService] deductCoin:[ConfigManager getBuyAnswerPrice] source:BuyAnswer];
+            [[AccountService defaultService] deductCoin:[PPConfigManager getBuyAnswerPrice] source:BuyAnswer];
             [(NSMutableArray *)cp.wordInputView.guessedWords addObject:cp.feed.wordText];
             [cp quit:YES];
         }];

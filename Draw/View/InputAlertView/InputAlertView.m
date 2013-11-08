@@ -9,7 +9,7 @@
 #import "InputAlertView.h"
 #import "BlockUtils.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserManager.h"
 //#import "PPSNSIntegerationService.h"
 #import "PPSNSConstants.h"
@@ -438,7 +438,7 @@ AUTO_CREATE_VIEW_BY_XIB(InputAlertView);
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    NSInteger length = [ConfigManager opusDescMaxLength];
+    NSInteger length = [PPConfigManager opusDescMaxLength];
     if ([textView.text length] > length) {
         textView.text = [textView.text substringToIndex:length];
     }

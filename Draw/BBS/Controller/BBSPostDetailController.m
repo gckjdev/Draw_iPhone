@@ -673,7 +673,7 @@ typedef enum{
 + (UIViewController *)enterFreeIngotPostController:(UIViewController *)fromController
                                                  animated:(BOOL)animated
 {
-    NSString* postId = [ConfigManager getFreeIngotPostId];
+    NSString* postId = [PPConfigManager getFreeIngotPostId];
     if ([postId length] > 0){
         return [BBSPostDetailController enterPostDetailControllerWithPostID:postId
                                                       fromController:fromController
@@ -690,7 +690,7 @@ typedef enum{
 + (UIViewController *)enterFeedbackPostController:(UIViewController *)fromController
                                                 animated:(BOOL)animated
 {
-    NSString* postId = [ConfigManager getFeedbackPostId];
+    NSString* postId = [PPConfigManager getFeedbackPostId];
     if ([postId length] > 0){
         return [BBSPostDetailController enterPostDetailControllerWithPostID:postId
                                                       fromController:fromController
@@ -707,7 +707,7 @@ typedef enum{
 + (UIViewController *)enterBugReportPostController:(UIViewController *)fromController
                                                  animated:(BOOL)animated
 {
-    NSString* postId = [ConfigManager getBugReportPostId];
+    NSString* postId = [PPConfigManager getBugReportPostId];
     if ([postId length] > 0){
         return [BBSPostDetailController enterPostDetailControllerWithPostID:postId
                                                       fromController:fromController

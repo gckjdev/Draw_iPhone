@@ -32,7 +32,7 @@
 #import "MKBlockActionSheet.h"
 #import "CMPopTipView.h"
 #import "SongSearchController.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -178,7 +178,7 @@ enum{
     self.lyricTextView.hidden = YES;
     self.lyricTextView.textColor = COLOR_BROWN;
     
-    _recordLimitTime = [ConfigManager getRecordLimitTime];
+    _recordLimitTime = [PPConfigManager getRecordLimitTime];
 
     if (_isDraft) {
         [self prepareToPlay];

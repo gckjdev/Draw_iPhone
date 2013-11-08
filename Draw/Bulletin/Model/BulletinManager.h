@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
-#define MAX_CACHE_BULLETIN_COUNT    ([ConfigManager maxCacheBulletinCount])
+#define MAX_CACHE_BULLETIN_COUNT    ([PPConfigManager maxCacheBulletinCount])
 
 @class Bulletin;
 

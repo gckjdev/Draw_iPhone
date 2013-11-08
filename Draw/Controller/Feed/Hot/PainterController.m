@@ -12,9 +12,9 @@
 #import "TopPlayerView.h"
 #import "UserDetailViewController.h"
 #import "ViewUserDetail.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
-#define SHOW_ALL_TAGS ([ConfigManager showAllPainterTags])
+#define SHOW_ALL_TAGS ([PPConfigManager showAllPainterTags])
 
 typedef enum{
     PainterTypeLevel = 1,

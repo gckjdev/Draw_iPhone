@@ -16,7 +16,7 @@
 #import "UseItemScene.h"
 #import "CustomInfoView.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "GuessManager.h"
 #import "ContestRankView.h"
 
@@ -673,7 +673,7 @@
         _shareAction = [[CommonShareAction alloc] initWithOpus:nil];
     }
     
-    NSString* string = [ConfigManager guessContestShareTitleText];
+    NSString* string = [PPConfigManager guessContestShareTitleText];
     NSString* shareText = [NSString stringWithFormat:string, passCount, [GuessService geniusTitle:passCount]];
     [_shareAction popActionTags:@[@(ShareActionTagSinaWeibo), @(ShareActionTagWxTimeline)]
                       shareText:shareText viewController:self

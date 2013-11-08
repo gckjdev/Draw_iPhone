@@ -22,7 +22,7 @@
 #import "CommonMessageCenter.h"
 #import "GameItemManager.h"
 #import "BalanceNotEnoughAlertView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "TaoBaoController.h"
 #import "UIViewUtils.h"
 
@@ -124,7 +124,7 @@ typedef enum{
 
 - (BOOL)needHideTaoboTab
 {
-    if ([ConfigManager isInReviewVersion] ||
+    if ([PPConfigManager isInReviewVersion] ||
         ([LocaleUtils isChina] || [LocaleUtils isChinese]) == NO) {
         return YES;
     }
@@ -308,7 +308,7 @@ typedef enum{
             __block typeof (self) bself = self;
             [[AccountService defaultService] setDelegate:bself];
             
-            if ([ConfigManager isInReviewVersion] == NO && [GameApp canGift]) {
+            if ([PPConfigManager isInReviewVersion] == NO && [GameApp canGift]) {
                 [BuyItemView showBuyItemView:item.itemId inView:self.view resultHandler:^(int resultCode, int itemId, int count, NSString *toUserId) {
                     [bself updateBalance];
                     [bself.dataTableView reloadData];

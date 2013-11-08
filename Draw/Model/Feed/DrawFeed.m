@@ -10,7 +10,7 @@
 #import "Draw.h"
 #import "ShareImageManager.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "FeedManager.h"
 #import "Draw.pb-c.h"
 #import "GameBasic.pb-c.h"
@@ -420,7 +420,7 @@
         
     }
     else{
-        return [ConfigManager numberOfItemCanUsedOnNormalOpus];
+        return [PPConfigManager numberOfItemCanUsedOnNormalOpus];
     }
 }
 

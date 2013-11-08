@@ -11,7 +11,7 @@
 #import "PPNetworkConstants.h"
 #import "PPNetworkRequest.h"
 #import "StringUtil.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 
 @implementation BulletinNetwork

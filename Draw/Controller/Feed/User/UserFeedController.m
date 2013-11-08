@@ -13,7 +13,7 @@
 #import "FeedCell.h"
 #import "CommonMessageCenter.h"
 #import "UseItemScene.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserManager.h"
 #import "MKBlockActionSheet.h"
 #import "UINavigationController+UINavigationControllerAdditions.h"
@@ -103,7 +103,7 @@ typedef enum{
     [self initTabButtons];
     [self.titleLabel setText:[NSString stringWithFormat:@"%@",_nickName]];
 
-    if ([ConfigManager showOpusCount]) {
+    if ([PPConfigManager showOpusCount]) {
         //load opus count
         [[FeedService defaultService] getOpusCount:_userId delegete:self];
     }
@@ -389,7 +389,7 @@ typedef enum{
     CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kEditOpusDesc")];
     dialog.inputTextView.text = feed.opusDesc;
     dialog.delegate = self;
-    [dialog setMaxInputLen:[ConfigManager getMaxLengthOfDrawDesc]];
+    [dialog setMaxInputLen:[PPConfigManager getMaxLengthOfDrawDesc]];
     
     [dialog showInView:self.view];
 }
@@ -546,7 +546,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return [ConfigManager getTimelineCountOnce];
+    return [PPConfigManager getTimelineCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

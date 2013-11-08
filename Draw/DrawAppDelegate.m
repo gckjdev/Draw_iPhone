@@ -26,7 +26,7 @@
 #import "NetworkDetector.h"
 #import "MobClick.h"
 //#import "TKAlertCenter.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "AudioManager.h"
 #import "FriendManager.h"
 //#import "MusicItemManager.h"
@@ -108,7 +108,7 @@ NSString* GlobalGetServerURL()
 
 #endif
     
-    return [ConfigManager getAPIServerURL];
+    return [PPConfigManager getAPIServerURL];
 }
 
 NSString* GlobalGetTrafficServerURL()
@@ -141,23 +141,23 @@ NSString* GlobalGetTrafficServerURL()
     
 #endif
     
-    return [ConfigManager getTrafficAPIServerURL];
+    return [PPConfigManager getTrafficAPIServerURL];
 }
 
 NSString* GlobalGetMessageServerURL()
 {
-    return [ConfigManager getMessageServerURL];
+    return [PPConfigManager getMessageServerURL];
 }
 
 NSString* GlobalGetBBSServerURL()
 {
-    return [ConfigManager getBBSServerURL];
+    return [PPConfigManager getBBSServerURL];
 }
 
 
 NSString* GlobalGetBoardServerURL()
 {
-    return [ConfigManager getTrafficAPIServerURL];
+    return [PPConfigManager getTrafficAPIServerURL];
 }
 
 @implementation DrawAppDelegate
@@ -282,7 +282,7 @@ NSString* GlobalGetBoardServerURL()
     // init mob click
     [MobClick startWithAppkey:[GameApp umengId]
                  reportPolicy:BATCH
-                    channelId:[ConfigManager getChannelId]];
+                    channelId:[PPConfigManager getChannelId]];
     [MobClick updateOnlineConfig];
         
 //    [self initImageCacheManager];
@@ -322,9 +322,9 @@ NSString* GlobalGetBoardServerURL()
     }
     
     // Ask For Review
-    if ([ConfigManager isInReviewVersion] == NO){
+    if ([PPConfigManager isInReviewVersion] == NO){
         if ([DeviceDetection isOS5]){
-            self.reviewRequest = [ReviewRequest startReviewRequest:[ConfigManager appId] appName:GlobalGetAppName() isTest:YES];
+            self.reviewRequest = [ReviewRequest startReviewRequest:[PPConfigManager appId] appName:GlobalGetAppName() isTest:YES];
             self.reviewRequest.delegate = self;
         }
     }
@@ -379,7 +379,7 @@ NSString* GlobalGetBoardServerURL()
     [UIUtils checkAppVersion];
     
     // 比赛的local notification通知
-    if ([ConfigManager getGuessContestLocalNotificationEnabled]) {
+    if ([PPConfigManager getGuessContestLocalNotificationEnabled]) {
 
     }
     
@@ -413,7 +413,7 @@ NSString* GlobalGetBoardServerURL()
         return;
     
     NSString* news = @"";
-    if ([ConfigManager isProVersion]){
+    if ([PPConfigManager isProVersion]){
         news = [MobClick getConfigParams:@"NEWS_PRO"];
     }
     else{
@@ -549,7 +549,7 @@ NSString* GlobalGetBoardServerURL()
     if ([[url absoluteString] hasPrefix:@"wx"]){
         return [WXApi handleOpenURL:url delegate:self];;
     }else if ([[url absoluteString] hasPrefix:@"alipay"]){
-        return [AliPayManager parseURL:url alipayPublicKey:[ConfigManager getAlipayAlipayPublicKey]];
+        return [AliPayManager parseURL:url alipayPublicKey:[PPConfigManager getAlipayAlipayPublicKey]];
     }
 //    else if ([[PPSNSIntegerationService defaultService] handleOpenURL:url]){
 //        
@@ -633,7 +633,7 @@ NSString* GlobalGetBoardServerURL()
 {
     if (alertView.tag == CHECK_APP_VERSION_ALERT_VIEW){
         if (buttonIndex == 1){
-            [UIUtils openAppForUpgrade:[ConfigManager appId]];
+            [UIUtils openAppForUpgrade:[PPConfigManager appId]];
         }
     }
 }

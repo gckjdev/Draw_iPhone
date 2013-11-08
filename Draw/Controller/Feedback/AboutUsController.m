@@ -8,7 +8,7 @@
 
 #import "AboutUsController.h"
 #import "LocaleUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface AboutUsController ()
 
@@ -58,7 +58,7 @@ Old\n\
 \n\
 ";
  
-    infoString = [infoString stringByAppendingFormat:@"App Version : %@" ,[ConfigManager currentVersion]];
+    infoString = [infoString stringByAppendingFormat:@"App Version : %@" ,[PPConfigManager currentVersion]];
     
     contentTextView.text = infoString;
     contentTextView.textColor = COLOR_BROWN;

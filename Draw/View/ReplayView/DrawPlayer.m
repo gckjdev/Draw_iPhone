@@ -9,7 +9,7 @@
 #import "DrawPlayer.h"
 #import "DrawHolderView.h"
 #import "ShowDrawView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "MLNavigationController.h"
 
 
@@ -36,8 +36,8 @@
 
 - (CGFloat)speedWithRate:(CGFloat)rate
 {
-    CGFloat maxSpeed = [ConfigManager getMaxPlayDrawSpeed];
-    CGFloat minSpeed = 0;//[ConfigManager getMinPlayDrawSpeed];
+    CGFloat maxSpeed = [PPConfigManager getMaxPlayDrawSpeed];
+    CGFloat minSpeed = 0;//[PPConfigManager getMinPlayDrawSpeed];
     CGFloat speed = maxSpeed -  rate *(maxSpeed - minSpeed);
     PPDebug(@"speed with rate, rate = %f, speed = %f", rate, speed);
     return speed;
@@ -75,7 +75,7 @@
 
     self.showView.playSpeed = [self speedWithRate:self.speedSlider.value];
     
-    self.showView.maxPlaySpeed = [ConfigManager getMaxPlayDrawSpeed];
+    self.showView.maxPlaySpeed = [PPConfigManager getMaxPlayDrawSpeed];
     
  
 

@@ -9,7 +9,7 @@
 #import "WordFilterService.h"
 #import "SynthesizeSingleton.h"
 #import "PPSmartUpdateData.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 
 #define FILTER_FILE_VERSION     @"1.0"
@@ -81,7 +81,7 @@ WordFilterService* globalDefaultWordFilterService;
     if ([inputText length] == 0)
         return NO;
     
-    if ([ConfigManager enableWordFilter] == NO)
+    if ([PPConfigManager enableWordFilter] == NO)
         return NO;
     
     NSString* text = [inputText stringByReplacingOccurrencesOfString:@" " withString:@""];

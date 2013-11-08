@@ -12,7 +12,7 @@
 #import "GameNetworkConstants.h"
 #import "PPNetworkRequest.h"
 #import "UserManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "AccountService.h"
 #import "ItemType.h"
 #import "CommonMessageCenter.h"
@@ -159,7 +159,7 @@ static LevelService* _defaultLevelService;
 
 - (void)awardForLevelUp
 {
-    [[UserGameItemService defaultService] awardItem:ItemTypeFlower count:[ConfigManager flowerAwardFordLevelUp] handler:NULL];
+    [[UserGameItemService defaultService] awardItem:ItemTypeFlower count:[PPConfigManager flowerAwardFordLevelUp] handler:NULL];
 }
 
 // new user level and exp implementation
@@ -175,8 +175,8 @@ static LevelService* _defaultLevelService;
         
         CommonNetworkOutput* output = nil;
         output = [GameNetworkRequest increaseExp:SERVER_URL
-                                           appId:[ConfigManager appId]
-                                          gameId:[ConfigManager gameId]
+                                           appId:[PPConfigManager appId]
+                                          gameId:[PPConfigManager gameId]
                                           userId:[UserManager defaultManager].userId
                                              exp:addExp];
         
@@ -315,8 +315,8 @@ static LevelService* _defaultLevelService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest syncExpAndLevel:SERVER_URL 
-                                               appId:[ConfigManager appId] 
-                                              gameId:[ConfigManager gameId]
+                                               appId:[PPConfigManager appId] 
+                                              gameId:[PPConfigManager gameId]
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 
@@ -366,8 +366,8 @@ static LevelService* _defaultLevelService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest syncExpAndLevel:SERVER_URL 
-                                               appId:[ConfigManager appId] 
-                                              gameId:[ConfigManager gameId]
+                                               appId:[PPConfigManager appId] 
+                                              gameId:[PPConfigManager gameId]
                                               userId:[UserManager defaultManager].userId 
                                                level:[self level] 
                                                  exp:[self experience] 

@@ -11,7 +11,7 @@
 //#import "PPSNSCommonService.h"
 #import "AccountService.h"
 #import "Account.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "PPViewController.h"
 #import "UserService.h"
 #import "UserManager.h"
@@ -40,7 +40,7 @@ GameSNSService* _defaultSNSService;
 {
     self = [super init];
     if (self){
-        [ShareSDK registerApp:[ConfigManager getShareSDKAppId]];
+        [ShareSDK registerApp:[PPConfigManager getShareSDKAppId]];
         
         //添加新浪微博应用
         [ShareSDK connectSinaWeiboWithAppKey:[GameApp sinaAppKey]       //  @"3201194191"
@@ -89,7 +89,7 @@ GameSNSService* _defaultSNSService;
 //                          
 //                          if (key == NO){
 //                              PPDebug(@"follow user %@ and reward success", snsService.officialWeiboId);
-//                              [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];
+//                              [[AccountService defaultService] chargeCoin:[PPConfigManager getFollowReward] source:FollowReward];
 //                              [userDefaults setBool:YES forKey:followKey];
 //                              [userDefaults synchronize];
 //                          }
@@ -122,7 +122,7 @@ GameSNSService* _defaultSNSService;
 //{
 //    NSString* followKey = [self followKey:snsService];
 //    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-//    [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];
+//    [[AccountService defaultService] chargeCoin:[PPConfigManager getFollowReward] source:FollowReward];
 //    [userDefaults setBool:YES forKey:followKey];
 //    [userDefaults synchronize];
 //    return;

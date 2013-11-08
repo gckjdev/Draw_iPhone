@@ -22,7 +22,7 @@
 #import "LevelService.h"
 #import "AccountManager.h"
 #import "CommonMessageCenter.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "AccountService.h"
 #import "UseItemScene.h"
 #import "UserGameItemManager.h"

@@ -8,7 +8,7 @@
 
 #import "BBSController.h"
 #import "CommonUserInfoView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawPlayer.h"
 #import "ImagePlayer.h"
 
@@ -95,7 +95,7 @@
 {
     [self hideActivity];
     if (resultCode == 0) {
-        BOOL isNewVersion = [ConfigManager currentDrawDataVersion] < version;        
+        BOOL isNewVersion = [PPConfigManager currentDrawDataVersion] < version;        
         ReplayObject *obj = [ReplayObject obj];
         obj.actionList = drawActionList;
         obj.isNewVersion = isNewVersion;

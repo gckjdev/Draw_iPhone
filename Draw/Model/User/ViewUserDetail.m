@@ -21,7 +21,7 @@
 #import "GameSNSService.h"
 #import "SNSUtils.h"
 #import "CommonDialog.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShareImageManager.h"
 #import "SelectHotWordController.h"
 #import "FriendService.h"

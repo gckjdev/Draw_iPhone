@@ -11,7 +11,7 @@
 #import "GameNetworkRequest.h"
 #import "PPNetworkRequest.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "AccountManager.h"
 #import "PBGameItem+Extend.h"
 #import "UserManager.h"
@@ -83,7 +83,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
     
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
+        CommonNetworkOutput* output = [GameNetworkRequest buyItem:SERVER_URL appId:[PPConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count price:totalPrice currency:currency toUser:toUserId];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS) {
@@ -212,7 +212,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserGameItemService);
 
     dispatch_async(workingQueue, ^{
         
-        CommonNetworkOutput* output = [GameNetworkRequest consumeItem:SERVER_URL appId:[ConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count forceBuy:forceBuy price:totalPrice currency:item.priceInfo.currency];
+        CommonNetworkOutput* output = [GameNetworkRequest consumeItem:SERVER_URL appId:[PPConfigManager appId] userId:[[UserManager defaultManager] userId] itemId:itemId count:count forceBuy:forceBuy price:totalPrice currency:item.priceInfo.currency];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (output.resultCode == ERROR_SUCCESS ) {

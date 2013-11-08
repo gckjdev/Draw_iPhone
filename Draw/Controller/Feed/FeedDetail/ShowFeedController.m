@@ -30,7 +30,7 @@
 #import "SDImageCache.h"
 #import "SDWebImageManager.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ChargeController.h"
 
 #import "LmWallService.h"
@@ -646,7 +646,7 @@ typedef enum{
 
 - (void)didClickOk:(CommonDialog *)dialog infoView:(id)infoView
 {
-    if ([ConfigManager wallEnabled]) {
+    if ([PPConfigManager wallEnabled]) {
         [LmWallService showWallOnController:self];
     }else {
         ChargeController* controller = [[[ChargeController alloc] init] autorelease];
@@ -1123,7 +1123,7 @@ typedef enum{
                                              text:text
                                     imageFilePath:imagePath
                                            inView:self.view
-                                       awardCoins:[ConfigManager getShareWeiboReward]
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
                                    successMessage:NSLS(@"kShareWeiboSuccess")
                                    failureMessage:NSLS(@"kShareWeiboFailure")];
     
@@ -1259,7 +1259,7 @@ typedef enum{
 //            [[GameSNSService defaultService] publishWeibo:TYPE_SINA
 //                                                     text:text
 //                                                   inView:self.view
-//                                               awardCoins:[ConfigManager getShareWeiboReward]
+//                                               awardCoins:[PPConfigManager getShareWeiboReward]
 //                                           successMessage:NSLS(@"kShareWeiboSuccess")
 //                                           failureMessage:NSLS(@"kShareWeiboFailure")];
         }

@@ -26,7 +26,7 @@
 #import "DeviceDetection.h"
 #import "AudioManager.h"
 #import "DrawConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ExpressionManager.h"
 #import "StableView.h"
 #import "ChatMessageView.h"
@@ -637,7 +637,7 @@
                                         gender:[_userManager isUserMale] 
                                       location:[_userManager location]   
                                      userLevel:[[LevelService defaultService] level]
-                                guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                guessDiffLevel:[PPConfigManager guessDifficultLevel]
                                    snsUserData:[_userManager snsUserData]];
     
 }
@@ -692,7 +692,7 @@
         case ROOM_DIALOG_QUIT_ROOM:
         {
             [self quitRoom];
-            [[AccountService defaultService] deductCoin:[ConfigManager getOnlineDrawFleeCoin] source:EscapeType];
+            [[AccountService defaultService] deductCoin:[PPConfigManager getOnlineDrawFleeCoin] source:EscapeType];
         }
             break;
         
@@ -714,7 +714,7 @@
 - (IBAction)clickChangeRoom:(id)sender
 {
     // update data before change room
-    [[DrawGameService defaultService] setGuessDiffLevel:[ConfigManager guessDifficultLevel]];
+    [[DrawGameService defaultService] setGuessDiffLevel:[PPConfigManager guessDifficultLevel]];
     
     if (_changeRoomTimes >= MAX_CHANGE_ROOM_PER_DAY){
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"Message") 
@@ -781,7 +781,7 @@
         [self quitRoom];
     } else {
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameTitle") 
-                                message:[NSString stringWithFormat:NSLS(@"kQuitGameConfirm") , [ConfigManager getOnlineDrawFleeCoin]]
+                                message:[NSString stringWithFormat:NSLS(@"kQuitGameConfirm") , [PPConfigManager getOnlineDrawFleeCoin]]
                                   style:CommonDialogStyleDoubleButton
                               delegate:self];
         dialog.tag = ROOM_DIALOG_QUIT_ROOM;

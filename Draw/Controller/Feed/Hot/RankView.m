@@ -18,7 +18,7 @@
 #import "UIViewUtils.h"
 #import "UIImageExt.h"
 #import "ContestManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @interface RankView ()
 @property (retain, nonatomic) IBOutlet UILabel *costLabel;
@@ -167,7 +167,7 @@
         self.drawFlag.hidden = YES;
     }
 
-    if ([ConfigManager showAuthorOnOpus]){
+    if ([PPConfigManager showAuthorOnOpus]){
         NSString *author = [NSString stringWithFormat:@" %@",feed.feedUser.nickName];
         [self.author setText:author];
     }

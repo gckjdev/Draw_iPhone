@@ -21,7 +21,7 @@
 #import "FriendManager.h"
 #import "LevelService.h"
 #import "UserService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "TopPlayer.h"
 //#import "PPSNSIntegerationService.h"
 //#import "PPSNSCommonService.h"
@@ -71,7 +71,7 @@ static UserService* _defaultUserService;
         
         CommonNetworkOutput* output = nil;        
         output = [GameNetworkRequest registerUserByEmail:SERVER_URL
-                                                   appId:[ConfigManager appId]
+                                                   appId:[PPConfigManager appId]
                                                    email:email
                                                 password:password
                                              deviceToken:deviceToken
@@ -200,7 +200,7 @@ static UserService* _defaultUserService;
     NSString* accessToken = accessInfo.accessToken;
     NSDate*   expireDate = accessInfo.expiresIn;
     
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* loginId = userInfo.uid; //[userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterTypeWithShareType:shareType];
     
@@ -362,7 +362,7 @@ static UserService* _defaultUserService;
 {
     PPDebug(@"<updateUserWithSNSUserInfo> userId=%@, userInfo=%@", userId, [userInfo description]);
     
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
     int loginIdType = [self getRegisterType:userInfo];
     
@@ -521,7 +521,7 @@ static UserService* _defaultUserService;
 - (void)registerUserWithSNSUserInfo:(NSDictionary*)userInfo 
                      viewController:(PPViewController<UserServiceDelegate>*)viewController
 {
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     NSString* loginId = [userInfo objectForKey:SNS_USER_ID];
@@ -647,7 +647,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kUpdatingUser")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
-                                                               appId:[ConfigManager appId] 
+                                                               appId:[PPConfigManager appId] 
                                                               userId:userId 
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
@@ -707,7 +707,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
-                                                               appId:[ConfigManager appId] 
+                                                               appId:[PPConfigManager appId] 
                                                               userId:userId 
                                                               feedback:feedback 
                                                                contact:contact
@@ -738,7 +738,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest feedbackUser:SERVER_URL 
-                                                                 appId:[ConfigManager appId] 
+                                                                 appId:[PPConfigManager appId] 
                                                                 userId:userId 
                                                               feedback:bugDescription 
                                                                contact:contact
@@ -768,7 +768,7 @@ static UserService* _defaultUserService;
     [viewController showActivityWithText:NSLS(@"kSendingFeedback")];
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest commitWords:SERVER_URL 
-                                                                appId:[ConfigManager appId] 
+                                                                appId:[PPConfigManager appId] 
                                                                userId:userId
                                                                 words:words];
         
@@ -905,7 +905,7 @@ static UserService* _defaultUserService;
         [[LevelService defaultService] setLevel:user.level];
         [[LevelService defaultService] setExperience:user.experience];
         
-        if ([ConfigManager isProVersion]){
+        if ([PPConfigManager isProVersion]){
             // update new appId of user
             [self updateNewAppId:appId];
         }
@@ -936,8 +936,8 @@ static UserService* _defaultUserService;
                 password:(NSString*)password
           viewController:(PPViewController<UserServiceDelegate, CommonDialogDelegate>*)viewController
 {
-    NSString* appId = [ConfigManager appId];
-    NSString* gameId = [ConfigManager gameId];
+    NSString* appId = [PPConfigManager appId];
+    NSString* gameId = [PPConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     
     [viewController showActivityWithText:NSLS(@"kLoginUser")];
@@ -1001,8 +1001,8 @@ static UserService* _defaultUserService;
                            autoRegister:(BOOL)autoRegister
                             resultBlock:(AutoResgistrationResultBlock)resultBlock
 {
-    NSString* appId = [ConfigManager appId];
-    NSString* gameId = [ConfigManager gameId];
+    NSString* appId = [PPConfigManager appId];
+    NSString* gameId = [PPConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
@@ -1046,8 +1046,8 @@ static UserService* _defaultUserService;
 {
     [self loginByDeviceWithViewController:homeController autoRegister:NO resultBlock:nil];
     
-//    NSString* appId = [ConfigManager appId];
-//    NSString* gameId = [ConfigManager gameId];
+//    NSString* appId = [PPConfigManager appId];
+//    NSString* gameId = [PPConfigManager gameId];
 //    NSString* deviceToken = [[UserManager defaultManager] deviceToken];
 //    NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
 //
@@ -1086,8 +1086,8 @@ static UserService* _defaultUserService;
 /*
 - (void)loginByDeviceWithViewController:(PPViewController*)homeController
 {
-    NSString* appId = [ConfigManager appId];
-    NSString* gameId = [ConfigManager gameId];
+    NSString* appId = [PPConfigManager appId];
+    NSString* gameId = [PPConfigManager gameId];
     NSString* deviceToken = [[UserManager defaultManager] deviceToken];
     NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
     
@@ -1197,7 +1197,7 @@ static UserService* _defaultUserService;
                 [[LevelService defaultService] setLevel:levelSring.integerValue];
                 [[LevelService defaultService] setExperience:expSring.intValue];
                 
-                if ([ConfigManager isProVersion]){
+                if ([PPConfigManager isProVersion]){
                     // update new appId of user
                     [self updateNewAppId:appId];
                 }
@@ -1248,7 +1248,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateUser:SERVER_URL 
-                                                               appId:[ConfigManager appId] 
+                                                               appId:[PPConfigManager appId] 
                                                               userId:userId 
                                                             deviceId:deviceId 
                                                          deviceToken:deviceToken 
@@ -1299,7 +1299,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     _isCallingGetStatistic = YES;
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[ConfigManager appId] userId:userId];        
+        CommonNetworkOutput* output = [GameNetworkRequest getStatistics:TRAFFIC_SERVER_URL appId:[PPConfigManager appId] userId:userId];        
         
         dispatch_async(dispatch_get_main_queue(), ^{
                         
@@ -1356,8 +1356,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     CommonNetworkOutput* output = [GameNetworkRequest getUserListSimpleInfo:SERVER_URL
                                                                      userId:fromUserId
-                                                                      appId:[ConfigManager appId]
-                                                                     gameId:[ConfigManager gameId]
+                                                                      appId:[PPConfigManager appId]
+                                                                     gameId:[PPConfigManager gameId]
                                                                   ByUserIds:userIds];
 
     
@@ -1381,8 +1381,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
     NSString *fromUserId = [[UserManager defaultManager] userId];
     CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
                                                                  userId:fromUserId
-                                                                  appId:[ConfigManager appId]
-                                                                 gameId:[ConfigManager gameId]
+                                                                  appId:[PPConfigManager appId]
+                                                                 gameId:[PPConfigManager gameId]
                                                                ByUserId:userId];
     MyFriend *user = nil;
     if (output.resultCode == ERROR_SUCCESS) {
@@ -1399,8 +1399,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
         NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest       getUserInfo:SERVER_URL
                                                                      userId:userId
-                                                                      appId:[ConfigManager appId]
-                                                                     gameId:[ConfigManager gameId]
+                                                                      appId:[PPConfigManager appId]
+                                                                     gameId:[PPConfigManager gameId]
                                                                    ByUserId:targetUserId];
         dispatch_async(dispatch_get_main_queue(), ^{
             PPDebug(@"<getUserInfo> targetUserId=%@, resultCode=%d", targetUserId, output.resultCode);
@@ -1435,8 +1435,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
         NSString *userId = [[UserManager defaultManager] userId];
         CommonNetworkOutput* output = [GameNetworkRequest getUserSimpleInfo:SERVER_URL
                                                                      userId:userId
-                                                                      appId:[ConfigManager appId] 
-                                                                     gameId:[ConfigManager gameId]
+                                                                      appId:[PPConfigManager appId] 
+                                                                     gameId:[PPConfigManager gameId]
                                                                    ByUserId:targetUserId];
         MyFriend *user = nil;
         if (output.resultCode == ERROR_SUCCESS) {
@@ -1460,8 +1460,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
                  resultBlock:(GetUserListResultBlock)block
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest
@@ -1522,8 +1522,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
                       delegate:delegate];
     
 //    dispatch_async(workingQueue, ^{
-//        NSString *appId = [ConfigManager appId];
-//        NSString *gameId = [ConfigManager gameId];
+//        NSString *appId = [PPConfigManager appId];
+//        NSString *gameId = [PPConfigManager gameId];
 //        NSString *userId = [[UserManager defaultManager] userId];
 //        
 //        CommonNetworkOutput* output = [GameNetworkRequest
@@ -1558,8 +1558,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
           successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-//        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+//        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest blackUser:SERVER_URL
@@ -1582,8 +1582,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
             successBlock:(void (^)(void))successBlock
 {
     dispatch_async(workingQueue, ^{
-        NSString *appId = [ConfigManager appId];
-        //        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        //        NSString *gameId = [PPConfigManager gameId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         CommonNetworkOutput* output = [GameNetworkRequest blackUser:SERVER_URL
@@ -1628,7 +1628,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest uploadUserImage:SERVER_URL
-                                                                    appId:[ConfigManager appId]
+                                                                    appId:[PPConfigManager appId]
                                                                    userId:userId
                                                                 imageData:data
                                                                 imageType:PARA_AVATAR];
@@ -1659,7 +1659,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest uploadUserImage:SERVER_URL
-                                                                    appId:[ConfigManager appId]
+                                                                    appId:[PPConfigManager appId]
                                                                    userId:userId
                                                                 imageData:data
                                                                 imageType:PARA_BACKGROUND];
@@ -1682,7 +1682,7 @@ POSTMSG(NSLS(@"kLoginFailure"));
 - (void)updateUser:(PBGameUser*)pbUser
        resultBlock:(UpdateUserResultBlock)resultBlock
 {
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     NSString* userId = [[UserManager defaultManager] userId];
     
     PBGameUser_Builder* builder = [PBGameUser builderWithPrototype:pbUser];
@@ -1835,8 +1835,8 @@ POSTMSG(NSLS(@"kLoginFailure"));
     if ([[UserManager defaultManager] hasUser] == NO){
                 
         // auto register firstly
-        NSString* appId = [ConfigManager appId];
-        NSString* gameId = [ConfigManager gameId];
+        NSString* appId = [PPConfigManager appId];
+        NSString* gameId = [PPConfigManager gameId];
         NSString* deviceToken = [[UserManager defaultManager] deviceToken];
         NSString* deviceId = [[UIDevice currentDevice] uniqueGlobalDeviceIdentifier];
         

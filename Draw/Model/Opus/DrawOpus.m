@@ -8,7 +8,7 @@
 
 #import "DrawOpus.h"
 #import "UserManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @implementation DrawOpus
 
@@ -22,17 +22,17 @@
     NSString *text = nil;
     if ([[UserManager defaultManager] isMe:self.pbOpus.author.userId]) {
         if (self.pbOpus.desc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.pbOpus.desc, self.pbOpus.author.nickName, self.pbOpus.name, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.pbOpus.desc, self.pbOpus.author.nickName, self.pbOpus.name, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), self.pbOpus.author.nickName, self.pbOpus.name, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), self.pbOpus.author.nickName, self.pbOpus.name, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }else{
         NSString* heStr = [self.pbOpus.author gender] ? NSLS(@"kHim") : NSLS(@"kHer");
         if (self.pbOpus.desc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.pbOpus.desc, heStr, self.pbOpus.author.nickName, self.pbOpus.name, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.pbOpus.desc, heStr, self.pbOpus.author.nickName, self.pbOpus.name, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
             
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, self.pbOpus.author.nickName, self.pbOpus.name, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, self.pbOpus.author.nickName, self.pbOpus.name, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
     

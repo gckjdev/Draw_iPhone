@@ -29,7 +29,7 @@
 #import "AnalyticsManager.h"
 #import "StorageManager.h"
 #import "WordManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UIImageUtil.h"
 #import "StringUtil.h"
 #import "TimeUtils.h"
@@ -291,7 +291,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
                                              text:text
                                     imageFilePath:_imageFilePath
                                            inView:self.superViewController.view
-                                       awardCoins:[ConfigManager getShareWeiboReward]
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")];
     
@@ -304,7 +304,7 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
 //    [controller release];    
 }
 
-#define MAX_WEIXIN_IMAGE_WIDTH          ([ConfigManager maxWeixinImageWidth])
+#define MAX_WEIXIN_IMAGE_WIDTH          ([PPConfigManager maxWeixinImageWidth])
 
 - (void)shareViaWeixin:(int)scene
 {

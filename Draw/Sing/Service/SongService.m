@@ -12,7 +12,7 @@
 #import "GameNetworkRequest.h"
 #import "CommonNetworkClient.h"
 #import "UserManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "GameNetworkConstants.h"
 #import "StringUtil.h"
 
@@ -52,7 +52,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
           completed:(GetSongsCompleted)completed{
     
     NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
-                           PARA_APPID : [ConfigManager appId],
+                           PARA_APPID : [PPConfigManager appId],
                            PARA_COUNT : [NSString stringWithInt:count]
                            };
     
@@ -68,7 +68,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SongService);
     }
     
     NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
-                           PARA_APPID : [ConfigManager appId],
+                           PARA_APPID : [PPConfigManager appId],
                            PARA_COUNT : [NSString stringWithInt:count],
                            PARA_SUB_CATEGORY : tag
                            };

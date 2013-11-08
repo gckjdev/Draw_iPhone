@@ -10,7 +10,7 @@
 #import "DrawAction.h"
 #import "GradientAction.h"
 #import "ClipAction.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ChangeBackAction.h"
 #import "ChangeBGImageAction.h"
 #import "DrawBgManager.h"
@@ -34,7 +34,7 @@
     if (self) {
         self.drawInfo = [[[DrawInfo alloc] init]autorelease];
         _supportCache = YES;
-        _cachedCount = [ConfigManager minUndoActionCount];
+        _cachedCount = [PPConfigManager minUndoActionCount];
     }
     return self;
 }
@@ -69,7 +69,7 @@
         if (_supportCache) {
             _offscreen = [[Offscreen alloc] initWithCapacity:0 rect:self.bounds];
         }
-        _cachedCount = [ConfigManager minUndoActionCount];
+        _cachedCount = [PPConfigManager minUndoActionCount];
         _finalOpacity = 1.0f;
     }
     return self;

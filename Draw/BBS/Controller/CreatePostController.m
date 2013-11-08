@@ -16,7 +16,7 @@
 #import "GameNetworkConstants.h"
 #import "AccountService.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "WordFilterService.h"
 
 @interface CreatePostController ()
@@ -489,7 +489,7 @@
         [selectionView removeFromSuperview];
     }else{
         NSMutableArray *titles = [NSMutableArray arrayWithObjects:NSLS(@"kNone"),nil];
-        int *value = [ConfigManager getBBSRewardBounsList];//getRewardBonusList();
+        int *value = [PPConfigManager getBBSRewardBounsList];//getRewardBonusList();
         
         for (++value; *value != BONUS_LIST_END; ++value) {
             NSString *str = [NSString stringWithFormat:@"%d",*value];
@@ -506,7 +506,7 @@
 
 - (void)optionView:(BBSOptionView *)optionView didSelectedButtonIndex:(NSInteger)index
 {
-    NSInteger bonus = [ConfigManager getBBSRewardBounsList][index];
+    NSInteger bonus = [PPConfigManager getBBSRewardBounsList][index];
     if ([[AccountService defaultService] hasEnoughBalance:bonus currency:PBGameCurrencyCoin]) {
 
         self.bonus = bonus;

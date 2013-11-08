@@ -14,7 +14,7 @@
 #import "GameBasic.pb.h"
 #import "UserManager.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ItemType.h"
 #import "UIImageExt.h"
 #import "FeedDownloadService.h"
@@ -56,7 +56,7 @@ static FeedService *_staticFeedService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     if (userId  == nil){
         // this is mainly for HOME display
-        userId = [ConfigManager getSystemUserId];
+        userId = [PPConfigManager getSystemUserId];
     }
     
     LanguageType lang = UnknowType;
@@ -124,7 +124,7 @@ static FeedService *_staticFeedService = nil;
     NSString *userId = [[UserManager defaultManager] userId];
     if (userId  == nil){
         // this is mainly for HOME display
-        userId = [ConfigManager getSystemUserId];
+        userId = [PPConfigManager getSystemUserId];
     }
     
     dispatch_queue_t getFeedListQueue = [self getQueue:GET_FEEDLIST_QUEUE];
@@ -528,7 +528,7 @@ static FeedService *_staticFeedService = nil;
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];        
         
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         CommonNetworkOutput* output = [GameNetworkRequest 
                                        getMyCommentListWithProtocolBuffer:TRAFFIC_SERVER_URL 
                                        userId:userId 
@@ -785,7 +785,7 @@ static FeedService *_staticFeedService = nil;
             delegete:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         
@@ -824,7 +824,7 @@ static FeedService *_staticFeedService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         
@@ -886,7 +886,7 @@ static FeedService *_staticFeedService = nil;
           delegate:(id<FeedServiceDelegate>)delegate
 {
         NSString* userId = [[UserManager defaultManager] userId];
-        NSString* appId = [ConfigManager appId];
+        NSString* appId = [PPConfigManager appId];
     
         dispatch_async(workingQueue, ^{
             CommonNetworkOutput* output = [GameNetworkRequest deleteFeed:TRAFFIC_SERVER_URL appId:appId feedId:feed.feedId userId:userId];
@@ -914,7 +914,7 @@ static FeedService *_staticFeedService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     
     dispatch_async(workingQueue, ^{
@@ -972,7 +972,7 @@ static FeedService *_staticFeedService = nil;
            resultBlock:(FeedActionResultBlock)resultBlock
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest actionSaveOnOpus:TRAFFIC_SERVER_URL
@@ -1072,7 +1072,7 @@ static FeedService *_staticFeedService = nil;
      resultHandler:(void(^)(int resultCode))resultHandler
 {
 //    NSString* userId = [[UserManager defaultManager] userId];
-//    NSString* appId = [ConfigManager appId];
+//    NSString* appId = [PPConfigManager appId];
     
     NSData* imgData = nil;
     if (image) {
@@ -1116,7 +1116,7 @@ static FeedService *_staticFeedService = nil;
                  failBlock:(void (^)(void))failBlock
 {
     NSString* userId = [[UserManager defaultManager] userId];
-    NSString* appId = [ConfigManager appId];
+    NSString* appId = [PPConfigManager appId];
     
     dispatch_queue_t updateOpusQueue = [self getQueue:UPDATE_OPUS_QUEUE];
     

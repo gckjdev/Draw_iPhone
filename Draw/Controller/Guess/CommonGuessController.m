@@ -8,7 +8,7 @@
 
 #import "CommonGuessController.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonDialog.h"
 #import "CommonMessageCenter.h"
 #import "LevelService.h"
@@ -128,7 +128,7 @@
 
     
     if (_mode == PBUserGuessModeGuessModeGenius) {
-        self.tipButton.enabled = [GuessManager getTipUseTimes] < [ConfigManager getTipUseTimesLimitInGeniusMode];
+        self.tipButton.enabled = [GuessManager getTipUseTimes] < [PPConfigManager getTipUseTimesLimitInGeniusMode];
     }
     
 }
@@ -251,7 +251,7 @@
 
 - (void)didPickedPickView:(PickView *)pickView toolView:(ToolView *)toolView{
     
-    int limitTimes = [ConfigManager numberOfItemCanUsedOnNormalOpus];
+    int limitTimes = [PPConfigManager numberOfItemCanUsedOnNormalOpus];
     int itemTimes = [ItemUseRecorder itemTimes:toolView.itemType onOpus:_opus.pbOpus.opusId];
     if (itemTimes >= limitTimes) {
         [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kCanotSendItemToOpus"), limitTimes] delayTime:1.5 isHappy:YES];
@@ -284,7 +284,7 @@
             if (_mode == PBUserGuessModeGuessModeGenius) {
                 [GuessManager incTipUseTimes];
             }
-            int leftTipTimes = [ConfigManager getTipUseTimesLimitInGeniusMode] - [GuessManager getTipUseTimes];
+            int leftTipTimes = [PPConfigManager getTipUseTimesLimitInGeniusMode] - [GuessManager getTipUseTimes];
             
             if (isBuy) {
                 

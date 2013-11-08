@@ -8,7 +8,7 @@
 
 #import "BBSManager.h"
 #import "GameMessage.pb.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @implementation BBSManager
 
@@ -124,7 +124,7 @@ BBSManager *_staticBBSManager;
 
 - (NSInteger)creationFrequency
 {
-    return [ConfigManager getBBSCreationFrequency];
+    return [PPConfigManager getBBSCreationFrequency];
 }
 
 - (BOOL)isCreationFrequent
@@ -137,7 +137,7 @@ BBSManager *_staticBBSManager;
 #define SUPPORT_TIMES_KEY @"FREQUENCY_KEY"
 - (NSUInteger)supportMaxTimes
 {
-    return [ConfigManager getBBSSupportMaxTimes];
+    return [PPConfigManager getBBSSupportMaxTimes];
 }
 
 - (NSString *)supportTimesKeyForPostId:(NSString *)postId
@@ -191,21 +191,21 @@ BBSManager *_staticBBSManager;
 
 - (NSUInteger)textMaxLength
 {
-    return [ConfigManager getBBSPostMaxLength];
+    return [PPConfigManager getBBSPostMaxLength];
 }
 - (NSUInteger)postTextMaxLength
 {
-    return [ConfigManager getBBSPostMaxLength];
+    return [PPConfigManager getBBSPostMaxLength];
 }
 
 - (NSUInteger)commentTextMaxLength
 {
-    return [ConfigManager getBBSCommentMaxLength];
+    return [PPConfigManager getBBSCommentMaxLength];
 }
 
 - (NSUInteger)textMinLength
 {
-    return [ConfigManager getBBSTextMinLength];
+    return [PPConfigManager getBBSTextMinLength];
 }
 
 //return new post

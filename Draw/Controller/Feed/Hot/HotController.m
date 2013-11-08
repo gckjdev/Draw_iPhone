@@ -14,7 +14,7 @@
 #import "ViewUserDetail.h"
 #import "UseItemScene.h"
 #import "MyFriend.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserManager.h"
 #import "CommonMessageCenter.h"
 #import "MKBlockActionSheet.h"
@@ -31,7 +31,7 @@ typedef enum{
     
 }RankType;
 
-#define  HISTORY_RANK_NUMBER [ConfigManager historyRankNumber]
+#define  HISTORY_RANK_NUMBER [PPConfigManager historyRankNumber]
 
 @interface HotController (){
     RankView* _selectedRankView;
@@ -393,7 +393,7 @@ typedef enum{
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return [ConfigManager getHotOpusCountOnce];
+    return [PPConfigManager getHotOpusCountOnce];
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

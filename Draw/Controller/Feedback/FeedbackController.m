@@ -15,7 +15,7 @@
 //#import "UFPController.h"
 #import "PPDebug.h"
 #import "DeviceDetection.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "AccountService.h"
 //#import "PPSNSIntegerationService.h"
@@ -98,7 +98,7 @@
         
         rowOfAppUpdate = count++;
         
-        if ([ConfigManager isInReviewVersion] == NO){
+        if ([PPConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
         else{
@@ -117,7 +117,7 @@
         rowOfFeedback = count++;
 //        rowOfMoreApp = count++;
         rowOfAppUpdate = count++;
-        if ([ConfigManager isInReviewVersion] == NO){
+        if ([PPConfigManager isInReviewVersion] == NO){
             rowOfGiveReview = count++;
         }
         else{
@@ -140,17 +140,17 @@
     [aCell.customTextLabel setTextColor:[UIColor colorWithRed:0x6c/255.0 green:0x31/255.0 blue:0x08/255.0 alpha:1.0]];
     
     if (anIndex == rowOfShare) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [ConfigManager getShareFriendReward]];
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForShareToFriends"), [PPConfigManager getShareFriendReward]];
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kShare_to_friends"), message];
         [aCell.customTextLabel setText:message];
     } 
     else if (anIndex == rowOfFollowSina) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];            
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [PPConfigManager getFollowReward]];            
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowSinaWeibo"), message];
         [aCell.customTextLabel setText:message];
     }
     else if (anIndex == rowOfFollowTencent) {
-        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [ConfigManager getFollowReward]];
+        NSString* message = [NSString stringWithFormat:NSLS(@"kCoinsForFollowUs"), [PPConfigManager getFollowReward]];
         message = [NSString stringWithFormat:@"%@ (%@)", NSLS(@"kFollowTencentWeibo"), message];
         [aCell.customTextLabel setText:message];
     }
@@ -202,7 +202,7 @@ enum {
         // reward
         if ([[AccountService defaultService] rewardForShareWeibo] > 0){
             // show message
-            NSString* message = [NSString stringWithFormat:NSLS(@"kGetCoinsByShareToFriends"), [ConfigManager getShareFriendReward]];
+            NSString* message = [NSString stringWithFormat:NSLS(@"kGetCoinsByShareToFriends"), [PPConfigManager getShareFriendReward]];
             [[CommonMessageCenter defaultCenter] postMessageWithText:message delayTime:2.0 isHappy:YES];
         }
         
@@ -228,7 +228,7 @@ enum {
 
     NSString *shareBody = [NSString stringWithFormat:shareBodyModel,
                            NSLocalizedStringFromTable(@"CFBundleDisplayName", @"InfoPlist", @""),
-                           [UIUtils getAppLink:[ConfigManager appId]],
+                           [UIUtils getAppLink:[PPConfigManager appId]],
                            weiboId];
     
     if (buttonIndex == buttonIndexSMS) {
@@ -242,7 +242,7 @@ enum {
         [[GameSNSService defaultService] publishWeibo:TYPE_SINA
                                                  text:shareBody
                                                inView:self.view         
-                                           awardCoins:[ConfigManager getShareFriendReward]
+                                           awardCoins:[PPConfigManager getShareFriendReward]
                                        successMessage:NSLS(@"kSentWeiboSucc")
                                        failureMessage:NSLS(@"kSentWeiboFailure")];
         
@@ -257,7 +257,7 @@ enum {
         [[GameSNSService defaultService] publishWeibo:TYPE_QQ
                                                  text:shareBody
                                                inView:self.view
-                                           awardCoins:[ConfigManager getShareFriendReward]
+                                           awardCoins:[PPConfigManager getShareFriendReward]
                                        successMessage:NSLS(@"kSentWeiboSucc")
                                        failureMessage:NSLS(@"kSentWeiboFailure")];
 
@@ -273,7 +273,7 @@ enum {
         [[GameSNSService defaultService] publishWeibo:TYPE_FACEBOOK
                                                  text:shareBody
                                                inView:self.view
-                                           awardCoins:[ConfigManager getShareFriendReward]
+                                           awardCoins:[PPConfigManager getShareFriendReward]
                                        successMessage:NSLS(@"kSentWeiboSucc")
                                        failureMessage:NSLS(@"kSentWeiboFailure")];
 
@@ -404,8 +404,8 @@ enum {
     }
     
     else if (indexPath.row  == rowOfGiveReview) {
-        PPDebug(@"<FeedbackController>appId :%@", [ConfigManager appId]);
-        [UIUtils gotoReview:[ConfigManager appId]];
+        PPDebug(@"<FeedbackController>appId :%@", [PPConfigManager appId]);
+        [UIUtils gotoReview:[PPConfigManager appId]];
     } 
     
     else if (indexPath.row  == rowOfAbout) {
@@ -577,13 +577,13 @@ SET_CELL_BG_IN_CONTROLLER;
     BOOL hasRewardFollowQQ = [userDefaults boolForKey:FOLLOW_QQ_KEY];
     
     if ([[UserManager defaultManager] hasBindSinaWeibo] && hasRewardFollowSina == NO){
-        [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];
+        [[AccountService defaultService] chargeCoin:[PPConfigManager getFollowReward] source:FollowReward];
         [userDefaults setBool:YES forKey:FOLLOW_SINA_KEY];
         [userDefaults synchronize];
     }
     
     if ([[UserManager defaultManager] hasBindQQWeibo] && hasRewardFollowQQ == NO){
-        [[AccountService defaultService] chargeCoin:[ConfigManager getFollowReward] source:FollowReward];        
+        [[AccountService defaultService] chargeCoin:[PPConfigManager getFollowReward] source:FollowReward];        
         [userDefaults setBool:YES forKey:FOLLOW_QQ_KEY];
         [userDefaults synchronize];
     }

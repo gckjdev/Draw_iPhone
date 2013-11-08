@@ -17,7 +17,7 @@
 #import "Reachability.h"
 #import "PPApplication.h"
 #import "DeviceDetection.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UIUtils.h"
 #import "PPMessage.h"
 #import "UserManager.h"
@@ -138,7 +138,7 @@
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FETCH_SHOPPING_LIST];
         str = [str stringByAddQueryParameter:PARA_SHOPPING_TYPE intValue:type];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         return str;
     };
     
@@ -165,7 +165,7 @@
         NSString* str = [NSString stringWithString:baseURL];       
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_ACCOUNT_BALANCE];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         return str;
     };
@@ -480,7 +480,7 @@
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_TRAFFIC_SERVER_LIST];   
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         return str;
     };
@@ -527,7 +527,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_ID value:transactionId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_RECEIPT value:transactionRecepit];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
         
         str = [str stringByAddQueryParameter:PARA_ALIPAY_ORDER value:alixOrder];
@@ -568,7 +568,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_ID value:transactionId];
         str = [str stringByAddQueryParameter:PARA_TRANSACTION_RECEIPT value:transactionRecepit];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_ADMIN_USER_ID value:byUserId];
         
         str = [str stringByAddQueryParameter:PARA_ALIPAY_ORDER value:alixOrder];
@@ -604,7 +604,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_SOURCE intValue:source];
         str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];     
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         return str;
     };
@@ -634,7 +634,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_UPDATE_ACCOUNT_BALANCE];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_ACCOUNT_BALANCE intValue:balance];    
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         return str;
     };
@@ -669,7 +669,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_AMOUNT intValue:amount];        
         str = [str stringByAddQueryParameter:PARA_ITEM_TYPE intValue:itemType];     
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         if ([targetUserId length] > 0){
             str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUserId];
@@ -705,7 +705,7 @@
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_ACCOUNT];   
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
 
         return str;
@@ -739,7 +739,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_SYNC_ACCOUNT];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_DEVICEID value:deviceId];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_VERSION value:[UIUtils getAppVersion]];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         return str;
@@ -1174,7 +1174,7 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         return str;
     };
@@ -1208,7 +1208,7 @@
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         return str;
     };
@@ -1241,7 +1241,7 @@
         str = [str stringByAddQueryParameter:PARA_KEYWORD value:keyword];
         str = [str stringByAddQueryParameter:PARA_OFFSET intValue:offset];
         str = [str stringByAddQueryParameter:PARA_COUNT intValue:limit];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         return str;
     };
@@ -1276,7 +1276,7 @@
         str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_USERID_LIST value:userList];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];        
 
         return str;
     };
@@ -1309,7 +1309,7 @@
         str = [str stringByAddQueryParameter:PARA_ROOM_ID value:roomId];
         str = [str stringByAddQueryParameter:PARA_PASSWORD value:password];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];        
         
         return str;
     };
@@ -1350,7 +1350,7 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];        
         
         return str;
     };
@@ -1377,7 +1377,7 @@
         
         str = [str stringByAddQueryParameter:METHOD value:METHOD_FINDDRAW];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];        
         
         return str;
     };
@@ -1414,7 +1414,7 @@
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
 
         str = [str stringByAddQueryParameter:PARA_RETURN_DATA_METHOD intValue:1];           // if return URL, it's 1 else 0
         str = [str stringByAddQueryParameter:PARA_RETURN_COMPRESSED_DATA intValue:0];       // change to 0
@@ -1450,7 +1450,7 @@
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_OPUS_BY_ID];
         str = [str stringByAddQueryParameter:PARA_FEED_ID value:feedId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];        
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];        
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
         
         if (isReturnDataURL){
@@ -1608,7 +1608,7 @@
         if ([contestId length] != 0) {
             str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];                        
         }
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         // add device model
         NSString* deviceModel = [DeviceDetection platform];
@@ -1738,7 +1738,7 @@
         NSString* deviceModel = [DeviceDetection platform];
         str = [str stringByAddQueryParameter:PARA_DEVICEMODEL value:deviceModel];
         
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         str = [str stringByAddQueryParameter:PARA_IS_DATA_COMPRESSED boolValue:isCompressed];        
         
         return str;
@@ -1810,7 +1810,7 @@
         //TODO use type at Action Class. due to no Action Class, hard code now!
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:ACTION_TYPE_GUESS];
         
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
         
         //action type
         return str;
@@ -2313,7 +2313,7 @@
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:feedListType];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];                
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];                
         str = [str stringByAddQueryParameter:PARA_IMAGE intValue:1];                
         return str;
     };
@@ -2356,7 +2356,7 @@
         str = [str stringByAddQueryParameter:PARA_TYPE intValue:type];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:lang];
         str = [str stringByAddQueryParameter:PARA_FORMAT value:FINDDRAW_FORMAT_PROTOCOLBUFFER];
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];                
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];                
              
         return str;
     };
@@ -2396,7 +2396,7 @@
 #ifdef DEBUG
         str = [str stringByAddQueryParameter:PARA_APPID value:DRAW_APP_ID];
 #else
-        str = [str stringByAddQueryParameter:PARA_APPID value:[ConfigManager appId]];
+        str = [str stringByAddQueryParameter:PARA_APPID value:[PPConfigManager appId]];
 #endif
 
         str = [str stringByAddQueryParameter:PARA_RETURN_ITEM intValue:1];

@@ -7,13 +7,13 @@
 //
 
 #import "WidthView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @implementation WidthView
 
 @synthesize width = _width;
 
-#define SIZE  ([ConfigManager maxPenWidth] + 2)
+#define SIZE  ([PPConfigManager maxPenWidth] + 2)
 //#define MIN_WIDTH  (([DeviceDetection isIPAD]) ? 4 : 2)
 
 + (id)viewWithWidth:(CGFloat)width

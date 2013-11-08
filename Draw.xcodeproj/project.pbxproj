@@ -428,7 +428,7 @@
 		A461B14C174CBAA70088B061 /* WidthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DBF1546802D00D0A00A /* WidthView.m */; };
 		A461B14D174CBAA70088B061 /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DC21546802D00D0A00A /* SynthesisView.m */; };
 		A461B14E174CBAA70088B061 /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
-		A461B14F174CBAA70088B061 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
+		A461B14F174CBAA70088B061 /* PPConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* PPConfigManager.m */; };
 		A461B150174CBAA70088B061 /* SuperGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */; };
 		A461B151174CBAA70088B061 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		A461B152174CBAA70088B061 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
@@ -3435,7 +3435,7 @@
 		C28A9A341738F04B007A819F /* WidthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DBF1546802D00D0A00A /* WidthView.m */; };
 		C28A9A351738F04B007A819F /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DC21546802D00D0A00A /* SynthesisView.m */; };
 		C28A9A361738F04B007A819F /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
-		C28A9A371738F04B007A819F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
+		C28A9A371738F04B007A819F /* PPConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* PPConfigManager.m */; };
 		C28A9A381738F04B007A819F /* SuperGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */; };
 		C28A9A391738F04B007A819F /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		C28A9A3A1738F04B007A819F /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
@@ -4650,6 +4650,14 @@
 		CA27B568176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
 		CA27B569176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
 		CA27B56A176DF27800310651 /* LevelDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27B567176DF27800310651 /* LevelDBManager.m */; };
+		CA29E70E182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA29E70C182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA29E70F182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA29E70C182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA29E710182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA29E70C182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA29E711182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA29E70C182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle */; };
+		CA29E712182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29E70D182C738E002D59BB /* TencentOpenAPI.framework */; };
+		CA29E713182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29E70D182C738E002D59BB /* TencentOpenAPI.framework */; };
+		CA29E714182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29E70D182C738E002D59BB /* TencentOpenAPI.framework */; };
+		CA29E715182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA29E70D182C738E002D59BB /* TencentOpenAPI.framework */; };
 		CA29EB0616A69E7D003B1434 /* DrawRecoveryService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */; };
 		CA322102151B6A670039A384 /* GameNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322101151B6A670039A384 /* GameNetworkRequest.m */; };
 		CA322105151B6BE60039A384 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA322104151B6BE60039A384 /* UserService.m */; };
@@ -5181,7 +5189,7 @@
 		CABEC70417969462006F89BB /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */; };
 		CABEC70517969462006F89BB /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */; };
 		CABEC70617969462006F89BB /* FreeIngotController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */; };
-		CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
+		CAC13246154C28C8000A8C8F /* PPConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* PPConfigManager.m */; };
 		CAC371421611E6C4002CB837 /* RankFirstView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */; };
 		CAC371431611E6C4002CB837 /* RankSecondView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */; };
 		CAC371441611E6C4002CB837 /* RankView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC371401611E6C3002CB837 /* RankView~ipad.xib */; };
@@ -5645,7 +5653,7 @@
 		EA4118E0176066F500DA72D0 /* WidthView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DBF1546802D00D0A00A /* WidthView.m */; };
 		EA4118E1176066F500DA72D0 /* SynthesisView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DC21546802D00D0A00A /* SynthesisView.m */; };
 		EA4118E2176066F500DA72D0 /* ColorShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA051DCC1546808500D0A00A /* ColorShopView.m */; };
-		EA4118E3176066F500DA72D0 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* ConfigManager.m */; };
+		EA4118E3176066F500DA72D0 /* PPConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC13245154C28C8000A8C8F /* PPConfigManager.m */; };
 		EA4118E4176066F500DA72D0 /* SuperGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA06BE4215522F2F00B94FB1 /* SuperGameViewController.m */; };
 		EA4118E5176066F500DA72D0 /* AudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C28207E21552D974006FBB0F /* AudioManager.m */; };
 		EA4118E6176066F500DA72D0 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA362411558C3090081D3EB /* Friend.m */; };
@@ -7894,7 +7902,7 @@
 		C282E5A2172BC53200F8C610 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		C282E5A3172BC53200F8C610 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		C284E87C1531D89800DD5B77 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
-		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
+		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AboutUsController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		C286628B16578BCB00D7EA27 /* AutoCreateViewByXib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoCreateViewByXib.h; sourceTree = "<group>"; };
 		C28A23BB166C90E2007C9EA5 /* ConstantsAndMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantsAndMacros.h; sourceTree = "<group>"; };
@@ -8526,6 +8534,8 @@
 		CA27B562176DF0D200310651 /* APLevelDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = APLevelDB.mm; sourceTree = "<group>"; };
 		CA27B566176DF27700310651 /* LevelDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelDBManager.h; sourceTree = "<group>"; };
 		CA27B567176DF27800310651 /* LevelDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelDBManager.m; sourceTree = "<group>"; };
+		CA29E70C182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		CA29E70D182C738E002D59BB /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		CA29EB0216A6941E003B1434 /* MainDataModel 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MainDataModel 14.xcdatamodel"; sourceTree = "<group>"; };
 		CA29EB0416A69E7D003B1434 /* DrawRecoveryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawRecoveryService.h; sourceTree = "<group>"; };
 		CA29EB0516A69E7D003B1434 /* DrawRecoveryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawRecoveryService.m; sourceTree = "<group>"; };
@@ -8948,7 +8958,7 @@
 		CAA0E6A715147F6E00FD8C3E /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
 		CAA0E6A815147F6E00FD8C3E /* WordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordManager.m; sourceTree = "<group>"; };
 		CAA1AA3D159D78C200504C98 /* AdService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdService.h; sourceTree = "<group>"; };
-		CAA1AA3E159D78C200504C98 /* AdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdService.m; sourceTree = "<group>"; };
+		CAA1AA3E159D78C200504C98 /* AdService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AdService.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		CAA1AF8D159EA86900504C98 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		CAA1AFC4159EAA9800504C98 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		CAA1AFC6159EAB1600504C98 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -9033,8 +9043,8 @@
 		CABEC6D717969462006F89BB /* FreeIngotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeIngotController.m; sourceTree = "<group>"; };
 		CABEC6D817969462006F89BB /* FreeIngotController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeIngotController.xib; sourceTree = "<group>"; };
 		CABEC6D917969462006F89BB /* FreeIngotController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "FreeIngotController~ipad.xib"; sourceTree = "<group>"; };
-		CAC13244154C28C8000A8C8F /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
-		CAC13245154C28C8000A8C8F /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
+		CAC13244154C28C8000A8C8F /* PPConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPConfigManager.h; sourceTree = "<group>"; };
+		CAC13245154C28C8000A8C8F /* PPConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPConfigManager.m; sourceTree = "<group>"; };
 		CAC3713E1611E6C3002CB837 /* RankFirstView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RankFirstView~ipad.xib"; sourceTree = "<group>"; };
 		CAC3713F1611E6C3002CB837 /* RankSecondView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RankSecondView~ipad.xib"; sourceTree = "<group>"; };
 		CAC371401611E6C3002CB837 /* RankView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RankView~ipad.xib"; sourceTree = "<group>"; };
@@ -9589,6 +9599,7 @@
 				CA52ADFE1828CE510066B0A0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				CA52AE061828CE510066B0A0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CA52AE0E1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
+				CA29E714182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9663,6 +9674,7 @@
 				CA52ADFD1828CE510066B0A0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				CA52AE051828CE510066B0A0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CA52AE0D1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
+				CA29E713182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9739,6 +9751,7 @@
 				CA52ADFC1828CE510066B0A0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				CA52AE041828CE510066B0A0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CA52AE0C1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
+				CA29E712182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9813,6 +9826,7 @@
 				CA52ADFF1828CE510066B0A0 /* ShareSDKiPhoneAppRecommendShareViewUI.framework in Frameworks */,
 				CA52AE071828CE510066B0A0 /* ShareSDKiPhoneDefaultShareViewUI.framework in Frameworks */,
 				CA52AE0F1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */,
+				CA29E715182C738E002D59BB /* TencentOpenAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -14325,6 +14339,8 @@
 		CA52AD131828CE4A0066B0A0 /* Extend */ = {
 			isa = PBXGroup;
 			children = (
+				CA29E70C182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle */,
+				CA29E70D182C738E002D59BB /* TencentOpenAPI.framework */,
 				CA52AD181828CE4A0066B0A0 /* libWeiboSDK */,
 				CA52AD231828CE4A0066B0A0 /* SDKExport */,
 				CA52AD291828CE4A0066B0A0 /* TencentWeiboSSO */,
@@ -15238,8 +15254,8 @@
 		CAC13243154C28B9000A8C8F /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				CAC13244154C28C8000A8C8F /* ConfigManager.h */,
-				CAC13245154C28C8000A8C8F /* ConfigManager.m */,
+				CAC13244154C28C8000A8C8F /* PPConfigManager.h */,
+				CAC13245154C28C8000A8C8F /* PPConfigManager.m */,
 				CA1250C51668BB4100AFCC04 /* GameConfigData.h */,
 				CA1250C61668BB4100AFCC04 /* GameConfigData.m */,
 				CA1250C81668BB5000AFCC04 /* GameConfigDataManager.h */,
@@ -17366,6 +17382,7 @@
 				A4E14EC9182B8DC00016E8D0 /* song_bg5@2x.png in Resources */,
 				A4E14ECC182B8DC00016E8D0 /* song_category@2x.png in Resources */,
 				A4E14ECF182B8DC00016E8D0 /* song_tag@2x.png in Resources */,
+				CA29E710182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18274,6 +18291,7 @@
 				A4E14EC8182B8DC00016E8D0 /* song_bg5@2x.png in Resources */,
 				A4E14ECB182B8DC00016E8D0 /* song_category@2x.png in Resources */,
 				A4E14ECE182B8DC00016E8D0 /* song_tag@2x.png in Resources */,
+				CA29E70F182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19164,6 +19182,7 @@
 				A4E14EC7182B8DC00016E8D0 /* song_bg5@2x.png in Resources */,
 				A4E14ECA182B8DC00016E8D0 /* song_category@2x.png in Resources */,
 				A4E14ECD182B8DC00016E8D0 /* song_tag@2x.png in Resources */,
+				CA29E70E182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19975,6 +19994,7 @@
 				CA52ADF71828CE510066B0A0 /* ShareSDKiPadSimpleShareViewUI.bundle in Resources */,
 				CA52AE031828CE510066B0A0 /* ShareSDKiPhoneDefaultShareViewUI.bundle in Resources */,
 				CA52AE0B1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
+				CA29E711182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20127,7 +20147,7 @@
 				A461B14C174CBAA70088B061 /* WidthView.m in Sources */,
 				A461B14D174CBAA70088B061 /* SynthesisView.m in Sources */,
 				A461B14E174CBAA70088B061 /* ColorShopView.m in Sources */,
-				A461B14F174CBAA70088B061 /* ConfigManager.m in Sources */,
+				A461B14F174CBAA70088B061 /* PPConfigManager.m in Sources */,
 				A461B150174CBAA70088B061 /* SuperGameViewController.m in Sources */,
 				A461B151174CBAA70088B061 /* AudioManager.m in Sources */,
 				A461B152174CBAA70088B061 /* Friend.m in Sources */,
@@ -20898,7 +20918,7 @@
 				C28A9A341738F04B007A819F /* WidthView.m in Sources */,
 				C28A9A351738F04B007A819F /* SynthesisView.m in Sources */,
 				C28A9A361738F04B007A819F /* ColorShopView.m in Sources */,
-				C28A9A371738F04B007A819F /* ConfigManager.m in Sources */,
+				C28A9A371738F04B007A819F /* PPConfigManager.m in Sources */,
 				C28A9A381738F04B007A819F /* SuperGameViewController.m in Sources */,
 				C28A9A391738F04B007A819F /* AudioManager.m in Sources */,
 				C28A9A3A1738F04B007A819F /* Friend.m in Sources */,
@@ -21635,7 +21655,7 @@
 				CA051DC91546802D00D0A00A /* WidthView.m in Sources */,
 				CA051DCA1546802D00D0A00A /* SynthesisView.m in Sources */,
 				CA051DCE1546808500D0A00A /* ColorShopView.m in Sources */,
-				CAC13246154C28C8000A8C8F /* ConfigManager.m in Sources */,
+				CAC13246154C28C8000A8C8F /* PPConfigManager.m in Sources */,
 				CA06BE4315522F3000B94FB1 /* SuperGameViewController.m in Sources */,
 				C28207E31552D974006FBB0F /* AudioManager.m in Sources */,
 				CAA362421558C3090081D3EB /* Friend.m in Sources */,
@@ -22375,7 +22395,7 @@
 				EA4118E0176066F500DA72D0 /* WidthView.m in Sources */,
 				EA4118E1176066F500DA72D0 /* SynthesisView.m in Sources */,
 				EA4118E2176066F500DA72D0 /* ColorShopView.m in Sources */,
-				EA4118E3176066F500DA72D0 /* ConfigManager.m in Sources */,
+				EA4118E3176066F500DA72D0 /* PPConfigManager.m in Sources */,
 				EA4118E4176066F500DA72D0 /* SuperGameViewController.m in Sources */,
 				EA4118E5176066F500DA72D0 /* AudioManager.m in Sources */,
 				EA4118E6176066F500DA72D0 /* Friend.m in Sources */,

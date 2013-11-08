@@ -388,7 +388,7 @@ SET_CELL_BG_IN_CONTROLLER;
     UIButton* btn = (UIButton*)sender;
     btn.selected = !btn.selected;
 //    isAutoSave = !btn.selected;
-//    [ConfigManager setAutoSave:isAutoSave];
+//    [PPConfigManager setAutoSave:isAutoSave];
 }
 
 
@@ -937,7 +937,7 @@ SET_CELL_BG_IN_CONTROLLER;
             CommonDialog *dialog = [CommonDialog createInputFieldDialogWith:NSLS(@"kNickname") delegate:self];
             dialog.tag = DIALOG_TAG_NICKNAME;
             dialog.inputTextField.text = nicknameLabel.text;
-            [dialog setMaxInputLen:[ConfigManager getNicknameMaxLen]];
+            [dialog setMaxInputLen:[PPConfigManager getNicknameMaxLen]];
             
             [dialog showInView:self.view];
         } else if (row == rowOfCustomDice){
@@ -961,7 +961,7 @@ SET_CELL_BG_IN_CONTROLLER;
             CommonDialog *dialog = [CommonDialog createInputViewDialogWith:NSLS(@"kInputSignature")];
             dialog.inputTextView.text = _pbUserBuilder.signature;
             dialog.delegate = self;
-            [dialog setMaxInputLen:[ConfigManager getSignatureMaxLen]];
+            [dialog setMaxInputLen:[PPConfigManager getSignatureMaxLen]];
             [dialog showInView:self.view];
             dialog.tag = DIALOG_TAG_SIGNATURE;
             
@@ -1370,7 +1370,7 @@ SET_CELL_BG_IN_CONTROLLER;
 ////    UISlider* slider = (UISlider*)[self.view viewWithTag:SLIDER_TAG];
 //        
 //    BOOL localChanged = (languageType != [userManager getLanguageType]) 
-//    || (guessLevel != [ConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]));
+//    || (guessLevel != [PPConfigManager guessDifficultLevel] || ([userManager gender] != nil && ![self.gender isEqualToString:[userManager gender]]));
 //    return localChanged;
 //}
 
@@ -1408,12 +1408,12 @@ SET_CELL_BG_IN_CONTROLLER;
 
 - (IBAction)clickSaveButton:(id)sender {
     
-    if (_pbUserBuilder.nickName.length > [ConfigManager getNicknameMaxLen]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kNicknameOutofRange"), [ConfigManager getNicknameMaxLen], [ConfigManager getNicknameMaxLen]/2] delayTime:1.5];
+    if (_pbUserBuilder.nickName.length > [PPConfigManager getNicknameMaxLen]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kNicknameOutofRange"), [PPConfigManager getNicknameMaxLen], [PPConfigManager getNicknameMaxLen]/2] delayTime:1.5];
         return;
     }
-    if (_pbUserBuilder.signature.length > [ConfigManager getSignatureMaxLen]) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSignatureOutofRange"), [ConfigManager getSignatureMaxLen], [ConfigManager getSignatureMaxLen]/2] delayTime:1.5];
+    if (_pbUserBuilder.signature.length > [PPConfigManager getSignatureMaxLen]) {
+        [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kSignatureOutofRange"), [PPConfigManager getSignatureMaxLen], [PPConfigManager getSignatureMaxLen]/2] delayTime:1.5];
         return;
     }
     

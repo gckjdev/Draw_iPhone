@@ -7,7 +7,7 @@
 //
 
 #import "DrawInfo.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShareImageManager.h"
 
 @implementation DrawInfo
@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         self.alpha = 1;
-        self.penWidth = [ConfigManager defaultPenWidth];
+        self.penWidth = [PPConfigManager defaultPenWidth];
         self.penType = Pencil;
         self.lastPenType = Pencil;
         self.shapeType = ShapeTypeNone;

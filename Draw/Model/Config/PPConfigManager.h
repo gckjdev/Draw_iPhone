@@ -28,7 +28,7 @@ typedef enum{
     WallTypeWanpu = 2
 }WallType;
 
-@interface ConfigManager : NSObject
+@interface PPConfigManager : NSObject
 
 + (int)getHomeDisplayOpusNumber;
 + (int)getHomeSwitchOpusInterval;

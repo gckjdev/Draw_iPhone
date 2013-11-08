@@ -11,7 +11,7 @@
 #import "UserManager.h"
 #import "GameNetworkRequest.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "PPNetworkRequest.h"
 #import "GameMessage.pb.h"
 #import "UIImageExt.h"
@@ -26,7 +26,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
 {    
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest createWall:TRAFFIC_SERVER_URL
-                                                               appId:[ConfigManager appId]
+                                                               appId:[PPConfigManager appId]
                                                               userId:[[UserManager defaultManager] userId]
                                                                 data:wall.data
                                                            imageData:[bgImage data]];
@@ -61,7 +61,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
 {
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest updateWall:TRAFFIC_SERVER_URL
-                                                               appId:[ConfigManager appId]
+                                                               appId:[PPConfigManager appId]
                                                               userId:[[UserManager defaultManager] userId]
                                                               wallId:wall.wallId
                                                                 data:wall.data
@@ -98,7 +98,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
 {
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getWalls:TRAFFIC_SERVER_URL
-                                                             appId:[ConfigManager appId]
+                                                             appId:[PPConfigManager appId]
                                                             userId:[[UserManager defaultManager] userId]
                                                           wallType:wallType];
         
@@ -133,7 +133,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(WallService);
 {
     dispatch_async(workingQueue, ^{
         CommonNetworkOutput* output = [GameNetworkRequest getWall:TRAFFIC_SERVER_URL
-                                                            appId:[ConfigManager appId]
+                                                            appId:[PPConfigManager appId]
                                                            userId:userId
                                                            wallId:wallId];
         

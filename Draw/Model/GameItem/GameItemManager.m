@@ -11,7 +11,7 @@
 #import "GameBasic.pb.h"
 #import "PPSmartUpdateDataUtils.h"
 #import "ItemType.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 #define SHOP_ITEMS_FILE_WITHOUT_SUFFIX @"shop_item"
 #define SHOP_ITEM_FILE_TYPE @"pb"
@@ -96,7 +96,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
 
 - (NSArray *)itemsList
 {
-    if ([ConfigManager isInReviewVersion]) {
+    if ([PPConfigManager isInReviewVersion]) {
         return [self removeAdAndPurseItemInItems:_items];
     }
     
@@ -112,7 +112,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
         }
     }
     
-    if ([ConfigManager isInReviewVersion]) {
+    if ([PPConfigManager isInReviewVersion]) {
         return [self removeAdAndPurseItemInItems:array];
     }
     
@@ -128,7 +128,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameItemManager);
         }
     }
     
-    if ([ConfigManager isInReviewVersion]) {
+    if ([PPConfigManager isInReviewVersion]) {
         return [self removeAdAndPurseItemInItems:array];
     }
     

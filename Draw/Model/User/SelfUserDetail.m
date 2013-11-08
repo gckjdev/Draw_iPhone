@@ -16,7 +16,7 @@
 #import "SNSUtils.h"
 #import "CommonDialog.h"
 #import "CommonMessageCenter.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "GameSNSService.h"
 #import "FriendController.h"
 #import "ShareImageManager.h"

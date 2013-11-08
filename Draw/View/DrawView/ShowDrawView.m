@@ -12,7 +12,7 @@
 #import "UIImageUtil.h"
 #import "PenView.h"
 #import "Paint.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CanvasRect.h"
 #import "DrawHolderView.h"
 #import "ClipAction.h"
@@ -238,8 +238,8 @@ typedef enum {
         pen.userInteractionEnabled = NO;
         
         pen.penType = 0;
-        self.maxPlaySpeed = [ConfigManager getMaxPlayDrawSpeed];
-        self.playSpeed = [ConfigManager getDefaultPlayDrawSpeed];
+        self.maxPlaySpeed = [PPConfigManager getMaxPlayDrawSpeed];
+        self.playSpeed = [PPConfigManager getDefaultPlayDrawSpeed];
         [self.superview addSubview:pen];
         
     }
@@ -290,7 +290,7 @@ typedef enum {
 
 + (BOOL)canPlayDrawVersion:(NSInteger)version
 {
-    return [ConfigManager currentDrawDataVersion] >= version;
+    return [PPConfigManager currentDrawDataVersion] >= version;
 }
 
 
@@ -522,7 +522,7 @@ typedef enum {
 /*
     self.speed = PlaySpeedTypeNormal;
     
-    if ([ConfigManager useSpeedLevel]) {
+    if ([PPConfigManager useSpeedLevel]) {
         NSInteger count = [self.drawActionList count];
         if (count < PlaySpeedTypeNormal * LEVEL_TIMES) {
             self.speed = PlaySpeedTypeLow;

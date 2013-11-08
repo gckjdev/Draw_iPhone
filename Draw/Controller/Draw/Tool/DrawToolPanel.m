@@ -12,7 +12,7 @@
 #import "ItemType.h"
 #import "DrawColorManager.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawSlider.h"
 #import "ColorPoint.h"
 #import "Draw.pb.h"
@@ -132,11 +132,11 @@
 
 #define TIMESET_FONT_SIZE VALUE(15.0)
 
-#define LINE_MIN_WIDTH ([ConfigManager minPenWidth]) //(1.0)
-#define LINE_MAX_WIDTH ([ConfigManager maxPenWidth])
-#define LINE_DEFAULT_WIDTH ([ConfigManager defaultPenWidth])
+#define LINE_MIN_WIDTH ([PPConfigManager minPenWidth]) //(1.0)
+#define LINE_MAX_WIDTH ([PPConfigManager maxPenWidth])
+#define LINE_DEFAULT_WIDTH ([PPConfigManager defaultPenWidth])
 
-#define COLOR_MIN_ALPHA ([ConfigManager minAlpha])
+#define COLOR_MIN_ALPHA ([PPConfigManager minAlpha])
 #define COLOR_MAX_ALPHA 1.0
 #define COLOR_DEFAULT_ALPHA 1.0
 

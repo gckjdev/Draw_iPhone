@@ -22,7 +22,7 @@
 #import "BBSPermissionManager.h"
 #import "StorageManager.h"
 #import "UIImage+Scale.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 
 #define KEY_ALL_USER_PB_DATA            @"KEY_ALL_USER_PB_DATA"
@@ -1591,7 +1591,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
     int count = [[userDefaults objectForKey:key] intValue];
     
     PPDebug(@"max take number count = %d", count);
-    if (count >= [ConfigManager maxTakeNumberCount]){
+    if (count >= [PPConfigManager maxTakeNumberCount]){
         return YES;
     }
     else{

@@ -25,7 +25,7 @@
 
 #import "RouterTrafficServer.h"
 #import "StringUtil.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ChatController.h"
 #import "CommonMessageCenter.h"
 #import "SearchRoomController.h"
@@ -491,7 +491,7 @@
                                             gender:[_userManager isUserMale]
                                           location:[_userManager location] 
                                          userLevel:[[LevelService defaultService] level]
-                                    guessDiffLevel:[ConfigManager guessDifficultLevel]
+                                    guessDiffLevel:[PPConfigManager guessDifficultLevel]
                                        snsUserData:[_userManager snsUserData]];    
     }
     
@@ -508,12 +508,12 @@
 //
 //    // update by Benson, to avoid "server full/busy issue"
 //    if ([[UserManager defaultManager] getLanguageType] == ChineseType){
-//        address = [ConfigManager defaultChineseServer];
-//        port = [ConfigManager defaultChinesePort];
+//        address = [PPConfigManager defaultChineseServer];
+//        port = [PPConfigManager defaultChinesePort];
 //    }
 //    else{
-//        address = [ConfigManager defaultEnglishServer];
-//        port = [ConfigManager defaultEnglishPort];
+//        address = [PPConfigManager defaultEnglishServer];
+//        port = [PPConfigManager defaultEnglishPort];
 //    }
 //
 //

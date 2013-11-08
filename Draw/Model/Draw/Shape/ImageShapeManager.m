@@ -12,7 +12,7 @@
 #import "ItemType.h"
 #import "ShapeGroup.h"
 #import "PPSmartUpdateData.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawUtils.h"
 #import "UIBezierPath+Ext.h"
 #import "UserGameItemManager.h"
@@ -45,7 +45,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ImageShapeManager)
         _smartData = [[PPSmartUpdateData alloc] initWithName:IMAGE_SHAPE_ZIP_NAME
                                                         type:SMART_UPDATE_DATA_TYPE_ZIP
                                                   bundlePath:IMAGE_SHAPE_ZIP_NAME
-                                             initDataVersion:[ConfigManager currentImageShapeVersion]];
+                                             initDataVersion:[PPConfigManager currentImageShapeVersion]];
         
         [self updateImageShapeList];
         

@@ -8,7 +8,7 @@
 
 #import "ContestController.h"
 #import "Contest.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "StatementController.h"
 #import "CommonMessageCenter.h"
 #import "ContestOpusController.h"
@@ -19,7 +19,7 @@
 #import "ContestManager.h"
 #import "StatisticManager.h"
 #import "CustomInfoView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 
 @implementation ContestController
@@ -214,7 +214,7 @@
 }
 
 - (void)alertCopyrightStatement:(void (^)(void))block{
-    if (![ConfigManager isInReviewVersion]) {
+    if (![PPConfigManager isInReviewVersion]) {
         EXECUTE_BLOCK(block);
         return;
     }

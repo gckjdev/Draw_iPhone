@@ -12,7 +12,7 @@
 #import "PPDebug.h"
 #import "ShareImageManager.h"
 #import "CommonDialog.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "FileUtil.h"
 #import "WXApi.h"
 #import "WXApiObject.h"

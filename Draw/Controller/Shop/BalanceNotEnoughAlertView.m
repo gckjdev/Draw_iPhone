@@ -10,7 +10,7 @@
 #import "CommonDialog.h"
 #import "FreeIngotController.h"
 #import "ChargeController.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 @implementation BalanceNotEnoughAlertView
 
@@ -21,7 +21,7 @@
     
     [dialog setClickOkBlock:^(UILabel *label){
             
-            if (![ConfigManager isInReviewVersion]) {
+            if (![PPConfigManager isInReviewVersion]) {
                 FreeIngotController *vc = [[[FreeIngotController alloc] init] autorelease];
                 [controller.navigationController pushViewController:vc animated:YES];
             }
@@ -32,7 +32,7 @@
         [controller.navigationController pushViewController:vc animated:YES];
     }];
     
-    if ([ConfigManager isInReviewVersion]) {
+    if ([PPConfigManager isInReviewVersion]) {
         [dialog.oKButton setTitle:NSLS(@"kCancel") forState:UIControlStateNormal];
     }else{
         [dialog.oKButton setTitle:NSLS(@"kFreeIngots") forState:UIControlStateNormal];

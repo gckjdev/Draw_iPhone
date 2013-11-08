@@ -7,7 +7,7 @@
 //
 
 #import "SingInfoEditController.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "StringUtil.h"
 
@@ -82,7 +82,7 @@
     
     [self.nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
-    NSString *tagString = [ConfigManager getSingTagList];
+    NSString *tagString = [PPConfigManager getSingTagList];
     NSArray *tagList = [tagString componentsSeparatedByString:@"$"];
     for (int index = 0; index < [tagList count]; index ++) {
         NSString *tag = [tagList objectAtIndex:index];

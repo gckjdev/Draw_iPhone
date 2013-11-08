@@ -28,7 +28,7 @@
 #import "AnalyticsManager.h"
 #import "StorageManager.h"
 #import "WordManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UIImageUtil.h"
 #import "StringUtil.h"
 #import "TimeUtils.h"
@@ -295,7 +295,7 @@
     }
     
     NSString* path = [[[ShareService defaultService] synthesisImageWithImage:image
-                                                              waterMarkText:[ConfigManager getShareImageWaterMark]] retain];
+                                                              waterMarkText:[PPConfigManager getShareImageWaterMark]] retain];
     [pool drain];
 
     PPDebug(@"<createFeedImagePath> create image file at %@ for share", path);
@@ -315,18 +315,18 @@
     
     if (isDrawByMe){
         if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), feed.opusDesc, snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), feed.opusDesc, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
     else{
         NSString* heStr = [feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
         if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), feed.opusDesc, heStr, snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), feed.opusDesc, heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
             
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
     
@@ -342,18 +342,18 @@
     }
     if (_isDrawByMe){        
         if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
     else{
         NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
         if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
 
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
 
@@ -361,13 +361,13 @@
                                              text:text
                                     imageFilePath:_imageFilePath
                                            inView:self.superViewController.view
-                                       awardCoins:[ConfigManager getShareWeiboReward]
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")];
     
 }
 
-#define MAX_WEIXIN_IMAGE_WIDTH          ([ConfigManager maxWeixinImageWidth])
+#define MAX_WEIXIN_IMAGE_WIDTH          ([PPConfigManager maxWeixinImageWidth])
 
 - (void)shareViaWeixin:(int)scene
 {

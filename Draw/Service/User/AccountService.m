@@ -22,7 +22,7 @@
 #import "TransactionReceiptManager.h"
 #import "MobClick.h"
 #import "UIDevice+IdentifierAddition.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "UserService.h"
 #import "LevelService.h"
 #import "AdService.h"
@@ -663,13 +663,13 @@ transactionRecepit:(NSString*)transactionRecepit
     }
     
     // award user
-    [self chargeCoin:[ConfigManager getShareWeiboReward] source:ShareWeiboReward];
+    [self chargeCoin:[PPConfigManager getShareWeiboReward] source:ShareWeiboReward];
     
     // update counter
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:counter+1] forKey:SHARE_WEIBO_REWARD_COUNTER];
 
     // return award amount
-    return [ConfigManager getShareWeiboReward];
+    return [PPConfigManager getShareWeiboReward];
 }
 
 #define SHARE_APP_REWARD_COUNTER  @"SHARE_APP_REWARD_COUNTER"
@@ -682,7 +682,7 @@ transactionRecepit:(NSString*)transactionRecepit
         return;
     }
     
-    [self chargeCoin:[ConfigManager getShareFriendReward] source:ShareAppReward];
+    [self chargeCoin:[PPConfigManager getShareFriendReward] source:ShareAppReward];
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:counter+1] forKey:SHARE_APP_REWARD_COUNTER];
 }

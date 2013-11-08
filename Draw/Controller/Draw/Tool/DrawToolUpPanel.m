@@ -12,7 +12,7 @@
 #import "ShareImageManager.h"
 #import "ItemType.h"
 #import "AccountService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawSlider.h"
 #import "ColorPoint.h"
 #import "Draw.pb.h"

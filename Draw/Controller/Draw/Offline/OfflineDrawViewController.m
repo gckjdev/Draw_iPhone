@@ -39,7 +39,7 @@
 #import "Contest.h"
 #import "ContestController.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawToolPanel.h"
 #import "DrawColorManager.h"
 #import "DrawRecoveryService.h"
@@ -1066,10 +1066,10 @@
     NSString* text = nil;
     
     if ([[self getOpusComment] length] > 0){
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), [self getOpusComment], snsOfficialNick, self.word.text, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
     }
     else{
-        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, self.word.text, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+        text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, self.word.text, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
     }
     
     if (imagePath != nil) {
@@ -1077,7 +1077,7 @@
         [[GameSNSService defaultService] publishWeiboAtBackground:type
                                                              text:text
                                                     imageFilePath:imagePath
-                                                       awardCoins:[ConfigManager getCreateOpusWeiboReward]
+                                                       awardCoins:[PPConfigManager getCreateOpusWeiboReward]
                                                    successMessage:NSLS(@"kSentWeiboSucc")
                                                    failureMessage:NSLS(@"kSentWeiboFailure")];
         
@@ -1116,7 +1116,7 @@
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     self.tempImageFilePath = [[ShareService defaultService] synthesisImageWithImage:image
-                                                                      waterMarkText:[ConfigManager getShareImageWaterMark]];
+                                                                      waterMarkText:[PPConfigManager getShareImageWaterMark]];
     [pool drain];
 }
 
@@ -1235,12 +1235,12 @@
 
     
     if ([[UserManager defaultManager] getLanguageType] == EnglishType) {
-        [v setMaxTitleLength:[ConfigManager maxDrawEnglishTitleLen]];
+        [v setMaxTitleLength:[PPConfigManager maxDrawEnglishTitleLen]];
     }else{
-        [v setMaxTitleLength:[ConfigManager maxDrawChineseTitleLen]];
+        [v setMaxTitleLength:[PPConfigManager maxDrawChineseTitleLen]];
     }
     
-    [v setMaxContentLength:[ConfigManager getMaxLengthOfDrawDesc]];
+    [v setMaxContentLength:[PPConfigManager getMaxLengthOfDrawDesc]];
 
     
     CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kAddOpusDesc") customView:v style:CommonDialogStyleDoubleButton];

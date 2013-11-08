@@ -31,7 +31,7 @@ enum{
 #import "PPSNSConstants.h"
 #import "GameSNSService.h"
 #import "UserService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "FeedService.h"
 #import "CommonShareAction.h"
 

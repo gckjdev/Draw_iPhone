@@ -8,7 +8,7 @@
 
 #import "DrawGameApp.h"
 #import "MobClickUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ShareImageManager.h"
 #import "DrawGameJumpHandler.h"
 #import "HomeController.h"
@@ -46,7 +46,7 @@
 
 - (NSString*)lmwallId
 {
-    return [ConfigManager getLimeiWallId];
+    return [PPConfigManager getLimeiWallId];
 }
 
 - (NSString*)lmAdPublisherId
@@ -180,12 +180,12 @@
 
 - (NSString *)upgradeMessage:(int)newLevel
 {
-    return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+    return [NSString stringWithFormat:NSLS(@"kUpgradeMsg"),newLevel,[PPConfigManager flowerAwardFordLevelUp]];
 }
 
 - (NSString *)degradeMessage:(int)newLevel
 {
-    return [NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel,[ConfigManager flowerAwardFordLevelUp]];
+    return [NSString stringWithFormat:NSLS(@"kDegradeMsg"),newLevel,[PPConfigManager flowerAwardFordLevelUp]];
 }
 
 - (NSString *)popupMessageDialogBackgroundImage

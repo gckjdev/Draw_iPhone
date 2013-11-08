@@ -23,7 +23,7 @@
 #import "AccountService.h"
 #import "DrawConstants.h"
 #import "AudioManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "CommonMessageCenter.h"
 #import "GameConstants.h"
 #import "AccountManager.h"
@@ -357,7 +357,7 @@
     
     [showView updateLayers:[DrawLayer defaultOldLayersWithFrame:rect]];
     
-    [showView setPlaySpeed:[ConfigManager getOnlinePlayDrawSpeed]];
+    [showView setPlaySpeed:[PPConfigManager getOnlinePlayDrawSpeed]];
     DrawHolderView *holder = [DrawHolderView defaultDrawHolderViewWithContentView:showView];
     if (ISIPHONE5) {
         [holder updateHeight:CGRectGetHeight(holder.frame) + 108];

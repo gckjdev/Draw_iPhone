@@ -8,7 +8,7 @@
 
 #import "FlowerItem.h"
 #import "FeedService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawGameService.h"
 #import "AccountService.h"
 #import "GameConstants.h"
@@ -58,8 +58,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     if (isOffline) {
         
         // prepare data for consumeItem request
-        awardAmount = [ConfigManager getFlowerAwardAmount];
-        awardExp = [ConfigManager getFlowerAwardExp];
+        awardAmount = [PPConfigManager getFlowerAwardAmount];
+        awardExp = [PPConfigManager getFlowerAwardExp];
         
         if (isFree) {
             [[FeedService defaultService] throwItem:[bself itemId]
@@ -134,8 +134,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
     if (isOffline) {
 
         // prepare data for consumeItem request
-        awardAmount = [ConfigManager getFlowerAwardAmount];
-        awardExp = [ConfigManager getFlowerAwardExp];
+        awardAmount = [PPConfigManager getFlowerAwardAmount];
+        awardExp = [PPConfigManager getFlowerAwardExp];
         
         if (isFree) {
             [[FeedService defaultService] throwItem:[bself itemId]

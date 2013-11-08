@@ -11,7 +11,7 @@
 #import "PPViewController.h"
 #import "CommonDialog.h"
 #import "ShareImageManager.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "PPViewController.h"
 
 #define CELL_ID @"DrawLayerPanelCell"
@@ -264,7 +264,7 @@ didClickRemoveAtDrawLayer:(DrawLayer *)layer
 }
 
 - (IBAction)clickAdd:(id)sender {
-    if ([[_dlManager layers] count] >= [ConfigManager getMaxLayerNumber]) {
+    if ([[_dlManager layers] count] >= [PPConfigManager getMaxLayerNumber]) {
         POSTMSG(NSLS(@"kRearchMaxLayerCount"));
         return;
     }

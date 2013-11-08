@@ -16,7 +16,7 @@
 #import "GameBasic.pb.h"
 #import "UserManager.h"
 #import "GameNetworkConstants.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "DrawDataService.h"
 #import "UIImageExt.h"
 
@@ -33,7 +33,7 @@ BBSService *_staticBBSService;
 @end
 
 
-#define BBS_HOST [ConfigManager getBBSServerURL]
+#define BBS_HOST [PPConfigManager getBBSServerURL]
 
 @implementation BBSService
 
@@ -232,7 +232,7 @@ BBSService *_staticBBSService;
 //    if ([pbDrawActionList count] != 0) {
 //        PBBBSDraw_Builder *builder = [[PBBBSDraw_Builder alloc] init];
 //        [builder addAllDrawActionList:pbDrawActionList];
-//        [builder setVersion:[ConfigManager currentDrawDataVersion]];
+//        [builder setVersion:[PPConfigManager currentDrawDataVersion]];
 //        [builder setCanvasSize:CGSizeToPBSize(size)];
 //        bbsDraw = [builder build];
 //        [builder release];
@@ -328,12 +328,12 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
-        NSString *gameId = [ConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];
+        NSString *gameId = [PPConfigManager gameId];
         
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
         
-        CommonNetworkOutput *output = [BBSNetwork getBBSBoardList:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork getBBSBoardList:[PPConfigManager getBBSServerURL]
                                                             appId:appId
                                                            userId:userId
                                                        deviceType:1
@@ -418,14 +418,14 @@ BBSService *_staticBBSService;
     
         [queue addOperationWithBlock: ^{
             NSInteger deviceType = [DeviceDetection deviceType];
-            NSString *appId = [ConfigManager appId];
+            NSString *appId = [PPConfigManager appId];
             
             NSString *userId = [[UserManager defaultManager] userId];
             NSString *nickName = [[UserManager defaultManager] nickName];
             NSString *gender = [[UserManager defaultManager] gender];
             NSString *avatar = [[UserManager defaultManager] avatarURL];
             
-            CommonNetworkOutput *output = [BBSNetwork createPost:[ConfigManager getBBSServerURL]
+            CommonNetworkOutput *output = [BBSNetwork createPost:[PPConfigManager getBBSServerURL]
                                                            appId:appId
                                                       deviceType:deviceType
                                                           userId:userId
@@ -486,10 +486,10 @@ BBSService *_staticBBSService;
     dispatch_async(workingQueue, ^{
 
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
         
-        CommonNetworkOutput *output = [BBSNetwork changeBBSUserRole:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork changeBBSUserRole:[PPConfigManager getBBSServerURL]
                                                               appId:appId
                                                          deviceType:deviceType
                                                              userId:userId
@@ -515,10 +515,10 @@ BBSService *_staticBBSService;
     }
     
     NSString *userId = [[UserManager defaultManager] userId];
-    NSString *appId = [ConfigManager appId];
+    NSString *appId = [PPConfigManager appId];
     NSInteger deviceType = [DeviceDetection deviceType];
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput *output = [BBSNetwork getBBSPrivilegeList:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork getBBSPrivilegeList:[PPConfigManager getBBSServerURL]
                                                                 appId:appId
                                                            deviceType:deviceType
                                                                userId:userId];
@@ -565,10 +565,10 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
-        CommonNetworkOutput *output = [BBSNetwork getPostList:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork getPostList:[PPConfigManager getBBSServerURL]
                                                         appId:appId
                                                    deviceType:deviceType
                                                        userId:userId
@@ -624,7 +624,7 @@ BBSService *_staticBBSService;
     }
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
 
         NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
@@ -661,7 +661,7 @@ BBSService *_staticBBSService;
     
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
@@ -694,7 +694,7 @@ BBSService *_staticBBSService;
     }
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
@@ -726,7 +726,7 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
         NSDictionary *paras = @{PARA_DEVICETYPE : @(deviceType),
@@ -827,7 +827,7 @@ BBSService *_staticBBSService;
 //                nText = [self defaultTextForContentType:contentType];
 //            }
             NSInteger deviceType = [DeviceDetection deviceType];
-            NSString *appId = [ConfigManager appId];
+            NSString *appId = [PPConfigManager appId];
             NSString *userId = [[UserManager defaultManager] userId];
             NSString *nickName = [[UserManager defaultManager] nickName];
             NSString *gender = [[UserManager defaultManager] gender];
@@ -843,7 +843,7 @@ BBSService *_staticBBSService;
                 briefText = [briefText substringToIndex:BRIEF_TEXT_LENGTH];
             }
             
-            CommonNetworkOutput *output = [BBSNetwork createAction:[ConfigManager getBBSServerURL]
+            CommonNetworkOutput *output = [BBSNetwork createAction:[PPConfigManager getBBSServerURL]
                                                              appId:appId
                                                         deviceType:deviceType
                                                             userId:userId
@@ -929,10 +929,10 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
-        CommonNetworkOutput *output = [BBSNetwork getActionList:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork getActionList:[PPConfigManager getBBSServerURL]
                                                           appId:appId
                                                      deviceType:deviceType
                                                          userId:userId
@@ -973,10 +973,10 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSInteger deviceType = [DeviceDetection deviceType];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSString *userId = [[UserManager defaultManager] userId];
         
-        CommonNetworkOutput *output = [BBSNetwork getActionList:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork getActionList:[PPConfigManager getBBSServerURL]
                                                           appId:appId
                                                      deviceType:deviceType
                                                          userId:userId
@@ -1017,11 +1017,11 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
         PBBBSUser *aUser = action.createUser;
         
-        CommonNetworkOutput *output = [BBSNetwork payReward:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork payReward:[PPConfigManager getBBSServerURL]
                                                      userId:userId
                                                       appId:appId
                                                  deviceType:deviceType
@@ -1084,9 +1084,9 @@ BBSService *_staticBBSService;
         dispatch_async(workingQueue, ^{
             PPDebug(@"<getBBSDrawDataWithPostId> load data from remote service");
             NSString *userId = [[UserManager defaultManager] userId];
-            NSString *appId = [ConfigManager appId];
+            NSString *appId = [PPConfigManager appId];
         
-            CommonNetworkOutput *output = [BBSNetwork getBBSDrawData:[ConfigManager getBBSServerURL]
+            CommonNetworkOutput *output = [BBSNetwork getBBSDrawData:[PPConfigManager getBBSServerURL]
                                                                appId:appId
                                                           deviceType:[DeviceDetection deviceType]
                                                               userId:userId
@@ -1136,9 +1136,9 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork getBBSPost:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork getBBSPost:[PPConfigManager getBBSServerURL]
                                                        appId:appId
                                                   deviceType:deviceType
                                                       userId:userId
@@ -1178,9 +1178,9 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork deleteBBSPost:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork deleteBBSPost:[PPConfigManager getBBSServerURL]
                                                           appId:appId
                                                      deviceType:deviceType
                                                          userId:userId
@@ -1201,9 +1201,9 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork deleteBBSAction:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork deleteBBSAction:[PPConfigManager getBBSServerURL]
                                                             appId:appId
                                                        deviceType:deviceType
                                                            userId:userId
@@ -1230,9 +1230,9 @@ BBSService *_staticBBSService;
     dispatch_async(workingQueue, ^{
         PPDebug(@"transfer post from board(%@) to board(%@)",post.boardId, boardId);
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [ConfigManager appId];
+        NSString *appId = [PPConfigManager appId];
         NSInteger deviceType = [DeviceDetection deviceType];
-        CommonNetworkOutput *output = [BBSNetwork editBBSPost:[ConfigManager getBBSServerURL]
+        CommonNetworkOutput *output = [BBSNetwork editBBSPost:[PPConfigManager getBBSServerURL]
                                                         appId:appId
                                                    deviceType:deviceType
                                                        userId:userId

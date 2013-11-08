@@ -12,7 +12,7 @@
 //#import "UIButton+WebCache.h"
 #import "UIButtonExt.h"
 #import "UIViewUtils.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 #define FEED_VIEW_FRAME (ISIPAD ? CGRectMake(0.0f, 0.0f, 240.0f, 240.0f) : CGRectMake(0.0f, 0.0f, 120.0f, 120.0f))
 
@@ -49,7 +49,7 @@ AUTO_CREATE_VIEW_BY_XIB(FeedCarousel);
     FeedCarousel *view = [self createView];
     view.carousel.delegate = view;
     view.carousel.dataSource = view;
-    view.carousel.type = [ConfigManager getFeedCarouselType];
+    view.carousel.type = [PPConfigManager getFeedCarouselType];
 
     return view;
 }

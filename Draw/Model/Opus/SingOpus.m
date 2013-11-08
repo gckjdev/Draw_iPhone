@@ -11,7 +11,7 @@
 #import "FileUtil.h"
 #import "MFMailComposeViewController+ShareEmailSender.h"
 #import "CommonMessageCenter.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "GameSNSService.h"
 #import "SingController.h"
 
@@ -220,7 +220,7 @@ enum {
     
     PBOpus *pbOpus = self.pbOpus;
     
-    NSString *text = [NSString stringWithFormat:NSLS(@"kShareMySingOpus"), snsOfficialNick, pbOpus.name, pbOpus.dataUrl, [ConfigManager getSNSShareSubject], [ConfigManager getAppItuneLink]];
+    NSString *text = [NSString stringWithFormat:NSLS(@"kShareMySingOpus"), snsOfficialNick, pbOpus.name, pbOpus.dataUrl, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
     
     return text;
 }

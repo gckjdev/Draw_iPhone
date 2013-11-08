@@ -7,7 +7,7 @@
 //
 
 #import "ContestFeed.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "ContestManager.h"
 
 @implementation ContestFeed

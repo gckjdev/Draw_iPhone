@@ -11,7 +11,7 @@
 #import "UserItem.h"
 #import "CoreDataUtil.h"
 #import "PPDebug.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 #define CUSTOM_DICE_TIPS    @"CustomDiceTips"
 
@@ -130,10 +130,10 @@ ItemManager *GlobalGetItemManager()
 {
     switch (itemType) {
         case ItemTypeTomato:
-            return [ConfigManager getTomatoAwardAmount];
+            return [PPConfigManager getTomatoAwardAmount];
 
         case ItemTypeFlower:
-            return [ConfigManager getFlowerAwardAmount];
+            return [PPConfigManager getFlowerAwardAmount];
 
         default:
             return 0;
@@ -144,10 +144,10 @@ ItemManager *GlobalGetItemManager()
 {
     switch (itemType) {
         case ItemTypeTomato:
-            return [ConfigManager getTomatoAwardExp];
+            return [PPConfigManager getTomatoAwardExp];
             
         case ItemTypeFlower:
-            return [ConfigManager getFlowerAwardExp];
+            return [PPConfigManager getFlowerAwardExp];
             
         default:
             return 0;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CommonService.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 
 enum {
     SYNC = 0,
@@ -23,12 +23,12 @@ typedef enum {
     LevelSourceCount
 }LevelSource;
 
-#define OFFLINE_DRAW_EXP    ([ConfigManager getOffLineDrawExp])
-#define OFFLINE_GUESS_EXP   ([ConfigManager getOffLineGuessExp])
-#define NORMAL_EXP          ([ConfigManager getOnLineGuessExp])
-#define DRAWER_EXP          ([ConfigManager getOnLineDrawExp])
-#define LIAR_DICE_EXP       ([ConfigManager getLiarDiceExp])
-#define ZHAJINHUA_EXP       ([ConfigManager getZhajinhuaExp])
+#define OFFLINE_DRAW_EXP    ([PPConfigManager getOffLineDrawExp])
+#define OFFLINE_GUESS_EXP   ([PPConfigManager getOffLineGuessExp])
+#define NORMAL_EXP          ([PPConfigManager getOnLineGuessExp])
+#define DRAWER_EXP          ([PPConfigManager getOnLineDrawExp])
+#define LIAR_DICE_EXP       ([PPConfigManager getLiarDiceExp])
+#define ZHAJINHUA_EXP       ([PPConfigManager getZhajinhuaExp])
 
 //#define REWARD_EXP  5
 

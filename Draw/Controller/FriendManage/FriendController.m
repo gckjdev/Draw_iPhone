@@ -22,7 +22,7 @@
 #import "WXApi.h"
 #import "DrawAppDelegate.h"
 //#import "DrawUserInfoView.h"
-#import "ConfigManager.h"
+#import "PPConfigManager.h"
 #import "NotificationManager.h"
 //#import "DiceUserInfoView.h"
 #import "FriendService.h"
@@ -623,7 +623,7 @@ enum {
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     PPDebug(@"%d",buttonIndex);
-    NSString *invitedText = [NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppName], [UIUtils getAppLink:[ConfigManager appId]]];
+    NSString *invitedText = [NSString stringWithFormat:NSLS(@"kInvitationInfo"), [UIUtils getAppName], [UIUtils getAppLink:[PPConfigManager appId]]];
     if (buttonIndex == INVITE_SMS) {
         [self sendSMS:invitedText];
     }else if (buttonIndex == INVITE_WEIXIN){
