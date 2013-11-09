@@ -221,8 +221,7 @@
 "kConfirmPasswordHolder" = "请再次输入新密码";
 "kNicknameHolder" = "请输入新昵称";
 
-"kSearchSong" = "搜索歌曲";
-
+"kSearchSong" = "歌词搜索助手";
 
 "kPasswordWrong" = "旧密码输入不正确";
 "kPasswordDifferent" = "两次输入不一致";
@@ -344,8 +343,8 @@
 
 "kPaymentCannotMake" = "对不起，你的设备或者iOS版本未接受应用内程序购买功能。";
 
-"kSharePhotoEmailSubject" = "画画分享";
-"kSharePhotoEmailBody" = "\n\n- 来自iPhone/iPad上的免费画画应用［%@］";
+"kSharePhotoEmailSubject" = "作品分享";
+"kSharePhotoEmailBody" = "\n\n- 来自iPhone/iPad上的二次元应用［%@］";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感谢您的反馈";
@@ -621,7 +620,7 @@
 
 "kGuessUserDraw" = "正在猜%@的画";
 
-"kFeedTitle" = "猜画动态";
+"kFeedTitle" = "动态";
 "kAllFeed" = "关注";
 "kHotFeed" = "热榜";
 "kMyFeed" = "我的";
@@ -677,7 +676,7 @@
 
 
 "kNoCommentTips" = "还没有人评论";
-"kFeedDetail" = "画画详情";
+"kFeedDetail" = "作品详情";
 "kOpusDetail" = "查看作品";
 "kCommentFail" = "评论失败";
 "kCommentFailOwnOpusContest" = "在匿名比赛中，不能回复或者评论你自己的参赛作品";
@@ -689,8 +688,8 @@
 "kFriend" = "好友";
 "kGuessOnly" = "我要猜";
 "kDrawOnly" = "我要画";
-"kFeed" = "猜画动态";
-"kFeeds" = "画";
+"kFeed" = "动态";
+"kFeeds" = "作品";
 
 
 "kMathOpusFail" = "不好意思，没有适合你猜的作品了，欢迎下次再来。";
@@ -705,7 +704,7 @@
 
 "kUserFeedTitle" = "%@的动态";
 
-"kUserFeed" = "画";
+"kUserFeed" = "作品";
 "kUserGuess" = "猜";
 "kUserOpus" = "作品";
 "kUserFavorite" = "收藏";
@@ -756,7 +755,7 @@
 "kRoomStatus" = "新房间邀请(%d)";
 "kMessageStatus" = "新消息(%d)";
 "kCommentStatus" = "新评论(%d)";
-"kDrawToMeStatus" = "新画给我(%d)";
+"kDrawToMeStatus" = "新送给我(%d)作品";
 "kReplyStatus" = "新回复(%d)";
 "kFlowerStatus" = "新鲜花(%d)";
 "kTomatoStatus" = "新番茄(%d)";
@@ -766,12 +765,12 @@
 "kLoadingMessage" = "收取消息中...";
 "kOpusDelete" = "不好意思，该作品已经被删除了。";
 
-"kGuessUserDraw_MyDraw" = "正在猜我的画";
-"kGuessRightDesc_MyDraw" = "猜对了我画的 [%@]。";
-"kTryGuessDesc_MyDraw" = "尝试去猜了我画的 [%@]。";
-"kGuessRightDescNoWord_MyDraw" = "猜对了我的画。";
-"kTryGuessDescNoWord_MyDraw" = "尝试去猜了我的画。";
-"kFeedDetail_Me" = "%@的画";
+"kGuessUserDraw_MyDraw" = "正在猜我的作品";
+"kGuessRightDesc_MyDraw" = "猜对了我创作的 [%@]。";
+"kTryGuessDesc_MyDraw" = "尝试去猜了我创作的 [%@]。";
+"kGuessRightDescNoWord_MyDraw" = "猜对了我的作品";
+"kTryGuessDescNoWord_MyDraw" = "尝试去猜了我的作品";
+"kFeedDetail_Me" = "%@的作品";
 "kUserFeedTitle_Me" = "%@的动态";
 
 "kOnlineResultTitle" = "回合结束";
@@ -970,21 +969,21 @@
 "kNoRankHot" = "暂时没有热榜数据";
 "kNoRankNew" = "暂时没有最新数据";
 "kNoData" = "暂无数据";
-"kInputSongNameForSearch" = "请输入歌曲名称";
-"kSongNameCannotBeBlank" = "歌曲名称不能为空";
+"kInputSongNameForSearch" = "输入歌曲或者歌手搜索歌词";
+"kSongNameCannotBeBlank" = "搜索关键字不能为空";
 
 "kRankPlayer" = "达人";
 "kRankHistory" = "年度";
 "kRankHot" = "本周";
 "kRankNew" = "最新";
-"kDrawToMe" = "画给我";
+"kDrawToMe" = "送给我";
 
 
-"kNoMyFeed" = "你还没有动态，去画一幅画或猜一幅画？";
-"kNoTimelineGuess" = "还没有猜的动态";
-"kNoMyOpus" = "你还没有作品，去画一幅画？";
-"kNoMyComment" = "目前没有关于你的评论。";
-"kNoDrawToMe" = "还没有人画过画给你，先画一幅给别人？";
+"kNoMyFeed" = "暂无好友作品动态，关注好友可看到其发表作品动态";
+"kNoTimelineGuess" = "还没有好友猜的动态，关注好友可看到其猜的动态";
+"kNoMyOpus" = "暂无作品，去创作一个？";
+"kNoMyComment" = "暂无关于你的评论，去评论一个？";
+"kNoDrawToMe" = "还没有人送过作品给你，先创作一个作品送给别人？";
 
 "kUserNoFeed" = "%@ 还没有动态。";
 "kUserNoOpus" = "%@ 还没有作品。";
@@ -1387,7 +1386,7 @@
 "kPayViaAppleAccount" = "使用Apple账户购买";
 
 "kEditOpusDesc" = "编辑作品主题和描述";
-"kEditOpusInfo" = "作品信息";
+"kEditOpusInfo" = "编辑作品信息";
 "kCloseKeyboard" = "关键盘";
 "kHim" = "他";
 "kHer" = "她";
@@ -2171,8 +2170,8 @@
 "kGuessSing" = "猜歌";
 "kSingTop" = "榜单";
 "kSingContest" = "比赛";
-"kInputSingName" = "输入歌曲名称";
-"kSingNameCannotBeBlankStr" = "歌曲名称不能为空";
+"kInputSingName" = "輸入歌曲或者歌手搜索歌詞";
+"kSingNameCannotBeBlankStr" = "搜索關鍵字不能为空";
 "kShareMySingOpus" = "看看%@唱的[%@] %@ #%@# %@ ";
 /*********************你唱我猜国际化字符串结束 ************************/
 

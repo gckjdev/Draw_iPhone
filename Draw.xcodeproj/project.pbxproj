@@ -23253,8 +23253,8 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Sing;
-				PROVISIONING_PROFILE = "21E9C951-454A-4FE8-9DEF-851D1601E8CA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21E9C951-454A-4FE8-9DEF-851D1601E8CA";
+				PROVISIONING_PROFILE = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -23263,8 +23263,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -23327,8 +23327,8 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Sing;
-				PROVISIONING_PROFILE = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

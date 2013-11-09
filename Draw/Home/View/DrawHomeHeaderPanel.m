@@ -75,7 +75,7 @@
 
 - (void)switchOpus
 {
-    PPDebug(@"<switchOpus> called. cancel selector.");
+//    PPDebug(@"<switchOpus> called. cancel selector.");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(switchOpus) object:nil];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     if (cell == nil) {
@@ -89,7 +89,7 @@
         _showingRow = 0;
     }
     
-    PPDebug(@"<switchOpus> start to switch, row = %d", _showingRow);
+//    PPDebug(@"<switchOpus> start to switch, row = %d", _showingRow);
     
     for (NSInteger i = TAG_BASE; i < TAG_BASE+NUMBER_PERROW; ++i) {
         OpusButton *button = (id)[cell.contentView viewWithTag:i];
