@@ -42,8 +42,9 @@
 - (NSString*)qqAppSecret;
 - (NSString*)qqAppRedirectURI;
 
-- (NSString*)qqSpaceAppKey;
 - (NSString*)qqSpaceAppId;
+- (NSString*)qqSpaceAppKey;
+- (NSString*)qqSpaceAppSecret;
 
 - (NSString*)facebookAppKey;
 - (NSString*)facebookAppSecret;

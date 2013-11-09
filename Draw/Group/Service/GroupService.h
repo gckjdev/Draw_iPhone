@@ -8,6 +8,7 @@
 
 #import "CommonService.h"
 #import "GroupPermission.h"
+#import "GameBasic.pb.h"
 
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
@@ -20,8 +21,12 @@ typedef enum{
 
 @interface GroupService : CommonService
 
-- (void)creatGroup:(NSString *)name
-             level:(NSInteger *)level
+@property(nonatomic, assign, getter=isTestMode) BOOL testMode;
+
++ (GroupService *)defaultService;
+
+- (void)createGroup:(NSString *)name
+             level:(NSInteger)level
           callback:(GroupResultBlock)callback;
 
 - (void)getGroup:(NSString *)groupId
@@ -32,6 +37,7 @@ typedef enum{
             callback:(ListResultBlock)callback;
 
 - (void)joinGroup:(NSString *)groupId
+          message:(NSString *)message
          callback:(SimpleResultBlock)callback;
 
 - (void)acceptUser:(NSString *)uid
@@ -61,13 +67,5 @@ typedef enum{
              title:(NSString *)title
            inGroup:(NSString *)groupId
           callback:(SimpleResultBlock)callback;
-
-
-
-
-
-
-
-
 
 @end

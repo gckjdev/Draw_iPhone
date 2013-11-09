@@ -78,18 +78,6 @@
 		A4117533177AD09900D3FE23 /* SongCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411751C177AD09900D3FE23 /* SongCell~ipad.xib */; };
 		A4117541177D986400D3FE23 /* UITextView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117540177D986400D3FE23 /* UITextView+WebCache.m */; };
 		A4117549177E834D00D3FE23 /* OpusGuessRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */; };
-		A415865E182D4904007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A415865D182D4904007FCB16 /* StrokeLabel.m */; };
-		A415865F182D4904007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A415865D182D4904007FCB16 /* StrokeLabel.m */; };
-		A4158660182D4904007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A415865D182D4904007FCB16 /* StrokeLabel.m */; };
-		A4158667182D4BEF007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158664182D4BEF007FCB16 /* SingController~ipad.xib */; };
-		A4158668182D4BEF007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158664182D4BEF007FCB16 /* SingController~ipad.xib */; };
-		A4158669182D4BEF007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158664182D4BEF007FCB16 /* SingController~ipad.xib */; };
-		A415866A182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */; };
-		A415866B182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */; };
-		A415866C182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */; };
-		A415866D182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */; };
-		A415866E182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */; };
-		A415866F182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
@@ -5506,6 +5494,26 @@
 		EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
 		EA18EE7916F4687B0090E213 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
 		EA18EE7E16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
+		EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD62F182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD630182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD631182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD632182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD633182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD634182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD635182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD640182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD641182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD642182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD643182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
+		EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
+		EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
+		EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
 		EA1F282F16F093E500066E37 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
 		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
@@ -6814,11 +6822,6 @@
 		A4117540177D986400D3FE23 /* UITextView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WebCache.m"; sourceTree = "<group>"; };
 		A4117547177E834D00D3FE23 /* OpusGuessRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusGuessRecorder.h; sourceTree = "<group>"; };
 		A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusGuessRecorder.m; sourceTree = "<group>"; };
-		A415865C182D4904007FCB16 /* StrokeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrokeLabel.h; sourceTree = "<group>"; };
-		A415865D182D4904007FCB16 /* StrokeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrokeLabel.m; sourceTree = "<group>"; };
-		A4158664182D4BEF007FCB16 /* SingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingController~ipad.xib"; sourceTree = "<group>"; };
-		A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingInfoEditController~ipad.xib"; sourceTree = "<group>"; };
-		A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SongSearchController~ipad.xib"; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
@@ -9414,6 +9417,14 @@
 		EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GameItemDetailView~ipad.xib"; sourceTree = "<group>"; };
 		EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BuyItemView~ipad.xib"; sourceTree = "<group>"; };
 		EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GiftDetailView~ipad.xib"; sourceTree = "<group>"; };
+		EA1BD62B182DDCB1000E5364 /* GroupHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupHomeController.h; sourceTree = "<group>"; };
+		EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupHomeController.m; sourceTree = "<group>"; };
+		EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupHomeController.xib; sourceTree = "<group>"; };
+		EA1BD639182DE6DD000E5364 /* CreateGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupController.h; sourceTree = "<group>"; };
+		EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupController.m; sourceTree = "<group>"; };
+		EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupController.xib; sourceTree = "<group>"; };
+		EA1BD644182DEB0B000E5364 /* GroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupManager.h; sourceTree = "<group>"; };
+		EA1BD645182DEB0B000E5364 /* GroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupManager.m; sourceTree = "<group>"; };
 		EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283516F093F700066E37 /* ChargeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeController~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeCell~ipad.xib"; sourceTree = "<group>"; };
@@ -9994,7 +10005,6 @@
 				A4117515177AD09900D3FE23 /* SingController.h */,
 				A4117516177AD09900D3FE23 /* SingController.m */,
 				A4117517177AD09900D3FE23 /* SingController.xib */,
-				A4158664182D4BEF007FCB16 /* SingController~ipad.xib */,
 				A4117519177AD09900D3FE23 /* SongCell.h */,
 				A411751A177AD09900D3FE23 /* SongCell.m */,
 				A411751B177AD09900D3FE23 /* SongCell.xib */,
@@ -10002,11 +10012,9 @@
 				A4A947F518162F31007A2E26 /* SingInfoEditController.h */,
 				A4A947F618162F33007A2E26 /* SingInfoEditController.m */,
 				A4A947F718162F35007A2E26 /* SingInfoEditController.xib */,
-				A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */,
 				A4F937FC18176D030065D707 /* SongSearchController.h */,
 				A4F937FD18176D030065D707 /* SongSearchController.m */,
 				A4F937FE18176D030065D707 /* SongSearchController.xib */,
-				A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */,
 			);
 			path = Sing;
 			sourceTree = "<group>";
@@ -10020,15 +10028,6 @@
 				A4117540177D986400D3FE23 /* UITextView+WebCache.m */,
 			);
 			path = UITextView;
-			sourceTree = "<group>";
-		};
-		A415865B182D4904007FCB16 /* StrokeLabel */ = {
-			isa = PBXGroup;
-			children = (
-				A415865C182D4904007FCB16 /* StrokeLabel.h */,
-				A415865D182D4904007FCB16 /* StrokeLabel.m */,
-			);
-			path = StrokeLabel;
 			sourceTree = "<group>";
 		};
 		A41CF588165790380011AE45 /* RRSGlowLabel */ = {
@@ -12809,7 +12808,6 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
-				A415865B182D4904007FCB16 /* StrokeLabel */,
 				EA7100A717D04B2C00451A38 /* CustomSlider */,
 				EA433E2417CDE500006E6FA7 /* RateView */,
 				A489C00817B5D942003E5150 /* JDFlipNumberView */,
@@ -16275,6 +16273,12 @@
 		EA8CADDB18288C6E003149FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA1BD62B182DDCB1000E5364 /* GroupHomeController.h */,
+				EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */,
+				EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */,
+				EA1BD639182DE6DD000E5364 /* CreateGroupController.h */,
+				EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */,
+				EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -16284,6 +16288,8 @@
 			children = (
 				EA8CADEC1828A646003149FE /* GroupPermission.h */,
 				EA8CADED1828A646003149FE /* GroupPermission.m */,
+				EA1BD644182DEB0B000E5364 /* GroupManager.h */,
+				EA1BD645182DEB0B000E5364 /* GroupManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -17425,9 +17431,8 @@
 				CA29E710182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA16182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
-				A4158669182D4BEF007FCB16 /* SingController~ipad.xib in Resources */,
-				A415866C182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
-				A415866F182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */,
+				EA1BD634182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD642182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18339,9 +18344,8 @@
 				CA29E70F182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA15182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
-				A4158668182D4BEF007FCB16 /* SingController~ipad.xib in Resources */,
-				A415866B182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
-				A415866E182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */,
+				EA1BD633182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD641182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19235,9 +19239,8 @@
 				CA29E70E182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA14182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
-				A4158667182D4BEF007FCB16 /* SingController~ipad.xib in Resources */,
-				A415866A182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
-				A415866D182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */,
+				EA1BD632182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD640182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20050,6 +20053,8 @@
 				CA52AE031828CE510066B0A0 /* ShareSDKiPhoneDefaultShareViewUI.bundle in Resources */,
 				CA52AE0B1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				CA29E711182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				EA1BD635182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD643182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20824,7 +20829,9 @@
 				EA8CADEA18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF01828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE391828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
-				A4158660182D4904007FCB16 /* StrokeLabel.m in Sources */,
+				EA1BD630182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21561,7 +21568,9 @@
 				EA8CADE918288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE381828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
-				A415865F182D4904007FCB16 /* StrokeLabel.m in Sources */,
+				EA1BD62F182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22303,7 +22312,9 @@
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE371828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
-				A415865E182D4904007FCB16 /* StrokeLabel.m in Sources */,
+				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22990,6 +23001,9 @@
 				EA8CADEB18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF11828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE3A1828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				EA1BD631182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

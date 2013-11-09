@@ -307,10 +307,10 @@ NSString* GlobalGetBoardServerURL()
 
     [GameApp HandleWithDidFinishLaunching];
     
-    if ([GameApp supportWeixin] == YES){
-        PPDebug(@"Init Weixin SDK, AppId(%@)", [GameApp weixinId]);
-        [WXApi registerApp:[GameApp weixinId]]; //@"wx427a2f57bc4456d1"];
-    }
+//    if ([GameApp supportWeixin] == YES){
+//        PPDebug(@"Init Weixin SDK, AppId(%@)", [GameApp weixinId]);
+//        [WXApi registerApp:[GameApp weixinId]]; //@"wx427a2f57bc4456d1"];
+//    }
     
     // Push Setup
     BOOL isAskBindDevice = NO;

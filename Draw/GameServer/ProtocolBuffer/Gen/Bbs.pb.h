@@ -90,6 +90,8 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
+@class PBUserRelationWithGroup;
+@class PBUserRelationWithGroup_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 

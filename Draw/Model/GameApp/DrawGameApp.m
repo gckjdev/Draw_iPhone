@@ -95,7 +95,6 @@
 - (NSString*)qqAppKey
 {
     return [MobClickUtils getStringValueByKey:@"DRAW_QQ_APP_KEY" defaultValue:@"801123669"];
-//    return @"801123669";
 }
 
 
@@ -108,6 +107,12 @@
 {
     return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_KEY" defaultValue:@"7687417d49a2a14c3dd9434d05c29662"];
 }
+
+- (NSString*)qqSpaceAppSecret
+{
+    return [MobClickUtils getStringValueByKey:@"DRAW_QQ_SPACE_APP_SECRET" defaultValue:@""];
+}
+
 
 - (NSString*)qqAppSecret
 {

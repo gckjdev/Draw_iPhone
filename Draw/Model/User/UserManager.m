@@ -190,6 +190,10 @@ static UserManager* _defaultManager;
 
 - (NSString*)userId
 {
+//#ifdef DEBUG
+//    return @"525cbe4e03642a00eab64d4e";
+//#endif
+    
     return [_pbUser userId];
 }
 

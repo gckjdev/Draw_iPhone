@@ -25,6 +25,7 @@
 @property (nonatomic, retain) DrawFeed* feed;
 @property (nonatomic, retain) UIImage* image;
 
++ (NSString*)createShareText:(NSString*)word desc:(NSString*)desc opusUserId:(NSString*)opusUserId userGender:(BOOL)userGender snsType:(SnsType)type;
 + (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type;
 + (NSString*)createFeedImagePath:(DrawFeed*)feed;
 

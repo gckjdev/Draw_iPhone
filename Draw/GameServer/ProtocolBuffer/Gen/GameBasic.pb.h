@@ -72,6 +72,8 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
+@class PBUserRelationWithGroup;
+@class PBUserRelationWithGroup_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {
@@ -3836,6 +3838,81 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroupUsersByTitle_Builder*) clearUsersList;
 @end
 
+@interface PBUserRelationWithGroup : PBGeneratedMessage {
+@private
+  BOOL hasRole_:1;
+  BOOL hasPermission_:1;
+  BOOL hasStatus_:1;
+  BOOL hasTitle_:1;
+  int32_t role;
+  int32_t permission;
+  int32_t status;
+  NSString* title;
+}
+- (BOOL) hasRole;
+- (BOOL) hasPermission;
+- (BOOL) hasStatus;
+- (BOOL) hasTitle;
+@property (readonly) int32_t role;
+@property (readonly) int32_t permission;
+@property (readonly) int32_t status;
+@property (readonly, retain) NSString* title;
+
++ (PBUserRelationWithGroup*) defaultInstance;
+- (PBUserRelationWithGroup*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBUserRelationWithGroup_Builder*) builder;
++ (PBUserRelationWithGroup_Builder*) builder;
++ (PBUserRelationWithGroup_Builder*) builderWithPrototype:(PBUserRelationWithGroup*) prototype;
+
++ (PBUserRelationWithGroup*) parseFromData:(NSData*) data;
++ (PBUserRelationWithGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input;
++ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBUserRelationWithGroup_Builder : PBGeneratedMessage_Builder {
+@private
+  PBUserRelationWithGroup* result;
+}
+
+- (PBUserRelationWithGroup*) defaultInstance;
+
+- (PBUserRelationWithGroup_Builder*) clear;
+- (PBUserRelationWithGroup_Builder*) clone;
+
+- (PBUserRelationWithGroup*) build;
+- (PBUserRelationWithGroup*) buildPartial;
+
+- (PBUserRelationWithGroup_Builder*) mergeFrom:(PBUserRelationWithGroup*) other;
+- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasRole;
+- (int32_t) role;
+- (PBUserRelationWithGroup_Builder*) setRole:(int32_t) value;
+- (PBUserRelationWithGroup_Builder*) clearRole;
+
+- (BOOL) hasPermission;
+- (int32_t) permission;
+- (PBUserRelationWithGroup_Builder*) setPermission:(int32_t) value;
+- (PBUserRelationWithGroup_Builder*) clearPermission;
+
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBUserRelationWithGroup_Builder*) setStatus:(int32_t) value;
+- (PBUserRelationWithGroup_Builder*) clearStatus;
+
+- (BOOL) hasTitle;
+- (NSString*) title;
+- (PBUserRelationWithGroup_Builder*) setTitle:(NSString*) value;
+- (PBUserRelationWithGroup_Builder*) clearTitle;
+@end
+
 @interface PBGroup : PBGeneratedMessage {
 @private
   BOOL hasBalance_:1;
@@ -3843,25 +3920,37 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasFame_:1;
   BOOL hasCreateDate_:1;
   BOOL hasMemberFee_:1;
-  BOOL hasGroupId_:1;
-  BOOL hasName_:1;
+  BOOL hasCapacity_:1;
+  BOOL hasSize_:1;
+  BOOL hasGuestSize_:1;
+  BOOL hasGuestCapacity_:1;
+  BOOL hasTopicCount_:1;
+  BOOL hasMedalImage_:1;
+  BOOL hasBgImage_:1;
   BOOL hasSignature_:1;
   BOOL hasDesc_:1;
-  BOOL hasBgImage_:1;
-  BOOL hasMedalImage_:1;
+  BOOL hasName_:1;
+  BOOL hasGroupId_:1;
   BOOL hasCreator_:1;
+  BOOL hasRelation_:1;
   int64_t balance;
   int32_t level;
   int32_t fame;
   int32_t createDate;
   int32_t memberFee;
-  NSString* groupId;
-  NSString* name;
+  int32_t capacity;
+  int32_t size;
+  int32_t guestSize;
+  int32_t guestCapacity;
+  int32_t topicCount;
+  NSString* medalImage;
+  NSString* bgImage;
   NSString* signature;
   NSString* desc;
-  NSString* bgImage;
-  NSString* medalImage;
+  NSString* name;
+  NSString* groupId;
   PBGroupUser* creator;
+  PBUserRelationWithGroup* relation;
   NSMutableArray* mutableTitlesList;
   NSMutableArray* mutableAdminsList;
   NSMutableArray* mutableUsersList;
@@ -3874,11 +3963,17 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (BOOL) hasBalance;
 - (BOOL) hasCreateDate;
 - (BOOL) hasMemberFee;
-- (BOOL) hasSignature;
+- (BOOL) hasCapacity;
+- (BOOL) hasSize;
+- (BOOL) hasGuestSize;
+- (BOOL) hasGuestCapacity;
+- (BOOL) hasTopicCount;
 - (BOOL) hasDesc;
+- (BOOL) hasSignature;
 - (BOOL) hasBgImage;
 - (BOOL) hasMedalImage;
 - (BOOL) hasCreator;
+- (BOOL) hasRelation;
 @property (readonly, retain) NSString* groupId;
 @property (readonly, retain) NSString* name;
 @property (readonly) int32_t level;
@@ -3886,11 +3981,17 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @property (readonly) int64_t balance;
 @property (readonly) int32_t createDate;
 @property (readonly) int32_t memberFee;
-@property (readonly, retain) NSString* signature;
+@property (readonly) int32_t capacity;
+@property (readonly) int32_t size;
+@property (readonly) int32_t guestSize;
+@property (readonly) int32_t guestCapacity;
+@property (readonly) int32_t topicCount;
 @property (readonly, retain) NSString* desc;
+@property (readonly, retain) NSString* signature;
 @property (readonly, retain) NSString* bgImage;
 @property (readonly, retain) NSString* medalImage;
 @property (readonly, retain) PBGroupUser* creator;
+@property (readonly, retain) PBUserRelationWithGroup* relation;
 - (NSArray*) titlesList;
 - (PBGroupTitle*) titlesAtIndex:(int32_t) index;
 - (NSArray*) adminsList;
@@ -3969,15 +4070,40 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroup_Builder*) setMemberFee:(int32_t) value;
 - (PBGroup_Builder*) clearMemberFee;
 
-- (BOOL) hasSignature;
-- (NSString*) signature;
-- (PBGroup_Builder*) setSignature:(NSString*) value;
-- (PBGroup_Builder*) clearSignature;
+- (BOOL) hasCapacity;
+- (int32_t) capacity;
+- (PBGroup_Builder*) setCapacity:(int32_t) value;
+- (PBGroup_Builder*) clearCapacity;
+
+- (BOOL) hasSize;
+- (int32_t) size;
+- (PBGroup_Builder*) setSize:(int32_t) value;
+- (PBGroup_Builder*) clearSize;
+
+- (BOOL) hasGuestSize;
+- (int32_t) guestSize;
+- (PBGroup_Builder*) setGuestSize:(int32_t) value;
+- (PBGroup_Builder*) clearGuestSize;
+
+- (BOOL) hasGuestCapacity;
+- (int32_t) guestCapacity;
+- (PBGroup_Builder*) setGuestCapacity:(int32_t) value;
+- (PBGroup_Builder*) clearGuestCapacity;
+
+- (BOOL) hasTopicCount;
+- (int32_t) topicCount;
+- (PBGroup_Builder*) setTopicCount:(int32_t) value;
+- (PBGroup_Builder*) clearTopicCount;
 
 - (BOOL) hasDesc;
 - (NSString*) desc;
 - (PBGroup_Builder*) setDesc:(NSString*) value;
 - (PBGroup_Builder*) clearDesc;
+
+- (BOOL) hasSignature;
+- (NSString*) signature;
+- (PBGroup_Builder*) setSignature:(NSString*) value;
+- (PBGroup_Builder*) clearSignature;
 
 - (BOOL) hasBgImage;
 - (NSString*) bgImage;
@@ -4023,5 +4149,12 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroup_Builder*) addGuests:(PBGroupUser*) value;
 - (PBGroup_Builder*) addAllGuests:(NSArray*) values;
 - (PBGroup_Builder*) clearGuestsList;
+
+- (BOOL) hasRelation;
+- (PBUserRelationWithGroup*) relation;
+- (PBGroup_Builder*) setRelation:(PBUserRelationWithGroup*) value;
+- (PBGroup_Builder*) setRelationBuilder:(PBUserRelationWithGroup_Builder*) builderForValue;
+- (PBGroup_Builder*) mergeRelation:(PBUserRelationWithGroup*) value;
+- (PBGroup_Builder*) clearRelation;
 @end
 

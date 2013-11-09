@@ -302,6 +302,36 @@
     return [path autorelease];
 }
 
++ (NSString*)createShareText:(NSString*)word desc:(NSString*)desc opusUserId:(NSString*)opusUserId userGender:(BOOL)userGender snsType:(SnsType)type
+{
+    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+    NSString* text = @"";
+    BOOL isDrawByMe = [[UserManager defaultManager] isMe:opusUserId];
+
+    if ([word length] == 0){
+        word = NSLS(@"kUnknownWord");
+    }
+    
+    if (isDrawByMe){
+        if (desc != nil && desc > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), desc, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        }
+    }
+    else{
+        NSString* heStr = userGender ? NSLS(@"kHim") : NSLS(@"kHer");
+        if (desc != nil && desc > 0) {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), desc, heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            
+        } else {
+            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        }
+    }
+    
+    return text;
+}
+
 + (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type
 {
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
@@ -367,6 +397,7 @@
     
 }
 
+/*
 #define MAX_WEIXIN_IMAGE_WIDTH          ([PPConfigManager maxWeixinImageWidth])
 
 - (void)shareViaWeixin:(int)scene
@@ -425,6 +456,7 @@
         [req release];
     }
 }
+*/
 
 - (void)saveToLocal
 {
@@ -582,11 +614,31 @@
     }
     else if (buttonIndex == buttonIndexWeixinTimeline){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_TIMELINE];
-        [self shareViaWeixin:WXSceneTimeline];
+
+//        [self shareViaWeixin:WXSceneTimeline];
+        
+        [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
+                                                 text:_drawWord
+                                        imageFilePath:_imageFilePath
+                                               inView:self.superViewController.view
+                                           awardCoins:[PPConfigManager getShareWeiboReward]
+                                       successMessage:NSLS(@"kShareWeiboSucc")
+                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+
     }
     else if (buttonIndex == buttonIndexWeixinFriend){
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_WEIXIN_FRIEND];
-        [self shareViaWeixin:WXSceneSession];
+        
+//        [self shareViaWeixin:WXSceneSession];
+
+        [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_SESSION
+                                                 text:_drawWord
+                                        imageFilePath:_imageFilePath
+                                               inView:self.superViewController.view
+                                           awardCoins:[PPConfigManager getShareWeiboReward]
+                                       successMessage:NSLS(@"kShareWeiboSucc")
+                                       failureMessage:NSLS(@"kShareWeiboFailure")];
+    
     }
     else if (buttonIndex == buttonIndexSinaWeibo)
     {

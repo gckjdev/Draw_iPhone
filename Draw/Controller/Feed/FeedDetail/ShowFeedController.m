@@ -1119,12 +1119,12 @@ typedef enum{
     NSString* text = [ShareAction shareTextByDrawFeed:self.feed snsType:type];
     NSString* imagePath = [ShareAction createFeedImagePath:self.feed];
     
-    [[GameSNSService defaultService] publishWeibo:TYPE_SINA
+    [[GameSNSService defaultService] publishWeibo:type
                                              text:text
                                     imageFilePath:imagePath
                                            inView:self.view
                                        awardCoins:[PPConfigManager getShareWeiboReward]
-                                   successMessage:NSLS(@"kShareWeiboSuccess")
+                                   successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")];
     
 }
@@ -1211,6 +1211,7 @@ typedef enum{
         }
     }
     
+    
     int indexOfShareSinaWeibo = index++;
     int indexOfShareWeixinSession = index++;
     int indexOfShareWeixinTimeline = index++;
@@ -1256,18 +1257,13 @@ typedef enum{
             [self share:TYPE_SINA];
         }
         else if (buttonIndex == indexOfShareWeixinSession){
-//            [[GameSNSService defaultService] publishWeibo:TYPE_SINA
-//                                                     text:text
-//                                                   inView:self.view
-//                                               awardCoins:[PPConfigManager getShareWeiboReward]
-//                                           successMessage:NSLS(@"kShareWeiboSuccess")
-//                                           failureMessage:NSLS(@"kShareWeiboFailure")];
+            [self share:TYPE_WEIXIN_SESSION];
         }
         else if (buttonIndex == indexOfShareWeixinTimeline){
-            
+            [self share:TYPE_WEIXIN_TIMELINE];
         }
         else if (buttonIndex == indexOfShareQQSpace){
-            
+            [self share:TYPE_QQSPACE];
         }
         
         [sheet setActionBlock:NULL];
