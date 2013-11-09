@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad
 {
-    [self setPullRefreshType:PullRefreshTypeNone];
+    [self setPullRefreshType:PullRefreshTypeFooter];
     [super viewDidLoad];
     [BBSViewManager updateDefaultTitleLabel:self.titleLabel text:NSLS(@"kSearch")];
     SET_INPUT_VIEW_STYLE(self.searchTextField);
@@ -152,7 +152,7 @@
 }
 - (NSInteger)fetchDataLimitForTabIndex:(NSInteger)index
 {
-    return 50;
+    return 15;
 }
 - (NSInteger)tabIDforIndex:(NSInteger)index
 {

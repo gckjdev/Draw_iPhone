@@ -95,6 +95,10 @@
 #import "SDWebImageManager.h"
 #import "PainterController.h"
 
+//test
+#import "CreateGroupController.h"
+
+
 @interface HomeController()<GuessServiceDelegate>
 {
 
@@ -633,7 +637,12 @@
             break;
         case HomeMenuTypeDrawGuess:
         {
-
+#ifdef DEBUG
+            CreateGroupController *cg = [[CreateGroupController alloc] init];
+            [self.navigationController pushViewController:cg animated:YES];
+            [cg release];
+            break;
+#endif
             GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
