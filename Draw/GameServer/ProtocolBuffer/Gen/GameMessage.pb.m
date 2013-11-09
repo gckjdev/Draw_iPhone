@@ -21,6 +21,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
     [OpusRoot registerAllExtensions:registry];
     [PhotoRoot registerAllExtensions:registry];
     [SingRoot registerAllExtensions:registry];
+    [GroupRoot registerAllExtensions:registry];
     extensionRegistry = [registry retain];
   }
 }

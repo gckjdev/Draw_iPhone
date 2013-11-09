@@ -1126,7 +1126,7 @@
 "kXiaoji" = "小吉";
 "kDrawGuessTitle" = "正在猜第%d幅作品";
 "kLoadImage" = "加载作品中...";
-
+"kLevel" = "等级";
 "kLevel1" = "初级%@";
 "kLevel2" = "中级%@";
 "kLevel3" = "高级%@";
@@ -2047,6 +2047,12 @@
 "kMarkedPosts" = "精华帖";
 "kBBSSearchPlaceholder" = "请输入搜索关键字";
 /*********************** BBS国际化字符串结束 *************************/
+
+//group
+
+"kCreateGroup" = "创建家族";
+"kLevelTips" = "可容纳 %d 族员\n每月需花费 %d 金币\n(首月费用在创建时扣除)";
+
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";

@@ -1092,6 +1092,7 @@
 "kDrawGuessTitle" = "正在猜第%d幅作品";
 "kLoadImage" = "加載作品中...";
 
+"kLevel" = "等級";
 "kLevel1" = "初級%@";
 "kLevel2" = "中級%@";
 "kLevel3" = "高級%@";
@@ -2036,6 +2037,13 @@
 "kMarkedPosts" = "精華貼";
 "kBBSSearchPlaceholder" = "請輸入搜索關鍵字";
 /*********************** BBS国际化字符串结束 *************************/
+
+
+//group
+
+"kCreateGroup" = "創建家族";
+"kLevelTips" = "可容納 %d 族員\n每月需花費 %d 金幣\n(首月費用在創建時扣除)";
+
 
 "kShareByEmailSuccess" = "郵件分享成功";
 
