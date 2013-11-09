@@ -1,0 +1,100 @@
+
+import "GameConstants.proto";
+import "GameBasic.proto";
+import "BBS.proto";
+
+package game;
+
+option java_package = "com.orange.network.game.protocol.model";
+option java_outer_classname = "GroupProtos";
+
+// 家族用户类型
+enum PBGroupUserType{
+    GROUP_USER_ADMIN = 1;     // 管理员
+    GROUP_USER_MEMBER = 2;    // 成员
+    GROUP_USER_GUEST = 3;     // 嘉宾
+}
+
+// 家族缺省的职位类型
+enum PBDefaultGroupTitle
+{
+    GROUP_TITLE_ADMIN = 1;    // 管理员
+    GROUP_TITLE_MEMBER = 2;   // 成员
+    GROUP_TITLE_GUEST = 3;    // 嘉宾
+
+    GROUP_TITLE_CUSTOM = 10;  // 自定义职位起点
+}
+
+// 家族用户信息
+message PBGroupUser
+{
+    required PBGameUser user = 1;       // 用户信息
+    optional string customeTitle = 2;   // 用户自定义的title，如【守卫者】
+    optional int32  permission = 3;     // 权限（如允许加用户、允许删帖等）
+    optional PBGroupUserType type = 4;  // 用户类型
+}
+
+// 家族职位定义
+message PBGroupTitle
+{
+    required int32  titleId = 1;        // 职位ID，缺省职位取值参见PBDefaultGroupTitle，用户也可以添加自己的
+    optional string title = 2;          // 职位
+    optional int32  permission = 3;     // 职位权限（如允许加用户、允许删帖等）
+}
+
+// 家族职位用户
+message PBGroupUsersByTitle
+{
+    optional PBGroupTitle title = 1;    // 职位
+    repeated PBGroupUser users = 2;     // 该职位下的用户列表
+}
+
+
+message PBUserRelationWithGroup
+{
+    optional int32 role = 1;
+    optional int32 permission = 2;
+    optional int32 status = 3;
+    optional string title = 4;
+}
+
+// 家族
+message PBGroup
+{
+    required string groupId = 1;                // ID
+    required string name = 2;                   // 名称，唯一
+    
+    optional int32  level = 3[default=1];       // 等级
+    optional int32  fame = 4;                   // 声望
+    optional int64  balance = 5;                // 财富金币
+    optional int32  createDate = 6;             // 创建日期
+    optional int32  memberFee = 7;              // 会员会费
+
+    optional int32  capacity = 8;             // 容量
+    optional int32  size = 9;                 // 当前人数
+    optional int32  guestSize = 10;           // 嘉宾数目
+    optional int32  guestCapacity = 11;       // 嘉宾容量
+
+    optional int32  topicCount = 12;         //话题数目
+    optional int32 fanCount = 13;               //粉丝数据
+    
+    optional string desc = 15;                  // 家族说明
+    optional string signature = 16;             // 动态签名
+
+    optional string bgImage = 21;               // 家族背景图
+    optional string medalImage = 22;            // 家族勋章图片
+
+    repeated PBGroupTitle titles = 31;          // 职位列表
+    
+    optional PBGroupUser creator = 40;          // 家族创建者
+    repeated PBGroupUser admins = 41;           // 管理员列表
+
+    repeated PBGroupUsersByTitle users = 42;    // 成员列表
+
+    repeated PBGroupUser guests = 43;           // 嘉宾列表
+
+    optional PBUserRelationWithGroup relation = 50; // 用来记录当前用户与此group的关系
+
+    optional PBBBSPost topic = 60; //最新的话题
+}
+

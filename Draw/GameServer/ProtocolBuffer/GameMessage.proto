@@ -8,6 +8,7 @@ import "BBS.proto";
 import "Opus.proto";
 import "Photo.proto";
 import "Sing.proto";
+import "Group.proto";
 
 package game;
 

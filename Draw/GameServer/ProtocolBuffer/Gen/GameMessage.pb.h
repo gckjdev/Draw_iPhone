@@ -11,6 +11,7 @@
 #import "Opus.pb.h"
 #import "Photo.pb.h"
 #import "Sing.pb.h"
+#import "Group.pb.h"
 
 @class BetDiceRequest;
 @class BetDiceRequest_Builder;
