@@ -78,6 +78,9 @@
 		A4117533177AD09900D3FE23 /* SongCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411751C177AD09900D3FE23 /* SongCell~ipad.xib */; };
 		A4117541177D986400D3FE23 /* UITextView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117540177D986400D3FE23 /* UITextView+WebCache.m */; };
 		A4117549177E834D00D3FE23 /* OpusGuessRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */; };
+		A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
+		A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
+		A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
@@ -6822,6 +6825,8 @@
 		A4117540177D986400D3FE23 /* UITextView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WebCache.m"; sourceTree = "<group>"; };
 		A4117547177E834D00D3FE23 /* OpusGuessRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusGuessRecorder.h; sourceTree = "<group>"; };
 		A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusGuessRecorder.m; sourceTree = "<group>"; };
+		A4158672182DF6D1007FCB16 /* StrokeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrokeLabel.h; sourceTree = "<group>"; };
+		A4158673182DF6D1007FCB16 /* StrokeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrokeLabel.m; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
@@ -10030,6 +10035,15 @@
 			path = UITextView;
 			sourceTree = "<group>";
 		};
+		A4158671182DF6D1007FCB16 /* StrokeLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A4158672182DF6D1007FCB16 /* StrokeLabel.h */,
+				A4158673182DF6D1007FCB16 /* StrokeLabel.m */,
+			);
+			path = StrokeLabel;
+			sourceTree = "<group>";
+		};
 		A41CF588165790380011AE45 /* RRSGlowLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -12808,6 +12822,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				A4158671182DF6D1007FCB16 /* StrokeLabel */,
 				EA7100A717D04B2C00451A38 /* CustomSlider */,
 				EA433E2417CDE500006E6FA7 /* RateView */,
 				A489C00817B5D942003E5150 /* JDFlipNumberView */,
@@ -20832,6 +20847,7 @@
 				EA1BD630182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
+				A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21571,6 +21587,7 @@
 				EA1BD62F182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
+				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22315,6 +22332,7 @@
 				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
+				A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
