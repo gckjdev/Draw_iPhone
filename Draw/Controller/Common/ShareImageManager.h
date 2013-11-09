@@ -16,6 +16,8 @@
 #import "UIImageUtil.h"
 
 @class FXLabel;
+@class StrokeLabel;
+
 #define SIM [ShareImageManager defaultManager]
 
 #define CONTENT_VIEW_INSERT (ISIPAD ? 10 : 5)
@@ -450,4 +452,6 @@
 + (void)setButtonOrangeRoundStyle:(UIButton *)button;
 
 + (void)setFXLabelStyle:(FXLabel *)label;
++ (void)setStrokeLabelStyle:(StrokeLabel *)label;
+
 @end

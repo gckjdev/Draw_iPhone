@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
-#import "FXLabel.h"
+#import "StrokeLabel.h"
 
 @class RankView;
 
@@ -38,7 +38,7 @@ typedef enum{
 @property(nonatomic, assign)id delegate;
 @property (retain, nonatomic) IBOutlet UILabel *title;
 @property (retain, nonatomic) IBOutlet UILabel *author;
-@property (retain, nonatomic) IBOutlet FXLabel *descLabel;
+@property (retain, nonatomic) IBOutlet StrokeLabel *descLabel;
 @property (retain, nonatomic) IBOutlet UIImageView *drawImage;
 @property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) IBOutlet UIView *holderView;

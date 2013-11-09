@@ -189,7 +189,7 @@
         [self updateLearnDraw:feed.learnDraw];
     }
     
-    [ShareImageManager setFXLabelStyle:self.descLabel];
+    [ShareImageManager setStrokeLabelStyle:self.descLabel];
     self.descLabel.text = self.feed.opusDesc;
 //    [self.descLabel setNeedsDisplay];
 }

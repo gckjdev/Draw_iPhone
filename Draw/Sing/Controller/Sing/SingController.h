@@ -17,7 +17,7 @@
 #import "VoiceRecorder.h"
 #import "VoiceChanger.h"
 #import "VoiceProcessor.h"
-#import "FXLabel.h"
+#import "StrokeLabel.h"
 
 @interface SingController : PPViewController <ChangeAvatarDelegate, OpusServiceDelegate, VoiceRecorderDelegate, VoiceChangerDelegate, VoiceProcessorDelegate>
 
@@ -29,7 +29,7 @@
 @property (retain, nonatomic) IBOutlet UITextView *lyricTextView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
-@property (retain, nonatomic) IBOutlet FXLabel *opusDescLabel;
+@property (retain, nonatomic) IBOutlet StrokeLabel *opusDescLabel;
 @property (retain, nonatomic) IBOutlet UIButton *imageButton;
 
 @property (retain, nonatomic) IBOutlet UIButton *saveButton;

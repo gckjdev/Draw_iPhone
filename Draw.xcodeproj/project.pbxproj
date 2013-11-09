@@ -78,6 +78,18 @@
 		A4117533177AD09900D3FE23 /* SongCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A411751C177AD09900D3FE23 /* SongCell~ipad.xib */; };
 		A4117541177D986400D3FE23 /* UITextView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117540177D986400D3FE23 /* UITextView+WebCache.m */; };
 		A4117549177E834D00D3FE23 /* OpusGuessRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */; };
+		A415865E182D4904007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A415865D182D4904007FCB16 /* StrokeLabel.m */; };
+		A415865F182D4904007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A415865D182D4904007FCB16 /* StrokeLabel.m */; };
+		A4158660182D4904007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A415865D182D4904007FCB16 /* StrokeLabel.m */; };
+		A4158667182D4BEF007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158664182D4BEF007FCB16 /* SingController~ipad.xib */; };
+		A4158668182D4BEF007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158664182D4BEF007FCB16 /* SingController~ipad.xib */; };
+		A4158669182D4BEF007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158664182D4BEF007FCB16 /* SingController~ipad.xib */; };
+		A415866A182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */; };
+		A415866B182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */; };
+		A415866C182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */; };
+		A415866D182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */; };
+		A415866E182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */; };
+		A415866F182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
@@ -6802,6 +6814,11 @@
 		A4117540177D986400D3FE23 /* UITextView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WebCache.m"; sourceTree = "<group>"; };
 		A4117547177E834D00D3FE23 /* OpusGuessRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusGuessRecorder.h; sourceTree = "<group>"; };
 		A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusGuessRecorder.m; sourceTree = "<group>"; };
+		A415865C182D4904007FCB16 /* StrokeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrokeLabel.h; sourceTree = "<group>"; };
+		A415865D182D4904007FCB16 /* StrokeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrokeLabel.m; sourceTree = "<group>"; };
+		A4158664182D4BEF007FCB16 /* SingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingController~ipad.xib"; sourceTree = "<group>"; };
+		A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingInfoEditController~ipad.xib"; sourceTree = "<group>"; };
+		A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SongSearchController~ipad.xib"; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
@@ -9977,6 +9994,7 @@
 				A4117515177AD09900D3FE23 /* SingController.h */,
 				A4117516177AD09900D3FE23 /* SingController.m */,
 				A4117517177AD09900D3FE23 /* SingController.xib */,
+				A4158664182D4BEF007FCB16 /* SingController~ipad.xib */,
 				A4117519177AD09900D3FE23 /* SongCell.h */,
 				A411751A177AD09900D3FE23 /* SongCell.m */,
 				A411751B177AD09900D3FE23 /* SongCell.xib */,
@@ -9984,9 +10002,11 @@
 				A4A947F518162F31007A2E26 /* SingInfoEditController.h */,
 				A4A947F618162F33007A2E26 /* SingInfoEditController.m */,
 				A4A947F718162F35007A2E26 /* SingInfoEditController.xib */,
+				A4158665182D4BEF007FCB16 /* SingInfoEditController~ipad.xib */,
 				A4F937FC18176D030065D707 /* SongSearchController.h */,
 				A4F937FD18176D030065D707 /* SongSearchController.m */,
 				A4F937FE18176D030065D707 /* SongSearchController.xib */,
+				A4158666182D4BEF007FCB16 /* SongSearchController~ipad.xib */,
 			);
 			path = Sing;
 			sourceTree = "<group>";
@@ -10000,6 +10020,15 @@
 				A4117540177D986400D3FE23 /* UITextView+WebCache.m */,
 			);
 			path = UITextView;
+			sourceTree = "<group>";
+		};
+		A415865B182D4904007FCB16 /* StrokeLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A415865C182D4904007FCB16 /* StrokeLabel.h */,
+				A415865D182D4904007FCB16 /* StrokeLabel.m */,
+			);
+			path = StrokeLabel;
 			sourceTree = "<group>";
 		};
 		A41CF588165790380011AE45 /* RRSGlowLabel */ = {
@@ -12780,6 +12809,7 @@
 		CA103D061509A56100F60C03 /* Core-Components-View */ = {
 			isa = PBXGroup;
 			children = (
+				A415865B182D4904007FCB16 /* StrokeLabel */,
 				EA7100A717D04B2C00451A38 /* CustomSlider */,
 				EA433E2417CDE500006E6FA7 /* RateView */,
 				A489C00817B5D942003E5150 /* JDFlipNumberView */,
@@ -17395,6 +17425,9 @@
 				CA29E710182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA16182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
+				A4158669182D4BEF007FCB16 /* SingController~ipad.xib in Resources */,
+				A415866C182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
+				A415866F182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18306,6 +18339,9 @@
 				CA29E70F182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA15182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
+				A4158668182D4BEF007FCB16 /* SingController~ipad.xib in Resources */,
+				A415866B182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
+				A415866E182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19199,6 +19235,9 @@
 				CA29E70E182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA14182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
+				A4158667182D4BEF007FCB16 /* SingController~ipad.xib in Resources */,
+				A415866A182D4BEF007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
+				A415866D182D4BEF007FCB16 /* SongSearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20785,6 +20824,7 @@
 				EA8CADEA18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF01828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE391828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				A4158660182D4904007FCB16 /* StrokeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21521,6 +21561,7 @@
 				EA8CADE918288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE381828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				A415865F182D4904007FCB16 /* StrokeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22262,6 +22303,7 @@
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE371828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				A415865E182D4904007FCB16 /* StrokeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

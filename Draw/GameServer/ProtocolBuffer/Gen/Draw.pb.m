@@ -2040,6 +2040,335 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 }
 @end
 
+@interface PBLabelInfo ()
+@property Float32 xRatio;
+@property Float32 yRatio;
+@property int32_t style;
+@property int32_t textColor;
+@property int32_t textStrokeColor;
+@end
+
+@implementation PBLabelInfo
+
+- (BOOL) hasXRatio {
+  return !!hasXRatio_;
+}
+- (void) setHasXRatio:(BOOL) value {
+  hasXRatio_ = !!value;
+}
+@synthesize xRatio;
+- (BOOL) hasYRatio {
+  return !!hasYRatio_;
+}
+- (void) setHasYRatio:(BOOL) value {
+  hasYRatio_ = !!value;
+}
+@synthesize yRatio;
+- (BOOL) hasStyle {
+  return !!hasStyle_;
+}
+- (void) setHasStyle:(BOOL) value {
+  hasStyle_ = !!value;
+}
+@synthesize style;
+- (BOOL) hasTextColor {
+  return !!hasTextColor_;
+}
+- (void) setHasTextColor:(BOOL) value {
+  hasTextColor_ = !!value;
+}
+@synthesize textColor;
+- (BOOL) hasTextStrokeColor {
+  return !!hasTextStrokeColor_;
+}
+- (void) setHasTextStrokeColor:(BOOL) value {
+  hasTextStrokeColor_ = !!value;
+}
+@synthesize textStrokeColor;
+- (void) dealloc {
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.xRatio = 0;
+    self.yRatio = 0;
+    self.style = 0;
+    self.textColor = 0;
+    self.textStrokeColor = 0;
+  }
+  return self;
+}
+static PBLabelInfo* defaultPBLabelInfoInstance = nil;
++ (void) initialize {
+  if (self == [PBLabelInfo class]) {
+    defaultPBLabelInfoInstance = [[PBLabelInfo alloc] init];
+  }
+}
++ (PBLabelInfo*) defaultInstance {
+  return defaultPBLabelInfoInstance;
+}
+- (PBLabelInfo*) defaultInstance {
+  return defaultPBLabelInfoInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasXRatio) {
+    [output writeFloat:1 value:self.xRatio];
+  }
+  if (self.hasYRatio) {
+    [output writeFloat:2 value:self.yRatio];
+  }
+  if (self.hasStyle) {
+    [output writeInt32:3 value:self.style];
+  }
+  if (self.hasTextColor) {
+    [output writeInt32:4 value:self.textColor];
+  }
+  if (self.hasTextStrokeColor) {
+    [output writeInt32:5 value:self.textStrokeColor];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasXRatio) {
+    size += computeFloatSize(1, self.xRatio);
+  }
+  if (self.hasYRatio) {
+    size += computeFloatSize(2, self.yRatio);
+  }
+  if (self.hasStyle) {
+    size += computeInt32Size(3, self.style);
+  }
+  if (self.hasTextColor) {
+    size += computeInt32Size(4, self.textColor);
+  }
+  if (self.hasTextStrokeColor) {
+    size += computeInt32Size(5, self.textStrokeColor);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBLabelInfo*) parseFromData:(NSData*) data {
+  return (PBLabelInfo*)[[[PBLabelInfo builder] mergeFromData:data] build];
+}
++ (PBLabelInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLabelInfo*)[[[PBLabelInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBLabelInfo*) parseFromInputStream:(NSInputStream*) input {
+  return (PBLabelInfo*)[[[PBLabelInfo builder] mergeFromInputStream:input] build];
+}
++ (PBLabelInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLabelInfo*)[[[PBLabelInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLabelInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBLabelInfo*)[[[PBLabelInfo builder] mergeFromCodedInputStream:input] build];
+}
++ (PBLabelInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBLabelInfo*)[[[PBLabelInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBLabelInfo_Builder*) builder {
+  return [[[PBLabelInfo_Builder alloc] init] autorelease];
+}
++ (PBLabelInfo_Builder*) builderWithPrototype:(PBLabelInfo*) prototype {
+  return [[PBLabelInfo builder] mergeFrom:prototype];
+}
+- (PBLabelInfo_Builder*) builder {
+  return [PBLabelInfo builder];
+}
+@end
+
+@interface PBLabelInfo_Builder()
+@property (retain) PBLabelInfo* result;
+@end
+
+@implementation PBLabelInfo_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBLabelInfo alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBLabelInfo_Builder*) clear {
+  self.result = [[[PBLabelInfo alloc] init] autorelease];
+  return self;
+}
+- (PBLabelInfo_Builder*) clone {
+  return [PBLabelInfo builderWithPrototype:result];
+}
+- (PBLabelInfo*) defaultInstance {
+  return [PBLabelInfo defaultInstance];
+}
+- (PBLabelInfo*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBLabelInfo*) buildPartial {
+  PBLabelInfo* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBLabelInfo_Builder*) mergeFrom:(PBLabelInfo*) other {
+  if (other == [PBLabelInfo defaultInstance]) {
+    return self;
+  }
+  if (other.hasXRatio) {
+    [self setXRatio:other.xRatio];
+  }
+  if (other.hasYRatio) {
+    [self setYRatio:other.yRatio];
+  }
+  if (other.hasStyle) {
+    [self setStyle:other.style];
+  }
+  if (other.hasTextColor) {
+    [self setTextColor:other.textColor];
+  }
+  if (other.hasTextStrokeColor) {
+    [self setTextStrokeColor:other.textStrokeColor];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 13: {
+        [self setXRatio:[input readFloat]];
+        break;
+      }
+      case 21: {
+        [self setYRatio:[input readFloat]];
+        break;
+      }
+      case 24: {
+        [self setStyle:[input readInt32]];
+        break;
+      }
+      case 32: {
+        [self setTextColor:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setTextStrokeColor:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasXRatio {
+  return result.hasXRatio;
+}
+- (Float32) xRatio {
+  return result.xRatio;
+}
+- (PBLabelInfo_Builder*) setXRatio:(Float32) value {
+  result.hasXRatio = YES;
+  result.xRatio = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearXRatio {
+  result.hasXRatio = NO;
+  result.xRatio = 0;
+  return self;
+}
+- (BOOL) hasYRatio {
+  return result.hasYRatio;
+}
+- (Float32) yRatio {
+  return result.yRatio;
+}
+- (PBLabelInfo_Builder*) setYRatio:(Float32) value {
+  result.hasYRatio = YES;
+  result.yRatio = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearYRatio {
+  result.hasYRatio = NO;
+  result.yRatio = 0;
+  return self;
+}
+- (BOOL) hasStyle {
+  return result.hasStyle;
+}
+- (int32_t) style {
+  return result.style;
+}
+- (PBLabelInfo_Builder*) setStyle:(int32_t) value {
+  result.hasStyle = YES;
+  result.style = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearStyle {
+  result.hasStyle = NO;
+  result.style = 0;
+  return self;
+}
+- (BOOL) hasTextColor {
+  return result.hasTextColor;
+}
+- (int32_t) textColor {
+  return result.textColor;
+}
+- (PBLabelInfo_Builder*) setTextColor:(int32_t) value {
+  result.hasTextColor = YES;
+  result.textColor = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearTextColor {
+  result.hasTextColor = NO;
+  result.textColor = 0;
+  return self;
+}
+- (BOOL) hasTextStrokeColor {
+  return result.hasTextStrokeColor;
+}
+- (int32_t) textStrokeColor {
+  return result.textStrokeColor;
+}
+- (PBLabelInfo_Builder*) setTextStrokeColor:(int32_t) value {
+  result.hasTextStrokeColor = YES;
+  result.textStrokeColor = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearTextStrokeColor {
+  result.hasTextStrokeColor = NO;
+  result.textStrokeColor = 0;
+  return self;
+}
+@end
+
 @interface PBFeed ()
 @property (retain) NSString* feedId;
 @property (retain) NSString* userId;
@@ -2087,6 +2416,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property int32_t rankInTop;
 @property (retain) PBLearnDraw* learnDraw;
 @property (retain) PBSingOpus* sing;
+@property (retain) PBLabelInfo* descLabelInfo;
 @end
 
 @implementation PBFeed
@@ -2404,6 +2734,13 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasSing_ = !!value;
 }
 @synthesize sing;
+- (BOOL) hasDescLabelInfo {
+  return !!hasDescLabelInfo_;
+}
+- (void) setHasDescLabelInfo:(BOOL) value {
+  hasDescLabelInfo_ = !!value;
+}
+@synthesize descLabelInfo;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2434,6 +2771,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   self.mutableRankInfoList = nil;
   self.learnDraw = nil;
   self.sing = nil;
+  self.descLabelInfo = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2480,6 +2818,7 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
     self.rankInTop = 0;
     self.learnDraw = [PBLearnDraw defaultInstance];
     self.sing = [PBSingOpus defaultInstance];
+    self.descLabelInfo = [PBLabelInfo defaultInstance];
   }
   return self;
 }
@@ -2707,6 +3046,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasSing) {
     [output writeMessage:101 value:self.sing];
   }
+  if (self.hasDescLabelInfo) {
+    [output writeMessage:200 value:self.descLabelInfo];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2863,6 +3205,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasSing) {
     size += computeMessageSize(101, self.sing);
+  }
+  if (self.hasDescLabelInfo) {
+    size += computeMessageSize(200, self.descLabelInfo);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3088,6 +3433,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasSing) {
     [self mergeSing:other.sing];
+  }
+  if (other.hasDescLabelInfo) {
+    [self mergeDescLabelInfo:other.descLabelInfo];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3321,6 +3669,15 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setSing:[subBuilder buildPartial]];
+        break;
+      }
+      case 1602: {
+        PBLabelInfo_Builder* subBuilder = [PBLabelInfo builder];
+        if (self.hasDescLabelInfo) {
+          [subBuilder mergeFrom:self.descLabelInfo];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDescLabelInfo:[subBuilder buildPartial]];
         break;
       }
     }
@@ -4172,6 +4529,36 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearSing {
   result.hasSing = NO;
   result.sing = [PBSingOpus defaultInstance];
+  return self;
+}
+- (BOOL) hasDescLabelInfo {
+  return result.hasDescLabelInfo;
+}
+- (PBLabelInfo*) descLabelInfo {
+  return result.descLabelInfo;
+}
+- (PBFeed_Builder*) setDescLabelInfo:(PBLabelInfo*) value {
+  result.hasDescLabelInfo = YES;
+  result.descLabelInfo = value;
+  return self;
+}
+- (PBFeed_Builder*) setDescLabelInfoBuilder:(PBLabelInfo_Builder*) builderForValue {
+  return [self setDescLabelInfo:[builderForValue build]];
+}
+- (PBFeed_Builder*) mergeDescLabelInfo:(PBLabelInfo*) value {
+  if (result.hasDescLabelInfo &&
+      result.descLabelInfo != [PBLabelInfo defaultInstance]) {
+    result.descLabelInfo =
+      [[[PBLabelInfo builderWithPrototype:result.descLabelInfo] mergeFrom:value] buildPartial];
+  } else {
+    result.descLabelInfo = value;
+  }
+  result.hasDescLabelInfo = YES;
+  return self;
+}
+- (PBFeed_Builder*) clearDescLabelInfo {
+  result.hasDescLabelInfo = NO;
+  result.descLabelInfo = [PBLabelInfo defaultInstance];
   return self;
 }
 @end

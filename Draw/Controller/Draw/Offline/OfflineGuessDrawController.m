@@ -35,7 +35,7 @@
 #import "StringUtil.h"
 #import "AudioPlayer.h"
 #import "UIImageView+WebCache.h"
-#import "FXLabel.h"
+#import "StrokeLabel.h"
 
 @interface OfflineGuessDrawController()
 {
@@ -322,8 +322,8 @@
     [iv setImageWithURL:[NSURL URLWithString:self.feed.drawImageUrl]];
     
     rect = CGRectMake(0, 0, 250, 250);
-    FXLabel *l = [[[FXLabel alloc] initWithFrame:rect] autorelease];
-    [ShareImageManager setFXLabelStyle:l];
+    StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:rect] autorelease];
+    [ShareImageManager setStrokeLabelStyle:l];
     l.center = CGPointMake(iv.bounds.size.width/2, iv.bounds.size.height/2);
     l.text = self.feed.opusDesc;
     l.numberOfLines = 0;

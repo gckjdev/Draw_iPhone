@@ -186,6 +186,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLabelInfo;
+@class PBLabelInfo_Builder;
 @class PBLayer;
 @class PBLayer_Builder;
 @class PBLayout;

@@ -82,6 +82,9 @@ enum PBFeedTimesType{
     FEED_TIMES_TYPE_SAVE = 7;
 }
 
+
+
+
 message PBOpus {
 
   required string opusId = 1;                   // 作品Id
@@ -126,8 +129,12 @@ message PBOpus {
 
   optional PBOpusStoreType storeType = 200;      // 当前保存类型
   
+  optional PBLabelInfo descLabelInfo = 201;       
+  
   optional PBOpusGuess guessInfo = 250;                 // 用户猜的信息
 }
+
+
 
 //message PBOpusAction{
 //    required string actionId = 1;
