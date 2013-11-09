@@ -16,7 +16,7 @@
 }
 + (NSInteger)monthlyFeeForLevel:(NSInteger)level
 {
-    level * 100;
+    return level * 100;
 }
 
 @end

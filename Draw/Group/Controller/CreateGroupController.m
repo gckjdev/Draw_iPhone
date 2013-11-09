@@ -39,6 +39,8 @@
 
 - (void)clickDone:(id)sender
 {
+    [self.nameTextField resignFirstResponder];
+    [self.levelPicker setHidden:YES];
     
     NSString *name = _nameTextField.text;
     NSInteger level = [_levelPicker selectedRowInComponent:0]+1;
@@ -50,7 +52,7 @@
         [DrawError postErrorWithCode:ERROR_GROUP_NAME_EMPTY];
     }
     
-    if([[AccountManager defaultManager] hasEnoughBalance:fee currency:PBGameCurrencyCoin]){
+    if(![[AccountManager defaultManager] hasEnoughBalance:fee currency:PBGameCurrencyCoin]){
         [BalanceNotEnoughAlertView showInController:self];
     }
     
@@ -80,7 +82,8 @@
     [self.nameTextField setTextColor:COLOR_BROWN];
     [self.nameLabel setFont:BIG_FONT];
     SET_INPUT_VIEW_STYLE(self.nameTextField);
-    
+    [self.nameLabel setText:NSLS(@"kName")];
+    [self.nameTextField setPlaceholder:nil];
     //level
     [self.levelLabel setTextColor:COLOR_BROWN];
     [self.levelTips setTextColor:COLOR_BROWN];
@@ -88,7 +91,7 @@
     [self.levelPicker setHidden:YES];
     [self.levelLabel setFont:BIG_FONT];
     [self.levelTips setFont:SMALL_FONT];
-    
+    [self.levelLabel setText:NSLS(@"kLevel")];
     [self.nameTextField becomeFirstResponder];
 }
 

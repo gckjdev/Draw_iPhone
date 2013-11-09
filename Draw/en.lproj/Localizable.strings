@@ -1103,6 +1103,7 @@
 "kDrawGuessTitle" = "Guessing...";
 "kLoadImage" = "Loading...";
 
+"kLevel" = "Level";
 "kLevel1" = "初级%@";
 "kLevel2" = "中级%@";
 "kLevel3" = "高级%@";
@@ -2033,6 +2034,11 @@
 "kMarkedPosts" = "Marked Posts";
 "kBBSSearchPlaceholder" = "Input keyword";
 /*********************** BBS国际化字符串结束 *************************/
+
+//group
+
+"kCreateGroup" = "Create Group";
+"kLevelTips" = "Capacity: %d\nFee: %d coins/month\n(ps. The fee for first month will be deducted when creating.)";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";
