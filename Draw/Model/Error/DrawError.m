@@ -1,7 +1,4 @@
 #import "DrawError.h"
-//#import "DrawAppDelegate.h"
-#import "GameNetworkConstants.h"
-#import "CommonMessageCenter.h"
 
 extern NSString* GlobalGetTrafficServerURL();
 
@@ -23,7 +20,8 @@ extern NSString* GlobalGetTrafficServerURL();
       KEY(ERROR_GROUP_PERMISSION) : NSLS(@"kGroupPermissionDenied"),
       KEY(ERROR_GROUP_FULL) : NSLS(@"kGroupMembersFull"),
       KEY(ERROR_GROUP_REJECTED) : NSLS(@"kGroupRequestWasRejected"),
-      
+      KEY(ERROR_GROUP_NAME_EMPTY) : NSLS(@"kGroupNameIsEmpty"),      
+//      ERROR_BALANCE_NOT_ENOUGH
       };
     NSString *errorMessage = errorMSGDict[KEY(code)];    
     return [errorMessage length] == 0 ? NSLS(@"kUnknowError") : errorMessage;
@@ -42,6 +40,11 @@ extern NSString* GlobalGetTrafficServerURL();
 + (void)postError:(NSError *)error
 {
     POSTMSG([error localizedDescription]);
+}
+
++ (void)postErrorWithCode:(NSInteger) code
+{
+    [self postError:[self errorWithCode:code]];
 }
 
 @end

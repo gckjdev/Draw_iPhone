@@ -15918,6 +15918,298 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 }
 @end
 
+@interface PBUserRelationWithGroup ()
+@property int32_t role;
+@property int32_t permission;
+@property int32_t status;
+@property (retain) NSString* title;
+@end
+
+@implementation PBUserRelationWithGroup
+
+- (BOOL) hasRole {
+  return !!hasRole_;
+}
+- (void) setHasRole:(BOOL) value {
+  hasRole_ = !!value;
+}
+@synthesize role;
+- (BOOL) hasPermission {
+  return !!hasPermission_;
+}
+- (void) setHasPermission:(BOOL) value {
+  hasPermission_ = !!value;
+}
+@synthesize permission;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasTitle {
+  return !!hasTitle_;
+}
+- (void) setHasTitle:(BOOL) value {
+  hasTitle_ = !!value;
+}
+@synthesize title;
+- (void) dealloc {
+  self.title = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.role = 0;
+    self.permission = 0;
+    self.status = 0;
+    self.title = @"";
+  }
+  return self;
+}
+static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
++ (void) initialize {
+  if (self == [PBUserRelationWithGroup class]) {
+    defaultPBUserRelationWithGroupInstance = [[PBUserRelationWithGroup alloc] init];
+  }
+}
++ (PBUserRelationWithGroup*) defaultInstance {
+  return defaultPBUserRelationWithGroupInstance;
+}
+- (PBUserRelationWithGroup*) defaultInstance {
+  return defaultPBUserRelationWithGroupInstance;
+}
+- (BOOL) isInitialized {
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasRole) {
+    [output writeInt32:1 value:self.role];
+  }
+  if (self.hasPermission) {
+    [output writeInt32:2 value:self.permission];
+  }
+  if (self.hasStatus) {
+    [output writeInt32:3 value:self.status];
+  }
+  if (self.hasTitle) {
+    [output writeString:4 value:self.title];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasRole) {
+    size += computeInt32Size(1, self.role);
+  }
+  if (self.hasPermission) {
+    size += computeInt32Size(2, self.permission);
+  }
+  if (self.hasStatus) {
+    size += computeInt32Size(3, self.status);
+  }
+  if (self.hasTitle) {
+    size += computeStringSize(4, self.title);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBUserRelationWithGroup*) parseFromData:(NSData*) data {
+  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromData:data] build];
+}
++ (PBUserRelationWithGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input {
+  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromInputStream:input] build];
+}
++ (PBUserRelationWithGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromCodedInputStream:input] build];
+}
++ (PBUserRelationWithGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBUserRelationWithGroup*)[[[PBUserRelationWithGroup builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBUserRelationWithGroup_Builder*) builder {
+  return [[[PBUserRelationWithGroup_Builder alloc] init] autorelease];
+}
++ (PBUserRelationWithGroup_Builder*) builderWithPrototype:(PBUserRelationWithGroup*) prototype {
+  return [[PBUserRelationWithGroup builder] mergeFrom:prototype];
+}
+- (PBUserRelationWithGroup_Builder*) builder {
+  return [PBUserRelationWithGroup builder];
+}
+@end
+
+@interface PBUserRelationWithGroup_Builder()
+@property (retain) PBUserRelationWithGroup* result;
+@end
+
+@implementation PBUserRelationWithGroup_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBUserRelationWithGroup alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBUserRelationWithGroup_Builder*) clear {
+  self.result = [[[PBUserRelationWithGroup alloc] init] autorelease];
+  return self;
+}
+- (PBUserRelationWithGroup_Builder*) clone {
+  return [PBUserRelationWithGroup builderWithPrototype:result];
+}
+- (PBUserRelationWithGroup*) defaultInstance {
+  return [PBUserRelationWithGroup defaultInstance];
+}
+- (PBUserRelationWithGroup*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBUserRelationWithGroup*) buildPartial {
+  PBUserRelationWithGroup* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBUserRelationWithGroup_Builder*) mergeFrom:(PBUserRelationWithGroup*) other {
+  if (other == [PBUserRelationWithGroup defaultInstance]) {
+    return self;
+  }
+  if (other.hasRole) {
+    [self setRole:other.role];
+  }
+  if (other.hasPermission) {
+    [self setPermission:other.permission];
+  }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
+  if (other.hasTitle) {
+    [self setTitle:other.title];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBUserRelationWithGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setRole:[input readInt32]];
+        break;
+      }
+      case 16: {
+        [self setPermission:[input readInt32]];
+        break;
+      }
+      case 24: {
+        [self setStatus:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setTitle:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasRole {
+  return result.hasRole;
+}
+- (int32_t) role {
+  return result.role;
+}
+- (PBUserRelationWithGroup_Builder*) setRole:(int32_t) value {
+  result.hasRole = YES;
+  result.role = value;
+  return self;
+}
+- (PBUserRelationWithGroup_Builder*) clearRole {
+  result.hasRole = NO;
+  result.role = 0;
+  return self;
+}
+- (BOOL) hasPermission {
+  return result.hasPermission;
+}
+- (int32_t) permission {
+  return result.permission;
+}
+- (PBUserRelationWithGroup_Builder*) setPermission:(int32_t) value {
+  result.hasPermission = YES;
+  result.permission = value;
+  return self;
+}
+- (PBUserRelationWithGroup_Builder*) clearPermission {
+  result.hasPermission = NO;
+  result.permission = 0;
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (int32_t) status {
+  return result.status;
+}
+- (PBUserRelationWithGroup_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBUserRelationWithGroup_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
+  return self;
+}
+- (BOOL) hasTitle {
+  return result.hasTitle;
+}
+- (NSString*) title {
+  return result.title;
+}
+- (PBUserRelationWithGroup_Builder*) setTitle:(NSString*) value {
+  result.hasTitle = YES;
+  result.title = value;
+  return self;
+}
+- (PBUserRelationWithGroup_Builder*) clearTitle {
+  result.hasTitle = NO;
+  result.title = @"";
+  return self;
+}
+@end
+
 @interface PBGroup ()
 @property (retain) NSString* groupId;
 @property (retain) NSString* name;
@@ -15930,6 +16222,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 @property int32_t size;
 @property int32_t guestSize;
 @property int32_t guestCapacity;
+@property int32_t topicCount;
 @property (retain) NSString* desc;
 @property (retain) NSString* signature;
 @property (retain) NSString* bgImage;
@@ -15939,6 +16232,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 @property (retain) NSMutableArray* mutableAdminsList;
 @property (retain) NSMutableArray* mutableUsersList;
 @property (retain) NSMutableArray* mutableGuestsList;
+@property (retain) PBUserRelationWithGroup* relation;
 @end
 
 @implementation PBGroup
@@ -16020,6 +16314,13 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   hasGuestCapacity_ = !!value;
 }
 @synthesize guestCapacity;
+- (BOOL) hasTopicCount {
+  return !!hasTopicCount_;
+}
+- (void) setHasTopicCount:(BOOL) value {
+  hasTopicCount_ = !!value;
+}
+@synthesize topicCount;
 - (BOOL) hasDesc {
   return !!hasDesc_;
 }
@@ -16059,6 +16360,13 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
 @synthesize mutableAdminsList;
 @synthesize mutableUsersList;
 @synthesize mutableGuestsList;
+- (BOOL) hasRelation {
+  return !!hasRelation_;
+}
+- (void) setHasRelation:(BOOL) value {
+  hasRelation_ = !!value;
+}
+@synthesize relation;
 - (void) dealloc {
   self.groupId = nil;
   self.name = nil;
@@ -16071,6 +16379,7 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
   self.mutableAdminsList = nil;
   self.mutableUsersList = nil;
   self.mutableGuestsList = nil;
+  self.relation = nil;
   [super dealloc];
 }
 - (id) init {
@@ -16086,11 +16395,13 @@ static PBGroupUsersByTitle* defaultPBGroupUsersByTitleInstance = nil;
     self.size = 0;
     self.guestSize = 0;
     self.guestCapacity = 0;
+    self.topicCount = 0;
     self.desc = @"";
     self.signature = @"";
     self.bgImage = @"";
     self.medalImage = @"";
     self.creator = [PBGroupUser defaultInstance];
+    self.relation = [PBUserRelationWithGroup defaultInstance];
   }
   return self;
 }
@@ -16202,6 +16513,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasGuestCapacity) {
     [output writeInt32:11 value:self.guestCapacity];
   }
+  if (self.hasTopicCount) {
+    [output writeInt32:12 value:self.topicCount];
+  }
   if (self.hasDesc) {
     [output writeString:15 value:self.desc];
   }
@@ -16228,6 +16542,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   }
   for (PBGroupUser* element in self.guestsList) {
     [output writeMessage:43 value:element];
+  }
+  if (self.hasRelation) {
+    [output writeMessage:50 value:self.relation];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -16271,6 +16588,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasGuestCapacity) {
     size += computeInt32Size(11, self.guestCapacity);
   }
+  if (self.hasTopicCount) {
+    size += computeInt32Size(12, self.topicCount);
+  }
   if (self.hasDesc) {
     size += computeStringSize(15, self.desc);
   }
@@ -16297,6 +16617,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   }
   for (PBGroupUser* element in self.guestsList) {
     size += computeMessageSize(43, element);
+  }
+  if (self.hasRelation) {
+    size += computeMessageSize(50, self.relation);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -16406,6 +16729,9 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (other.hasGuestCapacity) {
     [self setGuestCapacity:other.guestCapacity];
   }
+  if (other.hasTopicCount) {
+    [self setTopicCount:other.topicCount];
+  }
   if (other.hasDesc) {
     [self setDesc:other.desc];
   }
@@ -16444,6 +16770,9 @@ static PBGroup* defaultPBGroupInstance = nil;
       result.mutableGuestsList = [NSMutableArray array];
     }
     [result.mutableGuestsList addObjectsFromArray:other.mutableGuestsList];
+  }
+  if (other.hasRelation) {
+    [self mergeRelation:other.relation];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -16510,6 +16839,10 @@ static PBGroup* defaultPBGroupInstance = nil;
         [self setGuestCapacity:[input readInt32]];
         break;
       }
+      case 96: {
+        [self setTopicCount:[input readInt32]];
+        break;
+      }
       case 122: {
         [self setDesc:[input readString]];
         break;
@@ -16557,6 +16890,15 @@ static PBGroup* defaultPBGroupInstance = nil;
         PBGroupUser_Builder* subBuilder = [PBGroupUser builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGuests:[subBuilder buildPartial]];
+        break;
+      }
+      case 402: {
+        PBUserRelationWithGroup_Builder* subBuilder = [PBUserRelationWithGroup builder];
+        if (self.hasRelation) {
+          [subBuilder mergeFrom:self.relation];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setRelation:[subBuilder buildPartial]];
         break;
       }
     }
@@ -16736,6 +17078,22 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (PBGroup_Builder*) clearGuestCapacity {
   result.hasGuestCapacity = NO;
   result.guestCapacity = 0;
+  return self;
+}
+- (BOOL) hasTopicCount {
+  return result.hasTopicCount;
+}
+- (int32_t) topicCount {
+  return result.topicCount;
+}
+- (PBGroup_Builder*) setTopicCount:(int32_t) value {
+  result.hasTopicCount = YES;
+  result.topicCount = value;
+  return self;
+}
+- (PBGroup_Builder*) clearTopicCount {
+  result.hasTopicCount = NO;
+  result.topicCount = 0;
   return self;
 }
 - (BOOL) hasDesc {
@@ -16946,6 +17304,36 @@ static PBGroup* defaultPBGroupInstance = nil;
     result.mutableGuestsList = [NSMutableArray array];
   }
   [result.mutableGuestsList addObject:value];
+  return self;
+}
+- (BOOL) hasRelation {
+  return result.hasRelation;
+}
+- (PBUserRelationWithGroup*) relation {
+  return result.relation;
+}
+- (PBGroup_Builder*) setRelation:(PBUserRelationWithGroup*) value {
+  result.hasRelation = YES;
+  result.relation = value;
+  return self;
+}
+- (PBGroup_Builder*) setRelationBuilder:(PBUserRelationWithGroup_Builder*) builderForValue {
+  return [self setRelation:[builderForValue build]];
+}
+- (PBGroup_Builder*) mergeRelation:(PBUserRelationWithGroup*) value {
+  if (result.hasRelation &&
+      result.relation != [PBUserRelationWithGroup defaultInstance]) {
+    result.relation =
+      [[[PBUserRelationWithGroup builderWithPrototype:result.relation] mergeFrom:value] buildPartial];
+  } else {
+    result.relation = value;
+  }
+  result.hasRelation = YES;
+  return self;
+}
+- (PBGroup_Builder*) clearRelation {
+  result.hasRelation = NO;
+  result.relation = [PBUserRelationWithGroup defaultInstance];
   return self;
 }
 @end

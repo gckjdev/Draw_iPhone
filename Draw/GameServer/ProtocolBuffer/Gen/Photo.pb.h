@@ -76,6 +76,8 @@
 @class PBUserPhotoList;
 @class PBUserPhotoList_Builder;
 @class PBUserPhoto_Builder;
+@class PBUserRelationWithGroup;
+@class PBUserRelationWithGroup_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 typedef enum {

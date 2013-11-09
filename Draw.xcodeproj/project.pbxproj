@@ -5494,6 +5494,26 @@
 		EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
 		EA18EE7916F4687B0090E213 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
 		EA18EE7E16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
+		EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD62F182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD630182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD631182DDCB1000E5364 /* GroupHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */; };
+		EA1BD632182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD633182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD634182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD635182DDCB1000E5364 /* GroupHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */; };
+		EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */; };
+		EA1BD640182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD641182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD642182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD643182DE6DD000E5364 /* CreateGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */; };
+		EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
+		EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
+		EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
+		EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
 		EA1F282F16F093E500066E37 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
 		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
@@ -9397,6 +9417,14 @@
 		EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GameItemDetailView~ipad.xib"; sourceTree = "<group>"; };
 		EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BuyItemView~ipad.xib"; sourceTree = "<group>"; };
 		EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GiftDetailView~ipad.xib"; sourceTree = "<group>"; };
+		EA1BD62B182DDCB1000E5364 /* GroupHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupHomeController.h; sourceTree = "<group>"; };
+		EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupHomeController.m; sourceTree = "<group>"; };
+		EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupHomeController.xib; sourceTree = "<group>"; };
+		EA1BD639182DE6DD000E5364 /* CreateGroupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupController.h; sourceTree = "<group>"; };
+		EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupController.m; sourceTree = "<group>"; };
+		EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupController.xib; sourceTree = "<group>"; };
+		EA1BD644182DEB0B000E5364 /* GroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupManager.h; sourceTree = "<group>"; };
+		EA1BD645182DEB0B000E5364 /* GroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupManager.m; sourceTree = "<group>"; };
 		EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283516F093F700066E37 /* ChargeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeController~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeCell~ipad.xib"; sourceTree = "<group>"; };
@@ -16245,6 +16273,12 @@
 		EA8CADDB18288C6E003149FE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EA1BD62B182DDCB1000E5364 /* GroupHomeController.h */,
+				EA1BD62C182DDCB1000E5364 /* GroupHomeController.m */,
+				EA1BD62D182DDCB1000E5364 /* GroupHomeController.xib */,
+				EA1BD639182DE6DD000E5364 /* CreateGroupController.h */,
+				EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */,
+				EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -16254,6 +16288,8 @@
 			children = (
 				EA8CADEC1828A646003149FE /* GroupPermission.h */,
 				EA8CADED1828A646003149FE /* GroupPermission.m */,
+				EA1BD644182DEB0B000E5364 /* GroupManager.h */,
+				EA1BD645182DEB0B000E5364 /* GroupManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -17395,6 +17431,8 @@
 				CA29E710182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA16182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
+				EA1BD634182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD642182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18306,6 +18344,8 @@
 				CA29E70F182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA15182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
+				EA1BD633182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD641182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19199,6 +19239,8 @@
 				CA29E70E182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				A4E4AA14182C9CAD0001AFFE /* WhisperView.xib in Resources */,
 				A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
+				EA1BD632182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD640182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20011,6 +20053,8 @@
 				CA52AE031828CE510066B0A0 /* ShareSDKiPhoneDefaultShareViewUI.bundle in Resources */,
 				CA52AE0B1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.bundle in Resources */,
 				CA29E711182C738E002D59BB /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				EA1BD635182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
+				EA1BD643182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20785,6 +20829,9 @@
 				EA8CADEA18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF01828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE391828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				EA1BD630182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21521,6 +21568,9 @@
 				EA8CADE918288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE381828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				EA1BD62F182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22262,6 +22312,9 @@
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE371828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22948,6 +23001,9 @@
 				EA8CADEB18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF11828A646003149FE /* GroupPermission.m in Sources */,
 				CA52AE3A1828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
+				EA1BD631182DDCB1000E5364 /* GroupHomeController.m in Sources */,
+				EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */,
+				EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

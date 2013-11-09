@@ -521,6 +521,15 @@ message PBGroupUsersByTitle
     repeated PBGroupUser users = 2;     // 该职位下的用户列表
 }
 
+
+message PBUserRelationWithGroup
+{
+    optional int32 role = 1;
+    optional int32 permission = 2;
+    optional int32 status = 3;
+    optional string title = 4;
+}
+
 // 家族
 message PBGroup
 {
@@ -536,7 +545,10 @@ message PBGroup
     optional int32  capacity = 8;             // 容量
     optional int32  size = 9;                 // 当前人数
     optional int32  guestSize = 10;           // 嘉宾数目
-    optional int32  guestCapacity = 11;       // 嘉宾数目
+    optional int32  guestCapacity = 11;       // 嘉宾容量
+
+    optional int32  topicCount = 12;         //话题数目
+
     
     optional string desc = 15;                  // 家族说明
     optional string signature = 16;             // 动态签名
@@ -553,5 +565,6 @@ message PBGroup
 
     repeated PBGroupUser guests = 43;           // 嘉宾列表
 
+    optional PBUserRelationWithGroup relation = 50; // 用来记录当前用户与此group的关系
 }
 
