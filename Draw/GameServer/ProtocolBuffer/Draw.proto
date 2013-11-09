@@ -64,6 +64,17 @@ message PBLearnDraw{
     optional int32 boughtCount = 4;
 }
 
+message PBLabelInfo{
+   
+   optional float xRatio = 1;         // 这里的xRatio是记录label的origin.x与label的super view的width的比值。即xRatio = label.origin.x / label.superView.size.width
+   
+   optional float yRatio = 2;         // 意义同上， yRatio = label.origin.y / label.superView.size.height。
+
+   optional int32 style = 3;
+   optional int32 textColor = 4;          // 文本颜色。
+   optional int32 textStrokeColor = 5;    // 外圈颜色。
+}
+
 message PBFeed {
   required string feedId = 1;
   required string userId = 2;           // 用户Id
@@ -136,7 +147,7 @@ message PBFeed {
   optional PBLearnDraw learnDraw = 100;
   optional PBSingOpus sing = 101;               // 唱歌特有信息
 
-
+  optional PBLabelInfo descLabelInfo = 200;
 }
 
 message PBPoint

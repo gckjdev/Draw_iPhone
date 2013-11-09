@@ -74,6 +74,8 @@
 @class PBItemPriceInfo_Builder;
 @class PBKeyValue;
 @class PBKeyValue_Builder;
+@class PBLabelInfo;
+@class PBLabelInfo_Builder;
 @class PBLayer;
 @class PBLayer_Builder;
 @class PBLayout;
@@ -620,33 +622,117 @@
 - (PBLearnDraw_Builder*) clearBoughtCount;
 @end
 
+@interface PBLabelInfo : PBGeneratedMessage {
+@private
+  BOOL hasXRatio_:1;
+  BOOL hasYRatio_:1;
+  BOOL hasStyle_:1;
+  BOOL hasTextColor_:1;
+  BOOL hasTextStrokeColor_:1;
+  Float32 xRatio;
+  Float32 yRatio;
+  int32_t style;
+  int32_t textColor;
+  int32_t textStrokeColor;
+}
+- (BOOL) hasXRatio;
+- (BOOL) hasYRatio;
+- (BOOL) hasStyle;
+- (BOOL) hasTextColor;
+- (BOOL) hasTextStrokeColor;
+@property (readonly) Float32 xRatio;
+@property (readonly) Float32 yRatio;
+@property (readonly) int32_t style;
+@property (readonly) int32_t textColor;
+@property (readonly) int32_t textStrokeColor;
+
++ (PBLabelInfo*) defaultInstance;
+- (PBLabelInfo*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBLabelInfo_Builder*) builder;
++ (PBLabelInfo_Builder*) builder;
++ (PBLabelInfo_Builder*) builderWithPrototype:(PBLabelInfo*) prototype;
+
++ (PBLabelInfo*) parseFromData:(NSData*) data;
++ (PBLabelInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLabelInfo*) parseFromInputStream:(NSInputStream*) input;
++ (PBLabelInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBLabelInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBLabelInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBLabelInfo_Builder : PBGeneratedMessage_Builder {
+@private
+  PBLabelInfo* result;
+}
+
+- (PBLabelInfo*) defaultInstance;
+
+- (PBLabelInfo_Builder*) clear;
+- (PBLabelInfo_Builder*) clone;
+
+- (PBLabelInfo*) build;
+- (PBLabelInfo*) buildPartial;
+
+- (PBLabelInfo_Builder*) mergeFrom:(PBLabelInfo*) other;
+- (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasXRatio;
+- (Float32) xRatio;
+- (PBLabelInfo_Builder*) setXRatio:(Float32) value;
+- (PBLabelInfo_Builder*) clearXRatio;
+
+- (BOOL) hasYRatio;
+- (Float32) yRatio;
+- (PBLabelInfo_Builder*) setYRatio:(Float32) value;
+- (PBLabelInfo_Builder*) clearYRatio;
+
+- (BOOL) hasStyle;
+- (int32_t) style;
+- (PBLabelInfo_Builder*) setStyle:(int32_t) value;
+- (PBLabelInfo_Builder*) clearStyle;
+
+- (BOOL) hasTextColor;
+- (int32_t) textColor;
+- (PBLabelInfo_Builder*) setTextColor:(int32_t) value;
+- (PBLabelInfo_Builder*) clearTextColor;
+
+- (BOOL) hasTextStrokeColor;
+- (int32_t) textStrokeColor;
+- (PBLabelInfo_Builder*) setTextStrokeColor:(int32_t) value;
+- (PBLabelInfo_Builder*) clearTextStrokeColor;
+@end
+
 @interface PBFeed : PBGeneratedMessage {
 @private
   BOOL hasIsCorrect_:1;
-  BOOL hasOpusCreatorGender_:1;
   BOOL hasGender_:1;
-  BOOL hasContestScore_:1;
+  BOOL hasOpusCreatorGender_:1;
   BOOL hasHistoryScore_:1;
-  BOOL hasOpusStatus_:1;
-  BOOL hasScore_:1;
-  BOOL hasSpendTime_:1;
-  BOOL hasRankInTop_:1;
-  BOOL hasMatchTimes_:1;
+  BOOL hasContestScore_:1;
   BOOL hasCorrectTimes_:1;
   BOOL hasGuessTimes_:1;
   BOOL hasCommentTimes_:1;
+  BOOL hasMatchTimes_:1;
+  BOOL hasSpendTime_:1;
+  BOOL hasScore_:1;
   BOOL hasDeviceType_:1;
   BOOL hasCreateDate_:1;
   BOOL hasActionType_:1;
-  BOOL hasDataUrl_:1;
+  BOOL hasRankInTop_:1;
+  BOOL hasOpusStatus_:1;
+  BOOL hasComment_:1;
+  BOOL hasContestId_:1;
   BOOL hasOpusCreatorUserId_:1;
   BOOL hasOpusCreatorNickName_:1;
   BOOL hasOpusCreatorAvatar_:1;
-  BOOL hasContestId_:1;
   BOOL hasOpusWord_:1;
-  BOOL hasComment_:1;
   BOOL hasOpusImage_:1;
   BOOL hasOpusThumbImage_:1;
+  BOOL hasDataUrl_:1;
   BOOL hasOpusId_:1;
   BOOL hasDrawDataUrl_:1;
   BOOL hasOpusDesc_:1;
@@ -661,34 +747,35 @@
   BOOL hasFeedId_:1;
   BOOL hasLearnDraw_:1;
   BOOL hasSing_:1;
+  BOOL hasDescLabelInfo_:1;
   BOOL hasCommentInfo_:1;
   BOOL hasDrawData_:1;
   BOOL hasCategory_:1;
   BOOL isCorrect_:1;
-  BOOL opusCreatorGender_:1;
   BOOL gender_:1;
-  Float64 contestScore;
+  BOOL opusCreatorGender_:1;
   Float64 historyScore;
-  int32_t opusStatus;
-  int32_t score;
-  int32_t spendTime;
-  int32_t rankInTop;
-  int32_t matchTimes;
+  Float64 contestScore;
   int32_t correctTimes;
   int32_t guessTimes;
   int32_t commentTimes;
+  int32_t matchTimes;
+  int32_t spendTime;
+  int32_t score;
   int32_t deviceType;
   int32_t createDate;
   int32_t actionType;
-  NSString* dataUrl;
+  int32_t rankInTop;
+  int32_t opusStatus;
+  NSString* comment;
+  NSString* contestId;
   NSString* opusCreatorUserId;
   NSString* opusCreatorNickName;
   NSString* opusCreatorAvatar;
-  NSString* contestId;
   NSString* opusWord;
-  NSString* comment;
   NSString* opusImage;
   NSString* opusThumbImage;
+  NSString* dataUrl;
   NSString* opusId;
   NSString* drawDataUrl;
   NSString* opusDesc;
@@ -703,6 +790,7 @@
   NSString* feedId;
   PBLearnDraw* learnDraw;
   PBSingOpus* sing;
+  PBLabelInfo* descLabelInfo;
   PBCommentInfo* commentInfo;
   PBDraw* drawData;
   PBOpusCategoryType category;
@@ -753,6 +841,7 @@
 - (BOOL) hasRankInTop;
 - (BOOL) hasLearnDraw;
 - (BOOL) hasSing;
+- (BOOL) hasDescLabelInfo;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -795,6 +884,7 @@
 @property (readonly) int32_t rankInTop;
 @property (readonly, retain) PBLearnDraw* learnDraw;
 @property (readonly, retain) PBSingOpus* sing;
+@property (readonly, retain) PBLabelInfo* descLabelInfo;
 - (NSArray*) tagsList;
 - (NSString*) tagsAtIndex:(int32_t) index;
 - (NSArray*) guessWordsList;
@@ -1083,6 +1173,13 @@
 - (PBFeed_Builder*) setSingBuilder:(PBSingOpus_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeSing:(PBSingOpus*) value;
 - (PBFeed_Builder*) clearSing;
+
+- (BOOL) hasDescLabelInfo;
+- (PBLabelInfo*) descLabelInfo;
+- (PBFeed_Builder*) setDescLabelInfo:(PBLabelInfo*) value;
+- (PBFeed_Builder*) setDescLabelInfoBuilder:(PBLabelInfo_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeDescLabelInfo:(PBLabelInfo*) value;
+- (PBFeed_Builder*) clearDescLabelInfo;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

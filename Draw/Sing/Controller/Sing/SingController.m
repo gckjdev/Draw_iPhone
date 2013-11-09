@@ -170,7 +170,7 @@ enum{
     }
     
 //    [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
-    [ShareImageManager setFXLabelStyle:self.opusDescLabel];
+    [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
     self.opusDescLabel.text = self.singOpus.pbOpus.desc;
     
     self.lyricTextView.editable = NO;

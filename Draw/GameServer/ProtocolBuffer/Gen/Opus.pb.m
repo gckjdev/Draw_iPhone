@@ -859,6 +859,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 @property (retain) NSString* localThumbImageUrl;
 @property BOOL isRecovery;
 @property PBOpusStoreType storeType;
+@property (retain) PBLabelInfo* descLabelInfo;
 @property (retain) PBOpusGuess* guessInfo;
 @end
 
@@ -1060,6 +1061,13 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   hasStoreType_ = !!value;
 }
 @synthesize storeType;
+- (BOOL) hasDescLabelInfo {
+  return !!hasDescLabelInfo_;
+}
+- (void) setHasDescLabelInfo:(BOOL) value {
+  hasDescLabelInfo_ = !!value;
+}
+@synthesize descLabelInfo;
 - (BOOL) hasGuessInfo {
   return !!hasGuessInfo_;
 }
@@ -1088,6 +1096,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   self.localDataUrl = nil;
   self.localImageUrl = nil;
   self.localThumbImageUrl = nil;
+  self.descLabelInfo = nil;
   self.guessInfo = nil;
   [super dealloc];
 }
@@ -1120,6 +1129,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
     self.localThumbImageUrl = @"";
     self.isRecovery = NO;
     self.storeType = PBOpusStoreTypeNormalOpus;
+    self.descLabelInfo = [PBLabelInfo defaultInstance];
     self.guessInfo = [PBOpusGuess defaultInstance];
   }
   return self;
@@ -1269,6 +1279,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasStoreType) {
     [output writeEnum:200 value:self.storeType];
   }
+  if (self.hasDescLabelInfo) {
+    [output writeMessage:201 value:self.descLabelInfo];
+  }
   if (self.hasGuessInfo) {
     [output writeMessage:250 value:self.guessInfo];
   }
@@ -1372,6 +1385,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasStoreType) {
     size += computeEnumSize(200, self.storeType);
+  }
+  if (self.hasDescLabelInfo) {
+    size += computeMessageSize(201, self.descLabelInfo);
   }
   if (self.hasGuessInfo) {
     size += computeMessageSize(250, self.guessInfo);
@@ -1543,6 +1559,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (other.hasStoreType) {
     [self setStoreType:other.storeType];
+  }
+  if (other.hasDescLabelInfo) {
+    [self mergeDescLabelInfo:other.descLabelInfo];
   }
   if (other.hasGuessInfo) {
     [self mergeGuessInfo:other.guessInfo];
@@ -1734,6 +1753,15 @@ static PBOpus* defaultPBOpusInstance = nil;
         } else {
           [unknownFields mergeVarintField:200 value:value];
         }
+        break;
+      }
+      case 1610: {
+        PBLabelInfo_Builder* subBuilder = [PBLabelInfo builder];
+        if (self.hasDescLabelInfo) {
+          [subBuilder mergeFrom:self.descLabelInfo];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setDescLabelInfo:[subBuilder buildPartial]];
         break;
       }
       case 2002: {
@@ -2322,6 +2350,36 @@ static PBOpus* defaultPBOpusInstance = nil;
 - (PBOpus_Builder*) clearStoreType {
   result.hasStoreType = NO;
   result.storeType = PBOpusStoreTypeNormalOpus;
+  return self;
+}
+- (BOOL) hasDescLabelInfo {
+  return result.hasDescLabelInfo;
+}
+- (PBLabelInfo*) descLabelInfo {
+  return result.descLabelInfo;
+}
+- (PBOpus_Builder*) setDescLabelInfo:(PBLabelInfo*) value {
+  result.hasDescLabelInfo = YES;
+  result.descLabelInfo = value;
+  return self;
+}
+- (PBOpus_Builder*) setDescLabelInfoBuilder:(PBLabelInfo_Builder*) builderForValue {
+  return [self setDescLabelInfo:[builderForValue build]];
+}
+- (PBOpus_Builder*) mergeDescLabelInfo:(PBLabelInfo*) value {
+  if (result.hasDescLabelInfo &&
+      result.descLabelInfo != [PBLabelInfo defaultInstance]) {
+    result.descLabelInfo =
+      [[[PBLabelInfo builderWithPrototype:result.descLabelInfo] mergeFrom:value] buildPartial];
+  } else {
+    result.descLabelInfo = value;
+  }
+  result.hasDescLabelInfo = YES;
+  return self;
+}
+- (PBOpus_Builder*) clearDescLabelInfo {
+  result.hasDescLabelInfo = NO;
+  result.descLabelInfo = [PBLabelInfo defaultInstance];
   return self;
 }
 - (BOOL) hasGuessInfo {

@@ -11,6 +11,7 @@
 #import "FileUtil.h"
 #import "PPResourceService.h"
 #import "FXLabel.h"
+#import "StrokeLabel.h"
 
 @interface ShareImageManager () {
     PPResourceService *_resService;
@@ -1478,6 +1479,15 @@ static UIImage* _whitePaperImage;
 //    label.innerShadowBlur = 2.0f;
 //    label.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
 //    label.innerShadowOffset = CGSizeMake(1.0f, 1.0f);
+}
+
+
++ (void)setStrokeLabelStyle:(StrokeLabel *)label{
+    label.textColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
+    
+    //demonstrate shadow
+    label.textOutlineWidth = 2;
 }
 
 @end

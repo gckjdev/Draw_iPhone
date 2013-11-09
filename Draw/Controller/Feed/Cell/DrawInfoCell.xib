@@ -855,9 +855,9 @@
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="71.CustomClassName">CustomSlider</string>
 				<string key="71.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="78.CustomClassName">FXLabel</string>
+				<string key="78.CustomClassName">StrokeLabel</string>
 				<string key="78.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="79.CustomClassName">FXLabel</string>
+				<string key="79.CustomClassName">StrokeLabel</string>
 				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
@@ -872,10 +872,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_player_pause@2x.png">{46, 47}</string>
-			<string key="draw_player_play@2x.png">{46, 47}</string>
-			<string key="full_screen@2x.png">{73, 73}</string>
-			<string key="unloadbg@2x.png">{175, 175}</string>
+			<string key="draw_player_pause@2x.png">{16, 16}</string>
+			<string key="draw_player_play@2x.png">{16, 16}</string>
+			<string key="full_screen@2x.png">{16, 16}</string>
+			<string key="unloadbg@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

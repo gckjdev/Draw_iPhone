@@ -20,9 +20,7 @@
 #import "UserManager.h"
 #import "CommonUserInfoView.h"
 #import "MyFriend.h"
-//#import "PPViewController+StarryLoadingView.h"
 #import "GameApp.h"
-#import "FXLabel.h"
 
 
 #define KEY_GAME_MESSAGE @"KEY_GAME_MESSAGE"

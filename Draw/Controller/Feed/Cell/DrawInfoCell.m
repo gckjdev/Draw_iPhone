@@ -60,7 +60,8 @@
     [super dealloc];
 }
 
-+ (id)createCell:(id<DrawInfoCellDelegate>)delegate feed:(DrawFeed *)feed
++ (id)createCell:(id<DrawInfoCellDelegate>)delegate
+            feed:(DrawFeed *)feed
 {
     NSString* cellId = [self getCellIdentifier];
 
@@ -198,7 +199,7 @@
     [self.opusDesc updateHeight:size.height];
     
     self.opusDescLabel.text = desc;
-    [ShareImageManager setFXLabelStyle:self.opusDescLabel];
+    [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
 }
 
 - (void)updateDrawImageView:(UIImage *)image
