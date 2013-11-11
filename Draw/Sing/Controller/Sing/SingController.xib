@@ -185,7 +185,7 @@
 							<object class="IBUITextView" id="426192891">
 								<reference key="NSNextResponder" ref="422045288"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{65, 10}, {191, 275}}</string>
+								<string key="NSFrame">{{43, 10}, {234, 275}}</string>
 								<reference key="NSSuperview" ref="422045288"/>
 								<reference key="NSNextKeyView" ref="639414427"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>

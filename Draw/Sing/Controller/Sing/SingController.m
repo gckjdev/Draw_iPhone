@@ -280,6 +280,18 @@ enum{
     self.lyricTextView.text = self.singOpus.pbOpus.sing.song.lyric;
     self.lyricTextView.hidden = YES;
     self.lyricTextView.textColor = COLOR_BROWN;
+    
+    
+    [self.lyricTextView addTapGuestureWithTarget:self selector:@selector(showImageAndDesc)];
+}
+
+- (IBAction)showImageAndDesc{
+    
+    self.lyricTextView.hidden = YES;
+    self.opusDescLabel.hidden = NO;
+    self.imageButton.hidden = NO;
+    self.opusImageView.hidden = NO;
+    self.reviewButton.selected = NO;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
@@ -522,17 +534,38 @@ enum{
     }
 }
 
+#define CENTER_X1_SEARCH_SONG_BUTTON (ISIPAD ? 66 : 30)
+#define CENTER_X2_SEARCH_SONG_BUTTON (ISIPAD ? 121 : 55)
+
+#define CENTER_X1_DESC_BUTTON (ISIPAD ? 627 : 288)
+#define CENTER_X2_DESC_BUTTON (ISIPAD ? 572 : 263)
+
+
 - (void)uiReadyRecord{
     self.micImageView.hidden = NO;
     self.timeLabel.hidden = YES;
     self.playImageView.hidden = YES;
     self.pauseImageView.hidden = YES;
     
-    self.rerecordButton.hidden = YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.rerecordButton.alpha = 0;
+        self.voiceButton.alpha = 0;
+        self.searchSongButton.alpha = 1;
+        self.descButton.alpha = 1;
+        
+        [self.searchSongButton updateCenterX:CENTER_X2_SEARCH_SONG_BUTTON];
+        [self.descButton updateCenterX:CENTER_X2_DESC_BUTTON];
+    } completion:^(BOOL finished) {
+        
+        self.rerecordButton.hidden = YES;
+        self.voiceButton.hidden = YES;
+        self.searchSongButton.hidden = NO;
+        self.descButton.hidden = NO;
+    }];
+    
+    
     self.saveButton.hidden = YES;
-    self.searchSongButton.hidden = NO;
-    self.voiceButton.hidden = YES;
-    self.descButton.hidden = NO;
     self.submitButton.hidden = YES;
     
     [self updateUITime:@(_recordLimitTime)];
@@ -544,14 +577,26 @@ enum{
     self.playImageView.hidden = YES;
     self.pauseImageView.hidden = YES;
     
-    self.rerecordButton.hidden = YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.rerecordButton.alpha = 0;
+        self.voiceButton.alpha = 0;
+        self.searchSongButton.alpha = 0;
+        self.descButton.alpha = 0;
+        
+        [self.searchSongButton updateCenterX:CENTER_X1_SEARCH_SONG_BUTTON];
+        [self.descButton updateCenterX:CENTER_X1_DESC_BUTTON];
+    } completion:^(BOOL finished) {
+        
+        self.rerecordButton.hidden = YES;
+        self.searchSongButton.hidden = YES;
+        self.voiceButton.hidden = YES;
+        self.descButton.hidden = YES;
+    }];
+    
     self.saveButton.hidden = YES;
-    self.searchSongButton.hidden = YES;
-    self.voiceButton.hidden = YES;
-    self.descButton.hidden = YES;
     self.submitButton.hidden = YES;
-    
-    
+
     [self updateUITime:@(_recordLimitTime)];
 }
 
@@ -561,11 +606,26 @@ enum{
     self.playImageView.hidden = NO;
     self.pauseImageView.hidden = YES;
     
-    self.rerecordButton.hidden = NO;
+
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.rerecordButton.alpha = 1;
+        self.voiceButton.alpha = 1;
+        self.searchSongButton.alpha = 1;
+        self.descButton.alpha = 1;
+        
+        [self.searchSongButton updateCenterX:CENTER_X1_SEARCH_SONG_BUTTON];
+        [self.descButton updateCenterX:CENTER_X1_DESC_BUTTON];
+    } completion:^(BOOL finished) {
+        
+        self.rerecordButton.hidden = NO;
+        self.searchSongButton.hidden = NO;
+        self.voiceButton.hidden = NO;
+        self.descButton.hidden = NO;
+    }];
+    
     self.saveButton.hidden = NO;
-    self.searchSongButton.hidden = NO;
-    self.voiceButton.hidden = NO;
-    self.descButton.hidden = NO;
     self.submitButton.hidden = NO;
 }
 
@@ -574,12 +634,26 @@ enum{
     self.timeLabel.hidden = NO;
     self.playImageView.hidden = YES;
     self.pauseImageView.hidden = NO;
+
     
-    self.rerecordButton.hidden = YES;
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.rerecordButton.alpha = 0;
+        self.voiceButton.alpha = 0;
+        self.searchSongButton.alpha = 0;
+        self.descButton.alpha = 0;
+        
+        [self.searchSongButton updateCenterX:CENTER_X1_SEARCH_SONG_BUTTON];
+        [self.descButton updateCenterX:CENTER_X1_DESC_BUTTON];
+    } completion:^(BOOL finished) {
+        
+        self.rerecordButton.hidden = YES;
+        self.searchSongButton.hidden = YES;
+        self.voiceButton.hidden = YES;
+        self.descButton.hidden = YES;
+    }];
+    
     self.saveButton.hidden = YES;
-    self.searchSongButton.hidden = YES;
-    self.voiceButton.hidden = YES;
-    self.descButton.hidden = YES;
     self.submitButton.hidden = YES;
 }
 
