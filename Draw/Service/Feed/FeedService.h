@@ -168,6 +168,7 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
     commentNickName:(NSString *)commentNickName
           contestId:(NSString *)contestId
    forContestReport:(BOOL)forContestReport
+           category:(PBOpusCategoryType)category
            delegate:(id<FeedServiceDelegate>)delegate;
 
 
@@ -178,7 +179,8 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
 
 - (void)actionSaveOpus:(NSString *)opusId
              contestId:(NSString *)contestId
-            actionName:(NSString*)actionName;
+            actionName:(NSString*)actionName
+              category:(PBOpusCategoryType)category;
 
 // user favorite methods
 - (void)getUserFavoriteOpusList:(NSString *)userId
@@ -196,6 +198,7 @@ typedef void (^ GetFeedListCompleteBlock)(int resultCode, NSArray* feedList);
      awardBalance:(int)awardBalance
          awardExp:(int)awardExp
         contestId:(NSString *)contestId
+         category:(PBOpusCategoryType)category
          delegate:(id<FeedServiceDelegate>)delegate;
 
 - (void)updateFeedTimes:(DrawFeed *)feed

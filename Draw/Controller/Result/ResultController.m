@@ -643,7 +643,8 @@
     if (_isMyPaint == NO){
         [[FeedService defaultService] actionSaveOpus:_feed.feedId
                                            contestId:_feed.contestId
-                                          actionName:DB_FIELD_ACTION_SAVE_TIMES];
+                                          actionName:DB_FIELD_ACTION_SAVE_TIMES
+                                            category:_feed.categoryType];
     }
     
     [[ShareService defaultService] shareWithImage:_image

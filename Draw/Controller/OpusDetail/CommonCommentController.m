@@ -144,6 +144,7 @@
                   commentNickName:commentNickName
                         contestId:nil
                  forContestReport:NO
+                         category:_opus.category
                          delegate:self];
     }
 }

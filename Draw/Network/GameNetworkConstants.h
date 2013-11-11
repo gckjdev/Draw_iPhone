@@ -597,6 +597,7 @@
 #define PARA_SONGID @"sid"
 #define PARA_CONTEST_URL @"cu"
 #define PARA_STATEMENT_URL @"su"
+#define PARA_CATEGORY @"cate"
 
 #define PARA_CONTEST_IPAD_URL @"cpu"
 #define PARA_STATEMENT_IPAD_URL @"spu"

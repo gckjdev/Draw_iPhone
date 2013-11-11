@@ -818,6 +818,7 @@ static FeedService *_staticFeedService = nil;
     commentNickName:(NSString *)commentNickName
           contestId:(NSString *)contestId
    forContestReport:(BOOL)forContestReport
+           category:(PBOpusCategoryType)category
            delegate:(id<FeedServiceDelegate>)delegate
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -844,7 +845,8 @@ static FeedService *_staticFeedService = nil;
                                       commentSummary:commentSummary
                                        commentUserId:commentUserId
                                      commentNickName:commentNickName
-                                           contestId:contestId];
+                                           contestId:contestId
+                                                   category:category];
 
         }
         else{
@@ -862,7 +864,8 @@ static FeedService *_staticFeedService = nil;
                                                            commentSummary:commentSummary 
                                                             commentUserId:commentUserId
                                                           commentNickName:commentNickName
-                                                                contestId:contestId];
+                                                                contestId:contestId
+                                            category:category];
         }
         
         NSString *commentId = nil;
@@ -905,6 +908,7 @@ static FeedService *_staticFeedService = nil;
      awardBalance:(int)awardBalance
          awardExp:(int)awardExp
         contestId:(NSString *)contestId
+         category:(PBOpusCategoryType)category
          delegate:(id<FeedServiceDelegate>)delegate
 {
     
@@ -918,7 +922,7 @@ static FeedService *_staticFeedService = nil;
     
     
     dispatch_async(workingQueue, ^{
-        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType awardBalance:awardBalance awardExp:awardExp contestId:contestId];
+        CommonNetworkOutput* output = [GameNetworkRequest throwItemToOpus:TRAFFIC_SERVER_URL appId:appId userId:userId nick:nick avatar:avatar gender:gender opusId:opusId opusCreatorUId:author itemType:itemType awardBalance:awardBalance awardExp:awardExp contestId:contestId category:category];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -969,6 +973,7 @@ static FeedService *_staticFeedService = nil;
              contestId:(NSString *)contestId
             actionType:(int)actionType
             actionName:(NSString*)actionName
+              category:(PBOpusCategoryType)category
            resultBlock:(FeedActionResultBlock)resultBlock
 {
     NSString* userId = [[UserManager defaultManager] userId];
@@ -981,7 +986,8 @@ static FeedService *_staticFeedService = nil;
                                                                 actionType:actionType
                                                                 actionName:actionName
                                                                     opusId:opusId
-                                                                 contestId:contestId];
+                                                                 contestId:contestId
+                                                                  category:category];
         
         PPDebug(@"<actionSaveOpus> opusId=%@, action=%@, resultCode=%d contestId=%@",
                 opusId, actionName, output.resultCode, contestId);
@@ -996,12 +1002,15 @@ static FeedService *_staticFeedService = nil;
 - (void)actionSaveOpus:(NSString *)opusId
              contestId:(NSString *)contestId
             actionName:(NSString*)actionName
+              category:(PBOpusCategoryType)category
+
 {
     
     [self actionSaveOpus:opusId
                contestId:contestId
               actionType:ACTION_TYPE_SAVE
               actionName:actionName
+                category:category
              resultBlock:nil];
 }
 
@@ -1013,6 +1022,7 @@ static FeedService *_staticFeedService = nil;
                contestId:contestId
               actionType:ACTION_TYPE_ADD_FAVORITE
               actionName:DB_FIELD_ACTION_SAVE_TIMES
+                category:PBOpusCategoryTypeDrawCategory     // useless at all
              resultBlock:resultBlock];
 
 }
@@ -1024,6 +1034,7 @@ static FeedService *_staticFeedService = nil;
                contestId:nil
               actionType:ACTION_TYPE_REMOVE_FAVORITE
               actionName:@""
+                category:PBOpusCategoryTypeDrawCategory     // useless at all
              resultBlock:resultBlock];
     
 }
@@ -1036,7 +1047,8 @@ static FeedService *_staticFeedService = nil;
                contestId:contestId
               actionType:ACTION_TYPE_RECOMMEND_OPUS
               actionName:@""
-             resultBlock:resultBlock];    
+                category:PBOpusCategoryTypeDrawCategory     // useless at all
+             resultBlock:resultBlock];
 }
 
 - (void)unRecommendOpus:(NSString *)opusId
@@ -1046,6 +1058,7 @@ static FeedService *_staticFeedService = nil;
                contestId:nil
               actionType:ACTION_TYPE_UNRECOMMEND_OPUS
               actionName:@""
+                category:PBOpusCategoryTypeDrawCategory     // useless at all
              resultBlock:resultBlock];
 }
 
@@ -1056,6 +1069,7 @@ static FeedService *_staticFeedService = nil;
                contestId:nil
               actionType:ACTION_TYPE_REJECT_DRAW_TO_ME_OPUS
               actionName:@""
+                category:PBOpusCategoryTypeDrawCategory     // useless at all
              resultBlock:resultBlock];
 }
 

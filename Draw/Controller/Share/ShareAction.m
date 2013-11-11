@@ -235,7 +235,8 @@
     if (![[UserManager defaultManager] isMe:_feed.author.userId]) {
         [[FeedService defaultService] actionSaveOpus:_feed.feedId
                                            contestId:_feed.contestId
-                                          actionName:actionName];
+                                          actionName:actionName
+                                            category:_feed.categoryType];
     }
 }
 

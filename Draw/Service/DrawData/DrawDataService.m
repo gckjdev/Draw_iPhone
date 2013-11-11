@@ -355,6 +355,7 @@ static DrawDataService* _defaultDrawDataService = nil;
    opusCreatorUid:(NSString *)opusCreatorUid
         isCorrect:(BOOL)isCorrect 
             score:(NSInteger)score
+         category:(PBOpusCategoryType)category
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController
 {
     
@@ -366,7 +367,7 @@ static DrawDataService* _defaultDrawDataService = nil;
     NSString* nick = [[UserManager defaultManager] nickName];
     NSString* gender = [[UserManager defaultManager] gender];
     NSString* avatar = [[UserManager defaultManager] avatarURL];
-    NSString* appId = [PPConfigManager appId];
+    NSString* appId = [PPConfigManager appId];    
     
     NSString *words = [guessWords componentsJoinedByString:@":"];    
     
@@ -382,7 +383,8 @@ static DrawDataService* _defaultDrawDataService = nil;
                                                      opusCreatorUId:opusCreatorUid
                                                           isCorrect:isCorrect 
                                                               score:score 
-                                                              words:words];
+                                                              words:words
+                                                           category:category];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             

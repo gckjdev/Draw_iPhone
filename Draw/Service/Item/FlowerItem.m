@@ -68,6 +68,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                        awardBalance:awardAmount
                                            awardExp:awardExp
                                           contestId:opus.pbOpus.contestId
+                                           category:opus.pbOpus.category
                                            delegate:nil];
             EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
             [bself.blockArray releaseBlock:tempHandler];
@@ -81,6 +82,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                            awardBalance:awardAmount
                                                awardExp:awardExp
                                               contestId:opus.pbOpus.contestId
+                                               category:opus.pbOpus.category                 
                                                delegate:nil];
                 
                 EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], NO);
@@ -94,6 +96,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                            awardBalance:awardAmount
                                                awardExp:awardExp
                                               contestId:opus.pbOpus.contestId
+                                               category:opus.pbOpus.category
                                                delegate:nil];
                 
                 EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], YES);
@@ -144,6 +147,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                        awardBalance:awardAmount
                                            awardExp:awardExp
                                           contestId:drawFeed.contestId
+                                           category:drawFeed.categoryType             
                                            delegate:nil];
             EXECUTE_BLOCK(tempHandler, 0, [bself itemId], NO);
             [bself.blockArray releaseBlock:tempHandler];
@@ -157,6 +161,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                            awardBalance:awardAmount
                                                awardExp:awardExp
                                               contestId:drawFeed.contestId
+                                               category:drawFeed.categoryType
                                                delegate:nil];
                 
                 EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], NO);
@@ -170,6 +175,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(FlowerItem);
                                            awardBalance:awardAmount
                                                awardExp:awardExp
                                               contestId:drawFeed.contestId
+                                               category:drawFeed.categoryType                 
                                                delegate:nil];
                 
                 EXECUTE_BLOCK(tempHandler, ERROR_SUCCESS, [bself itemId], YES);

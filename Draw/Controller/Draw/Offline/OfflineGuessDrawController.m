@@ -226,7 +226,8 @@
                                      opusCreatorUid:_feed.feedUser.userId
                                           isCorrect:correct
                                               score:_feed.drawData.word.score
-                                           delegate:nil];   
+                                           category:_feed.categoryType         
+                                           delegate:nil];
     }
     if (correct) {
         [_feed incGuessTimes];
