@@ -1195,6 +1195,8 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
 @property int32_t fanCount;
 @property (retain) NSString* desc;
 @property (retain) NSString* signature;
+@property int32_t status;
+@property int32_t statusDesc;
 @property (retain) NSString* bgImage;
 @property (retain) NSString* medalImage;
 @property (retain) NSMutableArray* mutableTitlesList;
@@ -1313,6 +1315,20 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
   hasSignature_ = !!value;
 }
 @synthesize signature;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasStatusDesc {
+  return !!hasStatusDesc_;
+}
+- (void) setHasStatusDesc:(BOOL) value {
+  hasStatusDesc_ = !!value;
+}
+@synthesize statusDesc;
 - (BOOL) hasBgImage {
   return !!hasBgImage_;
 }
@@ -1385,6 +1401,8 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
     self.fanCount = 0;
     self.desc = @"";
     self.signature = @"";
+    self.status = 0;
+    self.statusDesc = 0;
     self.bgImage = @"";
     self.medalImage = @"";
     self.creator = [PBGroupUser defaultInstance];
@@ -1518,6 +1536,12 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (self.hasSignature) {
     [output writeString:16 value:self.signature];
   }
+  if (self.hasStatus) {
+    [output writeInt32:17 value:self.status];
+  }
+  if (self.hasStatusDesc) {
+    [output writeInt32:18 value:self.statusDesc];
+  }
   if (self.hasBgImage) {
     [output writeString:21 value:self.bgImage];
   }
@@ -1598,6 +1622,12 @@ static PBGroup* defaultPBGroupInstance = nil;
   }
   if (self.hasSignature) {
     size += computeStringSize(16, self.signature);
+  }
+  if (self.hasStatus) {
+    size += computeInt32Size(17, self.status);
+  }
+  if (self.hasStatusDesc) {
+    size += computeInt32Size(18, self.statusDesc);
   }
   if (self.hasBgImage) {
     size += computeStringSize(21, self.bgImage);
@@ -1746,6 +1776,12 @@ static PBGroup* defaultPBGroupInstance = nil;
   if (other.hasSignature) {
     [self setSignature:other.signature];
   }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
+  if (other.hasStatusDesc) {
+    [self setStatusDesc:other.statusDesc];
+  }
   if (other.hasBgImage) {
     [self setBgImage:other.bgImage];
   }
@@ -1864,6 +1900,14 @@ static PBGroup* defaultPBGroupInstance = nil;
       }
       case 130: {
         [self setSignature:[input readString]];
+        break;
+      }
+      case 136: {
+        [self setStatus:[input readInt32]];
+        break;
+      }
+      case 144: {
+        [self setStatusDesc:[input readInt32]];
         break;
       }
       case 170: {
@@ -2166,6 +2210,38 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (PBGroup_Builder*) clearSignature {
   result.hasSignature = NO;
   result.signature = @"";
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (int32_t) status {
+  return result.status;
+}
+- (PBGroup_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBGroup_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
+  return self;
+}
+- (BOOL) hasStatusDesc {
+  return result.hasStatusDesc;
+}
+- (int32_t) statusDesc {
+  return result.statusDesc;
+}
+- (PBGroup_Builder*) setStatusDesc:(int32_t) value {
+  result.hasStatusDesc = YES;
+  result.statusDesc = value;
+  return self;
+}
+- (PBGroup_Builder*) clearStatusDesc {
+  result.hasStatusDesc = NO;
+  result.statusDesc = 0;
   return self;
 }
 - (BOOL) hasBgImage {

@@ -80,6 +80,8 @@ message PBGroup
     
     optional string desc = 15;                  // 家族说明
     optional string signature = 16;             // 动态签名
+    optional int32 status = 17;             //状态，欠费等
+    optional int32 statusDesc = 18;         //官方对状态的说明
 
     optional string bgImage = 21;               // 家族背景图
     optional string medalImage = 22;            // 家族勋章图片
