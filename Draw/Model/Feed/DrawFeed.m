@@ -52,6 +52,7 @@
         self.drawDataUrl = pbFeed.drawDataUrl;
         self.contestId = pbFeed.contestId;
         self.categoryType = pbFeed.category;
+    
         if ([pbFeed hasLearnDraw]) {
             self.learnDraw = pbFeed.learnDraw;    
         }

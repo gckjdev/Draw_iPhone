@@ -19,7 +19,7 @@
 #import "UserService.h"
 //#import "AudioStreamer.h"
 #import "UITextView+Extend.h"
-
+#import "UILabel+Extend.h"
 
 
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
@@ -198,8 +198,22 @@
     CGSize size = [DrawInfoCell labelSizeWithText:desc];
     [self.opusDesc updateHeight:size.height];
     
+    
+    
     self.opusDescLabel.text = desc;
     [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
+    
+    self.opusDescLabel.textColor = [DrawUtils decompressColor8:self.feed.pbFeed.descLabelInfo.textColor];
+    self.opusDescLabel.textOutlineColor = [DrawUtils decompressColor8:self.feed.pbFeed.descLabelInfo.textStrokeColor];
+    
+    [self.opusDescLabel wrapTextWithConstrainedSize:CGSizeMake(self.drawImage.frame.size.width * 0.8, 18)];
+    [self.opusDescLabel updateWidth:(self.drawImage.frame.size.width * 0.8)];
+    
+    CGFloat originX = self.drawImage.frame.size.width * self.feed.pbFeed.descLabelInfo.xRatio;
+    CGFloat originY = self.drawImage.frame.size.height * self.feed.pbFeed.descLabelInfo.yRatio;
+    
+    [self.opusDescLabel updateWidth:originX];
+    [self.opusDescLabel updateWidth:originY];
 }
 
 - (void)updateDrawImageView:(UIImage *)image

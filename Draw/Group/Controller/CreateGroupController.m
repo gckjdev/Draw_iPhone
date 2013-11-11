@@ -13,6 +13,7 @@
 #import "DrawError.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "AccountManager.h"
+#import "Group.pb.h"
 
 @interface CreateGroupController ()
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;

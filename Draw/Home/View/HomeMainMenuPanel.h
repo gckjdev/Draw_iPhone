@@ -44,4 +44,7 @@
 
 
 - (HomeMenuView *)getMenuViewWithType:(HomeMenuType)type;
+
+- (HomeMenuType)getMainType;
+
 @end

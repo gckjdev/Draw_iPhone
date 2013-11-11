@@ -454,12 +454,12 @@
      {
          if (open) {
              [mainPanel closeAnimated:YES completion:^(BOOL finished) {
-                 [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+                 [mainPanel moveMenuTypeToBottom:[mainPanel getMainType] Animated:YES completion:NULL];
                  [header openAnimated:YES completion:NULL];
                  [footer hideAnimated:YES];
              }];
          }else{
-             [mainPanel centerMenu:HomeMenuTypeDrawDraw Animated:YES completion:NULL];
+             [mainPanel centerMenu:[mainPanel getMainType] Animated:YES completion:NULL];
              [footer showAnimated:YES];
              [header closeAnimated:YES completion:^(BOOL finished) {
                  [mainPanel openAnimated:YES completion:NULL];
