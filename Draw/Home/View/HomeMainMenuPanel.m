@@ -234,6 +234,16 @@
     }
 }
 
+- (HomeMenuType)getMainType
+{
+    if (isDrawApp()) {
+        return HomeMenuTypeDrawDraw;
+    }else if(isSingApp()){
+        return HomeMenuTypeSing;
+    }
+    return HomeMenuTypeDrawDraw;
+}
+
 #pragma mark - Scroll View delegate
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
