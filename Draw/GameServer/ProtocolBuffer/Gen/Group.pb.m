@@ -1196,7 +1196,7 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
 @property (retain) NSString* desc;
 @property (retain) NSString* signature;
 @property int32_t status;
-@property int32_t statusDesc;
+@property (retain) NSString* statusDesc;
 @property (retain) NSString* bgImage;
 @property (retain) NSString* medalImage;
 @property (retain) NSMutableArray* mutableTitlesList;
@@ -1373,6 +1373,7 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
   self.name = nil;
   self.desc = nil;
   self.signature = nil;
+  self.statusDesc = nil;
   self.bgImage = nil;
   self.medalImage = nil;
   self.mutableTitlesList = nil;
@@ -1402,7 +1403,7 @@ static PBUserRelationWithGroup* defaultPBUserRelationWithGroupInstance = nil;
     self.desc = @"";
     self.signature = @"";
     self.status = 0;
-    self.statusDesc = 0;
+    self.statusDesc = @"";
     self.bgImage = @"";
     self.medalImage = @"";
     self.creator = [PBGroupUser defaultInstance];
@@ -1540,7 +1541,7 @@ static PBGroup* defaultPBGroupInstance = nil;
     [output writeInt32:17 value:self.status];
   }
   if (self.hasStatusDesc) {
-    [output writeInt32:18 value:self.statusDesc];
+    [output writeString:18 value:self.statusDesc];
   }
   if (self.hasBgImage) {
     [output writeString:21 value:self.bgImage];
@@ -1627,7 +1628,7 @@ static PBGroup* defaultPBGroupInstance = nil;
     size += computeInt32Size(17, self.status);
   }
   if (self.hasStatusDesc) {
-    size += computeInt32Size(18, self.statusDesc);
+    size += computeStringSize(18, self.statusDesc);
   }
   if (self.hasBgImage) {
     size += computeStringSize(21, self.bgImage);
@@ -1906,8 +1907,8 @@ static PBGroup* defaultPBGroupInstance = nil;
         [self setStatus:[input readInt32]];
         break;
       }
-      case 144: {
-        [self setStatusDesc:[input readInt32]];
+      case 146: {
+        [self setStatusDesc:[input readString]];
         break;
       }
       case 170: {
@@ -2231,17 +2232,17 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (BOOL) hasStatusDesc {
   return result.hasStatusDesc;
 }
-- (int32_t) statusDesc {
+- (NSString*) statusDesc {
   return result.statusDesc;
 }
-- (PBGroup_Builder*) setStatusDesc:(int32_t) value {
+- (PBGroup_Builder*) setStatusDesc:(NSString*) value {
   result.hasStatusDesc = YES;
   result.statusDesc = value;
   return self;
 }
 - (PBGroup_Builder*) clearStatusDesc {
   result.hasStatusDesc = NO;
-  result.statusDesc = 0;
+  result.statusDesc = @"";
   return self;
 }
 - (BOOL) hasBgImage {
@@ -2480,6 +2481,404 @@ static PBGroup* defaultPBGroupInstance = nil;
 - (PBGroup_Builder*) clearTopic {
   result.hasTopic = NO;
   result.topic = [PBBBSPost defaultInstance];
+  return self;
+}
+@end
+
+@interface PBGroupNotice ()
+@property (retain) NSString* noticeId;
+@property (retain) NSString* message;
+@property (retain) NSString* groupId;
+@property int32_t type;
+@property int32_t status;
+@property (retain) PBGameUser* requester;
+@end
+
+@implementation PBGroupNotice
+
+- (BOOL) hasNoticeId {
+  return !!hasNoticeId_;
+}
+- (void) setHasNoticeId:(BOOL) value {
+  hasNoticeId_ = !!value;
+}
+@synthesize noticeId;
+- (BOOL) hasMessage {
+  return !!hasMessage_;
+}
+- (void) setHasMessage:(BOOL) value {
+  hasMessage_ = !!value;
+}
+@synthesize message;
+- (BOOL) hasGroupId {
+  return !!hasGroupId_;
+}
+- (void) setHasGroupId:(BOOL) value {
+  hasGroupId_ = !!value;
+}
+@synthesize groupId;
+- (BOOL) hasType {
+  return !!hasType_;
+}
+- (void) setHasType:(BOOL) value {
+  hasType_ = !!value;
+}
+@synthesize type;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasRequester {
+  return !!hasRequester_;
+}
+- (void) setHasRequester:(BOOL) value {
+  hasRequester_ = !!value;
+}
+@synthesize requester;
+- (void) dealloc {
+  self.noticeId = nil;
+  self.message = nil;
+  self.groupId = nil;
+  self.requester = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.noticeId = @"";
+    self.message = @"";
+    self.groupId = @"";
+    self.type = 0;
+    self.status = 0;
+    self.requester = [PBGameUser defaultInstance];
+  }
+  return self;
+}
+static PBGroupNotice* defaultPBGroupNoticeInstance = nil;
++ (void) initialize {
+  if (self == [PBGroupNotice class]) {
+    defaultPBGroupNoticeInstance = [[PBGroupNotice alloc] init];
+  }
+}
++ (PBGroupNotice*) defaultInstance {
+  return defaultPBGroupNoticeInstance;
+}
+- (PBGroupNotice*) defaultInstance {
+  return defaultPBGroupNoticeInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasNoticeId) {
+    return NO;
+  }
+  if (self.hasRequester) {
+    if (!self.requester.isInitialized) {
+      return NO;
+    }
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasNoticeId) {
+    [output writeString:1 value:self.noticeId];
+  }
+  if (self.hasMessage) {
+    [output writeString:2 value:self.message];
+  }
+  if (self.hasGroupId) {
+    [output writeString:3 value:self.groupId];
+  }
+  if (self.hasType) {
+    [output writeInt32:4 value:self.type];
+  }
+  if (self.hasStatus) {
+    [output writeInt32:5 value:self.status];
+  }
+  if (self.hasRequester) {
+    [output writeMessage:10 value:self.requester];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasNoticeId) {
+    size += computeStringSize(1, self.noticeId);
+  }
+  if (self.hasMessage) {
+    size += computeStringSize(2, self.message);
+  }
+  if (self.hasGroupId) {
+    size += computeStringSize(3, self.groupId);
+  }
+  if (self.hasType) {
+    size += computeInt32Size(4, self.type);
+  }
+  if (self.hasStatus) {
+    size += computeInt32Size(5, self.status);
+  }
+  if (self.hasRequester) {
+    size += computeMessageSize(10, self.requester);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBGroupNotice*) parseFromData:(NSData*) data {
+  return (PBGroupNotice*)[[[PBGroupNotice builder] mergeFromData:data] build];
+}
++ (PBGroupNotice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupNotice*)[[[PBGroupNotice builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupNotice*) parseFromInputStream:(NSInputStream*) input {
+  return (PBGroupNotice*)[[[PBGroupNotice builder] mergeFromInputStream:input] build];
+}
++ (PBGroupNotice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupNotice*)[[[PBGroupNotice builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupNotice*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBGroupNotice*)[[[PBGroupNotice builder] mergeFromCodedInputStream:input] build];
+}
++ (PBGroupNotice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBGroupNotice*)[[[PBGroupNotice builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBGroupNotice_Builder*) builder {
+  return [[[PBGroupNotice_Builder alloc] init] autorelease];
+}
++ (PBGroupNotice_Builder*) builderWithPrototype:(PBGroupNotice*) prototype {
+  return [[PBGroupNotice builder] mergeFrom:prototype];
+}
+- (PBGroupNotice_Builder*) builder {
+  return [PBGroupNotice builder];
+}
+@end
+
+@interface PBGroupNotice_Builder()
+@property (retain) PBGroupNotice* result;
+@end
+
+@implementation PBGroupNotice_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBGroupNotice alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBGroupNotice_Builder*) clear {
+  self.result = [[[PBGroupNotice alloc] init] autorelease];
+  return self;
+}
+- (PBGroupNotice_Builder*) clone {
+  return [PBGroupNotice builderWithPrototype:result];
+}
+- (PBGroupNotice*) defaultInstance {
+  return [PBGroupNotice defaultInstance];
+}
+- (PBGroupNotice*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBGroupNotice*) buildPartial {
+  PBGroupNotice* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBGroupNotice_Builder*) mergeFrom:(PBGroupNotice*) other {
+  if (other == [PBGroupNotice defaultInstance]) {
+    return self;
+  }
+  if (other.hasNoticeId) {
+    [self setNoticeId:other.noticeId];
+  }
+  if (other.hasMessage) {
+    [self setMessage:other.message];
+  }
+  if (other.hasGroupId) {
+    [self setGroupId:other.groupId];
+  }
+  if (other.hasType) {
+    [self setType:other.type];
+  }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
+  if (other.hasRequester) {
+    [self mergeRequester:other.requester];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBGroupNotice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBGroupNotice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 10: {
+        [self setNoticeId:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setMessage:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setGroupId:[input readString]];
+        break;
+      }
+      case 32: {
+        [self setType:[input readInt32]];
+        break;
+      }
+      case 40: {
+        [self setStatus:[input readInt32]];
+        break;
+      }
+      case 82: {
+        PBGameUser_Builder* subBuilder = [PBGameUser builder];
+        if (self.hasRequester) {
+          [subBuilder mergeFrom:self.requester];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setRequester:[subBuilder buildPartial]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasNoticeId {
+  return result.hasNoticeId;
+}
+- (NSString*) noticeId {
+  return result.noticeId;
+}
+- (PBGroupNotice_Builder*) setNoticeId:(NSString*) value {
+  result.hasNoticeId = YES;
+  result.noticeId = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearNoticeId {
+  result.hasNoticeId = NO;
+  result.noticeId = @"";
+  return self;
+}
+- (BOOL) hasMessage {
+  return result.hasMessage;
+}
+- (NSString*) message {
+  return result.message;
+}
+- (PBGroupNotice_Builder*) setMessage:(NSString*) value {
+  result.hasMessage = YES;
+  result.message = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearMessage {
+  result.hasMessage = NO;
+  result.message = @"";
+  return self;
+}
+- (BOOL) hasGroupId {
+  return result.hasGroupId;
+}
+- (NSString*) groupId {
+  return result.groupId;
+}
+- (PBGroupNotice_Builder*) setGroupId:(NSString*) value {
+  result.hasGroupId = YES;
+  result.groupId = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearGroupId {
+  result.hasGroupId = NO;
+  result.groupId = @"";
+  return self;
+}
+- (BOOL) hasType {
+  return result.hasType;
+}
+- (int32_t) type {
+  return result.type;
+}
+- (PBGroupNotice_Builder*) setType:(int32_t) value {
+  result.hasType = YES;
+  result.type = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearType {
+  result.hasType = NO;
+  result.type = 0;
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (int32_t) status {
+  return result.status;
+}
+- (PBGroupNotice_Builder*) setStatus:(int32_t) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = 0;
+  return self;
+}
+- (BOOL) hasRequester {
+  return result.hasRequester;
+}
+- (PBGameUser*) requester {
+  return result.requester;
+}
+- (PBGroupNotice_Builder*) setRequester:(PBGameUser*) value {
+  result.hasRequester = YES;
+  result.requester = value;
+  return self;
+}
+- (PBGroupNotice_Builder*) setRequesterBuilder:(PBGameUser_Builder*) builderForValue {
+  return [self setRequester:[builderForValue build]];
+}
+- (PBGroupNotice_Builder*) mergeRequester:(PBGameUser*) value {
+  if (result.hasRequester &&
+      result.requester != [PBGameUser defaultInstance]) {
+    result.requester =
+      [[[PBGameUser builderWithPrototype:result.requester] mergeFrom:value] buildPartial];
+  } else {
+    result.requester = value;
+  }
+  result.hasRequester = YES;
+  return self;
+}
+- (PBGroupNotice_Builder*) clearRequester {
+  result.hasRequester = NO;
+  result.requester = [PBGameUser defaultInstance];
   return self;
 }
 @end

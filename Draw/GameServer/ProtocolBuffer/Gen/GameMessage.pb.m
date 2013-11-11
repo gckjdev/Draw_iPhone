@@ -17703,6 +17703,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @property (retain) PBGroup* group;
 @property (retain) NSMutableArray* mutableGroupListList;
 @property (retain) NSMutableArray* mutableGroupMemberListList;
+@property (retain) NSMutableArray* mutableNoticeListList;
 @end
 
 @implementation DataQueryResponse
@@ -17817,6 +17818,7 @@ static GameMessage* defaultGameMessageInstance = nil;
 @synthesize group;
 @synthesize mutableGroupListList;
 @synthesize mutableGroupMemberListList;
+@synthesize mutableNoticeListList;
 - (void) dealloc {
   self.mutableDrawDataList = nil;
   self.mutableMessageList = nil;
@@ -17846,6 +17848,7 @@ static GameMessage* defaultGameMessageInstance = nil;
   self.group = nil;
   self.mutableGroupListList = nil;
   self.mutableGroupMemberListList = nil;
+  self.mutableNoticeListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -18011,6 +18014,13 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   id value = [mutableGroupMemberListList objectAtIndex:index];
   return value;
 }
+- (NSArray*) noticeListList {
+  return mutableNoticeListList;
+}
+- (PBGroupNotice*) noticeListAtIndex:(int32_t) index {
+  id value = [mutableNoticeListList objectAtIndex:index];
+  return value;
+}
 - (BOOL) isInitialized {
   if (!self.hasResultCode) {
     return NO;
@@ -18150,6 +18160,11 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
       return NO;
     }
   }
+  for (PBGroupNotice* element in self.noticeListList) {
+    if (!element.isInitialized) {
+      return NO;
+    }
+  }
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -18248,6 +18263,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGroupUsersByTitle* element in self.groupMemberListList) {
     [output writeMessage:152 value:element];
+  }
+  for (PBGroupNotice* element in self.noticeListList) {
+    [output writeMessage:153 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -18358,6 +18376,9 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
   }
   for (PBGroupUsersByTitle* element in self.groupMemberListList) {
     size += computeMessageSize(152, element);
+  }
+  for (PBGroupNotice* element in self.noticeListList) {
+    size += computeMessageSize(153, element);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -18587,6 +18608,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     }
     [result.mutableGroupMemberListList addObjectsFromArray:other.mutableGroupMemberListList];
   }
+  if (other.mutableNoticeListList.count > 0) {
+    if (result.mutableNoticeListList == nil) {
+      result.mutableNoticeListList = [NSMutableArray array];
+    }
+    [result.mutableNoticeListList addObjectsFromArray:other.mutableNoticeListList];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -18815,6 +18842,12 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
         PBGroupUsersByTitle_Builder* subBuilder = [PBGroupUsersByTitle builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addGroupMemberList:[subBuilder buildPartial]];
+        break;
+      }
+      case 1226: {
+        PBGroupNotice_Builder* subBuilder = [PBGroupNotice builder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addNoticeList:[subBuilder buildPartial]];
         break;
       }
     }
@@ -19705,6 +19738,35 @@ static DataQueryResponse* defaultDataQueryResponseInstance = nil;
     result.mutableGroupMemberListList = [NSMutableArray array];
   }
   [result.mutableGroupMemberListList addObject:value];
+  return self;
+}
+- (NSArray*) noticeListList {
+  if (result.mutableNoticeListList == nil) { return [NSArray array]; }
+  return result.mutableNoticeListList;
+}
+- (PBGroupNotice*) noticeListAtIndex:(int32_t) index {
+  return [result noticeListAtIndex:index];
+}
+- (DataQueryResponse_Builder*) replaceNoticeListAtIndex:(int32_t) index with:(PBGroupNotice*) value {
+  [result.mutableNoticeListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (DataQueryResponse_Builder*) addAllNoticeList:(NSArray*) values {
+  if (result.mutableNoticeListList == nil) {
+    result.mutableNoticeListList = [NSMutableArray array];
+  }
+  [result.mutableNoticeListList addObjectsFromArray:values];
+  return self;
+}
+- (DataQueryResponse_Builder*) clearNoticeListList {
+  result.mutableNoticeListList = nil;
+  return self;
+}
+- (DataQueryResponse_Builder*) addNoticeList:(PBGroupNotice*) value {
+  if (result.mutableNoticeListList == nil) {
+    result.mutableNoticeListList = [NSMutableArray array];
+  }
+  [result.mutableNoticeListList addObject:value];
   return self;
 }
 @end

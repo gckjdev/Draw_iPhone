@@ -156,6 +156,8 @@
 @class PBGradient;
 @class PBGradient_Builder;
 @class PBGroup;
+@class PBGroupNotice;
+@class PBGroupNotice_Builder;
 @class PBGroupTitle;
 @class PBGroupTitle_Builder;
 @class PBGroupUser;
@@ -4518,6 +4520,7 @@ BOOL BetTypeIsValidValue(BetType value);
   PBWall* wall;
   PBBBSDraw* bbsDrawData;
   NSMutableArray* mutableIdListList;
+  NSMutableArray* mutableNoticeListList;
   NSMutableArray* mutableGroupMemberListList;
   NSMutableArray* mutableGroupListList;
   NSMutableArray* mutableDrawDataList;
@@ -4601,6 +4604,8 @@ BOOL BetTypeIsValidValue(BetType value);
 - (PBGroup*) groupListAtIndex:(int32_t) index;
 - (NSArray*) groupMemberListList;
 - (PBGroupUsersByTitle*) groupMemberListAtIndex:(int32_t) index;
+- (NSArray*) noticeListList;
+- (PBGroupNotice*) noticeListAtIndex:(int32_t) index;
 
 + (DataQueryResponse*) defaultInstance;
 - (DataQueryResponse*) defaultInstance;
@@ -4851,5 +4856,12 @@ BOOL BetTypeIsValidValue(BetType value);
 - (DataQueryResponse_Builder*) addGroupMemberList:(PBGroupUsersByTitle*) value;
 - (DataQueryResponse_Builder*) addAllGroupMemberList:(NSArray*) values;
 - (DataQueryResponse_Builder*) clearGroupMemberListList;
+
+- (NSArray*) noticeListList;
+- (PBGroupNotice*) noticeListAtIndex:(int32_t) index;
+- (DataQueryResponse_Builder*) replaceNoticeListAtIndex:(int32_t) index with:(PBGroupNotice*) value;
+- (DataQueryResponse_Builder*) addNoticeList:(PBGroupNotice*) value;
+- (DataQueryResponse_Builder*) addAllNoticeList:(NSArray*) values;
+- (DataQueryResponse_Builder*) clearNoticeListList;
 @end
 
