@@ -10,6 +10,6 @@
 #import "GameApp.h"
 #import "DrawGameApp.h"
 
-@interface SingApp : DrawGameApp<GameAppProtocol>
+@interface SingApp : NSObject<GameAppProtocol>
 
 @end
