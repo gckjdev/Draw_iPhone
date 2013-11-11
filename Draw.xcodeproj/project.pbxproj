@@ -81,6 +81,15 @@
 		A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
 		A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
 		A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4158673182DF6D1007FCB16 /* StrokeLabel.m */; };
+		A415867E183093EA007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867B183093E8007FCB16 /* SingController~ipad.xib */; };
+		A415867F183093EA007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867B183093E8007FCB16 /* SingController~ipad.xib */; };
+		A4158680183093EA007FCB16 /* SingController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867B183093E8007FCB16 /* SingController~ipad.xib */; };
+		A4158681183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867C183093E9007FCB16 /* SingInfoEditController~ipad.xib */; };
+		A4158682183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867C183093E9007FCB16 /* SingInfoEditController~ipad.xib */; };
+		A4158683183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867C183093E9007FCB16 /* SingInfoEditController~ipad.xib */; };
+		A4158684183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */; };
+		A4158685183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */; };
+		A4158686183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
@@ -6831,6 +6840,9 @@
 		A4117548177E834D00D3FE23 /* OpusGuessRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusGuessRecorder.m; sourceTree = "<group>"; };
 		A4158672182DF6D1007FCB16 /* StrokeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrokeLabel.h; sourceTree = "<group>"; };
 		A4158673182DF6D1007FCB16 /* StrokeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrokeLabel.m; sourceTree = "<group>"; };
+		A415867B183093E8007FCB16 /* SingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingController~ipad.xib"; sourceTree = "<group>"; };
+		A415867C183093E9007FCB16 /* SingInfoEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingInfoEditController~ipad.xib"; sourceTree = "<group>"; };
+		A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SongSearchController~ipad.xib"; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
@@ -10016,6 +10028,7 @@
 				A4117515177AD09900D3FE23 /* SingController.h */,
 				A4117516177AD09900D3FE23 /* SingController.m */,
 				A4117517177AD09900D3FE23 /* SingController.xib */,
+				A415867B183093E8007FCB16 /* SingController~ipad.xib */,
 				A4117519177AD09900D3FE23 /* SongCell.h */,
 				A411751A177AD09900D3FE23 /* SongCell.m */,
 				A411751B177AD09900D3FE23 /* SongCell.xib */,
@@ -10023,9 +10036,11 @@
 				A4A947F518162F31007A2E26 /* SingInfoEditController.h */,
 				A4A947F618162F33007A2E26 /* SingInfoEditController.m */,
 				A4A947F718162F35007A2E26 /* SingInfoEditController.xib */,
+				A415867C183093E9007FCB16 /* SingInfoEditController~ipad.xib */,
 				A4F937FC18176D030065D707 /* SongSearchController.h */,
 				A4F937FD18176D030065D707 /* SongSearchController.m */,
 				A4F937FE18176D030065D707 /* SongSearchController.xib */,
+				A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */,
 			);
 			path = Sing;
 			sourceTree = "<group>";
@@ -17456,6 +17471,9 @@
 				A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 				EA1BD634182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD642182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
+				A4158680183093EA007FCB16 /* SingController~ipad.xib in Resources */,
+				A4158683183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
+				A4158686183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18369,6 +18387,9 @@
 				A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 				EA1BD633182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD641182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
+				A415867F183093EA007FCB16 /* SingController~ipad.xib in Resources */,
+				A4158682183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
+				A4158685183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19264,6 +19285,9 @@
 				A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */,
 				EA1BD632182DDCB1000E5364 /* GroupHomeController.xib in Resources */,
 				EA1BD640182DE6DD000E5364 /* CreateGroupController.xib in Resources */,
+				A415867E183093EA007FCB16 /* SingController~ipad.xib in Resources */,
+				A4158681183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
+				A4158684183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

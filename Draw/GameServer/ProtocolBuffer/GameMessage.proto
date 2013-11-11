@@ -499,6 +499,7 @@ message DataQueryResponse {
   optional PBUserPhoto userPhoto = 82;
   repeated PBUserPhoto userPhotoList = 83;
   
+  repeated PBGameUser userList = 84;
   optional PBGameUser user = 85;
   optional int32 userRelation = 86;             // 用户和用户之间的关系
 

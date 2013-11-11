@@ -8,6 +8,8 @@
 
 #import "SingOpusManager.h"
 #import "SingOpus.h"
+#import "DrawUtils.h"
+#import "DrawColor.h"
 
 @implementation SingOpusManager
 
@@ -57,6 +59,13 @@
     [singOpus setLocalImageDataUrl:SING_IMAGE_EXTENSION];
     
     [singOpus setTags:@[@"唱歌"]];
+    
+    // set desc label info
+    
+    [singOpus setStrokeLabelWithXRatio:0.5
+                                yRatio:0.5
+                             textColor:[DrawUtils compressColor8:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]]
+                       textStrokeColor:[DrawUtils compressColor8:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]]];
     
     return singOpus;
 }

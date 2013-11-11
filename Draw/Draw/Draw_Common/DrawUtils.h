@@ -87,6 +87,9 @@
 + (void)decompressColor8:(NSUInteger)intColor red:(CGFloat*)red green:(CGFloat*)green blue:(CGFloat*)blue alpha:(CGFloat*)alpha;
 + (NSUInteger)compressDrawColor8:(DrawColor *)color;
 
++ (NSUInteger)compressColor8:(UIColor *)color;
++ (UIColor *)decompressColor8:(NSUInteger)intColor;
+
 //+ (CGPoint)adjustPointInRect:(CGRect)rect inputPoint:(CGPoint)inputPoint;
 + (BOOL)pointInRect:(CGRect)rect inputPoint:(CGPoint*)inputPoint;
 

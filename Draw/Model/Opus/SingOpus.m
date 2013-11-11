@@ -225,4 +225,21 @@ enum {
     return text;
 }
 
+- (void)setStrokeLabelWithXRatio:(CGFloat)xRatio
+                          yRatio:(CGFloat)yRatio
+                       textColor:(int)textColor
+                 textStrokeColor:(int)textStrokeColor{
+    
+    PBLabelInfo_Builder *labelInfoBuilder = [PBLabelInfo builderWithPrototype:self.pbOpus.descLabelInfo];
+    [labelInfoBuilder setStyle:0];
+    [labelInfoBuilder setXRatio:xRatio];
+    [labelInfoBuilder setYRatio:yRatio];
+    [labelInfoBuilder setTextColor:textColor];
+    [labelInfoBuilder setTextStrokeColor:textStrokeColor];
+    
+    PBLabelInfo *labelInfo = [labelInfoBuilder build];
+    
+    [self.pbOpusBuilder setDescLabelInfo:labelInfo];
+}
+
 @end

@@ -20,6 +20,13 @@
 - (void)setSong:(PBSong *)song;
 - (void)setVoiceType:(PBVoiceType)voiceType;
 
+- (void)setStrokeLabelWithXRatio:(CGFloat)xRatio
+                          yRatio:(CGFloat)yRatio
+                       textColor:(int)textColor
+                 textStrokeColor:(int)textStrokeColor;
+
+
+
 - (NSURL*)localNativeDataURL;
 - (void)setLocalNativeDataUrl:(NSString*)extension;
 - (void)setLocalImageDataUrl:(NSString*)extension;

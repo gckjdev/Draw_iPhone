@@ -29,6 +29,7 @@
     PPRelease(_feedUser);
     PPRelease(_createDate);
     PPRelease(_desc);
+    PPRelease(_pbFeed);
     [super dealloc];
 }
 
@@ -41,7 +42,8 @@
         self.feedId = [pbFeed feedId];
         self.feedType = [pbFeed actionType];
         self.createDate = [NSDate dateWithTimeIntervalSince1970:pbFeed.createDate];
-        self.opusStatus = [pbFeed opusStatus];        
+        self.opusStatus = [pbFeed opusStatus];
+        self.pbFeed = pbFeed;
         self.feedUser = [FeedUser feedUserWithUserId:pbFeed.userId 
                                             nickName:pbFeed.nickName 
                                               avatar:pbFeed.avatar 
