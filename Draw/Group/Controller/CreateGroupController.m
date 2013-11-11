@@ -13,6 +13,7 @@
 #import "DrawError.h"
 #import "BalanceNotEnoughAlertView.h"
 #import "AccountManager.h"
+#import "Group.pb.h"
 
 @interface CreateGroupController ()
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
@@ -22,6 +23,7 @@
 @property (retain, nonatomic) IBOutlet UITextField *nameTextField;
 @property (retain, nonatomic) IBOutlet UIPickerView *levelPicker;
 @property (retain, nonatomic) IBOutlet UILabel *levelTips;
+- (IBAction)clickLevelButton:(id)sender;
 
 @end
 
@@ -38,20 +40,22 @@
 
 - (void)clickDone:(id)sender
 {
+    [self.nameTextField resignFirstResponder];
+    [self.levelPicker setHidden:YES];
     
-    NSString *name = _nameLabel.text;
+    NSString *name = _nameTextField.text;
     NSInteger level = [_levelPicker selectedRowInComponent:0]+1;
     NSInteger fee = [GroupManager monthlyFeeForLevel:level];
-    
+
+    PPDebug(@"start to create group. name = %@, level = %d, fee = %d", name, level, fee);
+
     if ([name length] == 0) {
         [DrawError postErrorWithCode:ERROR_GROUP_NAME_EMPTY];
     }
     
-    if([[AccountManager defaultManager] hasEnoughBalance:fee currency:PBGameCurrencyCoin]){
+    if(![[AccountManager defaultManager] hasEnoughBalance:fee currency:PBGameCurrencyCoin]){
         [BalanceNotEnoughAlertView showInController:self];
     }
-    
-    PPDebug(@"start to create group. name = %@, level = %d, fee = %d", name, level, fee);
     
     [[GroupService defaultService] createGroup:_nameLabel level:level callback:^(PBGroup *group, NSError *error) {
         if (error) {
@@ -62,8 +66,8 @@
     }];
 }
 
-#define BIG_FONT AD_FONT(36,20)
-#define SMALL_FONT AD_FONT(18,11)
+#define BIG_FONT AD_FONT(32,18)
+#define SMALL_FONT AD_FONT(18,12)
 
 - (void)initViews
 {
@@ -77,11 +81,19 @@
     //name
     [self.nameLabel setTextColor:COLOR_BROWN];
     [self.nameTextField setTextColor:COLOR_BROWN];
-    
+    [self.nameLabel setFont:BIG_FONT];
+    SET_INPUT_VIEW_STYLE(self.nameTextField);
+    [self.nameLabel setText:NSLS(@"kName")];
+    [self.nameTextField setPlaceholder:nil];
     //level
     [self.levelLabel setTextColor:COLOR_BROWN];
     [self.levelTips setTextColor:COLOR_BROWN];
-    SET_BUTTON_ROUND_STYLE_ORANGE(self.levelButton);    
+    SET_BUTTON_ROUND_STYLE_ORANGE(self.levelButton);
+    [self.levelPicker setHidden:YES];
+    [self.levelLabel setFont:BIG_FONT];
+    [self.levelTips setFont:SMALL_FONT];
+    [self.levelLabel setText:NSLS(@"kLevel")];
+    [self.nameTextField becomeFirstResponder];
 }
 
 
@@ -91,6 +103,7 @@
 {
     NSInteger defaultLevel = DEFAULT_LEVEL;
     [self.levelPicker selectRow:defaultLevel-1 inComponent:0 animated:NO];
+    [self updateLevelViews:defaultLevel];
 
 }
 
@@ -128,12 +141,15 @@
     [super viewDidUnload];
 }
 
-- (void)updateLevelTips:(NSInteger)level
+- (void)updateLevelViews:(NSInteger)level
 {
+    [self.levelButton setTitle:[@(level) stringValue] forState:UIControlStateNormal];
+
     NSInteger monthlyFee = [GroupManager monthlyFeeForLevel:level];
     NSInteger capacity = [GroupManager capacityForLevel:level];
     NSString *tips = [NSString stringWithFormat:NSLS(@"kLevelTips"), capacity, monthlyFee];
     [self.levelTips setText:tips];
+    [self.levelTips sizeToFit];
 }
 
 #pragma mark- Picker Deleage
@@ -157,7 +173,13 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [self.levelButton setTitle:[@(row+1) stringValue] forState:UIControlStateNormal];
+    [self updateLevelViews:row+1];
 }
 
+- (IBAction)clickLevelButton:(id)sender {
+    if ([self.nameTextField isFirstResponder]) {
+        [self.nameTextField resignFirstResponder];
+    }
+    [self.levelPicker setHidden:NO];
+}
 @end

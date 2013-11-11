@@ -5517,6 +5517,10 @@
 		EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
 		EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
 		EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD645182DEB0B000E5364 /* GroupManager.m */; };
+		EA1BD64D182E26A6000E5364 /* Group.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD64C182E26A6000E5364 /* Group.pb.m */; };
+		EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD64C182E26A6000E5364 /* Group.pb.m */; };
+		EA1BD64F182E26A6000E5364 /* Group.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD64C182E26A6000E5364 /* Group.pb.m */; };
+		EA1BD650182E26A6000E5364 /* Group.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BD64C182E26A6000E5364 /* Group.pb.m */; };
 		EA1F282F16F093E500066E37 /* CustomInfoView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */; };
 		EA1F283616F093F700066E37 /* ChargeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283516F093F700066E37 /* ChargeController~ipad.xib */; };
 		EA1F283816F0940900066E37 /* ChargeCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */; };
@@ -9430,6 +9434,8 @@
 		EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupController.xib; sourceTree = "<group>"; };
 		EA1BD644182DEB0B000E5364 /* GroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupManager.h; sourceTree = "<group>"; };
 		EA1BD645182DEB0B000E5364 /* GroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupManager.m; sourceTree = "<group>"; };
+		EA1BD64B182E26A6000E5364 /* Group.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.pb.h; sourceTree = "<group>"; };
+		EA1BD64C182E26A6000E5364 /* Group.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.pb.m; sourceTree = "<group>"; };
 		EA1F282E16F093E500066E37 /* CustomInfoView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CustomInfoView~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283516F093F700066E37 /* ChargeController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeController~ipad.xib"; sourceTree = "<group>"; };
 		EA1F283716F0940900066E37 /* ChargeCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ChargeCell~ipad.xib"; sourceTree = "<group>"; };
@@ -14994,6 +15000,8 @@
 		CA96E274150DE87A00292335 /* Gen */ = {
 			isa = PBXGroup;
 			children = (
+				EA1BD64B182E26A6000E5364 /* Group.pb.h */,
+				EA1BD64C182E26A6000E5364 /* Group.pb.m */,
 				C2C18AAC176191AC00DE933B /* Photo.pb.h */,
 				C2C18AAD176191AC00DE933B /* Photo.pb.m */,
 				CA244A75175EE48D002C0A37 /* Opus.pb.h */,
@@ -20848,6 +20856,7 @@
 				EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
+				EA1BD64F182E26A6000E5364 /* Group.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21588,6 +21597,7 @@
 				EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
+				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22333,6 +22343,7 @@
 				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
+				EA1BD64D182E26A6000E5364 /* Group.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23022,6 +23033,7 @@
 				EA1BD631182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */,
+				EA1BD650182E26A6000E5364 /* Group.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23253,8 +23265,8 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Sing;
-				PROVISIONING_PROFILE = "21E9C951-454A-4FE8-9DEF-851D1601E8CA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21E9C951-454A-4FE8-9DEF-851D1601E8CA";
+				PROVISIONING_PROFILE = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -23263,8 +23275,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lingzhe Peng (9WG829Y3AG)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -23327,8 +23339,8 @@
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Sing;
-				PROVISIONING_PROFILE = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6E86EEE9-4389-497F-90D3-27CAD4C9BEE3";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

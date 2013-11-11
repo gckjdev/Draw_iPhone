@@ -33,7 +33,7 @@ typedef enum{
 
 @interface DetailFooterView : UIView
 
-@property(nonatomic, assign)id<DetailFooterViewDelegate>delegate;
+@property(nonatomic, assign)IBOutlet id<DetailFooterViewDelegate>delegate;
 
 - (void)setButtonsWithTypes:(NSArray *)types;
 - (void)setButton:(FooterType)type enabled:(BOOL)enabled;

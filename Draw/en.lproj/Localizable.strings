@@ -328,8 +328,8 @@
 
 "kPaymentCannotMake" = "Your iOS/Device cannot make payment.";
 
-"kSharePhotoEmailSubject" = "Share Funny Drawing From %@";
-"kSharePhotoEmailBody" = "A funny drawing, can you guess what it is? \n\n- Sent from %@";
+"kSharePhotoEmailSubject" = "Share Funny Pictures From %@";
+"kSharePhotoEmailBody" = "A funny picture, can you guess what it is? \n\n- Sent from %@";
 "kShareWeiboTitle" = "Share";
 
 "kNoTipItem" = "Sorry, you have no tip item, you can buy some in the shop.";
@@ -661,7 +661,7 @@
 "kSendingProgress" = "Sending... (%3.f%%)";
 
 "kNoCommentTips" = "No Comments";
-"kFeedDetail" = "Drawing Detail";
+"kFeedDetail" = "Opus Detail";
 "kOpusDetail" = "View";
 "kCommentFail" = "Failed to Comment";
 "kCommentFailOwnOpusContest" = "Cannot comment your own opus in anounymous contest";
@@ -675,7 +675,7 @@
 "kGuessOnly" = "Guess";
 "kDrawOnly" = "Draw";
 "kFeed" = "Timeline";
-"kFeeds" = "Drawings";
+"kFeeds" = "Opus";
 
 "kMathOpusFail" = "Sorry. Can't match a opus for you.";
 
@@ -739,7 +739,7 @@
 "kRoomStatus" = "New Room(%d)";
 "kMessageStatus" = "New Message(%d)";
 "kCommentStatus" = "New Comment(%d)";
-"kDrawToMeStatus" = "New DrawToMe(%d)";
+"kDrawToMeStatus" = "New Opus To Me(%d)";
 "kReplyStatus" = "New Reply(%d)";
 "kFlowerStatus" = "New Flower(%d)";
 "kTomatoStatus" = "New Tomato(%d)";
@@ -750,12 +750,12 @@
 "kChatTitle" = "Send Message";
 "kLoadingMessage" = "Loading...";
 
-"kGuessUserDraw_MyDraw" = "my paint";
-"kGuessRightDesc_MyDraw" = "Guessed my paint: [%@].";
-"kTryGuessDesc_MyDraw" = "Tried to guess my paint: [%@].";
-"kGuessRightDescNoWord_MyDraw" = "Guessed my paint.";
-"kTryGuessDescNoWord_MyDraw" = "Tried to guess my paint.";
-"kFeedDetail_Me" = "My Paint";
+"kGuessUserDraw_MyDraw" = "my opus";
+"kGuessRightDesc_MyDraw" = "Guessed my opus: [%@].";
+"kTryGuessDesc_MyDraw" = "Tried to guess my opus: [%@].";
+"kGuessRightDescNoWord_MyDraw" = "Guessed my opus.";
+"kTryGuessDescNoWord_MyDraw" = "Tried to guess my opus.";
+"kFeedDetail_Me" = "My Opus";
 "kUserFeedTitle_Me" = "My Timeline";
 
 "kOnlineResultTitle" = "Turn Complete";
@@ -965,11 +965,11 @@
 "kRankNew" = "Newest";
 "kDrawToMe" = "@Me";
 
-"kNoMyFeed" = "No Feeds. Try to draw and guess?";
-"kNoTimelineGuess" = "No Guess";
-"kNoMyOpus" = "No Opus. Try to draw one?";
-"kNoMyComment" = "No Comment.";
-"kNoDrawToMe" = "No one draw to you.";
+"kNoMyFeed" = "No Feeds. Try to create and guess?";
+"kNoTimelineGuess" = "No guess yet";
+"kNoMyOpus" = "No Opus. Try to create one?";
+"kNoMyComment" = "No Comment yet";
+"kNoDrawToMe" = "No opus yet yet";
 
 "kUserNoFeed" = "%@ has no feeds.";
 "kUserNoOpus" = "%@ has no opus.";
@@ -1103,6 +1103,7 @@
 "kDrawGuessTitle" = "Guessing...";
 "kLoadImage" = "Loading...";
 
+"kLevel" = "Level";
 "kLevel1" = "初级%@";
 "kLevel2" = "中级%@";
 "kLevel3" = "高级%@";
@@ -1429,7 +1430,7 @@
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
 
-"kSearchSong" = "Search Song";
+"kSearchSong" = "Song Assistant";
 
 "kSelectBGImage" = "Select Background";
 "kSelectShape" = "Select Shape";
@@ -2033,6 +2034,11 @@
 "kMarkedPosts" = "Marked Posts";
 "kBBSSearchPlaceholder" = "Input keyword";
 /*********************** BBS国际化字符串结束 *************************/
+
+//group
+
+"kCreateGroup" = "Create Group";
+"kLevelTips" = "Capacity: %d\nFee: %d coins/month\n(ps. The fee for first month will be deducted when creating.)";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

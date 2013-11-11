@@ -8,7 +8,7 @@
 
 #import "CommonService.h"
 #import "GroupPermission.h"
-#import "GameBasic.pb.h"
+#import "Group.pb.h"
 
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
@@ -18,6 +18,16 @@ typedef enum{
     InviteUserTypeMember = 1,
     InviteUserTypeGuest = 2,    
 }InviteUserType;
+
+
+typedef enum{
+    GetGroupListTypeFollow = 1,
+    GetGroupListTypeNew = 2,
+    GetGroupListTypeBalance = 3,
+    GetGroupListTypeActive = 4,
+    GetGroupListTypeFame = 5,
+}GetGroupListType;
+
 
 @interface GroupService : CommonService
 
@@ -35,6 +45,13 @@ typedef enum{
 - (void)getNewGroups:(NSInteger)offset
                limit:(NSInteger)limit
             callback:(ListResultBlock)callback;
+
+- (void)getGroupsWithType:(GetGroupListType)type
+                   offset:(NSInteger)offset
+                    limit:(NSInteger)limit
+                 callback:(ListResultBlock)callback;
+
+
 
 - (void)joinGroup:(NSString *)groupId
           message:(NSString *)message

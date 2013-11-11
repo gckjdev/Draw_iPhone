@@ -343,8 +343,8 @@
 
 "kPaymentCannotMake" = "對不起，你的設備或者iOS版本未接受應用內程序購買功能。";
 
-"kSharePhotoEmailSubject" = "分享有趣的畫畫";
-"kSharePhotoEmailBody" = "Hi，分享一幅有趣的畫，能猜到畫的是什麼嗎？\n\n- 來自%@";
+"kSharePhotoEmailSubject" = "分享有趣的作品";
+"kSharePhotoEmailBody" = "Hi，分享一幅有趣的作品，能猜到畫的是什麼嗎？\n\n- 來自%@";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感謝您的反饋";
@@ -666,7 +666,7 @@
 "kSendingProgress" = "正在發送中 (%3.f%%)";
 
 "kNoCommentTips" = "還沒有人評論";
-"kFeedDetail" = "畫畫詳情";
+"kFeedDetail" = "作品詳情";
 "kOpusDetail" = "查看作品";
 
 "kCommentFail" = "評論失敗";
@@ -680,9 +680,9 @@
 "kFriend" = "好友";
 "kGuessOnly" = "我要猜";
 "kDrawOnly" = "我要畫";
-"kFeed" = "好友動態";
+"kFeed" = "動態";
 
-"kFeeds" = "畫";
+"kFeeds" = "作品";
 "kMathOpusFail" = "不好意思，不能為你找到匹配的作品。";
 
 "kGuessWords" = "猜畫的是: %@";
@@ -696,7 +696,7 @@
 
 
 "kUserFeedTitle" = "%@的動態";
-"kUserFeed" = "畫";
+"kUserFeed" = "作品";
 "kUserGuess" = "猜";
 "kUserOpus" = "作品";
 "kUserFavorite" = "收藏";
@@ -750,7 +750,7 @@
 "kMessageStatus" = "新消息(%d)";
 "kCommentStatus" = "新評論(%d)";
 "kReplyStatus" = "新回复(%d)";
-"kDrawToMeStatus" = "新畫給我(%d)";
+"kDrawToMeStatus" = "新送給我(%d)作品";
 "kFlowerStatus" = "新鮮花(%d)";
 "kTomatoStatus" = "新番茄(%d)";
 
@@ -759,12 +759,12 @@
 
 "kOpusDelete" = "不好意思，该作品已經被刪除了。";
 
-"kGuessUserDraw_MyDraw" = "正在猜我的畫";
-"kGuessRightDesc_MyDraw" = "猜對了我畫的 [%@]。";
-"kTryGuessDesc_MyDraw" = "嘗試去猜了我畫的 [%@]。";
-"kGuessRightDescNoWord_MyDraw" = "猜對了我的畫。";
-"kTryGuessDescNoWord_MyDraw" = "嘗試去猜了我的畫。";
-"kFeedDetail_Me" = "%@的畫";
+"kGuessUserDraw_MyDraw" = "正在猜我的作品";
+"kGuessRightDesc_MyDraw" = "猜對了我創作的 [%@]。";
+"kTryGuessDesc_MyDraw" = "嘗試去猜了我創作的 [%@]。";
+"kGuessRightDescNoWord_MyDraw" = "猜對了我的作品";
+"kTryGuessDescNoWord_MyDraw" = "嘗試去猜了我的作品";
+"kFeedDetail_Me" = "%@的作品";
 "kUserFeedTitle_Me" = "%@的動態";
 
 "kOnlineResultTitle" = "回合結束";
@@ -966,13 +966,13 @@
 "kRankHistory" = "總榜";
 "kRankHot" = "熱榜";
 "kRankNew" = "最新";
-"kDrawToMe" = "畫給我";
+"kDrawToMe" = "送給我";
 
-"kNoMyFeed" = "你還沒有動態，去畫一幅畫或猜一幅畫？";
-"kNoTimelineGuess" = "還沒有猜的動態";
-"kNoMyOpus" = "你還沒有作品，去畫一幅畫？";
-"kNoMyComment" = "目前沒有關於你的評論。";
-"kNoDrawToMe" = "還沒有人畫過畫給你，先畫一幅給別人？";
+"kNoMyFeed" = "暫無好友作品動態，關注好友可看到其發表作品動態";
+"kNoTimelineGuess" = "還沒有好友猜的動態，關注好友可看到其猜的動態";
+"kNoMyOpus" = "暫無作品，去創作一個？";
+"kNoMyComment" = "暫無關於你的評論，去評論一個？";
+"kNoDrawToMe" = "還沒有人送過作品給你，先創作一個作品送給別人？";
 
 "kUserNoFeed" = "%@ 還沒有動態。";
 "kUserNoOpus" = "%@ 還沒有作品。";
@@ -1092,6 +1092,7 @@
 "kDrawGuessTitle" = "正在猜第%d幅作品";
 "kLoadImage" = "加載作品中...";
 
+"kLevel" = "等級";
 "kLevel1" = "初級%@";
 "kLevel2" = "中級%@";
 "kLevel3" = "高級%@";
@@ -1358,7 +1359,7 @@
 "kPayViaAppleAccount" = "使用Apple賬戶購買";
 
 "kEditOpusDesc" = "編輯作品描述";
-"kEditOpusInfo" = "作品信息";
+"kEditOpusInfo" = "编辑作品信息";
 "kCloseKeyboard" = "關鍵盤";
 "kHim" = "他";
 "kHer" = "她";
@@ -1367,7 +1368,7 @@
 "kDetailFollow" = "關注%@";
 "kDetailChat" = "聊天";
 
-"kSearchSong" = "搜索歌曲";
+"kSearchSong" = "歌词搜索助手";
 
 "kSelectBGImage" = "選擇背景";
 "kBgDownloading" = "背景 (下載:%2.1f%%)";
@@ -2036,6 +2037,13 @@
 "kMarkedPosts" = "精華貼";
 "kBBSSearchPlaceholder" = "請輸入搜索關鍵字";
 /*********************** BBS国际化字符串结束 *************************/
+
+
+//group
+
+"kCreateGroup" = "創建家族";
+"kLevelTips" = "可容納 %d 族員\n每月需花費 %d 金幣\n(首月費用在創建時扣除)";
+
 
 "kShareByEmailSuccess" = "郵件分享成功";
 

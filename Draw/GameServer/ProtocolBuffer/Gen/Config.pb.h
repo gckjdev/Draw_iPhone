@@ -35,14 +35,6 @@
 @class PBGameUser_Builder;
 @class PBGradient;
 @class PBGradient_Builder;
-@class PBGroup;
-@class PBGroupTitle;
-@class PBGroupTitle_Builder;
-@class PBGroupUser;
-@class PBGroupUser_Builder;
-@class PBGroupUsersByTitle;
-@class PBGroupUsersByTitle_Builder;
-@class PBGroup_Builder;
 @class PBIAPProduct;
 @class PBIAPProductList;
 @class PBIAPProductList_Builder;
@@ -85,8 +77,6 @@
 @class PBUserItem_Builder;
 @class PBUserLevel;
 @class PBUserLevel_Builder;
-@class PBUserRelationWithGroup;
-@class PBUserRelationWithGroup_Builder;
 @class PBUserResult;
 @class PBUserResult_Builder;
 @class PBZJHConfig;

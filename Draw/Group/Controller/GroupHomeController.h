@@ -6,8 +6,11 @@
 //
 //
 
-#import "PPViewController.h"
+#import "CommonTabController.h"
+#import "DetailFooterView.h"
 
-@interface GroupHomeController : PPViewController
+@interface GroupHomeController : CommonTabController<DetailFooterViewDelegate>
+@property (retain, nonatomic) IBOutlet UIView *subTabsHolder;
+@property (retain, nonatomic) IBOutlet DetailFooterView *footerView;
 
 @end

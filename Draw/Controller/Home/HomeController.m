@@ -95,6 +95,10 @@
 #import "SDWebImageManager.h"
 #import "PainterController.h"
 
+//test
+#import "CreateGroupController.h"
+#import "GroupHomeController.h"
+
 @interface HomeController()<GuessServiceDelegate>
 {
 
@@ -633,7 +637,12 @@
             break;
         case HomeMenuTypeDrawGuess:
         {
-
+#ifdef DEBUG
+            CreateGroupController *cg = [[CreateGroupController alloc] init];
+            [self.navigationController pushViewController:cg animated:YES];
+            [cg release];
+            break;
+#endif
             GuessModesController *vc =[[[GuessModesController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -656,6 +665,15 @@
         }
             break;
         case HomeMenuTypeDrawContest:
+#ifdef DEBUG
+        {
+            GroupHomeController *gc = [[GroupHomeController alloc] init];
+            [self.navigationController pushViewController:gc animated:YES];
+            [gc release];
+            break;
+        }
+#endif
+            
         {
             [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_CONTEST];
             
