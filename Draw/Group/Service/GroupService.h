@@ -9,6 +9,7 @@
 #import "CommonService.h"
 #import "GroupPermission.h"
 #import "GameBasic.pb.h"
+#import "Group.pb.h"
 
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
