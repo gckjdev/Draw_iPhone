@@ -26,6 +26,7 @@ typedef enum
     SuperUserManageActionIndexUnblackUserId,
     SuperUserManageActionIndexUnblackDevice,
     SuperUserManageActionIndexRecoverOpus,
+    SuperUserManageActionIndexExportOpusImage,
 }SuperUserManageActionIndex;
 
 @implementation SuperUserManageAction
@@ -59,7 +60,7 @@ typedef enum
 
 - (void)showInController:(UIViewController*)controller
 {
-    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", nil] autorelease];
+    UIActionSheet* actionSheet = [[[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"%@(userId:%@,金币:%d 元宝:%d)", _targetUserNickName, _targetUserId, _targetUserCurrentBalance, _targetUserCurrentIngot] delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:@"金币充值" otherButtonTitles:@"元宝充值", @"用户作品推荐设置", @"重置用户密码", @"加入用户黑名单", @"加入设备黑名单", @"从用户黑名单解禁", @"从设备黑名单解禁", @"恢复用户作品", @"导出用户作品图片", nil] autorelease];
     
     [actionSheet showInView:controller.view];
     _superController = controller;
@@ -218,6 +219,14 @@ typedef enum
                 [[CommonMessageCenter defaultCenter] postMessageWithText:@"成功恢复用户作品" delayTime:1.5];
             }];
         } break;
+
+        case SuperUserManageActionIndexExportOpusImage: {
+            [[UserService defaultService] exportUserOpusImage:_targetUserId successBlock:^{
+                [[CommonMessageCenter defaultCenter] postMessageWithText:@"请求已成功提交" delayTime:1.5];
+            }];
+        } break;
+
+            
         default:
             break;
     }

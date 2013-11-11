@@ -169,6 +169,8 @@ typedef void(^UploadImageResultBlock)(int resultCode, NSString* imageRemoteURL);
 - (void)recoverUserOpus:(NSString*)targetUserId
            successBlock:(void (^)(void))successBlock;
 
+- (void)exportUserOpusImage:(NSString*)targetUserId
+               successBlock:(void (^)(void))successBlock;
 
 - (void)setUserFeatureOpus:(NSString*)targetUserId
                featureOpus:(int)featureOpus

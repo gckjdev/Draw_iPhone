@@ -28,6 +28,7 @@
 #define METHOD_GET_OPUS @"getOpus"
 #define METHOD_RANK_OPUS @"rankOpus"
 #define METHOD_SET_OPUS_HOT_SCORE @"setOpusHotScore"
+#define METHOD_EXPORT_USER_OPUS @"exportOpus"
 
 // for guess
 #define METHOD_GET_USER_GUESS_OPUSES @"getUserGuessOpus"
