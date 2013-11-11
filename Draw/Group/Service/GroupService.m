@@ -130,6 +130,22 @@ static GroupService *_staticGroupService = nil;
 }
 
 
+- (void)getGroupsWithType:(GetGroupListType)type
+                   offset:(NSInteger)offset
+                    limit:(NSInteger)limit
+                 callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit), PARA_TYPE:@(type)};
+    
+    [self loadPBData:METHOD_GET_GROUPS
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error) {
+                EXECUTE_BLOCK(callback, response.groupListList, error);
+            }];
+
+}
+
+
 #define HANDLE_TYPE_ACCEPT @(1)
 #define HANDLE_TYPE_REJECT @(2)
 

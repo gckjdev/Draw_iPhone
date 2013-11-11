@@ -678,6 +678,7 @@
 
 #define METHOD_CREATE_GROUP @"createGroup"
 #define METHOD_GET_GROUP @"getGroup"
+#define METHOD_GET_GROUPS @"getGroups"
 #define METHOD_GET_NEW_GROUPS @"getNewGroups"
 
 #define METHOD_JOIN_GROUP @"joinGroup"
