@@ -33,6 +33,8 @@
 #import "CMPopTipView.h"
 #import "SongSearchController.h"
 #import "PPConfigManager.h"
+#import "DrawColor.h"
+#import "DrawUtils.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -44,7 +46,7 @@ enum{
     StatePlaying = 3
 };
 
-@interface SingController (){
+@interface SingController ()<UIGestureRecognizerDelegate>{
     int _recordLimitTime;
     double _fileDuration;
     
@@ -106,24 +108,6 @@ enum{
     return [_singOpus localDataURL];
 }
 
-//- (id)initWithSong:(PBSong *)song{
-//    if (self = [super init]) {
-//        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpus:song];
-//        _newOpus = YES;
-//    }
-//    
-//    return self;
-//}
-
-//- (id)initWithName:(NSString *)name{
-//    if (self = [super init]) {
-//        self.singOpus = [[[OpusService defaultService] singDraftOpusManager] createDraftSingOpusWithSelfDefineName:name];
-//        _newOpus = YES;
-//    }
-//    
-//    return self;
-//}
-
 - (id)init{
     
     if (self = [super init]) {
@@ -143,41 +127,32 @@ enum{
 }
 
 #define TAG_TITLE_VIEW 201311061604
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    PPDebug(@"image view frame = %@", NSStringFromCGRect(self.opusImageView.frame));
+    PPDebug(@"label view frame = %@", NSStringFromCGRect(self.opusDescLabel.frame));
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self setCanDragBack:NO];
+    
     // init title view
-    CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
-    [titleView setTitle:self.singOpus.name];
-    [titleView setTarget:self];
-    [titleView setBackButtonSelector:@selector(clickBackButton:)];
-    titleView.tag = TAG_TITLE_VIEW;
-    [self.view sendSubviewToBack:titleView];
-//    [titleView setRightButtonTitle:NSLS(@"kSubmit")];
-//    [titleView setRightButtonSelector:@selector(clickSubmitButton:)];
+    [self initTitleView];
+
+
+    
+    // init opus image view
+    [self initOpusImageView];
+    
+    // int lyric text view
+    [self initLyricTextView];
     
     self.reviewButton.hidden = YES;
-    
-    
-    [self.opusImageView.layer setCornerRadius:35];
-    [self.opusImageView.layer setMasksToBounds:YES];
-
-    self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.localImageUrl];
-    if (self.image !=nil ) {
-        [self.opusImageView setImage:self.image];
-        [self.imageButton setImage:nil forState:UIControlStateNormal];
-    }
-    
-//    [self.opusImageView addTapGuestureWithTarget:self selector:@selector(clickImageButton:)];
-    [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
-    self.opusDescLabel.text = self.singOpus.pbOpus.desc;
-    
-    self.lyricTextView.editable = NO;
-    self.lyricTextView.text = self.singOpus.pbOpus.sing.song.lyric;
-    self.lyricTextView.hidden = YES;
-    self.lyricTextView.textColor = COLOR_BROWN;
-    
+     
     _recordLimitTime = [PPConfigManager getRecordLimitTime];
 
     if (_isDraft) {
@@ -203,7 +178,8 @@ enum{
     [bself registerNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE usingBlock:^(NSNotification *note) {
         
         [((CommonTitleView*)[bself.view viewWithTag:TAG_TITLE_VIEW]) setTitle:bself.singOpus.name];
-        bself.opusDescLabel.text = bself.singOpus.pbOpus.desc;
+        
+        [bself updateDescLabelInfo:bself.singOpus.pbOpus.desc];
         bself.lyricTextView.hidden = YES;
         bself.opusDescLabel.hidden = NO;
         bself.imageButton.hidden = NO;
@@ -211,7 +187,170 @@ enum{
     }];
 }
 
+- (void)initTitleView{
+    
+    CommonTitleView *titleView = [CommonTitleView createTitleView:self.view];
+    [titleView setTitle:self.singOpus.name];
+    [titleView setTarget:self];
+    [titleView setBackButtonSelector:@selector(clickBackButton:)];
+    titleView.tag = TAG_TITLE_VIEW;
+    [self.view sendSubviewToBack:titleView];
+}
 
+- (void)initOpusDescLabel{
+    
+    self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
+    self.opusDescLabel.textAlignment = NSTextAlignmentCenter;
+    [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
+        
+    CGSize size = CGSizeMake(self.opusImageView.frame.size.width * 0.8, 18);
+    PPDebug(@"desc = %@", self.singOpus.pbOpus.desc);
+    self.opusDescLabel.text = self.singOpus.pbOpus.desc;
+    [self.opusDescLabel wrapTextWithConstrainedSize:size];
+    [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
+    
+    CGFloat originX = self.opusImageView.superview.bounds.size.width * self.singOpus.pbOpus.descLabelInfo.xRatio;
+    CGFloat originY = self.opusImageView.superview.bounds.size.height * self.singOpus.pbOpus.descLabelInfo.yRatio;
+
+    [self.opusDescLabel updateOriginX:originX];
+    [self.opusDescLabel updateOriginY:originY];
+    
+    self.opusDescLabel.textColor = [DrawUtils decompressColor8:self.singOpus.pbOpus.descLabelInfo.textColor];
+    self.opusDescLabel.textOutlineColor = [DrawUtils decompressColor8:self.singOpus.pbOpus.descLabelInfo.textStrokeColor];
+    self.opusDescLabel.textOutlineWidth = 1;
+    
+    [self.opusImageView addSubview:self.opusDescLabel];
+    
+    self.opusImageView.userInteractionEnabled = YES;
+    self.opusDescLabel.userInteractionEnabled = YES;
+    UIPanGestureRecognizer *panGestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self
+                                                                                            action:@selector(handlePanGestures:)] autorelease];
+    
+    panGestureRecognizer.delegate = self;
+    
+    // Label加入拖拽手势识别器，这样，Label就会相应推拽操作
+    [self.opusDescLabel addGestureRecognizer:panGestureRecognizer];
+    
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestures:)] autorelease];
+    tapGestureRecognizer.delegate = self;
+    [self.opusDescLabel addGestureRecognizer:tapGestureRecognizer];
+}
+
+#define TAG_IMAGE_HOLDER_VIEW 201324
+- (void)initOpusImageView{
+    
+    [self.opusImageView.layer setCornerRadius:35];
+    [self.opusImageView.layer setMasksToBounds:YES];
+    
+    self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.localImageUrl];
+    if (self.image !=nil ) {
+        [self.opusImageView setImage:self.image];
+    }else{
+        [self addHolderView];
+    }
+    
+    // init opus desc label
+    [self initOpusDescLabel];
+}
+
+- (UIImageView *)addHolderView{
+    
+    CGFloat width = ISIPAD ? 146*2.18 : 146;
+    UIImageView *iv = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)] autorelease];
+    iv.image = [UIImage imageNamed:@"sing_image@2x.png"];
+    iv.tag = TAG_IMAGE_HOLDER_VIEW;
+    
+    [self.opusImageView addSubview:iv];
+    
+    [iv updateCenterX:self.opusImageView.bounds.size.width/2];
+    [iv updateCenterY:self.opusImageView.bounds.size.height/2];
+    
+    return iv;
+}
+
+- (void)removeHolderView{
+    [[self.opusImageView viewWithTag:TAG_IMAGE_HOLDER_VIEW] removeFromSuperview];
+}
+
+
+- (void)initLyricTextView{
+    
+    self.lyricTextView.editable = NO;
+    self.lyricTextView.text = self.singOpus.pbOpus.sing.song.lyric;
+    self.lyricTextView.hidden = YES;
+    self.lyricTextView.textColor = COLOR_BROWN;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    return YES;
+}
+
+// 拖拽手势处理事件
+- (void) handlePanGestures:(UIPanGestureRecognizer*)paramSender{
+    
+    if (paramSender.state != UIGestureRecognizerStateEnded && paramSender.state != UIGestureRecognizerStateFailed){
+        
+        // 获取手指在屏幕中的坐标
+        CGPoint location = [paramSender locationInView:paramSender.view.superview];
+        
+        if (location.x < 0 || location.x > paramSender.view.superview.bounds.size.width) {
+            return;
+        }
+        
+        if (location.y < 0 || location.y > paramSender.view.superview.bounds.size.height) {
+            return;
+        }
+        
+        paramSender.view.center = location;// 重新设置视图的位置
+        
+    }else if (paramSender.state == UIGestureRecognizerStateEnded){
+    
+        [self saveDescLabelInfo];
+    }
+}
+
+- (void) handleTapGestures:(UIPanGestureRecognizer*)paramSender{
+    
+    int whiteColorInt = [DrawUtils compressColor8:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    
+    if ([DrawUtils compressColor8:self.opusDescLabel.textColor] == whiteColorInt) {
+        self.opusDescLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+        self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+    }else{
+        self.opusDescLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+        self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+
+    }
+    
+    [self.opusDescLabel setNeedsDisplay];
+    
+    [self saveDescLabelInfo];
+}
+    
+
+- (void)saveDescLabelInfo{
+    
+    CGFloat xRatio = self.opusDescLabel.superview.frame.origin.x /  self.opusDescLabel.superview.bounds.size.width;
+    CGFloat yRatio = self.opusDescLabel.superview.frame.origin.y / self.opusDescLabel.superview.bounds.size.height;
+    int textColor = [DrawUtils compressColor8:self.opusDescLabel.textColor];
+    int textStrokeColor = [DrawUtils compressColor8:self.opusDescLabel.textOutlineColor];
+    [self.singOpus setStrokeLabelWithXRatio:xRatio yRatio:yRatio textColor:textColor textStrokeColor:textStrokeColor];
+}
+
+
+- (void)updateDescLabelInfo:(NSString *)desc{
+    
+    CGSize size = CGSizeMake(self.opusImageView.frame.size.width * 0.8, 18);
+    self.opusDescLabel.text = desc;
+    [self.opusDescLabel wrapTextWithConstrainedSize:size];
+    
+    [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
+    
+    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
+    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
+}
 
 - (BOOL)shouldAutorotate{
     return NO;
@@ -517,12 +656,11 @@ enum{
         
         self.image = image;
         self.opusImageView.image = image;
+        [self removeHolderView];
         self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
         NSData *data = [self.image data];
         NSString *path = self.singOpus.pbOpus.localImageUrl;
         [data writeToFile:path atomically:YES];
-        
-        [self.imageButton setImage:nil forState:UIControlStateNormal];
     }
 }
 
@@ -555,7 +693,7 @@ enum{
         
         [dialog setClickOkBlock:^(id view){
            
-            [self clickImageButton:self.imageButton];
+            [self clickImageButton:nil];
         }];
         
         return;
