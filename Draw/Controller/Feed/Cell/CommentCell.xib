@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12F45</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.40</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -144,7 +144,6 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{21, 58}, {284, 1}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
-								<reference key="NSNextKeyView"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC44MTQ2OTU0ODM2AA</bytes>
@@ -154,7 +153,7 @@
 							<object class="IBUIButton" id="994639100">
 								<reference key="NSNextResponder" ref="153973212"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{267, 27}, {36, 28}}</string>
+								<string key="NSFrame">{{267, 26}, {36, 28}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSNextKeyView" ref="303486316"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -187,7 +186,7 @@
 							<object class="IBUILabel" id="956013978">
 								<reference key="NSNextResponder" ref="153973212"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{58, 26}, {201, 34}}</string>
+								<string key="NSFrame">{{58, 26}, {204, 33}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSNextKeyView" ref="715412253"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="508036550">
@@ -220,7 +219,7 @@
 									<int key="NSfFlags">16</int>
 								</object>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-								<double key="preferredMaxLayoutWidth">201</double>
+								<double key="preferredMaxLayoutWidth">204</double>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 59}</string>
