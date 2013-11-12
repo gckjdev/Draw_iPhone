@@ -385,7 +385,10 @@ SLIDER.tag = TAG;\
     [self.degreeLabel setText:NSLS(@"kDegree")];
     [self.blurLabel setText:NSLS(@"kBlur")];
     [self enumSubviewsWithClass:[UILabel class] handler:^(id view) {
-        [view setTextColor:COLOR_BROWN];
+        if ([view respondsToSelector:@selector(setTextColor:)]){
+            [view performSelector:@selector(setTextColor:) withObject:COLOR_BROWN];
+        }
+//        [view setTextColor:COLOR_BROWN];
     }];
 }
 

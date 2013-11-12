@@ -57,7 +57,7 @@
 
 - (void)saveOpus:(Opus*)opus
 {
-    PPDebug(@"SAVE LOCAL OPUS KEY=%@", [opus opusKey]);
+    PPDebug(@"SAVE LOCAL OPUS=%@", [opus description]);
     [_db setObject:opus forKey:[opus opusKey]];
     
     [self printAllOpus];

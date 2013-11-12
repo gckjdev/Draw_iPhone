@@ -1781,6 +1781,7 @@
                            isCorrect:(BOOL)isCorrect
                              score:(NSInteger)score
                            words:(NSString*)words
+                         category:(PBOpusCategoryType)category
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -1801,6 +1802,7 @@
 
         // add by XiaoTao, used to differentiate with old interface
         str = [str stringByAddQueryParameter:PARA_WORD_SCORE intValue:score];
+        str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
         
         if (isCorrect) {
             str = [str stringByAddQueryParameter:PARA_CORRECT boolValue:isCorrect];            
@@ -1845,6 +1847,8 @@
                       commentUserId:(NSString *)commentUserId
                     commentNickName:(NSString *)commentNickName
                           contestId:(NSString*)contestId
+                                  category:(PBOpusCategoryType)category
+
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1863,6 +1867,7 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_COMMENT_CONTENT value:comment];
+        str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
         
         //Comment info
         str = [str stringByAddQueryParameter:PARA_COMMENT_TYPE intValue:commentType];
@@ -1908,6 +1913,8 @@
                        commentUserId:(NSString *)commentUserId 
                      commentNickName:(NSString *)commentNickName
                           contestId:(NSString*)contestId
+                           category:(PBOpusCategoryType)category
+
 
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
@@ -1926,8 +1933,10 @@
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
         str = [str stringByAddQueryParameter:PARA_COMMENT_CONTENT value:comment];
+        str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
 
-        //Comment info         
+
+        //Comment info
         str = [str stringByAddQueryParameter:PARA_COMMENT_TYPE intValue:commentType];
         str = [str stringByAddQueryParameter:PARA_COMMENT_ID value:commentId];
         str = [str stringByAddQueryParameter:PARA_COMMENT_SUMMARY value:commentSummary];
@@ -2004,6 +2013,8 @@
                            awardBalance:(int)awardBalance
                                awardExp:(int)awardExp
                               contestId:(NSString*)contestId
+                               category:(PBOpusCategoryType)category
+
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -2018,6 +2029,8 @@
         str = [str stringByAddQueryParameter:PARA_NICKNAME value:nick];
         str = [str stringByAddQueryParameter:PARA_AVATAR value:avatar];                
         str = [str stringByAddQueryParameter:PARA_GENDER value:gender];
+        str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
+
         
         str = [str stringByAddQueryParameter:PARA_OPUS_ID value:opusId];
         str = [str stringByAddQueryParameter:PARA_OPUS_CREATOR_UID value:opusCreatorUId];
@@ -2058,6 +2071,8 @@
                               actionName:(NSString*)actionName
                                   opusId:(NSString*)opusId
                                contestId:(NSString *)contestId
+                                category:(PBOpusCategoryType)category
+
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
@@ -2075,6 +2090,8 @@
         str = [str stringByAddQueryParameter:PARA_ACTION_TYPE intValue:actionType];
         str = [str stringByAddQueryParameter:PARA_LANGUAGE intValue:[[UserManager defaultManager] getLanguageType]];
         str = [str stringByAddQueryParameter:PARA_CONTESTID value:contestId];
+        str = [str stringByAddQueryParameter:PARA_CATEGORY intValue:category];
+
         return str;
     };
     

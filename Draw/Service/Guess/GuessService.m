@@ -114,6 +114,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GuessService);
                                
                                PARA_START_DATE  : @(start),
                                PARA_END_DATE    : @(end),
+                               
+                               PARA_CATEGORY    : @(opus.category)
                                };
         
         GameNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponsePB:METHOD_GUESS_OPUS parameters:para];

@@ -96,7 +96,7 @@
 //Weixin ID
 #define DRAW_WEIXIN_ID                  @"wx427a2f57bc4456d1"
 #define LITTLE_GEE_WEIXIN_ID            @"wx90e5b16de6688114"
-#define SING_WEIXIN_ID                  @""
+#define SING_WEIXIN_ID                  @"wxdf67334f7e8e0771"
 #define ASK_PS_WEIXIN_ID                @""
 
 // Lm Ad Wall ID

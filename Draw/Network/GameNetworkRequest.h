@@ -329,7 +329,8 @@
                    opusCreatorUId:(NSString*)opusCreatorUId  
                         isCorrect:(BOOL)isCorrect
                             score:(NSInteger)score
-                            words:(NSString*)words;
+                            words:(NSString*)words
+                         category:(PBOpusCategoryType)category;
 
 + (CommonNetworkOutput*)commentOpus:(NSString*)baseURL
                               appId:(NSString*)appId
@@ -345,7 +346,8 @@
                      commentSummary:(NSString *)commentSummary
                       commentUserId:(NSString *)commentUserId 
                     commentNickName:(NSString *)commentNickName
-                          contestId:(NSString*)contestId;
+                          contestId:(NSString*)contestId
+                           category:(PBOpusCategoryType)category;
 
 + (CommonNetworkOutput*)contestCommentOpus:(NSString*)baseURL
                                      appId:(NSString*)appId
@@ -361,7 +363,8 @@
                             commentSummary:(NSString *)commentSummary
                              commentUserId:(NSString *)commentUserId
                            commentNickName:(NSString *)commentNickName
-                                 contestId:(NSString*)contestId;
+                                 contestId:(NSString*)contestId
+                                  category:(PBOpusCategoryType)category;
 
 + (CommonNetworkOutput*)getOpusCount:(NSString*)baseURL
                                appId:(NSString*)appId
@@ -379,7 +382,8 @@
                                itemType:(int)itemType
                            awardBalance:(int)awardBalance
                                awardExp:(int)awardExp
-                              contestId:(NSString*)contestId;
+                              contestId:(NSString*)contestId
+                               category:(PBOpusCategoryType)category;
 
 
 + (CommonNetworkOutput*)getMessageList:(NSString*)baseURL
@@ -518,7 +522,8 @@
                               actionType:(int)actionType
                               actionName:(NSString*)actionName
                                   opusId:(NSString*)opusId
-                               contestId:(NSString *)contestId;
+                               contestId:(NSString *)contestId
+                                category:(PBOpusCategoryType)category;
 
 + (CommonNetworkOutput*)reportStatus:(NSString*)baseURL 
                                appId:(NSString *)appId                                

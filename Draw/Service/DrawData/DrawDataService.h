@@ -59,6 +59,7 @@
    opusCreatorUid:(NSString *)opusCreatorUid
         isCorrect:(BOOL)isCorrect 
             score:(NSInteger)score
+         category:(PBOpusCategoryType)category
          delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 

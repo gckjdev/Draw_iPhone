@@ -157,7 +157,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
     NSString *opusId = opus.pbOpus.opusId;
     NSString *authorId = opus.pbOpus.author.userId;
     
-    [[DrawDataService defaultService] guessDraw:words opusId:opusId opusCreatorUid:authorId isCorrect:NO score:3 delegate:delegate];
+    [[DrawDataService defaultService] guessDraw:words
+                                         opusId:opusId
+                                 opusCreatorUid:authorId
+                                      isCorrect:NO
+                                          score:3
+                                       category:opus.pbOpus.category
+                                       delegate:delegate];
 }
 
 - (void)getOpusDataFile:(Opus*)opus

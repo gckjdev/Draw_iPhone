@@ -195,6 +195,7 @@
                   commentNickName:commentNickName
                         contestId:self.feed.contestId
                  forContestReport:_forContestReport
+                         category:self.feed.categoryType
                          delegate:self];        
     }
 

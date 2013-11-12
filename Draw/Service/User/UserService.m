@@ -1623,6 +1623,22 @@ POSTMSG(NSLS(@"kLoginFailure"));
     });
 }
 
+- (void)exportUserOpusImage:(NSString*)targetUserId
+               successBlock:(void (^)(void))successBlock
+{
+    dispatch_async(workingQueue, ^{
+        CommonNetworkOutput* output = [PPGameNetworkRequest trafficApiServerGetAndResponseJSON:METHOD_EXPORT_USER_OPUS parameters:@{PARA_TARGETUSERID:targetUserId} isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (output.resultCode == ERROR_SUCCESS) {
+                EXECUTE_BLOCK(successBlock);
+            }
+        });
+    });
+}
+
+
+
 - (void)uploadUserAvatar:(UIImage*)image
              resultBlock:(UploadImageResultBlock)resultBlock
 {

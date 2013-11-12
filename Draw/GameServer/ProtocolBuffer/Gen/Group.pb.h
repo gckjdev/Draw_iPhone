@@ -47,6 +47,8 @@
 @class PBGradient;
 @class PBGradient_Builder;
 @class PBGroup;
+@class PBGroupNotice;
+@class PBGroupNotice_Builder;
 @class PBGroupTitle;
 @class PBGroupTitle_Builder;
 @class PBGroupUser;
@@ -411,10 +413,10 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasGuestCapacity_:1;
   BOOL hasTopicCount_:1;
   BOOL hasFanCount_:1;
-  BOOL hasStatusDesc_:1;
   BOOL hasStatus_:1;
   BOOL hasMedalImage_:1;
   BOOL hasBgImage_:1;
+  BOOL hasStatusDesc_:1;
   BOOL hasSignature_:1;
   BOOL hasDesc_:1;
   BOOL hasName_:1;
@@ -433,10 +435,10 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   int32_t guestCapacity;
   int32_t topicCount;
   int32_t fanCount;
-  int32_t statusDesc;
   int32_t status;
   NSString* medalImage;
   NSString* bgImage;
+  NSString* statusDesc;
   NSString* signature;
   NSString* desc;
   NSString* name;
@@ -487,7 +489,7 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 @property (readonly, retain) NSString* desc;
 @property (readonly, retain) NSString* signature;
 @property (readonly) int32_t status;
-@property (readonly) int32_t statusDesc;
+@property (readonly, retain) NSString* statusDesc;
 @property (readonly, retain) NSString* bgImage;
 @property (readonly, retain) NSString* medalImage;
 @property (readonly, retain) PBGroupUser* creator;
@@ -617,8 +619,8 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroup_Builder*) clearStatus;
 
 - (BOOL) hasStatusDesc;
-- (int32_t) statusDesc;
-- (PBGroup_Builder*) setStatusDesc:(int32_t) value;
+- (NSString*) statusDesc;
+- (PBGroup_Builder*) setStatusDesc:(NSString*) value;
 - (PBGroup_Builder*) clearStatusDesc;
 
 - (BOOL) hasBgImage;
@@ -679,5 +681,100 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroup_Builder*) setTopicBuilder:(PBBBSPost_Builder*) builderForValue;
 - (PBGroup_Builder*) mergeTopic:(PBBBSPost*) value;
 - (PBGroup_Builder*) clearTopic;
+@end
+
+@interface PBGroupNotice : PBGeneratedMessage {
+@private
+  BOOL hasType_:1;
+  BOOL hasStatus_:1;
+  BOOL hasNoticeId_:1;
+  BOOL hasMessage_:1;
+  BOOL hasGroupId_:1;
+  BOOL hasRequester_:1;
+  int32_t type;
+  int32_t status;
+  NSString* noticeId;
+  NSString* message;
+  NSString* groupId;
+  PBGameUser* requester;
+}
+- (BOOL) hasNoticeId;
+- (BOOL) hasMessage;
+- (BOOL) hasGroupId;
+- (BOOL) hasType;
+- (BOOL) hasStatus;
+- (BOOL) hasRequester;
+@property (readonly, retain) NSString* noticeId;
+@property (readonly, retain) NSString* message;
+@property (readonly, retain) NSString* groupId;
+@property (readonly) int32_t type;
+@property (readonly) int32_t status;
+@property (readonly, retain) PBGameUser* requester;
+
++ (PBGroupNotice*) defaultInstance;
+- (PBGroupNotice*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBGroupNotice_Builder*) builder;
++ (PBGroupNotice_Builder*) builder;
++ (PBGroupNotice_Builder*) builderWithPrototype:(PBGroupNotice*) prototype;
+
++ (PBGroupNotice*) parseFromData:(NSData*) data;
++ (PBGroupNotice*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGroupNotice*) parseFromInputStream:(NSInputStream*) input;
++ (PBGroupNotice*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBGroupNotice*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBGroupNotice*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBGroupNotice_Builder : PBGeneratedMessage_Builder {
+@private
+  PBGroupNotice* result;
+}
+
+- (PBGroupNotice*) defaultInstance;
+
+- (PBGroupNotice_Builder*) clear;
+- (PBGroupNotice_Builder*) clone;
+
+- (PBGroupNotice*) build;
+- (PBGroupNotice*) buildPartial;
+
+- (PBGroupNotice_Builder*) mergeFrom:(PBGroupNotice*) other;
+- (PBGroupNotice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBGroupNotice_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasNoticeId;
+- (NSString*) noticeId;
+- (PBGroupNotice_Builder*) setNoticeId:(NSString*) value;
+- (PBGroupNotice_Builder*) clearNoticeId;
+
+- (BOOL) hasMessage;
+- (NSString*) message;
+- (PBGroupNotice_Builder*) setMessage:(NSString*) value;
+- (PBGroupNotice_Builder*) clearMessage;
+
+- (BOOL) hasGroupId;
+- (NSString*) groupId;
+- (PBGroupNotice_Builder*) setGroupId:(NSString*) value;
+- (PBGroupNotice_Builder*) clearGroupId;
+
+- (BOOL) hasType;
+- (int32_t) type;
+- (PBGroupNotice_Builder*) setType:(int32_t) value;
+- (PBGroupNotice_Builder*) clearType;
+
+- (BOOL) hasStatus;
+- (int32_t) status;
+- (PBGroupNotice_Builder*) setStatus:(int32_t) value;
+- (PBGroupNotice_Builder*) clearStatus;
+
+- (BOOL) hasRequester;
+- (PBGameUser*) requester;
+- (PBGroupNotice_Builder*) setRequester:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) setRequesterBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBGroupNotice_Builder*) mergeRequester:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) clearRequester;
 @end
 

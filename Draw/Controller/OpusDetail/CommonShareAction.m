@@ -225,7 +225,8 @@ allowClickMaskDismiss:(BOOL)allowClickMaskDismiss
     if (![[UserManager defaultManager] isMe:_opus.pbOpus.author.userId]) {
         [[FeedService defaultService] actionSaveOpus:_opus.pbOpus.opusId
                                            contestId:_opus.pbOpus.contestId
-                                          actionName:actionName];
+                                          actionName:actionName
+                                            category:_opus.pbOpus.category];
     }
 }
 
