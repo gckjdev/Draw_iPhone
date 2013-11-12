@@ -135,13 +135,13 @@
 - (NSString*)facebookAppKey
 {
     return [MobClickUtils getStringValueByKey:@"SING_FACEBOOK_APP_SECRET"
-                                 defaultValue:@"352182988165711"];
+                                 defaultValue:@"325848464220092"];
 }
 
 - (NSString*)facebookAppSecret
 {
     return [MobClickUtils getStringValueByKey:@"SING_FACEBOOK_APP_SECRET"
-                                 defaultValue:@"51c65d7fbef9858a5d8bc60014d33ce2"];
+                                 defaultValue:@"03594330444a5c9f5f4e3bb0f61c1f84"];
 }
 
 - (NSString*)wanpuAdPublisherId
