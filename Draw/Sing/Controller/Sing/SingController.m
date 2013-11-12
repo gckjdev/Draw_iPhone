@@ -155,8 +155,6 @@ enum{
     // init title view
     [self initTitleView];
 
-
-    
     // init opus image view
     [self initOpusImageView];
     
@@ -211,40 +209,48 @@ enum{
 
 - (void)initOpusDescLabel{
     
-    self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
-    self.opusDescLabel.textAlignment = NSTextAlignmentCenter;
-    self.opusDescLabel.font = [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)];
-    [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
-        
-    CGSize size = CGSizeMake(self.opusImageView.frame.size.width * 0.8, 18);
-    PPDebug(@"desc = %@", self.singOpus.pbOpus.desc);
+    PBLabelInfo *labelInfo = self.singOpus.pbOpus.descLabelInfo;
+    
+    CGRect rect = CGRectMake(labelInfo.frame.x,
+                             labelInfo.frame.y,
+                             labelInfo.frame.width,
+                             labelInfo.frame.height);
+    
+    self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:rect] autorelease];
+    
     self.opusDescLabel.text = self.singOpus.pbOpus.desc;
-    [self.opusDescLabel wrapTextWithConstrainedSize:size];
-    [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
+    self.opusDescLabel.textAlignment = NSTextAlignmentCenter;
+    self.opusDescLabel.backgroundColor = [UIColor clearColor];
     
-    CGFloat originX = self.opusImageView.superview.bounds.size.width * self.singOpus.pbOpus.descLabelInfo.xRatio;
-    CGFloat originY = self.opusImageView.superview.bounds.size.height * self.singOpus.pbOpus.descLabelInfo.yRatio;
+    
+    // set text color
+    UIColor *textColor = [DrawUtils decompressColor8:labelInfo.textColor];
+    self.opusDescLabel.textColor = [DrawUtils decompressColor8:textColor];
+    
+    // set text font
+    self.opusDescLabel.font = [UIFont systemFontOfSize:labelInfo.textFont];
+    
+    
+    // set text stroke color
+    UIColor *textStrokeColor = [DrawUtils decompressColor8:labelInfo.textStrokeColor];
+    self.opusDescLabel.textOutlineColor = [DrawUtils decompressColor8:textStrokeColor];
+    
+    // set stroke width
+    self.opusDescLabel.textOutlineWidth = labelInfo.textStrokeWidth;
 
-    [self.opusDescLabel updateOriginX:originX];
-    [self.opusDescLabel updateOriginY:originY];
-    
-    self.opusDescLabel.textColor = [DrawUtils decompressColor8:self.singOpus.pbOpus.descLabelInfo.textColor];
-    self.opusDescLabel.textOutlineColor = [DrawUtils decompressColor8:self.singOpus.pbOpus.descLabelInfo.textStrokeColor];
-    self.opusDescLabel.textOutlineWidth = 1;
-    
+    // add label into opus image view
     [self.opusImageView addSubview:self.opusDescLabel];
     
+    // enable user interaction
     self.opusImageView.userInteractionEnabled = YES;
     self.opusDescLabel.userInteractionEnabled = YES;
-    UIPanGestureRecognizer *panGestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self
-                                                                                            action:@selector(handlePanGestures:)] autorelease];
     
+    // add pan guesture
+    UIPanGestureRecognizer *panGestureRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGestures:)] autorelease];
     panGestureRecognizer.delegate = self;
-    
-    // Label加入拖拽手势识别器，这样，Label就会相应推拽操作
     [self.opusDescLabel addGestureRecognizer:panGestureRecognizer];
     
-    
+    // add tap guesture
     UITapGestureRecognizer *tapGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestures:)] autorelease];
     tapGestureRecognizer.delegate = self;
     [self.opusDescLabel addGestureRecognizer:tapGestureRecognizer];
@@ -255,6 +261,7 @@ enum{
     
     [self.opusImageView.layer setCornerRadius:35];
     [self.opusImageView.layer setMasksToBounds:YES];
+    [self.singOpus setCanvasSize:self.opusImageView.frame.size];
     
     self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.localImageUrl];
     if (self.image !=nil ) {
@@ -338,8 +345,6 @@ enum{
 
 - (void) handleTapGestures:(UIPanGestureRecognizer*)paramSender{
     
-    
-    
     MKBlockActionSheet *sheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kWhiteTextBlackStroke"), NSLS(@"kBlackTextWhiteStroke"), nil] autorelease];
     
     sheet.actionBlock = ^(NSInteger buttonIndex){
@@ -361,24 +366,35 @@ enum{
 
 - (void)saveDescLabelInfo{
     
-    CGFloat xRatio = self.opusDescLabel.frame.origin.x /  self.opusDescLabel.superview.bounds.size.width;
-    CGFloat yRatio = self.opusDescLabel.frame.origin.y / self.opusDescLabel.superview.bounds.size.height;
+    CGRect rect = self.opusDescLabel.frame;
     int textColor = [DrawUtils compressColor8:self.opusDescLabel.textColor];
     int textStrokeColor = [DrawUtils compressColor8:self.opusDescLabel.textOutlineColor];
-    [self.singOpus setStrokeLabelWithXRatio:xRatio yRatio:yRatio textColor:textColor textStrokeColor:textStrokeColor];
+    float fontSize = [[self.opusDescLabel font] pointSize];
+    float textStrokeWidth = self.opusDescLabel.textOutlineWidth;
+    
+    [self.singOpus setLabelInfoWithFrame:rect
+                               textColor:textColor
+                                textFont:fontSize
+                                   style:0
+                         textStrokeColor:textStrokeColor
+                         textStrokeWidth:textStrokeWidth];
 }
 
 
 - (void)updateDescLabelInfo:(NSString *)desc{
-    
+
+    // adjust new size of desc label
     CGSize size = CGSizeMake(self.opusImageView.frame.size.width * 0.8, 18);
     self.opusDescLabel.text = desc;
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
-    
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
     
+    // center desc label
     [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
     [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
+    
+    // save label info
+    [self saveDescLabelInfo];
 }
 
 - (BOOL)shouldAutorotate{

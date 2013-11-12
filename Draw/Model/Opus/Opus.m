@@ -104,6 +104,18 @@
     [_pbOpusBuilder setIsRecovery:value];
 }
 
+- (void)setCanvasSize:(CGSize)size{
+    
+    PBSize_Builder *builder = [[[PBSize_Builder alloc] init] autorelease];
+    
+    [builder setWidth:size.width];
+    [builder setHeight:size.height];
+    
+    PBSize *pbSize = [builder build];
+    
+    [_pbOpusBuilder setCanvasSize:pbSize];
+}
+
 
 - (void)setLocalImageUrl:(NSString *)image{
     [_pbOpusBuilder setLocalImageUrl:image];

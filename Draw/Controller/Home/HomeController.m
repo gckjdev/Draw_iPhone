@@ -32,7 +32,6 @@
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
 #import "WordManager.h"
-//#import "RegisterUserController.h"
 
 #import "OfflineGuessDrawController.h"
 #import "UseItemScene.h"

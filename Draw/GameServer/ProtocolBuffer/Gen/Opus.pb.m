@@ -860,6 +860,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
 @property BOOL isRecovery;
 @property PBOpusStoreType storeType;
 @property (retain) PBLabelInfo* descLabelInfo;
+@property (retain) PBSize* canvasSize;
 @property (retain) PBOpusGuess* guessInfo;
 @end
 
@@ -1068,6 +1069,13 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   hasDescLabelInfo_ = !!value;
 }
 @synthesize descLabelInfo;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
 - (BOOL) hasGuessInfo {
   return !!hasGuessInfo_;
 }
@@ -1097,6 +1105,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
   self.localImageUrl = nil;
   self.localThumbImageUrl = nil;
   self.descLabelInfo = nil;
+  self.canvasSize = nil;
   self.guessInfo = nil;
   [super dealloc];
 }
@@ -1130,6 +1139,7 @@ static PBAskPsOpus* defaultPBAskPsOpusInstance = nil;
     self.isRecovery = NO;
     self.storeType = PBOpusStoreTypeNormalOpus;
     self.descLabelInfo = [PBLabelInfo defaultInstance];
+    self.canvasSize = [PBSize defaultInstance];
     self.guessInfo = [PBOpusGuess defaultInstance];
   }
   return self;
@@ -1282,6 +1292,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   if (self.hasDescLabelInfo) {
     [output writeMessage:201 value:self.descLabelInfo];
   }
+  if (self.hasCanvasSize) {
+    [output writeMessage:202 value:self.canvasSize];
+  }
   if (self.hasGuessInfo) {
     [output writeMessage:250 value:self.guessInfo];
   }
@@ -1388,6 +1401,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (self.hasDescLabelInfo) {
     size += computeMessageSize(201, self.descLabelInfo);
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(202, self.canvasSize);
   }
   if (self.hasGuessInfo) {
     size += computeMessageSize(250, self.guessInfo);
@@ -1562,6 +1578,9 @@ static PBOpus* defaultPBOpusInstance = nil;
   }
   if (other.hasDescLabelInfo) {
     [self mergeDescLabelInfo:other.descLabelInfo];
+  }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
   }
   if (other.hasGuessInfo) {
     [self mergeGuessInfo:other.guessInfo];
@@ -1762,6 +1781,15 @@ static PBOpus* defaultPBOpusInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDescLabelInfo:[subBuilder buildPartial]];
+        break;
+      }
+      case 1618: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
       case 2002: {
@@ -2380,6 +2408,36 @@ static PBOpus* defaultPBOpusInstance = nil;
 - (PBOpus_Builder*) clearDescLabelInfo {
   result.hasDescLabelInfo = NO;
   result.descLabelInfo = [PBLabelInfo defaultInstance];
+  return self;
+}
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (PBOpus_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (PBOpus_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (PBOpus_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (PBOpus_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 - (BOOL) hasGuessInfo {

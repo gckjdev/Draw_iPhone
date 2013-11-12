@@ -9,8 +9,7 @@
 #import "Opus.h"
 
 #define SING_FILE_EXTENSION         @"m4a"
-//#define SING_FILE_EXTENSION         @"mp3"
-//#define SING_FILE_EXTENSION         @"wav"
+
 
 
 #define SING_IMAGE_EXTENSION        @"png"
@@ -20,12 +19,12 @@
 - (void)setSong:(PBSong *)song;
 - (void)setVoiceType:(PBVoiceType)voiceType;
 
-- (void)setStrokeLabelWithXRatio:(CGFloat)xRatio
-                          yRatio:(CGFloat)yRatio
-                       textColor:(int)textColor
-                 textStrokeColor:(int)textStrokeColor;
-
-
+- (void)setLabelInfoWithFrame:(CGRect)frame
+                    textColor:(int)textColor
+                     textFont:(float)textFont
+                        style:(int)style
+              textStrokeColor:(int)textStrokeColor
+              textStrokeWidth:(float)textStrokeWidth;
 
 - (NSURL*)localNativeDataURL;
 - (void)setLocalNativeDataUrl:(NSString*)extension;

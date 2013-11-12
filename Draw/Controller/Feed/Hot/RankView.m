@@ -19,6 +19,7 @@
 #import "UIImageExt.h"
 #import "ContestManager.h"
 #import "PPConfigManager.h"
+#import "WhisperStyleView.h"
 
 @interface RankView ()
 @property (retain, nonatomic) IBOutlet UILabel *costLabel;
@@ -87,7 +88,6 @@
     PPRelease(_cupFlag);
     [_costLabel release];
     [_boughtCountLabel release];
-    [_descLabel release];
     [_holderView release];
     [super dealloc];
 }
@@ -182,16 +182,16 @@
     
     [self setRankViewSelected:NO];
     
-//    self.drawImage.center = self.center;
     self.maskControl.frame = self.bounds;
     
     if (feed.learnDraw) {
         [self updateLearnDraw:feed.learnDraw];
     }
-    
-    [ShareImageManager setStrokeLabelStyle:self.descLabel];
-    self.descLabel.text = self.feed.opusDesc;
-//    [self.descLabel setNeedsDisplay];
+
+    [[self viewWithTag:201139481] removeFromSuperview];
+    WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.frame feed:self.feed];
+    [self addSubview:v];
+    v.tag = 201139481;
 }
 
 - (void)updateViewInfoForMyOpus

@@ -39,6 +39,8 @@
 - (void)setTargetUser:(PBGameUser *)user;
 - (void)setIsRecovery:(BOOL)value;
 
+- (void)setCanvasSize:(CGSize)size;
+
 
 - (PBOpus *)pbOpus;
 - (NSData *)data;

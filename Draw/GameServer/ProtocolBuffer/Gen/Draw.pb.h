@@ -614,27 +614,31 @@
 
 @interface PBLabelInfo : PBGeneratedMessage {
 @private
-  BOOL hasXRatio_:1;
-  BOOL hasYRatio_:1;
-  BOOL hasStyle_:1;
+  BOOL hasTextFont_:1;
+  BOOL hasTextStrokeWidth_:1;
   BOOL hasTextColor_:1;
+  BOOL hasStyle_:1;
   BOOL hasTextStrokeColor_:1;
-  Float32 xRatio;
-  Float32 yRatio;
-  int32_t style;
+  BOOL hasFrame_:1;
+  Float32 textFont;
+  Float32 textStrokeWidth;
   int32_t textColor;
+  int32_t style;
   int32_t textStrokeColor;
+  PBRect* frame;
 }
-- (BOOL) hasXRatio;
-- (BOOL) hasYRatio;
-- (BOOL) hasStyle;
+- (BOOL) hasFrame;
 - (BOOL) hasTextColor;
+- (BOOL) hasTextFont;
+- (BOOL) hasStyle;
 - (BOOL) hasTextStrokeColor;
-@property (readonly) Float32 xRatio;
-@property (readonly) Float32 yRatio;
-@property (readonly) int32_t style;
+- (BOOL) hasTextStrokeWidth;
+@property (readonly, retain) PBRect* frame;
 @property (readonly) int32_t textColor;
+@property (readonly) Float32 textFont;
+@property (readonly) int32_t style;
 @property (readonly) int32_t textStrokeColor;
+@property (readonly) Float32 textStrokeWidth;
 
 + (PBLabelInfo*) defaultInstance;
 - (PBLabelInfo*) defaultInstance;
@@ -670,30 +674,37 @@
 - (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBLabelInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (BOOL) hasXRatio;
-- (Float32) xRatio;
-- (PBLabelInfo_Builder*) setXRatio:(Float32) value;
-- (PBLabelInfo_Builder*) clearXRatio;
-
-- (BOOL) hasYRatio;
-- (Float32) yRatio;
-- (PBLabelInfo_Builder*) setYRatio:(Float32) value;
-- (PBLabelInfo_Builder*) clearYRatio;
-
-- (BOOL) hasStyle;
-- (int32_t) style;
-- (PBLabelInfo_Builder*) setStyle:(int32_t) value;
-- (PBLabelInfo_Builder*) clearStyle;
+- (BOOL) hasFrame;
+- (PBRect*) frame;
+- (PBLabelInfo_Builder*) setFrame:(PBRect*) value;
+- (PBLabelInfo_Builder*) setFrameBuilder:(PBRect_Builder*) builderForValue;
+- (PBLabelInfo_Builder*) mergeFrame:(PBRect*) value;
+- (PBLabelInfo_Builder*) clearFrame;
 
 - (BOOL) hasTextColor;
 - (int32_t) textColor;
 - (PBLabelInfo_Builder*) setTextColor:(int32_t) value;
 - (PBLabelInfo_Builder*) clearTextColor;
 
+- (BOOL) hasTextFont;
+- (Float32) textFont;
+- (PBLabelInfo_Builder*) setTextFont:(Float32) value;
+- (PBLabelInfo_Builder*) clearTextFont;
+
+- (BOOL) hasStyle;
+- (int32_t) style;
+- (PBLabelInfo_Builder*) setStyle:(int32_t) value;
+- (PBLabelInfo_Builder*) clearStyle;
+
 - (BOOL) hasTextStrokeColor;
 - (int32_t) textStrokeColor;
 - (PBLabelInfo_Builder*) setTextStrokeColor:(int32_t) value;
 - (PBLabelInfo_Builder*) clearTextStrokeColor;
+
+- (BOOL) hasTextStrokeWidth;
+- (Float32) textStrokeWidth;
+- (PBLabelInfo_Builder*) setTextStrokeWidth:(Float32) value;
+- (PBLabelInfo_Builder*) clearTextStrokeWidth;
 @end
 
 @interface PBFeed : PBGeneratedMessage {
@@ -701,93 +712,95 @@
   BOOL hasIsCorrect_:1;
   BOOL hasGender_:1;
   BOOL hasOpusCreatorGender_:1;
-  BOOL hasHistoryScore_:1;
   BOOL hasContestScore_:1;
+  BOOL hasHistoryScore_:1;
+  BOOL hasOpusStatus_:1;
+  BOOL hasScore_:1;
+  BOOL hasMatchTimes_:1;
+  BOOL hasSpendTime_:1;
   BOOL hasCorrectTimes_:1;
   BOOL hasGuessTimes_:1;
   BOOL hasCommentTimes_:1;
-  BOOL hasMatchTimes_:1;
-  BOOL hasSpendTime_:1;
-  BOOL hasScore_:1;
   BOOL hasDeviceType_:1;
   BOOL hasCreateDate_:1;
   BOOL hasActionType_:1;
   BOOL hasRankInTop_:1;
-  BOOL hasOpusStatus_:1;
-  BOOL hasComment_:1;
-  BOOL hasContestId_:1;
-  BOOL hasOpusCreatorUserId_:1;
-  BOOL hasOpusCreatorNickName_:1;
   BOOL hasOpusCreatorAvatar_:1;
+  BOOL hasOpusCreatorNickName_:1;
+  BOOL hasOpusCreatorUserId_:1;
   BOOL hasOpusWord_:1;
   BOOL hasOpusImage_:1;
   BOOL hasOpusThumbImage_:1;
   BOOL hasDataUrl_:1;
+  BOOL hasContestId_:1;
+  BOOL hasComment_:1;
   BOOL hasOpusId_:1;
   BOOL hasDrawDataUrl_:1;
   BOOL hasOpusDesc_:1;
   BOOL hasTargetUserNickName_:1;
   BOOL hasTargetUserId_:1;
+  BOOL hasFeedId_:1;
   BOOL hasSignature_:1;
   BOOL hasAvatar_:1;
   BOOL hasNickName_:1;
+  BOOL hasUserId_:1;
   BOOL hasGameId_:1;
   BOOL hasDeviceName_:1;
-  BOOL hasUserId_:1;
-  BOOL hasFeedId_:1;
-  BOOL hasLearnDraw_:1;
-  BOOL hasSing_:1;
+  BOOL hasCanvasSize_:1;
   BOOL hasDescLabelInfo_:1;
-  BOOL hasCommentInfo_:1;
+  BOOL hasSing_:1;
+  BOOL hasLearnDraw_:1;
   BOOL hasDrawData_:1;
+  BOOL hasCommentInfo_:1;
   BOOL hasCategory_:1;
   BOOL isCorrect_:1;
   BOOL gender_:1;
   BOOL opusCreatorGender_:1;
-  Float64 historyScore;
   Float64 contestScore;
+  Float64 historyScore;
+  int32_t opusStatus;
+  int32_t score;
+  int32_t matchTimes;
+  int32_t spendTime;
   int32_t correctTimes;
   int32_t guessTimes;
   int32_t commentTimes;
-  int32_t matchTimes;
-  int32_t spendTime;
-  int32_t score;
   int32_t deviceType;
   int32_t createDate;
   int32_t actionType;
   int32_t rankInTop;
-  int32_t opusStatus;
-  NSString* comment;
-  NSString* contestId;
-  NSString* opusCreatorUserId;
-  NSString* opusCreatorNickName;
   NSString* opusCreatorAvatar;
+  NSString* opusCreatorNickName;
+  NSString* opusCreatorUserId;
   NSString* opusWord;
   NSString* opusImage;
   NSString* opusThumbImage;
   NSString* dataUrl;
+  NSString* contestId;
+  NSString* comment;
   NSString* opusId;
   NSString* drawDataUrl;
   NSString* opusDesc;
   NSString* targetUserNickName;
   NSString* targetUserId;
+  NSString* feedId;
   NSString* signature;
   NSString* avatar;
   NSString* nickName;
+  NSString* userId;
   NSString* gameId;
   NSString* deviceName;
-  NSString* userId;
-  NSString* feedId;
-  PBLearnDraw* learnDraw;
-  PBSingOpus* sing;
+  PBSize* canvasSize;
   PBLabelInfo* descLabelInfo;
-  PBCommentInfo* commentInfo;
+  PBSingOpus* sing;
+  PBLearnDraw* learnDraw;
   PBDraw* drawData;
+  PBCommentInfo* commentInfo;
   PBOpusCategoryType category;
-  NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableTagsList;
-  NSMutableArray* mutableFeedTimesList;
+  NSMutableArray* mutableGuessWordsList;
   NSMutableArray* mutableRankInfoList;
+  NSMutableArray* mutableFeedTimesList;
 }
 - (BOOL) hasFeedId;
 - (BOOL) hasUserId;
@@ -832,6 +845,7 @@
 - (BOOL) hasLearnDraw;
 - (BOOL) hasSing;
 - (BOOL) hasDescLabelInfo;
+- (BOOL) hasCanvasSize;
 @property (readonly, retain) NSString* feedId;
 @property (readonly, retain) NSString* userId;
 @property (readonly) int32_t actionType;
@@ -875,6 +889,7 @@
 @property (readonly, retain) PBLearnDraw* learnDraw;
 @property (readonly, retain) PBSingOpus* sing;
 @property (readonly, retain) PBLabelInfo* descLabelInfo;
+@property (readonly, retain) PBSize* canvasSize;
 - (NSArray*) tagsList;
 - (NSString*) tagsAtIndex:(int32_t) index;
 - (NSArray*) guessWordsList;
@@ -1170,6 +1185,13 @@
 - (PBFeed_Builder*) setDescLabelInfoBuilder:(PBLabelInfo_Builder*) builderForValue;
 - (PBFeed_Builder*) mergeDescLabelInfo:(PBLabelInfo*) value;
 - (PBFeed_Builder*) clearDescLabelInfo;
+
+- (BOOL) hasCanvasSize;
+- (PBSize*) canvasSize;
+- (PBFeed_Builder*) setCanvasSize:(PBSize*) value;
+- (PBFeed_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue;
+- (PBFeed_Builder*) mergeCanvasSize:(PBSize*) value;
+- (PBFeed_Builder*) clearCanvasSize;
 @end
 
 @interface PBPoint : PBGeneratedMessage {

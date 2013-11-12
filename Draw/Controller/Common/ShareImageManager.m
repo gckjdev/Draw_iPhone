@@ -1462,33 +1462,25 @@ static UIImage* _whitePaperImage;
     }
 }
 
-+ (void)setFXLabelStyle:(FXLabel *)label{
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
+//+ (void)setFXLabelStyle:(FXLabel *)label{
+//    label.textColor = [UIColor whiteColor];
+//    label.backgroundColor = [UIColor clearColor];
+//
+//    //demonstrate shadow
+//    label.shadowColor = nil;
+//    label.shadowOffset = CGSizeMake(0.0f, 2.0f);
+//    label.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
+//    label.shadowBlur = 5.0f;
+//    
+////    //demonstrate inner shadow
+////    label.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+////    label.shadowOffset = CGSizeMake(1.0f, 1.0f);
+////    label.shadowBlur = 1.0f;
+////    label.innerShadowBlur = 2.0f;
+////    label.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
+////    label.innerShadowOffset = CGSizeMake(1.0f, 1.0f);
+//}
 
-    //demonstrate shadow
-    label.shadowColor = nil;
-    label.shadowOffset = CGSizeMake(0.0f, 2.0f);
-    label.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.75f];
-    label.shadowBlur = 5.0f;
-    
-//    //demonstrate inner shadow
-//    label.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-//    label.shadowOffset = CGSizeMake(1.0f, 1.0f);
-//    label.shadowBlur = 1.0f;
-//    label.innerShadowBlur = 2.0f;
-//    label.innerShadowColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-//    label.innerShadowOffset = CGSizeMake(1.0f, 1.0f);
-}
-
-
-+ (void)setStrokeLabelStyle:(StrokeLabel *)label{
-    label.textColor = [UIColor whiteColor];
-    label.backgroundColor = [UIColor clearColor];
-    
-    //demonstrate shadow
-    label.textOutlineWidth = 2;
-}
 
 @end
 

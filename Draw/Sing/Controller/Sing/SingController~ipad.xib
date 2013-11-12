@@ -127,9 +127,8 @@
 							<object class="IBUIImageView" id="546855590">
 								<reference key="NSNextResponder" ref="422045288"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{36, 8}, {628, 627}}</string>
+								<string key="NSFrame">{{36, 7.5}, {628, 628}}</string>
 								<reference key="NSSuperview" ref="422045288"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<int key="IBUIContentMode">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -830,19 +829,19 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="draw_commit_btn@2x.png">{60, 62}</string>
-			<string key="draw_save_btn@2x.png">{60, 62}</string>
-			<string key="sing_bg@2x.png">{647, 647}</string>
-			<string key="sing_edit@2x.png">{109, 109}</string>
-			<string key="sing_lyric@2x.png">{109, 109}</string>
-			<string key="sing_pause@2x.png">{24, 24}</string>
-			<string key="sing_play@2x.png">{24, 24}</string>
-			<string key="sing_record@2x.png">{195, 195}</string>
-			<string key="sing_record_bg@2x.png">{195, 195}</string>
-			<string key="sing_rerecord@2x.png">{109, 109}</string>
-			<string key="sing_switch1@2x.png">{104, 104}</string>
-			<string key="sing_switch2@2x.png">{104, 104}</string>
-			<string key="sing_voice@2x.png">{109, 109}</string>
+			<string key="draw_commit_btn@2x.png">{16, 16}</string>
+			<string key="draw_save_btn@2x.png">{16, 16}</string>
+			<string key="sing_bg@2x.png">{16, 16}</string>
+			<string key="sing_edit@2x.png">{16, 16}</string>
+			<string key="sing_lyric@2x.png">{16, 16}</string>
+			<string key="sing_pause@2x.png">{16, 16}</string>
+			<string key="sing_play@2x.png">{16, 16}</string>
+			<string key="sing_record@2x.png">{16, 16}</string>
+			<string key="sing_record_bg@2x.png">{16, 16}</string>
+			<string key="sing_rerecord@2x.png">{16, 16}</string>
+			<string key="sing_switch1@2x.png">{16, 16}</string>
+			<string key="sing_switch2@2x.png">{16, 16}</string>
+			<string key="sing_voice@2x.png">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

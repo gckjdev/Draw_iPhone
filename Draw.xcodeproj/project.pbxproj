@@ -2928,6 +2928,12 @@
 		A4E4AA17182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */; };
 		A4E4AA18182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */; };
 		A4E4AA19182C9CAD0001AFFE /* WhisperView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */; };
+		A4E59C911832208D003578CA /* WhisperStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E59C8F1832208D003578CA /* WhisperStyleView.m */; };
+		A4E59C921832208D003578CA /* WhisperStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E59C8F1832208D003578CA /* WhisperStyleView.m */; };
+		A4E59C931832208D003578CA /* WhisperStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E59C8F1832208D003578CA /* WhisperStyleView.m */; };
+		A4E59C941832208D003578CA /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E59C901832208D003578CA /* WhisperStyleView.xib */; };
+		A4E59C951832208D003578CA /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E59C901832208D003578CA /* WhisperStyleView.xib */; };
+		A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E59C901832208D003578CA /* WhisperStyleView.xib */; };
 		A4E64919178426310063F393 /* PBOpus+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E64918178426310063F393 /* PBOpus+Extend.m */; };
 		A4E6491E1784288E0063F393 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
 		A4E6491F1784288E0063F393 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
@@ -7849,6 +7855,9 @@
 		A4E254CF1796CC5D00767506 /* GuessService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessService.m; sourceTree = "<group>"; };
 		A4E4AA12182C9CAD0001AFFE /* WhisperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhisperView.xib; sourceTree = "<group>"; };
 		A4E4AA13182C9CAD0001AFFE /* WhisperView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WhisperView~ipad.xib"; sourceTree = "<group>"; };
+		A4E59C8E1832208D003578CA /* WhisperStyleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhisperStyleView.h; sourceTree = "<group>"; };
+		A4E59C8F1832208D003578CA /* WhisperStyleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhisperStyleView.m; sourceTree = "<group>"; };
+		A4E59C901832208D003578CA /* WhisperStyleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhisperStyleView.xib; sourceTree = "<group>"; };
 		A4E64917178426310063F393 /* PBOpus+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PBOpus+Extend.h"; sourceTree = "<group>"; };
 		A4E64918178426310063F393 /* PBOpus+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PBOpus+Extend.m"; sourceTree = "<group>"; };
 		A4E6491B1784288E0063F393 /* CommonCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCommentController.h; sourceTree = "<group>"; };
@@ -15111,6 +15120,9 @@
 		CA9AAEDF18321621002DBAA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A4E59C8E1832208D003578CA /* WhisperStyleView.h */,
+				A4E59C8F1832208D003578CA /* WhisperStyleView.m */,
+				A4E59C901832208D003578CA /* WhisperStyleView.xib */,
 				CA9AAEE018321621002DBAA5 /* NameAndDescEditView.h */,
 				CA9AAEE118321621002DBAA5 /* NameAndDescEditView.m */,
 				CA9AAEE218321621002DBAA5 /* NameAndDescEditView.xib */,
@@ -17615,6 +17627,7 @@
 				CA9AB05E18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
 				CA9AB09D183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CA9AB0A1183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
+				A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18556,6 +18569,7 @@
 				CA9AB05D18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
 				CA9AB09C183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CA9AB0A0183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
+				A4E59C951832208D003578CA /* WhisperStyleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19479,6 +19493,7 @@
 				CA9AB05C18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
 				CA9AB09B183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CA9AB09F183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
+				A4E59C941832208D003578CA /* WhisperStyleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21133,6 +21148,7 @@
 				CA9AB0C1183217B3002DBAA5 /* DiracUtilities.mm in Sources */,
 				CA9AB0D318321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D718321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
+				A4E59C931832208D003578CA /* WhisperStyleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21895,6 +21911,7 @@
 				CA9AB0C518321820002DBAA5 /* VoiceProcessor.mm in Sources */,
 				CA9AB0D218321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D618321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
+				A4E59C921832208D003578CA /* WhisperStyleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22662,6 +22679,7 @@
 				CA9AB0C818321821002DBAA5 /* VoiceProcessor.mm in Sources */,
 				CA9AB0D118321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D518321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
+				A4E59C911832208D003578CA /* WhisperStyleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

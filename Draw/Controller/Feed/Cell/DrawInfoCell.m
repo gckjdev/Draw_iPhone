@@ -20,6 +20,7 @@
 //#import "AudioStreamer.h"
 #import "UITextView+Extend.h"
 #import "UILabel+Extend.h"
+#import "WhisperStyleView.h"
 
 
 #define DESC_FONT_SIZE (ISIPAD ? 20 : 11)
@@ -56,7 +57,6 @@
     PPRelease(_opusDesc);
     [_slider release];
     [_audioButton release];
-    [_opusDescLabel release];
     [super dealloc];
 }
 
@@ -197,26 +197,6 @@
     self.opusDesc.textColor = COLOR_BROWN;
     CGSize size = [DrawInfoCell labelSizeWithText:desc];
     [self.opusDesc updateHeight:size.height];
-    
-    self.opusDescLabel.text = desc;
-    [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
-    
-    self.opusDescLabel.textColor = [DrawUtils decompressColor8:self.feed.pbFeed.descLabelInfo.textColor];
-    self.opusDescLabel.textOutlineColor = [DrawUtils decompressColor8:self.feed.pbFeed.descLabelInfo.textStrokeColor];
-    
-    [self.opusDescLabel wrapTextWithConstrainedSize:CGSizeMake(self.drawImage.frame.size.width * 0.8, 18)];
-    [self.opusDescLabel updateWidth:(self.drawImage.frame.size.width * 0.8)];
-    
-    CGFloat originX = self.drawImage.frame.size.width * self.feed.pbFeed.descLabelInfo.xRatio;
-    CGFloat originY = self.drawImage.frame.size.height * self.feed.pbFeed.descLabelInfo.yRatio;
-    
-    PPDebug(@"textColor = %d", self.feed.pbFeed.descLabelInfo.textColor);
-    PPDebug(@"textStrokeColor = %d", self.feed.pbFeed.descLabelInfo.textStrokeColor);
-    PPDebug(@"originX = %f", originX);
-    PPDebug(@"originY = %f", originY);
-
-    [self.opusDescLabel updateOriginX:originX];
-    [self.opusDescLabel updateOriginY:originY];
 }
 
 - (void)updateDrawImageView:(UIImage *)image
@@ -318,6 +298,15 @@
     [self updateDesc:feed.opusDesc];
     [self updateDrawToUserInfo:feed];
     [self updateDrawWithScene:scene];
+    [self updateWhisperStyleView];
+}
+
+- (void)updateWhisperStyleView{
+    
+    [[self viewWithTag:8808723459] removeFromSuperview];
+    WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.frame feed:self.feed];
+    v.tag = 8808723459;
+    [self addSubview:v];
 }
 
 - (void)updateDrawWithScene:(id<ShowFeedSceneProtocol>)scene

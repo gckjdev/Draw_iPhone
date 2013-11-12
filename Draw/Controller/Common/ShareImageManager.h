@@ -451,7 +451,5 @@
 + (void)setButtonCommonTabStyle:(UIButton *)button;
 + (void)setButtonOrangeRoundStyle:(UIButton *)button;
 
-+ (void)setFXLabelStyle:(FXLabel *)label;
-+ (void)setStrokeLabelStyle:(StrokeLabel *)label;
 
 @end
