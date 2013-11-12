@@ -374,7 +374,6 @@
 		A461B12E174CBAA70088B061 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		A461B12F174CBAA70088B061 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		A461B130174CBAA70088B061 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
-		A461B132174CBAA70088B061 /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		A461B133174CBAA70088B061 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		A461B134174CBAA70088B061 /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		A461B135174CBAA70088B061 /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
@@ -382,7 +381,6 @@
 		A461B13A174CBAA70088B061 /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		A461B13B174CBAA70088B061 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		A461B13C174CBAA70088B061 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
-		A461B13D174CBAA70088B061 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		A461B13E174CBAA70088B061 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		A461B13F174CBAA70088B061 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		A461B141174CBAA70088B061 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
@@ -442,8 +440,6 @@
 		A461B184174CBAA70088B061 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		A461B185174CBAA70088B061 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		A461B186174CBAA70088B061 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
-		A461B187174CBAA70088B061 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
-		A461B188174CBAA70088B061 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
 		A461B189174CBAA70088B061 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
 		A461B18A174CBAA70088B061 /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		A461B18B174CBAA70088B061 /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -569,8 +565,6 @@
 		A461B286174CBAA70088B061 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		A461B287174CBAA70088B061 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		A461B288174CBAA70088B061 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
-		A461B28A174CBAA70088B061 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
-		A461B28B174CBAA70088B061 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		A461B28C174CBAA70088B061 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		A461B28D174CBAA70088B061 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		A461B28E174CBAA70088B061 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
@@ -591,8 +585,6 @@
 		A461B29E174CBAA70088B061 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
 		A461B29F174CBAA70088B061 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
 		A461B2A0174CBAA70088B061 /* BBSOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659788166C58B800A239E1 /* BBSOptionView.m */; };
-		A461B2A2174CBAA70088B061 /* OpenGLTexture3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */; };
-		A461B2A3174CBAA70088B061 /* ParticleEmitter3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */; };
 		A461B2AA174CBAA70088B061 /* DrawFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA9071673211E0078B5A9 /* DrawFontManager.m */; };
 		A461B2AB174CBAA70088B061 /* DrawImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90A1673213A0078B5A9 /* DrawImageManager.m */; };
 		A461B2AC174CBAA70088B061 /* DrawViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90D167321480078B5A9 /* DrawViewManager.m */; };
@@ -780,8 +772,6 @@
 		A461B3B4174CBAA70088B061 /* FeedSceneDetailGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9903173561E6007A819F /* FeedSceneDetailGuessResult.m */; };
 		A461B3B5174CBAA70088B061 /* FeedSceneFeedDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9905173561E6007A819F /* FeedSceneFeedDetail.m */; };
 		A461B3B8174CBAA70088B061 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
-		A461B3BD174CBAA70088B061 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */; };
-		A461B3BE174CBAA70088B061 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */; };
 		A461B3BF174CBAA70088B061 /* LittleGeeImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7C6173CAFA100C699C2 /* LittleGeeImageManager.m */; };
 		A461B3C0174CBAA70088B061 /* Sing.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A461B06D174CADF10088B061 /* Sing.pb.m */; };
 		A461B3C3174CBAA70088B061 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A9935173562A7007A819F /* AddressBookUI.framework */; };
@@ -1185,9 +1175,6 @@
 		A491A20E16F6EE65003B638F /* ShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A491A20816F6EE64003B638F /* ShoppingCell.m */; };
 		A491A20F16F6EE65003B638F /* ShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20916F6EE65003B638F /* ShoppingCell.xib */; };
 		A491A21016F6EE65003B638F /* ShoppingCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A491A20A16F6EE65003B638F /* ShoppingCell~ipad.xib */; };
-		A49906AC174DB949005AF334 /* AdvertiseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4990691174DB949005AF334 /* AdvertiseManager.m */; };
-		A49906B9174DB949005AF334 /* AdvertiseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4990691174DB949005AF334 /* AdvertiseManager.m */; };
-		A49906BC174DB949005AF334 /* AdvertiseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4990691174DB949005AF334 /* AdvertiseManager.m */; };
 		A4990768174DBB21005AF334 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4990767174DBB21005AF334 /* CoreAudio.framework */; };
 		A499076C174DBB72005AF334 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076B174DBB72005AF334 /* CoreMedia.framework */; };
 		A499076D174DBBC7005AF334 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4990767174DBB21005AF334 /* CoreAudio.framework */; };
@@ -3018,10 +3005,6 @@
 		C214553C1778279E007D44C7 /* OpusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C214552B1778279E007D44C7 /* OpusView.xib */; };
 		C214A62A170FE8A900492393 /* GeographyService.m in Sources */ = {isa = PBXBuildFile; fileRef = C214A629170FE8A900492393 /* GeographyService.m */; };
 		C216B3731742355C001DD46E /* little_gee_home_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C216B3651742355C001DD46E /* little_gee_home_split@2x.png */; };
-		C21CD7A4173CA2FF00C699C2 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */; };
-		C21CD7B1173CA2FF00C699C2 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */; };
-		C21CD7B2173CA2FF00C699C2 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */; };
-		C21CD7BF173CA2FF00C699C2 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */; };
 		C21CD7C7173CAFA100C699C2 /* LittleGeeImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7C6173CAFA100C699C2 /* LittleGeeImageManager.m */; };
 		C21CD7D4173CAFA100C699C2 /* LittleGeeImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7C6173CAFA100C699C2 /* LittleGeeImageManager.m */; };
 		C21D414E16D5B401006A0AA3 /* CustomUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C21D414D16D5B401006A0AA3 /* CustomUITextField.m */; };
@@ -3113,8 +3096,6 @@
 		C282E754172BC53300F8C610 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
 		C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C284E8801531D89800DD5B77 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C284E87E1531D89800DD5B77 /* AboutUsController.xib */; };
-		C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */; };
-		C28A23C2166C90E2007C9EA5 /* ParticleEmitter3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */; };
 		C28A23D2166C92C1007C9EA5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */; };
 		C28A9909173561E6007A819F /* FeedSceneDetailGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9903173561E6007A819F /* FeedSceneDetailGuessResult.m */; };
 		C28A9916173561E6007A819F /* FeedSceneFeedDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9905173561E6007A819F /* FeedSceneFeedDetail.m */; };
@@ -3238,7 +3219,6 @@
 		C28A9A161738F04B007A819F /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		C28A9A171738F04B007A819F /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		C28A9A181738F04B007A819F /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
-		C28A9A1A1738F04B007A819F /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		C28A9A1B1738F04B007A819F /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		C28A9A1D1738F04B007A819F /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
@@ -3246,7 +3226,6 @@
 		C28A9A221738F04B007A819F /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		C28A9A231738F04B007A819F /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		C28A9A241738F04B007A819F /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
-		C28A9A251738F04B007A819F /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		C28A9A261738F04B007A819F /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		C28A9A271738F04B007A819F /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		C28A9A291738F04B007A819F /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
@@ -3310,8 +3289,6 @@
 		C28A9A6C1738F04B007A819F /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		C28A9A6D1738F04B007A819F /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		C28A9A6E1738F04B007A819F /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
-		C28A9A6F1738F04B007A819F /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
-		C28A9A701738F04B007A819F /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
 		C28A9A711738F04B007A819F /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
 		C28A9A721738F04B007A819F /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		C28A9A731738F04B007A819F /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -3438,8 +3415,6 @@
 		C28A9B6E1738F04B007A819F /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		C28A9B6F1738F04B007A819F /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		C28A9B701738F04B007A819F /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
-		C28A9B721738F04B007A819F /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
-		C28A9B731738F04B007A819F /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		C28A9B741738F04B007A819F /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		C28A9B751738F04B007A819F /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		C28A9B761738F04B007A819F /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
@@ -3460,8 +3435,6 @@
 		C28A9B861738F04B007A819F /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
 		C28A9B871738F04B007A819F /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
 		C28A9B881738F04B007A819F /* BBSOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659788166C58B800A239E1 /* BBSOptionView.m */; };
-		C28A9B8A1738F04B007A819F /* OpenGLTexture3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */; };
-		C28A9B8B1738F04B007A819F /* ParticleEmitter3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */; };
 		C28A9B921738F04B007A819F /* DrawFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA9071673211E0078B5A9 /* DrawFontManager.m */; };
 		C28A9B931738F04B007A819F /* DrawImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90A1673213A0078B5A9 /* DrawImageManager.m */; };
 		C28A9B941738F04B007A819F /* DrawViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90D167321480078B5A9 /* DrawViewManager.m */; };
@@ -4150,8 +4123,6 @@
 		C2E6628215230B3F00487601 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
 		C2E6628315230B3F00487601 /* ShareController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E6628115230B3F00487601 /* ShareController.xib */; };
 		C2E7401F1629500A0037E7F6 /* UseItemScene.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E7401E1629500A0037E7F6 /* UseItemScene.m */; };
-		C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
-		C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
 		C2EAA878178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */; };
 		C2EAA87E178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */; };
 		C2EAA87F178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */; };
@@ -4344,7 +4315,6 @@
 		CA1250CD1668BB6800AFCC04 /* GameConfigDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250CC1668BB6800AFCC04 /* GameConfigDataUtils.m */; };
 		CA1250D01668BCBD00AFCC04 /* Config.proto in Resources */ = {isa = PBXBuildFile; fileRef = CA1250CF1668BCBD00AFCC04 /* Config.proto */; };
 		CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
-		CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		CA13772D15245AAB00B5790B /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		CA13773015245AE700B5790B /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
@@ -4722,10 +4692,6 @@
 		CA52AE0D1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA52AD371828CE4A0066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
 		CA52AE0E1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA52AD371828CE4A0066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
 		CA52AE0F1828CE510066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA52AD371828CE4A0066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework */; };
-		CA52AE371828F1280066B0A0 /* PPSNSStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52AE1C1828F1280066B0A0 /* PPSNSStorageService.m */; };
-		CA52AE381828F1280066B0A0 /* PPSNSStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52AE1C1828F1280066B0A0 /* PPSNSStorageService.m */; };
-		CA52AE391828F1280066B0A0 /* PPSNSStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52AE1C1828F1280066B0A0 /* PPSNSStorageService.m */; };
-		CA52AE3A1828F1280066B0A0 /* PPSNSStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA52AE1C1828F1280066B0A0 /* PPSNSStorageService.m */; };
 		CA5328ED16A3E1E000E9E96B /* ColorBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328D916A3E1E000E9E96B /* ColorBox.m */; };
 		CA5328F116A3E1E000E9E96B /* ColorBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DA16A3E1E000E9E96B /* ColorBox.xib */; };
 		CA5328F516A3E1E000E9E96B /* ColorBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5328DB16A3E1E000E9E96B /* ColorBox~ipad.xib */; };
@@ -4778,7 +4744,6 @@
 		CA62C7A817570AF600C9EF56 /* PocketSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = CA62C7A717570AF600C9EF56 /* PocketSVG.m */; };
 		CA62C7B517570AF600C9EF56 /* PocketSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = CA62C7A717570AF600C9EF56 /* PocketSVG.m */; };
 		CA62C7B817570AF600C9EF56 /* PocketSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = CA62C7A717570AF600C9EF56 /* PocketSVG.m */; };
-		CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
 		CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659788166C58B800A239E1 /* BBSOptionView.m */; };
@@ -5331,6 +5296,14 @@
 		CA9AB0C918321822002DBAA5 /* VoiceChanger.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C698176C548400C72E17 /* VoiceChanger.m */; };
 		CA9AB0CA18321822002DBAA5 /* VoiceRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69A176C548400C72E17 /* VoiceRecorder.m */; };
 		CA9AB0CB18321822002DBAA5 /* VoiceProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4B6C69E176C5F9E00C72E17 /* VoiceProcessor.mm */; };
+		CA9AB0D118321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0CE18321AFE002DBAA5 /* HGQuadCurveMenu.m */; };
+		CA9AB0D218321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0CE18321AFE002DBAA5 /* HGQuadCurveMenu.m */; };
+		CA9AB0D318321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0CE18321AFE002DBAA5 /* HGQuadCurveMenu.m */; };
+		CA9AB0D418321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0CE18321AFE002DBAA5 /* HGQuadCurveMenu.m */; };
+		CA9AB0D518321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0D018321AFE002DBAA5 /* HGQuadCurveMenuItem.m */; };
+		CA9AB0D618321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0D018321AFE002DBAA5 /* HGQuadCurveMenuItem.m */; };
+		CA9AB0D718321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0D018321AFE002DBAA5 /* HGQuadCurveMenuItem.m */; };
+		CA9AB0D818321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB0D018321AFE002DBAA5 /* HGQuadCurveMenuItem.m */; };
 		CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAEEC19E181A5F18007FD75F /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076B174DBB72005AF334 /* CoreMedia.framework */; };
 		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
@@ -5678,8 +5651,6 @@
 		CAFEFE8216606FC200441D77 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		CAFEFE8316606FC200441D77 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		CAFEFE8416606FC200441D77 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
-		CAFEFEE116606FC200441D77 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
-		CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA0C550A180B89A5008069C1 /* bubble_bg_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA0C5508180B89A5008069C1 /* bubble_bg_red@2x.png */; };
@@ -5905,7 +5876,6 @@
 		EA4118C2176066F500DA72D0 /* ReportController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6625F1521B91900487601 /* ReportController.m */; };
 		EA4118C3176066F500DA72D0 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4216271522A0F400FAA008 /* SKProduct+LocalizedPrice.m */; };
 		EA4118C4176066F500DA72D0 /* ShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E6628015230B3F00487601 /* ShareController.m */; };
-		EA4118C6176066F500DA72D0 /* TrafficServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1377211524283A00B5790B /* TrafficServerManager.m */; };
 		EA4118C7176066F500DA72D0 /* MainDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA1377271524598700B5790B /* MainDataModel.xcdatamodeld */; };
 		EA4118C8176066F500DA72D0 /* MyPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772C15245AAB00B5790B /* MyPaint.m */; };
 		EA4118C9176066F500DA72D0 /* MyPaintManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA13772F15245AE600B5790B /* MyPaintManager.m */; };
@@ -5913,7 +5883,6 @@
 		EA4118CE176066F500DA72D0 /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29C12E0152AE2A7009B9E5F /* ShareCell.m */; };
 		EA4118CF176066F500DA72D0 /* ColorGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FF000152AEFDF00F0AC88 /* ColorGroup.m */; };
 		EA4118D0176066F500DA72D0 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CA355EFF152C03F100A14823 /* UserItem.m */; };
-		EA4118D1176066F500DA72D0 /* RouterTrafficServer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639116152FEA3D007564C6 /* RouterTrafficServer.m */; };
 		EA4118D2176066F500DA72D0 /* PriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA639119152FEA4F007564C6 /* PriceModel.m */; };
 		EA4118D3176066F500DA72D0 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C284E87D1531D89800DD5B77 /* AboutUsController.m */; };
 		EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */ = {isa = PBXBuildFile; fileRef = CACC084D1532B02600D9F8E9 /* ShareAction.m */; };
@@ -5973,8 +5942,6 @@
 		EA411918176066F500DA72D0 /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C1BF4415A2A9B6001A2BFC /* UIManager.m */; };
 		EA411919176066F500DA72D0 /* CustomStatueBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA51816C15A2D79700AD5A78 /* CustomStatueBar.m */; };
 		EA41191A176066F500DA72D0 /* UserStatusService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA50A01415B9389600CAB603 /* UserStatusService.m */; };
-		EA41191B176066F500DA72D0 /* RecommendApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FEA15BD44DA00828562 /* RecommendApp.m */; };
-		EA41191C176066F500DA72D0 /* RecommendAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90FED15BD454200828562 /* RecommendAppManager.m */; };
 		EA41191D176066F500DA72D0 /* Draw.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B763A515C25218003B4E72 /* Draw.pb.m */; };
 		EA41191E176066F500DA72D0 /* CommonGameNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC7E15C27BE700E9C1CD /* CommonGameNetworkClient.m */; };
 		EA41191F176066F500DA72D0 /* CommonGameNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */; };
@@ -6100,8 +6067,6 @@
 		EA4119D3176066F500DA72D0 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2216606FC100441D77 /* unzip.c */; };
 		EA4119D4176066F500DA72D0 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2416606FC100441D77 /* zip.c */; };
 		EA4119D5176066F500DA72D0 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFD2716606FC100441D77 /* SSZipArchive.m */; };
-		EA4119D7176066F500DA72D0 /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */; };
-		EA4119D8176066F500DA72D0 /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */; };
 		EA4119D9176066F500DA72D0 /* DrawColor.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEF8166072AB00441D77 /* DrawColor.m */; };
 		EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAFEFEFA166072AB00441D77 /* DrawUtils.m */; };
 		EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA42FE851660B73A0097453A /* DrawGameAnimationManager.m */; };
@@ -6122,8 +6087,6 @@
 		EA4119EB176066F500DA72D0 /* Config.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250D21668BD5200AFCC04 /* Config.pb.m */; };
 		EA4119EC176066F500DA72D0 /* BBSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659773166BD41E00A239E1 /* BBSActionSheet.m */; };
 		EA4119ED176066F500DA72D0 /* BBSOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA659788166C58B800A239E1 /* BBSOptionView.m */; };
-		EA4119EE176066F500DA72D0 /* OpenGLTexture3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */; };
-		EA4119EF176066F500DA72D0 /* ParticleEmitter3D.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */; };
 		EA4119F1176066F500DA72D0 /* DrawFontManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA9071673211E0078B5A9 /* DrawFontManager.m */; };
 		EA4119F2176066F500DA72D0 /* DrawImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90A1673213A0078B5A9 /* DrawImageManager.m */; };
 		EA4119F3176066F500DA72D0 /* DrawViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1DA90D167321480078B5A9 /* DrawViewManager.m */; };
@@ -6311,11 +6274,8 @@
 		EA411AE5176066F500DA72D0 /* FeedSceneDetailGuessResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9903173561E6007A819F /* FeedSceneDetailGuessResult.m */; };
 		EA411AE6176066F500DA72D0 /* FeedSceneFeedDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C28A9905173561E6007A819F /* FeedSceneFeedDetail.m */; };
 		EA411AE9176066F500DA72D0 /* PhotoDrawSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = EABD0FFA17376A9B00A2F930 /* PhotoDrawSheet.m */; };
-		EA411AEC176066F500DA72D0 /* HGQuadCurveMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */; };
-		EA411AED176066F500DA72D0 /* HGQuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */; };
 		EA411AEE176066F500DA72D0 /* LittleGeeImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C21CD7C6173CAFA100C699C2 /* LittleGeeImageManager.m */; };
 		EA411AEF176066F500DA72D0 /* Sing.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = A461B06D174CADF10088B061 /* Sing.pb.m */; };
-		EA411AF0176066F500DA72D0 /* AdvertiseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4990691174DB949005AF334 /* AdvertiseManager.m */; };
 		EA411AF1176066F500DA72D0 /* DrawGameApp.m in Sources */ = {isa = PBXBuildFile; fileRef = CA67B87015E89B09002050DB /* DrawGameApp.m */; };
 		EA411AF3176066F500DA72D0 /* BBS.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D51756FB1800C9EF56 /* BBS.pb-c.c */; };
 		EA411AF4176066F500DA72D0 /* Config.pb-c.c in Sources */ = {isa = PBXBuildFile; fileRef = CA62C6D61756FB1A00C9EF56 /* Config.pb-c.c */; };
@@ -7355,8 +7315,6 @@
 		A491A20816F6EE64003B638F /* ShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCell.m; sourceTree = "<group>"; };
 		A491A20916F6EE65003B638F /* ShoppingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCell.xib; sourceTree = "<group>"; };
 		A491A20A16F6EE65003B638F /* ShoppingCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShoppingCell~ipad.xib"; sourceTree = "<group>"; };
-		A4990690174DB949005AF334 /* AdvertiseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertiseManager.h; sourceTree = "<group>"; };
-		A4990691174DB949005AF334 /* AdvertiseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertiseManager.m; sourceTree = "<group>"; };
 		A4990767174DBB21005AF334 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		A4990769174DBB35005AF334 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		A499076B174DBB72005AF334 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -7962,10 +7920,6 @@
 		C214A628170FE8A900492393 /* GeographyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeographyService.h; sourceTree = "<group>"; };
 		C214A629170FE8A900492393 /* GeographyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeographyService.m; sourceTree = "<group>"; };
 		C216B3651742355C001DD46E /* little_gee_home_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "little_gee_home_split@2x.png"; sourceTree = "<group>"; };
-		C21CD7A0173CA2FF00C699C2 /* HGQuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGQuadCurveMenu.h; sourceTree = "<group>"; };
-		C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGQuadCurveMenu.m; sourceTree = "<group>"; };
-		C21CD7A2173CA2FF00C699C2 /* HGQuadCurveMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGQuadCurveMenuItem.h; sourceTree = "<group>"; };
-		C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGQuadCurveMenuItem.m; sourceTree = "<group>"; };
 		C21CD7C5173CAFA100C699C2 /* LittleGeeImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LittleGeeImageManager.h; sourceTree = "<group>"; };
 		C21CD7C6173CAFA100C699C2 /* LittleGeeImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LittleGeeImageManager.m; sourceTree = "<group>"; };
 		C21D414C16D5B401006A0AA3 /* CustomUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUITextField.h; sourceTree = "<group>"; };
@@ -8066,12 +8020,6 @@
 		C284E87D1531D89800DD5B77 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AboutUsController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C284E87E1531D89800DD5B77 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		C286628B16578BCB00D7EA27 /* AutoCreateViewByXib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoCreateViewByXib.h; sourceTree = "<group>"; };
-		C28A23BB166C90E2007C9EA5 /* ConstantsAndMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantsAndMacros.h; sourceTree = "<group>"; };
-		C28A23BC166C90E2007C9EA5 /* OpenGLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLCommon.h; sourceTree = "<group>"; };
-		C28A23BD166C90E2007C9EA5 /* OpenGLTexture3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLTexture3D.h; sourceTree = "<group>"; };
-		C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLTexture3D.m; sourceTree = "<group>"; };
-		C28A23BF166C90E2007C9EA5 /* ParticleEmitter3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEmitter3D.h; sourceTree = "<group>"; };
-		C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleEmitter3D.m; sourceTree = "<group>"; };
 		C28A23D1166C92C1007C9EA5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		C28A9902173561E6007A819F /* FeedSceneDetailGuessResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedSceneDetailGuessResult.h; sourceTree = "<group>"; };
 		C28A9903173561E6007A819F /* FeedSceneDetailGuessResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedSceneDetailGuessResult.m; sourceTree = "<group>"; };
@@ -8254,10 +8202,6 @@
 		C2E6628115230B3F00487601 /* ShareController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareController.xib; sourceTree = "<group>"; };
 		C2E7401D1629500A0037E7F6 /* UseItemScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseItemScene.h; sourceTree = "<group>"; };
 		C2E7401E1629500A0037E7F6 /* UseItemScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseItemScene.m; sourceTree = "<group>"; };
-		C2E90FE915BD44DA00828562 /* RecommendApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendApp.h; sourceTree = "<group>"; };
-		C2E90FEA15BD44DA00828562 /* RecommendApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendApp.m; sourceTree = "<group>"; };
-		C2E90FEC15BD454200828562 /* RecommendAppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendAppManager.h; sourceTree = "<group>"; };
-		C2E90FED15BD454200828562 /* RecommendAppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendAppManager.m; sourceTree = "<group>"; };
 		C2EAA877178270D8007E2BA4 /* CommonSearchImageFilterView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommonSearchImageFilterView~ipad.xib"; sourceTree = "<group>"; };
 		C2EB5D051709335F004B7CCB /* UserDetailRoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailRoundButton.h; sourceTree = "<group>"; };
 		C2EB5D061709335F004B7CCB /* UserDetailRoundButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailRoundButton.m; sourceTree = "<group>"; };
@@ -8561,8 +8505,6 @@
 		CA1250CF1668BCBD00AFCC04 /* Config.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Config.proto; sourceTree = "<group>"; };
 		CA1250D11668BD5200AFCC04 /* Config.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.pb.h; sourceTree = "<group>"; };
 		CA1250D21668BD5200AFCC04 /* Config.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.pb.m; sourceTree = "<group>"; };
-		CA1377201524283A00B5790B /* TrafficServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrafficServerManager.h; sourceTree = "<group>"; };
-		CA1377211524283A00B5790B /* TrafficServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrafficServerManager.m; sourceTree = "<group>"; };
 		CA1377281524598700B5790B /* MainDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MainDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CA13772B15245AAB00B5790B /* MyPaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPaint.h; sourceTree = "<group>"; };
 		CA13772C15245AAB00B5790B /* MyPaint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPaint.m; sourceTree = "<group>"; };
@@ -8887,8 +8829,6 @@
 		CA52AD361828CE4A0066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKiPhoneSimpleShareViewUI.bundle; sourceTree = "<group>"; };
 		CA52AD371828CE4A0066B0A0 /* ShareSDKiPhoneSimpleShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKiPhoneSimpleShareViewUI.framework; sourceTree = "<group>"; };
 		CA52AE1A1828F1280066B0A0 /* PPSNSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSNSConstants.h; sourceTree = "<group>"; };
-		CA52AE1B1828F1280066B0A0 /* PPSNSStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSNSStorageService.h; sourceTree = "<group>"; };
-		CA52AE1C1828F1280066B0A0 /* PPSNSStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSNSStorageService.m; sourceTree = "<group>"; };
 		CA5328D816A3E1E000E9E96B /* ColorBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorBox.h; sourceTree = "<group>"; };
 		CA5328D916A3E1E000E9E96B /* ColorBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorBox.m; sourceTree = "<group>"; };
 		CA5328DA16A3E1E000E9E96B /* ColorBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorBox.xib; sourceTree = "<group>"; };
@@ -8926,8 +8866,6 @@
 		CA62C7801756FC5A00C9EF56 /* protolCLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = protolCLib.a; sourceTree = "<group>"; };
 		CA62C7A617570AF600C9EF56 /* PocketSVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketSVG.h; sourceTree = "<group>"; };
 		CA62C7A717570AF600C9EF56 /* PocketSVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketSVG.m; sourceTree = "<group>"; };
-		CA639115152FEA3D007564C6 /* RouterTrafficServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouterTrafficServer.h; sourceTree = "<group>"; };
-		CA639116152FEA3D007564C6 /* RouterTrafficServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouterTrafficServer.m; sourceTree = "<group>"; };
 		CA639118152FEA4F007564C6 /* PriceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceModel.h; sourceTree = "<group>"; };
 		CA639119152FEA4F007564C6 /* PriceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceModel.m; sourceTree = "<group>"; };
 		CA659772166BD41E00A239E1 /* BBSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSActionSheet.h; sourceTree = "<group>"; };
@@ -9236,6 +9174,10 @@
 		CA9AB097183217B3002DBAA5 /* libDIRAC_iOS4-fat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libDIRAC_iOS4-fat.a"; sourceTree = "<group>"; };
 		CA9AB099183217B3002DBAA5 /* DiracUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiracUtilities.h; sourceTree = "<group>"; };
 		CA9AB09A183217B3002DBAA5 /* DiracUtilities.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DiracUtilities.mm; sourceTree = "<group>"; };
+		CA9AB0CD18321AFE002DBAA5 /* HGQuadCurveMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGQuadCurveMenu.h; sourceTree = "<group>"; };
+		CA9AB0CE18321AFE002DBAA5 /* HGQuadCurveMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGQuadCurveMenu.m; sourceTree = "<group>"; };
+		CA9AB0CF18321AFE002DBAA5 /* HGQuadCurveMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGQuadCurveMenuItem.h; sourceTree = "<group>"; };
+		CA9AB0D018321AFE002DBAA5 /* HGQuadCurveMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGQuadCurveMenuItem.m; sourceTree = "<group>"; };
 		CA9B4EBE16103726008C6A97 /* TopPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayer.h; sourceTree = "<group>"; };
 		CA9B4EBF16103726008C6A97 /* TopPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayer.m; sourceTree = "<group>"; };
 		CA9C11BE178135DF004372B6 /* GradientAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientAction.h; sourceTree = "<group>"; };
@@ -9643,10 +9585,6 @@
 		CAFEFD2516606FC100441D77 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		CAFEFD2616606FC100441D77 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		CAFEFD2716606FC100441D77 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
-		CAFEFDDB16606FC100441D77 /* UIGlossyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGlossyButton.h; sourceTree = "<group>"; };
-		CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
-		CAFEFDDD16606FC100441D77 /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
-		CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
 		CAFEFEF7166072AB00441D77 /* DrawColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawColor.h; sourceTree = "<group>"; };
 		CAFEFEF8166072AB00441D77 /* DrawColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawColor.m; sourceTree = "<group>"; };
 		CAFEFEF9166072AB00441D77 /* DrawUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawUtils.h; sourceTree = "<group>"; };
@@ -10701,15 +10639,6 @@
 				A489C02217B5E46A003E5150 /* GuessManager.m */,
 			);
 			path = Guess;
-			sourceTree = "<group>";
-		};
-		A499068F174DB949005AF334 /* Component-Advertise */ = {
-			isa = PBXGroup;
-			children = (
-				A4990690174DB949005AF334 /* AdvertiseManager.h */,
-				A4990691174DB949005AF334 /* AdvertiseManager.m */,
-			);
-			path = "Component-Advertise";
 			sourceTree = "<group>";
 		};
 		A49971F9177831E100B01EBE /* Guess */ = {
@@ -11989,17 +11918,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		C21CD79F173CA2FF00C699C2 /* HGQuadCurveMenu */ = {
-			isa = PBXGroup;
-			children = (
-				C21CD7A0173CA2FF00C699C2 /* HGQuadCurveMenu.h */,
-				C21CD7A1173CA2FF00C699C2 /* HGQuadCurveMenu.m */,
-				C21CD7A2173CA2FF00C699C2 /* HGQuadCurveMenuItem.h */,
-				C21CD7A3173CA2FF00C699C2 /* HGQuadCurveMenuItem.m */,
-			);
-			path = HGQuadCurveMenu;
-			sourceTree = "<group>";
-		};
 		C21D414B16D5B3E5006A0AA3 /* CustomUITextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -12155,22 +12073,8 @@
 		C28A23B9166C90E2007C9EA5 /* Core-Utils-OpenGL */ = {
 			isa = PBXGroup;
 			children = (
-				C28A23BA166C90E2007C9EA5 /* particle */,
 			);
 			path = "Core-Utils-OpenGL";
-			sourceTree = "<group>";
-		};
-		C28A23BA166C90E2007C9EA5 /* particle */ = {
-			isa = PBXGroup;
-			children = (
-				C28A23BB166C90E2007C9EA5 /* ConstantsAndMacros.h */,
-				C28A23BC166C90E2007C9EA5 /* OpenGLCommon.h */,
-				C28A23BD166C90E2007C9EA5 /* OpenGLTexture3D.h */,
-				C28A23BE166C90E2007C9EA5 /* OpenGLTexture3D.m */,
-				C28A23BF166C90E2007C9EA5 /* ParticleEmitter3D.h */,
-				C28A23C0166C90E2007C9EA5 /* ParticleEmitter3D.m */,
-			);
-			path = particle;
 			sourceTree = "<group>";
 		};
 		C28C0A6B16EB31F800A29B6C /* Service */ = {
@@ -12507,17 +12411,6 @@
 				C2E7401E1629500A0037E7F6 /* UseItemScene.m */,
 			);
 			path = UseItemScene;
-			sourceTree = "<group>";
-		};
-		C2E90FE815BD44DA00828562 /* Recommend */ = {
-			isa = PBXGroup;
-			children = (
-				C2E90FEC15BD454200828562 /* RecommendAppManager.h */,
-				C2E90FED15BD454200828562 /* RecommendAppManager.m */,
-				C2E90FE915BD44DA00828562 /* RecommendApp.h */,
-				C2E90FEA15BD44DA00828562 /* RecommendApp.m */,
-			);
-			path = Recommend;
 			sourceTree = "<group>";
 		};
 		C2EE145B1665FE4F00ADBE2E /* MDCShineEffect */ = {
@@ -13793,17 +13686,6 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
-		CA13771C1524280D00B5790B /* TrafficServer */ = {
-			isa = PBXGroup;
-			children = (
-				CA1377201524283A00B5790B /* TrafficServerManager.h */,
-				CA1377211524283A00B5790B /* TrafficServerManager.m */,
-				CA639115152FEA3D007564C6 /* RouterTrafficServer.h */,
-				CA639116152FEA3D007564C6 /* RouterTrafficServer.m */,
-			);
-			path = TrafficServer;
-			sourceTree = "<group>";
-		};
 		CA1377231524591500B5790B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -14437,8 +14319,6 @@
 			isa = PBXGroup;
 			children = (
 				CA52AE1A1828F1280066B0A0 /* PPSNSConstants.h */,
-				CA52AE1B1828F1280066B0A0 /* PPSNSStorageService.h */,
-				CA52AE1C1828F1280066B0A0 /* PPSNSStorageService.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -15331,6 +15211,17 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		CA9AB0CC18321AFE002DBAA5 /* HGQuadCurveMenu */ = {
+			isa = PBXGroup;
+			children = (
+				CA9AB0CD18321AFE002DBAA5 /* HGQuadCurveMenu.h */,
+				CA9AB0CE18321AFE002DBAA5 /* HGQuadCurveMenu.m */,
+				CA9AB0CF18321AFE002DBAA5 /* HGQuadCurveMenuItem.h */,
+				CA9AB0D018321AFE002DBAA5 /* HGQuadCurveMenuItem.m */,
+			);
+			path = HGQuadCurveMenu;
+			sourceTree = "<group>";
+		};
 		CA9C8CBA15E0D94A006E447B /* URL */ = {
 			isa = PBXGroup;
 			children = (
@@ -16023,7 +15914,6 @@
 				CA8973721607131B003A95F7 /* Contest */,
 				CA42E3C515F4617A00790B3C /* TableTab */,
 				CA67B86A15E89AAC002050DB /* GameApp */,
-				C2E90FE815BD44DA00828562 /* Recommend */,
 				C2C1BF4215A2A884001A2BFC /* UI */,
 				CAE0C8941591A2D5008CDA62 /* Notification */,
 				CA7C7E001587210500406BFB /* Feed */,
@@ -16033,7 +15923,6 @@
 				CA9DB929154E75070031DBBD /* Friend */,
 				CAC13243154C28B9000A8C8F /* Config */,
 				CA1377231524591500B5790B /* CoreData */,
-				CA13771C1524280D00B5790B /* TrafficServer */,
 				CAE2CABA151B2E1D0062ED37 /* Account */,
 				CAE2CABB151B2E1D0062ED37 /* Item */,
 				CAA0E6A315147DEF00FD8C3E /* Word */,
@@ -16196,7 +16085,6 @@
 				A4ADB60B17B9D43900EBF418 /* Component-Sound */,
 				A4B6C652176C0F4400C72E17 /* Component-Audio */,
 				A4C8D5C8175EEC23007ED7E4 /* Component-DB */,
-				A499068F174DB949005AF334 /* Component-Advertise */,
 				CAFEFC4816606FC100441D77 /* Component-Gif */,
 				CAFEFCE416606FC100441D77 /* Component-Service */,
 				CAFEFDB216606FC100441D77 /* Component-Utils */,
@@ -16395,26 +16283,14 @@
 		CAFEFDB316606FC100441D77 /* Component-View */ = {
 			isa = PBXGroup;
 			children = (
+				CA9AB0CC18321AFE002DBAA5 /* HGQuadCurveMenu */,
 				CAEEC197181A5D96007FD75F /* ScreenCaptureView */,
 				EA0C5516180B9203008069C1 /* InfColorPicker */,
 				A42150BF1803EA21007F2EFD /* MWPhotoBrowser */,
 				C2C18ADF1763372400DE933B /* AutocompletionTableView */,
-				C21CD79F173CA2FF00C699C2 /* HGQuadCurveMenu */,
 				CAC448FC168C4DCC004441EB /* ILColorPicker */,
-				CAFEFDDA16606FC100441D77 /* UIGlossyButton */,
 			);
 			path = "Component-View";
-			sourceTree = "<group>";
-		};
-		CAFEFDDA16606FC100441D77 /* UIGlossyButton */ = {
-			isa = PBXGroup;
-			children = (
-				CAFEFDDB16606FC100441D77 /* UIGlossyButton.h */,
-				CAFEFDDC16606FC100441D77 /* UIGlossyButton.m */,
-				CAFEFDDD16606FC100441D77 /* UIView+LayerEffects.h */,
-				CAFEFDDE16606FC100441D77 /* UIView+LayerEffects.m */,
-			);
-			path = UIGlossyButton;
 			sourceTree = "<group>";
 		};
 		CAFEFEF5166072AB00441D77 /* Draw */ = {
@@ -20611,7 +20487,6 @@
 				A461B12E174CBAA70088B061 /* ReportController.m in Sources */,
 				A461B12F174CBAA70088B061 /* SKProduct+LocalizedPrice.m in Sources */,
 				A461B130174CBAA70088B061 /* ShareController.m in Sources */,
-				A461B132174CBAA70088B061 /* TrafficServerManager.m in Sources */,
 				A461B133174CBAA70088B061 /* MainDataModel.xcdatamodeld in Sources */,
 				A461B134174CBAA70088B061 /* MyPaint.m in Sources */,
 				A461B135174CBAA70088B061 /* MyPaintManager.m in Sources */,
@@ -20619,7 +20494,6 @@
 				A461B13A174CBAA70088B061 /* ShareCell.m in Sources */,
 				A461B13B174CBAA70088B061 /* ColorGroup.m in Sources */,
 				A461B13C174CBAA70088B061 /* UserItem.m in Sources */,
-				A461B13D174CBAA70088B061 /* RouterTrafficServer.m in Sources */,
 				A461B13E174CBAA70088B061 /* PriceModel.m in Sources */,
 				A461B13F174CBAA70088B061 /* AboutUsController.m in Sources */,
 				A461B141174CBAA70088B061 /* ShareAction.m in Sources */,
@@ -20679,8 +20553,6 @@
 				A461B184174CBAA70088B061 /* UIManager.m in Sources */,
 				A461B185174CBAA70088B061 /* CustomStatueBar.m in Sources */,
 				A461B186174CBAA70088B061 /* UserStatusService.m in Sources */,
-				A461B187174CBAA70088B061 /* RecommendApp.m in Sources */,
-				A461B188174CBAA70088B061 /* RecommendAppManager.m in Sources */,
 				A461B189174CBAA70088B061 /* Draw.pb.m in Sources */,
 				A461B18A174CBAA70088B061 /* CommonGameNetworkClient.m in Sources */,
 				A461B18B174CBAA70088B061 /* CommonGameNetworkService.m in Sources */,
@@ -20806,8 +20678,6 @@
 				A461B286174CBAA70088B061 /* unzip.c in Sources */,
 				A461B287174CBAA70088B061 /* zip.c in Sources */,
 				A461B288174CBAA70088B061 /* SSZipArchive.m in Sources */,
-				A461B28A174CBAA70088B061 /* UIGlossyButton.m in Sources */,
-				A461B28B174CBAA70088B061 /* UIView+LayerEffects.m in Sources */,
 				A461B28C174CBAA70088B061 /* DrawColor.m in Sources */,
 				A461B28D174CBAA70088B061 /* DrawUtils.m in Sources */,
 				A461B28E174CBAA70088B061 /* DrawGameAnimationManager.m in Sources */,
@@ -20828,8 +20698,6 @@
 				A461B29E174CBAA70088B061 /* Config.pb.m in Sources */,
 				A461B29F174CBAA70088B061 /* BBSActionSheet.m in Sources */,
 				A461B2A0174CBAA70088B061 /* BBSOptionView.m in Sources */,
-				A461B2A2174CBAA70088B061 /* OpenGLTexture3D.m in Sources */,
-				A461B2A3174CBAA70088B061 /* ParticleEmitter3D.m in Sources */,
 				A461B2AA174CBAA70088B061 /* DrawFontManager.m in Sources */,
 				A461B2AB174CBAA70088B061 /* DrawImageManager.m in Sources */,
 				A461B2AC174CBAA70088B061 /* DrawViewManager.m in Sources */,
@@ -21017,12 +20885,9 @@
 				A461B3B4174CBAA70088B061 /* FeedSceneDetailGuessResult.m in Sources */,
 				A461B3B5174CBAA70088B061 /* FeedSceneFeedDetail.m in Sources */,
 				A461B3B8174CBAA70088B061 /* PhotoDrawSheet.m in Sources */,
-				A461B3BD174CBAA70088B061 /* HGQuadCurveMenu.m in Sources */,
-				A461B3BE174CBAA70088B061 /* HGQuadCurveMenuItem.m in Sources */,
 				A461B3BF174CBAA70088B061 /* LittleGeeImageManager.m in Sources */,
 				A461B3C0174CBAA70088B061 /* Sing.pb.m in Sources */,
 				A499EEB2174DAE70005AF334 /* SingApp.m in Sources */,
-				A49906BC174DB949005AF334 /* AdvertiseManager.m in Sources */,
 				CA62C7021756FB8E00C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C7031756FB8E00C9EF56 /* Config.pb-c.c in Sources */,
 				CA62C7041756FB8E00C9EF56 /* Dice.pb-c.c in Sources */,
@@ -21223,7 +21088,6 @@
 				EA8CADE318288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADEA18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF01828A646003149FE /* GroupPermission.m in Sources */,
-				CA52AE391828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
 				EA1BD630182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63E182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
@@ -21267,6 +21131,8 @@
 				CA9AB0B1183217B3002DBAA5 /* EAFRead.mm in Sources */,
 				CA9AB0B5183217B3002DBAA5 /* EAFWrite.mm in Sources */,
 				CA9AB0C1183217B3002DBAA5 /* DiracUtilities.mm in Sources */,
+				CA9AB0D318321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
+				CA9AB0D718321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21392,7 +21258,6 @@
 				C28A9A161738F04B007A819F /* ReportController.m in Sources */,
 				C28A9A171738F04B007A819F /* SKProduct+LocalizedPrice.m in Sources */,
 				C28A9A181738F04B007A819F /* ShareController.m in Sources */,
-				C28A9A1A1738F04B007A819F /* TrafficServerManager.m in Sources */,
 				C28A9A1B1738F04B007A819F /* MainDataModel.xcdatamodeld in Sources */,
 				C28A9A1C1738F04B007A819F /* MyPaint.m in Sources */,
 				C28A9A1D1738F04B007A819F /* MyPaintManager.m in Sources */,
@@ -21400,7 +21265,6 @@
 				C28A9A221738F04B007A819F /* ShareCell.m in Sources */,
 				C28A9A231738F04B007A819F /* ColorGroup.m in Sources */,
 				C28A9A241738F04B007A819F /* UserItem.m in Sources */,
-				C28A9A251738F04B007A819F /* RouterTrafficServer.m in Sources */,
 				C28A9A261738F04B007A819F /* PriceModel.m in Sources */,
 				C28A9A271738F04B007A819F /* AboutUsController.m in Sources */,
 				C28A9A291738F04B007A819F /* ShareAction.m in Sources */,
@@ -21464,8 +21328,6 @@
 				C28A9A6C1738F04B007A819F /* UIManager.m in Sources */,
 				C28A9A6D1738F04B007A819F /* CustomStatueBar.m in Sources */,
 				C28A9A6E1738F04B007A819F /* UserStatusService.m in Sources */,
-				C28A9A6F1738F04B007A819F /* RecommendApp.m in Sources */,
-				C28A9A701738F04B007A819F /* RecommendAppManager.m in Sources */,
 				C28A9A711738F04B007A819F /* Draw.pb.m in Sources */,
 				C28A9A721738F04B007A819F /* CommonGameNetworkClient.m in Sources */,
 				C28A9A731738F04B007A819F /* CommonGameNetworkService.m in Sources */,
@@ -21592,8 +21454,6 @@
 				C28A9B6E1738F04B007A819F /* unzip.c in Sources */,
 				C28A9B6F1738F04B007A819F /* zip.c in Sources */,
 				C28A9B701738F04B007A819F /* SSZipArchive.m in Sources */,
-				C28A9B721738F04B007A819F /* UIGlossyButton.m in Sources */,
-				C28A9B731738F04B007A819F /* UIView+LayerEffects.m in Sources */,
 				C28A9B741738F04B007A819F /* DrawColor.m in Sources */,
 				C28A9B751738F04B007A819F /* DrawUtils.m in Sources */,
 				C28A9B761738F04B007A819F /* DrawGameAnimationManager.m in Sources */,
@@ -21614,8 +21474,6 @@
 				C28A9B861738F04B007A819F /* Config.pb.m in Sources */,
 				C28A9B871738F04B007A819F /* BBSActionSheet.m in Sources */,
 				C28A9B881738F04B007A819F /* BBSOptionView.m in Sources */,
-				C28A9B8A1738F04B007A819F /* OpenGLTexture3D.m in Sources */,
-				C28A9B8B1738F04B007A819F /* ParticleEmitter3D.m in Sources */,
 				C28A9B921738F04B007A819F /* DrawFontManager.m in Sources */,
 				C28A9B931738F04B007A819F /* DrawImageManager.m in Sources */,
 				C28A9B941738F04B007A819F /* DrawViewManager.m in Sources */,
@@ -21805,10 +21663,7 @@
 				C28A9C9E1738F04B007A819F /* FeedSceneGuessResult.m in Sources */,
 				C28A9CA01738F04B007A819F /* PhotoDrawSheet.m in Sources */,
 				C28AA0E01738F406007A819F /* LittleGeeDrawApp.m in Sources */,
-				C21CD7B1173CA2FF00C699C2 /* HGQuadCurveMenu.m in Sources */,
-				C21CD7BF173CA2FF00C699C2 /* HGQuadCurveMenuItem.m in Sources */,
 				C21CD7D4173CAFA100C699C2 /* LittleGeeImageManager.m in Sources */,
-				A49906B9174DB949005AF334 /* AdvertiseManager.m in Sources */,
 				EAD67187174E04E200221248 /* LittleGeeHomeController.m in Sources */,
 				EA92B895174E124500F273B5 /* Sing.pb.m in Sources */,
 				EAB19CE4174E2A44001126FA /* DrawGameApp.m in Sources */,
@@ -21992,7 +21847,6 @@
 				EA8CADE218288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE918288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */,
-				CA52AE381828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
 				EA1BD62F182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63D182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
@@ -22039,6 +21893,8 @@
 				CA9AB0C318321820002DBAA5 /* VoiceChanger.m in Sources */,
 				CA9AB0C418321820002DBAA5 /* VoiceRecorder.m in Sources */,
 				CA9AB0C518321820002DBAA5 /* VoiceProcessor.mm in Sources */,
+				CA9AB0D218321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
+				CA9AB0D618321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22165,7 +22021,6 @@
 				C2E662611521B91900487601 /* ReportController.m in Sources */,
 				CA4216281522A0F400FAA008 /* SKProduct+LocalizedPrice.m in Sources */,
 				C2E6628215230B3F00487601 /* ShareController.m in Sources */,
-				CA1377221524283A00B5790B /* TrafficServerManager.m in Sources */,
 				CA1377291524598700B5790B /* MainDataModel.xcdatamodeld in Sources */,
 				CA13772D15245AAB00B5790B /* MyPaint.m in Sources */,
 				CA13773015245AE700B5790B /* MyPaintManager.m in Sources */,
@@ -22173,7 +22028,6 @@
 				C29C12E1152AE2A7009B9E5F /* ShareCell.m in Sources */,
 				CA4FF001152AEFDF00F0AC88 /* ColorGroup.m in Sources */,
 				CA355F00152C03F200A14823 /* UserItem.m in Sources */,
-				CA639117152FEA3D007564C6 /* RouterTrafficServer.m in Sources */,
 				CA63911A152FEA4F007564C6 /* PriceModel.m in Sources */,
 				C284E87F1531D89800DD5B77 /* AboutUsController.m in Sources */,
 				CACC084E1532B02600D9F8E9 /* ShareAction.m in Sources */,
@@ -22238,8 +22092,6 @@
 				C2C1BF4515A2A9B6001A2BFC /* UIManager.m in Sources */,
 				CA51816D15A2D79700AD5A78 /* CustomStatueBar.m in Sources */,
 				CA50A01515B938B700CAB603 /* UserStatusService.m in Sources */,
-				C2E90FEB15BD44DA00828562 /* RecommendApp.m in Sources */,
-				C2E90FEE15BD454200828562 /* RecommendAppManager.m in Sources */,
 				A4B763A815C25218003B4E72 /* Draw.pb.m in Sources */,
 				CA91FC7F15C27BE700E9C1CD /* CommonGameNetworkClient.m in Sources */,
 				CA91FC8215C27BF700E9C1CD /* CommonGameNetworkService.m in Sources */,
@@ -22366,8 +22218,6 @@
 				CAFEFE8216606FC200441D77 /* unzip.c in Sources */,
 				CAFEFE8316606FC200441D77 /* zip.c in Sources */,
 				CAFEFE8416606FC200441D77 /* SSZipArchive.m in Sources */,
-				CAFEFEE116606FC200441D77 /* UIGlossyButton.m in Sources */,
-				CAFEFEE216606FC200441D77 /* UIView+LayerEffects.m in Sources */,
 				CAFEFFB4166072AB00441D77 /* DrawColor.m in Sources */,
 				CAFEFFB5166072AB00441D77 /* DrawUtils.m in Sources */,
 				CA42FE861660B73A0097453A /* DrawGameAnimationManager.m in Sources */,
@@ -22388,8 +22238,6 @@
 				CA1250D31668BD5200AFCC04 /* Config.pb.m in Sources */,
 				CA659774166BD41F00A239E1 /* BBSActionSheet.m in Sources */,
 				CA659789166C58B900A239E1 /* BBSOptionView.m in Sources */,
-				C28A23C1166C90E2007C9EA5 /* OpenGLTexture3D.m in Sources */,
-				C28A23C2166C90E2007C9EA5 /* ParticleEmitter3D.m in Sources */,
 				CA1DA9081673211E0078B5A9 /* DrawFontManager.m in Sources */,
 				CA1DA90B1673213A0078B5A9 /* DrawImageManager.m in Sources */,
 				CA1DA90E167321480078B5A9 /* DrawViewManager.m in Sources */,
@@ -22578,11 +22426,8 @@
 				C28A9916173561E6007A819F /* FeedSceneFeedDetail.m in Sources */,
 				C28A9923173561E6007A819F /* FeedSceneGuessResult.m in Sources */,
 				EABD0FFB17376A9B00A2F930 /* PhotoDrawSheet.m in Sources */,
-				C21CD7A4173CA2FF00C699C2 /* HGQuadCurveMenu.m in Sources */,
-				C21CD7B2173CA2FF00C699C2 /* HGQuadCurveMenuItem.m in Sources */,
 				C21CD7C7173CAFA100C699C2 /* LittleGeeImageManager.m in Sources */,
 				A461B06E174CADF10088B061 /* Sing.pb.m in Sources */,
-				A49906AC174DB949005AF334 /* AdvertiseManager.m in Sources */,
 				EA59DF6D174DFF3E0039B441 /* DrawGameApp.m in Sources */,
 				CA62C6DE1756FB6200C9EF56 /* BBS.pb-c.c in Sources */,
 				CA62C6E21756FB6200C9EF56 /* Config.pb-c.c in Sources */,
@@ -22775,7 +22620,6 @@
 				EA8CADE118288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADE818288D32003149FE /* DrawError.m in Sources */,
 				EA8CADEE1828A646003149FE /* GroupPermission.m in Sources */,
-				CA52AE371828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
 				EA1BD62E182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63C182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
@@ -22816,6 +22660,8 @@
 				CA9AB0C618321821002DBAA5 /* VoiceChanger.m in Sources */,
 				CA9AB0C718321821002DBAA5 /* VoiceRecorder.m in Sources */,
 				CA9AB0C818321821002DBAA5 /* VoiceProcessor.mm in Sources */,
+				CA9AB0D118321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
+				CA9AB0D518321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22941,7 +22787,6 @@
 				EA4118C2176066F500DA72D0 /* ReportController.m in Sources */,
 				EA4118C3176066F500DA72D0 /* SKProduct+LocalizedPrice.m in Sources */,
 				EA4118C4176066F500DA72D0 /* ShareController.m in Sources */,
-				EA4118C6176066F500DA72D0 /* TrafficServerManager.m in Sources */,
 				EA4118C7176066F500DA72D0 /* MainDataModel.xcdatamodeld in Sources */,
 				EA4118C8176066F500DA72D0 /* MyPaint.m in Sources */,
 				EA4118C9176066F500DA72D0 /* MyPaintManager.m in Sources */,
@@ -22949,7 +22794,6 @@
 				EA4118CE176066F500DA72D0 /* ShareCell.m in Sources */,
 				EA4118CF176066F500DA72D0 /* ColorGroup.m in Sources */,
 				EA4118D0176066F500DA72D0 /* UserItem.m in Sources */,
-				EA4118D1176066F500DA72D0 /* RouterTrafficServer.m in Sources */,
 				EA4118D2176066F500DA72D0 /* PriceModel.m in Sources */,
 				EA4118D3176066F500DA72D0 /* AboutUsController.m in Sources */,
 				EA4118D5176066F500DA72D0 /* ShareAction.m in Sources */,
@@ -23009,8 +22853,6 @@
 				EA411918176066F500DA72D0 /* UIManager.m in Sources */,
 				EA411919176066F500DA72D0 /* CustomStatueBar.m in Sources */,
 				EA41191A176066F500DA72D0 /* UserStatusService.m in Sources */,
-				EA41191B176066F500DA72D0 /* RecommendApp.m in Sources */,
-				EA41191C176066F500DA72D0 /* RecommendAppManager.m in Sources */,
 				EA41191D176066F500DA72D0 /* Draw.pb.m in Sources */,
 				EA41191E176066F500DA72D0 /* CommonGameNetworkClient.m in Sources */,
 				EA41191F176066F500DA72D0 /* CommonGameNetworkService.m in Sources */,
@@ -23136,8 +22978,6 @@
 				EA4119D3176066F500DA72D0 /* unzip.c in Sources */,
 				EA4119D4176066F500DA72D0 /* zip.c in Sources */,
 				EA4119D5176066F500DA72D0 /* SSZipArchive.m in Sources */,
-				EA4119D7176066F500DA72D0 /* UIGlossyButton.m in Sources */,
-				EA4119D8176066F500DA72D0 /* UIView+LayerEffects.m in Sources */,
 				EA4119D9176066F500DA72D0 /* DrawColor.m in Sources */,
 				EA4119DA176066F500DA72D0 /* DrawUtils.m in Sources */,
 				EA4119DB176066F500DA72D0 /* DrawGameAnimationManager.m in Sources */,
@@ -23158,8 +22998,6 @@
 				EA4119EB176066F500DA72D0 /* Config.pb.m in Sources */,
 				EA4119EC176066F500DA72D0 /* BBSActionSheet.m in Sources */,
 				EA4119ED176066F500DA72D0 /* BBSOptionView.m in Sources */,
-				EA4119EE176066F500DA72D0 /* OpenGLTexture3D.m in Sources */,
-				EA4119EF176066F500DA72D0 /* ParticleEmitter3D.m in Sources */,
 				EA4119F1176066F500DA72D0 /* DrawFontManager.m in Sources */,
 				EA4119F2176066F500DA72D0 /* DrawImageManager.m in Sources */,
 				EA4119F3176066F500DA72D0 /* DrawViewManager.m in Sources */,
@@ -23347,11 +23185,8 @@
 				EA411AE5176066F500DA72D0 /* FeedSceneDetailGuessResult.m in Sources */,
 				EA411AE6176066F500DA72D0 /* FeedSceneFeedDetail.m in Sources */,
 				EA411AE9176066F500DA72D0 /* PhotoDrawSheet.m in Sources */,
-				EA411AEC176066F500DA72D0 /* HGQuadCurveMenu.m in Sources */,
-				EA411AED176066F500DA72D0 /* HGQuadCurveMenuItem.m in Sources */,
 				EA411AEE176066F500DA72D0 /* LittleGeeImageManager.m in Sources */,
 				EA411AEF176066F500DA72D0 /* Sing.pb.m in Sources */,
-				EA411AF0176066F500DA72D0 /* AdvertiseManager.m in Sources */,
 				EA411AF1176066F500DA72D0 /* DrawGameApp.m in Sources */,
 				EA411AF3176066F500DA72D0 /* BBS.pb-c.c in Sources */,
 				EA411AF4176066F500DA72D0 /* Config.pb-c.c in Sources */,
@@ -23498,7 +23333,6 @@
 				EA8CADE418288CAF003149FE /* GroupService.m in Sources */,
 				EA8CADEB18288D32003149FE /* DrawError.m in Sources */,
 				EA8CADF11828A646003149FE /* GroupPermission.m in Sources */,
-				CA52AE3A1828F1280066B0A0 /* PPSNSStorageService.m in Sources */,
 				EA1BD631182DDCB1000E5364 /* GroupHomeController.m in Sources */,
 				EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */,
@@ -23544,6 +23378,8 @@
 				CA9AB0C918321822002DBAA5 /* VoiceChanger.m in Sources */,
 				CA9AB0CA18321822002DBAA5 /* VoiceRecorder.m in Sources */,
 				CA9AB0CB18321822002DBAA5 /* VoiceProcessor.mm in Sources */,
+				CA9AB0D418321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
+				CA9AB0D818321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
