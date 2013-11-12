@@ -237,7 +237,6 @@
     if (resultCode == OLD_G_ERROR_SUCCESS) {
         [self didFinishLoadData:array];
     } else {
-//        [self failLoadDataForTabID:[self currentTab].tabID];
         [self didFinishLoadDataError:resultCode];
     }
 }

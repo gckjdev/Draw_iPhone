@@ -31,7 +31,6 @@ typedef enum{
 
 @property (nonatomic, retain) UIImage *drawImage;
 @property (nonatomic, retain) UIImage *largeImage;
-@property (assign, nonatomic) PBOpusCategoryType categoryType;
 @property (nonatomic, retain) NSString *wordText;
 @property (nonatomic, retain) Draw *drawData;
 @property (nonatomic, retain) NSString *drawImageUrl;

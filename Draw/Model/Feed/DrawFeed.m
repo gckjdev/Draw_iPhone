@@ -51,7 +51,6 @@
         self.opusDesc = pbFeed.opusDesc;
         self.drawDataUrl = pbFeed.drawDataUrl;
         self.contestId = pbFeed.contestId;
-        self.categoryType = pbFeed.category;
     
         if ([pbFeed hasLearnDraw]) {
             self.learnDraw = pbFeed.learnDraw;    
@@ -68,7 +67,6 @@
 #define KEY_DRAW @"DRAW"
 #define KEY_IMAGE @"IMAGE"
 #define KEY_TIMES @"TIMES"
-#define KEY_CATEGORY_TYPE @"CATEGORY_TYPE"
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -77,7 +75,6 @@
         self.drawData = [aDecoder decodeObjectForKey:KEY_DRAW];
         self.drawImageUrl = [aDecoder decodeObjectForKey:KEY_IMAGE];
         self.timesSet = [aDecoder decodeObjectForKey:KEY_TIMES];
-        self.categoryType = [[aDecoder decodeObjectForKey:KEY_CATEGORY_TYPE] intValue];
     }
     return self;
 }
@@ -89,7 +86,6 @@
     [aCoder encodeObject:self.drawData forKey:KEY_DRAW];
     [aCoder encodeObject:self.drawImageUrl forKey:KEY_IMAGE];
     [aCoder encodeObject:self.timesSet forKey:KEY_TIMES];
-    [aCoder encodeObject:@(self.categoryType) forKey:KEY_CATEGORY_TYPE];
 }
 
 
@@ -166,12 +162,20 @@
 
 - (void)updateDesc
 {
+    NSString *kCreateDesc = NSLS(@"kDrawDesc");
+    NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
+
+    if (self.pbFeed.category == PBOpusCategoryTypeSingCategory) {
+        kCreateDesc = NSLS(@"kCraeteDesc");
+        kCreateDescNoName = NSLS(@"kCreateDescNoName");
+    }
+    
     if ([self isMyOpus]) {
-        self.desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"), self.wordText];      
+        self.desc = [NSString stringWithFormat:kCreateDesc, self.wordText];      
     }else if ([self hasGuessed]) {
-        self.desc = [NSString stringWithFormat:NSLS(@"kDrawDesc"), self.wordText];      
+        self.desc = [NSString stringWithFormat:kCreateDesc, self.wordText];      
     }else{
-        self.desc = [NSString stringWithFormat:NSLS(@"kDrawDescNoWord"), self.wordText];      
+        self.desc = [NSString stringWithFormat:kCreateDescNoName, self.wordText];      
     }
 }
 

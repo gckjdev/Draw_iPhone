@@ -66,7 +66,7 @@
     NSString* cellId = [self getCellIdentifier];
 
     int index = 0;
-    if (feed.categoryType == PBOpusCategoryTypeSingCategory) {
+    if (feed.pbFeed.category == PBOpusCategoryTypeSingCategory) {
         index = 1;
     }
 
@@ -105,14 +105,14 @@
 + (CGFloat)cellHeightWithFeed:(DrawFeed *)feed
 {
     NSString *desc = feed.opusDesc;
-    if (feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+    if (feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
         if ([desc length] == 0) {
             return CELL_HEIGHT_BASE;
         }else{
             CGSize size = [DrawInfoCell labelSizeWithText:desc];
             return CELL_HEIGHT_BASE + size.height;
         }
-    }else if (feed.categoryType == PBOpusCategoryTypeSingCategory){
+    }else if (feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
         
         return ISIPAD ? 606 :278;
     }else{

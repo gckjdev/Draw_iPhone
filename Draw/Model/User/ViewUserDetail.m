@@ -33,6 +33,7 @@
 #import "BBSService.h"
 #import "GameApp.h"
 #import "ImagePlayer.h"
+#import "SingController.h"
 
 @interface ViewUserDetail () {
 
@@ -484,26 +485,13 @@
 
 - (void)didClickDrawToButton:(PPTableViewController*)viewController
 {
-//    if (isLittleGeeAPP()) {
-    [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
-//    }
-/* else if (isSecureSmsAPP()) {
-        ChatDetailController *controller = [self createChatDetailController];
-        [viewController.navigationController pushViewController:controller
-                                                       animated:YES];
-        [controller clickGraffitiButton:nil];
-    } else if (isCallTrackAPP()) {
-        ChatDetailController *controller = [self createChatDetailController];
-        [viewController.navigationController pushViewController:controller
-                                                       animated:NO];
-        [controller clickLocateButton:nil];
-    }*/
-//    else {
-//        SelectHotWordController *vc = [[[SelectHotWordController alloc] initWithTargetUid:[self getUserId]] autorelease];
-//        vc.superController = viewController;
-//        [viewController.navigationController pushViewController:vc animated:YES];
-//    }
+    if (isDrawApp()) {
+        [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
+    }else if (isSingApp()){
         
+        SingController *vc = [[[SingController alloc] initWithTargetUserId:self.getUserId] autorelease];
+        [viewController.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (ChatDetailController *)createChatDetailController
@@ -558,7 +546,6 @@
     [[ImagePlayer defaultPlayer] playWithUrl:url
                          displayActionButton:NO
                             onViewController:viewController];
-    //[[ImagePlayer defaultPlayer] playWithUrl:url displayActionButton:NO onViewController:viewController];
 }
 
 #pragma mark - mwPhotoBrowserDelegate

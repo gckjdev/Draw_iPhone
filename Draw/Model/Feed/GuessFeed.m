@@ -77,6 +77,8 @@
                           contestId:pbFeed.contestId
                           timesArray:pbFeed.feedTimesList] autorelease];
         
+        self.drawFeed.categoryType = pbFeed.category;
+        self.drawFeed.pbFeed = pbFeed;
         [self.drawFeed setFeedType:FeedTypeDraw];
         [self.drawFeed setFeedId:pbFeed.opusId];
         [self updateDesc];

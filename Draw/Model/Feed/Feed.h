@@ -82,6 +82,7 @@ typedef enum {
 @property (nonatomic, retain) NSDate *createDate;
 @property (nonatomic, retain) FeedUser *feedUser;
 @property (nonatomic, retain) PBFeed *pbFeed;
+@property (assign, nonatomic) PBOpusCategoryType categoryType;
 
 - (id)initWithPBFeed:(PBFeed *)pbFeed;
 

@@ -71,6 +71,7 @@ typedef enum{
 - (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
           opusData:(NSData *)opusData
+      targetUserId:(NSString *)targetUserId
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate;
 

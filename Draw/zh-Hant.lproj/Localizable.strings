@@ -280,6 +280,7 @@
 "kSavePercent" = "節省%02d%%";
 
 "kShareTitle" = "本地作品";
+"kOpusSet" = "作品集";
 "kUnknownWord" = "神秘";
 
 "kNickNameEmpty" = "暱稱不能為空";
@@ -625,10 +626,15 @@
 "kMyFeedList" = "我的動態";
 
 "kDrawDescNoWord" = "畫了一幅畫。";
+"kCreateDescNoName" = "創作了一個作品.";
+
+"kDrawDesc" = "畫了一幅 [%@]。";
+"kCreateDesc" = "創作了一個作品 [%@].";
+
+
 "kGuessRightDescNoWord" = "猜對了%@的畫。";
 "kTryGuessDescNoWord" = "嘗試去猜了%@的畫。";
 
-"kDrawDesc" = "畫了一幅 [%@]。";
 "kGuessRightDesc" = "猜對了%@畫的 [%@]。";
 "kTryGuessDesc" = "嘗試去猜了%@畫的 [%@]。";
 
@@ -1473,6 +1479,9 @@
 "kSecureSmsSupport" = "反饋";
 "kEnterCorrectPassword" = "請輸入正確的密碼";
 "kSecureSmsLocateTitle" = "定位";
+
+"kWhiteTextBlackStroke" = "白字黑框";
+"kBlackTextWhiteStroke" = "黑字白框";
 
 "kQuitGameWithPaidForAnswer" = "覺得太難猜？你想花%d個金幣直接要答案嗎?";
 "kQuitDirectly" = "直接退出";

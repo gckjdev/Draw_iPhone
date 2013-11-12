@@ -276,6 +276,7 @@
 "kSavePercent" = "SAVE %02d%%";
 
 "kShareTitle" = "My Drawings";
+"kOpusSet" = "Opus set";
 "kUnknownWord" = "Myth";
 
 "kNickNameEmpty" = "Nick name cannot be empty.";
@@ -615,14 +616,17 @@
 "kMyFeedList" = "My Timeline";
 
 "kDrawDesc" = "Drew a picture: [%@].";
+"kCreateDesc" = "Create an opus: [%@].";
+
+"kDrawDescNoWord" = "Drew a picture.";
+"kCreateDescNoName" = "Create an opus.";
+
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
 
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
 
 
 
-
-"kDrawDescNoWord" = "Drew a picture.";
 "kGuessRightDescNoWord" = "Guessed %@'s drawing.";
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
 
@@ -1525,6 +1529,9 @@
 "kDreamLockscreenBuy" = "Buy & Save";
 "kDreamLockscreenSlider" = "slide to unlock";
 "kSetContactAvatarSucc" = "Save as contact avatar successfully";
+
+"kWhiteTextBlackStroke" = "white text black stroke";
+"kBlackTextWhiteStroke" = "white stroke black text";
 
 //secure sms
 "kRegister" = "Register";

@@ -44,7 +44,9 @@
         self.createDate = [NSDate dateWithTimeIntervalSince1970:pbFeed.createDate];
         self.opusStatus = [pbFeed opusStatus];
         self.pbFeed = pbFeed;
-        self.feedUser = [FeedUser feedUserWithUserId:pbFeed.userId 
+        self.categoryType = pbFeed.category;
+        
+        self.feedUser = [FeedUser feedUserWithUserId:pbFeed.userId
                                             nickName:pbFeed.nickName 
                                               avatar:pbFeed.avatar 
                                               gender:pbFeed.gender
@@ -78,6 +80,7 @@
 #define KEY_USER @"USER"
 #define KEY_STATUS @"STATUS"
 #define KEY_DESC @"DESC"
+#define KEY_CATEGORY_TYPE @"CATEGORY_TYPE"
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -89,6 +92,8 @@
         self.feedUser = [aDecoder decodeObjectForKey:KEY_USER];
         self.opusStatus = [aDecoder decodeIntegerForKey:KEY_STATUS];
         self.desc = [aDecoder decodeObjectForKey:KEY_DESC];
+        self.categoryType = [[aDecoder decodeObjectForKey:KEY_CATEGORY_TYPE] intValue];
+
     }
     return self;
 }
@@ -101,6 +106,8 @@
     [aCoder encodeObject:self.feedUser forKey:KEY_USER];
     [aCoder encodeInteger:self.opusStatus forKey:KEY_STATUS];
     [aCoder encodeObject:self.desc forKey:KEY_DESC];
+    [aCoder encodeObject:@(self.categoryType) forKey:KEY_CATEGORY_TYPE];
+
 }
 
 - (BOOL)isMyFeed
