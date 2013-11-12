@@ -361,8 +361,8 @@ enum{
 
 - (void)saveDescLabelInfo{
     
-    CGFloat xRatio = self.opusDescLabel.superview.frame.origin.x /  self.opusDescLabel.superview.bounds.size.width;
-    CGFloat yRatio = self.opusDescLabel.superview.frame.origin.y / self.opusDescLabel.superview.bounds.size.height;
+    CGFloat xRatio = self.opusDescLabel.frame.origin.x /  self.opusDescLabel.superview.bounds.size.width;
+    CGFloat yRatio = self.opusDescLabel.frame.origin.y / self.opusDescLabel.superview.bounds.size.height;
     int textColor = [DrawUtils compressColor8:self.opusDescLabel.textColor];
     int textStrokeColor = [DrawUtils compressColor8:self.opusDescLabel.textOutlineColor];
     [self.singOpus setStrokeLabelWithXRatio:xRatio yRatio:yRatio textColor:textColor textStrokeColor:textStrokeColor];

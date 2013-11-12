@@ -198,8 +198,6 @@
     CGSize size = [DrawInfoCell labelSizeWithText:desc];
     [self.opusDesc updateHeight:size.height];
     
-    
-    
     self.opusDescLabel.text = desc;
     [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
     
@@ -212,8 +210,13 @@
     CGFloat originX = self.drawImage.frame.size.width * self.feed.pbFeed.descLabelInfo.xRatio;
     CGFloat originY = self.drawImage.frame.size.height * self.feed.pbFeed.descLabelInfo.yRatio;
     
-    [self.opusDescLabel updateWidth:originX];
-    [self.opusDescLabel updateWidth:originY];
+    PPDebug(@"textColor = %d", self.feed.pbFeed.descLabelInfo.textColor);
+    PPDebug(@"textStrokeColor = %d", self.feed.pbFeed.descLabelInfo.textStrokeColor);
+    PPDebug(@"originX = %f", originX);
+    PPDebug(@"originY = %f", originY);
+
+    [self.opusDescLabel updateOriginX:originX];
+    [self.opusDescLabel updateOriginY:originY];
 }
 
 - (void)updateDrawImageView:(UIImage *)image
