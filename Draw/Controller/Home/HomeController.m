@@ -23,7 +23,7 @@
 #import "AccountService.h"
 #import "CommonDialog.h"
 
-#import "RouterTrafficServer.h"
+//#import "RouterTrafficServer.h"
 #import "StringUtil.h"
 #import "PPConfigManager.h"
 #import "ChatController.h"
@@ -33,7 +33,6 @@
 #import "DrawAppDelegate.h"
 #import "AnimationManager.h"
 #import "WordManager.h"
-//#import "RegisterUserController.h"
 
 #import "OfflineGuessDrawController.h"
 #import "UseItemScene.h"
