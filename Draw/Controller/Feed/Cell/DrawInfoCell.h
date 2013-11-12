@@ -13,7 +13,6 @@
 #import "ShowFeedSceneProtocol.h"
 #import "AudioButton.h"
 #import "CustomSlider.h"
-#import "StrokeLabel.h"
 
 @protocol DrawInfoCellDelegate <NSObject>
 
@@ -45,7 +44,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *opusDesc;
 @property (retain, nonatomic) IBOutlet CustomSlider *slider;
 @property (retain, nonatomic) AudioButton *audioButton;
-@property (retain, nonatomic) IBOutlet StrokeLabel *opusDescLabel;
 
 + (id)createCell:(id<DrawInfoCellDelegate>)delegate feed:(DrawFeed *)feed;
 + (id)createCellWithFullScreen:(id<DrawInfoCellDelegate>)delegate;

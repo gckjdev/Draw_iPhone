@@ -316,20 +316,6 @@
 }
 
 - (void)initShowSingView{
-
-//    CGRect rect = CGRectMake(21, 48, 280, 280);
-//    
-//    UIImageView *iv = [[[UIImageView alloc] initWithFrame:rect] autorelease];
-//    [iv setImageWithURL:[NSURL URLWithString:self.feed.drawImageUrl]];
-//    
-//    rect = CGRectMake(0, 0, 250, 250);
-//    StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:rect] autorelease];
-//    [ShareImageManager setStrokeLabelStyle:l];
-//    l.center = CGPointMake(iv.bounds.size.width/2, iv.bounds.size.height/2);
-//    l.text = self.feed.opusDesc;
-//    l.numberOfLines = 0;
-//    l.textAlignment = NSTextAlignmentCenter;
-//    [iv addSubview:l];
     
     CGRect rect = CGRectMake(21, 48, 280, 280);
     WhisperStyleView *v = [WhisperStyleView createWithFrame:rect feed:self.feed];
