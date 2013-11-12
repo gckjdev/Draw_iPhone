@@ -68,6 +68,7 @@ FeedManager *_staticFeedManager = nil;
                 feed = [[[GuessFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             case FeedTypeDrawToUser:
+                // TODO check impact on SING
                 feed = [[[DrawToUserFeed alloc] initWithPBFeed:pbFeed] autorelease];
                 break;
             case FeedTypeDrawToContest:

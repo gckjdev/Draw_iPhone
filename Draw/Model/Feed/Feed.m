@@ -117,10 +117,22 @@
 }
 
 
+// TODO check this impact on SING
 - (BOOL) isDrawType
 {
     return (self.feedType == FeedTypeDraw) || (self.feedType == FeedTypeDrawToUser);
 }
+
+- (BOOL)isDrawCategory
+{
+    return (self.categoryType == PBOpusCategoryTypeDrawCategory);
+}
+
+- (BOOL)isSingCategory
+{
+    return (self.categoryType == PBOpusCategoryTypeSingCategory);
+}
+
 
 - (BOOL)isGuessType
 {
