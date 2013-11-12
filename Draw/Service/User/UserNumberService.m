@@ -93,7 +93,34 @@ static UserNumberService* _defaultUserService;
 
 - (void)shakeOneNumber:(UserNumberServiceResultBlock)block
 {
-    [self getOneNumber:GET_NUMBER_TYPE_SHAKE block:block];
+//    [self getOneNumber:GET_NUMBER_TYPE_SHAKE block:block];
+    
+    if ([[UserManager defaultManager] hasXiaojiNumber]){
+        PPDebug(@"<shakeOneNumber> user already has xiaoji number, skip");
+        EXECUTE_BLOCK(block, 0, nil);
+        return;
+    }
+    
+    dispatch_async(workingQueue, ^{
+        
+        NSDictionary* para = @{
+                                PARA_GAME_ID : DRAW_GAME_ID,            // hard code to draw here
+                                PARA_APPID : DRAW_APP_ID,               // hard code to draw here
+                                PARA_REMOVE_OLD_NUMBER : @(1),
+                                PARA_SET_USER_NUMBER : @(0),
+                                PARA_TYPE : @(GET_NUMBER_TYPE_SHAKE) };
+        
+        GameNetworkOutput* output = [PPGameNetworkRequest apiServerGetAndResponseJSON:METHOD_GET_NEW_NUMBER
+                                                                           parameters:para
+                                                                        isReturnArray:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString* number = [output.jsonDataDict objectForKey:PARA_XIAOJI_NUMBER];
+            EXECUTE_BLOCK(block, output.resultCode, number);
+        });
+        
+    });
+    
 }
 
 - (void)getOneNumber:(UserNumberServiceResultBlock)block
