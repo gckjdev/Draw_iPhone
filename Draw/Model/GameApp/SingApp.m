@@ -104,13 +104,13 @@
 - (NSString*)qqSpaceAppId
 {
     return [MobClickUtils getStringValueByKey:@"SING_QQ_SPACE_APP_ID"
-                                 defaultValue:@"100554908"];
+                                 defaultValue:@"100554944"];
 }
 
 - (NSString*)qqSpaceAppKey
 {
     return [MobClickUtils getStringValueByKey:@"SING_QQ_SPACE_APP_KEY"
-                                 defaultValue:@"888872572acb3ea508716857557d8942"];
+                                 defaultValue:@"ebd3fe27d1f0bbde37cfce3a3dffb036"];
 }
 
 - (NSString*)qqSpaceAppSecret
