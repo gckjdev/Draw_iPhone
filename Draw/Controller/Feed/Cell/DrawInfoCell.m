@@ -207,16 +207,16 @@
     [self.opusDescLabel wrapTextWithConstrainedSize:CGSizeMake(self.drawImage.frame.size.width * 0.8, 18)];
     [self.opusDescLabel updateWidth:(self.drawImage.frame.size.width * 0.8)];
     
-    CGFloat originX = self.drawImage.frame.size.width * self.feed.pbFeed.descLabelInfo.xRatio;
-    CGFloat originY = self.drawImage.frame.size.height * self.feed.pbFeed.descLabelInfo.yRatio;
+//    CGFloat originX = self.drawImage.frame.size.width * self.feed.pbFeed.descLabelInfo.xRatio;
+//    CGFloat originY = self.drawImage.frame.size.height * self.feed.pbFeed.descLabelInfo.yRatio;
     
     PPDebug(@"textColor = %d", self.feed.pbFeed.descLabelInfo.textColor);
     PPDebug(@"textStrokeColor = %d", self.feed.pbFeed.descLabelInfo.textStrokeColor);
-    PPDebug(@"originX = %f", originX);
-    PPDebug(@"originY = %f", originY);
-
-    [self.opusDescLabel updateOriginX:originX];
-    [self.opusDescLabel updateOriginY:originY];
+//    PPDebug(@"originX = %f", originX);
+//    PPDebug(@"originY = %f", originY);
+//
+//    [self.opusDescLabel updateOriginX:originX];
+//    [self.opusDescLabel updateOriginY:originY];
 }
 
 - (void)updateDrawImageView:(UIImage *)image

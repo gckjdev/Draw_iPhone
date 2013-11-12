@@ -90,6 +90,12 @@
 		A4158684183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */; };
 		A4158685183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */; };
 		A4158686183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */; };
+		A41586951831D934007FCB16 /* WhisperStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41586941831D934007FCB16 /* WhisperStyleView.m */; };
+		A41586961831D934007FCB16 /* WhisperStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41586941831D934007FCB16 /* WhisperStyleView.m */; };
+		A41586971831D934007FCB16 /* WhisperStyleView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41586941831D934007FCB16 /* WhisperStyleView.m */; };
+		A41586991831D957007FCB16 /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41586981831D956007FCB16 /* WhisperStyleView.xib */; };
+		A415869A1831D957007FCB16 /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41586981831D956007FCB16 /* WhisperStyleView.xib */; };
+		A415869B1831D957007FCB16 /* WhisperStyleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A41586981831D956007FCB16 /* WhisperStyleView.xib */; };
 		A41CF58B165790380011AE45 /* RRSGlowLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A41CF58A165790380011AE45 /* RRSGlowLabel.m */; };
 		A41D2B5616B910E30094BA7C /* WallService.m in Sources */ = {isa = PBXBuildFile; fileRef = A41D2B5516B910E30094BA7C /* WallService.m */; };
 		A41ECB7B16F1D2C100248AEA /* VersionUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A41ECB7A16F1D2C100248AEA /* VersionUpdateView.m */; };
@@ -6843,6 +6849,9 @@
 		A415867B183093E8007FCB16 /* SingController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingController~ipad.xib"; sourceTree = "<group>"; };
 		A415867C183093E9007FCB16 /* SingInfoEditController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SingInfoEditController~ipad.xib"; sourceTree = "<group>"; };
 		A415867D183093E9007FCB16 /* SongSearchController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SongSearchController~ipad.xib"; sourceTree = "<group>"; };
+		A41586931831D934007FCB16 /* WhisperStyleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhisperStyleView.h; sourceTree = "<group>"; };
+		A41586941831D934007FCB16 /* WhisperStyleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhisperStyleView.m; sourceTree = "<group>"; };
+		A41586981831D956007FCB16 /* WhisperStyleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WhisperStyleView.xib; sourceTree = "<group>"; };
 		A41CF589165790380011AE45 /* RRSGlowLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRSGlowLabel.h; sourceTree = "<group>"; };
 		A41CF58A165790380011AE45 /* RRSGlowLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRSGlowLabel.m; sourceTree = "<group>"; };
 		A41D2B4616B910D10094BA7C /* FrameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameCell.h; sourceTree = "<group>"; };
@@ -10657,6 +10666,9 @@
 				A4326DAA180D447700D50F0A /* VoiceTypeSelectView.h */,
 				A4326DAB180D447700D50F0A /* VoiceTypeSelectView.m */,
 				A4326DB3180D449400D50F0A /* VoiceTypeSelectView.xib */,
+				A41586931831D934007FCB16 /* WhisperStyleView.h */,
+				A41586941831D934007FCB16 /* WhisperStyleView.m */,
+				A41586981831D956007FCB16 /* WhisperStyleView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -17474,6 +17486,7 @@
 				A4158680183093EA007FCB16 /* SingController~ipad.xib in Resources */,
 				A4158683183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
 				A4158686183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */,
+				A415869B1831D957007FCB16 /* WhisperStyleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18390,6 +18403,7 @@
 				A415867F183093EA007FCB16 /* SingController~ipad.xib in Resources */,
 				A4158682183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
 				A4158685183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */,
+				A415869A1831D957007FCB16 /* WhisperStyleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19288,6 +19302,7 @@
 				A415867E183093EA007FCB16 /* SingController~ipad.xib in Resources */,
 				A4158681183093EA007FCB16 /* SingInfoEditController~ipad.xib in Resources */,
 				A4158684183093EA007FCB16 /* SongSearchController~ipad.xib in Resources */,
+				A41586991831D957007FCB16 /* WhisperStyleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20881,6 +20896,7 @@
 				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64F182E26A6000E5364 /* Group.pb.m in Sources */,
+				A41586971831D934007FCB16 /* WhisperStyleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21622,6 +21638,7 @@
 				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
+				A41586961831D934007FCB16 /* WhisperStyleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22368,6 +22385,7 @@
 				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64D182E26A6000E5364 /* Group.pb.m in Sources */,
+				A41586951831D934007FCB16 /* WhisperStyleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

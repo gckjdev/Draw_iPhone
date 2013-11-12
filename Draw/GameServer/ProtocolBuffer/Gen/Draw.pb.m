@@ -2041,36 +2041,23 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @end
 
 @interface PBLabelInfo ()
-@property Float32 xRatio;
-@property Float32 yRatio;
-@property int32_t style;
+@property (retain) PBRect* frame;
 @property int32_t textColor;
+@property Float32 textFont;
+@property int32_t style;
 @property int32_t textStrokeColor;
+@property Float32 textStrokeWidth;
 @end
 
 @implementation PBLabelInfo
 
-- (BOOL) hasXRatio {
-  return !!hasXRatio_;
+- (BOOL) hasFrame {
+  return !!hasFrame_;
 }
-- (void) setHasXRatio:(BOOL) value {
-  hasXRatio_ = !!value;
+- (void) setHasFrame:(BOOL) value {
+  hasFrame_ = !!value;
 }
-@synthesize xRatio;
-- (BOOL) hasYRatio {
-  return !!hasYRatio_;
-}
-- (void) setHasYRatio:(BOOL) value {
-  hasYRatio_ = !!value;
-}
-@synthesize yRatio;
-- (BOOL) hasStyle {
-  return !!hasStyle_;
-}
-- (void) setHasStyle:(BOOL) value {
-  hasStyle_ = !!value;
-}
-@synthesize style;
+@synthesize frame;
 - (BOOL) hasTextColor {
   return !!hasTextColor_;
 }
@@ -2078,6 +2065,20 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasTextColor_ = !!value;
 }
 @synthesize textColor;
+- (BOOL) hasTextFont {
+  return !!hasTextFont_;
+}
+- (void) setHasTextFont:(BOOL) value {
+  hasTextFont_ = !!value;
+}
+@synthesize textFont;
+- (BOOL) hasStyle {
+  return !!hasStyle_;
+}
+- (void) setHasStyle:(BOOL) value {
+  hasStyle_ = !!value;
+}
+@synthesize style;
 - (BOOL) hasTextStrokeColor {
   return !!hasTextStrokeColor_;
 }
@@ -2085,16 +2086,25 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasTextStrokeColor_ = !!value;
 }
 @synthesize textStrokeColor;
+- (BOOL) hasTextStrokeWidth {
+  return !!hasTextStrokeWidth_;
+}
+- (void) setHasTextStrokeWidth:(BOOL) value {
+  hasTextStrokeWidth_ = !!value;
+}
+@synthesize textStrokeWidth;
 - (void) dealloc {
+  self.frame = nil;
   [super dealloc];
 }
 - (id) init {
   if ((self = [super init])) {
-    self.xRatio = 0;
-    self.yRatio = 0;
-    self.style = 0;
+    self.frame = [PBRect defaultInstance];
     self.textColor = 0;
+    self.textFont = 0;
+    self.style = 0;
     self.textStrokeColor = 0;
+    self.textStrokeWidth = 0;
   }
   return self;
 }
@@ -2114,20 +2124,23 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasXRatio) {
-    [output writeFloat:1 value:self.xRatio];
-  }
-  if (self.hasYRatio) {
-    [output writeFloat:2 value:self.yRatio];
-  }
-  if (self.hasStyle) {
-    [output writeInt32:3 value:self.style];
+  if (self.hasFrame) {
+    [output writeMessage:1 value:self.frame];
   }
   if (self.hasTextColor) {
     [output writeInt32:4 value:self.textColor];
   }
+  if (self.hasTextFont) {
+    [output writeFloat:5 value:self.textFont];
+  }
+  if (self.hasStyle) {
+    [output writeInt32:20 value:self.style];
+  }
   if (self.hasTextStrokeColor) {
-    [output writeInt32:5 value:self.textStrokeColor];
+    [output writeInt32:21 value:self.textStrokeColor];
+  }
+  if (self.hasTextStrokeWidth) {
+    [output writeFloat:22 value:self.textStrokeWidth];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2138,20 +2151,23 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   }
 
   size = 0;
-  if (self.hasXRatio) {
-    size += computeFloatSize(1, self.xRatio);
-  }
-  if (self.hasYRatio) {
-    size += computeFloatSize(2, self.yRatio);
-  }
-  if (self.hasStyle) {
-    size += computeInt32Size(3, self.style);
+  if (self.hasFrame) {
+    size += computeMessageSize(1, self.frame);
   }
   if (self.hasTextColor) {
     size += computeInt32Size(4, self.textColor);
   }
+  if (self.hasTextFont) {
+    size += computeFloatSize(5, self.textFont);
+  }
+  if (self.hasStyle) {
+    size += computeInt32Size(20, self.style);
+  }
   if (self.hasTextStrokeColor) {
-    size += computeInt32Size(5, self.textStrokeColor);
+    size += computeInt32Size(21, self.textStrokeColor);
+  }
+  if (self.hasTextStrokeWidth) {
+    size += computeFloatSize(22, self.textStrokeWidth);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2228,20 +2244,23 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   if (other == [PBLabelInfo defaultInstance]) {
     return self;
   }
-  if (other.hasXRatio) {
-    [self setXRatio:other.xRatio];
-  }
-  if (other.hasYRatio) {
-    [self setYRatio:other.yRatio];
-  }
-  if (other.hasStyle) {
-    [self setStyle:other.style];
+  if (other.hasFrame) {
+    [self mergeFrame:other.frame];
   }
   if (other.hasTextColor) {
     [self setTextColor:other.textColor];
   }
+  if (other.hasTextFont) {
+    [self setTextFont:other.textFont];
+  }
+  if (other.hasStyle) {
+    [self setStyle:other.style];
+  }
   if (other.hasTextStrokeColor) {
     [self setTextStrokeColor:other.textStrokeColor];
+  }
+  if (other.hasTextStrokeWidth) {
+    [self setTextStrokeWidth:other.textStrokeWidth];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2264,75 +2283,66 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
         }
         break;
       }
-      case 13: {
-        [self setXRatio:[input readFloat]];
-        break;
-      }
-      case 21: {
-        [self setYRatio:[input readFloat]];
-        break;
-      }
-      case 24: {
-        [self setStyle:[input readInt32]];
+      case 10: {
+        PBRect_Builder* subBuilder = [PBRect builder];
+        if (self.hasFrame) {
+          [subBuilder mergeFrom:self.frame];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setFrame:[subBuilder buildPartial]];
         break;
       }
       case 32: {
         [self setTextColor:[input readInt32]];
         break;
       }
-      case 40: {
+      case 45: {
+        [self setTextFont:[input readFloat]];
+        break;
+      }
+      case 160: {
+        [self setStyle:[input readInt32]];
+        break;
+      }
+      case 168: {
         [self setTextStrokeColor:[input readInt32]];
+        break;
+      }
+      case 181: {
+        [self setTextStrokeWidth:[input readFloat]];
         break;
       }
     }
   }
 }
-- (BOOL) hasXRatio {
-  return result.hasXRatio;
+- (BOOL) hasFrame {
+  return result.hasFrame;
 }
-- (Float32) xRatio {
-  return result.xRatio;
+- (PBRect*) frame {
+  return result.frame;
 }
-- (PBLabelInfo_Builder*) setXRatio:(Float32) value {
-  result.hasXRatio = YES;
-  result.xRatio = value;
+- (PBLabelInfo_Builder*) setFrame:(PBRect*) value {
+  result.hasFrame = YES;
+  result.frame = value;
   return self;
 }
-- (PBLabelInfo_Builder*) clearXRatio {
-  result.hasXRatio = NO;
-  result.xRatio = 0;
+- (PBLabelInfo_Builder*) setFrameBuilder:(PBRect_Builder*) builderForValue {
+  return [self setFrame:[builderForValue build]];
+}
+- (PBLabelInfo_Builder*) mergeFrame:(PBRect*) value {
+  if (result.hasFrame &&
+      result.frame != [PBRect defaultInstance]) {
+    result.frame =
+      [[[PBRect builderWithPrototype:result.frame] mergeFrom:value] buildPartial];
+  } else {
+    result.frame = value;
+  }
+  result.hasFrame = YES;
   return self;
 }
-- (BOOL) hasYRatio {
-  return result.hasYRatio;
-}
-- (Float32) yRatio {
-  return result.yRatio;
-}
-- (PBLabelInfo_Builder*) setYRatio:(Float32) value {
-  result.hasYRatio = YES;
-  result.yRatio = value;
-  return self;
-}
-- (PBLabelInfo_Builder*) clearYRatio {
-  result.hasYRatio = NO;
-  result.yRatio = 0;
-  return self;
-}
-- (BOOL) hasStyle {
-  return result.hasStyle;
-}
-- (int32_t) style {
-  return result.style;
-}
-- (PBLabelInfo_Builder*) setStyle:(int32_t) value {
-  result.hasStyle = YES;
-  result.style = value;
-  return self;
-}
-- (PBLabelInfo_Builder*) clearStyle {
-  result.hasStyle = NO;
-  result.style = 0;
+- (PBLabelInfo_Builder*) clearFrame {
+  result.hasFrame = NO;
+  result.frame = [PBRect defaultInstance];
   return self;
 }
 - (BOOL) hasTextColor {
@@ -2351,6 +2361,38 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   result.textColor = 0;
   return self;
 }
+- (BOOL) hasTextFont {
+  return result.hasTextFont;
+}
+- (Float32) textFont {
+  return result.textFont;
+}
+- (PBLabelInfo_Builder*) setTextFont:(Float32) value {
+  result.hasTextFont = YES;
+  result.textFont = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearTextFont {
+  result.hasTextFont = NO;
+  result.textFont = 0;
+  return self;
+}
+- (BOOL) hasStyle {
+  return result.hasStyle;
+}
+- (int32_t) style {
+  return result.style;
+}
+- (PBLabelInfo_Builder*) setStyle:(int32_t) value {
+  result.hasStyle = YES;
+  result.style = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearStyle {
+  result.hasStyle = NO;
+  result.style = 0;
+  return self;
+}
 - (BOOL) hasTextStrokeColor {
   return result.hasTextStrokeColor;
 }
@@ -2365,6 +2407,22 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 - (PBLabelInfo_Builder*) clearTextStrokeColor {
   result.hasTextStrokeColor = NO;
   result.textStrokeColor = 0;
+  return self;
+}
+- (BOOL) hasTextStrokeWidth {
+  return result.hasTextStrokeWidth;
+}
+- (Float32) textStrokeWidth {
+  return result.textStrokeWidth;
+}
+- (PBLabelInfo_Builder*) setTextStrokeWidth:(Float32) value {
+  result.hasTextStrokeWidth = YES;
+  result.textStrokeWidth = value;
+  return self;
+}
+- (PBLabelInfo_Builder*) clearTextStrokeWidth {
+  result.hasTextStrokeWidth = NO;
+  result.textStrokeWidth = 0;
   return self;
 }
 @end
@@ -2417,6 +2475,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 @property (retain) PBLearnDraw* learnDraw;
 @property (retain) PBSingOpus* sing;
 @property (retain) PBLabelInfo* descLabelInfo;
+@property (retain) PBSize* canvasSize;
 @end
 
 @implementation PBFeed
@@ -2741,6 +2800,13 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   hasDescLabelInfo_ = !!value;
 }
 @synthesize descLabelInfo;
+- (BOOL) hasCanvasSize {
+  return !!hasCanvasSize_;
+}
+- (void) setHasCanvasSize:(BOOL) value {
+  hasCanvasSize_ = !!value;
+}
+@synthesize canvasSize;
 - (void) dealloc {
   self.feedId = nil;
   self.userId = nil;
@@ -2772,6 +2838,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   self.learnDraw = nil;
   self.sing = nil;
   self.descLabelInfo = nil;
+  self.canvasSize = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2819,6 +2886,7 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
     self.learnDraw = [PBLearnDraw defaultInstance];
     self.sing = [PBSingOpus defaultInstance];
     self.descLabelInfo = [PBLabelInfo defaultInstance];
+    self.canvasSize = [PBSize defaultInstance];
   }
   return self;
 }
@@ -3049,6 +3117,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   if (self.hasDescLabelInfo) {
     [output writeMessage:200 value:self.descLabelInfo];
   }
+  if (self.hasCanvasSize) {
+    [output writeMessage:201 value:self.canvasSize];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -3208,6 +3279,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (self.hasDescLabelInfo) {
     size += computeMessageSize(200, self.descLabelInfo);
+  }
+  if (self.hasCanvasSize) {
+    size += computeMessageSize(201, self.canvasSize);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3436,6 +3510,9 @@ static PBFeed* defaultPBFeedInstance = nil;
   }
   if (other.hasDescLabelInfo) {
     [self mergeDescLabelInfo:other.descLabelInfo];
+  }
+  if (other.hasCanvasSize) {
+    [self mergeCanvasSize:other.canvasSize];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3678,6 +3755,15 @@ static PBFeed* defaultPBFeedInstance = nil;
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setDescLabelInfo:[subBuilder buildPartial]];
+        break;
+      }
+      case 1610: {
+        PBSize_Builder* subBuilder = [PBSize builder];
+        if (self.hasCanvasSize) {
+          [subBuilder mergeFrom:self.canvasSize];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setCanvasSize:[subBuilder buildPartial]];
         break;
       }
     }
@@ -4559,6 +4645,36 @@ static PBFeed* defaultPBFeedInstance = nil;
 - (PBFeed_Builder*) clearDescLabelInfo {
   result.hasDescLabelInfo = NO;
   result.descLabelInfo = [PBLabelInfo defaultInstance];
+  return self;
+}
+- (BOOL) hasCanvasSize {
+  return result.hasCanvasSize;
+}
+- (PBSize*) canvasSize {
+  return result.canvasSize;
+}
+- (PBFeed_Builder*) setCanvasSize:(PBSize*) value {
+  result.hasCanvasSize = YES;
+  result.canvasSize = value;
+  return self;
+}
+- (PBFeed_Builder*) setCanvasSizeBuilder:(PBSize_Builder*) builderForValue {
+  return [self setCanvasSize:[builderForValue build]];
+}
+- (PBFeed_Builder*) mergeCanvasSize:(PBSize*) value {
+  if (result.hasCanvasSize &&
+      result.canvasSize != [PBSize defaultInstance]) {
+    result.canvasSize =
+      [[[PBSize builderWithPrototype:result.canvasSize] mergeFrom:value] buildPartial];
+  } else {
+    result.canvasSize = value;
+  }
+  result.hasCanvasSize = YES;
+  return self;
+}
+- (PBFeed_Builder*) clearCanvasSize {
+  result.hasCanvasSize = NO;
+  result.canvasSize = [PBSize defaultInstance];
   return self;
 }
 @end

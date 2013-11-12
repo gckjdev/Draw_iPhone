@@ -61,11 +61,18 @@
     [singOpus setTags:@[@"唱歌"]];
     
     // set desc label info
+    int textColor = [DrawUtils compressDrawColor8:[DrawColor whiteColor]];
+    float textFont = (ISIPAD ? 26 : 13);
+    int style = 0;
+    int textStrokeColor = [DrawUtils compressDrawColor8:[DrawColor blackColor]];
+    float textStrokeWidth = (ISIPAD ? 2 : 1);
     
-    [singOpus setStrokeLabelWithXRatio:0.5
-                                yRatio:0.5
-                             textColor:[DrawUtils compressColor8:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]]
-                       textStrokeColor:[DrawUtils compressColor8:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]]];
+    [singOpus setLabelInfoWithFrame:CGRectZero
+                          textColor:textColor
+                           textFont:textFont
+                              style:style
+                    textStrokeColor:textStrokeColor
+                    textStrokeWidth:textStrokeWidth];
     
     return singOpus;
 }

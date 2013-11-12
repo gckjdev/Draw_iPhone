@@ -56,7 +56,6 @@ message PBCommentInfo
     optional string actionSummary = 6;   //action的简单摘要
 }
 
-
 message PBLearnDraw{
     required string opusId = 1;
     optional int32 type = 2;
@@ -66,13 +65,15 @@ message PBLearnDraw{
 
 message PBLabelInfo{
    
-   optional float xRatio = 1;         // 这里的xRatio是记录label的origin.x与label的super view的width的比值。即xRatio = label.origin.x / label.superView.size.width
-   
-   optional float yRatio = 2;         // 意义同上， yRatio = label.origin.y / label.superView.size.height。
+   optional PBRect frame = 1;
 
-   optional int32 style = 3;
    optional int32 textColor = 4;          // 文本颜色。
-   optional int32 textStrokeColor = 5;    // 外圈颜色。
+   optional float textFont = 5;           // 文本字体大小
+
+   optional int32 style = 20;
+
+   optional int32 textStrokeColor = 21;    // 外圈颜色。
+   optional float textStrokeWidth = 22;    // 外圈宽度
 }
 
 message PBFeed {
@@ -148,6 +149,7 @@ message PBFeed {
   optional PBSingOpus sing = 101;               // 唱歌特有信息
 
   optional PBLabelInfo descLabelInfo = 200;
+  optional PBSize canvasSize = 201;
 }
 
 message PBPoint

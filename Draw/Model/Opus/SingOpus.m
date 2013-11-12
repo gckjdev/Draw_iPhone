@@ -225,18 +225,29 @@ enum {
     return text;
 }
 
-- (void)setStrokeLabelWithXRatio:(CGFloat)xRatio
-                          yRatio:(CGFloat)yRatio
-                       textColor:(int)textColor
-                 textStrokeColor:(int)textStrokeColor{
+- (void)setLabelInfoWithFrame:(CGRect)frame
+                    textColor:(int)textColor
+                     textFont:(float)textFont
+                        style:(int)style
+              textStrokeColor:(int)textStrokeColor
+              textStrokeWidth:(float)textStrokeWidth{
     
-    PBLabelInfo_Builder *labelInfoBuilder = [PBLabelInfo builderWithPrototype:self.pbOpus.descLabelInfo];
-    [labelInfoBuilder setStyle:0];
-    [labelInfoBuilder setXRatio:xRatio];
-    [labelInfoBuilder setYRatio:yRatio];
+    PBLabelInfo_Builder *labelInfoBuilder = [[[PBLabelInfo_Builder alloc] init] autorelease];
+    
+    PBRect_Builder *rectBuilder = [[[PBRect_Builder alloc] init] autorelease];
+    [rectBuilder setX:frame.origin.x];
+    [rectBuilder setY:frame.origin.y];
+    [rectBuilder setWidth:frame.size.width];
+    [rectBuilder setHeight:frame.size.height];
+    PBRect *pbRect = [rectBuilder build];
+    
+    [labelInfoBuilder setFrame:pbRect];
     [labelInfoBuilder setTextColor:textColor];
+    [labelInfoBuilder setTextFont:textFont];
+    [labelInfoBuilder setStyle:0];
     [labelInfoBuilder setTextStrokeColor:textStrokeColor];
-    
+    [labelInfoBuilder setTextStrokeWidth:textStrokeWidth];
+
     PBLabelInfo *labelInfo = [labelInfoBuilder build];
     
     [self.pbOpusBuilder setDescLabelInfo:labelInfo];
