@@ -289,6 +289,7 @@
 "kSavePercent" = "节省%02d%%";
 
 "kShareTitle" = "本地作品";
+"kOpusSet" = "作品集";
 "kUnknownWord" = "神秘";
 
 "kNickNameEmpty" = "昵称不能为空";
@@ -626,11 +627,15 @@
 "kMyFeed" = "我的";
 "kMyFeedList" = "我的动态";
 
-"kDrawDescNoWord" = "画了一幅画。";
 "kGuessRightDescNoWord" = "猜对了%@的画。";
 "kTryGuessDescNoWord" = "尝试去猜了%@的画。";
 
 "kDrawDesc" = "画了一幅 [%@]。";
+"kCreateDesc" = "创作了一个作品 [%@].";
+
+"kDrawDescNoWord" = "画了一幅画。";
+"kCreateDescNoName" = "创作了一个作品.";
+
 "kGuessRightDesc" = "猜对了%@画的 [%@]。";
 "kTryGuessDesc" = "尝试去猜了%@画的 [%@]。";
 
@@ -1484,6 +1489,9 @@
 //dream avatar
 "kDreamAvatarSaveToAlbum" = "保存到相冊";
 "kDreamAvatarSaveToContact" = "联系人头像";
+
+"kWhiteTextBlackStroke" = "白字黑框";
+"kBlackTextWhiteStroke" = "黑字白框";
 
 //dream lockscreen
 "kDreamLockscreenPreview" = "预览";

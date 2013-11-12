@@ -180,7 +180,6 @@
         [self.drawFeed setFeedType:FeedTypeDraw];
         [self.drawFeed setFeedId:pbFeed.opusId];
         
-        
         [self initComment:pbFeed];
     }
     return self;

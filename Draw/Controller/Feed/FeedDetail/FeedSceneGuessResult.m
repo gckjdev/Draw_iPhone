@@ -39,7 +39,7 @@
 #define LABEL_FONT_SIZE  (ISIPAD?30:15)
 - (void)initContentImageView:(UIImageView*)view withFeed:(DrawFeed*)feed
 {
-    if (feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+    if (feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
         UILabel* label = (UILabel*)[view viewWithTag:LABEL_TAG];
         if (label == nil) {
             float width = view.frame.size.height*view.image.size.width/view.image.size.height;

@@ -591,11 +591,9 @@ int getPopOptionCount()
         return;
     }
     [self hideOptionSheet];
-//    [self performSelector:@selector(showFeed:) withObject:rankView.feed afterDelay:0.001];
 
     int index = [[self.currentTab dataList] indexOfObject:rankView.feed];
     [self showOpusImageBrower:index];
-
 }
 
 

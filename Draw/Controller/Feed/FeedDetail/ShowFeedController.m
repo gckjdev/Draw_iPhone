@@ -186,7 +186,7 @@ typedef enum{
         || ([GameApp disableEnglishGuess]
         && [[UserManager defaultManager] getLanguageType] != ChineseType)
         || [[UserService defaultService] isRegistered] == NO) {
-        if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+        if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
             [types addObject:@(FooterTypeReplay)];
         }
     }else{
@@ -708,9 +708,9 @@ typedef enum{
 
 - (void)performGuess
 {
-    if (self.feed.categoryType == PBOpusCategoryTypeDrawCategory) {
+    if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
         [self perFormDrawGuess];
-    }else if (self.feed.categoryType == PBOpusCategoryTypeSingCategory){
+    }else if (self.feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
         [self performSingGuess];
     }
 }
@@ -761,6 +761,20 @@ typedef enum{
 }
 
 - (void)performReplay
+{
+    if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+        [self performReplayDraw];
+    }else if (self.feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
+        [self performReplaySing];
+    }
+}
+
+- (void)performReplaySing{
+    
+    [self didClickFullScreenButton];
+}
+
+- (void)performReplayDraw
 {
     __block ShowFeedController * cp = self;
 
@@ -1056,9 +1070,11 @@ typedef enum{
 
 - (void)showOpusImageBrower{
     
-    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:@[self.feed]] autorelease];
-    brower.delegate = self;
-    [brower showInView:self.view];
+    if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+        OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:@[self.feed]] autorelease];
+        brower.delegate = self;
+        [brower showInView:self.view];
+    }
 }
 
 
@@ -1273,17 +1289,6 @@ typedef enum{
 
 }
 
-//- (void)didDeleteFeed:(Feed *)feed
-//           resultCode:(NSInteger)resultCode
-//{
-//    if (resultCode == 0){
-//        POSTMSG(@"删除作品成功");
-//    }
-//    else{
-//        POSTMSG(@"删除作品失败");
-//    }
-//}
-
 - (void)showPhotoBrower{
 
     [[ImagePlayer defaultPlayer]  playWithUrl:self.feed.largeImageURL displayActionButton:YES onViewController:self];
@@ -1339,32 +1344,36 @@ typedef enum{
 
 - (void)didClickFullScreenButton{
 
-    _isDrawInfoFullScreen = YES;
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    
-    [self.dataTableView beginUpdates];
-    [self.dataTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.dataTableView endUpdates];
-    
-    [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    
-    [self play];
+    if (_isDrawInfoFullScreen == NO) {
+        _isDrawInfoFullScreen = YES;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        
+        [self.dataTableView beginUpdates];
+        [self.dataTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.dataTableView endUpdates];
+        
+        [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        
+        [self play];
+    }
 }
 
 - (void)didClickNonFullScreenButton{
     
-    _isDrawInfoFullScreen = NO;
-
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
-    
-    [self.dataTableView beginUpdates];
-    [self.dataTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.dataTableView endUpdates];
-    
-    [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    
-    [_audioPlayer stop];
+    if (_isDrawInfoFullScreen == YES) {
+        _isDrawInfoFullScreen = NO;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        
+        [self.dataTableView beginUpdates];
+        [self.dataTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.dataTableView endUpdates];
+        
+        [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        
+        [_audioPlayer stop];
+    }
 }
 
 - (void)playAudio:(AudioButton *)button

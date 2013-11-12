@@ -358,7 +358,6 @@
         [[ImagePlayer defaultPlayer] playWithUrl:URL
                              displayActionButton:NO
                                 onViewController:_superViewController];
-        // [[ImagePlayer defaultPlayer] playWithUrl:URL displayActionButton:NO onViewController:_superViewController];
     }
 }
 

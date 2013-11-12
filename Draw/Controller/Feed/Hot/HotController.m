@@ -485,15 +485,6 @@ typedef enum{
     
 }
 
-- (void)showOpusImageBrower:(int)index{
-    
-    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:_tabManager.currentTab.dataList] autorelease];
-    brower.delegate = self;
-    [brower showInView:self.view];
-    [brower setIndex:index];
-}
-
-
 - (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed{
     
     [self showFeed:feed animatedWithTransition:UIViewAnimationTransitionCurlUp];

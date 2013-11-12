@@ -60,12 +60,14 @@ enum{
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) CMPopTipView *popTipView;
+@property (copy, nonatomic) NSString *targetUserId;
 
 @end
 
 @implementation SingController
 
 - (void)dealloc{
+    [_targetUserId release];
     [_picker release];
     [_image release];
     [_singOpus release];
@@ -111,9 +113,19 @@ enum{
 - (id)init{
     
     if (self = [super init]) {
-        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:@"小吉话话"];
+        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:@"作品"];
     }
 
+    return self;
+}
+
+- (id)initWithTargetUserId:(NSString *)targetUserId{
+    
+    if (self = [super init]) {
+        self.targetUserId = targetUserId;
+        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:@"作品"];
+    }
+    
     return self;
 }
 
@@ -201,6 +213,7 @@ enum{
     
     self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
     self.opusDescLabel.textAlignment = NSTextAlignmentCenter;
+    self.opusDescLabel.font = [UIFont systemFontOfSize:(ISIPAD ? 30 : 15)];
     [ShareImageManager setStrokeLabelStyle:self.opusDescLabel];
         
     CGSize size = CGSizeMake(self.opusImageView.frame.size.width * 0.8, 18);
@@ -325,27 +338,31 @@ enum{
 
 - (void) handleTapGestures:(UIPanGestureRecognizer*)paramSender{
     
-    int whiteColorInt = [DrawUtils compressColor8:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     
-    if ([DrawUtils compressColor8:self.opusDescLabel.textColor] == whiteColorInt) {
-        self.opusDescLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
-        self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-    }else{
-        self.opusDescLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-        self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
-
-    }
     
-    [self.opusDescLabel setNeedsDisplay];
+    MKBlockActionSheet *sheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kWhiteTextBlackStroke"), NSLS(@"kBlackTextWhiteStroke"), nil] autorelease];
     
-    [self saveDescLabelInfo];
+    sheet.actionBlock = ^(NSInteger buttonIndex){
+        
+        if (buttonIndex == 0) {
+            self.opusDescLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+            self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+            [self saveDescLabelInfo];
+        }else if (buttonIndex == 1){
+            self.opusDescLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+            self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+            [self saveDescLabelInfo];
+        }
+    };
+    
+    [sheet showInView:self.view];
 }
     
 
 - (void)saveDescLabelInfo{
     
-    CGFloat xRatio = self.opusDescLabel.superview.frame.origin.x /  self.opusDescLabel.superview.bounds.size.width;
-    CGFloat yRatio = self.opusDescLabel.superview.frame.origin.y / self.opusDescLabel.superview.bounds.size.height;
+    CGFloat xRatio = self.opusDescLabel.frame.origin.x /  self.opusDescLabel.superview.bounds.size.width;
+    CGFloat yRatio = self.opusDescLabel.frame.origin.y / self.opusDescLabel.superview.bounds.size.height;
     int textColor = [DrawUtils compressColor8:self.opusDescLabel.textColor];
     int textStrokeColor = [DrawUtils compressColor8:self.opusDescLabel.textOutlineColor];
     [self.singOpus setStrokeLabelWithXRatio:xRatio yRatio:yRatio textColor:textColor textStrokeColor:textStrokeColor];
@@ -780,16 +797,8 @@ enum{
         PPDebug(@"path is %@", path);
 
         NSData *singData = [NSData dataWithContentsOfFile:path];
-        if (singData == nil) {
-            return;
-        }
-
-        [self setProgress:0];
-        [[OpusService defaultService] submitOpus:_singOpus
-                                           image:_image
-                                        opusData:singData
-                                progressDelegate:self
-                                        delegate:self];
+        
+        [self uploadSingOpus:singData];
     }else{
         
         NSURL *inUrl = [self recordURL];
@@ -819,7 +828,13 @@ enum{
     PPDebug(@"path is %@", path);
     
     NSData *singData = [NSData dataWithContentsOfFile:path];
+    [self uploadSingOpus:singData];
+}
+
+- (void)uploadSingOpus:(NSData *)singData{
+    
     if (singData == nil) {
+        POSTMSG(@"没有录音数据，上传失败");
         return;
     }
     
@@ -827,6 +842,7 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
+                                targetUserId:self.targetUserId
                             progressDelegate:self
                                     delegate:self];
 }

@@ -307,31 +307,6 @@ typedef enum{
     [sc release];
 }
 
-//- (void)enterDetailFeed:(DrawFeed *)feed animatedWithTransition:(UIViewAnimationTransition)transition
-//{
-//    ShowFeedController *sc = [[ShowFeedController alloc] initWithFeed:feed scene:[UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:feed]];
-//    [sc showOpusImageBrower];
-//    sc.feedList = [[self currentTab] dataList];
-//    [self.navigationController pushViewController:sc animatedWithTransition:transition duration:1];
-//    [sc release];
-//}
-
-
-//- (void)showOpusImageBrower:(int)index{
-//    
-//    OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:_tabManager.currentTab.dataList] autorelease];
-//    brower.delegate = self;
-//    [brower showInView:self.view];
-//    [brower setIndex:index];
-//}
-
-
-//- (void)brower:(OpusImageBrower *)brower didSelecteFeed:(DrawFeed *)feed{
-//
-//    [self enterDetailFeed:feed animatedWithTransition:UIViewAnimationTransitionCurlUp];
-//}
-
-
 
 - (void)alertDeleteConfirm
 {

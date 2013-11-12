@@ -50,6 +50,10 @@
 // if direct in, call this method.
 - (id)init;
 
+// if you want to create opus for some one. call this method.
+
+- (id)initWithTargetUserId:(NSString *)targetUserId;
+
 // if load form draft, use this method.
 - (id)initWithOpus:(SingOpus *)opus;
 

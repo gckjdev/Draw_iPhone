@@ -268,6 +268,7 @@ typedef enum {
 {
 //    [self setPullRefreshType:PullRefreshTypeNone];
     [self setPullRefreshType:PullRefreshTypeBoth];
+    _defaultTabIndex = 2;
     [super viewDidLoad]; 
 
     [self initTabButtons];
@@ -280,7 +281,7 @@ typedef enum {
         [v setRightButtonTitle:NSLS(@"kCancel")];
         [v setTitle:NSLS(@"kShareToWeiXinTitle")];
     }else{
-        [v setTitle:NSLS(@"kShareTitle")];
+        [v setTitle:NSLS(@"kOpusSet")];
         [v setBackButtonSelector:@selector(clickBackButton:)];
     }
     
