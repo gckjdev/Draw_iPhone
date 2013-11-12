@@ -5097,6 +5097,10 @@
 		CA9A7EC316DC57B10089BD51 /* ShapeBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9A7EC216DC57B10089BD51 /* ShapeBox.m */; };
 		CA9A7ECD16DC57D40089BD51 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		CA9A7ED216DC57F70089BD51 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
+		CA9AAE6E1832054B002DBAA5 /* OpusDesignTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */; };
+		CA9AAE6F1832054B002DBAA5 /* OpusDesignTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */; };
+		CA9AAE701832054B002DBAA5 /* OpusDesignTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */; };
+		CA9AAE711832054B002DBAA5 /* OpusDesignTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */; };
 		CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAEEC19E181A5F18007FD75F /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076B174DBB72005AF334 /* CoreMedia.framework */; };
 		CA9B4EC016103726008C6A97 /* TopPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9B4EBF16103726008C6A97 /* TopPlayer.m */; };
@@ -8993,6 +8997,8 @@
 		CA9A7EC216DC57B10089BD51 /* ShapeBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeBox.m; sourceTree = "<group>"; };
 		CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShapeBox.xib; sourceTree = "<group>"; };
 		CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ShapeBox~ipad.xib"; sourceTree = "<group>"; };
+		CA9AAE6C1832054B002DBAA5 /* OpusDesignTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpusDesignTime.h; sourceTree = "<group>"; };
+		CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpusDesignTime.m; sourceTree = "<group>"; };
 		CA9B4EBE16103726008C6A97 /* TopPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPlayer.h; sourceTree = "<group>"; };
 		CA9B4EBF16103726008C6A97 /* TopPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPlayer.m; sourceTree = "<group>"; };
 		CA9C11BE178135DF004372B6 /* GradientAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientAction.h; sourceTree = "<group>"; };
@@ -10842,6 +10848,8 @@
 				A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */,
 				A40B59BC180FD96100F68A81 /* OpusManagerFactory.h */,
 				A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */,
+				CA9AAE6C1832054B002DBAA5 /* OpusDesignTime.h */,
+				CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */,
 			);
 			path = Opus;
 			sourceTree = "<group>";
@@ -20881,6 +20889,7 @@
 				EA1BD648182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158676182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64F182E26A6000E5364 /* Group.pb.m in Sources */,
+				CA9AAE701832054B002DBAA5 /* OpusDesignTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21622,6 +21631,7 @@
 				EA1BD647182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158675182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64E182E26A6000E5364 /* Group.pb.m in Sources */,
+				CA9AAE6F1832054B002DBAA5 /* OpusDesignTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22368,6 +22378,7 @@
 				EA1BD646182DEB0B000E5364 /* GroupManager.m in Sources */,
 				A4158674182DF6D1007FCB16 /* StrokeLabel.m in Sources */,
 				EA1BD64D182E26A6000E5364 /* Group.pb.m in Sources */,
+				CA9AAE6E1832054B002DBAA5 /* OpusDesignTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23058,6 +23069,7 @@
 				EA1BD63F182DE6DD000E5364 /* CreateGroupController.m in Sources */,
 				EA1BD649182DEB0B000E5364 /* GroupManager.m in Sources */,
 				EA1BD650182E26A6000E5364 /* Group.pb.m in Sources */,
+				CA9AAE711832054B002DBAA5 /* OpusDesignTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
