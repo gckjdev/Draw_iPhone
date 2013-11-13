@@ -236,7 +236,7 @@ enum{
     self.opusDescLabel.textOutlineColor = textStrokeColor;
     
     // set stroke width
-    self.opusDescLabel.textOutlineWidth = labelInfo.textStrokeWidth;
+    self.opusDescLabel.textOutlineWidth = (ISIPAD ? 2 : 1);
 
     // add label into opus image view
     [self.opusImageView addSubview:self.opusDescLabel];
@@ -382,8 +382,7 @@ enum{
                                textColor:textColor
                                 textFont:fontSize
                                    style:0
-                         textStrokeColor:textStrokeColor
-                         textStrokeWidth:textStrokeWidth];
+                         textStrokeColor:textStrokeColor];
 }
 
 

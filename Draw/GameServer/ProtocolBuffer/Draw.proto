@@ -73,7 +73,6 @@ message PBLabelInfo{
    optional int32 style = 20;
 
    optional int32 textStrokeColor = 21;    // 外圈颜色。
-   optional float textStrokeWidth = 22;    // 外圈宽度
 }
 
 message PBFeed {

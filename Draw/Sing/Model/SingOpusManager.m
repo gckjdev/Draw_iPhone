@@ -52,8 +52,7 @@
                           textColor:textColor
                            textFont:textFont
                               style:style
-                    textStrokeColor:textStrokeColor
-                    textStrokeWidth:textStrokeWidth];
+                    textStrokeColor:textStrokeColor];
     
     return singOpus;
 }

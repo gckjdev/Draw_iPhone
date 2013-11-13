@@ -79,7 +79,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
             l.textOutlineColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textStrokeColor] color];
             
             // set text stroke widht
-            l.textOutlineWidth = labelInfo.textStrokeWidth;
+            l.textOutlineWidth = (ISIPAD ? 2 : 1);
                         
         }else{
             
