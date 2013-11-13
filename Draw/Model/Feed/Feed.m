@@ -118,9 +118,10 @@
 
 
 // TODO check this impact on SING
-- (BOOL) isDrawType
+- (BOOL) isOpusType
 {
-    return (self.feedType == FeedTypeDraw) || (self.feedType == FeedTypeDrawToUser);
+    return (self.feedType == FeedTypeDraw) || (self.feedType == FeedTypeDrawToUser)
+    || (self.feedType == FeedTypeSing || self.feedType == FeedTypeSingToUser);
 }
 
 - (BOOL)isDrawCategory

@@ -294,7 +294,7 @@
         return ActionTypeHidden;
     }
     
-    if ([self isDrawType]) {
+    if ([self isOpusType]) {
         if ([userManager hasGuessOpus:self.feedId]) {
             return ActionTypeChallenge;
         }else{
