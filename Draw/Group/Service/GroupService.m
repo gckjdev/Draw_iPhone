@@ -98,19 +98,6 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-//checked
-- (void)getNewGroups:(NSInteger)offset
-               limit:(NSInteger)limit
-            callback:(ListResultBlock)callback
-{
-    NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
-    
-    [self loadPBData:METHOD_GET_NEW_GROUPS
-          parameters:paras
-            callback:^(DataQueryResponse *response, NSError *error) {                
-        EXECUTE_BLOCK(callback, response.groupListList, error);
-    }];
-}
 
 //checked
 - (void)joinGroup:(NSString *)groupId
@@ -185,25 +172,42 @@ static GroupService *_staticGroupService = nil;
      }];
 }
 
-- (void)inviteUsers:(NSArray *)uids
-              group:(NSString *)groupId
-               type:(InviteUserType)type
-           callback:(SimpleResultBlock)callback
+- (void)inviteMembers:(NSArray *)uids
+              groupId:(NSString *)groupId
+             callback:(SimpleResultBlock)callback
 {
     NSString *uidsString = [uids componentsJoinedByString:ID_SEPERATOR];
     
     NSDictionary *paras = @{PARA_GROUPID:groupId,
                             PARA_USERID_LIST:uidsString,
-                            PARA_TYPE:@(type),
                             };
     
-    [self loadPBData:METHOD_INVITE_GROUPUSER
+    [self loadPBData:METHOD_INVITE_GROUPMEMBERS
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error )
      {
          EXECUTE_BLOCK(callback, error);
      }];
 }
+
+- (void)inviteGuests:(NSArray *)uids
+             groupId:(NSString *)groupId
+            callback:(SimpleResultBlock)callback
+{
+    NSString *uidsString = [uids componentsJoinedByString:ID_SEPERATOR];
+    
+    NSDictionary *paras = @{PARA_GROUPID:groupId,
+                            PARA_USERID_LIST:uidsString,
+                            };
+    
+    [self loadPBData:METHOD_INVITE_GROUPGUESTS
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error )
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
 
 - (void)getMembersInGroup:(NSString *)groupId
                  callback:(ListResultBlock)callback
@@ -252,6 +256,73 @@ static GroupService *_staticGroupService = nil;
             callback:^(DataQueryResponse *response, NSError *error )
      {
          EXECUTE_BLOCK(callback, error);
+     }];
+}
+
+
+- (void)followGroup:(NSString *)groupId
+           callback:(SimpleResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId};
+    [self loadPBData:METHOD_FOLLOW_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
+- (void)unfollowGroup:(NSString *)groupId
+             callback:(SimpleResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId};
+    [self loadPBData:METHOD_UNFOLLOW_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];    
+}
+
+- (void)getGroupFans:(NSString *)groupId
+              offset:(NSInteger)offset
+               limit:(NSInteger)limit
+            callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId, PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
+    [self loadPBData:METHOD_GET_GROUP_FANS
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.userListList, error);
+     }];
+}
+
+- (void)upgradeGroup:(NSString *)groupId
+               level:(NSInteger)level
+            callback:(SimpleResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_GROUPID:groupId, PARA_LEVEL:@(level)};
+    [self loadPBData:METHOD_UPGRADE_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, error);
+     }];
+}
+
+- (void)getGroupNoticeByType:(GroupNoticeType)type
+                      offset:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    callback:(ListResultBlock)callback
+{
+    NSDictionary *paras = @{PARA_TYPE:@(type), PARA_OFFSET:@(offset), PARA_LIMIT:@(limit)};
+
+    [self loadPBData:METHOD_UPGRADE_GROUP
+          parameters:paras
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         EXECUTE_BLOCK(callback, response.noticeListList, error);
      }];
 }
 
