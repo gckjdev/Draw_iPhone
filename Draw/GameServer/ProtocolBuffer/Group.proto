@@ -109,5 +109,6 @@ message PBGroupNotice{
     optional int32 type = 4;
     optional int32 status = 5;
 
-    optional PBGameUser requester = 10; //only for request to join group
+    optional PBGameUser reporter = 10; //only for request to join group
+    optional PBGameUser receiver = 11; //only for request to join group
 }

@@ -188,11 +188,13 @@
         [self updateLearnDraw:feed.learnDraw];
     }
 
-    if (self.feed.categoryType == PBOpusCategoryTypeSingCategory) {
+    if ([self.feed isSingCategory]) {
         [[self.drawImage viewWithTag:201139481] removeFromSuperview];
         WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds feed:self.feed];
+        [v setHotRankViewStyle];
         [self.drawImage addSubview:v];
         v.tag = 201139481;
+
     }
 }
 

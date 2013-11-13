@@ -690,26 +690,30 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
   BOOL hasNoticeId_:1;
   BOOL hasMessage_:1;
   BOOL hasGroupId_:1;
-  BOOL hasRequester_:1;
+  BOOL hasReporter_:1;
+  BOOL hasReceiver_:1;
   int32_t type;
   int32_t status;
   NSString* noticeId;
   NSString* message;
   NSString* groupId;
-  PBGameUser* requester;
+  PBGameUser* reporter;
+  PBGameUser* receiver;
 }
 - (BOOL) hasNoticeId;
 - (BOOL) hasMessage;
 - (BOOL) hasGroupId;
 - (BOOL) hasType;
 - (BOOL) hasStatus;
-- (BOOL) hasRequester;
+- (BOOL) hasReporter;
+- (BOOL) hasReceiver;
 @property (readonly, retain) NSString* noticeId;
 @property (readonly, retain) NSString* message;
 @property (readonly, retain) NSString* groupId;
 @property (readonly) int32_t type;
 @property (readonly) int32_t status;
-@property (readonly, retain) PBGameUser* requester;
+@property (readonly, retain) PBGameUser* reporter;
+@property (readonly, retain) PBGameUser* receiver;
 
 + (PBGroupNotice*) defaultInstance;
 - (PBGroupNotice*) defaultInstance;
@@ -770,11 +774,18 @@ BOOL PBDefaultGroupTitleIsValidValue(PBDefaultGroupTitle value);
 - (PBGroupNotice_Builder*) setStatus:(int32_t) value;
 - (PBGroupNotice_Builder*) clearStatus;
 
-- (BOOL) hasRequester;
-- (PBGameUser*) requester;
-- (PBGroupNotice_Builder*) setRequester:(PBGameUser*) value;
-- (PBGroupNotice_Builder*) setRequesterBuilder:(PBGameUser_Builder*) builderForValue;
-- (PBGroupNotice_Builder*) mergeRequester:(PBGameUser*) value;
-- (PBGroupNotice_Builder*) clearRequester;
+- (BOOL) hasReporter;
+- (PBGameUser*) reporter;
+- (PBGroupNotice_Builder*) setReporter:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) setReporterBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBGroupNotice_Builder*) mergeReporter:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) clearReporter;
+
+- (BOOL) hasReceiver;
+- (PBGameUser*) receiver;
+- (PBGroupNotice_Builder*) setReceiver:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) setReceiverBuilder:(PBGameUser_Builder*) builderForValue;
+- (PBGroupNotice_Builder*) mergeReceiver:(PBGameUser*) value;
+- (PBGroupNotice_Builder*) clearReceiver;
 @end
 

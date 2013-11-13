@@ -57,7 +57,7 @@
         [BalanceNotEnoughAlertView showInController:self];
     }
     
-    [[GroupService defaultService] createGroup:_nameLabel level:level callback:^(PBGroup *group, NSError *error) {
+    [[GroupService defaultService] createGroup:name level:level callback:^(PBGroup *group, NSError *error) {
         if (error) {
             [DrawError postError:error];
         }else{

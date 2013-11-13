@@ -165,7 +165,7 @@
     NSString *kCreateDesc = NSLS(@"kDrawDesc");
     NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
 
-    if (self.pbFeed.category == PBOpusCategoryTypeSingCategory) {
+    if ([self isSingCategory]) {
         kCreateDesc = NSLS(@"kCraeteDesc");
         kCreateDescNoName = NSLS(@"kCreateDescNoName");
     }

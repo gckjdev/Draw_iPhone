@@ -68,7 +68,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
 - (void)submitOpus:(Opus*)draftOpus
              image:(UIImage *)image
           opusData:(NSData *)opusData
-      targetUserId:(NSString *)targetUserId
   progressDelegate:(id)progressDelegate
           delegate:(id<OpusServiceDelegate>)delegate
 {
@@ -77,20 +76,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
         
     dispatch_async(workingQueue, ^{
         
-        NSDictionary *para = nil;
-        if (targetUserId == nil) {
-            para = @{PARA_USERID : [[UserManager defaultManager] userId],
-                        PARA_APPID : [PPConfigManager appId],
-                     PARA_UPLOAD_DATA_TYPE : [draftOpus dataType]
+        NSDictionary *para = @{PARA_USERID : [[UserManager defaultManager] userId],
+                               PARA_APPID : [PPConfigManager appId],
+                               PARA_UPLOAD_DATA_TYPE : [draftOpus dataType],
                                    };
-        }else{
-            
-            para = @{PARA_USERID : [[UserManager defaultManager] userId],
-                     PARA_APPID : [PPConfigManager appId],
-            PARA_UPLOAD_DATA_TYPE : [draftOpus dataType],
-                     PARA_TO_USERID : targetUserId
-                                   };
-        }
 
         
         NSDictionary *imageDataDict = nil;

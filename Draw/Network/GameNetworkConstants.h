@@ -680,17 +680,25 @@
 
 #define METHOD_CREATE_GROUP @"createGroup"
 #define METHOD_GET_GROUP @"getGroup"
-#define METHOD_GET_GROUPS @"getGroups"
-#define METHOD_GET_NEW_GROUPS @"getNewGroups"
-
 #define METHOD_JOIN_GROUP @"joinGroup"
+
 #define METHOD_HANDLE_JOIN_REQUEST @"handelJoinGroupRequest"
 #define METHOD_EDIT_GROUP @"editGroup"
-#define METHOD_INVITE_GROUPUSER @"inviteGroupUser"
+#define METHOD_INVITE_GROUPMEMBERS @"inviteGroupUser"
 #define METHOD_GET_GROUP_MEMBERS @"getGroupMembers"
-
 #define METHOD_EXPEL_GROUPUSER @"expelGroupUser"
 #define METHOD_UPDATE_GROUPUSER_ROLE @"updateUserRole"
+#define METHOD_INVITE_GROUPGUESTS @"inviteGroupGuest"
+
+#define METHOD_FOLLOW_GROUP @"followGroup"
+#define METHOD_UNFOLLOW_GROUP @"unfollowGroup"
+#define METHOD_GET_GROUP_FANS @"getGroupFans"
+#define METHOD_GET_GROUPS @"getGroups"
+#define METHOD_UPGRADE_GROUP @"upgradeGroup"
+#define METHOD_GET_GROUP_NOTICES @"getGroupNotices"
+
+
+
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"
 
 #define REGISTER_TYPE_EMAIL     1
@@ -771,23 +779,30 @@
 
 
 //group Error Code
+#define ERROR_GROUP  200000                                                     
 #define ERROR_GROUP_DUPLICATE_NAME  200001
 #define ERROR_PARAMETER_GROUPID_EMPTY  200002
 #define ERROR_PARAMETER_GROUPID_NULL  200003
-#define ERROR_PARAMETER_FROM_EMPTY    200004
-#define ERROR_PARAMETER_FROM_NULL    200005
 #define ERROR_GROUP_MULTIJOINED  200006
 #define ERROR_GROUP_MULTIREQUESTED  200007
 #define ERROR_GROUP_PERMISSION  200008
 #define ERROR_GROUP_FULL  200009
 #define ERROR_GROUP_REJECTED  200010
-#define ERROR_GROUP_USER_NOT_REQUESTSTATUS 200011
+#define ERROR_GROUP_USER_NOT_REQUESTSTATUS  200011
+#define ERROR_GROUP_INVALIDATE_ROLE  200012
+#define ERROR_GROUP_MEMBER_UNFOLLOW  200013
+#define ERROR_GROUP_REPEAT_FOLLOW  200014
+#define ERROR_GROUP_NOTEXIST  200015
+#define ERROR_GROUP_LEVEL_SMALL  200016
 
 
 #define ERROR_GROUP_NAME_EMPTY  200050
 
 
+/////
 
+
+/////
 
 
 

@@ -186,7 +186,7 @@ typedef enum{
         || ([GameApp disableEnglishGuess]
         && [[UserManager defaultManager] getLanguageType] != ChineseType)
         || [[UserService defaultService] isRegistered] == NO) {
-        if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+        if ([self.feed isDrawCategory]) {
             [types addObject:@(FooterTypeReplay)];
         }
     }else{
@@ -708,9 +708,9 @@ typedef enum{
 
 - (void)performGuess
 {
-    if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+    if ([self.feed isDrawCategory]) {
         [self perFormDrawGuess];
-    }else if (self.feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
+    }else if ([self.feed isSingCategory]){
         [self performSingGuess];
     }
 }
@@ -762,9 +762,9 @@ typedef enum{
 
 - (void)performReplay
 {
-    if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+    if ([self.feed isDrawCategory]) {
         [self performReplayDraw];
-    }else if (self.feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
+    }else if ([self.feed isSingCategory]){
         [self performReplaySing];
     }
 }
@@ -1061,7 +1061,7 @@ typedef enum{
 
 - (void)showOpusImageBrower{
     
-    if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+    if ([self.feed isDrawCategory]) {
         OpusImageBrower *brower = [[[OpusImageBrower alloc] initWithFeedList:@[self.feed]] autorelease];
         brower.delegate = self;
         [brower showInView:self.view];
