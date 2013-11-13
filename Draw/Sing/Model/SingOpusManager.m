@@ -43,17 +43,15 @@
     
     // set desc label info
     NSUInteger textColor = [[DrawColor whiteColor] toBetterCompressColor];
-    float textFont = (ISIPAD ? 26 : 13);
+    float textFont = (ISIPAD ? 35 : 18);
     int style = 0;
     NSUInteger textStrokeColor = [[DrawColor blackColor] toBetterCompressColor];
-    float textStrokeWidth = (ISIPAD ? 2 : 1);
     
     [singOpus setLabelInfoWithFrame:CGRectZero
                           textColor:textColor
                            textFont:textFont
                               style:style
-                    textStrokeColor:textStrokeColor
-                    textStrokeWidth:textStrokeWidth];
+                    textStrokeColor:textStrokeColor];
     
     return singOpus;
 }

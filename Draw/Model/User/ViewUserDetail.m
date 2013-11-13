@@ -489,7 +489,7 @@
         [OfflineDrawViewController startDraw:[Word cusWordWithText:@""] fromController:viewController startController:viewController targetUid:[self getUserId]];
     }else if (isSingApp()){
         
-        SingController *vc = [[[SingController alloc] initWithTargetUserId:self.getUserId] autorelease];
+        SingController *vc = [[[SingController alloc] initWithTargetUser:self.getUser] autorelease];
         [viewController.navigationController pushViewController:vc animated:YES];
     }
 }

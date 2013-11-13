@@ -2046,7 +2046,6 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
 @property Float32 textFont;
 @property int32_t style;
 @property int32_t textStrokeColor;
-@property Float32 textStrokeWidth;
 @end
 
 @implementation PBLabelInfo
@@ -2086,13 +2085,6 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
   hasTextStrokeColor_ = !!value;
 }
 @synthesize textStrokeColor;
-- (BOOL) hasTextStrokeWidth {
-  return !!hasTextStrokeWidth_;
-}
-- (void) setHasTextStrokeWidth:(BOOL) value {
-  hasTextStrokeWidth_ = !!value;
-}
-@synthesize textStrokeWidth;
 - (void) dealloc {
   self.frame = nil;
   [super dealloc];
@@ -2104,7 +2096,6 @@ static PBLearnDraw* defaultPBLearnDrawInstance = nil;
     self.textFont = 0;
     self.style = 0;
     self.textStrokeColor = 0;
-    self.textStrokeWidth = 0;
   }
   return self;
 }
@@ -2139,9 +2130,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   if (self.hasTextStrokeColor) {
     [output writeInt32:21 value:self.textStrokeColor];
   }
-  if (self.hasTextStrokeWidth) {
-    [output writeFloat:22 value:self.textStrokeWidth];
-  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -2165,9 +2153,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   }
   if (self.hasTextStrokeColor) {
     size += computeInt32Size(21, self.textStrokeColor);
-  }
-  if (self.hasTextStrokeWidth) {
-    size += computeFloatSize(22, self.textStrokeWidth);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2259,9 +2244,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
   if (other.hasTextStrokeColor) {
     [self setTextStrokeColor:other.textStrokeColor];
   }
-  if (other.hasTextStrokeWidth) {
-    [self setTextStrokeWidth:other.textStrokeWidth];
-  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -2306,10 +2288,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
       }
       case 168: {
         [self setTextStrokeColor:[input readInt32]];
-        break;
-      }
-      case 181: {
-        [self setTextStrokeWidth:[input readFloat]];
         break;
       }
     }
@@ -2407,22 +2385,6 @@ static PBLabelInfo* defaultPBLabelInfoInstance = nil;
 - (PBLabelInfo_Builder*) clearTextStrokeColor {
   result.hasTextStrokeColor = NO;
   result.textStrokeColor = 0;
-  return self;
-}
-- (BOOL) hasTextStrokeWidth {
-  return result.hasTextStrokeWidth;
-}
-- (Float32) textStrokeWidth {
-  return result.textStrokeWidth;
-}
-- (PBLabelInfo_Builder*) setTextStrokeWidth:(Float32) value {
-  result.hasTextStrokeWidth = YES;
-  result.textStrokeWidth = value;
-  return self;
-}
-- (PBLabelInfo_Builder*) clearTextStrokeWidth {
-  result.hasTextStrokeWidth = NO;
-  result.textStrokeWidth = 0;
   return self;
 }
 @end

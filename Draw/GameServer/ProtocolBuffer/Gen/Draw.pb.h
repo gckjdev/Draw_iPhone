@@ -615,13 +615,11 @@
 @interface PBLabelInfo : PBGeneratedMessage {
 @private
   BOOL hasTextFont_:1;
-  BOOL hasTextStrokeWidth_:1;
   BOOL hasTextColor_:1;
   BOOL hasStyle_:1;
   BOOL hasTextStrokeColor_:1;
   BOOL hasFrame_:1;
   Float32 textFont;
-  Float32 textStrokeWidth;
   int32_t textColor;
   int32_t style;
   int32_t textStrokeColor;
@@ -632,13 +630,11 @@
 - (BOOL) hasTextFont;
 - (BOOL) hasStyle;
 - (BOOL) hasTextStrokeColor;
-- (BOOL) hasTextStrokeWidth;
 @property (readonly, retain) PBRect* frame;
 @property (readonly) int32_t textColor;
 @property (readonly) Float32 textFont;
 @property (readonly) int32_t style;
 @property (readonly) int32_t textStrokeColor;
-@property (readonly) Float32 textStrokeWidth;
 
 + (PBLabelInfo*) defaultInstance;
 - (PBLabelInfo*) defaultInstance;
@@ -700,11 +696,6 @@
 - (int32_t) textStrokeColor;
 - (PBLabelInfo_Builder*) setTextStrokeColor:(int32_t) value;
 - (PBLabelInfo_Builder*) clearTextStrokeColor;
-
-- (BOOL) hasTextStrokeWidth;
-- (Float32) textStrokeWidth;
-- (PBLabelInfo_Builder*) setTextStrokeWidth:(Float32) value;
-- (PBLabelInfo_Builder*) clearTextStrokeWidth;
 @end
 
 @interface PBFeed : PBGeneratedMessage {

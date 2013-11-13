@@ -23,8 +23,7 @@
                     textColor:(NSUInteger)textColor
                      textFont:(float)textFont
                         style:(int)style
-              textStrokeColor:(NSUInteger)textStrokeColor
-              textStrokeWidth:(float)textStrokeWidth;
+              textStrokeColor:(NSUInteger)textStrokeColor;
 
 - (NSURL*)localNativeDataURL;
 - (void)setLocalNativeDataUrl:(NSString*)extension;

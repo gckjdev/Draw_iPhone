@@ -393,7 +393,7 @@ typedef enum{
         return;
     }
     DrawFeed *drawFeed = nil;
-    if (feed.isDrawType) {
+    if (feed.isOpusType) {
         drawFeed = (DrawFeed *)feed;
     }else if(feed.isGuessType){
         drawFeed = [(GuessFeed *)feed drawFeed];

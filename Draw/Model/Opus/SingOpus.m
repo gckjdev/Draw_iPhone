@@ -235,8 +235,7 @@ enum {
                     textColor:(NSUInteger)textColor
                      textFont:(float)textFont
                         style:(int)style
-              textStrokeColor:(NSUInteger)textStrokeColor
-              textStrokeWidth:(float)textStrokeWidth{
+              textStrokeColor:(NSUInteger)textStrokeColor{
     
     PBLabelInfo_Builder *labelInfoBuilder = [[[PBLabelInfo_Builder alloc] init] autorelease];
     
@@ -252,7 +251,6 @@ enum {
     [labelInfoBuilder setTextFont:textFont];
     [labelInfoBuilder setStyle:0];
     [labelInfoBuilder setTextStrokeColor:textStrokeColor];
-    [labelInfoBuilder setTextStrokeWidth:textStrokeWidth];
 
     PBLabelInfo *labelInfo = [labelInfoBuilder build];
     

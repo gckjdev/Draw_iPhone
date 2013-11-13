@@ -30,8 +30,9 @@ typedef enum{
     FeedTypeDrawToContest = PBOpusTypeDrawContest,
     
     FeedTypeContestComment = 105,
-    FeedtypeSing = PBOpusTypeSing,
-        
+    FeedTypeSing = PBOpusTypeSing,
+    FeedTypeSingToUser = PBOpusTypeSingToUser,
+    
 }FeedType;
 
 typedef enum{
@@ -94,7 +95,7 @@ typedef enum {
 
 - (BOOL)showAnswer;
 - (BOOL)isMyFeed;
-- (BOOL)isDrawType;
+- (BOOL)isOpusType;
 - (BOOL)isGuessType;
 - (BOOL)isCommentType;
 

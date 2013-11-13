@@ -52,7 +52,7 @@
 
 // if you want to create opus for some one. call this method.
 
-- (id)initWithTargetUserId:(NSString *)targetUserId;
+- (id)initWithTargetUser:(PBGameUser *)targetUser;
 
 // if load form draft, use this method.
 - (id)initWithOpus:(SingOpus *)opus;

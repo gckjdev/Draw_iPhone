@@ -151,7 +151,7 @@
 {
     NSInteger guessTimes = 0;
     DrawFeed* drawFeed = [self drawFeed:feed];
-    if (feed.isDrawType) {
+    if (feed.isOpusType) {
         guessTimes = [drawFeed guessTimes];
     }else if(feed.isGuessType){
         guessTimes = [drawFeed guessTimes];
@@ -173,7 +173,7 @@
         [self.correctLabel setText:@"0"];
     }else{
         NSInteger correctTimes = 0;
-        if (feed.isDrawType) {
+        if (feed.isOpusType) {
             correctTimes = [drawFeed correctTimes];
         }else if(feed.feedType == FeedTypeGuess){
             correctTimes = [drawFeed correctTimes];
@@ -190,16 +190,6 @@
 {
     DrawFeed* drawFeed = [self drawFeed:feed];
     return [drawFeed feedId];
-    
-//    if (feed.isDrawType) {
-//        return drawFeed.feedId;        
-//    }else if(feed.isGuessType){
-//        return [[(GuessFeed *)feed drawFeed] feedId];
-//    }
-//    else if ([feed respondsToSelector:@selector(drawFeed)]){
-//        return [[feed performSelector:@selector(drawFeed)] feedId];
-//    }
-//    return nil;
 }
 
 - (void)cleanShowView

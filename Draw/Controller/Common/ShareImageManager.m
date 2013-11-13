@@ -11,7 +11,6 @@
 #import "FileUtil.h"
 #import "PPResourceService.h"
 #import "FXLabel.h"
-#import "StrokeLabel.h"
 
 @interface ShareImageManager () {
     PPResourceService *_resService;

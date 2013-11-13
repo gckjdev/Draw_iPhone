@@ -165,7 +165,7 @@
     NSString *kCreateDesc = NSLS(@"kDrawDesc");
     NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
 
-    if (self.pbFeed.category == PBOpusCategoryTypeSingCategory) {
+    if ([self isSingCategory]) {
         kCreateDesc = NSLS(@"kCraeteDesc");
         kCreateDescNoName = NSLS(@"kCreateDescNoName");
     }
@@ -294,7 +294,7 @@
         return ActionTypeHidden;
     }
     
-    if ([self isDrawType]) {
+    if ([self isOpusType]) {
         if ([userManager hasGuessOpus:self.feedId]) {
             return ActionTypeChallenge;
         }else{
