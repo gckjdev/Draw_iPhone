@@ -135,7 +135,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(OpusService);
                 [myOpusManager saveOpus:newOpus];
                 
                 // delete current draft opus
-                [draftOpusManager deleteOpus:[draftOpus opusKey]];
+                [draftOpusManager deleteOpus:draftOpus];
             }
             
             if ([delegate respondsToSelector:@selector(didSubmitOpus:opus:)]) {

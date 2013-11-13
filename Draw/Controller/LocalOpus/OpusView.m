@@ -58,10 +58,17 @@ AUTO_CREATE_VIEW_BY_XIB(OpusView)
     if (title == nil || title.length == 0) {
         title = dateToString(opus.createDate);
     }
-
-    NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), title];
-    [self.opusTitle setText:name];
-    [self.opusImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
+    
+    if (opus.pbOpus.isRecovery) {
+        NSString* name = [NSString stringWithFormat:@"[%@] %@", NSLS(@"kRecoveryDraft"), title];
+        [self.opusTitle setText:name];
+        [self.opusImage setImage:[ShareImageManager defaultManager].autoRecoveryDraftImage];
+    }else{
+        
+        [self.opusTitle setText:title];
+        UIImage *image = [UIImage imageWithContentsOfFile:opus.pbOpus.localThumbImageUrl];
+        [self.opusImage setImage:image];
+    }
 
 //    [self.myOpusTag setHidden:![opus isMyOpus]];
     [self.opusTitle setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];

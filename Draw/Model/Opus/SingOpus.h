@@ -20,14 +20,15 @@
 - (void)setVoiceType:(PBVoiceType)voiceType;
 
 - (void)setLabelInfoWithFrame:(CGRect)frame
-                    textColor:(int)textColor
+                    textColor:(NSUInteger)textColor
                      textFont:(float)textFont
                         style:(int)style
-              textStrokeColor:(int)textStrokeColor
+              textStrokeColor:(NSUInteger)textStrokeColor
               textStrokeWidth:(float)textStrokeWidth;
 
 - (NSURL*)localNativeDataURL;
 - (void)setLocalNativeDataUrl:(NSString*)extension;
 - (void)setLocalImageDataUrl:(NSString*)extension;
+- (void)setLocalThumbImageDataUrl:(NSString*)extension;
 
 @end

@@ -1221,5 +1221,9 @@
     return [MobClickUtils getStringValueByKey:@"SHARE_SDK_APP_ID" defaultValue:defaultValue];
 }
 
++ (NSString *)getSingOpusDefaultName{
+    
+    return [MobClickUtils getStringValueByKey:@"SING_OPUS_DEFAULT_NAME" defaultValue:@"无题"];
+}
 
 @end

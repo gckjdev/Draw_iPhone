@@ -10,6 +10,7 @@
 #import "SingOpus.h"
 #import "DrawUtils.h"
 #import "DrawColor.h"
+#import "FileUtil.h"
 
 @implementation SingOpusManager
 
@@ -18,27 +19,6 @@
     
     return [SingOpus class];
 }
-
-//- (SingOpus*)createDraftSingOpus:(PBSong*)song
-//{
-//    SingOpus* singOpus = [[[SingOpus alloc] init] autorelease];
-//
-//    // set basic info
-//    [self setDraftOpusId:singOpus extension:SING_FILE_EXTENSION];
-//    [self setCommonOpusInfo:singOpus];
-//
-//    // set type and category
-//    [singOpus setType:PBOpusTypeSing];
-//    [singOpus setCategory:PBOpusCategoryTypeSingCategory];
-//    [singOpus setName:[song name]];
-//
-//    // init song info
-//    [singOpus setSong:song];
-//    [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
-//    [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
-//
-//    return singOpus;
-//}
 
 - (Opus*)createDraftWithName:(NSString*)name{
     
@@ -57,14 +37,15 @@
     [singOpus setVoiceType:PBVoiceTypeVoiceTypeOrigin];
     [singOpus setLocalNativeDataUrl:SING_FILE_EXTENSION];
     [singOpus setLocalImageDataUrl:SING_IMAGE_EXTENSION];
+    [singOpus setLocalThumbImageDataUrl:SING_IMAGE_EXTENSION];
     
     [singOpus setTags:@[@"唱歌"]];
     
     // set desc label info
-    int textColor = [DrawUtils compressDrawColor8:[DrawColor whiteColor]];
+    NSUInteger textColor = [[DrawColor whiteColor] toBetterCompressColor];
     float textFont = (ISIPAD ? 26 : 13);
     int style = 0;
-    int textStrokeColor = [DrawUtils compressDrawColor8:[DrawColor blackColor]];
+    NSUInteger textStrokeColor = [[DrawColor blackColor] toBetterCompressColor];
     float textStrokeWidth = (ISIPAD ? 2 : 1);
     
     [singOpus setLabelInfoWithFrame:CGRectZero
@@ -75,6 +56,12 @@
                     textStrokeWidth:textStrokeWidth];
     
     return singOpus;
+}
+
+- (void)deleteOpus:(Opus *)opus{
+    
+    [super deleteOpus:opus];
+    [FileUtil removeFile:opus.pbOpus.sing.localNativeDataUrl];
 }
 
 @end

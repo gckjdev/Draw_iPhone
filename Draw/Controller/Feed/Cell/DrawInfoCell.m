@@ -298,15 +298,17 @@
     [self updateDesc:feed.opusDesc];
     [self updateDrawToUserInfo:feed];
     [self updateDrawWithScene:scene];
-    [self updateWhisperStyleView];
+    
+    if (self.feed.categoryType == PBOpusCategoryTypeSingCategory) {
+        [self updateWhisperStyleView];
+    }
 }
 
 - (void)updateWhisperStyleView{
     
-    [[self viewWithTag:8808723459] removeFromSuperview];
-    WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.frame feed:self.feed];
-    v.tag = 8808723459;
-    [self addSubview:v];
+    [[self.drawImage viewWithTag:8808723459] removeFromSuperview];
+    WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds feed:self.feed];
+    [self.drawImage addSubview:v];
 }
 
 - (void)updateDrawWithScene:(id<ShowFeedSceneProtocol>)scene

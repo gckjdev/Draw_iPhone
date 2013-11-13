@@ -394,7 +394,7 @@ typedef enum {
     
     MKBlockActionSheet* tips = nil;
     
-    NSString* editString = NSLS(@"kRecovery");
+    NSString* editString = NSLS(@"kEdit");
     NSString *shareString = NSLS(@"kShare");
     
     tips = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOptions")
@@ -436,7 +436,7 @@ typedef enum {
                                                        message:NSLS(@"kAre_you_sure")
                                                          style:CommonDialogStyleDoubleButton];
     [dialog setClickOkBlock:^(UILabel *label){
-        [[self draftManager] deleteOpus:opus.pbOpus.opusId];
+        [[self draftManager] deleteOpus:opus];
         [self reloadTableViewDataSource];
     }];
 
@@ -468,7 +468,7 @@ typedef enum {
                     break;
                     
                 case 1:
-                    [self deleteOpus:feed];
+                    [self deleteFeed:feed];
                     break;
                     
                 default:
@@ -515,7 +515,7 @@ typedef enum {
     [sf release];
 }
 
-- (void)deleteOpus:(DrawFeed *)feed{
+- (void)deleteFeed:(DrawFeed *)feed{
     
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
                                                        message:NSLS(@"kAre_you_sure")
@@ -581,58 +581,6 @@ typedef enum {
     return buttonIndex;
 }
 
-//- (OpusManager*)currentOpusManager
-//{
-//    return [self managerForTab:[self currentTab].tabID];
-//}
-
-//#pragma mark - actionsheet delegate
-//
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    int index = [self optionIndex:buttonIndex forTab:[self currentTab].tabID];
-//    __block OpusManageController* cp = self;
-//    
-//    switch (index) {
-//        case OpusOptionEdit: {
-//            [_currentSelectOpus enterEditFromController:self];
-//        } break;
-//        case OpusOptionShare: {
-//            MKBlockActionSheet* actionSheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kShare_Options") delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil] autorelease];
-//            NSArray* titleArray = [_currentSelectOpus shareOptionsTitleArray];
-//            for (NSString* title in titleArray) {
-//                [actionSheet addButtonWithTitle:title];
-//            }
-//            int cancelIndex = [actionSheet addButtonWithTitle:NSLS(@"kCancel")];
-//            [actionSheet setCancelButtonIndex:cancelIndex];
-//            [actionSheet setActionBlock:^(NSInteger buttonIndex){
-//                if (buttonIndex == actionSheet.cancelButtonIndex) {
-//                    return;
-//                }
-//                [_currentSelectOpus handleShareOptionAtIndex:buttonIndex fromController:cp];
-//            }];
-//            [actionSheet showInView:self.view];
-//        } break;
-//        case OpusOptionReplay: {
-//            [_currentSelectOpus replayInController:self];
-//        } break;
-//        case OpusOptionDelete: {
-//            
-//            CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"kSure_delete")
-//                                                               message:NSLS(@"kAre_you_sure")
-//                                                                 style:CommonDialogStyleDoubleButton];
-//            [dialog setClickOkBlock:^(UILabel *label){
-//                [[cp currentOpusManager] deleteOpus:_currentSelectOpus.pbOpus.opusId];
-//                [cp reloadTableViewDataSource];
-//            }];
-//
-//                
-//                [dialog showInView:self.view];
-//            } break;
-//        default:
-//            break;
-//    }
-//}
 
 + (void)shareFromWeiXin:(UIViewController *)superController
 {

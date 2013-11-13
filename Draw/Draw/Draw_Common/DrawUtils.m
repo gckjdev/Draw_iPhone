@@ -204,12 +204,19 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     *red = ((intColor >> 24) % (1<<8)) / 255.0;
 }
 
-+ (UIColor *)decompressColor8:(NSUInteger)intColor{
-    
++ (DrawColor *)decompressColor8:(NSUInteger)intColor{
     CGFloat red, green, blue, alpha;
     [self decompressColor8:intColor red:&red green:&green blue:&blue alpha:&alpha];
-    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    return [DrawColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
+
+
+//+ (UIColor *)decompressColor8:(NSUInteger)intColor{
+//    
+//    CGFloat red, green, blue, alpha;
+//    [self decompressColor8:intColor red:&red green:&green blue:&blue alpha:&alpha];
+//    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+//}
 
 
 + (NSInteger)roundFloatValue:(CGFloat)value
@@ -277,11 +284,11 @@ CGPoint midPoint1(CGPoint p1, CGPoint p2)
     return [DrawUtils compressColor8WithRed:color.red green:color.green blue:color.blue alpha:color.alpha];
 }
 
-+ (NSUInteger)compressColor8:(UIColor *)color{
-    
-    DrawColor *drawColor = [[[DrawColor alloc] initWithColor:color] autorelease];
-    return [self compressDrawColor8:drawColor];
-}
+//+ (NSUInteger)compressColor8:(UIColor *)color{
+//    
+//    DrawColor *drawColor = [[[DrawColor alloc] initWithColor:color] autorelease];
+//    return [self compressDrawColor8:drawColor];
+//}
 
 
 + (DrawColor *)decompressIntDrawColor:(NSInteger)intColor

@@ -36,6 +36,7 @@
 #import "DrawColor.h"
 #import "DrawUtils.h"
 
+
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
 
@@ -113,7 +114,7 @@ enum{
 - (id)init{
     
     if (self = [super init]) {
-        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:@"作品"];
+        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:[PPConfigManager getSingOpusDefaultName]];
     }
 
     return self;
@@ -123,7 +124,7 @@ enum{
     
     if (self = [super init]) {
         self.targetUserId = targetUserId;
-        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:@"作品"];
+        self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:[PPConfigManager getSingOpusDefaultName]];
     }
     
     return self;
@@ -224,16 +225,16 @@ enum{
     
     
     // set text color
-    UIColor *textColor = [DrawUtils decompressColor8:labelInfo.textColor];
-    self.opusDescLabel.textColor = [DrawUtils decompressColor8:textColor];
+    UIColor *textColor =  [[DrawColor colorWithBetterCompressColor:labelInfo.textColor] color];
+    self.opusDescLabel.textColor = textColor;
     
     // set text font
     self.opusDescLabel.font = [UIFont systemFontOfSize:labelInfo.textFont];
     
     
     // set text stroke color
-    UIColor *textStrokeColor = [DrawUtils decompressColor8:labelInfo.textStrokeColor];
-    self.opusDescLabel.textOutlineColor = [DrawUtils decompressColor8:textStrokeColor];
+    UIColor *textStrokeColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textStrokeColor] color];
+    self.opusDescLabel.textOutlineColor = textStrokeColor;
     
     // set stroke width
     self.opusDescLabel.textOutlineWidth = labelInfo.textStrokeWidth;
@@ -262,6 +263,7 @@ enum{
     [self.opusImageView.layer setCornerRadius:35];
     [self.opusImageView.layer setMasksToBounds:YES];
     [self.singOpus setCanvasSize:self.opusImageView.frame.size];
+    PPDebug(@"size = %@", NSStringFromCGSize(self.opusImageView.frame.size));
     
     self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.localImageUrl];
     if (self.image !=nil ) {
@@ -350,12 +352,12 @@ enum{
     sheet.actionBlock = ^(NSInteger buttonIndex){
         
         if (buttonIndex == 0) {
-            self.opusDescLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-            self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+            self.opusDescLabel.textColor = [[DrawColor whiteColor] color];
+            self.opusDescLabel.textOutlineColor = [[DrawColor blackColor] color];
             [self saveDescLabelInfo];
         }else if (buttonIndex == 1){
-            self.opusDescLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
-            self.opusDescLabel.textOutlineColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+            self.opusDescLabel.textColor = [[DrawColor blackColor] color];
+            self.opusDescLabel.textOutlineColor = [[DrawColor whiteColor] color];
             [self saveDescLabelInfo];
         }
     };
@@ -367,8 +369,13 @@ enum{
 - (void)saveDescLabelInfo{
     
     CGRect rect = self.opusDescLabel.frame;
-    int textColor = [DrawUtils compressColor8:self.opusDescLabel.textColor];
-    int textStrokeColor = [DrawUtils compressColor8:self.opusDescLabel.textOutlineColor];
+    
+    DrawColor *color = [[[DrawColor alloc] initWithColor:self.opusDescLabel.textColor] autorelease];
+    int textColor = [DrawUtils compressDrawColor8:color];
+    
+    color = [[[DrawColor alloc] initWithColor:self.opusDescLabel.textOutlineColor] autorelease];
+    int textStrokeColor = [DrawUtils compressDrawColor8:color];
+    
     float fontSize = [[self.opusDescLabel font] pointSize];
     float textStrokeWidth = self.opusDescLabel.textOutlineWidth;
     
@@ -786,7 +793,12 @@ enum{
 
 - (IBAction)clickSaveButton:(id)sender {
     [self showActivityWithText:NSLS(@"kSaving")];
-    [_singOpus setIsRecovery:YES];
+    
+    // generate thumb image.
+    UIImage *thumbImage = [self.opusImageView createSnapShotWithScale:0.5];
+    [[thumbImage data] writeToFile:self.singOpus.pbOpus.localThumbImageUrl atomically:YES];
+    
+    // save opus.
     [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];
     [self hideActivity];
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaved") delayTime:1.5];

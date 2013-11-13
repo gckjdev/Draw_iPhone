@@ -32,7 +32,7 @@
 - (void)saveOpus:(Opus*)opus;
 
 // 删除作品
-- (void)deleteOpus:(NSString *)opusId;
+- (void)deleteOpus:(Opus *)opus;
 
 // 查找作品
 - (NSArray*)findAllOpusWithOffset:(int)offset limit:(int)limit;

@@ -311,4 +311,6 @@ typedef enum{
 + (NSString*)getShareSDKAppId;
 + (int)getCreateOpusWeiboReward;
 
++ (NSString *)getSingOpusDefaultName;
+
 @end

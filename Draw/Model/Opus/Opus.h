@@ -35,6 +35,8 @@
 - (void)setType:(PBOpusType)type;
 - (void)setName:(NSString *)name;
 - (void)setLocalImageUrl:(NSString *)image;
+- (void)setLocalThumbImageUrl:(NSString *)image;
+
 - (void)setDesc:(NSString *)desc;
 - (void)setTargetUser:(PBGameUser *)user;
 - (void)setIsRecovery:(BOOL)value;

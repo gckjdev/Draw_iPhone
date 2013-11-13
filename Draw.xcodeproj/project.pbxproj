@@ -4972,10 +4972,6 @@
 		CA9AAF5518321621002DBAA5 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE9B18321621002DBAA5 /* SongSearchController~ipad.xib */; };
 		CA9AAF5618321621002DBAA5 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE9B18321621002DBAA5 /* SongSearchController~ipad.xib */; };
 		CA9AAF5718321621002DBAA5 /* SongSearchController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9AAE9B18321621002DBAA5 /* SongSearchController~ipad.xib */; };
-		CA9AAF6418321621002DBAA5 /* LocalSingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAEA218321621002DBAA5 /* LocalSingManager.m */; };
-		CA9AAF6518321621002DBAA5 /* LocalSingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAEA218321621002DBAA5 /* LocalSingManager.m */; };
-		CA9AAF6618321621002DBAA5 /* LocalSingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAEA218321621002DBAA5 /* LocalSingManager.m */; };
-		CA9AAF6718321621002DBAA5 /* LocalSingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAEA218321621002DBAA5 /* LocalSingManager.m */; };
 		CA9AAF6818321621002DBAA5 /* SingImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAEA418321621002DBAA5 /* SingImageManager.m */; };
 		CA9AAF6918321621002DBAA5 /* SingImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAEA418321621002DBAA5 /* SingImageManager.m */; };
 		CA9AAF6A18321621002DBAA5 /* SingImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAEA418321621002DBAA5 /* SingImageManager.m */; };
@@ -9087,8 +9083,6 @@
 		CA9AAE9918321621002DBAA5 /* SongSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongSearchController.m; sourceTree = "<group>"; };
 		CA9AAE9A18321621002DBAA5 /* SongSearchController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SongSearchController.xib; sourceTree = "<group>"; };
 		CA9AAE9B18321621002DBAA5 /* SongSearchController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SongSearchController~ipad.xib"; sourceTree = "<group>"; };
-		CA9AAEA118321621002DBAA5 /* LocalSingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSingManager.h; sourceTree = "<group>"; };
-		CA9AAEA218321621002DBAA5 /* LocalSingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSingManager.m; sourceTree = "<group>"; };
 		CA9AAEA318321621002DBAA5 /* SingImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingImageManager.h; sourceTree = "<group>"; };
 		CA9AAEA418321621002DBAA5 /* SingImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingImageManager.m; sourceTree = "<group>"; };
 		CA9AAEA518321621002DBAA5 /* SingOpusManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingOpusManager.h; sourceTree = "<group>"; };
@@ -15004,8 +14998,6 @@
 		CA9AAEA018321621002DBAA5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CA9AAEA118321621002DBAA5 /* LocalSingManager.h */,
-				CA9AAEA218321621002DBAA5 /* LocalSingManager.m */,
 				CA9AAEA318321621002DBAA5 /* SingImageManager.h */,
 				CA9AAEA418321621002DBAA5 /* SingImageManager.m */,
 				CA9AAEA518321621002DBAA5 /* SingOpusManager.h */,
@@ -21117,7 +21109,6 @@
 				CA9AAF3618321621002DBAA5 /* SingInfoEditController.m in Sources */,
 				CA9AAF4218321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4E18321621002DBAA5 /* SongSearchController.m in Sources */,
-				CA9AAF6618321621002DBAA5 /* LocalSingManager.m in Sources */,
 				CA9AAF6A18321621002DBAA5 /* SingImageManager.m in Sources */,
 				CA9AAF6E18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				CA9AAF7218321621002DBAA5 /* SongCategoryManager.m in Sources */,
@@ -21877,7 +21868,6 @@
 				CA9AAF3518321621002DBAA5 /* SingInfoEditController.m in Sources */,
 				CA9AAF4118321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4D18321621002DBAA5 /* SongSearchController.m in Sources */,
-				CA9AAF6518321621002DBAA5 /* LocalSingManager.m in Sources */,
 				CA9AAF6918321621002DBAA5 /* SingImageManager.m in Sources */,
 				CA9AAF6D18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				CA9AAF7118321621002DBAA5 /* SongCategoryManager.m in Sources */,
@@ -22652,7 +22642,6 @@
 				CA9AAF3418321621002DBAA5 /* SingInfoEditController.m in Sources */,
 				CA9AAF4018321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4C18321621002DBAA5 /* SongSearchController.m in Sources */,
-				CA9AAF6418321621002DBAA5 /* LocalSingManager.m in Sources */,
 				CA9AAF6818321621002DBAA5 /* SingImageManager.m in Sources */,
 				CA9AAF6C18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				CA9AAF7018321621002DBAA5 /* SongCategoryManager.m in Sources */,
@@ -23364,7 +23353,6 @@
 				CA9AAF3718321621002DBAA5 /* SingInfoEditController.m in Sources */,
 				CA9AAF4318321621002DBAA5 /* SongCell.m in Sources */,
 				CA9AAF4F18321621002DBAA5 /* SongSearchController.m in Sources */,
-				CA9AAF6718321621002DBAA5 /* LocalSingManager.m in Sources */,
 				CA9AAF6B18321621002DBAA5 /* SingImageManager.m in Sources */,
 				CA9AAF6F18321621002DBAA5 /* SingOpusManager.m in Sources */,
 				CA9AAF7318321621002DBAA5 /* SongCategoryManager.m in Sources */,

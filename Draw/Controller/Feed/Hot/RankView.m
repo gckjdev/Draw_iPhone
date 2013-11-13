@@ -188,10 +188,12 @@
         [self updateLearnDraw:feed.learnDraw];
     }
 
-    [[self viewWithTag:201139481] removeFromSuperview];
-    WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.frame feed:self.feed];
-    [self addSubview:v];
-    v.tag = 201139481;
+    if (self.feed.categoryType == PBOpusCategoryTypeSingCategory) {
+        [[self.drawImage viewWithTag:201139481] removeFromSuperview];
+        WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds feed:self.feed];
+        [self.drawImage addSubview:v];
+        v.tag = 201139481;
+    }
 }
 
 - (void)updateViewInfoForMyOpus

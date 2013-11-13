@@ -43,6 +43,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         
         StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
         l.text = feed.desc;
+        l.backgroundColor = [UIColor clearColor];
         [self addSubview:l];
 
         // update lable info
@@ -56,15 +57,13 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
             [l updateHeight:labelInfo.frame.height];
             
             // set text color
-            UIColor *textColor = [DrawUtils decompressColor8:labelInfo.textColor];
-            l.textColor = textColor;
+            l.textColor = [[DrawUtils decompressColor8:labelInfo.textColor] color];
             
             // set font
             l.font = [UIFont systemFontOfSize:labelInfo.textFont];
             
             // set text stroke color
-            UIColor *textStrokeColor = [DrawUtils decompressColor8:labelInfo.textStrokeColor];
-            l.textOutlineColor = textStrokeColor;
+            l.textOutlineColor = [[DrawUtils decompressColor8:labelInfo.textStrokeColor] color];
             
             // set text stroke widht
             l.textOutlineWidth = labelInfo.textStrokeWidth;
@@ -76,8 +75,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         
                 
         // transform from originFrame to frame
-        float sx = self.frame.size.width / frame.size.width;
-        float sy = self.frame.size.height / frame.size.height;
+        float sx = frame.size.width / self.frame.size.width;
+        float sy = frame.size.height / self.frame.size.height;
         
         CGAffineTransform transform = CGAffineTransformMakeScale(sx, sy);
         self.transform = transform;

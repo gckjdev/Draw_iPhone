@@ -85,10 +85,12 @@
 // new compress and decompress
 + (NSUInteger)compressColor8WithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 + (void)decompressColor8:(NSUInteger)intColor red:(CGFloat*)red green:(CGFloat*)green blue:(CGFloat*)blue alpha:(CGFloat*)alpha;
++ (DrawColor *)decompressColor8:(NSUInteger)intColor;
+
 + (NSUInteger)compressDrawColor8:(DrawColor *)color;
 
-+ (NSUInteger)compressColor8:(UIColor *)color;
-+ (UIColor *)decompressColor8:(NSUInteger)intColor;
+//+ (NSUInteger)compressColor8:(UIColor *)color;
+//+ (UIColor *)decompressColor8:(NSUInteger)intColor;
 
 //+ (CGPoint)adjustPointInRect:(CGRect)rect inputPoint:(CGPoint)inputPoint;
 + (BOOL)pointInRect:(CGRect)rect inputPoint:(CGPoint*)inputPoint;

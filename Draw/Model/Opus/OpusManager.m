@@ -63,10 +63,15 @@
     [self printAllOpus];
 }
 
-- (void)deleteOpus:(NSString *)opusId
+- (void)deleteOpus:(Opus *)opus
 {
-    PPDebug(@"DELETE LOCAL OPUS KEY=%@", opusId);
-    [_db removeKey:opusId];
+    // remove local file
+    [FileUtil removeFile:opus.pbOpus.localDataUrl];
+    [FileUtil removeFile:opus.pbOpus.localImageUrl];
+    [FileUtil removeFile:opus.pbOpus.localThumbImageUrl];
+    
+    PPDebug(@"DELETE LOCAL OPUS KEY=%@", opus.pbOpus.opusId);
+    [_db removeKey:opus.pbOpus.opusId];
     
     [self printAllOpus];    
 }

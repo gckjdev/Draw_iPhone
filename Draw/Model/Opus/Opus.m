@@ -121,6 +121,10 @@
     [_pbOpusBuilder setLocalImageUrl:image];
 }
 
+- (void)setLocalThumbImageUrl:(NSString *)image{
+    [_pbOpusBuilder setLocalThumbImageUrl:image];
+}
+
 - (NSString *)shareTextWithSNSType:(int)type{
     
     return nil;

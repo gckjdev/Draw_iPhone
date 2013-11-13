@@ -109,7 +109,13 @@
 
 
 
-
+- (void)setLocalThumbImageDataUrl:(NSString*)extension
+{
+    NSString* path = [NSString stringWithFormat:@"%@/%@_thumb.%@", [[self class] localDataDir], [self opusKey], extension];
+    NSString* finalPath = [FileUtil filePathInAppDocument:path];
+    
+    [self setLocalThumbImageUrl:finalPath];
+}
 
 - (NSString*)dataType
 {
@@ -226,10 +232,10 @@ enum {
 }
 
 - (void)setLabelInfoWithFrame:(CGRect)frame
-                    textColor:(int)textColor
+                    textColor:(NSUInteger)textColor
                      textFont:(float)textFont
                         style:(int)style
-              textStrokeColor:(int)textStrokeColor
+              textStrokeColor:(NSUInteger)textStrokeColor
               textStrokeWidth:(float)textStrokeWidth{
     
     PBLabelInfo_Builder *labelInfoBuilder = [[[PBLabelInfo_Builder alloc] init] autorelease];
