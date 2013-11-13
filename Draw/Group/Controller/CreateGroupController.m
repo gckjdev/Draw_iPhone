@@ -38,6 +38,8 @@
     return self;
 }
 
+#define NAME_MAX_LENGTH 16
+
 - (void)clickDone:(id)sender
 {
     [self.nameTextField resignFirstResponder];
@@ -51,6 +53,12 @@
 
     if ([name length] == 0) {
         [DrawError postErrorWithCode:ERROR_GROUP_NAME_EMPTY];
+        return;
+    }
+    
+    if ([name length] > NAME_MAX_LENGTH) {
+        [DrawError postErrorWithCode:ERROR_GROUP_NAME_TOO_LONG];
+        return;
     }
     
     if(![[AccountManager defaultManager] hasEnoughBalance:fee currency:PBGameCurrencyCoin]){

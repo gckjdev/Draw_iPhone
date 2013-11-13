@@ -797,7 +797,7 @@
 
 
 #define ERROR_GROUP_NAME_EMPTY  200050
-
+#define ERROR_GROUP_NAME_TOO_LONG  200051
 
 /////
 
