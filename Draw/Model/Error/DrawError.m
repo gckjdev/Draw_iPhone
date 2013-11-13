@@ -37,7 +37,9 @@ extern NSString* GlobalGetTrafficServerURL();
       KEY(ERROR_GROUP_NOTEXIST) : NSLS(@"kGroupNotExist"),
       KEY(ERROR_GROUP_LEVEL_SMALL) : NSLS(@"kGroupUpgradeSmall"), 
 
-      KEY(ERROR_GROUP_NAME_EMPTY) : NSLS(@"kGroupNameIsEmpty"),      
+      KEY(ERROR_GROUP_NAME_EMPTY) : NSLS(@"kGroupNameIsEmpty"),
+      KEY(ERROR_GROUP_NAME_TOO_LONG) : NSLS(@"kGroupNameTooLong"),
+      
 //      ERROR_BALANCE_NOT_ENOUGH
       };
     NSString *errorMessage = errorMSGDict[KEY(code)];    

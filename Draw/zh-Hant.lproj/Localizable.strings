@@ -2067,7 +2067,7 @@
 "kGroupNotExist" = "家族不存在。";
 "kGroupUpgradeSmall" = "家族只能升級不能降級。";
 "kGroupNameIsEmpty" = "家族名字不能為空。";
-
+"kGroupNameTooLong" = "家族名字不能長於16個字符。";
 
 "kShareByEmailSuccess" = "郵件分享成功";
 

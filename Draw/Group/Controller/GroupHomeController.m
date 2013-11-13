@@ -10,6 +10,7 @@
 #import "GroupService.h"
 #import "DrawError.h"
 #import "GroupManager.h"
+#import "GroupCell.h"
 
 typedef enum{
     GroupTabGroup = 100,
@@ -244,7 +245,7 @@ typedef enum{
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return [GroupCell getCellHeight];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -254,13 +255,13 @@ typedef enum{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = @"GroupCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    NSString *identifier = [GroupCell getCellIdentifier];
+    GroupCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        cell = [GroupCell createCell:self];
     }
     PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
-    [cell.textLabel setText:group.name];
+    [cell setCellInfo:group];
     return cell;
 }
 
@@ -268,28 +269,12 @@ typedef enum{
 {
     PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
     if (group) {        
-        if([self currentTab].tabID == GroupTabGroupFollow){
-            [[GroupService defaultService] unfollowGroup:group.groupId callback:^(NSError *error) {
-                if (error) {
-                    [DrawError postError:error];
-                }else{
-                    POSTMSG(NSLS(@"kUNFollowSuccess"));
-                }
-            }];            
-        }else{
-        
-            [[GroupService defaultService] followGroup:group.groupId callback:^(NSError *error) {
-                if (error) {
-                    [DrawError postError:error];
-                }else{
-                    POSTMSG(NSLS(@"kFollowSuccess"));
-                }
-            }];
-        }
+        //TODO enter group detail controller.
     }
 
 }
 
+SET_CELL_BG_IN_CONTROLLER
 
 - (void)dealloc {
     [_subTabsHolder release];

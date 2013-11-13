@@ -2060,7 +2060,8 @@
 "kRepeatFollowGroup" = "Repeated follow the same group.";
 "kGroupNotExist" = "Group not found..";
 "kGroupUpgradeSmall" = "The level should be larger than the original level.";
-"kGroupNameIsEmpty" = "The Group name is empty.";
+"kGroupNameIsEmpty" = "The group name is empty.";
+"kGroupNameTooLong" = "The group name length should be less than 16";
 
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "Featured";

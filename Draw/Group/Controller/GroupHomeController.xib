@@ -305,7 +305,6 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
-						<int key="IBUISeparatorStyle">1</int>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 						<float key="IBUIRowHeight">44</float>
@@ -728,20 +727,10 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">GroupHomeController</string>
 					<string key="superclassName">CommonTabController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">clickTabButton:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">clickTabButton:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">clickTabButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="footerView">DetailFooterView</string>
 						<string key="subTabsHolder">UIView</string>
+						<string key="tabsHolderView">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="footerView">
@@ -750,6 +739,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="subTabsHolder">
 							<string key="name">subTabsHolder</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tabsHolderView">
+							<string key="name">tabsHolderView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 					</dictionary>

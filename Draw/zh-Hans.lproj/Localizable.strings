@@ -2076,8 +2076,7 @@
 "kGroupNotExist" = "家族不存在。";
 "kGroupUpgradeSmall" = "家族只能升级不能降级。";
 "kGroupNameIsEmpty" = "家族名字不能为空。";
-
-
+"kGroupNameTooLong" = "家族名字不能长于16个字符。";
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
 "kLittleGeeDrawTo" = "送画";
