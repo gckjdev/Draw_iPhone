@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12F45</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.40</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -69,7 +69,7 @@
 							</object>
 							<object class="IBUILabel" id="318933844">
 								<reference key="NSNextResponder" ref="153973212"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{130, 6}, {355, 36}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
@@ -125,8 +125,8 @@
 							</object>
 							<object class="IBUILabel" id="319891268">
 								<reference key="NSNextResponder" ref="153973212"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{130, 48}, {491, 50}}</string>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrame">{{130, 48}, {500, 50}}</string>
 								<reference key="NSSuperview" ref="153973212"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="331180959"/>
@@ -148,7 +148,7 @@
 								<reference key="IBUIFontDescription" ref="578751832"/>
 								<reference key="IBUIFont" ref="918605654"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-								<double key="preferredMaxLayoutWidth">491</double>
+								<double key="preferredMaxLayoutWidth">500</double>
 							</object>
 							<object class="IBUIView" id="905327152">
 								<reference key="NSNextResponder" ref="153973212"/>
@@ -323,11 +323,11 @@
 							<reference ref="997992109"/>
 							<reference ref="318933844"/>
 							<reference ref="683987011"/>
-							<reference ref="319891268"/>
 							<reference ref="905327152"/>
 							<reference ref="1067762314"/>
 							<reference ref="331180959"/>
 							<reference ref="110576528"/>
+							<reference ref="319891268"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -357,11 +357,6 @@
 						<reference key="parent" ref="786630657"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">20</int>
-						<reference key="object" ref="905327152"/>
-						<reference key="parent" ref="786630657"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">22</int>
 						<reference key="object" ref="1067762314"/>
 						<reference key="parent" ref="786630657"/>
@@ -369,6 +364,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
 						<reference key="object" ref="110576528"/>
+						<reference key="parent" ref="786630657"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">20</int>
+						<reference key="object" ref="905327152"/>
 						<reference key="parent" ref="786630657"/>
 					</object>
 				</array>

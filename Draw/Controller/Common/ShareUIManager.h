@@ -29,7 +29,7 @@
 #define CELL_NICK_FONT          AD_FONT(26, 14)
 
 //Cell 的内容字体
-#define CELL_CONTENT_FONT       AD_FONT(25, 12)
+#define CELL_CONTENT_FONT       AD_FONT(24, 12)
 
 //Cell的所回复的评论的字体
 #define CELL_REPLY_SOURCE_FONT  AD_FONT(22, 11)

@@ -884,15 +884,6 @@ typedef enum{
         {
             CHECK_AND_LOGIN(self.view);
 
-//            UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.drawImageUrl];
-//            if (image == nil) {
-//                image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.feed.drawImageUrl];
-//            }
-//            
-//            if (image == nil){
-//                image = self.feed.largeImage;
-//            }
-            
             UIImage* image = [self getFeedImage];
             if (_shareAction == nil) {
                 _shareAction = [[ShareAction alloc] initWithFeed:_feed

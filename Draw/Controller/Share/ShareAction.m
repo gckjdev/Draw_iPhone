@@ -119,10 +119,11 @@
         self.isGIF = NO;
         self.drawUserId = feed.author.userId;
         
-        NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), [NSString GetUUID]];
+        NSString* path = [NSString stringWithFormat:@"%@/%@.jpg", NSTemporaryDirectory(), feed.feedId];
         BOOL result=[[image data] writeToFile:path atomically:YES];
         if (result) {
             self.imageFilePath = path;
+            PPDebug(@"<initWithFeed> create image file at %@ for share", path);
         }
         else{
             PPDebug(@"<initWithFeed> fail to create image file at %@", path);
@@ -498,9 +499,14 @@
     [vc showActivityWithText:NSLS(@"kFavoriting")];
     [[FeedService defaultService] addOpusIntoFavorite:self.feed.feedId
                                             contestId:self.feed.contestId
-                                          resultBlock:^(int resultCode) {
+                                          resultBlock:^(int resultCode)
+    {
         [vc hideActivity];
         
+        if ([self.feed isDrawCategory] == NO){
+            return;
+        }
+                                              
         CommonDialog* dialog = [CommonDialog createDialogWithTitle:NSLS(@"KSaveToLocalTitle") message:NSLS(@"kSaveToLocalMsg") style:CommonDialogStyleDoubleButton];
         [dialog setClickOkBlock:^(UILabel *label){
             [ac saveToLocal];

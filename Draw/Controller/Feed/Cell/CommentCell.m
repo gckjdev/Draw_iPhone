@@ -75,7 +75,7 @@
 }
 
 
-#define SHOW_COMMENT_COUNT 3
+//#define SHOW_COMMENT_COUNT 3
 
 - (void)setCellInfo:(CommentFeed *)feed;
 {

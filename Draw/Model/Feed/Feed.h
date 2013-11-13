@@ -96,7 +96,11 @@ typedef enum {
 - (BOOL)isMyFeed;
 - (BOOL)isDrawType;
 - (BOOL)isGuessType;
-- (BOOL)isCommentType; 
+- (BOOL)isCommentType;
+
+- (BOOL)isDrawCategory;
+- (BOOL)isSingCategory;
+
 //- (void)parseDrawData;
 
 //should override
