@@ -46,7 +46,6 @@
     float textFont = (ISIPAD ? 35 : 18);
     int style = 0;
     NSUInteger textStrokeColor = [[DrawColor blackColor] toBetterCompressColor];
-    float textStrokeWidth = (ISIPAD ? 2 : 1);
     
     [singOpus setLabelInfoWithFrame:CGRectZero
                           textColor:textColor

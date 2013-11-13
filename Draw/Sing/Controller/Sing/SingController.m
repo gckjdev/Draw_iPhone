@@ -376,7 +376,6 @@ enum{
     NSUInteger textStrokeColor = [DrawUtils compressDrawColor8:color];
     
     float fontSize = [[self.opusDescLabel font] pointSize];
-    float textStrokeWidth = self.opusDescLabel.textOutlineWidth;
     
     [self.singOpus setLabelInfoWithFrame:rect
                                textColor:textColor
