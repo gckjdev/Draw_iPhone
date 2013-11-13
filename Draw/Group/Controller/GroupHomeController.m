@@ -27,6 +27,7 @@ typedef enum{
 @interface GroupHomeController ()
 {
     UIButton *currentTabButton;
+    UIButton *currentGroupSubButton;
 }
 @end
 
@@ -43,10 +44,36 @@ typedef enum{
     return self;
 }
 
+- (void)initTabButtons
+{
+    NSInteger count = [self tabCount];
+    for (int i = 0; i < count; ++ i) {
+        GroupTab tab = [self tabIDforIndex:i];
+        if ([self isSubGroupTab:tab]) {
+            UIButton *button = (id)[self.subTabsHolder viewWithTag:tab];
+            SET_BUTTON_SQUARE_STYLE_YELLOW(button);
+            [button setTitleColor:COLOR_WHITE forState:UIControlStateNormal];
+            [button setBackgroundImage:IMAGE_FROM_COLOR(COLOR_YELLOW) forState:UIControlStateSelected];
+        }else{
+            UIButton *button = (id)[self.tabsHolderView viewWithTag:tab];
+            SET_BUTTON_AS_COMMON_TAB_STYLE(button);
+        }
+    }
+}
+
+- (UIButton *)defaultTabButton
+{
+    return (id)[self.tabsHolderView viewWithTag:GroupTabGroup];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.titleView setTitle:NSLS(@"kGroup")];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBack:)];
+    [self initTabButtons];
+    [self clickTabButton:[self defaultTabButton]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,22 +89,62 @@ typedef enum{
     }
     return YES;
 }
+- (BOOL)isSubGroupTab:(NSInteger)tab
+{
+    NSArray *tabs =@[
+                    @(GroupTabGroupFollow),
+                    @(GroupTabGroupNew),
+                    @(GroupTabGroupBalance),
+                    @(GroupTabGroupActive),
+                    @(GroupTabGroupFame)];
+    return [tabs containsObject:@(tab)];
+}
+
+- (GroupTab)defaultGroupTab
+{
+    return GroupTabGroupFame;
+}
 
 - (void)clickTabButton:(id)sender
 {
-    [currentTabButton setSelected:NO];
     UIButton *button = (UIButton *)sender;
+    if (button == currentTabButton || button == currentGroupSubButton) {
+        return;
+    }
     [button setSelected:YES];
-    currentTabButton = button;
-    if ([self isGroupTab:button.tag]) {
+    NSInteger tag = button.tag;
+    if (![self isSubGroupTab:tag]) {
+        [currentTabButton setSelected:NO];
+        currentTabButton = button;
+    }
+
+    CGFloat originHeight = CGRectGetHeight(self.dataTableView.frame);
+    CGFloat newHeight = originHeight;
+    
+    if ([self isGroupTab:tag]) {
         //don't load data. just show the sub tab buttons.
         self.subTabsHolder.hidden = NO;
         [self.dataTableView updateOriginY:CGRectGetMaxY(self.subTabsHolder.frame)];
-        [self.dataTableView updateHeight:(CGRectGetMinY(self.footerView.frame) - CGRectGetMaxY(self.subTabsHolder.frame))];
+        newHeight = (CGRectGetMinY(self.footerView.frame) - CGRectGetMaxY(self.subTabsHolder.frame));
+        [self.dataTableView updateHeight:newHeight];
+        if ([self isSubGroupTab:tag]) {
+            [currentGroupSubButton setSelected:NO];
+            currentGroupSubButton = sender;
+            [self clickTab:tag];
+        }else{
+            if (!currentGroupSubButton) {
+                [self clickTab:[self defaultGroupTab]];
+                currentGroupSubButton = (id)[self.subTabsHolder viewWithTag:[self defaultGroupTab]];
+            }else{
+                [self clickTab:currentGroupSubButton.tag];
+            }
+        }
+        currentGroupSubButton.selected = YES;
     }else{
         self.subTabsHolder.hidden = YES;
         [self.dataTableView updateOriginY:CGRectGetMinY(self.subTabsHolder.frame)];
-        [self.dataTableView updateHeight:(CGRectGetMinY(self.footerView.frame) -CGRectGetMinY(self.subTabsHolder.frame))];
+        newHeight = (CGRectGetMinY(self.footerView.frame) -CGRectGetMinY(self.subTabsHolder.frame));
+        [self.dataTableView updateHeight:newHeight];
         [self clickTab:button.tag];
     }
 }
@@ -130,9 +197,9 @@ typedef enum{
     //test
     TableTab *tab = [_tabManager tabForID:tabID];
 
-    PPDebug(@"click tab id = %d, title = %@", tab.tabID, tab.title);
-    [self finishLoadDataForTabID:tabID resultList:nil];
-    return;
+//    PPDebug(@"click tab id = %d, title = %@", tab.tabID, tab.title);
+//    [self finishLoadDataForTabID:tabID resultList:nil];
+//    return;
     
     switch (tabID) {
         case GroupTabGroupFollow:
@@ -140,31 +207,99 @@ typedef enum{
         case GroupTabGroupBalance:
         case GroupTabGroupActive:
         case GroupTabGroupFame:
-            [[GroupService defaultService] getGroupsWithType:tabID offset:tab.offset limit:tab.limit callback:^(NSArray *list, NSError *error) {
+            [[GroupService defaultService] getGroupsWithType:tabID
+                                                      offset:tab.offset
+                                                       limit:tab.limit
+                                                    callback:^(NSArray *list, NSError *error) {
                 if (error) {
                     [self failLoadDataForTabID:tabID];
                     [DrawError postError:error];
                 }else{
+                    PPDebug(@"loaded groups, tab = %d, list count = %d", tabID, [list count]);
                     [self finishLoadDataForTabID:tabID resultList:list];
                 }
             }];
             break;
         case GroupTabGroup:
             [self finishLoadDataForTabID:tabID resultList:nil];
-            break;
-        
+//            break;
+        case GroupTabFollow:
+            //TODO get follow topic
+//            break;
+        case GroupTabTopic:
+            //TODO get new topic.
+//            break;
         default:
+            [self finishLoadDataForTabID:tabID resultList:nil];
             break;
     }
 }
 
+- (void)detailFooterView:(DetailFooterView *)footer
+        didClickAtButton:(UIButton *)button
+                    type:(FooterType)type
+{
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [super tableView:tableView numberOfRowsInSection:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = @"GroupCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+    }
+    PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
+    [cell.textLabel setText:group.name];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
+    if (group) {        
+        if([self currentTab].tabID == GroupTabGroupFollow){
+            [[GroupService defaultService] unfollowGroup:group.groupId callback:^(NSError *error) {
+                if (error) {
+                    [DrawError postError:error];
+                }else{
+                    POSTMSG(NSLS(@"kUNFollowSuccess"));
+                }
+            }];            
+        }else{
+        
+            [[GroupService defaultService] followGroup:group.groupId callback:^(NSError *error) {
+                if (error) {
+                    [DrawError postError:error];
+                }else{
+                    POSTMSG(NSLS(@"kFollowSuccess"));
+                }
+            }];
+        }
+    }
+
+}
+
+
 - (void)dealloc {
     [_subTabsHolder release];
     [_footerView release];
+    [_tabsHolderView release];
     [super dealloc];
 }
 - (void)viewDidUnload {
     [self setFooterView:nil];
+    [self setTabsHolderView:nil];
     [super viewDidUnload];
 }
 @end

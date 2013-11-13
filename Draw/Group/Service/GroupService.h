@@ -29,6 +29,11 @@ typedef enum{
 }GetGroupListType;
 
 
+typedef enum{
+    GroupNoticeTypeBulletin = 0,
+    GroupNoticeTypeRequest = 1,
+}GroupNoticeType;
+
 @interface GroupService : CommonService
 
 @property(nonatomic, assign, getter=isTestMode) BOOL testMode;
@@ -42,9 +47,6 @@ typedef enum{
 - (void)getGroup:(NSString *)groupId
         callback:(GroupResultBlock)callback;
 
-- (void)getNewGroups:(NSInteger)offset
-               limit:(NSInteger)limit
-            callback:(ListResultBlock)callback;
 
 - (void)getGroupsWithType:(GetGroupListType)type
                    offset:(NSInteger)offset
@@ -66,10 +68,14 @@ typedef enum{
              reason:(NSString *)reason
           callback:(SimpleResultBlock)callback;
 
-- (void)inviteUsers:(NSArray *)uids
-              group:(NSString *)groupId
-               type:(InviteUserType)type
-           callback:(SimpleResultBlock)callback;
+- (void)inviteMembers:(NSArray *)uids
+              groupId:(NSString *)groupId
+             callback:(SimpleResultBlock)callback;
+
+- (void)inviteGuests:(NSArray *)uids
+             groupId:(NSString *)groupId
+             callback:(SimpleResultBlock)callback;
+
 
 - (void)getMembersInGroup:(NSString *)groupId
                  callback:(ListResultBlock)callback;
@@ -85,4 +91,26 @@ typedef enum{
            inGroup:(NSString *)groupId
           callback:(SimpleResultBlock)callback;
 
+
+
+//follow && fan
+- (void)followGroup:(NSString *)groupId
+           callback:(SimpleResultBlock)callback;
+
+- (void)unfollowGroup:(NSString *)groupId
+           callback:(SimpleResultBlock)callback;
+
+- (void)getGroupFans:(NSString *)groupId
+              offset:(NSInteger)offset
+               limit:(NSInteger)limit
+            callback:(ListResultBlock)callback;
+
+- (void)upgradeGroup:(NSString *)groupId
+               level:(NSInteger)level
+            callback:(SimpleResultBlock)callback;
+
+- (void)getGroupNoticeByType:(GroupNoticeType)type
+                      offset:(NSInteger)offset
+                       limit:(NSInteger)limit
+                    callback:(ListResultBlock)callback;
 @end

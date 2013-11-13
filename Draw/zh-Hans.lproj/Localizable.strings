@@ -2062,6 +2062,22 @@
 "kLevelTips" = "可容纳 %d 族员\n每月需花费 %d 金币\n(首月费用在创建时扣除)";
 
 
+"kDuplicateGroupName" = "家族名字已经被注册了，请换一个名字。";                                                     
+"kGroupIDEmpty" = "家族ID为空。";
+"kGroupMultiGroupsJoined" = "一个玩家只允许加入了一个家族。";
+"kGroupMultiGroupRequests" = "你已经发送了申请，请不要重复申请。";
+"kGroupPermissionDenied" = "你的权限不足。";
+"kGroupMembersFull" = "此家族已经满员了。";
+"kGroupRequestWasRejected" = "此玩家已经被其他管理员拒绝了。";
+"kNotRequestStatus" = "此玩家已经被其他管理员通过或者拒绝了。";
+"kInvalidateRole" = "不合法的家族角色。";
+"kGroupMemberCanotUnfollowGroup" = "家族成员不能取消关注。";
+"kRepeatFollowGroup" = "你已经关注了该家族，请不要重复关注。";
+"kGroupNotExist" = "家族不存在。";
+"kGroupUpgradeSmall" = "家族只能升级不能降级。";
+"kGroupNameIsEmpty" = "家族名字不能为空。";
+
+
 /*********************小吉画画国际化字符串开始 ************************/
 "kLittleGeeRecommend" = "推荐";
 "kLittleGeeDrawTo" = "送画";

@@ -6775,6 +6775,22 @@
 		EA8CADEF1828A646003149FE /* GroupPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADED1828A646003149FE /* GroupPermission.m */; };
 		EA8CADF01828A646003149FE /* GroupPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADED1828A646003149FE /* GroupPermission.m */; };
 		EA8CADF11828A646003149FE /* GroupPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8CADED1828A646003149FE /* GroupPermission.m */; };
+		EA8D93AC183362A200780B63 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93AB183362A200780B63 /* GroupCell.m */; };
+		EA8D93AD183362A200780B63 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93AB183362A200780B63 /* GroupCell.m */; };
+		EA8D93AE183362A200780B63 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93AB183362A200780B63 /* GroupCell.m */; };
+		EA8D93AF183362A200780B63 /* GroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93AB183362A200780B63 /* GroupCell.m */; };
+		EA8D93BE1833630500780B63 /* GroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93BC1833630500780B63 /* GroupDetailController.m */; };
+		EA8D93BF1833630500780B63 /* GroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93BC1833630500780B63 /* GroupDetailController.m */; };
+		EA8D93C01833630500780B63 /* GroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93BC1833630500780B63 /* GroupDetailController.m */; };
+		EA8D93C11833630500780B63 /* GroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93BC1833630500780B63 /* GroupDetailController.m */; };
+		EA8D93C21833630500780B63 /* GroupDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93BD1833630500780B63 /* GroupDetailController.xib */; };
+		EA8D93C31833630500780B63 /* GroupDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93BD1833630500780B63 /* GroupDetailController.xib */; };
+		EA8D93C41833630500780B63 /* GroupDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93BD1833630500780B63 /* GroupDetailController.xib */; };
+		EA8D93C51833630500780B63 /* GroupDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93BD1833630500780B63 /* GroupDetailController.xib */; };
+		EA8D93C71833632800780B63 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93C61833632800780B63 /* GroupCell.xib */; };
+		EA8D93C81833632800780B63 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93C61833632800780B63 /* GroupCell.xib */; };
+		EA8D93C91833632800780B63 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93C61833632800780B63 /* GroupCell.xib */; };
+		EA8D93CA1833632800780B63 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93C61833632800780B63 /* GroupCell.xib */; };
 		EA8EF62017E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62117E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62217E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
@@ -9712,6 +9728,12 @@
 		EA8CADE718288D32003149FE /* DrawError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawError.m; sourceTree = "<group>"; };
 		EA8CADEC1828A646003149FE /* GroupPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupPermission.h; sourceTree = "<group>"; };
 		EA8CADED1828A646003149FE /* GroupPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupPermission.m; sourceTree = "<group>"; };
+		EA8D93AA183362A200780B63 /* GroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupCell.h; sourceTree = "<group>"; };
+		EA8D93AB183362A200780B63 /* GroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupCell.m; sourceTree = "<group>"; };
+		EA8D93BB1833630500780B63 /* GroupDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailController.h; sourceTree = "<group>"; };
+		EA8D93BC1833630500780B63 /* GroupDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailController.m; sourceTree = "<group>"; };
+		EA8D93BD1833630500780B63 /* GroupDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDetailController.xib; sourceTree = "<group>"; };
+		EA8D93C61833632800780B63 /* GroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
 		EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_bottom_split@2x.png"; sourceTree = "<group>"; };
 		EA8EF60E17E55D3B003F1AF8 /* draw_home_opus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_opus@2x.png"; sourceTree = "<group>"; };
 		EA8EF60F17E55D3B003F1AF8 /* draw_home_shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_shop@2x.png"; sourceTree = "<group>"; };
@@ -16441,6 +16463,7 @@
 		EA8CADD618288C4D003149FE /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				EA8D93A61833626900780B63 /* Cell */,
 				EA8CADDB18288C6E003149FE /* Controller */,
 				EA8CADDC18288C6E003149FE /* Model */,
 				EA8CADDD18288C6E003149FE /* Service */,
@@ -16458,6 +16481,9 @@
 				EA1BD639182DE6DD000E5364 /* CreateGroupController.h */,
 				EA1BD63A182DE6DD000E5364 /* CreateGroupController.m */,
 				EA1BD63B182DE6DD000E5364 /* CreateGroupController.xib */,
+				EA8D93BB1833630500780B63 /* GroupDetailController.h */,
+				EA8D93BC1833630500780B63 /* GroupDetailController.m */,
+				EA8D93BD1833630500780B63 /* GroupDetailController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -16496,6 +16522,16 @@
 				EA8CADE718288D32003149FE /* DrawError.m */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		EA8D93A61833626900780B63 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA8D93AA183362A200780B63 /* GroupCell.h */,
+				EA8D93AB183362A200780B63 /* GroupCell.m */,
+				EA8D93C61833632800780B63 /* GroupCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		EA8EF60C17E55D3B003F1AF8 /* Bottom */ = {
@@ -17620,6 +17656,8 @@
 				CA9AB09D183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CA9AB0A1183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */,
+				EA8D93C41833630500780B63 /* GroupDetailController.xib in Resources */,
+				EA8D93C91833632800780B63 /* GroupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18562,6 +18600,8 @@
 				CA9AB09C183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CA9AB0A0183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4E59C951832208D003578CA /* WhisperStyleView.xib in Resources */,
+				EA8D93C31833630500780B63 /* GroupDetailController.xib in Resources */,
+				EA8D93C81833632800780B63 /* GroupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19486,6 +19526,8 @@
 				CA9AB09B183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CA9AB09F183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4E59C941832208D003578CA /* WhisperStyleView.xib in Resources */,
+				EA8D93C21833630500780B63 /* GroupDetailController.xib in Resources */,
+				EA8D93C71833632800780B63 /* GroupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20366,6 +20408,8 @@
 				CA9AB05F18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
 				CA9AB09E183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
 				CA9AB0A2183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
+				EA8D93C51833630500780B63 /* GroupDetailController.xib in Resources */,
+				EA8D93CA1833632800780B63 /* GroupCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21140,6 +21184,8 @@
 				CA9AB0D318321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D718321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 				A4E59C931832208D003578CA /* WhisperStyleView.m in Sources */,
+				EA8D93AE183362A200780B63 /* GroupCell.m in Sources */,
+				EA8D93C01833630500780B63 /* GroupDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21902,6 +21948,8 @@
 				CA9AB0D218321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D618321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 				A4E59C921832208D003578CA /* WhisperStyleView.m in Sources */,
+				EA8D93AD183362A200780B63 /* GroupCell.m in Sources */,
+				EA8D93BF1833630500780B63 /* GroupDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22669,6 +22717,8 @@
 				CA9AB0D118321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D518321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 				A4E59C911832208D003578CA /* WhisperStyleView.m in Sources */,
+				EA8D93AC183362A200780B63 /* GroupCell.m in Sources */,
+				EA8D93BE1833630500780B63 /* GroupDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23386,6 +23436,8 @@
 				CA9AB0CB18321822002DBAA5 /* VoiceProcessor.mm in Sources */,
 				CA9AB0D418321AFE002DBAA5 /* HGQuadCurveMenu.m in Sources */,
 				CA9AB0D818321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
+				EA8D93AF183362A200780B63 /* GroupCell.m in Sources */,
+				EA8D93C11833630500780B63 /* GroupDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
