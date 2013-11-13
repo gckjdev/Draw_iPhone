@@ -310,26 +310,22 @@
 "kShare_via_SMS" = "短信分享给朋友";
 
 "kShare_message_body" = "推荐一款好玩的iPhone/iPad画画娱乐应用［%@］，AppStore下载链接是 %@ %@";
+"kShare_SingApp_message_body" = "推荐一款好玩的iPhone/iPad声音娱乐应用［%@］，可以讲故事、说笑话、唱歌等，AppStore下载链接是 %@ %@";
 
 "kEmail_subject" = "分享［%@］iPhone/iPad版";
 
 "kCreating_gif" = "正在生成GIF动画文件中... 文件可能比较大，请耐心等待";
 
-"kShareOtherTextAuto" = "我在玩%@，猜猜TA画的是什么？快来围观! %@ #小吉画画作品分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";//useless
+"kShareMyOpusWithDescriptionText" = "%@ ，看看我用%@ 画的【%@】 #%@# %@";
+"kShareMyOpusWithoutDescriptionText" = "我用%@ 画了一幅【%@】 #%@# %@";
+"kShareOtherOpusWithDescriptionText" = "%@ ，看看%@用%@ 画的【%@】 #%@# %@ ";
+"kShareOtherOpusWithoutDescriptionText" = "看看%@用%@ 画的【%@】 #%@# %@ ";
 
-"kShareMeTextAuto" = "我在玩%@，快来围观我画的［%@］ #小吉画画作品分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";//useless
+"kShareMySingOpusWithDescriptionText" = "%@ ，看看我用%@ 创作的【%@】 #%@# %@";
+"kShareMySingOpusWithoutDescriptionText" = "我用%@ 创作了一幅【%@】 #%@# %@";
+"kShareOtherSingOpusWithDescriptionText" = "%@ ，看看%@用%@ 创作的【%@】 #%@# %@ ";
+"kShareOtherSingOpusWithoutDescriptionText" = "看看%@用%@ 创作的【%@】 #%@# %@ ";
 
-"kShareOtherText" = "我在玩%@，猜猜TA画的是什么？快来围观! #小吉画画作品分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";//useless
-
-"kShareMeText" = "我在玩%@，快来围观我画的［%@］ #小吉画画作品分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";//useless
-"kShareMeTextWithComment" = "%@，看看我用 %@ 画的［%@］ #小吉画画作品分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
-"kShareMyOpusWithDescriptionText" = "%@ ，看看我用%@ 画的[%@] #%@# %@";
-"kShareMyOpusWithoutDescriptionText" = "我用%@ 画了一幅[%@] #%@# %@";
-"kShareOtherOpusWithDescriptionText" = "%@ ，看看%@用%@ 画的[%@] #%@# %@ ";
-"kShareOtherOpusWithoutDescriptionText" = "看看%@用%@ 画的[%@] #%@# %@ ";
-
-"kShareGIFOtherText" = "我在玩@小吉画画手机版，TA画的是［%@］，没想到吧~！我也木有想到！果断围观啊！#画画动画炫图分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";//useless
-"kShareGIFMeText" = "我在玩@小吉画画手机版，快来围观我的动画炫图！画的词是［%@］，看来我画工还不错！#画画动画炫图分享#  http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";//useless
 
 "kShareSend" = "发送";
 
@@ -345,7 +341,7 @@
 "kPaymentCannotMake" = "对不起，你的设备或者iOS版本未接受应用内程序购买功能。";
 
 "kSharePhotoEmailSubject" = "作品分享";
-"kSharePhotoEmailBody" = "\n\n- 来自iPhone/iPad上的二次元应用［%@］";
+"kSharePhotoEmailBody" = "\n\n- 来自iPhone/iPad上的趣味应用［%@］";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感谢您的反馈";
@@ -798,7 +794,7 @@
 "kFlowerDescription" = "看到好的作品就送些鲜花，赠人玫瑰，手有余香。鲜花还具有帮对方增加金币等效果";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丢些番茄，还能让作者扣分扣经验。仅用于在线游戏。";
 "kRemoveAdDescription" = "拦截并且不显示所有广告";
-"kTipsDescription" = "锦囊可用于猜画时炸词，或者画画时选择热门词汇，让你猜画的时候更快快捷方便";
+"kTipsDescription" = "锦囊可用于猜作品时炸词，让你猜的时候更快快捷方便";
 "kBrushPenDescription" = "中国传统的毛笔，加上了一些现代色彩的设计";
 "kIcePenDescription" = "看上去像雪糕的笔，画起来更加甜蜜";
 "kQuillDescription" = "用鹅毛做的笔，画起来更加轻便";  
@@ -1469,6 +1465,7 @@
 "kTime" = "时间";
 "kBought" = "销量";
 "kSNSSubject" = "小吉画画美图分享";
+"kSingSNSSubject" = "小吉大舌头作品分享";
 "kDrawAppLink" = "http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
 "kPaintVia" = "(作品来自 %@ )";
 

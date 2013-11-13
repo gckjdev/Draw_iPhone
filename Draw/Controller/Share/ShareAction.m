@@ -315,19 +315,19 @@
     }
     
     if (isDrawByMe){
-        if (desc != nil && desc > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), desc, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        if ([desc length] > 0) {
+            text = [NSString stringWithFormat:[GameApp shareMyOpusWithDescText], desc, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:[GameApp shareMyOpusWithoutDescText], snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
     else{
         NSString* heStr = userGender ? NSLS(@"kHim") : NSLS(@"kHer");
-        if (desc != nil && desc > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), desc, heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+        if ([desc length] > 0) {
+            text = [NSString stringWithFormat:[GameApp shareOtherOpusWithDescText], desc, heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
             
         } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+            text = [NSString stringWithFormat:[GameApp shareOtherOpusWithoutDescText],  heStr, snsOfficialNick, word, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
         }
     }
     
@@ -336,58 +336,70 @@
 
 + (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type
 {
-    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
     NSString* text = @"";
-    NSString* drawWord = @"";
-    BOOL isDrawByMe = [[UserManager defaultManager] isMe:feed.feedUser.userId];
+    text = [self createShareText:feed.wordText
+                            desc:feed.pbFeed.opusDesc
+                      opusUserId:feed.author.userId
+                      userGender:feed.author.gender
+                         snsType:type];
 
-    if (feed != nil) {
-        drawWord = feed.wordText;
-    }
-    
-    if (isDrawByMe){
-        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), feed.opusDesc, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-        } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-        }
-    }
-    else{
-        NSString* heStr = [feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
-        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), feed.opusDesc, heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-            
-        } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-        }
-    }
+//    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+//    NSString* drawWord = @"";
+//    BOOL isDrawByMe = [[UserManager defaultManager] isMe:feed.feedUser.userId];
+//
+//    if (feed != nil) {
+//        drawWord = feed.wordText;
+//    }
+//    
+//    if (isDrawByMe){
+//        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
+//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), feed.opusDesc, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//        } else {
+//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//        }
+//    }
+//    else{
+//        NSString* heStr = [feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
+//        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
+//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), feed.opusDesc, heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//            
+//        } else {
+//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//        }
+//    }
     
     return text;
 }
 
 - (void)shareViaSNS:(SnsType)type
 {
-    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
-    NSString* text = nil;
-    if (self.feed != nil) {
-        _drawWord = self.feed.wordText;
-    }
-    if (_isDrawByMe){        
-        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-        } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-        }
-    }
-    else{
-        NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
-        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-
-        } else {
-            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-        }
-    }
+//    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
+//    NSString* text = nil;
+//    if (self.feed != nil) {
+//        _drawWord = self.feed.wordText;
+//    }
+//    if (_isDrawByMe){        
+//        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), self.feed.opusDesc, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//        } else {
+//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//        }
+//    }
+//    else{
+//        NSString* heStr = [self.feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
+//        if (self.feed.opusDesc != nil && self.feed.opusDesc.length > 0) {
+//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), self.feed.opusDesc, heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//
+//        } else {
+//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, _drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
+//        }
+//    }
+    
+    NSString* text = [ShareAction createShareText:_drawWord
+                                             desc:self.feed.pbFeed.opusDesc
+                                       opusUserId:_drawUserId
+                                       userGender:self.feed.author.gender
+                                          snsType:type];
 
     [[GameSNSService defaultService] publishWeibo:type
                                              text:text

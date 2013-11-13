@@ -295,7 +295,9 @@
 "kHave_problems?" = "";
 "kSay something..." = "";
 "kShare_via_SMS" = "Share via SMS";
-"kShare_message_body" = "I found a very funny game recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@ %@";
+"kShare_message_body" = "I found a very funny app recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@ %@";
+"kShare_SingApp_message_body" = "I found a very funny app recently. Its name is '%@'.\nHere is the AppStore download URL:\n%@ %@";
+
 "kEmail_subject" = "Share a funny iOS game - %@";
 "kAbout_us_title" = "About us";
 "kFeedbackSucc" = "Thanks for your feedback";
@@ -305,20 +307,16 @@
 
 "kCreating_gif" = "Creating GIF Files...";
 
-"kShareOtherTextAuto" = "What An Awesome Drawing - %@ %@ ";//useless
-"kShareMeTextAuto" = "%@ My Awesome Drawing for %@";//useless
-
-"kShareOtherText" = "What An Awesome Drawing - %@ ";//useless
-"kShareMeText" = "My Awesome Drawing for %@ %@";//useless
-"kShareMeTextWithComment" = "%@ My Awesome Drawing for %@ %@";//useless
-
 "kShareMyOpusWithDescriptionText" = "%@ ，I just used %@ to draw a paint [%@] #%@# %@";
 "kShareMyOpusWithoutDescriptionText" = "I just used%@ to draw a paint[%@] #%@# %@";
 "kShareOtherOpusWithDescriptionText" = "%@ ，look at %@ use %@ to draw a [%@] #%@# %@ ";
 "kShareOtherOpusWithoutDescriptionText" = "Look at %@ use %@ to draw a [%@] #%@# %@";
 
-"kShareGIFOtherText" = "What An Awesome Drawing - %@ ";
-"kShareGIFMeText" = "My Awesome Drawing for %@ ";
+"kShareMySingOpusWithDescriptionText" = "%@ ，I just used %@ to design an opus [%@] #%@# %@";
+"kShareMySingOpusWithoutDescriptionText" = "I just used%@ to design an opus[%@] #%@# %@";
+"kShareOtherSingOpusWithDescriptionText" = "%@ ，look at %@ use %@ to design an opus [%@] #%@# %@ ";
+"kShareOtherSingOpusWithoutDescriptionText" = "Look at %@ use %@ to design an opus [%@] #%@# %@";
+
 "kShareSend" = "Send";
 
 "kPublishingWeibo" = "Sending Message...";
@@ -1504,6 +1502,7 @@
 "kTime" = "Newest";
 "kBought" = "Sold";
 "kSNSSubject" = "Share Paints";
+"kSingSNSSubject" = "Share Opus";
 "kDrawAppLink" = "http://itunes.apple.com/en/app/cai-cai-hua-hua/id513819630?mt=8";
 "kPaintVia" = "(via %@ )";
 
