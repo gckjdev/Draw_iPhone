@@ -51,11 +51,11 @@
     v.tag = COMMON_TITLE_VIEW_TAG;
     [v setTitle:NSLS(@"kEditOpusInfo")];
     [v setTarget:self];
-    [v setBackButtonSelector:@selector(clickBackButton:)];
+    [v setBackButtonSelector:@selector(clickComfirmButton:)];
     [v setRightButtonTitle:NSLS(@"kCloseKeyboard")];
     [v setRightButtonSelector:@selector(clickCloseKeyBoard:)];
     [v hideRightButton];
-    [v hideBackButton];
+//    [v hideBackButton];
     
     self.nameLabel.text = NSLS(@"kSubject");
     self.descLabel.text = NSLS(@"kDesc");
@@ -150,18 +150,35 @@
 
 - (void)textViewDidChange:(UITextView *)textView{
     
-    [self.opus setDesc:textView.text];
+    
 }
+
+#define SUBJECT_MAX_LENGTH 7
 
 - (void)textFieldDidChange:(UITextField *)textField{
     
     
-    if ([self.nameTextField.text length] <= 0) {
-        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:1.5];
-        return;
-    }
-    
-    [self.opus setName:textField.text];
+//    if ([self.nameTextField.text length] <= 0) {
+//        
+//        [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSubjectPlaceCannotBlank") delayTime:1.5];
+//        return;
+//    }
+//    
+//    if (!NSStringIsValidChinese(self.nameTextField.text)
+//        && !NSStringISValidEnglish(self.nameTextField.text)){
+//        
+//        POSTMSG(NSLS(@"kOnlyChineseOrEnglishTitleAllowed"));
+//        return;
+//    }
+//    
+//    
+//    if([self.nameTextField.text length] > SUBJECT_MAX_LENGTH){
+//        
+//        NSString *msg = [NSString stringWithFormat:NSLS(@"kSubjectLengthLimited"),
+//                         SUBJECT_MAX_LENGTH];
+//        POSTMSG(msg);
+//        return;
+//    }
 }
 
 - (void)clickCloseKeyBoard:(id)sender{
@@ -175,7 +192,6 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#define SUBJECT_MAX_LENGTH 7
 
 - (IBAction)clickComfirmButton:(id)sender {
     
@@ -200,6 +216,10 @@
         POSTMSG(msg);
         return;
     }
+    
+    [self.opus setName:self.nameTextField.text];
+    [self.opus setDesc:self.descTextView.text];
+    [self.opus setTags:[self getSelectedTags]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
         
@@ -250,21 +270,20 @@
 - (void)clickTagButton:(UIButton *)button{
     
     button.selected = !button.selected;
-    NSString *tag = [button titleForState:UIControlStateNormal];
+}
+
+- (NSArray *)getSelectedTags{
     
-    NSMutableArray *tags = [NSMutableArray arrayWithArray:self.opus.pbOpus.tagsList];
-    BOOL contained = [tags containsObject:tag];
-    
-    if (button.selected && !contained) {
+    NSMutableArray *tags = [NSMutableArray array];
+    [self.tagsHolderView enumSubviewsWithClass:[UIButton class] handler:^(UIButton *button) {
         
-        [tags addObject:tag];
-        [self.opus setTags:tags];
-    }
+        if (button.selected) {
+            NSString *tag = [button titleForState:UIControlStateNormal];
+            [tags addObject:tag];
+        }
+    }];
     
-    if (!button.selected && contained) {
-        [tags removeObject:tag];
-        [self.opus setTags:tags];
-    }
+    return tags;
 }
 
 @end

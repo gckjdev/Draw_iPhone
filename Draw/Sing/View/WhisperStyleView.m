@@ -12,8 +12,16 @@
 #import "UILabel+Extend.h"
 #import "DrawFeed.h"
 #import "DrawUtils.h"
+#import "DrawColor.h"
 #import "StrokeLabel.h"
 #import "UIViewUtils.h"
+
+@interface WhisperStyleView ()
+
+@property (assign, nonatomic) float sx;
+@property (assign, nonatomic) float sy;
+
+@end
 
 @implementation WhisperStyleView
 
@@ -30,6 +38,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     return v;
 }
 
+#define TAG_LABEL 201311131346
 - (id)initWithFrame:(CGRect)frame
                feed:(DrawFeed *)feed{
     
@@ -42,9 +51,13 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         [self addSubview:iv];
         
         StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
-        l.text = feed.desc;
+        l.text = feed.opusDesc;
+        l.textAlignment = NSTextAlignmentCenter;
+        l.tag = TAG_LABEL;
         l.backgroundColor = [UIColor clearColor];
         [self addSubview:l];
+        
+        
 
         // update lable info
         PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
@@ -57,17 +70,17 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
             [l updateHeight:labelInfo.frame.height];
             
             // set text color
-            l.textColor = [[DrawUtils decompressColor8:labelInfo.textColor] color];
+            l.textColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textColor] color];
             
             // set font
             l.font = [UIFont systemFontOfSize:labelInfo.textFont];
             
             // set text stroke color
-            l.textOutlineColor = [[DrawUtils decompressColor8:labelInfo.textStrokeColor] color];
+            l.textOutlineColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textStrokeColor] color];
             
             // set text stroke widht
             l.textOutlineWidth = labelInfo.textStrokeWidth;
-            
+                        
         }else{
             
             PPDebug(@"<updateDescriptionLabel>, but lableInfo is nil");
@@ -75,10 +88,10 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         
                 
         // transform from originFrame to frame
-        float sx = frame.size.width / self.frame.size.width;
-        float sy = frame.size.height / self.frame.size.height;
+        self.sx = frame.size.width / self.frame.size.width;
+        self.sy = frame.size.height / self.frame.size.height;
         
-        CGAffineTransform transform = CGAffineTransformMakeScale(sx, sy);
+        CGAffineTransform transform = CGAffineTransformMakeScale(_sx, _sy);
         self.transform = transform;
         
         // update origin
@@ -89,5 +102,14 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     return self;
 }
 
+- (void)setHotRankViewStyle{
+    
+    UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
+    label.font = [UIFont systemFontOfSize:ISIPAD ? 30/_sx : 15/_sx];
+    label.numberOfLines = 3;
+    [label updateHeight:(ISIPAD ? 140 : 70)];
+    
+    label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+}
 
 @end

@@ -66,7 +66,7 @@
     NSString* cellId = [self getCellIdentifier];
 
     int index = 0;
-    if (feed.pbFeed.category == PBOpusCategoryTypeSingCategory) {
+    if ([feed isSingCategory]) {
         index = 1;
     }
 
@@ -105,14 +105,14 @@
 + (CGFloat)cellHeightWithFeed:(DrawFeed *)feed
 {
     NSString *desc = feed.opusDesc;
-    if (feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+    if ([feed isDrawCategory]) {
         if ([desc length] == 0) {
             return CELL_HEIGHT_BASE;
         }else{
             CGSize size = [DrawInfoCell labelSizeWithText:desc];
             return CELL_HEIGHT_BASE + size.height;
         }
-    }else if (feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
+    }else if ([feed isSingCategory]){
         
         return ISIPAD ? 606 :278;
     }else{
@@ -299,7 +299,7 @@
     [self updateDrawToUserInfo:feed];
     [self updateDrawWithScene:scene];
     
-    if (self.feed.categoryType == PBOpusCategoryTypeSingCategory) {
+    if ([feed isSingCategory]) {
         [self updateWhisperStyleView];
     }
 }

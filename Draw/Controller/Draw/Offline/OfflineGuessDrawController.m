@@ -98,12 +98,12 @@
     if (self) {
         self.feed = feed;
 
-        if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+        if ([feed isDrawCategory]) {
             if (_feed.drawData == nil) {
                 [_feed parseDrawData];
                 _feed.pbDrawData = nil; // add by Benson to clear the data for memory usage
             }
-        }else if (self.feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
+        }else if ([feed isSingCategory]){
             
             // init audio player here.
             self.audioPlayer = [[[AudioPlayer alloc] init] autorelease];
@@ -237,7 +237,7 @@
         [(ShowFeedController *)self.fromController setFeedScene:[[[FeedSceneGuessResult alloc] init] autorelease]];
     } 
     
-    if (self.feed.pbFeed.category == PBOpusCategoryTypeSingCategory) {
+    if ([self.feed isSingCategory]) {
         [self.audioPlayer stop];
     }
     
@@ -287,9 +287,9 @@
 
 - (void)initShowView
 {
-    if (self.feed.pbFeed.category == PBOpusCategoryTypeDrawCategory) {
+    if ([self.feed isDrawCategory]) {
         [self initShowDrawView];
-    }else if (self.feed.pbFeed.category == PBOpusCategoryTypeSingCategory){
+    }else if ([self.feed isSingCategory]){
         [self initShowSingView];
     }
 }

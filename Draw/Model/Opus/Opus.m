@@ -196,11 +196,12 @@
 
 
 - (void)setTargetUser:(PBGameUser *)user{
-    [self setTargetUser:user];
     
     if (user == nil) {
+        [_pbOpusBuilder clearTargetUser];
         [_pbOpusBuilder setType:PBOpusTypeSing];
     }else{
+        [_pbOpusBuilder setTargetUser:user];
         [_pbOpusBuilder setType:PBOpusTypeSingToUser];
     }
 }

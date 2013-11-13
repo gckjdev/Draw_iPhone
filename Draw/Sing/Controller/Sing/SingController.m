@@ -61,14 +61,12 @@ enum{
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) CMPopTipView *popTipView;
-@property (copy, nonatomic) NSString *targetUserId;
 
 @end
 
 @implementation SingController
 
 - (void)dealloc{
-    [_targetUserId release];
     [_picker release];
     [_image release];
     [_singOpus release];
@@ -115,16 +113,17 @@ enum{
     
     if (self = [super init]) {
         self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:[PPConfigManager getSingOpusDefaultName]];
+        [self.singOpus setTargetUser:nil];
     }
 
     return self;
 }
 
-- (id)initWithTargetUserId:(NSString *)targetUserId{
+- (id)initWithTargetUser:(PBGameUser *)targetUser{
     
     if (self = [super init]) {
-        self.targetUserId = targetUserId;
         self.singOpus = (SingOpus *)[[[OpusService defaultService] draftOpusManager] createDraftWithName:[PPConfigManager getSingOpusDefaultName]];
+        [self.singOpus setTargetUser:targetUser];
     }
     
     return self;
@@ -371,10 +370,10 @@ enum{
     CGRect rect = self.opusDescLabel.frame;
     
     DrawColor *color = [[[DrawColor alloc] initWithColor:self.opusDescLabel.textColor] autorelease];
-    int textColor = [DrawUtils compressDrawColor8:color];
+    NSUInteger textColor = [DrawUtils compressDrawColor8:color];
     
     color = [[[DrawColor alloc] initWithColor:self.opusDescLabel.textOutlineColor] autorelease];
-    int textStrokeColor = [DrawUtils compressDrawColor8:color];
+    NSUInteger textStrokeColor = [DrawUtils compressDrawColor8:color];
     
     float fontSize = [[self.opusDescLabel font] pointSize];
     float textStrokeWidth = self.opusDescLabel.textOutlineWidth;
@@ -870,7 +869,6 @@ enum{
     [[OpusService defaultService] submitOpus:_singOpus
                                        image:_image
                                     opusData:singData
-                                targetUserId:self.targetUserId
                             progressDelegate:self
                                     delegate:self];
 }

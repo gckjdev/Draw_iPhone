@@ -15,4 +15,6 @@
 + (id)createWithFrame:(CGRect)frame
                  feed:(DrawFeed *)feed;
 
+- (void)setHotRankViewStyle;
+
 @end
