@@ -593,7 +593,7 @@
 "kLevelInfo" = "等级 : %d    经验值 : %d/%d";
 
 "kDrawing" = "画画中";
-"kGuessing" = "猜画中";
+"kGuessing" = "正在猜...";
 
 "kSubmitFailure" = "不好意思，提交失败，请重新提交。";
 "kSubmitSuccTitle" = "提交成功";
@@ -1429,8 +1429,8 @@
 
 "kOption" = "选项";
 "kPlay" = "播放";
-"kGuess" = "猜画";
-"kLargeImage" = "大图";
+"kGuess" = "我来猜";
+"kLargeImage" = "看大图";
 
 
 "kLearnDrawAll" = "全部";

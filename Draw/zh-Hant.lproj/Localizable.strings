@@ -590,7 +590,9 @@
 "kLevelInfo" = "等級 : %d    經驗值 : %d/%d";
 
 "kDrawing" = "畫畫中";
-"kGuessing" = "猜畫中";
+//"kGuessing" = "猜畫中";
+"kGuessing" = "正在猜...";
+
 "kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
 "kSubmitSuccMsg" = "恭喜！提交成功！再來一幅？";
 "kSubmitSuccTitle" = "提交成功";
@@ -1394,8 +1396,10 @@
 
 "kOption" = "選項";
 "kPlay" = "播放";
-"kGuess" = "猜畫";
-"kLargeImage" = "大圖";
+//"kGuess" = "猜畫";
+//"kLargeImage" = "大圖";
+"kGuess" = "我來猜";
+"kLargeImage" = "看大圖";
 
 "kLearnDrawAll" = "全部";
 "kLearnDrawCartoon" = "動漫";
