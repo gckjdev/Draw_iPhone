@@ -4336,6 +4336,10 @@
 		CA1162771834A91100FDD3A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1162711834A91100FDD3A9 /* TaskCell.xib */; };
 		CA1162781834A91100FDD3A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1162711834A91100FDD3A9 /* TaskCell.xib */; };
 		CA1162791834A91100FDD3A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1162711834A91100FDD3A9 /* TaskCell.xib */; };
+		CA11627C1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
+		CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
+		CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
+		CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
 		CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */; };
 		CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */; };
 		CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250A91668654900AFCC04 /* BlockUtils.m */; };
@@ -8545,6 +8549,8 @@
 		CA11626F1834A91000FDD3A9 /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		CA1162701834A91100FDD3A9 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		CA1162711834A91100FDD3A9 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		CA11627A1834AE7900FDD3A9 /* GameTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTask.h; sourceTree = "<group>"; };
+		CA11627B1834AE7900FDD3A9 /* GameTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTask.m; sourceTree = "<group>"; };
 		CA12507D1667399300AFCC04 /* PPSmartUpdateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateData.h; sourceTree = "<group>"; };
 		CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartUpdateData.m; sourceTree = "<group>"; };
 		CA1250801667445300AFCC04 /* PPSmartUpdateDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateDataUtils.h; sourceTree = "<group>"; };
@@ -13713,6 +13719,8 @@
 			children = (
 				CA1162631834A8BA00FDD3A9 /* TaskManager.h */,
 				CA1162641834A8BA00FDD3A9 /* TaskManager.m */,
+				CA11627A1834AE7900FDD3A9 /* GameTask.h */,
+				CA11627B1834AE7900FDD3A9 /* GameTask.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -21283,6 +21291,7 @@
 				CA1162671834A8BA00FDD3A9 /* TaskManager.m in Sources */,
 				CA11626D1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162741834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22052,6 +22061,7 @@
 				CA1162661834A8BA00FDD3A9 /* TaskManager.m in Sources */,
 				CA11626C1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162731834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22826,6 +22836,7 @@
 				CA1162651834A8BA00FDD3A9 /* TaskManager.m in Sources */,
 				CA11626B1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162721834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627C1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23550,6 +23561,7 @@
 				CA1162681834A8BA00FDD3A9 /* TaskManager.m in Sources */,
 				CA11626E1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162751834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
