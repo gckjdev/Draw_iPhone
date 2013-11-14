@@ -108,7 +108,9 @@ typedef enum{
     [super viewDidLoad];    
     [self initTabButtons];
 
-    [self.titleView setTitle:NSLS(@"kRank")];
+    NSString* title = isDrawApp() ? NSLS(@"kRank") : NSLS(@"kSingTop");
+    
+    [self.titleView setTitle:title];
     [self.titleView setRightButtonAsRefresh];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBackButton:)];

@@ -2189,8 +2189,8 @@
 
 /*********************你唱我猜國際化字符串開始 ************************/
 "kRerecordWarnning" = "是否放棄當前錄音，重新錄音？";
-"kSing"= "唱歌";
-"kGuessSing" = "猜歌";
+"kSing"= "說∙唱";
+"kGuessSing" = "聽∙猜";
 "kSingTop" = "榜單";
 "kSingContest" = "比賽";
 "kInputSingName" = "輸入歌曲名稱";
