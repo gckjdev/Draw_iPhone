@@ -4312,6 +4312,34 @@
 		CA1041F91509BC9700F60C03 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1041F71509BC9700F60C03 /* HomeController.xib */; };
 		CA1042021509C06E00F60C03 /* RoomController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1042001509C06E00F60C03 /* RoomController.m */; };
 		CA1042031509C06E00F60C03 /* RoomController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1042011509C06E00F60C03 /* RoomController.xib */; };
+		CA11625B1834A88E00FDD3A9 /* TaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162591834A88E00FDD3A9 /* TaskController.m */; };
+		CA11625C1834A88E00FDD3A9 /* TaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162591834A88E00FDD3A9 /* TaskController.m */; };
+		CA11625D1834A88E00FDD3A9 /* TaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162591834A88E00FDD3A9 /* TaskController.m */; };
+		CA11625E1834A88E00FDD3A9 /* TaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162591834A88E00FDD3A9 /* TaskController.m */; };
+		CA11625F1834A88F00FDD3A9 /* TaskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA11625A1834A88E00FDD3A9 /* TaskController.xib */; };
+		CA1162601834A88F00FDD3A9 /* TaskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA11625A1834A88E00FDD3A9 /* TaskController.xib */; };
+		CA1162611834A88F00FDD3A9 /* TaskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA11625A1834A88E00FDD3A9 /* TaskController.xib */; };
+		CA1162621834A88F00FDD3A9 /* TaskController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA11625A1834A88E00FDD3A9 /* TaskController.xib */; };
+		CA1162651834A8BA00FDD3A9 /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162641834A8BA00FDD3A9 /* TaskManager.m */; };
+		CA1162661834A8BA00FDD3A9 /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162641834A8BA00FDD3A9 /* TaskManager.m */; };
+		CA1162671834A8BA00FDD3A9 /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162641834A8BA00FDD3A9 /* TaskManager.m */; };
+		CA1162681834A8BA00FDD3A9 /* TaskManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162641834A8BA00FDD3A9 /* TaskManager.m */; };
+		CA11626B1834A8CA00FDD3A9 /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11626A1834A8CA00FDD3A9 /* TaskService.m */; };
+		CA11626C1834A8CA00FDD3A9 /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11626A1834A8CA00FDD3A9 /* TaskService.m */; };
+		CA11626D1834A8CA00FDD3A9 /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11626A1834A8CA00FDD3A9 /* TaskService.m */; };
+		CA11626E1834A8CA00FDD3A9 /* TaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11626A1834A8CA00FDD3A9 /* TaskService.m */; };
+		CA1162721834A91100FDD3A9 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162701834A91100FDD3A9 /* TaskCell.m */; };
+		CA1162731834A91100FDD3A9 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162701834A91100FDD3A9 /* TaskCell.m */; };
+		CA1162741834A91100FDD3A9 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162701834A91100FDD3A9 /* TaskCell.m */; };
+		CA1162751834A91100FDD3A9 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1162701834A91100FDD3A9 /* TaskCell.m */; };
+		CA1162761834A91100FDD3A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1162711834A91100FDD3A9 /* TaskCell.xib */; };
+		CA1162771834A91100FDD3A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1162711834A91100FDD3A9 /* TaskCell.xib */; };
+		CA1162781834A91100FDD3A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1162711834A91100FDD3A9 /* TaskCell.xib */; };
+		CA1162791834A91100FDD3A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1162711834A91100FDD3A9 /* TaskCell.xib */; };
+		CA11627C1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
+		CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
+		CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
+		CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
 		CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */; };
 		CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */; };
 		CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250A91668654900AFCC04 /* BlockUtils.m */; };
@@ -8511,6 +8539,18 @@
 		CA1041FF1509C06E00F60C03 /* RoomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomController.h; sourceTree = "<group>"; };
 		CA1042001509C06E00F60C03 /* RoomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomController.m; sourceTree = "<group>"; };
 		CA1042011509C06E00F60C03 /* RoomController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomController.xib; sourceTree = "<group>"; };
+		CA1162581834A88E00FDD3A9 /* TaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskController.h; sourceTree = "<group>"; };
+		CA1162591834A88E00FDD3A9 /* TaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskController.m; sourceTree = "<group>"; };
+		CA11625A1834A88E00FDD3A9 /* TaskController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskController.xib; sourceTree = "<group>"; };
+		CA1162631834A8BA00FDD3A9 /* TaskManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskManager.h; sourceTree = "<group>"; };
+		CA1162641834A8BA00FDD3A9 /* TaskManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskManager.m; sourceTree = "<group>"; };
+		CA1162691834A8CA00FDD3A9 /* TaskService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskService.h; sourceTree = "<group>"; };
+		CA11626A1834A8CA00FDD3A9 /* TaskService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskService.m; sourceTree = "<group>"; };
+		CA11626F1834A91000FDD3A9 /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
+		CA1162701834A91100FDD3A9 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
+		CA1162711834A91100FDD3A9 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		CA11627A1834AE7900FDD3A9 /* GameTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTask.h; sourceTree = "<group>"; };
+		CA11627B1834AE7900FDD3A9 /* GameTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTask.m; sourceTree = "<group>"; };
 		CA12507D1667399300AFCC04 /* PPSmartUpdateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateData.h; sourceTree = "<group>"; };
 		CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSmartUpdateData.m; sourceTree = "<group>"; };
 		CA1250801667445300AFCC04 /* PPSmartUpdateDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPSmartUpdateDataUtils.h; sourceTree = "<group>"; };
@@ -13651,6 +13691,49 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		CA1162511834A84F00FDD3A9 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				CA1162551834A86900FDD3A9 /* Controller */,
+				CA1162561834A86900FDD3A9 /* Model */,
+				CA1162571834A86900FDD3A9 /* Service */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		CA1162551834A86900FDD3A9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CA1162581834A88E00FDD3A9 /* TaskController.h */,
+				CA1162591834A88E00FDD3A9 /* TaskController.m */,
+				CA11625A1834A88E00FDD3A9 /* TaskController.xib */,
+				CA11626F1834A91000FDD3A9 /* TaskCell.h */,
+				CA1162701834A91100FDD3A9 /* TaskCell.m */,
+				CA1162711834A91100FDD3A9 /* TaskCell.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CA1162561834A86900FDD3A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CA1162631834A8BA00FDD3A9 /* TaskManager.h */,
+				CA1162641834A8BA00FDD3A9 /* TaskManager.m */,
+				CA11627A1834AE7900FDD3A9 /* GameTask.h */,
+				CA11627B1834AE7900FDD3A9 /* GameTask.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CA1162571834A86900FDD3A9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CA1162691834A8CA00FDD3A9 /* TaskService.h */,
+				CA11626A1834A8CA00FDD3A9 /* TaskService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		CA12507B1667397F00AFCC04 /* PPConfigData */ = {
 			isa = PBXGroup;
 			children = (
@@ -14475,6 +14558,7 @@
 		CA745D281503B1B500600024 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
+				CA1162511834A84F00FDD3A9 /* Task */,
 				EA8CADD618288C4D003149FE /* Group */,
 				A4B78823179E2E3C0008E21B /* Theme */,
 				EA411F441763050300DA72D0 /* AskPs */,
@@ -17666,6 +17750,8 @@
 				A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */,
 				EA8D93C41833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C91833632800780B63 /* GroupCell.xib in Resources */,
+				CA1162611834A88F00FDD3A9 /* TaskController.xib in Resources */,
+				CA1162781834A91100FDD3A9 /* TaskCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18610,6 +18696,8 @@
 				A4E59C951832208D003578CA /* WhisperStyleView.xib in Resources */,
 				EA8D93C31833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C81833632800780B63 /* GroupCell.xib in Resources */,
+				CA1162601834A88F00FDD3A9 /* TaskController.xib in Resources */,
+				CA1162771834A91100FDD3A9 /* TaskCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19536,6 +19624,8 @@
 				A4E59C941832208D003578CA /* WhisperStyleView.xib in Resources */,
 				EA8D93C21833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C71833632800780B63 /* GroupCell.xib in Resources */,
+				CA11625F1834A88F00FDD3A9 /* TaskController.xib in Resources */,
+				CA1162761834A91100FDD3A9 /* TaskCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20418,6 +20508,8 @@
 				CA9AB0A2183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				EA8D93C51833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93CA1833632800780B63 /* GroupCell.xib in Resources */,
+				CA1162621834A88F00FDD3A9 /* TaskController.xib in Resources */,
+				CA1162791834A91100FDD3A9 /* TaskCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21195,6 +21287,11 @@
 				EA8D93AE183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93C01833630500780B63 /* GroupDetailController.m in Sources */,
 				EA8D93CF183364C500780B63 /* IconView.m in Sources */,
+				CA11625D1834A88E00FDD3A9 /* TaskController.m in Sources */,
+				CA1162671834A8BA00FDD3A9 /* TaskManager.m in Sources */,
+				CA11626D1834A8CA00FDD3A9 /* TaskService.m in Sources */,
+				CA1162741834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21960,6 +22057,11 @@
 				EA8D93AD183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93BF1833630500780B63 /* GroupDetailController.m in Sources */,
 				EA8D93CE183364C500780B63 /* IconView.m in Sources */,
+				CA11625C1834A88E00FDD3A9 /* TaskController.m in Sources */,
+				CA1162661834A8BA00FDD3A9 /* TaskManager.m in Sources */,
+				CA11626C1834A8CA00FDD3A9 /* TaskService.m in Sources */,
+				CA1162731834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22730,6 +22832,11 @@
 				EA8D93AC183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93BE1833630500780B63 /* GroupDetailController.m in Sources */,
 				EA8D93CD183364C500780B63 /* IconView.m in Sources */,
+				CA11625B1834A88E00FDD3A9 /* TaskController.m in Sources */,
+				CA1162651834A8BA00FDD3A9 /* TaskManager.m in Sources */,
+				CA11626B1834A8CA00FDD3A9 /* TaskService.m in Sources */,
+				CA1162721834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627C1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23450,6 +23557,11 @@
 				EA8D93AF183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93C11833630500780B63 /* GroupDetailController.m in Sources */,
 				EA8D93D0183364C500780B63 /* IconView.m in Sources */,
+				CA11625E1834A88E00FDD3A9 /* TaskController.m in Sources */,
+				CA1162681834A8BA00FDD3A9 /* TaskManager.m in Sources */,
+				CA11626E1834A8CA00FDD3A9 /* TaskService.m in Sources */,
+				CA1162751834A91100FDD3A9 /* TaskCell.m in Sources */,
+				CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

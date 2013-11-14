@@ -2192,12 +2192,12 @@
 
 /*********************你唱我猜国际化字符串开始 ************************/
 "kRerecordWarnning" = "是否放弃当前录音，重新录音？";
-"kSing"= "唱歌";
-"kGuessSing" = "猜歌";
+"kSing"= "说∙唱";
+"kGuessSing" = "听∙猜";
 "kSingTop" = "榜单";
 "kSingContest" = "比赛";
-"kInputSingName" = "輸入歌曲或者歌手搜索歌詞";
-"kSingNameCannotBeBlankStr" = "搜索關鍵字不能为空";
+"kInputSingName" = "输入歌曲或者歌手搜索歌词";
+"kSingNameCannotBeBlankStr" = "搜索关键字不能为空";
 "kShareMySingOpus" = "看看%@唱的[%@] %@ #%@# %@ ";
 /*********************你唱我猜国际化字符串结束 ************************/
 
