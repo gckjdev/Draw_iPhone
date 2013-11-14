@@ -169,7 +169,13 @@
         }else{
             targetUserName = _targetUser.nickName;
         }
-        targetUserName = [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
+        
+        if ([feed isDrawCategory]) {
+            targetUserName = [NSString stringWithFormat:NSLS(@"kDrawToUserByUser"), targetUserName];
+        }else if ([feed isSingCategory]){
+            targetUserName = [NSString stringWithFormat:NSLS(@"kGiftToUserByUser"), targetUserName];
+        }
+        
 
         [self.drawToButton setTitle:targetUserName forState:UIControlStateNormal];
     } else {
@@ -177,7 +183,6 @@
     }
     
     [self.drawToButton setTitleColor:COLOR_GRAY_TEXT forState:UIControlStateNormal];
-    
 }
 
 

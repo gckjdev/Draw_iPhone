@@ -620,13 +620,17 @@
 "kCreateDescNoName" = "Create an opus.";
 
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
+"kGuessedSomeOneOpus" = "Guessed %@'s opus : [%@].";
 
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
-
+"kTryToGuessSomeoneOpus" = "Tried to guess %@'s opus: [%@].";
 
 
 "kGuessRightDescNoWord" = "Guessed %@'s drawing.";
+"kGuessedSomeOneOpusNoWord" = "Guessed %@'s opus.";
+
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
+"kTryToGuessSomeoneOpusNoWord" = "Tried to guess %@'s opus.";
 
 "kNoGuess" = "Guess 0";
 "kGuessStat" = "Guess: %d, Correct %d";
@@ -1000,6 +1004,8 @@
 "kReplyCommentDesc" = "Re %@: %@";
 
 "kSummaryOfDraw" = "Comment %@ opus: [%@].";
+"kSummaryOfOpus" = "Comment %@ opus: [%@].";
+
 "kSummaryOfDrawNoWord" = "Comment %@ opus.";
 "kSummaryOfGuess" = "Reply %@'s guessing.";
 "kSummaryOfSendItem" = "Reply %@'s expression.";
@@ -1129,6 +1135,7 @@
 "kLevelNameLast" = "不是人";
 
 "kDrawToUserByUser" = "drew to %@";
+"kGiftToUserByUser" = "Gift to %@";
 "kQQGroup" = "";
 "kCopy" = "Copy";
 
@@ -1428,6 +1435,8 @@
 "kHim" = "him";
 "kHer" = "her";
 "kDetailDrawTo" = "Gift";
+"kDetailGiftTo" = "Gift";
+
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";

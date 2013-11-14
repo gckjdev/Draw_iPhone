@@ -34,11 +34,19 @@
         if ([self.drawFeed isMyOpus]) {
             self.desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc_MyDraw"), word];      
         }else{
-            if (self.isMyFeed || [self.drawFeed hasGuessed]) {                
-                self.desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"), nick,
-                             word];      
+            if (self.isMyFeed || [self.drawFeed hasGuessed]) {
+                
+                if ([self.drawFeed isDrawCategory]) {
+                    self.desc = [NSString stringWithFormat:NSLS(@"kGuessRightDesc"), nick, word];
+                }else if ([self.drawFeed isSingCategory]){
+                    self.desc = [NSString stringWithFormat:NSLS(@"kGuessedSomeOneOpus"), nick, word];
+                }
             }else{
-                self.desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord"), nick]; 
+                if ([self.drawFeed isDrawCategory]) {
+                    self.desc = [NSString stringWithFormat:NSLS(@"kGuessRightDescNoWord"), nick];
+                }else if ([self.drawFeed isSingCategory]){
+                    self.desc = [NSString stringWithFormat:NSLS(@"kGuessedSomeOneOpusNoWord"), nick];
+                }
             }
         }
     }else{
@@ -46,11 +54,20 @@
             self.desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc_MyDraw"), 
                          self.drawFeed.wordText];      
         }else{
-            if ([self.drawFeed hasGuessed]) {                
-                self.desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"), nick,
-                             word];      
+            if ([self.drawFeed hasGuessed]) {
+                if ([self.drawFeed isDrawCategory]) {
+                    self.desc = [NSString stringWithFormat:NSLS(@"kTryGuessDesc"), nick,
+                                 word];
+                }else if ([self.drawFeed isSingCategory]){
+                    self.desc = [NSString stringWithFormat:NSLS(@"kTryToGuessSomeoneOpus"), nick,
+                                 word];
+                }
             }else{
-                self.desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord"), nick]; 
+                if ([self.drawFeed isDrawCategory]) {
+                    self.desc = [NSString stringWithFormat:NSLS(@"kTryGuessDescNoWord"), nick];
+                }else if ([self.drawFeed isSingCategory]){
+                    self.desc = [NSString stringWithFormat:NSLS(@"kTryToGuessSomeoneOpusNoWord"), nick];
+                }                
             }
         }
     }

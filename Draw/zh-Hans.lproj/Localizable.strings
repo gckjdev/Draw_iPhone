@@ -624,7 +624,9 @@
 "kMyFeedList" = "我的动态";
 
 "kGuessRightDescNoWord" = "猜对了%@的画。";
+"kGuessedSomeOneOpusNoWord" = "猜对了%@的作品。";
 "kTryGuessDescNoWord" = "尝试去猜了%@的画。";
+"kTryToGuessSomeoneOpusNoWord" = "尝试去猜了%@的作品。";
 
 "kDrawDesc" = "画了一幅 [%@]。";
 "kCreateDesc" = "创作了一个作品 [%@].";
@@ -633,7 +635,9 @@
 "kCreateDescNoName" = "创作了一个作品.";
 
 "kGuessRightDesc" = "猜对了%@画的 [%@]。";
+"kGuessedSomeOneOpus" = "猜对了%@的作品 : [%@].";
 "kTryGuessDesc" = "尝试去猜了%@画的 [%@]。";
+"kTryToGuessSomeoneOpus" = "尝试去猜了%@创作的作品 [%@]。";
 
 
 
@@ -1015,6 +1019,8 @@
 "kReplyCommentDesc" = "回复%@: %@";
 
 "kSummaryOfDraw" = "评论%@的画: [%@]";
+"kSummaryOfOpus" = "评论%@的作品: [%@]";
+
 "kSummaryOfDrawNoWord" = "评论%@的画";
 "kSummaryOfGuess" = "回复%@的猜画";
 "kSummaryOfSendItem" = "回复%@的表态: %@";
@@ -1152,6 +1158,7 @@
 
 "kContestFeedDetail" = "作品详情";
 "kDrawToUserByUser" = "画给%@";
+"kGiftToUserByUser" = "送给%@";
 "kQQGroup" = "官方Q群：228119679";
 "kCopy" = "复制";
 
@@ -1392,6 +1399,8 @@
 "kHim" = "他";
 "kHer" = "她";
 "kDetailDrawTo" = "画给%@";
+"kDetailGiftTo" = "送给%@";
+
 "kDetailFollower" = "关注";
 "kDetailFollow" = "关注%@";
 "kDetailChat" = "聊天";
