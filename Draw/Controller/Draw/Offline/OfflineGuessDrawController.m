@@ -317,7 +317,7 @@
 
 - (void)initShowSingView{
     
-    CGRect rect = CGRectMake(21, 48, 280, 280);
+    CGRect rect = ISIPAD ? CGRectMake(70, 92, 628, 628) : CGRectMake(21, 48, 280, 280);
     WhisperStyleView *v = [WhisperStyleView createWithFrame:rect feed:self.feed];
     
     [self.view addSubview:v];

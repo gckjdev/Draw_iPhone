@@ -164,7 +164,7 @@ typedef enum{
 }
 
 #define NORMAL_CELL_VIEW_NUMBER 3
-#define WHISPER_CELL_VIEW_NUMBER 2
+#define WHISPER_CELL_VIEW_NUMBER (ISIPAD? 3 : 2)
 
 #define WIDTH_SPACE 1
 
@@ -206,19 +206,14 @@ typedef enum{
 {
     CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
     CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
-    CGFloat x = ISIPAD ? 3 : 1;
+    CGFloat x = ISIPAD ? 1.5 : 1;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {
         RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
         [rankView setViewInfo:feed];
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
-        if (ISIPAD) {
-            x = width-1;
-        }else{
-            x += width;
-        }
-        
+        x += width;
     }
 }
 

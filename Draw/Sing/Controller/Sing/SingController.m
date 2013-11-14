@@ -260,7 +260,7 @@ enum{
 #define TAG_IMAGE_HOLDER_VIEW 201324
 - (void)initOpusImageView{
     
-    [self.opusImageView.layer setCornerRadius:35];
+    [self.opusImageView.layer setCornerRadius:(ISIPAD ? 75 : 35)];
     [self.opusImageView.layer setMasksToBounds:YES];
     
     [self.opusImageView updateWidth:self.singOpus.pbOpus.canvasSize.width];
@@ -396,9 +396,9 @@ enum{
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
     
-    // center desc label
-    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
-    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
+//    // center desc label
+//    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
+//    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
     
     // save label info
     [self saveDescLabelInfo];

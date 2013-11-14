@@ -272,7 +272,7 @@
         case RankViewTypeDrawOnCell:            
             return [DeviceDetection isIPAD] ? 245 : 99;
         case RankViewTypeWhisper:
-            return ISIPAD ? 384 : 159;
+            return ISIPAD ? 384/1.5 : 159;
         default:
             return 0;
     }

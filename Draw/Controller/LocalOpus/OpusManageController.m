@@ -330,18 +330,10 @@ typedef enum {
         
     }else if (tabID == TabTypeDraft){
         
-        [self showActivityWithText:NSLS(@"kLoading")];
-        
         NSArray* array = [self.draftManager findAllOpusWithOffset:tab.offset limit:tab.limit];
         [self finishLoadDataForTabID:tab.tabID resultList:array];
-
-        [self updateTab:array];
-        [self reloadView];
-        [self hideActivity];
     }
 }
-
-
 
 #pragma mark - OpusViewDelegate
 
