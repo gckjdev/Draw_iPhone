@@ -6791,6 +6791,10 @@
 		EA8D93C81833632800780B63 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93C61833632800780B63 /* GroupCell.xib */; };
 		EA8D93C91833632800780B63 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93C61833632800780B63 /* GroupCell.xib */; };
 		EA8D93CA1833632800780B63 /* GroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA8D93C61833632800780B63 /* GroupCell.xib */; };
+		EA8D93CD183364C500780B63 /* IconView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93CC183364C500780B63 /* IconView.m */; };
+		EA8D93CE183364C500780B63 /* IconView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93CC183364C500780B63 /* IconView.m */; };
+		EA8D93CF183364C500780B63 /* IconView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93CC183364C500780B63 /* IconView.m */; };
+		EA8D93D0183364C500780B63 /* IconView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8D93CC183364C500780B63 /* IconView.m */; };
 		EA8EF62017E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62117E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
 		EA8EF62217E55D3B003F1AF8 /* draw_home_bottom_split@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */; };
@@ -9734,6 +9738,8 @@
 		EA8D93BC1833630500780B63 /* GroupDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailController.m; sourceTree = "<group>"; };
 		EA8D93BD1833630500780B63 /* GroupDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDetailController.xib; sourceTree = "<group>"; };
 		EA8D93C61833632800780B63 /* GroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCell.xib; sourceTree = "<group>"; };
+		EA8D93CB183364C500780B63 /* IconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconView.h; sourceTree = "<group>"; };
+		EA8D93CC183364C500780B63 /* IconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconView.m; sourceTree = "<group>"; };
 		EA8EF60D17E55D3B003F1AF8 /* draw_home_bottom_split@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_bottom_split@2x.png"; sourceTree = "<group>"; };
 		EA8EF60E17E55D3B003F1AF8 /* draw_home_opus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_opus@2x.png"; sourceTree = "<group>"; };
 		EA8EF60F17E55D3B003F1AF8 /* draw_home_shop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_shop@2x.png"; sourceTree = "<group>"; };
@@ -12538,6 +12544,8 @@
 				CA051DBD1546802D00D0A00A /* StableView.m */,
 				CA051DBE1546802D00D0A00A /* WidthView.h */,
 				CA051DBF1546802D00D0A00A /* WidthView.m */,
+				EA8D93CB183364C500780B63 /* IconView.h */,
+				EA8D93CC183364C500780B63 /* IconView.m */,
 			);
 			path = StableView;
 			sourceTree = "<group>";
@@ -21186,6 +21194,7 @@
 				A4E59C931832208D003578CA /* WhisperStyleView.m in Sources */,
 				EA8D93AE183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93C01833630500780B63 /* GroupDetailController.m in Sources */,
+				EA8D93CF183364C500780B63 /* IconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21950,6 +21959,7 @@
 				A4E59C921832208D003578CA /* WhisperStyleView.m in Sources */,
 				EA8D93AD183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93BF1833630500780B63 /* GroupDetailController.m in Sources */,
+				EA8D93CE183364C500780B63 /* IconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22719,6 +22729,7 @@
 				A4E59C911832208D003578CA /* WhisperStyleView.m in Sources */,
 				EA8D93AC183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93BE1833630500780B63 /* GroupDetailController.m in Sources */,
+				EA8D93CD183364C500780B63 /* IconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23438,6 +23449,7 @@
 				CA9AB0D818321AFE002DBAA5 /* HGQuadCurveMenuItem.m in Sources */,
 				EA8D93AF183362A200780B63 /* GroupCell.m in Sources */,
 				EA8D93C11833630500780B63 /* GroupDetailController.m in Sources */,
+				EA8D93D0183364C500780B63 /* IconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

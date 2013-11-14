@@ -37,6 +37,7 @@
 {
     if (!self.popView) {
         self.popView = [[[CMPopTipView alloc] initWithCustomView:self] autorelease];
+        self.popView.clickSpaceToDismiss = NO;
     }
     self.popView.delegate = self;
     [self.popView presentPointingAtView:atView inView:inView animated:YES];

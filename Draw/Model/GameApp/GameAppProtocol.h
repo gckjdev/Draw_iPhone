@@ -179,6 +179,15 @@
 - (NSString *)opusClassName;
 - (NSString *)shareSDKDefaultAppId;
 
+
+
+- (NSString *)shareMyOpusWithDescText;
+- (NSString *)shareMyOpusWithoutDescText;
+- (NSString *)shareOtherOpusWithDescText;
+- (NSString *)shareOtherOpusWithoutDescText;
+
+
+
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

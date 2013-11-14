@@ -328,8 +328,8 @@ BBSService *_staticBBSService;
 {
     dispatch_async(workingQueue, ^{
         NSString *userId = [[UserManager defaultManager] userId];
-        NSString *appId = [PPConfigManager appId];
-        NSString *gameId = [PPConfigManager gameId];
+        NSString *appId = [PPConfigManager appId];                
+        NSString *gameId = DRAW_GAME_ID; //[PPConfigManager gameId];  // point to draw game always for sing/draw/etc
         
         LanguageType lang = [[UserManager defaultManager] getLanguageType];
         

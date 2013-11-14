@@ -252,7 +252,7 @@
 "kShare_via_Facebook" = "通過Facebook分享";
 "kShare_via_Twitter" = "通過Twitter分享";
 "kShare_via_Weixin" = "分享到微信";
-"kShare_via_Weixin_Timeline" = "分享到微信朋友圈";
+"kShare_via_Weixin_Timeline" = "分享微信朋友圈";
 "kShare_via_Weixin_Friend" = "分享給微信好友";
 "kWeixinNotInstall" = "對不起，您沒有安裝微信或微信版本較低，無法發送微信消息!";
 
@@ -301,35 +301,21 @@
 "kShare_via_SMS" = "短信分享給朋友";
 
 "kShare_message_body" = "推荐一款好玩的iPhone/iPad畫畫娛樂應用［%@］AppStore Link: %@ %@";
+"kShare_SingApp_message_body" = "推荐一款好玩的iPhone/iPad聲音娛樂應用［%@］，可以講故事、說笑話、唱歌等，AppStore下載鏈接是%@ %@";
 
 "kEmail_subject" = "分享［%@］iPhone/iPad版遊戲";
 
 "kCreating_gif" = "正在生成GIF動畫文件中... 文件可能比較大，請耐心等待";
 
-"kShareOtherTextAuto" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! %@ #小吉畫畫美圖分享# http://itunes.apple.com/cn/app/cai- cai-hua-hua/id513819630?mt=8";//useless
+"kShareMyOpusWithDescriptionText" = "%@ 看看我用%@ 畫的【%@】 #%@# %@";
+"kShareMyOpusWithoutDescriptionText" = "我用%@ 畫了一幅【%@】 #%@# %@";
+"kShareOtherOpusWithDescriptionText" = "%@ 看看%@用%@ 畫的【%@】 #%@# %@ ";
+"kShareOtherOpusWithoutDescriptionText" = "看看%@用%@ 畫的【%@】 #%@# %@ ";
 
-"kShareMeTextAuto" = "我在玩%@，快來圍觀我畫的［%@］ #小吉畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";//useless
-
-"kShareOtherText" = "我在玩%@，猜猜TA畫的是什麼？快來圍觀! #小吉畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai- hua-hua/id513819630?mt=8";//useless
-
-"kShareMeText" = "我在玩%@，快來圍觀我畫的［%@］ #小吉畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";//useless
-"kShareMeTextWithComment" = "%@，我在玩%@，快來圍觀我畫的［%@］ #小吉畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/ id513819630?mt=8";//useless
-
-//"kShareOtherTextAuto" = "我在玩%@，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！%@ #小吉畫畫美圖分享# http://itunes.apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
-//
-//"kShareMeTextAuto" = "我在玩%@，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#小吉畫畫美圖分享# http://itunes .apple.com/cn/app/cai-cai-hua-hua/id513819630?mt=8";
-//
-//"kShareOtherText" = "我在玩 @小吉畫畫 ，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#小吉畫畫美圖分享# http://caicaihuahua.me";
-//"kShareMeText" = "我在玩 @小吉畫畫 ，快來圍觀我畫了什麼吧！畫的詞是［%@］，看來我畫工還不錯！#小吉畫畫美圖分享# http://caicaihuahua.me";
-
-"kShareMyOpusWithDescriptionText" = "%@ ，看看我用%@ 畫的[%@] #%@# %@";
-"kShareMyOpusWithoutDescriptionText" = "我用%@ 畫了一幅[%@] #%@# %@";
-"kShareOtherOpusWithDescriptionText" = "%@ ，看看%@用%@ 畫的[%@] #%@# %@ ";
-"kShareOtherOpusWithoutDescriptionText" = "看看%@用%@ 畫的[%@] #%@# %@ ";
-
-
-"kShareGIFOtherText" = "我在玩 @小吉畫畫 ，TA畫的是［%@］，沒想到吧~！我也木有想到！果斷圍觀啊！#小吉畫畫動畫炫圖分享# http://caicaihuahua.me";
-"kShareGIFMeText" = "我在玩 @小吉畫畫 ，快來圍觀我的動畫炫圖！畫的詞是［%@］，看來我畫工還不錯！#小吉畫畫動畫炫圖分享# http://caicaihuahua.me";
+"kShareMySingOpusWithDescriptionText" = "%@ ，看看我用%@ 創作的【%@】 #%@# %@";
+"kShareMySingOpusWithoutDescriptionText" = "我用%@ 創作了一幅【%@】 #%@# %@";
+"kShareOtherSingOpusWithDescriptionText" = "%@ ，看看%@用%@ 創作的【%@】 #%@# %@ ";
+"kShareOtherSingOpusWithoutDescriptionText" = "看看%@用%@ 創作的【%@】 #%@# %@ ";
 
 "kShareSend" = "發送";
 
@@ -345,7 +331,7 @@
 "kPaymentCannotMake" = "對不起，你的設備或者iOS版本未接受應用內程序購買功能。";
 
 "kSharePhotoEmailSubject" = "分享有趣的作品";
-"kSharePhotoEmailBody" = "Hi，分享一幅有趣的作品，能猜到畫的是什麼嗎？\n\n- 來自%@";
+"kSharePhotoEmailBody" = "Hi，分享一幅有趣的作品，能猜到是什麼嗎？\n\n- 來自%@";
 "kShareWeiboTitle" = "微博分享";
 
 "kFeedbackSucc" = "感謝您的反饋";
@@ -604,7 +590,9 @@
 "kLevelInfo" = "等級 : %d    經驗值 : %d/%d";
 
 "kDrawing" = "畫畫中";
-"kGuessing" = "猜畫中";
+//"kGuessing" = "猜畫中";
+"kGuessing" = "正在猜...";
+
 "kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
 "kSubmitSuccMsg" = "恭喜！提交成功！再來一幅？";
 "kSubmitSuccTitle" = "提交成功";
@@ -792,7 +780,7 @@
 "kFlowerDescription" = "看到好的作品就送些鮮花吧！贈人玫瑰，手有餘香。";
 "kTomatoDescription" = "看到垃圾作品就狠狠地丟些番茄吧，還能讓作者扣分扣經驗。僅用於在線遊戲。";
 "kRemoveAdDescription" = "攔截並且不顯示所有廣告";
-"kTipsDescription" = "錦囊可用於猜畫時炸詞，或者畫畫時更換詞語，威力無窮！";
+"kTipsDescription" = "錦囊可用於猜作品時炸詞，讓你猜的時候更快快捷方便";
 "kBrushPenDescription" = "中國傳統的毛筆，加上了一些現代色彩的設計";
 "kIcePenDescription" = "看上去像雪糕的筆，畫起來更加甜蜜";
 "kQuillDescription" = "用鵝毛做的筆，畫起來更加輕便";
@@ -1161,7 +1149,7 @@
 
 "kHomeMenuTypeDrawDraw" = "畫畫";
 "kHomeMenuTypeDrawGuess" = "猜畫";
-"kHomeMenuTypeDrawGame" = "遊戲";
+"kHomeMenuTypeDrawGame" = "多人";
 "kHomeMenuTypeDrawTimeline" = "動態";
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
@@ -1407,9 +1395,9 @@
 
 
 "kOption" = "選項";
-"kPlay" = "播放";
-"kGuess" = "猜畫";
-"kLargeImage" = "大圖";
+"kPlay" = "播放作品";
+"kGuess" = "我來猜猜";
+"kLargeImage" = "查看大圖";
 
 "kLearnDrawAll" = "全部";
 "kLearnDrawCartoon" = "動漫";
@@ -1444,6 +1432,7 @@
 "kTime" = "時間";
 "kBought" = "銷量";
 "kSNSSubject" = "小吉畫畫美圖分享";
+"kSingSNSSubject" = "小吉大舌頭作品分享";
 "kDrawAppLink" = "http://itunes.apple.com/hk/app/cai-cai-hua-hua/id513819630?mt=8";
 "kPaintVia" = "(作品來自 %@ )";
 
@@ -2067,7 +2056,7 @@
 "kGroupNotExist" = "家族不存在。";
 "kGroupUpgradeSmall" = "家族只能升級不能降級。";
 "kGroupNameIsEmpty" = "家族名字不能為空。";
-
+"kGroupNameTooLong" = "家族名字不能長於16個字符。";
 
 "kShareByEmailSuccess" = "郵件分享成功";
 
@@ -2188,7 +2177,7 @@
 
 "kShareSinaWeibo" = "分享到新浪微博";
 "kShareWeixinSession" = "分享給微信好友";
-"kShareWeixinTimeline" = "分享到微信朋友圈";
+"kShareWeixinTimeline" = "分享微信朋友圈";
 "kShareQQSpace" = "分享到QQ空間";
 "kShareQQWeibo" = "分享到騰訊微博";
 "kShareFacebook" = "分享到Facebook";

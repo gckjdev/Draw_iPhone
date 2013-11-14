@@ -181,7 +181,7 @@
 
 - (NSString*)shareMessageBody
 {
-    return NSLS(@"kShare_message_body");
+    return NSLS(@"kShare_SingApp_message_body");
 }
 
 - (NSString*)shareEmailSubject
@@ -504,12 +504,13 @@
 
 - (NSString*)getDefaultSNSSubject
 {
-    return NSLS(@"kSNSSubject");
+    return NSLS(@"kSingSNSSubject");
 }
 
 - (NSString*)appItuneLink
 {
-    return NSLS(@"kDrawAppLink");
+    return [UIUtils getAppLink:[GameApp appId]];
+//    return NSLS(@"SingAppLink");
 }
 - (NSString*)appLinkUmengKey
 {
@@ -775,5 +776,27 @@
 {
     return @"c17367be400";
 }
+
+
+- (NSString *)shareMyOpusWithDescText
+{
+    return NSLS(@"kShareMySingOpusWithDescriptionText");
+}
+
+- (NSString *)shareMyOpusWithoutDescText
+{
+    return NSLS(@"kShareMySingOpusWithoutDescriptionText");
+}
+
+- (NSString *)shareOtherOpusWithDescText
+{
+    return NSLS(@"kShareOtherSingOpusWithDescriptionText");
+}
+
+- (NSString *)shareOtherOpusWithoutDescText
+{
+    return NSLS(@"kShareOtherSingOpusWithoutDescriptionText");
+}
+
 
 @end

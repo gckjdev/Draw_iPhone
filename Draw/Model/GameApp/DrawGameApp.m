@@ -586,4 +586,26 @@
     return @"c16e3fe5e0b";
 }
 
+
+- (NSString *)shareMyOpusWithDescText
+{
+    return NSLS(@"kShareMyOpusWithDescriptionText");
+}
+
+- (NSString *)shareMyOpusWithoutDescText
+{
+    return NSLS(@"kShareMyOpusWithoutDescriptionText");
+}
+
+- (NSString *)shareOtherOpusWithDescText
+{
+    return NSLS(@"kShareOtherOpusWithDescriptionText");
+}
+
+- (NSString *)shareOtherOpusWithoutDescText
+{
+    return NSLS(@"kShareOtherOpusWithoutDescriptionText");
+}
+
+
 @end

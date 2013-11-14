@@ -547,4 +547,26 @@
     return @"photo_tags_en.txt";
 }
 
+
+- (NSString *)shareMyOpusWithDescText
+{
+    return NSLS(@"kShareMySingOpusWithDescriptionText");
+}
+
+- (NSString *)shareMyOpusWithoutDescText
+{
+    return NSLS(@"kShareMySingOpusWithoutDescriptionText");
+}
+
+- (NSString *)shareOtherOpusWithDescText
+{
+    return NSLS(@"kShareOtherSingOpusWithDescriptionText");
+}
+
+- (NSString *)shareOtherOpusWithoutDescText
+{
+    return NSLS(@"kShareOtherSingOpusWithoutDescriptionText");
+}
+
+
 @end

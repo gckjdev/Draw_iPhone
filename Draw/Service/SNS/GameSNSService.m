@@ -680,9 +680,9 @@ GameSNSService* _defaultSNSService;
         case TYPE_QQ:
             weiboNick = [GameApp qqWeiboId];
             break;
-
+            
         default:
-            return @"";
+            return [UIUtils getAppName];
     }
     
     if ([weiboNick length] > 0){
