@@ -198,38 +198,6 @@ typedef enum {
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    int row = indexPath.row;
-//    int number = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-//    if (row == number - 1) {
-//        TableTab *tab = self.currentTab;
-//        if (!isLoading && tab.hasMoreData && tab.status != TableTabStatusLoading) {
-//            [self serviceLoadDataForTabID:tab.tabID];
-//            PPDebug(@"service load opus, tab id = %d", tab.tabID);
-//        }
-//    }
-//}
-
-//- (OpusManager*)managerForTab:(TabType)tabType
-//{
-//    switch (tabType) {
-//        case TabTypeFavorite: {
-//            return self.favoriteManager;
-//        };
-//        case TabTypeMine: {
-//            return self.selfOpusManager;
-//        };
-//        case TabTypeDraft: {
-//            return self.draftManager;
-//        }
-//            
-//        default:
-//            break;
-//    }
-//    return nil;
-//}
-
 - (id)init
 {
     self = [super init];
@@ -297,19 +265,6 @@ typedef enum {
     [super viewDidUnload];
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    [self clickRefreshButton:nil];
-//}
-//
-//- (void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewDidDisappear:animated];
-//    [_tabManager reset];
-//    [self.dataTableView reloadData];
-//}
-
 #pragma mark common tab controller
 
 - (NSInteger)tabCount
@@ -358,7 +313,7 @@ typedef enum {
     };
     
     if (tabID == TabTypeMine){
-        
+
         [[FeedService defaultService] getUserOpusList:[[UserManager defaultManager] userId]
                                                offset:tab.offset
                                                 limit:tab.limit
@@ -376,8 +331,10 @@ typedef enum {
     }else if (tabID == TabTypeDraft){
         
         [self showActivityWithText:NSLS(@"kLoading")];
+        
         NSArray* array = [self.draftManager findAllOpusWithOffset:tab.offset limit:tab.limit];
         [self finishLoadDataForTabID:tab.tabID resultList:array];
+
         [self updateTab:array];
         [self reloadView];
         [self hideActivity];
@@ -401,7 +358,8 @@ typedef enum {
                                             delegate:nil
                                    cancelButtonTitle:NSLS(@"kCancel")
                               destructiveButtonTitle:nil
-                                   otherButtonTitles:editString, /*shareString, */ NSLS(@"kDelete"), nil];
+                                   otherButtonTitles:editString, NSLS(@"kDelete"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
+                                        NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),nil];
     
     tips.actionBlock = ^(NSInteger buttonIndex){
         
@@ -457,7 +415,8 @@ typedef enum {
                                                 delegate:self
                                        cancelButtonTitle:NSLS(@"kCancel")
                                   destructiveButtonTitle:nil
-                                       otherButtonTitles:/*shareString,*/ NSLS(@"kLook"), NSLS(@"kDelete"), nil];
+                                       otherButtonTitles:/*shareString,*/ NSLS(@"kLook"), NSLS(@"kDelete"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
+                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),nil];
         
         tips.actionBlock = ^(NSInteger buttonIndex){
             
@@ -481,7 +440,9 @@ typedef enum {
                                                 delegate:self
                                        cancelButtonTitle:NSLS(@"kCancel")
                                   destructiveButtonTitle:nil
-                                       otherButtonTitles:/*shareString,*/ NSLS(@"kLook"), NSLS(@"kUnFavorite"), nil];
+                                       otherButtonTitles:NSLS(@"kLook"), NSLS(@"kUnFavorite"), NSLS(@"kShareSinaWeibo"), NSLS(@"kShareWeixinSession"),
+                                            NSLS(@"kShareWeixinTimeline"),NSLS(@"kShareQQSpace"),nil];
+   
         
         tips.actionBlock = ^(NSInteger buttonIndex){
             

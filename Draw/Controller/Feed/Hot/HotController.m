@@ -206,14 +206,19 @@ typedef enum{
 {
     CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
     CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
-    CGFloat x = 1;
+    CGFloat x = ISIPAD ? 3 : 1;
     CGFloat y = 0;
     for (DrawFeed *feed in feeds) {
         RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
         [rankView setViewInfo:feed];
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
-        x += width;
+        if (ISIPAD) {
+            x = width-1;
+        }else{
+            x += width;
+        }
+        
     }
 }
 
