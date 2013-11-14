@@ -262,7 +262,7 @@
 "kShare_via_Facebook" = "通过Facebook分享";
 "kShare_via_Twitter" = "通过Twitter分享";
 "kShare_via_Weixin" = "分享到微信";
-"kShare_via_Weixin_Timeline" = "分享到微信朋友圈";
+"kShare_via_Weixin_Timeline" = "分享微信朋友圈";
 "kShare_via_Weixin_Friend" = "分享给微信好友";
 "kWeixinNotInstall" = "对不起，您没有安装微信或微信版本较低，无法发送微信消息!";
 
@@ -912,7 +912,7 @@
 "kGroupBuy" = "甘橙团购";
 "kGroupBuyDescription" = "甘橙团购是一款团购导航和推荐应用,帮你快速找到你想要的团购商品!";
 "kRecommendApps" = "精彩应用推荐";
-"kRecommend" = "推荐";
+"kRecommend" = "推荐作品";
 
 "kChangeBackgroundTitle" = "提示";
 "kChangeBackgroundMessage" = "使用全局填充将会导致之前的笔画都消失，是否继续？";
@@ -1162,7 +1162,7 @@
 
 "kHomeMenuTypeDrawDraw" = "画画";
 "kHomeMenuTypeDrawGuess" = "猜画";
-"kHomeMenuTypeDrawGame" = "游戏";
+"kHomeMenuTypeDrawGame" = "多人";
 "kHomeMenuTypeDrawTimeline" = "动态";
 "kHomeMenuTypeDrawRank" = "画榜";
 "kHomeMenuTypeDrawContest" = "比赛";
@@ -1428,9 +1428,9 @@
 "kAskLoginMessage" = "你尚未注册，无法使用此功能，马上注册吗？注册只需10秒";
 
 "kOption" = "选项";
-"kPlay" = "播放";
-"kGuess" = "我来猜";
-"kLargeImage" = "看大图";
+"kPlay" = "播放作品";
+"kGuess" = "我来猜猜";
+"kLargeImage" = "查看大图";
 
 
 "kLearnDrawAll" = "全部";
@@ -2181,7 +2181,7 @@
 
 "kShareSinaWeibo" = "分享到新浪微博";
 "kShareWeixinSession" = "分享给微信好友";
-"kShareWeixinTimeline" = "分享到微信朋友圈";
+"kShareWeixinTimeline" = "分享微信朋友圈";
 "kShareQQSpace" = "分享到QQ空间";
 "kShareQQWeibo" = "分享到腾讯微博";
 "kShareFacebook" = "分享到Facebook";

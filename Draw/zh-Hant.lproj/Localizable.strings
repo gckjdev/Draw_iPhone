@@ -252,7 +252,7 @@
 "kShare_via_Facebook" = "通過Facebook分享";
 "kShare_via_Twitter" = "通過Twitter分享";
 "kShare_via_Weixin" = "分享到微信";
-"kShare_via_Weixin_Timeline" = "分享到微信朋友圈";
+"kShare_via_Weixin_Timeline" = "分享微信朋友圈";
 "kShare_via_Weixin_Friend" = "分享給微信好友";
 "kWeixinNotInstall" = "對不起，您沒有安裝微信或微信版本較低，無法發送微信消息!";
 
@@ -1149,7 +1149,7 @@
 
 "kHomeMenuTypeDrawDraw" = "畫畫";
 "kHomeMenuTypeDrawGuess" = "猜畫";
-"kHomeMenuTypeDrawGame" = "遊戲";
+"kHomeMenuTypeDrawGame" = "多人";
 "kHomeMenuTypeDrawTimeline" = "動態";
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
@@ -1395,11 +1395,9 @@
 
 
 "kOption" = "選項";
-"kPlay" = "播放";
-//"kGuess" = "猜畫";
-//"kLargeImage" = "大圖";
-"kGuess" = "我來猜";
-"kLargeImage" = "看大圖";
+"kPlay" = "播放作品";
+"kGuess" = "我來猜猜";
+"kLargeImage" = "查看大圖";
 
 "kLearnDrawAll" = "全部";
 "kLearnDrawCartoon" = "動漫";
@@ -2179,7 +2177,7 @@
 
 "kShareSinaWeibo" = "分享到新浪微博";
 "kShareWeixinSession" = "分享給微信好友";
-"kShareWeixinTimeline" = "分享到微信朋友圈";
+"kShareWeixinTimeline" = "分享微信朋友圈";
 "kShareQQSpace" = "分享到QQ空間";
 "kShareQQWeibo" = "分享到騰訊微博";
 "kShareFacebook" = "分享到Facebook";
