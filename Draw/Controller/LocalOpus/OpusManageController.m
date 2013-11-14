@@ -29,6 +29,7 @@
 #import "MKBlockAlertView.h"
 #import "UseItemScene.h"
 #import "ShowFeedController.h"
+#import "SingController.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -237,7 +238,7 @@ typedef enum {
 //    [self setPullRefreshType:PullRefreshTypeNone];
     [self setPullRefreshType:PullRefreshTypeBoth];
     _defaultTabIndex = 2;
-    [super viewDidLoad]; 
+    [super viewDidLoad];
 
     [self initTabButtons];
     
@@ -251,6 +252,8 @@ typedef enum {
     }else{
         [v setTitle:NSLS(@"kOpusSet")];
         [v setBackButtonSelector:@selector(clickBackButton:)];
+        [v setRightButtonTitle:NSLS(@"kAddChat")];
+        [v setRightButtonSelector:@selector(clickCreateOpusButton:)];
     }
     
     SET_COMMON_TAB_TABLE_VIEW_Y(self.dataTableView);
@@ -540,6 +543,14 @@ typedef enum {
     OpusManageController* share = [[[OpusManageController alloc] init ] autorelease];
     [share setFromWeiXin:YES];
     [superController.navigationController pushViewController:share animated:YES];
+}
+
+- (void)clickCreateOpusButton:(id)sender{
+    
+    if (isSingApp()) {
+        SingController *vc = [[[SingController alloc] init] autorelease];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end
