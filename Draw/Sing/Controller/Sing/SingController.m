@@ -22,6 +22,7 @@
 #import "CommonTitleView.h"
 #import "UIImageView+WebCache.h"
 #import "UIViewUtils.h"
+#import "UIImageUtil.h"
 //#import "NameAndDescEditView.h"
 #import "UILabel+Extend.h"
 #import "VoiceTypeSelectView.h"
@@ -217,7 +218,7 @@ enum{
                              labelInfo.frame.height);
     
     self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:rect] autorelease];
-    
+    self.opusDescLabel.numberOfLines = 0;
     self.opusDescLabel.text = self.singOpus.pbOpus.desc;
     self.opusDescLabel.textAlignment = NSTextAlignmentCenter;
     self.opusDescLabel.backgroundColor = [UIColor clearColor];
@@ -261,7 +262,9 @@ enum{
     
     [self.opusImageView.layer setCornerRadius:35];
     [self.opusImageView.layer setMasksToBounds:YES];
-    [self.singOpus setCanvasSize:self.opusImageView.frame.size];
+    
+    [self.opusImageView updateWidth:self.singOpus.pbOpus.canvasSize.width];
+    [self.opusImageView updateHeight:self.singOpus.pbOpus.canvasSize.height];
     PPDebug(@"size = %@", NSStringFromCGSize(self.opusImageView.frame.size));
     
     self.image = [UIImage imageWithContentsOfFile:_singOpus.pbOpus.localImageUrl];
@@ -388,7 +391,7 @@ enum{
 - (void)updateDescLabelInfo:(NSString *)desc{
 
     // adjust new size of desc label
-    CGSize size = CGSizeMake(self.opusImageView.frame.size.width * 0.8, 18);
+    CGSize size = CGSizeMake(self.opusImageView.frame.size.width * 0.8, self.opusImageView.frame.size.height);
     self.opusDescLabel.text = desc;
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
@@ -793,7 +796,8 @@ enum{
     
     // generate thumb image.
     UIImage *thumbImage = [self.opusImageView createSnapShotWithScale:0.5];
-    [[thumbImage data] writeToFile:self.singOpus.pbOpus.localThumbImageUrl atomically:YES];
+    [thumbImage saveImageToFile:self.singOpus.pbOpus.localThumbImageUrl];
+//    [[thumbImage data] writeToFile:self.singOpus.pbOpus.localThumbImageUrl atomically:YES];
     
     // save opus.
     [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];

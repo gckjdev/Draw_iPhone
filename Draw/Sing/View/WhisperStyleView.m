@@ -57,8 +57,6 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         l.backgroundColor = [UIColor clearColor];
         [self addSubview:l];
         
-        
-
         // update lable info
         PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
         if (labelInfo != nil) {
@@ -69,6 +67,11 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
             [l updateWidth:labelInfo.frame.width];
             [l updateHeight:labelInfo.frame.height];
             
+            PPDebug(@"stroke label frame = %@", NSStringFromCGRect(l.frame));
+            
+            // set number of line
+            l.numberOfLines = 0;
+
             // set text color
             l.textColor = [[DrawColor colorWithBetterCompressColor:labelInfo.textColor] color];
             
