@@ -36,6 +36,8 @@ typedef enum{
 @property(nonatomic, assign)IBOutlet id<DetailFooterViewDelegate>delegate;
 
 - (void)setButtonsWithTypes:(NSArray *)types;
+- (void)setButtonsWithCustomTypes:(NSArray *)types
+                           images:(NSArray *)images;
 - (void)setButton:(FooterType)type enabled:(BOOL)enabled;
 - (UIButton *)buttonWithType:(FooterType)type;
 + (DetailFooterView *)footerViewWithDelegate:(id<DetailFooterViewDelegate>)delegate;

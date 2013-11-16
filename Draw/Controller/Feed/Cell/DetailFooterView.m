@@ -54,7 +54,8 @@
     return name ? [UIImage imageNamed:name] : nil;
 }
 
-- (void)setButtonsWithTypes:(NSArray *)types
+- (void)setButtonsWithCustomTypes:(NSArray *)types
+                           images:(NSArray *)images
 {
     for (UIButton *view in self.subviews) {
         if ([view isKindOfClass:[UIButton class]]) {
@@ -69,15 +70,28 @@
     CGFloat width = CGRectGetHeight(self.bounds);
     CGFloat space = (CGRectGetWidth(self.bounds) - (width * count))/count;
     CGFloat x = space / 2;
+    NSInteger index = 0;
     for (NSNumber *number in types) {
         NSInteger type = number.integerValue;
         UIButton * button = [self reuseButtonWithTag:type frame:CGRectMake(x, 0, width, width) font:nil text:nil];
         x += width + space;
-        [button setImage:[self imageForType:type] forState:UIControlStateNormal];
+        UIImage *image = images[index];
+        [button setImage:image forState:UIControlStateNormal];
         CGFloat inset = width*0.15;
         [button setContentEdgeInsets:UIEdgeInsetsMake(inset, inset, inset, inset)];
         [button addTarget:self action:@selector(clickButton:) forControlEvents:UIControlEventTouchUpInside];
+        index++;
     }
+}
+
+- (void)setButtonsWithTypes:(NSArray *)types
+{
+    NSMutableArray *images = [NSMutableArray arrayWithCapacity:types.count];
+    for (NSNumber *number in types) {
+        UIImage *image = [self imageForType:number.integerValue];
+        [images addObject:image];
+    }
+    [self setButtonsWithCustomTypes:types images:images];
 }
 - (void)setButton:(FooterType)type enabled:(BOOL)enabled
 {

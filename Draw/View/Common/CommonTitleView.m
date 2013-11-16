@@ -317,6 +317,12 @@
     _rightButton.hidden = self.rightButtonBeforeLoadingHiddenState;
 }
 
-
+- (void)setTransparentStyle
+{
+    [self.bgImageView setHidden:YES];
+    //TODO set icon
+    [self.backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back_green@2x.png")
+                               forState:UIControlStateNormal];
+}
 @end
 
