@@ -346,7 +346,7 @@
 "kGifTips" = "Tips";
 "kContentRepeat" = "You have submited it just now!";
 "kAskForSelectPhoto" = "You should pick up a picture first for submit";
-
+"kRecordTimeTooShort" = "The record time must not be less than %d second, please try to rerecord.";
 /*the new words below without Japanese*/
 
 "kSaveSucc" = "Save draft sucessfully!";
@@ -604,14 +604,6 @@
 "kOneMore" = "More";
 
 "kGuessUserDraw" = "%@'s draw";
-
-
-"kFeedTitle" = "Timeline";
-"kAllFeed" = "Focus";
-"kHotFeed" = "Hot";
-"kMyFeed" = "My";
-
-"kMyFeedList" = "My Timeline";
 
 "kDrawDesc" = "Drew a picture: [%@].";
 "kCreateDesc" = "Create an opus: [%@].";
@@ -1007,14 +999,23 @@
 "kSummaryOfOpus" = "Comment %@ opus: [%@].";
 
 "kSummaryOfDrawNoWord" = "Comment %@ opus.";
+"kSummaryOfOpusNoWord" = "Comment %@ opus.";
+
 "kSummaryOfGuess" = "Reply %@'s guessing.";
+"kSummaryOfGuess_Opus" = "Reply %@'s guessing.";
+
+
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
 "kSummaryOfContestComment" = "Reply %@'s comment: %@.";
 
 "kSummaryOfDraw_Me" = "Comment my opus: [%@].";
+"kSummaryOfOpus_Me" = "Comment my opus: [%@].";
+
 "kSummaryOfDrawNoWord_Me" = "Comment my opus.";
 "kSummaryOfGuess_Me" = "Reply to my guessing.";
+"kSummaryOfGuess_Me_Opus" = "Reply to my guessing.";
+
 "kSummaryOfSendItem_Me" = "Reply to my expression.";
 "kSummaryOfComment_Me" = "Reply to my comment: %@.";
 "kSummaryOfContestComment" = "Reply %@'s comment: %@.";
@@ -1136,6 +1137,7 @@
 
 "kDrawToUserByUser" = "drew to %@";
 "kGiftToUserByUser" = "Gift to %@";
+
 "kQQGroup" = "";
 "kCopy" = "Copy";
 
@@ -1641,6 +1643,7 @@
 
 
 "kHint" = "Hint";
+"kRecordSubmitHint" = "Your record is %d seconds, you must pay for %d coins for submitation";
 "kGiveUpComment" = "Do you want to exit without commit comment?";
 "kGuessWrong" =  "Guess Wrong";
 

@@ -1,5 +1,5 @@
 //
-//  ShowDrawController.m
+//  offlineguessdrawcontroller.m
 //  Draw
 //
 //  Created by  on 12-3-19.
@@ -273,7 +273,6 @@
     }
     
     [dialog showInView:self.view];
-
 }
 
 - (void)initTitleView

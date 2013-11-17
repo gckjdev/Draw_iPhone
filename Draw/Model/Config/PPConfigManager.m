@@ -1212,7 +1212,15 @@
 }
 
 + (int)getRecordLimitTime{
-    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_TIME" defaultValue:300];
+    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_TIME" defaultValue:240];
+}
+
++ (int)getRecordLimitMinTime{
+    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_MIN_TIME" defaultValue:6];
+}
+
++ (int)getRecordDeductCoinsPer30Sec{
+    return [MobClickUtils getIntValueByKey:@"RECORD_DEDUCT_COINS_PER_30SEC" defaultValue:5];
 }
 
 + (NSString*)getShareSDKAppId

@@ -144,6 +144,64 @@ static DrawDataService* _defaultDrawDataService = nil;
     }];
 }
 
+
+
+- (void)matchOpus:(PPViewController<DrawDataServiceDelegate>*)viewController
+{
+    
+    
+    NSOperationQueue *queue = [self commitQuque];
+    [queue cancelAllOperations];
+    
+    [queue addOperationWithBlock: ^{
+        
+        // add by Benson
+        NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
+        
+        NSString *uid = [[UserManager defaultManager] userId];
+        NSString *gender = [[UserManager defaultManager] gender];
+        LanguageType lang = [[UserManager defaultManager] getLanguageType];
+        
+        CommonNetworkOutput* output = [GameNetworkRequest
+                                       matchDrawWithProtocolBuffer:TRAFFIC_SERVER_URL
+                                       userId:uid
+                                       gender:gender
+                                       lang:lang
+                                       type:1];;
+        
+        DrawFeed *feed = nil;
+        NSInteger resultCode = [output resultCode];
+        @try {
+            
+            if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
+                DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
+                NSArray *list = [response feedList];
+                PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
+                feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                resultCode = [response resultCode];
+            }
+        }
+        @catch (NSException *exception) {
+            PPDebug(@"<matchDraw> catch exception =%@", [exception description]);
+            resultCode = ERROR_CLIENT_PARSE_DATA;
+            
+        }
+        @finally {
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (viewController && [viewController respondsToSelector:@selector(didMatchDraw:result:)]) {
+                [viewController didMatchDraw:feed result:resultCode];
+            }
+        });
+        
+        [subPool drain];
+    }];
+}
+
+
+
 - (PBDraw*)buildPBDraw:(NSString*)userId
                   nick:(NSString *)nick
                 avatar:(NSString *)avatar

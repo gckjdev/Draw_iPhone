@@ -145,7 +145,6 @@ typedef enum{
 {
     [super viewDidLoad];    
     [self initTabButtons];
-    [self.titleLabel setText:NSLS(@"kFeed")];
     if ([PPConfigManager showOpusCount]) {
         [[FeedService defaultService] getOpusCount:[[UserManager defaultManager] userId]
                                           delegete:self];
@@ -233,13 +232,14 @@ typedef enum{
 
 
 #define NORMAL_CELL_VIEW_NUMBER 3
+#define WHISPER_CELL_VIEW_NUMBER (ISIPAD ? 3 : 2)
+
 #define WIDTH_SPACE 1
 - (void)setNormalRankCell:(UITableViewCell *)cell 
                 WithFeeds:(NSArray *)feeds
 {
     CGFloat width = [RankView widthForRankViewType:RankViewTypeNormal];
     CGFloat height = [RankView heightForRankViewType:RankViewTypeNormal];
-//    CGFloat space = (cell.frame.size.width - NORMAL_CELL_VIEW_NUMBER * width)/ (NORMAL_CELL_VIEW_NUMBER - 1);
     CGFloat space =  WIDTH_SPACE;
     CGFloat x = 0;
     CGFloat y = 0;
@@ -249,6 +249,22 @@ typedef enum{
         [cell.contentView addSubview:rankView];
         rankView.frame = CGRectMake(x, y, width, height);
         x += width + space;
+    }
+}
+
+- (void)setWhisperRankCell:(UITableViewCell *)cell
+                 WithFeeds:(NSArray *)feeds
+{
+    CGFloat width = [RankView widthForRankViewType:RankViewTypeWhisper];
+    CGFloat height = [RankView heightForRankViewType:RankViewTypeWhisper];
+    CGFloat x = 0;
+    CGFloat y = 0;
+    for (DrawFeed *feed in feeds) {
+        RankView *rankView = [RankView createRankView:self type:RankViewTypeWhisper];
+        [rankView setViewInfo:feed];
+        [cell.contentView addSubview:rankView];
+        rankView.frame = CGRectMake(x, y, width, height);
+        x += width;
     }
 }
 
@@ -295,19 +311,31 @@ typedef enum{
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
 
-
-        
-        NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
-        NSMutableArray *list = [NSMutableArray array];
-//        PPDebug(@"startIndex = %d",startIndex);
-        for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
-            NSObject *object = [self saveGetObjectForIndex:i];
-            if (object) {
-                [list addObject:object];
+        if (isDrawApp()) {
+            NSInteger startIndex = (indexPath.row * NORMAL_CELL_VIEW_NUMBER);
+            NSMutableArray *list = [NSMutableArray array];
+            for (NSInteger i = startIndex; i < startIndex+NORMAL_CELL_VIEW_NUMBER; ++ i) {
+                NSObject *object = [self saveGetObjectForIndex:i];
+                if (object) {
+                    [list addObject:object];
+                }
             }
+            [self setNormalRankCell:cell WithFeeds:list];
+        }else if (isSingApp()){
+            
+            NSInteger startIndex = (indexPath.row * WHISPER_CELL_VIEW_NUMBER);
+            NSMutableArray *list = [NSMutableArray array];
+            for (NSInteger i = startIndex; i < startIndex+WHISPER_CELL_VIEW_NUMBER; ++ i) {
+                NSObject *object = [self saveGetObjectForIndex:i];
+                if (object) {
+                    [list addObject:object];
+                }
+            }
+            [self setWhisperRankCell:cell WithFeeds:list];
         }
-        [self setNormalRankCell:cell WithFeeds:list];
+
         return cell;
+        
     }else if(tab.tabID == MyTypeComment){
         CommentFeed * commentFeed = [self.tabDataList objectAtIndex:indexPath.row];
         MyCommentCell *cell = [theTableView dequeueReusableCellWithIdentifier:[MyCommentCell getCellIdentifier]];
@@ -360,11 +388,21 @@ typedef enum{
         case MyTypeComment:
             return count;
         case MyTypeDrawToMe:
-            if (count %3 == 0) {
-                return count/3;
-            }else{
-                return count/3 + 1;
+            if (isDrawApp()) {
+                if (count % NORMAL_CELL_VIEW_NUMBER == 0) {
+                    return count/NORMAL_CELL_VIEW_NUMBER;
+                }else{
+                    return count/NORMAL_CELL_VIEW_NUMBER + 1;
+                }
+            }else if (isSingApp()){
+                
+                if (count % WHISPER_CELL_VIEW_NUMBER == 0) {
+                    return count/WHISPER_CELL_VIEW_NUMBER;
+                }else{
+                    return count/WHISPER_CELL_VIEW_NUMBER + 1;
+                }
             }
+
         default:
             return 0;
     }

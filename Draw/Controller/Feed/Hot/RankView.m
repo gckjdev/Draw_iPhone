@@ -92,12 +92,6 @@
     [super dealloc];
 }
 
-
-- (void)updateImage:(UIImage *)image
-{
-    [self.drawImage setImage:image];
-}
-
 - (void)updateLearnDraw:(PBLearnDraw *)learnDraw
 {
     [self.costLabel setText:[NSString stringWithFormat:@"%d", learnDraw.price]];
@@ -112,44 +106,6 @@
     }
     self.feed = feed;
     
-   if ([feed.drawImageUrl length] != 0) {
-       NSURL *url = nil;//[NSURL URLWithString:feed.drawImageUrl];
-
-       if (CGRectGetWidth(self.bounds) > 301) {
-           url = feed.largeImageURL;
-       }else{
-           url = feed.thumbURL;
-       }
-       
-       
-        UIImage *defaultImage = nil;
-       
-        defaultImage = [[ShareImageManager defaultManager] unloadBg];
-       
-       [self.drawImage setImageWithURL:url placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-          
-           if (error != nil) {
-               self.drawImage.alpha = 1;
-           }else{
-               
-                if (cacheType == SDImageCacheTypeNone) {
-                    self.drawImage.alpha = 0;
-                }
-
-                [UIView animateWithDuration:1 animations:^{
-                    self.drawImage.alpha = 1.0;
-                }];
-                [self updateImage:image];
-           }
-           
-       }];
-       
-       
-    }else{
-        PPDebug(@"<setViewInfo> Old Opus, no image to show. feedId=%@,word=%@", 
-                feed.feedId,feed.wordText);
-        [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
-    }
     
     feed.drawData = nil;
     feed.pbDrawData = nil;
@@ -187,6 +143,10 @@
     if (feed.learnDraw) {
         [self updateLearnDraw:feed.learnDraw];
     }
+    
+    
+    
+    
 
     if ([self.feed isSingCategory]) {
         [[self.drawImage viewWithTag:201139481] removeFromSuperview];
@@ -194,6 +154,46 @@
         [v setHotRankViewStyle];
         [self.drawImage addSubview:v];
         v.tag = 201139481;
+    }else if ([self.feed isDrawCategory]){
+        
+        if ([feed.drawImageUrl length] != 0) {
+            NSURL *url = nil;//[NSURL URLWithString:feed.drawImageUrl];
+            
+            if (CGRectGetWidth(self.bounds) > 301) {
+                url = feed.largeImageURL;
+            }else{
+                url = feed.thumbURL;
+            }
+            
+            
+            UIImage *defaultImage = nil;
+            
+            defaultImage = [[ShareImageManager defaultManager] unloadBg];
+            
+            [self.drawImage setImageWithURL:url placeholderImage:defaultImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                
+                if (error != nil) {
+                    self.drawImage.alpha = 1;
+                }else{
+                    
+                    if (cacheType == SDImageCacheTypeNone) {
+                        self.drawImage.alpha = 0;
+                    }
+                    
+                    [UIView animateWithDuration:1 animations:^{
+                        self.drawImage.alpha = 1.0;
+                    }];
+                    [self.drawImage setImage:image];
+                }
+                
+            }];
+            
+            
+        }else{
+            PPDebug(@"<setViewInfo> Old Opus, no image to show. feedId=%@,word=%@",
+                    feed.feedId,feed.wordText);
+            [self.drawImage setImage:[[ShareImageManager defaultManager] unloadBg]];
+        }
 
     }
 }

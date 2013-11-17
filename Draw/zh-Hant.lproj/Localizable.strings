@@ -351,6 +351,8 @@
 "kGifNotice" = "生成的動態圖片大小為%.2fMB,上傳該圖片將會消耗好些時間，對於部分微博（如新浪）不可上傳大於5MB的圖片。";
 "kGifTips" = "溫馨提示";
 "kAskForSelectPhoto" = "你還沒有選擇圖片，是否立刻選擇？";
+"kRecordTimeTooShort" = "提交作品時，錄音時長不能少於%d秒，請重新錄音後再上傳。";
+
 "kContentRepeat" = "不要重複提交!";
 
 "kWordForbidden" = "文本內容中包含了敏感詞，請檢查";
@@ -606,12 +608,6 @@
 "kGuessDraw" = "猜畫中";
 "kOneMore" = "再來一幅";
 "kGuessUserDraw" = "正在猜%@的畫";
-
-"kFeedTitle" = "動態";
-"kAllFeed" = "關注";
-"kHotFeed" = "熱榜";
-"kMyFeed" = "我的";
-"kMyFeedList" = "我的動態";
 
 "kDrawDescNoWord" = "畫了一幅畫。";
 "kCreateDescNoName" = "創作了一個作品。";
@@ -1005,7 +1001,11 @@
 "kSummaryOfOpus" = "評論%@的作品: [%@]";
 
 "kSummaryOfDrawNoWord" = "評論%@的畫";
+"kSummaryOfOpusNoWord" = "評論%@的作品";
+
 "kSummaryOfGuess" = "回复%@的猜畫";
+"kSummaryOfGuess_Opus" = "回复%@的猜";
+
 "kSummaryOfSendItem" = "回复%@的表態: %@";
 "kSummaryOfComment" = "回复%@的評論: %@";
 "kSummaryOfContestComment" = "回复%@的評論: %@";
@@ -1015,8 +1015,12 @@
 "kThrowMeTomato" = "给我丢了个番茄！";
 
 "kSummaryOfDraw_Me" = "評論我的畫: [%@]";
+"kSummaryOfOpus_Me" = "評論我的作品: [%@]";
+
 "kSummaryOfDrawNoWord_Me" = "評論我的畫";
 "kSummaryOfGuess_Me" = "回复我的猜畫";
+"kSummaryOfGuess_Me_Opus" = "回复我的猜";
+
 "kSummaryOfSendItem_Me" = "回复我的表態: %@";
 "kSummaryOfComment_Me" = "回复我的評論: %@";
 "kSummaryOfContestComment_Me" = "回复我的評論: %@";
@@ -1147,6 +1151,7 @@
 "kContestFeedDetail" = "作品詳情";
 "kDrawToUserByUser" = "畫給%@";
 "kGiftToUserByUser" = "送給%@";
+
 "kQQGroup" = "官方Q群：228119679";
 "kCopy" = "復制";
 
@@ -1578,6 +1583,8 @@
 "kGuessContestModeTipsMessage" = "當前排名：第 %d 名\n猜中作品：%d 幅\n總耗時：%d 秒";
 
 "kHint" = "提示";
+"kRecordSubmitHint" = "你的作品錄音時長為%d秒，提交需要花費%d金幣，確認提交嗎？";
+
 "kGiveUpComment" = "是否退出評論?";
 "kGuessWrong" =  "猜錯了";
 

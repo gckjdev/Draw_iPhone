@@ -22,8 +22,10 @@
 #import "HotController.h"
 #import "MyFeedController.h"
 #import "AnalyticsManager.h"
+#import "DrawDataService.h"
+#import "OfflineGuessDrawController.h"
 
-@interface SingHomeController ()
+@interface SingHomeController ()<DrawDataServiceDelegate>
 
 @end
 
@@ -61,7 +63,6 @@
     switch (type) {
 
         case HomeMenuTypeSing: {
-
             SingController *vc = [[[SingController alloc] init] autorelease];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -69,6 +70,8 @@
             
         case HomeMenuTypeGuessSing: {
             PPDebug(@"HomeMenuTypeGuessSing");
+            [[DrawDataService defaultService] matchOpus:self];
+            
         }
             break;
             
@@ -177,7 +180,15 @@
 - (void)dealloc {
     [super dealloc];
 }
+
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
+
+- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode{
+    
+    [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+}
+
+
 @end

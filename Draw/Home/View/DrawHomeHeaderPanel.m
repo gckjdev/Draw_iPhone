@@ -12,6 +12,7 @@
 #import "UseItemScene.h"
 #import "StableView.h"
 #import "PPConfigManager.h"
+#import "WhisperStyleView.h"
 
 @interface OpusButton : UIButton
 @property(nonatomic, assign)DrawFeed *opus;
@@ -75,7 +76,6 @@
 
 - (void)switchOpus
 {
-//    PPDebug(@"<switchOpus> called. cancel selector.");
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(switchOpus) object:nil];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     if (cell == nil) {
@@ -88,9 +88,7 @@
     if (_showingRow < 0) {
         _showingRow = 0;
     }
-    
-//    PPDebug(@"<switchOpus> start to switch, row = %d", _showingRow);
-    
+        
     for (NSInteger i = TAG_BASE; i < TAG_BASE+NUMBER_PERROW; ++i) {
         OpusButton *button = (id)[cell.contentView viewWithTag:i];
         if ([button isKindOfClass:[OpusButton class]]) {
@@ -141,16 +139,6 @@
 {
     [self.tableView reloadData];
     return;
-    
-    /*
-    if (self.status == DrawHeaderPanelStatusClose) {
-        [self.tableView reloadData];
-    }else if(self.status == DrawHeaderPanelStatusOpen){
-        [self.tableView reloadData];
-    }else {
-        [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:2.1];
-    }
-     */
 }
 
 - (void)didGetFeedList:(NSArray *)feedList feedListType:(FeedListType)type resultCode:(NSInteger)resultCode
@@ -387,13 +375,12 @@
 #define OPUS_INDEX_KEY @"OPUS_INDEX_KEY"
 
 - (void)updateCell:(UITableViewCell *)cell withIndexPath:(NSIndexPath *)indexPath
-{
-    
-    
+{    
     CGRect defaultFrame = CGRectMake(0, 0, OPUS_SIZE.width, OPUS_SIZE.height);
-//    PPDebug(@"opus size = %@", NSStringFromCGSize(OPUS_SIZE));
     for (NSInteger tag = TAG_BASE; tag < TAG_BASE+NUMBER_PERROW; ++ tag) {
         OpusButton *button = (id)[cell.contentView viewWithTag:tag];
+        
+        
         if (button == nil) {
             button = [OpusButton buttonWithType:UIButtonTypeCustom];
             button.imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -406,7 +393,6 @@
         
         [button updateOriginX:(SPACE+(tag-TAG_BASE)*(SPACE+OPUS_SIZE.width))];
         [button updateCenterY:CELL_HEIGHT/2];
-//        PPDebug(@"tag = %d, button frame = %@,cell width = %f", tag, NSStringFromCGRect(button.frame),self.tableView.bounds.size.width);
         
         NSInteger index = (NUMBER_PERROW * indexPath.row) + (tag - TAG_BASE);
 
@@ -415,7 +401,16 @@
         if ([self.opusList count] > index) {
             [button setHidden:NO];
             DrawFeed *opus = [self.opusList objectAtIndex:index];
-            [button setImageWithURL:opus.thumbURL];
+            if (isDrawApp()) {
+                [button setImageWithURL:opus.thumbURL];
+            }else if (isSingApp()){
+                [[button viewWithTag:20111111] removeFromSuperview];
+                WhisperStyleView *v = [WhisperStyleView createWithFrame:button.bounds feed:opus];
+                [v setHomeRankViewStyle];
+                v.userInteractionEnabled = NO;
+                [button addSubview:v];
+                v.tag = 20111111;
+            }
             [button setOpus:opus];
         }else{
             [button setImage:nil forState:UIControlStateNormal];

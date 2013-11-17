@@ -363,8 +363,7 @@
 
 "kContentRepeat" = "请不要重复提交!";
 "kAskForSelectPhoto" = "你还没有选择图片，是否立刻选择？";
-
-
+"kRecordTimeTooShort" = "提交作品时，录音时长不能少于%d秒，请重新录音后再上传。";
 
 /*the new words below without Japanese*/
 
@@ -616,12 +615,6 @@
 "kOneMore" = "再来一幅";
 
 "kGuessUserDraw" = "正在猜%@的画";
-
-"kFeedTitle" = "动态";
-"kAllFeed" = "关注";
-"kHotFeed" = "热榜";
-"kMyFeed" = "我的";
-"kMyFeedList" = "我的动态";
 
 "kGuessRightDescNoWord" = "猜对了%@的画。";
 "kGuessedSomeOneOpusNoWord" = "猜对了%@的作品。";
@@ -1022,7 +1015,11 @@
 "kSummaryOfOpus" = "评论%@的作品: [%@]";
 
 "kSummaryOfDrawNoWord" = "评论%@的画";
+"kSummaryOfOpusNoWord" = "评论%@的作品";
+
 "kSummaryOfGuess" = "回复%@的猜画";
+"kSummaryOfGuess_Opus" = "回复%@的猜";
+
 "kSummaryOfSendItem" = "回复%@的表态: %@";
 "kSummaryOfComment" = "回复%@的评论: %@";
 "kSummaryOfContestComment" = "回复%@的点评: %@";
@@ -1038,8 +1035,12 @@
 "kOpusNew" = "最新";
 
 "kSummaryOfDraw_Me" = "评论我的画: [%@]";
+"kSummaryOfOpus_Me" = "评论我的作品: [%@]";
+
 "kSummaryOfDrawNoWord_Me" = "评论我的画";
 "kSummaryOfGuess_Me" = "回复我的猜画";
+"kSummaryOfGuess_Me_Opus" = "回复我的猜";
+
 "kSummaryOfSendItem_Me" = "回复我的表态: %@";
 "kSummaryOfComment_Me" = "回复我的评论: %@";
 "kSummaryOfContestComment_Me" = "回复我的点评: %@";
@@ -1623,6 +1624,8 @@
 "kGuessGenuisFail" = "你猜错了，不能再继续玩下去了，重新开始？";
 
 "kHint" = "提示";
+"kRecordSubmitHint" = "你的作品录音时长为%d秒，提交需要花费%d金币，确认提交吗？";
+
 "kGiveUpComment" = "是否退出评论?";
 "kGuessWrong" =  "猜错了";
 

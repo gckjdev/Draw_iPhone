@@ -16,5 +16,6 @@
                  feed:(DrawFeed *)feed;
 
 - (void)setHotRankViewStyle;
+- (void)setHomeRankViewStyle;
 
 @end

@@ -53,6 +53,7 @@
                  delegate:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)matchDraw:(PPViewController<DrawDataServiceDelegate>*)viewController;
+- (void)matchOpus:(PPViewController<DrawDataServiceDelegate>*)viewController;
 
 - (void)guessDraw:(NSArray *)guessWords 
            opusId:(NSString *)opusId 

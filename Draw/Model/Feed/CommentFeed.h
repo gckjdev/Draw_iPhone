@@ -49,4 +49,5 @@
 
 - (id)initWithPBCommentInfo:(PBCommentInfo *)pbInfo;
 - (NSString *)summaryDesc;
+- (NSString *)summarySingDesc;
 @end
