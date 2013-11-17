@@ -44,4 +44,7 @@
 // 获取当前view里面已有的title view
 + (CommonTitleView*)titleView:(UIView*)superView;
 
+//变成透明底, 蓝色图标
+- (void)setTransparentStyle;
+
 @end
