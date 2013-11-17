@@ -335,7 +335,14 @@ typedef enum {
         
         NSArray* array = [self.draftManager findAllOpusWithOffset:tab.offset limit:tab.limit];
         [self finishLoadDataForTabID:tab.tabID resultList:array];
+        [self performSelector:@selector(hideRefreshHeaderAndFooter) withObject:nil afterDelay:0.5];
     }
+}
+
+- (void)hideRefreshHeaderAndFooter{
+    
+    [self dataSourceDidFinishLoadingNewData];
+    [self dataSourceDidFinishLoadingMoreData];
 }
 
 #pragma mark - OpusViewDelegate
@@ -484,7 +491,6 @@ typedef enum {
     }];
     
     [dialog showInView:self.view];
-    
 }
 
 
