@@ -1649,6 +1649,7 @@
 
 "kHint" = "Hint";
 "kRecordSubmitHint" = "Your record is %d seconds, you must pay for %d coins for submitation";
+
 "kGiveUpComment" = "Do you want to exit without commit comment?";
 "kGuessWrong" =  "Guess Wrong";
 
