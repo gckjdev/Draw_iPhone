@@ -1505,6 +1505,7 @@
 
 "kWhiteTextBlackStroke" = "白字黑框";
 "kBlackTextWhiteStroke" = "黑字白框";
+"kEditDesc" = "编辑描述";
 
 //dream lockscreen
 "kDreamLockscreenPreview" = "预览";

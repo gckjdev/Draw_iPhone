@@ -79,6 +79,7 @@
     self.nameTextField.returnKeyType = UIReturnKeyNext;
     self.nameTextField.delegate = self;
     self.descTextView.delegate = self;
+    [self.descTextView becomeFirstResponder];
     
     [self.nameTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     

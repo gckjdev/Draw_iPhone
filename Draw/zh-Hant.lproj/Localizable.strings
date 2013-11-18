@@ -1490,6 +1490,7 @@
 
 "kWhiteTextBlackStroke" = "白字黑框";
 "kBlackTextWhiteStroke" = "黑字白框";
+"kEditDesc" = "編輯描述";
 
 "kQuitGameWithPaidForAnswer" = "覺得太難猜？你想花%d個金幣直接要答案嗎?";
 "kQuitDirectly" = "直接退出";
