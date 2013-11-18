@@ -927,6 +927,8 @@
 
 "kCommentTimes" = "Comment(%d)";
 "kGuessTimes" = "Guessed(%d)";
+"kOpusGuessTimes" = "Guessed(%d)";
+
 "kFlowerTimes" = "Flower(%d)";
 "kTomatoTimes" = "Tomato(%d)";
 "kReportTimes" = "Report(%d)";

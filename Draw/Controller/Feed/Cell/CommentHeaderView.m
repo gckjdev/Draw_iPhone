@@ -45,13 +45,26 @@
 
 - (NSString *)formatForType:(CommentType)type
 {
-    NSDictionary *dict =
-    @{
-      KEY(CommentTypeComment) : NSLS(@"kCommentTimes"),
-      KEY(CommentTypeGuess) : NSLS(@"kGuessTimes"),
-      KEY(CommentTypeFlower) : NSLS(@"kFlowerTimes"),
-      KEY(CommentTypeSave) : NSLS(@"kCollectTimes"),
-      KEY(CommentTypeContestComment) : NSLS(@"kReportTimes")};    
+    NSDictionary *dict = nil;
+    if ([self.feed isDrawCategory]) {
+        dict =
+        @{
+          KEY(CommentTypeComment) : NSLS(@"kCommentTimes"),
+          KEY(CommentTypeGuess) : NSLS(@"kGuessTimes"),
+          KEY(CommentTypeFlower) : NSLS(@"kFlowerTimes"),
+          KEY(CommentTypeSave) : NSLS(@"kCollectTimes"),
+          KEY(CommentTypeContestComment) : NSLS(@"kReportTimes")};
+    }else if ([self.feed isSingCategory]){
+        
+        dict =
+        @{
+          KEY(CommentTypeComment) : NSLS(@"kCommentTimes"),
+          KEY(CommentTypeGuess) : NSLS(@"kOpusGuessTimes"),
+          KEY(CommentTypeFlower) : NSLS(@"kFlowerTimes"),
+          KEY(CommentTypeSave) : NSLS(@"kCollectTimes"),
+          KEY(CommentTypeContestComment) : NSLS(@"kReportTimes")};
+    }
+
     return [dict objectForKey:KEY(type)];
     
 }

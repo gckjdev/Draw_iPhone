@@ -928,6 +928,8 @@
 
 "kCommentTimes" = "評論 (%d)";
 "kGuessTimes" = "猜畫 (%d)";
+"kOpusGuessTimes" = "猜過(%d)";
+
 "kFlowerTimes" = "鮮花 (%d)";
 "kTomatoTimes" = "番茄 (%d)";
 "kCollectTimes" = "收藏 (%d)";

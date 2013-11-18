@@ -183,9 +183,16 @@
                          times:[opus feedTimesWithFeedTimesType:PBFeedTimesTypeFeedTimesTypeComment]
                         format:NSLS(@"kCommentTimes")];
     if (![opus isContestOpus]) {
-        [self updateButtonWithType:CommentTypeGuess
-                             times:[opus feedTimesWithFeedTimesType:PBFeedTimesTypeFeedTimesTypeGuess]
-                            format:NSLS(@"kGuessTimes")];
+        if (opus.category == PBOpusCategoryTypeDrawCategory) {
+            [self updateButtonWithType:CommentTypeGuess
+                                 times:[opus feedTimesWithFeedTimesType:PBFeedTimesTypeFeedTimesTypeGuess]
+                                format:NSLS(@"kGuessTimes")];
+        }else if (opus.category == PBOpusCategoryTypeSingCategory){
+            [self updateButtonWithType:CommentTypeGuess
+                                 times:[opus feedTimesWithFeedTimesType:PBFeedTimesTypeFeedTimesTypeGuess]
+                                format:NSLS(@"kOpusGuessTimes")];
+        }
+
     }else{
         UIButton *button = [self buttonWithType:CommentTypeGuess];
         UIButton *prev = [self previousButtonWithType:CommentTypeGuess];
