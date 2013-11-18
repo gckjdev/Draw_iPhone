@@ -68,27 +68,18 @@
         }
             break;
             
-//        case HomeMenuTypeGuessSing: {
-//            PPDebug(@"HomeMenuTypeGuessSing");
-//        }
-//            break;
-//            
-//        case HomeMenuTypeSingContest: {
-//            PPDebug(@"HomeMenuTypeSingContest");
-//        }
-//            break;
-//=======
-//        case HomeMenuTypeGuessSing: {
-//            PPDebug(@"HomeMenuTypeGuessSing");
-//            [[DrawDataService defaultService] matchOpus:self];
-//            
-//        }
-//            break;
-//            
-//        case HomeMenuTypeSingContest: {
-//            PPDebug(@"HomeMenuTypeSingContest");
-//        }
-//            break;
+
+        case HomeMenuTypeGuessSing: {
+            PPDebug(@"HomeMenuTypeGuessSing");
+            [[DrawDataService defaultService] matchOpus:self];
+            
+        }
+            break;
+            
+        case HomeMenuTypeDrawContest: {
+            PPDebug(@"HomeMenuTypeSingContest");
+        }
+            break;
 
         case HomeMenuTypeSingTop: {
             
@@ -103,12 +94,12 @@
         }
             break;
 
-//        case HomeMenuTypeSingBBS:{
-//            BBSBoardController *bbs = [[BBSBoardController alloc] init];
-//            [self.navigationController pushViewController:bbs animated:YES];
-//            [bbs release];
-//        }
-//            break;
+        case HomeMenuTypeDrawBBS:{
+            BBSBoardController *bbs = [[BBSBoardController alloc] init];
+            [self.navigationController pushViewController:bbs animated:YES];
+            [bbs release];
+        }
+            break;
             
         default:
             break;
@@ -125,14 +116,14 @@
     }
     
     switch (type) {
-//        case HomeMenuTypeSingTimeline:{
-//            PPDebug(@"HomeMenuTypeSingTimeline");
-//            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
-//            
-//            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
-//            [[StatisticManager defaultManager] setTimelineOpusCount:0];
-//        }
-//            break;
+        case HomeMenuTypeDrawTimeline:{
+            PPDebug(@"HomeMenuTypeSingTimeline");
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
+            
+            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
+            [[StatisticManager defaultManager] setTimelineOpusCount:0];
+        }
+            break;
             
         case HomeMenuTypeSingDraft:{
             OpusManageController* vc = [[[OpusManageController alloc] initWithClass:NSClassFromString(@"SingOpus") selfDb:SING_MY_OPUS_DB favoriteDb:SING_FAVORITE_DB draftDb:SING_DRAFT_DB] autorelease];
@@ -147,12 +138,12 @@
         }
             break;
             
-//        case HomeMenuTypeSingChat:{
-//            ChatListController *controller = [[ChatListController alloc] init];
-//            [self.navigationController pushViewController:controller animated:YES];
-//            [controller release];
-//        }
-//            break;
+        case HomeMenuTypeDrawMessage:{
+            ChatListController *controller = [[ChatListController alloc] init];
+            [self.navigationController pushViewController:controller animated:YES];
+            [controller release];
+        }
+            break;
             
         case HomeMenuTypeSingSetting:{
             UserSettingController *settings = [[UserSettingController alloc] init];
@@ -161,17 +152,17 @@
         }
             break;
             
-//        case HomeMenuTypeSingFriend:{
-//            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
-//            
-//            FriendController *mfc = [[FriendController alloc] init];
-//            if ([[StatisticManager defaultManager] fanCount] > 0) {
-//                [mfc setDefaultTabIndex:FriendTabIndexFan];
-//            }
-//            [self.navigationController pushViewController:mfc animated:YES];
-//            [mfc release];
-//        }
-//            break;
+        case HomeMenuTypeDrawFriend:{
+            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
+            
+            FriendController *mfc = [[FriendController alloc] init];
+            if ([[StatisticManager defaultManager] fanCount] > 0) {
+                [mfc setDefaultTabIndex:FriendTabIndexFan];
+            }
+            [self.navigationController pushViewController:mfc animated:YES];
+            [mfc release];
+        }
+            break;
             
         default:
             break;
