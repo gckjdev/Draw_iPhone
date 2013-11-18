@@ -48,6 +48,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         
         UIImageView *iv = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
         [iv setImageWithURL:[NSURL URLWithString:feed.drawImageUrl]];
+        [iv setContentMode:UIViewContentModeScaleAspectFill];
+        [iv setClipsToBounds:YES];
         [self addSubview:iv];
         
         StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -108,7 +110,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 - (void)setHotRankViewStyle{
     
     UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
-    label.font = [UIFont systemFontOfSize:ISIPAD ? 30/_sx : 15/_sx];
+    label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
     label.numberOfLines = 3;
 //    [label updateHeight:(ISIPAD ? 140 : 70)];
     [label updateWidth:self.bounds.size.width];

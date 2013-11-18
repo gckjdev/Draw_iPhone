@@ -47,7 +47,7 @@
     [singOpus setCanvasSize:CGSizeMake(ISIPAD ? 628.0 : 288.0, ISIPAD ? 628.0 : 288.0)];
     float sacle = 628.0/288.0;
 
-    float textFont = (ISIPAD ? 18*sacle : 18);
+    float textFont = (ISIPAD ? 15*sacle : 15);
     int style = 0;
     NSUInteger textStrokeColor = [[DrawColor blackColor] toBetterCompressColor];
     
