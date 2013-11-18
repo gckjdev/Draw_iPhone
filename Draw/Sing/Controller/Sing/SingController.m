@@ -239,7 +239,7 @@ enum{
     self.opusDescLabel.textOutlineColor = textStrokeColor;
     
     // set stroke width
-    self.opusDescLabel.textOutlineWidth = (ISIPAD ? 2 : 1);
+    self.opusDescLabel.textOutlineWidth = (ISIPAD ? 4 : 2);
 
     // add label into opus image view
     [self.opusImageView addSubview:self.opusDescLabel];
@@ -491,6 +491,8 @@ enum{
 }
 
 - (void)record {
+    
+    PPDebug(@"record url = %@", _recorder.recordURL.absoluteString);
     [_recorder startToRecordForDutaion:_recordLimitTime];
 }
 
@@ -511,6 +513,9 @@ enum{
 }
 
 - (void)play{
+    
+    PPDebug(@"play url = %@", _player.playURL.absoluteString);
+    
     float duration = _singOpus.pbOpus.sing.duration;
     float pitch = _singOpus.pbOpus.sing.pitch;
     float formant = _singOpus.pbOpus.sing.formant;
@@ -831,17 +836,20 @@ enum{
         return;
     }
     
-    int count = _fileDuration / 30;
-    int coins = count * [PPConfigManager getRecordDeductCoinsPer30Sec];
-    NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins];
-    
-    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
-    [dialog setClickOkBlock:^(id infoView){
-        [self deductCoins:coins];
+    if (_fileDuration > 30) {
+        int count = _fileDuration / 30;
+        int coins = count * [PPConfigManager getRecordDeductCoinsPer30Sec];
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins];
+        
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
+        [dialog setClickOkBlock:^(id infoView){
+            [self deductCoins:coins];
+            [self handleAndSubmitOpus];
+        }];
+        [dialog showInView:self.view];
+    }else{
         [self handleAndSubmitOpus];
-    }];
-    [dialog showInView:self.view];
-
+    }
 }
 
 - (void)handleAndSubmitOpus{
