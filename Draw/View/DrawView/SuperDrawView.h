@@ -20,13 +20,16 @@
 #import "PaintAction.h"
 #import "ShapeAction.h"
 #import "CanvasRect.h"
-#import "ScreenCaptureView.h"
-
 #import "DrawLayerManager.h"
 
 #define DRAW_INFO_NEED_UPDATE @"DRAW_INFO_NEED_UPDATE"
 
+#ifdef DEBUG
+#import "ScreenCaptureView.h"
+@interface SuperDrawView : ScreenCaptureView<GestureRecognizerManagerDelegate, DrawProcessProtocol>
+#else
 @interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate, DrawProcessProtocol>
+#endif
 {
     NSMutableArray *_drawActionList;
     

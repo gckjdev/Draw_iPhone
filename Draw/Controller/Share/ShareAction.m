@@ -37,7 +37,7 @@
 #import "SDImageCache.h"
 #import "SDWebImageManager.h"
 #import "ShareService.h"
-
+#import "Opus.h"
 
 @interface ShareAction ()
 {
@@ -304,6 +304,26 @@
     return [path autorelease];
 }
 
++ (NSString*)createOpusImagePath:(Opus*)opus
+{
+    NSString* imageURL = opus.pbOpus.image;
+    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+            
+    UIImage* image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:imageURL];
+    if (image == nil) {
+        image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:imageURL];
+    }
+    
+    NSString* path = [[[ShareService defaultService] synthesisImageWithImage:image
+                                                               waterMarkText:[PPConfigManager getShareImageWaterMark]] retain];
+    [pool drain];
+    
+    PPDebug(@"<createFeedImagePath> create image file at %@ for share", path);
+    return [path autorelease];
+    
+}
+
 + (NSString*)createShareText:(NSString*)word desc:(NSString*)desc opusUserId:(NSString*)opusUserId userGender:(BOOL)userGender snsType:(SnsType)type
 {
     NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
@@ -334,6 +354,19 @@
     return text;
 }
 
++ (NSString*)shareTextByOpus:(Opus*)opus snsType:(SnsType)type
+{
+    NSString* text = @"";
+    text = [self createShareText:opus.pbOpus.name
+                            desc:opus.pbOpus.desc
+                      opusUserId:opus.pbOpus.author.userId
+                      userGender:opus.pbOpus.author.gender
+                         snsType:type];
+    
+    return text;
+}
+
+
 + (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type
 {
     NSString* text = @"";
@@ -342,31 +375,6 @@
                       opusUserId:feed.author.userId
                       userGender:feed.author.gender
                          snsType:type];
-
-//    NSString* snsOfficialNick = [GameSNSService snsOfficialNick:type];
-//    NSString* drawWord = @"";
-//    BOOL isDrawByMe = [[UserManager defaultManager] isMe:feed.feedUser.userId];
-//
-//    if (feed != nil) {
-//        drawWord = feed.wordText;
-//    }
-//    
-//    if (isDrawByMe){
-//        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
-//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithDescriptionText"), feed.opusDesc, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//        } else {
-//            text = [NSString stringWithFormat:NSLS(@"kShareMyOpusWithoutDescriptionText"), snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//        }
-//    }
-//    else{
-//        NSString* heStr = [feed.author gender]?NSLS(@"kHim"):NSLS(@"kHer");
-//        if (feed.opusDesc != nil && feed.opusDesc.length > 0) {
-//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithDescriptionText"), feed.opusDesc, heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//            
-//        } else {
-//            text = [NSString stringWithFormat:NSLS(@"kShareOtherOpusWithoutDescriptionText"),  heStr, snsOfficialNick, drawWord, [PPConfigManager getSNSShareSubject], [PPConfigManager getAppItuneLink]];
-//        }
-//    }
     
     return text;
 }
