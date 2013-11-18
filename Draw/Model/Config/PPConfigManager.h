@@ -314,5 +314,6 @@ typedef enum{
 + (int)getCreateOpusWeiboReward;
 
 + (NSString *)getSingOpusDefaultName;
++ (int)getOffLineGuessAward;
 
 @end

@@ -34,7 +34,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 + (id)createWithFrame:(CGRect)frame
                  feed:(DrawFeed *)feed{
     
-    WhisperStyleView *v = [[self alloc] initWithFrame:frame feed:feed];
+    WhisperStyleView *v = [[[self alloc] initWithFrame:frame feed:feed] autorelease];
     return v;
 }
 

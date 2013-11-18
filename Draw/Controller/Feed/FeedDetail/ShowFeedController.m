@@ -1038,7 +1038,7 @@ typedef enum{
     
     if (!self.useItemScene) {
         UseSceneType type = UseSceneTypeShowFeedDetail;
-        if (_feed.contestId) {
+        if ([_feed isContestFeed]) {
             type = [_contest isRunning] ? UseSceneTypeDrawMatch : UseSceneTypeMatchRank;
         }
         self.useItemScene = [UseItemScene createSceneByType:type feed:_feed];

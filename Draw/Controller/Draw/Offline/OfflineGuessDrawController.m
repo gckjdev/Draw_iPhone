@@ -36,6 +36,7 @@
 #import "AudioPlayer.h"
 #import "UIImageView+WebCache.h"
 #import "WhisperStyleView.h"
+#import "LevelService.h"
 
 @interface OfflineGuessDrawController()
 {
@@ -160,7 +161,7 @@
             isCorrect:(BOOL)isCorrect
 {
     if (isCorrect) {
-//        POSTMSG(NSLS(@"kGuessCorrect"));
+        [self awardScoreAndLevel];
         [self quit:YES];
     }else{
 //        POSTMSG(NSLS(@"kGuessWrong"));
@@ -210,6 +211,30 @@
     [super viewDidUnload];
 }
 
+- (void)awardScoreAndLevel
+{
+    PPDebug(@"<awardScoreAndLevel>");
+
+    //init score, award user
+    BalanceSourceType type = GuessRewardType;
+    int award = [PPConfigManager getOffLineGuessAward];
+    [[AccountService defaultService] chargeCoin:award source:type];
+    
+    //add exp
+    NSInteger exp = 0;
+    exp = [PPConfigManager getOffLineGuessExp];
+    BOOL isLevelUp = [[LevelService defaultService] addExp:exp delegate:nil];
+    
+    NSString* msg;
+    if (isLevelUp){
+        msg = [NSString stringWithFormat:NSLS(@"kGuessAwardWithLevelUpMsg"), [[LevelService defaultService] level]];
+    }
+    else{
+        msg = [NSString stringWithFormat:NSLS(@"kGuessNormalAwardMsg"), award, exp];
+    }
+    
+    POSTMSG2(msg, 2);
+}
 
 - (void)cleanData
 {
@@ -229,7 +254,9 @@
                                            category:_feed.categoryType         
                                            delegate:nil];
     }
+    
     if (correct) {
+        [[UserManager defaultManager] guessCorrectOpus:_feed.feedId];
         [_feed incGuessTimes];
     }
     [self cleanData];

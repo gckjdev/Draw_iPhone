@@ -51,6 +51,7 @@
 
     if ([self needShowShadow]) {
 //        CGContextBeginTransparencyLayer(context, NULL);
+
         CGRect transparentLayerRect = self.shape.redrawRect;
         [self.shadow spanRect:&transparentLayerRect];
         CGContextBeginTransparencyLayerWithRect(context, transparentLayerRect, NULL);

@@ -36,6 +36,10 @@
 
 + (int)maxTakeNumberCount
 {
+#ifdef DEBUG
+    return 50;
+#endif
+    
     return [MobClickUtils getIntValueByKey:@"MAX_TAKE_NUMBER_COUNT" defaultValue:5];
 }
 
@@ -547,6 +551,12 @@
 {
     return [MobClickUtils getIntValueByKey:@"OFFLINE_GUESS_EXP" defaultValue:2];
 }
+
++ (int)getOffLineGuessAward
+{
+    return [MobClickUtils getIntValueByKey:@"OFFLINE_GUESS_AWARD" defaultValue:3];
+}
+
 
 + (int)getLiarDiceExp
 {

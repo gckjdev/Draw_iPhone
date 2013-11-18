@@ -341,8 +341,11 @@
     [_titleView setTarget:self];
     [_titleView setBackButtonSelector:@selector(clickBackButton:)];
     
-    [_titleView setRightButtonAsRefresh];
-    [_titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+//    [_titleView setRightButtonAsRefresh];
+//    [_titleView setRightButtonSelector:@selector(clickRefreshButton:)];
+
+    [_titleView setRightButtonTitle:NSLS(@"kFastEntry")];
+    [_titleView setRightButtonSelector:@selector(clickFastEntryButton:)];
     
     SET_BUTTON_AS_COMMON_TAB_STYLE(_leftTabButton);
     SET_BUTTON_AS_COMMON_TAB_STYLE(_centerTabButton);

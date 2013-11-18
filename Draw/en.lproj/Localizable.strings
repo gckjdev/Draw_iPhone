@@ -1203,6 +1203,8 @@
 "kPaletteItemDescription" = "You can custom any color with the palette.";
 "kColorAlphaItemDescription" = "You can custom alpha of your paint.";
 
+"kGuessAwardWithLevelUpMsg" = "WOW, you just reached level %d!";
+"kGuessNormalAwardMsg" = "Guess correctly! You got %d coins, and %d experiences!";
 
 "kDraftsBox" = "Drafts Box";
 "kIWantToDraw..." = "I want to draw...";

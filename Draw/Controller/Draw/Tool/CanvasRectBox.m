@@ -119,8 +119,15 @@ typedef enum {
 - (void)setSelectedRect:(CanvasRectStyle)style
 {
     [_currentRectView setType:CanvasRectViewTypeBought];
-    _currentRectView = (CanvasRectView *)[self.scrollView viewWithTag:style];
-    [_currentRectView setType:CanvasRectViewTypeSelected];
+    UIView* subview = [self.scrollView viewWithTag:style];
+
+    if ([subview isKindOfClass:[CanvasRectView class]]){
+        _currentRectView = (CanvasRectView *)subview;
+        [_currentRectView setType:CanvasRectViewTypeSelected];
+    }
+    else{
+        PPDebug(@"<setSelectedRect> but view is NOT CanvasRectView, style=%d", style);
+    }
 }
 
 

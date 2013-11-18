@@ -1236,6 +1236,10 @@
 "kPaletteItemDescription" = "有了它，可以调制出千变万化的颜色";
 "kColorAlphaItemDescription" = "有了它，可以画出半透明的美丽笔画";
 
+"kGuessAwardWithLevelUpMsg" = "猜对了！等级突破到 %d 级";
+"kGuessNormalAwardMsg" = "猜对了！金币 +%d 经验 +%d";
+
+
 "kDraftsBox" = "草稿箱";
 "kIWantToDraw..." = "我想画...";
 "kHotWords" = "热门词库";
