@@ -73,7 +73,13 @@
 
 - (NSString *)replySummary
 {
-    NSString *desc = self.commentInfo.summaryDesc;
+    NSString *desc = nil;
+    if ([self isDrawCategory]) {
+        desc = self.commentInfo.summaryDesc;
+    }else if (isSingApp()){
+        desc = self.commentInfo.summarySingDesc;
+    }
+
     if (desc == nil) {
         desc = NSLS(@"kCommentMyOpus");
     }
@@ -270,7 +276,7 @@
             //评论XX画的XX
         case FeedTypeDraw:
         case FeedTypeDrawToUser:
-        {   
+        {
             if (isMe || [[UserManager defaultManager] hasGuessOpus:self.actionId]) {
                 if (!isMe) {
                     desc = [NSString stringWithFormat:NSLS(@"kSummaryOfDraw"),nick, self.summary];
@@ -339,6 +345,87 @@
     }
     return self.summary;
 }
+
+- (NSString *)summarySingDesc
+{
+    NSString *desc = nil;
+    BOOL isMe = [[UserManager defaultManager] isMe:self.actionUid];
+    NSString *nick = isMe ? NSLS(@"kMe") : self.actionNick;
+    
+    switch (self.type) {
+            //评论XX画的XX
+        case FeedTypeSing:
+        case FeedTypeSingToUser:
+        {
+            if (isMe || [[UserManager defaultManager] hasGuessOpus:self.actionId]) {
+                if (!isMe) {
+                    desc = [NSString stringWithFormat:NSLS(@"kSummaryOfOpus"),nick, self.summary];
+                } else {
+                    desc = [NSString stringWithFormat:NSLS(@"kSummaryOfOpus_Me"), self.summary];
+                }
+                
+            }else{
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfOpusNoWord"),nick];
+            }
+        }
+            return desc;
+            
+            //回复XX的猜画
+        case FeedTypeGuess:
+            if (isMe) {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfGuess_Me_Opus")];
+            } else {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfGuess_Opus"),nick];
+            }
+            
+            return desc;
+            
+            //回复XX的表态:XX
+        case FeedTypeTomato:
+            if (isMe) {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfSendItem_Me"), NSLS(@"kThrowATomato")];
+            } else {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfSendItem"),nick, NSLS(@"kThrowATomato")];
+            }
+            
+            return desc;
+            
+        case FeedTypeFlower:
+            if (isMe) {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfSendItem_Me"), NSLS(@"kSendAFlower")];
+            } else {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfSendItem"),nick,NSLS(@"kSendAFlower")];
+            }
+            
+            return desc;
+            
+            //回复XX的评论:XX
+        case FeedTypeComment:
+            if (isMe) {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfComment_Me"), self.summary];
+            } else
+            {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfComment"),nick,self.summary];
+            }
+            
+            return desc;
+            
+        case FeedTypeContestComment: // TODO Benson Contest Comment
+            if (isMe) {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfContestComment_Me"), self.summary];
+            } else
+            {
+                desc = [NSString stringWithFormat:NSLS(@"kSummaryOfContestComment"),nick,self.summary];
+            }
+            
+            return desc;
+            
+        default:
+            break;
+    }
+    return self.summary;
+}
+
 
 - (NSString*)displayText
 {

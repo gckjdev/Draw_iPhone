@@ -346,7 +346,7 @@
 "kGifTips" = "Tips";
 "kContentRepeat" = "You have submited it just now!";
 "kAskForSelectPhoto" = "You should pick up a picture first for submit";
-
+"kRecordTimeTooShort" = "The record time must not be less than %d second, please try to rerecord.";
 /*the new words below without Japanese*/
 
 "kSaveSucc" = "Save draft sucessfully!";
@@ -605,14 +605,6 @@
 
 "kGuessUserDraw" = "%@'s draw";
 
-
-"kFeedTitle" = "Timeline";
-"kAllFeed" = "Focus";
-"kHotFeed" = "Hot";
-"kMyFeed" = "My";
-
-"kMyFeedList" = "My Timeline";
-
 "kDrawDesc" = "Drew a picture: [%@].";
 "kCreateDesc" = "Create an opus: [%@].";
 
@@ -620,13 +612,17 @@
 "kCreateDescNoName" = "Create an opus.";
 
 "kGuessRightDesc" = "Guessed %@'s drawing: [%@].";
+"kGuessedSomeOneOpus" = "Guessed %@'s opus : [%@].";
 
 "kTryGuessDesc" = "Tried to guess %@'s drawing: [%@].";
-
+"kTryToGuessSomeoneOpus" = "Tried to guess %@'s opus: [%@].";
 
 
 "kGuessRightDescNoWord" = "Guessed %@'s drawing.";
+"kGuessedSomeOneOpusNoWord" = "Guessed %@'s opus.";
+
 "kTryGuessDescNoWord" = "Tried to guess %@'s drawing.";
+"kTryToGuessSomeoneOpusNoWord" = "Tried to guess %@'s opus.";
 
 "kNoGuess" = "Guess 0";
 "kGuessStat" = "Guess: %d, Correct %d";
@@ -1000,15 +996,26 @@
 "kReplyCommentDesc" = "Re %@: %@";
 
 "kSummaryOfDraw" = "Comment %@ opus: [%@].";
+"kSummaryOfOpus" = "Comment %@ opus: [%@].";
+
 "kSummaryOfDrawNoWord" = "Comment %@ opus.";
+"kSummaryOfOpusNoWord" = "Comment %@ opus.";
+
 "kSummaryOfGuess" = "Reply %@'s guessing.";
+"kSummaryOfGuess_Opus" = "Reply %@'s guessing.";
+
+
 "kSummaryOfSendItem" = "Reply %@'s expression.";
 "kSummaryOfComment" = "Reply %@'s comment: %@.";
 "kSummaryOfContestComment" = "Reply %@'s comment: %@.";
 
 "kSummaryOfDraw_Me" = "Comment my opus: [%@].";
+"kSummaryOfOpus_Me" = "Comment my opus: [%@].";
+
 "kSummaryOfDrawNoWord_Me" = "Comment my opus.";
 "kSummaryOfGuess_Me" = "Reply to my guessing.";
+"kSummaryOfGuess_Me_Opus" = "Reply to my guessing.";
+
 "kSummaryOfSendItem_Me" = "Reply to my expression.";
 "kSummaryOfComment_Me" = "Reply to my comment: %@.";
 "kSummaryOfContestComment" = "Reply %@'s comment: %@.";
@@ -1129,6 +1136,8 @@
 "kLevelNameLast" = "不是人";
 
 "kDrawToUserByUser" = "drew to %@";
+"kGiftToUserByUser" = "Gift to %@";
+
 "kQQGroup" = "";
 "kCopy" = "Copy";
 
@@ -1430,6 +1439,8 @@
 "kHim" = "him";
 "kHer" = "her";
 "kDetailDrawTo" = "Gift";
+"kDetailGiftTo" = "Gift";
+
 "kDetailFollower" = "Followers";
 "kDetailFollow" = "Follow";
 "kDetailChat" = "Chat";
@@ -1634,6 +1645,7 @@
 
 
 "kHint" = "Hint";
+"kRecordSubmitHint" = "Your record is %d seconds, you must pay for %d coins for submitation";
 "kGiveUpComment" = "Do you want to exit without commit comment?";
 "kGuessWrong" =  "Guess Wrong";
 

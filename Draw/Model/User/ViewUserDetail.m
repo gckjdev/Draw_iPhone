@@ -411,7 +411,12 @@
         }break;
         case UserDetailActionDrawTo: {
             NSString *title = nil;
-            title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
+            if (isDrawApp()) {
+                title = [NSString stringWithFormat:NSLS(@"kDetailDrawTo"), heStr];
+            }else if (isSingApp()){
+                
+                title = [NSString stringWithFormat:NSLS(@"kDetailGiftTo"), heStr];
+            }
             
             [button.downLabel setText:title];
         } break;

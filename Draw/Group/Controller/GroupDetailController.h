@@ -7,7 +7,12 @@
 //
 
 #import "PPTableViewController.h"
+#import "Group.pb.h"
 
 @interface GroupDetailController : PPTableViewController
+
++ (GroupDetailController *)enterWithGroup:(PBGroup *)group
+                           fromController:(PPViewController *)controller;
+
 
 @end

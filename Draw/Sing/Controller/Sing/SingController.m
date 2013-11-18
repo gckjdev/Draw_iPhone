@@ -36,7 +36,7 @@
 #import "PPConfigManager.h"
 #import "DrawColor.h"
 #import "DrawUtils.h"
-
+#import "AccountService.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -260,7 +260,7 @@ enum{
 #define TAG_IMAGE_HOLDER_VIEW 201324
 - (void)initOpusImageView{
     
-    [self.opusImageView.layer setCornerRadius:35];
+    [self.opusImageView.layer setCornerRadius:(ISIPAD ? 75 : 35)];
     [self.opusImageView.layer setMasksToBounds:YES];
     
     [self.opusImageView updateWidth:self.singOpus.pbOpus.canvasSize.width];
@@ -273,6 +273,10 @@ enum{
     }else{
         [self addHolderView];
     }
+    
+    UIButton *button = [[[UIButton alloc] initWithFrame:self.opusImageView.bounds] autorelease];
+    [button addTarget:self action:@selector(clickImageButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.opusImageView addSubview:button];
     
     // init opus desc label
     [self initOpusDescLabel];
@@ -396,9 +400,9 @@ enum{
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
     
-    // center desc label
-    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
-    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
+//    // center desc label
+//    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
+//    [self.opusDescLabel updateCenterY:self.opusImageView.frame.size.height/2];
     
     // save label info
     [self saveDescLabelInfo];
@@ -436,7 +440,7 @@ enum{
 - (void)recorder:(VoiceRecorder *)recorder didChangeRecordState:(VoiceRecorderState)recordState{
     
     // prepare to play
-    if (recordState == VoiceRecorderStateStopped || recordState == VoiceChangerStateEnded) {
+    if (recordState == VoiceRecorderStateStopped) {
         [self prepareToPlay];
         [self setState:StateReadyPlay];
     }
@@ -724,12 +728,6 @@ enum{
     [self presentViewController:vc animated:YES completion:NULL];
 }
 
-- (IBAction)clickAddTimeButton:(id)sender {
-    
-    [[UserManager defaultManager] setSingLimitTime:(_recordLimitTime + 15)];
-    _recordLimitTime = [[[UserManager defaultManager] pbUser] singRecordLimit];
-}
-
 - (IBAction)clickChangeVoiceButton:(UIButton *)button {
     
     if (self.popTipView == nil) {
@@ -763,10 +761,6 @@ enum{
     
     if (image != nil) {
         PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
-//        if (image.size.width != image.size.height) {
-//            POSTMSG2(NSLS(@"kImageMustBeSquare"), 2);
-//            return;
-//        }
         
         self.image = image;
         self.opusImageView.image = image;
@@ -807,6 +801,12 @@ enum{
 
 - (IBAction)clickSubmitButton:(id)sender {
     
+    if (_fileDuration < [PPConfigManager getRecordLimitMinTime]) {
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordTimeTooShort"), [PPConfigManager getRecordLimitMinTime]];
+        POSTMSG2(msg, 3);
+        return;
+    }
+    
     if (self.image == nil) {
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kGifTips") message:NSLS(@"kAskForSelectPhoto") style:CommonDialogStyleDoubleButton];
         [dialog showInView:self.view];
@@ -819,12 +819,28 @@ enum{
         return;
     }
     
+    int count = _fileDuration / 30;
+    int coins = count * [PPConfigManager getRecordDeductCoinsPer30Sec];
+    NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins];
+    
+    CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
+    [dialog setClickOkBlock:^(id infoView){
+        [self deductCoins:coins];
+        [self handleAndSubmitOpus];
+    }];
+    [dialog showInView:self.view];
+
+}
+
+- (void)handleAndSubmitOpus{
+    
+    
     // 用户如果选择原声，则不需要经过声音处理步骤，直接上传。
     if (_singOpus.pbOpus.sing.voiceType == PBVoiceTypeVoiceTypeOrigin) {
         
         NSString *path = [self recordURL].path;
         PPDebug(@"path is %@", path);
-
+        
         NSData *singData = [NSData dataWithContentsOfFile:path];
         
         [self uploadSingOpus:singData];
@@ -939,6 +955,15 @@ enum{
     PPDebug(@"play currentTime = %f", playTime);
     PPDebug(@"play leftTime = %f", leftTime);
     [self updateUITime:@(leftTime)];
+}
+
+- (void)deductCoins:(int)coins{
+    
+    if (coins <= 0) {
+        return;
+    }
+    
+    [[AccountService defaultService] deductCoin:coins source:DeductRecrod];
 }
 
 @end

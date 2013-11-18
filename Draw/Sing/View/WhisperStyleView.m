@@ -110,7 +110,20 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
     label.font = [UIFont systemFontOfSize:ISIPAD ? 30/_sx : 15/_sx];
     label.numberOfLines = 3;
-    [label updateHeight:(ISIPAD ? 140 : 70)];
+//    [label updateHeight:(ISIPAD ? 140 : 70)];
+    [label updateWidth:self.bounds.size.width];
+    [label updateHeight:self.bounds.size.height];
+    
+    label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+}
+
+- (void)setHomeRankViewStyle{
+    
+    UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
+    label.font = [UIFont systemFontOfSize:ISIPAD ? 20/_sx : 11/_sx];
+    label.numberOfLines = 3;
+    [label updateWidth:self.bounds.size.width];
+    [label updateHeight:self.bounds.size.height];
     
     label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }

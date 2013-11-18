@@ -54,9 +54,9 @@ typedef enum  {
     
     DeductInHappyGuessMode = 460,
     DeductInGeniusGuessMode = 470,
-    DeductInContestGuessMode = 480
+    DeductInContestGuessMode = 480,
 
-    
+    DeductRecrod = 481,
     
 }BalanceSourceType;
 

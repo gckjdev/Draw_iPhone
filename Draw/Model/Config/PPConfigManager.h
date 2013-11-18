@@ -307,6 +307,8 @@ typedef enum{
 
 + (NSString *)getSingTagList;
 + (int)getRecordLimitTime;
++ (int)getRecordLimitMinTime;
++ (int)getRecordDeductCoinsPer30Sec;
 
 + (NSString*)getShareSDKAppId;
 + (int)getCreateOpusWeiboReward;
