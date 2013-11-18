@@ -346,6 +346,11 @@
     return self;
 }
 
+- (id)initWithFrame:(CGRect)frame user:(PBGameUser *)user
+{
+    return [self initWithUrlString:user.avatar frame:frame gender:user.gender level:user.level];
+}
+
 - (void)clear
 {
     
@@ -388,6 +393,9 @@
 //    PPDebug(@"clickOnAvatar");
     if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatar:)]) {
         [_delegate didClickOnAvatar:_userId];
+    }
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickOnAvatarView:)]) {
+        [_delegate didClickOnAvatarView:self];
     }
 }
 - (void)setAvatarFrame:(CGRect)frame

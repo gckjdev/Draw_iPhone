@@ -44,10 +44,12 @@ typedef enum {
 }AvatarType;
 
 
+@class AvatarView;
 @protocol AvatarViewDelegate <NSObject>
 
 @optional
 - (void)didClickOnAvatar:(NSString*)userId;
+- (void)didClickOnAvatarView:(AvatarView *)avatarView;
 
 @end
 
@@ -65,6 +67,9 @@ typedef enum {
 
 
 - (id)initWithUrlString:(NSString *)urlString type:(AvatarType)aType gender:(BOOL)gender level:(int)level;
+
+- (id)initWithFrame:(CGRect)frame user:(PBGameUser *)user;
+
 - (id)initWithUrlString:(NSString *)urlString frame:(CGRect)frame gender:(BOOL)gender level:(int)level;
 
 - (void)setUrlString:(NSString *)urlString;

@@ -5795,6 +5795,18 @@
 		EA11A42C1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA11A3FE1839EA1200F73D64 /* group_footer_unfollowing@2x.png */; };
 		EA11A42D1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA11A3FE1839EA1200F73D64 /* group_footer_unfollowing@2x.png */; };
 		EA11A42E1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA11A3FE1839EA1200F73D64 /* group_footer_unfollowing@2x.png */; };
+		EA11A4341839EC4E00F73D64 /* GroupDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A4331839EC4E00F73D64 /* GroupDetailCell.m */; };
+		EA11A4351839EC4E00F73D64 /* GroupDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A4331839EC4E00F73D64 /* GroupDetailCell.m */; };
+		EA11A4361839EC4E00F73D64 /* GroupDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A4331839EC4E00F73D64 /* GroupDetailCell.m */; };
+		EA11A4371839EC4E00F73D64 /* GroupDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A4331839EC4E00F73D64 /* GroupDetailCell.m */; };
+		EA11A4391839EC6600F73D64 /* GroupDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA11A4381839EC6600F73D64 /* GroupDetailCell.xib */; };
+		EA11A43A1839EC6600F73D64 /* GroupDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA11A4381839EC6600F73D64 /* GroupDetailCell.xib */; };
+		EA11A43B1839EC6600F73D64 /* GroupDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA11A4381839EC6600F73D64 /* GroupDetailCell.xib */; };
+		EA11A43C1839EC6600F73D64 /* GroupDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA11A4381839EC6600F73D64 /* GroupDetailCell.xib */; };
+		EA11A43F1839FAA100F73D64 /* GroupUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A43E1839FAA100F73D64 /* GroupUIManager.m */; };
+		EA11A4401839FAA100F73D64 /* GroupUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A43E1839FAA100F73D64 /* GroupUIManager.m */; };
+		EA11A4411839FAA100F73D64 /* GroupUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A43E1839FAA100F73D64 /* GroupUIManager.m */; };
+		EA11A4421839FAA100F73D64 /* GroupUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA11A43E1839FAA100F73D64 /* GroupUIManager.m */; };
 		EA18EE6F16F468640090E213 /* GameItemDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */; };
 		EA18EE7916F4687B0090E213 /* BuyItemView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */; };
 		EA18EE7E16F4688D0090E213 /* GiftDetailView~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */; };
@@ -9748,6 +9760,11 @@
 		EA11A3FC1839EA1200F73D64 /* group_footer_detail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_footer_detail@2x.png"; sourceTree = "<group>"; };
 		EA11A3FD1839EA1200F73D64 /* group_footer_followed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_footer_followed@2x.png"; sourceTree = "<group>"; };
 		EA11A3FE1839EA1200F73D64 /* group_footer_unfollowing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group_footer_unfollowing@2x.png"; sourceTree = "<group>"; };
+		EA11A4321839EC4E00F73D64 /* GroupDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailCell.h; sourceTree = "<group>"; };
+		EA11A4331839EC4E00F73D64 /* GroupDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailCell.m; sourceTree = "<group>"; };
+		EA11A4381839EC6600F73D64 /* GroupDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupDetailCell.xib; sourceTree = "<group>"; };
+		EA11A43D1839FAA100F73D64 /* GroupUIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupUIManager.h; sourceTree = "<group>"; };
+		EA11A43E1839FAA100F73D64 /* GroupUIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupUIManager.m; sourceTree = "<group>"; };
 		EA18EE6E16F468630090E213 /* GameItemDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GameItemDetailView~ipad.xib"; sourceTree = "<group>"; };
 		EA18EE7816F4687B0090E213 /* BuyItemView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BuyItemView~ipad.xib"; sourceTree = "<group>"; };
 		EA18EE7D16F4688D0090E213 /* GiftDetailView~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "GiftDetailView~ipad.xib"; sourceTree = "<group>"; };
@@ -16693,6 +16710,8 @@
 				EA8CADED1828A646003149FE /* GroupPermission.m */,
 				EA1BD644182DEB0B000E5364 /* GroupManager.h */,
 				EA1BD645182DEB0B000E5364 /* GroupManager.m */,
+				EA11A43D1839FAA100F73D64 /* GroupUIManager.h */,
+				EA11A43E1839FAA100F73D64 /* GroupUIManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -16728,6 +16747,9 @@
 				EA8D93AA183362A200780B63 /* GroupCell.h */,
 				EA8D93AB183362A200780B63 /* GroupCell.m */,
 				EA8D93C61833632800780B63 /* GroupCell.xib */,
+				EA11A4321839EC4E00F73D64 /* GroupDetailCell.h */,
+				EA11A4331839EC4E00F73D64 /* GroupDetailCell.m */,
+				EA11A4381839EC6600F73D64 /* GroupDetailCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -17868,6 +17890,7 @@
 				EA11A4251839EA1200F73D64 /* group_footer_detail@2x.png in Resources */,
 				EA11A4291839EA1200F73D64 /* group_footer_followed@2x.png in Resources */,
 				EA11A42D1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */,
+				EA11A43B1839EC6600F73D64 /* GroupDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18826,6 +18849,7 @@
 				EA11A4241839EA1200F73D64 /* group_footer_detail@2x.png in Resources */,
 				EA11A4281839EA1200F73D64 /* group_footer_followed@2x.png in Resources */,
 				EA11A42C1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */,
+				EA11A43A1839EC6600F73D64 /* GroupDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19764,6 +19788,7 @@
 				EA11A4231839EA1200F73D64 /* group_footer_detail@2x.png in Resources */,
 				EA11A4271839EA1200F73D64 /* group_footer_followed@2x.png in Resources */,
 				EA11A42B1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */,
+				EA11A4391839EC6600F73D64 /* GroupDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20660,6 +20685,7 @@
 				EA11A4261839EA1200F73D64 /* group_footer_detail@2x.png in Resources */,
 				EA11A42A1839EA1200F73D64 /* group_footer_followed@2x.png in Resources */,
 				EA11A42E1839EA1200F73D64 /* group_footer_unfollowing@2x.png in Resources */,
+				EA11A43C1839EC6600F73D64 /* GroupDetailCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -21442,6 +21468,8 @@
 				CA11626D1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162741834A91100FDD3A9 /* TaskCell.m in Sources */,
 				CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */,
+				EA11A4361839EC4E00F73D64 /* GroupDetailCell.m in Sources */,
+				EA11A4411839FAA100F73D64 /* GroupUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22218,6 +22246,8 @@
 				CA1162861835FE9E00FDD3A9 /* CommonCommentHeader.m in Sources */,
 				CA1162881835FE9E00FDD3A9 /* CommonCommentController.m in Sources */,
 				CA11628E1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */,
+				EA11A4351839EC4E00F73D64 /* GroupDetailCell.m in Sources */,
+				EA11A4401839FAA100F73D64 /* GroupUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22993,6 +23023,8 @@
 				CA11626B1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162721834A91100FDD3A9 /* TaskCell.m in Sources */,
 				CA11627C1834AE7900FDD3A9 /* GameTask.m in Sources */,
+				EA11A4341839EC4E00F73D64 /* GroupDetailCell.m in Sources */,
+				EA11A43F1839FAA100F73D64 /* GroupUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23724,6 +23756,8 @@
 				CA11628A1835FEA000FDD3A9 /* CommonCommentHeader.m in Sources */,
 				CA11628C1835FEA000FDD3A9 /* CommonCommentController.m in Sources */,
 				CA11628F1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */,
+				EA11A4371839EC4E00F73D64 /* GroupDetailCell.m in Sources */,
+				EA11A4421839FAA100F73D64 /* GroupUIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

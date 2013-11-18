@@ -8,8 +8,10 @@
 
 #import "PPTableViewController.h"
 #import "Group.pb.h"
+#import "GroupDetailCell.h"
 
-@interface GroupDetailController : PPTableViewController
+
+@interface GroupDetailController : PPTableViewController<GroupDetailCellDelegate>
 
 + (GroupDetailController *)enterWithGroup:(PBGroup *)group
                            fromController:(PPViewController *)controller;

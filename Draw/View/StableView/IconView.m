@@ -83,6 +83,10 @@
     [_imageView setImageWithURL:imageURL];
 }
 
+- (void)setImageURLString:(NSString *)urlString
+{
+    [_imageView setImageWithURL:[NSURL URLWithString:urlString]];
+}
 
 @end
 
