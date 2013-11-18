@@ -12,6 +12,8 @@
 #import "ShareEditController.h"
 #import "DrawDataService.h"
 #import "MyPaintManager.h"
+
+@class Opus;
 @class DrawFeed;
 
 @interface ShareAction : NSObject<UIActionSheetDelegate, MFMailComposeViewControllerDelegate, CustomActionSheetDelegate, ShareEditControllerDelegate, DrawDataServiceDelegate, MyPaintManagerDelegate>
@@ -27,7 +29,10 @@
 
 + (NSString*)createShareText:(NSString*)word desc:(NSString*)desc opusUserId:(NSString*)opusUserId userGender:(BOOL)userGender snsType:(SnsType)type;
 + (NSString*)shareTextByDrawFeed:(DrawFeed*)feed snsType:(SnsType)type;
++ (NSString*)shareTextByOpus:(Opus*)opus snsType:(SnsType)type;
+
 + (NSString*)createFeedImagePath:(DrawFeed*)feed;
++ (NSString*)createOpusImagePath:(Opus*)opus;
 
 - (id)initWithDrawImageFile:(NSString*)imageFilePath
                       isGIF:(BOOL)isGIF

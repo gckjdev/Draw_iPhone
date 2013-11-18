@@ -30,6 +30,9 @@
 #import "UseItemScene.h"
 #import "ShowFeedController.h"
 #import "SingController.h"
+#import "PPSNSConstants.h"
+#import "ShareAction.h"
+#import "GameSNSService.h"
 
 #define BUTTON_INDEX_OFFSET 20120229
 #define IMAGE_WIDTH 93
@@ -41,6 +44,16 @@
 #define DREAM_LOCKSCREEN_OPTION 20130509
 
 #define LOAD_PAINT_LIMIT 20
+
+typedef enum{
+    
+    OPUS_ACTION_EDIT = 0,
+    OPUS_ACTION_DELETE,
+    OPUS_ACTION_SHARE_SINA_WEIBO,
+    OPUS_ACTION_SHARE_WEIXIN_SESSION,
+    OPUS_ACTION_SHARE_WEIXIN_TIMELINE,
+    OPUS_ACTION_SHARE_QQ_SPACE,
+} OpusActionMenuType;
 
 
 typedef enum{
@@ -367,13 +380,30 @@ typedef enum {
         
         switch (buttonIndex) {
                 
-            case 0:
+            case OPUS_ACTION_EDIT:
                 [self editDraft:opus];
                 break;
                 
-            case 1:
+            case OPUS_ACTION_DELETE:
                 [self deleteDraft:opus];
                 break;
+                
+            case OPUS_ACTION_SHARE_SINA_WEIBO:
+                [self shareSNS:TYPE_SINA opus:opus];
+                break;
+                
+            case OPUS_ACTION_SHARE_WEIXIN_SESSION:
+                [self shareSNS:TYPE_WEIXIN_SESSION opus:opus];
+                break;
+                
+            case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
+                [self shareSNS:TYPE_WEIXIN_TIMELINE opus:opus];
+                break;
+                
+            case OPUS_ACTION_SHARE_QQ_SPACE:
+                [self shareSNS:TYPE_QQSPACE opus:opus];
+                break;
+                
                 
             default:
                 break;
@@ -404,6 +434,42 @@ typedef enum {
 }
 
 
+- (void)shareSNS:(PPSNSType)type feed:(DrawFeed*)feed
+{
+    NSString* text = [ShareAction shareTextByDrawFeed:feed snsType:type];
+    NSString* imagePath = [ShareAction createFeedImagePath:feed];
+    
+    [[GameSNSService defaultService] publishWeibo:type
+                                             text:text
+                                    imageFilePath:imagePath
+                                           inView:self.view
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
+                                   successMessage:NSLS(@"kShareWeiboSucc")
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+    
+}
+
+- (void)shareSNS:(PPSNSType)type opus:(Opus*)opus
+{
+    NSString* text = @"";
+    text = [ShareAction createShareText:opus.pbOpus.name
+                            desc:opus.pbOpus.desc
+                      opusUserId:[[UserManager defaultManager] userId]
+                      userGender:[[UserManager defaultManager] isUserMale]
+                         snsType:type];
+
+    NSString* imagePath = opus.pbOpus.localImageUrl;
+    
+    [[GameSNSService defaultService] publishWeibo:type
+                                             text:text
+                                    imageFilePath:imagePath
+                                           inView:self.view
+                                       awardCoins:[PPConfigManager getShareWeiboReward]
+                                   successMessage:NSLS(@"kShareWeiboSucc")
+                                   failureMessage:NSLS(@"kShareWeiboFailure")];
+    
+}
+
 - (void)didClickFeed:(DrawFeed *)feed {
     
     PPDebug(@"<test>did click opus %@", feed.wordText);
@@ -411,6 +477,7 @@ typedef enum {
     MKBlockActionSheet* tips = nil;
     
     NSString *shareString = NSLS(@"kShare");
+    
     
     if (self.currentTab.tabID == TabTypeMine) {
         tips = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOptions")
@@ -424,12 +491,28 @@ typedef enum {
             
             switch (buttonIndex) {
                     
-                case 0:
+                case OPUS_ACTION_EDIT:
                     [self enterOpusDetail:feed];
                     break;
                     
-                case 1:
+                case OPUS_ACTION_DELETE:
                     [self deleteFeed:feed];
+                    break;
+
+                case OPUS_ACTION_SHARE_SINA_WEIBO:
+                    [self shareSNS:TYPE_SINA feed:feed];
+                    break;
+
+                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
+                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
+                    break;
+
+                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
+                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
+                    break;
+
+                case OPUS_ACTION_SHARE_QQ_SPACE:
+                    [self shareSNS:TYPE_QQSPACE feed:feed];
                     break;
                     
                 default:
@@ -456,6 +539,22 @@ typedef enum {
                     
                 case 1:
                     [self unFavoriteOpus:feed];
+                    break;
+                    
+                case OPUS_ACTION_SHARE_SINA_WEIBO:
+                    [self shareSNS:TYPE_SINA feed:feed];
+                    break;
+                    
+                case OPUS_ACTION_SHARE_WEIXIN_SESSION:
+                    [self shareSNS:TYPE_WEIXIN_SESSION feed:feed];
+                    break;
+                    
+                case OPUS_ACTION_SHARE_WEIXIN_TIMELINE:
+                    [self shareSNS:TYPE_WEIXIN_TIMELINE feed:feed];
+                    break;
+                    
+                case OPUS_ACTION_SHARE_QQ_SPACE:
+                    [self shareSNS:TYPE_QQSPACE feed:feed];
                     break;
                     
                 default:
