@@ -212,12 +212,12 @@ enum{
     
     PBLabelInfo *labelInfo = self.singOpus.pbOpus.descLabelInfo;
     
-//    CGRect rect = CGRectMake(labelInfo.frame.x,
-//                             labelInfo.frame.y,
-//                             labelInfo.frame.width,
-//                             labelInfo.frame.height);
+    CGRect rect = CGRectMake(labelInfo.frame.x,
+                             labelInfo.frame.y,
+                             labelInfo.frame.width,
+                             labelInfo.frame.height);
     
-    CGRect rect = CGRectMake(self.opusImageView.frame.size.width * 0.1, self.opusImageView.frame.size.height * 0.7, 0, 0);
+//    CGRect rect = CGRectMake(self.opusImageView.frame.size.width * 0.1, self.opusImageView.frame.size.height * 0.7, 0, 0);
     
     self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:rect] autorelease];
     self.opusDescLabel.numberOfLines = 0;
