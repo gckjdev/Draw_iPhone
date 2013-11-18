@@ -44,8 +44,8 @@
     // set desc label info
     NSUInteger textColor = [[DrawColor whiteColor] toBetterCompressColor];
     
-    [singOpus setCanvasSize:CGSizeMake(ISIPAD ? 628.0 : 288.0, ISIPAD ? 628.0 : 288.0)];
-    float sacle = 628.0/288.0;
+    [singOpus setCanvasSize:CGSizeMake(ISIPAD ? 643.0 : 295.0, ISIPAD ? 643.0 : 295.0)];
+    float sacle = 643.0/295.0;
 
     float textFont = (ISIPAD ? 15*sacle : 15);
     int style = 0;

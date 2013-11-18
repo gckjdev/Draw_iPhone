@@ -1546,6 +1546,7 @@
 
 "kWhiteTextBlackStroke" = "white text black stroke";
 "kBlackTextWhiteStroke" = "white stroke black text";
+"kEditDesc" = "Edit description";
 
 //secure sms
 "kRegister" = "Register";

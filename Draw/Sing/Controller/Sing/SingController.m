@@ -212,10 +212,12 @@ enum{
     
     PBLabelInfo *labelInfo = self.singOpus.pbOpus.descLabelInfo;
     
-    CGRect rect = CGRectMake(labelInfo.frame.x,
-                             labelInfo.frame.y,
-                             labelInfo.frame.width,
-                             labelInfo.frame.height);
+//    CGRect rect = CGRectMake(labelInfo.frame.x,
+//                             labelInfo.frame.y,
+//                             labelInfo.frame.width,
+//                             labelInfo.frame.height);
+    
+    CGRect rect = CGRectMake(self.opusImageView.frame.size.width * 0.1, self.opusImageView.frame.size.height * 0.7, 0, 0);
     
     self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:rect] autorelease];
     self.opusDescLabel.numberOfLines = 0;
@@ -262,6 +264,8 @@ enum{
     
     [self.opusImageView.layer setCornerRadius:(ISIPAD ? 75 : 35)];
     [self.opusImageView.layer setMasksToBounds:YES];
+    [self.opusImageView.layer setBorderWidth:(ISIPAD ? 8 : 4)];
+    [self.opusImageView.layer setBorderColor:[COLOR_RED CGColor]];
     
     [self.opusImageView updateWidth:self.singOpus.pbOpus.canvasSize.width];
     [self.opusImageView updateHeight:self.singOpus.pbOpus.canvasSize.height];
@@ -308,7 +312,10 @@ enum{
     self.lyricTextView.text = self.singOpus.pbOpus.sing.song.lyric;
     self.lyricTextView.hidden = YES;
     self.lyricTextView.textColor = COLOR_BROWN;
-    
+    [self.lyricTextView.layer setCornerRadius:(ISIPAD ? 75 : 35)];
+    [self.lyricTextView.layer setMasksToBounds:YES];
+    [self.lyricTextView.layer setBorderWidth:(ISIPAD ? 8 : 4)];
+    [self.lyricTextView.layer setBorderColor:[COLOR_RED CGColor]];
     
     [self.lyricTextView addTapGuestureWithTarget:self selector:@selector(showImageAndDesc)];
 }
@@ -353,7 +360,7 @@ enum{
 
 - (void) handleTapGestures:(UIPanGestureRecognizer*)paramSender{
     
-    MKBlockActionSheet *sheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kWhiteTextBlackStroke"), NSLS(@"kBlackTextWhiteStroke"), nil] autorelease];
+    MKBlockActionSheet *sheet = [[[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOption") delegate:nil cancelButtonTitle:NSLS(@"kCancel") destructiveButtonTitle:nil otherButtonTitles:NSLS(@"kWhiteTextBlackStroke"), NSLS(@"kBlackTextWhiteStroke"), NSLS(@"kEditDesc"),nil] autorelease];
     
     sheet.actionBlock = ^(NSInteger buttonIndex){
         
@@ -365,6 +372,9 @@ enum{
             self.opusDescLabel.textColor = [[DrawColor blackColor] color];
             self.opusDescLabel.textOutlineColor = [[DrawColor whiteColor] color];
             [self saveDescLabelInfo];
+        }else if (buttonIndex == 2){
+            
+            [self clickDescButton:nil];
         }
     };
     
@@ -761,6 +771,8 @@ enum{
     
     if (image != nil) {
         PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
+        
+        
         
         self.image = image;
         self.opusImageView.image = image;
