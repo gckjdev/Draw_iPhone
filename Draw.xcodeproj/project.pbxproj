@@ -4340,6 +4340,23 @@
 		CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
 		CA11627E1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
 		CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CA11627B1834AE7900FDD3A9 /* GameTask.m */; };
+		CA1162801835FDF000FDD3A9 /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
+		CA1162811835FDF100FDD3A9 /* CommonOpusDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997201177831E100B01EBE /* CommonOpusDetailController.m */; };
+		CA1162821835FE0D00FDD3A9 /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
+		CA1162831835FE0E00FDD3A9 /* CommonOpusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997203177831E100B01EBE /* CommonOpusInfoCell.m */; };
+		CA1162841835FE1700FDD3A9 /* CommonUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997205177831E100B01EBE /* CommonUserInfoCell.m */; };
+		CA1162851835FE1800FDD3A9 /* CommonUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A4997205177831E100B01EBE /* CommonUserInfoCell.m */; };
+		CA1162861835FE9E00FDD3A9 /* CommonCommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */; };
+		CA1162871835FE9E00FDD3A9 /* CommonCommentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */; };
+		CA1162881835FE9E00FDD3A9 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
+		CA1162891835FE9E00FDD3A9 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
+		CA11628A1835FEA000FDD3A9 /* CommonCommentHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5A93178FB3E40085031F /* CommonCommentHeader.m */; };
+		CA11628B1835FEA000FDD3A9 /* CommonCommentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4EC5A94178FB3E40085031F /* CommonCommentHeader.xib */; };
+		CA11628C1835FEA000FDD3A9 /* CommonCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6491C1784288E0063F393 /* CommonCommentController.m */; };
+		CA11628D1835FEA000FDD3A9 /* CommonCommentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4E6491D1784288E0063F393 /* CommonCommentController.xib */; };
+		CA11628E1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
+		CA11628F1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A49971F1177831B800B01EBE /* PPTableViewHeader.m */; };
+		CA1162901836098800FDD3A9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A499076F174DBC61005AF334 /* Accelerate.framework */; };
 		CA12507F1667399300AFCC04 /* PPSmartUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CA12507E1667399300AFCC04 /* PPSmartUpdateData.m */; };
 		CA1250821667445300AFCC04 /* PPSmartUpdateDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250811667445300AFCC04 /* PPSmartUpdateDataUtils.m */; };
 		CA1250AA1668654900AFCC04 /* BlockUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1250A91668654900AFCC04 /* BlockUtils.m */; };
@@ -5277,14 +5294,6 @@
 		CA9AB08018321738002DBAA5 /* PBGuessRank+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = A4C9E05117A651C800DE982F /* PBGuessRank+Extend.m */; };
 		CA9AB08118321738002DBAA5 /* OpusManagerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B59BD180FD96100F68A81 /* OpusManagerFactory.m */; };
 		CA9AB08218321738002DBAA5 /* OpusDesignTime.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9AAE6D1832054B002DBAA5 /* OpusDesignTime.m */; };
-		CA9AB09B183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB085183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf */; };
-		CA9AB09C183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB085183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf */; };
-		CA9AB09D183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB085183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf */; };
-		CA9AB09E183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB085183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf */; };
-		CA9AB09F183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB088183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf */; };
-		CA9AB0A0183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB088183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf */; };
-		CA9AB0A1183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB088183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf */; };
-		CA9AB0A2183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CA9AB088183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf */; };
 		CA9AB0A3183217B3002DBAA5 /* DiracAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB08A183217B3002DBAA5 /* DiracAudioPlayer.mm */; };
 		CA9AB0A4183217B3002DBAA5 /* DiracAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB08A183217B3002DBAA5 /* DiracAudioPlayer.mm */; };
 		CA9AB0A5183217B3002DBAA5 /* DiracAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = CA9AB08A183217B3002DBAA5 /* DiracAudioPlayer.mm */; };
@@ -9918,6 +9927,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA1162901836098800FDD3A9 /* Accelerate.framework in Frameworks */,
 				C28A9CAE1738F04B007A819F /* libstdc++.dylib in Frameworks */,
 				CA9AFE65181D45B100E08747 /* CoreMedia.framework in Frameworks */,
 				CA9AFE64181D434700E08747 /* CoreVideo.framework in Frameworks */,
@@ -17745,8 +17755,6 @@
 				CA9AB05218321621002DBAA5 /* SongTagCell~ipad.xib in Resources */,
 				CA9AB05A18321621002DBAA5 /* VoiceTypeSelectView.xib in Resources */,
 				CA9AB05E18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
-				CA9AB09D183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
-				CA9AB0A1183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4E59C961832208D003578CA /* WhisperStyleView.xib in Resources */,
 				EA8D93C41833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C91833632800780B63 /* GroupCell.xib in Resources */,
@@ -18691,13 +18699,13 @@
 				CA9AB05118321621002DBAA5 /* SongTagCell~ipad.xib in Resources */,
 				CA9AB05918321621002DBAA5 /* VoiceTypeSelectView.xib in Resources */,
 				CA9AB05D18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
-				CA9AB09C183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
-				CA9AB0A0183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4E59C951832208D003578CA /* WhisperStyleView.xib in Resources */,
 				EA8D93C31833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C81833632800780B63 /* GroupCell.xib in Resources */,
 				CA1162601834A88F00FDD3A9 /* TaskController.xib in Resources */,
 				CA1162771834A91100FDD3A9 /* TaskCell.xib in Resources */,
+				CA1162871835FE9E00FDD3A9 /* CommonCommentHeader.xib in Resources */,
+				CA1162891835FE9E00FDD3A9 /* CommonCommentController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19619,8 +19627,6 @@
 				CA9AB05018321621002DBAA5 /* SongTagCell~ipad.xib in Resources */,
 				CA9AB05818321621002DBAA5 /* VoiceTypeSelectView.xib in Resources */,
 				CA9AB05C18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
-				CA9AB09B183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
-				CA9AB09F183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				A4E59C941832208D003578CA /* WhisperStyleView.xib in Resources */,
 				EA8D93C21833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93C71833632800780B63 /* GroupCell.xib in Resources */,
@@ -20504,12 +20510,12 @@
 				CA9AB05318321621002DBAA5 /* SongTagCell~ipad.xib in Resources */,
 				CA9AB05B18321621002DBAA5 /* VoiceTypeSelectView.xib in Resources */,
 				CA9AB05F18321621002DBAA5 /* VoiceTypeSelectView~ipad.xib in Resources */,
-				CA9AB09E183217B3002DBAA5 /*  iOS ReadMe (or suffer).rtf in Resources */,
-				CA9AB0A2183217B3002DBAA5 /*  DiracAudioPlayer ReadMe.rtf in Resources */,
 				EA8D93C51833630500780B63 /* GroupDetailController.xib in Resources */,
 				EA8D93CA1833632800780B63 /* GroupCell.xib in Resources */,
 				CA1162621834A88F00FDD3A9 /* TaskController.xib in Resources */,
 				CA1162791834A91100FDD3A9 /* TaskCell.xib in Resources */,
+				CA11628B1835FEA000FDD3A9 /* CommonCommentHeader.xib in Resources */,
+				CA11628D1835FEA000FDD3A9 /* CommonCommentController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -22062,6 +22068,12 @@
 				CA11626C1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162731834A91100FDD3A9 /* TaskCell.m in Sources */,
 				CA11627D1834AE7900FDD3A9 /* GameTask.m in Sources */,
+				CA1162801835FDF000FDD3A9 /* CommonOpusDetailController.m in Sources */,
+				CA1162821835FE0D00FDD3A9 /* CommonOpusInfoCell.m in Sources */,
+				CA1162841835FE1700FDD3A9 /* CommonUserInfoCell.m in Sources */,
+				CA1162861835FE9E00FDD3A9 /* CommonCommentHeader.m in Sources */,
+				CA1162881835FE9E00FDD3A9 /* CommonCommentController.m in Sources */,
+				CA11628E1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23562,6 +23574,12 @@
 				CA11626E1834A8CA00FDD3A9 /* TaskService.m in Sources */,
 				CA1162751834A91100FDD3A9 /* TaskCell.m in Sources */,
 				CA11627F1834AE7900FDD3A9 /* GameTask.m in Sources */,
+				CA1162811835FDF100FDD3A9 /* CommonOpusDetailController.m in Sources */,
+				CA1162831835FE0E00FDD3A9 /* CommonOpusInfoCell.m in Sources */,
+				CA1162851835FE1800FDD3A9 /* CommonUserInfoCell.m in Sources */,
+				CA11628A1835FEA000FDD3A9 /* CommonCommentHeader.m in Sources */,
+				CA11628C1835FEA000FDD3A9 /* CommonCommentController.m in Sources */,
+				CA11628F1835FEC800FDD3A9 /* PPTableViewHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1200,6 +1200,8 @@
 "kPaletteItemDescription" = "有了它，可以調製出千變萬化的顏色";
 "kColorAlphaItemDescription" = "有了它，可以畫出半透明的美麗筆劃";
 
+"kGuessAwardWithLevelUpMsg" = "猜對了​​！等級突破到%d 級";
+"kGuessNormalAwardMsg" = "猜對了​​！金幣+%d 經驗+%d";
 
 "kAddOpusDesc" = "為你的作品添加一段描述";
 "kTwoSpaceCancel" = "取  消";

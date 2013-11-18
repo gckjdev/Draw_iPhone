@@ -128,10 +128,20 @@
     
 }
 
-- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+- (void)clearPopTipView
 {
     self.popTipView = nil;
     _showing = NO;
+}
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    [self clearPopTipView];
+}
+
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    [self clearPopTipView];    
 }
 
 - (void)updateToolPanel

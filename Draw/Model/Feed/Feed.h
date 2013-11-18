@@ -45,7 +45,6 @@ typedef enum{
     CommentTypeContestComment = 105
 } CommentType;
 
-
 typedef enum {
     OPusStatusNormal = 0, 
     OPusStatusDelete = 1 

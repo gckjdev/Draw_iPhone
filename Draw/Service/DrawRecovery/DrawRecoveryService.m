@@ -125,6 +125,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
 
         NSAutoreleasePool *subPool = [[NSAutoreleasePool alloc] init];
         
+        NSArray* copyLayers = [cp.layers mutableCopy];
         
         // TODO check difference of two methods
         NSData* data = [DrawAction pbNoCompressDrawDataCFromDrawActionList:snapshotList
@@ -132,7 +133,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DrawRecoveryService)
                                                                   opusDesc:cp.desc
                                                                 drawToUser:cp.drawToUser
                                                            bgImageFileName:cp.currentPaint.bgImageName
-                                                                    layers:cp.layers];
+                                                                    layers:copyLayers];
+        [copyLayers release];
 
         PPDebug(@"<backup> file path=%@", dataPath);
         

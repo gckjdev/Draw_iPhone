@@ -37,7 +37,6 @@
 #import "CommonMessageCenter.h"
 #import "Contest.h"
 #import "StatementController.h"
-#import "RegisterUserController.h"
 #import "StringUtil.h"
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"

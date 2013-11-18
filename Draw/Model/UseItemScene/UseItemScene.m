@@ -72,8 +72,8 @@
                                                             type:UseSceneTypeDrawMatch] autorelease];
         }break;
         case UseSceneTypeMatchRank: {
-            return [[[UseItemScene alloc] initWithMaxTomatoCount:0
-                                                  maxFlowerCount:0
+            return [[[UseItemScene alloc] initWithMaxTomatoCount:DEFAULT_MAX_TOMATO
+                                                  maxFlowerCount:DEFAULT_MAX_FLOWER
                                                             feed:feed
                                                     isTomatoFree:NO
                                                     isFlowerFree:NO

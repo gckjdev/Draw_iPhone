@@ -210,10 +210,10 @@ static LevelService* _defaultLevelService;
 }
 
 
-- (void)addExp:(long)exp 
+- (BOOL)addExp:(long)exp
       delegate:(id<LevelServiceDelegate>)delegate
 {
-//    exp = 100;
+    BOOL isLevelUp = NO;
     
     long currentExp = [self experience] + exp ;
     int newLevel = [self getLevelByExp:(currentExp)];
@@ -225,11 +225,12 @@ static LevelService* _defaultLevelService;
             [[CommonMessageCenter defaultCenter] postMessageWithText:[self upgradeMessage:newLevel] delayTime:1.5 isHappy:YES];
             [delegate levelUp:newLevel];
         }
+        
+        isLevelUp = YES;
     }
     
     [self incExpToServer:exp];
-    
-//    [self syncExpAndLevel:UPDATE];
+    return isLevelUp;    
 }
 
 - (void)awardExp:(long)awardExp

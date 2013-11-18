@@ -392,7 +392,7 @@ static DrawDataService* _defaultDrawDataService = nil;
             
             if ([viewController respondsToSelector:@selector(didGuessOfflineDraw:)]){
                 [viewController didGuessOfflineDraw:resultCode];
-            }
+            }            
         });
     });
 

@@ -303,9 +303,11 @@
 
 - (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
 {
-//    if (popTipView.customView.tag == DEGREE_TAG) {
-//    PPRelease(popTipView);
-//    }
+    self.popColorView = nil;
+}
+
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
     self.popColorView = nil;
 }
 

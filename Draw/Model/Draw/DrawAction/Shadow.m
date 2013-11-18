@@ -163,7 +163,7 @@
 
 - (BOOL)isEmpty
 {
-    return _blur == 0 && CGSizeEqualToSize(CGSizeZero, _offset);
+    return (_blur == 0.0f) && CGSizeEqualToSize(CGSizeZero, _offset);
 }
 
 @end

@@ -1589,7 +1589,7 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 
 
 - (BOOL)incAndCheckIsExceedMaxTakeNumber
-{
+{    
     NSString* key = @"CURRENT_TAKE_NUMBER_COUNT";
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
     int count = [[userDefaults objectForKey:key] intValue];

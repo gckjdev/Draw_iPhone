@@ -52,7 +52,7 @@ typedef enum {
 - (int)level;
 - (long)experience;
 
-- (void)addExp:(long)exp 
+- (BOOL)addExp:(long)exp
       delegate:(id<LevelServiceDelegate>)delegate;
 
 - (void)minusExp:(long)exp 

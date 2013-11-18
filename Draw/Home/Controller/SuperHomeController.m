@@ -221,6 +221,7 @@
     [self.homeHeaderPanel updateBulletinBadge:[manager bulletinCount]];
     
 }
+
 - (void)didSyncStatisticWithResultCode:(int)resultCode
 {
     if (resultCode == 0) {        
@@ -483,5 +484,11 @@
     }
 }
 
+- (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
+                   menu:(HomeMenuView *)menu
+               menuType:(HomeMenuType)type
+{
+    return YES;
+}
 
 @end

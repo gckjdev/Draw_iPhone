@@ -2639,12 +2639,15 @@
 {
     CommonNetworkOutput* output = [[[CommonNetworkOutput alloc] init] autorelease];
     
+    NSString* gameId = [GameApp gameId];
+    
     ConstructURLBlock constructURLHandler = ^NSString *(NSString *baseURL) {        
         // set input parameters
         NSString* str = [NSString stringWithString:baseURL];               
         str = [str stringByAddQueryParameter:METHOD value:METHOD_GET_STATISTICS];        
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];   
-        str = [str stringByAddQueryParameter:PARA_USERID value:userId];   
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:gameId];
+        str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         return str;
     };
     
