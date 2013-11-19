@@ -29,6 +29,7 @@ typedef enum{
     HomeMenuTypeDrawCharge,
     HomeMenuTypeDrawPhoto,
     HomeMenuTypeDrawPainter,
+    HomeMenuTypeTask,
     
     //draw bottom menu
     HomeMenuTypeDrawHome = 1500,
@@ -67,19 +68,10 @@ typedef enum{
     
     // sing main menu
     HomeMenuTypeSing,
-    HomeMenuTypeGuessSing,          // TODO check whether this is needed
-    HomeMenuTypeSingTop,
-//    HomeMenuTypeSingBBS,
-    HomeMenuTypeSingFreeCoins,
-//    HomeMenuTypeSingContest,
+    HomeMenuTypeGuessSing,          
     
     // sing bottom menu
-//    HomeMenuTypeSingTimeline,
     HomeMenuTypeSingDraft,
-    HomeMenuTypeSingShop,
-//    HomeMenuTypeSingChat,
-    HomeMenuTypeSingSetting,
-//    HomeMenuTypeSingFriend,
     
     //Learn Draw Bottom Menu
     HomeMenuTypeLearnDrawDraw,

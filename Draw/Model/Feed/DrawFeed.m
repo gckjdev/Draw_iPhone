@@ -162,13 +162,8 @@
 
 - (void)updateDesc
 {
-    NSString *kCreateDesc = NSLS(@"kDrawDesc");
-    NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
-
-    if ([self isSingCategory]) {
-        kCreateDesc = NSLS(@"kCraeteDesc");
-        kCreateDescNoName = NSLS(@"kCreateDescNoName");
-    }
+    NSString *kCreateDesc = [GameApp createOpusDesc]; // NSLS(@"kDrawDesc");
+    NSString *kCreateDescNoName = [GameApp createOpusDescNoName]; // NSLS(@"kDrawDescNoWord");
     
     if ([self isMyOpus]) {
         self.desc = [NSString stringWithFormat:kCreateDesc, self.wordText];      

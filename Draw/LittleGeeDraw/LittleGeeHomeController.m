@@ -1004,7 +1004,6 @@ int getPopOptionCount()
     
     [self updateBadgeWithType:HomeMenuTypeLittleGeeChat badge:manager.messageCount];
     [self updateBadgeWithType:HomeMenuTypeLittleGeeFriend badge:manager.fanCount];
-    //    [self updateBadgeWithType:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
     
     long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
     

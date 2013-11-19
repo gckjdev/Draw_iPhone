@@ -7,6 +7,7 @@
 //
 
 #import "TaskController.h"
+#import "TaskCell.h"
 
 @interface TaskController ()
 
@@ -14,25 +15,40 @@
 
 @implementation TaskController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//SET_CELL_BG_IN_VIEW;
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    // TODO: need to be implemented.
+    return 20;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [TaskCell getCellHeight];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[TaskCell getCellIdentifier]];
+    
+    if (cell == nil) {
+        cell = [TaskCell createCell:nil];
+    }
+    
+    // TODO: need to be implemented.
+//    [cell setCellInfo:nil];
+    
+    return cell;
+}
+
+
+
 
 @end

@@ -78,6 +78,9 @@
         case HomeMenuTypeDrawBBS:{
             return NSLS(@"kHomeMenuTypeDrawBBS");
         }
+        case HomeMenuTypeTask:{
+            return NSLS(@"kHomeMenuTypeTask");
+        }
         case HomeMenuTypeDrawBigShop:
         case HomeMenuTypeDrawShop:{
             return NSLS(@"kHomeMenuTypeDrawShop");
@@ -161,12 +164,12 @@
             return NSLS(@"kGuessSing");
 //        case HomeMenuTypeSingContest:
 //            return NSLS(@"kSingContest");
-        case HomeMenuTypeSingTop:
-            return NSLS(@"kSingTop");
+//        case HomeMenuTypeSingTop:
+//            return NSLS(@"kSingTop");
 //        case HomeMenuTypeSingBBS:
 //            return NSLS(@"kBBS");
-        case HomeMenuTypeSingFreeCoins:
-            return NSLS(@"kFreeCoins");
+//        case HomeMenuTypeSingFreeCoins:
+//            return NSLS(@"kFreeCoins");
         default:
         return nil;
     }
@@ -199,6 +202,9 @@
         }
         case HomeMenuTypeDrawBBS:{
             return [imageManager drawHomeBbs];
+        }
+        case HomeMenuTypeTask:{
+            return [imageManager task];
         }
         case HomeMenuTypeDrawShop:{
             return [imageManager drawHomeShop];
@@ -267,12 +273,12 @@
             return [imageManager singHomeSing];
         case HomeMenuTypeGuessSing:
             return [imageManager singHomeGuess];
-        case HomeMenuTypeSingTop:
-            return [imageManager singHomeTop];
+//        case HomeMenuTypeSingTop:
+//            return [imageManager singHomeTop];
 //        case HomeMenuTypeSingBBS:
 //            return [imageManager singHomeBBS];
-        case HomeMenuTypeSingFreeCoins:
-            return [imageManager singHomeFreeCoins];
+//        case HomeMenuTypeSingFreeCoins:
+//            return [imageManager singHomeFreeCoins];
             
             
             
@@ -280,12 +286,12 @@
 //            return [imageManager drawHomeTimeline];
         case HomeMenuTypeSingDraft:
             return [imageManager drawHomeOpus];
-        case HomeMenuTypeSingShop:
-            return [imageManager drawHomeShop];
+//        case HomeMenuTypeSingShop:
+//            return [imageManager drawHomeShop];
 //        case HomeMenuTypeSingChat:
 //            return [imageManager drawHomeMessage];
-        case HomeMenuTypeSingSetting:
-            return [imageManager drawHomeSetting];
+//        case HomeMenuTypeSingSetting:
+//            return [imageManager drawHomeSetting];
 //        case HomeMenuTypeSingFriend:
 //            return [imageManager drawHomeFriend];
         default:
@@ -517,9 +523,9 @@ int *getSingMainMenuTypeListWithFreeCoins()
         HomeMenuTypeSing,
         HomeMenuTypeGuessSing,
         HomeMenuTypeDrawContest,
-        HomeMenuTypeSingTop,
+        HomeMenuTypeDrawRank,
         HomeMenuTypeDrawBBS,
-        HomeMenuTypeSingFreeCoins,
+        HomeMenuTypeTask,
         HomeMenuTypeEnd,
     };
     return list;
@@ -531,8 +537,8 @@ int *getSingMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeSing,
         HomeMenuTypeGuessSing,
         HomeMenuTypeDrawContest,
-        HomeMenuTypeSingTop,
-        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeTask,
         HomeMenuTypeEnd,
     };
     return list;
@@ -555,7 +561,7 @@ int *getSingBottomMenuTypeList()
         HomeMenuTypeSingDraft,
         HomeMenuTypeDrawFriend,
         HomeMenuTypeDrawMessage,
-        HomeMenuTypeSingShop,
+        HomeMenuTypeDrawShop,
         HomeMenuTypeEnd
     };
     return list;

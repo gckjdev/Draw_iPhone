@@ -1158,6 +1158,8 @@
 "kHomeMenuTypeDrawApps" = "Apps";
 "kHomeMenuTypeDrawContest" = "Contest";
 "kHomeMenuTypeDrawBBS" = "Forum";
+"kHomeMenuTypeTask" = "Task";
+
 "kHomeMenuTypeDrawHome" = "Home";
 "kHomeMenuTypeDrawOpus" = "Opus";
 "kHomeMenuTypeDrawMessage" = "Message";

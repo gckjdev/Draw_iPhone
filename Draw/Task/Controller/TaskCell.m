@@ -14,25 +14,22 @@
 
 @implementation TaskCell
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
++ (float)getCellHeight{
+    
+    return ISIPAD ? 0 : 51;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
++ (NSString *)getCellIdentifier{
+    
+    return @"TaskCell";
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc {
+    [_taskNameLabel release];
+    [_taskDescLabel release];
+    [_taskStatusLabel release];
+    [_badgeView release];
+    [super dealloc];
 }
 
 @end

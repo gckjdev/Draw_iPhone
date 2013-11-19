@@ -171,7 +171,7 @@
 
 - (NSString*)qqWeiboId
 {
-    return [MobClickUtils getStringValueByKey:@"SING_QQ_WEIBO_ID" defaultValue:@"dashetou"];
+    return [MobClickUtils getStringValueByKey:@"SING_QQ_WEIBO_ID" defaultValue:@"xiaojidashetou"];
 }
 
 - (NSString*)feedbackTips
@@ -796,6 +796,18 @@
 - (NSString *)shareOtherOpusWithoutDescText
 {
     return NSLS(@"kShareOtherSingOpusWithoutDescriptionText");
+}
+
+- (NSString *)createOpusDesc
+{
+    NSString *kCreateDesc = NSLS(@"kCreateDesc");
+    return kCreateDesc;
+}
+
+- (NSString *)createOpusDescNoName
+{
+    NSString *kCreateDescNoName = NSLS(@"kCreateDescNoName");
+    return kCreateDescNoName;
 }
 
 

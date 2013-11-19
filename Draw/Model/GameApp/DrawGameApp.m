@@ -607,5 +607,17 @@
     return NSLS(@"kShareOtherOpusWithoutDescriptionText");
 }
 
+- (NSString *)createOpusDesc
+{
+    NSString *kCreateDesc = NSLS(@"kDrawDesc");
+    return kCreateDesc;
+}
+
+- (NSString *)createOpusDescNoName
+{
+    NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
+    return kCreateDescNoName;
+}
+
 
 @end
