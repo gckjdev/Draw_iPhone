@@ -62,6 +62,7 @@ enum{
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) CMPopTipView *popTipView;
+@property (assign, nonatomic) BOOL hasEdited;
 
 @end
 
@@ -199,6 +200,7 @@ enum{
         bself.opusDescLabel.hidden = NO;
         bself.imageButton.hidden = NO;
         bself.opusImageView.hidden = NO;
+        bself.hasEdited = YES;
     }];
 }
 
@@ -514,6 +516,7 @@ enum{
 
 - (void)stopRecord{
     // stop record
+    _hasEdited = YES;
     [_recorder stopRecording];
 }
 
@@ -775,8 +778,11 @@ enum{
 
 - (void)didSelectVoiceType:(PBVoiceType)voiceType{
     
-    [self changeVoiceType:voiceType];
     [self.popTipView dismissAnimated:YES];
+    if (self.singOpus.pbOpus.sing.voiceType == voiceType) {
+        _hasEdited = YES;
+        [self changeVoiceType:voiceType];
+    }
 }
 
 - (IBAction)clickImageButton:(id)sender {
@@ -794,8 +800,7 @@ enum{
     if (image != nil) {
         PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
         
-        
-        
+        _hasEdited = YES;
         self.image = image;
         self.opusImageView.image = image;
         [self removeHolderView];
@@ -808,6 +813,27 @@ enum{
 
 - (IBAction)clickBackButton:(id)sender {
 
+    if (_hasEdited) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButtonWithCross];
+        [dialog showInView:self.view];
+        
+        [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+        [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
+        
+        [dialog setClickOkBlock:^(id infoView){
+            [self clickSaveButton:nil];
+            [self quitDirectly];
+        }];
+        
+        [dialog setClickCancelBlock:^(id infoView){
+            [self quitDirectly];
+        }];
+    }else{
+        [self quitDirectly];
+    }
+}
+
+- (void)quitDirectly{
     
     [self stopRecord];
     [self pausePlay];
@@ -816,7 +842,7 @@ enum{
     _processor.delegate = nil;
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SELECT_SONG];
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE];
-
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -837,6 +863,7 @@ enum{
     [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];
     [self hideActivity];
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaved") delayTime:1.5];
+    _hasEdited = NO;
 }
 
 - (IBAction)clickSubmitButton:(id)sender {

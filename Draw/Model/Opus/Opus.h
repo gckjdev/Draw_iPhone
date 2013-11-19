@@ -86,7 +86,7 @@
 
 - (NSString *)shareTextWithSNSType:(int)type;
 
-
+- (BOOL)hasSameTagsToTags:(NSArray *)tags;
 
 @end
 
