@@ -1169,6 +1169,7 @@
 "kHomeMenuTypeDrawRank" = "畫榜";
 "kHomeMenuTypeDrawContest" = "比賽";
 "kHomeMenuTypeDrawBBS" = "論壇";
+"kHomeMenuTypeTask" = "任務";
 "kHomeMenuTypeDrawApps" = "應用推薦";
 "kHomeMenuTypeDrawHome" = "主頁";
 "kHomeMenuTypeDrawOpus" = "作品";

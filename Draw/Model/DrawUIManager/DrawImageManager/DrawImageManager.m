@@ -68,6 +68,11 @@ static DrawImageManager * _staticDrawImageManager;
     NSString *imageName = [self fixImageName:@"common_home_bbs"];
     return [UIImage imageNamed:imageName];
 }
+- (UIImage *)task
+{
+    NSString *imageName = [self fixImageName:@"common_home_task"];
+    return [UIImage imageNamed:imageName];
+}
 - (UIImage *)drawHomeHome{
     NSString *imageName = [self fixImageName:@"common_home_home"];
     return [UIImage imageNamed:imageName];

@@ -22,7 +22,6 @@ static StatisticManager *_globalStatisticManager;
 @synthesize fanCount;
 @synthesize roomCount;
 @synthesize bbsActionCount;
-//@synthesize bulletinCount;
 @synthesize newContestCount;
 @synthesize timelineOpusCount;
 @synthesize timelineGuessCount;

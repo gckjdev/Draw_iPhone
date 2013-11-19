@@ -82,6 +82,7 @@
                                 @(HomeMenuTypeDrawRank),
                                 @(HomeMenuTypeGuessSing),
                                 @(HomeMenuTypeDrawMore),
+                                @(HomeMenuTypeTask),
                                 ];
     
     return noCheckedTypes;

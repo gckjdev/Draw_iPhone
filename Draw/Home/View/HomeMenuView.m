@@ -78,6 +78,9 @@
         case HomeMenuTypeDrawBBS:{
             return NSLS(@"kHomeMenuTypeDrawBBS");
         }
+        case HomeMenuTypeTask:{
+            return NSLS(@"kHomeMenuTypeTask");
+        }
         case HomeMenuTypeDrawBigShop:
         case HomeMenuTypeDrawShop:{
             return NSLS(@"kHomeMenuTypeDrawShop");
@@ -199,6 +202,9 @@
         }
         case HomeMenuTypeDrawBBS:{
             return [imageManager drawHomeBbs];
+        }
+        case HomeMenuTypeTask:{
+            return [imageManager task];
         }
         case HomeMenuTypeDrawShop:{
             return [imageManager drawHomeShop];
@@ -519,7 +525,7 @@ int *getSingMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawBBS,
-        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeTask,
         HomeMenuTypeEnd,
     };
     return list;
@@ -532,7 +538,7 @@ int *getSingMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeGuessSing,
         HomeMenuTypeDrawContest,
         HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawBBS,
+        HomeMenuTypeTask,
         HomeMenuTypeEnd,
     };
     return list;

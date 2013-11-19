@@ -12,6 +12,7 @@
 + (id)defaultManager;
 
 - (UIImage *)drawHomeBbs;
+- (UIImage *)task;
 - (UIImage *)drawHomeContest;
 - (UIImage *)drawHomeDraw;
 - (UIImage *)drawHomeGuess;

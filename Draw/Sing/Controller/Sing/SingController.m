@@ -880,7 +880,6 @@ enum{
 
 - (void)handleAndSubmitOpus{
     
-    
     // 用户如果选择原声，则不需要经过声音处理步骤，直接上传。
     if (_singOpus.pbOpus.sing.voiceType == PBVoiceTypeVoiceTypeOrigin) {
         

@@ -33,7 +33,7 @@
 #import "HotController.h"
 #import "ChatListController.h"
 #import "FriendController.h"
-
+#import "TaskController.h"
 
 @interface SuperHomeController ()
 {
@@ -218,7 +218,7 @@
     [self updateBadgeWithType:HomeMenuTypeDrawMessage badge:manager.messageCount];
     [self updateBadgeWithType:HomeMenuTypeDrawFriend badge:manager.fanCount];
     [self updateBadgeWithType:HomeMenuTypeDrawBBS badge:manager.bbsActionCount];
-
+    [self updateBadgeWithType:HomeMenuTypeTask badge:manager.taskCount];
     [self updateBadgeWithType:HomeMenuTypeDrawGuess badge:manager.guessContestNotif];
     
     long timelineCount = manager.timelineOpusCount + manager.timelineGuessCount + manager.commentCount + manager.drawToMeCount;
@@ -514,6 +514,11 @@
     [bbs release];    
 }
 
+- (void)enterTask{
+    TaskController *vc = [[[TaskController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)enterMore
 {
     [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
@@ -603,6 +608,12 @@
             case HomeMenuTypeDrawBBS:
             {
                 [self enterBBS];
+                break;
+            }
+                
+            case HomeMenuTypeTask:
+            {
+                [self enterTask];
                 break;
             }
                 
