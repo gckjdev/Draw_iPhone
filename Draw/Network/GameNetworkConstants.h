@@ -697,6 +697,8 @@
 #define METHOD_UPGRADE_GROUP @"upgradeGroup"
 #define METHOD_GET_GROUP_NOTICES @"getGroupNotices"
 
+//new
+#define METHOD_SYNC_FOLLOWED_GROUPIDS @"syncFollowedGroupIds"
 
 
 #define METHOD_UPDATE_USER_CREDENTIAL @"updateUserCredential"

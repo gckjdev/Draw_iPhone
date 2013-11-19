@@ -113,4 +113,8 @@ typedef enum{
                       offset:(NSInteger)offset
                        limit:(NSInteger)limit
                     callback:(ListResultBlock)callback;
+
+
+//new method
+- (void)syncFollowGroupIds;
 @end

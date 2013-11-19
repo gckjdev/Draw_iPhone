@@ -912,6 +912,7 @@
 //"kParsingData" = "Parsing data...";
 
 "kLatestFeed" = "Newest";
+"kLatest" = "Newest";
 
 "kShareToWeiXinTitle" = "Share to WeiXin";
 "kWXShareImageName" = "%@ Image";

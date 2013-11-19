@@ -11,6 +11,7 @@
 #import "PPNetworkConstants.h"
 #import "CommonOpusDetailController.h"
 #import "DrawError.h"
+#import "GroupManager.h"
 
 #ifdef DEBUG
     #define GROUP_HOST     @"http://localhost:8100/api?"
@@ -23,12 +24,25 @@ typedef void (^ PBResponseResultBlock) (DataQueryResponse *response, NSError* er
 
 static GroupService *_staticGroupService = nil;
 
+@interface GroupService()
+@property(assign, nonatomic)GroupManager *groupManager;
+@end
+
 @implementation GroupService
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.groupManager = [GroupManager defaultManager];
+    }
+    return self;
+}
 
 + (GroupService *)defaultService
 {
     if (_staticGroupService == nil) {
-        _staticGroupService = [[GroupService alloc] init];
+        _staticGroupService = [[GroupService alloc] init];        
     }
     return _staticGroupService;
 }
@@ -123,12 +137,13 @@ static GroupService *_staticGroupService = nil;
                  callback:(ListResultBlock)callback
 {
     NSDictionary *paras = @{PARA_OFFSET:@(offset), PARA_LIMIT:@(limit), PARA_TYPE:@(type)};
+
     
     [self loadPBData:METHOD_GET_GROUPS
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error) {
                 EXECUTE_BLOCK(callback, response.groupListList, error);
-            }];
+    }];
 
 }
 
@@ -268,6 +283,9 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
+         if (!error) {
+             [self.groupManager.followedGroupIds addObject:groupId];
+         }
          EXECUTE_BLOCK(callback, error);
      }];
 }
@@ -280,6 +298,9 @@ static GroupService *_staticGroupService = nil;
           parameters:paras
             callback:^(DataQueryResponse *response, NSError *error)
      {
+         if (!error) {
+             [self.groupManager.followedGroupIds removeObject:groupId];
+         }
          EXECUTE_BLOCK(callback, error);
      }];    
 }
@@ -324,6 +345,18 @@ static GroupService *_staticGroupService = nil;
      {
          EXECUTE_BLOCK(callback, response.noticeListList, error);
      }];
+}
+
+- (void)syncFollowGroupIds
+{
+    [self loadPBData:METHOD_SYNC_FOLLOWED_GROUPIDS
+          parameters:@{}
+            callback:^(DataQueryResponse *response, NSError *error)
+     {
+         if (!error) {
+             _groupManager.followedGroupIds = [NSMutableArray arrayWithArray:response.idListList];
+         }
+     }];    
 }
 
 @end

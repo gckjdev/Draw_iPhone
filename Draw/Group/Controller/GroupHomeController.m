@@ -11,6 +11,7 @@
 #import "DrawError.h"
 #import "GroupManager.h"
 #import "GroupCell.h"
+#import "GroupTopicController.h"
 
 typedef enum{
     GroupTabGroup = 100,
@@ -262,6 +263,7 @@ typedef enum{
     }
     PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
     [cell setCellInfo:group];
+    cell.indexPath = indexPath;
     return cell;
 }
 
@@ -269,12 +271,37 @@ typedef enum{
 {
     PBGroup *group = [self.tabDataList objectAtIndex:indexPath.row];
     if (group) {        
-        //TODO enter group detail controller.
+        [GroupTopicController enterWithGroup:group fromController:self];
     }
 
 }
 
 SET_CELL_BG_IN_CONTROLLER
+
+- (void)groupCell:(GroupCell *)cell goFollowGroup:(PBGroup *)group
+{
+    [self showActivityWithText:NSLS(@"kFollowing")];
+    [[GroupService defaultService] followGroup:group.groupId
+                                      callback:^(NSError *error) {
+       [self hideActivity];
+       if (!error) {
+           [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+       }                                          
+    }];
+}
+
+- (void)groupCell:(GroupCell *)cell goUnfollowGroup:(PBGroup *)group
+{
+    [self showActivityWithText:NSLS(@"kUNFollowing")];
+    [[GroupService defaultService] unfollowGroup:group.groupId
+                                        callback:^(NSError *error) {
+        [self hideActivity];
+        if (!error) {
+            [self.dataTableView reloadRowsAtIndexPaths:@[cell.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }                                          
+                                            
+    }];
+}
 
 - (void)dealloc {
     [_subTabsHolder release];
