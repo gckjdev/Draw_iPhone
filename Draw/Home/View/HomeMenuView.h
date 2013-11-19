@@ -29,6 +29,7 @@ typedef enum{
     HomeMenuTypeDrawCharge,
     HomeMenuTypeDrawPhoto,
     HomeMenuTypeDrawPainter,
+    HomeMenuTypeTask,
     
     //draw bottom menu
     HomeMenuTypeDrawHome = 1500,

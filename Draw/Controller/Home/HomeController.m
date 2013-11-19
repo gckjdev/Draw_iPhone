@@ -602,10 +602,6 @@
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
              didClickMenu:(HomeMenuView *)menu
                  menuType:(HomeMenuType)type
-
-//- (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
-//                   menu:(HomeMenuView *)menu
-//               menuType:(HomeMenuType)type
 {
     
     NSArray *noCheckedTypes = @[@(HomeMenuTypeDrawDraw),
