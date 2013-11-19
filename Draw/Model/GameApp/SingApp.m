@@ -798,5 +798,17 @@
     return NSLS(@"kShareOtherSingOpusWithoutDescriptionText");
 }
 
+- (NSString *)createOpusDesc
+{
+    NSString *kCreateDesc = NSLS(@"kCreateDesc");
+    return kCreateDesc;
+}
+
+- (NSString *)createOpusDescNoName
+{
+    NSString *kCreateDescNoName = NSLS(@"kCreateDescNoName");
+    return kCreateDescNoName;
+}
+
 
 @end
