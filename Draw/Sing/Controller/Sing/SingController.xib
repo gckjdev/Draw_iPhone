@@ -148,7 +148,7 @@
 								<reference key="IBUIFontDescription" ref="1004577120"/>
 								<reference key="IBUIFont" ref="817852101"/>
 							</object>
-							<object class="IBUIImageView" id="23550057">
+							<object class="IBUIImageView" id="67535550">
 								<reference key="NSNextResponder" ref="422045288"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{13, 0}, {295, 295}}</string>
@@ -191,7 +191,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 48}, {320, 295}}</string>
+						<string key="NSFrame">{{0, 51}, {320, 295}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="546855590"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -556,7 +556,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">lyricBgImageView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="23550057"/>
+						<reference key="destination" ref="67535550"/>
 					</object>
 					<int key="connectionID">243</int>
 				</object>
@@ -670,7 +670,7 @@
 							<reference ref="546855590"/>
 							<reference ref="426192891"/>
 							<reference ref="906642860"/>
-							<reference ref="23550057"/>
+							<reference ref="67535550"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -762,7 +762,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">242</int>
-						<reference key="object" ref="23550057"/>
+						<reference key="object" ref="67535550"/>
 						<reference key="parent" ref="422045288"/>
 					</object>
 				</array>

@@ -139,6 +139,7 @@
         self.slider.loaderColor = COLOR255(28, 243, 230, 0.8*255);
         self.slider.pointColor = COLOR_YELLOW;
         self.slider.pointImage = [[ShareImageManager defaultManager] playProgressPoint];
+        self.slider.value = 0.0f;
     }
 }
 
@@ -338,95 +339,5 @@
     }
 }
 
-//- (void)play{
-//    
-//    if (self.player == nil) {
-//        self.player = [[[AudioStreamer alloc] initWithURL:[NSURL URLWithString:self.feed.drawDataUrl]] autorelease];
-//        
-//        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1
-//                                                      target:self
-//                                                    selector:@selector(updateProgress)
-//                                                    userInfo:nil
-//                                                     repeats:YES];
-//        
-//        // register the streamer on notification
-//        [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                 selector:@selector(playbackStateChanged:)
-//                                                     name:ASStatusChangedNotification
-//                                                   object:_player];
-//    }
-//    
-//    if (_player.isPlaying) {
-//        [self.player pause];
-//    }else{
-//        [self.player start];
-//    }
-//}
-//
-//- (void)stop
-//{
-//    [self.audioButton setProgress:0];
-//    [self.audioButton stopSpin];
-//    
-//    self.audioButton.image = [UIImage imageNamed:playImage];
-//    self.audioButton = nil; // 避免播放器的闪烁问题
-//    [self.audioButton release];
-//    
-//    // release streamer
-//	if (_player)
-//	{
-//		[_player stop];
-//		[_player release];
-//		_player = nil;
-//        
-//        // remove notification observer for streamer
-//		[[NSNotificationCenter defaultCenter] removeObserver:self
-//                                                        name:ASStatusChangedNotification
-//                                                      object:_player];
-//        [_timer invalidate];
-//        [_timer release];
-//        _timer = nil;
-//	}
-//}
-//
-//
-///*
-// *  observe the notification listener when loading an audio
-// */
-//- (void)playbackStateChanged:(NSNotification *)notification
-//{
-//	if ([_player isWaiting])
-//	{
-//        self.audioButton.image = [UIImage imageNamed:stopImage];
-//        [self.audioButton startSpin];
-//    } else if ([_player isIdle]) {
-//        self.audioButton.image = [UIImage imageNamed:playImage];
-//		[self stop];
-//	} else if ([_player isPaused]) {
-//        self.audioButton.image = [UIImage imageNamed:playImage];
-//        [self.audioButton stopSpin];
-//        [self.audioButton setColourR:0.0 G:0.0 B:0.0 A:0.0];
-//    } else if ([_player isPlaying]) {
-//        self.audioButton.image = [UIImage imageNamed:stopImage];
-//        [self.audioButton stopSpin];
-//	} else {
-//        
-//    }
-//    
-//    [self.audioButton setNeedsLayout];
-//    [self.audioButton setNeedsDisplay];
-//}
-//
-//
-//
-//- (void)updateProgress
-//{
-//    NSLog(@"progress: %f, duration: %f", _player.progress, _player.duration);
-//    if (_player.progress <= _player.duration ) {
-//        [self.slider setValue:_player.progress/_player.duration];
-//    } else {
-//        [self.slider setValue:0];
-//    }
-//}
 
 @end
