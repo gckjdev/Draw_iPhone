@@ -96,8 +96,10 @@
 //test
 #import "CreateGroupController.h"
 #import "GroupHomeController.h"
+#import "DrawImageManager.h"
 
 static NSDictionary* DRAW_MENU_TITLE_DICT = nil;
+static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
 
 @interface HomeController()<GuessServiceDelegate>
 {
@@ -1079,5 +1081,26 @@ int *getDrawBottomMenuTypeList()
     
     return DRAW_MENU_TITLE_DICT;
 }
+
++ (NSDictionary*)menuImageDictionary
+{
+    static dispatch_once_t drawMenuImageOnceToken;
+    dispatch_once(&drawMenuImageOnceToken, ^{
+        DrawImageManager *imageManager = [DrawImageManager defaultManager];
+        
+        DRAW_MENU_IMAGE_DICT = @{
+                                    // draw
+                                    @(HomeMenuTypeDrawGame) : [imageManager drawHomeOnlineGuess],
+                                    @(HomeMenuTypeDrawDraw) : [imageManager drawHomeDraw],
+                                    @(HomeMenuTypeDrawGuess) : [imageManager drawHomeGuess],
+                                    };
+        
+        [DRAW_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return DRAW_MENU_IMAGE_DICT;
+}
+
 
 @end

@@ -34,8 +34,10 @@
 #import "ChatListController.h"
 #import "FriendController.h"
 #import "TaskController.h"
+#import "DrawImageManager.h"
 
 static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
+static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 
 @interface SuperHomeController ()
 {
@@ -759,7 +761,46 @@ static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 
 + (NSDictionary*)defaultMenuImageDictionary
 {
-    return nil;
+    static dispatch_once_t defaultMenuImageOnceToken;
+    dispatch_once(&defaultMenuImageOnceToken, ^{
+        DrawImageManager *imageManager = [DrawImageManager defaultManager];
+        
+        DEFAULT_MENU_IMAGE_DICT = @{
+                                 // main
+                                 @(HomeMenuTypeDrawRank) : [imageManager drawHomeTop],
+                                 @(HomeMenuTypeDrawBBS) : [imageManager drawHomeBbs],
+                                 @(HomeMenuTypeTask) : [imageManager drawFreeCoins],
+
+                                 // draw
+                                 @(HomeMenuTypeDrawGame) : [imageManager drawHomeOnlineGuess],
+                                 @(HomeMenuTypeDrawContest) : [imageManager drawHomeContest],
+                                 @(HomeMenuTypeDrawDraw) : [imageManager drawHomeDraw],
+                                 @(HomeMenuTypeDrawGuess) : [imageManager drawHomeGuess],
+
+                                 @(HomeMenuTypeDrawMore) : [imageManager drawHomeMore],
+                                 @(HomeMenuTypeDrawBigShop) : [imageManager drawHomeBigShop],
+                                 @(HomeMenuTypeDrawPainter) : [imageManager drawHomePainter],
+                                 @(HomeMenuTypeDrawPhoto) : [imageManager userPhoto],
+                                 @(HomeMenuTypeDrawFreeCoins) : [imageManager drawFreeCoins],
+                                 
+                                 // bottom
+                                 @(HomeMenuTypeDrawTimeline) : [imageManager drawHomeTimeline],
+                                 @(HomeMenuTypeDrawHome) : [imageManager drawHomeHome],
+                                 @(HomeMenuTypeDrawOpus) : [imageManager drawHomeOpus],
+                                 @(HomeMenuTypeDrawMessage) : [imageManager drawHomeMessage],
+                                 @(HomeMenuTypeDrawFriend) : [imageManager drawHomeFriend],
+                                 @(HomeMenuTypeDrawMore) : [imageManager drawHomeMore],
+                                 @(HomeMenuTypeDrawMe) : [imageManager drawHomeMe],
+                                 @(HomeMenuTypeDrawSetting) : [imageManager drawHomeSetting],
+                                 @(HomeMenuTypeDrawShop) : [imageManager drawHomeShop],
+                                 
+                                 };
+        
+        [DEFAULT_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return DEFAULT_MENU_IMAGE_DICT;
 }
 
 @end

@@ -7,8 +7,6 @@
 //
 
 #import "SingHomeController.h"
-//#import "SongSelectController.h"
-//#import "SingOpusDetailController.h"
 #import "SingGuessController.h"
 #import "OpusManageController.h"
 #import "UserDetailViewController.h"
@@ -24,8 +22,10 @@
 #import "AnalyticsManager.h"
 #import "DrawDataService.h"
 #import "OfflineGuessDrawController.h"
+#import "DrawImageManager.h"
 
 static NSDictionary* SING_MENU_TITLE_DICT = nil;
+static NSDictionary* SING_MENU_IMAGE_DICT = nil;
 
 @interface SingHomeController ()<DrawDataServiceDelegate>
 
@@ -235,8 +235,26 @@ int *getSingBottomMenuTypeList()
 
 + (NSDictionary*)menuImageDictionary
 {
-    // to be implemented by sub class
-    return nil;
+    
+    static dispatch_once_t singMenuImageOnceToken;
+    dispatch_once(&singMenuImageOnceToken, ^{
+        DrawImageManager *imageManager = [DrawImageManager defaultManager];
+
+        SING_MENU_IMAGE_DICT = @{
+                                 // main
+                                 @(HomeMenuTypeSing) : [imageManager singHomeSing],
+                                 @(HomeMenuTypeGuessSing) : [imageManager singHomeGuess],
+                                 @(HomeMenuTypeDrawContest) : [imageManager singHomeTop],
+                                 
+                                 // bottom
+                                 @(HomeMenuTypeSingDraft) : [imageManager drawHomeOpus],
+                                 };
+        
+        [SING_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return SING_MENU_IMAGE_DICT;
 }
 
 

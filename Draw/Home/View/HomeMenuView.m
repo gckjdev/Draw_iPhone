@@ -194,7 +194,26 @@
     }
 }
 + (UIImage *)imageForType:(HomeMenuType)type
-{
+{    
+    Class vc = [GameApp homeControllerClass];
+    if ([vc respondsToSelector:@selector(menuImageDictionary)] &&
+        [vc respondsToSelector:@selector(defaultMenuImageDictionary)]){
+        
+        NSDictionary* menuDict = [vc performSelector:@selector(menuImageDictionary)];
+        NSDictionary* defaultMenuImageDict = [vc performSelector:@selector(defaultMenuImageDictionary)];
+        
+        UIImage* image = [menuDict objectForKey:@(type)];
+        if (image == nil){
+            image = [defaultMenuImageDict objectForKey:@(type)];
+        }
+        
+        return image;
+    }
+    else{
+        return nil;
+    }
+
+    
     DrawImageManager *imageManager = [DrawImageManager defaultManager];
     switch (type) {
             //draw main menu
