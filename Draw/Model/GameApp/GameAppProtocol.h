@@ -186,6 +186,8 @@
 - (NSString *)shareOtherOpusWithDescText;
 - (NSString *)shareOtherOpusWithoutDescText;
 
+- (NSString *)createOpusDesc;
+- (NSString *)createOpusDescNoName;
 
 
 @end

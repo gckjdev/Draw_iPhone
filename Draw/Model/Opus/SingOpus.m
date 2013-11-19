@@ -259,4 +259,14 @@ enum {
     [self.pbOpusBuilder setDescLabelInfo:labelInfo];
 }
 
+- (BOOL)hasFileForPlay
+{
+    if ([FileUtil fileSizeAtPath:self.pbOpus.sing.localNativeDataUrl] > 0){
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
 @end

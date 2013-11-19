@@ -29,5 +29,6 @@
 - (void)setLocalNativeDataUrl:(NSString*)extension;
 - (void)setLocalImageDataUrl:(NSString*)extension;
 - (void)setLocalThumbImageDataUrl:(NSString*)extension;
+- (BOOL)hasFileForPlay;
 
 @end
