@@ -8,7 +8,9 @@
 
 #import "GroupTopicController.h"
 #import "DetailFooterView.h"
-
+#import "GroupInfoView.h"
+#import "BBSPostCell.h"
+#import "BBSModelExt.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -23,6 +25,7 @@ typedef enum {
 
 @interface GroupTopicController ()
 @property(nonatomic, retain)BBSPostActionHeaderView *topicHeader;
+@property(nonatomic, retain)UITableViewCell *infoCell;
 @property(nonatomic, retain)PBGroup *group;
 @end
 
@@ -41,6 +44,7 @@ typedef enum {
 - (void)dealloc
 {
     PPRelease(_topicHeader);
+    PPRelease(_infoCell);
     PPRelease(_group);
     [super dealloc];
 }
@@ -69,15 +73,72 @@ typedef enum {
 #pragma mark-- TableView delegate
 
 
+- (PBBBSPost *)postInIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row = indexPath.row - BasicRowCount;
+    PBBBSPost *post = self.tabDataList[row];
+    return post;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    switch (indexPath.row) {
+        case RowGroupInfo:
+            return [GroupInfoView getViewHeight];
+        case RowTopicHeader:
+            return [BBSPostActionHeaderView getViewHeight];
+        default:
+        {
+            PBBBSPost *post = [self postInIndexPath:indexPath];
+            return [BBSPostCell getCellHeightWithBBSPost:post];
+        }
+    }
+    return 0;
+}
+
+- (void)updateTopicHeader
+{
+    if(self.topicHeader == nil){
+        self.topicHeader = [BBSPostActionHeaderView createView:self];
+        [self.topicHeader updateleftName:NSLS(@"kLatest") rightName:NSLS(@"kMarked")];
+    }
+}
+
+- (void)updateGroupInfo
+{
+    if (self.infoCell == nil) {
+        self.infoCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GroupInfoCell"];
+        GroupInfoView *infoView = [GroupInfoView infoViewWithGroup:_group];
+        infoView.delegate = self;
+        [self.infoCell.contentView addSubview:infoView];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSInteger row = indexPath.row;
+    switch (row) {
+        case RowGroupInfo:
+        {
+            [self updateGroupInfo];
+            return self.infoCell;
+        }
+        case RowTopicHeader:
+        {
+            [self updateTopicHeader];
+            return self.topicHeader;
+        }
+        default:
+        {
+            BBSPostCell *cell = [tableView dequeueReusableCellWithIdentifier:[BBSPostCell getCellIdentifier]];
+            if (cell == nil) {
+                cell = [BBSPostCell createCell:self];
+            }
+            PBBBSPost *post = [self postInIndexPath:indexPath];
+            [cell updateCellWithBBSPost:post];
+            return cell;
+        }
+    }
 }
 
 
@@ -114,5 +175,15 @@ typedef enum {
     //TODO fetch data through service.
     [self finishLoadDataForTabID:tabID resultList:nil];
 }
+
+- (void)didClickSupportTabButton
+{
+    [self clickTab:MarkedTopic];
+}
+- (void)didClickCommentTabButton
+{
+    [self clickTab:NewestTopic];
+}
+
 
 @end
