@@ -990,6 +990,8 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
 //    
 //}
 
+#pragma mark - menu methods
+
 int *getDrawMainMenuTypeListHasNewContest()
 {
     int static list[] = {

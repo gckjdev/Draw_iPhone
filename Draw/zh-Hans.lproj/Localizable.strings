@@ -1634,6 +1634,10 @@
 "kHint" = "提示";
 "kRecordSubmitHint" = "你的作品录音时长为%d秒，提交需要花费%d金币，确认提交吗？";
 
+"kMatchingOpus" = "加载作品中...";
+"kFailMatchOpus" = "无法找到合适的作品，也许是网络有问题，请稍后再试";
+
+
 "kGiveUpComment" = "是否退出评论?";
 "kGuessWrong" =  "猜错了";
 

@@ -55,8 +55,10 @@ static NSDictionary* SING_MENU_IMAGE_DICT = nil;
     [self.navigationController pushViewController:vc animated:YES];    
 }
 
+
 - (void)enterGuessSing
 {
+    [self showActivityWithText:NSLS(@"kMatchingOpus")];
     [[DrawDataService defaultService] matchOpus:self];    
 }
 
@@ -160,8 +162,16 @@ static NSDictionary* SING_MENU_IMAGE_DICT = nil;
 
 - (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
 {
-    [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+    [self hideActivity];
+    if (resultCode == 0){
+        [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+    }
+    else{
+        POSTMSG(NSLS(@"kFailMatchOpus"));
+    }
 }
+
+#pragma mark - menu methods
 
 int *getSingMainMenuTypeListWithFreeCoins()
 {
@@ -244,7 +254,7 @@ int *getSingBottomMenuTypeList()
                                  // main
                                  @(HomeMenuTypeSing) : [imageManager singHomeSing],
                                  @(HomeMenuTypeGuessSing) : [imageManager singHomeGuess],
-                                 @(HomeMenuTypeDrawContest) : [imageManager singHomeTop],
+                                 @(HomeMenuTypeDrawContest) : [imageManager singHomeContest],
                                  
                                  // bottom
                                  @(HomeMenuTypeSingDraft) : [imageManager drawHomeOpus],

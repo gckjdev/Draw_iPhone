@@ -1649,6 +1649,9 @@
 
 "kGuessGenuisFail" = "you guess wrong, can not continue in genius mode, will you restart";
 
+"kMatchingOpus" = "Matching...";
+"kFailMatchOpus" = "Fail to find one opus for you. Please check network and try again later.";
+
 
 "kHint" = "Hint";
 "kRecordSubmitHint" = "Your record is %d seconds, you must pay for %d coins for submitation";

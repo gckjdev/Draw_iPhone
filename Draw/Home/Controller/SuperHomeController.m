@@ -568,6 +568,8 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     [settings release];
 }
 
+#pragma mark - menu methods
+
 - (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
                    menu:(HomeMenuView *)menu
                menuType:(HomeMenuType)type
