@@ -808,6 +808,7 @@ enum{
 
 - (IBAction)clickBackButton:(id)sender {
 
+    
     [self stopRecord];
     [self pausePlay];
     _recorder.delegate = nil;
