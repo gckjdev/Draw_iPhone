@@ -26,6 +26,13 @@
 #import "DrawImageManager.h"
 #import "DrawHomeHeaderPanel.h"
 #import "DrawMainMenuPanel.h"
+#import "MyFeedController.h"
+#import "StoreController.h"
+#import "BBSBoardController.h"
+#import "FeedbackController.h"
+#import "HotController.h"
+#import "ChatListController.h"
+#import "FriendController.h"
 
 
 @interface SuperHomeController ()
@@ -484,11 +491,208 @@
     }
 }
 
+
+- (void)enterUserTimeline
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
+    [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
+    [[StatisticManager defaultManager] setTimelineOpusCount:0];    
+}
+
+- (void)enterShop
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_SHOP];
+    StoreController *vc = [[[StoreController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)enterBBS
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_BBS];    
+    BBSBoardController *bbs = [[BBSBoardController alloc] init];
+    [self.navigationController pushViewController:bbs animated:YES];
+    [bbs release];    
+}
+
+- (void)enterMore
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_MORE];
+    
+    FeedbackController* feedBack = [[FeedbackController alloc] init];
+    [self.navigationController pushViewController:feedBack animated:YES];
+    [feedBack release];    
+}
+
+- (void)enterTopOpus
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TOP];
+    HotController *hc = [[HotController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
+}
+
+
+- (void)enterChat
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_CHAT];
+    
+    ChatListController *controller = [[ChatListController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
+}
+
+- (void)enterFriend
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
+    FriendController *mfc = [[FriendController alloc] init];
+    if ([[StatisticManager defaultManager] fanCount] > 0) {
+        [mfc setDefaultTabIndex:FriendTabIndexFan];
+    }
+    [self.navigationController pushViewController:mfc animated:YES];
+    [mfc release];
+}
+
+- (void)enterUserSetting
+{
+    UserSettingController *settings = [[UserSettingController alloc] init];
+    [self.navigationController pushViewController:settings animated:YES];
+    [settings release];
+}
+
 - (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
                    menu:(HomeMenuView *)menu
                menuType:(HomeMenuType)type
 {
-    return YES;
+    // default impelmentation, to be implemented by sub class
+    return NO;
 }
+
+- (NSArray*)noCheckedMenuTypes
+{
+    // default impelmentation, to be implemented by sub class
+    return [NSArray array];
+}
+
+- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
+             didClickMenu:(HomeMenuView *)menu
+                 menuType:(HomeMenuType)type
+{
+    PPDebug(@"<homeMainMenuPanel>, click type = %d", type);    
+    NSArray* noCheckedTypes = [self noCheckedMenuTypes];
+    
+    if (![noCheckedTypes containsObject:@(type)]) {
+        CHECK_AND_LOGIN(self.view);
+    }
+
+    BOOL isProcessed = [self handleClickMenu:mainMenuPanel menu:menu menuType:type];
+    if (isProcessed == NO){            
+        switch (type) {
+                
+            case HomeMenuTypeDrawTimeline:
+            {
+                [self enterUserTimeline];
+                break;
+            }
+
+            case HomeMenuTypeDrawBigShop:
+            {
+                [self enterShop];
+                break;
+            }
+
+            case HomeMenuTypeDrawBBS:
+            {
+                [self enterBBS];
+                break;
+            }
+                
+            case HomeMenuTypeDrawMore:
+            {
+                [self enterMore];
+                break;
+            }
+                
+            case HomeMenuTypeDrawRank:
+            {
+                [self enterTopOpus];
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }
+
+    [menu updateBadge:0];
+}
+
+- (BOOL)handleClickBottomMenu:(HomeBottomMenuPanel *)bottomMenuPanel
+                         menu:(HomeMenuView *)menu
+                     menuType:(HomeMenuType)type
+{
+    // default implementation, need to implement by sub class
+    return NO;
+}
+
+- (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
+               didClickMenu:(HomeMenuView *)menu
+                   menuType:(HomeMenuType)type
+{
+    PPDebug(@"<homeBottomMenuPanel>, click type = %d", type);
+    if ([self isRegistered] == NO) {
+        [self toRegister];
+        return;
+    }
+    
+    BOOL isProcessed = [self handleClickBottomMenu:bottomMenuPanel menu:menu menuType:type];
+    if (isProcessed == NO){    
+        switch (type) {
+                
+            case HomeMenuTypeDrawMe:
+            case HomeMenuTypeDrawSetting:
+            {
+                [self enterUserSetting];
+                break;
+            }
+
+            case HomeMenuTypeDrawFriend:
+            {
+                [self enterFriend];
+                break;
+            }
+                
+            case HomeMenuTypeDrawMessage:
+            {
+                [self enterChat];
+                break;
+            }
+                
+            case HomeMenuTypeDrawMore:
+            {
+                [self enterMore];
+                break;
+            }
+                
+            case HomeMenuTypeDrawTimeline:
+            {
+                [self enterUserTimeline];
+                break;
+            }
+                
+            case HomeMenuTypeDrawShop:
+            {
+                [self enterShop];
+                break;
+            }
+                
+            default:
+                break;
+        }
+    }
+
+    [menu updateBadge:0];
+}
+
+
 
 @end

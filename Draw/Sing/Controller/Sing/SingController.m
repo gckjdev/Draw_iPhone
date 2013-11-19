@@ -783,6 +783,7 @@ enum{
     if (_picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
         _picker.autoRoundRect = NO;
+        _picker.userOriginalImage = YES;
     }
     
     [_picker showSelectionView:self];
@@ -819,6 +820,11 @@ enum{
 }
 
 - (IBAction)clickSaveButton:(id)sender {
+    
+    if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
+        return;
+    }
+    
     [self showActivityWithText:NSLS(@"kSaving")];
     
     // generate thumb image.
@@ -833,6 +839,10 @@ enum{
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
+    
+    if ([[UserService defaultService] checkAndAskLogin:self.view] == YES){
+        return;
+    }
     
     if (_fileDuration < [PPConfigManager getRecordLimitMinTime]) {
         NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordTimeTooShort"), [PPConfigManager getRecordLimitMinTime]];

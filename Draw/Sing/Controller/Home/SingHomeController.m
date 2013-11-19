@@ -38,9 +38,7 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-#define SING_MY_OPUS_DB     @"sing_my_opus.db"
-#define SING_FAVORITE_DB    @"sing_favorite.db"
-#define SING_DRAFT_DB       @"sing_draft.db"
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -49,134 +47,104 @@
 }
 
 
-#pragma mark Panel delegate
-
-- (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
-             didClickMenu:(HomeMenuView *)menu
-                 menuType:(HomeMenuType)type
+- (void)enterSing
 {
-    if (![self isRegistered]) {
-        [self toRegister];
-        return;
-    }
-        
-    switch (type) {
-
-        case HomeMenuTypeSing: {
-            SingController *vc = [[[SingController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-            
-
-        case HomeMenuTypeGuessSing: {
-            PPDebug(@"HomeMenuTypeGuessSing");
-            [[DrawDataService defaultService] matchOpus:self];
-            
-        }
-            break;
-            
-        case HomeMenuTypeDrawContest: {
-            PPDebug(@"HomeMenuTypeSingContest");
-        }
-            break;
-
-        case HomeMenuTypeSingTop: {
-            
-            HotController *vc = [[[HotController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        
-
-        case HomeMenuTypeSingFreeCoins: {
-            PPDebug(@"HomeMenuTypeSingFreeCoins");
-        }
-            break;
-
-        case HomeMenuTypeDrawBBS:{
-            BBSBoardController *bbs = [[BBSBoardController alloc] init];
-            [self.navigationController pushViewController:bbs animated:YES];
-            [bbs release];
-        }
-            break;
-            
-        default:
-            break;
-    }
+    SingController *vc = [[[SingController alloc] init] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];    
 }
 
-- (void)homeBottomMenuPanel:(HomeBottomMenuPanel *)bottomMenuPanel
-               didClickMenu:(HomeMenuView *)menu
-                   menuType:(HomeMenuType)type
+- (void)enterGuessSing
 {
-    if (![self isRegistered]) {
-        [self toRegister];
-        return;
-    }
+    [[DrawDataService defaultService] matchOpus:self];    
+}
+
+// it's strange to define them here, should be moved to model
+#define SING_MY_OPUS_DB     @"sing_my_opus.db"
+#define SING_FAVORITE_DB    @"sing_favorite.db"
+#define SING_DRAFT_DB       @"sing_draft.db"
+
+- (void)enterSingDraft
+{
+    OpusManageController* vc = [[[OpusManageController alloc] initWithClass:NSClassFromString(@"SingOpus")
+                                                                     selfDb:SING_MY_OPUS_DB
+                                                                 favoriteDb:SING_FAVORITE_DB
+                                                                    draftDb:SING_DRAFT_DB] autorelease];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark Panel delegate
+
+- (NSArray*)noCheckedMenuTypes
+{
+    NSArray *noCheckedTypes = @[@(HomeMenuTypeSing),
+                                @(HomeMenuTypeDrawContest),
+                                @(HomeMenuTypeDrawBBS),
+                                @(HomeMenuTypeDrawRank),
+                                @(HomeMenuTypeGuessSing),
+                                @(HomeMenuTypeDrawMore),
+                                ];
+    
+    return noCheckedTypes;
+}
+
+- (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
+                   menu:(HomeMenuView *)menu
+               menuType:(HomeMenuType)type
+{
+    
+    BOOL isProcessed = YES;
     
     switch (type) {
-        case HomeMenuTypeDrawTimeline:{
-            PPDebug(@"HomeMenuTypeSingTimeline");
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeMenu:HOME_ACTION_TIMELINE];
-            
-            [MyFeedController enterControllerWithIndex:0 fromController:self animated:YES];
-            [[StatisticManager defaultManager] setTimelineOpusCount:0];
-        }
+
+        case HomeMenuTypeSing:
+        {
+            [self enterSing];
             break;
-            
-        case HomeMenuTypeSingDraft:{
-            OpusManageController* vc = [[[OpusManageController alloc] initWithClass:NSClassFromString(@"SingOpus") selfDb:SING_MY_OPUS_DB favoriteDb:SING_FAVORITE_DB draftDb:SING_DRAFT_DB] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
         }
-            break;
             
-        case HomeMenuTypeSingShop:{
-            PPDebug(@"HomeMenuTypeSingShop");
-            StoreController *vc = [[[StoreController alloc] init] autorelease];
-            [self.navigationController pushViewController:vc animated:YES];
+        case HomeMenuTypeGuessSing:
+        {
+            [self enterGuessSing];
+            break;
         }
-            break;
-            
-        case HomeMenuTypeDrawMessage:{
-            ChatListController *controller = [[ChatListController alloc] init];
-            [self.navigationController pushViewController:controller animated:YES];
-            [controller release];
-        }
-            break;
-            
-        case HomeMenuTypeSingSetting:{
-            UserSettingController *settings = [[UserSettingController alloc] init];
-            [self.navigationController pushViewController:settings animated:YES];
-            [settings release];
-        }
-            break;
-            
-        case HomeMenuTypeDrawFriend:{
-            [[AnalyticsManager sharedAnalyticsManager] reportClickHomeElements:HOME_BOTTOM_FRIEND];
-            
-            FriendController *mfc = [[FriendController alloc] init];
-            if ([[StatisticManager defaultManager] fanCount] > 0) {
-                [mfc setDefaultTabIndex:FriendTabIndexFan];
-            }
-            [self.navigationController pushViewController:mfc animated:YES];
-            [mfc release];
-        }
-            break;
             
         default:
+        {
+            isProcessed = NO;
             break;
+        }
     }
+    
+    return isProcessed;
+}
+
+- (BOOL)handleClickBottomMenu:(HomeBottomMenuPanel *)bottomMenuPanel
+                         menu:(HomeMenuView *)menu
+                     menuType:(HomeMenuType)type
+{
+    BOOL isProcessed = YES;
+    
+    switch (type) {
+            
+        case HomeMenuTypeSingDraft:
+        {
+            [self enterSingDraft];
+            break;
+        }
+                        
+        default:
+        {
+            isProcessed = NO;
+            break;
+        }
+    }
+    
+    return isProcessed;
 }
 
 - (void)homeHeaderPanel:(HomeHeaderPanel *)headerPanel didClickFriendButton:(UIButton *)button
 {
-    FriendController *controller = [[FriendController alloc] init];
-    if ([[StatisticManager defaultManager] fanCount] > 0) {
-        [controller setDefaultTabIndex:FriendTabIndexFan];
-    }
-    [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
+    [self enterFriend];
 }
 
 - (void)dealloc {
@@ -187,8 +155,8 @@
     [super viewDidUnload];
 }
 
-- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode{
-    
+- (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
+{
     [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
 }
 
