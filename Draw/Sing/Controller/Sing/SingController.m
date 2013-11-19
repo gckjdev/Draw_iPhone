@@ -92,6 +92,7 @@ enum{
     [_submitButton release];
     [_imageButton release];
     [_reviewButton release];
+    [_lyricBgImageView release];
     [super dealloc];
 }
 
@@ -180,6 +181,8 @@ enum{
         [((CommonTitleView*)[bself.view viewWithTag:TAG_TITLE_VIEW]) setTitle:bself.singOpus.name];
         bself.lyricTextView.text = bself.singOpus.pbOpus.sing.song.lyric;
         bself.lyricTextView.hidden = NO;
+        self.lyricBgImageView.hidden = NO;
+
         bself.opusDescLabel.hidden = YES;
         bself.imageButton.hidden = YES;
         bself.opusImageView.hidden = YES;
@@ -192,6 +195,7 @@ enum{
         
         [bself updateDescLabelInfo:bself.singOpus.pbOpus.desc];
         bself.lyricTextView.hidden = YES;
+        self.lyricBgImageView.hidden = YES;
         bself.opusDescLabel.hidden = NO;
         bself.imageButton.hidden = NO;
         bself.opusImageView.hidden = NO;
@@ -210,14 +214,19 @@ enum{
 
 - (void)initOpusDescLabel{
     
-    PBLabelInfo *labelInfo = self.singOpus.pbOpus.descLabelInfo;
+    PBLabelInfo *labelInfo = self.singOpus.pbOpus.descLabelInfo;    
+    CGRect rect;
+    if ([labelInfo hasFrame]) {
+        rect = CGRectMake(labelInfo.frame.x,
+                          labelInfo.frame.y,
+                          labelInfo.frame.width,
+                          labelInfo.frame.height);
+    }else{
+        rect = CGRectMake(self.opusImageView.frame.size.width * 0.1, self.opusImageView.frame.size.height * 0.5, 0, 0);
+    }
+
     
-    CGRect rect = CGRectMake(labelInfo.frame.x,
-                             labelInfo.frame.y,
-                             labelInfo.frame.width,
-                             labelInfo.frame.height);
-    
-//    CGRect rect = CGRectMake(self.opusImageView.frame.size.width * 0.1, self.opusImageView.frame.size.height * 0.7, 0, 0);
+
     
     self.opusDescLabel = [[[StrokeLabel alloc] initWithFrame:rect] autorelease];
     self.opusDescLabel.numberOfLines = 0;
@@ -312,10 +321,14 @@ enum{
     self.lyricTextView.text = self.singOpus.pbOpus.sing.song.lyric;
     self.lyricTextView.hidden = YES;
     self.lyricTextView.textColor = COLOR_BROWN;
-    [self.lyricTextView.layer setCornerRadius:(ISIPAD ? 75 : 35)];
-    [self.lyricTextView.layer setMasksToBounds:YES];
-    [self.lyricTextView.layer setBorderWidth:(ISIPAD ? 8 : 4)];
-    [self.lyricTextView.layer setBorderColor:[COLOR_RED CGColor]];
+    
+    
+    [self.lyricBgImageView.layer setCornerRadius:(ISIPAD ? 75 : 35)];
+    [self.lyricBgImageView.layer setMasksToBounds:YES];
+    [self.lyricBgImageView.layer setBorderWidth:(ISIPAD ? 8 : 4)];
+    [self.lyricBgImageView.layer setBorderColor:[COLOR_RED CGColor]];
+    self.lyricBgImageView.hidden = YES;
+
     
     [self.lyricTextView addTapGuestureWithTarget:self selector:@selector(showImageAndDesc)];
 }
@@ -323,6 +336,7 @@ enum{
 - (IBAction)showImageAndDesc{
     
     self.lyricTextView.hidden = YES;
+    self.lyricBgImageView.hidden = YES;
     self.opusDescLabel.hidden = NO;
     self.imageButton.hidden = NO;
     self.opusImageView.hidden = NO;
@@ -438,6 +452,7 @@ enum{
     [self setSubmitButton:nil];
     [self setImageButton:nil];
     [self setReviewButton:nil];
+    [self setLyricBgImageView:nil];
     [super viewDidUnload];
 }
 
@@ -457,7 +472,8 @@ enum{
 }
 
 - (void)recorder:(VoiceRecorder *)recorder recordTime:(CGFloat)recordTime{
-    NSTimeInterval leftTime =  recorder.duration -  recordTime;
+//    NSTimeInterval leftTime =  recorder.duration -  recordTime;
+    NSTimeInterval leftTime = recordTime;
     [self updateUITime:@(leftTime)];
 }
 
@@ -932,6 +948,7 @@ enum{
 - (IBAction)clickReviewButton:(UIButton *)button {
 
     self.lyricTextView.hidden = !self.lyricTextView.hidden;
+    self.lyricBgImageView.hidden = !self.lyricBgImageView.hidden;
     self.opusDescLabel.hidden = !self.opusDescLabel.hidden;
     self.imageButton.hidden = !self.imageButton.hidden;
     self.opusImageView.hidden = !self.opusImageView.hidden;

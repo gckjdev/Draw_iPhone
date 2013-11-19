@@ -27,6 +27,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *pauseImageView;
 
 @property (retain, nonatomic) IBOutlet UITextView *lyricTextView;
+@property (retain, nonatomic) IBOutlet UIImageView *lyricBgImageView;
 
 @property (retain, nonatomic) IBOutlet UIImageView *opusImageView;
 @property (retain, nonatomic) IBOutlet StrokeLabel *opusDescLabel;

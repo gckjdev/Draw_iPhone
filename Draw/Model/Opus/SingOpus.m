@@ -239,14 +239,16 @@ enum {
     
     PBLabelInfo_Builder *labelInfoBuilder = [[[PBLabelInfo_Builder alloc] init] autorelease];
     
-    PBRect_Builder *rectBuilder = [[[PBRect_Builder alloc] init] autorelease];
-    [rectBuilder setX:frame.origin.x];
-    [rectBuilder setY:frame.origin.y];
-    [rectBuilder setWidth:frame.size.width];
-    [rectBuilder setHeight:frame.size.height];
-    PBRect *pbRect = [rectBuilder build];
+    if (!CGRectEqualToRect(frame, CGRectZero)) {
+        PBRect_Builder *rectBuilder = [[[PBRect_Builder alloc] init] autorelease];
+        [rectBuilder setX:frame.origin.x];
+        [rectBuilder setY:frame.origin.y];
+        [rectBuilder setWidth:frame.size.width];
+        [rectBuilder setHeight:frame.size.height];
+        PBRect *pbRect = [rectBuilder build];
+        [labelInfoBuilder setFrame:pbRect];
+    }
     
-    [labelInfoBuilder setFrame:pbRect];
     [labelInfoBuilder setTextColor:textColor];
     [labelInfoBuilder setTextFont:textFont];
     [labelInfoBuilder setStyle:0];
