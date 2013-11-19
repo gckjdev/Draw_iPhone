@@ -76,12 +76,11 @@
 
 - (NSArray*)noCheckedMenuTypes
 {
-    // TODO need to check for sing
-    NSArray *noCheckedTypes = @[@(HomeMenuTypeDrawDraw),
+    NSArray *noCheckedTypes = @[@(HomeMenuTypeSing),
                                 @(HomeMenuTypeDrawContest),
                                 @(HomeMenuTypeDrawBBS),
                                 @(HomeMenuTypeDrawRank),
-                                @(HomeMenuTypeDrawGuess),
+                                @(HomeMenuTypeGuessSing),
                                 @(HomeMenuTypeDrawMore),
                                 ];
     
