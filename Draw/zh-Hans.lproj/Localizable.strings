@@ -628,7 +628,7 @@
 "kCreateDescNoName" = "创作了一个作品";
 
 "kGuessRightDesc" = "猜对了%@画的 [%@]";
-"kGuessedSomeOneOpus" = "猜对了%@创作的[%@]";
+"kGuessedSomeOneOpus" = "猜对了%@创作的 [%@]";
 "kTryGuessDesc" = "尝试去猜了%@画的 [%@]";
 "kTryToGuessSomeoneOpus" = "尝试去猜了%@创作的作品 [%@]";
 
@@ -764,8 +764,8 @@
 "kOpusDelete" = "不好意思，该作品已经被删除了。";
 
 "kGuessUserDraw_MyDraw" = "正在猜我的作品";
-"kGuessRightDesc_MyDraw" = "猜对了我创作的 [%@]。";
-"kTryGuessDesc_MyDraw" = "尝试去猜了我创作的 [%@]。";
+"kGuessRightDesc_MyDraw" = "猜对了我创作的 [%@]";
+"kTryGuessDesc_MyDraw" = "尝试去猜了我创作的 [%@]";
 "kGuessRightDescNoWord_MyDraw" = "猜对了我的作品";
 "kTryGuessDescNoWord_MyDraw" = "尝试去猜了我的作品";
 "kFeedDetail_Me" = "%@的作品";

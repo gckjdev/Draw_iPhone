@@ -45,4 +45,26 @@
 
 - (void)enterFriend;
 
+
+// the follow is to be implemented by sub class
+
+- (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
+                   menu:(HomeMenuView *)menu
+               menuType:(HomeMenuType)type;
+
+- (BOOL)handleClickBottomMenu:(HomeBottomMenuPanel *)bottomMenuPanel
+                         menu:(HomeMenuView *)menu
+                     menuType:(HomeMenuType)type;
+
+- (int*)getMainMenuList;
+- (int *)getBottomMenuList;
+- (NSArray*)noCheckedMenuTypes;
+
+- (NSDictionary*)defaultMenuTitleDictionary;
+- (NSDictionary*)defaultMenuImageDictionary;
+
+- (NSDictionary*)menuTitleDictionary;
+- (NSDictionary*)menuImageDictionary;
+
+
 @end

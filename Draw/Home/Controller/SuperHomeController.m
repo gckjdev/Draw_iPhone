@@ -35,6 +35,8 @@
 #import "FriendController.h"
 #import "TaskController.h"
 
+static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
+
 @interface SuperHomeController ()
 {
     
@@ -704,6 +706,60 @@
     [menu updateBadge:0];
 }
 
+- (int*)getMainMenuList
+{
+    // to be implemented by sub class
+    return NULL;
+}
 
+- (int *)getBottomMenuList
+{
+    // to be implemented by sub class
+    return NULL;    
+}
+
+- (NSDictionary*)menuTitleDictionary
+{
+    // to be implemented by sub class
+    return nil;
+}
+
+- (NSDictionary*)menuImageDictionary
+{
+    // to be implemented by sub class
+    return nil;
+}
+
+- (NSDictionary*)defaultMenuTitleDictionary
+{
+    static dispatch_once_t deafaultMenuOnceToken;
+    dispatch_once(&deafaultMenuOnceToken, ^{
+        DEFAULT_MENU_TITLE_DICT = @{
+                                 @(HomeMenuTypeDrawContest) : NSLS(@"kHomeMenuTypeDrawContest"),
+                                 @(HomeMenuTypeTask) : NSLS(@"kHomeMenuTypeTask"),
+                                 @(HomeMenuTypeDrawBBS) : NSLS(@"kHomeMenuTypeDrawBBS"),
+                                 @(HomeMenuTypeDrawBigShop) : NSLS(@"kHomeMenuTypeDrawShop"),
+                                 @(HomeMenuTypeDrawShop) : NSLS(@"kHomeMenuTypeDrawShop"),
+                                 @(HomeMenuTypeDrawPainter) : NSLS(@"kPainter"),
+                                 @(HomeMenuTypeDrawPhoto) : NSLS(@"kGallery"),
+                                 @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
+                                 @(HomeMenuTypeDrawCharge) : NSLS(@"kChargeTitle"),
+                                 @(HomeMenuTypeDrawFreeCoins) : NSLS(@"kFreeIngots"),
+                                 @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
+                                 @(HomeMenuTypeDrawMore) : NSLS(@"kHomeMenuTypeDrawMore"),
+                                 };
+        
+        [DEFAULT_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
+
+    });
+    
+    return DEFAULT_MENU_TITLE_DICT;
+}
+
+
+- (NSDictionary*)defaultMenuImageDictionary
+{
+    return nil;
+}
 
 @end

@@ -25,6 +25,8 @@
 #import "DrawDataService.h"
 #import "OfflineGuessDrawController.h"
 
+static NSDictionary* SING_MENU_TITLE_DICT = nil;
+
 @interface SingHomeController ()<DrawDataServiceDelegate>
 
 @end
@@ -159,6 +161,82 @@
 - (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
 {
     [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+}
+
+int *getSingMainMenuTypeListWithFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeSing,
+        HomeMenuTypeTask,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeGuessSing,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getSingMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeSing,
+        HomeMenuTypeTask,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeGuessSing,
+        HomeMenuTypeEnd,        
+    };
+    return list;
+}
+
+int *getSingBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDrawTimeline,
+        HomeMenuTypeSingDraft,
+        HomeMenuTypeDrawFriend,
+        HomeMenuTypeDrawMessage,
+        HomeMenuTypeDrawShop,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+
+- (int *)getMainMenuList
+{
+    return ([PPConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
+}
+
+- (int *)getBottomMenuList
+{
+    return getSingBottomMenuTypeList();
+}
+
+
+- (NSDictionary*)menuTitleDictionary
+{    
+    static dispatch_once_t singMenuTitleOnceToken;
+    dispatch_once(&singMenuTitleOnceToken, ^{
+        SING_MENU_TITLE_DICT = @{
+                                 @(HomeMenuTypeSing) : NSLS(@"kSing"),
+                                 @(HomeMenuTypeGuessSing) : NSLS(@"kGuessSing"),
+                                 @(HomeMenuTypeDrawRank) : NSLS(@"kSingTop"),
+                                 };
+        
+        [SING_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return SING_MENU_TITLE_DICT;
+}
+
+- (NSDictionary*)menuImageDictionary
+{
+    // to be implemented by sub class
+    return nil;
 }
 
 

@@ -97,6 +97,8 @@
 #import "CreateGroupController.h"
 #import "GroupHomeController.h"
 
+static NSDictionary* DRAW_MENU_TITLE_DICT = nil;
+
 @interface HomeController()<GuessServiceDelegate>
 {
 
@@ -985,5 +987,97 @@
 //    [self updateAllBadge];
 //    
 //}
+
+int *getDrawMainMenuTypeListHasNewContest()
+{
+    int static list[] = {
+        HomeMenuTypeDrawDraw,
+        HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawGuess,
+        
+        HomeMenuTypeDrawBigShop,
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawPhoto,
+        
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+
+int *getDrawMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeDrawDraw,
+        HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawGuess,
+        
+        HomeMenuTypeDrawBigShop,
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawPhoto,
+        
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+int *getDrawMainMenuTypeList()
+{
+    if ([PPConfigManager freeCoinsEnabled]) {
+        return getDrawMainMenuTypeListHasNewContest();
+    } else {
+        return getDrawMainMenuTypeListWithoutFreeCoins();
+    }
+}
+
+
+int *getDrawBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDrawTimeline,
+        HomeMenuTypeDrawOpus,
+        HomeMenuTypeDrawFriend,
+        HomeMenuTypeDrawMessage,
+        HomeMenuTypeDrawShop,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+- (int *)getMainMenuList
+{
+    return getDrawMainMenuTypeList();
+}
+
+- (int *)getBottomMenuList
+{
+    return getDrawBottomMenuTypeList();
+}
+
+- (NSDictionary*)menuTitleDictionary
+{
+    static dispatch_once_t drawMenuTitleOnceToken;
+    dispatch_once(&drawMenuTitleOnceToken, ^{
+        DRAW_MENU_TITLE_DICT = @{
+                                 @(HomeMenuTypeDrawDraw) : NSLS(@"kHomeMenuTypeDrawDraw"),
+                                 @(HomeMenuTypeDrawGuess) : NSLS(@"kHomeMenuTypeDrawGuess"),
+                                 @(HomeMenuTypeDrawGame) : NSLS(@"kHomeMenuTypeDrawGame"),
+                                 @(HomeMenuTypeDrawRank) : NSLS(@"kHomeMenuTypeDrawRank"),
+                                 };
+        
+        [DRAW_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
+    });
+    
+    return DRAW_MENU_TITLE_DICT;
+}
 
 @end
