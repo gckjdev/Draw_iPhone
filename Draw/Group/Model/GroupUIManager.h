@@ -22,14 +22,8 @@ typedef enum {
 + (UIImage *)groupDetailBoundHeaderImageForStyle:(ColorStyle)style;
 + (UIImage *)groupDetailBoundFooterImageForStyle:(ColorStyle)style;
 
-
-+ (UIImage *)groupDetailRedBoundMidImage;
-+ (UIImage *)groupDetailRedBoundHeaderImage;
-+ (UIImage *)groupDetailRedBoundFooterImage;
-
-+ (UIImage *)groupDetailYellowBoundMidImage;
-+ (UIImage *)groupDetailYellowBoundHeaderImage;
-+ (UIImage *)groupDetailYellowBoundFooterImage;
++ (UIImage *)followedGroupImage;
++ (UIImage *)unfollowingGroupImage;
 
 
 @end

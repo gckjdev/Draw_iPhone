@@ -191,6 +191,8 @@
     [self.view setBackgroundColor:COLOR_GRAY];
     SET_VIEW_BG(self.view);
     [self.noDataTipLabl removeFromSuperview];
+    [self.titleView setTarget:self];
+    [self.titleView setBackButtonSelector:@selector(clickBack:)];
 }
 
 

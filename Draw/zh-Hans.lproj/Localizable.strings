@@ -923,6 +923,7 @@
 "kParsingData" = "解析数据中，请耐心等待...";
 
 "kLatestFeed" = "最新";
+"kLatest" = "最新";
 
 "kShareToWeiXinTitle" = "分享到微信";
 "kWXShareImageName" = "%@美图";
@@ -938,7 +939,6 @@
 "kCommitOpusTitle" = "提交作品";
 "kCommitOpusMessage" = "你确定要提交作品吗？";
 
-"kLatestFeed" = "最新";
 "kCustomMusic" = "自定义音乐";
 
 "kCommentTimes" = "评论 (%d)";

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BBSModelExt.h"
 
+@class PBGroup;
 @protocol BBSPostActionHeaderViewDelegate <NSObject>
 
 @optional
@@ -34,4 +35,7 @@
 + (CGFloat)getViewHeight;
 + (NSString *)getViewIdentifier;
 - (void)updateViewWithPost:(PBBBSPost *)post;
+- (void)updateleftName:(NSString *)leftName
+             rightName:(NSString *)rightName;
+
 @end

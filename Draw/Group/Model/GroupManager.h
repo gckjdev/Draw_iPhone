@@ -8,8 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+
+
 @interface GroupManager : NSObject
+@property(nonatomic, retain)NSMutableArray *followedGroupIds;
+
++ (id)defaultManager;
+
 + (NSInteger)capacityForLevel:(NSInteger)level;
 + (NSInteger)monthlyFeeForLevel:(NSInteger)level;
-//+ (NSInteger)creationFeeForLevel:(NSInteger)level;
+
+
+- (BOOL)followedGroup:(NSString *)groupId;
+
 @end
+
