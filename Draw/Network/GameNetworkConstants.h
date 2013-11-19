@@ -638,6 +638,9 @@
 #define METHOD_GET_USER_WALL_LIST @"getWallList"
 #define METHOD_GET_USER_WALL @"getWall"
 
+#define METHOD_GET_CONTEST_TOP_OPUS @"gcto"
+#define METHOD_CREATE_BBS_ACTION @"cba"
+
 #define PARA_WALL_TYPE @"wallType"
 #define PARA_WALL_ID @"wall_id"
 
@@ -648,7 +651,7 @@
 #define PARA_RANKTYPES @"rts"
 #define PARA_RANVALUES @"rvs"
 
-#define METHOD_GET_CONTEST_TOP_OPUS @"gcto"
+
 #define PARA_ACTIONID @"aid"
 #define PARA_THUMB_IMAGE @"timg"
 #define PARA_DRAW_THUMB @"dti"
@@ -657,7 +660,9 @@
 #define PARA_POST_UID @"puid"
 #define PARA_BRIEF_TEXT @"btxt"
 #define PARA_SOURCE_ACTION_TYPE @"sat"
-#define METHOD_CREATE_BBS_ACTION @"cba"
+
+#define PARA_TOPIC_MODE @"mode"
+#define CONST_GROUP_MODE @"group"
 
 
 //group
