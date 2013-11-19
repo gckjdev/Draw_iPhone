@@ -74,6 +74,7 @@ typedef enum{
     [self.titleView setTitle:NSLS(@"kGroup")];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
+//    [self.titleView setTransparentStyle];
     [self initTabButtons];
     [self clickTabButton:[self defaultTabButton]];
 }
@@ -104,7 +105,7 @@ typedef enum{
 
 - (GroupTab)defaultGroupTab
 {
-    return GroupTabGroupFame;
+    return GroupTabGroupBalance;
 }
 
 - (void)clickTabButton:(id)sender

@@ -320,9 +320,12 @@
 - (void)setTransparentStyle
 {
     [self.bgImageView setHidden:YES];
+    [self setBackgroundColor:[UIColor clearColor]];
+    [self.titleLabel setTextColor:COLOR_BROWN];
     //TODO set icon
     [self.backButton setBackgroundImage:UIThemeImageNamed(@"navigation_back_green@2x.png")
                                forState:UIControlStateNormal];
+    
 }
 @end
 
