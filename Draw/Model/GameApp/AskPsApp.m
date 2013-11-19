@@ -36,6 +36,12 @@
     return [[[AskPsHomeController alloc] init] autorelease];
 }
 
+- (Class)homeControllerClass
+{
+    return [AskPsHomeController class];
+}
+
+
 - (NSString*)background
 {
     return DRAW_BACKGROUND;

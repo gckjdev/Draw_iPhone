@@ -1053,17 +1053,17 @@ int *getDrawBottomMenuTypeList()
     return list;
 }
 
-- (int *)getMainMenuList
++ (int *)getMainMenuList
 {
     return getDrawMainMenuTypeList();
 }
 
-- (int *)getBottomMenuList
++ (int *)getBottomMenuList
 {
     return getDrawBottomMenuTypeList();
 }
 
-- (NSDictionary*)menuTitleDictionary
++ (NSDictionary*)menuTitleDictionary
 {
     static dispatch_once_t drawMenuTitleOnceToken;
     dispatch_once(&drawMenuTitleOnceToken, ^{

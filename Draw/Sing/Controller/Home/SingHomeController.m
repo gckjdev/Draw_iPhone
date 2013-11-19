@@ -205,18 +205,18 @@ int *getSingBottomMenuTypeList()
 }
 
 
-- (int *)getMainMenuList
++ (int *)getMainMenuList
 {
     return ([PPConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
 }
 
-- (int *)getBottomMenuList
++ (int *)getBottomMenuList
 {
     return getSingBottomMenuTypeList();
 }
 
 
-- (NSDictionary*)menuTitleDictionary
++ (NSDictionary*)menuTitleDictionary
 {    
     static dispatch_once_t singMenuTitleOnceToken;
     dispatch_once(&singMenuTitleOnceToken, ^{
@@ -233,7 +233,7 @@ int *getSingBottomMenuTypeList()
     return SING_MENU_TITLE_DICT;
 }
 
-- (NSDictionary*)menuImageDictionary
++ (NSDictionary*)menuImageDictionary
 {
     // to be implemented by sub class
     return nil;

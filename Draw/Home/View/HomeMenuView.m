@@ -13,7 +13,6 @@
 #import "StatisticManager.h"
 #import "UIButton+Sound.h"
 #import "StableView.h"
-#import "DrawAppDelegate.h"
 
 @implementation HomeMenuView
 @synthesize button = _button;
@@ -55,7 +54,7 @@
 
 + (NSString *)titleForType:(HomeMenuType)type
 {
-    UIViewController* vc = ((DrawAppDelegate*)[UIApplication sharedApplication].delegate).homeController;
+    Class vc = [GameApp homeControllerClass];
     if ([vc respondsToSelector:@selector(menuTitleDictionary)] &&
         [vc respondsToSelector:@selector(defaultMenuTitleDictionary)]){
 
@@ -632,13 +631,13 @@ int *getBottomMenuTypeList()
 //    }
 //    return NULL;
 
-    UIViewController* vc = ((DrawAppDelegate*)[UIApplication sharedApplication].delegate).homeController;
-    if ([vc respondsToSelector:@selector(getBottomMenuList)]){
-        id retList = [vc performSelector:@selector(getBottomMenuList) withObject:nil];
+    Class class = [GameApp homeControllerClass];
+    if ([class respondsToSelector:@selector(getBottomMenuList)]){
+        id retList = [class performSelector:@selector(getBottomMenuList) withObject:nil];
         return (int*)retList;
     }
     else{
-        PPDebug(@"<getMainMenuTypeList> but getBottomMenuList not implemented in home controller!");
+        PPDebug(@"<getMainMenuTypeList> but getBottomMenuList not implemented in home controller class!");
         return NULL;
     }
     
@@ -656,9 +655,9 @@ int *getMainMenuTypeList()
 //        return getSingMainMenuTypeList();
 //    }
     
-    UIViewController* vc = ((DrawAppDelegate*)[UIApplication sharedApplication].delegate).homeController;
-    if ([vc respondsToSelector:@selector(getMainMenuList)]){
-        id retList = [vc performSelector:@selector(getMainMenuList) withObject:nil];
+    Class class = [GameApp homeControllerClass];    
+    if ([class respondsToSelector:@selector(getMainMenuList)]){
+        id retList = [class performSelector:@selector(getMainMenuList) withObject:nil];
         return (int*)retList;
     }
     else{

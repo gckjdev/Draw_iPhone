@@ -706,31 +706,31 @@ static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
     [menu updateBadge:0];
 }
 
-- (int*)getMainMenuList
++ (int*)getMainMenuList
 {
     // to be implemented by sub class
     return NULL;
 }
 
-- (int *)getBottomMenuList
++ (int *)getBottomMenuList
 {
     // to be implemented by sub class
     return NULL;    
 }
 
-- (NSDictionary*)menuTitleDictionary
++ (NSDictionary*)menuTitleDictionary
 {
     // to be implemented by sub class
     return nil;
 }
 
-- (NSDictionary*)menuImageDictionary
++ (NSDictionary*)menuImageDictionary
 {
     // to be implemented by sub class
     return nil;
 }
 
-- (NSDictionary*)defaultMenuTitleDictionary
++ (NSDictionary*)defaultMenuTitleDictionary
 {
     static dispatch_once_t deafaultMenuOnceToken;
     dispatch_once(&deafaultMenuOnceToken, ^{
@@ -757,7 +757,7 @@ static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
 }
 
 
-- (NSDictionary*)defaultMenuImageDictionary
++ (NSDictionary*)defaultMenuImageDictionary
 {
     return nil;
 }
