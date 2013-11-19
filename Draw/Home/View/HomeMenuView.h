@@ -68,17 +68,17 @@ typedef enum{
     // sing main menu
     HomeMenuTypeSing,
     HomeMenuTypeGuessSing,          // TODO check whether this is needed
-    HomeMenuTypeSingTop,
+//    HomeMenuTypeSingTop,
 //    HomeMenuTypeSingBBS,
-    HomeMenuTypeSingFreeCoins,
+//    HomeMenuTypeSingFreeCoins,
 //    HomeMenuTypeSingContest,
     
     // sing bottom menu
 //    HomeMenuTypeSingTimeline,
     HomeMenuTypeSingDraft,
-    HomeMenuTypeSingShop,
+//    HomeMenuTypeSingShop,
 //    HomeMenuTypeSingChat,
-    HomeMenuTypeSingSetting,
+//    HomeMenuTypeSingSetting,
 //    HomeMenuTypeSingFriend,
     
     //Learn Draw Bottom Menu

@@ -43,4 +43,6 @@
 - (void)homeMainMenuPanel:(HomeMainMenuPanel *)mainMenuPanel
        didClickAvatarView:(AvatarView *)avatarView;
 
+- (void)enterFriend;
+
 @end
