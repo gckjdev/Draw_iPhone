@@ -167,7 +167,7 @@ enum{
      
     _recordLimitTime = [PPConfigManager getRecordLimitTime];
 
-    if (_isDraft) {
+    if ([self.singOpus hasFileForPlay]) {
         [self prepareToPlay];
         [self setState:StateReadyPlay];
     }else{
