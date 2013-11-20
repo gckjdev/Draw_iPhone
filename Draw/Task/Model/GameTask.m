@@ -10,4 +10,11 @@
 
 @implementation GameTask
 
+- (void)dealloc
+{
+    PPRelease(_desc);
+    PPRelease(_displayName);
+    [super dealloc];
+}
+
 @end
