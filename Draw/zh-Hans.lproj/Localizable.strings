@@ -954,7 +954,7 @@
 
 "kNoComments" = "咦！还没人评论，赶紧抢沙发！";
 "kNoGuesses" = "咦！还没人猜，赶紧抢沙发！";
-"kNoFlowers" = "画得很好？送TA一朵花吧。";
+"kNoFlowers" = "喜欢吗？那就送TA一朵花吧！";
 "kNoTomatos" = "画得很烂？请尽情扔番茄。";
 
 "kPickPenColor" = "选择画笔颜色";
@@ -1409,7 +1409,7 @@
 "kHim" = "他";
 "kHer" = "她";
 "kDetailDrawTo" = "画给%@";
-"kDetailGiftTo" = "送给%@";
+"kDetailGiftTo" = "唱给%@";
 
 "kDetailFollower" = "关注";
 "kDetailFollow" = "关注%@";
