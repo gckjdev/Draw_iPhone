@@ -47,9 +47,15 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     if (self = [super initWithFrame:originFrame]) {
         
         UIImageView *iv = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        [iv setImageWithURL:[NSURL URLWithString:feed.drawImageUrl]];
         [iv setContentMode:UIViewContentModeScaleAspectFill];
         [iv setClipsToBounds:YES];
+        
+        UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        [indicator updateCenterX:iv.frame.size.width/2];
+        [indicator updateCenterY:iv.frame.size.height/2];
+        [indicator startAnimating];
+        [iv addSubview:indicator];
+        
         [self addSubview:iv];
         
         StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -57,7 +63,6 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         l.textAlignment = NSTextAlignmentCenter;
         l.tag = TAG_LABEL;
         l.backgroundColor = [UIColor clearColor];
-        [self addSubview:l];
         
         // update lable info
         PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
@@ -102,6 +107,14 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         // update origin
         [self updateOriginX:frame.origin.x];
         [self updateOriginY:frame.origin.y];
+        
+        [iv setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            [indicator stopAnimating];
+            [indicator removeFromSuperview];
+            if (image != nil) {
+                [self addSubview:l];
+            }
+        }];
     }
     
     return self;
