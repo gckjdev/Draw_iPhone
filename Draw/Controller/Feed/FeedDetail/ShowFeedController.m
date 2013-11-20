@@ -930,6 +930,10 @@ typedef enum{
 {
     [_audioPlayer stop];
     [self.feedScene didClickBackBtn:self];
+    
+    // clear delegate to avoid callback
+    self.drawCell.delegate = nil;
+    self.drawCellFullScreen.delegate = nil;
 }
 
 
@@ -1073,9 +1077,11 @@ typedef enum{
     
 }
 
-
 - (void)viewDidUnload
 {
+    self.drawCellFullScreen.delegate = nil;
+    self.drawCell.delegate = nil;
+    
     [self.feed setDrawData:nil];
     [self setFeed:nil];
     [self setDrawCell:nil];

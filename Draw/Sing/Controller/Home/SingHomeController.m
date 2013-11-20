@@ -170,11 +170,11 @@ static NSDictionary* SING_MENU_IMAGE_DICT = nil;
 - (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
 {
     [self hideActivity];
-    if (resultCode == 0){
+    if (resultCode == 0 && feed != nil){
         [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
     }
     else{
-        POSTMSG(NSLS(@"kFailMatchOpus"));
+        POSTMSG2(NSLS(@"kFailMatchOpus"), 2.5);
     }
 }
 
