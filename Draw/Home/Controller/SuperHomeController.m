@@ -34,6 +34,10 @@
 #import "ChatListController.h"
 #import "FriendController.h"
 #import "TaskController.h"
+#import "DrawImageManager.h"
+
+static NSDictionary* DEFAULT_MENU_TITLE_DICT = nil;
+static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 
 @interface SuperHomeController ()
 {
@@ -484,7 +488,9 @@
     if ([[UserManager defaultManager] hasXiaojiNumber] == NO && [[UserManager defaultManager] isOldUserWithoutXiaoji] == NO) {
         //#endif
         [mainPanel closeAnimated:NO completion:^(BOOL finished) {
-            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
+            [mainPanel moveMenuTypeToBottom:[[self class] homeDefaultMenuType]
+                                   Animated:NO
+                                 completion:NULL];
             [header openAnimated:NO completion:NULL];
             [footer hideAnimated:NO];
         }];
@@ -563,6 +569,8 @@
     [self.navigationController pushViewController:settings animated:YES];
     [settings release];
 }
+
+#pragma mark - menu methods
 
 - (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
                    menu:(HomeMenuView *)menu
@@ -704,6 +712,104 @@
     [menu updateBadge:0];
 }
 
++ (int*)getMainMenuList
+{
+    // to be implemented by sub class
+    return NULL;
+}
 
++ (int *)getBottomMenuList
+{
+    // to be implemented by sub class
+    return NULL;    
+}
+
++ (NSDictionary*)menuTitleDictionary
+{
+    // to be implemented by sub class
+    return nil;
+}
+
++ (NSDictionary*)menuImageDictionary
+{
+    // to be implemented by sub class
+    return nil;
+}
+
++ (NSDictionary*)defaultMenuTitleDictionary
+{
+    static dispatch_once_t deafaultMenuOnceToken;
+    dispatch_once(&deafaultMenuOnceToken, ^{
+        DEFAULT_MENU_TITLE_DICT = @{
+                                 @(HomeMenuTypeDrawContest) : NSLS(@"kHomeMenuTypeDrawContest"),
+                                 @(HomeMenuTypeTask) : NSLS(@"kHomeMenuTypeTask"),
+                                 @(HomeMenuTypeDrawBBS) : NSLS(@"kHomeMenuTypeDrawBBS"),
+                                 @(HomeMenuTypeDrawBigShop) : NSLS(@"kHomeMenuTypeDrawShop"),
+                                 @(HomeMenuTypeDrawShop) : NSLS(@"kHomeMenuTypeDrawShop"),
+                                 @(HomeMenuTypeDrawPainter) : NSLS(@"kPainter"),
+                                 @(HomeMenuTypeDrawPhoto) : NSLS(@"kGallery"),
+                                 @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
+                                 @(HomeMenuTypeDrawCharge) : NSLS(@"kChargeTitle"),
+                                 @(HomeMenuTypeDrawFreeCoins) : NSLS(@"kFreeIngots"),
+                                 @(HomeMenuTypeDrawApps) : NSLS(@"kMore_apps"),
+                                 @(HomeMenuTypeDrawMore) : NSLS(@"kHomeMenuTypeDrawMore"),
+                                 };
+        
+        [DEFAULT_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
+
+    });
+    
+    return DEFAULT_MENU_TITLE_DICT;
+}
+
+
++ (NSDictionary*)defaultMenuImageDictionary
+{
+    static dispatch_once_t defaultMenuImageOnceToken;
+    dispatch_once(&defaultMenuImageOnceToken, ^{
+        DrawImageManager *imageManager = [DrawImageManager defaultManager];
+        
+        DEFAULT_MENU_IMAGE_DICT = @{
+                                 // main
+                                 @(HomeMenuTypeDrawRank) : [imageManager drawHomeTop],
+                                 @(HomeMenuTypeDrawBBS) : [imageManager drawHomeBbs],
+                                 @(HomeMenuTypeTask) : [imageManager drawFreeCoins],
+
+                                 // draw
+                                 @(HomeMenuTypeDrawGame) : [imageManager drawHomeOnlineGuess],
+                                 @(HomeMenuTypeDrawContest) : [imageManager drawHomeContest],
+                                 @(HomeMenuTypeDrawDraw) : [imageManager drawHomeDraw],
+                                 @(HomeMenuTypeDrawGuess) : [imageManager drawHomeGuess],
+
+                                 @(HomeMenuTypeDrawMore) : [imageManager drawHomeMore],
+                                 @(HomeMenuTypeDrawBigShop) : [imageManager drawHomeBigShop],
+                                 @(HomeMenuTypeDrawPainter) : [imageManager drawHomePainter],
+                                 @(HomeMenuTypeDrawPhoto) : [imageManager userPhoto],
+                                 @(HomeMenuTypeDrawFreeCoins) : [imageManager drawFreeCoins],
+                                 
+                                 // bottom
+                                 @(HomeMenuTypeDrawTimeline) : [imageManager drawHomeTimeline],
+                                 @(HomeMenuTypeDrawHome) : [imageManager drawHomeHome],
+                                 @(HomeMenuTypeDrawOpus) : [imageManager drawHomeOpus],
+                                 @(HomeMenuTypeDrawMessage) : [imageManager drawHomeMessage],
+                                 @(HomeMenuTypeDrawFriend) : [imageManager drawHomeFriend],
+                                 @(HomeMenuTypeDrawMore) : [imageManager drawHomeMore],
+                                 @(HomeMenuTypeDrawMe) : [imageManager drawHomeMe],
+                                 @(HomeMenuTypeDrawSetting) : [imageManager drawHomeSetting],
+                                 @(HomeMenuTypeDrawShop) : [imageManager drawHomeShop],
+                                 
+                                 };
+        
+        [DEFAULT_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return DEFAULT_MENU_IMAGE_DICT;
+}
+
++ (int)homeDefaultMenuType
+{
+    return HomeMenuTypeDrawDraw;
+}
 
 @end

@@ -14,6 +14,7 @@
 #import "BalanceNotEnoughAlertView.h"
 #import "AccountManager.h"
 #import "Group.pb.h"
+#import "GroupDetailController.h"
 
 @interface CreateGroupController ()
 @property (retain, nonatomic) IBOutlet CommonTitleView *titleView;
@@ -70,6 +71,7 @@
             [DrawError postError:error];
         }else{
             //Enter Group Detail Controller
+            [GroupDetailController enterWithGroup:group fromController:self];
         }
     }];
 }

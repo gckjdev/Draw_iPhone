@@ -21,6 +21,12 @@
     return [[[SingHomeController alloc] init] autorelease];
 }
 
+- (Class)homeControllerClass
+{
+    return [SingHomeController class];
+}
+
+
 - (NSString*)umengId{
     return @"51b698e556240b357101820c";
 }

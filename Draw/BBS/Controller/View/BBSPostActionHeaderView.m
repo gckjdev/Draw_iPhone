@@ -8,6 +8,7 @@
 
 #import "BBSPostActionHeaderView.h"
 #import "BBSManager.h"
+#import "Group.pb.h"
 
 @implementation BBSPostActionHeaderView
 
@@ -96,6 +97,24 @@
         [_selectedButton setSelected:YES];
     }
 }
+
+- (void)updateleftName:(NSString *)leftName
+             rightName:(NSString *)rightName
+{
+    [self.comment setTitle:leftName
+                  forState:UIControlStateNormal];
+    [self.comment setTitle:leftName
+                  forState:UIControlStateSelected];
+    [self.support setTitle:rightName
+                  forState:UIControlStateNormal];
+    [self.support setTitle:rightName
+                  forState:UIControlStateSelected];
+    if (_selectedButton == nil) {
+        _selectedButton = self.comment;
+        [_selectedButton setSelected:YES];
+    }
+}
+
 
 - (void)dealloc {
     PPRelease(_support);

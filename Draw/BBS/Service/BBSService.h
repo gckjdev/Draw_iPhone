@@ -98,6 +98,9 @@ typedef void (^BBSOperatePostHandler) (NSInteger resultCode, PBBBSPost *editedPo
 
 + (id)defaultService;
 
+
++ (id)groupTopicService;
+
 #pragma mark - bbs board methods
 - (void)getBBSBoardList:(id<BBSServiceDelegate>) delegate;
 

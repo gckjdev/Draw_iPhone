@@ -7,8 +7,6 @@
 //
 
 #import "SingHomeController.h"
-//#import "SongSelectController.h"
-//#import "SingOpusDetailController.h"
 #import "SingGuessController.h"
 #import "OpusManageController.h"
 #import "UserDetailViewController.h"
@@ -24,6 +22,10 @@
 #import "AnalyticsManager.h"
 #import "DrawDataService.h"
 #import "OfflineGuessDrawController.h"
+#import "DrawImageManager.h"
+
+static NSDictionary* SING_MENU_TITLE_DICT = nil;
+static NSDictionary* SING_MENU_IMAGE_DICT = nil;
 
 @interface SingHomeController ()<DrawDataServiceDelegate>
 
@@ -53,8 +55,10 @@
     [self.navigationController pushViewController:vc animated:YES];    
 }
 
+
 - (void)enterGuessSing
 {
+    [self showActivityWithText:NSLS(@"kMatchingOpus")];
     [[DrawDataService defaultService] matchOpus:self];    
 }
 
@@ -158,7 +162,114 @@
 
 - (void)didMatchDraw:(DrawFeed *)feed result:(int)resultCode
 {
-    [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+    [self hideActivity];
+    if (resultCode == 0){
+        [OfflineGuessDrawController startOfflineGuess:feed fromController:self];
+    }
+    else{
+        POSTMSG(NSLS(@"kFailMatchOpus"));
+    }
+}
+
+#pragma mark - menu methods
+
+int *getSingMainMenuTypeListWithFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeSing,
+        HomeMenuTypeTask,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeGuessSing,
+        HomeMenuTypeEnd,
+    };
+    return list;
+}
+
+int *getSingMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeSing,
+        HomeMenuTypeTask,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeGuessSing,
+        HomeMenuTypeEnd,        
+    };
+    return list;
+}
+
+int *getSingBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDrawTimeline,
+        HomeMenuTypeSingDraft,
+        HomeMenuTypeDrawFriend,
+        HomeMenuTypeDrawMessage,
+        HomeMenuTypeDrawShop,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+
++ (int *)getMainMenuList
+{
+    return ([PPConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
+}
+
++ (int *)getBottomMenuList
+{
+    return getSingBottomMenuTypeList();
+}
+
+
++ (NSDictionary*)menuTitleDictionary
+{    
+    static dispatch_once_t singMenuTitleOnceToken;
+    dispatch_once(&singMenuTitleOnceToken, ^{
+        SING_MENU_TITLE_DICT = @{
+                                 @(HomeMenuTypeSing) : NSLS(@"kSing"),
+                                 @(HomeMenuTypeGuessSing) : NSLS(@"kGuessSing"),
+                                 @(HomeMenuTypeDrawRank) : NSLS(@"kSingTop"),
+                                 };
+        
+        [SING_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return SING_MENU_TITLE_DICT;
+}
+
++ (NSDictionary*)menuImageDictionary
+{
+    
+    static dispatch_once_t singMenuImageOnceToken;
+    dispatch_once(&singMenuImageOnceToken, ^{
+        DrawImageManager *imageManager = [DrawImageManager defaultManager];
+
+        SING_MENU_IMAGE_DICT = @{
+                                 // main
+                                 @(HomeMenuTypeSing) : [imageManager singHomeSing],
+                                 @(HomeMenuTypeGuessSing) : [imageManager singHomeGuess],
+                                 @(HomeMenuTypeDrawContest) : [imageManager singHomeContest],
+                                 
+                                 // bottom
+                                 @(HomeMenuTypeSingDraft) : [imageManager drawHomeOpus],
+                                 };
+        
+        [SING_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return SING_MENU_IMAGE_DICT;
+}
+
++ (int)homeDefaultMenuType
+{
+    return HomeMenuTypeSing;
 }
 
 

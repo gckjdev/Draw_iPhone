@@ -912,6 +912,7 @@
 //"kParsingData" = "Parsing data...";
 
 "kLatestFeed" = "Newest";
+"kLatest" = "Newest";
 
 "kShareToWeiXinTitle" = "Share to WeiXin";
 "kWXShareImageName" = "%@ Image";
@@ -1647,6 +1648,9 @@
 "kGuessContestModeTipsMessage" = "Ranking： %d\nPass：%d\nTotal time：%d";
 
 "kGuessGenuisFail" = "you guess wrong, can not continue in genius mode, will you restart";
+
+"kMatchingOpus" = "Matching...";
+"kFailMatchOpus" = "Fail to find one opus for you. Please check network and try again later.";
 
 
 "kHint" = "Hint";

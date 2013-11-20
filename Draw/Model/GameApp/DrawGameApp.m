@@ -437,6 +437,11 @@
     return [[[HomeController alloc] init] autorelease];
 }
 
+- (Class)homeControllerClass
+{
+    return [HomeController class];
+}
+
 - (BOOL)forceSaveDraft
 {
     return NO;

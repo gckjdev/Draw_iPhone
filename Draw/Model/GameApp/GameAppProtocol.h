@@ -145,6 +145,7 @@
 - (BOOL)canGift;
 
 - (PPViewController *)homeController;
+- (Class)homeControllerClass;
 
 - (BOOL)forceSaveDraft;
 

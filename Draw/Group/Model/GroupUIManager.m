@@ -35,7 +35,14 @@ if (ColorStyleYellow==style) {\
     
 }
 
++ (UIImage *)followedGroupImage
+{
+    return [UIImage imageNamed:@"group_footer_followed@2x.png"];
+}
 
-
++ (UIImage *)unfollowingGroupImage
+{
+    return [UIImage imageNamed:@"group_footer_unfollowing@2x.png"];
+}
 
 @end

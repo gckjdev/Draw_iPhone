@@ -628,7 +628,7 @@
 "kCreateDescNoName" = "创作了一个作品";
 
 "kGuessRightDesc" = "猜对了%@画的 [%@]";
-"kGuessedSomeOneOpus" = "猜对了%@创作的[%@]";
+"kGuessedSomeOneOpus" = "猜对了%@创作的 [%@]";
 "kTryGuessDesc" = "尝试去猜了%@画的 [%@]";
 "kTryToGuessSomeoneOpus" = "尝试去猜了%@创作的作品 [%@]";
 
@@ -764,8 +764,8 @@
 "kOpusDelete" = "不好意思，该作品已经被删除了。";
 
 "kGuessUserDraw_MyDraw" = "正在猜我的作品";
-"kGuessRightDesc_MyDraw" = "猜对了我创作的 [%@]。";
-"kTryGuessDesc_MyDraw" = "尝试去猜了我创作的 [%@]。";
+"kGuessRightDesc_MyDraw" = "猜对了我创作的 [%@]";
+"kTryGuessDesc_MyDraw" = "尝试去猜了我创作的 [%@]";
 "kGuessRightDescNoWord_MyDraw" = "猜对了我的作品";
 "kTryGuessDescNoWord_MyDraw" = "尝试去猜了我的作品";
 "kFeedDetail_Me" = "%@的作品";
@@ -923,6 +923,7 @@
 "kParsingData" = "解析数据中，请耐心等待...";
 
 "kLatestFeed" = "最新";
+"kLatest" = "最新";
 
 "kShareToWeiXinTitle" = "分享到微信";
 "kWXShareImageName" = "%@美图";
@@ -938,7 +939,6 @@
 "kCommitOpusTitle" = "提交作品";
 "kCommitOpusMessage" = "你确定要提交作品吗？";
 
-"kLatestFeed" = "最新";
 "kCustomMusic" = "自定义音乐";
 
 "kCommentTimes" = "评论 (%d)";
@@ -1633,6 +1633,10 @@
 
 "kHint" = "提示";
 "kRecordSubmitHint" = "你的作品录音时长为%d秒，提交需要花费%d金币，确认提交吗？";
+
+"kMatchingOpus" = "加载作品中...";
+"kFailMatchOpus" = "无法找到合适的作品，也许是网络有问题，请稍后再试";
+
 
 "kGiveUpComment" = "是否退出评论?";
 "kGuessWrong" =  "猜错了";

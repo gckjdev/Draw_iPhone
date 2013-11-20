@@ -140,7 +140,7 @@
 								<reference key="IBUIFont" ref="292544449"/>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 50}, {320, 35}}</string>
+						<string key="NSFrame">{{0, 44}, {320, 35}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="407701719"/>
@@ -279,7 +279,7 @@
 								<reference key="IBUIFont" ref="292544449"/>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 85}, {320, 30}}</string>
+						<string key="NSFrame">{{0, 79}, {320, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="324265001"/>
@@ -293,7 +293,7 @@
 					<object class="IBUITableView" id="99534440">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 113}, {320, 391}}</string>
+						<string key="NSFrame">{{0, 109}, {320, 395}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="89360179"/>
