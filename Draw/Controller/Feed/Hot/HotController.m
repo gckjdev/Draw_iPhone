@@ -364,9 +364,7 @@ typedef enum{
                     }
                 }
             }else if (isSingApp()){
-                
-                int remaind = (count % WHISPER_CELL_VIEW_NUMBER) == 0 ? 0 : 1;
-                return count/WHISPER_CELL_VIEW_NUMBER + remaind;
+                return count/WHISPER_CELL_VIEW_NUMBER;
             }else{
                 
                 return 0;

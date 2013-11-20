@@ -170,10 +170,12 @@
 {
     return [MobClickUtils getIntValueByKey:@"HOT_OPUS_FETCH_LIMIT" defaultValue:18];
 }
+
 + (NSInteger)getTimelineCountOnce
 {
     return [MobClickUtils getIntValueByKey:@"TIMELINE_FETCH_LIMIT" defaultValue:15];
 }
+
 + (BOOL)showOpusCount
 {
     return [MobClickUtils getBoolValueByKey:@"SHOW_OPUS_COUNT" defaultValue:NO];
@@ -1226,7 +1228,7 @@
 }
 
 + (int)getRecordLimitMinTime{
-    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_MIN_TIME" defaultValue:6];
+    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_MIN_TIME" defaultValue:3];
 }
 
 + (int)getRecordDeductCoinsPer30Sec{
