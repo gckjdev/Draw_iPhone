@@ -18,6 +18,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *taskDescLabel;
 @property (retain, nonatomic) IBOutlet UILabel *taskStatusLabel;
 @property (retain, nonatomic) IBOutlet BadgeView *badgeView;
+@property (retain, nonatomic) IBOutlet UIButton *awardButton;
 
 - (void)setCellInfo:(GameTask*)task;
 

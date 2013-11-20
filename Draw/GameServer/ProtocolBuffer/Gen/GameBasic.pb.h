@@ -124,7 +124,7 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 typedef enum {
   PBTaskStatusTaskStatusWaitForStart = -1,
   PBTaskStatusTaskStatusCanTake = 0,
-  PBTaskStatusTaskStatusTaken = 1,
+  PBTaskStatusTaskStatusDone = 1,
   PBTaskStatusTaskStatusExpired = 2,
 } PBTaskStatus;
 

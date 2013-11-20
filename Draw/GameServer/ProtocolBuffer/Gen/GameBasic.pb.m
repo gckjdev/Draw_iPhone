@@ -91,7 +91,7 @@ BOOL PBTaskStatusIsValidValue(PBTaskStatus value) {
   switch (value) {
     case PBTaskStatusTaskStatusWaitForStart:
     case PBTaskStatusTaskStatusCanTake:
-    case PBTaskStatusTaskStatusTaken:
+    case PBTaskStatusTaskStatusDone:
     case PBTaskStatusTaskStatusExpired:
       return YES;
     default:
