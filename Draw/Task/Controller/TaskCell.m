@@ -7,6 +7,7 @@
 //
 
 #import "TaskCell.h"
+#import "GameTask.h"
 
 @interface TaskCell ()
 
@@ -16,12 +17,22 @@
 
 + (float)getCellHeight{
     
-    return ISIPAD ? 0 : 51;
+    return CELL_CONST_HEIGHT;
 }
 
 + (NSString *)getCellIdentifier{
     
     return @"TaskCell";
+}
+
+- (void)setCellInfo:(GameTask*)task
+{
+    [_taskNameLabel setFont:CELL_NICK_FONT];
+    [_taskDescLabel setFont:CELL_SMALLTEXT_FONT];
+    
+    _taskDescLabel.text = task.desc;
+    _taskNameLabel.text = task.name;
+    [_badgeView setNumber:task.badge];
 }
 
 - (void)dealloc {

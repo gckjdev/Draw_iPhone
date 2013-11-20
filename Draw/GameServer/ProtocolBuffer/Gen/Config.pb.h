@@ -67,6 +67,8 @@
 @class PBSNSUser_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBTask;
+@class PBTask_Builder;
 @class PBUserAward;
 @class PBUserAward_Builder;
 @class PBUserBasicInfo;

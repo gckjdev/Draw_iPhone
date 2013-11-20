@@ -162,8 +162,13 @@
 
 - (void)updateDesc
 {
-    NSString *kCreateDesc = [GameApp createOpusDesc]; // NSLS(@"kDrawDesc");
-    NSString *kCreateDescNoName = [GameApp createOpusDescNoName]; // NSLS(@"kDrawDescNoWord");
+    NSString *kCreateDesc = NSLS(@"kDrawDesc");
+    NSString *kCreateDescNoName = NSLS(@"kDrawDescNoWord");
+    
+    if ([self isDrawCategory] == NO){
+        kCreateDesc = NSLS(@"kCreateDesc");
+        kCreateDescNoName = NSLS(@"kCreateDescNoName");
+    }
     
     if ([self isMyOpus]) {
         self.desc = [NSString stringWithFormat:kCreateDesc, self.wordText];      

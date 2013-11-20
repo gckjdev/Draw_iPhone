@@ -267,7 +267,21 @@
         [self.bgView setBackgroundColor:[UIColor clearColor]];
     }else{
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self.bgView setBackgroundColor:OPAQUE_COLOR(236, 84, 46)];
+        [self.bgView setBackgroundColor:[self getBackgroundColor]];
+        //        [self.bgView setBackgroundColor:OPAQUE_COLOR(236, 84, 46)];
+    }
+}
+
+- (UIColor*)getBackgroundColor
+{
+    Class class = [GameApp homeControllerClass];
+    if ([class respondsToSelector:@selector(getHeaderBackgroundColor)]){
+        UIColor* color = [class performSelector:@selector(getHeaderBackgroundColor)];
+        return color;
+    }
+    else{
+        PPDebug(@"<getBackgroundColor> but getBackgroundColor not implemented in home controller class!");
+        return OPAQUE_COLOR(236, 84, 46);
     }
 }
 

@@ -63,6 +63,9 @@
 - (NSArray*)noCheckedMenuTypes;
 + (NSDictionary*)menuTitleDictionary;
 + (NSDictionary*)menuImageDictionary;
+
 + (int)homeDefaultMenuType;
++ (UIColor*)getHeaderBackgroundColor;
+- (UIColor*)getMainBackgroundColor;
 
 @end

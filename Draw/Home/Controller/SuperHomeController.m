@@ -439,7 +439,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
         [imageView setImage:homeImage];
         [self.view insertSubview:imageView atIndex:0];
     }else{
-        [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
+        [self.view setBackgroundColor:[self getMainBackgroundColor]]; // OPAQUE_COLOR(0, 191, 178)];
         UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
         [imageView removeFromSuperview];
     }
@@ -448,7 +448,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 
 - (void)clearBGImageView
 {
-    [self.view setBackgroundColor:OPAQUE_COLOR(0, 191, 178)];
+    [self.view setBackgroundColor:[self getMainBackgroundColor]];  //OPAQUE_COLOR(0, 191, 178)];
     UIImageView *imageView = (id)[self.view reuseViewWithTag:HOME_BG_IMAGE_VIEW_TAG viewClass:[UIImageView class] frame:self.view.bounds];
     [imageView setImage:nil];
     [imageView removeFromSuperview];
@@ -810,6 +810,16 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
 + (int)homeDefaultMenuType
 {
     return HomeMenuTypeDrawDraw;
+}
+
++ (UIColor*)getHeaderBackgroundColor
+{
+    return OPAQUE_COLOR(236, 84, 46); // default
+}
+
+- (UIColor*)getMainBackgroundColor
+{
+    return OPAQUE_COLOR(0, 191, 178); // default
 }
 
 @end

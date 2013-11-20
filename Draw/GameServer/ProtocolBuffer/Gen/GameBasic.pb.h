@@ -54,6 +54,8 @@
 @class PBSNSUser_Builder;
 @class PBSize;
 @class PBSize_Builder;
+@class PBTask;
+@class PBTask_Builder;
 @class PBUserAward;
 @class PBUserAward_Builder;
 @class PBUserBasicInfo;
@@ -118,6 +120,30 @@ typedef enum {
 } PBIAPProductType;
 
 BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
+
+typedef enum {
+  PBTaskStatusTaskStatusWaitForStart = -1,
+  PBTaskStatusTaskStatusCanTake = 0,
+  PBTaskStatusTaskStatusTaken = 1,
+  PBTaskStatusTaskStatusExpired = 2,
+} PBTaskStatus;
+
+BOOL PBTaskStatusIsValidValue(PBTaskStatus value);
+
+typedef enum {
+  PBTaskIdTypeTaskCheckIn = 1,
+  PBTaskIdTypeTaskBindSina = 2,
+  PBTaskIdTypeTaskBindQq = 3,
+  PBTaskIdTypeTaskShareSina = 4,
+  PBTaskIdTypeTaskShareWeixinTimeline = 5,
+  PBTaskIdTypeTaskShareQqSpace = 6,
+  PBTaskIdTypeTaskAppReview = 7,
+  PBTaskIdTypeTaskCreateOpus = 8,
+  PBTaskIdTypeTaskGuessOpus = 9,
+  PBTaskIdTypeTaskShareOpus = 10,
+} PBTaskIdType;
+
+BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 
 
 @interface GameBasicRoot : NSObject {
@@ -3606,5 +3632,89 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 - (PBContestList_Builder*) addContests:(PBContest*) value;
 - (PBContestList_Builder*) addAllContests:(NSArray*) values;
 - (PBContestList_Builder*) clearContestsList;
+@end
+
+@interface PBTask : PBGeneratedMessage {
+@private
+  BOOL hasTaskId_:1;
+  BOOL hasBadge_:1;
+  BOOL hasName_:1;
+  BOOL hasDesc_:1;
+  BOOL hasStatus_:1;
+  int32_t taskId;
+  int32_t badge;
+  NSString* name;
+  NSString* desc;
+  PBTaskStatus status;
+}
+- (BOOL) hasTaskId;
+- (BOOL) hasName;
+- (BOOL) hasDesc;
+- (BOOL) hasStatus;
+- (BOOL) hasBadge;
+@property (readonly) int32_t taskId;
+@property (readonly, retain) NSString* name;
+@property (readonly, retain) NSString* desc;
+@property (readonly) PBTaskStatus status;
+@property (readonly) int32_t badge;
+
++ (PBTask*) defaultInstance;
+- (PBTask*) defaultInstance;
+
+- (BOOL) isInitialized;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (PBTask_Builder*) builder;
++ (PBTask_Builder*) builder;
++ (PBTask_Builder*) builderWithPrototype:(PBTask*) prototype;
+
++ (PBTask*) parseFromData:(NSData*) data;
++ (PBTask*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBTask*) parseFromInputStream:(NSInputStream*) input;
++ (PBTask*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBTask*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBTask*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+@end
+
+@interface PBTask_Builder : PBGeneratedMessage_Builder {
+@private
+  PBTask* result;
+}
+
+- (PBTask*) defaultInstance;
+
+- (PBTask_Builder*) clear;
+- (PBTask_Builder*) clone;
+
+- (PBTask*) build;
+- (PBTask*) buildPartial;
+
+- (PBTask_Builder*) mergeFrom:(PBTask*) other;
+- (PBTask_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBTask_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+- (BOOL) hasTaskId;
+- (int32_t) taskId;
+- (PBTask_Builder*) setTaskId:(int32_t) value;
+- (PBTask_Builder*) clearTaskId;
+
+- (BOOL) hasName;
+- (NSString*) name;
+- (PBTask_Builder*) setName:(NSString*) value;
+- (PBTask_Builder*) clearName;
+
+- (BOOL) hasDesc;
+- (NSString*) desc;
+- (PBTask_Builder*) setDesc:(NSString*) value;
+- (PBTask_Builder*) clearDesc;
+
+- (BOOL) hasStatus;
+- (PBTaskStatus) status;
+- (PBTask_Builder*) setStatus:(PBTaskStatus) value;
+- (PBTask_Builder*) clearStatus;
+
+- (BOOL) hasBadge;
+- (int32_t) badge;
+- (PBTask_Builder*) setBadge:(int32_t) value;
+- (PBTask_Builder*) clearBadge;
 @end
 

@@ -189,6 +189,7 @@ int *getSingMainMenuTypeListWithFreeCoins()
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeGuessSing,
+        HomeMenuTypeDrawMore,
         HomeMenuTypeEnd,
     };
     return list;
@@ -203,7 +204,8 @@ int *getSingMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawRank,
         HomeMenuTypeDrawContest,
         HomeMenuTypeGuessSing,
-        HomeMenuTypeEnd,        
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeEnd,
     };
     return list;
 }
@@ -279,5 +281,14 @@ int *getSingBottomMenuTypeList()
     return HomeMenuTypeSing;
 }
 
++ (UIColor*)getHeaderBackgroundColor
+{
+    return OPAQUE_COLOR(250, 157, 156);
+}
+
+- (UIColor*)getMainBackgroundColor
+{
+    return OPAQUE_COLOR(113, 207, 213);
+}
 
 @end
