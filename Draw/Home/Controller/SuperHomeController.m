@@ -488,7 +488,9 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     if ([[UserManager defaultManager] hasXiaojiNumber] == NO && [[UserManager defaultManager] isOldUserWithoutXiaoji] == NO) {
         //#endif
         [mainPanel closeAnimated:NO completion:^(BOOL finished) {
-            [mainPanel moveMenuTypeToBottom:HomeMenuTypeDrawDraw Animated:NO completion:NULL];
+            [mainPanel moveMenuTypeToBottom:[[self class] homeDefaultMenuType]
+                                   Animated:NO
+                                 completion:NULL];
             [header openAnimated:NO completion:NULL];
             [footer hideAnimated:NO];
         }];
@@ -803,6 +805,11 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     });
     
     return DEFAULT_MENU_IMAGE_DICT;
+}
+
++ (int)homeDefaultMenuType
+{
+    return HomeMenuTypeDrawDraw;
 }
 
 @end

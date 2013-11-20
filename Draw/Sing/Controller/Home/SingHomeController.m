@@ -267,5 +267,10 @@ int *getSingBottomMenuTypeList()
     return SING_MENU_IMAGE_DICT;
 }
 
++ (int)homeDefaultMenuType
+{
+    return HomeMenuTypeSing;
+}
+
 
 @end

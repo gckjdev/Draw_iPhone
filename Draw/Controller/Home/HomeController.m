@@ -1104,5 +1104,9 @@ int *getDrawBottomMenuTypeList()
     return DRAW_MENU_IMAGE_DICT;
 }
 
++ (int)homeDefaultMenuType
+{
+    return HomeMenuTypeDrawDraw;
+}
 
 @end

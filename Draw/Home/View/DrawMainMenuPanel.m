@@ -335,7 +335,18 @@
     }
     [self updateAvatar];
     [self updateViewLayers];
-    [self.scrollView bringSubviewToFront:[self getMenuViewWithType:HomeMenuTypeDrawDraw]];
+    
+    // get home default menu type
+    Class class = [GameApp homeControllerClass];
+    int defaultHomeMenuType = HomeMenuTypeDrawDraw;
+    if ([class respondsToSelector:@selector(homeDefaultMenuType)]){
+        defaultHomeMenuType = [class performSelector:@selector(homeDefaultMenuType) withObject:nil];
+    }
+    else{
+        PPDebug(@"<getMainMenuTypeList> but getBottomMenuList not implemented in home controller class!");
+    }
+    
+    [self.scrollView bringSubviewToFront:[self getMenuViewWithType:defaultHomeMenuType]];
     [self pageInit];
 }
 

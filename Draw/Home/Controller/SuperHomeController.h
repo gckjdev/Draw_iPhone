@@ -63,6 +63,6 @@
 - (NSArray*)noCheckedMenuTypes;
 + (NSDictionary*)menuTitleDictionary;
 + (NSDictionary*)menuImageDictionary;
-
++ (int)homeDefaultMenuType;
 
 @end
