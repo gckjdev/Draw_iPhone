@@ -69,6 +69,7 @@
 #import "DrawLayerPanel.h"
 #import "MLNavigationController.h"
 #import "ImagePlayer.h"
+#import "TaskManager.h"
 
 @interface OfflineDrawViewController()
 {
@@ -794,6 +795,7 @@
     
     self.submitButton.userInteractionEnabled = YES;
     if (resultCode == 0) {
+                
         
         // stop recovery while the opus is commit successfully
         [self stopRecovery];
@@ -812,6 +814,10 @@
         }else{
             POSTMSG(NSLS(@"kSaveImageFail"));
         }
+        
+        [[TaskManager defaultManager] completeTask:PBTaskIdTypeTaskCreateOpus
+                                           isAward:NO
+                                        clearBadge:YES];
         
         // clean data
         self.submitOpusFinalImage = nil;

@@ -37,6 +37,7 @@
 #import "DrawColor.h"
 #import "DrawUtils.h"
 #import "AccountService.h"
+#import "TaskManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -849,7 +850,7 @@ enum{
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SELECT_SONG];
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickSaveButton:(id)sender {
@@ -983,6 +984,11 @@ enum{
     if (resultCode == ERROR_SUCCESS) {
         POSTMSG(NSLS(@"kSubmitSuccTitle"));
         [self.navigationController popViewControllerAnimated:YES];
+        
+        [[TaskManager defaultManager] completeTask:PBTaskIdTypeTaskCreateOpus
+                                           isAward:NO
+                                        clearBadge:YES];
+        
     }else{
         POSTMSG(NSLS(@"kSubmitFailure"));
     }

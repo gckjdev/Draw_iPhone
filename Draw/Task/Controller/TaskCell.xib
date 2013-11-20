@@ -44,7 +44,7 @@
 							<object class="IBUILabel" id="515421383">
 								<reference key="NSNextResponder" ref="1020525402"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{13, 2}, {216, 30}}</string>
+								<string key="NSFrame">{{12, 5}, {216, 30}}</string>
 								<reference key="NSSuperview" ref="1020525402"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="422860310"/>
@@ -84,7 +84,7 @@
 							<object class="IBUILabel" id="422860310">
 								<reference key="NSNextResponder" ref="1020525402"/>
 								<int key="NSvFlags">319</int>
-								<string key="NSFrame">{{13, 32}, {232, 30}}</string>
+								<string key="NSFrame">{{12, 32}, {232, 30}}</string>
 								<reference key="NSSuperview" ref="1020525402"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="600608592"/>
@@ -147,12 +147,11 @@
 								<string key="NSFrame">{{277, 23}, {18, 19}}</string>
 								<reference key="NSSuperview" ref="1020525402"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<reference key="IBUIBackgroundColor" ref="188051782"/>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIButton" id="377351825">
+							<object class="IBUIButton" id="526794614">
 								<reference key="NSNextResponder" ref="1020525402"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{239, 17}, {73, 33}}</string>
@@ -246,7 +245,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">awardButton</string>
 						<reference key="source" ref="130744272"/>
-						<reference key="destination" ref="377351825"/>
+						<reference key="destination" ref="526794614"/>
 					</object>
 					<int key="connectionID">35</int>
 				</object>
@@ -275,10 +274,10 @@
 						<reference key="object" ref="130744272"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="600608592"/>
-							<reference ref="515421383"/>
 							<reference ref="422860310"/>
 							<reference ref="415187183"/>
-							<reference ref="377351825"/>
+							<reference ref="526794614"/>
+							<reference ref="515421383"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -306,7 +305,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">34</int>
-						<reference key="object" ref="377351825"/>
+						<reference key="object" ref="526794614"/>
 						<reference key="parent" ref="130744272"/>
 					</object>
 				</array>

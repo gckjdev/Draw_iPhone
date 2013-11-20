@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PPSNSConstants.h"
+#import <ShareSDK/ShareSDK.h>
 
 @class GameTask;
 @class PPViewController;
@@ -16,7 +18,12 @@
 + (TaskManager*)defaultManager;
 
 @property (nonatomic, retain) NSMutableArray *taskList;
+@property (nonatomic, retain) PPViewController *viewController;
 
 - (void)execute:(GameTask*)task viewController:(PPViewController*)viewController;
+
+- (void)completeTask:(PBTaskIdType)taskId isAward:(BOOL)isAward clearBadge:(BOOL)clearBadge;
+
+- (void)completeBindWeiboTask:(ShareType)shareType isAward:(BOOL)isAward clearBadge:(BOOL)clearBadge;
 
 @end

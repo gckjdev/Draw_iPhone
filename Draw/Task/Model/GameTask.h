@@ -13,7 +13,7 @@
 
 @property (nonatomic, retain) PBTask_Builder *taskBuilder;
 
-@property (nonatomic, readonly) NSString* taskId;
+@property (nonatomic, readonly) int taskId;
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSString* desc;
 @property (nonatomic, readonly) int badge;
@@ -31,5 +31,7 @@
 + (GameTask*)taskFromData:(NSData*)data;
 
 - (void)setStatus:(PBTaskStatus)status;
+- (void)setBadge:(int)badge;
+- (BOOL)isComplete;
 
 @end

@@ -108,6 +108,7 @@ typedef enum{
 + (int)getShareFriendReward;
 + (int)getShareWeiboReward;
 + (int)getFollowWeiboReward;
++ (int)getShareAppWeiboReward;
 
 + (int)flowerAwardFordLevelUp;
 + (int)diceCutAwardForLevelUp;
@@ -312,6 +313,9 @@ typedef enum{
 
 + (NSString*)getShareSDKAppId;
 + (int)getCreateOpusWeiboReward;
+
++ (int)getFirstCreateOpusWeiboReward;
++ (int)getFirstGuessOpusReward;
 
 + (NSString *)getSingOpusDefaultName;
 + (int)getOffLineGuessAward;

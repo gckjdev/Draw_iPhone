@@ -89,10 +89,12 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value) {
 }
 BOOL PBTaskStatusIsValidValue(PBTaskStatus value) {
   switch (value) {
-    case PBTaskStatusTaskStatusWaitForStart:
     case PBTaskStatusTaskStatusCanTake:
     case PBTaskStatusTaskStatusDone:
+    case PBTaskStatusTaskStatusAward:
     case PBTaskStatusTaskStatusExpired:
+    case PBTaskStatusTaskStatusWaitForStart:
+    case PBTaskStatusTaskStatusAlwaysOpen:
       return YES;
     default:
       return NO;
@@ -100,6 +102,7 @@ BOOL PBTaskStatusIsValidValue(PBTaskStatus value) {
 }
 BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
   switch (value) {
+    case PBTaskIdTypeTaskNone:
     case PBTaskIdTypeTaskCheckIn:
     case PBTaskIdTypeTaskBindSina:
     case PBTaskIdTypeTaskBindQq:
@@ -15136,7 +15139,7 @@ static PBContestList* defaultPBContestListInstance = nil;
     self.taskId = 0;
     self.name = @"";
     self.desc = @"";
-    self.status = PBTaskStatusTaskStatusWaitForStart;
+    self.status = PBTaskStatusTaskStatusCanTake;
     self.badge = 0;
   }
   return self;
@@ -15402,7 +15405,7 @@ static PBTask* defaultPBTaskInstance = nil;
 }
 - (PBTask_Builder*) clearStatus {
   result.hasStatus = NO;
-  result.status = PBTaskStatusTaskStatusWaitForStart;
+  result.status = PBTaskStatusTaskStatusCanTake;
   return self;
 }
 - (BOOL) hasBadge {

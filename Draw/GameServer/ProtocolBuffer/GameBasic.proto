@@ -483,15 +483,17 @@ message PBContestList
 enum PBTaskStatus
 {
     
-    TASK_STATUS_WAIT_FOR_START = -1;     // 未开始
     TASK_STATUS_CAN_TAKE = 0;            // 可以执行
     TASK_STATUS_DONE = 1;                // 已经执行完毕
-    TASK_STATUS_AWARD = 1;               // 已经领取奖励
-    TASK_STATUS_EXPIRED = 2;             // 已经过期
+    TASK_STATUS_AWARD = 2;               // 已经领取奖励
+    TASK_STATUS_EXPIRED = 3;             // 已经过期
+    TASK_STATUS_WAIT_FOR_START = 4;      // 未开始
+    TASK_STATUS_ALWAYS_OPEN = 5;         // 可重复执行任务
 }
 
 enum PBTaskIdType
 {    
+    TASK_NONE = 0;
     TASK_CHECK_IN = 1;
     TASK_BIND_SINA = 2;
     TASK_BIND_QQ = 3;

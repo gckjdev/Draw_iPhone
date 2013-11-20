@@ -76,7 +76,7 @@
 }
 
 
-- (NSString*)taskId
+- (int)taskId
 {
     return _taskBuilder.taskId;
 }
@@ -96,6 +96,11 @@
     return _taskBuilder.badge;
 }
 
+- (void)setBadge:(int)badge
+{
+    [_taskBuilder setBadge:badge];
+}
+
 - (void)setStatus:(PBTaskStatus)status
 {
     [_taskBuilder setStatus:status];
@@ -106,5 +111,9 @@
     return _taskBuilder.status;
 }
 
+- (BOOL)isComplete
+{
+    return (self.status == PBTaskStatusTaskStatusAward) || (self.status == PBTaskStatusTaskStatusDone);
+}
 
 @end

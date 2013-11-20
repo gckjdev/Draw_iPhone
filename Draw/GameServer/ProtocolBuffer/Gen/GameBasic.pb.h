@@ -122,15 +122,18 @@ typedef enum {
 BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 
 typedef enum {
-  PBTaskStatusTaskStatusWaitForStart = -1,
   PBTaskStatusTaskStatusCanTake = 0,
   PBTaskStatusTaskStatusDone = 1,
-  PBTaskStatusTaskStatusExpired = 2,
+  PBTaskStatusTaskStatusAward = 2,
+  PBTaskStatusTaskStatusExpired = 3,
+  PBTaskStatusTaskStatusWaitForStart = 4,
+  PBTaskStatusTaskStatusAlwaysOpen = 5,
 } PBTaskStatus;
 
 BOOL PBTaskStatusIsValidValue(PBTaskStatus value);
 
 typedef enum {
+  PBTaskIdTypeTaskNone = 0,
   PBTaskIdTypeTaskCheckIn = 1,
   PBTaskIdTypeTaskBindSina = 2,
   PBTaskIdTypeTaskBindQq = 3,
