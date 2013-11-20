@@ -577,7 +577,7 @@
 
 "kDrawing" = "Drawing";
 "kGuessing" = "Guessing";
-
+"kPlayAudioAgain" = "Replay";
 "kUpdateWord" = "Update Word";
 "kInputWordEmpty" = "Word can not be empty";
 "kSubmitFailure" = "Sorry. Submit failure.";
@@ -1149,7 +1149,7 @@
 "kVoiceMessage" = "Voice Message";
 "kResend" = "Resend";
 
-
+"kContestWillComeSoon" = "Contest will come soon";
 "kHomeMenuTypeDrawDraw" = "Draw";
 "kHomeMenuTypeDrawGuess" = "Guess";
 "kHomeMenuTypeDrawGame" = "Game";

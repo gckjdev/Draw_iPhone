@@ -594,6 +594,7 @@
 "kDrawing" = "畫畫中";
 //"kGuessing" = "猜畫中";
 "kGuessing" = "正在猜...";
+"kPlayAudioAgain" = "重聽";
 
 "kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
 "kSubmitSuccMsg" = "恭喜！提交成功！再來一幅？";
@@ -1161,6 +1162,8 @@
 "kImageMessage" = "圖片消息";
 "kVoiceMessage" = "語音消息";
 "kResend" = "重發";
+
+"kContestWillComeSoon" = "比賽功能即將開通，敬請關註!";
 
 "kHomeMenuTypeDrawDraw" = "畫畫";
 "kHomeMenuTypeDrawGuess" = "猜畫";

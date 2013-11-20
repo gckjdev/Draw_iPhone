@@ -779,10 +779,16 @@ enum{
 - (void)didSelectVoiceType:(PBVoiceType)voiceType{
     
     [self.popTipView dismissAnimated:YES];
-    if (self.singOpus.pbOpus.sing.voiceType == voiceType) {
+    [self seekToBegin];
+    if (self.singOpus.pbOpus.sing.voiceType != voiceType) {
         _hasEdited = YES;
         [self changeVoiceType:voiceType];
     }
+}
+
+- (void)seekToBegin{
+    [_player setCurrentTime:0];
+    [self updateUITime:@(_fileDuration)];
 }
 
 - (IBAction)clickImageButton:(id)sender {
