@@ -2286,6 +2286,9 @@
 "kTaskShareQQSpace" = "Share App to QQ Space";
 "kTaskShareQQSpaceDesc" = "Share App to QQ Space to get %d";
 
+"kTaskShareQQWeibo" = "Share App to QQ Weibo";
+"kTaskShareQQWeiboDesc" = "Share App to QQ Weibo to get %d";
+
 "kTaskCreateOpus" = "Create Opus";
 "kTaskCreateOpusDesc" = "Create an opus to get %d";
 

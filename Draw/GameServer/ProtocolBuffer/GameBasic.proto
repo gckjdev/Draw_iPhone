@@ -504,6 +504,7 @@ enum PBTaskIdType
     TASK_CREATE_OPUS = 8;
     TASK_GUESS_OPUS = 9;
     TASK_SHARE_OPUS = 10;
+    TASK_SHARE_QQ_WEIBO = 11;
 }
 
 message PBTask
@@ -513,4 +514,5 @@ message PBTask
     optional string desc = 3;
     optional PBTaskStatus status = 4;
     optional int32  badge = 5;
+    optional int32  award = 6;
 }

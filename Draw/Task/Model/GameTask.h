@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) NSString* name;
 @property (nonatomic, readonly) NSString* desc;
 @property (nonatomic, readonly) int badge;
+@property (nonatomic, readonly) int award;
 @property (nonatomic, readonly) PBTaskStatus status;
 @property (nonatomic, assign) SEL selector;
 
@@ -25,6 +26,7 @@
             desc:(NSString*)desc
           status:(PBTaskStatus)status
            badge:(int)badge
+           award:(int)award
         selector:(SEL)selector;
 
 - (NSData*)data;

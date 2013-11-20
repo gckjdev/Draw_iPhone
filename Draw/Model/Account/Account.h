@@ -26,6 +26,8 @@ typedef enum  {
     
     BuyAnswer = 14,
     
+    TaskAward = 30,
+    
     happyGuessAward= 70,
     geniusGuessAward = 71,
     

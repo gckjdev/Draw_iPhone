@@ -61,11 +61,9 @@ SET_CELL_BG_IN_CONTROLLER
     TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:[TaskCell getCellIdentifier]];
     
     if (cell == nil) {
-        cell = [TaskCell createCell:nil];
+        cell = [TaskCell createCell:self];
     }
     
-    
-    // TODO: need to be implemented.
     GameTask* task = [self.dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:task];
     
@@ -80,6 +78,16 @@ SET_CELL_BG_IN_CONTROLLER
     
     GameTask* task = [self.dataList objectAtIndex:indexPath.row];
     [[TaskManager defaultManager] execute:task viewController:self];
+}
+
+- (void)clickTakeAwardButton:(NSIndexPath*)indexPath
+{
+    if (indexPath.row < 0 || indexPath.row >= [self.dataList count]){
+        return;
+    }
+    
+    GameTask* task = [self.dataList objectAtIndex:indexPath.row];
+    [[TaskManager defaultManager] awardTask:task];
 }
 
 

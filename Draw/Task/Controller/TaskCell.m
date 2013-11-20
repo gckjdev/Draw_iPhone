@@ -100,4 +100,12 @@
     [super dealloc];
 }
 
+- (IBAction)clickSelectButton:(id)sender {
+    
+    if ([delegate respondsToSelector:@selector(clickTakeAwardButton:)]) {        
+        [delegate performSelector:@selector(clickTakeAwardButton:) withObject:self.indexPath];
+    }
+    
+}
+
 @end

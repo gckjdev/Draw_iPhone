@@ -29,6 +29,7 @@
             desc:(NSString*)desc
           status:(PBTaskStatus)status
            badge:(int)badge
+           award:(int)award
         selector:(SEL)selector
 {
     self = [super init];
@@ -39,6 +40,7 @@
     [_taskBuilder setDesc:desc];
     [_taskBuilder setStatus:status];
     [_taskBuilder setBadge:badge];
+    [_taskBuilder setAward:award];
     
     self.selector = selector;
     
@@ -94,6 +96,11 @@
 - (int)badge
 {
     return _taskBuilder.badge;
+}
+
+- (int)award
+{
+    return _taskBuilder.award;
 }
 
 - (void)setBadge:(int)badge

@@ -2284,6 +2284,9 @@
 "kTaskShareQQSpace" = "分享应用到QQ空间";
 "kTaskShareQQSpaceDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
 
+"kTaskShareQQWeibo" = "分享应用到腾讯微博";
+"kTaskShareQQWeiboDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
+
 "kTaskCreateOpus" = "发表一个作品";
 "kTaskCreateOpusDesc" = "首次发表作品，可领取%d金币";
 
@@ -2294,9 +2297,9 @@
 "kTaskShareOpusDesc" = "每次分享作品，可获得%d金币";
 
 "kTaskAppReview" = "给予5星好评";
-"kTaskAppReviewDesc" = "喜欢我们的应用？就给个五星好评";
+"kTaskAppReviewDesc" = "喜欢这个应用？五星好评就是最好的支持和鼓励！";
 
-"kTask" = "引导任务";
+"kTask" = "任务";
 "kTaskExpire" = "已过期";
 "kTaskTake" = "已完成";
 "kTakeAward" = "领取奖励";
