@@ -43,7 +43,7 @@
     CommonTitleView *_titleView;
 }
 @property (nonatomic, retain) ShowDrawView *showView;
-@property (nonatomic, retain) AudioPlayer *audioPlayer;
+@property (nonatomic, retain) AudioStreamer *audioPlayer;
 
 @end
 
@@ -63,6 +63,8 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ASStatusChangedNotification object:self.audioPlayer];
+    
     PPRelease(_feed);
     PPRelease(_showView);
     PPRelease(_wordInputView);
@@ -107,10 +109,15 @@
         }else if ([feed isSingCategory]){
             
             // init audio player here.
-            self.audioPlayer = [[[AudioPlayer alloc] init] autorelease];
-            self.audioPlayer.url = [NSURL URLWithString:self.feed.drawDataUrl];
-
-            [self.audioPlayer play];
+            self.audioPlayer = [[[AudioStreamer alloc] initWithURL:[NSURL URLWithString:self.feed.drawDataUrl]] autorelease];
+            
+            // register the streamer on notification
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(playbackStateChanged:)
+                                                         name:ASStatusChangedNotification
+                                                       object:self.audioPlayer];
+            
+            [self.audioPlayer start];
         }
     }
     return self;
@@ -309,6 +316,12 @@
     [titleView setBackButtonSelector:@selector(clickBack:)];
     [titleView setTitle:NSLS(@"kGuessing")];
     _titleView = titleView;
+    
+    if ([self.feed isSingCategory]) {
+        [titleView setRightButtonTitle:NSLS(@"kPlayAudioAgain")];
+        [titleView setRightButtonSelector:@selector(clickPlayAudioAgain:)];
+        [titleView hideRightButton];
+    }
 }
 
 - (void)initShowView
@@ -347,6 +360,25 @@
     WhisperStyleView *v = [WhisperStyleView createWithFrame:rect feed:self.feed];
     
     [self.view addSubview:v];
+}
+
+- (void)clickPlayAudioAgain:(id)sender{
+    
+    [_audioPlayer start];
+}
+
+/*
+ *  observe the notification listener when loading an audio
+ */
+- (void)playbackStateChanged:(NSNotification *)notification
+{
+    CommonTitleView *titleView = [CommonTitleView titleView:self.view];
+
+    if ([_audioPlayer isIdle]) {
+        [titleView showRightButton];
+	}else{
+        [titleView hideRightButton];
+    }
 }
 
 @end

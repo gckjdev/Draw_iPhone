@@ -107,6 +107,7 @@
 
 "kDedutCoinQuitGameAlertMessage" = "游戏进行中，如果这时退出游戏，系统将会扣除%d个金币。";
 "kNoCoinQuitGameAlertMessage" = "逃跑需要扣除金币，你的账户余额不足，现在不能退出游戏！";
+"kContestWillComeSoon" = "比赛功能即将开通，敬请关注!";
 
 
 "kContinue" = "继续 [%d]";
@@ -593,6 +594,7 @@
 
 "kDrawing" = "画画中";
 "kGuessing" = "正在猜...";
+"kPlayAudioAgain" = "重听";
 
 "kSubmitFailure" = "不好意思，提交失败，请重新提交。";
 "kSubmitSuccTitle" = "提交成功";
