@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PPViewController.h"
+#import "PPTableViewController.h"
 
-@interface TaskController : PPViewController
+@interface TaskController : PPTableViewController
 
 @end
