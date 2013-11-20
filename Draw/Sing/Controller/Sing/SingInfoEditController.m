@@ -218,12 +218,27 @@
         return;
     }
     
-    [self.opus setName:self.nameTextField.text];
-    [self.opus setDesc:self.descTextView.text];
-    [self.opus setTags:[self getSelectedTags]];
+    BOOL hasEdit = NO;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
-        
+    if (![self.opus.pbOpus.name isEqualToString:self.nameTextField.text]) {
+        [self.opus setName:self.nameTextField.text];
+        hasEdit = YES;
+    }
+    
+    if (![self.opus.pbOpus.desc isEqualToString:self.descTextView.text]) {
+        [self.opus setDesc:self.descTextView.text];
+        hasEdit = YES;
+    }
+    
+    if (![self.opus  hasSameTagsToTags:[self getSelectedTags]]) {
+        [self.opus setTags:[self getSelectedTags]];
+        hasEdit = YES;
+    }
+   
+    if (hasEdit == YES) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SING_INFO_CHANGE object:nil];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
