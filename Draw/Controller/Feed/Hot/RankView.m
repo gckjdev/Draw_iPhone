@@ -143,10 +143,6 @@
     if (feed.learnDraw) {
         [self updateLearnDraw:feed.learnDraw];
     }
-    
-    
-    
-    
 
     if ([self.feed isSingCategory]) {
         [[self.drawImage viewWithTag:201139481] removeFromSuperview];
