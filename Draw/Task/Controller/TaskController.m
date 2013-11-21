@@ -32,7 +32,12 @@
     
     self.dataTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.dataTableView.separatorColor = [UIColor clearColor];
-
+    
+    [self registerNotificationWithName:TASK_DATA_RELOAD_NOTIFICATION
+                            usingBlock:^(NSNotification *note) {
+                                self.dataList = [[TaskManager defaultManager] taskList];
+                                [self.dataTableView reloadData];
+                            }];
 }
 
 //SET_CELL_BG_IN_VIEW;

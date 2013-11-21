@@ -17,7 +17,7 @@
 #import "HotController.h"
 #import "AccountService.h"
 
-#define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_4"
+#define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_5"
 
 static TaskManager* _defaultTaskManager;
 
@@ -232,6 +232,12 @@ static TaskManager* _defaultTaskManager;
     }
 }
 
+- (void)postReloadTaskNotification
+{
+    PPDebug(@"<postReloadTaskNotification>");
+    [[NSNotificationCenter defaultCenter] postNotificationName:TASK_DATA_RELOAD_NOTIFICATION object:nil];
+}
+
 - (void)execute:(GameTask*)task viewController:(PPViewController*)viewController
 {
     [self clearTaskBadge:task];
@@ -244,6 +250,8 @@ static TaskManager* _defaultTaskManager;
     }
     
     self.viewController = nil;
+    
+    [self postReloadTaskNotification];
 }
 
 - (void)awardTask:(GameTask*)task viewController:(PPViewController*)viewController
@@ -254,7 +262,6 @@ static TaskManager* _defaultTaskManager;
         return;
     }
 
-    self.viewController = viewController;
     [[AccountService defaultService] chargeCoin:task.award source:TaskAward+task.taskId];
 }
 
@@ -279,11 +286,13 @@ static TaskManager* _defaultTaskManager;
 
 - (void)shareSinaWeibo:(GameTask*)task
 {
+    int award = (task.status == PBTaskStatusTaskStatusAward) ? 0 : [PPConfigManager getShareAppWeiboReward];
+    
     [[GameSNSService defaultService] publishWeibo:TYPE_SINA
                                              text:[self getShareAppWeiboText]
                                     imageFilePath:nil
                                            inView:nil
-                                       awardCoins:[PPConfigManager getShareAppWeiboReward]
+                                       awardCoins:award
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")
                                            taskId:task.taskId];
@@ -291,11 +300,13 @@ static TaskManager* _defaultTaskManager;
 
 - (void)shareWeixinTimeline:(GameTask*)task
 {
+    int award = (task.status == PBTaskStatusTaskStatusAward) ? 0 : [PPConfigManager getShareAppWeiboReward];
+    
     [[GameSNSService defaultService] publishWeibo:TYPE_WEIXIN_TIMELINE
                                              text:[self getShareAppWeiboText]
                                     imageFilePath:nil
                                            inView:nil
-                                       awardCoins:[PPConfigManager getShareAppWeiboReward]
+                                       awardCoins:award
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")
                                            taskId:task.taskId];
@@ -303,11 +314,13 @@ static TaskManager* _defaultTaskManager;
 
 - (void)shareQQSpace:(GameTask*)task
 {
+    int award = (task.status == PBTaskStatusTaskStatusAward) ? 0 : [PPConfigManager getShareAppWeiboReward];
+    
     [[GameSNSService defaultService] publishWeibo:TYPE_QQSPACE
                                              text:[self getShareAppWeiboText]
                                     imageFilePath:nil     
                                            inView:nil
-                                       awardCoins:[PPConfigManager getShareAppWeiboReward]
+                                       awardCoins:award
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")
                                            taskId:task.taskId];
@@ -315,11 +328,13 @@ static TaskManager* _defaultTaskManager;
 
 - (void)shareQQWeibo:(GameTask*)task
 {
+    int award = (task.status == PBTaskStatusTaskStatusAward) ? 0 : [PPConfigManager getShareAppWeiboReward];
+    
     [[GameSNSService defaultService] publishWeibo:TYPE_QQ
                                              text:[self getShareAppWeiboText]
                                     imageFilePath:nil
                                            inView:nil
-                                       awardCoins:[PPConfigManager getShareAppWeiboReward]
+                                       awardCoins:award
                                    successMessage:NSLS(@"kShareWeiboSucc")
                                    failureMessage:NSLS(@"kShareWeiboFailure")
                                            taskId:task.taskId];
@@ -393,7 +408,7 @@ static TaskManager* _defaultTaskManager;
 }
 
 - (void)completeTask:(PBTaskIdType)taskId isAward:(BOOL)isAward clearBadge:(BOOL)clearBadge
-{
+{    
     GameTask* task = [self getTask:taskId];
     if (task == nil){
         return;
@@ -419,6 +434,9 @@ static TaskManager* _defaultTaskManager;
     
     PPDebug(@"<completeTask> task(%d) status(%d) badge(%d)", taskId, task.status, task.badge);
     [self save];
+    
+    [self postReloadTaskNotification];
+    
 }
 
 - (void)awardTaskSuccess:(int)taskId amount:(int)amount
@@ -435,9 +453,9 @@ static TaskManager* _defaultTaskManager;
         
     NSString* msg = [NSString stringWithFormat:NSLS(@"kAwardTaskSucc"), amount];
     POSTMSG2(msg, 2);
-
-    [self.viewController viewDidAppear:NO];
-    self.viewController = nil;
+    
+    [self postReloadTaskNotification];
+    
 }
 
 - (void)clearTaskBadge:(GameTask*)task

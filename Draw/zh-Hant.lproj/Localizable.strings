@@ -2193,10 +2193,10 @@
 "kExhibition" = "作品展";
 "kContestCopyright" = "重要聲明：蘋果公司非本比賽贊助商，也和本次比賽無任何關係，蘋果公司不承擔比賽的任何責任。本比賽不提供任何蘋果公司的相關產品作為獎品";
 
-"kShareWeiboSucc" = "分享作品成功";
-"kShareWeiboFailure" = "分享作品失敗，請檢查帳號或者網絡";
-"kSentWeiboSucc" = "分享作品成功";
-"kSentWeiboFailure" = "分享作品失敗，請檢查帳號或者網絡";
+"kShareWeiboSucc" = "分享成功";
+"kShareWeiboFailure" = "分享失敗，請檢查帳號或者網絡";
+"kSentWeiboSucc" = "分享成功";
+"kSentWeiboFailure" = "分享失敗，請檢查帳號或者網絡";
 "kPublishWeiboAwardInfo" = "獲得【%d】金幣";
 
 "kFollowFailure" = "關注失敗，請檢查帳號或者網絡";

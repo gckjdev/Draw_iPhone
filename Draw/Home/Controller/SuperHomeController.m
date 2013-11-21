@@ -773,7 +773,7 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
                                  // main
                                  @(HomeMenuTypeDrawRank) : [imageManager drawHomeTop],
                                  @(HomeMenuTypeDrawBBS) : [imageManager drawHomeBbs],
-                                 @(HomeMenuTypeTask) : [imageManager drawFreeCoins],
+                                 @(HomeMenuTypeTask) : [imageManager drawHomeTask],
 
                                  // draw
                                  @(HomeMenuTypeDrawGame) : [imageManager drawHomeOnlineGuess],

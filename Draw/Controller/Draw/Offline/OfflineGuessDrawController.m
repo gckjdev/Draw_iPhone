@@ -278,7 +278,10 @@
     } 
     
     if ([self.feed isSingCategory]) {
-        [self.audioPlayer stop];
+        if ([self.audioPlayer isPlaying]){
+            [self.audioPlayer pause];
+        }
+        self.audioPlayer = nil;
     }
     
     [self.navigationController popViewControllerAnimated:YES];

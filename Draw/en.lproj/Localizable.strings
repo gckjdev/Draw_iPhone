@@ -991,7 +991,7 @@
 
 "kContestRule" = "Rule";
 "kFailLoad" = "Fail to load data, please try it later.";
-"kContestOpus" = "Opus for contest";
+"kContestOpus" = "Contest";
 "kTop" = "Top";
 
 "kCanotSendToSelf" = "You can't send flower or tomato to your opus.";
@@ -2303,6 +2303,8 @@
 
 "kTaskAppUpgrade" = "App Upgrade";
 "kTaskAppUpgradeDesc" = "New version %@ is available, upgrade now!";
+
+"kTaskAlreadyAward" = "The task has been completed.";
 
 "kTask" = "Task";
 "kTaskExpire" = "Expired";

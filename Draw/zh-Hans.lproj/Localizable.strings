@@ -2194,10 +2194,10 @@
 "kExhibition" = "作品展";
 "kContestCopyright" = "重要声明：苹果公司非本比赛赞助商，也和本次比赛无任何关系，苹果公司不承担比赛的任何责任。本比赛不提供任何苹果公司的相关产品作为奖品";
 
-"kShareWeiboSucc" = "分享作品成功";
-"kShareWeiboFailure" = "分享作品失败，请检查帐号或者网络";
-"kSentWeiboSucc" = "分享作品成功";
-"kSentWeiboFailure" = "分享作品失败，请检查帐号或者网络";
+"kShareWeiboSucc" = "分享成功";
+"kShareWeiboFailure" = "分享失败，请检查帐号或者网络";
+"kSentWeiboSucc" = "分享成功";
+"kSentWeiboFailure" = "分享失败，请检查帐号或者网络";
 "kPublishWeiboAwardInfo" = "获得【%d】金币";
 
 "kFollowFailure" = "关注失败，请检查帐号或者网络";
@@ -2287,10 +2287,10 @@
 "kTaskShareQQWeibo" = "分享应用到腾讯微博";
 "kTaskShareQQWeiboDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
 
-"kTaskCreateOpus" = "发表一个作品";
+"kTaskCreateOpus" = "首次发表一个作品";
 "kTaskCreateOpusDesc" = "首次发表作品，可领取%d金币";
 
-"kTaskGuessOpus" = "猜对一个作品";
+"kTaskGuessOpus" = "首次猜对一个作品";
 "kTaskGuessOpusDesc" = "首次猜对一个作品，可领取%d金币";
 
 "kTaskShareOpus" = "分享作品";
@@ -2301,7 +2301,6 @@
 
 "kTaskAppUpgrade" = "版本升级";
 "kTaskAppUpgradeDesc" = "有新版本%@喽，快快来升级!";
-
 
 "kTask" = "任务";
 "kTaskExpire" = "已过期";

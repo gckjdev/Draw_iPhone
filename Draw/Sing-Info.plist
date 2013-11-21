@@ -37,7 +37,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.orange.newdice</string>
+			<string>com.orange.sing</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>alipayxjdst.gckj</string>

@@ -264,6 +264,7 @@ int *getSingBottomMenuTypeList()
                                  @(HomeMenuTypeSing) : [imageManager singHomeSing],
                                  @(HomeMenuTypeGuessSing) : [imageManager singHomeGuess],
                                  @(HomeMenuTypeDrawContest) : [imageManager singHomeContest],
+                                 @(HomeMenuTypeTask) : [imageManager singHomeTask],
                                  
                                  // bottom
                                  @(HomeMenuTypeSingDraft) : [imageManager drawHomeOpus],
