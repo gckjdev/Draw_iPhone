@@ -365,23 +365,6 @@
     }
 }
 
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    PPDebug(@"range = %@", NSStringFromRange(range));
-//    
-//    if (self.maxInputLen > 0 && range.location >= self.maxInputLen) {
-//        return NO;
-//    }
-//    
-//    if (_allowInputEmpty == NO) {
-//        int len = range.location - range.length + 1;
-//        BOOL enabled = (len <= 0) ? NO : YES;
-//        [self enableOkButton:enabled];
-//    }
-//    
-//    return YES;
-//}
-
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     
     if (self.maxInputLen > 0 && range.location >= self.maxInputLen) {

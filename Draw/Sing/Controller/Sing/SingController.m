@@ -189,6 +189,7 @@ enum{
         bself.imageButton.hidden = YES;
         bself.opusImageView.hidden = YES;
         bself.reviewButton.hidden = NO;
+        bself.reviewButton.selected = YES;
     }];
     
     [bself registerNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE usingBlock:^(NSNotification *note) {
@@ -354,24 +355,36 @@ enum{
 // 拖拽手势处理事件
 - (void) handlePanGestures:(UIPanGestureRecognizer*)paramSender{
     
-    if (paramSender.state != UIGestureRecognizerStateEnded && paramSender.state != UIGestureRecognizerStateFailed){
+    UIView *view = paramSender.view;
+    
+    if (paramSender.state != UIGestureRecognizerStateEnded
+        && paramSender.state != UIGestureRecognizerStateFailed){
         
         // 获取手指在屏幕中的坐标
-        CGPoint location = [paramSender locationInView:paramSender.view.superview];
+
+        [view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
+        [view.layer setBorderColor:[COLOR_GRAY CGColor]];
         
-        if (location.x < 0 || location.x > paramSender.view.superview.bounds.size.width) {
+        CGPoint location = [paramSender locationInView:view.superview];
+        
+        if (location.x < 0 || location.x > view.superview.bounds.size.width) {
             return;
         }
         
-        if (location.y < 0 || location.y > paramSender.view.superview.bounds.size.height) {
+        if (location.y < 0 || location.y > view.superview.bounds.size.height) {
             return;
         }
         
-        paramSender.view.center = location;// 重新设置视图的位置
+        view.center = location;// 重新设置视图的位置
         
     }else if (paramSender.state == UIGestureRecognizerStateEnded){
     
+        [view.layer setBorderWidth:0];
+        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
         [self saveDescLabelInfo];
+    }else{
+        [view.layer setBorderWidth:0];
+        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
     }
 }
 
@@ -426,6 +439,7 @@ enum{
     self.opusDescLabel.text = desc;
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
+    [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
     
 //    // center desc label
 //    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
@@ -770,8 +784,8 @@ enum{
         v.delegate = self;
         self.popTipView = [[[CMPopTipView alloc] initWithCustomView:v needBubblePath:NO] autorelease];
         [self.popTipView setBackgroundColor:COLOR_ORANGE];
-        self.popTipView.cornerRadius = 4;
-        self.popTipView.pointerSize = 6;
+        self.popTipView.cornerRadius = (ISIPAD ? 8 : 4);
+        self.popTipView.pointerSize = (ISIPAD ? 12 : 6);
     }
     
     [self.popTipView presentPointingAtView:button inView:self.view animated:YES];

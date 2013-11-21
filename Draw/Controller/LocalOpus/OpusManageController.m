@@ -109,6 +109,11 @@ typedef enum {
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [self clickRefreshButton:nil];
+}
+
 - (void)reloadView
 {
     [self.dataTableView reloadData];
@@ -367,7 +372,7 @@ typedef enum {
     MKBlockActionSheet* tips = nil;
     
     NSString* editString = NSLS(@"kEdit");
-    NSString *shareString = NSLS(@"kShare");
+//    NSString *shareString = NSLS(@"kShare");
     
     tips = [[MKBlockActionSheet alloc] initWithTitle:NSLS(@"kOptions")
                                             delegate:nil
@@ -476,7 +481,7 @@ typedef enum {
     
     MKBlockActionSheet* tips = nil;
     
-    NSString *shareString = NSLS(@"kShare");
+//    NSString *shareString = NSLS(@"kShare");
     
     
     if (self.currentTab.tabID == TabTypeMine) {
