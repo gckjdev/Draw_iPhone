@@ -4899,6 +4899,14 @@
 		CA922B591761C5F00051D9F2 /* ImageShapeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA922B4B1761C5F00051D9F2 /* ImageShapeManager.m */; };
 		CA922B5C1761C5F00051D9F2 /* ImageShapeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA922B4B1761C5F00051D9F2 /* ImageShapeManager.m */; };
 		CA922B5D1761C5F00051D9F2 /* ImageShapeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA922B4B1761C5F00051D9F2 /* ImageShapeManager.m */; };
+		CA92300B183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA923009183DA8C800669DE3 /* TaskCell~ipad.xib */; };
+		CA92300C183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA923009183DA8C800669DE3 /* TaskCell~ipad.xib */; };
+		CA92300D183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA923009183DA8C800669DE3 /* TaskCell~ipad.xib */; };
+		CA92300E183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA923009183DA8C800669DE3 /* TaskCell~ipad.xib */; };
+		CA92300F183DA8C900669DE3 /* TaskController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */; };
+		CA923010183DA8C900669DE3 /* TaskController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */; };
+		CA923011183DA8C900669DE3 /* TaskController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */; };
+		CA923012183DA8C900669DE3 /* TaskController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */; };
 		CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
 		CA96E271150DE56400292335 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
@@ -9170,6 +9178,8 @@
 		CA91FC8115C27BF700E9C1CD /* CommonGameNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameNetworkService.m; sourceTree = "<group>"; };
 		CA922B4A1761C5F00051D9F2 /* ImageShapeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageShapeManager.h; sourceTree = "<group>"; };
 		CA922B4B1761C5F00051D9F2 /* ImageShapeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageShapeManager.m; sourceTree = "<group>"; };
+		CA923009183DA8C800669DE3 /* TaskCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaskCell~ipad.xib"; sourceTree = "<group>"; };
+		CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaskController~ipad.xib"; sourceTree = "<group>"; };
 		CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameSession.h; sourceTree = "<group>"; };
 		CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameSession.m; sourceTree = "<group>"; };
 		CA96E26C150DE4FD00292335 /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
@@ -13816,9 +13826,11 @@
 				CA1162581834A88E00FDD3A9 /* TaskController.h */,
 				CA1162591834A88E00FDD3A9 /* TaskController.m */,
 				CA11625A1834A88E00FDD3A9 /* TaskController.xib */,
+				CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */,
 				CA11626F1834A91000FDD3A9 /* TaskCell.h */,
 				CA1162701834A91100FDD3A9 /* TaskCell.m */,
 				CA1162711834A91100FDD3A9 /* TaskCell.xib */,
+				CA923009183DA8C800669DE3 /* TaskCell~ipad.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -17921,6 +17933,8 @@
 				EA03897B183B06D300516952 /* GroupTopicController.xib in Resources */,
 				EA038986183B122900516952 /* GroupDetailCell.xib in Resources */,
 				EA0389A1183B151A00516952 /* GroupInfoView.xib in Resources */,
+				CA92300D183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
+				CA923011183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18882,6 +18896,8 @@
 				EA03897A183B06D300516952 /* GroupTopicController.xib in Resources */,
 				EA038985183B122900516952 /* GroupDetailCell.xib in Resources */,
 				EA0389A0183B151A00516952 /* GroupInfoView.xib in Resources */,
+				CA92300C183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
+				CA923010183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19823,6 +19839,8 @@
 				EA038979183B06D300516952 /* GroupTopicController.xib in Resources */,
 				EA038984183B122900516952 /* GroupDetailCell.xib in Resources */,
 				EA03899F183B151A00516952 /* GroupInfoView.xib in Resources */,
+				CA92300B183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
+				CA92300F183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20722,6 +20740,8 @@
 				EA03897C183B06D300516952 /* GroupTopicController.xib in Resources */,
 				EA038987183B122900516952 /* GroupDetailCell.xib in Resources */,
 				EA0389A2183B151A00516952 /* GroupInfoView.xib in Resources */,
+				CA92300E183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
+				CA923012183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

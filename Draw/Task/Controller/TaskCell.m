@@ -29,6 +29,7 @@
 {
     [_taskNameLabel setFont:CELL_CONTENT_FONT];
     [_taskDescLabel setFont:CELL_SMALLTEXT_FONT];
+    [_taskStatusLabel setFont:CELL_CONTENT_FONT];
     
     [_taskNameLabel setTextColor:COLOR_BROWN];
     [_taskDescLabel setTextColor:COLOR_BROWN];

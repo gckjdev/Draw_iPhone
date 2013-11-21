@@ -753,9 +753,9 @@
 {
     [self.layerPanelPopView dismissAnimated:YES];
     [self.upPanelPopView dismissAnimated:YES];
-    if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
-    }
+//    if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
+//        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
+//    }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
     [self.layerPanelPopView dismissAnimated:YES];
     [self.upPanelPopView dismissAnimated:YES];    

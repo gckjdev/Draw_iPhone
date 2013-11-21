@@ -282,9 +282,9 @@
 
 - (void)drawView:(DrawView *)aDrawView didStartTouchWithAction:(DrawAction *)action
 {
-    if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
-        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
-    }
+//    if ([[ToolCommandManager defaultManager] isPaletteShowing]) {
+//        [self.drawToolPanel updateRecentColorViewWithColor:aDrawView.drawInfo.penColor updateModel:YES];
+//    }
     [[ToolCommandManager defaultManager] hideAllPopTipViews];
 }
 
