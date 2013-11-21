@@ -17,7 +17,7 @@
 #import "HotController.h"
 #import "AccountService.h"
 
-#define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_3"
+#define USER_TASK_LIST_KEY @"USER_TASK_LIST_KEY_4"
 
 static TaskManager* _defaultTaskManager;
 
@@ -128,6 +128,17 @@ static TaskManager* _defaultTaskManager;
                                              badge:1
                                               award:0
                                            selector:@selector(gotoAppReview:)];
+    
+    
+    
+    GameTask* task11 = [[GameTask alloc] initWithId:PBTaskIdTypeTaskAppUpgrade
+                                               name:NSLS(@"kTaskAppUpgrade")
+                                               desc:[NSString stringWithFormat:NSLS(@"kTaskAppUpgradeDesc"),
+                                                     [PPConfigManager getLastAppVersion]]
+                                             status:PBTaskStatusTaskStatusAlwaysOpen
+                                              badge:1
+                                              award:0
+                                           selector:@selector(upgradeApp:)];
 
     
 //    [retList addObject:task1];
@@ -143,6 +154,14 @@ static TaskManager* _defaultTaskManager;
     
     if ([PPConfigManager isInReviewVersion] == NO){
         [retList addObject:task10];
+    }
+    
+    if ([UIUtils checkAppHasUpdateVersion]){
+        [retList addObject:task11];
+    }
+    else{
+        // clean local app upgrade task status
+        
     }
     
     return retList;
@@ -194,6 +213,14 @@ static TaskManager* _defaultTaskManager;
         // task list to data list
         NSMutableArray* pbList = [NSMutableArray array];
         for (GameTask* task in self.taskList){
+            
+            if (task.taskId == PBTaskIdTypeTaskAppUpgrade &&
+                [UIUtils checkAppHasUpdateVersion] == NO){                
+                // if app is upgraded
+                // don't save app upgrade info in data for next upgrade
+                continue;
+            }
+            
             NSData* data = [task data];
             if (data){
                 [pbList addObject:data];
@@ -219,7 +246,7 @@ static TaskManager* _defaultTaskManager;
     self.viewController = nil;
 }
 
-- (void)awardTask:(GameTask*)task
+- (void)awardTask:(GameTask*)task viewController:(PPViewController*)viewController
 {
     [self clearTaskBadge:task];
     
@@ -227,16 +254,9 @@ static TaskManager* _defaultTaskManager;
         return;
     }
 
-    [[AccountService defaultService] chargeCoin:task.award source:TaskAward];
-    task.status = PBTaskStatusTaskStatusAward;
+    self.viewController = viewController;
+    [[AccountService defaultService] chargeCoin:task.award source:TaskAward+task.taskId];
 }
-
-- (void)didFinishChargeCurrency:(PBGameCurrency)currency
-                     resultCode:(int)resultCode
-{
-    // TODO
-}
-
 
 - (void)bindSinaWeibo:(GameTask*)task
 {
@@ -351,6 +371,15 @@ static TaskManager* _defaultTaskManager;
     [UIUtils gotoReview:[GameApp appId]];
 }
 
+- (void)upgradeApp:(GameTask*)task
+{
+    if ([UIUtils checkAppHasUpdateVersion]) {
+        [UIUtils openApp:[GameApp appId]];
+    }else{
+        POSTMSG(NSLS(@"kAlreadLastVersion"));
+    }
+}
+
 - (GameTask*)getTask:(PBTaskIdType)taskId
 {
     for (GameTask* task in _taskList){
@@ -390,6 +419,25 @@ static TaskManager* _defaultTaskManager;
     
     PPDebug(@"<completeTask> task(%d) status(%d) badge(%d)", taskId, task.status, task.badge);
     [self save];
+}
+
+- (void)awardTaskSuccess:(int)taskId amount:(int)amount
+{
+    GameTask* task = [self getTask:taskId];
+    if (task == nil){
+        return;
+    }
+    
+    if (task.status == PBTaskStatusTaskStatusDone){
+        task.status = PBTaskStatusTaskStatusAward;
+        [self save];
+    }
+        
+    NSString* msg = [NSString stringWithFormat:NSLS(@"kAwardTaskSucc"), amount];
+    POSTMSG2(msg, 2);
+
+    [self.viewController viewDidAppear:NO];
+    self.viewController = nil;
 }
 
 - (void)clearTaskBadge:(GameTask*)task

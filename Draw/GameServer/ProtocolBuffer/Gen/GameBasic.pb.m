@@ -114,6 +114,7 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
     case PBTaskIdTypeTaskGuessOpus:
     case PBTaskIdTypeTaskShareOpus:
     case PBTaskIdTypeTaskShareQqWeibo:
+    case PBTaskIdTypeTaskAppUpgrade:
       return YES;
     default:
       return NO;

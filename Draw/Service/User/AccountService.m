@@ -35,6 +35,7 @@
 #import "BlockArray.h"
 #import "UIUtils.h"
 #import "SKProductManager.h"
+#import "TaskManager.h"
 
 #define DRAW_IAP_PRODUCT_ID_PREFIX @"com.orange."
 
@@ -405,6 +406,12 @@ transactionRecepit:(NSString*)transactionRecepit
                 // update balance from server
                 int coinBalance = [[output.jsonDataDict objectForKey:PARA_ACCOUNT_BALANCE] intValue];
                 [[AccountManager defaultManager] updateBalance:coinBalance currency:PBGameCurrencyCoin];
+             
+                
+                if (source >= TaskAward && source <= TaskAwardEnd){
+                    int taskId = source - TaskAward;
+                    [[TaskManager defaultManager] awardTaskSuccess:taskId amount:amount];
+                }
                 
             }
             else{

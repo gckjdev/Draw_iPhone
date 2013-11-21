@@ -2301,6 +2301,9 @@
 "kTaskAppReview" = "Give Review";
 "kTaskAppReviewDesc" = "Give us an app review";
 
+"kTaskAppUpgrade" = "App Upgrade";
+"kTaskAppUpgradeDesc" = "New version %@ is available, upgrade now!";
+
 "kTask" = "Task";
 "kTaskExpire" = "Expired";
 "kTaskTake" = "Completed";
@@ -2309,4 +2312,4 @@
 "kTaskToBeTaken" = "Waiting";
 
 "kShareAppWeiboDefault" = "%@ AppStore Download Link : %@";
-
+"kAwardTaskSucc" = "Take %d coins for award successfully";

@@ -66,6 +66,7 @@ SET_CELL_BG_IN_CONTROLLER
     
     GameTask* task = [self.dataList objectAtIndex:indexPath.row];
     [cell setCellInfo:task];
+    cell.indexPath = indexPath;
     
     return cell;
 }
@@ -87,7 +88,7 @@ SET_CELL_BG_IN_CONTROLLER
     }
     
     GameTask* task = [self.dataList objectAtIndex:indexPath.row];
-    [[TaskManager defaultManager] awardTask:task];
+    [[TaskManager defaultManager] awardTask:task viewController:self];
 }
 
 

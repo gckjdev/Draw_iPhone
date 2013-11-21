@@ -2299,6 +2299,10 @@
 "kTaskAppReview" = "给予5星好评";
 "kTaskAppReviewDesc" = "喜欢这个应用？五星好评就是最好的支持和鼓励！";
 
+"kTaskAppUpgrade" = "版本升级";
+"kTaskAppUpgradeDesc" = "有新版本%@喽，快快来升级!";
+
+
 "kTask" = "任务";
 "kTaskExpire" = "已过期";
 "kTaskTake" = "已完成";
@@ -2307,3 +2311,4 @@
 "kTaskToBeTaken" = "待完成";
 
 "kShareAppWeiboDefault" = "%@ AppStore下载链接： %@";
+"kAwardTaskSucc" = "成功领取%d金币奖励";

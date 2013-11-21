@@ -21,7 +21,8 @@
 @property (nonatomic, retain) PPViewController *viewController;
 
 - (void)execute:(GameTask*)task viewController:(PPViewController*)viewController;
-- (void)awardTask:(GameTask*)task;
+- (void)awardTask:(GameTask*)task viewController:(PPViewController*)viewController;
+- (void)awardTaskSuccess:(int)taskId amount:(int)amount;
 
 - (void)completeTask:(PBTaskIdType)taskId isAward:(BOOL)isAward clearBadge:(BOOL)clearBadge;
 - (void)completeBindWeiboTask:(ShareType)shareType isAward:(BOOL)isAward clearBadge:(BOOL)clearBadge;
