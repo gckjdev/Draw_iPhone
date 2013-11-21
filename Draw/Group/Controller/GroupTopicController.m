@@ -11,6 +11,7 @@
 #import "GroupInfoView.h"
 #import "BBSPostCell.h"
 #import "BBSModelExt.h"
+#import "Group.pb.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -24,6 +25,9 @@ typedef enum {
 }CellRow;
 
 @interface GroupTopicController ()
+{
+    BBSService *topicService;
+}
 @property(nonatomic, retain)BBSPostActionHeaderView *topicHeader;
 @property(nonatomic, retain)UITableViewCell *infoCell;
 @property(nonatomic, retain)PBGroup *group;
@@ -31,8 +35,8 @@ typedef enum {
 
 @implementation GroupTopicController
 
-- (GroupTopicController *)enterWithGroup:(PBGroup *)group
-                          fromController:(PPViewController *)controller
++ (GroupTopicController *)enterWithGroup:(PBGroup *)group
+                          fromController:(PPViewController *)controller;
 {
     GroupTopicController *gt = [[GroupTopicController alloc] init];
     gt.group = group;
@@ -40,6 +44,14 @@ typedef enum {
     return [gt autorelease];
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        topicService = [BBSService groupTopicService];
+    }
+    return self;
+}
 
 - (void)dealloc
 {
@@ -58,10 +70,11 @@ typedef enum {
 {
     [super viewDidLoad];
     [self.titleView setTransparentStyle];
-
+    [self.titleView setTitle:_group.name];
     //TODO check if user has join a group
     [self.titleView setRightButtonTitle:NSLS(@"kJoin")];
     [self.titleView setRightButtonSelector:@selector(clickJoin:)];
+    [self clickTab:NewestTopic];
 }
 
 - (void)didReceiveMemoryWarning
@@ -172,8 +185,37 @@ typedef enum {
 }
 
 - (void)serviceLoadDataForTabID:(NSInteger)tabID{
-    //TODO fetch data through service.
-    [self finishLoadDataForTabID:tabID resultList:nil];
+    TableTab *tab = [_tabManager tabForID:tabID];
+    [self showActivityWithText:NSLS(@"kLoading")];
+    switch (tabID) {
+        case NewestTopic:
+        {
+            [topicService getBBSPostListWithBoardId:_group.groupId
+                                          targetUid:nil
+                                          rangeType:RangeTypeNew
+                                             offset:tab.offset
+                                              limit:tab.limit
+                                           delegate:self];
+            break;
+        }
+        case MarkedTopic:
+        {
+            [topicService getMarkedPostList:_group.groupId
+                                     offset:tab.offset
+                                      limit:tab.limit
+                                    hanlder:^(NSInteger resultCode, NSArray *postList, NSInteger tag) {
+                [self hideActivity];
+                if (resultCode == 0) {
+                    [self finishLoadDataForTabID:tabID resultList:postList];
+                }else{
+                    [self failLoadDataForTabID:tabID];
+                }
+            }];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)didClickSupportTabButton
@@ -185,5 +227,23 @@ typedef enum {
     [self clickTab:NewestTopic];
 }
 
+- (void)groupInfoView:(GroupInfoView *)infoView didClickCustomButton:(UIButton *)button
+{
+    //TODO enter detail controller.
+    PPDebug(@"enter detail controller.");
+}
+
+- (void)didGetBBSBoard:(NSString *)boardId
+              postList:(NSArray *)postList
+             rangeType:(RangeType)rangeType
+            resultCode:(NSInteger)resultCode
+{
+    [self hideActivity];
+    if (resultCode == 0) {
+        [self finishLoadDataForTabID:NewestTopic resultList:postList];
+    }else{
+        [self failLoadDataForTabID:NewestTopic];
+    }
+}
 
 @end

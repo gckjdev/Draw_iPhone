@@ -41,7 +41,7 @@ typedef enum{
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [[GroupService defaultService] syncFollowGroupIds];
     }
     return self;
 }

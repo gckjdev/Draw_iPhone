@@ -41,6 +41,7 @@
     [_sizeLabel setTextAlignment:NSTextAlignmentCenter];
     CGFloat radius = (CGRectGetHeight(_sizeLabel.bounds)/2.0);
     SET_VIEW_ROUND_CORNER_RADIUS(self.sizeLabel, radius);
+    self.backgroundColor = [UIColor clearColor];
 }
 
 + (id)infoViewWithGroup:(PBGroup *)group
@@ -79,14 +80,15 @@
 }
 
 #define CUSTOM_BUTTON_SIZE (ISIPAD?45:25)
-#define CUSTOM_BUTTON_CENTERX (ISIPAD?670:270)
+#define CUSTOM_BUTTON_CENTERX (ISIPAD?670:290)
 
 - (void)setCustomButton:(UIButton *)button
 {
     [_customButton removeFromSuperview];
     _customButton = button;
     button.frame = CGRectMake(0, 0, CUSTOM_BUTTON_SIZE, CUSTOM_BUTTON_SIZE);
-    button.center = CGPointMake(CUSTOM_BUTTON_CENTERX, CGRectGetMinY(self.bounds));
+    button.center = CGPointMake(CUSTOM_BUTTON_CENTERX, CGRectGetMidY(self.bounds));
+    
     [self addSubview:button];
     [button removeTarget:self action:@selector(clickCustomButton:) forControlEvents:UIControlEventTouchUpInside];
     [button addTarget:self action:@selector(clickCustomButton:) forControlEvents:UIControlEventTouchUpInside];

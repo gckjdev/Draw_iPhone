@@ -662,7 +662,8 @@
 #define PARA_SOURCE_ACTION_TYPE @"sat"
 
 #define PARA_TOPIC_MODE @"mode"
-#define CONST_GROUP_MODE @"group"
+#define CONST_GROUP_MODE 1
+#define CONST_BBS_MODE 0
 
 
 //group

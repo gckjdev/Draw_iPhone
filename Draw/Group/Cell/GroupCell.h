@@ -21,7 +21,7 @@
 
 @interface GroupCell : PPTableViewCell<GroupInfoViewDelegate>
 
-@property(nonatomic, assign)PBGroup *group;
+@property(nonatomic, retain)PBGroup *group;
 
 + (GroupCell *)createCell:(id<GroupCellDelegate>)delegate;
 + (CGFloat)getCellHeight;

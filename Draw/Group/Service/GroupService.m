@@ -59,6 +59,9 @@ static GroupService *_staticGroupService = nil;
                                      returnPB:YES
                                      returnJSONArray:NO];
         NSError *error = DRAW_ERROR(output.pbResponse.resultCode);
+        if (error) {
+            [DrawError postError:error];
+        }
         EXECUTE_BLOCK(callback, output.pbResponse, error);
     }else{
         dispatch_async(workingQueue, ^{
@@ -72,6 +75,7 @@ static GroupService *_staticGroupService = nil;
                 NSError *error = DRAW_ERROR(output.pbResponse.resultCode);
                 if (error) {
                     PPDebug(@"<GroupService> load data error = %@", error);
+                    [DrawError postError:error];
                 }
 
                 EXECUTE_BLOCK(callback, output.pbResponse, error);
@@ -349,11 +353,13 @@ static GroupService *_staticGroupService = nil;
 
 - (void)syncFollowGroupIds
 {
+    PPDebug(@"<syncFollowGroupIds>");
     [self loadPBData:METHOD_SYNC_FOLLOWED_GROUPIDS
           parameters:@{}
             callback:^(DataQueryResponse *response, NSError *error)
      {
          if (!error) {
+             PPDebug(@"<syncFollowGroupIds> Done! follow group size = %d", [response.idListList count]);
              _groupManager.followedGroupIds = [NSMutableArray arrayWithArray:response.idListList];
          }
      }];    

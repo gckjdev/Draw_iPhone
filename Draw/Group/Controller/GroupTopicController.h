@@ -8,11 +8,17 @@
 
 #import "CommonTabController.h"
 #import "BBSPostActionHeaderView.h"
+#import "GroupInfoView.h"
+#import "BBSService.h"
 
 @class PBGroup;
-@interface GroupTopicController : CommonTabController<BBSPostActionHeaderViewDelegate>
+@interface GroupTopicController : CommonTabController<BBSPostActionHeaderViewDelegate, GroupInfoViewDelegate, BBSServiceDelegate>
+//@property(nonatomic, retain)PBGroup *group;
 
 + (GroupTopicController *)enterWithGroup:(PBGroup *)group
                           fromController:(PPViewController *)controller;
+
+
+
 
 @end
