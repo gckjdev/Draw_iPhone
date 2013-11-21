@@ -928,7 +928,11 @@ typedef enum{
 //override super clickBlackButton method
 - (IBAction)clickBackButton:(id)sender
 {
+    PPDebug(@"<clickBack>");
     [_audioPlayer stop];
+
+    PPDebug(@"<clickBack> audio stop end");
+    
     [self.feedScene didClickBackBtn:self];
     
     // clear delegate to avoid callback
@@ -1392,7 +1396,9 @@ typedef enum{
         
         [_drawCellFullScreen.slider setValue:0];
         _audioPlayer.slider = _drawCellFullScreen.slider;
-        [_audioPlayer.slider addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+        [_audioPlayer.slider addTarget:self
+                                action:@selector(sliderValueChange:)
+                      forControlEvents:UIControlEventValueChanged];
     }
     
     [_audioPlayer play];
@@ -1400,6 +1406,7 @@ typedef enum{
 
 - (void)sliderValueChange:(CustomSlider *)slider{
     
+    PPDebug(@"<sliderValueChange>");
     [_audioPlayer seekToProgress:slider.value];
 }
 
