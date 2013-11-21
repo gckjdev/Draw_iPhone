@@ -356,7 +356,16 @@
 
 - (void)initShowSingView{
     
-    CGRect rect = ISIPAD ? CGRectMake(70, 92, 628, 628) : CGRectMake(21, 48, 280, 280);
+    CGRect rect;
+    
+    if (ISIPAD) {
+        rect = CGRectMake(70, 92, 628, 628);
+    }else if (ISIPHONE5){
+        rect = CGRectMake(21, 88, 280, 280);
+    }else{
+        rect = CGRectMake(21, 48, 280, 280);
+    }
+    
     WhisperStyleView *v = [WhisperStyleView createWithFrame:rect feed:self.feed];
     
     [self.view addSubview:v];
