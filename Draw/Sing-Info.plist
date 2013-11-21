@@ -36,11 +36,14 @@
 			<string>com.orange.newdice</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>alipaycchh.gckj</string>
-				<string>fb352182988165711</string>
-				<string>gckjcchh</string>
-				<string>wx427a2f57bc4456d1</string>
-				<string>sinaweibosso.4285743836</string>
+				<string>alipayxjdst.gckj</string>
+				<string>fb325848464220092</string>
+				<string>gckjxjdst</string>
+				<string>wxdf67334f7e8e0771</string>
+				<string>sinaweibosso.596481594</string>
+				<string>tencent100554944</string>
+				<string>qq05FE58C0</string>
+				<string>wb801441969</string>
 			</array>
 		</dict>
 	</array>
