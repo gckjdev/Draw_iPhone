@@ -930,6 +930,7 @@ typedef enum{
 {
     PPDebug(@"<clickBack>");
     [_audioPlayer stop];
+    PPRelease(_audioPlayer);
 
     PPDebug(@"<clickBack> audio stop end");
     
