@@ -390,7 +390,7 @@
 
 - (NSString *)alipayCallBackScheme
 {
-    return @"alipaycchh.gckj";
+    return @"alipayxjdst.gckj";
 }
 
 - (BOOL)isAutoRegister

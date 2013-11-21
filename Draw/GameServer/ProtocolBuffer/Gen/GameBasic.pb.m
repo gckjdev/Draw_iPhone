@@ -89,10 +89,12 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value) {
 }
 BOOL PBTaskStatusIsValidValue(PBTaskStatus value) {
   switch (value) {
-    case PBTaskStatusTaskStatusWaitForStart:
     case PBTaskStatusTaskStatusCanTake:
-    case PBTaskStatusTaskStatusTaken:
+    case PBTaskStatusTaskStatusDone:
+    case PBTaskStatusTaskStatusAward:
     case PBTaskStatusTaskStatusExpired:
+    case PBTaskStatusTaskStatusWaitForStart:
+    case PBTaskStatusTaskStatusAlwaysOpen:
       return YES;
     default:
       return NO;
@@ -100,6 +102,7 @@ BOOL PBTaskStatusIsValidValue(PBTaskStatus value) {
 }
 BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
   switch (value) {
+    case PBTaskIdTypeTaskNone:
     case PBTaskIdTypeTaskCheckIn:
     case PBTaskIdTypeTaskBindSina:
     case PBTaskIdTypeTaskBindQq:
@@ -110,6 +113,8 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
     case PBTaskIdTypeTaskCreateOpus:
     case PBTaskIdTypeTaskGuessOpus:
     case PBTaskIdTypeTaskShareOpus:
+    case PBTaskIdTypeTaskShareQqWeibo:
+    case PBTaskIdTypeTaskAppUpgrade:
       return YES;
     default:
       return NO;
@@ -15087,6 +15092,7 @@ static PBContestList* defaultPBContestListInstance = nil;
 @property (retain) NSString* desc;
 @property PBTaskStatus status;
 @property int32_t badge;
+@property int32_t award;
 @end
 
 @implementation PBTask
@@ -15126,6 +15132,13 @@ static PBContestList* defaultPBContestListInstance = nil;
   hasBadge_ = !!value;
 }
 @synthesize badge;
+- (BOOL) hasAward {
+  return !!hasAward_;
+}
+- (void) setHasAward:(BOOL) value {
+  hasAward_ = !!value;
+}
+@synthesize award;
 - (void) dealloc {
   self.name = nil;
   self.desc = nil;
@@ -15136,8 +15149,9 @@ static PBContestList* defaultPBContestListInstance = nil;
     self.taskId = 0;
     self.name = @"";
     self.desc = @"";
-    self.status = PBTaskStatusTaskStatusWaitForStart;
+    self.status = PBTaskStatusTaskStatusCanTake;
     self.badge = 0;
+    self.award = 0;
   }
   return self;
 }
@@ -15178,6 +15192,9 @@ static PBTask* defaultPBTaskInstance = nil;
   if (self.hasBadge) {
     [output writeInt32:5 value:self.badge];
   }
+  if (self.hasAward) {
+    [output writeInt32:6 value:self.award];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
@@ -15201,6 +15218,9 @@ static PBTask* defaultPBTaskInstance = nil;
   }
   if (self.hasBadge) {
     size += computeInt32Size(5, self.badge);
+  }
+  if (self.hasAward) {
+    size += computeInt32Size(6, self.award);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -15292,6 +15312,9 @@ static PBTask* defaultPBTaskInstance = nil;
   if (other.hasBadge) {
     [self setBadge:other.badge];
   }
+  if (other.hasAward) {
+    [self setAward:other.award];
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -15336,6 +15359,10 @@ static PBTask* defaultPBTaskInstance = nil;
       }
       case 40: {
         [self setBadge:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setAward:[input readInt32]];
         break;
       }
     }
@@ -15402,7 +15429,7 @@ static PBTask* defaultPBTaskInstance = nil;
 }
 - (PBTask_Builder*) clearStatus {
   result.hasStatus = NO;
-  result.status = PBTaskStatusTaskStatusWaitForStart;
+  result.status = PBTaskStatusTaskStatusCanTake;
   return self;
 }
 - (BOOL) hasBadge {
@@ -15419,6 +15446,22 @@ static PBTask* defaultPBTaskInstance = nil;
 - (PBTask_Builder*) clearBadge {
   result.hasBadge = NO;
   result.badge = 0;
+  return self;
+}
+- (BOOL) hasAward {
+  return result.hasAward;
+}
+- (int32_t) award {
+  return result.award;
+}
+- (PBTask_Builder*) setAward:(int32_t) value {
+  result.hasAward = YES;
+  result.award = value;
+  return self;
+}
+- (PBTask_Builder*) clearAward {
+  result.hasAward = NO;
+  result.award = 0;
   return self;
 }
 @end

@@ -44,6 +44,7 @@
        didClickAvatarView:(AvatarView *)avatarView;
 
 - (void)enterFriend;
+- (void)enterTopOpus;
 + (NSDictionary*)defaultMenuTitleDictionary;
 + (NSDictionary*)defaultMenuImageDictionary;
 

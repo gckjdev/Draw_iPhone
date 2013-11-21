@@ -122,15 +122,18 @@ typedef enum {
 BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value);
 
 typedef enum {
-  PBTaskStatusTaskStatusWaitForStart = -1,
   PBTaskStatusTaskStatusCanTake = 0,
-  PBTaskStatusTaskStatusTaken = 1,
-  PBTaskStatusTaskStatusExpired = 2,
+  PBTaskStatusTaskStatusDone = 1,
+  PBTaskStatusTaskStatusAward = 2,
+  PBTaskStatusTaskStatusExpired = 3,
+  PBTaskStatusTaskStatusWaitForStart = 4,
+  PBTaskStatusTaskStatusAlwaysOpen = 5,
 } PBTaskStatus;
 
 BOOL PBTaskStatusIsValidValue(PBTaskStatus value);
 
 typedef enum {
+  PBTaskIdTypeTaskNone = 0,
   PBTaskIdTypeTaskCheckIn = 1,
   PBTaskIdTypeTaskBindSina = 2,
   PBTaskIdTypeTaskBindQq = 3,
@@ -141,6 +144,8 @@ typedef enum {
   PBTaskIdTypeTaskCreateOpus = 8,
   PBTaskIdTypeTaskGuessOpus = 9,
   PBTaskIdTypeTaskShareOpus = 10,
+  PBTaskIdTypeTaskShareQqWeibo = 11,
+  PBTaskIdTypeTaskAppUpgrade = 12,
 } PBTaskIdType;
 
 BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
@@ -3638,11 +3643,13 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 @private
   BOOL hasTaskId_:1;
   BOOL hasBadge_:1;
+  BOOL hasAward_:1;
   BOOL hasName_:1;
   BOOL hasDesc_:1;
   BOOL hasStatus_:1;
   int32_t taskId;
   int32_t badge;
+  int32_t award;
   NSString* name;
   NSString* desc;
   PBTaskStatus status;
@@ -3652,11 +3659,13 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (BOOL) hasDesc;
 - (BOOL) hasStatus;
 - (BOOL) hasBadge;
+- (BOOL) hasAward;
 @property (readonly) int32_t taskId;
 @property (readonly, retain) NSString* name;
 @property (readonly, retain) NSString* desc;
 @property (readonly) PBTaskStatus status;
 @property (readonly) int32_t badge;
+@property (readonly) int32_t award;
 
 + (PBTask*) defaultInstance;
 - (PBTask*) defaultInstance;
@@ -3716,5 +3725,10 @@ BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value);
 - (int32_t) badge;
 - (PBTask_Builder*) setBadge:(int32_t) value;
 - (PBTask_Builder*) clearBadge;
+
+- (BOOL) hasAward;
+- (int32_t) award;
+- (PBTask_Builder*) setAward:(int32_t) value;
+- (PBTask_Builder*) clearAward;
 @end
 

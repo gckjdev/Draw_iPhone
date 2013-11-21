@@ -2266,3 +2266,50 @@
 "kFurtureFunction" = "Furture function, is coming soon...";
 
 /*********************图库国际化字符串结束 ************************/
+
+
+"kTaskCheckIn" = "Check In";
+"kTaskCheckInDesc" = "Check in everyday";
+
+"kTaskBindSinaWeibo" = "Connect Sina Weibo";
+"kTaskBindSinaWeiboDesc" = "Connect Sina Weibo to get %d";
+
+"kTaskBindQQWeibo" = "Connect QQ Weibo";
+"kTaskBindQQWeiboDesc" = "Connect QQ Weibo to get %d";
+
+"kTaskShareSinaWeibo" = "Share App to SINA Weibo";
+"kTaskShareSinaWeiboDesc" = "Share App to SINA Weibo to get %d";
+
+"kTaskShareWeixinTimeline" = "Share App to WeChat";
+"kTaskShareWeixinTimelineDesc" = "Share App to WeChat to get %d";
+
+"kTaskShareQQSpace" = "Share App to QQ Space";
+"kTaskShareQQSpaceDesc" = "Share App to QQ Space to get %d";
+
+"kTaskShareQQWeibo" = "Share App to QQ Weibo";
+"kTaskShareQQWeiboDesc" = "Share App to QQ Weibo to get %d";
+
+"kTaskCreateOpus" = "Create Opus";
+"kTaskCreateOpusDesc" = "Create an opus to get %d";
+
+"kTaskGuessOpus" = "Guess Opus";
+"kTaskGuessOpusDesc" = "Guess an opus to get %d";
+
+"kTaskShareOpus" = "Share Opus";
+"kTaskShareOpusDesc" = "Share an opus to get %d";
+
+"kTaskAppReview" = "Give Review";
+"kTaskAppReviewDesc" = "Give us an app review";
+
+"kTaskAppUpgrade" = "App Upgrade";
+"kTaskAppUpgradeDesc" = "New version %@ is available, upgrade now!";
+
+"kTask" = "Task";
+"kTaskExpire" = "Expired";
+"kTaskTake" = "Completed";
+"kTakeAward" = "Take";
+"kTaskWaitForStart" = "Not Start";
+"kTaskToBeTaken" = "Waiting";
+
+"kShareAppWeiboDefault" = "%@ AppStore Download Link : %@";
+"kAwardTaskSucc" = "Take %d coins for award successfully";

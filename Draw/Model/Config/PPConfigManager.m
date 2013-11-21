@@ -454,16 +454,32 @@
 
 + (int)getCreateOpusWeiboReward
 {
-    return [MobClickUtils getIntValueByKey:@"CREATE_OPUS_WEIBO" defaultValue:30];
+    return [MobClickUtils getIntValueByKey:@"CREATE_OPUS_AWARD" defaultValue:30];
 }
 
++ (int)getFirstCreateOpusWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"FIRST_CREATE_OPUS_AWARD" defaultValue:200];
+}
+
+
++ (int)getFirstGuessOpusReward
+{
+    return [MobClickUtils getIntValueByKey:@"GUESS_OPUS_AWARD" defaultValue:200];
+}
 
 
 
 + (int)getFollowWeiboReward
 {
-    return [MobClickUtils getIntValueByKey:@"REWARD_FOLLOW_WEIBO" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"REWARD_FOLLOW_WEIBO" defaultValue:500];
 }
+
++ (int)getShareAppWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"SHARE_APP_WEIBO" defaultValue:100];
+}
+
 + (int)flowerAwardFordLevelUp
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_FLOWER_FOR_LVL_UP" defaultValue:2];

@@ -11,6 +11,8 @@
 
 @class PPSNSCommonService;
 
+typedef void(^ShareSNSResultBlock) (int resultCode);
+
 @interface GameSNSService : NSObject
 
 //+ (void)askFollow:(PPSNSType)snsType snsWeiboId:(NSString*)weiboId;
@@ -29,6 +31,15 @@
 - (void)autheticate:(PPSNSType)snsType;
 - (void)cancelAuthentication:(PPSNSType)snsType;
 - (void)followUser:(PPSNSType)snsType weiboId:(NSString*)weiboId weiboName:(NSString*)weiboName;
+
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+       imageFilePath:(NSString*)imagePath
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage
+              taskId:(int)taskId;
 
 - (void)publishWeibo:(PPSNSType)snsType
                 text:(NSString*)text

@@ -37,6 +37,7 @@
 #import "UIImageView+WebCache.h"
 #import "WhisperStyleView.h"
 #import "LevelService.h"
+#import "TaskManager.h"
 
 @interface OfflineGuessDrawController()
 {
@@ -168,6 +169,11 @@
             isCorrect:(BOOL)isCorrect
 {
     if (isCorrect) {
+        
+        [[TaskManager defaultManager] completeTask:PBTaskIdTypeTaskGuessOpus
+                                           isAward:NO
+                                        clearBadge:YES];
+        
         [self awardScoreAndLevel];
         [self quit:YES];
     }else{

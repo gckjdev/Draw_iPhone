@@ -29,6 +29,7 @@
             desc:(NSString*)desc
           status:(PBTaskStatus)status
            badge:(int)badge
+           award:(int)award
         selector:(SEL)selector
 {
     self = [super init];
@@ -39,6 +40,7 @@
     [_taskBuilder setDesc:desc];
     [_taskBuilder setStatus:status];
     [_taskBuilder setBadge:badge];
+    [_taskBuilder setAward:award];
     
     self.selector = selector;
     
@@ -76,7 +78,7 @@
 }
 
 
-- (NSString*)taskId
+- (int)taskId
 {
     return _taskBuilder.taskId;
 }
@@ -96,6 +98,16 @@
     return _taskBuilder.badge;
 }
 
+- (int)award
+{
+    return _taskBuilder.award;
+}
+
+- (void)setBadge:(int)badge
+{
+    [_taskBuilder setBadge:badge];
+}
+
 - (void)setStatus:(PBTaskStatus)status
 {
     [_taskBuilder setStatus:status];
@@ -106,5 +118,9 @@
     return _taskBuilder.status;
 }
 
+- (BOOL)isComplete
+{
+    return (self.status == PBTaskStatusTaskStatusAward) || (self.status == PBTaskStatusTaskStatusDone);
+}
 
 @end

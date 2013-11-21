@@ -2265,3 +2265,50 @@
 "kReset" = "重置";
 "kSelectFromUserPhoto" = "从图库选择";
 /*********************图库国际化字符串结束 ************************/
+
+"kTaskCheckIn" = "每日签到";
+"kTaskCheckInDesc" = "每日签到可以随机获得金币";
+
+"kTaskBindSinaWeibo" = "绑定新浪微博";
+"kTaskBindSinaWeiboDesc" = "绑定新浪微博并关注官方微博，可获得%d金币";
+
+"kTaskBindQQWeibo" = "绑定腾讯微博";
+"kTaskBindQQWeiboDesc" = "绑定腾讯微博并关注官方微博，可获得%d金币";
+
+"kTaskShareSinaWeibo" = "分享应用到新浪微博";
+"kTaskShareSinaWeiboDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
+
+"kTaskShareWeixinTimeline" = "分享应用到微信朋友圈";
+"kTaskShareWeixinTimelineDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
+
+"kTaskShareQQSpace" = "分享应用到QQ空间";
+"kTaskShareQQSpaceDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
+
+"kTaskShareQQWeibo" = "分享应用到腾讯微博";
+"kTaskShareQQWeiboDesc" = "分享一条30字左右的应用使用体验，可获得%d金币";
+
+"kTaskCreateOpus" = "发表一个作品";
+"kTaskCreateOpusDesc" = "首次发表作品，可领取%d金币";
+
+"kTaskGuessOpus" = "猜对一个作品";
+"kTaskGuessOpusDesc" = "首次猜对一个作品，可领取%d金币";
+
+"kTaskShareOpus" = "分享作品";
+"kTaskShareOpusDesc" = "每次分享作品，可获得%d金币";
+
+"kTaskAppReview" = "给予5星好评";
+"kTaskAppReviewDesc" = "喜欢这个应用？五星好评就是最好的支持和鼓励！";
+
+"kTaskAppUpgrade" = "版本升级";
+"kTaskAppUpgradeDesc" = "有新版本%@喽，快快来升级!";
+
+
+"kTask" = "任务";
+"kTaskExpire" = "已过期";
+"kTaskTake" = "已完成";
+"kTakeAward" = "领取奖励";
+"kTaskWaitForStart" = "未开始";
+"kTaskToBeTaken" = "待完成";
+
+"kShareAppWeiboDefault" = "%@ AppStore下载链接： %@";
+"kAwardTaskSucc" = "成功领取%d金币奖励";

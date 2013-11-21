@@ -50,9 +50,24 @@
     [super hidePopTipView];
 }
 
+
 - (void)palette:(Palette *)palette didPickColor:(DrawColor *)color
 {
     self.drawInfo.penColor = [DrawColor colorWithColor:color];
 }
+
+- (void)popTipViewWasDismissedByUser:(CMPopTipView *)popTipView
+{
+    [self.toolPanel updateRecentColorViewWithColor:self.drawInfo.penColor updateModel:YES];
+    [super popTipViewWasDismissedByUser:popTipView];
+}
+
+- (void)popTipViewWasDismissedByCallingDismissAnimatedMethod:(CMPopTipView *)popTipView
+{
+    [self.toolPanel updateRecentColorViewWithColor:self.drawInfo.penColor updateModel:YES];
+    [super popTipViewWasDismissedByCallingDismissAnimatedMethod:popTipView];
+}
+
+
 
 @end
