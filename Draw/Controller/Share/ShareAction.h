@@ -52,4 +52,5 @@
 - (void)displayWithViewController:(PPViewController<UserServiceDelegate>*)superViewController onView:(UIView*)view;
 
 - (void)saveToLocal;
+- (void)saveAlbum;
 @end

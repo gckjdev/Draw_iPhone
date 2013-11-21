@@ -773,7 +773,7 @@ typedef enum{
 - (void)performSingGuess{
 
 //    [self showActivityWithText:NSLS(@"kLoading")];
-    [_audioPlayer stop];
+    [_audioPlayer pause];
     [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];
 //    [self hideActivity];
 }
@@ -948,7 +948,7 @@ typedef enum{
 {
 
     PPDebug(@"<clickBack>");
-    [_audioPlayer stop];
+    [_audioPlayer pauseForQuit];
     PPRelease(_audioPlayer);
     PPDebug(@"<clickBack> audio stop end");
         
@@ -1391,13 +1391,13 @@ typedef enum{
         
         [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
-        [_audioPlayer stop];
+        [_audioPlayer pause];
     }
 }
 
 - (void)playAudio:(AudioButton *)button
 {
-    [_audioPlayer play];
+    [_audioPlayer pauseOrResume];
 }
 
 - (void)play{

@@ -537,8 +537,11 @@ enum{
 
 - (void)prepareToPlay{
     if (_player == nil) {
-        self.player = [[[VoiceChanger alloc] init] autorelease];
+        VoiceChanger* vc = [[VoiceChanger alloc] init];
+        self.player = vc;
+        [vc release];
     }
+    
     _player.delegate = self;
     [_player prepareToPlay:[self playURL]];
     [_player changeDuration:_singOpus.pbOpus.sing.duration
