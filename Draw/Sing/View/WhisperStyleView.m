@@ -64,6 +64,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         l.tag = TAG_LABEL;
         l.backgroundColor = [UIColor clearColor];
         
+        [self addSubview:l];
+        
         // update lable info
         PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
         if (labelInfo != nil) {
@@ -111,9 +113,6 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         [iv setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             [indicator stopAnimating];
             [indicator removeFromSuperview];
-            if (image != nil) {
-                [self addSubview:l];
-            }
         }];
     }
     
@@ -125,10 +124,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
     label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
     label.numberOfLines = 3;
-//    [label updateHeight:(ISIPAD ? 140 : 70)];
     [label updateWidth:self.bounds.size.width];
     [label updateHeight:self.bounds.size.height];
-    
     label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
@@ -139,7 +136,6 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     label.numberOfLines = 3;
     [label updateWidth:self.bounds.size.width];
     [label updateHeight:self.bounds.size.height];
-    
     label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
