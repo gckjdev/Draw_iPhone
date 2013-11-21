@@ -2304,6 +2304,8 @@
 "kTaskAppUpgrade" = "App Upgrade";
 "kTaskAppUpgradeDesc" = "New version %@ is available, upgrade now!";
 
+"kTaskAlreadyAward" = "The task has been completed.";
+
 "kTask" = "Task";
 "kTaskExpire" = "Expired";
 "kTaskTake" = "Completed";

@@ -45,6 +45,7 @@
 
 - (void)enterFriend;
 - (void)enterTopOpus;
+- (void)enterTask;
 + (NSDictionary*)defaultMenuTitleDictionary;
 + (NSDictionary*)defaultMenuImageDictionary;
 

@@ -4907,6 +4907,14 @@
 		CA923010183DA8C900669DE3 /* TaskController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */; };
 		CA923011183DA8C900669DE3 /* TaskController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */; };
 		CA923012183DA8C900669DE3 /* TaskController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */; };
+		CA923018183DC40600669DE3 /* draw_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923016183DC40600669DE3 /* draw_home_task@2x.png */; };
+		CA923019183DC40600669DE3 /* draw_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923016183DC40600669DE3 /* draw_home_task@2x.png */; };
+		CA92301A183DC40600669DE3 /* draw_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923016183DC40600669DE3 /* draw_home_task@2x.png */; };
+		CA92301B183DC40600669DE3 /* draw_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923016183DC40600669DE3 /* draw_home_task@2x.png */; };
+		CA92301C183DC40600669DE3 /* sing_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923017183DC40600669DE3 /* sing_home_task@2x.png */; };
+		CA92301D183DC40600669DE3 /* sing_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923017183DC40600669DE3 /* sing_home_task@2x.png */; };
+		CA92301E183DC40600669DE3 /* sing_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923017183DC40600669DE3 /* sing_home_task@2x.png */; };
+		CA92301F183DC40600669DE3 /* sing_home_task@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA923017183DC40600669DE3 /* sing_home_task@2x.png */; };
 		CA963A5615C7C5A8007ACFB9 /* CommonGameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */; };
 		CA96E26E150DE4FD00292335 /* GameSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E26D150DE4FD00292335 /* GameSession.m */; };
 		CA96E271150DE56400292335 /* GameSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA96E270150DE56400292335 /* GameSessionManager.m */; };
@@ -9180,6 +9188,8 @@
 		CA922B4B1761C5F00051D9F2 /* ImageShapeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageShapeManager.m; sourceTree = "<group>"; };
 		CA923009183DA8C800669DE3 /* TaskCell~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaskCell~ipad.xib"; sourceTree = "<group>"; };
 		CA92300A183DA8C900669DE3 /* TaskController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "TaskController~ipad.xib"; sourceTree = "<group>"; };
+		CA923016183DC40600669DE3 /* draw_home_task@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw_home_task@2x.png"; sourceTree = "<group>"; };
+		CA923017183DC40600669DE3 /* sing_home_task@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sing_home_task@2x.png"; sourceTree = "<group>"; };
 		CA963A5415C7C5A8007ACFB9 /* CommonGameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGameSession.h; sourceTree = "<group>"; };
 		CA963A5515C7C5A8007ACFB9 /* CommonGameSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGameSession.m; sourceTree = "<group>"; };
 		CA96E26C150DE4FD00292335 /* GameSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSession.h; sourceTree = "<group>"; };
@@ -16820,6 +16830,8 @@
 		EA8EF61617E55D3B003F1AF8 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				CA923016183DC40600669DE3 /* draw_home_task@2x.png */,
+				CA923017183DC40600669DE3 /* sing_home_task@2x.png */,
 				EA5FE1CE17E949BD0099754C /* draw_home_avatar_bg@2x.png */,
 				EA8EF61717E55D3B003F1AF8 /* draw_home_contest@2x.png */,
 				EA8EF61817E55D3B003F1AF8 /* draw_home_default_avatar@2x.png */,
@@ -17935,6 +17947,8 @@
 				EA0389A1183B151A00516952 /* GroupInfoView.xib in Resources */,
 				CA92300D183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
 				CA923011183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
+				CA92301A183DC40600669DE3 /* draw_home_task@2x.png in Resources */,
+				CA92301E183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18898,6 +18912,8 @@
 				EA0389A0183B151A00516952 /* GroupInfoView.xib in Resources */,
 				CA92300C183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
 				CA923010183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
+				CA923019183DC40600669DE3 /* draw_home_task@2x.png in Resources */,
+				CA92301D183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -19841,6 +19857,8 @@
 				EA03899F183B151A00516952 /* GroupInfoView.xib in Resources */,
 				CA92300B183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
 				CA92300F183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
+				CA923018183DC40600669DE3 /* draw_home_task@2x.png in Resources */,
+				CA92301C183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20742,6 +20760,8 @@
 				EA0389A2183B151A00516952 /* GroupInfoView.xib in Resources */,
 				CA92300E183DA8C900669DE3 /* TaskCell~ipad.xib in Resources */,
 				CA923012183DA8C900669DE3 /* TaskController~ipad.xib in Resources */,
+				CA92301B183DC40600669DE3 /* draw_home_task@2x.png in Resources */,
+				CA92301F183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

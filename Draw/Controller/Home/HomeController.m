@@ -755,6 +755,11 @@ static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
             break;
         }
         
+        case HomeMenuTypeTask:{
+            [self enterTask];
+            break;
+        }
+            
         default:
             break;
     }
@@ -1003,6 +1008,7 @@ int *getDrawMainMenuTypeListHasNewContest()
         HomeMenuTypeDrawGuess,
         
         HomeMenuTypeDrawBigShop,
+        HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawFreeCoins,
@@ -1025,6 +1031,7 @@ int *getDrawMainMenuTypeListWithoutFreeCoins()
         HomeMenuTypeDrawGuess,
         
         HomeMenuTypeDrawBigShop,
+        HomeMenuTypeTask,
         HomeMenuTypeDrawMore,
         HomeMenuTypeDrawPainter,
         HomeMenuTypeDrawPhoto,

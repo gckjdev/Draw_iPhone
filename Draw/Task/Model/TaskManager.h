@@ -10,6 +10,8 @@
 #import "PPSNSConstants.h"
 #import <ShareSDK/ShareSDK.h>
 
+#define TASK_DATA_RELOAD_NOTIFICATION       @"TASK_DATA_RELOAD_NOTIFICATION"
+
 @class GameTask;
 @class PPViewController;
 

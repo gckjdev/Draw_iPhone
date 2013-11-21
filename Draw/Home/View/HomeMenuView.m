@@ -239,7 +239,7 @@
             return [imageManager drawHomeBbs];
         }
         case HomeMenuTypeTask:{
-            return [imageManager task];
+            return [imageManager drawHomeTask];
         }
         case HomeMenuTypeDrawShop:{
             return [imageManager drawHomeShop];
