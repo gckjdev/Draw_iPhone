@@ -96,6 +96,10 @@
 //test
 #import "CreateGroupController.h"
 #import "GroupHomeController.h"
+#import "DrawImageManager.h"
+
+static NSDictionary* DRAW_MENU_TITLE_DICT = nil;
+static NSDictionary* DRAW_MENU_IMAGE_DICT = nil;
 
 @interface HomeController()<GuessServiceDelegate>
 {
@@ -751,6 +755,11 @@
             break;
         }
         
+        case HomeMenuTypeTask:{
+            [self enterTask];
+            break;
+        }
+            
         default:
             break;
     }
@@ -985,5 +994,126 @@
 //    [self updateAllBadge];
 //    
 //}
+
+#pragma mark - menu methods
+
+int *getDrawMainMenuTypeListHasNewContest()
+{
+    int static list[] = {
+        HomeMenuTypeDrawDraw,
+        HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawGuess,
+        
+        HomeMenuTypeDrawBigShop,
+        HomeMenuTypeTask,
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawFreeCoins,
+        HomeMenuTypeDrawPhoto,
+        
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+
+int *getDrawMainMenuTypeListWithoutFreeCoins()
+{
+    int static list[] = {
+        HomeMenuTypeDrawDraw,
+        HomeMenuTypeDrawGame,
+        HomeMenuTypeDrawBBS,
+        HomeMenuTypeDrawRank,
+        HomeMenuTypeDrawContest,
+        HomeMenuTypeDrawGuess,
+        
+        HomeMenuTypeDrawBigShop,
+        HomeMenuTypeTask,
+        HomeMenuTypeDrawMore,
+        HomeMenuTypeDrawPainter,
+        HomeMenuTypeDrawPhoto,
+        
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
+int *getDrawMainMenuTypeList()
+{
+    if ([PPConfigManager freeCoinsEnabled]) {
+        return getDrawMainMenuTypeListHasNewContest();
+    } else {
+        return getDrawMainMenuTypeListWithoutFreeCoins();
+    }
+}
+
+
+int *getDrawBottomMenuTypeList()
+{
+    int static list[] = {
+        HomeMenuTypeDrawTimeline,
+        HomeMenuTypeDrawOpus,
+        HomeMenuTypeDrawFriend,
+        HomeMenuTypeDrawMessage,
+        HomeMenuTypeDrawShop,
+        HomeMenuTypeEnd
+    };
+    return list;
+}
+
++ (int *)getMainMenuList
+{
+    return getDrawMainMenuTypeList();
+}
+
++ (int *)getBottomMenuList
+{
+    return getDrawBottomMenuTypeList();
+}
+
++ (NSDictionary*)menuTitleDictionary
+{
+    static dispatch_once_t drawMenuTitleOnceToken;
+    dispatch_once(&drawMenuTitleOnceToken, ^{
+        DRAW_MENU_TITLE_DICT = @{
+                                 @(HomeMenuTypeDrawDraw) : NSLS(@"kHomeMenuTypeDrawDraw"),
+                                 @(HomeMenuTypeDrawGuess) : NSLS(@"kHomeMenuTypeDrawGuess"),
+                                 @(HomeMenuTypeDrawGame) : NSLS(@"kHomeMenuTypeDrawGame"),
+                                 @(HomeMenuTypeDrawRank) : NSLS(@"kHomeMenuTypeDrawRank"),
+                                 };
+        
+        [DRAW_MENU_TITLE_DICT retain];  // make sure you retain the dictionary here for futher usage
+    });
+    
+    return DRAW_MENU_TITLE_DICT;
+}
+
++ (NSDictionary*)menuImageDictionary
+{
+    static dispatch_once_t drawMenuImageOnceToken;
+    dispatch_once(&drawMenuImageOnceToken, ^{
+        DrawImageManager *imageManager = [DrawImageManager defaultManager];
+        
+        DRAW_MENU_IMAGE_DICT = @{
+                                    // draw
+                                    @(HomeMenuTypeDrawGame) : [imageManager drawHomeOnlineGuess],
+                                    @(HomeMenuTypeDrawDraw) : [imageManager drawHomeDraw],
+                                    @(HomeMenuTypeDrawGuess) : [imageManager drawHomeGuess],
+                                    };
+        
+        [DRAW_MENU_IMAGE_DICT retain];  // make sure you retain the dictionary here for futher usage
+        
+    });
+    
+    return DRAW_MENU_IMAGE_DICT;
+}
+
++ (int)homeDefaultMenuType
+{
+    return HomeMenuTypeDrawDraw;
+}
 
 @end

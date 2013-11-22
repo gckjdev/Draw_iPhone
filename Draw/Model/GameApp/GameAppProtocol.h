@@ -145,6 +145,7 @@
 - (BOOL)canGift;
 
 - (PPViewController *)homeController;
+- (Class)homeControllerClass;
 
 - (BOOL)forceSaveDraft;
 
@@ -189,7 +190,7 @@
 - (NSString *)createOpusDesc;
 - (NSString *)createOpusDescNoName;
 
-
+- (UIImage *)getGiftToSbImage;
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

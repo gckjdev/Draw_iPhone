@@ -241,6 +241,8 @@
 @class PBSongList;
 @class PBSongList_Builder;
 @class PBSong_Builder;
+@class PBTask;
+@class PBTask_Builder;
 @class PBUserAward;
 @class PBUserAward_Builder;
 @class PBUserBasicInfo;

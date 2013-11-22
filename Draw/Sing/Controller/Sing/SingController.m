@@ -37,6 +37,7 @@
 #import "DrawColor.h"
 #import "DrawUtils.h"
 #import "AccountService.h"
+#import "TaskManager.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -62,6 +63,7 @@ enum{
 @property (copy, nonatomic) UIImage *image;
 @property (retain, nonatomic) ChangeAvatar *picker;
 @property (retain, nonatomic) CMPopTipView *popTipView;
+@property (assign, nonatomic) BOOL hasEdited;
 
 @end
 
@@ -187,6 +189,7 @@ enum{
         bself.imageButton.hidden = YES;
         bself.opusImageView.hidden = YES;
         bself.reviewButton.hidden = NO;
+        bself.reviewButton.selected = YES;
     }];
     
     [bself registerNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE usingBlock:^(NSNotification *note) {
@@ -199,6 +202,7 @@ enum{
         bself.opusDescLabel.hidden = NO;
         bself.imageButton.hidden = NO;
         bself.opusImageView.hidden = NO;
+        bself.hasEdited = YES;
     }];
 }
 
@@ -351,24 +355,36 @@ enum{
 // 拖拽手势处理事件
 - (void) handlePanGestures:(UIPanGestureRecognizer*)paramSender{
     
-    if (paramSender.state != UIGestureRecognizerStateEnded && paramSender.state != UIGestureRecognizerStateFailed){
+    UIView *view = paramSender.view;
+    
+    if (paramSender.state != UIGestureRecognizerStateEnded
+        && paramSender.state != UIGestureRecognizerStateFailed){
         
         // 获取手指在屏幕中的坐标
-        CGPoint location = [paramSender locationInView:paramSender.view.superview];
+
+        [view.layer setBorderWidth:(ISIPAD ? 4 : 2)];
+        [view.layer setBorderColor:[COLOR_GRAY CGColor]];
         
-        if (location.x < 0 || location.x > paramSender.view.superview.bounds.size.width) {
+        CGPoint location = [paramSender locationInView:view.superview];
+        
+        if (location.x < 0 || location.x > view.superview.bounds.size.width) {
             return;
         }
         
-        if (location.y < 0 || location.y > paramSender.view.superview.bounds.size.height) {
+        if (location.y < 0 || location.y > view.superview.bounds.size.height) {
             return;
         }
         
-        paramSender.view.center = location;// 重新设置视图的位置
+        view.center = location;// 重新设置视图的位置
         
     }else if (paramSender.state == UIGestureRecognizerStateEnded){
     
+        [view.layer setBorderWidth:0];
+        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
         [self saveDescLabelInfo];
+    }else{
+        [view.layer setBorderWidth:0];
+        [view.layer setBorderColor:[[UIColor clearColor] CGColor]];
     }
 }
 
@@ -423,6 +439,7 @@ enum{
     self.opusDescLabel.text = desc;
     [self.opusDescLabel wrapTextWithConstrainedSize:size];
     [self.opusDescLabel updateWidth:self.opusImageView.frame.size.width * 0.8];
+    [self.opusDescLabel updateHeight:MAX((ISIPAD ? 60 : 30) ,self.opusDescLabel.frame.size.height)];
     
 //    // center desc label
 //    [self.opusDescLabel updateCenterX:self.opusImageView.frame.size.width/2];
@@ -514,13 +531,17 @@ enum{
 
 - (void)stopRecord{
     // stop record
+    _hasEdited = YES;
     [_recorder stopRecording];
 }
 
 - (void)prepareToPlay{
     if (_player == nil) {
-        self.player = [[[VoiceChanger alloc] init] autorelease];
+        VoiceChanger* vc = [[VoiceChanger alloc] init];
+        self.player = vc;
+        [vc release];
     }
+    
     _player.delegate = self;
     [_player prepareToPlay:[self playURL]];
     [_player changeDuration:_singOpus.pbOpus.sing.duration
@@ -766,8 +787,8 @@ enum{
         v.delegate = self;
         self.popTipView = [[[CMPopTipView alloc] initWithCustomView:v needBubblePath:NO] autorelease];
         [self.popTipView setBackgroundColor:COLOR_ORANGE];
-        self.popTipView.cornerRadius = 4;
-        self.popTipView.pointerSize = 6;
+        self.popTipView.cornerRadius = (ISIPAD ? 8 : 4);
+        self.popTipView.pointerSize = (ISIPAD ? 12 : 6);
     }
     
     [self.popTipView presentPointingAtView:button inView:self.view animated:YES];
@@ -775,8 +796,17 @@ enum{
 
 - (void)didSelectVoiceType:(PBVoiceType)voiceType{
     
-    [self changeVoiceType:voiceType];
     [self.popTipView dismissAnimated:YES];
+    [self seekToBegin];
+    if (self.singOpus.pbOpus.sing.voiceType != voiceType) {
+        _hasEdited = YES;
+        [self changeVoiceType:voiceType];
+    }
+}
+
+- (void)seekToBegin{
+    [_player setCurrentTime:0];
+    [self updateUITime:@(_fileDuration)];
 }
 
 - (IBAction)clickImageButton:(id)sender {
@@ -794,8 +824,7 @@ enum{
     if (image != nil) {
         PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
         
-        
-        
+        _hasEdited = YES;
         self.image = image;
         self.opusImageView.image = image;
         [self removeHolderView];
@@ -808,6 +837,27 @@ enum{
 
 - (IBAction)clickBackButton:(id)sender {
 
+    if (_hasEdited) {
+        CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kQuitGameAlertTitle") message:NSLS(@"kQuitDrawAlertMessage") style:CommonDialogStyleDoubleButtonWithCross];
+        [dialog showInView:self.view];
+        
+        [dialog.oKButton setTitle:NSLS(@"kSave") forState:UIControlStateNormal];
+        [dialog.cancelButton setTitle:NSLS(@"kDonotSave") forState:UIControlStateNormal];
+        
+        [dialog setClickOkBlock:^(id infoView){
+            [self clickSaveButton:nil];
+            [self quitDirectly];
+        }];
+        
+        [dialog setClickCancelBlock:^(id infoView){
+            [self quitDirectly];
+        }];
+    }else{
+        [self quitDirectly];
+    }
+}
+
+- (void)quitDirectly{
     
     [self stopRecord];
     [self pausePlay];
@@ -816,8 +866,8 @@ enum{
     _processor.delegate = nil;
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SELECT_SONG];
     [self unregisterNotificationWithName:KEY_NOTIFICATION_SING_INFO_CHANGE];
-
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)clickSaveButton:(id)sender {
@@ -837,6 +887,7 @@ enum{
     [[[OpusService defaultService] draftOpusManager] saveOpus:_singOpus];
     [self hideActivity];
     [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kSaved") delayTime:1.5];
+    _hasEdited = NO;
 }
 
 - (IBAction)clickSubmitButton:(id)sender {
@@ -950,6 +1001,11 @@ enum{
     if (resultCode == ERROR_SUCCESS) {
         POSTMSG(NSLS(@"kSubmitSuccTitle"));
         [self.navigationController popViewControllerAnimated:YES];
+        
+        [[TaskManager defaultManager] completeTask:PBTaskIdTypeTaskCreateOpus
+                                           isAward:NO
+                                        clearBadge:YES];
+        
     }else{
         POSTMSG(NSLS(@"kSubmitFailure"));
     }

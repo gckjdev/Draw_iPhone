@@ -346,12 +346,14 @@
 */
 
 - (void)printAllOpus
-{    
+{
+#ifdef DEBUG
     NSArray* opuses = [self findAllOpusWithOffset:0 limit:100];
     PPDebug(@"==== total %d opus ====", [opuses count]);
     for (Opus* opus in opuses){
         PPDebug(@"opus = %@", [opus description]);
     }
+#endif
 }
 
 - (Opus*)createDraftWithName:(NSString*)name{

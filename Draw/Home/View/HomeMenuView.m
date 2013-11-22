@@ -54,6 +54,25 @@
 
 + (NSString *)titleForType:(HomeMenuType)type
 {
+    Class vc = [GameApp homeControllerClass];
+    if ([vc respondsToSelector:@selector(menuTitleDictionary)] &&
+        [vc respondsToSelector:@selector(defaultMenuTitleDictionary)]){
+
+        NSDictionary* menuDict = [vc performSelector:@selector(menuTitleDictionary)];
+        NSDictionary* defaultMenuTitleDict = [vc performSelector:@selector(defaultMenuTitleDictionary)];
+        
+        NSString* title = [menuDict objectForKey:@(type)];
+        if (title == nil){
+            title = [defaultMenuTitleDict objectForKey:@(type)];
+        }
+        
+        return title;
+    }
+    else{
+        return nil;
+    }
+    
+    
 
     switch (type) {
         //draw main menu
@@ -175,7 +194,26 @@
     }
 }
 + (UIImage *)imageForType:(HomeMenuType)type
-{
+{    
+    Class vc = [GameApp homeControllerClass];
+    if ([vc respondsToSelector:@selector(menuImageDictionary)] &&
+        [vc respondsToSelector:@selector(defaultMenuImageDictionary)]){
+        
+        NSDictionary* menuDict = [vc performSelector:@selector(menuImageDictionary)];
+        NSDictionary* defaultMenuImageDict = [vc performSelector:@selector(defaultMenuImageDictionary)];
+        
+        UIImage* image = [menuDict objectForKey:@(type)];
+        if (image == nil){
+            image = [defaultMenuImageDict objectForKey:@(type)];
+        }
+        
+        return image;
+    }
+    else{
+        return nil;
+    }
+
+    
     DrawImageManager *imageManager = [DrawImageManager defaultManager];
     switch (type) {
             //draw main menu
@@ -195,16 +233,13 @@
             return [imageManager drawHomeTop];
         }
         case HomeMenuTypeDrawContest:{
-//            return [GameApp homeContestImage];
-//            return [imageManager singHomeContest];
-//
             return [imageManager drawHomeContest];
         }
         case HomeMenuTypeDrawBBS:{
             return [imageManager drawHomeBbs];
         }
         case HomeMenuTypeTask:{
-            return [imageManager task];
+            return [imageManager drawHomeTask];
         }
         case HomeMenuTypeDrawShop:{
             return [imageManager drawHomeShop];
@@ -370,70 +405,6 @@
 
 
 
-int *getDrawMainMenuTypeListHasNewContest()
-{
-    int static list[] = {
-        HomeMenuTypeDrawDraw,
-        HomeMenuTypeDrawGame,
-        HomeMenuTypeDrawBBS,
-        HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawGuess,
-
-        HomeMenuTypeDrawBigShop,
-        HomeMenuTypeDrawMore,        
-        HomeMenuTypeDrawPainter,
-        HomeMenuTypeDrawFreeCoins,
-        HomeMenuTypeDrawPhoto,
-        
-        HomeMenuTypeEnd
-    };
-    return list;
-}
-
-
-int *getDrawMainMenuTypeListWithoutFreeCoins()
-{
-    int static list[] = {        
-        HomeMenuTypeDrawDraw,
-        HomeMenuTypeDrawGame,
-        HomeMenuTypeDrawBBS,
-        HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawGuess,
-        
-        HomeMenuTypeDrawBigShop,
-        HomeMenuTypeDrawMore,
-        HomeMenuTypeDrawPainter,
-        HomeMenuTypeDrawPhoto,
-
-        HomeMenuTypeEnd
-    };
-    return list;
-}
-
-int *getDrawMainMenuTypeList()
-{
-    if ([PPConfigManager freeCoinsEnabled]) {
-        return getDrawMainMenuTypeListHasNewContest();
-    } else {
-        return getDrawMainMenuTypeListWithoutFreeCoins();
-    }
-}
-
-
-int *getDrawBottomMenuTypeList()
-{
-    int static list[] = {
-        HomeMenuTypeDrawTimeline,
-        HomeMenuTypeDrawOpus,
-        HomeMenuTypeDrawFriend,
-        HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawShop,
-        HomeMenuTypeEnd
-    };
-    return list;    
-}
 int *getZJHMainMenuTypeListWithFreeCoins()
 {
     int static list[] = {
@@ -517,32 +488,6 @@ int *getDiceMainMenuTypeListWithoutFreeCoins()
 
 
 
-int *getSingMainMenuTypeListWithFreeCoins()
-{
-    int static list[] = {
-        HomeMenuTypeSing,
-        HomeMenuTypeGuessSing,
-        HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawRank,
-        HomeMenuTypeDrawBBS,
-        HomeMenuTypeTask,
-        HomeMenuTypeEnd,
-    };
-    return list;
-}
-
-int *getSingMainMenuTypeListWithoutFreeCoins()
-{
-    int static list[] = {
-        HomeMenuTypeSing,
-        HomeMenuTypeGuessSing,
-        HomeMenuTypeDrawContest,
-        HomeMenuTypeDrawRank,
-        HomeMenuTypeTask,
-        HomeMenuTypeEnd,
-    };
-    return list;
-}
 
 
 int *getDiceMainMenuTypeList()
@@ -550,22 +495,10 @@ int *getDiceMainMenuTypeList()
     return ([PPConfigManager freeCoinsEnabled] ? getDiceMainMenuTypeListWithFreeCoins() : getDiceMainMenuTypeListWithoutFreeCoins());
 }
 
-int *getSingMainMenuTypeList(){
-    return ([PPConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
-}
+//int *getSingMainMenuTypeList(){
+//    return ([PPConfigManager freeCoinsEnabled] ? getSingMainMenuTypeListWithFreeCoins() : getSingMainMenuTypeListWithoutFreeCoins());
+//}
 
-int *getSingBottomMenuTypeList()
-{
-    int static list[] = {
-        HomeMenuTypeDrawTimeline,
-        HomeMenuTypeSingDraft,
-        HomeMenuTypeDrawFriend,
-        HomeMenuTypeDrawMessage,
-        HomeMenuTypeDrawShop,
-        HomeMenuTypeEnd
-    };
-    return list;
-}
 
 int *getDiceBottomMenuTypeList()
 {
@@ -680,56 +613,76 @@ BOOL typeInList(HomeMenuType type, int *list)
 
 BOOL isMainMenuButton(HomeMenuType type)
 {
-    if (typeInList(type, getDrawMainMenuTypeList())) {
+    if (typeInList(type, getMainMenuTypeList())) {
         return YES;
     }
-    if (typeInList(type, getDiceMainMenuTypeList())) {
-        return YES;
-    }
-    if (typeInList(type, getZJHMainMenuTypeList())) {
-        return YES;
-    }
-    if (typeInList(type, getSingMainMenuTypeList())) {
-        return YES;
-    }
+//    if (typeInList(type, getDiceMainMenuTypeList())) {
+//        return YES;
+//    }
+//    if (typeInList(type, getZJHMainMenuTypeList())) {
+//        return YES;
+//    }
+//    if (typeInList(type, getSingMainMenuTypeList())) {
+//        return YES;
+//    }
 
     return NO;
 }
 
 int *getBottomMenuTypeList()
 {
-    if (isDrawApp()) {
-        return getDrawBottomMenuTypeList();
-    }/*else if(isZhajinhuaApp()){
-        return getZJHBottomMenuTypeList();
-    }else if(isDiceApp()){
-        return getDiceBottomMenuTypeList();
-    }else if(isLearnDrawApp()){
-        return getLearnDrawBottomMenuTypeList();
-    }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
-        return getDreamAvatarBottomMenuTypeList();
-    }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
-        return getDreamLockscreenBottomMenuTypeList();
-    }else if (isLittleGeeAPP()) {
-        return getLittleGeeBottomMenuTypeList();
-    }*/else if (isSingApp()){
-        return getSingBottomMenuTypeList();
+//    if (isDrawApp()) {
+//        return getDrawBottomMenuTypeList();
+//    }/*else if(isZhajinhuaApp()){
+//        return getZJHBottomMenuTypeList();
+//    }else if(isDiceApp()){
+//        return getDiceBottomMenuTypeList();
+//    }else if(isLearnDrawApp()){
+//        return getLearnDrawBottomMenuTypeList();
+//    }else if(isDreamAvatarApp() || isDreamAvatarFreeApp()){
+//        return getDreamAvatarBottomMenuTypeList();
+//    }else if(isDreamLockscreenApp() || isDreamLockscreenFreeApp()){
+//        return getDreamLockscreenBottomMenuTypeList();
+//    }else if (isLittleGeeAPP()) {
+//        return getLittleGeeBottomMenuTypeList();
+//    }*/else if (isSingApp()){
+//        return getSingBottomMenuTypeList();
+//    }
+//    return NULL;
+
+    Class class = [GameApp homeControllerClass];
+    if ([class respondsToSelector:@selector(getBottomMenuList)]){
+        id retList = [class performSelector:@selector(getBottomMenuList) withObject:nil];
+        return (int*)retList;
     }
-    return NULL;
+    else{
+        PPDebug(@"<getMainMenuTypeList> but getBottomMenuList not implemented in home controller class!");
+        return NULL;
+    }
+    
 }
 
 int *getMainMenuTypeList()
 {
-    if (gameAppType() == GameAppTypeDraw) {
-        return getDrawMainMenuTypeList();
-    }else if(gameAppType() == GameAppTypeZJH){
-        return getZJHMainMenuTypeList();
-    }else if(gameAppType() == GameAppTypeDice){
-        return getDiceMainMenuTypeList();
-    }else if(gameAppType() == GameAppTypeSing){
-        return getSingMainMenuTypeList();
+//    if (gameAppType() == GameAppTypeDraw) {
+//        return getDrawMainMenuTypeList();
+//    }else if(gameAppType() == GameAppTypeZJH){
+//        return getZJHMainMenuTypeList();
+//    }else if(gameAppType() == GameAppTypeDice){
+//        return getDiceMainMenuTypeList();
+//    }else if(gameAppType() == GameAppTypeSing){
+//        return getSingMainMenuTypeList();
+//    }
+    
+    Class class = [GameApp homeControllerClass];    
+    if ([class respondsToSelector:@selector(getMainMenuList)]){
+        id retList = [class performSelector:@selector(getMainMenuList) withObject:nil];
+        return (int*)retList;
     }
-    return NULL;
+    else{
+        PPDebug(@"<getMainMenuTypeList> but getMainMenuList not implemented in home controller!");
+        return NULL;
+    }
 }
 
 

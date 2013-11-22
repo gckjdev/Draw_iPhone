@@ -26,6 +26,8 @@ typedef enum  {
     
     BuyAnswer = 14,
     
+    
+    
     happyGuessAward= 70,
     geniusGuessAward = 71,
     
@@ -57,6 +59,9 @@ typedef enum  {
     DeductInContestGuessMode = 480,
 
     DeductRecrod = 481,
+    
+    TaskAward = 5000,
+    TaskAwardEnd = 6000
     
 }BalanceSourceType;
 

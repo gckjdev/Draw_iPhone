@@ -483,3 +483,40 @@ message PBContestList
     repeated PBContest contests = 1;
 }
 
+enum PBTaskStatus
+{
+    
+    TASK_STATUS_CAN_TAKE = 0;            // 可以执行
+    TASK_STATUS_DONE = 1;                // 已经执行完毕
+    TASK_STATUS_AWARD = 2;               // 已经领取奖励
+    TASK_STATUS_EXPIRED = 3;             // 已经过期
+    TASK_STATUS_WAIT_FOR_START = 4;      // 未开始
+    TASK_STATUS_ALWAYS_OPEN = 5;         // 可重复执行任务
+}
+
+enum PBTaskIdType
+{    
+    TASK_NONE = 0;
+    TASK_CHECK_IN = 1;
+    TASK_BIND_SINA = 2;
+    TASK_BIND_QQ = 3;
+    TASK_SHARE_SINA = 4;
+    TASK_SHARE_WEIXIN_TIMELINE = 5;
+    TASK_SHARE_QQ_SPACE = 6;
+    TASK_APP_REVIEW = 7;
+    TASK_CREATE_OPUS = 8;
+    TASK_GUESS_OPUS = 9;
+    TASK_SHARE_OPUS = 10;
+    TASK_SHARE_QQ_WEIBO = 11;
+    TASK_APP_UPGRADE = 12;
+}
+
+message PBTask
+{
+    required int32 taskId = 1;              // 任务ID
+    required string name = 2;               //
+    optional string desc = 3;
+    optional PBTaskStatus status = 4;
+    optional int32  badge = 5;
+    optional int32  award = 6;
+}

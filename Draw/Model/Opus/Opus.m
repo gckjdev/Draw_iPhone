@@ -334,5 +334,25 @@
     PPDebug(@"<enterEditFromController> no impletement!");
 }
 
+
+
+- (BOOL)hasSameTagsToTags:(NSArray *)tags{
+    
+    NSArray *arr = self.pbOpus.tagsList;
+    if ([arr count] != [tags count]) {
+        return NO;
+    }
+    
+    for(NSString *tag in tags){
+        
+        NSUInteger index = [arr indexOfObject:tag];
+        if (index == NSNotFound) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 @end
 

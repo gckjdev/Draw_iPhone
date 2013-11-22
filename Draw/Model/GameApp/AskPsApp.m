@@ -36,6 +36,12 @@
     return [[[AskPsHomeController alloc] init] autorelease];
 }
 
+- (Class)homeControllerClass
+{
+    return [AskPsHomeController class];
+}
+
+
 - (NSString*)background
 {
     return DRAW_BACKGROUND;
@@ -578,6 +584,11 @@
 {
     NSString *kCreateDescNoName = NSLS(@"kCreateDescNoName");
     return kCreateDescNoName;
+}
+
+- (UIImage *)getGiftToSbImage{
+    
+    return nil;
 }
 
 @end

@@ -18,7 +18,43 @@
 @property(nonatomic, assign)DrawFeed *opus;
 @end
 
+
+#define WHISPER_VIEW_TAG 20111111
 @implementation OpusButton
+
+- (void)refreshImageWithAnimate
+{
+    if (isSingApp()) {
+        
+        [[self viewWithTag:WHISPER_VIEW_TAG] removeFromSuperview];
+        WhisperStyleView *v = [WhisperStyleView createWithFrame:self.bounds feed:self.opus];
+        [v setHomeRankViewStyle];
+        v.userInteractionEnabled = NO;
+        v.alpha = 0;
+        [self addSubview:v];
+        v.tag = WHISPER_VIEW_TAG;
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            v.alpha = 1;
+        }];
+        
+    }else if (isDrawApp()){
+        [self setImageWithURL:self.opus.thumbURL forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            
+            self.alpha = 0.1;
+            if (error == nil) {
+                [UIView animateWithDuration:0.5 animations:^{
+                    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+                    self.alpha = 1.0f;
+                } completion:^(BOOL finished) {
+                    self.alpha = 1.0f;
+                }];
+            }
+            
+        }];
+    }
+}
+
 @end
 
 ////////////
@@ -98,19 +134,8 @@
                 [button setHidden:NO];
                 DrawFeed *opus = [self.opusList objectAtIndex:index];
                 [button setOpus:opus];
-                [button setImageWithURL:opus.thumbURL forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-
-                    button.alpha = 0.1;
-                    if (error == nil) {
-                        [UIView animateWithDuration:0.5 animations:^{
-                            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-                            button.alpha = 1.0f;
-                        } completion:^(BOOL finished) {
-                            button.alpha = 1.0f;
-                        }];
-                    }
-
-                }];
+                [button refreshImageWithAnimate];
+                
             }else{
                 [button setImage:nil forState:UIControlStateNormal];
                 [button setHidden:YES];
@@ -242,7 +267,21 @@
         [self.bgView setBackgroundColor:[UIColor clearColor]];
     }else{
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self.bgView setBackgroundColor:OPAQUE_COLOR(236, 84, 46)];
+        [self.bgView setBackgroundColor:[self getBackgroundColor]];
+        //        [self.bgView setBackgroundColor:OPAQUE_COLOR(236, 84, 46)];
+    }
+}
+
+- (UIColor*)getBackgroundColor
+{
+    Class class = [GameApp homeControllerClass];
+    if ([class respondsToSelector:@selector(getHeaderBackgroundColor)]){
+        UIColor* color = [class performSelector:@selector(getHeaderBackgroundColor)];
+        return color;
+    }
+    else{
+        PPDebug(@"<getBackgroundColor> but getBackgroundColor not implemented in home controller class!");
+        return OPAQUE_COLOR(236, 84, 46);
     }
 }
 
@@ -404,12 +443,12 @@
             if (isDrawApp()) {
                 [button setImageWithURL:opus.thumbURL];
             }else if (isSingApp()){
-                [[button viewWithTag:20111111] removeFromSuperview];
+                [[button viewWithTag:WHISPER_VIEW_TAG] removeFromSuperview];
                 WhisperStyleView *v = [WhisperStyleView createWithFrame:button.bounds feed:opus];
                 [v setHomeRankViewStyle];
                 v.userInteractionEnabled = NO;
                 [button addSubview:v];
-                v.tag = 20111111;
+                v.tag = WHISPER_VIEW_TAG;
             }
             [button setOpus:opus];
         }else{

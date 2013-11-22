@@ -7,20 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef enum {
-    
-    TASK_STATUS_WAIT_FOR_START,     // 等待开始
-    TASK_STATUS_CAN_TAKE,           // 可以领取
-    TASK_STATUS_TAKEN,              // 已经领取
-    TASK_STATUS_EXPIRED             // 已经过期
-    
-} GameTaskStatus;
+#import "GameBasic.pb.h"
 
 @interface GameTask : NSObject
 
-@property (nonatomic, retain) NSString* displayName;
-@property (nonatomic, assign) int badgeCount;
-@property (nonatomic, assign) GameTaskStatus status;
+@property (nonatomic, retain) PBTask_Builder *taskBuilder;
+
+@property (nonatomic, readonly) int taskId;
+@property (nonatomic, readonly) NSString* name;
+@property (nonatomic, readonly) NSString* desc;
+@property (nonatomic, readonly) int badge;
+@property (nonatomic, readonly) int award;
+@property (nonatomic, readonly) PBTaskStatus status;
+@property (nonatomic, assign) SEL selector;
+
+- (id)initWithId:(int)taskId
+            name:(NSString*)name
+            desc:(NSString*)desc
+          status:(PBTaskStatus)status
+           badge:(int)badge
+           award:(int)award
+        selector:(SEL)selector;
+
+- (NSData*)data;
++ (GameTask*)taskFromData:(NSData*)data;
+
+- (void)setStatus:(PBTaskStatus)status;
+- (void)setBadge:(int)badge;
+- (BOOL)isComplete;
 
 @end

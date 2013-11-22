@@ -87,6 +87,39 @@ BOOL PBIAPProductTypeIsValidValue(PBIAPProductType value) {
       return NO;
   }
 }
+BOOL PBTaskStatusIsValidValue(PBTaskStatus value) {
+  switch (value) {
+    case PBTaskStatusTaskStatusCanTake:
+    case PBTaskStatusTaskStatusDone:
+    case PBTaskStatusTaskStatusAward:
+    case PBTaskStatusTaskStatusExpired:
+    case PBTaskStatusTaskStatusWaitForStart:
+    case PBTaskStatusTaskStatusAlwaysOpen:
+      return YES;
+    default:
+      return NO;
+  }
+}
+BOOL PBTaskIdTypeIsValidValue(PBTaskIdType value) {
+  switch (value) {
+    case PBTaskIdTypeTaskNone:
+    case PBTaskIdTypeTaskCheckIn:
+    case PBTaskIdTypeTaskBindSina:
+    case PBTaskIdTypeTaskBindQq:
+    case PBTaskIdTypeTaskShareSina:
+    case PBTaskIdTypeTaskShareWeixinTimeline:
+    case PBTaskIdTypeTaskShareQqSpace:
+    case PBTaskIdTypeTaskAppReview:
+    case PBTaskIdTypeTaskCreateOpus:
+    case PBTaskIdTypeTaskGuessOpus:
+    case PBTaskIdTypeTaskShareOpus:
+    case PBTaskIdTypeTaskShareQqWeibo:
+    case PBTaskIdTypeTaskAppUpgrade:
+      return YES;
+    default:
+      return NO;
+  }
+}
 @interface PBKeyValue ()
 @property (retain) NSString* name;
 @property (retain) NSString* value;
@@ -15111,6 +15144,386 @@ static PBContestList* defaultPBContestListInstance = nil;
     result.mutableContestsList = [NSMutableArray array];
   }
   [result.mutableContestsList addObject:value];
+  return self;
+}
+@end
+
+@interface PBTask ()
+@property int32_t taskId;
+@property (retain) NSString* name;
+@property (retain) NSString* desc;
+@property PBTaskStatus status;
+@property int32_t badge;
+@property int32_t award;
+@end
+
+@implementation PBTask
+
+- (BOOL) hasTaskId {
+  return !!hasTaskId_;
+}
+- (void) setHasTaskId:(BOOL) value {
+  hasTaskId_ = !!value;
+}
+@synthesize taskId;
+- (BOOL) hasName {
+  return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+  hasName_ = !!value;
+}
+@synthesize name;
+- (BOOL) hasDesc {
+  return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+  hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasStatus {
+  return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+  hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasBadge {
+  return !!hasBadge_;
+}
+- (void) setHasBadge:(BOOL) value {
+  hasBadge_ = !!value;
+}
+@synthesize badge;
+- (BOOL) hasAward {
+  return !!hasAward_;
+}
+- (void) setHasAward:(BOOL) value {
+  hasAward_ = !!value;
+}
+@synthesize award;
+- (void) dealloc {
+  self.name = nil;
+  self.desc = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.taskId = 0;
+    self.name = @"";
+    self.desc = @"";
+    self.status = PBTaskStatusTaskStatusCanTake;
+    self.badge = 0;
+    self.award = 0;
+  }
+  return self;
+}
+static PBTask* defaultPBTaskInstance = nil;
++ (void) initialize {
+  if (self == [PBTask class]) {
+    defaultPBTaskInstance = [[PBTask alloc] init];
+  }
+}
++ (PBTask*) defaultInstance {
+  return defaultPBTaskInstance;
+}
+- (PBTask*) defaultInstance {
+  return defaultPBTaskInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasTaskId) {
+    return NO;
+  }
+  if (!self.hasName) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasTaskId) {
+    [output writeInt32:1 value:self.taskId];
+  }
+  if (self.hasName) {
+    [output writeString:2 value:self.name];
+  }
+  if (self.hasDesc) {
+    [output writeString:3 value:self.desc];
+  }
+  if (self.hasStatus) {
+    [output writeEnum:4 value:self.status];
+  }
+  if (self.hasBadge) {
+    [output writeInt32:5 value:self.badge];
+  }
+  if (self.hasAward) {
+    [output writeInt32:6 value:self.award];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) {
+    return size;
+  }
+
+  size = 0;
+  if (self.hasTaskId) {
+    size += computeInt32Size(1, self.taskId);
+  }
+  if (self.hasName) {
+    size += computeStringSize(2, self.name);
+  }
+  if (self.hasDesc) {
+    size += computeStringSize(3, self.desc);
+  }
+  if (self.hasStatus) {
+    size += computeEnumSize(4, self.status);
+  }
+  if (self.hasBadge) {
+    size += computeInt32Size(5, self.badge);
+  }
+  if (self.hasAward) {
+    size += computeInt32Size(6, self.award);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
+}
++ (PBTask*) parseFromData:(NSData*) data {
+  return (PBTask*)[[[PBTask builder] mergeFromData:data] build];
+}
++ (PBTask*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTask*)[[[PBTask builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PBTask*) parseFromInputStream:(NSInputStream*) input {
+  return (PBTask*)[[[PBTask builder] mergeFromInputStream:input] build];
+}
++ (PBTask*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTask*)[[[PBTask builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBTask*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PBTask*)[[[PBTask builder] mergeFromCodedInputStream:input] build];
+}
++ (PBTask*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PBTask*)[[[PBTask builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PBTask_Builder*) builder {
+  return [[[PBTask_Builder alloc] init] autorelease];
+}
++ (PBTask_Builder*) builderWithPrototype:(PBTask*) prototype {
+  return [[PBTask builder] mergeFrom:prototype];
+}
+- (PBTask_Builder*) builder {
+  return [PBTask builder];
+}
+@end
+
+@interface PBTask_Builder()
+@property (retain) PBTask* result;
+@end
+
+@implementation PBTask_Builder
+@synthesize result;
+- (void) dealloc {
+  self.result = nil;
+  [super dealloc];
+}
+- (id) init {
+  if ((self = [super init])) {
+    self.result = [[[PBTask alloc] init] autorelease];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return result;
+}
+- (PBTask_Builder*) clear {
+  self.result = [[[PBTask alloc] init] autorelease];
+  return self;
+}
+- (PBTask_Builder*) clone {
+  return [PBTask builderWithPrototype:result];
+}
+- (PBTask*) defaultInstance {
+  return [PBTask defaultInstance];
+}
+- (PBTask*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PBTask*) buildPartial {
+  PBTask* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
+}
+- (PBTask_Builder*) mergeFrom:(PBTask*) other {
+  if (other == [PBTask defaultInstance]) {
+    return self;
+  }
+  if (other.hasTaskId) {
+    [self setTaskId:other.taskId];
+  }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasDesc) {
+    [self setDesc:other.desc];
+  }
+  if (other.hasStatus) {
+    [self setStatus:other.status];
+  }
+  if (other.hasBadge) {
+    [self setBadge:other.badge];
+  }
+  if (other.hasAward) {
+    [self setAward:other.award];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PBTask_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PBTask_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setTaskId:[input readInt32]];
+        break;
+      }
+      case 18: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setDesc:[input readString]];
+        break;
+      }
+      case 32: {
+        int32_t value = [input readEnum];
+        if (PBTaskStatusIsValidValue(value)) {
+          [self setStatus:value];
+        } else {
+          [unknownFields mergeVarintField:4 value:value];
+        }
+        break;
+      }
+      case 40: {
+        [self setBadge:[input readInt32]];
+        break;
+      }
+      case 48: {
+        [self setAward:[input readInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasTaskId {
+  return result.hasTaskId;
+}
+- (int32_t) taskId {
+  return result.taskId;
+}
+- (PBTask_Builder*) setTaskId:(int32_t) value {
+  result.hasTaskId = YES;
+  result.taskId = value;
+  return self;
+}
+- (PBTask_Builder*) clearTaskId {
+  result.hasTaskId = NO;
+  result.taskId = 0;
+  return self;
+}
+- (BOOL) hasName {
+  return result.hasName;
+}
+- (NSString*) name {
+  return result.name;
+}
+- (PBTask_Builder*) setName:(NSString*) value {
+  result.hasName = YES;
+  result.name = value;
+  return self;
+}
+- (PBTask_Builder*) clearName {
+  result.hasName = NO;
+  result.name = @"";
+  return self;
+}
+- (BOOL) hasDesc {
+  return result.hasDesc;
+}
+- (NSString*) desc {
+  return result.desc;
+}
+- (PBTask_Builder*) setDesc:(NSString*) value {
+  result.hasDesc = YES;
+  result.desc = value;
+  return self;
+}
+- (PBTask_Builder*) clearDesc {
+  result.hasDesc = NO;
+  result.desc = @"";
+  return self;
+}
+- (BOOL) hasStatus {
+  return result.hasStatus;
+}
+- (PBTaskStatus) status {
+  return result.status;
+}
+- (PBTask_Builder*) setStatus:(PBTaskStatus) value {
+  result.hasStatus = YES;
+  result.status = value;
+  return self;
+}
+- (PBTask_Builder*) clearStatus {
+  result.hasStatus = NO;
+  result.status = PBTaskStatusTaskStatusCanTake;
+  return self;
+}
+- (BOOL) hasBadge {
+  return result.hasBadge;
+}
+- (int32_t) badge {
+  return result.badge;
+}
+- (PBTask_Builder*) setBadge:(int32_t) value {
+  result.hasBadge = YES;
+  result.badge = value;
+  return self;
+}
+- (PBTask_Builder*) clearBadge {
+  result.hasBadge = NO;
+  result.badge = 0;
+  return self;
+}
+- (BOOL) hasAward {
+  return result.hasAward;
+}
+- (int32_t) award {
+  return result.award;
+}
+- (PBTask_Builder*) setAward:(int32_t) value {
+  result.hasAward = YES;
+  result.award = value;
+  return self;
+}
+- (PBTask_Builder*) clearAward {
+  result.hasAward = NO;
+  result.award = 0;
   return self;
 }
 @end

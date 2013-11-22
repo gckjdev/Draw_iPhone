@@ -25,6 +25,7 @@
 #import "GTMBase64.h"
 #import <ShareSDK/ShareSDK.h>
 #import "WBApi.h"
+#import "TaskManager.h"
 
 GameSNSService* _defaultSNSService;
 
@@ -336,6 +337,8 @@ GameSNSService* _defaultSNSService;
                             
                             POSTMSG(NSLS(@"kAuthorizeSuccess"));
                             PPDebug(@"autheticate shareType(%d) success", shareType);
+                            
+                            
                         }
                         else if (state == SSAuthStateFail)
                         {
@@ -465,7 +468,25 @@ GameSNSService* _defaultSNSService;
           awardCoins:(int)awardCoins
       successMessage:(NSString*)successMessage
       failureMessage:(NSString*)failureMessage
+{
+    [self publishWeibo:snsType
+                  text:text
+         imageFilePath:imagePath
+                inView:view
+            awardCoins:awardCoins
+        successMessage:successMessage
+        failureMessage:failureMessage
+                taskId:0];
+}
 
+- (void)publishWeibo:(PPSNSType)snsType
+                text:(NSString*)text
+       imageFilePath:(NSString*)imagePath
+              inView:(UIView*)view
+          awardCoins:(int)awardCoins
+      successMessage:(NSString*)successMessage
+      failureMessage:(NSString*)failureMessage
+              taskId:(int)taskId
 
 {
     ShareType shareType = [GameSNSService shareSDKType:snsType];
@@ -530,6 +551,10 @@ GameSNSService* _defaultSNSService;
                                                       awardCoins:awardCoins
                                                   successMessage:successMessage
                                                   failureMessage:failureMessage];
+                                 
+                                 if (state == SSPublishContentStateSuccess){
+                                     [[TaskManager defaultManager] completeTask:taskId isAward:YES clearBadge:YES];
+                                 }
                                  
 //                                 if (state == SSPublishContentStateSuccess)
 //                                 {
@@ -632,7 +657,13 @@ GameSNSService* _defaultSNSService;
 
 
 {
-    [self publishWeibo:snsType text:text imageFilePath:nil inView:view awardCoins:awardCoins successMessage:successMessage failureMessage:failureMessage];
+    [self publishWeibo:snsType
+                  text:text
+         imageFilePath:nil
+                inView:view
+            awardCoins:awardCoins
+        successMessage:successMessage
+        failureMessage:failureMessage];
 }
 
 - (void)publishWeiboToAll:(NSString*)text
@@ -767,6 +798,9 @@ GameSNSService* _defaultSNSService;
     PPDebug(@"<readUserInfoAndUpdateToServer> credential(%@), oauth2(%@)", [credential description], [cred description]);
     
     [self uploadUserSNSCredential:shareType];
+        
+    // complete task
+    [[TaskManager defaultManager] completeBindWeiboTask:shareType isAward:NO clearBadge:YES];
 
     // read user information and upload to server
     [ShareSDK getUserInfoWithType:shareType                                     //平台类型
@@ -782,6 +816,8 @@ GameSNSService* _defaultSNSService;
                                    
                                    // upload again here
                                    [self uploadUserSNSCredential:shareType];
+                                   
+                                   
                                }
                                else{
                                    PPDebug(@"<getUserInfo> error(%d) desc(%@)", error.errorCode, error.errorDescription);

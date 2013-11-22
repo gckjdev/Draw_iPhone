@@ -176,8 +176,10 @@ static DrawDataService* _defaultDrawDataService = nil;
             if (output.resultCode == ERROR_SUCCESS && [output.responseData length] > 0) {
                 DataQueryResponse *response = [DataQueryResponse parseFromData:output.responseData];
                 NSArray *list = [response feedList];
-                PBFeed *pbFeed = ([list count] != 0) ? [list objectAtIndex:0] : nil;
-                feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                PBFeed *pbFeed = ([list count] > 0) ? [list objectAtIndex:0] : nil;
+                if (pbFeed != nil){
+                    feed = [[[DrawFeed alloc] initWithPBFeed:pbFeed] autorelease];
+                }
                 resultCode = [response resultCode];
             }
         }

@@ -48,7 +48,8 @@
 }
 
 - (IBAction)clickBack:(id)sender{
-    [_player stop];
+    [_player pauseForQuit];
+    self.player = nil;
     [super clickBack:sender];
 }
 

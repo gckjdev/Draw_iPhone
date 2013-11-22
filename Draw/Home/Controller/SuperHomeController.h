@@ -44,5 +44,30 @@
        didClickAvatarView:(AvatarView *)avatarView;
 
 - (void)enterFriend;
+- (void)enterTopOpus;
+- (void)enterTask;
++ (NSDictionary*)defaultMenuTitleDictionary;
++ (NSDictionary*)defaultMenuImageDictionary;
+
+
+// the follow is to be implemented by sub class
+
++ (int*)getMainMenuList;
+- (BOOL)handleClickMenu:(HomeMainMenuPanel *)mainMenuPanel
+                   menu:(HomeMenuView *)menu
+               menuType:(HomeMenuType)type;
+
++ (int *)getBottomMenuList;
+- (BOOL)handleClickBottomMenu:(HomeBottomMenuPanel *)bottomMenuPanel
+                         menu:(HomeMenuView *)menu
+                     menuType:(HomeMenuType)type;
+
+- (NSArray*)noCheckedMenuTypes;
++ (NSDictionary*)menuTitleDictionary;
++ (NSDictionary*)menuImageDictionary;
+
++ (int)homeDefaultMenuType;
++ (UIColor*)getHeaderBackgroundColor;
+- (UIColor*)getMainBackgroundColor;
 
 @end

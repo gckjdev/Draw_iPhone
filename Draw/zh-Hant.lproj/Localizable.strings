@@ -594,6 +594,7 @@
 "kDrawing" = "畫畫中";
 //"kGuessing" = "猜畫中";
 "kGuessing" = "正在猜...";
+"kPlayAudioAgain" = "重聽";
 
 "kSubmitFailure" = "不好意思，提交失敗，請重新提交。";
 "kSubmitSuccMsg" = "恭喜！提交成功！再來一幅？";
@@ -937,8 +938,8 @@
 
 "kNoComments" = "咦！還沒人評論，趕緊搶沙發！";
 "kNoGuesses" = "咦！還沒人猜，趕緊搶沙發！";
-"kNoFlowers" = "畫得很好？送TA一朵花吧。";
-"kNoTomatos" = "畫得很爛？請盡情扔番茄。";
+"kNoFlowers" = "喜歡嗎？那就送TA一朵花吧";
+"kNoTomatos" = "畫得很爛？請盡情扔番茄";
 
 "kPickPenColor" = "選擇畫筆顏色";
 "kPickBGColor" = "選擇背景顏色";
@@ -1162,6 +1163,8 @@
 "kVoiceMessage" = "語音消息";
 "kResend" = "重發";
 
+"kContestWillComeSoon" = "比賽功能即將開通，敬請關註!";
+
 "kHomeMenuTypeDrawDraw" = "畫畫";
 "kHomeMenuTypeDrawGuess" = "猜畫";
 "kHomeMenuTypeDrawGame" = "多人";
@@ -1255,7 +1258,7 @@
 "kRecovery" = "恢復";
 "kNotBindMailMessage" = "您還沒設置您的郵箱賬戶，請在系統設置裡面設置。";
 "kTypeRoom" = "打字房";
-"kDrawRoomTitle" = "在线你畫我猜";
+"kDrawRoomTitle" = "你畫我猜";
 "kDrawRoomCellTitle" = "你畫我猜%d號房";
 
 "kTopPost" = "置頂";
@@ -1376,7 +1379,7 @@
 "kHim" = "他";
 "kHer" = "她";
 "kDetailDrawTo" = "畫給%@";
-"kDetailGiftTo" = "送給%@";
+"kDetailGiftTo" = "唱給%@";
 
 "kDetailFollower" = "關注";
 "kDetailFollow" = "關注%@";
@@ -1590,6 +1593,9 @@
 
 "kHint" = "提示";
 "kRecordSubmitHint" = "你的作品錄音時長為%d秒，提交需要花費%d金幣，確認提交嗎？";
+
+"kMatchingOpus" = "加載作品中...";
+"kFailMatchOpus" = "無法找到合適的作品，也許是網絡有問題，請稍後再試";
 
 "kGiveUpComment" = "是否退出評論?";
 "kGuessWrong" =  "猜錯了";
@@ -2187,10 +2193,10 @@
 "kExhibition" = "作品展";
 "kContestCopyright" = "重要聲明：蘋果公司非本比賽贊助商，也和本次比賽無任何關係，蘋果公司不承擔比賽的任何責任。本比賽不提供任何蘋果公司的相關產品作為獎品";
 
-"kShareWeiboSucc" = "分享作品成功";
-"kShareWeiboFailure" = "分享作品失敗，請檢查帳號或者網絡";
-"kSentWeiboSucc" = "分享作品成功";
-"kSentWeiboFailure" = "分享作品失敗，請檢查帳號或者網絡";
+"kShareWeiboSucc" = "分享成功";
+"kShareWeiboFailure" = "分享失敗，請檢查帳號或者網絡";
+"kSentWeiboSucc" = "分享成功";
+"kSentWeiboFailure" = "分享失敗，請檢查帳號或者網絡";
 "kPublishWeiboAwardInfo" = "獲得【%d】金幣";
 
 "kFollowFailure" = "關注失敗，請檢查帳號或者網絡";

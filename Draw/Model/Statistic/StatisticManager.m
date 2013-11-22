@@ -10,6 +10,7 @@
 #import "BulletinManager.h"
 #import "ContestManager.h"
 #import "ContestService.h"
+#import "TaskManager.h"
 
 static StatisticManager *_globalStatisticManager;
 
@@ -64,6 +65,11 @@ static StatisticManager *_globalStatisticManager;
 - (long)newContestCount
 {
     return [[ContestService defaultService] newContestCount];
+}
+
+- (long)taskCount
+{
+    return [[TaskManager defaultManager] totalBadge];
 }
 
 @end

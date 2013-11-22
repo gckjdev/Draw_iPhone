@@ -21,6 +21,12 @@
     return [[[SingHomeController alloc] init] autorelease];
 }
 
+- (Class)homeControllerClass
+{
+    return [SingHomeController class];
+}
+
+
 - (NSString*)umengId{
     return @"51b698e556240b357101820c";
 }
@@ -384,7 +390,7 @@
 
 - (NSString *)alipayCallBackScheme
 {
-    return @"alipaycchh.gckj";
+    return @"alipayxjdst.gckj";
 }
 
 - (BOOL)isAutoRegister
@@ -810,5 +816,9 @@
     return kCreateDescNoName;
 }
 
+- (UIImage *)getGiftToSbImage{
+    
+    return [UIImage imageNamed:@"user_detail_sing_to_bg@2x.png"];
+}
 
 @end

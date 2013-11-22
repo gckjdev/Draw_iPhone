@@ -170,10 +170,12 @@
 {
     return [MobClickUtils getIntValueByKey:@"HOT_OPUS_FETCH_LIMIT" defaultValue:18];
 }
+
 + (NSInteger)getTimelineCountOnce
 {
     return [MobClickUtils getIntValueByKey:@"TIMELINE_FETCH_LIMIT" defaultValue:15];
 }
+
 + (BOOL)showOpusCount
 {
     return [MobClickUtils getBoolValueByKey:@"SHOW_OPUS_COUNT" defaultValue:NO];
@@ -452,16 +454,32 @@
 
 + (int)getCreateOpusWeiboReward
 {
-    return [MobClickUtils getIntValueByKey:@"CREATE_OPUS_WEIBO" defaultValue:30];
+    return [MobClickUtils getIntValueByKey:@"CREATE_OPUS_AWARD" defaultValue:30];
 }
 
++ (int)getFirstCreateOpusWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"FIRST_CREATE_OPUS_AWARD" defaultValue:200];
+}
+
+
++ (int)getFirstGuessOpusReward
+{
+    return [MobClickUtils getIntValueByKey:@"GUESS_OPUS_AWARD" defaultValue:200];
+}
 
 
 
 + (int)getFollowWeiboReward
 {
-    return [MobClickUtils getIntValueByKey:@"REWARD_FOLLOW_WEIBO" defaultValue:100];
+    return [MobClickUtils getIntValueByKey:@"REWARD_FOLLOW_WEIBO" defaultValue:500];
 }
+
++ (int)getShareAppWeiboReward
+{
+    return [MobClickUtils getIntValueByKey:@"SHARE_APP_WEIBO" defaultValue:100];
+}
+
 + (int)flowerAwardFordLevelUp
 {
     return [MobClickUtils getIntValueByKey:@"REWARD_FLOWER_FOR_LVL_UP" defaultValue:2];
@@ -1218,7 +1236,7 @@
 
 + (NSString *)getSingTagList{
     
-    return [MobClickUtils getStringValueByKey:@"SING_TAG_LIST" defaultValue:@"唱歌$搞笑$故事$模仿$方言"];
+    return [MobClickUtils getStringValueByKey:@"SING_TAG_LIST" defaultValue:@"唱歌$搞笑$故事$模仿$方言$段子"];
 }
 
 + (int)getRecordLimitTime{
@@ -1226,7 +1244,7 @@
 }
 
 + (int)getRecordLimitMinTime{
-    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_MIN_TIME" defaultValue:6];
+    return [MobClickUtils getIntValueByKey:@"RECORD_LIMIT_MIN_TIME" defaultValue:3];
 }
 
 + (int)getRecordDeductCoinsPer30Sec{

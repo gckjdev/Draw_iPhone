@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -10,10 +14,13 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>new_icon.png</string>
-		<string>new_icon@2x.png</string>
-		<string>new_icon_ipad1.png</string>
-		<string>new_icon_ipad2.png</string>
+		<string>sing_icon_50.png</string>
+		<string>sing_icon_57.png</string>
+		<string>sing_icon_72.png</string>
+		<string>sing_icon_76.png</string>
+		<string>sing_icon_114.png</string>
+		<string>sing_icon_120.png</string>
+		<string>sing_icon_152.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.sing</string>
@@ -33,14 +40,17 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.orange.newdice</string>
+			<string>com.orange.sing</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>alipaycchh.gckj</string>
-				<string>fb352182988165711</string>
-				<string>gckjcchh</string>
-				<string>wx427a2f57bc4456d1</string>
-				<string>sinaweibosso.4285743836</string>
+				<string>alipayxjdst.gckj</string>
+				<string>fb325848464220092</string>
+				<string>gckjxjdst</string>
+				<string>wxdf67334f7e8e0771</string>
+				<string>sinaweibosso.596481594</string>
+				<string>tencent100554944</string>
+				<string>qq05FE58C0</string>
+				<string>wb801441969</string>
 			</array>
 		</dict>
 	</array>
@@ -63,7 +73,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UILaunchImageFile</key>
-	<string>DrawDefault</string>
+	<string>SingDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>

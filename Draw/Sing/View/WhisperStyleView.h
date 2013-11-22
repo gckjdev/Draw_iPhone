@@ -17,5 +17,6 @@
 
 - (void)setHotRankViewStyle;
 - (void)setHomeRankViewStyle;
+- (void)setFeedDetailStyle;
 
 @end

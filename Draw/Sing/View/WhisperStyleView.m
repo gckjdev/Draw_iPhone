@@ -39,6 +39,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 }
 
 #define TAG_LABEL 201311131346
+#define TAG_IMAGE_VIEW 201311131347
+
 - (id)initWithFrame:(CGRect)frame
                feed:(DrawFeed *)feed{
     
@@ -47,9 +49,15 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     if (self = [super initWithFrame:originFrame]) {
         
         UIImageView *iv = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        [iv setImageWithURL:[NSURL URLWithString:feed.drawImageUrl]];
         [iv setContentMode:UIViewContentModeScaleAspectFill];
         [iv setClipsToBounds:YES];
+        
+        UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        [indicator updateCenterX:iv.frame.size.width/2];
+        [indicator updateCenterY:iv.frame.size.height/2];
+        [indicator startAnimating];
+        [iv addSubview:indicator];
+        iv.tag = TAG_IMAGE_VIEW;
         [self addSubview:iv];
         
         StrokeLabel *l = [[[StrokeLabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -57,6 +65,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         l.textAlignment = NSTextAlignmentCenter;
         l.tag = TAG_LABEL;
         l.backgroundColor = [UIColor clearColor];
+        
         [self addSubview:l];
         
         // update lable info
@@ -102,6 +111,13 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         // update origin
         [self updateOriginX:frame.origin.x];
         [self updateOriginY:frame.origin.y];
+        
+        [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            [indicator stopAnimating];
+            [indicator removeFromSuperview];
+        }];
+        
+        [self setClipsToBounds:YES];
     }
     
     return self;
@@ -112,10 +128,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     UILabel *label = (UILabel *)[self viewWithTag:TAG_LABEL];
     label.font = [UIFont systemFontOfSize:ISIPAD ? 25/_sx : 15/_sx];
     label.numberOfLines = 3;
-//    [label updateHeight:(ISIPAD ? 140 : 70)];
     [label updateWidth:self.bounds.size.width];
     [label updateHeight:self.bounds.size.height];
-    
     label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
 }
 
@@ -126,8 +140,12 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     label.numberOfLines = 3;
     [label updateWidth:self.bounds.size.width];
     [label updateHeight:self.bounds.size.height];
-    
     label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+}
+
+- (void)setFeedDetailStyle{
+    UIImageView *iv = (UIImageView *)[self viewWithTag:TAG_IMAGE_VIEW];
+    [iv setContentMode:UIViewContentModeScaleAspectFit];
 }
 
 @end

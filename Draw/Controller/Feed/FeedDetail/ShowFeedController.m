@@ -55,6 +55,7 @@
 #import "AudioPlayer.h"
 #import "GameSNSService.h"
 #import "ShareAction.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface ShowFeedController ()<OpusImageBrowerDelegate> {
     BOOL _didLoadDrawPicture;
@@ -531,6 +532,23 @@ typedef enum{
     [self updateActionButtons];
     [self.feed setDrawData:nil];
     [self.feed setPbDrawData:nil];
+    
+    if ([self.feed isSingCategory]) {
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+        [self becomeFirstResponder];
+        [self configNowPlayingInfoCenter];
+    }
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    
+    if ([self.feed isSingCategory]) {
+        [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+        [self resignFirstResponder];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -755,7 +773,7 @@ typedef enum{
 - (void)performSingGuess{
 
 //    [self showActivityWithText:NSLS(@"kLoading")];
-    [_audioPlayer stop];
+    [_audioPlayer pause];
     [OfflineGuessDrawController startOfflineGuess:self.feed fromController:self];
 //    [self hideActivity];
 }
@@ -928,8 +946,16 @@ typedef enum{
 //override super clickBlackButton method
 - (IBAction)clickBackButton:(id)sender
 {
-    [_audioPlayer stop];
+
+    PPDebug(@"<clickBack>");
+    [_audioPlayer pauseForQuit];
+    PPRelease(_audioPlayer);
+    PPDebug(@"<clickBack> audio stop end");
+        
     [self.feedScene didClickBackBtn:self];
+    // clear delegate to avoid callback
+    self.drawCell.delegate = nil;
+    self.drawCellFullScreen.delegate = nil;
 }
 
 
@@ -1054,7 +1080,7 @@ typedef enum{
 - (void)viewDidLoad
 {
     [self baseInit];
-    if (isSingApp()) {
+    if ([self.feed isSingCategory]) {
         self.canDragBack = NO;
     }
 }
@@ -1073,9 +1099,11 @@ typedef enum{
     
 }
 
-
 - (void)viewDidUnload
 {
+    self.drawCellFullScreen.delegate = nil;
+    self.drawCell.delegate = nil;
+    
     [self.feed setDrawData:nil];
     [self setFeed:nil];
     [self setDrawCell:nil];
@@ -1363,13 +1391,13 @@ typedef enum{
         
         [self.dataTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         
-        [_audioPlayer stop];
+        [_audioPlayer pause];
     }
 }
 
 - (void)playAudio:(AudioButton *)button
 {
-    [_audioPlayer play];
+    [_audioPlayer pauseOrResume];
 }
 
 - (void)play{
@@ -1386,7 +1414,9 @@ typedef enum{
         
         [_drawCellFullScreen.slider setValue:0];
         _audioPlayer.slider = _drawCellFullScreen.slider;
-        [_audioPlayer.slider addTarget:self action:@selector(sliderValueChange:) forControlEvents:UIControlEventValueChanged];
+        [_audioPlayer.slider addTarget:self
+                                action:@selector(sliderValueChange:)
+                      forControlEvents:UIControlEventValueChanged];
     }
     
     [_audioPlayer play];
@@ -1394,7 +1424,51 @@ typedef enum{
 
 - (void)sliderValueChange:(CustomSlider *)slider{
     
+    PPDebug(@"<sliderValueChange>");
     [_audioPlayer seekToProgress:slider.value];
+}
+
+-(void)configNowPlayingInfoCenter{
+    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:self.feed.wordText forKey:MPMediaItemPropertyTitle];
+    [dict setObject:self.feed.author.nickName forKey:MPMediaItemPropertyArtist];
+    
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.pbFeed.opusImage];
+    if (image == nil) {
+        image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.feed.pbFeed.opusThumbImage];
+    }
+    
+    if (image != nil) {
+        MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:image];
+        [dict setObject:artwork forKey:MPMediaItemPropertyArtwork];
+    }
+    
+    [[MPNowPlayingInfoCenter defaultCenter] setNowPlayingInfo:dict];
+}
+
+
+
+-(BOOL)canBecomeFirstResponder{
+    return YES;
+}
+
+-(void)remoteControlReceivedWithEvent:(UIEvent *)event{
+    
+    //if it is a remote control event handle it correctly
+    if (event.type == UIEventTypeRemoteControl) {
+        switch (event.subtype) {
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+            {
+                [_audioPlayer play];
+                break;
+            }
+            
+            default:
+                break;
+        }
+    }
+    
 }
 
 @end
