@@ -39,7 +39,7 @@
     [singOpus setLocalImageDataUrl:SING_IMAGE_EXTENSION];
     [singOpus setLocalThumbImageDataUrl:SING_IMAGE_EXTENSION];
     
-    [singOpus setTags:@[@"唱歌"]];
+    [singOpus setTags:@[@"唱歌"]]; // TODO get defatult tags
     
     // set desc label info
     NSUInteger textColor = [[DrawColor whiteColor] toBetterCompressColor];
