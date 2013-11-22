@@ -624,5 +624,9 @@
     return kCreateDescNoName;
 }
 
+- (UIImage *)getGiftToSbImage{
+    
+    return [UIImage imageNamed:@"user_detail_draw_to_bg@2x.png"];
+}
 
 @end
