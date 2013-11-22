@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GroupUIManager.h"
+#import "GroupPermission.h"
 
 
 
@@ -18,8 +20,11 @@
 + (NSInteger)capacityForLevel:(NSInteger)level;
 + (NSInteger)monthlyFeeForLevel:(NSInteger)level;
 
++ (NSArray *)defaultTypesInGroupHomeFooterForTab:(GroupTab)tab;
++ (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group;
 
 - (BOOL)followedGroup:(NSString *)groupId;
 
-@end
 
+
+@end

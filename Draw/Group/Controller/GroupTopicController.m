@@ -12,6 +12,7 @@
 #import "BBSPostCell.h"
 #import "BBSModelExt.h"
 #import "Group.pb.h"
+#import "GroupService.h"
 
 typedef enum{
     NewestTopic = 1,
@@ -27,10 +28,12 @@ typedef enum {
 @interface GroupTopicController ()
 {
     BBSService *topicService;
+    GroupPermissionManager *permissonManager;
 }
 @property(nonatomic, retain)BBSPostActionHeaderView *topicHeader;
 @property(nonatomic, retain)UITableViewCell *infoCell;
 @property(nonatomic, retain)PBGroup *group;
+@property (retain, nonatomic) IBOutlet DetailFooterView *footerView;
 @end
 
 @implementation GroupTopicController
@@ -58,6 +61,8 @@ typedef enum {
     PPRelease(_topicHeader);
     PPRelease(_infoCell);
     PPRelease(_group);
+    PPRelease(permissonManager);
+    [_footerView release];
     [super dealloc];
 }
 
@@ -66,14 +71,57 @@ typedef enum {
     
 }
 
-- (void)viewDidLoad
+- (void)updateFooterView
 {
-    [super viewDidLoad];
+    [self.footerView removeFromSuperview];
+    self.footerView = [DetailFooterView footerViewWithDelegate:self];
+    NSArray *types = [GroupManager defaultTypesInGroupTopicFooter:_group];
+    NSArray *images = [GroupUIManager imagesForFooterActionTypes:types];
+    [self.footerView setButtonsWithCustomTypes:types images:images];
+    [self.view addSubview:self.footerView];
+}
+
+- (void)detailFooterView:(DetailFooterView *)footer
+        didClickAtButton:(UIButton *)button
+                    type:(NSInteger)type
+{
+    PPDebug(@"click type  = %d", type);
+    switch (type) {
+        case CreateTopic:
+            
+            break;
+        case GroupChat:
+            
+            break;
+            
+        case SearchTopic:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)updateTitleView
+{
     [self.titleView setTransparentStyle];
     [self.titleView setTitle:_group.name];
-    //TODO check if user has join a group
-    [self.titleView setRightButtonTitle:NSLS(@"kJoin")];
+    if ([permissonManager canJoinGroup]) {
+        [self.titleView setRightButtonTitle:NSLS(@"kJoin")];
+    }else if([permissonManager canQuitGroup]){
+        [self.titleView setRightButtonTitle:NSLS(@"kQuit")];
+    }
     [self.titleView setRightButtonSelector:@selector(clickJoin:)];
+}
+
+- (void)viewDidLoad
+{
+    permissonManager = [GroupPermissionManager myManagerWithGroup:_group];
+    [permissonManager retain];
+    [super viewDidLoad];
+    [self updateTitleView];
+    [self updateFooterView];
     [self clickTab:NewestTopic];
 }
 
@@ -246,4 +294,8 @@ typedef enum {
     }
 }
 
+- (void)viewDidUnload {
+    [self setFooterView:nil];
+    [super viewDidUnload];
+}
 @end

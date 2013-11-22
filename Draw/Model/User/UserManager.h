@@ -260,4 +260,6 @@ qqAccessTokenSecret:(NSString*)accessTokenSecret
 + (BOOL)deleteUserFromHistoryList:(NSString *)userId;
 + (BOOL)addUserToHistoryList:(PBGameUser *)user;
 
+- (BOOL)hasJoinedAGroup;
+- (NSArray *)joinedGroupList;
 @end

@@ -13,18 +13,6 @@
 #import "GroupCell.h"
 #import "GroupTopicController.h"
 
-typedef enum{
-    GroupTabGroup = 100,
-    GroupTabTopic = 101,
-    GroupTabFollow = 102,    
-
-    GroupTabGroupFollow = GetGroupListTypeFollow,
-    GroupTabGroupNew = GetGroupListTypeNew,
-    GroupTabGroupBalance = GetGroupListTypeBalance,
-    GroupTabGroupActive = GetGroupListTypeActive,
-    GroupTabGroupFame = GetGroupListTypeFame,
-    
-}GroupTab;
 
 @interface GroupHomeController ()
 {
@@ -68,15 +56,28 @@ typedef enum{
     return (id)[self.tabsHolderView viewWithTag:GroupTabGroup];
 }
 
+- (void)updateFooterView
+{
+    [self.footerView removeFromSuperview];
+    NSArray *types = [GroupManager defaultTypesInGroupHomeFooterForTab:self.currentTab.tabID];
+    NSArray *images = [GroupUIManager imagesForFooterActionTypes:types];
+    
+    self.footerView = [DetailFooterView footerViewWithDelegate:self];
+    [self.footerView setButtonsWithCustomTypes:types images:images];
+    [self.view addSubview:self.footerView];
+    PPDebug(@"update footer view, types = %@", types);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.titleView setTitle:NSLS(@"kGroup")];
     [self.titleView setTarget:self];
     [self.titleView setBackButtonSelector:@selector(clickBack:)];
-//    [self.titleView setTransparentStyle];
+
     [self initTabButtons];
     [self clickTabButton:[self defaultTabButton]];
+    [self updateFooterView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -240,9 +241,9 @@ typedef enum{
 
 - (void)detailFooterView:(DetailFooterView *)footer
         didClickAtButton:(UIButton *)button
-                    type:(FooterType)type
+                    type:(NSInteger)type
 {
-    
+    PPDebug(@"click type = %d", type);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

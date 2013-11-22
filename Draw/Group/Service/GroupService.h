@@ -7,32 +7,14 @@
 //
 
 #import "CommonService.h"
-#import "GroupPermission.h"
 #import "Group.pb.h"
+#import "GroupManager.h"
 
 typedef void (^ GroupResultBlock) (PBGroup *group, NSError *error);
 typedef void (^ ListResultBlock) (NSArray *list, NSError *error);
 typedef void (^ SimpleResultBlock) (NSError *error);
 
-typedef enum{
-    InviteUserTypeMember = 1,
-    InviteUserTypeGuest = 2,    
-}InviteUserType;
 
-
-typedef enum{
-    GetGroupListTypeFollow = 1,
-    GetGroupListTypeNew = 2,
-    GetGroupListTypeBalance = 3,
-    GetGroupListTypeActive = 4,
-    GetGroupListTypeFame = 5,
-}GetGroupListType;
-
-
-typedef enum{
-    GroupNoticeTypeBulletin = 0,
-    GroupNoticeTypeRequest = 1,
-}GroupNoticeType;
 
 @interface GroupService : CommonService
 

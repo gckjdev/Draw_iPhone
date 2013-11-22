@@ -1549,6 +1549,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
 @property BOOL canShakeNumber;
 @property int32_t shakeNumberTimes;
 @property int32_t takeCoins;
+@property (retain) NSMutableArray* mutableJoinedGroupListList;
 @property int32_t singRecordLimit;
 @end
 
@@ -1892,6 +1893,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   hasTakeCoins_ = !!value;
 }
 @synthesize takeCoins;
+@synthesize mutableJoinedGroupListList;
 - (BOOL) hasSingRecordLimit {
   return !!hasSingRecordLimit_;
 }
@@ -1925,6 +1927,7 @@ static PBUserLevel* defaultPBUserLevelInstance = nil;
   self.bloodGroup = nil;
   self.signature = nil;
   self.friendMemo = nil;
+  self.mutableJoinedGroupListList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -2022,6 +2025,13 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 }
 - (NSString*) blockDeviceIdsAtIndex:(int32_t) index {
   id value = [mutableBlockDeviceIdsList objectAtIndex:index];
+  return value;
+}
+- (NSArray*) joinedGroupListList {
+  return mutableJoinedGroupListList;
+}
+- (NSString*) joinedGroupListAtIndex:(int32_t) index {
+  id value = [mutableJoinedGroupListList objectAtIndex:index];
   return value;
 }
 - (BOOL) isInitialized {
@@ -2201,6 +2211,9 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (self.hasTakeCoins) {
     [output writeInt32:106 value:self.takeCoins];
   }
+  for (NSString* element in self.mutableJoinedGroupListList) {
+    [output writeString:110 value:element];
+  }
   if (self.hasSingRecordLimit) {
     [output writeInt32:200 value:self.singRecordLimit];
   }
@@ -2364,6 +2377,14 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   }
   if (self.hasTakeCoins) {
     size += computeInt32Size(106, self.takeCoins);
+  }
+  {
+    int32_t dataSize = 0;
+    for (NSString* element in self.mutableJoinedGroupListList) {
+      dataSize += computeStringSizeNoTag(element);
+    }
+    size += dataSize;
+    size += 2 * self.mutableJoinedGroupListList.count;
   }
   if (self.hasSingRecordLimit) {
     size += computeInt32Size(200, self.singRecordLimit);
@@ -2605,6 +2626,12 @@ static PBGameUser* defaultPBGameUserInstance = nil;
   if (other.hasTakeCoins) {
     [self setTakeCoins:other.takeCoins];
   }
+  if (other.mutableJoinedGroupListList.count > 0) {
+    if (result.mutableJoinedGroupListList == nil) {
+      result.mutableJoinedGroupListList = [NSMutableArray array];
+    }
+    [result.mutableJoinedGroupListList addObjectsFromArray:other.mutableJoinedGroupListList];
+  }
   if (other.hasSingRecordLimit) {
     [self setSingRecordLimit:other.singRecordLimit];
   }
@@ -2836,6 +2863,10 @@ static PBGameUser* defaultPBGameUserInstance = nil;
       }
       case 848: {
         [self setTakeCoins:[input readInt32]];
+        break;
+      }
+      case 882: {
+        [self addJoinedGroupList:[input readString]];
         break;
       }
       case 1600: {
@@ -3694,6 +3725,37 @@ static PBGameUser* defaultPBGameUserInstance = nil;
 - (PBGameUser_Builder*) clearTakeCoins {
   result.hasTakeCoins = NO;
   result.takeCoins = 0;
+  return self;
+}
+- (NSArray*) joinedGroupListList {
+  if (result.mutableJoinedGroupListList == nil) {
+    return [NSArray array];
+  }
+  return result.mutableJoinedGroupListList;
+}
+- (NSString*) joinedGroupListAtIndex:(int32_t) index {
+  return [result joinedGroupListAtIndex:index];
+}
+- (PBGameUser_Builder*) replaceJoinedGroupListAtIndex:(int32_t) index with:(NSString*) value {
+  [result.mutableJoinedGroupListList replaceObjectAtIndex:index withObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addJoinedGroupList:(NSString*) value {
+  if (result.mutableJoinedGroupListList == nil) {
+    result.mutableJoinedGroupListList = [NSMutableArray array];
+  }
+  [result.mutableJoinedGroupListList addObject:value];
+  return self;
+}
+- (PBGameUser_Builder*) addAllJoinedGroupList:(NSArray*) values {
+  if (result.mutableJoinedGroupListList == nil) {
+    result.mutableJoinedGroupListList = [NSMutableArray array];
+  }
+  [result.mutableJoinedGroupListList addObjectsFromArray:values];
+  return self;
+}
+- (PBGameUser_Builder*) clearJoinedGroupListList {
+  result.mutableJoinedGroupListList = nil;
   return self;
 }
 - (BOOL) hasSingRecordLimit {

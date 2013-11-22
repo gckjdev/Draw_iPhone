@@ -10,10 +10,10 @@
 #import "BBSPostActionHeaderView.h"
 #import "GroupInfoView.h"
 #import "BBSService.h"
+#import "DetailFooterView.h"
 
 @class PBGroup;
-@interface GroupTopicController : CommonTabController<BBSPostActionHeaderViewDelegate, GroupInfoViewDelegate, BBSServiceDelegate>
-//@property(nonatomic, retain)PBGroup *group;
+@interface GroupTopicController : CommonTabController<BBSPostActionHeaderViewDelegate, GroupInfoViewDelegate, BBSServiceDelegate, DetailFooterViewDelegate>
 
 + (GroupTopicController *)enterWithGroup:(PBGroup *)group
                           fromController:(PPViewController *)controller;

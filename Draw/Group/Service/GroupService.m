@@ -11,7 +11,7 @@
 #import "PPNetworkConstants.h"
 #import "CommonOpusDetailController.h"
 #import "DrawError.h"
-#import "GroupManager.h"
+
 
 #ifdef DEBUG
     #define GROUP_HOST     @"http://localhost:8100/api?"

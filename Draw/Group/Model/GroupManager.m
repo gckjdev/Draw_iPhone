@@ -55,4 +55,33 @@ static GroupManager *_staticGroupManager = nil;
     return [_followedGroupIds containsObject:groupId];
 }
 
++ (BOOL)isGroupTab:(GroupTab)tab
+{
+    NSArray *tabs = @[@(GroupTabGroup),
+                      @(GroupTabGroupFollow),
+                      @(GroupTabGroupBalance),
+                      @(GroupTabGroupActive),
+                      @(GroupTabGroupFame),
+                      ];
+    return [tabs containsObject:@(tab)];
+    
+}
+
++ (NSArray *)defaultTypesInGroupHomeFooterForTab:(GroupTab)tab
+{
+    NSMutableArray *array = [NSMutableArray array];
+    if ([GroupPermissionManager canCreateGroup]) {
+        [array addObject:@(CreateGroup)];
+    }
+    [array addObjectsFromArray:@[@(SearchGroup), @(GroupChat), @(AtMe)]];
+    return array;
+}
+
+
++ (NSArray *)defaultTypesInGroupTopicFooter:(PBGroup *)group
+{
+    //TODO add quit type
+    return @[@(CreateTopic), @(SearchGroup), @(GroupChat)];
+}
+
 @end
