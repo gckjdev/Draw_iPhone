@@ -813,7 +813,7 @@ enum{
     if (_picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
         _picker.autoRoundRect = NO;
-        _picker.userOriginalImage = YES;
+//        _picker.userOriginalImage = YES;
     }
     
     [_picker showSelectionView:self];
