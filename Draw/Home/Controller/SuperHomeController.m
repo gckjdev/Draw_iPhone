@@ -115,6 +115,9 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
     PPDebug(@"SuperHomeController view did load");
     [super viewDidLoad];
     
+    if (!ISIPAD) {
+        self.view.frame = [[UIScreen mainScreen] bounds];
+    }    
 
     [self addMainMenuView];
     [self addHeaderView];
@@ -147,9 +150,6 @@ static NSDictionary* DEFAULT_MENU_IMAGE_DICT = nil;
         [[AudioManager defaultManager] backgroundMusicPlay];
     }        
     
-    if (!ISIPAD) {
-        self.view.frame = [[UIScreen mainScreen] bounds];
-    }
     [self registerNetworkDisconnectedNotification];
     
     // manage rope animation

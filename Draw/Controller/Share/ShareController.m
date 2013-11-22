@@ -575,6 +575,7 @@ typedef enum{
         [dialog showInView:self.view];
     }
     else if (buttonIndex == SAVE_INTO_PHOTO){
+        [self saveAlbum];
     }
     else if (buttonIndex == SHARE_SINA_WEIBO){
         [self share:TYPE_SINA];
@@ -1113,4 +1114,21 @@ typedef enum{
     [share setFromWeiXin:YES];
     [superController.navigationController pushViewController:share animated:YES];
 }
+
+- (void)saveAlbum
+{
+    [self showActivityWithText:NSLS(@"kSaving")];
+    [[MyPaintManager defaultManager] savePhoto:_selectedPaint.imageFilePath delegate:self];
+}
+
+#pragma mark - MyPaintManager delegate
+    
+- (void)didSaveToAlbumSuccess:(BOOL)succ
+{
+    [self hideActivity];
+    if (succ) {
+        POSTMSG(NSLS(@"kSaveToAlbumSuccess"));
+    }
+}
+    
 @end

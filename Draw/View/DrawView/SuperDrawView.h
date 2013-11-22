@@ -24,12 +24,12 @@
 
 #define DRAW_INFO_NEED_UPDATE @"DRAW_INFO_NEED_UPDATE"
 
-#ifdef DEBUG
-#import "ScreenCaptureView.h"
-@interface SuperDrawView : ScreenCaptureView<GestureRecognizerManagerDelegate, DrawProcessProtocol>
-#else
+//#ifdef DEBUG
+//#import "ScreenCaptureView.h"
+//@interface SuperDrawView : ScreenCaptureView<GestureRecognizerManagerDelegate, DrawProcessProtocol>
+//#else
 @interface SuperDrawView : UIControl<GestureRecognizerManagerDelegate, DrawProcessProtocol>
-#endif
+//#endif
 {
     NSMutableArray *_drawActionList;
     

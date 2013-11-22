@@ -38,13 +38,15 @@
 #import "WhisperStyleView.h"
 #import "LevelService.h"
 #import "TaskManager.h"
+#import "AudioPlayer.h"
 
 @interface OfflineGuessDrawController()
 {
     CommonTitleView *_titleView;
 }
 @property (nonatomic, retain) ShowDrawView *showView;
-@property (nonatomic, retain) AudioStreamer *audioPlayer;
+
+@property (nonatomic, retain) AudioPlayer *audioPlayer;
 
 @end
 
@@ -64,7 +66,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ASStatusChangedNotification object:self.audioPlayer];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:ASStatusChangedNotification object:self.audioPlayer];
     
     PPRelease(_feed);
     PPRelease(_showView);
@@ -110,15 +112,17 @@
         }else if ([feed isSingCategory]){
             
             // init audio player here.
-            self.audioPlayer = [[[AudioStreamer alloc] initWithURL:[NSURL URLWithString:self.feed.drawDataUrl]] autorelease];
+            self.audioPlayer = [[[AudioPlayer alloc] init] autorelease];
+            [self.audioPlayer setUrl:[NSURL URLWithString:self.feed.drawDataUrl]];
             
             // register the streamer on notification
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(playbackStateChanged:)
-                                                         name:ASStatusChangedNotification
-                                                       object:self.audioPlayer];
-            
-            [self.audioPlayer start];
+//            [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                     selector:@selector(playbackStateChanged:)
+//                                                         name:ASStatusChangedNotification
+//                                                       object:self.audioPlayer];
+//            
+
+            [self.audioPlayer play];
         }
     }
     return self;
@@ -278,9 +282,10 @@
     } 
     
     if ([self.feed isSingCategory]) {
-        if ([self.audioPlayer isPlaying]){
-            [self.audioPlayer pause];
-        }
+//        if ([self.audioPlayer isPlaying]){
+//            [self.audioPlayer pause];
+//        }
+        [self.audioPlayer pause];
         self.audioPlayer = nil;
     }
     
@@ -382,8 +387,9 @@
 
 - (void)clickPlayAudioAgain:(id)sender{
     
-    [_audioPlayer start];
+    [_audioPlayer play];
 }
+
 
 /*
  *  observe the notification listener when loading an audio

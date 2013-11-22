@@ -628,12 +628,17 @@
 //    }
 }
 
+- (void)saveAlbum
+{
+    [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_ALBUM];
+    [[MyPaintManager defaultManager] savePhoto:_imageFilePath delegate:self];
+    [self.superViewController showActivityWithText:NSLS(@"kSaving")];
+}
+
 - (void)actionByButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == buttonIndexAlbum){
-        [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_ALBUM];
-        [[MyPaintManager defaultManager] savePhoto:_imageFilePath delegate:self];
-        [self.superViewController showActivityWithText:NSLS(@"kSaving")];
+        [self saveAlbum];
     }
     else if (buttonIndex == buttonIndexEmail) {
         [[AnalyticsManager sharedAnalyticsManager] reportShareActionClicks:SHARE_ACTION_EMAIL];

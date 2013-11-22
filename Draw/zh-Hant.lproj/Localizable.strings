@@ -1258,7 +1258,7 @@
 "kRecovery" = "恢復";
 "kNotBindMailMessage" = "您還沒設置您的郵箱賬戶，請在系統設置裡面設置。";
 "kTypeRoom" = "打字房";
-"kDrawRoomTitle" = "在线你畫我猜";
+"kDrawRoomTitle" = "你畫我猜";
 "kDrawRoomCellTitle" = "你畫我猜%d號房";
 
 "kTopPost" = "置頂";
