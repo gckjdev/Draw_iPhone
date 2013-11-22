@@ -381,7 +381,7 @@
     }
     
     WhisperStyleView *v = [WhisperStyleView createWithFrame:rect feed:self.feed];
-    
+    [v setFeedDetailStyle];
     [self.view addSubview:v];
 }
 
