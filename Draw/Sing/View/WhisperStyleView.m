@@ -112,7 +112,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         [self updateOriginX:frame.origin.x];
         [self updateOriginY:frame.origin.y];
         
-        [iv setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             [indicator stopAnimating];
             [indicator removeFromSuperview];
         }];

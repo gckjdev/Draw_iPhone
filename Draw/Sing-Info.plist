@@ -14,10 +14,13 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>new_icon.png</string>
-		<string>new_icon@2x.png</string>
-		<string>new_icon_ipad1.png</string>
-		<string>new_icon_ipad2.png</string>
+		<string>sing_icon_50.png</string>
+		<string>sing_icon_57.png</string>
+		<string>sing_icon_72.png</string>
+		<string>sing_icon_76.png</string>
+		<string>sing_icon_114.png</string>
+		<string>sing_icon_120.png</string>
+		<string>sing_icon_152.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.sing</string>
@@ -70,7 +73,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UILaunchImageFile</key>
-	<string>DrawDefault</string>
+	<string>SingDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIStatusBarHidden</key>
