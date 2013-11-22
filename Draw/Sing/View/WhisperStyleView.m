@@ -47,7 +47,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
     if (self = [super initWithFrame:originFrame]) {
         
         UIImageView *iv = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-        [iv setContentMode:UIViewContentModeScaleAspectFill];
+        [iv setContentMode:UIViewContentModeScaleAspectFit];
         [iv setClipsToBounds:YES];
         
         UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
