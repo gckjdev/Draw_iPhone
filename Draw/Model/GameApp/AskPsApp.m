@@ -586,4 +586,9 @@
     return kCreateDescNoName;
 }
 
+- (UIImage *)getGiftToSbImage{
+    
+    return nil;
+}
+
 @end

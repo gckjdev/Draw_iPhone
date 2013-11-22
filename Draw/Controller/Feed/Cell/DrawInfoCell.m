@@ -205,13 +205,6 @@
     [self.opusDesc updateHeight:size.height];
 }
 
-- (void)updateDrawImageView:(UIImage *)image
-{
-    if (image) {
-        [self.drawImage setImage:image];
-    }
-}
-
 - (BOOL)isSmallImageUrl:(NSString *)url
 {
     return [url hasSuffix:@"_m.jpg"] || [url hasSuffix:@"_m.png"];
@@ -220,11 +213,8 @@
 - (void)updateShowView:(DrawFeed *)feed
 {
     if ([feed.drawImageUrl length] != 0){
-//        PPDebug(@"<updateShowView> draw feed url = %@", feed.drawImageUrl);
-//        [self addMaskView];
         
         __block UIImage *placeholderImage = nil;
-        
         
         [[SDWebImageManager sharedManager] downloadWithURL:feed.thumbURL options:SDWebImageRetryFailed progress:NULL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
             
@@ -242,7 +232,9 @@
         [self.drawImage setImageWithURL:[NSURL URLWithString:feed.drawImageUrl] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             
             self.feed.largeImage = image;
-            [self updateDrawImageView:image];
+            if (image) {
+                [self.drawImage setImage:image];
+            }
             if (![self isSmallImageUrl:feed.drawImageUrl]) {
                 [self loadImageFinish];
             }
@@ -299,7 +291,6 @@
     [self setFeed:feed];
     [self updateTime:self.feed];
     [self.loadingActivity setCenter:self.drawImage.center];
-    [self updateShowView:feed];
     [self updateTime:feed];
     [self updateDesc:feed.opusDesc];
     [self updateDrawToUserInfo:feed];
@@ -307,6 +298,10 @@
     
     if ([feed isSingCategory]) {
         [self updateWhisperStyleView];
+    }else if ([feed isDrawCategory]){
+        [self updateShowView:feed];
+    }else{
+        [self updateShowView:feed];
     }
 }
 
@@ -314,6 +309,7 @@
     
     [[self.drawImage viewWithTag:8808723459] removeFromSuperview];
     WhisperStyleView *v = [WhisperStyleView createWithFrame:self.drawImage.bounds feed:self.feed];
+    [v setFeedDetailStyle];
     [self.drawImage addSubview:v];
 }
 

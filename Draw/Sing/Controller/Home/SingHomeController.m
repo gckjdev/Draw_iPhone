@@ -115,10 +115,9 @@ static NSDictionary* SING_MENU_IMAGE_DICT = nil;
             
         case HomeMenuTypeDrawContest:
         {
-            POSTMSG(NSLS(@"kContestWillComeSoon"));
+            POSTMSG2(NSLS(@"kContestWillComeSoon"), 2.5);
             break;
         }
-            
             
         default:
         {

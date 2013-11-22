@@ -190,7 +190,7 @@
 - (NSString *)createOpusDesc;
 - (NSString *)createOpusDescNoName;
 
-
+- (UIImage *)getGiftToSbImage;
 @end
 
 @protocol ContentGameAppProtocol <GameAppProtocol>

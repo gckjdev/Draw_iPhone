@@ -227,23 +227,12 @@
 {
     
     
-//    __block PPSNSCommonService* snsService = [[PPSNSIntegerationService defaultService] snsServiceByType:snsType];
-//    if ([snsService supportFollow] == NO)
-//        return;
-    
     CommonDialog* dialog = [CommonDialog createDialogWithTitle:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserTitle"), [SNSUtils snsNameOfType:snsType]] message:[NSString stringWithFormat:NSLS(@"kAskFollowSNSUserMessage"), [SNSUtils snsNameOfType:snsType]] style:CommonDialogStyleDoubleButton];
     
     [dialog setClickOkBlock:^(UILabel *label){
         
         [[GameSNSService defaultService] followUser:snsType weiboId:snsId weiboName:nickName];
-        
-//        [snsService followUser:nickName userId:snsId successBlock:^(NSDictionary *userInfo) {
-//            [[CommonMessageCenter defaultCenter] postMessageWithText:[NSString stringWithFormat:NSLS(@"kFollowSNSSucc"), [SNSUtils snsNameOfType:snsType]]
-//                                                           delayTime:1.5
-//                                                             isHappy:YES];
-//        } failureBlock:^(NSError *error) {
-//            //
-//        }];
+
     }];
     
     [dialog showInView:viewController.view];
@@ -254,28 +243,7 @@
 {
     PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
     [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
-    
-    
-//    if ([[UserManager defaultManager] hasBindSinaWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_SINA] isAuthorizeExpired]) {
-//        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_SINA inpbSnsUserArray:[[self getUser] snsUsersList]];
-//        [self askFollowUserWithSnsType:TYPE_SINA snsId:user.userId nickName:user.nickName viewController:viewController];
-//    } else {
-    
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_SINA] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_SINA]] style:CommonDialogStyleDoubleButton];
-//        
-//        [dialog setClickOkBlock:^(UILabel *label){
-//            
-    
-//            [SNSUtils bindSNS:TYPE_SINA succ:^(NSDictionary *userInfo){
-//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindSinaWeibo") delayTime:1 isHappy:YES];
-//                [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId] userInfo:userInfo viewController:nil];
-//            } failure:^{
-//                //
-//            }];
-//        }];
-    
-//        [dialog showInView:viewController.view];
-//    }
+
     
 }
 - (void)clickQQ:(PPTableViewController*)viewController
@@ -283,48 +251,11 @@
     PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
     [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
 
-    
-//    if ([[UserManager defaultManager] hasBindQQWeibo] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_QQ] isAuthorizeExpired]) {
-//        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_QQ inpbSnsUserArray:[[self getUser] snsUsersList]];
-//        [self askFollowUserWithSnsType:TYPE_QQ snsId:user.userId nickName:user.nickName viewController:viewController];
-//    } else {
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_QQ] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_QQ]] style:CommonDialogStyleDoubleButton];
-//        
-//        [dialog setClickOkBlock:^(UILabel *label){
-//            [SNSUtils bindSNS:TYPE_QQ succ:^(NSDictionary *userInfo){
-//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindQQWeibo") delayTime:1 isHappy:YES];
-//                [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId] userInfo:userInfo viewController:nil];
-//            } failure:^{
-//                //
-//            }];
-//        }];
-//        
-//        [dialog showInView:viewController.view];
-//    }
 }
 - (void)clickFacebook:(PPTableViewController*)viewController
 {
     PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
     [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
-    
-//    if ([[UserManager defaultManager] hasBindFacebook] && ![[[PPSNSIntegerationService defaultService] snsServiceByType:TYPE_FACEBOOK] isAuthorizeExpired]) {
-//        PBSNSUser* user = [SNSUtils snsUserWithType:TYPE_FACEBOOK inpbSnsUserArray:[[self getUser] snsUsersList]];
-//        [self askFollowUserWithSnsType:TYPE_FACEBOOK snsId:user.userId nickName:user.nickName viewController:viewController];
-//    } else {
-//        
-//        CommonDialog* dialog = [CommonDialog createDialogWithTitle:[SNSUtils snsNameOfType:TYPE_FACEBOOK] message:[NSString stringWithFormat:NSLS(@"kNoBindNoFollow"), [SNSUtils snsNameOfType:TYPE_FACEBOOK]] style:CommonDialogStyleDoubleButton];
-//        
-//        [dialog setClickOkBlock:^(UILabel *label){
-//            [SNSUtils bindSNS:TYPE_FACEBOOK succ:^(NSDictionary *userInfo){
-//                [[CommonMessageCenter defaultCenter] postMessageWithText:NSLS(@"kBindFacebook") delayTime:1 isHappy:YES];
-//                [[UserService defaultService] updateUserWithSNSUserInfo:[[UserManager defaultManager] userId] userInfo:userInfo viewController:nil];
-//            } failure:^{
-//                //
-//            }];
-//        }];
-//        
-//        [dialog showInView:viewController.view];
-//    }
 }
 
 
@@ -359,56 +290,18 @@
     [button setHidden:![self isSNSBtnVisable:snsType]];
 }
 
-//- (UILabel*)labelWithText:(NSString*)text
-//{
-//    UILabel* label = [[[UILabel alloc] init] autorelease];
-//    [label setText:text];
-//    [label setFont:[UIFont systemFontOfSize:(ISIPAD?24:12)]];
-//    [label setTextAlignment:NSTextAlignmentCenter];
-//    [label setUserInteractionEnabled:NO];
-//    [label setBackgroundColor:[UIColor clearColor]];
-//    [label setTextColor:[UIColor whiteColor]];
-//    return label;
-//    
-//}
-//
-//- (void)addButton:(UIButton*)button
-//           number:(NSInteger)number
-//            title:(NSString*)title
-//{
-//    [button setTitle:nil forState:UIControlStateNormal];
-//    
-//    UILabel* numberLabel = (UILabel*)[button viewWithTag:BTN_NUMBER_TAG];
-//    if (numberLabel) {
-//        [numberLabel setText:[NSString stringWithFormat:@"%d", number]];
-//    } else {
-//        UILabel* numberLabel = [self labelWithText:[NSString stringWithFormat:@"%d", number]];
-//        [numberLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height*0.15, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-//        numberLabel.tag = BTN_NUMBER_TAG;
-//        [button addSubview:numberLabel];
-//    }
-//    
-//    UILabel* titleLabel = (UILabel*)[button viewWithTag:BTN_TITLE_TAG];
-//    if (!titleLabel) {
-//        UILabel* titleLabel = [self labelWithText:title];
-//        [titleLabel setFrame:CGRectMake(button.frame.size.width*0.15, button.frame.size.height/2, button.frame.size.width*0.7, button.frame.size.height*0.35)];
-//        titleLabel.tag = BTN_TITLE_TAG;
-//        [button addSubview:titleLabel];
-//    }
-//    
-//    
-//}
-
 
 - (void)initUserActionButton:(UserDetailRoundButton*)button atIndex:(int)index
 {
     PBGameUser* user = [self getUser];
     NSString* heStr = [user gender]?NSLS(@"kHim"):NSLS(@"kHer");
     switch (index) {
+            
         case UserDetailActionFollowCount: {
             [button.upLabel setText:[NSString stringWithFormat:@"%d", user.followCount]];
             [button.downLabel setText:NSLS(@"kDetailFollower")];
         }break;
+            
         case UserDetailActionDrawTo: {
             NSString *title = nil;
             if (isDrawApp()) {
@@ -417,8 +310,11 @@
                 
                 title = [NSString stringWithFormat:NSLS(@"kDetailGiftTo"), heStr];
             }
-            
             [button.downLabel setText:title];
+            
+            UIImage *image = [GameApp getGiftToSbImage];
+            [button setBackgroundImage:image forState:UIControlStateNormal];
+            
         } break;
             
         case UserDetailActionFollow: {

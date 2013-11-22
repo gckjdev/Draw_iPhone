@@ -212,5 +212,11 @@
     return LITTLE_GEE_WEIXIN_ID;
 }
 
+- (UIImage *)getGiftToSbImage{
+    
+    return [UIImage imageNamed:@"user_detail_draw_to_bg@2x.png"];
+}
+
+
 
 @end

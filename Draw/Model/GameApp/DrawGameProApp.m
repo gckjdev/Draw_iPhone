@@ -146,4 +146,8 @@
     return @"photo_tags_en.txt";
 }
 
+- (UIImage *)getGiftToSbImage{
+    
+    return nil;
+}
 @end
