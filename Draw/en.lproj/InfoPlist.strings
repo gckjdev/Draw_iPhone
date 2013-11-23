@@ -1,27 +1,22 @@
 /* Localized versions of Info.plist keys */
 
-//"CFBundleDisplayName" = "Draw Photo";
 
-//"CFBundleDisplayName" = "Awesome Draw";
 
-//"CFBundleDisplayName" = "Draw Lively";
+"CFBundleDisplayName" = "LIGE Draw";
+//"CFBundleDisplayName" = "LIGE Voice";
 
-"CFBundleDisplayName" = "Da She Tou";
+
+
+
 
 
 //"CFBundleDisplayName" = "Littlegee";
-
 //"CFBundleDisplayName" = "Learn Draw";
-
 //"CFBundleDisplayName" = "Liars Dice";
-
 //"CFBundleDisplayName" = "3Card";
-
 //"CFBundleDisplayName" = "Dream Avatar";
-
 //"CFBundleDisplayName" = "Lock Screen";
-
-
 //"CFBundleDisplayName" = "Call Track";
-
 //"CFBundleDisplayName" = "Private SMS";
+//"CFBundleDisplayName" = "Draw Photo";
+//"CFBundleDisplayName" = "Awesome Draw";

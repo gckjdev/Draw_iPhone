@@ -39,6 +39,7 @@
 #import "AccountService.h"
 #import "TaskManager.h"
 #import "AccountManager.h"
+#import "UIImageUtil.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -823,16 +824,21 @@ enum{
 - (void)didImageSelected:(UIImage*)image{
     
     if (image != nil) {
-        PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
+        PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
         
         _hasEdited = YES;
         self.image = image;
         self.opusImageView.image = image;
         [self removeHolderView];
         self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
         NSData *data = [self.image data];
         NSString *path = self.singOpus.pbOpus.localImageUrl;
         [data writeToFile:path atomically:YES];
+        
+        [pool drain];
     }
 }
 
