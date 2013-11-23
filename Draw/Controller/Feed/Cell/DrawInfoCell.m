@@ -123,15 +123,14 @@
 
 + (CGFloat)cellHeightWithFullScreen{
     
-    return ISIPAD ? 858 : 366;
+    return ISIPAD ? 823 : 366;
 }
-
 
 - (void)configurePlayerButton
 {
     if (self.audioButton == nil) {
         // use initWithFrame to drawRect instead of initWithCoder from xib
-        CGRect frame = ISIPAD ? CGRectMake(50, 763, 69, 69) :CGRectMake(7, 328, 32, 32);
+        CGRect frame = ISIPAD ? CGRectMake(64, 739, 69, 69) :CGRectMake(7, 328, 32, 32);
         self.audioButton = [[[AudioButton alloc] initWithFrame:frame] autorelease];
         [self.contentView addSubview:self.audioButton];
         

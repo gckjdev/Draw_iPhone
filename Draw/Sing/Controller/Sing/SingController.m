@@ -38,6 +38,7 @@
 #import "DrawUtils.h"
 #import "AccountService.h"
 #import "TaskManager.h"
+#import "AccountManager.h"
 #import "UIImageUtil.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
@@ -923,7 +924,14 @@ enum{
     if (_fileDuration > 30) {
         int count = _fileDuration / 30;
         int coins = count * [PPConfigManager getRecordDeductCoinsPer30Sec];
-        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins];
+        int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
+        if ( balance < coins) {
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughForSubmit"), coins, balance];
+            POSTMSG2(msg, 3);
+            return;
+        }
+        
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins, balance];
         
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
         [dialog setClickOkBlock:^(id infoView){

@@ -69,7 +69,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         l.textAlignment = NSTextAlignmentCenter;
         l.tag = TAG_LABEL;
         l.backgroundColor = [UIColor clearColor];
-        
+        [self addSubview:l];
+
         
         // update lable info
         PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
@@ -118,9 +119,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             [indicator stopAnimating];
             [indicator removeFromSuperview];
-            if (image != nil) {
-                [self addSubview:l];
-            }
+
         }];
         
         [self setClipsToBounds:YES];
