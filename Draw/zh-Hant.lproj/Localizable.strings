@@ -2266,3 +2266,50 @@
 "kReset" = "重置";
 "kSelectFromUserPhoto" = "從圖庫選擇";
 /*********************图库国际化字符串结束 ************************/
+
+"kTaskCheckIn" = "每日簽到";
+"kTaskCheckInDesc" = "每日簽到可以隨機獲得金幣";
+
+"kTaskBindSinaWeibo" = "綁定新浪微博";
+"kTaskBindSinaWeiboDesc" = "綁定新浪微博並關注官方微博，可獲得%d金幣";
+
+"kTaskBindQQWeibo" = "綁定騰訊微博";
+"kTaskBindQQWeiboDesc" = "綁定騰訊微博並關注官方微博，可獲得%d金幣";
+
+"kTaskShareSinaWeibo" = "分享應用到新浪微博";
+"kTaskShareSinaWeiboDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskShareWeixinTimeline" = "分享應用到微信朋友圈";
+"kTaskShareWeixinTimelineDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskShareQQSpace" = "分享應用到QQ空間";
+"kTaskShareQQSpaceDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskShareQQWeibo" = "分享應用到騰訊微博";
+"kTaskShareQQWeiboDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskCreateOpus" = "首次發表一個作品";
+"kTaskCreateOpusDesc" = "首次發表作品，可領取%d金幣";
+
+"kTaskGuessOpus" = "首次猜對一個作品";
+"kTaskGuessOpusDesc" = "首次猜對一個作品，可領取%d金幣";
+
+"kTaskShareOpus" = "分享作品";
+"kTaskShareOpusDesc" = "每次分享作品，可獲得%d金幣";
+
+"kTaskAppReview" = "給予5星好評";
+"kTaskAppReviewDesc" = "喜歡這個應用？五星好評就是最好的支持和鼓勵！";
+
+"kTaskAppUpgrade" = "版本升級";
+"kTaskAppUpgradeDesc" = "有新版本%@嘍，快快來升級!";
+
+"kTask" = "任務";
+"kTaskExpire" = "已過期";
+"kTaskTake" = "已完成";
+"kTakeAward" = "領取獎勵";
+"kTaskWaitForStart" = "未開始";
+"kTaskToBeTaken" = "待完成";
+
+"kShareAppWeiboDefault" = "%@ AppStore下載鏈接： %@";
+"kAwardTaskSucc" = "成功領取%d金幣獎勵";
+

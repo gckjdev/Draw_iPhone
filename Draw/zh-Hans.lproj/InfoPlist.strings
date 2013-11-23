@@ -1,25 +1,26 @@
 /* Localized versions of Info.plist keys */
 
-//"CFBundleDisplayName" = "画照片";
 
-//"CFBundleDisplayName" = "爱画画";
 
-//"CFBundleDisplayName" = "猜猜画画";
+"CFBundleDisplayName" = "小吉画画";
+//"CFBundleDisplayName" = "小吉大舌头";
 
-//"CFBundleDisplayName" = "小吉画画";
-"CFBundleDisplayName" = "小吉大舌头";
+
+
+
+
+
+
+
 
 
 //"CFBundleDisplayName" = "大话骰";
-
 //"CFBundleDisplayName" = "诈金花";
-
 //"CFBundleDisplayName" = "学画画";
-
 //"CFBundleDisplayName" = "梦幻头像";
-
 //"CFBundleDisplayName" = "梦幻锁屏";
-
 //"CFBundleDisplayName" = "好友定位";
-
 //"CFBundleDisplayName" = "密语";
+//"CFBundleDisplayName" = "画照片";
+//"CFBundleDisplayName" = "爱画画";
+//"CFBundleDisplayName" = "猜猜画画";
