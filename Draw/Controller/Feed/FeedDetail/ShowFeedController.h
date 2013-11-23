@@ -35,6 +35,7 @@
 }
 
 @property(nonatomic, assign)NSArray *feedList;
+@property (assign, nonatomic) BOOL popToRootController;
 
 - (id)initWithFeed:(DrawFeed *)feed;
 - (id)initWithFeed:(DrawFeed *)feed

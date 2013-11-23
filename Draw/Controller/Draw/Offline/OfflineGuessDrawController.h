@@ -16,6 +16,8 @@
 #import "WordInputView.h"
 #import "CommonDialog.h"
 
+#define RANDOM_GUESS_MODE 1
+
 @interface OfflineGuessDrawController : PPViewController<CommonDialogDelegate, WordInputViewDelegate>
 {
 
@@ -23,6 +25,7 @@
 @property (retain, nonatomic) DrawFeed *feed;
 @property (retain, nonatomic) IBOutlet WordInputView *wordInputView;
 @property (assign, nonatomic) PPViewController *fromController;
+@property (assign, nonatomic) int mode;
 - (IBAction)bomb:(id)sender;
 
 - (id)initWithFeed:(DrawFeed *)feed;
