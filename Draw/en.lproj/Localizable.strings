@@ -13,11 +13,11 @@
 //before 4.5 version
 "kPushMessage" = "%@ just created a room at [Draw Lively] game, \"%@\". Come and play with your friend now!";//useless
 "kPushTextMessage" = "%@ says:\"%@...\"";
-"kPushDrawMessage" = "%@ sent you a draw.";
+"kPushDrawMessage" = "%@ sent you a graffiti";
 "kFM" = "Someone has just followed you";
-"kNGRD" = "%@ Guessed your drawing: [%@].";
-"kNTGD" = "%@ Tried to guess your drawing: [%@].";
-"kPDUM" = "%@ draws a drawing to you. Hurry to guess!";
+"kNGRD" = "%@ Guessed your opus: [%@].";
+"kNTGD" = "%@ Tried to guess your opus: [%@].";
+"kPDUM" = "%@ just created an opus to you. Hurry to guess!";
 //add after 4.5
 "kPCM" = "%@ comment your[%@]: %@";
 "kPRCM" = "%@ reply to you: %@";
