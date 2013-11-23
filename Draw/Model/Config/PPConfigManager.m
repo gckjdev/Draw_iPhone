@@ -1259,7 +1259,7 @@
 
 + (NSString *)getSingOpusDefaultName{
     
-    return [MobClickUtils getStringValueByKey:@"SING_OPUS_DEFAULT_NAME" defaultValue:@"无题"];
+    return [MobClickUtils getStringValueByKey:@"SING_OPUS_DEFAULT_NAME" defaultValue:NSLS(@"kDefaultSingOpusName")];
 }
 
 @end

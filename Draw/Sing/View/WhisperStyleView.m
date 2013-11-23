@@ -48,8 +48,12 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
 
     if (self = [super initWithFrame:originFrame]) {
         
+//        self.backgroundColor = [UIColor redColor];
         UIImageView *iv = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
         [iv setContentMode:UIViewContentModeScaleAspectFill];
+//        [iv setContentMode:UIViewContentModeScaleAspectFit];
+
+
         [iv setClipsToBounds:YES];
         
         UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
@@ -65,8 +69,8 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         l.textAlignment = NSTextAlignmentCenter;
         l.tag = TAG_LABEL;
         l.backgroundColor = [UIColor clearColor];
-        
         [self addSubview:l];
+
         
         // update lable info
         PBLabelInfo *labelInfo = feed.pbFeed.descLabelInfo;
@@ -115,6 +119,7 @@ AUTO_CREATE_VIEW_BY_XIB(WhisperStyleView);
         [iv setImageWithURL:[NSURL URLWithString:feed.pbFeed.opusImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             [indicator stopAnimating];
             [indicator removeFromSuperview];
+
         }];
         
         [self setClipsToBounds:YES];

@@ -368,10 +368,18 @@ static TaskManager* _defaultTaskManager;
 
 - (void)guessOpus:(GameTask*)task
 {
-    // popup dialog, ask and enter
-    HotController *hc = [[HotController alloc] init];
-    [self.viewController.navigationController pushViewController:hc animated:YES];
-    [hc release];
+//    if (isSingApp()){
+//        [self.viewController.navigationController popToRootViewControllerAnimated:NO];
+//        DrawAppDelegate* app = (DrawAppDelegate*)[UIApplication sharedApplication].delegate;
+//        if ([app.homeController respondsToSelector:@selector(enterGuessSing)]){
+//            [app.homeController performSelector:@selector(enterGuessSing)];
+//        }
+//    }
+//    else{
+        HotController *hc = [[HotController alloc] init];
+        [self.viewController.navigationController pushViewController:hc animated:YES];
+        [hc release];
+//    }
 }
 
 - (void)shareOpus:(GameTask*)task

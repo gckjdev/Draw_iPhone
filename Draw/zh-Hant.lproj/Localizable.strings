@@ -18,15 +18,29 @@
 "kPushTextMessage" = "%@ 發來消息:\"%@...\"";
 "kPushDrawMessage" = "%@ 發來一張塗鴉。";
 "kFM" = "有個神秘人剛剛關注了你，快去看看TA是誰。";
-"kNGRD" = "%@ 猜對了你畫的[%@]。你也去猜猜TA的畫？";
-"kNTGD" = "%@ 嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
-"kPDUM" = "%@ 給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
+
+"kNGRD" = "%@ 猜對了你的[%@]。你也去猜猜TA的？";
+"kNTGD" = "%@ 嘗試去猜了你的[%@]。你也去猜猜TA的？";
+"kPDUM" = "%@ 送了一幅作品給你，趕緊去猜猜看";
 
 //add after 4.5
-"kPCM" = "%@ 評論了你的[%@]: %@";
+"kPCM" = "%@ 評論你的作品 [%@]: %@";
 "kPRCM" = "%@ 回复你說:%@";
-"kPSF" = "%@ 給你畫的[%@]送了一朵鮮花。";
-"kPTT" = "%@ 給你畫的[%@]扔了一個番茄。";
+//"kPSF" = "%@ 給你畫的[%@]送了一朵鮮花。";
+//"kPTT" = "%@ 給你畫的[%@]扔了一個番茄。";
+
+"kPSF" = "%@ 給你的[%@] 送了一朵鮮花。";
+"kPTT" = "%@ 給你的[%@] 扔了一個番茄。";
+
+//"kNGRD" = "%@ 猜對了你畫的[%@]。你也去猜猜TA的畫？";
+//"kNTGD" = "%@ 嘗試去猜了你畫的[%@]。你也去猜猜TA的畫？";
+//"kPDUM" = "%@ 給你畫了一幅畫，趕緊去猜猜TA畫了些什麼。";
+//
+////add after 4.5
+//"kPCM" = "%@ 評論了你的[%@]: %@";
+//"kPRCM" = "%@ 回复你說:%@";
+//"kPSF" = "%@ 給你畫的[%@]送了一朵鮮花。";
+//"kPTT" = "%@ 給你畫的[%@]扔了一個番茄。";
 
 //add after 5.0
 "kNFM" = "%@ 關注了你。";
@@ -1404,7 +1418,6 @@
 "kGestureExplain" = "手勢說明";
 "kGestureExplainContent" = "放大 — 雙指捏合向外\n\n縮小 — 雙指捏合向內\n\n移動 — 雙指移動\n\n還原 — 雙指雙擊\n";
 "kImageNull" = "生成圖片失敗，請重試。";
-"kHisOpus" = "作品";
 "kNicknameOutofRange" = "暱稱最長不可超過%d個字母或者%d個漢字。";
 "kSignatureOutofRange" = "個性簽名最長不可超過%d個字母或者%d個漢字。";
 "kNoBindNoFollow" = "你還沒綁定%@或者帳號已過期，你需要再綁定才能關注。";
@@ -1592,8 +1605,10 @@
 "kGuessContestModeTipsMessage" = "當前排名：第 %d 名\n猜中作品：%d 幅\n總耗時：%d 秒";
 
 "kHint" = "提示";
-"kRecordSubmitHint" = "你的作品錄音時長為%d秒，提交需要花費%d金幣，確認提交嗎？";
-
+"kSong" = "清唱";
+"kDefaultSingOpusName" = "哦嘿喲";
+"kRecordSubmitHint" = "你的作品錄音時長為%d秒，提交需要花費%d金幣(你當前有%d個金幣)，確認提交嗎？";
+"kCoinsNotEnoughForSubmit" = "提交錄音需要花費%d金幣，但你只有%d個金幣，不足以提交，你可以通過猜作品或者做一些任務來獲取金幣哦。";
 "kMatchingOpus" = "加載作品中...";
 "kFailMatchOpus" = "無法找到合適的作品，也許是網絡有問題，請稍後再試";
 
@@ -2266,3 +2281,50 @@
 "kReset" = "重置";
 "kSelectFromUserPhoto" = "從圖庫選擇";
 /*********************图库国际化字符串结束 ************************/
+
+"kTaskCheckIn" = "每日簽到";
+"kTaskCheckInDesc" = "每日簽到可以隨機獲得金幣";
+
+"kTaskBindSinaWeibo" = "綁定新浪微博";
+"kTaskBindSinaWeiboDesc" = "綁定新浪微博並關注官方微博，可獲得%d金幣";
+
+"kTaskBindQQWeibo" = "綁定騰訊微博";
+"kTaskBindQQWeiboDesc" = "綁定騰訊微博並關注官方微博，可獲得%d金幣";
+
+"kTaskShareSinaWeibo" = "分享應用到新浪微博";
+"kTaskShareSinaWeiboDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskShareWeixinTimeline" = "分享應用到微信朋友圈";
+"kTaskShareWeixinTimelineDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskShareQQSpace" = "分享應用到QQ空間";
+"kTaskShareQQSpaceDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskShareQQWeibo" = "分享應用到騰訊微博";
+"kTaskShareQQWeiboDesc" = "分享一條30字左右的應用使用體驗，可獲得%d金幣";
+
+"kTaskCreateOpus" = "首次發表一個作品";
+"kTaskCreateOpusDesc" = "首次發表作品，可領取%d金幣";
+
+"kTaskGuessOpus" = "首次猜對一個作品";
+"kTaskGuessOpusDesc" = "首次猜對一個作品，可領取%d金幣";
+
+"kTaskShareOpus" = "分享作品";
+"kTaskShareOpusDesc" = "每次分享作品，可獲得%d金幣";
+
+"kTaskAppReview" = "給予5星好評";
+"kTaskAppReviewDesc" = "喜歡這個應用？五星好評就是最好的支持和鼓勵！";
+
+"kTaskAppUpgrade" = "版本升級";
+"kTaskAppUpgradeDesc" = "有新版本%@嘍，快快來升級!";
+
+"kTask" = "任務";
+"kTaskExpire" = "已過期";
+"kTaskTake" = "已完成";
+"kTakeAward" = "領取獎勵";
+"kTaskWaitForStart" = "未開始";
+"kTaskToBeTaken" = "待完成";
+
+"kShareAppWeiboDefault" = "%@ AppStore下載鏈接： %@";
+"kAwardTaskSucc" = "成功領取%d金幣獎勵";
+

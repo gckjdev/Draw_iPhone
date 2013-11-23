@@ -65,9 +65,7 @@
 }
 
 - (void)dealloc
-{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:ASStatusChangedNotification object:self.audioPlayer];
-    
+{    
     PPRelease(_feed);
     PPRelease(_showView);
     PPRelease(_wordInputView);
@@ -114,13 +112,13 @@
             // init audio player here.
             self.audioPlayer = [[[AudioPlayer alloc] init] autorelease];
             [self.audioPlayer setUrl:[NSURL URLWithString:self.feed.drawDataUrl]];
-            
-            // register the streamer on notification
-//            [[NSNotificationCenter defaultCenter] addObserver:self
-//                                                     selector:@selector(playbackStateChanged:)
-//                                                         name:ASStatusChangedNotification
-//                                                       object:self.audioPlayer];
-//            
+
+            [self registerNotificationWithName:AUDIO_STREAM_STATUS_NOTIFICATION
+                                        object:self.audioPlayer
+                                         queue:[NSOperationQueue mainQueue]
+                                    usingBlock:^(NSNotification *note) {
+                                        [self playbackStateChanged:note];
+                                    }];
 
             [self.audioPlayer play];
         }
@@ -218,6 +216,8 @@
     [self checkDrawDataVersion];
     [self initShowView];
     [self setCanDragBack:NO];
+    
+
 }
 
 
@@ -285,7 +285,7 @@
 //        if ([self.audioPlayer isPlaying]){
 //            [self.audioPlayer pause];
 //        }
-        [self.audioPlayer pause];
+        [self.audioPlayer pauseForQuit];
         self.audioPlayer = nil;
     }
     

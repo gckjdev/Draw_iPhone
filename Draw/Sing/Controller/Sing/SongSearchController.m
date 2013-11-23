@@ -140,6 +140,8 @@ SET_CELL_BG_IN_CONTROLLER;
         NSRange range = NSMakeRange(0, MIN(7, [song.name length]));
         NSString *name = [song.name substringWithRange:range];
         [self.singOpus setName:name];
+    }else{
+        [self.singOpus setName:NSLS(@"kSong")];
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:KEY_NOTIFICATION_SELECT_SONG object:nil];

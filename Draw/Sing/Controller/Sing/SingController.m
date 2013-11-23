@@ -38,6 +38,8 @@
 #import "DrawUtils.h"
 #import "AccountService.h"
 #import "TaskManager.h"
+#import "AccountManager.h"
+#import "UIImageUtil.h"
 
 #define GREEN_COLOR [UIColor colorWithRed:99/255.0 green:186/255.0 blue:152/255.0 alpha:1]
 #define WHITE_COLOR [UIColor whiteColor]
@@ -813,7 +815,7 @@ enum{
     if (_picker == nil) {
         self.picker = [[[ChangeAvatar alloc] init] autorelease];
         _picker.autoRoundRect = NO;
-        _picker.userOriginalImage = YES;
+//        _picker.userOriginalImage = YES;
     }
     
     [_picker showSelectionView:self];
@@ -822,16 +824,21 @@ enum{
 - (void)didImageSelected:(UIImage*)image{
     
     if (image != nil) {
-        PPDebug(@"image size = %@", NSStringFromCGSize(image.size));
+        PPDebug(@"image selected, image size = %@", NSStringFromCGSize(image.size));
         
         _hasEdited = YES;
         self.image = image;
         self.opusImageView.image = image;
         [self removeHolderView];
         self.opusImageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        
         NSData *data = [self.image data];
         NSString *path = self.singOpus.pbOpus.localImageUrl;
         [data writeToFile:path atomically:YES];
+        
+        [pool drain];
     }
 }
 
@@ -917,7 +924,14 @@ enum{
     if (_fileDuration > 30) {
         int count = _fileDuration / 30;
         int coins = count * [PPConfigManager getRecordDeductCoinsPer30Sec];
-        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins];
+        int balance = [[AccountManager defaultManager] getBalanceWithCurrency:PBGameCurrencyCoin];
+        if ( balance < coins) {
+            NSString *msg = [NSString stringWithFormat:NSLS(@"kCoinsNotEnoughForSubmit"), coins, balance];
+            POSTMSG2(msg, 3);
+            return;
+        }
+        
+        NSString *msg = [NSString stringWithFormat:NSLS(@"kRecordSubmitHint"), (int)_fileDuration, coins, balance];
         
         CommonDialog *dialog = [CommonDialog createDialogWithTitle:NSLS(@"kHint") message:msg style:CommonDialogStyleDoubleButton];
         [dialog setClickOkBlock:^(id infoView){

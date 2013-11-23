@@ -1981,6 +1981,8 @@
         str = [str stringByAddQueryParameter:PARA_APPID value:appId];
         str = [str stringByAddQueryParameter:PARA_USERID value:userId];
         str = [str stringByAddQueryParameter:PARA_TARGETUSERID value:targetUid];
+        str = [str stringByAddQueryParameter:PARA_GAME_ID value:[GameApp gameId]];
+
         //action type
         return str;
     };
