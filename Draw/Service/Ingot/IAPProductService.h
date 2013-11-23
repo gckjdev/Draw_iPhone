@@ -19,7 +19,7 @@ typedef void (^GetIngotsListResultHandler)(BOOL success, NSArray *ingotsList);
 - (void)syncData:(GetIngotsListResultHandler)handler;
 
 + (void)createTestDataFile;
-
++ (void)createSingCoinsTestDataFile;
 + (void)createDrawIngotTestDataFile;
 + (void)createLittlegeeIngotTestDataFile;
 + (void)createLearnDrawIngotTestDataFile;

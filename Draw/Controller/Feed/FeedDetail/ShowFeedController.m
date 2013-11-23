@@ -951,8 +951,13 @@ typedef enum{
     [_audioPlayer pauseForQuit];
     PPRelease(_audioPlayer);
     PPDebug(@"<clickBack> audio stop end");
-        
-    [self.feedScene didClickBackBtn:self];
+    
+    if (_popToRootController) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else{
+        [self.feedScene didClickBackBtn:self];
+    }
+    
     // clear delegate to avoid callback
     self.drawCell.delegate = nil;
     self.drawCellFullScreen.delegate = nil;
