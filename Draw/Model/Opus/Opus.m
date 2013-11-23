@@ -22,6 +22,7 @@
 
 - (void)dealloc
 {
+    PPRelease(_designTime);
     [_pbOpusBuilder release];
     [super dealloc];
 }
@@ -194,6 +195,10 @@
     [_pbOpusBuilder setDeviceType:value];
 }
 
+- (void)setSpendTime:(int)value
+{
+    [_pbOpusBuilder setSpendTime:value];
+}
 
 - (void)setTargetUser:(PBGameUser *)user{
     
@@ -308,6 +313,12 @@
 {
     return self.pbOpus.name;
 }
+
+- (int)spendTime
+{
+    return self.pbOpusBuilder.spendTime;
+}
+
 - (NSDate*)createDate
 {
     return [NSDate dateWithTimeIntervalSince1970:self.pbOpus.createDate];
@@ -352,6 +363,25 @@
     }
     
     return YES;
+}
+
+- (void)loadOpusDesignTime
+{
+    self.designTime = [[[OpusDesignTime alloc] initWithTime:_pbOpusBuilder.spendTime] autorelease];
+    PPDebug(@"<loadOpusDesignTime> time=%d", _pbOpusBuilder.spendTime);
+}
+
+- (void)saveDesignTime
+{
+    int totalTime = [self.designTime totalTime];
+    [_pbOpusBuilder setSpendTime:totalTime];
+    PPDebug(@"<saveDesignTime> time=%d", totalTime);
+}
+
+- (void)pauseAndSaveDesignTime
+{
+    [self.designTime pause];
+    [self saveDesignTime];
 }
 
 @end
