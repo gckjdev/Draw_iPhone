@@ -287,7 +287,7 @@
         self.audioPlayer = nil;
     }
     
-    if (_mode == RANDOM_GUESS_MODE) {
+    if (correct && _mode == RANDOM_GUESS_MODE) {
         
         UseItemScene *scene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:self.feed];
         ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:self.feed
