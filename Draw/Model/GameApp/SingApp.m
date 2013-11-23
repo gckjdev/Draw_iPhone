@@ -549,7 +549,7 @@
 
 - (void)createIAPTestDataFile
 {
-    [IAPProductService createDrawIngotTestDataFile];
+    [IAPProductService createSingCoinsTestDataFile];
 }
 
 - (BOOL)showLocateButton

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Opus.pb.h"
+#import "OpusDesignTime.h"
 
 //typedef enum _OpusCategory{
 //    OpusCategoryDraw = 1,
@@ -23,6 +24,7 @@
 @interface Opus : NSObject
 
 @property (nonatomic, retain) PBOpus_Builder* pbOpusBuilder;
+@property (nonatomic, retain) OpusDesignTime* designTime;
 
 + (Opus*)opusWithCategory:(PBOpusCategoryType)category;
 + (Opus*)opusWithPBOpus:(PBOpus *)pbOpus storeType:(PBOpusStoreType)storeType;
@@ -56,6 +58,7 @@
 - (void)setStorageType:(PBOpusStoreType)value;
 - (void)setCreateDate:(int)value;
 - (void)setDeviceType:(int)value;
+- (void)setSpendTime:(int)value;
 
 - (void)setAsDraft;
 - (void)setAsSubmit;
@@ -76,6 +79,7 @@
 - (BOOL)isMyOpus;
 - (NSString*)name;
 - (NSDate*)createDate;
+- (int)spendTime;
 - (void)replayInController:(UIViewController*)controller;
 
 - (NSArray*)shareOptionsTitleArray;
@@ -87,6 +91,11 @@
 - (NSString *)shareTextWithSNSType:(int)type;
 
 - (BOOL)hasSameTagsToTags:(NSArray *)tags;
+
+
+- (void)loadOpusDesignTime;
+- (void)saveDesignTime;
+- (void)pauseAndSaveDesignTime;
 
 @end
 

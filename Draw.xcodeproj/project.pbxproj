@@ -60,6 +60,7 @@
 		A4088BEF183F3B790037861A /* sing_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = A4088BCA183F3B790037861A /* sing_icon_57.png */; };
 		A4088BF3183F3B790037861A /* sing_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = A4088BCB183F3B790037861A /* sing_icon_72.png */; };
 		A4088BF7183F3B790037861A /* sing_icon_76.png in Resources */ = {isa = PBXBuildFile; fileRef = A4088BCC183F3B790037861A /* sing_icon_76.png */; };
+		A4088C0018408E220037861A /* iap_product_660557448.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4088BFF18408E220037861A /* iap_product_660557448.pb */; };
 		A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -1083,7 +1084,6 @@
 		A461B702174CBAA70088B061 /* DrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */; };
 		A461B715174CBAA70088B061 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		A461B716174CBAA70088B061 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
-		A461B71D174CBAA70088B061 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
 		A461B728174CBAA70088B061 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		A461B729174CBAA70088B061 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		A461B730174CBAA70088B061 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
@@ -1129,7 +1129,6 @@
 		A461B7BE174CBAA70088B061 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		A461B7D4174CBAA70088B061 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		A461B7D6174CBAA70088B061 /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		A461B7D7174CBAA70088B061 /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
 		A461B7D8174CBAA70088B061 /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
 		A461B7F8174CBAA70088B061 /* Sing.proto in Resources */ = {isa = PBXBuildFile; fileRef = A461B074174CAE050088B061 /* Sing.proto */; };
@@ -3948,7 +3947,6 @@
 		C28A9FE41738F04B007A819F /* DrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */; };
 		C28A9FF71738F04B007A819F /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		C28A9FF81738F04B007A819F /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
-		C28A9FFF1738F04B007A819F /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
 		C28AA00A1738F04B007A819F /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		C28AA00B1738F04B007A819F /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		C28AA0121738F04B007A819F /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
@@ -3994,7 +3992,6 @@
 		C28AA0A01738F04B007A819F /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		C28AA0A11738F04B007A819F /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		C28AA0B61738F04B007A819F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		C28AA0C31738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		C28AA0D01738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		C28AA0E01738F406007A819F /* LittleGeeDrawApp.m in Sources */ = {isa = PBXBuildFile; fileRef = C28AA0D21738F405007A819F /* LittleGeeDrawApp.m */; };
 		C28C0A7316EB324500A29B6C /* CacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = C28C0A7216EB324500A29B6C /* CacheService.m */; };
@@ -4601,6 +4598,7 @@
 		CA485F5416E440E300AEE725 /* DrawBgBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CA485F5116E440E300AEE725 /* DrawBgBox.m */; };
 		CA485F5616E440E300AEE725 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		CA485F5816E440E300AEE725 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
+		CA4CD8CE1840759A00BF70D9 /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		CA4FB822179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
 		CA4FB824179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
 		CA4FB825179E240B00A57387 /* DrawLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FB821179E240B00A57387 /* DrawLayer.m */; };
@@ -6815,7 +6813,6 @@
 		EA411E2C176066F500DA72D0 /* DrawSlider~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5B073E16C01069004A64C4 /* DrawSlider~ipad.xib */; };
 		EA411E3F176066F500DA72D0 /* ShapeBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ECC16DC57D40089BD51 /* ShapeBox.xib */; };
 		EA411E40176066F500DA72D0 /* ShapeBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA9A7ED116DC57F70089BD51 /* ShapeBox~ipad.xib */; };
-		EA411E45176066F500DA72D0 /* Draw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA745D2A1503B1B500600024 /* Draw-Info.plist */; };
 		EA411E50176066F500DA72D0 /* DrawBgBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5216E440E300AEE725 /* DrawBgBox.xib */; };
 		EA411E51176066F500DA72D0 /* DrawBgBox~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA485F5316E440E300AEE725 /* DrawBgBox~ipad.xib */; };
 		EA411E58176066F500DA72D0 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA97E92D16E735A600817647 /* CustomInfoView.xib */; };
@@ -6861,7 +6858,6 @@
 		EA411EE5176066F500DA72D0 /* DrawOnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD631717EAE8009BFDC1 /* DrawOnCell.xib */; };
 		EA411EE6176066F500DA72D0 /* DrawOnCell~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAE5AD671717EB0E009BFDC1 /* DrawOnCell~ipad.xib */; };
 		EA411EFB176066F500DA72D0 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = C282E5A3172BC53200F8C610 /* README.txt */; };
-		EA411EFD176066F500DA72D0 /* LittleGeeDraw-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C28AA0C21738F0ED007A819F /* LittleGeeDraw-Info.plist */; };
 		EA411EFE176066F500DA72D0 /* LittleGeeHomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B471739E15E00403DBD /* LittleGeeHomeController.xib */; };
 		EA411EFF176066F500DA72D0 /* LittleGeeHomeController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2051B641739EAEA00403DBD /* LittleGeeHomeController~ipad.xib */; };
 		EA411F1C176066F500DA72D0 /* Sing.proto in Resources */ = {isa = PBXBuildFile; fileRef = A461B074174CAE050088B061 /* Sing.proto */; };
@@ -7238,6 +7234,7 @@
 		A4088BCA183F3B790037861A /* sing_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sing_icon_57.png; sourceTree = "<group>"; };
 		A4088BCB183F3B790037861A /* sing_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sing_icon_72.png; sourceTree = "<group>"; };
 		A4088BCC183F3B790037861A /* sing_icon_76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sing_icon_76.png; sourceTree = "<group>"; };
+		A4088BFF18408E220037861A /* iap_product_660557448.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_660557448.pb; sourceTree = "<group>"; };
 		A40B599E180E6AB800F68A81 /* ImagePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayer.h; sourceTree = "<group>"; };
 		A40B599F180E6AB800F68A81 /* ImagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayer.m; sourceTree = "<group>"; };
 		A40B59A8180E6F3800F68A81 /* SingletonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonMacros.h; sourceTree = "<group>"; };
@@ -15491,6 +15488,7 @@
 		CA9AAEAC18321621002DBAA5 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				A4088BFF18408E220037861A /* iap_product_660557448.pb */,
 				CA9AAEAD18321621002DBAA5 /* shop_item_660557448.pb */,
 				CA9AAEAE18321621002DBAA5 /* songCategory.txt */,
 			);
@@ -17510,7 +17508,6 @@
 				A461B702174CBAA70088B061 /* DrawSlider~ipad.xib in Resources */,
 				A461B715174CBAA70088B061 /* ShapeBox.xib in Resources */,
 				A461B716174CBAA70088B061 /* ShapeBox~ipad.xib in Resources */,
-				A461B71D174CBAA70088B061 /* Draw-Info.plist in Resources */,
 				A461B728174CBAA70088B061 /* DrawBgBox.xib in Resources */,
 				A461B729174CBAA70088B061 /* DrawBgBox~ipad.xib in Resources */,
 				A461B730174CBAA70088B061 /* CustomInfoView.xib in Resources */,
@@ -17556,7 +17553,6 @@
 				A461B7BE174CBAA70088B061 /* DrawOnCell.xib in Resources */,
 				A461B7BF174CBAA70088B061 /* DrawOnCell~ipad.xib in Resources */,
 				A461B7D4174CBAA70088B061 /* README.txt in Resources */,
-				A461B7D6174CBAA70088B061 /* LittleGeeDraw-Info.plist in Resources */,
 				A461B7D7174CBAA70088B061 /* LittleGeeHomeController.xib in Resources */,
 				A461B7D8174CBAA70088B061 /* LittleGeeHomeController~ipad.xib in Resources */,
 				A461B7F8174CBAA70088B061 /* Sing.proto in Resources */,
@@ -18191,6 +18187,7 @@
 				A4088BEF183F3B790037861A /* sing_icon_57.png in Resources */,
 				A4088BF3183F3B790037861A /* sing_icon_72.png in Resources */,
 				A4088BF7183F3B790037861A /* sing_icon_76.png in Resources */,
+				A4088C0018408E220037861A /* iap_product_660557448.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -18458,7 +18455,6 @@
 				C28A9FE41738F04B007A819F /* DrawSlider~ipad.xib in Resources */,
 				C28A9FF71738F04B007A819F /* ShapeBox.xib in Resources */,
 				C28A9FF81738F04B007A819F /* ShapeBox~ipad.xib in Resources */,
-				C28A9FFF1738F04B007A819F /* Draw-Info.plist in Resources */,
 				C28AA00A1738F04B007A819F /* DrawBgBox.xib in Resources */,
 				C28AA00B1738F04B007A819F /* DrawBgBox~ipad.xib in Resources */,
 				C28AA0121738F04B007A819F /* CustomInfoView.xib in Resources */,
@@ -19475,7 +19471,6 @@
 				CAE5AD641717EAE9009BFDC1 /* DrawOnCell.xib in Resources */,
 				CAE5AD681717EB0F009BFDC1 /* DrawOnCell~ipad.xib in Resources */,
 				C282E754172BC53300F8C610 /* README.txt in Resources */,
-				C28AA0C31738F0ED007A819F /* LittleGeeDraw-Info.plist in Resources */,
 				C2051B561739E15E00403DBD /* LittleGeeHomeController.xib in Resources */,
 				C2051B651739EAEA00403DBD /* LittleGeeHomeController~ipad.xib in Resources */,
 				A461B075174CAE050088B061 /* Sing.proto in Resources */,
@@ -20362,7 +20357,6 @@
 				EA411E2C176066F500DA72D0 /* DrawSlider~ipad.xib in Resources */,
 				EA411E3F176066F500DA72D0 /* ShapeBox.xib in Resources */,
 				EA411E40176066F500DA72D0 /* ShapeBox~ipad.xib in Resources */,
-				EA411E45176066F500DA72D0 /* Draw-Info.plist in Resources */,
 				EA411E50176066F500DA72D0 /* DrawBgBox.xib in Resources */,
 				EA411E51176066F500DA72D0 /* DrawBgBox~ipad.xib in Resources */,
 				EA411E58176066F500DA72D0 /* CustomInfoView.xib in Resources */,
@@ -20408,7 +20402,6 @@
 				EA411EE5176066F500DA72D0 /* DrawOnCell.xib in Resources */,
 				EA411EE6176066F500DA72D0 /* DrawOnCell~ipad.xib in Resources */,
 				EA411EFB176066F500DA72D0 /* README.txt in Resources */,
-				EA411EFD176066F500DA72D0 /* LittleGeeDraw-Info.plist in Resources */,
 				EA411EFE176066F500DA72D0 /* LittleGeeHomeController.xib in Resources */,
 				EA411EFF176066F500DA72D0 /* LittleGeeHomeController~ipad.xib in Resources */,
 				EA411F1C176066F500DA72D0 /* Sing.proto in Resources */,
@@ -21010,6 +21003,7 @@
 				CA92301F183DC40600669DE3 /* sing_home_task@2x.png in Resources */,
 				A4088B5F183F32DC0037861A /* user_detail_sing_to_bg@2x.png in Resources */,
 				A4088B63183F32DC0037861A /* user_detail_sing_to@2x.png in Resources */,
+				CA4CD8CE1840759A00BF70D9 /* LittleGeeDraw-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

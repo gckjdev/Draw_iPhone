@@ -282,14 +282,25 @@
     } 
     
     if ([self.feed isSingCategory]) {
-//        if ([self.audioPlayer isPlaying]){
-//            [self.audioPlayer pause];
-//        }
+
         [self.audioPlayer pauseForQuit];
         self.audioPlayer = nil;
     }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if (correct && _mode == RANDOM_GUESS_MODE) {
+        
+        UseItemScene *scene = [UseItemScene createSceneByType:UseSceneTypeShowFeedDetail feed:self.feed];
+        ShowFeedController *sf = [[ShowFeedController alloc] initWithFeed:self.feed
+                                                                    scene:scene];
+        sf.popToRootController = YES;
+        [self.navigationController pushViewController:sf animated:YES];
+        [sf release];
+        
+     }else{
+         
+        [self.navigationController popViewControllerAnimated:YES];
+     }
+
 }
 
 - (IBAction)clickBack:(id)sender
