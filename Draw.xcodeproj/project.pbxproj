@@ -60,6 +60,7 @@
 		A4088BEF183F3B790037861A /* sing_icon_57.png in Resources */ = {isa = PBXBuildFile; fileRef = A4088BCA183F3B790037861A /* sing_icon_57.png */; };
 		A4088BF3183F3B790037861A /* sing_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = A4088BCB183F3B790037861A /* sing_icon_72.png */; };
 		A4088BF7183F3B790037861A /* sing_icon_76.png in Resources */ = {isa = PBXBuildFile; fileRef = A4088BCC183F3B790037861A /* sing_icon_76.png */; };
+		A4088C0018408E220037861A /* iap_product_660557448.pb in Resources */ = {isa = PBXBuildFile; fileRef = A4088BFF18408E220037861A /* iap_product_660557448.pb */; };
 		A40B59A0180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59A1180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A40B59A2180E6AB800F68A81 /* ImagePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A40B599F180E6AB800F68A81 /* ImagePlayer.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -7238,6 +7239,7 @@
 		A4088BCA183F3B790037861A /* sing_icon_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sing_icon_57.png; sourceTree = "<group>"; };
 		A4088BCB183F3B790037861A /* sing_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sing_icon_72.png; sourceTree = "<group>"; };
 		A4088BCC183F3B790037861A /* sing_icon_76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sing_icon_76.png; sourceTree = "<group>"; };
+		A4088BFF18408E220037861A /* iap_product_660557448.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = iap_product_660557448.pb; sourceTree = "<group>"; };
 		A40B599E180E6AB800F68A81 /* ImagePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePlayer.h; sourceTree = "<group>"; };
 		A40B599F180E6AB800F68A81 /* ImagePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePlayer.m; sourceTree = "<group>"; };
 		A40B59A8180E6F3800F68A81 /* SingletonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonMacros.h; sourceTree = "<group>"; };
@@ -15490,6 +15492,7 @@
 		CA9AAEAC18321621002DBAA5 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				A4088BFF18408E220037861A /* iap_product_660557448.pb */,
 				CA9AAEAD18321621002DBAA5 /* shop_item_660557448.pb */,
 				CA9AAEAE18321621002DBAA5 /* songCategory.txt */,
 			);
@@ -18189,6 +18192,7 @@
 				A4088BEF183F3B790037861A /* sing_icon_57.png in Resources */,
 				A4088BF3183F3B790037861A /* sing_icon_72.png in Resources */,
 				A4088BF7183F3B790037861A /* sing_icon_76.png in Resources */,
+				A4088C0018408E220037861A /* iap_product_660557448.pb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
