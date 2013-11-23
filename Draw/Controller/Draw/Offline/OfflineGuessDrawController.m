@@ -294,7 +294,7 @@
                                                                     scene:scene];
         sf.popToRootController = YES;
         [self.navigationController pushViewController:sf animated:YES];
-        
+        [sf release];
         
      }else{
          
